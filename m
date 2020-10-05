@@ -2,82 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68370283C84
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 18:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 961A1283D2E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 19:17:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727146AbgJEQai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 12:30:38 -0400
-Received: from foss.arm.com ([217.140.110.172]:52554 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727006AbgJEQai (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Oct 2020 12:30:38 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9AE1711D4;
-        Mon,  5 Oct 2020 09:30:37 -0700 (PDT)
-Received: from e123648.arm.com (unknown [10.57.49.124])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 1FA5B3F66B;
-        Mon,  5 Oct 2020 09:30:33 -0700 (PDT)
-From:   Lukasz Luba <lukasz.luba@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Cc:     amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
-        lukasz.luba@arm.com, Dietmar.Eggemann@arm.com, qperret@google.com,
-        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
-        rjw@rjwysocki.net
-Subject: [RESEND][PATCH v2 3/3] dt-bindings: thermal: update sustainable-power with abstract scale
-Date:   Mon,  5 Oct 2020 17:30:16 +0100
-Message-Id: <20201005163016.13650-1-lukasz.luba@arm.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726615AbgJERRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 13:17:24 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59698 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725973AbgJERRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 13:17:24 -0400
+X-UUID: 2a504c1d045b4dc1aa5c26d057c2e21c-20201006
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VecbbSPzO8pFOpEeHf5BylriZHlXVPRwNmcW3hbUEHQ=;
+        b=UDrCpQnBHIMHt/K8P2JbIBXFU+4q8tg1pf2wnNPxgqRGDFl4DnYl44eY9ZB3dNyfc7AV2G0TRZs7OhBsNdlsPreWvQT4xi8a3/rliO1Tq710+65cPnUOXCECXNMTKJQXSm7VlJsvtXel0dO/++wNLI+nyLLtX0XkQv4Arg2R9gQ=;
+X-UUID: 2a504c1d045b4dc1aa5c26d057c2e21c-20201006
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <phil.chang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 328509663; Tue, 06 Oct 2020 01:17:19 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 6 Oct 2020 01:17:17 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 6 Oct 2020 01:17:15 +0800
+Message-ID: <1601918237.17256.3.camel@mtksdccf07>
+Subject: Re: [PATCH] [PATCH] of_reserved_mem: Increase the number of
+ reserved regions
+From:   Phil Chang <phil.chang@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Alix Wu <alix.wu@mediatek.com>,
+        YJ Chiang <yj.chiang@mediatek.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joe Liu <joe.liu@mediatek.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Date:   Tue, 6 Oct 2020 01:17:17 +0800
+In-Reply-To: <CAAOTY_8vCb-adkbpdmbTWLeOFt-+dHjr4HVonHX7XPkLkzy1yA@mail.gmail.com>
+References: <20201004055024.23542-1-phil.chang@mediatek.com>
+         <CAAOTY_8vCb-adkbpdmbTWLeOFt-+dHjr4HVonHX7XPkLkzy1yA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 1971EF7FADA804FD4DEB0317AF4ED35E219F726F439E90C354A0E8A7BE6052DD2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the documentation for the binding 'sustainable-power' and allow
-to provide values in an abstract scale. It is required when the cooling
-devices use an abstract scale for their power values.
-
-Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
----
-
-Hi Rob,
- 
-This is a fixed patch for DT binding, which now passes the
-make dt_binding_check (I have changed tabs into spaces).
-The former patch error that I have received is here [1]. 
-
-Regards,
-Lukasz
-
-[1] https://lore.kernel.org/linux-pm/20201002114426.31277-1-lukasz.luba@arm.com/T/#md4b02a3ada592df67446566180643ba56788c159
-
- .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-index 3ec9cc87ec50..c445927749c3 100644
---- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-+++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-@@ -99,10 +99,15 @@ patternProperties:
-       sustainable-power:
-         $ref: /schemas/types.yaml#/definitions/uint32
-         description:
--          An estimate of the sustainable power (in mW) that this thermal zone
--          can dissipate at the desired control temperature. For reference, the
--          sustainable power of a 4-inch phone is typically 2000mW, while on a
--          10-inch tablet is around 4500mW.
-+          An estimate of the sustainable power (in mW or in an abstract scale)
-+          that this thermal zone can dissipate at the desired control
-+          temperature. For reference, the sustainable power of a 4-inch phone
-+          is typically 2000mW, while on a 10-inch tablet is around 4500mW.
-+
-+          It is possible to express the sustainable power in an abstract
-+          scale. This is the case when the related cooling devices use also
-+          abstract scale to express their power usage. The scale must be
-+          consistent.
- 
-       trips:
-         type: object
--- 
-2.17.1
+SGkgQ2h1bi1LdWFuZw0KDQpTb3JyeSBmb3IgdHlwby4gSW4gZmFjdCwgdGhlIGR0cyBvZiBuZXcg
+U29DIGlzIG5vdCB1cHN0cmVhbSB5ZXQuIEknbSBzbw0Kc29ycnkgZm9yIGNvdWxkbid0IHNob3cg
+dGhlIGRldGFpbCBub3cuDQoNCkhvdyBhYm91dCB0aGUgY29uZmlndXJhYmxlIE1BWF9SRVNFUlZF
+RF9SRUdJT05TIHNpemUgbGlrZSB0aGlzIHBhdGNoPw0KaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVs
+Lm9yZy9wYXRjaC8xMDY5MjEwMS8NCg0KIA0KT24gU3VuLCAyMDIwLTEwLTA0IGF0IDIxOjA1ICsw
+ODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0KPiBIaSwgUGhpbDoNCj4gDQo+IFBoaWwgQ2hhbmcg
+PHBoaWwuY2hhbmdAbWVkaWF0ZWsuY29tPiDmlrwgMjAyMOW5tDEw5pyINOaXpSDpgLHml6Ug5LiL
+5Y2IMTo1MeWvq+mBk++8mg0KPiA+DQo+ID4gQ2VydGFpbiBTb0NzIG5lZWQgdG8gc3VwcG9ydCBs
+YXJnZSBhbW91bnQgb2YgcmVzZXJ2ZWQgbWVtb3J5DQo+ID4gcmVnaW9ucywgZXNwZWNpYWxseSB0
+byBmb2xsb3cgdGhlIEdLSSBydWxlcyBmcm9tIEdvb2dsZS4NCj4gPiBJbiBNVEsgbmV3IFNvQyBy
+ZXF1aXJlcyBtb3JlIHRoYW4gNjggcmVnaW9ucyBvZiByZXNlcnZlZCBtZW1vcnkNCj4gPiBmb3Ig
+ZWFjaCBJUCdzIHVzYWdlLCBzdWNoIGFzIGxvYWQgZmlybXdhcmUgdG8gc3BlY2lmaWMgc2FwY2Us
+DQo+IA0KPiBzcGFjZQ0KPiANCj4gPiBzbyB0aGF0IG5lZWQgdG8gcmVzZXJ2ZSBtb3JlIHJlZ2lz
+aW9ucw0KPiANCj4gcmVnaW9ucy4NCj4gDQo+IEkgZ3Vlc3MgdGhpcyByZXF1aXJlbWVudCBpcyBm
+cm9tIE1lZGlhdGVrIFNvQywgYnV0IEkgZmluZCBiZWxvdyBkZXZpY2UNCj4gdHJlZSBhbmQganVz
+dCBmaW5kIG9uZSByZXNlcnZlZCBtZW1vcnkgcmVnaW9uLA0KPiANCj4gYXJjaC9hcm02NC9ib290
+L2R0cy9tZWRpYXRlay9tdDc2MjIuZHRzaQ0KPiBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVr
+L210ODE3My5kdHNpDQo+IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4NTE2LmR0c2kN
+Cj4gDQo+IENvdWxkIHlvdSBzaG93IG1lIHRoZSA2OCByZWdpb25zPw0KPiANCj4gUmVnYXJkcywN
+Cj4gQ2h1bi1LdWFuZy4NCj4gDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKb2UgTGl1IDxqb2Uu
+bGl1QG1lZGlhdGVrLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBZSiBDaGlhbmcgPHlqLmNoaWFu
+Z0BtZWRpYXRlay5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogQWxpeCBXdSA8YWxpeC53dUBtZWRp
+YXRlay5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogUGhpbCBDaGFuZyA8cGhpbC5jaGFuZ0BtZWRp
+YXRlay5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvb2Yvb2ZfcmVzZXJ2ZWRfbWVtLmMgfCAy
+ICstDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0K
+PiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvb2Yvb2ZfcmVzZXJ2ZWRfbWVtLmMgYi9kcml2
+ZXJzL29mL29mX3Jlc2VydmVkX21lbS5jDQo+ID4gaW5kZXggNDZiOTM3MWM4YTMzLi41OTVmMDc0
+MWRjZWYgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9vZi9vZl9yZXNlcnZlZF9tZW0uYw0KPiA+
+ICsrKyBiL2RyaXZlcnMvb2Yvb2ZfcmVzZXJ2ZWRfbWVtLmMNCj4gPiBAQCAtMjIsNyArMjIsNyBA
+QA0KPiA+ICAjaW5jbHVkZSA8bGludXgvc2xhYi5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgvbWVt
+YmxvY2suaD4NCj4gPg0KPiA+IC0jZGVmaW5lIE1BWF9SRVNFUlZFRF9SRUdJT05TICAgNjQNCj4g
+PiArI2RlZmluZSBNQVhfUkVTRVJWRURfUkVHSU9OUyAgIDEyOA0KPiA+ICBzdGF0aWMgc3RydWN0
+IHJlc2VydmVkX21lbSByZXNlcnZlZF9tZW1bTUFYX1JFU0VSVkVEX1JFR0lPTlNdOw0KPiA+ICBz
+dGF0aWMgaW50IHJlc2VydmVkX21lbV9jb3VudDsNCj4gPg0KPiA+IC0tDQo+ID4gMi4xOC4wDQo+
+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiBM
+aW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gPiBMaW51eC1tZWRpYXRla0BsaXN0cy5pbmZy
+YWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9saW51eC1tZWRpYXRlaw0KDQo=
 
