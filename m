@@ -2,96 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 244A4283806
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 16:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F07C228385B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 16:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726012AbgJEOlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 10:41:13 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:46267 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726003AbgJEOlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 10:41:13 -0400
-Received: by mail-ot1-f66.google.com with SMTP id m11so3203121otk.13;
-        Mon, 05 Oct 2020 07:41:11 -0700 (PDT)
+        id S1726841AbgJEOq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 10:46:29 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:43594 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726860AbgJEOqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 10:46:21 -0400
+Received: by mail-oi1-f195.google.com with SMTP id l85so8932709oih.10;
+        Mon, 05 Oct 2020 07:46:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9bJPJc/0YFm4pMXzg6Pd5rp8R+BK4BSmdTiiXnloDY4=;
-        b=H78UvLJhHvsNkhbIset80niaHn32hwaSJZVkW/hLhPsSt1avkrEpayAYOnLa9b3nwi
-         r9sFn8FcgpiMRKI/5y5wSKN4PaxUveQGZ7MFH22jJbBeS9AeMxgExPlLKw6KuT9JvPDj
-         EcoJgJc74yZ+W/A1DfQS90LSCWpiDyrd+UJAeZByW5sDx73dqKar9GlLG8oAahhOoEhc
-         sdzdVBX5R3Ek1p7M+kP7LlHPqwxh2vIbTnEklboOdQpJY9XoCpL8amjyEdaYiEWz7q9O
-         sPc7co8WZQG4tlJoWGUb+plS0xKqFTurvfTx4nPZyk9vdd7BZGDkns+M/P7WZADMR4a+
-         kKow==
-X-Gm-Message-State: AOAM530IDGGixYG1RrsU9KUjRIejwRPtP9C0HM8BKvMwFyAfWrk8S0Q3
-        vmIO23HAWGMWUI7Z+Mwmg49kEXnUm1IJ
-X-Google-Smtp-Source: ABdhPJxs9QD2rXZYSKcBC5z+8AzZfLlTL1JZdqwKI5hy0BOUwSmgkaRe0EA+ekgrzfEpXxDuIi8cxQ==
-X-Received: by 2002:a05:6830:1f2b:: with SMTP id e11mr12357240oth.296.1601908871008;
-        Mon, 05 Oct 2020 07:41:11 -0700 (PDT)
+        bh=eg4ZUBIlL2zrsvoubzdptXm9kzivS1YXmcuLTutRd2A=;
+        b=PLXV8eI9YaZf265cz9NVQWeHRMlYoHNgUM9YIbg0FZchR2wrdVYou/vsjX/sFuHk1J
+         6P25jaUGMnaj+3P+Uac9hFfKwtjHPmOXgo9g5hmpODnLNNJXkPv6/3HDAyLQG2WVHT/a
+         jKFQxNY+sBkP8XsnJw4mBDvn+wZgA3rBasBvpOU/XKV8F7DzLUJyoGTP339tusR1kG47
+         nV8YZNP0VD0pio0IFhnpKbbyq9vpeG/2Y2yAExt5LCx/Gki1Z70v9H2kxJoTw4Dx4r1V
+         TPaGF/oRoF1WQpGQ+F8LBDAxG1kCxn3ooz08kOoKfPRih+8tzmCtm31gVOHwR+ke/i9H
+         xdDw==
+X-Gm-Message-State: AOAM532yGW8MoacUKOXhHDgUrluZkuCJynti+vBm+/Ko2NoksHwzaHNy
+        0gENM6FxC0YvloxzI+NNjw==
+X-Google-Smtp-Source: ABdhPJzyCvlLjfu9dD2qxiBtg/5pGVvph6AzDdpf6U6YH3RzWGnFt+bxUcfQOWcZLl6t+JYivvisdQ==
+X-Received: by 2002:a05:6808:a9a:: with SMTP id q26mr8541339oij.87.1601909179754;
+        Mon, 05 Oct 2020 07:46:19 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 2sm1921010oty.59.2020.10.05.07.41.09
+        by smtp.gmail.com with ESMTPSA id z8sm10575oic.11.2020.10.05.07.46.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 07:41:10 -0700 (PDT)
-Received: (nullmailer pid 154079 invoked by uid 1000);
-        Mon, 05 Oct 2020 14:41:09 -0000
-Date:   Mon, 5 Oct 2020 09:41:09 -0500
+        Mon, 05 Oct 2020 07:46:19 -0700 (PDT)
+Received: (nullmailer pid 161117 invoked by uid 1000);
+        Mon, 05 Oct 2020 14:46:18 -0000
+Date:   Mon, 5 Oct 2020 09:46:18 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     vigneshr@ti.com, heiko@sntech.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, richard@nod.at,
-        miquel.raynal@bootlin.com, linux-mtd@lists.infradead.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v10 1/8] dt-bindings: mtd: Describe Rockchip RK3xxx NAND
- flash controller
-Message-ID: <20201005144109.GA154028@bogus>
-References: <20200930020710.7394-1-yifeng.zhao@rock-chips.com>
- <20200930020710.7394-2-yifeng.zhao@rock-chips.com>
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v9 03/15] dt-bindings: usb: Maxim type-c controller
+ device tree binding document
+Message-ID: <20201005144618.GA154206@bogus>
+References: <20200929024004.244992-1-badhri@google.com>
+ <20200929024004.244992-4-badhri@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200930020710.7394-2-yifeng.zhao@rock-chips.com>
+In-Reply-To: <20200929024004.244992-4-badhri@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020 10:07:07 +0800, Yifeng Zhao wrote:
-> Documentation support for Rockchip RK3xxx NAND flash controllers
+On Mon, Sep 28, 2020 at 07:39:52PM -0700, Badhri Jagan Sridharan wrote:
+> Add device tree binding document for Maxim TCPCI based Type-C chip driver
 > 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
 > ---
+> Changes since v1:
+> - Changing patch version to v6 to fix version number confusion.
 > 
-> Changes in v10: None
-> Changes in v9: None
-> Changes in v8:
-> - Fix make dt_binding_check error
+> Changes since v6:
+> - Migrated to yaml format.
 > 
-> Changes in v7:
-> - Fix some wrong define
+> Changes since v7:
+> - Rebase on usb-next
 > 
-> Changes in v6:
-> - Fix some wrong define
-> - Modified the definition of compatible
+> Changes since v8:
+> - Fix errors from make dt_binding_check as suggested by
+>   Rob Herring.
+> ---
+>  .../devicetree/bindings/usb/maxim,tcpci.yaml  | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
 > 
-> Changes in v5:
-> - Fix some wrong define.
-> - Add boot-medium define.
-> - Remove some compatible define.
-> 
-> Changes in v4:
-> - The compatible define with rkxx_nfc.
-> - Add assigned-clocks.
-> - Fix some wrong defineChanges in.
-> 
-> Changes in v3:
-> - Change the title for the dt-bindings.
-> 
-> Changes in v2: None
-> 
->  .../mtd/rockchip,nand-controller.yaml         | 162 ++++++++++++++++++
->  1 file changed, 162 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
-> 
+> diff --git a/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
+> new file mode 100644
+> index 000000000000..f4b5f1a09b98
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/usb/maxim,tcpci.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Maxim TCPCI Type-C PD controller DT bindings
+> +
+> +maintainers:
+> +  - Badhri Jagan Sridharan <badhri@google.com>
+> +
+> +description: Maxim TCPCI Type-C PD controller
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,tcpci
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Is there a datasheet for this? Searching for 'tcpci' doesn't really come 
+up with anything other than this patch. Only chip I found is MAX77958. 
+Bindings are for specific h/w devices.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  connector:
+> +    type: object
+> +    $ref: ../connector/usb-connector.yaml#
+> +    description:
+> +      Properties for usb c connector.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+
+additionalProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/usb/pd.h>
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        maxtcpc@25 {
+> +            compatible = "maxim,tcpc";
+> +            reg = <0x25>;
+> +            interrupt-parent = <&gpa8>;
+> +            interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +            connector {
+> +                compatible = "usb-c-connector";
+> +                label = "USB-C";
+> +                data-role = "dual";
+> +                power-role = "dual";
+> +                try-power-role = "sink";
+> +                self-powered;
+> +                op-sink-microwatt = <2600000>;
+> +                source-pdos = <PDO_FIXED(5000, 900,
+> +                                         PDO_FIXED_SUSPEND |
+> +                                         PDO_FIXED_USB_COMM |
+> +                                         PDO_FIXED_DATA_SWAP |
+> +                                         PDO_FIXED_DUAL_ROLE)>;
+> +                sink-pdos = <PDO_FIXED(5000, 3000,
+> +                                       PDO_FIXED_USB_COMM |
+> +                                       PDO_FIXED_DATA_SWAP |
+> +                                       PDO_FIXED_DUAL_ROLE)
+> +                                       PDO_FIXED(9000, 2000, 0)>;
+> +            };
+> +        };
+> +    };
+> +...
+> -- 
+> 2.28.0.709.gb0816b6eb0-goog
+> 
