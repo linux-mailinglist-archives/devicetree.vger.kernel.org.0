@@ -2,90 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33FE0282F32
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 06:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CA18282F4C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 06:14:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725869AbgJEEHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 00:07:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725844AbgJEEHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 00:07:48 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAEA2C0613A6;
-        Sun,  4 Oct 2020 21:07:32 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id y14so5142864pgf.12;
-        Sun, 04 Oct 2020 21:07:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kR14db6Ki5aihI8usj3ZmbgmzWosbU7rqzy9hS9hMQg=;
-        b=lyffoknSw5PBKePgYqy/rffojx8eMHQbUamKEQMVfWodEcSV0KocKRhzqkZBKfBV7i
-         08UsBBLfqqrEnvoR7sB94CADgBc6MOSM0FqRn1kirij/0bV6vv/0eYG6lqzCGk3Yj+Xh
-         MffdN6t6RYa7x/HrIfXzL4oTqLtcV19fYtF3ns+uixO4BaB4ACMt2umufMIBYsWdHGzq
-         BiUZC/bPO+A14mG72+LjlqbEOUM+5KPVX2Uy1fj0x2FKQ43Pi+wNsFitfIf9fzExrK0z
-         I7fhFM3RnqlVOahrz0jPczoom3GbLCcvjqlf3Bh5NbuFfwhrVKwFp0RtnfymKmmVl1WV
-         9iTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kR14db6Ki5aihI8usj3ZmbgmzWosbU7rqzy9hS9hMQg=;
-        b=FJdk+iKpaLh5Codl9KAyDktrQ5Mkn6/3NLdE2GKmLgwZfibLppY0cDkwUWQ6OHDbVw
-         4wyvVygTnAFVyZDo1dJYrgk/iz1UNONWkQaaWc4BkekD9Djyu0XKef8xxgJMhBpeuzxn
-         h48PsVDR3B684uwg6VbhLnOY7RXNMLWPYrxx/EIU4KtgmkPf8iqav+qgRmxUlgodYvld
-         t09IkXO1K20Ek8tlLo88naWsxdf3Wj2NQvFGcJyXvbNNw2R/+gFGg6gpI8mXShqIRPf/
-         MGzXtDl7rDFoplww+p32T/jBP/CpSnlna4t9QP/KsyPqIrqC1ji9hrWXvXW8AVlirTyo
-         Wppw==
-X-Gm-Message-State: AOAM5309Y/+gmd8G4sU6fF8PR8IQJuuNvoWxDUrM1nl643p6xAUDHmA6
-        e9k4BoBlwqed4eF7orkOW/0=
-X-Google-Smtp-Source: ABdhPJyZCBvYuuJGpF4w0tC9WlE3yjY1sXSQX+rnSwaYy3cxdFZdkYLZlkS4vydGJkiCx99lvuedPA==
-X-Received: by 2002:a62:e404:0:b029:150:7d36:cd88 with SMTP id r4-20020a62e4040000b02901507d36cd88mr14939471pfh.24.1601870852233;
-        Sun, 04 Oct 2020 21:07:32 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id t15sm21767139pjq.3.2020.10.04.21.07.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Oct 2020 21:07:31 -0700 (PDT)
-Date:   Sun, 4 Oct 2020 21:07:29 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     michael.srba@seznam.cz
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Paul Burton <paulburton@kernel.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 2/2] dt-bindings: input/touchscreen: add bindings for
- zinitix
-Message-ID: <20201005040729.GF1009802@dtor-ws>
-References: <20201001122949.16846-1-michael.srba@seznam.cz>
- <20201001122949.16846-2-michael.srba@seznam.cz>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201001122949.16846-2-michael.srba@seznam.cz>
+        id S1725947AbgJEEOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 00:14:36 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:28355 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725910AbgJEEOb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 00:14:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1601871271; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=Bw4FPKYD7BFvNNdkoFP17bqQ/49PAxqfxppKDdmMmSo=; b=RuIWgvR2mtWYjORg8etPPnV06dzOFIS37TqLDeSnEtPAZr8iuJxAqc+1YLQt3PO5nT6HkCVc
+ U56ZQT3BRfic4sUnZ09I6DkSm536QzoAEhEsG2lb0Pc1IdGCDXULD9jvdD/E3dewpCyNpRE0
+ KsFpmkwZzqADGfSlWVSt+ZVSsuI=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 5f7a9d8357b88ccb56041e4e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 05 Oct 2020 04:13:55
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 130BDC43385; Mon,  5 Oct 2020 04:13:55 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BFAF2C433F1;
+        Mon,  5 Oct 2020 04:13:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BFAF2C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v9 0/7] Qualcomm's lpass-hdmi ASoC driver to support audio over dp port
+Date:   Mon,  5 Oct 2020 09:43:28 +0530
+Message-Id: <1601871215-26200-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 01, 2020 at 02:29:49PM +0200, michael.srba@seznam.cz wrote:
-> From: Michael Srba <Michael.Srba@seznam.cz>
-> 
-> This patch adds dts bindings for the zinitix bt541 touchscreen.
-> 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+These patches are to support audio over DP port on Qualcomm's SC7180 LPASS
+Asoc. It includes machine driver, cpu driver, platform driver updates for 
+HDMI path support, device tree documention, lpass variant structure 
+optimization and configuration changes.
+These patches depends on the DP patch series
+https://patchwork.kernel.org/project/dri-devel/list/?series=332029
+https://lore.kernel.org/patchwork/project/lkml/list/?series=464856
 
-Applied, thank you.
+changes since V8:
+    -- Removed extra structure wrapper for reg map field memebrs
+    -- Updated lpass_hdmi_regmap_volatile API with appropriate registers as true
+       and others as false.
+changes since V7:
+    -- Fixed typo errors
+    -- Created Separate patch for buffer size change 
+changes since V6:
+    -- Removed compile time define flag, which used for enabling
+     HDMI code, based on corresponding config param is included.
+    -- Updated reg map alloc API with reg map bulk API.
+    -- Removed unnecessary line splits
+changes since V5:
+    -- Removed unused struct regmap *map in lpass_platform_alloc_hdmidmactl_fields.
+    -- DMA alloc and free API signature change in lpass-apq8016.c, lpass-ipq806x.c 
+    -- Keeping API "irqreturn_t lpass_platform_hdmiif_irq" under ifdef macro
+Changes Since v4:
+    -- Updated with single compatible node for both I2S and HDMI.
+Changes Since v3:
+    -- Removed id in lpass variant structure and used snd_soc_dai_driver id.
+Changes Since v2:
+    -- Audio buffer size(i.e. LPASS_PLATFORM_BUFFER_SIZE) in lpass-platform.c increased.
+Changes Since v1:
+    -- Commit messages are updated
+    -- Addressed Rob Herring review comments
+
+V Sujith Kumar Reddy (8):
+  ASoC: Add sc7180-lpass binding header hdmi define
+  ASoC: dt-bindings: Add dt binding for lpass hdmi
+  Asoc:qcom:lpass-cpu:Update dts property read API
+  Asoc: qcom: lpass:Update lpaif_dmactl members order
+  ASoC: qcom: Add support for lpass hdmi driver
+  Asoc: qcom: lpass-platform : Increase buffer size
+  ASoC: qcom: sc7180: Add support for audio over DP
+
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  74 +++-
+ include/dt-bindings/sound/sc7180-lpass.h           |   1 +
+ sound/soc/qcom/Kconfig                             |   5 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/lpass-apq8016.c                     |   4 +-
+ sound/soc/qcom/lpass-cpu.c                         |  53 ++-
+ sound/soc/qcom/lpass-hdmi.c                        | 469 +++++++++++++++++++++
+ sound/soc/qcom/lpass-hdmi.h                        | 122 ++++++
+ sound/soc/qcom/lpass-ipq806x.c                     |   4 +-
+ sound/soc/qcom/lpass-lpaif-reg.h                   |  52 ++-
+ sound/soc/qcom/lpass-platform.c                    | 403 ++++++++++++++----
+ sound/soc/qcom/lpass-sc7180.c                      | 116 ++++-
+ sound/soc/qcom/lpass.h                             | 119 +++++-
+ 13 files changed, 1279 insertions(+), 145 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-hdmi.c
+ create mode 100644 sound/soc/qcom/lpass-hdmi.h
 
 -- 
-Dmitry
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
