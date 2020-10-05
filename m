@@ -2,141 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E91283780
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 16:18:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FDB828379A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 16:23:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725936AbgJEOS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 10:18:28 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:49737 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725932AbgJEOS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 10:18:28 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 71C67580333;
-        Mon,  5 Oct 2020 10:18:26 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 05 Oct 2020 10:18:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=6wsLdnF0Lcj4VRsQV0kAmaPfVtC
-        x6J2lDHDdjPu+HyI=; b=qEf14hR9GLWy2VYGK0g4RItIG6bSVGLVfyck9C/MtYK
-        8QojfuokJjmy3jNrqw0QbShD5V37P4bhDNMyH1k87xvZAHRb++uD1Q/1F6MOTRBP
-        DlaDa2+CQA3IzxmfPJKvvpD/Y7r3uEICJUatd4zgWHZgQDAX/lK0BzlT7yKLbeHg
-        CNdldgGtoIb0jhGG7YRbPx3XUCqJyZ+NsH3oHR5XTXDxlvTDUV3RElsI3aChgiOp
-        fPufdD373MI8kbPfKYe75WjXx45v+1zjZB9BDb7M75ykDKJ41NQ/OYscMSuXFHKk
-        MIX6o6R7JccBjBLvLY6rvIxwI/wcRJJbHJfvzyMnjAw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=6wsLdn
-        F0Lcj4VRsQV0kAmaPfVtCx6J2lDHDdjPu+HyI=; b=o9jZWd/ynS7GLOdyWQCj+m
-        rEctlEU2QqL3K2BEK37+O9DiRY2JSM6vC/nGDXSI/KZkAnkDFYH9aRXvwA6st8IE
-        6Fni0N9Sx4WK0pJetFjGY+4QzrnkLB8Gqj6cy2RLKGF+afuu+2RYg8BujsbAJdV4
-        9thcnZtcy2NrDLnd3uSaHUmj8nsSxu7Wu9obcGZ3xyrrR4IG+KPKYQwBmUesuOm0
-        JCkdT+fdz69g1b3r9pY7ZPu23cG9BCE8dOEF01lN4elyDJQcNn6+UhYE6ilNrmxd
-        8E/JG+3CufRvYMmdLGl9HZCk1GL7i6ic9InU7KeLfMh0+cdAoRDtKfCqI8kgJEiQ
-        ==
-X-ME-Sender: <xms:Kyt7X05OcjCXZEew0bn6vCYkyt8pJYCgVk2q2f0YQrW6Kt8FfS8Omw>
-    <xme:Kyt7X16H427lNHlHNvc_MQDYWca3xi9_o6Ci85wfsHIXXlf8e0mCLlDEd6JKt39zt
-    LQEJmZR3wSRLC7HsE0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgdejjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:Kyt7Xzdvh-hGhEgpTjkaAHOt0OaJpUJ1MoJ74zpLKsmEc4G4m-qWuw>
-    <xmx:Kyt7X5IwLS0iCslBAxt1ZzDYdotsIiy-Jl714TA0gXokk1meWhUthw>
-    <xmx:Kyt7X4KevHQonHGNq1_mdxw4KnJA6ttiwH-NC1V3Uo9igGQAK3wdWg>
-    <xmx:Mit7X9WZF7If6pSu-DXFP3uQc8AcRZsbPmbhZL_YAGAjApkVcHN2tA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 9A796328005D;
-        Mon,  5 Oct 2020 10:18:19 -0400 (EDT)
-Date:   Mon, 5 Oct 2020 16:18:17 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/4] drm/sun4i: tcon: Refactor the LVDS and panel
- probing
-Message-ID: <20201005141817.rsj7d6wwnsgdrydo@gilmour.lan>
-References: <cover.7029eefe5c5350920f91d4cd4cbc061466752f3c.1596101672.git-series.maxime@cerno.tech>
- <1df5a7bcafa091e008edb439ee9de4262ae4d5d1.1596101672.git-series.maxime@cerno.tech>
- <CAGb2v64dsqavVYL4UvjWw=DzpbE-Egwso1Ma8xH3qYgS2Te9zg@mail.gmail.com>
+        id S1726512AbgJEOW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 10:22:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38396 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726410AbgJEOWy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 10:22:54 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19962C0613CE;
+        Mon,  5 Oct 2020 07:22:54 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id l17so9523036edq.12;
+        Mon, 05 Oct 2020 07:22:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=CdKoB5teJzxZL7jWfdQ4g7D1MnR9iAi8iKm+mfkmSuw=;
+        b=FkWKt+GkmOtkeJIRlY4UmBa6D+ctgcppq5K4SeVo6xTYjpT54L1wz2oMsiNJ77AoNH
+         OiLnwfk02KHpV1yGKaeoEhsLcLfNJ4K5g9Ci5OUxYjntIIDirWnX6t5UPj4+tX37ilTi
+         G9OrINPPbN21xHGCBGqjEinSBsQyLmsktWwt5cOrK1eUaJ5V19qhFQC3DiiJqs/QaB5E
+         MhWKLnY6TdQ+hhHUzCQFW9YtTyeo5wxDYONseX3l2IkIqZDlZWRF/Cgycd5ZG8+OlgFq
+         sMiGmCtkJbVyjpi8lZWuN73GDSImbWie7N0LnWUxpG0qWR7c/Cgp4QtIJOerorOWxEyf
+         16Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=CdKoB5teJzxZL7jWfdQ4g7D1MnR9iAi8iKm+mfkmSuw=;
+        b=LZgyz9gjkbEXjhvHk2sKawxGjCMyY/K36Tc6xc7Vso2YG9b2rLUeiQTz6vaAReSPLH
+         xQ1AsbmajsiF55vfeAByZ7/ywxegiT8lf6YYceheBhm4LsSo6+D7unyc3gRRfmqNhkB0
+         b374YzCOAqYMmotsr1Q5hRl43Sd5VZyI0Ukrd4p6jfADR0GRtuUHcIx/Ozxn4rb5Bdfg
+         3bTGl50LZqoQd/lSE+ze+XUPXSTUEYTnbq/MSEk/SiF9f2hdBCswfW81+Pp+/8pC+ZpH
+         HrEp0z10242X3CUaXk8H9cCSM+IGtgL+VP6UVH4mek+a2awZt8fgpuuzX76yHDXUbN8l
+         qrgg==
+X-Gm-Message-State: AOAM530fArqAGznWNwAwbzkzl4mY9VkG2B9UGNhZcyJQP3m0T48j5Nl6
+        R7S1/BekgN1IwRjQKsGSP+LPfDUnKwLrwcsPY6P1viPWj5bCGg==
+X-Google-Smtp-Source: ABdhPJwN9B1916yhWPM3OwElMYG9R/EG1uHsP62ezdKCjmVQE+mVetP9RE9ip8PLM9leJoDoAK2UamKruFUiqn+k69I=
+X-Received: by 2002:a50:fe82:: with SMTP id d2mr17028990edt.86.1601907772599;
+ Mon, 05 Oct 2020 07:22:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="k233jlwaazxqabpi"
-Content-Disposition: inline
-In-Reply-To: <CAGb2v64dsqavVYL4UvjWw=DzpbE-Egwso1Ma8xH3qYgS2Te9zg@mail.gmail.com>
+References: <20201004133114.845230-1-pgwipeout@gmail.com> <20201004133114.845230-2-pgwipeout@gmail.com>
+ <b3b99578-73c8-17e1-81ff-4b3fdf1b58f3@gmail.com>
+In-Reply-To: <b3b99578-73c8-17e1-81ff-4b3fdf1b58f3@gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Mon, 5 Oct 2020 10:22:40 -0400
+Message-ID: <CAMdYzYoKYzTsdWd=99LbwJ4-dG1WOJLo=hxsu_h=Hwrtybiw9A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] ARM: tegra: Add device-tree for Ouya
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Bob Ham <rah@settrans.net>,
+        Leonardo Bras <leobras.c@gmail.com>,
+        Michael Brougham <jusplainmike@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---k233jlwaazxqabpi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Chen-Yu,
-
-Sorry for the delay
-
-On Sat, Aug 29, 2020 at 02:43:53PM +0800, Chen-Yu Tsai wrote:
-> > +static int sun4i_tcon_register_panel(struct drm_device *drm,
-> > +                                    struct sun4i_tcon *tcon)
-> > +{
-> > +       struct device_node *companion;
-> > +       struct device_node *remote;
-> > +       struct device *dev =3D tcon->dev;
-> > +       bool has_lvds_alt;
-> > +       bool has_lvds_rst;
-> > +       int ret;
+On Mon, Oct 5, 2020 at 10:02 AM Dmitry Osipenko <digetx@gmail.com> wrote:
+>
+> 04.10.2020 16:31, Peter Geis =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > +     thermal-zones {
+> > +             cpu_thermal: cpu-thermal {
+> > +                     polling-delay =3D <5000>;
+> > +                     polling-delay-passive =3D <5000>;
 > > +
-> > +       /*
-> > +        * If we have an LVDS panel connected to the TCON, we should
-> > +        * just probe the LVDS connector. Otherwise, let's just register
-> > +        * an RGB panel.
-> > +        */
-> > +       remote =3D of_graph_get_remote_node(dev->of_node, 1, 0);
-> > +       if (!tcon->quirks->supports_lvds ||
-> > +           !of_device_is_compatible(remote, "panel-lvds"))
-> > +               return sun4i_rgb_init(drm, tcon);
->=20
-> Slightly related: IIRC there are a few LVDS panels supported in panel-sim=
-ple
-> so they don't use the panel-lvds compatible. Any idea how to deal with th=
-ose?
+> > +                     thermal-sensors =3D <&cpu_temp 1>;
+> > +
+> > +                     trips {
+> > +                             cpu_alert0: cpu-alert0 {
+> > +                                     temperature =3D <50000>;
+> > +                                     hysteresis =3D <10000>;
+>
+> Hello, Peter!
+>
+> A day ago I was tuning thermal zones for Nexus 7 because found that the
+> current variant is a bit too unpractical. In particular temperature
+> hysteresis should be small, otherwise cpufreq could get throttled
+> enormously to the point that device becomes unusable. This is an
+> active-cooling zone, but it looks to me that hysteresis is a bit too
+> high and should make Ouya much noisier than it could be.
+>
+> I suggest to try to set hysteresis to 0.2C here, i.e. hysteresis =3D <200=
+>.
+>
+> I also suggest to bump the temperature threshold to 55C in order to
+> ignore temporal temperature spikes because CPU temp should be about 40C
+> during idle and then it may raise quickly for a brief moments during
+> average usage.
 
-I agree that this is an issue, I'm not entirely sure how to fix it. The
-proper fix would be to have multiple output ports, one for each output
-type, but given how our current binding looks like I'm not sure how we
-could retro-fit that without some horror-looking code.
+Good Morning,
 
-Maybe we can add a property on the endpoint?
+The Ouya has a rather large heatsink with poor conductivity and a
+single stage fan.
+The fan is not terribly loud, as it runs at a rather low rpm.
+The temperature at the cpu tends to be much higher than observed at
+the heatsink.
+I've found that a low hysteresis value leads to a situation where the
+fan is constantly toggling on and off.
+I actually burned out the power transistor driving the fan on my first
+Ouya this way.
+The high hysteresis value provides a good balance of fan on/off time
+under most loads.
+The temperature threshold was chosen for this as well.
 
-Maxime
+>
+> > +                                     type =3D "active";
+> > +                             };
+> > +                             cpu_alert1: cpu-alert1 {
+> > +                                     temperature =3D <70000>;
+> > +                                     hysteresis =3D <5000>;
+> > +                                     type =3D "passive";
+> > +                             };
+>
+> And here to 0.2C as well.
 
---k233jlwaazxqabpi
-Content-Type: application/pgp-signature; name="signature.asc"
+This value was chosen to protect the CPU in case of fan failure.
+Again, with the large heatsink and poor conductivity we need to
+maintain throttling for longer.
+Otherwise the cpu temp will overshoot and risk thermal shutdown before
+throttling can prevent it.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3srKQAKCRDj7w1vZxhR
-xW3UAP9LhISLvgGCp85tX5q7sVKwegF/hpc+qmUEDuDHFUfNxAD/TgzPFraDdq+R
-cptbFzYYVHyTjiKe1IYyDHx6x0BdTgA=
-=n+wt
------END PGP SIGNATURE-----
-
---k233jlwaazxqabpi--
+>
+> > +                             cpu_crit: cpu-crit {
+> > +                                     temperature =3D <90000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "critical";
+> > +                             };
+>
+> The critical zone perhaps should be fine as-is.
