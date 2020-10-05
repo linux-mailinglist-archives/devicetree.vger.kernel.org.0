@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56B9B2838DE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81643283900
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726899AbgJEPDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:03:52 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:59105 "EHLO
+        id S1727100AbgJEPFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:05:40 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:33815 "EHLO
         new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726743AbgJEPDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:03:47 -0400
+        by vger.kernel.org with ESMTP id S1726398AbgJEPFj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:05:39 -0400
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 25D4F580397;
-        Mon,  5 Oct 2020 11:03:47 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 05 Oct 2020 11:03:47 -0400
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3F15D580397;
+        Mon,  5 Oct 2020 11:05:38 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 05 Oct 2020 11:05:38 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:mime-version
         :content-transfer-encoding; s=fm1; bh=jhIHshhXU/XQiBzYzWAWXfs8v6
-        DPWe98K8qTnZwq800=; b=jmyLbVkhtAfMsmlIKpsf07dxdOjZXPofqPY7oZElwk
-        aGCUcqvb3a8k25Zdnzz9gLgxpG3j6vcy8OjB86bvwGbD/QQyNhcmTj+JsZzkTlwU
-        YCmNHfLgctb1UUPduS37K6BrtNjfbfPpAAFTcfTja5Zo0Tn6PW3ZR+56W0ApqrqZ
-        7bBqWRphrfWQsQW/JtgH11sG6JokqI4OjkCbqFXuV/hlfc7HzLKjMJ9Zh7Kwt+ML
-        9R5EFkUqqf1jxka7UoruKp5f5+VZIg2D0g1dxlfPbnFkxCoPWZz9O1Ipu/ouqL/t
-        AHviiydyGhYcSF+KetW7wxvVdCQy7cuNdvqZewMLnJJQ==
+        DPWe98K8qTnZwq800=; b=Ganl+Mn7cr+SDvE6dtRo5E30teRyKpogZSo+xY825/
+        pqzlwVm/BluM0yHkrtv88JHlPc97PerQ4mO1dDib1/94kmsCxvv0Sfk21QYbMb5m
+        1Ix2jrwowpmrbm6KBA/6f1RiekC1kv/DB23USXhtG2IwAFe17FggzKbXtOZG7jd7
+        50IFR/fwxEqjvTVYxfcUCgNJyW1SvNGHkxW5x7K/NO1l4aHGW+tmm+ewKAR1eaDj
+        UMiDiwoCkWyO1UDp1/BX5fp9WK13bFbyS3BBfccFjb14rfw9qLEzEyG3DK24GNIm
+        c5hMevtI5LFna26GA5IyvGFTDNZjoT+GU/oSd9c0ZWyA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
         :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=jhIHshhXU/XQiBzYz
-        WAWXfs8v6DPWe98K8qTnZwq800=; b=amKNVjjxUnB1LdRNfrlch/R1Tl/W6cj3v
-        AWd5RWNf/QOlF1dGjI/cXAoyvUZHKGeAigpPy10/TIayWZBSLqDG/8x4v01rNPw2
-        KUgjbWj+fLUM/AzUbwlDCk4md5Qp337rVnj9HSMirYHXtC8j/FEb9gCC4kuSAHNy
-        n8i8IYjLvHXfOxluAsMHIJ2k177gfD8aSwOOxc0adwSYF5CdIH0EviJbCp40sQNC
-        /mx8F7IFlTIKJMhiPcUcZxShEz2etazOLe3zdD1biLtm1mYfHOD2AVIFiLjhIUJS
-        43ZD9MJFnZhwSRv1h8nz0FSL2fc506SqrjkOB0/H2Mn6BON8BOHfA==
-X-ME-Sender: <xms:0jV7X5V7G9TNEyXV-mIYIpr7xxS91BU3u3zK-KW7cmyrRndfvGbeIA>
-    <xme:0jV7X5mYDWzwTZGt6Xc75RlH-NGosYXgh4_By152baGjZYfhNwpjaCZ0MfwwD_5iX
-    RoT-zaB6yOuEIO1klE>
+        WAWXfs8v6DPWe98K8qTnZwq800=; b=inkivsASwcGpB5avk0O6LA7/wGwz6nsXt
+        EZT2mn8RnCrFc2gIvwsXjAr2Y9ioH16EA/IKB2wMgEUjDhX1XofQ1DeM8hlTGRIw
+        T96nJGr3EJK/4dK/d9X9/UB5QBvt14qXhRgvo26CDzKfar1qaxwWCSQCW6YWDXlF
+        XbELm4A38MAx45YfkOKriS8qoKrk2he1eMCav76Njd6prbACPxmlHSCZrWW+0v+k
+        bLpxOBrNto/LVK43FysrBgg+iCLrvA2QuxunGg1oLtsmMycokz8WDpsSfyOt1x1I
+        Bpi5oAKptAMRznciwOcJ9FXopIK2uZBxXt5is12A+7a9lF+0pLLCg==
+X-ME-Sender: <xms:QDZ7X3BRnRfuEuoLi1Ju2C8p_z87-kmrQ2_l2Niy49wih9yeYyOaMw>
+    <xme:QDZ7X9hoXOCZbVSeCAffdsfvm43RnXoEDLUSpu5VMTOK4kGWn5RQeUZCNXVkkLLO_
+    Es0Oow_TxEMGbvN0MY>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgdekiecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucft
     ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
     hnpeejffehuddvvddvlefhgeelleffgfeijedvhefgieejtdeiueetjeetfeeukeejgeen
-    ucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurfgrrh
+    ucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedvnecurfgrrh
     grmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:0jV7X1bHT4tayZ0RDUmIv3rMPxrxUmvos0eyRssMRZNCV074fE4fBw>
-    <xmx:0jV7X8WPOpr7_fxms2DE73aREeEeaWxyjETmu9tuaWGHSrm_bhcHvQ>
-    <xmx:0jV7Xzn5-eOuWEm8qpI-wwI3gC03Ch-cwHOm9o5EqnhvK0BIRfBD4A>
-    <xmx:0zV7X8dLpbRP7ava5gUglaftuoNk8Pu3jbAkA3PgcTWXKbCRbZVUuQ>
+X-ME-Proxy: <xmx:QDZ7XykMC3yR9TzGijcudL7QctCE7VFRD86MF5-1nZVcihUBXzRA3Q>
+    <xmx:QDZ7X5xvUMZaErO5jFUQrVH3O4xNGiI5NBWHguGc7GaEvClsQm_jjw>
+    <xmx:QDZ7X8RxmRwIWFxQumV9kfR_MlPticsQyBSHUI7yhlFlFL832ac0Fw>
+    <xmx:QjZ7XxL9DxNvm8IGvIforTIgfz-oBhFEPZQpx4mI29HgZZQEDOJOGw>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 94AFF3064684;
-        Mon,  5 Oct 2020 11:03:46 -0400 (EDT)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 4E153328005E;
+        Mon,  5 Oct 2020 11:05:36 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         dri-devel@lists.freedesktop.org
@@ -66,7 +66,7 @@ Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         linux-arm-kernel@lists.infradead.org
 Subject: [PATCH v3 0/6] drm/sun4i: Add support for dual-link LVDS on the A20
-Date:   Mon,  5 Oct 2020 17:03:38 +0200
+Date:   Mon,  5 Oct 2020 17:05:28 +0200
 Message-Id: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910147.git-series.maxime@cerno.tech>
 X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
