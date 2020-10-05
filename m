@@ -2,102 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62152283702
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A091C283705
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:55:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726078AbgJENyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 09:54:40 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44847 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725911AbgJENyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 09:54:39 -0400
-Received: by mail-ot1-f68.google.com with SMTP id a2so8629367otr.11;
-        Mon, 05 Oct 2020 06:54:37 -0700 (PDT)
+        id S1726123AbgJENzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 09:55:07 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:42483 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725911AbgJENzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 09:55:07 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m13so8651632otl.9
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 06:55:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ywT1ID75hKID+KWrvt8jbDCqAy1lsMMxjENEdx2Y1RY=;
-        b=V6wdXhTU8s6zmDWjxLEj0MacUFNdOWTRRGhViJTYug2OeeYLV+pFjXuPNCS+MCZ4Kn
-         hq6INTCT4WpChylWrvBhKDCoDeXHGIV6CMRV38fShfJuJXo1hXT9dEf+jkNL1S/ULQgT
-         gy/jYjG3xJIeNwTbueBPUWoAIhuMM22tLjD/W24fdc3Fq2l35VOO1klydEGbi8VMdOAQ
-         miul0dffTrJgxoUi1lR2FIYg3ZmxV2k+0gP1H8MNMxVtY2GmbvgVbrFS+4faRK3aizOQ
-         vYwKnR7ATRO5Ay0/3tE+HkFBbD5RSlFAVl55Gkl0j73QZKzghR9PwQ1HqqoyivVOGL6+
-         u/eg==
-X-Gm-Message-State: AOAM5307btv9zMTHXsxhtRPl2s9BSu/2ll7Ym//23ilbgNkI51hfHNlN
-        g3aV9NybHm6bvlmyGw7FBA==
-X-Google-Smtp-Source: ABdhPJy27lxmlMYfHdDW0sQLWWCljDxFmokHsIy9JCpxiH5FWa61WQb3hBS728MrEMCDCS4Vzx1c2A==
-X-Received: by 2002:a05:6830:30a8:: with SMTP id g8mr10929780ots.370.1601906077165;
-        Mon, 05 Oct 2020 06:54:37 -0700 (PDT)
+        bh=+Y4gjDGwHEexJsJEMak2JrCEZKWVBN3DiXlKnxcoWUc=;
+        b=iAazpdYfWYBF0R92gNk/ueefVg6Lgurno858WfItQlA6MGts4P9WUN+o061ASz98Eq
+         0EwXeLgVGxt7LLvdkWd9ZZnZqYeoLV7fhocaowoGc5XuHDUzrF0xr6bkSV1sYl6IIgSV
+         ccB2es4H7vQwNmFyNM7kuFgA08vXCyJ84afw1kc1+VfzYZ8tWaLYFOwZV5lsJJYYMct4
+         41ZLmfGcY1stERz83wSrg713vpptbng4dWuBB1GuaVG0Sy17Zn327Nwvjhu7dtiwij//
+         ikVrB/Dr1soIvyLFMa5zgvA37ZEpe5Mb0TSMzVUeVh+O275iDPUL4bL74KiJJjSpXT1a
+         LiRA==
+X-Gm-Message-State: AOAM531um69LOtiNksOveKFHWu9CCS8pZzYD06OW6O2kME+9Z6NHSmMq
+        +prNGgCr3Fvvu9OKV66vtw==
+X-Google-Smtp-Source: ABdhPJxEM6WWOVQjqWQ3oPRaSuayV/A3zEDzJbkHvCwqWMAtfNXsAh8uKNIiEOm8z6t59edGkCW0VQ==
+X-Received: by 2002:a9d:5910:: with SMTP id t16mr12615071oth.155.1601906105026;
+        Mon, 05 Oct 2020 06:55:05 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x18sm1477902otq.61.2020.10.05.06.54.36
+        by smtp.gmail.com with ESMTPSA id m22sm2885602otf.52.2020.10.05.06.55.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 06:54:36 -0700 (PDT)
-Received: (nullmailer pid 86477 invoked by uid 1000);
-        Mon, 05 Oct 2020 13:54:35 -0000
-Date:   Mon, 5 Oct 2020 08:54:35 -0500
+        Mon, 05 Oct 2020 06:55:04 -0700 (PDT)
+Received: (nullmailer pid 87147 invoked by uid 1000);
+        Mon, 05 Oct 2020 13:55:03 -0000
+Date:   Mon, 5 Oct 2020 08:55:03 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alexander Dahl <post@lespocky.de>
-Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        Alexander Dahl <ada@thorsis.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 2/7] dt-bindings: leds: Convert pwm to yaml
-Message-ID: <20201005135435.GA86443@bogus>
-References: <20200930234637.7573-1-post@lespocky.de>
- <20200930234637.7573-3-post@lespocky.de>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, shane.chien@mediatek.com,
+        robh+dt@kernel.org, maowenan@huawei.com, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de, broonie@kernel.org,
+        alsa-devel@alsa-project.org, kuninori.morimoto.gx@renesas.com,
+        devicetree@vger.kernel.org, tiwai@suse.com, tzungbi@google.com
+Subject: Re: [PATCH 3/5] dt-bindings: mediatek: mt8192: add audio afe document
+Message-ID: <20201005135503.GA86716@bogus>
+References: <1601624142-18991-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1601624142-18991-4-git-send-email-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200930234637.7573-3-post@lespocky.de>
+In-Reply-To: <1601624142-18991-4-git-send-email-jiaxin.yu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 01 Oct 2020 01:46:32 +0200, Alexander Dahl wrote:
-> The example was adapted in the following ways:
+On Fri, 02 Oct 2020 15:35:40 +0800, Jiaxin Yu wrote:
+> This patch adds mt8192 audio afe document.
 > 
-> - make use of the now supported 'function' and 'color' properties
-> - remove pwm nodes, those are documented elsewhere
-> - tweake node names to be matched by new dtschema rules
-> 
-> License was discussed with the original author.
-> 
-> Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> Signed-off-by: Alexander Dahl <post@lespocky.de>
-> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
 > ---
-> 
-> Notes:
->     v5 -> v6:
->       * removed pwm nodes from example (Rob)
->       * renamed led-controller node in example (Rob)
-> 
->     v4 -> v5:
->       * updated based on feedback by Rob Herring
->       * removed Acked-by
-> 
->     v3 -> v4:
->       * added Cc to original author of the binding
-> 
->     v2 -> v3:
->       * changed license identifier to recommended one
->       * added Acked-by
-> 
->     v2:
->       * added this patch to series (Suggested-by: Jacek Anaszewski)
-> 
->  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -------------
->  .../devicetree/bindings/leds/leds-pwm.yaml    | 70 +++++++++++++++++++
->  2 files changed, 70 insertions(+), 50 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
+>  .../bindings/sound/mt8192-afe-pcm.yaml        | 98 +++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dts:19:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+   19 |         #include <dt-bindings/clock/mt8192-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1366: dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1375582
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
