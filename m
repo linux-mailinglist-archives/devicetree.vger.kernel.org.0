@@ -2,181 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4162B2838E0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 829632838C2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727005AbgJEPEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44776 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726902AbgJEPDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:03:52 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F078EC0613CE;
-        Mon,  5 Oct 2020 08:03:51 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id f21so3719675wml.3;
-        Mon, 05 Oct 2020 08:03:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Jrw4GdJfye35DMtkz+TyxdMl4D17q7ijU5dfq1fHwJM=;
-        b=Jqcx/6HtC1u/paWHg2IVPCZFfHYdzGga9Xp+E/xjJMk5VSnuMejlbuPZqxQEyNphRT
-         UnQZH0NRiYfS5ml6WLhYL5l353EK1S70MLLZC75yY0rdIKRKQdaGEF0cEZU6x9ajlH0s
-         /E98HuvFE0Sq3u2SoInA5p4x52wc30iRtQq2ZMDDttnf2koysHjDjz3MMUCRSYlJ3UG1
-         GnGI8gc2BhHSc8p6xtWgXE4U4YUkmC4teiZC5B0Do2ZXQaOjf79pL9nW+JZY9q/CyFf3
-         L4RE9sjKWgZe4izw1JD1og/er2nC7YdMVNzbWbwT9bM8EyKdPW99vfLlxKecfPBkABte
-         dxJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Jrw4GdJfye35DMtkz+TyxdMl4D17q7ijU5dfq1fHwJM=;
-        b=r0bFm3ZlFiAPy8GKhuXVTWKq6G2607hSSL6+krQSR7AMYFpbBFDkArEFjP3QcfiXCf
-         6fqVlK5RkU0dXYGgIX3sa6iqOroLlIYHidCBiOzjVhMGcqjQkj1ez/yFXktiKGvs4uas
-         Ql4mRXvmNhj3pwcgAH9OYuq7g6Z5u3yCerFtaTCys+RZj5JqVu+7sejZoNMxwer1jSeY
-         Xc9O6QS1saqwUWewcj716rwtt39jMIWo+uEnKBlDOtMcKj9pbkOS062CDu0PlsXOK5JB
-         8C1mxSs8D7WlIlWvPoUNWcIesTIyxy3GNtOjMldyctnprOfv0kDMPHzTz7uQQqqtslPF
-         DCaQ==
-X-Gm-Message-State: AOAM530XTveljbQ1Vi9Qn5CMlE4a+3HzCPboYYc7O8ZHSxoLFKjHkNAp
-        qn8H+61vKSo1z/j0uSMubUPXCNnyJ5majg==
-X-Google-Smtp-Source: ABdhPJxAGaC7CIYAxHBJUtxfNHa6SrQLQBBxGs3gl1I2reEyVxOrehHnnO5rv0hVTiRABAfnkVBfHA==
-X-Received: by 2002:a7b:c387:: with SMTP id s7mr17481877wmj.171.1601910230620;
-        Mon, 05 Oct 2020 08:03:50 -0700 (PDT)
-Received: from localhost.localdomain (abab191.neoplus.adsl.tpnet.pl. [83.6.165.191])
-        by smtp.googlemail.com with ESMTPSA id c132sm4662wmf.25.2020.10.05.08.03.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 08:03:50 -0700 (PDT)
-From:   Konrad Dybcio <konradybcio@gmail.com>
-To:     konradybcio@gmail.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1725963AbgJEPDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:03:25 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:38671 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726637AbgJEPDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:03:24 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id F17BB580397;
+        Mon,  5 Oct 2020 11:03:22 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 05 Oct 2020 11:03:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=jhIHshhXU/XQiBzYzWAWXfs8v6
+        DPWe98K8qTnZwq800=; b=jh5y4OjB7mxRl1wWPW2xMo7obebXf8Gc8o3q4t0cvt
+        9bDRwlF2L69gHShwK7cvLaX3fkToWN8j3eSLn+eS2qlNA5wdkzyNEnl0TLyL3OlI
+        BrNfmhqQ3ZG0pogmUQj718qggfSrBjNXRg1y2wnDCpajuAf+63qsUfewDuF7ovIt
+        rc3EtuJAMOcbajuWO+KzsGUyhMLXT21O5rkLModKn2Uf2BSPgMqLYSCFUjIC0oSd
+        CxscobAuU/9Oid2QmT8gmXcs2AjgSUyg3sVQHKzGStsv3OArw3SuMZc/hRQrVcNc
+        89apOJFmao7KloCDWaMM/w8ryBZnKGXdN9r0kRYxOY2g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=jhIHshhXU/XQiBzYz
+        WAWXfs8v6DPWe98K8qTnZwq800=; b=oBxT95o4G+XX3mi4YKrESmtahNFxbntjS
+        pBGkjvejdfAlKKuo3k4QNofz8dXEIUAggw5iymqDWsjjD5Ooq9TKn4p9E3DZI536
+        vmmW7f+oZOlboH+rYZXNSj1xACV17Ny60g1JrhiTGoEq8efsoX2vbb6fObQsisud
+        pk7Z74BK0BKfenGxkGmoMCUjlSj0z3br+61S0B9oG/bpIWw1DWnrI1xmm2W33vYg
+        xQtGbNEnaudW1I8ZkRv3VkkzBmlfpJbenzC76+tvSTvAynczrwCNnFhfZm2ya+J9
+        t/RnOf/kSO/iv/qXBF4IO0Iy1pc1alnMQ2z2+Nntwm2K450CQZbsQ==
+X-ME-Sender: <xms:uDV7X0tLAEqtJM_bJE0TSF-vzBafFuGje7ZvXayMpylNe3q5Dmdjtw>
+    <xme:uDV7XxeN34AbuzHGqG6TavWB8iGPZTo3AqivF8kJw5OSnZFmI1MbkiVFqFgXSWh_2
+    I8NP7nDj3NwRmv7V2o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgdekiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucft
+    ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
+    hnpeejffehuddvvddvlefhgeelleffgfeijedvhefgieejtdeiueetjeetfeeukeejgeen
+    ucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:uDV7X_wUhrJm8nXGGBywoPRyZ5HKPncagxKaXMnCrxf__3CEG36KJQ>
+    <xmx:uDV7X3PDJJ-fHp0i_vg_EpHrXEkFPaqibGibWLgwxMij_5UcEOwT6w>
+    <xmx:uDV7X09OiO4EXKWn9jHgOQUHqSTHCkyPPeqdTwif0KavY9_DqBsFGw>
+    <xmx:ujV7X10Sa01Z9YIKPKcpU8hKf2y0dlxkMTtquAFoyPEOmSj6F16pww>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 77B44328005A;
+        Mon,  5 Oct 2020 11:03:20 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
+        dri-devel@lists.freedesktop.org
+Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 11/11] arm64: dts: qcom: Add support for Microsoft Lumia 950 XL (Cityman)
+        Frank Rowand <frowand.list@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/6] drm/sun4i: Add support for dual-link LVDS on the A20
 Date:   Mon,  5 Oct 2020 17:03:11 +0200
-Message-Id: <20201005150313.149754-12-konradybcio@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201005150313.149754-1-konradybcio@gmail.com>
-References: <20201005150313.149754-1-konradybcio@gmail.com>
+Message-Id: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910147.git-series.maxime@cerno.tech>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree support for Microsoft Lumia 950 XL smartphone.
-It is based on the msm8994 chipset and is able to boot Linux
-using a custom EDK2 implementation. EL2 core startup is possible
-with spin-table, but for now, we'll stick with PSCI.
+Hi,
 
-The board currently supports:
-* Screen console via EFIFB
-* SDHCI
-* I2C
-* UART
-* PSCI core bringup
+This is a second attempt at supporting the LVDS dual-link output on the
+Allwinner A20.
 
-Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |  1 +
- .../dts/qcom/msm8994-msft-lumia-cityman.dts   | 73 +++++++++++++++++++
- 2 files changed, 74 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8994-msft-lumia-cityman.dts
+Let me know what you think,
+Maxime
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index fb4631f898fd..030d9648fb11 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-talkman.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-xiaomi-libra.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-msft-lumia-cityman.dts
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-sumire.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-asus-novago-tp370ql.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-cityman.dts b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-cityman.dts
-new file mode 100644
-index 000000000000..ed9034b96013
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-cityman.dts
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Konrad Dybcio
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8994.dtsi"
-+#include "pm8994.dtsi"
-+#include "pmi8994.dtsi"
-+
-+/ {
-+	model = "Microsoft Lumia 950 XL";
-+	compatible = "microsoft,cityman", "qcom,msm8994";
-+
-+	/*
-+	 * Most Lumia 950XL users use GRUB to load their kernels,
-+	 * hence there is no need for msm-id and friends.
-+	 */
-+
-+	/*
-+	 * This enables graphical output via bootloader-enabled display.
-+	 * acpi=no is required due to WP platforms having ACPI support, but
-+	 * only for Windows-based OSes.
-+	 */
-+	chosen {
-+		bootargs = "earlycon=efifb console=efifb acpi=no";
-+
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+	};
-+};
-+
-+&blsp_i2c1 {
-+	status = "okay";
-+
-+	rmi4-i2c-dev@4b {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x4b>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <77 IRQ_TYPE_EDGE_FALLING>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x01>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f12@12 {
-+			reg = <0x12>;
-+			syna,sensor-type = <1>;
-+			syna,clip-x-low = <0>;
-+			syna,clip-x-high = <1440>;
-+			syna,clip-y-low = <0>;
-+			syna,clip-y-high = <2660>;
-+		};
-+	};
-+};
-+
-+&blsp1_uart2 {
-+	status = "okay";
-+};
-+
-+&blsp2_uart2 {
-+	status = "okay";
-+};
-+
-+&sdhc1 {
-+	status = "okay";
-+};
+Changes from v2:
+  - Added the DT binding description
+  - Split the patch to enable the A20
+  - Reworked a bit the error messages
+
+Changes from v1:
+  - Reworked the DT bindings
+  - Refactored a bit the panel registration in the tcon code.
+
+Maxime Ripard (6):
+  drm/of: Change the prototype of drm_of_lvds_get_dual_link_pixel_order
+  dt-bindings: display: sun4i: Add LVDS Dual-Link property
+  drm/sun4i: tcon: Refactor the LVDS and panel probing
+  drm/sun4i: tcon: Support the LVDS Dual-Link
+  drm/sun4i: tcon: Enable the A20 dual-link output
+  [DO NOT MERGE] ARM: dts: sun7i: Enable LVDS Dual-Link on the Cubieboard
+
+ Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml |   6 +++-
+ arch/arm/boot/dts/sun7i-a20-cubieboard2.dts                             |  69 ++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/drm_of.c                                                |  98 +++++++++++++++++++++----------------------
+ drivers/gpu/drm/rcar-du/rcar_lvds.c                                     |   8 +---
+ drivers/gpu/drm/sun4i/sun4i_tcon.c                                      | 163 +++++++++++++++++++++++++++++++++++++++++-------------------------------
+ drivers/gpu/drm/sun4i/sun4i_tcon.h                                      |   4 ++-
+ include/drm/drm_of.h                                                    |  16 +++++--
+ 7 files changed, 236 insertions(+), 128 deletions(-)
+
+base-commit: d113dbba9a18f9ac71edb1a66ae552c9407355f4
 -- 
-2.28.0
-
+git-series 0.9.1
