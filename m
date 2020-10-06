@@ -2,370 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60754284A23
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 12:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E85284A32
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 12:13:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726304AbgJFKHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 06:07:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51794 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726248AbgJFKHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 06:07:17 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD2AC0613D1
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 03:07:15 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id h2so976269pll.11
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 03:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=antmicro.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
-        bh=H2/CbI90H2tHFtM2OpSUvOgxOAT8HyZq+cctKYqiYE4=;
-        b=Z1T7S9H6EltX9KhInaiMv+jpLWHhmt6VObsrvE3EVxUJ4wrM/vUCgirPIeCP/6wzFZ
-         Oj6hmfSNqY0KY+uiNKG/O7+16OMBWKRtikjzuG0WpGWZIvi15cHm6ffLeMAMq/QfokeW
-         nSqhi3g8jUJrGqarUvhVTTfXqGWqviagOanHQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:cc;
-        bh=H2/CbI90H2tHFtM2OpSUvOgxOAT8HyZq+cctKYqiYE4=;
-        b=txaUBGQ84sfWOdXtu6Ef7rHBWeRGfFD8UQeG2acXkRpCWnXhx559Ferh7nPbIxpoi3
-         Z9NU4jwlUQ1EYAWLLfuXjuidsijeE35iF9md2pJ3fA0desXTpDEET9cDf5OOu+t/lLUA
-         Jt1ARVsEaSzhPHERpgKAcZQtg5dzPJpl6msnfE8V4KpX8YMb+M+OlSItGtU8FGSggwXS
-         N3UdODlq0FE+nnI01sKL51hZ1vVFCIDf3oxtSICcJjKPsVYi8Sm219bRFzwY4WCsbBvW
-         nFAzfjpyui5BmtnXkf9n3AeZbpGxvCNrHuuFi6cBsxOHFnKgtZ5Rddsso0pL7nFTso6F
-         Tu6w==
-X-Gm-Message-State: AOAM530r7mz2EdIZTGsLsKkU5GEX8qPbpQXuJMeVZErefM1rihuy0sbf
-        SzkiuvLr80/eWoIrM9JY16u6p/4Gekg7eaRAfaUUPJ4Jsb6tYMYj
-X-Received: by 2002:a17:90a:94cc:: with SMTP id j12mt2698699pjw.106.1601978834178;
- Tue, 06 Oct 2020 03:07:14 -0700 (PDT)
+        id S1726181AbgJFKNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 06:13:11 -0400
+Received: from Galois.linutronix.de ([193.142.43.55]:35616 "EHLO
+        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725939AbgJFKNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 06:13:10 -0400
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1601979186;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=xK10pf8BI/tkaWDMdVBd8g1AATp8QkJf894bXYXVCY4=;
+        b=kpEJZUTqwBp6zymYg2LzNdzKoph29ec1DSY3eLk3c5AA/O7cPw/4tb4f4NhZFzsWlCY6xB
+        FLwNTuECmHSzMtejqNUGQvDpPS4y6rDuyPkBB37mbNS1A0Q4bHxRu8qKZiuf11ljQc5xUR
+        q96G7O5QKOm02DprW6d+bSp5235R7ImCOHrrxLk3fd7a+coN5018kxS65Rl5R9PDtRlvxn
+        F78a7Vm5chm/kt5OUDyN+IXk7gIdxbO0j/vY12npKnyOJb5MNeC9wHIw/RnAF82CFUZ7qj
+        04OiY+WqJa0GCmf3iVeZXC/7ryrUE+o/BXFPZFVYyxaHvgVe7JGx/4yB31LXhQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1601979186;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=xK10pf8BI/tkaWDMdVBd8g1AATp8QkJf894bXYXVCY4=;
+        b=Izn2xt6cMBqeSM6Ukq+09MoNkM3bWivAW+sKGwzsX7FTUGhUKu0yqCjfGbSNJ+1Juu8QDy
+        Ki0HP796p1tw0+Bg==
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
+In-Reply-To: <20201006092017.znfuwvye25vsu4z7@skbuf>
+References: <20201004112911.25085-1-kurt@linutronix.de> <20201004112911.25085-3-kurt@linutronix.de> <20201004125601.aceiu4hdhrawea5z@skbuf> <87lfgj997g.fsf@kurt> <20201006092017.znfuwvye25vsu4z7@skbuf>
+Date:   Tue, 06 Oct 2020 12:13:04 +0200
+Message-ID: <878scj8xxr.fsf@kurt>
 MIME-Version: 1.0
-References: <CAMuHMdUBCf8DsRBvXxxrfrQsab3kOwy95u-KwkdvaSY0vXQnXQ@mail.gmail.com>
- <20200925150607.GB470906@errol.ini.cmu.edu>
-In-Reply-To: <20200925150607.GB470906@errol.ini.cmu.edu>
-From:   Mateusz Holenko <mholenko@antmicro.com>
-Date:   Tue, 6 Oct 2020 12:07:01 +0200
-Message-ID: <CAPk366QwL0hvKa6tmMt69WsWFnP3HOxBPYLRMbQgxLXyWvuPyA@mail.gmail.com>
-Subject: Re: [PATCH v11 3/5] drivers/soc/litex: add LiteX SoC Controller driver
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel,
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 25, 2020 at 5:06 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+On Tue Oct 06 2020, Vladimir Oltean wrote:
+> On Tue, Oct 06, 2020 at 08:09:39AM +0200, Kurt Kanzenbach wrote:
+>> On Sun Oct 04 2020, Vladimir Oltean wrote:
+>> > I don't think this works.
+>> >
+>> > ip link add br0 type bridge vlan_filtering 1
+>> > ip link set swp0 master br0
+>> > bridge vlan add dev swp0 vid 100
+>> > ip link set br0 type bridge vlan_filtering 0
+>> > bridge vlan del dev swp0 vid 100
+>> > ip link set br0 type bridge vlan_filtering 1
+>> >
+>> > The expectation would be that swp0 blocks vid 100 now, but with your
+>> > scheme it doesn't (it is not unapplied, and not unqueued either, becau=
+se
+>> > it was never queued in the first place).
+>>=20
+>> Yes, that's correct. So, I think we have to queue not only the addition
+>> of VLANs, but rather the "action" itself such as add or del. And then
+>> apply all pending actions whenever vlan_filtering is set.
 >
-> Hi Geert, Mateusz,
+> Please remind me why you have to queue a VLAN addition/removal and can't
+> do it straight away? Is it because of private VID 2 and 3, which need to
+> be deleted first then re-added from the bridge VLAN group?
+
+It's because of the private VLANs 2 and 3 which shouldn't be tampered
+with. Isn't it? You said:
+
+> If you need caching of VLANs installed by the bridge and/or by the 8021q
+> module, then you can add those to a list, and restore them in the
+> .port_vlan_filtering callback by yourself. You can look at how sja1105
+> does that.
+[...]
+> If your driver makes private use of VLAN tags beyond what the upper
+> layers ask for, then it should keep track of them.
+
+That's what I did.
+
+At the end of the day the driver needs to port separation
+somehow. Otherwise it doesn't match the DSA model, right? Again there is
+no port forwarding matrix which would make things easy. It has to be
+solved in software.
+
+If the private VLAN stuff isn't working, because all of the different
+corner cases, then what's the alternative?
+
 >
-> On Fri, Sep 25, 2020 at 03:16:02PM +0200, Geert Uytterhoeven wrote:
-> > Hi Mateusz,
-> >
-> > On Wed, Sep 23, 2020 at 12:10 PM Mateusz Holenko <mholenko@antmicro.com> wrote:
-> > > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
-> > >
-> > > This commit adds driver for the FPGA-based LiteX SoC
-> > > Controller from LiteX SoC builder.
-> > >
-> > > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
-> > > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
-> > > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- /dev/null
-> > > +++ b/drivers/soc/litex/Kconfig
-> > > @@ -0,0 +1,15 @@
-> > > +# SPDX-License_Identifier: GPL-2.0
-> > > +
-> > > +menu "Enable LiteX SoC Builder specific drivers"
-> > > +
-> > > +config LITEX_SOC_CONTROLLER
-> > > +       tristate "Enable LiteX SoC Controller driver"
-> > > +       depends on OF || COMPILE_TEST
-> > > +       help
-> > > +         This option enables the SoC Controller Driver which verifies
-> > > +         LiteX CSR access and provides common litex_get_reg/litex_set_reg
-> > > +         accessors.
-> > > +         All drivers that use functions from litex.h must depend on
-> > > +         LITEX_SOC_CONTROLLER.
-> >
-> > I'm wondering if it makes sense to have them depend on a "simpler"
-> > symbol instead, e.g. LITEX?
-> >
-> > Currently the SoC controller is limited to I/O accessors and a simple
-> > register compatibility check, but you may want to extend it with more
-> > features later, so you probably want to keep the LITEX_SOC_CONTROLLER.
-> > Hence you could add
-> >
-> >     config LITEX
-> >         bool
-> >
-> > and let LITEX_SOC_CONTROLLER select LITEX.
-> >
-> > > --- /dev/null
-> > > +++ b/drivers/soc/litex/litex_soc_ctrl.c
-> > > @@ -0,0 +1,194 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * LiteX SoC Controller Driver
-> > > + *
-> > > + * Copyright (C) 2020 Antmicro <www.antmicro.com>
-> > > + *
-> > > + */
-> > > +
-> > > +#include <linux/litex.h>
-> > > +#include <linux/device.h>
-> > > +#include <linux/errno.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_platform.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/printk.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/errno.h>
-> > > +#include <linux/io.h>
-> > > +
-> > > +/*
-> > > + * The parameters below are true for LiteX SoC
-> >
-> > SoCs
-> >
-> > > + * configured for 8-bit CSR Bus, 32-bit aligned.
-> > > + *
-> > > + * Supporting other configurations will require
-> > > + * extending the logic in this header.
-> >
-> > This is no longer a header file.
-> >
-> > > + */
-> > > +#define LITEX_REG_SIZE             0x4
-> > > +#define LITEX_SUBREG_SIZE          0x1
-> > > +#define LITEX_SUBREG_SIZE_BIT      (LITEX_SUBREG_SIZE * 8)
-> > > +
-> > > +static DEFINE_SPINLOCK(csr_lock);
-> > > +
-> > > +/*
-> > > + * LiteX SoC Generator, depending on the configuration,
-> > > + * can split a single logical CSR (Control & Status Register)
-> > > + * into a series of consecutive physical registers.
-> > > + *
-> > > + * For example, in the configuration with 8-bit CSR Bus,
-> > > + * 32-bit aligned (the default one for 32-bit CPUs) a 32-bit
-> > > + * logical CSR will be generated as four 32-bit physical registers,
-> > > + * each one containing one byte of meaningful data.
-> > > + *
-> > > + * For details see: https://github.com/enjoy-digital/litex/wiki/CSR-Bus
-> > > + *
-> > > + * The purpose of `litex_set_reg`/`litex_get_reg` is to implement
-> > > + * the logic of writing to/reading from the LiteX CSR in a single
-> > > + * place that can be then reused by all LiteX drivers.
-> > > + */
-> > > +void litex_set_reg(void __iomem *reg, unsigned long reg_size,
-> > > +                   unsigned long val)
-> > > +{
-> > > +       unsigned long shifted_data, shift, i;
-> > > +       unsigned long flags;
-> > > +
-> > > +       spin_lock_irqsave(&csr_lock, flags);
-> > > +
-> > > +       for (i = 0; i < reg_size; ++i) {
-> > > +               shift = ((reg_size - i - 1) * LITEX_SUBREG_SIZE_BIT);
-> > > +               shifted_data = val >> shift;
-> > > +
-> > > +               writel((u32 __force)cpu_to_le32(shifted_data), reg + (LITEX_REG_SIZE * i));
-> > > +       }
-> > > +
-> > > +       spin_unlock_irqrestore(&csr_lock, flags);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(litex_set_reg);
-> >
-> > I'm still wondering about the overhead of loops and multiple accesses,
-> > and the need for them (see also BenH's earlier comment).
-> > If e.g. the register widths change for LiteUART (currently they're
-> > hardcoded to one), would you still consider it using the same
-> > programming interface, and thus compatible with "litex,liteuart"?
+>> >> +static int hellcreek_port_bridge_join(struct dsa_switch *ds, int por=
+t,
+>> >> +				      struct net_device *br)
+>> >> +{
+>> >> +	struct hellcreek *hellcreek =3D ds->priv;
+>> >> +	int i;
+>> >> +
+>> >> +	dev_dbg(hellcreek->dev, "Port %d joins a bridge\n", port);
+>> >> +
+>> >> +	/* Configure port's vid to all other ports as egress untagged */
+>> >> +	for (i =3D 0; i < ds->num_ports; ++i) {
+>> >> +		if (!dsa_is_user_port(ds, i))
+>> >> +			continue;
+>> >> +
+>> >> +		if (i =3D=3D port)
+>> >> +			continue;
+>> >> +
+>> >> +		hellcreek_apply_vlan(hellcreek, i, port, false, true);
+>> >> +	}
+>> >
+>> > I think this is buggy when joining a VLAN filtering bridge. Your ports
+>> > will pass frames with VID=3D2 with no problem, even without the user
+>> > specifying 'bridge vlan add dev swp0 vid 2', and that's an issue. My
+>> > understanding is that VLANs 1, 2, 3 stop having any sort of special
+>> > meaning when the upper bridge has vlan_filtering=3D1.
+>>=20
+>> Yes, that understanding is correct. So, what happens is when a port is
+>> joining a VLAN filtering bridge is:
+>>=20
+>> |root@tsn:~# ip link add name br0 type bridge
+>> |root@tsn:~# ip link set dev br0 type bridge vlan_filtering 1
+>> |root@tsn:~# ip link set dev lan0 master br0
+>> |[  209.375055] br0: port 1(lan0) entered blocking state
+>> |[  209.380073] br0: port 1(lan0) entered disabled state
+>> |[  209.385340] hellcreek ff240000.switch: Port 2 joins a bridge
+>> |[  209.391584] hellcreek ff240000.switch: Apply VLAN: port=3D3 vid=3D2 =
+pvid=3D0 untagged=3D1
+>> |[  209.399439] device lan0 entered promiscuous mode
+>> |[  209.404043] device eth0 entered promiscuous mode
+>> |[  209.409204] hellcreek ff240000.switch: Enable VLAN filtering on port=
+ 2
+>> |[  209.415716] hellcreek ff240000.switch: Unapply VLAN: port=3D2 vid=3D2
+>> |[  209.421840] hellcreek ff240000.switch: Unapply VLAN: port=3D0 vid=3D2
 >
-> There's been talk within the LiteX dev community to standardize on a
-> LITEX_SUBREG_SIZE of 0x4 (i.e., using all 32 bits of a 32-bit
-> (LITEX_REG_SIZE) aligned MMIO location). Early 32-bit (vexriscv based)
-> Linux capable LiteX designs started out with only the 8 LSBits used
-> within a 32-bit MMIO location, but 64-bit (Rocket chip) based LiteX SoCs
-> use 4-byte aligned, fully populated MMIO registers (i.e., both
-> LITEX_SUBREG_SIZE *and* LITEX_REG_SIZE are 4). There's also been talk of
-> deprecating LITEX_SUBREG_SIZE == 0x1 for "linux-capable LiteX builds",
-> but nothing definitive yet AFAIK.
+> Now I understand even less. If the entire purpose of
+> hellcreek_setup_vlan_membership is to isolate lan0 from lan1
 
-I agree that having LITEX_SUBREG_SIZE equal to 4 would make the code
-much simpler.
+Yes.
 
-I believe, however, that at the moment LiteX (for 32-bit CPUs) and
-both main 32-bit Linux capable LiteX-based platforms
-(https://github.com/litex-hub/linux-on-litex-vexriscv and
-https://github.com/timvideos/litex-buildenv) by default generate SoC
-with 8-bit data width and that's why the driver currently targets this
-configuration.
+> , then why do you even bother to install vid 2 to port=3D3 (lan1) when
+> joining a bridge, be it vlan_filtering or not?
 
-> As long as adding LITEX_SUBREG_SIZE 0x4 (either as a config option, or
-> as a hard-coded default in a subsequent version) won't break things, we
-> should be safe going forward afaict.
+So, that traffic is actually switched between the ports.
 
-I'm totally open for extending/changing the default LITEX_SUBREG_SIZE
-value for this driver once the default configuration for LiteX
-platforms changes.
+> In bridged mode, they don't need a unique pvid, it only complicates
+> the implementation. They can have the pvid from the bridge VLAN group.
 
-> Geert: note that LiteX has wider-than-32-bit registers spread across
-> multiple 32-bit aligned, 8- or 32-bit wide "subregisters", so looping
-> and shifting will still be necessary, even with LITEX_SUBREG_SIZE 0x4.
+Meaning rely on the fact that VLAN 1 is programmed automatically? Maybe
+just unapply the private VLAN in bridge_join()?
 
-There are also situations (like the GPIO controller) where the layout
-of registers is dynamic and depends on the LiteX configuration (number
-of supported pins).
-In this situation we need to read the configuration from DT and keep
-the driver flexible by using dynamic, loop-based CSR accessors.
-
-That's why I believe we could have both - fast, non-loop based
-accessors for common registers widths 8/32/64/etc. and the current
-implementation where runtime flexibility is required (at the cost of
-performance).
-
-> > The spinlock access will probably become the source of lock contention
-> > later, especially when considering SMP variants.
-> >
-> > > +/*
-> > > + * Check LiteX CSR read/write access
-> > > + *
-> > > + * This function reads and writes a scratch register in order
-> > > + * to verify if CSR access works.
-> > > + *
-> > > + * In case any problems are detected, the driver should panic.
-> > > + *
-> > > + * Access to the LiteX CSR is, by design, done in CPU native
-> > > + * endianness. The driver should not dynamically configure
-> > > + * access functions when the endianness mismatch is detected.
-> > > + * Such situation indicates problems in the soft SoC design
-> > > + * and should be solved at the LiteX generator level,
-> > > + * not in the software.
-> > > + */
-> > > +static int litex_check_csr_access(void __iomem *reg_addr)
-> > > +{
-> > > +       unsigned long reg;
-> > > +
-> > > +       reg = litex_get_reg(reg_addr + SCRATCH_REG_OFF, SCRATCH_REG_SIZE);
-> > > +
-> > > +       if (reg != SCRATCH_REG_VALUE) {
-> > > +               panic("Scratch register read error! Expected: 0x%x but got: 0x%lx",
-> > > +                       SCRATCH_REG_VALUE, reg);
-> >
-> > Do you think the user will ever see this panic message? (see below)
-> >
-> > > +               return -EINVAL;
-> >
-> > Good ;-)  All of BUG()/WARN()/panic() may be compiled out, depending on
-> > config options, so the system may continue running beyond the panic()
-> > call.
-> >
-> > > +static int litex_soc_ctrl_probe(struct platform_device *pdev)
-> > > +{
-> > > +       int result;
-> > > +       struct device *dev;
-> > > +       struct device_node *node;
-> > > +       struct litex_soc_ctrl_device *soc_ctrl_dev;
-> > > +
-> > > +       dev = &pdev->dev;
-> > > +       node = dev->of_node;
-> > > +       if (!node)
-> > > +               return -ENODEV;
-> >
-> > FYI, this cannot happen.
-> >
-> > > +
-> > > +       soc_ctrl_dev = devm_kzalloc(dev, sizeof(*soc_ctrl_dev), GFP_KERNEL);
-> > > +       if (!soc_ctrl_dev)
-> > > +               return -ENOMEM;
-> > > +
-> > > +       soc_ctrl_dev->base = devm_platform_ioremap_resource(pdev, 0);
-> > > +       if (IS_ERR(soc_ctrl_dev->base))
-> > > +               return PTR_ERR(soc_ctrl_dev->base);
-> > > +
-> > > +       result = litex_check_csr_access(soc_ctrl_dev->base);
-> > > +       if (result) {
-> > > +               /* LiteX CSRs access is broken which means that
-> > > +                * none of LiteX drivers will most probably
-> > > +                * operate correctly
-> > > +                */
-> > > +               WARN(1, "Failed to validate CSR registers, the system is probably broken.\n");
-> >
-> > WARN(result, ...)
-> >
-> > But is this WARN() needed? You have already called panic() before.
-> >
-> > > +       }
-> > > +
-> > > +       return result;
-> > > +}
-> > > +
-> > > +static struct platform_driver litex_soc_ctrl_driver = {
-> > > +       .driver = {
-> > > +               .name = "litex-soc-controller",
-> > > +               .of_match_table = of_match_ptr(litex_soc_ctrl_of_match)
-> > > +       },
-> > > +       .probe = litex_soc_ctrl_probe,
-> > > +};
-> > > +
-> > > +module_platform_driver(litex_soc_ctrl_driver);
-> >
-> > module_platform_driver() means this driver is probed quite late in the
-> > boot sequence.  Currently the only other LiteX driver is liteuart, which
-> > is probed at more or less the same time, but I can envision more early
-> > drivers to be added later (typically interrupt/clock controllers and
-> > timers not integrated into the main CPU core).
-> > Note that even liteuart will run earlier, and thus access CSR registers
-> > before the check has run, when using e.g. earlycon...
-> >
-> > > --- /dev/null
-> > > +++ b/include/linux/litex.h
-> > > @@ -0,0 +1,24 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > +/*
-> > > + * Common LiteX header providing
-> > > + * helper functions for accessing CSRs.
-> > > + *
-> > > + * Implementation of the functions is provided by
-> > > + * the LiteX SoC Controller driver.
-> > > + *
-> > > + * Copyright (C) 2019-2020 Antmicro <www.antmicro.com>
-> > > + */
-> > > +
-> > > +#ifndef _LINUX_LITEX_H
-> > > +#define _LINUX_LITEX_H
-> > > +
-> > > +#include <linux/io.h>
-> > > +#include <linux/types.h>
-> > > +#include <linux/compiler_types.h>
-> > > +
-> > > +void litex_set_reg(void __iomem *reg, unsigned long reg_sz, unsigned long val);
-> > > +
-> > > +unsigned long litex_get_reg(void __iomem *reg, unsigned long reg_sz);
-> >
-> > Perhaps you can add static inline litex_{read,write}{8,16,32}() wrappers,
-> > so drivers don't have to pass the reg_sz parameter explicitly,
-> > and to make it look more like accessors of other bus types?
 >
-> Seconded -- perhaps simply cut'n'paste and/or adapt from
-> https://github.com/litex-hub/linux/blob/litex-rocket-rebase/include/linux/litex.h#L78
-> (from the 64-bit port of the LiteX linux patch set)
+>> |[  209.428170] hellcreek ff240000.switch: Apply queued VLANs: port2
+>> |[  209.434158] hellcreek ff240000.switch: Apply VLAN: port=3D2 vid=3D0 =
+pvid=3D0 untagged=3D0
+>> |[  209.441649] hellcreek ff240000.switch: Clear queued VLANs: port2
+>> |[  209.447920] hellcreek ff240000.switch: Apply queued VLANs: port0
+>> |[  209.453910] hellcreek ff240000.switch: Apply VLAN: port=3D0 vid=3D0 =
+pvid=3D0 untagged=3D0
+>> |[  209.461402] hellcreek ff240000.switch: Clear queued VLANs: port0
+>> |[  209.467620] hellcreek ff240000.switch: VLAN prepare for port 2
+>> |[  209.473476] hellcreek ff240000.switch: VLAN prepare for port 0
+>> |[  209.479534] hellcreek ff240000.switch: Add VLANs (1 -- 1) on port 2,=
+ untagged, PVID
+>> |[  209.487164] hellcreek ff240000.switch: Apply VLAN: port=3D2 vid=3D1 =
+pvid=3D1 untagged=3D1
+>> |[  209.494659] hellcreek ff240000.switch: Add VLANs (1 -- 1) on port 0,=
+ untagged, no PVID
+>> |[  209.502794] hellcreek ff240000.switch: Apply VLAN: port=3D0 vid=3D1 =
+pvid=3D0 untagged=3D1
+>> |root@tsn:~# bridge vlan show
 >
-> Cheers,
-> --Gabriel
+> This is by no means a good indicator for anything. It shows the bridge
+> VLAN groups, not the hardware database.
+>
+>> |port    vlan ids
+>> |lan0     1 PVID Egress Untagged
+>> |
+>> |br0      1 PVID Egress Untagged
+>>=20
+>> ... which looks correct to me. The VLAN 2 is unapplied as expected. Or?
+>
+> Ok, it gets applied in .port_bridge_join and unapplied in .port_vlan_filt=
+ering,
+> which is a convoluted way of doing nothing.
+>
+>> >
+>> > And how do you deal with the case where swp1 and swp2 are bridged and
+>> > have the VLAN 3 installed via 'bridge vlan', but swp3 isn't bridged?
+>> > Will swp1/swp2 communicate with swp3? If yes, that's a problem.
+>>=20
+>> There is no swp3. Currently there are only two ports and either they are
+>> bridged or not.
+>
+> So this answers my question of whether the tunnel port is a user port or
+> not, ok.
+>
+> How about other hardware revisions? Is this going to be a 2-port switch
+> forever?
 
-Best regards,
-Mateusz
+At the moment, yes. It's meant to be used for switched endpoints. More
+port devices may come in the future.
 
---
-Mateusz Holenko
-Antmicro Ltd | www.antmicro.com
-Roosevelta 22, 60-829 Poznan, Poland
+> Your solution will indeed work for 2 ports (as long as you
+> address the other feedback from v5 w.r.t. declaring the ports as "always
+> filtering" and rejecting invalid 8021q uppers, which I don't see
+> here),
+
+I've checked that property with ethtool and it's set to the value you
+suggested. And yes, the same VLAN on top of single ports will break
+separation with the current solution.
+
+> but it will not scale for 3 ports, due to the fact that the bridge can
+> install a VLAN on a lan2 port, without knowing that it is in fact the
+> private pvid of lan1 or lan0.
+
+Yes, that's also a limitation of the VLAN approach.
+
+>
+>> >> +static int __hellcreek_fdb_del(struct hellcreek *hellcreek,
+>> >> +			       const struct hellcreek_fdb_entry *entry)
+>> >> +{
+>> >> +	dev_dbg(hellcreek->dev, "Delete FDB entry: MAC=3D%pM!\n", entry->ma=
+c);
+>> >> +
+>> >
+>> > Do these dev_dbg statements bring much value at all, even to you?
+>>=20
+>> Yes, they do. See the log snippet above.
+>>=20
+>
+> If you want to dump the hardware database you can look at the devlink
+> regions that Andrew added very recently. Much more reliable than
+> following the order of operations in the log.
+
+I saw the patches and it's really useful. However, I won't implement any
+new features to this drivers unless that port separation problem is
+sorted out.
+
+>
+>> >> +static const struct hellcreek_platform_data de1soc_r1_pdata =3D {
+>> >> +	.num_ports	 =3D 4,
+>> >> +	.is_100_mbits	 =3D 1,
+>> >> +	.qbv_support	 =3D 1,
+>> >> +	.qbv_on_cpu_port =3D 1,
+>> >
+>> > Why does this matter?
+>>=20
+>> Because Qbv on the CPU port is a feature and not all switch variants
+>> have that. It will matter as soon as TAPRIO is implemented.
+>
+> How do you plan to install a tc-taprio qdisc on the CPU port?
+
+That's an issue to be sorted out.
+
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl98QzAACgkQeSpbgcuY
+8KYdmg//VozsCRd3dfovBIAzeczZEpyo4+FweXZdaZcaF6fwPZnyxe3W/FyVKSGw
+EPkoXf7TRrlFSwtZ63RVcyloC7Pb89xK1IJOsrTOkcASS7TF9SqSzCC0vTZrYtSI
+pIUu6w8Fu9mCB0WTocG9ue9cr9Y0eovDY6eK5ypsowuOg8iCqzQ1PDtYo8ONmPQy
+lGLh6c5iMwFen9xkz5/WdXV9vPIbTCtzOSzhrDDdtxdojcERM/3Q0D5eVekZfZfk
+iVyZhdAdL6Rl006hh9OQ5BrCx/g2YUcXsUOTpAoHgnbj6uH32gRAi+Y85x6SjDcv
+YadOTTArV1yaVsqG6yYiCUQ/2otcyQxD9kQ67Y0S3mrn8aZqXSvGzZrOCd8FKAim
+7gEPTTBNK7KJrlDpLjs6beNwwf1wd/iFGaK3MSL4naUNaFct3zFOvc03XV91y+0C
+ypGUtdKqK9C4vGkhAbGrGA3JiNiYugkkcJa8Kp0teyx5VV2KtNi1OT9YNvf8+r9l
+RvYimlW2QBxtYkazb7WNpNs7RDGS19DrBa2kJa4zRlI3SqxMHTl873wTYvkyUZXO
+d+2KBsJChujiBOY29Jvgbmw20qvURsYIx3OagvG8cMoWedC+ZmEYjYmgnCpeoWjh
+4tu/ORcY7sHArzi1I65tHxzm+9icsfGXlCoZyO1iYuDuFENMlr0=
+=ZxDb
+-----END PGP SIGNATURE-----
+--=-=-=--
