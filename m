@@ -2,131 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F53E284BBA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 14:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33915284BE3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 14:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726482AbgJFMhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 08:37:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbgJFMhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 08:37:10 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4040C061755;
-        Tue,  6 Oct 2020 05:37:09 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id md26so17369063ejb.10;
-        Tue, 06 Oct 2020 05:37:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=zr+fQKfJH41b+OmkEnAMDd8D3Gr3FwM6XTSvtfE1Tr4=;
-        b=FmpVcAMq12e5hWuc/bTAY8dcJpXMlSOCB6kb+9/U9bPX89D8fDkuAEBD7Y6mxTza78
-         CjQEdzoxUGU+9UNJYMbG4waBGFxaLDHf6Xd/s2A/Ftc1eK98fdWh4KOdkat9gicdldtU
-         OJ4/WpF0VNQa+Nm+3AGo4pV1WuhT2Xk5iZHAQmKtSPxoeFP2RVhMc6Vcx2+PuhVkEQRu
-         EUh/SgiH47nhBRQE4piQPVzFNVUzfxVi7EPYp9Pg+IBCJsLipPb8H8k6WH33WHR6C40B
-         4GSmFaAwpP+AtViSD/dGGr1wb+1P3MORwaX/cL17Tpg2bmVTg8xRQFbDc3+iD9tk02Fp
-         Tl3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zr+fQKfJH41b+OmkEnAMDd8D3Gr3FwM6XTSvtfE1Tr4=;
-        b=Fpzv8XGHY2x3RsQ13dsEr+Wv0cai4f9W+lkuRXVm2zgbiu4GY3UusGARJDXdahjWVK
-         4IpRswJqMsBg590LPVAAf3nzNk8QpddQznEE5F9idviPLEZpuplCY7QqxPF2tgj3J3mX
-         05hxlsgLeSTOBT5Udr0rXPTf/3KGU1ycs51lnW5fxrWPUMVHLFfguw8yVJmoLXo7HuwM
-         /eyveSzzlXR3b+9LRMKrh/Ogl6Tlj77YdoS6VwhpKr9yas9Ga1jF3T5g3Ge4Y0stzXyb
-         fa8wMZnIOTknTR3Qx5iwadRWmGh5ONcI/sM0YQ2R16NBOZcsWKN9ki8cq37iisQ+5YQw
-         bWpA==
-X-Gm-Message-State: AOAM533gYXLhYL2tKamoc/+P75YOqJsFIBT1OJVrRsY6bxOy9uTeA5Bj
-        2cBZJ+d2CZ2VqseVlMZA9Xc=
-X-Google-Smtp-Source: ABdhPJyQO+OnJR1BVsiUMfSD32qkPU11dLARGI4NNYHyS+2Y5bPlr1k9gkKxOWneMHdrc818DeepFQ==
-X-Received: by 2002:a17:906:685a:: with SMTP id a26mr5183847ejs.458.1601987827595;
-        Tue, 06 Oct 2020 05:37:07 -0700 (PDT)
-Received: from skbuf ([188.26.229.171])
-        by smtp.gmail.com with ESMTPSA id l26sm2007784ejc.96.2020.10.06.05.37.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 05:37:07 -0700 (PDT)
-Date:   Tue, 6 Oct 2020 15:37:05 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann
- Hellcreek switches
-Message-ID: <20201006123705.bnrborrpms6vaegz@skbuf>
-References: <20201004112911.25085-1-kurt@linutronix.de>
- <20201004112911.25085-3-kurt@linutronix.de>
- <20201004125601.aceiu4hdhrawea5z@skbuf>
- <87lfgj997g.fsf@kurt>
- <20201006092017.znfuwvye25vsu4z7@skbuf>
- <878scj8xxr.fsf@kurt>
- <20201006113237.73rzvw34anilqh4d@skbuf>
+        id S1726439AbgJFMpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 08:45:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44084 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726362AbgJFMpP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Oct 2020 08:45:15 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5C5F0206F7;
+        Tue,  6 Oct 2020 12:45:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601988314;
+        bh=jQA9qf0zTXfGZnsRtTNqxf5HKnAXpEcc7RqoVbJW6bI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cYraoB7Ay9Spg6fd89ju1rqWG7xiW2NHArMm31qUx5EPDv0MmsMh5rXiDka3MokRA
+         95JmZ7W08zOUOlAvVd5Ge+/MQlJtHv02LHeYj+iB43IcrkG5DWUtqSTt78F8Rliq0f
+         KOV/D2O0diPvyyKZUerUEwh+zezTfzSvGcxJZKqY=
+Received: by pali.im (Postfix)
+        id E5C14891; Tue,  6 Oct 2020 14:45:11 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andre Heider <a.heider@gmail.com>,
+        =?UTF-8?q?G=C3=A9rald=20Kerma?= <gerald@gk2.net>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: marvell: espressobin: Add support for LED2
+Date:   Tue,  6 Oct 2020 14:44:55 +0200
+Message-Id: <20201006124455.16617-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201006113237.73rzvw34anilqh4d@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 02:32:37PM +0300, Vladimir Oltean wrote:
-> - The .port_vlan_add will always install the VLAN to the hardware
->   database, no queuing if there's no reason for it (and I can't see any.
->   Your hardware seems to be sane enough to not drop a VLAN-tagged frame,
->   and forward it correctly on egress, as long as you call
->   hellcreek_setup_ingressflt with enable=false, am I right? or does the
->   VLAN still need to be installed into the egress port?).
+LED2 is connected to MPP1_2 pin. It is working only on V7 boards.
+V5 boards have hw bug which cause that LED2 is non-working.
 
-I don't know if this goes without saying or not, but of course, if you
-can't enforce correct behavior with a vlan_filtering=0 bridge (i.e.
-"ingressflt" will only help the VLAN-tagged frames to be accepted on
-ingress, but they will be nonetheless dropped on egress due to no valid
-destinations), then you should reject that setting in the 2 places where
-vlan_filtering can be enabled:
+So enable LED2 only for Espressobin V7 boards.
 
-(a) in .port_prechangeupper, you should make sure that if the upper is a
-    bridge, then br_vlan_enabled() must be true.
-(b) in .port_vlan_filtering, you should reject enabled=false from the
-    switchdev_trans_ph_prepare(trans) state.
+Note that LED1 is connected to LED_WLAN# pin on miniPCIe card and LED3 to
+power supply. Therefore on Espressobin board only LED2 can be controlled
+directly from the host. LED1 is possible to control via WiFi card inserted
+in miniPCIe slot if driver for particular card supports it.
 
-Again, this isn't about implementing every possible combination, just
-about making sure that the user isn't led into believing that a certain
-setting works when in reality it doesn't.
+Signed-off-by: Pali Rohár <pali@kernel.org>
+Tested-by: Gérald Kerma <gerald@gk2.net>
 
-> @@ -2006,10 +2006,22 @@ static int dsa_slave_netdevice_event(struct notifier_block *nb,
->  	switch (event) {
->  	case NETDEV_PRECHANGEUPPER: {
->  		struct netdev_notifier_changeupper_info *info = ptr;
-> +		struct dsa_switch *ds;
-> +		struct dsa_port *dp;
-> +		int err;
->  
->  		if (!dsa_slave_dev_check(dev))
->  			return dsa_prevent_bridging_8021q_upper(dev, ptr);
->  
-> +		dp = dsa_slave_to_port(dev);
-> +		ds = dp->ds;
-> +
-> +		if (ds->ops->port_prechangeupper) {
-> +			err = ds->ops->port_prechangeupper(ds, dp->index, ptr);
-> +			if (err)
-> +				return err;
+---
 
-Correction: this should return notifier_from_errno(err).
+Previous version of this patch was sent by Uwe in March 2018, but it did
+not work on any tested V5 board. Now we know it was due to V5 HW bug.
 
-> +		}
-> +
->  		if (is_vlan_dev(info->upper_dev))
->  			return dsa_slave_check_8021q_upper(dev, ptr);
->  		break;
-> -- 
-> 2.25.1
+https://lore.kernel.org/linux-arm-kernel/20180321105005.18426-3-u.kleine-koenig@pengutronix.de/
+---
+ .../dts/marvell/armada-3720-espressobin-v7-emmc.dts |  4 ++++
+ .../boot/dts/marvell/armada-3720-espressobin-v7.dts |  4 ++++
+ .../boot/dts/marvell/armada-3720-espressobin.dtsi   | 13 +++++++++++++
+ 3 files changed, 21 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+index 4775a7eda481..75401eab4d42 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+@@ -39,3 +39,7 @@
+ &sdhci0 {
+ 	status = "okay";
+ };
++
++&led2 {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+index c47a93978386..48a7f50fb427 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+@@ -34,3 +34,7 @@
+ &switch0port3 {
+ 	label = "wan";
+ };
++
++&led2 {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
+index 8a1c678bea5f..daffe136c523 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
+@@ -41,6 +41,19 @@
+ 			  3300000 0x0>;
+ 		enable-active-high;
+ 	};
++
++	led2: gpio-led2 {
++		/* led2 is working only on v7 board */
++		status = "disabled";
++
++		compatible = "gpio-leds";
++
++		led2 {
++			label = "led2";
++			gpios = <&gpionb 2 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++	};
+ };
+ 
+ /* J9 */
+-- 
+2.20.1
+
