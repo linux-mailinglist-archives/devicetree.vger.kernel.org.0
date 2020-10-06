@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D95E2850F3
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 19:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08FDE2850FA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 19:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726636AbgJFRit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 13:38:49 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42404 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726137AbgJFRit (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 13:38:49 -0400
-Received: by mail-oi1-f194.google.com with SMTP id 16so5820096oix.9;
-        Tue, 06 Oct 2020 10:38:48 -0700 (PDT)
+        id S1726670AbgJFRjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 13:39:25 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:38396 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726137AbgJFRjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 13:39:25 -0400
+Received: by mail-oi1-f196.google.com with SMTP id 26so13442669ois.5;
+        Tue, 06 Oct 2020 10:39:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WQtLQS/qaJ16lAKmbyiuA4X3E71wZ6EPZkBBROE4Ewo=;
-        b=IRH6W5jZXL1lYHavJWBIoJUAN9sbygflts52Fy3VOWss3n9Tggkgdc9a4aWlldOqzz
-         wHfE+Ofm/esXOgQxaTz/FGrdaHImeMBtTnxZXgse2VvkxIaFCFZavc6DyoF+YN5CPQVQ
-         QmfWagHcW5NLIjuQWfs4c4egt6hOE18sZhBRiIhY8/JV7m1BQ8RfsyVKMIsvkyCUlDBg
-         V0SyphXDpk7IxQy7sHMrFMQNbT1iuU14EeYUcmuVyld4taWBg8HhQqDAdMo8YROSiNeE
-         26i+5B9jAi6br5O7VT2twqF1QFahK+iFXwFHR3itU3qSGs7DEJg45+5E3MTnhWN0FSaP
-         xsDQ==
-X-Gm-Message-State: AOAM531/1/CbKzzcwMZo7mD3sSa0xKnKliNt/38M6LekenIDpImHFcOj
-        qq48XkGekloLaiG2u4TVyg==
-X-Google-Smtp-Source: ABdhPJxIbemUkYz9uJjI7Uv+Hp6Cxt0ZZO20t/9vSkIjEySeROSvgggh+pDoA1u0ubynNJpRF9vZPg==
-X-Received: by 2002:aca:ed90:: with SMTP id l138mr1477346oih.178.1602005928359;
-        Tue, 06 Oct 2020 10:38:48 -0700 (PDT)
+        bh=+Bihno6MGKyxcVBpHkYTk8xAc9lFXRujrVwMLMM15no=;
+        b=YKRpHZfvY4X4T530h7vSlHoVp/ZIbn4xUKEt9g9v9Qps9MY16nmDQ9D3kwLVsTiLZI
+         uET3b/bf6YTIe5TqX1bVYIyqXUFFkGLlbRA7TOobhc79v8VV8YyPcb5Nx+ZdF7G/XcAr
+         7Fl/aghF6jq/rE5GkfppIg+WjgzH70D/T5JT37SA8nEqM7C9hB6wAcPbSutssbRb2iMT
+         VF6/WF+2yQKYFDoNu6+4G9xy1cd4tSF9jyi2dRC6/kwIMyduQqhHNUGP5c82JSU97soe
+         JTgUsDkvAxIovkK27jbapZWu+hE+D6vO4kXq9rZWVdSDcgW1AiksPX/S4CUd1YpLg/gF
+         g3PA==
+X-Gm-Message-State: AOAM533PMSuu7UYXG5RTmZZwfZnE08RIUOAqABg9/VmepMNWvOrbiJaa
+        nOD0VleeeatPTyeCIV6Fxw==
+X-Google-Smtp-Source: ABdhPJxv/Hxh5bZaamTZCuvpd419WcSnXwl6qKoTXq/P8ma1/IGT6Sam1N/ohNnlPP7MCcR1mzA9RQ==
+X-Received: by 2002:aca:bf82:: with SMTP id p124mr3188131oif.133.1602005962894;
+        Tue, 06 Oct 2020 10:39:22 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g26sm1280518otn.77.2020.10.06.10.38.46
+        by smtp.gmail.com with ESMTPSA id 2sm1297312oty.59.2020.10.06.10.39.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 10:38:47 -0700 (PDT)
-Received: (nullmailer pid 2506338 invoked by uid 1000);
-        Tue, 06 Oct 2020 17:38:46 -0000
-Date:   Tue, 6 Oct 2020 12:38:46 -0500
+        Tue, 06 Oct 2020 10:39:22 -0700 (PDT)
+Received: (nullmailer pid 2507327 invoked by uid 1000);
+        Tue, 06 Oct 2020 17:39:21 -0000
+Date:   Tue, 6 Oct 2020 12:39:21 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        =?iso-8859-1?Q?S=E9bastien?= Szymanski 
-        <sebastien.szymanski@armadeus.com>, linux-kernel@vger.kernel.org,
-        Li Yang <leoyang.li@nxp.com>,
-        Robert Jones <rjones@gateworks.com>,
-        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+Cc:     linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Anson Huang <Anson.Huang@nxp.com>,
         Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        linux-arm-kernel@lists.infradead.org,
+        Robert Jones <rjones@gateworks.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 01/12] dt-bindings: vendor-prefixes: add Element14
-Message-ID: <20201006173846.GA2506290@bogus>
+        Andreas Kemnade <andreas@kemnade.info>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        =?iso-8859-1?Q?S=E9bastien?= Szymanski 
+        <sebastien.szymanski@armadeus.com>, Li Yang <leoyang.li@nxp.com>
+Subject: Re: [PATCH 02/12] dt-bindings: arm: fsl: document i.MX6Q boards
+Message-ID: <20201006173921.GA2507273@bogus>
 References: <20201001170759.9592-1-krzk@kernel.org>
- <20201001170759.9592-2-krzk@kernel.org>
+ <20201001170759.9592-3-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201001170759.9592-2-krzk@kernel.org>
+In-Reply-To: <20201001170759.9592-3-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 01 Oct 2020 19:07:48 +0200, Krzysztof Kozlowski wrote:
-> Document the binding for the Element14, a Premier Farnell company.
+On Thu, 01 Oct 2020 19:07:49 +0200, Krzysztof Kozlowski wrote:
+> Document and adjust the compatibles for i.MX6Q based boards.
+> The Toradex and the Armadeus boards use multiple compatibles.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/arm/fsl.yaml          | 83 +++++++++++++++++--
+>  1 file changed, 77 insertions(+), 6 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
