@@ -2,93 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D32284701
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 09:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 240B3284705
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 09:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727210AbgJFHTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 03:19:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54078 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727191AbgJFHTO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 03:19:14 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34984C0613D3
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 00:19:13 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id m15so776618pls.8
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 00:19:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=m2b+rmKRGPYGRHjXu3I4nFOGjf5oCG8gDODedqsY8HI=;
-        b=MzsarqGUb28zUo1ZRQuRl2CQFRw++HYQ9UsKlDiioJRx4DDwqhZDVh8zkS5ZMaLDPN
-         PuUv7/4fQPcMU4pTP8LgkCw7cXvG4Q7wMpcYZP1NRw5oFwk9avs29jXu6WJ7Kqpb3dEw
-         E84b/Q8xEWKH54B99Wka5P9nno7+tj/P6JYT+sykdnSBV80ZOiZ5/Y2SSMr+KISzJyFC
-         lsnZ4iPOniWwx5fMVAMlNJwUHCsFhvi4eOWqtdMmuUuYtXldriIAPaBJoOJqEX0nljck
-         OurpuFskSQdMmkCc1oZiC+bdw4aFm2tydZEQQh3tvvSFD02Q6AqJuOZN5nGTssGzhquK
-         Bk7A==
+        id S1726897AbgJFHTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 03:19:53 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:37884 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727147AbgJFHTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 03:19:52 -0400
+Received: by mail-wr1-f66.google.com with SMTP id h7so8576970wre.4;
+        Tue, 06 Oct 2020 00:19:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=m2b+rmKRGPYGRHjXu3I4nFOGjf5oCG8gDODedqsY8HI=;
-        b=d8p2KwcqQX1tt27azELM3d3CtV6LaB8Rs6Sk+J8E2P+3SFiU+ynAMgFpa0P8YJ18D/
-         ipH6CQ8Hn3ia9LlA/3HvhoRcQZXdoYR1+5eKc5WY4A6fIWhC9AzIg/R0Ia+hnawVfBAc
-         tbKTYcGR2+9JWn4/dBDg9Q7iL5lcsxrIyuY+BnDoWeei01W6cPwV2XGNtIHMObIzmOgW
-         n+VXYgL/PRd2odMCYKeMufPtfNQN0SyFrLmDGwJooXuFdPPaAdjAWFGtYfrfJ9fxehYg
-         SmJCzmCc+ANh+VeK2Gc2M5oykjr7c6jV96aHXMvV895B+Ef7zlXbvolgYRPoYmRzzVCb
-         N1+Q==
-X-Gm-Message-State: AOAM532JQhbvZI717ZogsImSh4YHJKYxfdzXxoFOX5/HvInomJZp2lhm
-        Nuc6WiNPnHJ7Gao++3bAwmqpTw==
-X-Google-Smtp-Source: ABdhPJwDUUyCJoFXkW7uX+HT9mhqyp71hZG+SsLmVoqnODhfEK9QCzoSbQzGtxk5AUvOx2IO9tk/nQ==
-X-Received: by 2002:a17:90a:a595:: with SMTP id b21mr2943649pjq.95.1601968752689;
-        Tue, 06 Oct 2020 00:19:12 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id j4sm2140975pfj.143.2020.10.06.00.19.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Oct 2020 00:19:11 -0700 (PDT)
-Date:   Tue, 6 Oct 2020 12:49:09 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        morten.rasmussen@arm.com, chris.redpath@arm.com
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-3-nicola.mazzucato@arm.com>
+        bh=tLX8MUE8fMwR/rmRJeOX+yduwkBmzQAbVy+FfpGJiXk=;
+        b=IQkUow2A72wwA3evUgti8ZMeixfLqTTKuXMTifLwGorPIqwsRDa3dXCTOCcZo898L6
+         Oj7SH4kZvauw718wccnL8+gkI03nVKtNG8lfog3j5/6cI+syhpAVe6/RMuiZXjIN08SU
+         Bz/hlX2E1sYomlRiO3k9C5Ih5bX/QCl4rsJmApdErGXKTfQx83EXsnO/uORS7lOq8plh
+         Tphaw+Bhc4XOWFby9c2voerwOOm3Fvtbk1RUTju9Ddl50Ab3d/W9zOkCZE7KVmvQsGNC
+         aP9RdtKG3X3vchG3iuoKP6yTgPjeI74l/ksNLCDKvd1ecFgiUx8BJrX5OK9L4nBp0CKv
+         vUfg==
+X-Gm-Message-State: AOAM531GYauyqZZKpacfAiHXuTndSE4KqtBgPbyTVvdJK/TjHE2rjsEf
+        4eqM38nTE115eOi0VI/X8Ag=
+X-Google-Smtp-Source: ABdhPJwcFPFaKk+kQGjarLysXTsJkvJxJ59r7qmNrLo/3p1ufBJ3CMZyj51pjjHZbxZ26R5kk8lplA==
+X-Received: by 2002:adf:9461:: with SMTP id 88mr3236215wrq.307.1601968790024;
+        Tue, 06 Oct 2020 00:19:50 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.194])
+        by smtp.googlemail.com with ESMTPSA id f63sm2746288wme.38.2020.10.06.00.19.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 06 Oct 2020 00:19:48 -0700 (PDT)
+Date:   Tue, 6 Oct 2020 09:19:46 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
+        Greg Kroah-Hartman <gregkh@google.com>, kernel-team@android.com
+Subject: Re: [PATCH v3 06/24] dt-bindings: mediatek: Add binding for mt8192
+ IOMMU
+Message-ID: <20201006071946.GA5759@kozik-lap>
+References: <20200930070647.10188-1-yong.wu@mediatek.com>
+ <20200930070647.10188-7-yong.wu@mediatek.com>
+ <20201002111014.GE6888@pi3>
+ <1601958405.26323.24.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200924095347.32148-3-nicola.mazzucato@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <1601958405.26323.24.camel@mhfsdcap03>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-09-20, 10:53, Nicola Mazzucato wrote:
-> I am seeking some feedback/comments on the following approach.
+On Tue, Oct 06, 2020 at 12:26:45PM +0800, Yong Wu wrote:
+> Hi Krzysztof,
 > 
-> Intro:
-> Info of performance depency for cpus will be beneficial for systems
-> where f/w description of the CPU performance control domain is different
-> from the clock domain, e.g. per-CPU control with multiple CPUs sharing
-> clock, and kernel OSPM s/w components need to take CPU performance
-> dependency into account.
-> Essentially these s/w components will have to be provided with
-> this information from dt and this RFC is presenting a possible way
-> to do so.
+> On Fri, 2020-10-02 at 13:10 +0200, Krzysztof Kozlowski wrote:
+> > On Wed, Sep 30, 2020 at 03:06:29PM +0800, Yong Wu wrote:
+> > > This patch adds decriptions for mt8192 IOMMU and SMI.
+> > > 
+> > > mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
+> > > table format. The M4U-SMI HW diagram is as below:
+> > > 
+> > >                           EMI
+> > >                            |
+> > >                           M4U
+> > >                            |
+> > >                       ------------
+> > >                        SMI Common
+> > >                       ------------
+> > >                            |
+> > >   +-------+------+------+----------------------+-------+
+> > >   |       |      |      |       ......         |       |
+> > >   |       |      |      |                      |       |
+> > > larb0   larb1  larb2  larb4     ......      larb19   larb20
+> > > disp0   disp1   mdp    vdec                   IPE      IPE
+> > > 
+> > > All the connections are HW fixed, SW can NOT adjust it.
+> > > 
+> > > mt8192 M4U support 0~16GB iova range. we preassign different engines
+> > > into different iova ranges:
+> > > 
+> > > domain-id  module     iova-range                  larbs
+> > >    0       disp        0 ~ 4G                      larb0/1
+> > >    1       vcodec      4G ~ 8G                     larb4/5/7
+> > >    2       cam/mdp     8G ~ 12G             larb2/9/11/13/14/16/17/18/19/20
+> > >    3       CCU0    0x4000_0000 ~ 0x43ff_ffff     larb13: port 9/10
+> > >    4       CCU1    0x4400_0000 ~ 0x47ff_ffff     larb14: port 4/5
+> > > 
+> > > The iova range for CCU0/1(camera control unit) is HW requirement.
+> > > 
+> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../bindings/iommu/mediatek,iommu.yaml        |   9 +-
+> > >  .../mediatek,smi-common.yaml                  |   5 +-
+> > >  .../memory-controllers/mediatek,smi-larb.yaml |   3 +-
+> > >  include/dt-bindings/memory/mt8192-larb-port.h | 239 ++++++++++++++++++
+> > >  4 files changed, 251 insertions(+), 5 deletions(-)
+> > >  create mode 100644 include/dt-bindings/memory/mt8192-larb-port.h
+> > 
+> > I see it depends on previous patches but does it have to be within one
+> > commit? Is it not bisectable? The memory changes/bindings could go via
+> > memory tree if this is split.
+> 
+> Thanks for the view.
+> 
+> I can split this into two patchset in next version, one is for iommu and
+> the other is for smi.
+> 
+> Only the patch [18/24] change both the code(iommu and smi). I don't plan
+> to split it, and the smi patch[24/24] don't depend on it(won't
+> conflict).
 
-I am not sure I understand what performance control mean here. Can you please
-elaborate a bit more on that ? For example, with current code and understanding,
-a cpufreq policy belongs to a group of CPUs which change their frequency
-together, which also mean that they change their performance level together and
-so I am not able to understand what's going on here. Sorry about that.
+It got too late in the cycle, so I am not going to take the 24/24 now.
 
-What kind of hardware configuration doesn't work with this ?
+> 
+> since 18/24 also touch the smi code, I expect it could get Acked-by from
+> you or Matthias, then Joerg could take it.
 
--- 
-viresh
+Sure. I acked it.
+
+Best regards,
+Krzysztof
