@@ -2,293 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8665284373
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 02:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D332843A3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 03:10:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726248AbgJFApN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 20:45:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725865AbgJFApN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 20:45:13 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CB6C0613A7
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 17:45:13 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id d6so363272plo.13
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 17:45:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5wH+oGjHyWJvEH/uHeK7lHu7j8UmD/Ph9zNXOPzqXtY=;
-        b=bLUJ1YeTZg2WCWXfhNYVwY9TJM6/AvhKvPLZ2Nn+TiqqLJLuGrO+ZV8NuKNvGtcA5p
-         0ZfhNww1D2y6IzC5XIDN34tP4bB95LOOHuac5C5ABD6XcnSJVq0humjybyn4oQ9frNx4
-         166iHyCEPi8C2JhhLiY6/SYHFoecoDgRGr15o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5wH+oGjHyWJvEH/uHeK7lHu7j8UmD/Ph9zNXOPzqXtY=;
-        b=EWlxs3KE6qprMvgJmc6lIBAPPv9k8pQgt5jAWRzPKNeIIVp0xMd+T6a/0hU/q4pHBI
-         sBis0muRuCAD9hiZwvCwOo0B5sl11mNIcrLIWJgvFtGdokU0+5Gq4Wbv7Bl7Y3MkPru0
-         gYVuHfaHgKjeJ1T+5rYoghcPPG/1gPWQXNJOFXzk0JdI8BL5nwmVTpZvn2acwV3V62TF
-         OzVv0/CM5um36tTQ9mesDxaBivWScv584zwnwBmPd8+CGHGzbd4mwi7yMM7cqMkkcA5I
-         rurNH0RJDjd7Uuvwjwj5xFGcsi8+AAj38pFmJqeLxz/F8E2fiyzAXoHQuZQ+FNWQ88Mp
-         vW7A==
-X-Gm-Message-State: AOAM532qrpp27Je1j9B75cd+ZeTBi5dhZtKE17pW8BNchg3SR3K21If4
-        AdYnlcAQlutCnZAb/fqHqDFSdg==
-X-Google-Smtp-Source: ABdhPJw6KeqBLP2WM6eD31OsGDNcTWkLFuFHgumIgjquR7/kQ1/1Wz93OZiHNqH5RwTpoPgtglaqVA==
-X-Received: by 2002:a17:902:c697:b029:d3:df24:163e with SMTP id r23-20020a170902c697b02900d3df24163emr980258plx.18.1601945112563;
-        Mon, 05 Oct 2020 17:45:12 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id s67sm1203696pfb.35.2020.10.05.17.45.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Oct 2020 17:45:11 -0700 (PDT)
-Date:   Mon, 5 Oct 2020 17:45:10 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
+        id S1725896AbgJFBKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 21:10:24 -0400
+Received: from mailout2.samsung.com ([203.254.224.25]:41393 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725872AbgJFBKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 21:10:23 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20201006011017epoutp0296e01a9602596620fa94cb505b1f2ccc~7QfYIgmPy1813818138epoutp02j;
+        Tue,  6 Oct 2020 01:10:17 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20201006011017epoutp0296e01a9602596620fa94cb505b1f2ccc~7QfYIgmPy1813818138epoutp02j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1601946617;
+        bh=B4PawtUJM2t4wzU2pvIySnG7we9Bhgj1khiFTd9d9CE=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=Rx8RJtC6Yj3KjGbngnY3QrOD1xUh97k2CcjP1L4bTfTZIPheVmtqSJrA4EZdpPPOg
+         trAwp0No0N/0erQYIZqHeGT1O8Y1jJ5bsPfmRbRjm0h8DI5JF5XlW5/vhGg3S/8m9/
+         spUfOkBMrCNoisTG2YOcZI8q4vf8cCSD1/9SF9L8=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
+        20201006011016epcas1p459c312e10a907b7832b22cd23eb9d8a4~7QfXew6HM1279312793epcas1p4Q;
+        Tue,  6 Oct 2020 01:10:16 +0000 (GMT)
+Received: from epsmges1p5.samsung.com (unknown [182.195.40.154]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4C4zsY6sg8zMqYks; Tue,  6 Oct
+        2020 01:10:09 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
+        20.E2.09577.1F3CB7F5; Tue,  6 Oct 2020 10:10:09 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+        20201006011008epcas1p300f9dc6918a008b4b0acf5870f438a2e~7QfP7yysc1939819398epcas1p3e;
+        Tue,  6 Oct 2020 01:10:08 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201006011008epsmtrp151af87c3414c2b6b37057fcba7d215f2~7QfP5fMXI0584005840epsmtrp1N;
+        Tue,  6 Oct 2020 01:10:08 +0000 (GMT)
+X-AuditID: b6c32a39-bfdff70000002569-24-5f7bc3f11c68
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C1.AB.08604.0F3CB7F5; Tue,  6 Oct 2020 10:10:08 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201006011007epsmtip14dca797b06e6c0e4525f28d6ead67ad0~7QfO-JeoX3017730177epsmtip1d;
+        Tue,  6 Oct 2020 01:10:07 +0000 (GMT)
+Subject: Re: [PATCH 4/4] dt-bindings: Explicitly allow additional properties
+ in common schemas
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>, dmaengine@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        dri-devel@lists.freedesktop.org,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Jens Axboe <axboe@kernel.dk>,
+        Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20201006004510.GD4135817@google.com>
-References: <20200929201701.GA1080459@bogus>
- <20200929220912.GF1621304@google.com>
- <20200930013229.GB194665@rowland.harvard.edu>
- <20200930124915.GA1826870@google.com>
- <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
- <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
- <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
- <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
- <CAL_JsqLWmBCjrbs2D-d+9naJAKkNhDAbmRtqvCDY8jv=L_q-xA@mail.gmail.com>
- <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Richard Weinberger <richard@nod.at>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <0e155728-89b3-5f31-f008-dfd57b6c4f6b@samsung.com>
+Date:   Tue, 6 Oct 2020 10:23:28 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
+In-Reply-To: <20201005183830.486085-5-robh@kernel.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01UaVBTVxSe+/KWoFKfiOXCVIHYOtUqEhF66KB1lNpXdapVy1hnbIzwBhhD
+        kknAqnQYQMCouFBcSkRgCC5sChGQTVBWaQtBUEQxrmhAFgUEXKA2EJzy7zvnfOd8850z9woF
+        NiahgzBQHsyr5FKZiJ5CFlTOd13UVxkqcU0cXQxpN28zYDBWCCD/vZaBTONRGtIiA+DE43Ya
+        kgZmQ6IhioTkqgYKMk+MUlCZ2oHg1uBLGvbpLtGQ+vJPCiLSmkl4FJlBgMGQw0BjwREK0uKT
+        KTgQl8bAw8FqBEO3NAQcHzlPgP5pCwUZwycE0Bf7gILLySMI9nflI9CMvkZQU/iEgKSqXhLu
+        9g9R0FycSEN+90UEsTn55nl6M6/qw1EEJZHnGKhPqqVh4HAVAqMxA0HBQBQNNZm3aPhHd5iB
+        iL67DKSeixZA68UyBvJLrxFQlFhHwTn9CAGV+8souJR6nIS2iAs0dDbHCiBGOx2Mf1XT8L64
+        hoH4om4EH0oLGWh/fISGC2/N2v+25JLwd0kwxNTUUCvWcNFN50kuKSuU6+7sJLm89LsEV6l5
+        zXBFWiPDpehDuL6mNsSd1iRQnK60k+Ca60M4fcYBmgu/ZiC5+y2lNNfb0MBw6VlZ1AbHrTu9
+        AnipH69y4uW+Cr9Auf8y0dpNklUSdw9X8SKxJ3wtcpJLg/hlIu91GxatDpSZjypy2iWVhZhT
+        G6RqtWjxci+VIiSYdwpQqIOXiXiln0zpqXRRS4PUIXJ/F19F0DdiV9cl7mbi9p0ByRffEUo9
+        uTun+yYVjuoFB5GVELNLcVfXfXQQTRHasIUIv0h5QlqCfoTr4zIoSzCEcElkA/mx5VR1FmMp
+        XEW4sT9lgvUS4aL2B+Osmex2bBpqGxexZbfh2nsvxucK2DRbXN0WO16g2QW4vKOVHsPTWWd8
+        +81TNIat2eX48tk3xBgm2c+x4W3r+NBZrA+uK4ia4MzAdQnt5rxQaMV64Lz0eWNpAWuH77Un
+        ExbsiK/0JArGdDHbPBV3HHuGLBa8cd/pjokNzMQvavMYC3bAnUdjJnAoTq+roi3NGoTzyhsp
+        S8ENl5+NJ8aEBex8fKl4sSXtjIven0EW4U9w72AsNUbBrDXWxNhYKHNx8yMjYcH2WLf/AH0M
+        ibST3GgnWdBOsqD9XywFkRnoU16pDvLn1WKl++Rz69H4i1/gWYhO9bxyqUCEEFUgLBSIbK1d
+        fHZLbKz9pHv28iqFRBUi49UVyN283ziBwyxfhfnLkAdLxO5L3NzcYKnYw10sFtlZP77nJLFh
+        /aXB/E6eV/Kqj32E0MohnHC0Cr9uN/qLx0oUL2mqWLHQ3SDbfHL1g0SvGblX91k3eLY8jFtZ
+        aveqKbs/bsuhz5yPcyafMvsuU3h7j1PY2sK2nxqmrTuUlOzhoBs2Zuderc5N7bmxRRs2tzg1
+        TNMTuGezH/fFwqJ5I4p5Pnsdt//2+/36gNqN+iub1iR8f2rY7dcdmWr7Q93DP288Mnvrm/gz
+        LlFLTaFZTL1uTuY227gn30WXZWWv831rMgavcpL/WCZ7fmdtxNMv7da3vtt1Q/dtzvU5lVKP
+        P2a8HqgxmbxadPLn630Hs4fnS21brSN/uFBSVb4jgV7p/FXjM+81u+0ls+x8o1dPvbk3qCTs
+        pKDj8p3erdPsMsNHRaQ6QCpeIFCppf8BncC7Z3oFAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0xTZxiA851rgRCOBcIB41SGmBHBsTD2uhlisjkO0yWbm2RbdNiMBlBA
+        RmFDWTJA5CaXOQWh0pZLASlYoFCkgIC0sMCklYsExDoRzEDuooCCshayhH9P3u95vvfPy8P5
+        BsqJFxIeJYwMF4Q6U5ZEvdb5Hfd5bWzA+2MaR5D33qfBYGzHQb0qpqHCmEWBPCEYskfHKZAu
+        7oB8QyIBMp2ehIrsNyRoiyYQDLyco+BCcRUFRXO5JMTL+wl4nKDAwGCopuFefSYJ8isyElIv
+        y2n452UHgqWBFAyurpVhoBobJEGxnI3DQvojEmplawiSp9QIUt68QNDZ8AQDqW6WgOHnSyT0
+        N+ZToJ5WIkivVpv+U5k83XoWgqaEUhp6pH9RsJihQ2A0KhDULyZS0FkxQMHd4gwa4heGaSgq
+        vYjDkLKFBnVzGwaa/C4SSlVrGGiTW0ioKrpKwEj8DQom+9NxSBLbgLG7g4LVxk4armimEaw3
+        N9AwPppJwY1Xpt1vB2sI+LspCpI6O8lDX3AX+8oITloZy01PThJcXfkwxmlTXtCcRmykuQJV
+        NLfQN4K46yl5JFfcPIlx/T3RnEqRSnFxbQaCezjYTHGzej3NlVdWkl/t/MHyYKAwNOQXYeR+
+        n1OWwTLlayxCRcRUT/eScagHT0MWPJbxYq91VNJm5jNNiJXmO2/OHdmc3g6TwzOxLavVitKQ
+        pUmZQezsQvJGa8ucYv9dGtlw7JiTbMZzS7ODM0o7dqxRT24GasSup0k2FlCMG9s6MUSZ2YbZ
+        zd5fGUNmtmZ82NqSFczMBOPCGl4NEWa2Z/xZjXwM23S2sV1544R5mQXjzdaVu5rHOLOXXZP2
+        4ZvswD4Yl2GbvJO9NZOP/4FsxVtq8ZZEvCURb0kKEKFAjsIIUVhQmMgzwjNc+KuHSBAmig4P
+        8vjpbJgKbdy823sN6JZi3qMdYTzUjlge7mxn7eEfE8C3DhScOy+MPBsQGR0qFLWj7TzC2cF6
+        6OfCH/lMkCBKeEYojBBG/v+K8Syc4jCL2x+7enjndd+V7Tp/WP9g38D3kuNtCwUdvMRrOcQ9
+        7yn+apJ0wD1G6dLm0i3ZI7F4NhZ3wr/s8Sxhm9r95aef+HgNn9Me8AtE/GFdpo9VwtShE3d6
+        JaV43TbdrmLXiQ+qVlMnjX57vEvOnFzLfrKvde/DY+OF64Xhjwb+DP399NGYcu60+Gn3bnuh
+        Plrqq3E1hF5qIattpkZHu5JKahwor5zrTPqz166tB46VyY+UH92vr/1opWbHN1a+ys7j2tIs
+        q7J5z88Lb4a4bf+u6UO/b8uXvUSWt2fm7hysh9y3n03nGn0dpxoEgQFPL1WnXoiVHL7p9C64
+        X7a30fymDsxaFjW2fO1MiIIFnm54pEjwH6+El7RiBAAA
+X-CMS-MailID: 20201006011008epcas1p300f9dc6918a008b4b0acf5870f438a2e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20201005183933epcas1p36d2c9cc1f3ad9180421269ca74330d65
+References: <20201005183830.486085-1-robh@kernel.org>
+        <CGME20201005183933epcas1p36d2c9cc1f3ad9180421269ca74330d65@epcas1p3.samsung.com>
+        <20201005183830.486085-5-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 04:09:30PM -0700, Doug Anderson wrote:
-> Hi,
+On 10/6/20 3:38 AM, Rob Herring wrote:
+> In order to add meta-schema checks for additional/unevaluatedProperties
+> being present, all schema need to make this explicit. As common/shared
+> schema are included by other schemas, they should always allow for
+> additionalProperties.
 > 
-> On Fri, Oct 2, 2020 at 3:28 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, Oct 2, 2020 at 12:08 PM Doug Anderson <dianders@chromium.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Wed, Sep 30, 2020 at 1:20 PM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > > > > Datasheets from different manufacturers refer to these ICs as "USB hub
-> > > > > > > controller". Calling the node "usb-hub-controller" would indeed help to
-> > > > > > > distinguish it from the USB hub devices and represent existing hardware.
-> > > > > > > And the USB device could have a "hub-controller" property, which also
-> > > > > > > would be clearer than the current "hub" property.
-> > > > > >
-> > > > > > There aren't 2 (or 3) devices here. There's a single USB device (a
-> > > > > > hub) and the DT representation should reflect that.
-> > > > >
-> > > > > That's not completely true, though, is it?
-> > > >
-> > > > I was referring to the hub. I only see 1 datasheet, 1 IC and 1 block
-> > > > diagram... Lots of devices have more than one interface though usually
-> > > > not different speeds of the same thing.
-> > >
-> > > Right, there is certainly more than one way to look at it and the way
-> > > to look at it is based on how it's most convenient, I guess.  I mean,
-> > > an SoC often has 1 (very long) datasheet, 1 IC, and 1 block diagram
-> > > too...
-> > >
-> > > As a more similar example of single device that is listed in more than
-> > > one location in the device tree, we can also look at embedded SDIO
-> > > BT/WiFi combo cards.  This single device often provides WiFi under an
-> > > SDIO bus and BT under a serial / USB bus.  I'm not 100% sure there are
-> > > actually cases were the same board provides device tree data to both
-> > > at the same time, but "brcm,bcm43540-bt" is an example of providing
-> > > data to the Bluetooth (connected over serial port) and
-> > > "brcm,bcm4329-fmac" to the WiFi (connected over the SDIO bus).  Of
-> > > course WiFi/BT cheat in that the control logic is represented by the
-> > > SDIO power sequencing stuff...
-> >
-> > I figured you would mention this and it was brought up in the prior
-> > version. We've gotten lucky on these that the BT and WiFi are almost
-> > completely independent and any shared resources are easily shared
-> > (refcounted). I don't know if this case is the same. It seems less so
-> > to me. In any case, 2 independent devices is not what's been done here
-> > so far. The question is does representing USB2 and USB3 buses
-> > independently make sense, not whether just representing this hub as 2
-> > devices makes sense.
-> 
-> It feels like we have to accept that we are going to represent the USB
-> 2 and USB 3 parts separately?  From Alan's response it sounds as if,
-> at least in theory, there can be different hierarchies leading up to
-> them.  That kind of thing seems like it'll be hard to deal with unless
-> we accept that the USB2 and USB3 nodes are separate, right?
-> 
-> 
-> > > Back to our case, though.  I guess the issue here is that we're the
-> > > child of more than one bus.  Let's first pretend that the i2c lines of
-> > > this hub are actually hooked up and establish how that would look
-> > > first.  Then we can think about how it looks if this same device isn't
-> > > hooked up via i2c.  In this case, it sounds as if you still don't want
-> > > the device split among two nodes.  So I guess you'd prefer something
-> > > like:
-> > >
-> > > i2c {
-> > >   usb-hub@xx {
-> > >     reg = <xx>;
-> > >     compatible = "realtek,rts5411", "onboard-usb-hub";
-> > >     vdd-supply = <&pp3300_hub>;
-> > >     usb-devices = <&usb_controller 1>;
-> >
-> > Why would you even need this prop? What it's attached to may not be
-> > the host controller nor even represented in DT. You've just defined a
-> > 2nd way to represent USB devices in DT (there's always 2 ways: a tree
-> > of nodes or a 'linked list' of phandles).
-> 
-> I'm certainly not wedded to the above representation, so let's drop it.
-> 
-> 
-> > >   };
-> > > };
-> > >
-> > > ...and then you wouldn't have anything under the USB controller
-> > > itself.  Is that correct?
-> >
-> > Right, as the examples you pointed out do. They just avoid the issue
-> > of representing USB bus in DT which probably was not defined at the
-> > time at least the first one was done. It works as long as you only
-> > have the hub that needs special setup. If you have child devices
-> > hanging off the hub too, then you need to represent the USB bus
-> > structure.
-> >
-> > >  So even though there are existing bindings
-> > > saying that a USB device should be listed via VID/PID, the desire to
-> > > represent this as a single node overrides that, right?  (NOTE: this is
-> > > similar to what Matthias proposed in his response except that I've
-> > > added an index so that we don't need _anything_ under the controller).
-> > >
-> > > Having this primarily listed under the i2c bus makes sense because the
-> > > control logic for the hub is hooked up via i2c.  Having the power
-> > > supply associated with it also makes some amount of sense since it's a
-> > > control signal.  It's also convenient that i2c devices have their
-> > > probe called _before_ we try to detect if they're there because it's
-> > > common that i2c devices need power applied first.
-> > >
-> > > Now, just because we don't have the i2c bus hooked up doesn't change
-> > > the fact that there is control logic.  We also certainly wouldn't want
-> > > two ways of describing this same hub: one way if the i2c is hooked up
-> > > and one way if it's not hooked up.  To me this means that the we
-> > > should be describing this hub as a top-level node if i2c isn't hooked
-> > > up, just like we do with "smsc,usb3503a"
-> > >
-> > > Said another way, we have these points:
-> > >
-> > > a) The control logic for this bus could be hooked up to an i2c bus.
-> > >
-> > > b) If the control logic is hooked up to an i2c bus it feels like
-> > > that's where the device's primary node should be placed, not under the
-> > > USB controller.
-> > >
-> > > c) To keep the i2c and non-i2c case as similar as possible, if the i2c
-> > > bus isn't hooked up the hub's primary node should be a top-level node,
-> > > not under the USB controller.
-> >
-> > If that was the goal,
-> 
-> Are you saying that's not a goal?  I'd still be happiest with allowing
-> it to be split amongst multiple nodes.
-> 
-> 
-> > then I'd say the device *always* belongs under
-> > the USB bus as that is the primary interface.
-> 
-> So in the case that it's under the USB bus, how do you envision the
-> i2c part probing?  I guess you'd add a "i2c-bus" property and provide
-> a phandle to the i2c bus?  ...and, presumably, the device address on
-> that i2c bus?  I know you pointed to examples of "ddc-i2c-bus" but I
-> don't think this is exactly the same because we need to specify a bus
-> plus a device address.  Did I miss an example where something like
-> this is already done, or are we inventing something new?
-> 
-> 
-> > As soon as someone wants to describe a device hanging off a
-> > "smsc,usb3503a" port, they're going to need to describe it all as a
-> > USB bus, not under I2C. I could be wrong, but I think all the cases so
-> > far do this. And it's not just devices, but possibly connectors (which
-> > is a whole other set of binding issues :)), too.
-> 
-> I mean, the thing that would make me happiest is to allow the
-> different parts of this device to be described in different places, as
-> Matthias's patch does.  In other words, I agree with you that the best
-> solution is to have nodes for hubs under the USB bus.  I'm still of
-> the opinion that the device is best described by _also_ having a
-> separate node for the control logic part of the IC either under the
-> i2c bus or at the top level.  In the i2c case, at least, this avoids
-> coming up with a different way to specify a device that is a child of
-> an i2c bus.
-> 
-> 
-> So, just to summarize, I guess options still being discussed:
-> 
-> a) Only represent the hub under the USB controller, not anywhere else.
-> If the hub is also on an i2c bus, invent a new way to specify which
-> bus it's under and what address it's using.  Add some sort of
-> pre-probe stage and have the hub driver register for it so it can turn
-> on the power, which might be needed in order for the USB devices to be
-> detected and probed normally.
-> 
-> b) Give up trying to model this and just whack in a regulator and some
-> logic in the xhci-platform driver to do this.
-> 
-> c) Decide that it's OK to represent the control logic as a separate
-> node, either under an i2c bus or at the top level.  Use phandles to
-> link.  Basically, I think this is nearly Matthias's current patch.
-> 
-> 
-> Did I miss anything that's currently under proposal?
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+(snip)
 
-I did some prototyping, it seems a binding like this would work for
-case a) or b):
+>  Documentation/devicetree/bindings/extcon/wlf,arizona.yaml    | 2 ++
+(snip)
 
-&usb_1_dwc3 {
-        hub_2_0: hub@1 {
-                compatible = "usbbda,5411";
-                reg = <1>;
-	};
+For the extcon part,
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
-        hub_3_0: hub@2 {
-                compatible = "usbbda,411";
-                reg = <2>;
-                vdd-supply = <&pp3300_hub>;
-		companion-hubs = <&hub_2_0>;
-        };
-};
-
-It still requires specifying both hubs (which reflects the actual wiring).
-Supporting something like "reg = <1 2>" seems more complex due to the need to
-obtain the hub USB device at runtime (a DT node makes that trivial), possibly
-this could be solved by adding new APIs.
-
-In terms of implementation would I envision to keep a platform driver. This
-would keep the hubby parts out of xhci-plat (except for populating the platform
-devices), support systems with cascaded hubs and provide a device for the sysfs
-attribute.
-
-The same binding could be used for a hub with I2C bus, however it would need
-an additional I2C client node, unless we invent something new (case a). On
-such a hub the "power down in suspend" feature would only work if the "USB
-regulator" is not needed to preserve context of the I2C portion of the chip
-during system suspend.
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
