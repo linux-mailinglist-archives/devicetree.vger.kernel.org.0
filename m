@@ -2,159 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1691328543F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 00:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F28F28546B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 00:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726981AbgJFWAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 18:00:17 -0400
-Received: from mail-oo1-f65.google.com ([209.85.161.65]:42635 "EHLO
-        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726248AbgJFWAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 18:00:17 -0400
-Received: by mail-oo1-f65.google.com with SMTP id l18so104194ooa.9;
-        Tue, 06 Oct 2020 15:00:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Z2hvVkSpnHINzNhjhUjzJuQ0tG2BYYHBLjAIAeoL0TQ=;
-        b=M7zubysSj6BwvkJ5Zf7l+umy4xvZJdE9tdGWJCcqpe+wLYTMFVauubqiQRn58qzENo
-         j70TpG+V4ikpugK/L/5k9O2ipJKMuFrb2KzIznpzmtLh6K9TKX5ZdQMBxjCJZq6eZdEE
-         A8L2kFCiMA6ZeoQDNr3EJmgrLYnP9wbEepIcOc6Sm8ICsBxVQmG78TMhYwz9ft0t9FHU
-         EF2hrJ2QYWZ9P6MBTfYz8mGG+eeFxdIaPcFlkAOIj+nWu5gGaQuJd0xcxIK5435XVmzx
-         Q7ZTy9fejOoTOvevK3yAiLqX7z1Rhso8P7SRmPjpKbpIj6OFEuANTl+ykYGixDiU4fB4
-         45Lw==
-X-Gm-Message-State: AOAM53057ubVGYbkCxhLzebUhzOKsCLtJXNh/Pf/a6N0mhwvq8xDtjbm
-        OvgkEcaN/RUh63sncS6IxQ==
-X-Google-Smtp-Source: ABdhPJwftGpL2HYPjAt+Z1eQOcxnHz4QpTbvxtaOM3xgT1/4qgIW1HO6EhL66hoTavvtO3KwGn4Pyw==
-X-Received: by 2002:a05:6820:22c:: with SMTP id j12mr104968oob.87.1602021616239;
-        Tue, 06 Oct 2020 15:00:16 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o205sm119360oig.8.2020.10.06.15.00.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 15:00:15 -0700 (PDT)
-Received: (nullmailer pid 2926434 invoked by uid 1000);
-        Tue, 06 Oct 2020 22:00:14 -0000
-Date:   Tue, 6 Oct 2020 17:00:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bogdan Togorean <bogdan.togorean@analog.com>
-Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] drm: dt-bindings: adi: axi-hdmi-tx: Add DT bindings
- for axi-hdmi-tx
-Message-ID: <20201006220014.GA2920793@bogus>
-References: <20201005141226.180655-1-bogdan.togorean@analog.com>
- <20201005141226.180655-2-bogdan.togorean@analog.com>
-MIME-Version: 1.0
+        id S1726904AbgJFWUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 18:20:46 -0400
+Received: from mx0a-00010702.pphosted.com ([148.163.156.75]:30676 "EHLO
+        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726709AbgJFWUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 18:20:46 -0400
+X-Greylist: delayed 2924 seconds by postgrey-1.27 at vger.kernel.org; Tue, 06 Oct 2020 18:20:44 EDT
+Received: from pps.filterd (m0098780.ppops.net [127.0.0.1])
+        by mx0a-00010702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 096MEqsP010696;
+        Tue, 6 Oct 2020 17:20:38 -0500
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2104.outbound.protection.outlook.com [104.47.70.104])
+        by mx0a-00010702.pphosted.com with ESMTP id 33xpttqk66-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Oct 2020 17:20:38 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hwusWcKjKfLu5QCjBLk+Wy22o/o1dtQsLGS7GN18NOiH/d7t8sEGevx8dpyDvJtgOd37LIQ9S1SHMo+6+Vj7uBo70chHfsUNZ1cDepavuoG94m19K+4VaMYcnT7Bv8xduBxkrbV+YYlVVUI/SewemRCnKnQ4lHtt/dMSsMNPQTH6Vpw1OdDSafj0++Yb36AUq2JRSHoZymmMz3xsQAKO+P2teHUpXnJ37nIaNktklmAAl9Jj9iTid2yHWbluzBDWDu+Y3fxts2N3i8cnwnxJdPKvXKv0tvFzhtUsW7p5xw25LHHJL3LJN+7PL9KPNU7t6iqW1jeRGVSlPtz8UOJ1CA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JoNi5b4sQHhgh8RHvTIdoEK6DN4w5AUDvF5ZSXtMu0M=;
+ b=d10HIAL2HlsYE+89AUaXHMwjQXvCNF7uX6X6QE3YCZOwhEEimeXQeSULafBnM239ylT9k8y4l5uE0aECiRV/JGc7ML0m2JWB+YJQMvFsD/dHt2bLOISaJ/0wTZlt4FxvI6kP6PVZRgN40VVJbeiB3edlpqOSy32FE7OtB9/n93r5TSWQkMzzQhBoqQ+fl3I3dUUTOqLks0V2e+FoHfEgVHM97ewhIVqNdfLnXKB0JFA/kfQ3sHv0dEGzIR5LQjJFQmiZRhzPsqk4KbleO0n6ItSV8aIv8zO+85jK/u+NbJV5EUwDVEoraGKT+ydvXFytyt4Af9/1S5/MImJlK1PYdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
+ header.d=ni.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JoNi5b4sQHhgh8RHvTIdoEK6DN4w5AUDvF5ZSXtMu0M=;
+ b=DlLd4Fyn+mUW+iWnbfHZfpsWUeLhXXUhYvtHVr1xC6DWqO+jiF2waN8zIsdaP6zfRtUiNIP8mBIh8CWNMJUrQtBlh/8rTFkLutjUR+2cDjrstmWp9OGnf4ej4Fo6Ggxn0Mi8ta/fohaR27mDTXswoE7zwen9ag9HNRaPDfUAbrY=
+Authentication-Results: xilinx.com; dkim=none (message not signed)
+ header.d=none;xilinx.com; dmarc=none action=none header.from=ni.com;
+Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
+ (2603:10b6:803:4b::29) by SN6PR04MB3936.namprd04.prod.outlook.com
+ (2603:10b6:805:48::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.35; Tue, 6 Oct
+ 2020 22:20:36 +0000
+Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
+ ([fe80::f4f0:f1bc:f09a:da84]) by SN4PR0401MB3646.namprd04.prod.outlook.com
+ ([fe80::f4f0:f1bc:f09a:da84%7]) with mapi id 15.20.3433.043; Tue, 6 Oct 2020
+ 22:20:36 +0000
+Date:   Tue, 6 Oct 2020 17:20:31 -0500
+From:   Michael Auchter <michael.auchter@ni.com>
+To:     Ben Levinsky <BLEVINSK@xilinx.com>
+Cc:     "Ed T. Mooring" <emooring@xilinx.com>,
+        Stefano Stabellini <stefanos@xilinx.com>,
+        Michal Simek <michals@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Message-ID: <20201006222031.GA809209@xaphan>
+References: <20201005160614.3749-1-ben.levinsky@xilinx.com>
+ <20201005160614.3749-6-ben.levinsky@xilinx.com>
+ <20201005193449.GA701433@xaphan>
+ <BYAPR02MB4407B7F06962DB30ED90761FB50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
+ <20201006213143.GD701433@xaphan>
+ <BYAPR02MB4407B356B56B9A1D561950B7B50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201005141226.180655-2-bogdan.togorean@analog.com>
+In-Reply-To: <BYAPR02MB4407B356B56B9A1D561950B7B50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
+X-Originating-IP: [130.164.62.229]
+X-ClientProxiedBy: SN4PR0501CA0006.namprd05.prod.outlook.com
+ (2603:10b6:803:40::19) To SN4PR0401MB3646.namprd04.prod.outlook.com
+ (2603:10b6:803:4b::29)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost (130.164.62.229) by SN4PR0501CA0006.namprd05.prod.outlook.com (2603:10b6:803:40::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.13 via Frontend Transport; Tue, 6 Oct 2020 22:20:35 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f728a023-b6cd-4594-3049-08d86a460c3a
+X-MS-TrafficTypeDiagnostic: SN6PR04MB3936:
+X-Microsoft-Antispam-PRVS: <SN6PR04MB39360096F8CD9ED738EF9DCD870D0@SN6PR04MB3936.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Irv5EbhBOhCcvRgN1g9sEZOnXcmO1XJtZN8NhbIDzwQD6Er/9/I9/GcQcxXPbbQLYMw3dfytdjPDaOUegwOYBzIk2U9yu3oqesMpZ6DNyj4FDGOXvSnzEggUzIDJQTfV3Q8rQtOtDMmBvcQG2bbuTpvEAiWxY09JFTmpwHSOMss60PBgQZ3jDg2WwgygSUuBMHi+o7048+19bsi6qnd1Gsr3iDwQcE37e1mm1aRILGbE1uxcYJSC/0hj6BYVTOM/nI/wbJX81BHskTbPZCQ9Fq/pMJ4SsAWMcOlps5VqEeKQOfysDF+RliSJtvSZ9h7BChlUoN3W+JtfkgglHBFj2Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0401MB3646.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(366004)(346002)(39850400004)(396003)(136003)(376002)(16526019)(186003)(8936002)(478600001)(26005)(5660300002)(956004)(33656002)(83380400001)(6666004)(8676002)(66476007)(66556008)(66946007)(6916009)(6486002)(2906002)(54906003)(316002)(9686003)(4326008)(52116002)(33716001)(6496006)(1076003)(44832011)(86362001)(53546011)(7416002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: H1mG8BA9hzklEciygUxmcF73NGKzYOFPSJ3MVuckKioez+4e+5uNm3bEiNU89ccLjJg+hvF0vB7qdJbhEATQDAZI5JG4KNCV+TXcBn+Fs8aeFIaFA59IWAP7flPBlzTiJzIYlT9yTdMt+kcrcl3iZbXHzRhqcZzX3AdJ2YujVHilKTGYr+CKn5ia1aQgm/Np0sqDCvHGAK3nxFaJdcz53yfnTi+hf8aQ2AnLtPV+YRQot50sweFtuTDKEW2tBxvwEYs/jPrKkgIkmJkaQXmvi1X2hGuvgAQDPl1HKoISM5KVQAfa2eySkJ8cGD8tV67SUNLy3PSQoRjyj+AcSYNbgmrKGtp+EkWH08aNdezI+irLT6STLb+dFc/fG/k+1r4AGFwyuVejKlQE8iN21BCf5Rcof7IqVvT1rA9fK009zLjVrDn1f9/xSG7XWC6kttL9/obUQD9nvEZbuV1BvtI1bvShVb6YtvckPja+giDn5JQ/WvXkMcGwjBW8yrqnsQHhEntH9dunahWERfUuWMJrvTDCoy9AWt7eFrKSRhpfgBzkZIyXkxJ45TQDwlrLrv2339ZFkCjwDxtBmgruFplgAINVTvetY21hSGW1mppS5hbgOHfWd/H8MngkxdaJake0TGQJ7JIysaFisw1jSuVcTw==
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f728a023-b6cd-4594-3049-08d86a460c3a
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0401MB3646.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2020 22:20:36.0668
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yPrX/FjZfjT9qTCfZYfuG2y3y6EvYy1AFlVrQwnFf8RaWyeo9JaiXm0murd1cK8jHYhC63XEZbML11dN3ARUUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB3936
+Subject: Re: RE: RE: [PATCH v18 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-10-06_15:2020-10-06,2020-10-06 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 malwarescore=0
+ mlxscore=0 adultscore=0 impostorscore=0 suspectscore=1 phishscore=0
+ spamscore=0 clxscore=1015 bulkscore=0 priorityscore=1501 mlxlogscore=999
+ lowpriorityscore=0 classifier=spam adjust=30 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2010060145
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 05, 2020 at 05:12:09PM +0300, Bogdan Togorean wrote:
-> Add YAML device tree bindings for Analog Devices Inc. AXI HDMI TX
-> IP core DRM driver.
+On Tue, Oct 06, 2020 at 09:46:38PM +0000, Ben Levinsky wrote:
 > 
-> Signed-off-by: Bogdan Togorean <bogdan.togorean@analog.com>
-> ---
->  .../bindings/gpu/adi,axi-hdmi-tx.yaml         | 70 +++++++++++++++++++
-
-Not a GPU? Goes in .../bindings/display/
-
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml b/Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml
-> new file mode 100644
-> index 000000000000..ab7e71d14d1d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/adi,axi-hdmi-tx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AXI HDMI TX HDL core
-> +
-> +maintainers:
-> +  - Bogdan Togorean <bogdan.togorean@analog.com>
-> +
-> +description: |
-> +  The AXI HDMI HDL driver is the driver for the HDL graphics core which
-> +  is used on various FPGA designs. It's mostly used to interface with
-> +  the ADV7511 driver on some Zynq boards (e.g. ZC702 & ZedBoard).
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,axi-hdmi-tx-1.00.a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    items:
-> +      - description: phandle to AXIS DMA controller
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    items:
-> +      - const: video
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: phandle to the pixel clock
-> +
-> +  adi,is-rgb:
-> +    type: boolean
-> +    description: control color space conversion
-> +
-> +  port:
-> +    type: object
-> +    description: |
-> +      Port as described in Documentation/devicetree/bindings/graph.txt.
-> +      Remote output connection to ADV7511 driver
-
-The exact device it's connected to is outside the scope of this binding.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - dmas
-> +  - dma-names
-> +  - clocks
-> +  - port
-
-additionalProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    axi_hdmi_tx: axi_hdmi@70e00000 {
-> +            compatible = "adi,axi-hdmi-tx-1.00.a";
-> +            reg = <0x70e00000 0x10000>;
-> +            dmas = <&hdmi_dma 0>;
-> +            dma-names = "video";
-> +            clocks = <&hdmi_clock>;
-> +
-> +            port {
-> +                    axi_hdmi_out: endpoint {
-> +                            remote-endpoint = <&zynq_hdmi_in>;
-> +                    };
-> +            };
-> +    };
-> +...
-> -- 
-> 2.28.0
+> > -----Original Message-----
+> > From: Michael Auchter <michael.auchter@ni.com>
+> > Sent: Tuesday, October 6, 2020 2:32 PM
+> > To: Ben Levinsky <BLEVINSK@xilinx.com>
+> > Cc: Ed T. Mooring <emooring@xilinx.com>; sunnyliangjy@gmail.com;
+> > punit1.agrawal@toshiba.co.jp; Stefano Stabellini <stefanos@xilinx.com>;
+> > Michal Simek <michals@xilinx.com>; devicetree@vger.kernel.org;
+> > mathieu.poirier@linaro.org; linux-remoteproc@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; robh+dt@kernel.org; linux-arm-
+> > kernel@lists.infradead.org
+> > Subject: Re: RE: [PATCH v18 5/5] remoteproc: Add initial zynqmp R5
+> > remoteproc driver
+> > 
+> > On Tue, Oct 06, 2020 at 07:15:49PM +0000, Ben Levinsky wrote:
+> > >
+> > > Hi Michael,
+> > >
+> > > Thanks for the review
+> > >
+> > 
+> > < ... snip ... >
+> > 
+> > > > > +	z_rproc = rproc->priv;
+> > > > > +	z_rproc->dev.release = zynqmp_r5_release;
+> > > >
+> > > > This is the only field of z_rproc->dev that's actually initialized, and
+> > > > this device is not registered with the core at all, so zynqmp_r5_release
+> > > > will never be called.
+> > > >
+> > > > Since it doesn't look like there's a need to create this additional
+> > > > device, I'd suggest:
+> > > > 	- Dropping the struct device from struct zynqmp_r5_rproc
+> > > > 	- Performing the necessary cleanup in the driver remove
+> > > > 	  callback instead of trying to tie it to device release
+> > >
+> > > For the most part I agree. I believe the device is still needed for
+> > > the mailbox client setup.
+> > >
+> > > As the call to mbox_request_channel_byname() requires its own device
+> > > that has the corresponding child node with the corresponding
+> > > mbox-related properties.
+> > >
+> > > With that in mind, is it still ok to keep the device node?
+> > 
+> > Ah, I see. Thanks for the clarification!
+> > 
+> > Instead of manually dealing with the device node creation for the
+> > individual processors, perhaps it makes more sense to use
+> > devm_of_platform_populate() to create them. This is also consistent with
+> > the way the TI K3 R5F remoteproc driver does things.
+> > 
+> > Cheers,
+> >  Michael
 > 
+> I've been working on this today for a way around it and found one that I think works with your initial suggestion,
+> - in z_rproc, change dev from struct device to struct device*
+> 	^ the above is shown the usage thereof below. It is there for the mailbox setup.
+> - in driver probe:
+> 	- add list_head to keep track of each core's z_rproc and for the driver remove clean up
+> 	- in each core's probe (zynqmp_r5_probe) dothe following:
+> 
+> 
+>        rproc_ptr = rproc_alloc(dev, dev_name(dev), &zynqmp_r5_rproc_ops,
+>                                                   NULL, sizeof(struct zynqmp_r5_rproc));
+>         if (!rproc_ptr)
+>                 return -ENOMEM;
+>         z_rproc = rproc_ptr->priv;
+>         z_rproc->dt_node = node;
+>         z_rproc->rproc = rproc_ptr;
+>         z_rproc->dev = &rproc_ptr->dev;
+>         z_rproc->dev->of_node = node; 
+> where node is the specific R5 core's of_node/ Device tree node.
+> 	
+> the above preserves most of the mailbox setup code.
+
+I see how this works, but it feels a bit weird to me to be overriding
+the remoteproc dev's of_node ptr. Personally I find the
+devm_of_platform_populate() approach a bit less confusing.
+
+But, it's also not my call to make ;). Perhaps a remoteproc maintainer
+can chime in here.
+
+> 
+> 
+> With this, I have already successfully done the following in a v19 patch
+> - move all the previous driver release code to remove
+> - able to probe, start/stop r5, driver remove repeatedly
+> 
+> Also, this mimics the TI R5 driver code as each core's rproc has a list_head and they have a structure for the cluster which among other things maintains a linked list of the cores' specific rproc information.
+> 
+> Thanks
+> Ben
