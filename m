@@ -2,143 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 883EF284658
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 08:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6421D284674
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 08:58:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727119AbgJFGxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 02:53:33 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59056 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725962AbgJFGxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 02:53:32 -0400
-X-UUID: f260151aa4514150892dcfff7668d041-20201006
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=0mBtm/fCfqfZesQrhxR5PAO+6fo5yZk/+rrmxHbf6SI=;
-        b=ZloxSqHc45HuaK+nctBUhapu1q54qPxSma5UZYtJhHUvf8HuKfYyEYGtfNoOXl5qeg20yXjSjIA01KOOTRQL0rjJXhs16N0Ggf5ADFBgm4mdj2v6LCYtBa0QbtJkak2lCBzLvmnnmDH2h8AAsqrJvmq88lNcfDJPqevWuEQvnYU=;
-X-UUID: f260151aa4514150892dcfff7668d041-20201006
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
-        (envelope-from <weiyi.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2049005359; Tue, 06 Oct 2020 14:53:28 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 6 Oct 2020 14:53:26 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 6 Oct 2020 14:53:26 +0800
-Message-ID: <1601967207.8638.4.camel@mtksdaap41>
-Subject: Re: [PATCH 00/12] soc: mediatek: pm-domains: Add new driver for
- SCPSYS power domains controller
-From:   Weiyi Lu <weiyi.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        <devicetree@vger.kernel.org>, <drinkcat@chromium.org>,
-        <linux-kernel@vger.kernel.org>, <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 6 Oct 2020 14:53:27 +0800
-In-Reply-To: <19678952-e354-2067-e619-ffac28b347be@gmail.com>
-References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
-         <1601028361.1346.38.camel@mtksdaap41>
-         <19678952-e354-2067-e619-ffac28b347be@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727155AbgJFG63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 02:58:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50786 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726957AbgJFG62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 02:58:28 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63592C0613D3
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 23:58:28 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id d4so1726992wmd.5
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 23:58:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=hye8oZPllXv0LLz+UWG2B82nJ6IN2QnHfKrsEX8XCOU=;
+        b=jn2dIC4KneJcMCE5DY3o93rmWgdTmK7NJWwKNWGocC7HbxwqveIdxS9nVru8ryq+P9
+         s4//ef94qJ6Y8ujWnpglPZlIlD6sJ33blfTKKcaCdwJolql9IFEUfzJMHCTe1JnaG8Iw
+         b+YeHxV9DI6DSD3tgOAF3IaWem5VxRfAN0ODuGo/qw2A8ReI6qDWtdlFFibEvRuFiEoQ
+         dhilbFbgvuG8V67ydtdAffL1xmKMRbv76Ctys34uqkoMVb3gFX2RETn3H/bHFtSxghuV
+         ji7JhUukKOJOEajfS3LrzYX2Rf2L6FpU2JZ9jHfMZk5oQaZMZKMZfy/k1RR5/u729NJu
+         K0HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=hye8oZPllXv0LLz+UWG2B82nJ6IN2QnHfKrsEX8XCOU=;
+        b=tBgBtTh0ujuYzWEN15gzY3PxKWm+V+tHTQx9Stms6p6HeUYoWlRhfMl85sCULO9LdV
+         eoyuC9/O1mJR6c827bUls0nxHxi7tfg5YSp8RQvyoOGoqK5VWmsC49waJAhWNCk/h0lm
+         4giU7z88oXXdlhX3kP5NaLkAlo1Dlc/dPo1BQa4gbMExuBOsJtekP6SkAxW9r8QKHOxz
+         yZ3iXv6oGXeZugHuOM99RU6soS67fOYErbGqJ12BceQw7UieUdeAwdmrru1VLlf6ljCB
+         RxPOeJNWc4sjkWF2zx8R4fhqxDnQgn4NNPV+7idRD6aT6GwWU8SmhvMOo19XPHbAipA4
+         4m4A==
+X-Gm-Message-State: AOAM530ye5dM8LSSHcd5+yNc478MkWdwD2+QiKfeK3OtRamq7GMsNes5
+        I8XR1wEjSRgWl6JhYrnzWIdTEw==
+X-Google-Smtp-Source: ABdhPJxsvKtzCqkv4fxGZg3y/AIgf4rU1S8D4EatsKLRXGnqjE4r6Ftdz8iBdl2gfcmAi+GG7YDezw==
+X-Received: by 2002:a1c:2cc2:: with SMTP id s185mr3211564wms.77.1601967506851;
+        Mon, 05 Oct 2020 23:58:26 -0700 (PDT)
+Received: from dell ([91.110.221.236])
+        by smtp.gmail.com with ESMTPSA id u12sm3158245wrt.81.2020.10.05.23.58.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Oct 2020 23:58:26 -0700 (PDT)
+Date:   Tue, 6 Oct 2020 07:58:20 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>, dmaengine@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Jens Axboe <axboe@kernel.dk>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Richard Weinberger <richard@nod.at>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 4/4] dt-bindings: Explicitly allow additional properties
+ in common schemas
+Message-ID: <20201006065820.GY6148@dell>
+References: <20201005183830.486085-1-robh@kernel.org>
+ <20201005183830.486085-5-robh@kernel.org>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201005183830.486085-5-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTA5LTI1IGF0IDE2OjA0ICswMjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
-Og0KPiANCj4gT24gMjUvMDkvMjAyMCAxMjowNiwgV2VpeWkgTHUgd3JvdGU6DQo+ID4gT24gVGh1
-LCAyMDIwLTA5LTEwIGF0IDE5OjI4ICswMjAwLCBFbnJpYyBCYWxsZXRibyBpIFNlcnJhIHdyb3Rl
-Og0KPiA+PiBEZWFyIGFsbCwNCj4gPj4NCj4gPj4gVGhpcyBpcyBhIG5ldyBkcml2ZXIgd2l0aCB0
-aGUgYWltIHRvIGRlcHJlY2F0ZSB0aGUgbXRrLXNjcHN5cyBkcml2ZXIuDQo+ID4+IFRoZSBwcm9i
-bGVtIHdpdGggdGhhdCBkcml2ZXIgaXMgdGhhdCwgaW4gb3JkZXIgdG8gc3VwcG9ydCBtb3JlIE1l
-ZGlhdGVrDQo+ID4+IFNvQ3MgeW91IG5lZWQgdG8gYWRkIHNvbWUgbG9naWMgdG8gaGFuZGxlIHBy
-b3Blcmx5IHRoZSBwb3dlci11cA0KPiA+PiBzZXF1ZW5jZSBvZiBuZXdlciBNZWRpYXRlayBTb0Nz
-LCBkb2Vzbid0IGhhbmRsZSBwYXJlbnQtY2hpbGQgcG93ZXINCj4gPj4gZG9tYWlucyBhbmQgbmVl
-ZCB0byBoYXJkY29kZSBhbGwgdGhlIGNsb2NrcyBpbiB0aGUgZHJpdmVyIGl0c2VsZi4gVGhlDQo+
-ID4+IHJlc3VsdCBpcyB0aGF0IHRoZSBkcml2ZXIgaXMgZ2V0dGluZyBiaWdnZXIgYW5kIGJpZ2dl
-ciBldmVyeSB0aW1lIGENCj4gPj4gbmV3IFNvQyBuZWVkcyB0byBiZSBzdXBwb3J0ZWQuDQo+ID4+
-DQo+ID4gDQo+ID4gSGkgRW5yaWMgYW5kIE1hdHRoaWFzLA0KPiA+IA0KPiA+IEZpcnN0IG9mIGFs
-bCwgdGhhbmsgeW91IGZvciB0aGUgcGF0Y2guIEJ1dCBJJ20gd29ycmllZCB0aGUgcHJvYmxlbSB5
-b3UNCj4gPiBtZW50aW9uZWQgd29uJ3QgYmUgc29sdmVkIGV2ZW4gaWYgd2Ugd29yayBvbiB0aGlz
-IG5ldyBkcml2ZXIgaW4gdGhlDQo+ID4gZnV0dXJlLiBNeSB3b3JrIG9uIHRoZSBNVDgxODMgc2Nw
-c3lzKG5vdyB2MTcpIGlzIHRvIGltcGxlbWVudCB0aGUgbmV3DQo+ID4gaGFyZHdhcmUgbG9naWMu
-IEhlcmUsIEkgYWxzbyBzZWUgcmVsYXRlZCBwYXRjaGVzLCB3aGljaCBtZWFucyB0aGF0IHRoZXNl
-DQo+ID4gbmV3IGxvZ2ljcyBhcmUgbmVjZXNzYXJ5LiBXaHkgY2FuJ3Qgd2Ugd29yayBvbiB0aGUg
-b3JpZ2luYWwgZHJpdmVyPw0KPiANCj4gV2VsbCB0aGUgZGVjaXNpb24gd2FzIHRvIGNoYW5nZSB0
-aGUgZHJpdmVyIGluIGEgbm90IGNvbXBhdGlibGUgd2F5IHRvIG1ha2UgDQo+IGRldmljZSB0cmVl
-IGVudHJpZXMgYmV0dGVyLiBJZiB3ZSB3b3JrIG9uIHRoZSBvbGQgZHJpdmVyLCB3ZSB3b3VsZCBu
-ZWVkIHRvIGZpbmQgDQo+IHNvbWUgY3JlYXRpdmUgd2F5cyB0byBoYW5kbGUgb2xkIGJpbmRpbmdz
-IHZzIG5ldyBiaW5kaW5ncy4NCj4gDQo+IFNvIEkgdGhvdWdodCBpdCB3b3VsZCBiZSBiZXR0ZXIg
-ZG9pbmcgYSBmcmVzaCBzdGFydCBpbXBsZW1lbnRpbmcgbXQxODczIHN1cHBvcnQgDQo+IGZvciBy
-ZWZlcmVuY2UgYW5kIGFkZCBtdDgxODMgYXMgbmV3IFNvQy4gRnJvbSB3aGF0IEkgaGF2ZSBzZWVu
-IG10ODE5MiBhbmQgb3RoZXJzIA0KPiBmaXQgdGhlIGRyaXZlciBzdHJ1Y3R1cmUgdG9vLg0KPiAN
-Cj4gPiBNZWFud2hpbGUsIEkgdGhvdWdodCBtYXliZSB3ZSBzaG91bGQgc2VwYXJhdGUgdGhlIGRy
-aXZlciBpbnRvIGdlbmVyYWwNCj4gPiBjb250cm9sIGFuZCBwbGF0Zm9ybSBkYXRhIGZvciBlYWNo
-IFNvQywgb3RoZXJ3aXNlIGl0J2xsIGtlZXAgZ2V0dGluZw0KPiA+IGJpZ2dlciBhbmQgYmlnZ2Vy
-IGlmIGl0IG5lZWQgdG8gYmUgc3VwcG9ydCBuZXcgU29DLg0KPiA+IA0KPiANCj4gV2UgY291bGQg
-aW4gYSBsYXRlciBzZXJpZXMgc3BsaXQgdGhlIFNvQyBkZXBlbmRlZCBkYXRhIHN0cnVjdHVyZXMg
-YW5kIHB1dCB0aGVtIA0KPiBpbiBkcml2ZXJzL3NvYy9tZWRpYXRlay9wbS1kb21haW5zLW10ODE4
-My5oIG9yIHNvbWV0aGluZyBsaWtlIHRoaXMuIElzIHRoYXQgd2hhdCANCj4geW91IG1lYW4/DQo+
-IA0KDQpZZXMsIHRoYXQgaXMgd2hhdCBJIHdhbnQuIEFuZCBJIGd1ZXNzIGl0IGNvdWxkIGF2b2lk
-IHRoZSBjb2xsaXNpb25zIGluDQp0aGUgZGlmZmVyZW50IGRlZmluZXMgdG8gdGhlIGNvbnRyb2wg
-cmVnaXN0ZXJzIGFuZCBwb3dlciBzdGF0dXMgYml0cyB5b3UNCm1lbnRpb25lZC4gSG9wZSB0aGlz
-IHdpbGwgaGFwcGVuIGluIHRoaXMgc2VyaWVzLg0KDQo+ID4gQW5kIGNvbnNpZGVyIERWRlNSQw0K
-PiA+IChkeW5hbWljIHZvbHRhZ2UgYW5kIGZyZXF1ZW5jeSBzY2FsaW5nIHJlc291cmNlIGNvbGxl
-Y3RvciksIHNob3VsZCB3ZQ0KPiA+IGtlZXAgdGhlIG9yaWdpbmFsIGRyaXZlciBuYW1lICJzY3Bz
-eXMiIGluc3RlYWQgb2YgInBtLWRvbWFpbnMiIGJlY2F1c2UNCj4gPiBpdCBtYXkgcHJvdmlkZSBt
-b3JlIGZ1bmN0aW9ucyB0aGFuIHBvd2VyIGRvbWFpbnM/DQo+ID4gDQo+IA0KPiBJdCdzIG9uIG15
-IGxpc3QgdG8gbG9vayBkZWVwZXIgaW50byB0aGlzIHNlcmllcy4gVGhlIHRoaW5nIHdpdGggdGhl
-IG5ldyBkcml2ZXIgDQo+IGlzLCB0aGF0IHRoZSBiaW5kaW5nIHRha2VzIGludG8gYWNjb3VudCwg
-dGhhdCBzY3BzeXMgaGFzIHNldmVyYWwgaGFyZHdhcmUgYmxvY2ssIA0KPiB3aGljaCBhcmUgcmVw
-cmVzZW50ZWQgYXMgY2hpbGQgbm9kZXMgaW4gRFRTLiBUaGUgcG0tZG9tYWlucyBpcyBqdXN0IG9u
-ZSBvZiB0aGVzZSANCj4gZnVuY3Rpb25hbGl0aWVzIGFuZCBJIHRoaW5rIERWRlNSQyBzaG91bGQg
-YmUgYSBuZXcgZHJpdmVyIHdpdGggYSBjaGlsZCBub2RlIG9mIA0KPiBzY3BzeXMgaW4gRFRTLiBE
-b2VzIHRoaXMgbWFrZSBzZW5zZT8NCj4gDQo+IFJlZ2FyZHMsDQo+IE1hdHRoaWFzDQo+IA0KPiA+
-PiBBbGwgdGhpcyBpbmZvcm1hdGlvbiBjYW4gYmUgZ2V0dGVkIGZyb20gYSBwcm9wZXJseSBkZWZp
-bmVkIGJpbmRpbmcsIHNvDQo+ID4+IGNhbiBiZSBjbGVhbmVyIGFuZCBzbWFsbGVyLCBoZW5jZSwg
-d2UgaW1wbGVtZW50ZWQgYSBuZXcgZHJpdmVyLiBGb3INCj4gPj4gbm93LCBvbmx5IE1UODE3MyBh
-bmQgTVQ4MTgzIGlzIHN1cHBvcnRlZCBidXQgc2hvdWxkIGJlIGZhaXJseSBlYXN5IHRvDQo+ID4+
-IGFkZCBzdXBwb3J0IGZvciBuZXcgU29Dcy4NCj4gPj4NCj4gPj4gQmVzdCByZWdhcmRzLA0KPiA+
-PiAgICBFbnJpYw0KPiA+Pg0KPiA+PiBFbnJpYyBCYWxsZXRibyBpIFNlcnJhICg0KToNCj4gPj4g
-ICAgZHQtYmluZGluZ3M6IHBvd2VyOiBBZGQgYmluZGluZ3MgZm9yIHRoZSBNZWRpYXRlayBTQ1BT
-WVMgcG93ZXIgZG9tYWlucw0KPiA+PiAgICAgIGNvbnRyb2xsZXINCj4gPj4gICAgc29jOiBtZWRp
-YXRlazogQWRkIE1lZGlhVGVrIFNDUFNZUyBwb3dlciBkb21haW5zDQo+ID4+ICAgIGFybTY0OiBk
-dHM6IG1lZGlhdGVrOiBBZGQgbXQ4MTczIHBvd2VyIGRvbWFpbiBjb250cm9sbGVyDQo+ID4+ICAg
-IGR0LWJpbmRpbmdzOiBwb3dlcjogQWRkIE1UODE4MyBwb3dlciBkb21haW5zDQo+ID4+DQo+ID4+
-IE1hdHRoaWFzIEJydWdnZXIgKDgpOg0KPiA+PiAgICBzb2M6IG1lZGlhdGVrOiBwbS1kb21haW5z
-OiBBZGQgYnVzIHByb3RlY3Rpb24gcHJvdG9jb2wNCj4gPj4gICAgc29jOiBtZWRpYXRlazogcG1f
-ZG9tYWluczogTWFrZSBidXMgcHJvdGVjdGlvbiBnZW5lcmljDQo+ID4+ICAgIHNvYzogbWVkaWF0
-ZWs6IHBtLWRvbWFpbnM6IEFkZCBTTUkgYmxvY2sgYXMgYnVzIHByb3RlY3Rpb24gYmxvY2sNCj4g
-Pj4gICAgc29jOiBtZWRpYXRlazogcG0tZG9tYWluczogQWRkIGV4dHJhIHNyYW0gY29udHJvbA0K
-PiA+PiAgICBzb2M6IG1lZGlhdGVrOiBwbS1kb21haW5zOiBBZGQgc3Vic3lzdGVtIGNsb2Nrcw0K
-PiA+PiAgICBzb2M6IG1lZGlhdGVrOiBwbS1kb21haW5zOiBBbGxvdyBidXMgcHJvdGVjdGlvbiB0
-byBpZ25vcmUgY2xlYXIgYWNrDQo+ID4+ICAgIHNvYzogbWVkaWF0ZWs6IHBtLWRvbWFpbnM6IEFk
-ZCBzdXBwb3J0IGZvciBtdDgxODMNCj4gPj4gICAgYXJtNjQ6IGR0czogbWVkaWF0ZWs6IEFkZCBt
-dDgxODMgcG93ZXIgZG9tYWlucyBjb250cm9sbGVyDQo+ID4+DQo+ID4+ICAgLi4uL3Bvd2VyL21l
-ZGlhdGVrLHBvd2VyLWNvbnRyb2xsZXIueWFtbCAgICAgIHwgMTczICsrKysNCj4gPj4gICBhcmNo
-L2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE3My5kdHNpICAgICAgfCAgNzggKy0NCj4gPj4g
-ICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My5kdHNpICAgICAgfCAxNjAgKysr
-DQo+ID4+ICAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvS2NvbmZpZyAgICAgICAgICAgICAgICAgIHwg
-IDEzICsNCj4gPj4gICBkcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmlsZSAgICAgICAgICAgICAg
-ICAgfCAgIDEgKw0KPiA+PiAgIGRyaXZlcnMvc29jL21lZGlhdGVrL210ay1pbmZyYWNmZy5jICAg
-ICAgICAgICB8ICAgNSAtDQo+ID4+ICAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtLWRvbWFp
-bnMuYyAgICAgICAgIHwgOTUyICsrKysrKysrKysrKysrKysrKw0KPiA+PiAgIGluY2x1ZGUvZHQt
-YmluZGluZ3MvcG93ZXIvbXQ4MTgzLXBvd2VyLmggICAgICB8ICAyNiArDQo+ID4+ICAgaW5jbHVk
-ZS9saW51eC9zb2MvbWVkaWF0ZWsvaW5mcmFjZmcuaCAgICAgICAgIHwgIDM5ICsNCj4gPj4gICA5
-IGZpbGVzIGNoYW5nZWQsIDE0MzMgaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pDQo+ID4+
-ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9w
-b3dlci9tZWRpYXRlayxwb3dlci1jb250cm9sbGVyLnlhbWwNCj4gPj4gICBjcmVhdGUgbW9kZSAx
-MDA2NDQgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtLWRvbWFpbnMuYw0KPiA+PiAgIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL3Bvd2VyL210ODE4My1wb3dlci5oDQo+
-ID4+DQo+ID4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXw0KPiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gTGludXgtbWVkaWF0ZWtA
-bGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2xpbnV4LW1lZGlhdGVrDQoNCg==
+On Mon, 05 Oct 2020, Rob Herring wrote:
 
+> In order to add meta-schema checks for additional/unevaluatedProperties
+> being present, all schema need to make this explicit. As common/shared
+> schema are included by other schemas, they should always allow for
+> additionalProperties.
+
+Acked-by: Lee Jones <lee.jones@linaro.org>
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
