@@ -2,90 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A36284FAD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 18:16:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89740285026
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 18:47:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726460AbgJFQQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 12:16:52 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53480 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726459AbgJFQQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 12:16:52 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 096GGgaC011030;
-        Tue, 6 Oct 2020 11:16:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1602001002;
-        bh=UFFmMIjsLbkm6u1Nw+fPjP2rCdOt20uSXmfcBGEy3GM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=fFzvViNR9eLL1iv24zzCKEwq2HC/S6PAbDrnuPvDQ+6rq6jy51aiI7vTJHBiWUQ6p
-         TIKsK7Dq66FtNRtq+207B1jAINJBtGoQ0ZzYQUN4W9OS7K9HVMUB+wlFvsP9DOCqN0
-         mmGeVB2ivnDhO4rtkdcL6JojPd4nBrU3M1CzbjsI=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 096GGgVj109613
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Oct 2020 11:16:42 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 6 Oct
- 2020 11:16:41 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 6 Oct 2020 11:16:41 -0500
-Received: from [10.250.37.92] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 096GGfA0117729;
-        Tue, 6 Oct 2020 11:16:41 -0500
-Subject: Re: [PATCH -next] dt-bindings: hwlock: omap: Fix warnings with
- k3.yaml
-To:     Rob Herring <robh@kernel.org>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200928225155.12432-1-s-anna@ti.com>
- <20200930145537.GA2851296@bogus> <20201006155207.GA2297951@bogus>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <8250838c-21fd-1e1a-2a8f-fec0cd363e7f@ti.com>
-Date:   Tue, 6 Oct 2020 11:16:41 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20201006155207.GA2297951@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726197AbgJFQrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 12:47:09 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:48307 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725769AbgJFQrG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Oct 2020 12:47:06 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602002825; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=s4iKWaLpOC+X+JKNpHvDXG7sSzTkTqzFgDACDzo1ImM=; b=kCRBSEQTzK2HVHfJpTNw9Sh57tmC2BQrrkJ7ZSJWrSJAmRWrEn192HYAHGWJPiJ2/EJT9K9j
+ 8/gc6QgFv8MOPdTRIvPQk3Ar2vdwn41B50QItAoBo0zTWP92x2npFcvwx8K6poNCD77d30uH
+ CQ0Ge3iwtK5sGITgscX14Kt3pGQ=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 5f7c9f863711fec7b160d96a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 06 Oct 2020 16:47:02
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id BD8BCC433F1; Tue,  6 Oct 2020 16:47:01 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BCE8AC433CA;
+        Tue,  6 Oct 2020 16:46:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BCE8AC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org
+Cc:     Ajit Pandey <ajitp@codeaurora.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for I2S driver
+Date:   Tue,  6 Oct 2020 22:16:43 +0530
+Message-Id: <1602002803-29971-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/6/20 10:52 AM, Rob Herring wrote:
-> On Wed, Sep 30, 2020 at 09:55:37AM -0500, Rob Herring wrote:
->> On Mon, Sep 28, 2020 at 05:51:55PM -0500, Suman Anna wrote:
->>> Update the AM65x HwSpinlock example to fix couple of warnings
->>> that started showing up after the conversion of K3 bindings to
->>> YAML format in commit 66e06509aa37 ("dt-bindings: arm: ti:
->>> Convert K3 board/soc bindings to DT schema").
->>>
->>>  compatible: ['ti,am654'] is not valid under any of the given schemas (Possible causes of the failure):
->>>  compatible: ['ti,am654'] is too short
->>>  compatible:0: 'ti,am654' is not one of ['ti,am654-evm']
->>>
->>> Also, fix one of the node names while at this.
->>>
->>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>> ---
->>>  .../devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml        | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> I guess this isn't dependent on k3.yaml, so I've applied it.
+From: Ajit Pandey <ajitp@codeaurora.org>
 
-Yes, it is independent. Thanks Rob.
+Add dai link for supporting lpass I2S driver, which is used
+for audio capture and playback.
+Add lpass-cpu node with  pin controls and i2s primary
+and secondary dai-links
 
-regards
-Suman
+Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+Changes since v1:
+   -- Alias name added for sound dai link node
+   
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 59 ++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index bf87558..e5863ad 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -220,6 +220,44 @@
+ 			max-brightness = <1023>;
+ 		};
+ 	};
++
++	sound: sound {
++		compatible = "qcom,sc7180-sndcard";
++		model = "sc7180-snd-card";
++
++		audio-routing =
++			"Headphone Jack", "HPOL",
++			"Headphone Jack", "HPOR";
++
++		audio-jack = <&alc5682>;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		dai-link@0 {
++			link-name = "MultiMedia0";
++			reg = <0>;
++			cpu {
++				sound-dai = <&lpass_cpu 0>;
++			};
++
++			codec {
++				sound-dai = <&alc5682 0>;
++			};
++		};
++
++		dai-link@1 {
++			link-name = "MultiMedia1";
++			reg = <1>;
++			cpu {
++				sound-dai = <&lpass_cpu 1>;
++			};
++
++			codec {
++				sound-dai = <&max98357a>;
++			};
++		};
++	};
+ };
+ 
+ &qfprom {
+@@ -725,6 +763,27 @@ hp_i2c: &i2c9 {
+ 	modem-init;
+ };
+ 
++&lpass_cpu {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&sec_mi2s_active &pri_mi2s_active &pri_mi2s_mclk_active>;
++
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	mi2s-primary@0 {
++		reg = <MI2S_PRIMARY>;
++		qcom,playback-sd-lines = <1>;
++		qcom,capture-sd-lines = <0>;
++	};
++
++	mi2s-secondary@1 {
++		reg = <MI2S_SECONDARY>;
++		qcom,playback-sd-lines = <0>;
++	};
++};
++
+ &mdp {
+ 	status = "okay";
+ };
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
