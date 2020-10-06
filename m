@@ -2,205 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F28F28546B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 00:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2178428547C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 00:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726904AbgJFWUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 18:20:46 -0400
-Received: from mx0a-00010702.pphosted.com ([148.163.156.75]:30676 "EHLO
-        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726709AbgJFWUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 18:20:46 -0400
-X-Greylist: delayed 2924 seconds by postgrey-1.27 at vger.kernel.org; Tue, 06 Oct 2020 18:20:44 EDT
-Received: from pps.filterd (m0098780.ppops.net [127.0.0.1])
-        by mx0a-00010702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 096MEqsP010696;
-        Tue, 6 Oct 2020 17:20:38 -0500
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2104.outbound.protection.outlook.com [104.47.70.104])
-        by mx0a-00010702.pphosted.com with ESMTP id 33xpttqk66-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 06 Oct 2020 17:20:38 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hwusWcKjKfLu5QCjBLk+Wy22o/o1dtQsLGS7GN18NOiH/d7t8sEGevx8dpyDvJtgOd37LIQ9S1SHMo+6+Vj7uBo70chHfsUNZ1cDepavuoG94m19K+4VaMYcnT7Bv8xduBxkrbV+YYlVVUI/SewemRCnKnQ4lHtt/dMSsMNPQTH6Vpw1OdDSafj0++Yb36AUq2JRSHoZymmMz3xsQAKO+P2teHUpXnJ37nIaNktklmAAl9Jj9iTid2yHWbluzBDWDu+Y3fxts2N3i8cnwnxJdPKvXKv0tvFzhtUsW7p5xw25LHHJL3LJN+7PL9KPNU7t6iqW1jeRGVSlPtz8UOJ1CA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JoNi5b4sQHhgh8RHvTIdoEK6DN4w5AUDvF5ZSXtMu0M=;
- b=d10HIAL2HlsYE+89AUaXHMwjQXvCNF7uX6X6QE3YCZOwhEEimeXQeSULafBnM239ylT9k8y4l5uE0aECiRV/JGc7ML0m2JWB+YJQMvFsD/dHt2bLOISaJ/0wTZlt4FxvI6kP6PVZRgN40VVJbeiB3edlpqOSy32FE7OtB9/n93r5TSWQkMzzQhBoqQ+fl3I3dUUTOqLks0V2e+FoHfEgVHM97ewhIVqNdfLnXKB0JFA/kfQ3sHv0dEGzIR5LQjJFQmiZRhzPsqk4KbleO0n6ItSV8aIv8zO+85jK/u+NbJV5EUwDVEoraGKT+ydvXFytyt4Af9/1S5/MImJlK1PYdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JoNi5b4sQHhgh8RHvTIdoEK6DN4w5AUDvF5ZSXtMu0M=;
- b=DlLd4Fyn+mUW+iWnbfHZfpsWUeLhXXUhYvtHVr1xC6DWqO+jiF2waN8zIsdaP6zfRtUiNIP8mBIh8CWNMJUrQtBlh/8rTFkLutjUR+2cDjrstmWp9OGnf4ej4Fo6Ggxn0Mi8ta/fohaR27mDTXswoE7zwen9ag9HNRaPDfUAbrY=
-Authentication-Results: xilinx.com; dkim=none (message not signed)
- header.d=none;xilinx.com; dmarc=none action=none header.from=ni.com;
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29) by SN6PR04MB3936.namprd04.prod.outlook.com
- (2603:10b6:805:48::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.35; Tue, 6 Oct
- 2020 22:20:36 +0000
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84]) by SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84%7]) with mapi id 15.20.3433.043; Tue, 6 Oct 2020
- 22:20:36 +0000
-Date:   Tue, 6 Oct 2020 17:20:31 -0500
-From:   Michael Auchter <michael.auchter@ni.com>
-To:     Ben Levinsky <BLEVINSK@xilinx.com>
-Cc:     "Ed T. Mooring" <emooring@xilinx.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Message-ID: <20201006222031.GA809209@xaphan>
-References: <20201005160614.3749-1-ben.levinsky@xilinx.com>
- <20201005160614.3749-6-ben.levinsky@xilinx.com>
- <20201005193449.GA701433@xaphan>
- <BYAPR02MB4407B7F06962DB30ED90761FB50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
- <20201006213143.GD701433@xaphan>
- <BYAPR02MB4407B356B56B9A1D561950B7B50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BYAPR02MB4407B356B56B9A1D561950B7B50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
-X-Originating-IP: [130.164.62.229]
-X-ClientProxiedBy: SN4PR0501CA0006.namprd05.prod.outlook.com
- (2603:10b6:803:40::19) To SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29)
+        id S1726959AbgJFWY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 18:24:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57226 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726171AbgJFWY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Oct 2020 18:24:26 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 219EB208C7;
+        Tue,  6 Oct 2020 22:24:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602023064;
+        bh=ODZjWaSRaFY4JSUgeXVgfhX7/EBM5vWx2lh7MNUxdVU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TygR46YjTz/1XrhiNZZmhcx0xOcebl8ZXmDYSvvdngzQ5faKhO/DWWqmt+w9LFwE3
+         JBQ48FZ3/k5VVeFoHssC5ahdaXjugm9QidBcAuiv+IbRWdVNergd9rw189VVPLnQkT
+         TjqAKTLiP7VPUUhCqks6KBtUunAtOr3vR7IJ2hYE=
+Received: by mail-oi1-f170.google.com with SMTP id x69so293195oia.8;
+        Tue, 06 Oct 2020 15:24:24 -0700 (PDT)
+X-Gm-Message-State: AOAM532e5EONQl2TRIj9DI55plkhoPHuqkUhujF+hqF6QYG+EwKUGewP
+        DHQEbw1xwohoIXOWULQ/9N/3gmWbs6DwQWo9wg==
+X-Google-Smtp-Source: ABdhPJx+GSG/cf6694XKRJ+lTouM+0b0kUqRgqrABKzhgC4+xCKRDs+TTVKhkpHtuzgtS0GU7R6ls8Ac+msrhLFmtSc=
+X-Received: by 2002:a05:6808:10e:: with SMTP id b14mr287558oie.152.1602023063251;
+ Tue, 06 Oct 2020 15:24:23 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (130.164.62.229) by SN4PR0501CA0006.namprd05.prod.outlook.com (2603:10b6:803:40::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.13 via Frontend Transport; Tue, 6 Oct 2020 22:20:35 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f728a023-b6cd-4594-3049-08d86a460c3a
-X-MS-TrafficTypeDiagnostic: SN6PR04MB3936:
-X-Microsoft-Antispam-PRVS: <SN6PR04MB39360096F8CD9ED738EF9DCD870D0@SN6PR04MB3936.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Irv5EbhBOhCcvRgN1g9sEZOnXcmO1XJtZN8NhbIDzwQD6Er/9/I9/GcQcxXPbbQLYMw3dfytdjPDaOUegwOYBzIk2U9yu3oqesMpZ6DNyj4FDGOXvSnzEggUzIDJQTfV3Q8rQtOtDMmBvcQG2bbuTpvEAiWxY09JFTmpwHSOMss60PBgQZ3jDg2WwgygSUuBMHi+o7048+19bsi6qnd1Gsr3iDwQcE37e1mm1aRILGbE1uxcYJSC/0hj6BYVTOM/nI/wbJX81BHskTbPZCQ9Fq/pMJ4SsAWMcOlps5VqEeKQOfysDF+RliSJtvSZ9h7BChlUoN3W+JtfkgglHBFj2Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0401MB3646.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(366004)(346002)(39850400004)(396003)(136003)(376002)(16526019)(186003)(8936002)(478600001)(26005)(5660300002)(956004)(33656002)(83380400001)(6666004)(8676002)(66476007)(66556008)(66946007)(6916009)(6486002)(2906002)(54906003)(316002)(9686003)(4326008)(52116002)(33716001)(6496006)(1076003)(44832011)(86362001)(53546011)(7416002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: H1mG8BA9hzklEciygUxmcF73NGKzYOFPSJ3MVuckKioez+4e+5uNm3bEiNU89ccLjJg+hvF0vB7qdJbhEATQDAZI5JG4KNCV+TXcBn+Fs8aeFIaFA59IWAP7flPBlzTiJzIYlT9yTdMt+kcrcl3iZbXHzRhqcZzX3AdJ2YujVHilKTGYr+CKn5ia1aQgm/Np0sqDCvHGAK3nxFaJdcz53yfnTi+hf8aQ2AnLtPV+YRQot50sweFtuTDKEW2tBxvwEYs/jPrKkgIkmJkaQXmvi1X2hGuvgAQDPl1HKoISM5KVQAfa2eySkJ8cGD8tV67SUNLy3PSQoRjyj+AcSYNbgmrKGtp+EkWH08aNdezI+irLT6STLb+dFc/fG/k+1r4AGFwyuVejKlQE8iN21BCf5Rcof7IqVvT1rA9fK009zLjVrDn1f9/xSG7XWC6kttL9/obUQD9nvEZbuV1BvtI1bvShVb6YtvckPja+giDn5JQ/WvXkMcGwjBW8yrqnsQHhEntH9dunahWERfUuWMJrvTDCoy9AWt7eFrKSRhpfgBzkZIyXkxJ45TQDwlrLrv2339ZFkCjwDxtBmgruFplgAINVTvetY21hSGW1mppS5hbgOHfWd/H8MngkxdaJake0TGQJ7JIysaFisw1jSuVcTw==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f728a023-b6cd-4594-3049-08d86a460c3a
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0401MB3646.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2020 22:20:36.0668
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yPrX/FjZfjT9qTCfZYfuG2y3y6EvYy1AFlVrQwnFf8RaWyeo9JaiXm0murd1cK8jHYhC63XEZbML11dN3ARUUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB3936
-Subject: Re: RE: RE: [PATCH v18 5/5] remoteproc: Add initial zynqmp R5 remoteproc
- driver
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-06_15:2020-10-06,2020-10-06 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 malwarescore=0
- mlxscore=0 adultscore=0 impostorscore=0 suspectscore=1 phishscore=0
- spamscore=0 clxscore=1015 bulkscore=0 priorityscore=1501 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=30 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2010060145
+References: <20201002114426.31277-1-lukasz.luba@arm.com> <20201002114426.31277-4-lukasz.luba@arm.com>
+ <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
+ <e9b6fc5a-45d3-168d-db38-6c068da26f6b@arm.com> <CAD=FV=Xkg1zpsMW5rERbibnjrgY6opZi8Z9DUFkWebb7NHtU5w@mail.gmail.com>
+ <bc5d21c1-ea84-9132-2e52-ae84fbb0515a@arm.com> <CAD=FV=VfA8AB3BZk8Ykkhigv9eGijzu4zuA6KdXk0K5UG0yCCQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=VfA8AB3BZk8Ykkhigv9eGijzu4zuA6KdXk0K5UG0yCCQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 6 Oct 2020 17:24:12 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ37TVk4=E1DyZuhfH1jZ7wyauGLucSH7XW9wkeT3PSgg@mail.gmail.com>
+Message-ID: <CAL_JsqJ37TVk4=E1DyZuhfH1jZ7wyauGLucSH7XW9wkeT3PSgg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: update sustainable-power
+ with abstract scale
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Lukasz Luba <lukasz.luba@arm.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Amit Kucheria <amitk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dietmar.Eggemann@arm.com, Quentin Perret <qperret@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 09:46:38PM +0000, Ben Levinsky wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Michael Auchter <michael.auchter@ni.com>
-> > Sent: Tuesday, October 6, 2020 2:32 PM
-> > To: Ben Levinsky <BLEVINSK@xilinx.com>
-> > Cc: Ed T. Mooring <emooring@xilinx.com>; sunnyliangjy@gmail.com;
-> > punit1.agrawal@toshiba.co.jp; Stefano Stabellini <stefanos@xilinx.com>;
-> > Michal Simek <michals@xilinx.com>; devicetree@vger.kernel.org;
-> > mathieu.poirier@linaro.org; linux-remoteproc@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; robh+dt@kernel.org; linux-arm-
-> > kernel@lists.infradead.org
-> > Subject: Re: RE: [PATCH v18 5/5] remoteproc: Add initial zynqmp R5
-> > remoteproc driver
-> > 
-> > On Tue, Oct 06, 2020 at 07:15:49PM +0000, Ben Levinsky wrote:
+On Fri, Oct 2, 2020 at 12:39 PM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Fri, Oct 2, 2020 at 9:40 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+> >
+> > On 10/2/20 4:47 PM, Doug Anderson wrote:
+> > > Hi,
 > > >
-> > > Hi Michael,
+> > > On Fri, Oct 2, 2020 at 8:13 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+> > >>
+> > >> Hi Doug,
+> > >>
+> > >> On 10/2/20 3:31 PM, Doug Anderson wrote:
+> > >>> Hi,
+> > >>>
+> > >>> On Fri, Oct 2, 2020 at 4:45 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+> > >>>>
+> > >>>> Update the documentation for the binding 'sustainable-power' and allow
+> > >>>> to provide values in an abstract scale. It is required when the cooling
+> > >>>> devices use an abstract scale for their power values.
+> > >>>>
+> > >>>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+> > >>>> ---
+> > >>>>    .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
+> > >>>>    1 file changed, 9 insertions(+), 4 deletions(-)
+> > >>>>
+> > >>>> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> > >>>> index 3ec9cc87ec50..4d8f2e37d1e6 100644
+> > >>>> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> > >>>> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> > >>>> @@ -99,10 +99,15 @@ patternProperties:
+> > >>>>          sustainable-power:
+> > >>>>            $ref: /schemas/types.yaml#/definitions/uint32
+> > >>>>            description:
+> > >>>> -          An estimate of the sustainable power (in mW) that this thermal zone
+> > >>>> -          can dissipate at the desired control temperature. For reference, the
+> > >>>> -          sustainable power of a 4-inch phone is typically 2000mW, while on a
+> > >>>> -          10-inch tablet is around 4500mW.
+> > >>>> +          An estimate of the sustainable power (in mW or in an abstract scale)
+> > >>>> +         that this thermal zone can dissipate at the desired control
+> > >>>> +         temperature. For reference, the sustainable power of a 4-inch phone
+> > >>>> +         is typically 2000mW, while on a 10-inch tablet is around 4500mW.
+> > >>>> +
+> > >>>> +         It is possible to express the sustainable power in an abstract
+> > >>>> +         scale. This is the case when the related cooling devices use also
+> > >>>> +         abstract scale to express their power usage. The scale must be
+> > >>>> +         consistent.
+> > >>>
+> > >>> Two thoughts:
+> > >>>
+> > >>> 1. If we're going to allow "sustainable-power" to be in abstract
+> > >>> scale, why not allow "dynamic-power-coefficient" to be in abstract
+> > >>> scale too?  I assume that the whole reason against that originally was
+> > >>> the idea of device tree purity, but if we're allowing the abstract
+> > >>> scale here then there seems no reason not to allow it for
+> > >>> "dynamic-power-coefficient".
+> > >>
+> > >> With this binding it's a bit more tricky.
+> > >> I also have to discuss a few things internally. This requirement of
+> > >> uW/MHz/V^2 makes the code easier also for potential drivers
+> > >> like GPU (which are going to register the devfreq cooling with EM).
+> > >>
+> > >> Let me think about it, but for now I would just update these bits.
+> > >> These are required to proper IPA operation, the dyn.-pow.-coef. is a
+> > >> nice to have and possible next step.
 > > >
-> > > Thanks for the review
-> > >
-> > 
-> > < ... snip ... >
-> > 
-> > > > > +	z_rproc = rproc->priv;
-> > > > > +	z_rproc->dev.release = zynqmp_r5_release;
-> > > >
-> > > > This is the only field of z_rproc->dev that's actually initialized, and
-> > > > this device is not registered with the core at all, so zynqmp_r5_release
-> > > > will never be called.
-> > > >
-> > > > Since it doesn't look like there's a need to create this additional
-> > > > device, I'd suggest:
-> > > > 	- Dropping the struct device from struct zynqmp_r5_rproc
-> > > > 	- Performing the necessary cleanup in the driver remove
-> > > > 	  callback instead of trying to tie it to device release
-> > >
-> > > For the most part I agree. I believe the device is still needed for
-> > > the mailbox client setup.
-> > >
-> > > As the call to mbox_request_channel_byname() requires its own device
-> > > that has the corresponding child node with the corresponding
-> > > mbox-related properties.
-> > >
-> > > With that in mind, is it still ok to keep the device node?
-> > 
-> > Ah, I see. Thanks for the clarification!
-> > 
-> > Instead of manually dealing with the device node creation for the
-> > individual processors, perhaps it makes more sense to use
-> > devm_of_platform_populate() to create them. This is also consistent with
-> > the way the TI K3 R5F remoteproc driver does things.
-> > 
-> > Cheers,
-> >  Michael
-> 
-> I've been working on this today for a way around it and found one that I think works with your initial suggestion,
-> - in z_rproc, change dev from struct device to struct device*
-> 	^ the above is shown the usage thereof below. It is there for the mailbox setup.
-> - in driver probe:
-> 	- add list_head to keep track of each core's z_rproc and for the driver remove clean up
-> 	- in each core's probe (zynqmp_r5_probe) dothe following:
-> 
-> 
->        rproc_ptr = rproc_alloc(dev, dev_name(dev), &zynqmp_r5_rproc_ops,
->                                                   NULL, sizeof(struct zynqmp_r5_rproc));
->         if (!rproc_ptr)
->                 return -ENOMEM;
->         z_rproc = rproc_ptr->priv;
->         z_rproc->dt_node = node;
->         z_rproc->rproc = rproc_ptr;
->         z_rproc->dev = &rproc_ptr->dev;
->         z_rproc->dev->of_node = node; 
-> where node is the specific R5 core's of_node/ Device tree node.
-> 	
-> the above preserves most of the mailbox setup code.
+> > > I guess the problem is that Rajendra is currently planning to remove
+> > > all the "dynamic-power-coefficient" values from device tree right now
+> > > and move them to the source code because the numbers we currently have
+> > > in the device tree _are_ in abstract scale and thus violate the
+> > > bindings.  Moving this to source code won't help us get to more real
+> > > power numbers (since it'll still be abstract scale), it'll just be
+> > > pure churn.  If we're OK with the abstract scale in general then we
+> > > should allow it everywhere and not add churn for no reason.
+> >
+> > IIUC he is still going to use the Energy Model, but with different
+> > registration function. We have such a driver: scmi-cpufreq.c, which
+> > uses em_dev_register_perf_domain(). He can still use EM, EAS, IPA
+> > not violating anything.
+>
+> Right.  He's going to take the exact same "abstract scale" numbers
+> that he has today and take them out of device tree and put them in the
+> cpufreq driver.  Doing so magically makes it so that he's not
+> violating anything since "abstract scale" is not currently allowed in
+> device tree but is allowed in the cpufreq driver.  I'm not saying that
+> he's doing anything wrong, I'm just saying that it's pointless churn.
+> If we're OK with "abstract scale" in one place in the device tree we
+> should be OK with it everywhere in the device tree.  Then Rajendra
+> wouldn't need his patch at all and he could leave his numbers in the
+> device tree.
+>
+>
+> > The real problem that we want to address is with sustainable-power in
+> > IPA. It is used in power budget calculation and if the devices operate
+> > in abstract scale, then there is an issue.
+> > There are two options to get that value:
+> > 1. from DT, which can have optimized value, stored by OEM engineer
+> > 2. from IPA estimation code, which just calculates it as a sum of
+> > minimum OPP power for each cooling device.
+> >
+> > The 2nd option might not be the best for a platform, so vendor/OEM
+> > engineer might want to provide a better value in DT -> 1st option.
+> > This is currently against the binding description and I have to fix it.
+>
+> Right, things are already broken today because a SoC vendor could
+> (without violating any rules) provide their SoC core
+> "dynamic-power-coefficient" in "abstract scale" in code and there
+> would be no way to for a board to (without violating DT bindings)
+> specify a "sustainable-power".  ...so, in that sense, your patch does
+> provide a benefit even if we don't make any changes to the rules for
+> "sustainable-power".  All I'm saying is that if these new rules for
+> allowing an abstract scale for "sustainable-power" in the device tree
+> are OK that it should _also_ be OK to add new rules to allow an
+> abstract scale for "dynamic-power-coefficient".
 
-I see how this works, but it feels a bit weird to me to be overriding
-the remoteproc dev's of_node ptr. Personally I find the
-devm_of_platform_populate() approach a bit less confusing.
+Didn't we beat this one to death with "dynamic-power-coefficient"?
+That is the abstract scale because I don't think you can really ever
+measure it and because vendors don't want to advertise their absolute
+power.
 
-But, it's also not my call to make ;). Perhaps a remoteproc maintainer
-can chime in here.
+> > >>> 2. Is it worth adding some type of indication of what type of units
+> > >>> "sustainable-power" is represented in?  Maybe even a made up unit so
+> > >>> that you could tell the difference between made up units in the same
+> > >>> system?  I'd envision something like:
+> > >>>
+> > >>> sustainable-power-units = "qualcomm,sc7180-bogoWatts"
+> > >>>
+> > >>> ...and on the dynamic-power-coefficient side, the same:
+> > >>>
+> > >>> dynamic-power-coefficient-units = "qualcomm,sc7180-bogoWatts"
+> > >>>
+> > >>> One could imagine someone even later (after devices are widely
+> > >>> distributed) figuring out translations between these bogoWatts numbers
+> > >>> and real Watts if someone could come up with a case where it matters.
+> > >>
+> > >> To figure this out we don't need a new binding.
+> > >> I think a simple comment in the DT would be enough for this, even e.g.:
+> > >>
+> > >> sustainable-power = <100> /* bogoWatts */
+> > >
+> > > There are some important differences:
+> > >
+> > > a) Your comment is gone when the device tree is compiled.  If we
+> > > actually add a string to the device tree then, in theory, we can add
+> > > conversions in code (without touching the device tree) down the road.
+> >
+> > We don't need code and binding with a bogoscale. It is up to the
+> > platform integrator to make sure the scale in consistent in all devices.
+> > Comment in DT is good enough.
+>
+> One other nice thing about having the units is that the device tree is
+> supposed to be more of a "pure" thing, less sullied about what's
+> convenient and more about a real description of a thing.  Presumably
+> that's why "abstract scale" wasn't allowed originally?  In any case,
+> giving quantifiable units to the number somehow makes it feel less
+> made up because it's possible to come up with a way to convert it back
+> to real units.
+>
+>
+> > > b) I believe there can be more than one abstract scale present in a
+> > > single device tree, at least in theory.  Adding a string allows you to
+> > > know if you're comparing apples to apples or apples to organges.
+> >
+> > IMHO DT is not the place for such abstractions, but Rob might correct me
+> > here.
+>
+> Yup, seems like we're blocked waiting for Rob to chime in unless
+> someone else has the authority to make the call about how to deal with
+> "abstract scale" numbers in the device tree.
 
-> 
-> 
-> With this, I have already successfully done the following in a v19 patch
-> - move all the previous driver release code to remove
-> - able to probe, start/stop r5, driver remove repeatedly
-> 
-> Also, this mimics the TI R5 driver code as each core's rproc has a list_head and they have a structure for the cluster which among other things maintains a linked list of the cores' specific rproc information.
-> 
-> Thanks
-> Ben
+I don't really know nor completely follow the issues. I just get all
+these PM related bindings piece by piece with everyone solving their
+own single issue. It's death by 1000 cuts. So my default position is
+NAK. All the missing pieces and deficiencies can build up until
+there's a coherent picture (maybe?).
+
+Rob
