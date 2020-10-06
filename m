@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 164D02852BE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 21:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C31C2852CE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 22:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726566AbgJFT6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 15:58:44 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36124 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725943AbgJFT6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 15:58:43 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 60so13474515otw.3;
-        Tue, 06 Oct 2020 12:58:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vbQIfPMKQTQ0AiYLX3yRVyo+SXBUMBbhxIwSLgb6i0Y=;
-        b=myG4e7Ck0MMrOQZcWjpNVKZTEapowMCV1o3yU6h4kfey3+VB4bkjgrpthwR9eCNvl8
-         A37hfFGGQiGdHX2+nbeYuRWrD56HGmjWWMi5n+P+5E2lg7/Z42PTVaNKqWZ1FA+sSMvQ
-         muWUT5s5PCTKUin607Ec5hOVTbHoOCFuf/7EsRmBNC3jAXEZ+KS7c2bZtYTNgvMFTgTh
-         sUhcmJbhi1cwYfmoyDwDDsyaUVGmBaT/607CrpA6xG5Dy4az+vcK2G/XUq/r50JiuNk6
-         ptd6BrEjTIAcOS8rYlhkBV3s66Y3EdQRyfRvyFXk2tZUkiOuCuhjEbwWmq0XeeMa9iGt
-         gzLw==
-X-Gm-Message-State: AOAM5309ibi3Eio9bt+npneGawUgc0etPwdMH6F6+gS5jrhO0rI5SHDg
-        i6eeu4fF3RfLFIrDcptJRF2fKukxub9m
-X-Google-Smtp-Source: ABdhPJwyL/osF1k0AcDmkliXNpWpMn6TXT4PG2EpLtvyome3A3gETbskuH5LomRYogI47LyMnCu/oA==
-X-Received: by 2002:a9d:798d:: with SMTP id h13mr3802209otm.298.1602014322960;
-        Tue, 06 Oct 2020 12:58:42 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v18sm409352ooq.11.2020.10.06.12.58.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 12:58:42 -0700 (PDT)
-Received: (nullmailer pid 2734218 invoked by uid 1000);
-        Tue, 06 Oct 2020 19:58:41 -0000
-Date:   Tue, 6 Oct 2020 14:58:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH 024/100] dt-bindings: nokia,smia: Use better
- active polarity for reset
-Message-ID: <20201006195841.GA2734188@bogus>
-References: <20200930201914.31377-1-sakari.ailus@linux.intel.com>
- <20200930201914.31377-6-sakari.ailus@linux.intel.com>
+        id S1726103AbgJFUDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 16:03:33 -0400
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:48139 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbgJFUDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 16:03:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1602014612; x=1633550612;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=S5Lk5IYNPfklOzkbGG082cbWlD2ByiSYJT6pEWsLLHk=;
+  b=rCy+7xrPOXiKiVT7bpwxszIwy+JXH1t0Y1a2+CLN8SMZkvJ7qzMUI96s
+   9GoeU/RPF3SXiMRtbkUHd+OB3L6hfY4k6nHpVMXCcGwPMBrnFeCjaPTHg
+   MC8s/Cpc+0k274yzmGrFYKotsPn2FYFxS3Ww2t4vJultm6AsufObn31gx
+   Fd2LsPjN55YvRQYDViyz3q3qQqDKeNJQhTkK2ojWG/WbjvpxtG/io/zAs
+   K+2pMsHzz8aeXPx3merfig6Zc4ofk8S/FpI8C+GVPw4314DqLUyjF9MyH
+   uedUozrF9rA3QW8NMrPX+18N0iMdtRKBkD5iqP0wyJAiabv/zLpvo5cPB
+   A==;
+IronPort-SDR: EjA+WSvRrbWAAKoR1p4KH0TbPBINsfgYSy6WP3BCx9DlLd08m+K4doO6SrNi10ejbEo6WHrxz6
+ cit0oB1MOCRjUTKEklE8v0Ib427M8rk1jiyDwLO1Ho5r/0WuMedvymQoOnspm3evDuILHE8zfT
+ Rafx0L7nxOnuyV/QoE9QmnEfRIxL9Z+7sLfIgmFDVhbmB6u4ahz6l1i9hWT83FcQkzQGEwomsd
+ Qk7NvbyM95sM4bRnagJFzMh25uzg6KppJqXy9GVbpaDQDYpbV8Mb8GR1twdC6BkQiENd1KYMjz
+ iQc=
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; 
+   d="scan'208";a="91665223"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Oct 2020 13:03:32 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 6 Oct 2020 13:03:31 -0700
+Received: from soft-dev10.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 6 Oct 2020 13:03:30 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Sebastian Reichel <sre@kernel.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2 0/3] power: Add reset support for Microchip Sparx5 SoC
+Date:   Tue, 6 Oct 2020 22:03:13 +0200
+Message-ID: <20201006200316.2261245-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200930201914.31377-6-sakari.ailus@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020 23:19:12 +0300, Sakari Ailus wrote:
-> Generally reset signal is active low on camera sensors. The example had it
-> high. Make it low, and use GPIO_ACTIVE_LOW in gpio.h for that.
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> ---
->  Documentation/devicetree/bindings/media/i2c/nokia,smia.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+This adds reset support for the Sparx5 SoC, using the ocelot reset
+driver.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Changes in v2:
+- Dropped the parts for resetting the switch core upon load time -
+  controlled by the 'microchip,reset-switch-core' DT property.
+
+Lars Povlsen (3):
+  dt-bindings: reset: ocelot: Add Sparx5 support
+  power: reset: ocelot: Add support for Sparx5
+  arm64: dts: sparx5: Add reset support
+
+ .../bindings/power/reset/ocelot-reset.txt     |  7 ++-
+ MAINTAINERS                                   |  1 +
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     | 10 ++++
+ drivers/power/reset/Kconfig                   |  3 +-
+ drivers/power/reset/ocelot-reset.c            | 55 +++++++++++++++----
+ 5 files changed, 60 insertions(+), 16 deletions(-)
+
+--
+2.25.1
