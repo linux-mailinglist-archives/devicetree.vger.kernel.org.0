@@ -2,244 +2,406 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF532847EA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 09:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36A9228480A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 10:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727305AbgJFHy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 03:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59480 "EHLO
+        id S1725947AbgJFIDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 04:03:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727284AbgJFHyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 03:54:23 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A594C061755
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 00:54:23 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id 144so8551248pfb.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 00:54:23 -0700 (PDT)
+        with ESMTP id S1725891AbgJFICz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 04:02:55 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3886DC0613D1
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 01:02:54 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id u3so1234410pjr.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 01:02:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pwe2F6gUJFWdG9JMF5LSPTO+AiLU9oqcMF4ps8kWBqM=;
-        b=HSOc001Oe2i/fhLGKNTj8bqlOtrGfl3jWJ7rrl8V02OJCaDhyRSAtLtc8wYE6cqx6U
-         Ebx9Rnj9IXqAqb1u1MLKzNVR4zM9sYBIm/kXvpen2l+z/zXrPosfCbWeH1Eg9LdfZvSO
-         m+vb1NsMrfvwPM5oGtKxfI6eu6j+ZDm6uukfc=
+        d=antmicro.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nA5v3XqDBF0oR7AC0TT6+GK1ULFanZeE+mXZZxCdFKI=;
+        b=AvrDyVVj84zGt577GC6gwDYQ+U+68kKu/2RMZi0AiAxTLiKSBofM42ohz2yfGewgbS
+         5Iu+DgYUppolGhzRiFZl7/cBMW9apKRpZs1v4PICdKKrxZvrxACJMwYmCLc0YRZ2G3br
+         Ue6cGHn0zWE5Mdu+GgarOQohQkoFrda4nt0Bc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pwe2F6gUJFWdG9JMF5LSPTO+AiLU9oqcMF4ps8kWBqM=;
-        b=XkoJZ625ny8pJESE6CH6Mfwrk0z0KlnVeWS7k5IL9HSKCVJBthmvbpq2uBI9xIhMMa
-         JxlPLZbyyj8JEmLxA8qz9+zjpKOtQVlp0nnQ8n1u7YQ0wn6IfENz4ssgmebS+rVuXjz0
-         B4s2dP4RXCTqD2QTAki+uNA3k7KPKmSCVCKOSrIOpgRRF7GFhYELjgpgGK//f41P0UHo
-         JhxkccubCle8fnFSIjZL55Vlejvr57qhG9Se0z0xNRTW3ssHlv4oWeNIKh7kzNLM9mdg
-         8MfnjQcDMVijsHFEvQzSjWap+lklzqTwT+IXnB1NVyqfpZ4lT93zpkFYq6K7gXSysirc
-         Ng8A==
-X-Gm-Message-State: AOAM530DKLD4KCcfE1SghhBy0Wanbs+CRr2VwW01AaEQgmNFPzGGpWYB
-        sAkclVGUmPuQcCWhKRzeT9nSbg==
-X-Google-Smtp-Source: ABdhPJzfvwBLhSkYtAtv6mFdOiB78Zw4ZAZSGgCAiD/xnJYtN1a4M7RUFFcNhPVpkdSVfRUQFO9WUg==
-X-Received: by 2002:aa7:81d5:0:b029:142:2501:39fa with SMTP id c21-20020aa781d50000b0290142250139famr3333605pfn.73.1601970863160;
-        Tue, 06 Oct 2020 00:54:23 -0700 (PDT)
-Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:f693:9fff:fef4:a8fc])
-        by smtp.gmail.com with ESMTPSA id r6sm2545147pfq.11.2020.10.06.00.54.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 00:54:22 -0700 (PDT)
-From:   Ikjoon Jang <ikjn@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Cc:     Ikjoon Jang <ikjn@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v5 4/4] spi: spi-mtk-nor: Add power management support
-Date:   Tue,  6 Oct 2020 15:54:05 +0800
-Message-Id: <20201006155010.v5.4.I68983b582d949a91866163bab588ff3c2a0d0275@changeid>
-X-Mailer: git-send-email 2.28.0.806.g8561365e88-goog
-In-Reply-To: <20201006075405.11658-1-ikjn@chromium.org>
-References: <20201006075405.11658-1-ikjn@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nA5v3XqDBF0oR7AC0TT6+GK1ULFanZeE+mXZZxCdFKI=;
+        b=kGNYfEuExdOYnSX9ezvOwrniDfOCHzB0EHTdQLYgPBpEGcjsC0ijditI2+FKbdxAuI
+         mtKPpWfaYRZeDJMi0K14ylTXV7RHHtIrt5ncXzC5rGoyRIMNulJ0aGim946+dthkwvfX
+         z3sJ9QZgPCoWgozf3O08NMj0jg2lxE5bu7vURCAqgIMnwztHdM6B3ntJ5rrKGEAxbloO
+         dFVKndaXfkfTpNeJwrqq78zKkWYhUqvQ6Owmh1tE95HYXtZ653Dt4Z4WlyVadxEN46Vo
+         l3IRdHpPjoBNhDJG5O3uUg5VHTM9zywP1o+utG3ddiWtCDl7kGQYFGxasDd4+0KAqId8
+         pnYQ==
+X-Gm-Message-State: AOAM530H1zyLrGA/QyXfIyRCduAyIMZhFMfWc51NbjXt2JYlVC8mBiZ2
+        qGhwDEwpqf1mfciGA1TVwoR9KsGvkbTJB40ESjuAfA==
+X-Google-Smtp-Source: ABdhPJw+O7QwYg+m5/cssJUq3HMAo0HP796C+33bcfhaF91Uc016e8UTxuepDfT+coundaEkLRncgOVZ2G1urRzrwLo=
+X-Received: by 2002:a17:902:9347:b029:d3:b2c6:1500 with SMTP id
+ g7-20020a1709029347b02900d3b2c61500mr2237720plp.5.1601971373459; Tue, 06 Oct
+ 2020 01:02:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200923120817.1667149-0-mholenko@antmicro.com>
+ <20200923120817.1667149-3-mholenko@antmicro.com> <CAMuHMdUBCf8DsRBvXxxrfrQsab3kOwy95u-KwkdvaSY0vXQnXQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUBCf8DsRBvXxxrfrQsab3kOwy95u-KwkdvaSY0vXQnXQ@mail.gmail.com>
+From:   Mateusz Holenko <mholenko@antmicro.com>
+Date:   Tue, 6 Oct 2020 10:02:40 +0200
+Message-ID: <CAPk366TxFJa-rqY6eFoGuMoc_r_=CFQgDMC-j2Pv0=dUR06b9A@mail.gmail.com>
+Subject: Re: [PATCH v11 3/5] drivers/soc/litex: add LiteX SoC Controller driver
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Gabriel L. Somlo" <gsomlo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds dev_pm_ops to mtk-nor to support suspend/resume,
-auto suspend delay is set to -1 by default.
+Hi Geert,
 
-Accessing registers are only permitted after its clock is enabled
-to deal with unknown state of operating clk at probe time.
+On Fri, Sep 25, 2020 at 3:16 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Mateusz,
+>
+> On Wed, Sep 23, 2020 at 12:10 PM Mateusz Holenko <mholenko@antmicro.com> wrote:
+> > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> >
+> > This commit adds driver for the FPGA-based LiteX SoC
+> > Controller from LiteX SoC builder.
+> >
+> > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
+> > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+>
+> Thanks for your patch!
 
-Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
----
- drivers/spi/spi-mtk-nor.c | 98 ++++++++++++++++++++++++++++++---------
- 1 file changed, 76 insertions(+), 22 deletions(-)
+Thanks for your review!
 
-diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
-index e46d5c93d742..b97f26a60cbe 100644
---- a/drivers/spi/spi-mtk-nor.c
-+++ b/drivers/spi/spi-mtk-nor.c
-@@ -14,6 +14,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-+#include <linux/pm_runtime.h>
- #include <linux/spi/spi.h>
- #include <linux/spi/spi-mem.h>
- #include <linux/string.h>
-@@ -690,22 +691,15 @@ static int mtk_nor_enable_clk(struct mtk_nor *sp)
- 	return 0;
- }
- 
--static int mtk_nor_init(struct mtk_nor *sp)
-+static void mtk_nor_init(struct mtk_nor *sp)
- {
--	int ret;
--
--	ret = mtk_nor_enable_clk(sp);
--	if (ret)
--		return ret;
--
--	sp->spi_freq = clk_get_rate(sp->spi_clk);
-+	writel(0, sp->base + MTK_NOR_REG_IRQ_EN);
-+	writel(MTK_NOR_IRQ_MASK, sp->base + MTK_NOR_REG_IRQ_STAT);
- 
- 	writel(MTK_NOR_ENABLE_SF_CMD, sp->base + MTK_NOR_REG_WP);
- 	mtk_nor_rmw(sp, MTK_NOR_REG_CFG2, MTK_NOR_WR_CUSTOM_OP_EN, 0);
- 	mtk_nor_rmw(sp, MTK_NOR_REG_CFG3,
- 		    MTK_NOR_DISABLE_WREN | MTK_NOR_DISABLE_SR_POLL, 0);
--
--	return ret;
- }
- 
- static irqreturn_t mtk_nor_irq_handler(int irq, void *data)
-@@ -788,6 +782,7 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 	ctlr->num_chipselect = 1;
- 	ctlr->setup = mtk_nor_setup;
- 	ctlr->transfer_one_message = mtk_nor_transfer_one_message;
-+	ctlr->auto_runtime_pm = true;
- 
- 	dev_set_drvdata(&pdev->dev, ctlr);
- 
-@@ -811,12 +806,19 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	}
- 
-+	ret = mtk_nor_enable_clk(sp);
-+	if (ret < 0)
-+		return ret;
-+
-+	sp->spi_freq = clk_get_rate(sp->spi_clk);
-+
-+	mtk_nor_init(sp);
-+
- 	irq = platform_get_irq_optional(pdev, 0);
-+
- 	if (irq < 0) {
- 		dev_warn(sp->dev, "IRQ not available.");
- 	} else {
--		writel(MTK_NOR_IRQ_MASK, base + MTK_NOR_REG_IRQ_STAT);
--		writel(0, base + MTK_NOR_REG_IRQ_EN);
- 		ret = devm_request_irq(sp->dev, irq, mtk_nor_irq_handler, 0,
- 				       pdev->name, sp);
- 		if (ret < 0) {
-@@ -827,34 +829,86 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	ret = mtk_nor_init(sp);
--	if (ret < 0) {
--		kfree(ctlr);
--		return ret;
--	}
-+	pm_runtime_set_autosuspend_delay(&pdev->dev, -1);
-+	pm_runtime_use_autosuspend(&pdev->dev);
-+	pm_runtime_set_active(&pdev->dev);
-+	pm_runtime_enable(&pdev->dev);
-+	pm_runtime_get_noresume(&pdev->dev);
-+
-+	ret = devm_spi_register_controller(&pdev->dev, ctlr);
-+	if (ret < 0)
-+		goto err_probe;
-+
-+	pm_runtime_mark_last_busy(&pdev->dev);
-+	pm_runtime_put_autosuspend(&pdev->dev);
- 
- 	dev_info(&pdev->dev, "spi frequency: %d Hz\n", sp->spi_freq);
- 
--	return devm_spi_register_controller(&pdev->dev, ctlr);
-+	return 0;
-+
-+err_probe:
-+	pm_runtime_disable(&pdev->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+
-+	mtk_nor_disable_clk(sp);
-+
-+	return ret;
- }
- 
- static int mtk_nor_remove(struct platform_device *pdev)
- {
--	struct spi_controller *ctlr;
--	struct mtk_nor *sp;
-+	struct spi_controller *ctlr = dev_get_drvdata(&pdev->dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
- 
--	ctlr = dev_get_drvdata(&pdev->dev);
--	sp = spi_controller_get_devdata(ctlr);
-+	pm_runtime_disable(&pdev->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+
-+	mtk_nor_disable_clk(sp);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused mtk_nor_runtime_suspend(struct device *dev)
-+{
-+	struct spi_controller *ctlr = dev_get_drvdata(dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
- 
- 	mtk_nor_disable_clk(sp);
- 
- 	return 0;
- }
- 
-+static int __maybe_unused mtk_nor_runtime_resume(struct device *dev)
-+{
-+	struct spi_controller *ctlr = dev_get_drvdata(dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
-+
-+	return mtk_nor_enable_clk(sp);
-+}
-+
-+static int __maybe_unused mtk_nor_suspend(struct device *dev)
-+{
-+	return pm_runtime_force_suspend(dev);
-+}
-+
-+static int __maybe_unused mtk_nor_resume(struct device *dev)
-+{
-+	return pm_runtime_force_resume(dev);
-+}
-+
-+static const struct dev_pm_ops mtk_nor_pm_ops = {
-+	SET_RUNTIME_PM_OPS(mtk_nor_runtime_suspend,
-+			   mtk_nor_runtime_resume, NULL)
-+	SET_SYSTEM_SLEEP_PM_OPS(mtk_nor_suspend, mtk_nor_resume)
-+};
-+
- static struct platform_driver mtk_nor_driver = {
- 	.driver = {
- 		.name = DRIVER_NAME,
- 		.of_match_table = mtk_nor_match,
-+		.pm = &mtk_nor_pm_ops,
- 	},
- 	.probe = mtk_nor_probe,
- 	.remove = mtk_nor_remove,
--- 
-2.28.0.806.g8561365e88-goog
+> > --- /dev/null
+> > +++ b/drivers/soc/litex/Kconfig
+> > @@ -0,0 +1,15 @@
+> > +# SPDX-License_Identifier: GPL-2.0
+> > +
+> > +menu "Enable LiteX SoC Builder specific drivers"
+> > +
+> > +config LITEX_SOC_CONTROLLER
+> > +       tristate "Enable LiteX SoC Controller driver"
+> > +       depends on OF || COMPILE_TEST
+> > +       help
+> > +         This option enables the SoC Controller Driver which verifies
+> > +         LiteX CSR access and provides common litex_get_reg/litex_set_reg
+> > +         accessors.
+> > +         All drivers that use functions from litex.h must depend on
+> > +         LITEX_SOC_CONTROLLER.
+>
+> I'm wondering if it makes sense to have them depend on a "simpler"
+> symbol instead, e.g. LITEX?
+>
+> Currently the SoC controller is limited to I/O accessors and a simple
+> register compatibility check, but you may want to extend it with more
+> features later, so you probably want to keep the LITEX_SOC_CONTROLLER.
+> Hence you could add
+>
+>     config LITEX
+>         bool
+>
+> and let LITEX_SOC_CONTROLLER select LITEX.
 
+But then if other drivers depend just on LITEX, it would not automatically
+mean that the LITEX_SOC_CONTROLLER is selected, right?. And if it's not selected
+litex_{g,s}et_reg() are not available and the compilation would fail.
+
+I could move the implementation of those functions directly to the
+litex.h header
+and avoid this KConfig dependency, but I'm not sure if they are not
+too big to become a static inline.
+What do you think?
+
+> > --- /dev/null
+> > +++ b/drivers/soc/litex/litex_soc_ctrl.c
+> > @@ -0,0 +1,194 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * LiteX SoC Controller Driver
+> > + *
+> > + * Copyright (C) 2020 Antmicro <www.antmicro.com>
+> > + *
+> > + */
+> > +
+> > +#include <linux/litex.h>
+> > +#include <linux/device.h>
+> > +#include <linux/errno.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/printk.h>
+> > +#include <linux/module.h>
+> > +#include <linux/errno.h>
+> > +#include <linux/io.h>
+> > +
+> > +/*
+> > + * The parameters below are true for LiteX SoC
+>
+> SoCs
+
+Right, I will fix that.
+
+> > + * configured for 8-bit CSR Bus, 32-bit aligned.
+> > + *
+> > + * Supporting other configurations will require
+> > + * extending the logic in this header.
+>
+> This is no longer a header file.
+
+It's not - you are correct. I will rephrase it to "extending the logic
+in this file".
+
+> > + */
+> > +#define LITEX_REG_SIZE             0x4
+> > +#define LITEX_SUBREG_SIZE          0x1
+> > +#define LITEX_SUBREG_SIZE_BIT      (LITEX_SUBREG_SIZE * 8)
+> > +
+> > +static DEFINE_SPINLOCK(csr_lock);
+> > +
+> > +/*
+> > + * LiteX SoC Generator, depending on the configuration,
+> > + * can split a single logical CSR (Control & Status Register)
+> > + * into a series of consecutive physical registers.
+> > + *
+> > + * For example, in the configuration with 8-bit CSR Bus,
+> > + * 32-bit aligned (the default one for 32-bit CPUs) a 32-bit
+> > + * logical CSR will be generated as four 32-bit physical registers,
+> > + * each one containing one byte of meaningful data.
+> > + *
+> > + * For details see: https://github.com/enjoy-digital/litex/wiki/CSR-Bus
+> > + *
+> > + * The purpose of `litex_set_reg`/`litex_get_reg` is to implement
+> > + * the logic of writing to/reading from the LiteX CSR in a single
+> > + * place that can be then reused by all LiteX drivers.
+> > + */
+> > +void litex_set_reg(void __iomem *reg, unsigned long reg_size,
+> > +                   unsigned long val)
+> > +{
+> > +       unsigned long shifted_data, shift, i;
+> > +       unsigned long flags;
+> > +
+> > +       spin_lock_irqsave(&csr_lock, flags);
+> > +
+> > +       for (i = 0; i < reg_size; ++i) {
+> > +               shift = ((reg_size - i - 1) * LITEX_SUBREG_SIZE_BIT);
+> > +               shifted_data = val >> shift;
+> > +
+> > +               writel((u32 __force)cpu_to_le32(shifted_data), reg + (LITEX_REG_SIZE * i));
+> > +       }
+> > +
+> > +       spin_unlock_irqrestore(&csr_lock, flags);
+> > +}
+> > +EXPORT_SYMBOL_GPL(litex_set_reg);
+>
+> I'm still wondering about the overhead of loops and multiple accesses,
+> and the need for them (see also BenH's earlier comment).
+> If e.g. the register widths change for LiteUART (currently they're
+> hardcoded to one), would you still consider it using the same
+> programming interface, and thus compatible with "litex,liteuart"?
+
+Since the amount of possible `reg_size` is practically limited we could
+add explicit 8/32/64/128 accessors to eliminate loops.
+As for multiple writel/readl I don't really see an option to avoid
+them for the 8-bit bus width.
+
+> The spinlock access will probably become the source of lock contention
+> later, especially when considering SMP variants.
+
+Do you have any suggestions on how to handle this?
+Dropping locks could lead to the situation when two cores write at the
+same time leaving a wrong (mixed) value in the CSR.
+
+> > +/*
+> > + * Check LiteX CSR read/write access
+> > + *
+> > + * This function reads and writes a scratch register in order
+> > + * to verify if CSR access works.
+> > + *
+> > + * In case any problems are detected, the driver should panic.
+> > + *
+> > + * Access to the LiteX CSR is, by design, done in CPU native
+> > + * endianness. The driver should not dynamically configure
+> > + * access functions when the endianness mismatch is detected.
+> > + * Such situation indicates problems in the soft SoC design
+> > + * and should be solved at the LiteX generator level,
+> > + * not in the software.
+> > + */
+> > +static int litex_check_csr_access(void __iomem *reg_addr)
+> > +{
+> > +       unsigned long reg;
+> > +
+> > +       reg = litex_get_reg(reg_addr + SCRATCH_REG_OFF, SCRATCH_REG_SIZE);
+> > +
+> > +       if (reg != SCRATCH_REG_VALUE) {
+> > +               panic("Scratch register read error! Expected: 0x%x but got: 0x%lx",
+> > +                       SCRATCH_REG_VALUE, reg);
+>
+> Do you think the user will ever see this panic message? (see below)
+
+On UART most probably not, as broken CSRs mean broken UART driver as well.
+But I believe you can retrieve logs from the memory and analyze them
+post-mortem, isn't that right?
+
+> > +               return -EINVAL;
+>
+> Good ;-)  All of BUG()/WARN()/panic() may be compiled out, depending on
+> config options, so the system may continue running beyond the panic()
+> call.
+>
+> > +static int litex_soc_ctrl_probe(struct platform_device *pdev)
+> > +{
+> > +       int result;
+> > +       struct device *dev;
+> > +       struct device_node *node;
+> > +       struct litex_soc_ctrl_device *soc_ctrl_dev;
+> > +
+> > +       dev = &pdev->dev;
+> > +       node = dev->of_node;
+> > +       if (!node)
+> > +               return -ENODEV;
+>
+> FYI, this cannot happen.
+
+Right, this check is not necessary - I will remove it.
+
+> > +
+> > +       soc_ctrl_dev = devm_kzalloc(dev, sizeof(*soc_ctrl_dev), GFP_KERNEL);
+> > +       if (!soc_ctrl_dev)
+> > +               return -ENOMEM;
+> > +
+> > +       soc_ctrl_dev->base = devm_platform_ioremap_resource(pdev, 0);
+> > +       if (IS_ERR(soc_ctrl_dev->base))
+> > +               return PTR_ERR(soc_ctrl_dev->base);
+> > +
+> > +       result = litex_check_csr_access(soc_ctrl_dev->base);
+> > +       if (result) {
+> > +               /* LiteX CSRs access is broken which means that
+> > +                * none of LiteX drivers will most probably
+> > +                * operate correctly
+> > +                */
+> > +               WARN(1, "Failed to validate CSR registers, the system is probably broken.\n");
+>
+> WARN(result, ...)
+>
+> But is this WARN() needed? You have already called panic() before.
+
+You are right - in both cases (read/write) we call panic before
+returning a non-0 value from litex_check_csr_access().
+In this context additional WARN is probably not necessary. I'll extend
+the panic message to indicate that read/write failure means a broken
+system and drop this WARN.
+
+> > +       }
+> > +
+> > +       return result;
+> > +}
+> > +
+> > +static struct platform_driver litex_soc_ctrl_driver = {
+> > +       .driver = {
+> > +               .name = "litex-soc-controller",
+> > +               .of_match_table = of_match_ptr(litex_soc_ctrl_of_match)
+> > +       },
+> > +       .probe = litex_soc_ctrl_probe,
+> > +};
+> > +
+> > +module_platform_driver(litex_soc_ctrl_driver);
+>
+> module_platform_driver() means this driver is probed quite late in the
+> boot sequence.  Currently the only other LiteX driver is liteuart, which
+> is probed at more or less the same time, but I can envision more early
+> drivers to be added later (typically interrupt/clock controllers and
+> timers not integrated into the main CPU core).
+> Note that even liteuart will run earlier, and thus access CSR registers
+> before the check has run, when using e.g. earlycon...
+
+Yes, this is an interesting point.
+We have already covered it in some previous version of the patchset by testing
+if the LiteX SoC Controller driver was probed and returning -EDEFER in
+the UART driver otherwise
+(to make sure CSR access is verified before UART uses it).
+With this approach, however, all future LiteX drivers would have to
+follow the pattern and we would require the LiteX SoC Controller
+to be part of the system (which is not the case for the Microwatt
+platform for example - it uses just an eth core from LiteX).
+
+That's why we finally decided to go with the relaxed version - where
+we allow the SoC controller driver not to be the first LiteX driver to
+be probed (and possibly detect a problem after other drivers encounter
+it).
+
+> > --- /dev/null
+> > +++ b/include/linux/litex.h
+> > @@ -0,0 +1,24 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Common LiteX header providing
+> > + * helper functions for accessing CSRs.
+> > + *
+> > + * Implementation of the functions is provided by
+> > + * the LiteX SoC Controller driver.
+> > + *
+> > + * Copyright (C) 2019-2020 Antmicro <www.antmicro.com>
+> > + */
+> > +
+> > +#ifndef _LINUX_LITEX_H
+> > +#define _LINUX_LITEX_H
+> > +
+> > +#include <linux/io.h>
+> > +#include <linux/types.h>
+> > +#include <linux/compiler_types.h>
+> > +
+> > +void litex_set_reg(void __iomem *reg, unsigned long reg_sz, unsigned long val);
+> > +
+> > +unsigned long litex_get_reg(void __iomem *reg, unsigned long reg_sz);
+>
+> Perhaps you can add static inline litex_{read,write}{8,16,32}() wrappers,
+> so drivers don't have to pass the reg_sz parameter explicitly,
+> and to make it look more like accessors of other bus types?
+
+Yes, this is definitely doable.
+
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
+Best regards,
+Mateusz
+
+--
+Mateusz Holenko
+Antmicro Ltd | www.antmicro.com
+Roosevelta 22, 60-829 Poznan, Poland
