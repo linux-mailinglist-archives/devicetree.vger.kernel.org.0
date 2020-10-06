@@ -2,75 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A2582853BA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F942853C0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727301AbgJFVPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 17:15:10 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:40965 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727270AbgJFVPK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:15:10 -0400
-Received: by mail-ot1-f68.google.com with SMTP id q21so183401ota.8
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 14:15:09 -0700 (PDT)
+        id S1727362AbgJFVQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 17:16:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727301AbgJFVQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:16:20 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69E84C061755;
+        Tue,  6 Oct 2020 14:16:20 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id l24so15126201edj.8;
+        Tue, 06 Oct 2020 14:16:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OUkZ8Np/B9A5Tr2kvzOhcQInYr++ig9zgQwFFSAu5tQ=;
+        b=B174AjMWaVkO+6KTLUNvwpCBr7+lgVZQ8qWbkXUHz0/+M+xToZFzJBph0HD4WkF6w8
+         6ozCOwRRcFGwIQE15f74mYCFidd++dbwpD6x/FTKS1JMocfWzn8yIeDA2FkmeWjsMSW9
+         B3Zaq/pTLKbq/qzcgD+7oQsDUsrKhrO4oRG+qZNtXO7m0qs+kaa+9EGFm/Umq3Q8KDBk
+         JGYRz2UrXKgEmxZ7Peie1qDurKMUH6zc8KI82o/vAH3yjU62EJXQGTxvTGo+WdjArslf
+         gFN47emE+HQprl9Wtjmubxxg2SXrvAnhLssEVOP/ebY1zpNw+QyGMzplimP2g3jBgcGM
+         C3CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=HGYIv2AU6G8hcb11jN8PweilRadJB+OxU+0ieq8K4l0=;
-        b=FUrTbyjZ4a1/mrKFbwAKUJzh6zvCOy73lXlRGCuj71Uo9DC2dHpwqw9BCtSPngr8Ms
-         2oPzPXfqAqPkdfkO4lafkX9FYXHAZA2RCQI7TxQ3DlrvCG3i8My7M9SnNLp9zPKi8bf2
-         DUvzPp1oCV1GxXB1jcrzosorYRclIc6YulYYDa5Qbc4/reKI/6dp+Ph8Tys+MuW39iXz
-         oFP2VI/8VRQIpWGf2u6mkN2p4EP60uWqI/EqnFQ+P99O75EOLbjkJ7G47NaIgS8uzaJG
-         1WBdpzJcbEYe+Oazc8R30ScfQ4kNbb8fZj7f6a8VWPtpvCk5DWY0L0LJhpeElFU0pSNw
-         /F+A==
-X-Gm-Message-State: AOAM531C8q7YNPx+d6J0jyUiuw8syw8cuEtXiI27vlfoR50pE5Nin7/N
-        0RNlVjLvb98Zndah8qhfPw==
-X-Google-Smtp-Source: ABdhPJxiseZ6WSJ4JafEr4Vo25mS58EcA9DAaXYFrrpEWQMaKwJycEjRJ/62oyy5082H+w5nm6ie9g==
-X-Received: by 2002:a05:6830:1091:: with SMTP id y17mr4331385oto.160.1602018909540;
-        Tue, 06 Oct 2020 14:15:09 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r1sm1708993otc.2.2020.10.06.14.15.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 14:15:09 -0700 (PDT)
-Received: (nullmailer pid 2854702 invoked by uid 1000);
-        Tue, 06 Oct 2020 21:15:08 -0000
-Date:   Tue, 6 Oct 2020 16:15:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Subject: Re: [PATCH] dt-bindings: mxsfb: Add compatible for i.MX8MM
-Message-ID: <20201006211508.GA2853753@bogus>
-References: <20201003224801.164112-1-marex@denx.de>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OUkZ8Np/B9A5Tr2kvzOhcQInYr++ig9zgQwFFSAu5tQ=;
+        b=R+NbmFrnneazgk/ACZ7cfSSzde9Wq2fgMHoWX304X8DoyzF5ymC354ee2Sbe7WGvci
+         o5CBd8nYyjcG79Id/WfNgp05yAY5AbU9BzwF8/Avf+TMD4wemMKfyDIZhPtwdCBQpvEg
+         U2Y8oAmJ9IlTQOKD2k1O3OmDxzmltCnnBxu1A2BSwtSTP7kCfFWDAAgSJY3h0q6HbMyY
+         w5tlv/MGyrk9TXMYiUUuqy4CtT7srsuJI0azOZP1lp7Bk52oBUIIV9HbGG5YEk9vEsYw
+         7mdhYnncqmOHP+Nm5pOBZ7NR8xZnR2iePoncUl2JgVq+3IpJJUg8y98UWoPp18Tnf5ub
+         2AXQ==
+X-Gm-Message-State: AOAM5332n5/0VNDZQdL+5OGmg3IdmanaNtgsatWM9pCPcSgBjz9X+1CB
+        aikZ/qiQ/ov15yqD0FMRts6A75P49f7oqr8lIoY=
+X-Google-Smtp-Source: ABdhPJw/6Zfp8xcXnJLtHO8aGQ2XkYGNMbuzpVQDOmwKNeknUVV9pO1fIsyCNinlHc/7TjB3cs54SvDo9UNfvzkm2NE=
+X-Received: by 2002:a50:9e87:: with SMTP id a7mr18518edf.297.1602018978939;
+ Tue, 06 Oct 2020 14:16:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201003224801.164112-1-marex@denx.de>
+References: <20201005150313.149754-7-konradybcio@gmail.com> <202010062217.7j4tkUkR-lkp@intel.com>
+In-Reply-To: <202010062217.7j4tkUkR-lkp@intel.com>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+Date:   Tue, 6 Oct 2020 23:15:43 +0200
+Message-ID: <CAMS8qEWM8oMnPx7=c3=toQ0quUbbFRWXHf=eTMNXtRdORLSMJA@mail.gmail.com>
+Subject: Re: [PATCH 06/11] arm64: dts: qcom: msm8994: Add SDHCI2 node
+To:     kernel test robot <lkp@intel.com>
+Cc:     kbuild-all@lists.01.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 04 Oct 2020 00:48:01 +0200, Marek Vasut wrote:
-> NXP's i.MX8MM has an LCDIF as well.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Guido Günther <agx@sigxcpu.org>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> ---
->  Documentation/devicetree/bindings/display/mxsfb.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Please note that the bot is correct (this patch does not build if
+applied on its own), but I mentioned its dependence on a clk patch in
+the cover letter.
 
-Acked-by: Rob Herring <robh@kernel.org>
-
-Though Laurent posted converting this to schema...
+Konrad
