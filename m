@@ -2,148 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB0F2854C7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 00:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27EBF2853EB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727383AbgJFWxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 18:53:41 -0400
-Received: from mx0a-00010702.pphosted.com ([148.163.156.75]:31544 "EHLO
-        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726771AbgJFWxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 18:53:40 -0400
-Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
-        by mx0a-00010702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 096LJP5t007767;
-        Tue, 6 Oct 2020 16:31:51 -0500
-Received: from nam02-sn1-obe.outbound.protection.outlook.com (mail-sn1nam02lp2052.outbound.protection.outlook.com [104.47.36.52])
-        by mx0a-00010702.pphosted.com with ESMTP id 33xnb0yr0h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 06 Oct 2020 16:31:51 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iK17aP8cUs3Nx4duMFR99PvOGRkxiBqdq/aLqAGq7w8b1WC6/roDAXg2cDgjD+2GlIOIA1++ZWZp1/JEQfIMo2ytM+5F+J6TfunG3dl4LPv18tAdEJ2Is/grDfS5Fdf8LpXiTOopckDz4s2DpNYDuxFGd9pebhxQeiyuEQg1umrbSmQ8L/BbDOMaOwbnJydduB+4fD7MOaD3xRwi7IwrptrICER7G+urvqvKlMl4TO5CPHBNr94mecVk3URi/hLmmP0+zXCVOUldIT1PQ9OSJcVbb5EoH6Q5eCygtRGqYZcc9MrC1lRyA69oZyqBQpS1DehEk4DbHtZw3u4U/iEwjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+vgRO+C+EbzwLwKtvklhwp9pcOLtQhYuqDw0r0GECPg=;
- b=Wueh0y/QrnYHLqi/B19rmE7StI4szsZGsYqUkomUi2F9WtBI3gPgbo85wWM9rlSAzZo58tEduq+W8bWxwHnAqECzykg/r3shHvrcJsW2yZVVyCKf/itGclKQg4YXhXhJNVCsiHx+32wGdWBjDgCKy1874IGtD2rC61CQdOPIZ5II4CIWCUR27MrkS8mXQjYG0C0MnV3cOjP129JboGruGLq+nSxzJbzZR3xbbbhVYwNVR8x7KQ8rMSsGd7KhO/6ZZK9MCCon8Tk7n6qlbMm5VLCW+jYOEG2DePLDR2VsfW04PPDqzESqPStj7ZtOuZ+3h8wj2urZymgdRkhsU0RMmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+vgRO+C+EbzwLwKtvklhwp9pcOLtQhYuqDw0r0GECPg=;
- b=lw3s12bt7uydILOzyk48Ze5bJ3W+JuVTvxKbVBgtEGiQ/G5Z/zRHpQPSAT9nqoOh3FWAaMz04jr9cj/Ms+Lyk+J90N1cuB5HDuafSXEsu8XViRgkZgORRMX29gzo3Sy36Ovv0zCVkvW58tYxUZhxdEnkGOHTr3BtPTr/6SOTJCc=
-Authentication-Results: xilinx.com; dkim=none (message not signed)
- header.d=none;xilinx.com; dmarc=none action=none header.from=ni.com;
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29) by SA0PR04MB7403.namprd04.prod.outlook.com
- (2603:10b6:806:e3::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.34; Tue, 6 Oct
- 2020 21:31:48 +0000
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84]) by SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84%7]) with mapi id 15.20.3433.043; Tue, 6 Oct 2020
- 21:31:48 +0000
-Date:   Tue, 6 Oct 2020 16:31:43 -0500
-From:   Michael Auchter <michael.auchter@ni.com>
-To:     Ben Levinsky <BLEVINSK@xilinx.com>
-Cc:     "Ed T. Mooring" <emooring@xilinx.com>,
-        "sunnyliangjy@gmail.com" <sunnyliangjy@gmail.com>,
-        "punit1.agrawal@toshiba.co.jp" <punit1.agrawal@toshiba.co.jp>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Message-ID: <20201006213143.GD701433@xaphan>
-References: <20201005160614.3749-1-ben.levinsky@xilinx.com>
- <20201005160614.3749-6-ben.levinsky@xilinx.com>
- <20201005193449.GA701433@xaphan>
- <BYAPR02MB4407B7F06962DB30ED90761FB50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BYAPR02MB4407B7F06962DB30ED90761FB50D0@BYAPR02MB4407.namprd02.prod.outlook.com>
-X-Originating-IP: [130.164.62.229]
-X-ClientProxiedBy: SA9PR10CA0004.namprd10.prod.outlook.com
- (2603:10b6:806:a7::9) To SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29)
+        id S1725970AbgJFVfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 17:35:45 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:32785 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725947AbgJFVfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:35:45 -0400
+Received: by mail-oi1-f195.google.com with SMTP id m7so218636oie.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 14:35:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=H90zUV12QpAhLSai+s8goOQGcLl66BvDd2c6eA0ZeWo=;
+        b=Hsw/6KFN+QPQ1AwfeveEWx8Yk1jeyXBzXPQCRTiCPhCdW6+vhhfWNc41szTFPWQ5vV
+         EQ9dnezD70mai6NmhYBxiUhIKr+dqSYNtrbbn5JMc2ESBXfC8Cw74msuKVi9wQaUlmJM
+         iLDZIX5IR/MHpOEBqG1YldYXHEwWKOkmc5TS5JcyMtZufxQuEAy04CT2+IcmHzleJTlT
+         YjQia12fOAl3G6nlv8+XFuifsCgdn7ElyWkh/5iIjsTpbeYrMW88zzDwa4ZbDPI7xIZZ
+         m2cn7MO+kaslMk0MLIXNSDl3F2RhHoD3/dQuxDw8h9NMBYCAqEpyxByZETvIK6mWAYLW
+         jnnQ==
+X-Gm-Message-State: AOAM531NsOstBwWt3v9xY+Cdtj8ypz6rnvmlvkQ9yfAbl8kScpBwljgF
+        e1Q81RvutPQ1fFY3g36j/qTxmlSSeGJU
+X-Google-Smtp-Source: ABdhPJxgRY2D1XwG5S7C2QMsuWE9VKcr33DUdM+UYTSmRH2u2C683VSiQxIiVVzK5m1Bpacgvi5RvQ==
+X-Received: by 2002:aca:3d03:: with SMTP id k3mr174049oia.114.1602020144546;
+        Tue, 06 Oct 2020 14:35:44 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f70sm1711587otf.32.2020.10.06.14.35.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Oct 2020 14:35:43 -0700 (PDT)
+Received: (nullmailer pid 2887404 invoked by uid 1000);
+        Tue, 06 Oct 2020 21:35:43 -0000
+Date:   Tue, 6 Oct 2020 16:35:43 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
+Cc:     Collabora Kernel ML <kernel@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Simon Glass <sjg@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: google,cros-ec: add missing
+ properties
+Message-ID: <20201006213543.GA2881522@bogus>
+References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
+ <20201005071403.17450-4-ricardo.canuelo@collabora.com>
+ <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
+ <20201006061317.rs63e3dh4grxij2v@rcn-XPS-13-9360>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (130.164.62.229) by SA9PR10CA0004.namprd10.prod.outlook.com (2603:10b6:806:a7::9) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.37 via Frontend Transport; Tue, 6 Oct 2020 21:31:47 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1c64963c-4e58-4701-e1c2-08d86a3f3ae5
-X-MS-TrafficTypeDiagnostic: SA0PR04MB7403:
-X-Microsoft-Antispam-PRVS: <SA0PR04MB74035DFBAC9D00587AC1FDF8870D0@SA0PR04MB7403.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v8hCkRcVLKQ8vYehhKgVjaiKr1jXZjWXfu1OjANap6QeNVtc3Lr+hI4C3T29CmQWGrzBtrJM9xf8F2r2egG+Ywsn8bInCWEl7Y08EjbhZ+Cpzl7Mp+eNWMsHhJubNTtGhEdMseFKoNDuAsDW7WWHfhXhBsFYqUY8yTzY/X2L3BPZPBEH177CQIrwYv76wAnKN/5oZ14Ubo68sBtXgPMb8LQ9E2DoEBxJ/lOUDBA5aDTJoSsPoTW8gUouRF9CouRTkRl1fP4TZFot+GAk6Rh5fGHLFZP3m3zTcTXxRsvyJ+/FTYrrZIato1VmmnQuh5diGrGh5We4aOnxWxUJM51T4g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0401MB3646.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(396003)(346002)(376002)(39860400002)(366004)(136003)(83380400001)(4326008)(7416002)(33716001)(86362001)(33656002)(8676002)(8936002)(6916009)(6486002)(9686003)(956004)(478600001)(54906003)(2906002)(26005)(44832011)(6496006)(5660300002)(186003)(1076003)(66556008)(66946007)(66476007)(316002)(6666004)(52116002)(16526019);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: ziU6Q/33Q2d53yJy4jXyYMos5meFUn6j7Vu12iH7IuTI8NAmqvkVHeAAyQp7+orNP8bS9mCsPHUVkr/9MemZQjEgJKRFENH8bzm8+ejOHTjQOau3iVt0apqGonnqku/YPpOMikMpN41SJ2emEJiihMcKPQApNlHH4k16roSfarFoC0/o09yBM6AmCcarONoWOhQJtBSkc6+jE1KqC8qr4F/k4/QwNB0T2RU9F8xnYesTztEmt2JzbN16Em5dpZR729Dxvy/0kPeOx2VKnhoy1vpfW4lTyRQck47K6EZhhxdEPFvJeDXUv5t8887p+Eb5SgjwcDVdOSxBtV9Qe5OUTP6HRE3haJf9e4XG7wPTMIVXCjJzHDovU2MP5uU0T6GisStHEnJbWiz7oWnpBY5PjqLLtgyyawD2Hs2Ci2a559Qta/T95e2OJC9nCbIVCwzoKbyw6wceRrnBf4dtfSMAquYyVIquism0pz9j2QHYqZ9xL9wX6IHbu6k9y8heD8xk2fmG7EPfojtXt3MbsaZZZBzfQGnVCZheSGQun2sBY8KAVT1uEo0BYPQh7tZ6HTTaQh/AD/WplmM5RgMj/QG/pXYPrXszvJSxdB4BYlrKnc3XFyLpu3SMXVlpGsulaKztH/LlIeE/8j0edIhoJEaazw==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c64963c-4e58-4701-e1c2-08d86a3f3ae5
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0401MB3646.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2020 21:31:48.1220
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: j9Bb8OFc5Ebt1lPZ8WFol7/l9apdB6/Hk/YyF0XECFi9jlRK7NcxqpTXRe+Nc1e4QdX02EKDyGbIAtKZ41KsaA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR04MB7403
-Subject: Re: RE: [PATCH v18 5/5] remoteproc: Add initial zynqmp R5 remoteproc driver
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-06_14:2020-10-06,2020-10-06 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 suspectscore=1
- malwarescore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
- impostorscore=0 clxscore=1015 adultscore=0 mlxlogscore=999 mlxscore=0
- phishscore=0 bulkscore=0 classifier=spam adjust=30 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2010060141
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201006061317.rs63e3dh4grxij2v@rcn-XPS-13-9360>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 07:15:49PM +0000, Ben Levinsky wrote:
+On Tue, Oct 06, 2020 at 08:13:17AM +0200, Ricardo Cañuelo wrote:
+> Hi Rob,
 > 
-> Hi Michael,
+> thanks for reviewing the patch. Find my comments below:
 > 
-> Thanks for the review
-> 
-
-< ... snip ... >
-
-> > > +	z_rproc = rproc->priv;
-> > > +	z_rproc->dev.release = zynqmp_r5_release;
+> On lun 05-10-2020 10:37:09, Rob Herring wrote:
+> > > +  '#address-cells':
+> > > +    enum: [1, 2]
+> > > +
+> > > +  '#size-cells':
+> > > +    enum: [0, 1]
 > > 
-> > This is the only field of z_rproc->dev that's actually initialized, and
-> > this device is not registered with the core at all, so zynqmp_r5_release
-> > will never be called.
+> > This doesn't really make sense. Either there's a size or there isn't.
 > > 
-> > Since it doesn't look like there's a need to create this additional
-> > device, I'd suggest:
-> > 	- Dropping the struct device from struct zynqmp_r5_rproc
-> > 	- Performing the necessary cleanup in the driver remove
-> > 	  callback instead of trying to tie it to device release
+> > [...]
+> > 
+> > > +  "^regulator@[a-f0-9]+$":
+> > > +  "^ec-codec@[a-f0-9]+$":
+> > 
+> > What does the number space represent and is it the same for each of
+> > these? If not, then this is kind of broken. There's only 1 number
+> > space at a given level.
 > 
-> For the most part I agree. I believe the device is still needed for
-> the mailbox client setup.
+> I see what you mean. In the regulator, the unit-address means the identifier
+> for the voltage regulator and I guess it could also be defined as
+> simply "^regulator@[0-9]+$". In the codec, though, it's a physical base
+> address.
 > 
-> As the call to mbox_request_channel_byname() requires its own device
-> that has the corresponding child node with the corresponding
-> mbox-related properties.
-> 
-> With that in mind, is it still ok to keep the device node?
+> The reg property in these has a different format, that's why I
+> defined #address-cells and #size-cells above to have a range of values
+> instead of fixed values.
 
-Ah, I see. Thanks for the clarification!
+But in any given DT it is going to be fixed, so that doesn't help you.
 
-Instead of manually dealing with the device node creation for the
-individual processors, perhaps it makes more sense to use
-devm_of_platform_populate() to create them. This is also consistent with
-the way the TI K3 R5F remoteproc driver does things.
+> >From your experience, what's the best course of action here? I can't
+> find a driver managing google,cros-ec-codec yet, although the binding
+> was submitted in January.
 
-Cheers,
- Michael
+Normally, you just add another layer with a 'regulators' and/or 'codecs' 
+node. Do you really have more than 1 codec?
+
+Rob
