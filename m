@@ -2,75 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F348285483
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 00:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5115128548D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 00:28:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726980AbgJFWZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 18:25:23 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:36398 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726171AbgJFWZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 18:25:23 -0400
-Received: by mail-oo1-f67.google.com with SMTP id z1so127687ooj.3;
-        Tue, 06 Oct 2020 15:25:22 -0700 (PDT)
+        id S1727029AbgJFW14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 18:27:56 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33698 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726323AbgJFW14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 18:27:56 -0400
+Received: by mail-ot1-f68.google.com with SMTP id t15so428098otk.0;
+        Tue, 06 Oct 2020 15:27:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=/Ga2Z0C5bYkL6wxJvlHQG/Q6Nj02izfhVX4lbiXVzNA=;
-        b=hZBmcK3x3fnrMjTTNrJx6ZvvJ925fy7PAHsa7SmbimeVgVHBR+rm5Vsd90OW9w0QKw
-         Zl6h4g92Oa2Gb4eCPxr+TF+ucw08ckhPfGqyr4G6Yqf9WxGsRdHEkCmf37cYpsSCDNcV
-         CGgtVAMbpFQGH/VlG5IIBORnVxau2n6dy9nlBUH6P7ogP07dm2gstJpFCa+f21pAVg6W
-         /mwXGR8fFNA3+WffVR0i+iEkjm0ODUeUxKkhXCwXZrUO8qpzuBera9OqupkuupLmPDdp
-         Q/U0D3npk/tkMoOS7ctYJ5/++FfT+C8KOXzCmAkTI15XjyvrWM3SDQUD7G/oKaGqNJQb
-         txgg==
-X-Gm-Message-State: AOAM530ppJaK3QnFZHRiJuN443fzCAH8YLUOw8euFJYStqipW1pRb35t
-        bMcglMxLxtr9psydLWXuUs9sTHVjeHiL
-X-Google-Smtp-Source: ABdhPJz3KuUGtTMqG6urse6MWFdEcXvkoe7E73SCozRInDxIDRL432QIj8fLXIIhZx9AlqMF8FRblQ==
-X-Received: by 2002:a4a:dd0b:: with SMTP id m11mr168975oou.75.1602023122151;
-        Tue, 06 Oct 2020 15:25:22 -0700 (PDT)
+        bh=bIxfwcUKhwWi5PXEHY2oibtjWm53f5qOOJ6d+hhSij8=;
+        b=lQlcfl6ttx/kRd+oJdSUjrKcdM6Xo9OQEa/6y8r7y588RTWRMk5/KzZ5SFT32fBBGC
+         M2lmnQp5A12GD8nCUpe48V+AwesNiShKp70dwy2fcrOh/CJK+5CpNwPlG1hfTXdLQsWw
+         y+8Wel8UQLVLbnWdGbfW7FOZPIXCRJjm8i6+ZEBwGf9hdfu1V+VsMV1kKdyegJf/c6tx
+         2vvh6E/0w3pajSv82neWpsYALMZjJc7hOBC75YtafnC8BSo/2axzz2PV35/wcFimk5Db
+         5PaCCbRCD7JADFc9WFMN3AtUTuk2BmEYkNfIt1Dqv+w0xEk2hDSg3na5wsN6JKm8ch1B
+         ORfQ==
+X-Gm-Message-State: AOAM530lkJYn0fS7pnihxedg87TpjsFFx5BuQ8RCQEdTLbMBG3+UWa5u
+        2UoFCV5A6Tvp1tGBXloKxS3KMeAQ5eTZ
+X-Google-Smtp-Source: ABdhPJxRwMszI2DlfXiX8dwjERn3YfMK8ci9QTyyCK5c1CqJYSx11XCGap5FgjPbZZOpuJCAn1RIGg==
+X-Received: by 2002:a05:6830:138f:: with SMTP id d15mr85548otq.342.1602023275282;
+        Tue, 06 Oct 2020 15:27:55 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 38sm86240ota.42.2020.10.06.15.25.21
+        by smtp.gmail.com with ESMTPSA id t5sm96136otl.22.2020.10.06.15.27.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 15:25:21 -0700 (PDT)
-Received: (nullmailer pid 2965256 invoked by uid 1000);
-        Tue, 06 Oct 2020 22:25:20 -0000
-Date:   Tue, 6 Oct 2020 17:25:20 -0500
+        Tue, 06 Oct 2020 15:27:54 -0700 (PDT)
+Received: (nullmailer pid 2969307 invoked by uid 1000);
+        Tue, 06 Oct 2020 22:27:53 -0000
+Date:   Tue, 6 Oct 2020 17:27:53 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Yangtao Li <frank@allwinnertech.com>,
-        linux-gpio@vger.kernel.org, Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH] dt-bindings: pinctrl: sunxi: Allow pinctrl with more
- interrupt banks
-Message-ID: <20201006222520.GA2965226@bogus>
-References: <20201005190939.21016-1-peron.clem@gmail.com>
+To:     Alexander Dahl <ada@thorsis.com>
+Cc:     Jeff LaBundy <jeff@labundy.com>, Alexander Dahl <post@lespocky.de>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v7 03/12] dt-bindings: mfd: Fix schema warnings for
+ pwm-leds
+Message-ID: <20201006222753.GA2965477@bogus>
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-4-post@lespocky.de>
+ <20201006021729.GA4822@labundy.com>
+ <3367098.sbkyfNuaKI@ada>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201005190939.21016-1-peron.clem@gmail.com>
+In-Reply-To: <3367098.sbkyfNuaKI@ada>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 05 Oct 2020 21:09:39 +0200, Clément Péron wrote:
-> Recently introduced Allwinner A100 pinctrl block has 7 interrupts.
+On Tue, Oct 06, 2020 at 08:34:23AM +0200, Alexander Dahl wrote:
+> Hello Jeff,
 > 
-> This trig a warning when running dtb_checks:
-> sun50i-a100-allwinner-perf1.dt.yaml: pinctrl@300b000: interrupts: [...] is too long
-> 	From schema: .../allwinner,sun4i-a10-pinctrl.yaml
+> Am Dienstag, 6. Oktober 2020, 04:17:29 CEST schrieb Jeff LaBundy:
+> > Hi Alexander,
+> > 
+> > On Mon, Oct 05, 2020 at 10:34:42PM +0200, Alexander Dahl wrote:
+> > > The node names for devices using the pwm-leds driver follow a certain
+> > > naming scheme (now).  Parent node name is not enforced, but recommended
+> > > by DT project.
+> > > 
+> > >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > > 
+> > > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.exampl
+> > > e.dt.yaml: pwmleds: 'panel' does not match any of the regexes:
+> > > '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'> 
+> > >         From schema:
+> > >         /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/
+> > >         leds-pwm.yaml> 
+> > > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> > > ---
+> > > 
+> > > Notes:
+> > >     v6 -> v7:
+> > >       * added warning message to commit message (Krzysztof Kozlowski)
+> > >     
+> > >     v6:
+> > >       * added this patch to series
+> > >  
+> > >  Documentation/devicetree/bindings/mfd/iqs62x.yaml | 5 +++--
+> > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> > > b/Documentation/devicetree/bindings/mfd/iqs62x.yaml index
+> > > 541b06d80e73..92dc48a8dfa7 100644
+> > > --- a/Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> > > +++ b/Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> > > 
+> > > @@ -90,10 +90,11 @@ examples:
+> > >              };
+> > >      
+> > >      };
+> > > 
+> > > -    pwmleds {
+> > > +    led-controller {
+> > > 
+> > >              compatible = "pwm-leds";
+> > > 
+> > > -            panel {
+> > > +            led-1 {
+> > > +                    label = "panel";
+> > > 
+> > >                      pwms = <&iqs620a_pwm 0 1000000>;
+> > >                      max-brightness = <255>;
+> > >              
+> > >              };
+> > 
+> > I like the consistency this brings. My only feedback is that in the other
+> > examples I found (common.yaml and leds-gpio.yaml), the children count off
+> > from 0 (e.g. led-0) instead of 1 as your series appears to.
 > 
-> Fix this by allowing up to 7 interrupts.
-> 
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> ---
->  .../bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml           | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> You're right.  And that's also the same in leds-lp50xx.yaml and â€¦ well I did 
+> not look close enough, maybe the numbering scheme on the PCB on my desk 
+> confused me.
 
-Acked-by: Rob Herring <robh@kernel.org>
+If you can tie the numbering to the PCB, then do that.
+
+> Okay, we are already talking about starting index.  What about the parent 
+> node's "led-controller" then in case there are more than one?  IIRC Rob 
+> acknowledged starting from 1 like "led-controller-1", "led-controller-2" and 
+> so on.
+
+No, I'd assume we start at 0.
+
+> > That's not a huge deal; it simply seems more consistent to count from the
+> > first index allowed by the regex (0). The patch is still fine, and so:
+> > 
+> > Acked-by: Jeff LaBundy <jeff@labundy.com>
+> 
+> Thanks.
+> 
+> I'm not sure how many more iterations of this series we will need, at least 
+> one for the binding license acks I guess, so I could also adapt the child node 
+> indexes in schema and actual dts files in v8 or so.
+> 
+> Greets
+> Alex
+> 
+> 
+> 
