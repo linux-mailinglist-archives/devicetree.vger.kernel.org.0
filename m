@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F1322852D7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 22:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF902852E2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 22:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727137AbgJFUD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 16:03:57 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:59469 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725962AbgJFUD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 16:03:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1602014637; x=1633550637;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=AFt8H3tiQdKJme5Ezi3eTjp27f810vgWER+RZvdSWz8=;
-  b=J+Y9uXAgjSrkyL/AE7atUFLmeR9ZAyK3BI9xE69Q9RI2ocq3n7k+Kx2w
-   nkgRAoINMNh+i9+9WfuZagEyGiPHTJJOZzKWZ3lRNbziw7jyeVYVLyRR4
-   eh4q3Loe76Cs058MH0TSseR1nXm3nPVEMfTTL+i3OB8rgoae5uEHsWo3T
-   gS0meaNzhD3iGmuCLdA/LbHKOX/HAIRXTtlWjTBX9V61xkjCYwPzQwadz
-   McEwaGbajrcY4PTu5tKd4dhpq5oBS5KPeQGmwNhuFLFG51JHGaK+8EWxx
-   QcpFDv6L6Ik6R3sOQF5k0n9/mFu84wmNfK929d7kaTuHbnzs5tSJK89Ra
-   g==;
-IronPort-SDR: HimIamFIHSYsKJWcbtGx7BoicFyTCArkf7FWTVPPuEgklbdtF6u+PMCgy2ODy3//eyMxYLeVGg
- q6k/fg70k4Co/DeLbJjKqboiQ7nLZIXxX53nGlsmwckgJqhnlVLgouLKTlQZ09k5cvklz1EfPU
- aaauVcXITegDQUR0Q0pb4iY440wqYmw7KAXf3ci0a+33UK33lknI2euLNrvfjSKpVv0gGDtWSW
- ZCVaiWNF/pM53W1/Fw2om+NsDQ19hw/YtfK4yD837YCLP1WYZQdWMceuFCLhkh50C+UUrvy+6k
- xcM=
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; 
-   d="scan'208";a="93635019"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Oct 2020 13:03:57 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 6 Oct 2020 13:03:56 -0700
-Received: from soft-dev10.microsemi.net (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 6 Oct 2020 13:03:54 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Sebastian Reichel <sre@kernel.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v2 3/3] arm64: dts: sparx5: Add reset support
-Date:   Tue, 6 Oct 2020 22:03:16 +0200
-Message-ID: <20201006200316.2261245-4-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201006200316.2261245-1-lars.povlsen@microchip.com>
-References: <20201006200316.2261245-1-lars.povlsen@microchip.com>
+        id S1727140AbgJFUIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 16:08:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33326 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726103AbgJFUIP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Oct 2020 16:08:15 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C1A2F20760
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 20:08:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602014894;
+        bh=avIsIuNLGkilg01KYyPB8ZMf/MyjeJUSeipqra54pos=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fjxnCr+QO4IDx7tlHUQXj5DcOMXV4wdfilsrp9R/eLZay3KHg6QPgK7PwTGrY9jZJ
+         ixLbr50aIXogduCHc6XaOMAwhL6txE9NYkzYdExm3+faWHwDXSwryyA1uvKs0jBU5U
+         9yxQbGQjPX3PGB+fmXJjR6zdndRNQiFRD+1j+WFw=
+Received: by mail-oi1-f173.google.com with SMTP id w141so13962140oia.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 13:08:14 -0700 (PDT)
+X-Gm-Message-State: AOAM531O0939OujCcXJCTE4ncvkMrmu452FuvaC/ppCysV245TqKWlin
+        1ne+vcbO6U3t9iowkyI3cNOUPSenEEQR0uIoLw==
+X-Google-Smtp-Source: ABdhPJzwGhlvjV1HPPcO4uA+kbudU9GF3fNrDbdo2xFrMwp6RaHzhVzap4C4zJ+xXLiw9e2tpjfYshRezvuiJ3iNIEo=
+X-Received: by 2002:aca:4c52:: with SMTP id z79mr3977034oia.147.1602014894092;
+ Tue, 06 Oct 2020 13:08:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <2367272.gIzBuxHi73@pc-42>
+In-Reply-To: <2367272.gIzBuxHi73@pc-42>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 6 Oct 2020 15:08:02 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLf=Mqjgz9HHyDZ92-ZSFwhXH8SQ32=t4bPGR9UXw0-zg@mail.gmail.com>
+Message-ID: <CAL_JsqLf=Mqjgz9HHyDZ92-ZSFwhXH8SQ32=t4bPGR9UXw0-zg@mail.gmail.com>
+Subject: Re: Need some advices on Yaml conversion
+To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+Cc:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds reset support to the Sparx5 SoC DT.
+On Tue, Oct 6, 2020 at 9:57 AM J=C3=A9r=C3=B4me Pouiller
+<jerome.pouiller@silabs.com> wrote:
+>
+> Hello,
+>
+> In order to get the wfx driver out of the staging area, I try to convert
+> the following DT bindings to YAML:
+>
+>   drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/sili=
+abs,wfx.txt
+>
+> Unfortunately, the conversion is not straight forward. The WFx device can
+> be connected on SPI or on SDIO. The requirement for the two interfaces ar=
+e
+> different. For exemple:
+>   - <reg> should be set to 1 in SDIO, while it corresponds to the Chip
+>     Select in SPI
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+What's important for 'reg' is how many entries. The bus defines that
+in both cases here IIRC, so just 'reg: true' is sufficient.
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index a84ffd3069d4..016be6d27a6b 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -118,6 +118,16 @@ gic: interrupt-controller@600300000 {
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
+>   - The attribute reset-gpios is not available in SDIO
+>   - The "interrupt" does not have the same exact meaning in SPI and SDIO
+>     (it is required in SPI, but not in SDIO)
 
-+		cpu_ctrl: syscon@600000000 {
-+			compatible = "microchip,sparx5-cpu-syscon", "syscon";
-+			reg = <0x6 0x00000000 0xd0>;
-+		};
-+
-+		reset@611010008 {
-+			compatible = "microchip,sparx5-chip-reset";
-+			reg = <0x6 0x11010008 0x4>;
-+		};
-+
- 		uart0: serial@600100000 {
- 			pinctrl-0 = <&uart_pins>;
- 			pinctrl-names = "default";
---
-2.25.1
+Just list them both and note the constraints. That's no worse than
+what we had before.
+
+> I have considered to declare two different devices, but I am not sure the
+> dtbs_checker will appreciate to have two definitions of the same device.
+> In add, some attribute descriptions would be redundant.
+>
+> I also considered to use conditional statements, but I didn't find how to
+> check the bus that the device currently use.
+
+I've thought about adding a pseudo '$bus' property for this purpose,
+but no, there's not currently a way to do that.
+
+>
+> Does anyone has some advice about the way to achieve that?
+>
+> Thank you,
+>
+> --
+> J=C3=A9r=C3=B4me Pouiller
+>
+>
