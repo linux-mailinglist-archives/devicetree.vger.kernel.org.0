@@ -2,69 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EDD92853C1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2C12853BD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727407AbgJFVQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 17:16:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727301AbgJFVQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:16:30 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3408CC061755;
-        Tue,  6 Oct 2020 14:16:30 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id md26so19729670ejb.10;
-        Tue, 06 Oct 2020 14:16:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OUkZ8Np/B9A5Tr2kvzOhcQInYr++ig9zgQwFFSAu5tQ=;
-        b=HbRX7gi1rPpzW3Kg6eXahbjwIJfYemIFBUgMPBCH2QT+LuGRdW4faXr1lXwhww5TJB
-         DMMp+Scow7tWo1hnPmsh9A+I56TOloNz3sRkTtDTaKCBzcMPvQ2djXJTmsB2M5gqQnUX
-         QAg+1sfZ/x5vO3dnoDkz0+UyGjXDgk+5Y1aQ4yqhXryiveq6b/J3vYdFUaPJhKmS0mr2
-         HpnF8ZjwoPam+RwZQFMg+seI1epJQ4cSeYkECArsvnu9ly0CY8keC4QMyTIDT7wXGzBR
-         BBBZCj7LY6QNVcXbPFQBnR9elvR2s+ba7uybvfH/feLSVnh6GwgLTFGUUl2gREjfb36O
-         KGFw==
+        id S1727270AbgJFVQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 17:16:07 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:43576 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727301AbgJFVQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:16:07 -0400
+Received: by mail-ot1-f65.google.com with SMTP id n61so175038ota.10;
+        Tue, 06 Oct 2020 14:16:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OUkZ8Np/B9A5Tr2kvzOhcQInYr++ig9zgQwFFSAu5tQ=;
-        b=I7YpOZNt9hguGeC/H9TCMyoRXvCmXM6GgNZBrKgM0KgVqPJ7QsOZ0LYrbCNf3XbRWh
-         OcQjmdlk9m3vnOO/BDqLWbrq2BIJlxxnb96ienSjbn/Ilwn9+Qjwgo7Fd3Lm9XSKAguL
-         uKvrA1hBCDdwoMpVJEcs6v3XuVoaUizhTIn+QO0U+r/EKH0dfhgcHf+f/akQMReOjnJj
-         H6Rm6bgKqQmdixUcRS4q3DF1cd0lfBQlFJ5cBN+7BvtwdoemMEOgqNpF46YYtDWZPNg4
-         oGNwAY4jhb0Ajfe92dtrj2LGd10k4b73ApXsT80yL39VLLxPCANTPdrFeJFxlsf06kXS
-         iCdg==
-X-Gm-Message-State: AOAM5306N3PEicRvKKv4rADWfRgqfgsiKp2AgH7WaZBYbw/zVig7vmp7
-        UGvkvhH+Sq/kmZFQ3Izox0zxvis7UqKetdsTFwk=
-X-Google-Smtp-Source: ABdhPJw+dQle2HSBoAZP866K10e69otfUfs5n0PUaiC38bdzpVNq1/8RsU6nmsKWYrXTaBvgzbPZnYzHdmqPsjI+uNw=
-X-Received: by 2002:a17:906:3bc9:: with SMTP id v9mr1518941ejf.340.1602018988897;
- Tue, 06 Oct 2020 14:16:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201005150313.149754-6-konradybcio@gmail.com> <202010061559.8KJNEgYi-lkp@intel.com>
-In-Reply-To: <202010061559.8KJNEgYi-lkp@intel.com>
-From:   Konrad Dybcio <konradybcio@gmail.com>
-Date:   Tue, 6 Oct 2020 23:15:53 +0200
-Message-ID: <CAMS8qEW=4_+-noGH+eyqJ5qPF3Ap06aF37aY2tsFPRwSOPRR0A@mail.gmail.com>
-Subject: Re: [PATCH 05/11] arm64: dts: qcom: msm8992: Add support for SDHCI2
-To:     kernel test robot <lkp@intel.com>
-Cc:     kbuild-all@lists.01.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=IbyeGvvWhzTHOAuw/P6MUaM6DrcIT8/THDuAFkHtSjU=;
+        b=jHXfcV9FJzbeYKMqET1GJkqt/7nryPNqRdVa/5OAn0yrYXh54uBa6SADUERaSz6VK+
+         W+qaWed2twjdMO7VIhPgFx1bQy9WaLoxDwLBVYiJ158VsHHTmkfkpuR7R7Shv2Zyoxls
+         wGwhKv1CcQefiWikcsHz1l4hQ3SF3B/9CvCWo1qeTW9ojaOpsC6LT8cOxvmS4J4+qfcz
+         9F2eDprkXiUylCPoMtCzN1KfR2pRhyyadj12c9mFyJtTKmCsQLplepYH5aZudUQLkV0R
+         VP4AvhsLaPRrd4WHVPcBrB/X4KqBnYbpv1tho1yr6U4OQ81cajcbRFMz6ei5PV1BTx7C
+         GAdA==
+X-Gm-Message-State: AOAM532oIhyk9L0G/cmfU+cephRah5L17s0icGmG49rRlJv7/RpdROa7
+        ku0SX4PEL6tDhDhWZQ892g==
+X-Google-Smtp-Source: ABdhPJzme7ICJfAh4x6/f5YZz4HcReSSoSxSjh2yih5oKdYeNR9pa2svBIHO/o1MslcSrhrmw6RfSw==
+X-Received: by 2002:a9d:2a88:: with SMTP id e8mr3980094otb.122.1602018966154;
+        Tue, 06 Oct 2020 14:16:06 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v18sm115045ooq.11.2020.10.06.14.16.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Oct 2020 14:16:05 -0700 (PDT)
+Received: (nullmailer pid 2856256 invoked by uid 1000);
+        Tue, 06 Oct 2020 21:16:04 -0000
+Date:   Tue, 6 Oct 2020 16:16:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] phy: exynos-mipi-video: Add support for NXP i.MX8MM
+Message-ID: <20201006211604.GA2856199@bogus>
+References: <20201003225020.164358-1-marex@denx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201003225020.164358-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please note that the bot is correct (this patch does not build if
-applied on its own), but I mentioned its dependence on a clk patch in
-the cover letter.
+On Sun, 04 Oct 2020 00:50:19 +0200, Marek Vasut wrote:
+> This patch adds support for MIPI DPHY found in NXP i.MX8MM.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Abel Vesa <abel.vesa@nxp.com>
+> Cc: Dong Aisheng <aisheng.dong@nxp.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Guido Günther <agx@sigxcpu.org>
+> Cc: Jaehoon Chung <jh80.chung@samsung.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: linux-samsung-soc@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> ---
+>  .../devicetree/bindings/phy/samsung-phy.txt   |  7 ++++---
+>  drivers/phy/samsung/Kconfig                   |  6 +++---
+>  drivers/phy/samsung/phy-exynos-mipi-video.c   | 21 +++++++++++++++++++
+>  3 files changed, 28 insertions(+), 6 deletions(-)
+> 
 
-Konrad
+Acked-by: Rob Herring <robh@kernel.org>
