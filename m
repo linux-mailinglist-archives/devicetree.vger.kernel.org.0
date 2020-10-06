@@ -2,198 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 325DE2851A2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 20:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7BCA2851C8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 20:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726809AbgJFSer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 14:34:47 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:37997 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbgJFSer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 14:34:47 -0400
-Received: by mail-ot1-f65.google.com with SMTP id i12so7410702ota.5;
-        Tue, 06 Oct 2020 11:34:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=T/nFz+O76MoZAtkSPqoZ0ETSJ6m02PU0D0DZHAvgJEQ=;
-        b=EVCyH+KB+DDaT3khR0P+a9HXwSp+uGeNN+TxU2K6Mx79GmEP7MRzUWXxoCa3Dk2Nx/
-         roZBIaWpMwd0302eaFtNEKEvtvLQ2Q18Z50I1YcPIxGsWvKSr9IC70Mk1X6q2Dn3NLPQ
-         NayUeklL/bNRQ2ay1+AEtYk3Y+yJUEPmpBaPbXhHIu59/VSJGdvRT5Cw1anl+uS2XrqE
-         UO/S33ACTowSJaC85onJj6MEQttBELLjNHnh/TRupMTug54uD1ouAmCCi4bWn0rM9l6Y
-         tl+BcfCvmA4O04e5tKnfnAuygO4qglV8BuUAESGsIoyvygWJcjivmGgWJPIZczWqNvrV
-         +0eQ==
-X-Gm-Message-State: AOAM532hqUHiy+AmDcpCMuDz1xACntqahtMCuEuOyIQi084tBmfydJnO
-        oKM02jY15fH1qXr6Ww8iwQ==
-X-Google-Smtp-Source: ABdhPJx1phcZuRuWBcr3gfWZUoekTD2tydrcY/GXETjtFdoxVappQeymuyeEy49v7QhaTXJ8YJ0LpQ==
-X-Received: by 2002:a9d:67c3:: with SMTP id c3mr4065466otn.9.1602009284472;
-        Tue, 06 Oct 2020 11:34:44 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m25sm1339206otl.71.2020.10.06.11.34.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 11:34:43 -0700 (PDT)
-Received: (nullmailer pid 2597692 invoked by uid 1000);
-        Tue, 06 Oct 2020 18:34:42 -0000
-Date:   Tue, 6 Oct 2020 13:34:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@gmail.com>
-Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: fsl_xcvr: Add document for XCVR
-Message-ID: <20201006183442.GA2591611@bogus>
-References: <1601371167-32239-1-git-send-email-viorel.suman@oss.nxp.com>
- <1601371167-32239-3-git-send-email-viorel.suman@oss.nxp.com>
+        id S1726843AbgJFSli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 14:41:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46324 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726831AbgJFSli (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 14:41:38 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E58AC061755
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 11:41:38 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kPrtz-0005tA-HR; Tue, 06 Oct 2020 20:41:31 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kPrty-0002dP-9P; Tue, 06 Oct 2020 20:41:30 +0200
+Date:   Tue, 6 Oct 2020 20:41:30 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [RFC] Using a watchdog as system reset
+Message-ID: <20201006184130.r2lajves5l7lm2qk@pengutronix.de>
+References: <20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de>
+ <460aa962-9da5-6e1e-b5db-3f9f1d78110a@roeck-us.net>
+ <41b0dfcd-adf1-296f-e5be-4db3eac9f097@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ya6u7uqnzt63dfrm"
 Content-Disposition: inline
-In-Reply-To: <1601371167-32239-3-git-send-email-viorel.suman@oss.nxp.com>
+In-Reply-To: <41b0dfcd-adf1-296f-e5be-4db3eac9f097@roeck-us.net>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 12:19:27PM +0300, Viorel Suman (OSS) wrote:
-> From: Viorel Suman <viorel.suman@nxp.com>
-> 
-> XCVR (Audio Transceiver) is a new IP module found on i.MX8MP.
-> 
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,xcvr.yaml        | 103 +++++++++++++++++++++
->  1 file changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> new file mode 100644
-> index 00000000..8abab2d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/fsl,xcvr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Audio Transceiver (XCVR) Controller
-> +
-> +maintainers:
-> +  - Viorel Suman <viorel.suman@nxp.com>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^xcvr@.*"
-> +
-> +  compatible:
-> +    const: fsl,imx8mp-xcvr
-> +
-> +  reg:
-> +    items:
-> +      - description: 20K RAM for code and data
-> +      - description: registers space
-> +      - description: RX FIFO address
-> +      - description: TX FIFO address
-> +
-> +  reg-names:
-> +    items:
-> +      - const: ram
-> +      - const: regs
-> +      - const: rxfifo
-> +      - const: txfifo
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Peripheral clock
-> +      - description: PHY clock
-> +      - description: SPBA clock
-> +      - description: PLL clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ipg
-> +      - const: phy
-> +      - const: spba
-> +      - const: pll_ipg
-> +
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +      - const: tx
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    const: imx/xcvr/xcvr-imx8mp.bin
-> +    description: |
-> +      Should contain the name of the default firmware image
-> +      file located on the firmware search path
 
-We generally only have this if the name/path can't be fixed (per 
-compatible) in the driver. Given you only have 1 possible value, that 
-doesn't seem to be the case here.
+--ya6u7uqnzt63dfrm
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - dmas
-> +  - dma-names
-> +  - firmware-name
-> +  - resets
+Hello Guenter,
 
-additionalProperties: false
+On Tue, Oct 06, 2020 at 07:29:11AM -0700, Guenter Roeck wrote:
+> On 10/6/20 4:56 AM, Guenter Roeck wrote:
+> > On 10/6/20 3:29 AM, Uwe Kleine-K=F6nig wrote:
+> >> Hello,
+> >>
+> >> I have an i.MX25 system here with an external watchdog (using the
+> >> gpio_wdt driver). So the internal watchdog (imx2_wdt) is unused.
+> >>
+> >> The problem with the unused imx2_wdt is that this usually provides the
+> >> restart handler and now a reboot ends with
+> >>
+> >> 	reboot: Restarting system
+> >> 	Reboot failed -- System halted
+> >>
+> >> until eventually the watchdog bites and resets the machine.
+> >>
+> >> I imagine that this is a common enough issue to warrant a generic
+> >> solution. My suggestion is to formalize and implement something like:
+> >>
+> >> 	watchdog {
+> >> 		compatible =3D "linux,wdt-gpio";
+> >> 		...
+> >> 		provide-system-reset;
+> >> 	}
+> >>
+> >> with the sematic of: "This is the dedicated mechanism to reset this
+> >> machine."
+> >>
+> >=20
+> > Some systems have more than one means to reset it, which is why
+> > restart handlers have a priority. This in turn suggests that we should
+> > maybe have a means to set that priority dynamically for the imx2_wdt dr=
+iver
+> > (or for watchdog drivers in general) instead of having it fixed at 128.
+> > That would also solve your problem, assuming there is a different
+> > (currently lower priority) means to reset the hardware in your system.
+> >=20
+> > Alternatively, can't you just blacklist the imx2-wdt driver ?
+>=20
+> After having another couple hours of sleep and a coffee, I wonder if
+> this is already done, and the reboot just fails _because_ the imx2_wdt
+> is _not_ loaded. Is that the case ?
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    #include <dt-bindings/reset/imx8mp-reset.h>
-> +
-> +    xcvr: xcvr@30cc0000 {
-> +           compatible = "fsl,imx8mp-xcvr";
-> +           reg = <0x30cc0000 0x800>,
-> +                 <0x30cc0800 0x400>,
-> +                 <0x30cc0c00 0x080>,
-> +                 <0x30cc0e00 0x080>;
-> +           reg-names = "ram", "regs", "rxfifo", "txfifo";
-> +           interrupts = <0x0 128 IRQ_TYPE_LEVEL_HIGH>;
-> +           clocks = <&audiomix_clk IMX8MP_CLK_AUDIOMIX_EARC_IPG>,
-> +                    <&audiomix_clk IMX8MP_CLK_AUDIOMIX_EARC_PHY>,
-> +                    <&audiomix_clk IMX8MP_CLK_AUDIOMIX_SPBA2_ROOT>,
-> +                    <&audiomix_clk IMX8MP_CLK_AUDIOMIX_AUDPLL_ROOT>;
-> +           clock-names = "ipg", "phy", "spba", "pll_ipg";
-> +           dmas = <&sdma2 30 2 0>, <&sdma2 31 2 0>;
-> +           dma-names = "rx", "tx";
-> +           firmware-name = "imx/xcvr/xcvr-imx8mp.bin";
-> +           resets = <&audiomix_reset 0>;
-> +    };
-> -- 
-> 2.7.4
-> 
+Right, I disabled the imx2_wdt driver.
+=20
+> If so, it looks like you want the reset functionality of the imx_wdt driv=
+er
+> but not its watchdog functionality.
+
+My thought was to use the gpio-watchdog as reset source, but using the
+imx-watchdog only for reset but not watchdog is an obvious alternative I
+didn't think about.
+
+So I either want to make the gpio-watchdog provide a restart handler or
+use the imx-watchdog driver to only provide a restart handler (but no
+watchdog functionality).
+
+> And the above would be a suggestion to add a "generic" restart
+> functionality into the watchdog subsystem, one that uses a watchdog
+> with minimum timeout to reset the system, even if its driver doesn't
+> explicitly register a restart handler.  Is that what you are trying to
+> suggest ?
+
+Yes, every watchdog could provide a restart handler with just using the
+watchdog callbacks.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ya6u7uqnzt63dfrm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl98ulYACgkQwfwUeK3K
+7AkygAf+OEk6ImbusYPd6Jvwhg3R3F+0IayvpjxUYq+kpknUgisrU5gp+HE1p7CI
+3+OviwFD5E4Tj33n6Qgi/EhO1ZEIQCxiTSqJ0siVNb/dfnp1eQTgiZzs8NmcSbfs
+3hGihUKPUOP0XQn7T3MSwvIXS8BBg4op2KOk64RPDchoQD97bNHZBbSu6AjUMMHD
+cLhI7+eAjFwU6aRSTJuospzB4NtdrYOEWtUGDVpWJHmfhePsf1vBgCDCRhzMMA0f
+6spnMRCXJesNvxOFaetaEoqDVdaBBYS5ZlwVex6jQeYIONa/fyde6K2J6ax+74Yt
+qvX6UNg/weHPMA0TGBsToOurhXJyCw==
+=7F4A
+-----END PGP SIGNATURE-----
+
+--ya6u7uqnzt63dfrm--
