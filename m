@@ -2,87 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B2C12853BD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F15B2853C7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727270AbgJFVQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 17:16:07 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:43576 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727301AbgJFVQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:16:07 -0400
-Received: by mail-ot1-f65.google.com with SMTP id n61so175038ota.10;
-        Tue, 06 Oct 2020 14:16:06 -0700 (PDT)
+        id S1727362AbgJFVR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 17:17:27 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:36712 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727301AbgJFVR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:17:27 -0400
+Received: by mail-ot1-f66.google.com with SMTP id 60so228940otw.3;
+        Tue, 06 Oct 2020 14:17:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=IbyeGvvWhzTHOAuw/P6MUaM6DrcIT8/THDuAFkHtSjU=;
-        b=jHXfcV9FJzbeYKMqET1GJkqt/7nryPNqRdVa/5OAn0yrYXh54uBa6SADUERaSz6VK+
-         W+qaWed2twjdMO7VIhPgFx1bQy9WaLoxDwLBVYiJ158VsHHTmkfkpuR7R7Shv2Zyoxls
-         wGwhKv1CcQefiWikcsHz1l4hQ3SF3B/9CvCWo1qeTW9ojaOpsC6LT8cOxvmS4J4+qfcz
-         9F2eDprkXiUylCPoMtCzN1KfR2pRhyyadj12c9mFyJtTKmCsQLplepYH5aZudUQLkV0R
-         VP4AvhsLaPRrd4WHVPcBrB/X4KqBnYbpv1tho1yr6U4OQ81cajcbRFMz6ei5PV1BTx7C
-         GAdA==
-X-Gm-Message-State: AOAM532oIhyk9L0G/cmfU+cephRah5L17s0icGmG49rRlJv7/RpdROa7
-        ku0SX4PEL6tDhDhWZQ892g==
-X-Google-Smtp-Source: ABdhPJzme7ICJfAh4x6/f5YZz4HcReSSoSxSjh2yih5oKdYeNR9pa2svBIHO/o1MslcSrhrmw6RfSw==
-X-Received: by 2002:a9d:2a88:: with SMTP id e8mr3980094otb.122.1602018966154;
-        Tue, 06 Oct 2020 14:16:06 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=PDfEFjOxvV5lnlJ5Dhtp3js2iortYdXKM+0f6FyQWho=;
+        b=cpsmOD66oVflxCH+Xfp8sA7BQMedOe41NDfEIpF4Khx2c/b3gKYlwOwYYQtH2VGJKH
+         w6hb6G6yJ634502S5rDx5JEBnYl0t+ExspJGpML8u8SfhUTN08r/zlkTbjQiadUzLfFn
+         0gXOXhr7kTQOhb3+vnUEbI2hVR8hwF/0IznYJxdYkS8c0EuQMcF/iA14YcgdBzk6TIxa
+         Fd+bLwvpQXTq03Ja90Is92EYjhct/MrFcXkxbyo8+ntQzSeT6GB7BJa2Te2Ll4Y9r0Ka
+         iNpCH0uBBHc4q16f1fpdl15TrTrQaA0UAdphDDgtbG3IXql7kef1TjGC1wfG4wTq0BQb
+         pFiA==
+X-Gm-Message-State: AOAM533z3baOrozNpR+BrBtChic0xVLpXuhiexWKmtzvwbN6Y2f1QqYa
+        RDCOO74a8FgZ6RprLKXBc+NL+Jx9gSZC
+X-Google-Smtp-Source: ABdhPJxHWw8Nsyci8DS/igtGgNuSzSxHHAh9iRU+J8qZ4eCIk3SbSIp1v9rGpeD5riEEemBsERVA7g==
+X-Received: by 2002:a05:6830:2425:: with SMTP id k5mr4129010ots.86.1602019044700;
+        Tue, 06 Oct 2020 14:17:24 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v18sm115045ooq.11.2020.10.06.14.16.04
+        by smtp.gmail.com with ESMTPSA id f11sm133739oot.4.2020.10.06.14.17.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 14:16:05 -0700 (PDT)
-Received: (nullmailer pid 2856256 invoked by uid 1000);
-        Tue, 06 Oct 2020 21:16:04 -0000
-Date:   Tue, 6 Oct 2020 16:16:04 -0500
+        Tue, 06 Oct 2020 14:17:24 -0700 (PDT)
+Received: (nullmailer pid 2858433 invoked by uid 1000);
+        Tue, 06 Oct 2020 21:17:22 -0000
+Date:   Tue, 6 Oct 2020 16:17:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] phy: exynos-mipi-video: Add support for NXP i.MX8MM
-Message-ID: <20201006211604.GA2856199@bogus>
-References: <20201003225020.164358-1-marex@denx.de>
+To:     Chu Lin <linchuyuan@google.com>
+Cc:     linux-hwmon@vger.kernel.org, linux@roeck-us.net,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        jdelvare@suse.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: max20730: adding device tree
+ doc for max20730
+Message-ID: <20201006211722.GA2858348@bogus>
+References: <20201004031445.2321090-1-linchuyuan@google.com>
+ <20201004031445.2321090-2-linchuyuan@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201003225020.164358-1-marex@denx.de>
+In-Reply-To: <20201004031445.2321090-2-linchuyuan@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 04 Oct 2020 00:50:19 +0200, Marek Vasut wrote:
-> This patch adds support for MIPI DPHY found in NXP i.MX8MM.
+On Sun, 04 Oct 2020 03:14:44 +0000, Chu Lin wrote:
+> max20730 Integrated, Step-Down Switching Regulator with PMBus
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Abel Vesa <abel.vesa@nxp.com>
-> Cc: Dong Aisheng <aisheng.dong@nxp.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Guido Günther <agx@sigxcpu.org>
-> Cc: Jaehoon Chung <jh80.chung@samsung.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: linux-samsung-soc@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Chu Lin <linchuyuan@google.com>
 > ---
->  .../devicetree/bindings/phy/samsung-phy.txt   |  7 ++++---
->  drivers/phy/samsung/Kconfig                   |  6 +++---
->  drivers/phy/samsung/phy-exynos-mipi-video.c   | 21 +++++++++++++++++++
->  3 files changed, 28 insertions(+), 6 deletions(-)
+> ChangeLog v1 -> v2
+>   hwmon: pmbus: max20730:
+>   - Don't do anything to the ret if an error is returned from pmbus_read_word
+>   - avoid overflow when doing multiplication
+> 
+> ChangeLog v2 -> v3
+>   dt-bindings: hwmon: max20730:
+>   - Provide the binding documentation in yaml format
+>   hwmon: pmbus: max20730:
+>   - No change
+> 
+> ChangeLog v3 -> v4
+>   dt-bindings: hwmon: max20730:
+>   - Fix highefficiency to high efficiency in description
+>   - Fix presents to present in vout-voltage-divider
+>   - Add additionalProperties: false
+>   hwmon: pmbus: max20730:
+>   - No change
+> 
+>  .../bindings/hwmon/maxim,max20730.yaml        | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max20730.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
