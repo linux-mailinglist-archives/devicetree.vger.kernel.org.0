@@ -2,150 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AB9828492A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 11:13:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F9E284935
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 11:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726398AbgJFJNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 05:13:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43458 "EHLO
+        id S1725934AbgJFJUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 05:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725943AbgJFJNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 05:13:33 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DBDC0613D3
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 02:13:33 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id w25so5711464vsk.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 02:13:33 -0700 (PDT)
+        with ESMTP id S1725912AbgJFJUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 05:20:25 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E227C061755;
+        Tue,  6 Oct 2020 02:20:21 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id h24so10003668ejg.9;
+        Tue, 06 Oct 2020 02:20:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9zZ3JqKuAucMkJsBK3uQ6oqn08Q8o246NeeOkBUzIpE=;
-        b=sl5DvJTU8XoKckrDy72v6SE14TnVpy4Bt91zBzW0shyY1MAQ6mAh44/03XDifpnVyT
-         4w+72PUsHJIIJhKHPRrCT8pTCi2CZ3lYrznO931Zy9GGzbJgV3AbLMDW/WTkvZw1ySi0
-         xZ8mKac9WB616FWJmzh+4pR4DO2W+qMrWvhETvIhmdmS6svN/TirR+Lk59vHi5nED0Fw
-         UNsL0wfC4tJEer6UJgLfY8iJyldfPPnH6zruIDXY8NS9LaxnxiZNZZ15iF6VLc8jtGT7
-         kw77Swrlk5F0D0JlHVpGszmJH8RyljctW41ctPimXYx2UDZ6rbS2tZM9fINpQJUVuEtk
-         CGiA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QEFUhgHBOGUBmIFPYBdTtbDlyFkBZQsVm2M2SQfag20=;
+        b=X6JDQ/+vK4NlW0uam0kIo5dDU2yaW14FFvDo8fgi1nqM/ySY7cCfb6NuRjgHeB9A8e
+         PUMOYnojSuM39wr96UMhnfv5H9xKanhTGvgg55kzrH39mqDrLoJaVYi7FDSY/dh7hcO/
+         9I8Tqb4D9Nko2ZdU0EfGGWP8mnEN6EkpWrqIyVpMMsLlJfkigv7vuURTc0YFPHHgMCrP
+         PTBSVEUCv3tg+jO4a3tNBJmFub0fSgyZdYw+YLmGfky2ZGFnAv9aqAB5cZIBVtmGJL+U
+         Q56iGL7gvhOs/kKCDSgBelnBleN1cLIRj5CZXiTF0WNIkNpYx7Xo7jVs2Y8THtfu+yKy
+         VlTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9zZ3JqKuAucMkJsBK3uQ6oqn08Q8o246NeeOkBUzIpE=;
-        b=euTcM94IT3ng2fHzvRrZ9Uz2HsCAj4obX/N9fY3ZDSbye1FrlABH6gJDVwE81Olfsc
-         f4PL1rlbur9djKfHqgi1oB4JSorCwGDCMj2t0t6iflDVc/p3HfutBeF982oMVRBUHZMk
-         h8+8r/ujNpJbKYq+Ew0tKJ2uLww0aX+xjCtWFYujTu9OSX8fpXwXMEPqSZq0/tAvrL8E
-         sDOr0zZM9GJdV3B2dZ+UaGlSkKmazNaP3jL4G10t11jJILztigXoBZp7C5isl2lvcdHZ
-         dot8+VQjDF4la1zPpS8P7isO7J/SGcIgtFCVx1denz7krwa53+tSYVr+UMhaIO5BK+G5
-         0H3Q==
-X-Gm-Message-State: AOAM533AfTPz6wVuZQJxwI5ZfG2axGrEFmAjUYP83meDADRy6iBjA11C
-        WMiPXAA/mtp8tPCATcDdlF7tIDWf1wuicTUEgEdhtg==
-X-Google-Smtp-Source: ABdhPJw+U5yOHue/Ytd8RPqMjT92IYE0mZoO7yO1YIY/4s+p2JNLru501tVYMlY3tURTLHPZrBHXQO8va9HmuomgCis=
-X-Received: by 2002:a67:6b07:: with SMTP id g7mr2713184vsc.48.1601975612161;
- Tue, 06 Oct 2020 02:13:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201005183830.486085-1-robh@kernel.org> <20201005183830.486085-5-robh@kernel.org>
-In-Reply-To: <20201005183830.486085-5-robh@kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 6 Oct 2020 11:12:55 +0200
-Message-ID: <CAPDyKFoxg_i8tcRjV_htv9s1Z=gxYzJtxPAnCqRR9gzR2hkG0w@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: Explicitly allow additional properties
- in common schemas
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>, dmaengine@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Jens Axboe <axboe@kernel.dk>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Richard Weinberger <richard@nod.at>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QEFUhgHBOGUBmIFPYBdTtbDlyFkBZQsVm2M2SQfag20=;
+        b=U8/7NEk6ONS5/JmrFedzACCf+ubxjjpTVove3IFZStxQFLfsJpoYP6Kc+OdlEfIgKk
+         4uJpcq4oEByNKpZV6X0mWalo2QmPWP2wAUIqKIdVZhLiuQEd+5Qm2w7IlCQK6Y9mukU8
+         fujXmBmOd8FkkIxOscrToBIC5kIH3AH1XYH0wO/PHI7jsvcO5ZvrRMJ83qwxfMjPyocC
+         dXYzf4Ih42DMMP4iInztLnICnBiy6T/Od/IscOoq8Rtcorp0+niwQfj1e76q8Y4Ld7P0
+         UqAiSLW+Ed6NvI/Z4EAibdQTuXBAoRG1jX+ewgc4gaUhTAaugrmQi59rdz+Ju9N+5SEJ
+         dpxg==
+X-Gm-Message-State: AOAM530jxThgeCnoDsvodJZlYOJrgMXopLPiJeQs0WutxfKaqCGlfrZa
+        4RcBwPhIUELDlqVNXHSqWFY=
+X-Google-Smtp-Source: ABdhPJztHMPHPpGnKB7qzmaUOockFNekVz54rqjcEM3VR9d4csUbvGcMyZEtJGtOifqKXe1if8keBA==
+X-Received: by 2002:a17:906:249a:: with SMTP id e26mr4162116ejb.484.1601976019077;
+        Tue, 06 Oct 2020 02:20:19 -0700 (PDT)
+Received: from skbuf ([188.26.229.171])
+        by smtp.gmail.com with ESMTPSA id h22sm1707064ejc.80.2020.10.06.02.20.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Oct 2020 02:20:18 -0700 (PDT)
+Date:   Tue, 6 Oct 2020 12:20:17 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Kurt Kanzenbach <kurt@linutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-can@vger.kernel.org, linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-ide@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-mips@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-mtd@lists.infradead.org,
-        Linux PCI <linux-pci@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>, linux-pwm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann
+ Hellcreek switches
+Message-ID: <20201006092017.znfuwvye25vsu4z7@skbuf>
+References: <20201004112911.25085-1-kurt@linutronix.de>
+ <20201004112911.25085-3-kurt@linutronix.de>
+ <20201004125601.aceiu4hdhrawea5z@skbuf>
+ <87lfgj997g.fsf@kurt>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87lfgj997g.fsf@kurt>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Oct 2020 at 20:38, Rob Herring <robh@kernel.org> wrote:
->
-> In order to add meta-schema checks for additional/unevaluatedProperties
-> being present, all schema need to make this explicit. As common/shared
-> schema are included by other schemas, they should always allow for
-> additionalProperties.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+On Tue, Oct 06, 2020 at 08:09:39AM +0200, Kurt Kanzenbach wrote:
+> On Sun Oct 04 2020, Vladimir Oltean wrote:
+> > I don't think this works.
+> >
+> > ip link add br0 type bridge vlan_filtering 1
+> > ip link set swp0 master br0
+> > bridge vlan add dev swp0 vid 100
+> > ip link set br0 type bridge vlan_filtering 0
+> > bridge vlan del dev swp0 vid 100
+> > ip link set br0 type bridge vlan_filtering 1
+> >
+> > The expectation would be that swp0 blocks vid 100 now, but with your
+> > scheme it doesn't (it is not unapplied, and not unqueued either, because
+> > it was never queued in the first place).
+> 
+> Yes, that's correct. So, I think we have to queue not only the addition
+> of VLANs, but rather the "action" itself such as add or del. And then
+> apply all pending actions whenever vlan_filtering is set.
 
-[...]
+Please remind me why you have to queue a VLAN addition/removal and can't
+do it straight away? Is it because of private VID 2 and 3, which need to
+be deleted first then re-added from the bridge VLAN group?
 
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml    | 2 ++
->  .../devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml     | 2 ++
->  Documentation/devicetree/bindings/mtd/nand-controller.yaml   | 2 ++
+> >> +static int hellcreek_port_bridge_join(struct dsa_switch *ds, int port,
+> >> +				      struct net_device *br)
+> >> +{
+> >> +	struct hellcreek *hellcreek = ds->priv;
+> >> +	int i;
+> >> +
+> >> +	dev_dbg(hellcreek->dev, "Port %d joins a bridge\n", port);
+> >> +
+> >> +	/* Configure port's vid to all other ports as egress untagged */
+> >> +	for (i = 0; i < ds->num_ports; ++i) {
+> >> +		if (!dsa_is_user_port(ds, i))
+> >> +			continue;
+> >> +
+> >> +		if (i == port)
+> >> +			continue;
+> >> +
+> >> +		hellcreek_apply_vlan(hellcreek, i, port, false, true);
+> >> +	}
+> >
+> > I think this is buggy when joining a VLAN filtering bridge. Your ports
+> > will pass frames with VID=2 with no problem, even without the user
+> > specifying 'bridge vlan add dev swp0 vid 2', and that's an issue. My
+> > understanding is that VLANs 1, 2, 3 stop having any sort of special
+> > meaning when the upper bridge has vlan_filtering=1.
+> 
+> Yes, that understanding is correct. So, what happens is when a port is
+> joining a VLAN filtering bridge is:
+> 
+> |root@tsn:~# ip link add name br0 type bridge
+> |root@tsn:~# ip link set dev br0 type bridge vlan_filtering 1
+> |root@tsn:~# ip link set dev lan0 master br0
+> |[  209.375055] br0: port 1(lan0) entered blocking state
+> |[  209.380073] br0: port 1(lan0) entered disabled state
+> |[  209.385340] hellcreek ff240000.switch: Port 2 joins a bridge
+> |[  209.391584] hellcreek ff240000.switch: Apply VLAN: port=3 vid=2 pvid=0 untagged=1
+> |[  209.399439] device lan0 entered promiscuous mode
+> |[  209.404043] device eth0 entered promiscuous mode
+> |[  209.409204] hellcreek ff240000.switch: Enable VLAN filtering on port 2
+> |[  209.415716] hellcreek ff240000.switch: Unapply VLAN: port=2 vid=2
+> |[  209.421840] hellcreek ff240000.switch: Unapply VLAN: port=0 vid=2
 
-[...]
+Now I understand even less. If the entire purpose of
+hellcreek_setup_vlan_membership is to isolate lan0 from lan1, then why
+do you even bother to install vid 2 to port=3 (lan1) when joining a
+bridge, be it vlan_filtering or not? In bridged mode, they don't need
+a unique pvid, it only complicates the implementation. They can have the
+pvid from the bridge VLAN group.
 
->  Documentation/devicetree/bindings/power/power-domain.yaml    | 2 ++
+> |[  209.428170] hellcreek ff240000.switch: Apply queued VLANs: port2
+> |[  209.434158] hellcreek ff240000.switch: Apply VLAN: port=2 vid=0 pvid=0 untagged=0
+> |[  209.441649] hellcreek ff240000.switch: Clear queued VLANs: port2
+> |[  209.447920] hellcreek ff240000.switch: Apply queued VLANs: port0
+> |[  209.453910] hellcreek ff240000.switch: Apply VLAN: port=0 vid=0 pvid=0 untagged=0
+> |[  209.461402] hellcreek ff240000.switch: Clear queued VLANs: port0
+> |[  209.467620] hellcreek ff240000.switch: VLAN prepare for port 2
+> |[  209.473476] hellcreek ff240000.switch: VLAN prepare for port 0
+> |[  209.479534] hellcreek ff240000.switch: Add VLANs (1 -- 1) on port 2, untagged, PVID
+> |[  209.487164] hellcreek ff240000.switch: Apply VLAN: port=2 vid=1 pvid=1 untagged=1
+> |[  209.494659] hellcreek ff240000.switch: Add VLANs (1 -- 1) on port 0, untagged, no PVID
+> |[  209.502794] hellcreek ff240000.switch: Apply VLAN: port=0 vid=1 pvid=0 untagged=1
+> |root@tsn:~# bridge vlan show
 
-For mmc and power-domain:
+This is by no means a good indicator for anything. It shows the bridge
+VLAN groups, not the hardware database.
 
-Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
+> |port    vlan ids
+> |lan0     1 PVID Egress Untagged
+> |
+> |br0      1 PVID Egress Untagged
+> 
+> ... which looks correct to me. The VLAN 2 is unapplied as expected. Or?
 
-[...]
+Ok, it gets applied in .port_bridge_join and unapplied in .port_vlan_filtering,
+which is a convoluted way of doing nothing.
 
-Kind regards
-Uffe
+> >
+> > And how do you deal with the case where swp1 and swp2 are bridged and
+> > have the VLAN 3 installed via 'bridge vlan', but swp3 isn't bridged?
+> > Will swp1/swp2 communicate with swp3? If yes, that's a problem.
+> 
+> There is no swp3. Currently there are only two ports and either they are
+> bridged or not.
+
+So this answers my question of whether the tunnel port is a user port or
+not, ok.
+
+How about other hardware revisions? Is this going to be a 2-port switch
+forever? Your solution will indeed work for 2 ports (as long as you
+address the other feedback from v5 w.r.t. declaring the ports as "always
+filtering" and rejecting invalid 8021q uppers, which I don't see here),
+but it will not scale for 3 ports, due to the fact that the bridge can
+install a VLAN on a lan2 port, without knowing that it is in fact the
+private pvid of lan1 or lan0.
+
+> >> +static int __hellcreek_fdb_del(struct hellcreek *hellcreek,
+> >> +			       const struct hellcreek_fdb_entry *entry)
+> >> +{
+> >> +	dev_dbg(hellcreek->dev, "Delete FDB entry: MAC=%pM!\n", entry->mac);
+> >> +
+> >
+> > Do these dev_dbg statements bring much value at all, even to you?
+> 
+> Yes, they do. See the log snippet above.
+> 
+
+If you want to dump the hardware database you can look at the devlink
+regions that Andrew added very recently. Much more reliable than
+following the order of operations in the log.
+
+> >> +static const struct hellcreek_platform_data de1soc_r1_pdata = {
+> >> +	.num_ports	 = 4,
+> >> +	.is_100_mbits	 = 1,
+> >> +	.qbv_support	 = 1,
+> >> +	.qbv_on_cpu_port = 1,
+> >
+> > Why does this matter?
+> 
+> Because Qbv on the CPU port is a feature and not all switch variants
+> have that. It will matter as soon as TAPRIO is implemented.
+
+How do you plan to install a tc-taprio qdisc on the CPU port?
