@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1F302851D9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 20:45:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF20285202
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 21:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726793AbgJFSpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 14:45:10 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:46810 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbgJFSpK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 14:45:10 -0400
-Received: by mail-oi1-f196.google.com with SMTP id u126so13652462oif.13;
-        Tue, 06 Oct 2020 11:45:08 -0700 (PDT)
+        id S1726869AbgJFTEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 15:04:22 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:41652 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726791AbgJFTEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 15:04:22 -0400
+Received: by mail-oi1-f194.google.com with SMTP id x69so13731710oia.8;
+        Tue, 06 Oct 2020 12:04:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Gx2hEzPdtZzxVHpX94NR3xMuo2CpHfX+aniPg7cGd7E=;
-        b=llY/U+bNH3ibbZGJNOSHL2jyFuZXWML7V2ls9Fa2UACigSs9flWJw+MXDvec2r6wVf
-         2gJDaA9fuJ6EVo9mOCQQtT7Mfa/mCY2xpvT+Uwo5TZ7OdVWixXl/0IXnmia/l2YyVplO
-         NghlcDsZ+xTfK53u3lNxEQT5O9Wbgf8ZzGww9UFlWDu/BOFz2E8rRO9387vlRzDwkwaH
-         HxBzhV1kJEpNVQo50aZgBbAICZ4uH9YcCmsTbfySSDIvsrdmopWwCaVGrtu0C4tQAj60
-         Gjdu4ixRJzf0GoZNl+RR0Pg/qanhXo9i7XDxTOp6+tpmdAR1Bh6hZRYwFJGy3LTCnQ3Q
-         75gA==
-X-Gm-Message-State: AOAM531KedS6p0NHCcSF4GtW82FSO8W3OIJlng6M4GKFWUmKEmc5fjAh
-        amGNZeP22nDxEjvRkfKAUn7BzSi17gQ6
-X-Google-Smtp-Source: ABdhPJzABpX06X77NC8/qtvdmovZtjI3oABOZsl06LFgqXj16pDUpDxTrxelm5/7+/R+Mqi+oZGlJQ==
-X-Received: by 2002:aca:d946:: with SMTP id q67mr3561924oig.27.1602009908148;
-        Tue, 06 Oct 2020 11:45:08 -0700 (PDT)
+        bh=qRpEP4O4Xg7xFp6XQzZqQIu/xXtLIIBg9evjxYMVcxA=;
+        b=eXc2eFsptcQkJLm/KSKZ5QiGMjYYZW1Vf3S3NrbJfxzlfu0ZSdtIo+qwy8VF+elEhu
+         9XaTbuuKw1XyjOpO1YAw8WxOyRtOL6w4PquhltdLUkjiyUyDQfIZ8XdhNqeFmDbxOnni
+         WFrSPKRJZMA3wxtVOMr19Xav/x1RBGxBAdoU55lIfWpipxJ0NCCsUFjC9dJjpOkwdBoK
+         oP0EuUJeoEFQqMoO6kH5Le9yqlVQ24Pb5lYpscxTSpHA369/Q1jUr7s0yFp+NnB7ypUy
+         zQNVaM5ajLU7xUPw2YFUPoWA0xeVlrxqS6b03LwCUFSrbRmZ/bEDIB4z6QyBpFoh8GT4
+         2Raw==
+X-Gm-Message-State: AOAM532f33WzHpiogdd2gFCbRu4qi4tbFCAzBWOrlefjsVhjeIpXEVH7
+        GEvErcYAPV3Ra4oxJQx+iQ==
+X-Google-Smtp-Source: ABdhPJx7JJEYZejq7vojdRBlVNLxq4Nqt8pFIHjeMaqptJwbsYMpCHWJ6VcmOB1RXwIlYPVt4E9KxA==
+X-Received: by 2002:aca:f203:: with SMTP id q3mr3454887oih.148.1602011061400;
+        Tue, 06 Oct 2020 12:04:21 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s124sm1494222oig.6.2020.10.06.11.45.06
+        by smtp.gmail.com with ESMTPSA id m187sm1544891oia.39.2020.10.06.12.04.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 11:45:07 -0700 (PDT)
-Received: (nullmailer pid 2614391 invoked by uid 1000);
-        Tue, 06 Oct 2020 18:45:06 -0000
-Date:   Tue, 6 Oct 2020 13:45:06 -0500
+        Tue, 06 Oct 2020 12:04:20 -0700 (PDT)
+Received: (nullmailer pid 2647308 invoked by uid 1000);
+        Tue, 06 Oct 2020 19:04:19 -0000
+Date:   Tue, 6 Oct 2020 14:04:19 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sagar Kadam <sagar.kadam@sifive.com>
-Cc:     thierry.reding@gmail.com, paul.walmsley@sifive.com,
-        sboyd@kernel.org, lee.jones@linaro.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, maz@kernel.org, aou@eecs.berkeley.edu,
-        palmer@dabbelt.com, linux-pwm@vger.kernel.org,
-        jason@lakedaemon.net, u.kleine-koenig@pengutronix.de,
-        yash.shah@sifive.com, tglx@linutronix.de,
-        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: riscv: convert pwm bindings to
- json-schema
-Message-ID: <20201006184506.GA2613769@bogus>
-References: <1601393531-2402-1-git-send-email-sagar.kadam@sifive.com>
- <1601393531-2402-4-git-send-email-sagar.kadam@sifive.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Libin <huawei.libin@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: Re: [PATCH v6 15/17] dt-bindings: arm: hisilicon: convert Hi6220
+ domain controller bindings to json-schema
+Message-ID: <20201006190419.GA2646913@bogus>
+References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
+ <20200930031712.2365-16-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1601393531-2402-4-git-send-email-sagar.kadam@sifive.com>
+In-Reply-To: <20200930031712.2365-16-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Sep 2020 21:02:11 +0530, Sagar Kadam wrote:
-> Convert device tree bindings for SiFive's PWM controller to YAML
-> format.
+On Wed, 30 Sep 2020 11:17:10 +0800, Zhen Lei wrote:
+> Convert the Hisilicon Hi6220 domain controllers binding to DT schema
+> format using json-schema. All of them are grouped into one yaml file, to
+> help users understand differences and avoid repeated descriptions.
 > 
-> Signed-off-by: Sagar Kadam <sagar.kadam@sifive.com>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  .../devicetree/bindings/pwm/pwm-sifive.txt         | 33 -----------
->  .../devicetree/bindings/pwm/pwm-sifive.yaml        | 69 ++++++++++++++++++++++
->  2 files changed, 69 insertions(+), 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-sifive.txt
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
+>  .../hisilicon/controller/hi6220-domain-ctrl.yaml   | 68 ++++++++++++++++++++++
+>  .../controller/hisilicon,hi6220-aoctrl.txt         | 18 ------
+>  .../controller/hisilicon,hi6220-mediactrl.txt      | 18 ------
+>  .../controller/hisilicon,hi6220-pmctrl.txt         | 18 ------
+>  4 files changed, 68 insertions(+), 54 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt
+>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt
+>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt
 > 
 
 Applied, thanks!
