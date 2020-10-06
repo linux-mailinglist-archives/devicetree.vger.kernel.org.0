@@ -2,96 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6C02284D63
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E03C0284D69
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725906AbgJFONf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 10:13:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725902AbgJFONf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:13:35 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC02C061755;
-        Tue,  6 Oct 2020 07:13:35 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1601993613;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=7bNY+7IvY0BxuXZP41nveX41kn9y9lBubZMrI95BJDw=;
-        b=wmnQ+MBlRG1wCrfkMbT4goA4tzmuYFobKthzI5UI5WecDvDhvhhP5HcmkBJIVaRR9D5q75
-        7nMN/A4Hz1EfWGyV2Kt7ppcuXFhPdXXWcdlVPEcXPIZqlS4tDRNN2JhOFd138MzyWJaTKs
-        YvLo43AH/s71DohKaOt2dW+oxGyn2NBjX3d9pGDmI0O+FJnYh52IEGkPwospjcXqKPPPKC
-        7nPDvVjnHaRE/CJFpGKnf4gCzqWw3w1ms7UC1to0ZW0fS/tUG4hmonMbwIne0epyIj6jOa
-        rcJHW31HLmYz+fhufJkqg3IyAaVY/B7EjEWD/tbkJJDEsmmvUBaBSYJ7INCE0Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1601993613;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=7bNY+7IvY0BxuXZP41nveX41kn9y9lBubZMrI95BJDw=;
-        b=m7+uMS1oe6DwOJM+nddhZqga2mpNKFTwCCu7FzkKjWRk7r6ovh6PFSg8HdUaq7V+u6sTUf
-        YYx1gZvHYlhn2zAw==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
-In-Reply-To: <20201006135631.73rm3gka7r7krwca@skbuf>
-References: <20201004112911.25085-1-kurt@linutronix.de> <20201004112911.25085-3-kurt@linutronix.de> <20201004125601.aceiu4hdhrawea5z@skbuf> <87lfgj997g.fsf@kurt> <20201006092017.znfuwvye25vsu4z7@skbuf> <878scj8xxr.fsf@kurt> <20201006113237.73rzvw34anilqh4d@skbuf> <87wo037ajr.fsf@kurt> <20201006135631.73rm3gka7r7krwca@skbuf>
-Date:   Tue, 06 Oct 2020 16:13:32 +0200
-Message-ID: <87lfgj788j.fsf@kurt>
+        id S1726329AbgJFOOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 10:14:06 -0400
+Received: from esa4.microchip.iphmx.com ([68.232.154.123]:48191 "EHLO
+        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbgJFOOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:14:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1601993644; x=1633529644;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=piCMffCqgDvqxBLu6OvrQGya1ZdRTDuoxFoRit67Um4=;
+  b=lGj15A0iNHeOi6gls9frvwi5gHXei3hCxxY0Qs/q4Af/Tjy9hq86sc9L
+   y5Yh389DfDOihiybPXLXXSCNUpLEH/CLSKItWTIuxVwiMDoYDl1DVAgWj
+   B7kWWv34E9PtwCVpDCk40BfB8H1tgmTlKCy2bGS6hDHKgqWYB+LsEinPW
+   VODwvEYV2UlqTOEbxjqMzlB3Wfh/WXlzE/lO2ejGCBEWi2JNqvaAkWZyK
+   UZRg0iMwJthnWmEgDFX4ninWT/BxiYJZJzDgA0v2zy4mopgRb38HUF5dW
+   rGG7L2V6HDdVRuW5ifI9ho0mr3L054HRTu5uxQTjSM9goKYxlK4BtHisv
+   w==;
+IronPort-SDR: djP9zQqXvMQrZjJMd8IYXtDNiX1eG3U3qJaQeXob0d9tHdrRnVlEK6UGtDi3OeaZYv4SKLSrsY
+ 6HsyMkDuv2UomlwN3OCj9Mw3nYBrgZUgyfX0dQnVlBrToo1Q2fKNdOPmuy29CTSf4P7FQDWm3W
+ 1R8e5lJhPyW2SNoxwKlry/xnXzrur9YgbE9AdEqkx72u8JKbwpUibohChXhRKQCyMTEEioM7jh
+ fw1Mnwl+V+yML8LAXpZTHho8N0XuNAshHA2TfFxCWCPnVOVQRTyyhQZkgFVPlseZoH8G41az4M
+ UUU=
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; 
+   d="scan'208";a="89276222"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Oct 2020 07:14:03 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 6 Oct 2020 07:13:53 -0700
+Received: from soft-dev10.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 6 Oct 2020 07:14:01 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH v3 0/3] pinctrl: Adding support for Microchip/Microsemi serial GPIO controller
+Date:   Tue, 6 Oct 2020 16:13:48 +0200
+Message-ID: <20201006141351.2247240-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+The series add support for the serial GPIO controller used by
+Microchip Sparx5, as well as (MSCC) ocelot/jaguar2 SoCs.
 
-On Tue Oct 06 2020, Vladimir Oltean wrote:
-> On Tue, Oct 06, 2020 at 03:23:36PM +0200, Kurt Kanzenbach wrote:
->> So you're saying private VLANs can be used but the user or the other
->> kernel modules shouldn't be allowed to use them to simplify the
->> implementation?  Makes sense to me.
->
-> It would be interesting to see if you could simply turn off VLAN
-> awareness in standalone mode, and still use unique pvids per port.
-> Then you would have no further restriction for VLAN-tagged traffic with
-> unknown VLANs or with 8021q uppers having the same VLAN ID on multiple
-> ports.
+The driver now register two separate banks (per instance), one for
+input pins (the first) and one for output direction. This eliminates
+the need for specifying the direction as part of the gpio
+arguments. The (fixed) direction is thus inherent from the gpio
+handle.
 
-True. That needs to be tested.
+v3 changes:
+- Renamed all usage of "mchp" abbrevation with "microchip".
+- Split the in/output directions into (two) separate banks.
+- Eliminated the bindings include file (from above)
+- Changed SPDX license to "GPL-2.0-or-later"
+- Change -ENOTSUPP to -EOPNOTSUPP
+- Minor type/symbol naming changes
 
+v2 changes:
+- Adds both in and output modes.
+- Use direct adressing of the individual banks (#gpio-cells = <4>),
+  also osoleting need for addressing macros in bindings include file.
+- Property 'microchip,sgpio-ports' (uint32, bitmask) replaced by
+  proper range set (array of [start,end]) 'microchip,sgpio-port-ranges'.
+- Fixes whitespace issues in Kconfig file
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+Lars Povlsen (3):
+  dt-bindings: pinctrl: Add bindings for pinctrl-mchp-sgpio driver
+  pinctrl: pinctrl-mchp-sgpio: Add pinctrl driver for Microsemi Serial
+    GPIO
+  arm64: dts: sparx5: Add SGPIO devices
 
------BEGIN PGP SIGNATURE-----
+ .../pinctrl/microchip,sparx5-sgpio.yaml       | 127 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     |  91 +++
+ .../boot/dts/microchip/sparx5_pcb125.dts      |   5 +
+ .../dts/microchip/sparx5_pcb134_board.dtsi    | 262 +++++++
+ .../dts/microchip/sparx5_pcb135_board.dtsi    |  57 ++
+ drivers/pinctrl/Kconfig                       |  18 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-microchip-sgpio.c     | 676 ++++++++++++++++++
+ 9 files changed, 1238 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-microchip-sgpio.c
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl98e4wACgkQeSpbgcuY
-8KaZCQ//fEuJwtN8fFzqEN7r+5f9ZA9tPoXweRGEyzHT2LG2xT5vIJb7Fo66VDjG
-/LLMsUVewzZpxQZY6ZUGCDFmoA4wrs331GElmEkUbOgogS4V3G+nYRV3MXlPnh5A
-HySW5gIBQTVBJqvAbOz4UU1dbEuogA9Wm2iwOWglbuXnOM7LGbZ4Np3grguoJX+6
-HRsm6Hhycuun6c3MEqtQyyAvMu1odnMm0Yc1+t9kb76zu5Fp8CsuS5/YKK12Feed
-Q+y7AhjmrsSyINUoIIk8aS0cr9VWzdHexOFFvvzueQpI4Saz8sutch1i8cyV7/YQ
-iobtox0bq8HBLox4AaxpRMQ3vOjbiyazoeOuzIKc4q5B8z9PTqi8pxihCtp33cmp
-adIyB2hGBeJuwxFAR4HVmA+SgCx8y+I0+hs+nzFl4JkzI6Z5FikaacvHasoTsB5c
-mSL2iXTUmqgDcXKDed28R0TZd7Zil40iKpp6j2FUjGd5/6pDGReZSYOiNFzBvSNh
-+eJVCQupiFy/247SzIyz5wbXcHV9yQ/YHFwDomT1dMwlIRAW5DwaM0y4HGXwPbLc
-Q/V0yrqAytbAcdlME+gz8ORh949hObvxy2KhMYwGKkaImcwpMKTpf5cwPpW/fDTy
-qoCHdZUMmg6dBu9q+UxB4GEG7QZg9wzDbN/y4seJi60s5xo6USk=
-=5PxH
------END PGP SIGNATURE-----
---=-=-=--
+--
+2.25.1
