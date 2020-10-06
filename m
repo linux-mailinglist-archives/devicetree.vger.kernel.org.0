@@ -2,228 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE760284538
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 07:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28AB728454C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 07:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726118AbgJFFLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 01:11:03 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:53295 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725912AbgJFFLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 01:11:02 -0400
-X-Greylist: delayed 462 seconds by postgrey-1.27 at vger.kernel.org; Tue, 06 Oct 2020 01:11:02 EDT
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id 01140C6B;
-        Tue,  6 Oct 2020 01:03:18 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Tue, 06 Oct 2020 01:03:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=o
-        WLg/2i+TQUsx3kpfl8FNqwpAO07sFlgoMeJklktQv0=; b=AFmklXa6A8UAEBshM
-        XormxgtzeHby/cOOY4tNHmkPw59vJMuixIAIhLzQrWpPL2gmVmV6qCyM1kc75IeZ
-        nTCdyokrMowK4HoyYB0R+DwvAcK2l9ssJoX0b8lVol2qtq7ilPCkSRekRTCiyV81
-        A89PGpXQsPBA7QC+5J62f5M6rp7If+K8+NlIJ2Lt6EOL3cY1Igg9Q6qx7WOOdBaV
-        MyX5n0cOixq0Q+CN87l1gTR+2EmzBVwKUpGppzROTLdkQR5b5+slux+NZhZu6VLK
-        v4+/ofclG1tbxCEmEFyOAae2e+yRY+yukN6SuYuV1GuGO8Zog+LPvR1qHENU/LNM
-        ojtSA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=oWLg/2i+TQUsx3kpfl8FNqwpAO07sFlgoMeJklktQ
-        v0=; b=EPkkFVXnOedVnd5i+zaJMiWSqNIe1d4wp0WNxJW2F8xMKXEYjllLRZMzN
-        xhtasgS1RHq4Edt4TH5Is0ofgEALZT2fY62DnOb8e57MWIkmDt0L8XCRJtIACgKe
-        6OdmOOk4gLVF6I569SLmevHckU/GVi56gtwa2yAHwjnFvw43aVNJMgS04JT4PkRL
-        t/zMtVnq0uf6Ck52BxsiaKiyWFSemxLkYWy93kK1UTl95mlThiXBaN7wFh7BgJaV
-        6pSv/SoRH6rfRxo/5WChefw3pC76bEH+aqUz4kEhTYdoRNqSZnWUT+GkkUDy/eL3
-        KU6QQNzjOPlFWD+9QOcZLLjrEEXiQ==
-X-ME-Sender: <xms:k_p7XwlqWwCX89Cy8SC0zYcXgCWhnrne3rtRLo-C1MjLc1b-O8xI1Q>
-    <xme:k_p7X_1Xch46bdLdh6HhS33EorSUS3cgqFHXSRsNcdnWq-KwYZ_Z58cZ7tu4LCGxp
-    rh-IN5gH_LCMho3QA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgeefgdeludcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeehnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpefhueeuueetteeiuddvveetieekiedvkeejjeetkeejfeejuddvvedu
-    geejteelueenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:k_p7X-ocWSx-4nwhwI3Babz3p4E6Bxe-PzddAeH8nrCbCW7jFZnAbw>
-    <xmx:k_p7X8n3hsqxWOvkuBmAhugsoNYWEcsTwJjP2tjlygN2ymWG5CXzVg>
-    <xmx:k_p7X-3apXUvScAotc0XMXdIrNbGlVw79X8af28Ms7DSSJ-sTD9Ijw>
-    <xmx:lvp7X0ONZUUVXZwdDNAg26FSjigy0Jl0mxqnuadNpT0gCCHOSfvWJdVisJQ>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 4E02E306467D;
-        Tue,  6 Oct 2020 01:03:15 -0400 (EDT)
-Subject: Re: [PATCH v6 02/14] ASoC: sun4i-i2s: Change set_chan_cfg() params
-To:     Maxime Ripard <maxime@cerno.tech>,
-        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
+        id S1726878AbgJFF3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 01:29:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50050 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725912AbgJFF3q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Oct 2020 01:29:46 -0400
+Received: from localhost (unknown [122.167.144.92])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1C34120870;
+        Tue,  6 Oct 2020 05:29:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601962185;
+        bh=IqVDArZkdO/B6tbx3G9IqtpqMW94z4IPv/01HlGFHyY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XJYtCNTyvx3ozaL1aRMYZGV+bTbvDa3P+1vHmIpIZkmMpy/W3RdFSo1VlEtqd2ZwS
+         VXm0e3hsDFIgJyUblJEaSpP3cJaPtrtrYpgunMrPuk68lEyTmKEkfZetm3/aycx6/+
+         f5jbT6MC2Pw1++qOdAXkqzyJva8aLdhWHo97xSwA=
+Date:   Tue, 6 Oct 2020 10:59:40 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>, dmaengine@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Jens Axboe <axboe@kernel.dk>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-References: <20201003141950.455829-1-peron.clem@gmail.com>
- <20201003141950.455829-3-peron.clem@gmail.com>
- <20201005121307.v6jpyeyfi4kxc2cl@gilmour.lan>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <fae04296-9865-3dcb-e02d-46062bf778a8@sholland.org>
-Date:   Tue, 6 Oct 2020 00:03:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        Linus Walleij <linus.walleij@linaro.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Richard Weinberger <richard@nod.at>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: Add missing 'unevaluatedProperties'
+Message-ID: <20201006052940.GO2968@vkoul-mobl>
+References: <20201005183830.486085-1-robh@kernel.org>
+ <20201005183830.486085-2-robh@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20201005121307.v6jpyeyfi4kxc2cl@gilmour.lan>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201005183830.486085-2-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/5/20 7:13 AM, Maxime Ripard wrote:
-> On Sat, Oct 03, 2020 at 04:19:38PM +0200, Clément Péron wrote:
->> As slots and slot_width can be set manually using set_tdm().
->> These values are then kept in sun4i_i2s struct.
->> So we need to check if these values are setted or not
->> in the struct.
->>
->> Avoid to check for this logic in set_chan_cfg(). This will
->> duplicate the same check instead pass the required values
->> as params to set_chan_cfg().
->>
->> This will also avoid a bug when we will enable 20/24bits support,
->> i2s->slot_width is not actually used in the lrck_period computation.
->>
->> Suggested-by: Samuel Holland <samuel@sholland.org>
->> Signed-off-by: Clément Péron <peron.clem@gmail.com>
->> ---
->>  sound/soc/sunxi/sun4i-i2s.c | 36 ++++++++++++++----------------------
->>  1 file changed, 14 insertions(+), 22 deletions(-)
->>
->> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
->> index c5ccd423e6d3..1f577dbc20a6 100644
->> --- a/sound/soc/sunxi/sun4i-i2s.c
->> +++ b/sound/soc/sunxi/sun4i-i2s.c
->> @@ -177,8 +177,9 @@ struct sun4i_i2s_quirks {
->>  	unsigned long (*get_bclk_parent_rate)(const struct sun4i_i2s *);
->>  	s8	(*get_sr)(const struct sun4i_i2s *, int);
->>  	s8	(*get_wss)(const struct sun4i_i2s *, int);
->> -	int	(*set_chan_cfg)(const struct sun4i_i2s *,
->> -				const struct snd_pcm_hw_params *);
->> +	int	(*set_chan_cfg)(const struct sun4i_i2s *i2s,
->> +				unsigned int channels,	unsigned int slots,
->> +				unsigned int slot_width);
->>  	int	(*set_fmt)(const struct sun4i_i2s *, unsigned int);
->>  };
->>  
->> @@ -414,10 +415,9 @@ static s8 sun8i_i2s_get_sr_wss(const struct sun4i_i2s *i2s, int width)
->>  }
->>  
->>  static int sun4i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->> -				  const struct snd_pcm_hw_params *params)
->> +				  unsigned int channels, unsigned int slots,
->> +				  unsigned int slot_width)
->>  {
->> -	unsigned int channels = params_channels(params);
->> -
->>  	/* Map the channels for playback and capture */
->>  	regmap_write(i2s->regmap, SUN4I_I2S_TX_CHAN_MAP_REG, 0x76543210);
->>  	regmap_write(i2s->regmap, SUN4I_I2S_RX_CHAN_MAP_REG, 0x00003210);
->> @@ -434,15 +434,11 @@ static int sun4i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->>  }
->>  
->>  static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->> -				  const struct snd_pcm_hw_params *params)
->> +				  unsigned int channels, unsigned int slots,
->> +				  unsigned int slot_width)
->>  {
->> -	unsigned int channels = params_channels(params);
->> -	unsigned int slots = channels;
->>  	unsigned int lrck_period;
->>  
->> -	if (i2s->slots)
->> -		slots = i2s->slots;
->> -
->>  	/* Map the channels for playback and capture */
->>  	regmap_write(i2s->regmap, SUN8I_I2S_TX_CHAN_MAP_REG, 0x76543210);
->>  	regmap_write(i2s->regmap, SUN8I_I2S_RX_CHAN_MAP_REG, 0x76543210);
->> @@ -467,11 +463,11 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->>  	case SND_SOC_DAIFMT_DSP_B:
->>  	case SND_SOC_DAIFMT_LEFT_J:
->>  	case SND_SOC_DAIFMT_RIGHT_J:
->> -		lrck_period = params_physical_width(params) * slots;
->> +		lrck_period = slot_width * slots;
->>  		break;
->>  
->>  	case SND_SOC_DAIFMT_I2S:
->> -		lrck_period = params_physical_width(params);
->> +		lrck_period = slot_width;
->>  		break;
->>  
->>  	default:
->> @@ -490,15 +486,11 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->>  }
->>  
->>  static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->> -				      const struct snd_pcm_hw_params *params)
->> +				      unsigned int channels, unsigned int slots,
->> +				      unsigned int slot_width)
->>  {
->> -	unsigned int channels = params_channels(params);
->> -	unsigned int slots = channels;
->>  	unsigned int lrck_period;
->>  
->> -	if (i2s->slots)
->> -		slots = i2s->slots;
->> -
->>  	/* Map the channels for playback and capture */
->>  	regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP0_REG, 0xFEDCBA98);
->>  	regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP1_REG, 0x76543210);
->> @@ -525,11 +517,11 @@ static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->>  	case SND_SOC_DAIFMT_DSP_B:
->>  	case SND_SOC_DAIFMT_LEFT_J:
->>  	case SND_SOC_DAIFMT_RIGHT_J:
->> -		lrck_period = params_physical_width(params) * slots;
->> +		lrck_period = slot_width * slots;
->>  		break;
->>  
->>  	case SND_SOC_DAIFMT_I2S:
->> -		lrck_period = params_physical_width(params);
->> +		lrck_period = slot_width;
->>  		break;
->>  
->>  	default:
->> @@ -565,7 +557,7 @@ static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
->>  	if (i2s->slot_width)
->>  		slot_width = i2s->slot_width;
->>  
->> -	ret = i2s->variant->set_chan_cfg(i2s, params);
->> +	ret = i2s->variant->set_chan_cfg(i2s, channels, slots, slot_width);
+On 05-10-20, 13:38, Rob Herring wrote:
+> This doesn't yet do anything in the tools, but make it explicit so we can
+> check either 'unevaluatedProperties' or 'additionalProperties' is present
+> in schemas.
 > 
-> Isn't slots and slot_width set to 0 here ?
+> 'unevaluatedProperties' is appropriate when including another schema (via
+> '$ref') and all possible properties and/or child nodes are not
+> explicitly listed in the schema with the '$ref'.
 > 
-> And therefore, wouldn't we set lrck_period to 0 if we're using any
-> format but I2S?
-> 
-> More importantly, I'm not really convinced this needs to be done, and it
-> introduces some side effects that are not explained.
+> This is in preparation to add a meta-schema to check for missing
+> 'unevaluatedProperties' or 'additionalProperties'. This has been a
+> constant source of review issues.
 
-If I set dai-tdm-slot-width = <32> and start a stream using S16_LE,
-currently we would calculate BCLK for 32-bit slots, but program
-lrck_period for 16-bit slots, making the sample rate double what we
-expected. That sounds like a bug to me. (Because of that, as Chen-Yu
-mentioned in reply to v5, this should be the first patch in the series.)
+Acked-By: Vinod Koul <vkoul@kernel.org>
 
-Could you be more specific what side effects you are referring to?
-
-> Maxime
-
-Cheers,
-Samuel
+-- 
+~Vinod
