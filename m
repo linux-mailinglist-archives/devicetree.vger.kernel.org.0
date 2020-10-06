@@ -2,124 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 486BB284A3E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 12:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F6B284A51
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 12:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725981AbgJFKRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 06:17:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58236 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725939AbgJFKRS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Oct 2020 06:17:18 -0400
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 45D0220870;
-        Tue,  6 Oct 2020 10:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601979437;
-        bh=LjlbuXXwVZiOZnh4s8AiRFzOTD9ANSeAEjirAmE6Ijs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TNdguZjsASN3AhbyCcaIXFW6z4k/3XU5Hmc1yusVyUJx+Ho6rrIzvQM7KUvpKeGNQ
-         BTJW96WlaTEyY2T7WpQ5QozEknz60csXY/YjdG8qua52OXo8iXCQ6rHdCHU241BpUN
-         OGSBGdIVoZ86xv1cpozwyxSgPrFZ0HvXBhJVBxdc=
-Received: by mail-ej1-f44.google.com with SMTP id h24so10236188ejg.9;
-        Tue, 06 Oct 2020 03:17:17 -0700 (PDT)
-X-Gm-Message-State: AOAM530xwAYN+Rj5qFkbPHSajwUHyAtmfNXrm/NS6HPCWiW6M/FOnlqI
-        LWwMelqPMQfAOD0a5uMrHwXjppI0uumUBuqhhwg=
-X-Google-Smtp-Source: ABdhPJwlwRJfXM/fE2yWBLSzyxvAdx3iSTpcYDDZzKdj0oQdX9ZBfNiA7FQzsxHAYvDsj3Cf4ThgOgnubFLXNR4lgeA=
-X-Received: by 2002:a17:906:5247:: with SMTP id y7mr4228617ejm.503.1601979435624;
- Tue, 06 Oct 2020 03:17:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <CGME20201006100556eucas1p2b69f76968a7a5901b5e9c66338c388d4@eucas1p2.samsung.com>
- <CAJKOXPfQHzFb8uUzu2_X=7Jvk9P-z-jahi6csggpZvGsEhNm6Q@mail.gmail.com> <dleftj362rekjw.fsf%l.stelmach@samsung.com>
-In-Reply-To: <dleftj362rekjw.fsf%l.stelmach@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 6 Oct 2020 12:17:02 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPePumx3-v7Odp8Fv65gzXFZw+EkZCaX-YE-CYrrmyr-8g@mail.gmail.com>
-Message-ID: <CAJKOXPePumx3-v7Odp8Fv65gzXFZw+EkZCaX-YE-CYrrmyr-8g@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] ARM: dts: exynos: Add Ethernet to Artik 5 board
-To:     Lukasz Stelmach <l.stelmach@samsung.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
+        id S1725946AbgJFK37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 06:29:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725891AbgJFK37 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 06:29:59 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C846AC061755
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 03:29:58 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kPkEB-0002pn-7r; Tue, 06 Oct 2020 12:29:51 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kPkE9-0001fV-Pu; Tue, 06 Oct 2020 12:29:49 +0200
+Date:   Tue, 6 Oct 2020 12:29:49 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?UTF-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [RFC] Using a watchdog as system reset
+Message-ID: <20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xd3j2q4k5c5c4sfg"
+Content-Disposition: inline
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Oct 2020 at 12:06, Lukasz Stelmach <l.stelmach@samsung.com> wrote=
-:
->
-> It was <2020-10-03 sob 12:13>, when Krzysztof Kozlowski wrote:
-> > On Fri, 2 Oct 2020 at 21:22, =C5=81ukasz Stelmach <l.stelmach@samsung.c=
-om> wrote:
-> >>
-> >> Add node for ax88796c ethernet chip.
-> >>
-> >> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
-> >> ---
-> >>  arch/arm/boot/dts/exynos3250-artik5-eval.dts | 21 +++++++++++++++++++=
-+
-> >>  1 file changed, 21 insertions(+)
-> >>
-> >> diff --git a/arch/arm/boot/dts/exynos3250-artik5-eval.dts b/arch/arm/b=
-oot/dts/exynos3250-artik5-eval.dts
-> >> index 20446a846a98..7f115c348a2a 100644
-> >> --- a/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-> >> +++ b/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-> >> @@ -37,3 +37,24 @@ &mshc_2 {
-> >>  &serial_2 {
-> >>         status =3D "okay";
-> >>  };
-> >> +
-> >> +&spi_0 {
-> >> +       status =3D "okay";
-> >> +       cs-gpios =3D <&gpx3 4 GPIO_ACTIVE_LOW>, <0>;
-> >> +
-> >> +       assigned-clocks        =3D <&cmu CLK_MOUT_MPLL>, <&cmu CLK_DIV=
-_MPLL_PRE>, <&cmu CLK_MOUT_SPI0>,    <&cmu CLK_DIV_SPI0>,  <&cmu CLK_DIV_SP=
-I0_PRE>, <&cmu CLK_SCLK_SPI0>;
-> >
-> > No spaces before or after '=3D'.
-> >
->
-> You mean " =3D ", don't you?
 
-Ah, of course.
+--xd3j2q4k5c5c4sfg
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> >> + assigned-clock-parents =3D <&cmu CLK_FOUT_MPLL>, <&cmu
-> >> CLK_MOUT_MPLL>, <&cmu CLK_DIV_MPLL_PRE>, <&cmu CLK_MOUT_SPI0>, <&cmu
-> >> CLK_DIV_SPI0>, <&cmu CLK_DIV_SPI0_PRE>;
-> >
-> > This line is still too long. Please wrap it at 80. Checkpatch should
-> > complain about it... so it seems you did not run it. Please fix all
-> > checkpatch issues.
->
-> My idea was too keep assigned-clocks and assigned-clock-parrent lines
-> aligned, so it is clearly visible which parrent applies to which
-> clock. Is it inappropriate?
+Hello,
 
-The line gets too long and in the existing DTSes we wrapped item by
-item. Solution could be to add comments, e.g.:
-assigned-clock-parents =3D <&cmu CLK_FOUT_MPLL>,
-           <&cmu CLK_DIV_MPLL_PRE>, /* for: CLK_DIV_MPLL_PRE */
-           <&cmu CLK_MOUT_SPI0>, /* for: CLK_MOUT_SPI0 */
+I have an i.MX25 system here with an external watchdog (using the
+gpio_wdt driver). So the internal watchdog (imx2_wdt) is unused.
 
-but I am not sure if dtc allows such comments.
+The problem with the unused imx2_wdt is that this usually provides the
+restart handler and now a reboot ends with
 
-Best regards,
-Krzysztof
+	reboot: Restarting system
+	Reboot failed -- System halted
+
+until eventually the watchdog bites and resets the machine.
+
+I imagine that this is a common enough issue to warrant a generic
+solution. My suggestion is to formalize and implement something like:
+
+	watchdog {
+		compatible =3D "linux,wdt-gpio";
+		...
+		provide-system-reset;
+	}
+
+with the sematic of: "This is the dedicated mechanism to reset this
+machine."
+
+(OK, I could enable the imx2_wdt driver and make sure with some udev
+magic that the gpio watchdog is the one being fed by userspace. But
+having two watchdogs fills me with some trepidation.)
+
+Having said that, I wonder what the typical restart callback does
+different from setting the timeout to a minimal value, start it and then
+maybe call delay() to not return until the watchdog triggers. At least
+that's what I would do for a watchdog that doesn't provide an explicit
+=2Erestart handler but has the provide-system-reset property.
+
+In my eyes this is somewhat of a hardware property, but I can imagine
+that others don't agree and argue this shouldn't go into the device
+tree. @Rob: What is your position here?
+
+Does this sound sane? Do we also need a property like
+"no-provide-system-reset" to better maintain backward compatibility?
+(which then would result in not registering the watchdog as reset
+trigger even if the driver provides a .restart.)
+Does someone know a better name for the property?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--xd3j2q4k5c5c4sfg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl98RxoACgkQwfwUeK3K
+7Al+3Qf/ZCUOLg44Cg33EwF6u5IWJA3Ro+w+Z+wDjXFF5Mg/KVs1hyii8JMXL4mc
+Jxyxoyu1QIbseYlx5lBRawY2bc+8FZ2vVEY8+lk57dedzVzbPli+eBvdafc5ygog
+e0j5WxnvKkjDoLf1arwlhnoQA3AxLZ/zuXORsEvBgviiEWv/RRgdVxY504UHV/KF
+0IchvTE+5wCKtx/uaTIPoQYLwHFrrSUGbd5TVlRk1F+gRBy5ysKtAcyTfb2DEUD0
+Fht6LnLp6Ttha990OSCD1fTKB2+xa1PuY2S1+ft9iZszG7BBX7eTgv6SHZjUE9FP
+LTagZz13j2gr50qr/lfRgJSqjBblvA==
+=vsk+
+-----END PGP SIGNATURE-----
+
+--xd3j2q4k5c5c4sfg--
