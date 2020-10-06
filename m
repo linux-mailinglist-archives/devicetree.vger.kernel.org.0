@@ -2,197 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D5B284CD1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:03:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E24D4284D21
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:06:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725946AbgJFODE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 10:03:04 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:51314 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725902AbgJFODE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:03:04 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201006140301euoutp01ba739fba87f1b3ab59b4787299d71a94~7bCD_BJ1O1286512865euoutp01T;
-        Tue,  6 Oct 2020 14:03:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201006140301euoutp01ba739fba87f1b3ab59b4787299d71a94~7bCD_BJ1O1286512865euoutp01T
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1601992981;
-        bh=2fXpsF1rnt0T9ZecD8Wl1i7SBk3at4YUnrDDC7ekruM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=c1afw/ZDA9nlL4bZcQ8YpdgmSmOgDa9BXkg2JZYLX9zdDIpInp/fJo1Im/ZZiph2u
-         JisruMWgsOnml8Q1GY8SSnHCSdHE4eYPYBFtvKc+WgcsiwMBhIjV34elf8PCrz3QzD
-         KRScMs46B9/lm6+dKqx33y9YdIXGvQimJEZGHvCg=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201006140301eucas1p150163e9b98022582457cd0d094cffd7d~7bCDnky2n2233422334eucas1p1l;
-        Tue,  6 Oct 2020 14:03:01 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 8D.95.06456.4197C7F5; Tue,  6
-        Oct 2020 15:03:01 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201006140300eucas1p2006a96630d4a825500e5fc72016cf9d7~7bCDP4JN42306523065eucas1p2h;
-        Tue,  6 Oct 2020 14:03:00 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201006140300eusmtrp25a886d39b0d94e655a55db7f163799dc~7bCDPIL9u0797807978eusmtrp2F;
-        Tue,  6 Oct 2020 14:03:00 +0000 (GMT)
-X-AuditID: cbfec7f2-7efff70000001938-d0-5f7c79143720
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 2B.BB.06314.4197C7F5; Tue,  6
-        Oct 2020 15:03:00 +0100 (BST)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201006140300eusmtip1fbd4bc9715bfd7a7bbf32a0404cbe001~7bCDFb3Ab2518625186eusmtip1I;
-        Tue,  6 Oct 2020 14:03:00 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-kernel\@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc\@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewi?= =?utf-8?Q?cz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v2 3/4] ARM: dts: exynos: Add Ethernet to Artik 5 board
-Date:   Tue, 06 Oct 2020 16:02:50 +0200
-In-Reply-To: <CAJKOXPePumx3-v7Odp8Fv65gzXFZw+EkZCaX-YE-CYrrmyr-8g@mail.gmail.com>
-        (Krzysztof Kozlowski's message of "Tue, 6 Oct 2020 12:17:02 +0200")
-Message-ID: <dleftjtuv7cv05.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1726924AbgJFOFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 10:05:54 -0400
+Received: from Galois.linutronix.de ([193.142.43.55]:36818 "EHLO
+        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726809AbgJFOFR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:05:17 -0400
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1601993114;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=aevUCo3puiob2HP//iPLvFAqgxEFdjfpmUhfAFAJfaI=;
+        b=zARUnj1E6h2b0KXvNa2/Rrkxv3WqjQfxr22mblxs64LVWc1ewrxxyYi70f52yKaIsRDqGY
+        7DwFyOp4nYRYAFq/og9E1tQc6uP4UCQofMZq33L2SnXd7KhSxHkPsKYsbNSnF0U8mMqirJ
+        0eU9prDntnttwK3umbzInqLTFTToV7CnJ4ugGmt1wxVR2xUd9+WK51d7fvHNLnAEhC3FHG
+        nmGt6pERt3tv39250fvij1o+2GkDWRgsbMsvZe32knMMdTGRT6bHF4xZMgR6vYCPi1gu63
+        aLpxwj55dLyXwFnXGGRT8pUjP3M1Cin/O7CPbA0x4lD40JYfHPELhWuFFNiPfg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1601993114;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=aevUCo3puiob2HP//iPLvFAqgxEFdjfpmUhfAFAJfaI=;
+        b=1nujxp/iHWjSaxL4HabpIgMjmQ57vzahHd2fB00qEnWO+uoYq14OkplLfbT9ypi5sNNoM8
+        ipf4f7+NzXN339Bg==
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
+In-Reply-To: <20201006134247.7uwchuo6s7lmyzeq@skbuf>
+References: <20201004112911.25085-1-kurt@linutronix.de> <20201004112911.25085-3-kurt@linutronix.de> <20201004125601.aceiu4hdhrawea5z@skbuf> <87lfgj997g.fsf@kurt> <20201006092017.znfuwvye25vsu4z7@skbuf> <878scj8xxr.fsf@kurt> <20201006113237.73rzvw34anilqh4d@skbuf> <87wo037ajr.fsf@kurt> <20201006134247.7uwchuo6s7lmyzeq@skbuf>
+Date:   Tue, 06 Oct 2020 16:05:11 +0200
+Message-ID: <87o8lf78mg.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRjm2zlnO1utPme2F7tQq36ktIpupytdlA4ElQVRQdmqk0pu2o5W
-        mpFhRVlpGeq0lRZ5ydTWGkNFqy1ZReSxLLuQRGlZmhhe0Oxim5+B/57nfZ/n+d735WMpTR8T
-        yEaZ4gSzyRCtk6top+enNCsgISl8Tp2ek5rcFHfHcpvhrNIJmsurrWO4xo73DJfe3E5xkmRT
-        cPXONIazNzcyXEOVVc5ZpHsyzp1Zg7iy2iYF58kfz52sqVWsHMs3ND6neMfNtzK+MrdJwdtL
-        zsj5uzeO8ZUV3TI+zVGC+G775I3sdtWyvUJ01EHBPHvFLlXkpdTjVGy79nCW5zKTjH77pyIl
-        C3g+nLa2KVKRitXgYgTJWaUUIT0IXFfzGUK6EbT1fZb/t+SVtgxbihCkDUiIkFYEqbUXvSqW
-        lWM9lJVt9RnG4Znw+k/fUBKFO2mof92AfBp/vA4ePMY+DY1nQEeBa0ijxNkIfv8qpH0NNV4E
-        1i6bzIcD8GJwfP2gIHU/eJLTMqShsBFypO9DQwC+woL0coAio4ZAtushQ7A/tD1yKAieCIOV
-        eTLfEICPwaWMhcR7DoHT2k8TzVJ4XzcgJ5pV8ColiMAx8KbDjzw7BjKc2RQpq+H0KQ0xTofy
-        9OrhkEA431aMCObhZPP34VPdQNDpGaAvoCm5I7bJHbFNrjeW8p7udtVsUg6GwmvtFMHLoby8
-        k85HTAnSCvGiMUIQ55qEQ3rRYBTjTRH6PTFGO/J+wad/H3VVoN4Xu90Is0g3Wr31QFK4hjEc
-        FBOMbjTdm/TJdqseBdKmGJOgG6de/ezpTo16ryEhUTDHhJvjowXRjSawtE6rnnf92w4NjjDE
-        CfsFIVYw/+/KWGVgMio9U7P4eHBPUfSO0JDYaVGjVIml1szekPEeaU111L7BqdqLYXWWuNBW
-        5QRP34az/UG2/XdmvhNLEpo+zkt5/jM9Kca+pOBsRWSoMsyyPiziQJHL6ehfHbBp++YnW1ZM
-        Wpn1Awa3ub4s+OH4dv+vlFeGp2j3HZHZ1h7VpXzNOFpdZNbraDHSMDeIMouGf5nD7PyKAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrAIsWRmVeSWpSXmKPExsVy+t/xu7oilTXxBmtPqVicv3uI2WLjjPWs
-        FnPOt7BYzD9yjtXi2ts7rBb9j18zW5w/v4Hd4sK2PlaLTY+vsVpc3jWHzWLG+X1MFoem7mW0
-        WHvkLrvFsQViFq17j7A78HtcvnaR2WPLyptMHjtn3WX32LSqk81j85J6j507PjN59G1Zxejx
-        eZNcAEeUnk1RfmlJqkJGfnGJrVK0oYWRnqGlhZ6RiaWeobF5rJWRqZK+nU1Kak5mWWqRvl2C
-        XsbkrkbmgtfiFdOOzWZtYPwj3MXIySEhYCIxf80T9i5GLg4hgaWMEpOPLGXtYuQASkhJrJyb
-        DlEjLPHnWhcbRM1TRonr8+4wgdSwCehJrF0bAVIjIqApcf3vd1aQGmaBjywS35+/ZAepERbw
-        ljhwQgCkRkggQOLn5z0sIDaLgKrE26UHweo5BaYzSvz5vQwswStgLjHn0wYmEFtUwFJiy4v7
-        7BBxQYmTM5+A1TALZEt8Xf2ceQKjwCwkqVlIUrOAVjMD3bR+lz5EWFti2cLXzBC2rcS6de9Z
-        FjCyrmIUSS0tzk3PLTbUK07MLS7NS9dLzs/dxAiM4W3Hfm7ewXhpY/AhRgEORiUe3ojCmngh
-        1sSy4srcQ4wqQGMebVh9gVGKJS8/L1VJhNfp7Ok4Id6UxMqq1KL8+KLSnNTiQ4ymQI9OZJYS
-        Tc4Hpp28knhDU0NzC0tDc2NzYzMLJXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2MkjKfyl0v
-        c+aH3ArqyLq38U3H9FUPO0OMlisfME8y5WLq6+Lo37ZMacvB2JZ+j2t9rK7anR8Dnh3z7Isx
-        +MKXbbP8uOS0lb7uBt3vdI6+XPhm4s7dle0HquoO7l4bsJDp8u7mk13KPwTbI3at+L1twp6j
-        c5VvMjq2eqVmPv0rz3ul4Aajc6yMEktxRqKhFnNRcSIAX5u3twMDAAA=
-X-CMS-MailID: 20201006140300eucas1p2006a96630d4a825500e5fc72016cf9d7
-X-Msg-Generator: CA
-X-RootMTR: 20201006140300eucas1p2006a96630d4a825500e5fc72016cf9d7
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201006140300eucas1p2006a96630d4a825500e5fc72016cf9d7
-References: <CAJKOXPePumx3-v7Odp8Fv65gzXFZw+EkZCaX-YE-CYrrmyr-8g@mail.gmail.com>
-        <CGME20201006140300eucas1p2006a96630d4a825500e5fc72016cf9d7@eucas1p2.samsung.com>
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 --=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-It was <2020-10-06 wto 12:17>, when Krzysztof Kozlowski wrote:
-> On Tue, 6 Oct 2020 at 12:06, Lukasz Stelmach <l.stelmach@samsung.com> wro=
-te:
->> It was <2020-10-03 sob 12:13>, when Krzysztof Kozlowski wrote:
->>> On Fri, 2 Oct 2020 at 21:22, =C5=81ukasz Stelmach <l.stelmach@samsung.c=
-om> wrote:
->>>>
->>>> Add node for ax88796c ethernet chip.
->>>>
->>>> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
->>>> ---
->>>>  arch/arm/boot/dts/exynos3250-artik5-eval.dts | 21 ++++++++++++++++++++
->>>>  1 file changed, 21 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/exynos3250-artik5-eval.dts b/arch/arm/b=
-oot/dts/exynos3250-artik5-eval.dts
->>>> index 20446a846a98..7f115c348a2a 100644
->>>> --- a/arch/arm/boot/dts/exynos3250-artik5-eval.dts
->>>> +++ b/arch/arm/boot/dts/exynos3250-artik5-eval.dts
->>>> @@ -37,3 +37,24 @@ &mshc_2 {
->>>>  &serial_2 {
->>>>         status =3D "okay";
->>>>  };
->>>> +
->>>> +&spi_0 {
->>>> +       status =3D "okay";
->>>> +       cs-gpios =3D <&gpx3 4 GPIO_ACTIVE_LOW>, <0>;
->>>> +
->>>> +       assigned-clocks        =3D <&cmu CLK_MOUT_MPLL>, <&cmu CLK_DIV=
-_MPLL_PRE>, <&cmu CLK_MOUT_SPI0>,    <&cmu CLK_DIV_SPI0>,  <&cmu CLK_DIV_SP=
-I0_PRE>, <&cmu CLK_SCLK_SPI0>;
->>>
->>> No spaces before or after '=3D'.
->>>
->>
->> You mean " =3D ", don't you?
+On Tue Oct 06 2020, Vladimir Oltean wrote:
+> On Tue, Oct 06, 2020 at 03:23:36PM +0200, Kurt Kanzenbach wrote:
+>> On Tue Oct 06 2020, Vladimir Oltean wrote:
+>> Does this mean that tagged traffic is forwarded no matter what?
 >
-> Ah, of course.
->
->>>> + assigned-clock-parents =3D <&cmu CLK_FOUT_MPLL>, <&cmu
->>>> CLK_MOUT_MPLL>, <&cmu CLK_DIV_MPLL_PRE>, <&cmu CLK_MOUT_SPI0>, <&cmu
->>>> CLK_DIV_SPI0>, <&cmu CLK_DIV_SPI0_PRE>;
->>>
->>> This line is still too long. Please wrap it at 80. Checkpatch should
->>> complain about it... so it seems you did not run it. Please fix all
->>> checkpatch issues.
->>
->> My idea was too keep assigned-clocks and assigned-clock-parrent lines
->> aligned, so it is clearly visible which parrent applies to which
->> clock. Is it inappropriate?
->
-> The line gets too long and in the existing DTSes we wrapped item by
-> item. Solution could be to add comments, e.g.:
-> assigned-clock-parents =3D <&cmu CLK_FOUT_MPLL>,
->            <&cmu CLK_DIV_MPLL_PRE>, /* for: CLK_DIV_MPLL_PRE */
->            <&cmu CLK_MOUT_SPI0>, /* for: CLK_MOUT_SPI0 */
->
-> but I am not sure if dtc allows such comments.
+> Precisely. The bridge VLAN table should be irrelevant to the acceptance
+> or forwarding decision of the packet if vlan_filtering is 0.
 
-make dbts works fine. Changed.
+I see.
 
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
+>
+>> That doesn't work with the current implementation, because the VLAN
+>> tags are interpreted by default. There's a global flag to put the
+>> switch in VLAN unaware mode. But it's global and not per bridge or
+>> port.
+>
+> Oh, there is? Maybe you can use it then.
+>
+> JUST FOR CONTEXT, for sja1105 and felix/ocelot, this is the mode that
+> they're operating in, when a bridge with vlan_filtering=0 is configured
+> as an upper.
+>
+> In sja1105, I don't even have the VLAN awareness flag that you have. So
+> I need to change the VLAN TPID from 0x8100 to 0xdadb, and the switch
+> will think that VLAN-tagged frames aren't VLAN. So all frames are tagged
+> internally by the switch with the port-based VLAN ID and PCP, when in
+> vlan_filtering=0.
+> And because my knob is global and not per bridge either, I just set
+> ds->vlan_filtering_is_global = true and let DSA handle the rest.
+
+What's that flag doing? ...
+
+	/* Disallow bridge core from requesting different VLAN awareness
+	 * settings on ports if not hardware-supported
+	 */
+	bool			vlan_filtering_is_global;
+
+OK, that's what I need for the bridging part.
+
+>
+> As for ocelot/felix, those switches have 2 knobs:
+> - VLAN awareness: does the ingress port derive the classified VLAN from
+>   the packet's 802.1Q header? If yes, the VLAN ID and PCP are taken from
+>   the packet. If not, they are taken from the port-based default.
+> - VLAN ingress filtering: does the ingress port drop a VLAN-tagged frame
+>   if the classified VLAN is not installed in its ingress filter?
+>
+> As you may guess, even for ocelot/felix, when we have a bridge with
+> vlan_filtering=0, we are still configuring it as:
+> VLAN awareness = disabled
+> VLAN ingress filtering = enabled
+>
+> Because the classified VLAN is not derived from the packet, it will
+> always be equal to the pvid of the port, which is installed privately by
+> the driver. So no packet drops due to VLAN, regardless of VLAN ID.
+>
+>> So you're saying private VLANs can be used but the user or the other
+>> kernel modules shouldn't be allowed to use them to simplify the
+>> implementation?  Makes sense to me.
+>
+> Yes.
+> And because the user is more likely to install VLAN 2 and 3 than 4095
+> and 4094, maybe you could use private VLANs from the end of the range,
+> just to make this restriction less obvious (or maybe not at all).
+>
+>> The egress port has to member to that VLAN.
+>
+> Same as ocelot/felix. This is the reason why we make it VLAN-unaware.
+> There's no point in disabling just VLAN ingress filtering if the end
+> result is still going to be a drop, albeit due to a different reason (no
+> destinations).
+
+OK.
+
+Thanks,
+Kurt
 
 --=-=-=
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl98eQoACgkQsK4enJil
-gBAsBwf/U8NIpwChaCfintrqxRC3u5i0ZFL3sWI2ocaJUVGpS+VyTnlW6S/qNyDo
-uo3PMKYo6bQHxuWow2u9ygzAKXrgngZiBNfKMg27O3pRpHcEJF78zaBCg0MWTWbp
-uJyD6fJ38lPWyjvFkpQCMrGHYbgc0ProHZVgW+vB0MoYyaq9BjRtJYd/+C0FpoMf
-SHyzU3qbvV6X3DAD00+wVNk39P2/WYH+oDwgtoOJZ8+hkIvJtsKPmvIxo70X8CPB
-sS1F8IW+8qrix0TLgrjn5GPwfUr7MF9EhTfvErOvMihOmxLq4gAfbskyxVK0xsh+
-U/u4PkP5q0zcH4rIOTvN9MHizW9tFg==
-=3Dax
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl98eZcACgkQeSpbgcuY
+8KaSrw/6AuKxfgjS6/8A2hFlJed9EWY3rrkcWDwaqgcZUQM/mXEEzLRcCZrCvC99
+f6DatFt6nsvuPcYEV3kZXTUboif9WuW/ne7uFNrUzB2E6WjTSmwTTreJHWSR23U5
+CvmRM9nrNNncqbCFxW2mjY/kVUd1GqMgAiEHwnzvnn7r68/H6VUoCb/p6fES42sY
+7s8s37H6KqlpzP8rnIDbDR455hW59OuyybNT2zlHu48/EmQLYLKBf2S3maRaEHH/
+nJlSj6aHkVz3RcJBE2rwWMXOr+aV2r6mzviqSEh0oo1U6n8hzeviBfN0IKbzerXP
+I1oRTc9Q+RkD172eegmSdA5dA1M5WveAMLwZn5uWUtCt9vDEY/qB7M5RwcGKFRPz
+nsGGPbb0plGXTXGxt1qpfUO9GrhIEMz6Kf9ZYpGBU9izEtqvDnE/cEeU5122mre8
+lnrdGGFZ30osU3O3vcfVm7tpH5yKRBgheL0XtXEKfO1Y4ZHh/fIAfvtaMueRKZQr
+7agxy3MCX/8eCO89uFlHqYWf+zPs1QanKutqmAixo9rYvQb1iQZZz0ino7BAZCEJ
+2u23xG93R9x1rMC3i/BSnu9r7WWFzzrT34ydPbIAu1MiSjk6twkwnvLdz1YSK+a6
+LxwX3cg8mDQXy4VSo1CqWpMUgK4rbLQ0OxcRtuytZijDDweG0xQ=
+=41+2
 -----END PGP SIGNATURE-----
 --=-=-=--
