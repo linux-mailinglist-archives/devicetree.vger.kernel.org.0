@@ -2,147 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B18082848B7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 10:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9798E2848B9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 10:38:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726171AbgJFIhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 04:37:39 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:47635 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726006AbgJFIhg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 04:37:36 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201006083750euoutp0156bb0a38c7048b066e8ceefa99fe55f5~7WmJJcB9F1715117151euoutp01B;
-        Tue,  6 Oct 2020 08:37:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201006083750euoutp0156bb0a38c7048b066e8ceefa99fe55f5~7WmJJcB9F1715117151euoutp01B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1601973470;
-        bh=TdvBo++lhM54zLH1A/JrQp3BZQVVNjq7JuuhRMXlT9M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=uO0Ngoe87nDx/YBi454j3tBG1IjBK3deLoufSlUN6IadxmGR1caWa3Jnl+exnV6OY
-         G9BXe0yO9ACG9DIpRk8/P5f4VAMIHyT+kKlls5Pp4q14oWRlYcCwJ3PIqUi+nphOnu
-         2dSbIGDiRJpHPMtKsmQ6BxatEa5s2eaCjdbhl7pM=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201006083750eucas1p2464a3247610bac05f98ff689fe698260~7WmI3xM6v1792317923eucas1p23;
-        Tue,  6 Oct 2020 08:37:50 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 41.35.06318.EDC2C7F5; Tue,  6
-        Oct 2020 09:37:50 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca~7WmIbzr_v1178011780eucas1p1x;
-        Tue,  6 Oct 2020 08:37:49 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201006083749eusmtrp13d2caf5f65551a21acfc9988bff525ca~7WmIbBHvu2257422574eusmtrp1B;
-        Tue,  6 Oct 2020 08:37:49 +0000 (GMT)
-X-AuditID: cbfec7f5-38bff700000018ae-13-5f7c2cde5da3
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 39.86.06314.DDC2C7F5; Tue,  6
-        Oct 2020 09:37:49 +0100 (BST)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201006083749eusmtip159a049b94167cbb073a26456cfccab04~7WmIQPs2y2825428254eusmtip1P;
-        Tue,  6 Oct 2020 08:37:49 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, jim.cromie@gmail.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewi?= =?utf-8?Q?cz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v2 0/4] AX88796C SPI Ethernet Adapter
-Date:   Tue, 06 Oct 2020 10:37:34 +0200
-In-Reply-To: <20201002194544.GH3996795@lunn.ch> (Andrew Lunn's message of
-        "Fri, 2 Oct 2020 21:45:44 +0200")
-Message-ID: <dleftj7ds3eomp.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1726012AbgJFIiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 04:38:24 -0400
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:39735 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725996AbgJFIiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 04:38:24 -0400
+Received: by mail-oo1-f66.google.com with SMTP id c4so2996791oou.6;
+        Tue, 06 Oct 2020 01:38:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xkyFSVeXPFcsbuoieeW0AUnHq5y84+TIhXt/1+fuFLg=;
+        b=cK6h4Anqa0Qh61h0YPNeYzo1WEyJp6bBawNeUMXkA479q6ekTan5hf8GEbVWElvSYE
+         ntK00lj4YXqcWG8j+/3QYaH8JKPS8e9VTHE33cFsUkxxFTyZ40qjAQBHouOYPKArd/Rc
+         JXROiQJshdRtsa+DkD4/712Tdpxj5j9QaHnV+nBH++/xJjY0SIJkfNBRilmcxxDNw2x6
+         CFFZQJUCJbHCFQ1OWfYC8BNGGVQFwgGjAwwsU0NbbwxDircwusnTOkkPpgzXyiHkVYpx
+         H2WCJyr9RhU4oOulm+UE5eAW/+CzvL9nPX81UodiJQk06bXZVmYCdhjXYYhLaj/P8CYJ
+         BpDw==
+X-Gm-Message-State: AOAM532BJPQ/iBP81egM7VjodsRA+pKxBEUB0os1+EMDwh3eS7oNPmTL
+        cUEcX8rskaw9x6yLgvg7NoqEgdnv8x8lHFij10Y=
+X-Google-Smtp-Source: ABdhPJxKTdpVt2S29hcgjSF7YwOIEIpSgvR01nL/7DU7cwnmD5WMdO5cvi7neBjVDf6QrDPfqECOAzeUzfznhiANCFg=
+X-Received: by 2002:a4a:4f17:: with SMTP id c23mr2463324oob.11.1601973519305;
+ Tue, 06 Oct 2020 01:38:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTURiAObv37l616XVavZmEDPuuVVR2ywyzftyCyPpTmGkrLyq5qZuf
-        fZCWRYnOUKO2BmqUX6nlmktNrYYosnQLdaWoRSqVFhWWZYS0eRL695z3PO/X4TCE9Cflx8Sr
-        UgS1SpEgE7uT5o6ZnvUj685Fb3yXI+VswxaCq7/1gOIMthySK2nvoTjH5yGKKxidJDib7SHN
-        2c1aijOOOiiut9kg5m7Z2kSc5UYr4mrbh2muo3QRd7m1nQ714nsdLwneVDUg4pv0wzRvrL4m
-        5h/dvcA3NU6JeK2pGvFTxmXhTIT7zhghIT5NUG/YdcI97rnjGZU04JbxpnkIZaEmJhe5McBu
-        ge7fWjIXuTNSthJBSdGgCB++I6jvnqHwYQrBkLWBnE/RD9pFLpayFQjGysKw9B7B17sNRC5i
-        GDErh9raoy7Hlw2A4q4/c4UItoaEyZnauWQfdju8yOkRu5hkl0O9vgm52I1VQv+lmrlmEnYb
-        PJnW0i5e6PRNH97QOO4NXbqxOYdw+jrbJ+RqAKyOgT7DTeQaAti9MF3vhYf2gYlOE43ZH6xF
-        eSRWLkBRYRBOzUNgNvz6t2QwDPX8FmPeDXlPZ8XY94TXn71xW08oNN8kcFgCV69IsR0IdQUt
-        /6r4Qf5EJcLMw9vSnzR+qosI+spr6OsoQP/fNvr/ttE7yxLsanjQvAGH10J52SSBOQTq6r6Q
-        pYiqRouFVI0yVtBsVgnpco1CqUlVxcpPJSqNyPkFrbOdPxpR25+TFsQySLZAkrHobLSUUqRp
-        MpUWFOis9O7hfTvyI1WJKkHmKwnrtkZJJTGKzDOCOjFanZogaCxoKUPKFks23/l4XMrGKlKE
-        04KQJKjnb0WMm18WqvYPLf/0YyrNw3/JN+tB3e2YEtKesL/ofJI5+NC69HRdb6RMKFsZV9HW
-        PJ59QxmYlV2Rv+qAMplN7veJLng1FvEsoy7Tvuqxx9b4kJHxY1WFe4qvvvRenbQv/OLAvV0j
-        Pl7hIy07Qi6ZglZEXtF+n+bzDx+R98mjErv7r5EoQjHrkJGaOMWmNYRao/gL+ElwzooDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRmVeSWpSXmKPExsVy+t/xu7p3dWriDW6/NrQ4f/cQs8XGGetZ
-        Leacb2GxmH/kHKvFtbd3WC36H79mtjh/fgO7xYVtfawWmx5fY7W4vGsOm8WM8/uYLA5N3cto
-        sfbIXXaLYwvELFr3HmF34Pe4fO0is8eWlTeZPHbOusvusWlVJ5vH5iX1Hjt3fGby6NuyitHj
-        8ya5AI4oPZui/NKSVIWM/OISW6VoQwsjPUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsE
-        vYyD1w6wFtzkrLi/6w5jA+NOji5GTg4JAROJWbcuMHUxcnEICSxllPixope5i5EDKCElsXJu
-        OkSNsMSfa11sEDVPGSX27N3EBFLDJqAnsXZtBEiNiICCxJSTf1hBbGaB9SwSqydxgtjCApYS
-        Z1rOsYHYQkDlby6+YASxWQRUJTbO2glmcwrkSlxtXsMCYvMKmEvs/tbHDmKLAvVueXGfHSIu
-        KHFy5hMWiPnZEl9XP2eewCgwC0lqFpLULKDrmAU0Jdbv0ocIa0ssW/iaGcK2lVi37j3LAkbW
-        VYwiqaXFuem5xYZ6xYm5xaV56XrJ+bmbGIERvO3Yz807GC9tDD7EKMDBqMTDqyBSHS/EmlhW
-        XJl7iFEFaMyjDasvMEqx5OXnpSqJ8DqdPR0nxJuSWFmVWpQfX1Sak1p8iNEU6M+JzFKiyfnA
-        pJNXEm9oamhuYWlobmxubGahJM7bIXAwRkggPbEkNTs1tSC1CKaPiYNTqoGRqfVSfKnpOc6Q
-        tTPXlic0m7xmPl/7QZS/5WexWk8ES87shr8tDFxe9cUdG1XD/rnyP/HVzUj0m31g8q4n9SGp
-        i1Kv3M+OOD1jufz06zekxOxXxEzI7ln676Vfa0nQtqAiKbfjhn0b/8lWXV8foHxqDk9ylJr7
-        /p6S8q8/6hw/yG8pZ3vfuFyJpTgj0VCLuag4EQAFr0HdAgMAAA==
-X-CMS-MailID: 20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca
-X-Msg-Generator: CA
-X-RootMTR: 20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca
-References: <20201002194544.GH3996795@lunn.ch>
-        <CGME20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca@eucas1p1.samsung.com>
+References: <20200923120817.1667149-0-mholenko@antmicro.com>
+ <20200923120817.1667149-3-mholenko@antmicro.com> <CAMuHMdUBCf8DsRBvXxxrfrQsab3kOwy95u-KwkdvaSY0vXQnXQ@mail.gmail.com>
+ <CAPk366TxFJa-rqY6eFoGuMoc_r_=CFQgDMC-j2Pv0=dUR06b9A@mail.gmail.com>
+In-Reply-To: <CAPk366TxFJa-rqY6eFoGuMoc_r_=CFQgDMC-j2Pv0=dUR06b9A@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 6 Oct 2020 10:38:28 +0200
+Message-ID: <CAMuHMdUXxGGHmsUNhuwGPOk1horTs9OWSZa2u0B4pb8zTuUw-Q@mail.gmail.com>
+Subject: Re: [PATCH v11 3/5] drivers/soc/litex: add LiteX SoC Controller driver
+To:     Mateusz Holenko <mholenko@antmicro.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Gabriel L. Somlo" <gsomlo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Mateusz,
 
-It was <2020-10-02 pi=C4=85 21:45>, when Andrew Lunn wrote:
-> On Fri, Oct 02, 2020 at 09:22:06PM +0200, =C5=81ukasz Stelmach wrote:
->> This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
->> found on ARTIK5 evaluation board. The driver has been ported from a
->> v3.10.9 vendor kernel for ARTIK5 board.
+On Tue, Oct 6, 2020 at 10:02 AM Mateusz Holenko <mholenko@antmicro.com> wrote:
+> On Fri, Sep 25, 2020 at 3:16 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Wed, Sep 23, 2020 at 12:10 PM Mateusz Holenko <mholenko@antmicro.com> wrote:
+> > > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> > >
+> > > This commit adds driver for the FPGA-based LiteX SoC
+> > > Controller from LiteX SoC builder.
+> > >
+> > > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
+> > > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> > > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+
+> > > --- /dev/null
+> > > +++ b/drivers/soc/litex/Kconfig
+> > > @@ -0,0 +1,15 @@
+> > > +# SPDX-License_Identifier: GPL-2.0
+> > > +
+> > > +menu "Enable LiteX SoC Builder specific drivers"
+> > > +
+> > > +config LITEX_SOC_CONTROLLER
+> > > +       tristate "Enable LiteX SoC Controller driver"
+> > > +       depends on OF || COMPILE_TEST
+> > > +       help
+> > > +         This option enables the SoC Controller Driver which verifies
+> > > +         LiteX CSR access and provides common litex_get_reg/litex_set_reg
+> > > +         accessors.
+> > > +         All drivers that use functions from litex.h must depend on
+> > > +         LITEX_SOC_CONTROLLER.
+> >
+> > I'm wondering if it makes sense to have them depend on a "simpler"
+> > symbol instead, e.g. LITEX?
+> >
+> > Currently the SoC controller is limited to I/O accessors and a simple
+> > register compatibility check, but you may want to extend it with more
+> > features later, so you probably want to keep the LITEX_SOC_CONTROLLER.
+> > Hence you could add
+> >
+> >     config LITEX
+> >         bool
+> >
+> > and let LITEX_SOC_CONTROLLER select LITEX.
 >
-> Hi =C5=81ukasz
+> But then if other drivers depend just on LITEX, it would not automatically
+> mean that the LITEX_SOC_CONTROLLER is selected, right?. And if it's not selected
+> litex_{g,s}et_reg() are not available and the compilation would fail.
+
+As the LITEX config symbol above uses plain "bool", without a
+description, it is invisible.  Hence it cannot be enabled by the user,
+only be selected by other symbols.
+If LITEX_SOC_CONTROLLER is the only symbol selecting LITEX, the
+dependency is met.
+
+> I could move the implementation of those functions directly to the
+> litex.h header
+> and avoid this KConfig dependency, but I'm not sure if they are not
+> too big to become a static inline.
+> What do you think?
+
+With the spinlock and the loop, they're too large to be inlined, IMHO.
+
+> > > --- /dev/null
+> > > +++ b/drivers/soc/litex/litex_soc_ctrl.c
+
+> > > + */
+> > > +#define LITEX_REG_SIZE             0x4
+> > > +#define LITEX_SUBREG_SIZE          0x1
+> > > +#define LITEX_SUBREG_SIZE_BIT      (LITEX_SUBREG_SIZE * 8)
+> > > +
+> > > +static DEFINE_SPINLOCK(csr_lock);
+> > > +
+> > > +/*
+> > > + * LiteX SoC Generator, depending on the configuration,
+> > > + * can split a single logical CSR (Control & Status Register)
+> > > + * into a series of consecutive physical registers.
+> > > + *
+> > > + * For example, in the configuration with 8-bit CSR Bus,
+> > > + * 32-bit aligned (the default one for 32-bit CPUs) a 32-bit
+> > > + * logical CSR will be generated as four 32-bit physical registers,
+> > > + * each one containing one byte of meaningful data.
+> > > + *
+> > > + * For details see: https://github.com/enjoy-digital/litex/wiki/CSR-Bus
+> > > + *
+> > > + * The purpose of `litex_set_reg`/`litex_get_reg` is to implement
+> > > + * the logic of writing to/reading from the LiteX CSR in a single
+> > > + * place that can be then reused by all LiteX drivers.
+> > > + */
+> > > +void litex_set_reg(void __iomem *reg, unsigned long reg_size,
+> > > +                   unsigned long val)
+> > > +{
+> > > +       unsigned long shifted_data, shift, i;
+> > > +       unsigned long flags;
+> > > +
+> > > +       spin_lock_irqsave(&csr_lock, flags);
+> > > +
+> > > +       for (i = 0; i < reg_size; ++i) {
+> > > +               shift = ((reg_size - i - 1) * LITEX_SUBREG_SIZE_BIT);
+> > > +               shifted_data = val >> shift;
+> > > +
+> > > +               writel((u32 __force)cpu_to_le32(shifted_data), reg + (LITEX_REG_SIZE * i));
+> > > +       }
+> > > +
+> > > +       spin_unlock_irqrestore(&csr_lock, flags);
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(litex_set_reg);
+> >
+> > I'm still wondering about the overhead of loops and multiple accesses,
+> > and the need for them (see also BenH's earlier comment).
+> > If e.g. the register widths change for LiteUART (currently they're
+> > hardcoded to one), would you still consider it using the same
+> > programming interface, and thus compatible with "litex,liteuart"?
 >
-> Please include a brief list of changes since the previous version.
+> Since the amount of possible `reg_size` is practically limited we could
+> add explicit 8/32/64/128 accessors to eliminate loops.
+
+Good.
+
+(assuming 32-bit physical reg accesses below)
+
+> As for multiple writel/readl I don't really see an option to avoid
+> them for the 8-bit bus width.
+
+Sure, 64-bit register accesses consist of two 32-bit accesses on other
+32-bit platforms, too.
+
+> > The spinlock access will probably become the source of lock contention
+> > later, especially when considering SMP variants.
 >
+> Do you have any suggestions on how to handle this?
+> Dropping locks could lead to the situation when two cores write at the
+> same time leaving a wrong (mixed) value in the CSR.
 
-It can be found at the bottom of the message.
+Is this due to the CSR bus or due to the CSR register?
+I mean can two 64-bit accesses to different CSR registers be done as
+four interleaved 32-bit accesses, or must they not be interleaved?
 
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
+If (hopefully) they can be interleaved, you just need serialization of
+accesses to the same 64-bit register.  As the same register is usually
+not accessed from multiple drivers, you can handle the serialization
+inside the driver, if it can ever happen at all (e.g. main driver
+operation and interrupt handler accessing the same register).
+That avoids the need for the spinlock in the generic register accessors.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+If they must not be interleaved, you indeed need serialization at the
+bus level, but only for the 64-bit accesses?  And I would strongly
+suggest to look into changing the CSR bus behavior at the hardware
+level, if possible...
 
------BEGIN PGP SIGNATURE-----
+> > > +/*
+> > > + * Check LiteX CSR read/write access
+> > > + *
+> > > + * This function reads and writes a scratch register in order
+> > > + * to verify if CSR access works.
+> > > + *
+> > > + * In case any problems are detected, the driver should panic.
+> > > + *
+> > > + * Access to the LiteX CSR is, by design, done in CPU native
+> > > + * endianness. The driver should not dynamically configure
+> > > + * access functions when the endianness mismatch is detected.
+> > > + * Such situation indicates problems in the soft SoC design
+> > > + * and should be solved at the LiteX generator level,
+> > > + * not in the software.
+> > > + */
+> > > +static int litex_check_csr_access(void __iomem *reg_addr)
+> > > +{
+> > > +       unsigned long reg;
+> > > +
+> > > +       reg = litex_get_reg(reg_addr + SCRATCH_REG_OFF, SCRATCH_REG_SIZE);
+> > > +
+> > > +       if (reg != SCRATCH_REG_VALUE) {
+> > > +               panic("Scratch register read error! Expected: 0x%x but got: 0x%lx",
+> > > +                       SCRATCH_REG_VALUE, reg);
+> >
+> > Do you think the user will ever see this panic message? (see below)
+>
+> On UART most probably not, as broken CSRs mean broken UART driver as well.
+> But I believe you can retrieve logs from the memory and analyze them
+> post-mortem, isn't that right?
 
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl98LM4ACgkQsK4enJil
-gBDBGwf7BniLxZulD4q6SgaXv9GawdRNFVpHg9TEqudOoo75bI7Xlr0nd8pn0xJz
-G3MF6+Kj5Z0aeAifXP0vk1GF898GGkyGnE8mefuQNLkvrAYNpDPsrBd+JXU0WIR7
-O+8VYUhdrqp4ip2153dXHtda15kplCubyGgCvDpEO8G+FOhOiHZZQMfPMD1si9F5
-IY9BVyRiACFwEbaEh7D+cyueZSINMMAy613VeavrMVlfsVAAfMbL+qlYQF5JPkld
-EtDg3OMHNYLUZs/6pXcNI1JFObqPbODGjHQTruuW2GGoy3fE5uZ27I26YxvXKOfg
-teDYJXQbyVv7gRNBPtbSUYHylUlkLA==
-=z8rr
------END PGP SIGNATURE-----
---=-=-=--
+Sure. Been there, done that ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
