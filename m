@@ -2,555 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D24F7284D9E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB188284DA6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:29:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725902AbgJFOZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 10:25:56 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:22876 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726348AbgJFOZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:25:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1601994356; x=1633530356;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=iEli0QznZFU/u+Cgz4FUExw7vx5ostJM6Zk9GzoiLK8=;
-  b=OkbXUVQnVgFAfBNiOEHWUoQFZDSyPIvgqbaqlNFZot+O04+6zFqB6uUl
-   l9I5vz4uMYol8h2afvGRHS+u7TXeAKduWLBV61w4NUA8Vsj0TvYMoj93T
-   J29fslCK6RCD1OqyaYkyODjjiBvZnSoL9zjhktgmv170pTIqHgKK+xSvp
-   +49iVjk95KLaDO5mOXbnpMto1hzFcFljO4sF9XoNgDs5sdZoF3ADSDpa8
-   6tIcg4Gloybz8P2ikwr23BZ2ReKLl0MeDTA7jmXi0JccCxBOPru6+jR+s
-   avWM2+1tF+lBCxdajvryM9SXVVyT4md/oWM2L68Wb/mP0+8ySJmL/dkHU
-   Q==;
-IronPort-SDR: 16Ip0SnkkCGf4AzbhazUzv5maOuxybW8qXf59eBpNBgv/Xbv7Z1M6maFpyuqChvm4ZA31aO/Uf
- MU3GuM3r4ufrdo+XQ6EpSaWJFBtC6ubevQcYZ52SPDE78RYCReXLSpWZXFCPuud8Jaw55h9wW2
- exEO/KtpswleduaQowomnFw8yp8E79da2tONm1aBcwajxzegu7sa9dr6U4Z/eVrXM+7KH3y3if
- oBjW2+CzayJj0d8MhbOcwV5UToraqPdNAc+KZwOMP9F55PjtYxm3qv+aGALaC23btWH1jXuhkI
- iL4=
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; 
-   d="scan'208";a="93581421"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Oct 2020 07:25:55 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 6 Oct 2020 07:25:54 -0700
-Received: from soft-dev10.microsemi.net (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 6 Oct 2020 07:25:41 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [RESEND PATCH v3 3/3] arm64: dts: sparx5: Add SGPIO devices
-Date:   Tue, 6 Oct 2020 16:25:32 +0200
-Message-ID: <20201006142532.2247515-4-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201006142532.2247515-1-lars.povlsen@microchip.com>
-References: <20201006142532.2247515-1-lars.povlsen@microchip.com>
+        id S1725939AbgJFO3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 10:29:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35606 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725906AbgJFO3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:29:16 -0400
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D90F2C061755;
+        Tue,  6 Oct 2020 07:29:15 -0700 (PDT)
+Received: by mail-oi1-x242.google.com with SMTP id t77so9288329oie.4;
+        Tue, 06 Oct 2020 07:29:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:from:to:cc:references:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to;
+        bh=gWCvr6jme1sD/L2VS+NEvBVzgBRNU/acJHMvPlKRV3g=;
+        b=TY/p8N5LTJziXQ/Itigt48TvXXajZIxPUM+dTMxSyncSk9h4JIsnqa4m7AMQT5282i
+         H1xMcTIjTLWQ/XltFZznjx3JLxo68ECPFH7qR1ei8RtghfvsiaElrQ7damhqS/uPCVN5
+         Bn7WCYejwSA3hRW0RI6IDqiV/CGDydjtY07nKPvjoSuxAxz5JqPIiRVlplrC1zff1uhZ
+         xJ14+yAC/t2MJIf272UdVf/128DUoAIlRO+XI6Qbrn0fx3cnZXTaCoPf3rel1EtFTUKh
+         Y4EoukoivcBCYBXekCwwYWAsjRSanghbsqhZ43A8q8gqojvQQI2FycQ4RPrO0drBimlI
+         mQ5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:from:to:cc:references:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to;
+        bh=gWCvr6jme1sD/L2VS+NEvBVzgBRNU/acJHMvPlKRV3g=;
+        b=LO/aQXdKA5XC+oFuAcwIkhAIm4GsyfFzbLE23PbgMaCtjZR+uGo9sbzaCyW6UIAaVa
+         15B46cX0nHTry238uX9/vrL9Q/ZGOqtOXaVB+03Cn1pjES7gmzG0KlmiVNhaXA/AQsor
+         O4IwLiL+YPmH1fXK0Hyftbc/ZoNcwXkzgIAsLmE41c8g519N0vZJ7DtAvu2ku6TXRbnV
+         VTGhJiKgIOta/GgR6Ts+XkXuk2RlCXUoUTvQqLntKVNYK5o9EgTdKjq/bocW1h79y4rl
+         bke8zui7JO8iXlfMPN64W0bPMNUmP9Mw4w9awTjLxOBFZZYFngFyq8HM/Zk61MbFcAzy
+         VRbA==
+X-Gm-Message-State: AOAM5325F0RrihDKoXbO7YE2QJIvszNe6Hu5pVRCNOF6EFFi+r06NSM0
+        h2W2BrBJP42r+902m1G+9gdecJ57EC0=
+X-Google-Smtp-Source: ABdhPJz/RUK51CfJ2t7+19dmuSoLODv64KscwXc87lG4czFNnRdDCHk6EbRHPHYOx0FPZpRdXs9veA==
+X-Received: by 2002:aca:2808:: with SMTP id 8mr2845322oix.26.1601994555250;
+        Tue, 06 Oct 2020 07:29:15 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id k3sm870751oof.6.2020.10.06.07.29.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Oct 2020 07:29:14 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [RFC] Using a watchdog as system reset
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de>
+ <460aa962-9da5-6e1e-b5db-3f9f1d78110a@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <41b0dfcd-adf1-296f-e5be-4db3eac9f097@roeck-us.net>
+Date:   Tue, 6 Oct 2020 07:29:11 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <460aa962-9da5-6e1e-b5db-3f9f1d78110a@roeck-us.net>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="CFSApHr0l3KnAasu368AMnPWby3G87pPq"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds SGPIO devices for the Sparx5 SoC and configures it for the
-applicable reference boards.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--CFSApHr0l3KnAasu368AMnPWby3G87pPq
+Content-Type: multipart/mixed; boundary="JOX2XH2xOXwD2PyLmn477UaoCed7rcTlq"
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi     |  91 ++++++
- .../boot/dts/microchip/sparx5_pcb125.dts      |   5 +
- .../dts/microchip/sparx5_pcb134_board.dtsi    | 262 ++++++++++++++++++
- .../dts/microchip/sparx5_pcb135_board.dtsi    |  57 ++++
- 4 files changed, 415 insertions(+)
+--JOX2XH2xOXwD2PyLmn477UaoCed7rcTlq
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index fc1c7807249f..326ace6d35a3 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -232,6 +232,22 @@ si2_pins: si2-pins {
- 				function = "si2";
- 			};
+On 10/6/20 4:56 AM, Guenter Roeck wrote:
+> On 10/6/20 3:29 AM, Uwe Kleine-K=F6nig wrote:
+>> Hello,
+>>
+>> I have an i.MX25 system here with an external watchdog (using the
+>> gpio_wdt driver). So the internal watchdog (imx2_wdt) is unused.
+>>
+>> The problem with the unused imx2_wdt is that this usually provides the=
 
-+			sgpio0_pins: sgpio-pins {
-+				pins = "GPIO_0", "GPIO_1", "GPIO_2", "GPIO_3";
-+				function = "sg0";
-+			};
-+
-+			sgpio1_pins: sgpio1-pins {
-+				pins = "GPIO_4", "GPIO_5", "GPIO_12", "GPIO_13";
-+				function = "sg1";
-+			};
-+
-+			sgpio2_pins: sgpio2-pins {
-+				pins = "GPIO_30", "GPIO_31", "GPIO_32",
-+				       "GPIO_33";
-+				function = "sg2";
-+			};
-+
- 			uart_pins: uart-pins {
- 				pins = "GPIO_10", "GPIO_11";
- 				function = "uart";
-@@ -262,6 +278,81 @@ emmc_pins: emmc-pins {
- 			};
- 		};
+>> restart handler and now a reboot ends with
+>>
+>> 	reboot: Restarting system
+>> 	Reboot failed -- System halted
+>>
+>> until eventually the watchdog bites and resets the machine.
+>>
+>> I imagine that this is a common enough issue to warrant a generic
+>> solution. My suggestion is to formalize and implement something like:
+>>
+>> 	watchdog {
+>> 		compatible =3D "linux,wdt-gpio";
+>> 		...
+>> 		provide-system-reset;
+>> 	}
+>>
+>> with the sematic of: "This is the dedicated mechanism to reset this
+>> machine."
+>>
+>=20
+> Some systems have more than one means to reset it, which is why
+> restart handlers have a priority. This in turn suggests that we should
+> maybe have a means to set that priority dynamically for the imx2_wdt dr=
+iver
+> (or for watchdog drivers in general) instead of having it fixed at 128.=
 
-+		sgpio0: gpio@61101036c {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio0_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x1101036c 0x100>;
-+			sgpio_in0: gpio-controller@0 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <0>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+			sgpio_out0: gpio-controller@1 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <1>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+		};
-+
-+		sgpio1: gpio@611010484 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio1_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x11010484 0x100>;
-+			sgpio_in1: gpio-controller@0 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <0>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+			sgpio_out1: gpio-controller@1 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <1>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+		};
-+
-+		sgpio2: gpio@61101059c {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio2_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x1101059c 0x100>;
-+			sgpio_in2: gpio-controller@0 {
-+				reg = <0>;
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+			sgpio_out2: gpio-controller@1 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <1>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+		};
-+
- 		i2c0: i2c@600101000 {
- 			compatible = "snps,designware-i2c";
- 			status = "disabled";
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-index 6b2da7c7520c..9baa085d7861 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-@@ -69,6 +69,11 @@ spi-flash@9 {
- 	};
- };
+> That would also solve your problem, assuming there is a different
+> (currently lower priority) means to reset the hardware in your system.
+>=20
+> Alternatively, can't you just blacklist the imx2-wdt driver ?
+>=20
 
-+&sgpio0 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <0 23>;
-+};
-+
- &i2c1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-index 35984785d611..9571f14ba51e 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-@@ -36,6 +36,242 @@ gpio-restart {
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led@0 {
-+			label = "twr0:green";
-+			gpios = <&sgpio_out0 8 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@1 {
-+			label = "twr0:yellow";
-+			gpios = <&sgpio_out0 8 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@2 {
-+			label = "twr1:green";
-+			gpios = <&sgpio_out0 9 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@3 {
-+			label = "twr1:yellow";
-+			gpios = <&sgpio_out0 9 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@4 {
-+			label = "twr2:green";
-+			gpios = <&sgpio_out0 10 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@5 {
-+			label = "twr2:yellow";
-+			gpios = <&sgpio_out0 10 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@6 {
-+			label = "twr3:green";
-+			gpios = <&sgpio_out0 11 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@7 {
-+			label = "twr3:yellow";
-+			gpios = <&sgpio_out0 11 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@8 {
-+			label = "eth12:green";
-+			gpios = <&sgpio_out0 12 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@9 {
-+			label = "eth12:yellow";
-+			gpios = <&sgpio_out0 12 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@10 {
-+			label = "eth13:green";
-+			gpios = <&sgpio_out0 13 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@11 {
-+			label = "eth13:yellow";
-+			gpios = <&sgpio_out0 13 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@12 {
-+			label = "eth14:green";
-+			gpios = <&sgpio_out0 14 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@13 {
-+			label = "eth14:yellow";
-+			gpios = <&sgpio_out0 14 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@14 {
-+			label = "eth15:green";
-+			gpios = <&sgpio_out0 15 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@15 {
-+			label = "eth15:yellow";
-+			gpios = <&sgpio_out0 15 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@16 {
-+			label = "eth48:green";
-+			gpios = <&sgpio_out1 16 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@17 {
-+			label = "eth48:yellow";
-+			gpios = <&sgpio_out1 16 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@18 {
-+			label = "eth49:green";
-+			gpios = <&sgpio_out1 17 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@19 {
-+			label = "eth49:yellow";
-+			gpios = <&sgpio_out1 17 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@20 {
-+			label = "eth50:green";
-+			gpios = <&sgpio_out1 18 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@21 {
-+			label = "eth50:yellow";
-+			gpios = <&sgpio_out1 18 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@22 {
-+			label = "eth51:green";
-+			gpios = <&sgpio_out1 19 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@23 {
-+			label = "eth51:yellow";
-+			gpios = <&sgpio_out1 19 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@24 {
-+			label = "eth52:green";
-+			gpios = <&sgpio_out1 20 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@25 {
-+			label = "eth52:yellow";
-+			gpios = <&sgpio_out1 20 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@26 {
-+			label = "eth53:green";
-+			gpios = <&sgpio_out1 21 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@27 {
-+			label = "eth53:yellow";
-+			gpios = <&sgpio_out1 21 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@28 {
-+			label = "eth54:green";
-+			gpios = <&sgpio_out1 22 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@29 {
-+			label = "eth54:yellow";
-+			gpios = <&sgpio_out1 22 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@30 {
-+			label = "eth55:green";
-+			gpios = <&sgpio_out1 23 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@31 {
-+			label = "eth55:yellow";
-+			gpios = <&sgpio_out1 23 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@32 {
-+			label = "eth56:green";
-+			gpios = <&sgpio_out1 24 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@33 {
-+			label = "eth56:yellow";
-+			gpios = <&sgpio_out1 24 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@34 {
-+			label = "eth57:green";
-+			gpios = <&sgpio_out1 25 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@35 {
-+			label = "eth57:yellow";
-+			gpios = <&sgpio_out1 25 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@36 {
-+			label = "eth58:green";
-+			gpios = <&sgpio_out1 26 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@37 {
-+			label = "eth58:yellow";
-+			gpios = <&sgpio_out1 26 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@38 {
-+			label = "eth59:green";
-+			gpios = <&sgpio_out1 27 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@39 {
-+			label = "eth59:yellow";
-+			gpios = <&sgpio_out1 27 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@40 {
-+			label = "eth60:green";
-+			gpios = <&sgpio_out1 28 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@41 {
-+			label = "eth60:yellow";
-+			gpios = <&sgpio_out1 28 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@42 {
-+			label = "eth61:green";
-+			gpios = <&sgpio_out1 29 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@43 {
-+			label = "eth61:yellow";
-+			gpios = <&sgpio_out1 29 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@44 {
-+			label = "eth62:green";
-+			gpios = <&sgpio_out1 30 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@45 {
-+			label = "eth62:yellow";
-+			gpios = <&sgpio_out1 30 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@46 {
-+			label = "eth63:green";
-+			gpios = <&sgpio_out1 31 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@47 {
-+			label = "eth63:yellow";
-+			gpios = <&sgpio_out1 31 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
- };
+After having another couple hours of sleep and a coffee, I wonder if
+this is already done, and the reboot just fails _because_ the imx2_wdt
+is _not_ loaded. Is that the case ?
 
- &spi0 {
-@@ -54,6 +290,32 @@ spi-flash@9 {
- 	};
- };
+If so, it looks like you want the reset functionality of the imx_wdt driv=
+er
+but not its watchdog functionality. And the above would be a suggestion
+to add a "generic" restart functionality into the watchdog subsystem,
+one that uses a watchdog with minimum timeout to reset the system,
+even if its driver doesn't explicitly register a restart handler.
+Is that what you are trying to suggest ?
 
-+&sgpio0 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <8 15>;
-+};
-+
-+&sgpio_in0 {
-+	ngpios = <64>;
-+};
-+
-+&sgpio_out0 {
-+	ngpios = <64>;
-+};
-+
-+&sgpio1 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <24 31>;
-+};
-+
-+&sgpio_in1 {
-+	ngpios = <64>;
-+};
-+
-+&sgpio_out1 {
-+	ngpios = <64>;
-+};
-+
- &gpio {
- 	i2cmux_pins_i: i2cmux-pins-i {
- 	       pins = "GPIO_16", "GPIO_17", "GPIO_18", "GPIO_19",
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-index 7de66806b14b..c85e4d6900b6 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-@@ -20,6 +20,50 @@ gpio-restart {
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led@0 {
-+			label = "eth60:yellow";
-+			gpios = <&sgpio_out1 28 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@1 {
-+			label = "eth60:green";
-+			gpios = <&sgpio_out1 28 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@2 {
-+			label = "eth61:yellow";
-+			gpios = <&sgpio_out1 29 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@3 {
-+			label = "eth61:green";
-+			gpios = <&sgpio_out1 29 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@4 {
-+			label = "eth62:yellow";
-+			gpios = <&sgpio_out1 30 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@5 {
-+			label = "eth62:green";
-+			gpios = <&sgpio_out1 30 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@6 {
-+			label = "eth63:yellow";
-+			gpios = <&sgpio_out1 31 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@7 {
-+			label = "eth63:green";
-+			gpios = <&sgpio_out1 31 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+	};
- };
+Thanks,
+Guenter
 
- &gpio {
-@@ -67,6 +111,19 @@ spi-flash@9 {
- 	};
- };
+>> (OK, I could enable the imx2_wdt driver and make sure with some udev
+>> magic that the gpio watchdog is the one being fed by userspace. But
+>> having two watchdogs fills me with some trepidation.)
+>>
+>=20
+> Hmm - that suggests that the reset may fail  because the reset code
+> in imx2_wdt doesn't work, not because it isn't wired.
+> If so, the driver code handling the reset may be buggy or incomplete.
+> Have you tried setting (or not setting) the fsl,ext-reset-output
+> property ?
+>=20
+>> Having said that, I wonder what the typical restart callback does
+>> different from setting the timeout to a minimal value, start it and th=
+en
+>> maybe call delay() to not return until the watchdog triggers. At least=
 
-+&sgpio1 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <24 31>;
-+};
-+
-+&sgpio_in1 {
-+	ngpios = <64>;
-+};
-+
-+&sgpio_out1 {
-+	ngpios = <64>;
-+};
-+
- &axi {
- 	i2c0_imux: i2c0-imux@0 {
- 		compatible = "i2c-mux-pinctrl";
---
-2.25.1
+>> that's what I would do for a watchdog that doesn't provide an explicit=
+
+>> .restart handler but has the provide-system-reset property.
+>=20
+> The intent of the callback was to handle situations where the watchdog
+> hardware also generates the system reset. The secondary use was for sys=
+tems
+> which don't have a means to reset the system other than what you descri=
+be
+> above.
+>=20
+> Guenter
+>=20
+>>
+>> In my eyes this is somewhat of a hardware property, but I can imagine
+>> that others don't agree and argue this shouldn't go into the device
+>> tree. @Rob: What is your position here?
+>>
+>> Does this sound sane? Do we also need a property like
+>> "no-provide-system-reset" to better maintain backward compatibility?
+>> (which then would result in not registering the watchdog as reset
+>> trigger even if the driver provides a .restart.)
+>> Does someone know a better name for the property?
+>>
+>> Best regards
+>> Uwe
+>>
+>=20
+>=20
+
+
+
+--JOX2XH2xOXwD2PyLmn477UaoCed7rcTlq--
+
+--CFSApHr0l3KnAasu368AMnPWby3G87pPq
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEiHPvMQj9QTOCiqgVyx8mb86fmYEFAl98fzcACgkQyx8mb86f
+mYFNhA/7B4wtOx2ZYicsiG7HWm10Ntb+WDHweJmWBzQxgcp+Ex2ZO6q9BCWhK0uT
+t1AtV4PQMhjKlvWrbDdnV+NXeNZb8T09Nl8yEw/22eNj141HdMaG1xt3Dz49FW53
+J328kn+ANk+W9UVNZh71+DnSkugh8jjaszIg1ipBXO3lScaaIiPjOL2LfDrpIkCq
+iAp5RbSryEgtcRbxAqj1D/dGVSc0kplHxMsh2bQFR62k/m6sfHtn9piR8/yDl9Vl
+EYQAJUu6G9NUxaxSSqSwb3/sp/rAq4Mzrj1fp4wytaU3wdM4dOQPMSrKUJTeCrVc
+1DyObi/kfNfBU7Mt0aWl6xZmnp1VqsqWuiKtbK6+aKKFvOGTQbaKwF2URHK4PCUX
+tv1bMR/QYv456XnQuDSUgipZjXgoL4MIQdnkDMFzmsjO23FHOBy8j+ZacpQ0MKSg
+IIz/xuFSaSeKxVv6Yzc+LpfCWuOC1mLt20ZBcpkiKKi0XhZ/w1V2qdkUIFVMyzid
+mIWHxsxE73IGe7SfIfYp5c0LXzhBiDegw1ii9rid8JJRvx13HUCreDngFD1tkzBI
+gfhLxq0YERF9mjwRt74NQbEQWX/hI2B50buKRfz6K0p/g1lr8wd/gaimVZ8STU3O
+JjWQNtR5ySMLrWnW7+Vn9omGGbYyjLAXzeMjxbbFU8b5dBGwr80=
+=OZLL
+-----END PGP SIGNATURE-----
+
+--CFSApHr0l3KnAasu368AMnPWby3G87pPq--
