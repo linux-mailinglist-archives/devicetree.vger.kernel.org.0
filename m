@@ -2,116 +2,469 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97AF628496E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 11:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 446822849A8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 11:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725981AbgJFJfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 05:35:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46906 "EHLO
+        id S1726096AbgJFJu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 05:50:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725939AbgJFJfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 05:35:46 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76557C061755
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 02:35:46 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id c6so941529plr.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 02:35:46 -0700 (PDT)
+        with ESMTP id S1726070AbgJFJu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 05:50:57 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3512BC0613D2
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 02:50:57 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id az3so1296577pjb.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 02:50:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
-         :user-agent;
-        bh=eA4h9JZo7r34EDkCVqDKqhGokDRWxdrNFzDIcJyr8Mg=;
-        b=UFgdJvpaeMjdaN9SnwCqpa58OxKJuAR4Mjuv5L+V/oWOTTFCHgArONGubgpm4cbDqX
-         a9/PjwBrEXSgXDE87cjmnTWKXtV2KChrngwFPsjxCOmJNbcoGoS8RctJF9q+MSUELn4Q
-         R/ASTg77U2AZlk6QWGeIZfKplADrhi1uZ+6t9rut57ZtSKeRhtaxjwTHX9RnR1AbeV+9
-         ylH8xw1WrJnIPbMsWF//yoiesexUgbw7WvAEU6lss2X9s4KLuZZLQRUCB1dgpTV2OMfa
-         jDp2KrYdiq4rCWTPn7fWQxkUjvJLRj9/af8Bol+T8opOijyWQUuF5aOqn3175xIkULKj
-         S0Gw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=mycjQb93JeYpVYCRmqAervRMhPA70rTAQD2ylQgQobQ=;
+        b=DH5cXDdLsP5zV5SH9Edi6Wjky4+cSm892NocSCE6yVfQTGSHN+Hh2vpyV0E9V7c8u0
+         068xGZbUHbiEmpQgjwru7RF8jXgc65PktOfNJ2HYF9y7gXr+aCrk2DI8VyxaqK0JhqF9
+         HA6hOict0YsCwTk8SwBh9Lj74QbYj6rngx3Fj0NjYICFW2TJ3WwK/zjLJU1x3/Pb38U3
+         KBm/knfgz1RW++FrQ3Wi54HA5Iq3Wo8uVXZ+Hsj7gmYJRZz/cvzJYDBzrbxUj6WMspF9
+         CAqRtPBUKxVXiW9Ehq7kJEqzluwO8GRcrI+Yttgr3iCz1G3MhfaWdZYone+c8G9hAs5g
+         taSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=eA4h9JZo7r34EDkCVqDKqhGokDRWxdrNFzDIcJyr8Mg=;
-        b=NKHfUquuHhz/HB9SN247RFnX9jId0C1CfAOa6tVqVlreMBLzoGfjwnfJ7CqWAbtw6A
-         QRh/o6e1JddqpCg51SHkR0saj6KFGItNG5l2WdRXCruCILvJy/iolZdQf7++U21rEAUL
-         8wGUdjc/nvmRR0+6N5+w3YWd8G3qdIBNLwFL/Rq3kvH+DPS2NMt2pAmtFQb5A3FZ/5ji
-         qF5W/1vqyTqunuoSO2kkqwOnTLoXmQc8iJUYJ23hs1ElBBAKycgBX6bw0hJV9WgupP/t
-         YuFFsARG/ouy25XzCEmNHn0k55pYkIwwiRCeaqgl8U5nIt+N+7fzeGtd5IZ7Z7oOWsBX
-         j7Og==
-X-Gm-Message-State: AOAM533UmY45jbZUoyAEPZKEqQLJwU4Yxludq2B+wSp4d6XMAY8Jc+HA
-        NRswtKcJTfvPmWBz6sN7xBz36s9fQ97Onw==
-X-Google-Smtp-Source: ABdhPJx07iwrEvht2LXfLFF6fb5ErvrNKINwdW6IuExMZ+UkoILb5URCx5q8WXU1PewRUeXrLmjLBg==
-X-Received: by 2002:a17:90a:e015:: with SMTP id u21mr3410742pjy.33.1601976945786;
-        Tue, 06 Oct 2020 02:35:45 -0700 (PDT)
-Received: from marlonpc-debian (pa49-185-8-24.pa.vic.optusnet.com.au. [49.185.8.24])
-        by smtp.gmail.com with ESMTPSA id mt2sm2190601pjb.17.2020.10.06.02.35.43
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=mycjQb93JeYpVYCRmqAervRMhPA70rTAQD2ylQgQobQ=;
+        b=CQhKoyEy+TZuXxphe2shMiG5vnSopmfXiUc3+MO85ayEnjoQk7PzVTXFkNnfe2EYyD
+         T6NBB/ECSXNhajejbxRUlf/tSITzCsWoinn+CJCiczK0SR758LipoB0wmj4Sj5EL4ljY
+         vuZ/X92c9Nuk0RlahM/JWXoOM270iQDFN/GD93xxqlrbhfvamul7x28TiziuEl1LKMLq
+         aEX8lAU/b7eIojYDxva3s9EUP4gQYmY0rOduE8NS4c0Pnsf+IKwmKd4JZgfybhIlqv74
+         eK3+/f0zI/sHdH5gPJxyYkX05f3CFXdwAWzVTiBZddGJQdl4sOTdy/s077zGmxh9pnjt
+         fvTg==
+X-Gm-Message-State: AOAM530h1lnBvLTRVC36H10RD+o2gcJCiYLLT9Y29eIhRih+4yB8EE/a
+        /ootYTiD4/LJDHeuB0mEPLcThqP5BHKT
+X-Google-Smtp-Source: ABdhPJyDgiy7IGlwkfN5RgDJvsMp5VpBk/wuDaejJivnre1JvscceD3vX4ijlMiU0qpmoSbtS+53dg==
+X-Received: by 2002:a17:902:9b83:b029:d2:439c:3b7d with SMTP id y3-20020a1709029b83b02900d2439c3b7dmr2438063plp.39.1601977856354;
+        Tue, 06 Oct 2020 02:50:56 -0700 (PDT)
+Received: from Mani-XPS-13-9360.localdomain ([2409:4072:6e9d:8f58:948:749c:4eeb:26a])
+        by smtp.gmail.com with ESMTPSA id e19sm2979783pfl.135.2020.10.06.02.50.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 02:35:45 -0700 (PDT)
-Date:   Tue, 6 Oct 2020 20:35:41 +1100
-From:   Marlon Rac Cambasis <marlonrc08@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     trivial@kernel.org
-Subject: [PATCH] Docs: Fixing Spelling errors in
- Documentation/devicetree/bindings/
-Message-ID: <20201006093541.GA10261@marlonpc-debian>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Tue, 06 Oct 2020 02:50:55 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     rjw@rjwysocki.net, viresh.kumar@linaro.org, robh+dt@kernel.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Convert to YAML bindings
+Date:   Tue,  6 Oct 2020 15:20:47 +0530
+Message-Id: <20201006095047.30242-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixing three spelling errors within Documentation/devicetree/bindings.
-"specfied" replaced with "specified" in all three files modified. This
-should hopefully reduce any confusion that a reader might have.
+Convert Qualcomm cpufreq devicetree binding to YAML.
 
-Signed-off-by: Marlon Rac Cambasis <marlonrc08@gmail.com>
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt  | 2 +-
- Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt | 2 +-
- Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt      | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ .../bindings/cpufreq/cpufreq-qcom-hw.txt      | 172 --------------
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 212 ++++++++++++++++++
+ 2 files changed, 212 insertions(+), 172 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
-index 70659c917bdc..372f473e80c4 100644
---- a/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
-@@ -75,7 +75,7 @@ Required Properties:
-   The child node should contain a list of pin(s) on which a particular pin
-   function selection or pin configuration (or both) have to applied. This
-   list of pins is specified using the property name "samsung,pins". There
--  should be atleast one pin specfied for this property and there is no upper
-+  should be atleast one pin specified for this property and there is no upper
-   limit on the count of pins that can be specified. The pins are specified
-   using pin names which are derived from the hardware manual of the SoC. As
-   an example, the pins in GPA0 bank of the pin controller can be represented
-diff --git a/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt b/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt
-index 6e802703af60..17b7a6a43a29 100644
---- a/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt
-+++ b/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt
-@@ -9,7 +9,7 @@ Optional property:
- - nuvoton,sw-reset-number - Contains the software reset number to restart the SoC.
-   NPCM7xx contain four software reset that represent numbers 1 to 4.
- 
--  If 'nuvoton,sw-reset-number' is not specfied software reset is disabled.
-+  If 'nuvoton,sw-reset-number' is not specified software reset is disabled.
- 
- Example:
- 	rstc: rstc@f0801000 {
-diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-index d78d4a8fb868..a8197632d6d2 100644
---- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-+++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-@@ -20,7 +20,7 @@ Optional properties:
-    This is useful in situations where another watchdog engine on chip is
-    to perform the reset.
- 
--   If 'aspeed,reset-type=' is not specfied the default is to enable system
-+   If 'aspeed,reset-type=' is not specified the default is to enable system
-    reset.
- 
-    Reset types:
+diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+deleted file mode 100644
+index 9299028ee712..000000000000
+--- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
++++ /dev/null
+@@ -1,172 +0,0 @@
+-Qualcomm Technologies, Inc. CPUFREQ Bindings
+-
+-CPUFREQ HW is a hardware engine used by some Qualcomm Technologies, Inc. (QTI)
+-SoCs to manage frequency in hardware. It is capable of controlling frequency
+-for multiple clusters.
+-
+-Properties:
+-- compatible
+-	Usage:		required
+-	Value type:	<string>
+-	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
+-
+-- clocks
+-	Usage:		required
+-	Value type:	<phandle> From common clock binding.
+-	Definition:	clock handle for XO clock and GPLL0 clock.
+-
+-- clock-names
+-	Usage:		required
+-	Value type:	<string> From common clock binding.
+-	Definition:	must be "xo", "alternate".
+-
+-- reg
+-	Usage:		required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Addresses and sizes for the memory of the HW bases in
+-			each frequency domain.
+-- reg-names
+-	Usage:		Optional
+-	Value type:	<string>
+-	Definition:	Frequency domain name i.e.
+-			"freq-domain0", "freq-domain1".
+-
+-- #freq-domain-cells:
+-	Usage:		required.
+-	Definition:	Number of cells in a freqency domain specifier.
+-
+-* Property qcom,freq-domain
+-Devices supporting freq-domain must set their "qcom,freq-domain" property with
+-phandle to a cpufreq_hw followed by the Domain ID(0/1) in the CPU DT node.
+-
+-
+-Example:
+-
+-Example 1: Dual-cluster, Quad-core per cluster. CPUs within a cluster switch
+-DCVS state together.
+-
+-/ {
+-	cpus {
+-		#address-cells = <2>;
+-		#size-cells = <0>;
+-
+-		CPU0: cpu@0 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x0>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_0>;
+-			qcom,freq-domain = <&cpufreq_hw 0>;
+-			L2_0: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-				L3_0: l3-cache {
+-				      compatible = "cache";
+-				};
+-			};
+-		};
+-
+-		CPU1: cpu@100 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x100>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_100>;
+-			qcom,freq-domain = <&cpufreq_hw 0>;
+-			L2_100: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-			};
+-		};
+-
+-		CPU2: cpu@200 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x200>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_200>;
+-			qcom,freq-domain = <&cpufreq_hw 0>;
+-			L2_200: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-			};
+-		};
+-
+-		CPU3: cpu@300 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x300>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_300>;
+-			qcom,freq-domain = <&cpufreq_hw 0>;
+-			L2_300: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-			};
+-		};
+-
+-		CPU4: cpu@400 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x400>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_400>;
+-			qcom,freq-domain = <&cpufreq_hw 1>;
+-			L2_400: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-			};
+-		};
+-
+-		CPU5: cpu@500 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x500>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_500>;
+-			qcom,freq-domain = <&cpufreq_hw 1>;
+-			L2_500: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-			};
+-		};
+-
+-		CPU6: cpu@600 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x600>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_600>;
+-			qcom,freq-domain = <&cpufreq_hw 1>;
+-			L2_600: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-			};
+-		};
+-
+-		CPU7: cpu@700 {
+-			device_type = "cpu";
+-			compatible = "qcom,kryo385";
+-			reg = <0x0 0x700>;
+-			enable-method = "psci";
+-			next-level-cache = <&L2_700>;
+-			qcom,freq-domain = <&cpufreq_hw 1>;
+-			L2_700: l2-cache {
+-				compatible = "cache";
+-				next-level-cache = <&L3_0>;
+-			};
+-		};
+-	};
+-
+- soc {
+-	cpufreq_hw: cpufreq@17d43000 {
+-		compatible = "qcom,cpufreq-hw";
+-		reg = <0x17d43000 0x1400>, <0x17d45800 0x1400>;
+-		reg-names = "freq-domain0", "freq-domain1";
+-
+-		clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
+-		clock-names = "xo", "alternate";
+-
+-		#freq-domain-cells = <1>;
+-	};
+-}
+diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+new file mode 100644
+index 000000000000..a11c69a29b5d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+@@ -0,0 +1,212 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/cpufreq/cpufreq-qcom-hw.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. CPUFREQ
++
++maintainers:
++  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
++
++description: |
++
++  CPUFREQ HW is a hardware engine used by some Qualcomm Technologies, Inc. (QTI)
++  SoCs to manage frequency in hardware. It is capable of controlling frequency
++  for multiple clusters.
++
++properties:
++  compatible:
++    oneOf:
++      - description: v1 of CPUFREQ HW
++        items:
++          - const: qcom,cpufreq-hw
++
++      - description: v2 of CPUFREQ HW (EPSS)
++        items:
++          - enum:
++              - qcom,sm8250-cpufreq-epss
++          - const: qcom,cpufreq-epss
++
++  reg:
++    minItems: 2
++    maxItems: 3
++    items:
++      - description: Frequency domain 0 register region
++      - description: Frequency domain 1 register region
++      - description: Frequency domain 2 register region
++
++  reg-names:
++    minItems: 2
++    maxItems: 3
++    items:
++      - const: freq-domain0
++      - const: freq-domain1
++      - const: freq-domain2
++
++  clocks:
++    items:
++      - description: XO Clock
++      - description: GPLL0 Clock
++
++  clock-names:
++    items:
++      - const: xo
++      - const: alternate
++
++  '#freq-domain-cells':
++    const: 1
++
++  qcom,freq-domain:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    maxItems: 1
++    description:
++      Devices supporting freq-domain must set their "qcom,freq-domain"
++      property with phandle to a cpufreq_hw followed by the Domain ID(0/1)
++      in the CPU DT node.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - '#freq-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
++    #include <dt-bindings/clock/qcom,rpmh.h>
++
++    // Example 1: Dual-cluster, Quad-core per cluster. CPUs within a cluster
++    // switch DCVS state together.
++    cpus {
++      #address-cells = <2>;
++      #size-cells = <0>;
++
++      CPU0: cpu@0 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x0>;
++        enable-method = "psci";
++        next-level-cache = <&L2_0>;
++        qcom,freq-domain = <&cpufreq_hw 0>;
++        L2_0: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++          L3_0: l3-cache {
++            compatible = "cache";
++          };
++        };
++      };
++
++      CPU1: cpu@100 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x100>;
++        enable-method = "psci";
++        next-level-cache = <&L2_100>;
++        qcom,freq-domain = <&cpufreq_hw 0>;
++        L2_100: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++        };
++      };
++
++      CPU2: cpu@200 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x200>;
++        enable-method = "psci";
++        next-level-cache = <&L2_200>;
++        qcom,freq-domain = <&cpufreq_hw 0>;
++        L2_200: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++        };
++      };
++
++      CPU3: cpu@300 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x300>;
++        enable-method = "psci";
++        next-level-cache = <&L2_300>;
++        qcom,freq-domain = <&cpufreq_hw 0>;
++        L2_300: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++        };
++      };
++
++      CPU4: cpu@400 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x400>;
++        enable-method = "psci";
++        next-level-cache = <&L2_400>;
++        qcom,freq-domain = <&cpufreq_hw 1>;
++        L2_400: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++        };
++      };
++
++      CPU5: cpu@500 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x500>;
++        enable-method = "psci";
++        next-level-cache = <&L2_500>;
++        qcom,freq-domain = <&cpufreq_hw 1>;
++        L2_500: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++        };
++      };
++
++      CPU6: cpu@600 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x600>;
++        enable-method = "psci";
++        next-level-cache = <&L2_600>;
++        qcom,freq-domain = <&cpufreq_hw 1>;
++        L2_600: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++        };
++      };
++
++      CPU7: cpu@700 {
++        device_type = "cpu";
++        compatible = "qcom,kryo385";
++        reg = <0x0 0x700>;
++        enable-method = "psci";
++        next-level-cache = <&L2_700>;
++        qcom,freq-domain = <&cpufreq_hw 1>;
++        L2_700: l2-cache {
++          compatible = "cache";
++          next-level-cache = <&L3_0>;
++        };
++      };
++    };
++
++    soc {
++      #address-cells = <1>;
++      #size-cells = <1>;
++
++      cpufreq@17d43000 {
++        compatible = "qcom,cpufreq-hw";
++        reg = <0x17d43000 0x1400>, <0x17d45800 0x1400>;
++        reg-names = "freq-domain0", "freq-domain1";
++
++        clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
++        clock-names = "xo", "alternate";
++
++        #freq-domain-cells = <1>;
++      };
++    };
++...
 -- 
-2.20.1
+2.17.1
 
