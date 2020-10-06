@@ -2,104 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92681284EAA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 17:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A74284F37
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 17:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725947AbgJFPOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 11:14:23 -0400
-Received: from mail-proxyout-mua-31.websupport.eu ([37.9.172.181]:49498 "EHLO
-        mail-proxyout-mua-31.websupport.eu" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725946AbgJFPOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 11:14:23 -0400
-Received: from in-2.websupport.sk (unknown [10.10.2.102])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1725972AbgJFPrV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 6 Oct 2020 11:47:21 -0400
+Received: from mailout07.rmx.de ([94.199.90.95]:60505 "EHLO mailout07.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725947AbgJFPrU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Oct 2020 11:47:20 -0400
+X-Greylist: delayed 1816 seconds by postgrey-1.27 at vger.kernel.org; Tue, 06 Oct 2020 11:47:20 EDT
+Received: from kdin04.retarus.com (kdin04.dmz1.retloc [172.19.16.59])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail-proxyout-mua-31.websupport.eu (Postfix) with ESMTPS id 5C7ECC9F82;
-        Tue,  6 Oct 2020 17:14:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackhole.sk;
-        s=mail; t=1601997260;
-        bh=kYbaQs68qmtfT6rkRwmtAso3OMGOEpHMiJs972Pup2w=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References;
-        b=ba7rs1BaN1VufQ0wVciGmz+jzn0sz5O/Hm5PjIOU8PwlX2beNVBw++jMkswhG4aBK
-         sYUXvgzj8Ps4fJzJbGKRy9lzQMdtnjv3CErscg/Khxsrbbgwmh7FJ8wDVY1gGbnXug
-         uKtmNbBfo0ahciPvlyl6N+B+pss1IWDtjwmwQq5U=
-Received: from localhost (otava-0257.koleje.cuni.cz [78.128.181.4])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        by mailout07.rmx.de (Postfix) with ESMTPS id 4C5Lfg5X4WzBtvZ;
+        Tue,  6 Oct 2020 17:16:59 +0200 (CEST)
+Received: from SRV-EX03.muc.traviantest.lan (unknown [10.64.2.31])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: kabel@blackhole.sk)
-        by in-2.websupport.sk (Postfix) with ESMTPSA id 4C5Lbb74bnz40X1j;
-        Tue,  6 Oct 2020 17:14:19 +0200 (CEST)
-Date:   Tue, 6 Oct 2020 17:14:19 +0200
-From:   Marek Behun <kabel@blackhole.sk>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     <ultracoolguy@tutanota.com>, Pavel <pavel@ucw.cz>,
-        Linux Leds <linux-leds@vger.kernel.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] leds: lm3697: Fix out-of-bound access
-Message-ID: <20201006171419.5f5d9df4@blackhole.sk>
-In-Reply-To: <85515ccd-3431-4565-eaad-3e1d116bf89f@ti.com>
-References: <20201005141334.36d9441a@blackhole.sk>
-        <MIt2NiS--3-2@tutanota.com>
-        <3c5fce56-8604-a7d5-1017-8a075f67061e@ti.com>
-        <MItBqjy--3-2@tutanota.com>
-        <966c3f39-1310-dd60-6f33-0d9464ed2ff1@ti.com>
-        <MItOR9Z--3-2@tutanota.com>
-        <20201005164808.slrtmsvmw4pvwppm@falbala.internal.home.lespocky.de>
-        <MItjEho--3-2@tutanota.com>
-        <20201005173227.GA6431@duo.ucw.cz>
-        <20201006093356.6d25b280@blackhole.sk>
-        <MIxm3uX--3-2@tutanota.com>
-        <144aa75a-4369-cd81-d7dc-2354a9afd7c5@ti.com>
-        <20201006164101.2c3fa0d7@blackhole.sk>
-        <85515ccd-3431-4565-eaad-3e1d116bf89f@ti.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        by kdin04.retarus.com (Postfix) with ESMTPS id 4C5Ldf69dbzxNmc;
+        Tue,  6 Oct 2020 17:16:06 +0200 (CEST)
+Received: from SRV-EX03.muc.traviangames.lan (10.64.2.31) by
+ SRV-EX03.muc.traviangames.lan (10.64.2.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Tue, 6 Oct 2020 17:16:05 +0200
+Received: from SRV-EX03.muc.traviangames.lan ([fe80::24a4:13fd:f7e3:12a1]) by
+ SRV-EX03.muc.traviangames.lan ([fe80::24a4:13fd:f7e3:12a1%3]) with mapi id
+ 15.01.1913.010; Tue, 6 Oct 2020 17:16:05 +0200
+From:   Denis Odintsov <d.odintsov@traviangames.com>
+To:     Tomasz Nowicki <tn@semihalf.com>
+CC:     "will@kernel.org" <will@kernel.org>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "hannah@marvell.com" <hannah@marvell.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "nadavh@marvell.com" <nadavh@marvell.com>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "mw@semihalf.com" <mw@semihalf.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 0/4] Add system mmu support for Armada-806
+Thread-Topic: [PATCH v4 0/4] Add system mmu support for Armada-806
+Thread-Index: AQHWm/Oc4VLe7uS45EyxiIpxnstQ1g==
+Date:   Tue, 6 Oct 2020 15:16:05 +0000
+Message-ID: <517BB937-1F18-4CCF-81BF-11777BB99779@traviangames.com>
+References: <20200715070649.18733-1-tn@semihalf.com>
+In-Reply-To: <20200715070649.18733-1-tn@semihalf.com>
+Accept-Language: en-US, de-DE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.10.4]
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <638F69BBBAA28D40BA47FCC6BB720268@muc.traviangames.lan>
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Out-Rspamd-Queue-Id: 4C5Lbb74bnz40X1j
-Authentication-Results: in-2.websupport.sk;
-        auth=pass smtp.auth=kabel@blackhole.sk smtp.mailfrom=kabel@blackhole.sk
-X-Out-Rspamd-Server: mail-antispam-6
-X-Out-Spamd-Result: default: False [-1.60 / 24.00];
-         ARC_NA(0.00)[];
-         GENERIC_REPUTATION(0.00)[-0.58215740698334];
-         BAYES_HAM(-3.00)[99.99%];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         RCPT_COUNT_SEVEN(0.00)[7];
-         FUZZY_BLOCKED(0.00)[rspamd.com];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:2852, ipnet:78.128.128.0/17, country:CZ];
-         MID_RHS_MATCH_FROM(0.00)[];
-         SUSPICIOUS_RECIPS(1.50)[]
+X-RMX-ID: 20201006-171606-4C5Ldf69dbzxNmc-0@kdin04
+X-RMX-SOURCE: 10.64.2.31
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Oct 2020 09:57:08 -0500
-Dan Murphy <dmurphy@ti.com> wrote:
+Hi,
 
-> Unfortunately we cannot and should not change the ABI now.
+> Am 15.07.2020 um 09:06 schrieb Tomasz Nowicki <tn@semihalf.com>:
 > 
-> Using the led-sources as the bank indicator does not conform to the 
-> definition of the description of the led-sources in the yaml.
+> The series is meant to support SMMU for AP806 and a workaround
+> for accessing ARM SMMU 64bit registers is the gist of it.
 > 
-> The preference was to use the led-sources to define the LED out to the bank.
+> For the record, AP-806 can't access SMMU registers with 64bit width.
+> This patches split the readq/writeq into two 32bit accesses instead
+> and update DT bindings.
 > 
-> Here is the conversation on how the driver got to where it is.
+> The series was successfully tested on a vanilla v5.8-rc3 kernel and
+> Intel e1000e PCIe NIC. The same for platform devices like SATA and USB.
 > 
-> https://lore.kernel.org/patchwork/patch/972337/
-> 
-> Dan
+> For reference, previous versions are listed below:
+> V1: https://lkml.org/lkml/2018/10/15/373
+> V2: https://lkml.org/lkml/2019/7/11/426
+> V3: https://lkml.org/lkml/2020/7/2/1114
 > 
 
-Oh, if this was discussed already, then never mind. Sorry for taking
-your time.
+1) After enabling SMMU on Armada 8040, and ARM_SMMU_DISABLE_BYPASS_BY_DEFAUL=y by default in kernel since 954a03be033c7cef80ddc232e7cbdb17df735663,
+internal eMMC is prevented from being initialised (as there is no iommus property for ap_sdhci0)
+Disabling "Disable bypass by default" make it work, but the patch highly suggest doing it properly.
+I wasn't able to find correct path for ap_sdhci for iommus in any publicly available documentation,
+would be highly appreciated addressed properly, thank you!
 
-Marek
+2) Second issue I got (btw I have ClearFog GT 8k armada-8040 based board) is mpci ath10k card.
+It is found, it is enumerated, it is visible in lspci, but it fails to be initialised. Here is the log:
+
+[    1.743754] armada8k-pcie f2600000.pcie: host bridge /cp0/pcie@f2600000 ranges:
+[    1.751116] armada8k-pcie f2600000.pcie:      MEM 0x00f6000000..0x00f6efffff -> 0x00f6000000
+[    1.964690] armada8k-pcie f2600000.pcie: Link up
+[    1.969379] armada8k-pcie f2600000.pcie: PCI host bridge to bus 0000:00
+[    1.976026] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    1.981537] pci_bus 0000:00: root bus resource [mem 0xf6000000-0xf6efffff]
+[    1.988462] pci 0000:00:00.0: [11ab:0110] type 01 class 0x060400
+[    1.994504] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x000fffff]
+[    2.000843] pci 0000:00:00.0: supports D1 D2
+[    2.005132] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
+[    2.011853] pci 0000:01:00.0: [168c:003c] type 00 class 0x028000
+[    2.018001] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x001fffff 64bit]
+[    2.025002] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
+[    2.032111] pci 0000:01:00.0: supports D1 D2
+[    2.049409] pci 0000:00:00.0: BAR 14: assigned [mem 0xf6000000-0xf61fffff]
+[    2.056322] pci 0000:00:00.0: BAR 0: assigned [mem 0xf6200000-0xf62fffff]
+[    2.063142] pci 0000:00:00.0: BAR 15: assigned [mem 0xf6300000-0xf63fffff pref]
+[    2.070484] pci 0000:01:00.0: BAR 0: assigned [mem 0xf6000000-0xf61fffff 64bit]
+[    2.077880] pci 0000:01:00.0: BAR 6: assigned [mem 0xf6300000-0xf630ffff pref]
+[    2.085135] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+[    2.090384] pci 0000:00:00.0:   bridge window [mem 0xf6000000-0xf61fffff]
+[    2.097202] pci 0000:00:00.0:   bridge window [mem 0xf6300000-0xf63fffff pref]
+[    2.104539] pcieport 0000:00:00.0: Adding to iommu group 4
+[    2.110232] pcieport 0000:00:00.0: PME: Signaling with IRQ 38
+[    2.116141] pcieport 0000:00:00.0: AER: enabled with IRQ 38
+[    8.131135] ath10k_pci 0000:01:00.0: Adding to iommu group 4
+[    8.131874] ath10k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    8.132203] ath10k_pci 0000:01:00.0: pci irq msi oper_irq_mode 2 irq_mode 0 reset_mode 0
+
+up to that point the log is the same as without SMMU enabled, except "Adding to iommu group N" lines, and IRQ being 37
+
+[    8.221328] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+[    8.313362] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+[    8.409373] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+[    8.553433] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+[    8.641370] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+[    8.737979] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+[    8.807356] ath10k_pci 0000:01:00.0: Failed to get pcie state addr: -16
+[    8.814032] ath10k_pci 0000:01:00.0: failed to setup init config: -16
+[    8.820605] ath10k_pci 0000:01:00.0: could not power on hif bus (-16)
+[    8.827111] ath10k_pci 0000:01:00.0: could not probe fw (-16)
+
+Thank you!
+
+> v3 -> v4
+> - call cfg_probe() impl hook a bit earlier which simplifies errata handling
+> - use hi_lo_readq_relaxed() and hi_lo_writeq_relaxed() for register accessors
+> - keep SMMU status disabled by default and enable where possible (DTS changes)
+> - commit logs improvements and other minor fixes
+> 
+> Hanna Hawa (1):
+>  iommu/arm-smmu: Workaround for Marvell Armada-AP806 SoC erratum
+>    #582743
+> 
+> Marcin Wojtas (1):
+>  arm64: dts: marvell: add SMMU support
+> 
+> Tomasz Nowicki (2):
+>  iommu/arm-smmu: Call configuration impl hook before consuming features
+>  dt-bindings: arm-smmu: add compatible string for Marvell Armada-AP806
+>    SMMU-500
+> 
+> Documentation/arm64/silicon-errata.rst        |  3 ++
+> .../devicetree/bindings/iommu/arm,smmu.yaml   |  4 ++
+> arch/arm64/boot/dts/marvell/armada-7040.dtsi  | 28 ++++++++++++
+> arch/arm64/boot/dts/marvell/armada-8040.dtsi  | 40 +++++++++++++++++
+> arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 18 ++++++++
+> drivers/iommu/arm-smmu-impl.c                 | 45 +++++++++++++++++++
+> drivers/iommu/arm-smmu.c                      | 11 +++--
+> 7 files changed, 145 insertions(+), 4 deletions(-)
+> 
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> iommu mailing list
+> iommu@lists.linux-foundation.org
+> https://lists.linuxfoundation.org/mailman/listinfo/iommu
+> 
+
