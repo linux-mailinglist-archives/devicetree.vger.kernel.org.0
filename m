@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C2EC284CBE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 15:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70610284CCA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:01:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725973AbgJFN4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 09:56:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58804 "EHLO
+        id S1725947AbgJFOBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 10:01:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725902AbgJFN4f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 09:56:35 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86CF9C061755;
-        Tue,  6 Oct 2020 06:56:34 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id p13so7716305edi.7;
-        Tue, 06 Oct 2020 06:56:34 -0700 (PDT)
+        with ESMTP id S1725939AbgJFOBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:01:07 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B4C2C061755;
+        Tue,  6 Oct 2020 07:01:07 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id 33so13647639edq.13;
+        Tue, 06 Oct 2020 07:01:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=cz40KVmNgOYFQOZJ05GYZpHq+jELy+OO58/2i9DcBhs=;
-        b=oeNxVmq3GucY1ng6CzrU5lKB5c6sa4MmlwCd+Oijv+aQ9RC+ily+kcCwQeUumRUh9b
-         i5UaaR5w6lOicX1W/FpXaLFoB/OX6PPikttUAGINHXPoP2yVmx8cnZS5M5Mdgj7BBgK7
-         DtwV8a8ARB2sAxihXTtTaCroUu3OhTjMiQB5fApo20B+94+CMfpK9pUyyDzmNo2yqPkS
-         v44Eg5EF5kL4LOUN2w3/HW/qGy/LdqfG5IYRVoIBOZUCU2mfX0SQ6yIaklwhOt2RPpIO
-         oW+zQLABLyG5KvqqZ7rV5AXwjrvgIAEW9VcrpP1zevDul46kSE7g0396BiU+0Sik7wbG
-         Zphg==
+        bh=pWzTzItFMGquZ9N6WRVzwFoGPMpIgrJK7QQeAOkDiPE=;
+        b=Yxt7ComHPrYsEFGeYm918+o3bwnCYsjcgk/G6HNF9NtX3L1Be3zoVtXMtuZ9E46qkw
+         h+knokkUfc+05uRrFfdNXJGgGxN2sHUsFMdwY6HPR/H1Mkj6Yc5fhbrTBOTPSAKb0GNd
+         y8BY1FAzP3jyKZb4eKZIIF2tjJkfx/hm7njK3e5fP5mtKmUb+JerlYtc7tVVWqOZvuhR
+         zlAQHAAXZjUNtUYfv9GBJK+987Rtcx89WFPdsHcSKps6jNfkd8m/plTt+A+rzr4DDFE0
+         p1cBYuOrBhtFwSUEiLur+LEMYHIvqsNMJGSjaCpJlAWwfbHUrwAykOEdVz9B7+Qzv8ZP
+         GF/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cz40KVmNgOYFQOZJ05GYZpHq+jELy+OO58/2i9DcBhs=;
-        b=UbNdDhamoVBoF9J8wBUky/IWUvO+2hpI8SDzPTipc/GObfCb4CgQrlin9Cx6/GT8hN
-         fqHLTT+m7FmFy0TwvbuE6lBwY2Pe8DGV8nW7jD9TEr8N0jEKya43lgZ1cPknyotQaPaT
-         ovvl21/a4kzzgyIXhTDyK7OQ0LYdWdWdvWwQFkD2cjslYy1sKO0iUySlS5I4zN+nqGIx
-         mam7TX8zTHQAQKOS+YqhfWLWLmOPK6idvCLIBFlrfj4+Mwpdx37XjdM6AGQQZXcr9quk
-         1uexJmB5F6OFSjD55oUbMT9T+57YcHLbVVhxmkMs1fRItYEctTSAhEBR0/oIIMhdUkWh
-         Y4MA==
-X-Gm-Message-State: AOAM533Sd2T5rc5fqCYRUmYkTgaPLdHZfRTqAks3pPG9gPZqsqfJoURi
-        r/+0ZZgmmkN9xHF7YtCA8Q0=
-X-Google-Smtp-Source: ABdhPJxAwoM27FXwivVZdMwIJWCs7P1die4z1Bi7l+2mEgNYrdoja17mtCrn7Kekun7v3mAhIMnBlA==
-X-Received: by 2002:aa7:c1d7:: with SMTP id d23mr5439653edp.205.1601992593114;
-        Tue, 06 Oct 2020 06:56:33 -0700 (PDT)
+        bh=pWzTzItFMGquZ9N6WRVzwFoGPMpIgrJK7QQeAOkDiPE=;
+        b=sQPTeQbbx4eL2mljgBBfQfhhxJ1UVcDZbvVQu+5NV6naLuVCiNtKSElk6tR60wcsDG
+         FqqTWar/x0pQHXQzPzuU8UBI6/FoMdlesjhGiQqHWAMvwHOKPTkUjqcmnj0ml8+11npX
+         iSUv8f934UUxgut+bsr9c0rjwm5vIltIlLVdL9LOkHAuagxY7laUEbLr2hIvHNZbIa5q
+         ySYIDQ37p0v1nhFx8eGMwuH56sMzv3f49FrWDFfVGaqsKy9h2qDRrkG9FV9EkwhbhW6n
+         8Hy+ddWpyGjYo/k0ZEVag1NOtcIbTPgjPmC07weYSjhUpcbVOuexB0wjG5hTGVngXHqC
+         038A==
+X-Gm-Message-State: AOAM532havSQDE4+elomkvMhr0a+0lQbIc60ENiZrKAQLFlXYg7IeysW
+        VQGhDGgPt4zrTX7FBjjIypE=
+X-Google-Smtp-Source: ABdhPJwnCMo0DagOwfhno9ZjV6kDRoNM/laQzOuhcaRPEJTDc8rVkskaQzz/lCaZjd82Ne1NppuB3Q==
+X-Received: by 2002:a05:6402:709:: with SMTP id w9mr5552917edx.326.1601992865873;
+        Tue, 06 Oct 2020 07:01:05 -0700 (PDT)
 Received: from skbuf ([188.26.229.171])
-        by smtp.gmail.com with ESMTPSA id bk9sm2192796ejb.122.2020.10.06.06.56.31
+        by smtp.gmail.com with ESMTPSA id q1sm2284655ejy.37.2020.10.06.07.01.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 06:56:32 -0700 (PDT)
-Date:   Tue, 6 Oct 2020 16:56:31 +0300
+        Tue, 06 Oct 2020 07:01:04 -0700 (PDT)
+Date:   Tue, 6 Oct 2020 17:01:02 +0300
 From:   Vladimir Oltean <olteanv@gmail.com>
 To:     Kurt Kanzenbach <kurt@linutronix.de>
 Cc:     Andrew Lunn <andrew@lunn.ch>,
@@ -60,32 +60,41 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         Richard Cochran <richardcochran@gmail.com>,
         Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
         ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann
- Hellcreek switches
-Message-ID: <20201006135631.73rm3gka7r7krwca@skbuf>
+Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
+ hardware timestamping
+Message-ID: <20201006140102.6q7ep2w62jnilb22@skbuf>
 References: <20201004112911.25085-1-kurt@linutronix.de>
- <20201004112911.25085-3-kurt@linutronix.de>
- <20201004125601.aceiu4hdhrawea5z@skbuf>
- <87lfgj997g.fsf@kurt>
- <20201006092017.znfuwvye25vsu4z7@skbuf>
- <878scj8xxr.fsf@kurt>
- <20201006113237.73rzvw34anilqh4d@skbuf>
- <87wo037ajr.fsf@kurt>
+ <20201004112911.25085-5-kurt@linutronix.de>
+ <20201004143000.blb3uxq3kwr6zp3z@skbuf>
+ <87imbn98dd.fsf@kurt>
+ <20201006072847.pjygwwtgq72ghsiq@skbuf>
+ <87tuv77a83.fsf@kurt>
+ <20201006133222.74w3r2jwwhq5uop5@skbuf>
+ <87r1qb790w.fsf@kurt>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87wo037ajr.fsf@kurt>
+In-Reply-To: <87r1qb790w.fsf@kurt>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 03:23:36PM +0200, Kurt Kanzenbach wrote:
-> So you're saying private VLANs can be used but the user or the other
-> kernel modules shouldn't be allowed to use them to simplify the
-> implementation?  Makes sense to me.
+On Tue, Oct 06, 2020 at 03:56:31PM +0200, Kurt Kanzenbach wrote:
+> On Tue Oct 06 2020, Vladimir Oltean wrote:
+> > On Tue, Oct 06, 2020 at 03:30:36PM +0200, Kurt Kanzenbach wrote:
+> >> That's the point. The user (or anybody else) cannot disable hardware
+> >> stamping, because it is always performed. So, why should it be allowed
+> >> to disable it even when it cannot be disabled?
+> >
+> > Because your driver's user can attach a PTP PHY to your switch port, and
+> > the network stack doesn't support multiple TX timestamps attached to the
+> > same skb. They'll want the TX timestamp from the PHY and not from your
+> > switch.
+> 
+> Yeah, sure. That use case makes sense. What's the problem exactly?
 
-It would be interesting to see if you could simply turn off VLAN
-awareness in standalone mode, and still use unique pvids per port.
-Then you would have no further restriction for VLAN-tagged traffic with
-unknown VLANs or with 8021q uppers having the same VLAN ID on multiple
-ports.
+The SO_TIMESTAMPING / SO_TIMESTAMPNS cmsg socket API simply doesn't have
+any sort of identification for a hardware TX timestamp (where it came
+from). So when you'll poll for TX timestamps, you'll receive a TX
+timestamp from the PHY and another one from the switch, and those will
+be in a race with one another, so you won't know which one is which.
