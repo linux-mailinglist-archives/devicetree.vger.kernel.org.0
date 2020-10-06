@@ -2,124 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D77328508B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 19:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE3E2850B5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 19:24:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726335AbgJFRP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 13:15:26 -0400
-Received: from netrider.rowland.org ([192.131.102.5]:51711 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1726299AbgJFRPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 13:15:25 -0400
-Received: (qmail 424636 invoked by uid 1000); 6 Oct 2020 13:15:24 -0400
-Date:   Tue, 6 Oct 2020 13:15:24 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20201006171524.GB423499@rowland.harvard.edu>
-References: <20200930124915.GA1826870@google.com>
- <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
- <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
- <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
- <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
- <CAL_JsqLWmBCjrbs2D-d+9naJAKkNhDAbmRtqvCDY8jv=L_q-xA@mail.gmail.com>
- <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
- <20201006004510.GD4135817@google.com>
- <20201006141820.GA416765@rowland.harvard.edu>
- <20201006165957.GA191572@google.com>
+        id S1725970AbgJFRX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 13:23:59 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:39732 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725925AbgJFRX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 13:23:59 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 096HNmac124305;
+        Tue, 6 Oct 2020 12:23:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1602005028;
+        bh=irQFGBfcmEyAfUvvL/TexTT802hbDdNn/2QtblPPM+c=;
+        h=From:To:CC:Subject:Date;
+        b=QygmtDV1oRj+4rNGtevcVxWI/wKzijMjcQnUGyPj+Nji99F7BCP+Cltk1agdSYp6G
+         3T2ySJkuyxXqgL006OloRs0wA11uiArUQq4w8frIpbsUTeevTbvOYn4y+fftXUjqcO
+         Qem3dH5mN7qrIBNK+6UgkHZGcrPxJ5iQ3+yHNHb4=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 096HNmu1066923
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Oct 2020 12:23:48 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 6 Oct
+ 2020 12:23:48 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 6 Oct 2020 12:23:48 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 096HNmnJ096384;
+        Tue, 6 Oct 2020 12:23:48 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v2 1/2] dt-bindings: tas2764: Add the TAS2764 binding doc
+Date:   Tue, 6 Oct 2020 12:23:40 -0500
+Message-ID: <20201006172341.16423-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201006165957.GA191572@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 09:59:57AM -0700, Matthias Kaehlcke wrote:
-> On Tue, Oct 06, 2020 at 10:18:20AM -0400, Alan Stern wrote:
-> > On Mon, Oct 05, 2020 at 05:45:10PM -0700, Matthias Kaehlcke wrote:
-> > > I did some prototyping, it seems a binding like this would work for
-> > > case a) or b):
-> > > 
-> > > &usb_1_dwc3 {
-> > >         hub_2_0: hub@1 {
-> > >                 compatible = "usbbda,5411";
-> > >                 reg = <1>;
-> > > 	};
-> > > 
-> > >         hub_3_0: hub@2 {
-> > >                 compatible = "usbbda,411";
-> > >                 reg = <2>;
-> > >                 vdd-supply = <&pp3300_hub>;
-> > > 		companion-hubs = <&hub_2_0>;
-> > >         };
-> > > };
-> > > 
-> > > It still requires specifying both hubs (which reflects the actual wiring).
-> > > Supporting something like "reg = <1 2>" seems more complex due to the need to
-> > > obtain the hub USB device at runtime (a DT node makes that trivial), possibly
-> > > this could be solved by adding new APIs.
-> > > 
-> > > In terms of implementation would I envision to keep a platform driver. This
-> > > would keep the hubby parts out of xhci-plat (except for populating the platform
-> > > devices), support systems with cascaded hubs and provide a device for the sysfs
-> > > attribute.
-> > 
-> > What will you do if a system has more than one of these power-regulated 
-> > hubs?  That is, how will the user know which platform device handles the 
-> > power control for a particular hub (and vice versa)?  You'd probably 
-> > have to create a pair of symlinks going back and forth in the sysfs 
-> > directories.
-> 
-> The platform device would use the same DT node as the USB device, hence the
-> sysfs path of the platform device could be derived from the DT.
+Add the binding for the TAS2764 Smart Amplifier.
 
-That doesn't do the user (or a program the user is running) any good.  
-You can't expect them to go searching through the system's DT 
-description looking for this information.  All they know is the hub's 
-location in sysfs.
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ .../devicetree/bindings/sound/tas2764.yaml    | 74 +++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/tas2764.yaml
 
-> > Wouldn't it be easier to put the power-control attribute directly in the 
-> > hub's sysfs directory (or .../power subdirectory)?
-> 
-> Not sure. In terms of implementation it would be more complex (but not rocket
-> science either), from a userspace perspective there are pros and cons.
-> 
-> A platform driver (or some other control instance) is needed anyway, to check
-> the connected devices on both hubs and cut power only after the USB devices
-> are suspended. With the sysfs attribute associated with the platform device
-> it wouldn't even be necessary to have a separate USB driver. The platform
-> driver would have to evaluate the sysfs attribute of the USB device(s), which
-> can be done but is a bit odd.
+diff --git a/Documentation/devicetree/bindings/sound/tas2764.yaml b/Documentation/devicetree/bindings/sound/tas2764.yaml
+new file mode 100644
+index 000000000000..d2c90c82b13f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/tas2764.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/sound/tas2764.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Texas Instruments TAS2764 Smart PA
++
++maintainers:
++  - Dan Murphy <dmurphy@ti.com>
++
++description: |
++  The TAS2764 is a mono, digital input Class-D audio amplifier optimized for
++  efficiently driving high peak power into small loudspeakers.
++  Integrated speaker voltage and current sense provides for
++  real time monitoring of loudspeaker behavior.
++
++properties:
++  compatible:
++    enum:
++      - ti,tas2764
++
++  reg:
++    maxItems: 1
++    description: |
++       I2C address of the device can be between 0x38 to 0x45.
++
++  reset-gpios:
++    description: GPIO used to reset the device.
++
++  shutdown-gpios:
++    description: GPIO used to control the state of the device.
++
++  interrupts:
++    maxItems: 1
++
++  ti,imon-slot-no:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: TDM TX current sense time slot.
++
++  ti,vmon-slot-no:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: TDM TX voltage sense time slot.
++
++  '#sound-dai-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++   #include <dt-bindings/gpio/gpio.h>
++   i2c0 {
++     #address-cells = <1>;
++     #size-cells = <0>;
++     codec: codec@38 {
++       compatible = "ti,tas2764";
++       reg = <0x38>;
++       #sound-dai-cells = <1>;
++       interrupt-parent = <&gpio1>;
++       interrupts = <14>;
++       reset-gpio = <&gpio1 15 0>;
++       shutdown-gpios = <&gpio1 15 0>;
++       ti,imon-slot-no = <0>;
++       ti,vmon-slot-no = <2>;
++     };
++   };
++
++...
+-- 
+2.28.0.585.ge1cfff676549
 
-You don't need a platform device or a new driver to do this.  The code 
-can go in the existing hub driver.
-
-> For a user it might be slightly simpler if they don't have to care about the
-> existence of a platform device (but it's just a matter of knowing). The
-> attribute must only be associated with one of the USB devices, which might
-> be confusing, however it would be messy if each hub had an attribute. The
-> attribute could be only associated with the 'primary hub', i.e. the one that
-> specifies 'vdd-supply' or other attributes needed by the driver.
-
-Okay.  Or you could always put it in the USB-2 hub.
-
-Incidentally, the peering information is already present in sysfs, 
-although it is associated with a device's port on its upstream hub 
-rather than with the device itself.
-
-Alan Stern
