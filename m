@@ -2,105 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27EBF2853EB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F5C2853F4
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725970AbgJFVfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 17:35:45 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:32785 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725947AbgJFVfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:35:45 -0400
-Received: by mail-oi1-f195.google.com with SMTP id m7so218636oie.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 14:35:44 -0700 (PDT)
+        id S1726127AbgJFVit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 17:38:49 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34157 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725947AbgJFVis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:38:48 -0400
+Received: by mail-ot1-f68.google.com with SMTP id d28so310105ote.1;
+        Tue, 06 Oct 2020 14:38:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=H90zUV12QpAhLSai+s8goOQGcLl66BvDd2c6eA0ZeWo=;
-        b=Hsw/6KFN+QPQ1AwfeveEWx8Yk1jeyXBzXPQCRTiCPhCdW6+vhhfWNc41szTFPWQ5vV
-         EQ9dnezD70mai6NmhYBxiUhIKr+dqSYNtrbbn5JMc2ESBXfC8Cw74msuKVi9wQaUlmJM
-         iLDZIX5IR/MHpOEBqG1YldYXHEwWKOkmc5TS5JcyMtZufxQuEAy04CT2+IcmHzleJTlT
-         YjQia12fOAl3G6nlv8+XFuifsCgdn7ElyWkh/5iIjsTpbeYrMW88zzDwa4ZbDPI7xIZZ
-         m2cn7MO+kaslMk0MLIXNSDl3F2RhHoD3/dQuxDw8h9NMBYCAqEpyxByZETvIK6mWAYLW
-         jnnQ==
-X-Gm-Message-State: AOAM531NsOstBwWt3v9xY+Cdtj8ypz6rnvmlvkQ9yfAbl8kScpBwljgF
-        e1Q81RvutPQ1fFY3g36j/qTxmlSSeGJU
-X-Google-Smtp-Source: ABdhPJxgRY2D1XwG5S7C2QMsuWE9VKcr33DUdM+UYTSmRH2u2C683VSiQxIiVVzK5m1Bpacgvi5RvQ==
-X-Received: by 2002:aca:3d03:: with SMTP id k3mr174049oia.114.1602020144546;
-        Tue, 06 Oct 2020 14:35:44 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=VXvrI2x6b8MeVNJBRJLTPFfh0KlQpZ5q38fF1cR1cAU=;
+        b=U5xMqaV3Mtr6fUXKG8++7rPnqsKNjo5nvB3rzyG3I5W2Um+3yPqwuSgvndaNpmymzb
+         OLmpUi6TX2J799b4EAVT1aPJRLUGZyELFdpUVI3RWqRc72EWRFerSlxd9MvLFDwJGJUb
+         1UM6II6OLXwtV8lsrruHFgKA1LKEDy4GkCWNxsYQSwYtJcYtxs1GXv5AWlQPtPY758v4
+         d1znJlOKkx1I6ZlkgC1Iqk18Qqwr6xowDTPzuq/Plr3rkNP2+mc4N2855Gz3r0xZOzQQ
+         eqLwADC96mqPp4/TMslZuoVl2N2+Y9G/LfbeVhJu0IvstK1FFhBEYX42U4m+bYvzhZXO
+         wApg==
+X-Gm-Message-State: AOAM532LQ04Y7GRlVAzrzqK+276ALvWj5utNYFS+dZxelbsgjbNemv+r
+        HaKrZOADKEGSUAkIc0LFmQ==
+X-Google-Smtp-Source: ABdhPJx6Pqm69KRrvVs9ibZcmeMg64Cr1CtCQPGqwV0ckv7HoDx/3pQI8VaMtgJXuTEKgYWiwE4wMQ==
+X-Received: by 2002:a05:6830:200a:: with SMTP id e10mr4059127otp.335.1602020326490;
+        Tue, 06 Oct 2020 14:38:46 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f70sm1711587otf.32.2020.10.06.14.35.43
+        by smtp.gmail.com with ESMTPSA id 71sm1880430otm.81.2020.10.06.14.38.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 14:35:43 -0700 (PDT)
-Received: (nullmailer pid 2887404 invoked by uid 1000);
-        Tue, 06 Oct 2020 21:35:43 -0000
-Date:   Tue, 6 Oct 2020 16:35:43 -0500
+        Tue, 06 Oct 2020 14:38:45 -0700 (PDT)
+Received: (nullmailer pid 2892270 invoked by uid 1000);
+        Tue, 06 Oct 2020 21:38:44 -0000
+Date:   Tue, 6 Oct 2020 16:38:44 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     Collabora Kernel ML <kernel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Simon Glass <sjg@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: mfd: google,cros-ec: add missing
- properties
-Message-ID: <20201006213543.GA2881522@bogus>
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
- <20201005071403.17450-4-ricardo.canuelo@collabora.com>
- <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
- <20201006061317.rs63e3dh4grxij2v@rcn-XPS-13-9360>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
+        rtanwar@maxlinear.com, linux@roeck-us.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
+        jdelvare@suse.com, songjun.Wu@intel.com, p.zabel@pengutronix.de,
+        cheol.yong.kim@intel.com
+Subject: Re: [PATCH v5 1/2] Add DT bindings schema for PVT controller
+Message-ID: <20201006213844.GA2892213@bogus>
+References: <cover.1601889876.git.rahul.tanwar@linux.intel.com>
+ <b540b49ca47d75c5f716f8a4e4eed0664a1116bf.1601889876.git.rahul.tanwar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201006061317.rs63e3dh4grxij2v@rcn-XPS-13-9360>
+In-Reply-To: <b540b49ca47d75c5f716f8a4e4eed0664a1116bf.1601889876.git.rahul.tanwar@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 08:13:17AM +0200, Ricardo Cañuelo wrote:
-> Hi Rob,
+On Mon, 05 Oct 2020 17:27:45 +0800, Rahul Tanwar wrote:
+> PVT controller (MR75203) is used to configure & control
+> Moortec embedded analog IP which contains temprature sensor(TS),
+> voltage monitor(VM) & process detector(PD) modules.
 > 
-> thanks for reviewing the patch. Find my comments below:
+> Add DT bindings schema for PVT controller.
 > 
-> On lun 05-10-2020 10:37:09, Rob Herring wrote:
-> > > +  '#address-cells':
-> > > +    enum: [1, 2]
-> > > +
-> > > +  '#size-cells':
-> > > +    enum: [0, 1]
-> > 
-> > This doesn't really make sense. Either there's a size or there isn't.
-> > 
-> > [...]
-> > 
-> > > +  "^regulator@[a-f0-9]+$":
-> > > +  "^ec-codec@[a-f0-9]+$":
-> > 
-> > What does the number space represent and is it the same for each of
-> > these? If not, then this is kind of broken. There's only 1 number
-> > space at a given level.
+> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> ---
+>  .../devicetree/bindings/hwmon/moortec,mr75203.yaml | 71 ++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
 > 
-> I see what you mean. In the regulator, the unit-address means the identifier
-> for the voltage regulator and I guess it could also be defined as
-> simply "^regulator@[0-9]+$". In the codec, though, it's a physical base
-> address.
-> 
-> The reg property in these has a different format, that's why I
-> defined #address-cells and #size-cells above to have a range of values
-> instead of fixed values.
 
-But in any given DT it is going to be fixed, so that doesn't help you.
-
-> >From your experience, what's the best course of action here? I can't
-> find a driver managing google,cros-ec-codec yet, although the binding
-> was submitted in January.
-
-Normally, you just add another layer with a 'regulators' and/or 'codecs' 
-node. Do you really have more than 1 codec?
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
