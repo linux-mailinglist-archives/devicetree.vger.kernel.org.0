@@ -2,150 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A15FA284883
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 10:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B18082848B7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 10:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726562AbgJFIZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 04:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726753AbgJFIZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 04:25:13 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CB0C0613D3
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 01:25:12 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id v23so10080969ljd.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 01:25:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=YdhpNKlTW8M5AEVFobND3IcWnRcYsnTU1ylxUOoxLOQ=;
-        b=qHporHfANLglN4o1QtjGAQRWNnN7asjRL3cjazvXjsHh09RfWeLWPhNLVvwSLhWTRD
-         dq9W25RBebcUYOBXWtFq8Xg4Jpr5iwt1eXNmqsekvon7Xl48K0UpprSPFSz88KD7f3X5
-         mVcgrKZ1Q+07rFYOZ6TaIw9SiDE9zLlxqZ10OzeIv3M1P2sRohlLAogcHVmvgwhtbxWh
-         aDv0+4vxSuOdMGAP1BZwP0BlcnNmUE37U3q6XBhiOW2IywzQSNU0oPIf35dwBbDiZGem
-         YyfEcoZuw1vq+eSTNb3BPCippk6TyfUXDjeg7Imo0qPxxzlaz4AKfZHvUV+rJldsOuzH
-         6yMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=YdhpNKlTW8M5AEVFobND3IcWnRcYsnTU1ylxUOoxLOQ=;
-        b=em22khZ6Vc6j+z+ob/D4UyOoqptyXtPBiRqFWLgpyvdlHPI0+oEhxBL5ef4yRW8nhp
-         QQSSOt0zc1+BScX+phy7So8JcT9eljhHPpwIatAk48Dq2b2zuXXUOG7IMOzZVWv94/fA
-         +RCruMgJdpzZHGfAxQmwB/Bh8yLnc+77pGy/cVD4facAZphW6g1jLYn6frqLlHslemHv
-         Td2GH/JuRyVebGGaF4nkafGueHek018mPw7If5PDizbTKqYCNRanXOAY2rsOsOLu/qbZ
-         qm/85PTfFlj5OlX2Oxpl9m20Gk+BNgpaXzdKt4QItrPm4jyRYkeH2SGONNq3T3ioN2cn
-         ArIQ==
-X-Gm-Message-State: AOAM533eGymg0JrPpUGD6U53Ct+IgYqJanKYyhgFZawXylPc7NpcpNMA
-        JzfM+XoDzRnJYryT0bEyzDGi9kw7Ov6QK0wN
-X-Google-Smtp-Source: ABdhPJxsjuEumsaEtaU67N9vbg2cBftfsc/wZW21wnFzsv2BjeMFHC1JmQFLaFRJtrvHxARri2Z8Zg==
-X-Received: by 2002:a5d:6409:: with SMTP id z9mr120080wru.391.1601972710164;
-        Tue, 06 Oct 2020 01:25:10 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id y11sm3353486wrs.16.2020.10.06.01.25.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Oct 2020 01:25:09 -0700 (PDT)
-Subject: Re: [PATCH 0/4] dt-bindings: additional/unevaluatedProperties
- clean-ups
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Albert Ou <aou@eecs.berkeley.edu>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>, dmaengine@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+        id S1726171AbgJFIhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 04:37:39 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:47635 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726006AbgJFIhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 04:37:36 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201006083750euoutp0156bb0a38c7048b066e8ceefa99fe55f5~7WmJJcB9F1715117151euoutp01B;
+        Tue,  6 Oct 2020 08:37:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201006083750euoutp0156bb0a38c7048b066e8ceefa99fe55f5~7WmJJcB9F1715117151euoutp01B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1601973470;
+        bh=TdvBo++lhM54zLH1A/JrQp3BZQVVNjq7JuuhRMXlT9M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=uO0Ngoe87nDx/YBi454j3tBG1IjBK3deLoufSlUN6IadxmGR1caWa3Jnl+exnV6OY
+         G9BXe0yO9ACG9DIpRk8/P5f4VAMIHyT+kKlls5Pp4q14oWRlYcCwJ3PIqUi+nphOnu
+         2dSbIGDiRJpHPMtKsmQ6BxatEa5s2eaCjdbhl7pM=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201006083750eucas1p2464a3247610bac05f98ff689fe698260~7WmI3xM6v1792317923eucas1p23;
+        Tue,  6 Oct 2020 08:37:50 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 41.35.06318.EDC2C7F5; Tue,  6
+        Oct 2020 09:37:50 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca~7WmIbzr_v1178011780eucas1p1x;
+        Tue,  6 Oct 2020 08:37:49 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201006083749eusmtrp13d2caf5f65551a21acfc9988bff525ca~7WmIbBHvu2257422574eusmtrp1B;
+        Tue,  6 Oct 2020 08:37:49 +0000 (GMT)
+X-AuditID: cbfec7f5-38bff700000018ae-13-5f7c2cde5da3
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 39.86.06314.DDC2C7F5; Tue,  6
+        Oct 2020 09:37:49 +0100 (BST)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20201006083749eusmtip159a049b94167cbb073a26456cfccab04~7WmIQPs2y2825428254eusmtip1P;
+        Tue,  6 Oct 2020 08:37:49 +0000 (GMT)
+From:   Lukasz Stelmach <l.stelmach@samsung.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "David S. Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Jens Axboe <axboe@kernel.dk>,
-        Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Richard Weinberger <richard@nod.at>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-ide@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-References: <20201005183830.486085-1-robh@kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <d04c47dd-6e37-a7ac-f3c4-d6e6c308dbcd@linaro.org>
-Date:   Tue, 6 Oct 2020 09:25:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Kukjin Kim <kgene@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, jim.cromie@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewi?= =?utf-8?Q?cz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v2 0/4] AX88796C SPI Ethernet Adapter
+Date:   Tue, 06 Oct 2020 10:37:34 +0200
+In-Reply-To: <20201002194544.GH3996795@lunn.ch> (Andrew Lunn's message of
+        "Fri, 2 Oct 2020 21:45:44 +0200")
+Message-ID: <dleftj7ds3eomp.fsf%l.stelmach@samsung.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <20201005183830.486085-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
+        protocol="application/pgp-signature"
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTURiAObv37l616XVavZmEDPuuVVR2ywyzftyCyPpTmGkrLyq5qZuf
+        fZCWRYnOUKO2BmqUX6nlmktNrYYosnQLdaWoRSqVFhWWZYS0eRL695z3PO/X4TCE9Cflx8Sr
+        UgS1SpEgE7uT5o6ZnvUj685Fb3yXI+VswxaCq7/1gOIMthySK2nvoTjH5yGKKxidJDib7SHN
+        2c1aijOOOiiut9kg5m7Z2kSc5UYr4mrbh2muo3QRd7m1nQ714nsdLwneVDUg4pv0wzRvrL4m
+        5h/dvcA3NU6JeK2pGvFTxmXhTIT7zhghIT5NUG/YdcI97rnjGZU04JbxpnkIZaEmJhe5McBu
+        ge7fWjIXuTNSthJBSdGgCB++I6jvnqHwYQrBkLWBnE/RD9pFLpayFQjGysKw9B7B17sNRC5i
+        GDErh9raoy7Hlw2A4q4/c4UItoaEyZnauWQfdju8yOkRu5hkl0O9vgm52I1VQv+lmrlmEnYb
+        PJnW0i5e6PRNH97QOO4NXbqxOYdw+jrbJ+RqAKyOgT7DTeQaAti9MF3vhYf2gYlOE43ZH6xF
+        eSRWLkBRYRBOzUNgNvz6t2QwDPX8FmPeDXlPZ8XY94TXn71xW08oNN8kcFgCV69IsR0IdQUt
+        /6r4Qf5EJcLMw9vSnzR+qosI+spr6OsoQP/fNvr/ttE7yxLsanjQvAGH10J52SSBOQTq6r6Q
+        pYiqRouFVI0yVtBsVgnpco1CqUlVxcpPJSqNyPkFrbOdPxpR25+TFsQySLZAkrHobLSUUqRp
+        MpUWFOis9O7hfTvyI1WJKkHmKwnrtkZJJTGKzDOCOjFanZogaCxoKUPKFks23/l4XMrGKlKE
+        04KQJKjnb0WMm18WqvYPLf/0YyrNw3/JN+tB3e2YEtKesL/ofJI5+NC69HRdb6RMKFsZV9HW
+        PJ59QxmYlV2Rv+qAMplN7veJLng1FvEsoy7Tvuqxx9b4kJHxY1WFe4qvvvRenbQv/OLAvV0j
+        Pl7hIy07Qi6ZglZEXtF+n+bzDx+R98mjErv7r5EoQjHrkJGaOMWmNYRao/gL+ElwzooDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRmVeSWpSXmKPExsVy+t/xu7p3dWriDW6/NrQ4f/cQs8XGGetZ
+        Leacb2GxmH/kHKvFtbd3WC36H79mtjh/fgO7xYVtfawWmx5fY7W4vGsOm8WM8/uYLA5N3cto
+        sfbIXXaLYwvELFr3HmF34Pe4fO0is8eWlTeZPHbOusvusWlVJ5vH5iX1Hjt3fGby6NuyitHj
+        8ya5AI4oPZui/NKSVIWM/OISW6VoQwsjPUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsE
+        vYyD1w6wFtzkrLi/6w5jA+NOji5GTg4JAROJWbcuMHUxcnEICSxllPixope5i5EDKCElsXJu
+        OkSNsMSfa11sEDVPGSX27N3EBFLDJqAnsXZtBEiNiICCxJSTf1hBbGaB9SwSqydxgtjCApYS
+        Z1rOsYHYQkDlby6+YASxWQRUJTbO2glmcwrkSlxtXsMCYvMKmEvs/tbHDmKLAvVueXGfHSIu
+        KHFy5hMWiPnZEl9XP2eewCgwC0lqFpLULKDrmAU0Jdbv0ocIa0ssW/iaGcK2lVi37j3LAkbW
+        VYwiqaXFuem5xYZ6xYm5xaV56XrJ+bmbGIERvO3Yz807GC9tDD7EKMDBqMTDqyBSHS/EmlhW
+        XJl7iFEFaMyjDasvMEqx5OXnpSqJ8DqdPR0nxJuSWFmVWpQfX1Sak1p8iNEU6M+JzFKiyfnA
+        pJNXEm9oamhuYWlobmxubGahJM7bIXAwRkggPbEkNTs1tSC1CKaPiYNTqoGRqfVSfKnpOc6Q
+        tTPXlic0m7xmPl/7QZS/5WexWk8ES87shr8tDFxe9cUdG1XD/rnyP/HVzUj0m31g8q4n9SGp
+        i1Kv3M+OOD1jufz06zekxOxXxEzI7ln676Vfa0nQtqAiKbfjhn0b/8lWXV8foHxqDk9ylJr7
+        /p6S8q8/6hw/yG8pZ3vfuFyJpTgj0VCLuag4EQAFr0HdAgMAAA==
+X-CMS-MailID: 20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca
+X-Msg-Generator: CA
+X-RootMTR: 20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca
+References: <20201002194544.GH3996795@lunn.ch>
+        <CGME20201006083749eucas1p160a3bed4cdb67cc8e05ca4a57d8907ca@eucas1p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--=-=-=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+It was <2020-10-02 pi=C4=85 21:45>, when Andrew Lunn wrote:
+> On Fri, Oct 02, 2020 at 09:22:06PM +0200, =C5=81ukasz Stelmach wrote:
+>> This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
+>> found on ARTIK5 evaluation board. The driver has been ported from a
+>> v3.10.9 vendor kernel for ARTIK5 board.
+>
+> Hi =C5=81ukasz
+>
+> Please include a brief list of changes since the previous version.
+>
 
-On 05/10/2020 19:38, Rob Herring wrote:
-> The default behavior for json-schema is any unknown property is allowed.
-> T
-> 
-> hat is generally not the behavior we want for DT. In order to disallow
-> extra properties, schemas need to define 'additionalProperties: false'
-> typically. Ideally, we'd just add that automatically with the tools, but
-> there are some exceptions so only making things explicit everywhere
-> really works. Missing 'additionalProperties' or 'unevaluatedProperties'
-> has been a constant source of review comments, so a meta-schema check is
-> really needed here.
-> 
->   Documentation/devicetree/bindings/nvmem/nvmem.yaml     |  2 ++
->   .../devicetree/bindings/nvmem/qcom,qfprom.yaml         |  2 ++
+It can be found at the bottom of the message.
 
-for nvmem parts,
+=2D-=20
+=C5=81ukasz Stelmach
+Samsung R&D Institute Poland
+Samsung Electronics
 
-Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-thanks,
---srini
+iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl98LM4ACgkQsK4enJil
+gBDBGwf7BniLxZulD4q6SgaXv9GawdRNFVpHg9TEqudOoo75bI7Xlr0nd8pn0xJz
+G3MF6+Kj5Z0aeAifXP0vk1GF898GGkyGnE8mefuQNLkvrAYNpDPsrBd+JXU0WIR7
+O+8VYUhdrqp4ip2153dXHtda15kplCubyGgCvDpEO8G+FOhOiHZZQMfPMD1si9F5
+IY9BVyRiACFwEbaEh7D+cyueZSINMMAy613VeavrMVlfsVAAfMbL+qlYQF5JPkld
+EtDg3OMHNYLUZs/6pXcNI1JFObqPbODGjHQTruuW2GGoy3fE5uZ27I26YxvXKOfg
+teDYJXQbyVv7gRNBPtbSUYHylUlkLA==
+=z8rr
+-----END PGP SIGNATURE-----
+--=-=-=--
