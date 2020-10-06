@@ -2,146 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7BCA2851C8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 20:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A56322851CC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 20:42:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726843AbgJFSli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 14:41:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46324 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726831AbgJFSli (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 14:41:38 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E58AC061755
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 11:41:38 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kPrtz-0005tA-HR; Tue, 06 Oct 2020 20:41:31 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kPrty-0002dP-9P; Tue, 06 Oct 2020 20:41:30 +0200
-Date:   Tue, 6 Oct 2020 20:41:30 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [RFC] Using a watchdog as system reset
-Message-ID: <20201006184130.r2lajves5l7lm2qk@pengutronix.de>
-References: <20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de>
- <460aa962-9da5-6e1e-b5db-3f9f1d78110a@roeck-us.net>
- <41b0dfcd-adf1-296f-e5be-4db3eac9f097@roeck-us.net>
+        id S1726831AbgJFSms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 14:42:48 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:45656 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726789AbgJFSms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 14:42:48 -0400
+Received: by mail-ot1-f66.google.com with SMTP id f37so9706106otf.12;
+        Tue, 06 Oct 2020 11:42:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KYQZSGGUfzjIz2aYKUs4zyuEx7lVqSUr955zVXov5rY=;
+        b=flwZuX5krL2lcEDMeNqXfrgvqq0Lzdi5gt+dlBkp/eAvmSlczrb3Vvo2fADyiRptGL
+         tfAPUbcjZqnmfZCmwAVCn1O0ifH9o6awl7qJhYIQQ2wH1JCTi3Oks1f0MUU9Rlhwo9PT
+         iQ5C3EAavH5la1iw0Ml43zay/0uNOjl1CIuYDDagIeU8PRzXBeDYSThmJqTWmxF5ooTh
+         yO0lU7N9ybsPjdmovmG5naX9WqCY+nnaaUdlo5U4WB61ni4rpbqDd9cMdBZafBTfZAE/
+         Bsfe7GtCuarldNvCtkweyU7thFQoTK1+zBe+7lqdvOzCQficflmVQ6DHofIdJZnsZqXh
+         uNKg==
+X-Gm-Message-State: AOAM531Kan4Wkiz3m+vv7bPZn7nOmYyqEbMH1+BRPtSBCk+bRxPNPwBN
+        P3v+DhR7J4FY9y8L80j0VAppsiXdHrsf
+X-Google-Smtp-Source: ABdhPJzom6MO5LWQIj8s1jNk3KH+WH7DxMxNrz6HBIoFb0hig8R0gSLa3cSfIY9gZ7i9CWnFNxoOpw==
+X-Received: by 2002:a05:6830:134c:: with SMTP id r12mr3616282otq.240.1602009767007;
+        Tue, 06 Oct 2020 11:42:47 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id b1sm1413987oof.8.2020.10.06.11.42.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Oct 2020 11:42:46 -0700 (PDT)
+Received: (nullmailer pid 2610374 invoked by uid 1000);
+        Tue, 06 Oct 2020 18:42:44 -0000
+Date:   Tue, 6 Oct 2020 13:42:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sagar Kadam <sagar.kadam@sifive.com>
+Cc:     aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
+        tglx@linutronix.de, linux-pwm@vger.kernel.org, palmer@dabbelt.com,
+        jason@lakedaemon.net, yash.shah@sifive.com,
+        thierry.reding@gmail.com, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        paul.walmsley@sifive.com, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, maz@kernel.org, mturquette@baylibre.com,
+        devicetree@vger.kernel.org, sboyd@kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: fu540: prci: convert PRCI bindings
+ to json-schema
+Message-ID: <20201006184244.GA2610231@bogus>
+References: <1601393531-2402-1-git-send-email-sagar.kadam@sifive.com>
+ <1601393531-2402-2-git-send-email-sagar.kadam@sifive.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ya6u7uqnzt63dfrm"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <41b0dfcd-adf1-296f-e5be-4db3eac9f097@roeck-us.net>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1601393531-2402-2-git-send-email-sagar.kadam@sifive.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 29 Sep 2020 21:02:09 +0530, Sagar Kadam wrote:
+> FU540-C000 SoC from SiFive has a PRCI block, here we convert
+> the device tree bindings from txt to YAML.
+> 
+> Signed-off-by: Sagar Kadam <sagar.kadam@sifive.com>
+> ---
+>  .../bindings/clock/sifive/fu540-prci.txt           | 46 -----------------
+>  .../bindings/clock/sifive/fu540-prci.yaml          | 60 ++++++++++++++++++++++
+>  2 files changed, 60 insertions(+), 46 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/sifive/fu540-prci.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
+> 
 
---ya6u7uqnzt63dfrm
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Guenter,
-
-On Tue, Oct 06, 2020 at 07:29:11AM -0700, Guenter Roeck wrote:
-> On 10/6/20 4:56 AM, Guenter Roeck wrote:
-> > On 10/6/20 3:29 AM, Uwe Kleine-K=F6nig wrote:
-> >> Hello,
-> >>
-> >> I have an i.MX25 system here with an external watchdog (using the
-> >> gpio_wdt driver). So the internal watchdog (imx2_wdt) is unused.
-> >>
-> >> The problem with the unused imx2_wdt is that this usually provides the
-> >> restart handler and now a reboot ends with
-> >>
-> >> 	reboot: Restarting system
-> >> 	Reboot failed -- System halted
-> >>
-> >> until eventually the watchdog bites and resets the machine.
-> >>
-> >> I imagine that this is a common enough issue to warrant a generic
-> >> solution. My suggestion is to formalize and implement something like:
-> >>
-> >> 	watchdog {
-> >> 		compatible =3D "linux,wdt-gpio";
-> >> 		...
-> >> 		provide-system-reset;
-> >> 	}
-> >>
-> >> with the sematic of: "This is the dedicated mechanism to reset this
-> >> machine."
-> >>
-> >=20
-> > Some systems have more than one means to reset it, which is why
-> > restart handlers have a priority. This in turn suggests that we should
-> > maybe have a means to set that priority dynamically for the imx2_wdt dr=
-iver
-> > (or for watchdog drivers in general) instead of having it fixed at 128.
-> > That would also solve your problem, assuming there is a different
-> > (currently lower priority) means to reset the hardware in your system.
-> >=20
-> > Alternatively, can't you just blacklist the imx2-wdt driver ?
->=20
-> After having another couple hours of sleep and a coffee, I wonder if
-> this is already done, and the reboot just fails _because_ the imx2_wdt
-> is _not_ loaded. Is that the case ?
-
-Right, I disabled the imx2_wdt driver.
-=20
-> If so, it looks like you want the reset functionality of the imx_wdt driv=
-er
-> but not its watchdog functionality.
-
-My thought was to use the gpio-watchdog as reset source, but using the
-imx-watchdog only for reset but not watchdog is an obvious alternative I
-didn't think about.
-
-So I either want to make the gpio-watchdog provide a restart handler or
-use the imx-watchdog driver to only provide a restart handler (but no
-watchdog functionality).
-
-> And the above would be a suggestion to add a "generic" restart
-> functionality into the watchdog subsystem, one that uses a watchdog
-> with minimum timeout to reset the system, even if its driver doesn't
-> explicitly register a restart handler.  Is that what you are trying to
-> suggest ?
-
-Yes, every watchdog could provide a restart handler with just using the
-watchdog callbacks.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ya6u7uqnzt63dfrm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl98ulYACgkQwfwUeK3K
-7AkygAf+OEk6ImbusYPd6Jvwhg3R3F+0IayvpjxUYq+kpknUgisrU5gp+HE1p7CI
-3+OviwFD5E4Tj33n6Qgi/EhO1ZEIQCxiTSqJ0siVNb/dfnp1eQTgiZzs8NmcSbfs
-3hGihUKPUOP0XQn7T3MSwvIXS8BBg4op2KOk64RPDchoQD97bNHZBbSu6AjUMMHD
-cLhI7+eAjFwU6aRSTJuospzB4NtdrYOEWtUGDVpWJHmfhePsf1vBgCDCRhzMMA0f
-6spnMRCXJesNvxOFaetaEoqDVdaBBYS5ZlwVex6jQeYIONa/fyde6K2J6ax+74Yt
-qvX6UNg/weHPMA0TGBsToOurhXJyCw==
-=7F4A
------END PGP SIGNATURE-----
-
---ya6u7uqnzt63dfrm--
+Applied, thanks!
