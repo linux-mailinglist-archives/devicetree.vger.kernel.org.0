@@ -2,77 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 455AE2845DD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 08:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6F9284601
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 08:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726878AbgJFGN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 02:13:27 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:58250 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726022AbgJFGN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 02:13:27 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id CF44F2962AB
-Date:   Tue, 6 Oct 2020 08:13:17 +0200
-From:   Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Collabora Kernel ML <kernel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Simon Glass <sjg@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: mfd: google,cros-ec: add missing
- properties
-Message-ID: <20201006061317.rs63e3dh4grxij2v@rcn-XPS-13-9360>
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
- <20201005071403.17450-4-ricardo.canuelo@collabora.com>
- <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
+        id S1726991AbgJFG1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 02:27:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726957AbgJFG1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 02:27:45 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F34C0613A7;
+        Mon,  5 Oct 2020 23:27:45 -0700 (PDT)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1601965663;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=SG1hX4RpJ2cgd0+twelFInFVuEr0F5kpEMUoLXcxSFM=;
+        b=HTKIpbi5M+5siFbJCoYh7ovIqLgttVuCH3/hd07/EojDYenNQv6iF4yfpMR7cFBtDpKYE0
+        85dysrQ8gmaDWd9kC/q9WeS8SWiq70241NZ6p+Y5BSGqp1Fiis45mNEHrq3l8UbbBX+or3
+        yA63BmZoe98eqh2ruu34eiQ8eHTUb6r1aC7FeBdIkjOyNfImmYltRV0oqsvis7tWVfYr+9
+        CAEUW02z2st8u2ffz5DMxY1S8M90HgNeQ5v1hyPN8d3HyZAe7FtLLTylrbnzZp1zbdG0oU
+        MFK89TUUjZX95hudQTdqw37WQV82Mh4OusIJ8tZ4b7yen5tInVQN8wUT0k+vig==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1601965663;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=SG1hX4RpJ2cgd0+twelFInFVuEr0F5kpEMUoLXcxSFM=;
+        b=XjgLGnKOJLTSMt+Lja6e7mLfPf6iIIYzb8lYq0ARL4r0wv4XH2mJDF2ZMftmO1Gmd4ATFG
+        /45SUtm0lscx1cBg==
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for hardware timestamping
+In-Reply-To: <20201004143000.blb3uxq3kwr6zp3z@skbuf>
+References: <20201004112911.25085-1-kurt@linutronix.de> <20201004112911.25085-5-kurt@linutronix.de> <20201004143000.blb3uxq3kwr6zp3z@skbuf>
+Date:   Tue, 06 Oct 2020 08:27:42 +0200
+Message-ID: <87imbn98dd.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
-User-Agent: NeoMutt/20171215
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+--=-=-=
+Content-Type: text/plain
 
-thanks for reviewing the patch. Find my comments below:
+On Sun Oct 04 2020, Vladimir Oltean wrote:
+> On Sun, Oct 04, 2020 at 01:29:08PM +0200, Kurt Kanzenbach wrote:
+>> +/* Enabling/disabling TX and RX HW timestamping for different PTP messages is
+>> + * not available in the switch. Thus, this function only serves as a check if
+>> + * the user requested what is actually available or not
+>> + */
+>
+> Correct me if I'm wrong, but to the user it makes zero difference
+> whether the hardware takes timestamps or not.
 
-On lun 05-10-2020 10:37:09, Rob Herring wrote:
-> > +  '#address-cells':
-> > +    enum: [1, 2]
-> > +
-> > +  '#size-cells':
-> > +    enum: [0, 1]
-> 
-> This doesn't really make sense. Either there's a size or there isn't.
-> 
-> [...]
-> 
-> > +  "^regulator@[a-f0-9]+$":
-> > +  "^ec-codec@[a-f0-9]+$":
-> 
-> What does the number space represent and is it the same for each of
-> these? If not, then this is kind of broken. There's only 1 number
-> space at a given level.
+Why not? I think it makes a difference to the user b/o the precision.
 
-I see what you mean. In the regulator, the unit-address means the identifier
-for the voltage regulator and I guess it could also be defined as
-simply "^regulator@[0-9]+$". In the codec, though, it's a physical base
-address.
+> What matters is whether the skb will be delivered to the stack with a
+> hardware timestamp or not, so you should definitely accept a
+> hwtstamp_config with TX and RX timestamping disabled.
+>
 
-The reg property in these has a different format, that's why I
-defined #address-cells and #size-cells above to have a range of values
-instead of fixed values.
-
-From your experience, what's the best course of action here? I can't
-find a driver managing google,cros-ec-codec yet, although the binding
-was submitted in January.
+Sorry, I cannot follow you here.
 
 Thanks,
-Ricardo
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl98Dl4ACgkQeSpbgcuY
+8KabdxAA0SgprQl2AgyD0AY/qVDLxy1XHCf0QhEZEoDKWIHX3ijEoZ0Dni1WsOwF
+dXnvL/ZQb2mcdrl+uJcN5ypMlBi+m5N7leV+RBO6juLDA8dp8ychKxCrhVtC3/sF
+fsj/vS7NHfXMJS1/CuBYcPX+YUpbzJpRVvDtd2E8FZYTyuKRDLrGIB8plEtltDv6
+aS/WC3EfExvKz1JFrtDSyR+4W6SIB2rLUFmG86P7w5304fFnmznLfwDHIEFPFZcv
+RY9zAjgv2tPLJyQ81gzCPsAlz/QUTsDgwoTc8DFsmsxcVTC9jOxNIuCpOUWnvtBD
+c/2ufJBmgsU0y7e1l3Z/Us3pvpTGpYI+b1OFsuiwOWBaQPc6J5IZi6A/KrtoWWDH
+mlH3yJPMyc7wRsjggS81jjgk1oNqkI+wDQ9imPrGiRi2/0Kz717uiiaJy9E2fDKw
+wE2r9o591w+eb7MlK6bEBZnnYAtwxsSvEMlqRmvbgYk+ZwOO59RSuUG+1ivqJ62+
+Tu99v2bd8aMgVIQOxcMaLNRwe/K5q6gjEDC/tfvtS+tol+HPKVOLPUbXOIH2PmKv
+McW9qVbILMyR5GMSbFJGpsYIITTbfllBxThCgSRxyeT32ezFSaK7/8lShN16QR2a
+tqmr8IkDt/VYwFzpSOtzkg38NK3ko/RUkJO578fclSNePEybXW0=
+=qmWw
+-----END PGP SIGNATURE-----
+--=-=-=--
