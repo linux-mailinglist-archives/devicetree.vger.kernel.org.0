@@ -2,106 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E03C0284D69
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEC14284D75
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 16:18:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726329AbgJFOOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 10:14:06 -0400
-Received: from esa4.microchip.iphmx.com ([68.232.154.123]:48191 "EHLO
-        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726032AbgJFOOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:14:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1601993644; x=1633529644;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=piCMffCqgDvqxBLu6OvrQGya1ZdRTDuoxFoRit67Um4=;
-  b=lGj15A0iNHeOi6gls9frvwi5gHXei3hCxxY0Qs/q4Af/Tjy9hq86sc9L
-   y5Yh389DfDOihiybPXLXXSCNUpLEH/CLSKItWTIuxVwiMDoYDl1DVAgWj
-   B7kWWv34E9PtwCVpDCk40BfB8H1tgmTlKCy2bGS6hDHKgqWYB+LsEinPW
-   VODwvEYV2UlqTOEbxjqMzlB3Wfh/WXlzE/lO2ejGCBEWi2JNqvaAkWZyK
-   UZRg0iMwJthnWmEgDFX4ninWT/BxiYJZJzDgA0v2zy4mopgRb38HUF5dW
-   rGG7L2V6HDdVRuW5ifI9ho0mr3L054HRTu5uxQTjSM9goKYxlK4BtHisv
-   w==;
-IronPort-SDR: djP9zQqXvMQrZjJMd8IYXtDNiX1eG3U3qJaQeXob0d9tHdrRnVlEK6UGtDi3OeaZYv4SKLSrsY
- 6HsyMkDuv2UomlwN3OCj9Mw3nYBrgZUgyfX0dQnVlBrToo1Q2fKNdOPmuy29CTSf4P7FQDWm3W
- 1R8e5lJhPyW2SNoxwKlry/xnXzrur9YgbE9AdEqkx72u8JKbwpUibohChXhRKQCyMTEEioM7jh
- fw1Mnwl+V+yML8LAXpZTHho8N0XuNAshHA2TfFxCWCPnVOVQRTyyhQZkgFVPlseZoH8G41az4M
- UUU=
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; 
-   d="scan'208";a="89276222"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Oct 2020 07:14:03 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 6 Oct 2020 07:13:53 -0700
-Received: from soft-dev10.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 6 Oct 2020 07:14:01 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v3 0/3] pinctrl: Adding support for Microchip/Microsemi serial GPIO controller
-Date:   Tue, 6 Oct 2020 16:13:48 +0200
-Message-ID: <20201006141351.2247240-1-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        id S1725996AbgJFOSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 10:18:21 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:45287 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1725902AbgJFOSV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 10:18:21 -0400
+Received: (qmail 417731 invoked by uid 1000); 6 Oct 2020 10:18:20 -0400
+Date:   Tue, 6 Oct 2020 10:18:20 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
+ onboard USB hubs
+Message-ID: <20201006141820.GA416765@rowland.harvard.edu>
+References: <20200929220912.GF1621304@google.com>
+ <20200930013229.GB194665@rowland.harvard.edu>
+ <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
+ <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+ <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+ <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
+ <CAL_JsqLWmBCjrbs2D-d+9naJAKkNhDAbmRtqvCDY8jv=L_q-xA@mail.gmail.com>
+ <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
+ <20201006004510.GD4135817@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201006004510.GD4135817@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The series add support for the serial GPIO controller used by
-Microchip Sparx5, as well as (MSCC) ocelot/jaguar2 SoCs.
+On Mon, Oct 05, 2020 at 05:45:10PM -0700, Matthias Kaehlcke wrote:
+> I did some prototyping, it seems a binding like this would work for
+> case a) or b):
+> 
+> &usb_1_dwc3 {
+>         hub_2_0: hub@1 {
+>                 compatible = "usbbda,5411";
+>                 reg = <1>;
+> 	};
+> 
+>         hub_3_0: hub@2 {
+>                 compatible = "usbbda,411";
+>                 reg = <2>;
+>                 vdd-supply = <&pp3300_hub>;
+> 		companion-hubs = <&hub_2_0>;
+>         };
+> };
+> 
+> It still requires specifying both hubs (which reflects the actual wiring).
+> Supporting something like "reg = <1 2>" seems more complex due to the need to
+> obtain the hub USB device at runtime (a DT node makes that trivial), possibly
+> this could be solved by adding new APIs.
+> 
+> In terms of implementation would I envision to keep a platform driver. This
+> would keep the hubby parts out of xhci-plat (except for populating the platform
+> devices), support systems with cascaded hubs and provide a device for the sysfs
+> attribute.
 
-The driver now register two separate banks (per instance), one for
-input pins (the first) and one for output direction. This eliminates
-the need for specifying the direction as part of the gpio
-arguments. The (fixed) direction is thus inherent from the gpio
-handle.
+What will you do if a system has more than one of these power-regulated 
+hubs?  That is, how will the user know which platform device handles the 
+power control for a particular hub (and vice versa)?  You'd probably 
+have to create a pair of symlinks going back and forth in the sysfs 
+directories.
 
-v3 changes:
-- Renamed all usage of "mchp" abbrevation with "microchip".
-- Split the in/output directions into (two) separate banks.
-- Eliminated the bindings include file (from above)
-- Changed SPDX license to "GPL-2.0-or-later"
-- Change -ENOTSUPP to -EOPNOTSUPP
-- Minor type/symbol naming changes
+Wouldn't it be easier to put the power-control attribute directly in the 
+hub's sysfs directory (or .../power subdirectory)?
 
-v2 changes:
-- Adds both in and output modes.
-- Use direct adressing of the individual banks (#gpio-cells = <4>),
-  also osoleting need for addressing macros in bindings include file.
-- Property 'microchip,sgpio-ports' (uint32, bitmask) replaced by
-  proper range set (array of [start,end]) 'microchip,sgpio-port-ranges'.
-- Fixes whitespace issues in Kconfig file
-
-Lars Povlsen (3):
-  dt-bindings: pinctrl: Add bindings for pinctrl-mchp-sgpio driver
-  pinctrl: pinctrl-mchp-sgpio: Add pinctrl driver for Microsemi Serial
-    GPIO
-  arm64: dts: sparx5: Add SGPIO devices
-
- .../pinctrl/microchip,sparx5-sgpio.yaml       | 127 ++++
- MAINTAINERS                                   |   1 +
- arch/arm64/boot/dts/microchip/sparx5.dtsi     |  91 +++
- .../boot/dts/microchip/sparx5_pcb125.dts      |   5 +
- .../dts/microchip/sparx5_pcb134_board.dtsi    | 262 +++++++
- .../dts/microchip/sparx5_pcb135_board.dtsi    |  57 ++
- drivers/pinctrl/Kconfig                       |  18 +
- drivers/pinctrl/Makefile                      |   1 +
- drivers/pinctrl/pinctrl-microchip-sgpio.c     | 676 ++++++++++++++++++
- 9 files changed, 1238 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
- create mode 100644 drivers/pinctrl/pinctrl-microchip-sgpio.c
-
---
-2.25.1
+Alan Stern
