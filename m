@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46B9E2842F1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 01:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8665284373
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 02:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727031AbgJEX3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 19:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38198 "EHLO
+        id S1726248AbgJFApN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 20:45:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726841AbgJEX3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 19:29:23 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0927C0613A8
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 16:29:23 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id h6so6249648pgk.4
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 16:29:23 -0700 (PDT)
+        with ESMTP id S1725865AbgJFApN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 20:45:13 -0400
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CB6C0613A7
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 17:45:13 -0700 (PDT)
+Received: by mail-pl1-x643.google.com with SMTP id d6so363272plo.13
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 17:45:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=LDiL+GXcnPC606XYr7MZfMGhMR75HAM4qMR2Sb0HfTA=;
-        b=S3+AkSBWwtsQFNLy3uqVSP4lipkdUBVRg1fZvuI5ASskDWc2bz8zQcXURV/gyyVd2i
-         vCCJ0EkMb4ZYUbTCpoPqKRx371Np+eC+HrxiMq7wW4K1kmXE0czvamT2Y1iSPvlqtZgk
-         79ARQ2WII4davW3ztGI790WmwW24Xb6hWeYug=
+        bh=5wH+oGjHyWJvEH/uHeK7lHu7j8UmD/Ph9zNXOPzqXtY=;
+        b=bLUJ1YeTZg2WCWXfhNYVwY9TJM6/AvhKvPLZ2Nn+TiqqLJLuGrO+ZV8NuKNvGtcA5p
+         0ZfhNww1D2y6IzC5XIDN34tP4bB95LOOHuac5C5ABD6XcnSJVq0humjybyn4oQ9frNx4
+         166iHyCEPi8C2JhhLiY6/SYHFoecoDgRGr15o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LDiL+GXcnPC606XYr7MZfMGhMR75HAM4qMR2Sb0HfTA=;
-        b=sUyYnD/uj9EFsf9a+AKAMgTr/1GTzW7EDR/D+RCMikSkbMn669SfNzP0IbfjsWUiqY
-         Rm/gcvAwYIprwrq8z3DiCYgO0T73ktyp5N2FfMky5YYoaPJrt4RmVyLwIE4x7D517zwL
-         KLqMYQV2Z0X7QW4y7KnSWQ+u/mqosZblAsuNKPr67tqTyrgdM7DPkZ3W9Klhq9YxdduO
-         9x5lAUSnHp96iTjkQiVQ9m/CJoEyR7IJ0xVfGTKyXOE+9uTH0qT9ZteTd8NvDYxTU8L3
-         OAAy9wKtpYiFUfWTxp6uWtH51UTMmDtgK4bIOmnsSVOZjbU6xE7eGzcm/WZuJd1Eb+4c
-         O9ZA==
-X-Gm-Message-State: AOAM530zRmDSFKfZQ7NxSyaabv/SoscHtWAzoATd9hk9V5rNmrV4Q7Q2
-        UNwozB6I5jc2A2gI3y9X+Gi0gQ==
-X-Google-Smtp-Source: ABdhPJyHXUS9zry6LcXRyAaCbYLpYGpFNBPTbVuTG6k/SbIPOaAgrcWVQ8ab7Gkxqq+liezZAWv4XQ==
-X-Received: by 2002:aa7:9823:0:b029:150:a96f:c8b7 with SMTP id q3-20020aa798230000b0290150a96fc8b7mr1883651pfl.34.1601940563110;
-        Mon, 05 Oct 2020 16:29:23 -0700 (PDT)
+        bh=5wH+oGjHyWJvEH/uHeK7lHu7j8UmD/Ph9zNXOPzqXtY=;
+        b=EWlxs3KE6qprMvgJmc6lIBAPPv9k8pQgt5jAWRzPKNeIIVp0xMd+T6a/0hU/q4pHBI
+         sBis0muRuCAD9hiZwvCwOo0B5sl11mNIcrLIWJgvFtGdokU0+5Gq4Wbv7Bl7Y3MkPru0
+         gYVuHfaHgKjeJ1T+5rYoghcPPG/1gPWQXNJOFXzk0JdI8BL5nwmVTpZvn2acwV3V62TF
+         OzVv0/CM5um36tTQ9mesDxaBivWScv584zwnwBmPd8+CGHGzbd4mwi7yMM7cqMkkcA5I
+         rurNH0RJDjd7Uuvwjwj5xFGcsi8+AAj38pFmJqeLxz/F8E2fiyzAXoHQuZQ+FNWQ88Mp
+         vW7A==
+X-Gm-Message-State: AOAM532qrpp27Je1j9B75cd+ZeTBi5dhZtKE17pW8BNchg3SR3K21If4
+        AdYnlcAQlutCnZAb/fqHqDFSdg==
+X-Google-Smtp-Source: ABdhPJw6KeqBLP2WM6eD31OsGDNcTWkLFuFHgumIgjquR7/kQ1/1Wz93OZiHNqH5RwTpoPgtglaqVA==
+X-Received: by 2002:a17:902:c697:b029:d3:df24:163e with SMTP id r23-20020a170902c697b02900d3df24163emr980258plx.18.1601945112563;
+        Mon, 05 Oct 2020 17:45:12 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id y16sm1105109pfb.154.2020.10.05.16.29.21
+        by smtp.gmail.com with ESMTPSA id s67sm1203696pfb.35.2020.10.05.17.45.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Oct 2020 16:29:22 -0700 (PDT)
-Date:   Mon, 5 Oct 2020 16:29:21 -0700
+        Mon, 05 Oct 2020 17:45:11 -0700 (PDT)
+Date:   Mon, 5 Oct 2020 17:45:10 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Alan Stern <stern@rowland.harvard.edu>,
-        Doug Anderson <dianders@chromium.org>,
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Frank Rowand <frowand.list@gmail.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
@@ -61,76 +61,234 @@ Cc:     Alan Stern <stern@rowland.harvard.edu>,
         <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
 Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
  onboard USB hubs
-Message-ID: <20201005232921.GC4135817@google.com>
-References: <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+Message-ID: <20201006004510.GD4135817@google.com>
+References: <20200929201701.GA1080459@bogus>
+ <20200929220912.GF1621304@google.com>
+ <20200930013229.GB194665@rowland.harvard.edu>
+ <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
+ <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+ <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
  <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
- <20201002183633.GA296334@rowland.harvard.edu>
- <CAL_JsqKHFA5RWz1SRLkR2JXydURL2pA+4C0+C+4SrJR_h4M0dw@mail.gmail.com>
- <20201003124142.GA318272@rowland.harvard.edu>
- <20201005160655.GA4135817@google.com>
- <20201005161527.GI376584@rowland.harvard.edu>
- <20201005191812.GB4135817@google.com>
- <20201005193611.GA389867@rowland.harvard.edu>
- <CAL_JsqK8V9PUCUD1iZQr52b28G39JraY=doZWzk0gNvu15qW-g@mail.gmail.com>
+ <CAL_JsqLWmBCjrbs2D-d+9naJAKkNhDAbmRtqvCDY8jv=L_q-xA@mail.gmail.com>
+ <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqK8V9PUCUD1iZQr52b28G39JraY=doZWzk0gNvu15qW-g@mail.gmail.com>
+In-Reply-To: <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 05, 2020 at 02:59:04PM -0500, Rob Herring wrote:
-> On Mon, Oct 5, 2020 at 2:36 PM Alan Stern <stern@rowland.harvard.edu> wrote:
+On Fri, Oct 02, 2020 at 04:09:30PM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, Oct 2, 2020 at 3:28 PM Rob Herring <robh@kernel.org> wrote:
 > >
-> > On Mon, Oct 05, 2020 at 12:18:12PM -0700, Matthias Kaehlcke wrote:
-> > > On Mon, Oct 05, 2020 at 12:15:27PM -0400, Alan Stern wrote:
-> > > > The conclusion is that we need to have code that is aware of some
-> > > > detailed needs of a specific device but is not part of the device's
-> > > > driver.  I'm not sure what the best way to implement this would be.
+> > On Fri, Oct 2, 2020 at 12:08 PM Doug Anderson <dianders@chromium.org> wrote:
 > > >
-> > > Wouldn't it be possible to load the module when the DT specifies that
-> > > the device exists? For USB the kernel would need the VID/PID to identify
-> > > the module, these could be extracted from the compatible string.
+> > > Hi,
+> > >
+> > > On Wed, Sep 30, 2020 at 1:20 PM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > > > > Datasheets from different manufacturers refer to these ICs as "USB hub
+> > > > > > > controller". Calling the node "usb-hub-controller" would indeed help to
+> > > > > > > distinguish it from the USB hub devices and represent existing hardware.
+> > > > > > > And the USB device could have a "hub-controller" property, which also
+> > > > > > > would be clearer than the current "hub" property.
+> > > > > >
+> > > > > > There aren't 2 (or 3) devices here. There's a single USB device (a
+> > > > > > hub) and the DT representation should reflect that.
+> > > > >
+> > > > > That's not completely true, though, is it?
+> > > >
+> > > > I was referring to the hub. I only see 1 datasheet, 1 IC and 1 block
+> > > > diagram... Lots of devices have more than one interface though usually
+> > > > not different speeds of the same thing.
+> > >
+> > > Right, there is certainly more than one way to look at it and the way
+> > > to look at it is based on how it's most convenient, I guess.  I mean,
+> > > an SoC often has 1 (very long) datasheet, 1 IC, and 1 block diagram
+> > > too...
+> > >
+> > > As a more similar example of single device that is listed in more than
+> > > one location in the device tree, we can also look at embedded SDIO
+> > > BT/WiFi combo cards.  This single device often provides WiFi under an
+> > > SDIO bus and BT under a serial / USB bus.  I'm not 100% sure there are
+> > > actually cases were the same board provides device tree data to both
+> > > at the same time, but "brcm,bcm43540-bt" is an example of providing
+> > > data to the Bluetooth (connected over serial port) and
+> > > "brcm,bcm4329-fmac" to the WiFi (connected over the SDIO bus).  Of
+> > > course WiFi/BT cheat in that the control logic is represented by the
+> > > SDIO power sequencing stuff...
 > >
-> > Loading a driver module whenever DT says a device exists?  Not a bad
-> > idea.  I don't know what would be involved, but no doubt it is possible.
+> > I figured you would mention this and it was brought up in the prior
+> > version. We've gotten lucky on these that the BT and WiFi are almost
+> > completely independent and any shared resources are easily shared
+> > (refcounted). I don't know if this case is the same. It seems less so
+> > to me. In any case, 2 independent devices is not what's been done here
+> > so far. The question is does representing USB2 and USB3 buses
+> > independently make sense, not whether just representing this hub as 2
+> > devices makes sense.
 > 
-> MODULE_DEVICE_TABLE mostly as I mentioned in my other reply.
+> It feels like we have to accept that we are going to represent the USB
+> 2 and USB 3 parts separately?  From Alan's response it sounds as if,
+> at least in theory, there can be different hierarchies leading up to
+> them.  That kind of thing seems like it'll be hard to deal with unless
+> we accept that the USB2 and USB3 nodes are separate, right?
 > 
-> > Note that, except for a few special cases, the kernel identifies the
-> > appropriate driver for USB hubs not by the VID/PID but instead by the
-> > device class or interface class.  I suppose the compatible string could
-> > include that information too?
 > 
-> We can go back to 1998 OpenFirmware and it's already there[1].
-> 'usb,class9' for a hub. There's a few other variations defined.
-
-That should work if the initialization is simple enough that the info in the
-device tree is sufficient (e.g. switching a single regulator on), otherwise
-a device specific compatible string would be needed.
-
-> > > Having the initialization code outside of the driver could lead to code
-> > > duplication, since the driver might want to power the device down in
-> > > certain situations (e.g. system suspend).
+> > > Back to our case, though.  I guess the issue here is that we're the
+> > > child of more than one bus.  Let's first pretend that the i2c lines of
+> > > this hub are actually hooked up and establish how that would look
+> > > first.  Then we can think about how it looks if this same device isn't
+> > > hooked up via i2c.  In this case, it sounds as if you still don't want
+> > > the device split among two nodes.  So I guess you'd prefer something
+> > > like:
+> > >
+> > > i2c {
+> > >   usb-hub@xx {
+> > >     reg = <xx>;
+> > >     compatible = "realtek,rts5411", "onboard-usb-hub";
+> > >     vdd-supply = <&pp3300_hub>;
+> > >     usb-devices = <&usb_controller 1>;
 > >
-> > True.  On the other hand, how common do you think it would be for
-> > drivers not to want to mess with the power settings?
+> > Why would you even need this prop? What it's attached to may not be
+> > the host controller nor even represented in DT. You've just defined a
+> > 2nd way to represent USB devices in DT (there's always 2 ways: a tree
+> > of nodes or a 'linked list' of phandles).
 > 
-> I think in that case you'd generally want firmware to enable things
-> and the kernel then does no power control.
+> I'm certainly not wedded to the above representation, so let's drop it.
 > 
-> We have ~1500 boards using DT and maybe ~10 with USB devices described
-> in DT. So the whole thing is not common to begin with.
+> 
+> > >   };
+> > > };
+> > >
+> > > ...and then you wouldn't have anything under the USB controller
+> > > itself.  Is that correct?
+> >
+> > Right, as the examples you pointed out do. They just avoid the issue
+> > of representing USB bus in DT which probably was not defined at the
+> > time at least the first one was done. It works as long as you only
+> > have the hub that needs special setup. If you have child devices
+> > hanging off the hub too, then you need to represent the USB bus
+> > structure.
+> >
+> > >  So even though there are existing bindings
+> > > saying that a USB device should be listed via VID/PID, the desire to
+> > > represent this as a single node overrides that, right?  (NOTE: this is
+> > > similar to what Matthias proposed in his response except that I've
+> > > added an index so that we don't need _anything_ under the controller).
+> > >
+> > > Having this primarily listed under the i2c bus makes sense because the
+> > > control logic for the hub is hooked up via i2c.  Having the power
+> > > supply associated with it also makes some amount of sense since it's a
+> > > control signal.  It's also convenient that i2c devices have their
+> > > probe called _before_ we try to detect if they're there because it's
+> > > common that i2c devices need power applied first.
+> > >
+> > > Now, just because we don't have the i2c bus hooked up doesn't change
+> > > the fact that there is control logic.  We also certainly wouldn't want
+> > > two ways of describing this same hub: one way if the i2c is hooked up
+> > > and one way if it's not hooked up.  To me this means that the we
+> > > should be describing this hub as a top-level node if i2c isn't hooked
+> > > up, just like we do with "smsc,usb3503a"
+> > >
+> > > Said another way, we have these points:
+> > >
+> > > a) The control logic for this bus could be hooked up to an i2c bus.
+> > >
+> > > b) If the control logic is hooked up to an i2c bus it feels like
+> > > that's where the device's primary node should be placed, not under the
+> > > USB controller.
+> > >
+> > > c) To keep the i2c and non-i2c case as similar as possible, if the i2c
+> > > bus isn't hooked up the hub's primary node should be a top-level node,
+> > > not under the USB controller.
+> >
+> > If that was the goal,
+> 
+> Are you saying that's not a goal?  I'd still be happiest with allowing
+> it to be split amongst multiple nodes.
+> 
+> 
+> > then I'd say the device *always* belongs under
+> > the USB bus as that is the primary interface.
+> 
+> So in the case that it's under the USB bus, how do you envision the
+> i2c part probing?  I guess you'd add a "i2c-bus" property and provide
+> a phandle to the i2c bus?  ...and, presumably, the device address on
+> that i2c bus?  I know you pointed to examples of "ddc-i2c-bus" but I
+> don't think this is exactly the same because we need to specify a bus
+> plus a device address.  Did I miss an example where something like
+> this is already done, or are we inventing something new?
+> 
+> 
+> > As soon as someone wants to describe a device hanging off a
+> > "smsc,usb3503a" port, they're going to need to describe it all as a
+> > USB bus, not under I2C. I could be wrong, but I think all the cases so
+> > far do this. And it's not just devices, but possibly connectors (which
+> > is a whole other set of binding issues :)), too.
+> 
+> I mean, the thing that would make me happiest is to allow the
+> different parts of this device to be described in different places, as
+> Matthias's patch does.  In other words, I agree with you that the best
+> solution is to have nodes for hubs under the USB bus.  I'm still of
+> the opinion that the device is best described by _also_ having a
+> separate node for the control logic part of the IC either under the
+> i2c bus or at the top level.  In the i2c case, at least, this avoids
+> coming up with a different way to specify a device that is a child of
+> an i2c bus.
+> 
+> 
+> So, just to summarize, I guess options still being discussed:
+> 
+> a) Only represent the hub under the USB controller, not anywhere else.
+> If the hub is also on an i2c bus, invent a new way to specify which
+> bus it's under and what address it's using.  Add some sort of
+> pre-probe stage and have the hub driver register for it so it can turn
+> on the power, which might be needed in order for the USB devices to be
+> detected and probed normally.
+> 
+> b) Give up trying to model this and just whack in a regulator and some
+> logic in the xhci-platform driver to do this.
+> 
+> c) Decide that it's OK to represent the control logic as a separate
+> node, either under an i2c bus or at the top level.  Use phandles to
+> link.  Basically, I think this is nearly Matthias's current patch.
+> 
+> 
+> Did I miss anything that's currently under proposal?
 
-It's probably not very common, but might be more common than the DT suggests.
-Many devices probably don't specify their hub(s) or other USB devices
-explicitly when the initialization is done in firmware.
+I did some prototyping, it seems a binding like this would work for
+case a) or b):
 
-In case a generic solution for all types of devices and busses is not
-required we would still need a driver to address at least the conditional
-power down of a hub during system suspend.
+&usb_1_dwc3 {
+        hub_2_0: hub@1 {
+                compatible = "usbbda,5411";
+                reg = <1>;
+	};
 
-Doug summarized the state of the discussion about the bindings for hubs
-(https://lore.kernel.org/patchwork/patch/1313000/#1511757) maybe we should
-continue from there?
+        hub_3_0: hub@2 {
+                compatible = "usbbda,411";
+                reg = <2>;
+                vdd-supply = <&pp3300_hub>;
+		companion-hubs = <&hub_2_0>;
+        };
+};
+
+It still requires specifying both hubs (which reflects the actual wiring).
+Supporting something like "reg = <1 2>" seems more complex due to the need to
+obtain the hub USB device at runtime (a DT node makes that trivial), possibly
+this could be solved by adding new APIs.
+
+In terms of implementation would I envision to keep a platform driver. This
+would keep the hubby parts out of xhci-plat (except for populating the platform
+devices), support systems with cascaded hubs and provide a device for the sysfs
+attribute.
+
+The same binding could be used for a hub with I2C bus, however it would need
+an additional I2C client node, unless we invent something new (case a). On
+such a hub the "power down in suspend" feature would only work if the "USB
+regulator" is not needed to preserve context of the I2C portion of the chip
+during system suspend.
