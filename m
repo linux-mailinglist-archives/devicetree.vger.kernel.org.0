@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 531702853AD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E9AB2853B1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727362AbgJFVLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 17:11:19 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:34647 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727166AbgJFVLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:11:19 -0400
-Received: by mail-ot1-f65.google.com with SMTP id d28so224274ote.1;
-        Tue, 06 Oct 2020 14:11:18 -0700 (PDT)
+        id S1727530AbgJFVMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 17:12:08 -0400
+Received: from mail-oo1-f65.google.com ([209.85.161.65]:33401 "EHLO
+        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727333AbgJFVMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:12:07 -0400
+Received: by mail-oo1-f65.google.com with SMTP id g8so79380oov.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 14:12:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=5FP0smEmtRjA7sa6KoPbSMBo/XXzMk5YV0latxBLaGo=;
-        b=B1biTQ7G0TMiCR/L0g+TsD2+1UfQj7qXkolWxczh+39lD2UvdiHG5AAM1zYmh+7e0U
-         UpiSZFsK6TdCtCIFZdQBNsEvsGH9mg4E6whR+9VtWaEFOe26SutfNnNwa8/ArPFwh43P
-         IHL+ACecq1HlvkhMpYI+y7Nk4x0HjRxU88k7yk5Yh4uYVCHcrlEV1Nx1x08dUiaTHv5y
-         EcuQIoXpg/XoMaMi+9uTWf9Pe0anFQ++uDcgneFlqPVYZYTGWQwkcZVI34/DSmCdTapl
-         H44VfA+9JS0fDc0XCzOjJOhWyuV5CIC3Gy/KRUSMzv0z81He4GEcGU+n1+u6JBmWpFIp
-         BK1Q==
-X-Gm-Message-State: AOAM532HF4TMC1D2DbQ5oovUXjtXlAoqyzJB4UshTnRE4sWXJQ1Nli1Q
-        OLwZBe20uImLLy83tnh/gQ==
-X-Google-Smtp-Source: ABdhPJznxbwgrx4oSXOYZC8dTgbjtyD4TW76I6oDeE7VGirnsKALIyRtHYG26LH2daEjUmTJm4T2ag==
-X-Received: by 2002:a9d:2ab:: with SMTP id 40mr3904256otl.137.1602018678507;
-        Tue, 06 Oct 2020 14:11:18 -0700 (PDT)
+        bh=dQz2w/oqVzKcHyuh+ZeMxHmpGO7G+Lk3gkxxr4xTAS4=;
+        b=s5pgGw3znqmgufrAYCCOx7LdwOe/wP26y+da7SHIAnlsRBUMvSYu7XHDsmj3IwFSFt
+         IMzTzZ6dkk5nKW4UvKIwWKhUpv7D+v6WRM/QoyEdEsQf6V0VrLazw3Im57WnOExrhles
+         dFFVAvEKephtbQd/oxYcyzWeYDoNNY7QcsEdAM/+IFw/QNy+dK8D9ujNGMRdcA/VzL1t
+         NFDGDpCXIKiJvPHy1nQLoF7Kk4rXjC5UwUlxIHdR4XCwSfXnLEhJdLn/TyvGFJE2tgDH
+         rzNEwhWT2Pe3A/4s7d91NAI9hBwCSLSrZ0AwiIsiIFwJR8q5bKoOCSmAqb96lvQz0sth
+         S/BA==
+X-Gm-Message-State: AOAM533Ir0wFiLutupP/mNDQAtsMu3UFYqzL2ptUw2akYCWwjllnpwYO
+        l+Hy4zsHyfT7qAI/E8d6gw==
+X-Google-Smtp-Source: ABdhPJwJj0ZKI7KnyFEQUrs4fvn7fzD7QM9w0qLknfx7BtxCDdM9kpQYgbNFODIT9ujYIkkK/Gybmg==
+X-Received: by 2002:a4a:ad05:: with SMTP id r5mr14988oon.37.1602018726258;
+        Tue, 06 Oct 2020 14:12:06 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i205sm3286oih.23.2020.10.06.14.11.17
+        by smtp.gmail.com with ESMTPSA id u68sm1702483otb.9.2020.10.06.14.12.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 14:11:17 -0700 (PDT)
-Received: (nullmailer pid 2848240 invoked by uid 1000);
-        Tue, 06 Oct 2020 21:11:16 -0000
-Date:   Tue, 6 Oct 2020 16:11:16 -0500
+        Tue, 06 Oct 2020 14:12:05 -0700 (PDT)
+Received: (nullmailer pid 2849601 invoked by uid 1000);
+        Tue, 06 Oct 2020 21:12:04 -0000
+Date:   Tue, 6 Oct 2020 16:12:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Marcus Cooper <codekipper@gmail.com>, linux-kernel@vger.kernel.org,
-        Takashi Iwai <tiwai@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Mark Brown <broonie@kernel.org>,
+To:     Marek Vasut <marex@denx.de>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Abel Vesa <abel.vesa@nxp.com>, devicetree@vger.kernel.org,
+        Dong Aisheng <aisheng.dong@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH v6 13/14] dt-bindings: sound: sun4i-i2s: Document H3 with
- missing RX channel possibility
-Message-ID: <20201006211116.GA2848184@bogus>
-References: <20201003141950.455829-1-peron.clem@gmail.com>
- <20201003141950.455829-14-peron.clem@gmail.com>
+        linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH 1/5] Documentation: bindings: clk: Add bindings for
+ i.MX8MM BLK_CTL
+Message-ID: <20201006211204.GA2849566@bogus>
+References: <20201003224555.163780-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201003141950.455829-14-peron.clem@gmail.com>
+In-Reply-To: <20201003224555.163780-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 03 Oct 2020 16:19:49 +0200, Clément Péron wrote:
-> Like A83T the Allwinner H3 doesn't have the DMA reception available for
-> some audio interfaces.
+On Sun, 04 Oct 2020 00:45:51 +0200, Marek Vasut wrote:
+> Add the i.MX8MM BLK_CTL compatible string to the list.
 > 
-> As it's already documented for A83T convert this to an enum and add the H3
-> interface.
-> 
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Abel Vesa <abel.vesa@nxp.com>
+> Cc: Dong Aisheng <aisheng.dong@nxp.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Guido Günther <agx@sigxcpu.org>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: devicetree@vger.kernel.org
 > ---
->  .../devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml    | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
