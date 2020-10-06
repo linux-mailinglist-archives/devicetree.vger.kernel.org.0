@@ -2,139 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 613E628458F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 07:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D0B42845CE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 08:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727056AbgJFFmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 01:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38998 "EHLO
+        id S1726878AbgJFGJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 02:09:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727074AbgJFFmc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 01:42:32 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48965C0613AD
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 22:42:31 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id j8so1063701pjy.5
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 22:42:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=FYOEybxQ9Y8nUxVZmzLLg+Qyso2tjlpbGNthFRqblLc=;
-        b=scAXD8YuBk8j/NF0iYDdCeaAVj2lJqU4ekQ7XmxKGRZD9n7rlAL/7uG23DDE1fcZ56
-         zF72mU8P6EdMfXizzEbowAVRT7aqB90B0ZPahldWPyAERYWd6msUiWvIw5u5I68GC10s
-         2mfO8dqRM6oWZLB0Q6RNjtouVvMzAMtCqHytHKbKwrjH25Far6tK8oMk2FL/+Ytm6yFo
-         ix24Oh/3R7FZgjcOmnnbZhO2Rnj4pwkEjTGIWiz4UAhFCmHcKJq5fJPHDGVhMb52+bja
-         GRW+sJiWWq/RfS6N9j6fS0MlegpQS8J4O6R0p/6fHQbNSKo6Dg2SOD+ESIa+qx/GxTp7
-         QQLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=FYOEybxQ9Y8nUxVZmzLLg+Qyso2tjlpbGNthFRqblLc=;
-        b=dwr5JZntxx/0y7dkl3iim3bRHAEI1kaXqPhV2mos5bUgxOfAxuFXifp/F7Kmluej1P
-         KL2vktiN3ZgKkJHZowmTl0vOLHt5KYo7aFi8TkCa2N2kJ3Z54an14kWyZ1d1sEZDvnSS
-         f0bCMatJSOuGIkNRkwOZEPD+e4Hqafrpek142apjK+NbiO8uvgUg+NrJAw0DWHV6tdNs
-         cE+qUdBt3CrBi6UdMEU7F3nl4YsTH7DgyQX7ha1Zj8ah7mnN926r1KDLEzRaUPekn+42
-         8ayEFS+fpBSuJU+OxFOrLNOXX+bIFoYfLlov1TEXRSQ1EbrrzRW8imed+xaT9a8a8VxM
-         IylA==
-X-Gm-Message-State: AOAM530jK7GzOSa96IsypTz7r5yZVwOmw9F1PUbsDE0oROeQZzsVAe71
-        EsmReefdYs+BHsy08JzR8sIZpg==
-X-Google-Smtp-Source: ABdhPJzo+T1F54fl8q16F3SuWBffglk48PEytQu7/wpxM8oR5iYvbOQGglf6EbVoa0EICQ893qG+lw==
-X-Received: by 2002:a17:90b:950:: with SMTP id dw16mr2661711pjb.200.1601962950652;
-        Mon, 05 Oct 2020 22:42:30 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id d145sm2005503pfd.136.2020.10.05.22.42.29
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 05 Oct 2020 22:42:29 -0700 (PDT)
-Date:   Tue, 6 Oct 2020 11:12:28 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>, dmaengine@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Jens Axboe <axboe@kernel.dk>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Richard Weinberger <richard@nod.at>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
+        with ESMTP id S1726022AbgJFGJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 02:09:43 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01EFFC0613A7;
+        Mon,  5 Oct 2020 23:09:42 -0700 (PDT)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1601964580;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=xkKw/KBe2QM6+BRRUnULks28xEE3Zuw6lX7LXsbrlo8=;
+        b=EdbEqiZY5mgNAJf/bi7iyeSlmNHr2knystSGbYcLefMOdQOXaBEahG74hKHLRYHgGWR4BQ
+        AxNWJSmWnoz4CHQpps5iAl1aJCkVoN4CVDaoIEID6JS36GzF51jE4MZflHMQD9Jz21A08y
+        cyBKuOzDOVh2WQqqj0hC5ZJ+jq0CU2nYCvu9JxnS04Y95Oxj9yz21aYpuc2lGmpiF58iA8
+        oNaC77eroBWsjXY0/PJLTm59q62PzcHcCumUWtScdPyEqn4Jper5pO1q87wXak1oxdNj9v
+        8GhzdXcMOzocVf+2BYIrrshSYY7axG8mKtBfSJT9rbJEh65LSYnZij1NWzHFKA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1601964580;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=xkKw/KBe2QM6+BRRUnULks28xEE3Zuw6lX7LXsbrlo8=;
+        b=v/70SZckHEdFDFDrNowD7wK4XpSKuZyY5Ky35lKG9vzrv8EJ6k5a3ZgncWVyqUXExtyG1D
+        BCHTl7zXql1kLCBQ==
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-ide@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: Explicitly allow additional properties
- in board/SoC schemas
-Message-ID: <20201006054228.ho3ajzfgpiew32ft@vireshk-i7>
-References: <20201005183830.486085-1-robh@kernel.org>
- <20201005183830.486085-4-robh@kernel.org>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
+In-Reply-To: <20201004125601.aceiu4hdhrawea5z@skbuf>
+References: <20201004112911.25085-1-kurt@linutronix.de> <20201004112911.25085-3-kurt@linutronix.de> <20201004125601.aceiu4hdhrawea5z@skbuf>
+Date:   Tue, 06 Oct 2020 08:09:39 +0200
+Message-ID: <87lfgj997g.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201005183830.486085-4-robh@kernel.org>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-10-20, 13:38, Rob Herring wrote:
-> In order to add meta-schema checks for additional/unevaluatedProperties
-> being present, all schema need to make this explicit. As the top-level
-> board/SoC schemas always have additional properties, add
-> 'additionalProperties: true'.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/arm/spear.yaml               | 3 +++
+--=-=-=
+Content-Type: text/plain
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Hi Vladimir,
 
--- 
-viresh
+thanks for the review.
+
+On Sun Oct 04 2020, Vladimir Oltean wrote:
+> On Sun, Oct 04, 2020 at 01:29:06PM +0200, Kurt Kanzenbach wrote:
+>> +static int hellcreek_vlan_del(struct dsa_switch *ds, int port,
+>> +			      const struct switchdev_obj_port_vlan *vlan)
+>> +{
+>> +	struct hellcreek *hellcreek = ds->priv;
+>> +	u16 vid;
+>> +
+>> +	dev_dbg(hellcreek->dev, "Remove VLANs (%d -- %d) on port %d\n",
+>> +		vlan->vid_begin, vlan->vid_end, port);
+>> +
+>> +	for (vid = vlan->vid_begin; vid <= vlan->vid_end; ++vid) {
+>> +		mutex_lock(&hellcreek->ports[port].vlan_lock);
+>> +		if (hellcreek->ports[port].vlan_filtering)
+>> +			hellcreek_unapply_vlan(hellcreek, port, vid);
+>
+> I don't think this works.
+>
+> ip link add br0 type bridge vlan_filtering 1
+> ip link set swp0 master br0
+> bridge vlan add dev swp0 vid 100
+> ip link set br0 type bridge vlan_filtering 0
+> bridge vlan del dev swp0 vid 100
+> ip link set br0 type bridge vlan_filtering 1
+>
+> The expectation would be that swp0 blocks vid 100 now, but with your
+> scheme it doesn't (it is not unapplied, and not unqueued either, because
+> it was never queued in the first place).
+
+Yes, that's correct. So, I think we have to queue not only the addition
+of VLANs, but rather the "action" itself such as add or del. And then
+apply all pending actions whenever vlan_filtering is set.
+
+>> +static int hellcreek_port_bridge_join(struct dsa_switch *ds, int port,
+>> +				      struct net_device *br)
+>> +{
+>> +	struct hellcreek *hellcreek = ds->priv;
+>> +	int i;
+>> +
+>> +	dev_dbg(hellcreek->dev, "Port %d joins a bridge\n", port);
+>> +
+>> +	/* Configure port's vid to all other ports as egress untagged */
+>> +	for (i = 0; i < ds->num_ports; ++i) {
+>> +		if (!dsa_is_user_port(ds, i))
+>> +			continue;
+>> +
+>> +		if (i == port)
+>> +			continue;
+>> +
+>> +		hellcreek_apply_vlan(hellcreek, i, port, false, true);
+>> +	}
+>
+> I think this is buggy when joining a VLAN filtering bridge. Your ports
+> will pass frames with VID=2 with no problem, even without the user
+> specifying 'bridge vlan add dev swp0 vid 2', and that's an issue. My
+> understanding is that VLANs 1, 2, 3 stop having any sort of special
+> meaning when the upper bridge has vlan_filtering=1.
+
+Yes, that understanding is correct. So, what happens is when a port is
+joining a VLAN filtering bridge is:
+
+|root@tsn:~# ip link add name br0 type bridge
+|root@tsn:~# ip link set dev br0 type bridge vlan_filtering 1
+|root@tsn:~# ip link set dev lan0 master br0
+|[  209.375055] br0: port 1(lan0) entered blocking state
+|[  209.380073] br0: port 1(lan0) entered disabled state
+|[  209.385340] hellcreek ff240000.switch: Port 2 joins a bridge
+|[  209.391584] hellcreek ff240000.switch: Apply VLAN: port=3 vid=2 pvid=0 untagged=1
+|[  209.399439] device lan0 entered promiscuous mode
+|[  209.404043] device eth0 entered promiscuous mode
+|[  209.409204] hellcreek ff240000.switch: Enable VLAN filtering on port 2
+|[  209.415716] hellcreek ff240000.switch: Unapply VLAN: port=2 vid=2
+|[  209.421840] hellcreek ff240000.switch: Unapply VLAN: port=0 vid=2
+|[  209.428170] hellcreek ff240000.switch: Apply queued VLANs: port2
+|[  209.434158] hellcreek ff240000.switch: Apply VLAN: port=2 vid=0 pvid=0 untagged=0
+|[  209.441649] hellcreek ff240000.switch: Clear queued VLANs: port2
+|[  209.447920] hellcreek ff240000.switch: Apply queued VLANs: port0
+|[  209.453910] hellcreek ff240000.switch: Apply VLAN: port=0 vid=0 pvid=0 untagged=0
+|[  209.461402] hellcreek ff240000.switch: Clear queued VLANs: port0
+|[  209.467620] hellcreek ff240000.switch: VLAN prepare for port 2
+|[  209.473476] hellcreek ff240000.switch: VLAN prepare for port 0
+|[  209.479534] hellcreek ff240000.switch: Add VLANs (1 -- 1) on port 2, untagged, PVID
+|[  209.487164] hellcreek ff240000.switch: Apply VLAN: port=2 vid=1 pvid=1 untagged=1
+|[  209.494659] hellcreek ff240000.switch: Add VLANs (1 -- 1) on port 0, untagged, no PVID
+|[  209.502794] hellcreek ff240000.switch: Apply VLAN: port=0 vid=1 pvid=0 untagged=1
+|root@tsn:~# bridge vlan show
+|port    vlan ids
+|lan0     1 PVID Egress Untagged
+|
+|br0      1 PVID Egress Untagged
+
+... which looks correct to me. The VLAN 2 is unapplied as expected. Or?
+
+>
+> And how do you deal with the case where swp1 and swp2 are bridged and
+> have the VLAN 3 installed via 'bridge vlan', but swp3 isn't bridged?
+> Will swp1/swp2 communicate with swp3? If yes, that's a problem.
+
+There is no swp3. Currently there are only two ports and either they are
+bridged or not.
+
+>> +static int __hellcreek_fdb_del(struct hellcreek *hellcreek,
+>> +			       const struct hellcreek_fdb_entry *entry)
+>> +{
+>> +	dev_dbg(hellcreek->dev, "Delete FDB entry: MAC=%pM!\n", entry->mac);
+>> +
+>
+> Do these dev_dbg statements bring much value at all, even to you?
+
+Yes, they do. See the log snippet above.
+
+>> +/* Default setup for DSA: VLAN <X>: CPU and Port <X> egress untagged. */
+>> +static int hellcreek_setup_vlan_membership(struct dsa_switch *ds, int port,
+>> +					   bool enabled)
+>
+> This function always returns zero, so it should be void.
+
+Yes. I noticed that as well and wanted to fix it before sending. Sorry, my bad.
+
+>> +static int hellcreek_vlan_filtering(struct dsa_switch *ds, int port,
+>> +				    bool vlan_filtering)
+>> +{
+>> +	struct hellcreek *hellcreek = ds->priv;
+>> +
+>> +	dev_dbg(hellcreek->dev, "%s VLAN filtering on port %d\n",
+>> +		vlan_filtering ? "Enable" : "Disable", port);
+>> +
+>> +	/* Configure port to drop packages with not known vids */
+>> +	hellcreek_setup_ingressflt(hellcreek, port, vlan_filtering);
+>> +
+>> +	/* Drop DSA vlan membership config. The user can now do it. */
+>> +	hellcreek_setup_vlan_membership(ds, port, !vlan_filtering);
+>> +
+>> +	/* Apply saved vlan configurations while not filtering for port <X>. */
+>> +	hellcreek_apply_vlan_filtering(hellcreek, port, vlan_filtering);
+>> +
+>> +	/* Do the same for the cpu port. */
+>> +	hellcreek_apply_vlan_filtering(hellcreek, CPU_PORT, vlan_filtering);
+>
+> I think we should create a DSA_NOTIFIER_VLAN_FILTERING so you wouldn't
+> have to do this, but not now.
+
+OK.
+
+>> +static int hellcreek_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct hellcreek *hellcreek;
+>> +	struct resource *res;
+>> +	int ret, i;
+>> +
+>> +	hellcreek = devm_kzalloc(dev, sizeof(*hellcreek), GFP_KERNEL);
+>> +	if (!hellcreek)
+>> +		return -ENOMEM;
+>> +
+>> +	hellcreek->vidmbrcfg = devm_kcalloc(dev, 4096,
+>
+> VLAN_N_VID
+
+Thanks!
+
+>> +static const struct hellcreek_platform_data de1soc_r1_pdata = {
+>> +	.num_ports	 = 4,
+>> +	.is_100_mbits	 = 1,
+>> +	.qbv_support	 = 1,
+>> +	.qbv_on_cpu_port = 1,
+>
+> Why does this matter?
+
+Because Qbv on the CPU port is a feature and not all switch variants
+have that. It will matter as soon as TAPRIO is implemented.
+
+>> +#include <linux/bitops.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/device.h>
+>> +#include <linux/ptp_clock_kernel.h>
+>> +#include <linux/timecounter.h>
+>> +#include <linux/mutex.h>
+>
+> Could you sort alphabetically?
+
+Sure.
+
+>
+>> +#include <linux/platform_data/hirschmann-hellcreek.h>
+>> +#include <net/dsa.h>
+>> +
+>> +/* Ports:
+>> + *  - 0: CPU
+>> + *  - 1: Tunnel
+>> + *  - 2: TSN front port 1
+>> + *  - 3: TSN front port 2
+>> + *  - ...
+>> + */
+>> +#define CPU_PORT			0
+>> +#define TUNNEL_PORT			1
+>
+> What's a tunnel port exactly?
+
+AFAIK it's a debugging port for mirroring or looping traffic. Anyhow,
+that is not a regular port and cannot be treated as such.
+
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl98CiMACgkQeSpbgcuY
+8KbhHxAAhOoJU4I2d4KFLiOZaNgcRlR+DoRXVyz97TnzC4n4PuOFhg6qDgMM5aPR
+zhWaiHvI96aMXFU+FZAPmbHimKWox1zVRLN5lp8otQ6O77wVnNgGlYq7+f5fn4kw
+zz5uvsoXfxmTl2ceS6wfWhXy6O90ka/PDCcHP5cFhZukSNzgJRZhwF5QdZocUq9S
+QP1gWwhsh8YAMvPUwfTiErXxxioz0HQfQPZBcaIYtqV/D3a9jiDrzyf1+YhyM+J5
+/MOlWZlpeSfXBL/SifpyV3lSJNFzbeqj1eWctdc1q4lgqsOKSffAYE0H1TXsCauy
+NDVcFZY1fH1/L1wbgdqzvSabu76sojytkEWuJAf9ytk9wLxRGD932ooG8RIpnLmR
+Df+38t/H8nvuHh/AunM8EIa8KToPdGCdlLRJjn4z9z4MdkNe+jKLPwf/Lr+JsykD
+pqbe95xBa6mMAq2xQBFGzBGH+jV6Q2a2/Exm1FZBj1PJ5IypoCEoVznxg7Cvr0hB
+3J1u054dk1nMtPrjZPXJ7W0chrgOpf4091/6gG8Rp//LFoFiQgB5LrDMEUPdqrEY
+YsaaxS9iBVBWCLBLnWTflTdl6c/fhSP+8PhFAdP0eMCrFwWSnVVk1AsyPsu9G9iZ
+I63VCwt0WvP4k2/xqqlHSKHxgnIh8HGf7AUPH4iKs2rwLBOdhY8=
+=CCR6
+-----END PGP SIGNATURE-----
+--=-=-=--
