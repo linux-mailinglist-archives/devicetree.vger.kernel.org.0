@@ -2,95 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60CA0285426
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:52:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59497285434
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 23:55:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726777AbgJFVwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 17:52:43 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:42061 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726759AbgJFVwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:52:43 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 16so202237oix.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 14:52:41 -0700 (PDT)
+        id S1726948AbgJFVzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 17:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48076 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726759AbgJFVza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 17:55:30 -0400
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBDD6C061755;
+        Tue,  6 Oct 2020 14:55:30 -0700 (PDT)
+Received: by mail-ot1-x344.google.com with SMTP id o8so330158otl.4;
+        Tue, 06 Oct 2020 14:55:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Fw9scDYwnYqh9lbjj7y9Lc0xhOLikf4SJcoavRTek4Q=;
+        b=gMqlMI06RHSy3yXaV56ZpYv8TOaGKyxn2nNGzbYeV55t3749MjsHL3BImSZOd+hYu3
+         +Fz9h3vOOCsZq4DGMKDhYEorZRd80LGZN7xMgvxqb2Q7P6sg8nh13SJ1sppuS+8lAPs3
+         HZ3BIj/eUNfwPJod2LDfCbACzKOK2bh6FwGgaKclpqyY4VHp8PwQaNxaG179UJKb3X2f
+         /851F+n4f40dkONdHT20xbb5kxIxt0UDyYNSTZmQyTOv9+KFxSNDxjLfJ7g9U9UJ/ZKf
+         WrxsqBG+MRcK0z2lpKhbqdbKbAZGVKMEN6EDlv6H6SbJU7h9PaM6Jmk6+uXSRO2ecaUW
+         A1cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CcowxvKV3WPMTnQe2ODLkjn+TeOaM7f9s2ye2HeLgEs=;
-        b=ZUOxUV2mqMi/BZ2s6DYuj7nY4np2uE7qiX88KFdpMBc5bct/hCrIH2nw2qO04XaoKa
-         tG6vzIRc9vOlhAmIH4NjpZH7x/ZtcnwKFkcSoSSt52QZcEQxKti4PBROo1jMgH+3fcGe
-         VKdUTSAkgO3r232cHMmLw8kqHia7FqX99ltESEz7+l9JTUPl92eg2QlIg+9nc1x/dXlU
-         q9jGuf+ZmIwvKRs9cGF9TKCKocpzv1qj+Z7V5pOoXUoWOx5B10Mk4wemMdcEqcRDa8bG
-         CR5JMuzhleY5KwrIKivf/FxMT8G6JVo1+sIhZ4RlG3ujOZEM/UJi9twwYumpcaxi64M3
-         GoJg==
-X-Gm-Message-State: AOAM532zIieuAq+lkC5oGTK4hecMu6KP0/rwh4J4xow3q44VLyNQOKBl
-        8rEiyY6hxmU6E5jIaWTMYQ==
-X-Google-Smtp-Source: ABdhPJwUYZPWu4CvjIXHGqFaPHnbZqi7GzNoq59DJGGDL5CgdF+QZtiSAGWIgck1biOWKEdih7g3Ig==
-X-Received: by 2002:aca:654b:: with SMTP id j11mr201016oiw.77.1602021161406;
-        Tue, 06 Oct 2020 14:52:41 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 68sm27509otu.33.2020.10.06.14.52.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 14:52:40 -0700 (PDT)
-Received: (nullmailer pid 2914439 invoked by uid 1000);
-        Tue, 06 Oct 2020 21:52:39 -0000
-Date:   Tue, 6 Oct 2020 16:52:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Primoz Fiser <primoz.fiser@norik.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: fsl: add ac97 fixed mode support
-Message-ID: <20201006215239.GA2912752@bogus>
-References: <20201005111644.3131604-1-primoz.fiser@norik.com>
- <20201005111644.3131604-2-primoz.fiser@norik.com>
- <CAOMZO5CQkh06TfKj3qR9P+0ZQOQo07NAg8v9j==KMrLCWBn0mg@mail.gmail.com>
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Fw9scDYwnYqh9lbjj7y9Lc0xhOLikf4SJcoavRTek4Q=;
+        b=D7btILMnyf4D4uQ5RIBsU2z2W/usMQa7wlRZ/vkT6iwyBOSvStsXPCoY8scn3YDoIh
+         tDuu76wf2hi+3e+3S7MW7HwOu5dhIrO/cbC3hpe+CmJbS45Fk9IvBTLlb3j+TWMyH45y
+         /uZ74bmM6iOmw004QDTb0gQ5x8RkzoSyd4JqZPeuYDuG5qVMJ1jtV+1eH11miV50r6ND
+         S1U2cabcxrwsOCa5OsPMNETJ3h469LN7sXdHoa8C/269GHN6aM4qg6JgYsKLekT2yIqk
+         0w+0k3VzgzTB8HNN48g9UxRRspH2oMXuutUTx2JAxoACDGErmSs5ZHB1HkD6InHUA9n6
+         01bg==
+X-Gm-Message-State: AOAM531hRmBnGvJmzr4APS7ZX3uyt27Wa5mly5MUY/S4eykTC9BbL+n5
+        rLNpcsAIiJxaKjtxyhr/TZo=
+X-Google-Smtp-Source: ABdhPJzSq3b2SMqKWooMwB5wh0tPNLsf3olhKGtTimJFE/AkqNsaNGf+lwbYNpUMO4bsqq10sXqNEw==
+X-Received: by 2002:a05:6830:14cb:: with SMTP id t11mr33379otq.74.1602021330242;
+        Tue, 06 Oct 2020 14:55:30 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b17sm201482oog.25.2020.10.06.14.55.29
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 06 Oct 2020 14:55:29 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 6 Oct 2020 14:55:28 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Chu Lin <linchuyuan@google.com>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: max20730: adding device tree
+ doc for max20730
+Message-ID: <20201006215528.GA96892@roeck-us.net>
+References: <20201004031445.2321090-1-linchuyuan@google.com>
+ <20201004031445.2321090-2-linchuyuan@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAOMZO5CQkh06TfKj3qR9P+0ZQOQo07NAg8v9j==KMrLCWBn0mg@mail.gmail.com>
+In-Reply-To: <20201004031445.2321090-2-linchuyuan@google.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 05, 2020 at 08:35:58AM -0300, Fabio Estevam wrote:
-> On Mon, Oct 5, 2020 at 8:16 AM Primoz Fiser <primoz.fiser@norik.com> wrote:
-> >
-> > Add devicetree bindings documentation for operating SSI in AC'97
-> > variable/fixed mode of operation.
-> >
-> > Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-> > ---
-> >  Documentation/devicetree/bindings/sound/fsl,ssi.txt | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/fsl,ssi.txt b/Documentation/devicetree/bindings/sound/fsl,ssi.txt
-> > index 7e15a85cecd2..abc5abe11fb9 100644
-> > --- a/Documentation/devicetree/bindings/sound/fsl,ssi.txt
-> > +++ b/Documentation/devicetree/bindings/sound/fsl,ssi.txt
-> > @@ -43,6 +43,11 @@ Optional properties:
-> >  - fsl,mode:         The operating mode for the AC97 interface only.
-> >                      "ac97-slave" - AC97 mode, SSI is clock slave
-> >                      "ac97-master" - AC97 mode, SSI is clock master
-> > +- fsl,ac97-mode:    SSI AC97 mode of operation.
-> > +                    "variable" - AC97 Variable Mode, SLOTREQ bits determine
-> > +                    next receive/transmit frame
-> > +                    "fixed" - AC97 Fixed Mode, SSI transmits in accordance with
-> > +                    AC97 Frame Rate Divider bits
+On Sun, Oct 04, 2020 at 03:14:44AM +0000, Chu Lin wrote:
+> max20730 Integrated, Step-Down Switching Regulator with PMBus
 > 
-> It would be good to mention what is the default mode when such
-> property is absent.
+> Signed-off-by: Chu Lin <linchuyuan@google.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Then perhaps it could be boolean?
+Applied to hwmon-next.
 
-Rob
+Thanks,
+Guenter
+
+> ---
+> ChangeLog v1 -> v2
+>   hwmon: pmbus: max20730:
+>   - Don't do anything to the ret if an error is returned from pmbus_read_word
+>   - avoid overflow when doing multiplication
+> 
+> ChangeLog v2 -> v3
+>   dt-bindings: hwmon: max20730:
+>   - Provide the binding documentation in yaml format
+>   hwmon: pmbus: max20730:
+>   - No change
+> 
+> ChangeLog v3 -> v4
+>   dt-bindings: hwmon: max20730:
+>   - Fix highefficiency to high efficiency in description
+>   - Fix presents to present in vout-voltage-divider
+>   - Add additionalProperties: false
+>   hwmon: pmbus: max20730:
+>   - No change
+> 
+>  .../bindings/hwmon/maxim,max20730.yaml        | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max20730.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max20730.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max20730.yaml
+> new file mode 100644
+> index 000000000000..93e86e3b4602
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max20730.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/maxim,max20730.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim max20730
+> +
+> +maintainers:
+> +  - Jean Delvare <jdelvare@suse.com>
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+> +description: |
+> +  The MAX20730 is a fully integrated, highly efficient switching regulator
+> +  with PMBus for applications operating from 4.5V to 16V and requiring
+> +  up to 25A (max) load. This single-chip regulator provides extremely
+> +  compact, high efficiency power-delivery solutions with high-precision
+> +  output voltages and excellent transient response.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX20730.pdf
+> +    https://datasheets.maximintegrated.com/en/ds/MAX20734.pdf
+> +    https://datasheets.maximintegrated.com/en/ds/MAX20743.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max20730
+> +      - maxim,max20734
+> +      - maxim,max20743
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vout-voltage-divider:
+> +    description: |
+> +      If voltage divider present at vout, the voltage at voltage sensor pin
+> +      will be scaled. The properties will convert the raw reading to a more
+> +      meaningful number if voltage divider present. It has two numbers,
+> +      the first number is the output resistor, the second number is the total
+> +      resistance. Therefore, the adjusted vout is equal to
+> +      Vout = Vout * output_resistance / total resistance.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      max20730@10 {
+> +        compatible = "maxim,max20730";
+> +        reg = <0x10>;
+> +        vout-voltage-divider = <1000 2000>; // vout would be scaled to 0.5
+> +      };
+> +    };
