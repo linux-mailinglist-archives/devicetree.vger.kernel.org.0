@@ -2,103 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6F9284601
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 08:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E4B28460B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 08:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726991AbgJFG1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 02:27:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
+        id S1727075AbgJFGai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 02:30:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726957AbgJFG1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 02:27:45 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F34C0613A7;
-        Mon,  5 Oct 2020 23:27:45 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1601965663;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=SG1hX4RpJ2cgd0+twelFInFVuEr0F5kpEMUoLXcxSFM=;
-        b=HTKIpbi5M+5siFbJCoYh7ovIqLgttVuCH3/hd07/EojDYenNQv6iF4yfpMR7cFBtDpKYE0
-        85dysrQ8gmaDWd9kC/q9WeS8SWiq70241NZ6p+Y5BSGqp1Fiis45mNEHrq3l8UbbBX+or3
-        yA63BmZoe98eqh2ruu34eiQ8eHTUb6r1aC7FeBdIkjOyNfImmYltRV0oqsvis7tWVfYr+9
-        CAEUW02z2st8u2ffz5DMxY1S8M90HgNeQ5v1hyPN8d3HyZAe7FtLLTylrbnzZp1zbdG0oU
-        MFK89TUUjZX95hudQTdqw37WQV82Mh4OusIJ8tZ4b7yen5tInVQN8wUT0k+vig==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1601965663;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=SG1hX4RpJ2cgd0+twelFInFVuEr0F5kpEMUoLXcxSFM=;
-        b=XjgLGnKOJLTSMt+Lja6e7mLfPf6iIIYzb8lYq0ARL4r0wv4XH2mJDF2ZMftmO1Gmd4ATFG
-        /45SUtm0lscx1cBg==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for hardware timestamping
-In-Reply-To: <20201004143000.blb3uxq3kwr6zp3z@skbuf>
-References: <20201004112911.25085-1-kurt@linutronix.de> <20201004112911.25085-5-kurt@linutronix.de> <20201004143000.blb3uxq3kwr6zp3z@skbuf>
-Date:   Tue, 06 Oct 2020 08:27:42 +0200
-Message-ID: <87imbn98dd.fsf@kurt>
+        with ESMTP id S1727022AbgJFGah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 02:30:37 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B9D5C0613A7
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 23:30:37 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id h6so6745405pgk.4
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 23:30:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=antmicro.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jEZ/PphhBcpGSudk4zYqpeTRIANvOFR8+5eTx3w3Oj8=;
+        b=Aewfvkp8uF0ztDFZgaN+wNHZ+BrMN8FsafukdvDenr6aOGB0e523o+WcBp0c95lwqP
+         +KPJHrPDL9qUrMzBjOQKC9ReWS8jiHu/ayJ2mu2F5N6qFnnrUe9OAiReWQM9kUzbjGBe
+         iX7nl0CIrnIwIhR8ELaSSk/Hhj2FEyP4Z2Q/g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jEZ/PphhBcpGSudk4zYqpeTRIANvOFR8+5eTx3w3Oj8=;
+        b=Dr2T7agWgf/TDgSrWNchT9Vl/pkhvgBCNot1aR+mC1/OBJHJhGvQlcHaIQMFqffXiB
+         IO+uXGMbYgqbIlWI/VwBVoAlZKRhVZs6hh/sk+YYB5dSSVQzOh5PTeJEbUoWcPANio0L
+         rr2UxzG5CL9EgOqtikaEMAQKr1ZPwoIj289K60Xzzv/oxqtOjnAS1IppTRogoTM2iZh4
+         R751adzMC4XC8linyIuRFH/R2bbl1Kj0odrExxfI4UjluRzBgpN3MyZK7gVY6yeRpMKV
+         6u8CxxPuoW8FNDjLRbYrjZjqUewWdM7Bl5ZDwGBc0TrNyPmmpt9WY0ECDwhN/DQUp1DA
+         8E6w==
+X-Gm-Message-State: AOAM533BQOAuocQ1dXTHigHP6g4h0FWoxwLWLWeLU7qbjHCJrRUDfDHB
+        9yVrp5CKLNZtaiB78eR0L8AfxhXOFa9WUPxhwrJNAQ==
+X-Google-Smtp-Source: ABdhPJzyGjwFiX82SqSnhgwuVLIPB0qX8/w2uOnQTTNNakJGClvpNe5x6G6gWDIyv8uvQNMjCiPMVzXhFa0JwutgfSw=
+X-Received: by 2002:a63:1a21:: with SMTP id a33mr2837088pga.305.1601965836782;
+ Mon, 05 Oct 2020 23:30:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+References: <20200923120817.1667149-0-mholenko@antmicro.com>
+ <20200923120817.1667149-2-mholenko@antmicro.com> <CAMuHMdWCTg7g=Zu7Wp1Aee9A6Zr+yFguR-szywvm0ObPfH1cwg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWCTg7g=Zu7Wp1Aee9A6Zr+yFguR-szywvm0ObPfH1cwg@mail.gmail.com>
+From:   Mateusz Holenko <mholenko@antmicro.com>
+Date:   Tue, 6 Oct 2020 08:30:24 +0200
+Message-ID: <CAPk366RCSrUE=hwk1E0gh-01aa0YPUU78CL7s3c+dZMDiPZxFw@mail.gmail.com>
+Subject: Re: [PATCH v11 2/5] dt-bindings: soc: document LiteX SoC Controller bindings
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Gabriel L. Somlo" <gsomlo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+Hi Geert,
 
-On Sun Oct 04 2020, Vladimir Oltean wrote:
-> On Sun, Oct 04, 2020 at 01:29:08PM +0200, Kurt Kanzenbach wrote:
->> +/* Enabling/disabling TX and RX HW timestamping for different PTP messages is
->> + * not available in the switch. Thus, this function only serves as a check if
->> + * the user requested what is actually available or not
->> + */
+On Fri, Sep 25, 2020 at 2:48 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> Correct me if I'm wrong, but to the user it makes zero difference
-> whether the hardware takes timestamps or not.
-
-Why not? I think it makes a difference to the user b/o the precision.
-
-> What matters is whether the skb will be delivered to the stack with a
-> hardware timestamp or not, so you should definitely accept a
-> hwtstamp_config with TX and RX timestamping disabled.
+> Hi Mateusz,
 >
+> On Wed, Sep 23, 2020 at 12:09 PM Mateusz Holenko <mholenko@antmicro.com> wrote:
+> > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> >
+> > Add documentation for LiteX SoC Controller bindings.
+> >
+> > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> Thanks for your patch!
 
-Sorry, I cannot follow you here.
+Thanks for your comments!
 
-Thanks,
-Kurt
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml
+> > @@ -0,0 +1,39 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +# Copyright 2020 Antmicro <www.antmicro.com>
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/soc/litex/litex,soc-controller.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: LiteX SoC Controller driver
+> > +
+> > +description: |
+> > +  This is the SoC Controller driver for the LiteX SoC Builder.
+> > +  It's purpose is to verify LiteX CSR (Control&Status Register) access
+>
+> Its
+>
+> > +  operations and provide function for other drivers to read/write CSRs
+>
+> functions
+>
+> > +  and to check if those accessors are ready to use.
+>
+> be used
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+I will fix the description as suggested.
 
------BEGIN PGP SIGNATURE-----
+> > +
+> > +maintainers:
+> > +  - Karol Gugala <kgugala@antmicro.com>
+> > +  - Mateusz Holenko <mholenko@antmicro.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: litex,soc-controller
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +examples:
+> > +  - |
+> > +    soc_ctrl0: soc-controller@f0000000 {
+> > +        compatible = "litex,soc-controller";
+> > +        reg = <0xf0000000 0xC>;
+>
+> Please be consistent w.r.t. lower/upper case: "0xc".
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl98Dl4ACgkQeSpbgcuY
-8KabdxAA0SgprQl2AgyD0AY/qVDLxy1XHCf0QhEZEoDKWIHX3ijEoZ0Dni1WsOwF
-dXnvL/ZQb2mcdrl+uJcN5ypMlBi+m5N7leV+RBO6juLDA8dp8ychKxCrhVtC3/sF
-fsj/vS7NHfXMJS1/CuBYcPX+YUpbzJpRVvDtd2E8FZYTyuKRDLrGIB8plEtltDv6
-aS/WC3EfExvKz1JFrtDSyR+4W6SIB2rLUFmG86P7w5304fFnmznLfwDHIEFPFZcv
-RY9zAjgv2tPLJyQ81gzCPsAlz/QUTsDgwoTc8DFsmsxcVTC9jOxNIuCpOUWnvtBD
-c/2ufJBmgsU0y7e1l3Z/Us3pvpTGpYI+b1OFsuiwOWBaQPc6J5IZi6A/KrtoWWDH
-mlH3yJPMyc7wRsjggS81jjgk1oNqkI+wDQ9imPrGiRi2/0Kz717uiiaJy9E2fDKw
-wE2r9o591w+eb7MlK6bEBZnnYAtwxsSvEMlqRmvbgYk+ZwOO59RSuUG+1ivqJ62+
-Tu99v2bd8aMgVIQOxcMaLNRwe/K5q6gjEDC/tfvtS+tol+HPKVOLPUbXOIH2PmKv
-McW9qVbILMyR5GMSbFJGpsYIITTbfllBxThCgSRxyeT32ezFSaK7/8lShN16QR2a
-tqmr8IkDt/VYwFzpSOtzkg38NK3ko/RUkJO578fclSNePEybXW0=
-=qmWw
------END PGP SIGNATURE-----
---=-=-=--
+Sure, I will use lowercase everywhere.
+
+> > +        status = "okay";
+> > +    };
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
+Best regards,
+Mateusz
+
+
+--
+Mateusz Holenko
+Antmicro Ltd | www.antmicro.com
+Roosevelta 22, 60-829 Poznan, Poland
