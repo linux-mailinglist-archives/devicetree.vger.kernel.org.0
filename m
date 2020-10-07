@@ -2,118 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FAE728607D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EAE9286084
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:54:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728513AbgJGNx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 09:53:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54318 "EHLO
+        id S1728525AbgJGNyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 09:54:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728177AbgJGNx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:53:58 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E9AC061755;
-        Wed,  7 Oct 2020 06:53:58 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id d24so2371194lfa.8;
-        Wed, 07 Oct 2020 06:53:57 -0700 (PDT)
+        with ESMTP id S1728177AbgJGNyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:54:44 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A77B3C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 06:54:43 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id r24so2068100ljm.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 06:54:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EnbUIab0pYj3aAzSBtZY2agXtCAzcrLIon9nxdJolZU=;
-        b=llWN+f8rkHxIFQxWcg0DYAln2ZOyoWvQerYzeZ3n9p8oJZKnYq9SHT9nm9zJWtSS2Z
-         yXaGeHRwTJjY0dNdbLJXi56iotltit8GpwvdYYgLyagORc9ZckJhfr3wauMrN7ubeTC0
-         F4OaUp38qDgGKpmrAOV2rjm2ghBsqxIX5/H6QlHCzf4RqXNL9vNXQcvVFI3Lf+lj+gdn
-         ErNEaiD29/P/r7uNmzra5nyTh63YS2mSuXzqsEh5jiqfiIgDaDg2iWmIfU0yy81suzka
-         VgVurY02Oeu/0yTsK3VAB2t6N+F6Zaj0KOxNapyHxKjnguN6lhuDVcLb/uBmOqC+mi73
-         /rpA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j+sjGwUCForYLKcLQq9DGEuXXrYuATWmMTrF6KufZso=;
+        b=zHpHfN/gdFircP82dZh7ocH215p3xA1ys4m/d8VtbITetrkStl0nu7OZZ9VtyhCIDp
+         IWU34Vzk6P+qY6ieDAzDkfx1EiItwl1dJ8/Npynl4lVHm0+hodjkceHrXFRvrdTAK2Cn
+         TRg3lQ+p3jgdnomRHPlG12QSKAb6/4oyrLQ1NTSYJ8Ul3cVp/KjBcQIeV1UVS5hjNSzV
+         5KNaS4DHzG5kZJnK5/9kx6YOxjTtkmdiDfakzX6/U2vEa21aydkeApMWgl0SzKJB4SX5
+         PnHAPsC0a0FA/elk8WJA1KFKHZM/Z1KYNLi7SU6tK89V1jbkWN66l912OuSmEsEbClST
+         ZTKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=EnbUIab0pYj3aAzSBtZY2agXtCAzcrLIon9nxdJolZU=;
-        b=mOSjL32Oh8CSCSwHYhGzsZux9qeNXsJGtADAqIyby8+6CN+ZCcedJpH9kjZqoxoZZI
-         5vhAb37RN+JoHuYRF0+diG61fi4asvC61gxMVZy+aZYkIqdazB83GgVz9dq4GdXdkcfr
-         S4UHhfxw8mAoTdPWwBRdg0JzDDAePHV9TR4WmbEjOPx6c8cp5ZzsV/a+FCfEaBbrnKLz
-         mRICJsPcQRNaf5gEog4ZemB7wive2JMd5fFGsaVi8OBBHNOnsWFKVGwF0wTfWyUQEuF9
-         me4TMdeMZm+RUbu4Ykk6xrgZLu86j9jGLu4/ysY/5hJGJt7A5jeyfjYgXPe5g4y4Fbzk
-         ZXsQ==
-X-Gm-Message-State: AOAM533/fVs+koezyr8vtTHRrBppoccVwyrwVQOMx5wcwr18rmcpx9QG
-        3P+4F+44leN4AZqXKz1iB42cNO/jEeM=
-X-Google-Smtp-Source: ABdhPJyXeNXUZE5NZGhuL6kiCs9qa+F8j9F1KpEF6LIoHrTjyss/5/TT1mbdbsHxAnuNA3P+3/Qufw==
-X-Received: by 2002:ac2:4896:: with SMTP id x22mr1124977lfc.286.1602078836441;
-        Wed, 07 Oct 2020 06:53:56 -0700 (PDT)
-Received: from [192.168.2.145] ([109.252.91.252])
-        by smtp.googlemail.com with ESMTPSA id i11sm364931ljn.119.2020.10.07.06.53.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Oct 2020 06:53:55 -0700 (PDT)
-Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
-To:     Bob Ham <rah@settrans.net>, Stefan Agner <stefan@agner.ch>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lukas Rusak <lorusak@gmail.com>
-References: <20201004133114.845230-1-pgwipeout@gmail.com>
- <cdd0f520ae4990de90f461e21cb4f298@agner.ch>
- <4d3eb998-045b-f288-7a9c-aaa620c38bff@settrans.net>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <c8140ea3-8731-8084-47dd-8819b4b4df6a@gmail.com>
-Date:   Wed, 7 Oct 2020 16:53:54 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        bh=j+sjGwUCForYLKcLQq9DGEuXXrYuATWmMTrF6KufZso=;
+        b=g41/vPfiYnIzEDVtwHh6yLgfkf6nSQRE6WzRT06bMjMWVLlOTc3zDvxKVdVHXViOmS
+         RFQ/euPZX16cYwj8mtrQvhEXDJ6FtrIQFbMXB4ol15Bz+JM+ZHEkP2eD7lb/MlFhP4l8
+         hTQaBLXhczvu/hrWorndPYwfxosHJe1V4s7B+cPMSw9AG2KEh/8RshyKl6ya8061vlq4
+         CJ6+sDLmmDv0olJ9uGmUELR2RZ47DJzBrBNGqHC653FMdTnYeYIbZU9UAn1py0prj5dR
+         CFeLKlLQVeLH0FgF34CryvbC1RImrp0FMQ4pdFFVZH4YU04X4fEfuZSDtHjsNVa/CwZN
+         tiOw==
+X-Gm-Message-State: AOAM531ns0D602xy0FyhcrLw8qO4wDTblQuAWrBX0yauqchLr01O5tVB
+        ZWtYx3RhielHzRNFJ4iH6emRqg==
+X-Google-Smtp-Source: ABdhPJwXLM09QvKLnzuBfTs6JeUwCWArC7p4uIey9ak6b53wNQI6Ak3hk/TGs7MJIr3/9JQogznutQ==
+X-Received: by 2002:a05:651c:543:: with SMTP id q3mr1241175ljp.6.1602078880968;
+        Wed, 07 Oct 2020 06:54:40 -0700 (PDT)
+Received: from localhost.localdomain ([188.162.65.250])
+        by smtp.gmail.com with ESMTPSA id n3sm339768lfq.274.2020.10.07.06.54.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Oct 2020 06:54:40 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+Subject: [PATCH v7 00/10] qcom: pm8150: add support for thermal monitoring
+Date:   Wed,  7 Oct 2020 16:54:23 +0300
+Message-Id: <20201007135433.1041979-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <4d3eb998-045b-f288-7a9c-aaa620c38bff@settrans.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-07.10.2020 16:36, Bob Ham пишет:
-> Hi all,
-> 
-> The Bluetooth controller driver sent to linux-input by Lukas Rusak
-> (CC'd) is a bit of a concern.  Here is the original driver:
-> 
-> https://github.com/ouya/ouya_1_1-kernel/blob/master/drivers/hid/hid-ouya.c
-> 
-> and you can see that there is no SPDX header, no license information and
-> no MODULE_LICENSE declaration.  I'd previously noticed this as a
-> possible cause for concern in upstreaming the driver.
-> 
-> Meanwhile, Lukas's driver is clearly derived from the Ouya Inc. driver
-> and even retains the Ouya Inc. copyright notice line.  However, Lukas's
-> driver now has a MODULE_LICENSE("GPL") declaration added.
-> 
-> Lukas, did you get clear permission to license the driver as GPL?
-> 
-> Alternatively, kernel developers with greater legal or Ouya knowledge,
-> is this actually a concern or is it nothing to worry about?
+This patch serie adds support for thermal monitoring block on Qualcomm's
+PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
+to support thermal zones provided by this thermal monitoring block.
+Unlike the rest of PMIC thermal senses, these thermal zones describe
+particular thermistors, which differ between from board to board.
 
-Hello Bob,
+Changes since v6:
+ - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
 
-That can't be a problem because:
+Changes since v5:
+ - Reworked DT bindings:
+   * Removed qcom,adc-channel, instead it is parsed from io-channels
+   * Renamed qcom,hw-settle-time to include -us suffix
+ - Re-added monitor enabling which got lost during refactored. Noted by
+   Jishnu Prakash.
+ - Use threaded IRQ handler as susggested by Jishnu.
 
-1. Ouya Inc. doesn't exists anymore.
+Changes since v4:
+ - Added kernel-doc comments to ADC-TM structures
+ - Used several sizeof(buf) instead of hand-conding register size
 
-2. If code was officially published, then this implies that it can be
-derived.
+Changes since v3:
+ - Fix DT description to spell "thermal monitoring" instead of just TM
+ - Fix warnings in DT example
+ - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
+ - Fixed whitespace chanes in qcom-vadc-common.c
+ - Removed error message if IIO chanel get returns -EPROBE_DEFER
 
-3. Ouya's driver uses kernel symbols that are explicitly marked as
-GPL-only, see hid_open_report for example. Hence Ouya's driver inherents
-the GPL license.
+Changes since v2:
+ - IIO: export of_iio_channel_get_by_name() function
+ - dt-bindings: move individual io-channels to each thermal monitoring
+   channel rather than listing them all in device node
+ - added fallback defaults to of_device_get_match_data calls in
+   qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
+ - minor typo fixes
 
-4. Lukas's patch doesn't remind the original code at all.
+Changes since v1:
+ - Introduce fixp_linear_interpolate() by Craig Tatlor
+ - Lots of syntax/whitespace changes
+ - Cleaned up register definitions per Jonathan's suggestion
+ - Implemented most of the suggestions from Bjorn's and Jonathan's
+   review
 
-5. In practice nobody cares about legal much if money aren't involved.
-Even if it happened that driver was 100% violating some copyrights, then
-it either won't be accepted to upstream or will be removed by request
-from the copyrights holder.
+
