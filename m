@@ -2,69 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 450F7286321
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 18:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B015286325
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 18:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729043AbgJGQEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 12:04:21 -0400
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:38324 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729034AbgJGQEQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 12:04:16 -0400
-Received: by mail-oo1-f68.google.com with SMTP id y127so744591ooa.5
-        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 09:04:15 -0700 (PDT)
+        id S1728615AbgJGQEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 12:04:33 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:41571 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728559AbgJGQEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 12:04:33 -0400
+Received: by mail-ot1-f66.google.com with SMTP id q21so2684341ota.8;
+        Wed, 07 Oct 2020 09:04:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NuJ526l5DeXHLFEPrhp+croF2bztrHXf8CNYvdP2Pmw=;
-        b=f7kkGSIhGu7igQywT5vVIEPDeIzWeA361Y+6IGGfPrQ8uOEnEQM6E5GaPgg6kbMGh5
-         r/uwj/aMkZhFeHdxjn3r7XUNNvXFZpFQIJuz50JOjttOul3ffZf0REYI1a00FUiW8TbW
-         f02GmTbX2+pVNkw8x63I5jI9SgZJpJVyC+GKWniiPmabbO9GZN2kxKbLdos6KZDi79qo
-         pJGutiT3WZo6J9ucEyJujekaTdHteIFsOvPh9TTLt8ipoHjGVzM5TcKa5kIYLuQwrt5T
-         zFhAI9bPDqqrK7dYgr0DPQ5yAptPZTfdtAekbI1pOLh/xy95ICoy4Wwy/LgMTCGs79AD
-         kjwA==
-X-Gm-Message-State: AOAM5309FWCxT1MBquSefePXlSlSnQk4VNwLOL6Xp4ZD9XuQGvJ4lm3q
-        Zr2VBvUAAXoRt492wz9kK0oRUH219NTW
-X-Google-Smtp-Source: ABdhPJwplgT0ytOKmq8DCx6NHf25SlNDatvxXxoVGxZ7dh1CgUcqQzVqw2UOZwaDlNMyHexmBLba0Q==
-X-Received: by 2002:a4a:d485:: with SMTP id o5mr2543220oos.60.1602086655186;
-        Wed, 07 Oct 2020 09:04:15 -0700 (PDT)
+        bh=eSqCzSwwBG+GjccoPmjZ+1FqbVkOH8cKAN9mSm+4UII=;
+        b=J6yJqT7c4aicytLUqfAP9z16+NNHDJEOQo/wnFwLNvRDzpR5D2QRPgSo9+SeIjN4yR
+         mJSKHExPfVQ3MakAAlMLTH8E/Vivc7tf83KFrRjFEEyZQPZh5PpHKlaDUInmbLWGg3zK
+         khopUjbdme2r4XOdNqYtHReZIcUu41zfccZqEnGC9ol0af+5/TlkAl495pcfDHiVLlkv
+         dPnIDcrNHsgzaw/fP5bZGULbgIU7VZqbtSUW0+olWSfYAQn0pXYG4v10rjwkP8+e5zII
+         KOOfCn27TDkXscCakb0+Ji3A+zlqs/qFyUZShYUxKhjZM4S71vJhUlc3xuUFPELwI1XT
+         mKvw==
+X-Gm-Message-State: AOAM53027DlRmenV29VSIEaBqkxwPTrlU+UTzQmBejRq+KDhlc6SqdcB
+        FMRHqM2XnVluCF1O8GuGFzq7ywWLNazV
+X-Google-Smtp-Source: ABdhPJwNGTTkdkx3YXWsMX+Lb5mn/8JDtxmJHrpVfEzm1wKBlefFyZ1647SAUWT84Sn/aqVhDsWEeA==
+X-Received: by 2002:a05:6830:2436:: with SMTP id k22mr2372403ots.185.1602086672356;
+        Wed, 07 Oct 2020 09:04:32 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m22sm1793080otf.52.2020.10.07.09.04.14
+        by smtp.gmail.com with ESMTPSA id o10sm1592168oib.1.2020.10.07.09.04.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 09:04:14 -0700 (PDT)
-Received: (nullmailer pid 303085 invoked by uid 1000);
-        Wed, 07 Oct 2020 16:04:14 -0000
-Date:   Wed, 7 Oct 2020 11:04:14 -0500
+        Wed, 07 Oct 2020 09:04:31 -0700 (PDT)
+Received: (nullmailer pid 303558 invoked by uid 1000);
+        Wed, 07 Oct 2020 16:04:31 -0000
+Date:   Wed, 7 Oct 2020 11:04:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marlon Rac Cambasis <marlonrc08@gmail.com>
-Cc:     trivial@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] Docs: Fixing spelling errors in
- Documentation/devicetree/bindings/
-Message-ID: <20201007160414.GA303023@bogus>
-References: <20201006222956.GA2970299@bogus>
- <20201007071705.GA11381@marlonpc-debian>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 022/106] dt-bindings: nokia,smia: Remove
+ nokia,nvm-size property
+Message-ID: <20201007160431.GA303512@bogus>
+References: <20201007084505.25761-1-sakari.ailus@linux.intel.com>
+ <20201007084505.25761-4-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201007071705.GA11381@marlonpc-debian>
+In-Reply-To: <20201007084505.25761-4-sakari.ailus@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 07 Oct 2020 18:17:05 +1100, Marlon Rac Cambasis wrote:
-> Revised patch fixing six spelling errors within
-> Documentation/devicetree/bindings/. "specfied" replaced with "specified"
-> in all three files modified. "atleast" seperated into "at least" three
-> times in samsung-pinctrl.txt. This should remove any confusion that a
-> reader might have.
+On Wed, 07 Oct 2020 11:44:59 +0300, Sakari Ailus wrote:
+> nokia,nvm-size property was removed from the bindings but it was left in
+> the example. Remove it from the example, too.
 > 
-> Signed-off-by: Marlon Rac Cambasis <marlonrc08@gmail.com>
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 > ---
->  .../devicetree/bindings/pinctrl/samsung-pinctrl.txt         | 6 +++---
->  .../devicetree/bindings/reset/nuvoton,npcm-reset.txt        | 2 +-
->  Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt   | 2 +-
->  3 files changed, 5 insertions(+), 5 deletions(-)
+>  Documentation/devicetree/bindings/media/i2c/nokia,smia.txt | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
