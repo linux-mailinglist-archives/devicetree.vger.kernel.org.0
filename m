@@ -2,314 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33BE92861DB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0408828621F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbgJGPMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 11:12:03 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:41721 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbgJGPMD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 11:12:03 -0400
-Received: by mail-oi1-f196.google.com with SMTP id q136so1608907oic.8;
-        Wed, 07 Oct 2020 08:12:01 -0700 (PDT)
+        id S1726719AbgJGP2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 11:28:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726009AbgJGP2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 11:28:49 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F9AC061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 08:28:49 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id n14so1517025pff.6
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 08:28:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=riAKcPVYtg+GC1pCuIb7AnRFVCer0d2eMcLFBIHh+3I=;
+        b=ZzHhbfWpkIXkuRlZzNJQFnbzeCqmp4T0ayR6XwXDfdsjtdRtYriAAkNvFEwNApL3jy
+         qCZW6QzXZ5g8FQGGXo0NTBv6tItZ+tHXNNt0uUCnAVQn+Neh1uOaEJqziFwAAB1hKZqT
+         JTBGyfP5+PCkEDW9gw5BF/QzmQ7SNu80IQrwVXcUGJ5TPfDNrrhnW2GJ4OJOIUGWhiFl
+         PvMLz616WnmTBkdJ4oY2lC5h1gxSx9DhNOQqrewym4A2GMwFt/6yqPUT5d4EkEJb58mV
+         Z53q/mpfKfcVSNZJ2mULJFjJkZq8CZwfnd/LV5Xca4NcaCF0mz4AgnFZDJtSnBMuZ2ZN
+         rdUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EWNhakFdr+Af9mXVcjVojegyJELDAdY6frBEcDPGyxU=;
-        b=rPgy62fssGRIBCp3fztdl7mi1crnUdoa1jIssThK0OxqTIktvZoD5FmFtxmEME5Dwz
-         FiTaq8LOqFQqQgb+gGdBsd5HrUe4wlb8sEawiIICQPgjrdHtReq3qMCZafavMHSJ29pl
-         E+UVXQ9iTrPwobGrIsDIdO/74+uV8TIdD3cLjFbemjB/3qGOztZgUzozWNvyztaQikDH
-         YnX9PXxBV/gAXmorHn09T+MWAwJQdRk5ClcJkE1YaZlrsPkTtYxgtuZsuyCvXESYqCXt
-         qm7DsSQt9Gt7HqIgpKrtoieQrnfYG3T9ufdEBhowaOqmHjt8K0FXdL1Ts6EJBSX6OYWs
-         010A==
-X-Gm-Message-State: AOAM530HBhH415Py0d/slonVuuV+KCvRi1XfQUuWQqzfq1JJ/h37p/wp
-        dupvY6CcRu5K/ypD5pUPqA==
-X-Google-Smtp-Source: ABdhPJy8zFQuU7BA4DG6IGmdYxtGW+BiMCGOjN+e2y4EDjuN4sX3E0CEhnbI1WsT2xPArBQABn1tHg==
-X-Received: by 2002:aca:b3c2:: with SMTP id c185mr2065065oif.118.1602083521386;
-        Wed, 07 Oct 2020 08:12:01 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o2sm2081304oia.42.2020.10.07.08.12.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 08:12:00 -0700 (PDT)
-Received: (nullmailer pid 234333 invoked by uid 1000);
-        Wed, 07 Oct 2020 15:11:59 -0000
-Date:   Wed, 7 Oct 2020 10:11:59 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, dianders@chromium.org,
-        heiko@sntech.de, Collabora Kernel ML <kernel@collabora.com>,
-        Caesar Wang <wxt@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
-Message-ID: <20201007151159.GA221754@bogus>
-References: <20200921092951.945382-1-enric.balletbo@collabora.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=riAKcPVYtg+GC1pCuIb7AnRFVCer0d2eMcLFBIHh+3I=;
+        b=DqbnQhtjrJVj8sD0ap+CpJxksUqkCSd43HUJxzIIA3zZT5bxdNN4M5i4qzDU5FV5XL
+         fcbgxFLBcrjH65VAlYOyev5velnhwaP9RvUq1y8uFb43KcK0ynEKAOqFA18WU6K2psyH
+         8A3eIY8qd5gujvqlAAAnEaZGMDq5Pf4R8I5Im0/0aUZQJamd5EhjAcfr9dK3PZojAvV6
+         Rx66z/OMIC3WIR/JyqRlW5a7/BiX7I53WMpXeoqfKA93/TgRQxa9ABzMycdlbmbMZlXC
+         1RaQ1y3hE58wW/1CLL9OGBbQphIRPTBXoFHUBbiUoZ7Og5bZXvYTCErqUMWU2M/fgR/a
+         g42w==
+X-Gm-Message-State: AOAM533+JAoHNe2WAVkeiF/OnsAGTkww6lCSSyicoWeCozYau70gO+66
+        vdHZfGKXmTsHG0uxY2vHRWYVMg==
+X-Google-Smtp-Source: ABdhPJwm9/+C5j7lYWV/wf8OnBPEDMdbN2tJBzwqTh4AYDbMvERw2OR0LU+trZIacjQmA27Tft6RUw==
+X-Received: by 2002:a65:6086:: with SMTP id t6mr3509049pgu.146.1602084529013;
+        Wed, 07 Oct 2020 08:28:49 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id r8sm4322494pgn.30.2020.10.07.08.28.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 07 Oct 2020 08:28:48 -0700 (PDT)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Borup Petersen <morten.petersen@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org, Sudeep.Holla@arm.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        Tushar Khandelwal <tushar.khandelwal@arm.com>,
+        linux-kernel@vger.kernel.org
+Subject: [RFC V2] dt-bindings: mailbox : arm,mhuv2: Add bindings
+Date:   Wed,  7 Oct 2020 20:58:44 +0530
+Message-Id: <ca2f491fc97bdf6d7fc8d6fee5f702be27db6702.1602084104.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200921092951.945382-1-enric.balletbo@collabora.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 11:29:51AM +0200, Enric Balletbo i Serra wrote:
-> Convert the soc/rockchip/power_domain.txt binding document to json-schema
-> and move to the power bindings directory.
-> 
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> ---
-> 
-> Changes in v3:
-> - Fixed tab errors found by bot
-> 
-> Changes in v2:
-> - Fixed a warning that says that 'syscon' should not be used alone.
-> - Use patternProperties to define a new level for power-domains.
-> - Add const values for power-domain-cells, address-cells, etc.
-> 
->  .../power/rockchip,power-controller.yaml      | 207 ++++++++++++++++++
->  .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
->  2 files changed, 207 insertions(+), 136 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
->  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> new file mode 100644
-> index 000000000000..b23ea37e2a08
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> @@ -0,0 +1,207 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/rockchip,power-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip Power Domains
-> +
-> +maintainers:
-> +  - Caesar Wang <wxt@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +description: |
-> +  Rockchip processors include support for multiple power domains which can be
-> +  powered up/down by software based on different application scenes to save power.
-> +
-> +  Power domains contained within power-controller node are generic power domain
-> +  providers documented in Documentation/devicetree/bindings/power/power-domain.yaml.
-> +
-> +  IP cores belonging to a power domain should contain a 'power-domains'
-> +  property that is a phandle for the power domain node representing the domain.
-> +
-> +properties:
-> +  $nodename:
-> +    const: power-controller
-> +
-> +  compatible:
-> +    enum:
-> +      - rockchip,px30-power-controller
-> +      - rockchip,rk3036-power-controller
-> +      - rockchip,rk3066-power-controller
-> +      - rockchip,rk3128-power-controller
-> +      - rockchip,rk3188-power-controller
-> +      - rockchip,rk3228-power-controller
-> +      - rockchip,rk3288-power-controller
-> +      - rockchip,rk3328-power-controller
-> +      - rockchip,rk3366-power-controller
-> +      - rockchip,rk3368-power-controller
-> +      - rockchip,rk3399-power-controller
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^power-domain@[0-9]+$":
+This patch adds device tree binding for ARM Message Handling Unit (MHU)
+controller version 2.
 
-unit-addresses are hex.
+Based on earlier work by Morten Borup Petersen.
 
-> +    type: object
-> +    description: |
-> +      Represents the power domains within the power controller node as documented
-> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
-> +
-> +    properties:
-> +
-> +      '#power-domain-cells':
-> +        description:
-> +            Must be 0 for nodes representing a single PM domain and 1 for nodes
-> +            providing multiple PM domains.
-> +
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      reg:
-> +        description: |
-> +          Power domain index. Valid values are defined in:
-> +          "include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
-> +          "include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
-> +          "include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
-> +          "include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
-> +          "include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
-> +          "include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
-> +          "include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
-> +          "include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
-> +          "include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
-> +          "include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
-> +          "include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
-> +        maxItems: 1
+Co-developed-by: Morten Borup Petersen <morten.petersen@arm.com>
+Signed-off-by: Morten Borup Petersen <morten.petersen@arm.com>
+Signed-off-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-Range of values?
+---
+Morten/Tushar,
 
-> +
-> +      clocks:
-> +        description: |
-> +          A number of phandles to clocks that need to be enabled while power domain
-> +          switches state.
+I have prepared this based on the best of my understanding about the
+hardware, but since I haven't worked on the actual hardware yet there
+are chances that I may have misunderstood some of it. Please lemme know
+if any of my understanding is incorrect.
 
-Can you at least put a range of how many clocks?
+Here is the link to the previous attempt by Tushar to get it upstreamed
+long back:
 
-> +
-> +      pm_qos:
-> +        description: |
-> +          A number of phandles to qos blocks which need to be saved and restored
-> +          while power domain switches state.
+https://lore.kernel.org/lkml/20190717192616.1731-1-tushar.khandelwal@arm.com/
 
-And here.
+This is very much a new approach and so I am not pointing out the
+differences from the previous one.
 
-> +
-> +    required:
-> +      - reg
+I haven't started with redesigning the driver as of now and would like
+to get some feedback on the bindings first. Thanks in advance.
+---
+ .../bindings/mailbox/arm,mhuv2.yaml           | 170 ++++++++++++++++++
+ 1 file changed, 170 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
 
-       additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+new file mode 100644
+index 000000000000..3cbdc97f1f4c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+@@ -0,0 +1,170 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/arm,mhuv2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM MHUv2 Mailbox Controller
++
++maintainers:
++  - Morten Borup Petersen <morten.petersen@arm.com>
++  - Viresh Kumar <viresh.kumar@linaro.org>
++
++description: |
++  The Arm Message Handling Unit (MHU) Version 2 is a mailbox controller that has
++  between 1 and 124 channel windows (each 32-bit wide) to provide unidirectional
++  communication with remote processor(s), where the number of channel windows
++  are implementation dependent.
++
++  Given the unidirectional nature of the controller, an MHUv2 mailbox may only
++  be written to or read from. If a pair of MHU controllers is implemented
++  between two processing elements to provide bidirectional communication, these
++  must be specified as two separate mailboxes.
++
++  If the interrupts property is present in device tree node, then its treated as
++  a receiver mailbox, otherwise a sender.
++
++  An MHU controller must be specified along with the supported transport
++  protocols. The transport protocols determine the method of data transmission
++  as well as the number of provided mailbox channels.
++
++  Following are the possible transport protocols.
++
++  - Doorbell: Each transfer is made up of single bit flag, using any one of the
++    bits in a channel window. A channel window can support up to 32 doorbells
++    and the entire window shall be used in doorbell mode.  Optionally, data may
++    be transmitted through a shared memory region, wherein the MHU is used
++    strictly as an interrupt generation mechanism but that is out of the scope
++    of these bindings.
++
++  - Single-word: Each transfer is single word, using a single Channel window.
++
++  - Multi-word: Each transfer is made of two or more words, using two or more
++    channel windows.
++
++# We need a select here so we don't match all nodes with 'arm,primecell'
++select:
++  properties:
++    compatible:
++      contains:
++        const: arm,mhuv2
++  required:
++    - compatible
++
++properties:
++  compatible:
++        items:
++          - const: arm,mhuv2
++          - const: arm,primecell
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: apb_pclk
++
++  arm-mhuv2-mode:
++    description: |
++      The MHUv2 controller may contain up to 124 channel windows (each 32-bit
++      wide). The hardware and the DT bindings allows any combination of those to
++      be used for various transport protocols.
++
++      This property allows a platform to describe how these channel windows are
++      used in various transport protocols. The entries in this property shall be
++      present as an array of tuples, where each tuple describes details about
++      one of the transport protocol being implemented over some channel
++      window(s).
++
++      The first field of a tuple signifies the transfer protocol, 0 is reserved
++      for doorbell protocol, 1 is reserved for single-word protocol and 2 is
++      reserved for multi-word protocol. Using any other value in the first field
++      of a tuple makes it invalid.
++
++      The second field of a tuple signifies the number of channel windows where
++      the protocol would be used. For doorbell protocol this field signifies the
++      number of 32-bit channel windows that implement the doorbell protocol. For
++      single-word protocol this field signifies the number of 32-bit channel
++      windows that implement separate single-word protocol mailbox channels. For
++      multi-word protocol this field signifies the number of channel windows
++      used for a multi-word protocol, it should be 2 or more.
++
++      The total number of channel windows specified here shouldn't be more than
++      the ones implemented by the platform.
++
++      mhu: mailbox@2b1f0000 {
++          ...
++
++          arm-mhuv2-mode = <0 2>, <1 3>, <2 5>, <2 7>;
++      }
++
++      The above example defines the mode of an ARM MHUv2 mailbox controller,
++      where a total of 17 channel windows are used. The first two windows are
++      used in doorbell mode (64 doorbells), the next 3 windows are (separately)
++      used in single-word mode, and the last two mailbox channels are used in
++      multi-word mode of length 5 and 7 channel windows.
++
++  '#mbox-cells':
++    description: |
++      It contains two fields, the first field represents the channel number,
++      which may be used in doorbell, single-word, or multi-word mode, and the
++      second field (only relevant in doorbell mode, ignored otherwise)
++      represents the doorbell number within the 32 bit wide channel window.
++
++      From the example given above for the arm-mhuv2-mode, here is how a client
++      node can reference them.
++
++      mboxes = <&mhu 0 5>; // Mailbox channel 0, doorbell 5.
++      mboxes = <&mhu 1 7>; // Mailbox channel 1, doorbell 7.
++      mboxes = <&mhu 2 0>; // Mailbox channel 2, single-word mode.
++      mboxes = <&mhu 4 0>; // Mailbox channel 4, single-word mode.
++      mboxes = <&mhu 6 0>; // Mailbox channel 6, multi-word mode with 7 windows.
++
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - '#mbox-cells'
++  - arm-mhuv2-mode
++
++additionalProperties: false
++
++examples:
++  # Multiple transport protocols implemented by the mailbox controller
++  # configured in sender mode
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        mhu: mailbox@2b1f0000 {
++            #mbox-cells = <2>;
++            compatible = "arm,mhuv2", "arm,primecell";
++            reg = <0 0x2b1f0000 0 0x1000>;
++            clocks = <&clock 0>;
++            clock-names = "apb_pclk";
++            arm-mhuv2-mode = <1 5>, <2 2>, <2 5>, <2 7>, <0 2>;
++        };
++
++        mhu_client: scb@2e000000 {
++            compatible = "fujitsu,mb86s70-scb-1.0";
++            reg = <0 0x2e000000 0 0x4000>;
++
++            mboxes =
++                     //single-word protocol channel 0
++                     <&mhu 0 0>,
++                     //single-word protocol channel 4
++                     <&mhu 4 0>,
++                     //multi-word protocol channel 6 with 5 windows
++                     <&mhu 6 0>,
++                     //doorbell protocol channel 9, doorbell 27
++                     <&mhu 9 27>;
++        };
++    };
+-- 
+2.25.0.rc1.19.g042ed3e048af
 
-Which in turn means the nested power domains will throw an error, so you 
-can do:
-
-       patternProperties:
-	 "^power-domain@[0-9a-f]+$":
-           $ref: '#/patternProperties/^power-domain@[0-9a-f]+$'
-
-> +
-> +required:
-> +  - compatible
-> +  - '#power-domain-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3399-cru.h>
-> +    #include <dt-bindings/power/rk3399-power.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        qos_hdcp: qos@ffa90000 {
-> +            compatible = "rockchip,rk3399-qos","syscon";
-
-space                                             ^
-
-> +            reg = <0x0 0xffa90000 0x0 0x20>;
-> +        };
-> +
-> +        qos_iep: qos@ffa98000 {
-> +            compatible = "rk3399-qos","syscon";
-> +            reg = <0x0 0xffa98000 0x0 0x20>;
-> +        };
-> +
-> +        qos_rga_r: qos@ffab0000 {
-> +            compatible = "rk3399-qos","syscon";
-> +            reg = <0x0 0xffab0000 0x0 0x20>;
-> +        };
-> +
-> +        qos_rga_w: qos@ffab0080 {
-> +            compatible = "rk3399-qos","syscon";
-> +            reg = <0x0 0xffab0080 0x0 0x20>;
-> +        };
-> +
-> +        qos_video_m0: qos@ffab8000 {
-> +            compatible = "rk3399-qos","syscon";
-> +            reg = <0x0 0xffab8000 0x0 0x20>;
-> +        };
-> +
-> +        qos_video_m1_r: qos@ffac0000 {
-> +            compatible = "rk3399-qos","syscon";
-> +            reg = <0x0 0xffac0000 0x0 0x20>;
-> +        };
-> +
-> +        qos_video_m1_w: qos@ffac0080 {
-> +            compatible = "rk3399-qos","syscon";
-> +            reg = <0x0 0xffac0080 0x0 0x20>;
-> +        };
-> +
-> +        power-management@ff310000 {
-> +            compatible = "rockchip,rk3399-pmu", "syscon", "simple-mfd";
-> +            reg = <0x0 0xff310000 0x0 0x1000>;
-> +
-> +            power-controller {
-> +                compatible = "rockchip,rk3399-power-controller";
-> +                #power-domain-cells = <1>;
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                /* These power domains are grouped by VD_CENTER */
-> +                power-domain@RK3399_PD_IEP {
-> +                    reg = <RK3399_PD_IEP>;
-> +                    clocks = <&cru ACLK_IEP>,
-> +                             <&cru HCLK_IEP>;
-> +                    pm_qos = <&qos_iep>;
-> +                    #power-domain-cells = <0>;
-> +                };
-> +                power-domain@RK3399_PD_RGA {
-> +                    reg = <RK3399_PD_RGA>;
-> +                    clocks = <&cru ACLK_RGA>,
-> +                             <&cru HCLK_RGA>;
-> +                    pm_qos = <&qos_rga_r>,
-> +                             <&qos_rga_w>;
-> +                    #power-domain-cells = <0>;
-> +                };
-> +                power-domain@RK3399_PD_VCODEC {
-> +                    reg = <RK3399_PD_VCODEC>;
-> +                    clocks = <&cru ACLK_VCODEC>,
-> +                             <&cru HCLK_VCODEC>;
-> +                    pm_qos = <&qos_video_m0>;
-> +                    #power-domain-cells = <0>;
-> +                };
-> +                power-domain@RK3399_PD_VDU {
-> +                    reg = <RK3399_PD_VDU>;
-> +                    clocks = <&cru ACLK_VDU>,
-> +                             <&cru HCLK_VDU>;
-> +                    pm_qos = <&qos_video_m1_r>,
-> +                             <&qos_video_m1_w>;
-> +                    #power-domain-cells = <0>;
-> +                };
-> +                power-domain@RK3399_PD_VIO {
-> +                    reg = <RK3399_PD_VIO>;
-> +                    #power-domain-cells = <1>;
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    power-domain@RK3399_PD_HDCP {
-> +                        reg = <RK3399_PD_HDCP>;
-> +                        clocks = <&cru ACLK_HDCP>,
-> +                                 <&cru HCLK_HDCP>,
-> +                                 <&cru PCLK_HDCP>;
-> +                        pm_qos = <&qos_hdcp>;
-> +                        #power-domain-cells = <0>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
