@@ -2,194 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8EAD285DC4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 13:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0A6285DD6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 13:07:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727935AbgJGLE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 07:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727278AbgJGLE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 07:04:28 -0400
-Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com [IPv6:2607:f8b0:4864:20::c44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66825C061755;
-        Wed,  7 Oct 2020 04:04:27 -0700 (PDT)
-Received: by mail-oo1-xc44.google.com with SMTP id b12so489341oop.13;
-        Wed, 07 Oct 2020 04:04:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1ymvn+cxkMCxMYqq3wm6zoSqMltLe0LOv9Gk+3UzRlw=;
-        b=nTsTEOYyMWDvbLVhAJ1vmhc5uc/KiwqgqlGIuvCsxZQSqDuSti+h+EZsCaCGIBfrCW
-         vY/VVNVklO2e1gZzy3+1rvSKUWwRjHyF4w11jfT+Af/LnxRm3t0QAt2YMVU2K4tOTqGn
-         bJi40nKI3PrUe//EQZG0OBYW7YNhV9pbdSnG+bCWFSXJzIMBdflwgBzOCj+xTln+vjnU
-         NjU1fyaS5kLfvGEXRRI+SkjBIOky4be7y5M0xJg14efz/U3F1YAWB0d1pAyvZ4ucaVO3
-         V1ZwYOiNyFyr/lJVWHnhNhmlMSRuifQEnNHA5SRMhpbn95JG9ri2UzQVWhDpyrJ3nrMd
-         db5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=1ymvn+cxkMCxMYqq3wm6zoSqMltLe0LOv9Gk+3UzRlw=;
-        b=HBKFFNXUqVpiRlRu4T5FVk8616Y162Df4TUZl86AiZCyxwrJGIIafo1ss64KQ/0kFJ
-         nd1s2FTXQxCswN8+aEdzQCCWCd+aXi3edHl2EefUr2SqfuE6ZJidQV5O+RniOkXbCvlR
-         ZwMZqZbLr+96mSl4q9Ma5z7K1kAKHh1Spfuc9jJNHIS61BBJ8wQ8JHuhYqtLXHrku5pl
-         x0XEZv6amiaHT3Z73oMwRVM4hQCBWh+7fpZwY7K5PhuJ9oZsTrv7PLmPlnixCE7wdLtx
-         tY1bg1yjKgGClm1fMQyvYyupMrxNf0B+XVvqvjNxNpAYLZU9rcAlZFpaPct4oz5HtcIL
-         soxw==
-X-Gm-Message-State: AOAM533S0mVdz5HkJLMw+N7bOYMapG0jSxCJzopn0xidM6tNEA8PXx29
-        BQBAS1/DhtT63ce5NtEmTnmyquGiI9Y=
-X-Google-Smtp-Source: ABdhPJwDZw7JffZYdib9ML6Cd1+kBHuBA4PMTzFg2qPml4R9jvSaKCEN1GZW/203a7unvszDSa6gWg==
-X-Received: by 2002:a4a:e544:: with SMTP id s4mr1701634oot.74.1602068666610;
-        Wed, 07 Oct 2020 04:04:26 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y10sm1870925oot.46.2020.10.07.04.04.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Oct 2020 04:04:25 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: dt-binding to define default watchdog and machine reset (Was: Re:
- [RFC] Using a watchdog as system reset)
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        kernel@pengutronix.de, Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de>
- <460aa962-9da5-6e1e-b5db-3f9f1d78110a@roeck-us.net>
- <41b0dfcd-adf1-296f-e5be-4db3eac9f097@roeck-us.net>
- <20201006184130.r2lajves5l7lm2qk@pengutronix.de>
- <c989af68-fa7b-e6cb-9306-a5f2e196fb20@roeck-us.net>
- <20201007071222.pnftcuezlricotq3@pengutronix.de>
- <04e33d49-4210-9dcd-040c-35059e0619ba@pengutronix.de>
- <20201007101835.yhlbjfpklepfodgw@pengutronix.de>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <7e6dd4f6-cc1d-c7c8-4e56-5239995c4e87@roeck-us.net>
-Date:   Wed, 7 Oct 2020 04:04:24 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728074AbgJGLHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 07:07:54 -0400
+Received: from esa4.microchip.iphmx.com ([68.232.154.123]:2331 "EHLO
+        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbgJGLHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 07:07:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1602068870; x=1633604870;
+  h=references:from:to:cc:subject:in-reply-to:date:
+   message-id:mime-version;
+  bh=OHJkMunRX9yuGQkkQINgytJNNoat78VMgh5LSqd5Fas=;
+  b=PoBxjvnNMEIEMNunwQEeHDL5zzwdm1pcubmcZSzE9s7SIn7rAltWn/gm
+   0MCsnaJwaUr8MSjxTOAn6nvZQpVrss+HSn5Sev+bx1VC90+hmwDaa7HhY
+   1LVi1Nx/3mHqWo5M6eRjgYGIV83bcu3Xh0NAETFZSQf2i+bAF58zqfAsQ
+   2IfxoKYX+1aIMR6WevUj537vzAuwjnJeOMIEPRA3Hs7BXUL6tj+FFWL+0
+   nNKSy22jA7s+TuW0IsOwxSvE4h8yNf+xYfi6/N/R+w/oEReABHfYNqV8M
+   rpXxqHGsjCkTrrIoLbz14qpACi1ikAmR1Tm1oMic3FhfgvPV+0WXS8SxB
+   g==;
+IronPort-SDR: /OtwhM7MxUzWHjBjkHcKq762qLsJPwtoJyjWUO5p5ghFZAijyBiGfJrpWA/eoKUtY1CyYaodlG
+ B1347MS9duBSSS5C+VRB6WMAJp7jSpHiU58OeWfFPty8MmuwGNEqBSR9SKBETY/GDUfUJbSCzK
+ zCnJxR+bYbsr33MA5fMeCHbnyhwggHBsgfJhezdiTKpgELaj1aRq4RFWyTDHfmwZ1boBgnayqq
+ DSAg5xNA66uN1y4CQuyoBYQ+cNWAbbFIBcsUEvu0XBL7zodf6Yd77jH4rHEwGR4icgF2QonBH2
+ E3o=
+X-IronPort-AV: E=Sophos;i="5.77,346,1596524400"; 
+   d="scan'208";a="89404498"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Oct 2020 04:07:49 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 7 Oct 2020 04:07:48 -0700
+Received: from soft-dev15.microsemi.net.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
+ via Frontend Transport; Wed, 7 Oct 2020 04:07:47 -0700
+References: <20201006142532.2247515-1-lars.povlsen@microchip.com> <20201006142532.2247515-2-lars.povlsen@microchip.com> <20201006223756.GA2976904@bogus>
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [RESEND PATCH v3 1/3] dt-bindings: pinctrl: Add bindings for pinctrl-mchp-sgpio driver
+In-Reply-To: <20201006223756.GA2976904@bogus>
+Date:   Wed, 7 Oct 2020 13:07:45 +0200
+Message-ID: <87k0w2xpj2.fsf@soft-dev15.microsemi.net>
 MIME-Version: 1.0
-In-Reply-To: <20201007101835.yhlbjfpklepfodgw@pengutronix.de>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/20 3:18 AM, Uwe Kleine-König wrote:
-> Hello,
-> 
-> [promoted Rob from Cc: to To: and adapted the subject in the hope to get
-> some feedback]
-> 
-> On Wed, Oct 07, 2020 at 09:25:30AM +0200, Ahmad Fatoum wrote:
->> On 10/7/20 9:12 AM, Uwe Kleine-König wrote:
->>> On Tue, Oct 06, 2020 at 02:04:10PM -0700, Guenter Roeck wrote:
->>>> With that in mind, your other option kind of makes sense. The only
->>>> question would be how to express this in devicetree. I am certainly
->>>> open to accepting a patch introducing such a property/functionality
->>>> into the watchdog core.
->>>
->>> OK, will try to come up with a patch.
+
+Hi Rob!
+
+Rob Herring writes:
+
+> On Tue, Oct 06, 2020 at 04:25:30PM +0200, Lars Povlsen wrote:
+>> This adds DT bindings for the Microsemi/Microchip SGPIO controller,
+>> bindings microchip,sparx5-sgpio, mscc,ocelot-sgpio and
+>> mscc,luton-sgpio.
 >>
->> Instead of having a `provide-system-reset' property, how about providing
->> it unconditionally, but with a very low priority?
+>> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+>> ---
+>>  .../pinctrl/microchip,sparx5-sgpio.yaml       | 127 ++++++++++++++++++
+>>  1 file changed, 127 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
 >>
-Personally I don't think that would be a good idea, first in general but
-also because the generic restart handling mechanism is still not universally
-used (the last five or so patches needed to make it complete have been
-blocked by various people each time they were submitted, so we can be sure
-that they will never be accepted).
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+>> new file mode 100644
+>> index 000000000000..e3618ed28165
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+>> @@ -0,0 +1,127 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/microchip,sparx5-sgpio.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Microsemi/Microchip Serial GPIO controller
+>> +
+>> +maintainers:
+>> +  - Lars Povlsen <lars.povlsen@microchip.com>
+>> +
+>> +description: |
+>> +  By using a serial interface, the SIO controller significantly extend
+>> +  the number of available GPIOs with a minimum number of additional
+>> +  pins on the device. The primary purpose of the SIO controllers is to
+>> +  connect control signals from SFP modules and to act as an LED
+>> +  controller.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^gpio@[0-9a-f]+$"
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - microchip,sparx5-sgpio
+>> +      - mscc,ocelot-sgpio
+>> +      - mscc,luton-sgpio
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  microchip,sgpio-port-ranges:
+>> +    description: This is a sequence of tuples, defining intervals of
+>> +      enabled ports in the serial input stream. The enabled ports must
+>> +      match the hardware configuration in order for signals to be
+>> +      properly written/read to/from the controller holding
+>> +      registers. Being tuples, then number of arguments must be
+>> +      even. The tuples mast be ordered (low, high) and are
+>> +      inclusive. Arguments must be between 0 and 31.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 2
+>> +    maxItems: 64
+>> +
+>> +  microchip,sgpio-frequency:
+>> +    description: The sgpio controller frequency (Hz). This dictates
+>> +      the serial bitstream speed, which again affects the latency in
+>> +      getting control signals back and forth between external shift
+>> +      registers. The speed must be no larger than half the system
+>> +      clock, and larger than zero.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    default: 12500000
+>> +
+>> +patternProperties:
+>> +  "^gpio-(port|controller)@[01]$":
+>
+> gpio@... is correct here as the node is a gpio-controller (no, we're
+> not consistent).
 
-Also, you would have to have a means to disable it, which would be equivalent
-to having a means to enable it, so making it enabled by default seems pointless
-and would unnecessarily introduce potential problems.
+OK, fine by me.
 
->> This can be coupled with Guenther's suggestion of having a dynamic
->> way to set the priority, e.g. a `watchdog-priority' property in the device
->> tree that's common to all watchdogs? That's the way barebox is handling
->> multiple watchdogs (default value in driver overridable in DT and at runtime).
-> 
-> OK, I'll try to put this in more verbose words:
-> 
-> Let's introduce a generic watchdog property `watchdog-priority' that
-> provides a u32 to order the watchdogs for systems having two or more.
-> The value 0 means the watchdog is unusable/broken/disabled and the
-> watchdog with the biggest value is the one supposed to be used by
-> default.
-> 
+>
+>> +    type: object
+>> +    properties:
+>> +      compatible:
+>> +        const: microchip,sparx5-sgpio-bank
+>> +
+>> +      reg:
+>> +        maxItems: 1
+>> +
+>> +      gpio-controller: true
+>> +
+>> +      '#gpio-cells':
+>> +        const: 3
+>> +
+>> +      ngpios:
+>> +        minimum: 1
+>> +        maximum: 128
+>> +
+>> +    required:
+>> +      - compatible
+>> +      - reg
+>> +      - gpio-controller
+>> +      - '#gpio-cells'
+>> +      - ngpios
+>> +
+>> +    additionalProperties: false
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - microchip,sgpio-port-ranges
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +
+>> +examples:
+>> +  - |
+>> +    sgpio2: gpio@1101059c {
+>> +     #address-cells = <1>;
+>> +     #size-cells = <0>;
+>> +     compatible = "microchip,sparx5-sgpio";
+>> +     clocks = <&sys_clk>;
+>> +     pinctrl-0 = <&sgpio2_pins>;
+>> +     pinctrl-names = "default";
+>> +     reg = <0x1101059c 0x100>;
+>> +        microchip,sgpio-port-ranges = <0 0 16 18 28 31>;
+>
+> Since it's tuples, do:
+>
+> <0 0>, <16 18>, <28 31>
 
-How do you suggest to implement that ? Device naming is determined
-by registration order. The watchdog subsystem doesn't decide which of
-the watchdogs is being used; userspace does that by opening the
-watchdog device. Userspace can already decide which watchdog to use
-by checking its sysfs attributes. If we were to create a sysfs attribute
-for userspace to read and compare, userspace could as well use the existing
-'identity' attribute to make that decision.
+Yes, that will add clarity.
 
-> Analogous a property `watchdog-restart-priority` is used to define if a
-> watchdog is supposed to be used to restart the machine. Again a value of
-> 0 means "Don't use" and otherwise the highest-value watchdog is used to
-> reset the machine.
-> 
+>
+>> +        microchip,sgpio-frequency = <25000000>;
+>
+> Some whitespace issues here.
+>
 
-That makes more sense to me.
+Will fix that.
 
-Guenter
+>
+>> +     sgpio_in2: gpio-controller@0 {
+>> +            reg = <0>;
+>> +            compatible = "microchip,sparx5-sgpio-bank";
+>> +            gpio-controller;
+>> +            #gpio-cells = <3>;
+>> +            ngpios = <96>;
+>> +     };
+>> +     sgpio_out2: gpio-controller@1 {
+>> +            compatible = "microchip,sparx5-sgpio-bank";
+>> +            reg = <1>;
+>> +            gpio-controller;
+>> +            #gpio-cells = <3>;
+>> +            ngpios = <96>;
+>> +     };
+>> +    };
+>> --
+>> 2.25.1
 
-> Maybe `restart-priority` is a better name that can also be used by
-> PMICs?!
-> 
->> What's the DT folks opinion on that?
-> 
-> Best regards
-> Uwe
-> 
+Thank you for your comments, I will refresh the series shortly.
 
+---Lars
+
+-- 
+Lars Povlsen,
+Microchip
