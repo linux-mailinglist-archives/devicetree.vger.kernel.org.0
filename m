@@ -2,61 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B89C1285F9F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 14:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 805CC285FB0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728316AbgJGM7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 08:59:13 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:34482 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728356AbgJGM7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 08:59:13 -0400
-X-IronPort-AV: E=Sophos;i="5.77,346,1596466800"; 
-   d="scan'208";a="59159729"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 07 Oct 2020 21:59:12 +0900
-Received: from localhost.localdomain (unknown [10.166.252.89])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D3E8A4007F30;
-        Wed,  7 Oct 2020 21:59:11 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2] dt-bindings: serial: renesas,scif: Document r8a779a0 bindings
-Date:   Wed,  7 Oct 2020 21:58:55 +0900
-Message-Id: <1602075535-18802-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1728345AbgJGNCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 09:02:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46428 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728325AbgJGNCv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:02:51 -0400
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F5CC061755;
+        Wed,  7 Oct 2020 06:02:51 -0700 (PDT)
+Received: by mail-il1-x143.google.com with SMTP id c5so2155774ilr.9;
+        Wed, 07 Oct 2020 06:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xgra9s8aJ1g9hZznlmShgFGid1qDvqpduTjQ63z9Ai4=;
+        b=txDSCDnGVOvBmCLpVuBmy9IwJHZMw5/f4HStsCW+a8uQ7KWFidpfrCed0boKAYPdf0
+         m9m57hMEGQJvsAFppDA44N//SLhO8o8hmLybVJEVm08MQ8NDl0bAy6hLRPDejWPB91RX
+         ytVP/dxuCa7IhDhfJbL6TLJsjPlIdWiiiWoIez1gZF7MJno9VmRVAPE9yuluvWPiS3r/
+         C76xBU9YpL+XL3SoGiw1TApJcJYf/vUoh/jYNwViuQ14P6TgiTxQoyE07SDDzJbINIGk
+         EfYyobyL8GDPNsmhyjk/PhF9PVucyaEQEkR7MeJTcGjJvyTS1MCz4bW6BPfokTHg0NOz
+         dHxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xgra9s8aJ1g9hZznlmShgFGid1qDvqpduTjQ63z9Ai4=;
+        b=YiTs+3yR7rCYVW7k4IRajdyZGlTPiouQM/hTc+IhFdPQAkN02OolFGB0zES1+Di7Sq
+         2qijQc9cmHmqsaiSS6LNfWlcdMd7C9LWpRJDW+kGIacJnytSTQnD81YIkh36ED9X9wfG
+         tIFrLWnzZxxa3mIQJg7qVORNHXat/2tBn5uJ/Dt1ofL3KKC4Ad5eGjn6VJ6SvY/ba+5L
+         bsU2IZFH7Vmu2nmRrmWREMRmIbQwqyWfdpWr3+5HhIS6e54VFk3PQqadq3eWxXMGYKnh
+         B+knY34EhrhjQXOzffQXNpMmVjy020QsX0PaoQs2fym6slZ7NJfNHPWnCdDRRIPycRGO
+         wprA==
+X-Gm-Message-State: AOAM531iW+imi3Bm904gMDEotdarGdno5TqhwKZTb4UyDucKd1MqH9U0
+        BLNAevzxj1AdLYVN0NCeAqU=
+X-Google-Smtp-Source: ABdhPJyCcgAY00Z2svC4bvm0PN2VeHh0tvFzCAmFibdex1iaqZRd6Iwj3EXya/oA9U7bGCAolg8SRA==
+X-Received: by 2002:a92:dc03:: with SMTP id t3mr2541087iln.245.1602075770162;
+        Wed, 07 Oct 2020 06:02:50 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:7c62:dd9d:b755:cfbd])
+        by smtp.gmail.com with ESMTPSA id w14sm1000038ilm.88.2020.10.07.06.02.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Oct 2020 06:02:49 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-beacon-som: Fix Choppy BT audio
+Date:   Wed,  7 Oct 2020 08:02:37 -0500
+Message-Id: <20201007130237.230613-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R-Car V3U (R8A779A0) SoC also has the R-Car Gen3 compatible
-SCIF ports, so document the SoC specific bindings.
+When streaming bluetooth audio, the sound is choppy due to the
+fact that the default baud rate of the HCI interface is too slow
+to handle 16-bit stereo at 48KHz.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Changes from v1:
- - Add Reviewed-by Geert.
- - Add Acked-by Rob.
- https://patchwork.kernel.org/patch/11760273/
+The Bluetooth chip is capable of up to 4M baud on the serial port,
+so this patch sets the max-speed to 4000000 in order to properly
+stream audio over the Bluetooth.
 
- Documentation/devicetree/bindings/serial/renesas,scif.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-index f589ac7..ae29183 100644
---- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-@@ -60,6 +60,7 @@ properties:
-               - renesas,scif-r8a77980     # R-Car V3H
-               - renesas,scif-r8a77990     # R-Car E3
-               - renesas,scif-r8a77995     # R-Car D3
-+              - renesas,scif-r8a779a0     # R-Car V3U
-           - const: renesas,rcar-gen3-scif # R-Car Gen3 and RZ/G2
-           - const: renesas,scif           # generic SCIF compatible UART
- 
+Signed-off-by: Adam Ford <aford173@gmail.com>
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+index 55b36bddd513..b88c3c99b007 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+@@ -211,6 +211,7 @@ bluetooth {
+ 		host-wakeup-gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
+ 		device-wakeup-gpios = <&gpio2 7 GPIO_ACTIVE_HIGH>;
+ 		clocks = <&osc_32k>;
++		max-speed = <4000000>;
+ 		clock-names = "extclk";
+ 	};
+ };
 -- 
-2.7.4
+2.25.1
 
