@@ -2,113 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3E1628630C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 18:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6ADB286315
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 18:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728968AbgJGQDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 12:03:07 -0400
-Received: from mail-eopbgr80101.outbound.protection.outlook.com ([40.107.8.101]:59394
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728984AbgJGQDF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 12:03:05 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oOi0DG10IVKjh4YGmCKOF50dxQ/0TJjVCgBqLCE51iBXcaH42YYoRQXykEYZlZ6/TO7cK1miNsxWk0v9gtf9Ora4le4LKV+5IuUx+/c0bIEN/PaDET4JkeuMakq9hp5lR3rzin+dtCft15dwqgu9Ncw9jNIumVReDvTmM0FTIQyJaZHi/znP+pl0AmtmNSqzd6UsZrfz3d31vIpBAL5NfC83ZD+LQwjhGvSgBTL3DsYbSb6sSLSjUaHxREBzhECbwAdcHSFTCh3+R57gJYgGwxDxi4n1uRdDCtpqeXBihg8JOJMzhSe+LIZXKPQ6Yk34zN4Or+NydLU80QMC6cQ6jA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n6kQpsKs2LExf4IY+Sn5wn2rN5eXiYd8aUOnC22Aas8=;
- b=jy4G5cWAOMdhVP/20QEovjTnBiko6j3Bw+277H3GD86v45yy0yxqv4zIm/tEPcJEh0jmKAYiLcoyJwfxnYtZeGoqsX2grUfR8eJhvurbXeqKkR2fvgzaf5ZQKobZXe0miI+q5bDRTu0PYJjYz4uLxRtJgRo3/JYxCDeIlVjRmw8KuNeQURfewLbej4N9Fn7WmDBMCDkSA3Q8uPNv90uNAsBDnls++uSxYJNQLgsPeLhIFIwXhst2wYeSwamO02fNYu8SdYfGbSG+OFqWyjdhVE4JCfJpqwWlNXlOVOjCdWj5h8rnkHQz1jkdKm28ZdQyQrzrp5I5Ig0LjBJanILK6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=voleatech.de; dmarc=pass action=none header.from=voleatech.de;
- dkim=pass header.d=voleatech.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=voleatech.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n6kQpsKs2LExf4IY+Sn5wn2rN5eXiYd8aUOnC22Aas8=;
- b=A5eGA+QggvrqE5YDgxgyGFqykE6czAe4crbP7d+y+zQVUloSW/uFyPGklPZbAOeQ/ewtKAAqwGx/e7KcQssiauge29xOeLCoUv1AITILTB2Dvis6XGD7fPCZaQrxkJLGm85dhIIhzaXfKlglWsu0vTf/KphgyUP5vVEq306816k=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=voleatech.de;
-Received: from AM8PR05MB7251.eurprd05.prod.outlook.com (2603:10a6:20b:1d4::23)
- by AM8PR05MB7268.eurprd05.prod.outlook.com (2603:10a6:20b:1dd::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23; Wed, 7 Oct
- 2020 16:03:01 +0000
-Received: from AM8PR05MB7251.eurprd05.prod.outlook.com
- ([fe80::f132:2cc:34f2:5e4]) by AM8PR05MB7251.eurprd05.prod.outlook.com
- ([fe80::f132:2cc:34f2:5e4%7]) with mapi id 15.20.3433.045; Wed, 7 Oct 2020
- 16:03:01 +0000
-Date:   Wed, 7 Oct 2020 18:02:59 +0200
-From:   Sven Auhagen <sven.auhagen@voleatech.de>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     axboe@kernel.dk, hdegoede@redhat.com, robh+dt@kernel.org,
-        tglx@linutronix.de, gregory.clement@bootlin.com,
-        linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
-        rjw@rjwysocki.net, viresh.kumar@linaro.org,
-        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
-        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
-Subject: Re: [PATCH 1/7] ata: ahci: mvebu: Rename a platform data flag
-Message-ID: <20201007160259.y3jblrt5b6b5ygqp@svensmacbookair.sven.lan>
-References: <20201007154554.66650-1-sven.auhagen@voleatech.de>
- <20201007154554.66650-2-sven.auhagen@voleatech.de>
- <5f24cd5774b5e68681fc9c460cc44bec@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5f24cd5774b5e68681fc9c460cc44bec@kernel.org>
-X-Originating-IP: [109.193.235.168]
-X-ClientProxiedBy: AM4PR0302CA0035.eurprd03.prod.outlook.com
- (2603:10a6:205:2::48) To AM8PR05MB7251.eurprd05.prod.outlook.com
- (2603:10a6:20b:1d4::23)
+        id S1729009AbgJGQDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 12:03:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728991AbgJGQDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 12:03:39 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB948C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 09:03:39 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id o8so1227144pll.4
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 09:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/YizpSukiZJTtNoLgWG6EzWmeqvv1MxbPNrBeNGsNyg=;
+        b=SAJM/mHJTStiuwA/RXNIoEd/I1RF/1l9WpZ5YL41ULWYJBAAyRf4Hb3TS8iEwXAuP9
+         RQx2iC/ixOqG0x7N+rNlcXNzqyGtWEaifDz0VEJXVx6hFkBFzXxwLcoHfAwTSEhIPzAS
+         kkKb0hPUlzw22XBw3Fxw1empMhbvA/prllVk8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/YizpSukiZJTtNoLgWG6EzWmeqvv1MxbPNrBeNGsNyg=;
+        b=fYYquebbvc6PvLMMzBo1a48vCFwgJG5PWCyOafOwJcO7eREiSJsfzE1waQyx0HKLRL
+         sgp2YHWncgbSGAVNoTOGR7da9v4RSKZgFTbpRCXcyaLXv43UrsD3tC7qQUqMkYzuIWwd
+         8PpPHvQx+fzUs7Uh4TC91YH59/e0zuvshuoTC4dmmYri2hkZ66rWqfDIhcHZAFiMyBRk
+         J1/dhoR9kXatVcx/Wp+UTjiHh5A6EDKFQRlLGoHLNolSNaocNmHetzDxlwh0dcqJJjIm
+         s7/ReUX+wisQF072aWRzEQWnAB5Get+4NveEpLvcd6wNDXw4p2M7T+ZpNrr2hPhLs3wk
+         vN1Q==
+X-Gm-Message-State: AOAM5310nmhTHxr059O2I7lstEoEf8jaaHu8blI6+SbbVT8QgiqJGgBV
+        Nci1ySmEiWPNsuwrfUdGQGFhqA==
+X-Google-Smtp-Source: ABdhPJyLSpdm6PuJor4MO7EVpKE/G//lyvCubSlxpGwcoiZogSz0nxU/4ZrH3XYR4bO+fXpXRHdiog==
+X-Received: by 2002:a17:90a:94cc:: with SMTP id j12mr3408857pjw.106.1602086619344;
+        Wed, 07 Oct 2020 09:03:39 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id x10sm3659982pfc.88.2020.10.07.09.03.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Oct 2020 09:03:38 -0700 (PDT)
+Date:   Wed, 7 Oct 2020 09:03:36 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
+ onboard USB hubs
+Message-ID: <20201007160336.GA620323@google.com>
+References: <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+ <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
+ <CAL_JsqLWmBCjrbs2D-d+9naJAKkNhDAbmRtqvCDY8jv=L_q-xA@mail.gmail.com>
+ <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
+ <20201006004510.GD4135817@google.com>
+ <20201006141820.GA416765@rowland.harvard.edu>
+ <20201006165957.GA191572@google.com>
+ <20201006171524.GB423499@rowland.harvard.edu>
+ <20201006192536.GB191572@google.com>
+ <20201007010023.GA438733@rowland.harvard.edu>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from svensmacbookair.sven.lan (109.193.235.168) by AM4PR0302CA0035.eurprd03.prod.outlook.com (2603:10a6:205:2::48) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23 via Frontend Transport; Wed, 7 Oct 2020 16:03:00 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1ea9aba9-a9f7-4236-8488-08d86ada7784
-X-MS-TrafficTypeDiagnostic: AM8PR05MB7268:
-X-Microsoft-Antispam-PRVS: <AM8PR05MB7268D72CFF1BED3A6F9BE901EF0A0@AM8PR05MB7268.eurprd05.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:669;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: V7qWKIlXElGjkFa6b+QRmLTf0NYPYUBlE3RB/wcSaEfbL1Jb/YhBT+jxMR1ocr7/zb2AWn8S7mKTKph3UALxwNzGpH3vIxAtGgn87eKV/fylzYN+5BohrqHjJmShW2Q0Ay2iC+ZyN9Oeb8V5zAz3tLE2rQFpN9VuhOqJY3g5esvWaHfQifdj8HTJ7fYln4qE+eoMb3BZefvJISOZkc/17aDn9Zb/enCcrxu6jKf7CQ0pDgA028xeYhDjN5ibS4jSMJQBob4fgnSN1JFsJXCv1kq0BrTJ865EuHCA4T2yiTMfpLFCH9goYAALbIbzqZJ4
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR05MB7251.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(366004)(39840400004)(376002)(346002)(478600001)(956004)(4744005)(7416002)(55016002)(6916009)(44832011)(186003)(4326008)(16526019)(53546011)(2906002)(7696005)(6506007)(52116002)(66556008)(66946007)(66476007)(8676002)(9686003)(316002)(8936002)(5660300002)(86362001)(1076003)(26005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: lE49RkgnWLvRee+ZqQe307wMbwvHGEfCxN8KP86GDY+JhwjRdMmJDE4m6we7qEJ62jIXKMqcH711XisI9RrpAY8Znv1BK4yCCU0GE2ADwS2ChHJoOlVkgQB7wUDcC1uMfkADeXBZRQi0H2Z6DowuqWG/2OCuQhFJJZWYMt/tZAbn3uG+CxBEFC+ZKY07fh9/9FeMZRVnCHw3yYMs08F81x5SZSrb4gbg3yDT2NX7mI2wDrjgf10WlQ64p23H4vbj2t5t317p/qupq720X21aYRLE3Gf5z4ONDU2LAIqpBEmzL1EobTeE87Y8XHk3clv19ui+iDTE3E/cHJ20Y8OGUNz5vO8SdLVAViFv0Z7/ac1yaLno+OjO+abf+FphIfDE3tCJ7BfifRbwUjqrkWyfp3aiVuYdX0oGIbIsL/bJMFu0T2s6Yuxl6ahArPC0qHFZtqIWfWYRVupXybUzA1xn3c+GvcKnDHU88jVO44jddIwnplpKBhdRXkbAVXuTmmlV7JNeBgFMnslQcIXjKI5EsxqBWUQL4qMqEuleofLHBBaTnZJXzbbCkSKZxfuL17/dGau42CGKZ8pks447/mWEg9o86aLoUW1GQ+rkHaPLdhJHAh5CDHkkNQdDJL4Nsl+4MAlUVRFxMXrNnInlZscu3Q==
-X-OriginatorOrg: voleatech.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ea9aba9-a9f7-4236-8488-08d86ada7784
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR05MB7251.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2020 16:03:01.5385
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b82a99f6-7981-4a72-9534-4d35298f847b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2nXM6RJKBw9e2uyVtM7+kGWrDklc5YZKFZ9Mh9ywnABglkyjg1/93td5jwlOgoo2PYVQOewuQhc+7YZE1J3iVIBJxdziWdcCtU71ofc80Mo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR05MB7268
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201007010023.GA438733@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 05:01:15PM +0100, Marc Zyngier wrote:
-> On 2020-10-07 16:45, sven.auhagen@voleatech.de wrote:
-> > From: Miquel Raynal <miquel.raynal@bootlin.com>
+On Tue, Oct 06, 2020 at 09:00:23PM -0400, Alan Stern wrote:
+> On Tue, Oct 06, 2020 at 12:25:36PM -0700, Matthias Kaehlcke wrote:
+> > On Tue, Oct 06, 2020 at 01:15:24PM -0400, Alan Stern wrote:
+> > > You don't need a platform device or a new driver to do this.  The code 
+> > > can go in the existing hub driver.
 > > 
-> > Before adding more entries in the platform data structure, rename the
-> > flags entry to be more precise and name it host_flags.
+> > Maybe. IIUC currently USB drivers don't support/use suspend_late. Could that
+> > be added? It would simplify matters, otherwise all hubs need to know their
+> > peers and check in suspend if they are the last hub standing, only then the
+> > power can be switched off. It would be simpler if a single instance (e.g. the
+> > hub with the DT entries) is in control.
+> 
+> Adding suspend_late would be a little painful.  But you don't really 
+> need it; you just need to make the "master" hub wait for its peer to 
+> suspend, which is easy to do.
+
+Ok, I wasn't sure if the hubs suspend asynchronously from each other. If they
+do it should indeed not be a problem to have the "master" wait for its peers.
+
+> And hubs would need to know their peers in any case, because you have to
+> check if any devices attached to the peer have wakeup enabled.
+
+My concern was about all hubs (including 'secondaries') having to know their
+peers and check on each other, in the scenario we are now talking about only
+the "master" hub needs to know and check on its peers, which is fine.
+
+> > > Incidentally, the peering information is already present in sysfs, 
+> > > although it is associated with a device's port on its upstream hub 
+> > > rather than with the device itself.
 > > 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > That might also help the hub driver to determine its peers without needing the
+> > 'companion-hubs' property.
 > 
-> You are missing your own sign-off, as you are posting someone
-> else's patch.
+> It wouldn't hurt to have that property anyway.  The determination of 
+> peer ports doesn't always work right, because it depends on information 
+> provided by the firmware and that information isn't always correct.
 
-Ah, I did not know that it was necessary.
-I used the patch without any changes.
-
-I will add it for the next version, thanks.
-
-Best
-Sven
-
-> 
->         M.
-> -- 
-> Jazz is not dead. It just smells funny...
+Good to know, then we should certainly have it.
