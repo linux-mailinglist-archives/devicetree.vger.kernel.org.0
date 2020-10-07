@@ -2,45 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF8962869CB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 23:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A50286A35
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 23:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727424AbgJGVD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 17:03:29 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:48736 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726152AbgJGVD3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 17:03:29 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kQGat-000bCh-V5; Wed, 07 Oct 2020 23:03:27 +0200
-Date:   Wed, 7 Oct 2020 23:03:27 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vivek Unune <npcomplete13@gmail.com>
-Cc:     devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] ARM: dts: BCM5301X: Linksys EA9500 add port 5 and
- port 7
-Message-ID: <20201007210327.GE112961@lunn.ch>
-References: <cover.1601655904.git.npcomplete13@gmail.com>
- <cd64e0ccae3e5785c80ad4d73af533a40fc15876.1601655904.git.npcomplete13@gmail.com>
+        id S1728762AbgJGVci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 17:32:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728775AbgJGVce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 17:32:34 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E83C0613AB
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 14:32:23 -0700 (PDT)
+Received: from heimdall.vpn.pengutronix.de ([2001:67c:670:205:1d::14] helo=blackshift.org)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1kQH2p-0005qi-1n; Wed, 07 Oct 2020 23:32:19 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     netdev@vger.kernel.org
+Cc:     davem@davemloft.net, linux-can@vger.kernel.org,
+        kernel@pengutronix.de, Marc Kleine-Budde <mkl@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH 13/17] dt-bindings: can: flexcan: remove ack_grp and ack_bit from fsl,stop-mode
+Date:   Wed,  7 Oct 2020 23:31:55 +0200
+Message-Id: <20201007213159.1959308-14-mkl@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201007213159.1959308-1-mkl@pengutronix.de>
+References: <20201007213159.1959308-1-mkl@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd64e0ccae3e5785c80ad4d73af533a40fc15876.1601655904.git.npcomplete13@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:205:1d::14
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 03:01:51PM -0400, Vivek Unune wrote:
-> Add port 5 and port 7 which are connected to gmac0 & 1 respectively
-> DSA driver will use port 5 as cpu port and this works as well.
+Since commit:
 
-What port was used before this was added? The CPU port cannot be
-changed because it can break user space, the code which is configuring
-the master interface up.
+    048e3a34a2e7 can: flexcan: poll MCR_LPM_ACK instead of GPR ACK for stop mode acknowledgment
 
-    Andrew
+the driver polls the IP core's internal bit MCR[LPM_ACK] as stop mode
+acknowledge and not the acknowledgment on chip level.
+
+This means the 4th and 5th value of the property "fsl,stop-mode" isn't used
+anymore. It will be removed from the driver in the next patch, so remove it
+from the binding documentation.
+
+Link: http://lore.kernel.org/r/20201006203748.1750156-14-mkl@pengutronix.de
+Fixes: 048e3a34a2e7 ("can: flexcan: poll MCR_LPM_ACK instead of GPR ACK for stop mode acknowledgment")
+Cc: devicetree <devicetree@vger.kernel.org>
+Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+---
+ Documentation/devicetree/bindings/net/can/fsl-flexcan.txt | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/can/fsl-flexcan.txt b/Documentation/devicetree/bindings/net/can/fsl-flexcan.txt
+index c6152dc2d2d0..e10b6eb955e1 100644
+--- a/Documentation/devicetree/bindings/net/can/fsl-flexcan.txt
++++ b/Documentation/devicetree/bindings/net/can/fsl-flexcan.txt
+@@ -31,12 +31,10 @@ Optional properties:
+               endian.
+ 
+ - fsl,stop-mode: register bits of stop mode control, the format is
+-		 <&gpr req_gpr req_bit ack_gpr ack_bit>.
++		 <&gpr req_gpr req_bit>.
+ 		 gpr is the phandle to general purpose register node.
+ 		 req_gpr is the gpr register offset of CAN stop request.
+ 		 req_bit is the bit offset of CAN stop request.
+-		 ack_gpr is the gpr register offset of CAN stop acknowledge.
+-		 ack_bit is the bit offset of CAN stop acknowledge.
+ 
+ - fsl,clk-source: Select the clock source to the CAN Protocol Engine (PE).
+ 		  It's SoC Implementation dependent. Refer to RM for detailed
+-- 
+2.28.0
+
