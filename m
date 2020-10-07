@@ -2,161 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 772EE2868E8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 22:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3275E2868EA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 22:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728314AbgJGURd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 16:17:33 -0400
-Received: from netrider.rowland.org ([192.131.102.5]:43505 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1728310AbgJGURd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 16:17:33 -0400
-Received: (qmail 471404 invoked by uid 1000); 7 Oct 2020 16:17:32 -0400
-Date:   Wed, 7 Oct 2020 16:17:32 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20201007201732.GE468921@rowland.harvard.edu>
-References: <20201006141820.GA416765@rowland.harvard.edu>
- <20201006165957.GA191572@google.com>
- <20201006171524.GB423499@rowland.harvard.edu>
- <20201006192536.GB191572@google.com>
- <20201007010023.GA438733@rowland.harvard.edu>
- <20201007160336.GA620323@google.com>
- <20201007163838.GA457977@rowland.harvard.edu>
- <20201007172847.GB620323@google.com>
- <20201007192542.GA468921@rowland.harvard.edu>
- <20201007194229.GC620323@google.com>
+        id S1727981AbgJGUR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 16:17:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726348AbgJGUR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 16:17:57 -0400
+Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F19C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 13:17:57 -0700 (PDT)
+Received: by mail-il1-x142.google.com with SMTP id l16so3536695ilt.13
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 13:17:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PxE1SXKrniv35/XLIVk+hqpaTYVAa5E00lUy1wSBj5E=;
+        b=trjbaBkvpmIgKYpngVlHEtl0AS2oxlhu2sGJZ3UefKOgaPlGBVW19wc1QpOQDpgFU9
+         +sypvN998MLPiRYeccT3FhtYwA5khv5jV35RStzgPXvijeUdZg/ckTy/smB76VEhQClp
+         cnEJt1CdOFOywr8TIgxCOgxNtD7phYIapPo6DJXbSFDbLJg9exYQPlGT9ddyMnbL9Fux
+         Nr5biP2+t1A9cCRVwAn99b9fGz178O7Sjc5Ijacix62OfyEiqP9lEoo1CWwm9ZbqrfLA
+         3zl2FqVN8vvHo085SiVjbWbMs+9Ir28JDWUUiaY6NzgrPVuusy8Cva4xWd1SMFjBqEXY
+         tdJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PxE1SXKrniv35/XLIVk+hqpaTYVAa5E00lUy1wSBj5E=;
+        b=rEso9B16/3a7ekpFuXThvhNvzTTooFbaSbjGv4esginQvzE1I5rrrXuhBS06oZVp2R
+         M8IQccoiydsgcDFBpdJ8KgRYTpP3h2GHdjCatfwYG8CB8HuNlQZmIsF8y9Osn7NLC6JR
+         9RRpOZQDBzv2RvpOoBP01OAxh5MaOYHnJpP7gdnOLlOEya/QUO3GXIA4WewY634ySmSc
+         9aTvUoMcHMZDYD3MlQWfA5U7fryMezKo/5MI5dSq4jxYqEz4hi0ZoNp6ah3h9lRu4pMO
+         m+Qf/MnKnCfhHhBTmSOj5VCkuOgZ+CWnjWc1cxgSHvhWTh2Ff8qI5j/vA0XffGeRJsuG
+         I6hw==
+X-Gm-Message-State: AOAM532J/IzIj05gvE2B4cRoFSiUkcxh+JjsGKL6Zi1PwJS+/RiV4GnP
+        QB81azBIOvcCTLz47xxxj16Avs75rJ72f9YOgQk=
+X-Google-Smtp-Source: ABdhPJzX5sgbrEF32H/yUoB+wyx+7izqNFJqwAmXwX1pJ+N7UbIIFCt0XirKNr/LjlnP2YaGSt89YvYoBEijzIg2nzQ=
+X-Received: by 2002:a05:6e02:1392:: with SMTP id d18mr4025633ilo.196.1602101876198;
+ Wed, 07 Oct 2020 13:17:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007194229.GC620323@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20201003224555.163780-1-marex@denx.de> <CAHCN7xKyRcZQcZunw6nLpWKWNXWJs4V_fPoQbijVrv6LbuFdYQ@mail.gmail.com>
+ <bb982b4f-3510-6663-0e4c-66a7c34b8d62@denx.de> <CAHCN7xJFsi-zfzHOYJ56s5cx-owRL5EPrXCqzBgfrhrveAfo2A@mail.gmail.com>
+In-Reply-To: <CAHCN7xJFsi-zfzHOYJ56s5cx-owRL5EPrXCqzBgfrhrveAfo2A@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 7 Oct 2020 15:17:45 -0500
+Message-ID: <CAHCN7xKDP02QTNrxg84OvVF=Orcnh_gWj551ZV4bJphysfgu5w@mail.gmail.com>
+Subject: Re: [PATCH 1/5] Documentation: bindings: clk: Add bindings for
+ i.MX8MM BLK_CTL
+To:     Marek Vasut <marex@denx.de>
+Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 12:42:29PM -0700, Matthias Kaehlcke wrote:
-> On Wed, Oct 07, 2020 at 03:25:42PM -0400, Alan Stern wrote:
-> > On Wed, Oct 07, 2020 at 10:28:47AM -0700, Matthias Kaehlcke wrote:
-> > > On Wed, Oct 07, 2020 at 12:38:38PM -0400, Alan Stern wrote:
-> > > > On Wed, Oct 07, 2020 at 09:03:36AM -0700, Matthias Kaehlcke wrote:
-> > > > > Ok, I wasn't sure if the hubs suspend asynchronously from each other. If they
-> > > > > do it should indeed not be a problem to have the "master" wait for its peers.
-> > > > 
-> > > > Well, order of suspending is selectable by the user.  It can be either 
-> > > > asynchronous or reverse order of device registration, which might pose a 
-> > > > problem.  We don't know in advance which of two peer hubs will be 
-> > > > registered first.  It might be necessary to introduce some additional 
-> > > > explicit synchronization.
-> > > 
-> > > I'm not sure we are understanding each other completely. I agree that
-> > > synchronization is needed to have the primary hub wait for its peers, that
-> > > was one of my initial concerns.
-> > > 
-> > > Lets use an example to clarify my secondary concern: a hub chip provides a
-> > > USB 3 and a USB 2 hub, lets say the USB 3 hub is the primary.
-> > > 
-> > > Here is some pseudo-code for the suspend function:
-> > > 
-> > > hub_suspend(hub)
-> > >   ...
-> > > 
-> > >   if (hub->primary) {
-> > >     device_pm_wait_for_dev(hub->peer)
-> > > 
-> > >     // check for connected devices and turn regulator off
-> > >   }
-> > > 
-> > >   ...
-> > > }
-> > > 
-> > > What I meant with 'asynchronous suspend' in this context:
-> > > 
-> > > Can hub_suspend() of the peer hub be executed (asynchronously) while the
-> > > primary is blocked on device_pm_wait_for_dev(),
-> > 
-> > Yes, that's exactly what would happen with async suspend.
-> > 
-> > >  or would the primary wait
-> > > forever if the peer hub isn't suspended yet?
-> > 
-> > That wouldn't happen.  device_pm_wait_for_dev is smart; it will return 
-> > immediately if neither device uses async suspend.  But in that case you 
-> > could end up removing power from the peer hub before it had suspended.
-> > 
-> > That's why I said you might need to add additional synchronization.  The 
-> > suspend routines for the two hubs could each check to see whether the 
-> > other device had suspended yet, and the last one would handle the power 
-> > regulator.  The additional synchronization is for the case where the two 
-> > checks end up being concurrent.
-> 
-> That was exactly my initial concern and one of the reasons I favor(ed) a
-> platform instead of a USB driver:
+On Wed, Oct 7, 2020 at 3:08 PM Adam Ford <aford173@gmail.com> wrote:
+>
+> On Wed, Oct 7, 2020 at 3:03 PM Marek Vasut <marex@denx.de> wrote:
+> >
+> > On 10/7/20 9:52 PM, Adam Ford wrote:
+> > > On Sun, Oct 4, 2020 at 12:53 AM Marek Vasut <marex@denx.de> wrote:
+> > >>
+> > >> Add the i.MX8MM BLK_CTL compatible string to the list.
+> > [...]
+> > >> ---
+> > >>  Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml | 1 +
+> > >>  1 file changed, 1 insertion(+)
+> > >>
+> > >
+> > > Is there a DTSI change part of this patch?  I was going to try to test
+> > > it, but  I am not seeing a change to the imx8mm.dtsi, and I am not
+> > > sure where to put the node.
+> >
+> > There are in fact quite a few other pieces you need to have in place,
+> > this patchset in itself is not particularly useful, it is just infra for
+> > the LCDIF and MIPI DSIM block control. You might want to wait until they
+> > all land in next and test that result.
+>
+> I have several patches in place, the GPCv2, this block driver,
+> enabling GPU DT node, I'm also working on the DSIM patch you posted.
+> I was hoping to test them all together and reply to the various
+> threads with tested-by.  I also want to get my device tree stuff ready
+> on the beacon boards so when everything lands, I can post DTS updates
+> to enable the LCDIF, DSI, and the HDMI bridge.
+>
+> If you have a repo somewhere that has all these combined, I can just
+> work on the final layer to enable the device tree plumbing on my
+> board.  I just need the imx8mm.dtsi changes for this, DSIM, and the
+> LCDIF so I can finish the task.
 
-Clearly there's a tradeoff.
+On that note, I also have a i.MX8M Nano board which is similar to my
+8MM.  If I understood the 8MM clock block driver better, I hope to
+adapt your changes for the Nano too.  Once the GPCv2 driver is
+accepted, I was also going to look at updating it to support the Nano
+as well which also has the same DSIM and LCDIF as the 8MM as well and
+a better GPU than the Mini but lacking the VPU.
 
-> > otherwise all hubs need to know their peers and check in suspend if they
-> > are the last hub standing, only then the power can be switched off.
-> 
-> To which you replied:
-> 
-> > you just need to make the "master" hub wait for its peer to suspend, which
-> > is easy to do.
-> 
-> However that apparently only works if async suspend is enabled, and we
-> can't rely on that.
-
-Yes, I had forgotten about the possibility of synchronous suspend.  My 
-mistake.
-
-> With the peers checking on each other you lose effectively the notion
-> of a primary.
-
-Well, you can still want to put the sysfs power-control attribute file 
-into just one of the hubs' directories, and that one would be considered 
-the primary.  But I agree, it's a weak notion.
-
-> Going back to the binding:
-> 
->   &usb_1_dwc3 {
->     hub_2_0: hub@1 {
->       compatible = "usbbda,5411";
->       reg = <1>;
->     };
-> 
->     hub_3_0: hub@2 {
->       compatible = "usbbda,411";
->       reg = <2>;
->       vdd-supply = <&pp3300_hub>;
->       companion-hubs = <&hub_2_0>;
->     };
->   };
-> 
-> How does 'hub_2_0' know that its peer is hub_3_0 and that it has a regulator
-> (and potentially other resources)?
-
-The peering relation goes both ways, so it should be included in the 
-hub_2_0 description too.  Given that, the driver could check hub_2_0's 
-peer's DT description for the appropriate resources.
-
-> All this mess can be avoided by having a single instance in control of the
-> resources which is guaranteed to suspend after the USB devices.
-
-Yes.  At the cost of registering, adding a driver for, and making users 
-aware of a fictitious platform device.
-
-Alan Stern
+adam
+>
+> adam
