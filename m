@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9332856B6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 04:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C099F285708
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 05:25:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726730AbgJGCnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 22:43:46 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:42591 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726637AbgJGCnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 22:43:46 -0400
-X-UUID: 20384dc07366430b91a2c9fb45b9941f-20201007
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=AFPXpclqC/BVWvt1LdPXCMRHLa9WQf2iX9kXqT1ZSNs=;
-        b=eBGwrty71ludhboOCgew7oyCJIcOzGTzYnUfNaGFRPQizsUc/ctOd/odc8h74bUnePBQ/p0Zp0eliuk8qjLRDYd1fPMyit7CW/xo2vXpvBATRj8jWnIpaPfQHN8qAjQey5e9DYJbYJ2/Fj/DUMQQi9Hm+SlyVJOsnBSgvazabnQ=;
-X-UUID: 20384dc07366430b91a2c9fb45b9941f-20201007
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <michael.kao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 841286483; Wed, 07 Oct 2020 10:43:38 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 7 Oct 2020 10:43:35 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 7 Oct 2020 10:43:32 +0800
-From:   Michael Kao <michael.kao@mediatek.com>
-To:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>
-CC:     Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Michael Kao <michael.kao@mediatek.com>
-Subject: [PATCH] [v2] thermal: core: add upper and lower limits to power_actor_set_power
-Date:   Wed, 7 Oct 2020 10:43:32 +0800
-Message-ID: <20201007024332.30322-1-michael.kao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S1726096AbgJGDZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 23:25:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725981AbgJGDZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 23:25:05 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2C0C061755
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 20:25:04 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id c22so890411ejx.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 20:25:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CGNIkBjCwZhok5mPSCK5w7G0Va0huJHsTjdQPHjMKCw=;
+        b=AR7Q7D2pALfKaMElX8HzYqK822G592BniOoE8ob2u6rXz2ni+SvFqN5LuRDHHXjSPA
+         1gSk+SSYSNbr0NbmxtX2vYqfzINjeZvAWM8bD5rL8DAn+9P6omdSGDQUn1vS5mmRcWJT
+         tjLhulRhKqF8VPFvZzjswhva/2DvIeQXOwhG4ifcEOkyMTz4ilw6+t4/Qwm2emobnumQ
+         jLsrrEraiiHOWdQQ8y/hRmJNvCuJofDCD1AWV8jJXb3rXKEb8u8Z7iVTEHUwo9e6EADM
+         6m/2J+kcoYbEHToVp9Mq11MEqDL+bcJR50SdZgyTD68fy8Oh/cGs8OgGyzBXpuM0jm9F
+         Xytw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CGNIkBjCwZhok5mPSCK5w7G0Va0huJHsTjdQPHjMKCw=;
+        b=sGJDwWFVz1QaLmO5r4wpygEOcjvuluHyOjeekAtD/4Zn4yfLnV3NgeQ6udED5JXcwY
+         xN0/uk/b6Y8NhmfdIxAZ7MzEdh5EErzwFgrkl0GGGOyl6WWDdfo39rx9VRshTxjv7EHi
+         TY8/3h38u3xgMpzY4OOUD18iI8obeTtA4oOJ1Rh3iUderaXxpsQIWH0+eykmaL6tHeVg
+         pxNmSnlmy/TQ7gIN2rCyubhbS7gKUYlQSrIhsU8sEltSCSjnjXe18DQLrYDJDCG5rq7r
+         vlI+tx/7jUHOPP72f1aP4iwW1UBjITtkTfLG9rFxQBIBy59bTEsvX59HnJ99RAn1Gxvd
+         zUVA==
+X-Gm-Message-State: AOAM532fOVMp+FjOrUdhGtvFQy3y2n7Drd73u9nn5AcjM+MbXZB2QxH8
+        5aoYtCTvxeHxIVtWzJ8BwcY4vPR9omCU6d4rcJFgrA==
+X-Google-Smtp-Source: ABdhPJymgP1Lkxf4YCedXGKWEC2ZiinATCWqv2nhO6YSSHj2KtlyXsk4wjttSz7cncbQDFkfEoIgDrPVnNGIDtYCPK0=
+X-Received: by 2002:a17:906:4cc2:: with SMTP id q2mr1306170ejt.422.1602041103377;
+ Tue, 06 Oct 2020 20:25:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20200930081645.3434-1-jun.nie@linaro.org> <20200930081645.3434-2-jun.nie@linaro.org>
+ <104955668ed768682adf1757e79022117460d268.camel@mailoo.org>
+In-Reply-To: <104955668ed768682adf1757e79022117460d268.camel@mailoo.org>
+From:   Jun Nie <jun.nie@linaro.org>
+Date:   Wed, 7 Oct 2020 11:24:52 +0800
+Message-ID: <CABymUCM_HdeTTPymuVD4fguJs-rK8G=0Dbjk_WnGGWHJ4f208w@mail.gmail.com>
+Subject: Re: [PATCH 1/5] interconnect: qcom: Consolidate interconnect RPM support
+To:     Vincent Knecht <vincent.knecht@mailoo.org>
+Cc:     devicetree@vger.kernel.org,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        agross@kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, Shawn Guo <shawn.guo@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhlIHVwcGVyIGFuZCBsb3dlciBsaW1pdHMgb2YgdGhlcm1hbCB0aHJvdHRsZSBzdGF0ZSBpbiB0
-aGUNCkRUIGRvIG5vdCBhcHBseSB0byB0aGUgSW50ZWxsaWdlbnQgUG93ZXIgQWxsb2NhdGlvbiAo
-SVBBKSBnb3Zlcm5vci4NCkFkZCB0aGUgY2xhbXBpbmcgZm9yIGNvb2xpbmcgZGV2aWNlIHVwcGVy
-IGFuZCBsb3dlciBsaW1pdHMgaW4gdGhlDQpwb3dlcl9hY3Rvcl9zZXRfcG93ZXIoKSB1c2VkIGJ5
-IElQQS4NCg0KU2lnbmVkLW9mZi1ieTogTWljaGFlbCBLYW8gPG1pY2hhZWwua2FvQG1lZGlhdGVr
-LmNvbT4NCi0tLQ0KIGRyaXZlcnMvdGhlcm1hbC90aGVybWFsX2NvcmUuYyB8IDIgKy0NCiAxIGZp
-bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCg0KZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvdGhlcm1hbC90aGVybWFsX2NvcmUuYyBiL2RyaXZlcnMvdGhlcm1hbC90aGVybWFs
-X2NvcmUuYw0KaW5kZXggNzJiZjE1OWJjZWNjLi5hMjYwZTRhNTc1ZjMgMTAwNjQ0DQotLS0gYS9k
-cml2ZXJzL3RoZXJtYWwvdGhlcm1hbF9jb3JlLmMNCisrKyBiL2RyaXZlcnMvdGhlcm1hbC90aGVy
-bWFsX2NvcmUuYw0KQEAgLTY3NCw3ICs2NzQsNyBAQCBpbnQgcG93ZXJfYWN0b3Jfc2V0X3Bvd2Vy
-KHN0cnVjdCB0aGVybWFsX2Nvb2xpbmdfZGV2aWNlICpjZGV2LA0KIAlpZiAocmV0KQ0KIAkJcmV0
-dXJuIHJldDsNCiANCi0JaW5zdGFuY2UtPnRhcmdldCA9IHN0YXRlOw0KKwlpbnN0YW5jZS0+dGFy
-Z2V0ID0gY2xhbXBfdmFsKHN0YXRlLCBpbnN0YW5jZS0+bG93ZXIsIGluc3RhbmNlLT51cHBlcik7
-DQogCW11dGV4X2xvY2soJmNkZXYtPmxvY2spOw0KIAljZGV2LT51cGRhdGVkID0gZmFsc2U7DQog
-CW11dGV4X3VubG9jaygmY2Rldi0+bG9jayk7DQotLSANCjIuMTguMA0K
+> >  obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
+> > +obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
+>
+> Duplicate ?
+>
+> Thanks for msm8939 work, please Cc: me on any related patch :-)
+>
+>
+OK, will CC you on next version. This issue should be a typo in vim.
+Thanks for reminder.
 
+Regards,
+Jun
