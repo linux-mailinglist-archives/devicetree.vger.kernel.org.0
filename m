@@ -2,115 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC3B2858C9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 08:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 420D22858D0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 08:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726219AbgJGGtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 02:49:16 -0400
-Received: from out-2.mail.amis.net ([212.18.32.14]:37487 "EHLO
-        out-2.mail.amis.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbgJGGtQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 02:49:16 -0400
-Received: from in-2.mail.amis.net (in-2.mail.amis.net [212.18.32.19])
-        by out-2.mail.amis.net (Postfix) with ESMTP id 9568180C8F;
-        Wed,  7 Oct 2020 08:49:12 +0200 (CEST)
-Received: from in-2.mail.amis.net (localhost [127.0.0.1])
-        by in-2.mail.amis.net (Postfix) with ESMTP id 90936C9408;
-        Wed,  7 Oct 2020 08:49:12 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at amis.net
-X-Spam-Flag: NO
-X-Spam-Score: -1.001
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.001 required=5 tests=[ALL_TRUSTED=-1,
-        NICE_REPLY_A=-0.001] autolearn=disabled
-Received: from in-2.mail.amis.net ([127.0.0.1])
-        by in-2.mail.amis.net (in-2.mail.amis.net [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id tUiipAm1VvNZ; Wed,  7 Oct 2020 08:49:12 +0200 (CEST)
-Received: from smtp2.amis.net (smtp2.amis.net [212.18.32.44])
-        by in-2.mail.amis.net (Postfix) with ESMTP id 2DF3AC9409;
-        Wed,  7 Oct 2020 08:49:12 +0200 (CEST)
-Received: from [192.168.69.116] (89-212-21-243.static.t-2.net [89.212.21.243])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726138AbgJGGxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 02:53:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52092 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725970AbgJGGxK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Oct 2020 02:53:10 -0400
+Received: from localhost (unknown [122.171.222.162])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp2.amis.net (Postfix) with ESMTPSA id 3643F7FD42;
-        Wed,  7 Oct 2020 08:49:11 +0200 (CEST)
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: fsl: add ac97 fixed mode support
-To:     Rob Herring <robh@kernel.org>, Fabio Estevam <festevam@gmail.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20201005111644.3131604-1-primoz.fiser@norik.com>
- <20201005111644.3131604-2-primoz.fiser@norik.com>
- <CAOMZO5CQkh06TfKj3qR9P+0ZQOQo07NAg8v9j==KMrLCWBn0mg@mail.gmail.com>
- <20201006215239.GA2912752@bogus>
-From:   Primoz Fiser <primoz.fiser@norik.com>
-Message-ID: <06953039-2064-b3eb-f208-9133158b3ac3@norik.com>
-Date:   Wed, 7 Oct 2020 08:49:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        by mail.kernel.org (Postfix) with ESMTPSA id C1E2E20797;
+        Wed,  7 Oct 2020 06:53:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602053589;
+        bh=WnCyc7OlZxbrj4ooSfvmm2cyBE+u5+4ecYnYdEioJ5Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jH04N95LiL9SC7lL5ocCE3Bv68tKklB00kTumCRPl6x4PHGbNv+acOvCODjj8bdq8
+         Oimv2htRf8ZyrnCaad5EdTMVAQpy8YfbiUc5R/4IkVsfYJZr1PbktQUVy+W3Rf7GG7
+         y5LMeKN+Ymqnz90N7EjPMJh++fkupnSRc5WvJ4a4=
+Date:   Wed, 7 Oct 2020 12:23:05 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     nm@ti.com, ssantosh@kernel.org, robh+dt@kernel.org,
+        vigneshr@ti.com, dan.j.williams@intel.com, t-kristo@ti.com,
+        lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org
+Subject: Re: [PATCH 07/18] dmaengine: ti: k3-udma-glue: Add function to get
+ device pointer for DMA API
+Message-ID: <20201007065305.GS2968@vkoul-mobl>
+References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
+ <20200930091412.8020-8-peter.ujfalusi@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20201006215239.GA2912752@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200930091412.8020-8-peter.ujfalusi@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-> Then perhaps it could be boolean?
-
-Indeed, I can make it boolean.
-
-In that case I would rename property to "fsl,ac97-fixed-mode".
-
-Should I do that for V2?
-
-Please advise.
-
-BR,
-Primoz
-
-
-On 6. 10. 20 23:52, Rob Herring wrote:
-> On Mon, Oct 05, 2020 at 08:35:58AM -0300, Fabio Estevam wrote:
->> On Mon, Oct 5, 2020 at 8:16 AM Primoz Fiser <primoz.fiser@norik.com> wrote:
->>>
->>> Add devicetree bindings documentation for operating SSI in AC'97
->>> variable/fixed mode of operation.
->>>
->>> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
->>> ---
->>>   Documentation/devicetree/bindings/sound/fsl,ssi.txt | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/fsl,ssi.txt b/Documentation/devicetree/bindings/sound/fsl,ssi.txt
->>> index 7e15a85cecd2..abc5abe11fb9 100644
->>> --- a/Documentation/devicetree/bindings/sound/fsl,ssi.txt
->>> +++ b/Documentation/devicetree/bindings/sound/fsl,ssi.txt
->>> @@ -43,6 +43,11 @@ Optional properties:
->>>   - fsl,mode:         The operating mode for the AC97 interface only.
->>>                       "ac97-slave" - AC97 mode, SSI is clock slave
->>>                       "ac97-master" - AC97 mode, SSI is clock master
->>> +- fsl,ac97-mode:    SSI AC97 mode of operation.
->>> +                    "variable" - AC97 Variable Mode, SLOTREQ bits determine
->>> +                    next receive/transmit frame
->>> +                    "fixed" - AC97 Fixed Mode, SSI transmits in accordance with
->>> +                    AC97 Frame Rate Divider bits
->>
->> It would be good to mention what is the default mode when such
->> property is absent.
+On 30-09-20, 12:14, Peter Ujfalusi wrote:
+> Glue layer users should use the device of the DMA for DMA mapping and
+> allocations as it is the DMA which accesses to descriptors and buffers,
+> not the clients
 > 
-> Then perhaps it could be boolean?
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
+>  drivers/dma/ti/k3-udma-glue.c    | 14 ++++++++++++++
+>  drivers/dma/ti/k3-udma-private.c |  6 ++++++
+>  drivers/dma/ti/k3-udma.h         |  1 +
+>  include/linux/dma/k3-udma-glue.h |  4 ++++
+>  4 files changed, 25 insertions(+)
 > 
-> Rob
-> 
+> diff --git a/drivers/dma/ti/k3-udma-glue.c b/drivers/dma/ti/k3-udma-glue.c
+> index a367584f0d7b..a53bc4707ae8 100644
+> --- a/drivers/dma/ti/k3-udma-glue.c
+> +++ b/drivers/dma/ti/k3-udma-glue.c
+> @@ -487,6 +487,13 @@ int k3_udma_glue_tx_get_irq(struct k3_udma_glue_tx_channel *tx_chn)
+>  }
+>  EXPORT_SYMBOL_GPL(k3_udma_glue_tx_get_irq);
+>  
+> +struct device *
+> +	k3_udma_glue_tx_get_dma_device(struct k3_udma_glue_tx_channel *tx_chn)
+
+How about..
+
+struct device *
+k3_udma_glue_tx_get_dma_device(struct k3_udma_glue_tx_channel *tx_chn)
+
+> +{
+> +	return xudma_get_device(tx_chn->common.udmax);
+> +}
+> +EXPORT_SYMBOL_GPL(k3_udma_glue_tx_get_dma_device);
+
+Hmm why would you need to export this device.. Can you please outline
+all the devices involved here... why not use dmaI_dev->dev or chan->dev?
+
+-- 
+~Vinod
