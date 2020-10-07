@@ -2,147 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C13242865E6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70C45286883
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 21:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728468AbgJGR2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 13:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728461AbgJGR2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:28:50 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B971C0613D3
-        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 10:28:50 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id e10so1723476pfj.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 10:28:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xZ+v2OuQAePhXqVi/kdiZzONG4PhtaojmuzF5SZ8xdQ=;
-        b=jjVdZZJO2VKrU5vGwGaKENvwebjy9U4YrvQZuQh867KzqulQ5YAGG2aGsnvOJ7SNwL
-         67LhMH6thzslOn+c6LItKcOFZ+dBQk9LTKjj+fPA5sW9cednh50SxaSbstDyu+8uyh/e
-         jXLbDrUk/RYwNjhbeYGqQt4xxOvM7AzzXokt8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xZ+v2OuQAePhXqVi/kdiZzONG4PhtaojmuzF5SZ8xdQ=;
-        b=SbCloix3gsl/qjDjn05bPQi2/71jAtDrcu/5HdO8sPTiiRJTsukT08h+ypBY58JAvB
-         dj3EENylNf0yVFp1WQ7agYMkYQhi2iJTjCrCVL5u7PdSfzcUOBDABKGhpn3gwsH68/AQ
-         jGmzO75Ge7kDglp/4k8sXpORYwnMWt1qWdCeQCzRxFxNGTlMTFsdXlKVBhwY0JFTAJUw
-         mfJHczmvu7XPmnMzzaxg9eDknyUVyHqcG5Np+fDZhHN6qneWUHWb7nzObhI7fG+FVtue
-         qm6WD7btQMgSpFHm1aIMlLfoQKL/DEdImnbryIqAvPw40UB/bzwZvneEMO03zqDSLNxj
-         CRMQ==
-X-Gm-Message-State: AOAM532oQWzhzWeIRcg4S6xjB5mBRldUgd4vOWNJykgtM+2StXHzO2Ah
-        fhwnedoNGU0Czlg2Ql72KUSSIQ==
-X-Google-Smtp-Source: ABdhPJw9NREkTfYOdNETDhW2xqODkOGKkUImfKXew2xQ2izoRdSgSn+1QXOSornth1rL61DMyAkEJQ==
-X-Received: by 2002:a63:551d:: with SMTP id j29mr3965988pgb.144.1602091729994;
-        Wed, 07 Oct 2020 10:28:49 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id o62sm3991891pfb.172.2020.10.07.10.28.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Oct 2020 10:28:49 -0700 (PDT)
-Date:   Wed, 7 Oct 2020 10:28:47 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20201007172847.GB620323@google.com>
-References: <CAL_JsqLWmBCjrbs2D-d+9naJAKkNhDAbmRtqvCDY8jv=L_q-xA@mail.gmail.com>
- <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
- <20201006004510.GD4135817@google.com>
- <20201006141820.GA416765@rowland.harvard.edu>
- <20201006165957.GA191572@google.com>
- <20201006171524.GB423499@rowland.harvard.edu>
- <20201006192536.GB191572@google.com>
- <20201007010023.GA438733@rowland.harvard.edu>
- <20201007160336.GA620323@google.com>
- <20201007163838.GA457977@rowland.harvard.edu>
+        id S1728447AbgJGTph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 15:45:37 -0400
+Received: from mga02.intel.com ([134.134.136.20]:45851 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727698AbgJGTph (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Oct 2020 15:45:37 -0400
+IronPort-SDR: 2MIJNYmZrLDmkyzYwZuVvk0Dm3Xwi6YDT5lNq3NJ6lClaLasxEicFsrxPgCNUj/wpRVJI3ShXa
+ KZajJa3F++xw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="151974135"
+X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; 
+   d="scan'208";a="151974135"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2020 10:43:15 -0700
+IronPort-SDR: 7fvC0148PlWMdQAJbrLMnizjGZZWlygjqfPJwB25+0qLWT5mZgF9BSnmc5GBcGXzKY5OmxxElE
+ d12rncfC0Z2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,347,1596524400"; 
+   d="scan'208";a="342989890"
+Received: from ubuntu18.png.intel.com ([10.88.229.38])
+  by fmsmga004.fm.intel.com with ESMTP; 07 Oct 2020 10:43:06 -0700
+From:   vijayakannan.ayyathurai@intel.com
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        vijayakannan.ayyathurai@intel.com
+Subject: [PATCH v10 0/2] Add PWM support for Intel Keem Bay SoC
+Date:   Thu,  8 Oct 2020 01:40:29 +0800
+Message-Id: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201007163838.GA457977@rowland.harvard.edu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 12:38:38PM -0400, Alan Stern wrote:
-> On Wed, Oct 07, 2020 at 09:03:36AM -0700, Matthias Kaehlcke wrote:
-> > On Tue, Oct 06, 2020 at 09:00:23PM -0400, Alan Stern wrote:
-> > > On Tue, Oct 06, 2020 at 12:25:36PM -0700, Matthias Kaehlcke wrote:
-> > > > On Tue, Oct 06, 2020 at 01:15:24PM -0400, Alan Stern wrote:
-> > > > > You don't need a platform device or a new driver to do this.  The code 
-> > > > > can go in the existing hub driver.
-> > > > 
-> > > > Maybe. IIUC currently USB drivers don't support/use suspend_late. Could that
-> > > > be added? It would simplify matters, otherwise all hubs need to know their
-> > > > peers and check in suspend if they are the last hub standing, only then the
-> > > > power can be switched off. It would be simpler if a single instance (e.g. the
-> > > > hub with the DT entries) is in control.
-> > > 
-> > > Adding suspend_late would be a little painful.  But you don't really 
-> > > need it; you just need to make the "master" hub wait for its peer to 
-> > > suspend, which is easy to do.
-> > 
-> > Ok, I wasn't sure if the hubs suspend asynchronously from each other. If they
-> > do it should indeed not be a problem to have the "master" wait for its peers.
-> 
-> Well, order of suspending is selectable by the user.  It can be either 
-> asynchronous or reverse order of device registration, which might pose a 
-> problem.  We don't know in advance which of two peer hubs will be 
-> registered first.  It might be necessary to introduce some additional 
-> explicit synchronization.
+From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-I'm not sure we are understanding each other completely. I agree that
-synchronization is needed to have the primary hub wait for its peers, that
-was one of my initial concerns.
+Hi,
 
-Lets use an example to clarify my secondary concern: a hub chip provides a
-USB 3 and a USB 2 hub, lets say the USB 3 hub is the primary.
+This patch set enables the support for PWM in the Intel Keem Bay SoC.
+Keem Bay is an ARM based SoC, and the GPIO module allows
+configuration of 6 PWM outputs.
 
-Here is some pseudo-code for the suspend function:
+Patch 1 adds the PWM driver and Patch 2 is for the required
+Device Tree bindings documentation.
 
-hub_suspend(hub)
-  ...
+This driver was tested on the Keem Bay evaluation module board.
 
-  if (hub->primary) {
-    device_pm_wait_for_dev(hub->peer)
+Thank you.
 
-    // check for connected devices and turn regulator off
-  }
+Regards,
+Vijay
 
-  ...
-}
+Changes since v9:
+- Remove Reported-by tag from the commit log.
 
-What I meant with 'asynchronous suspend' in this context:
+Changes since v8:
+- Fix the compilation error reported by kernel test robot.
+- Add the tag Reported-by: kernel test robot <lkp@intel.com>
+- Minor correction in the pwm low time calculation formula.
+- Rebase with 5.9-rc7
 
-Can hub_suspend() of the peer hub be executed (asynchronously) while the
-primary is blocked on device_pm_wait_for_dev(), or would the primary wait
-forever if the peer hub isn't suspended yet?
+Changes since v7:
+- Change the dependency as ARCH_KEEMBAY instead of ARM64 in Kconfig.
+- Use DIV_ROUND_DOWN_ULL instead of DIV_ROUND_CLOSEST_ULL.
+- Update the right formula as per Uwe.
+- List the tags in chronological order.
+- Add clk_disable_unprepare in the error paths.
 
-> > > And hubs would need to know their peers in any case, because you have to
-> > > check if any devices attached to the peer have wakeup enabled.
-> > 
-> > My concern was about all hubs (including 'secondaries') having to know their
-> > peers and check on each other, in the scenario we are now talking about only
-> > the "master" hub needs to know and check on its peers, which is fine.
-> 
-> Not all hubs would need this.  Only ones marked in DT as having a power 
-> regulator.
+Changes since v6:
+- Add reviewed-by tag
 
-Sure, as long as the primary (with a power regulator) can wait for its peers
-to suspend without the risk of blocking forever (my doubt above).
+Changes since v5:
+- Reorder symbols/Kconfig in drivers/pwm/Kconfig and drivers/pwm/Makefile
+- Use "Limitations" for consistency
+- Add clk_prepare_enable()
+- Reorder keembay_pwm_get_state() function call
+- Rework if conditional for channel disablement in .apply()
+- Remove channel disabling from .probe(), and clear LEADIN register bits
+  in .apply instead
+- Update commit message for Patch 1
+
+Changes since v4:
+- Add co-developed-by tag
+- Include mod_devicetable.h and remove of.h
+- Update comment with correct calulation for high/low time
+- Fix missing return from dev_err_probe
+
+Changes since v3:
+- Removed variable for address and calculate in place instead
+- Utilized u32_replace_bits() when updating KMB_PWM_LEADIN_OFFSET
+- Utilized dev_err_probe() for error reporting
+- Updated comments to use physical units
+- Updated error check for pwmchip_add()
+
+Changes since v2:
+- Include documentation about HW limitation/behaviour
+- Use hex values for KMB_PWM_COUNT_MAX
+- Redefine register macros
+- Utilize FIELD_GET/FIELD_PREP for calculating pwm_l/h_count and
+  pwm_count
+- Round up duty cycle/period values
+- Get current hardware state in .apply instead of cached values
+- Do a polarity check before .enabled
+- Round high time/low time to closest value
+- Set enable bit in KMB_PWM_LEADIN_OFFSET to 0 in probe
+- Correct the naming for MODULE_ALIAS
+- Add additionalProperties: false in DT bindings
+
+Changes since v1:
+- Updated licensing info, "clocks" property and example in DT bindings
+- Updated name of DT bindings document to match compatible string
+- Removed 1 patch for addition of new sysfs attribute "count"
+- Added support for COMPILE_TEST in Kconfig
+- Updated naming of defines and regmap attribute
+- Updated calculation of waveform high time and low time
+- Added range checking for waveform high/low time
+- Implemented .get_state
+- Removed register writes for lead-in and count values (left to default)
+- Updated register access to single-access
+- Folded keembay_pwm_enable/disable_channel,
+  keembay_pwm_config_period/duty_cycle,
+  and keembay_pwm_config into keembay_pwm_apply
+- Updated error messages/error codes
+- Removed pwm_disable from keembay_pwm_remove
+- Removed clk_prepare/clk_enable/clk_disable from driver
+
+Lai, Poey Seng (1):
+  pwm: Add PWM driver for Intel Keem Bay
+
+Vineetha G. Jaya Kumaran (1):
+  dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
+
+ .../bindings/pwm/intel,keembay-pwm.yaml       |  47 ++++
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-keembay.c                     | 230 ++++++++++++++++++
+ 4 files changed, 287 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-keembay.c
+
+
+base-commit: 549738f15da0e5a00275977623be199fbbf7df50
+prerequisite-patch-id: 0a348762b660d0d817b8e70cc71647e83173c78c
+prerequisite-patch-id: 0c6072cfe492b078c44ec864b8f9d1c76eada93b
+prerequisite-patch-id: 12b93428ee51a3d92ca973b928c0e0989f5d585e
+-- 
+2.17.1
+
