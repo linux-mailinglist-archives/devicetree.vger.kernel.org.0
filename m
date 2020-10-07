@@ -2,110 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79517286A9F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 00:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7084286962
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 22:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728806AbgJGWAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 18:00:44 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:39636 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728804AbgJGWAo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 18:00:44 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 31F18202917;
-        Wed,  7 Oct 2020 23:12:51 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4D64F207F37;
-        Wed,  7 Oct 2020 22:39:53 +0200 (CEST)
-Received: from fsr-ub1864-126.ea.freescale.net (fsr-ub1864-126.ea.freescale.net [10.171.82.212])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 0F1902030C;
-        Wed,  7 Oct 2020 22:39:53 +0200 (CEST)
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org
-Cc:     leoyang.li@nxp.com, devicetree@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: [PATCH v3 11/11] arm64: dts: lx2160ardb: add nodes for the AQR107 PHYs
-Date:   Wed,  7 Oct 2020 23:39:36 +0300
-Message-Id: <20201007203936.23953-12-ioana.ciornei@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201007203936.23953-1-ioana.ciornei@nxp.com>
-References: <20201007203936.23953-1-ioana.ciornei@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726117AbgJGUu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 16:50:26 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:34285 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726013AbgJGUu0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 16:50:26 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4C660t4cY7z1qwy2;
+        Wed,  7 Oct 2020 22:50:22 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4C660t34KRz1qsnr;
+        Wed,  7 Oct 2020 22:50:22 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id NnfHrPUND7wD; Wed,  7 Oct 2020 22:50:20 +0200 (CEST)
+X-Auth-Info: prnOaCjiGszRKaYzweVviO3xy8WWUfMmzVU3qkmtCZo=
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Wed,  7 Oct 2020 22:50:20 +0200 (CEST)
+Subject: Re: [PATCH 1/5] Documentation: bindings: clk: Add bindings for
+ i.MX8MM BLK_CTL
+To:     Adam Ford <aford173@gmail.com>
+Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+References: <20201003224555.163780-1-marex@denx.de>
+ <CAHCN7xKyRcZQcZunw6nLpWKWNXWJs4V_fPoQbijVrv6LbuFdYQ@mail.gmail.com>
+ <bb982b4f-3510-6663-0e4c-66a7c34b8d62@denx.de>
+ <CAHCN7xJFsi-zfzHOYJ56s5cx-owRL5EPrXCqzBgfrhrveAfo2A@mail.gmail.com>
+ <CAHCN7xKDP02QTNrxg84OvVF=Orcnh_gWj551ZV4bJphysfgu5w@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <bfc7b2e9-506b-1161-95ca-6aaf73f38a2a@denx.de>
+Date:   Wed, 7 Oct 2020 22:50:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <CAHCN7xKDP02QTNrxg84OvVF=Orcnh_gWj551ZV4bJphysfgu5w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Annotate the EMDIO1 node and describe the 2 AQR107 PHYs found on the
-LX2160ARDB board. Also, add the necessary phy-handles for DPMACs 3 and 4
-to their associated PHY.
+On 10/7/20 10:17 PM, Adam Ford wrote:
+> On Wed, Oct 7, 2020 at 3:08 PM Adam Ford <aford173@gmail.com> wrote:
+>>
+>> On Wed, Oct 7, 2020 at 3:03 PM Marek Vasut <marex@denx.de> wrote:
+>>>
+>>> On 10/7/20 9:52 PM, Adam Ford wrote:
+>>>> On Sun, Oct 4, 2020 at 12:53 AM Marek Vasut <marex@denx.de> wrote:
+>>>>>
+>>>>> Add the i.MX8MM BLK_CTL compatible string to the list.
+>>> [...]
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml | 1 +
+>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>
+>>>> Is there a DTSI change part of this patch?  I was going to try to test
+>>>> it, but  I am not seeing a change to the imx8mm.dtsi, and I am not
+>>>> sure where to put the node.
+>>>
+>>> There are in fact quite a few other pieces you need to have in place,
+>>> this patchset in itself is not particularly useful, it is just infra for
+>>> the LCDIF and MIPI DSIM block control. You might want to wait until they
+>>> all land in next and test that result.
+>>
+>> I have several patches in place, the GPCv2, this block driver,
+>> enabling GPU DT node, I'm also working on the DSIM patch you posted.
+>> I was hoping to test them all together and reply to the various
+>> threads with tested-by.  I also want to get my device tree stuff ready
+>> on the beacon boards so when everything lands, I can post DTS updates
+>> to enable the LCDIF, DSI, and the HDMI bridge.
+>>
+>> If you have a repo somewhere that has all these combined, I can just
+>> work on the final layer to enable the device tree plumbing on my
+>> board.  I just need the imx8mm.dtsi changes for this, DSIM, and the
+>> LCDIF so I can finish the task.
+> 
+> On that note, I also have a i.MX8M Nano board which is similar to my
+> 8MM.  If I understood the 8MM clock block driver better, I hope to
+> adapt your changes for the Nano too.  Once the GPCv2 driver is
+> accepted, I was also going to look at updating it to support the Nano
+> as well which also has the same DSIM and LCDIF as the 8MM as well and
+> a better GPU than the Mini but lacking the VPU.
 
-Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
----
-Changes in v2:
- - none
-Changes in v3:
- - none
-
- .../boot/dts/freescale/fsl-lx2160a-rdb.dts    | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-index 54fe8cd3a711..7723ad5efd37 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-@@ -35,6 +35,18 @@ &crypto {
- 	status = "okay";
- };
- 
-+&dpmac3 {
-+	phy-handle = <&aquantia_phy1>;
-+	phy-connection-type = "usxgmii";
-+	managed = "in-band-status";
-+};
-+
-+&dpmac4 {
-+	phy-handle = <&aquantia_phy2>;
-+	phy-connection-type = "usxgmii";
-+	managed = "in-band-status";
-+};
-+
- &dpmac17 {
- 	phy-handle = <&rgmii_phy1>;
- 	phy-connection-type = "rgmii-id";
-@@ -61,6 +73,18 @@ rgmii_phy2: ethernet-phy@2 {
- 		reg = <0x2>;
- 		eee-broken-1000t;
- 	};
-+
-+	aquantia_phy1: ethernet-phy@4 {
-+		/* AQR107 PHY */
-+		compatible = "ethernet-phy-ieee802.3-c45";
-+		reg = <0x4>;
-+	};
-+
-+	aquantia_phy2: ethernet-phy@5 {
-+		/* AQR107 PHY */
-+		compatible = "ethernet-phy-ieee802.3-c45";
-+		reg = <0x5>;
-+	};
- };
- 
- &esdhc0 {
-@@ -156,6 +180,14 @@ rtc@51 {
- 	};
- };
- 
-+&pcs_mdio3 {
-+	status = "okay";
-+};
-+
-+&pcs_mdio4 {
-+	status = "okay";
-+};
-+
- &sata0 {
- 	status = "okay";
- };
--- 
-2.28.0
-
+I don't have a branch, but I sent you the collected patches off-list.
