@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAFF9286884
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 21:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA92C28689C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 21:52:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728464AbgJGTph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 15:45:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52860 "EHLO
+        id S1726719AbgJGTww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 15:52:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728446AbgJGTph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 15:45:37 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9A7C061755;
-        Wed,  7 Oct 2020 12:45:36 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id i5so3447566edr.5;
-        Wed, 07 Oct 2020 12:45:36 -0700 (PDT)
+        with ESMTP id S1726348AbgJGTww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 15:52:52 -0400
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82087C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 12:52:52 -0700 (PDT)
+Received: by mail-il1-x143.google.com with SMTP id b2so3517398ilr.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 12:52:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sX1bT/2OZTxhrLyrJFcwzL9j9+e4FMFs/gH/buYyWgg=;
-        b=XVwPtcfIFhx9+HETMjdyxrHwUZkPShOnMZT9GmmTyIvWY9boa+q1M8RJk40R2VXUdj
-         BwePEAMoRCZZcvqDGYOk3OPn7ILRr9Wfqj0lUgadXXoDSXJr2aCs11PIhwEAJQqViYkn
-         fG5BnQcWumfPvb8WTh6/3oaTOBdfUs+XI/OrKDzUGq6OJo2CdUwoZOFYreindYNPFbxZ
-         VCtfUJ0KVNWsUjVozACaOm2+HoTeHHS/0Hn7deT409gwnhl33ftAbQLx+RVglW0UAxXt
-         E7lYzrLcI3jPvP6sK7xSJgliAWXn4S06JUy+HFU5rkmFrLkz80OtGxxOPKYzjMGtYFs9
-         3Huw==
+         :cc:content-transfer-encoding;
+        bh=/rNNAy+f+v2YU8afIuyxuuwlDaTagTuSJsOPjSwtxzs=;
+        b=OyHtWcFKhKwwKq/9JtGvgW+4UXbu7jbyht/Lf2cnNGBQ2mn4+rHhTUm/1UwkWsd5Q7
+         jbmbOVInPQXCtJmh1EbN24gQzeGxkIDZwt5pRiZUyE/dIA7srqFCqkyrwgg5WXQi8jQA
+         wvnvKi4tYYovKQu7YS+UuWnjq0KhG1MBolOzyeSJ8sSdEtxIc8JXBnVBgenhsPyJcH4u
+         p3r16Y82qgNKw3dcxpC1TC7LKePzLVhnNEsxfkfdO0cN2Ow82zfmNJJT2JXevO7cxy0r
+         856ZT+LC8zR3RisuBFRh+yh8XEIuTUU1Xg+BDqJuY65NP3PICyWtefbc4Bp7r3tqp6LN
+         wSdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sX1bT/2OZTxhrLyrJFcwzL9j9+e4FMFs/gH/buYyWgg=;
-        b=JR6dzHVINOByvFHvgpFGphnFtjNohM7p+kox0HVK0JYVlsb7vgKjbQNN4c2PqSypuX
-         C5b7Y7V54EQnA0sWNSHxQdYucLH6rsVFYsetJrB62nrcfo1OrW8UQHB4IgS38VmOxpWW
-         JaUQ1o8sC3fk/JYB2lMs3Nzdq3n0CihsVu162c2ZVsMFmkWuvn2xriEgM/Z8BIEV8Ogq
-         ZB7bxE8sZJoELDeArWKlj/ULQg9cKO3qBPELZqXsOk0zL26chNBdVA3OZK3A7BLgZRMr
-         Ne60E8o9V88G+HLjhl4fEyK+G6261yJJuCZCVJDlywX/jAj6/tC7CDsFLgEZT9Snd3wE
-         SQ6Q==
-X-Gm-Message-State: AOAM531TiEjeI6eytDOFkImsg1tdaj88ENsN+g3hMHpdRJCIKNTBspbV
-        xw546BqHnyJA4VpOoox+sIHYgq+bjS1Q6PKDNa8Kg5ET
-X-Google-Smtp-Source: ABdhPJzun5TRYD6e0Yxbi+t1s1H3n+3HxwSEp1GkPGK+CulwldlRV2odxetus8T3WyLXbAbkKRKrk/4w8rrIWuRIqGQ=
-X-Received: by 2002:a50:d94d:: with SMTP id u13mr5121485edj.365.1602099935423;
- Wed, 07 Oct 2020 12:45:35 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/rNNAy+f+v2YU8afIuyxuuwlDaTagTuSJsOPjSwtxzs=;
+        b=rqR7TF26Zwit+4pnzuZ7rvl52LO+gTjuxtxvuuD0iGis/FlgmTHT5vvKPeI9tA5gnm
+         AsW5Y+DjHeDPx/pQUS74LikzF1/2EDQ4DeHfcF1sRkk6JHKwnRTGkeObqQX01HvWC8Vh
+         pRxBwhN57T/wmrqRYYCE+XVHYgtEAS1V5K/GJ4ZkCHy2BoXIDDWNQ0y0p/tVUItp/S1v
+         BISURHL7Nztxm5AbvYlISN91Beldax82P7MTCZYRclIxgKt1PnaUi039TRecp8VAIq4W
+         h95thDhqoZdXYfEyFg+Bz4Wmm51UP9ErodEC1fhH6loARY5peGR2Xy25jbA5SUwNRpsr
+         f2Zw==
+X-Gm-Message-State: AOAM531rotLhl2yviJCH3Rdt3QbepBcdy9u9m7/AEuzgfvUkrrtmnnpp
+        NUyQkmEse6Y/MGIm3AxSEHkaLzxXcAnBJfCBKSM=
+X-Google-Smtp-Source: ABdhPJyqmpwikJD1g4mbqgsg+9F3kIdZm8GEnnIm1aTSqOIOwPBBkzw/dkncKb4cfhFkIK9b8fUIKDHXRyZe1HOf3F4=
+X-Received: by 2002:a92:4891:: with SMTP id j17mr3712264ilg.65.1602100371506;
+ Wed, 07 Oct 2020 12:52:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
- <20201004162908.3216898-2-martin.blumenstingl@googlemail.com> <CACRpkdbscEpV6oP7q1AcbCcR-XUBG2PnnapQ695xug63VQ830w@mail.gmail.com>
-In-Reply-To: <CACRpkdbscEpV6oP7q1AcbCcR-XUBG2PnnapQ695xug63VQ830w@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 7 Oct 2020 21:45:23 +0200
-Message-ID: <CAFBinCCNHXfit5FkkvgHSh4NdbunKBp3kw3okqTY6ohsK7zNzw@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] PCI: Add the IDs for Etron EJ168 and EJ188
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-usb <linux-usb@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+References: <20201003224555.163780-1-marex@denx.de>
+In-Reply-To: <20201003224555.163780-1-marex@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 7 Oct 2020 14:52:40 -0500
+Message-ID: <CAHCN7xKyRcZQcZunw6nLpWKWNXWJs4V_fPoQbijVrv6LbuFdYQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] Documentation: bindings: clk: Add bindings for
+ i.MX8MM BLK_CTL
+To:     Marek Vasut <marex@denx.de>
+Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Sun, Oct 4, 2020 at 12:53 AM Marek Vasut <marex@denx.de> wrote:
+>
+> Add the i.MX8MM BLK_CTL compatible string to the list.
+>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Abel Vesa <abel.vesa@nxp.com>
+> Cc: Dong Aisheng <aisheng.dong@nxp.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Guido G=C3=BCnther <agx@sigxcpu.org>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
 
-On Wed, Oct 7, 2020 at 11:14 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Sun, Oct 4, 2020 at 8:00 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->
-> > Add the vendor ID for Etron Technology, Inc. as well as the device IDs
-> > for the two USB xHCI controllers EJ168 and EJ188.
-> >
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> (...)
->
-> >  #define PCI_VENDOR_ID_REDHAT           0x1b36
-> >
-> > +#define PCI_VENDOR_ID_ETRON            0x1b6f
-> > +#define PCI_DEVICE_ID_ETRON_EJ168      0x7023
-> > +#define PCI_DEVICE_ID_ETRON_EJ188      0x7052
->
-> If you're defining that here, I think it should also be
-> removed in
-> drivers/usb/host/xhci-pci.c
-> by including this file instead?
-you are absolutely right - I missed that part
-I will change this in v2 - thanks for pointing it out!
+Is there a DTSI change part of this patch?  I was going to try to test
+it, but  I am not seeing a change to the imx8mm.dtsi, and I am not
+sure where to put the node.
 
+adam
 
-Best regards,
-Martin
+> diff --git a/Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml=
+ b/Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml
+> index 5e9eb402b9b6..346429f49093 100644
+> --- a/Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml
+> +++ b/Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml
+> @@ -20,6 +20,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +         - fsl,imx8mm-dispmix-blk-ctl
+>           - fsl,imx8mp-audio-blk-ctl
+>           - fsl,imx8mp-hdmi-blk-ctl
+>           - fsl,imx8mp-media-blk-ctl
+> --
+> 2.28.0
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
