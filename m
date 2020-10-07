@@ -2,227 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2200286A64
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 23:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80323286A6C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 23:46:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728701AbgJGVme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 17:42:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42756 "EHLO
+        id S1728292AbgJGVqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 17:46:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728229AbgJGVma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 17:42:30 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EAF2C0613D2
-        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 14:42:29 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id t18so1715268plo.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 14:42:29 -0700 (PDT)
+        with ESMTP id S1726105AbgJGVqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 17:46:38 -0400
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F05EC061755;
+        Wed,  7 Oct 2020 14:46:37 -0700 (PDT)
+Received: by mail-qv1-xf41.google.com with SMTP id s17so2035045qvr.11;
+        Wed, 07 Oct 2020 14:46:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=VPr2xSkE7webAMYvxqazwYRAVTqd87A40boZ8jpSdls=;
-        b=Rivqq03vqfYDv+ObWcmKYjHqymQ0ID0gRFkln8oRFXkJnjSnizrynwK62LUVequPXh
-         EVzQyheFn8oi7h0KkrCc2lDH30yCByaoRbY/SVfSw78T5+RpNSRUGUCgUmoY1zxlo6wP
-         1pmm0z0MrrL+Oq4xgXnwD3cawtdNsDHaFHy7I=
+        bh=YqNUjigFoAXo2QafX/TTeVVXBpaXL3Be2L3u2zpujGM=;
+        b=nOiCFVqKn9qpKVGgPb0MgXhOqUoxudL61nKQkOjg6IWYyDk7Mo60sg2BiYT+qgKZvC
+         9VaQkgDLA3ZFv1YeeJC8BhF9M8X0SCrRrSiTt+2qetxnyXbH6atyoKgXDCG+UE40ZIzZ
+         86eXvROXYmV9sEIjqxwP/Q0MBgczL3xkhw3tZ7MCJgP+byDpqTsBY2BbJSpPN9Wz1b9k
+         cH5Ixg1DSgILYeRCDfE7unh/IUxVWkV3xpA7GsvrNGL/W/WZFUh6bZOOue7NP1YXbeOy
+         HjjcZn6gKV+UzkojRivqPU3griS6IdQl+o2V6nUDg6cBBz2ClbxBjZtP7r4dqtDaoib7
+         +OYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VPr2xSkE7webAMYvxqazwYRAVTqd87A40boZ8jpSdls=;
-        b=iV2QOUw4KNfvIpJvZ31rhdEKQtwxNTbd7FOnp6aurbxYwiHRi4/nNhBIKroXSxU2mZ
-         U0nwurPw7TCPwyv+Tx/eze0qFrg3nOcy5LkKsm4H7Ba7xmT2P7uqYcWRI11Jy1dFitBY
-         jtgHSy1W+exEORWJMIcKj91ApjAxKuurtkniEwwV2UVfudeD7uc/98vkQh0XKZKdqev4
-         n7eoZHyXkVbA+Pap9b/K210BCUZcVMaqjtIOivkQbwUSBwe3Z3qP/wZGL9N6NX3r4spX
-         lkMg6jn5tdKUEGP7ygN09lBFP6tQZ4QueRbel+kBn56ojv+sWD7ZiHyfnWNN93l/1Auf
-         6zqA==
-X-Gm-Message-State: AOAM530vIn4OYTj0xNX2WXEErMU9G3JeaKDwluU+pLR/ijzZvdh7dmEy
-        q/8QMMfnr5zJ0hAoGJ0j199Jow==
-X-Google-Smtp-Source: ABdhPJw4UyfaVbCcqJu37x5gWAFucs5XrJToeS2kIda0rL5XZyWIJyiEYAq6+T2YVwqMoH3+fkB1Zw==
-X-Received: by 2002:a17:902:b107:b029:d2:ab87:c418 with SMTP id q7-20020a170902b107b02900d2ab87c418mr4673288plr.40.1602106948614;
-        Wed, 07 Oct 2020 14:42:28 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id u15sm4304310pfl.215.2020.10.07.14.42.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Oct 2020 14:42:27 -0700 (PDT)
-Date:   Wed, 7 Oct 2020 14:42:26 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20201007214226.GA669360@google.com>
-References: <20201006165957.GA191572@google.com>
- <20201006171524.GB423499@rowland.harvard.edu>
- <20201006192536.GB191572@google.com>
- <20201007010023.GA438733@rowland.harvard.edu>
- <20201007160336.GA620323@google.com>
- <20201007163838.GA457977@rowland.harvard.edu>
- <20201007172847.GB620323@google.com>
- <20201007192542.GA468921@rowland.harvard.edu>
- <20201007194229.GC620323@google.com>
- <20201007201732.GE468921@rowland.harvard.edu>
+        bh=YqNUjigFoAXo2QafX/TTeVVXBpaXL3Be2L3u2zpujGM=;
+        b=FQ+JYpniK+pB4t68Oatylat+/PJqBkqpWPR8TjYXt8gDLVV3FwxQan4gGD08uA+dqb
+         uCLPvXaci4iO9stXWxCsvv23MJ9WG1CUfSWLy6wRL4ctZqnPXzCoVviUR2iaoRrhZNj+
+         ulYg7KTkgRbjpFXfAqkevfwHw9urHNK5/CQ2tGFxiUYhJE1kXKqeSP4JNp7E2vbZAago
+         /zMZNTEe1OTVPWihWXqfy3BOvlMK8PwfA5DJ4YVl32K8+jAxfYWSiG48XrIr01UnPFbQ
+         GnobJJtpi7jDEh6YuFJgHnmcRtseyxJ3f+n03zM299TdkJQb1lCyDq8hUjetaEgGPEDD
+         Kgww==
+X-Gm-Message-State: AOAM531vImpIsZzQP+A6N/wQz4a5/yWb4H7ohKJArlPnslJhq1lEz0/p
+        Awj32VnE3E61SctD11hdcINKQd5q2IB9XA==
+X-Google-Smtp-Source: ABdhPJzrDqRTfzp3kraZFbds/BuMxeQZZRTCB5lCKd7Q3veIzOCHzA9lsDBscGJUHmrCwPpXm8IlwQ==
+X-Received: by 2002:a0c:c492:: with SMTP id u18mr5342732qvi.18.1602107196335;
+        Wed, 07 Oct 2020 14:46:36 -0700 (PDT)
+Received: from ubuntu (ool-45785633.dyn.optonline.net. [69.120.86.51])
+        by smtp.gmail.com with ESMTPSA id 128sm2408554qkm.76.2020.10.07.14.46.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Oct 2020 14:46:35 -0700 (PDT)
+Date:   Wed, 7 Oct 2020 17:46:33 -0400
+From:   Vivek Unune <npcomplete13@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] ARM: dts: BCM5301X: Linksys EA9500 make use of
+ pinctrl
+Message-ID: <20201007214633.GA1972@ubuntu>
+References: <cover.1601655904.git.npcomplete13@gmail.com>
+ <6687de05226dd055ee362933d4841a12b038792d.1601655904.git.npcomplete13@gmail.com>
+ <20201007210134.GD112961@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201007201732.GE468921@rowland.harvard.edu>
+In-Reply-To: <20201007210134.GD112961@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 04:17:32PM -0400, Alan Stern wrote:
-> On Wed, Oct 07, 2020 at 12:42:29PM -0700, Matthias Kaehlcke wrote:
-> > On Wed, Oct 07, 2020 at 03:25:42PM -0400, Alan Stern wrote:
-> > > On Wed, Oct 07, 2020 at 10:28:47AM -0700, Matthias Kaehlcke wrote:
-> > > > On Wed, Oct 07, 2020 at 12:38:38PM -0400, Alan Stern wrote:
-> > > > > On Wed, Oct 07, 2020 at 09:03:36AM -0700, Matthias Kaehlcke wrote:
-> > > > > > Ok, I wasn't sure if the hubs suspend asynchronously from each other. If they
-> > > > > > do it should indeed not be a problem to have the "master" wait for its peers.
-> > > > > 
-> > > > > Well, order of suspending is selectable by the user.  It can be either 
-> > > > > asynchronous or reverse order of device registration, which might pose a 
-> > > > > problem.  We don't know in advance which of two peer hubs will be 
-> > > > > registered first.  It might be necessary to introduce some additional 
-> > > > > explicit synchronization.
-> > > > 
-> > > > I'm not sure we are understanding each other completely. I agree that
-> > > > synchronization is needed to have the primary hub wait for its peers, that
-> > > > was one of my initial concerns.
-> > > > 
-> > > > Lets use an example to clarify my secondary concern: a hub chip provides a
-> > > > USB 3 and a USB 2 hub, lets say the USB 3 hub is the primary.
-> > > > 
-> > > > Here is some pseudo-code for the suspend function:
-> > > > 
-> > > > hub_suspend(hub)
-> > > >   ...
-> > > > 
-> > > >   if (hub->primary) {
-> > > >     device_pm_wait_for_dev(hub->peer)
-> > > > 
-> > > >     // check for connected devices and turn regulator off
-> > > >   }
-> > > > 
-> > > >   ...
-> > > > }
-> > > > 
-> > > > What I meant with 'asynchronous suspend' in this context:
-> > > > 
-> > > > Can hub_suspend() of the peer hub be executed (asynchronously) while the
-> > > > primary is blocked on device_pm_wait_for_dev(),
-> > > 
-> > > Yes, that's exactly what would happen with async suspend.
-> > > 
-> > > >  or would the primary wait
-> > > > forever if the peer hub isn't suspended yet?
-> > > 
-> > > That wouldn't happen.  device_pm_wait_for_dev is smart; it will return 
-> > > immediately if neither device uses async suspend.  But in that case you 
-> > > could end up removing power from the peer hub before it had suspended.
-> > > 
-> > > That's why I said you might need to add additional synchronization.  The 
-> > > suspend routines for the two hubs could each check to see whether the 
-> > > other device had suspended yet, and the last one would handle the power 
-> > > regulator.  The additional synchronization is for the case where the two 
-> > > checks end up being concurrent.
-> > 
-> > That was exactly my initial concern and one of the reasons I favor(ed) a
-> > platform instead of a USB driver:
+On Wed, Oct 07, 2020 at 11:01:34PM +0200, Andrew Lunn wrote:
+> On Wed, Oct 07, 2020 at 03:01:50PM -0400, Vivek Unune wrote:
+> > Forgo the use of mmioreg mdio mux infavor of the pinctrl
 > 
-> Clearly there's a tradeoff.
+> Hi Vivek
 > 
-> > > otherwise all hubs need to know their peers and check in suspend if they
-> > > are the last hub standing, only then the power can be switched off.
-> > 
-> > To which you replied:
-> > 
-> > > you just need to make the "master" hub wait for its peer to suspend, which
-> > > is easy to do.
-> > 
-> > However that apparently only works if async suspend is enabled, and we
-> > can't rely on that.
-> 
-> Yes, I had forgotten about the possibility of synchronous suspend.  My 
-> mistake.
-> 
-> > With the peers checking on each other you lose effectively the notion
-> > of a primary.
-> 
-> Well, you can still want to put the sysfs power-control attribute file 
-> into just one of the hubs' directories, and that one would be considered 
-> the primary.  But I agree, it's a weak notion.
-> 
-> > Going back to the binding:
-> > 
-> >   &usb_1_dwc3 {
-> >     hub_2_0: hub@1 {
-> >       compatible = "usbbda,5411";
-> >       reg = <1>;
-> >     };
-> > 
-> >     hub_3_0: hub@2 {
-> >       compatible = "usbbda,411";
-> >       reg = <2>;
-> >       vdd-supply = <&pp3300_hub>;
-> >       companion-hubs = <&hub_2_0>;
-> >     };
-> >   };
-> > 
-> > How does 'hub_2_0' know that its peer is hub_3_0 and that it has a regulator
-> > (and potentially other resources)?
-> 
-> The peering relation goes both ways, so it should be included in the 
-> hub_2_0 description too.  Given that, the driver could check hub_2_0's 
-> peer's DT description for the appropriate resources.
+> Could you add some more details please. I don't know this
+> hardware. I'm assuming there are two MDIO busses, external as talked
+> about in the comments, and an internal one? And for this hardware you
+> only need one of them? But i don't see what pinmux has to do with
+> this?
+Hi Andrew,
 
-That mitigates the issue somewhat, however we still have to convince Rob that
-both references are needed.
+There are indeed two mdio busses. To access the external bus, 9th bit
+of the mdio register has to be set. And to enable mii function,
+one has to set the registers 6 & 7 which is part of the pin controller.
+Earlier the pin controller was not defined and I resorted to use a
+combination of memory mapped io mux to change desired bits.
 
-> > All this mess can be avoided by having a single instance in control of the
-> > resources which is guaranteed to suspend after the USB devices.
+Now that we have a pin controller - which is resposnsible for other 
+functionality such as pwm, i2c, uart2, it makes sense to have a consistent
+device tree
+
+Hope this helps,
+
+Vivek
+
+
 > 
-> Yes.  At the cost of registering, adding a driver for, and making users 
-> aware of a fictitious platform device.
-
-Registration is trivial and the driver code will be needed anyway, I'm
-pretty convinced that a separate platform driver will be simpler than
-plumbing things into the hub driver, with the additional checks of who is
-suspended or not, etc. If other resources like resets are involved there
-could be further possible race conditions at probe time. Another issue is
-the sysfs attribute. We said to attach it to the primary hub. What happens
-when the primary hub goes away? I guess we could force unbinding the peers
-as we did in the driver under discussion to avoid confusion/inconsistencies,
-but it's another tradeoff.
-
-My view of the pros and cons of extending the hub driver vs. having a platform
-driver:
-
-- pros
-  - sysfs attribute is attached to a USB hub device
-  - no need to register a platform device (trivial)
-  - potentially more USB awareness (not clear if needed)
-
-- cons
-  - possible races involving resources between peer hubs during initialization
-  - increased complexity from keeping track of peers, checking suspend order
-    and avoiding races
-  - peers are forced to unbind when primary goes away
-  - need DT links to peers for all USB hubs, not only in the primary
-  - pollution of the generic hub code with device specific stuff instead
-    of keeping it in a self contained driver
-  - sysfs attribute is attached to only one of the hubs, which is better than
-    having it on both, but not necessarily better than attaching it to the
-    platform device with the 'control logic'
-
-So yes, there are tradeoffs, IMO balance isn't as clear as your comment
-suggests.
+> Thanks
+> 	Andrew
+>  
