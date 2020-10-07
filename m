@@ -2,86 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5883D2865F7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AE172865BD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:18:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727474AbgJGRbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 13:31:09 -0400
-Received: from mout.gmx.net ([212.227.17.21]:40575 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726830AbgJGRbJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 13:31:09 -0400
-X-Greylist: delayed 493 seconds by postgrey-1.27 at vger.kernel.org; Wed, 07 Oct 2020 13:31:08 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1602091867;
-        bh=gStd7CSr+9t8/90lKMyO+IPWH1Dnp3UnGNJgZmWHkzM=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=QCDZ714hsvbnGuh7Ey/C6xxPNnrlVRxMPZDarIW+uJfcob//j9m2MYBqVkadyODrP
-         /iMX+KBzJW2HLVxpSfXkAqUytbosRNqH69ljrqc3r0wjp3to2N6ivZtO7EkHANoJrS
-         NQjXwo7yvZUG8xM7ntn2axfcrptOgJ+7tCrxVZ3k=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.208.210.121] ([80.208.210.121]) by web-mail.gmx.net
- (3c-app-gmx-bap48.server.lan [172.19.172.118]) (via HTTP); Wed, 7 Oct 2020
- 19:16:34 +0200
+        id S1728172AbgJGRSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 13:18:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728171AbgJGRSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:18:50 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3D5C061755;
+        Wed,  7 Oct 2020 10:18:49 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id v19so2983237edx.9;
+        Wed, 07 Oct 2020 10:18:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FbvgWYf8WmFqAJOEe1UYaKohDkiYp3VreWyGDtXaqz8=;
+        b=dVrg5yXsPbI5qvL4/8aGH30/TpyXARXamdOnbGSmS4gTpTQp9eH1GXn8IgbLEolJ8G
+         hiPkIqvvDj/4CTAnjCcHO2SIozfvoIWT1av/ixwfQcBvgX+hxUquKwrnasaWknawYceu
+         nRIcU7O+fGSVRQp3Ocs0MYUJAlgOx7xC/dVH9Z7YZoVhwlPI8cyjSq/9GCYkR0LKEydy
+         v4YidfNyN/xlHadchDVutaYDFw1zaym5gVxxcVOfiyXZMZy7zYVmsNK2SuDroi+h0Jao
+         7rVmi77ctUuEP8FctJq/GPBn0lpXoFscuQHs9OMgtEFVH8SG6K3B5GPkFCG8Jauoq2Jk
+         iCEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FbvgWYf8WmFqAJOEe1UYaKohDkiYp3VreWyGDtXaqz8=;
+        b=cT0sKvUscAnwo2W/XSSgS8eOIZ7qbE6z6dl64gk2Fl+QbXBmsSgfLw7DOwlyLG7o4y
+         e9tLqb9fCgkYH3dNOjdrDw41uOMDmnC9JJXQWyuyhv2pllU0Bh7T/sm1nIp7QjJkRZtA
+         e4+O8PxvEFWrpOda8deSTtbLeba8LLpshIrxqjNw5uPJ+LpSuhdlv5CeXh+JewPTmIRR
+         X1TD8ocDHzEkcK7omth/Xl/M2AHxHYcd2yskZB4wWHlESn6Hxgul5afDt3blUMsYXAfo
+         URfvnizFrWrknASI7ISTHHPfX5O8uUpdbJi2qDzSY2MftLpfbidhz+ZwjWVFoiGn3S4O
+         rCgA==
+X-Gm-Message-State: AOAM533ie5vNREXlQbmqaAhbujJTYvSG2d9m3hR7CfdIPf6wkCAL5cZl
+        Lv4+oRxhl5GIJ9cb0NxACDhcQV7Yg+yvz30v8MA=
+X-Google-Smtp-Source: ABdhPJxR2PNvYgiGBJpfUyMO8e+O6T4BT5QzDizpTZdiP0rpHdLPJLC65LYH5YSEruuW6EvK5oJ7yyPXu2SGR31hvQ0=
+X-Received: by 2002:a50:c199:: with SMTP id m25mr4495447edf.207.1602091128283;
+ Wed, 07 Oct 2020 10:18:48 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-45b0efdf-27a6-4b91-943f-c3782c637c0e-1602090994397@3c-app-gmx-bap48>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Michael Kao <michael.kao@mediatek.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-pm@vger.kernel.org, srv_heupstream@mediatek.com,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Kao <michael.kao@mediatek.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
+References: <20201004133114.845230-1-pgwipeout@gmail.com> <cdd0f520ae4990de90f461e21cb4f298@agner.ch>
+ <4d3eb998-045b-f288-7a9c-aaa620c38bff@settrans.net> <c8140ea3-8731-8084-47dd-8819b4b4df6a@gmail.com>
+ <f12c1ad2-d180-8981-c3bf-db8ab6afbbaa@wwwdotorg.org>
+In-Reply-To: <f12c1ad2-d180-8981-c3bf-db8ab6afbbaa@wwwdotorg.org>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Wed, 7 Oct 2020 13:18:36 -0400
+Message-ID: <CAMdYzYrNg39QmR3QDG4T5DTOht=8p4LvFon14M1J7HkEZo4KRQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
+To:     Stephen Warren <swarren@wwwdotorg.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>, Bob Ham <rah@settrans.net>,
+        Stefan Agner <stefan@agner.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org, hsinyi@chromium.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Aw: [v5 0/2] Add Mediatek thermal dirver and dtsi
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 7 Oct 2020 19:16:34 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20201007075437.6002-2-michael.kao@mediatek.com>
-References: <20201007075437.6002-1-michael.kao@mediatek.com>
- <20201007075437.6002-2-michael.kao@mediatek.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:Csqd41G7AKxDFuH1C9SuyrD5jWqGjY8u5x7tZCZfuaePzhCmFah/9bWtJBjB+9cchHYoy
- HvGlmXK7xp4TcX0XMJ7Th/1qaq+UVDkk6iVl+5Hep6tJSCTuxX+fQpTzRddjK245Qx8AsWhSoGgd
- dN+cv0TMip0SRNyvEjmCoYAvYjelIYolj6sePUq4FUbMYKLnbiWDHq0XIcC9hle1K2QLKAmOT+zU
- BniDlgIPOqfeLis8fVZ+yMaLuqqy2q6i9MiWVsPTr++2qpqS8mlRNAauD75xKsDP2jEyaw+Gb/fN
- xU=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:FOhYxd3LrBA=:AAmKeHNualD8W2ZgdqeDJf
- paIZM1VccBIHD+Jh8HZMK8iuX8hCJ5L5vrBRFTjRfrtZ21do0V6l4JGSSAYkIKDRfKrUv2NkD
- UohwpxWrh4DTp0XyRvTDZNwlij1XKOuWNF/jPT1JJnf6wSIy3AdIp4xmsrC0vCR8ERfl+5V33
- BL5P1UCo4isP4GejH1145qQ7tanj6oXjn4RI9ru84NLdwrS2SAD0HAJkgEntGCnyQeZJq6O54
- u5jURoftHEOQnMNpM3qApWFywhMZqgeDjoUDxtMxCtlIAHRl2xjDeoiDnysC6VeGLZ7mP4NDi
- y4MzxCNEeAkLcwMFDl6kROidVZuIol5+/WzpTrJ4hjvCdq6kS7hDUyZYy5ThTkdjSlafrc9/w
- +EOCzmbp0hbvp5gvUGK0qHhTDLwzXObd9f5c336shBeIeiJmlSA5OLAtpe91/Slhj232fr5iy
- qGyEzcG2/3I1di4mlp20sbFaoXaaGf9Ls7l+zPQzO0zZMkmN22bqO2ofbOQ/j9Phx5CMMz0QN
- QzvG/5vcFUeo6QF32HRdnRICyJYdSBjCVXxioBCtJJixZc/WSvReeD9SlBJJa+HHu4+luWXqN
- qKNPe42vZHf4k/Z6K77wgNSRfqlXR3GSnyUbgXw2H3skG9SUCWF/J10+LHPaqNmYJVFFBD4OY
- wm11Cdupl2YgNvBsCocwzKl38+oN67x9xrenG7U6hnTpbc6ufCVhMusEbu+7I1QpADZc=
-Content-Transfer-Encoding: quoted-printable
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Leonardo Bras <leobras.c@gmail.com>,
+        Michael Brougham <jusplainmike@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lukas Rusak <lorusak@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Mittwoch, 07. Oktober 2020 um 09:54 Uhr
-> Von: "Michael Kao" <michael.kao@mediatek.com>
-> Betreff: [v5 0/2] Add Mediatek thermal dirver and dtsi
+On Wed, Oct 7, 2020 at 12:08 PM Stephen Warren <swarren@wwwdotorg.org> wrote:
+>
+>
+> This definitely isn't the correct attitude to copyright.
+>
+> The facts[1] that Ouya published the code and that it used GPL-only
+> symbols certainly does imply that they *should* have published under GPL
+> or a compatible license, but doesn't mean that they definitely did. The
+> only way to know that for sure is for there to be evidence in the file
+> content or git history, such as license headers or Signed-off-by lines.
+>
+> When someone writes Signed-off-by in their code submission, which is
+> required to contribute to upstream Linux, they are stating/warranting
+> certain things about the code they're submitting. One aspect is that
+> they definitely have the rights to submit the code under the given
+> license. Without evidence to this effect, or having written the code
+> themselves, nobody can state/warrant this. Take a look at the following
+> link to see what you're stating/warranting when writing Signed-off-by in
+> a code submission:
+>
+> https://developercertificate.org/
+>
+> [1] I haven't checked the facts.
 
-Hi,
+Unfortunately the only source release I've been able to find is the
+last release.
+Ouya purposely purged the git history for the current source release,
+it's also completely lacking in signoffs and commit history.
+[1] is the commit that added this driver to their source.
 
-just a small typo "dirver" =3D> driver and coverletter (v5) does not match=
- series (v1/without version),
-so it is not linked correctly in patchwork. I guess V1 is the right here..=
-.
-imho coverletter should also include platform (mt8183). There is already a=
- mtk
-thermal driver which you want to extend for a new Chip.
+Their original source release had the git history intact, but I never
+got a copy of it before Ouya purged it from their repos.
 
-regards Frank
+[1] https://github.com/ouya/ouya_1_1-kernel/commit/407e72990e39d5c29d015e21110b9497aea2dfe3
