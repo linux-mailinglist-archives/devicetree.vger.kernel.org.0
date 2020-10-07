@@ -2,79 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BAFD2866B5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 20:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 793CD2867F1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 21:02:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727800AbgJGSPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 14:15:07 -0400
-Received: from out28-169.mail.aliyun.com ([115.124.28.169]:49090 "EHLO
-        out28-169.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727789AbgJGSOn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 14:14:43 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1553189|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00927651-0.00167429-0.989049;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047207;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=4;RT=4;SR=0;TI=SMTPD_---.IgNey8v_1602094473;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.IgNey8v_1602094473)
-          by smtp.aliyun-inc.com(10.147.42.135);
-          Thu, 08 Oct 2020 02:14:39 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sernia.zhou@foxmail.com
-Subject: [PATCH 1/1] dt-bindings: clock: Add new OST support for the upcoming new driver.
-Date:   Thu,  8 Oct 2020 02:14:07 +0800
-Message-Id: <20201007181407.46889-2-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20201007181407.46889-1-zhouyanjie@wanyeetech.com>
-References: <20201007181407.46889-1-zhouyanjie@wanyeetech.com>
+        id S1727369AbgJGTCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 15:02:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726111AbgJGTCE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 15:02:04 -0400
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92398C061755;
+        Wed,  7 Oct 2020 12:02:04 -0700 (PDT)
+Received: by mail-qt1-x841.google.com with SMTP id o21so2931279qtp.2;
+        Wed, 07 Oct 2020 12:02:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MiSY8J6mDu3JaytwdQp1vhGc2vsjxotqzRzsTO3QWRE=;
+        b=CqXmTlnawugmG6qE1YpW6lnTfluvSgYJBxSHZ1oNBGSTFyB10P/SMNjvkyFeGLy1Ak
+         S2+ggp1gsj8q7wHdUnCBqIcNd4T19F2sHR7OkDLgcq89JsKzy+05M85HXn6koBvImIuv
+         kiGTJAlAxJA04rHi9wVVTThXiz+vtFXMbYNdhvyD5+uJExU2uoSdZhnvxx2IWCdC+Zbz
+         gWV9t3jmypBz9ICPuVZ6D9sgkk/kKVBPg5hg2HwndwVbLI5gA5dcDYgBget4mdNkiqmd
+         jE+8QnR8RnwRW3RNBpQx1elcvBSD518kjJJ3GH0u7FIRslmm145jradvhJvcHLkqiXib
+         u8pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MiSY8J6mDu3JaytwdQp1vhGc2vsjxotqzRzsTO3QWRE=;
+        b=rFmu6CzBHbRiQZ8D6XakyhCaTTJZEci7eKw57fkxJPiNtTYvx9dpg9lE4Dx23DDsn/
+         /3+S2Jy4avLjh0cWrDRBKs/FyKjFoc5kFpy8SiJjzR95bmOh/rJ9XjFKO4WzRwPjQ/fD
+         VRrtG0kCnUBWXCuw8l1mFvs41qYGmuzWHTcT/49RZoFSzkgVEKYwogk9EBM65k693BuD
+         hIC8r51vWrimD4hg+fOwlHo98QjInzQy3DGnbvAa9oMmo1MZrOs4LuLx6ArhrBBhJ+bO
+         tiUQoUr5a28dDjZORiDSlC1IyzZJNAxYSHa7nN64v+Cd0BHr8MFa0MuA7pVg/B9Uri7M
+         MkbA==
+X-Gm-Message-State: AOAM532uVuGz0c3HPQCix6vOcIN10CHxX/BawVi1ojm9dGELmra8wtTC
+        Hk5vBNUzJJ93OPLzAD7H8gI=
+X-Google-Smtp-Source: ABdhPJxNch6C0aT/JvwWZ3iO8uD9fla6pKSkVWtTwIiWg5yNaIGl2BcCcvq6CLYtMkQTeLfwE78LDQ==
+X-Received: by 2002:ac8:3385:: with SMTP id c5mr4704558qtb.46.1602097323831;
+        Wed, 07 Oct 2020 12:02:03 -0700 (PDT)
+Received: from ubuntu.localdomain (ool-45785633.dyn.optonline.net. [69.120.86.51])
+        by smtp.googlemail.com with ESMTPSA id j16sm2087078qkg.26.2020.10.07.12.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Oct 2020 12:02:03 -0700 (PDT)
+From:   Vivek Unune <npcomplete13@gmail.com>
+Cc:     Vivek Unune <npcomplete13@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] ARM: dts: BCM5301X: Linksys EA9500 device tree changes
+Date:   Wed,  7 Oct 2020 15:01:49 -0400
+Message-Id: <cover.1601655904.git.npcomplete13@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The new OST has one global timer and two or four percpu timers, so there will be three
-combinations in the upcoming new OST driver: the original GLOBAL_TIMER + PERCPU_TIMER,
-the new GLOBAL_TIMER + PERCPU_TIMER0/1 and GLOBAL_TIMER + PERCPU_TIMER0/1/2/3, For this,
-add the macro definition about OST_CLK_PERCPU_TIMER0/1/2/3. And in order to ensure that
-all the combinations work normally, the original ABI values of OST_CLK_PERCPU_TIMER and
-OST_CLK_GLOBAL_TIMER need to be exchanged to ensure that in any combinations, the clock
-can be registered (by calling clk_hw_register()) from index 0.
+1. Drop mmioreg mdio mux infavor of the pinmux
+2. Add port5 and port7 which are connected to gmac0 & 1 respectively
+3. Define fixed partitions
 
-I'm sure that exchanging the ABI values of OST_CLK_PERCPU_TIMER and OST_CLK_GLOBAL_TIMER
-will not affect the existing related drivers and the SoCs whitch using these drivers, so
-we should be able to exchange them safely.
+Cc: Hauke Mehrtens <hauke@hauke-m.de>
+Cc: "Rafał Miłecki" <zajec5@gmail.com>
+Cc: bcm-kernel-feedback-list@broadcom.com
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
 
-Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
- include/dt-bindings/clock/ingenic,sysost.h | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+Vivek Unune (3):
+  ARM: dts: BCM5301X: Linksys EA9500 make use of pinctrl
+  ARM: dts: BCM5301X: Linksys EA9500 add port 5 and port 7
+  ARM: dts: BCM5301X: Linksys EA9500 add fixed partitions
 
-diff --git a/include/dt-bindings/clock/ingenic,sysost.h b/include/dt-bindings/clock/ingenic,sysost.h
-index 9ac88e90babf..063791b01ab3 100644
---- a/include/dt-bindings/clock/ingenic,sysost.h
-+++ b/include/dt-bindings/clock/ingenic,sysost.h
-@@ -1,12 +1,16 @@
- /* SPDX-License-Identifier: GPL-2.0 */
- /*
-- * This header provides clock numbers for the ingenic,tcu DT binding.
-+ * This header provides clock numbers for the Ingenic OST DT binding.
-  */
- 
- #ifndef __DT_BINDINGS_CLOCK_INGENIC_OST_H__
- #define __DT_BINDINGS_CLOCK_INGENIC_OST_H__
- 
--#define OST_CLK_PERCPU_TIMER	0
--#define OST_CLK_GLOBAL_TIMER	1
-+#define OST_CLK_PERCPU_TIMER	1
-+#define OST_CLK_GLOBAL_TIMER	0
-+#define OST_CLK_PERCPU_TIMER0	1
-+#define OST_CLK_PERCPU_TIMER1	2
-+#define OST_CLK_PERCPU_TIMER2	3
-+#define OST_CLK_PERCPU_TIMER3	4
- 
- #endif /* __DT_BINDINGS_CLOCK_INGENIC_OST_H__ */
+ .../boot/dts/bcm47094-linksys-panamera.dts    | 216 +++++++++++-------
+ arch/arm/boot/dts/bcm5301x.dtsi               |   4 +-
+ 2 files changed, 137 insertions(+), 83 deletions(-)
+
 -- 
-2.11.0
+2.25.1
 
