@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0005128562A
+	by mail.lfdr.de (Postfix) with ESMTP id 861A1285629
 	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 03:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727029AbgJGBRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726719AbgJGBRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 6 Oct 2020 21:17:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50892 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727231AbgJGBRp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:17:45 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDBFC0613D4
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 18:17:44 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id a200so364596pfa.10
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 18:17:44 -0700 (PDT)
+        with ESMTP id S1727281AbgJGBRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:17:47 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D13C0613D3
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 18:17:45 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id 144so380883pfb.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 18:17:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=q3b5vsX7ezYRrPD7MIrHHFYiH7Fjfq1VpNyAfa7YYMs=;
-        b=TxYZNSrk4fijdF8OlyZfUbDEsKkWlbTvkerk0i9KIlYHeZ8KC3c63ldolEDrzF8P9G
-         4u0Sq9sSF2HE9LX4sV+8Qa8zHRRwv/ZIJ8+KRG7YimA8YEkGLvxFMOnUsV3B4Kcdc8Ip
-         tHjD7+ImhdbxCcYUTYz/toLYjccbJYmYYQ9xQ=
+        bh=H0grO1/LPC39zD9/uMmlQwrmk7dyJY/6UPRijWFp5DU=;
+        b=DwAXRI8VrMz5z37j30Xsto7xic7Bh+bbl0UOI//b5d+NFKMXiVyQGZlAZ4yL5WS/1s
+         13AVVhf6vI0jtlrrvP/HS16s3vKmauOfL366oReuvTdguygMM2duFUiwPX7dcGNTCsCb
+         2ksJfXtVV9+0cCEFcitGsp9nWna9a2VyySn9M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=q3b5vsX7ezYRrPD7MIrHHFYiH7Fjfq1VpNyAfa7YYMs=;
-        b=ZBpDMU/Z4mgAjTyIaCBEuSyErJLXguoKVR5VcgmQANFMGe1bq/oWnI4wkA6CdMsj93
-         B++W0V27LEFK27RcuOij7IfKh2E5sA/k+9qzBJqXrjbevKl63BbFSjNJnt4aPPwe4VBG
-         ITgLE4lVy5KlSYtOYA08OZ6tdoRn1fDoV85iNoUx3SuKcmVtKlgKzJPsXVuGImDEcO2x
-         a0prAc6cOJclUkIKxw6F0oMl357l5gT5XuTmYVhq13DyfkqIBIPZ8vqvfSJuGKew9bGT
-         TGD9dwBI5E5eeGDE73A5DdT+wnYYHNpIuF3v3mr/FC+rxnOyl3OdlZhw0IyfqC+VFWvI
-         /D5Q==
-X-Gm-Message-State: AOAM533DuvQPSs3+IF1dPJdp/kDYZr+KoZF6GDXmm/Sa3wOQOO3XqhP0
-        nz/puDRoqxG1o4XZ7BMD+LyHew==
-X-Google-Smtp-Source: ABdhPJxCY7qloRtr55WTd3OKPpExkfS+8Yq9WlyeWs/4TAodbENQfjN9NxBtw5KFtw8YA8PjZL+svA==
-X-Received: by 2002:a62:301:0:b029:13c:1611:6587 with SMTP id 1-20020a6203010000b029013c16116587mr674460pfd.4.1602033463974;
-        Tue, 06 Oct 2020 18:17:43 -0700 (PDT)
+        bh=H0grO1/LPC39zD9/uMmlQwrmk7dyJY/6UPRijWFp5DU=;
+        b=QRD9lrMoUT/WaG8l9Kq2EzkpsHGg2+mZDdHC7suzz8i0QATceb/52P4V28H87OaLSi
+         JXo1jZyeq09V4rzgxM8LUde/ORqSRKZj+PVq+Zb49Z4Nf9d6fi15OJlK2N4g0n+2dCtU
+         5/7c/KiknHKii6cJJJGgMnsYNyWxzRo9jmHGbRkh/dzneeWsvwihm79kzJeHke0hzwO+
+         8bf7AD5Z83MxKqG+nlVdtswzD9ZYybBazkYAGD+b7LlPdU0FbKWBVuG9svX6DIcDNv+v
+         ZtuU9oA7chFo5TLVfx7eIVVP0rwxKscbRbPlwr5I6eWZ/Ji8r8XKZ5lktfj0VgFwP2mj
+         wnzg==
+X-Gm-Message-State: AOAM531X1dq8Awyp5UR2ruRzEzsqKpvxmvpSQdBcHqQdIoo8gEgzvizK
+        61lPk14WsJPSqlZ8z6BN/HgUAw==
+X-Google-Smtp-Source: ABdhPJzvP6pmCV0CHzjkMIN3vZmFolozsxfx8647zKjG5uTT3wwlPNTf9ElCwr8w8UDAR+GXZDJMBw==
+X-Received: by 2002:a63:4a43:: with SMTP id j3mr867356pgl.42.1602033465479;
+        Tue, 06 Oct 2020 18:17:45 -0700 (PDT)
 Received: from smtp.gmail.com ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id z190sm482654pfc.89.2020.10.06.18.17.42
+        by smtp.gmail.com with ESMTPSA id z190sm482654pfc.89.2020.10.06.18.17.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 18:17:43 -0700 (PDT)
+        Tue, 06 Oct 2020 18:17:44 -0700 (PDT)
 From:   Stephen Boyd <swboyd@chromium.org>
 To:     Jonathan Cameron <jic23@kernel.org>
 Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
         Daniel Campello <campello@chromium.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Gwendal Grignou <gwendal@chromium.org>,
         Evan Green <evgreen@chromium.org>
-Subject: [PATCH v3 5/6] dt-bindings: iio: sx9310: Add various settings as DT properties
-Date:   Tue,  6 Oct 2020 18:17:34 -0700
-Message-Id: <20201007011735.1346994-6-swboyd@chromium.org>
+Subject: [PATCH v3 6/6] iio: sx9310: Set various settings from DT
+Date:   Tue,  6 Oct 2020 18:17:35 -0700
+Message-Id: <20201007011735.1346994-7-swboyd@chromium.org>
 X-Mailer: git-send-email 2.28.0.806.g8561365e88-goog
 In-Reply-To: <20201007011735.1346994-1-swboyd@chromium.org>
 References: <20201007011735.1346994-1-swboyd@chromium.org>
@@ -66,103 +66,193 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to set various bits in the hardware registers for this device to
-operate properly depending on how it is installed. Add a handful of DT
-properties to configure these things.
+These properties need to be set during driver probe. Parse any DT
+properties and replace the default register settings with the ones
+parsed from DT.
 
 Cc: Daniel Campello <campello@chromium.org>
 Cc: Lars-Peter Clausen <lars@metafoo.de>
 Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
 Cc: <devicetree@vger.kernel.org>
 Cc: Douglas Anderson <dianders@chromium.org>
 Cc: Gwendal Grignou <gwendal@chromium.org>
 Cc: Evan Green <evgreen@chromium.org>
 Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 ---
- .../iio/proximity/semtech,sx9310.yaml         | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
+ drivers/iio/proximity/sx9310.c | 125 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 124 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-index 5739074d3592..ccfb163f3d34 100644
---- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-@@ -40,6 +40,63 @@ properties:
-   "#io-channel-cells":
-     const: 1
+diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
+index 3f909177eca9..23aa235ac2b6 100644
+--- a/drivers/iio/proximity/sx9310.c
++++ b/drivers/iio/proximity/sx9310.c
+@@ -49,23 +49,42 @@
+ #define   SX9310_REG_PROX_CTRL0_SCANPERIOD_15MS		0x01
+ #define SX9310_REG_PROX_CTRL1				0x11
+ #define SX9310_REG_PROX_CTRL2				0x12
++#define   SX9310_REG_PROX_CTRL2_COMBMODE_MASK		GENMASK(7, 6)
++#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1_CS2_CS3 (0x03 << 6)
+ #define   SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2	(0x02 << 6)
++#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1	(0x01 << 6)
++#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS3		(0x00 << 6)
++#define   SX9310_REG_PROX_CTRL2_SHIELDEN_MASK		GENMASK(3, 2)
+ #define   SX9310_REG_PROX_CTRL2_SHIELDEN_DYNAMIC	(0x01 << 2)
++#define   SX9310_REG_PROX_CTRL2_SHIELDEN_GROUND		(0x02 << 2)
+ #define SX9310_REG_PROX_CTRL3				0x13
+ #define   SX9310_REG_PROX_CTRL3_GAIN0_MASK		GENMASK(3, 2)
+ #define   SX9310_REG_PROX_CTRL3_GAIN0_X8		(0x03 << 2)
+ #define   SX9310_REG_PROX_CTRL3_GAIN12_MASK		GENMASK(1, 0)
+ #define   SX9310_REG_PROX_CTRL3_GAIN12_X4		0x02
+ #define SX9310_REG_PROX_CTRL4				0x14
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MASK		GENMASK(2, 0)
+ #define   SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST	0x07
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_FINE	0x06
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_FINE		0x05
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM	0x04
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM_COARSE 0x03
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_COARSE	0x02
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_COARSE	0x01
++#define   SX9310_REG_PROX_CTRL4_RESOLUTION_COARSEST	0x00
+ #define SX9310_REG_PROX_CTRL5				0x15
+ #define   SX9310_REG_PROX_CTRL5_RANGE_SMALL		(0x03 << 6)
++#define   SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK	GENMASK(3, 2)
+ #define   SX9310_REG_PROX_CTRL5_STARTUPSENS_CS1		(0x01 << 2)
++#define   SX9310_REG_PROX_CTRL5_RAWFILT_MASK		GENMASK(1, 0)
++#define   SX9310_REG_PROX_CTRL5_RAWFILT_SHIFT		0
+ #define   SX9310_REG_PROX_CTRL5_RAWFILT_1P25		0x02
+ #define SX9310_REG_PROX_CTRL6				0x16
+ #define   SX9310_REG_PROX_CTRL6_AVGTHRESH_DEFAULT	0x20
+ #define SX9310_REG_PROX_CTRL7				0x17
+ #define   SX9310_REG_PROX_CTRL7_AVGNEGFILT_2		(0x01 << 3)
++#define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK		GENMASK(2, 0)
++#define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_SHIFT	0
+ #define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_512		0x05
+ #define SX9310_REG_PROX_CTRL8				0x18
+ #define   SX9310_REG_PROX_CTRL8_9_PTHRESH_MASK		GENMASK(7, 3)
+@@ -1193,9 +1212,113 @@ static int sx9310_init_compensation(struct iio_dev *indio_dev)
+ 	return ret;
+ }
  
-+  semtech,cs0-ground:
-+    description: Indicates the CS0 sensor is connected to ground.
-+    type: boolean
++static const struct sx9310_reg_default *
++sx9310_get_default_reg(struct sx9310_data *data, int i,
++		       struct sx9310_reg_default *reg_def)
++{
++	int ret;
++	const struct device_node *np = data->client->dev.of_node;
++	u32 combined[SX9310_NUM_CHANNELS] = { 4, 4, 4, 4 };
++	unsigned long comb_mask = 0;
++	const char *res;
++	u32 start = 0, raw = 0, pos = 0;
 +
-+  semtech,combined-sensors:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      List of which sensors are combined and represented by CS3.
-+      Possible values are -
-+      3        - CS3 (internal)
-+      0 1      - CS0 + CS1
-+      1 2      - CS1 + CS2 (default)
-+      0 1 2 3  - CS0 + CS1 + CS2 + CS3
-+    items:
-+      enum: [ 0, 1, 2, 3 ]
-+    minItems: 1
-+    maxItems: 4
++	memcpy(reg_def, &sx9310_default_regs[i], sizeof(*reg_def));
++	if (!np)
++		return reg_def;
 +
-+  semtech,resolution:
-+    description:
-+      Capacitance measure resolution. Refer to datasheet for more details.
-+    enum:
-+      - coarsest
-+      - very-coarse
-+      - coarse
-+      - medium-coarse
-+      - medium
-+      - fine
-+      - very-fine
-+      - finest
++	switch (reg_def->reg) {
++	case SX9310_REG_PROX_CTRL2:
++		if (of_property_read_bool(np, "semtech,cs0-ground")) {
++			reg_def->def &= ~SX9310_REG_PROX_CTRL2_SHIELDEN_MASK;
++			reg_def->def |= SX9310_REG_PROX_CTRL2_SHIELDEN_GROUND;
++		}
 +
-+  semtech,startup-sensor:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 1, 2, 3]
-+    default: 0
-+    description:
-+      Sensor used for start-up proximity detection. The combined
-+      sensor is represented by the value 3. This is used for initial
-+      compensation.
++		reg_def->def &= ~SX9310_REG_PROX_CTRL2_COMBMODE_MASK;
++		of_property_read_u32_array(np, "semtech,combined-sensors",
++					   combined, ARRAY_SIZE(combined));
++		for (i = 0; i < ARRAY_SIZE(combined); i++) {
++			if (combined[i] <= SX9310_NUM_CHANNELS)
++				comb_mask |= BIT(combined[i]);
++		}
 +
-+  semtech,proxraw-strength:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 2, 4, 8]
-+    default: 2
-+    description:
-+      PROXRAW filter strength. A value of 0 represents off, and other values
-+      represent 1-1/N.
++		comb_mask &= 0xf;
++		if (comb_mask == (BIT(3) | BIT(2) | BIT(1) | BIT(0)))
++			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1_CS2_CS3;
++		else if (comb_mask == (BIT(1) | BIT(2)))
++			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2;
++		else if (comb_mask == (BIT(0) | BIT(1)))
++			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1;
++		else if (comb_mask == BIT(3))
++			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS3;
 +
-+  semtech,avg-pos-strength:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 16, 64, 128, 256, 512, 1024, 4294967295]
-+    default: 16
-+    description:
-+      Average positive filter strength. A value of 0 represents off and
-+      UINT_MAX (4294967295) represents infinite. Other values
-+      represent 1-1/N.
++		break;
++	case SX9310_REG_PROX_CTRL4:
++		ret = of_property_read_string(np, "semtech,resolution", &res);
++		if (ret)
++			break;
 +
- required:
-   - compatible
-   - reg
-@@ -61,5 +118,11 @@ examples:
-         vdd-supply = <&pp3300_a>;
-         svdd-supply = <&pp1800_prox>;
-         #io-channel-cells = <1>;
-+        semtech,cs0-ground;
-+        semtech,combined-sensors = <1 2 3>;
-+        semtech,resolution = "fine";
-+        semtech,startup-sensor = <1>;
-+        semtech,proxraw-strength = <2>;
-+        semtech,avg-pos-strength = <64>;
-       };
-     };
++		reg_def->def &= ~SX9310_REG_PROX_CTRL4_RESOLUTION_MASK;
++		if (!strcmp(res, "coarsest"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_COARSEST;
++		else if (!strcmp(res, "very-coarse"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_COARSE;
++		else if (!strcmp(res, "coarse"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_COARSE;
++		else if (!strcmp(res, "medium-coarse"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM_COARSE;
++		else if (!strcmp(res, "medium"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM;
++		else if (!strcmp(res, "fine"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_FINE;
++		else if (!strcmp(res, "very-fine"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_FINE;
++		else if (!strcmp(res, "finest"))
++			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST;
++
++		break;
++	case SX9310_REG_PROX_CTRL5:
++		ret = of_property_read_u32(np, "semtech,startup-sensor", &start);
++		if (ret) {
++			start = FIELD_GET(SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK,
++					  reg_def->def);
++		}
++
++		reg_def->def &= ~SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK;
++		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK,
++					   start);
++
++		ret = of_property_read_u32(np, "semtech,proxraw-strength", &raw);
++		if (ret) {
++			raw = FIELD_GET(SX9310_REG_PROX_CTRL5_RAWFILT_MASK,
++					reg_def->def);
++		} else {
++			raw = ilog2(raw);
++		}
++
++		reg_def->def &= ~SX9310_REG_PROX_CTRL5_RAWFILT_MASK;
++		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL5_RAWFILT_MASK,
++					   raw);
++		break;
++	case SX9310_REG_PROX_CTRL7:
++		ret = of_property_read_u32(np, "semtech,avg-pos-strength", &pos);
++		if (ret)
++			break;
++
++		pos = min(max(ilog2(pos), 3), 10) - 3;
++		reg_def->def &= ~SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK;
++		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK,
++					   pos);
++		break;
++	}
++
++	return reg_def;
++}
++
+ static int sx9310_init_device(struct iio_dev *indio_dev)
+ {
+ 	struct sx9310_data *data = iio_priv(indio_dev);
++	struct sx9310_reg_default tmp;
+ 	const struct sx9310_reg_default *initval;
+ 	int ret;
+ 	unsigned int i, val;
+@@ -1213,7 +1336,7 @@ static int sx9310_init_device(struct iio_dev *indio_dev)
+ 
+ 	/* Program some sane defaults. */
+ 	for (i = 0; i < ARRAY_SIZE(sx9310_default_regs); i++) {
+-		initval = &sx9310_default_regs[i];
++		initval = sx9310_get_default_reg(data, i, &tmp);
+ 		ret = regmap_write(data->regmap, initval->reg, initval->def);
+ 		if (ret)
+ 			return ret;
 -- 
 Sent by a computer, using git, on the internet
 
