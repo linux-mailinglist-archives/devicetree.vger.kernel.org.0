@@ -2,382 +2,385 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF7D42869A6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 22:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C75F62869B4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 22:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727534AbgJGU5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 16:57:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
+        id S1728542AbgJGU5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 16:57:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726013AbgJGU5P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 16:57:15 -0400
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C422DC061755;
-        Wed,  7 Oct 2020 13:57:15 -0700 (PDT)
-Received: by mail-ot1-x342.google.com with SMTP id q21so3545872ota.8;
-        Wed, 07 Oct 2020 13:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+PgDkY01r+SPnq9V1UBxtImvIZ+pUBtI19wyV25iY7U=;
-        b=ThvuIbr0CMZR0dT8iUzKHjStgv9nz1WNJP5fSKGNEJY/201n+RdT9yrPcuzoZJPIsi
-         kS4PrL9gs8INyZACDFD9AEenxp93n7GO3vK7jruujXKhiIwq508kxuFJeIy2mB6yhTuW
-         6s1Yw/lZ1N2qcSvhuJ0Xn8tY+LxOg3Rt4EVJA4BbddD7CU2OuMJsLijYA8eVnlZ4+iyH
-         zp2OjjK/bGLdykxCCMqLJdcHpjgwrRsiqvFoMYADWd3E1WAl9fN2X+tR3zsEzkySmz0X
-         OnD9+yDxjT3RhT+hTJ20LlcWXVGQBNHyZQq/e8wniNDHt5Y+UZhPj9N5EkRDeQTw6o3z
-         pI0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+PgDkY01r+SPnq9V1UBxtImvIZ+pUBtI19wyV25iY7U=;
-        b=JMiLLPv+87dMZy3p+573rh9K4MDQuJIPHp4/dUeAAtpqqn9Zbv9oCVAQqW1CAE/QPp
-         G+QATvamdm4hv1kkvMza37p2yRxPYjZKNa9LSjll8jtJh4zaqRY1F9kjNyM8cmk1+t34
-         Z80z9ZpSkZAhc2O8pc177f59gzk7lDNhVdAechW2VIvYcEGdx9FHRNJM8DfyRY/NzGS7
-         7RI+FpVlfKX/fk/+oRYqsv0v2I5+vF3oqddt/5RjjLMj5k5b/yX1/dSPjIMfx6lzIdgO
-         Gh6K1GmxSa4JbnkNC3J+viYxGe2krOmIXPrhfm+IE+k6di8M3RKKvqgkUxumqGz0iTTz
-         Vwsg==
-X-Gm-Message-State: AOAM53360SvHh6mFcfoKC/uYDmzS6pVjnmTFne5GAJjAmxcq2iU/JxSb
-        XZFaR+P/9IswNyZInWbD6a4hYtUQaDCTWjrMKS8=
-X-Google-Smtp-Source: ABdhPJxgP4pU9mnZ9sU5+E8aH+0IQMPjuMDOxIs4XgZ/mYhmQeCtbrQMCUI8zn5ZAOPEnRHwPtiDhBHyFB0sMbUURYE=
-X-Received: by 2002:a05:6830:1f4d:: with SMTP id u13mr2870769oth.184.1602104235068;
- Wed, 07 Oct 2020 13:57:15 -0700 (PDT)
+        with ESMTP id S1726152AbgJGU5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 16:57:39 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F462C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 13:57:39 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kQGVD-0002Sf-8D; Wed, 07 Oct 2020 22:57:35 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kQGVC-0001LM-Cl; Wed, 07 Oct 2020 22:57:34 +0200
+Date:   Wed, 7 Oct 2020 22:57:34 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v10 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20201007205734.vguookvp6wt3knuq@pengutronix.de>
+References: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
+ <a8cb129092283cb6415e56b928293ef7121a851b.1602090900.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-References: <20200921092951.945382-1-enric.balletbo@collabora.com> <20201007151159.GA221754@bogus>
-In-Reply-To: <20201007151159.GA221754@bogus>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Wed, 7 Oct 2020 22:57:02 +0200
-Message-ID: <CAFqH_531fkh_gZbOMuzhsRj-72NeWsPyxWoFQh9bAF3CZwTfNw@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Caesar Wang <wxt@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5e4jj4rnobifsvui"
+Content-Disposition: inline
+In-Reply-To: <a8cb129092283cb6415e56b928293ef7121a851b.1602090900.git.vijayakannan.ayyathurai@intel.com>
+Autocrypt: addr=u.kleine-koenig@pengutronix.de; keydata=
+        mQINBEwXmCYBEACoJSJcKIlkQcTYia0ymmMOBk2veFoy/a0LlqGUEjQ4WECBL19F2BYX1dSp5/Z
+        dfKuV605usI6oq4x6k/LKmqZDl6YnqW/YmN/iZVCRunBRfvpTlL4lcNUu5Va/4GBRzBRrrrIhCI
+        VL5zMV6hKywhHKTdOHVSZRftf+eRSBwENKXahmfOMDmekyf585etDPdzkFrLHNVFOCsFOU0gCK0
+        uVPyY0LH13eo4qEEMi88RCOfwYCFQqKXDdo41DWoDPB5OGCMaphIx9wC/nvtdcvMowsGde5iGgm
+        HWK6sdC/O/xaV7fnz1sJzoJB1eT91LkGbdGxsLAT6nqlaNJiJtiBoRhscguVxVbn/I9mnUu7bLm
+        TFBEAlaQGU/J7uQ4w94FXfosNGROt/otqltetMZlPbNvNhKnXv8U6eRyAP3ZMKTJa4hGr3UdYdt
+        4+MIiHcsANWp8T7oLYVxRbHPXPG49IURnhXUoGbscZmpptWcl29eboqCxL9n3KIyUT3ZB1xHbW3
+        Sk/Dqzf52tQOxZubzrpUJ8zaGIwYVUjfcPFwf3R3zrQvJq7mI4SddNIE8w3WJOPXDOYx7GjOa+I
+        ubhSpCrr74NbN8q9oS3hnsqWw16i3HSUuPuYeZo1t6D5p/mXEVyZ2QrS1kGgGi7bmlQMSFkb6g1
+        T8aWSYuX3PBYq2VntnWAXPwARAQABtClVd2UgS2xlaW5lLUvDtm5pZyA8dXdlQGtsZWluZS1rb2
+        VuaWcub3JnPokCVwQTAQoAQQIbAwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgAIZARYhBA0lEfMiv
+        6scFYAma+Lc3ZEyZpvWBQJdD2/6BQkaXdlUAAoJEOLc3ZEyZpvWXJIQAItguVGhM5bXhr+T5Dq8
+        tUPUzfEE2agVUhtwNUG1HEqF9Ex5PRRauCN5YW318C3MRWgQepr8q2xgQ+Ih1Irl8GCVLh0vIIZ
+        Rd8DbDSKBiPC0orKkHU4WgX48xl0WVnLShUOt2bk1Vv5twB1a19f6W5ww1x0roxrNtAbDpPB/z0
+        siynnqdQSeiJe+TbPwGT5eginTRiC6hf+QGOz2jl0HQBmzabI+IWUuyZqb1kG78U1Si33N8GXCG
+        rHzAKOtGI/7vzqlLGulMcWIRxkPU0Yg9FeH033ko16d8g2R2VPaP3ntm0KYaJngrbiTKGj7OXxU
+        SASC7lBY7zf1UzJQYSU9TRrz3XZ/4GEDkfQL0M9rPjWBj3HbwtQzURhL4QjC77Zi1OKT8TXrDGO
+        oO8q6Th1y8ipaKOhAakUbywZMCZi1RqOf53RnAquRApHfpu1I+W/iDtI51wZsuolqRlYd/nAbvz
+        Kt7SFG6V+ZeV9df6/xV3kS2NkNawy/dDqwJWA3gTHX1SEu2y04/qOyH/CR6sLEozQnqxVS343TJ
+        xyfJYW7TCwrDz0ijEFcy+xyyqvPn0Yc5zp2CnLKiB5JyV3mnz8qJVP0QfWUKKI6740m/1U9nDQY
+        ttGlklxgayLJKoEG/FYxEe1m93U8anvxb4IULSHTgfCHpSJjLeVJVXUffH2g3CYAtChVd2UgS2x
+        laW5lLUvDtm5pZyA8dXdlQGtsZWluZS1rw7ZuaWcuZGU+iQJUBBMBCgA+AhsDBQsJCAcDBRUKCQ
+        gLBRYCAwEAAh4BAheAFiEEDSUR8yK/qxwVgCZr4tzdkTJmm9YFAl0PcA0FCRpd2VQACgkQ4tzdk
+        TJmm9au8A/9G416eYcq7xC0iZogBzgxhovg6Gfl1UVM8mS5X2Ws2E5gaVxRZSw1svuS+xen3RlO
+        vWZYSWOvZfjI+sAVvFEUFtPJ8HRl1TcvuDQcQnLnTxz+qfUZnyeCsQd8hlpg8LPRYbNn48xjy3V
+        tOeQ0AOfn64+HzkgfSREvpOxhC2d7bsqHHI8rQUi4tkLpQPCzAHgby4TwP9wPsVQw1D+3m45/nU
+        +JAhgWIlhICaiwfgsr+RZdSZ4wpiCuLw+cZjwNhhwXGY9RiagUDezN97oGJ8jh2J9VgsQUsZzhf
+        MuORPZrbJPWIasJhz6Vpctlt4WjBTMFeRaqh9oH6nr9WMGRNkhNnk3Kz8R6PpioNIuHioULCzce
+        RU70uVMkf+ZWhWQ/uZ2p/UI3Mbbm5y69G2lyMs03goLbj5psfe3OIU3ItnmIWUb8Lg08sqedeUJ
+        XaV7arbytt7kLA0jxEvuJ6VacvWv7AXUEJ1alwqXfz7u+rKGRKyN99zmxN2S4vdSkURaD73XkYY
+        r4RnnSYEH/4xCZ9JIYk+2ZjuTYmHW4IGvY4FhoMxeYCZxiPHCqE9czXr4d9wrTyG5b4VtRW3RG7
+        3MwwElF725S8FzKxEdMDgVoA2k0A2O6f1nmbyUC+ekM887LRRvQFwxkQemUciN/4CToYBRHMB0I
+        kHbQIslLJ346mymPKoe0LFV3ZSBLbGVpbmUtS8O2bmlnIDx1a2xlaW5la0BsdWctZnJlaWJ1cmc
+        uZGU+iQJUBBMBCgA+AhsDBQsJCAcDBRUKCQgLBRYCAwEAAh4BAheAFiEEDSUR8yK/qxwVgCZr4t
+        zdkTJmm9YFAl0PcAwFCRpd2VQACgkQ4tzdkTJmm9Z6MxAAogiJNqNmtXsWOIL90avCBw6d6l227
+        fI1muTrCu+3WGY29EVzeymS+U770B5+Pv2k+fcNqz4Vj/HgvG00dV6XCyJp0r/u9s+42lAvfHyH
+        9yQmi+JICx7y1swGXL0pjIKLZ3Xr1W9vqmboeccAAtedAkt3eYavqq3dLH5GOegcbyIqVD9chRi
+        qxFX3Hc84JYtijo78USZcCZHT3HTQo1vQ9g22+2s/nE2QUGkjStshonvmSY40AddgtIP4sJI2Tu
+        TUDwc6H1ucaJe5syKs1iAvKw+o5XlaoDvdUB/HiZVFgYJ639s8yp2ybotGgFhE2Dl430OeW3tah
+        BsmwuL/TzrAAu+ZxokxHOWjh6Z77TQRn9jG5GHrpgPeAAnmIlvPkzQ/GJk9FhOebE2ZCnQa9ssm
+        5snk0nfJGnJElGH6KaBYIskwgRMEyfxuVI1gp4Sv8GFYufA/m/BkB3L0fQIB/rN0KDSrZJp9ZjJ
+        S4bRFZS5H4o6U6NBv1shv5235akw8CWXL1V+tGgjKDz54ng8qtnJaJLsHrWZIXiuguVRsitaQMm
+        XEckS4wyzQe5SFEAZr/hh7De48ZXNIXKdJDDBDOeycuKb2rl67Zz4+UWm7ovVdFxZodZYIqDOFz
+        4BFvbd0YPxBv4O51OiAhEv4jSUbZbMybuEX0sg03iirnWhfJLo464y0MlV3ZSBLbGVpbmUtS8O2
+        bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+iQJVBBMBCgA/AhsDBgsJCAcDAgY
+        VCAIJCgsEFgIDAQIeAQIXgBYhBA0lEfMiv6scFYAma+Lc3ZEyZpvWBQJdD3ALBQkaXdlUAAoJEO
+        Lc3ZEyZpvWeuwQAKRFjQRYXMAy25vgeE+QV2ogeWWEcPzHo/PMcJd78pRHMXPUT5tRPQLz8WLKg
+        CJmWtLBHNDloHG7tqgxFEbaToK3BzbZYUI6d+HSV5eVsm7fubTnR51n2UU8O7seziV/qNngz7On
+        KpGrzI2jpvYJiz+mhHiMyJ9ay/yrfcxplm/eZ7y3KXcSlrslIGeaH4UtMf08NMqAfZWtsXykQny
+        mD///2tvNPpLCACGVr9zRWMs1R8pNiU/WhG5NY9STYR5a8NQ75EdgVDSyB3UvXPHd6EZHiosC9P
+        yDsnAWeRgFraNBpkYHCzwDKVpmA1JwSHMhVEaWvUB8ZlYNR5YovUxcK5M9/dDB9zNVpW7Q8Lt3C
+        vaS6RrtnAyJex+ti2/8EozjzDHq4lbmw3LHkr6noEt3e4iYhgEGvZqRjO7dAxaWlJo1+bW2HwOV
+        7A0UH8UtE/YmRHmVby6JU11b38xflUQQmFG1P6VAcwwro5oGrRDz/GtaQkzF2N97+XUamJAxNs0
+        P7oGM/BdITD8CQZvCDSkmv3YfKOdgNHi5OVcRM8JiDBijrQOG2dcDAy5BH2xy+iEK2Xu1MqsGQe
+        JbVClqBM4b68WBCBmXcQcezAcnNmyvjnc8ou4lFdfEC0IiqCpOH9QVBm5Z2p+0ApXRGA09Qnq6Y
+        spdlNBEv6YO9HyzcsQoXEdltCZVd2UgS2xlaW5lLUvDtm5pZyA8dWtsZWluZWtAc3RybGVuLmRl
+        PokCVQQTAQoAPwIbAwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4AWIQQNJRHzIr+rHBWAJmvi3N2
+        RMmab1gUCXQ9wDAUJGl3ZVAAKCRDi3N2RMmab1o7cD/9WFxO8r9ydubns9ik/I26HaNhD9zb3ty
+        /gL83M6Lk9hps/fUjIuT6igidZ6mwlAQN+ELyBM938tuudznG1ZGq2a4uWUJ5aI900PEmitT+tm
+        HXecsDYlXV+a1t5MAGhytn4ODjG5HzKq8dd4OJjpM1PA7NwOhHJqaWbJFseBf7M6oo3N7RCt2zq
+        RIvXFkRpGlIS3MnS0qsVTSPNFxr3s6kNFJD/L9oKmB/EStuu8L9gaVJ0KOb+XXmvmFXnlxL/K1d
+        SavMVntAYZnEmfV64ncDF9h5+R2S8l/WLWUOb5Gsj6wJEWe2+sun95p2ef+w/J8oxIqAZq6P6w6
+        RXLHUK83Bl1mVPT8HpuVupRGIMO/m24HudR1X6TUA95BGHV0Ljp8yHyYS4I677CnHaGPqBv4Ffd
+        hsty0R/2perJQZSVXwsgkvD9X+GZq09hxivUPE2RMEZFNaEp6VDnysvYC8fsG0fAI3SdJgaOvZd
+        mqFZF7tgpKlYR/s7wOggVGEyr7YxFn3yXg3Jh060JJsfmRtvqfHN4tl6LNblXRpzQ6LNP8irf5y
+        /CMREF/DjBlFvZo9lB0OTVi8T4aORszZaiubzkoP2FitnOFrsswafxTgOfslS8+TqkfI8dbzVfU
+        2aPor/w5epHR+GWU0wVVyAnKX6Vy9c3luSpKl/LZi2/ZJunem6srQnVXdlIEtsZWluZS1Lw7Zua
+        WcgPHVrbGVpbmVrQGRlYmlhbi5vcmc+iQJUBBMBCgA+AhsDBQsJCAcDBRUKCQgLBRYCAwEAAh4B
+        AheAFiEEDSUR8yK/qxwVgCZr4tzdkTJmm9YFAl0PcAoFCRpd2VQACgkQ4tzdkTJmm9YU6A//XP/
+        KcQ53vseUO5coLhHVIM3AeigA5S51KncTxid6+EL3fRjxbZ6IXlfq65/M2X9AoZonzcbpXdjMbn
+        Ai8JKYC0ndL4sTBwDOyL9cqoJIVMxkJDuYgYzoKZqYdzhp58UMxAtGKOQuTjf08tKW13bLZ2L8l
+        51U98ygpuZV80iXAhifg4Mc481IlKhnd7a+Wdo+8N4BXGlf07ZYdWlbjSfUeH2jOWYP4V+4fzeo
+        TL6ZRPksdlAt3s/o3rEpurYSDJhERGjNxMtpf1McZtjqGyl9D8q5uIg1U9BL41EzKNJiV1zwOIj
+        1our36yoOK2MYN9+2EikOfO3PYzwLZvkhjhm9ObQ4WBpKXubSu0EO5KEHRS8vuZ+IHOyec9QX/f
+        6f4Rxx/HuB2DUqTkYQ0kjKnbw822AS4LxYP/ULtMbDYQR4pHP7yIK2kmDLdbllj0tGN2U5EnzPP
+        7uELudvXZczYjDjjBH/BZrHOuYZL3wA2uulkgRfnrFqd8AOYOZM4U6JS1dcGY17VWhYAdhS73oE
+        ngJ9dPzP3ZPzSIxyyj/7oAiaVWEPIQEfLdzYvQghbnWr+oROMMs0QNfLa2qSyFKQ98gn3taunfn
+        cvKhvKclRObbauUJwZ8C8oTffuhto8pXIzHOx6KiwgCeakZlALFVbEs5XdfDp6LyZvvIxlWZLGr
+        cX1la5Ag0ETBeYJgEQALLQrXF4TXDJs6amDDLDhz9bgpjbkKN9e5wG3TSd41vbilUo0ZRZJyexS
+        yoN8D7uI4n4IBqFGEMaZto7SFn81lsQpuFdgJWxzY45WuZPb4WCdiJYue0wYoY4uoY7xCmsulpd
+        LLm0k/b9RZCLH62AodoMQ3PuclV9/lYXTN2Up4w4gliatpYt6WysQWXD85R8paObfSmeK81RpxU
+        gL90heLDP2bKRh2SykRCFTZpIGv32gTztRTJ/gEiC8HhXLfXqLSj5Z0RYJjfrVi7TYBa8eVSGOP
+        +QPKJjxbFgYpAlYDDor4JUO158sxVD6X4DhX/diAL5ocLDxpvZmFddKhtwe/Qr2mU6sZH/cnp8j
+        Jt/lFiCJnrqqHtYSs+FW5fHf5u1h6G4+d/Z40cgFvrCssmj/JY/eVZpQVqDtyyEy/DkKSg33jz5
+        0lZB53wczR8NvaE0y0GfnZJvdDxllOs1gld/IWrlbX5bZbln1olP7gDkXJ5ynOZzt3L3vIDtDgU
+        HzPlY676DTe8a2sDb128V3Ez2kknMrPgU5L8jyuSN+ZfEHFR0MBuDw0c3noLDVoEmS26ndbU9rS
+        7YWBuCkVRlUNn5Gq2PCUUvIyYNo7srXOHES72SDTZIEia2tVIlkpAw5bBkk9Q0ERyJ1TzJB5P4n
+        7sCcj9jVftHNzBNE/olFzi/DhnhABEBAAGJAj0EKAEKACcFAlSy8j8gHQNzdXBlcnNlZWRlZCBi
+        eSBzdWJrZXkgNTdDOTFCQzcACgkQ4tzdkTJmm9YPyxAAneQxh0ceohdi8vqiAi/cfMITedtri0+
+        /7P/OPyzfUbRWURd2pznicJBu+xY7WNiQNX56oaFPfOvxX/nkbIOQwSrDxDoPTTCrgEtWPhbrhy
+        JRRv65BPX0kKgvq697B0E/tbzpQwfY6GdJfgnUCybXGM5MizOxSVgPT7O2306BfJTFDbqY6elNK
+        5zstJ0uor3hAHfghLyR5U3FkZ0+eH0vGlkUV1lMrWNu8IDSARKwCxD3SwnNucXQTSbccVgWJj4T
+        rqe3PQ1ujrwgrD2NjTO9HnpCLmz+4EV9xl4EBZ6wbzEozLjNlqcszDJ65laiv5felsfkW2mhsav
+        SjKIfhcEaUw1adcCjr2t2KD5qHhI6X1YUqffc8lNOVZfJoT4XE6DCFPtsmk+ezyLa7yOZvGULmO
+        k/z7xxJ8OR0GEHGx5ymwwsXlsgCqGjF9HERMv7G24904SAfoqP8hreB6IF9Q+suRr3dMTcQQKfz
+        1ZwPpe9zJFb3mi2uMr5K+eujhfOLTN3SY/VbCrh0Dhl9viPdgMA6OEbMN5JSpuFW22Cwdz318++
+        4yuNBSTfH0tzT9ltsJl8JrleTyWimL+hPqYmiP0ePTnvwCS2+37QDKqjsOZdQ1lmrUmm3cIJQLO
+        PUTwgId0eHc0bocZuFtND3pZ+kHBc449mJYtZnNPgXOvAsujHzBOJAh8EGAECAAkFAkwXmCYCGw
+        wACgkQ4tzdkTJmm9bSgA/+Kc17oAcqNKhuGoGS9Sa57in9e24i+3bLGZwoGA9IBI2wvdMPY4UYl
+        olW1+cZ6bZicqRVCx4/3RLUWoAEbktqsNB451hIt0ViwYYsn0/BeW/N7et4QOg8tW7hz5bZ1E8p
+        ZdrdppfpLON5yHcwPZt0ChMdve+j7NEvKRVKpS40jjnR12xHr999O4cElEzhKJwL19Bk3qmj/Jl
+        P3fsUfSKBkpw2uqAlZ9Snr4RBSi9GFmiWgYu5qdyqDUAsZ6bRVF+aWEBBo0Ea6fKKEc4Udd8Rty
+        Emx4/rH0ZjWvEcfzmnj1ytM3Ew5ZoMUvfeI3yQORwC67LPzu5ZTR+Izcul7NTzH05vL4zd1hikO
+        RwrOQ0DbLk4IewIxT3Dt/yQXa0UKMSl35hX2s1ppvwqn1ZEICcRYmu0+Qa4pTUe9YVzSp2xBmd1
+        nCK6ndr0vYQAhuQ8/BdA3Y+ViwUXWpizzxbG4H39uzxS3FhOdgpQE2Wmb2rWiVaf0nwZF5SkCdQ
+        tplApuFrFtirmzY3m9gqw6HTNZ6A6JO45N0vY3xewaUIVeHEbjn7wm+kvI2KmHLG+qjP/P0Uq7e
+        nFkpZ6K6Ya90nXsZMPLvDSrSg92HtbMrCopAgF4/5g0tytmghR2HEECtg9FGGVExMIAL5i3hlV/
+        1MALc0s1YwOh3sIZo2UNwhHAzRGTQS5AQ0EVLLgnQEIAKGlZ1WQ3QFN97/NXpaFtsBqycU++c7B
+        PqPzLkGV67P7pcAIsbreiAG7/ht9B1mB0cgLV5sj1drMxKi8J8FNKfuqW7ZH/JisnZTHC8OSJLY
+        u4sAYRZ9PDKKYWvz/hB5N/L9jR1YsJKo2UaD2v4YXFLxhueu6vhWt/D7hChCznUygoZORHgEx14
+        lKUvThwHIEAQDoetrzySvXcClY5IdxGQpG+PtkKYEfb4aedt02bcCWsS0u96kdI4O+eB948xc0e
+        O2niLDRWRu/6z1cSG0LpuvIPwAlqGhpX3jDZxDPjx9KM8Pwl9mOCs34ns/JQM9O6CZALSag+Lse
+        0fGWge1tfkEAEQEAAYkDWwQYAQoAJgIbAhYhBA0lEfMiv6scFYAma+Lc3ZEyZpvWBQJeGDcEBQk
+        NJ71nASnAXSAEGQEKAAYFAlSy4J0ACgkQwfwUeK3K7AlrIgf+JLyPvo17xE6Jn6OOOTh9+t/QAJ
+        q3VV0/xIyctFqK6v/gnFG/7f5zQKex5ThCesfZ3+zBk98wyVVmG5ToIYn67Egkv/rGDxnOdT5AB
+        WcWQcjSCanfD6qFELDwsiLVKmoBLGCu+WcQkL5+LeUwU4oxor7aQlgrIIogJRBA4YdFlSV+JMYn
+        Czww4GpFA11RktykHCW3QuX+iOrJuvFtG1AKHiFzv4asivhFCWfrxiujkLpX/3e4iFN5lyD12C7
+        JsFDI5GM6uDOFaQKiYyqGZ6mnHQuqX7EioYuEJVR7jmkezLqlI26Hb/5quZADFhbnyGe20FLQR3
+        oSPVy24wRFq8U+sQkQ4tzdkTJmm9Y5WA/9H04g5yszsO99k0tZa78roTXLBbGZ8Jbo9IwdHKgxw
+        kRavqbk/+MseLs37nCL7MpqLmLgMdQxNiDx02/jITipy6p6nZP6MBHz8fVgxuRMk7vqJQYx7wF/
+        8SOhrAVvnjmY3p4vTpGGSEX/4xjF1ha6heZI3H7zU72+cxpbIBAFoLYiTxq7pDX2gEhiW5B764h
+        Yn00FAXHRqRQ/W7PwBkmItxI6cyRpFvXspKp6KMHu7TdwsD9CbnyCbIOjSAuJ9sbvX1OdueUIVI
+        p9Znsq9P44tKf/jjrJdgtssg7EygOfA4wQTLffDJsr1JPWYVvuQZQvOVN8VZFCqIhgR8vDHWyPG
+        c+QjcJTTvv/wqKknSC1+4Nu/6BDjDws7RnVA6EUNN9o2cDtr0FmeeU891pUt7DG6KWRZXKRVSw9
+        g/1tOrEJ9PcW/v5hddr3Ox1nD4155ErnI6EBpDlgL/iCbo2FC1zZ/0u3eNapl/knyLRnrDKymSE
+        eq7EjXvdJSyIVQ1MkOljdtmuYcBQYuSIvtafbtfIGpS8vS8hDuXOCQA3UXRVrT5A7IozCPa1HIc
+        jqy20747bGXGwqm59BTjKh0RcvF0+opdXcY3xcC7/COX+T+Hn6e4tAoj1PIzls12+Ct3HnKmYwo
+        iib3Hi/sJG8o50TVKMsSI6We7rKqc2Bri1VyHuqku25AQ0EVLLilQEIAMA56nnTw18BdNxutcd7
+        uciXzyE0nuC0Y8a6MZO12d5Nkjt+wz2iQOydAWRvysqHPNmJosHGABqh5ux3qqgIS81X5fvlyvP
+        3wqcHx3Z50KpUcS6xvst4A5BFmMmXf/mEm5hhcYda6LvBJnuLbB4apiDUQNMA7h6+GMd63bmKVt
+        lWI5wr3TyS96LCz447PjWTfaFZ+kOH4S6D9oetHAEOK0Pt/2v4AAtyLd0heFCgpd01snU3RMzYe
+        N68SDCMo6w/lpvxdDQPUy8EuLDoWUwVAiU9nyjQYSgloTu9tEWReh0psEKnyc2vmeMzezRrZw01
+        /bLtLn0JMK9+HbMu+ggxKjUAEQEAAYkCPAQYAQoAJgIbDBYhBA0lEfMiv6scFYAma+Lc3ZEyZpv
+        WBQJeGDcFBQkNJ7tvAAoJEOLc3ZEyZpvWuaMP/3m0Ve/o2wTA/kSDDSkNhMLBFxC1nVTsA6fG9S
+        tlylMbjPKuraRWP8W4RGWrhzvETnTN/mD9TRf5zb8Nh+ybL9hSKoS3yrndy2N8LRbwKGZLPGlUj
+        ndqcNxxTMOcZ1NNQYUHdW72S9LSiyvxWZm2HTdOyf0HgASI06y/IMBna8dP7dam4YjWnUUm8Ia5
+        0cY9xIKHKi3ReFGqgP87CGJLOn6J/3gMgCBPRbcqXlscXAnBKmIJHd3Gw/qi+sGYExt2DXDoAbQ
+        ehfE/HjgakaLfiMTfMkItR10SHYB8il9w2Qg0NeJK77eemEe16AGFkBL7BIO//dpdE/FhcYZU3k
+        qxbAXoiU41XO/7fPL4/EfC35j6CqsRvAYBd1LAaPbbfDviP/Mv5aZ9klGUczF2rrJsvqLBW92xv
+        hBrqCCcgIoDMQy3qxSPVBI4Pu1X9XjZzv7uC5ZKbm9OKrZZvPmapOQPNDIbId8CxhwcuHFTTlY/
+        a9lkvmeOtXQ/GwXh3usnfpzzNu8q9Z+i4/J4FeFdzgs1bCiik5r/6n6on4kF6FRFhpO7VTRQv2/
+        gqEMgE+kcwjchr/I57zE2BoCoPni0LcsC3Fs4CrWNAGcE4AwifKKgUMI/VuxxWp48cgt/feoJkb
+        w9RmsVHiHzEhcWnlTq4yg7VWAW1xAdYdO1tJgtDxgdUVkxuQENBFSy4+cBCAC1SR+ZbXSPnqDHm
+        w5xv6g/9L9ng+UR//4fyxZwIEWsZ/5hypuD4LZe4RMvmkmCJuciFe/O5TW8TrykabBBNAyDs82P
+        uiIIaE7k3hIO/8/+DwMtjNXvtsHk0crrTWgQcE8EtApBf9Vd55XqghhQsdSNW2Exmu3A450UWrl
+        txm56E14iBbn3jhOh5AetU31tmKeP5RYQBoh8XsRp2lGe7bdPWQjFQrA51lr8PbPsnVVDwPb9Tz
+        2xm9rw62iEX/QmhwErTEhR25H98Y5sgQJrWKu/RJ9oaLBXSwK7KCMT7WdiyNSr1O9nJwaGLtemg
+        tHBLPuIyOiDy5GYwpdsMmJxH+qXABEBAAGJAjwEGAEKACYCGyAWIQQNJRHzIr+rHBWAJmvi3N2R
+        Mmab1gUCXhg3BgUJDSe6HQAKCRDi3N2RMmab1nDdEAChuJ7RqNe+fuHV4d8lmkEa/RA6oWcxlid
+        AvbD/pZ+N0oYw9ErFVXPIJ4YetaZV5Ykiv6j2NhLg9w9WlzcnwbekZ1+756zNwqMPVM9eD7Rkwk
+        b8jUtZxaQSze5ujaldq70fo/ME3NEJxn/3R6/Tb/7o7QFsmUDI60JVMfXdoPV1JD4gxIvzerxbW
+        hqn7+OJPf+GWs7LF9VEr+d1F+TOeUlZk27gaBhU9JrCD3lno25y+wMIHKCJc/XzE/pjKXdiV0FL
+        eMyBWqsy1Z+NnlBDZKvro3uR5KzaZ1NRKZIF03sPXiQlcSNeoWiBKHKVZ4qnKBsXOEp1Wi/zp7B
+        EdQToTe9KOoT9+Njil0kBAgYA+hdQ8JCesHCzmUVg9BMUHOtOyo/wKCX9jPgvWMoNjetbgnIFYM
+        EEQBrXD+3jop3PH7fC5PYogrrNXBIBJEKS+bnJ6VdifebvvFaxBBGpTC3qTASqqALgCEp+sVF3t
+        Igm+K3Up8pzY2t1cqoP8UMvtQRxyCDkLQLg8Fr2DoGnsSc6fB4BWifIsYoI0lwjpRkAAD5IcGdn
+        8ZfeQOAVnw+FA0IC/OOuKEy0/aazA0DK5iBjn4JmgW4QneWMEE7yh4kWlZIkmH8p1hhVkCjcbgN
+        D0TZnv5x48nA0bXApY48aVFT2EbDZz1k3QCmiT5ALbl1M4YYyLw==
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Missatge de Rob Herring <robh@kernel.org> del dia dc., 7 d=E2=80=99oct. 202=
-0 a
-les 17:12:
->
-> On Mon, Sep 21, 2020 at 11:29:51AM +0200, Enric Balletbo i Serra wrote:
-> > Convert the soc/rockchip/power_domain.txt binding document to json-sche=
-ma
-> > and move to the power bindings directory.
-> >
-> > Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> > ---
-> >
-> > Changes in v3:
-> > - Fixed tab errors found by bot
-> >
-> > Changes in v2:
-> > - Fixed a warning that says that 'syscon' should not be used alone.
-> > - Use patternProperties to define a new level for power-domains.
-> > - Add const values for power-domain-cells, address-cells, etc.
-> >
-> >  .../power/rockchip,power-controller.yaml      | 207 ++++++++++++++++++
-> >  .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
-> >  2 files changed, 207 insertions(+), 136 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/power/rockchip,po=
-wer-controller.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/powe=
-r_domain.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/rockchip,power-con=
-troller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-contr=
-oller.yaml
-> > new file mode 100644
-> > index 000000000000..b23ea37e2a08
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller=
-.yaml
-> > @@ -0,0 +1,207 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/rockchip,power-controller.yam=
-l#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip Power Domains
-> > +
-> > +maintainers:
-> > +  - Caesar Wang <wxt@rock-chips.com>
-> > +  - Heiko Stuebner <heiko@sntech.de>
-> > +
-> > +description: |
-> > +  Rockchip processors include support for multiple power domains which=
- can be
-> > +  powered up/down by software based on different application scenes to=
- save power.
-> > +
-> > +  Power domains contained within power-controller node are generic pow=
-er domain
-> > +  providers documented in Documentation/devicetree/bindings/power/powe=
-r-domain.yaml.
-> > +
-> > +  IP cores belonging to a power domain should contain a 'power-domains=
-'
-> > +  property that is a phandle for the power domain node representing th=
-e domain.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: power-controller
-> > +
-> > +  compatible:
-> > +    enum:
-> > +      - rockchip,px30-power-controller
-> > +      - rockchip,rk3036-power-controller
-> > +      - rockchip,rk3066-power-controller
-> > +      - rockchip,rk3128-power-controller
-> > +      - rockchip,rk3188-power-controller
-> > +      - rockchip,rk3228-power-controller
-> > +      - rockchip,rk3288-power-controller
-> > +      - rockchip,rk3328-power-controller
-> > +      - rockchip,rk3366-power-controller
-> > +      - rockchip,rk3368-power-controller
-> > +      - rockchip,rk3399-power-controller
-> > +
-> > +  '#power-domain-cells':
-> > +    const: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  "^power-domain@[0-9]+$":
->
-> unit-addresses are hex.
->
-> > +    type: object
-> > +    description: |
-> > +      Represents the power domains within the power controller node as=
- documented
-> > +      in Documentation/devicetree/bindings/power/power-domain.yaml.
-> > +
-> > +    properties:
-> > +
-> > +      '#power-domain-cells':
-> > +        description:
-> > +            Must be 0 for nodes representing a single PM domain and 1 =
-for nodes
-> > +            providing multiple PM domains.
-> > +
-> > +      '#address-cells':
-> > +        const: 1
-> > +
-> > +      '#size-cells':
-> > +        const: 0
-> > +
-> > +      reg:
-> > +        description: |
-> > +          Power domain index. Valid values are defined in:
-> > +          "include/dt-bindings/power/px30-power.h" - for PX30 type pow=
-er domain.
-> > +          "include/dt-bindings/power/rk3036-power.h" - for RK3036 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3066-power.h" - for RK3066 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3128-power.h" - for RK3128 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3188-power.h" - for RK3188 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3228-power.h" - for RK3228 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3288-power.h" - for RK3288 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3328-power.h" - for RK3328 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3366-power.h" - for RK3366 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3368-power.h" - for RK3368 type=
- power domain.
-> > +          "include/dt-bindings/power/rk3399-power.h" - for RK3399 type=
- power domain.
-> > +        maxItems: 1
->
-> Range of values?
->
-> > +
-> > +      clocks:
-> > +        description: |
-> > +          A number of phandles to clocks that need to be enabled while=
- power domain
-> > +          switches state.
->
-> Can you at least put a range of how many clocks?
->
-> > +
-> > +      pm_qos:
-> > +        description: |
-> > +          A number of phandles to qos blocks which need to be saved an=
-d restored
-> > +          while power domain switches state.
->
-> And here.
->
-> > +
-> > +    required:
-> > +      - reg
->
->        additionalProperties: false
->
-> Which in turn means the nested power domains will throw an error, so you
-> can do:
->
->        patternProperties:
->          "^power-domain@[0-9a-f]+$":
->            $ref: '#/patternProperties/^power-domain@[0-9a-f]+$'
->
+--5e4jj4rnobifsvui
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-When I tried this I got the following error:
+Hello,
 
-rockchip,power-controller.yaml:
-patternProperties:^power-domain@[0-9a-f]+$:patternProperties:^power-domain@=
-[0-9a-f]+$:$ref:
-'#/patternProperties/^power-domain@[0-9a-f]+$' is not a
-'uri-reference'
+On Thu, Oct 08, 2020 at 01:40:30AM +0800, vijayakannan.ayyathurai@intel.com=
+ wrote:
+> +static int keembay_pwm_apply(struct pwm_chip *chip, struct pwm_device *p=
+wm,
+> +			     const struct pwm_state *state)
+> +{
+> +	struct keembay_pwm *priv =3D to_keembay_pwm_dev(chip);
+> +	struct pwm_state current_state;
+> +	u16 pwm_h_count, pwm_l_count;
+> +	unsigned long long div;
+> +	unsigned long clk_rate;
+> +	u32 pwm_count =3D 0;
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -ENOSYS;
+> +
+> +	keembay_pwm_update_bits(priv, KMB_PWM_LEADIN_MASK, 0,
+> +				KMB_PWM_LEADIN_OFFSET(pwm->hwpwm));
+> +
+> +	keembay_pwm_get_state(chip, pwm, &current_state);
+> +
+> +	if (!state->enabled) {
+> +		if (current_state.enabled)
+> +			keembay_pwm_disable(priv, pwm->hwpwm);
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * The upper 16 bits of the KMB_PWM_HIGHLOW_OFFSET register contain
+> +	 * the high time of the waveform, while the last 16 bits contain
+> +	 * the low time of the waveform, in terms of clock cycles.
+> +	 *
+> +	 * high time =3D clock rate * duty cycle
+> +	 * low time =3D  clock rate * (period - duty cycle)
+> +	 */
+> +
+> +	clk_rate =3D clk_get_rate(priv->clk);
+> +	/* Configure waveform high time */
+> +	div =3D clk_rate * state->duty_cycle;
+> +	div =3D DIV_ROUND_DOWN_ULL(div, NSEC_PER_SEC);
+> +	if (div > KMB_PWM_COUNT_MAX)
+> +		return -ERANGE;
+> +
+> +	pwm_h_count =3D div;
+> +	/* Configure waveform low time */
+> +	div =3D clk_rate * (state->period - state->duty_cycle);
+> +	div =3D DIV_ROUND_DOWN_ULL(div, NSEC_PER_SEC - pwm_h_count);
 
-Not sure if is my environment or I am still doing something silly, can
-you confirm that this works for you? It doesn't seem to be any binding
-doing this actually.
+In reply to your v7 I suggested the example:
 
-Thanks,
-  Enric
+	clk_rate =3D 333334 [Hz]
+	state.duty_cycle =3D 1000500 [ns]
+	state.period =3D 2001000 [ns]
 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#power-domain-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rk3399-cru.h>
-> > +    #include <dt-bindings/power/rk3399-power.h>
-> > +
-> > +    soc {
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        qos_hdcp: qos@ffa90000 {
-> > +            compatible =3D "rockchip,rk3399-qos","syscon";
->
-> space                                             ^
->
-> > +            reg =3D <0x0 0xffa90000 0x0 0x20>;
-> > +        };
-> > +
-> > +        qos_iep: qos@ffa98000 {
-> > +            compatible =3D "rk3399-qos","syscon";
-> > +            reg =3D <0x0 0xffa98000 0x0 0x20>;
-> > +        };
-> > +
-> > +        qos_rga_r: qos@ffab0000 {
-> > +            compatible =3D "rk3399-qos","syscon";
-> > +            reg =3D <0x0 0xffab0000 0x0 0x20>;
-> > +        };
-> > +
-> > +        qos_rga_w: qos@ffab0080 {
-> > +            compatible =3D "rk3399-qos","syscon";
-> > +            reg =3D <0x0 0xffab0080 0x0 0x20>;
-> > +        };
-> > +
-> > +        qos_video_m0: qos@ffab8000 {
-> > +            compatible =3D "rk3399-qos","syscon";
-> > +            reg =3D <0x0 0xffab8000 0x0 0x20>;
-> > +        };
-> > +
-> > +        qos_video_m1_r: qos@ffac0000 {
-> > +            compatible =3D "rk3399-qos","syscon";
-> > +            reg =3D <0x0 0xffac0000 0x0 0x20>;
-> > +        };
-> > +
-> > +        qos_video_m1_w: qos@ffac0080 {
-> > +            compatible =3D "rk3399-qos","syscon";
-> > +            reg =3D <0x0 0xffac0080 0x0 0x20>;
-> > +        };
-> > +
-> > +        power-management@ff310000 {
-> > +            compatible =3D "rockchip,rk3399-pmu", "syscon", "simple-mf=
-d";
-> > +            reg =3D <0x0 0xff310000 0x0 0x1000>;
-> > +
-> > +            power-controller {
-> > +                compatible =3D "rockchip,rk3399-power-controller";
-> > +                #power-domain-cells =3D <1>;
-> > +                #address-cells =3D <1>;
-> > +                #size-cells =3D <0>;
-> > +
-> > +                /* These power domains are grouped by VD_CENTER */
-> > +                power-domain@RK3399_PD_IEP {
-> > +                    reg =3D <RK3399_PD_IEP>;
-> > +                    clocks =3D <&cru ACLK_IEP>,
-> > +                             <&cru HCLK_IEP>;
-> > +                    pm_qos =3D <&qos_iep>;
-> > +                    #power-domain-cells =3D <0>;
-> > +                };
-> > +                power-domain@RK3399_PD_RGA {
-> > +                    reg =3D <RK3399_PD_RGA>;
-> > +                    clocks =3D <&cru ACLK_RGA>,
-> > +                             <&cru HCLK_RGA>;
-> > +                    pm_qos =3D <&qos_rga_r>,
-> > +                             <&qos_rga_w>;
-> > +                    #power-domain-cells =3D <0>;
-> > +                };
-> > +                power-domain@RK3399_PD_VCODEC {
-> > +                    reg =3D <RK3399_PD_VCODEC>;
-> > +                    clocks =3D <&cru ACLK_VCODEC>,
-> > +                             <&cru HCLK_VCODEC>;
-> > +                    pm_qos =3D <&qos_video_m0>;
-> > +                    #power-domain-cells =3D <0>;
-> > +                };
-> > +                power-domain@RK3399_PD_VDU {
-> > +                    reg =3D <RK3399_PD_VDU>;
-> > +                    clocks =3D <&cru ACLK_VDU>,
-> > +                             <&cru HCLK_VDU>;
-> > +                    pm_qos =3D <&qos_video_m1_r>,
-> > +                             <&qos_video_m1_w>;
-> > +                    #power-domain-cells =3D <0>;
-> > +                };
-> > +                power-domain@RK3399_PD_VIO {
-> > +                    reg =3D <RK3399_PD_VIO>;
-> > +                    #power-domain-cells =3D <1>;
-> > +                    #address-cells =3D <1>;
-> > +                    #size-cells =3D <0>;
-> > +
-> > +                    power-domain@RK3399_PD_HDCP {
-> > +                        reg =3D <RK3399_PD_HDCP>;
-> > +                        clocks =3D <&cru ACLK_HDCP>,
-> > +                                 <&cru HCLK_HDCP>,
-> > +                                 <&cru PCLK_HDCP>;
-> > +                        pm_qos =3D <&qos_hdcp>;
-> > +                        #power-domain-cells =3D <0>;
-> > +                    };
-> > +                };
-> > +            };
-> > +        };
-> > +    };
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+where the expected outcome is
+
+	pwm_h_count =3D 333
+	pwm_l_count =3D 334
+
+=2E Please reread my feedback there. I tried to construct an example where
+the value is more wrong, but with the constraint that pwm_h_count must
+be <=3D KMB_PWM_COUNT_MAX this isn't easy. The best I could come up with
+is:
+
+	clk_rate =3D 1000000000
+	state.duty_cycle =3D 65535 [ns]
+	state.period =3D 131070 [ns]
+
+where the right value for pwm_l_count is 65535 while you calculate
+65539 (and then quit with -ERANGE).
+
+> +	if (div > KMB_PWM_COUNT_MAX)
+> +		return -ERANGE;
+> +
+> +	pwm_l_count =3D div;
+> +
+> +	pwm_count =3D FIELD_PREP(KMB_PWM_HIGH_MASK, pwm_h_count) |
+> +		    FIELD_PREP(KMB_PWM_LOW_MASK, pwm_l_count);
+> +
+> +	writel(pwm_count, priv->base + KMB_PWM_HIGHLOW_OFFSET(pwm->hwpwm));
+> +
+> +	if (state->enabled && !current_state.enabled)
+> +		keembay_pwm_enable(priv, pwm->hwpwm);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops keembay_pwm_ops =3D {
+> +	.owner =3D THIS_MODULE,
+> +	.apply =3D keembay_pwm_apply,
+> +	.get_state =3D keembay_pwm_get_state,
+> +};
+> +
+> +static int keembay_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct keembay_pwm *priv;
+> +	int ret;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->clk =3D devm_clk_get(dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to get clock\n");
+> +
+> +	ret =3D clk_prepare_enable(priv->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base)) {
+> +		clk_disable_unprepare(priv->clk);
+> +		return PTR_ERR(priv->base);
+> +	}
+> +
+> +	priv->chip.base =3D -1;
+> +	priv->chip.dev =3D dev;
+> +	priv->chip.ops =3D &keembay_pwm_ops;
+> +	priv->chip.npwm =3D KMB_TOTAL_PWM_CHANNELS;
+> +
+> +	ret =3D pwmchip_add(&priv->chip);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to add PWM chip: %pe\n", ERR_PTR(ret));
+> +		clk_disable_unprepare(priv->clk);
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	return 0;
+> +}
+> +
+> +static int keembay_pwm_remove(struct platform_device *pdev)
+> +{
+> +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
+> +
+> +	clk_disable_unprepare(priv->clk);
+> +
+> +	return pwmchip_remove(&priv->chip);
+
+You have to call pwmchip_remove first. Otherwise you're stopping the PWM
+while the framework still believes everything to be fine.
+
+> +}
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--5e4jj4rnobifsvui
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9+K7oACgkQwfwUeK3K
+7AnkSAf/WMAGErAAZ6G7l5oJUo2RRbVtkiryg8uZ8pTIoFPGtmaZFZY9gkNs/sSr
+FbH6Jw6dQiNYsAZYvbPOUY3AyauGgV+w/1PcQ5bOAeLVIOJSq04R8eeJU8zNcEbj
+DjThbF4JfZ24DCbdNBg3m0wMxPYzfJIchk7P0yYlLpan0sXE8pz9wGc0HtIuGe06
+wrqbyW/22XRpdxnTMqJ9q0wt6ZZXDN35YDbb57omSqEZthi2HgkC4QwVNkflwtyt
+pMTA2XLDK0If7iYC8MXeR+CU9vy4/RQFrEDmqSo0E7VAfPW2QTFl6NCBUOr7bUV3
+7YMdlfOYKLWhcBRFbGx3Uctiv4f/CQ==
+=qpLg
+-----END PGP SIGNATURE-----
+
+--5e4jj4rnobifsvui--
