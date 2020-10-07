@@ -2,133 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B810A285649
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 03:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF2A28565D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 03:42:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726755AbgJGBZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 21:25:32 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:39290 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726861AbgJGBZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:25:32 -0400
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 44E0642C1;
-        Wed,  7 Oct 2020 03:25:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1602033929;
-        bh=MHfduSLX31zuVOOXzvh2ussiuPmUCawVbuRbsDCAyTg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=AJHzLw0jJP0BrwnbDCnWP9OL5GTR/hRjL7VaaVA4TdD8TjXbECG0K05odvq4YaWnL
-         0EQT5dQ1kWXvoYySakhOk0MKin/5+e7c4W9IqW+cEptHmRQ514L+9d2lMfJ09mT5k6
-         lhLnILJWVRekdw+YWK+5W8rSK6/P8+QiK6O56miI=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Stefan Agner <stefan@agner.ch>, Marek Vasut <marex@denx.de>,
-        devicetree@vger.kernel.org,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 7/7] drm: mxsfb: Add support for the bus-width DT property
-Date:   Wed,  7 Oct 2020 04:24:38 +0300
-Message-Id: <20201007012438.27970-8-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
-References: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727033AbgJGBm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 21:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54754 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725996AbgJGBm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:42:57 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B759CC061755;
+        Tue,  6 Oct 2020 18:42:57 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id x16so384310pgj.3;
+        Tue, 06 Oct 2020 18:42:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=BSwgb5vSoUbb573urqabj8/K+d93yszEnYna0kzT394=;
+        b=dqLL37wR8nDbV45dP2ly1+tI3LrHo0FcXEH9knPtdGi2U//1h6lWirvlZaFvWDkwBw
+         OJDap5KFM1K+8wD31b0dUBFwzReQkeTuqcs0tBj6m/un5104ZgdvV0Q0cUdS02V7B0wc
+         xc8hIrbH2fc+JdQRLxoHdcFi2A2M86bLFv6pfKjZn9E4zeT6+GlzR7lTg1MS0N3f5HVg
+         OBD5hNT1YhILcGVEsWWN9UY+f0Uq9icLPyGsoY/NMJwI4npg1V1nZHTEXLi5vqo1IVMS
+         p9MpCDEpSuG+kq49JBgiU7E/ZI3G8QY9ScvpHqm25ZoU2r1wuQpMLFxgsMG51p+1VKiE
+         gIfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=BSwgb5vSoUbb573urqabj8/K+d93yszEnYna0kzT394=;
+        b=cfRS+rgYSbRflGshEfBrPqvzMkQX+6DG39+9BtDMUprP5tpS7Qpy1X0lIdFhcQ8/9i
+         idP4ajPzIvbxJbuxoDXHazX/kW7Ycg53Q0tDTLmAh9ST2z7hwZICtAB/eyR+JL+RfJYs
+         toB2cmxhSpngHAnp15c7cTZj/T1eDbzLlXZjYBRCJ0ZZFCZACZfu6WiukBUaS7uG9B5O
+         Sism1TIqHjCgn8gLHi6yQk8VQ2deK+zaPA2FogVIQKAveTEECKRG4Oyan+5GXCtf7uhk
+         qvuFbsRXflYB639BUPa6MvSsSIK11QcC395E1hqRTFvtb6KE9DBY6VgnXllL3k4a8gLr
+         JX7g==
+X-Gm-Message-State: AOAM5337+Q69UULyrFk/3V8tR1OcTSYHpb86BABPaU83Zs9l/JbVE0HE
+        aiNZ4fQsWU4WVO6mhl16IqM=
+X-Google-Smtp-Source: ABdhPJwOtctNYgd+bympQf2CnHiuVZiqRB8CdT80zq4aE5EcPTa+SWV7SmTq4501USU/lTgevAxUCA==
+X-Received: by 2002:a63:1e0c:: with SMTP id e12mr907420pge.386.1602034976633;
+        Tue, 06 Oct 2020 18:42:56 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:46a:dc67:6c85:26f7:3457:384d])
+        by smtp.gmail.com with ESMTPSA id a185sm485863pgc.46.2020.10.06.18.42.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Oct 2020 18:42:55 -0700 (PDT)
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: [PATCH v5 0/2] leds: mt6360: Add LED driver for MT6360
+Date:   Wed,  7 Oct 2020 09:42:44 +0800
+Message-Id: <1602034966-3524-1-git-send-email-gene.chen.richtek@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A new bus-width DT property has been introduced in the bindings to allow
-overriding the bus width. Support it.
+This patch series add MT6360 LED support contains driver and binding document
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- drivers/gpu/drm/mxsfb/mxsfb_drv.c | 26 ++++++++++++++++++++++++++
- drivers/gpu/drm/mxsfb/mxsfb_drv.h |  2 ++
- drivers/gpu/drm/mxsfb/mxsfb_kms.c |  8 ++++++--
- 3 files changed, 34 insertions(+), 2 deletions(-)
+Gene Chen (2)
+ dt-bindings: leds: Add bindings for MT6360 LED
+ leds: mt6360: Add LED driver for MT6360
 
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-index 35122aef037b..d52cf8a506a5 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-@@ -114,10 +114,36 @@ static int mxsfb_attach_bridge(struct mxsfb_drm_private *mxsfb)
- {
- 	struct drm_device *drm = mxsfb->drm;
- 	struct drm_connector_list_iter iter;
-+	struct device_node *ep;
- 	struct drm_panel *panel;
- 	struct drm_bridge *bridge;
-+	u32 bus_width = 0;
- 	int ret;
- 
-+	ep = of_graph_get_endpoint_by_regs(drm->dev->of_node, 0, 0);
-+	if (!ep)
-+		return -ENODEV;
-+
-+	of_property_read_u32(ep, "bus-width", &bus_width);
-+	of_node_put(ep);
-+
-+	switch (bus_width) {
-+	case 16:
-+		mxsfb->bus_format = MEDIA_BUS_FMT_RGB565_1X16;
-+		break;
-+	case 18:
-+		mxsfb->bus_format = MEDIA_BUS_FMT_RGB666_1X18;
-+		break;
-+	case 24:
-+		mxsfb->bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+		break;
-+	case 0:
-+		break;
-+	default:
-+		DRM_DEV_ERROR(drm->dev, "Invalid bus-width %u", bus_width);
-+		return -ENODEV;
-+	}
-+
- 	ret = drm_of_find_panel_or_bridge(drm->dev->of_node, 0, 0, &panel,
- 					  &bridge);
- 	if (ret)
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.h b/drivers/gpu/drm/mxsfb/mxsfb_drv.h
-index 399d23e91ed1..c4f7a8a0c891 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_drv.h
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.h
-@@ -32,6 +32,8 @@ struct mxsfb_drm_private {
- 	struct clk			*clk_axi;
- 	struct clk			*clk_disp_axi;
- 
-+	u32				bus_format;
-+
- 	struct drm_device		*drm;
- 	struct {
- 		struct drm_plane	primary;
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_kms.c b/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-index b721b8b262ce..6d512f346918 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-@@ -50,11 +50,15 @@ static void mxsfb_set_formats(struct mxsfb_drm_private *mxsfb)
- {
- 	struct drm_device *drm = mxsfb->drm;
- 	const u32 format = mxsfb->crtc.primary->state->fb->format->format;
--	u32 bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+	u32 bus_format;
- 	u32 ctrl, ctrl1;
- 
--	if (mxsfb->connector->display_info.num_bus_formats)
-+	if (mxsfb->bus_format)
-+		bus_format = mxsfb->bus_format;
-+	else if (mxsfb->connector->display_info.num_bus_formats)
- 		bus_format = mxsfb->connector->display_info.bus_formats[0];
-+	else
-+		bus_format = MEDIA_BUS_FMT_RGB888_1X24;
- 
- 	DRM_DEV_DEBUG_DRIVER(drm->dev, "Using bus_format: 0x%08X\n",
- 			     bus_format);
--- 
-Regards,
+ Documentation/devicetree/bindings/leds/leds-mt6360.yaml |   95 +
+ drivers/leds/Kconfig                                    |   12 
+ drivers/leds/Makefile                                   |    1 
+ drivers/leds/leds-mt6360.c                              |  783 ++++++++++++++++
+ 4 files changed, 891 insertions(+)
 
-Laurent Pinchart
+changelogs between v1 & v2
+ - add led driver with mfd
+
+changelogs between v2 & v3
+ - independent add led driver
+ - add dt-binding document
+ - refactor macros definition for easy to debug
+ - parse device tree by fwnode
+ - use devm*ext to register led class device
+
+changelogs between v3 & v4
+ - fix binding document description
+ - use GENMASK and add unit postfix to definition
+ - isink register led class device
+
+changelogs between v4 & v5
+ - change rgb isink to multicolor control
+ - add binding reference to mfd yaml
 
