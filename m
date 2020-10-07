@@ -2,104 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3B21286630
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 256702866B1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 20:15:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728423AbgJGRth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 13:49:37 -0400
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:45382 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727828AbgJGRth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:49:37 -0400
-Date:   Wed, 07 Oct 2020 17:49:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1602092974;
-        bh=55HoEt0OV8YYq8cG2qxe2D4pju6+UzBhBfwJ7r5tuRA=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=qLo/NgZIpSs46hyvVjgLfwP8TrBoaOfiQSXlxHJYasHMtOIUurtx+Q/KAzpY7ZfPu
-         a25UYuK2Kqd5mjAxFOFsYfvKCdYJoQ5dc0Vt4Kds1TNA7gObe9JSklK0lRHmMdDd8p
-         a3uPa0qDTtmR4yCll0ksvud0dgzqwbJI65fW4YXc=
-To:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Caleb Connolly <caleb@connolly.tech>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: [PATCH 4/5] dt-bindings: add vendor bindings for OnePlus
-Message-ID: <20201007174736.292968-5-caleb@connolly.tech>
-In-Reply-To: <20201007174736.292968-1-caleb@connolly.tech>
-References: <20201007174736.292968-1-caleb@connolly.tech>
+        id S1728913AbgJGSOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 14:14:53 -0400
+Received: from out28-218.mail.aliyun.com ([115.124.28.218]:51594 "EHLO
+        out28-218.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728068AbgJGSOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 14:14:41 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2892578|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0279153-0.000780125-0.971305;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=4;RT=4;SR=0;TI=SMTPD_---.IgNey8v_1602094473;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.IgNey8v_1602094473)
+          by smtp.aliyun-inc.com(10.147.42.135);
+          Thu, 08 Oct 2020 02:14:39 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sernia.zhou@foxmail.com
+Subject: [PATCH 0/1] Add macro definition for the upcoming new OST driver.
+Date:   Thu,  8 Oct 2020 02:14:06 +0800
+Message-Id: <20201007181407.46889-1-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Used by the OnePlus 6/T device trees
+Add new macro definition to "ingenic,sysost.h", exchange the original
+ABI values of OST_CLK_PERCPU_TIMER and OST_CLK_GLOBAL_TIMER, prepare
+for the upcoming new OST driver.
 
-Signed-off-by: Caleb Connolly <caleb@connolly.tech>
----
- .../bindings/arm/oneplus/oneplus-boards.yaml  | 25 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
- 2 files changed, 27 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/oneplus/oneplus-b=
-oards.yaml
+周琰杰 (Zhou Yanjie) (1):
+  dt-bindings: clock: Add new OST support for the upcoming new driver.
 
-diff --git a/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.y=
-aml b/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml
-new file mode 100644
-index 000000000000..a4d9bbd5681f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml
-@@ -0,0 +1,25 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/oneplus/oneplus-boards.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OnePlus based boards
-+
-+maintainers:
-+  - Caleb Connolly <caleb@connolly.tech>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: SDM845 based boards
-+        items:
-+          - enum:
-+              - oneplus,enchilada               # OnePlus 6
-+              - oneplus,fajita                  # OnePlus 6T
-+          - const: oneplus,oneplus6             # OnePlus 6 and derivative=
-s
-+
-+required:
-+  - compatible
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Docum=
-entation/devicetree/bindings/vendor-prefixes.yaml
-index 63996ab03521..6672d7242d54 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -754,6 +754,8 @@ patternProperties:
-     description: OLIMEX Ltd.
-   "^olpc,.*":
-     description: One Laptop Per Child
-+  "^oneplus,.*":
-+    description: One Plus Technology (Shenzhen) Co., Ltd..
-   "^onion,.*":
-     description: Onion Corporation
-   "^onnn,.*":
---=20
-2.28.0
+ include/dt-bindings/clock/ingenic,sysost.h | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
+-- 
+2.11.0
 
