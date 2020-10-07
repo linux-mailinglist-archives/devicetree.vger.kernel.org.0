@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F02542868B5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 21:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7962868CB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 22:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbgJGT6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 15:58:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54776 "EHLO
+        id S1727760AbgJGUDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 16:03:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726009AbgJGT6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 15:58:02 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F98C061755;
-        Wed,  7 Oct 2020 12:58:02 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id l16so3483008eds.3;
-        Wed, 07 Oct 2020 12:58:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=skyCaFa+SYfj0KOVfhGivSwyY27NnZlYEef5BrBJ01I=;
-        b=JzmqWCN3pi0BbAp3zspE8DWaL7NiSqzle2xPYtrIKZz3+CHHHGewnLHc8bU24hWjJR
-         R3LOLQ6g9BKgpGElmDivt//DJtNT1371tcW43QzCR/2E3Frf1Ap/4VEme3B2xgJSfG7e
-         YuNtDfjkcViORxXlj8pD5EzaqTJuIpBBk1G4cEUh1JAvxhL79DYuUvly5sCJs0lKzBdI
-         Wj7Fa0HdF4yK/dH4DUIioXfeSoAbKM1GFzoBWV8FYZ7cgSHS9Ko6VDAprxflv5fjB1hk
-         1ZgVO44RQcJfW68GsbQSNy2t5s+QXV1GILKcgM7Xv7zIl35vKrHUWAiAzFHPYR2/Y0il
-         XeNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=skyCaFa+SYfj0KOVfhGivSwyY27NnZlYEef5BrBJ01I=;
-        b=p1p3woukR/LEhyy7BOXNKZOUBLUvXu7NirBXq9SrjeVUIWoj/o6kHN3QiUDnxzrnX6
-         ditMjyz9lnMj0IG4v8c+d6hLig3d3OMMFKr6iz0D3HP4txdyIBu98Xh+OW0Tk1N4TfAZ
-         n4r6gfhTuu22cLBe/UFl0PGlj7ifhiCyQnrr6uHrjqSV4wzzzLovi2Ubqz3djGtd7l7d
-         pzVV64s/E8B7z9n8D5BCI0C8ISW5MqDqpIK68VxkYKCs2FDUv7RE1uU1Eh4TWtCqklnE
-         J1GgFjtBytun/ssdk8jmBKutq3wLhR6gK4lRZgkzH5Mvt94bBLs+r38Vk7M0xV/BQwBU
-         xvpA==
-X-Gm-Message-State: AOAM530VV1kbjr4oeoMsMujQOyOaoZEYvqdDtLwqHhctH/w43BSAywws
-        /pzr+O7O80bKAaKq3lkaEE9Y6WB/qrOFyyNWvuzXj1vG0Vg=
-X-Google-Smtp-Source: ABdhPJxHK+pBG7sUNG1398mdCXIoRR4RuCQfil+jnbhNkIi83xhPiU0qQmcBkYjQsz/yZVx0y4egeQdjWmydLbxMVlA=
-X-Received: by 2002:a05:6402:1356:: with SMTP id y22mr5218660edw.110.1602100681377;
- Wed, 07 Oct 2020 12:58:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
- <20201004162908.3216898-3-martin.blumenstingl@googlemail.com> <CACRpkdbTw4UBw02RXX2prju45AsDZqPchhz=gdzsuT-QjhYHVw@mail.gmail.com>
-In-Reply-To: <CACRpkdbTw4UBw02RXX2prju45AsDZqPchhz=gdzsuT-QjhYHVw@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 7 Oct 2020 21:57:50 +0200
-Message-ID: <CAFBinCAFDhWp6mgUqyOjdMVBR5oZQVpmVPjhnZs1Xg16tFa0PQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/3] dt-bindings: gpio: Add binding documentation for
- Etron EJ168/EJ188/EJ198
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        with ESMTP id S1726138AbgJGUDf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 16:03:35 -0400
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 748D1C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 13:03:35 -0700 (PDT)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4C64yr28C2z1sNdM;
+        Wed,  7 Oct 2020 22:03:32 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4C64yr12Yxz1qsnk;
+        Wed,  7 Oct 2020 22:03:32 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id r939VdvBvc8X; Wed,  7 Oct 2020 22:03:30 +0200 (CEST)
+X-Auth-Info: lWUAK/oFWBuiTf3NAPIXpWBNx0gHn95iJ83HuQZDYjY=
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Wed,  7 Oct 2020 22:03:30 +0200 (CEST)
+From:   Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH 1/5] Documentation: bindings: clk: Add bindings for
+ i.MX8MM BLK_CTL
+To:     Adam Ford <aford173@gmail.com>
+Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+References: <20201003224555.163780-1-marex@denx.de>
+ <CAHCN7xKyRcZQcZunw6nLpWKWNXWJs4V_fPoQbijVrv6LbuFdYQ@mail.gmail.com>
+Message-ID: <bb982b4f-3510-6663-0e4c-66a7c34b8d62@denx.de>
+Date:   Wed, 7 Oct 2020 22:01:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <CAHCN7xKyRcZQcZunw6nLpWKWNXWJs4V_fPoQbijVrv6LbuFdYQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On 10/7/20 9:52 PM, Adam Ford wrote:
+> On Sun, Oct 4, 2020 at 12:53 AM Marek Vasut <marex@denx.de> wrote:
+>>
+>> Add the i.MX8MM BLK_CTL compatible string to the list.
+[...]
+>> ---
+>>  Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+> 
+> Is there a DTSI change part of this patch?  I was going to try to test
+> it, but  I am not seeing a change to the imx8mm.dtsi, and I am not
+> sure where to put the node.
 
-On Wed, Oct 7, 2020 at 11:19 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Sun, Oct 4, 2020 at 8:00 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - pci1b6f,7023
-> > +      - pci1b6f,7052
->
-> I think it is better to let the PCI driver for the whole hardware in
-> drivers/usb/host/xhci-pci.c probe from the PCI configuration space
-> numbers, and then add a gpio_chip to xhci-pci.c.
-to have everything consistent I will move the binding to
-Documentation/devicetree/bindings/usb
-
-
-Best regards,
-Martin
+There are in fact quite a few other pieces you need to have in place,
+this patchset in itself is not particularly useful, it is just infra for
+the LCDIF and MIPI DSIM block control. You might want to wait until they
+all land in next and test that result.
