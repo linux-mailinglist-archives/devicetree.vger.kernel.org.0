@@ -2,70 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37BE7285E61
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 13:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 557EF285E78
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 13:49:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726219AbgJGLnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 07:43:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:42440 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726096AbgJGLnk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 07:43:40 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 996B831B;
-        Wed,  7 Oct 2020 04:43:39 -0700 (PDT)
-Received: from bogus (unknown [10.57.54.133])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8315C3F71F;
-        Wed,  7 Oct 2020 04:43:37 -0700 (PDT)
-Date:   Wed, 7 Oct 2020 12:43:35 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        ALKML <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        id S1727898AbgJGLtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 07:49:45 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59728 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727140AbgJGLto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 07:49:44 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 097Bnfhu050847;
+        Wed, 7 Oct 2020 06:49:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1602071381;
+        bh=W4xGhDWT1+ePzUUUuvec26NlPIyDjKM2QF/s3h1SvZw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=MKVT8Hiq1s9mtqtgyOKK3dXtvvCq1DMKYxqiJSeF4z6zxZHyP3+RoM1HJxl86Gk9w
+         cDGGmyhQ0u3Pu320zffqPALoN/ZBLcYS3Vj9cu3DVJ/VCvkPvku+s9WHQzu32mpw+y
+         MNFJw+HOxpHQKLhW//LOHbnByKQpdPFozCE8Uu/A=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 097BnfbN128101
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 7 Oct 2020 06:49:41 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 7 Oct
+ 2020 06:49:41 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 7 Oct 2020 06:49:41 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 097BnOgQ102958;
+        Wed, 7 Oct 2020 06:49:25 -0500
+Subject: Re: [PATCH v3 2/3] dmaengine: add peripheral configuration
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <dmaengine@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 4/4] mailbox: arm_mhu: Add ARM MHU doorbell driver
-Message-ID: <20201007114335.5j7cq4cv4iwbam3g@bogus>
-References: <20200928114445.19689-1-sudeep.holla@arm.com>
- <20200928114445.19689-5-sudeep.holla@arm.com>
- <20201007060525.ya6limypf6ggmtae@vireshk-i7>
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200923063410.3431917-1-vkoul@kernel.org>
+ <20200923063410.3431917-3-vkoul@kernel.org>
+ <29f95fff-c484-0131-d1fe-b06e3000fb9f@ti.com>
+ <20201001112307.GX2968@vkoul-mobl>
+ <f063ae03-41da-480a-19ba-d061e140e4d2@ti.com>
+ <20201007112807.GW2968@vkoul-mobl>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <5784e3cb-8d22-58f1-5211-a450b60949a9@ti.com>
+Date:   Wed, 7 Oct 2020 14:49:45 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007060525.ya6limypf6ggmtae@vireshk-i7>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20201007112807.GW2968@vkoul-mobl>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 11:35:25AM +0530, Viresh Kumar wrote:
-> On 28-09-20, 12:44, Sudeep Holla wrote:
-> > The MHU drives the signal using a 32-bit register, with all 32 bits
-> > logically ORed together. The MHU provides a set of registers to enable
-> > software to set, clear, and check the status of each of the bits of this
-> > register independently. The use of 32 bits for each interrupt line
-> > enables software to provide more information about the source of the
-> > interrupt. For example, each bit of the register can be associated with
-> > a type of event that can contribute to raising the interrupt.
-> > 
-> > This patch adds a separate the MHU controller driver for doorbel mode
-> > of operation using the extended DT binding to add support the same.
-> > 
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > ---
-> >  drivers/mailbox/Makefile     |   2 +-
-> >  drivers/mailbox/arm_mhu_db.c | 359 +++++++++++++++++++++++++++++++++++
+Hi Vinod,
+
+On 07/10/2020 14.28, Vinod Koul wrote:
+> Hi Peter,
 > 
-> Please put an entry in MAINTAINERS as well for this.
+> On 02-10-20, 11:48, Peter Ujfalusi wrote:
+> 
+>> It depends which is best for the use case.
+>> I see the metadata useful when you need to send different
+>> metadata/configuration with each transfer.
+>> It can be also useful when you need it seldom, but for your use case and
+>> setup the dma_slave_config extended with
+>>
+>> enum dmaengine_peripheral peripheral_type;
+>> void *peripheral_config;
+>>
+>> would be a bit more explicit.
+>>
+>> I would then deal with the peripheral config in this way:
+>> when the DMA driver's device_config is called, I would take the
+>> parameters and set a flag that the config needs to be processed as it
+>> has changed.
+>> In the next prep_slave_sg() then I would prepare the TREs with the
+>> config and clear the flag that the next transfer does not need the
+>> configuration anymore.
+>>
+>> In this way each dmaengine_slave_config() will trigger at the next
+>> prep_slave_sg time configuration update for the peripheral to be
+>> included in the TREs.
+>> The set_config would be internal to the DMA driver, clients just need to
+>> update the configuration when they need to and everything is taken care of.
+> 
+> Ok I am going to drop the dmaengine_peripheral and make
+> peripheral_config as as you proposed.
+> 
+> So will add following to dma_slave_config:
+>         void *peripheral_config;
+> 
+> Driver can define the config they would like and use.
+> 
+> We can eventually look at common implementations and try to unify once
+> we have more users
 
-Sure.
+Sound good to me!
 
--- 
-Regards,
-Sudeep
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
