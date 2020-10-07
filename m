@@ -2,102 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80323286A6C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 23:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB60286AA7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 00:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728292AbgJGVqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 17:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726105AbgJGVqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 17:46:38 -0400
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F05EC061755;
-        Wed,  7 Oct 2020 14:46:37 -0700 (PDT)
-Received: by mail-qv1-xf41.google.com with SMTP id s17so2035045qvr.11;
-        Wed, 07 Oct 2020 14:46:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YqNUjigFoAXo2QafX/TTeVVXBpaXL3Be2L3u2zpujGM=;
-        b=nOiCFVqKn9qpKVGgPb0MgXhOqUoxudL61nKQkOjg6IWYyDk7Mo60sg2BiYT+qgKZvC
-         9VaQkgDLA3ZFv1YeeJC8BhF9M8X0SCrRrSiTt+2qetxnyXbH6atyoKgXDCG+UE40ZIzZ
-         86eXvROXYmV9sEIjqxwP/Q0MBgczL3xkhw3tZ7MCJgP+byDpqTsBY2BbJSpPN9Wz1b9k
-         cH5Ixg1DSgILYeRCDfE7unh/IUxVWkV3xpA7GsvrNGL/W/WZFUh6bZOOue7NP1YXbeOy
-         HjjcZn6gKV+UzkojRivqPU3griS6IdQl+o2V6nUDg6cBBz2ClbxBjZtP7r4dqtDaoib7
-         +OYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YqNUjigFoAXo2QafX/TTeVVXBpaXL3Be2L3u2zpujGM=;
-        b=FQ+JYpniK+pB4t68Oatylat+/PJqBkqpWPR8TjYXt8gDLVV3FwxQan4gGD08uA+dqb
-         uCLPvXaci4iO9stXWxCsvv23MJ9WG1CUfSWLy6wRL4ctZqnPXzCoVviUR2iaoRrhZNj+
-         ulYg7KTkgRbjpFXfAqkevfwHw9urHNK5/CQ2tGFxiUYhJE1kXKqeSP4JNp7E2vbZAago
-         /zMZNTEe1OTVPWihWXqfy3BOvlMK8PwfA5DJ4YVl32K8+jAxfYWSiG48XrIr01UnPFbQ
-         GnobJJtpi7jDEh6YuFJgHnmcRtseyxJ3f+n03zM299TdkJQb1lCyDq8hUjetaEgGPEDD
-         Kgww==
-X-Gm-Message-State: AOAM531vImpIsZzQP+A6N/wQz4a5/yWb4H7ohKJArlPnslJhq1lEz0/p
-        Awj32VnE3E61SctD11hdcINKQd5q2IB9XA==
-X-Google-Smtp-Source: ABdhPJzrDqRTfzp3kraZFbds/BuMxeQZZRTCB5lCKd7Q3veIzOCHzA9lsDBscGJUHmrCwPpXm8IlwQ==
-X-Received: by 2002:a0c:c492:: with SMTP id u18mr5342732qvi.18.1602107196335;
-        Wed, 07 Oct 2020 14:46:36 -0700 (PDT)
-Received: from ubuntu (ool-45785633.dyn.optonline.net. [69.120.86.51])
-        by smtp.gmail.com with ESMTPSA id 128sm2408554qkm.76.2020.10.07.14.46.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 14:46:35 -0700 (PDT)
-Date:   Wed, 7 Oct 2020 17:46:33 -0400
-From:   Vivek Unune <npcomplete13@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] ARM: dts: BCM5301X: Linksys EA9500 make use of
- pinctrl
-Message-ID: <20201007214633.GA1972@ubuntu>
-References: <cover.1601655904.git.npcomplete13@gmail.com>
- <6687de05226dd055ee362933d4841a12b038792d.1601655904.git.npcomplete13@gmail.com>
- <20201007210134.GD112961@lunn.ch>
+        id S1728781AbgJGWFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 18:05:11 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:41941 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728575AbgJGWFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 18:05:11 -0400
+X-Originating-IP: 90.65.88.165
+Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id DCF1620005;
+        Wed,  7 Oct 2020 22:05:08 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: rtc: add trickle-voltage-millivolt
+Date:   Thu,  8 Oct 2020 00:05:04 +0200
+Message-Id: <20201007220506.360469-1-alexandre.belloni@bootlin.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007210134.GD112961@lunn.ch>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 11:01:34PM +0200, Andrew Lunn wrote:
-> On Wed, Oct 07, 2020 at 03:01:50PM -0400, Vivek Unune wrote:
-> > Forgo the use of mmioreg mdio mux infavor of the pinctrl
-> 
-> Hi Vivek
-> 
-> Could you add some more details please. I don't know this
-> hardware. I'm assuming there are two MDIO busses, external as talked
-> about in the comments, and an internal one? And for this hardware you
-> only need one of them? But i don't see what pinmux has to do with
-> this?
-Hi Andrew,
+Some RTCs have a trickle charge that is able to output different voltages
+depending on the type of the connected auxiliary power (battery, supercap,
+...). Add a property allowing to specify the necessary voltage.
 
-There are indeed two mdio busses. To access the external bus, 9th bit
-of the mdio register has to be set. And to enable mii function,
-one has to set the registers 6 & 7 which is part of the pin controller.
-Earlier the pin controller was not defined and I resorted to use a
-combination of memory mapped io mux to change desired bits.
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+---
 
-Now that we have a pin controller - which is resposnsible for other 
-functionality such as pwm, i2c, uart2, it makes sense to have a consistent
-device tree
+Changes in v2:
+ - use millivolt suffix instead of mV
 
-Hope this helps,
+ Documentation/devicetree/bindings/rtc/rtc.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Vivek
+diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+index ee237b2ed66a..93f04d5e5307 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+@@ -42,6 +42,13 @@ properties:
+       Selected resistor for trickle charger. Should be given
+       if trickle charger should be enabled.
+ 
++  trickle-voltage-mV:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Selected voltage for trickle charger. Should be given
++      if trickle charger should be enabled and the trickle voltage is different
++      from the RTC main power supply.
++
+   wakeup-source:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description:
+-- 
+2.26.2
 
-
-> 
-> Thanks
-> 	Andrew
->  
