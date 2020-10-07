@@ -2,103 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE172865BD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E0C02865C3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:20:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728172AbgJGRSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 13:18:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728171AbgJGRSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:18:50 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3D5C061755;
-        Wed,  7 Oct 2020 10:18:49 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id v19so2983237edx.9;
-        Wed, 07 Oct 2020 10:18:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FbvgWYf8WmFqAJOEe1UYaKohDkiYp3VreWyGDtXaqz8=;
-        b=dVrg5yXsPbI5qvL4/8aGH30/TpyXARXamdOnbGSmS4gTpTQp9eH1GXn8IgbLEolJ8G
-         hiPkIqvvDj/4CTAnjCcHO2SIozfvoIWT1av/ixwfQcBvgX+hxUquKwrnasaWknawYceu
-         nRIcU7O+fGSVRQp3Ocs0MYUJAlgOx7xC/dVH9Z7YZoVhwlPI8cyjSq/9GCYkR0LKEydy
-         v4YidfNyN/xlHadchDVutaYDFw1zaym5gVxxcVOfiyXZMZy7zYVmsNK2SuDroi+h0Jao
-         7rVmi77ctUuEP8FctJq/GPBn0lpXoFscuQHs9OMgtEFVH8SG6K3B5GPkFCG8Jauoq2Jk
-         iCEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FbvgWYf8WmFqAJOEe1UYaKohDkiYp3VreWyGDtXaqz8=;
-        b=cT0sKvUscAnwo2W/XSSgS8eOIZ7qbE6z6dl64gk2Fl+QbXBmsSgfLw7DOwlyLG7o4y
-         e9tLqb9fCgkYH3dNOjdrDw41uOMDmnC9JJXQWyuyhv2pllU0Bh7T/sm1nIp7QjJkRZtA
-         e4+O8PxvEFWrpOda8deSTtbLeba8LLpshIrxqjNw5uPJ+LpSuhdlv5CeXh+JewPTmIRR
-         X1TD8ocDHzEkcK7omth/Xl/M2AHxHYcd2yskZB4wWHlESn6Hxgul5afDt3blUMsYXAfo
-         URfvnizFrWrknASI7ISTHHPfX5O8uUpdbJi2qDzSY2MftLpfbidhz+ZwjWVFoiGn3S4O
-         rCgA==
-X-Gm-Message-State: AOAM533ie5vNREXlQbmqaAhbujJTYvSG2d9m3hR7CfdIPf6wkCAL5cZl
-        Lv4+oRxhl5GIJ9cb0NxACDhcQV7Yg+yvz30v8MA=
-X-Google-Smtp-Source: ABdhPJxR2PNvYgiGBJpfUyMO8e+O6T4BT5QzDizpTZdiP0rpHdLPJLC65LYH5YSEruuW6EvK5oJ7yyPXu2SGR31hvQ0=
-X-Received: by 2002:a50:c199:: with SMTP id m25mr4495447edf.207.1602091128283;
- Wed, 07 Oct 2020 10:18:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201004133114.845230-1-pgwipeout@gmail.com> <cdd0f520ae4990de90f461e21cb4f298@agner.ch>
- <4d3eb998-045b-f288-7a9c-aaa620c38bff@settrans.net> <c8140ea3-8731-8084-47dd-8819b4b4df6a@gmail.com>
- <f12c1ad2-d180-8981-c3bf-db8ab6afbbaa@wwwdotorg.org>
-In-Reply-To: <f12c1ad2-d180-8981-c3bf-db8ab6afbbaa@wwwdotorg.org>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 7 Oct 2020 13:18:36 -0400
-Message-ID: <CAMdYzYrNg39QmR3QDG4T5DTOht=8p4LvFon14M1J7HkEZo4KRQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
-To:     Stephen Warren <swarren@wwwdotorg.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>, Bob Ham <rah@settrans.net>,
-        Stefan Agner <stefan@agner.ch>,
+        id S1728132AbgJGRUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 13:20:18 -0400
+Received: from mail-41103.protonmail.ch ([185.70.41.103]:26057 "EHLO
+        mail-41103.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726168AbgJGRUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:20:16 -0400
+Received: from mail-03.mail-europe.com (mail-03.mail-europe.com [91.134.188.129])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        by mail-41103.protonmail.ch (Postfix) with ESMTPS id 9536F20000A4
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 17:20:14 +0000 (UTC)
+Authentication-Results: mail-41103.protonmail.ch;
+        dkim=pass (1024-bit key) header.d=connolly.tech header.i=@connolly.tech header.b="cb2YJNxi"
+Date:   Wed, 07 Oct 2020 17:20:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1602091210;
+        bh=d2j//6xhs2PPOH5F6O6PlO0HsUSK+06Ub5QJ1wgRpaw=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=cb2YJNxiQKsm2m9FIBm86iCX27qa+tPdLDIRE9nFqwdhBQjw86zUeHEMeeEMMkc8q
+         2ocdyfAUvF/rs7eZk7BCbF51OlcJKsPwwiSkuIdX5rZoopoKQPGEPVFGb04D8J8Phe
+         i8q7ljKNuiu9/A52qK3oC8+/CiGlWLhm9NOaYx9s=
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lukas Rusak <lorusak@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Caleb Connolly <caleb@connolly.tech>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: [PATCH 2/5] dt-bindings: panel: add documentation for oneplus6 panel
+Message-ID: <20201007171807.285298-3-caleb@connolly.tech>
+In-Reply-To: <20201007171807.285298-1-caleb@connolly.tech>
+References: <20201007171807.285298-1-caleb@connolly.tech>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 7, 2020 at 12:08 PM Stephen Warren <swarren@wwwdotorg.org> wrote:
->
->
-> This definitely isn't the correct attitude to copyright.
->
-> The facts[1] that Ouya published the code and that it used GPL-only
-> symbols certainly does imply that they *should* have published under GPL
-> or a compatible license, but doesn't mean that they definitely did. The
-> only way to know that for sure is for there to be evidence in the file
-> content or git history, such as license headers or Signed-off-by lines.
->
-> When someone writes Signed-off-by in their code submission, which is
-> required to contribute to upstream Linux, they are stating/warranting
-> certain things about the code they're submitting. One aspect is that
-> they definitely have the rights to submit the code under the given
-> license. Without evidence to this effect, or having written the code
-> themselves, nobody can state/warrant this. Take a look at the following
-> link to see what you're stating/warranting when writing Signed-off-by in
-> a code submission:
->
-> https://developercertificate.org/
->
-> [1] I haven't checked the facts.
+Document the OnePlus 6/T common panel driver, example from
+arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
 
-Unfortunately the only source release I've been able to find is the
-last release.
-Ouya purposely purged the git history for the current source release,
-it's also completely lacking in signoffs and commit history.
-[1] is the commit that added this driver to their source.
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ .../display/panel/panel-oneplus6.yaml         | 73 +++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-o=
+neplus6.yaml
 
-Their original source release had the git history intact, but I never
-got a copy of it before Ouya purged it from their repos.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-oneplus6=
+.yaml b/Documentation/devicetree/bindings/display/panel/panel-oneplus6.yaml
+new file mode 100644
+index 000000000000..23ba369cc2f5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/panel-oneplus6.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/panel-oneplus6.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OnePlus 6/T panel driver
++
++description: |
++  The OnePlus 6 panel driver encompasses the display panels found in the
++  OnePlus 6 and 6T devices, the panels have almost identical behaviour and
++  are not used by any other devices.
++
++maintainers:
++  - Caleb Connolly <caleb@connolly.tech>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - samsung,sofef00
++      - samsung,s6e3fc2x01
++
++  reg: true
++  reset-gpios: true
++  port: true
++
++  vddio-supply:
++    description: VDDIO regulator
++
++required:
++  - compatible
++  - reset-gpios
++  - vddio-supply
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    &dsi0 {
++      status =3D "okay";
++      vdda-supply =3D <&vdda_mipi_dsi0_1p2>;
++
++      #address-cells =3D <1>;
++      #size-cells =3D <0>;
++
++      display_panel: panel@0 {
++        status =3D "okay";
++        compatible =3D "samsung,sofef00";
++
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++        reg =3D <0>;
++
++        vddio-supply =3D <&vreg_l14a_1p88>;
++
++        reset-gpios =3D <&tlmm 6 GPIO_ACTIVE_HIGH>;
++
++        pinctrl-names =3D "default";
++        pinctrl-0 =3D <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
++
++        port {
++          panel_in: endpoint {
++            remote-endpoint =3D <&dsi0_out>;
++          };
++        };
++      };
++    };
++
++...
+--=20
+2.28.0
 
-[1] https://github.com/ouya/ouya_1_1-kernel/commit/407e72990e39d5c29d015e21110b9497aea2dfe3
+
