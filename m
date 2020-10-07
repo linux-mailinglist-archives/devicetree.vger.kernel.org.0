@@ -2,99 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A263F2860E3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 16:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94571286118
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 16:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728551AbgJGOFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 10:05:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56126 "EHLO
+        id S1728577AbgJGOU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 10:20:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728469AbgJGOFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 10:05:11 -0400
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42191C061755;
-        Wed,  7 Oct 2020 07:05:10 -0700 (PDT)
-Received: by mail-io1-xd43.google.com with SMTP id y13so2473895iow.4;
-        Wed, 07 Oct 2020 07:05:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=g+DCnJEicoCU1/vpp+wjrTHhiVCn5Rx4QLEMzph/RDQ=;
-        b=D0D5ZmKyabVh9PjCpDOiVuxtJkxfDygSUjVgpeanIdHgYCy/UQ5syh8N44cgLGqFpg
-         dCLP6y6jBmKu/fdtOwfmGRsvgYg2vSGupYGR+hE2h9fi7T0WkMiMSpPao3TK1WoJRGe9
-         SnJttD2iA/Qxtykw8Zt0QyIuGxk7iJ8SHUA2AnyluB/gesFGdJ13QK0jgRgK+bdx9//n
-         rvAsU4E4A0Mx0KcaufFZc59Egzr7YQbeDhTxBm4j8piNxeM/hP7VNHzN2r0rickh93S6
-         ao6ofp1LMrdqYyZ6XtyjdVk1EmlChzB/Yn2hyLnSDNU18YJVpG4Elvpcu0KHt6EYjksP
-         eJKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=g+DCnJEicoCU1/vpp+wjrTHhiVCn5Rx4QLEMzph/RDQ=;
-        b=D/91Hg3Seh1DWq+InliO3irAXO7Aov/mNqsZoXYtwO649CTl3deTH8qhuyHoHnCQ1Q
-         UgwNDzsXH6W8eNv3mGGdu0GDwhSiVc8zar6GowUZxvs276dxnOBKFJdiSsInlSxxZUx2
-         1VGO+a5/LNkQQHbSRBP4eh/7y00wJDVXGsjMGtqrMtDhsjxl6vq1q7hYzCNSXsjCgdw9
-         seInARm9dPEhGpBJOLCO6uWmet5OiflqCZ7yB+dLSN0NQWvux2nxoIvt7maqFxecjmvR
-         krh3EUYd9U9G0waPm6g89KtGII/2KLNwEhFXLZM0lCPiST8D3g1WbGr1OzPkqtk9y6EA
-         MeLA==
-X-Gm-Message-State: AOAM532gamjr9K3l2yF2s0RLaxpZq902R1/p7bvKYc5zacbfGsIr5pnd
-        bxemvFhWwwrN9eLUpy6tolw=
-X-Google-Smtp-Source: ABdhPJyTCTKoBdK/Nk6z7TtrU/dPMcrzNyWpWAFTkcFBic0zmvYYyDYZ9MZo2a6F9VXv9PNZvXTQiQ==
-X-Received: by 2002:a02:ca48:: with SMTP id i8mr2992534jal.133.1602079509486;
-        Wed, 07 Oct 2020 07:05:09 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:7c62:dd9d:b755:cfbd])
-        by smtp.gmail.com with ESMTPSA id j11sm1106886ili.83.2020.10.07.07.05.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 07:05:08 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        with ESMTP id S1728567AbgJGOU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 10:20:26 -0400
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9758C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 07:20:25 -0700 (PDT)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4C5xLv1ZmYz1sQrf;
+        Wed,  7 Oct 2020 16:20:23 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4C5xLt6ygdz1qqkM;
+        Wed,  7 Oct 2020 16:20:22 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id pziLOkGfj2Kn; Wed,  7 Oct 2020 16:20:21 +0200 (CEST)
+X-Auth-Info: FajRkvEwn7zFglMjFpW/8QrpOMHWznfBIrlMfoJH3uk=
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Wed,  7 Oct 2020 16:20:21 +0200 (CEST)
+Subject: Re: [PATCH v2 1/7] dt-bindings: display: mxsfb: Convert binding to
+ YAML
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Stefan Agner <stefan@agner.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mm-beacon-som: Configure supplies on secondary cpus
-Date:   Wed,  7 Oct 2020 09:04:57 -0500
-Message-Id: <20201007140457.233697-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        linux-arm-kernel@lists.infradead.org
+References: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
+ <20201007012438.27970-2-laurent.pinchart@ideasonboard.com>
+ <daabffc8-24e9-4963-58a9-6c62724e7a11@denx.de>
+ <bef04042ebd7dc1c744b51ab2b1c614a2f04084f.camel@pengutronix.de>
+ <a8db345a-24b3-db8c-8dce-f97e021a1bf1@denx.de>
+ <20201007133357.GJ3937@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <7fc84f7c-0660-efb6-6baf-4e2b9df6b48a@denx.de>
+Date:   Wed, 7 Oct 2020 16:20:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201007133357.GJ3937@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each cpu core should have a corresponding supply, but only cpu0 does.
-This patch adds a supply for each of the secondary cpus.
+On 10/7/20 3:33 PM, Laurent Pinchart wrote:
+> Hi Marek,
+> 
+> On Wed, Oct 07, 2020 at 10:55:24AM +0200, Marek Vasut wrote:
+>> On 10/7/20 10:43 AM, Lucas Stach wrote:
+>>> On Mi, 2020-10-07 at 10:32 +0200, Marek Vasut wrote:
+>>>> On 10/7/20 3:24 AM, Laurent Pinchart wrote:
+>>>> [...]
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - fsl,imx23-lcdif
+>>>>> +      - fsl,imx28-lcdif
+>>>>> +      - fsl,imx6sx-lcdif
+>>>>> +      - fsl,imx8mq-lcdif
+>>>>
+>>>> There is no fsl,imx8mq-lcdif in drivers/gpu/drm/mxsfb/mxsfb_drv.c,
+>>>> so the DT must specify compatible = "fsl,imx8mq-lcdif",
+>>>> "fsl,imx28-lcdif" (since imx28 is the oldest SoC with LCDIF V4).
+>>>>
+>>>> Should the compatible be added to drivers/gpu/drm/mxsfb/mxsfb_drv.c or
+>>>> dropped from the YAML file or neither ?
+>>>
+>>> Neither. As far as we know the block is compatible, so the DT should
+>>> claim that it's compatible to "fsl,imx28-lcdif". However we don't know
+>>> if there are any surprises, so we add the SoC specific compatible to be
+>>> able to change the driver matching later without changing the DT if the
+>>> need arises. For the DT validation to pass the SoC specific compatible 
+>>> needs to be documented, even if it currently unused by the driver.
+>>
+>> What in that binding says you should specify compatible =
+>> "fsl,imx8mq-lcdif", "fsl,imx28-lcdif"; and not e.g. "fsl,imx8mq-lcdif",
+>> "fsl,imx23-lcdif" or simply "fsl,imx8mq-lcdif" ?
+> 
+> Nothing, until the next patch :-) This patch only handles the YAML
+> conversion but doesn't fix issues.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-index b88c3c99b007..397cf8b2f29b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-@@ -24,6 +24,18 @@ &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&A53_1 {
-+	cpu-supply = <&buck2_reg>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&buck2_reg>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&buck2_reg>;
-+};
-+
- &ddrc {
- 	operating-points-v2 = <&ddrc_opp_table>;
- 
--- 
-2.25.1
-
+Good, thanks !
