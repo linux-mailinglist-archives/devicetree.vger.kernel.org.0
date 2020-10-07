@@ -2,257 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 861A1285629
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 03:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 630C7285641
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 03:25:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726719AbgJGBRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 21:17:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50900 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727281AbgJGBRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:17:47 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D13C0613D3
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 18:17:45 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id 144so380883pfb.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 18:17:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=H0grO1/LPC39zD9/uMmlQwrmk7dyJY/6UPRijWFp5DU=;
-        b=DwAXRI8VrMz5z37j30Xsto7xic7Bh+bbl0UOI//b5d+NFKMXiVyQGZlAZ4yL5WS/1s
-         13AVVhf6vI0jtlrrvP/HS16s3vKmauOfL366oReuvTdguygMM2duFUiwPX7dcGNTCsCb
-         2ksJfXtVV9+0cCEFcitGsp9nWna9a2VyySn9M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=H0grO1/LPC39zD9/uMmlQwrmk7dyJY/6UPRijWFp5DU=;
-        b=QRD9lrMoUT/WaG8l9Kq2EzkpsHGg2+mZDdHC7suzz8i0QATceb/52P4V28H87OaLSi
-         JXo1jZyeq09V4rzgxM8LUde/ORqSRKZj+PVq+Zb49Z4Nf9d6fi15OJlK2N4g0n+2dCtU
-         5/7c/KiknHKii6cJJJGgMnsYNyWxzRo9jmHGbRkh/dzneeWsvwihm79kzJeHke0hzwO+
-         8bf7AD5Z83MxKqG+nlVdtswzD9ZYybBazkYAGD+b7LlPdU0FbKWBVuG9svX6DIcDNv+v
-         ZtuU9oA7chFo5TLVfx7eIVVP0rwxKscbRbPlwr5I6eWZ/Ji8r8XKZ5lktfj0VgFwP2mj
-         wnzg==
-X-Gm-Message-State: AOAM531X1dq8Awyp5UR2ruRzEzsqKpvxmvpSQdBcHqQdIoo8gEgzvizK
-        61lPk14WsJPSqlZ8z6BN/HgUAw==
-X-Google-Smtp-Source: ABdhPJzvP6pmCV0CHzjkMIN3vZmFolozsxfx8647zKjG5uTT3wwlPNTf9ElCwr8w8UDAR+GXZDJMBw==
-X-Received: by 2002:a63:4a43:: with SMTP id j3mr867356pgl.42.1602033465479;
-        Tue, 06 Oct 2020 18:17:45 -0700 (PDT)
-Received: from smtp.gmail.com ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id z190sm482654pfc.89.2020.10.06.18.17.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2020 18:17:44 -0700 (PDT)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Daniel Campello <campello@chromium.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Evan Green <evgreen@chromium.org>
-Subject: [PATCH v3 6/6] iio: sx9310: Set various settings from DT
-Date:   Tue,  6 Oct 2020 18:17:35 -0700
-Message-Id: <20201007011735.1346994-7-swboyd@chromium.org>
-X-Mailer: git-send-email 2.28.0.806.g8561365e88-goog
-In-Reply-To: <20201007011735.1346994-1-swboyd@chromium.org>
-References: <20201007011735.1346994-1-swboyd@chromium.org>
+        id S1726447AbgJGBZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 21:25:26 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:39244 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726605AbgJGBZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:25:26 -0400
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3BDB21452;
+        Wed,  7 Oct 2020 03:25:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1602033924;
+        bh=w9uEQ9UEo2C17nqyobsC/UZM1w1x/x2vsQZmInDHsl8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=nG9KaJndTj+WWZJ+uRyrE2/jYANpq4AtgN1P+zzmu/yqP0IXoO1n+bM/dlynExHIC
+         j1wPnOi1byRBDDf8DFzP2qKFl1CEmqGRaIie3Pf/QECU5H5m5Bmd/Mdyvhb5r0g0vf
+         lHZLr3T+G9FtbJajcdQFxKO1JEPcLfs2q6Tg4NDM=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Stefan Agner <stefan@agner.ch>, Marek Vasut <marex@denx.de>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/7] drm: mxsfb: Allow overriding bus width
+Date:   Wed,  7 Oct 2020 04:24:31 +0300
+Message-Id: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These properties need to be set during driver probe. Parse any DT
-properties and replace the default register settings with the ones
-parsed from DT.
+Hello,
 
-Cc: Daniel Campello <campello@chromium.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Gwendal Grignou <gwendal@chromium.org>
-Cc: Evan Green <evgreen@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- drivers/iio/proximity/sx9310.c | 125 ++++++++++++++++++++++++++++++++-
- 1 file changed, 124 insertions(+), 1 deletion(-)
+This patch series adds support to the mxsfb driver for bus width
+override. The need came from a hardware platform where a 18-bpp panel
+had the R[5:0], G[5:0] and B[5:0] signals connected to LCD_DATA[7:2],
+LCD_DATA[15:10] and LCD_DATA[23:18] instead of LCD_DATA[5:0],
+LCD_DATA[11:6] and LCD_DATA[17:12]. The bus width, automatically
+configured to 18 by querying the panel, is incorrect in this case, and
+needs to be set to 24.
 
-diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-index 3f909177eca9..23aa235ac2b6 100644
---- a/drivers/iio/proximity/sx9310.c
-+++ b/drivers/iio/proximity/sx9310.c
-@@ -49,23 +49,42 @@
- #define   SX9310_REG_PROX_CTRL0_SCANPERIOD_15MS		0x01
- #define SX9310_REG_PROX_CTRL1				0x11
- #define SX9310_REG_PROX_CTRL2				0x12
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_MASK		GENMASK(7, 6)
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1_CS2_CS3 (0x03 << 6)
- #define   SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2	(0x02 << 6)
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1	(0x01 << 6)
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS3		(0x00 << 6)
-+#define   SX9310_REG_PROX_CTRL2_SHIELDEN_MASK		GENMASK(3, 2)
- #define   SX9310_REG_PROX_CTRL2_SHIELDEN_DYNAMIC	(0x01 << 2)
-+#define   SX9310_REG_PROX_CTRL2_SHIELDEN_GROUND		(0x02 << 2)
- #define SX9310_REG_PROX_CTRL3				0x13
- #define   SX9310_REG_PROX_CTRL3_GAIN0_MASK		GENMASK(3, 2)
- #define   SX9310_REG_PROX_CTRL3_GAIN0_X8		(0x03 << 2)
- #define   SX9310_REG_PROX_CTRL3_GAIN12_MASK		GENMASK(1, 0)
- #define   SX9310_REG_PROX_CTRL3_GAIN12_X4		0x02
- #define SX9310_REG_PROX_CTRL4				0x14
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MASK		GENMASK(2, 0)
- #define   SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST	0x07
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_FINE	0x06
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_FINE		0x05
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM	0x04
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM_COARSE 0x03
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_COARSE	0x02
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_COARSE	0x01
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_COARSEST	0x00
- #define SX9310_REG_PROX_CTRL5				0x15
- #define   SX9310_REG_PROX_CTRL5_RANGE_SMALL		(0x03 << 6)
-+#define   SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK	GENMASK(3, 2)
- #define   SX9310_REG_PROX_CTRL5_STARTUPSENS_CS1		(0x01 << 2)
-+#define   SX9310_REG_PROX_CTRL5_RAWFILT_MASK		GENMASK(1, 0)
-+#define   SX9310_REG_PROX_CTRL5_RAWFILT_SHIFT		0
- #define   SX9310_REG_PROX_CTRL5_RAWFILT_1P25		0x02
- #define SX9310_REG_PROX_CTRL6				0x16
- #define   SX9310_REG_PROX_CTRL6_AVGTHRESH_DEFAULT	0x20
- #define SX9310_REG_PROX_CTRL7				0x17
- #define   SX9310_REG_PROX_CTRL7_AVGNEGFILT_2		(0x01 << 3)
-+#define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK		GENMASK(2, 0)
-+#define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_SHIFT	0
- #define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_512		0x05
- #define SX9310_REG_PROX_CTRL8				0x18
- #define   SX9310_REG_PROX_CTRL8_9_PTHRESH_MASK		GENMASK(7, 3)
-@@ -1193,9 +1212,113 @@ static int sx9310_init_compensation(struct iio_dev *indio_dev)
- 	return ret;
- }
- 
-+static const struct sx9310_reg_default *
-+sx9310_get_default_reg(struct sx9310_data *data, int i,
-+		       struct sx9310_reg_default *reg_def)
-+{
-+	int ret;
-+	const struct device_node *np = data->client->dev.of_node;
-+	u32 combined[SX9310_NUM_CHANNELS] = { 4, 4, 4, 4 };
-+	unsigned long comb_mask = 0;
-+	const char *res;
-+	u32 start = 0, raw = 0, pos = 0;
-+
-+	memcpy(reg_def, &sx9310_default_regs[i], sizeof(*reg_def));
-+	if (!np)
-+		return reg_def;
-+
-+	switch (reg_def->reg) {
-+	case SX9310_REG_PROX_CTRL2:
-+		if (of_property_read_bool(np, "semtech,cs0-ground")) {
-+			reg_def->def &= ~SX9310_REG_PROX_CTRL2_SHIELDEN_MASK;
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_SHIELDEN_GROUND;
-+		}
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL2_COMBMODE_MASK;
-+		of_property_read_u32_array(np, "semtech,combined-sensors",
-+					   combined, ARRAY_SIZE(combined));
-+		for (i = 0; i < ARRAY_SIZE(combined); i++) {
-+			if (combined[i] <= SX9310_NUM_CHANNELS)
-+				comb_mask |= BIT(combined[i]);
-+		}
-+
-+		comb_mask &= 0xf;
-+		if (comb_mask == (BIT(3) | BIT(2) | BIT(1) | BIT(0)))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1_CS2_CS3;
-+		else if (comb_mask == (BIT(1) | BIT(2)))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2;
-+		else if (comb_mask == (BIT(0) | BIT(1)))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1;
-+		else if (comb_mask == BIT(3))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS3;
-+
-+		break;
-+	case SX9310_REG_PROX_CTRL4:
-+		ret = of_property_read_string(np, "semtech,resolution", &res);
-+		if (ret)
-+			break;
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL4_RESOLUTION_MASK;
-+		if (!strcmp(res, "coarsest"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_COARSEST;
-+		else if (!strcmp(res, "very-coarse"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_COARSE;
-+		else if (!strcmp(res, "coarse"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_COARSE;
-+		else if (!strcmp(res, "medium-coarse"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM_COARSE;
-+		else if (!strcmp(res, "medium"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM;
-+		else if (!strcmp(res, "fine"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_FINE;
-+		else if (!strcmp(res, "very-fine"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_FINE;
-+		else if (!strcmp(res, "finest"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST;
-+
-+		break;
-+	case SX9310_REG_PROX_CTRL5:
-+		ret = of_property_read_u32(np, "semtech,startup-sensor", &start);
-+		if (ret) {
-+			start = FIELD_GET(SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK,
-+					  reg_def->def);
-+		}
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK;
-+		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK,
-+					   start);
-+
-+		ret = of_property_read_u32(np, "semtech,proxraw-strength", &raw);
-+		if (ret) {
-+			raw = FIELD_GET(SX9310_REG_PROX_CTRL5_RAWFILT_MASK,
-+					reg_def->def);
-+		} else {
-+			raw = ilog2(raw);
-+		}
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL5_RAWFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL5_RAWFILT_MASK,
-+					   raw);
-+		break;
-+	case SX9310_REG_PROX_CTRL7:
-+		ret = of_property_read_u32(np, "semtech,avg-pos-strength", &pos);
-+		if (ret)
-+			break;
-+
-+		pos = min(max(ilog2(pos), 3), 10) - 3;
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK,
-+					   pos);
-+		break;
-+	}
-+
-+	return reg_def;
-+}
-+
- static int sx9310_init_device(struct iio_dev *indio_dev)
- {
- 	struct sx9310_data *data = iio_priv(indio_dev);
-+	struct sx9310_reg_default tmp;
- 	const struct sx9310_reg_default *initval;
- 	int ret;
- 	unsigned int i, val;
-@@ -1213,7 +1336,7 @@ static int sx9310_init_device(struct iio_dev *indio_dev)
- 
- 	/* Program some sane defaults. */
- 	for (i = 0; i < ARRAY_SIZE(sx9310_default_regs); i++) {
--		initval = &sx9310_default_regs[i];
-+		initval = sx9310_get_default_reg(data, i, &tmp);
- 		ret = regmap_write(data->regmap, initval->reg, initval->def);
- 		if (ret)
- 			return ret;
+To solve this issue, a new bus-width DT property is added to the mxsfb
+DT binding. Patch 1/7 first converts the binding to YAML, with a fix for
+the compatible string values in 2/7. Patch 3/7 then adds the new
+property.
+
+Patches 4/7 to 5/7 then fix the DT sources to match the LCDIF bindings,
+as I noticed during the conversion that the compatible strings were
+badly managed (see patch 2/7 for a longer explanation). Patch 6/7 drops
+an unused clock from DT sources.
+
+Patch 7/7 finally adds support for the bus-width property to the mxsfb
+driver.
+
+Changes compared to v1 are minor and are listed in individual patches.
+
+Laurent Pinchart (7):
+  dt-bindings: display: mxsfb: Convert binding to YAML
+  dt-bindings: display: mxsfb: Add and fix compatible strings
+  dt-bindings: display: mxsfb: Add a bus-width endpoint property
+  ARM: dts: imx: Fix LCDIF compatible strings
+  arm64: dts: imx8mq: Fix LCDIF compatible strings
+  ARM: dts: imx: Remove unneeded LCDIF disp_axi clock
+  drm: mxsfb: Add support for the bus-width DT property
+
+ .../bindings/display/fsl,lcdif.yaml           | 136 ++++++++++++++++++
+ .../devicetree/bindings/display/mxsfb.txt     |  87 -----------
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/imx6sl.dtsi                 |   7 +-
+ arch/arm/boot/dts/imx6sll.dtsi                |   7 +-
+ arch/arm/boot/dts/imx6sx.dtsi                 |   4 +-
+ arch/arm/boot/dts/imx6ul.dtsi                 |   7 +-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |   2 +-
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  26 ++++
+ drivers/gpu/drm/mxsfb/mxsfb_drv.h             |   2 +
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c             |   8 +-
+ 11 files changed, 183 insertions(+), 105 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/mxsfb.txt
+
 -- 
-Sent by a computer, using git, on the internet
+Regards,
+
+Laurent Pinchart
 
