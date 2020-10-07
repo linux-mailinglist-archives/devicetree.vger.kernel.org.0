@@ -2,288 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FF36286010
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D453C286024
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728271AbgJGN0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 09:26:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44094 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728177AbgJGN0b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 09:26:31 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8A9A821582;
-        Wed,  7 Oct 2020 13:26:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602077188;
-        bh=uGmhac3bXoIKLxS/etulp9xyU6Nx9zBTXBPhRODTRjY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=EXYLgME4aSy9w0phDYuB0dkEfawxqGJGkk7zmaqswB33/82zigv4ArDeZHtEH43AZ
-         f5sjMiI26FYxvxOYGvN+/KvNZZWucYMB6WPdb2R93RwtvNSK9eOs6AG3ASDvfsO1Xq
-         +eyHOyOMkd6suZPHnMkZ1Fn0dlU/2OhKtWlyYPiA=
-Received: by mail-ot1-f41.google.com with SMTP id 60so2193906otw.3;
-        Wed, 07 Oct 2020 06:26:28 -0700 (PDT)
-X-Gm-Message-State: AOAM531EoZwL4yTYkYsyOFwJ8OsPXbQveT4bBCBguLNXLi4s397g2Rk7
-        h95MobYfSFuCTZ50oUp30+x3jIefLwfXvhlMCw==
-X-Google-Smtp-Source: ABdhPJzVSZ8lJh3fapZiaKYsWtKQifzoktUnq75rDoDNfG9+wus7rYtSDDCEvihzf+7CUOvlYAf9inSt2W0r01mXld0=
-X-Received: by 2002:a9d:1c90:: with SMTP id l16mr1938283ota.192.1602077187620;
- Wed, 07 Oct 2020 06:26:27 -0700 (PDT)
+        id S1728484AbgJGNa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 09:30:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728323AbgJGNaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:30:23 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75287C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 06:30:17 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id u8so2314534lff.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 06:30:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k2l/9fzb03eCTZoGiByyf5gZsfF5uaw+eTCPdRAtu8g=;
+        b=rMRYSy7vcf6XtGqbukLSA52hgTFeiwzpZJ6SFJLCm6vFiw4eozjl6mZrCAWZDI8L8W
+         35O+K010AfwkUo7H6VIn18gON0I6c8XyE21fGlxOl+HuSs5bBoV76b7cW1ogvq989L4B
+         UsrOa9j9VHYWAeYzV6FLZYCj+nJnP+sKHagyhaJ89qb4d0U/DUPzCwLXNxGOme15HkZS
+         b/jYA7hvX0QGQixt6CY9j6DJABL3VqVhaoUPhz3SD0EPd8uhaoBHfmFBGaSyGZY6l1YQ
+         fK4RcLlj5bsNIt5QFWU/ZO2ACTS0zYKSOm/QJ8UjG2ym6zxZElq5P0qEih+9aIjG2vxF
+         Yamg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k2l/9fzb03eCTZoGiByyf5gZsfF5uaw+eTCPdRAtu8g=;
+        b=HI2gz5dp/dk8Y5bRVBmTvvMJ+ZeXJcOx4ydWkrWr+IF9SvZ6yuT0aoIV4nvCx4lUOJ
+         bgHFQcF+RsknkhDKCz/PmqhOMbBcWgUG+6nxD4z1cD7iGQ4/CN5oA6pJstGCdj3JoIKi
+         KFgxUEYzwqtt2ETy5L9hYYAv8C8zpAsFPfIgQk7RfTaOnqxregFVYPQZjqWTh7+rf7Zc
+         qzX7rLKQE5O0l3qMusvFBsfJ3afq4D/i6BBp8lPKqtff9tGGqE3ANbdZWn5ew7kawpw/
+         VaMpoUbuPXkfA0JcWqK6jAbt7B+t32vQ2GPMB4ih5SFsaIxUJKc9l/GXCijpTYi8bB15
+         Sa7w==
+X-Gm-Message-State: AOAM532eUO02e4ftymYonJrs05WThPY+hm2l3OYQhfUKj6lGTaEko67f
+        S/9UgXIwbbpTSxjwbCijuJbkjDf5+G9U4dDV/u7YFg==
+X-Google-Smtp-Source: ABdhPJzM6EKSUbzWZ4QoyxcoR83GT/oWoNZ86uDYC1Qwc9NmgDn95/8Lwxq9JFC4JlMW2XebEtYnqy1OpjDtjraDimk=
+X-Received: by 2002:a19:e55:: with SMTP id 82mr893745lfo.571.1602077415649;
+ Wed, 07 Oct 2020 06:30:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201002114426.31277-1-lukasz.luba@arm.com> <20201002114426.31277-4-lukasz.luba@arm.com>
- <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
- <e9b6fc5a-45d3-168d-db38-6c068da26f6b@arm.com> <CAD=FV=Xkg1zpsMW5rERbibnjrgY6opZi8Z9DUFkWebb7NHtU5w@mail.gmail.com>
- <bc5d21c1-ea84-9132-2e52-ae84fbb0515a@arm.com> <CAD=FV=VfA8AB3BZk8Ykkhigv9eGijzu4zuA6KdXk0K5UG0yCCQ@mail.gmail.com>
- <CAL_JsqJ37TVk4=E1DyZuhfH1jZ7wyauGLucSH7XW9wkeT3PSgg@mail.gmail.com> <CAD=FV=Vy641h5KNLKipC1n=tgjp7a3HGHw0odY9fNpwdqorrAg@mail.gmail.com>
-In-Reply-To: <CAD=FV=Vy641h5KNLKipC1n=tgjp7a3HGHw0odY9fNpwdqorrAg@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 7 Oct 2020 08:26:16 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ=brfbLiTm9D+p2N0Az-gcStbYj=RS2EaG50dHo0-5WA@mail.gmail.com>
-Message-ID: <CAL_JsqJ=brfbLiTm9D+p2N0Az-gcStbYj=RS2EaG50dHo0-5WA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: update sustainable-power
- with abstract scale
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+References: <20201006142532.2247515-1-lars.povlsen@microchip.com> <20201006142532.2247515-3-lars.povlsen@microchip.com>
+In-Reply-To: <20201006142532.2247515-3-lars.povlsen@microchip.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 7 Oct 2020 15:30:03 +0200
+Message-ID: <CACRpkda+OSgma3E0XxXUk8a2yrn5Hpu3a47cBN50rOkoSMkiwQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 2/3] pinctrl: pinctrl-mchp-sgpio: Add pinctrl
+ driver for Microsemi Serial GPIO
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Dietmar.Eggemann@arm.com, Quentin Perret <qperret@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 6, 2020 at 8:17 PM Doug Anderson <dianders@chromium.org> wrote:
+Hi Lars!
+
+Thanks for the update, this looks much improved!
+
+Some further hints at things I saw here:
+
+On Tue, Oct 6, 2020 at 4:25 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+
+> This adds a pinctrl driver for the Microsemi/Microchip Serial GPIO
+> (SGPIO) device used in various SoC's.
 >
-> Hi,
->
-> On Tue, Oct 6, 2020 at 3:24 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Fri, Oct 2, 2020 at 12:39 PM Doug Anderson <dianders@chromium.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Fri, Oct 2, 2020 at 9:40 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
-> > > >
-> > > > On 10/2/20 4:47 PM, Doug Anderson wrote:
-> > > > > Hi,
-> > > > >
-> > > > > On Fri, Oct 2, 2020 at 8:13 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
-> > > > >>
-> > > > >> Hi Doug,
-> > > > >>
-> > > > >> On 10/2/20 3:31 PM, Doug Anderson wrote:
-> > > > >>> Hi,
-> > > > >>>
-> > > > >>> On Fri, Oct 2, 2020 at 4:45 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
-> > > > >>>>
-> > > > >>>> Update the documentation for the binding 'sustainable-power' and allow
-> > > > >>>> to provide values in an abstract scale. It is required when the cooling
-> > > > >>>> devices use an abstract scale for their power values.
-> > > > >>>>
-> > > > >>>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
-> > > > >>>> ---
-> > > > >>>>    .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
-> > > > >>>>    1 file changed, 9 insertions(+), 4 deletions(-)
-> > > > >>>>
-> > > > >>>> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> > > > >>>> index 3ec9cc87ec50..4d8f2e37d1e6 100644
-> > > > >>>> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> > > > >>>> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> > > > >>>> @@ -99,10 +99,15 @@ patternProperties:
-> > > > >>>>          sustainable-power:
-> > > > >>>>            $ref: /schemas/types.yaml#/definitions/uint32
-> > > > >>>>            description:
-> > > > >>>> -          An estimate of the sustainable power (in mW) that this thermal zone
-> > > > >>>> -          can dissipate at the desired control temperature. For reference, the
-> > > > >>>> -          sustainable power of a 4-inch phone is typically 2000mW, while on a
-> > > > >>>> -          10-inch tablet is around 4500mW.
-> > > > >>>> +          An estimate of the sustainable power (in mW or in an abstract scale)
-> > > > >>>> +         that this thermal zone can dissipate at the desired control
-> > > > >>>> +         temperature. For reference, the sustainable power of a 4-inch phone
-> > > > >>>> +         is typically 2000mW, while on a 10-inch tablet is around 4500mW.
-> > > > >>>> +
-> > > > >>>> +         It is possible to express the sustainable power in an abstract
-> > > > >>>> +         scale. This is the case when the related cooling devices use also
-> > > > >>>> +         abstract scale to express their power usage. The scale must be
-> > > > >>>> +         consistent.
-> > > > >>>
-> > > > >>> Two thoughts:
-> > > > >>>
-> > > > >>> 1. If we're going to allow "sustainable-power" to be in abstract
-> > > > >>> scale, why not allow "dynamic-power-coefficient" to be in abstract
-> > > > >>> scale too?  I assume that the whole reason against that originally was
-> > > > >>> the idea of device tree purity, but if we're allowing the abstract
-> > > > >>> scale here then there seems no reason not to allow it for
-> > > > >>> "dynamic-power-coefficient".
-> > > > >>
-> > > > >> With this binding it's a bit more tricky.
-> > > > >> I also have to discuss a few things internally. This requirement of
-> > > > >> uW/MHz/V^2 makes the code easier also for potential drivers
-> > > > >> like GPU (which are going to register the devfreq cooling with EM).
-> > > > >>
-> > > > >> Let me think about it, but for now I would just update these bits.
-> > > > >> These are required to proper IPA operation, the dyn.-pow.-coef. is a
-> > > > >> nice to have and possible next step.
-> > > > >
-> > > > > I guess the problem is that Rajendra is currently planning to remove
-> > > > > all the "dynamic-power-coefficient" values from device tree right now
-> > > > > and move them to the source code because the numbers we currently have
-> > > > > in the device tree _are_ in abstract scale and thus violate the
-> > > > > bindings.  Moving this to source code won't help us get to more real
-> > > > > power numbers (since it'll still be abstract scale), it'll just be
-> > > > > pure churn.  If we're OK with the abstract scale in general then we
-> > > > > should allow it everywhere and not add churn for no reason.
-> > > >
-> > > > IIUC he is still going to use the Energy Model, but with different
-> > > > registration function. We have such a driver: scmi-cpufreq.c, which
-> > > > uses em_dev_register_perf_domain(). He can still use EM, EAS, IPA
-> > > > not violating anything.
-> > >
-> > > Right.  He's going to take the exact same "abstract scale" numbers
-> > > that he has today and take them out of device tree and put them in the
-> > > cpufreq driver.  Doing so magically makes it so that he's not
-> > > violating anything since "abstract scale" is not currently allowed in
-> > > device tree but is allowed in the cpufreq driver.  I'm not saying that
-> > > he's doing anything wrong, I'm just saying that it's pointless churn.
-> > > If we're OK with "abstract scale" in one place in the device tree we
-> > > should be OK with it everywhere in the device tree.  Then Rajendra
-> > > wouldn't need his patch at all and he could leave his numbers in the
-> > > device tree.
-> > >
-> > >
-> > > > The real problem that we want to address is with sustainable-power in
-> > > > IPA. It is used in power budget calculation and if the devices operate
-> > > > in abstract scale, then there is an issue.
-> > > > There are two options to get that value:
-> > > > 1. from DT, which can have optimized value, stored by OEM engineer
-> > > > 2. from IPA estimation code, which just calculates it as a sum of
-> > > > minimum OPP power for each cooling device.
-> > > >
-> > > > The 2nd option might not be the best for a platform, so vendor/OEM
-> > > > engineer might want to provide a better value in DT -> 1st option.
-> > > > This is currently against the binding description and I have to fix it.
-> > >
-> > > Right, things are already broken today because a SoC vendor could
-> > > (without violating any rules) provide their SoC core
-> > > "dynamic-power-coefficient" in "abstract scale" in code and there
-> > > would be no way to for a board to (without violating DT bindings)
-> > > specify a "sustainable-power".  ...so, in that sense, your patch does
-> > > provide a benefit even if we don't make any changes to the rules for
-> > > "sustainable-power".  All I'm saying is that if these new rules for
-> > > allowing an abstract scale for "sustainable-power" in the device tree
-> > > are OK that it should _also_ be OK to add new rules to allow an
-> > > abstract scale for "dynamic-power-coefficient".
-> >
-> > Didn't we beat this one to death with "dynamic-power-coefficient"?
->
-> We did?  Where / when?
+> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
 
-https://lore.kernel.org/r/1448288921-30307-1-git-send-email-juri.lelli@arm.com/
+> +       /* 2 banks: IN/OUT */
+> +       struct {
+> +               struct gpio_chip gpio;
+> +               struct pinctrl_desc pctl_desc;
+> +               struct pinctrl_dev *pctl_dev;
+> +       } bank[2];
 
-> I'm not sure I was involved, but right now
-> both "sustainable-power" and "dynamic-power-coefficient" are still
-> defined in the device tree to be in real units, not abstract scale.
-> Are you saying that we beat it to death and decided that it needed to
-> be in real units, or we beat it to death and decided that abstract
-> scale was OK and we just didn't put it in the bindings?
+Is it really good to use index [0,1] to refer to these?
+Isnt it easier to do something like:
 
-The former.
+struct sgpio_bank {
+         struct gpio_chip gpio;
+         struct pinctrl_desc pctl_desc;
+         struct pinctrl_dev *pctl_dev;
+};
 
-> > That is the abstract scale because I don't think you can really ever
-> > measure it
->
-> That's debatable.  it's not very hard to get reasonable measurements.
-> Matthias provided a recipe earlier in the thread.  See commit
-> ac60c5e33df4 ("ARM: dts: rockchip: Add dynamic-power-coefficient for
-> rk3288").  In that case he used a machine that could easily measure
-> power on the CPU rail, but if you simply keep all other rails in the
-> system constant (and/or run a long enough test), you can easily
-> accomplish this by just querying the smart battery in systems.
+struct sgpio_priv {
+        (...)
+        struct sgpio_bank in;
+        struct sgpio_bank out;
+        (...)
+};
 
-Okay, yes, you can measure and then calculate something. But the value
-is only meaningful within that platform. There's no standardized test
-to run. What the power rails are could be different (e.g. CPU RAMs on
-a separate rail and shared).
+This way you I think the code becomes clearer.
 
-> > and because vendors don't want to advertise their absolute
-> > power.
->
-> That is certainly true, though after a device has shipped it's not
-> that hard to measure.
+> +static inline bool sgpio_pctl_is_input(struct sgpio_priv *priv,
+> +                                      struct pinctrl_dev *pctl)
+> +{
+> +       /* 1st index is input */
+> +       return pctl == priv->bank[0].pctl_dev;
+> +}
+> +
+> +static inline bool sgpio_gpio_is_input(struct sgpio_priv *priv,
+> +                                      struct gpio_chip *gc)
+> +{
+> +       /* 1st index is input */
+> +       return gc == &priv->bank[0].gpio;
+> +}
 
-Can you tell me how to measure the CPU rail on my Pixel3?
+Isn't it easier to just add a
 
-> > > > >>> 2. Is it worth adding some type of indication of what type of units
-> > > > >>> "sustainable-power" is represented in?  Maybe even a made up unit so
-> > > > >>> that you could tell the difference between made up units in the same
-> > > > >>> system?  I'd envision something like:
-> > > > >>>
-> > > > >>> sustainable-power-units = "qualcomm,sc7180-bogoWatts"
-> > > > >>>
-> > > > >>> ...and on the dynamic-power-coefficient side, the same:
-> > > > >>>
-> > > > >>> dynamic-power-coefficient-units = "qualcomm,sc7180-bogoWatts"
-> > > > >>>
-> > > > >>> One could imagine someone even later (after devices are widely
-> > > > >>> distributed) figuring out translations between these bogoWatts numbers
-> > > > >>> and real Watts if someone could come up with a case where it matters.
-> > > > >>
-> > > > >> To figure this out we don't need a new binding.
-> > > > >> I think a simple comment in the DT would be enough for this, even e.g.:
-> > > > >>
-> > > > >> sustainable-power = <100> /* bogoWatts */
-> > > > >
-> > > > > There are some important differences:
-> > > > >
-> > > > > a) Your comment is gone when the device tree is compiled.  If we
-> > > > > actually add a string to the device tree then, in theory, we can add
-> > > > > conversions in code (without touching the device tree) down the road.
-> > > >
-> > > > We don't need code and binding with a bogoscale. It is up to the
-> > > > platform integrator to make sure the scale in consistent in all devices.
-> > > > Comment in DT is good enough.
-> > >
-> > > One other nice thing about having the units is that the device tree is
-> > > supposed to be more of a "pure" thing, less sullied about what's
-> > > convenient and more about a real description of a thing.  Presumably
-> > > that's why "abstract scale" wasn't allowed originally?  In any case,
-> > > giving quantifiable units to the number somehow makes it feel less
-> > > made up because it's possible to come up with a way to convert it back
-> > > to real units.
-> > >
-> > >
-> > > > > b) I believe there can be more than one abstract scale present in a
-> > > > > single device tree, at least in theory.  Adding a string allows you to
-> > > > > know if you're comparing apples to apples or apples to organges.
-> > > >
-> > > > IMHO DT is not the place for such abstractions, but Rob might correct me
-> > > > here.
-> > >
-> > > Yup, seems like we're blocked waiting for Rob to chime in unless
-> > > someone else has the authority to make the call about how to deal with
-> > > "abstract scale" numbers in the device tree.
-> >
-> > I don't really know nor completely follow the issues. I just get all
-> > these PM related bindings piece by piece with everyone solving their
-> > own single issue. It's death by 1000 cuts. So my default position is
-> > NAK. All the missing pieces and deficiencies can build up until
-> > there's a coherent picture (maybe?).
->
-> I'm totally confused.  NAK on what?  NAK on Lukasz's patch?  ...or
-> Lukasz's patch is totally fine but NAK on also allowing abstract scale
-> for 'dynamic-power-coefficient".  Or NAK on adding units?  NAK on
-> something else?
+bool is_input;
 
-That's just my rant on PM bindings in general.
-'cpu-performance-dependencies' is another one currently.
+to the struct gpio_bank?
 
-Rob
+> +static inline u32 sgpio_readl(struct sgpio_priv *priv, u32 rno, u32 off)
+> +{
+> +       u32 __iomem *reg = &priv->regs[priv->properties->regoff[rno] + off];
+> +
+> +       return readl(reg);
+> +}
+> +
+> +static inline void sgpio_writel(struct sgpio_priv *priv,
+> +                               u32 val, u32 rno, u32 off)
+> +{
+> +       u32 __iomem *reg = &priv->regs[priv->properties->regoff[rno] + off];
+> +
+> +       writel(val, reg);
+> +}
+> +
+> +static inline void sgpio_clrsetbits(struct sgpio_priv *priv,
+> +                                   u32 rno, u32 off, u32 clear, u32 set)
+> +{
+> +       u32 __iomem *reg = &priv->regs[priv->properties->regoff[rno] + off];
+> +       u32 val = readl(reg);
+> +
+> +       val &= ~clear;
+> +       val |= set;
+> +
+> +       writel(val, reg);
+> +}
+
+These accessors are somewhat re-implementing regmap-mmio, especially
+the clrsetbits. I would consider just creating a regmap for each
+struct sgpio_bank and manipulate the register through that.
+(Not any requirement just a suggestion.)
+
+> +static void sgpio_output_set(struct sgpio_priv *priv,
+> +                            struct sgpio_port_addr *addr,
+> +                            int value)
+> +{
+> +       u32 mask = 3 << (3 * addr->bit);
+> +       value = (value & 3) << (3 * addr->bit);
+
+I would spell it out a bit so it becomes clear what is going in
+and use the bits helpers.
+
+value & 3 doesn't make much sense since value here is always
+0 or 1. Thus if value is 1 it in effect becomes value = 1 << (3 * addr->bit)
+so with the above helper bit:
+
+unsigned int bit = 3 * addr->bit;
+u32 mask = GENMASK(bit+1, bit);
+u32 val = BIT(bit);
+
+This way it becomes clear that you set the output usin the lower
+of the two bits.
+
+Also note that I use val rather than value to avoid overwriting
+the parameter: it is legal but confusing. Let the compiler optimize
+register use.
+
+> +static int sgpio_output_get(struct sgpio_priv *priv,
+> +                           struct sgpio_port_addr *addr)
+> +{
+> +       u32 portval = sgpio_readl(priv, REG_PORT_CONFIG, addr->port);
+> +       int ret;
+> +
+> +       ret = SGPIO_X_PORT_CFG_BIT_SOURCE(priv, portval);
+> +       ret = !!(ret & (3 << (3 * addr->bit)));
+
+Is the output direction really controlled by both bits?
+
+ret = !!(ret & (BIT(3 * addr->bit))); ?
+
+> +static int microchip_sgpio_get_direction(struct gpio_chip *gc, unsigned int gpio)
+> +{
+> +       struct sgpio_priv *priv = gpiochip_get_data(gc);
+> +
+> +       return sgpio_gpio_is_input(priv, gc); /* 0=out, 1=in */
+
+You can use the #defines from <linux/gpio/driver.h> if you want to be explicit:
+
+return sgpio_gpio_is_input(priv, gc) ? GPIO_LINE_DIRECTION_IN :
+GPIO_LINE_DIRECTION_OUT;
+
+> +static int microchip_sgpio_of_xlate(struct gpio_chip *gc,
+> +                              const struct of_phandle_args *gpiospec,
+> +                              u32 *flags)
+> +{
+> +       struct sgpio_priv *priv = gpiochip_get_data(gc);
+> +       int pin;
+> +
+> +       if (gpiospec->args[0] > SGPIO_BITS_PER_WORD ||
+> +           gpiospec->args[1] > priv->bitcount)
+> +               return -EINVAL;
+> +
+> +       pin = gpiospec->args[1] + (gpiospec->args[0] * priv->bitcount);
+> +
+> +       if (pin > gc->ngpio)
+> +               return -EINVAL;
+> +
+> +       if (flags)
+> +               *flags = gpiospec->args[2];
+> +
+> +       return pin;
+> +}
+
+I'm still not convinced that you need the flags in args[2].
+
+Just using the default of_gpio_simple_xlate() with one flag
+should be fine. But I will go and review the bindings to figure
+this out.
+
+> +       gc->of_xlate            = microchip_sgpio_of_xlate;
+> +       gc->of_gpio_n_cells     = 3;
+
+So I'm sceptical to this.
+
+Why can't you just use the pin index in cell 0 directly
+and avoid cell 1?
+
+Yours,
+Linus Walleij
