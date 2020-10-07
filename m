@@ -2,140 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C62DE28603D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C43628603C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:34:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728471AbgJGNfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 09:35:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36734 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728177AbgJGNfD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 09:35:03 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A53DD2087D
-        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 13:35:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602077702;
-        bh=k3jDeIb4SJVh8cScB6rh5BNGF/U3Unj3MSy6ypjB80M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=awCbVYMW8L1HBmxIpnVWcT9tZ1zm7paca6pp+OHhMDb8Q8p53Vktud7lb19RNCu7W
-         COQfdTvSTssr1onGWHdsOdKMGd3D2JGE86VgFdWPsAwH68hU6oSov2JP/adzXkr/BW
-         zL7Q/M6TbIir+z9I3+/e9TB/8kpAVPBndXntt0uM=
-Received: by mail-oi1-f176.google.com with SMTP id c13so2412039oiy.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 06:35:02 -0700 (PDT)
-X-Gm-Message-State: AOAM533jVoryge3g1Nc3oZOHQeop0YgFyeqhH0vY6YvaAc6XTnn9C4uU
-        qqjaroJTKr2/wbUgcBFqRoajR/OK+ucEJeUJ9w==
-X-Google-Smtp-Source: ABdhPJx8s8hwOZ/vx9dlfBGi+PCzM8mhw1wJIAzJFZipebsmrlDdLvzOqXSflk977FMmtahmYY7QWpctUbun4FJB2HE=
-X-Received: by 2002:aca:4c52:: with SMTP id z79mr2049377oia.147.1602077701913;
- Wed, 07 Oct 2020 06:35:01 -0700 (PDT)
+        id S1728469AbgJGNe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 09:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51376 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728177AbgJGNe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:34:56 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A713FC061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 06:34:55 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kQ9ak-0004pI-U8; Wed, 07 Oct 2020 15:34:50 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kQ9ak-0002d9-5S; Wed, 07 Oct 2020 15:34:50 +0200
+Date:   Wed, 7 Oct 2020 15:34:50 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
+        linux-imx@nxp.com, m.podolszki@phytec.de
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        s.riedmueller@phytec.de, c.hemp@phytec.de, j.remmet@phytec.de
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: add Phytec Nunki boards
+Message-ID: <20201007133450.rx7jrqb3euxstjiw@pengutronix.de>
+References: <20201007133037.25315-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-References: <1601691662-12954-1-git-send-email-anitha.chrisanthus@intel.com>
- <20201006210813.GA2829155@bogus> <BY5PR11MB41827DE07436DD0454E24E6E8C0A0@BY5PR11MB4182.namprd11.prod.outlook.com>
-In-Reply-To: <BY5PR11MB41827DE07436DD0454E24E6E8C0A0@BY5PR11MB4182.namprd11.prod.outlook.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 7 Oct 2020 08:34:50 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKK0p9w2X-ke2hEjUiJzuKAOBaygkXQ=Ca_kwvZfijtsA@mail.gmail.com>
-Message-ID: <CAL_JsqKK0p9w2X-ke2hEjUiJzuKAOBaygkXQ=Ca_kwvZfijtsA@mail.gmail.com>
-Subject: Re: [PATCH v1] dt-bindings: display: Add support for Intel KeemBay Display
-To:     "Chrisanthus, Anitha" <anitha.chrisanthus@intel.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Paauwe, Bob J" <bob.j.paauwe@intel.com>,
-        "Dea, Edmund J" <edmund.j.dea@intel.com>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201007133037.25315-1-m.felsch@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:34:10 up 327 days,  4:52, 363 users,  load average: 0.02, 0.03,
+ 0.04
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 6, 2020 at 8:00 PM Chrisanthus, Anitha
-<anitha.chrisanthus@intel.com> wrote:
->
-> Hi Rob,
-> Thanks for the your prompt review. Please see my comments/questions inline.
-> For everything else, I can incorporate the changes in v2.
-> Anitha
->
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Tuesday, October 6, 2020 2:08 PM
-> > To: Chrisanthus, Anitha <anitha.chrisanthus@intel.com>
-> > Cc: devicetree@vger.kernel.org; Paauwe, Bob J <bob.j.paauwe@intel.com>;
-> > Dea, Edmund J <edmund.j.dea@intel.com>; sam@ravnborg.org;
-> > narmstrong@baylibre.com
-> > Subject: Re: [PATCH v1] dt-bindings: display: Add support for Intel KeemBay
-> > Display
-> >
-> > On Fri, Oct 02, 2020 at 07:21:02PM -0700, Anitha Chrisanthus wrote:
-> > > This patch adds bindings for Intel KeemBay Display
-> > >
-> > > Signed-off-by: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
-> > > ---
-> > >  .../bindings/display/intel,kmb_display.yaml        | 106
-> > +++++++++++++++++++++
-> > >  1 file changed, 106 insertions(+)
-> > >  create mode 100644
-> > Documentation/devicetree/bindings/display/intel,kmb_display.yaml
-> > >
-> > > diff --git
-> > a/Documentation/devicetree/bindings/display/intel,kmb_display.yaml
-> > b/Documentation/devicetree/bindings/display/intel,kmb_display.yaml
-> > > new file mode 100644
-> > > index 0000000..65835cb
-> > > --- /dev/null
-> > > +++
-> > b/Documentation/devicetree/bindings/display/intel,kmb_display.yaml
-> > > @@ -0,0 +1,106 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only
-> >
-> > check checkpatch.pl
-> >
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/intel,kmb_display.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Devicetree bindings for Intel Keem Bay display controller
-> > > +
-> > > +maintainers:
-> > > +  - Anitha Chrisanthus <anitha.chrisanthus@intel.com>
-> > > +  - Edmond J Dea <edmund.j.dea@intel.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: intel,kmb_display
-> >
-> > 'keembay' was used elsewhere. Please be consistent.
-> >
-> > Don't use '_' either.
-> Please note that I cannot change the name at this point as there is a dependency on the u-boot firmware which loads the device tree. I can change the name to kmb-drm or keembay-display when updated firmware becomes available.
+Add missing Phytec developers to Cc.
 
-That's unfortunate that you used bindings without a definition, but it
-doesn't matter. If that was fine, then we should just stop documenting
-bindings.
+Regards,
+  Marco
 
-> > > +  reg:
-> > > +    maxItems: 3
-> >
-> > Can drop, implied.
-> >
-> > > +    items:
-> > > +      - description: Lcd registers range
-> > > +      - description: Mipi registers range
-> > > +      - description: Msscam registers range
-> >
-> > Is this really 1 h/w block? Don't really seem like it given addresses
-> > aren't adjacent, separate clocks, and MIPI blocks are often licensed IP.
-> Yes, these are part of the camera subsystem block of Intel Movidius Keembay SOC.
+On 20-10-07 15:30, Marco Felsch wrote:
+> Add bindings for the Phytec PhyBOARD-Nunki evalboards.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> Hi,
+> 
+> I copied the imx6q-phytec-nunki-rdk-nand.dts and
+> imx6qdl-phytec-nunki.dtsi from the phytec downstream kernel repo and
+> added support for the imx6qp-phytec-nunki-rdk-nand.dts.
+> 
+> @Phytec
+> I adapted the "phytec,imx6q-pbac11-nand" to "phytec,imx6qp-pbac11-nand"
+> and "phytec,imx6q-pbac11" to "phytec,imx6qp-pbac11". Can you verify that
+> since I have no knowledge about the internal naming scheme, thanks.
+> 
+> Regards,
+>   Marco
+> 
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 6da9d734cdb7..26410a42c411 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -156,6 +156,13 @@ properties:
+>            - const: gw,ventana
+>            - const: fsl,imx6q
+>  
+> +      - description: i.MX6Q Phytec PhyBOARD-Nunki Board
+> +        items:
+> +          - const: phytec,imx6q-pbac11-nand
+> +          - const: phytec,imx6q-pbac11
+> +          - const: phytec,imx6qdl-pcm058
+> +          - const: fsl,imx6q
+> +
+>        - description: i.MX6QP based Boards
+>          items:
+>            - enum:
+> @@ -163,6 +170,13 @@ properties:
+>                - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart Device Board
+>            - const: fsl,imx6qp
+>  
+> +      - description: i.MX6QP Phytec PhyBOARD-Nunki Board
+> +        items:
+> +          - const: phytec,imx6qp-pbac11-nand
+> +          - const: phytec,imx6qp-pbac11
+> +          - const: phytec,imx6qdl-pcm058
+> +          - const: fsl,imx6qp
+> +
+>        - description: i.MX6DL based Boards
+>          items:
+>            - enum:
+> -- 
+> 2.20.1
+> 
+> 
+> 
 
-Then where's the camera parts? The DT should reflect the h/w, not
-what's a convenient split for your drivers.
-
-> Please see  https://lwn.net/Articles/833540/
-
-This should be part of that series.
-
-Rob
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
