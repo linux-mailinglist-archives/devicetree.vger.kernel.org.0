@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C43628603C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDD13286043
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:35:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728469AbgJGNe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 09:34:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51376 "EHLO
+        id S1728488AbgJGNfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 09:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728177AbgJGNe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:34:56 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A713FC061755
-        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 06:34:55 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kQ9ak-0004pI-U8; Wed, 07 Oct 2020 15:34:50 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kQ9ak-0002d9-5S; Wed, 07 Oct 2020 15:34:50 +0200
-Date:   Wed, 7 Oct 2020 15:34:50 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
-        linux-imx@nxp.com, m.podolszki@phytec.de
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        s.riedmueller@phytec.de, c.hemp@phytec.de, j.remmet@phytec.de
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: add Phytec Nunki boards
-Message-ID: <20201007133450.rx7jrqb3euxstjiw@pengutronix.de>
-References: <20201007133037.25315-1-m.felsch@pengutronix.de>
+        with ESMTP id S1728450AbgJGNfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:35:42 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF050C061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 06:35:40 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id r127so2284466lff.12
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 06:35:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+w1W+CUXGGFXbZ34Qh5CjZMXrIFvrZ3lWXBN60hppFc=;
+        b=eH1+4bAxQ4Xw2n/zbFWwccR3SePzT0zlwNq4GU+LGKhCNA43MoCZwQdQMjjUAcMuGh
+         dsluM8ozYSNELiEQJFLaR3eiEn5++Dq8al3D8Khr1tTZPks7r68Wpt3sMEXduHALpgAH
+         cUuaTKI0v+ut5Jl+ezPoJNv9Az1p9q+Mqv5kV+gUHpQCMkPsrcmwYwyDD9bEp49cOiYr
+         u9O50ktsJyTOWWV11DouAXXAxK67iKi9Rk4kjR/SMSFQZnBr0YjP7aqLRc/FE+sVl1Ic
+         zIrd44diWdrcacEuYGR8KZyA8OSaK5fqklnFqa4WgbHRkmOYgq2U4pp3PbNa8Q/GyEAb
+         x6eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+w1W+CUXGGFXbZ34Qh5CjZMXrIFvrZ3lWXBN60hppFc=;
+        b=rSazZHm8tIj8jpc6JFNWdVFyIQDDWvRXOF3eyyQ+ZMpLC/3s2TcxsaUxmVZFepzv+N
+         HjQCzlYupSpYYIfwm5pa4By8PS2zzKOTfnZ32uXmLZYn6sxceehkBjU8Zlh0RH9flQdW
+         gGeIfa+Sh9IU6dc0S4QOxNKDbb3WTSo9R3pieZwMjT+pbOjrspSViEMo6x5Iq9op+x7L
+         OZMnCE1os0NpWaVjXi2rbi9ol52UhVE4opP0+LsSJdyL1vd4L3Pvrzbk1JKf/cUreTdh
+         uMkHNlZh8rIbbggb7GX2S9DDgAvS4yMyod8M2Gj+6fcvCIzc9u1IysKDaF6BscsP+AEz
+         3LJw==
+X-Gm-Message-State: AOAM533iN0fvtUMdkNwTqWqqNu3rzZA0OPy7TQkXI5XOqnUpv7zocxGP
+        DCvYaSN5h+Kd9A8pcD4k6hTtxSmgybVhs1TNDYFndg==
+X-Google-Smtp-Source: ABdhPJxFSWzDMt1RxkzVv4jvQRcoDe70+B0vvDwTNRVoglFOA+9S9Jcc6j31TSUtwhUg0sN0ZV0nqIu6f4fbXjVmpGE=
+X-Received: by 2002:ac2:4c11:: with SMTP id t17mr1043456lfq.260.1602077737755;
+ Wed, 07 Oct 2020 06:35:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007133037.25315-1-m.felsch@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 15:34:10 up 327 days,  4:52, 363 users,  load average: 0.02, 0.03,
- 0.04
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20201007111145.2306213-1-lars.povlsen@microchip.com> <20201007111145.2306213-2-lars.povlsen@microchip.com>
+In-Reply-To: <20201007111145.2306213-2-lars.povlsen@microchip.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 7 Oct 2020 15:35:26 +0200
+Message-ID: <CACRpkda0RAK2gp-ZB6LDxAnQP3=VGrsfqkfV0=3FiSFfNhOmjA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: pinctrl: Add bindings for
+ pinctrl-mchp-sgpio driver
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing Phytec developers to Cc.
+Hi Lars,
 
-Regards,
-  Marco
+a new version of the patch set arrives while I'm reviewing, haha :D
 
-On 20-10-07 15:30, Marco Felsch wrote:
-> Add bindings for the Phytec PhyBOARD-Nunki evalboards.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> Hi,
-> 
-> I copied the imx6q-phytec-nunki-rdk-nand.dts and
-> imx6qdl-phytec-nunki.dtsi from the phytec downstream kernel repo and
-> added support for the imx6qp-phytec-nunki-rdk-nand.dts.
-> 
-> @Phytec
-> I adapted the "phytec,imx6q-pbac11-nand" to "phytec,imx6qp-pbac11-nand"
-> and "phytec,imx6q-pbac11" to "phytec,imx6qp-pbac11". Can you verify that
-> since I have no knowledge about the internal naming scheme, thanks.
-> 
-> Regards,
->   Marco
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 6da9d734cdb7..26410a42c411 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -156,6 +156,13 @@ properties:
->            - const: gw,ventana
->            - const: fsl,imx6q
->  
-> +      - description: i.MX6Q Phytec PhyBOARD-Nunki Board
-> +        items:
-> +          - const: phytec,imx6q-pbac11-nand
-> +          - const: phytec,imx6q-pbac11
-> +          - const: phytec,imx6qdl-pcm058
-> +          - const: fsl,imx6q
-> +
->        - description: i.MX6QP based Boards
->          items:
->            - enum:
-> @@ -163,6 +170,13 @@ properties:
->                - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart Device Board
->            - const: fsl,imx6qp
->  
-> +      - description: i.MX6QP Phytec PhyBOARD-Nunki Board
-> +        items:
-> +          - const: phytec,imx6qp-pbac11-nand
-> +          - const: phytec,imx6qp-pbac11
-> +          - const: phytec,imx6qdl-pcm058
-> +          - const: fsl,imx6qp
-> +
->        - description: i.MX6DL based Boards
->          items:
->            - enum:
-> -- 
-> 2.20.1
-> 
-> 
-> 
+On Wed, Oct 7, 2020 at 1:12 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> This adds DT bindings for the Microsemi/Microchip SGPIO controller,
+> bindings microchip,sparx5-sgpio, mscc,ocelot-sgpio and
+> mscc,luton-sgpio.
+>
+> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+
+(...)
+> +      reg:
+> +        description: |
+> +          The GPIO bank number. "0" is designates the input pin bank,
+> +          "1" the output bank.
+> +        maxItems: 1
+
+Excellent.
+
+> +      '#gpio-cells':
+> +        const: 3
+
+So I thought you needed three cells exactly because the
+middle cell would get you the bank. That you now have in
+reg. So what about using the standard twocell?
+
+Yours,
+Linus Walleij
