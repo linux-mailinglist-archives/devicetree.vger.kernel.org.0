@@ -2,19 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52C0328683B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 21:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAFC8286878
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 21:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728207AbgJGTZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 15:25:43 -0400
-Received: from netrider.rowland.org ([192.131.102.5]:44821 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1727652AbgJGTZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 15:25:43 -0400
-Received: (qmail 469681 invoked by uid 1000); 7 Oct 2020 15:25:42 -0400
-Date:   Wed, 7 Oct 2020 15:25:42 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Matthias Kaehlcke <mka@chromium.org>
+        id S1728365AbgJGTmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 15:42:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727858AbgJGTmc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 15:42:32 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA588C0613D2
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 12:42:32 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id 144so1977485pfb.4
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 12:42:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+MTNsq1y/zL9otQzntOcuNP+rJZZdA/q9TeNguwjb4o=;
+        b=co2PrZHK+kSFOoCGdvqvpAnvZdvxRs6PRJq4XjX26qVaG8wxBfHLYJ8oW6D1J5HCS1
+         R6VDgIF3XUaw0xyJ6lz6Q/SmnJcF127xDDBiF0xVb12sPxhbPIyFAXAq0wQ2bZ8GJ8wo
+         I1Yl3QaqHBHr50xYVOYmub6KXmEQ+YPdTzr/M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+MTNsq1y/zL9otQzntOcuNP+rJZZdA/q9TeNguwjb4o=;
+        b=tcdbOzMN9r0bbZWOQVRCUYtIVfExvCL5HFbsZKPfAFvJxglKa75dVgnTpZENP4oeZe
+         lqokKcj7MhjqY0DsAQCfW2UsUpgoa6Lr8k/scgow5Mf10BzB7guljAPoPARIqT0p2Id1
+         Shl45TJNqMSwyqRjtrmCHyrNb3c9PNOm597HY3V7uKoBMqgnOwalBLgLiy1tlIpk0Bkm
+         lAwGE7sCTkMNoXyskg0LDg7LY+i5uqf/EO2H3N1mkTNGQ2GE1ZzY446R6w28jT68I5DA
+         aYlFCPV/6f5J0/Ggk1mG5rh3jBhmp1eYngAYpCOUD+IbjZYVFOy2r6C1ojnxWGvcQhEY
+         Rb6Q==
+X-Gm-Message-State: AOAM532QtYEsBlIv2JgbHhcMX+qMGGUeAW1hhIqU6uZOcT4uwsJtnTza
+        pgxY+LHTNelq75DYl3LNNnkc0w==
+X-Google-Smtp-Source: ABdhPJyL2g1I4C7VbuYxHrv5bxnCSiByaTaRhewc2kNH07T06Ix7Lro8CkW5H6L2ZyQMomwa4f5Xsg==
+X-Received: by 2002:a17:90b:14d4:: with SMTP id jz20mr4143682pjb.106.1602099752450;
+        Wed, 07 Oct 2020 12:42:32 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id f15sm1521957pfk.21.2020.10.07.12.42.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Oct 2020 12:42:31 -0700 (PDT)
+Date:   Wed, 7 Oct 2020 12:42:29 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
 Cc:     Doug Anderson <dianders@chromium.org>,
         Rob Herring <robh@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -29,9 +61,8 @@ Cc:     Doug Anderson <dianders@chromium.org>,
         <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
 Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
  onboard USB hubs
-Message-ID: <20201007192542.GA468921@rowland.harvard.edu>
-References: <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
- <20201006004510.GD4135817@google.com>
+Message-ID: <20201007194229.GC620323@google.com>
+References: <20201006004510.GD4135817@google.com>
  <20201006141820.GA416765@rowland.harvard.edu>
  <20201006165957.GA191572@google.com>
  <20201006171524.GB423499@rowland.harvard.edu>
@@ -40,82 +71,104 @@ References: <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
  <20201007160336.GA620323@google.com>
  <20201007163838.GA457977@rowland.harvard.edu>
  <20201007172847.GB620323@google.com>
+ <20201007192542.GA468921@rowland.harvard.edu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201007172847.GB620323@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201007192542.GA468921@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 10:28:47AM -0700, Matthias Kaehlcke wrote:
-> On Wed, Oct 07, 2020 at 12:38:38PM -0400, Alan Stern wrote:
-> > On Wed, Oct 07, 2020 at 09:03:36AM -0700, Matthias Kaehlcke wrote:
-> > > Ok, I wasn't sure if the hubs suspend asynchronously from each other. If they
-> > > do it should indeed not be a problem to have the "master" wait for its peers.
-> > 
-> > Well, order of suspending is selectable by the user.  It can be either 
-> > asynchronous or reverse order of device registration, which might pose a 
-> > problem.  We don't know in advance which of two peer hubs will be 
-> > registered first.  It might be necessary to introduce some additional 
-> > explicit synchronization.
-> 
-> I'm not sure we are understanding each other completely. I agree that
-> synchronization is needed to have the primary hub wait for its peers, that
-> was one of my initial concerns.
-> 
-> Lets use an example to clarify my secondary concern: a hub chip provides a
-> USB 3 and a USB 2 hub, lets say the USB 3 hub is the primary.
-> 
-> Here is some pseudo-code for the suspend function:
-> 
-> hub_suspend(hub)
->   ...
-> 
->   if (hub->primary) {
->     device_pm_wait_for_dev(hub->peer)
-> 
->     // check for connected devices and turn regulator off
->   }
-> 
->   ...
-> }
-> 
-> What I meant with 'asynchronous suspend' in this context:
-> 
-> Can hub_suspend() of the peer hub be executed (asynchronously) while the
-> primary is blocked on device_pm_wait_for_dev(),
-
-Yes, that's exactly what would happen with async suspend.
-
->  or would the primary wait
-> forever if the peer hub isn't suspended yet?
-
-That wouldn't happen.  device_pm_wait_for_dev is smart; it will return 
-immediately if neither device uses async suspend.  But in that case you 
-could end up removing power from the peer hub before it had suspended.
-
-That's why I said you might need to add additional synchronization.  The 
-suspend routines for the two hubs could each check to see whether the 
-other device had suspended yet, and the last one would handle the power 
-regulator.  The additional synchronization is for the case where the two 
-checks end up being concurrent.
-
-> > > > And hubs would need to know their peers in any case, because you have to
-> > > > check if any devices attached to the peer have wakeup enabled.
+On Wed, Oct 07, 2020 at 03:25:42PM -0400, Alan Stern wrote:
+> On Wed, Oct 07, 2020 at 10:28:47AM -0700, Matthias Kaehlcke wrote:
+> > On Wed, Oct 07, 2020 at 12:38:38PM -0400, Alan Stern wrote:
+> > > On Wed, Oct 07, 2020 at 09:03:36AM -0700, Matthias Kaehlcke wrote:
+> > > > Ok, I wasn't sure if the hubs suspend asynchronously from each other. If they
+> > > > do it should indeed not be a problem to have the "master" wait for its peers.
 > > > 
-> > > My concern was about all hubs (including 'secondaries') having to know their
-> > > peers and check on each other, in the scenario we are now talking about only
-> > > the "master" hub needs to know and check on its peers, which is fine.
+> > > Well, order of suspending is selectable by the user.  It can be either 
+> > > asynchronous or reverse order of device registration, which might pose a 
+> > > problem.  We don't know in advance which of two peer hubs will be 
+> > > registered first.  It might be necessary to introduce some additional 
+> > > explicit synchronization.
 > > 
-> > Not all hubs would need this.  Only ones marked in DT as having a power 
-> > regulator.
+> > I'm not sure we are understanding each other completely. I agree that
+> > synchronization is needed to have the primary hub wait for its peers, that
+> > was one of my initial concerns.
+> > 
+> > Lets use an example to clarify my secondary concern: a hub chip provides a
+> > USB 3 and a USB 2 hub, lets say the USB 3 hub is the primary.
+> > 
+> > Here is some pseudo-code for the suspend function:
+> > 
+> > hub_suspend(hub)
+> >   ...
+> > 
+> >   if (hub->primary) {
+> >     device_pm_wait_for_dev(hub->peer)
+> > 
+> >     // check for connected devices and turn regulator off
+> >   }
+> > 
+> >   ...
+> > }
+> > 
+> > What I meant with 'asynchronous suspend' in this context:
+> > 
+> > Can hub_suspend() of the peer hub be executed (asynchronously) while the
+> > primary is blocked on device_pm_wait_for_dev(),
 > 
-> Sure, as long as the primary (with a power regulator) can wait for its peers
-> to suspend without the risk of blocking forever (my doubt above).
+> Yes, that's exactly what would happen with async suspend.
+> 
+> >  or would the primary wait
+> > forever if the peer hub isn't suspended yet?
+> 
+> That wouldn't happen.  device_pm_wait_for_dev is smart; it will return 
+> immediately if neither device uses async suspend.  But in that case you 
+> could end up removing power from the peer hub before it had suspended.
+> 
+> That's why I said you might need to add additional synchronization.  The 
+> suspend routines for the two hubs could each check to see whether the 
+> other device had suspended yet, and the last one would handle the power 
+> regulator.  The additional synchronization is for the case where the two 
+> checks end up being concurrent.
 
-If we take this approach, we'll have to give up on the idea that the 
-primary can always suspend after the peer.
+That was exactly my initial concern and one of the reasons I favor(ed) a
+platform instead of a USB driver:
 
-Alan Stern
+> otherwise all hubs need to know their peers and check in suspend if they
+> are the last hub standing, only then the power can be switched off.
+
+To which you replied:
+
+> you just need to make the "master" hub wait for its peer to suspend, which
+> is easy to do.
+
+However that apparently only works if async suspend is enabled, and we
+can't rely on that.
+
+With the peers checking on each other you lose effectively the notion
+of a primary.
+
+Going back to the binding:
+
+  &usb_1_dwc3 {
+    hub_2_0: hub@1 {
+      compatible = "usbbda,5411";
+      reg = <1>;
+    };
+
+    hub_3_0: hub@2 {
+      compatible = "usbbda,411";
+      reg = <2>;
+      vdd-supply = <&pp3300_hub>;
+      companion-hubs = <&hub_2_0>;
+    };
+  };
+
+How does 'hub_2_0' know that its peer is hub_3_0 and that it has a regulator
+(and potentially other resources)?
+
+All this mess can be avoided by having a single instance in control of the
+resources which is guaranteed to suspend after the USB devices.
