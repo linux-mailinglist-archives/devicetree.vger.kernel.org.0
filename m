@@ -2,116 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1853286075
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FAE728607D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 15:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728469AbgJGNw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 09:52:27 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:34752 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728177AbgJGNw1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:52:27 -0400
-Received: by mail-ot1-f68.google.com with SMTP id d28so2292210ote.1;
-        Wed, 07 Oct 2020 06:52:27 -0700 (PDT)
+        id S1728513AbgJGNx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 09:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728177AbgJGNx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 09:53:58 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E9AC061755;
+        Wed,  7 Oct 2020 06:53:58 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id d24so2371194lfa.8;
+        Wed, 07 Oct 2020 06:53:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EnbUIab0pYj3aAzSBtZY2agXtCAzcrLIon9nxdJolZU=;
+        b=llWN+f8rkHxIFQxWcg0DYAln2ZOyoWvQerYzeZ3n9p8oJZKnYq9SHT9nm9zJWtSS2Z
+         yXaGeHRwTJjY0dNdbLJXi56iotltit8GpwvdYYgLyagORc9ZckJhfr3wauMrN7ubeTC0
+         F4OaUp38qDgGKpmrAOV2rjm2ghBsqxIX5/H6QlHCzf4RqXNL9vNXQcvVFI3Lf+lj+gdn
+         ErNEaiD29/P/r7uNmzra5nyTh63YS2mSuXzqsEh5jiqfiIgDaDg2iWmIfU0yy81suzka
+         VgVurY02Oeu/0yTsK3VAB2t6N+F6Zaj0KOxNapyHxKjnguN6lhuDVcLb/uBmOqC+mi73
+         /rpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gA7DS7kOecIZ6RJAOmqIqCf/U4XbVhrJ3QCudoJwBgE=;
-        b=e069FapJY8qnyMYEqtkMYC2NuoTKSAlFKH79elSlqVyIxhMWnMeXeNaGB34lVPLV6T
-         nO1kvpbL+4+fdVb2FvFLCN0fDfAeeun9zSGzzwr5TJlfhlYQOaW7HSU82Np42I7Etn1J
-         SGlxOSLsUWbC1bT/1F/Ax0CWjRE0lVwVrrlDhpA9R8ixih7zhLncv/hEtt+UVoTTs2DC
-         rQfQn6Yp0DCOz0xbi6zegDisdxZGQkIdraPrtW91sGxEkVSHdxH+i87eMdmxefkOG+PQ
-         VX1szcGGP08Y8MThwkUaagwNLbB2Tzf4S5kITwMBs7j+FMyYySbumFMJ48rX399lkLql
-         IvZQ==
-X-Gm-Message-State: AOAM533V7WomGWLZluvsMtQJmU5qN2VUlyLZZRqyX9JgXLe5T4BDty1d
-        2UZuRq9WCi2/RWlNVss80U3sO3weWbPB
-X-Google-Smtp-Source: ABdhPJzhwrPz1f45PvWAazbi0bvs8lyFSAWAvbQSYXlKPUjkg6gW44SwmWhyYF/b1CpX/o3Aq+gwkw==
-X-Received: by 2002:a9d:6649:: with SMTP id q9mr1981441otm.286.1602078746535;
-        Wed, 07 Oct 2020 06:52:26 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l25sm1750472otb.4.2020.10.07.06.52.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 06:52:25 -0700 (PDT)
-Received: (nullmailer pid 126506 invoked by uid 1000);
-        Wed, 07 Oct 2020 13:52:25 -0000
-Date:   Wed, 7 Oct 2020 08:52:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 026/106] dt-bindings: mipi-ccs: Add bus-type for C-PHY
- support
-Message-ID: <20201007135225.GA125839@bogus>
-References: <20201007084505.25761-1-sakari.ailus@linux.intel.com>
- <20201007084505.25761-8-sakari.ailus@linux.intel.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EnbUIab0pYj3aAzSBtZY2agXtCAzcrLIon9nxdJolZU=;
+        b=mOSjL32Oh8CSCSwHYhGzsZux9qeNXsJGtADAqIyby8+6CN+ZCcedJpH9kjZqoxoZZI
+         5vhAb37RN+JoHuYRF0+diG61fi4asvC61gxMVZy+aZYkIqdazB83GgVz9dq4GdXdkcfr
+         S4UHhfxw8mAoTdPWwBRdg0JzDDAePHV9TR4WmbEjOPx6c8cp5ZzsV/a+FCfEaBbrnKLz
+         mRICJsPcQRNaf5gEog4ZemB7wive2JMd5fFGsaVi8OBBHNOnsWFKVGwF0wTfWyUQEuF9
+         me4TMdeMZm+RUbu4Ykk6xrgZLu86j9jGLu4/ysY/5hJGJt7A5jeyfjYgXPe5g4y4Fbzk
+         ZXsQ==
+X-Gm-Message-State: AOAM533/fVs+koezyr8vtTHRrBppoccVwyrwVQOMx5wcwr18rmcpx9QG
+        3P+4F+44leN4AZqXKz1iB42cNO/jEeM=
+X-Google-Smtp-Source: ABdhPJyXeNXUZE5NZGhuL6kiCs9qa+F8j9F1KpEF6LIoHrTjyss/5/TT1mbdbsHxAnuNA3P+3/Qufw==
+X-Received: by 2002:ac2:4896:: with SMTP id x22mr1124977lfc.286.1602078836441;
+        Wed, 07 Oct 2020 06:53:56 -0700 (PDT)
+Received: from [192.168.2.145] ([109.252.91.252])
+        by smtp.googlemail.com with ESMTPSA id i11sm364931ljn.119.2020.10.07.06.53.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Oct 2020 06:53:55 -0700 (PDT)
+Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
+To:     Bob Ham <rah@settrans.net>, Stefan Agner <stefan@agner.ch>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Leonardo Bras <leobras.c@gmail.com>,
+        Michael Brougham <jusplainmike@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lukas Rusak <lorusak@gmail.com>
+References: <20201004133114.845230-1-pgwipeout@gmail.com>
+ <cdd0f520ae4990de90f461e21cb4f298@agner.ch>
+ <4d3eb998-045b-f288-7a9c-aaa620c38bff@settrans.net>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <c8140ea3-8731-8084-47dd-8819b4b4df6a@gmail.com>
+Date:   Wed, 7 Oct 2020 16:53:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007084505.25761-8-sakari.ailus@linux.intel.com>
+In-Reply-To: <4d3eb998-045b-f288-7a9c-aaa620c38bff@settrans.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 07 Oct 2020 11:45:03 +0300, Sakari Ailus wrote:
-> The bus-type property is required for C-PHY support. Add it, including
-> values for CCP2 and CSI-2 D-PHY.
+07.10.2020 16:36, Bob Ham пишет:
+> Hi all,
 > 
-> Also require the bus-type property. Effectively all new sensors are MIPI
-> D-PHY or C-PHY that cannot be told apart without the bus-type property.
+> The Bluetooth controller driver sent to linux-input by Lukas Rusak
+> (CC'd) is a bit of a concern.  Here is the original driver:
 > 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> ---
->  .../devicetree/bindings/media/i2c/mipi-ccs.yaml          | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> https://github.com/ouya/ouya_1_1-kernel/blob/master/drivers/hid/hid-ouya.c
 > 
+> and you can see that there is no SPDX header, no license information and
+> no MODULE_LICENSE declaration.  I'd previously noticed this as a
+> possible cause for concern in upstreaming the driver.
+> 
+> Meanwhile, Lukas's driver is clearly derived from the Ouya Inc. driver
+> and even retains the Ouya Inc. copyright notice line.  However, Lukas's
+> driver now has a MODULE_LICENSE("GPL") declaration added.
+> 
+> Lukas, did you get clear permission to license the driver as GPL?
+> 
+> Alternatively, kernel developers with greater legal or Ouya knowledge,
+> is this actually a concern or is it nothing to worry about?
 
+Hello Bob,
 
-My bot found errors running 'make dt_binding_check' on your patch:
+That can't be a problem because:
 
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a plain scalar
-  in "<unicode string>", line 89, column 13
-found a tab character that violates indentation
-  in "<unicode string>", line 90, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:18: Documentation/devicetree/bindings/media/i2c/mipi-ccs.example.dts] Error 1
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/media/i2c/mipi-ccs.example.dts'
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:  while scanning a plain scalar
-  in "<unicode string>", line 89, column 13
-found a tab character that violates indentation
-  in "<unicode string>", line 90, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
-make: *** [Makefile:1366: dt_binding_check] Error 2
+1. Ouya Inc. doesn't exists anymore.
 
+2. If code was officially published, then this implies that it can be
+derived.
 
-See https://patchwork.ozlabs.org/patch/1377845
+3. Ouya's driver uses kernel symbols that are explicitly marked as
+GPL-only, see hid_open_report for example. Hence Ouya's driver inherents
+the GPL license.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
+4. Lukas's patch doesn't remind the original code at all.
 
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
+5. In practice nobody cares about legal much if money aren't involved.
+Even if it happened that driver was 100% violating some copyrights, then
+it either won't be accepted to upstream or will be removed by request
+from the copyrights holder.
