@@ -2,198 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89FD4286287
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F96286291
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:50:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728771AbgJGPqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 11:46:38 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:46136 "EHLO
+        id S1728020AbgJGPuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 11:50:18 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:33496 "EHLO
         mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728019AbgJGPqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 11:46:38 -0400
-Received: by mail-oi1-f193.google.com with SMTP id u126so2853351oif.13;
-        Wed, 07 Oct 2020 08:46:37 -0700 (PDT)
+        with ESMTP id S1727005AbgJGPuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 11:50:18 -0400
+Received: by mail-oi1-f193.google.com with SMTP id m7so2970399oie.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 08:50:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=rQHCXCV/i+kaGlmPVLS4FFOvSgdOWuMGT9TwEXcskOQ=;
-        b=Hz2Ok0HWgjcwr+A0z3oh4o8Kk3xAFFUiDs9FngHt6CgjJ5uCrGbzUBCJ1VoNpFgiJ7
-         cQRnBxtK5xZfErIqmswT6b0wy4H0npMcWgVBQidegV/axs7O1PC/PTye8wuIFqviDl/L
-         tOWzgimciWNBW8S77IPYIARwgHcCkmQeHtbu32DtLw5coIGk72HoDiHmam3w1TLkQUXg
-         vgd8GQdx/7EBDIrj7wPzadl/aZQVInxUh0JEJ/yE6TA8NsgU1ZOhDRmDJQQth77kxx6u
-         Tna/LgytbApc32uNM+Y/BdlIj0Cv5ziW/HB4MTN1P9BgZOrtA0r3EIHWZVJj3Uv0JQML
-         +llA==
-X-Gm-Message-State: AOAM5323B9sNKrINnaVKEmyM3xrEFgYBiQSBwSjTL/UTd+oDa5AXjerb
-        TDmAp3qdDuOQpV1unGcJUw==
-X-Google-Smtp-Source: ABdhPJzDk8KVgVgZu26G0OLEbj+MCjqT8zp2WyE6DHWNle1MsgOmCTzlodkyKJvl4XZQhj7iUJBhxw==
-X-Received: by 2002:aca:bc8b:: with SMTP id m133mr2436812oif.10.1602085597093;
-        Wed, 07 Oct 2020 08:46:37 -0700 (PDT)
+        bh=D5KWBh7Ei3kmnrVZuM450juFCzki8BlotX/BN8/qul0=;
+        b=c07adBW+Zo3prJLfAuKN72kSfrV2BPCChueZ+V+i4ju1aAFV3ffWJdUlEECows625r
+         iZu4daX9nTg16L4F38YgKhqn+jwG6gBNOAigUuNPdK8R7cjuJg/C8Op/wzkjKd/E2S2e
+         lnGMryc88k9POTsvPseaaNDAHaOVauA/o4ifbElyUsB0vuzUe6xSp16608SrG5/wQ2Fy
+         VxNxliR/kKyTXmbe/tdmbio42Msuh6e0kTWEZ/oeJhHykCHBx9adto1Y0E3L636oucgc
+         fq/QZ/K4t/Yyz6wbMXDRlsgz5voyDyIgoQJPYDR+GY3uDaIAIlksq9TJmfDWw2jD1vot
+         308A==
+X-Gm-Message-State: AOAM531N6M8P1uH5iiPUMQc2Dni7V4ZL+RihjRMhFmESg5FxHwFtA69f
+        iLFLKSRVuQEm7s7Oa89/hg==
+X-Google-Smtp-Source: ABdhPJyl7BipVAGLelkc9Q7hU5yKjIoyNaSSYdipMgfJ93hqu78A/Bx52m6isWRUHb4rHFet/6YLQg==
+X-Received: by 2002:aca:30d4:: with SMTP id w203mr2197032oiw.64.1602085817319;
+        Wed, 07 Oct 2020 08:50:17 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o9sm2452289oop.1.2020.10.07.08.46.35
+        by smtp.gmail.com with ESMTPSA id j75sm2175630oih.10.2020.10.07.08.50.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 08:46:36 -0700 (PDT)
-Received: (nullmailer pid 278714 invoked by uid 1000);
-        Wed, 07 Oct 2020 15:46:35 -0000
-Date:   Wed, 7 Oct 2020 10:46:35 -0500
+        Wed, 07 Oct 2020 08:50:16 -0700 (PDT)
+Received: (nullmailer pid 283939 invoked by uid 1000);
+        Wed, 07 Oct 2020 15:50:15 -0000
+Date:   Wed, 7 Oct 2020 10:50:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     vkoul@kernel.org, nm@ti.com, ssantosh@kernel.org, vigneshr@ti.com,
-        dan.j.williams@intel.com, t-kristo@ti.com, lokeshvutla@ti.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org
-Subject: Re: [PATCH 09/18] dt-bindings: dma: ti: Add document for K3 BCDMA
-Message-ID: <20201007154635.GA273523@bogus>
-References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
- <20200930091412.8020-10-peter.ujfalusi@ti.com>
- <20201006192909.GA2679155@bogus>
- <bc054ef7-dcd7-dde2-13f8-4900a33b1377@ti.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND v3 2/6] dt-bindings: display: sun4i: Add LVDS
+ Dual-Link property
+Message-ID: <20201007155015.GA281983@bogus>
+References: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910923.git-series.maxime@cerno.tech>
+ <2bc93c7c1d3121730239a01dda9c30dcf4e353b0.1601910923.git-series.maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bc054ef7-dcd7-dde2-13f8-4900a33b1377@ti.com>
+In-Reply-To: <2bc93c7c1d3121730239a01dda9c30dcf4e353b0.1601910923.git-series.maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 12:09:06PM +0300, Peter Ujfalusi wrote:
+On Mon, Oct 05, 2020 at 05:15:40PM +0200, Maxime Ripard wrote:
+> The Allwinner SoCs with two TCONs and LVDS output can use both to drive an
+> LVDS dual-link. Add a new property to express that link between these two
+> TCONs.
 > 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> On 06/10/2020 22.29, Rob Herring wrote:
-> > On Wed, Sep 30, 2020 at 12:14:03PM +0300, Peter Ujfalusi wrote:
-> >> New binding document for
-> >> Texas Instruments K3 Block Copy DMA (BCDMA).
-> >>
-> >> BCDMA is introduced as part of AM64.
-> >>
-> 
-> ...
-> 
-> > 
-> >> +  ti,sci:
-> >> +    description: phandle to TI-SCI compatible System controller node
-> >> +    allOf:
-> >> +      - $ref: /schemas/types.yaml#/definitions/phandle
-> >> +
-> >> +  ti,sci-dev-id:
-> >> +    description: TI-SCI device id of BCDMA
-> >> +    allOf:
-> >> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> > 
-> > We have a common definition for these.
-> 
-> Yes, in arm/keystone/ti,k3-sci-common.yaml, but I could not get to use
-> that as reference.
-> 
-> I can not list it under the topmost allOf and drop the ti,sci and
-> ti,sci-dev-id like this:
-> 
-> allOf:
->   - $ref: /schemas/dma/dma-controller.yaml#
->   - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-> 
-> It results:
->   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
->   DTEX    Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dts
->   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
->   DTC     Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dt.yaml
->   CHECK   Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dt.yaml
-> Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dt.yaml:
-> dma-controller@485c0100: 'ti,sci', 'ti,sci-dev-id' do not match any of
-> the regexes: 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> 
-> If I remove the "additionalProperties: false" from the schema file, then
-> it compiles fine.
+> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
+> index e5344c4ae226..ce407f5466a5 100644
+> --- a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
+> +++ b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
+> @@ -115,6 +115,12 @@ properties:
+>          - const: edp
+>          - const: lvds
+>  
+> +  allwinner,lvds-companion:
 
-Yeah, you have to do 'unevaluatedProperties: false' which doesn't 
-actually do anything yet, but can 'see' into $ref's.
-
-
-> >> +  ti,asel:
-> >> +    description: ASEL value for non slave channels
-> >> +    allOf:
-> > 
-> > You no longer need 'allOf' here.
-> 
-> OK, I changed it in all instances.
-> 
-> > 
-> >> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> >> +
-> >> +  ti,sci-rm-range-bchan:
-> >> +    description: |
-> >> +      Array of BCDMA block-copy channel resource subtypes for resource
-> >> +      allocation for this host
-> >> +    allOf:
-> >> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> >> +    minItems: 1
-> >> +    # Should be enough
-> >> +    maxItems: 255
-> > 
-> > Are there constraints for the individual elements?
-> 
-> In practice the subtype ID is 6bits number.
-> Should I add limits to individual elements?
-
-Yes:
-
-items:
-  maximum: 0x3f
-
-> 
-> >> +
-> >> +  ti,sci-rm-range-tchan:
-> >> +    description: |
-> >> +      Array of BCDMA split tx channel resource subtypes for resource allocation
-> >> +      for this host
-> >> +    allOf:
-> >> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> >> +    minItems: 1
-> >> +    # Should be enough
-> >> +    maxItems: 255
-> >> +
-> >> +  ti,sci-rm-range-rchan:
-> >> +    description: |
-> >> +      Array of BCDMA split rx channel resource subtypes for resource allocation
-> >> +      for this host
-> >> +    allOf:
-> >> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> >> +    minItems: 1
-> >> +    # Should be enough
-> >> +    maxItems: 255
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - "#address-cells"
-> >> +  - "#size-cells"
-> >> +  - "#dma-cells"
-> >> +  - reg
-> >> +  - reg-names
-> >> +  - msi-parent
-> >> +  - ti,sci
-> >> +  - ti,sci-dev-id
-> >> +  - ti,sci-rm-range-bchan
-> >> +  - ti,sci-rm-range-tchan
-> >> +  - ti,sci-rm-range-rchan
-> >> +
-> >> +additionalProperties: false
-> >> +
-> >> +examples:
-> >> +  - |+
-> >> +    cbass_main {
-> >> +        #address-cells = <2>;
-> >> +        #size-cells = <2>;
-> >> +
-> >> +        main_dmss {
-> >> +            compatible = "simple-mfd";
-> > 
-> > IMO, if it is memory-mapped, then you should be using 'simple-bus'.
-> 
-> We had the same discussion when I introduced the k3-udma binding and we
-> have concluded on the simple-mfd as DMSS is not a bus, but contains
-> different peripherals.
-
-Ok.
+We already have 1 vendor property for this. How about 'link-companion' 
+for something common.
 
 Rob
