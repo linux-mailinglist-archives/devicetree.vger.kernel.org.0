@@ -2,334 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 890B92859A3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 09:38:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0329E2859CD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 09:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727727AbgJGHi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 03:38:26 -0400
-Received: from mga04.intel.com ([192.55.52.120]:57905 "EHLO mga04.intel.com"
+        id S1727570AbgJGHqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 03:46:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50426 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727566AbgJGHi0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 03:38:26 -0400
-IronPort-SDR: Tkj1g+ruNoY4H6m12PfS2yDSUZuq0tCjoczqdAH4cbGP9huXPHv7trCpBmU1CoYUP80DTOKr0S
- 5Yzsl9pJ9s0A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9766"; a="162233362"
-X-IronPort-AV: E=Sophos;i="5.77,345,1596524400"; 
-   d="scan'208";a="162233362"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2020 00:38:25 -0700
-IronPort-SDR: x7gspdlz0qllEYl4D79o76rnUWUwn+JDIVUDMMoC/9WK1wNQwBldWDk8iZtwgudjpGt2TLWpcH
- dbTzT+9ZLYIw==
-X-IronPort-AV: E=Sophos;i="5.77,345,1596524400"; 
-   d="scan'208";a="316091399"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2020 00:38:23 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id DA1FB207B6; Wed,  7 Oct 2020 10:38:21 +0300 (EEST)
-Date:   Wed, 7 Oct 2020 10:38:21 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH 023/100] dt-bindings: nokia,smia: Convert to YAML
-Message-ID: <20201007073821.GI26842@paasikivi.fi.intel.com>
-References: <20200930201914.31377-1-sakari.ailus@linux.intel.com>
- <20200930201914.31377-5-sakari.ailus@linux.intel.com>
- <20201006195807.GA2724596@bogus>
+        id S1726041AbgJGHqp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Oct 2020 03:46:45 -0400
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2932720870;
+        Wed,  7 Oct 2020 07:46:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602056804;
+        bh=R4+hRjeXx44BI8Hcdv5NdWTepbPaIEsQ9jUrvEd5YUk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=x3m4w3PfO9rY8rRGo1rQ1CjNzTrKpKQ2aeHGJ12WZoiDbP4hB6FBpIqezhvDckLa8
+         xmevP6p3xYTJjV16vCqm/G0s4vpHrdN3ZNNck4WfOqL2u5cY5Dx3YehHss9WItbnI3
+         ffUes45WIg6s14zBmdKxvmCiQ4DSzR/ESnm0GgRg=
+Received: by mail-ed1-f54.google.com with SMTP id b12so1110929edz.11;
+        Wed, 07 Oct 2020 00:46:44 -0700 (PDT)
+X-Gm-Message-State: AOAM531s7OBuSS+VDNBAfpccWPr+kSLaFuQQHNZv3daIPO7gOEw3Srb2
+        sj87vQhcgJPT/6NL2Rshb40n6/sY8i3Y4Cn7PAc=
+X-Google-Smtp-Source: ABdhPJwNzl1urhb9nVWyMFf0v62ujPzA20R0+9EZ7zY78dXLqzBp3vrmcCnYB4Kd9+I9bzs0Q6IFpFOhmgYHVbhC46o=
+X-Received: by 2002:a50:e78f:: with SMTP id b15mr2224622edn.104.1602056802570;
+ Wed, 07 Oct 2020 00:46:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201006195807.GA2724596@bogus>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20200924192455.2484005-1-j.neuschaefer@gmx.net> <20200925050818.2512375-1-j.neuschaefer@gmx.net>
+In-Reply-To: <20200925050818.2512375-1-j.neuschaefer@gmx.net>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 7 Oct 2020 09:46:30 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfRh4vyJ21ACM3Bf5+HtWZUy+anV47VBAmtitfLuAeUjw@mail.gmail.com>
+Message-ID: <CAJKOXPfRh4vyJ21ACM3Bf5+HtWZUy+anV47VBAmtitfLuAeUjw@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] ARM: dts: imx50-kobo-aura: Add Netronix embedded controller
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, 25 Sep 2020 at 07:10, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.n=
+et> wrote:
+>
+> Enable the Netronix EC on the Kobo Aura ebook reader.
+>
+> Several features are still missing:
+>  - Frontlight/backlight. The vendor kernel drives the frontlight LED
+>    using the PWM output of the EC and an additional boost pin that
+>    increases the brightness.
+>  - Battery monitoring
+>  - Interrupts for RTC alarm and low-battery events
+>
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> ---
+>
+> v3:
+> - Remove interrupt-controller property from embedded-controller node
+> - subnodes of embedded-controller node in to the main node
+>
+> v2:
+> - https://lore.kernel.org/lkml/20200905144503.1067124-3-j.neuschaefer@gmx=
+.net/
+> - Fix pwm-cells property (should be 2, not 1)
+> ---
+>  arch/arm/boot/dts/imx50-kobo-aura.dts | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/imx50-kobo-aura.dts b/arch/arm/boot/dts/im=
+x50-kobo-aura.dts
+> index a0eaf869b9135..2d1a59091a37c 100644
+> --- a/arch/arm/boot/dts/imx50-kobo-aura.dts
+> +++ b/arch/arm/boot/dts/imx50-kobo-aura.dts
+> @@ -6,6 +6,7 @@
+>  /dts-v1/;
+>  #include "imx50.dtsi"
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+>
+>  / {
+>         model =3D "Kobo Aura (N514)";
+> @@ -135,10 +136,24 @@ &i2c3 {
+>         pinctrl-0 =3D <&pinctrl_i2c3>;
+>         status =3D "okay";
+>
+> -       /* TODO: embedded controller at 0x43 */
+> +       embedded-controller@43 {
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&pinctrl_ec>;
+> +               compatible =3D "netronix,ntxec";
+> +               reg =3D <0x43>;
+> +               system-power-controller;
+> +               interrupts-extended =3D <&gpio4 11 IRQ_TYPE_EDGE_FALLING>=
+;
+> +               #pwm-cells =3D <2>;
+> +       };
+>  };
+>
+>  &iomuxc {
+> +       pinctrl_ec: ec {
 
-Thank you for the review.
+This should fail on dtschema check - pinctrl groups should end with "grp".
 
-On Tue, Oct 06, 2020 at 02:58:07PM -0500, Rob Herring wrote:
-> On Wed, Sep 30, 2020 at 11:19:11PM +0300, Sakari Ailus wrote:
-> > Convert nokia,smia DT bindings to YAML.
-> > 
-> > Also add explicit license to bindings.
-> > 
-> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > ---
-> >  .../bindings/media/i2c/nokia,smia.txt         |  68 --------
-> >  .../bindings/media/i2c/nokia,smia.yaml        | 147 ++++++++++++++++++
-> >  2 files changed, 147 insertions(+), 68 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/nokia,smia.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/nokia,smia.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/nokia,smia.txt b/Documentation/devicetree/bindings/media/i2c/nokia,smia.txt
-> > deleted file mode 100644
-> > index 5ea4f799877b..000000000000
-> > --- a/Documentation/devicetree/bindings/media/i2c/nokia,smia.txt
-> > +++ /dev/null
-> > @@ -1,68 +0,0 @@
-> > -SMIA/SMIA++ sensor
-> > -
-> > -SMIA (Standard Mobile Imaging Architecture) is an image sensor standard
-> > -defined jointly by Nokia and ST. SMIA++, defined by Nokia, is an extension
-> > -of that. These definitions are valid for both types of sensors.
-> > -
-> > -More detailed documentation can be found in
-> > -Documentation/devicetree/bindings/media/video-interfaces.txt .
-> > -
-> > -The device node should contain a "port" node which may contain one or more
-> > -endpoint nodes, in accordance with video interface bindings defined in
-> > -Documentation/devicetree/bindings/media/video-interfaces.txt .
-> > -
-> > -Mandatory properties
-> > ---------------------
-> > -
-> > -- compatible: "nokia,smia"
-> > -- reg: I2C address (0x10, or an alternative address)
-> > -- clocks: External clock to the sensor
-> > -- clock-frequency: Frequency of the external clock to the sensor
-> > -
-> > -
-> > -Optional properties
-> > --------------------
-> > -
-> > -- reset-gpios: XSHUTDOWN GPIO
-> > -- flash-leds: See ../video-interfaces.txt
-> > -- lens-focus: See ../video-interfaces.txt
-> > -- rotation: Integer property; valid values are 0 (sensor mounted upright)
-> > -	    and 180 (sensor mounted upside down). See
-> > -	    ../video-interfaces.txt .
-> > -- vana-supply: Analogue voltage supply (VANA), typically 2,8 volts (sensor
-> > -  dependent).
-> > -
-> > -
-> > -Endpoint node mandatory properties
-> > -----------------------------------
-> > -
-> > -- data-lanes: <1..n>
-> > -- link-frequencies: List of allowed data link frequencies. An array of
-> > -  64-bit elements.
-> > -
-> > -
-> > -Example
-> > --------
-> > -
-> > -&i2c2 {
-> > -	clock-frequency = <400000>;
-> > -
-> > -	camera-sensor@10 {
-> > -		compatible = "nokia,smia";
-> > -		reg = <0x10>;
-> > -		reset-gpios = <&gpio3 20 0>;
-> > -		vana-supply = <&vaux3>;
-> > -		clocks = <&omap3_isp 0>;
-> > -		clock-frequency = <9600000>;
-> > -		nokia,nvm-size = <512>; /* 8 * 64 */
-> > -		port {
-> > -			smiapp_ep: endpoint {
-> > -				data-lanes = <1 2>;
-> > -				remote-endpoint = <&csi2a_ep>;
-> > -				link-frequencies =
-> > -					/bits/ 64 <199200000 210000000
-> > -						   499200000>;
-> > -			};
-> > -		};
-> > -	};
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/nokia,smia.yaml b/Documentation/devicetree/bindings/media/i2c/nokia,smia.yaml
-> > new file mode 100644
-> > index 000000000000..3d6f68b0e559
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/nokia,smia.yaml
-> > @@ -0,0 +1,147 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (C) 2014--2020 Intel Corporation
-> > +
-> > +$id: http://devicetree.org/schemas/media/i2c/nokia,smia.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: SMIA/SMIA++ sensor
-> > +
-> > +maintainers:
-> > +  - Sakari Ailus <sakari.ailus@linux.intel.com>
-> > +
-> > +description:
-> > +
-> > +  SMIA (Standard Mobile Imaging Architecture) is an image sensor standard
-> > +  defined jointly by Nokia and ST. SMIA++, defined by Nokia, is an extension of
-> > +  that. These definitions are valid for both types of sensors.
-> > +
-> > +  More detailed documentation can be found in
-> > +  Documentation/devicetree/bindings/media/video-interfaces.txt .
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: nokia,smia
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  vana-supply:
-> > +    description: Analogue voltage supply (VANA), typically 2,8 volts (sensor
-> > +      dependent).
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    description: External clock to the sensor.
-> > +    maxItems: 1
-> > +
-> > +  clock-frequency:
-> > +    description: Frequency of the external clock to the sensor.
-> > +
-> > +  reset-gpios:
-> > +    description: Reset GPIO. Also commonly called XSHUTDOWN in hardware
-> > +      documentation.
-> > +    maxItems: 1
-> > +
-> > +  flash-leds:
-> > +    description: Flash LED phandles. See ../video-interfaces.txt for details.
-> > +
-> > +  lens-focus:
-> > +    description: Lens focus controller phandles. See ../video-interfaces.txt
-> > +      for details.
-> > +
-> > +  rotation:
-> > +    description: Rotation; either 0 or 180 degrees.
-> 
-> enum: [ 0, 180 ]
-
-Yes.
-
-> 
-> > +
-> > +  port:
-> > +    type: object
-> > +    properties:
-> > +      endpoint:
-> > +        type: object
-> > +        properties:
-> > +          link-frequencies:
-> > +            $ref: /schemas/types.yaml#/definitions/uint64-array
-> > +            description: List of allowed data link frequencies. An array of
-> > +              64-bit elements.
-> 
-> Just 'link-frequencies: true' unless you have some additional 
-> constraints.
-
-We don't have video-interfaces.yaml yet, so $ref is needed. But I think
-mentioning it's a 64-bit element is redundant in the description so I
-remove it.
-
-> 
-> > +          data-lanes:
-> > +            oneOf:
-> > +              - items:
-> > +                - const: 1
-> > +              - items:
-> > +                - const: 1
-> > +                - const: 2
-> > +              - items:
-> > +                - const: 1
-> > +                - const: 2
-> > +                - const: 3
-> > +              - items:
-> > +                - const: 1
-> > +                - const: 2
-> > +                - const: 3
-> > +                - const: 4
-> > +              - items:
-> > +                - const: 1
-> > +                - const: 2
-> > +                - const: 3
-> > +                - const: 4
-> > +                - const: 5
-> > +              - items:
-> > +                - const: 1
-> > +                - const: 2
-> > +                - const: 3
-> > +                - const: 4
-> > +                - const: 5
-> > +                - const: 6
-> > +              - items:
-> > +                - const: 1
-> > +                - const: 2
-> > +                - const: 3
-> > +                - const: 4
-> > +                - const: 5
-> > +                - const: 6
-> > +                - const: 7
-> > +              - items:
-> > +                - const: 1
-> > +                - const: 2
-> > +                - const: 3
-> > +                - const: 4
-> > +                - const: 5
-> > +                - const: 6
-> > +                - const: 7
-> > +                - const: 8
-> 
-> This all can be just the last 'items' plus:
-> 
-> minItems: 1
-> maxItems: 8
-
-I'll use that in v2.
-
-> 
-> 
-> > +        required:
-> > +          - link-frequencies
-> > +          - data-lanes
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clock-frequency
-> > +  - clocks
-> 
-> additionalProperties: false
-
-Yes.
-
-> 
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c2 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        clock-frequency = <400000>;
-> > +
-> > +        camera-sensor@10 {
-> > +            compatible = "nokia,smia";
-> > +            reg = <0x10>;
-> > +            reset-gpios = <&gpio3 20 0>;
-> > +            vana-supply = <&vaux3>;
-> > +            clocks = <&omap3_isp 0>;
-> > +            clock-frequency = <9600000>;
-> > +            nokia,nvm-size = <512>; /* 8 * 64 */
-> 
-> Not documented.
-
-I'll remove it before this patch in v2.
-
-> 
-> > +            port {
-> > +                smiapp_ep: endpoint {
-> > +                    data-lanes = <1 2>;
-> > +                    remote-endpoint = <&csi2a_ep>;
-> > +                    link-frequencies = /bits/ 64 <199200000 210000000
-> > +                                                  499200000>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +...
-
--- 
-Kind regards,
-
-Sakari Ailus
+Best regards,
+Krzysztof
