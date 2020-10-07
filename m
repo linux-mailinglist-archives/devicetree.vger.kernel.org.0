@@ -2,120 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79468286621
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:43:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5049928662D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727913AbgJGRng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 13:43:36 -0400
-Received: from mga14.intel.com ([192.55.52.115]:4177 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727828AbgJGRng (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 13:43:36 -0400
-IronPort-SDR: jlwnUEokOHk//Bp+VpcPGlOinxC0m/WJqaRTtf1dOR5YUtpNAI4cqErAmgxwze+zejzyFkNmCl
- 7kJqBOrUs4bg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="164265593"
-X-IronPort-AV: E=Sophos;i="5.77,347,1596524400"; 
-   d="scan'208";a="164265593"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2020 10:43:33 -0700
-IronPort-SDR: f4AIdtH12dpD6XgqFYtDQZkOav9nwhW21F96S/7ask2LhX7eSHAx1GzcTURV+fP6Vlcs42so2m
- ZSayZ1HbQWoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,347,1596524400"; 
-   d="scan'208";a="342989978"
-Received: from ubuntu18.png.intel.com ([10.88.229.38])
-  by fmsmga004.fm.intel.com with ESMTP; 07 Oct 2020 10:43:30 -0700
-From:   vijayakannan.ayyathurai@intel.com
-To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        vijayakannan.ayyathurai@intel.com
-Subject: [PATCH v10 2/2] dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
-Date:   Thu,  8 Oct 2020 01:40:31 +0800
-Message-Id: <4ff2c01cf69b26de0efd8d78b4b87872fc7c5fed.1602090900.git.vijayakannan.ayyathurai@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
-In-Reply-To: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
+        id S1728402AbgJGRtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 13:49:22 -0400
+Received: from mail-40131.protonmail.ch ([185.70.40.131]:22928 "EHLO
+        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728343AbgJGRtW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:49:22 -0400
+X-Greylist: delayed 1750 seconds by postgrey-1.27 at vger.kernel.org; Wed, 07 Oct 2020 13:49:21 EDT
+Date:   Wed, 07 Oct 2020 17:49:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1602092959;
+        bh=d2j//6xhs2PPOH5F6O6PlO0HsUSK+06Ub5QJ1wgRpaw=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=Xc9rQiDbg99CWVIGSugGIzMxY8sYg4tiFj9BWlF6aH8OOY7H8R1vlyPX7Pwfly7kA
+         7MbuWJUDnFNRL8mflf1nIuHB8wQotZGBAdmSeenPThWntxwF94BC4ej3QxHtULSL5b
+         3BvzC509kBmjqLgQ9viUvX1OyE7GlQPz1TPyVo2U=
+To:     linux-arm-msm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Caleb Connolly <caleb@connolly.tech>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: [PATCH 2/5] dt-bindings: panel: add documentation for oneplus6 panel
+Message-ID: <20201007174736.292968-3-caleb@connolly.tech>
+In-Reply-To: <20201007174736.292968-1-caleb@connolly.tech>
+References: <20201007174736.292968-1-caleb@connolly.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+Document the OnePlus 6/T common panel driver, example from
+arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
 
-Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
-
-Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 ---
- .../bindings/pwm/intel,keembay-pwm.yaml       | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+ .../display/panel/panel-oneplus6.yaml         | 73 +++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-o=
+neplus6.yaml
 
-diff --git a/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-oneplus6=
+.yaml b/Documentation/devicetree/bindings/display/panel/panel-oneplus6.yaml
 new file mode 100644
-index 000000000000..a37433487632
+index 000000000000..23ba369cc2f5
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-@@ -0,0 +1,47 @@
++++ b/Documentation/devicetree/bindings/display/panel/panel-oneplus6.yaml
+@@ -0,0 +1,73 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2020 Intel Corporation
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pwm/intel,keembay-pwm.yaml#
++$id: http://devicetree.org/schemas/display/panel/panel-oneplus6.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Intel Keem Bay PWM Device Tree Bindings
++title: OnePlus 6/T panel driver
++
++description: |
++  The OnePlus 6 panel driver encompasses the display panels found in the
++  OnePlus 6 and 6T devices, the panels have almost identical behaviour and
++  are not used by any other devices.
 +
 +maintainers:
-+  - Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
++  - Caleb Connolly <caleb@connolly.tech>
 +
 +allOf:
-+  - $ref: pwm.yaml#
++  - $ref: panel-common.yaml#
 +
 +properties:
 +  compatible:
 +    enum:
-+      - intel,keembay-pwm
++      - samsung,sofef00
++      - samsung,s6e3fc2x01
 +
-+  reg:
-+    maxItems: 1
++  reg: true
++  reset-gpios: true
++  port: true
 +
-+  clocks:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
++  vddio-supply:
++    description: VDDIO regulator
 +
 +required:
-+ - compatible
-+ - reg
-+ - clocks
-+ - '#pwm-cells'
++  - compatible
++  - reset-gpios
++  - vddio-supply
++  - port
 +
-+additionalProperties: false
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    #define KEEM_BAY_A53_GPIO
++    &dsi0 {
++      status =3D "okay";
++      vdda-supply =3D <&vdda_mipi_dsi0_1p2>;
 +
-+    pwm@203200a0 {
-+      compatible = "intel,keembay-pwm";
-+      reg = <0x203200a0 0xe8>;
-+      clocks = <&scmi_clk KEEM_BAY_A53_GPIO>;
-+      #pwm-cells = <2>;
++      #address-cells =3D <1>;
++      #size-cells =3D <0>;
++
++      display_panel: panel@0 {
++        status =3D "okay";
++        compatible =3D "samsung,sofef00";
++
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++        reg =3D <0>;
++
++        vddio-supply =3D <&vreg_l14a_1p88>;
++
++        reset-gpios =3D <&tlmm 6 GPIO_ACTIVE_HIGH>;
++
++        pinctrl-names =3D "default";
++        pinctrl-0 =3D <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
++
++        port {
++          panel_in: endpoint {
++            remote-endpoint =3D <&dsi0_out>;
++          };
++        };
++      };
 +    };
--- 
-2.17.1
++
++...
+--=20
+2.28.0
+
 
