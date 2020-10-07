@@ -2,292 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FD0128561D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 03:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0FD8285621
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 03:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726073AbgJGBRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Oct 2020 21:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50798 "EHLO
+        id S1727033AbgJGBRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Oct 2020 21:17:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725996AbgJGBRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:17:20 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EC8C061755
-        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 18:17:20 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id a16so272187vsp.12
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 18:17:20 -0700 (PDT)
+        with ESMTP id S1725996AbgJGBRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Oct 2020 21:17:37 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE72BC0613D2
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 18:17:37 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id y14so355257pfp.13
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 18:17:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0yTeji9j9CJ8RmpTCa7gaMjTAdqxTBobL0tzN5/mK1k=;
-        b=azsmjPD091LNc2UbH2401z0TMRKWug0UVY0ZxoU/33AhwYTmlS8RKUCXxDrGGYye8w
-         LwW9iZXC9S8pAKH4F+/m3Ipa8qcea1bJ2Ha64dI+G2RBJCpAjb5Q/QzEKiiByexwaba/
-         0Cnh0oAcRTF1vqMM8Jl+zCxCu4jU1vls8uyhQ=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=X3yYB0EHwEWrP2fjO5tTxpwU3iz+XBA/J7IzQ9l34LE=;
+        b=Cc/RyzcfY7N1uH0NrbyKcMJoNSDvgRmLb4ILDISwzb64iioQGhMAbv8YatwVFE5zTe
+         YSPAEHwvKxwVGjzBtJwLpnk6FONK/g/XmKF9PFUQQzbEHTmxaYOvg/NUdmlUp22HkPaN
+         UXh07oheL9NP+kgJGHxFmdJOE1fxhxkm1R10o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0yTeji9j9CJ8RmpTCa7gaMjTAdqxTBobL0tzN5/mK1k=;
-        b=FdWrqGPjAUwRak/iRs5AqcEZXkC54kKxSmd4WXhJwIYOxukpks3LJAf7cU+6ZNLmxe
-         MdqQZ/fJAiOpPKEiJhI3xz38evQ7MGdCjEYa7dRepCAELbAwGoIXj7iApR93GMVBpPTd
-         q6t2S9/knRUpENCZS3wUN0yOxidGGgucE7TikBoQ4XttA5JmDnC/ckuERyK8jLKONGUn
-         8XnsCB+kYGC4nGuQImRa9b1vhLmJaRbUvvPZySYiFVG1tZYH95Yv1SIDlhWnSTUPSFt2
-         JzHfWOHda2ytdOyPPqxFdUIQ5/Pm4q2i+qYulQcinAeYPXOekvlNAgRftOCxrHe5hjCl
-         rMuw==
-X-Gm-Message-State: AOAM530QrRdrOuCXqad6VX+UugPItlVQggzXsuc36EIRLzU45xs1BVHU
-        UGaNYP4PUrsrrYD3uHCBm5dR+NQFb4p/Xw==
-X-Google-Smtp-Source: ABdhPJz3ThVQ6T93lJscixyXcGSt/Z0sH3YqrtdZKcEPjNTV95iiCwu9Z9+NMNdnuk9JuCYnq7OxhQ==
-X-Received: by 2002:a67:d710:: with SMTP id p16mr386174vsj.28.1602033439507;
-        Tue, 06 Oct 2020 18:17:19 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id q29sm100247vsl.0.2020.10.06.18.17.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Oct 2020 18:17:19 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id d18so239818uae.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 18:17:17 -0700 (PDT)
-X-Received: by 2002:ab0:6984:: with SMTP id t4mr361085uaq.0.1602033436993;
- Tue, 06 Oct 2020 18:17:16 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=X3yYB0EHwEWrP2fjO5tTxpwU3iz+XBA/J7IzQ9l34LE=;
+        b=TBi77VRc/JOe30SleXEmPhGw6tPCcob+palYQqRbfQNpZbyK2wl/zTb9i6TEvJFVjl
+         mitc8lEk19HFdiIiJVgLXMkYiW1Bcz7Av7c1JZVTNUtIdsiRiNUagxM944oqv+eG3Yh4
+         d1zjoA1IJwEM4LgXmEDPENwKFXpFI5QizMefQ7b54bNtd7XntQBIyfwjGiJ2FAJmZF0G
+         I48Nvg5mtRHfQKbiI5EqMfnqysQJ7yfOg2QeS3JBWHjHkMpGi27aF7+Hcc3ER3T5i4ZL
+         FpRHr4pnaJdC5O0ZKqSYgD+ts4vJATzZYpz6vm4aE4rJ3poURiRRu/dDL+1pMjb+H4Vt
+         TfiA==
+X-Gm-Message-State: AOAM533mW/Jocg2IkoSRLNyML4Kquw9Op86XJD1zaNf/Jn3R1Dq2uTUY
+        /Ns3JfVqs0pJ3aMy9n8fxFl99Q==
+X-Google-Smtp-Source: ABdhPJyvkMM+fdSw7224IGBytnYwurIh8nkJhXgkqu8xpRZgB6wh8w67m8cQWGmwY99Y4NZoYt97QQ==
+X-Received: by 2002:a65:5a0d:: with SMTP id y13mr824246pgs.436.1602033457282;
+        Tue, 06 Oct 2020 18:17:37 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id z190sm482654pfc.89.2020.10.06.18.17.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Oct 2020 18:17:36 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Daniel Campello <campello@chromium.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Evan Green <evgreen@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/6] iio: sx9310: Support setting various settings
+Date:   Tue,  6 Oct 2020 18:17:29 -0700
+Message-Id: <20201007011735.1346994-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.28.0.806.g8561365e88-goog
 MIME-Version: 1.0
-References: <20201002114426.31277-1-lukasz.luba@arm.com> <20201002114426.31277-4-lukasz.luba@arm.com>
- <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
- <e9b6fc5a-45d3-168d-db38-6c068da26f6b@arm.com> <CAD=FV=Xkg1zpsMW5rERbibnjrgY6opZi8Z9DUFkWebb7NHtU5w@mail.gmail.com>
- <bc5d21c1-ea84-9132-2e52-ae84fbb0515a@arm.com> <CAD=FV=VfA8AB3BZk8Ykkhigv9eGijzu4zuA6KdXk0K5UG0yCCQ@mail.gmail.com>
- <CAL_JsqJ37TVk4=E1DyZuhfH1jZ7wyauGLucSH7XW9wkeT3PSgg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJ37TVk4=E1DyZuhfH1jZ7wyauGLucSH7XW9wkeT3PSgg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 6 Oct 2020 18:17:05 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vy641h5KNLKipC1n=tgjp7a3HGHw0odY9fNpwdqorrAg@mail.gmail.com>
-Message-ID: <CAD=FV=Vy641h5KNLKipC1n=tgjp7a3HGHw0odY9fNpwdqorrAg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: update sustainable-power
- with abstract scale
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Dietmar.Eggemann@arm.com, Quentin Perret <qperret@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+I need to configure various settings such as thresholds, gain factors,
+etc. on this device. Some settings matter at boot, while others can wait
+for userspace to configure things. This patch series adds support to
+set these various bits in the registers of this device.
 
-On Tue, Oct 6, 2020 at 3:24 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Fri, Oct 2, 2020 at 12:39 PM Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > Hi,
-> >
-> > On Fri, Oct 2, 2020 at 9:40 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
-> > >
-> > > On 10/2/20 4:47 PM, Doug Anderson wrote:
-> > > > Hi,
-> > > >
-> > > > On Fri, Oct 2, 2020 at 8:13 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
-> > > >>
-> > > >> Hi Doug,
-> > > >>
-> > > >> On 10/2/20 3:31 PM, Doug Anderson wrote:
-> > > >>> Hi,
-> > > >>>
-> > > >>> On Fri, Oct 2, 2020 at 4:45 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
-> > > >>>>
-> > > >>>> Update the documentation for the binding 'sustainable-power' and allow
-> > > >>>> to provide values in an abstract scale. It is required when the cooling
-> > > >>>> devices use an abstract scale for their power values.
-> > > >>>>
-> > > >>>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
-> > > >>>> ---
-> > > >>>>    .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
-> > > >>>>    1 file changed, 9 insertions(+), 4 deletions(-)
-> > > >>>>
-> > > >>>> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> > > >>>> index 3ec9cc87ec50..4d8f2e37d1e6 100644
-> > > >>>> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> > > >>>> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> > > >>>> @@ -99,10 +99,15 @@ patternProperties:
-> > > >>>>          sustainable-power:
-> > > >>>>            $ref: /schemas/types.yaml#/definitions/uint32
-> > > >>>>            description:
-> > > >>>> -          An estimate of the sustainable power (in mW) that this thermal zone
-> > > >>>> -          can dissipate at the desired control temperature. For reference, the
-> > > >>>> -          sustainable power of a 4-inch phone is typically 2000mW, while on a
-> > > >>>> -          10-inch tablet is around 4500mW.
-> > > >>>> +          An estimate of the sustainable power (in mW or in an abstract scale)
-> > > >>>> +         that this thermal zone can dissipate at the desired control
-> > > >>>> +         temperature. For reference, the sustainable power of a 4-inch phone
-> > > >>>> +         is typically 2000mW, while on a 10-inch tablet is around 4500mW.
-> > > >>>> +
-> > > >>>> +         It is possible to express the sustainable power in an abstract
-> > > >>>> +         scale. This is the case when the related cooling devices use also
-> > > >>>> +         abstract scale to express their power usage. The scale must be
-> > > >>>> +         consistent.
-> > > >>>
-> > > >>> Two thoughts:
-> > > >>>
-> > > >>> 1. If we're going to allow "sustainable-power" to be in abstract
-> > > >>> scale, why not allow "dynamic-power-coefficient" to be in abstract
-> > > >>> scale too?  I assume that the whole reason against that originally was
-> > > >>> the idea of device tree purity, but if we're allowing the abstract
-> > > >>> scale here then there seems no reason not to allow it for
-> > > >>> "dynamic-power-coefficient".
-> > > >>
-> > > >> With this binding it's a bit more tricky.
-> > > >> I also have to discuss a few things internally. This requirement of
-> > > >> uW/MHz/V^2 makes the code easier also for potential drivers
-> > > >> like GPU (which are going to register the devfreq cooling with EM).
-> > > >>
-> > > >> Let me think about it, but for now I would just update these bits.
-> > > >> These are required to proper IPA operation, the dyn.-pow.-coef. is a
-> > > >> nice to have and possible next step.
-> > > >
-> > > > I guess the problem is that Rajendra is currently planning to remove
-> > > > all the "dynamic-power-coefficient" values from device tree right now
-> > > > and move them to the source code because the numbers we currently have
-> > > > in the device tree _are_ in abstract scale and thus violate the
-> > > > bindings.  Moving this to source code won't help us get to more real
-> > > > power numbers (since it'll still be abstract scale), it'll just be
-> > > > pure churn.  If we're OK with the abstract scale in general then we
-> > > > should allow it everywhere and not add churn for no reason.
-> > >
-> > > IIUC he is still going to use the Energy Model, but with different
-> > > registration function. We have such a driver: scmi-cpufreq.c, which
-> > > uses em_dev_register_perf_domain(). He can still use EM, EAS, IPA
-> > > not violating anything.
-> >
-> > Right.  He's going to take the exact same "abstract scale" numbers
-> > that he has today and take them out of device tree and put them in the
-> > cpufreq driver.  Doing so magically makes it so that he's not
-> > violating anything since "abstract scale" is not currently allowed in
-> > device tree but is allowed in the cpufreq driver.  I'm not saying that
-> > he's doing anything wrong, I'm just saying that it's pointless churn.
-> > If we're OK with "abstract scale" in one place in the device tree we
-> > should be OK with it everywhere in the device tree.  Then Rajendra
-> > wouldn't need his patch at all and he could leave his numbers in the
-> > device tree.
-> >
-> >
-> > > The real problem that we want to address is with sustainable-power in
-> > > IPA. It is used in power budget calculation and if the devices operate
-> > > in abstract scale, then there is an issue.
-> > > There are two options to get that value:
-> > > 1. from DT, which can have optimized value, stored by OEM engineer
-> > > 2. from IPA estimation code, which just calculates it as a sum of
-> > > minimum OPP power for each cooling device.
-> > >
-> > > The 2nd option might not be the best for a platform, so vendor/OEM
-> > > engineer might want to provide a better value in DT -> 1st option.
-> > > This is currently against the binding description and I have to fix it.
-> >
-> > Right, things are already broken today because a SoC vendor could
-> > (without violating any rules) provide their SoC core
-> > "dynamic-power-coefficient" in "abstract scale" in code and there
-> > would be no way to for a board to (without violating DT bindings)
-> > specify a "sustainable-power".  ...so, in that sense, your patch does
-> > provide a benefit even if we don't make any changes to the rules for
-> > "sustainable-power".  All I'm saying is that if these new rules for
-> > allowing an abstract scale for "sustainable-power" in the device tree
-> > are OK that it should _also_ be OK to add new rules to allow an
-> > abstract scale for "dynamic-power-coefficient".
->
-> Didn't we beat this one to death with "dynamic-power-coefficient"?
+Changes from v2 (https://lore.kernel.org/r/20200930075728.2410327-1-swboyd@chromium.org)
+ - Rolled in a fix from Gwendal on last patch to simplify if-else logic
+ - Fixed binding and picked up Rob's reviewed-by tag
 
-We did?  Where / when?  I'm not sure I was involved, but right now
-both "sustainable-power" and "dynamic-power-coefficient" are still
-defined in the device tree to be in real units, not abstract scale.
-Are you saying that we beat it to death and decided that it needed to
-be in real units, or we beat it to death and decided that abstract
-scale was OK and we just didn't put it in the bindings?
+Changes from v1 (https://lore.kernel.org/r/20200903221828.3657250-1-swboyd@chromium.org)
+ - A bunch more patches for userspace settings
+ - Removed body thresholds as they're probably not used
+ - Removed compensate common as it probably doesn't matter
+ - Moved thresholds, gain factor, hysteresis, debounce to userspace
 
+Stephen Boyd (6):
+  iio: sx9310: Support hardware gain factor
+  iio: sx9310: Support setting proximity thresholds
+  iio: sx9310: Support setting hysteresis values
+  iio: sx9310: Support setting debounce values
+  dt-bindings: iio: sx9310: Add various settings as DT properties
+  iio: sx9310: Set various settings from DT
 
-> That is the abstract scale because I don't think you can really ever
-> measure it
+ .../iio/proximity/semtech,sx9310.yaml         |  63 +++
+ drivers/iio/proximity/sx9310.c                | 508 +++++++++++++++++-
+ 2 files changed, 565 insertions(+), 6 deletions(-)
 
-That's debatable.  it's not very hard to get reasonable measurements.
-Matthias provided a recipe earlier in the thread.  See commit
-ac60c5e33df4 ("ARM: dts: rockchip: Add dynamic-power-coefficient for
-rk3288").  In that case he used a machine that could easily measure
-power on the CPU rail, but if you simply keep all other rails in the
-system constant (and/or run a long enough test), you can easily
-accomplish this by just querying the smart battery in systems.
+Cc: Daniel Campello <campello@chromium.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Gwendal Grignou <gwendal@chromium.org>
+Cc: Evan Green <evgreen@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: <devicetree@vger.kernel.org>
 
+base-commit: 1bebdcb928eba880f3a119bacb8149216206958a
+-- 
+Sent by a computer, using git, on the internet
 
-> and because vendors don't want to advertise their absolute
-> power.
-
-That is certainly true, though after a device has shipped it's not
-that hard to measure.
-
-
-> > > >>> 2. Is it worth adding some type of indication of what type of units
-> > > >>> "sustainable-power" is represented in?  Maybe even a made up unit so
-> > > >>> that you could tell the difference between made up units in the same
-> > > >>> system?  I'd envision something like:
-> > > >>>
-> > > >>> sustainable-power-units = "qualcomm,sc7180-bogoWatts"
-> > > >>>
-> > > >>> ...and on the dynamic-power-coefficient side, the same:
-> > > >>>
-> > > >>> dynamic-power-coefficient-units = "qualcomm,sc7180-bogoWatts"
-> > > >>>
-> > > >>> One could imagine someone even later (after devices are widely
-> > > >>> distributed) figuring out translations between these bogoWatts numbers
-> > > >>> and real Watts if someone could come up with a case where it matters.
-> > > >>
-> > > >> To figure this out we don't need a new binding.
-> > > >> I think a simple comment in the DT would be enough for this, even e.g.:
-> > > >>
-> > > >> sustainable-power = <100> /* bogoWatts */
-> > > >
-> > > > There are some important differences:
-> > > >
-> > > > a) Your comment is gone when the device tree is compiled.  If we
-> > > > actually add a string to the device tree then, in theory, we can add
-> > > > conversions in code (without touching the device tree) down the road.
-> > >
-> > > We don't need code and binding with a bogoscale. It is up to the
-> > > platform integrator to make sure the scale in consistent in all devices.
-> > > Comment in DT is good enough.
-> >
-> > One other nice thing about having the units is that the device tree is
-> > supposed to be more of a "pure" thing, less sullied about what's
-> > convenient and more about a real description of a thing.  Presumably
-> > that's why "abstract scale" wasn't allowed originally?  In any case,
-> > giving quantifiable units to the number somehow makes it feel less
-> > made up because it's possible to come up with a way to convert it back
-> > to real units.
-> >
-> >
-> > > > b) I believe there can be more than one abstract scale present in a
-> > > > single device tree, at least in theory.  Adding a string allows you to
-> > > > know if you're comparing apples to apples or apples to organges.
-> > >
-> > > IMHO DT is not the place for such abstractions, but Rob might correct me
-> > > here.
-> >
-> > Yup, seems like we're blocked waiting for Rob to chime in unless
-> > someone else has the authority to make the call about how to deal with
-> > "abstract scale" numbers in the device tree.
->
-> I don't really know nor completely follow the issues. I just get all
-> these PM related bindings piece by piece with everyone solving their
-> own single issue. It's death by 1000 cuts. So my default position is
-> NAK. All the missing pieces and deficiencies can build up until
-> there's a coherent picture (maybe?).
-
-I'm totally confused.  NAK on what?  NAK on Lukasz's patch?  ...or
-Lukasz's patch is totally fine but NAK on also allowing abstract scale
-for 'dynamic-power-coefficient".  Or NAK on adding units?  NAK on
-something else?
-
--Doug
