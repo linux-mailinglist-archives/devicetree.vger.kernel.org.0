@@ -2,198 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFF43285D5E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 12:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85A20285DA4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 12:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727857AbgJGKvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 06:51:33 -0400
-Received: from mail-db8eur05on2046.outbound.protection.outlook.com ([40.107.20.46]:42935
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726388AbgJGKvd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 06:51:33 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dHLS2kLauQmx+NaIVfgNk3PaTYBkP44bIILQJ0rSWgVXrzsT0icczJVXUFZNOVgy1Pguhxc5q7OK9i+6RSEpP/5unXAKNiVDNYl/3pQESEHovScThCZektTv1Dj9/0MQA8cByIkD84KulGPL4ghKwmbXUjC5nFa5RPi8RNzRGsd1rZwqtwIZTiMwtIZ0N9PaUDG8FIsneb2K0EHpLCBCxN5e5gMiAVQaJWDdu6CfEVdB7oSbMNEex6Oxr/Hmfk6ogg9HIJWaLGPayhjApAAEjdBomi4xIN/j3m07a/Deb6x1xaLrTGGCUkQddX7Y9jj8u0cVknXAEqyXfsVMzATEKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9VYhWBBOgh+JKQro+z3cfzWnn8USNXmwmjZP9zAHX54=;
- b=j9aWaOuNsUDCONyGoKSrDHwXoQie4V7fpv2mhkcrojHqJxpqhyjRjRbHeEdMaM22/sWrfv0pzDm5xgv7fRtoPDEUy6ANc0u+KDQ0D+vhL1HrtHk9RLOdw5X2miMnd3K9BP+AMDSnBnpTh4FDovmf0ZBVeCiW3BqyvIfZuOo9K8/tOjzRnUyrTOSRPNqeGtN3ylV3m5bXGRhPS1/vvN+RnFhTq61cy0N0XLgegi6mwX3ZQ2BPMuQAs+Lq2A/A/nyA6togRRRzrT9IaQClQFgELpwPfeQHCeAVN51crlpPRE7msVcEqxtCgYYLB75XpDQtbn673QMrRf6o6MYI6GlEzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9VYhWBBOgh+JKQro+z3cfzWnn8USNXmwmjZP9zAHX54=;
- b=A2inaN+hzvHP8dZhuQ9E0n02kmQItHw1QCNkASesCd9PGgMSanEqD2TXEzPyK63/26kWXYHuQCch0laffyjyEJkT5MWlj45g0OmcNbUMdwAdYJo1LpcO8+YFk/bIBteg125AsUvSiXYBqJ4Cu62J/V0VVvs1srmeQvSTyqVxWQQ=
-Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
- (2603:10a6:803:16::14) by VI1PR04MB5406.eurprd04.prod.outlook.com
- (2603:10a6:803:ce::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.37; Wed, 7 Oct
- 2020 10:51:29 +0000
-Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
- ([fe80::3c18:4bf1:4da0:a3bf]) by VI1PR0402MB3871.eurprd04.prod.outlook.com
- ([fe80::3c18:4bf1:4da0:a3bf%3]) with mapi id 15.20.3433.044; Wed, 7 Oct 2020
- 10:51:29 +0000
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 01/10] dt-bindings: net: add the dpaa2-mac DTS
- definition
-Thread-Topic: [PATCH net-next v2 01/10] dt-bindings: net: add the dpaa2-mac
- DTS definition
-Thread-Index: AQHWmQA0dlPJuozT/U+6h7CC9yndwamLFFmAgADpRAA=
-Date:   Wed, 7 Oct 2020 10:51:29 +0000
-Message-ID: <20201007105128.nvzlrsg5fgtjka5p@skbuf>
-References: <20201002210737.27645-1-ioana.ciornei@nxp.com>
- <20201002210737.27645-2-ioana.ciornei@nxp.com>
- <20201006205635.GA2810492@bogus>
-In-Reply-To: <20201006205635.GA2810492@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [188.26.229.171]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: ce856e13-e0bb-40e2-ecbf-08d86aaef24a
-x-ms-traffictypediagnostic: VI1PR04MB5406:
-x-microsoft-antispam-prvs: <VI1PR04MB540687AD60AC3D1CCE01E4F0E00A0@VI1PR04MB5406.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: igdf2v7EWxvEIKYCX81jv58BE1YMf4d2Wag9JowmGuUDibnmabv6dTBQ3tIygvijNFdzj996vmGZvpDAOERAS9H/29/wVGZ7sWVDzx9hM893NWh/LnVbRAajYQK1OGklRSf7yzYaJbI/fgx8oRBpIIYrsjjZwBFgayHM/r3ZX1Y3z4/JXUTdJO7Yb34S2Oa9LDM6nEUi/UvIjKcOm7iTd8EqFmTcGMfHAj+thjcOLCd8IlhvR10fdhY7mkriYEyVOnF4ZW4HbO42ATFpxLryCNUEoUgcIRJ/nTtXuEs/XRWTVXolX6GR7PWQdh9ljt+/
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3871.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(346002)(366004)(376002)(39860400002)(396003)(136003)(33716001)(8676002)(9686003)(54906003)(316002)(6512007)(2906002)(8936002)(76116006)(66476007)(66446008)(478600001)(44832011)(64756008)(66556008)(66946007)(91956017)(186003)(86362001)(1076003)(5660300002)(6916009)(71200400001)(4326008)(6506007)(6486002)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 0ItFmoYhISw8gjHrjo5xwxdaJoy2U39VPc54qvJ9kKJWgeKASjnrPKYpmdGd+gbElfVTHdNlrpRN1g6pFspZebIUNyRFTkxSl273gXa39gRGdG7HhMimZbw3q4jic3WNQZJyfN8tuctgdMiVggQWKxWgQnGFjcavh91spZTA1XlI4r/84h1xLt/eaJbKx3SPwidtNkqEXIm0DxpU+gNDbMIRf4JzBoBdJnWhJ1OBDydz4NxvzpoLTeRJStt7PqLZ+6nmTitplYhcrEKiBU++ViT9Zy/W0Xp+AnpK2VXr7XGdX0C6bmofm2M4U9zjr+n0PeFkmXbyPJFjsZ8bNHxbvdscp45J0IkOGweQk/wK++jGx9c+4kDJTAMbPy9CE5XubBcmTmgRv18HGUcwABjghliJXdE9VBO33gcK1e/h+wk6L/pNJ8fzm8gEOQW7WhwxiQi2xFwa0j8SdN2iUbWl8iF86tRwgFCwVV9yc5xaiEUdSX7oUXxHm2WfyljKAUBImxDRTQ7h3p9UDyMRzpIeygqN9jh1fiWKCUwzARQoWTfBpaRLRgDiR/KrhkNfPJB2ajEfb2fHV7EgSG0GW0mysAF1QiQejp+JKO1eFDiTsVCC0GB0GFpOxPVmuXYmFQ4FPJlgYD7zLykWtY469+Syig==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <3876F1BDA871684FB3480115C5994897@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1727894AbgJGKzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 06:55:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54944 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726637AbgJGKzB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 06:55:01 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF70C061755;
+        Wed,  7 Oct 2020 03:55:01 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id l24so1664384edj.8;
+        Wed, 07 Oct 2020 03:55:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=miz5GwevOoSj80fnl3ty9JVj8BuR70y6a/kr6x7hJWA=;
+        b=tZokdP9aY/Ct2/hi7yXT7g5NuCM8mjouuPNjqkYseaEWGDW+5mUrlOS67PUAP9Kmft
+         vyGQHmqmzrj1qqyCZkfDQVQsqnUlBI3rilQzSNVFBoy6Q+wuQVp7/z3baZ72wTREV0RH
+         GQLkQ6nzw6ZlNANKJEHupotTPTOzrH/Ocvlj8X3m2H5RqI8MJTrBuNX6FiIul0r4I14z
+         /08Iue16lcSsFPyl5d1xz+OzSY/bcXr3nlGogdZ+VDP4GGFCDB/eZMrL7eRx4H6PWN85
+         gqNBvPqaRwXazBDHJ7WXQCqh709YzqDU4EFMhBI2PeIaQ9TmoZ1uroVSS04tJlMYvBvR
+         EXUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=miz5GwevOoSj80fnl3ty9JVj8BuR70y6a/kr6x7hJWA=;
+        b=gk105V1yPYAV/mhKms7XnSjpofC4Cw7nHu7SWpaAzOReU/b0VwBYm+M2P+FKFnlvPh
+         SLBl1ac8lvQKUbhSdR0gYKKRjr3kl8btJqi4UAMFfZkaRkSBOpmQWvm2XYXhjbDGa24w
+         wLRmx2Tm/KSdCd9TeykmxP5fMgCqa6DDS7mq2dmqlZkGXJd9458WXb3rxi3jtT4aiLqD
+         pucr46oCXuKWOfIcQlMB/QvFJ5qy3cfE9eBDV5OpMDN6mxE6iox/wt7dIbvOlYHkZHG5
+         cxcyfnLDWIzkFhB6VgizC5To3dbAV7aTEtsN67rVNixxqrVTGWATb2T7M14tTRz6S/y/
+         +O2g==
+X-Gm-Message-State: AOAM532iL/5LpmH8hJsYrlKL4vAhj6zUXVP+0noju0/xsL/ZvEVFOkKo
+        qqCI0uMGHJy3/4jkEQbkWxw=
+X-Google-Smtp-Source: ABdhPJy8eVk0/mVC/Wv86ko+tH4o/GH5cjP42RAZY/ZXT4lmQhHZRjsNYeP+9MrDBGj5eE5GwfEsEg==
+X-Received: by 2002:a50:da84:: with SMTP id q4mr2838211edj.238.1602068100161;
+        Wed, 07 Oct 2020 03:55:00 -0700 (PDT)
+Received: from skbuf ([188.26.229.171])
+        by smtp.gmail.com with ESMTPSA id p12sm1198414edr.18.2020.10.07.03.54.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Oct 2020 03:54:59 -0700 (PDT)
+Date:   Wed, 7 Oct 2020 13:54:58 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Kurt Kanzenbach <kurt@linutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
+ hardware timestamping
+Message-ID: <20201007105458.gdbrwyzfjfaygjke@skbuf>
+References: <20201004112911.25085-1-kurt@linutronix.de>
+ <20201004112911.25085-5-kurt@linutronix.de>
+ <20201004143000.blb3uxq3kwr6zp3z@skbuf>
+ <87imbn98dd.fsf@kurt>
+ <20201006072847.pjygwwtgq72ghsiq@skbuf>
+ <87tuv77a83.fsf@kurt>
+ <20201006133222.74w3r2jwwhq5uop5@skbuf>
+ <87r1qb790w.fsf@kurt>
+ <20201006140102.6q7ep2w62jnilb22@skbuf>
+ <87lfgiqpze.fsf@kurt>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3871.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce856e13-e0bb-40e2-ecbf-08d86aaef24a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2020 10:51:29.3196
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: b32jxziFVE4GBh52MUbCbf63UekN2OPoSw+e2KPTW5rYCz7SWuxYQh04EXGDxPrdwDyJ8Ex8g+KbKiYRJY0hJg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5406
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87lfgiqpze.fsf@kurt>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 03:56:35PM -0500, Rob Herring wrote:
-> On Sat, Oct 03, 2020 at 12:07:28AM +0300, Ioana Ciornei wrote:
-> > Add a documentation entry for the DTS bindings needed and supported by
-> > the dpaa2-mac driver.
-> >=20
-> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > ---
-> > Changes in v2:
-> >  - new patch
-> >=20
-> >  .../devicetree/bindings/net/dpaa2-mac.yaml    | 55 +++++++++++++++++++
->=20
-> Use the compatible string for the filename.
+On Wed, Oct 07, 2020 at 12:39:49PM +0200, Kurt Kanzenbach wrote:
+> On Tue Oct 06 2020, Vladimir Oltean wrote:
+> > On Tue, Oct 06, 2020 at 03:56:31PM +0200, Kurt Kanzenbach wrote:
+> >> Yeah, sure. That use case makes sense. What's the problem exactly?
+> >
+> > The SO_TIMESTAMPING / SO_TIMESTAMPNS cmsg socket API simply doesn't have
+> > any sort of identification for a hardware TX timestamp (where it came
+> > from).
+> 
+> This is sounds like a problem.
 
-Sure.
+Yeah, tell me about it.
 
-> > +title: DPAA2 MAC bindings
-> > +
-> > +maintainers:
-> > +  - Ioana Ciornei <ioana.ciornei@nxp.com>
-> > +
-> > +description:
-> > +  This binding represents the DPAA2 MAC objects found on the fsl-mc bu=
-s and
-> > +  located under the 'dpmacs' node for the fsl-mc bus DTS node.
->=20
-> Need $ref to ethernet-controller.yaml
->=20
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: "fsl,qoriq-mc-dpmac"
->=20
-> Don't need quotes.
+> For instance the hellcreek switch has actually three ptp hardware
+> clocks and the time stamping can be configured to use either one of
+> them.
 
-Got it.
+The sja1105 also has a corrected and an uncorrected PTP clock that can
+take timestamps. Initially I had thought I'd be going to spend some time
+figuring out multi-PHC support, but now I don't see any practical reason
+to use the uncorrected PHC for anything.
 
->=20
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description: The DPMAC number
-> > +
-> > +  phy-handle: true
-> > +
-> > +  phy-connection-type: true
-> > +
-> > +  phy-mode: true
-> > +
-> > +  pcs-handle:
-> > +    $ref: /schemas/types.yaml#definitions/phandle
-> > +    description:
-> > +      A reference to a node representing a PCS PHY device found on
-> > +      the internal MDIO bus.
->=20
-> Perhaps use the 'phys' binding? (Too many PHYs with ethernet...)
->=20
-> This would be the on-chip XAUI/SerDes phy? That's typically 'phys' where=
-=20
-> as 'phy-handle' is ethernet PHY.=20
->=20
+> How would the user space distinguish what time stamp is taken by
+> which clock? This is not a problem at the moment, because currently
+> only the synchronized clock is exported to user space. See change log
+> of this patch.
 
-The PCS deals with proper coding (8b/10b, 64b/66b) and auto-negotiation
-between the MAC and whatever is connected to it. It is, logically
-speaking, above the SERDES which implements the physical layer
-(PMA/PMD). We are not describing or configuring electrical parameters of
-SERDES lanes and such here, we are just referencing the PCS found on the
-internal MDIO bus of the MAC.
+It wouldn't, of course. You'd need to add the plumbing for that.
 
-> > +
-> > +  managed: true
-> > +
-> > +required:
-> > +  - reg
->=20
-> addtionalProperties: false
+> > So when you'll poll for TX timestamps, you'll receive a TX
+> > timestamp from the PHY and another one from the switch, and those will
+> > be in a race with one another, so you won't know which one is which.
+> 
+> OK. So what happens if the driver will accept to disable hardware
+> timestamping? Is there anything else that needs to be implemented? Are
+> there (good) examples?
 
-Ok, I'll add it.
-I didn't find a reference to it in the writing-schema.rst. I think that
-would have helped.
+It needs to not call skb_complete_tx_timestamp() and friends.
 
->=20
-> > +
-> > +examples:
-> > +  - |
-> > +    dpmacs {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      dpmac@4 {
->=20
-> ethernet@4
+For PHY timestamping, it also needs to invoke the correct methods for RX
+and for TX, where the PHY timestamping hooks will get called. I don't
+think that DSA is compatible yet with PHY timestamping, but it is
+probably a trivial modification. Please read
+Documentation/networking/timestamping.rst, we try to keep it fairly
+comprehensive.
 
-Ok.
-
->=20
-> > +        compatible =3D "fsl,qoriq-mc-dpmac";
-> > +        reg =3D <0x4>;
-> > +        phy-handle =3D <&mdio1_phy6>;
-> > +        phy-connection-type =3D "qsgmii";
-> > +        managed =3D "in-band-status";
-> > +        pcs-handle =3D <&pcs3_1>;
-> > +      };
-> > +    };
-> > --=20
-> > 2.28.0
-> > =
+Thanks,
+-Vladimir
