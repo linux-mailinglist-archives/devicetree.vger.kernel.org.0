@@ -2,89 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 802FB285F1F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 14:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9993A285F81
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 14:51:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728201AbgJGMZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 08:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40620 "EHLO
+        id S1727927AbgJGMvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 08:51:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728003AbgJGMZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 08:25:15 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083EAC061755;
-        Wed,  7 Oct 2020 05:25:15 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id d24so2037008lfa.8;
-        Wed, 07 Oct 2020 05:25:14 -0700 (PDT)
+        with ESMTP id S1727253AbgJGMvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 08:51:12 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A874DC061755;
+        Wed,  7 Oct 2020 05:51:12 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id y20so2197072iod.5;
+        Wed, 07 Oct 2020 05:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BG2aRrtMABrEu20HO3uxQjLxpSSHiVUzbn88+piT74Y=;
-        b=XNDED/CDPK2Mp8cgF8iiVPv6Y2UaeWC0ttDcos7FM5nWviObXkQerXt5Y356ytZSM1
-         Pu60Ck8g9uHo8nsvSasxrHUAMmHyuEU18vVMWGdfQJnjENC+hWdDzkDzMYBu7UrA5fxB
-         kLSiJCvbjReXyzDtJlOL2MaHeO6xxA5jGfx/hgo3ttbOQXqHI6vbtYM0exej/un0whzd
-         QQ/uv2H4ra1dlCDJN0FwahIVj6fv12dLyTz0iwdfq175tFcFFDY50oVh8w7oNAQi27sy
-         GjoFb6wD6D2mfNQPAXDnaVZe8XSUroU/VhSV66SxZIu0xMM/PraYEGt9mP62qCn25K1e
-         Z2yQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xuyPM+5n8HvacuwfQXH2nPR1KoE4Q6Cygm65UlTUnT0=;
+        b=ZhArK0B2FrVv+8U+Om519V2tR6SQH9RzvUgpDQL5agbDQKHVbnbYs2xsESze2IaRJe
+         PDAZvAgAs/+lMQERxpAaMzMg/Bro5mpXNhvQwwgz++FP7A0LtjwV2hV5lZgIHRJpRtLt
+         qHKPi8V8NBoYROgSU/WV0fYIO/bCUJY3L8sf1WJF3ryxvr+MKyE8Im2JcHPGABTtNlqB
+         E/jGFji2Eyt6v7CDgiMrAFdQ47CMfA7GPnbndi4iiTfx/re0ka7XAb515AAeMxTNUl74
+         QB7MujMj9VBQuQCxcELWhlULWqxZBC1/ypes5TcnGqavKYWSiSBdEJrpRkY+NoltJJvc
+         MpPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BG2aRrtMABrEu20HO3uxQjLxpSSHiVUzbn88+piT74Y=;
-        b=ljiUJCwShDhh9W2T1veAc8RViMI+MCzoiYoSl1u/rPk7qP6ALzCG0jPLKvt5xwWDfX
-         sZCJr9E16YK6Nd4waF8uqGwiL1WX3rEpZdBfZNOa80pZAHVadCrhVzfXA/GqQo9rSgEV
-         Vz6Rp0zSMAaqyzl2lP4qP36eOTOjRNUm5r36enQ00BAvCATJuDFuQ8W6+3zHSP3oyz02
-         uGpFC4Kx4Kbczjvrg0K0buoiwH2yhEosDWJW4tzY4K2mRTlJ6kQKwcpeOae0wB42ae5D
-         duCQQPU094gYsePoBU8mdzga/dFoBx+alyyFFRTzwNYGDNbOgHDZppMYIHHwBn5QSVG7
-         /ALQ==
-X-Gm-Message-State: AOAM5329jB86SG0iKkgkPYQ36lRwaq68wAvkEozghovnkTu09YcqVLyi
-        SxNIejR2aC0KKCLetIVc5fj044UPqlA=
-X-Google-Smtp-Source: ABdhPJwEFtCXAecrp/pxKgqI4EHvqL3/SaG2WNtzq8Z9mz166HmOBbhxgyq4gMQww2FaEPi4np3TeA==
-X-Received: by 2002:a19:ca48:: with SMTP id h8mr825194lfj.173.1602073513512;
-        Wed, 07 Oct 2020 05:25:13 -0700 (PDT)
-Received: from trashcan (host-5-58-109-138.bitternet.ua. [5.58.109.138])
-        by smtp.gmail.com with ESMTPSA id q22sm314948lfm.51.2020.10.07.05.25.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 05:25:12 -0700 (PDT)
-Date:   Wed, 7 Oct 2020 15:08:15 +0300
-From:   Vladirmir Lisak <junak.pub@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom: add msm8953 pinctrl
- bindings
-Message-ID: <20201007120815.GA882584@trashcan>
-References: <20201004081644.323858-1-junak.pub@gmail.com>
- <20201004081644.323858-2-junak.pub@gmail.com>
- <20201006212234.GA2858909@bogus>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xuyPM+5n8HvacuwfQXH2nPR1KoE4Q6Cygm65UlTUnT0=;
+        b=o+cvzBPuHzTMD1+RnX5WN5bA/GzEyPfFp4RBTbJkd4TXpRTNk2BjISBhG1KirjMRYI
+         J2dLesENBdKA0kZ4woIzrnUGZsAEzE0qMVzRUGawzxsraOP/TjcFKgQe8G6EJZU3q7xx
+         R+lUlz47X7OMyAlc43rOb5mQhyJ1jS3ynlw/WHbXyaXET33d2VXDysTSJ/oDqKyoqpY4
+         2ZpHbibC6xOxvGDWM620p1mhM8mnnroL/olKHYKb0ZvOuU6DU180tLbAglJ6xFhQ7JP/
+         tKTDyDAH30VyKuSN2dHiU+TEGuj4OTCmky71kJ4Zf71Ju4NiVH8qamVCYFvLfmjHd8pX
+         eKBA==
+X-Gm-Message-State: AOAM532qBpbhqHcHXFzyv1oUF9STtY5Zd4Y3TKl88Q6SMKiJuLnC9i3Z
+        qUIykscI3n/WQjqhmgvjRcudcve6l0n6Ms/H9s8=
+X-Google-Smtp-Source: ABdhPJzbTtymyK2BytkcLsYPVerJz5EfsN0MXMbm4oGq2ge0ii0q6b52cO18HufirvAxF90Wi+ZD9mAb4YI01Hc1vb0=
+X-Received: by 2002:a5e:c70a:: with SMTP id f10mr2159772iop.178.1602075071583;
+ Wed, 07 Oct 2020 05:51:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201006212234.GA2858909@bogus>
+References: <20200927165947.7317-1-krzk@kernel.org> <20200927165947.7317-2-krzk@kernel.org>
+In-Reply-To: <20200927165947.7317-2-krzk@kernel.org>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 7 Oct 2020 07:51:00 -0500
+Message-ID: <CAHCN7xL2uda0OvkSvZ3tCBGT=WU9OxMqeXvmJaeBSpwb--4=zQ@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: imx8mm-beacon-som: fix missing PMIC's
+ interrupt line pull-up
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Peter Chen <peter.chen@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi! Thank you for your reply! 
+On Sun, Sep 27, 2020 at 12:00 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> The PMIC's interrupt is level low and should be pulled up.  The PMIC's
+> device node had pinctrl-0 property but it lacked pinctrl-names which
+> is required to apply the pin configuration.
+>
 
-On Tue, Oct 06, 2020 at 04:22:34PM -0500, Rob Herring wrote:
-> 
-> For new bindings, please define a node name pattern you can match on 
-> and avoid this if/then. '-pins$' is my preference.
-> 
+Thanks for the fixes!
 
-Ok, i will change it.
+> Fixes: 5f67317bd967 ("arm64: dts: imx8mm: correct interrupt flags")
+> Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> > +              #interrupt-cells = <2>;
-> > +              gpio-controller;
-> > +              #gpio-cells = <2>;
-> > +              gpio-ranges = <&tlmm 0 0 142>;
-> 
-> Please show at least 1 child node.
-> 
+Tested-by: Adam Ford <aford173@gmail.com>
 
-I will add it in next version.
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> index 6de86a4f0ec4..55b36bddd513 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> @@ -72,6 +72,7 @@
+>         pmic@4b {
+>                 compatible = "rohm,bd71847";
+>                 reg = <0x4b>;
+> +               pinctrl-names = "default";
+>                 pinctrl-0 = <&pinctrl_pmic>;
+>                 interrupt-parent = <&gpio1>;
+>                 interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> --
+> 2.17.1
+>
