@@ -2,120 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 857B6285834
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 07:44:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F9B285872
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 08:05:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726168AbgJGFoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 01:44:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39330 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726009AbgJGFoK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 01:44:10 -0400
-Received: from localhost (unknown [122.171.222.162])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 533C1208C7;
-        Wed,  7 Oct 2020 05:44:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602049449;
-        bh=szK29eB1aaDwRPv2AAeq7Q2s91RHTL+W1LUcPPKFjlI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FGgaMjpcC8fbyiin8nYnw/U/7+ET6l+beTO3vqzZNA2Bdfz2Uvh+pSNsXRUfM6+1r
-         YdTagc9UNzaXvyTNxTVgl3Y+cvMcXoWB7YyvBp6ZLreZjrkVnK3BpnbHjYWwCjveGD
-         nn50PNOd5b3ebFvLXrhhwQ704jY/nOdoCMhVmDEg=
-Date:   Wed, 7 Oct 2020 11:14:04 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     nm@ti.com, ssantosh@kernel.org, robh+dt@kernel.org,
-        vigneshr@ti.com, dan.j.williams@intel.com, t-kristo@ti.com,
-        lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org
-Subject: Re: [PATCH 01/18] dmaengine: of-dma: Add support for optional router
- configuration callback
-Message-ID: <20201007054404.GR2968@vkoul-mobl>
-References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
- <20200930091412.8020-2-peter.ujfalusi@ti.com>
+        id S1727234AbgJGGFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 02:05:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38504 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726138AbgJGGFa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 02:05:30 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E242FC061755
+        for <devicetree@vger.kernel.org>; Tue,  6 Oct 2020 23:05:28 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id n9so699501pgf.9
+        for <devicetree@vger.kernel.org>; Tue, 06 Oct 2020 23:05:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+WZVwcVZq17DkZh6Ek8hgtQgHh8+kfcgUyh2yGXklz0=;
+        b=DDMZH9DrS5gsFGD94mHEOzp+CCLRwyQNYcYc57nxOJ5nvYUVhH/3HX8S+36V7pD23G
+         67Yr1XpXiqangp7o/tajpethsaqQEFLnl2ZXBcVVVEGoZcIXPxhjsVguqN4S4yYZ2muw
+         pwwesSCFH7kXDiBk1S6oowJU0gfy5ox74fFCfDcvgMCRpO9LD5HLi0kyCh5WCAqwTpNa
+         /z+OuPqciEGAs0ZkIIoQUutaz86zp3BsDrDcQiepVR66XOtT2n0HUFdBTbDNsWJb5YOD
+         D6z0ZqJ2LeGr7DNj/0NIAwzaOC5t0rzEhQ+rMdPwqv9dce1EhsQdg2/vUtHUXUGJbLkG
+         vshA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+WZVwcVZq17DkZh6Ek8hgtQgHh8+kfcgUyh2yGXklz0=;
+        b=bjlmCxWxO3IoEhTQ8BAsPleB3go6Ge8ebGIjqvwLRMe/sySquwn17a6p3srZJ62NB5
+         KdFrAfxSTh+W07u8FH5QS3Er17TuK7I2EEYqp228uk0E/wTOTkvNLpdU9XwuzMs63xwZ
+         vzQ8lvU/Atp8+E08zmjA6VN251CeZvvvpW7VO1s0yCTtkYqnG9Z9vNqo5WwQ+UewSLJ+
+         BfsiOgpiFiZQL6sJH4lL20Be8D42XIONRzJeRAwaZGhNuVWBKHABb9aFkUMGkNl1yIwb
+         F3Zca1y+IxDBHVdK1FR4s3sAmkP1U46XClQne7REKM7kLZZ+DtBMWZh9g1tD4Dfijyp1
+         Fb/g==
+X-Gm-Message-State: AOAM532xJiGUs7rgmSYLRualIM+AhdkRBo89fi5MWJQ1+J4tQtu5fvyC
+        FWb+5WcGKZpPNwHO9Vd3K1MBIg==
+X-Google-Smtp-Source: ABdhPJzL6EN0aBk2qBvnw5Npidm2j1PjotUyNK/TEeojHbbecjp5Iy1TOibk43m25s2nmjkP5q0G3g==
+X-Received: by 2002:a63:3247:: with SMTP id y68mr1607315pgy.224.1602050728334;
+        Tue, 06 Oct 2020 23:05:28 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id 138sm1348410pfu.180.2020.10.06.23.05.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Oct 2020 23:05:27 -0700 (PDT)
+Date:   Wed, 7 Oct 2020 11:35:25 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        ALKML <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 4/4] mailbox: arm_mhu: Add ARM MHU doorbell driver
+Message-ID: <20201007060525.ya6limypf6ggmtae@vireshk-i7>
+References: <20200928114445.19689-1-sudeep.holla@arm.com>
+ <20200928114445.19689-5-sudeep.holla@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200930091412.8020-2-peter.ujfalusi@ti.com>
+In-Reply-To: <20200928114445.19689-5-sudeep.holla@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
-
-On 30-09-20, 12:13, Peter Ujfalusi wrote:
-> Additional configuration for the DMA event router might be needed for a
-> channel which can not be done during device_alloc_chan_resources callback
-> since the router information is not yet present for the drivers.
+On 28-09-20, 12:44, Sudeep Holla wrote:
+> The MHU drives the signal using a 32-bit register, with all 32 bits
+> logically ORed together. The MHU provides a set of registers to enable
+> software to set, clear, and check the status of each of the bits of this
+> register independently. The use of 32 bits for each interrupt line
+> enables software to provide more information about the source of the
+> interrupt. For example, each bit of the register can be associated with
+> a type of event that can contribute to raising the interrupt.
 > 
-> If there is a need for additional configuration for the channel if DMA
-> router is in use, then the driver can implement the device_router_config
-> callback.
-
-So what is the additional information you need, I am looking at the code
-below and xlate invokes device_router_config() which driver will
-implement..
-
-Are you using this to configure channels based on info from DT?
-
+> This patch adds a separate the MHU controller driver for doorbel mode
+> of operation using the extended DT binding to add support the same.
 > 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > ---
->  drivers/dma/of-dma.c      | 10 ++++++++++
->  include/linux/dmaengine.h |  2 ++
->  2 files changed, 12 insertions(+)
-> 
-> diff --git a/drivers/dma/of-dma.c b/drivers/dma/of-dma.c
-> index 8a4f608904b9..ec00b20ae8e4 100644
-> --- a/drivers/dma/of-dma.c
-> +++ b/drivers/dma/of-dma.c
-> @@ -75,8 +75,18 @@ static struct dma_chan *of_dma_router_xlate(struct of_phandle_args *dma_spec,
->  		ofdma->dma_router->route_free(ofdma->dma_router->dev,
->  					      route_data);
->  	} else {
-> +		int ret = 0;
-> +
->  		chan->router = ofdma->dma_router;
->  		chan->route_data = route_data;
-> +
-> +		if (chan->device->device_router_config)
-> +			ret = chan->device->device_router_config(chan);
-> +
-> +		if (ret) {
-> +			dma_release_channel(chan);
-> +			chan = ERR_PTR(ret);
-> +		}
->  	}
->  
->  	/*
-> diff --git a/include/linux/dmaengine.h b/include/linux/dmaengine.h
-> index dd357a747780..d6197fe875af 100644
-> --- a/include/linux/dmaengine.h
-> +++ b/include/linux/dmaengine.h
-> @@ -800,6 +800,7 @@ struct dma_filter {
->   *	by tx_status
->   * @device_alloc_chan_resources: allocate resources and return the
->   *	number of allocated descriptors
-> + * @device_router_config: optional callback for DMA router configuration
->   * @device_free_chan_resources: release DMA channel's resources
->   * @device_prep_dma_memcpy: prepares a memcpy operation
->   * @device_prep_dma_xor: prepares a xor operation
-> @@ -874,6 +875,7 @@ struct dma_device {
->  	enum dma_residue_granularity residue_granularity;
->  
->  	int (*device_alloc_chan_resources)(struct dma_chan *chan);
-> +	int (*device_router_config)(struct dma_chan *chan);
->  	void (*device_free_chan_resources)(struct dma_chan *chan);
->  
->  	struct dma_async_tx_descriptor *(*device_prep_dma_memcpy)(
-> -- 
-> Peter
-> 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>  drivers/mailbox/Makefile     |   2 +-
+>  drivers/mailbox/arm_mhu_db.c | 359 +++++++++++++++++++++++++++++++++++
+
+Please put an entry in MAINTAINERS as well for this.
 
 -- 
-~Vinod
+viresh
