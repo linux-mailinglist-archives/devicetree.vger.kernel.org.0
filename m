@@ -2,67 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A76B92863D4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 18:24:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71D4A286492
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 18:35:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728046AbgJGQYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 12:24:31 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:41883 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727665AbgJGQYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 12:24:31 -0400
-Received: by mail-oi1-f196.google.com with SMTP id q136so1884039oic.8;
-        Wed, 07 Oct 2020 09:24:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jq+tHvWM4iiywqLkK7TAv1q3AynzqI/YYhTbvpw+D9o=;
-        b=i4xJ+L4u0kWkKd6mK44KdAucG+g/0jurDmsrrljfo7CSdg0urPsN5MOJmj3y1Uc2Mo
-         vsSwe9XrIDNsXXjvVHGd+NlkkJ0pe4n0jA1bJj4pim1uBsri9UL6K/mnhq2373Jg5dym
-         fkz51EmTF4rG0bzSjm6vb/C8EJHX2zJgpMN3y+KFAngr/a4DKOaUPcbYr0Gysx8dQ1CV
-         Mqjus2O7yP5E/H3C332ABDe+oQdSAhP6NEYMK1GiNIysALCT7A+Dop5c3a9EOY0mF/mg
-         TdVfYPKjoDFtcdpi8ACdn2oCJ4LQAFUtcmUICbnBHTxOOiKX7Jc+WWeJVGqVXRFd2iVa
-         iN3g==
-X-Gm-Message-State: AOAM533tycdTPbjueKvabe8AxODtT6Q5P8G4A28wNvc9bS4IEBOSbhHc
-        lxm+ctLiWZ4R5K1Udocung==
-X-Google-Smtp-Source: ABdhPJyicFosZDh1zhwZcCv6cf4eAx0ILfiaizgARQNA1hWO69Yr9Y1+7jbHssl3A0Gu0RmVqi5DSg==
-X-Received: by 2002:aca:aa8d:: with SMTP id t135mr2323433oie.76.1602087870268;
-        Wed, 07 Oct 2020 09:24:30 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 15sm1915071ooy.36.2020.10.07.09.24.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 09:24:29 -0700 (PDT)
-Received: (nullmailer pid 330687 invoked by uid 1000);
-        Wed, 07 Oct 2020 16:24:29 -0000
-Date:   Wed, 7 Oct 2020 11:24:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 026/106] dt-bindings: mipi-ccs: Add bus-type for C-PHY
- support
-Message-ID: <20201007162429.GA330627@bogus>
-References: <20201007135225.GA125839@bogus>
- <20201007144937.27609-1-sakari.ailus@linux.intel.com>
+        id S1726129AbgJGQfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 12:35:32 -0400
+Received: from sonic313-56.consmr.mail.ne1.yahoo.com ([66.163.185.31]:44459
+        "EHLO sonic313-56.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726504AbgJGQf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 12:35:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1602088527; bh=PxMwWzXvs+dqOoH0/FHvFmQpYH2JguaCUHYAVLLmaiw=; h=Date:From:Reply-To:Subject:References:From:Subject; b=RIwQxXgeOH2av4cxVTuE0ANPB+DY0KfNlr0xoyZARpFIclcyQJRUSEc0Pn81+q4APr9GYRoTTUzR2AjtEwiZ+3aPDmXz2cQpI9jK3T5MXILUUE1kucJUVhORrhDexzmDmBLP+Rp2WyUOWyjq3UQKG+nnj0eHMPSwYpbM4l9LaTWPWmX7GN8U2SMmsX+VQCOfV2JUh01tMVdsElXAh7WhrUlFFXIWt9ZZxIVrbMVU+h+nwGfKXNBpjzRnqnzbW9DtB9U33dg6RPjWeousX9qpGjhRT5XPu4clz41/4TYi0dJEBmm1bH+jOd5+D8FllmgTVRFakVrY046UX3Ymho3k8g==
+X-YMail-OSG: 3mIMCWwVM1mB62Jju8jKegKSswvqWi0Yy7NSBHwxXwShbRYqi_xpkWM8rSDQ4nf
+ j0PynUopVBkt1eeKZg5B0ZTPv_fg8N3WHhZrdneFEyjltyFpuBKkxSnBgZKraGkOhny0tG_5CjT4
+ Yok.v74ZBqfenVNbVCqEqzg7GanB_qzyJXal1ERsa8cplGPV2.9UgsEj9PVUSl5ILSfLS8zt_Mkz
+ 6U2gYKOIVIVZohqDBv_tC8TPJnLnN5pvY_n4a1.CFZanGCgquv9t5KoHvcQmQoxcJrHvnbohMthR
+ fJg5iHsDYXe.9E4RyYaexZJmRUIy4QN0I_D7uFP9yNCpnHsRho2YOFiPNq4MSx11wX6C932r4l7X
+ IxhTI8ad3QtoJyGsmt8SXmW8mmk2LlidsAqNzYEXQo3_EqGnsSm85SjpQs542TtngRT_VHjLELlU
+ T58EleToOpB0xGECrkmjntw33zgQQ.jtX0afkyL825EDS76FqLH2jn8pS_g4oZ6zP6qAmx74aj.A
+ WKxlyzq0fnL7v_qIhLWr_pTuyJAmdYSnasLv2x5cxuFm7Yaf9DF.IHVfI7xGRyG_pucwOKaKnfvp
+ WYS5Q9_VKDtL0UuRC5k4eIt4XCooMRm3ge4s2q.dnfg6WBEOGurqEL9FmXO8zp8tblSwvVCdokZw
+ VGW.hPCeUO7ffNy6xd2ekmhhccaJ6yc4W2pTTP.aHXChsGCwZcRH052pbj33VeThdgbjAnyo_xWj
+ A_ln5McUScpX7J.nMAy.bvHkncOIIddfMDjShirVZtYmkOjWn7jcD2ERbOWjC28uuAEwWUZdsVMs
+ 4q.Sg7UO_47fPM0BB_sFqjAGXDUVtfIsP9RjBc48IC8SBbcWuT20tID9ve_uQiMHiijdgNsNlJ0k
+ 8cOaIysCwVsP5wI7M0NCylkAppWHOg1a1Ft2Mip0Wk1CzcS9vQsFtc1DsVub7b8SUQfhy9T00xkY
+ wbgdThQ6RCUvtM0oF4A3j04CTxhADnVISsjDCvOdpGDpYTX8kdS6RlhejUcsga2aMZeH7i8H55kf
+ BL8i4mhlEvxF0.UZA5mpGTRZV95l2KJzt0L9Tb2hgeEHu37KGnA5ItzKZ07JO4QRdCGmZ0Aupy51
+ C0OWRGO_M2inN1n2eglSZv9js8Mob_WoYbdi0tEh3kpdzk.wK8QHuUWYcbiWHXmv3UgahoxZuc5N
+ 6Ze17zVznK4QEutHo7Fy23EdVrkI6WWXqZmi2HIcrRMA6c03kcdPPiz8yH8sMnDJFVXpD2xcnoYA
+ 3z5tuafOScYMOCWzwN.11rd2DhmJ1wJsKiM69r53IeGMbUCag9MKCCqu5UbV80YtWqBb4iS3F3oB
+ a9epeZMKGShsqIhiDUF6DmtTvma9HtGOKJc6jkKygkBVeSsVoZ92cPLJtiWBb0XJbVPwRBGIRwGf
+ sai4LtdT6q6H4SvYYO.o2CXllwXRX.5jScG.RVwFmVaw-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.ne1.yahoo.com with HTTP; Wed, 7 Oct 2020 16:35:27 +0000
+Date:   Wed, 7 Oct 2020 16:35:22 +0000 (UTC)
+From:   Marilyn Robert <fredodinga22@gmail.com>
+Reply-To: marilyobert@gmail.com
+Message-ID: <1401049150.295640.1602088522534@mail.yahoo.com>
+Subject: =?UTF-8?B?0J3QsNGY0LzQuNC70LAg0LrQsNGYINCz0L7RgdC/0L7QtNCw0YDQvtGC?=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007144937.27609-1-sakari.ailus@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+References: <1401049150.295640.1602088522534.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.16795 YMailNodin Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 07 Oct 2020 17:49:37 +0300, Sakari Ailus wrote:
-> The bus-type property is required for C-PHY support. Add it, including
-> values for CCP2 and CSI-2 D-PHY.
-> 
-> Also require the bus-type property. Effectively all new sensors are MIPI
-> D-PHY or C-PHY that cannot be told apart without the bus-type property.
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> ---
->  .../devicetree/bindings/media/i2c/mipi-ccs.yaml          | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+DQoNCtCd0LDRmNC80LjQu9CwINC60LDRmCDQs9C+0YHQv9C+0LTQsNGA0L7Rgg0KDQrQiNCw0YEg
+0YHRg9C8IDY4LdCz0L7QtNC40YjQvdCwINC20LXQvdCwLCDQutC+0ZjQsCDRgdGC0YDQsNC00LAg
+0L7QtCDQv9GA0L7QtNC+0LvQttC10L0g0LrQsNGA0YbQuNC90L7QvCDQvdCwINC00L7RmNC60LAs
+INC+0LQg0YHQuNGC0LUg0LzQtdC00LjRhtC40L3RgdC60Lgg0LjQvdC00LjQutCw0YbQuNC4LCDQ
+vNC+0ZjQsNGC0LAg0YHQvtGB0YLQvtGY0LHQsCDQvdCw0LLQuNGB0YLQuNC90LAg0YHQtSDQstC7
+0L7RiNC4INC4INC+0YfQuNCz0LvQtdC00L3QviDQtSDQtNC10LrQsCDQvNC+0LbQtdCx0Lgg0L3Q
+tdC80LAg0LTQsCDQttC40LLQtdCw0Lwg0L/QvtCy0LXRnNC1INC+0LQg0YjQtdGB0YIg0LzQtdGB
+0LXRhtC4INC60LDQutC+INGA0LXQt9GD0LvRgtCw0YIg0L3QsCDQsdGA0LfQuNC+0YIg0YDQsNGB
+0YIg0Lgg0LHQvtC70LrQsNGC0LAg0YjRgtC+INGB0LUg0ZjQsNCy0YPQstCwINC60LDRmCDQvdC1
+0LAuINCc0L7RmNC+0YIg0YHQvtC/0YDRg9CzINC/0L7Rh9C40L3QsCDQvdC10LrQvtC70LrRgyDQ
+s9C+0LTQuNC90Lgg0L3QsNC90LDQt9Cw0LQg0Lgg0L3QsNGI0LjRgtC1INC00L7Qu9Cz0Lgg0LPQ
+vtC00LjQvdC4INCx0YDQsNC6INC90LUg0LHQtdCwINCx0LvQsNCz0L7RgdC70L7QstC10L3QuCDR
+gdC+INC90LjRgtGDINC10LTQvdC+INC00LXRgtC1LCDQv9C+INC90LXQs9C+0LLQsNGC0LAg0YHQ
+vNGA0YIg0LPQviDQvdCw0YHQu9C10LTQuNCyINGG0LXQu9C+0YLQviDQvdC10LPQvtCy0L4g0LHQ
+vtCz0LDRgtGB0YLQstC+Lg0KDQrQlNC+0LDRk9Cw0Lwg0LrQsNGYINCy0LDRgSDQvtGC0LrQsNC6
+0L4g0YHQtSDQv9C+0LzQvtC70LjQsiDQt9CwINGC0L7QsCwg0L/QvtC00LPQvtGC0LLQtdC9INGB
+0YPQvCDQtNCwINC00L7QvdC40YDQsNC8INGB0YPQvNCwINC+0LQgMiwgMzAwLCAwMDAg0LXQstGA
+0LAg0LfQsCDQv9C+0LzQvtGIINC90LAg0YHQuNGA0L7QvNCw0YjQvdC40YLQtSwg0YHQuNGA0L7Q
+vNCw0YjQvdC40YLQtSDQuCDQv9C+0LzQsNC70LrRgyDQv9GA0LjQstC40LvQtdCz0LjRgNCw0L3Q
+uNGC0LUg0LzQtdGT0YMg0LLQsNGI0LjRgtC1INGB0L7QsdGA0LDQvdC40ZjQsCAvINC+0L/RiNGC
+0LXRgdGC0LLQvi4g0JfQsNCx0LXQu9C10LbQtdGC0LUg0LTQtdC60LAg0L7QstC+0Zgg0YTQvtC9
+0LQg0LUg0LTQtdC/0L7QvdC40YDQsNC9INCy0L4g0LHQsNC90LrQsCDQutCw0LTQtSDRiNGC0L4g
+0YDQsNCx0L7RgtC10YjQtSDQvNC+0ZjQvtGCINGB0L7Qv9GA0YPQsy4gQXBwcmVjaWF0ZdC1INGG
+0LXQvdCw0Lwg0LDQutC+INC+0LHRgNC90LXRgtC1INCy0L3QuNC80LDQvdC40LUg0L3QsCDQvNC+
+0LXRgtC+INCx0LDRgNCw0ZrQtSDQt9CwINC/0YDQvtC/0LDQs9C40YDQsNGa0LUg0L3QsCDQvNCw
+0YHQsNC20LDRgtCwINC90LAg0LrRgNCw0LvRgdGC0LLQvtGC0L4sINGc0LUg0LLQuCDQtNCw0LTQ
+sNC8INC/0L7QstC10ZzQtSDQtNC10YLQsNC70Lgg0LfQsCDRgtC+0LAg0LrQsNC60L4g0LTQsCDQ
+v9C+0YHRgtCw0L/QuNGC0LUuDQoNCtCR0LvQsNCz0L7QtNCw0YDQsNC8DQrQky3Rk9CwINCc0LXR
+gNC40LvQuNC9INCg0L7QsdC10YDRgg==
