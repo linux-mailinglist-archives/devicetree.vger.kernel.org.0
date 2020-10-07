@@ -2,112 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9C3F2865C5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C13242865E6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 19:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728209AbgJGRUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 13:20:45 -0400
-Received: from mail-41103.protonmail.ch ([185.70.41.103]:41824 "EHLO
-        mail-41103.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727724AbgJGRUp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:20:45 -0400
-Received: from mail-02.mail-europe.com (mail-02.mail-europe.com [51.89.119.103])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        by mail-41103.protonmail.ch (Postfix) with ESMTPS id EFD1720000A4
-        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 17:20:43 +0000 (UTC)
-Authentication-Results: mail-41103.protonmail.ch;
-        dkim=pass (1024-bit key) header.d=connolly.tech header.i=@connolly.tech header.b="UEAruBE3"
-Date:   Wed, 07 Oct 2020 17:20:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1602091241;
-        bh=55HoEt0OV8YYq8cG2qxe2D4pju6+UzBhBfwJ7r5tuRA=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=UEAruBE3kMhehwlrZQF9NVBbNiI+AW5AzDp4MrBIDCOVtZc5d+HfyZ2io3+AKzJ8B
-         Xx+uSXSRtC0zoIyfeAxQ7la8L4qnz6wBSxiFjfdwMJekpP3tzO/GUISsJ9qHhmTSYh
-         kVSkqpXsMQ0QBWfbhsnsJQLMWLuIpzaCWzRzKyMY=
-To:     Rob Herring <robh+dt@kernel.org>,
-        Caleb Connolly <caleb@connolly.tech>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: [PATCH 4/5] dt-bindings: add vendor bindings for OnePlus
-Message-ID: <20201007171807.285298-5-caleb@connolly.tech>
-In-Reply-To: <20201007171807.285298-1-caleb@connolly.tech>
-References: <20201007171807.285298-1-caleb@connolly.tech>
+        id S1728468AbgJGR2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 13:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728461AbgJGR2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 13:28:50 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B971C0613D3
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 10:28:50 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id e10so1723476pfj.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 10:28:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=xZ+v2OuQAePhXqVi/kdiZzONG4PhtaojmuzF5SZ8xdQ=;
+        b=jjVdZZJO2VKrU5vGwGaKENvwebjy9U4YrvQZuQh867KzqulQ5YAGG2aGsnvOJ7SNwL
+         67LhMH6thzslOn+c6LItKcOFZ+dBQk9LTKjj+fPA5sW9cednh50SxaSbstDyu+8uyh/e
+         jXLbDrUk/RYwNjhbeYGqQt4xxOvM7AzzXokt8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xZ+v2OuQAePhXqVi/kdiZzONG4PhtaojmuzF5SZ8xdQ=;
+        b=SbCloix3gsl/qjDjn05bPQi2/71jAtDrcu/5HdO8sPTiiRJTsukT08h+ypBY58JAvB
+         dj3EENylNf0yVFp1WQ7agYMkYQhi2iJTjCrCVL5u7PdSfzcUOBDABKGhpn3gwsH68/AQ
+         jGmzO75Ge7kDglp/4k8sXpORYwnMWt1qWdCeQCzRxFxNGTlMTFsdXlKVBhwY0JFTAJUw
+         mfJHczmvu7XPmnMzzaxg9eDknyUVyHqcG5Np+fDZhHN6qneWUHWb7nzObhI7fG+FVtue
+         qm6WD7btQMgSpFHm1aIMlLfoQKL/DEdImnbryIqAvPw40UB/bzwZvneEMO03zqDSLNxj
+         CRMQ==
+X-Gm-Message-State: AOAM532oQWzhzWeIRcg4S6xjB5mBRldUgd4vOWNJykgtM+2StXHzO2Ah
+        fhwnedoNGU0Czlg2Ql72KUSSIQ==
+X-Google-Smtp-Source: ABdhPJw9NREkTfYOdNETDhW2xqODkOGKkUImfKXew2xQ2izoRdSgSn+1QXOSornth1rL61DMyAkEJQ==
+X-Received: by 2002:a63:551d:: with SMTP id j29mr3965988pgb.144.1602091729994;
+        Wed, 07 Oct 2020 10:28:49 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id o62sm3991891pfb.172.2020.10.07.10.28.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Oct 2020 10:28:49 -0700 (PDT)
+Date:   Wed, 7 Oct 2020 10:28:47 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
+ onboard USB hubs
+Message-ID: <20201007172847.GB620323@google.com>
+References: <CAL_JsqLWmBCjrbs2D-d+9naJAKkNhDAbmRtqvCDY8jv=L_q-xA@mail.gmail.com>
+ <CAD=FV=XkV2eGuPhpo-v4bYy12DVNtDAtjyzpKs7r6SOUZf6-sg@mail.gmail.com>
+ <20201006004510.GD4135817@google.com>
+ <20201006141820.GA416765@rowland.harvard.edu>
+ <20201006165957.GA191572@google.com>
+ <20201006171524.GB423499@rowland.harvard.edu>
+ <20201006192536.GB191572@google.com>
+ <20201007010023.GA438733@rowland.harvard.edu>
+ <20201007160336.GA620323@google.com>
+ <20201007163838.GA457977@rowland.harvard.edu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Disposition: inline
+In-Reply-To: <20201007163838.GA457977@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Used by the OnePlus 6/T device trees
+On Wed, Oct 07, 2020 at 12:38:38PM -0400, Alan Stern wrote:
+> On Wed, Oct 07, 2020 at 09:03:36AM -0700, Matthias Kaehlcke wrote:
+> > On Tue, Oct 06, 2020 at 09:00:23PM -0400, Alan Stern wrote:
+> > > On Tue, Oct 06, 2020 at 12:25:36PM -0700, Matthias Kaehlcke wrote:
+> > > > On Tue, Oct 06, 2020 at 01:15:24PM -0400, Alan Stern wrote:
+> > > > > You don't need a platform device or a new driver to do this.  The code 
+> > > > > can go in the existing hub driver.
+> > > > 
+> > > > Maybe. IIUC currently USB drivers don't support/use suspend_late. Could that
+> > > > be added? It would simplify matters, otherwise all hubs need to know their
+> > > > peers and check in suspend if they are the last hub standing, only then the
+> > > > power can be switched off. It would be simpler if a single instance (e.g. the
+> > > > hub with the DT entries) is in control.
+> > > 
+> > > Adding suspend_late would be a little painful.  But you don't really 
+> > > need it; you just need to make the "master" hub wait for its peer to 
+> > > suspend, which is easy to do.
+> > 
+> > Ok, I wasn't sure if the hubs suspend asynchronously from each other. If they
+> > do it should indeed not be a problem to have the "master" wait for its peers.
+> 
+> Well, order of suspending is selectable by the user.  It can be either 
+> asynchronous or reverse order of device registration, which might pose a 
+> problem.  We don't know in advance which of two peer hubs will be 
+> registered first.  It might be necessary to introduce some additional 
+> explicit synchronization.
 
-Signed-off-by: Caleb Connolly <caleb@connolly.tech>
----
- .../bindings/arm/oneplus/oneplus-boards.yaml  | 25 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
- 2 files changed, 27 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/oneplus/oneplus-b=
-oards.yaml
+I'm not sure we are understanding each other completely. I agree that
+synchronization is needed to have the primary hub wait for its peers, that
+was one of my initial concerns.
 
-diff --git a/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.y=
-aml b/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml
-new file mode 100644
-index 000000000000..a4d9bbd5681f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml
-@@ -0,0 +1,25 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/oneplus/oneplus-boards.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OnePlus based boards
-+
-+maintainers:
-+  - Caleb Connolly <caleb@connolly.tech>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: SDM845 based boards
-+        items:
-+          - enum:
-+              - oneplus,enchilada               # OnePlus 6
-+              - oneplus,fajita                  # OnePlus 6T
-+          - const: oneplus,oneplus6             # OnePlus 6 and derivative=
-s
-+
-+required:
-+  - compatible
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Docum=
-entation/devicetree/bindings/vendor-prefixes.yaml
-index 63996ab03521..6672d7242d54 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -754,6 +754,8 @@ patternProperties:
-     description: OLIMEX Ltd.
-   "^olpc,.*":
-     description: One Laptop Per Child
-+  "^oneplus,.*":
-+    description: One Plus Technology (Shenzhen) Co., Ltd..
-   "^onion,.*":
-     description: Onion Corporation
-   "^onnn,.*":
---=20
-2.28.0
+Lets use an example to clarify my secondary concern: a hub chip provides a
+USB 3 and a USB 2 hub, lets say the USB 3 hub is the primary.
 
+Here is some pseudo-code for the suspend function:
 
+hub_suspend(hub)
+  ...
+
+  if (hub->primary) {
+    device_pm_wait_for_dev(hub->peer)
+
+    // check for connected devices and turn regulator off
+  }
+
+  ...
+}
+
+What I meant with 'asynchronous suspend' in this context:
+
+Can hub_suspend() of the peer hub be executed (asynchronously) while the
+primary is blocked on device_pm_wait_for_dev(), or would the primary wait
+forever if the peer hub isn't suspended yet?
+
+> > > And hubs would need to know their peers in any case, because you have to
+> > > check if any devices attached to the peer have wakeup enabled.
+> > 
+> > My concern was about all hubs (including 'secondaries') having to know their
+> > peers and check on each other, in the scenario we are now talking about only
+> > the "master" hub needs to know and check on its peers, which is fine.
+> 
+> Not all hubs would need this.  Only ones marked in DT as having a power 
+> regulator.
+
+Sure, as long as the primary (with a power regulator) can wait for its peers
+to suspend without the risk of blocking forever (my doubt above).
