@@ -2,84 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D4EC2862B4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 068D12862B8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728863AbgJGPzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 11:55:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42834 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728039AbgJGPzi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 11:55:38 -0400
-Received: from localhost (unknown [122.171.222.162])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 28A1A20789;
-        Wed,  7 Oct 2020 15:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602086138;
-        bh=BwlW5lM9IzbCgjSoHneqUDGEskMzMU8oFit0dRom6qQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Mn22y7qe1QHoIEmqTpxMYG9HpGyBe8aHPMOUHwXhWa4NPtifJ64ZVnq4fOsrMMqr9
-         7qarzrTuzl4U9wJ+hHvxIu+OrHmrSRrvaS/Cs/yehGegZAPojCHLw8ixU567cU8QDQ
-         7Rk39hq40P2dq69R8WE+Lq01fdYQAYYlQrdWUyYM=
-Date:   Wed, 7 Oct 2020 21:25:33 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     nm@ti.com, ssantosh@kernel.org, robh+dt@kernel.org,
-        vigneshr@ti.com, dan.j.williams@intel.com, t-kristo@ti.com,
-        lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org
-Subject: Re: [PATCH 01/18] dmaengine: of-dma: Add support for optional router
- configuration callback
-Message-ID: <20201007155533.GZ2968@vkoul-mobl>
-References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
- <20200930091412.8020-2-peter.ujfalusi@ti.com>
- <20201007054404.GR2968@vkoul-mobl>
- <be615881-1eb4-f8fe-a32d-04fabb6cb27b@ti.com>
+        id S1728039AbgJGP4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 11:56:13 -0400
+Received: from mail-oo1-f68.google.com ([209.85.161.68]:41156 "EHLO
+        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbgJGP4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 11:56:13 -0400
+Received: by mail-oo1-f68.google.com with SMTP id t3so732693ook.8;
+        Wed, 07 Oct 2020 08:56:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xccrMEUqeLhrUSMAgwJzJvAU/EAB747BnNFSuvETB+0=;
+        b=XyBhFQGce+4z/CPek+vNkV/5+1ouNtgqUduoJBl4Y5b7b9qkhhe1r0B4qxsCTjXve2
+         +Hol51ZIjME1DlZjTuhw0m76gwOXGi0RD0NwtMsvvTX/JXgDck2khlyn+MpOX0j0zR9N
+         weH8Giv8W4FOhyPVDE00elr8Mx7xVmcdU882goNCVo6XGKSGkMxB7Wg8vh5mgQyYuDJc
+         IFuGMV/WaIwXY7Opd9LAlYuEDzhbRS4HXrZKE4hNYBQWC7UZeXdlQ42MD79AiHM8T6fX
+         EbYYvmiEgs4ujZ5qgcRwanLHsye0Jd43VpNGdjjbFCgHqObqEszAmp0+oHUlbCj6hQak
+         lXLQ==
+X-Gm-Message-State: AOAM530FOhybP3q9HK0/EioOPufdbWqPgJ6iCXk9NS4Q/xZdXtlGjTMt
+        LGJK7pY5db/0fx9Bpq82UB8Lm1Tns0JG
+X-Google-Smtp-Source: ABdhPJxM3G7xX4GSVbLmCasn14tnEyqaxlGzZp22Q6pdA6mc75F9vuXrdSGu3Nwi8Xhf69zO9lb45A==
+X-Received: by 2002:a4a:bc92:: with SMTP id m18mr2534952oop.39.1602086172914;
+        Wed, 07 Oct 2020 08:56:12 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o9sm2472536oop.1.2020.10.07.08.56.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Oct 2020 08:56:12 -0700 (PDT)
+Received: (nullmailer pid 292162 invoked by uid 1000);
+        Wed, 07 Oct 2020 15:56:11 -0000
+Date:   Wed, 7 Oct 2020 10:56:11 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     kernel@pengutronix.de, devicetree <devicetree@vger.kernel.org>,
+        linux-can@vger.kernel.org, Joakim Zhang <qiangqing.zhang@nxp.com>
+Subject: Re: [PATCH 13/17] dt-bindings: can: flexcan: remove ack_grp and
+ ack_bit from fsl,stop-mode
+Message-ID: <20201007155611.GA292110@bogus>
+References: <20201006203748.1750156-1-mkl@pengutronix.de>
+ <20201006203748.1750156-14-mkl@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <be615881-1eb4-f8fe-a32d-04fabb6cb27b@ti.com>
+In-Reply-To: <20201006203748.1750156-14-mkl@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-10-20, 11:08, Peter Ujfalusi wrote:
+On Tue, 06 Oct 2020 22:37:44 +0200, Marc Kleine-Budde wrote:
+> Since commit:
+> 
+>     048e3a34a2e7 can: flexcan: poll MCR_LPM_ACK instead of GPR ACK for stop mode acknowledgment
+> 
+> the driver polls the IP core's internal bit MCR[LPM_ACK] as stop mode
+> acknowledge and not the acknowledgment on chip level.
+> 
+> This means the 4th and 5th value of the property "fsl,stop-mode" isn't used
+> anymore. It will be removed from the driver in the next patch, so remove it
+> from the binding documentation.
+> 
+> Fixes: 048e3a34a2e7 ("can: flexcan: poll MCR_LPM_ACK instead of GPR ACK for stop mode acknowledgment")
+> Cc: devicetree <devicetree@vger.kernel.org>
+> Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/net/can/fsl-flexcan.txt | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
 
-> Not really. In DT an event triggered channel can be requested via router
-> (when this is used) for example:
-> 
-> dmas = <&inta_l2g a b c>;
-> a - the input number of the DMA request in l2g
-> b - edge or level trigger to be selected
-> c - ASEL number for the channel for coherency
-> 
-> The l2g router driver then translate this to:
-> <&main_bcdma 1 0 c>
-> 1 - Global trigger 0 is used by the DMA
-> 0 - ignored
-> c - ASEL number.
-> 
-> The router needs to send an event which is going to be received by the
-> channel we have picked up, this event number can only be known when we
-> do have the channel.
-> 
-> So the flow in this case:
-> router converts the dma_spec for the DMA, but it does not yet know what
-> is the event number it has to use.
-> The BCDMA driver will pick an available bchan and notes that the
-> transfers will be triggered by global event 0.
-> When we have the channel, the core saves the router information and
-> calls the device_router_config of BCDMA.
-> In there we call back to the router and give the event number it has to
-> use to send the trigger for the channel.
-
-Ah that is intresting, so you would call router driver foo_set_event()
-and would send the event number, why not call that API from alloc
-channel or even xlate? Why do you need new callback?
-Or did i miss something..
-
--- 
-~Vinod
+Reviewed-by: Rob Herring <robh@kernel.org>
