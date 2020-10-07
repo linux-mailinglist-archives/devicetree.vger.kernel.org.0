@@ -2,95 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3D6428594F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 09:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D235E285978
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 09:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727697AbgJGHW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 03:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50312 "EHLO
+        id S1727652AbgJGHZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 03:25:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727692AbgJGHW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 03:22:29 -0400
-Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28CDCC061755;
-        Wed,  7 Oct 2020 00:22:29 -0700 (PDT)
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
-        by mail.kmu-office.ch (Postfix) with ESMTPSA id 7E91B5C9251;
-        Wed,  7 Oct 2020 09:22:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
-        t=1602055345;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=/dAIqjiicGptdfRu3qYqqJJN23634h4i58r4TShcvuQ=;
-        b=lncQ3h3FO0m7JOx+cvkZtWmAtdtQYPCKzVYKHskh6TiyZtL5ZB/ANfyxe3MlhrgeBVKWE1
-        BJhpaMoqQAzmaIVCpZQvmLeDok4Y1Cm5BEW1eSeqqpHN1W8ozn+gFYPfkRxtJYuNahQCmV
-        r6yQ0iCUiXbEjWMU2GuNAHpi306triE=
+        with ESMTP id S1726771AbgJGHZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 03:25:36 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7CDAC061755
+        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 00:25:36 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kQ3pM-0005sD-O6; Wed, 07 Oct 2020 09:25:32 +0200
+Subject: Re: [RFC] Using a watchdog as system reset
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de>
+ <460aa962-9da5-6e1e-b5db-3f9f1d78110a@roeck-us.net>
+ <41b0dfcd-adf1-296f-e5be-4db3eac9f097@roeck-us.net>
+ <20201006184130.r2lajves5l7lm2qk@pengutronix.de>
+ <c989af68-fa7b-e6cb-9306-a5f2e196fb20@roeck-us.net>
+ <20201007071222.pnftcuezlricotq3@pengutronix.de>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <04e33d49-4210-9dcd-040c-35059e0619ba@pengutronix.de>
+Date:   Wed, 7 Oct 2020 09:25:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 07 Oct 2020 09:22:25 +0200
-From:   Stefan Agner <stefan@agner.ch>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
-In-Reply-To: <20201004133114.845230-1-pgwipeout@gmail.com>
-References: <20201004133114.845230-1-pgwipeout@gmail.com>
-User-Agent: Roundcube Webmail/1.4.1
-Message-ID: <cdd0f520ae4990de90f461e21cb4f298@agner.ch>
-X-Sender: stefan@agner.ch
+In-Reply-To: <20201007071222.pnftcuezlricotq3@pengutronix.de>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
+Hello Uwe,
 
-On 2020-10-04 15:31, Peter Geis wrote:
-> Good Day,
+On 10/7/20 9:12 AM, Uwe Kleine-König wrote:
+> Hello Guenter,
 > 
-> This series introduces upstream kernel support for the Ouya game
-> console device. Please review and apply. Thank you in advance.
+> On Tue, Oct 06, 2020 at 02:04:10PM -0700, Guenter Roeck wrote:
+>> On 10/6/20 11:41 AM, Uwe Kleine-König wrote:
+>>> Hello Guenter,
+>>>
+>>> On Tue, Oct 06, 2020 at 07:29:11AM -0700, Guenter Roeck wrote:
+>>>> On 10/6/20 4:56 AM, Guenter Roeck wrote:
+>>>>> On 10/6/20 3:29 AM, Uwe Kleine-König wrote:
+>>>>>> Hello,
+>>>>>>
+>>>>>> I have an i.MX25 system here with an external watchdog (using the
+>>>>>> gpio_wdt driver). So the internal watchdog (imx2_wdt) is unused.
+>>>>>>
+>>>>>> The problem with the unused imx2_wdt is that this usually provides the
+>>>>>> restart handler and now a reboot ends with
+>>>>>>
+>>>>>> 	reboot: Restarting system
+>>>>>> 	Reboot failed -- System halted
+>>>>>>
+>>>>>> until eventually the watchdog bites and resets the machine.
+>>>>>>
+>>>>>> I imagine that this is a common enough issue to warrant a generic
+>>>>>> solution. My suggestion is to formalize and implement something like:
+>>>>>>
+>>>>>> 	watchdog {
+>>>>>> 		compatible = "linux,wdt-gpio";
+>>>>>> 		...
+>>>>>> 		provide-system-reset;
+>>>>>> 	}
+>>>>>>
+>>>>>> with the sematic of: "This is the dedicated mechanism to reset this
+>>>>>> machine."
+>>>>>>
+>>>>>
+>>>>> Some systems have more than one means to reset it, which is why
+>>>>> restart handlers have a priority. This in turn suggests that we should
+>>>>> maybe have a means to set that priority dynamically for the imx2_wdt driver
+>>>>> (or for watchdog drivers in general) instead of having it fixed at 128.
+>>>>> That would also solve your problem, assuming there is a different
+>>>>> (currently lower priority) means to reset the hardware in your system.
+>>>>>
+>>>>> Alternatively, can't you just blacklist the imx2-wdt driver ?
+>>>>
+>>>> After having another couple hours of sleep and a coffee, I wonder if
+>>>> this is already done, and the reboot just fails _because_ the imx2_wdt
+>>>> is _not_ loaded. Is that the case ?
+>>>
+>>> Right, I disabled the imx2_wdt driver.
+>>>  
+>>>> If so, it looks like you want the reset functionality of the imx_wdt driver
+>>>> but not its watchdog functionality.
+>>>
+>>> My thought was to use the gpio-watchdog as reset source, but using the
+>>> imx-watchdog only for reset but not watchdog is an obvious alternative I
+>>> didn't think about.
+>>
+>> It isn't really something I would have thought to ever be relevant: If
+>> a watchdog can be used to reset the system, and that method to reset
+>> the system is known to work and supposed to be used, why not use it as
+>> system watchdog ? So that use case is quite odd, especially since the
+>> watchdog on that system can apparently be used to trigger an external
+>> pin.
+> 
+> The motivation to use the external watchdog is that access to the MRAM
+> only works if the external watchdog is active. And (if I'm well
+> informed) this external watchdog was introduced because of some
+> regulation stuff where it must be guaranteed that there is a watchdog.
+> With an external watchdog this is much easier to do than with an SoC
+> internal one.
+> 
+> And then because using two watchdogs is ugly disabling the internal one
+> was straight forward even though it works just fine (apart from enabling
+> access to the MRAM).
+> 
+>> If we assume that there was a reason for not using the SoC watchdog,
+>> we must also assume that using it to reset the system does not really
+>> work (otherwise, what would be the point of having a separate gpio
+>> based watchdog in that system ?).
+>>
+>> With that in mind, your other option kind of makes sense. The only
+>> question would be how to express this in devicetree. I am certainly
+>> open to accepting a patch introducing such a property/functionality
+>> into the watchdog core.
+> 
+> OK, will try to come up with a patch.
 
-Interesting patchset, maybe I can give my Ouya a second live now :-) Do
-you happen to have (a link) to instructions how to flash the device?
+Instead of having a `provide-system-reset' property, how about providing
+it unconditionally, but with a very low priority?
 
-Btw, there was also a driver for the Bluetooth controller on the ML
-once, maybe a good time to revive that:
-https://spinics.net/lists/linux-input/msg56288.html
+This can be coupled with Guenther's suggestion of having a dynamic
+way to set the priority, e.g. a `watchdog-priority' property in the device
+tree that's common to all watchdogs? That's the way barebox is handling
+multiple watchdogs (default value in driver overridable in DT and at runtime).
 
---
-Stefan
+What's the DT folks opinion on that?
+
+Cheers,
+Ahmad
 
 > 
-> Changelog:
-> v3: - Reorder aliases per Dmitry Osipenko's review.
->     - Add sdio clocks per Dmitry Osipenko's review.
->     - Add missing ti sleep bits per Dmitry Osipenko's review.
->     - Enable lp1 sleep mode.
->     - Fix bluetooth comment and add missing power supplies.
+> Best regards
+> Uwe
 > 
-> v2: - Update pmic and clock handles per Rob Herring's review.
->     - Add acks from Rob Herring to patch 2 and 3.
-> 
-> Peter Geis (3):
->   ARM: tegra: Add device-tree for Ouya
->   dt-bindings: Add vendor prefix for Ouya Inc.
->   dt-bindings: ARM: tegra: Add Ouya game console
-> 
->  .../devicetree/bindings/arm/tegra.yaml        |    3 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
->  arch/arm/boot/dts/Makefile                    |    3 +-
->  arch/arm/boot/dts/tegra30-ouya.dts            | 4511 +++++++++++++++++
->  4 files changed, 4518 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/tegra30-ouya.dts
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
