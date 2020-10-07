@@ -2,89 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 257F5285B58
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 10:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3F0A285B84
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 11:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727668AbgJGIz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 04:55:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727118AbgJGIz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 04:55:28 -0400
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 120CAC061755
-        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 01:55:28 -0700 (PDT)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4C5p7y4fTgz1sKws;
-        Wed,  7 Oct 2020 10:55:26 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4C5p7y3S4Wz1qrg1;
-        Wed,  7 Oct 2020 10:55:26 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id pVdtjYUFZmes; Wed,  7 Oct 2020 10:55:25 +0200 (CEST)
-X-Auth-Info: eiw9MaL2QKiNMyfl0i4guceaEjt7cfh6XMdWAsJFelo=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed,  7 Oct 2020 10:55:24 +0200 (CEST)
-Subject: Re: [PATCH v2 1/7] dt-bindings: display: mxsfb: Convert binding to
- YAML
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-References: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
- <20201007012438.27970-2-laurent.pinchart@ideasonboard.com>
- <daabffc8-24e9-4963-58a9-6c62724e7a11@denx.de>
- <bef04042ebd7dc1c744b51ab2b1c614a2f04084f.camel@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <a8db345a-24b3-db8c-8dce-f97e021a1bf1@denx.de>
-Date:   Wed, 7 Oct 2020 10:55:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726388AbgJGJDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 05:03:38 -0400
+Received: from foss.arm.com ([217.140.110.172]:40512 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726269AbgJGJDi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Oct 2020 05:03:38 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 887C0113E;
+        Wed,  7 Oct 2020 02:03:37 -0700 (PDT)
+Received: from [10.57.52.96] (unknown [10.57.52.96])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7C9A63F71F;
+        Wed,  7 Oct 2020 02:03:34 -0700 (PDT)
+Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: update sustainable-power
+ with abstract scale
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>, linux-doc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        amitk@kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dietmar.Eggemann@arm.com, Quentin Perret <qperret@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+References: <20201002114426.31277-1-lukasz.luba@arm.com>
+ <20201002114426.31277-4-lukasz.luba@arm.com>
+ <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
+ <e9b6fc5a-45d3-168d-db38-6c068da26f6b@arm.com>
+ <CAD=FV=Xkg1zpsMW5rERbibnjrgY6opZi8Z9DUFkWebb7NHtU5w@mail.gmail.com>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <e80dc3ac-c115-887f-6c72-e0f3d8cd9c76@arm.com>
+Date:   Wed, 7 Oct 2020 10:03:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <bef04042ebd7dc1c744b51ab2b1c614a2f04084f.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <CAD=FV=Xkg1zpsMW5rERbibnjrgY6opZi8Z9DUFkWebb7NHtU5w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/20 10:43 AM, Lucas Stach wrote:
-> On Mi, 2020-10-07 at 10:32 +0200, Marek Vasut wrote:
->> On 10/7/20 3:24 AM, Laurent Pinchart wrote:
->> [...]
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - fsl,imx23-lcdif
->>> +      - fsl,imx28-lcdif
->>> +      - fsl,imx6sx-lcdif
->>> +      - fsl,imx8mq-lcdif
->>
->> There is no fsl,imx8mq-lcdif in drivers/gpu/drm/mxsfb/mxsfb_drv.c,
->> so the DT must specify compatible = "fsl,imx8mq-lcdif",
->> "fsl,imx28-lcdif" (since imx28 is the oldest SoC with LCDIF V4).
->>
->> Should the compatible be added to drivers/gpu/drm/mxsfb/mxsfb_drv.c or
->> dropped from the YAML file or neither ?
-> 
-> Neither. As far as we know the block is compatible, so the DT should
-> claim that it's compatible to "fsl,imx28-lcdif". However we don't know
-> if there are any surprises, so we add the SoC specific compatible to be
-> able to change the driver matching later without changing the DT if the
-> need arises. For the DT validation to pass the SoC specific compatible 
-> needs to be documented, even if it currently unused by the driver.
+Hi Doug,
 
-What in that binding says you should specify compatible =
-"fsl,imx8mq-lcdif", "fsl,imx28-lcdif"; and not e.g. "fsl,imx8mq-lcdif",
-"fsl,imx23-lcdif" or simply "fsl,imx8mq-lcdif" ?
+On 10/2/20 4:47 PM, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, Oct 2, 2020 at 8:13 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+>>
+>> Hi Doug,
+>>
+>> On 10/2/20 3:31 PM, Doug Anderson wrote:
+>>> Hi,
+>>>
+>>> On Fri, Oct 2, 2020 at 4:45 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+>>>>
+>>>> Update the documentation for the binding 'sustainable-power' and allow
+>>>> to provide values in an abstract scale. It is required when the cooling
+>>>> devices use an abstract scale for their power values.
+>>>>
+>>>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+>>>> ---
+>>>>    .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
+>>>>    1 file changed, 9 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>>>> index 3ec9cc87ec50..4d8f2e37d1e6 100644
+>>>> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>>>> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>>>> @@ -99,10 +99,15 @@ patternProperties:
+>>>>          sustainable-power:
+>>>>            $ref: /schemas/types.yaml#/definitions/uint32
+>>>>            description:
+>>>> -          An estimate of the sustainable power (in mW) that this thermal zone
+>>>> -          can dissipate at the desired control temperature. For reference, the
+>>>> -          sustainable power of a 4-inch phone is typically 2000mW, while on a
+>>>> -          10-inch tablet is around 4500mW.
+>>>> +          An estimate of the sustainable power (in mW or in an abstract scale)
+>>>> +         that this thermal zone can dissipate at the desired control
+>>>> +         temperature. For reference, the sustainable power of a 4-inch phone
+>>>> +         is typically 2000mW, while on a 10-inch tablet is around 4500mW.
+>>>> +
+>>>> +         It is possible to express the sustainable power in an abstract
+>>>> +         scale. This is the case when the related cooling devices use also
+>>>> +         abstract scale to express their power usage. The scale must be
+>>>> +         consistent.
+>>>
+>>> Two thoughts:
+>>>
+>>> 1. If we're going to allow "sustainable-power" to be in abstract
+>>> scale, why not allow "dynamic-power-coefficient" to be in abstract
+>>> scale too?  I assume that the whole reason against that originally was
+>>> the idea of device tree purity, but if we're allowing the abstract
+>>> scale here then there seems no reason not to allow it for
+>>> "dynamic-power-coefficient".
+>>
+>> With this binding it's a bit more tricky.
+>> I also have to discuss a few things internally. This requirement of
+>> uW/MHz/V^2 makes the code easier also for potential drivers
+>> like GPU (which are going to register the devfreq cooling with EM).
+>>
+>> Let me think about it, but for now I would just update these bits.
+>> These are required to proper IPA operation, the dyn.-pow.-coef. is a
+>> nice to have and possible next step.
+> 
+> I guess the problem is that Rajendra is currently planning to remove
+> all the "dynamic-power-coefficient" values from device tree right now
+> and move them to the source code because the numbers we currently have
+> in the device tree _are_ in abstract scale and thus violate the
+> bindings.  Moving this to source code won't help us get to more real
+> power numbers (since it'll still be abstract scale), it'll just be
+> pure churn.  If we're OK with the abstract scale in general then we
+> should allow it everywhere and not add churn for no reason.
+> 
+> 
+
+I just want to notify you that I had internal conversation about this
+'dynamic-power-coefficient' binding and abstract scale. We would
+change it as well, similarly to 'sustainable-power'. It must pass
+internal review and I will send the v3 of this series.
+
+Regards,
+Lukasz
