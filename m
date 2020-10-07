@@ -2,83 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEF83285C87
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 12:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0F9D285C96
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 12:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728025AbgJGKJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 06:09:01 -0400
-Received: from mail.thorsis.com ([92.198.35.195]:35513 "EHLO mail.thorsis.com"
+        id S1727554AbgJGKLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 06:11:51 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:38051 "EHLO z5.mailgun.us"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727996AbgJGKI6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 06:08:58 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 0C54D3579;
-        Wed,  7 Oct 2020 12:08:55 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id a5gx01CScUQn; Wed,  7 Oct 2020 12:08:54 +0200 (CEST)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id D21B536BC; Wed,  7 Oct 2020 12:08:54 +0200 (CEST)
+        id S1727297AbgJGKLv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Oct 2020 06:11:51 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602065510; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=ioiudp9XALfKdIVzKVk4P9/mHsW/D6jALV6wDdyxdnQ=; b=IfQMh/rLsKtmbJPtirFvDxFg/2xq+UeE/itk8in9cql3MMoS/NPCvrqz4H85cU0RElVjZrMp
+ 38cy7IqKUgrNEhOWPFm+nC8HHNmiE9pIpSgk+Bp9STGQdNnjlyBV2SxPAObVLtqLx6ybmUpB
+ S7J52SXUesOs/Iib+6e+/qX/qcE=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 5f7d9466319d4e9cb51b6a1d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 07 Oct 2020 10:11:50
+ GMT
+Sender: jprakash=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0E2F8C433FF; Wed,  7 Oct 2020 10:11:50 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Alexander Dahl <post@lespocky.de>, Dan Murphy <dmurphy@ti.com>,
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.1.100] (unknown [157.46.213.197])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jprakash)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B4A43C433CB;
+        Wed,  7 Oct 2020 10:11:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B4A43C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jprakash@codeaurora.org
+Subject: Re: [PATCH v6 07/10] thermal: qcom: add support for adc-tm5 PMIC
+ thermal monitor
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Jeff LaBundy <jeff@labundy.com>
-Subject: Re: [PATCH v7 03/12] dt-bindings: mfd: Fix schema warnings for pwm-leds
-Date:   Wed, 07 Oct 2020 12:08:46 +0200
-Message-ID: <2640582.VKub60Wb7X@ada>
-In-Reply-To: <20201007100359.GC12224@duo.ucw.cz>
-References: <20201005203451.9985-1-post@lespocky.de> <20201005203451.9985-4-post@lespocky.de> <20201007100359.GC12224@duo.ucw.cz>
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+References: <20200930100203.1988374-1-dmitry.baryshkov@linaro.org>
+ <20200930100203.1988374-8-dmitry.baryshkov@linaro.org>
+From:   Jishnu Prakash <jprakash@codeaurora.org>
+Message-ID: <073bec11-cd9e-7c3b-ae89-50486d36337a@codeaurora.org>
+Date:   Wed, 7 Oct 2020 15:41:40 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <20200930100203.1988374-8-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hei Pavel,
+Hi Dmitry,
 
-Am Mittwoch, 7. Oktober 2020, 12:03:59 CEST schrieb Pavel Machek:
-> > The node names for devices using the pwm-leds driver follow a certain
-> > naming scheme (now).  Parent node name is not enforced, but recommended
-> > by DT project.
-> > 
-> >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> > 
-> > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.exampl
-> > e.dt.yaml: pwmleds: 'panel' does not match any of the regexes:
-> > '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'> 
-> >         From schema:
-> >         /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/
-> >         leds-pwm.yaml> 
-> > Signed-off-by: Alexander Dahl <post@lespocky.de>
-> 
-> Okay, so I need Rob's ack here, I guess... and rest of the series is
-> not really for my tree.
+diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c 
+b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+> new file mode 100644
+> index 000000000000..22d5414a3c5e
+> --- /dev/null
+> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+> @@ -0,0 +1,621 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2020 Linaro Limited
+> + */
+> +
+> +#include <linux/iio/consumer.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/thermal.h>
+> +
+> +#include "../../iio/adc/qcom-vadc-common.h"
+> +
 
-I think so, too.
+When I was testing the patches on SC7180, I found that I had to add this 
+line for fixing a compilation error for the FIELD_PREP macro:
 
-I saw you applied patch number 1, all the other patches are DT and from my 
-side those can wait for the Acks required and maybe I change the indexes again 
-and I'm fine resending all that after the 5.10 merge window.
+#include <linux/bitfield.h>
 
-Thanks for applying the non-DT patches for leds subsystem, the rest will be 
-sorted out without hurry.
+Can you please check and confirm if its needed for compilation here?
 
-Greets
-Alex
+Thanks,
 
-
+Jishnu
 
