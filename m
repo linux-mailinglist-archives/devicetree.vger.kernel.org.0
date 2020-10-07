@@ -2,133 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D520E286281
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89FD4286287
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 17:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728756AbgJGPqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 11:46:20 -0400
-Received: from mail-eopbgr80090.outbound.protection.outlook.com ([40.107.8.90]:50658
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728728AbgJGPqT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Oct 2020 11:46:19 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BVKa4QwxWv6GviJlUuXMhbhQOOXeoxVQTaPoWNcU/OYU1UK9uqTONmTWc2QizQ4RAH1efDMeRENFd/7CM7YdWmYhBSAGCLz0AD3vJQ6+4okwJRzZoACOCeC+eA4G3WW9P3OLVGtWYJvo3DKI849DME+Q39dDPsVVhY/XzJ//NTdBv8cQI7kzI9IZHUoNcEz4eWw5uy3wWT9pR4BM+GH6OfCR4Moz2o/ozw/gIOLRcM4Q6cG7isDimG28DHgZgOKzubRvrp4jqPZA7VaUliX95OO3YVU+me4EAHlO99yGWcZ9pVO4zhhHPbvBx3lOJmkrXQ3S5H70BfAjLuhrbVuwTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y0J0F+ZZfztLObf+ffDbTOb1C+UP0ppjG4fFyqlwRWI=;
- b=QlMbUD9HLes6NelAPZewlFcVy1nR4EsUeMenu7iAL/A4GXyg6T2ASQ9OkjVDgoNGuxadJgPcA9EPbbuwOWoa4bTos1s4fIvWsPWNURcJwROSqfOAqxVWrvxuI1G0cRXomMEKePl499pi3V6g+VqZjS22abqOiH+QXa1LDlDk6hGFGndy8Sjd7cnp7Ry5iAocjfcBHfOn2iiaa8sixGA5xZOGftrc8kHg94/whLbTcEJ+bNpyqykOeZIIsV90wyKUfPJHKP9UXOUgBeZ9jO9+FH9U6vaAvc0Gr+vQ/G8UcqdQLvYvigUkHdSZbLzOToLkJtBEPsU4NB+OAgmbaDpQ+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=voleatech.de; dmarc=pass action=none header.from=voleatech.de;
- dkim=pass header.d=voleatech.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=voleatech.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y0J0F+ZZfztLObf+ffDbTOb1C+UP0ppjG4fFyqlwRWI=;
- b=PHyO0THmSR0Ko1uPY1zYhC+vDLZzl5GJI1NTM8M6CD/nGF1b8O73KCBC/ivNRgH1YOiZWnFVwCXWF5uAGSJt8VnpHpqOAjwvwGEP6U418uvlOCR7bmREeBRSSKBx9WHK48/KcTGSqAkrK31LCQmhOAQxyJ80PN8XTELOBic0U1c=
-Authentication-Results: kernel.dk; dkim=none (message not signed)
- header.d=none;kernel.dk; dmarc=none action=none header.from=voleatech.de;
-Received: from AM8PR05MB7251.eurprd05.prod.outlook.com (2603:10a6:20b:1d4::23)
- by AM0PR0502MB4018.eurprd05.prod.outlook.com (2603:10a6:208:b::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Wed, 7 Oct
- 2020 15:46:04 +0000
-Received: from AM8PR05MB7251.eurprd05.prod.outlook.com
- ([fe80::f132:2cc:34f2:5e4]) by AM8PR05MB7251.eurprd05.prod.outlook.com
- ([fe80::f132:2cc:34f2:5e4%7]) with mapi id 15.20.3433.045; Wed, 7 Oct 2020
- 15:46:04 +0000
-From:   sven.auhagen@voleatech.de
-To:     axboe@kernel.dk, hdegoede@redhat.com, robh+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, gregory.clement@bootlin.com
-Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
-        rjw@rjwysocki.net, viresh.kumar@linaro.org,
-        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
-        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
-Subject: [PATCH 7/7] arm64: dts: marvell: armada-cp110: Switch to per-port SATA interrupts
-Date:   Wed,  7 Oct 2020 17:45:54 +0200
-Message-Id: <20201007154554.66650-8-sven.auhagen@voleatech.de>
-X-Mailer: git-send-email 2.24.3 (Apple Git-128)
-In-Reply-To: <20201007154554.66650-1-sven.auhagen@voleatech.de>
-References: <20201007154554.66650-1-sven.auhagen@voleatech.de>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [109.193.235.168]
-X-ClientProxiedBy: AM0PR04CA0047.eurprd04.prod.outlook.com
- (2603:10a6:208:1::24) To AM8PR05MB7251.eurprd05.prod.outlook.com
- (2603:10a6:20b:1d4::23)
+        id S1728771AbgJGPqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 11:46:38 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:46136 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728019AbgJGPqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 11:46:38 -0400
+Received: by mail-oi1-f193.google.com with SMTP id u126so2853351oif.13;
+        Wed, 07 Oct 2020 08:46:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rQHCXCV/i+kaGlmPVLS4FFOvSgdOWuMGT9TwEXcskOQ=;
+        b=Hz2Ok0HWgjcwr+A0z3oh4o8Kk3xAFFUiDs9FngHt6CgjJ5uCrGbzUBCJ1VoNpFgiJ7
+         cQRnBxtK5xZfErIqmswT6b0wy4H0npMcWgVBQidegV/axs7O1PC/PTye8wuIFqviDl/L
+         tOWzgimciWNBW8S77IPYIARwgHcCkmQeHtbu32DtLw5coIGk72HoDiHmam3w1TLkQUXg
+         vgd8GQdx/7EBDIrj7wPzadl/aZQVInxUh0JEJ/yE6TA8NsgU1ZOhDRmDJQQth77kxx6u
+         Tna/LgytbApc32uNM+Y/BdlIj0Cv5ziW/HB4MTN1P9BgZOrtA0r3EIHWZVJj3Uv0JQML
+         +llA==
+X-Gm-Message-State: AOAM5323B9sNKrINnaVKEmyM3xrEFgYBiQSBwSjTL/UTd+oDa5AXjerb
+        TDmAp3qdDuOQpV1unGcJUw==
+X-Google-Smtp-Source: ABdhPJzDk8KVgVgZu26G0OLEbj+MCjqT8zp2WyE6DHWNle1MsgOmCTzlodkyKJvl4XZQhj7iUJBhxw==
+X-Received: by 2002:aca:bc8b:: with SMTP id m133mr2436812oif.10.1602085597093;
+        Wed, 07 Oct 2020 08:46:37 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o9sm2452289oop.1.2020.10.07.08.46.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Oct 2020 08:46:36 -0700 (PDT)
+Received: (nullmailer pid 278714 invoked by uid 1000);
+        Wed, 07 Oct 2020 15:46:35 -0000
+Date:   Wed, 7 Oct 2020 10:46:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     vkoul@kernel.org, nm@ti.com, ssantosh@kernel.org, vigneshr@ti.com,
+        dan.j.williams@intel.com, t-kristo@ti.com, lokeshvutla@ti.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org
+Subject: Re: [PATCH 09/18] dt-bindings: dma: ti: Add document for K3 BCDMA
+Message-ID: <20201007154635.GA273523@bogus>
+References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
+ <20200930091412.8020-10-peter.ujfalusi@ti.com>
+ <20201006192909.GA2679155@bogus>
+ <bc054ef7-dcd7-dde2-13f8-4900a33b1377@ti.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from svensmacbookair.sven.lan (109.193.235.168) by AM0PR04CA0047.eurprd04.prod.outlook.com (2603:10a6:208:1::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21 via Frontend Transport; Wed, 7 Oct 2020 15:46:03 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3018760e-2727-4a5e-e5d8-08d86ad81959
-X-MS-TrafficTypeDiagnostic: AM0PR0502MB4018:
-X-Microsoft-Antispam-PRVS: <AM0PR0502MB4018B9D3472911756E0AD941EF0A0@AM0PR0502MB4018.eurprd05.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1169;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: esaMH/YjJkWviT/GcF7yNcmm+xm2Nmul1xF6A2ufjR8RT8RD6wm6hJ6ZDrIHWm19tBRGDxvxl3aCTSIiYgmGlNFTfa1WXW8x2SBlJUROy4twd65y1AA/inR5jpsuYmnGCZnsPt7n7uSpqr8p0TPuz53qdpcKUzDEI6FDzb5wJY1k66ke0r61rahsOU9ITWnDJHd6FQ7fRwE16GFimn/giA0TOJWvOzE1qT/kwopz5D1AtC6rh6TwBfXaS3UQh5VLV+bJ5E1Jiwa8UxGN630LBTKmH0eqt6yZiK9YDrEIHSuHTVbe5nUN5pkxoqMgsIc9ZmHhM4mtkPzvrEOMXb8Uwg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR05MB7251.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39840400004)(136003)(376002)(346002)(366004)(8936002)(956004)(5660300002)(66556008)(83380400001)(478600001)(66946007)(316002)(16526019)(2906002)(6666004)(66476007)(1076003)(4326008)(2616005)(26005)(86362001)(6486002)(36756003)(7416002)(6512007)(9686003)(8676002)(6506007)(186003)(52116002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: 6GFO0XovvrfLyMr13wnE0PPqSfxJJBxoHuW/w5dmN6bhBLwY+vqJ4EqvhDHcMxLNuSWwjcOfnxDUrwuYTg1dVarf6qa8nVoLxcEgPV2utF5go1VlsSltDCw8cGD232Xk+1wjhSe8ebZ+jHgjE/AaGAOBp7Wc4dpJ3e2sFpeUQ26ionI6MTC9YrmU5Lop69b/svcbNGonkAvFGhm99tpy7hbdCaVRTEcGcfcFG2xcCIwRG+V62Mhvsl/6VL+JauKuuSpDdGgS6Zx1+7Gldxutu49j+xAnGQ4JViqSZt9q6w5VDzhq63d5ToQ6oo7Bx9LjUD3u1flp7O8Y7Mzd/d1QiP04x3hDieUhteaIFTmEZpdtwFraIeNMC6zJeE4XeFvyWWglfHtTOZGEvmQQVTmRht4LcV5bY9aURJzUre+nNu0T+XqCgQLAUxZ9evR28njb5o6bg7EWrG4MILcyWynN53IXUpdtYB8/6l+9QJdQVCuDkm5BexvWtFCthSf9rvm6Mo2LgbiF6pbGEj1uRk6Z9ZfpulgPushPOG6nmsu2V/cAIEUTWdZ2Pdy2L1DvlOz5mcPYw8gJbEKWPj2A6OqFKDHftVQ18cW/gHNTws2sEdZ4oyhX+vnbLJ1S/9vFtuWXblbB/KnMLh8fnaF0jpDhww==
-X-OriginatorOrg: voleatech.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3018760e-2727-4a5e-e5d8-08d86ad81959
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR05MB7251.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2020 15:46:04.5559
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b82a99f6-7981-4a72-9534-4d35298f847b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PM+2pHr8+/YViTeaHy39g2v34ZtqR9zjTtc1sBRggnY/fax7gLjmQ7SW/xnfDsSbn0E5NKxaFByFlCXFTQlrM7BIQEcjKa4zlDrqSVrnOkE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0502MB4018
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bc054ef7-dcd7-dde2-13f8-4900a33b1377@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sven Auhagen <sven.auhagen@voleatech.de>
+On Wed, Oct 07, 2020 at 12:09:06PM +0300, Peter Ujfalusi wrote:
+> 
+> 
+> On 06/10/2020 22.29, Rob Herring wrote:
+> > On Wed, Sep 30, 2020 at 12:14:03PM +0300, Peter Ujfalusi wrote:
+> >> New binding document for
+> >> Texas Instruments K3 Block Copy DMA (BCDMA).
+> >>
+> >> BCDMA is introduced as part of AM64.
+> >>
+> 
+> ...
+> 
+> > 
+> >> +  ti,sci:
+> >> +    description: phandle to TI-SCI compatible System controller node
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#/definitions/phandle
+> >> +
+> >> +  ti,sci-dev-id:
+> >> +    description: TI-SCI device id of BCDMA
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > 
+> > We have a common definition for these.
+> 
+> Yes, in arm/keystone/ti,k3-sci-common.yaml, but I could not get to use
+> that as reference.
+> 
+> I can not list it under the topmost allOf and drop the ti,sci and
+> ti,sci-dev-id like this:
+> 
+> allOf:
+>   - $ref: /schemas/dma/dma-controller.yaml#
+>   - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+> 
+> It results:
+>   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+>   DTEX    Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dts
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+>   DTC     Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dt.yaml
+>   CHECK   Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dt.yaml
+> Documentation/devicetree/bindings/dma/ti/k3-bcdma.example.dt.yaml:
+> dma-controller@485c0100: 'ti,sci', 'ti,sci-dev-id' do not match any of
+> the regexes: 'pinctrl-[0-9]+'
+>         From schema: Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> 
+> If I remove the "additionalProperties: false" from the schema file, then
+> it compiles fine.
 
-There are two SATA ports per CP110. Each of them has a dedicated
-interrupt. Describe the real hardware by adding two SATA ports to the
-CP110 SATA node.
+Yeah, you have to do 'unevaluatedProperties: false' which doesn't 
+actually do anything yet, but can 'see' into $ref's.
 
-Signed-off-by: Sven Auhagen <sven.auhagen@voleatech.de>
-Signed-off-by: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-index 9dcf16beabf5..ec27294f097b 100644
---- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-@@ -300,11 +300,9 @@
- 		};
- 
- 		CP11X_LABEL(sata0): sata@540000 {
--			compatible = "marvell,armada-8k-ahci",
--			"generic-ahci";
-+			compatible = "marvell,armada-8k-ahci";
- 			reg = <0x540000 0x30000>;
- 			dma-coherent;
--			interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&CP11X_LABEL(clk) 1 15>,
- 				 <&CP11X_LABEL(clk) 1 16>;
- 			#address-cells = <1>;
-@@ -312,10 +310,12 @@
- 			status = "disabled";
- 
- 			sata-port@0 {
-+				interrupts = <109 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0>;
- 			};
- 
- 			sata-port@1 {
-+				interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <1>;
- 			};
- 		};
--- 
-2.20.1
+> >> +  ti,asel:
+> >> +    description: ASEL value for non slave channels
+> >> +    allOf:
+> > 
+> > You no longer need 'allOf' here.
+> 
+> OK, I changed it in all instances.
+> 
+> > 
+> >> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> >> +
+> >> +  ti,sci-rm-range-bchan:
+> >> +    description: |
+> >> +      Array of BCDMA block-copy channel resource subtypes for resource
+> >> +      allocation for this host
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> >> +    minItems: 1
+> >> +    # Should be enough
+> >> +    maxItems: 255
+> > 
+> > Are there constraints for the individual elements?
+> 
+> In practice the subtype ID is 6bits number.
+> Should I add limits to individual elements?
 
+Yes:
+
+items:
+  maximum: 0x3f
+
+> 
+> >> +
+> >> +  ti,sci-rm-range-tchan:
+> >> +    description: |
+> >> +      Array of BCDMA split tx channel resource subtypes for resource allocation
+> >> +      for this host
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> >> +    minItems: 1
+> >> +    # Should be enough
+> >> +    maxItems: 255
+> >> +
+> >> +  ti,sci-rm-range-rchan:
+> >> +    description: |
+> >> +      Array of BCDMA split rx channel resource subtypes for resource allocation
+> >> +      for this host
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> >> +    minItems: 1
+> >> +    # Should be enough
+> >> +    maxItems: 255
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - "#address-cells"
+> >> +  - "#size-cells"
+> >> +  - "#dma-cells"
+> >> +  - reg
+> >> +  - reg-names
+> >> +  - msi-parent
+> >> +  - ti,sci
+> >> +  - ti,sci-dev-id
+> >> +  - ti,sci-rm-range-bchan
+> >> +  - ti,sci-rm-range-tchan
+> >> +  - ti,sci-rm-range-rchan
+> >> +
+> >> +additionalProperties: false
+> >> +
+> >> +examples:
+> >> +  - |+
+> >> +    cbass_main {
+> >> +        #address-cells = <2>;
+> >> +        #size-cells = <2>;
+> >> +
+> >> +        main_dmss {
+> >> +            compatible = "simple-mfd";
+> > 
+> > IMO, if it is memory-mapped, then you should be using 'simple-bus'.
+> 
+> We had the same discussion when I introduced the k3-udma binding and we
+> have concluded on the simple-mfd as DMSS is not a bus, but contains
+> different peripherals.
+
+Ok.
+
+Rob
