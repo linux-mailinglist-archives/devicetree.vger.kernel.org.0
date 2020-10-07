@@ -2,138 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3AA28593C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 09:17:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3D6428594F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Oct 2020 09:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727776AbgJGHRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Oct 2020 03:17:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49494 "EHLO
+        id S1727697AbgJGHW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Oct 2020 03:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726771AbgJGHRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 03:17:13 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 456FDC061755
-        for <devicetree@vger.kernel.org>; Wed,  7 Oct 2020 00:17:13 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id q123so839402pfb.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Oct 2020 00:17:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=qxVSwk6ydPCR1nMYSIXzPwjq3kxIDCy/oMJrKvRwEjI=;
-        b=XxStyq4+n4JT11rtwEdmaB88iGOmQjBtCyORiPv6XCaSCyBIeKHzjjAAEXq9RLPjwS
-         SGzwoqHeQMkGN+1V5JrD6b12qvhkfdIWEAEoZnvW7yK+m0eh1FIj4g2+EkA+QGRlRROl
-         MWawUI9kUEVNdMLgR7/ncPcD5wK2Yt8zSq6He/XPD03sgGuTzwNrBJiM4go9fimuaODT
-         WdWfUz0yz4Y4TjMXB9MawDvvNJsJBmnHGL2GgNmyx2gV7wcKQkVtcIH2Rl8gjiphbLZM
-         6N9VzZcota89Cssxg8v3eT7EtcLWai532Zn7LPHhZ4i4agtSVbta90WBMVFTxOzsQzFk
-         kt6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=qxVSwk6ydPCR1nMYSIXzPwjq3kxIDCy/oMJrKvRwEjI=;
-        b=OHDMvxDiV91MjmdDA41/pqUDhGBNQ2OWYPANWgQWcZ638AKS2hUIurl7+1cf90RCK8
-         yiRnQJePDZFhM7MLaeuv5hcSvJJwCrzmu2PgIwfTrCLjxh82ZK3uGBW6GzphEPj1A6X4
-         J/tPbHOsojD9ioMhmDVMzYYjqFsq4d5FDP6rMZmHjTHL+PimfGxIn6CzqUFfuonR4JLK
-         u+HlDPkSKLveM3MS+8BV8kZqanJx5G4pF0a32GkxSJTg5g8vrG3UiUgZRH5oG6os17CW
-         EX218A9c8Xqp1eLRwbUAMf58y38UpqdYlXKEm2Hahv3t3bgQNVqSkFCIptWZb8z0ueUu
-         lDyw==
-X-Gm-Message-State: AOAM532PhlUkaPWHf3c46mqTHNq/PWG8yfI+aw6Cnk7QetrJAtnxeelt
-        YwO28cCA4L4JA0uklUEb0kqSaLOmSfdTiA==
-X-Google-Smtp-Source: ABdhPJxJpZLLEjQhkWDMRa8mkD4/qTYli0+FQwOeOuoHRQUdlOOX8Wx7QL6aw0/TfIwDJt6X7MtxEg==
-X-Received: by 2002:a63:d117:: with SMTP id k23mr1837609pgg.176.1602055032481;
-        Wed, 07 Oct 2020 00:17:12 -0700 (PDT)
-Received: from marlonpc-debian (pa49-185-8-24.pa.vic.optusnet.com.au. [49.185.8.24])
-        by smtp.gmail.com with ESMTPSA id q8sm1675506pfl.100.2020.10.07.00.17.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Oct 2020 00:17:12 -0700 (PDT)
-Date:   Wed, 7 Oct 2020 18:17:05 +1100
-From:   Marlon Rac Cambasis <marlonrc08@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     trivial@kernel.org, robh@kernel.org
-Subject: [PATCH] Docs: Fixing spelling errors in
- Documentation/devicetree/bindings/
-Message-ID: <20201007071705.GA11381@marlonpc-debian>
-References: <20201006222956.GA2970299@bogus>
+        with ESMTP id S1727692AbgJGHW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Oct 2020 03:22:29 -0400
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28CDCC061755;
+        Wed,  7 Oct 2020 00:22:29 -0700 (PDT)
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id 7E91B5C9251;
+        Wed,  7 Oct 2020 09:22:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+        t=1602055345;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=/dAIqjiicGptdfRu3qYqqJJN23634h4i58r4TShcvuQ=;
+        b=lncQ3h3FO0m7JOx+cvkZtWmAtdtQYPCKzVYKHskh6TiyZtL5ZB/ANfyxe3MlhrgeBVKWE1
+        BJhpaMoqQAzmaIVCpZQvmLeDok4Y1Cm5BEW1eSeqqpHN1W8ozn+gFYPfkRxtJYuNahQCmV
+        r6yQ0iCUiXbEjWMU2GuNAHpi306triE=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201006222956.GA2970299@bogus>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 07 Oct 2020 09:22:25 +0200
+From:   Stefan Agner <stefan@agner.ch>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Bob Ham <rah@settrans.net>,
+        Leonardo Bras <leobras.c@gmail.com>,
+        Michael Brougham <jusplainmike@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
+In-Reply-To: <20201004133114.845230-1-pgwipeout@gmail.com>
+References: <20201004133114.845230-1-pgwipeout@gmail.com>
+User-Agent: Roundcube Webmail/1.4.1
+Message-ID: <cdd0f520ae4990de90f461e21cb4f298@agner.ch>
+X-Sender: stefan@agner.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Revised patch fixing six spelling errors within
-Documentation/devicetree/bindings/. "specfied" replaced with "specified"
-in all three files modified. "atleast" seperated into "at least" three
-times in samsung-pinctrl.txt. This should remove any confusion that a
-reader might have.
+Hi Peter,
 
-Signed-off-by: Marlon Rac Cambasis <marlonrc08@gmail.com>
----
- .../devicetree/bindings/pinctrl/samsung-pinctrl.txt         | 6 +++---
- .../devicetree/bindings/reset/nuvoton,npcm-reset.txt        | 2 +-
- Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt   | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+On 2020-10-04 15:31, Peter Geis wrote:
+> Good Day,
+> 
+> This series introduces upstream kernel support for the Ouya game
+> console device. Please review and apply. Thank you in advance.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
-index 70659c917bdc..7734ab6fec44 100644
---- a/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
-@@ -65,7 +65,7 @@ Required Properties:
- 
- - Pin mux/config groups as child nodes: The pin mux (selecting pin function
-   mode) and pin config (pull up/down, driver strength) settings are represented
--  as child nodes of the pin-controller node. There should be atleast one
-+  as child nodes of the pin-controller node. There should be at least one
-   child node and there is no limit on the count of these child nodes. It is
-   also possible for a child node to consist of several further child nodes
-   to allow grouping multiple pinctrl groups into one. The format of second
-@@ -75,7 +75,7 @@ Required Properties:
-   The child node should contain a list of pin(s) on which a particular pin
-   function selection or pin configuration (or both) have to applied. This
-   list of pins is specified using the property name "samsung,pins". There
--  should be atleast one pin specfied for this property and there is no upper
-+  should be at least one pin specified for this property and there is no upper
-   limit on the count of pins that can be specified. The pins are specified
-   using pin names which are derived from the hardware manual of the SoC. As
-   an example, the pins in GPA0 bank of the pin controller can be represented
-@@ -107,7 +107,7 @@ Required Properties:
-   hardware manual and these values are programmed as-is into the pin
-   pull up/down and driver strength register of the pin-controller.
- 
--  Note: A child should include atleast a pin function selection property or
-+  Note: A child should include at least a pin function selection property or
-   pin configuration property (one or more) or both.
- 
-   The client nodes that require a particular pin function selection and/or
-diff --git a/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt b/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt
-index 6e802703af60..17b7a6a43a29 100644
---- a/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt
-+++ b/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt
-@@ -9,7 +9,7 @@ Optional property:
- - nuvoton,sw-reset-number - Contains the software reset number to restart the SoC.
-   NPCM7xx contain four software reset that represent numbers 1 to 4.
- 
--  If 'nuvoton,sw-reset-number' is not specfied software reset is disabled.
-+  If 'nuvoton,sw-reset-number' is not specified software reset is disabled.
- 
- Example:
- 	rstc: rstc@f0801000 {
-diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-index d78d4a8fb868..a8197632d6d2 100644
---- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-+++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-@@ -20,7 +20,7 @@ Optional properties:
-    This is useful in situations where another watchdog engine on chip is
-    to perform the reset.
- 
--   If 'aspeed,reset-type=' is not specfied the default is to enable system
-+   If 'aspeed,reset-type=' is not specified the default is to enable system
-    reset.
- 
-    Reset types:
--- 
-2.20.1
+Interesting patchset, maybe I can give my Ouya a second live now :-) Do
+you happen to have (a link) to instructions how to flash the device?
 
+Btw, there was also a driver for the Bluetooth controller on the ML
+once, maybe a good time to revive that:
+https://spinics.net/lists/linux-input/msg56288.html
+
+--
+Stefan
+
+> 
+> Changelog:
+> v3: - Reorder aliases per Dmitry Osipenko's review.
+>     - Add sdio clocks per Dmitry Osipenko's review.
+>     - Add missing ti sleep bits per Dmitry Osipenko's review.
+>     - Enable lp1 sleep mode.
+>     - Fix bluetooth comment and add missing power supplies.
+> 
+> v2: - Update pmic and clock handles per Rob Herring's review.
+>     - Add acks from Rob Herring to patch 2 and 3.
+> 
+> Peter Geis (3):
+>   ARM: tegra: Add device-tree for Ouya
+>   dt-bindings: Add vendor prefix for Ouya Inc.
+>   dt-bindings: ARM: tegra: Add Ouya game console
+> 
+>  .../devicetree/bindings/arm/tegra.yaml        |    3 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+>  arch/arm/boot/dts/Makefile                    |    3 +-
+>  arch/arm/boot/dts/tegra30-ouya.dts            | 4511 +++++++++++++++++
+>  4 files changed, 4518 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/tegra30-ouya.dts
