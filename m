@@ -2,94 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE11B287686
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 16:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A172876A4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 17:03:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730713AbgJHO6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 10:58:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
+        id S1730777AbgJHPDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 11:03:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729833AbgJHO6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 10:58:39 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07635C061755;
-        Thu,  8 Oct 2020 07:58:39 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id y14so4476195pgf.12;
-        Thu, 08 Oct 2020 07:58:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ooZjKz5uSjTKoQI2IxfmGtOoaA/YElVdEKthcp4JCy0=;
-        b=kYRqTRYPJwu/u/x+JWPji3EJLHY8iHLCu0fp4xrK8eN44hz/EKpsrCwGy2J5jQsqUl
-         1pmSvEyy75FzbU76a72nI370rkQ5V0ltSuG8uqjwViEvbOA6Y1BdMeodJyl4ywvaa5GI
-         X0aggxGC9vHlDMi7AOLvnaCf/YdyjpXvZwsagPkxvTJfM6tIBlarogipQQi9iEfSV7av
-         eZrACIDjS4Bm6BFPSm7hnhsFT3pgQY9pYlmZ0vveaqcWsYZMQZIhInyPFG8WEcSOPlwD
-         xJqbPsVKBEHObi2GksOrrBOOHg4o2O584suy8PfZUTICerVyOM4cb729k5WJ0qvGpqor
-         DxKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ooZjKz5uSjTKoQI2IxfmGtOoaA/YElVdEKthcp4JCy0=;
-        b=rnAHLTToso4FNdMl8UtPb9jTJ1G0o8TQKLaRe7HwU+X/5MB7hG9OgIPSLG+UkdYU2i
-         zs3+FwrTyfOq9koNNamjlwErY5zDcRCtqQhxncRHPiZst0QQWql9Zkt3qHnyIXKGd0fI
-         zyrsHbTaLVO0D2cRITAcZ9ukv4DURjrVzpFipN5Zi/TGqTbeFwyj4cpM0KeyqHrExXxg
-         SXMrX+cOg+nuR810BEGJEjaec+btnfQNUYiKou1U7FUDNzBPcijiDaAPonMPLGecwGfX
-         sWkaEzCyw0lLl4DsRJHeY3MI2yzwFNMqsHM1pKgZWIPEKDZazueCvcbFhP2+UgqVczjt
-         /3hw==
-X-Gm-Message-State: AOAM533UhuSEQQppsU3TomxXGnCX01147ERlmqngEWLZRaPehvNezF2v
-        74/uIGtZdTUK9Q0ypy5A1lk=
-X-Google-Smtp-Source: ABdhPJy0eL9K5c2FxGv07NPIdvY7W6v4AtwKGIOyCaMbhX2X4MJexS8uTGuygF9J3KZAT6flcWW3hA==
-X-Received: by 2002:a65:6487:: with SMTP id e7mr7513174pgv.409.1602169118483;
-        Thu, 08 Oct 2020 07:58:38 -0700 (PDT)
-Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
-        by smtp.gmail.com with ESMTPSA id z20sm7718395pfk.199.2020.10.08.07.58.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Oct 2020 07:58:37 -0700 (PDT)
-Subject: Re: [PATCH 2/3] ARM: dts: BCM5301X: Linksys EA9500 add port 5 and
- port 7
-To:     Andrew Lunn <andrew@lunn.ch>, Vivek Unune <npcomplete13@gmail.com>
-Cc:     devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1601655904.git.npcomplete13@gmail.com>
- <cd64e0ccae3e5785c80ad4d73af533a40fc15876.1601655904.git.npcomplete13@gmail.com>
- <20201007210327.GE112961@lunn.ch> <20201007220718.GB1972@ubuntu>
- <20201008003241.GG112961@lunn.ch>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <9c6e4da5-033e-6b30-4525-9f3a7b4ba01f@gmail.com>
-Date:   Thu, 8 Oct 2020 07:58:35 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.3.1
+        with ESMTP id S1730721AbgJHPDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 11:03:20 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09769C061755;
+        Thu,  8 Oct 2020 08:03:20 -0700 (PDT)
+Received: from zn.tnic (p200300ec2f0a9000bfab7746bad7d6a7.dip0.t-ipconnect.de [IPv6:2003:ec:2f0a:9000:bfab:7746:bad7:d6a7])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id D4FE71EC047E;
+        Thu,  8 Oct 2020 17:03:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1602169398;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=H7LtysFbQs7PFQq4RWrYSce3ni7L2rAYoFE4zYkyzvU=;
+        b=r22/Sm/gD7Lz5A+6cEIj8Ie9aJaqNuQDC08G/jWg3szjtFh7iwQM2+BVesit/IXWwFdSYi
+        8T+tIhUQtvDrANDK2N0cmi5Vuoae28DQRzdhPvgrNM7mK+2GwX49d3Y6hiavaVcw7CjhBK
+        tgdC4EioZOTpVZnT0sNu5spyAIJ27Iw=
+Date:   Thu, 8 Oct 2020 17:03:09 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Paul Mackerras <paulus@samba.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>,
+        "H. Peter Anvin" <hpa@zytor.com>, x86@kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-mips@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-sh@vger.kernel.org,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Subject: Re: [PATCH 2/2] dt: Remove booting-without-of.rst
+Message-ID: <20201008150309.GA5505@zn.tnic>
+References: <20201008142420.2083861-1-robh@kernel.org>
+ <20201008142420.2083861-2-robh@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20201008003241.GG112961@lunn.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201008142420.2083861-2-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/7/2020 5:32 PM, Andrew Lunn wrote:
->> This router is currently not enabled in Openwrt
+On Thu, Oct 08, 2020 at 09:24:20AM -0500, Rob Herring wrote:
+> booting-without-of.rstt is an ancient document that first outlined
+> Flattened DeviceTree on PowerPC initially. The DT world has evolved a
+> lot in the 15 years since and booting-without-of.rst is pretty stale.
+> The name of the document itself is confusing if you don't understand the
+> evolution from real 'OpenFirmware'. Most of what booting-without-of.rst
+> contains is now in the DT specification (which evolved out of the
+> ePAPR). The few things that weren't documented in the DT specification
+> are now.
 > 
-> You have to be careful here. Not everything runs OpenWRT. You cannot
-> break backwards compatibility in mainline, simple as that. You need to
-> ensure that mainline does not see a change in the CPU port.
+> All that remains is the boot entry details, so let's move these to arch
+> specific documents. The exception is arm which already has the same
+> details documented.
+> 
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Michael Ellerman <mpe@ellerman.id.au>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: Paul Mackerras <paulus@samba.org>
+> Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
+> Cc: Rich Felker <dalias@libc.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Ingo Molnar <mingo@redhat.com>
+> Cc: Borislav Petkov <bp@alien8.de>
+> Cc: "H. Peter Anvin" <hpa@zytor.com>
+> Cc: x86@kernel.org
+> Cc: linuxppc-dev@lists.ozlabs.org
+> Cc: linux-mips@vger.kernel.org
+> Cc: linux-doc@vger.kernel.org
+> Cc: linux-sh@vger.kernel.org
+> Acked-by: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/booting-without-of.rst         | 1585 -----------------
+>  Documentation/devicetree/index.rst            |    1 -
+>  Documentation/mips/booting.rst                |   28 +
+>  Documentation/mips/index.rst                  |    1 +
+>  Documentation/powerpc/booting.rst             |  110 ++
+>  Documentation/powerpc/index.rst               |    1 +
+>  Documentation/sh/booting.rst                  |   12 +
+>  Documentation/sh/index.rst                    |    1 +
+>  Documentation/x86/booting-dt.rst              |   21 +
+>  Documentation/x86/index.rst                   |    1 +
 
-I don't think this is breaking anything, in premise all 3 CPU interfaces 
-are completely interchangeable, with the notable fact that port 8 
-happens to have the flow accelerator block available for re-circulation 
-of packets if we wanted to support a NATP offload at some point in the 
-future.
+For x86:
 
-Vivek, maybe you can add ports 5 and 7 in the Device Tree and mark them 
-as disabled for now.
+Acked-by: Borislav Petkov <bp@suse.de>
+
+Thx.
+
 -- 
-Florian
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
