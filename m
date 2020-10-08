@@ -2,171 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F604287CBB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B378C287CF8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:21:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729678AbgJHUAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 16:00:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51548 "EHLO
+        id S1729630AbgJHUU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 16:20:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729451AbgJHUAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 16:00:19 -0400
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FAA2C0613D2;
-        Thu,  8 Oct 2020 13:00:18 -0700 (PDT)
-Received: by mail-il1-x143.google.com with SMTP id q1so6988069ilt.6;
-        Thu, 08 Oct 2020 13:00:18 -0700 (PDT)
+        with ESMTP id S1728779AbgJHUU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 16:20:59 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CAAC0613D2;
+        Thu,  8 Oct 2020 13:20:59 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id m17so7791554ioo.1;
+        Thu, 08 Oct 2020 13:20:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=b3Mr8+U+4/KGRAdQE+aircAGaTvbmEC+LOyr0gmrcjw=;
-        b=EOFo+tbUFaNIgTKD3WnUp8ygdSni+FCHgiZkMXo1r2RkRuPU7L1mBAOUT9r7PezSYM
-         0iD9ckYiLMGYe3xtuM4SOuQtxQIGmTyDDE76rC+OszaZS2H4Q5SgPe7bqQu96je8mOvo
-         U4iZb3otd4YuRowitUVnk1zYY+fuZYLKSMlKaGBvj1PjKJfY9fPdKh0nzbtF+s22YwQH
-         zhDDMJhfhBXKcyQYdlLGBhGF+DwXuVjvdkZtNRESlQp3oTJRqHjooWX/UmFF78H0DrZk
-         QLROP7hoGTfLsH2Jqhxq4Jz1+XqSM6d/Fw3/054EhDcGLgVC8AZjGqcYb8ayqHUYPYOA
-         z6Ew==
+         :cc;
+        bh=CB6W9WzO7W1bZwpkRkybp5FcJ0TGq96Jgxj94UreKCM=;
+        b=tdsRl6KXos7ZO36a7xzlcrsj80EGfWjJaGhhsY3foy0dQRb1vcQm0fLLB61F2OE29G
+         ZSUSoNDGCoqWig0uxhQmTtBoqaqhtKZhgIEPaQz95yGeVFT/kOFHnN5EWe69Tl8AgfxU
+         DLaw7r3h8YEaZwE0fDqsgKYL1Olm/5RPVGyOgioqkjcYgemgtWhxU0mtMMX9xr0MgTd6
+         B0QxypLvyQVpT+ar0TT8G++ZZ2uUNI0CTaVMJ1U+kRSSe/JDPvI9VRXK1nDLv0yqXnbQ
+         u8305h2Ua8TGMgaGax2QX3tGPd585mwz71ivAL7BLxSNuyFoqzSEnce9W+0KBg4Bxz7p
+         A6qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=b3Mr8+U+4/KGRAdQE+aircAGaTvbmEC+LOyr0gmrcjw=;
-        b=CLhR65jSxAJ3zjli33vNa83bPk57s74U04k0/rMbomTRA0mx083LNgBJQlIPjdTn8Q
-         xXiIVF2vdrVJQAlkGzVFd6PSSwGKtPwifirZzwEZTmlYZ4ssj0kQGJhs/s+Cq1OxIydL
-         6P8s2LsePz4r6/i2AXey2BNofs6sX70Spztp2eGwo+OWAf63Bn4NuJxN6RCpX+5UaTcM
-         C/n9H+fwTdb/InnmyZ9OKWoO8w5qpSzXJGBh5eRXWtmq0e6EP9gZrX7CzOmP+B3BiBFf
-         g8yKnloYk+XeEopTPa8tMWXjGEQ4XAKyrEewIOi6+6z0In2QGPtG4WBviY0vTA7O4gJG
-         yVFg==
-X-Gm-Message-State: AOAM533vUDG8WJs/VgonJ89yBNcQ4la7ik6oOVVImmBbPg0+yXbTeA9D
-        aIsMMnMeFzJa1Z2R8TSo2JaHZk1x0rfkK3qpgN4=
-X-Google-Smtp-Source: ABdhPJxsN4aGj0K4AWunsp9MnG6H64zCW0kZ+MeZ2RyBLlOHCZz5CM0+v1SO72hmYyUj0BqDaHwC54Cn/S6suZD2KG8=
-X-Received: by 2002:a92:484e:: with SMTP id v75mr8048490ila.293.1602187217274;
- Thu, 08 Oct 2020 13:00:17 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=CB6W9WzO7W1bZwpkRkybp5FcJ0TGq96Jgxj94UreKCM=;
+        b=i5uLri2Hzwn3gjkTZkqSmjr0X8EDXyOjh5qdfVeKsgO6gZHBHi5qhxnOAzGowH1bqb
+         ALSJMDUa4UPvF9FnhytmpEstMSNA8eqUG1AvKbdcXXRP8g1Kdfl3692WM7vDQ3gujTqo
+         BPSGYvqhP/CfFOXRJK1L65wyBZrh8+hlZ8Vwqifujr5g1fGQrjv4VI0L4Yr+eZqaJhjf
+         95ncCLUfQcoJacaHrWhFWeRh+rjh1CgHXSQz3UVi//VP7pqCRyL7IgrZaePbmnu2Ca8S
+         SXGhrZh745a6ffqCtP9NXhfPTcu4uM/2Otchnnr4L07ZyLMNxUE8Oq1lMymoH0twteBR
+         ncsA==
+X-Gm-Message-State: AOAM5321lTEvBjmfXqENAXT6PlsJkUlg0Zd/IhV15zXw49uKWchPfH14
+        MSHST4KuKD7kFLrRRZhoy5r449oWMUnVEDB/RHU=
+X-Google-Smtp-Source: ABdhPJw/MzJ8hHIL1wI1ZtwXSGDbIpwzG2ersyQHW/4pjitnRNz7OIW63QNnm7qihfj/d/D0NshhLX3TqGXYYOl84+s=
+X-Received: by 2002:a05:6602:18f:: with SMTP id m15mr7125778ioo.48.1602188458584;
+ Thu, 08 Oct 2020 13:20:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201003092001.405238-1-peron.clem@gmail.com> <20201005092145.wdu4m4pwxydv76ou@gilmour.lan>
- <CAJiuCcfydz4GS3fUTampBLkDC4f6xVWmRpSRJ55TiDStdRCFmA@mail.gmail.com> <20201008151022.ryhijbj42y7kgzvb@gilmour.lan>
-In-Reply-To: <20201008151022.ryhijbj42y7kgzvb@gilmour.lan>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Thu, 8 Oct 2020 22:00:06 +0200
-Message-ID: <CAJiuCcf8rk4t2GrS3+ANEuCtRmXoCMyzP+-x_rKrAfR-FaMaWA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: allwinner: h6: add eMMC voltage property
- for Beelink GS1
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
+References: <cover.1601655904.git.npcomplete13@gmail.com> <cd64e0ccae3e5785c80ad4d73af533a40fc15876.1601655904.git.npcomplete13@gmail.com>
+ <20201007210327.GE112961@lunn.ch> <20201007220718.GB1972@ubuntu>
+ <20201008003241.GG112961@lunn.ch> <9c6e4da5-033e-6b30-4525-9f3a7b4ba01f@gmail.com>
+In-Reply-To: <9c6e4da5-033e-6b30-4525-9f3a7b4ba01f@gmail.com>
+From:   Vivek Unune <npcomplete13@gmail.com>
+Date:   Thu, 8 Oct 2020 16:20:47 -0400
+Message-ID: <CAChtp75Yo2crLwUCWWNgya-JmDiXvOt+JRwWojQQNazgDaphLw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] ARM: dts: BCM5301X: Linksys EA9500 add port 5 and
+ port 7
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Thanks Florian, I'll do that!
 
-Adding linux-sunxi and Jernej Skrabec to this discussion.
-
-On Thu, 8 Oct 2020 at 17:10, Maxime Ripard <maxime@cerno.tech> wrote:
+On Thu, Oct 8, 2020 at 10:58 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
-> Hi Cl=C3=A9ment,
 >
-> On Mon, Oct 05, 2020 at 08:47:19PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> > On Mon, 5 Oct 2020 at 11:21, Maxime Ripard <maxime@cerno.tech> wrote:
-> > >
-> > > Hi Cl=C3=A9ment,
-> > >
-> > > On Sat, Oct 03, 2020 at 11:20:01AM +0200, Cl=C3=A9ment P=C3=A9ron wro=
-te:
-> > > > Sunxi MMC driver can't distinguish at runtime what's the I/O voltag=
-e
-> > > > for HS200 mode.
-> > >
-> > > Unfortunately, that's not true (or at least, that's not related to yo=
-ur patch).
-> > >
-> > > > Add a property in the device-tree to notify MMC core about this
-> > > > configuration.
-> > > >
-> > > > Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink =
-GS1 board")
-> > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dt=
-s b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > > index 049c21718846..3f20d2c9bbbb 100644
-> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > > @@ -145,6 +145,7 @@ &mmc2 {
-> > > >       vqmmc-supply =3D <&reg_bldo2>;
-> > > >       non-removable;
-> > > >       cap-mmc-hw-reset;
-> > > > +     mmc-hs200-1_8v;
-> > > >       bus-width =3D <8>;
-> > > >       status =3D "okay";
-> > > >  };
-> > >
-> > > I'm not really sure what you're trying to fix here, but as far as MMC
-> > > goes, eMMC's can support io voltage of 3.3, 1.8 and 1.2V. Modes up un=
-til
-> > > HS DDR (50MHz in DDR) will use an IO voltage of 3.3V, higher speed mo=
-des
-> > > (HS200 and HS400) supporting 1.8V and 1.2V.
-> >
-> > Some users report that the eMMC is not working properly on their
-> > Beelink GS1 boards.
-> >
-> > > The mmc-hs200-1_8v property states that the MMC controller supports t=
-he
-> > > HS200 mode at 1.8V. Now, I can only assume that since BLDO2 is set up=
- at
-> > > 1.8V then otherwise, the MMC core will rightfully decide to use the
-> > > highest supported mode. In this case, since the driver sets it, it wo=
-uld
-> > > be HS-DDR at 3.3V, which won't work with that fixed regulator.
-> > >
-> > > I can only assume that enabling HS200 at 1.8V only fixes the issue yo=
-u
-> > > have because otherwise it would use HS-DDR at 3.3V, ie not actually
-> > > fixing the issue but sweeping it under the rug.
-> > >
-> > > Trying to add mmc-ddr-1_8v would be a good idea
-> >
-> > Thanks for the explanation, this is indeed the correct one.
-> > So It looks like the SDIO controller has an issue on some boards when
-> > using HS-DDR mode.
-> >
-> > Is this patch acceptable with the proper commit log?
 >
-> If HS-DDR works, yes, but I assume it doesn't?
-
-After discussing with Jernej about this issue, I understood that:
-- Automatic delay calibration is not implemented
-- We also miss some handling of DDR related bits in control register
-
-So none of H5/H6 boards should actually work.
-(Some 'lucky' boards seem to work enough to switch to HS200 mode...)
-
-To "fix" this the H5 disable the HS-DDR mode in sunxi mmc driver :
-https://github.com/torvalds/linux/blob/master/drivers/mmc/host/sunxi-mmc.c#=
-L1409
-
-I'm not sure about A64 but it looks like the property "mmc-hs200-1_8v"
-for the PineBook shows the same issue.
-
-The proper way would of course be to implement the missing feature
-mentioned above.
-But this could take some time and as the eMMC driver is actually
-broken wouldn't it be better to disable the HS-DDR for H6 in the mmc
-driver like it's done for H5 ?
-
-Regards,
-Clement
-
+> On 10/7/2020 5:32 PM, Andrew Lunn wrote:
+> >> This router is currently not enabled in Openwrt
+> >
+> > You have to be careful here. Not everything runs OpenWRT. You cannot
+> > break backwards compatibility in mainline, simple as that. You need to
+> > ensure that mainline does not see a change in the CPU port.
 >
-> Maxime
+> I don't think this is breaking anything, in premise all 3 CPU interfaces
+> are completely interchangeable, with the notable fact that port 8
+> happens to have the flow accelerator block available for re-circulation
+> of packets if we wanted to support a NATP offload at some point in the
+> future.
+>
+> Vivek, maybe you can add ports 5 and 7 in the Device Tree and mark them
+> as disabled for now.
+> --
+> Florian
