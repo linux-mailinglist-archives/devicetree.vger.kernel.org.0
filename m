@@ -2,180 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC5E72874BE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 15:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14C832874CF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 15:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729915AbgJHNCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 09:02:41 -0400
-Received: from mx.hs-offenburg.de ([141.79.11.25]:53158 "EHLO
-        mx.hs-offenburg.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729869AbgJHNCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 09:02:41 -0400
-X-Greylist: delayed 387 seconds by postgrey-1.27 at vger.kernel.org; Thu, 08 Oct 2020 09:02:39 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mx.hs-offenburg.de (Postfix) with ESMTP id 524E6732FA01;
-        Thu,  8 Oct 2020 14:56:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=hs-offenburg.de;
-         h=content-transfer-encoding:mime-version:user-agent
-        :content-type:content-type:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received; s=default;
-         t=1602161769; x=1603025770; bh=XkqmOKW+XIirgzCXLOBYOliZX8Nwgd/g
-        wIDmBWDe3XA=; b=ZrZR7p01oX3psUP4NrE7syIPjfyC+CBJ8gcUKCpLpCnFN4uN
-        kNiUU0efGm+1/ARjtltGzkvD1FktcgnsnFzrSvaKcPIKQh5GNUbofxNljZYGd3ya
-        MGRHck4z31M0r5O16LPS3wO12zbYcoNsSc+iByFeq8PVW4cATUAdHi6Doac=
-X-Virus-Scanned: amavisd-new at hs-offenburg.de
-Received: from mx.hs-offenburg.de ([127.0.0.1])
-        by localhost (mx.hs-offenburg.de [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id XdD_Bk_1I2uT; Thu,  8 Oct 2020 14:56:09 +0200 (CEST)
-Received: from h25-119.emi.hs-offenburg.de (unknown [141.79.25.119])
-        by mx.hs-offenburg.de (Postfix) with ESMTPSA id 5FDE0732F9FE;
-        Thu,  8 Oct 2020 14:56:09 +0200 (CEST)
-Message-ID: <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
-Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
- hardware timestamping
-From:   Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>
-To:     Kurt Kanzenbach <kurt@linutronix.de>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        ilias.apalodimas@linaro.org
-Date:   Thu, 08 Oct 2020 14:55:57 +0200
-In-Reply-To: <87lfghhw9u.fsf@kurt>
-References: <20201004143000.blb3uxq3kwr6zp3z@skbuf> <87imbn98dd.fsf@kurt>
-         <20201006072847.pjygwwtgq72ghsiq@skbuf> <87tuv77a83.fsf@kurt>
-         <20201006133222.74w3r2jwwhq5uop5@skbuf> <87r1qb790w.fsf@kurt>
-         <20201006140102.6q7ep2w62jnilb22@skbuf> <87lfgiqpze.fsf@kurt>
-         <20201007105458.gdbrwyzfjfaygjke@skbuf> <87362pjev0.fsf@kurt>
-         <20201008094440.oede2fucgpgcfx6a@skbuf> <87lfghhw9u.fsf@kurt>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S1730264AbgJHNFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 09:05:25 -0400
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:31763 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730154AbgJHNFZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 09:05:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1602162324; x=1633698324;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=9GFFb9L2XzgUgsFOeudZEQsFIoN33NW0oarxi224QDE=;
+  b=xEFnJJMjkneKnmjf/Ou8pXEPhbSV/K9tsdn4r4aFzwLNVBT/6u6wfFwe
+   iW39XSwLUkqPmr/BTN2CY0xMR9C4+XJRnjCdl71aO+50UDgX5j1R9hVX7
+   x3kQ2YayKhCX3NWe6E1ogfa94dkV2nXzqIngAfQH5eBzJu1axz9PGNPs3
+   RW5ykr4EvO6xyjozWOYSw/TjhyflfqXdm57UvLraBd1hUJS/TnF8BHdH1
+   OOoLkKxUyLn1KCsTgFvGyVrION3uiPcyJyEwKrl1bllbmgAY/9LY2uSNs
+   gOwnUuPfygtZc7ChKRLHG4Uh+TyCvuS291xPzzZ/Mn4peKRWdYnlGHCOb
+   A==;
+IronPort-SDR: ThkiY8+hMWSka3fMBOvGwsQzUna2DkYVJukGXpP+7HVh30aLLBAbw3dTQhmY6UzxaztEjwKKM1
+ wn0AI6nwad1GLz2a9L6pCT+XhXwuiQJgQzCzCE4ntKgm8D3jttAMbiZTTUg+nIWuHrA+v/XU4O
+ fDTzbLWd7qdE5sCcBPNdkajASuYNKOBkI9Ggkb4l2Ul8/XtHaV7l4DKOeyRtHBHHLsf0S+4PET
+ mAqYgggIDbyYb76yi7jYRxJIKGJIo2Zcijpx4KdzaDHMAwyXkC+ogppx24SvmC6pLoCPhgJB+o
+ CRs=
+X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; 
+   d="scan'208";a="93868367"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Oct 2020 06:05:24 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 8 Oct 2020 06:04:57 -0700
+Received: from soft-dev10.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Thu, 8 Oct 2020 06:05:21 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH v5 0/3] pinctrl: Adding support for Microchip/Microsemi serial GPIO controller
+Date:   Thu, 8 Oct 2020 15:05:12 +0200
+Message-ID: <20201008130515.2385825-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello dears,
+The series add support for the serial GPIO controller used by
+Microchip Sparx5, as well as (MSCC) ocelot/jaguar2 SoCs.
 
-On Thu, 2020-10-08 at 12:01 +0200, Kurt Kanzenbach wrote:
-> On Thu Oct 08 2020, Vladimir Oltean wrote:
-> > On Thu, Oct 08, 2020 at 10:34:11AM +0200, Kurt Kanzenbach wrote:
-> > > On Wed Oct 07 2020, Vladimir Oltean wrote:
-> > > > On Wed, Oct 07, 2020 at 12:39:49PM +0200, Kurt Kanzenbach
-> > > > wrote:
-> > > > > For instance the hellcreek switch has actually three ptp
-> > > > > hardware
-> > > > > clocks and the time stamping can be configured to use either
-> > > > > one of
-> > > > > them.
-> > > > 
-> > > > The sja1105 also has a corrected and an uncorrected PTP clock
-> > > > that can
-> > > > take timestamps. Initially I had thought I'd be going to spend
-> > > > some time
-> > > > figuring out multi-PHC support, but now I don't see any
-> > > > practical reason
-> > > > to use the uncorrected PHC for anything.
-> > > 
-> > > Just out of curiosity: How do you implement 802.1AS then? My
-> > > understanding is that the free-running clock has to be used for
-> > > the
-> > 
-> > Has to be? I couldn't find that wording in IEEE 802.1AS-2011.
-> 
-> It doesn't has to be, it *should* be. That's at least the outcome we
-> had
-> after lots of discussions. Actually Kamil (on Cc) is the expert on
-> this
-> topic.
+v5 changes (driver comments from Linus):
+- Collect bank data in sgpio_bank struct
+- Add is_input boolean to sgpio_bank struct
+- Use single-bit bitmasks in sgpio_output_set() and sgpio_output_get()
+- Eliminate superfluous struct pinctrl_dev *pctl_dev in bank data
+- Fix wrong ngpio consistency check
 
-According to 802.1AS-2011 (10.1.1): "The LocalClock entity is a free-
-running clock (see 3.3) that provides a common time to the time-aware
-system, relative to an arbitrary epoch.", "... All timestamps are taken
-relative to the LocalClock entity". The same statement holds true for
-802.1AS-2020 (10.1.2.1).
+v4 changes (binding comments from Rob):
+- microchip,sgpio-port-ranges changed to uint32-matrix so tuples can
+  be represented properly.
+- gpio controller node name changed to "gpio@[0-1]"
+- whitespace fixes
+- DT files updated as per schema changes
 
-> > > calculation of the peer delays and such meaning there should be a
-> > > way to
-> > > get access to both PHCs or having some form of cross timestamping
-> > > available.
-> > > 
-> > > The hellcreek switch can take cross snapshots of all three ptp
-> > > clocks in
-> > > hardware for that purpose.
-> > 
-> > Well, at the end of the day, all the other TSN offloads (tc-taprio,
-> > tc-gate) will still have to use the synchronized PTP clock, so what
-> > we're doing is we're simply letting that clock be synchronized by
-> > ptp4l.
-> 
-> Yes, the synchronized clock is of course needed for the traffic
-> scheduling and so on. This is what we do here in this code as well.
-> Only
-> the synchronized one is exported to user space and used. However, the
-> multi PHCs issue should be addressed as well at some point.
-> 
-> > > > > > So when you'll poll for TX timestamps, you'll receive a TX
-> > > > > > timestamp from the PHY and another one from the switch, and
-> > > > > > those will
-> > > > > > be in a race with one another, so you won't know which one
-> > > > > > is which.
-> > > > > 
-> > > > > OK. So what happens if the driver will accept to disable
-> > > > > hardware
-> > > > > timestamping? Is there anything else that needs to be
-> > > > > implemented? Are
-> > > > > there (good) examples?
-> > > > 
-> > > > It needs to not call skb_complete_tx_timestamp() and friends.
-> > > > 
-> > > > For PHY timestamping, it also needs to invoke the correct
-> > > > methods for RX
-> > > > and for TX, where the PHY timestamping hooks will get called. I
-> > > > don't
-> > > > think that DSA is compatible yet with PHY timestamping, but it
-> > > > is
-> > > > probably a trivial modification.
-> > > 
-> > > Hmm? If DSA doesn't support PHY timestamping how are other DSA
-> > > drivers
-> > > dealing with it then? I'm getting really confused.
-> > 
-> > They aren't dealing with it, of course.
-> > 
-> > > Furthermore, there is no hellcreek hardware available with
-> > > timestamping
-> > > capable PHYs. How am I supposed to even test this?
-> > > 
-> > > For now, until there is hardware available, PHY timestamping is
-> > > not
-> > > supported with the hellcreek switch.
-> > 
-> > I was just pointing out that this is something you'll certainly
-> > have to
-> > change if somebody will want PHY timestamping.
-> 
-> Understood.
-> 
-> > Even without hardware, you _could_ probably test that DSA is doing
-> > the
-> > right thing by simply adding the PTP timestamping ops to a PHY
-> > driver
-> > that you own, and inject dummy timestamps. The expectation becomes
-> > that
-> > user space gets those dummy timestamps, and not the ones emitted by
-> > your
-> > switch.
-> 
-> Of course it can be mocked. Whenever somebody wants to do PHY
-> timestamping with a hellcreek switch this issue can be re-visited.
-> 
-> Thanks,
-> Kurt
+v3 changes:
+- Renamed all usage of "mchp" abbrevation with "microchip".
+- Split the in/output directions into (two) separate banks.
+- Eliminated the bindings include file (from above)
+- Changed SPDX license to "GPL-2.0-or-later"
+- Change -ENOTSUPP to -EOPNOTSUPP
+- Minor type/symbol naming changes
 
+v2 changes:
+- Adds both in and output modes.
+- Use direct adressing of the individual banks (#gpio-cells = <4>),
+  also osoleting need for addressing macros in bindings include file.
+- Property 'microchip,sgpio-ports' (uint32, bitmask) replaced by
+  proper range set (array of [start,end]) 'microchip,sgpio-port-ranges'.
+- Fixes whitespace issues in Kconfig file
+
+Lars Povlsen (3):
+  dt-bindings: pinctrl: Add bindings for pinctrl-microchip-sgpio driver
+  pinctrl: pinctrl-microchip-sgpio: Add pinctrl driver for Microsemi
+    Serial GPIO
+  arm64: dts: sparx5: Add SGPIO devices
+
+ .../pinctrl/microchip,sparx5-sgpio.yaml       | 140 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     |  91 +++
+ .../boot/dts/microchip/sparx5_pcb125.dts      |   5 +
+ .../dts/microchip/sparx5_pcb134_board.dtsi    | 258 +++++++
+ .../dts/microchip/sparx5_pcb135_board.dtsi    |  55 ++
+ drivers/pinctrl/Kconfig                       |  18 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-microchip-sgpio.c     | 665 ++++++++++++++++++
+ 9 files changed, 1234 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-microchip-sgpio.c
+
+--
+2.25.1
