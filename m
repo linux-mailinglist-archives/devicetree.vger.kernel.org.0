@@ -2,159 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A6E6286EBC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 08:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCAB7286EC8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 08:41:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726222AbgJHGfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 02:35:21 -0400
-Received: from mga17.intel.com ([192.55.52.151]:38100 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726216AbgJHGfU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 02:35:20 -0400
-IronPort-SDR: o1903/WkZ4i1QcSerkALr55iFyC0vuA0sVkbMYvHND4wJPkoLfSxC5ozvi1YfdCZgwU3FaJ7YC
- Ybd395M9XkbQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="145147173"
-X-IronPort-AV: E=Sophos;i="5.77,349,1596524400"; 
-   d="scan'208";a="145147173"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2020 23:35:20 -0700
-IronPort-SDR: 4vu8cqzJHKdYQkVKCtx63+0vZPJG5ZFq8dSY0RDANOAjUPnXsiNMsBcx/M0rNahSSkYtw0YQdf
- GjyBe9oV+TBQ==
-X-IronPort-AV: E=Sophos;i="5.77,349,1596524400"; 
-   d="scan'208";a="343281368"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2020 23:35:17 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 8589620728; Thu,  8 Oct 2020 09:35:15 +0300 (EEST)
-Date:   Thu, 8 Oct 2020 09:35:15 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     "Togorean, Bogdan" <Bogdan.Togorean@analog.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Bingbu Cao <bingbu.cao@intel.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] media: dt-bindings: media: i2c: Add bindings for
- ADDI9036
-Message-ID: <20201008063515.GO26842@paasikivi.fi.intel.com>
-References: <20201002133537.172379-1-bogdan.togorean@analog.com>
- <20201002133537.172379-2-bogdan.togorean@analog.com>
- <20201006204713.GA2807001@bogus>
- <DM6PR03MB527408B6BBFA25FF782DE27E9B0B0@DM6PR03MB5274.namprd03.prod.outlook.com>
+        id S1727261AbgJHGlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 02:41:19 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33184 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726013AbgJHGlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 02:41:19 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0986fB3A036284;
+        Thu, 8 Oct 2020 01:41:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1602139271;
+        bh=gsL6qGyv3yy3qt79DsqdekTiwlE1pswLY4v54xlQGaU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=n3Fj0lfsWQDrsoyvfP9Uv/V5oXyfBDyrfdLVs8xCLZorZaqQYZg0e0xtiOdpx8KSL
+         VyiIwYQcMqczKR+E71EkBKW3PC0rac75y/SFbeNVOkI5aRzTwRtmguGlJMhGdCYM5I
+         6twh2j47g2LWOIKeGCmPfVy3xiLojGG+0TVlJpqQ=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0986fBxX019430
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 8 Oct 2020 01:41:11 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 8 Oct
+ 2020 01:41:11 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 8 Oct 2020 01:41:11 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0986f8SO048206;
+        Thu, 8 Oct 2020 01:41:09 -0500
+Subject: Re: [PATCH 01/18] dmaengine: of-dma: Add support for optional router
+ configuration callback
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <nm@ti.com>, <ssantosh@kernel.org>, <robh+dt@kernel.org>,
+        <vigneshr@ti.com>, <dan.j.williams@intel.com>, <t-kristo@ti.com>,
+        <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
+ <20200930091412.8020-2-peter.ujfalusi@ti.com>
+ <20201007054404.GR2968@vkoul-mobl>
+ <be615881-1eb4-f8fe-a32d-04fabb6cb27b@ti.com>
+ <20201007155533.GZ2968@vkoul-mobl>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <45adb88b-1ef8-1fbf-08c1-9afc6ea4c6f0@ti.com>
+Date:   Thu, 8 Oct 2020 09:41:29 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR03MB527408B6BBFA25FF782DE27E9B0B0@DM6PR03MB5274.namprd03.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201007155533.GZ2968@vkoul-mobl>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bogdan,
 
-On Thu, Oct 08, 2020 at 06:23:33AM +0000, Togorean, Bogdan wrote:
-> Thank you Rob for review
-> > On Fri, Oct 02, 2020 at 04:35:17PM +0300, Bogdan Togorean wrote:
-> > > Add YAML device tree bindings for Analog Devices Inc. ADDI9036 CCD TOF
-> > > front-end.
-> > >
-> > > Signed-off-by: Bogdan Togorean <bogdan.togorean@analog.com>
-> > > ---
-> > > v2: added reg property description
-> > > ---
-> > >  .../bindings/media/i2c/adi,addi9036.yaml      | 76 +++++++++++++++++++
-> > >  1 file changed, 76 insertions(+)
-> > >  create mode 100644
-> > Documentation/devicetree/bindings/media/i2c/adi,addi9036.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/adi,addi9036.yaml
-> > b/Documentation/devicetree/bindings/media/i2c/adi,addi9036.yaml
-> > > new file mode 100644
-> > > index 000000000000..7c4af704db98
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/adi,addi9036.yaml
-> > > @@ -0,0 +1,76 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id:
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/media/i2c/adi,add
-> > i9036.yaml*__;Iw!!A3Ni8CS0y2Y!vLJoRikiVhmxm8p3bhGjRkFIWgjXvVlcJ8ATa9okn
-> > JqDbtobtK46hHICblE2i2Yj2sZL$
-> > > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-
-> > schemas/core.yaml*__;Iw!!A3Ni8CS0y2Y!vLJoRikiVhmxm8p3bhGjRkFIWgjXvVlcJ
-> > 8ATa9oknJqDbtobtK46hHICblE2iz34fu4o$
-> > > +
-> > > +title: Analog Devices ADDI9036 VGA CCD Time of Flight Sensor
-> > > +
-> > > +maintainers:
-> > > +  - Bogdan Togorean <bogdan.togorean@analog.com>
-> > > +
-> > > +description: |-
-> > > +  The ADDI9036 is a complete, 45 MHz, front-end solution for charge coupled
-> > > +  device (CCD) time of flight (TOF) imaging applications. It is programmable
-> > > +  through I2C interface. Image data is sent through MIPI CSI-2 2 lanes and
-> > > +  can output two RAW12 packed data streams. One is IR and the other is
-> > Depth.
-> > > +  Each data stream is on a separate or same MIPI Virtual Channel, depending
-> > > +  on configuration and each have 640x480 resolution.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: adi,addi9036
-> > > +
-> > > +  reg:
-> > > +    description: I2C device address
-> > 
-> > Can drop this.
-> ACK
-> > 
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > 
-> > maxItems: 1
-> ACK
-> > 
-> > > +    description: |-
-> > > +      Reference to the GPIO connected to the RST/SYNC pin, if any.
-> > > +      Must be released (set high) after all supplies are applied.
-> > > +
-> > > +  # See ../video-interfaces.txt for more details
-> > > +  port:
-> > > +    type: object
-> > > +    properties:
-> > > +      endpoint:
-> > > +        type: object
-> > > +        properties:
-> > > +          data-lanes:
-> > > +            description: |-
-> > > +              The sensor supports two-lane operation.
-> > > +              For two-lane operation the property must be set to <1 2>.
-> > > +            items:
-> > > +              - const: 1
-> > > +              - const: 2
-> > 
-> > If this is the only possible setting, then why does it need to be in DT?
-> If this is not set the bus_type will be not be correctly set after call of
-> v4l2_fwnode_endpoint_parse. 
 
-That's not a DT binding issue. The driver needs to set the field before
-calling v4l2_fwnode_endpoint_parse.
+On 07/10/2020 18.55, Vinod Koul wrote:
+> On 07-10-20, 11:08, Peter Ujfalusi wrote:
+> 
+>> Not really. In DT an event triggered channel can be requested via router
+>> (when this is used) for example:
+>>
+>> dmas = <&inta_l2g a b c>;
+>> a - the input number of the DMA request in l2g
+>> b - edge or level trigger to be selected
+>> c - ASEL number for the channel for coherency
+>>
+>> The l2g router driver then translate this to:
+>> <&main_bcdma 1 0 c>
+>> 1 - Global trigger 0 is used by the DMA
+>> 0 - ignored
+>> c - ASEL number.
+>>
+>> The router needs to send an event which is going to be received by the
+>> channel we have picked up, this event number can only be known when we
+>> do have the channel.
+>>
+>> So the flow in this case:
+>> router converts the dma_spec for the DMA, but it does not yet know what
+>> is the event number it has to use.
+>> The BCDMA driver will pick an available bchan and notes that the
+>> transfers will be triggered by global event 0.
+>> When we have the channel, the core saves the router information and
+>> calls the device_router_config of BCDMA.
+>> In there we call back to the router and give the event number it has to
+>> use to send the trigger for the channel.
+> 
+> Ah that is intresting, so you would call router driver foo_set_event()
+> and would send the event number
 
-Does the device not support one lane operation?
+Yes, that's correct.
 
--- 
-Regards,
+> why not call that API from alloc
+> channel or even xlate?
 
-Sakari Ailus
+at alloc / xlate time the DMA driver does not have information about
+router. The alloc/xlate will result the channel, but in my case it will
+result a broken setup as the router does not know which event to send.
+
+> Why do you need new callback?
+
+When I added the DMA event router support, it was designed in a way that
+the DMA driver itself must not know anything about the router, it has to
+be transparent. One can just add a router on front of any DMA and
+everything will work.
+This is the right thing to do, and it works for existing setups.
+
+> Or did i miss something..
+
+The BCDMA triggered channel setup is a chicken-egg setup.
+For this case the channel can be triggered by a global event. A channel
+can receive two global event, but this is not a concern atm.
+The event number depends on the channel we use, for simplicity let's
+say: bchan_id + trigger_offset = bchan_trigger_evt.
+
+of_dma_router_xlate does this:
+
+1. calls the dma router's of_dma_route_allocate callback to allocate a
+route and craft a dma_spec for the DMA to configure a channel.
+
+2. using this crafted dma_spec we request a channel via of_dma_xlate
+callback
+
+3. if we got the channel, we save the router information, so it can be
+deallocated when the channel is disabled.
+
+I need a fourth step to do a final configuration since only at this time
+(after it has been allocated) the channel has information about possible
+router.
+
+In the new optional callback the DMA driver can figure out the event
+number which must be used by the router to send the event to the desired
+global event target of the channel.
+
+Other DMAs might need something different, but imho if there is going to
+be a need for such post alloc router config, then it is most likely will
+come from the need to feed back some sort of channel information to the
+router. Or take parameter from the router itself for the channel.
+
+To summarize:
+In of_dma_route_allocate() the router does not yet know the channel we
+are going to get.
+In of_dma_xlate() the DMA driver does not yet know if the channel will
+use router or not.
+I need to tell the router the event number it has to send, which is
+based on the channel number I got.
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
