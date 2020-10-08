@@ -2,99 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C37B4287390
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 13:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6068128742F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 14:32:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726708AbgJHLta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 07:49:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60094 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726105AbgJHLta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 07:49:30 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513BDC061755;
-        Thu,  8 Oct 2020 04:49:30 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id md26so7638336ejb.10;
-        Thu, 08 Oct 2020 04:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6Vqhz+balQqIa3/yKYqGTZatT3KbBMTEeLTANkQK3a0=;
-        b=VQPUGNQfhA5c55qB+x/VtPcRZH8VCfHJsH46BPkmGkYATnfCMD55DcxMWXha6QzEip
-         pesgudbkUmlYkZsYWEzBgiuIfHuZmKsUhwpx4D2kfxWq7WyQ8J2hnrG30CpQb7frLq/M
-         L4s+q7CQD42gXYjXiiVr/wT9xO6OIFHkKP9LE3F2ZypAJB1JITEGLJL9M4HJui9omkvf
-         IUCsg72ReMsCJGgNv0eyRF0xsEhzZe1FHvUbkJ2lk0uBYP9ymjOm1SxlFerTZUfILmSl
-         FaO5MTBPkg1mdN+FRBAXf/XLVFwQlK2YdJUG3nAZPsR5BF97CbUAuAi5QscmB0Gy/ucj
-         142Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6Vqhz+balQqIa3/yKYqGTZatT3KbBMTEeLTANkQK3a0=;
-        b=YYItZuS6qae0hTr1t/koVVQC90Te6k99gxlbTdHStwrSe8QMZqJv5ym8OW8v34SvHc
-         a0OfrPKcJ+GPTAaiVGu/tadFEUi0DFYnSpord0zqQI7TLqotWgJcy0XD78/qeW1+Mfoz
-         laBpp3ywbzSIHT2IOG0rydMVpyBZuEYBZRRufdztN1Hajdsr50aeOcxvCsfZjY+1vGhq
-         lTlV4LVGiSPEUOmx/eVFy7Ki4PLRQS8IBWmT+EuWiNCqzYDMVk3HZtq7uqcvXCw3Svry
-         UaTK0J2zFRoSgjcKh27iBjEWpHlnQJIteKioPRh8AgX2d+YKXd/E2PJ6ZqDUjlmdy0FN
-         0yYA==
-X-Gm-Message-State: AOAM53179KC/nCr8CUA46NaOMdV7ClG2ATaHNp1bAlZVDrRyj8bQS6oj
-        mvw03nXRTqEQNzwbZERo9Kg=
-X-Google-Smtp-Source: ABdhPJzBm0rQeK+Y7nj0NlFKOkYml8Tnxw0fnThwGQ0htFTZQkJGwhWAmUjZN6MNMpYdv3gGOUF34w==
-X-Received: by 2002:a17:906:b784:: with SMTP id dt4mr8880618ejb.376.1602157768915;
-        Thu, 08 Oct 2020 04:49:28 -0700 (PDT)
-Received: from skbuf ([188.26.229.171])
-        by smtp.gmail.com with ESMTPSA id m6sm3892989ejb.85.2020.10.08.04.49.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2020 04:49:28 -0700 (PDT)
-Date:   Thu, 8 Oct 2020 14:49:27 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann
- Hellcreek switches
-Message-ID: <20201008114926.2c4slmnmqkncsogz@skbuf>
-References: <20201004112911.25085-1-kurt@linutronix.de>
- <20201004112911.25085-3-kurt@linutronix.de>
- <20201004125601.aceiu4hdhrawea5z@skbuf>
- <87lfgj997g.fsf@kurt>
- <20201006092017.znfuwvye25vsu4z7@skbuf>
- <878scj8xxr.fsf@kurt>
+        id S1729806AbgJHMcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 08:32:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57820 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725802AbgJHMcI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 08:32:08 -0400
+Received: from localhost.localdomain (unknown [122.182.224.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1219D2083B;
+        Thu,  8 Oct 2020 12:32:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602160328;
+        bh=LoohXBIYM6by4r1CdV4o7M7SLraeBVy0aFYTWgXT4H4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ZEfek5CnZraG3jGE23MQPFNfLhx9Ci/tJIbSUPya0YmTQLcQrwwwXw6EtKsYsV1Ln
+         I72Her2u6nuogMlXVB0O3CDIpgO6mVD9pPZqKD3Xge+ySwUXYIsuCNFTtx9PdwzCaE
+         pOR0YbR5WcJRVLer1SyYbC+zuNp3YmxgVEcoh/mM=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     dmaengine@vger.kernel.org
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>
+Subject: [PATCH v4 0/3] dmaengine: Add support for QCOM GSI dma controller
+Date:   Thu,  8 Oct 2020 18:01:48 +0530
+Message-Id: <20201008123151.764238-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <878scj8xxr.fsf@kurt>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 12:13:04PM +0200, Kurt Kanzenbach wrote:
-> >> >> +static const struct hellcreek_platform_data de1soc_r1_pdata = {
-> >> >> +	.num_ports	 = 4,
-> >> >> +	.is_100_mbits	 = 1,
-> >> >> +	.qbv_support	 = 1,
-> >> >> +	.qbv_on_cpu_port = 1,
-> >> >
-> >> > Why does this matter?
-> >> 
-> >> Because Qbv on the CPU port is a feature and not all switch variants
-> >> have that. It will matter as soon as TAPRIO is implemented.
-> >
-> > How do you plan to install a tc-taprio qdisc on the CPU port?
-> 
-> That's an issue to be sorted out.
+This series adds support for Qcom GSI dma controller found on Qualcomm SoCs.
+This controller can program the peripheral configuration so we add
+additional parameters in dma_slave_config for configuring the peripherals
+like spi and i2c.
 
-Do you have a compelling use case for tc-taprio on the CPU port though?
-I've been waiting for someone to put one on the table.
-If it's just "nice to have", I don't think that DSA will change just to
-accomodate that. The fact that the CPU port doesn't have a net device is
-already pretty much the established behavior.
+Changes in v3:
+ - Update the i2c tre creation based on testing feedback
+
+Changes in v2:
+ - Update the binding and drop qcom specific properties
+ - Move peripheral configuration as a pointer
+ - Move submit queue for transactions to issue_pending
+
+Vinod Koul (3):
+  dt-bindings: dmaengine: Document qcom,gpi dma binding
+  dmaengine: add peripheral configuration
+  dmaengine: qcom: Add GPI dma driver
+
+ .../devicetree/bindings/dma/qcom,gpi.yaml     |   86 +
+ drivers/dma/qcom/Kconfig                      |   12 +
+ drivers/dma/qcom/Makefile                     |    1 +
+ drivers/dma/qcom/gpi.c                        | 2303 +++++++++++++++++
+ include/dt-bindings/dma/qcom-gpi.h            |   11 +
+ include/linux/dmaengine.h                     |    5 +
+ include/linux/qcom-gpi-dma.h                  |   83 +
+ 7 files changed, 2501 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+ create mode 100644 drivers/dma/qcom/gpi.c
+ create mode 100644 include/dt-bindings/dma/qcom-gpi.h
+ create mode 100644 include/linux/qcom-gpi-dma.h
+
+-- 
+2.26.2
+
