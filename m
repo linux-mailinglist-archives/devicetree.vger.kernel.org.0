@@ -2,171 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5102287EEE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 01:00:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70DCC287F4F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 01:59:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729841AbgJHXAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 19:00:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42346 "EHLO mail.kernel.org"
+        id S1729398AbgJHX7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 19:59:55 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:20030 "EHLO z5.mailgun.us"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727556AbgJHXAg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 19:00:36 -0400
-Received: from earth.universe (unknown [185.213.155.232])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729571AbgJHX7z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 19:59:55 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602201594; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=iMZsobu4errj1Xerzmr09tWrD5DMJzqIEKBDLcR17/I=; b=j50eBwiJqoRuxZe7qQ0JcT2akqA6CM6CjWnSqYxdpvFNPM7dH1aidu4xHxluTCy+jOb/TPR7
+ bBFXJ71tqZH4QFPHbWJlSK4NR0Z0M3cZ+D88q4wK7Bpc+SRuaTC39L1mDg31Y4mAlweAkIwR
+ X2MI/wfn6O+1Bc2UESzposopysQ=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 5f7fa7edd6d00c7a9e28beb6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 08 Oct 2020 23:59:40
+ GMT
+Sender: wcheng=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E421FC433B2; Thu,  8 Oct 2020 23:59:39 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C100422248;
-        Thu,  8 Oct 2020 23:00:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602198035;
-        bh=RhmG9ir2Fk6IUNm/SmhzpPjolcBLKYD4AciOj2QmkgY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Y9zWyfLSdYCLWQjsv2CkXnG/tX9oGZTBYXF2AbUsSWpudKvTtA/TiaziC6dYtwsFB
-         qeFW/p7aUhKWV9rMtE5Pk+RtYG683BWX4sC++qMRWelaUIqKguqlVQxxExPqSR2VHV
-         qnsnRVfLjqSs4PJXv1X0L/UG9/nlIA5YjdYsT+6s=
-Received: by earth.universe (Postfix, from userid 1000)
-        id 68CF93C0C87; Fri,  9 Oct 2020 01:00:32 +0200 (CEST)
-Date:   Fri, 9 Oct 2020 01:00:32 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Lubomir Rintel <lkundrak@v3.sk>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: Add ENE KB930 Embedded
- Controller binding
-Message-ID: <20201008230032.a2mgd3yymxbbreqo@earth.universe>
-References: <20200906195103.1347-1-digetx@gmail.com>
- <20200906195103.1347-2-digetx@gmail.com>
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4FE3CC433FE;
+        Thu,  8 Oct 2020 23:59:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4FE3CC433FE
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
+From:   Wesley Cheng <wcheng@codeaurora.org>
+To:     sboyd@kernel.org, heikki.krogerus@linux.intel.com,
+        agross@kernel.org, robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jackp@codeaurora.org, sergei.shtylyov@gmail.com,
+        Wesley Cheng <wcheng@codeaurora.org>
+Subject: [PATCH v10 0/4] Introduce PMIC based USB type C detection
+Date:   Thu,  8 Oct 2020 16:59:30 -0700
+Message-Id: <20201008235934.8931-1-wcheng@codeaurora.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jddqv7i2wiys2vkp"
-Content-Disposition: inline
-In-Reply-To: <20200906195103.1347-2-digetx@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v10:
+ - Modified the type c dt-binding to remove the DRD switch node outside of the
+   connector, as it is more of a SW entity, whereas the USB connector model
+   focuses more on how the connector pins are connected in the HW design.  The
+   binding now matches what is specified in the usb-connector binding.
+ - Change the fwnode to search for the remote endpoint referencing the usb role
+   switch device in qcom-pmic-typec
+ - Rename typec node from "typec" to "usb-typec"
 
---jddqv7i2wiys2vkp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v9:
+ - Fixed dt-binding to reference usb-connector from the 'connector' node,
+   removed properties that didn't have further constraints (than specified in
+   usb-connector.yaml), and make 'reg' a required property.
+ - Moved vbus_reg get call into probe(), and will fail if the regulator is not
+   available.
+ - Removed some references from qcom_pmic_typec, as they were not needed after
+   probe().
+ - Moved interrupt registration until after all used variables were initialized.
 
-Hi,
+Changes in v8:
+ - Simplified some property definitions, and corrected the
+   connector reference in the dt binding.
 
-On Sun, Sep 06, 2020 at 10:50:59PM +0300, Dmitry Osipenko wrote:
-> Add binding document for the ENE KB930 Embedded Controller.
->=20
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  .../devicetree/bindings/mfd/ene-kb930.yaml    | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/ene-kb930.yaml b/Docum=
-entation/devicetree/bindings/mfd/ene-kb930.yaml
-> new file mode 100644
-> index 000000000000..635c8966ca22
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ene-kb930.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ene-kb930.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ENE KB930 Embedded Controller bindings
-> +
-> +description: |
-> +  This binding describes the ENE KB930 Embedded Controller attached to an
-> +  I2C bus.
-> +
-> +maintainers:
-> +  - Dmitry Osipenko <digetx@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - acer,a500-iconia-ec # Acer A500 Iconia tablet device
-> +      - enum:
-> +        - ene,kb930
-> +  reg:
-> +    maxItems: 1
-> +
-> +  monitored-battery: true
+Changes in v7:
+ - Fixups in qcom-pmic-typec.c to remove uncesscary includes, printk formatting,
+   and revising some logic operations. 
 
-^^^ this is not being used by your battery driver. Do you plan
-to use it in the future or is it a copy&paste mistake? :)
+Changes in v6:
+ - Removed qcom_usb_vbus-regulator.c and qcom,usb-vbus-regulator.yaml from the
+   series as they have been merged on regulator.git
+ - Added separate references to the usb-connector.yaml in qcom,pmic-typec.yaml
+   instead of referencing the entire schema.
 
--- Sebastian
+Changes in v5:
+ - Fix dt_binding_check warning/error in qcom,pmic-typec.yaml
 
-> +  power-supplies: true
-> +  system-power-controller: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    battery: battery-cell {
-> +      compatible =3D "simple-battery";
-> +      charge-full-design-microamp-hours =3D <3260000>;
-> +      energy-full-design-microwatt-hours =3D <24000000>;
-> +      operating-range-celsius =3D <0 40>;
-> +    };
-> +
-> +    mains: ac-adapter {
-> +      compatible =3D "gpio-charger";
-> +      charger-type =3D "mains";
-> +      gpios =3D <&gpio 125 0>;
-> +    };
-> +
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      embedded-controller@58 {
-> +        compatible =3D "acer,a500-iconia-ec", "ene,kb930";
-> +        reg =3D <0x58>;
-> +
-> +        system-power-controller;
-> +
-> +        monitored-battery =3D <&battery>;
-> +        power-supplies =3D <&mains>;
-> +      };
-> +    };
-> +
-> +...
-> --=20
-> 2.27.0
->=20
+Changes in v4:
+ - Modified qcom,pmic-typec binding to include the SS mux and the DRD remote
+   endpoint nodes underneath port@1, which is assigned to the SSUSB path
+   according to usb-connector
+ - Added usb-connector reference to the typec dt-binding
+ - Added tags to the usb type c and vbus nodes
+ - Removed "qcom" tags from type c and vbus nodes
+ - Modified Kconfig module name, and removed module alias from the typec driver
+ 
+Changes in v3:
+ - Fix driver reference to match driver name in Kconfig for
+   qcom_usb_vbus-regulator.c
+ - Utilize regulator bitmap helpers for enable, disable and is enabled calls in
+   qcom_usb_vbus-regulator.c
+ - Use of_get_regulator_init_data() to initialize regulator init data, and to
+   set constraints in qcom_usb_vbus-regulator.c
+ - Remove the need for a local device structure in the vbus regulator driver
+ 
+Changes in v2:
+ - Use devm_kzalloc() in qcom_pmic_typec_probe()
+ - Add checks to make sure return value of typec_find_port_power_role() is
+   valid
+ - Added a VBUS output regulator driver, which will be used by the PMIC USB
+   type c driver to enable/disable the source
+ - Added logic to control vbus source from the PMIC type c driver when
+   UFP/DFP is detected
+ - Added dt-binding for this new regulator driver
+ - Fixed Kconfig typec notation to match others
+ - Leave type C block disabled until enabled by a platform DTS
 
---jddqv7i2wiys2vkp
-Content-Type: application/pgp-signature; name="signature.asc"
+Add the required drivers for implementing type C orientation and role
+detection using the Qualcomm PMIC.  Currently, PMICs such as the PM8150B
+have an integrated type C block, which can be utilized for this.  This
+series adds the dt-binding, PMIC type C driver, and DTS nodes.
 
------BEGIN PGP SIGNATURE-----
+The PMIC type C driver will register itself as a type C port w/ a
+registered type C switch for orientation, and will fetch a USB role switch
+handle for the role notifications.  It will also have the ability to enable
+the VBUS output to any connected devices based on if the device is behaving
+as a UFP or DFP.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl9/mhAACgkQ2O7X88g7
-+pp63A//ZZhQ8x9f3hQfOOIo4d7D0X+Ybay9oCzCADuEMxtx+s9y57OBHSkMNiZ5
-uaBXwueE/HMe0VVsc/HOmBh2T9iOxVmab1+YP36zeNB6tsma/jmfjToqEjwjyXMn
-uqEfC8aKFSar9Hm2JtYRjkwAcNxCktmXHyKpiBsA66UWq8W6PMePeDeZNBLJBd+R
-XZg/Z/RgXRmgD5Hdm2tuQqPHM8+9yvS08I69E4uFW9b/ci9LyNkDZ2Nv8Fztyaw8
-CNpFSNB9+GI3RsXDFg9oKz5ofyGvICElD2M9QumvoBdTriJPBA2Btsggn4z0ERpP
-hl+ixC/hu1+wK0NLL4wyoJdIlfzPRWp1oL0C9q0C8coSgaC5dEBLscadtMrjVr9l
-2WbXodXV+igOW5egV5z1G6LzJygbUAq+xs4XtO+f+OzV74p+LS1QS0AF7D8zdSqS
-Ne+4Dj30VWqbYgI1fVWaT4BmgzSPcHLLLAA0dytpmDzoHezNqGyHcO8OuZ0PgPnB
-t9Rlptvg/QQEnxdzhzZiT5gT49eHcyzvfYhZngzUjpkN7o53Grjm4HXqVLuUo/cj
-HVR6i9+GKDLPKrzKYIiINyfY6TV+WVlCbDUDUPn0S5aTpkpSf1zfRV0ShWamZ6C4
-77hVvD10pIUr9UfbF3pdvk2xOLYg82J6b4WrArkl/U7tvEztR8Q=
-=spjz
------END PGP SIGNATURE-----
+Wesley Cheng (4):
+  usb: typec: Add QCOM PMIC typec detection driver
+  dt-bindings: usb: Add Qualcomm PMIC type C controller dt-binding
+  arm64: boot: dts: qcom: pm8150b: Add node for USB type C block
+  arm64: boot: dts: qcom: pm8150b: Add DTS node for PMIC VBUS booster
 
---jddqv7i2wiys2vkp--
+ .../bindings/usb/qcom,pmic-typec.yaml         | 115 ++++++++
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  13 +
+ arch/arm64/boot/dts/qcom/sm8150-mtp.dts       |   4 +
+ drivers/usb/typec/Kconfig                     |  12 +
+ drivers/usb/typec/Makefile                    |   1 +
+ drivers/usb/typec/qcom-pmic-typec.c           | 262 ++++++++++++++++++
+ 6 files changed, 407 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+ create mode 100644 drivers/usb/typec/qcom-pmic-typec.c
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
