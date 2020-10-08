@@ -2,191 +2,500 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8113287BCA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 20:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1A2E287BCC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 20:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728827AbgJHSiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 14:38:22 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:40167 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728800AbgJHSiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 14:38:22 -0400
-Received: by mail-ot1-f65.google.com with SMTP id l4so6479195ota.7
-        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 11:38:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=FOsFPIn8s3y/ZaBEWv1CSXHWHRSqMxV9DWmd7lr5SX0=;
-        b=pbSMhjnvSq8ZINX2A+iArZ8ZPI1N+WUWmdVJunphoDEuuradiBgGdC2OO3vztsJoAq
-         bFuzHCz2vA8j+ImHONq2ogXhjnbtjNTzVDjotVISm+k1zb1dbbe7Diwb8aq5vfVtWMNu
-         pUeJh5aOcwLN/YirZW9o4dV49+G7T/NWTz3EphMRqqy0rPGa/09wlQreof1HLLDTb1rO
-         dlXTjPsYpUDCiX01eiBn0DzJO/t+wQZKj6b+dHYG7LXw1K04HOSehdllleXmDhLbyHJ5
-         h29Hf0JVTqiMSQMAf9YAeZ2zl+oc5kHOETRPnhrfxQHr2OZuvKx2+U4U/YQdIjxCTTnM
-         nwKA==
-X-Gm-Message-State: AOAM532H6wmbEYubXj8sw3j/E1BGz9Z0/kC5+Y+wORMtm2m4CdSeaWTz
-        GTXKRJyhJNulJh+cfMH6+A==
-X-Google-Smtp-Source: ABdhPJzCz63Wl3NYH/sNUA74VfEc9iDzyhWxMOwGymni7JrpFJYqkF+PgINLYMSMDxKvgj5GaqX0sQ==
-X-Received: by 2002:a05:6830:1c62:: with SMTP id s2mr1139785otg.177.1602182299648;
-        Thu, 08 Oct 2020 11:38:19 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 68sm4613048otu.33.2020.10.08.11.38.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2020 11:38:18 -0700 (PDT)
-Received: (nullmailer pid 2416641 invoked by uid 1000);
-        Thu, 08 Oct 2020 18:38:18 -0000
-Date:   Thu, 8 Oct 2020 13:38:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     kernel@collabora.com, enric.balletbo@collabora.com,
-        bleung@chromium.org, groeck@chromium.org, sjg@chromium.org,
-        dianders@chromium.org, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com
-Subject: Re: [PATCH v2 3/3] mfd: google,cros-ec: add missing properties
-Message-ID: <20201008183818.GB2395464@bogus>
-References: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
- <20201008102825.3812-4-ricardo.canuelo@collabora.com>
+        id S1728862AbgJHSkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 14:40:12 -0400
+Received: from mx2.suse.de ([195.135.220.15]:51368 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728464AbgJHSkM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 14:40:12 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 9DF3EAC83;
+        Thu,  8 Oct 2020 18:40:09 +0000 (UTC)
+From:   Michal Suchanek <msuchanek@suse.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Michal Suchanek <msuchanek@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Ondrej Jirman <megous@megous.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Stefan Mavrodiev <stefan@olimex.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Georgii Staroselskii <georgii.staroselskii@emlid.com>,
+        Bastian Germann <bage@linutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: sun8i: h2+: Fix Orange Pi Zero device description.
+Date:   Thu,  8 Oct 2020 20:40:05 +0200
+Message-Id: <59f7b5c566825838bbb62b778e05c514fe355e74.1602182270.git.msuchanek@suse.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201008102825.3812-4-ricardo.canuelo@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 12:28:25PM +0200, Ricardo Cañuelo wrote:
-> Add missing properties that are currently used in the examples of
-> subnode bindings and in many DTs.
-> 
-> Also updates the example in sound/google,cros-ec-codec.yaml to comply
-> with the google,cros-ec binding.
-> 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-> ---
->  .../bindings/mfd/google,cros-ec.yaml          | 42 +++++++++++++++++++
->  .../bindings/sound/google,cros-ec-codec.yaml  | 26 +++++++-----
->  2 files changed, 58 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index 351bfb6d37ba..48929bb07d98 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -59,6 +59,14 @@ properties:
->        whether this nvram is present or not.
->      type: boolean
->  
-> +  mtk,rpmsg-name:
-> +    description:
-> +      Must be defined if the cros-ec is a rpmsg device for a Mediatek
-> +      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
-> +      device. Used to match the subnode to the rpmsg device announced by
-> +      the SCP.
-> +    $ref: "/schemas/types.yaml#/definitions/string"
-> +
->    spi-max-frequency:
->      description: Maximum SPI frequency of the device in Hz.
->  
-> @@ -71,14 +79,48 @@ properties:
->    wakeup-source:
->      description: Button can wake-up the system.
->  
-> +  typec:
-> +    $ref: "/schemas/chrome/google,cros-ec-typec.yaml#"
-> +
-> +  ec-pwm:
-> +    $ref: "/schemas/pwm/google,cros-ec-pwm.yaml#"
-> +
->    keyboard-controller:
->      $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
->  
-> +  codecs:
+There are two models of Orange Pi zero which are confusingly marketed
+under the same name. Old model comes without a flash memory and current
+model does have a flash memory. Build device tree for each model.
 
-Doesn't moving this require a driver change? 
+Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+---
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../sun8i-h2-plus-orangepi-zero-no-flash.dts  | 210 ++++++++++++++++++
+ .../boot/dts/sun8i-h2-plus-orangepi-zero.dts  | 201 +----------------
+ 3 files changed, 215 insertions(+), 197 deletions(-)
+ create mode 100644 arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero-no-flash.dts
 
-If you only need 1 codec, then just drop the unit-address.
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 4572db3fa5ae..f2853cea0c9c 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1168,6 +1168,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+ 	sun8i-h2-plus-libretech-all-h3-cc.dtb \
+ 	sun8i-h2-plus-orangepi-r1.dtb \
+ 	sun8i-h2-plus-orangepi-zero.dtb \
++	sun8i-h2-plus-orangepi-zero-no-flash.dtb \
+ 	sun8i-h3-bananapi-m2-plus.dtb \
+ 	sun8i-h3-bananapi-m2-plus-v1.2.dtb \
+ 	sun8i-h3-beelink-x2.dtb \
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero-no-flash.dts b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero-no-flash.dts
+new file mode 100644
+index 000000000000..3859b663e3f0
+--- /dev/null
++++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero-no-flash.dts
+@@ -0,0 +1,210 @@
++/*
++ * Copyright (C) 2016 Icenowy Zheng <icenowy@aosc.xyz>
++ *
++ * Based on sun8i-h3-orangepi-one.dts, which is:
++ *   Copyright (C) 2016 Hans de Goede <hdegoede@redhat.com>
++ *
++ * This file is dual-licensed: you can use it either under the terms
++ * of the GPL or the X11 license, at your option. Note that this dual
++ * licensing only applies to this file, and not this project as a
++ * whole.
++ *
++ *  a) This file is free software; you can redistribute it and/or
++ *     modify it under the terms of the GNU General Public License as
++ *     published by the Free Software Foundation; either version 2 of the
++ *     License, or (at your option) any later version.
++ *
++ *     This file is distributed in the hope that it will be useful,
++ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *     GNU General Public License for more details.
++ *
++ * Or, alternatively,
++ *
++ *  b) Permission is hereby granted, free of charge, to any person
++ *     obtaining a copy of this software and associated documentation
++ *     files (the "Software"), to deal in the Software without
++ *     restriction, including without limitation the rights to use,
++ *     copy, modify, merge, publish, distribute, sublicense, and/or
++ *     sell copies of the Software, and to permit persons to whom the
++ *     Software is furnished to do so, subject to the following
++ *     conditions:
++ *
++ *     The above copyright notice and this permission notice shall be
++ *     included in all copies or substantial portions of the Software.
++ *
++ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
++ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
++ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ *     OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++/dts-v1/;
++#include "sun8i-h3.dtsi"
++#include "sunxi-common-regulators.dtsi"
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++
++/ {
++	model = "Xunlong Orange Pi Zero (old model without flash memory)";
++	compatible = "xunlong,orangepi-zero-no-flash",
++		   "xunlong,orangepi-zero", "allwinner,sun8i-h2-plus";
++
++	aliases {
++		serial0 = &uart0;
++		/* ethernet0 is the H3 emac, defined in sun8i-h3.dtsi */
++		ethernet0 = &emac;
++		ethernet1 = &xr819;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		pwr_led {
++			label = "orangepi:green:pwr";
++			gpios = <&r_pio 0 10 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++
++		status_led {
++			label = "orangepi:red:status";
++			gpios = <&pio 0 17 GPIO_ACTIVE_HIGH>;
++		};
++	};
++
++	reg_vcc_wifi: reg_vcc_wifi {
++		compatible = "regulator-fixed";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-name = "vcc-wifi";
++		enable-active-high;
++		gpio = <&pio 0 20 GPIO_ACTIVE_HIGH>;
++	};
++
++	reg_vdd_cpux: vdd-cpux-regulator {
++		compatible = "regulator-gpio";
++		regulator-name = "vdd-cpux";
++		regulator-type = "voltage";
++		regulator-boot-on;
++		regulator-always-on;
++		regulator-min-microvolt = <1100000>;
++		regulator-max-microvolt = <1300000>;
++		regulator-ramp-delay = <50>; /* 4ms */
++
++		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
++		enable-active-high;
++		gpios-states = <1>;
++		states = <1100000 0>, <1300000 1>;
++	};
++
++	wifi_pwrseq: wifi_pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>;
++		post-power-on-delay-ms = <200>;
++	};
++};
++
++&cpu0 {
++	cpu-supply = <&reg_vdd_cpux>;
++};
++
++&ehci0 {
++	status = "okay";
++};
++
++&ehci1 {
++	status = "okay";
++};
++
++&emac {
++	phy-handle = <&int_mii_phy>;
++	phy-mode = "mii";
++	allwinner,leds-active-low;
++	status = "okay";
++};
++
++&mmc0 {
++	vmmc-supply = <&reg_vcc3v3>;
++	bus-width = <4>;
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
++	status = "okay";
++};
++
++&mmc1 {
++	vmmc-supply = <&reg_vcc_wifi>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++
++	/*
++	 * Explicitly define the sdio device, so that we can add an ethernet
++	 * alias for it (which e.g. makes u-boot set a mac-address).
++	 */
++	xr819: sdio_wifi@1 {
++		reg = <1>;
++	};
++};
++
++&ohci0 {
++	status = "okay";
++};
++
++&ohci1 {
++	status = "okay";
++};
++
++&spi0 {
++	/* On the old model of Orange Pi Zero the flash memory is not mounted */
++	status = "disabled";
++
++	flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "mxicy,mx25l1606e", "winbond,w25q128";
++		reg = <0>;
++		spi-max-frequency = <40000000>;
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pa_pins>;
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_pins>;
++	status = "disabled";
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart2_pins>;
++	status = "disabled";
++};
++
++&usb_otg {
++	dr_mode = "peripheral";
++	status = "okay";
++};
++
++&usbphy {
++	/*
++	 * USB Type-A port VBUS is always on. However, MicroUSB VBUS can only
++	 * power up the board; when it's used as OTG port, this VBUS is
++	 * always off even if the board is powered via GPIO pins.
++	 */
++	status = "okay";
++	usb0_id_det-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
++};
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+index f19ed981da9d..e718ed143ad7 100644
+--- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
++++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+@@ -1,209 +1,16 @@
+-/*
+- * Copyright (C) 2016 Icenowy Zheng <icenowy@aosc.xyz>
+- *
+- * Based on sun8i-h3-orangepi-one.dts, which is:
+- *   Copyright (C) 2016 Hans de Goede <hdegoede@redhat.com>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+- */
+-
++// SPDX-License-Identifier: GPL-2.0
+ /dts-v1/;
+-#include "sun8i-h3.dtsi"
+-#include "sunxi-common-regulators.dtsi"
+-
+-#include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/input/input.h>
++#include "sun8i-h2-plus-orangepi-zero-no-flash.dts"
+ 
+ / {
+ 	model = "Xunlong Orange Pi Zero";
+-	compatible = "xunlong,orangepi-zero", "allwinner,sun8i-h2-plus";
+-
+-	aliases {
+-		serial0 = &uart0;
+-		/* ethernet0 is the H3 emac, defined in sun8i-h3.dtsi */
+-		ethernet0 = &emac;
+-		ethernet1 = &xr819;
+-	};
+-
+-	chosen {
+-		stdout-path = "serial0:115200n8";
+-	};
+-
+-	leds {
+-		compatible = "gpio-leds";
+-
+-		pwr_led {
+-			label = "orangepi:green:pwr";
+-			gpios = <&r_pio 0 10 GPIO_ACTIVE_HIGH>;
+-			default-state = "on";
+-		};
+-
+-		status_led {
+-			label = "orangepi:red:status";
+-			gpios = <&pio 0 17 GPIO_ACTIVE_HIGH>;
+-		};
+-	};
+-
+-	reg_vcc_wifi: reg_vcc_wifi {
+-		compatible = "regulator-fixed";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		regulator-name = "vcc-wifi";
+-		enable-active-high;
+-		gpio = <&pio 0 20 GPIO_ACTIVE_HIGH>;
+-	};
+-
+-	reg_vdd_cpux: vdd-cpux-regulator {
+-		compatible = "regulator-gpio";
+-		regulator-name = "vdd-cpux";
+-		regulator-type = "voltage";
+-		regulator-boot-on;
+-		regulator-always-on;
+-		regulator-min-microvolt = <1100000>;
+-		regulator-max-microvolt = <1300000>;
+-		regulator-ramp-delay = <50>; /* 4ms */
+-
+-		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+-		enable-active-high;
+-		gpios-states = <1>;
+-		states = <1100000 0>, <1300000 1>;
+-	};
+-
+-	wifi_pwrseq: wifi_pwrseq {
+-		compatible = "mmc-pwrseq-simple";
+-		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>;
+-		post-power-on-delay-ms = <200>;
+-	};
+-};
+-
+-&cpu0 {
+-	cpu-supply = <&reg_vdd_cpux>;
+-};
+-
+-&ehci0 {
+-	status = "okay";
+-};
+-
+-&ehci1 {
+-	status = "okay";
+-};
+-
+-&emac {
+-	phy-handle = <&int_mii_phy>;
+-	phy-mode = "mii";
+-	allwinner,leds-active-low;
+-	status = "okay";
+-};
+-
+-&mmc0 {
+-	vmmc-supply = <&reg_vcc3v3>;
+-	bus-width = <4>;
+-	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+-	status = "okay";
+-};
+-
+-&mmc1 {
+-	vmmc-supply = <&reg_vcc_wifi>;
+-	mmc-pwrseq = <&wifi_pwrseq>;
+-	bus-width = <4>;
+-	non-removable;
+-	status = "okay";
+-
+-	/*
+-	 * Explicitly define the sdio device, so that we can add an ethernet
+-	 * alias for it (which e.g. makes u-boot set a mac-address).
+-	 */
+-	xr819: sdio_wifi@1 {
+-		reg = <1>;
+-	};
++	compatible = "xunlong,orangepi-zero-with-flash",
++		   "xunlong,orangepi-zero", "allwinner,sun8i-h2-plus";
+ };
+ 
+-&ohci0 {
+-	status = "okay";
+-};
+-
+-&ohci1 {
+-	status = "okay";
+-};
+ 
+ &spi0 {
+ 	/* Disable SPI NOR by default: it optional on Orange Pi Zero boards */
+-	status = "disabled";
+-
+-	flash@0 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		compatible = "mxicy,mx25l1606e", "winbond,w25q128";
+-		reg = <0>;
+-		spi-max-frequency = <40000000>;
+-	};
+-};
+-
+-&uart0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&uart0_pa_pins>;
+ 	status = "okay";
+ };
+ 
+-&uart1 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&uart1_pins>;
+-	status = "disabled";
+-};
+-
+-&uart2 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&uart2_pins>;
+-	status = "disabled";
+-};
+-
+-&usb_otg {
+-	dr_mode = "peripheral";
+-	status = "okay";
+-};
+-
+-&usbphy {
+-	/*
+-	 * USB Type-A port VBUS is always on. However, MicroUSB VBUS can only
+-	 * power up the board; when it's used as OTG port, this VBUS is
+-	 * always off even if the board is powered via GPIO pins.
+-	 */
+-	status = "okay";
+-	usb0_id_det-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
+-};
+-- 
+2.28.0
 
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 2
-> +
-> +      '#size-cells':
-> +        const: 1
-> +
-> +    patternProperties:
-> +      "^ec-codec@[a-f0-9]+$":
-> +        type: object
-> +        $ref: "/schemas/sound/google,cros-ec-codec.yaml#"
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +
->  patternProperties:
->    "^i2c-tunnel[0-9]*$":
->      type: object
->      $ref: "/schemas/i2c/google,cros-ec-i2c-tunnel.yaml#"
->  
-> +  "^regulator@[0-9]+$":
-> +    type: object
-> +    $ref: "/schemas/regulator/google,cros-ec-regulator.yaml#"
-> +
-> +  "^extcon[0-9]*$":
-> +    type: object
-> +    $ref: "/schemas/extcon/extcon-usbc-cros-ec.yaml#"
-> +
->  required:
->    - compatible
->  
-> diff --git a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-> index c84e656afb0a..acfb9db021dc 100644
-> --- a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-> +++ b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-> @@ -11,9 +11,10 @@ maintainers:
->  
->  description: |
->    Google's ChromeOS EC codec is a digital mic codec provided by the
-> -  Embedded Controller (EC) and is controlled via a host-command interface.
-> -  An EC codec node should only be found as a sub-node of the EC node (see
-> -  Documentation/devicetree/bindings/mfd/cros-ec.txt).
-> +  Embedded Controller (EC) and is controlled via a host-command
-> +  interface.  An EC codec node should only be found inside the "codecs"
-> +  subnode of a cros-ec node.
-> +  (see Documentation/devicetree/bindings/mfd/google,cros-ec.yaml).
->  
->  properties:
->    compatible:
-> @@ -54,14 +55,19 @@ examples:
->          #size-cells = <0>;
->          cros-ec@0 {
->              compatible = "google,cros-ec-spi";
-> -            #address-cells = <2>;
-> -            #size-cells = <1>;
->              reg = <0>;
-> -            cros_ec_codec: ec-codec@10500000 {
-> -                compatible = "google,cros-ec-codec";
-> -                #sound-dai-cells = <1>;
-> -                reg = <0x0 0x10500000 0x80000>;
-> -                memory-region = <&reserved_mem>;
-> +
-> +            codecs {
-> +                #address-cells = <2>;
-> +                #size-cells = <1>;
-> +
-> +                cros_ec_codec: ec-codec@10500000 {
-> +                    compatible = "google,cros-ec-codec";
-> +                    #sound-dai-cells = <1>;
-> +                    reg = <0x0 0x10500000 0x80000>;
-> +                    memory-region = <&reserved_mem>;
-> +                };
-> +
->              };
->          };
->      };
-> -- 
-> 2.18.0
-> 
