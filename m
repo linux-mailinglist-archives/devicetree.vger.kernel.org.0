@@ -2,105 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FC7128724D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 12:14:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 056F0287280
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 12:28:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729381AbgJHKOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 06:14:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49808 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729341AbgJHKN7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 06:13:59 -0400
-Received: from gaia (unknown [95.149.105.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BC20720708;
-        Thu,  8 Oct 2020 10:13:56 +0000 (UTC)
-Date:   Thu, 8 Oct 2020 11:13:54 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        will@kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-        iommu@lists.linux-foundation.org,
-        linux-rpi-kernel@lists.infradead.org, robin.murphy@arm.com,
-        hch@lst.de, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
-Message-ID: <20201008101353.GE7661@gaia>
-References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
- <20201001161740.29064-2-nsaenzjulienne@suse.de>
- <20201001171500.GN21544@gaia>
- <20201001172320.GQ21544@gaia>
- <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
- <20201002115541.GC7034@gaia>
- <12f33d487eabd626db4c07ded5a1447795eed355.camel@suse.de>
+        id S1729322AbgJHK2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 06:28:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47748 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729221AbgJHK2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 06:28:47 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997A9C061755
+        for <devicetree@vger.kernel.org>; Thu,  8 Oct 2020 03:28:47 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: rcn)
+        with ESMTPSA id 0F11129D04B
+From:   =?UTF-8?q?Ricardo=20Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
+To:     robh@kernel.org
+Cc:     kernel@collabora.com, enric.balletbo@collabora.com,
+        bleung@chromium.org, groeck@chromium.org, sjg@chromium.org,
+        dianders@chromium.org, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com
+Subject: [PATCH v2 0/3] Fix checker warnings related to cros-ec binding
+Date:   Thu,  8 Oct 2020 12:28:22 +0200
+Message-Id: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <12f33d487eabd626db4c07ded5a1447795eed355.camel@suse.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 12:05:25PM +0200, Nicolas Saenz Julienne wrote:
-> On Fri, 2020-10-02 at 12:55 +0100, Catalin Marinas wrote:
-> > On Thu, Oct 01, 2020 at 07:31:19PM +0200, Nicolas Saenz Julienne wrote:
-> > > On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
-> > > > On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
-> > > > > On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
-> > > > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > > > > index 4602e467ca8b..cd0d115ef329 100644
-> > > > > > --- a/drivers/of/fdt.c
-> > > > > > +++ b/drivers/of/fdt.c
-> > > > > > @@ -25,6 +25,7 @@
-> > > > > >  #include <linux/serial_core.h>
-> > > > > >  #include <linux/sysfs.h>
-> > > > > >  #include <linux/random.h>
-> > > > > > +#include <linux/dma-direct.h>	/* for zone_dma_bits */
-> > > > > >  
-> > > > > >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> > > > > >  #include <asm/page.h>
-> > > > > > @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
-> > > > > >  	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
-> > > > > >  }
-> > > > > >  
-> > > > > > +void __init early_init_dt_update_zone_dma_bits(void)
-> > > > > > +{
-> > > > > > +	unsigned long dt_root = of_get_flat_dt_root();
-> > > > > > +
-> > > > > > +	if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
-> > > > > > +		zone_dma_bits = 30;
-> > > > > > +}
-> > > > > 
-> > > > > I think we could keep this entirely in the arm64 setup_machine_fdt() and
-> > > > > not pollute the core code with RPi4-specific code.
-> > > > 
-> > > > Actually, even better, could we not move the check to
-> > > > arm64_memblock_init() when we initialise zone_dma_bits?
-> > > 
-> > > I did it this way as I vaguely remembered Rob saying he wanted to centralise
-> > > all early boot fdt code in one place. But I'll be happy to move it there.
-> > 
-> > I can see Rob replied and I'm fine if that's his preference. However,
-> > what I don't particularly like is that in the arm64 code, if
-> > zone_dma_bits == 24, we set it to 32 assuming that it wasn't touched by
-> > the early_init_dt_update_zone_dma_bits(). What if at some point we'll
-> > get a platform that actually needs 24 here (I truly hope not, but just
-> > the principle of relying on magic values)?
-> > 
-> > So rather than guessing, I'd prefer if the arch code can override
-> > ZONE_DMA_BITS_DEFAULT. Then, in arm64, we'll just set it to 32 and no
-> > need to explicitly touch the zone_dma_bits variable.
-> 
-> Yes, sonds like the way to go. TBH I wasn't happy with that solution either,
-> but couldn't think of a nicer alternative.
-> 
-> Sadly I just realised that the series is incomplete, we have RPi4 users that
-> want to boot unsing ACPI, and this series would break things for them. I'll
-> have a word with them to see what we can do for their use-case.
+This series fixes a bunch of warnings related to the google,cros-ec
+binding, originally reported by Rob Herring.
+The patches involve adding missing subnode definitions in the
+google,cros-ec binding and the conversion of two existing bindings to
+json-schema.
 
-Is there a way to get some SoC information from ACPI?
+All the related warnings should be fixed after applying the patches,
+except for a couple of warnings in the device trees of Qualcomm's
+Trogdor and Cheza chromebooks. They define a pdupdate subnode inside
+cros-ec that has no binding, the development of drivers and support for
+these chromebooks is ongoing and not completely upstreamed yet.
+
+Bindings tested with:
+
+  make dt_binding_check ARCH=<arch> DT_SCHEMA_FILES=...
+  make dtbs_check ARCH=<arch> DT_SCHEMA_FILES=...
+
+for <arch> = arm and arm64.
+
+Changes from v1:
+
+  - Update google,cros-ec.yaml in patches 1 and 2 to avoid checker
+    warnings when applied individually.
+
+  - Complete the examples in google,cros-ec-i2c-tunnel.yaml and
+    google,cros-ec-keyb.yaml, including the enclosing nodes (Enric).
+
+  - Include the additional properties from matrix-keymap.yaml in
+    google,cros-ec-keyb.yaml and use additionalProperties: false
+    (Enric).
+
+  - Use an intermediate "codecs" node in google,cros-ec.yaml to enclose
+    the ec-codec nodes, which require different #address-cells and
+    #size-cells values (Rob).
+
+  - Update the example in google,cros-ec-codec.yaml to reflect the
+    change in google,cros-ec.yaml
+
+Kind regards,
+Ricardo
+
+Ricardo Cañuelo (3):
+  dt-bindings: i2c: convert i2c-cros-ec-tunnel to json-schema
+  dt-bindings: input: convert cros-ec-keyb to json-schema
+  mfd: google,cros-ec: add missing properties
+
+ .../i2c/google,cros-ec-i2c-tunnel.yaml        |  63 +++++++++
+ .../bindings/i2c/i2c-cros-ec-tunnel.txt       |  39 ------
+ .../bindings/input/cros-ec-keyb.txt           |  72 -----------
+ .../bindings/input/google,cros-ec-keyb.yaml   | 120 ++++++++++++++++++
+ .../bindings/mfd/google,cros-ec.yaml          |  50 ++++++++
+ .../bindings/sound/google,cros-ec-codec.yaml  |  26 ++--
+ 6 files changed, 249 insertions(+), 121 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
+ delete mode 100644 Documentation/devicetree/bindings/input/cros-ec-keyb.txt
+ create mode 100644 Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
 
 -- 
-Catalin
+2.18.0
+
