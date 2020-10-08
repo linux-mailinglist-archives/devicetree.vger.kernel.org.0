@@ -2,105 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 590C8286F53
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 09:25:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1FA6286F88
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 09:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725931AbgJHHZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 03:25:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47390 "EHLO
+        id S1726307AbgJHHdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 03:33:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725874AbgJHHZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 03:25:19 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE20C061755;
-        Thu,  8 Oct 2020 00:25:18 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id lw21so6609660ejb.6;
-        Thu, 08 Oct 2020 00:25:18 -0700 (PDT)
+        with ESMTP id S1725985AbgJHHdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 03:33:41 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67EA7C0613D4
+        for <devicetree@vger.kernel.org>; Thu,  8 Oct 2020 00:33:41 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id t9so5379017wrq.11
+        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 00:33:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ggIWyfuMBk6RIEocE2/Vctf1qOpbGaLGNz2DDI1RKQw=;
-        b=uHE8Wbup0CIM3eJ/kouB5+KRgrfXOTnZ9ec9Im6DRs/o1QWIDqyOd2d/Cs0w/QFI/t
-         mjA7k0MmdF24npFMSz4AKBeSbwNxVthW6C/Tj+21pp3VO+Iz6cXMdZqRstOcSeiPIt8+
-         J8oPUSTCsmA5oCl/371oa6L8yQIeakvdE2IWUzLe/wd+WicX5btT/XxeS6K6Jt9tgD9p
-         6E0raPiWjDAt8Dmun2jb+br2wnFGFfeVYPN8dhPzOOCPNOjCxgz8P0N4TGH6JO/f/Pzb
-         /mOvLohinPNup/4JymI/wN56YHrkFwM6ijcDEkTgpezY9skOZjRtQOCo/KGGeJH2dYMb
-         Llww==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=tgWoS1DNrNMjeMErRF1VLwt6P/QpByafehH2pDshfP0=;
+        b=ZsFHLmxE7BINX3sLNhZmok4EUe+DHyNsoKFxHXdX3XoSP/qHZ6sO4YdEVZnTldhdY7
+         26iJvDlQBO5kneSJgq8Ui40Fv99Qfopg22haKLGa7CTGRmxvfG5orLelU4lG2qZiGElE
+         dkoMO11L1XEeGCXndx2NoKnjCR9PDvPpU+7dELIvNgPtdPpnwhuLZKm4h4zdb6JXoeU2
+         xxWCenu7xveYXeRW/fFuM7i4SAdQdP8Q2EPua1MW2787y1cWhN8CJkWCyic9+GFesKWz
+         w+b0z7cnlPzn6cPtmqVDDXtZPtjWeZ8S+kbZJoZdAm8Cdr4W17C7OiYCPMJiNDQuM6GZ
+         Y2Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ggIWyfuMBk6RIEocE2/Vctf1qOpbGaLGNz2DDI1RKQw=;
-        b=fiTYpYvY5i7U4exT8A78rERozLIUabC9Q3ZLJlt/gfFCz0gYWMG/KQBmzFpUO2GB2P
-         79Uq8dBenCj0LxMUWWnJl8l5etovxZv6MUbbDH21hcm8b4AqEfnbygv2VorcQAmM8wcn
-         JLPWfKcU7zl2LrRKwmWvcIHwvzMGP3C0yGTLS5n2XPDsauKMzAa0A5EWJlDz4t7SakSD
-         1KLLVg2kEX3cO+aGTgU36UPs1h/1CNxXq8kC44VsWu1TSkW2K8fEP+NNlo8L3Df0k+gE
-         SsRsWyeOMHd4Qg8LxXJxXhQdJEtWgln0U1Zf8FlJti4llW8n9UjpsjeuXXNK+rYpA/dz
-         4epQ==
-X-Gm-Message-State: AOAM531oFfZVe5SpLCGr/I93Hj/iCrJBQ7S5bNiMb4TqvPWxqB26Dmmi
-        BirRSTFhoScEBuq+8lpRpyI=
-X-Google-Smtp-Source: ABdhPJyAgdoQHy9wC8IC8bDBnduHRYPjKutskcLbTeVUUhKov84Xic82qWyFgjQOprNIMpxV3JPDDQ==
-X-Received: by 2002:a17:906:1957:: with SMTP id b23mr7210605eje.312.1602141916960;
-        Thu, 08 Oct 2020 00:25:16 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.119.110])
-        by smtp.gmail.com with ESMTPSA id p17sm3370228edw.10.2020.10.08.00.25.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Oct 2020 00:25:16 -0700 (PDT)
-Subject: Re: [PATCH v10 3/3] clk: mediatek: add UART0 clock support
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Hanks Chen <hanks.chen@mediatek.com>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     devicetree@vger.kernel.org, CC Hwang <cc.hwang@mediatek.com>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        YueHaibing <yuehaibing@huawei.com>, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=tgWoS1DNrNMjeMErRF1VLwt6P/QpByafehH2pDshfP0=;
+        b=gdzUq5x9/9l2+RarA0PIJvlsxD+UBQ8ZW6ncEVQHDllKqmt+I9llMr/ermEz0OuFwU
+         wWcV4kQzO3/Sh4bCzN1BMS4Etyag5Lb1vtqu6ouJ2sseYQrBplBN3QY8qDjmt7ubiFKA
+         L3LUm3Ple0c67Xqv0ppuWbiMueGGWBZuI+sQ0h/FAVcTLG7sfcPuq7EC9M0XoR877ZWk
+         PDkUGneJdV4VA1Ang8Qyti1ClIFee+mWt7eENmBtntf0K2GvVwBb46reJKoxWGvtX7ht
+         2ZGc9UZqJAl9mYDxhKRcdvDydyutZGHGg9S8MSElRUhsDFEfZuo8o/2zGaxxUuNQWm46
+         7ScA==
+X-Gm-Message-State: AOAM530eVu1kfYnTFBHew/DWlgyHINTPzmisA5xt7/+drbw7YKKjwHM+
+        Pyc5EzPkNPb8TFrHpDWqvxKV6w==
+X-Google-Smtp-Source: ABdhPJzabvtfwLmhnEYubgjfeo2bB0aroK/nU1F0zOHh2mrKpbUH4p2gKhjVT7qNDholk5mCIJP9Ag==
+X-Received: by 2002:a5d:40c3:: with SMTP id b3mr8460241wrq.157.1602142419967;
+        Thu, 08 Oct 2020 00:33:39 -0700 (PDT)
+Received: from dell ([91.110.221.232])
+        by smtp.gmail.com with ESMTPSA id s11sm1385391wrm.56.2020.10.08.00.33.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Oct 2020 00:33:39 -0700 (PDT)
+Date:   Thu, 8 Oct 2020 08:33:37 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Alexander Dahl <post@lespocky.de>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Loda Chou <loda.chou@mediatek.com>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <1596115816-11758-1-git-send-email-hanks.chen@mediatek.com>
- <1596115816-11758-4-git-send-email-hanks.chen@mediatek.com>
- <1599546314.24690.3.camel@mtkswgap22> <1601719607.774.1.camel@mtkswgap22>
- <160212240863.310579.5253840355657757088@swboyd.mtv.corp.google.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <2a00b4d0-35ab-d1e6-0b8b-d4e0672e7118@gmail.com>
-Date:   Thu, 8 Oct 2020 09:25:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Alexander Dahl <ada@thorsis.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        Jeff LaBundy <jeff@labundy.com>
+Subject: Re: [PATCH v7 03/12] dt-bindings: mfd: Fix schema warnings for
+ pwm-leds
+Message-ID: <20201008073337.GG1763265@dell>
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-4-post@lespocky.de>
+ <20201007100359.GC12224@duo.ucw.cz>
 MIME-Version: 1.0
-In-Reply-To: <160212240863.310579.5253840355657757088@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201007100359.GC12224@duo.ucw.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+On Wed, 07 Oct 2020, Pavel Machek wrote:
 
-On 08/10/2020 04:00, Stephen Boyd wrote:
-> Quoting Hanks Chen (2020-10-03 03:06:47)
->> Hi Michael & Stephen,
->>
->> Please kindly let me know your comments about this patch.
->> Thanks
->>
+> Hi!
 > 
-> What's the base for this patch? I tried applying to v5.9-rc1 and it
-> didn't work.
+> > The node names for devices using the pwm-leds driver follow a certain
+> > naming scheme (now).  Parent node name is not enforced, but recommended
+> > by DT project.
+> > 
+> >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> >         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> > 
+> > Signed-off-by: Alexander Dahl <post@lespocky.de>
 > 
+> Okay, so I need Rob's ack here, I guess... and rest of the series is
+> not really for my tree.
 
-Can you please double check. The file the patch touches didn't get touched since 
-v5.5-rc1. I tried to apply it and it didn't give me any error. I paste my way of 
-applying patches just in case:
+This patch is not for your tree either. ;)
 
-b4.sh am -l -o /tmp -n patch -P 3 
-1596115816-11758-4-git-send-email-hanks.chen@mediatek.com && git am -3 -s 
-/tmp/patch.mbx
-
-Regards,
-Matthias
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
