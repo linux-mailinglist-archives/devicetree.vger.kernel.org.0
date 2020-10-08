@@ -2,311 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1420A2872E8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 12:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8C1F287311
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 13:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727752AbgJHK5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 06:57:45 -0400
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:52512 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727224AbgJHK5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 06:57:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1602154663; x=1633690663;
-  h=references:from:to:cc:subject:in-reply-to:date:
-   message-id:mime-version;
-  bh=sbsYblhM7HBECp1Iw7gGZrJTSXmYJPEc0TVl2NmfuLg=;
-  b=MqfoNOH+ENnqGb4DK3xPwdc8JeEBqbtmtxOsZCcFbgqMvFwNehgW1ZbV
-   Wg5IMMMByesJNMkl2Qijzc0Ih98eA9fJyn8//5CQDBhkv7JmErFEhzEPX
-   eefcnE104LjwRimEQHbuQLLoRA53kR/JGr1SSSAQnv3sZ+RYarluaZlMi
-   fZetf+rl9n5rGwqbZZsIL6w1fnh1IYwwtq4/sAlfCsIrSODNrAn+cJZgq
-   O8prJTqQoMLJ+4ocGws88NzG/uEAkA6EpZxCXWXNV7ISvQF4vPjopKxmv
-   yOJu/gbkMgLLqsFDfaIDpSwvc8j+UE8YIaQ3xjV25TLStdX4vG0GJ3fpS
-   A==;
-IronPort-SDR: W1L25IG2YRzeJ5cgA1BK2uWtRzxQrvEmH+oYQPDzJnJ/1O1H5EFRAOenV5rsudJBysL0AIYeBE
- gS3mDqkS0LjTZ31CANbCIAiHVaeY3p2O+RLJB0wp8ab2heD3isdSnIzIIG/mFag1xll++laeIr
- hMeW2fiW2Y7CRltm0XgQYo/jM3whPNoT9KN3ukc+jPOL22CBvt2ZyRmAW5nGct9VBDH6ZD2MW1
- lZ2CKm7r/6CPAoZ8TJcNNftGE4lS7JAh+PGtuWIaE8HdEhyd1hKkBpPfYhJ9xapry388n3bgVU
- /Bk=
-X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; 
-   d="scan'208";a="29188573"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Oct 2020 03:57:43 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 8 Oct 2020 03:57:18 -0700
-Received: from soft-dev15.microsemi.net.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Thu, 8 Oct 2020 03:57:41 -0700
-References: <20201006142532.2247515-1-lars.povlsen@microchip.com> <20201006142532.2247515-3-lars.povlsen@microchip.com> <CACRpkda+OSgma3E0XxXUk8a2yrn5Hpu3a47cBN50rOkoSMkiwQ@mail.gmail.com>
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [RESEND PATCH v3 2/3] pinctrl: pinctrl-mchp-sgpio: Add pinctrl driver for Microsemi Serial GPIO
-In-Reply-To: <CACRpkda+OSgma3E0XxXUk8a2yrn5Hpu3a47cBN50rOkoSMkiwQ@mail.gmail.com>
-Date:   Thu, 8 Oct 2020 12:57:39 +0200
-Message-ID: <87ft6px9wc.fsf@soft-dev15.microsemi.net>
+        id S1729703AbgJHLCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 07:02:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729123AbgJHLCp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 07:02:45 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A193BC0613D2
+        for <devicetree@vger.kernel.org>; Thu,  8 Oct 2020 04:02:45 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id x16so3991033pgj.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 04:02:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=seYFO3MZi0exVs/ZUxcuhNhvgzjGR2rTrbYBZtZEJqA=;
+        b=kMyxFGgBawxNBTQkES346ihp5Px1Yewo0rFQz6YH6VmOiboGAuW+Kc7SatGALM65E0
+         iT7DA4ut81fCnHG53ACbd2vu34dEZt/jAsbai6qqt17HAlTY+4prLKD5NUX9C8CMaYvJ
+         9RjhhL8f+09SPFEHjXfh+qlAghK5R1SmwXPAKuaVyXPJMtWeTQdCZcP0F5Lc6BvXWxYJ
+         fVeS6xoGB+hlBizvf9oPRFdHnG0QTdXc8u/4In2veNI0XJs1J84buFuAh/xIHy47ZFk4
+         r/HiywwhpNlOyDBX80X5tKVXy4JNljsxJzA9cGD6qr0tkGXNNqF7WXoOli+64cPW9BwG
+         aXYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=seYFO3MZi0exVs/ZUxcuhNhvgzjGR2rTrbYBZtZEJqA=;
+        b=qjCTuQmHP7uQp9gyFF7JQirinMz5w+rm1IX3NnrZQuUuRMtyDSV1FyUHPXfI1CazvT
+         M0irygWvcH2zutRdOqZLF7g42qh2agKu46zOFnhAGJLK6J9w0mO46XGsHZs6NvgztjlL
+         O8qQP8cQss5R2Ewazcklg3KcJ3hwJVyYataGv6mOAcWAvOC1R/2LiBnPdVIwxkNB/0Fg
+         BU4AelhNfnLPeAj6W1lQaUjSmg53Fby+l+fbkHq3cgjjQXXus2a9Y0DqLeMcqOCIcuHs
+         aMgzMg7xI+G48PZVz2ZE0jsQDxvwtgdKA+jRJChhdn62Z0ztjjBASbfo2qhv73ewXRIT
+         9pPw==
+X-Gm-Message-State: AOAM530q/Y0r5UdCsLv57NwTMz7JdXDI0SjyrIILxvpmzLo3lmc90wWq
+        j4+h43N6b+4bnYbyiKKnVeoygw==
+X-Google-Smtp-Source: ABdhPJxjpMounYBj09y8+gSGlN9nIF2DacFiUHEb7lVsdfQZ7veWAJwaqYxBeajp2YolegGCcyBJ+Q==
+X-Received: by 2002:a63:ec4c:: with SMTP id r12mr6743483pgj.74.1602154965062;
+        Thu, 08 Oct 2020 04:02:45 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id v3sm7015641pjk.23.2020.10.08.04.02.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Oct 2020 04:02:44 -0700 (PDT)
+Date:   Thu, 8 Oct 2020 16:32:41 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, daniel.lezcano@linaro.org,
+        morten.rasmussen@arm.com, chris.redpath@arm.com
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+Message-ID: <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
+References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
+ <20200924095347.32148-3-nicola.mazzucato@arm.com>
+ <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
+ <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07-10-20, 13:58, Nicola Mazzucato wrote:
+> Hi Viresh,
+> 
+> performance controls is what is exposed by the firmware through a protocol that
+> is not capable of describing hardware (say SCMI). For example, the firmware can
+> tell that the platform has N controls, but it can't say to which hardware they
+> are "wired" to. This is done in dt, where, for example, we map these controls
+> to cpus, gpus, etc.
+> 
+> Let's focus on cpus.
+> 
+> Normally we would have N of performance controls (what comes from f/w)
+> that that correspond to hardware clock/dvfs domains.
+> 
+> However, some firmware implementations might benefit from having finer
+> grained information about the performance requirements (e.g.
+> per-CPU) and therefore choose to present M performance controls to the
+> OS. DT would be adjusted accordingly to "wire" these controls to cpus
+> or set of cpus.
+> In this scenario, the f/w will make aggregation decisions based on the
+> requests it receives on these M controls.
+> 
+> Here we would have M cpufreq policies which do not necessarily reflect the
+> underlying clock domains, thus some s/w components will underperform
+> (EAS and thermal, for example).
+> 
+> A real example would be a platform in which the firmware describes the system
+> having M per-cpu control, and the cpufreq subsystem will have M policies while
+> in fact these cpus are "performance-dependent" each other (e.g. are in the same
+> clock domain).
 
-Linus Walleij writes:
+If the CPUs are in the same clock domain, they must be part of the
+same cpufreq policy.
 
-> Hi Lars!
->
-> Thanks for the update, this looks much improved!
+> This performance dependency information is essential for some
+> components that take information from the cpufreq policy.
+> 
+> To restore functionality we can use the optional node
+> 'cpu-performance-dependencies' in dt which will provide such dependency
+> information and we can add a new cpumask 'dependency_cpus' in policy.
+> 
+> Hope it gives some clarity.
 
-Glad you like it! It's been a difficult birth...
+Some, but I am still confused :(
 
->
-> Some further hints at things I saw here:
->
-> On Tue, Oct 6, 2020 at 4:25 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
->
->> This adds a pinctrl driver for the Microsemi/Microchip Serial GPIO
->> (SGPIO) device used in various SoC's.
->>
->> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
->
->> +       /* 2 banks: IN/OUT */
->> +       struct {
->> +               struct gpio_chip gpio;
->> +               struct pinctrl_desc pctl_desc;
->> +               struct pinctrl_dev *pctl_dev;
->> +       } bank[2];
->
-> Is it really good to use index [0,1] to refer to these?
-> Isnt it easier to do something like:
->
-> struct sgpio_bank {
->          struct gpio_chip gpio;
->          struct pinctrl_desc pctl_desc;
->          struct pinctrl_dev *pctl_dev;
-> };
->
-> struct sgpio_priv {
->         (...)
->         struct sgpio_bank in;
->         struct sgpio_bank out;
->         (...)
-> };
->
-> This way you I think the code becomes clearer.
->
-
-I have done the change as suggested, and I think your right - looks
-better. Also helped loose the "is_input" helper functions.
-
->> +static inline bool sgpio_pctl_is_input(struct sgpio_priv *priv,
->> +                                      struct pinctrl_dev *pctl)
->> +{
->> +       /* 1st index is input */
->> +       return pctl == priv->bank[0].pctl_dev;
->> +}
->> +
->> +static inline bool sgpio_gpio_is_input(struct sgpio_priv *priv,
->> +                                      struct gpio_chip *gc)
->> +{
->> +       /* 1st index is input */
->> +       return gc == &priv->bank[0].gpio;
->> +}
->
-> Isn't it easier to just add a
->
-> bool is_input;
->
-> to the struct gpio_bank?
-
-Yes, did that.
-
->
->> +static inline u32 sgpio_readl(struct sgpio_priv *priv, u32 rno, u32 off)
->> +{
->> +       u32 __iomem *reg = &priv->regs[priv->properties->regoff[rno] + off];
->> +
->> +       return readl(reg);
->> +}
->> +
->> +static inline void sgpio_writel(struct sgpio_priv *priv,
->> +                               u32 val, u32 rno, u32 off)
->> +{
->> +       u32 __iomem *reg = &priv->regs[priv->properties->regoff[rno] + off];
->> +
->> +       writel(val, reg);
->> +}
->> +
->> +static inline void sgpio_clrsetbits(struct sgpio_priv *priv,
->> +                                   u32 rno, u32 off, u32 clear, u32 set)
->> +{
->> +       u32 __iomem *reg = &priv->regs[priv->properties->regoff[rno] + off];
->> +       u32 val = readl(reg);
->> +
->> +       val &= ~clear;
->> +       val |= set;
->> +
->> +       writel(val, reg);
->> +}
->
-> These accessors are somewhat re-implementing regmap-mmio, especially
-> the clrsetbits. I would consider just creating a regmap for each
-> struct sgpio_bank and manipulate the register through that.
-> (Not any requirement just a suggestion.)
->
-
-Humm, not sure if these few functions warrants using regmap. I'll have a
-closer look.
-
->> +static void sgpio_output_set(struct sgpio_priv *priv,
->> +                            struct sgpio_port_addr *addr,
->> +                            int value)
->> +{
->> +       u32 mask = 3 << (3 * addr->bit);
->> +       value = (value & 3) << (3 * addr->bit);
->
-> I would spell it out a bit so it becomes clear what is going in
-> and use the bits helpers.
->
-> value & 3 doesn't make much sense since value here is always
-> 0 or 1. Thus if value is 1 it in effect becomes value = 1 << (3 * addr->bit)
-> so with the above helper bit:
->
-> unsigned int bit = 3 * addr->bit;
-> u32 mask = GENMASK(bit+1, bit);
-> u32 val = BIT(bit);
->
-> This way it becomes clear that you set the output usin the lower
-> of the two bits.
->
-> Also note that I use val rather than value to avoid overwriting
-> the parameter: it is legal but confusing. Let the compiler optimize
-> register use.
->
-
-I will change as suggested.
-
->> +static int sgpio_output_get(struct sgpio_priv *priv,
->> +                           struct sgpio_port_addr *addr)
->> +{
->> +       u32 portval = sgpio_readl(priv, REG_PORT_CONFIG, addr->port);
->> +       int ret;
->> +
->> +       ret = SGPIO_X_PORT_CFG_BIT_SOURCE(priv, portval);
->> +       ret = !!(ret & (3 << (3 * addr->bit)));
->
-> Is the output direction really controlled by both bits?
->
-> ret = !!(ret & (BIT(3 * addr->bit))); ?
->
-
-The 3 bits are actually "mode" not direction. The direction is fixed as
-described earlier.
-
-0: Forced 0
-1: Forced 1
-2: Blink mode 0
-3: Blink mode 1
-4: Link activity blink mode 0
-5: Link activity blink mode 1
-
-But you are still right the (forced) _value_ can still be read using
-just the first bit. I will change to using just the first bit.
-
->> +static int microchip_sgpio_get_direction(struct gpio_chip *gc, unsigned int gpio)
->> +{
->> +       struct sgpio_priv *priv = gpiochip_get_data(gc);
->> +
->> +       return sgpio_gpio_is_input(priv, gc); /* 0=out, 1=in */
->
-> You can use the #defines from <linux/gpio/driver.h> if you want to be explicit:
->
-> return sgpio_gpio_is_input(priv, gc) ? GPIO_LINE_DIRECTION_IN :
-> GPIO_LINE_DIRECTION_OUT;
->
-
-Yes, good suggestion. Also using bank->is_input now.
-
->> +static int microchip_sgpio_of_xlate(struct gpio_chip *gc,
->> +                              const struct of_phandle_args *gpiospec,
->> +                              u32 *flags)
->> +{
->> +       struct sgpio_priv *priv = gpiochip_get_data(gc);
->> +       int pin;
->> +
->> +       if (gpiospec->args[0] > SGPIO_BITS_PER_WORD ||
->> +           gpiospec->args[1] > priv->bitcount)
->> +               return -EINVAL;
->> +
->> +       pin = gpiospec->args[1] + (gpiospec->args[0] * priv->bitcount);
->> +
->> +       if (pin > gc->ngpio)
->> +               return -EINVAL;
->> +
->> +       if (flags)
->> +               *flags = gpiospec->args[2];
->> +
->> +       return pin;
->> +}
->
-> I'm still not convinced that you need the flags in args[2].
->
-> Just using the default of_gpio_simple_xlate() with one flag
-> should be fine. But I will go and review the bindings to figure
-> this out.
->
-
-Ok, I just assumed the std GPIO flags in args[2] were kind of mandatory,
-I mean polarity would be needed?
-
-F.ex. a GPIO (led) looks like this now:
-
-    led@0 {
-            label = "eth60:yellow";
-            gpios = <&sgpio_out1 28 1 GPIO_ACTIVE_LOW>;
-            default-state = "off";
-    };
-
->> +       gc->of_xlate            = microchip_sgpio_of_xlate;
->> +       gc->of_gpio_n_cells     = 3;
->
-> So I'm sceptical to this.
->
-> Why can't you just use the pin index in cell 0 directly
-> and avoid cell 1?
->
-
-You scepticism has surfaced before :-). The (now) 2 indices relates to
-how the hardware address signals.
-
-Each signal/pin is addressed by port, bit number and direction. We now
-have the direction encoded in the bank/phandle.
-
-While it would be possible to just produce a linear range of (32 *
-width), hardware designs and documentation use pXXbY (as "p28b1" above),
-making the cross reference much better using the 2 indices when
-specifying a pin (as opposed to using f.ex. value "60" in the example).
-
-Hope this helps.
-
-Thank you for your comments, I will refresh later today.
-
----Lars
-
-> Yours,
-> Linus Walleij
+Can you give a real example, with exact number of CPUs, how they share
+clocks/voltage domains and what else the firmware needs in terms of
+performance-domains ? That may make it easier for me to understand it.
 
 -- 
-Lars Povlsen,
-Microchip
+viresh
