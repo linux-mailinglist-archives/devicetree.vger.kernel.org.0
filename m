@@ -2,67 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8E1286FBB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 09:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F983286FDE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 09:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725979AbgJHHpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 03:45:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60268 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725899AbgJHHpR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 03:45:17 -0400
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4B9A02184D;
-        Thu,  8 Oct 2020 07:45:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602143116;
-        bh=Cht0AAlXCeqIAyO4xP3T6BPPZYtciZXHc+YFx0n8WOg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YmjRIAUMIbprCKDN16qg6QaLwl/mO/PO7bjszExYHGwtlHqYqTYrRSmDShDARFHqG
-         DS3QtwSKpXbR2ip8bgE1yv4UVQa3d5qYNYgvdzNkv0xftq6AORoj8GYXrzIs8tKqI1
-         7Pi41pzPk0jAs6j/xw7QhnHtfwICvzIVTAFvafn0=
-Date:   Thu, 8 Oct 2020 09:46:00 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Badhri Jagan Sridharan <badhri@google.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        id S1728108AbgJHHup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 03:50:45 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:57236 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725899AbgJHHup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 03:50:45 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 3146E1C0BA4; Thu,  8 Oct 2020 09:50:42 +0200 (CEST)
+Date:   Thu, 8 Oct 2020 09:50:40 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Alexander Dahl <post@lespocky.de>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Prashant Malani <pmalani@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, Amelie Delaunay <amelie.delaunay@st.com>
-Subject: Re: [PATCH v10 00/15] TCPM support for FRS and AutoDischarge
- Disconnect
-Message-ID: <20201008074600.GA247486@kroah.com>
-References: <20201008061556.1402293-1-badhri@google.com>
+        Alexander Dahl <ada@thorsis.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        Jeff LaBundy <jeff@labundy.com>
+Subject: Re: [PATCH v7 03/12] dt-bindings: mfd: Fix schema warnings for
+ pwm-leds
+Message-ID: <20201008075039.GA32424@amd>
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-4-post@lespocky.de>
+ <20201007100359.GC12224@duo.ucw.cz>
+ <20201008073337.GG1763265@dell>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="+QahgC5+KEYLbs62"
 Content-Disposition: inline
-In-Reply-To: <20201008061556.1402293-1-badhri@google.com>
+In-Reply-To: <20201008073337.GG1763265@dell>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 11:15:41PM -0700, Badhri Jagan Sridharan wrote:
-> Hi,
-> 
-> Made two changes:
-> 
-> 1. Added "additionalProperties: false" as suggested by Rob Herring in
-> https://lore.kernel.org/linux-usb/20201005144618.GA154206@bogus/
-> 
-> 2. Removed FRS dts binding constants to address Rob Herring's comment in
-> https://lore.kernel.org/linux-usb/20201006182940.GA2574941@bogus/
 
-That worked better.  I've applied the patches that Heikki had reviewed
-to my usb-testing branch now.
+--+QahgC5+KEYLbs62
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-thanks,
+Hi!
 
-greg k-h
+> > > The node names for devices using the pwm-leds driver follow a certain
+> > > naming scheme (now).  Parent node name is not enforced, but recommend=
+ed
+> > > by DT project.
+> > >=20
+> > >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.e=
+xample.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-=
+[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> > >         From schema: /home/alex/src/linux/leds/Documentation/devicetr=
+ee/bindings/leds/leds-pwm.yaml
+> > >=20
+> > > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> >=20
+> > Okay, so I need Rob's ack here, I guess... and rest of the series is
+> > not really for my tree.
+>=20
+> This patch is not for your tree either. ;)
+
+Ah, right. Usually we have one patch series for one maintainer...
+
+Best regards,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--+QahgC5+KEYLbs62
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl9+xM8ACgkQMOfwapXb+vJWHQCcCGr6snOGoT8t/94nyB5nrCBQ
+3PEAoL/19wb0n+FwjiISjFGYYOVWW1eO
+=WTE5
+-----END PGP SIGNATURE-----
+
+--+QahgC5+KEYLbs62--
