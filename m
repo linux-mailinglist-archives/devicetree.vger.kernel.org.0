@@ -2,65 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6A9287BDF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 20:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24C6E287C32
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 21:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729337AbgJHSoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 14:44:20 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:37468 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729331AbgJHSoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 14:44:19 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t77so7407804oie.4;
-        Thu, 08 Oct 2020 11:44:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Nhaf7VstnY9U3VG5uxKi48X4aznhV2MNfNHXbJ6mppE=;
-        b=cOsX1+Ribdoa/F+wkyfMkUIQ2THXgCEbmsOp+oA0V8XyxhHbAItmFQQ/MDyH7cfSQZ
-         WGnJHysG/RJfwshmlb5OspFwUf9ZcIEI19wD9XlIYe16XFqnu1Xwoxg9uzkP6dtN7AuS
-         VGKECsdEKrxja4Jcrs2V6e5/5TEcqp6bx7M+C9F4tD/ireF0taAf3JYA+dhxscPpr1dV
-         L+aEFtSr/MkBjbpSG+hkI9LyTgiOHBG+m2WBMbuh6tN/aj8lV80LRgubS9I33dfxIkPR
-         yVagwr83zn1re/dv+ijzzIlvFNTJCKsJGLfNFGl8Bpxh/TgAeSFlZoHcAgzotIXmi/3h
-         VdqQ==
-X-Gm-Message-State: AOAM532+ekTaO2HZ15O2nDGNLJkcHAn10nVwlVY2Xeo2JEkXguBVUz3Z
-        4TkwcuuxvXlhJNSLfqOc2H8ogS2119/V
-X-Google-Smtp-Source: ABdhPJzZgSafOved2t30rvjMdGvMLMYEG3EKmM30Dj0ir1oV15GOGx3lVl4CTO2MTirABiTeUKRQ8g==
-X-Received: by 2002:aca:b554:: with SMTP id e81mr116572oif.105.1602182659228;
-        Thu, 08 Oct 2020 11:44:19 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 68sm4623112otu.33.2020.10.08.11.44.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2020 11:44:18 -0700 (PDT)
-Received: (nullmailer pid 2425486 invoked by uid 1000);
-        Thu, 08 Oct 2020 18:44:17 -0000
-Date:   Thu, 8 Oct 2020 13:44:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Naoki Hayama <naoki.hayama@lineo.co.jp>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/6] dt-bindings: pinctrl: sirf: Fix typo abitrary
-Message-ID: <20201008184417.GA2425438@bogus>
-References: <614fe604-ab8e-21cb-0c3a-db6ddeff2a4e@lineo.co.jp>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <614fe604-ab8e-21cb-0c3a-db6ddeff2a4e@lineo.co.jp>
+        id S1727800AbgJHTPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 15:15:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:45306 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726469AbgJHTPA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 15:15:00 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 845751063;
+        Thu,  8 Oct 2020 12:14:59 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id F167A3F70D;
+        Thu,  8 Oct 2020 12:14:57 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        ALKML <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 0/4] mailbox: arm_mhu: Add ARM MHU doorbell controller driver
+Date:   Thu,  8 Oct 2020 20:14:48 +0100
+Message-Id: <20201008191452.38672-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Oct 2020 17:47:42 +0900, Naoki Hayama wrote:
-> Fix comment typo.
-> s/abitrary/arbitrary/
-> 
-> Signed-off-by: Naoki Hayama <naoki.hayama@lineo.co.jp>
-> ---
->  Documentation/devicetree/bindings/pinctrl/pinctrl-atlas7.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Hi,
 
-Applied, thanks!
+These series adds ARM MHU doorbell controller driver based on the
+discussion[1]. The DT patches are just repost from Viresh's last posting[2]
+
+Regards,
+Sudeep
+
+v1[3]->v2:
+	- No updates to binding patches(1-2)
+	- Fixed memory leak and improved logic to find free channel reusing
+	  mhu_db_mbox_to_channel as suggested by Jassi
+
+[1] https://lore.kernel.org/r/20200909044618.deyx37pzocxiga7u@vireshk-i7
+[2] https://lore.kernel.org/r/3874de094d193a08624a00a35067a3237e0b42b1.1600249102.git.viresh.kumar@linaro.org
+[3] https://lore.kernel.org/r/20200928114445.19689-1-sudeep.holla@arm.com
+
+Sudeep Holla (3):
+  dt-bindings: mailbox: add doorbell support to ARM MHU
+  mailbox: arm_mhu: Match only if compatible is "arm,mhu"
+  mailbox: arm_mhu: Add ARM MHU doorbell driver
+
+Viresh Kumar (1):
+  dt-bindings: mailbox : arm,mhu: Convert to Json-schema
+
+ .../devicetree/bindings/mailbox/arm,mhu.yaml  | 135 +++++++
+ .../devicetree/bindings/mailbox/arm-mhu.txt   |  43 ---
+ drivers/mailbox/Makefile                      |   2 +-
+ drivers/mailbox/arm_mhu.c                     |   3 +
+ drivers/mailbox/arm_mhu_db.c                  | 354 ++++++++++++++++++
+ 5 files changed, 493 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/arm-mhu.txt
+ create mode 100644 drivers/mailbox/arm_mhu_db.c
+
+-- 
+2.17.1
+
