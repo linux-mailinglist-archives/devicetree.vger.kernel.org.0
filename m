@@ -2,105 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A536A28748E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 14:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC5E72874BE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 15:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730117AbgJHMxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 08:53:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729722AbgJHMxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 08:53:01 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813E7C061755
-        for <devicetree@vger.kernel.org>; Thu,  8 Oct 2020 05:53:01 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id y11so6328278lfl.5
-        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 05:53:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FxfUEUi6zktpxu/mlP33p6/3OJKcxiReX3Cme3ajLG0=;
-        b=YeojNDCsQODyiJZ/R38+vxn5EJw4k/ERri6Mi8QyXr5m4Me+jTQIAhUUzsaAahWU+X
-         LszzF8mWkioTVYMHddjpOouqAwORZjKguhbls8m0LPvph5zE8AIg86ggT8Ty1xAA8li/
-         18acI8/qw2KPO2xPrPxxe6+D3UdNi4tGtr/kMWBJ0c2mrBwNSoaU1i8hYT6Sz0b1/QbV
-         ZJpD+T/dy4jbFyXOEUtwtcVkw9iXORXjSzA9UqBpf2aIySgyKpvSL7EgImAtb9Kzf50M
-         eE0FGwFohyGIC55kjvSnsDVuNAFxtcRaSrHtjaEfHfSQEziNufD6N8jd28C1D9Oarvlv
-         On4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FxfUEUi6zktpxu/mlP33p6/3OJKcxiReX3Cme3ajLG0=;
-        b=TTbmyD+pVPprUQmBWe16V/GXe7DL3Sc/JYvoLNlzMzJhyfFhd3A3kqltMFc++/bxAV
-         KY8/6+pNPbw6QgxNp+JCGDKuJWePE6ICxVBCVgQCGsWMO/017+YKtttf3KQHSo6oOd4p
-         ml4hfc2zmQ0TNL1Hd9r9DsplKbW774AkofXqaei7eQM+gZZdoQ4IHEU6PD0PRlKSqP60
-         yGImyH+apeX+4TPBrtt0SXvYqjWzUTQgsfq5K66sNA4OWcJTBqtUGeTRvHn+boJ11y9k
-         ZmKl6yLfntZRsnFbDM14gr3BmMjumyJ+XveDOO8M9WlzpJOVl5ENmT7dKjxdvqy5/4XD
-         6VQw==
-X-Gm-Message-State: AOAM532lXQzuayTnmacp5omuxemJLnKHQAPbk8/T2Cy8LGld5+og7uQ0
-        Ygpx9GrnIWwezPNHM78FBZbShhZ9fTfdy1d3Osa1QQ==
-X-Google-Smtp-Source: ABdhPJxWSJs3kvo45P2YLqWbDVciugobKkAjYEoD9pfLA4jMPAe/NHoL9+PN3M50sfXIsT8DxeHkPtRiH5Tv6Jpo8p4=
-X-Received: by 2002:ac2:483b:: with SMTP id 27mr2398747lft.441.1602161579900;
- Thu, 08 Oct 2020 05:52:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200930092053.2114-1-mike.looijmans@topic.nl>
- <CACRpkdbsYcmv9m2EiQNgPDZ0MdjPnWTxXvnqATVPvWpB=8Oqkw@mail.gmail.com>
- <20201006193235.GA2689027@bogus> <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.e0bfef86-33da-4b33-b856-e32dbc3f2992@emailsignatures365.codetwo.com>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.6462df9b-cbe0-4101-9ae9-b09faa895eb1@emailsignatures365.codetwo.com>
- <CACRpkdZmYKn1JU8PeA+GAJDuVEtWQrH-3KijH4+df88Bt=iZtA@mail.gmail.com> <bbc77660-40b3-72b2-4829-4f1d53cbfd2b@topic.nl>
-In-Reply-To: <bbc77660-40b3-72b2-4829-4f1d53cbfd2b@topic.nl>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 8 Oct 2020 14:52:48 +0200
-Message-ID: <CACRpkdZ6W4=MHmsAzoyzDhKu4Btgg73PZjOrOb7UV64OSHWn=Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: pca953x: Add support for the
- NXP PCAL9554B/C
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        id S1729915AbgJHNCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 09:02:41 -0400
+Received: from mx.hs-offenburg.de ([141.79.11.25]:53158 "EHLO
+        mx.hs-offenburg.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729869AbgJHNCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 09:02:41 -0400
+X-Greylist: delayed 387 seconds by postgrey-1.27 at vger.kernel.org; Thu, 08 Oct 2020 09:02:39 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mx.hs-offenburg.de (Postfix) with ESMTP id 524E6732FA01;
+        Thu,  8 Oct 2020 14:56:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=hs-offenburg.de;
+         h=content-transfer-encoding:mime-version:user-agent
+        :content-type:content-type:references:in-reply-to:date:date:from
+        :from:subject:subject:message-id:received:received; s=default;
+         t=1602161769; x=1603025770; bh=XkqmOKW+XIirgzCXLOBYOliZX8Nwgd/g
+        wIDmBWDe3XA=; b=ZrZR7p01oX3psUP4NrE7syIPjfyC+CBJ8gcUKCpLpCnFN4uN
+        kNiUU0efGm+1/ARjtltGzkvD1FktcgnsnFzrSvaKcPIKQh5GNUbofxNljZYGd3ya
+        MGRHck4z31M0r5O16LPS3wO12zbYcoNsSc+iByFeq8PVW4cATUAdHi6Doac=
+X-Virus-Scanned: amavisd-new at hs-offenburg.de
+Received: from mx.hs-offenburg.de ([127.0.0.1])
+        by localhost (mx.hs-offenburg.de [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id XdD_Bk_1I2uT; Thu,  8 Oct 2020 14:56:09 +0200 (CEST)
+Received: from h25-119.emi.hs-offenburg.de (unknown [141.79.25.119])
+        by mx.hs-offenburg.de (Postfix) with ESMTPSA id 5FDE0732F9FE;
+        Thu,  8 Oct 2020 14:56:09 +0200 (CEST)
+Message-ID: <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
+Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
+ hardware timestamping
+From:   Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>
+To:     Kurt Kanzenbach <kurt@linutronix.de>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        ilias.apalodimas@linaro.org
+Date:   Thu, 08 Oct 2020 14:55:57 +0200
+In-Reply-To: <87lfghhw9u.fsf@kurt>
+References: <20201004143000.blb3uxq3kwr6zp3z@skbuf> <87imbn98dd.fsf@kurt>
+         <20201006072847.pjygwwtgq72ghsiq@skbuf> <87tuv77a83.fsf@kurt>
+         <20201006133222.74w3r2jwwhq5uop5@skbuf> <87r1qb790w.fsf@kurt>
+         <20201006140102.6q7ep2w62jnilb22@skbuf> <87lfgiqpze.fsf@kurt>
+         <20201007105458.gdbrwyzfjfaygjke@skbuf> <87362pjev0.fsf@kurt>
+         <20201008094440.oede2fucgpgcfx6a@skbuf> <87lfghhw9u.fsf@kurt>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 8, 2020 at 9:36 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
-> On 07-10-2020 11:58, Linus Walleij wrote:
-> > On Tue, Oct 6, 2020 at 9:32 PM Rob Herring <robh@kernel.org> wrote:
-> >> On Wed, Sep 30, 2020 at 11:50:38AM +0200, Linus Walleij wrote:
-> >>> On Wed, Sep 30, 2020 at 11:21 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
-> >>>
-> >>>> The NXP PCAL9554B is a variant of the PCA953x GPIO expander,
-> >>>> with 8 GPIOs, latched interrupts and some advanced configuration
-> >>>> options. The "C" version only differs in I2C address.
-> >>>>
-> >>>> This adds the entry to the devicetree bindings.
-> >>>>
-> >>>> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> >>>> ---
-> >>>> v2: Split devicetree and code into separate patches
-> >>>
-> >>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> >>>
-> >>> This patch 1/2 does not apply to my tree, I suppose Rob has
-> >>> to apply it?
-> >>
-> >> Nope, no changes in my tree.
-> >
-> > Weird, OK Mike apply this wherever it should be applied or rebase
-> > on my GPIO tree and resend if you want me to apply it.
-> >
->
-> Could you provide me a git URL + branch to rebase it on, i'll send you a new
-> patch then.
+Hello dears,
 
-It's this:
-https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-gpio.git/log/?h=devel
+On Thu, 2020-10-08 at 12:01 +0200, Kurt Kanzenbach wrote:
+> On Thu Oct 08 2020, Vladimir Oltean wrote:
+> > On Thu, Oct 08, 2020 at 10:34:11AM +0200, Kurt Kanzenbach wrote:
+> > > On Wed Oct 07 2020, Vladimir Oltean wrote:
+> > > > On Wed, Oct 07, 2020 at 12:39:49PM +0200, Kurt Kanzenbach
+> > > > wrote:
+> > > > > For instance the hellcreek switch has actually three ptp
+> > > > > hardware
+> > > > > clocks and the time stamping can be configured to use either
+> > > > > one of
+> > > > > them.
+> > > > 
+> > > > The sja1105 also has a corrected and an uncorrected PTP clock
+> > > > that can
+> > > > take timestamps. Initially I had thought I'd be going to spend
+> > > > some time
+> > > > figuring out multi-PHC support, but now I don't see any
+> > > > practical reason
+> > > > to use the uncorrected PHC for anything.
+> > > 
+> > > Just out of curiosity: How do you implement 802.1AS then? My
+> > > understanding is that the free-running clock has to be used for
+> > > the
+> > 
+> > Has to be? I couldn't find that wording in IEEE 802.1AS-2011.
+> 
+> It doesn't has to be, it *should* be. That's at least the outcome we
+> had
+> after lots of discussions. Actually Kamil (on Cc) is the expert on
+> this
+> topic.
 
-git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-gpio.git devel
+According to 802.1AS-2011 (10.1.1): "The LocalClock entity is a free-
+running clock (see 3.3) that provides a common time to the time-aware
+system, relative to an arbitrary epoch.", "... All timestamps are taken
+relative to the LocalClock entity". The same statement holds true for
+802.1AS-2020 (10.1.2.1).
 
-Yours,
-Linus Walleij
+> > > calculation of the peer delays and such meaning there should be a
+> > > way to
+> > > get access to both PHCs or having some form of cross timestamping
+> > > available.
+> > > 
+> > > The hellcreek switch can take cross snapshots of all three ptp
+> > > clocks in
+> > > hardware for that purpose.
+> > 
+> > Well, at the end of the day, all the other TSN offloads (tc-taprio,
+> > tc-gate) will still have to use the synchronized PTP clock, so what
+> > we're doing is we're simply letting that clock be synchronized by
+> > ptp4l.
+> 
+> Yes, the synchronized clock is of course needed for the traffic
+> scheduling and so on. This is what we do here in this code as well.
+> Only
+> the synchronized one is exported to user space and used. However, the
+> multi PHCs issue should be addressed as well at some point.
+> 
+> > > > > > So when you'll poll for TX timestamps, you'll receive a TX
+> > > > > > timestamp from the PHY and another one from the switch, and
+> > > > > > those will
+> > > > > > be in a race with one another, so you won't know which one
+> > > > > > is which.
+> > > > > 
+> > > > > OK. So what happens if the driver will accept to disable
+> > > > > hardware
+> > > > > timestamping? Is there anything else that needs to be
+> > > > > implemented? Are
+> > > > > there (good) examples?
+> > > > 
+> > > > It needs to not call skb_complete_tx_timestamp() and friends.
+> > > > 
+> > > > For PHY timestamping, it also needs to invoke the correct
+> > > > methods for RX
+> > > > and for TX, where the PHY timestamping hooks will get called. I
+> > > > don't
+> > > > think that DSA is compatible yet with PHY timestamping, but it
+> > > > is
+> > > > probably a trivial modification.
+> > > 
+> > > Hmm? If DSA doesn't support PHY timestamping how are other DSA
+> > > drivers
+> > > dealing with it then? I'm getting really confused.
+> > 
+> > They aren't dealing with it, of course.
+> > 
+> > > Furthermore, there is no hellcreek hardware available with
+> > > timestamping
+> > > capable PHYs. How am I supposed to even test this?
+> > > 
+> > > For now, until there is hardware available, PHY timestamping is
+> > > not
+> > > supported with the hellcreek switch.
+> > 
+> > I was just pointing out that this is something you'll certainly
+> > have to
+> > change if somebody will want PHY timestamping.
+> 
+> Understood.
+> 
+> > Even without hardware, you _could_ probably test that DSA is doing
+> > the
+> > right thing by simply adding the PTP timestamping ops to a PHY
+> > driver
+> > that you own, and inject dummy timestamps. The expectation becomes
+> > that
+> > user space gets those dummy timestamps, and not the ones emitted by
+> > your
+> > switch.
+> 
+> Of course it can be mocked. Whenever somebody wants to do PHY
+> timestamping with a hellcreek switch this issue can be re-visited.
+> 
+> Thanks,
+> Kurt
+
