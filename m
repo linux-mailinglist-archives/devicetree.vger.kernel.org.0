@@ -2,123 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8C1F287311
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 13:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEF2D287339
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 13:23:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729703AbgJHLCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 07:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729123AbgJHLCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 07:02:45 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A193BC0613D2
-        for <devicetree@vger.kernel.org>; Thu,  8 Oct 2020 04:02:45 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id x16so3991033pgj.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 04:02:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=seYFO3MZi0exVs/ZUxcuhNhvgzjGR2rTrbYBZtZEJqA=;
-        b=kMyxFGgBawxNBTQkES346ihp5Px1Yewo0rFQz6YH6VmOiboGAuW+Kc7SatGALM65E0
-         iT7DA4ut81fCnHG53ACbd2vu34dEZt/jAsbai6qqt17HAlTY+4prLKD5NUX9C8CMaYvJ
-         9RjhhL8f+09SPFEHjXfh+qlAghK5R1SmwXPAKuaVyXPJMtWeTQdCZcP0F5Lc6BvXWxYJ
-         fVeS6xoGB+hlBizvf9oPRFdHnG0QTdXc8u/4In2veNI0XJs1J84buFuAh/xIHy47ZFk4
-         r/HiywwhpNlOyDBX80X5tKVXy4JNljsxJzA9cGD6qr0tkGXNNqF7WXoOli+64cPW9BwG
-         aXYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=seYFO3MZi0exVs/ZUxcuhNhvgzjGR2rTrbYBZtZEJqA=;
-        b=qjCTuQmHP7uQp9gyFF7JQirinMz5w+rm1IX3NnrZQuUuRMtyDSV1FyUHPXfI1CazvT
-         M0irygWvcH2zutRdOqZLF7g42qh2agKu46zOFnhAGJLK6J9w0mO46XGsHZs6NvgztjlL
-         O8qQP8cQss5R2Ewazcklg3KcJ3hwJVyYataGv6mOAcWAvOC1R/2LiBnPdVIwxkNB/0Fg
-         BU4AelhNfnLPeAj6W1lQaUjSmg53Fby+l+fbkHq3cgjjQXXus2a9Y0DqLeMcqOCIcuHs
-         aMgzMg7xI+G48PZVz2ZE0jsQDxvwtgdKA+jRJChhdn62Z0ztjjBASbfo2qhv73ewXRIT
-         9pPw==
-X-Gm-Message-State: AOAM530q/Y0r5UdCsLv57NwTMz7JdXDI0SjyrIILxvpmzLo3lmc90wWq
-        j4+h43N6b+4bnYbyiKKnVeoygw==
-X-Google-Smtp-Source: ABdhPJxjpMounYBj09y8+gSGlN9nIF2DacFiUHEb7lVsdfQZ7veWAJwaqYxBeajp2YolegGCcyBJ+Q==
-X-Received: by 2002:a63:ec4c:: with SMTP id r12mr6743483pgj.74.1602154965062;
-        Thu, 08 Oct 2020 04:02:45 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id v3sm7015641pjk.23.2020.10.08.04.02.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 08 Oct 2020 04:02:44 -0700 (PDT)
-Date:   Thu, 8 Oct 2020 16:32:41 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        morten.rasmussen@arm.com, chris.redpath@arm.com
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+        id S1728732AbgJHLXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 07:23:22 -0400
+Received: from foss.arm.com ([217.140.110.172]:51764 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725871AbgJHLXW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 07:23:22 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AE169D6E;
+        Thu,  8 Oct 2020 04:23:21 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 27BD03F71F;
+        Thu,  8 Oct 2020 04:23:20 -0700 (PDT)
+Date:   Thu, 8 Oct 2020 12:23:14 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Subject: Re: [PATCH v3 0/4] PCI: dwc: Move iATU register mapping to common
+ framework
+Message-ID: <20201008112314.GA1181@e121166-lin.cambridge.arm.com>
+References: <1601444167-11316-1-git-send-email-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <1601444167-11316-1-git-send-email-hayashi.kunihiko@socionext.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-10-20, 13:58, Nicola Mazzucato wrote:
-> Hi Viresh,
+On Wed, Sep 30, 2020 at 02:36:03PM +0900, Kunihiko Hayashi wrote:
+> This moves iATU register mapping in the Keystone driver to common
+> framework. And this adds "iatu" property description to the dt-bindings
+> for UniPhier PCIe host and endpoint controller.
 > 
-> performance controls is what is exposed by the firmware through a protocol that
-> is not capable of describing hardware (say SCMI). For example, the firmware can
-> tell that the platform has N controls, but it can't say to which hardware they
-> are "wired" to. This is done in dt, where, for example, we map these controls
-> to cpus, gpus, etc.
+> This series is split from the previous patches:
+> https://www.spinics.net/lists/linux-pci/msg97608.html
+> "[PATCH v6 0/6] PCI: uniphier: Add features for UniPhier PCIe host controller"
 > 
-> Let's focus on cpus.
+> This has been confirmed with PCIe version 4.80 controller on UniPhier platform.
+> Please comfirm this series on Keystone platform if necessary.
 > 
-> Normally we would have N of performance controls (what comes from f/w)
-> that that correspond to hardware clock/dvfs domains.
+> Changes since v2:
+> - dt-bindings: Fix errors from dt_binding_check
 > 
-> However, some firmware implementations might benefit from having finer
-> grained information about the performance requirements (e.g.
-> per-CPU) and therefore choose to present M performance controls to the
-> OS. DT would be adjusted accordingly to "wire" these controls to cpus
-> or set of cpus.
-> In this scenario, the f/w will make aggregation decisions based on the
-> requests it receives on these M controls.
+> Changes since v1:
+> - Use to_platform_device() instead of of_find_device_by_node()
+> - Add Reviewed-by: line to 4th patch for keystone
+> - dt-bindings: Add description for uniphier-ep
 > 
-> Here we would have M cpufreq policies which do not necessarily reflect the
-> underlying clock domains, thus some s/w components will underperform
-> (EAS and thermal, for example).
+> Kunihiko Hayashi (4):
+>   dt-bindings: PCI: uniphier: Add iATU register description
+>   dt-bindings: PCI: uniphier-ep: Add iATU register description
+>   PCI: dwc: Add common iATU register support
+>   PCI: keystone: Remove iATU register mapping
 > 
-> A real example would be a platform in which the firmware describes the system
-> having M per-cpu control, and the cpufreq subsystem will have M policies while
-> in fact these cpus are "performance-dependent" each other (e.g. are in the same
-> clock domain).
+>  .../bindings/pci/socionext,uniphier-pcie-ep.yaml     | 20 ++++++++++++++------
+>  .../devicetree/bindings/pci/uniphier-pcie.txt        |  1 +
+>  drivers/pci/controller/dwc/pci-keystone.c            | 20 ++++----------------
+>  drivers/pci/controller/dwc/pcie-designware.c         |  5 +++++
+>  4 files changed, 24 insertions(+), 22 deletions(-)
 
-If the CPUs are in the same clock domain, they must be part of the
-same cpufreq policy.
+Applied to pci/dwc, thanks.
 
-> This performance dependency information is essential for some
-> components that take information from the cpufreq policy.
-> 
-> To restore functionality we can use the optional node
-> 'cpu-performance-dependencies' in dt which will provide such dependency
-> information and we can add a new cpumask 'dependency_cpus' in policy.
-> 
-> Hope it gives some clarity.
-
-Some, but I am still confused :(
-
-Can you give a real example, with exact number of CPUs, how they share
-clocks/voltage domains and what else the firmware needs in terms of
-performance-domains ? That may make it easier for me to understand it.
-
--- 
-viresh
+Lorenzo
