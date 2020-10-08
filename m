@@ -2,123 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A18D2876A5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 17:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9DAA2876C1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 17:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730827AbgJHPDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 11:03:22 -0400
-Received: from foss.arm.com ([217.140.110.172]:33758 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730697AbgJHPDU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 11:03:20 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9483E1063;
-        Thu,  8 Oct 2020 08:03:19 -0700 (PDT)
-Received: from localhost (unknown [10.1.199.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 35BAC3F70D;
-        Thu,  8 Oct 2020 08:03:19 -0700 (PDT)
-Date:   Thu, 8 Oct 2020 16:03:17 +0100
-From:   Ionela Voinescu <ionela.voinescu@arm.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        sudeep.holla@arm.com, chris.redpath@arm.com,
-        morten.rasmussen@arm.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201008150317.GB20268@arm.com>
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
+        id S1730882AbgJHPJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 11:09:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730806AbgJHPJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 11:09:56 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5D2C061755;
+        Thu,  8 Oct 2020 08:09:55 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id e22so8639094ejr.4;
+        Thu, 08 Oct 2020 08:09:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mz7ujxNpgZNPhKSQpiot5811hgY+Em16b9dwOzq10cs=;
+        b=SRxtaS0AtGer+J0vhK+LYmmxlivIl0mUUyfkAvhkgWCecI79C2tapJn2EL0ukjyUIT
+         sBJEvcboBUg3uiMvdjp67nPKZIUp0OInqnAkzY1FaxMj1hb5rqGWyMKZrhjZuDE3n/xa
+         VZf+Wn4KQVcX7aFSdDZKX/WNN7SMVmGsHQLKFwXhfE3x5U/R4tBMwtbavCoaQEtMpF7W
+         1j0n7nJjqMlJaPCiGfe6gVmj2k6Mrsf63STQYEQrnMXeeREuiF8EFAgbFW3cWJvHMlpj
+         TuyM78VQwXcqO7khSTPwSJZmW6N9KEU8xMI5+rjTEsfxjXS40o7vtHTkoEMCeyFS/4H2
+         6ZlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mz7ujxNpgZNPhKSQpiot5811hgY+Em16b9dwOzq10cs=;
+        b=pQlYkPNGxatYlqIBtIChdyFfRbjkzvR8VS9OGqOrFLXD0oJGB5CDpQlyxEsfi2PZ7g
+         I4jywRFtr+H0th/xtts8jZKFHk2Cm3TyLBaTqIQc4AiTEq4fErkLwwZBNZvVTnoxMkpj
+         fDOzcRpIvggzDGyjRfTGfe4M8zBCVtytcO1hibOracle7gEt99SSMbTfvlkOjuU5pEG0
+         ktVqdjCW418QrCZddKgfQB4AnTpnMYpag6Od1PIRT8UuJ7zsI/D3of42boG/ryuP0CQB
+         GslzaOO1IfShFgD8dQYcjiWTfHmSKxIo2FshVyqzA9fYu0oFDUBYLthszOdekKC6blS2
+         PH+Q==
+X-Gm-Message-State: AOAM531n5ppmcOSVAfLJPdRgObd8W2mqEN8CU+pDNj7yLe6bzkfKu5aY
+        oj2B8x15PM8YHQMu+bJCvTk=
+X-Google-Smtp-Source: ABdhPJxiy8myepYvwEmljQhBGRrkN1b7gi1vk6j8Oly9ej4MQyqd5eREHSult1j+7Eg5DgRKx8N2kw==
+X-Received: by 2002:a17:906:f0d8:: with SMTP id dk24mr9101321ejb.492.1602169794085;
+        Thu, 08 Oct 2020 08:09:54 -0700 (PDT)
+Received: from skbuf ([188.26.229.171])
+        by smtp.gmail.com with ESMTPSA id z20sm4110861edq.90.2020.10.08.08.09.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Oct 2020 08:09:52 -0700 (PDT)
+Date:   Thu, 8 Oct 2020 18:09:51 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>
+Cc:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
+ hardware timestamping
+Message-ID: <20201008150951.elxob2yaw2tirkig@skbuf>
+References: <87tuv77a83.fsf@kurt>
+ <20201006133222.74w3r2jwwhq5uop5@skbuf>
+ <87r1qb790w.fsf@kurt>
+ <20201006140102.6q7ep2w62jnilb22@skbuf>
+ <87lfgiqpze.fsf@kurt>
+ <20201007105458.gdbrwyzfjfaygjke@skbuf>
+ <87362pjev0.fsf@kurt>
+ <20201008094440.oede2fucgpgcfx6a@skbuf>
+ <87lfghhw9u.fsf@kurt>
+ <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+Hi Kamil,
 
-On Thursday 08 Oct 2020 at 16:32:41 (+0530), Viresh Kumar wrote:
-> On 07-10-20, 13:58, Nicola Mazzucato wrote:
-> > Hi Viresh,
-> > 
-> > performance controls is what is exposed by the firmware through a protocol that
-> > is not capable of describing hardware (say SCMI). For example, the firmware can
-> > tell that the platform has N controls, but it can't say to which hardware they
-> > are "wired" to. This is done in dt, where, for example, we map these controls
-> > to cpus, gpus, etc.
-> > 
-> > Let's focus on cpus.
-> > 
-> > Normally we would have N of performance controls (what comes from f/w)
-> > that that correspond to hardware clock/dvfs domains.
-> > 
-> > However, some firmware implementations might benefit from having finer
-> > grained information about the performance requirements (e.g.
-> > per-CPU) and therefore choose to present M performance controls to the
-> > OS. DT would be adjusted accordingly to "wire" these controls to cpus
-> > or set of cpus.
-> > In this scenario, the f/w will make aggregation decisions based on the
-> > requests it receives on these M controls.
-> > 
-> > Here we would have M cpufreq policies which do not necessarily reflect the
-> > underlying clock domains, thus some s/w components will underperform
-> > (EAS and thermal, for example).
-> > 
-> > A real example would be a platform in which the firmware describes the system
-> > having M per-cpu control, and the cpufreq subsystem will have M policies while
-> > in fact these cpus are "performance-dependent" each other (e.g. are in the same
-> > clock domain).
+On Thu, Oct 08, 2020 at 02:55:57PM +0200, Kamil Alkhouri wrote:
+> Hello dears,
 > 
-> If the CPUs are in the same clock domain, they must be part of the
-> same cpufreq policy.
+> On Thu, 2020-10-08 at 12:01 +0200, Kurt Kanzenbach wrote:
+> > On Thu Oct 08 2020, Vladimir Oltean wrote:
+> > > On Thu, Oct 08, 2020 at 10:34:11AM +0200, Kurt Kanzenbach wrote:
+> > > > On Wed Oct 07 2020, Vladimir Oltean wrote:
+> > > > > On Wed, Oct 07, 2020 at 12:39:49PM +0200, Kurt Kanzenbach
+> > > > > wrote:
+> > > > > > For instance the hellcreek switch has actually three ptp
+> > > > > > hardware
+> > > > > > clocks and the time stamping can be configured to use either
+> > > > > > one of
+> > > > > > them.
+> > > > > 
+> > > > > The sja1105 also has a corrected and an uncorrected PTP clock
+> > > > > that can
+> > > > > take timestamps. Initially I had thought I'd be going to spend
+> > > > > some time
+> > > > > figuring out multi-PHC support, but now I don't see any
+> > > > > practical reason
+> > > > > to use the uncorrected PHC for anything.
+> > > > 
+> > > > Just out of curiosity: How do you implement 802.1AS then? My
+> > > > understanding is that the free-running clock has to be used for
+> > > > the
+> > > 
+> > > Has to be? I couldn't find that wording in IEEE 802.1AS-2011.
+> > 
+> > It doesn't has to be, it *should* be. That's at least the outcome we
+> > had
+> > after lots of discussions. Actually Kamil (on Cc) is the expert on
+> > this
+> > topic.
+> 
+> According to 802.1AS-2011 (10.1.1): "The LocalClock entity is a free-
+> running clock (see 3.3) that provides a common time to the time-aware
+> system, relative to an arbitrary epoch.", "... All timestamps are taken
+> relative to the LocalClock entity". The same statement holds true for
+> 802.1AS-2020 (10.1.2.1).
 
-But cpufreq does not currently support HW_ALL (I'm using the ACPI
-coordination type to describe the generic scenario of using hardware
-aggregation and coordination when establishing the clock rate of CPUs).
+Nice having you part of the discussion.
 
-Adding support for HW_ALL* will involve either bypassing some
-assumptions around cpufreq policies or making core cpufreq changes.
+IEEE 802.1AS-rev draft 8.0, clause F.3 PTP options:
 
-In the way I see it, support for HW_ALL involves either:
+	The physical adjustment of the frequency of the LocalClock
+	entity (i.e., physical syntonization) is allowed but not
+	required.
 
- - (a) Creating per-cpu policies in order to allow each of the CPUs to
-   send their own frequency request to the hardware which will do
-   aggregation and clock rate decision at the level of the clock
-   domain. The PSD domains (ACPI) and the new DT binding will tell
-   which CPUs are actually in the same clock domain for whomever is
-   interested, despite those CPUs not being in the same policy.
-   This requires the extra mask that Nicola introduced.
+In fact, even if that wasn't explicitly written, I am having a hard time
+understanding how the "B.1.1 Frequency accuracy" requirement for the
+LocalClock could be satisfied as long as it is kept free-running.
+Otherwise said, what should I do as a system designer if the
+LocalClock's frequency is not within +/- 100 ppm offset to the TAI
+frequency, and I'm not allowed to correct it.
 
- - (b) Making deep changes to cpufreq (core/governors/drivers) to allow:
-   - Governors to stop aggregating (usually max) the information
-     for each of the CPUs in the policy and convey to the core
-     information for each CPU.
-   - Cpufreq core to be able to receive and pass this information
-     down to the drivers.
-   - Drivers to be able to have some per cpu structures to hold
-     frequency control (let's say SCP fast channel addresses) for
-     each of the CPUs in the policy. Or have these structures in the
-     cpufreq core/policy, to avoid code duplication in drivers.
+By the way, how would you see the split between an unsynchronized and a
+synchronized PHC be implemented in the Linux kernel?
 
-Therefore (a) is the least invasive but we'll be bypassing the rule
-above. But to make that rule stick we'll have to make invasive cpufreq
-changes (b).
-
-This is my current understanding and I'm leaning towards (a). What do
-you think?
-
-*in not so many words, this is what these patches are trying to propose,
-while also making sure it's supported for both ACPI and DT.
-
-BTW, thank you for your effort in making sense of this!
-
-Regards,
-Ionela.
+Thanks,
+-Vladimir
