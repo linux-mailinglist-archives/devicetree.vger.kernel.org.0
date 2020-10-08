@@ -2,73 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8912A287BCE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 20:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAE34287BD9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 20:44:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729213AbgJHSkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 14:40:14 -0400
-Received: from mx2.suse.de ([195.135.220.15]:51406 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728800AbgJHSkN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 14:40:13 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 645DDADCA;
-        Thu,  8 Oct 2020 18:40:11 +0000 (UTC)
-From:   Michal Suchanek <msuchanek@suse.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Michal Suchanek <msuchanek@suse.de>,
+        id S1729303AbgJHSoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 14:44:09 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34086 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729235AbgJHSoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 14:44:09 -0400
+Received: by mail-ot1-f65.google.com with SMTP id d28so6550742ote.1;
+        Thu, 08 Oct 2020 11:44:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Dfq2sGqijPhMmZV4xu4BQATJrQhJ6uOb1d7bXXraUjo=;
+        b=cieOfm61XvvGWBST5EDyVY9TRIgTvoHss1Y6qYk7BzJjx7ncR2+EAxaRbMLg2Nnk/E
+         QVI9ZJeTyIGCz1f+TLCy6ipuk63fDk5PCPy/6A7QX5XpSq9lvrc9JnmpETjKoB2QbhE9
+         mVAgF1MeDIvKdkOAEYqMUyUVSytbN/6cX7IDCf/Knk7OrMq7N0Dh7NkZR3+xdHDtBGLI
+         ts5c7y4PpncRhaQ6JAtNYK6Z6xDf7N6fOtadXZHVcSC6BHHDr8NU37lvsM6zluVgMAGT
+         IXiIZtCo1dsD2WaFKeXOITei87nG9xKeMXBF68bsv0zfNSD5mhvVPXrRS/lJAgssG0qn
+         eSBw==
+X-Gm-Message-State: AOAM530u1kj4X4t6ZfgfIPk1CImbAFfMPBFCVNwAnpQ8j4F3/lB+uTbu
+        UUfwji9ALjpxG+BCevtcRA==
+X-Google-Smtp-Source: ABdhPJxaGQ2Eo3bxP5Cbv7Q+1bIjeuwRxe0qRPralUDX4xFmi2l8TJd0Fq5sJDzXHBDqa9loEzDtJQ==
+X-Received: by 2002:a9d:1e86:: with SMTP id n6mr6255632otn.94.1602182646825;
+        Thu, 08 Oct 2020 11:44:06 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l1sm6071854ooe.20.2020.10.08.11.44.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Oct 2020 11:44:05 -0700 (PDT)
+Received: (nullmailer pid 2425046 invoked by uid 1000);
+        Thu, 08 Oct 2020 18:44:04 -0000
+Date:   Thu, 8 Oct 2020 13:44:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Naoki Hayama <naoki.hayama@lineo.co.jp>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Ondrej Jirman <megous@megous.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Stefan Mavrodiev <stefan@olimex.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Georgii Staroselskii <georgii.staroselskii@emlid.com>,
-        Bastian Germann <bage@linutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: arm: sunxi: Fix Orange Pi Zero bindings
-Date:   Thu,  8 Oct 2020 20:40:06 +0200
-Message-Id: <e657976d8bb1bb627c983321fe9c61de5bc003b7.1602182270.git.msuchanek@suse.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <59f7b5c566825838bbb62b778e05c514fe355e74.1602182270.git.msuchanek@suse.de>
-References: <59f7b5c566825838bbb62b778e05c514fe355e74.1602182270.git.msuchanek@suse.de>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: pinctrl: qcom: Fix typo abitrary
+Message-ID: <20201008184404.GA2424974@bogus>
+References: <7d1856e2-84c7-ab19-863d-2d500569d58c@lineo.co.jp>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7d1856e2-84c7-ab19-863d-2d500569d58c@lineo.co.jp>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are two models of Orange Pi zero which are confusingly marketed
-under the same name. Old model comes without a flash memory and current
-model does have a flash memory. Add bindings for each model.
+On Thu, 08 Oct 2020 17:47:35 +0900, Naoki Hayama wrote:
+> Fix comment typo.
+> s/abitrary/arbitrary/
+> 
+> Signed-off-by: Naoki Hayama <naoki.hayama@lineo.co.jp>
+> ---
+>  .../devicetree/bindings/pinctrl/qcom,ipq4019-pinctrl.txt        | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Signed-off-by: Michal Suchanek <msuchanek@suse.de>
----
- Documentation/devicetree/bindings/arm/sunxi.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index efc9118233b4..7e76ea544bf7 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -864,8 +864,15 @@ properties:
-           - const: xunlong,orangepi-win
-           - const: allwinner,sun50i-a64
- 
-+      - description: Xunlong OrangePi Zero  (old model without flash memory)
-+        items:
-+          - const: xunlong,orangepi-zero-no-flash
-+          - const: xunlong,orangepi-zero
-+          - const: allwinner,sun8i-h2-plus
-+
-       - description: Xunlong OrangePi Zero
-         items:
-+          - const: xunlong,orangepi-zero-with-flash
-           - const: xunlong,orangepi-zero
-           - const: allwinner,sun8i-h2-plus
- 
--- 
-2.28.0
-
+Applied, thanks!
