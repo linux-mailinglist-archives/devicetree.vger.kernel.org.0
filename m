@@ -2,112 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CFAE287D83
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D751287DE9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 23:27:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730753AbgJHUy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 16:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59974 "EHLO
+        id S1726109AbgJHV1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 17:27:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730731AbgJHUyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 16:54:25 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66425C0613D3
-        for <devicetree@vger.kernel.org>; Thu,  8 Oct 2020 13:54:25 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id a9so8140117lfc.7
-        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 13:54:25 -0700 (PDT)
+        with ESMTP id S1725982AbgJHV1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 17:27:36 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A08C0613D2;
+        Thu,  8 Oct 2020 14:27:36 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id d20so7965236iop.10;
+        Thu, 08 Oct 2020 14:27:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=tocO/B9Lq6+1kVJFUNhSCxjxnRpjafNIdcN4JRNBVbc=;
-        b=YoiXBLYaxbs0qCVBRDnMH27sFMKBPT5ra2QPLTUzuzpkCRDid+wTU6iVsny55UyX+z
-         ZSwVBRBUgbSb+p2PA7gjjgwvp42yXzz7v/C5ADQpzZveA7GHjZtKBaRQttK/Q2RZNYy5
-         aJ15KMFFzwBqNJzmYvat5bZCmRhbrfkFDl+PB6T+MWyKEh3k1JL0mBRnMfAkRNnmKWZ0
-         CAXplWyqxfYga8bbMW54N/Um8CEACrqaH2k1qvUc70gGyhXOgZmgo1uflLsUJVzbSNH9
-         Jl+HukaQt0GcYCsSxUq30pCijnPFjCZzqiavpJge8g6AIxRSxYz7XxX2dJJdHC/2xqgn
-         WNsg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sUwlSr28IICIPzmhkTTd4goR+XOu/pSZVwbvatvP54o=;
+        b=lpxUukZHbJqdLgf5ohQdAWHoKmY/ZXmdKcgHvIsH1LNMjao5p+A6CIb10YHmUm0cE7
+         TZPG2biRm8Hiva+ZTDbhlljPwXwk0PVjQnvDB4j6Hgsf3EcyiHIWMzzyVYdc/tRaJ2q7
+         kXnC5NT9dJBjuC632oO53Ba51E2Cd7emvupQO2c85ltakyOibUAzTGV/8hQQaJaczQch
+         cx2pUMa7rYf8Q/ALxMZncdCn0pbE5XD6vsAPQpRNMXGIkSom3efMESZELu+WG0EU1Gqv
+         CwJtm78AZY9wPXBSUdjD9MNWhXd3eJnP2N1+hDAGuUNXirH3rvBiFmV8uTVkbqERY7O3
+         cTmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=tocO/B9Lq6+1kVJFUNhSCxjxnRpjafNIdcN4JRNBVbc=;
-        b=lcNgdS/d97VCugu8zAzPv14inol8Lfo11OEjZAa6z+e6BH1ObxcZyJsew8sxiZ493B
-         CuSqBGVTEGer323or1lfa9HGJoZ7UuG0OxiDJd8FOi3WsgId7SZi25WMC0Dwg41/tgkl
-         /D2O7/yElfsdc4tG37fV/eXrKEH+4AUm+a6L4T21/bOp4w0LRXfiyTsN+U/b5dlFDhcx
-         USB3yEhGB9Oo4T8nbnhbDWVTsxxsmjotFsx86Q7+kH0xjclJvGuCBbIl+4AQ9Nghz+AL
-         zMAzfIWSIesD3HGiEJxRGpRZLGMseiAGuvNzb8Pk1jiNW7MR4b7YGg/GZ1qsiseCfw0S
-         uBEw==
-X-Gm-Message-State: AOAM53230J92zGSSrf1GHpayF8I/w5uw2l4uBTxUiBynst6YJVV9gkHb
-        SL84NlGiynDUKijxQ645r+4oxg+XWi1ILcECiihM/A==
-X-Google-Smtp-Source: ABdhPJxcWRYqQbXfXwqugkMw/o/Tb2QvJ1KChfARrTOjotSF8GKqXHAadrzMf4OTQL6OgJgT6Np7m8icj77pU9yHJo8=
-X-Received: by 2002:a19:824f:: with SMTP id e76mr1878046lfd.572.1602190463699;
- Thu, 08 Oct 2020 13:54:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201005160614.3749-1-ben.levinsky@xilinx.com>
- <20201005160614.3749-5-ben.levinsky@xilinx.com> <CACRpkdb1x=U28VWZGDJh6gJSzaqeNxx0m+WtnUQZJKGvXjvXYQ@mail.gmail.com>
- <BYAPR02MB4407F9D8A60519D00F317D27B50B0@BYAPR02MB4407.namprd02.prod.outlook.com>
-In-Reply-To: <BYAPR02MB4407F9D8A60519D00F317D27B50B0@BYAPR02MB4407.namprd02.prod.outlook.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 8 Oct 2020 22:54:12 +0200
-Message-ID: <CACRpkdb2AamnF9h_FfFDhTBMz7W-gob98OOzrHOiovyoiBPWRw@mail.gmail.com>
-Subject: Re: [PATCH v18 4/5] dt-bindings: remoteproc: Add documentation for
- ZynqMP R5 rproc bindings
-To:     Ben Levinsky <BLEVINSK@xilinx.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        "Ed T. Mooring" <emooring@xilinx.com>,
-        "sunnyliangjy@gmail.com" <sunnyliangjy@gmail.com>,
-        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
-        Michal Simek <michals@xilinx.com>,
-        "michael.auchter@ni.com" <michael.auchter@ni.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sUwlSr28IICIPzmhkTTd4goR+XOu/pSZVwbvatvP54o=;
+        b=two5KInXJI5MaTn90vSx5/GLUEZAvsbmM6hEoXglaNkyUvYhA6bAniRf8uuMJ8kMtf
+         4NFi7tGSEMQi8HLO/nOaQvo6EHCTbi1cF+JLwsCRfOKkh7+9u03fr8Wu0XeZIm8qytOH
+         NdmpYa/4L9OFsSoB9v1Gw6D3WzWRdlMgdVvsJvv4OUMRWffFTnVQleIRpiEjazucsz0W
+         oespBXofKC4d4FaF4R1kJb/Gdnrk/QU13EahiLp20CFbVpapraAeoIoeezNlvZZJkJ/d
+         fdaemGqRoLaBxIO0DgdzRH7A8J7Z1WpWaY98w822XgVLxwDNTCDzDMIGwAL308KBA5OO
+         6cQw==
+X-Gm-Message-State: AOAM532w+lDE1aPsvusZQbfiWCpaTA3wxQwLwwCcPutYdaqJ1QunP7mC
+        PPfK+RhaUzvlLRzCy4GaKuk=
+X-Google-Smtp-Source: ABdhPJxF/WcUgOK6RQRHznO47V2RGmNflJEjbUzrArXMyhwE0a9K8sq5NhmI3y5Z8I19p9I1E7jnJA==
+X-Received: by 2002:a6b:760c:: with SMTP id g12mr7376891iom.150.1602192455903;
+        Thu, 08 Oct 2020 14:27:35 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:7c62:dd9d:b755:cfbd])
+        by smtp.gmail.com with ESMTPSA id o72sm3067090ilb.6.2020.10.08.14.27.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Oct 2020 14:27:35 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] arm64: dts: imx8mm: Add support for micfil
+Date:   Thu,  8 Oct 2020 16:27:04 -0500
+Message-Id: <20201008212706.870115-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 8, 2020 at 4:21 PM Ben Levinsky <BLEVINSK@xilinx.com> wrote:
+The i.MX8M Mini has supports the MICFIL digital interface.
+It's a 16-bit audio signal from a PDM microphone bitstream.
+The driver is already in the kernel, but the node is missing.
 
-> As you said, this is  just regular ARM TCM memory (as seen by the main AR=
-M64 cluster).
-> Yes I can add back the compatible string, though maybe just "tcm" or "xln=
-x,tcm"
+This patch adds the micfil node.
 
-I mean that if it is an ARM standard feature it should be prefixed "arm,"
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-> That being said, we can change this around to couple the TCM bank nodes i=
-nto the R5 as we have In our present, internal implementation at
-> - https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetr=
-ee/bindings/remoteproc/xilinx%2Czynqmp-r5-remoteproc.txt
-> - https://github.com/Xilinx/linux-xlnx/blob/master/drivers/remoteproc/zyn=
-qmp_r5_remoteproc.c
-> the TCM nodes are coupled in the R5 but after some previous review on thi=
-s list, it was moved to have the TCM nodes decoupled from the R5 node
->
-> I am not sure what you mean on the Arm64 handling of TCM memory. Via the =
-architecture of the SoC https://www.xilinx.com/support/documentation/user_g=
-uides/ug1085-zynq-ultrascale-trm.pdf I know that the A53 cluster can see th=
-e absolute addresses of the R5 cluster so the translation is *I think* done=
- as you describe with the CP15 instructions you listed.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index b83f400def8b..fad1f9cdb241 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -339,6 +339,25 @@ sai6: sai@30060000 {
+ 				status = "disabled";
+ 			};
+ 
++			micfil: audio-controller@30080000 {
++				compatible = "fsl,imx8mm-micfil";
++				reg = <0x30080000 0x10000>;
++				interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MM_CLK_PDM_IPG>,
++					 <&clk IMX8MM_CLK_PDM_ROOT>,
++					 <&clk IMX8MM_AUDIO_PLL1_OUT>,
++					 <&clk IMX8MM_AUDIO_PLL2_OUT>,
++					 <&clk IMX8MM_CLK_EXT3>;
++				clock-names = "ipg_clk", "ipg_clk_app",
++					      "pll8k", "pll11k", "clkext3";
++				dmas = <&sdma2 24 25 0x80000000>;
++				dma-names = "rx";
++				status = "disabled";
++			};
++
+ 			gpio1: gpio@30200000 {
+ 				compatible = "fsl,imx8mm-gpio", "fsl,imx35-gpio";
+ 				reg = <0x30200000 0x10000>;
+-- 
+2.25.1
 
-It seems like the TCM memories are von Neumann type (either can
-contain both code and
-data) which removes one of my worries. According to this data sheet
-they are also nothing
-ARM-provided but a Xilinx invention, and just happen to be hardcoded
-at the same address
-as TCM memories in ARM32, what a coincidence.
-
-So I take it this is the correct view and you can proceed like this,
-sorry for the fuzz.
-
-Yours,
-Linus Walleij
