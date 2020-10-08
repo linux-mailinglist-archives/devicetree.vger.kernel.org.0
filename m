@@ -2,137 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC241287CFD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 954F4287D3C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730179AbgJHUW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 16:22:26 -0400
-Received: from mail-mw2nam12on2085.outbound.protection.outlook.com ([40.107.244.85]:41920
-        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728779AbgJHUW0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 16:22:26 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D5BphsfE0+XNQ/Bz3cdvLiyn7wJZNgkmUyG+gts0QBqF5WOL7huRuKbq86yMBDAajstQVHHbThPQ5zZhAEDU8FgaRCjrwBDDfSLqy4ZrBjNpQHiMJ6N2KUnqq89iYKR/XXkZZ9KBPze9JKDHuE+sWCLtZZIe3Q2RFi+1V2xAQFpbpseoFwDi15Fd4BiwJOw2QSiSIeo4oDpiy6xd25436/smSjgZXcOaEjdj+cvsOLL8fvtCrfD9bnt889YGQBwK+yRvhZ8qHcM+ZvgawGxR09/k5ckWx+iHEDObAnVorVfT2r367nqZ4ELOlcD/rfSrld45RQ80R4mfT40O31h0wA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pHaZyIgr9BrTmRcsKHicLuZJbBCRRQeLUslhE5i71aU=;
- b=Y8kXlXCU3luU7+lEJ+VjVZw9gY0GJMTb7Zy89VkFJu+ygeP4iRcd6gHVLBCVGSisX3xkUmmxHvl9XMtVdjZ+Sw5Po9/k2uctE5YUPpVBRYwwmCC1tMU2vJIzLOW0UboMEGF1akmiPKM9l8lzrZ6m3904LFGMwkxOCVfa13KM9ttaj7pZEGcHLkmVxtSQ8IdNuVV3S4QF9R8MErGm+6UTwf7yBhEv9UetYUv/s+h4a6Q3DhzLQ10dyA9tAtVEneHcIKHE5AX86tl9GdC2ORFeB5Rrr2eTdaiHCvRm+tWkrFxL8jiAo0G3+xMk9YNAB3d5oV+R9MWUhJ/GCKO+GJ5T+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
+        id S1726053AbgJHUdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 16:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725988AbgJHUdV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 16:33:21 -0400
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAE1C0613D2;
+        Thu,  8 Oct 2020 13:33:21 -0700 (PDT)
+Received: by mail-pl1-x643.google.com with SMTP id d6so3319745plo.13;
+        Thu, 08 Oct 2020 13:33:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pHaZyIgr9BrTmRcsKHicLuZJbBCRRQeLUslhE5i71aU=;
- b=c6cD/ixKr8SI5YkdcO6xJNVyvYDjVjsdubcob445dM5/LrE4/W/5oKOemTqCPWHmDuIv7t/RYdI5LlgEj0IWXW36nH0xGF6y7IHxkb/cQwqkA7hwFeqXmakaC6QUMDC1oAFau3wnybTDgYcaGyp9sZsJEa8VBpU05BWrSNMJ7qU=
-Received: from MN2PR20CA0030.namprd20.prod.outlook.com (2603:10b6:208:e8::43)
- by MWHPR02MB2783.namprd02.prod.outlook.com (2603:10b6:300:107::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.22; Thu, 8 Oct
- 2020 20:22:23 +0000
-Received: from BL2NAM02FT036.eop-nam02.prod.protection.outlook.com
- (2603:10b6:208:e8:cafe::b7) by MN2PR20CA0030.outlook.office365.com
- (2603:10b6:208:e8::43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23 via Frontend
- Transport; Thu, 8 Oct 2020 20:22:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- BL2NAM02FT036.mail.protection.outlook.com (10.152.77.154) with Microsoft SMTP
- Server id 15.20.3455.25 via Frontend Transport; Thu, 8 Oct 2020 20:22:23
- +0000
-Received: from [149.199.38.66] (port=58725 helo=smtp.xilinx.com)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
-        (envelope-from <stefano.stabellini@xilinx.com>)
-        id 1kQcQ5-0003C9-29; Thu, 08 Oct 2020 13:21:45 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by smtp.xilinx.com with smtp (Exim 4.63)
-        (envelope-from <stefano.stabellini@xilinx.com>)
-        id 1kQcQg-0006fN-WB; Thu, 08 Oct 2020 13:22:23 -0700
-Received: from xsj-pvapsmtp01 (mailman.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id 098KMA2C004284;
-        Thu, 8 Oct 2020 13:22:10 -0700
-Received: from [10.23.120.52] (helo=localhost)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <stefanos@xilinx.com>)
-        id 1kQcQU-0006XX-6t; Thu, 08 Oct 2020 13:22:10 -0700
-Date:   Thu, 8 Oct 2020 13:22:09 -0700 (PDT)
-From:   Stefano Stabellini <stefano.stabellini@xilinx.com>
-X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
-To:     Ben Levinsky <BLEVINSK@xilinx.com>, linus.walleij@linaro.org
-cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        "Ed T. Mooring" <emooring@xilinx.com>,
-        "sunnyliangjy@gmail.com" <sunnyliangjy@gmail.com>,
-        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
-        Michal Simek <michals@xilinx.com>,
-        "michael.auchter@ni.com" <michael.auchter@ni.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v18 4/5] dt-bindings: remoteproc: Add documentation for
- ZynqMP R5 rproc bindings
-In-Reply-To: <BYAPR02MB4407F9D8A60519D00F317D27B50B0@BYAPR02MB4407.namprd02.prod.outlook.com>
-Message-ID: <alpine.DEB.2.21.2010081304550.23978@sstabellini-ThinkPad-T480s>
-References: <20201005160614.3749-1-ben.levinsky@xilinx.com> <20201005160614.3749-5-ben.levinsky@xilinx.com> <CACRpkdb1x=U28VWZGDJh6gJSzaqeNxx0m+WtnUQZJKGvXjvXYQ@mail.gmail.com>
- <BYAPR02MB4407F9D8A60519D00F317D27B50B0@BYAPR02MB4407.namprd02.prod.outlook.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+9L4TGyRB3sgaLfAZji2FCDMnlQHDS+agpOJzWkCjME=;
+        b=gMkVzAcsOzVrbeDCAEFnfhjNCHlbp5xtxfmXTUYIUc5Tc/9T9Vlj4Vb+u6AUIXON6J
+         Q19EEjpJ3Fsbe5gK5z4heLoVsn9h5A5U1Injsr+657ZEPBg+vlQDnXIGnDbkCuqJA7lh
+         ZOFkasbhL8wdBgbeW57lr/X8t1LZNYGeh1UsW08P2cu+y7QMtPuhCuxzl1r2fxUviuW1
+         WTD0Xy32SG5YRCgnKMxFE59077Jx4FMuBFpRwHP14E+q4DqzXuc68bDLjKlRBnmDn83R
+         K76nJ8KRJWnot2ER/OpvCuIiBBEuPOgarw3S1lMyHXVfPbKzpHMdlfAwgnIUbeDLIRIK
+         bhGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+9L4TGyRB3sgaLfAZji2FCDMnlQHDS+agpOJzWkCjME=;
+        b=YjuG9+n3eeWhxK7sB3EmdSNDD2ImVgvoGMam1CNggP/THRzsT6aHtDEPlTzOL505VY
+         f+/1ffwg+YoTB6OGm9154/b6OsIKLUARM8AHwk91zVwnbPyKBQxnxABl8AgMB2KMnjyz
+         kZyFYTGnPDXMUtVcCOdYxQTATclrva4SLTM9FuM0uEscjRfQxfZfwWGn8tRmot7IVPTA
+         GP7QqkAp6SjRb5BjzbQB/z5wEDZhWE0CxWsb9FacY9rirARkxmYCT2BybF69tIbzkzqA
+         ZfU1RNIDF9AZTAMt2G6LBIL/WuAUw9ayQJWYBfJ1M5LNdDlmKdNivnnpSqyN9HVd97Ui
+         UAJg==
+X-Gm-Message-State: AOAM5323rQczgtUNXKkAjl4cjspHygS1HVtaq4f/TjxBOeURoERx11Bb
+        aZJNABieWBhOciwU7xPsmTc6iRXm+OU=
+X-Google-Smtp-Source: ABdhPJyrvYkrbW5UjZxl9EDUXdNAsNh/TjrZF0esZQ12vq+ZvOuqrlI2k/0uWkJw7qvecVlPh8hfXw==
+X-Received: by 2002:a17:902:8307:b029:d3:89e2:7866 with SMTP id bd7-20020a1709028307b02900d389e27866mr9102578plb.42.1602189200894;
+        Thu, 08 Oct 2020 13:33:20 -0700 (PDT)
+Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id k3sm7890370pff.71.2020.10.08.13.33.19
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 08 Oct 2020 13:33:20 -0700 (PDT)
+Date:   Thu, 8 Oct 2020 13:26:16 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] memory: tegra: Sort tegra210_swgroups by reg address
+Message-ID: <20201008202615.GA32140@Asurada-Nvidia>
+References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+ <20201008003746.25659-4-nicoleotsuka@gmail.com>
+ <20201008103258.GA16358@kozik-lap>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 669c454d-befb-4637-c00b-08d86bc7dd9f
-X-MS-TrafficTypeDiagnostic: MWHPR02MB2783:
-X-Microsoft-Antispam-PRVS: <MWHPR02MB2783EDB1BE41800C2F1B6CA9A00B0@MWHPR02MB2783.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: d8umX65HfaWHTRmhj7kAOgf3V1XHSwDSBjB6GI28SZAQ/K2y5OCdi27CoiR9WPv4Mu4xGZtzhc7eYNAcmvwV2oSA2eqRtkuUiaoNu2xZfclyzjNL/2a85dkWp0ZF4bPsm7ElRbYhcuN7G8z1VHo5WTFCB/qThIxbcXqGaJjNUwb5IA15cpAzcohVZ/Igmk1wEmUFBN8esd+gdjXXj4R0fhFbrVngiibuBc0L2M3k7+AIHyHrC0Gd7SBAbg3MRjY46m49u/Ov6wiWQIlhF/7Rvw+NBOki0/Jz+HJM1x2pjYt2f0+KGrN/ZkK5VK1iLwstXjqgWdaddR/KepI4ISY8UsAitiN6bbM2X5j/0a4M2w5gszNBp2K4d+ERKbIlbxEOXU7gmZecKeYyAcoo/AEO9JQJMAm/89qdNfP56TUtXPECdBHeoVLgLvGKD7AzJ997zYMiUwZc/cnc7hFQziTU91RF+C3qgv9Lv2FuQKPLjDc=
-X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFS:(7916004)(136003)(396003)(346002)(376002)(39860400002)(46966005)(356005)(9686003)(426003)(82740400003)(47076004)(336012)(186003)(81166007)(83080400001)(82310400003)(2906002)(26005)(316002)(54906003)(9786002)(7416002)(44832011)(4326008)(4744005)(8676002)(5660300002)(8936002)(966005)(33716001)(70206006)(70586007)(478600001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2020 20:22:23.3673
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 669c454d-befb-4637-c00b-08d86bc7dd9f
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT036.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2783
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201008103258.GA16358@kozik-lap>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 8 Oct 2020, Ben Levinsky wrote:
-> > Does it mean that the main CPU see the memory of the
-> > R5 as "some kind of TCM" and that TCM is physically
-> > mapped at 0xffe00000 (ITCM) and 0xffe20000 (DTCM)?
+Hi Krzysztof,
+
+On Thu, Oct 08, 2020 at 12:32:58PM +0200, Krzysztof Kozlowski wrote:
+> On Wed, Oct 07, 2020 at 05:37:44PM -0700, Nicolin Chen wrote:
+> > This is a cleanup change to prepare for new swgroups.
+> 
+> What type of cleanup? Any functional change?
+
+It's to sort the swgroup list by reg address as I mentioned in
+the subject. Perhaps I should have put in commit message also.
+
 > > 
-> > If the first is ITCM and the second DTCM that is pretty
-> > important to point out, since this reflects the harvard
-> > architecture properties of these two memory areas.
+> > Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+> > ---
+> >  drivers/memory/tegra/tegra210.c | 20 ++++++++++----------
+> >  1 file changed, 10 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/memory/tegra/tegra210.c b/drivers/memory/tegra/tegra210.c
+> > index e8a7d266802c..b400802c9f14 100644
+> > --- a/drivers/memory/tegra/tegra210.c
+> > +++ b/drivers/memory/tegra/tegra210.c
+> > @@ -1020,32 +1020,32 @@ static const struct tegra_mc_client tegra210_mc_clients[] = {
+> >  };
+> >  
+> >  static const struct tegra_smmu_swgroup tegra210_swgroups[] = {
+> > -	{ .name = "dc",        .swgroup = TEGRA_SWGROUP_DC,        .reg = 0x240 },
+> > -	{ .name = "dcb",       .swgroup = TEGRA_SWGROUP_DCB,       .reg = 0x244 },
+> >  	{ .name = "afi",       .swgroup = TEGRA_SWGROUP_AFI,       .reg = 0x238 },
+> >  	{ .name = "avpc",      .swgroup = TEGRA_SWGROUP_AVPC,      .reg = 0x23c },
+> > -	{ .name = "hda",       .swgroup = TEGRA_SWGROUP_HDA,       .reg = 0x254 },
+> > +	{ .name = "dc",        .swgroup = TEGRA_SWGROUP_DC,        .reg = 0x240 },
+> > +	{ .name = "dcb",       .swgroup = TEGRA_SWGROUP_DCB,       .reg = 0x244 },
+> >  	{ .name = "hc",        .swgroup = TEGRA_SWGROUP_HC,        .reg = 0x250 },
+> > +	{ .name = "hda",       .swgroup = TEGRA_SWGROUP_HDA,       .reg = 0x254 },
+> > +	{ .name = "isp2",      .swgroup = TEGRA_SWGROUP_ISP2,      .reg = 0x258 },
+> >  	{ .name = "nvenc",     .swgroup = TEGRA_SWGROUP_NVENC,     .reg = 0x264 },
+> >  	{ .name = "ppcs",      .swgroup = TEGRA_SWGROUP_PPCS,      .reg = 0x270 },
+> >  	{ .name = "sata",      .swgroup = TEGRA_SWGROUP_SATA,      .reg = 0x274 },
+> > -	{ .name = "isp2",      .swgroup = TEGRA_SWGROUP_ISP2,      .reg = 0x258 },
+> > +	{ .name = "vi",        .swgroup = TEGRA_SWGROUP_VI,        .reg = 0x280 },
+> > +	{ .name = "vic",       .swgroup = TEGRA_SWGROUP_VIC,       .reg = 0x284 },
+> >  	{ .name = "xusb_host", .swgroup = TEGRA_SWGROUP_XUSB_HOST, .reg = 0x288 },
+> >  	{ .name = "xusb_dev",  .swgroup = TEGRA_SWGROUP_XUSB_DEV,  .reg = 0x28c },
+> > -	{ .name = "isp2b",     .swgroup = TEGRA_SWGROUP_ISP2B,     .reg = 0xaa4 },
+> > -	{ .name = "tsec",      .swgroup = TEGRA_SWGROUP_TSEC,      .reg = 0x294 },
+> >  	{ .name = "a9avp",     .swgroup = TEGRA_SWGROUP_A9AVP,     .reg = 0x290 },
+> 
+> I must say I cannot find the order. By name - not. By swgroup name -
+> not. By register - not.
+> 
+> What is the order then?
 
-Hi Linus,
+It's by "reg" as I mentioned in the commit subject. Probably
+it's not that obvious by looking at the change itself :-/
 
-I don't think Xilinx TCMs are split in ITCM and DTCM in the way you
-describe here: https://www.kernel.org/doc/Documentation/arm/tcm.txt.
-Either TCM could be used for anything. See
-https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf
-at page 82.
+Its following change of adding new swgroups would be easier
+to insert by following the same order of "reg" addresses.
+
+Thanks
