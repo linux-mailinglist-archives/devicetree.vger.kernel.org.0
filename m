@@ -2,157 +2,429 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFA3287EBF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 00:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F8A287EE1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 00:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728348AbgJHWjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 18:39:52 -0400
-Received: from mx0b-00010702.pphosted.com ([148.163.158.57]:62988 "EHLO
-        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730491AbgJHWjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 18:39:51 -0400
-Received: from pps.filterd (m0098778.ppops.net [127.0.0.1])
-        by mx0b-00010702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 098MXBRI021616;
-        Thu, 8 Oct 2020 17:39:45 -0500
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2104.outbound.protection.outlook.com [104.47.55.104])
-        by mx0b-00010702.pphosted.com with ESMTP id 3429jg89f6-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Oct 2020 17:39:45 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JhKI61wkH+n3h7Bj90zHPVn+GYlwiznnC7/CvTavuiWpOimwSDLgsJ+y20FnFJ6VrqaxKxXfnNQPKSpGx3yAzKN5RSaSh0Fr1nVGnZoFNNdslBH9La+PGlwzuHX69GuRHKdPsfpeOhvn0JDc/6oJ2kW7FGnPYbtIvFrpC+/tqcgo9ltzDb+ZMNjGVYT/+groHmuQsDqgdhUQixXb6jMuzNDCqABcLMDsRtRbE2SjBm89Jat+tP0VU8rouXpGM2PGEMdJZXJVwZdZLbz3TZdZGZDZzYkuYPKwL8QD27F+YXQrzj+rOuKfmwcmwYlBqqHGYkSS0dgq6xmj8Lw7Mmu0hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hZRzPf/PuWOgwZQVp/7klGRDBfZEGe7dHEzTXjcBj9U=;
- b=JoZld90Y8l2ZAvXBFot6nmTUubiC6E37rJBWlsSZD4QjUWeUTI6QKIkYjNSAxpkTpsBWN/VaKoScrQOjCN3n+CRDt7ZFSn8ubeXKMq+bnfXWrEuIN+ye1quv1VIXv5ZupHUTP0nLu5xbKqlHzUqcaYhkTO6e/qAHHM1QbfHaFugdrhVv3K3053yPYIGfi1PwcUZarYzbFvpubMF9QOUIq0FLS3zM2PfVXfedcMqoC5maC5Rk4Xw03AfJMPX70B3g0t5GVVbSJYc+P6h4gSqWTYeJtDP7L75VpeLkDAdIR1HHP0DWwU0Lp9amSRd5oeQDsGOS3fitWK00EgO/b7Fq8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hZRzPf/PuWOgwZQVp/7klGRDBfZEGe7dHEzTXjcBj9U=;
- b=ZkWFOSokucd3kmWqI9muuPQiaqASsyPI8LaaUkSNzXc3Ghh5p5oRRvmCyNi7NeXcjJBnhICrwyr6Epo0PNkvStBJ7yAl5LnwsajfbGZXDlPGc7j7nv9EpSVNfgMDX9dPXpQzTkyRz3WFW5lG9wnkz2u09qCkhQvLK8Ce17ZW/Uk=
-Authentication-Results: samsung.com; dkim=none (message not signed)
- header.d=none;samsung.com; dmarc=none action=none header.from=ni.com;
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29) by SN6PR04MB4447.namprd04.prod.outlook.com
- (2603:10b6:805:2b::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32; Thu, 8 Oct
- 2020 22:39:43 +0000
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84]) by SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84%7]) with mapi id 15.20.3433.046; Thu, 8 Oct 2020
- 22:39:43 +0000
-From:   Michael Auchter <michael.auchter@ni.com>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Auchter <michael.auchter@ni.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: extcon: add binding for TUSB320
-Date:   Thu,  8 Oct 2020 17:39:28 -0500
-Message-Id: <20201008223929.399791-2-michael.auchter@ni.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201008223929.399791-1-michael.auchter@ni.com>
-References: <20201008223929.399791-1-michael.auchter@ni.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [2605:a601:ab23:3c00:cdda:4935:f7a0:c63c]
-X-ClientProxiedBy: SN4PR0501CA0056.namprd05.prod.outlook.com
- (2603:10b6:803:41::33) To SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29)
+        id S1729057AbgJHW5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 18:57:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41438 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727556AbgJHW5l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 18:57:41 -0400
+Received: from earth.universe (unknown [185.213.155.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F207E22247;
+        Thu,  8 Oct 2020 22:57:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602197860;
+        bh=dQMGOo0zpRT3llC8i+BmMza1pMzLdSZLc04ieL/SGCo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OkzkB4nei2hu+R+OlFWdi5ULn1xUmG4xGMeUs7jvrGFsorrEBhqW0bCAMOQIv0NXK
+         7OipEHxRESRlB/BxNLsLMrr7LgRzH67yDEKlZaQFUeuU+TK9IaUcS+BpgjH6trT2ze
+         g4iBS7eOzQv16SWohVnDWl1u764HcoOt4UN4Z9fk=
+Received: by earth.universe (Postfix, from userid 1000)
+        id 7C20A3C0C87; Fri,  9 Oct 2020 00:57:37 +0200 (CEST)
+Date:   Fri, 9 Oct 2020 00:57:37 +0200
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Lubomir Rintel <lkundrak@v3.sk>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] power: supply: Add battery gauge driver for Acer
+ Iconia Tab A500
+Message-ID: <20201008225737.mfhgrqi73fozqdfz@earth.universe>
+References: <20200906195103.1347-1-digetx@gmail.com>
+ <20200906195103.1347-4-digetx@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (2605:a601:ab23:3c00:cdda:4935:f7a0:c63c) by SN4PR0501CA0056.namprd05.prod.outlook.com (2603:10b6:803:41::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.11 via Frontend Transport; Thu, 8 Oct 2020 22:39:43 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8c6d4210-8c43-43ea-b48a-08d86bdb0d0f
-X-MS-TrafficTypeDiagnostic: SN6PR04MB4447:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN6PR04MB4447426763EA6E5D2674B96D870B0@SN6PR04MB4447.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6ixS8jzjcIdKKbghZk7p1kgQ/pBRsDkxTAj7uWBK4FlTm1FLovULbvfloXFypLQVPuH7IY6XsGXjrfhDhGDTC6VCFslWXJ2M6oBUHLTUxfPI4yv443mJqzrxChkb17kDmlWmtgK9pptc4kg8L2WaUUjDvO/t2aim4tugSrcG8ZpPnhlWgq/nsAmaL4wcYb+4x7yuNN8EbN9Wcj8YSu9aVswoXewtmMzUkB4GsoM0Oz3AdL7t8kwcUUjFxbLDtMtdJmv4oZI4sBN61uWgDku4Ey4ZiW9tFIjgWB6B9d3UeDno7LBuFgl4d3Ppw+1YzVnY/2CiJuIh9ZlCn0A/ztEa7WiNuUSoHWguHakG79qv6JrMQ9Gyq0e0VIx4u6rbgciuktazLQNJ530ONAFUFZibTx57DIYlJYPSH/mx7wWPgodnICEZBgpvtoea62RnOKrSoIFieuEJw1QrRYzhD7BFBA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0401MB3646.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(376002)(39860400002)(346002)(396003)(366004)(966005)(316002)(4326008)(2616005)(186003)(52116002)(5660300002)(8936002)(16526019)(8676002)(36756003)(66946007)(6512007)(478600001)(110136005)(6506007)(44832011)(66556008)(6666004)(1076003)(66476007)(69590400008)(2906002)(6486002)(7049001)(83080400001)(86362001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: IAAhT/+uo0Z8weVcVh6vSaxM3mr7j7dnXlVUsXxBtuA/4qa4js6cikRpL9LrkbI1rSX4tqf1VrQv93U/miMXHHl4YSMSDwJTeBFdU06qQG5lNm+NTSTJre9PqkDwdibQGcS2TRq6878MDHCF3ql/OGnrAMCDb1ZQVUWho9i/9n5VR9Bdlko45NbocLkO1BdfnPQGZGHuyqTK6hlZB/5K5wzhets/EkIt3CyHH+vmCEA61QotmAZvhbAEKJJxF90KFihSAAUZk6UL3mzr9cHvcTgJJgUsZ850NW4eG7xxrtVamurTzslkOslkbn2hXgVPTB0/ttHZ1beDitRHoli1X4pCOw+YilfllY/TNhZ7rg9s+P9EYxnrkWuaVgcjclLJIUuzHXfy32xo1I6KK6xC6pZxi9DGbtvjPb/fsMTlghFtfXJ+2IBB1NVLMoTVFsA9mqNufIx7SNUmXxF+P95MLtdzUUsiqAvbEfHCLeXOol605weyJYoQZlkXK0AMSqm5Yvtl7HR6vOUHApeTLJLPkuYo9EqgazJaPZy71zVIZZhiHEte7c6FntX3C+9+xV7NTYjYy5ns9Zxo4IrZ+ZAW8t4/Q8UAo/d41yhlRqOOMyGvoy5ydzGbgE0Q4mPydCZMZIgCYCI0B8Rzh8t2jYs4vWtFAfoh3PlTDx6tLmcBbTfjqCWXkA+PuuEScZ6D4m8n5IMc3Ob8dmlJzKRrc2RcZg==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c6d4210-8c43-43ea-b48a-08d86bdb0d0f
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0401MB3646.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2020 22:39:43.6116
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dWSwCSXUzlXsbBqCaHiwo8lTzlAPYl6khuYH1cya94wKc31X9bLjX6k587eWL4JKr29qZihiiZfLIohcAlowGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB4447
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-08_15:2020-10-08,2020-10-08 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 phishscore=0
- bulkscore=0 spamscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 adultscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=984 classifier=spam adjust=30 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2010080158
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ok6fkpcma74wg3w4"
+Content-Disposition: inline
+In-Reply-To: <20200906195103.1347-4-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree binding for the TI TUSB320.
 
-Signed-off-by: Michael Auchter <michael.auchter@ni.com>
----
- .../bindings/extcon/extcon-usbc-tusb320.yaml  | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
+--ok6fkpcma74wg3w4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-new file mode 100644
-index 000000000000..57f1bcbf1295
---- /dev/null
-+++ b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/extcon/extcon-usbc-tusb320.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI TUSB320 USB Type-C CC Logic controller
-+
-+maintainers:
-+  - Michael Auchter <michael.auchter@ni.com>
-+
-+properties:
-+  compatible:
-+    const: ti,tusb320
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        extcon@61 {
-+            compatible = "ti,tusb320";
-+            reg = <0x61>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <27 1>;
-+        };
-+    };
-+...
--- 
-2.25.4
+Hi,
 
+On Sun, Sep 06, 2020 at 10:51:01PM +0300, Dmitry Osipenko wrote:
+> This patch adds battery gauge driver for Acer Iconia Tab A500 device.
+> The battery gauge function is provided via the Embedded Controller,
+> which is found on the Acer A500.
+>=20
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  drivers/power/supply/Kconfig             |   6 +
+>  drivers/power/supply/Makefile            |   1 +
+>  drivers/power/supply/acer_a500_battery.c | 297 +++++++++++++++++++++++
+>  3 files changed, 304 insertions(+)
+>  create mode 100644 drivers/power/supply/acer_a500_battery.c
+>=20
+> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+> index a4657484f38b..21257a81b55b 100644
+> --- a/drivers/power/supply/Kconfig
+> +++ b/drivers/power/supply/Kconfig
+> @@ -760,4 +760,10 @@ config RN5T618_POWER
+>  	  This driver can also be built as a module. If so, the module will be
+>  	  called rn5t618_power.
+> =20
+> +config BATTERY_ACER_A500
+> +	tristate "Acer Iconia Tab A500 battery driver"
+> +	depends on MFD_ACER_A500_EC
+> +	help
+> +	  Say Y to include support for Acer Iconia Tab A500 battery fuel gauge.
+> +
+>  endif # POWER_SUPPLY
+> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
+> index 293d4a5d80d3..d0f1b77c5c49 100644
+> --- a/drivers/power/supply/Makefile
+> +++ b/drivers/power/supply/Makefile
+> @@ -97,3 +97,4 @@ obj-$(CONFIG_CHARGER_BD70528)	+=3D bd70528-charger.o
+>  obj-$(CONFIG_CHARGER_BD99954)	+=3D bd99954-charger.o
+>  obj-$(CONFIG_CHARGER_WILCO)	+=3D wilco-charger.o
+>  obj-$(CONFIG_RN5T618_POWER)	+=3D rn5t618_power.o
+> +obj-$(CONFIG_BATTERY_ACER_A500)	+=3D acer_a500_battery.o
+> diff --git a/drivers/power/supply/acer_a500_battery.c b/drivers/power/sup=
+ply/acer_a500_battery.c
+> new file mode 100644
+> index 000000000000..93135933c8af
+> --- /dev/null
+> +++ b/drivers/power/supply/acer_a500_battery.c
+> @@ -0,0 +1,297 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Battery driver for Acer Iconia Tab A500.
+> + *
+> + * Copyright 2020 GRATE-driver project.
+> + *
+> + * Based on downstream driver from Acer Inc.
+> + * Based on NVIDIA Gas Gauge driver for SBS Compliant Batteries.
+> + *
+> + * Copyright (c) 2010, NVIDIA Corporation.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/power_supply.h>
+> +#include <linux/regmap.h>
+> +#include <linux/sched.h>
+> +#include <linux/slab.h>
+> +#include <linux/workqueue.h>
+> +
+> +enum {
+> +	REG_CAPACITY,
+> +	REG_VOLTAGE,
+> +	REG_CURRENT,
+> +	REG_DESIGN_CAPACITY,
+> +	REG_TEMPERATURE,
+> +};
+> +
+> +#define EC_DATA(_reg, _psp) {			\
+> +	.psp =3D POWER_SUPPLY_PROP_ ## _psp,	\
+> +	.reg =3D _reg,				\
+> +}
+> +
+> +static const struct battery_register {
+> +	enum power_supply_property psp;
+> +	unsigned int reg;
+> +} ec_data[] =3D {
+> +	[REG_CAPACITY]		=3D EC_DATA(0x00, CAPACITY),
+> +	[REG_VOLTAGE]		=3D EC_DATA(0x01, VOLTAGE_NOW),
+> +	[REG_CURRENT]		=3D EC_DATA(0x03, CURRENT_NOW),
+> +	[REG_DESIGN_CAPACITY]	=3D EC_DATA(0x08, CHARGE_FULL_DESIGN),
+> +	[REG_TEMPERATURE]	=3D EC_DATA(0x0a, TEMP),
+> +};
+> +
+> +static const enum power_supply_property a500_battery_properties[] =3D {
+> +	POWER_SUPPLY_PROP_CAPACITY,
+> +	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
+> +	POWER_SUPPLY_PROP_CURRENT_NOW,
+> +	POWER_SUPPLY_PROP_PRESENT,
+> +	POWER_SUPPLY_PROP_STATUS,
+> +	POWER_SUPPLY_PROP_TECHNOLOGY,
+> +	POWER_SUPPLY_PROP_TEMP,
+> +	POWER_SUPPLY_PROP_VOLTAGE_NOW,
+> +};
+> +
+> +struct a500_battery {
+> +	struct delayed_work poll_work;
+> +	struct power_supply *psy;
+> +	struct regmap *rmap;
+> +	unsigned int capacity;
+> +};
+> +
+> +static bool a500_battery_update_capacity(struct a500_battery *bat)
+> +{
+> +	unsigned int capacity;
+> +	int err;
+> +
+> +	err =3D regmap_read(bat->rmap, ec_data[REG_CAPACITY].reg, &capacity);
+> +	if (err)
+> +		return false;
+> +
+> +	/* capacity can be >100% even if max value is 100% */
+> +	capacity =3D min(capacity, 100u);
+> +
+> +	if (bat->capacity !=3D capacity) {
+> +		bat->capacity =3D capacity;
+> +		return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static int a500_battery_get_status(struct a500_battery *bat)
+> +{
+> +	if (bat->capacity < 100) {
+> +		if (power_supply_am_i_supplied(bat->psy))
+> +			return POWER_SUPPLY_STATUS_CHARGING;
+> +		else
+> +			return POWER_SUPPLY_STATUS_DISCHARGING;
+> +	}
+> +
+> +	return POWER_SUPPLY_STATUS_FULL;
+> +}
+> +
+> +static void a500_battery_unit_adjustment(struct device *dev,
+> +					 enum power_supply_property psp,
+> +					 union power_supply_propval *val)
+> +{
+> +	const unsigned int base_unit_conversion =3D 1000;
+> +	const unsigned int temp_kelvin_to_celsius =3D 2731;
+> +
+> +	switch (psp) {
+> +	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+> +	case POWER_SUPPLY_PROP_CURRENT_NOW:
+> +	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+> +		val->intval *=3D base_unit_conversion;
+> +		break;
+> +
+> +	case POWER_SUPPLY_PROP_TEMP:
+> +		val->intval -=3D temp_kelvin_to_celsius;
+> +		break;
+> +
+> +	case POWER_SUPPLY_PROP_PRESENT:
+> +		val->intval =3D !!val->intval;
+> +		break;
+> +
+> +	default:
+> +		dev_dbg(dev,
+> +			"%s: no need for unit conversion %d\n", __func__, psp);
+> +	}
+> +}
+> +
+> +static int a500_battery_get_ec_data_index(struct device *dev,
+> +					  enum power_supply_property psp)
+> +{
+> +	unsigned int i;
+> +
+> +	/*
+> +	 * DESIGN_CAPACITY register always returns a non-zero value if
+> +	 * battery is connected and zero if disconnected, hence we'll use
+> +	 * it for judging the battery presence.
+> +	 */
+> +	if (psp =3D=3D POWER_SUPPLY_PROP_PRESENT)
+> +		psp =3D POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(ec_data); i++)
+> +		if (psp =3D=3D ec_data[i].psp)
+> +			return i;
+> +
+> +	dev_dbg(dev, "%s: invalid property %u\n", __func__, psp);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int a500_battery_get_property(struct power_supply *psy,
+> +				     enum power_supply_property psp,
+> +				     union power_supply_propval *val)
+> +{
+> +	struct a500_battery *bat =3D power_supply_get_drvdata(psy);
+> +	struct device *dev =3D psy->dev.parent;
+> +	int ret =3D 0;
+> +
+> +	switch (psp) {
+> +	case POWER_SUPPLY_PROP_STATUS:
+> +		val->intval =3D a500_battery_get_status(bat);
+> +		break;
+> +
+> +	case POWER_SUPPLY_PROP_TECHNOLOGY:
+> +		val->intval =3D POWER_SUPPLY_TECHNOLOGY_LION;
+> +		break;
+> +
+> +	case POWER_SUPPLY_PROP_CAPACITY:
+> +		a500_battery_update_capacity(bat);
+> +		val->intval =3D bat->capacity;
+> +		break;
+> +
+> +	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+> +	case POWER_SUPPLY_PROP_CURRENT_NOW:
+> +	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+> +	case POWER_SUPPLY_PROP_PRESENT:
+> +	case POWER_SUPPLY_PROP_TEMP:
+> +		ret =3D a500_battery_get_ec_data_index(dev, psp);
+> +		if (ret < 0)
+> +			break;
+> +
+> +		ret =3D regmap_read(bat->rmap, ec_data[ret].reg, &val->intval);
+> +		break;
+> +
+> +	default:
+> +		dev_err(dev, "%s: invalid property %u\n", __func__, psp);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!ret) {
+> +		/* convert units to match requirements of power supply class */
+> +		a500_battery_unit_adjustment(dev, psp, val);
+> +	}
+> +
+> +	dev_dbg(dev, "%s: property =3D %d, value =3D %x\n",
+> +		__func__, psp, val->intval);
+> +
+> +	/* return NODATA for properties if battery not presents */
+> +	if (ret)
+> +		return -ENODATA;
+> +
+> +	return 0;
+> +}
+> +
+> +static void a500_battery_poll_work(struct work_struct *work)
+> +{
+> +	struct a500_battery *bat;
+> +	bool capacity_changed;
+> +
+> +	bat =3D container_of(work, struct a500_battery, poll_work.work);
+> +	capacity_changed =3D a500_battery_update_capacity(bat);
+> +
+> +	if (capacity_changed)
+> +		power_supply_changed(bat->psy);
+> +
+> +	/* continuously send uevent notification */
+> +	schedule_delayed_work(&bat->poll_work, 30 * HZ);
+> +}
+> +
+> +static const struct power_supply_desc a500_battery_desc =3D {
+> +	.name =3D "ec-battery",
+> +	.type =3D POWER_SUPPLY_TYPE_BATTERY,
+> +	.properties =3D a500_battery_properties,
+> +	.get_property =3D a500_battery_get_property,
+> +	.num_properties =3D ARRAY_SIZE(a500_battery_properties),
+> +	.external_power_changed =3D power_supply_changed,
+> +};
+> +
+> +static int a500_battery_probe(struct platform_device *pdev)
+> +{
+> +	struct power_supply_config psy_cfg =3D {};
+> +	struct a500_battery *bat;
+> +
+> +	bat =3D devm_kzalloc(&pdev->dev, sizeof(*bat), GFP_KERNEL);
+> +	if (!bat)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, bat);
+> +
+> +	psy_cfg.of_node =3D pdev->dev.parent->of_node;
+> +	psy_cfg.drv_data =3D bat;
+> +
+> +	bat->rmap =3D dev_get_regmap(pdev->dev.parent, "KB930");
+> +	if (!bat->rmap)
+> +		return -EINVAL;
+> +
+> +	bat->psy =3D devm_power_supply_register_no_ws(&pdev->dev,
+> +						    &a500_battery_desc,
+> +						    &psy_cfg);
+> +	if (IS_ERR(bat->psy))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(bat->psy),
+> +				     "failed to register battery\n");
+> +
+> +	INIT_DELAYED_WORK(&bat->poll_work, a500_battery_poll_work);
+> +	schedule_delayed_work(&bat->poll_work, HZ);
+> +
+> +	return 0;
+> +}
+> +
+> +static int a500_battery_remove(struct platform_device *pdev)
+> +{
+> +	struct a500_battery *bat =3D dev_get_drvdata(&pdev->dev);
+> +
+> +	cancel_delayed_work_sync(&bat->poll_work);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused a500_battery_suspend(struct device *dev)
+> +{
+> +	struct a500_battery *bat =3D dev_get_drvdata(dev);
+> +
+> +	cancel_delayed_work_sync(&bat->poll_work);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused a500_battery_resume(struct device *dev)
+> +{
+> +	struct a500_battery *bat =3D dev_get_drvdata(dev);
+> +
+> +	schedule_delayed_work(&bat->poll_work, HZ);
+> +
+> +	return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(a500_battery_pm_ops,
+> +			 a500_battery_suspend, a500_battery_resume);
+> +
+> +static struct platform_driver a500_battery_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "acer-a500-iconia-battery",
+> +		.pm =3D &a500_battery_pm_ops,
+> +	},
+> +	.probe =3D a500_battery_probe,
+> +	.remove =3D a500_battery_remove,
+> +};
+> +module_platform_driver(a500_battery_driver);
+> +
+> +MODULE_DESCRIPTION("Battery gauge driver for Acer Iconia Tab A500");
+> +MODULE_AUTHOR("Dmitry Osipenko <digetx@gmail.com>");
+> +MODULE_ALIAS("platform:acer-a500-iconia-battery");
+> +MODULE_LICENSE("GPL");
+> --=20
+> 2.27.0
+>=20
+
+--ok6fkpcma74wg3w4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl9/mV4ACgkQ2O7X88g7
++pqdow/+L+EkeTIIOm3OSxcy7JUXyJ/js106wo9SF4KnEhTemK1h7QAnkiA6Yl0X
+NIRedoQFFjc/eecQaGHhNP+I8M1M4zrXwP3Wfxthsc4tkHCNCypJqwgW+JoSU5pv
+kVa3QwYDTn02b0Umx9w8RlJjWthli1tuZZiWaT5hZJzAJMNYGyap6SPITkfB8PPq
+DlaKEuUsQiOzuCD4mrx9d3kIJTPZj6LMMYXdNA+WREkM3d2yrAxq0kY3iZSQkeK+
+0hlQMAJyzrBm0nkl5tYfNnk+ivh5D0+Qt0wKR27MZX960eOfSnlwtYRiSsSu7z8i
+cbXouEKAuY78QSoji/mWiEbYWR/Qcqd9qW8pUjMz4rSVCqtmNhFna7V+kuQ1zXiW
+5Bvccj7KzPww45lVEVyLeQcVoMDwNAtmXIyKRKR4nb39J41yQts3Q00VH/r5I5f4
+tWJLDO7QC6IXx14XSydVar0WQ7uYK90ojFW9cCthDn/hM3tKtrumhMIpO6cxl0uP
+AZhcvE81r7nlbEFCz2Fr2uW0GgqfoiIiAHaMAdFVnQODX6iDUfHiP3PnwoqaKf8Z
+2XRlQ+Ntor9asZOjlEHHSxpr0GZaRhl+JBtIgmg9SaS4BOCt1X0KQLMvGiRr3DGj
+nkE1EKPsMbAjQn+K6V5/QczDMtPN6KrfsMcd7zXspvArHZlT29A=
+=JZte
+-----END PGP SIGNATURE-----
+
+--ok6fkpcma74wg3w4--
