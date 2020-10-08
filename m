@@ -2,162 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B71C7287283
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 12:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10298287285
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 12:29:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729230AbgJHK2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 06:28:50 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59354 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729325AbgJHK2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 06:28:50 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id 9357229D0E5
-From:   =?UTF-8?q?Ricardo=20Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     robh@kernel.org
-Cc:     kernel@collabora.com, enric.balletbo@collabora.com,
-        bleung@chromium.org, groeck@chromium.org, sjg@chromium.org,
-        dianders@chromium.org, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com
-Subject: [PATCH v2 3/3] mfd: google,cros-ec: add missing properties
-Date:   Thu,  8 Oct 2020 12:28:25 +0200
-Message-Id: <20201008102825.3812-4-ricardo.canuelo@collabora.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
-References: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
+        id S1729409AbgJHK3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 06:29:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57874 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729371AbgJHK3U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 06:29:20 -0400
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A09BD21734;
+        Thu,  8 Oct 2020 10:29:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602152959;
+        bh=aGtPmz0jQCnPrRwm4OgrxnkKCiIk1h8w8sNT/5t+438=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MjaFMn1eNf5GqxWZRsdldb5zfJbkScRZCFtc0cJB8neR1oSLlZ+7bvRMBCKFuR2Vw
+         LGIOQ2NW8zU6wLqPJu5KAYj1st1LV3mQpcleatJgsPxom8EbGYfK/YnFhc97+N6X9+
+         5ESZA/hJhG4QdPkcs4UIsJCI0tDuOkRWn0VSOuKk=
+Received: by mail-ed1-f47.google.com with SMTP id b12so5247144edz.11;
+        Thu, 08 Oct 2020 03:29:19 -0700 (PDT)
+X-Gm-Message-State: AOAM532vscE1Uk9pmBRIaCqFMr9n5GNYq6xAuSpdEjygOk1MDREJZiM0
+        /Y9Jx1A+FU5E+JK1NWqoVWQTGippGCgsMney0jQ=
+X-Google-Smtp-Source: ABdhPJw4b8QVEx2CelZyRUH9YrC5rBASXgSBHU9KP5XH716bOMRxnx7Vw2tOo1E1rRRI1um9pIavwi63gufQ5iHz4YQ=
+X-Received: by 2002:a50:8b62:: with SMTP id l89mr8442277edl.132.1602152958020;
+ Thu, 08 Oct 2020 03:29:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+In-Reply-To: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Thu, 8 Oct 2020 12:29:06 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdf8YMFkoTzLhM7d51dwtH1ckGis86dHiSYpFBV0oscfA@mail.gmail.com>
+Message-ID: <CAJKOXPdf8YMFkoTzLhM7d51dwtH1ckGis86dHiSYpFBV0oscfA@mail.gmail.com>
+Subject: Re: [PATCH 0/5] memory: tegra: Fix client list and add swgroups
+To:     Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing properties that are currently used in the examples of
-subnode bindings and in many DTs.
+On Thu, 8 Oct 2020 at 02:44, Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+>
+> This series has two fixes of tegra210_mc_clients, and three
+> changes to add missing swgroups, according to Tegra X1 TRM.
+>
+> Nicolin Chen (5):
+>   memory: tegra: Correct la.reg address of seswr
+>   memory: tegra: Correct tegra210_mc_clients def values
+>   memory: tegra: Sort tegra210_swgroups by reg address
+>   dt-bindings: memory: tegra: Add missing swgroups
+>   memory: tegra: Complete tegra210_swgroups
 
-Also updates the example in sound/google,cros-ec-codec.yaml to comply
-with the google,cros-ec binding.
+Hi,
 
-Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
----
- .../bindings/mfd/google,cros-ec.yaml          | 42 +++++++++++++++++++
- .../bindings/sound/google,cros-ec-codec.yaml  | 26 +++++++-----
- 2 files changed, 58 insertions(+), 10 deletions(-)
+It's too late in the cycle for another pull request so this will wait
+for merge window to finish.
 
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 351bfb6d37ba..48929bb07d98 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -59,6 +59,14 @@ properties:
-       whether this nvram is present or not.
-     type: boolean
- 
-+  mtk,rpmsg-name:
-+    description:
-+      Must be defined if the cros-ec is a rpmsg device for a Mediatek
-+      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
-+      device. Used to match the subnode to the rpmsg device announced by
-+      the SCP.
-+    $ref: "/schemas/types.yaml#/definitions/string"
-+
-   spi-max-frequency:
-     description: Maximum SPI frequency of the device in Hz.
- 
-@@ -71,14 +79,48 @@ properties:
-   wakeup-source:
-     description: Button can wake-up the system.
- 
-+  typec:
-+    $ref: "/schemas/chrome/google,cros-ec-typec.yaml#"
-+
-+  ec-pwm:
-+    $ref: "/schemas/pwm/google,cros-ec-pwm.yaml#"
-+
-   keyboard-controller:
-     $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
- 
-+  codecs:
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      '#address-cells':
-+        const: 2
-+
-+      '#size-cells':
-+        const: 1
-+
-+    patternProperties:
-+      "^ec-codec@[a-f0-9]+$":
-+        type: object
-+        $ref: "/schemas/sound/google,cros-ec-codec.yaml#"
-+
-+    required:
-+      - "#address-cells"
-+      - "#size-cells"
-+
- patternProperties:
-   "^i2c-tunnel[0-9]*$":
-     type: object
-     $ref: "/schemas/i2c/google,cros-ec-i2c-tunnel.yaml#"
- 
-+  "^regulator@[0-9]+$":
-+    type: object
-+    $ref: "/schemas/regulator/google,cros-ec-regulator.yaml#"
-+
-+  "^extcon[0-9]*$":
-+    type: object
-+    $ref: "/schemas/extcon/extcon-usbc-cros-ec.yaml#"
-+
- required:
-   - compatible
- 
-diff --git a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-index c84e656afb0a..acfb9db021dc 100644
---- a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-+++ b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-@@ -11,9 +11,10 @@ maintainers:
- 
- description: |
-   Google's ChromeOS EC codec is a digital mic codec provided by the
--  Embedded Controller (EC) and is controlled via a host-command interface.
--  An EC codec node should only be found as a sub-node of the EC node (see
--  Documentation/devicetree/bindings/mfd/cros-ec.txt).
-+  Embedded Controller (EC) and is controlled via a host-command
-+  interface.  An EC codec node should only be found inside the "codecs"
-+  subnode of a cros-ec node.
-+  (see Documentation/devicetree/bindings/mfd/google,cros-ec.yaml).
- 
- properties:
-   compatible:
-@@ -54,14 +55,19 @@ examples:
-         #size-cells = <0>;
-         cros-ec@0 {
-             compatible = "google,cros-ec-spi";
--            #address-cells = <2>;
--            #size-cells = <1>;
-             reg = <0>;
--            cros_ec_codec: ec-codec@10500000 {
--                compatible = "google,cros-ec-codec";
--                #sound-dai-cells = <1>;
--                reg = <0x0 0x10500000 0x80000>;
--                memory-region = <&reserved_mem>;
-+
-+            codecs {
-+                #address-cells = <2>;
-+                #size-cells = <1>;
-+
-+                cros_ec_codec: ec-codec@10500000 {
-+                    compatible = "google,cros-ec-codec";
-+                    #sound-dai-cells = <1>;
-+                    reg = <0x0 0x10500000 0x80000>;
-+                    memory-region = <&reserved_mem>;
-+                };
-+
-             };
-         };
-     };
--- 
-2.18.0
-
+Best regards,
+Krzysztof
