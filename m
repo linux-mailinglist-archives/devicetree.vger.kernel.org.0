@@ -2,263 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0D30287CA2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 21:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F604287CBB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728999AbgJHTrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 15:47:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35084 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725616AbgJHTrX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 15:47:23 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6841E22200;
-        Thu,  8 Oct 2020 19:47:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602186442;
-        bh=SogUjMB0CBlzI2GJG+eOsj9We4ZGEMenuo5pC/MW5eQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pSfKtOkAypzDoteeVFxZt86mzhGnusdufe5AeGmfvWZbYg/ZTKlCqNUkNaE4eIQJ6
-         svxa2XxdTtuoAYygm/TAu6gPgxjlMbQ0sFLodUAsU/uxuvMtIEygFvaGQ3vj95e6Y3
-         fvYXRR9Tn+8OASb9L0Mz7A8fS1SBp6yvo0aB5ujA=
-Received: by mail-oi1-f177.google.com with SMTP id z26so7548988oih.12;
-        Thu, 08 Oct 2020 12:47:22 -0700 (PDT)
-X-Gm-Message-State: AOAM530XNtyE3ooxdDMYnn+sNizrv0qadU616ijoUjy+u0MTpRNuk718
-        Z7ANpjb+OBjKKVwdFtT1W9wY9XyA2Fm1od2BAg==
-X-Google-Smtp-Source: ABdhPJz2oNaku/oyyTmq42V8qnOXwViBgeYQXBKIrGbtQCDZkxU2VZpGkDVbUpGPZwahfqM+0DKZamEWEptncS+yMbQ=
-X-Received: by 2002:aca:4c52:: with SMTP id z79mr275043oia.147.1602186441518;
- Thu, 08 Oct 2020 12:47:21 -0700 (PDT)
+        id S1729678AbgJHUAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 16:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51548 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729451AbgJHUAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 16:00:19 -0400
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FAA2C0613D2;
+        Thu,  8 Oct 2020 13:00:18 -0700 (PDT)
+Received: by mail-il1-x143.google.com with SMTP id q1so6988069ilt.6;
+        Thu, 08 Oct 2020 13:00:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=b3Mr8+U+4/KGRAdQE+aircAGaTvbmEC+LOyr0gmrcjw=;
+        b=EOFo+tbUFaNIgTKD3WnUp8ygdSni+FCHgiZkMXo1r2RkRuPU7L1mBAOUT9r7PezSYM
+         0iD9ckYiLMGYe3xtuM4SOuQtxQIGmTyDDE76rC+OszaZS2H4Q5SgPe7bqQu96je8mOvo
+         U4iZb3otd4YuRowitUVnk1zYY+fuZYLKSMlKaGBvj1PjKJfY9fPdKh0nzbtF+s22YwQH
+         zhDDMJhfhBXKcyQYdlLGBhGF+DwXuVjvdkZtNRESlQp3oTJRqHjooWX/UmFF78H0DrZk
+         QLROP7hoGTfLsH2Jqhxq4Jz1+XqSM6d/Fw3/054EhDcGLgVC8AZjGqcYb8ayqHUYPYOA
+         z6Ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=b3Mr8+U+4/KGRAdQE+aircAGaTvbmEC+LOyr0gmrcjw=;
+        b=CLhR65jSxAJ3zjli33vNa83bPk57s74U04k0/rMbomTRA0mx083LNgBJQlIPjdTn8Q
+         xXiIVF2vdrVJQAlkGzVFd6PSSwGKtPwifirZzwEZTmlYZ4ssj0kQGJhs/s+Cq1OxIydL
+         6P8s2LsePz4r6/i2AXey2BNofs6sX70Spztp2eGwo+OWAf63Bn4NuJxN6RCpX+5UaTcM
+         C/n9H+fwTdb/InnmyZ9OKWoO8w5qpSzXJGBh5eRXWtmq0e6EP9gZrX7CzOmP+B3BiBFf
+         g8yKnloYk+XeEopTPa8tMWXjGEQ4XAKyrEewIOi6+6z0In2QGPtG4WBviY0vTA7O4gJG
+         yVFg==
+X-Gm-Message-State: AOAM533vUDG8WJs/VgonJ89yBNcQ4la7ik6oOVVImmBbPg0+yXbTeA9D
+        aIsMMnMeFzJa1Z2R8TSo2JaHZk1x0rfkK3qpgN4=
+X-Google-Smtp-Source: ABdhPJxsN4aGj0K4AWunsp9MnG6H64zCW0kZ+MeZ2RyBLlOHCZz5CM0+v1SO72hmYyUj0BqDaHwC54Cn/S6suZD2KG8=
+X-Received: by 2002:a92:484e:: with SMTP id v75mr8048490ila.293.1602187217274;
+ Thu, 08 Oct 2020 13:00:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200921092951.945382-1-enric.balletbo@collabora.com>
- <20201007151159.GA221754@bogus> <CAFqH_531fkh_gZbOMuzhsRj-72NeWsPyxWoFQh9bAF3CZwTfNw@mail.gmail.com>
-In-Reply-To: <CAFqH_531fkh_gZbOMuzhsRj-72NeWsPyxWoFQh9bAF3CZwTfNw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 8 Oct 2020 14:47:08 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL7ej3o_qzb7r+Nmdp=YkuYciqRYYcFo4Z21OGOvkn-3A@mail.gmail.com>
-Message-ID: <CAL_JsqL7ej3o_qzb7r+Nmdp=YkuYciqRYYcFo4Z21OGOvkn-3A@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
-To:     Enric Balletbo Serra <eballetbo@gmail.com>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+References: <20201003092001.405238-1-peron.clem@gmail.com> <20201005092145.wdu4m4pwxydv76ou@gilmour.lan>
+ <CAJiuCcfydz4GS3fUTampBLkDC4f6xVWmRpSRJ55TiDStdRCFmA@mail.gmail.com> <20201008151022.ryhijbj42y7kgzvb@gilmour.lan>
+In-Reply-To: <20201008151022.ryhijbj42y7kgzvb@gilmour.lan>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Thu, 8 Oct 2020 22:00:06 +0200
+Message-ID: <CAJiuCcf8rk4t2GrS3+ANEuCtRmXoCMyzP+-x_rKrAfR-FaMaWA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: allwinner: h6: add eMMC voltage property
+ for Beelink GS1
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Caesar Wang <wxt@rock-chips.com>
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 7, 2020 at 3:57 PM Enric Balletbo Serra <eballetbo@gmail.com> w=
-rote:
+Hi Maxime,
+
+Adding linux-sunxi and Jernej Skrabec to this discussion.
+
+On Thu, 8 Oct 2020 at 17:10, Maxime Ripard <maxime@cerno.tech> wrote:
 >
-> Hi Rob,
+> Hi Cl=C3=A9ment,
 >
-> Missatge de Rob Herring <robh@kernel.org> del dia dc., 7 d=E2=80=99oct. 2=
-020 a
-> les 17:12:
-> >
-> > On Mon, Sep 21, 2020 at 11:29:51AM +0200, Enric Balletbo i Serra wrote:
-> > > Convert the soc/rockchip/power_domain.txt binding document to json-sc=
-hema
-> > > and move to the power bindings directory.
+> On Mon, Oct 05, 2020 at 08:47:19PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > On Mon, 5 Oct 2020 at 11:21, Maxime Ripard <maxime@cerno.tech> wrote:
 > > >
-> > > Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> > > ---
+> > > Hi Cl=C3=A9ment,
 > > >
-> > > Changes in v3:
-> > > - Fixed tab errors found by bot
+> > > On Sat, Oct 03, 2020 at 11:20:01AM +0200, Cl=C3=A9ment P=C3=A9ron wro=
+te:
+> > > > Sunxi MMC driver can't distinguish at runtime what's the I/O voltag=
+e
+> > > > for HS200 mode.
 > > >
-> > > Changes in v2:
-> > > - Fixed a warning that says that 'syscon' should not be used alone.
-> > > - Use patternProperties to define a new level for power-domains.
-> > > - Add const values for power-domain-cells, address-cells, etc.
+> > > Unfortunately, that's not true (or at least, that's not related to yo=
+ur patch).
 > > >
-> > >  .../power/rockchip,power-controller.yaml      | 207 ++++++++++++++++=
-++
-> > >  .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
-> > >  2 files changed, 207 insertions(+), 136 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/power/rockchip,=
-power-controller.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/po=
-wer_domain.txt
+> > > > Add a property in the device-tree to notify MMC core about this
+> > > > configuration.
+> > > >
+> > > > Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink =
+GS1 board")
+> > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dt=
+s b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> > > > index 049c21718846..3f20d2c9bbbb 100644
+> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> > > > @@ -145,6 +145,7 @@ &mmc2 {
+> > > >       vqmmc-supply =3D <&reg_bldo2>;
+> > > >       non-removable;
+> > > >       cap-mmc-hw-reset;
+> > > > +     mmc-hs200-1_8v;
+> > > >       bus-width =3D <8>;
+> > > >       status =3D "okay";
+> > > >  };
 > > >
-> > > diff --git a/Documentation/devicetree/bindings/power/rockchip,power-c=
-ontroller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-con=
-troller.yaml
-> > > new file mode 100644
-> > > index 000000000000..b23ea37e2a08
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/power/rockchip,power-controll=
-er.yaml
-> > > @@ -0,0 +1,207 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/power/rockchip,power-controller.y=
-aml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Rockchip Power Domains
-> > > +
-> > > +maintainers:
-> > > +  - Caesar Wang <wxt@rock-chips.com>
-> > > +  - Heiko Stuebner <heiko@sntech.de>
-> > > +
-> > > +description: |
-> > > +  Rockchip processors include support for multiple power domains whi=
-ch can be
-> > > +  powered up/down by software based on different application scenes =
-to save power.
-> > > +
-> > > +  Power domains contained within power-controller node are generic p=
-ower domain
-> > > +  providers documented in Documentation/devicetree/bindings/power/po=
-wer-domain.yaml.
-> > > +
-> > > +  IP cores belonging to a power domain should contain a 'power-domai=
-ns'
-> > > +  property that is a phandle for the power domain node representing =
-the domain.
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    const: power-controller
-> > > +
-> > > +  compatible:
-> > > +    enum:
-> > > +      - rockchip,px30-power-controller
-> > > +      - rockchip,rk3036-power-controller
-> > > +      - rockchip,rk3066-power-controller
-> > > +      - rockchip,rk3128-power-controller
-> > > +      - rockchip,rk3188-power-controller
-> > > +      - rockchip,rk3228-power-controller
-> > > +      - rockchip,rk3288-power-controller
-> > > +      - rockchip,rk3328-power-controller
-> > > +      - rockchip,rk3366-power-controller
-> > > +      - rockchip,rk3368-power-controller
-> > > +      - rockchip,rk3399-power-controller
-> > > +
-> > > +  '#power-domain-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 0
-> > > +
-> > > +patternProperties:
-> > > +  "^power-domain@[0-9]+$":
+> > > I'm not really sure what you're trying to fix here, but as far as MMC
+> > > goes, eMMC's can support io voltage of 3.3, 1.8 and 1.2V. Modes up un=
+til
+> > > HS DDR (50MHz in DDR) will use an IO voltage of 3.3V, higher speed mo=
+des
+> > > (HS200 and HS400) supporting 1.8V and 1.2V.
 > >
-> > unit-addresses are hex.
+> > Some users report that the eMMC is not working properly on their
+> > Beelink GS1 boards.
 > >
-> > > +    type: object
-> > > +    description: |
-> > > +      Represents the power domains within the power controller node =
-as documented
-> > > +      in Documentation/devicetree/bindings/power/power-domain.yaml.
-> > > +
-> > > +    properties:
-> > > +
-> > > +      '#power-domain-cells':
-> > > +        description:
-> > > +            Must be 0 for nodes representing a single PM domain and =
-1 for nodes
-> > > +            providing multiple PM domains.
-> > > +
-> > > +      '#address-cells':
-> > > +        const: 1
-> > > +
-> > > +      '#size-cells':
-> > > +        const: 0
-> > > +
-> > > +      reg:
-> > > +        description: |
-> > > +          Power domain index. Valid values are defined in:
-> > > +          "include/dt-bindings/power/px30-power.h" - for PX30 type p=
-ower domain.
-> > > +          "include/dt-bindings/power/rk3036-power.h" - for RK3036 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3066-power.h" - for RK3066 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3128-power.h" - for RK3128 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3188-power.h" - for RK3188 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3228-power.h" - for RK3228 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3288-power.h" - for RK3288 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3328-power.h" - for RK3328 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3366-power.h" - for RK3366 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3368-power.h" - for RK3368 ty=
-pe power domain.
-> > > +          "include/dt-bindings/power/rk3399-power.h" - for RK3399 ty=
-pe power domain.
-> > > +        maxItems: 1
-> >
-> > Range of values?
-> >
-> > > +
-> > > +      clocks:
-> > > +        description: |
-> > > +          A number of phandles to clocks that need to be enabled whi=
-le power domain
-> > > +          switches state.
-> >
-> > Can you at least put a range of how many clocks?
-> >
-> > > +
-> > > +      pm_qos:
-> > > +        description: |
-> > > +          A number of phandles to qos blocks which need to be saved =
-and restored
-> > > +          while power domain switches state.
-> >
-> > And here.
-> >
-> > > +
-> > > +    required:
-> > > +      - reg
-> >
-> >        additionalProperties: false
-> >
-> > Which in turn means the nested power domains will throw an error, so yo=
+> > > The mmc-hs200-1_8v property states that the MMC controller supports t=
+he
+> > > HS200 mode at 1.8V. Now, I can only assume that since BLDO2 is set up=
+ at
+> > > 1.8V then otherwise, the MMC core will rightfully decide to use the
+> > > highest supported mode. In this case, since the driver sets it, it wo=
+uld
+> > > be HS-DDR at 3.3V, which won't work with that fixed regulator.
+> > >
+> > > I can only assume that enabling HS200 at 1.8V only fixes the issue yo=
 u
-> > can do:
+> > > have because otherwise it would use HS-DDR at 3.3V, ie not actually
+> > > fixing the issue but sweeping it under the rug.
+> > >
+> > > Trying to add mmc-ddr-1_8v would be a good idea
 > >
-> >        patternProperties:
-> >          "^power-domain@[0-9a-f]+$":
-> >            $ref: '#/patternProperties/^power-domain@[0-9a-f]+$'
+> > Thanks for the explanation, this is indeed the correct one.
+> > So It looks like the SDIO controller has an issue on some boards when
+> > using HS-DDR mode.
 > >
+> > Is this patch acceptable with the proper commit log?
 >
-> When I tried this I got the following error:
+> If HS-DDR works, yes, but I assume it doesn't?
+
+After discussing with Jernej about this issue, I understood that:
+- Automatic delay calibration is not implemented
+- We also miss some handling of DDR related bits in control register
+
+So none of H5/H6 boards should actually work.
+(Some 'lucky' boards seem to work enough to switch to HS200 mode...)
+
+To "fix" this the H5 disable the HS-DDR mode in sunxi mmc driver :
+https://github.com/torvalds/linux/blob/master/drivers/mmc/host/sunxi-mmc.c#=
+L1409
+
+I'm not sure about A64 but it looks like the property "mmc-hs200-1_8v"
+for the PineBook shows the same issue.
+
+The proper way would of course be to implement the missing feature
+mentioned above.
+But this could take some time and as the eMMC driver is actually
+broken wouldn't it be better to disable the HS-DDR for H6 in the mmc
+driver like it's done for H5 ?
+
+Regards,
+Clement
+
 >
-> rockchip,power-controller.yaml:
-> patternProperties:^power-domain@[0-9a-f]+$:patternProperties:^power-domai=
-n@[0-9a-f]+$:$ref:
-> '#/patternProperties/^power-domain@[0-9a-f]+$' is not a
-> 'uri-reference'
->
-> Not sure if is my environment or I am still doing something silly, can
-> you confirm that this works for you? It doesn't seem to be any binding
-> doing this actually.
-
-I think the regex would have to be escaped to be a valid URI:
-
-$ref: '%23/patternProperties/%5Epower-domain@%5B0-9a-f%5D+%24'
-
-That's not the most readable nor am I sure it would get translated
-back to the right path, so it's probably going to be best to just
-define the child nodes even if duplicated.
-
-Rob
+> Maxime
