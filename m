@@ -2,94 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F472870F3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 10:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E58E28713B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 11:10:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728898AbgJHIuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 04:50:03 -0400
-Received: from foss.arm.com ([217.140.110.172]:44536 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728550AbgJHIuD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 04:50:03 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5B2171042;
-        Thu,  8 Oct 2020 01:50:02 -0700 (PDT)
-Received: from bogus (unknown [10.57.53.233])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C6E673F70D;
-        Thu,  8 Oct 2020 01:50:00 -0700 (PDT)
-Date:   Thu, 8 Oct 2020 09:49:54 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        ALKML <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 4/4] mailbox: arm_mhu: Add ARM MHU doorbell driver
-Message-ID: <20201008084954.f45lospaagookbwp@bogus>
-References: <20200928114445.19689-1-sudeep.holla@arm.com>
- <20200928114445.19689-5-sudeep.holla@arm.com>
- <CABb+yY11d8uS34yfE6-c_NP6n5pmxvmjs67aOKEAduhUpnU3Uw@mail.gmail.com>
- <20201007114034.rkiujybiknaedy7m@bogus>
- <CABb+yY12hntCgydcTza4qBggi0aqCrt7=aZ+sJoiqEFkm11xtQ@mail.gmail.com>
+        id S1726875AbgJHJKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 05:10:07 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:42952 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725802AbgJHJKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 05:10:07 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 098988QE020349;
+        Thu, 8 Oct 2020 11:09:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=jXqH2UDOby99d4qrNiPaX/nj3Vx3ew8x+EOd0UDJu8g=;
+ b=dMJroOBtEk4LKhs71+0vuMln0FbG6WS3sBLvWzCpgAT3rvVxLqDB3ijZuqQBg2yR4U/R
+ op/71VIZm+MpKDFhwUgXr5qpi9odKGXdEPEndv7449ufwwPBQAGbJwx43dzTFUjwgZfY
+ buwgiMKrtzz6G+TtPz+18vVEyNWD4YnV3vKmkeBzRBdPSZMeNkHH4hWVvUluuhJM2ib3
+ KC8DX4DyRt/qEqY2r0skTZmGNudHoZhL/TWm9lL1X1PCmAWSa0of+5/DIli/12chTz65
+ k8p287bNs7hxtLw1LV4FbIN2q4TnEsJ4rd645B7is4yYHdK1ToHQYkRvaBt8GnEueH7k OA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3402tk9wf9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 08 Oct 2020 11:09:53 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3A4CA10002A;
+        Thu,  8 Oct 2020 11:09:51 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag1node1.st.com [10.75.127.1])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 25F5F2AE6B1;
+        Thu,  8 Oct 2020 11:09:51 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG1NODE1.st.com (10.75.127.1)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 8 Oct 2020 11:09:50
+ +0200
+From:   Hugues Fruchet <hugues.fruchet@st.com>
+To:     Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Alain Volmat <alain.volmat@st.com>,
+        Amelie DELAUNAY <amelie.delaunay@st.com>
+Subject: [PATCH] ARM: dts: stm32: fix DCMI DMA features on stm32mp15 family
+Date:   Thu, 8 Oct 2020 11:09:42 +0200
+Message-ID: <1602148182-25869-1-git-send-email-hugues.fruchet@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CABb+yY12hntCgydcTza4qBggi0aqCrt7=aZ+sJoiqEFkm11xtQ@mail.gmail.com>
-User-Agent: NeoMutt/20171215
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG1NODE1.st.com
+ (10.75.127.1)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-10-08_04:2020-10-08,2020-10-08 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 10:43:19AM -0500, Jassi Brar wrote:
-> On Wed, Oct 7, 2020 at 6:40 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > On Fri, Oct 02, 2020 at 02:42:37PM -0500, Jassi Brar wrote:
-> > > On Mon, Sep 28, 2020 at 6:45 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > > +
-> > > > +static void mhu_db_shutdown(struct mbox_chan *chan)
-> > > > +{
-> > > > +       struct mhu_db_channel *chan_info = chan->con_priv;
-> > > > +       struct mbox_controller *mbox = &chan_info->mhu->mbox;
-> > > > +       int i;
-> > > > +
-> > > > +       for (i = 0; i < mbox->num_chans; i++)
-> > > > +               if (chan == &mbox->chans[i])
-> > > > +                       break;
-> > > > +
-> > > > +       if (mbox->num_chans == i) {
-> > > > +               dev_warn(mbox->dev, "Request to free non-existent channel\n");
-> > > > +               return;
-> > > > +       }
-> > > > +
-> > > > +       /* Reset channel */
-> > > > +       mhu_db_mbox_clear_irq(chan);
-> > > > +       chan->con_priv = NULL;
-> > > >
-> > > request->free->request will fail because of this NULL assignment.
-> > > Maybe add a 'taken' flag in mhu_db_channel, which should also be
-> > > checked before calling mbox_chan_received_data because the data may
-> > > arrive for a now relinquished channel.
-> > >
-> >
-> > Good point, but the new 'taken' flag will have the same race as con_priv.
-> > We need a lock here and can we use chan->lock or do you prefer this
-> > driver maintains it own for this purpose.
-> >
-> I meant the con_priv is allocated in mhu_db_mbox_xlate and simply
-> assigning it NULL leaks memory, if not a crash by some other path. At
-> least free it before.
->
+Enable FIFO mode with half-full threshold.
 
-Ah right, sorry got confused. Too much reliance on devm_* apis and I didn't
-realise it was not in probe but in xlate which is mbox_startup path. Fixed
-now, will post v2 with both issues addressed.
+Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
+---
+ arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---
-Regards,
-Sudeep
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index bfe2902..cfba9a1 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -1091,7 +1091,7 @@
+ 			resets = <&rcc CAMITF_R>;
+ 			clocks = <&rcc DCMI>;
+ 			clock-names = "mclk";
+-			dmas = <&dmamux1 75 0x400 0x0d>;
++			dmas = <&dmamux1 75 0x400 0x01>;
+ 			dma-names = "tx";
+ 			status = "disabled";
+ 		};
+-- 
+2.7.4
+
