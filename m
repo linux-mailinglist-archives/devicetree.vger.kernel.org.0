@@ -2,109 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49610287558
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 15:42:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB2112875B2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 16:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728969AbgJHNmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 09:42:05 -0400
-Received: from foss.arm.com ([217.140.110.172]:58262 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725871AbgJHNmF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 09:42:05 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A55C1063;
-        Thu,  8 Oct 2020 06:42:04 -0700 (PDT)
-Received: from localhost (unknown [10.1.199.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EDFF33F71F;
-        Thu,  8 Oct 2020 06:42:03 -0700 (PDT)
-Date:   Thu, 8 Oct 2020 14:42:02 +0100
-From:   Ionela Voinescu <ionela.voinescu@arm.com>
-To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        chris.redpath@arm.com, morten.rasmussen@arm.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add devicetree binding for
- cpu-performance-dependencies
-Message-ID: <20201008134153.GA20268@arm.com>
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-2-nicola.mazzucato@arm.com>
+        id S1730487AbgJHOJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 10:09:29 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:38205 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1730491AbgJHOJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 10:09:28 -0400
+Received: (qmail 496113 invoked by uid 1000); 8 Oct 2020 10:09:27 -0400
+Date:   Thu, 8 Oct 2020 10:09:27 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
+ onboard USB hubs
+Message-ID: <20201008140927.GB495091@rowland.harvard.edu>
+References: <20201006171524.GB423499@rowland.harvard.edu>
+ <20201006192536.GB191572@google.com>
+ <20201007010023.GA438733@rowland.harvard.edu>
+ <20201007160336.GA620323@google.com>
+ <20201007163838.GA457977@rowland.harvard.edu>
+ <20201007172847.GB620323@google.com>
+ <20201007192542.GA468921@rowland.harvard.edu>
+ <20201007194229.GC620323@google.com>
+ <20201007201732.GE468921@rowland.harvard.edu>
+ <20201007214226.GA669360@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200924095347.32148-2-nicola.mazzucato@arm.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201007214226.GA669360@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi guys,
+On Wed, Oct 07, 2020 at 02:42:26PM -0700, Matthias Kaehlcke wrote:
+> On Wed, Oct 07, 2020 at 04:17:32PM -0400, Alan Stern wrote:
+> > The peering relation goes both ways, so it should be included in the 
+> > hub_2_0 description too.  Given that, the driver could check hub_2_0's 
+> > peer's DT description for the appropriate resources.
+> 
+> That mitigates the issue somewhat, however we still have to convince Rob that
+> both references are needed.
 
-On Thursday 24 Sep 2020 at 10:53:46 (+0100), Nicola Mazzucato wrote:
-[..]
-> diff --git a/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml b/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
-> new file mode 100644
-> index 000000000000..c7a577236cd6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/cpu-perf-dependencies.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CPU Performance Dependencies
-> +
-> +maintainers:
-> +  - Nicola Mazzucato <nicola.mazzucato@arm.com>
-> +
-> +description: |+
-> +  This optional node provides information to OSPM of cpu performance
-> +  dependencies.
-> +  Each list represents a set of CPUs which have performance level
-> +  dependencies and can assumed to be roughly at the same performance
-> +  level coordinated by hardware and/or firmware.
-> +  Example: Describing CPUs in the same clock domain.
+Strictly speaking, the peering relation applies to ports, not
+devices.  The representation in DT doesn't have to be symmetrical; as
+long as the kernel understands it, the kernel can set up its own
+internal symmetrical respresentation.
 
-I'm continuing here a conversation started in v1 on the characteristics of
-cpu-perf-dependencies and whether this binding actually describes the
-hardware.
+> > > All this mess can be avoided by having a single instance in control of the
+> > > resources which is guaranteed to suspend after the USB devices.
+> > 
+> > Yes.  At the cost of registering, adding a driver for, and making users 
+> > aware of a fictitious platform device.
+> 
+> Registration is trivial and the driver code will be needed anyway, I'm
+> pretty convinced that a separate platform driver will be simpler than
+> plumbing things into the hub driver, with the additional checks of who is
+> suspended or not, etc. If other resources like resets are involved there
+> could be further possible race conditions at probe time. Another issue is
+> the sysfs attribute. We said to attach it to the primary hub. What happens
+> when the primary hub goes away? I guess we could force unbinding the peers
+> as we did in the driver under discussion to avoid confusion/inconsistencies,
+> but it's another tradeoff.
+> 
+> My view of the pros and cons of extending the hub driver vs. having a platform
+> driver:
+> 
+> - pros
+>   - sysfs attribute is attached to a USB hub device
+>   - no need to register a platform device (trivial)
+>   - potentially more USB awareness (not clear if needed)
+> 
+> - cons
+>   - possible races involving resources between peer hubs during initialization
+>   - increased complexity from keeping track of peers, checking suspend order
+>     and avoiding races
+>   - peers are forced to unbind when primary goes away
+>   - need DT links to peers for all USB hubs, not only in the primary
+>   - pollution of the generic hub code with device specific stuff instead
+>     of keeping it in a self contained driver
+>   - sysfs attribute is attached to only one of the hubs, which is better than
+>     having it on both, but not necessarily better than attaching it to the
+>     platform device with the 'control logic'
+> 
+> So yes, there are tradeoffs, IMO balance isn't as clear as your comment
+> suggests.
 
-In the way I see this, the answer is clearly yes and it is information
-that we need in the device tree, beyond the presence of SCMI as cpufreq
-driver, and beyond the way it will be consumed by EAS/thermal/etc.
+Well, I guess I'm okay with either approach.
 
-I link this to whether software will do the aggregation of per CPU
-information in establishing the next frequency to be requested from the
-driver/hardware for all dependent CPUs, or whether hardware is able to
-receive the per CPU information on different channels and do the
-aggregation itself.
+One more thing to keep in mind, though: With the platform device,
+there should be symlinks from the hubs' sysfs directories to the
+platform device (and possibly symlinks going the other way as well).
 
-This software aggregation is the typical way currently supported in
-cpufreq, but hardware aggregation will be needed the more we see
-hardware features for performance/power control.
-
-But support for hardware aggregation involves having per-cpu channels
-to convey the frequency request for that CPU. But currently the device
-tree only gives us the ability to describe the information to be used
-for sending frequency requests and as a result the kernel considers
-CPUs as dependent only if they use the same controls for those CPUs.
-So we currently can have hardware aggregation, but we lose all
-information about what CPUs actually ended up having the same frequency,
-because they are actually using the same clocks.
-
-Therefore this new binding is needed for when hardware/firmware is better
-equipped to make a decision about the clock rate for a group of CPUs, when
-information is given about each CPU. The usefulness comes from informing
-the software that some CPUs will have the same clock and therefore it
-does describe a hardware characteristic of the system. In some cases
-counters will help observe what was the frequency that was eventually
-granted by hardware.
-
-Knowing what CPUs actually use the same clock is very useful for the
-scheduler (EAS, frequency invariance) and thermal.
-
-Hope it helps,
-Ionela.
+Alan Stern
