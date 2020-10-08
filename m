@@ -2,96 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38351286DE2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 07:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64840286DEC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 07:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728389AbgJHFFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 01:05:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54080 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728385AbgJHFFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 01:05:12 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41B22C061755;
-        Wed,  7 Oct 2020 22:05:12 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id p15so4329494ljj.8;
-        Wed, 07 Oct 2020 22:05:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Rusu0oIzTOO8ocbnxz5JOA49UqEDQ44SxR4hoPni0y4=;
-        b=DMxlxOaK/nedSuliOtyVH5U0m6WjODloC7rwVN+cLO+FHv+XkmiW9G9++sH9q0Ohoi
-         w4juf+0yq0laq2EsMB3B+8dXcqnnEyZJ2ntqeNMUKLsbVsFg/GK+TH3+M8gTjlFO8PQW
-         qeomMFcDNrpIHkfH0TjkNSUkysUVg7nBB8PchPPapN8TqS2ksIj8+qsV2M/JVMs/eZyD
-         unoYbvp62fB9JAmiXLI0pUqXj9iQRGMm3cVjXFQ1Vz6z03EYONrqX2kzubOjOZjrfZsp
-         e6aodZ7mgEKQS0oFwILkPyi1+LA3C68TpuVMpKtUoKfzVW4UzGbgKN6LDb030rIPOGTX
-         KMdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Rusu0oIzTOO8ocbnxz5JOA49UqEDQ44SxR4hoPni0y4=;
-        b=P7T6PZX8KA8WxaKLPSJG8bUTVMbxE/XhvTfdBELn3G3RuOAI4v8FfRk5czsRH8d6fR
-         2oK0dSGfWrCjuYFNyf9uyVnwb2YYunouT8y+HwIOnh9cRjfum5d8x9zcj142QvcoRNp7
-         SAAISMYkJsYlxxIjLzdEmANPoh7Ga9PIZjit4d02MtSgi8cOSi64jMHFVx+o7uPEFNGc
-         Sv4DSu5Mg8ea+RBu6YHj/7jH77ejuMSJ1IZHJZHKoOtauAE6+qVTBmIBgwHjuG3izEkh
-         L+B0y348xOcSy3B89DtKh5JTn9eyC9YLBkz9MNV/BOz21A2FSoyBJOPHY5PX5D4p2a+H
-         SyuA==
-X-Gm-Message-State: AOAM532Tlilrwb37c0tEHUiwOB+S/iEC0W2nPZZ5R55gJwZ7duEJxAWt
-        4otCGVDPwUXrpk4WeRQfUn0WRNzCTJk=
-X-Google-Smtp-Source: ABdhPJwkr1Tk3q7ENrjOstfBgfgOD/7cM8ziJ+xFeGTQyU6DHpUsCVfPO9+F6oo269EdZNlRS5sn+g==
-X-Received: by 2002:a2e:b055:: with SMTP id d21mr2672202ljl.429.1602133510711;
-        Wed, 07 Oct 2020 22:05:10 -0700 (PDT)
-Received: from [192.168.2.145] ([109.252.91.252])
-        by smtp.googlemail.com with ESMTPSA id m19sm716152lji.112.2020.10.07.22.05.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Oct 2020 22:05:09 -0700 (PDT)
-Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
-To:     Stephen Warren <swarren@wwwdotorg.org>, Bob Ham <rah@settrans.net>,
-        Stefan Agner <stefan@agner.ch>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lukas Rusak <lorusak@gmail.com>
-References: <20201004133114.845230-1-pgwipeout@gmail.com>
- <cdd0f520ae4990de90f461e21cb4f298@agner.ch>
- <4d3eb998-045b-f288-7a9c-aaa620c38bff@settrans.net>
- <c8140ea3-8731-8084-47dd-8819b4b4df6a@gmail.com>
- <f12c1ad2-d180-8981-c3bf-db8ab6afbbaa@wwwdotorg.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <293ed420-259c-33da-eda4-3be94ba8d109@gmail.com>
-Date:   Thu, 8 Oct 2020 08:05:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <f12c1ad2-d180-8981-c3bf-db8ab6afbbaa@wwwdotorg.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1726201AbgJHFRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 01:17:25 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:57852 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726148AbgJHFRY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 01:17:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602134243; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ckz42tFStxh5B1luhWfn73wl9mbtBZnzWuXQ/lOTgG4=; b=Q+kykBPmDEmn6pAWvpy2g1N63osXrqkQuwSm/p9V7plssrFyO/bd8f+RkZ+krxS1Pip+BCXU
+ cH6WPG76lOncnBHF63pKaWEKVFIjRSZkFIN3tY/fysEy691LRNlKys6sKZp4FPk6KNGaksGi
+ 0JbZ+eRIJP7J2G0oJu1yJyv+Cwg=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 5f7ea0e242f9861fb16ccd7a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 08 Oct 2020 05:17:22
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DB409C43391; Thu,  8 Oct 2020 05:17:22 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A1478C433CB;
+        Thu,  8 Oct 2020 05:17:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A1478C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v11 0/7] Qualcomm's lpass-hdmi ASoC driver to support audio over dp port
+Date:   Thu,  8 Oct 2020 10:46:56 +0530
+Message-Id: <1602134223-2562-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-07.10.2020 19:08, Stephen Warren пишет:
-...
-> The facts[1] that Ouya published the code and that it used GPL-only
-> symbols certainly does imply that they *should* have published under GPL
-> or a compatible license, but doesn't mean that they definitely did. The
-> only way to know that for sure is for there to be evidence in the file
-> content or git history, such as license headers or Signed-off-by lines.
+These patches are to support audio over DP port on Qualcomm's SC7180 LPASS
+Asoc. It includes machine driver, cpu driver, platform driver updates for 
+HDMI path support, device tree documention, lpass variant structure 
+optimization and configuration changes.
+These patches depends on the DP patch series
+https://patchwork.kernel.org/project/dri-devel/list/?series=332029
+https://lore.kernel.org/patchwork/project/lkml/list/?series=464856
 
-The code wasn't only published, but also was distributed in a binary
-form to end users. This means that even if Ouya Inc. still existed and
-they made a mistake by using GPL-only symbols plus GPL-incompatible
-license for the driver, then they had to resilience the code. Hence
-either way it's okay to use downstream code as a reference for the
-upstream driver.
+changes since V10:
+    -- Moved hdmi regmap functions from lpass-hdmi.c to lpass-cpu.c
+    -- Moved QCOM_REGMAP_FIELD_ALLOC macro from lpass-hdmi.c to lpass.h
+changes since V9:
+    -- Removed unused structures lpass_hdmi.h
+changes since V8:
+    -- Removed redundant structure wrapper for reg map field memebrs
+    -- Updated lpass_hdmi_regmap_volatile API with appropriate registers as true
+       and others as false.
+changes since V7:
+    -- Fixed typo errors
+    -- Created Separate patch for buffer size change 
+changes since V6:
+    -- Removed compile time define flag, which used for enabling
+     HDMI code, based on corresponding config param is included.
+    -- Updated reg map alloc API with reg map bulk API.
+    -- Removed unnecessary line splits
+changes since V5:
+    -- Removed unused struct regmap *map in lpass_platform_alloc_hdmidmactl_fields.
+    -- DMA alloc and free API signature change in lpass-apq8016.c, lpass-ipq806x.c 
+    -- Keeping API "irqreturn_t lpass_platform_hdmiif_irq" under ifdef macro
+Changes Since v4:
+    -- Updated with single compatible node for both I2S and HDMI.
+Changes Since v3:
+    -- Removed id in lpass variant structure and used snd_soc_dai_driver id.
+Changes Since v2:
+    -- Audio buffer size(i.e. LPASS_PLATFORM_BUFFER_SIZE) in lpass-platform.c increased.
+Changes Since v1:
+    -- Commit messages are updated
+    -- Addressed Rob Herring review comments
 
-This is my understanding.
+V Sujith Kumar Reddy (7):
+  ASoC: Add sc7180-lpass binding header hdmi define
+  ASoC: dt-bindings: Add dt binding for lpass hdmi
+  Asoc:qcom:lpass-cpu:Update dts property read API
+  Asoc: qcom: lpass:Update lpaif_dmactl members order
+  ASoC: qcom: Add support for lpass hdmi driver
+  Asoc: qcom: lpass-platform : Increase buffer size
+  ASoC: qcom: sc7180: Add support for audio over DP
+
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  74 ++--
+ include/dt-bindings/sound/sc7180-lpass.h           |   1 +
+ sound/soc/qcom/Kconfig                             |   5 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/lpass-apq8016.c                     |   4 +-
+ sound/soc/qcom/lpass-cpu.c                         | 249 ++++++++++++-
+ sound/soc/qcom/lpass-hdmi.c                        | 258 ++++++++++++++
+ sound/soc/qcom/lpass-hdmi.h                        | 102 ++++++
+ sound/soc/qcom/lpass-ipq806x.c                     |   4 +-
+ sound/soc/qcom/lpass-lpaif-reg.h                   |  49 ++-
+ sound/soc/qcom/lpass-platform.c                    | 395 +++++++++++++++++----
+ sound/soc/qcom/lpass-sc7180.c                      | 116 +++++-
+ sound/soc/qcom/lpass.h                             | 124 ++++++-
+ 13 files changed, 1240 insertions(+), 143 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-hdmi.c
+ create mode 100644 sound/soc/qcom/lpass-hdmi.h
+
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
