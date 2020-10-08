@@ -2,299 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6348F287BC2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 20:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BA30287BC3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 20:33:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729056AbgJHSct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 14:32:49 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:46991 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728736AbgJHScr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 14:32:47 -0400
-Received: by mail-ot1-f65.google.com with SMTP id m11so6435862otk.13
-        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 11:32:44 -0700 (PDT)
+        id S1728736AbgJHSdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 14:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38182 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728464AbgJHSdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 14:33:09 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF7C6C061755;
+        Thu,  8 Oct 2020 11:33:08 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id q9so7359637iow.6;
+        Thu, 08 Oct 2020 11:33:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0vV4Mb98vlQIwwZ0z4qtbWCxs9fA4GO948r8Iey6zXY=;
+        b=IyefXmudAS05tO7aFl4A85mBPzjTiyMd73wrzuWmi+XHbF3v25yu+m5vxpB2A2FpV8
+         nUzUL4JdairnVbPM0YS3nx4QJ0ZTaknynWl9oGU6IDmFXpgkRR/sjAK/Eqg9jaDYuuHY
+         bp216KyM8Q2JdHT3FRpVgsVZMyOtz7B8pZ+Q41Kj5A0vCCGTf5zaAKJUAWghhZ/ME2bz
+         /3gVjqpwMJX4BZGx7mTCm5WabN611FEuTXHjDoW3zI8wJ9Yi3PeljSr0IA6b+uj62ghT
+         gxlelyMF0NO11HyYazv0qbvTRu046GU2IdbRkBqOmdp9EnMS5cHkTica6lvtem6IBRg5
+         EmEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=P7Wc7Pyu8f7j/NNWqMztrx9p+ecpGEvKl6XLaPGEcXY=;
-        b=QkWaXiIwjHyW7WfqBdGiuXA8p2MBT1OxSWW68SBtBaCMGlD3hfaBvOi/ULh3bmY3uc
-         tS+MXvNm2Qc5PW5Y+t3rlqReajawmbJnzGYLkmchUMjRqOMpR3QrCCpqVot/SEf9ztPS
-         ZsvtYF1wV3SxbESGWqWKmj0xoNl7Wr5c57KLiX0o+Sf0fFBj5agp31DQFpjuwr+yvFY1
-         8psYfRwJfi2Ee3y9FpAQFQ49kVGsbh/25SUYzGN5fubR99vQwVl2h1bwcjk/uSnM595O
-         2goMd7Y8j6xfFvXg+R72R9omNmvm3Bw0LeRZ/MGcMlwO5V5DcXhkI+llpd8/Po3FUw1t
-         1CHg==
-X-Gm-Message-State: AOAM532ayx2xwP/C125UhWFAwZKVIpLLkUwZ9jEoerqdONHFryqEpCB0
-        mUzK0Qqu4m/Q5zJl/loVkA==
-X-Google-Smtp-Source: ABdhPJw+9HGyxe9fI4Zsg7DqFRsZl+2NyewCSR2r0CNjpR0wc0nkijNXL9ojTJP2GDx6DpRSNLhZuA==
-X-Received: by 2002:a05:6830:138f:: with SMTP id d15mr5839815otq.342.1602181963712;
-        Thu, 08 Oct 2020 11:32:43 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d10sm4488048otq.43.2020.10.08.11.32.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0vV4Mb98vlQIwwZ0z4qtbWCxs9fA4GO948r8Iey6zXY=;
+        b=L6yrPOEx4eLtbidNqm0l3AG+Jq3zfTi7IMh4PWCxivq/brhsR4rJT5p9DIhVyreTWL
+         /ADBefsgGLD4qRcz7/J8QHjMD5RFS5QqZBd7BFJ5XVrlosfyPphrlImFHf8dWMf22pbr
+         xAC7xethI0iTtvJr3zZKKMj5wGWj/CWB0wRjnucdhuFZXdQU2KLOqFfMHioT775oMFOS
+         i+1as0JFAs2kRBm+eYEb7Tr9UPfBN/0ttcz8J9VKi2xcykKRLFa5Injuww+oMJ1+tf7+
+         y9C4Rw/uYNjLL6UG8/gXbGNPrWDj7oAlDligrRAqghZNKktETbQkmfGCMNMfB20yByqy
+         AVQA==
+X-Gm-Message-State: AOAM531ssM9WLT+FMOvTi1GBTM4f9Ih5xBVP80w0vO0lLEF4lJuGXtH8
+        VtLfc5OPmrKv6jQllCiOXgy+eOL/i88uEw==
+X-Google-Smtp-Source: ABdhPJy/JhePvsbaaNGnqX+bcq4B236D1/woZ8hSpzdfQRDXaw0drHDhyPtsp9jyGcfLnTUXBRFzUA==
+X-Received: by 2002:a02:cc8d:: with SMTP id s13mr8019937jap.4.1602181988120;
+        Thu, 08 Oct 2020 11:33:08 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:7c62:dd9d:b755:cfbd])
+        by smtp.gmail.com with ESMTPSA id r2sm2446268ile.1.2020.10.08.11.33.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2020 11:32:42 -0700 (PDT)
-Received: (nullmailer pid 2409094 invoked by uid 1000);
-        Thu, 08 Oct 2020 18:32:41 -0000
-Date:   Thu, 8 Oct 2020 13:32:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     kernel@collabora.com, enric.balletbo@collabora.com,
-        bleung@chromium.org, groeck@chromium.org, sjg@chromium.org,
-        dianders@chromium.org, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com
-Subject: Re: [PATCH v2 2/3] dt-bindings: input: convert cros-ec-keyb to
- json-schema
-Message-ID: <20201008183241.GA2395464@bogus>
-References: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
- <20201008102825.3812-3-ricardo.canuelo@collabora.com>
+        Thu, 08 Oct 2020 11:33:07 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, krzk@kernel.org,
+        Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V2] arm64: dts imx8mn: Remove non-existent USB OTG2
+Date:   Thu,  8 Oct 2020 13:33:00 -0500
+Message-Id: <20201008183300.726756-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201008102825.3812-3-ricardo.canuelo@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 12:28:24PM +0200, Ricardo Cañuelo wrote:
-> Convert the google,cros-ec-keyb binding to YAML and add it as a property
-> of google,cros-ec.yaml
-> 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-> ---
->  .../bindings/input/cros-ec-keyb.txt           |  72 -----------
->  .../bindings/input/google,cros-ec-keyb.yaml   | 120 ++++++++++++++++++
->  .../bindings/mfd/google,cros-ec.yaml          |   3 +
->  3 files changed, 123 insertions(+), 72 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/cros-ec-keyb.txt
->  create mode 100644 Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/cros-ec-keyb.txt b/Documentation/devicetree/bindings/input/cros-ec-keyb.txt
-> deleted file mode 100644
-> index 0f6355ce39b5..000000000000
-> --- a/Documentation/devicetree/bindings/input/cros-ec-keyb.txt
-> +++ /dev/null
-> @@ -1,72 +0,0 @@
-> -ChromeOS EC Keyboard
-> -
-> -Google's ChromeOS EC Keyboard is a simple matrix keyboard implemented on
-> -a separate EC (Embedded Controller) device. It provides a message for reading
-> -key scans from the EC. These are then converted into keycodes for processing
-> -by the kernel.
-> -
-> -This binding is based on matrix-keymap.txt and extends/modifies it as follows:
-> -
-> -Required properties:
-> -- compatible: "google,cros-ec-keyb"
-> -
-> -Optional properties:
-> -- google,needs-ghost-filter: True to enable a ghost filter for the matrix
-> -keyboard. This is recommended if the EC does not have its own logic or
-> -hardware for this.
-> -
-> -
-> -Example:
-> -
-> -cros-ec-keyb {
-> -	compatible = "google,cros-ec-keyb";
-> -	keypad,num-rows = <8>;
-> -	keypad,num-columns = <13>;
-> -	google,needs-ghost-filter;
-> -	/*
-> -	 * Keymap entries take the form of 0xRRCCKKKK where
-> -	 * RR=Row CC=Column KKKK=Key Code
-> -	 * The values below are for a US keyboard layout and
-> -	 * are taken from the Linux driver. Note that the
-> -	 * 102ND key is not used for US keyboards.
-> -	 */
-> -	linux,keymap = <
-> -		/* CAPSLCK F1         B          F10     */
-> -		0x0001003a 0x0002003b 0x00030030 0x00040044
-> -		/* N       =          R_ALT      ESC     */
-> -		0x00060031 0x0008000d 0x000a0064 0x01010001
-> -		/* F4      G          F7         H       */
-> -		0x0102003e 0x01030022 0x01040041 0x01060023
-> -		/* '       F9         BKSPACE    L_CTRL  */
-> -		0x01080028 0x01090043 0x010b000e 0x0200001d
-> -		/* TAB     F3         T          F6      */
-> -		0x0201000f 0x0202003d 0x02030014 0x02040040
-> -		/* ]       Y          102ND      [       */
-> -		0x0205001b 0x02060015 0x02070056 0x0208001a
-> -		/* F8      GRAVE      F2         5       */
-> -		0x02090042 0x03010029 0x0302003c 0x03030006
-> -		/* F5      6          -          \       */
-> -		0x0304003f 0x03060007 0x0308000c 0x030b002b
-> -		/* R_CTRL  A          D          F       */
-> -		0x04000061 0x0401001e 0x04020020 0x04030021
-> -		/* S       K          J          ;       */
-> -		0x0404001f 0x04050025 0x04060024 0x04080027
-> -		/* L       ENTER      Z          C       */
-> -		0x04090026 0x040b001c 0x0501002c 0x0502002e
-> -		/* V       X          ,          M       */
-> -		0x0503002f 0x0504002d 0x05050033 0x05060032
-> -		/* L_SHIFT /          .          SPACE   */
-> -		0x0507002a 0x05080035 0x05090034 0x050B0039
-> -		/* 1       3          4          2       */
-> -		0x06010002 0x06020004 0x06030005 0x06040003
-> -		/* 8       7          0          9       */
-> -		0x06050009 0x06060008 0x0608000b 0x0609000a
-> -		/* L_ALT   DOWN       RIGHT      Q       */
-> -		0x060a0038 0x060b006c 0x060c006a 0x07010010
-> -		/* E       R          W          I       */
-> -		0x07020012 0x07030013 0x07040011 0x07050017
-> -		/* U       R_SHIFT    P          O       */
-> -		0x07060016 0x07070036 0x07080019 0x07090018
-> -		/* UP      LEFT    */
-> -		0x070b0067 0x070c0069>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> new file mode 100644
-> index 000000000000..5286d9d8ac45
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/input/google,cros-ec-keyb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ChromeOS EC Keyboard
-> +
-> +maintainers:
-> +  - Simon Glass <sjg@chromium.org>
-> +  - Benson Leung <bleung@chromium.org>
-> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> +
-> +description: |
-> +  Google's ChromeOS EC Keyboard is a simple matrix keyboard
-> +  implemented on a separate EC (Embedded Controller) device. It provides
-> +  a message for reading key scans from the EC. These are then converted
-> +  into keycodes for processing by the kernel.
-> +
-> +allOf:
-> +  - $ref: "/schemas/input/matrix-keymap.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    const: google,cros-ec-keyb
-> +
-> +  linux,keymap:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32-array'
-> +    description: |
-> +      An array of packed 1-cell entries containing the equivalent of row,
-> +      column and linux key-code. The 32-bit big endian cell is packed as:
-> +          row << 24 | column << 16 | key-code
+According to the i.MX8MN TRM, there is only one OTG port.  The
+address for OTG2 is reserved on Nano.
 
-These already have a type and description, don't repeat it here.
+This patch removes the non-existent OTG2, usbphynop2, and the usbmisc2
+nodes.
 
-If no other constraints, then just 'linux,keymap: true'. Or you can use 
-unevaluatedProperties instead of additionalProperties. The former will 
-take the $ref to matrix-keymap.yaml into account.
+Fixes: 6c3debcbae47 ("arm64: dts: freescale: Add i.MX8MN dtsi support")
 
-> +
-> +  keypad,num-rows:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> +    description: Number of row lines connected to the keypad controller.
-> +
-> +  keypad,num-columns:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> +    description: Number of column lines connected to the keypad controller.
-> +
-> +  google,needs-ghost-filter:
-> +    description:
-> +      Enable a ghost filter for the matrix keyboard. This is recommended
-> +      if the EC does not have its own logic or hardware for this.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - linux,keymap
-> +  - keypad,num-rows
-> +  - keypad,num-columns
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        cros-ec@0 {
-> +            compatible = "google,cros-ec-spi";
-> +            reg = <0>;
-> +
-> +            keyboard-controller {
-> +                compatible = "google,cros-ec-keyb";
-> +                keypad,num-rows = <8>;
-> +                keypad,num-columns = <13>;
-> +                google,needs-ghost-filter;
-> +                /*
-> +                 * Keymap entries take the form of 0xRRCCKKKK where
-> +                 * RR=Row CC=Column KKKK=Key Code
-> +                 * The values below are for a US keyboard layout and
-> +                 * are taken from the Linux driver. Note that the
-> +                 * 102ND key is not used for US keyboards.
-> +                 */
-> +                linux,keymap = <
-> +                    /* CAPSLCK F1         B          F10     */
-> +                    0x0001003a 0x0002003b 0x00030030 0x00040044
-> +                    /* N       =          R_ALT      ESC     */
-> +                    0x00060031 0x0008000d 0x000a0064 0x01010001
-> +                    /* F4      G          F7         H       */
-> +                    0x0102003e 0x01030022 0x01040041 0x01060023
-> +                    /* '       F9         BKSPACE    L_CTRL  */
-> +                    0x01080028 0x01090043 0x010b000e 0x0200001d
-> +                    /* TAB     F3         T          F6      */
-> +                    0x0201000f 0x0202003d 0x02030014 0x02040040
-> +                    /* ]       Y          102ND      [       */
-> +                    0x0205001b 0x02060015 0x02070056 0x0208001a
-> +                    /* F8      GRAVE      F2         5       */
-> +                    0x02090042 0x03010029 0x0302003c 0x03030006
-> +                    /* F5      6          -          \       */
-> +                    0x0304003f 0x03060007 0x0308000c 0x030b002b
-> +                    /* R_CTRL  A          D          F       */
-> +                    0x04000061 0x0401001e 0x04020020 0x04030021
-> +                    /* S       K          J          ;       */
-> +                    0x0404001f 0x04050025 0x04060024 0x04080027
-> +                    /* L       ENTER      Z          C       */
-> +                    0x04090026 0x040b001c 0x0501002c 0x0502002e
-> +                    /* V       X          ,          M       */
-> +                    0x0503002f 0x0504002d 0x05050033 0x05060032
-> +                    /* L_SHIFT /          .          SPACE   */
-> +                    0x0507002a 0x05080035 0x05090034 0x050B0039
-> +                    /* 1       3          4          2       */
-> +                    0x06010002 0x06020004 0x06030005 0x06040003
-> +                    /* 8       7          0          9       */
-> +                    0x06050009 0x06060008 0x0608000b 0x0609000a
-> +                    /* L_ALT   DOWN       RIGHT      Q       */
-> +                    0x060a0038 0x060b006c 0x060c006a 0x07010010
-> +                    /* E       R          W          I       */
-> +                    0x07020012 0x07030013 0x07040011 0x07050017
-> +                    /* U       R_SHIFT    P          O       */
-> +                    0x07060016 0x07070036 0x07080019 0x07090018
-> +                    /* UP      LEFT    */
-> +                    0x070b0067 0x070c0069>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index c45cf30ea3aa..351bfb6d37ba 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -71,6 +71,9 @@ properties:
->    wakeup-source:
->      description: Button can wake-up the system.
->  
-> +  keyboard-controller:
-> +    $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
-> +
->  patternProperties:
->    "^i2c-tunnel[0-9]*$":
->      type: object
-> -- 
-> 2.18.0
-> 
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+V2:  Remove usbmisc2 and usbphynop2 in addition to the otg2 node.
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index 746faf1cf2fb..16c7202885d7 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -790,28 +790,6 @@ usbmisc1: usbmisc@32e40200 {
+ 				#index-cells = <1>;
+ 				reg = <0x32e40200 0x200>;
+ 			};
+-
+-			usbotg2: usb@32e50000 {
+-				compatible = "fsl,imx8mn-usb", "fsl,imx7d-usb";
+-				reg = <0x32e50000 0x200>;
+-				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MN_CLK_USB1_CTRL_ROOT>;
+-				clock-names = "usb1_ctrl_root_clk";
+-				assigned-clocks = <&clk IMX8MN_CLK_USB_BUS>,
+-						  <&clk IMX8MN_CLK_USB_CORE_REF>;
+-				assigned-clock-parents = <&clk IMX8MN_SYS_PLL2_500M>,
+-							 <&clk IMX8MN_SYS_PLL1_100M>;
+-				fsl,usbphy = <&usbphynop2>;
+-				fsl,usbmisc = <&usbmisc2 0>;
+-				status = "disabled";
+-			};
+-
+-			usbmisc2: usbmisc@32e50200 {
+-				compatible = "fsl,imx8mn-usbmisc", "fsl,imx7d-usbmisc";
+-				#index-cells = <1>;
+-				reg = <0x32e50200 0x200>;
+-			};
+-
+ 		};
+ 
+ 		dma_apbh: dma-controller@33000000 {
+@@ -876,12 +854,4 @@ usbphynop1: usbphynop1 {
+ 		assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_100M>;
+ 		clock-names = "main_clk";
+ 	};
+-
+-	usbphynop2: usbphynop2 {
+-		compatible = "usb-nop-xceiv";
+-		clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
+-		assigned-clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
+-		assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_100M>;
+-		clock-names = "main_clk";
+-	};
+ };
+-- 
+2.25.1
+
