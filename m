@@ -2,83 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E58E28713B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 11:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D2D128717A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 11:30:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726875AbgJHJKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 05:10:07 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:42952 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725802AbgJHJKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 05:10:07 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 098988QE020349;
-        Thu, 8 Oct 2020 11:09:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=jXqH2UDOby99d4qrNiPaX/nj3Vx3ew8x+EOd0UDJu8g=;
- b=dMJroOBtEk4LKhs71+0vuMln0FbG6WS3sBLvWzCpgAT3rvVxLqDB3ijZuqQBg2yR4U/R
- op/71VIZm+MpKDFhwUgXr5qpi9odKGXdEPEndv7449ufwwPBQAGbJwx43dzTFUjwgZfY
- buwgiMKrtzz6G+TtPz+18vVEyNWD4YnV3vKmkeBzRBdPSZMeNkHH4hWVvUluuhJM2ib3
- KC8DX4DyRt/qEqY2r0skTZmGNudHoZhL/TWm9lL1X1PCmAWSa0of+5/DIli/12chTz65
- k8p287bNs7hxtLw1LV4FbIN2q4TnEsJ4rd645B7is4yYHdK1ToHQYkRvaBt8GnEueH7k OA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3402tk9wf9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Oct 2020 11:09:53 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3A4CA10002A;
-        Thu,  8 Oct 2020 11:09:51 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag1node1.st.com [10.75.127.1])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 25F5F2AE6B1;
-        Thu,  8 Oct 2020 11:09:51 +0200 (CEST)
-Received: from localhost (10.75.127.45) by SFHDAG1NODE1.st.com (10.75.127.1)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 8 Oct 2020 11:09:50
- +0200
-From:   Hugues Fruchet <hugues.fruchet@st.com>
-To:     Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alain Volmat <alain.volmat@st.com>,
-        Amelie DELAUNAY <amelie.delaunay@st.com>
-Subject: [PATCH] ARM: dts: stm32: fix DCMI DMA features on stm32mp15 family
-Date:   Thu, 8 Oct 2020 11:09:42 +0200
-Message-ID: <1602148182-25869-1-git-send-email-hugues.fruchet@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S1729021AbgJHJaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 05:30:18 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:35186 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727155AbgJHJaS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 05:30:18 -0400
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 5B01BF31CD77A4671959;
+        Thu,  8 Oct 2020 17:30:14 +0800 (CST)
+Received: from localhost.localdomain (10.69.192.58) by
+ DGGEMS404-HUB.china.huawei.com (10.3.19.204) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 8 Oct 2020 17:30:04 +0800
+From:   John Garry <john.garry@huawei.com>
+To:     <Frank.li@nxp.com>, <will@kernel.org>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <zhangshaokun@hisilicon.com>,
+        <qiangqing.zhang@nxp.com>
+CC:     <linuxarm@huawei.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <acme@kernel.org>,
+        <jolsa@redhat.com>, <irogers@google.com>,
+        John Garry <john.garry@huawei.com>
+Subject: [PATCH v2 0/4] perf drivers: Add sysfs identifier file
+Date:   Thu, 8 Oct 2020 17:26:17 +0800
+Message-ID: <1602149181-237415-1-git-send-email-john.garry@huawei.com>
+X-Mailer: git-send-email 2.8.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG1NODE1.st.com
- (10.75.127.1)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-08_04:2020-10-08,2020-10-08 signatures=0
+X-Originating-IP: [10.69.192.58]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable FIFO mode with half-full threshold.
+To allow perf tool to identify a specific implementation of a PMU for
+event alias matching and metric support, expose a per-PMU identifier file.
 
-Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+There is no standard format for the identifier string. It just should be
+unique per HW implementation.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index bfe2902..cfba9a1 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1091,7 +1091,7 @@
- 			resets = <&rcc CAMITF_R>;
- 			clocks = <&rcc DCMI>;
- 			clock-names = "mclk";
--			dmas = <&dmamux1 75 0x400 0x0d>;
-+			dmas = <&dmamux1 75 0x400 0x01>;
- 			dma-names = "tx";
- 			status = "disabled";
- 		};
+Typical methods to retrieve the information for the identifier string
+can include:
+- Hardcoding in the driver, matched via DT bindings compat string,
+  ACPI HID, or similar
+- Directly from DT bindings property
+- Read from some HW identification register
+
+In this series, for the SMMUv3 PMU and HiSi uncore drivers, a HW ID
+register is read for the identifier. For the imx8 ddr driver, the
+identifier is hardcoded, matched via DT compat string.
+
+Joakim Zhang (2):
+  bindings/perf/imx-ddr: update compatible string
+  perf/imx_ddr: Add system PMU identifier for userspace
+
+John Garry (2):
+  drivers/perf: hisi: Add identifier sysfs file
+  perf/smmuv3: Support sysfs identifier file
+
+ .../devicetree/bindings/perf/fsl-imx-ddr.txt  |  3 ++
+ drivers/perf/arm_smmuv3_pmu.c                 | 39 ++++++++++++++++
+ drivers/perf/fsl_imx8_ddr_perf.c              | 45 +++++++++++++++++--
+ drivers/perf/hisilicon/hisi_uncore_ddrc_pmu.c | 16 +++++++
+ drivers/perf/hisilicon/hisi_uncore_hha_pmu.c  | 16 +++++++
+ drivers/perf/hisilicon/hisi_uncore_l3c_pmu.c  | 16 +++++++
+ drivers/perf/hisilicon/hisi_uncore_pmu.c      | 10 +++++
+ drivers/perf/hisilicon/hisi_uncore_pmu.h      |  7 +++
+ 8 files changed, 149 insertions(+), 3 deletions(-)
+
 -- 
-2.7.4
+2.26.2
 
