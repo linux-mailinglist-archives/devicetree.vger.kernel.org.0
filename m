@@ -2,88 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C35D287D41
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:34:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02FA9287D22
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 22:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730561AbgJHUeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 16:34:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56880 "EHLO
+        id S1728780AbgJHUar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 16:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730449AbgJHUe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 16:34:28 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A1C9C0613D2;
-        Thu,  8 Oct 2020 13:34:28 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id y14so4923065pfp.13;
-        Thu, 08 Oct 2020 13:34:28 -0700 (PDT)
+        with ESMTP id S1725979AbgJHUar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 16:30:47 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5EAC0613D2;
+        Thu,  8 Oct 2020 13:30:47 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id 13so7751781wmf.0;
+        Thu, 08 Oct 2020 13:30:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=VtGhw982GZn5/2jIJzO1yFQfzPXCKOgYHg55HZsneqM=;
-        b=gl6kSWRTalU0gQse2emeofjVMefKvJ+7B6qUmbgJbgBMlni6PL6sCsac18RkEem87Y
-         aSx1jif8DDWl0CrNyexpGkI0mEm+QGmMOzRwm6/wI+TEG1wCCUWmm9/HL9v1rxQ7jpdW
-         Os1PHnky6IiXhI0MMpJAqeX1M0WGyGBPHSGRnj8UED/kfzsdx/SRMXbUaSNzN8UGq1/j
-         QD8wOXO6ejL5bpR8jUvdwHhuU8mESKA5Poc2OGYXoX7HOdvqQAV+HUsd1+vt+Q2YcE4L
-         i1Gg9iuE+bZqPY3YMb5SLbsbBHSdaVXcXxDKKbDUR6m9aAFozyVNgRyOAbMdrErmYFMf
-         FI1A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FTbqlGFvhgZ6bH2B5iw3WBigT5tQeWMYA6WjQ/SSBmc=;
+        b=tpE5I38J1MAKh2K1b6ATm7O7RJLI/T/Oe7m4EkK4C87f21i9ENQCiPW9wu/dihkjPV
+         a69So7t5zrTzH7xQMyCMMd/L7F0ykz/WA2dMJVpyEeog3aYTH0GCOQbAa7ibO7iB1nLy
+         MEOU4eiMsDoytEOju1TU8dwME6Pl6fvpN4RwboK0VHMeFoYsfaFXLj9DiQf4QE+mGr4n
+         y9eGV76KzR6pkKbocHdJJHoK+AxccDmwZBaVYwMQl668J+VhZMJCuMBlSwVWQ0Hk1pMh
+         +KPNOMEhfopZ/ChX4ayRE0me1qv7s7iypWfh/pOvu3FK9cTxqzBxhF+n8r55YSYfrvY1
+         2Q+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=VtGhw982GZn5/2jIJzO1yFQfzPXCKOgYHg55HZsneqM=;
-        b=WCo5xyixWcbkeXEtj8do8nIpR72Bf78S1pHYLKK61fwWwAoInkfg3SvznC32djwcQc
-         jcMT41yEUReKtnAIs2/YvatALXzc8+T+qakuabQ4Gnd6XoNrjmceQSMPioOr4+E+6nAU
-         uRcH+4xRmi4B33N59QR70UgdIpRTecQbw5n53C5dLBrn5iqF+8eVt4rKZmoV1e3cwYyW
-         FJErqwI1MIkNOpnzP6zwHHG9d5KaoegKvQ1PzYaRAQesH95sk29cSBZfrGGFKPQj7wgY
-         qmBlndZfuAqwertjaWVxBwy6/BzU68lCJF7l+ckWodhTbT+i/VtXstqz8L5Kws0k9PEx
-         ygQA==
-X-Gm-Message-State: AOAM533q7ymyKfBnYCrNLXgGXuHP2Ya4Ka0JjnzIT+/Wh6ENemY3mWOg
-        FR/o6Me2bpMG4wVap5HSeug=
-X-Google-Smtp-Source: ABdhPJz0BwAzCB5xfM16GJ/Hxrzy13WG9fwAkAYfv8cn7dmNgkv17FanejEaeAu2ttkkxYPbHDFN3g==
-X-Received: by 2002:a62:60c3:0:b029:152:151e:9dd6 with SMTP id u186-20020a6260c30000b0290152151e9dd6mr8585870pfb.72.1602189267559;
-        Thu, 08 Oct 2020 13:34:27 -0700 (PDT)
-Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id n203sm661528pfd.81.2020.10.08.13.34.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 08 Oct 2020 13:34:27 -0700 (PDT)
-Date:   Thu, 8 Oct 2020 13:27:25 -0700
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/5] memory: tegra: Fix client list and add swgroups
-Message-ID: <20201008202725.GB32140@Asurada-Nvidia>
-References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
- <CAJKOXPdf8YMFkoTzLhM7d51dwtH1ckGis86dHiSYpFBV0oscfA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FTbqlGFvhgZ6bH2B5iw3WBigT5tQeWMYA6WjQ/SSBmc=;
+        b=NJRCQhysXfoCUp9jPv0KVTi/lRgYDPIHqO01GgbPTSW24OgVo0B16nWfSbwb7I1rHn
+         44HAnkEJz7FsSElkaxvUf2sCh8qm71N5aHKR7/vchrn2d78Ax46PEKYy+4+kjEAXGFZz
+         J2CD1eSlj9kTYvRPUrat9Y25KYT3BtIfnBTFAST3ao023dTfehRWxLbMi1N+XF0cXFTk
+         QnwENpf8u1xAxytlrkwfs8VNLx3qmvunK/gduPSv8HSnqhsVS5r/iYoGRKIQgQJvGgvt
+         loJmdJmVztO/lkuJvmfoPTbdAwI874+FFmHw8T5KkMBVrLWbUZEdI321UGMMhN9V7VmU
+         ExIw==
+X-Gm-Message-State: AOAM5306vuovzP+X2Wl4uNgTrKIigcSTIRoapSCxRaIL0bUbefKmi+cc
+        TnOKJIdzYlNFC1CrMDnrKuMHfFz+0tI+vlD8uPo=
+X-Google-Smtp-Source: ABdhPJwXiPFomUDsqa24JmwvN1oUSiMK/NTuoyM4K9e35X66nNBFb066ZiPJ8D6Rx6A1GBT8GxS/j4Mhsl13P6kSkWI=
+X-Received: by 2002:a7b:cb17:: with SMTP id u23mr10247720wmj.166.1602189045971;
+ Thu, 08 Oct 2020 13:30:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJKOXPdf8YMFkoTzLhM7d51dwtH1ckGis86dHiSYpFBV0oscfA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20201008181514.668548-1-kholk11@gmail.com> <20201008181514.668548-4-kholk11@gmail.com>
+ <CAJKOXPdZ_zo0bPwQd=_dKHhA2KWHgsH4KTH=+cX8hNxSVrqrig@mail.gmail.com>
+In-Reply-To: <CAJKOXPdZ_zo0bPwQd=_dKHhA2KWHgsH4KTH=+cX8hNxSVrqrig@mail.gmail.com>
+From:   AngeloGioacchino Del Regno <kholk11@gmail.com>
+Date:   Thu, 8 Oct 2020 22:30:35 +0200
+Message-ID: <CAK7fi1ZJN=AbkusWqDEbAkZ=AgKEPCvWH43hBpX0-EUDJWOC5g@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] dt-bindings: touchscreen: Add binding for Novatek
+ NT36xxx series driver
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     dmitry.torokhov@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        rydberg@bitmath.org, priv.luk@gmail.com,
+        linux-input@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, phone-devel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Thu, Oct 08, 2020 at 12:29:06PM +0200, Krzysztof Kozlowski wrote:
-> On Thu, 8 Oct 2020 at 02:44, Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+Il giorno gio 8 ott 2020 alle ore 20:21 Krzysztof Kozlowski
+<krzk@kernel.org> ha scritto:
+>
+> On Thu, 8 Oct 2020 at 20:15, <kholk11@gmail.com> wrote:
 > >
-> > This series has two fixes of tegra210_mc_clients, and three
-> > changes to add missing swgroups, according to Tegra X1 TRM.
+> > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > >
-> > Nicolin Chen (5):
-> >   memory: tegra: Correct la.reg address of seswr
-> >   memory: tegra: Correct tegra210_mc_clients def values
-> >   memory: tegra: Sort tegra210_swgroups by reg address
-> >   dt-bindings: memory: tegra: Add missing swgroups
-> >   memory: tegra: Complete tegra210_swgroups
-> 
-> Hi,
-> 
-> It's too late in the cycle for another pull request so this will wait
-> for merge window to finish.
+> > Add binding for the Novatek NT36xxx series touchscreen driver.
+> >
+> > Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> > ---
+> >  .../input/touchscreen/novatek,nt36xxx.yaml    | 59 +++++++++++++++++++
+> >  1 file changed, 59 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml b/Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml
+> > new file mode 100644
+> > index 000000000000..e747cacae036
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml
+> > @@ -0,0 +1,59 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/input/touchscreen/novatek,nt36xxx.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Novatek NT36xxx series touchscreen controller Bindings
+> > +
+> > +maintainers:
+> > +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: touchscreen.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: novatek,nt36xxx
+>
+> Thanks for the changes, they look good except this part here which I
+> missed before. The compatible should not contain wildcards. If all
+> devices are really compatible, just add here one const, e.g. "const:
+> novatek,nt36525". If they are different, you could add multiple
+> compatibles in enum.
+>
+> Best regards,
+> Krzysztof
 
-I see. Thanks for telling me this!
+They are all managed the same way, but the page addresses are
+changing between all of them... the driver is reading the chip ID
+while the TS MCU is in "boot mode", then checking in a ID table
+if the chip is supported and finally assigning a page address table.
+This is done for the entire NT36*** series.
+
+If wildcards are not permitted, perhaps I can change it to something
+like "novatek,nt36" or "novatek,nt36-ts"... as then specifying the
+specific IC model into the DT means that I would have to logically
+change the driver itself to also crosscheck a DT-specified model
+with whatever gets recognized by reading the chip (which then would
+be a triple check of what's going on, imo overcomplicating the logic).
+
+What would you propose, at this point?
