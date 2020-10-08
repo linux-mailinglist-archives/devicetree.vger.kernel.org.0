@@ -2,168 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B255A287221
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 12:01:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22036287236
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 12:05:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729210AbgJHKBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 06:01:05 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:49544 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728996AbgJHKBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 06:01:05 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1602151262;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=YlY2PCfKX4Q4U4zU0hxRIXZu0KsMCr/9DHvRarIxCYM=;
-        b=wWZg1kAtZPnnplaoh3ise45nwUu56ACbWLgD6xMkOlWZNsw/rXgs6aB2ZqbzryivxFmAOU
-        uFy5Z/EhS1gCsS4QLFYGAS7aePu7QhMtmqco1xwhM+qnZqUdPiBRdsAbq83h/cyExE93x2
-        Qinxz3M4eMj+24TfiQfI21SYrq0+d66cJfQGWopC6Ldt4rZh9cRMh941mRRk3uvusJ1wUv
-        lLXubfJJ5srqLT+kYlC76jVKNBDdYNjxJ7M/HSyCcZrYHcMCNx8OjvNAMRLt7sVi9fYXXB
-        xR07JobsFtOn8w5TG0jRcfiaIuMb5TBkONIg+FPCXRk9KrU+VI/tTG/7n1uBUw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1602151262;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=YlY2PCfKX4Q4U4zU0hxRIXZu0KsMCr/9DHvRarIxCYM=;
-        b=XfBri8WtKbFjqo1mFGHGfxvRZK+cmOp45NZIXGfM27wpQVPcI3ce+bnumUsbG/m9uMqGE0
-        ejSmaD5zuES2LHAw==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for hardware timestamping
-In-Reply-To: <20201008094440.oede2fucgpgcfx6a@skbuf>
-References: <20201004143000.blb3uxq3kwr6zp3z@skbuf> <87imbn98dd.fsf@kurt> <20201006072847.pjygwwtgq72ghsiq@skbuf> <87tuv77a83.fsf@kurt> <20201006133222.74w3r2jwwhq5uop5@skbuf> <87r1qb790w.fsf@kurt> <20201006140102.6q7ep2w62jnilb22@skbuf> <87lfgiqpze.fsf@kurt> <20201007105458.gdbrwyzfjfaygjke@skbuf> <87362pjev0.fsf@kurt> <20201008094440.oede2fucgpgcfx6a@skbuf>
-Date:   Thu, 08 Oct 2020 12:01:01 +0200
-Message-ID: <87lfghhw9u.fsf@kurt>
+        id S1729331AbgJHKF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 06:05:29 -0400
+Received: from mx2.suse.de ([195.135.220.15]:53932 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725849AbgJHKF3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 06:05:29 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 983DBAD20;
+        Thu,  8 Oct 2020 10:05:26 +0000 (UTC)
+Message-ID: <12f33d487eabd626db4c07ded5a1447795eed355.camel@suse.de>
+Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Catalin Marinas <catalin.marinas@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        will@kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+        iommu@lists.linux-foundation.org,
+        linux-rpi-kernel@lists.infradead.org, robin.murphy@arm.com,
+        hch@lst.de, linux-arm-kernel@lists.infradead.org
+Date:   Thu, 08 Oct 2020 12:05:25 +0200
+In-Reply-To: <20201002115541.GC7034@gaia>
+References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
+         <20201001161740.29064-2-nsaenzjulienne@suse.de>
+         <20201001171500.GN21544@gaia> <20201001172320.GQ21544@gaia>
+         <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
+         <20201002115541.GC7034@gaia>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-UgRFrRCNh36xLg4FQaLM"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+
+--=-UgRFrRCNh36xLg4FQaLM
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu Oct 08 2020, Vladimir Oltean wrote:
-> On Thu, Oct 08, 2020 at 10:34:11AM +0200, Kurt Kanzenbach wrote:
->> On Wed Oct 07 2020, Vladimir Oltean wrote:
->> > On Wed, Oct 07, 2020 at 12:39:49PM +0200, Kurt Kanzenbach wrote:
->> >> For instance the hellcreek switch has actually three ptp hardware
->> >> clocks and the time stamping can be configured to use either one of
->> >> them.
->> >
->> > The sja1105 also has a corrected and an uncorrected PTP clock that can
->> > take timestamps. Initially I had thought I'd be going to spend some ti=
-me
->> > figuring out multi-PHC support, but now I don't see any practical reas=
-on
->> > to use the uncorrected PHC for anything.
->>=20
->> Just out of curiosity: How do you implement 802.1AS then? My
->> understanding is that the free-running clock has to be used for the
->
-> Has to be? I couldn't find that wording in IEEE 802.1AS-2011.
+Hi Catalin, sorry for the late reply.
 
-It doesn't has to be, it *should* be. That's at least the outcome we had
-after lots of discussions. Actually Kamil (on Cc) is the expert on this
-topic.
+On Fri, 2020-10-02 at 12:55 +0100, Catalin Marinas wrote:
+> On Thu, Oct 01, 2020 at 07:31:19PM +0200, Nicolas Saenz Julienne wrote:
+> > On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
+> > > On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
+> > > > On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wr=
+ote:
+> > > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > > > > index 4602e467ca8b..cd0d115ef329 100644
+> > > > > --- a/drivers/of/fdt.c
+> > > > > +++ b/drivers/of/fdt.c
+> > > > > @@ -25,6 +25,7 @@
+> > > > >  #include <linux/serial_core.h>
+> > > > >  #include <linux/sysfs.h>
+> > > > >  #include <linux/random.h>
+> > > > > +#include <linux/dma-direct.h>	/* for zone_dma_bits */
+> > > > > =20
+> > > > >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+> > > > >  #include <asm/page.h>
+> > > > > @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
+> > > > >  	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+> > > > >  }
+> > > > > =20
+> > > > > +void __init early_init_dt_update_zone_dma_bits(void)
+> > > > > +{
+> > > > > +	unsigned long dt_root =3D of_get_flat_dt_root();
+> > > > > +
+> > > > > +	if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
+> > > > > +		zone_dma_bits =3D 30;
+> > > > > +}
+> > > >=20
+> > > > I think we could keep this entirely in the arm64 setup_machine_fdt(=
+) and
+> > > > not pollute the core code with RPi4-specific code.
+> > >=20
+> > > Actually, even better, could we not move the check to
+> > > arm64_memblock_init() when we initialise zone_dma_bits?
+> >=20
+> > I did it this way as I vaguely remembered Rob saying he wanted to centr=
+alise
+> > all early boot fdt code in one place. But I'll be happy to move it ther=
+e.
+>=20
+> I can see Rob replied and I'm fine if that's his preference. However,
+> what I don't particularly like is that in the arm64 code, if
+> zone_dma_bits =3D=3D 24, we set it to 32 assuming that it wasn't touched =
+by
+> the early_init_dt_update_zone_dma_bits(). What if at some point we'll
+> get a platform that actually needs 24 here (I truly hope not, but just
+> the principle of relying on magic values)?
+>=20
+> So rather than guessing, I'd prefer if the arch code can override
+> ZONE_DMA_BITS_DEFAULT. Then, in arm64, we'll just set it to 32 and no
+> need to explicitly touch the zone_dma_bits variable.
 
->
->> calculation of the peer delays and such meaning there should be a way to
->> get access to both PHCs or having some form of cross timestamping
->> available.
->>=20
->> The hellcreek switch can take cross snapshots of all three ptp clocks in
->> hardware for that purpose.
->
-> Well, at the end of the day, all the other TSN offloads (tc-taprio,
-> tc-gate) will still have to use the synchronized PTP clock, so what
-> we're doing is we're simply letting that clock be synchronized by
-> ptp4l.
+Yes, sonds like the way to go. TBH I wasn't happy with that solution either=
+,
+but couldn't think of a nicer alternative.
 
-Yes, the synchronized clock is of course needed for the traffic
-scheduling and so on. This is what we do here in this code as well. Only
-the synchronized one is exported to user space and used. However, the
-multi PHCs issue should be addressed as well at some point.
+Sadly I just realised that the series is incomplete, we have RPi4 users tha=
+t
+want to boot unsing ACPI, and this series would break things for them. I'll
+have a word with them to see what we can do for their use-case.
 
->
->> >> > So when you'll poll for TX timestamps, you'll receive a TX
->> >> > timestamp from the PHY and another one from the switch, and those w=
-ill
->> >> > be in a race with one another, so you won't know which one is which.
->> >>=20
->> >> OK. So what happens if the driver will accept to disable hardware
->> >> timestamping? Is there anything else that needs to be implemented? Are
->> >> there (good) examples?
->> >
->> > It needs to not call skb_complete_tx_timestamp() and friends.
->> >
->> > For PHY timestamping, it also needs to invoke the correct methods for =
-RX
->> > and for TX, where the PHY timestamping hooks will get called. I don't
->> > think that DSA is compatible yet with PHY timestamping, but it is
->> > probably a trivial modification.
->>=20
->> Hmm? If DSA doesn't support PHY timestamping how are other DSA drivers
->> dealing with it then? I'm getting really confused.
->
-> They aren't dealing with it, of course.
->
->> Furthermore, there is no hellcreek hardware available with timestamping
->> capable PHYs. How am I supposed to even test this?
->>=20
->> For now, until there is hardware available, PHY timestamping is not
->> supported with the hellcreek switch.
->
-> I was just pointing out that this is something you'll certainly have to
-> change if somebody will want PHY timestamping.
+Regards,
+Nicolas
 
-Understood.
 
->
-> Even without hardware, you _could_ probably test that DSA is doing the
-> right thing by simply adding the PTP timestamping ops to a PHY driver
-> that you own, and inject dummy timestamps. The expectation becomes that
-> user space gets those dummy timestamps, and not the ones emitted by your
-> switch.
-
-Of course it can be mocked. Whenever somebody wants to do PHY
-timestamping with a hellcreek switch this issue can be re-visited.
-
-Thanks,
-Kurt
-
---=-=-=
+--=-UgRFrRCNh36xLg4FQaLM
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl9+410ACgkQeSpbgcuY
-8KZc4RAApMcJksbhvJ3h+InmLV0zBPwEhm+pi54GM6pcMgEU2pVU3p7V4u4sECeE
-YtI3vANceVAYOeoFJKCV2mRQkZHNlUbUm6UoJ/cplRJk8d2bqNNBj1iRUfvdxN5M
-i+tVJ6LQCSePZNhCkL3VFBCpe5J08qC1OrWFOFBLUcvFsaNpP7keIC0AxGd1Ls+h
-ISIGrC0RP+dz2ehhAZmeKRI9ype6d2CzV34JtfR+cTlwLrHlndoBSF19f4YrfDbl
-D/fjhAR/ubleveAlhFK4J0TgLz2eFP8c0YSYJ5ZCgxds3XFVxiGLz9Iki3Pv7J7b
-6ZK+eroPmNEwcmapMHIDVMSZffVJ13OZdKr/lR/tVuo04U8xM+sEe8nnJAaNIFh2
-n8hz3ptWfF+7WRpexasB4/FEtBz5HUqT06Bn6pwYz+fgYU0Biro4FGVON7zJVdI8
-DJwD8lORPQbfIzhD+6em7bdtmokmZQj+DsBsN4a/k6NmFOro7HUee0/BpvAeG30X
-/ZZXIbe+RISZdvMB0K5CPvo6LT1LPqhIDC/shm3g9FdsXtcXLQj97Rw6DQQfsRVq
-Ofcs0pFyclS1j8QMqtN2cDH4AQcVbD3Fu5Snqq1ekXN0WTIg0wKxRevK8SS9uH3N
-IKEYgHvWS67CgPRssQ/9vnSjA6B+D4agaNNQpTFnYRX9/rlaE9s=
-=+53N
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl9+5GUACgkQlfZmHno8
+x/6e8wf9EJ0i1Wi9BCOQEMRii/Avn31umkWy/c6brw125hfV8Jcwwn6RlD9oTrD6
+57UaLxdLJjFjZcCHmPhOG7zcMwfsP/Ft5hmeS6ECAgOl3bL6jDRpnrQ80+gEO3U2
+rJ0sgrVHJp+ZC0Yf1HedSnj0EpgjbQFc3iPJHEW19XVLbZ61cu8keEKDZevaHONm
+BssWhdVqPaNW8Z9LuT04V4y+JXxLCjflB88QQD+UA5BbdLLRPn2DGZKErUwyyF8O
+U68UbaCmHEPIddLXLdHde657lQS0pT99yCJzyGA8S9k3XbNLcPK304WYZj1Qib8Z
+DI2imsq4V1HT3TAyebIj++LJgx/Uyg==
+=Sv3m
 -----END PGP SIGNATURE-----
---=-=-=--
+
+--=-UgRFrRCNh36xLg4FQaLM--
+
