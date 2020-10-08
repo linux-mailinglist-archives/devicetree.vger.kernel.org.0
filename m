@@ -2,97 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FBA7287DEE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 23:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40000287E2A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 23:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730435AbgJHV1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 17:27:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36868 "EHLO
+        id S1726022AbgJHVmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 17:42:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729223AbgJHV1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 17:27:40 -0400
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0344DC0613D3;
-        Thu,  8 Oct 2020 14:27:40 -0700 (PDT)
-Received: by mail-io1-xd43.google.com with SMTP id g7so7906092iov.13;
-        Thu, 08 Oct 2020 14:27:39 -0700 (PDT)
+        with ESMTP id S1725995AbgJHVmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 17:42:53 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642CBC0613D2;
+        Thu,  8 Oct 2020 14:42:53 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id lw21so10204459ejb.6;
+        Thu, 08 Oct 2020 14:42:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jSyjIzYbBigGT0AzTfXLoS02VDK6YwDiuu+biIO3XI4=;
-        b=UM0fMrHomjTawuqPBKKxJ3ndD3+6WawB6vEGpTjXPLxlWmrG/e4+ma+349sIcEX2xW
-         iQOM8vvYgysbprsfGQYZ9ZfphYPuJHQ5eWofrScEZzWpwwcT0FoKWBzx8pvC4sO3yXnZ
-         96CxvZBnMHgcDweiaD7n+n8dNa4QwOfou2THGRKskF+B0yaZaYnUAruQtKsJhK+lPg2j
-         dUtszfdhHGz80uNHdAtULr67mNNgxbtLKIgBAJK9q+PeC8AGhX2xt9DP2ESQ+NPrJ7b0
-         /JZu1XWIz2fOuCk0wuu7i5HE92aySngLaM7S3Lsg6LCwHgV6LnxzSDEv2nIX2AkSt8TN
-         SXwA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hFDoG3fQdlhIOZ8IJAwTd18Qq8zG8h1BvVCyh4lmt3Y=;
+        b=HTuKFemmRx2Ymd9m5//8leO6bwra40/yjCvfZ79hk5KjxmPRLcwJRL/ANFoOQz5AYK
+         2Hm5+2CrTJC93AwEvpnHrMdTvdU3qdTM+9eiIrwhZL+P5mjTZJxPFtDY9YpBwwIYUc5x
+         DlS545kIJiwNZSUyg71QejrfTFSCWc5K0ABMZ4uOsUHnU+HLSwKmUBdm+ZmE/s2Lssrx
+         IwI0IcZWzuenqjXTvEOD7gtw4GbGSioHsCem5lvbc0SZ99LYmhveWe/J/CuOHRn5iVXp
+         e+iLDkb9v9S1GtdZs2ciCRygh3NO1Jtwv8TqqjjNwdMMtdIu/DnagIpbnlS7jKhaETm3
+         1wdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jSyjIzYbBigGT0AzTfXLoS02VDK6YwDiuu+biIO3XI4=;
-        b=tT+eCgwgKYcnQqyStQTa7h/ucDL42d71AQpyeJq5N5IwVAuYvljsmLgRoPAinNByRI
-         n48Zu/WZqI5hkd8awhKqxM5Uow8z9ZH/1sibZpGvGFKKP6uNb8ctI//vYaR7bZeTIwnM
-         2Y0iMEEWvvwbd8Xgbxo9E6BiDJkzHGwPEQYm4SjvSy80XT8ZwlC+dVBTRkTtRT/WG4Xj
-         a2noF5++7vZYdIg29OADVOJ3g697gq9wobNPzOSkchkW8HgqyS2/XZcvhxNQl5fIjVlq
-         cCenXprhrn3pfUgXnOnJH88TxKKc2JcZfOJrxc8giRk4kFtVfJ3oacINNNoRSqM2lNK/
-         xojA==
-X-Gm-Message-State: AOAM531Z3aqTclUN0uM92JTxhE+yD3m2PWnsAe2J6LXJZUqzoySCl9GA
-        IR30zBgd79zj/GkVo4BFjjg=
-X-Google-Smtp-Source: ABdhPJznfkzthNXZDou0V1pe+KZJJi52F7DyY5i6obOBnMPB2EDY8Tj3xoqewJ6q2FRzZyUkS9elPQ==
-X-Received: by 2002:a5d:8787:: with SMTP id f7mr7234798ion.79.1602192459023;
-        Thu, 08 Oct 2020 14:27:39 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:7c62:dd9d:b755:cfbd])
-        by smtp.gmail.com with ESMTPSA id o72sm3067090ilb.6.2020.10.08.14.27.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2020 14:27:38 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: defconfig: Enable additional sound drivers on i.MX8M Mini
-Date:   Thu,  8 Oct 2020 16:27:06 -0500
-Message-Id: <20201008212706.870115-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201008212706.870115-1-aford173@gmail.com>
-References: <20201008212706.870115-1-aford173@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hFDoG3fQdlhIOZ8IJAwTd18Qq8zG8h1BvVCyh4lmt3Y=;
+        b=EifLybvtSFvoBZlYGuAFcu5lZWEmnjILYipTXQphLmglEqyFm5HeRpEHOqYIxmaBN1
+         mLyIQ2VB/66QU5/+6bVBGAKV1TjJhedIJlp7K38QflPuWTh+5B1zdeHtiwDw6f5iolBa
+         54d9+6crWo9vCgZ8AjinThfv+PE99qJq+Tkers0dTtGWjzFJlOlT6n7Wxlvla1SR4+KA
+         f3yYacPnh/tvIaNUhkvi9G8OiqY8C/Iw0Z6ZKzPx9GkosW0F/uaRW5D1F2NiX0E8YkbD
+         jEGwYqMhsrSptBLsMqueuIxWc3ssbZTpRVnfJOUkOBxoXzc7EJOCcCmGFnNE/G31iWLW
+         zbEg==
+X-Gm-Message-State: AOAM5319Ou07RjdAwEVYAcNzu9AhxhfsE8SOU/mNB8IiDjg1rfpSS5mh
+        egYPtbntFc+JtR+rlJxNRm0=
+X-Google-Smtp-Source: ABdhPJy9kQW67aVqErjy36BpoDQBTRVwkGVvV6XJITIyjaQrxfGboo8FwLf2Cc9zn2r3s/Utn25xEw==
+X-Received: by 2002:a17:906:70d4:: with SMTP id g20mr11466584ejk.413.1602193371995;
+        Thu, 08 Oct 2020 14:42:51 -0700 (PDT)
+Received: from ?IPv6:2a01:110f:b59:fd00:a188:5df3:7e17:9e85? ([2a01:110f:b59:fd00:a188:5df3:7e17:9e85])
+        by smtp.gmail.com with ESMTPSA id p25sm4935384edm.60.2020.10.08.14.42.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Oct 2020 14:42:51 -0700 (PDT)
+Subject: Re: [PATCH v5 1/2] dt-bindings: leds: Add bindings for MT6360 LED
+To:     Gene Chen <gene.chen.richtek@gmail.com>, pavel@ucw.cz,
+        robh+dt@kernel.org, matthias.bgg@gmail.com
+Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+References: <1602034966-3524-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1602034966-3524-2-git-send-email-gene.chen.richtek@gmail.com>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <2dcc2958-8942-642a-8ace-71d397857463@gmail.com>
+Date:   Thu, 8 Oct 2020 23:42:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1602034966-3524-2-git-send-email-gene.chen.richtek@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8M Mini has micfil and SPDIF support but the drivers
-are not being loaded.
+Hi Gene,
 
-This patch updates the defconfig to add support for these drivers.
+Thanks for the update.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+On 10/7/20 3:42 AM, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
+> 
+> Add bindings document for LED support on MT6360 PMIC
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> ---
+>   .../devicetree/bindings/leds/leds-mt6360.yaml      | 95 ++++++++++++++++++++++
+>   1 file changed, 95 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> new file mode 100644
+> index 0000000..2fa636f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-mt6360.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LED driver for MT6360 PMIC from MediaTek Integrated.
+> +
+> +maintainers:
+> +  - Gene Chen <gene_chen@richtek.com>
+> +
+> +description: |
+> +  This module is part of the MT6360 MFD device.
+> +  see Documentation/devicetree/bindings/mfd/mt6360.yaml
+> +  Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mode,
+> +  and 4-channel RGB LED support Register/Flash/Breath Mode
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6360-led
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^led@[0-3]$":
+> +    type: object
+> +    $ref: common.yaml#
+> +    description:
+> +      Properties for a single LED.
+> +
+> +    properties:
+> +      reg:
+> +        description: Index of the LED.
+> +        enum:
+> +          - 0 # LED output INDICATOR1_RGB
+> +          - 1 # LED output INDICATOR2
+> +          - 2 # LED output FLED1
+> +          - 3 # LED output FLED2
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> + - |
+> +   #include <dt-bindings/leds/common.h>
+> +   led-controller {
+> +     compatible = "mediatek,mt6360-led";
+> +     #address-cells = <1>;
+> +     #size-cells = <0>;
+> +
+> +     led@0 {
+> +       reg = <0>;
+> +       function = LED_FUNCTION_INDICATOR;
+> +       color = <LED_COLOR_ID_RGB>;
+> +       led-max-microamp = <24000>;
+> +     };
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e0f33826819f..20362359b212 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -674,6 +674,10 @@ CONFIG_SND_HDA_CODEC_HDMI=m
- CONFIG_SND_SOC=y
- CONFIG_SND_BCM2835_SOC_I2S=m
- CONFIG_SND_SOC_FSL_SAI=m
-+CONFIG_SND_SOC_FSL_MICFIL=m
-+CONFIG_SND_IMX_SOC=m
-+CONFIG_SND_SOC_IMX_SPDIF=m
-+CONFIG_SND_SOC_IMX_AUDMIX=m
- CONFIG_SND_MESON_AXG_SOUND_CARD=m
- CONFIG_SND_MESON_GX_SOUND_CARD=m
- CONFIG_SND_SOC_SDM845=m
+This should be multi-led node. See [0] for a reference.
+
+> +     led@1 {
+> +       reg = <1>;
+> +       function = LED_FUNCTION_INDICATOR;
+
+Maybe add LED_FUNCTION_MOONLIGHT ?
+
+> +       color = <LED_COLOR_ID_AMBER>;
+> +       default-state = "off";
+> +       led-max-microamp = <150000>;
+> +     };
+> +     led@2 {
+> +       reg = <2>;
+> +       function = LED_FUNCTION_FLASH;
+> +       color = <LED_COLOR_ID_WHITE>;
+> +       function-enumerator = <1>;
+> +       default-state = "off";
+> +       led-max-microamp = <200000>;
+> +       flash-max-microamp = <500000>;
+> +       flash-max-timeout-us = <1024000>;
+> +     };
+> +     led@3 {
+> +       reg = <3>;
+> +       function = LED_FUNCTION_FLASH;
+> +       color = <LED_COLOR_ID_WHITE>;
+> +       function-enumerator = <2>;
+> +       default-state = "off";
+> +       led-max-microamp = <200000>;
+> +       flash-max-microamp = <500000>;
+> +       flash-max-timeout-us = <1024000>;
+> +     };
+> +   };
+> +...
+> 
+
+[0] 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+
 -- 
-2.25.1
-
+Best regards,
+Jacek Anaszewski
