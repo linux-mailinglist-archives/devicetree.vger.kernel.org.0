@@ -2,78 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF2D287339
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 13:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 510CF28734A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 13:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728732AbgJHLXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 07:23:22 -0400
-Received: from foss.arm.com ([217.140.110.172]:51764 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725871AbgJHLXW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 07:23:22 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AE169D6E;
-        Thu,  8 Oct 2020 04:23:21 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 27BD03F71F;
-        Thu,  8 Oct 2020 04:23:20 -0700 (PDT)
-Date:   Thu, 8 Oct 2020 12:23:14 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
-Subject: Re: [PATCH v3 0/4] PCI: dwc: Move iATU register mapping to common
- framework
-Message-ID: <20201008112314.GA1181@e121166-lin.cambridge.arm.com>
-References: <1601444167-11316-1-git-send-email-hayashi.kunihiko@socionext.com>
+        id S1726058AbgJHLZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 07:25:27 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:42121 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725845AbgJHLZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 07:25:27 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id AF7DB58030C;
+        Thu,  8 Oct 2020 07:25:25 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 08 Oct 2020 07:25:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=sHcEwSUG7e+/roVIKWUn3IXraM
+        j4SoT70hMYWvgm1EQ=; b=s2N77QSV0n6haN+NoA71D+iQFXWrVmuxCWYg7kV4O5
+        AE+EMpRCDfkN+BHl8S04sf0beV7Cfc41dS1vH0eftvD3NQD3Q8sOh2YVJkcGE2RC
+        GEHK7h7DeSzyR6OyVclCpeFs4HZl71FIbiAJRIvKVzApx5aoCznsCEOOJBy20EXY
+        ghkEmHf211GQqgsxm122BmVFnhTELgsDk95CFm4uYGs9dPOZjbw283kEx1GToZRF
+        Zo5e35RgBnlos5Bn8hKJs15muPCtLm81NxzAF2G1PUbU7qNxrLRrPz73em1Xtzr2
+        k4iW0UPX8xzY7Gp68xWxEH3v1GKr7DxRrby83B7mLwyQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=sHcEwSUG7e+/roVIK
+        WUn3IXraMj4SoT70hMYWvgm1EQ=; b=nHqc2FbBWzZ2+DZiYCapf46+ERei1j4Fj
+        t78Jlt5HgJpDadG0VkoQjvhZ9MzcxGxWFN+A7AtwFh4ldjTLamT3Rr7WosY2fMlS
+        B1w9cH/UVFb055Xtu7p18jBQFVX054ptqTBc3KQEn15od9WhNWtUDLAnehpedXsZ
+        m7k3W40KgJZyYIkEpLyEOncMV0az4ODGDS3foUCIXOh8EuOeVyXjmFpKhDZW8Shm
+        ji3r1bjlG0tMzh6FyCNture4CDJhh1qny1eRiu1NZGlS0ZWXGIaMK0loFDjYwFQj
+        tYNda3VMaNqBKKij3NettgxS4cIlPTbVJ6s9qQVj4F1TWQzv9WjFg==
+X-ME-Sender: <xms:Ivd-X15fw2-BTYMMx2Q5LSwX2c0mXWT9ohEdjfErmevrxK9l3vA45Q>
+    <xme:Ivd-Xy4rfNT6wb1iLSsI9CeJ_mEeJn37D954yxyDfLijDnj5hUEf_AACbuDqkzoEu
+    0c2UKllEAPPqW3oURY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgeelgddufecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucft
+    ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
+    hnpeejffehuddvvddvlefhgeelleffgfeijedvhefgieejtdeiueetjeetfeeukeejgeen
+    ucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:Ivd-X8cOcrHj4KIxIBujIae34VcELnOWBcyPwZb6l7VYVm9bvUW-3g>
+    <xmx:Ivd-X-KALn128y4sinZe8W6yaCsiuwDgLbKD3Csm3pe0X7e9jxN15g>
+    <xmx:Ivd-X5KwMx1tbPrixKhy-eH6XX4UPtm1JnFxN_qwH_WqmNhlCjOcrw>
+    <xmx:Jfd-Xy7c3wleo_ag90sUgW6Gk9iazziohPbEdcrcquQtpP8a7xRgsg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 104CF3280063;
+        Thu,  8 Oct 2020 07:25:21 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Eric Anholt <eric@anholt.net>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Subject: [PATCH 1/4] drm/vc4: kms: Split the HVS muxing check in a separate function
+Date:   Thu,  8 Oct 2020 13:25:16 +0200
+Message-Id: <20201008112519.43691-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1601444167-11316-1-git-send-email-hayashi.kunihiko@socionext.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 02:36:03PM +0900, Kunihiko Hayashi wrote:
-> This moves iATU register mapping in the Keystone driver to common
-> framework. And this adds "iatu" property description to the dt-bindings
-> for UniPhier PCIe host and endpoint controller.
-> 
-> This series is split from the previous patches:
-> https://www.spinics.net/lists/linux-pci/msg97608.html
-> "[PATCH v6 0/6] PCI: uniphier: Add features for UniPhier PCIe host controller"
-> 
-> This has been confirmed with PCIe version 4.80 controller on UniPhier platform.
-> Please comfirm this series on Keystone platform if necessary.
-> 
-> Changes since v2:
-> - dt-bindings: Fix errors from dt_binding_check
-> 
-> Changes since v1:
-> - Use to_platform_device() instead of of_find_device_by_node()
-> - Add Reviewed-by: line to 4th patch for keystone
-> - dt-bindings: Add description for uniphier-ep
-> 
-> Kunihiko Hayashi (4):
->   dt-bindings: PCI: uniphier: Add iATU register description
->   dt-bindings: PCI: uniphier-ep: Add iATU register description
->   PCI: dwc: Add common iATU register support
->   PCI: keystone: Remove iATU register mapping
-> 
->  .../bindings/pci/socionext,uniphier-pcie-ep.yaml     | 20 ++++++++++++++------
->  .../devicetree/bindings/pci/uniphier-pcie.txt        |  1 +
->  drivers/pci/controller/dwc/pci-keystone.c            | 20 ++++----------------
->  drivers/pci/controller/dwc/pcie-designware.c         |  5 +++++
->  4 files changed, 24 insertions(+), 22 deletions(-)
+The code that assigns HVS channels during atomic_check is starting to grow
+a bit big, let's move it into a separate function.
 
-Applied to pci/dwc, thanks.
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ drivers/gpu/drm/vc4/vc4_kms.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
 
-Lorenzo
+diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
+index 149825ff5df8..846fe8b3cb7a 100644
+--- a/drivers/gpu/drm/vc4/vc4_kms.c
++++ b/drivers/gpu/drm/vc4/vc4_kms.c
+@@ -612,13 +612,13 @@ static const struct drm_private_state_funcs vc4_load_tracker_state_funcs = {
+ #define NUM_OUTPUTS  6
+ #define NUM_CHANNELS 3
+ 
+-static int
+-vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
++static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
++				      struct drm_atomic_state *state)
+ {
+ 	unsigned long unassigned_channels = GENMASK(NUM_CHANNELS - 1, 0);
+ 	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
+ 	struct drm_crtc *crtc;
+-	int i, ret;
++	unsigned int i;
+ 
+ 	/*
+ 	 * Since the HVS FIFOs are shared across all the pixelvalves and
+@@ -691,6 +691,18 @@ vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
+ 		}
+ 	}
+ 
++	return 0;
++}
++
++static int
++vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
++{
++	int ret;
++
++	ret = vc4_pv_muxing_atomic_check(dev, state);
++	if (ret)
++		return ret;
++
+ 	ret = vc4_ctm_atomic_check(dev, state);
+ 	if (ret < 0)
+ 		return ret;
+-- 
+2.26.2
+
