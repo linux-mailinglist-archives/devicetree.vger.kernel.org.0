@@ -2,107 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61E44287701
-	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 17:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0DD2877B7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Oct 2020 17:44:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730898AbgJHPTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 11:19:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730650AbgJHPTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 11:19:46 -0400
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4838DC061755;
-        Thu,  8 Oct 2020 08:19:45 -0700 (PDT)
-Received: by mail-io1-xd42.google.com with SMTP id g7so6479712iov.13;
-        Thu, 08 Oct 2020 08:19:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OadWliMkKsOGtnfiZb5kyGf0zP5P3Ecr/Kuunrt0F6s=;
-        b=mTZuT1H1PlfrlHcAhSp3oC3GdYDRhwWX+qpevfSkSWvFxLIDr4EyeR+WjQI5VcFKJy
-         RIBmGwQOl6ZTAihIVlBgf8+TuepD0elpkYopZJZzfe4GNZRan6NMrOeJqL89XaHSDU4j
-         O3YEJPE2QqGNmUjdecmyF+aAo9y4jrwIplP8U/Omfjipzo6oXhzId3xZkCnlSP0kTPQe
-         ak3ZGqaqsyfU8SOKL8r4jCBYJs9RSk6wxwQXsEOKbrX2TdqqFv/XK6Nhwrw6j5O2fSyP
-         6cdPb6isZ23eF8iBxqRYuimg4VLZii3ZARC+swE05P4GZL18XuZfqMn4coHOONYffjWB
-         FtlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OadWliMkKsOGtnfiZb5kyGf0zP5P3Ecr/Kuunrt0F6s=;
-        b=cfnO3AZSkucvceSQkUC4OQBlwXheenOeoA+5WoETIkzvyJ4PtIlrCbXue1QNZIvHUV
-         OKVMonvny8bQOOR/0IvPGrwTm9Gguvc8jVqMSZFL+lsZjL1bJxNGy1yIux77m0ilUZf7
-         jfPrh7cuDZoBZCNUCGdd7ZfPa4zNFsmdm8gxzx+tSPitrwuYf7CDyxWB0XxuH9UACRoG
-         dgLHOluiEBHYVkFhrXqfaLJECpWSq/a9c8ct5a3c2iFMBoOrNCnAbkZ5MC9pCI8HgnzB
-         mUGf1sod1ZR4PsGwz4VAtT+jpaWOSyW6eGCUIis1XqgkhkuveH5Z0bRxH+PSwWLaceUA
-         SFlA==
-X-Gm-Message-State: AOAM5330pE//PPdNUab76dk45ZboaS6lCo6FUQDHe3HpWAz5bKhAJ9Qh
-        2WMyBmrAg/ifwu24pnduLMs=
-X-Google-Smtp-Source: ABdhPJykn44k7sBEiZTov9IAqd9gIEG+a5joQb+wOztH6kQ2UZh/wTpdFidqRM3i5usLgK2isDrOiw==
-X-Received: by 2002:a05:6602:5ca:: with SMTP id w10mr6453076iox.60.1602170384485;
-        Thu, 08 Oct 2020 08:19:44 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:7c62:dd9d:b755:cfbd])
-        by smtp.gmail.com with ESMTPSA id x14sm2774342ilg.21.2020.10.08.08.19.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2020 08:19:43 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts imx8mn: Remove non-existent USB OTG2
-Date:   Thu,  8 Oct 2020 10:19:33 -0500
-Message-Id: <20201008151933.716363-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S1730997AbgJHPoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 11:44:01 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51032 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729833AbgJHPoA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 11:44:00 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 098Fhwqq050068;
+        Thu, 8 Oct 2020 10:43:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1602171838;
+        bh=CqA3/3irziC+4BcEaHbe20GdHaKIvMNwdaUsujUpDGI=;
+        h=From:To:CC:Subject:Date;
+        b=X5qmOC99KHshNJSarsS52/nVE4ITFccGS6f8Bo0QpausLnI7LnnrXfP814e5MqcWM
+         15IvhZ1rySNRI1ZMlRnxtDL0IKVmWxaC4+qi06BMEl565XLzIW6eS3WPGoRd3SZA+K
+         E4e2N0tttsczjmTTL1wFhVqc+AJHfgmVHIc372R4=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 098FhwJ3110236
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 8 Oct 2020 10:43:58 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 8 Oct
+ 2020 10:43:57 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 8 Oct 2020 10:43:58 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 098Fhvkb001903;
+        Thu, 8 Oct 2020 10:43:57 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <sre@kernel.org>
+CC:     <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+Subject: [PATCH v3 1/2] dt-bindings: power: Add the bq25790 dt bindings
+Date:   Thu, 8 Oct 2020 10:43:55 -0500
+Message-ID: <20201008154356.19692-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the i.MX8MN TRM, there is only one OTG port.  The
-address for OTG2 is reserved on Nano.
+Add the bindings for the bq25790.
 
-This patch removes the non-existent OTG2.
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ .../bindings/power/supply/bq25790.yaml        | 95 +++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/bq25790.yaml
 
-Fixes: 6c3debcbae47 ("arm64: dts: freescale: Add i.MX8MN dtsi support")
-
-Signed-off-by: Adam Ford <aford173@gmail.com>
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 746faf1cf2fb..ac206e1f2dad 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -791,21 +791,6 @@ usbmisc1: usbmisc@32e40200 {
- 				reg = <0x32e40200 0x200>;
- 			};
- 
--			usbotg2: usb@32e50000 {
--				compatible = "fsl,imx8mn-usb", "fsl,imx7d-usb";
--				reg = <0x32e50000 0x200>;
--				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&clk IMX8MN_CLK_USB1_CTRL_ROOT>;
--				clock-names = "usb1_ctrl_root_clk";
--				assigned-clocks = <&clk IMX8MN_CLK_USB_BUS>,
--						  <&clk IMX8MN_CLK_USB_CORE_REF>;
--				assigned-clock-parents = <&clk IMX8MN_SYS_PLL2_500M>,
--							 <&clk IMX8MN_SYS_PLL1_100M>;
--				fsl,usbphy = <&usbphynop2>;
--				fsl,usbmisc = <&usbmisc2 0>;
--				status = "disabled";
--			};
--
- 			usbmisc2: usbmisc@32e50200 {
- 				compatible = "fsl,imx8mn-usbmisc", "fsl,imx7d-usbmisc";
- 				#index-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/power/supply/bq25790.yaml b/Documentation/devicetree/bindings/power/supply/bq25790.yaml
+new file mode 100644
+index 000000000000..6d9178ce5a2b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/bq25790.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/supply/bq25790.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: TI BQ25790 Switch Mode Buck-Boost Charger
++
++maintainers:
++  - Dan Murphy <dmurphy@ti.com>
++
++description: |
++  BQ25790 is a highly integrated switch-mode buck-boost charger for 1-4 cell
++  Li-ion batteries and Li-polymer batteries. The device charges a battery from a
++  wide range of input sources including legacy USB adapters to high voltage USB
++  PD adapters and traditional barrel adapters.
++
++allOf:
++  - $ref: power-supply.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,bq25790
++      - ti,bq25792
++
++  reg:
++    maxItems: 1
++
++  ti,watchdog-timeout-ms:
++    default: 0
++    description: |
++      Watchdog timer in milli seconds. 0 (default) disables the watchdog.
++    minimum: 0
++    maximum: 160000
++    enum: [ 0, 500, 1000, 2000, 20000, 40000, 80000, 160000]
++
++  input-voltage-limit-microvolt:
++    description: |
++      Minimum input voltage limit in micro volts with a 100000 micro volt step.
++    minimum: 3600000
++    maximum: 22000000
++
++  input-current-limit-microamp:
++    description: |
++      Maximum input current limit in micro amps with a 100000 micro amp step.
++    minimum: 100000
++    maximum: 3300000
++
++  monitored-battery:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: phandle to the battery node being monitored
++
++  interrupts:
++    maxItems: 1
++    description: |
++      Interrupt sends an active low, 256 μs pulse to host to report the charger
++      device status and faults.
++
++required:
++  - compatible
++  - reg
++  - monitored-battery
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    bat: battery {
++      compatible = "simple-battery";
++      constant-charge-current-max-microamp = <2000000>;
++      constant-charge-voltage-max-microvolt = <4200000>;
++      precharge-current-microamp = <160000>;
++      charge-term-current-microamp = <160000>;
++    };
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      bq25790: charger@6b {
++          compatible = "ti,bq25790";
++          reg = <0x6b>;
++          interrupt-parent = <&gpio1>;
++          interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
++          ti,watchdog-timeout-ms = <2000>;
++          input-current-limit-microamp = <3000000>;
++          input-voltage-limit-microvolt = <4500000>;
++          monitored-battery = <&bat>;
++      };
++    };
++
++...
 -- 
-2.25.1
+2.28.0.585.ge1cfff676549
 
