@@ -2,138 +2,429 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D95428888D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 14:21:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 247DB2888B9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 14:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733013AbgJIMVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 08:21:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33496 "EHLO
+        id S1733194AbgJIMaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 08:30:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732974AbgJIMVP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 08:21:15 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8CBDC0613D2;
-        Fri,  9 Oct 2020 05:21:14 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id ce10so12778441ejc.5;
-        Fri, 09 Oct 2020 05:21:14 -0700 (PDT)
+        with ESMTP id S1728014AbgJIMaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 08:30:39 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05684C0613D2;
+        Fri,  9 Oct 2020 05:30:39 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id f21so9644362wml.3;
+        Fri, 09 Oct 2020 05:30:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wqW8tLiDohXCRPeIW2J1lirrHi6UIgJCyYAWG9nSsGw=;
-        b=pZ2oP5rfYx1WSdVSTXAOLi7JIksRbP3W2mUtEUFh5x3bGY39SZ4zLnvFOmRb9ozutM
-         OMKWIZPk9qWDHqbuP1ZfST2Hx1Pf31leUu43PAKCDq0mVHFD8eNMKQBPfKBPCx/XG0Sj
-         bAhMU5pP4Gq9L6XjZ8/i9FpCGY4N5hYqPalYjJHj8y5z9a4DRFSz8qOmWsDxatEbU2SN
-         DhLS/9mCClwJB+JxI6BRb3LFUDCaNmGyrF/j7d8Nt96yVVrnqOOeUzSwti9W3CMqFU4S
-         RwOlKLOnrghzS/cEc64fEpMcA8gch/hRBSqS524zjrvwHDVi07bRZj6LWiZ/JIT2MxP+
-         KapQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=AjmLoetTBObgHXL/i47jeS5ZhvM7sMIdDP4emaMus2g=;
+        b=asqqtzCCpWEdFlVVTjiylkeSMp0o1bvIQI1aTOejkiv0XRQUikw9PJN/MKjI6asZC4
+         hyDbAFwnS6XAJQ3fc6MoHgDFbSvoAj+NcMiv5Fe4ouKyQlqIBrSwYJGfN9Ul1lFjtXf5
+         hdgDBdtiNoR7+IPO7RZprzb+AJjnUNVmzomWZxxs+P/xd5trJwWgez1D1n1tUry9rWpy
+         cGcrPblqZzSIcDgG1WIC22eOQndILpt41GaWZGVB9NKz9Wi7Ye8+zFFb48a/pTV38eb8
+         Yf5+zkNxaNa2dF7rDlLNTamuoBL7Z/oY9vzJWillNUZHzbglT98WHy3qhWab7KRXPsI3
+         Ti/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wqW8tLiDohXCRPeIW2J1lirrHi6UIgJCyYAWG9nSsGw=;
-        b=jzOkWG93VwVGSbVzo+6/WhUK084ZjhdeFPciQcU+bofrdhdJtQZPEJpY8lT6SEt6Bt
-         +QwSg8ShD5iPAn5uUqDFMxIbivHy+DVMxT5vBwzkR/c5i8yr7arghJPc5F7zGU6iXAXk
-         yeWzbGN9wT5ZjY1qbV0sjYlMMgXSavIh7pJBzAuZCPWBmRjARXJaS1ePHNR9n8l92Fs+
-         yaqyFvnOMYur8gGVPOCVRZ3541lR126S3xz+n0iQhtnorH15t1qXj1i1UFlpYBDZ035Z
-         gPAfcHxhRp/dWSPL43TxzN4MOLYr7tY9rc6jWBI3Z6gnWkco+oGl2I6eMQtgcNhDnhp9
-         ALnA==
-X-Gm-Message-State: AOAM530JamE9qoKuO8HZcOLtTyoDpThHJmyzbSKtiHJePwbeUbBltrq7
-        HYtgRsZq3zAJptxWNvsfPWM=
-X-Google-Smtp-Source: ABdhPJw+iNVHcU/8xFz64o6lEQtVQ3Zwrk6X3Hl6RtS7BHWq3UuQGfKXLZa5khMX/UUNf9wiW0cSfQ==
-X-Received: by 2002:a17:906:d8e:: with SMTP id m14mr14407722eji.448.1602246073460;
-        Fri, 09 Oct 2020 05:21:13 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id j18sm6256432ejc.111.2020.10.09.05.21.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Oct 2020 05:21:12 -0700 (PDT)
-Date:   Fri, 9 Oct 2020 14:21:10 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     krzk@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: memory: tegra: Add missing swgroups
-Message-ID: <20201009122110.GD458338@ulmo>
-References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
- <20201008003746.25659-5-nicoleotsuka@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=AjmLoetTBObgHXL/i47jeS5ZhvM7sMIdDP4emaMus2g=;
+        b=Wx/5jDJGDavmDDXvYYQ109sQJqpnM5zLtgiERq/xa7rPSnmvM0gq4uGl46ZZ0YCdmC
+         h5+aJcQKDCTjUeNLwqvz+w/tsi5rz83hj72t7q7Cl5zCm9yZmYTsa60vZXHIzMOXC3g9
+         iHoNEL5NyQ0VQFYpQYW41HX4TKE9Zf8ZIbiCU/j9LWPzNITWBSuVPb2wyG0i1LCu2U6w
+         j9hhpPOSgEv3IQBkWpQjarPWAhX5ImSEutd0Tg50XL0Ad6JWI6JeJuw6thI7Ibm7TatB
+         tJmKh39oKlc5iqfWWVtfuV/k6Cu46Z5smdpM9WiRjBN5C9V2KrQqFoBff8toc9EJpcNT
+         jCfA==
+X-Gm-Message-State: AOAM531MOmnCh8dDOeeOpp0MIcX61FMHSUHHfjKcfq7Dmz3Uaow8uApu
+        wKyPj69UgBnnoQkQtvuqjek=
+X-Google-Smtp-Source: ABdhPJw2Lo8s/yFUlcr8c49/Uewddu9hg079ybrqHjIVWx/YC2AQC7mQhXGMF07QF5gYM3+VLdtnQw==
+X-Received: by 2002:a1c:9949:: with SMTP id b70mr1120408wme.116.1602246637515;
+        Fri, 09 Oct 2020 05:30:37 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.119.110])
+        by smtp.gmail.com with ESMTPSA id t124sm12301997wmg.31.2020.10.09.05.30.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Oct 2020 05:30:36 -0700 (PDT)
+Subject: Re: [PATCH v10 2/3] arm64: dts: add dts nodes for MT6779
+To:     Hanks Chen <hanks.chen@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     mtk01761 <wendell.lin@mediatek.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Andy Teng <andy.teng@mediatek.com>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>
+References: <1596115816-11758-1-git-send-email-hanks.chen@mediatek.com>
+ <1596115816-11758-3-git-send-email-hanks.chen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <847f64e2-8ed6-2e09-5343-2aa70d5937fa@gmail.com>
+Date:   Fri, 9 Oct 2020 14:30:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="k4f25fnPtRuIRUb3"
-Content-Disposition: inline
-In-Reply-To: <20201008003746.25659-5-nicoleotsuka@gmail.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+In-Reply-To: <1596115816-11758-3-git-send-email-hanks.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---k4f25fnPtRuIRUb3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 07, 2020 at 05:37:45PM -0700, Nicolin Chen wrote:
-> According to Tegra X1 TRM, there are missing swgroups in the
-> tegra210_swgroups list. So this patch adds them in bindings.
->=20
-> Note that the TEGRA_SWGROUP_GPU (in list) should be actually
-> TEGRA_SWGROUP_GPUB (in TRM), yet TEGRA_SWGROUP_GPU (in TRM)
-> is not being used -- only TEGRA_SWGROUP_GPUB (in TRM) is. So
-> this patch does not add TEGRA_SWGROUP_GPU (in TRM) and keeps
-> TEGRA_SWGROUP_GPU (in list) as it is.
->=20
-> Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+On 30/07/2020 15:30, Hanks Chen wrote:
+> this adds initial MT6779 dts settings for board support,
+> including cpu, gic, timer, ccf, pinctrl, uart, sysirq...etc.
+> 
+> Signed-off-by: Hanks Chen <hanks.chen@mediatek.com>
 > ---
->  include/dt-bindings/memory/tegra210-mc.h | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->=20
-> diff --git a/include/dt-bindings/memory/tegra210-mc.h b/include/dt-bindin=
-gs/memory/tegra210-mc.h
-> index c226cba9e077..f9fcb18a6d9b 100644
-> --- a/include/dt-bindings/memory/tegra210-mc.h
-> +++ b/include/dt-bindings/memory/tegra210-mc.h
-> @@ -33,6 +33,16 @@
->  #define TEGRA_SWGROUP_AXIAP	28
->  #define TEGRA_SWGROUP_ETR	29
->  #define TEGRA_SWGROUP_TSECB	30
-> +#define TEGRA_SWGROUP_NV	31
-> +#define TEGRA_SWGROUP_NV2	32
-> +#define TEGRA_SWGROUP_PPCS1	33
-> +#define TEGRA_SWGROUP_DC1	34
-> +#define TEGRA_SWGROUP_PPCS2	35
-> +#define TEGRA_SWGROUP_HC1	36
-> +#define TEGRA_SWGROUP_SE1	37
-> +#define TEGRA_SWGROUP_TSEC1	38
-> +#define TEGRA_SWGROUP_TSECB1	39
-> +#define TEGRA_SWGROUP_NVDEC1	40
+>   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
+>   arch/arm64/boot/dts/mediatek/mt6779-evb.dts |  31 +++
+>   arch/arm64/boot/dts/mediatek/mt6779.dtsi    | 271 ++++++++++++++++++++
+>   3 files changed, 303 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index a57af9da9f5c..4d1b0f9d8d1c 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -1,6 +1,7 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt2712-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6755-evb.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt6779-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt6779-evb.dts b/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+> new file mode 100644
+> index 000000000000..164f5cbb3821
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2019 MediaTek Inc.
+> + * Author: Mars.C <mars.cheng@mediatek.com>
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt6779.dtsi"
+> +
+> +/ {
+> +	model = "MediaTek MT6779 EVB";
+> +	compatible = "mediatek,mt6779-evb", "mediatek,mt6779";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type = "memory";
+> +		reg = <0 0x40000000 0 0x1e800000>;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:921600n8";
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> new file mode 100644
+> index 000000000000..370f309d32de
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> @@ -0,0 +1,271 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2019 MediaTek Inc.
+> + * Author: Mars.C <mars.cheng@mediatek.com>
+> + *
+> + */
+> +
+> +#include <dt-bindings/clock/mt6779-clk.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/pinctrl/mt6779-pinfunc.h>
+> +
+> +/ {
+> +	compatible = "mediatek,mt6779";
+> +	interrupt-parent = <&sysirq>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			enable-method = "psci";
+> +			reg = <0x000>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			enable-method = "psci";
+> +			reg = <0x100>;
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			enable-method = "psci";
+> +			reg = <0x200>;
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			enable-method = "psci";
+> +			reg = <0x300>;
+> +		};
+> +
+> +		cpu4: cpu@4 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			enable-method = "psci";
+> +			reg = <0x400>;
+> +		};
+> +
+> +		cpu5: cpu@5 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			enable-method = "psci";
+> +			reg = <0x500>;
+> +		};
+> +
+> +		cpu6: cpu@6 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a75";
+> +			enable-method = "psci";
+> +			reg = <0x600>;
+> +		};
+> +
+> +		cpu7: cpu@7 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a75";
+> +			enable-method = "psci";
+> +			reg = <0x700>;
+> +		};
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW 0>;
+> +	};
+> +
+> +	clk26m: oscillator@0 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <26000000>;
+> +		clock-output-names = "clk26m";
+> +	};
+> +
+> +	clk32k: oscillator@1 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "clk32k";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>;
+> +	};
+> +
+> +	soc {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		compatible = "simple-bus";
+> +		ranges;
+> +
+> +		gic: interrupt-controller@0c000000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <4>;
+> +			interrupt-parent = <&gic>;
+> +			interrupt-controller;
+> +			reg = <0 0x0c000000 0 0x40000>,  /* GICD */
+> +			      <0 0x0c040000 0 0x200000>; /* GICR */
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
+> +
+> +			ppi-partitions {
+> +				ppi_cluster0: interrupt-partition-0 {
+> +					affinity = <&cpu0 &cpu1 \
+> +						&cpu2 &cpu3 &cpu4 &cpu5>;
+> +				};
+> +				ppi_cluster1: interrupt-partition-1 {
+> +					affinity = <&cpu6 &cpu7>;
+> +				};
+> +			};
+> +
+> +		};
+> +
+> +		sysirq: intpol-controller@0c53a650 {
+> +			compatible = "mediatek,mt6779-sysirq",
+> +				     "mediatek,mt6577-sysirq";
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +			interrupt-parent = <&gic>;
+> +			reg = <0 0x0c53a650 0 0x50>;
 
-I'm not sure this is right. The existing list is based on "Table 4:
-Client to Software Name Mapping" from page 28 of the Tegra X1 TRM, and
-none of these new swgroups seem to be present in that table.
+This looks a bit suspicious to me. Unfortunately I'm not able to find any 
+reference in the datasheets.
 
-Where exactly did you get those from?
+Anyway, patch now applied to v5.10-tmp/dts64
 
-Thierry
+Thanks!
+Matthias
 
---k4f25fnPtRuIRUb3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+AVbYACgkQ3SOs138+
-s6EjYw//d7rFLljg4uUz0GAYrWkU+KA1cHfZKLDjjJMNLRm6osUpTfew22WmLk5r
-UupPbHAWPLRE6JEmRvd+YZo9woJR6PENh90tv05ZeyzT17OyqEhIcdwF6tvO+ToQ
-4k1uvcuG2PIC1Ea7a9Q+jpi2H4g60bocm1StHVN0WCj5HzkmIXlK8rlgA7TkXNGC
-eNvIYHq7orAhlk2OMgTzloYk0FcoJgykE3HuJhXbL4k5kO2c65F5Nf07TUyklK3y
-2S2pZcGa7Qs1ztKWB8gHrhai9o6er4v+l2KGN/XNeyaDEzOIMqmfDxbSSyQPnTBL
-IKHvWLLsDijohAT2FJpJkOOl8yDKDWD8Poi9S81JBEIhQzzWavy7X9vY4kfJqRhc
-C2bUVvLswzKbiST2zSGuR7g38yqdW3JPa7yiKBjCIca+MYo0N2DZ+lvFoXvBWvOC
-p6T5uVFBd7qhz/jWfcDD3n2hCcFEIXaljoLPNTEU3OhaoAymwPpgZFQuKlZrHuOK
-/U1SkTGphPxLNf29TJiCeCfPUHmFCOY7QpJCcDeQ+gyB9dfXf9TZqwxSJE5341uo
-PP2P86/Kiv/f/x0AnHFkDs7A41CgDEVX87y3x6lzCrUGHJOZH4VK21urVt1HwzVD
-jrkTX4VOKj825TFTgY9ck/vxiuk/YkKlfReKqlzbbiTVxlvAkK0=
-=C4t1
------END PGP SIGNATURE-----
-
---k4f25fnPtRuIRUb3--
+> +		};
+> +
+> +		topckgen: clock-controller@10000000 {
+> +			compatible = "mediatek,mt6779-topckgen", "syscon";
+> +			reg = <0 0x10000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		infracfg_ao: clock-controller@10001000 {
+> +			compatible = "mediatek,mt6779-infracfg_ao", "syscon";
+> +			reg = <0 0x10001000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		pio: pinctrl@10005000 {
+> +			compatible = "mediatek,mt6779-pinctrl", "syscon";
+> +			reg = <0 0x10005000 0 0x1000>,
+> +			      <0 0x11c20000 0 0x1000>,
+> +			      <0 0x11d10000 0 0x1000>,
+> +			      <0 0x11e20000 0 0x1000>,
+> +			      <0 0x11e70000 0 0x1000>,
+> +			      <0 0x11ea0000 0 0x1000>,
+> +			      <0 0x11f20000 0 0x1000>,
+> +			      <0 0x11f30000 0 0x1000>,
+> +			      <0 0x1000b000 0 0x1000>;
+> +			reg-names = "gpio", "iocfg_rm",
+> +				    "iocfg_br", "iocfg_lm",
+> +				    "iocfg_lb", "iocfg_rt",
+> +				    "iocfg_lt", "iocfg_tl",
+> +				    "eint";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pio 0 0 210>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		apmixed: clock-controller@1000c000 {
+> +			compatible = "mediatek,mt6779-apmixed", "syscon";
+> +			reg = <0 0x1000c000 0 0xe00>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		uart0: serial@11002000 {
+> +			compatible = "mediatek,mt6779-uart",
+> +				     "mediatek,mt6577-uart";
+> +			reg = <0 0x11002000 0 0x400>;
+> +			interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_UART0>;
+> +			clock-names = "baud", "bus";
+> +			status = "disabled";
+> +		};
+> +
+> +		uart1: serial@11003000 {
+> +			compatible = "mediatek,mt6779-uart",
+> +				     "mediatek,mt6577-uart";
+> +			reg = <0 0x11003000 0 0x400>;
+> +			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_UART1>;
+> +			clock-names = "baud", "bus";
+> +			status = "disabled";
+> +		};
+> +
+> +		uart2: serial@11004000 {
+> +			compatible = "mediatek,mt6779-uart",
+> +				     "mediatek,mt6577-uart";
+> +			reg = <0 0x11004000 0 0x400>;
+> +			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_UART2>;
+> +			clock-names = "baud", "bus";
+> +			status = "disabled";
+> +		};
+> +
+> +		audio: clock-controller@11210000 {
+> +			compatible = "mediatek,mt6779-audio", "syscon";
+> +			reg = <0 0x11210000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		mfgcfg: clock-controller@13fbf000 {
+> +			compatible = "mediatek,mt6779-mfgcfg", "syscon";
+> +			reg = <0 0x13fbf000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		mmsys: syscon@14000000 {
+> +			compatible = "mediatek,mt6779-mmsys", "syscon";
+> +			reg = <0 0x14000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		imgsys: clock-controller@15020000 {
+> +			compatible = "mediatek,mt6779-imgsys", "syscon";
+> +			reg = <0 0x15020000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		vdecsys: clock-controller@16000000 {
+> +			compatible = "mediatek,mt6779-vdecsys", "syscon";
+> +			reg = <0 0x16000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		vencsys: clock-controller@17000000 {
+> +			compatible = "mediatek,mt6779-vencsys", "syscon";
+> +			reg = <0 0x17000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		camsys: clock-controller@1a000000 {
+> +			compatible = "mediatek,mt6779-camsys", "syscon";
+> +			reg = <0 0x1a000000 0 0x10000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		ipesys: clock-controller@1b000000 {
+> +			compatible = "mediatek,mt6779-ipesys", "syscon";
+> +			reg = <0 0x1b000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +	};
+> +};
+> 
