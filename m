@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52E0928860D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D9A288645
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733141AbgJIJip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 05:38:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
+        id S1733198AbgJIJou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 05:44:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733113AbgJIJip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 05:38:45 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF02C0613D2
-        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 02:38:44 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id u8so10025803lff.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 02:38:44 -0700 (PDT)
+        with ESMTP id S1733207AbgJIJos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 05:44:48 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93EC8C0613D5
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 02:44:47 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id p15so8971942ljj.8
+        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 02:44:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=wQZ85dJNsIyQtNjnJDTR2ihKmDYZl4o1wc+cD1p5Uys=;
-        b=EyBXWCuKn5Qfulspno0TqkUKWkmtsntf2WZ6aTm0tZypLd4Ah6UVqvyBZrfYrw6GC3
-         WIp1BqHp+4ACn92mT/zB7PHor5fdbk56BcW0Wj5dS6nelhlcD9LhtS9/8wSPEA7TQ0Za
-         23lJuLKWC6liqUXNRsqMQPBbZJ60Fd7YQW+SmmzHV1U93+juESSYcLseBKjKvTAMdMDa
-         owpSj+DJNBIOKN6aCuSWx4yPgN5rn7npeYJ6htvg9+kZTIy9j4gQG4DCOi4q/PLRGx7b
-         9ofFF7x+4XNaJK5r7q+Zi29ZhFqRf36GnKv6VWrvmwUH5oIRRhjFIIqIMTlLahRYR/cO
-         fWbw==
+        bh=/LrU4HDUwe5Ja8OmdzeBEJH8weSMyd+EM1T0OFoAefs=;
+        b=K1ofWV6X5uMHY8OlF9e5/o0nQkR8+DSLkBFjXYTr5dbtbtAL6Pwq/xpz74m1YLvsfq
+         B0uYEQ2BDzzyahvpLbB3TO0QATgKcubo7mG5CNqgQsS5O5ORXzSQR7QKesLjHW4VqUPS
+         ymxtb+7+6vtpjJ+QhvJ+710zUkZUBmNF7yU2J/MgiuAdPORUFQKKN5c3CN6kmnUt/nix
+         dex1au+ZjBtzvLBadu1wSgKPMuwqXzZ/oAwhENu1lOdDsrpPr/1SyexZ8RPBlF+6B7nU
+         ZuZukMJfqcTyN5xbLG0BlPkyFGB7k3R02uQ/25pIxZbfRGBrHE4zgnaVoYfbCnYSdm7p
+         L5OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=wQZ85dJNsIyQtNjnJDTR2ihKmDYZl4o1wc+cD1p5Uys=;
-        b=ob0FYKeSCNnfjAHZ4mSk+OSLOkdrWHBnymYTc7sfRMzuhJjFcwQA7ARUBK2dxpWEBH
-         azMOHzC8FIay7IJg+oIgphjr5CH+MNFIUbFRl6ZqwUFEI/ZIqnEG23s7Pvcv/bCPPd0x
-         8Y/0M/b5WXphPc68Sqd6j2m3+k1WoaYzp71qqZYfPMB/8jSwhkyyEdQA1YexGZmsIbrG
-         EoamQOFGcjBhapon/psJ9Ciy0fuVpBDA7XVgFp1cCH5/1iFKB+LRIe4xWBr78xAZVDrd
-         0EwPKnpzrBHkonjFtpOdaSsaz7CzIDkh8chXDX2Tj1tDMQZc72JD9+3vs+7XBhnid0Z/
-         UJ4w==
-X-Gm-Message-State: AOAM532/pbwJKvgoWtFOo+2GrrWhQet0w5VMfw3fd3Tgh2Ev8QYJARhr
-        xFBbpoBW47u2onhalSGsWoIf8aKURiYiubyETPkAXg==
-X-Google-Smtp-Source: ABdhPJw1Hr+9bP5FQEtUOU0p0RHYUw+Mo6ABI9TPDkRcxw0lXEEjdHuU++zVBajvD6EFYP2r4SQStnlEK25XtpZ3UuI=
-X-Received: by 2002:ac2:42d8:: with SMTP id n24mr3660836lfl.502.1602236323336;
- Fri, 09 Oct 2020 02:38:43 -0700 (PDT)
+        bh=/LrU4HDUwe5Ja8OmdzeBEJH8weSMyd+EM1T0OFoAefs=;
+        b=MKkie7Rgt+DBVoRK9eEXyHRpN/uW5BkWCf/Gft5lpYS2YWF3SrxG9zDJoyCdUhCuUX
+         iWKal2il3q5m24usFjcIxVQsENqZdnNwZTV22r1rXNMATw2InwGHCJnhoT7AaC8nNxUP
+         0GkCAJTX0avdBDLIMjsEJ4pYa+La/Na6C6fwTEk+Mke442e4UBYsS9RJoRfgjHkmrevS
+         7wityv7Ca2wi0+CixAV6Bl7HSbekFZV34kR7DtEJPuy69DHfaY9+QwJG46tu6k7K8TW2
+         fptWdsNSNNDMIq7VUQ2CpFSMhhTedk0rgMEiqBOcaHCW6tOgzmVneIRags9Oa5SJP7Ei
+         XENQ==
+X-Gm-Message-State: AOAM531fm0JHGuGLMIgrShwEjmO+orcrSYkyu0TUzBTnQbknjthcY8zw
+        esmKZXhj1bT4Jk3VlzLNAGt66XM8IPoSkGIB/EMJpQ==
+X-Google-Smtp-Source: ABdhPJwtkHFBkATYIWMQv0CcvoFYf5KDv3EuMjA78eZclQ8SGUhRMetPMbZkX8dtJwt5mRbxYVIoAzQz0eSEVJCUgoE=
+X-Received: by 2002:a2e:a549:: with SMTP id e9mr2502953ljn.293.1602236685801;
+ Fri, 09 Oct 2020 02:44:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201006142532.2247515-1-lars.povlsen@microchip.com>
- <20201006142532.2247515-3-lars.povlsen@microchip.com> <CACRpkda+OSgma3E0XxXUk8a2yrn5Hpu3a47cBN50rOkoSMkiwQ@mail.gmail.com>
- <87ft6px9wc.fsf@soft-dev15.microsemi.net>
-In-Reply-To: <87ft6px9wc.fsf@soft-dev15.microsemi.net>
+References: <20201008130515.2385825-1-lars.povlsen@microchip.com> <20201008130515.2385825-2-lars.povlsen@microchip.com>
+In-Reply-To: <20201008130515.2385825-2-lars.povlsen@microchip.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 9 Oct 2020 11:38:32 +0200
-Message-ID: <CACRpkdYqKqqM8D0vrBWbo0=7OFthU2kcK2tjd45dD7DxEkaYWg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v3 2/3] pinctrl: pinctrl-mchp-sgpio: Add pinctrl
- driver for Microsemi Serial GPIO
+Date:   Fri, 9 Oct 2020 11:44:35 +0200
+Message-ID: <CACRpkdaFYoXFUuWow5s9TitrRDhMW=wiaxgfMcY6sQkYYgC-Lw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: pinctrl: Add bindings for
+ pinctrl-microchip-sgpio driver
 To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
@@ -66,33 +65,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lars,
+Hi Lars!
 
-I'm overall mostly happy with the latest posting (not the one I respond to here)
+This is overall looking fine. Except for the 3 cell business. I just can't
+wrap my head around why that is needed.
 
-On Thu, Oct 8, 2020 at 12:57 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
-> > On Tue, Oct 6, 2020 at 4:25 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+On Thu, Oct 8, 2020 at 3:05 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
 
-> >> +       gc->of_xlate            = microchip_sgpio_of_xlate;
-> >> +       gc->of_gpio_n_cells     = 3;
-> >
-> > So I'm sceptical to this.
-> >
-> > Why can't you just use the pin index in cell 0 directly
-> > and avoid cell 1?
-> >
->
-> You scepticism has surfaced before :-). The (now) 2 indices relates to
-> how the hardware address signals.
->
-> Each signal/pin is addressed by port, bit number and direction. We now
-> have the direction encoded in the bank/phandle.
+> +      '#gpio-cells':
+> +        const: 3
 
-I'm sorry but I just don't get it, I suppose. To me it is pretty
-straight-forward
-that the cells indicate the pin and then the flags. I do understand you
-need the port at all, since this is implicit from the reg property
-of the DT node. Are these two different things?
+So at the very least needs a description making it crystal clear why each
+cell is needed, and used for since the standard bindings are not used.
+
++      sgpio_in2: gpio@0 {
++        reg = <0>;
++        compatible = "microchip,sparx5-sgpio-bank";
++        gpio-controller;
++        #gpio-cells = <3>;
++        ngpios = <96>;
++      };
+
+So here reg = 0 and the out port has reg 1. Isn't that what you also put
+in the second cell of the GPIO phandle? Then why? The driver
+can very well just parse its own reg property and fill that in.
+
+When you obtain a phandle like that:
+
+gpios = <&sgpio_in2 11 0 GPIO_OUT_LOW>;
+
+Isn't that 0 just duplicating the "reg"? Just parse reg when you set up
+your driver state and put it as variable in the state container for your
+driver state for this particular gpio_chip. No need to get it from
+the phandle.
 
 Yours,
 Linus Walleij
