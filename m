@@ -2,363 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50780288CEB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2FB9288D06
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388597AbgJIPh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 11:37:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388473AbgJIPh4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Oct 2020 11:37:56 -0400
-Received: from pali.im (pali.im [31.31.79.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 827F522251;
-        Fri,  9 Oct 2020 15:37:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602257875;
-        bh=tK9gzBuNPbzcDcd6oEtAuD+BlU4Yqk+5F+n7gbDPk/c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=X7hRdBiZltvlio2KU0lytUAoHGU1vibZEzJXrsHiKX8ZLDncrr0QoGDoUOPnjgWbJ
-         MzJtVoIjEtDVsrSAspDcIcZ0gG/VE7U0BzdNR3MICKcfE9vpBgwVv/Jh2EHBQ4jEl7
-         qRun77tenwuffBQ62z0nVsyFAI0/6I719aZM3p8g=
-Received: by pali.im (Postfix)
-        id 519D2515; Fri,  9 Oct 2020 17:37:53 +0200 (CEST)
-Date:   Fri, 9 Oct 2020 17:37:53 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Vladimir Vid <vladimir.vid@sartura.hr>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, tmn505@gmail.com,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        andrew@lunn.ch, jason@lakedaemon.net, robh+dt@kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: add DT for ESPRESSObin-Ultra
-Message-ID: <20201009153753.mpf6vr6ih2il6zhb@pali>
-References: <20201009152710.316047-1-vladimir.vid@sartura.hr>
+        id S2388736AbgJIPpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 11:45:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389356AbgJIPpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 11:45:07 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13B2C0613D7
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 08:45:06 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id d24so7083294ljg.10
+        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 08:45:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=78OLxeXd/qqHICuSPZPT2mV0KDo9INE1o8uV6MpD8lE=;
+        b=dkhypCfVvytecpOifa9Nwq1YYrAmA87B1xjSGQiJs0fg9sPK8Z4XaCSPrkr8Ln8gpH
+         udsmQ+zhWRY/i5AoNcOCRdKyUprefllEuMkHGCAW7AGUPLzf34wL/DQyqkDWBivv0Q8g
+         qDtotQBk0yGlVZshk+LB8iF6euDDaCly5LUJQyqPecD6eDXGGAv/QacvNqC5oSm9dgVc
+         uU5vKorx3l5JjofTrQM/xUNCZypkqD10aEBjOjCVAdKxwVyNMG8PT6L35W3pYjdnfP26
+         XRjq7Sc/aP3rRbHJESKeBa8m7ybky4kuoNm5BNd+r1TYFbT16dPI7E75a1y2Jbkdjtyg
+         1mbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=78OLxeXd/qqHICuSPZPT2mV0KDo9INE1o8uV6MpD8lE=;
+        b=rgh1RF3+pYRaIaHHaSXiNG5jVaFsHPHkFz+Q8VwzLmfzrJCQkydsKcC0gUN3ldhBQS
+         kiZh39C1UqZiNNORPVHGSzsvMt7OIjazizPeHCOcbBTcjEGndutUWJtIQBPaddMHHxdh
+         +WpyWbETC9kLAUQNPGDzPd85FkDAu+dkmSQTjz4ibcpcG2vvUObc/WxETbza29qAbppI
+         F6GtIQRq+kPAZNUVpQm5mbrdzFbv98pfA69knuQR66AU1seM4q/nydNjtI2kBIppBiMq
+         XY3duK/DdLacCtbbjAHtnTydFlVzL9oWkCgl4T7kGvuojd/17lkTjRLG1j7DLAB71Lm9
+         Jt9w==
+X-Gm-Message-State: AOAM5335XxGK10rsKb5xtSAmNlStv4Cde9EyUZr7Au/QCcNlM8CtndQ0
+        9xUY350vpfTS3ljFv7mp5LmoVA==
+X-Google-Smtp-Source: ABdhPJwgnobWRlQ1yWB3wNqiOFb/QLw+U5G2YtchsBVf1l4gzwJxMph8xyyajcLtQWFY1F6BE0c0qA==
+X-Received: by 2002:a2e:a58e:: with SMTP id m14mr5716703ljp.375.1602258304606;
+        Fri, 09 Oct 2020 08:45:04 -0700 (PDT)
+Received: from eriador.lan ([188.162.65.231])
+        by smtp.gmail.com with ESMTPSA id r4sm1505597lfc.162.2020.10.09.08.45.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Oct 2020 08:45:03 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+Subject: [PATCH v8 00/11] qcom: pm8150: add support for thermal monitoring
+Date:   Fri,  9 Oct 2020 18:44:48 +0300
+Message-Id: <20201009154459.106189-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201009152710.316047-1-vladimir.vid@sartura.hr>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
 
-On Friday 09 October 2020 17:27:10 Vladimir Vid wrote:
-> This adds support for ESPRESSObin-Ultra from Globalscale.
-> 
-> Specifications are similar to the base ESPRESSObin board, with main
-> difference being being WAN port with PoE capability and 2 additional ethernet ports.
 
-Cannot you in this case include armada-3720-espressobin.dtsi and write
-only differences into DTS ultra file to reduce definitions?
+This patch serie adds support for thermal monitoring block on Qualcomm's
+PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
+to support thermal zones provided by this thermal monitoring block.
+Unlike the rest of PMIC thermal senses, these thermal zones describe
+particular thermistors, which differ between from board to board.
 
-Currently there are pending patches for espressobin DTS files to
-simplify them and use common include file as much as possible to
-de-duplicate same parts.
+Changes since v7:
+ - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
+ - Use explicit sizeof(var) instead of hand-coding 1 when accessing
+   adc-tm registers.
+ - Remove buffer read from adc_tm5_init().
+ - Remove extra on-stack var from adc_tm5_get_temp().
+ - Minor formatting changes as suggested Daniel.
 
-> Full specifications:
-> 
-> 1x Marvell 64 bit Dual Core ARM A53 Armada 3700 SOC clocked up to 1.2Ghz
-> 1x Topaz 6341 Networking Switch
-> 1GB DDR4
-> 8GB eMMC
-> 1x WAN with 30W POE
-> 4x Gb LAN
-> 1x RTC Clock and battery
-> 1x DC Jack
-> 1x USB 3.0 Type A
-> 1x USB 2.0 Type A
-> 1x SIM NanoSIM card Slot
-> 1x Power Button
-> 4x LED
-> 1x Reset button
-> 1x microUSB for UART
-> 1x M.2 2280 slot for memory
-> 1x 2x2 802.11ac Wi-Fi
-> 1x MiniPCIE slot for Wi-Fi (PCIe interface)
-> 
-> Signed-off-by: Vladimir Vid <vladimir.vid@sartura.hr>
-> ---
->  arch/arm64/boot/dts/marvell/Makefile          |   1 +
->  .../marvell/armada-3720-espressobin-ultra.dts | 242 ++++++++++++++++++
->  2 files changed, 243 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-> index 3e5f2e7a040c..094f451fdd1d 100644
-> --- a/arch/arm64/boot/dts/marvell/Makefile
-> +++ b/arch/arm64/boot/dts/marvell/Makefile
-> @@ -3,6 +3,7 @@
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
-> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> new file mode 100644
-> index 000000000000..25d10b628e77
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> @@ -0,0 +1,242 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree file for ESPRESSObin-Ultra board.
-> + * Copyright (C) 2019 Globalscale technologies, Inc.
-> + *
-> + * Jason Hung <jhung@globalscaletechnologies.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "armada-372x.dtsi"
-> +
-> +/ {
-> +	model = "Marvell Armada 3720 ESPRESSOBin-Ultra";
-> +	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
-> +		     "marvell,armada3710";
-> +
-> +	aliases {
-> +		ethernet0 = &eth0;
-> +		/* for dsa slave device */
-> +		ethernet1 = &switch0port1;
-> +		ethernet2 = &switch0port2;
-> +		ethernet3 = &switch0port3;
-> +		ethernet4 = &switch0port4;
-> +		ethernet5 = &switch0port5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x00000000 0x00000000 0x00000000 0x20000000>;
-> +	};
-> +
-> +	reg_usb3_vbus: usb3-vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb3-vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		enable-active-high;
-> +		gpio = <&gpionb 19 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	usb3_phy: usb3-phy {
-> +		compatible = "usb-nop-xceiv";
-> +		vcc-supply = <&reg_usb3_vbus>;
-> +	};
-> +
-> +	gpio-leds {
-> +		pinctrl-names = "default";
-> +		compatible = "gpio-leds";
-> +		/* No assigned functions to the LEDs by default */
-> +		led1 {
-> +			label = "ebin-ultra:blue:led1";
-> +			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led2 {
-> +			label = "ebin-ultra:green:led2";
-> +			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led3 {
-> +			label = "ebin-ultra:red:led3";
-> +			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led4 {
-> +			label = "ebin-ultra:yellow:led4";
-> +			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&pcie0 {
-> +	status = "okay";
-> +};
-> +
-> +&sata {
-> +	status = "okay";
-> +};
-> +
-> +&sdhci0 {
-> +	status = "okay";
-> +	non-removable;
-> +	bus-width = <8>;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs400-1_8v;
-> +	marvell,pad-type = "fixed-1-8v";
-> +};
-> +
-> +&spi0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi_quad_pins>;
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <108000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		m25p,fast-read;
-> +
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			partition@0 {
-> +				label = "u-boot";
+Changes since v6:
+ - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
 
-Looks like this is incorrect as on Armada 3720 at the beginning of the
-nor must be stored Marvell wtmi/secure firmware which is running on
-Cortex M3 processor. For sure there cannot be u-boot. Also on A3720 is
-u-boot loaded by ARM trusted firmware therefore I doubt that u-boot is
-stored at offset zero.
+Changes since v5:
+ - Reworked DT bindings:
+   * Removed qcom,adc-channel, instead it is parsed from io-channels
+   * Renamed qcom,hw-settle-time to include -us suffix
+ - Re-added monitor enabling which got lost during refactored. Noted by
+   Jishnu Prakash.
+ - Use threaded IRQ handler as susggested by Jishnu.
 
-I guess that on offset zero is stored concatenated binary of Marvell
-secure firmware for M3, ARM trusted firmware (for main CPU) and U-Boot.
-Can you verify it? In this case I would just call this partition as
-"firmware" to indicate what is stored here.
+Changes since v4:
+ - Added kernel-doc comments to ADC-TM structures
+ - Used several sizeof(buf) instead of hand-conding register size
 
-> +				reg = <0x0 0x3e0000>;
-> +			};
-> +			partition@3e0000 {
-> +				label = "hw-info";
-> +				reg = <0x3e0000 0x10000>;
-> +				read-only;
-> +			};
-> +			partition@3f0000 {
-> +				label = "u-boot-env";
-> +				reg = <0x3f0000 0x10000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart1_pins>;
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +
-> +	clock-frequency = <100000>;
-> +
-> +	rtc@51 {
-> +		compatible = "nxp,pcf8563";
-> +		reg = <0x51>;
-> +	};
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +	usb-phy = <&usb3_phy>;
-> +};
-> +
-> +&usb2 {
-> +	status = "okay";
-> +};
-> +
-> +&eth0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&rgmii_pins>;
-> +	phy-mode = "rgmii-id";
-> +
-> +	fixed-link {
-> +		speed = <1000>;
-> +		full-duplex;
-> +	};
-> +};
-> +
-> +&mdio {
-> +	status = "okay";
-> +
-> +	extphy: ethernet-phy@0 {
-> +		reg = <1>;
-> +	};
-> +
-> +	switch0: switch0@1 {
-> +		compatible = "marvell,mv88e6085";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		reg = <3>;
-> +
-> +		dsa,member = <0 0>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			switch0port0: port@0 {
-> +				reg = <0>;
-> +				label = "cpu";
-> +				ethernet = <&eth0>;
-> +			};
-> +
-> +			switch0port1: port@1 {
-> +				reg = <1>;
-> +				label = "lan0";
-> +				phy-handle = <&switch0phy1>;
-> +			};
-> +
-> +			switch0port2: port@2 {
-> +				reg = <2>;
-> +				label = "lan1";
-> +				phy-handle = <&switch0phy2>;
-> +			};
-> +
-> +			switch0port3: port@3 {
-> +				reg = <3>;
-> +				label = "lan2";
-> +				phy-handle = <&switch0phy3>;
-> +			};
-> +
-> +			switch0port4: port@4 {
-> +				reg = <4>;
-> +				label = "lan3";
-> +				phy-handle = <&switch0phy4>;
-> +			};
-> +
-> +			switch0port5: port@5 {
-> +				reg = <5>;
-> +				label = "wan";
-> +				phy-handle = <&extphy>;
-> +				phy-mode = "sgmii";
-> +			};
-> +		};
-> +
-> +		mdio {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			switch0phy1: switch0phy1@11 {
-> +				reg = <0x11>;
-> +			};
-> +			switch0phy2: switch0phy2@12 {
-> +				reg = <0x12>;
-> +			};
-> +			switch0phy3: switch0phy3@13 {
-> +				reg = <0x13>;
-> +			};
-> +			switch0phy4: switch0phy4@14 {
-> +				reg = <0x14>;
-> +			};
-> +		};
-> +	};
-> +};
-> -- 
-> 2.27.0
-> 
+Changes since v3:
+ - Fix DT description to spell "thermal monitoring" instead of just TM
+ - Fix warnings in DT example
+ - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
+ - Fixed whitespace chanes in qcom-vadc-common.c
+ - Removed error message if IIO chanel get returns -EPROBE_DEFER
+
+Changes since v2:
+ - IIO: export of_iio_channel_get_by_name() function
+ - dt-bindings: move individual io-channels to each thermal monitoring
+   channel rather than listing them all in device node
+ - added fallback defaults to of_device_get_match_data calls in
+   qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
+ - minor typo fixes
+
+Changes since v1:
+ - Introduce fixp_linear_interpolate() by Craig Tatlor
+ - Lots of syntax/whitespace changes
+ - Cleaned up register definitions per Jonathan's suggestion
+ - Implemented most of the suggestions from Bjorn's and Jonathan's
+   review
+
+
+
+
+
