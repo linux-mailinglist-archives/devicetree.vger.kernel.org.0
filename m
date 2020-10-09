@@ -2,178 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 802CE287F94
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 02:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ACB0287FB9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 03:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729360AbgJIAtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 20:49:21 -0400
-Received: from mailout4.samsung.com ([203.254.224.34]:27437 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725852AbgJIAtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Oct 2020 20:49:21 -0400
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20201009004917epoutp04f4866489b963123b8fb88a0dd19c79ff~8LI5gOcHo2907129071epoutp04n
-        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 00:49:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20201009004917epoutp04f4866489b963123b8fb88a0dd19c79ff~8LI5gOcHo2907129071epoutp04n
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1602204557;
-        bh=XVBtzJu2xASv0WKu7fdnokfSQnWDTlw2HCWwZ+tMiJc=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=TXcOYweWBfap0JOa3Jdt9c5pxZUqKkYBZQp5o0gC+LD9YYG7bslZwhcAjcLKz9E2X
-         n4wJ1k4GJfeS4OMPgD5YFycXIh4GZXS/v0hPqkqtn9QT/Q+dskTGWFjAAqbTqC18Wd
-         8OEIcFlk/P8cCzlVEvFdUTZ9Rt96ztUhdQuTPwrE=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201009004916epcas1p15ad34ad9a2ea29ed9ca9e9e131035ca4~8LI4ygpmM1961019610epcas1p11;
-        Fri,  9 Oct 2020 00:49:16 +0000 (GMT)
-Received: from epsmges1p3.samsung.com (unknown [182.195.40.152]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4C6qG14NXgzMqYkV; Fri,  9 Oct
-        2020 00:49:13 +0000 (GMT)
-Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
-        epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        4B.08.09582.983BF7F5; Fri,  9 Oct 2020 09:49:13 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-        20201009004912epcas1p3978dad9ce71eb37b7cd37cd899bb4ba7~8LI1OecMx3244632446epcas1p3U;
-        Fri,  9 Oct 2020 00:49:12 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201009004912epsmtrp13aae56932c8c07c2ef7a64f62335dbcd~8LI1N4tmv0340703407epsmtrp1e;
-        Fri,  9 Oct 2020 00:49:12 +0000 (GMT)
-X-AuditID: b6c32a37-899ff7000000256e-97-5f7fb389d91f
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        37.49.08745.883BF7F5; Fri,  9 Oct 2020 09:49:12 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201009004912epsmtip21ec3fdb09422c4c8f975e9b26742122e~8LI1BfF8T0255102551epsmtip2W;
-        Fri,  9 Oct 2020 00:49:12 +0000 (GMT)
-Subject: Re: [PATCH 2/2] dt-bindings: extcon: add binding for TUSB320
-To:     Michael Auchter <michael.auchter@ni.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <6a5d3504-4af7-75b7-f92e-be80be70ac8d@samsung.com>
-Date:   Fri, 9 Oct 2020 10:02:35 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
-MIME-Version: 1.0
-In-Reply-To: <20201008223929.399791-2-michael.auchter@ni.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgk+LIzCtJLcpLzFFi42LZdlhTX7dzc328wdsrChbzj5xjtbi8aw6b
-        xbPnP1ktbjeuYLNo3XuE3YHVY9OqTjaP62e2M3n0bVnF6PF5k1wAS1S2TUZqYkpqkUJqXnJ+
-        SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7QXiWFssScUqBQQGJxsZK+nU1R
-        fmlJqkJGfnGJrVJqQUpOgWWBXnFibnFpXrpecn6ulaGBgZEpUGFCdsaCq7dZC+YIVHx5M5Op
-        gbGdt4uRk0NCwETiwLb5TF2MXBxCAjsYJV6ebGGBcD4xSuw4OYcdwvnMKHGjYwEbTMuRJ6tZ
-        IRK7GCVW3L0L1fKeUWL3rjWsIFXCAq4S31o+M4LYIgKVEsfWn2UBsZkFbCQ6fp8Ds9kEtCT2
-        v7gBNpVfQFHi6o/HYPW8AnYSvw8vBqrh4GARUJE4cM0NJCwqECZxclsLVImgxMmZT8DGcArY
-        Spxb/ZUJYry4xK0n86FseYntb+cwQxzdyiGx8YsMhO0isXDeOai4sMSr41vYIWwpiZf9bVB2
-        tcTKk0fYQP6SEOhglNiy/wIrRMJYYv/SyUwgtzELaEqs36UPEVaU2Pl7LiPEXj6Jd197WEFK
-        JAR4JTrahCBKlCUuP7jLBGFLSixu72SbwKg0C8k3s5B8MAvJB7MQli1gZFnFKJZaUJybnlps
-        WGCMHNmbGMFJUst8B+O0tx/0DjEycTAeYpTgYFYS4U33rokX4k1JrKxKLcqPLyrNSS0+xGgK
-        DN6JzFKiyfnANJ1XEm9oamRsbGxhYmhmamioJM778JZCvJBAemJJanZqakFqEUwfEwenVAOT
-        8fctvLO3Lgx/pn/I4P9pm891tzVPfXpg9dNc6e8hvqIHK94va951y+HVIzfzbadOTzPOexX/
-        ZsO0xUfSaw2/vSo5ocOQq+Un0bJYek3PwXm2q48uSbvg/DrxZz5LfI3Ak7LkRXZZ++3bK9j7
-        Dl4tLjv/f+YLjWlZ97brZ00MNnDhTJjDnDH3i5b/Uye3vil5PQFmuXnFGknZJ6bZubNuTHFs
-        Y72S6a7x60tsyz2p2683hh46yj5T/g97yML4R2E5Ao+2d9fLz571oPXu2dfVgp9ZXprtPHD6
-        wYPwzzbbZW98FBfaYF+W8n6DfQdHU0vv+bjio4v1pm2eeXprXZh2j4v9iUdNmYu5v635meUh
-        oMRSnJFoqMVcVJwIAMWxxeobBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMLMWRmVeSWpSXmKPExsWy7bCSvG7H5vp4gz0vdC3mHznHanF51xw2
-        i2fPf7Ja3G5cwWbRuvcIuwOrx6ZVnWwe189sZ/Lo27KK0ePzJrkAligum5TUnMyy1CJ9uwSu
-        jAVXb7MWzBGo+PJmJlMDYztvFyMnh4SAicSRJ6tZuxi5OIQEdjBKzL+2hQ0iISkx7eJR5i5G
-        DiBbWOLw4WKImreMEu/33gSrERZwlfjW8pkRxBYRqJSY0jUZzGYWsJHo+H2OBaLhMKPEm32n
-        mEESbAJaEvtf3ABr5hdQlLj64zFYA6+AncTvw4tZQJaxCKhIHLjmBhIWFQiT2LnkMRNEiaDE
-        yZlPWEBsTgFbiXOrvzJB7FKX+DPvEjOELS5x68l8qLi8xPa3c5gnMArPQtI+C0nLLCQts5C0
-        LGBkWcUomVpQnJueW2xYYJSXWq5XnJhbXJqXrpecn7uJERwvWlo7GPes+qB3iJGJg/EQowQH
-        s5IIb7p3TbwQb0piZVVqUX58UWlOavEhRmkOFiVx3q+zFsYJCaQnlqRmp6YWpBbBZJk4OKUa
-        mPwnnReXODLrzH7re/PePcxMmPPgxtSahDpmt287nJmvTbwzZ1fbFh1Od2XvJ4XsC9u8X7ae
-        mj9d9++LB0qPeH2PcqnqNN+9/2+G/e/sJ58+z/4yI6/Ve2n70SPivFuLqk4cO/RvyfGf4Q/s
-        ayXWc11LvdqvE67ytV+k+ZHP/vANXaasFYUX3oeabOrevPXYfMeeV9knXfYXdLzMcrX6+/Du
-        8h82sv9MAv5emPH28KanXC8npxg8ymraJ5euHxjFZfqUc+kambMTnNdI+3/QEWln6z7xP76/
-        1u2b05LnP1hSKhdUHbxyO0rr5rfOaWtd5roqOPxq+nrlUm5RUP9JBdX6RXU+Qc5f27feNef5
-        XKGuxFKckWioxVxUnAgA4oHPCQYDAAA=
-X-CMS-MailID: 20201009004912epcas1p3978dad9ce71eb37b7cd37cd899bb4ba7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20201008224000epcas1p35c470d955b060702f59419875939677c
-References: <20201008223929.399791-1-michael.auchter@ni.com>
-        <CGME20201008224000epcas1p35c470d955b060702f59419875939677c@epcas1p3.samsung.com>
-        <20201008223929.399791-2-michael.auchter@ni.com>
+        id S1725952AbgJIBER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 21:04:17 -0400
+Received: from mga02.intel.com ([134.134.136.20]:33823 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725887AbgJIBER (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 21:04:17 -0400
+IronPort-SDR: lJ/f6AWwhMq+80ErtkM6GnUuQuutq9Wxy/V/JpkNomi/sQniz75p1r2TddKsUf3NP+zEchEwiD
+ /jWvjSzHZzKQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9768"; a="152346927"
+X-IronPort-AV: E=Sophos;i="5.77,353,1596524400"; 
+   d="scan'208";a="152346927"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2020 18:04:16 -0700
+IronPort-SDR: byJmTDvMZnwa61Tor7XDMFkFec+ewXRPYB50ZckEWd7+u4oWdW8VBwpUt4rWD+kFwWWdpUzTAO
+ ve5/7Hu+65Wg==
+X-IronPort-AV: E=Sophos;i="5.77,353,1596524400"; 
+   d="scan'208";a="343626257"
+Received: from mgleaso-mobl.amr.corp.intel.com (HELO achrisan-DESK2.amr.corp.intel.com) ([10.251.146.83])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA; 08 Oct 2020 18:04:16 -0700
+From:   Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+To:     dri-devel@lists.freedesktop.org, anitha.chrisanthus@intel.com,
+        devicetree@vger.kernel.org
+Cc:     daniel.vetter@intel.com, bob.j.paauwe@intel.com,
+        edmund.j.dea@intel.com, sam@ravnborg.org
+Subject: [PATCH v9 0/5] Add support for KeemBay DRM driver
+Date:   Thu,  8 Oct 2020 18:03:58 -0700
+Message-Id: <1602205443-9036-1-git-send-email-anitha.chrisanthus@intel.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/9/20 7:39 AM, Michael Auchter wrote:
-> Add a device tree binding for the TI TUSB320.
-> 
-> Signed-off-by: Michael Auchter <michael.auchter@ni.com>
-> ---
->  .../bindings/extcon/extcon-usbc-tusb320.yaml  | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-> new file mode 100644
-> index 000000000000..57f1bcbf1295
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: https://protect2.fireeye.com/v1/url?k=24582026-79962192-2459ab69-000babdfecba-1931f18c81ab64e5&q=1&e=8094c8b6-bc5c-4c39-b23a-4f81a9cccae3&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fextcon%2Fextcon-usbc-tusb320.yaml%23
-> +$schema: https://protect2.fireeye.com/v1/url?k=8c20f14c-d1eef0f8-8c217a03-000babdfecba-6159bd3aeb5a40ca&q=1&e=8094c8b6-bc5c-4c39-b23a-4f81a9cccae3&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
-> +
-> +title: TI TUSB320 USB Type-C CC Logic controller
-> +
-> +maintainers:
-> +  - Michael Auchter <michael.auchter@ni.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,tusb320
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        extcon@61 {
+This is a new DRM driver for Intel's KeemBay SOC.
+The SoC couples an ARM Cortex A53 CPU with an Intel
+Movidius VPU.
 
-Better to use 'tusb320' instead of 'extcon' word
-because extcon doesn't represent the hardware.
+This driver is tested with the KMB EVM board which is the refernce baord
+for Keem Bay SOC. The SOC's display pipeline is as follows
 
-> +            compatible = "ti,tusb320";
-> +            reg = <0x61>;
-> +            interrupt-parent = <&gpio>;
-> +            interrupts = <27 1>;
-> +        };
-> +    };
-> +...
-> 
++--------------+    +---------+    +-----------------------+
+|LCD controller| -> |Mipi DSI | -> |Mipi to HDMI Converter |
++--------------+    +---------+    +-----------------------+
 
+LCD controller and Mipi DSI transmitter are part of the SOC and
+mipi to HDMI converter is ADV7535 for KMB EVM board.
+
+The DRM driver is a basic KMS atomic modesetting display driver and
+has no 2D or 3D graphics.It calls into the ADV bridge driver at
+the connector level.
+
+Only 1080p resolution and single plane is supported at this time.
+The usecase is for debugging video and camera outputs.
+
+Device tree patches are under review here
+https://lore.kernel.org/linux-arm-kernel/20200708175020.194436-1-daniele.alessandrelli@linux.intel.com/T/
+
+Changes since v1:
+- Removed redundant license text, updated license
+- Rearranged include blocks
+- renamed global vars and removed extern in c
+- Used upclassing for dev_private
+- Used drm_dev_init in drm device create
+- minor cleanups
+
+Changes since v2:
+- squashed all commits to a single commit
+- logging changed to drm_info, drm_dbg etc.
+- used devm_drm_dev_alloc()
+- removed commented out sections and general cleanup
+
+Changes since v3:
+- renamed dev_p to kmb
+- moved clocks under kmb_clock, consolidated clk initializations
+- use drmm functions
+- use DRM_GEM_CMA_DRIVER_OPS_VMAP
+- more cleanups
+
+Changes since v4:
+- corrected spellings
+
+Changes since v5:
+- corrected checkpatch warnings/checks
+   -Please ignore checkpatch checks on Camelcase - this is how it is
+   named in the databook
+   - Please ignore checkpatch warnings on misspelled for hsa, dout,
+   widthn etc. - they are spelled as in the databook
+   - Please ignore checkpatch checks on macro arguments reuse -
+   its confirmed ok
+
+Changes since v6:
+- review changes Sam Ravnborg and Thomas Zimmerman
+	split patch into 4 parts, part1 register definitions, part2 display
+	driver files, part3 mipi dsi, part4 build files (Sam)
+	removed kmb_crtc.h kmb_crtc_cleanup (Thomas)
+	renamed mode_set, kmb_load, inlined unload (Thomas)
+	moved remaining logging to drm_*(Thomas)
+	re-orged driver initialization (Thomas)
+	moved plane_status to drm_private (Sam)
+	removed unnecessary logs and defines and ifdef codes (Sam)
+	split dphy_init_sequence smaller (Sam)
+	removed redundant checks in kmb_dsi (Sam)
+	changed kmb_dsi_init to drm_bridge_connector_init and
+	drm_connector_attach_encoder to bridge's connector (Sam)
+	call helper_check in plane_atomic_check (Sam)
+	renamed set to get for bpp and format functions(Sam)
+	use drm helper functions for reset, duplicate/destroy state instead
+	of kmb functions (Sam)
+	removed kmb_priv from kmb_plane and removed kmb_plane_state (Sam)
+
+Changes since v7:
+- tested with 5.9 kernel and made the following changes
+        get clk_pll0 from display node in dt  
+        call drm_bridge_attach with DRM_BRIDGE_ATTACH_NO_CONNECTOR
+        Also added Maintainer entry	
+
+Changes since v8:
+	DT review changes (Rob)
+	renamed kmb_dsi_hw_init to kmb_dsi_mode_set (Daniel V)
+	moved csc_coef_lcd to plane.c (Daniel Vetter)
+	call drm_atomic_helper_shutdown in remove (Daniel V)
+	use drm_crtc_handle_vblank (Daniel V)
+	renamed kmb_dsi_hw_init to kmb_dsi_mode_set (Daniel V)
+	complimentary changes to device tree changes (Rob)
+	removed redundant definitions in kmb_dsi.h
+
+Anitha Chrisanthus (5):
+  dt-bindings: display: Add support for Intel KeemBay Display
+  drm/kmb: Keem Bay driver register definition
+  drm/kmb: Add support for KeemBay Display
+  drm/kmb: Mipi DSI part of the display driver
+  drm/kmb: Build files for KeemBay Display driver
+
+ .../bindings/display/intel,keembay-display.yaml    |   99 ++
+ MAINTAINERS                                        |    7 +
+ drivers/gpu/drm/Kconfig                            |    2 +
+ drivers/gpu/drm/Makefile                           |    1 +
+ drivers/gpu/drm/kmb/Kconfig                        |   13 +
+ drivers/gpu/drm/kmb/Makefile                       |    2 +
+ drivers/gpu/drm/kmb/kmb_crtc.c                     |  224 +++
+ drivers/gpu/drm/kmb/kmb_drv.c                      |  676 +++++++++
+ drivers/gpu/drm/kmb/kmb_drv.h                      |  170 +++
+ drivers/gpu/drm/kmb/kmb_dsi.c                      | 1524 ++++++++++++++++++++
+ drivers/gpu/drm/kmb/kmb_dsi.h                      |  350 +++++
+ drivers/gpu/drm/kmb/kmb_plane.c                    |  488 +++++++
+ drivers/gpu/drm/kmb/kmb_plane.h                    |  102 ++
+ drivers/gpu/drm/kmb/kmb_regs.h                     |  739 ++++++++++
+ 14 files changed, 4397 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/intel,keembay-display.yaml
+ create mode 100644 drivers/gpu/drm/kmb/Kconfig
+ create mode 100644 drivers/gpu/drm/kmb/Makefile
+ create mode 100644 drivers/gpu/drm/kmb/kmb_crtc.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_dsi.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_dsi.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_regs.h
 
 -- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+2.7.4
+
