@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44D95287FBB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 03:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B38C287FBD
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 03:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728579AbgJIBEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 21:04:21 -0400
-Received: from mga02.intel.com ([134.134.136.20]:33823 "EHLO mga02.intel.com"
+        id S1728612AbgJIBEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 21:04:22 -0400
+Received: from mga02.intel.com ([134.134.136.20]:33829 "EHLO mga02.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726031AbgJIBEV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 21:04:21 -0400
-IronPort-SDR: m9CXzRqA49iEljrYTF0xJUCqwK5LuyCd26tC/PTwBcymGV0mgnhH4G1bifvxHVrwaAM1Bw2taN
- l8YD5iru5zfQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9768"; a="152346934"
+        id S1725887AbgJIBEW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 21:04:22 -0400
+IronPort-SDR: 4OgQC+iJYPeaYu7sfkX7tgRYtGp/FLvkLgmCLZNzshWeKRUqf7bBeUJDAgAlJQph7M7yaV6Fam
+ Hy0YnCSKYhzQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9768"; a="152346936"
 X-IronPort-AV: E=Sophos;i="5.77,353,1596524400"; 
-   d="scan'208";a="152346934"
+   d="scan'208";a="152346936"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2020 18:04:19 -0700
-IronPort-SDR: Tw5mMMpsiLpTN6OYF/PdT7VE+NyE1vB9U2XwgngHB4QZEALEixu5/wu74SdZ+rIqDE1HCPQPMw
- XYwMkfnHPpYA==
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2020 18:04:20 -0700
+IronPort-SDR: y1uRstfYpkVrS2BtLZc2O35FKVTin6wXem7LQ7hYhIxZubHJTu/yuL8VP6TA+xJWbzYbwje5xe
+ MRKLKFg0Vihw==
 X-IronPort-AV: E=Sophos;i="5.77,353,1596524400"; 
-   d="scan'208";a="343626282"
+   d="scan'208";a="343626288"
 Received: from mgleaso-mobl.amr.corp.intel.com (HELO achrisan-DESK2.amr.corp.intel.com) ([10.251.146.83])
   by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA; 08 Oct 2020 18:04:19 -0700
 From:   Anitha Chrisanthus <anitha.chrisanthus@intel.com>
@@ -31,9 +31,9 @@ To:     dri-devel@lists.freedesktop.org, anitha.chrisanthus@intel.com,
         devicetree@vger.kernel.org
 Cc:     daniel.vetter@intel.com, bob.j.paauwe@intel.com,
         edmund.j.dea@intel.com, sam@ravnborg.org
-Subject: [PATCH v9 2/5] drm/kmb: Keem Bay driver register definition
-Date:   Thu,  8 Oct 2020 18:04:00 -0700
-Message-Id: <1602205443-9036-3-git-send-email-anitha.chrisanthus@intel.com>
+Subject: [PATCH v9 3/5] drm/kmb: Add support for KeemBay Display
+Date:   Thu,  8 Oct 2020 18:04:01 -0700
+Message-Id: <1602205443-9036-4-git-send-email-anitha.chrisanthus@intel.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1602205443-9036-1-git-send-email-anitha.chrisanthus@intel.com>
 References: <1602205443-9036-1-git-send-email-anitha.chrisanthus@intel.com>
@@ -44,769 +44,1752 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register definitions for Keem Bay display driver
+This is a basic KMS atomic modesetting display driver for KeemBay family of
+SOCs. Driver has no 2D or 3D graphics.It calls into the ADV bridge
+driver at the connector level.
 
-v2: removed license text (Sam)
+Single CRTC with LCD controller->mipi DSI-> ADV bridge
+
+Only 1080p resolution and single plane is supported at this time.
+
+v2: moved extern to .h, removed license text
+    use drm_dev_init, upclassed dev_private, removed HAVE_IRQ.(Sam)
+
 v3: Squashed all 59 commits to one
+
 v4: review changes from Sam Ravnborg
 	renamed dev_p to kmb
+	moved clocks under kmb_clock, consolidated clk initializations
+	use drmm functions
+	use DRM_GEM_CMA_DRIVER_OPS_VMAP
+
 v5: corrected spellings
 v6: corrected checkpatch warnings
-v7: removed redundant definitions
+v7: review changes Sam Ravnborg and Thomas Zimmerman
+	removed kmb_crtc.h kmb_crtc_cleanup (Thomas)
+	renamed mode_set, kmb_load, inlined unload (Thomas)
+	moved remaining logging to drm_*(Thomas)
+	re-orged driver initialization (Thomas)
+	moved plane_status to drm_private (Sam)
+	removed unnecessary logs and defines and ifdef codes (Sam)
+	call helper_check in plane_atomic_check (Sam)
+	renamed set to get for bpp and format functions(Sam)
+	use drm helper functions for reset, duplicate/destroy state instead
+	of kmb functions (Sam)
+	removed kmb_priv from kmb_plane and removed kmb_plane_state (Sam)
+v8: get clk_pll0 from display node in dt
+v9: moved csc_coef_lcd to plane.c (Daniel Vetter)
+    call drm_atomic_helper_shutdown in remove (Daniel V)
+    use drm_crtc_handle_vblank (Daniel V)
+    renamed kmb_dsi_hw_init to kmb_dsi_mode_set (Daniel V)
+    complimentary changes to device tree changes (Rob)
 
 Cc: Sam Ravnborg <sam@ravnborg.org>
 Signed-off-by: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
 Reviewed-by: Bob Paauwe <bob.j.paauwe@intel.com>
 ---
- drivers/gpu/drm/kmb/kmb_regs.h | 739 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 739 insertions(+)
- create mode 100644 drivers/gpu/drm/kmb/kmb_regs.h
+ drivers/gpu/drm/kmb/kmb_crtc.c  | 224 +++++++++++++
+ drivers/gpu/drm/kmb/kmb_drv.c   | 676 ++++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/kmb/kmb_drv.h   | 170 ++++++++++
+ drivers/gpu/drm/kmb/kmb_plane.c | 488 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/kmb/kmb_plane.h | 102 ++++++
+ 5 files changed, 1660 insertions(+)
+ create mode 100644 drivers/gpu/drm/kmb/kmb_crtc.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.h
 
-diff --git a/drivers/gpu/drm/kmb/kmb_regs.h b/drivers/gpu/drm/kmb/kmb_regs.h
+diff --git a/drivers/gpu/drm/kmb/kmb_crtc.c b/drivers/gpu/drm/kmb/kmb_crtc.c
 new file mode 100644
-index 0000000..d076a85
+index 0000000..72dcbdf
 --- /dev/null
-+++ b/drivers/gpu/drm/kmb/kmb_regs.h
-@@ -0,0 +1,739 @@
++++ b/drivers/gpu/drm/kmb/kmb_crtc.c
+@@ -0,0 +1,224 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright © 2018-2020 Intel Corporation
++ */
++
++#include <linux/clk.h>
++#include <linux/of_graph.h>
++#include <linux/platform_data/simplefb.h>
++
++#include <video/videomode.h>
++
++#include <drm/drm_atomic.h>
++#include <drm/drm_atomic_helper.h>
++#include <drm/drm_crtc.h>
++#include <drm/drm_crtc_helper.h>
++#include <drm/drm_debugfs.h>
++#include <drm/drm_device.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_fb_cma_helper.h>
++#include <drm/drm_fb_helper.h>
++#include <drm/drm_gem_cma_helper.h>
++#include <drm/drm_of.h>
++#include <drm/drm_plane_helper.h>
++#include <drm/drm_vblank.h>
++
++#include "kmb_drv.h"
++#include "kmb_dsi.h"
++#include "kmb_plane.h"
++#include "kmb_regs.h"
++
++struct kmb_crtc_timing {
++	u32 vfront_porch;
++	u32 vback_porch;
++	u32 vsync_len;
++	u32 hfront_porch;
++	u32 hback_porch;
++	u32 hsync_len;
++};
++
++static int kmb_crtc_enable_vblank(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct kmb_drm_private *kmb = to_kmb(dev);
++
++	/* Clear interrupt */
++	kmb_write_lcd(kmb, LCD_INT_CLEAR, LCD_INT_VERT_COMP);
++	/* Set which interval to generate vertical interrupt */
++	kmb_write_lcd(kmb, LCD_VSTATUS_COMPARE,
++		      LCD_VSTATUS_COMPARE_VSYNC);
++	/* Enable vertical interrupt */
++	kmb_set_bitmask_lcd(kmb, LCD_INT_ENABLE,
++			    LCD_INT_VERT_COMP);
++	return 0;
++}
++
++static void kmb_crtc_disable_vblank(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct kmb_drm_private *kmb = to_kmb(dev);
++
++	/* Clear interrupt */
++	kmb_write_lcd(kmb, LCD_INT_CLEAR, LCD_INT_VERT_COMP);
++	/* Disable vertical interrupt */
++	kmb_clr_bitmask_lcd(kmb, LCD_INT_ENABLE,
++			    LCD_INT_VERT_COMP);
++}
++
++static const struct drm_crtc_funcs kmb_crtc_funcs = {
++	.destroy = drm_crtc_cleanup,
++	.set_config = drm_atomic_helper_set_config,
++	.page_flip = drm_atomic_helper_page_flip,
++	.reset = drm_atomic_helper_crtc_reset,
++	.atomic_duplicate_state = drm_atomic_helper_crtc_duplicate_state,
++	.atomic_destroy_state = drm_atomic_helper_crtc_destroy_state,
++	.enable_vblank = kmb_crtc_enable_vblank,
++	.disable_vblank = kmb_crtc_disable_vblank,
++};
++
++static void kmb_crtc_set_mode(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_display_mode *m = &crtc->state->adjusted_mode;
++	struct kmb_crtc_timing vm;
++	int vsync_start_offset;
++	int vsync_end_offset;
++	struct kmb_drm_private *kmb = to_kmb(dev);
++	unsigned int val = 0;
++
++	/* Initialize mipi */
++	kmb_dsi_mode_set(dev, m);
++	drm_info(dev,
++		 "vfp= %d vbp= %d vsyc_len=%d hfp=%d hbp=%d hsync_len=%d\n",
++		 m->crtc_vsync_start - m->crtc_vdisplay,
++		 m->crtc_vtotal - m->crtc_vsync_end,
++		 m->crtc_vsync_end - m->crtc_vsync_start,
++		 m->crtc_hsync_start - m->crtc_hdisplay,
++		 m->crtc_htotal - m->crtc_hsync_end,
++		 m->crtc_hsync_end - m->crtc_hsync_start);
++	val = kmb_read_lcd(kmb, LCD_INT_ENABLE);
++	kmb_clr_bitmask_lcd(kmb, LCD_INT_ENABLE, val);
++	kmb_set_bitmask_lcd(kmb, LCD_INT_CLEAR, ~0x0);
++	vm.vfront_porch = 2;
++	vm.vback_porch = 2;
++	vm.vsync_len = 8;
++	vm.hfront_porch = 0;
++	vm.hback_porch = 0;
++	vm.hsync_len = 28;
++
++	vsync_start_offset =  m->crtc_vsync_start -  m->crtc_hsync_start;
++	vsync_end_offset =  m->crtc_vsync_end - m->crtc_hsync_end;
++
++	drm_dbg(dev, "%s : %dactive height= %d vbp=%d vfp=%d vsync-w=%d h-active=%d h-bp=%d h-fp=%d hysnc-l=%d",
++		__func__, __LINE__,
++			m->crtc_vdisplay, vm.vback_porch, vm.vfront_porch,
++			vm.vsync_len, m->crtc_hdisplay, vm.hback_porch,
++			vm.hfront_porch, vm.hsync_len);
++	kmb_write_lcd(kmb, LCD_V_ACTIVEHEIGHT,
++		      m->crtc_vdisplay - 1);
++	kmb_write_lcd(kmb, LCD_V_BACKPORCH, vm.vback_porch);
++	kmb_write_lcd(kmb, LCD_V_FRONTPORCH, vm.vfront_porch);
++	kmb_write_lcd(kmb, LCD_VSYNC_WIDTH, vm.vsync_len - 1);
++	kmb_write_lcd(kmb, LCD_H_ACTIVEWIDTH,
++		      m->crtc_hdisplay - 1);
++	kmb_write_lcd(kmb, LCD_H_BACKPORCH, vm.hback_porch);
++	kmb_write_lcd(kmb, LCD_H_FRONTPORCH, vm.hfront_porch);
++	kmb_write_lcd(kmb, LCD_HSYNC_WIDTH, vm.hsync_len - 1);
++	/* This is hardcoded as 0 in the Myriadx code */
++	kmb_write_lcd(kmb, LCD_VSYNC_START, 0);
++	kmb_write_lcd(kmb, LCD_VSYNC_END, 0);
++	/* Back ground color */
++	kmb_write_lcd(kmb, LCD_BG_COLOUR_LS, 0x4);
++	if (m->flags == DRM_MODE_FLAG_INTERLACE) {
++		kmb_write_lcd(kmb,
++			      LCD_VSYNC_WIDTH_EVEN, vm.vsync_len - 1);
++		kmb_write_lcd(kmb,
++			      LCD_V_BACKPORCH_EVEN, vm.vback_porch);
++		kmb_write_lcd(kmb,
++			      LCD_V_FRONTPORCH_EVEN, vm.vfront_porch);
++		kmb_write_lcd(kmb, LCD_V_ACTIVEHEIGHT_EVEN,
++			      m->crtc_vdisplay - 1);
++		/* This is hardcoded as 10 in the Myriadx code */
++		kmb_write_lcd(kmb, LCD_VSYNC_START_EVEN, 10);
++		kmb_write_lcd(kmb, LCD_VSYNC_END_EVEN, 10);
++	}
++	kmb_write_lcd(kmb, LCD_TIMING_GEN_TRIG, ENABLE);
++	kmb_set_bitmask_lcd(kmb, LCD_CONTROL, LCD_CTRL_ENABLE);
++	kmb_set_bitmask_lcd(kmb, LCD_INT_ENABLE, val);
++}
++
++static void kmb_crtc_atomic_enable(struct drm_crtc *crtc,
++				   struct drm_crtc_state *old_state)
++{
++	struct kmb_drm_private *lcd = crtc_to_kmb_priv(crtc);
++
++	clk_prepare_enable(lcd->clk);
++	kmb_crtc_set_mode(crtc);
++	drm_crtc_vblank_on(crtc);
++}
++
++static void kmb_crtc_atomic_disable(struct drm_crtc *crtc,
++				    struct drm_crtc_state *old_state)
++{
++	struct kmb_drm_private *lcd = crtc_to_kmb_priv(crtc);
++
++	/* due to hw limitations, planes need to be off when crtc is off */
++	drm_atomic_helper_disable_planes_on_crtc(old_state, false);
++
++	drm_crtc_vblank_off(crtc);
++	clk_disable_unprepare(lcd->clk);
++}
++
++static void kmb_crtc_atomic_begin(struct drm_crtc *crtc,
++				  struct drm_crtc_state *state)
++{
++	struct drm_device *dev = crtc->dev;
++	struct kmb_drm_private *kmb = to_kmb(dev);
++
++	kmb_clr_bitmask_lcd(kmb, LCD_INT_ENABLE,
++			    LCD_INT_VERT_COMP);
++}
++
++static void kmb_crtc_atomic_flush(struct drm_crtc *crtc,
++				  struct drm_crtc_state *state)
++{
++	struct drm_device *dev = crtc->dev;
++	struct kmb_drm_private *kmb = to_kmb(dev);
++
++	kmb_set_bitmask_lcd(kmb, LCD_INT_ENABLE,
++			    LCD_INT_VERT_COMP);
++
++	spin_lock_irq(&crtc->dev->event_lock);
++	if (crtc->state->event)
++		drm_crtc_send_vblank_event(crtc, crtc->state->event);
++	crtc->state->event = NULL;
++	spin_unlock_irq(&crtc->dev->event_lock);
++}
++
++static const struct drm_crtc_helper_funcs kmb_crtc_helper_funcs = {
++	.atomic_begin = kmb_crtc_atomic_begin,
++	.atomic_enable = kmb_crtc_atomic_enable,
++	.atomic_disable = kmb_crtc_atomic_disable,
++	.atomic_flush = kmb_crtc_atomic_flush,
++};
++
++int kmb_setup_crtc(struct drm_device *drm)
++{
++	struct kmb_drm_private *kmb = to_kmb(drm);
++	struct kmb_plane *primary;
++	int ret;
++
++	primary = kmb_plane_init(drm);
++	if (IS_ERR(primary))
++		return PTR_ERR(primary);
++
++	ret = drm_crtc_init_with_planes(drm, &kmb->crtc, &primary->base_plane,
++					NULL, &kmb_crtc_funcs, NULL);
++	if (ret) {
++		kmb_plane_destroy(&primary->base_plane);
++		return ret;
++	}
++
++	drm_crtc_helper_add(&kmb->crtc, &kmb_crtc_helper_funcs);
++	return 0;
++}
+diff --git a/drivers/gpu/drm/kmb/kmb_drv.c b/drivers/gpu/drm/kmb/kmb_drv.c
+new file mode 100644
+index 0000000..4a5becf4
+--- /dev/null
++++ b/drivers/gpu/drm/kmb/kmb_drv.c
+@@ -0,0 +1,676 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright © 2018-2020 Intel Corporation
++ */
++
++#include <linux/clk.h>
++#include <linux/console.h>
++#include <linux/list.h>
++#include <linux/module.h>
++#include <linux/of_graph.h>
++#include <linux/of_reserved_mem.h>
++#include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
++#include <linux/spinlock.h>
++
++#include <drm/drm.h>
++#include <drm/drm_atomic.h>
++#include <drm/drm_atomic_helper.h>
++#include <drm/drm_crtc.h>
++#include <drm/drm_device.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_fb_cma_helper.h>
++#include <drm/drm_fb_helper.h>
++#include <drm/drm_gem_cma_helper.h>
++#include <drm/drm_gem_framebuffer_helper.h>
++#include <drm/drm_ioctl.h>
++#include <drm/drm_irq.h>
++#include <drm/drm_of.h>
++#include <drm/drm_probe_helper.h>
++#include <drm/drm_vblank.h>
++
++#include "kmb_drv.h"
++#include "kmb_dsi.h"
++#include "kmb_regs.h"
++
++int kmb_under_flow = 0, kmb_flush_done = 0, layer_no = 0;
++static struct kmb_clock kmb_clk;
++
++static struct drm_bridge *adv_bridge;
++
++int kmb_display_clk_enable(struct kmb_drm_private *kmb)
++{
++	int ret = 0;
++
++	ret = clk_prepare_enable(kmb_clk.clk_lcd);
++	if (ret) {
++		drm_err(&kmb->drm, "Failed to enable LCD clock: %d\n", ret);
++		return ret;
++	}
++
++	ret = clk_prepare_enable(kmb_clk.clk_mipi);
++	if (ret) {
++		drm_err(&kmb->drm, "Failed to enable MIPI clock: %d\n", ret);
++		return ret;
++	}
++
++	ret = clk_prepare_enable(kmb_clk.clk_mipi_ecfg);
++	if (ret) {
++		drm_err(&kmb->drm,
++			"Failed to enable MIPI_ECFG clock: %d\n", ret);
++		return ret;
++	}
++
++	ret = clk_prepare_enable(kmb_clk.clk_mipi_cfg);
++	if (ret) {
++		drm_err(&kmb->drm,
++			"Failed to enable MIPI_CFG clock: %d\n", ret);
++		return ret;
++	}
++	DRM_INFO("SUCCESS : enabled LCD MIPI clocks\n");
++	return 0;
++}
++
++int kmb_initialize_clocks(struct kmb_drm_private *kmb, struct device *dev)
++{
++	unsigned long clk;
++	int ret = 0;
++
++	kmb_clk.clk_lcd = clk_get(dev, "clk_lcd");
++	if (IS_ERR(kmb_clk.clk_lcd)) {
++		drm_err(&kmb->drm, "clk_get() failed clk_lcd\n");
++		return PTR_ERR(kmb_clk.clk_lcd);
++	}
++
++	kmb_clk.clk_mipi = clk_get(dev, "clk_mipi");
++	if (IS_ERR(kmb_clk.clk_mipi)) {
++		drm_err(&kmb->drm, "clk_get() failed clk_mipi\n");
++		return PTR_ERR(kmb_clk.clk_mipi);
++	}
++
++	kmb_clk.clk_mipi_ecfg = clk_get(dev, "clk_mipi_ecfg");
++	if (IS_ERR(kmb_clk.clk_mipi_ecfg)) {
++		drm_err(&kmb->drm, "clk_get() failed clk_mipi_ecfg\n");
++		return PTR_ERR(kmb_clk.clk_mipi_ecfg);
++	}
++
++	kmb_clk.clk_mipi_cfg = clk_get(dev, "clk_mipi_cfg");
++	if (IS_ERR(kmb_clk.clk_mipi_cfg)) {
++		drm_err(&kmb->drm, "clk_get() failed clk_mipi_cfg\n");
++		return PTR_ERR(kmb_clk.clk_mipi_cfg);
++	}
++
++	kmb_clk.clk_pll0 = clk_get(dev, "clk_pll0");
++	if (IS_ERR(kmb_clk.clk_pll0)) {
++		drm_err(&kmb->drm, "clk_get() failed clk_pll0 ");
++		return PTR_ERR(kmb_clk.clk_pll0);
++	}
++	kmb->sys_clk_mhz = clk_get_rate(kmb_clk.clk_pll0) / 1000000;
++	drm_info(&kmb->drm, "system clk = %d Mhz", kmb->sys_clk_mhz);
++
++	/* Set LCD clock to 200 Mhz */
++	clk_set_rate(kmb_clk.clk_lcd, KMB_LCD_DEFAULT_CLK);
++	if (clk_get_rate(kmb_clk.clk_lcd) != KMB_LCD_DEFAULT_CLK) {
++		drm_err(&kmb->drm, "failed to set to clk_lcd to %d\n",
++			KMB_LCD_DEFAULT_CLK);
++		return -1;
++	}
++	drm_dbg(&kmb->drm, "clk_lcd = %ld\n", clk_get_rate(kmb_clk.clk_lcd));
++
++	/* Set MIPI clock to 24 Mhz */
++	clk_set_rate(kmb_clk.clk_mipi, KMB_MIPI_DEFAULT_CLK);
++	if (clk_get_rate(kmb_clk.clk_mipi) != KMB_MIPI_DEFAULT_CLK) {
++		drm_err(&kmb->drm, "failed to set to clk_mipi to %d\n",
++			KMB_MIPI_DEFAULT_CLK);
++		return -1;
++	}
++	drm_dbg(&kmb->drm, "clk_mipi = %ld\n", clk_get_rate(kmb_clk.clk_mipi));
++
++	clk = clk_get_rate(kmb_clk.clk_mipi_ecfg);
++	if (clk != KMB_MIPI_DEFAULT_CFG_CLK) {
++		/* Set MIPI_ECFG clock to 24 Mhz */
++		clk_set_rate(kmb_clk.clk_mipi_ecfg, KMB_MIPI_DEFAULT_CFG_CLK);
++		clk = clk_get_rate(kmb_clk.clk_mipi_ecfg);
++		if (clk != KMB_MIPI_DEFAULT_CFG_CLK) {
++			drm_err(&kmb->drm,
++				"failed to set to clk_mipi_ecfg to %d\n",
++				 KMB_MIPI_DEFAULT_CFG_CLK);
++			return -1;
++		}
++	}
++
++	clk = clk_get_rate(kmb_clk.clk_mipi_cfg);
++	if (clk != KMB_MIPI_DEFAULT_CFG_CLK) {
++		/* Set MIPI_CFG clock to 24 Mhz */
++		clk_set_rate(kmb_clk.clk_mipi_cfg, 24000000);
++		clk = clk_get_rate(kmb_clk.clk_mipi_cfg);
++		if (clk != KMB_MIPI_DEFAULT_CFG_CLK) {
++			drm_err(&kmb->drm,
++				"failed to set clk_mipi_cfg to %d\n",
++				  KMB_MIPI_DEFAULT_CFG_CLK);
++			return -1;
++		}
++	}
++
++	ret = kmb_display_clk_enable(kmb);
++	if (ret)
++		return ret;
++
++	/* Enable MSS_CAM_CLK_CTRL for MIPI TX and LCD */
++	kmb_set_bitmask_msscam(kmb, MSS_CAM_CLK_CTRL, 0x1fff);
++	kmb_set_bitmask_msscam(kmb, MSS_CAM_RSTN_CTRL, 0xffffffff);
++	return 0;
++}
++
++static int kmb_display_clk_disable(void)
++{
++	if (kmb_clk.clk_lcd)
++		clk_disable_unprepare(kmb_clk.clk_lcd);
++	if (kmb_clk.clk_mipi)
++		clk_disable_unprepare(kmb_clk.clk_mipi);
++	if (kmb_clk.clk_mipi_ecfg)
++		clk_disable_unprepare(kmb_clk.clk_mipi_ecfg);
++	if (kmb_clk.clk_mipi_cfg)
++		clk_disable_unprepare(kmb_clk.clk_mipi_cfg);
++	return 0;
++}
++
++static void __iomem *kmb_map_mmio(struct drm_device *drm, char *name)
++{
++	struct resource *res;
++	struct platform_device *pdev = to_platform_device(drm->dev);
++	void __iomem *mem;
++
++	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, name);
++	if (!res) {
++		drm_err(drm, "failed to get resource for %s", name);
++		return ERR_PTR(-ENOMEM);
++	}
++	mem = devm_ioremap_resource(drm->dev, res);
++	if (IS_ERR(mem))
++		drm_err(drm, "failed to ioremap %s registers", name);
++	return mem;
++}
++
++static int kmb_hw_init(struct drm_device *drm, unsigned long flags)
++{
++	struct kmb_drm_private *kmb = to_kmb(drm);
++	struct platform_device *pdev = to_platform_device(drm->dev);
++	int irq_lcd;
++	int ret = 0;
++
++	/* Map LCD MMIO registers */
++	kmb->lcd_mmio = kmb_map_mmio(drm, "lcd");
++	if (IS_ERR(kmb->lcd_mmio)) {
++		drm_err(&kmb->drm, "failed to map LCD registers\n");
++		return -ENOMEM;
++	}
++
++	/* Map MIPI MMIO registers */
++	kmb->mipi_mmio = kmb_map_mmio(drm, "mipi");
++	if (IS_ERR(kmb->mipi_mmio)) {
++		drm_err(&kmb->drm, "failed to map MIPI registers\n");
++		iounmap(kmb->lcd_mmio);
++		return -ENOMEM;
++	}
++
++	/* This is only for MIPI_TX_MSS_LCD_MIPI_CFG and
++	 * MSS_CAM_CLK_CTRL register
++	 */
++	kmb->msscam_mmio = kmb_map_mmio(drm, "msscam");
++	if (IS_ERR(kmb->msscam_mmio)) {
++		drm_err(&kmb->drm, "failed to map MSSCAM registers\n");
++		iounmap(kmb->lcd_mmio);
++		iounmap(kmb->mipi_mmio);
++		return -ENOMEM;
++	}
++
++	if (IS_ERR(kmb->msscam_mmio)) {
++		drm_err(&kmb->drm, "failed to map MSSCAM registers\n");
++		iounmap(kmb->lcd_mmio);
++		iounmap(kmb->mipi_mmio);
++		return -ENOMEM;
++	}
++	/* Enable display clocks */
++	kmb_initialize_clocks(kmb, &pdev->dev);
++
++	/* Register irqs here - section 17.3 in databook
++	 * lists LCD at 79 and 82 for MIPI under MSS CPU -
++	 * firmware has redirected 79 to A53 IRQ 33
++	 */
++
++	/* Allocate LCD interrupt resources */
++	irq_lcd = platform_get_irq(pdev, 0);
++	if (irq_lcd < 0) {
++		drm_err(&kmb->drm, "irq_lcd not found");
++		goto setup_fail;
++	}
++
++	/* Get the optional framebuffer memory resource */
++	ret = of_reserved_mem_device_init(drm->dev);
++	if (ret && ret != -ENODEV)
++		return ret;
++
++	spin_lock_init(&kmb->irq_lock);
++
++	kmb->irq_lcd = irq_lcd;
++
++	return 0;
++
++ setup_fail:
++	of_reserved_mem_device_release(drm->dev);
++
++	return ret;
++}
++
++static const struct drm_mode_config_funcs kmb_mode_config_funcs = {
++	.fb_create = drm_gem_fb_create,
++	.atomic_check = drm_atomic_helper_check,
++	.atomic_commit = drm_atomic_helper_commit,
++};
++
++static int kmb_setup_mode_config(struct drm_device *drm)
++{
++	int ret;
++	struct kmb_drm_private *kmb = to_kmb(drm);
++
++	ret = drmm_mode_config_init(drm);
++	if (ret)
++		return ret;
++	drm->mode_config.min_width = KMB_MIN_WIDTH;
++	drm->mode_config.min_height = KMB_MIN_HEIGHT;
++	drm->mode_config.max_width = KMB_MAX_WIDTH;
++	drm->mode_config.max_height = KMB_MAX_HEIGHT;
++	drm->mode_config.funcs = &kmb_mode_config_funcs;
++
++	ret = kmb_setup_crtc(drm);
++	if (ret < 0) {
++		drm_err(drm, "failed to create crtc\n");
++		return ret;
++	}
++
++	/* Initialize MIPI DSI */
++	ret = kmb_dsi_init(drm, adv_bridge);
++	if (ret) {
++		drm_err(drm, "failed to initialize DSI\n");
++		return ret;
++	}
++
++	/* Set the CRTC's port so that the encoder component can find it */
++	kmb->crtc.port = of_graph_get_port_by_id(drm->dev->of_node, 0);
++	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
++	if (ret < 0) {
++		drm_err(drm, "failed to initialize vblank\n");
++		pm_runtime_disable(drm->dev);
++		return ret;
++	}
++
++	drm_mode_config_reset(drm);
++	return 0;
++}
++
++static irqreturn_t handle_lcd_irq(struct drm_device *dev)
++{
++	unsigned long status, val, val1;
++	int plane_id, dma0_state, dma1_state;
++	struct kmb_drm_private *kmb = to_kmb(dev);
++
++	status = kmb_read_lcd(kmb, LCD_INT_STATUS);
++
++	if (status & LCD_INT_EOF) {
++		kmb_write_lcd(kmb, LCD_INT_CLEAR, LCD_INT_EOF);
++
++		/* When disabling/enabling LCD layers, the change takes effect
++		 * immediately and does not wait for EOF (end of frame).
++		 * When kmb_plane_atomic_disable is called, mark the plane as
++		 * disabled but actually disable the plane when EOF irq is
++		 * being handled.
++		 */
++		for (plane_id = LAYER_0;
++				plane_id < KMB_MAX_PLANES; plane_id++) {
++			if (kmb->plane_status[plane_id].disable) {
++				kmb_clr_bitmask_lcd(kmb,
++						    LCD_LAYERn_DMA_CFG
++						    (plane_id),
++						    LCD_DMA_LAYER_ENABLE);
++
++				kmb_clr_bitmask_lcd(kmb, LCD_CONTROL,
++						    kmb->plane_status[plane_id].ctrl);
++
++				kmb->plane_status[plane_id].disable = false;
++			}
++		}
++		if (kmb_under_flow) {
++			/* DMA Recovery after underflow */
++			dma0_state = (layer_no == 0) ?
++			    LCD_VIDEO0_DMA0_STATE : LCD_VIDEO1_DMA0_STATE;
++			dma1_state = (layer_no == 0) ?
++			    LCD_VIDEO0_DMA1_STATE : LCD_VIDEO1_DMA1_STATE;
++
++			do {
++				kmb_write_lcd(kmb, LCD_FIFO_FLUSH, 1);
++				val = kmb_read_lcd(kmb, dma0_state)
++				    & LCD_DMA_STATE_ACTIVE;
++				val1 = kmb_read_lcd(kmb, dma1_state)
++				    & LCD_DMA_STATE_ACTIVE;
++			} while ((val || val1));
++			/* disable dma */
++			kmb_clr_bitmask_lcd(kmb, LCD_LAYERn_DMA_CFG(layer_no),
++					    LCD_DMA_LAYER_ENABLE);
++			kmb_write_lcd(kmb, LCD_FIFO_FLUSH, 1);
++			kmb_flush_done = 1;
++			kmb_under_flow = 0;
++		}
++	}
++
++	if (status & LCD_INT_LINE_CMP) {
++		/* clear line compare interrupt */
++		kmb_write_lcd(kmb, LCD_INT_CLEAR, LCD_INT_LINE_CMP);
++	}
++
++	if (status & LCD_INT_VERT_COMP) {
++		/* Read VSTATUS */
++		val = kmb_read_lcd(kmb, LCD_VSTATUS);
++		val = (val & LCD_VSTATUS_VERTICAL_STATUS_MASK);
++		switch (val) {
++		case LCD_VSTATUS_COMPARE_VSYNC:
++			/* Clear vertical compare interrupt */
++			kmb_write_lcd(kmb, LCD_INT_CLEAR, LCD_INT_VERT_COMP);
++			if (kmb_flush_done) {
++				kmb_set_bitmask_lcd(kmb,
++						    LCD_LAYERn_DMA_CFG
++						    (layer_no),
++						    LCD_DMA_LAYER_ENABLE);
++				kmb_flush_done = 0;
++			}
++			drm_crtc_handle_vblank(&kmb->crtc);
++			break;
++		case LCD_VSTATUS_COMPARE_BACKPORCH:
++		case LCD_VSTATUS_COMPARE_ACTIVE:
++		case LCD_VSTATUS_COMPARE_FRONT_PORCH:
++			kmb_write_lcd(kmb, LCD_INT_CLEAR, LCD_INT_VERT_COMP);
++			break;
++		}
++	}
++	if (status & LCD_INT_DMA_ERR) {
++		val =
++		    (status & LCD_INT_DMA_ERR &
++		     kmb_read_lcd(kmb, LCD_INT_ENABLE));
++		/* LAYER0 - VL0 */
++		if (val & (LAYER0_DMA_FIFO_UNDERFLOW |
++			   LAYER0_DMA_CB_FIFO_UNDERFLOW |
++			   LAYER0_DMA_CR_FIFO_UNDERFLOW)) {
++			kmb_under_flow++;
++			drm_info(&kmb->drm,
++				 "!LAYER0:VL0 DMA UNDERFLOW val = 0x%lx,under_flow=%d",
++			     val, kmb_under_flow);
++			/* disable underflow interrupt */
++			kmb_clr_bitmask_lcd(kmb, LCD_INT_ENABLE,
++					    LAYER0_DMA_FIFO_UNDERFLOW |
++					    LAYER0_DMA_CB_FIFO_UNDERFLOW |
++					    LAYER0_DMA_CR_FIFO_UNDERFLOW);
++			kmb_set_bitmask_lcd(kmb, LCD_INT_CLEAR,
++					    LAYER0_DMA_CB_FIFO_UNDERFLOW |
++					    LAYER0_DMA_FIFO_UNDERFLOW |
++					    LAYER0_DMA_CR_FIFO_UNDERFLOW);
++			/* disable auto restart mode */
++			kmb_clr_bitmask_lcd(kmb, LCD_LAYERn_DMA_CFG(0),
++					    LCD_DMA_LAYER_CONT_PING_PONG_UPDATE);
++			layer_no = 0;
++		}
++
++		if (val & LAYER0_DMA_FIFO_OVERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER0:VL0 DMA OVERFLOW val = 0x%lx", val);
++		if (val & LAYER0_DMA_CB_FIFO_OVERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER0:VL0 DMA CB OVERFLOW val = 0x%lx", val);
++		if (val & LAYER0_DMA_CR_FIFO_OVERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER0:VL0 DMA CR OVERFLOW val = 0x%lx", val);
++
++		/* LAYER1 - VL1 */
++		if (val & (LAYER1_DMA_FIFO_UNDERFLOW |
++			   LAYER1_DMA_CB_FIFO_UNDERFLOW |
++			   LAYER1_DMA_CR_FIFO_UNDERFLOW)) {
++			kmb_under_flow++;
++			drm_info(&kmb->drm,
++				 "!LAYER1:VL1 DMA UNDERFLOW val = 0x%lx, under_flow=%d",
++			     val, kmb_under_flow);
++			/* disable underflow interrupt */
++			kmb_clr_bitmask_lcd(kmb, LCD_INT_ENABLE,
++					    LAYER1_DMA_FIFO_UNDERFLOW |
++					    LAYER1_DMA_CB_FIFO_UNDERFLOW |
++					    LAYER1_DMA_CR_FIFO_UNDERFLOW);
++			kmb_set_bitmask_lcd(kmb, LCD_INT_CLEAR,
++					    LAYER1_DMA_CB_FIFO_UNDERFLOW |
++					    LAYER1_DMA_FIFO_UNDERFLOW |
++					    LAYER1_DMA_CR_FIFO_UNDERFLOW);
++			/* disable auto restart mode */
++			kmb_clr_bitmask_lcd(kmb, LCD_LAYERn_DMA_CFG(1),
++					    LCD_DMA_LAYER_CONT_PING_PONG_UPDATE);
++			layer_no = 1;
++		}
++
++		/* LAYER1 - VL1 */
++		if (val & LAYER1_DMA_FIFO_OVERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER1:VL1 DMA OVERFLOW val = 0x%lx", val);
++		if (val & LAYER1_DMA_CB_FIFO_OVERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER1:VL1 DMA CB OVERFLOW val = 0x%lx", val);
++		if (val & LAYER1_DMA_CR_FIFO_OVERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER1:VL1 DMA CR OVERFLOW val = 0x%lx", val);
++
++		/* LAYER2 - GL0 */
++		if (val & LAYER2_DMA_FIFO_UNDERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER2:GL0 DMA UNDERFLOW val = 0x%lx", val);
++		if (val & LAYER2_DMA_FIFO_OVERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER2:GL0 DMA OVERFLOW val = 0x%lx", val);
++
++		/* LAYER3 - GL1 */
++		if (val & LAYER3_DMA_FIFO_UNDERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER3:GL1 DMA UNDERFLOW val = 0x%lx", val);
++		if (val & LAYER3_DMA_FIFO_UNDERFLOW)
++			drm_dbg(&kmb->drm,
++				"LAYER3:GL1 DMA OVERFLOW val = 0x%lx", val);
++	}
++
++	if (status & LCD_INT_LAYER) {
++		/* Clear layer interrupts */
++		kmb_write_lcd(kmb, LCD_INT_CLEAR, LCD_INT_LAYER);
++	}
++
++	/* Clear all interrupts */
++	kmb_set_bitmask_lcd(kmb, LCD_INT_CLEAR, 1);
++	return IRQ_HANDLED;
++}
++
++/* IRQ handler */
++static irqreturn_t kmb_isr(int irq, void *arg)
++{
++	struct drm_device *dev = (struct drm_device *)arg;
++
++	handle_lcd_irq(dev);
++	return IRQ_HANDLED;
++}
++
++static void kmb_irq_reset(struct drm_device *drm)
++{
++	kmb_write_lcd(to_kmb(drm), LCD_INT_CLEAR, 0xFFFF);
++	kmb_write_lcd(to_kmb(drm), LCD_INT_ENABLE, 0);
++}
++
++DEFINE_DRM_GEM_CMA_FOPS(fops);
++
++static struct drm_driver kmb_driver = {
++	.driver_features = DRIVER_GEM |
++	    DRIVER_MODESET | DRIVER_ATOMIC,
++	.irq_handler = kmb_isr,
++	.irq_preinstall = kmb_irq_reset,
++	.irq_uninstall = kmb_irq_reset,
++	/* GEM Operations */
++	.fops = &fops,
++	DRM_GEM_CMA_DRIVER_OPS_VMAP,
++	.name = "kmb-drm",
++	.desc = "KEEMBAY DISPLAY DRIVER ",
++	.date = "20201008",
++	.major = 1,
++	.minor = 0,
++};
++
++static int kmb_remove(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct drm_device *drm = dev_get_drvdata(dev);
++	struct kmb_drm_private *kmb = to_kmb(drm);
++
++	drm_dev_unregister(drm);
++	drm_kms_helper_poll_fini(drm);
++	of_node_put(kmb->crtc.port);
++	kmb->crtc.port = NULL;
++	pm_runtime_get_sync(drm->dev);
++	drm_irq_uninstall(drm);
++	pm_runtime_put_sync(drm->dev);
++	pm_runtime_disable(drm->dev);
++
++	of_reserved_mem_device_release(drm->dev);
++
++	/* Release clks */
++	kmb_display_clk_disable();
++	clk_put(kmb_clk.clk_lcd);
++	clk_put(kmb_clk.clk_mipi);
++
++	dev_set_drvdata(dev, NULL);
++
++	/* Unregister DSI host */
++	kmb_dsi_host_unregister();
++	drm_atomic_helper_shutdown(drm);
++	return 0;
++}
++
++static int kmb_probe(struct platform_device *pdev)
++{
++	struct device *dev = get_device(&pdev->dev);
++	struct kmb_drm_private *kmb;
++	int ret = 0;
++
++	/* The bridge (ADV 7535) will return -EPROBE_DEFER until it
++	 * has a mipi_dsi_host to register its device to. So, we
++	 * first register the DSI host during probe time, and then return
++	 * -EPROBE_DEFER until the bridge is loaded. Probe will be called again
++	 *  and then the rest of the driver initialization can proceed
++	 *  afterwards and the bridge can be successfully attached.
++	 */
++	adv_bridge = kmb_dsi_host_bridge_init(dev);
++
++	if (adv_bridge == ERR_PTR(-EPROBE_DEFER)) {
++		return -EPROBE_DEFER;
++	} else if (IS_ERR(adv_bridge)) {
++		DRM_ERROR("probe failed to initialize DSI host bridge\n");
++		return PTR_ERR(adv_bridge);
++	}
++
++	/* Create DRM device */
++	kmb = devm_drm_dev_alloc(dev, &kmb_driver,
++				 struct kmb_drm_private, drm);
++	if (IS_ERR(kmb))
++		return PTR_ERR(kmb);
++
++	dev_set_drvdata(dev, &kmb->drm);
++
++	ret = kmb_hw_init(&kmb->drm, 0);
++	if (ret)
++		goto err_free1;
++
++	ret = kmb_setup_mode_config(&kmb->drm);
++	if (ret)
++		goto err_free;
++
++	ret = drm_irq_install(&kmb->drm, kmb->irq_lcd);
++	if (ret < 0) {
++		drm_err(&kmb->drm, "failed to install IRQ handler\n");
++		goto err_irq;
++	}
++
++	drm_kms_helper_poll_init(&kmb->drm);
++
++	/* Register graphics device with the kernel */
++	ret = drm_dev_register(&kmb->drm, 0);
++	if (ret)
++		goto err_register;
++
++	return 0;
++
++ err_register:
++	drm_kms_helper_poll_fini(&kmb->drm);
++ err_irq:
++	pm_runtime_disable(kmb->drm.dev);
++ err_free:
++	drm_crtc_cleanup(&kmb->crtc);
++	drm_mode_config_cleanup(&kmb->drm);
++ err_free1:
++	dev_set_drvdata(dev, NULL);
++	kmb_dsi_host_unregister();
++
++	return ret;
++}
++
++static const struct of_device_id kmb_of_match[] = {
++	{.compatible = "intel,keembay-display"},
++	{},
++};
++
++MODULE_DEVICE_TABLE(of, kmb_of_match);
++
++static int __maybe_unused kmb_pm_suspend(struct device *dev)
++{
++	struct drm_device *drm = dev_get_drvdata(dev);
++	struct kmb_drm_private *kmb = drm ? to_kmb(drm) : NULL;
++
++	drm_kms_helper_poll_disable(drm);
++
++	kmb->state = drm_atomic_helper_suspend(drm);
++	if (IS_ERR(kmb->state)) {
++		drm_kms_helper_poll_enable(drm);
++		return PTR_ERR(kmb->state);
++	}
++
++	return 0;
++}
++
++static int __maybe_unused kmb_pm_resume(struct device *dev)
++{
++	struct drm_device *drm = dev_get_drvdata(dev);
++	struct kmb_drm_private *kmb = drm ? to_kmb(drm) : NULL;
++
++	if (!kmb)
++		return 0;
++
++	drm_atomic_helper_resume(drm, kmb->state);
++	drm_kms_helper_poll_enable(drm);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(kmb_pm_ops, kmb_pm_suspend, kmb_pm_resume);
++
++static struct platform_driver kmb_platform_driver = {
++	.probe = kmb_probe,
++	.remove = kmb_remove,
++	.driver = {
++		.name = "kmb-drm",
++		.pm = &kmb_pm_ops,
++		.of_match_table = kmb_of_match,
++	},
++};
++
++module_platform_driver(kmb_platform_driver);
++
++MODULE_AUTHOR("Intel Corporation");
++MODULE_DESCRIPTION("Keembay Display driver");
++MODULE_LICENSE("GPL v2");
+diff --git a/drivers/gpu/drm/kmb/kmb_drv.h b/drivers/gpu/drm/kmb/kmb_drv.h
+new file mode 100644
+index 0000000..352f2d2
+--- /dev/null
++++ b/drivers/gpu/drm/kmb/kmb_drv.h
+@@ -0,0 +1,170 @@
 +/* SPDX-License-Identifier: GPL-2.0-only
 + *
 + * Copyright © 2018-2020 Intel Corporation
 + */
 +
-+#ifndef __KMB_REGS_H__
-+#define __KMB_REGS_H__
++#ifndef __KMB_DRV_H__
++#define __KMB_DRV_H__
 +
-+#define ENABLE					 1
-+#define DISABLE					 0
++#include "kmb_plane.h"
++#include "kmb_regs.h"
 +
-+/***************************************************************************
-+ *		   LCD controller control register defines
-+ ***************************************************************************/
-+#define LCD_CONTROL				(0x4 * 0x000)
-+#define LCD_CTRL_PROGRESSIVE			  (0 << 0)
-+#define LCD_CTRL_INTERLACED			  BIT(0)
-+#define LCD_CTRL_ENABLE				  BIT(1)
-+#define LCD_CTRL_VL1_ENABLE			  BIT(2)
-+#define LCD_CTRL_VL2_ENABLE			  BIT(3)
-+#define LCD_CTRL_GL1_ENABLE			  BIT(4)
-+#define LCD_CTRL_GL2_ENABLE			  BIT(5)
-+#define LCD_CTRL_ALPHA_BLEND_VL1		  (0 << 6)
-+#define LCD_CTRL_ALPHA_BLEND_VL2		  BIT(6)
-+#define LCD_CTRL_ALPHA_BLEND_GL1		  (2 << 6)
-+#define LCD_CTRL_ALPHA_BLEND_GL2		  (3 << 6)
-+#define LCD_CTRL_ALPHA_TOP_VL1			  (0 << 8)
-+#define LCD_CTRL_ALPHA_TOP_VL2			  BIT(8)
-+#define LCD_CTRL_ALPHA_TOP_GL1			  (2 << 8)
-+#define LCD_CTRL_ALPHA_TOP_GL2			  (3 << 8)
-+#define LCD_CTRL_ALPHA_MIDDLE_VL1		  (0 << 10)
-+#define LCD_CTRL_ALPHA_MIDDLE_VL2		  BIT(10)
-+#define LCD_CTRL_ALPHA_MIDDLE_GL1		  (2 << 10)
-+#define LCD_CTRL_ALPHA_MIDDLE_GL2		  (3 << 10)
-+#define LCD_CTRL_ALPHA_BOTTOM_VL1		  (0 << 12)
-+#define LCD_CTRL_ALPHA_BOTTOM_VL2		  BIT(12)
-+#define LCD_CTRL_ALPHA_BOTTOM_GL1		  (2 << 12)
-+#define LCD_CTRL_ALPHA_BOTTOM_GL2		  (3 << 12)
-+#define LCD_CTRL_TIM_GEN_ENABLE			  BIT(14)
-+#define LCD_CTRL_CONTINUOUS			  (0 << 15)
-+#define LCD_CTRL_ONE_SHOT			  BIT(15)
-+#define LCD_CTRL_PWM0_EN			  BIT(16)
-+#define LCD_CTRL_PWM1_EN			  BIT(17)
-+#define LCD_CTRL_PWM2_EN			  BIT(18)
-+#define LCD_CTRL_OUTPUT_DISABLED		  (0 << 19)
-+#define LCD_CTRL_OUTPUT_ENABLED			  BIT(19)
-+#define LCD_CTRL_BPORCH_ENABLE			  BIT(21)
-+#define LCD_CTRL_FPORCH_ENABLE			  BIT(22)
-+#define LCD_CTRL_PIPELINE_DMA			  BIT(28)
-+#define LCD_CTRL_VHSYNC_IDLE_LVL		  BIT(31)
++#define KMB_MAX_WIDTH			1920 /*max width in pixels */
++#define KMB_MAX_HEIGHT			1080 /*max height in pixels */
++#define KMB_MIN_WIDTH                   1920 /*max width in pixels */
++#define KMB_MIN_HEIGHT                  1080 /*max height in pixels */
++#define KMB_LCD_DEFAULT_CLK		200000000
++#define KMB_MIPI_DEFAULT_CLK		24000000
++#define KMB_MIPI_DEFAULT_CFG_CLK	24000000
++#define KMB_SYS_CLK_MHZ			500
 +
-+/*interrupts */
-+#define LCD_INT_STATUS				(0x4 * 0x001)
-+#define LCD_INT_EOF				  BIT(0)
-+#define LCD_INT_LINE_CMP			  BIT(1)
-+#define LCD_INT_VERT_COMP			  BIT(2)
-+#define LAYER0_DMA_DONE				  BIT(3)
-+#define LAYER0_DMA_IDLE				  BIT(4)
-+#define LAYER0_DMA_FIFO_OVERFLOW		  BIT(5)
-+#define LAYER0_DMA_FIFO_UNDERFLOW		  BIT(6)
-+#define LAYER0_DMA_CB_FIFO_OVERFLOW		  BIT(7)
-+#define LAYER0_DMA_CB_FIFO_UNDERFLOW		  BIT(8)
-+#define LAYER0_DMA_CR_FIFO_OVERFLOW		  BIT(9)
-+#define LAYER0_DMA_CR_FIFO_UNDERFLOW		  BIT(10)
-+#define LAYER1_DMA_DONE				  BIT(11)
-+#define LAYER1_DMA_IDLE				  BIT(12)
-+#define LAYER1_DMA_FIFO_OVERFLOW		  BIT(13)
-+#define LAYER1_DMA_FIFO_UNDERFLOW		  BIT(14)
-+#define LAYER1_DMA_CB_FIFO_OVERFLOW		  BIT(15)
-+#define LAYER1_DMA_CB_FIFO_UNDERFLOW		  BIT(16)
-+#define LAYER1_DMA_CR_FIFO_OVERFLOW		  BIT(17)
-+#define LAYER1_DMA_CR_FIFO_UNDERFLOW		  BIT(18)
-+#define LAYER2_DMA_DONE				  BIT(19)
-+#define LAYER2_DMA_IDLE				  BIT(20)
-+#define LAYER2_DMA_FIFO_OVERFLOW		  BIT(21)
-+#define LAYER2_DMA_FIFO_UNDERFLOW		  BIT(22)
-+#define LAYER3_DMA_DONE				  BIT(23)
-+#define LAYER3_DMA_IDLE				  BIT(24)
-+#define LAYER3_DMA_FIFO_OVERFLOW		  BIT(25)
-+#define LAYER3_DMA_FIFO_UNDERFLOW		  BIT(26)
-+#define LCD_INT_LAYER				  (0x07fffff8)
-+#define LCD_INT_ENABLE				(0x4 * 0x002)
-+#define LCD_INT_CLEAR				(0x4 * 0x003)
-+#define LCD_LINE_COUNT				(0x4 * 0x004)
-+#define LCD_LINE_COMPARE			(0x4 * 0x005)
-+#define LCD_VSTATUS				(0x4 * 0x006)
++#define ICAM_MMIO		0x3b100000
++#define ICAM_LCD_OFFSET		0x1080
++#define ICAM_MMIO_SIZE		0x2000
 +
-+/*LCD_VSTATUS_COMPARE Vertcal interval in which to generate vertcal
-+ * interval interrupt
++struct kmb_drm_private {
++	struct drm_device		drm;
++	void __iomem			*lcd_mmio;
++	void __iomem			*mipi_mmio;
++	void __iomem			*msscam_mmio;
++	struct clk			*clk;
++	struct drm_crtc			crtc;
++	struct kmb_plane		*plane;
++	struct drm_atomic_state		*state;
++	spinlock_t			irq_lock;
++	int				irq_lcd;
++	int				irq_mipi;
++	int				sys_clk_mhz;
++	dma_addr_t			fb_addr;
++	struct layer_status		plane_status[KMB_MAX_PLANES];
++};
++
++struct kmb_clock {
++	struct clk *clk_lcd;
++	struct clk *clk_mipi;
++	struct clk *clk_mipi_ecfg;
++	struct clk *clk_mipi_cfg;
++	struct clk *clk_pll0;
++};
++
++static inline struct kmb_drm_private *to_kmb(const struct drm_device *dev)
++{
++	return container_of(dev, struct kmb_drm_private, drm);
++}
++
++static inline struct kmb_drm_private *crtc_to_kmb_priv(const struct drm_crtc *x)
++{
++	return container_of(x, struct kmb_drm_private, crtc);
++}
++
++struct blt_layer_config {
++	unsigned char layer_format;
++};
++
++static inline void kmb_write_lcd(struct kmb_drm_private *dev_p,
++				 unsigned int reg, u32 value)
++{
++	writel(value, (dev_p->lcd_mmio + reg));
++}
++
++static inline void kmb_write_mipi(struct kmb_drm_private *dev_p,
++				  unsigned int reg, u32 value)
++{
++	writel(value, (dev_p->mipi_mmio + reg));
++}
++
++static inline void kmb_write_msscam(struct kmb_drm_private *dev_p,
++				    unsigned int reg, u32 value)
++{
++	writel(value, (dev_p->msscam_mmio + reg));
++}
++
++static inline u32 kmb_read_msscam(struct kmb_drm_private *dev_p,
++				  unsigned int reg)
++{
++	return readl(dev_p->msscam_mmio + reg);
++}
++
++static inline void kmb_set_bitmask_msscam(struct kmb_drm_private *dev_p,
++					  unsigned int reg, u32 mask)
++{
++	u32 reg_val = kmb_read_msscam(dev_p, reg);
++
++	kmb_write_msscam(dev_p, reg, (reg_val | mask));
++}
++
++static inline u32 kmb_read_lcd(struct kmb_drm_private *dev_p, unsigned int reg)
++{
++	return readl(dev_p->lcd_mmio + reg);
++}
++
++static inline void kmb_set_bitmask_lcd(struct kmb_drm_private *dev_p,
++				       unsigned int reg, u32 mask)
++{
++	u32 reg_val = kmb_read_lcd(dev_p, reg);
++
++	kmb_write_lcd(dev_p, reg, (reg_val | mask));
++}
++
++static inline void kmb_clr_bitmask_lcd(struct kmb_drm_private *dev_p,
++				       unsigned int reg, u32 mask)
++{
++	u32 reg_val = kmb_read_lcd(dev_p, reg);
++
++	kmb_write_lcd(dev_p, reg, (reg_val & (~mask)));
++}
++
++static inline u32 kmb_read_mipi(struct kmb_drm_private *dev_p, unsigned int reg)
++{
++	return readl(dev_p->mipi_mmio + reg);
++}
++
++static inline void kmb_write_bits_mipi(struct kmb_drm_private *dev_p,
++				       unsigned int reg, u32 offset,
++				       u32 num_bits, u32 value)
++{
++	u32 reg_val = kmb_read_mipi(dev_p, reg);
++	u32 mask = (1 << num_bits) - 1;
++
++	value &= mask;
++	mask <<= offset;
++	reg_val &= (~mask);
++	reg_val |= (value << offset);
++	kmb_write_mipi(dev_p, reg, reg_val);
++}
++
++static inline void kmb_set_bit_mipi(struct kmb_drm_private *dev_p,
++				    unsigned int reg, u32 offset)
++{
++	u32 reg_val = kmb_read_mipi(dev_p, reg);
++
++	kmb_write_mipi(dev_p, reg, reg_val | (1 << offset));
++}
++
++static inline void kmb_clr_bit_mipi(struct kmb_drm_private *dev_p,
++				    unsigned int reg, u32 offset)
++{
++	u32 reg_val = kmb_read_mipi(dev_p, reg);
++
++	kmb_write_mipi(dev_p, reg, reg_val & (~(1 << offset)));
++}
++
++static inline void kmb_set_bitmask_mipi(struct kmb_drm_private *dev_p,
++					unsigned int reg, u32 mask)
++{
++	u32 reg_val = kmb_read_mipi(dev_p, reg);
++
++	kmb_write_mipi(dev_p, reg, (reg_val | mask));
++}
++
++static inline void kmb_clr_bitmask_mipi(struct kmb_drm_private *dev_p,
++					unsigned int reg, u32 mask)
++{
++	u32 reg_val = kmb_read_mipi(dev_p, reg);
++
++	kmb_write_mipi(dev_p, reg, (reg_val & (~mask)));
++}
++
++int kmb_setup_crtc(struct drm_device *dev);
++void kmb_set_scanout(struct kmb_drm_private *lcd);
++#endif /* __KMB_DRV_H__ */
+diff --git a/drivers/gpu/drm/kmb/kmb_plane.c b/drivers/gpu/drm/kmb/kmb_plane.c
+new file mode 100644
+index 0000000..340f3ac
+--- /dev/null
++++ b/drivers/gpu/drm/kmb/kmb_plane.c
+@@ -0,0 +1,488 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright © 2018-2020 Intel Corporation
 + */
-+/* BITS 13 and 14 */
-+#define LCD_VSTATUS_COMPARE			(0x4 * 0x007)
-+#define LCD_VSTATUS_VERTICAL_STATUS_MASK	  (3 << 13)
-+#define LCD_VSTATUS_COMPARE_VSYNC		  (0 << 13)
-+#define LCD_VSTATUS_COMPARE_BACKPORCH		  BIT(13)
-+#define LCD_VSTATUS_COMPARE_ACTIVE		  (2 << 13)
-+#define LCD_VSTATUS_COMPARE_FRONT_PORCH		  (3 << 13)
 +
-+#define LCD_SCREEN_WIDTH			(0x4 * 0x008)
-+#define LCD_SCREEN_HEIGHT			(0x4 * 0x009)
-+#define LCD_FIELD_INT_CFG			(0x4 * 0x00a)
-+#define LCD_FIFO_FLUSH				(0x4 * 0x00b)
-+#define LCD_BG_COLOUR_LS			(0x4 * 0x00c)
-+#define LCD_BG_COLOUR_MS			(0x4 * 0x00d)
-+#define LCD_RAM_CFG			        (0x4 * 0x00e)
++#include <drm/drm_atomic.h>
++#include <drm/drm_atomic_helper.h>
++#include <drm/drm_crtc.h>
++#include <drm/drm_crtc_helper.h>
++#include <drm/drm_fb_cma_helper.h>
++#include <drm/drm_fb_helper.h>
++#include <drm/drm_fourcc.h>
++#include <drm/drm_gem_cma_helper.h>
++#include <drm/drm_managed.h>
++#include <drm/drm_plane_helper.h>
 +
-+/****************************************************************************
-+ *		   LCD controller Layer config register
-+ ****************************************************************************
++#include "kmb_drv.h"
++#include "kmb_plane.h"
++#include "kmb_regs.h"
++
++const u32 layer_irqs[] = {
++	LCD_INT_VL0,
++	LCD_INT_VL1,
++	LCD_INT_GL0,
++	LCD_INT_GL1
++};
++
++/* Conversion (yuv->rgb) matrix from myriadx */
++static const u32 csc_coef_lcd[] = {
++	1024, 0, 1436,
++	1024, -352, -731,
++	1024, 1814, 0,
++	-179, 125, -226
++};
++
++static unsigned int check_pixel_format(struct drm_plane *plane, u32 format)
++{
++	int i;
++
++	for (i = 0; i < plane->format_count; i++) {
++		if (plane->format_types[i] == format)
++			return 0;
++	}
++	return -EINVAL;
++}
++
++static int kmb_plane_atomic_check(struct drm_plane *plane,
++				  struct drm_plane_state *state)
++{
++	struct drm_framebuffer *fb;
++	int ret;
++	struct drm_crtc_state *crtc_state;
++	bool can_position;
++
++	fb = state->fb;
++	if (!fb || !state->crtc)
++		return 0;
++
++	ret = check_pixel_format(plane, fb->format->format);
++	if (ret)
++		return ret;
++
++	if (state->crtc_w > KMB_MAX_WIDTH || state->crtc_h > KMB_MAX_HEIGHT)
++		return -EINVAL;
++	if (state->crtc_w < KMB_MIN_WIDTH || state->crtc_h < KMB_MIN_HEIGHT)
++		return -EINVAL;
++	can_position = (plane->type == DRM_PLANE_TYPE_OVERLAY);
++	crtc_state =
++		drm_atomic_get_existing_crtc_state(state->state, state->crtc);
++	return drm_atomic_helper_check_plane_state(state, crtc_state,
++						 DRM_PLANE_HELPER_NO_SCALING,
++						 DRM_PLANE_HELPER_NO_SCALING,
++						 can_position, true);
++}
++
++static void kmb_plane_atomic_disable(struct drm_plane *plane,
++				     struct drm_plane_state *state)
++{
++	struct kmb_plane *kmb_plane = to_kmb_plane(plane);
++	int plane_id = kmb_plane->id;
++	struct kmb_drm_private *kmb;
++
++	kmb = to_kmb(plane->dev);
++
++	switch (plane_id) {
++	case LAYER_0:
++		kmb->plane_status[plane_id].ctrl = LCD_CTRL_VL1_ENABLE;
++		break;
++	case LAYER_1:
++		kmb->plane_status[plane_id].ctrl = LCD_CTRL_VL2_ENABLE;
++		break;
++	case LAYER_2:
++		kmb->plane_status[plane_id].ctrl = LCD_CTRL_GL1_ENABLE;
++		break;
++	case LAYER_3:
++		kmb->plane_status[plane_id].ctrl = LCD_CTRL_GL2_ENABLE;
++		break;
++	}
++
++	kmb->plane_status[plane_id].disable = true;
++}
++
++unsigned int get_pixel_format(u32 format)
++{
++	unsigned int val = 0;
++
++	switch (format) {
++		/* planar formats */
++	case DRM_FORMAT_YUV444:
++		val = LCD_LAYER_FORMAT_YCBCR444PLAN | LCD_LAYER_PLANAR_STORAGE;
++		break;
++	case DRM_FORMAT_YVU444:
++		val = LCD_LAYER_FORMAT_YCBCR444PLAN | LCD_LAYER_PLANAR_STORAGE
++		    | LCD_LAYER_CRCB_ORDER;
++		break;
++	case DRM_FORMAT_YUV422:
++		val = LCD_LAYER_FORMAT_YCBCR422PLAN | LCD_LAYER_PLANAR_STORAGE;
++		break;
++	case DRM_FORMAT_YVU422:
++		val = LCD_LAYER_FORMAT_YCBCR422PLAN | LCD_LAYER_PLANAR_STORAGE
++		    | LCD_LAYER_CRCB_ORDER;
++		break;
++	case DRM_FORMAT_YUV420:
++		val = LCD_LAYER_FORMAT_YCBCR420PLAN | LCD_LAYER_PLANAR_STORAGE;
++		break;
++	case DRM_FORMAT_YVU420:
++		val = LCD_LAYER_FORMAT_YCBCR420PLAN | LCD_LAYER_PLANAR_STORAGE
++		    | LCD_LAYER_CRCB_ORDER;
++		break;
++	case DRM_FORMAT_NV12:
++		val = LCD_LAYER_FORMAT_NV12 | LCD_LAYER_PLANAR_STORAGE;
++		break;
++	case DRM_FORMAT_NV21:
++		val = LCD_LAYER_FORMAT_NV12 | LCD_LAYER_PLANAR_STORAGE
++		    | LCD_LAYER_CRCB_ORDER;
++		break;
++		/* packed formats */
++		/* looks hw requires B & G to be swapped when RGB */
++	case DRM_FORMAT_RGB332:
++		val = LCD_LAYER_FORMAT_RGB332 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_XBGR4444:
++		val = LCD_LAYER_FORMAT_RGBX4444;
++		break;
++	case DRM_FORMAT_ARGB4444:
++		val = LCD_LAYER_FORMAT_RGBA4444 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_ABGR4444:
++		val = LCD_LAYER_FORMAT_RGBA4444;
++		break;
++	case DRM_FORMAT_XRGB1555:
++		val = LCD_LAYER_FORMAT_XRGB1555 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_XBGR1555:
++		val = LCD_LAYER_FORMAT_XRGB1555;
++		break;
++	case DRM_FORMAT_ARGB1555:
++		val = LCD_LAYER_FORMAT_RGBA1555 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_ABGR1555:
++		val = LCD_LAYER_FORMAT_RGBA1555;
++		break;
++	case DRM_FORMAT_RGB565:
++		val = LCD_LAYER_FORMAT_RGB565 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_BGR565:
++		val = LCD_LAYER_FORMAT_RGB565;
++		break;
++	case DRM_FORMAT_RGB888:
++		val = LCD_LAYER_FORMAT_RGB888 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_BGR888:
++		val = LCD_LAYER_FORMAT_RGB888;
++		break;
++	case DRM_FORMAT_XRGB8888:
++		val = LCD_LAYER_FORMAT_RGBX8888 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_XBGR8888:
++		val = LCD_LAYER_FORMAT_RGBX8888;
++		break;
++	case DRM_FORMAT_ARGB8888:
++		val = LCD_LAYER_FORMAT_RGBA8888 | LCD_LAYER_BGR_ORDER;
++		break;
++	case DRM_FORMAT_ABGR8888:
++		val = LCD_LAYER_FORMAT_RGBA8888;
++		break;
++	}
++	DRM_INFO_ONCE("%s : %d format=0x%x val=0x%x\n",
++		      __func__, __LINE__, format, val);
++	return val;
++}
++
++unsigned int get_bits_per_pixel(const struct drm_format_info *format)
++{
++	u32 bpp = 0;
++	unsigned int val = 0;
++
++	if (format->num_planes > 1) {
++		val = LCD_LAYER_8BPP;
++		return val;
++	}
++
++	bpp += 8 * format->cpp[0];
++
++	switch (bpp) {
++	case 8:
++		val = LCD_LAYER_8BPP;
++		break;
++	case 16:
++		val = LCD_LAYER_16BPP;
++		break;
++	case 24:
++		val = LCD_LAYER_24BPP;
++		break;
++	case 32:
++		val = LCD_LAYER_32BPP;
++		break;
++	}
++
++	DRM_DEBUG("bpp=%d val=0x%x\n", bpp, val);
++	return val;
++}
++
++static void config_csc(struct kmb_drm_private *kmb, int plane_id)
++{
++	/* YUV to RGB conversion using the fixed matrix csc_coef_lcd */
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF11(plane_id), csc_coef_lcd[0]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF12(plane_id), csc_coef_lcd[1]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF13(plane_id), csc_coef_lcd[2]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF21(plane_id), csc_coef_lcd[3]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF22(plane_id), csc_coef_lcd[4]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF23(plane_id), csc_coef_lcd[5]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF31(plane_id), csc_coef_lcd[6]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF32(plane_id), csc_coef_lcd[7]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF33(plane_id), csc_coef_lcd[8]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF1(plane_id), csc_coef_lcd[9]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF2(plane_id), csc_coef_lcd[10]);
++	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF3(plane_id), csc_coef_lcd[11]);
++}
++
++static void kmb_plane_atomic_update(struct drm_plane *plane,
++				    struct drm_plane_state *state)
++{
++	struct drm_framebuffer *fb;
++	struct kmb_drm_private *kmb;
++	unsigned int width;
++	unsigned int height;
++	unsigned int dma_len;
++	struct kmb_plane *kmb_plane;
++	unsigned int dma_cfg;
++	unsigned int ctrl = 0, val = 0, out_format = 0;
++	unsigned int src_w, src_h, crtc_x, crtc_y;
++	unsigned char plane_id;
++	int num_planes;
++	static dma_addr_t addr[MAX_SUB_PLANES];
++
++	if (!plane || !plane->state || !state)
++		return;
++
++	fb = plane->state->fb;
++	if (!fb)
++		return;
++	num_planes = fb->format->num_planes;
++	kmb_plane = to_kmb_plane(plane);
++	plane_id = kmb_plane->id;
++
++	kmb = to_kmb(plane->dev);
++
++	if (kmb_under_flow || kmb_flush_done) {
++		drm_dbg(&kmb->drm, "plane_update:underflow!!!! returning");
++		return;
++	}
++
++	src_w = (plane->state->src_w >> 16);
++	src_h = plane->state->src_h >> 16;
++	crtc_x = plane->state->crtc_x;
++	crtc_y = plane->state->crtc_y;
++
++	drm_dbg(&kmb->drm,
++		"src_w=%d src_h=%d, fb->format->format=0x%x fb->flags=0x%x\n",
++		  src_w, src_h, fb->format->format, fb->flags);
++
++	width = fb->width;
++	height = fb->height;
++	dma_len = (width * height * fb->format->cpp[0]);
++	drm_dbg(&kmb->drm, "dma_len=%d ", dma_len);
++	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LEN(plane_id), dma_len);
++	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LEN_SHADOW(plane_id), dma_len);
++	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LINE_VSTRIDE(plane_id),
++		      fb->pitches[0]);
++	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LINE_WIDTH(plane_id),
++		      (width * fb->format->cpp[0]));
++
++	addr[Y_PLANE] = drm_fb_cma_get_gem_addr(fb, plane->state, 0);
++	kmb->fb_addr = addr[Y_PLANE];
++	kmb_write_lcd(kmb, LCD_LAYERn_DMA_START_ADDR(plane_id),
++		      addr[Y_PLANE] + fb->offsets[0]);
++	val = get_pixel_format(fb->format->format);
++	val |= get_bits_per_pixel(fb->format);
++	/* Program Cb/Cr for planar formats */
++	if (num_planes > 1) {
++		kmb_write_lcd(kmb, LCD_LAYERn_DMA_CB_LINE_VSTRIDE(plane_id),
++			      width * fb->format->cpp[0]);
++		kmb_write_lcd(kmb, LCD_LAYERn_DMA_CB_LINE_WIDTH(plane_id),
++			      (width * fb->format->cpp[0]));
++
++		addr[U_PLANE] = drm_fb_cma_get_gem_addr(fb, plane->state,
++							U_PLANE);
++		/* check if Cb/Cr is swapped*/
++		if (num_planes == 3 && (val & LCD_LAYER_CRCB_ORDER))
++			kmb_write_lcd(kmb,
++				      LCD_LAYERn_DMA_START_CR_ADR(plane_id),
++					addr[U_PLANE]);
++		else
++			kmb_write_lcd(kmb,
++				      LCD_LAYERn_DMA_START_CB_ADR(plane_id),
++					addr[U_PLANE]);
++
++		if (num_planes == 3) {
++			kmb_write_lcd(kmb,
++				      LCD_LAYERn_DMA_CR_LINE_VSTRIDE(plane_id),
++				      ((width) * fb->format->cpp[0]));
++
++			kmb_write_lcd(kmb,
++				      LCD_LAYERn_DMA_CR_LINE_WIDTH(plane_id),
++				      ((width) * fb->format->cpp[0]));
++
++			addr[V_PLANE] = drm_fb_cma_get_gem_addr(fb,
++								plane->state,
++								V_PLANE);
++
++			/* check if Cb/Cr is swapped*/
++			if (val & LCD_LAYER_CRCB_ORDER)
++				kmb_write_lcd(kmb,
++					      LCD_LAYERn_DMA_START_CB_ADR(plane_id),
++					      addr[V_PLANE]);
++			else
++				kmb_write_lcd(kmb,
++					      LCD_LAYERn_DMA_START_CR_ADR(plane_id),
++					      addr[V_PLANE]);
++		}
++	}
++
++	kmb_write_lcd(kmb, LCD_LAYERn_WIDTH(plane_id), src_w - 1);
++	kmb_write_lcd(kmb, LCD_LAYERn_HEIGHT(plane_id), src_h - 1);
++	kmb_write_lcd(kmb, LCD_LAYERn_COL_START(plane_id), crtc_x);
++	kmb_write_lcd(kmb, LCD_LAYERn_ROW_START(plane_id), crtc_y);
++
++	val |= LCD_LAYER_FIFO_100;
++
++	if (val & LCD_LAYER_PLANAR_STORAGE) {
++		val |= LCD_LAYER_CSC_EN;
++
++		/* Enable CSC if input is planar and output is RGB */
++		config_csc(kmb, plane_id);
++	}
++
++	kmb_write_lcd(kmb, LCD_LAYERn_CFG(plane_id), val);
++
++	switch (plane_id) {
++	case LAYER_0:
++		ctrl = LCD_CTRL_VL1_ENABLE;
++		break;
++	case LAYER_1:
++		ctrl = LCD_CTRL_VL2_ENABLE;
++		break;
++	case LAYER_2:
++		ctrl = LCD_CTRL_GL1_ENABLE;
++		break;
++	case LAYER_3:
++		ctrl = LCD_CTRL_GL2_ENABLE;
++		break;
++	}
++
++	ctrl |= LCD_CTRL_PROGRESSIVE | LCD_CTRL_TIM_GEN_ENABLE
++	    | LCD_CTRL_CONTINUOUS | LCD_CTRL_OUTPUT_ENABLED;
++
++	/* LCD is connected to MIPI on kmb
++	 * Therefore this bit is required for DSI Tx
++	 */
++	ctrl |= LCD_CTRL_VHSYNC_IDLE_LVL;
++
++	kmb_set_bitmask_lcd(kmb, LCD_CONTROL, ctrl);
++
++	/* FIXME no doc on how to set output format,these values are
++	 * taken from the Myriadx tests
++	 */
++	out_format |= LCD_OUTF_FORMAT_RGB888;
++
++	/* Leave RGB order,conversion mode and clip mode to default */
++	/* do not interleave RGB channels for mipi Tx compatibility */
++	out_format |= LCD_OUTF_MIPI_RGB_MODE;
++	kmb_write_lcd(kmb, LCD_OUT_FORMAT_CFG, out_format);
++
++	dma_cfg = LCD_DMA_LAYER_ENABLE | LCD_DMA_LAYER_VSTRIDE_EN |
++	    LCD_DMA_LAYER_CONT_UPDATE | LCD_DMA_LAYER_AXI_BURST_16;
++
++	/* Enable DMA */
++	kmb_write_lcd(kmb, LCD_LAYERn_DMA_CFG(plane_id), dma_cfg);
++	drm_dbg(&kmb->drm, "dma_cfg=0x%x LCD_DMA_CFG=0x%x\n", dma_cfg,
++		kmb_read_lcd(kmb, LCD_LAYERn_DMA_CFG(plane_id)));
++
++	kmb_set_bitmask_lcd(kmb, LCD_INT_CLEAR, LCD_INT_EOF |
++			LCD_INT_DMA_ERR);
++	kmb_set_bitmask_lcd(kmb, LCD_INT_ENABLE, LCD_INT_EOF |
++			LCD_INT_DMA_ERR);
++}
++
++static const struct drm_plane_helper_funcs kmb_plane_helper_funcs = {
++	.atomic_check = kmb_plane_atomic_check,
++	.atomic_update = kmb_plane_atomic_update,
++	.atomic_disable = kmb_plane_atomic_disable
++};
++
++void kmb_plane_destroy(struct drm_plane *plane)
++{
++	struct kmb_plane *kmb_plane = to_kmb_plane(plane);
++
++	drm_plane_cleanup(plane);
++	kfree(kmb_plane);
++}
++
++static const struct drm_plane_funcs kmb_plane_funcs = {
++	.update_plane = drm_atomic_helper_update_plane,
++	.disable_plane = drm_atomic_helper_disable_plane,
++	.destroy = kmb_plane_destroy,
++	.reset = drm_atomic_helper_plane_reset,
++	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
++	.atomic_destroy_state = drm_atomic_helper_plane_destroy_state,
++};
++
++struct kmb_plane *kmb_plane_init(struct drm_device *drm)
++{
++	struct kmb_drm_private *kmb = to_kmb(drm);
++	struct kmb_plane *plane = NULL;
++	struct kmb_plane *primary = NULL;
++	int i = 0;
++	int ret = 0;
++	enum drm_plane_type plane_type;
++	const u32 *plane_formats;
++	int num_plane_formats;
++
++	for (i = 0; i < KMB_MAX_PLANES; i++) {
++		plane = drmm_kzalloc(drm, sizeof(*plane), GFP_KERNEL);
++
++		if (!plane) {
++			drm_err(drm, "Failed to allocate plane\n");
++			return ERR_PTR(-ENOMEM);
++		}
++
++		plane_type = (i == 0) ? DRM_PLANE_TYPE_PRIMARY :
++		    DRM_PLANE_TYPE_OVERLAY;
++		if (i < 2) {
++			plane_formats = kmb_formats_v;
++			num_plane_formats = ARRAY_SIZE(kmb_formats_v);
++		} else {
++			plane_formats = kmb_formats_g;
++			num_plane_formats = ARRAY_SIZE(kmb_formats_g);
++		}
++
++		ret = drm_universal_plane_init(drm, &plane->base_plane,
++					       POSSIBLE_CRTCS, &kmb_plane_funcs,
++					       plane_formats, num_plane_formats,
++					       NULL, plane_type, "plane %d", i);
++		if (ret < 0) {
++			drm_err(drm, "drm_universal_plane_init failed (ret=%d)",
++				ret);
++			goto cleanup;
++		}
++		drm_dbg(drm, "%s : %d i=%d type=%d",
++			__func__, __LINE__,
++			  i, plane_type);
++		drm_plane_helper_add(&plane->base_plane,
++				     &kmb_plane_helper_funcs);
++		if (plane_type == DRM_PLANE_TYPE_PRIMARY) {
++			primary = plane;
++			kmb->plane = plane;
++		}
++		drm_dbg(drm, "%s : %d primary=%p\n", __func__, __LINE__,
++			&primary->base_plane);
++		plane->id = i;
++	}
++
++	return primary;
++cleanup:
++	drmm_kfree(drm, plane);
++	return ERR_PTR(ret);
++}
+diff --git a/drivers/gpu/drm/kmb/kmb_plane.h b/drivers/gpu/drm/kmb/kmb_plane.h
+new file mode 100644
+index 0000000..564f68f
+--- /dev/null
++++ b/drivers/gpu/drm/kmb/kmb_plane.h
+@@ -0,0 +1,102 @@
++/* SPDX-License-Identifier: GPL-2.0-only
++ *
++ * Copyright © 2018-2020 Intel Corporation
 + */
-+#define LCD_LAYER0_CFG		        (0x4 * 0x100)
-+#define LCD_LAYERn_CFG(N)			(LCD_LAYER0_CFG + (0x400 * (N)))
-+#define LCD_LAYER_SCALE_H			BIT(1)
-+#define LCD_LAYER_SCALE_V			BIT(2)
-+#define LCD_LAYER_SCALE_H_V			(LCD_LAYER_SCALE_H | \
-+						      LCD_LAYER_SCALE_V)
-+#define LCD_LAYER_CSC_EN			BIT(3)
-+#define LCD_LAYER_ALPHA_STATIC			BIT(4)
-+#define LCD_LAYER_ALPHA_EMBED			BIT(5)
-+#define LCD_LAYER_ALPHA_COMBI			(LCD_LAYER_ALPHA_STATIC | \
-+						      LCD_LAYER_ALPHA_EMBED)
-+/* RGB multiplied with alpha */
-+#define LCD_LAYER_ALPHA_PREMULT			BIT(6)
-+#define LCD_LAYER_INVERT_COL			BIT(7)
-+#define LCD_LAYER_TRANSPARENT_EN		BIT(8)
-+#define LCD_LAYER_FORMAT_YCBCR444PLAN		(0 << 9)
-+#define LCD_LAYER_FORMAT_YCBCR422PLAN		BIT(9)
-+#define LCD_LAYER_FORMAT_YCBCR420PLAN		(2 << 9)
-+#define LCD_LAYER_FORMAT_RGB888PLAN		(3 << 9)
-+#define LCD_LAYER_FORMAT_YCBCR444LIN		(4 << 9)
-+#define LCD_LAYER_FORMAT_YCBCR422LIN		(5 << 9)
-+#define LCD_LAYER_FORMAT_RGB888			(6 << 9)
-+#define LCD_LAYER_FORMAT_RGBA8888		(7 << 9)
-+#define LCD_LAYER_FORMAT_RGBX8888		(8 << 9)
-+#define LCD_LAYER_FORMAT_RGB565			(9 << 9)
-+#define LCD_LAYER_FORMAT_RGBA1555		(0xa << 9)
-+#define LCD_LAYER_FORMAT_XRGB1555		(0xb << 9)
-+#define LCD_LAYER_FORMAT_RGB444			(0xc << 9)
-+#define LCD_LAYER_FORMAT_RGBA4444		(0xd << 9)
-+#define LCD_LAYER_FORMAT_RGBX4444		(0xe << 9)
-+#define LCD_LAYER_FORMAT_RGB332			(0xf << 9)
-+#define LCD_LAYER_FORMAT_RGBA3328		(0x10 << 9)
-+#define LCD_LAYER_FORMAT_RGBX3328		(0x11 << 9)
-+#define LCD_LAYER_FORMAT_CLUT			(0x12 << 9)
-+#define LCD_LAYER_FORMAT_NV12			(0x1c << 9)
-+#define LCD_LAYER_PLANAR_STORAGE		BIT(14)
-+#define LCD_LAYER_8BPP				(0 << 15)
-+#define LCD_LAYER_16BPP				BIT(15)
-+#define LCD_LAYER_24BPP				(2 << 15)
-+#define LCD_LAYER_32BPP				(3 << 15)
-+#define LCD_LAYER_Y_ORDER			BIT(17)
-+#define LCD_LAYER_CRCB_ORDER			BIT(18)
-+#define LCD_LAYER_BGR_ORDER			BIT(19)
-+#define LCD_LAYER_LUT_2ENT			(0 << 20)
-+#define LCD_LAYER_LUT_4ENT			BIT(20)
-+#define LCD_LAYER_LUT_16ENT			(2 << 20)
-+#define LCD_LAYER_NO_FLIP			(0 << 22)
-+#define LCD_LAYER_FLIP_V			BIT(22)
-+#define LCD_LAYER_FLIP_H			(2 << 22)
-+#define LCD_LAYER_ROT_R90			(3 << 22)
-+#define LCD_LAYER_ROT_L90			(4 << 22)
-+#define LCD_LAYER_ROT_180			(5 << 22)
-+#define LCD_LAYER_FIFO_00			(0 << 25)
-+#define LCD_LAYER_FIFO_25			BIT(25)
-+#define LCD_LAYER_FIFO_50			(2 << 25)
-+#define LCD_LAYER_FIFO_100			(3 << 25)
-+#define LCD_LAYER_INTERLEAVE_DIS		(0 << 27)
-+#define LCD_LAYER_INTERLEAVE_V			BIT(27)
-+#define LCD_LAYER_INTERLEAVE_H			(2 << 27)
-+#define LCD_LAYER_INTERLEAVE_CH			(3 << 27)
-+#define LCD_LAYER_INTERLEAVE_V_SUB		(4 << 27)
-+#define LCD_LAYER_INTERLEAVE_H_SUB		(5 << 27)
-+#define LCD_LAYER_INTERLEAVE_CH_SUB		(6 << 27)
-+#define LCD_LAYER_INTER_POS_EVEN		(0 << 30)
-+#define LCD_LAYER_INTER_POS_ODD			BIT(30)
 +
-+#define LCD_LAYER0_COL_START		(0x4 * 0x101)
-+#define LCD_LAYERn_COL_START(N)		(LCD_LAYER0_COL_START + (0x400 * (N)))
-+#define LCD_LAYER0_ROW_START		(0x4 * 0x102)
-+#define LCD_LAYERn_ROW_START(N)		(LCD_LAYER0_ROW_START + (0x400 * (N)))
-+#define LCD_LAYER0_WIDTH		(0x4 * 0x103)
-+#define LCD_LAYERn_WIDTH(N)		(LCD_LAYER0_WIDTH + (0x400 * (N)))
-+#define LCD_LAYER0_HEIGHT		(0x4 * 0x104)
-+#define LCD_LAYERn_HEIGHT(N)		(LCD_LAYER0_HEIGHT + (0x400 * (N)))
-+#define LCD_LAYER0_SCALE_CFG		(0x4 * 0x105)
-+#define LCD_LAYERn_SCALE_CFG(N)		(LCD_LAYER0_SCALE_CFG + (0x400 * (N)))
-+#define LCD_LAYER0_ALPHA		(0x4 * 0x106)
-+#define LCD_LAYERn_ALPHA(N)		(LCD_LAYER0_ALPHA + (0x400 * (N)))
-+#define LCD_LAYER0_INV_COLOUR_LS	(0x4 * 0x107)
-+#define LCD_LAYERn_INV_COLOUR_LS(N)	(LCD_LAYER0_INV_COLOUR_LS + \
-+					(0x400 * (N)))
-+#define LCD_LAYER0_INV_COLOUR_MS	(0x4 * 0x108)
-+#define LCD_LAYERn_INV_COLOUR_MS(N)	(LCD_LAYER0_INV_COLOUR_MS + \
-+					(0x400 * (N)))
-+#define LCD_LAYER0_TRANS_COLOUR_LS	(0x4 * 0x109)
-+#define LCD_LAYERn_TRANS_COLOUR_LS(N)	(LCD_LAYER0_TRANS_COLOUR_LS + \
-+					(0x400 * (N)))
-+#define LCD_LAYER0_TRANS_COLOUR_MS	(0x4 * 0x10a)
-+#define LCD_LAYERn_TRANS_COLOUR_MS(N)	(LCD_LAYER0_TRANS_COLOUR_MS + \
-+					(0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF11		(0x4 * 0x10b)
-+#define LCD_LAYERn_CSC_COEFF11(N)	(LCD_LAYER0_CSC_COEFF11 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF12		(0x4 * 0x10c)
-+#define LCD_LAYERn_CSC_COEFF12(N)	(LCD_LAYER0_CSC_COEFF12 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF13		(0x4 * 0x10d)
-+#define LCD_LAYERn_CSC_COEFF13(N)	(LCD_LAYER0_CSC_COEFF13 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF21		(0x4 * 0x10e)
-+#define LCD_LAYERn_CSC_COEFF21(N)	(LCD_LAYER0_CSC_COEFF21 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF22		(0x4 * 0x10f)
-+#define LCD_LAYERn_CSC_COEFF22(N)	(LCD_LAYER0_CSC_COEFF22 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF23		(0x4 * 0x110)
-+#define LCD_LAYERn_CSC_COEFF23(N)	(LCD_LAYER0_CSC_COEFF23 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF31		(0x4 * 0x111)
-+#define LCD_LAYERn_CSC_COEFF31(N)	(LCD_LAYER0_CSC_COEFF31 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF32		(0x4 * 0x112)
-+#define LCD_LAYERn_CSC_COEFF32(N)	(LCD_LAYER0_CSC_COEFF32 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_COEFF33		(0x4 * 0x113)
-+#define LCD_LAYERn_CSC_COEFF33(N)	(LCD_LAYER0_CSC_COEFF33 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_OFF1		(0x4 * 0x114)
-+#define LCD_LAYERn_CSC_OFF1(N)		(LCD_LAYER0_CSC_OFF1 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_OFF2		(0x4 * 0x115)
-+#define LCD_LAYERn_CSC_OFF2(N)		(LCD_LAYER0_CSC_OFF2 + (0x400 * (N)))
-+#define LCD_LAYER0_CSC_OFF3		(0x4 * 0x116)
-+#define LCD_LAYERn_CSC_OFF3(N)		(LCD_LAYER0_CSC_OFF3 + (0x400 * (N)))
++#ifndef __KMB_PLANE_H__
++#define __KMB_PLANE_H__
 +
-+/*  LCD controller Layer DMA config register */
-+#define LCD_LAYER0_DMA_CFG			(0x4 * 0x117)
-+#define LCD_LAYERn_DMA_CFG(N)			(LCD_LAYER0_DMA_CFG + \
-+						(0x400 * (N)))
-+#define LCD_DMA_LAYER_ENABLE			  BIT(0)
-+#define LCD_DMA_LAYER_STATUS			  BIT(1)
-+#define LCD_DMA_LAYER_AUTO_UPDATE		  BIT(2)
-+#define LCD_DMA_LAYER_CONT_UPDATE		  BIT(3)
-+#define LCD_DMA_LAYER_CONT_PING_PONG_UPDATE	  (LCD_DMA_LAYER_AUTO_UPDATE \
-+						| LCD_DMA_LAYER_CONT_UPDATE)
-+#define LCD_DMA_LAYER_FIFO_ADR_MODE		  BIT(4)
-+#define LCD_DMA_LAYER_AXI_BURST_1		  BIT(5)
-+#define LCD_DMA_LAYER_AXI_BURST_2		  (2 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_3		  (3 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_4		  (4 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_5		  (5 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_6		  (6 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_7		  (7 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_8		  (8 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_9		  (9 << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_10		  (0xa << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_11		  (0xb << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_12		  (0xc << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_13		  (0xd << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_14		  (0xe << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_15		  (0xf << 5)
-+#define LCD_DMA_LAYER_AXI_BURST_16		  (0x10 << 5)
-+#define LCD_DMA_LAYER_VSTRIDE_EN		  BIT(10)
++extern int kmb_under_flow;
++extern int kmb_flush_done;
 +
-+#define LCD_LAYER0_DMA_START_ADR		(0x4 * 0x118)
-+#define LCD_LAYERn_DMA_START_ADDR(N)		(LCD_LAYER0_DMA_START_ADR \
-+						+ (0x400 * (N)))
-+#define LCD_LAYER0_DMA_START_SHADOW		(0x4 * 0x119)
-+#define LCD_LAYERn_DMA_START_SHADOW(N)		(LCD_LAYER0_DMA_START_SHADOW \
-+						+ (0x400 * (N)))
-+#define LCD_LAYER0_DMA_LEN			(0x4 * 0x11a)
-+#define LCD_LAYERn_DMA_LEN(N)			(LCD_LAYER0_DMA_LEN + \
-+						(0x400 * (N)))
-+#define LCD_LAYER0_DMA_LEN_SHADOW		(0x4 * 0x11b)
-+#define LCD_LAYERn_DMA_LEN_SHADOW(N)		(LCD_LAYER0_DMA_LEN_SHADOW + \
-+						(0x400 * (N)))
-+#define LCD_LAYER0_DMA_STATUS			(0x4 * 0x11c)
-+#define LCD_LAYERn_DMA_STATUS(N)		(LCD_LAYER0_DMA_STATUS + \
-+						(0x400 * (N)))
-+#define LCD_LAYER0_DMA_LINE_WIDTH		(0x4 * 0x11d)
-+#define LCD_LAYERn_DMA_LINE_WIDTH(N)		(LCD_LAYER0_DMA_LINE_WIDTH + \
-+						(0x400 * (N)))
-+#define LCD_LAYER0_DMA_LINE_VSTRIDE		(0x4 * 0x11e)
-+#define LCD_LAYERn_DMA_LINE_VSTRIDE(N)		(LCD_LAYER0_DMA_LINE_VSTRIDE +\
-+						(0x400 * (N)))
-+#define LCD_LAYER0_DMA_FIFO_STATUS		(0x4 * 0x11f)
-+#define LCD_LAYERn_DMA_FIFO_STATUS(N)		(LCD_LAYER0_DMA_FIFO_STATUS + \
-+						(0x400 * (N)))
-+#define LCD_LAYER0_CFG2				(0x4 * 0x120)
-+#define LCD_LAYERn_CFG2(N)			(LCD_LAYER0_CFG2 + (0x400 * (N)))
-+#define LCD_LAYER0_DMA_START_CB_ADR		(0x4 * 0x700)
-+#define LCD_LAYERn_DMA_START_CB_ADR(N)		(LCD_LAYER0_DMA_START_CB_ADR + \
-+						(0x20 * (N)))
-+#define LCD_LAYER0_DMA_START_CB_SHADOW		(0x4 * 0x701)
-+#define LCD_LAYERn_DMA_START_CB_SHADOW(N)	(LCD_LAYER0_DMA_START_CB_SHADOW\
-+						+ (0x20 * (N)))
-+#define LCD_LAYER0_DMA_CB_LINE_WIDTH		(0x4 * 0x702)
-+#define LCD_LAYERn_DMA_CB_LINE_WIDTH(N)		(LCD_LAYER0_DMA_CB_LINE_WIDTH +\
-+						(0x20 * (N)))
-+#define LCD_LAYER0_DMA_CB_LINE_VSTRIDE		(0x4 * 0x703)
-+#define LCD_LAYERn_DMA_CB_LINE_VSTRIDE(N)	(LCD_LAYER0_DMA_CB_LINE_VSTRIDE\
-+						+ (0x20 * (N)))
-+#define LCD_LAYER0_DMA_START_CR_ADR		(0x4 * 0x704)
-+#define LCD_LAYERn_DMA_START_CR_ADR(N)		(LCD_LAYER0_DMA_START_CR_ADR + \
-+						(0x20 * (N)))
-+#define LCD_LAYER0_DMA_START_CR_SHADOW		(0x4 * 0x705)
-+#define LCD_LAYERn_DMA_START_CR_SHADOW(N)	\
-+						(LCD_LAYER0_DMA_START_CR_SHADOW\
-+						 + (0x20 * (N)))
-+#define LCD_LAYER0_DMA_CR_LINE_WIDTH		(0x4 * 0x706)
-+#define LCD_LAYERn_DMA_CR_LINE_WIDTH(N)		(LCD_LAYER0_DMA_CR_LINE_WIDTH +\
-+						(0x20 * (N)))
-+#define LCD_LAYER0_DMA_CR_LINE_VSTRIDE		(0x4 * 0x707)
-+#define LCD_LAYERn_DMA_CR_LINE_VSTRIDE(N)	(LCD_LAYER0_DMA_CR_LINE_VSTRIDE\
-+						+ (0x20 * (N)))
-+#define LCD_LAYER1_DMA_START_CB_ADR		(0x4 * 0x708)
-+#define LCD_LAYER1_DMA_START_CB_SHADOW		(0x4 * 0x709)
-+#define LCD_LAYER1_DMA_CB_LINE_WIDTH		(0x4 * 0x70a)
-+#define LCD_LAYER1_DMA_CB_LINE_VSTRIDE		(0x4 * 0x70b)
-+#define LCD_LAYER1_DMA_START_CR_ADR		(0x4 * 0x70c)
-+#define LCD_LAYER1_DMA_START_CR_SHADOW		(0x4 * 0x70d)
-+#define LCD_LAYER1_DMA_CR_LINE_WIDTH		(0x4 * 0x70e)
-+#define LCD_LAYER1_DMA_CR_LINE_VSTRIDE		(0x4 * 0x70f)
++#define LCD_INT_VL0_ERR ((LAYER0_DMA_FIFO_UNDERFLOW) | \
++			(LAYER0_DMA_FIFO_OVERFLOW) | \
++			(LAYER0_DMA_CB_FIFO_OVERFLOW) | \
++			(LAYER0_DMA_CB_FIFO_UNDERFLOW) | \
++			(LAYER0_DMA_CR_FIFO_OVERFLOW) | \
++			(LAYER0_DMA_CR_FIFO_UNDERFLOW))
 +
-+/****************************************************************************
-+ *		   LCD controller output format register defines
-+ ****************************************************************************/
-+#define LCD_OUT_FORMAT_CFG			(0x4 * 0x800)
-+#define LCD_OUTF_FORMAT_RGB121212                 (0x00)
-+#define LCD_OUTF_FORMAT_RGB101010                 (0x01)
-+#define LCD_OUTF_FORMAT_RGB888                    (0x02)
-+#define LCD_OUTF_FORMAT_RGB666                    (0x03)
-+#define LCD_OUTF_FORMAT_RGB565                    (0x04)
-+#define LCD_OUTF_FORMAT_RGB444                    (0x05)
-+#define LCD_OUTF_FORMAT_MRGB121212                (0x10)
-+#define LCD_OUTF_FORMAT_MRGB101010                (0x11)
-+#define LCD_OUTF_FORMAT_MRGB888                   (0x12)
-+#define LCD_OUTF_FORMAT_MRGB666                   (0x13)
-+#define LCD_OUTF_FORMAT_MRGB565                   (0x14)
-+#define LCD_OUTF_FORMAT_YCBCR420_8B_LEGACY        (0x08)
-+#define LCD_OUTF_FORMAT_YCBCR420_8B_DCI           (0x09)
-+#define LCD_OUTF_FORMAT_YCBCR420_8B               (0x0A)
-+#define LCD_OUTF_FORMAT_YCBCR420_10B              (0x0B)
-+#define LCD_OUTF_FORMAT_YCBCR420_12B              (0x0C)
-+#define LCD_OUTF_FORMAT_YCBCR422_8B               (0x0D)
-+#define LCD_OUTF_FORMAT_YCBCR422_10B              (0x0E)
-+#define LCD_OUTF_FORMAT_YCBCR444                  (0x0F)
-+#define LCD_OUTF_FORMAT_MYCBCR420_8B_LEGACY       (0x18)
-+#define LCD_OUTF_FORMAT_MYCBCR420_8B_DCI          (0x19)
-+#define LCD_OUTF_FORMAT_MYCBCR420_8B              (0x1A)
-+#define LCD_OUTF_FORMAT_MYCBCR420_10B             (0x1B)
-+#define LCD_OUTF_FORMAT_MYCBCR420_12B             (0x1C)
-+#define LCD_OUTF_FORMAT_MYCBCR422_8B              (0x1D)
-+#define LCD_OUTF_FORMAT_MYCBCR422_10B             (0x1E)
-+#define LCD_OUTF_FORMAT_MYCBCR444                 (0x1F)
-+#define LCD_OUTF_BGR_ORDER			  BIT(5)
-+#define LCD_OUTF_Y_ORDER			  BIT(6)
-+#define LCD_OUTF_CRCB_ORDER			  BIT(7)
-+#define LCD_OUTF_SYNC_MODE			  BIT(11)
-+#define LCD_OUTF_RGB_CONV_MODE			  BIT(14)
-+#define LCD_OUTF_MIPI_RGB_MODE			  BIT(18)
++#define LCD_INT_VL1_ERR ((LAYER1_DMA_FIFO_UNDERFLOW) | \
++			(LAYER1_DMA_FIFO_OVERFLOW) | \
++			(LAYER1_DMA_CB_FIFO_OVERFLOW) | \
++			(LAYER1_DMA_CB_FIFO_UNDERFLOW) | \
++			(LAYER1_DMA_CR_FIFO_OVERFLOW) | \
++			(LAYER1_DMA_CR_FIFO_UNDERFLOW))
 +
-+#define LCD_HSYNC_WIDTH				(0x4 * 0x801)
-+#define LCD_H_BACKPORCH				(0x4 * 0x802)
-+#define LCD_H_ACTIVEWIDTH			(0x4 * 0x803)
-+#define LCD_H_FRONTPORCH			(0x4 * 0x804)
-+#define LCD_VSYNC_WIDTH				(0x4 * 0x805)
-+#define LCD_V_BACKPORCH				(0x4 * 0x806)
-+#define LCD_V_ACTIVEHEIGHT			(0x4 * 0x807)
-+#define LCD_V_FRONTPORCH			(0x4 * 0x808)
-+#define LCD_VSYNC_START				(0x4 * 0x809)
-+#define LCD_VSYNC_END				(0x4 * 0x80a)
-+#define LCD_V_BACKPORCH_EVEN			(0x4 * 0x80b)
-+#define LCD_VSYNC_WIDTH_EVEN			(0x4 * 0x80c)
-+#define LCD_V_ACTIVEHEIGHT_EVEN			(0x4 * 0x80d)
-+#define LCD_V_FRONTPORCH_EVEN			(0x4 * 0x80e)
-+#define LCD_VSYNC_START_EVEN			(0x4 * 0x80f)
-+#define LCD_VSYNC_END_EVEN			(0x4 * 0x810)
-+#define LCD_TIMING_GEN_TRIG			(0x4 * 0x811)
-+#define LCD_PWM0_CTRL				(0x4 * 0x812)
-+#define LCD_PWM0_RPT_LEADIN			(0x4 * 0x813)
-+#define LCD_PWM0_HIGH_LOW			(0x4 * 0x814)
-+#define LCD_PWM1_CTRL				(0x4 * 0x815)
-+#define LCD_PWM1_RPT_LEADIN			(0x4 * 0x816)
-+#define LCD_PWM1_HIGH_LOW			(0x4 * 0x817)
-+#define LCD_PWM2_CTRL				(0x4 * 0x818)
-+#define LCD_PWM2_RPT_LEADIN			(0x4 * 0x819)
-+#define LCD_PWM2_HIGH_LOW			(0x4 * 0x81a)
-+#define LCD_VIDEO0_DMA0_BYTES			(0x4 * 0xb00)
-+#define LCD_VIDEO0_DMA0_STATE			(0x4 * 0xb01)
-+#define LCD_DMA_STATE_ACTIVE			  BIT(3)
-+#define LCD_VIDEO0_DMA1_BYTES			(0x4 * 0xb02)
-+#define LCD_VIDEO0_DMA1_STATE			(0x4 * 0xb03)
-+#define LCD_VIDEO0_DMA2_BYTES			(0x4 * 0xb04)
-+#define LCD_VIDEO0_DMA2_STATE			(0x4 * 0xb05)
-+#define LCD_VIDEO1_DMA0_BYTES			(0x4 * 0xb06)
-+#define LCD_VIDEO1_DMA0_STATE			(0x4 * 0xb07)
-+#define LCD_VIDEO1_DMA1_BYTES			(0x4 * 0xb08)
-+#define LCD_VIDEO1_DMA1_STATE			(0x4 * 0xb09)
-+#define LCD_VIDEO1_DMA2_BYTES			(0x4 * 0xb0a)
-+#define LCD_VIDEO1_DMA2_STATE			(0x4 * 0xb0b)
-+#define LCD_GRAPHIC0_DMA_BYTES			(0x4 * 0xb0c)
-+#define LCD_GRAPHIC0_DMA_STATE			(0x4 * 0xb0d)
-+#define LCD_GRAPHIC1_DMA_BYTES			(0x4 * 0xb0e)
-+#define LCD_GRAPHIC1_DMA_STATE			(0x4 * 0xb0f)
++#define LCD_INT_GL0_ERR (LAYER2_DMA_FIFO_OVERFLOW | LAYER2_DMA_FIFO_UNDERFLOW)
++#define LCD_INT_GL1_ERR (LAYER3_DMA_FIFO_OVERFLOW | LAYER3_DMA_FIFO_UNDERFLOW)
++#define LCD_INT_VL0 (LAYER0_DMA_DONE | LAYER0_DMA_IDLE | LCD_INT_VL0_ERR)
++#define LCD_INT_VL1 (LAYER1_DMA_DONE | LAYER1_DMA_IDLE | LCD_INT_VL1_ERR)
++#define LCD_INT_GL0 (LAYER2_DMA_DONE | LAYER2_DMA_IDLE | LCD_INT_GL0_ERR)
++#define LCD_INT_GL1 (LAYER3_DMA_DONE | LAYER3_DMA_IDLE | LCD_INT_GL1_ERR)
++#define LCD_INT_DMA_ERR (LCD_INT_VL0_ERR | LCD_INT_VL1_ERR \
++		| LCD_INT_GL0_ERR | LCD_INT_GL1_ERR)
 +
-+/***************************************************************************
-+ *		   MIPI controller control register defines
-+ ***********************************************i****************************/
-+#define MIPI0_HS_BASE_ADDR			(MIPI_BASE_ADDR + 0x400)
-+#define HS_OFFSET(M)				(((M) + 1) * 0x400)
++#define POSSIBLE_CRTCS 1
++#define to_kmb_plane(x) container_of(x, struct kmb_plane, base_plane)
 +
-+#define MIPI_TX_HS_CTRL				(0x0)
-+#define   MIPI_TXm_HS_CTRL(M)			(MIPI_TX_HS_CTRL + HS_OFFSET(M))
-+#define   HS_CTRL_EN				BIT(0)
-+/*1:CSI 0:DSI */
-+#define   HS_CTRL_CSIDSIN			BIT(2)
-+/*1:LCD, 0:DMA */
-+#define   TX_SOURCE				BIT(3)
-+#define   ACTIVE_LANES(n)			((n) << 4)
-+#define   LCD_VC(ch)				((ch) << 8)
-+#define   DSI_EOTP_EN				BIT(11)
-+#define   DSI_CMD_HFP_EN			BIT(12)
-+#define   CRC_EN				BIT(14)
-+#define   HSEXIT_CNT(n)				((n) << 16)
-+#define   HSCLKIDLE_CNT				BIT(24)
-+#define MIPI_TX_HS_SYNC_CFG			(0x8)
-+#define   MIPI_TXm_HS_SYNC_CFG(M)		(MIPI_TX_HS_SYNC_CFG \
-+						+ HS_OFFSET(M))
-+#define   LINE_SYNC_PKT_ENABLE			BIT(0)
-+#define   FRAME_COUNTER_ACTIVE			BIT(1)
-+#define   LINE_COUNTER_ACTIVE			BIT(2)
-+#define   DSI_V_BLANKING			BIT(4)
-+#define   DSI_HSA_BLANKING			BIT(5)
-+#define   DSI_HBP_BLANKING			BIT(6)
-+#define   DSI_HFP_BLANKING			BIT(7)
-+#define   DSI_SYNC_PULSE_EVENTN			BIT(8)
-+#define   DSI_LPM_FIRST_VSA_LINE		BIT(9)
-+#define   DSI_LPM_LAST_VFP_LINE			BIT(10)
-+#define   WAIT_ALL_SECT				BIT(11)
-+#define   WAIT_TRIG_POS				BIT(15)
-+#define   ALWAYS_USE_HACT(f)			((f) << 19)
-+#define   FRAME_GEN_EN(f)			((f) << 23)
-+#define   HACT_WAIT_STOP(f)			((f) << 28)
-+#define MIPI_TX0_HS_FG0_SECT0_PH		(0x40)
-+#define   MIPI_TXm_HS_FGn_SECTo_PH(M, N, O)	(MIPI_TX0_HS_FG0_SECT0_PH + \
-+						HS_OFFSET(M) + (0x2C * (N)) \
-+						+ (8 * (O)))
-+#define   MIPI_TX_SECT_WC_MASK			(0xffff)
-+#define	  MIPI_TX_SECT_VC_MASK			(3)
-+#define   MIPI_TX_SECT_VC_SHIFT			(22)
-+#define   MIPI_TX_SECT_DT_MASK			(0x3f)
-+#define   MIPI_TX_SECT_DT_SHIFT			(16)
-+#define   MIPI_TX_SECT_DM_MASK			(3)
-+#define   MIPI_TX_SECT_DM_SHIFT			(24)
-+#define   MIPI_TX_SECT_DMA_PACKED		BIT(26)
-+#define MIPI_TX_HS_FG0_SECT_UNPACKED_BYTES0	(0x60)
-+#define MIPI_TX_HS_FG0_SECT_UNPACKED_BYTES1	(0x64)
-+#define   MIPI_TXm_HS_FGn_SECT_UNPACKED_BYTES0(M, N)	\
-+					(MIPI_TX_HS_FG0_SECT_UNPACKED_BYTES0 \
-+					+ HS_OFFSET(M) + (0x2C * (N)))
-+#define MIPI_TX_HS_FG0_SECT0_LINE_CFG		(0x44)
-+#define   MIPI_TXm_HS_FGn_SECTo_LINE_CFG(M, N, O)	\
-+				(MIPI_TX_HS_FG0_SECT0_LINE_CFG + HS_OFFSET(M) \
-+				+ (0x2C * (N)) + (8 * (O)))
++enum layer_id {
++	LAYER_0,
++	LAYER_1,
++	LAYER_2,
++	LAYER_3,
++	/* KMB_MAX_PLANES */
++};
 +
-+#define MIPI_TX_HS_FG0_NUM_LINES		(0x68)
-+#define   MIPI_TXm_HS_FGn_NUM_LINES(M, N)	\
-+				(MIPI_TX_HS_FG0_NUM_LINES + HS_OFFSET(M) \
-+				+ (0x2C * (N)))
-+#define MIPI_TX_HS_VSYNC_WIDTHS0		(0x104)
-+#define   MIPI_TXm_HS_VSYNC_WIDTHn(M, N)		\
-+				(MIPI_TX_HS_VSYNC_WIDTHS0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_V_BACKPORCHES0		(0x16c)
-+#define   MIPI_TXm_HS_V_BACKPORCHESn(M, N)	\
-+				(MIPI_TX_HS_V_BACKPORCHES0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_V_FRONTPORCHES0		(0x174)
-+#define   MIPI_TXm_HS_V_FRONTPORCHESn(M, N)	\
-+				(MIPI_TX_HS_V_FRONTPORCHES0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_V_ACTIVE0			(0x17c)
-+#define   MIPI_TXm_HS_V_ACTIVEn(M, N)		\
-+				(MIPI_TX_HS_V_ACTIVE0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_HSYNC_WIDTH0			(0x10c)
-+#define   MIPI_TXm_HS_HSYNC_WIDTHn(M, N)		\
-+				(MIPI_TX_HS_HSYNC_WIDTH0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_H_BACKPORCH0			(0x11c)
-+#define   MIPI_TXm_HS_H_BACKPORCHn(M, N)		\
-+				(MIPI_TX_HS_H_BACKPORCH0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_H_FRONTPORCH0		(0x12c)
-+#define   MIPI_TXm_HS_H_FRONTPORCHn(M, N)	\
-+				(MIPI_TX_HS_H_FRONTPORCH0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_H_ACTIVE0			(0x184)
-+#define   MIPI_TXm_HS_H_ACTIVEn(M, N)		\
-+				(MIPI_TX_HS_H_ACTIVE0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_LLP_HSYNC_WIDTH0		(0x13c)
-+#define   MIPI_TXm_HS_LLP_HSYNC_WIDTHn(M, N)	\
-+				(MIPI_TX_HS_LLP_HSYNC_WIDTH0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_LLP_H_BACKPORCH0		(0x14c)
-+#define   MIPI_TXm_HS_LLP_H_BACKPORCHn(M, N)	\
-+				(MIPI_TX_HS_LLP_H_BACKPORCH0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define MIPI_TX_HS_LLP_H_FRONTPORCH0		(0x15c)
-+#define   MIPI_TXm_HS_LLP_H_FRONTPORCHn(M, N)	\
-+				(MIPI_TX_HS_LLP_H_FRONTPORCH0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
++#define KMB_MAX_PLANES 1
 +
-+#define MIPI_TX_HS_MC_FIFO_CTRL_EN		(0x194)
-+#define   MIPI_TXm_HS_MC_FIFO_CTRL_EN(M)	\
-+				(MIPI_TX_HS_MC_FIFO_CTRL_EN + HS_OFFSET(M))
++enum sub_plane_id {
++	Y_PLANE,
++	U_PLANE,
++	V_PLANE,
++	MAX_SUB_PLANES,
++};
 +
-+#define MIPI_TX_HS_MC_FIFO_CHAN_ALLOC0		(0x198)
-+#define MIPI_TX_HS_MC_FIFO_CHAN_ALLOC1		(0x19c)
-+#define   MIPI_TXm_HS_MC_FIFO_CHAN_ALLOCn(M, N)	\
-+			(MIPI_TX_HS_MC_FIFO_CHAN_ALLOC0 + HS_OFFSET(M) \
-+			+ (0x4 * (N)))
-+#define   SET_MC_FIFO_CHAN_ALLOC(dev, ctrl, vc, sz)	\
-+		kmb_write_bits_mipi(dev, \
-+				MIPI_TXm_HS_MC_FIFO_CHAN_ALLOCn(ctrl, \
-+				(vc) / 2), ((vc) % 2) * 16, 16, sz)
-+#define MIPI_TX_HS_MC_FIFO_RTHRESHOLD0		(0x1a0)
-+#define MIPI_TX_HS_MC_FIFO_RTHRESHOLD1		(0x1a4)
-+#define   MIPI_TXm_HS_MC_FIFO_RTHRESHOLDn(M, N)	\
-+				(MIPI_TX_HS_MC_FIFO_RTHRESHOLD0 + HS_OFFSET(M) \
-+				+ (0x4 * (N)))
-+#define   SET_MC_FIFO_RTHRESHOLD(dev, ctrl, vc, th)	\
-+	kmb_write_bits_mipi(dev, MIPI_TXm_HS_MC_FIFO_RTHRESHOLDn(ctrl, \
-+				(vc) / 2), ((vc) % 2) * 16, 16, th)
-+#define MIPI_TX_HS_DMA_CFG			(0x1a8)
-+#define MIPI_TX_HS_DMA_START_ADR_CHAN0		(0x1ac)
-+#define MIPI_TX_HS_DMA_LEN_CHAN0		(0x1b4)
++struct kmb_plane {
++	struct drm_plane base_plane;
++	unsigned char id;
++};
 +
-+/* MIPI IRQ */
-+#define MIPI_CTRL_IRQ_STATUS0				(0x00)
-+#define   MIPI_DPHY_ERR_IRQ				1
-+#define   MIPI_DPHY_ERR_MASK				0x7FE	/*bits 1-10 */
-+#define   MIPI_HS_IRQ					13
-+/*bits 13-22 */
-+#define   MIPI_HS_IRQ_MASK				0x7FE000
-+#define   MIPI_LP_EVENT_IRQ				25
-+#define   MIPI_GET_IRQ_STAT0(dev)		kmb_read_mipi(dev, \
-+						MIPI_CTRL_IRQ_STATUS0)
-+#define MIPI_CTRL_IRQ_STATUS1				(0x04)
-+#define   MIPI_HS_RX_EVENT_IRQ				0
-+#define   MIPI_GET_IRQ_STAT1(dev)		kmb_read_mipi(dev, \
-+						MIPI_CTRL_IRQ_STATUS1)
-+#define MIPI_CTRL_IRQ_ENABLE0				(0x08)
-+#define   SET_MIPI_CTRL_IRQ_ENABLE0(dev, M, N)	kmb_set_bit_mipi(dev, \
-+						MIPI_CTRL_IRQ_ENABLE0, \
-+						(M) + (N))
-+#define   MIPI_GET_IRQ_ENABLED0(dev)		kmb_read_mipi(dev, \
-+						MIPI_CTRL_IRQ_ENABLE0)
-+#define MIPI_CTRL_IRQ_ENABLE1				(0x0c)
-+#define   MIPI_GET_IRQ_ENABLED1(dev)		kmb_read_mipi(dev, \
-+						MIPI_CTRL_IRQ_ENABLE1)
-+#define MIPI_CTRL_IRQ_CLEAR0				(0x010)
-+#define   SET_MIPI_CTRL_IRQ_CLEAR0(dev, M, N)		\
-+		kmb_set_bit_mipi(dev, MIPI_CTRL_IRQ_CLEAR0, (M) + (N))
-+#define MIPI_CTRL_IRQ_CLEAR1				(0x014)
-+#define   SET_MIPI_CTRL_IRQ_CLEAR1(dev, M, N)		\
-+		kmb_set_bit_mipi(dev, MIPI_CTRL_IRQ_CLEAR1, (M) + (N))
-+#define MIPI_CTRL_DIG_LOOPBACK				(0x018)
-+#define MIPI_TX_HS_IRQ_STATUS				(0x01c)
-+#define   MIPI_TX_HS_IRQ_STATUSm(M)		(MIPI_TX_HS_IRQ_STATUS + \
-+						HS_OFFSET(M))
-+#define   GET_MIPI_TX_HS_IRQ_STATUS(dev, M)	kmb_read_mipi(dev, \
-+						MIPI_TX_HS_IRQ_STATUSm(M))
-+#define   MIPI_TX_HS_IRQ_LINE_COMPARE			BIT(1)
-+#define   MIPI_TX_HS_IRQ_FRAME_DONE_0			BIT(2)
-+#define   MIPI_TX_HS_IRQ_FRAME_DONE_1			BIT(3)
-+#define   MIPI_TX_HS_IRQ_FRAME_DONE_2			BIT(4)
-+#define   MIPI_TX_HS_IRQ_FRAME_DONE_3			BIT(5)
-+#define   MIPI_TX_HS_IRQ_DMA_DONE_0			BIT(6)
-+#define   MIPI_TX_HS_IRQ_DMA_IDLE_0			BIT(7)
-+#define   MIPI_TX_HS_IRQ_DMA_DONE_1			BIT(8)
-+#define   MIPI_TX_HS_IRQ_DMA_IDLE_1			BIT(9)
-+#define   MIPI_TX_HS_IRQ_DMA_DONE_2			BIT(10)
-+#define   MIPI_TX_HS_IRQ_DMA_IDLE_2			BIT(11)
-+#define   MIPI_TX_HS_IRQ_DMA_DONE_3			BIT(12)
-+#define   MIPI_TX_HS_IRQ_DMA_IDLE_3			BIT(13)
-+#define   MIPI_TX_HS_IRQ_MC_FIFO_UNDERFLOW		BIT(14)
-+#define   MIPI_TX_HS_IRQ_MC_FIFO_OVERFLOW		BIT(15)
-+#define   MIPI_TX_HS_IRQ_LLP_FIFO_EMPTY			BIT(16)
-+#define   MIPI_TX_HS_IRQ_LLP_REQUEST_QUEUE_FULL		BIT(17)
-+#define   MIPI_TX_HS_IRQ_LLP_REQUEST_QUEUE_ERROR	BIT(18)
-+#define   MIPI_TX_HS_IRQ_LLP_WORD_COUNT_ERROR		BIT(20)
-+#define   MIPI_TX_HS_IRQ_FRAME_DONE			\
-+				(MIPI_TX_HS_IRQ_FRAME_DONE_0 | \
-+				MIPI_TX_HS_IRQ_FRAME_DONE_1 | \
-+				MIPI_TX_HS_IRQ_FRAME_DONE_2 | \
-+				MIPI_TX_HS_IRQ_FRAME_DONE_3)
++/* Graphics layer (layers 2 & 3) formats, only packed formats  are supported */
++static const u32 kmb_formats_g[] = {
++	DRM_FORMAT_RGB332,
++	DRM_FORMAT_XRGB4444, DRM_FORMAT_XBGR4444,
++	DRM_FORMAT_ARGB4444, DRM_FORMAT_ABGR4444,
++	DRM_FORMAT_XRGB1555, DRM_FORMAT_XBGR1555,
++	DRM_FORMAT_ARGB1555, DRM_FORMAT_ABGR1555,
++	DRM_FORMAT_RGB565, DRM_FORMAT_BGR565,
++	DRM_FORMAT_RGB888, DRM_FORMAT_BGR888,
++	DRM_FORMAT_XRGB8888, DRM_FORMAT_XBGR8888,
++	DRM_FORMAT_ARGB8888, DRM_FORMAT_ABGR8888,
++};
 +
-+#define MIPI_TX_HS_IRQ_DMA_DONE				\
-+				(MIPI_TX_HS_IRQ_DMA_DONE_0 | \
-+				MIPI_TX_HS_IRQ_DMA_DONE_1 | \
-+				MIPI_TX_HS_IRQ_DMA_DONE_2 | \
-+				MIPI_TX_HS_IRQ_DMA_DONE_3)
++#define MAX_FORMAT_G	(ARRAY_SIZE(kmb_formats_g))
++#define MAX_FORMAT_V	(ARRAY_SIZE(kmb_formats_v))
 +
-+#define MIPI_TX_HS_IRQ_DMA_IDLE				\
-+				(MIPI_TX_HS_IRQ_DMA_IDLE_0 | \
-+				MIPI_TX_HS_IRQ_DMA_IDLE_1 | \
-+				MIPI_TX_HS_IRQ_DMA_IDLE_2 | \
-+				MIPI_TX_HS_IRQ_DMA_IDLE_3)
++/* Video layer ( 0 & 1) formats, packed and planar formats are supported */
++static const u32 kmb_formats_v[] = {
++	/* packed formats */
++	DRM_FORMAT_RGB332,
++	DRM_FORMAT_XRGB4444, DRM_FORMAT_XBGR4444,
++	DRM_FORMAT_ARGB4444, DRM_FORMAT_ABGR4444,
++	DRM_FORMAT_XRGB1555, DRM_FORMAT_XBGR1555,
++	DRM_FORMAT_ARGB1555, DRM_FORMAT_ABGR1555,
++	DRM_FORMAT_RGB565, DRM_FORMAT_BGR565,
++	DRM_FORMAT_RGB888, DRM_FORMAT_BGR888,
++	DRM_FORMAT_XRGB8888, DRM_FORMAT_XBGR8888,
++	DRM_FORMAT_ARGB8888, DRM_FORMAT_ABGR8888,
++	/*planar formats */
++	DRM_FORMAT_YUV420, DRM_FORMAT_YVU420,
++	DRM_FORMAT_YUV422, DRM_FORMAT_YVU422,
++	DRM_FORMAT_YUV444, DRM_FORMAT_YVU444,
++	DRM_FORMAT_NV12, DRM_FORMAT_NV21,
++};
 +
-+#define MIPI_TX_HS_IRQ_ERROR				\
-+				(MIPI_TX_HS_IRQ_MC_FIFO_UNDERFLOW | \
-+				MIPI_TX_HS_IRQ_MC_FIFO_OVERFLOW | \
-+				MIPI_TX_HS_IRQ_LLP_FIFO_EMPTY | \
-+				MIPI_TX_HS_IRQ_LLP_REQUEST_QUEUE_FULL | \
-+				MIPI_TX_HS_IRQ_LLP_REQUEST_QUEUE_ERROR | \
-+				MIPI_TX_HS_IRQ_LLP_WORD_COUNT_ERROR)
++struct layer_status {
++	bool disable;
++	u32 ctrl;
++};
 +
-+#define MIPI_TX_HS_IRQ_ALL				\
-+				(MIPI_TX_HS_IRQ_FRAME_DONE | \
-+				MIPI_TX_HS_IRQ_DMA_DONE | \
-+				MIPI_TX_HS_IRQ_DMA_IDLE | \
-+				MIPI_TX_HS_IRQ_LINE_COMPARE | \
-+				MIPI_TX_HS_IRQ_ERROR)
-+
-+#define MIPI_TX_HS_IRQ_ENABLE				(0x020)
-+#define   SET_HS_IRQ_ENABLE(dev, M, val)	kmb_set_bitmask_mipi(dev, \
-+						MIPI_TX_HS_IRQ_ENABLE \
-+						+ HS_OFFSET(M), val)
-+#define   CLR_HS_IRQ_ENABLE(dev, M, val)	kmb_clr_bitmask_mipi(dev, \
-+						MIPI_TX_HS_IRQ_ENABLE \
-+						+ HS_OFFSET(M), val)
-+#define	  GET_HS_IRQ_ENABLE(dev, M)		kmb_read_mipi(dev, \
-+						MIPI_TX_HS_IRQ_ENABLE \
-+						+ HS_OFFSET(M))
-+#define MIPI_TX_HS_IRQ_CLEAR				(0x024)
-+#define   SET_MIPI_TX_HS_IRQ_CLEAR(dev, M, val)		\
-+			kmb_set_bitmask_mipi(dev, \
-+			MIPI_TX_HS_IRQ_CLEAR \
-+			+ HS_OFFSET(M), val)
-+
-+/* MIPI Test Pattern Generation */
-+#define MIPI_TX_HS_TEST_PAT_CTRL			(0x230)
-+#define   MIPI_TXm_HS_TEST_PAT_CTRL(M)			\
-+				(MIPI_TX_HS_TEST_PAT_CTRL + HS_OFFSET(M))
-+#define   TP_EN_VCm(M)					(1 << ((M) * 0x04))
-+#define   TP_SEL_VCm(M, N)				\
-+				((N) << (((M) * 0x04) + 1))
-+#define   TP_STRIPE_WIDTH(M)				((M) << 16)
-+#define MIPI_TX_HS_TEST_PAT_COLOR0			(0x234)
-+#define   MIPI_TXm_HS_TEST_PAT_COLOR0(M)		\
-+				(MIPI_TX_HS_TEST_PAT_COLOR0 + HS_OFFSET(M))
-+#define MIPI_TX_HS_TEST_PAT_COLOR1			(0x238)
-+#define   MIPI_TXm_HS_TEST_PAT_COLOR1(M)		\
-+				(MIPI_TX_HS_TEST_PAT_COLOR1 + HS_OFFSET(M))
-+
-+/* D-PHY regs */
-+#define DPHY_ENABLE				(0x100)
-+#define DPHY_INIT_CTRL0				(0x104)
-+#define   SHUTDOWNZ				0
-+#define   RESETZ				12
-+#define DPHY_INIT_CTRL1				(0x108)
-+#define   PLL_CLKSEL_0				18
-+#define   PLL_SHADOW_CTRL			16
-+#define DPHY_INIT_CTRL2				(0x10c)
-+#define   SET_DPHY_INIT_CTRL0(dev, dphy, offset)	\
-+			kmb_set_bit_mipi(dev, DPHY_INIT_CTRL0, \
-+					((dphy) + (offset)))
-+#define   CLR_DPHY_INIT_CTRL0(dev, dphy, offset)	\
-+			kmb_clr_bit_mipi(dev, DPHY_INIT_CTRL0, \
-+					((dphy) + (offset)))
-+#define DPHY_INIT_CTRL2				(0x10c)
-+#define DPHY_PLL_OBS0				(0x110)
-+#define DPHY_PLL_OBS1				(0x114)
-+#define DPHY_PLL_OBS2				(0x118)
-+#define DPHY_FREQ_CTRL0_3			(0x11c)
-+#define DPHY_FREQ_CTRL4_7			(0x120)
-+#define   SET_DPHY_FREQ_CTRL0_3(dev, dphy, val)	\
-+			kmb_write_bits_mipi(dev, DPHY_FREQ_CTRL0_3 \
-+			+ (((dphy) / 4) * 4), (dphy % 4) * 8, 6, val)
-+
-+#define DPHY_FORCE_CTRL0			(0x128)
-+#define DPHY_FORCE_CTRL1			(0x12C)
-+#define MIPI_DPHY_STAT0_3			(0x134)
-+#define MIPI_DPHY_STAT4_7			(0x138)
-+#define	  GET_STOPSTATE_DATA(dev, dphy)		\
-+			(((kmb_read_mipi(dev, MIPI_DPHY_STAT0_3 + \
-+					 ((dphy) / 4) * 4)) >> \
-+					 (((dphy % 4) * 8) + 4)) & 0x03)
-+
-+#define MIPI_DPHY_ERR_STAT6_7			(0x14C)
-+
-+#define DPHY_TEST_CTRL0				(0x154)
-+#define   SET_DPHY_TEST_CTRL0(dev, dphy)		\
-+			kmb_set_bit_mipi(dev, DPHY_TEST_CTRL0, (dphy))
-+#define   CLR_DPHY_TEST_CTRL0(dev, dphy)		\
-+			kmb_clr_bit_mipi(dev, DPHY_TEST_CTRL0, \
-+						(dphy))
-+#define DPHY_TEST_CTRL1				(0x158)
-+#define   SET_DPHY_TEST_CTRL1_CLK(dev, dphy)	\
-+			kmb_set_bit_mipi(dev, DPHY_TEST_CTRL1, (dphy))
-+#define   CLR_DPHY_TEST_CTRL1_CLK(dev, dphy)	\
-+			kmb_clr_bit_mipi(dev, DPHY_TEST_CTRL1, (dphy))
-+#define   SET_DPHY_TEST_CTRL1_EN(dev, dphy)	\
-+			kmb_set_bit_mipi(dev, DPHY_TEST_CTRL1, ((dphy) + 12))
-+#define   CLR_DPHY_TEST_CTRL1_EN(dev, dphy)	\
-+			kmb_clr_bit_mipi(dev, DPHY_TEST_CTRL1, ((dphy) + 12))
-+#define DPHY_TEST_DIN0_3			(0x15c)
-+#define   SET_TEST_DIN0_3(dev, dphy, val)		\
-+			kmb_write_mipi(dev, DPHY_TEST_DIN0_3 + \
-+			4, ((val) << (((dphy) % 4) * 8)))
-+#define DPHY_TEST_DOUT0_3			(0x168)
-+#define   GET_TEST_DOUT0_3(dev, dphy)		\
-+			(kmb_read_mipi(dev, DPHY_TEST_DOUT0_3) \
-+			>> (((dphy) % 4) * 8) & 0xff)
-+#define DPHY_TEST_DOUT4_7			(0x16C)
-+#define   GET_TEST_DOUT4_7(dev, dphy)		\
-+			(kmb_read_mipi(dev, DPHY_TEST_DOUT4_7) \
-+			>> (((dphy) % 4) * 8) & 0xff)
-+#define DPHY_TEST_DOUT8_9			(0x170)
-+#define DPHY_TEST_DIN4_7			(0x160)
-+#define DPHY_TEST_DIN8_9			(0x164)
-+#define DPHY_PLL_LOCK				(0x188)
-+#define   GET_PLL_LOCK(dev, dphy)		\
-+			(kmb_read_mipi(dev, DPHY_PLL_LOCK) \
-+			& (1 << ((dphy) - MIPI_DPHY6)))
-+#define DPHY_CFG_CLK_EN				(0x18c)
-+
-+#define MSS_MIPI_CIF_CFG			(0x00)
-+#define MSS_LCD_MIPI_CFG			(0x04)
-+#define MSS_CAM_CLK_CTRL			(0x10)
-+#define MSS_LOOPBACK_CFG			(0x0C)
-+#define   LCD					BIT(1)
-+#define   MIPI_COMMON				BIT(2)
-+#define   MIPI_TX0				BIT(9)
-+#define MSS_CAM_RSTN_CTRL			(0x14)
-+#define MSS_CAM_RSTN_SET			(0x20)
-+#define MSS_CAM_RSTN_CLR			(0x24)
-+
-+#define MSSCPU_CPR_CLK_EN			(0x0)
-+#define MSSCPU_CPR_RST_EN			(0x10)
-+#define BIT_MASK_16				(0xffff)
-+/*icam lcd qos */
-+#define LCD_QOS_PRIORITY			(0x8)
-+#define LCD_QOS_MODE				(0xC)
-+#define LCD_QOS_BW				(0x10)
-+#endif /* __KMB_REGS_H__ */
++struct kmb_plane *kmb_plane_init(struct drm_device *drm);
++void kmb_plane_destroy(struct drm_plane *plane);
++#endif /* __KMB_PLANE_H__ */
 -- 
 2.7.4
 
