@@ -2,78 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA53288C81
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9193288C82
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388724AbgJIPYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 11:24:01 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:40108 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732056AbgJIPYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 11:24:01 -0400
-Received: by mail-lf1-f66.google.com with SMTP id a9so11086584lfc.7
-        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 08:23:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wUN+BhQr2Eta8Yd9jiPJ+JMdhJa3A/naA3AYrAu0GCA=;
-        b=QlQ9jK1myTkjXSyHtzE7NZgN5AnaMSovY23SHAPytq95CDX10jKAqrQxv3LQF5dqEq
-         5Ryx9531TYoF5xmRGkU2RRjhENMJUYBLYtqFQ5/CifwAs/eabUFQJyFz83vt7WaquaWM
-         HsNfuwlZa/Dgv6k4V8OydxLwKKq4DgTjIMAWC/Lqivan9P8NtN5ClLRgGEsgASYJ9Ib8
-         njAjejiTJWbiurWqBDwOjpilHPzYJCRmmVtoALHOQVp83FM5swTu8XTFPWMZWe7ngzNg
-         IRRHFaLAiZC4mqMTFdq69z1YBGYMKNJfe91X/HBF7iOnm/Vj5cNj7TeR+/u5Otv9DF4/
-         SLgQ==
-X-Gm-Message-State: AOAM532lLXILPW0yK0yW475/Uin7S4JXB4yK1iFgbKvLBCwp4ERTjoaQ
-        Doj83PliTpSJBz6OwUb4bDTBoHbagAamnQ==
-X-Google-Smtp-Source: ABdhPJyRRIe3k4H086Djzlkt2CXq+xrtYpAHQl06PwYEdpcBXIjddU360/9DRCiNnDF37CcbePLdeA==
-X-Received: by 2002:ac2:41d8:: with SMTP id d24mr4243617lfi.458.1602257036978;
-        Fri, 09 Oct 2020 08:23:56 -0700 (PDT)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
-        by smtp.gmail.com with ESMTPSA id f22sm785546lfm.172.2020.10.09.08.23.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Oct 2020 08:23:55 -0700 (PDT)
-Received: by mail-lf1-f48.google.com with SMTP id 77so886594lfl.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 08:23:55 -0700 (PDT)
-X-Received: by 2002:a19:e55:: with SMTP id 82mr4166824lfo.571.1602257035395;
- Fri, 09 Oct 2020 08:23:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910923.git-series.maxime@cerno.tech>
- <8e63e9092f0fa4690a3fe6d21edd613b1f9c6874.1601910923.git-series.maxime@cerno.tech>
-In-Reply-To: <8e63e9092f0fa4690a3fe6d21edd613b1f9c6874.1601910923.git-series.maxime@cerno.tech>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Fri, 9 Oct 2020 23:23:45 +0800
-X-Gmail-Original-Message-ID: <CAGb2v656fPmEqQyuXgYf+9q+ybMWotgtbThTxKZosE7v_XCELw@mail.gmail.com>
-Message-ID: <CAGb2v656fPmEqQyuXgYf+9q+ybMWotgtbThTxKZosE7v_XCELw@mail.gmail.com>
-Subject: Re: [PATCH RESEND v3 4/6] drm/sun4i: tcon: Support the LVDS Dual-Link
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S2388851AbgJIPYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 11:24:41 -0400
+Received: from foss.arm.com ([217.140.110.172]:53668 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732056AbgJIPYl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Oct 2020 11:24:41 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1542D1063;
+        Fri,  9 Oct 2020 08:24:40 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D02D3F70D;
+        Fri,  9 Oct 2020 08:24:38 -0700 (PDT)
+Date:   Fri, 9 Oct 2020 16:24:33 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Ard Biesheuvel <ardb@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Memory Management List <linux-mm@kvack.org>,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
         Frank Rowand <frowand.list@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Christoph Hellwig <hch@lst.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
+Message-ID: <20201009152433.GA19953@e121166-lin.cambridge.arm.com>
+References: <20201001161740.29064-2-nsaenzjulienne@suse.de>
+ <20201001171500.GN21544@gaia>
+ <20201001172320.GQ21544@gaia>
+ <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
+ <20201002115541.GC7034@gaia>
+ <12f33d487eabd626db4c07ded5a1447795eed355.camel@suse.de>
+ <20201009071013.GA12208@lst.de>
+ <CAMj1kXG+7Lq=rgUfyU_XS9LrJwpUiC8nKsRPom+R0=phuXioHQ@mail.gmail.com>
+ <513833810c15b5efeab7c3cbae1963a78c71a79f.camel@suse.de>
+ <CAMj1kXGP_OTKgqMT0-+t3=7EKDY26y9n9xjLodSF1E-mUCe9tg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMj1kXGP_OTKgqMT0-+t3=7EKDY26y9n9xjLodSF1E-mUCe9tg@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 5, 2020 at 11:16 PM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> The A20 and other SoC with two TCONs (A31, R40, etc.) can use its second
-> TCON as the secondary LVDS link in a dual-link setup, with the TCON0 being
-> the main link. Extend a bit the parsing code to leverage the DRM dual-link
-> code, register only the LVDS output on the primary TCON, and add the needed
-> bits to setup the TCON properly.
->
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+On Fri, Oct 09, 2020 at 11:13:59AM +0200, Ard Biesheuvel wrote:
+> On Fri, 9 Oct 2020 at 10:36, Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> >
+> > On Fri, 2020-10-09 at 09:37 +0200, Ard Biesheuvel wrote:
+> > > On Fri, 9 Oct 2020 at 09:11, Christoph Hellwig <hch@lst.de> wrote:
+> > > > On Thu, Oct 08, 2020 at 12:05:25PM +0200, Nicolas Saenz Julienne wrote:
+> > > > > Sadly I just realised that the series is incomplete, we have RPi4 users that
+> > > > > want to boot unsing ACPI, and this series would break things for them. I'll
+> > > > > have a word with them to see what we can do for their use-case.
+> > > >
+> > > > Stupid question:  why do these users insist on a totally unsuitable
+> > > > interface? And why would we as Linux developers care to support such
+> > > > a aims?
+> > >
+> > > The point is really whether we want to revert changes in Linux that
+> > > made both DT and ACPI boot work without quirks on RPi4.
+> >
+> > Well, and broke a big amount of devices that were otherwise fine.
+> >
+> 
+> Yeah that was unfortunate.
+> 
+> > > Having to check the RPi4 compatible string or OEM id in core init code is
+> > > awful, regardless of whether you boot via ACPI or via DT.
+> > >
+> > > The problem with this hardware is that it uses a DMA mask which is
+> > > narrower than 32, and the arm64 kernel is simply not set up to deal
+> > > with that at all. On DT, we have DMA ranges properties and the likes
+> > > to describe such limitations, on ACPI we have _DMA methods as well as
+> > > DMA range attributes in the IORT, both of which are now handled
+> > > correctly. So all the information is there, we just have to figure out
+> > > how to consume it early on.
+> >
+> > Is it worth the effort just for a single board? I don't know about ACPI but
+> > parsing dma-ranges that early at boot time is not trivial. My intuition tells
+> > me that it'd be even harder for ACPI, being a more complex data structure.
+> >
+> 
+> Yes, it will be harder, especially for the _DMA methods.
+> 
+> > > Interestingly, this limitation always existed in the SoC, but it
+> > > wasn't until they started shipping it with more than 1 GB of DRAM that
+> > > it became a problem. This means issues like this could resurface in
+> > > the future with existing SoCs when they get shipped with more memory,
+> > > and so I would prefer fixing this in a generic way.
+> >
+> > Actually what I proposed here is pretty generic. Specially from arm64's
+> > perspective. We call early_init_dt_scan(), which sets up zone_dma_bits based on
+> > whatever it finds in DT. Both those operations are architecture independent.
+> > arm64 arch code doesn't care about the logic involved in ascertaining
+> > zone_dma_bits. I get that the last step isn't generic. But it's all setup so as
+> > to make it as such whenever it's worth the effort.
+> >
+> 
+> The problem is that, while we are providing a full description of the
+> SoC's capabilities, we short circuit this by inserting knowledge into
+> the code (that is shared between all DT architectures) that
+> "brcm,bcm2711" is special, and needs a DMA zone override.
+> 
+> I think for ACPI boot, we might be able to work around this by cold
+> plugging the memory above 1 GB, but I have to double check whether it
+> won't get pulled into ZONE_DMA32 anyway (unless anyone can answer that
+> for me here from the top of their head)
 
-Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+Is this information that we can infer from IORT nodes and make it
+generic (ie make a DMA limit out of all IORT nodes allowed ranges) ?
 
-But I suppose you might need to change the DT property name.
+We can move this check to IORT code and call it from arm64 if it
+can be made to work.
+
+Thanks,
+Lorenzo
