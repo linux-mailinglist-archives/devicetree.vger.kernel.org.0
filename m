@@ -2,98 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC4E2885D4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52E0928860D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:38:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733051AbgJIJQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 05:16:23 -0400
-Received: from foss.arm.com ([217.140.110.172]:45660 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731262AbgJIJQW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Oct 2020 05:16:22 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5C1ED6E;
-        Fri,  9 Oct 2020 02:16:21 -0700 (PDT)
-Received: from [10.57.51.133] (unknown [10.57.51.133])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD9AF3F66B;
-        Fri,  9 Oct 2020 02:16:18 -0700 (PDT)
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     rjw@rjwysocki.net
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, amitk@kernel.org, corbet@lwn.net,
-        daniel.lezcano@linaro.org, Dietmar.Eggemann@arm.com,
-        qperret@google.com, dianders@chromium.org, mka@chromium.org,
-        rnayak@codeaurora.org
-References: <20201002114426.31277-1-lukasz.luba@arm.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
-Date:   Fri, 9 Oct 2020 10:16:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1733141AbgJIJip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 05:38:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733113AbgJIJip (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 05:38:45 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF02C0613D2
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 02:38:44 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id u8so10025803lff.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 02:38:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wQZ85dJNsIyQtNjnJDTR2ihKmDYZl4o1wc+cD1p5Uys=;
+        b=EyBXWCuKn5Qfulspno0TqkUKWkmtsntf2WZ6aTm0tZypLd4Ah6UVqvyBZrfYrw6GC3
+         WIp1BqHp+4ACn92mT/zB7PHor5fdbk56BcW0Wj5dS6nelhlcD9LhtS9/8wSPEA7TQ0Za
+         23lJuLKWC6liqUXNRsqMQPBbZJ60Fd7YQW+SmmzHV1U93+juESSYcLseBKjKvTAMdMDa
+         owpSj+DJNBIOKN6aCuSWx4yPgN5rn7npeYJ6htvg9+kZTIy9j4gQG4DCOi4q/PLRGx7b
+         9ofFF7x+4XNaJK5r7q+Zi29ZhFqRf36GnKv6VWrvmwUH5oIRRhjFIIqIMTlLahRYR/cO
+         fWbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wQZ85dJNsIyQtNjnJDTR2ihKmDYZl4o1wc+cD1p5Uys=;
+        b=ob0FYKeSCNnfjAHZ4mSk+OSLOkdrWHBnymYTc7sfRMzuhJjFcwQA7ARUBK2dxpWEBH
+         azMOHzC8FIay7IJg+oIgphjr5CH+MNFIUbFRl6ZqwUFEI/ZIqnEG23s7Pvcv/bCPPd0x
+         8Y/0M/b5WXphPc68Sqd6j2m3+k1WoaYzp71qqZYfPMB/8jSwhkyyEdQA1YexGZmsIbrG
+         EoamQOFGcjBhapon/psJ9Ciy0fuVpBDA7XVgFp1cCH5/1iFKB+LRIe4xWBr78xAZVDrd
+         0EwPKnpzrBHkonjFtpOdaSsaz7CzIDkh8chXDX2Tj1tDMQZc72JD9+3vs+7XBhnid0Z/
+         UJ4w==
+X-Gm-Message-State: AOAM532/pbwJKvgoWtFOo+2GrrWhQet0w5VMfw3fd3Tgh2Ev8QYJARhr
+        xFBbpoBW47u2onhalSGsWoIf8aKURiYiubyETPkAXg==
+X-Google-Smtp-Source: ABdhPJw1Hr+9bP5FQEtUOU0p0RHYUw+Mo6ABI9TPDkRcxw0lXEEjdHuU++zVBajvD6EFYP2r4SQStnlEK25XtpZ3UuI=
+X-Received: by 2002:ac2:42d8:: with SMTP id n24mr3660836lfl.502.1602236323336;
+ Fri, 09 Oct 2020 02:38:43 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201002114426.31277-1-lukasz.luba@arm.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201006142532.2247515-1-lars.povlsen@microchip.com>
+ <20201006142532.2247515-3-lars.povlsen@microchip.com> <CACRpkda+OSgma3E0XxXUk8a2yrn5Hpu3a47cBN50rOkoSMkiwQ@mail.gmail.com>
+ <87ft6px9wc.fsf@soft-dev15.microsemi.net>
+In-Reply-To: <87ft6px9wc.fsf@soft-dev15.microsemi.net>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 9 Oct 2020 11:38:32 +0200
+Message-ID: <CACRpkdYqKqqM8D0vrBWbo0=7OFthU2kcK2tjd45dD7DxEkaYWg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 2/3] pinctrl: pinctrl-mchp-sgpio: Add pinctrl
+ driver for Microsemi Serial GPIO
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rafael,
+Hi Lars,
 
-On 10/2/20 12:44 PM, Lukasz Luba wrote:
-> Hi all,
-> 
-> The Energy Model supports power values expressed in an abstract scale.
-> This has an impact on Intelligent Power Allocation (IPA) and should be
-> documented properly. There is also a need to update the DT binding for the
-> 'sustainable-power' and allow it to have abstract scale as well.
-> 
-> Changes:
-> v2:
-> - updated sustainable power section in IPA documentation
-> - updated DT binding for the 'sustainable-power'
-> 
-> The v1 of the patch set and related discussion can be found in [1].
-> 
-> Regards,
-> Lukasz Luba
-> 
-> [1] https://lore.kernel.org/linux-doc/20200929121610.16060-1-lukasz.luba@arm.com/
-> 
-> Lukasz Luba (3):
->    docs: Clarify abstract scale usage for power values in Energy Model
->    PM / EM: update the comments related to power scale
->    dt-bindings: thermal: update sustainable-power with abstract scale
-> 
->   .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
->   .../driver-api/thermal/power_allocator.rst          | 13 ++++++++++++-
->   Documentation/power/energy-model.rst                | 13 +++++++++++++
->   Documentation/scheduler/sched-energy.rst            |  5 +++++
->   include/linux/energy_model.h                        | 11 +++++------
->   kernel/power/energy_model.c                         |  2 +-
->   6 files changed, 45 insertions(+), 12 deletions(-)
-> 
+I'm overall mostly happy with the latest posting (not the one I respond to here)
 
-Could you take patch 1/3 and patch 2/3 via your PM tree,
-please? I will be very grateful.
+On Thu, Oct 8, 2020 at 12:57 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+> > On Tue, Oct 6, 2020 at 4:25 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
 
-These patches just update the documentation and comments regarding
-an issue that we can have: bogoWatts in the Energy Model (and we
-already have). One of the drawbacks is that we cannot derive real energy
-from these numbers. Will see how this would evolve.
+> >> +       gc->of_xlate            = microchip_sgpio_of_xlate;
+> >> +       gc->of_gpio_n_cells     = 3;
+> >
+> > So I'm sceptical to this.
+> >
+> > Why can't you just use the pin index in cell 0 directly
+> > and avoid cell 1?
+> >
+>
+> You scepticism has surfaced before :-). The (now) 2 indices relates to
+> how the hardware address signals.
+>
+> Each signal/pin is addressed by port, bit number and direction. We now
+> have the direction encoded in the bank/phandle.
 
-The patch 3/3 with dt-binding is not going to fly upstream [1].
-I hope developers will put a real number in DT so we could
-have real milliWatts from that source (wishful thinking).
-Doug even made a script, which might be helpful for that [2].
+I'm sorry but I just don't get it, I suppose. To me it is pretty
+straight-forward
+that the cells indicate the pin and then the flags. I do understand you
+need the port at all, since this is implicit from the reg property
+of the DT node. Are these two different things?
 
-Regards,
-Lukasz
-
-[1] 
-https://lore.kernel.org/linux-pm/45fae8cd-0635-41dc-c744-3c9833bf6492@arm.com/
-[2] 
-https://lore.kernel.org/linux-pm/CAD=FV=U1FP0e3_AVHpauUUZtD-5X3XCwh5aT9fH_8S_FFML2Uw@mail.gmail.com/
+Yours,
+Linus Walleij
