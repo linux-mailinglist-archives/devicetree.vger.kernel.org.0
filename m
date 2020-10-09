@@ -2,145 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4650B288F4D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 18:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 052DF288F8F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 19:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389949AbgJIQ5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 12:57:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389948AbgJIQ5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 12:57:47 -0400
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF18C0613D6
-        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 09:57:45 -0700 (PDT)
-Received: by mail-oi1-x241.google.com with SMTP id z26so10811882oih.12
-        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 09:57:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brighamcampbell-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:subject:message-id:mime-version:content-disposition;
-        bh=EbwPy1y/PDnWF/XWV+k/167QLJ1qvpJCPajzvXyb2I8=;
-        b=cUqrB4JklGqN2yfEv9pV2mxV3CrUk8jzQFzLjg/lPf/k5MuTY4NieXxa8mNd13wKr/
-         tXtsmyaNFRo19sKPTYsLzsNt+EUQl4wUcJbT8kUytcNLrv6NHCfBf/0kFHGJ6aX/SuJi
-         2+XZfjY+p8uTrypnBLiaMHRxyElVzGFNa7spJwfUyV9dpFuyeClwedAoXFxdSnCbQJoi
-         kTwd1MRObH+PZeIsaAwEvHWMdPvq718+zMAmATiZGWwv/W42rF3WCk3qcH86Q8wzTmnU
-         imB6Y9megyaxPfwP+FH5fxDL/+9BaMzo2RTvcybmv6LBzUPlbN67BPhnDgKGfYOgr5I0
-         6oyw==
+        id S2389858AbgJIRGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 13:06:02 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:43400 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389529AbgJIRGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 13:06:02 -0400
+Received: by mail-ot1-f47.google.com with SMTP id n61so9603520ota.10;
+        Fri, 09 Oct 2020 10:06:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition;
-        bh=EbwPy1y/PDnWF/XWV+k/167QLJ1qvpJCPajzvXyb2I8=;
-        b=sk27GfngdoQDM/UfI9vYGUn1G6qBwqMUTpsGltSwbXMl6U8HpqbUNP0QbK2Er5Sess
-         s5QRhbFf1b2enL9gvSfpKI3rCLlQ9eWkmZ9RAUU1Ochyt62xabCYNVvlUIUixN3jiGR0
-         NpQounDC70e0L1ElAsDbQ9vs9J3rzxjrW0xEc2o68mNs2bp37Fr+HjdMliuoM9wbIXhg
-         nZ7rVvTlYZx8Eo9l5rinfCZvaOqAIRVAuYoyG2iohORjAiiuQzAwRRYklHpGfIuQ9wmf
-         bNkBXPfrQJUuA9J4mOdWPL7E/KZD0zKOzwzeRFwgamEw/Iqh1JxRIM9vUrNybsOD0/nj
-         3W3A==
-X-Gm-Message-State: AOAM530azk/OyJd3Dij5i4qxDJYeYk3rGv55G0jdQRrjCpy8d/EW5pv3
-        VrPAMILONa7SZlqCRNLO8AXeow==
-X-Google-Smtp-Source: ABdhPJzXjp4t0VYZDcxs8EgiRNA3NNcLIBvlG1vx4qSFeJE7/hcfhQWWEW1MZsL8kp78i2ZnVAv7KA==
-X-Received: by 2002:aca:b354:: with SMTP id c81mr2914448oif.41.1602262665045;
-        Fri, 09 Oct 2020 09:57:45 -0700 (PDT)
-Received: from arch-xps.localdomain ([72.52.67.8])
-        by smtp.gmail.com with ESMTPSA id r33sm8001898ooi.48.2020.10.09.09.57.43
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Hahw4Z+pkoPGKYqMxdiIRA4sO3mk0rSthtnfTsKHy7k=;
+        b=UdeL3tGFgx8Kvmz08I3+m4QfCRologaggI9T5ZDlD68vjXAnge6k0YWrouUPzx+R/I
+         EuduGG0WQJx6dJxsmTXVADkY52wIbxkfGUvklcLdRwjT6qqDiytm/aX39+bckZlpw72U
+         Ae+QhDSc6SuvQdvJQ263NvpJWvTfJVh2PLLcHaLaqomrbU/hIAs5eyFRES8Hpvqa41Fd
+         FPIIL93uu1lx5AG7NApb+sF+MfSPmMNe33Zr5jawTzhj6tgKj4fJ0EtejVVn+m9KiWdr
+         NKbdcpubJIYiZSjojShaDTnN3ryrWhOONqAexPoR3V1KNNhOnDoA6Xv8W+XMYg8UbdEV
+         +Zyg==
+X-Gm-Message-State: AOAM530VTA5zIUcDYAzbt8ZktNZFvfRM438my0fZ+cbXgP6em9YzXpWo
+        HK9UQsVDK6GkSPzUjdRcXeQ3xWQXC/cd
+X-Google-Smtp-Source: ABdhPJywwcCYWZfZPtwXKX6Rg4+wSmBerOuOFejivO7kYf/2E44i9IRn8BCFPP9dYkJL9fi1kgovhw==
+X-Received: by 2002:a05:6830:1f4d:: with SMTP id u13mr9075478oth.184.1602263159959;
+        Fri, 09 Oct 2020 10:05:59 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id r188sm167207oia.13.2020.10.09.10.05.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Oct 2020 09:57:44 -0700 (PDT)
-Date:   Fri, 9 Oct 2020 10:57:42 -0600
-From:   Brigham Campbell <me@brighamcampbell.com>
-To:     robh+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alchark@gmail.com
-Subject: [PATCH] ARM: dts: Add empty "chosen" node to WM8xxx device trees
-Message-ID: <20201009165742.GA35334@arch-xps.localdomain>
+        Fri, 09 Oct 2020 10:05:59 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: Add running yamllint to dt_binding_check
+Date:   Fri,  9 Oct 2020 12:05:57 -0500
+Message-Id: <20201009170557.168785-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following patch is a bug fix for an issue introduced by commit
-abe60a3a7afb4058278864aa18c5faf62094c11a which removed the deprecated
-device tree skeletons.
+Add a yamllint config file and support for running yamllint on DT
+binding schema files. This runs on the whole tree as yamllint is Python
+and suffers from Python's slow startup times.
 
-For the devices corresponding to these device trees, an updated version
-of U-Boot is not available. Therefore, we must append DTBs to the kernel
-instead of counting on the bootloader to load one into memory and pass
-the pointer to the kernel during init.
+Users can run on individual files doing:
 
-For some reason, when this method of appending DTBs to the kernel is
-used with any revision after abe60a3a7, the DTB seems to load correctly,
-but the kernel parameters aren't loaded correctly. Regardless of whether
-the kernel parameters are built into the kernel or passed in via U-Boot,
-they simply aren't registered by the running kernel.
+yamllint -c Documentation/devicetree/bindings/.yamllint <binding file>
 
-Adding an empty "chosen" node to the device tree fixes this issue. I've
-tested this with a WM8650-based laptop. Regrettably, I'd be lying if I
-said that I know exactly why this fixes the problem. However, I know
-that this solution works. I'm happy to hear suggestions/ridicule
-regarding these changes.
-
-Finally, I have my suspicions that the WM8xxx series devices aren't the
-only ones affected by this issue. I think this solution, if acceptable,
-could be applied to other devices which may or may not be having issues
-related to appended DTBs and kernel parameters. Perhaps other devices
-which commit abe60a3a7 changed?
-
-This is my first patch submission to the Linux kernel, so please tear it
-apart. Let me know what I've done incorrectly. And thanks, Alexey, for
-helping me along. I have much to learn and I wouldn't have made it half
-as far without his patience.
-
-Thanks,
-Brigham Campbell
-
-Signed-off-by: Brigham Campbell <me@brighamcampbell.com>
-
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm/boot/dts/wm8505.dtsi | 2 ++
- arch/arm/boot/dts/wm8650.dtsi | 2 ++
- arch/arm/boot/dts/wm8850.dtsi | 2 ++
- 3 files changed, 6 insertions(+)
+ Documentation/devicetree/bindings/.yamllint | 39 +++++++++++++++++++++
+ Documentation/devicetree/bindings/Makefile  |  9 ++++-
+ 2 files changed, 47 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/.yamllint
 
-diff --git a/arch/arm/boot/dts/wm8505.dtsi b/arch/arm/boot/dts/wm8505.dtsi
-index 168cd12b07bc..2b814b48b458 100644
---- a/arch/arm/boot/dts/wm8505.dtsi
-+++ b/arch/arm/boot/dts/wm8505.dtsi
-@@ -10,6 +10,8 @@ / {
- 	#size-cells = <1>;
- 	compatible = "wm,wm8505";
- 
-+	chosen {};
+diff --git a/Documentation/devicetree/bindings/.yamllint b/Documentation/devicetree/bindings/.yamllint
+new file mode 100644
+index 000000000000..214abd3ec440
+--- /dev/null
++++ b/Documentation/devicetree/bindings/.yamllint
+@@ -0,0 +1,39 @@
++extends: relaxed
 +
- 	cpus {
- 		#address-cells = <0>;
- 		#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/wm8650.dtsi b/arch/arm/boot/dts/wm8650.dtsi
-index bc057b6f7d16..a68c82c8035e 100644
---- a/arch/arm/boot/dts/wm8650.dtsi
-+++ b/arch/arm/boot/dts/wm8650.dtsi
-@@ -10,6 +10,8 @@ / {
- 	#size-cells = <1>;
- 	compatible = "wm,wm8650";
++rules:
++  line-length:
++    # 80 chars should be enough, but don't fail if a line is longer
++    max: 110
++    allow-non-breakable-words: true
++    level: warning
++  braces:
++    min-spaces-inside: 0
++    max-spaces-inside: 1
++    min-spaces-inside-empty: 0
++    max-spaces-inside-empty: 0
++  brackets:
++    min-spaces-inside: 0
++    max-spaces-inside: 1
++    min-spaces-inside-empty: 0
++    max-spaces-inside-empty: 0
++  colons: {max-spaces-before: 0, max-spaces-after: 1}
++  commas: {min-spaces-after: 1, max-spaces-after: 1}
++  comments:
++    require-starting-space: false
++    min-spaces-from-content: 1
++  comments-indentation: disable
++  document-start:
++    present: true
++  empty-lines:
++    max: 3
++    max-end: 1
++  empty-values:
++    forbid-in-block-mappings: true
++    forbid-in-flow-mappings: true
++  hyphens:
++    max-spaces-after: 1
++  indentation:
++    spaces: 2
++    indent-sequences: true
++    check-multi-line-strings: false
++  trailing-spaces: false
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index ec8073cb2e71..f50420099a55 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -3,6 +3,8 @@ DT_DOC_CHECKER ?= dt-doc-validate
+ DT_EXTRACT_EX ?= dt-extract-example
+ DT_MK_SCHEMA ?= dt-mk-schema
  
-+	chosen {};
++DT_SCHEMA_LINT = $(shell which yamllint)
 +
- 	cpus {
- 		#address-cells = <0>;
- 		#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/wm8850.dtsi b/arch/arm/boot/dts/wm8850.dtsi
-index 65c9271050e6..c864883ae777 100644
---- a/arch/arm/boot/dts/wm8850.dtsi
-+++ b/arch/arm/boot/dts/wm8850.dtsi
-@@ -10,6 +10,8 @@ / {
- 	#size-cells = <1>;
- 	compatible = "wm,wm8850";
+ DT_SCHEMA_MIN_VERSION = 2020.8.1
  
-+	chosen {};
+ PHONY += check_dtschema_version
+@@ -24,6 +26,10 @@ find_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
+ 		-name 'processed-schema*' ! \
+ 		-name '*.example.dt.yaml' \)
+ 
++quiet_cmd_yamllint = LINT    $(src)
++      cmd_yamllint = $(find_cmd) | \
++                     xargs $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint
 +
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+ quiet_cmd_chk_bindings = CHKDT   $@
+       cmd_chk_bindings = $(find_cmd) | \
+                          xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)
+@@ -37,6 +43,7 @@ quiet_cmd_mk_schema = SCHEMA  $@
+ 		      rm -f $$f
+ 
+ define rule_chkdt
++	$(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
+ 	$(call cmd,chk_bindings)
+ 	$(call cmd,mk_schema)
+ endef
+@@ -48,7 +55,7 @@ override DTC_FLAGS := \
+ 	-Wno-graph_child_address \
+ 	-Wno-interrupt_provider
+ 
+-$(obj)/processed-schema-examples.json: $(DT_DOCS) check_dtschema_version FORCE
++$(obj)/processed-schema-examples.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
+ 	$(call if_changed_rule,chkdt)
+ 
+ ifeq ($(DT_SCHEMA_FILES),)
 -- 
-2.28.0
+2.25.1
 
