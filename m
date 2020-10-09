@@ -2,109 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66D292887B9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:17:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1735E2887CB
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:28:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732368AbgJILRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 07:17:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51838 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731313AbgJILRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 07:17:16 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8529DC0613D6
-        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 04:17:15 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id y14so6574903pfp.13
-        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 04:17:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=sdKjLE39B7ygzVMKXpWDsFa+IvvEq27MGJewZf/7lCg=;
-        b=Nw+5vsPOCAS7UG8LvQZQR5XoQM3EArj6MEMgN42MSx2WhLXo2n7CqMWoffdqNQO7VM
-         H7dgPtUyrr7Bp3AiXcgiEbnIe/jL0Y0Q6/um7ChE5MT3umLjSPAjnzJKQVp560Q/Yjom
-         dlCs3XWucYsx6mDUTX9krJvWc6elh11ttJykknP3DgnW2LKqjDCcUXmJbKPmTzQDtKi0
-         zNxQndFXYPyZlmveBrH8+Uu5WhAOjdpbpDfE7MKxaiiRNRaC9boPkeXTZloCWU8+xArI
-         MspHoYYS4wcIqWGuCoe597m6XBZM6hhGrNhklKo/h/7rOD1n+KUg+SXlzW9wVYkXyoIQ
-         bI6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=sdKjLE39B7ygzVMKXpWDsFa+IvvEq27MGJewZf/7lCg=;
-        b=ayl3teQ1/j6ziuvVa89UfemMJQX8bREmEjNyndiyNgwl/8UZH19+vmrb/u2vi5nuCJ
-         Bo4i2Tn4urn3kww0zrRv5Kn2JxATNeMPzXTOF80qSqaQr/VXB0qYZS1i/lwS/WFxSOc7
-         jsiTgfWjWB/vF/vJf8iy4sWG2+lb1dH6TPp6Yp2klfmRocSvCNiSHISmcnnWqfUp+7s5
-         WRbfKD00Zbv5syATscDBJdewF4+lfLNtiD3ASU+mnPR1+IacD/lvskaQiswIvfCRc4w/
-         mcbiQiRFTRGq3OHykdvcqk+8IPZc89Vaatxf2O38/gTA6sXOvDz/mHQqDtw10nB2xo6q
-         UvdA==
-X-Gm-Message-State: AOAM5309JWWqJLGSVrDWI8l6iG/YNRybi3mjuglZzrFTRMB1sZoiI1bG
-        EL+B0fQpvosMuCvE4UOwk5NR8gpmO40P1g==
-X-Google-Smtp-Source: ABdhPJxBKuG1iPxOpqq941k33Ge0O8I4ewjPMmBzrqpHWVf5NcOde3wtKA9HWOPkM8yq2Oo8IOl2rQ==
-X-Received: by 2002:a17:90a:dc06:: with SMTP id i6mr4132826pjv.162.1602242234766;
-        Fri, 09 Oct 2020 04:17:14 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id p22sm10941904pju.48.2020.10.09.04.17.13
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Oct 2020 04:17:13 -0700 (PDT)
-Date:   Fri, 9 Oct 2020 16:47:11 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     Ionela Voinescu <ionela.voinescu@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        sudeep.holla@arm.com, chris.redpath@arm.com,
-        morten.rasmussen@arm.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201009111711.5sl7m24engcwiqii@vireshk-i7>
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
- <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
- <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
+        id S1731769AbgJIL2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 07:28:09 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:40795 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727311AbgJIL2J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Oct 2020 07:28:09 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602242888; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=7SOw3lWK9P7+n02hV+SmjQ1SeqrU8OAZ/VA2UVy4Kmo=; b=WgDLswhtRLhH4L90IJhgHdVRIFq80SpKDpgkPRS7cmYgdMk44l69y+8+2amqqXz6z5LiAGpc
+ ofX4dP+JLhHZDKytk/uTvSYFv2sWMlKpqouboS23FncgOM25zZDVX6jTDSz/G3vtsH7a0Mgl
+ Rl9hjQM6NQIaSi7DAuaojT9dpNA=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 5f80493422a1856a122fd616 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 09 Oct 2020 11:27:48
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3CA3DC433CB; Fri,  9 Oct 2020 11:27:47 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BB3C5C433CB;
+        Fri,  9 Oct 2020 11:27:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BB3C5C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     gokulsri@codeaurora.org, sboyd@kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, sricharan@codeaurora.org,
+        ath11k@lists.infradead.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: Enabled MHI device over PCIe
+References: <1602160344-19586-1-git-send-email-gokulsri@codeaurora.org>
+        <1602160344-19586-4-git-send-email-gokulsri@codeaurora.org>
+        <20201008131115.GA23649@linux>
+        <7dd959fd2d9375d5529cf52e93aafda3@codeaurora.org>
+        <20201009082625.GD23649@linux>
+Date:   Fri, 09 Oct 2020 14:27:41 +0300
+In-Reply-To: <20201009082625.GD23649@linux> (Manivannan Sadhasivam's message
+        of "Fri, 9 Oct 2020 13:56:25 +0530")
+Message-ID: <87d01r1vwy.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-10-20, 12:10, Nicola Mazzucato wrote:
-> I thought about it and looked for other platforms' DT to see if can reuse
-> existing opp information. Unfortunately I don't think it is optimal. The reason
-> being that, because cpus have the same opp table it does not necessarily mean
-> that they share a clock wire. It just tells us that they have the same
-> capabilities (literally just tells us they have the same V/f op points).
++ ath11k list
 
-No.
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
 
-> Unless I am missing something?
+> On Thu, Oct 08, 2020 at 11:03:42PM +0530, gokulsri@codeaurora.org wrote:
+>> On 2020-10-08 18:41, Manivannan Sadhasivam wrote:
+>> > Hi,
+>> > 
+>> > On Thu, Oct 08, 2020 at 06:02:24PM +0530, Gokul Sriram Palanisamy wrote:
+>> > > Enabled MHI device support over PCIe and added memory
+>> > > reservation required for MHI enabled QCN9000 PCIe card.
+>> > > 
+>> > > Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+>> > > ---
+>> > >  arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi | 47
+>> > > ++++++++++++++++++++++++++++++
+>> > >  1 file changed, 47 insertions(+)
+>> > > 
+>> > > diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+>> > > b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+>> > > index 0827055..e5c1ec0 100644
+>> > > --- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+>> > > +++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+>
+> [...]
+>
+>> > > +	pcie0_rp: pcie0_rp {
+>> > > +		reg = <0 0 0 0 0>;
+>> > > +
+>> > > +		status = "ok";
+>> > > +		mhi_0: qcom,mhi@0 {
+>> > 
+>> > MHI doesn't support devicetree as of now so how is this supposed to
+>> > work?
+>> > Have you tested this series with mainline?
+>> > 
+>> > Thanks,
+>> > Mani
+>> > 
+>> 
+>>  Hi Mani,
+>>  This node entries will be consumed by ath11k driver and is not supposed to
+>> be consumed by mhi driver.
+>>  And yes, it is tested on Mainline.
 
-Yes.
+Upstream ath11k does not yet support QCN9074 so I don't see how this is
+tested with mainline ath11k. You must be using some out-of-tree
+_unofficial_ ath11k patches.
 
-Here are the different scenarios which can happen.
-- Two CPUs have separate OPP tables, even if they are exact copy of
-  each other, these CPUs don't share a clock line, but just v/f points
-  as you said.
+> Can you please point me to the relevant binding or the code which consumes this
+> change?
+>
+> Also please explain what it does! For enabling MHI support over PCIe you don't
+> need this node at all. You just need to define the PCIe device ID in the ath11k
+> driver and that's it.
+>
+> Adding Kalle to this thread...
 
-- Two CPUs use the same OPP table, i.e. both point to it, but
-  "opp-shared" property is missing. This is same as above case. They
-  just share the v/f points and this is the preferred way instead of
-  duplicate OPP tables.
+So currently QCN9074 firmware needs 55 MB of contiguous host memory and
+I suspect one reason for these DT entries is an ugly hack to provide
+that memory range to the firmware.
 
-- Case two with "opp-shared" property present in the OPP table. The
-  CPUs share clock-lines.
-
-And this is exactly how we find out today if CPUs share a policy or
-not.
+We are currently preparing QCN9074 patches for ath11k and finding a
+solution how to implement these properly in ath11k. Hopefully there's no
+need for hacks like this, we know more once we get the ath11k QCN9074
+patches ready. Please drop this patch.
 
 -- 
-viresh
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
