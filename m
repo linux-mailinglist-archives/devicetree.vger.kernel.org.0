@@ -2,219 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE400288411
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 09:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5670A2884E2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 10:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732239AbgJIH5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 03:57:41 -0400
-Received: from mail-eopbgr10041.outbound.protection.outlook.com ([40.107.1.41]:31851
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732086AbgJIH5l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Oct 2020 03:57:41 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ui6zBfDVVYidyRQxiGb6/fbn3U9Btg/s9s4Q8QYjjk1qEoWPoG1UYW5K9up8O76ej+BCp+FqwUHF1nfweJ4wYwrp3IMmyEr+v3TLzVfYUDKnf0ZoelnCI8saANfq+3cj4gcQd0CCx2FSOTPy0d+7JP99fyKDl6cbppgljEcSROIei/lu0G/OcD1mTuX5mff30h9eqCEB2Usb34tZS9hNXp2vjQAKVevjrhtFDIom9tGxfer7zbQt+pSAaAFmCQ9EcbiDPC+S7Gpo4PDedzUJv+PRJTa7/+7jfS4iGzBkw45BE2tsHvqITZUX9yi2l6kv5EXawb6DJgHiJAGStBa2Fg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wRa0Q7DrquzJP7eqTUU3J3p+uQMCGFvpciDgxyzRIe0=;
- b=Bki2SQrcSMOuzBkAeHwmjrMxT1pLhayFaahxHlIrpyGAgyi0MnfuWJEKiNIcP0qqMDigovg488Yih2tdFFn+BHBQUW/chaUqXvC8lz1rKJmSZrd6xGq3UKlCTjkiESwgckf12kgozWn1d9yUBZUNUH3j/OhN+htIMskOin7Sb9F4p+Tfv5X/ffz6gwEpdABjVVWDgQKum4YNKd6/S4c/YWZRkvQMpUFzWfTVS8r4M8Vkc3tTV0DFEo0CFgt0GAyaztVRH3HE2D9QDteoijXWsJOg7oPdUAuXUoLp8E3M2MeMm3dHkEG1tKnRZ5A6+jPGGCFqbjsLqBNykZv2ZUuCzw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wRa0Q7DrquzJP7eqTUU3J3p+uQMCGFvpciDgxyzRIe0=;
- b=ja+nF8HYhhvYa8L+473yROqDNg6l5aCWtveIDjAWB/7mueAcTrkXcn/ydV1VUjQbIR6AlJQwtHcwIi0wGoJxTXa0SCdvwdXmoyGvvrm6x1E3SFPolWEpSZZhExA8fZLC4htFxR2vk0JyUWNxPLKpRKVzdP3anLrEw1djCEj4gqM=
-Received: from AM0PR04MB4915.eurprd04.prod.outlook.com (2603:10a6:208:c5::20)
- by AM0PR04MB7092.eurprd04.prod.outlook.com (2603:10a6:208:19c::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.22; Fri, 9 Oct
- 2020 07:57:36 +0000
-Received: from AM0PR04MB4915.eurprd04.prod.outlook.com
- ([fe80::8de5:80f:f11a:5fa3]) by AM0PR04MB4915.eurprd04.prod.outlook.com
- ([fe80::8de5:80f:f11a:5fa3%7]) with mapi id 15.20.3455.024; Fri, 9 Oct 2020
- 07:57:36 +0000
-From:   Jacky Bai <ping.bai@nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
-Subject: RE: [PATCH 06/11] soc: imx: gpcv2: allow domains without
- power-sequence control
-Thread-Topic: [PATCH 06/11] soc: imx: gpcv2: allow domains without
- power-sequence control
-Thread-Index: AQHWl0Fo+PE1TNISW0yJPYfXXF8E36mO8ZRAgAADVYA=
-Date:   Fri, 9 Oct 2020 07:57:36 +0000
-Message-ID: <AM0PR04MB4915BCE944298083EE04EA1C87080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
- <20200930155006.535712-7-l.stach@pengutronix.de>
- <AM0PR04MB491542FC0615C59FB36F7B8E87080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-In-Reply-To: <AM0PR04MB491542FC0615C59FB36F7B8E87080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 62e3dbb5-8b18-4654-1125-08d86c28fc7f
-x-ms-traffictypediagnostic: AM0PR04MB7092:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB709227508EDB75690EC77ACB87080@AM0PR04MB7092.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: M0rIm48QD25b9+Dcg11yQfyPHCxJ2qKDmaesIkUrzsQ1Ypiw6eXNuhdYU754ZZY7GwauhbXqfEerWcOMQ7gHSqW5t6Sdcdo6RTKw1ZZGGGUPyW47zIgFlvMHD3JM3u2HccPtWwKPy5ZQFtKnhD1SwjPyHMqUBvuustmGXd4SRukJ/6Io1AYxPaSQNiTjf7H2IxY+B+pOrntcjJfloY2frZr7najixyo/9jbty47/irXCpNBQ/3rFfvhjBwFWNJcSPwlqhg7FNtKVWn8wKFXJiNLjf9TU/gUdYodaZa17+++T8Ll8iLXy1ciuLoO80d9YdutLAMPJ4L3ghhRkwsaI+A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB4915.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(376002)(396003)(136003)(366004)(346002)(86362001)(2906002)(64756008)(66556008)(66446008)(8936002)(66476007)(54906003)(8676002)(66946007)(76116006)(5660300002)(52536014)(7696005)(9686003)(83380400001)(316002)(110136005)(7416002)(71200400001)(478600001)(6506007)(55016002)(4326008)(186003)(2940100002)(26005)(33656002)(53546011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: nIJEzKy1fa32e73WnYqUY5eYhFEBIJ1IQkfERjU77nxxfT6cPVsf50FkygeuXDwwPp9mpd89VCXHoGg+zkDSS1tgX4L2Y/xV69CFzeu58CiFgk2XcvJ5hCNsDb4NvxxzilV5w7etJzhDeyYcucorcqytANqiqqDJy/L7Amhn3jAQqiuvCM4aKqp5tRqTYBa92qtQN2dtPyS7DkBsQLD27cqrtGCf3cNt6BkA8zK9i5nrZ18aNFUL0XYdeQW2MjNXfqNZ6ilatlTMYqzwFQjKwfIt1FeN0lzPnmRztdrOA+8cgFRh6Ig4gNedC9Ddcx6aU+yur+E5VQWDUnyztvHRK3mwhWboNnbPq415c5cq7iScUdQqHGxCfib3Z7hYm4HJmzTurTxajuEw1C7AOCcJfp8Njkd1Gn/niEF7Bexb++CTVu+6b+QwxHlMshJgIEqODWk1WZHSLJ2MSlKPs+n8AVePAiize4n0R7fTVdH8rFF3KkwqJM4epYbFY9/s/SR/KXv/NihlOyA942MGgUa56urgpm2Qm/K9oJTuQiShuT3d6Z4i0mvm23/35Jveoc6Eip1E2fnRnm++7yGMd6Zi21vw9j3yhHyeyxGIbCBrMh7n+DROvzDhxYljXv2L+csKHo7ZuOsB/H46YNMu/88Lqg==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1732508AbgJIIGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 04:06:43 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42386 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732337AbgJIIGm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 04:06:42 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09986VA4111967;
+        Fri, 9 Oct 2020 03:06:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1602230791;
+        bh=BHTrCfkiTOmXAou93T2ihLIRlwCwPpMEKu1ad7VxsbA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=G+b6W2PG2fdRqSHgCyBL7rYoIjHLHbnG3bjeh7mXe863YM0jen/l3tk+KAsw58rKm
+         PuEN40yCkC631DMp4/fZBfTxl29L8HCpfHwnfmGWDNrNKSSgdzwvoqVJ9n/ekmn5dt
+         L3r35sJjDI0bwNBKZw740t7LXTNIMzHB+ArBlw6M=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09986V0w091492
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 9 Oct 2020 03:06:31 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 9 Oct
+ 2020 03:06:30 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 9 Oct 2020 03:06:30 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09986R0G066243;
+        Fri, 9 Oct 2020 03:06:28 -0500
+Subject: Re: [PATCH 09/18] dt-bindings: dma: ti: Add document for K3 BCDMA
+To:     Rob Herring <robh@kernel.org>
+CC:     Vinod <vkoul@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh R <vigneshr@ti.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>
+References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
+ <20200930091412.8020-10-peter.ujfalusi@ti.com>
+ <20201006192909.GA2679155@bogus>
+ <bc054ef7-dcd7-dde2-13f8-4900a33b1377@ti.com> <20201007154635.GA273523@bogus>
+ <d5746fca-bbdd-0fd1-cbcb-21b6269c39ac@ti.com>
+ <CAL_JsqJnk=ycRurUTBwWgX1+vOq_MZuevegvK2MwGJHkHW50mg@mail.gmail.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <1f532784-c46d-6746-2511-466fd82c0809@ti.com>
+Date:   Fri, 9 Oct 2020 11:06:49 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB4915.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62e3dbb5-8b18-4654-1125-08d86c28fc7f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2020 07:57:36.2843
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Jmuof8lxRRYvDc7lamiy5uuV+387immqCpKWVVr56iMNL9w7xmdRM/BStCb5rpWT23WjWB/UKE4pOIjoTnHiGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7092
+In-Reply-To: <CAL_JsqJnk=ycRurUTBwWgX1+vOq_MZuevegvK2MwGJHkHW50mg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-U29ycnksIG15IGZhdWx0LCBpZ25vcmUgdGhpcyBjb21tZW50Lg0KDQpCUg0KSmFja3kgQmFpDQo+
-IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEphY2t5IEJhaQ0KPiBTZW50OiBG
-cmlkYXksIE9jdG9iZXIgOSwgMjAyMCAzOjU0IFBNDQo+IFRvOiBMdWNhcyBTdGFjaCA8bC5zdGFj
-aEBwZW5ndXRyb25peC5kZT47IFNoYXduIEd1bw0KPiA8c2hhd25ndW9Aa2VybmVsLm9yZz47IFJv
-YiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+DQo+IENjOiBkbC1saW51eC1pbXggPGxpbnV4
-LWlteEBueHAuY29tPjsgRmFiaW8gRXN0ZXZhbQ0KPiA8ZmVzdGV2YW1AZ21haWwuY29tPjsgRnJp
-ZWRlciBTY2hyZW1wZiA8ZnJpZWRlci5zY2hyZW1wZkBrb250cm9uLmRlPjsNCj4gTWFyZWsgVmFz
-dXQgPG1hcmV4QGRlbnguZGU+OyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7
-DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7DQo+
-IHBhdGNod29yay1sc3RAcGVuZ3V0cm9uaXguZGUNCj4gU3ViamVjdDogUkU6IFtQQVRDSCAwNi8x
-MV0gc29jOiBpbXg6IGdwY3YyOiBhbGxvdyBkb21haW5zIHdpdGhvdXQNCj4gcG93ZXItc2VxdWVu
-Y2UgY29udHJvbA0KPiANCj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206
-IEx1Y2FzIFN0YWNoIFttYWlsdG86bC5zdGFjaEBwZW5ndXRyb25peC5kZV0NCj4gPiBTZW50OiBX
-ZWRuZXNkYXksIFNlcHRlbWJlciAzMCwgMjAyMCAxMTo1MCBQTQ0KPiA+IFRvOiBTaGF3biBHdW8g
-PHNoYXduZ3VvQGtlcm5lbC5vcmc+OyBSb2IgSGVycmluZw0KPiA8cm9iaCtkdEBrZXJuZWwub3Jn
-Pg0KPiA+IENjOiBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsgRmFiaW8gRXN0ZXZh
-bQ0KPiA+IDxmZXN0ZXZhbUBnbWFpbC5jb20+OyBGcmllZGVyIFNjaHJlbXBmIDxmcmllZGVyLnNj
-aHJlbXBmQGtvbnRyb24uZGU+Ow0KPiA+IE1hcmVrIFZhc3V0IDxtYXJleEBkZW54LmRlPjsgbGlu
-dXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOw0KPiA+IGRldmljZXRyZWVAdmdlci5r
-ZXJuZWwub3JnOyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7DQo+ID4gcGF0Y2h3b3JrLWxzdEBwZW5n
-dXRyb25peC5kZQ0KPiA+IFN1YmplY3Q6IFtQQVRDSCAwNi8xMV0gc29jOiBpbXg6IGdwY3YyOiBh
-bGxvdyBkb21haW5zIHdpdGhvdXQNCj4gPiBwb3dlci1zZXF1ZW5jZSBjb250cm9sDQo+ID4NCj4g
-PiBTb21lIG9mIHRoZSBQR0MgZG9tYWlucyBvbmx5IGNvbnRyb2wgdGhlIGhhbmRzaGFrZSB3aXRo
-IHRoZSBBREI0MDAgYW5kDQo+ID4gZG9uJ3QgaGF2ZSBhbnkgcG93ZXIgc2VxdWVuY2UgY29udHJv
-bHMuIE1ha2Ugc3VjaCBkb21haW5zIHdvcmsgYnkNCj4gPiBhbGxvd2luZyB0aGUgcHh4IGFuZCBt
-YXAgYml0cyB0byBiZSBlbXB0eSBhbmQgc2tpcCBhbGwgYWN0aW9ucyB1c2luZw0KPiA+IHRob3Nl
-IGNvbnRyb2xzLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogTHVjYXMgU3RhY2ggPGwuc3RhY2hA
-cGVuZ3V0cm9uaXguZGU+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvc29jL2lteC9ncGN2Mi5jIHwg
-ODkNCj4gPiArKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+ICAx
-IGZpbGUgY2hhbmdlZCwgNDkgaW5zZXJ0aW9ucygrKSwgNDAgZGVsZXRpb25zKC0pDQo+ID4NCj4g
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvaW14L2dwY3YyLmMgYi9kcml2ZXJzL3NvYy9pbXgv
-Z3BjdjIuYyBpbmRleA0KPiA+IDViYjdiMWNjN2MxMC4uZGI5M2ZlZjBjNzZiIDEwMDY0NA0KPiA+
-IC0tLSBhL2RyaXZlcnMvc29jL2lteC9ncGN2Mi5jDQo+ID4gKysrIGIvZHJpdmVycy9zb2MvaW14
-L2dwY3YyLmMNCj4gPiBAQCAtMTY3LDI0ICsxNjcsMjcgQEAgc3RhdGljIGludCBpbXhfcGdjX3Bv
-d2VyX3VwKHN0cnVjdA0KPiA+IGdlbmVyaWNfcG1fZG9tYWluICpnZW5wZCkNCj4gPiAgCQl9DQo+
-ID4gIAl9DQo+ID4NCj4gPiAtCS8qIHJlcXVlc3QgdGhlIGRvbWFpbiB0byBwb3dlciB1cCAqLw0K
-PiA+IC0JcmVnbWFwX3VwZGF0ZV9iaXRzKGRvbWFpbi0+cmVnbWFwLCBHUENfUFVfUEdDX1NXX1BV
-UF9SRVEsDQo+ID4gLQkJCSAgIGRvbWFpbi0+Yml0cy5weHgsIGRvbWFpbi0+Yml0cy5weHgpOw0K
-PiA+IC0JLyoNCj4gPiAtCSAqIEFzIHBlciAiNS41LjkuNCBFeGFtcGxlIENvZGUgNCIgaW4gSU1Y
-N0RSTS5wZGYgd2FpdA0KPiA+IC0JICogZm9yIFBVUF9SRVEvUEROX1JFUSBiaXQgdG8gYmUgY2xl
-YXJlZA0KPiA+IC0JICovDQo+ID4gLQlyZXQgPSByZWdtYXBfcmVhZF9wb2xsX3RpbWVvdXQoZG9t
-YWluLT5yZWdtYXAsDQo+ID4gR1BDX1BVX1BHQ19TV19QVVBfUkVRLA0KPiA+IC0JCQkJICAgICAg
-IHJlZ192YWwsICEocmVnX3ZhbCAmIGRvbWFpbi0+Yml0cy5weHgpLA0KPiA+IC0JCQkJICAgICAg
-IDAsIFVTRUNfUEVSX01TRUMpOw0KPiA+IC0JaWYgKHJldCkgew0KPiA+IC0JCWRldl9lcnIoZG9t
-YWluLT5kZXYsICJmYWlsZWQgdG8gY29tbWFuZCBQR0NcbiIpOw0KPiA+IC0JCWdvdG8gb3V0X2Ns
-a19kaXNhYmxlOw0KPiA+IC0JfQ0KPiA+ICsJaWYgKGRvbWFpbi0+Yml0cy5weHgpIHsNCj4gDQo+
-IFdoYXQgaWYgdGhlIHBvd2VyIGRvbWFpbidzIFBVUC9QRE4gY29udHJvbCBiaXQgZGVmaW5lIGlz
-IHplcm8sIGZvciBleGFtcGxlLA0KPiBJTVg4TV9NSVBJX1NXX1B4eF9SRVE/DQo+IA0KPiBCUg0K
-PiBKYWNreSBCYWkNCj4gDQo+ID4gKwkJLyogcmVxdWVzdCB0aGUgZG9tYWluIHRvIHBvd2VyIHVw
-ICovDQo+ID4gKwkJcmVnbWFwX3VwZGF0ZV9iaXRzKGRvbWFpbi0+cmVnbWFwLA0KPiA+IEdQQ19Q
-VV9QR0NfU1dfUFVQX1JFUSwNCj4gPiArCQkJCSAgIGRvbWFpbi0+Yml0cy5weHgsIGRvbWFpbi0+
-Yml0cy5weHgpOw0KPiA+ICsJCS8qDQo+ID4gKwkJICogQXMgcGVyICI1LjUuOS40IEV4YW1wbGUg
-Q29kZSA0IiBpbiBJTVg3RFJNLnBkZiB3YWl0DQo+ID4gKwkJICogZm9yIFBVUF9SRVEvUEROX1JF
-USBiaXQgdG8gYmUgY2xlYXJlZA0KPiA+ICsJCSAqLw0KPiA+ICsJCXJldCA9IHJlZ21hcF9yZWFk
-X3BvbGxfdGltZW91dChkb21haW4tPnJlZ21hcCwNCj4gPiArCQkJCQkgICAgICAgR1BDX1BVX1BH
-Q19TV19QVVBfUkVRLCByZWdfdmFsLA0KPiA+ICsJCQkJCSAgICAgICAhKHJlZ192YWwgJiBkb21h
-aW4tPmJpdHMucHh4KSwNCj4gPiArCQkJCQkgICAgICAgMCwgVVNFQ19QRVJfTVNFQyk7DQo+ID4g
-KwkJaWYgKHJldCkgew0KPiA+ICsJCQlkZXZfZXJyKGRvbWFpbi0+ZGV2LCAiZmFpbGVkIHRvIGNv
-bW1hbmQgUEdDXG4iKTsNCj4gPiArCQkJZ290byBvdXRfY2xrX2Rpc2FibGU7DQo+ID4gKwkJfQ0K
-PiA+DQo+ID4gLQkvKiBkaXNhYmxlIHBvd2VyIGNvbnRyb2wgKi8NCj4gPiAtCXJlZ21hcF91cGRh
-dGVfYml0cyhkb21haW4tPnJlZ21hcCwgR1BDX1BHQ19DVFJMKGRvbWFpbi0+cGdjKSwNCj4gPiAt
-CQkJICAgR1BDX1BHQ19DVFJMX1BDUiwgMCk7DQo+ID4gKwkJLyogZGlzYWJsZSBwb3dlciBjb250
-cm9sICovDQo+ID4gKwkJcmVnbWFwX3VwZGF0ZV9iaXRzKGRvbWFpbi0+cmVnbWFwLA0KPiA+IEdQ
-Q19QR0NfQ1RSTChkb21haW4tPnBnYyksDQo+ID4gKwkJCQkgICBHUENfUEdDX0NUUkxfUENSLCAw
-KTsNCj4gPiArCX0NCj4gPg0KPiA+ICAJLyogcmVxdWVzdCB0aGUgQURCNDAwIHRvIHBvd2VyIHVw
-ICovDQo+ID4gIAlpZiAoZG9tYWluLT5iaXRzLmhza3JlcSkgew0KPiA+IEBAIC0yNDgsMjMgKzI1
-MSwyNiBAQCBzdGF0aWMgaW50IGlteF9wZ2NfcG93ZXJfZG93bihzdHJ1Y3QNCj4gPiBnZW5lcmlj
-X3BtX2RvbWFpbiAqZ2VucGQpDQo+ID4gIAkJfQ0KPiA+ICAJfQ0KPiA+DQo+ID4gLQkvKiBlbmFi
-bGUgcG93ZXIgY29udHJvbCAqLw0KPiA+IC0JcmVnbWFwX3VwZGF0ZV9iaXRzKGRvbWFpbi0+cmVn
-bWFwLCBHUENfUEdDX0NUUkwoZG9tYWluLT5wZ2MpLA0KPiA+IC0JCQkgICBHUENfUEdDX0NUUkxf
-UENSLCBHUENfUEdDX0NUUkxfUENSKTsNCj4gPiAtDQo+ID4gLQkvKiByZXF1ZXN0IHRoZSBkb21h
-aW4gdG8gcG93ZXIgZG93biAqLw0KPiA+IC0JcmVnbWFwX3VwZGF0ZV9iaXRzKGRvbWFpbi0+cmVn
-bWFwLCBHUENfUFVfUEdDX1NXX1BETl9SRVEsDQo+ID4gLQkJCSAgIGRvbWFpbi0+Yml0cy5weHgs
-IGRvbWFpbi0+Yml0cy5weHgpOw0KPiA+IC0JLyoNCj4gPiAtCSAqIEFzIHBlciAiNS41LjkuNCBF
-eGFtcGxlIENvZGUgNCIgaW4gSU1YN0RSTS5wZGYgd2FpdA0KPiA+IC0JICogZm9yIFBVUF9SRVEv
-UEROX1JFUSBiaXQgdG8gYmUgY2xlYXJlZA0KPiA+IC0JICovDQo+ID4gLQlyZXQgPSByZWdtYXBf
-cmVhZF9wb2xsX3RpbWVvdXQoZG9tYWluLT5yZWdtYXAsDQo+ID4gR1BDX1BVX1BHQ19TV19QRE5f
-UkVRLA0KPiA+IC0JCQkJICAgICAgIHJlZ192YWwsICEocmVnX3ZhbCAmIGRvbWFpbi0+Yml0cy5w
-eHgpLA0KPiA+IC0JCQkJICAgICAgIDAsIFVTRUNfUEVSX01TRUMpOw0KPiA+IC0JaWYgKHJldCkg
-ew0KPiA+IC0JCWRldl9lcnIoZG9tYWluLT5kZXYsICJmYWlsZWQgdG8gY29tbWFuZCBQR0NcbiIp
-Ow0KPiA+IC0JCWdvdG8gb3V0X2Nsa19kaXNhYmxlOw0KPiA+ICsJaWYgKGRvbWFpbi0+Yml0cy5w
-eHgpIHsNCj4gPiArCQkvKiBlbmFibGUgcG93ZXIgY29udHJvbCAqLw0KPiA+ICsJCXJlZ21hcF91
-cGRhdGVfYml0cyhkb21haW4tPnJlZ21hcCwNCj4gPiBHUENfUEdDX0NUUkwoZG9tYWluLT5wZ2Mp
-LA0KPiA+ICsJCQkJICAgR1BDX1BHQ19DVFJMX1BDUiwgR1BDX1BHQ19DVFJMX1BDUik7DQo+ID4g
-Kw0KPiA+ICsJCS8qIHJlcXVlc3QgdGhlIGRvbWFpbiB0byBwb3dlciBkb3duICovDQo+ID4gKwkJ
-cmVnbWFwX3VwZGF0ZV9iaXRzKGRvbWFpbi0+cmVnbWFwLA0KPiA+IEdQQ19QVV9QR0NfU1dfUERO
-X1JFUSwNCj4gPiArCQkJCSAgIGRvbWFpbi0+Yml0cy5weHgsIGRvbWFpbi0+Yml0cy5weHgpOw0K
-PiA+ICsJCS8qDQo+ID4gKwkJICogQXMgcGVyICI1LjUuOS40IEV4YW1wbGUgQ29kZSA0IiBpbiBJ
-TVg3RFJNLnBkZiB3YWl0DQo+ID4gKwkJICogZm9yIFBVUF9SRVEvUEROX1JFUSBiaXQgdG8gYmUg
-Y2xlYXJlZA0KPiA+ICsJCSAqLw0KPiA+ICsJCXJldCA9IHJlZ21hcF9yZWFkX3BvbGxfdGltZW91
-dChkb21haW4tPnJlZ21hcCwNCj4gPiArCQkJCQkgICAgICAgR1BDX1BVX1BHQ19TV19QRE5fUkVR
-LCByZWdfdmFsLA0KPiA+ICsJCQkJCSAgICAgICAhKHJlZ192YWwgJiBkb21haW4tPmJpdHMucHh4
-KSwNCj4gPiArCQkJCQkgICAgICAgMCwgVVNFQ19QRVJfTVNFQyk7DQo+ID4gKwkJaWYgKHJldCkg
-ew0KPiA+ICsJCQlkZXZfZXJyKGRvbWFpbi0+ZGV2LCAiZmFpbGVkIHRvIGNvbW1hbmQgUEdDXG4i
-KTsNCj4gPiArCQkJZ290byBvdXRfY2xrX2Rpc2FibGU7DQo+ID4gKwkJfQ0KPiA+ICAJfQ0KPiA+
-DQo+ID4gIAkvKiBEaXNhYmxlIHJlc2V0IGNsb2NrcyBmb3IgYWxsIGRldmljZXMgaW4gdGhlIGRv
-bWFpbiAqLyBAQCAtNTgwLDgNCj4gPiArNTg2LDkgQEAgc3RhdGljIGludCBpbXhfcGdjX2RvbWFp
-bl9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlDQo+ID4gKypwZGV2KQ0KPiA+DQo+ID4gIAlw
-bV9ydW50aW1lX2VuYWJsZShkb21haW4tPmRldik7DQo+ID4NCj4gPiAtCXJlZ21hcF91cGRhdGVf
-Yml0cyhkb21haW4tPnJlZ21hcCwgR1BDX1BHQ19DUFVfTUFQUElORywNCj4gPiAtCQkJICAgZG9t
-YWluLT5iaXRzLm1hcCwgZG9tYWluLT5iaXRzLm1hcCk7DQo+ID4gKwlpZiAoZG9tYWluLT5iaXRz
-Lm1hcCkNCj4gPiArCQlyZWdtYXBfdXBkYXRlX2JpdHMoZG9tYWluLT5yZWdtYXAsIEdQQ19QR0Nf
-Q1BVX01BUFBJTkcsDQo+ID4gKwkJCQkgICBkb21haW4tPmJpdHMubWFwLCBkb21haW4tPmJpdHMu
-bWFwKTsNCj4gPg0KPiA+ICAJcmV0ID0gcG1fZ2VucGRfaW5pdCgmZG9tYWluLT5nZW5wZCwgTlVM
-TCwgdHJ1ZSk7DQo+ID4gIAlpZiAocmV0KSB7DQo+ID4gQEAgLTYwMSw4ICs2MDgsOSBAQCBzdGF0
-aWMgaW50IGlteF9wZ2NfZG9tYWluX3Byb2JlKHN0cnVjdA0KPiA+IHBsYXRmb3JtX2RldmljZSAq
-cGRldikNCj4gPiAgb3V0X2dlbnBkX3JlbW92ZToNCj4gPiAgCXBtX2dlbnBkX3JlbW92ZSgmZG9t
-YWluLT5nZW5wZCk7DQo+ID4gIG91dF9kb21haW5fdW5tYXA6DQo+ID4gLQlyZWdtYXBfdXBkYXRl
-X2JpdHMoZG9tYWluLT5yZWdtYXAsIEdQQ19QR0NfQ1BVX01BUFBJTkcsDQo+ID4gLQkJCSAgIGRv
-bWFpbi0+Yml0cy5tYXAsIDApOw0KPiA+ICsJaWYgKGRvbWFpbi0+Yml0cy5tYXApDQo+ID4gKwkJ
-cmVnbWFwX3VwZGF0ZV9iaXRzKGRvbWFpbi0+cmVnbWFwLCBHUENfUEdDX0NQVV9NQVBQSU5HLA0K
-PiA+ICsJCQkJICAgZG9tYWluLT5iaXRzLm1hcCwgMCk7DQo+ID4gIAlwbV9ydW50aW1lX2Rpc2Fi
-bGUoZG9tYWluLT5kZXYpOw0KPiA+ICAJaW14X3BnY19wdXRfY2xvY2tzKGRvbWFpbik7DQo+ID4N
-Cj4gPiBAQCAtNjE2LDggKzYyNCw5IEBAIHN0YXRpYyBpbnQgaW14X3BnY19kb21haW5fcmVtb3Zl
-KHN0cnVjdA0KPiA+IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gPiAgCW9mX2dlbnBkX2RlbF9w
-cm92aWRlcihkb21haW4tPmRldi0+b2Zfbm9kZSk7DQo+ID4gIAlwbV9nZW5wZF9yZW1vdmUoJmRv
-bWFpbi0+Z2VucGQpOw0KPiA+DQo+ID4gLQlyZWdtYXBfdXBkYXRlX2JpdHMoZG9tYWluLT5yZWdt
-YXAsIEdQQ19QR0NfQ1BVX01BUFBJTkcsDQo+ID4gLQkJCSAgIGRvbWFpbi0+Yml0cy5tYXAsIDAp
-Ow0KPiA+ICsJaWYgKGRvbWFpbi0+Yml0cy5tYXApDQo+ID4gKwkJcmVnbWFwX3VwZGF0ZV9iaXRz
-KGRvbWFpbi0+cmVnbWFwLCBHUENfUEdDX0NQVV9NQVBQSU5HLA0KPiA+ICsJCQkJICAgZG9tYWlu
-LT5iaXRzLm1hcCwgMCk7DQo+ID4NCj4gPiAgCXBtX3J1bnRpbWVfZGlzYWJsZShkb21haW4tPmRl
-dik7DQo+ID4NCj4gPiAtLQ0KPiA+IDIuMjAuMQ0KDQo=
+
+
+On 08/10/2020 22.15, Rob Herring wrote:
+> On Thu, Oct 8, 2020 at 3:40 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
+
+>>> Yeah, you have to do 'unevaluatedProperties: false' which doesn't
+>>> actually do anything yet, but can 'see' into $ref's.
+>>
+>> I see, but even if I add the unevaluatedProperties: false I will have
+>> the same error as long as I have additionalProperties: false
+> 
+> Yes. I meant unevaluatedProperties instead of additionalProperties.
+
+OK, changed it to unevaluatedProperties.
+
+>> If I remove the additionalProperties then it makes no difference if I
+>> have the unevaluatedProperties: false or I don't.
+> 
+> Not yet, but it will soon. Once I have the tree in a consistent state
+> in 5.10-rc1, there will be a meta-schema to check all this (which is
+> one of those must always be present).
+> 
+> Though, as of now 'unevaluatedProperties' doesn't do anything because
+> the underlying json-schema tool doesn't yet support it.
+
+Understand, thanks for the details.
+
+>>>>>> +  ti,sci-rm-range-bchan:
+>>>>>> +    description: |
+>>>>>> +      Array of BCDMA block-copy channel resource subtypes for resource
+>>>>>> +      allocation for this host
+>>>>>> +    allOf:
+>>>>>> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>>>> +    minItems: 1
+>>>>>> +    # Should be enough
+>>>>>> +    maxItems: 255
+>>>>>
+>>>>> Are there constraints for the individual elements?
+>>>>
+>>>> In practice the subtype ID is 6bits number.
+>>>> Should I add limits to individual elements?
+>>>
+>>> Yes:
+>>>
+>>> items:
+>>>   maximum: 0x3f
+>>
+>> Right, I can just omit the minimum.
+>>
+>> It would be nice if I could use definitions for these ranges to avoid
+>> duplicated lines by adding
+>>
+>> definitions:
+>>   ti,rm-range:
+>>     $ref: /schemas/types.yaml#/definitions/uint32-array
+>>     minItems: 1
+>>     # Should be enough
+>>     maxItems: 255
+>>     items:
+>>       minimum: 0
+>>       maximum: 0x3f
+>>
+>> to schemas/arm/keystone/ti,k3-sci-common.yaml
+>>
+>> and only have:
+>>
+>>   ti,sci-rm-range-bchan:
+>>     $ref:
+>> /schemas/arm/keystone/ti,k3-sci-common.yaml#/definitions/ti,rm-range
+>>     description: |
+>>       Array of BCDMA block-copy channel resource subtypes for resource
+>>       allocation for this host
+> 
+> Just do:
+> 
+> patternProperties:
+>   "^ti,sci-rm-range-[btr]chan$":
+>     ...
+> 
+> If this is common for other bindings, then you can put it in
+> ti,k3-sci-common.yaml.
+
+Similar property (for RM ranges) also used by the ringacc, I have tried
+to standardize us to use: ti,sci-rm-range-* in DT.
+
+I will leave it as it is now for this series and we can simplify it
+later with a wider series touching all involved yaml files.
+
+>> but it results:
+>> Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml:
+>> properties:ti,sci-rm-range-bchan: {'$ref':
+>> '/schemas/arm/keystone/ti,k3-sci-common.yaml#/definitions/ti,rm-range',
+>> 'description': 'Array of BCDMA block-copy channel resource subtypes for
+>> resource\nallocation for this host\n'} is not valid under any of the
+>> given schemas (Possible causes of the failure):
+>>         Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml:
+>> properties:ti,sci-rm-range-bchan: 'not' is a required property
+>>         Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml:
+>> properties:ti,sci-rm-range-bchan:$ref:
+>> '/schemas/arm/keystone/ti,k3-sci-common.yaml#/definitions/ti,rm-range'
+>> does not match 'types.yaml#[/]{0,1}definitions/.*'
+> 
+> We probably should allow for using 'definitions' which is pretty
+> common json-schema practice, but don't primarily in order to keep
+> folks within the lines. Things are optimized for not knowing
+> json-schema and trying to minimize errors I have to check for.
+
+I agree on these.
+
+> Supporting it would complicate the meta-schema and the tools' fixup
+> code. So far, the need for it has been pretty infrequent.
+
+Sure, for the couple of duplication I have it is manageable without
+sacrificing readability.
+
+btw: I have made the similar changes to the k3-pktdma schema.
+
+> 
+> Rob
+> 
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
