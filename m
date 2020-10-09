@@ -2,128 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E170289C32
-	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 01:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF3B289C8E
+	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 02:02:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728054AbgJIXmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 19:42:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
+        id S1728593AbgJJABn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 20:01:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728004AbgJIXka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 19:40:30 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01DDFC0613D2;
-        Fri,  9 Oct 2020 16:40:12 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id f19so8131848pfj.11;
-        Fri, 09 Oct 2020 16:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MQ0KpWnDNeVxw8ddnKLR7x7PrOHy9mrx1gHHEVR4YTk=;
-        b=hDmBTJvLU+MIdtrIERvGrZtc+8C0P9oZrj1hYTssasKwOlKfF6VIa9dbL0mgxWU9w9
-         1+b5srOqfK9+VBMHs+kNLk3kQP8fhH/xwuJohUlgZF4iKjas0F8Mdam3nDoIk5i8Wts7
-         6Ney0/ge19sTB785apk8kXZpnEHrUyXocc6qIXmhJN6ZHN6xPXAPq2AY2PcW5rg+H2tj
-         d827grvw4cHpteJ9p0wKAaFYYvLIAtHTlETEK4Tc8JcH8FAyzhcWDRJwyCEY0p8VeuDj
-         JOa+o+Dg5+/hq+bcq4JNCjgzVcPUfEBaLy53AZXyougFBlMb8p7V7hhFRDvg2hcVGyuO
-         UWNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MQ0KpWnDNeVxw8ddnKLR7x7PrOHy9mrx1gHHEVR4YTk=;
-        b=ND92xUal7cUl2sBMtQowEWWyhwr0L3H+CK7pOfMtZlMpjKt5p1EQTBfGSdMhJ41ewy
-         8DbbMoeIrJ4IZBoqaRKGSBpXn54UhJCSQ7tfc+ulbtUPayC0QRMUALgqzeHyg8CnG/ku
-         4nDD48o7tO19oVal7cnp6O4IGoOCE92w337V+qv7ca8W53bS7yWsTUnt8IBVaUnJTENp
-         Aymxz0yGq9YS5dUpcok7WRcWpXAk9toSy+I0+Wfxwjg4Kis9ues/bb1I6ifeEGNFSbLE
-         b8Kw8lJEp6sWsLrmqaEiZvEAtTdnNIukmT6o0SSJZqDjDvM3kCc/RnttCjzBWx3wCzd7
-         AsvA==
-X-Gm-Message-State: AOAM531cdNreXd8LUmKpQ8Q7r2PvXVwlGkFAeL8W6pDL2ujFo/LKwFrx
-        p8hgKsiwabYfi7rD5wzdbIw=
-X-Google-Smtp-Source: ABdhPJwFQIBy/uYMt1NSfSfYgTEXiSJCzmSoTmkhClRQ3AbICj+NmlbuQ/4Npd8rPY1ODaGP3HOLnw==
-X-Received: by 2002:a17:90a:a394:: with SMTP id x20mr7043686pjp.213.1602286811513;
-        Fri, 09 Oct 2020 16:40:11 -0700 (PDT)
-Received: from [10.230.29.112] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id jx17sm12684399pjb.10.2020.10.09.16.40.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Oct 2020 16:40:10 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] usb: Add driver to allow any GPIO to be used for
- 7211 USB signals
-To:     Al Cooper <alcooperx@gmail.com>, linux-kernel@vger.kernel.org
-Cc:     bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20201009190839.12612-1-alcooperx@gmail.com>
- <20201009190839.12612-3-alcooperx@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <134cbb66-6d46-bef5-fa4c-eeae78ec1b53@gmail.com>
-Date:   Fri, 9 Oct 2020 16:40:08 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.3.2
+        with ESMTP id S1728412AbgJIX7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 19:59:21 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0416C0613D2
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 16:53:05 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 11BDE528;
+        Sat, 10 Oct 2020 01:53:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1602287583;
+        bh=PAPAQbpvN+t6xTdlmFK4q3FTlrCz1l/IyJJDxLnqiBM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=azCD2lFyiHWzGghIVdZO5Pigj7vJcHfRmDZhAfMkWjSsat72tOa8bNM4fk2jojEOu
+         My83ZuK7kY//T3gi5iFZgoxEvdoBk62ywuX9T3hgPU7kH0LE2L8q5EbP96QRszlSy5
+         LrVe93ZXTg1kau/7osY8wHAeoga0kAoYu7f3gSOg=
+Date:   Sat, 10 Oct 2020 02:52:19 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, Stefan Agner <stefan@agner.ch>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: display: mxsfb: Convert binding to
+ YAML
+Message-ID: <20201009235219.GQ25040@pendragon.ideasonboard.com>
+References: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
+ <20201007012438.27970-2-laurent.pinchart@ideasonboard.com>
+ <20201007160020.GA292355@bogus>
 MIME-Version: 1.0
-In-Reply-To: <20201009190839.12612-3-alcooperx@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201007160020.GA292355@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-
-On 10/9/2020 12:08 PM, Al Cooper wrote:
-> The Broadcom 7211 has new functionality that allows some USB low
-> speed side band signals, that go from the XHCI host controller to
-> pins on the chip, to be remapped to use any GPIO pin instead of the
-> limited set selectable by hardware. This can be done without changing
-> the standard driver for the host controller. There is currently
-> support for three USB signals, PWRON, VBUS_PRESENT and PWRFLT. This
-> driver will allow the remapping of any of these three signals based
-> on settings in the Device Tree node for the driver. The driver was
-> written so that it could handle additional signals added in the
-> future by just adding the correct properties to the DT node.
+On Wed, Oct 07, 2020 at 11:00:20AM -0500, Rob Herring wrote:
+> On Wed, Oct 07, 2020 at 04:24:32AM +0300, Laurent Pinchart wrote:
+> > Convert the mxsfb binding to YAML. The deprecated binding is dropped, as
+> > neither the DT sources nor the driver support it anymore. The converted
+> > binding is named fsl,lcdif.yaml to match the usual bindings naming
+> > scheme.
+> > 
+> > The compatible strings are messy, and DT sources use different kinds of
+> > combination of documented and undocumented values. Keep it simple for
+> > now, and update the example to make it valid. Aligning the binding with
+> > the existing DT sources will be performed separately.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> > --
+> > Changes since v1:
+> > 
+> > - Drop unneeded quotes in string
+> > - Replace minItems with maxItems in conditional check
+> > - Add blank line before ...
+> > - Squash the rename in this commit
+> > ---
+> >  .../bindings/display/fsl,lcdif.yaml           | 116 ++++++++++++++++++
+> >  .../devicetree/bindings/display/mxsfb.txt     |  87 -------------
+> >  MAINTAINERS                                   |   2 +-
+> >  3 files changed, 117 insertions(+), 88 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/display/mxsfb.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > new file mode 100644
+> > index 000000000000..063bb8c58114
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > @@ -0,0 +1,116 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Freescale/NXP i.MX LCD Interface (LCDIF)
+> > +
+> > +maintainers:
+> > +  - Marek Vasut <marex@denx.de>
+> > +  - Stefan Agner <stefan@agner.ch>
+> > +
+> > +description: |
+> > +  (e)LCDIF display controller found in the Freescale/NXP i.MX SoCs.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx23-lcdif
+> > +      - fsl,imx28-lcdif
+> > +      - fsl,imx6sx-lcdif
+> > +      - fsl,imx8mq-lcdif
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Pixel clock
+> > +      - description: Bus clock
+> > +      - description: Display AXI clock
+> > +    minItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: pix
+> > +      - const: axi
+> > +      - const: disp_axi
+> > +    minItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  port:
+> > +    description: The LCDIF output port
+> > +    type: object
+> > +
+> > +    properties:
+> > +      endpoint:
 > 
-> Below is an example of a DT node that would remap all three
-> signals:
+> What happened on the graph binding schema work?
+
+Still on my todo list, I hope to switch back to that task in the not too
+distant future.
+
+> I started a meta-schema for it BTW.
+
+Nice :-) Is it available in a public tree ?
+
+> You can drop all the endpoint parts. With that,
 > 
-> usb_pinmap: usb-pinmap@22000d0 {
-> 	compatible = "brcm,usb-pinmap";
-> 	reg = <0x22000d0 0x4>;
-> 	in-gpios = <&gpio 18 0>, <&gpio 19 0>;
-> 	brcm,in-functions = "VBUS", "PWRFLT";
-> 	brcm,in-masks = <0x8000 0x40000 0x10000 0x80000>;
-> 	out-gpios = <&gpio 20 0>;
-> 	brcm,out-functions = "PWRON";
-> 	brcm,out-masks = <0x20000 0x800000 0x400000 0x200000>;
-> 	interrupts = <0x0 0xb2 0x4>;
-> };
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> Signed-off-by: Al Cooper <alcooperx@gmail.com>
-> ---
-
-[snip]
-
-> +config BRCM_USB_PINMAP
-> +	tristate "Broadcom pinmap driver support"
-> +	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-> +	default y if (ARCH_BRCMSTB && PHY_BRCM_USB)
-
-default ARCH_BRCMSTB && PHY_BRCM_USB should work as well.
-
-
-> +static int __init brcmstb_usb_pinmap_init(void)
-> +{
-> +	return platform_driver_probe(&brcmstb_usb_pinmap_driver,
-> +				     brcmstb_usb_pinmap_probe);
-> +}
-> +
-> +module_init(brcmstb_usb_pinmap_init);
-
-You would need MODULE_AUTHOR(), LICENSE and DESCRIPTION() in case you 
-make this modular.
+> > +        type: object
+> > +
+> > +        properties:
+> > +          remote-endpoint:
+> > +            $ref: /schemas/types.yaml#/definitions/phandle
+> > +
+> > +        required:
+> > +          - remote-endpoint
+> > +
+> > +        additionalProperties: false
+> > +
+> > +    additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - interrupts
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: fsl,imx6sx-lcdif
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 2
+> > +          maxItems: 3
+> > +        clock-names:
+> > +          minItems: 2
+> > +          maxItems: 3
+> > +      required:
+> > +        - clock-names
+> > +    else:
+> > +      properties:
+> > +        clocks:
+> > +          maxItems: 1
+> > +        clock-names:
+> > +          maxItems: 1
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/imx6sx-clock.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    display-controller@2220000 {
+> > +        compatible = "fsl,imx6sx-lcdif";
+> > +        reg = <0x02220000 0x4000>;
+> > +        interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks = <&clks IMX6SX_CLK_LCDIF1_PIX>,
+> > +                 <&clks IMX6SX_CLK_LCDIF_APB>,
+> > +                 <&clks IMX6SX_CLK_DISPLAY_AXI>;
+> > +        clock-names = "pix", "axi", "disp_axi";
+> > +
+> > +        port {
+> > +            endpoint {
+> > +                remote-endpoint = <&panel_in>;
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/display/mxsfb.txt b/Documentation/devicetree/bindings/display/mxsfb.txt
+> > deleted file mode 100644
+> > index c985871c46b3..000000000000
+> > --- a/Documentation/devicetree/bindings/display/mxsfb.txt
+> > +++ /dev/null
+> > @@ -1,87 +0,0 @@
+> > -* Freescale MXS LCD Interface (LCDIF)
+> > -
+> > -New bindings:
+> > -=============
+> > -Required properties:
+> > -- compatible:	Should be "fsl,imx23-lcdif" for i.MX23.
+> > -		Should be "fsl,imx28-lcdif" for i.MX28.
+> > -		Should be "fsl,imx6sx-lcdif" for i.MX6SX.
+> > -		Should be "fsl,imx8mq-lcdif" for i.MX8MQ.
+> > -- reg:		Address and length of the register set for LCDIF
+> > -- interrupts:	Should contain LCDIF interrupt
+> > -- clocks:	A list of phandle + clock-specifier pairs, one for each
+> > -		entry in 'clock-names'.
+> > -- clock-names:	A list of clock names. For MXSFB it should contain:
+> > -    - "pix" for the LCDIF block clock
+> > -    - (MX6SX-only) "axi", "disp_axi" for the bus interface clock
+> > -
+> > -Required sub-nodes:
+> > -  - port: The connection to an encoder chip.
+> > -
+> > -Example:
+> > -
+> > -	lcdif1: display-controller@2220000 {
+> > -		compatible = "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
+> > -		reg = <0x02220000 0x4000>;
+> > -		interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> > -		clocks = <&clks IMX6SX_CLK_LCDIF1_PIX>,
+> > -			 <&clks IMX6SX_CLK_LCDIF_APB>,
+> > -			 <&clks IMX6SX_CLK_DISPLAY_AXI>;
+> > -		clock-names = "pix", "axi", "disp_axi";
+> > -
+> > -		port {
+> > -			parallel_out: endpoint {
+> > -				remote-endpoint = <&panel_in_parallel>;
+> > -			};
+> > -		};
+> > -	};
+> > -
+> > -Deprecated bindings:
+> > -====================
+> > -Required properties:
+> > -- compatible:	Should be "fsl,imx23-lcdif" for i.MX23.
+> > -		Should be "fsl,imx28-lcdif" for i.MX28.
+> > -- reg:		Address and length of the register set for LCDIF
+> > -- interrupts:	Should contain LCDIF interrupts
+> > -- display:	phandle to display node (see below for details)
+> > -
+> > -* display node
+> > -
+> > -Required properties:
+> > -- bits-per-pixel:	<16> for RGB565, <32> for RGB888/666.
+> > -- bus-width:		number of data lines.  Could be <8>, <16>, <18> or <24>.
+> > -
+> > -Required sub-node:
+> > -- display-timings:	Refer to binding doc display-timing.txt for details.
+> > -
+> > -Examples:
+> > -
+> > -lcdif@80030000 {
+> > -	compatible = "fsl,imx28-lcdif";
+> > -	reg = <0x80030000 2000>;
+> > -	interrupts = <38 86>;
+> > -
+> > -	display: display {
+> > -		bits-per-pixel = <32>;
+> > -		bus-width = <24>;
+> > -
+> > -		display-timings {
+> > -			native-mode = <&timing0>;
+> > -			timing0: timing0 {
+> > -				clock-frequency = <33500000>;
+> > -				hactive = <800>;
+> > -				vactive = <480>;
+> > -				hfront-porch = <164>;
+> > -				hback-porch = <89>;
+> > -				hsync-len = <10>;
+> > -				vback-porch = <23>;
+> > -				vfront-porch = <10>;
+> > -				vsync-len = <10>;
+> > -				hsync-active = <0>;
+> > -				vsync-active = <0>;
+> > -				de-active = <1>;
+> > -				pixelclk-active = <0>;
+> > -			};
+> > -		};
+> > -	};
+> > -};
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index f0dd1f01703a..87e20680c104 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -11910,7 +11910,7 @@ M:	Stefan Agner <stefan@agner.ch>
+> >  L:	dri-devel@lists.freedesktop.org
+> >  S:	Supported
+> >  T:	git git://anongit.freedesktop.org/drm/drm-misc
+> > -F:	Documentation/devicetree/bindings/display/mxsfb.txt
+> > +F:	Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> >  F:	drivers/gpu/drm/mxsfb/
+> >  
+> >  MYLEX DAC960 PCI RAID Controller
 
 -- 
-Florian
+Regards,
+
+Laurent Pinchart
