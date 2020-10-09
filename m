@@ -2,503 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C150C289197
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 21:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 589512898C9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 22:08:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388411AbgJITI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 15:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40420 "EHLO
+        id S2390117AbgJIUIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 16:08:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388379AbgJITIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 15:08:54 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947F3C0613D2;
-        Fri,  9 Oct 2020 12:08:53 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id b193so7060145pga.6;
-        Fri, 09 Oct 2020 12:08:53 -0700 (PDT)
+        with ESMTP id S2389072AbgJIUGQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 16:06:16 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F472C0613D6;
+        Fri,  9 Oct 2020 13:06:16 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id j30so9560204lfp.4;
+        Fri, 09 Oct 2020 13:06:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=mIh4NtJMpceQPCyI8B0iBo+e8xdzyggN1ixRaYdfX1Y=;
-        b=SELMvgZZJnlTrinixfTe32AcZJQePxb2uSVllEYw0EctXLRgO9PWh9eqrGf0xLwsjy
-         tMbWOv+AOqjIny//YeoWDYwSanB2ZlPe236ZnMJkqhDZU06BhGoBE7Yt/eSt+v8sRD4t
-         cYTpsH/SUbmPAL5s5Yt1AZBmkw8m1q7KlAtaqcfUw/wPArbdv0rfskK01XbwkgpHUbpF
-         I+7FFwwYSz0SJYyJJLNMS0nOQvu9uCon1eBg4wzlQI0ihsTjtQW8onmmCttrIWGC2up8
-         VzCmWTLOBtzydfMfXjshtJPFGFbuaqYUEv5pIuc9hjPlSXYUlPvTJbnxh6pChOl3+QoG
-         74KQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9ZK8UsrFVqX81y+hI5p39GDyrhSmvCaWHxPB2+b1688=;
+        b=U/y5ZpohCmv/ti9knT0oocZYLOwRbCJEEFFOqyKLDYW80386EBywSSgcDGhnIT1Ccc
+         H7M1vRmBvJbXQXmST9EgrJs0zlU8htyj6kSPsJ7D0bR0C5WlWhcHMQdLqU4LfocChVaE
+         GoQbcby4SCO97HhQHEFYI+w8vUAmxjpqVhfHZXoL8zepCYkyTPCYInZxeD9ySSVl+pFj
+         cgsT74h8Aoqx+tkVkBbw+ks1wP+KC00Pkuq2WvJoFzmhx+qqDz3qClvO9VZnL6JdIK8+
+         oBmqXSjHEuTrVI3dyrZ7uWbfw3EunuedVYKRH17ohUt09x/95zBlkJlg4C6YUasJQkOu
+         scNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=mIh4NtJMpceQPCyI8B0iBo+e8xdzyggN1ixRaYdfX1Y=;
-        b=rsj2qOlEE2GCCnu1cY5deHG4dUUijBKHilf1l0VkAde8euCDt70dwyKAT0466KWE/S
-         e3mtWAefrzAiPYp7TiRuXobXrw5Sbp09y/q5rchXSRlS7kLeMaDVtJcHblmXX8OVuxHG
-         f4JMPlEy2gMaF9cuFeOuiGgX9QwDsTX9YArYtZ14Yu9XE6p3H4AG+xtAvSwNrldJEOkt
-         IOzRl5rcJJkIsGqqEjlcIR8pNiUtOoKtpsMtwCgtZ2t20VYKzZe2in1tnTmO1LsRZi4N
-         p9LZVZnloD2oyTNhLcIZJNTdX4Ff2HuZ8h08u1z9y1HyFSsMSwdX0aGU/EhHJ6chbdkA
-         27HQ==
-X-Gm-Message-State: AOAM530XOdP6ezSf7EEA2nigd1P9yKnU7P172XkVt29a4+hVGzA6RLmY
-        QEnTSGgBBakorciGpECSGN/eQYcv5/8=
-X-Google-Smtp-Source: ABdhPJzlcc4zzu5DjEQVWB59Nss8OswWYE/n0rZgCeNv5VISIv5krDGUDVll0PkqQPDdsJJARdk2KA==
-X-Received: by 2002:a63:1047:: with SMTP id 7mr4680997pgq.349.1602270532701;
-        Fri, 09 Oct 2020 12:08:52 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id o20sm12281043pgh.63.2020.10.09.12.08.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Oct 2020 12:08:52 -0700 (PDT)
-From:   Al Cooper <alcooperx@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Al Cooper <alcooperx@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 2/2] usb: Add driver to allow any GPIO to be used for 7211 USB signals
-Date:   Fri,  9 Oct 2020 15:08:39 -0400
-Message-Id: <20201009190839.12612-3-alcooperx@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201009190839.12612-1-alcooperx@gmail.com>
-References: <20201009190839.12612-1-alcooperx@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9ZK8UsrFVqX81y+hI5p39GDyrhSmvCaWHxPB2+b1688=;
+        b=n8GVCSK9vzQbNdIQhquHKokunkBGwp/FfKqZpRLN8v1j9YtsLUocFgZ3Q9YNVk/Ox8
+         iPE08k3eagARcO7E155SVyxO1vAsj8fnBaJt+NkfLqbydjnFT3hiw8VYsnAu7PAveCdu
+         4gLTqWxfwZz924yqb1loKHw6L1o551956UBE2EfEzKrUWVLwBTYlOBPrHmCwViunz05b
+         I5QGqsPXQKTVmyd4UDNaXVNwUAIQxL1DDE+M74w8EATYaz74qZxaOMp++e6P1JZxXMrC
+         1VYFjbu8KXFeWahi8YJetVNuWnfqGyNAZmK8AGpntw0Fo98awW6yqHsL/eIp6ii47fOU
+         frvQ==
+X-Gm-Message-State: AOAM530h8sOkVXJtqKDV7mIJ9f40A2C7RIcvAeMcJeoA/HKKu2j4jICj
+        h1aOl0ZgZOkKmnYcaTDpWs+5D22+TEM=
+X-Google-Smtp-Source: ABdhPJwSC+c115moWCXPrNR4bzBFEDnP6BoD9NZ+Xj0Jai+vyFJhaH3LCzHFI33GWcYyr90/aF9O9w==
+X-Received: by 2002:ac2:47fc:: with SMTP id b28mr4576329lfp.454.1602273974509;
+        Fri, 09 Oct 2020 13:06:14 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-91-252.nat.spd-mgts.ru. [109.252.91.252])
+        by smtp.googlemail.com with ESMTPSA id e17sm1870925ljn.18.2020.10.09.13.06.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Oct 2020 13:06:13 -0700 (PDT)
+Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: Add ENE KB930 Embedded
+ Controller binding
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Lubomir Rintel <lkundrak@v3.sk>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200906195103.1347-1-digetx@gmail.com>
+ <20200906195103.1347-2-digetx@gmail.com>
+ <20201008230032.a2mgd3yymxbbreqo@earth.universe>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <2027587e-084d-8125-9830-6ff07bbe7f2d@gmail.com>
+Date:   Fri, 9 Oct 2020 23:06:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20201008230032.a2mgd3yymxbbreqo@earth.universe>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Broadcom 7211 has new functionality that allows some USB low
-speed side band signals, that go from the XHCI host controller to
-pins on the chip, to be remapped to use any GPIO pin instead of the
-limited set selectable by hardware. This can be done without changing
-the standard driver for the host controller. There is currently
-support for three USB signals, PWRON, VBUS_PRESENT and PWRFLT. This
-driver will allow the remapping of any of these three signals based
-on settings in the Device Tree node for the driver. The driver was
-written so that it could handle additional signals added in the
-future by just adding the correct properties to the DT node.
+09.10.2020 02:00, Sebastian Reichel пишет:
+> Hi,
+> 
+> On Sun, Sep 06, 2020 at 10:50:59PM +0300, Dmitry Osipenko wrote:
+>> Add binding document for the ENE KB930 Embedded Controller.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../devicetree/bindings/mfd/ene-kb930.yaml    | 66 +++++++++++++++++++
+>>  1 file changed, 66 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/ene-kb930.yaml b/Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+>> new file mode 100644
+>> index 000000000000..635c8966ca22
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+>> @@ -0,0 +1,66 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/ene-kb930.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: ENE KB930 Embedded Controller bindings
+>> +
+>> +description: |
+>> +  This binding describes the ENE KB930 Embedded Controller attached to an
+>> +  I2C bus.
+>> +
+>> +maintainers:
+>> +  - Dmitry Osipenko <digetx@gmail.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +        - acer,a500-iconia-ec # Acer A500 Iconia tablet device
+>> +      - enum:
+>> +        - ene,kb930
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  monitored-battery: true
+> 
+> ^^^ this is not being used by your battery driver. Do you plan
+> to use it in the future or is it a copy&paste mistake? :)
 
-Below is an example of a DT node that would remap all three
-signals:
-
-usb_pinmap: usb-pinmap@22000d0 {
-	compatible = "brcm,usb-pinmap";
-	reg = <0x22000d0 0x4>;
-	in-gpios = <&gpio 18 0>, <&gpio 19 0>;
-	brcm,in-functions = "VBUS", "PWRFLT";
-	brcm,in-masks = <0x8000 0x40000 0x10000 0x80000>;
-	out-gpios = <&gpio 20 0>;
-	brcm,out-functions = "PWRON";
-	brcm,out-masks = <0x20000 0x800000 0x400000 0x200000>;
-	interrupts = <0x0 0xb2 0x4>;
-};
-
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
----
- MAINTAINERS                           |   8 +
- drivers/usb/misc/Kconfig              |   9 +
- drivers/usb/misc/Makefile             |   1 +
- drivers/usb/misc/brcmstb-usb-pinmap.c | 348 ++++++++++++++++++++++++++
- 4 files changed, 366 insertions(+)
- create mode 100644 drivers/usb/misc/brcmstb-usb-pinmap.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd2aea603e03..1198acd71534 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3567,6 +3567,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.yaml
- F:	drivers/usb/host/ehci-brcm.*
- 
-+BROADCOM BRCMSTB USB PIN MAP DRIVER
-+M:	Al Cooper <alcooperx@gmail.com>
-+L:	linux-usb@vger.kernel.org
-+L:	bcm-kernel-feedback-list@broadcom.com
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/brcm,usb-pinmap.yaml
-+F:	drivers/usb/misc/brcmstb-usb-pinmap.c
-+
- BROADCOM BRCMSTB USB2 and USB3 PHY DRIVER
- M:	Al Cooper <alcooperx@gmail.com>
- L:	linux-kernel@vger.kernel.org
-diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
-index 6818ea689cd9..22e8a44fd2b2 100644
---- a/drivers/usb/misc/Kconfig
-+++ b/drivers/usb/misc/Kconfig
-@@ -275,3 +275,12 @@ config USB_CHAOSKEY
- 
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called chaoskey.
-+
-+config BRCM_USB_PINMAP
-+	tristate "Broadcom pinmap driver support"
-+	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-+	default y if (ARCH_BRCMSTB && PHY_BRCM_USB)
-+	help
-+	  This option enables support for remapping some USB external
-+	  signals, which are typically on dedicated pins on the chip,
-+	  to any gpio.
-diff --git a/drivers/usb/misc/Makefile b/drivers/usb/misc/Makefile
-index da39bddb0604..5f4e598573ab 100644
---- a/drivers/usb/misc/Makefile
-+++ b/drivers/usb/misc/Makefile
-@@ -31,3 +31,4 @@ obj-$(CONFIG_USB_CHAOSKEY)		+= chaoskey.o
- 
- obj-$(CONFIG_USB_SISUSBVGA)		+= sisusbvga/
- obj-$(CONFIG_USB_LINK_LAYER_TEST)	+= lvstest.o
-+obj-$(CONFIG_BRCM_USB_PINMAP)		+= brcmstb-usb-pinmap.o
-diff --git a/drivers/usb/misc/brcmstb-usb-pinmap.c b/drivers/usb/misc/brcmstb-usb-pinmap.c
-new file mode 100644
-index 000000000000..007e2a4b4a85
---- /dev/null
-+++ b/drivers/usb/misc/brcmstb-usb-pinmap.c
-@@ -0,0 +1,348 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (c) 2020, Broadcom */
-+
-+#include <linux/init.h>
-+#include <linux/types.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/device.h>
-+#include <linux/of.h>
-+#include <linux/kernel.h>
-+#include <linux/kdebug.h>
-+#include <linux/gpio/consumer.h>
-+
-+struct out_pin {
-+	u32 enable_mask;
-+	u32 value_mask;
-+	u32 changed_mask;
-+	u32 clr_changed_mask;
-+	struct gpio_desc *gpiod;
-+	const char *name;
-+};
-+
-+struct in_pin {
-+	u32 enable_mask;
-+	u32 value_mask;
-+	struct gpio_desc *gpiod;
-+	const char *name;
-+	struct brcmstb_usb_pinmap_data *pdata;
-+};
-+
-+struct brcmstb_usb_pinmap_data {
-+	void __iomem *regs;
-+	int in_count;
-+	struct in_pin *in_pins;
-+	int out_count;
-+	struct out_pin *out_pins;
-+};
-+
-+
-+static void pinmap_set(void __iomem *reg, u32 mask)
-+{
-+	u32 val;
-+
-+	val = readl(reg);
-+	val |= mask;
-+	writel(val, reg);
-+}
-+
-+static void pinmap_unset(void __iomem *reg, u32 mask)
-+{
-+	u32 val;
-+
-+	val = readl(reg);
-+	val &= ~mask;
-+	writel(val, reg);
-+}
-+
-+static void sync_in_pin(struct in_pin *pin)
-+{
-+	u32 val;
-+
-+	val = gpiod_get_value(pin->gpiod);
-+	if (val)
-+		pinmap_set(pin->pdata->regs, pin->value_mask);
-+	else
-+		pinmap_unset(pin->pdata->regs, pin->value_mask);
-+}
-+
-+/*
-+ * Interrupt from override register, propagate from override bit
-+ * to GPIO.
-+ */
-+static irqreturn_t brcmstb_usb_pinmap_ovr_isr(int irq, void *dev_id)
-+{
-+	struct brcmstb_usb_pinmap_data *pdata = dev_id;
-+	struct out_pin *pout;
-+	u32 val;
-+	u32 bit;
-+	int x;
-+
-+	pr_debug("%s: reg: 0x%x\n", __func__, readl(pdata->regs));
-+	pout = pdata->out_pins;
-+	for (x = 0; x < pdata->out_count; x++) {
-+		val = readl(pdata->regs);
-+		if (val & pout->changed_mask) {
-+			pinmap_set(pdata->regs, pout->clr_changed_mask);
-+			pinmap_unset(pdata->regs, pout->clr_changed_mask);
-+			bit = val & pout->value_mask;
-+			gpiod_set_value(pout->gpiod, bit ? 1 : 0);
-+			pr_debug("%s: %s bit changed state to %d\n",
-+				 __func__, pout->name, bit ? 1 : 0);
-+		}
-+	}
-+	return IRQ_HANDLED;
-+}
-+
-+/*
-+ * Interrupt from GPIO, propagate from GPIO to override bit.
-+ */
-+static irqreturn_t brcmstb_usb_pinmap_gpio_isr(int irq, void *dev_id)
-+{
-+	struct in_pin *pin = dev_id;
-+
-+	pr_debug("%s: %s pin changed state\n", __func__, pin->name);
-+	sync_in_pin(pin);
-+	return IRQ_HANDLED;
-+}
-+
-+
-+static void get_pin_counts(struct device_node *dn, int *in_count,
-+			   int *out_count)
-+{
-+	int in;
-+	int out;
-+
-+	*in_count = 0;
-+	*out_count = 0;
-+	in = of_property_count_strings(dn, "brcm,in-functions");
-+	if (in < 0)
-+		return;
-+	out = of_property_count_strings(dn, "brcm,out-functions");
-+	if (out < 0)
-+		return;
-+	*in_count = in;
-+	*out_count = out;
-+}
-+
-+static int parse_pins(struct device *dev, struct device_node *dn,
-+		      struct brcmstb_usb_pinmap_data *pdata)
-+{
-+	struct out_pin *pout;
-+	struct in_pin *pin;
-+	int index;
-+	int res;
-+	int x;
-+
-+	pin = pdata->in_pins;
-+	for (x = 0, index = 0; x < pdata->in_count; x++) {
-+		pin->gpiod = devm_gpiod_get_index(dev, "in", x, GPIOD_IN);
-+		if (IS_ERR(pin->gpiod)) {
-+			dev_err(dev, "Error getting gpio %s\n", pin->name);
-+			return PTR_ERR(pin->gpiod);
-+
-+		}
-+		res = of_property_read_string_index(dn, "brcm,in-functions", x,
-+						    &pin->name);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting brcm,in-functions for %s\n",
-+				pin->name);
-+			return res;
-+		}
-+		res = of_property_read_u32_index(dn, "brcm,in-masks", index++,
-+						 &pin->enable_mask);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting 1st brcm,in-masks for %s\n",
-+				pin->name);
-+			return res;
-+		}
-+		res = of_property_read_u32_index(dn, "brcm,in-masks", index++,
-+						 &pin->value_mask);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting 2nd brcm,in-masks for %s\n",
-+				pin->name);
-+			return res;
-+		}
-+		pin->pdata = pdata;
-+		pin++;
-+	}
-+	pout = pdata->out_pins;
-+	for (x = 0, index = 0; x < pdata->out_count; x++) {
-+		pout->gpiod = devm_gpiod_get_index(dev, "out", x,
-+						   GPIOD_OUT_HIGH);
-+		if (IS_ERR(pout->gpiod)) {
-+			dev_err(dev, "Error getting gpio %s\n", pin->name);
-+			return PTR_ERR(pout->gpiod);
-+		}
-+		res = of_property_read_string_index(dn, "brcm,out-functions", x,
-+						    &pout->name);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting brcm,out-functions for %s\n",
-+				pout->name);
-+			return res;
-+		}
-+		res = of_property_read_u32_index(dn, "brcm,out-masks", index++,
-+						 &pout->enable_mask);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting 1st brcm,out-masks for %s\n",
-+				pout->name);
-+			return res;
-+		}
-+		res = of_property_read_u32_index(dn, "brcm,out-masks", index++,
-+						 &pout->value_mask);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting 2nd brcm,out-masks for %s\n",
-+				pout->name);
-+			return res;
-+		}
-+		res = of_property_read_u32_index(dn, "brcm,out-masks", index++,
-+						 &pout->changed_mask);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting 3rd brcm,out-masks for %s\n",
-+				pout->name);
-+			return res;
-+		}
-+		res = of_property_read_u32_index(dn, "brcm,out-masks", index++,
-+						 &pout->clr_changed_mask);
-+		if (res < 0) {
-+			dev_err(dev, "Error getting 4th out-masks for %s\n",
-+				pout->name);
-+			return res;
-+		}
-+		pout++;
-+	}
-+	return 0;
-+}
-+
-+void sync_all_pins(struct brcmstb_usb_pinmap_data *pdata)
-+{
-+	struct out_pin *pout;
-+	struct in_pin *pin;
-+	int val;
-+	int x;
-+
-+	/*
-+	 * Enable the override, clear any changed condition and
-+	 * propagate the state to the GPIO for all out pins.
-+	 */
-+	pout = pdata->out_pins;
-+	for (x = 0; x < pdata->out_count; x++) {
-+		pinmap_set(pdata->regs, pout->enable_mask);
-+		pinmap_set(pdata->regs, pout->clr_changed_mask);
-+		pinmap_unset(pdata->regs, pout->clr_changed_mask);
-+		val = readl(pdata->regs) & pout->value_mask;
-+		gpiod_set_value(pout->gpiod, val ? 1 : 0);
-+		pout++;
-+	}
-+
-+	/* sync and enable all in pins. */
-+	pin = pdata->in_pins;
-+	for (x = 0; x < pdata->in_count; x++) {
-+		sync_in_pin(pin);
-+		pinmap_set(pdata->regs, pin->enable_mask);
-+		pin++;
-+	}
-+}
-+
-+static int __init brcmstb_usb_pinmap_probe(struct platform_device *pdev)
-+{
-+	struct device_node *dn = pdev->dev.of_node;
-+	struct brcmstb_usb_pinmap_data *pdata;
-+	struct in_pin *pin;
-+	struct resource *r;
-+	int out_count;
-+	int in_count;
-+	int err;
-+	int irq;
-+	int x;
-+
-+	get_pin_counts(dn, &in_count, &out_count);
-+	if ((in_count + out_count) == 0)
-+		return -EINVAL;
-+
-+	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+
-+	pdata = devm_kzalloc(&pdev->dev,
-+			     sizeof(*pdata) +
-+			     (sizeof(struct in_pin) * in_count) +
-+			     (sizeof(struct out_pin) * out_count), GFP_KERNEL);
-+	if (!pdata)
-+		return -ENOMEM;
-+
-+	pdata->in_count = in_count;
-+	pdata->out_count = out_count;
-+	pdata->in_pins = (struct in_pin *)(pdata + 1);
-+	pdata->out_pins = (struct out_pin *)(pdata->in_pins + in_count);
-+
-+	pdata->regs = devm_ioremap(&pdev->dev, r->start, resource_size(r));
-+	if (IS_ERR(pdata->regs))
-+		return PTR_ERR(pdata->regs);
-+	platform_set_drvdata(pdev, pdata);
-+
-+	err = parse_pins(&pdev->dev, dn, pdata);
-+	if (err)
-+		return err;
-+
-+	sync_all_pins(pdata);
-+
-+	if (out_count) {
-+
-+		/* Enable interrupt for out pins */
-+		irq = platform_get_irq(pdev, 0);
-+		err = devm_request_irq(&pdev->dev, irq,
-+				       brcmstb_usb_pinmap_ovr_isr,
-+				       IRQF_TRIGGER_RISING,
-+				       pdev->name, pdata);
-+		if (err < 0) {
-+			dev_err(&pdev->dev, "Error requesting IRQ\n");
-+			return err;
-+		}
-+	}
-+
-+	for (x = 0, pin = pdata->in_pins; x < pdata->in_count; x++, pin++) {
-+		irq = gpiod_to_irq(pin->gpiod);
-+		if (irq < 0) {
-+			dev_err(&pdev->dev, "Error getting IRQ for %s pin\n",
-+				pin->name);
-+			return irq;
-+		}
-+		err = devm_request_irq(&pdev->dev, irq,
-+				       brcmstb_usb_pinmap_gpio_isr,
-+				       IRQF_SHARED | IRQF_TRIGGER_RISING |
-+				       IRQF_TRIGGER_FALLING,
-+				       pdev->name, pin);
-+		if (err < 0) {
-+			dev_err(&pdev->dev, "Error requesting IRQ for %s pin\n",
-+				pin->name);
-+			return err;
-+		}
-+	}
-+
-+	dev_dbg(&pdev->dev, "Driver probe succeeded\n");
-+	dev_dbg(&pdev->dev, "In pin count: %d, out pin count: %d\n",
-+		pdata->in_count, pdata->out_count);
-+	return 0;
-+}
-+
-+
-+static const struct of_device_id brcmstb_usb_pinmap_of_match[] = {
-+	{ .compatible = "brcm,usb-pinmap" },
-+	{ },
-+};
-+
-+static struct platform_driver brcmstb_usb_pinmap_driver = {
-+	.driver = {
-+		.name	= "brcm-usb-pinmap",
-+		.of_match_table = brcmstb_usb_pinmap_of_match,
-+	},
-+};
-+
-+static int __init brcmstb_usb_pinmap_init(void)
-+{
-+	return platform_driver_probe(&brcmstb_usb_pinmap_driver,
-+				     brcmstb_usb_pinmap_probe);
-+}
-+
-+module_init(brcmstb_usb_pinmap_init);
--- 
-2.17.1
-
+Hello, this is correct that driver doesn't use monitored-battery info,
+but I was thinking that it's good to have anyways in the device-tree
+because this completes hardware description + the gauge driver isn't
+aware about maximal battery temperature. Hence it may become useful and
+it doesn't hurt to have that additional information about battery cell.
