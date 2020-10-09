@@ -2,156 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A0628879C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B5C42887A2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730684AbgJILMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 07:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51080 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727181AbgJILMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 07:12:20 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2413FC0613D2
-        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 04:12:20 -0700 (PDT)
-Received: from [2a0a:edc0:0:900:6245:cbff:fea0:1793] (helo=kresse.office.stw.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kQqJl-00015u-MJ; Fri, 09 Oct 2020 13:12:10 +0200
-Message-ID: <5287bbc0ede98dd3fc0022f2062148275dafa05c.camel@pengutronix.de>
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Jacky Bai <ping.bai@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     dl-linux-imx <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
-Date:   Fri, 09 Oct 2020 13:12:08 +0200
-In-Reply-To: <AM0PR04MB4915267F67FFEA311E9B79F087080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
-         <AM0PR04MB4915267F67FFEA311E9B79F087080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S2387991AbgJILOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 07:14:20 -0400
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:38309 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727181AbgJILOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 07:14:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1602242059; x=1633778059;
+  h=references:from:to:cc:subject:in-reply-to:date:
+   message-id:mime-version;
+  bh=vjKYfbc9s5PmZNG8hn4fzkf70oXwnDet2wCdajG+jWc=;
+  b=XNpqmPvRIkioT5HxPELU9cHjNN10TDXPgYpUvkvSb0avdXn/unpOmNIl
+   FULIIl+t84D4BZbgYF0aJt52teLzAjKbRm1IBLzXpJOPzsSSo96NcSgFj
+   jLy0Qta8FQRi/1Yln+biBHNJ3b+3t1cFGQ1aRBRWlMpESI3fR/t+2tEsd
+   nIeUMMilaERh5uip+R8Slcb3mHSTNGqSa6StGSjqf/3bUkNKiEXED7iOz
+   FJ4VtYng39GbZFK0C8haDHGUFuwQaIWFtHo0D329eVmB1Rsq/mEqosYqS
+   moDNagGjtpIM7fOA83bDO6QkMn4xNoMgV9F46uholvL/9CnwEZN6xP7n9
+   Q==;
+IronPort-SDR: Ifxxhy0xAWh2KaxW2iYDKqG+/gC0f0xqoVn69/hoK+fBjpiQabnargewF3GPamd7kMyunjKO5f
+ 2xnkVWrljLfzh4O31eJOKRJw7rsGQ6hqrOWpofV1Q/Eb4EbTrfGrt5s8cLPT060E7HssZN836u
+ 74nLMRrqzrnQxyEKdoVH7YSi0rIUKgITbXwUuvf+w3uwpnV1N3EvclXw6GuQwnBwIvKrd7eLnP
+ jReMy6MXx0hVeFBnqQd5fOqjpBO9LNHc5QwjSxwdH6PfbUTPva8AKOgBzk+vjZpYsL0e5ZcbdT
+ 7tU=
+X-IronPort-AV: E=Sophos;i="5.77,354,1596524400"; 
+   d="scan'208";a="29330444"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Oct 2020 04:14:18 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 9 Oct 2020 04:13:45 -0700
+Received: from soft-dev15.microsemi.net.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
+ via Frontend Transport; Fri, 9 Oct 2020 04:14:16 -0700
+References: <20201006142532.2247515-1-lars.povlsen@microchip.com> <20201006142532.2247515-3-lars.povlsen@microchip.com> <CACRpkda+OSgma3E0XxXUk8a2yrn5Hpu3a47cBN50rOkoSMkiwQ@mail.gmail.com> <87ft6px9wc.fsf@soft-dev15.microsemi.net> <CACRpkdYqKqqM8D0vrBWbo0=7OFthU2kcK2tjd45dD7DxEkaYWg@mail.gmail.com>
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [RESEND PATCH v3 2/3] pinctrl: pinctrl-mchp-sgpio: Add pinctrl driver for Microsemi Serial GPIO
+In-Reply-To: <CACRpkdYqKqqM8D0vrBWbo0=7OFthU2kcK2tjd45dD7DxEkaYWg@mail.gmail.com>
+Date:   Fri, 9 Oct 2020 13:14:15 +0200
+Message-ID: <87a6wvy7lk.fsf@soft-dev15.microsemi.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:6245:cbff:fea0:1793
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        metis.ext.pengutronix.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_SOFTFAIL,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.2
-Subject: Re: [PATCH 00/11] i.MX8MM power domain support
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
 
-On Fr, 2020-10-09 at 03:00 +0000, Jacky Bai wrote:
-> > -----Original Message-----
-> > From: Lucas Stach [mailto:l.stach@pengutronix.de]
-> > Sent: Wednesday, September 30, 2020 11:50 PM
-> > To: Shawn Guo <shawnguo@kernel.org>; Rob Herring <robh+dt@kernel.org>
-> > Cc: dl-linux-imx <linux-imx@nxp.com>; Fabio Estevam
-> > <festevam@gmail.com>; Frieder Schrempf <frieder.schrempf@kontron.de>;
-> > Marek Vasut <marex@denx.de>; linux-arm-kernel@lists.infradead.org;
-> > devicetree@vger.kernel.org; kernel@pengutronix.de;
-> > patchwork-lst@pengutronix.de
-> > Subject: [PATCH 00/11] i.MX8MM power domain support
-> > 
-> > Hi all,
-> > 
-> > this adds power domain support for the i.MX8MM to the existing GPCv2 driver.
-> > It is not complete yet, as it is still missing the VPU and display power domains,
-> > as those require support for the BLK_CTL regions of the VPUMIX and
-> > DISPLAYMIX domains. A Linux driver for those regions on the i.MX8MP is
-> > currently under development and we plan to use this as a template for the
-> > i.MX8MM when the dust has settled. The changes in this series have been
-> > made with this in mind, so once the BLK_CTL driver exists it should be a
-> > matter of hooking things together via DT, with no further changes required on
-> > the GPCv2 driver side (famous last words).
-> > 
-> > Special thanks to Marek Vasut who helped with testing and debugging of early
-> > versions of this code.
-> > 
-> 
-> Lucas,
-> 
-> thanks for working on this, but I think current support for 8MM can NOT 100% work due to HW limitation.
-> Maybe, we need further discussion before moving forward, otherwise, we will meet awkward situation when NXP
-> doing LTS upgrade. Below are some info shared.
-> 
-> 1. The GPU & VPU related power domains need to do special handling due to HW limitation, can refer to the power domain sequence
->   In NXP release.
+Linus Walleij writes:
 
-For the GPU this driver already does the same thing as the TF-A based
-implementation by driving the GPU2D and GPU3D domains together and
-triggering the SRC reset.
+> Hi Lars,
+>
+> I'm overall mostly happy with the latest posting (not the one I respond to here)
 
-For the VPU I expect that we can do all the necessary syncing with a
-proper VPU BLK_CTL driver.
+I'm glad we're getting there :-)
 
-> 2. another reason that we do power domain control in TF-A in NXP release is that MAIN NOC power domain can only be controlled by
->   TF-A, and before MAIN NOC power domain, we need to check other MIXs' power status. If other power domain is controlled by linux side,
->   It is not easy to cross world status sync.
+>
+> On Thu, Oct 8, 2020 at 12:57 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+>> > On Tue, Oct 6, 2020 at 4:25 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+>
+>> >> +       gc->of_xlate            = microchip_sgpio_of_xlate;
+>> >> +       gc->of_gpio_n_cells     = 3;
+>> >
+>> > So I'm sceptical to this.
+>> >
+>> > Why can't you just use the pin index in cell 0 directly
+>> > and avoid cell 1?
+>> >
+>>
+>> You scepticism has surfaced before :-). The (now) 2 indices relates to
+>> how the hardware address signals.
+>>
+>> Each signal/pin is addressed by port, bit number and direction. We now
+>> have the direction encoded in the bank/phandle.
+>
+> I'm sorry but I just don't get it, I suppose. To me it is pretty
+> straight-forward
+> that the cells indicate the pin and then the flags. I do understand you
+> need the port at all, since this is implicit from the reg property
+> of the DT node. Are these two different things?
 
-This is a valid concern and I want to learn more about this. When do
-you turn off MAIN NOC power in the TF-A? Is it just system suspend? If
-so I think it's a valid requirement for the kernel driver to shut down
-all the peripheral power domains before entering system suspend.
+I responded to this in your comments to the DT bindings.
 
-> 3. either 8MM, 8MN, or 8MP, the power domain design is different, I am not sure if it is the good to add hundreds line of code in GPCv2 each time
->   a new SOC is added.
+I just for got to offer to add a description for "#gpio-cells", I see
+that's missing. That should make it "crystal clear" - I hope!
 
-I don't buy into this argument. We have lots of drivers in the Linux
-kernel that require some changes for new SoC generations, that's what
-Linux drivers are for. The complexity of the hardware doesn't disappear
-just because you push some of the driver bits into TF-A, you just
-handle the complexity at a different palce and IMHO that the wrong
-place. The power domains have complex interactions with other drivers
-in the Linux system, so debugging and deplyong fixes is much easier
-when the power domain handling is fully done by a kernel driver.
+Something like:
 
-Regards,
-Lucas
+--- a/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+@@ -86,10 +86,17 @@ patternProperties:
+       gpio-controller: true
 
-> BR
-> Jacky Bai
-> 
-> > Regards,
-> > Lucas
-> > 
-> > Lucas Stach (11):
-> >   soc: imx: gpcv2: move to more ideomatic error handling in probe
-> >   soc: imx: gpcv2: move domain mapping to domain driver probe
-> >   soc: imx: gpcv2: split power up and power down sequence control
-> >   soc: imx: gpcv2: wait for ADB400 handshake
-> >   soc: imx: gpcv2: add runtime PM support for power-domains
-> >   soc: imx: gpcv2: allow domains without power-sequence control
-> >   soc: imx: gpcv2: add support for optional resets
-> >   dt-bindings: add defines for i.MX8MM power domains
-> >   soc: imx: gpcv2: add support for i.MX8MM power domains
-> >   arm64: dts: imx8mm: add GPC node and power domains
-> >   arm64: dts: imx8mm: put USB controllers into power-domains
-> > 
-> >  .../bindings/power/fsl,imx-gpcv2.yaml         |   8 +
-> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  59 +++
-> >  drivers/soc/imx/gpcv2.c                       | 501
-> > +++++++++++++++---
-> >  include/dt-bindings/power/imx8mm-power.h      |  22 +
-> >  4 files changed, 516 insertions(+), 74 deletions(-)  create mode 100644
-> > include/dt-bindings/power/imx8mm-power.h
-> > 
-> > --
-> > 2.20.1
+       '#gpio-cells':
++        description: |
++         Specifies the pin (port and bit) and flags. Note that the
++         SGIO pin is defined by *2* numbers, a port number between 0
++         and 31, and a bit index, 0 to 3. The maximum bit number is
++         controlled indirectly by the "ngpios" property: (ngpios/32).
+         const: 3
 
+       ngpios:
+-        minimum: 1
++        description: The numbers of GPIO's exposed. This must be a
++          multiple of 32.
++        minimum: 32
+         maximum: 128
+
+     required:
+
+Would that be adequate, or should this also be added as a comment in
+microchip_sgpio_of_xlate()?
+
+Like:
+
+    +       /* Note that the SGIO pin is defined by *2* numbers, a port
+    +        * number between 0 and 31, and a bit index, 0 to 3.
+    +        */
+            if (gpiospec->args[0] > SGPIO_BITS_PER_WORD ||
+                        gpiospec->args[1] > priv->bitcount)
+                                        return -EINVAL;
+
+I hope we can put this one to bed...
+
+---Lars
+
+>
+> Yours,
+> Linus Walleij
+
+-- 
+Lars Povlsen,
+Microchip
