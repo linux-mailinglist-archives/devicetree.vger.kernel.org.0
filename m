@@ -2,105 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CC5B2880D9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 05:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61AE52880EC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 05:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731593AbgJIDwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 23:52:07 -0400
-Received: from bilbo.ozlabs.org ([203.11.71.1]:34179 "EHLO ozlabs.org"
+        id S1728872AbgJID7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Oct 2020 23:59:18 -0400
+Received: from foss.arm.com ([217.140.110.172]:39258 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729195AbgJIDwG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 23:52:06 -0400
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4C6vJn0VVyz9sSG;
-        Fri,  9 Oct 2020 14:51:53 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
-        s=201909; t=1602215524;
-        bh=JJFHt0WKQB92kXQpvXVLk3zDAHuNVQpW9ACYB9X5JlY=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=IL6myVQYQiWcr+Iv/skn0UNuXCXKrjL/lFkXJplPrupeQL5g6E4tmNcJ7QDxNh36v
-         BfNhzZPKVdq55BmPZIztbw8JNGkI0X/TJbcEh4kXSiE8cmqpkbnFvHUdyWGz7Cu6pL
-         wy1oD7J+6au+seC5fwUleUJC09q038qMu/eZ3uKjr+18pyvYRg6gQ+UaMxdhP65pXm
-         FbIBpZ/5BY6AIUnsj57pCBjj2H3MVnlyeRvUnZABjjprmsERyEouWILv1q3tzMS4KZ
-         2HFp0KJvXzwFb9/mIVXbA62GFzyYe5BFnmE5MAok5rrmbrKbhagBX2Nl1OcSFZpBH4
-         omqtDTanxmmzQ==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
+        id S1726567AbgJID7S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Oct 2020 23:59:18 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2B5AF1063;
+        Thu,  8 Oct 2020 20:59:17 -0700 (PDT)
+Received: from [192.168.122.166] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 996353F66B;
+        Thu,  8 Oct 2020 20:59:16 -0700 (PDT)
+Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
+To:     Ard Biesheuvel <ardb@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Paul Mackerras <paulus@samba.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        "H. Peter Anvin" <hpa@zytor.com>, x86@kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-mips@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-sh@vger.kernel.org,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Subject: Re: [PATCH 2/2] dt: Remove booting-without-of.rst
-In-Reply-To: <20201008142420.2083861-2-robh@kernel.org>
-References: <20201008142420.2083861-1-robh@kernel.org> <20201008142420.2083861-2-robh@kernel.org>
-Date:   Fri, 09 Oct 2020 14:51:51 +1100
-Message-ID: <87imbk12g8.fsf@mpe.ellerman.id.au>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Memory Management List <linux-mm@kvack.org>,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        Will Deacon <will@kernel.org>, Christoph Hellwig <hch@lst.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Robin Murphy <robin.murphy@arm.com>
+References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
+ <20201001161740.29064-2-nsaenzjulienne@suse.de> <20201001171500.GN21544@gaia>
+ <20201001172320.GQ21544@gaia>
+ <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
+ <20201002115541.GC7034@gaia>
+ <12f33d487eabd626db4c07ded5a1447795eed355.camel@suse.de>
+ <20201008101353.GE7661@gaia>
+ <CAMj1kXFDEdEJ_eaB=jb1m=tKBpVdskrC0fW67NvGNZFS5PVL=Q@mail.gmail.com>
+From:   Jeremy Linton <jeremy.linton@arm.com>
+Message-ID: <978e01a1-71e6-7286-0876-bb10698ba1d2@arm.com>
+Date:   Thu, 8 Oct 2020 22:59:09 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <CAMj1kXFDEdEJ_eaB=jb1m=tKBpVdskrC0fW67NvGNZFS5PVL=Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> writes:
-> booting-without-of.rstt is an ancient document that first outlined
-                        ^
-                        nit
+On 10/8/20 2:43 PM, Ard Biesheuvel wrote:
+> (+ Lorenzo)
+> 
+> On Thu, 8 Oct 2020 at 12:14, Catalin Marinas <catalin.marinas@arm.com> wrote:
+>>
+>> On Thu, Oct 08, 2020 at 12:05:25PM +0200, Nicolas Saenz Julienne wrote:
+>>> On Fri, 2020-10-02 at 12:55 +0100, Catalin Marinas wrote:
+>>>> On Thu, Oct 01, 2020 at 07:31:19PM +0200, Nicolas Saenz Julienne wrote:
+>>>>> On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
+>>>>>> On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
+>>>>>>> On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
+>>>>>>>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+>>>>>>>> index 4602e467ca8b..cd0d115ef329 100644
+>>>>>>>> --- a/drivers/of/fdt.c
+>>>>>>>> +++ b/drivers/of/fdt.c
+>>>>>>>> @@ -25,6 +25,7 @@
+>>>>>>>>   #include <linux/serial_core.h>
+>>>>>>>>   #include <linux/sysfs.h>
+>>>>>>>>   #include <linux/random.h>
+>>>>>>>> +#include <linux/dma-direct.h>      /* for zone_dma_bits */
+>>>>>>>>
+>>>>>>>>   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+>>>>>>>>   #include <asm/page.h>
+>>>>>>>> @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
+>>>>>>>>      of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+>>>>>>>>   }
+>>>>>>>>
+>>>>>>>> +void __init early_init_dt_update_zone_dma_bits(void)
+>>>>>>>> +{
+>>>>>>>> +   unsigned long dt_root = of_get_flat_dt_root();
+>>>>>>>> +
+>>>>>>>> +   if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
+>>>>>>>> +           zone_dma_bits = 30;
+>>>>>>>> +}
+>>>>>>>
+>>>>>>> I think we could keep this entirely in the arm64 setup_machine_fdt() and
+>>>>>>> not pollute the core code with RPi4-specific code.
+>>>>>>
+>>>>>> Actually, even better, could we not move the check to
+>>>>>> arm64_memblock_init() when we initialise zone_dma_bits?
+>>>>>
+>>>>> I did it this way as I vaguely remembered Rob saying he wanted to centralise
+>>>>> all early boot fdt code in one place. But I'll be happy to move it there.
+>>>>
+>>>> I can see Rob replied and I'm fine if that's his preference. However,
+>>>> what I don't particularly like is that in the arm64 code, if
+>>>> zone_dma_bits == 24, we set it to 32 assuming that it wasn't touched by
+>>>> the early_init_dt_update_zone_dma_bits(). What if at some point we'll
+>>>> get a platform that actually needs 24 here (I truly hope not, but just
+>>>> the principle of relying on magic values)?
+>>>>
+>>>> So rather than guessing, I'd prefer if the arch code can override
+>>>> ZONE_DMA_BITS_DEFAULT. Then, in arm64, we'll just set it to 32 and no
+>>>> need to explicitly touch the zone_dma_bits variable.
+>>>
+>>> Yes, sonds like the way to go. TBH I wasn't happy with that solution either,
+>>> but couldn't think of a nicer alternative.
+>>>
+>>> Sadly I just realised that the series is incomplete, we have RPi4 users that
+>>> want to boot unsing ACPI, and this series would break things for them. I'll
+>>> have a word with them to see what we can do for their use-case.
+>>
+>> Is there a way to get some SoC information from ACPI?
+>>
+> 
+> This is unfortunate. We used ACPI _DMA methods as they were designed
+> to communicate the DMA limit of the XHCI controller to the OS.
+> 
+> It shouldn't be too hard to match the OEM id field in the DSDT, and
+> switch to the smaller mask. But it sucks to have to add a quirk like
+> that.
+> It also requires delaying setting the arm64_dma_phy_limit a bit, but 
+that doesn't appear to be causing a problem. I've been boot/compiling 
+with a patch like:
 
-> Flattened DeviceTree on PowerPC initially. The DT world has evolved a
-> lot in the 15 years since and booting-without-of.rst is pretty stale.
-> The name of the document itself is confusing if you don't understand the
-> evolution from real 'OpenFirmware'. Most of what booting-without-of.rst
-> contains is now in the DT specification (which evolved out of the
-> ePAPR). The few things that weren't documented in the DT specification
-> are now.
->
-> All that remains is the boot entry details, so let's move these to arch
-> specific documents. The exception is arm which already has the same
-> details documented.
->
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Michael Ellerman <mpe@ellerman.id.au>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: Paul Mackerras <paulus@samba.org>
-> Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
-> Cc: Rich Felker <dalias@libc.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Ingo Molnar <mingo@redhat.com>
-> Cc: Borislav Petkov <bp@alien8.de>
-> Cc: "H. Peter Anvin" <hpa@zytor.com>
-> Cc: x86@kernel.org
-> Cc: linuxppc-dev@lists.ozlabs.org
-> Cc: linux-mips@vger.kernel.org
-> Cc: linux-doc@vger.kernel.org
-> Cc: linux-sh@vger.kernel.org
-> Acked-by: Benjamin Herrenschmidt <benh@kernel.crashing.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/booting-without-of.rst         | 1585 -----------------
->  Documentation/devicetree/index.rst            |    1 -
->  Documentation/mips/booting.rst                |   28 +
->  Documentation/mips/index.rst                  |    1 +
->  Documentation/powerpc/booting.rst             |  110 ++
+diff --git a/arch/arm64/kernel/acpi.c b/arch/arm64/kernel/acpi.c
+index cada0b816c8a..9dfe776c1c75 100644
+--- a/arch/arm64/kernel/acpi.c
++++ b/arch/arm64/kernel/acpi.c
+@@ -14,6 +14,7 @@
 
-LGTM.
+  #include <linux/acpi.h>
+  #include <linux/cpumask.h>
++#include <linux/dma-direct.h>
+  #include <linux/efi.h>
+  #include <linux/efi-bgrt.h>
+  #include <linux/init.h>
+@@ -168,6 +169,11 @@ static int __init acpi_fadt_sanity_check(void)
+                 ret = -EINVAL;
+         }
 
-Acked-by: Michael Ellerman <mpe@ellerman.id.au> (powerpc)
++       if (!strncmp(table->oem_id, "RPIFDN", ACPI_OEM_ID_SIZE) &&
++           !strncmp(table->oem_table_id,  "RPI4    ", 
+ACPI_OEM_TABLE_ID_SIZE) &&
++           table->oem_revision <= 0x200)  {
++               zone_dma_bits = 30;
++       }
+  out:
+         /*
+          * acpi_get_table() creates FADT table mapping that
+diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+index cd5caca8a929..6c8aaf1570ce 100644
+--- a/arch/arm64/mm/init.c
++++ b/arch/arm64/mm/init.c
+@@ -195,6 +195,7 @@ static void __init zone_sizes_init(unsigned long 
+min, unsigned long max)
+         unsigned long max_zone_pfns[MAX_NR_ZONES]  = {0};
 
-cheers
+  #ifdef CONFIG_ZONE_DMA
++       arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
+         max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
+  #endif
+  #ifdef CONFIG_ZONE_DMA32
+@@ -393,7 +394,6 @@ void __init arm64_memblock_init(void)
+                  */
+                 if (zone_dma_bits == ZONE_DMA_BITS_DEFAULT)
+                         zone_dma_bits = 32;
+-               arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
+         }
+
+         if (IS_ENABLED(CONFIG_ZONE_DMA32))
+
+
