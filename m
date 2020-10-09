@@ -2,82 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 853CC288A0E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 15:52:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E92C7288A1C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 15:57:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387571AbgJINwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 09:52:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39724 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732456AbgJINwf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Oct 2020 09:52:35 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 06B14222B9;
-        Fri,  9 Oct 2020 13:52:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602251554;
-        bh=cwk9i4KBau0qPm27KzJl3XXeYfNbSm1YHxXTzmMkdOY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=xYHb+/ddD3CKObc4tAlrPj2U8OIa+LavQ5ml/H3KzlNFr+FetR8wU/W4lEzql2ywb
-         9FTBXAY7aE7Ao54UCKQmnoTgMN2Gmd8ov1Xin4z8z1b3MJG7D7bVTD8f6VU63uo5K0
-         86m35/V0p1MGv251jWFKJei8tgsXP2s9qeP1ITQc=
-Date:   Fri, 9 Oct 2020 14:52:31 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ajye Huang <ajye.huang@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, dianders@chromium.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, Patrick Lai <plai@codeaurora.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
+        id S1730552AbgJIN5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 09:57:14 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:46214 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726211AbgJIN5N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 09:57:13 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id B941B29DE7B
+Subject: Re: [PATCH 00/12] soc: mediatek: pm-domains: Add new driver for
+ SCPSYS power domains controller
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     devicetree@vger.kernel.org, drinkcat@chromium.org,
+        linux-kernel@vger.kernel.org, fparent@baylibre.com,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rohit kumar <rohitkr@codeaurora.org>, tzungbi@chromium.org,
-        linux-arm-kernel@lists.infradead.org, cychiang@chromium.org
-Subject: Re: [PATCH v1 1/2] ASoC: qcom: dt-bindings: Modify sc7180 machine
- bindings
-Message-ID: <20201009135231.GA6655@sirena.org.uk>
-References: <20200928063744.525700-1-ajye_huang@compal.corp-partner.google.com>
- <20200928063744.525700-2-ajye_huang@compal.corp-partner.google.com>
+        linux-mediatek@lists.infradead.org, hsinyi@chromium.org,
+        Collabora Kernel ML <kernel@collabora.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
+ <1601028361.1346.38.camel@mtksdaap41>
+ <19678952-e354-2067-e619-ffac28b347be@gmail.com>
+ <1601967207.8638.4.camel@mtksdaap41>
+ <f2185b28-0b1f-8cf9-8717-12e28cf2bbf0@gmail.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <181df5c6-9046-5273-879b-ed0d1a59c8b3@collabora.com>
+Date:   Fri, 9 Oct 2020 15:57:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pf9I7BMVVzbSWLtt"
-Content-Disposition: inline
-In-Reply-To: <20200928063744.525700-2-ajye_huang@compal.corp-partner.google.com>
-X-Cookie: Please take note:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <f2185b28-0b1f-8cf9-8717-12e28cf2bbf0@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---pf9I7BMVVzbSWLtt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 9/10/20 14:50, Matthias Brugger wrote:
+> 
+> 
+> On 06/10/2020 08:53, Weiyi Lu wrote:
+>> On Fri, 2020-09-25 at 16:04 +0200, Matthias Brugger wrote:
+>>>
+>>> On 25/09/2020 12:06, Weiyi Lu wrote:
+>>>> On Thu, 2020-09-10 at 19:28 +0200, Enric Balletbo i Serra wrote:
+>>>>> Dear all,
+>>>>>
+>>>>> This is a new driver with the aim to deprecate the mtk-scpsys driver.
+>>>>> The problem with that driver is that, in order to support more Mediatek
+>>>>> SoCs you need to add some logic to handle properly the power-up
+>>>>> sequence of newer Mediatek SoCs, doesn't handle parent-child power
+>>>>> domains and need to hardcode all the clocks in the driver itself. The
+>>>>> result is that the driver is getting bigger and bigger every time a
+>>>>> new SoC needs to be supported.
+>>>>>
+>>>>
+>>>> Hi Enric and Matthias,
+>>>>
+>>>> First of all, thank you for the patch. But I'm worried the problem you
+>>>> mentioned won't be solved even if we work on this new driver in the
+>>>> future. My work on the MT8183 scpsys(now v17) is to implement the new
+>>>> hardware logic. Here, I also see related patches, which means that these
+>>>> new logics are necessary. Why can't we work on the original driver?
+>>>
+>>> Well the decision was to change the driver in a not compatible way to make
+>>> device tree entries better. If we work on the old driver, we would need to find
+>>> some creative ways to handle old bindings vs new bindings.
+>>>
+>>> So I thought it would be better doing a fresh start implementing mt1873 support
+>>> for reference and add mt8183 as new SoC. From what I have seen mt8192 and others
+>>> fit the driver structure too.
+>>>
+>>>> Meanwhile, I thought maybe we should separate the driver into general
+>>>> control and platform data for each SoC, otherwise it'll keep getting
+>>>> bigger and bigger if it need to be support new SoC.
+>>>>
+>>>
+>>> We could in a later series split the SoC depended data structures and put them
+>>> in drivers/soc/mediatek/pm-domains-mt8183.h or something like this. Is that what
+>>> you mean?
+>>>
+>>
+>> Yes, that is what I want. And I guess it could avoid the collisions in
+>> the different defines to the control registers and power status bits you
+>> mentioned. Hope this will happen in this series.
+>>
+> 
+> Sounds good to me. Enric could you move the soc specific data to separate
+> include files?
+> 
 
-On Mon, Sep 28, 2020 at 02:37:43PM +0800, Ajye Huang wrote:
-> Add compatible "qcom,sc7180-sndcard-rt5682-m98357-2mic"
-> for 2mic case.
+Sure, I'll do this in v4.
 
-This doesn't apply against current code, please check and resend.
+Thanks,
+ Enric
 
---pf9I7BMVVzbSWLtt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+Aax8ACgkQJNaLcl1U
-h9BLUgf/bL/7/DLssH7LN6HzEKNltT4ltao9sKdRmjuIPgTA9rwYf3cazWimkZoo
-ZbecRbpOKAPZ5ymsnWo1QAq9pNJ+ll5EwgqwiOmYPavfKpfNwULh10oE+wokLdJl
-+1SuMACMFIHvnKzcwSydpEupP7uFfO01XLpGNoMOvvHITC3vuAETk9AthXKTSD02
-N1TpmZdSCEbtfy81kvCk4NFFaTjmm4wB2MT93+uRKbwHVf/Xnv/hpXFsWo1glTfN
-1p1K3dQ8V2G2tjq7E7+nKFC5DObjE7wSG0HQHH+8wTt3F2axIuPX6P2Vhjy9ZjSR
-NEC32HzNHukUPp0j5dlyUr6izyD8Hg==
-=HyGA
------END PGP SIGNATURE-----
-
---pf9I7BMVVzbSWLtt--
+> Regards,
+> Matthias
+> 
