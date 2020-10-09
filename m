@@ -2,178 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61AE52880EC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 05:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AF4A28811A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 06:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728872AbgJID7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Oct 2020 23:59:18 -0400
-Received: from foss.arm.com ([217.140.110.172]:39258 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726567AbgJID7S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Oct 2020 23:59:18 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2B5AF1063;
-        Thu,  8 Oct 2020 20:59:17 -0700 (PDT)
-Received: from [192.168.122.166] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 996353F66B;
-        Thu,  8 Oct 2020 20:59:16 -0700 (PDT)
-Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
-To:     Ard Biesheuvel <ardb@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        id S1730207AbgJIEWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 00:22:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44278 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725900AbgJIEWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 00:22:40 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B7A5C0613D2
+        for <devicetree@vger.kernel.org>; Thu,  8 Oct 2020 21:22:40 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id n9so6138777pgf.9
+        for <devicetree@vger.kernel.org>; Thu, 08 Oct 2020 21:22:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=PjnOonUUls/Q3sJVeGfY8/b+Yqks6A+Nf0QuNi4LvIg=;
+        b=VllFt2pYHjS/E3CftH/OakusB6TnaiSugFj3gJ+Fd4ek6LLLulCehIIUGatwl8tExU
+         7GGLuKWBRWZnSlbLXaZGY8MI+o06p0aILZJIkB3jwrzyYaz2bmo4Xrr3aa4Fp6XjPKRa
+         xvMDvKedgoNA3g1JHIjtCtwSM4or8q4b9dvDiylSlerzhfg8TfYGKTXGsn/HJLj/ADn4
+         u9s9i92rn9juXWg1H/r+31ip+dQEWP7cloXYyhbw9kmVITfzMRIiB/RrrryXvidNpbFv
+         fu8jov7pEkNzfjZAAzJCivdc6TLESq0yrMO/aG0nnjmKOwHorf2SBhoTUlvfEESFY0S3
+         eU4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=PjnOonUUls/Q3sJVeGfY8/b+Yqks6A+Nf0QuNi4LvIg=;
+        b=Nztd2yf8wGhQi+/kxjVPoQ5oINMGC3EjNZqICSHZ8pmh2gsbiz9dj0F5jG2ev51ZEn
+         J1ZpMC258dTLUKELWMsGy39OZwe/qYjD5MudOGDFwFizV8C53gqhZoWm1OdKogPfuq+j
+         Dz0z0rEeyBpCHrz7JqDFR5nPvk670JmAqVRW7EA+wpRwK23718pmPrBpQjcfGbpOIsbv
+         QSkS12ycw0jBAb8POtTjKOa2kxkWE7UBsTOIyawzm3zF8BRkjR+cS7hVONg+bCN92Qn1
+         Zlt6RJFLwVpBg9A0BpdYF7NWwhkU50SOtra4ME6DQ8v21g6QrpJMY2rE15pC77dfWVlG
+         prWg==
+X-Gm-Message-State: AOAM532wJ6FVlZnuVCI/Gs6BUX8GgqMRDJ736oZFlr7f+W6qWQl5YpXn
+        Zj+45ZXIUVrMzqUlsH6TH+UimA==
+X-Google-Smtp-Source: ABdhPJy6McBtpukPKmm2AnigAAC0Ed7LOfuVXSJ/3tCuWNZI+ahlAfo4Xcuo7BjSMvCZ3t/wqbd6cA==
+X-Received: by 2002:a63:3747:: with SMTP id g7mr1971709pgn.190.1602217359558;
+        Thu, 08 Oct 2020 21:22:39 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id z7sm8938226pgc.35.2020.10.08.21.22.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Oct 2020 21:22:38 -0700 (PDT)
+Date:   Fri, 9 Oct 2020 09:52:37 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        ALKML <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Memory Management List <linux-mm@kvack.org>,
-        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
-        linux-rpi-kernel@lists.infradead.org,
-        Will Deacon <will@kernel.org>, Christoph Hellwig <hch@lst.de>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Robin Murphy <robin.murphy@arm.com>
-References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
- <20201001161740.29064-2-nsaenzjulienne@suse.de> <20201001171500.GN21544@gaia>
- <20201001172320.GQ21544@gaia>
- <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
- <20201002115541.GC7034@gaia>
- <12f33d487eabd626db4c07ded5a1447795eed355.camel@suse.de>
- <20201008101353.GE7661@gaia>
- <CAMj1kXFDEdEJ_eaB=jb1m=tKBpVdskrC0fW67NvGNZFS5PVL=Q@mail.gmail.com>
-From:   Jeremy Linton <jeremy.linton@arm.com>
-Message-ID: <978e01a1-71e6-7286-0876-bb10698ba1d2@arm.com>
-Date:   Thu, 8 Oct 2020 22:59:09 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 0/4] mailbox: arm_mhu: Add ARM MHU doorbell controller
+ driver
+Message-ID: <20201009042237.yuumlyoiougygoqs@vireshk-i7>
+References: <20201008191452.38672-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMj1kXFDEdEJ_eaB=jb1m=tKBpVdskrC0fW67NvGNZFS5PVL=Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201008191452.38672-1-sudeep.holla@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/8/20 2:43 PM, Ard Biesheuvel wrote:
-> (+ Lorenzo)
+On 08-10-20, 20:14, Sudeep Holla wrote:
+> Hi,
 > 
-> On Thu, 8 Oct 2020 at 12:14, Catalin Marinas <catalin.marinas@arm.com> wrote:
->>
->> On Thu, Oct 08, 2020 at 12:05:25PM +0200, Nicolas Saenz Julienne wrote:
->>> On Fri, 2020-10-02 at 12:55 +0100, Catalin Marinas wrote:
->>>> On Thu, Oct 01, 2020 at 07:31:19PM +0200, Nicolas Saenz Julienne wrote:
->>>>> On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
->>>>>> On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
->>>>>>> On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
->>>>>>>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->>>>>>>> index 4602e467ca8b..cd0d115ef329 100644
->>>>>>>> --- a/drivers/of/fdt.c
->>>>>>>> +++ b/drivers/of/fdt.c
->>>>>>>> @@ -25,6 +25,7 @@
->>>>>>>>   #include <linux/serial_core.h>
->>>>>>>>   #include <linux/sysfs.h>
->>>>>>>>   #include <linux/random.h>
->>>>>>>> +#include <linux/dma-direct.h>      /* for zone_dma_bits */
->>>>>>>>
->>>>>>>>   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
->>>>>>>>   #include <asm/page.h>
->>>>>>>> @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
->>>>>>>>      of_scan_flat_dt(early_init_dt_scan_memory, NULL);
->>>>>>>>   }
->>>>>>>>
->>>>>>>> +void __init early_init_dt_update_zone_dma_bits(void)
->>>>>>>> +{
->>>>>>>> +   unsigned long dt_root = of_get_flat_dt_root();
->>>>>>>> +
->>>>>>>> +   if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
->>>>>>>> +           zone_dma_bits = 30;
->>>>>>>> +}
->>>>>>>
->>>>>>> I think we could keep this entirely in the arm64 setup_machine_fdt() and
->>>>>>> not pollute the core code with RPi4-specific code.
->>>>>>
->>>>>> Actually, even better, could we not move the check to
->>>>>> arm64_memblock_init() when we initialise zone_dma_bits?
->>>>>
->>>>> I did it this way as I vaguely remembered Rob saying he wanted to centralise
->>>>> all early boot fdt code in one place. But I'll be happy to move it there.
->>>>
->>>> I can see Rob replied and I'm fine if that's his preference. However,
->>>> what I don't particularly like is that in the arm64 code, if
->>>> zone_dma_bits == 24, we set it to 32 assuming that it wasn't touched by
->>>> the early_init_dt_update_zone_dma_bits(). What if at some point we'll
->>>> get a platform that actually needs 24 here (I truly hope not, but just
->>>> the principle of relying on magic values)?
->>>>
->>>> So rather than guessing, I'd prefer if the arch code can override
->>>> ZONE_DMA_BITS_DEFAULT. Then, in arm64, we'll just set it to 32 and no
->>>> need to explicitly touch the zone_dma_bits variable.
->>>
->>> Yes, sonds like the way to go. TBH I wasn't happy with that solution either,
->>> but couldn't think of a nicer alternative.
->>>
->>> Sadly I just realised that the series is incomplete, we have RPi4 users that
->>> want to boot unsing ACPI, and this series would break things for them. I'll
->>> have a word with them to see what we can do for their use-case.
->>
->> Is there a way to get some SoC information from ACPI?
->>
+> These series adds ARM MHU doorbell controller driver based on the
+> discussion[1]. The DT patches are just repost from Viresh's last posting[2]
 > 
-> This is unfortunate. We used ACPI _DMA methods as they were designed
-> to communicate the DMA limit of the XHCI controller to the OS.
+> Regards,
+> Sudeep
 > 
-> It shouldn't be too hard to match the OEM id field in the DSDT, and
-> switch to the smaller mask. But it sucks to have to add a quirk like
-> that.
-> It also requires delaying setting the arm64_dma_phy_limit a bit, but 
-that doesn't appear to be causing a problem. I've been boot/compiling 
-with a patch like:
+> v1[3]->v2:
+> 	- No updates to binding patches(1-2)
+> 	- Fixed memory leak and improved logic to find free channel reusing
+> 	  mhu_db_mbox_to_channel as suggested by Jassi
+> 
+> [1] https://lore.kernel.org/r/20200909044618.deyx37pzocxiga7u@vireshk-i7
+> [2] https://lore.kernel.org/r/3874de094d193a08624a00a35067a3237e0b42b1.1600249102.git.viresh.kumar@linaro.org
+> [3] https://lore.kernel.org/r/20200928114445.19689-1-sudeep.holla@arm.com
+> 
+> Sudeep Holla (3):
+>   dt-bindings: mailbox: add doorbell support to ARM MHU
+>   mailbox: arm_mhu: Match only if compatible is "arm,mhu"
+>   mailbox: arm_mhu: Add ARM MHU doorbell driver
+> 
+> Viresh Kumar (1):
+>   dt-bindings: mailbox : arm,mhu: Convert to Json-schema
+> 
+>  .../devicetree/bindings/mailbox/arm,mhu.yaml  | 135 +++++++
+>  .../devicetree/bindings/mailbox/arm-mhu.txt   |  43 ---
+>  drivers/mailbox/Makefile                      |   2 +-
+>  drivers/mailbox/arm_mhu.c                     |   3 +
+>  drivers/mailbox/arm_mhu_db.c                  | 354 ++++++++++++++++++
+>  5 files changed, 493 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mailbox/arm-mhu.txt
+>  create mode 100644 drivers/mailbox/arm_mhu_db.c
 
-diff --git a/arch/arm64/kernel/acpi.c b/arch/arm64/kernel/acpi.c
-index cada0b816c8a..9dfe776c1c75 100644
---- a/arch/arm64/kernel/acpi.c
-+++ b/arch/arm64/kernel/acpi.c
-@@ -14,6 +14,7 @@
+MAINTAINERS ?
 
-  #include <linux/acpi.h>
-  #include <linux/cpumask.h>
-+#include <linux/dma-direct.h>
-  #include <linux/efi.h>
-  #include <linux/efi-bgrt.h>
-  #include <linux/init.h>
-@@ -168,6 +169,11 @@ static int __init acpi_fadt_sanity_check(void)
-                 ret = -EINVAL;
-         }
-
-+       if (!strncmp(table->oem_id, "RPIFDN", ACPI_OEM_ID_SIZE) &&
-+           !strncmp(table->oem_table_id,  "RPI4    ", 
-ACPI_OEM_TABLE_ID_SIZE) &&
-+           table->oem_revision <= 0x200)  {
-+               zone_dma_bits = 30;
-+       }
-  out:
-         /*
-          * acpi_get_table() creates FADT table mapping that
-diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-index cd5caca8a929..6c8aaf1570ce 100644
---- a/arch/arm64/mm/init.c
-+++ b/arch/arm64/mm/init.c
-@@ -195,6 +195,7 @@ static void __init zone_sizes_init(unsigned long 
-min, unsigned long max)
-         unsigned long max_zone_pfns[MAX_NR_ZONES]  = {0};
-
-  #ifdef CONFIG_ZONE_DMA
-+       arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
-         max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
-  #endif
-  #ifdef CONFIG_ZONE_DMA32
-@@ -393,7 +394,6 @@ void __init arm64_memblock_init(void)
-                  */
-                 if (zone_dma_bits == ZONE_DMA_BITS_DEFAULT)
-                         zone_dma_bits = 32;
--               arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
-         }
-
-         if (IS_ENABLED(CONFIG_ZONE_DMA32))
-
-
+-- 
+viresh
