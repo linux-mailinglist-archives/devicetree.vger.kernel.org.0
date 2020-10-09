@@ -2,309 +2,363 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C75288CB1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50780288CEB
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:38:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389312AbgJIPax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 11:30:53 -0400
-Received: from mx2.suse.de ([195.135.220.15]:34476 "EHLO mx2.suse.de"
+        id S2388597AbgJIPh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 11:37:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46794 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389297AbgJIPaw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Oct 2020 11:30:52 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 767AAAF30;
-        Fri,  9 Oct 2020 15:30:50 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     f.fainelli@gmail.com, linux@roeck-us.net, jdelvare@suse.com,
-        wahrenst@gmx.net,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Eric Anholt <eric@anholt.net>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] pwm: Add Raspberry Pi Firmware based PWM bus
-Date:   Fri,  9 Oct 2020 17:30:30 +0200
-Message-Id: <20201009153031.986-4-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201009153031.986-1-nsaenzjulienne@suse.de>
-References: <20201009153031.986-1-nsaenzjulienne@suse.de>
+        id S2388473AbgJIPh4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Oct 2020 11:37:56 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 827F522251;
+        Fri,  9 Oct 2020 15:37:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602257875;
+        bh=tK9gzBuNPbzcDcd6oEtAuD+BlU4Yqk+5F+n7gbDPk/c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=X7hRdBiZltvlio2KU0lytUAoHGU1vibZEzJXrsHiKX8ZLDncrr0QoGDoUOPnjgWbJ
+         MzJtVoIjEtDVsrSAspDcIcZ0gG/VE7U0BzdNR3MICKcfE9vpBgwVv/Jh2EHBQ4jEl7
+         qRun77tenwuffBQ62z0nVsyFAI0/6I719aZM3p8g=
+Received: by pali.im (Postfix)
+        id 519D2515; Fri,  9 Oct 2020 17:37:53 +0200 (CEST)
+Date:   Fri, 9 Oct 2020 17:37:53 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Vladimir Vid <vladimir.vid@sartura.hr>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, tmn505@gmail.com,
+        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
+        andrew@lunn.ch, jason@lakedaemon.net, robh+dt@kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: add DT for ESPRESSObin-Ultra
+Message-ID: <20201009153753.mpf6vr6ih2il6zhb@pali>
+References: <20201009152710.316047-1-vladimir.vid@sartura.hr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201009152710.316047-1-vladimir.vid@sartura.hr>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds support to control the PWM bus available in official Raspberry Pi
-PoE HAT. Only RPi's co-processor has access to it, so commands have to
-be sent through RPi's firmware mailbox interface.
+Hello!
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
----
- drivers/pwm/Kconfig           |   7 ++
- drivers/pwm/Makefile          |   1 +
- drivers/pwm/pwm-raspberrypi.c | 216 ++++++++++++++++++++++++++++++++++
- 3 files changed, 224 insertions(+)
- create mode 100644 drivers/pwm/pwm-raspberrypi.c
+On Friday 09 October 2020 17:27:10 Vladimir Vid wrote:
+> This adds support for ESPRESSObin-Ultra from Globalscale.
+> 
+> Specifications are similar to the base ESPRESSObin board, with main
+> difference being being WAN port with PoE capability and 2 additional ethernet ports.
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 63be5362fd3a..a76997ca37d0 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -379,6 +379,13 @@ config PWM_PXA
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-pxa.
- 
-+config PWM_RASPBERRYPI
-+	tristate "Raspberry Pi Firwmware PWM support"
-+	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FIRMWARE)
-+	help
-+	  Enable Raspberry Pi firmware controller PWM bus used to control the
-+	  official RPI PoE hat
-+
- config PWM_RCAR
- 	tristate "Renesas R-Car PWM support"
- 	depends on ARCH_RENESAS || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index cbdcd55d69ee..b557b549d9f3 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -35,6 +35,7 @@ obj-$(CONFIG_PWM_MXS)		+= pwm-mxs.o
- obj-$(CONFIG_PWM_OMAP_DMTIMER)	+= pwm-omap-dmtimer.o
- obj-$(CONFIG_PWM_PCA9685)	+= pwm-pca9685.o
- obj-$(CONFIG_PWM_PXA)		+= pwm-pxa.o
-+obj-$(CONFIG_PWM_RASPBERRYPI)	+= pwm-raspberrypi.o
- obj-$(CONFIG_PWM_RCAR)		+= pwm-rcar.o
- obj-$(CONFIG_PWM_RENESAS_TPU)	+= pwm-renesas-tpu.o
- obj-$(CONFIG_PWM_ROCKCHIP)	+= pwm-rockchip.o
-diff --git a/drivers/pwm/pwm-raspberrypi.c b/drivers/pwm/pwm-raspberrypi.c
-new file mode 100644
-index 000000000000..1ccff6b1ae34
---- /dev/null
-+++ b/drivers/pwm/pwm-raspberrypi.c
-@@ -0,0 +1,216 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2020 Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+
-+#include <soc/bcm2835/raspberrypi-firmware.h>
-+#include <dt-bindings/pwm/raspberrypi,firmware-pwm.h>
-+
-+#define RPI_PWM_MAX_DUTY		255
-+#define RPI_PWM_PERIOD_NS		80000 /* 12.5KHz */
-+
-+#define RPI_PWM_CUR_DUTY_REG		0x0
-+#define RPI_PWM_DEF_DUTY_REG		0x1
-+
-+struct raspberrypi_pwm {
-+	struct rpi_firmware *firmware;
-+	struct pwm_chip chip;
-+	unsigned int duty_cycle;
-+};
-+
-+struct raspberrypi_pwm_prop {
-+	__le32 reg;
-+	__le32 val;
-+	__le32 ret;
-+} __packed;
-+
-+static inline struct raspberrypi_pwm *to_raspberrypi_pwm(struct pwm_chip *chip)
-+{
-+	return container_of(chip, struct raspberrypi_pwm, chip);
-+}
-+
-+static int raspberrypi_pwm_set_property(struct rpi_firmware *firmware,
-+					u32 reg, u32 val)
-+{
-+	struct raspberrypi_pwm_prop msg = {
-+		.reg = cpu_to_le32(reg),
-+		.val = cpu_to_le32(val),
-+	};
-+	int ret;
-+
-+	ret = rpi_firmware_property(firmware, RPI_FIRMWARE_SET_POE_HAT_VAL,
-+				    &msg, sizeof(msg));
-+	if (ret)
-+		return ret;
-+	else if (msg.ret)
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int raspberrypi_pwm_get_property(struct rpi_firmware *firmware,
-+					u32 reg, u32 *val)
-+{
-+	struct raspberrypi_pwm_prop msg = {
-+		.reg = reg
-+	};
-+	int ret;
-+
-+	ret = rpi_firmware_property(firmware, RPI_FIRMWARE_GET_POE_HAT_VAL,
-+				    &msg, sizeof(msg));
-+	if (ret)
-+		return ret;
-+	else if (msg.ret)
-+		return -EIO;
-+
-+	*val = le32_to_cpu(msg.val);
-+
-+	return 0;
-+}
-+
-+static void raspberrypi_pwm_get_state(struct pwm_chip *chip,
-+				      struct pwm_device *pwm,
-+				      struct pwm_state *state)
-+{
-+	struct raspberrypi_pwm *pc = to_raspberrypi_pwm(chip);
-+
-+	state->period = RPI_PWM_PERIOD_NS;
-+	state->duty_cycle = pc->duty_cycle * RPI_PWM_PERIOD_NS / RPI_PWM_MAX_DUTY;
-+	state->enabled = !!(pc->duty_cycle);
-+	state->polarity = PWM_POLARITY_NORMAL;
-+}
-+
-+static int raspberrypi_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			         const struct pwm_state *state)
-+{
-+	struct raspberrypi_pwm *pc = to_raspberrypi_pwm(chip);
-+	unsigned int duty_cycle;
-+	int ret;
-+
-+	if (!state->enabled)
-+		duty_cycle = 0;
-+	else
-+		duty_cycle = state->duty_cycle * RPI_PWM_MAX_DUTY /
-+			     RPI_PWM_PERIOD_NS;
-+
-+	if (duty_cycle == pc->duty_cycle)
-+		return 0;
-+
-+	pc->duty_cycle = duty_cycle;
-+	ret = raspberrypi_pwm_set_property(pc->firmware, RPI_PWM_CUR_DUTY_REG,
-+					   pc->duty_cycle);
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to set duty cycle: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = raspberrypi_pwm_set_property(pc->firmware, RPI_PWM_CUR_DUTY_REG,
-+					   pc->duty_cycle);
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to set default duty cycle: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops raspberrypi_pwm_ops = {
-+	.get_state = raspberrypi_pwm_get_state,
-+	.apply = raspberrypi_pwm_apply,
-+	.owner = THIS_MODULE,
-+};
-+
-+static struct pwm_device *raspberrypi_pwm_xlate(struct pwm_chip *pc,
-+					const struct of_phandle_args *args)
-+{
-+	struct pwm_device *pwm;
-+
-+	if (args->args[0] >= pc->npwm)
-+		return ERR_PTR(-EINVAL);
-+
-+	pwm = pwm_request_from_chip(pc, args->args[0], NULL);
-+	if (IS_ERR(pwm))
-+		return pwm;
-+
-+	/* Firmwre won't let us change the period */
-+	pwm->args.period = RPI_PWM_PERIOD_NS;
-+
-+	return pwm;
-+}
-+
-+static int raspberrypi_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device_node *firmware_node;
-+	struct device *dev = &pdev->dev;
-+	struct rpi_firmware *firmware;
-+	struct raspberrypi_pwm *pc;
-+	int ret;
-+
-+	firmware_node = of_get_parent(dev->of_node);
-+	if (!firmware_node) {
-+		dev_err(dev, "Missing firmware node\n");
-+		return -ENOENT;
-+	}
-+
-+	firmware = rpi_firmware_get(firmware_node);
-+	of_node_put(firmware_node);
-+	if (!firmware)
-+		return -EPROBE_DEFER;
-+
-+	pc = devm_kzalloc(&pdev->dev, sizeof(*pc), GFP_KERNEL);
-+	if (!pc)
-+		return -ENOMEM;
-+
-+	pc->firmware = firmware;
-+
-+	pc->chip.dev = dev;
-+	pc->chip.ops = &raspberrypi_pwm_ops;
-+	pc->chip.of_xlate = raspberrypi_pwm_xlate;
-+	pc->chip.of_pwm_n_cells = 1;
-+	pc->chip.base = -1;
-+	pc->chip.npwm = RASPBERRYPI_FIRMWARE_PWM_NUM;
-+
-+	platform_set_drvdata(pdev, pc);
-+
-+	ret = raspberrypi_pwm_get_property(pc->firmware, RPI_PWM_CUR_DUTY_REG,
-+					   &pc->duty_cycle);
-+	if (ret) {
-+		dev_err(dev, "Failed to get duty cycle: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return pwmchip_add(&pc->chip);
-+}
-+
-+static int raspberrypi_pwm_remove(struct platform_device *pdev)
-+{
-+	struct raspberrypi_pwm *pc = platform_get_drvdata(pdev);
-+
-+	return pwmchip_remove(&pc->chip);
-+}
-+
-+static const struct of_device_id raspberrypi_pwm_of_match[] = {
-+	{ .compatible = "raspberrypi,firmware-pwm", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, raspberrypi_pwm_of_match);
-+
-+static struct platform_driver raspberrypi_pwm_driver = {
-+	.driver = {
-+		.name = "raspberrypi-pwm",
-+		.of_match_table = raspberrypi_pwm_of_match,
-+	},
-+	.probe = raspberrypi_pwm_probe,
-+	.remove = raspberrypi_pwm_remove,
-+};
-+module_platform_driver(raspberrypi_pwm_driver);
-+
-+MODULE_AUTHOR("Nicolas Saenz Julienne <nsaenzjulienne@suse.de>");
-+MODULE_DESCRIPTION("Raspberry Pi Firwmare Based PWM Bus Driver");
-+MODULE_LICENSE("GPL v2");
-+
--- 
-2.28.0
+Cannot you in this case include armada-3720-espressobin.dtsi and write
+only differences into DTS ultra file to reduce definitions?
 
+Currently there are pending patches for espressobin DTS files to
+simplify them and use common include file as much as possible to
+de-duplicate same parts.
+
+> Full specifications:
+> 
+> 1x Marvell 64 bit Dual Core ARM A53 Armada 3700 SOC clocked up to 1.2Ghz
+> 1x Topaz 6341 Networking Switch
+> 1GB DDR4
+> 8GB eMMC
+> 1x WAN with 30W POE
+> 4x Gb LAN
+> 1x RTC Clock and battery
+> 1x DC Jack
+> 1x USB 3.0 Type A
+> 1x USB 2.0 Type A
+> 1x SIM NanoSIM card Slot
+> 1x Power Button
+> 4x LED
+> 1x Reset button
+> 1x microUSB for UART
+> 1x M.2 2280 slot for memory
+> 1x 2x2 802.11ac Wi-Fi
+> 1x MiniPCIE slot for Wi-Fi (PCIe interface)
+> 
+> Signed-off-by: Vladimir Vid <vladimir.vid@sartura.hr>
+> ---
+>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
+>  .../marvell/armada-3720-espressobin-ultra.dts | 242 ++++++++++++++++++
+>  2 files changed, 243 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+> index 3e5f2e7a040c..094f451fdd1d 100644
+> --- a/arch/arm64/boot/dts/marvell/Makefile
+> +++ b/arch/arm64/boot/dts/marvell/Makefile
+> @@ -3,6 +3,7 @@
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> new file mode 100644
+> index 000000000000..25d10b628e77
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> @@ -0,0 +1,242 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Device Tree file for ESPRESSObin-Ultra board.
+> + * Copyright (C) 2019 Globalscale technologies, Inc.
+> + *
+> + * Jason Hung <jhung@globalscaletechnologies.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "armada-372x.dtsi"
+> +
+> +/ {
+> +	model = "Marvell Armada 3720 ESPRESSOBin-Ultra";
+> +	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
+> +		     "marvell,armada3710";
+> +
+> +	aliases {
+> +		ethernet0 = &eth0;
+> +		/* for dsa slave device */
+> +		ethernet1 = &switch0port1;
+> +		ethernet2 = &switch0port2;
+> +		ethernet3 = &switch0port3;
+> +		ethernet4 = &switch0port4;
+> +		ethernet5 = &switch0port5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x00000000 0x00000000 0x00000000 0x20000000>;
+> +	};
+> +
+> +	reg_usb3_vbus: usb3-vbus {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usb3-vbus";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		enable-active-high;
+> +		gpio = <&gpionb 19 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	usb3_phy: usb3-phy {
+> +		compatible = "usb-nop-xceiv";
+> +		vcc-supply = <&reg_usb3_vbus>;
+> +	};
+> +
+> +	gpio-leds {
+> +		pinctrl-names = "default";
+> +		compatible = "gpio-leds";
+> +		/* No assigned functions to the LEDs by default */
+> +		led1 {
+> +			label = "ebin-ultra:blue:led1";
+> +			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
+> +		};
+> +		led2 {
+> +			label = "ebin-ultra:green:led2";
+> +			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
+> +		};
+> +		led3 {
+> +			label = "ebin-ultra:red:led3";
+> +			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
+> +		};
+> +		led4 {
+> +			label = "ebin-ultra:yellow:led4";
+> +			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +};
+> +
+> +&pcie0 {
+> +	status = "okay";
+> +};
+> +
+> +&sata {
+> +	status = "okay";
+> +};
+> +
+> +&sdhci0 {
+> +	status = "okay";
+> +	non-removable;
+> +	bus-width = <8>;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs400-1_8v;
+> +	marvell,pad-type = "fixed-1-8v";
+> +};
+> +
+> +&spi0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi_quad_pins>;
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <108000000>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-tx-bus-width = <4>;
+> +		m25p,fast-read;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			partition@0 {
+> +				label = "u-boot";
+
+Looks like this is incorrect as on Armada 3720 at the beginning of the
+nor must be stored Marvell wtmi/secure firmware which is running on
+Cortex M3 processor. For sure there cannot be u-boot. Also on A3720 is
+u-boot loaded by ARM trusted firmware therefore I doubt that u-boot is
+stored at offset zero.
+
+I guess that on offset zero is stored concatenated binary of Marvell
+secure firmware for M3, ARM trusted firmware (for main CPU) and U-Boot.
+Can you verify it? In this case I would just call this partition as
+"firmware" to indicate what is stored here.
+
+> +				reg = <0x0 0x3e0000>;
+> +			};
+> +			partition@3e0000 {
+> +				label = "hw-info";
+> +				reg = <0x3e0000 0x10000>;
+> +				read-only;
+> +			};
+> +			partition@3f0000 {
+> +				label = "u-boot-env";
+> +				reg = <0x3f0000 0x10000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart1_pins>;
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c1_pins>;
+> +
+> +	clock-frequency = <100000>;
+> +
+> +	rtc@51 {
+> +		compatible = "nxp,pcf8563";
+> +		reg = <0x51>;
+> +	};
+> +};
+> +
+> +&usb3 {
+> +	status = "okay";
+> +	usb-phy = <&usb3_phy>;
+> +};
+> +
+> +&usb2 {
+> +	status = "okay";
+> +};
+> +
+> +&eth0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rgmii_pins>;
+> +	phy-mode = "rgmii-id";
+> +
+> +	fixed-link {
+> +		speed = <1000>;
+> +		full-duplex;
+> +	};
+> +};
+> +
+> +&mdio {
+> +	status = "okay";
+> +
+> +	extphy: ethernet-phy@0 {
+> +		reg = <1>;
+> +	};
+> +
+> +	switch0: switch0@1 {
+> +		compatible = "marvell,mv88e6085";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <3>;
+> +
+> +		dsa,member = <0 0>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			switch0port0: port@0 {
+> +				reg = <0>;
+> +				label = "cpu";
+> +				ethernet = <&eth0>;
+> +			};
+> +
+> +			switch0port1: port@1 {
+> +				reg = <1>;
+> +				label = "lan0";
+> +				phy-handle = <&switch0phy1>;
+> +			};
+> +
+> +			switch0port2: port@2 {
+> +				reg = <2>;
+> +				label = "lan1";
+> +				phy-handle = <&switch0phy2>;
+> +			};
+> +
+> +			switch0port3: port@3 {
+> +				reg = <3>;
+> +				label = "lan2";
+> +				phy-handle = <&switch0phy3>;
+> +			};
+> +
+> +			switch0port4: port@4 {
+> +				reg = <4>;
+> +				label = "lan3";
+> +				phy-handle = <&switch0phy4>;
+> +			};
+> +
+> +			switch0port5: port@5 {
+> +				reg = <5>;
+> +				label = "wan";
+> +				phy-handle = <&extphy>;
+> +				phy-mode = "sgmii";
+> +			};
+> +		};
+> +
+> +		mdio {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			switch0phy1: switch0phy1@11 {
+> +				reg = <0x11>;
+> +			};
+> +			switch0phy2: switch0phy2@12 {
+> +				reg = <0x12>;
+> +			};
+> +			switch0phy3: switch0phy3@13 {
+> +				reg = <0x13>;
+> +			};
+> +			switch0phy4: switch0phy4@14 {
+> +				reg = <0x14>;
+> +			};
+> +		};
+> +	};
+> +};
+> -- 
+> 2.27.0
+> 
