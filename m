@@ -2,87 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 079AA2885B8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F14732885C1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732970AbgJIJB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 05:01:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732898AbgJIJB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 05:01:29 -0400
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 237E8C0613D2;
-        Fri,  9 Oct 2020 02:01:29 -0700 (PDT)
-Received: by mail-yb1-xb43.google.com with SMTP id f70so6669797ybg.13;
-        Fri, 09 Oct 2020 02:01:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PcsONVYiBK1iW5wQec5AEduVLgrfQM/jVP9jKaNXMYw=;
-        b=YFABU5DIuDtk1xS6jIx3m5QXTG4r3ctCEX3KFO9+cszASBgOWa6k6Kj+OB8VHTB3Dx
-         kbJg3XN5gO6SS6P0IiE5aafDLfz54lYlOjWkSl1GanA4tdlaQMrMX/t3jr0O8QNkWeGh
-         eYYpEK5Y+cc0d9I0LVCseO3KfaqeCc+CidtTazeHd2dstS1ihByRfiqTGuUsGAvXVfuJ
-         mo7fCRWpxs6jU+zengQvQGLCKim27Vppyd3QT9e2vctWUrBc8zXVOK+0D4Zkd7ZaNuu0
-         1wuDS/0+0tSbVNivTS3zV2EJRT/6u9pggqMt64/WdQ1ZsjJvJL49c74E0y0+JULdg3st
-         TGpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PcsONVYiBK1iW5wQec5AEduVLgrfQM/jVP9jKaNXMYw=;
-        b=eToPEGSW9DGVxpZQfJLDhWVfm5y2tdWKydv3GxkP5Yftki6Cplz+Bge8yH3W9wsGEw
-         zsUCx1vdLsIO2V7sPYnk10oiNiofKUeRr5amhQFBphmddPsC6pd1ppRgfBHnkrR+SbLy
-         XsDwWGGj8/Ejq6wawgcGkBBVEg0jZ0ffxk5kKAAKdjA+Cyz+hB2VCF/MEgSEkhsjBMp5
-         dCuIW1ae0zkZgB8+d6KPU2ZMaD2FhJm9wMV59L8WHSFwCGHlqPOIWOJv5vHFvbDSJsSl
-         auut5YpM0n+VUtWbhDy1zvDq1OJml8Bq5VIPXUDceEOOoWH9xZezGdHFV/nyMDQCHFx0
-         T9ug==
-X-Gm-Message-State: AOAM531rQaNX1Fm2STLBpNK+em0dEt7hW0jyT/ob3y32mqPilffiO4zy
-        n3SSrCXCkUM5OzmqRJAyUMWqlbiFc2GFGlulLls=
-X-Google-Smtp-Source: ABdhPJwEfupS5lSsaPNUhRbQTRDTmsZzTkwL0spN3NS0/dLm4LwSlwo/2fwEZYM8rtLoxyFlz9ezQ1aeCKE1032fMwc=
-X-Received: by 2002:a25:37c2:: with SMTP id e185mr1971300yba.401.1602234088498;
- Fri, 09 Oct 2020 02:01:28 -0700 (PDT)
+        id S1732981AbgJIJEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 05:04:07 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57268 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732712AbgJIJEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 05:04:06 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 099944J1005639;
+        Fri, 9 Oct 2020 04:04:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1602234244;
+        bh=FT8t5B4j4P6XhHIGl23LsrUhTcxqXSyhT9rpir4C/0k=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=A16+6Mck75isudaNslyvogxfVTdeGyXeTmXBOqq5LvBk2TiVGbCXU23P7vjqzQg9m
+         +w1LzFqQI272gASDdpi9owFaWItrV2zNEY4TB4Xy/FrH3Zjg9kLJCFvu9ISqQdLbBT
+         rwETMbFE48UuytS8cGsZv1RtvmBDToRFcejch9yA=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 099944ul085818
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 9 Oct 2020 04:04:04 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 9 Oct
+ 2020 04:04:04 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 9 Oct 2020 04:04:04 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 099942aX039959;
+        Fri, 9 Oct 2020 04:04:02 -0500
+Subject: Re: [PATCH v4 2/3] dmaengine: add peripheral configuration
+To:     Vinod Koul <vkoul@kernel.org>, <dmaengine@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20201008123151.764238-1-vkoul@kernel.org>
+ <20201008123151.764238-3-vkoul@kernel.org>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <e2c0323b-4f41-1926-5930-c63624fe1dd1@ti.com>
+Date:   Fri, 9 Oct 2020 12:04:24 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20200825162718.5838-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20201009072350.GB10335@amd>
-In-Reply-To: <20201009072350.GB10335@amd>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 9 Oct 2020 10:01:02 +0100
-Message-ID: <CA+V-a8uw7+U=cnqQqiHAt4z6BzrSKQdAC01JKvgcry9y23Vd5A@mail.gmail.com>
-Subject: Re: [PATCH 1/4] ARM: dts: r8a7742-iwg21d-q7: Enable PCIe Controller
-To:     Pavel Machek <pavel@denx.de>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201008123151.764238-3-vkoul@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
 
-Thank you for the review.
 
-On Fri, Oct 9, 2020 at 8:23 AM Pavel Machek <pavel@denx.de> wrote:
+On 08/10/2020 15.31, Vinod Koul wrote:
+> Some complex dmaengine controllers have capability to program the
+> peripheral device, so pass on the peripheral configuration as part of
+> dma_slave_config
 >
-> Hi!
->
-> > +&pciec {
-> > +     /* SW2[6] determines which connector is activated
-> > +      * ON = PCIe X4 (connector-J7)
-> > +      * OFF = mini-PCIe (connector-J26)
-> > +      */
-> > +     status = "okay";
-> > +};
->
-> Note this is wrong comment style for non-network parts of kernel.
->
-Good point, i'll fix that.
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  include/linux/dmaengine.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/include/linux/dmaengine.h b/include/linux/dmaengine.h
+> index 6fbd5c99e30c..a15dc2960f6d 100644
+> --- a/include/linux/dmaengine.h
+> +++ b/include/linux/dmaengine.h
+> @@ -418,6 +418,9 @@ enum dma_slave_buswidth {
+>   * @slave_id: Slave requester id. Only valid for slave channels. The dma
+>   * slave peripheral will have unique id as dma requester which need to be
+>   * pass as slave config.
+> + * @peripheral_config: peripheral configuration for programming peripheral
+> + * for dmaengine transfer
+> + * @peripheral_size: peripheral configuration buffer size
+>   *
+>   * This struct is passed in as configuration data to a DMA engine
+>   * in order to set up a certain channel for DMA transport at runtime.
+> @@ -443,6 +446,8 @@ struct dma_slave_config {
+>  	u32 dst_port_window_size;
+>  	bool device_fc;
+>  	unsigned int slave_id;
+> +	void *peripheral_config;
+> +	size_t peripheral_size;
 
-Cheers,
-Prabhakar
+Do you foresee a need of src/dst pair of these?
+If we do DEV_TO_DEV with different type of peripherals it is going to
+cause issues.
+
+AASRC to McASP and McASP to AASRC for example.
+
+>  };
+>  
+>  /**
+> 
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
