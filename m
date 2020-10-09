@@ -2,77 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABB50288BBD
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 16:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BA8A288BCC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 16:48:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388980AbgJIOnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 10:43:45 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35681 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387662AbgJIOno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 10:43:44 -0400
-Received: by mail-ot1-f67.google.com with SMTP id s66so9219529otb.2;
-        Fri, 09 Oct 2020 07:43:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dOsE09lqg8xfhaENVLTYfHrMNxg+wDtzzAMabberaGg=;
-        b=VDhQGQRin/BrFzeeqiFlp3ngq1mJ+4w2r0WzxIzsarigXYVTfMFo+oBuITWTuonSXH
-         C+lt8RgC74NdvgotKPUx4OLfXXJRHVUet9ube7LEUbjeqtr8iJrmlSue+XNWtkTgdZao
-         uMCZYlsIGxJ42WY7y3m+I7FzXJX6JYbHB+cqABBUu0ApIoxtdouBbWiXbcqNCjvOgq5j
-         tmw7OqthIpW+oeL0Oyl3fFpjapwasUIaMKH2Hi7gxDOJUQ8dkhdh5oUEi3ZHDyvdcS5M
-         XrRG1gwazp4Qm3T2J/dZ8ADhG6PE6qAS0efg10GkwangXU2GToPwN437S/LpSgJi+zzb
-         nW3Q==
-X-Gm-Message-State: AOAM530rMxoYmNsnVcg5uxsfXjfDfBOw5SZvOGM3Rq1/4N2q+9Xc8nq9
-        lTCVeW2U26TR27aoYmkjymvznVOET8b1
-X-Google-Smtp-Source: ABdhPJzObzDE04JdzjIoWiLq5wi7qtxuGZGqWS590nHGfuia4F0wRI98fv8oDheNIT007JEFjKtwyA==
-X-Received: by 2002:a9d:6847:: with SMTP id c7mr8586668oto.134.1602254623404;
-        Fri, 09 Oct 2020 07:43:43 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 8sm7456921oii.45.2020.10.09.07.43.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Oct 2020 07:43:42 -0700 (PDT)
-Received: (nullmailer pid 4128777 invoked by uid 1000);
-        Fri, 09 Oct 2020 14:43:42 -0000
-Date:   Fri, 9 Oct 2020 09:43:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     linux-gpio@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: gpio: pca953x: Add support for the NXP
- PCAL9554B/C
-Message-ID: <20201009144342.GA4128628@bogus>
-References: <20201009060302.6220-1-mike.looijmans@topic.nl>
+        id S2387988AbgJIOsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 10:48:08 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:58923 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732056AbgJIOsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 10:48:08 -0400
+Received: from bootlin.com (atoulouse-258-1-33-168.w90-55.abo.wanadoo.fr [90.55.104.168])
+        (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 33E08240014;
+        Fri,  9 Oct 2020 14:47:59 +0000 (UTC)
+Date:   Fri, 9 Oct 2020 16:47:57 +0200
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH 3/3] media: i2c: Introduce a driver for the Techwell
+ TW9900 decoder
+Message-ID: <20201009164757.33802bf2@bootlin.com>
+In-Reply-To: <57c93f63-2450-aa43-7616-e3a763c95e36@xs4all.nl>
+References: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
+        <20200918142422.1086555-4-maxime.chevallier@bootlin.com>
+        <57c93f63-2450-aa43-7616-e3a763c95e36@xs4all.nl>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201009060302.6220-1-mike.looijmans@topic.nl>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Oct 2020 08:03:02 +0200, Mike Looijmans wrote:
-> The NXP PCAL9554B is a variant of the PCA953x GPIO expander,
-> with 8 GPIOs, latched interrupts and some advanced configuration
-> options. The "C" version only differs in I2C address.
-> 
-> This adds the entry to the devicetree bindings.
-> 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> ---
-> v2: Split devicetree and code into separate patches
-> v3: Devicetree bindings in yaml format
-> 
->  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Hans,
+
+On Fri, 25 Sep 2020 14:52:25 +0200
+Hans Verkuil <hverkuil-cisco@xs4all.nl> wrote:
+
+>Hi Maxime,
+>
+>Some comments below, this driver needs to be changed:
+
+Thanks for the review !
+
+>On 18/09/2020 16:24, Maxime Chevallier wrote:
+>> The Techwell video decoder supports PAL, NTSC and SECAM input formats,
+>> and outputs a BT.656 signal.
+>> 
+>> This commit adds support for this device, based on an implementation
+>> made by Rockchip. This implemention adds basic support for NTSC and PAL,
+>> and some basic brightness and contrast controls.
+>> 
+>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
+ [ ... ]
+
+>> +static const struct v4l2_subdev_ops tw9900_subdev_ops = {
+>> +	.core	= &tw9900_core_ops,
+>> +	.video	= &tw9900_video_ops,
+>> +	.pad	= &tw9900_pad_ops,
+>> +	.sensor = &tw9900_sensor_ops,
+>> +};  
+>
+>This is wrong. This is not a sensor, so you don't set the format, instead
+>you set the TV standard (s_std).
+>
+>drivers/media/i2c/tw9910.c is a fairly OK template to use. The tw9910 supports
+>a simple scaler as well, but I don't know if the tw9900 has the same feature.
+>If not, then the format resolution is fixed based on the current selected
+>TV standard.
+>
+>There is definitely no need for g_skip_top_lines: 1) it's a sensor-only op,
+>and 2) that function always returns 0, so why keep it?
+
+Thanks for the clarification. Indeed the TW9900 is simpler and doesn't
+have a scaler. I'll stick to the s_std / g_std ops then.
+
+I'll also change the denomination from "sensor" to "decoder", you're
+right.
+
+>> +
+>> +static const struct v4l2_ctrl_ops tw9900_ctrl_ops = {
+>> +	.s_ctrl = tw9900_s_ctrl,
+>> +};
+>> +
+>> +#ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
+>> +static const struct v4l2_subdev_internal_ops tw9900_internal_ops = {
+>> +	.open = tw9900_open,
+>> +};
+>> +#endif
+>> +
+>> +static int tw9900_check_sensor_id(struct tw9900 *tw9900,  
+>
+>*Not* a sensor :-)
+>
+>> +				  struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &tw9900->client->dev;
+>> +	u8 id;
+>> +
+>> +	id = tw9900_read_reg(client, TW9900_CHIP_ID);
+>> +
+>> +	if (id != TW9900_CHIP_ID) {
+>> +		dev_err(dev, "Wrong camera sensor id(%04x)\n", id);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	dev_info(dev, "Detected TW9900 (%04x) sensor\n", TW9900_CHIP_ID);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tw9900_configure_regulators(struct tw9900 *tw9900)
+>> +{
+>> +	u32 i;
+>> +
+>> +	for (i = 0; i < TW9900_NUM_SUPPLIES; i++)
+>> +		tw9900->supplies[i].supply = tw9900_supply_names[i];
+>> +
+>> +	return devm_regulator_bulk_get(&tw9900->client->dev,
+>> +				       TW9900_NUM_SUPPLIES,
+>> +				       tw9900->supplies);
+>> +}
+>> +
+>> +static int tw9900_probe(struct i2c_client *client,
+>> +			const struct i2c_device_id *id)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	struct v4l2_ctrl_handler *hdl;
+>> +	struct tw9900 *tw9900;
+>> +	int ret;
+>> +
+>> +	tw9900 = devm_kzalloc(dev, sizeof(*tw9900), GFP_KERNEL);
+>> +	if (!tw9900)
+>> +		return -ENOMEM;
+>> +
+>> +	tw9900->client = client;
+>> +	tw9900->cur_mode = &supported_modes[0];
+>> +
+>> +	tw9900->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+>> +	if (IS_ERR(tw9900->reset_gpio))
+>> +		tw9900->reset_gpio = NULL;
+>> +
+>> +	ret = tw9900_configure_regulators(tw9900);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to get power regulators\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	v4l2_i2c_subdev_init(&tw9900->subdev, client, &tw9900_subdev_ops);
+>> +	tw9900->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_HAS_EVENTS;
+>> +
+>> +	hdl = &tw9900->hdl;
+>> +
+>> +	v4l2_ctrl_handler_init(hdl, 2);
+>> +
+>> +	v4l2_ctrl_new_std(hdl, &tw9900_ctrl_ops, V4L2_CID_BRIGHTNESS,
+>> +			  -128, 127, 1, 0);
+>> +	v4l2_ctrl_new_std(hdl, &tw9900_ctrl_ops, V4L2_CID_CONTRAST,
+>> +			  0, 255, 1, 0x60);
+>> +
+>> +	tw9900->subdev.ctrl_handler = hdl;
+>> +	if (hdl->error) {
+>> +		int err = hdl->error;
+>> +
+>> +		v4l2_ctrl_handler_free(hdl);
+>> +		return err;
+>> +	}
+>> +
+>> +	ret = __tw9900_power_on(tw9900);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = tw9900_check_sensor_id(tw9900, client);
+>> +	if (ret)
+>> +		goto err_power_off;
+>> +
+>> +#ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
+>> +	tw9900->subdev.internal_ops = &tw9900_internal_ops;
+>> +	tw9900->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+>> +#endif
+>> +#if defined(CONFIG_MEDIA_CONTROLLER)
+>> +	tw9900->pad.flags = MEDIA_PAD_FL_SOURCE;
+>> +	tw9900->subdev.entity.function = MEDIA_ENT_F_CAM_SENSOR;  
+>
+>Set to MEDIA_ENT_F_ATV_DECODER.
+
+Will do ! Thanks agains,
+
+Maxime
 
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
 
-If a tag was not added on purpose, please state why and what changed.
-
+-- 
+Maxime Chevallier, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
