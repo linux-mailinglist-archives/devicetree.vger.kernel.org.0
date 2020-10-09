@@ -2,117 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFCF5288855
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 14:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BBA8288861
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 14:14:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388394AbgJIMMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 08:12:09 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40182 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732957AbgJIMMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 08:12:09 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 099CC7NU071967;
-        Fri, 9 Oct 2020 07:12:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1602245527;
-        bh=sfIRZSYBuq+MnozQeCBK9PSbZtBv00OpSwHV6m/Zcv0=;
-        h=From:To:CC:Subject:Date;
-        b=Kgo558q1C7K20OGjWya28RrOuaKM485hETMvlu/0nTx7j/oQfaLPa/GvnmY3F67Lb
-         7zJY1JHZuH1QcwM/gc29ruvk80Rj4b8HgxWY1ikvdhsgFnaSXAI70fvqlbGxiu67Ln
-         l92Z40b2bukBwSyNjk96YxYw7+EOdTYKdbkKvOA4=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 099CC7WG105005
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 9 Oct 2020 07:12:07 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 9 Oct
- 2020 07:12:07 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 9 Oct 2020 07:12:07 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 099CC6Rv104538;
-        Fri, 9 Oct 2020 07:12:06 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <sre@kernel.org>
-CC:     <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>,
-        Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH] power: supply: bq25980: Fix uninitialized wd_reg_val and overrun
-Date:   Fri, 9 Oct 2020 07:12:05 -0500
-Message-ID: <20201009121205.28178-1-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
+        id S1732460AbgJIMOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 08:14:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60710 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730726AbgJIMOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 08:14:38 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDA7BC0613D2;
+        Fri,  9 Oct 2020 05:14:37 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id ce10so12751739ejc.5;
+        Fri, 09 Oct 2020 05:14:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Cue3h+d2r54WmJHGHLdlVpBbHTAcBo9+6eJx0erzBJc=;
+        b=g/mqvwPjB/xgvzXn8cS8zt9pJyrroWQtccwbyhRJJoaA1C7Q1S0xOA/FuXd0Vt9+Vy
+         sxBsSYMN0/MlGWwycKjniWvq3to4VIS5hRXjatUnloVpdkRmZk5jY3BTGTy9D650mnbo
+         2WrkzSlMJ6X55f1SIgOkIbi2HDc3VmjJEORRUCJRs5u0AzYG3cMkfN5rMqcnWjCv0YG5
+         UyhoBFWWHpk7GtY6CDbeB0kSlG+uXa8twSBW3QxwYS8/ldi7MOKYpHD79SxARlWuR66U
+         M0rC6SkoeJWY02eJilsxUYHrgI3UKWBE1gIG5zIFy9GI2s82xm3eraeUXMRumOs8XkUG
+         a4Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Cue3h+d2r54WmJHGHLdlVpBbHTAcBo9+6eJx0erzBJc=;
+        b=r77HRtn/1Kk9PSnULTn8cD7Fj6JPdj6hFHwdbiLDPNfbqU/lh+nryyVUFNS27UiLry
+         sxcivA1k3XeYN4tcgYLAAUgp9NzGG8tSML7sHksYAqn49W0m9UZUs0DLNv1vFtDXDlgF
+         pAr2LzWPukacq1vlNoun6Uirtw61EfdqNUKpuyNOlX82jYb2txbW8A+xBJnwrDu7OhBW
+         MRTOksYypNqQUk+6op9C1xIpjGP1Fr7hP96Xq/98LIGm5FfWLkIqf6ctg5KagHcrp/QI
+         RR/zmA95R3kkSJvCvH/kWkGpiVaNNxGhIdoTxerE/Q9htfI2h4JOyHObILV779IaJmw6
+         NeYA==
+X-Gm-Message-State: AOAM5317CRhfBTSmAtLcz7U5LeF1+djeVblm84zj6WoLDv4c7m8yWSWd
+        vdkzcoGYqpTqK5W5G55wIDQ=
+X-Google-Smtp-Source: ABdhPJxkLmSMY6wbOmZmUUSOdDFIlbb4fIh5JaFnZzUKAOhmSQb4qUA219hgXl1Rh6Y1YEUUCyqnGQ==
+X-Received: by 2002:a17:906:c007:: with SMTP id e7mr14012833ejz.55.1602245676475;
+        Fri, 09 Oct 2020 05:14:36 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id b6sm6593220edu.21.2020.10.09.05.14.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Oct 2020 05:14:34 -0700 (PDT)
+Date:   Fri, 9 Oct 2020 14:14:33 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     krzk@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] memory: tegra: Correct tegra210_mc_clients def values
+Message-ID: <20201009121433.GB458338@ulmo>
+References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+ <20201008003746.25659-3-nicoleotsuka@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="MW5yreqqjyrRcusr"
+Content-Disposition: inline
+In-Reply-To: <20201008003746.25659-3-nicoleotsuka@gmail.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the issue when 'i' is equal to array size then array index over
-runs the array when checking for the watch dog value.
 
-This also fixes the uninitialized wd_reg_val if the for..loop was not
-successful in finding an appropriate match.
+--MW5yreqqjyrRcusr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 5069185fc18e ("power: supply: bq25980: Add support for the BQ259xx family")
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- drivers/power/supply/bq25980_charger.c | 29 +++++++++++++-------------
- 1 file changed, 15 insertions(+), 14 deletions(-)
+On Wed, Oct 07, 2020 at 05:37:43PM -0700, Nicolin Chen wrote:
+> Some def values are mismatched with Tegra X1 TRM, probably because
+> being copied from tegra124.c file. So this patch fixes them.
+>=20
+> Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+> ---
+>  drivers/memory/tegra/tegra210.c | 28 ++++++++++++++--------------
+>  1 file changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/power/supply/bq25980_charger.c b/drivers/power/supply/bq25980_charger.c
-index 3995fb7cf060..e6a91e43ae5b 100644
---- a/drivers/power/supply/bq25980_charger.c
-+++ b/drivers/power/supply/bq25980_charger.c
-@@ -1099,28 +1099,29 @@ static int bq25980_power_supply_init(struct bq25980_device *bq,
- static int bq25980_hw_init(struct bq25980_device *bq)
- {
- 	struct power_supply_battery_info bat_info = { };
--	int wd_reg_val;
-+	int wd_reg_val = BQ25980_WATCHDOG_DIS;
-+	int wd_max_val = BQ25980_NUM_WD_VAL - 1;
- 	int ret = 0;
- 	int curr_val;
- 	int volt_val;
- 	int i;
- 
--	if (!bq->watchdog_timer) {
--		ret = regmap_update_bits(bq->regmap, BQ25980_CHRGR_CTRL_3,
--					 BQ25980_WATCHDOG_DIS,
--					 BQ25980_WATCHDOG_DIS);
--	} else {
--		for (i = 0; i < BQ25980_NUM_WD_VAL; i++) {
--			if (bq->watchdog_timer > bq25980_watchdog_time[i] &&
--			    bq->watchdog_timer < bq25980_watchdog_time[i + 1]) {
--				wd_reg_val = i;
--				break;
-+	if (bq->watchdog_timer) {
-+		if (bq->watchdog_timer >= bq25980_watchdog_time[wd_max_val])
-+			wd_reg_val = wd_max_val;
-+		else {
-+			for (i = 0; i < wd_max_val; i++) {
-+				if (bq->watchdog_timer > bq25980_watchdog_time[i] &&
-+				    bq->watchdog_timer < bq25980_watchdog_time[i + 1]) {
-+					wd_reg_val = i;
-+					break;
-+				}
- 			}
- 		}
--
--		ret = regmap_update_bits(bq->regmap, BQ25980_CHRGR_CTRL_3,
--					BQ25980_WATCHDOG_MASK, wd_reg_val);
- 	}
-+
-+	ret = regmap_update_bits(bq->regmap, BQ25980_CHRGR_CTRL_3,
-+				 BQ25980_WATCHDOG_MASK, wd_reg_val);
- 	if (ret)
- 		return ret;
- 
--- 
-2.28.0.585.ge1cfff676549
+Looks good:
 
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--MW5yreqqjyrRcusr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+AVCkACgkQ3SOs138+
+s6EuTxAAu5FFIhbWSdbBx61NVWHT5gYSbq8qN6YaQ6QsRZuJpyN4i3df4q4PO2ML
+tPcsebM2rUMR4MPveMIpUUfqtxvPRv6dP96LHVpgaj8k0HjPJOFJdX+jFh8uKhYg
+g3q4ck7lxiz3aPBUFr6Z3k2Yb3QqgVAUn6yscq2lromeUY94Cy7cAp1+lioGVzPX
+IfhqxDJ8kTMxqDoTvNDb02Wq9XPHbEl+UEVj3zIsLgBU/gMY5HUSjFTY4bRmoWgN
+rsOYGuJCdmf/nkTvzphMGJvvx2QaQAk40AEycj53loG5LYYQ6Xyoa9SgIrfLEDAW
+vziiA8mKzTAfXcyhGqkiVIWlSZpSO96kpCy9fK/87COExJnuhtAbRPhzM+PlbLBX
+18j5A9ZMBoDqFuNDLEmTZSCAMarrLh6mgLJffvuYHdV0fhG2RZMAUuHpm1yIrhAD
+bWdUCKGNmK4arvx7qOhXyBK0dhwBmkHBfPDnbl3RCLYqJrV9LKFLVpcWnjdzxq+T
+8b9Zwk34l0OvHBvBnHW0eoVq9Ld/ICNK/JnLRrtHRtfZfWlwzZ5WKs7AKilDMx3Y
+E0Bb8L2jZ7Y8Kl5RwHBozAB8MDSjzPEzw5F00zGr7VMlCCb9dPcaCop7a6U4afGJ
+hYGSR5AI2IycyvSbn17zqDJf7A2NcU/dA0ZxwILlykODquE2D+o=
+=2U91
+-----END PGP SIGNATURE-----
+
+--MW5yreqqjyrRcusr--
