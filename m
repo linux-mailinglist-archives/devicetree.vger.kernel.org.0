@@ -2,117 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2431D288517
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 10:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 150EB28852A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 10:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732569AbgJIITe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 04:19:34 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:53901 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732547AbgJIITe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 04:19:34 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4C71Fc5RBZz1sKws;
-        Fri,  9 Oct 2020 10:19:32 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4C71Fc4D6gz1qtwq;
-        Fri,  9 Oct 2020 10:19:32 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id ABFMEeaL5yH6; Fri,  9 Oct 2020 10:19:30 +0200 (CEST)
-X-Auth-Info: fKvGM5mLQK4ePu5NM1X0Z5DWCZf2cCK7yGXx3KyFg18=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Fri,  9 Oct 2020 10:19:30 +0200 (CEST)
-Subject: Re: [PATCH 04/11] soc: imx: gpcv2: wait for ADB400 handshake
-To:     Jacky Bai <ping.bai@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
- <20200930155006.535712-5-l.stach@pengutronix.de>
- <818925c0-b45f-67b4-02a1-8db49ccc491e@denx.de>
- <9533c2b81a9866aec45d2604befe7cdda79d0679.camel@pengutronix.de>
- <de6d73ea-c7dc-6405-29fb-7975368424c0@denx.de>
- <AM0PR04MB4915964704698912AC3AEFF487080@AM0PR04MB4915.eurprd04.prod.outlook.com>
- <e13b01ea-d0a0-7492-3b9c-88515a060405@denx.de>
- <AM0PR04MB4915FC935AB98EED05DCD0F787080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <3c482bc9-e402-c267-b880-23825078f872@denx.de>
-Date:   Fri, 9 Oct 2020 10:19:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1732505AbgJII0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 04:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53742 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732337AbgJII0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 04:26:34 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A83C0613D4
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 01:26:32 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id u24so6622826pgi.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 01:26:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=hk6Ko+1DLzzZQnR2xkXfN7fTIXCUMPbr5Xa64JxbRMM=;
+        b=cR5qGMpyIJzxaze+e1ugQINpveMHTyz5ktns5hq3lwvnpcIvv3REj7ByNjCRDRPjQb
+         IMiVsciq5I8fND1RCB/dptg81f8qOfCehE1JvTEGVHarg0y0u+Zq/TyKOZRS1BqD43Rc
+         kR+s6W4CQE3gCM0mSdKtgWd1FPkuANdcRe0uxmULG0EgsCNtB/2eEQzm5mjB9ydVBBew
+         /aQJd4a65DZS1pOIwCDx+mfT/6zYyUfv5iWe9/TvmY+kxpZii4SXaNuUF95xVN9fKYpU
+         gXYGJ5gfZsCs5vswsxj4KAQ8XypKRXykFTCCc21iDwLVAhl0JvmFn38ShywiPw2GyLGh
+         BsMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=hk6Ko+1DLzzZQnR2xkXfN7fTIXCUMPbr5Xa64JxbRMM=;
+        b=axkwpW8nnJuchMcXJVJ1jBfGi3pqJfCgcz2KhKPnInFBT5SBwXiSnky6zkcT0kcJBK
+         73CWversYbxht2s2T/G5c6r0TJYB1rde5O5IKo5LMFTodDTM+A3bxUjGSj1vkw+HYp3n
+         oc+dhOOWagz9yti1Vho/SIXwcrwRDotajbQlbZn3GyFUtCmIKph2O9DtXC00NI3o5POm
+         95NO4RrbATabXMzHz367WfSKKsvBLXeC2ZZC0yZ3Uoes4AEhdOMcKT9SJ8iRv2nQ0yB4
+         ARkSa8P8sWq+mZjcfCatCRqUQGHoaQkN5didvucvByzEfV8xW0G55PDZ92ZL/gU7M9/u
+         X6qw==
+X-Gm-Message-State: AOAM530AgCXjM0qlD55XDbWMu0NewCJykL7V3EWGY6S14tVmvYVZGD4f
+        U3uwZMRDIMx5hVuPJGNpyCtN
+X-Google-Smtp-Source: ABdhPJwatc67mAG6qyOxRWhuIUHvlo56J+5AkNnPY+qB6VpNVBzto8CiAkLEzLaCirJUS6aTGgUelw==
+X-Received: by 2002:a17:90a:a505:: with SMTP id a5mr3242077pjq.76.1602231991801;
+        Fri, 09 Oct 2020 01:26:31 -0700 (PDT)
+Received: from linux ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id q65sm9541550pga.88.2020.10.09.01.26.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 09 Oct 2020 01:26:31 -0700 (PDT)
+Date:   Fri, 9 Oct 2020 13:56:25 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     gokulsri@codeaurora.org
+Cc:     sboyd@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        sricharan@codeaurora.org, kvalo@codeaurora.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: Enabled MHI device over PCIe
+Message-ID: <20201009082625.GD23649@linux>
+References: <1602160344-19586-1-git-send-email-gokulsri@codeaurora.org>
+ <1602160344-19586-4-git-send-email-gokulsri@codeaurora.org>
+ <20201008131115.GA23649@linux>
+ <7dd959fd2d9375d5529cf52e93aafda3@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <AM0PR04MB4915FC935AB98EED05DCD0F787080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7dd959fd2d9375d5529cf52e93aafda3@codeaurora.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/9/20 9:51 AM, Jacky Bai wrote:
+On Thu, Oct 08, 2020 at 11:03:42PM +0530, gokulsri@codeaurora.org wrote:
+> On 2020-10-08 18:41, Manivannan Sadhasivam wrote:
+> > Hi,
+> > 
+> > On Thu, Oct 08, 2020 at 06:02:24PM +0530, Gokul Sriram Palanisamy wrote:
+> > > Enabled MHI device support over PCIe and added memory
+> > > reservation required for MHI enabled QCN9000 PCIe card.
+> > > 
+> > > Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi | 47
+> > > ++++++++++++++++++++++++++++++
+> > >  1 file changed, 47 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+> > > b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+> > > index 0827055..e5c1ec0 100644
+> > > --- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
 
 [...]
 
->>>>>>> @@ -176,9 +180,19 @@ static int imx_pgc_power_up(struct
->>>> generic_pm_domain *genpd)
->>>>>>>  			   GPC_PGC_CTRL_PCR, 0);
->>>>>>>
->>>>>>>  	/* request the ADB400 to power up */
->>>>>>> -	if (domain->bits.hsk)
->>>>>>> +	if (domain->bits.hskreq) {
->>>>>>>  		regmap_update_bits(domain->regmap, GPC_PU_PWRHSK,
->>>>>>> -				   domain->bits.hsk, domain->bits.hsk);
->>>>>>> +				   domain->bits.hskreq, domain->bits.hskreq);
->>>>>>> +
->>>>>>> +		ret = regmap_read_poll_timeout(domain->regmap,
->>>> GPC_PU_PWRHSK,
->>>>>>> +					       reg_val,
->>>>>>> +					       (reg_val & domain->bits.hskack),
->>>>>>> +					       0, USEC_PER_MSEC);
->>>>>>> +		if (ret) {
->>>>>>> +			dev_err(domain->dev, "failed to power up ADB400\n");
->>>>>>
->>>>>> The ADB400 is a bus bridge, so the bus is being attached here, not
->>>>>> powered up, right ?
->>>>>
->>>>> The bits in the PWRHSK register are called "power down" bits, so I
->>>>> kept this nomenclature. Also I think the ADB400 is mostly isolating
->>>>> the bus in the power domains from the rest of the NoC, "attaching"
->>>>> of the bus is really disabling the isolation.
->>>>>
->>>>> As there are multiple valid naming choices I kept the naming from
->>>>> the RM.
->>>>
->>>> Maybe NXP can finally explain what these bits really do ?
->>>
->>> This bit is used to sync the ADB400 bridge to a known status before MIX side
->> power down & isolation.
->>> Detailed info can be find in ARM's ADB400 TRM.
->>
->> Is this documentation publicly available ?
+> > > +	pcie0_rp: pcie0_rp {
+> > > +		reg = <0 0 0 0 0>;
+> > > +
+> > > +		status = "ok";
+> > > +		mhi_0: qcom,mhi@0 {
+> > 
+> > MHI doesn't support devicetree as of now so how is this supposed to
+> > work?
+> > Have you tested this series with mainline?
+> > 
+> > Thanks,
+> > Mani
+> > 
 > 
-> Ooh, Sorry, It seems confidential. Some info shared below:
+>  Hi Mani,
+>  This node entries will be consumed by ath11k driver and is not supposed to
+> be consumed by mhi driver.
+>  And yes, it is tested on Mainline.
 > 
-> When the powerdown interface is used then the bridge must enter the idle state before either
-> domain can be reset or powered down:
-> 1. The ADB-400 must be quiescent before a powerdown request. It is a system responsibility
-> to ensure that all transactions are completed and no new transactions are sent to ADB-400.
-> 2. When the ADB-400 receives the powerdown request signal, pwrdnreqn, LOW it ensures
-> that all FIFOs are empty, pointers are reset to zero, and no false transactions can be
-> generated.
-> 3. When the ADB-400 completes the internal shutdown process, it sets the pwrdnackn
-> signal LOW. The interface is in idle state and powerdown can commence.
 
-Nice, this was useful, thanks !
+Can you please point me to the relevant binding or the code which consumes this
+change?
+
+Also please explain what it does! For enabling MHI support over PCIe you don't
+need this node at all. You just need to define the PCIe device ID in the ath11k
+driver and that's it.
+
+Adding Kalle to this thread...
+
+Thanks,
+Mani
+
+>  Regards,
+>  Gokul
+> 
+> > > +			reg = <0 0 0 0 0 >;
+> > > +
+> > > +			qrtr_instance_id = <0x20>;
+> > > +			base-addr = <0x50f00000>;
+> > > +			m3-dump-addr = <0x53c00000>;
+> > > +			etr-addr = <0x53d00000>;
+> > > +			qcom,caldb-addr = <0x53e00000>;
+> > > +		};
+> > > +	};
+> > >  };
+> > > 
+> > >  &pcie1 {
+> > >  	status = "ok";
+> > >  	perst-gpio = <&tlmm 61 0x1>;
+> > > +
+> > > +	pcie1_rp: pcie1_rp {
+> > > +		reg = <0 0 0 0 0>;
+> > > +
+> > > +		status = "ok";
+> > > +		mhi_1: qcom,mhi@1 {
+> > > +			reg = <0 0 0 0 0 >;
+> > > +
+> > > +			qrtr_instance_id = <0x21>;
+> > > +			base-addr = <0x54600000>;
+> > > +			m3-dump-addr = <0x57300000>;
+> > > +			etr-addr = <0x57400000>;
+> > > +			qcom,caldb-addr = <0x57500000>;
+> > > +			};
+> > > +		};
+> > > +	};
+> > >  };
+> > > 
+> > >  &qmp_pcie_phy0 {
+> > > --
+> > > 2.7.4
+> > > 
