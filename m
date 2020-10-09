@@ -2,257 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79ADB288D35
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC05D288D8B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389466AbgJIPpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 11:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37028 "EHLO
+        id S2389322AbgJIP7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 11:59:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389287AbgJIPpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 11:45:36 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A113DC0613D2
-        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 08:45:35 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id f21so10060090ljh.7
-        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 08:45:35 -0700 (PDT)
+        with ESMTP id S2389135AbgJIP7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 11:59:32 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077B5C0613D2;
+        Fri,  9 Oct 2020 08:59:32 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id r10so7495080pgb.10;
+        Fri, 09 Oct 2020 08:59:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IlnfeC5dNMsfRj34KVveDWWiSX6big7HcGo7tOgQ3Ps=;
-        b=FYuMO7A3DbIUdKIEj3Z5e+A49K1QxZbLCxr6PPabiLrGw5/nDSApisnltR25JT3Ykc
-         sdeTALeYSh6X4AssbWwtidJNvm12QReo3k0syA2akf4wthzxGVrQqFHKOO/W+NBk5NNw
-         hbaqWCs+FUZBT0BBaR74Fbt5fDdJMwA95iMoqCVO/9t5xu3PbnXiqZD7uTotXmH7ZlLg
-         7leA3claJykESJBjzYY5J/CMjTUTffkCu32Po+/Cjo7zxbFK5edg1ffbwT3IEZZ3IzIO
-         QuW6eclxuWiyZbxI5aOELRt6MWwiMBKmaNh62hnOtiPCPBrE1Ofnu/MdfThM/nH/YD4E
-         5vRA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=/DqIopHg2DytPXFe4tTELvkm+Ygpmw07gfMt//G6jIg=;
+        b=aSog1ZQMiGhQsYRKt/6iwxVGcAM9vhPcwRC1PjDXtMsGULm/oufclx2c7OqhaKOvxB
+         HbnvJrk2FB/rQM2q8CULnl6xiWYK9u5W278iKIqRLDgTimXD0VLDBIQAipzFEwC/GCb2
+         Pb7wjQWl+Ph69vKbIwVwqg+mW0P3meawaw0O0xZtpSK74Yysj6k51SbAsiocpROyN5X+
+         DgwykLqy3LqfF9FkZ50kU4c12+bhIbmXJqQko83OGqmXEqprxB9pBqNVNPIA3MAoqHpD
+         diEo8KUS4y69ThK1cUBfhwlcNjsHe1f2mGDb/cB7oOMT4cowSOlViHxseF+oBQMYm4v2
+         0Raw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IlnfeC5dNMsfRj34KVveDWWiSX6big7HcGo7tOgQ3Ps=;
-        b=aCWOzQtZUk4+vqVQq8a8MgL7W3zF6JUvQrToycSe/Gx1ZhTlaLfzf//tNMjPfFN6Kz
-         J1z4u7WkoIFLeH+orK5AGELWtKmP6ygbJudVGJmPZ9pgfuoikR3olditUVDp/54MinF9
-         lybhjvma6IQfbGIKUburapftCp4reNKTUNaldu5ziN5QR82Gh3++J5+wDTGFcYRn06kc
-         mVXK5hSxWB9gdMS5qyWmcb7QP/Q8q62CFDTpYWZRSpJ1aE+RhFqd8kmrBt77gV83PLeT
-         wGiKy+pO1fcr18pwd97I1JtvzPQUtHTjhiWr0cOgaAuKz5ovEifCaeUCpp5IgKdEPU6P
-         2e6A==
-X-Gm-Message-State: AOAM531aYuG/D6+NyrKLeS+nV0OF8+QODbwQ2vSrKMDuwLJCTJbp+hN8
-        RzEh8MW2L+Jcktl+TUxZHITqKA==
-X-Google-Smtp-Source: ABdhPJy+fa5A6o4fdZFk6brAvTW+lYUg23rpxduo8Uggnk+C6MsN6JBds/yYHfg1uMdkl50I46kI+Q==
-X-Received: by 2002:a05:651c:1128:: with SMTP id e8mr5802681ljo.436.1602258334086;
-        Fri, 09 Oct 2020 08:45:34 -0700 (PDT)
-Received: from eriador.lan ([188.162.65.231])
-        by smtp.gmail.com with ESMTPSA id r4sm1505597lfc.162.2020.10.09.08.45.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Oct 2020 08:45:33 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Subject: [PATCH v8 11/11] arm64: dts: qrb5165-rb5: port thermal zone definitions
-Date:   Fri,  9 Oct 2020 18:44:59 +0300
-Message-Id: <20201009154459.106189-12-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201009154459.106189-1-dmitry.baryshkov@linaro.org>
-References: <20201009154459.106189-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/DqIopHg2DytPXFe4tTELvkm+Ygpmw07gfMt//G6jIg=;
+        b=sqDbGsW7/1gi5pM11Cpr/B3ykIJve4V9XC7f+p5A5pq6AKOF7JK7HHvUXSM5+rch9r
+         WIWKNULZSwOyyJRrRrxRgSwCMDI/4fhWXds6aYjsGukQWD/kIyYMq8pzyef5qYa+bFbq
+         fXSoe9QKtG6WWrRaS4/TJoTB8R0FfAS6uvdjKSJdXm3gg4g2gct4q0/89OPgILt2iffJ
+         uOIIxK7Z8FPHngpaFdwBR9u5Gw4DNSQJlIr2X2mGcXH27kDTrydEtFEcCxoBq3eIyazm
+         oDDzHeYIaypbrDZkjQqHUr1Po6KBsXMx2FX6InOsU5GwS72UtW8k6tu4HrZI89nSTUMe
+         5N4w==
+X-Gm-Message-State: AOAM5318rjDZCqrcuZgBIjBLNNieBAYbRiBo9L5BMRxyWVLryrqvwh7D
+        6o6gFX0uXv5g809ueZT90V4=
+X-Google-Smtp-Source: ABdhPJyoz/4etqW6WR1sy2O4bWNjHIzexhA4N6iM23jQOBRdVNftWIbFGnwXKY+GKlFg2WlepmsQNg==
+X-Received: by 2002:a63:e354:: with SMTP id o20mr4026824pgj.317.1602259171473;
+        Fri, 09 Oct 2020 08:59:31 -0700 (PDT)
+Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id d128sm11575914pfd.94.2020.10.09.08.59.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 09 Oct 2020 08:59:31 -0700 (PDT)
+Date:   Fri, 9 Oct 2020 08:52:18 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     krzk@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: memory: tegra: Add missing swgroups
+Message-ID: <20201009155218.GA4469@Asurada-Nvidia>
+References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+ <20201008003746.25659-5-nicoleotsuka@gmail.com>
+ <20201009122110.GD458338@ulmo>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201009122110.GD458338@ulmo>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones definitions basing on the downstream kernel.
+On Fri, Oct 09, 2020 at 02:21:10PM +0200, Thierry Reding wrote:
+> On Wed, Oct 07, 2020 at 05:37:45PM -0700, Nicolin Chen wrote:
+> > According to Tegra X1 TRM, there are missing swgroups in the
+> > tegra210_swgroups list. So this patch adds them in bindings.
+> > 
+> > Note that the TEGRA_SWGROUP_GPU (in list) should be actually
+> > TEGRA_SWGROUP_GPUB (in TRM), yet TEGRA_SWGROUP_GPU (in TRM)
+> > is not being used -- only TEGRA_SWGROUP_GPUB (in TRM) is. So
+> > this patch does not add TEGRA_SWGROUP_GPU (in TRM) and keeps
+> > TEGRA_SWGROUP_GPU (in list) as it is.
+> > 
+> > Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+> > ---
+> >  include/dt-bindings/memory/tegra210-mc.h | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> > 
+> > diff --git a/include/dt-bindings/memory/tegra210-mc.h b/include/dt-bindings/memory/tegra210-mc.h
+> > index c226cba9e077..f9fcb18a6d9b 100644
+> > --- a/include/dt-bindings/memory/tegra210-mc.h
+> > +++ b/include/dt-bindings/memory/tegra210-mc.h
+> > @@ -33,6 +33,16 @@
+> >  #define TEGRA_SWGROUP_AXIAP	28
+> >  #define TEGRA_SWGROUP_ETR	29
+> >  #define TEGRA_SWGROUP_TSECB	30
+> > +#define TEGRA_SWGROUP_NV	31
+> > +#define TEGRA_SWGROUP_NV2	32
+> > +#define TEGRA_SWGROUP_PPCS1	33
+> > +#define TEGRA_SWGROUP_DC1	34
+> > +#define TEGRA_SWGROUP_PPCS2	35
+> > +#define TEGRA_SWGROUP_HC1	36
+> > +#define TEGRA_SWGROUP_SE1	37
+> > +#define TEGRA_SWGROUP_TSEC1	38
+> > +#define TEGRA_SWGROUP_TSECB1	39
+> > +#define TEGRA_SWGROUP_NVDEC1	40
+> 
+> I'm not sure this is right. The existing list is based on "Table 4:
+> Client to Software Name Mapping" from page 28 of the Tegra X1 TRM, and
+> none of these new swgroups seem to be present in that table.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 154 +++++++++++++++++++++++
- 1 file changed, 154 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 1528a865f1f8..6cb8688910a2 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -58,6 +58,77 @@ bt {
- 
- 	};
- 
-+	thermal-zones {
-+		xo-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 0>;
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wifi-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 1>;
-+			trips {
-+				active-config0 {
-+					temperature = <52000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		conn-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150b_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		skin-msm-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		pm8150l-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+	};
-+
- 	vbat: vbat-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VBAT";
-@@ -412,6 +483,89 @@ &i2c15 {
- 	status = "okay";
- };
- 
-+&pm8150_adc {
-+	xo-therm@4c {
-+		reg = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	wifi-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc {
-+	conn-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc {
-+	skin-msm-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pm8150l-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150_adc_tm {
-+	status = "okay";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150_adc ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	wifi-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm8150b_adc_tm {
-+	status = "okay";
-+
-+	conn-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm8150l_adc_tm {
-+	status = "okay";
-+
-+	skin-msm-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	pm8150l-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pm8150_gpios {
- 	gpio-reserved-ranges = <1 1>, <3 2>, <7 1>;
- 	gpio-line-names =
--- 
-2.28.0
-
+I went through all the MC_SMMU_XX_ASID_0 registers. All of
+them have their own ASID registers that I added in PATCH-5.
