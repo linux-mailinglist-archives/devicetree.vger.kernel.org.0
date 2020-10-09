@@ -2,85 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDAC02885B0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 079AA2885B8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 11:01:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732998AbgJIJAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 05:00:12 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36052 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732969AbgJIJAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 05:00:12 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 099909VX053162;
-        Fri, 9 Oct 2020 04:00:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1602234009;
-        bh=atVNXqR8De4QltIjOct1Mc9+wmSGMbZbnMsOGmwFWco=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=SXna70VzLVA7qbO1Ne45HmLgYFNTDYNAzCVCRahGZsyD7vDW7EmA91jE378Eq0KA4
-         DIgNCvEv1K1/dlAXsXtEOKkH/QzkhrIxKSFgdi7md/dxNanZOlz74MMqedE80X193A
-         lrNKu2EoxTHcXwD+Xc8uA/lawKx+05kX46ZxpHwI=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 099909A4051886
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 9 Oct 2020 04:00:09 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 9 Oct
- 2020 04:00:08 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 9 Oct 2020 04:00:08 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 099907jW100953;
-        Fri, 9 Oct 2020 04:00:07 -0500
-Subject: Re: [PATCH v4 3/3] dmaengine: qcom: Add GPI dma driver
-To:     Vinod Koul <vkoul@kernel.org>, <dmaengine@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20201008123151.764238-1-vkoul@kernel.org>
- <20201008123151.764238-4-vkoul@kernel.org>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <6d6b4bf8-5610-f1cb-8c9d-f4bb82c93bdb@ti.com>
-Date:   Fri, 9 Oct 2020 12:00:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.2
+        id S1732970AbgJIJB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 05:01:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732898AbgJIJB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 05:01:29 -0400
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 237E8C0613D2;
+        Fri,  9 Oct 2020 02:01:29 -0700 (PDT)
+Received: by mail-yb1-xb43.google.com with SMTP id f70so6669797ybg.13;
+        Fri, 09 Oct 2020 02:01:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PcsONVYiBK1iW5wQec5AEduVLgrfQM/jVP9jKaNXMYw=;
+        b=YFABU5DIuDtk1xS6jIx3m5QXTG4r3ctCEX3KFO9+cszASBgOWa6k6Kj+OB8VHTB3Dx
+         kbJg3XN5gO6SS6P0IiE5aafDLfz54lYlOjWkSl1GanA4tdlaQMrMX/t3jr0O8QNkWeGh
+         eYYpEK5Y+cc0d9I0LVCseO3KfaqeCc+CidtTazeHd2dstS1ihByRfiqTGuUsGAvXVfuJ
+         mo7fCRWpxs6jU+zengQvQGLCKim27Vppyd3QT9e2vctWUrBc8zXVOK+0D4Zkd7ZaNuu0
+         1wuDS/0+0tSbVNivTS3zV2EJRT/6u9pggqMt64/WdQ1ZsjJvJL49c74E0y0+JULdg3st
+         TGpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PcsONVYiBK1iW5wQec5AEduVLgrfQM/jVP9jKaNXMYw=;
+        b=eToPEGSW9DGVxpZQfJLDhWVfm5y2tdWKydv3GxkP5Yftki6Cplz+Bge8yH3W9wsGEw
+         zsUCx1vdLsIO2V7sPYnk10oiNiofKUeRr5amhQFBphmddPsC6pd1ppRgfBHnkrR+SbLy
+         XsDwWGGj8/Ejq6wawgcGkBBVEg0jZ0ffxk5kKAAKdjA+Cyz+hB2VCF/MEgSEkhsjBMp5
+         dCuIW1ae0zkZgB8+d6KPU2ZMaD2FhJm9wMV59L8WHSFwCGHlqPOIWOJv5vHFvbDSJsSl
+         auut5YpM0n+VUtWbhDy1zvDq1OJml8Bq5VIPXUDceEOOoWH9xZezGdHFV/nyMDQCHFx0
+         T9ug==
+X-Gm-Message-State: AOAM531rQaNX1Fm2STLBpNK+em0dEt7hW0jyT/ob3y32mqPilffiO4zy
+        n3SSrCXCkUM5OzmqRJAyUMWqlbiFc2GFGlulLls=
+X-Google-Smtp-Source: ABdhPJwEfupS5lSsaPNUhRbQTRDTmsZzTkwL0spN3NS0/dLm4LwSlwo/2fwEZYM8rtLoxyFlz9ezQ1aeCKE1032fMwc=
+X-Received: by 2002:a25:37c2:: with SMTP id e185mr1971300yba.401.1602234088498;
+ Fri, 09 Oct 2020 02:01:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201008123151.764238-4-vkoul@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200825162718.5838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200825162718.5838-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20201009072350.GB10335@amd>
+In-Reply-To: <20201009072350.GB10335@amd>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 9 Oct 2020 10:01:02 +0100
+Message-ID: <CA+V-a8uw7+U=cnqQqiHAt4z6BzrSKQdAC01JKvgcry9y23Vd5A@mail.gmail.com>
+Subject: Re: [PATCH 1/4] ARM: dts: r8a7742-iwg21d-q7: Enable PCIe Controller
+To:     Pavel Machek <pavel@denx.de>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+Hi Pavel,
 
-On 08/10/2020 15.31, Vinod Koul wrote:
-> This controller provides DMAengine capabilities for a variety of peripheral
-> buses such as I2C, UART, and SPI. By using GPI dmaengine driver, bus
-> drivers can use a standardize interface that is protocol independent to
-> transfer data between memory and peripheral.
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  drivers/dma/qcom/Kconfig     |   12 +
->  drivers/dma/qcom/Makefile    |    1 +
->  drivers/dma/qcom/gpi.c       | 2303 ++++++++++++++++++++++++++++++++++
->  include/linux/qcom-gpi-dma.h |   83 ++
+Thank you for the review.
 
-Would not be better to have the header under include/linux/dma/ ?
+On Fri, Oct 9, 2020 at 8:23 AM Pavel Machek <pavel@denx.de> wrote:
+>
+> Hi!
+>
+> > +&pciec {
+> > +     /* SW2[6] determines which connector is activated
+> > +      * ON = PCIe X4 (connector-J7)
+> > +      * OFF = mini-PCIe (connector-J26)
+> > +      */
+> > +     status = "okay";
+> > +};
+>
+> Note this is wrong comment style for non-network parts of kernel.
+>
+Good point, i'll fix that.
 
->  4 files changed, 2399 insertions(+)
->  create mode 100644 drivers/dma/qcom/gpi.c
->  create mode 100644 include/linux/qcom-gpi-dma.h
-
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Cheers,
+Prabhakar
