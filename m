@@ -2,216 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C166A288796
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3A0628879C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727247AbgJILI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 07:08:58 -0400
-Received: from foss.arm.com ([217.140.110.172]:48166 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727181AbgJILI5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Oct 2020 07:08:57 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A4BED6E;
-        Fri,  9 Oct 2020 04:08:56 -0700 (PDT)
-Received: from [10.57.17.201] (unknown [10.57.17.201])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 136AC3F66B;
-        Fri,  9 Oct 2020 04:08:53 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Ionela Voinescu <ionela.voinescu@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        sudeep.holla@arm.com, chris.redpath@arm.com,
-        morten.rasmussen@arm.com, linux-arm-kernel@lists.infradead.org
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
-From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
-Message-ID: <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
-Date:   Fri, 9 Oct 2020 12:10:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1730684AbgJILMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 07:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51080 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727181AbgJILMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 07:12:20 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2413FC0613D2
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 04:12:20 -0700 (PDT)
+Received: from [2a0a:edc0:0:900:6245:cbff:fea0:1793] (helo=kresse.office.stw.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kQqJl-00015u-MJ; Fri, 09 Oct 2020 13:12:10 +0200
+Message-ID: <5287bbc0ede98dd3fc0022f2062148275dafa05c.camel@pengutronix.de>
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Jacky Bai <ping.bai@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
+Date:   Fri, 09 Oct 2020 13:12:08 +0200
+In-Reply-To: <AM0PR04MB4915267F67FFEA311E9B79F087080@AM0PR04MB4915.eurprd04.prod.outlook.com>
+References: <20200930155006.535712-1-l.stach@pengutronix.de>
+         <AM0PR04MB4915267F67FFEA311E9B79F087080@AM0PR04MB4915.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-In-Reply-To: <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:6245:cbff:fea0:1793
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        metis.ext.pengutronix.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.6 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_SOFTFAIL,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.2
+Subject: Re: [PATCH 00/11] i.MX8MM power domain support
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh, I'm glad it helped.
+Hi Jacky,
 
-Please find below my reply.
+On Fr, 2020-10-09 at 03:00 +0000, Jacky Bai wrote:
+> > -----Original Message-----
+> > From: Lucas Stach [mailto:l.stach@pengutronix.de]
+> > Sent: Wednesday, September 30, 2020 11:50 PM
+> > To: Shawn Guo <shawnguo@kernel.org>; Rob Herring <robh+dt@kernel.org>
+> > Cc: dl-linux-imx <linux-imx@nxp.com>; Fabio Estevam
+> > <festevam@gmail.com>; Frieder Schrempf <frieder.schrempf@kontron.de>;
+> > Marek Vasut <marex@denx.de>; linux-arm-kernel@lists.infradead.org;
+> > devicetree@vger.kernel.org; kernel@pengutronix.de;
+> > patchwork-lst@pengutronix.de
+> > Subject: [PATCH 00/11] i.MX8MM power domain support
+> > 
+> > Hi all,
+> > 
+> > this adds power domain support for the i.MX8MM to the existing GPCv2 driver.
+> > It is not complete yet, as it is still missing the VPU and display power domains,
+> > as those require support for the BLK_CTL regions of the VPUMIX and
+> > DISPLAYMIX domains. A Linux driver for those regions on the i.MX8MP is
+> > currently under development and we plan to use this as a template for the
+> > i.MX8MM when the dust has settled. The changes in this series have been
+> > made with this in mind, so once the BLK_CTL driver exists it should be a
+> > matter of hooking things together via DT, with no further changes required on
+> > the GPCv2 driver side (famous last words).
+> > 
+> > Special thanks to Marek Vasut who helped with testing and debugging of early
+> > versions of this code.
+> > 
+> 
+> Lucas,
+> 
+> thanks for working on this, but I think current support for 8MM can NOT 100% work due to HW limitation.
+> Maybe, we need further discussion before moving forward, otherwise, we will meet awkward situation when NXP
+> doing LTS upgrade. Below are some info shared.
+> 
+> 1. The GPU & VPU related power domains need to do special handling due to HW limitation, can refer to the power domain sequence
+>   In NXP release.
 
-On 10/9/20 6:39 AM, Viresh Kumar wrote:
-> On 08-10-20, 17:00, Nicola Mazzucato wrote:
->> On 10/8/20 4:03 PM, Ionela Voinescu wrote:
->>> Hi Viresh,
->>>
->>> On Thursday 08 Oct 2020 at 16:32:41 (+0530), Viresh Kumar wrote:
->>>> On 07-10-20, 13:58, Nicola Mazzucato wrote:
->>>>> Hi Viresh,
->>>>>
->>>>> performance controls is what is exposed by the firmware through a protocol that
->>>>> is not capable of describing hardware (say SCMI). For example, the firmware can
->>>>> tell that the platform has N controls, but it can't say to which hardware they
->>>>> are "wired" to. This is done in dt, where, for example, we map these controls
->>>>> to cpus, gpus, etc.
->>>>>
->>>>> Let's focus on cpus.
->>>>>
->>>>> Normally we would have N of performance controls (what comes from f/w)
->>>>> that that correspond to hardware clock/dvfs domains.
->>>>>
->>>>> However, some firmware implementations might benefit from having finer
->>>>> grained information about the performance requirements (e.g.
->>>>> per-CPU) and therefore choose to present M performance controls to the
->>>>> OS. DT would be adjusted accordingly to "wire" these controls to cpus
->>>>> or set of cpus.
->>>>> In this scenario, the f/w will make aggregation decisions based on the
->>>>> requests it receives on these M controls.
->>>>>
->>>>> Here we would have M cpufreq policies which do not necessarily reflect the
->>>>> underlying clock domains, thus some s/w components will underperform
->>>>> (EAS and thermal, for example).
->>>>>
->>>>> A real example would be a platform in which the firmware describes the system
->>>>> having M per-cpu control, and the cpufreq subsystem will have M policies while
->>>>> in fact these cpus are "performance-dependent" each other (e.g. are in the same
->>>>> clock domain).
->>>>
->>>> If the CPUs are in the same clock domain, they must be part of the
->>>> same cpufreq policy.
->>>
->>> But cpufreq does not currently support HW_ALL (I'm using the ACPI
->>> coordination type to describe the generic scenario of using hardware
->>> aggregation and coordination when establishing the clock rate of CPUs).
->>>
->>> Adding support for HW_ALL* will involve either bypassing some
->>> assumptions around cpufreq policies or making core cpufreq changes.
->>>
->>> In the way I see it, support for HW_ALL involves either:
->>>
->>>  - (a) Creating per-cpu policies in order to allow each of the CPUs to
->>>    send their own frequency request to the hardware which will do
->>>    aggregation and clock rate decision at the level of the clock
->>>    domain. The PSD domains (ACPI) and the new DT binding will tell
->>>    which CPUs are actually in the same clock domain for whomever is
->>>    interested, despite those CPUs not being in the same policy.
->>>    This requires the extra mask that Nicola introduced.
->>>
->>>  - (b) Making deep changes to cpufreq (core/governors/drivers) to allow:
->>>    - Governors to stop aggregating (usually max) the information
->>>      for each of the CPUs in the policy and convey to the core
->>>      information for each CPU.
->>>    - Cpufreq core to be able to receive and pass this information
->>>      down to the drivers.
->>>    - Drivers to be able to have some per cpu structures to hold
->>>      frequency control (let's say SCP fast channel addresses) for
->>>      each of the CPUs in the policy. Or have these structures in the
->>>      cpufreq core/policy, to avoid code duplication in drivers.
->>>
->>> Therefore (a) is the least invasive but we'll be bypassing the rule
->>> above. But to make that rule stick we'll have to make invasive cpufreq
->>> changes (b).
->>
->> Regarding the 'rule' above of one cpufreq policy per clock domain, I would like
->> to share my understanding on it. Perhaps it's a good opportunity to shed some light.
->>
->> Looking back in the history of CPUFreq, related_cpus was originally designed
->> to hold the map of cpus within the same clock. Later on, the meaning of this
->> cpumask changed [1].
->> This led to the introduction of a new cpumask 'freqdomain_cpus'
->> within acpi-cpufreq to keep the knowledge of hardware clock domains for
->> sysfs consumers since related_cpus was not suitable anymore for this.
->> Further on, this cpumask was assigned to online+offline cpus within the same clk
->> domain when sw coordination is in use [2].
->>
->> My interpretation is that there is no guarantee that related_cpus holds the
->> 'real' hardware clock implementation. As a consequence, it is not true anymore
->> that cpus that are in the same clock domain will be part of the same
->> policy.
->>
->> This guided me to think it would be better to have a cpumask which always holds
->> the real hw clock domains in the policy.
->>
->>>
->>> This is my current understanding and I'm leaning towards (a). What do
->>> you think?
->>>
->>> *in not so many words, this is what these patches are trying to propose,
->>> while also making sure it's supported for both ACPI and DT.
->>>
->>> BTW, thank you for your effort in making sense of this!
->>>
->>> Regards,
->>> Ionela.
->>>
->>
->> This could be a platform where per-cpu and perf-dependencies will be used:
->>
->> CPU:              0    1    2    3    4    5    6    7
->> Type:             A    A    A    A    B    B    B    B
->> Cluster:         [                                    ]
->> perf-controls:   [  ] [  ] [  ] [ ]  [ ]  [ ]  [ ]  [ ]
->> perf-dependency: [                ]  [                ]
->> HW clock:        [                ]  [                ]
->>
->> The firmware will present 8 controls to the OS and each control is mapped to a
->> cpu device via the standard dt. This is done so we can achieve hw coordination.
->> What is required in these systems is to present to OS the information of which
->> cpus belong to which clock domain. In other words, when hw coordinates we don't
->> have any way at present in dt to understand how these cpus are dependent
->> each other, from performance perspective (as opposed to ACPI where we have
->> _PSD). Hence my proposal for the new cpu-perf-dependencies.
->> This is regardless whether we decide to go for either a policy per-cpu or a
->> policy per-domain.
->>
->> Hope it helps.
-> 
-> Oh yes, I get it now. Finally. Thanks for helping me out :)
-> 
-> So if I can say all this stuff in simple terms, this is what it will
-> be like:
-> 
-> - We don't want software aggregation of frequencies and so we need to
->   have per-cpu policies even when they share their clock lines.
-> 
-> - But we still need a way for other frameworks to know which CPUs
->   share the clock lines (that's what the perf-dependency is all about,
->   right ?).
-> 
-> - We can't get it from SCMI, but need a DT based solution.
-> 
-> - Currently for the cpufreq-case we relied for this on the way OPP
->   tables for the CPUs were described. i.e. the opp-table is marked as
->   "shared" and multiple CPUs point to it.
-> 
-> - I wonder if we can keep using that instead of creating new bindings
->   for exact same stuff ? Though the difference here would be that the
->   OPP may not have any other entries.
+For the GPU this driver already does the same thing as the TF-A based
+implementation by driving the GPU2D and GPU3D domains together and
+triggering the SRC reset.
 
-I thought about it and looked for other platforms' DT to see if can reuse
-existing opp information. Unfortunately I don't think it is optimal. The reason
-being that, because cpus have the same opp table it does not necessarily mean
-that they share a clock wire. It just tells us that they have the same
-capabilities (literally just tells us they have the same V/f op points).
-Unless I am missing something?
+For the VPU I expect that we can do all the necessary syncing with a
+proper VPU BLK_CTL driver.
 
-When comparing with ACPI/_PSD it becomes more intuitive that there is no
-equivalent way to reveal "perf-dependencies" in DT.
+> 2. another reason that we do power domain control in TF-A in NXP release is that MAIN NOC power domain can only be controlled by
+>   TF-A, and before MAIN NOC power domain, we need to check other MIXs' power status. If other power domain is controlled by linux side,
+>   It is not easy to cross world status sync.
 
-Thank you for time on this.
+This is a valid concern and I want to learn more about this. When do
+you turn off MAIN NOC power in the TF-A? Is it just system suspend? If
+so I think it's a valid requirement for the kernel driver to shut down
+all the peripheral power domains before entering system suspend.
 
-Regards
-Nicola
+> 3. either 8MM, 8MN, or 8MP, the power domain design is different, I am not sure if it is the good to add hundreds line of code in GPCv2 each time
+>   a new SOC is added.
 
+I don't buy into this argument. We have lots of drivers in the Linux
+kernel that require some changes for new SoC generations, that's what
+Linux drivers are for. The complexity of the hardware doesn't disappear
+just because you push some of the driver bits into TF-A, you just
+handle the complexity at a different palce and IMHO that the wrong
+place. The power domains have complex interactions with other drivers
+in the Linux system, so debugging and deplyong fixes is much easier
+when the power domain handling is fully done by a kernel driver.
+
+Regards,
+Lucas
+
+> BR
+> Jacky Bai
 > 
+> > Regards,
+> > Lucas
+> > 
+> > Lucas Stach (11):
+> >   soc: imx: gpcv2: move to more ideomatic error handling in probe
+> >   soc: imx: gpcv2: move domain mapping to domain driver probe
+> >   soc: imx: gpcv2: split power up and power down sequence control
+> >   soc: imx: gpcv2: wait for ADB400 handshake
+> >   soc: imx: gpcv2: add runtime PM support for power-domains
+> >   soc: imx: gpcv2: allow domains without power-sequence control
+> >   soc: imx: gpcv2: add support for optional resets
+> >   dt-bindings: add defines for i.MX8MM power domains
+> >   soc: imx: gpcv2: add support for i.MX8MM power domains
+> >   arm64: dts: imx8mm: add GPC node and power domains
+> >   arm64: dts: imx8mm: put USB controllers into power-domains
+> > 
+> >  .../bindings/power/fsl,imx-gpcv2.yaml         |   8 +
+> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  59 +++
+> >  drivers/soc/imx/gpcv2.c                       | 501
+> > +++++++++++++++---
+> >  include/dt-bindings/power/imx8mm-power.h      |  22 +
+> >  4 files changed, 516 insertions(+), 74 deletions(-)  create mode 100644
+> > include/dt-bindings/power/imx8mm-power.h
+> > 
+> > --
+> > 2.20.1
+
