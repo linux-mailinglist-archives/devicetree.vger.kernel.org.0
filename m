@@ -2,91 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFC32887DE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E04288804
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 13:42:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388112AbgJILbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 07:31:35 -0400
-Received: from foss.arm.com ([217.140.110.172]:48630 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729986AbgJILbe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Oct 2020 07:31:34 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 22299D6E;
-        Fri,  9 Oct 2020 04:31:34 -0700 (PDT)
-Received: from bogus (unknown [10.57.53.233])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 55B1A3F66B;
-        Fri,  9 Oct 2020 04:31:32 -0700 (PDT)
-Date:   Fri, 9 Oct 2020 12:31:29 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        ALKML <linux-arm-kernel@lists.infradead.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
+        id S2388200AbgJILmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 07:42:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55738 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388186AbgJILmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 07:42:45 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E4C8C0613D2
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 04:42:45 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id k8so6657287pfk.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 04:42:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TPvCR0dn1rkBCd8iZ1AA57V2TMQO/sIjjX3MxWPn6oE=;
+        b=ooZpCbdgLkuUEKASh9Ret34IHKXPOenGCJ0PREyNuAzvD0ADXaq6Yw+Ewv3A0rk8uL
+         FRCY67joFiFKnD4XZJd2Dz2NT6S3nwBz0StXmhKLSZa0GbuerMRvBhIqiVYRmBu9dJWC
+         vlm8QxDawynDABxQUM6f5fbF3GNE/mrwTxJ8kdx9vJxep5BugoVJmTHgnjuNSDCIJtCQ
+         25GI11Z+F/27M+WpEnnjW+32mE5lk/6ddrtBT8hTOy7P3vH2xRWZp9nrcPFdevSvI3eg
+         GHXqSFozyUW7vxaxgaTmBmKfvvWOX82lzBceOUlEmUiW7UbEtcyj4QV8hKkY/A6CbsbF
+         EWnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TPvCR0dn1rkBCd8iZ1AA57V2TMQO/sIjjX3MxWPn6oE=;
+        b=JkUIRRmWX7//8NWLGjrrz2EBhrhWYF2TTaJUMJxlJTR+NRPrtVFbQLMxrinKNfzJ3u
+         FXRhT/BOsS5dpUvny+PGIAVeIVVYSLboHIsP+ZwUq/dHRiBxve+A23oqNTWZtHeGtVBk
+         5Ufrfd3KOhuYjP4OqfvunQFwXUOVxvFV50WL0WqPPVsEUokN0we2I5pvS6KvryI3Sddn
+         x+FV8mORlJwO/bqTltAB7qnCGw1Csylj3y1/r9jXKVg5C3bAt2e/A8W6GQ99ReIcWyz3
+         9XO5B3Bpn5RULN/OLPuGL0fZoX+oSRasB7N7WCDXhoHGUvEK02qGPXrYmgRFqwZmh+fW
+         Ju+Q==
+X-Gm-Message-State: AOAM530s9FDIaM0DX+pU8PqxJ+/vGRX4pgKjG2T8BVeWn6/gSOCMmLPm
+        JbTo0uqrW8MVdTEWbsnkrVdS7Q==
+X-Google-Smtp-Source: ABdhPJzT9zx2RLEKPBiAk8jv2N4fDpYrUpCn+M46NWuEi/803AQs6GRRAPcOQxgGnYOMi7ksXy+YWA==
+X-Received: by 2002:a62:dd56:0:b029:155:8165:c6c2 with SMTP id w83-20020a62dd560000b02901558165c6c2mr4416346pff.3.1602243764405;
+        Fri, 09 Oct 2020 04:42:44 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id x18sm5726556pga.49.2020.10.09.04.42.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Oct 2020 04:42:42 -0700 (PDT)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>, morten_bp@live.dk,
+        Tushar Khandelwal <Tushar.Khandelwal@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
         Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org, Sudeep.Holla@arm.com,
         Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 0/4] mailbox: arm_mhu: Add ARM MHU doorbell controller
- driver
-Message-ID: <20201009113129.uqw5zrqztjgw6vga@bogus>
-References: <20201008191452.38672-1-sudeep.holla@arm.com>
- <20201009042237.yuumlyoiougygoqs@vireshk-i7>
+        Tushar Khandelwal <tushar.khandelwal@arm.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V3] dt-bindings: mailbox: arm,mhuv2: Add bindings
+Date:   Fri,  9 Oct 2020 17:12:38 +0530
+Message-Id: <2084ef6975776cabe7a0509fffaf53040c13bfde.1602243670.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201009042237.yuumlyoiougygoqs@vireshk-i7>
-User-Agent: NeoMutt/20171215
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 09, 2020 at 09:52:37AM +0530, Viresh Kumar wrote:
-> On 08-10-20, 20:14, Sudeep Holla wrote:
-> > Hi,
-> > 
-> > These series adds ARM MHU doorbell controller driver based on the
-> > discussion[1]. The DT patches are just repost from Viresh's last posting[2]
-> > 
-> > Regards,
-> > Sudeep
-> > 
-> > v1[3]->v2:
-> > 	- No updates to binding patches(1-2)
-> > 	- Fixed memory leak and improved logic to find free channel reusing
-> > 	  mhu_db_mbox_to_channel as suggested by Jassi
-> > 
-> > [1] https://lore.kernel.org/r/20200909044618.deyx37pzocxiga7u@vireshk-i7
-> > [2] https://lore.kernel.org/r/3874de094d193a08624a00a35067a3237e0b42b1.1600249102.git.viresh.kumar@linaro.org
-> > [3] https://lore.kernel.org/r/20200928114445.19689-1-sudeep.holla@arm.com
-> > 
-> > Sudeep Holla (3):
-> >   dt-bindings: mailbox: add doorbell support to ARM MHU
-> >   mailbox: arm_mhu: Match only if compatible is "arm,mhu"
-> >   mailbox: arm_mhu: Add ARM MHU doorbell driver
-> > 
-> > Viresh Kumar (1):
-> >   dt-bindings: mailbox : arm,mhu: Convert to Json-schema
-> > 
-> >  .../devicetree/bindings/mailbox/arm,mhu.yaml  | 135 +++++++
-> >  .../devicetree/bindings/mailbox/arm-mhu.txt   |  43 ---
-> >  drivers/mailbox/Makefile                      |   2 +-
-> >  drivers/mailbox/arm_mhu.c                     |   3 +
-> >  drivers/mailbox/arm_mhu_db.c                  | 354 ++++++++++++++++++
-> >  5 files changed, 493 insertions(+), 44 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mailbox/arm-mhu.txt
-> >  create mode 100644 drivers/mailbox/arm_mhu_db.c
-> 
-> MAINTAINERS ?
+This patch adds device tree binding for ARM Message Handling Unit (MHU)
+controller version 2.
 
-Duh ! Generated patches before I added and totally forgot to regenerate.
-Will wait for Jassi's response and then will post as addon if no comments
-or will respin the series. Sorry for that.
+Based on earlier work by Morten Borup Petersen.
 
+Co-developed-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
+Signed-off-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+
+---
+V2->V3:
+
+- compatible is changed to arm-mhuv2-tx/rx. Later version of MHUv2
+  have an interrupt in the sender mode as well and we can't find if a
+  mailbox is sender or receiver just based on an interrupt anymore. We
+  needed a better way.
+
+- arm-mhuv2-mode is renamed to arm,mhuv2-protocols to fit the purpose
+  better.
+
+- Minor formatting otherwise.
+
+- No longer an RFC.
+
+Morten: Please let me know if you want me to add your sign-off here from
+some other email id as you no longer work with ARM.
+---
+ .../bindings/mailbox/arm,mhuv2.yaml           | 194 ++++++++++++++++++
+ 1 file changed, 194 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+
+diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+new file mode 100644
+index 000000000000..a2b8ecd639c7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+@@ -0,0 +1,194 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/arm,mhuv2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM MHUv2 Mailbox Controller
++
++maintainers:
++  - Tushar Khandelwal <tushar.khandelwal@arm.com>
++  - Viresh Kumar <viresh.kumar@linaro.org>
++
++description: |
++  The Arm Message Handling Unit (MHU) Version 2 is a mailbox controller that has
++  between 1 and 124 channel windows (each 32-bit wide) to provide unidirectional
++  communication with remote processor(s), where the number of channel windows
++  are implementation dependent.
++
++  Given the unidirectional nature of the controller, an MHUv2 mailbox may only
++  be written to or read from. If a pair of MHU controllers is implemented
++  between two processing elements to provide bidirectional communication, these
++  must be specified as two separate mailboxes.
++
++  If the interrupts property is present in device tree node, then its treated as
++  a "receiver" mailbox, otherwise a "sender".
++
++  An MHU controller must be specified along with the supported transport
++  protocols. The transport protocols determine the method of data transmission
++  as well as the number of provided mailbox channels.
++
++  Following are the possible transport protocols.
++
++  - Doorbell: Each transfer is made up of single bit flag, using any one of the
++    bits in a channel window. A channel window can support up to 32 doorbells
++    and the entire window shall be used in doorbell protocol.  Optionally, data
++    may be transmitted through a shared memory region, wherein the MHU is used
++    strictly as an interrupt generation mechanism but that is out of the scope
++    of these bindings.
++
++  - Single-word: Each transfer is single word, using a single Channel window.
++
++  - Multi-word: Each transfer is made of two or more words, using two or more
++    channel windows.
++
++# We need a select here so we don't match all nodes with 'arm,primecell'
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - arm,mhuv2-tx
++          - arm,mhuv2-rx
++  required:
++    - compatible
++
++properties:
++  compatible:
++    oneOf:
++      - description: Sender mode
++        items:
++          - const: arm,mhuv2-tx
++          - const: arm,primecell
++
++      - description: Receiver-mode
++        items:
++          - const: arm,mhuv2-rx
++          - const: arm,primecell
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: |
++      The MHUv2 controller always implements an interrupt in the "receiver"
++      mode, while the interrupt in the "sender" mode was not available in the
++      version MHUv2.0, but the later versions do have it.
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    maxItems: 1
++
++  arm,mhuv2-protocols:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    description: |
++      The MHUv2 controller may contain up to 124 channel windows (each 32-bit
++      wide). The hardware and the DT bindings allows any combination of those to
++      be used for various transport protocols.
++
++      This property allows a platform to describe how these channel windows are
++      used in various transport protocols. The entries in this property shall be
++      present as an array of tuples, where each tuple describes details about
++      one of the transport protocol being implemented over some channel
++      window(s).
++
++      The first field of a tuple signifies the transfer protocol, 0 is reserved
++      for doorbell protocol, 1 is reserved for single-word protocol and 2 is
++      reserved for multi-word protocol. Using any other value in the first field
++      of a tuple makes it invalid.
++
++      The second field of a tuple signifies the number of channel windows where
++      the protocol would be used. For doorbell protocol this field signifies the
++      number of 32-bit channel windows that implement the doorbell protocol. For
++      single-word protocol this field signifies the number of 32-bit channel
++      windows that implement separate single-word protocol mailbox channels. For
++      multi-word protocol this field signifies the number of channel windows
++      used for a multi-word protocol, it should be 2 or more.
++
++      The total number of channel windows specified here shouldn't be more than
++      the ones implemented by the platform, though one can specify lesser number
++      of windows here than what the platform implements.
++
++      mhu: mailbox@2b1f0000 {
++          ...
++
++          arm,mhuv2-protocols = <0 2>, <1 3>, <2 5>, <2 7>;
++      }
++
++      The above example defines the protocols of an ARM MHUv2 mailbox
++      controller, where a total of 17 channel windows are used. The first two
++      windows are used in doorbell protocol (64 doorbells), the next 3 windows
++      are (separately) used in single-word protocol, and the last two mailbox
++      channels are used in multi-word protocol of length 5 and 7 channel
++      windows.
++
++  '#mbox-cells':
++    description: |
++      It contains two fields, the first field represents the channel number,
++      which may be used in doorbell, single-word, or multi-word protocol, and
++      the second field (only relevant in doorbell protocol, should be 0
++      otherwise) represents the doorbell number within the 32 bit wide channel
++      window.
++
++      From the example given above for the arm,mhuv2-protocols, here is how a
++      client node can reference them.
++
++      mboxes = <&mhu 0 5>; // Mailbox channel 0, doorbell 5.
++      mboxes = <&mhu 1 7>; // Mailbox channel 1, doorbell 7.
++      mboxes = <&mhu 2 0>; // Mailbox channel 2, single-word protocol.
++      mboxes = <&mhu 4 0>; // Mailbox channel 4, single-word protocol.
++      mboxes = <&mhu 6 0>; // Mailbox channel 6, multi-word protocol with 7 windows.
++
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - '#mbox-cells'
++  - arm,mhuv2-protocols
++
++additionalProperties: false
++
++examples:
++  # Multiple transport protocols implemented by the mailbox controllers
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        mhu_tx: mailbox-tx@2b1f0000 {
++            #mbox-cells = <2>;
++            compatible = "arm,mhuv2-tx", "arm,primecell";
++            reg = <0 0x2b1f0000 0 0x1000>;
++            clocks = <&clock 0>;
++            clock-names = "apb_pclk";
++            arm,mhuv2-protocols = <1 5>, <2 2>, <2 5>, <2 7>, <0 2>;
++        };
++
++        mhu_rx: mailbox-rx@2b1f1000 {
++            #mbox-cells = <2>;
++            compatible = "arm,mhuv2-rx", "arm,primecell";
++            reg = <0 0x2b1f1000 0 0x1000>;
++            clocks = <&clock 0>;
++            clock-names = "apb_pclk";
++            arm,mhuv2-protocols = <1 5>, <2 7>, <0 2>;
++        };
++
++        mhu_client: scb@2e000000 {
++            compatible = "fujitsu,mb86s70-scb-1.0";
++            reg = <0 0x2e000000 0 0x4000>;
++
++            mboxes =
++                     //single-word protocol channel 0, mhu-rx
++                     <&mhu_rx 0 0>,
++                     //single-word protocol channel 4, mhu-tx
++                     <&mhu_tx 4 0>,
++                     //multi-word protocol channel 6 with 5 windows, mhu-tx
++                     <&mhu_tx 6 0>,
++                     //doorbell protocol channel 9, doorbell 27, mhu-tx
++                     <&mhu_tx 9 27>;
++        };
++    };
 -- 
-Regards,
-Sudeep
+2.25.0.rc1.19.g042ed3e048af
+
