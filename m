@@ -2,100 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F792883D4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 09:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A77E7288379
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 09:29:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbgJIHpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 03:45:33 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:52687 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732086AbgJIHpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 03:45:33 -0400
-X-Greylist: delayed 169815 seconds by postgrey-1.27 at vger.kernel.org; Fri, 09 Oct 2020 03:45:32 EDT
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4C70VL400Vz1sKj1;
-        Fri,  9 Oct 2020 09:45:30 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4C70VL2xk3z1qrgm;
-        Fri,  9 Oct 2020 09:45:30 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id iRImTw88UWoX; Fri,  9 Oct 2020 09:45:28 +0200 (CEST)
-X-Auth-Info: 0DYx/3Tvo+cfql6DOTVsQAje7mvS0FJUCE5yvi0hmJQ=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Fri,  9 Oct 2020 09:45:28 +0200 (CEST)
-From:   Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH 04/11] soc: imx: gpcv2: wait for ADB400 handshake
-To:     Jacky Bai <ping.bai@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
- <20200930155006.535712-5-l.stach@pengutronix.de>
- <818925c0-b45f-67b4-02a1-8db49ccc491e@denx.de>
- <9533c2b81a9866aec45d2604befe7cdda79d0679.camel@pengutronix.de>
- <de6d73ea-c7dc-6405-29fb-7975368424c0@denx.de>
- <AM0PR04MB4915964704698912AC3AEFF487080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-Message-ID: <e13b01ea-d0a0-7492-3b9c-88515a060405@denx.de>
-Date:   Fri, 9 Oct 2020 09:27:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1731949AbgJIH3N convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 9 Oct 2020 03:29:13 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:40635 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729434AbgJIH3N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 03:29:13 -0400
+Received: by mail-ot1-f67.google.com with SMTP id l4so8142321ota.7;
+        Fri, 09 Oct 2020 00:29:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=TZu92qiZmprJz4xY5XGWsuMnNEtOh62QeeHfcOInjis=;
+        b=kS0K61+IAMRJkGV5JjFGzIuwqy7sFu59n6+PhaTU0Kig1r1CKO9t46HmO95HD2/YE+
+         PCdVXu8gn0dZbO9RR1cDBWfgVl/25LBICAU/L3e3N/anJ2WtM0ymFmji96Owc6jNBt3W
+         I8P2V2c0vZOwMUcVv6huKopWqYh33cOTQiKzq4gRTXoPwyDuJdv58DkC4sxI5lkIUH31
+         227Aa74CmIbYb1g26UvYCNnS1HeVIMsUyNTwpzzL+j9B1trfFPSZreXm5ay/YMZ69pGL
+         HhPsvCu5rYoPnox0PXsxOZ46jR0Mk+Ssz5l38bBStDmY2tTZ/1KCmlMi4bTa13RVoERf
+         +KwA==
+X-Gm-Message-State: AOAM531OuDE7KvELGq6t7ZZNLUVzP+/UKGkWru/ED/EQNU03q8S2I6O2
+        7UHpo4bR5b8CyrVKI4kUJfyb5JrFjcLFtXG9TN4=
+X-Google-Smtp-Source: ABdhPJx2s9+IjUHCYpooT393jauSRHwcUd4oixIz8mmPzyg0lefkXwZecHVBO0bm+VqbrAkr/554QGvN7emfUS9TRHI=
+X-Received: by 2002:a9d:3b76:: with SMTP id z109mr8042871otb.250.1602228552596;
+ Fri, 09 Oct 2020 00:29:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <AM0PR04MB4915964704698912AC3AEFF487080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201006081910.1238-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20201006081910.1238-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20201009062445.5g6xck2i5olssokd@pengutronix.de>
+In-Reply-To: <20201009062445.5g6xck2i5olssokd@pengutronix.de>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 9 Oct 2020 09:29:01 +0200
+Message-ID: <CAMuHMdVYSENwm-Lpd9b3dfzRAxzEtTDXxrut-wGJKhTuRcHQCQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: renesas,tpu-pwm: Document
+ r8a7742 support
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/9/20 5:05 AM, Jacky Bai wrote:
-[...]
+Hi Uwe,
 
->>>>> @@ -176,9 +180,19 @@ static int imx_pgc_power_up(struct
->> generic_pm_domain *genpd)
->>>>>  			   GPC_PGC_CTRL_PCR, 0);
->>>>>
->>>>>  	/* request the ADB400 to power up */
->>>>> -	if (domain->bits.hsk)
->>>>> +	if (domain->bits.hskreq) {
->>>>>  		regmap_update_bits(domain->regmap, GPC_PU_PWRHSK,
->>>>> -				   domain->bits.hsk, domain->bits.hsk);
->>>>> +				   domain->bits.hskreq, domain->bits.hskreq);
->>>>> +
->>>>> +		ret = regmap_read_poll_timeout(domain->regmap,
->> GPC_PU_PWRHSK,
->>>>> +					       reg_val,
->>>>> +					       (reg_val & domain->bits.hskack),
->>>>> +					       0, USEC_PER_MSEC);
->>>>> +		if (ret) {
->>>>> +			dev_err(domain->dev, "failed to power up ADB400\n");
->>>>
->>>> The ADB400 is a bus bridge, so the bus is being attached here, not
->>>> powered up, right ?
->>>
->>> The bits in the PWRHSK register are called "power down" bits, so I
->>> kept this nomenclature. Also I think the ADB400 is mostly isolating
->>> the bus in the power domains from the rest of the NoC, "attaching" of
->>> the bus is really disabling the isolation.
->>>
->>> As there are multiple valid naming choices I kept the naming from the
->>> RM.
->>
->> Maybe NXP can finally explain what these bits really do ?
-> 
-> This bit is used to sync the ADB400 bridge to a known status before MIX side power down & isolation.
-> Detailed info can be find in ARM's ADB400 TRM.
+On Fri, Oct 9, 2020 at 8:25 AM Uwe Kleine-König
+<u.kleine-koenig@pengutronix.de> wrote:
+> On Tue, Oct 06, 2020 at 09:19:09AM +0100, Lad Prabhakar wrote:
+> > Document r8a7742 specific compatible strings. No driver change is
+> > needed as the fallback compatible string "renesas,tpu" activates the
+> > right code in the driver.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Acked-by: Rob Herring <robh@kernel.org>
+>
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>
+> Which tree is this patch series supposed to go in via? pwm or renesas?
 
-Is this documentation publicly available ?
+Usually non-core DT binding updates go in through the subsystem tree.
+So please take it through the PWM tree.
+
+If you prefer to change that, please let me know, and I can queue it in
+renesas-dt-bindings-for-v5.11, to go in through arm-soc.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
