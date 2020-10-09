@@ -2,210 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62FBA288C3D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA35288C58
+	for <lists+devicetree@lfdr.de>; Fri,  9 Oct 2020 17:15:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389205AbgJIPID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Oct 2020 11:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59336 "EHLO
+        id S2389156AbgJIPPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Oct 2020 11:15:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389204AbgJIPIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 11:08:02 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67606C0613D5
-        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 08:08:02 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id o8so9292922otl.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 08:08:02 -0700 (PDT)
+        with ESMTP id S2388887AbgJIPPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Oct 2020 11:15:15 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F663C0613D5
+        for <devicetree@vger.kernel.org>; Fri,  9 Oct 2020 08:15:15 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id h20so9960704lji.9
+        for <devicetree@vger.kernel.org>; Fri, 09 Oct 2020 08:15:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EtjLWKJFue0vK7WaUt5mt/PBNN3FQJOzAr2kYHkLPv8=;
-        b=gpnctwMTV3eOVEwOX4e5GML8IasYEcTd3Zw0QloPKx2YG8Mf25be+bdRJyNwxDgFmz
-         5YJ7C8s3wdDR4kYeqFf4Zu0KJDFpD/7pQhtymKxiDtg7pMiEKr4PuZGmpdZ3Y7WimSzU
-         TxTe+R47JswtRQsvkQdL2ULxv56B34fEN/FEU=
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=E6Nd8bFLpZfzhnJqMtPJPONxQyfB4cH/rdHKzqew4oo=;
+        b=Qc/JMWf/ffAVqqTQcI9JG4TLUusWr4+kaYKzlWwyTDeUgS1j7voTIwEya6AAJzKkol
+         faszaKpvwTwYMpoWr7PvAuqEVkrcOaLdwCa5Tio52Iv+xaVEkA13ERUSzISHWEgYMoRV
+         +U1Lbz3GTYcKT2y466elZ15AG/H25fvV0Txp5RYLd3XvpwCxfUq9n/1y6uwF9Is2lEmE
+         VqmRzDBVzXqskzg90Rt8TxLq9oiAWhQvvDZlkOMYX3wkoXcB6MRzFN2xKR9r2QPYuNdO
+         d6WJ0xXYuicfxNruqVEMs37/qJRqVoy1OTUGKJSAjgNb1aYV1yhj7wex1NgN+Xk7JxlM
+         dNgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EtjLWKJFue0vK7WaUt5mt/PBNN3FQJOzAr2kYHkLPv8=;
-        b=VuGMXcQFGoGEO/BgKpQnO0SeF70qE/M8ldVC/BMYhO2xYu1t4M8FhiPKfe18kLLTSG
-         buKJ5lK9B9sKJ4qfjaspI2QzJvqQ+Ncv7jqWkFYMSrSIbKlHr/CzSFqnNx8RxNW580Ny
-         z8N19fK+ahCcMfvM+zYhwuukPFC30yds6ARc/cN7KYe0ZYWH8gDXPaw73tJbwWjNMAPv
-         xd2QigLFqq1DiaE7EA8l14NEGxTNcea2RR5/gyhsyaeZ3KF/zEA9+FTT6RZ3pvcyaxLO
-         zVMLgmlri/IYfGJkuDHPxSMbY/BweYXLzddzNVY4Oddiw9hPjUSTKurdJ2fw5WxW0AQS
-         sTgg==
-X-Gm-Message-State: AOAM531X9gPphyPUjEYTRr45ExV9pYIcEnepwWK79nJTnacNF2aZz4bw
-        xi7uFkFHdoqNIJAbfj1xNtR9wDtzqBJoNq5ug0CvjA==
-X-Google-Smtp-Source: ABdhPJxSVBqMhLuz3tJ/EfT/oK3B9JbJoZN04dhP9HE04gSPM7KyTKI890eAZ0aG2QGyOCI5WouGlkh9SRwuY1snJKE=
-X-Received: by 2002:a05:6830:1c3c:: with SMTP id f28mr9699129ote.188.1602256081698;
- Fri, 09 Oct 2020 08:08:01 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=E6Nd8bFLpZfzhnJqMtPJPONxQyfB4cH/rdHKzqew4oo=;
+        b=VyZn0gzQ36ViSLOgwgvtf55kPihdr8tnSq/rMiY+ag1FWOjJlatota/Qkt239qvSMK
+         2pN9Rj261HrhaGtyl+wIW8hQYKKBdFZB+9SLLmngqyTbq0r4RxgDX3TzAIO+rcs2OLt4
+         24PNyCbt1/PuzkurN9cGPgEQfszFOq4IiK1OaQolfKBclb6HXBzT50Q1S/c3iPDTqbS1
+         /dQ1NFE6Xiws6Yze8XlhUMAii43NNpKnI19W0tv2hLV1pkAFDERsm9ax6myMctgaGDuz
+         CS0ru4gjXO1HsqPsAcF/DkhVdPPffTf/REG1b0+eO800tMWNSyxnHsdpUGsnoMxGhF+p
+         y6Yg==
+X-Gm-Message-State: AOAM533ShliH6j7ZQIMNXbuYEe4xEGuKDgQFLDQlbM9zdu3bZbJPeY/H
+        UhclrdEVa4ddnG8jRkGMoixOxA==
+X-Google-Smtp-Source: ABdhPJyMApbqWWYKrRxdaZeohuRpwHPicgxI00Hs2697xZEQeG8le9Oh2C+OAPB+UP3mMy0RKFGWhg==
+X-Received: by 2002:a2e:9d94:: with SMTP id c20mr5363714ljj.445.1602256513326;
+        Fri, 09 Oct 2020 08:15:13 -0700 (PDT)
+Received: from [192.168.1.211] ([188.162.65.231])
+        by smtp.gmail.com with ESMTPSA id t17sm743958lff.147.2020.10.09.08.15.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Oct 2020 08:15:12 -0700 (PDT)
+Subject: Re: [PATCH v7 07/10] thermal: qcom: add support for adc-tm5 PMIC
+ thermal monitor
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+References: <20201007135433.1041979-1-dmitry.baryshkov@linaro.org>
+ <20201007135433.1041979-8-dmitry.baryshkov@linaro.org>
+ <3d6bd019-1516-5307-ef49-b6279fbfbe82@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <642645af-19f1-7ac1-a10a-7f943c757c7f@linaro.org>
+Date:   Fri, 9 Oct 2020 18:15:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
-References: <1602205443-9036-1-git-send-email-anitha.chrisanthus@intel.com>
- <1602205443-9036-2-git-send-email-anitha.chrisanthus@intel.com> <dc12f5ea-60bc-8a09-9b93-a4472183adc4@baylibre.com>
-In-Reply-To: <dc12f5ea-60bc-8a09-9b93-a4472183adc4@baylibre.com>
-From:   Daniel Vetter <daniel@ffwll.ch>
-Date:   Fri, 9 Oct 2020 17:07:50 +0200
-Message-ID: <CAKMK7uECJVPHSaDepi6J+z-bDNnmO55YFaVPsjG69vryjCdDwQ@mail.gmail.com>
-Subject: Re: [PATCH v9 1/5] dt-bindings: display: Add support for Intel
- KeemBay Display
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "Dea, Edmund J" <edmund.j.dea@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <3d6bd019-1516-5307-ef49-b6279fbfbe82@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 9, 2020 at 11:09 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi,
->
-> On 09/10/2020 03:03, Anitha Chrisanthus wrote:
-> > This patch adds bindings for Intel KeemBay Display
-> >
-> > v2: review changes from Rob Herring
-> >
-> > Signed-off-by: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
-> > ---
-> >  .../bindings/display/intel,keembay-display.yaml    | 99 ++++++++++++++++++++++
-> >  1 file changed, 99 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/intel,keembay-display.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/intel,keembay-display.yaml b/Documentation/devicetree/bindings/display/intel,keembay-display.yaml
-> > new file mode 100644
-> > index 0000000..a38493d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/intel,keembay-display.yaml
-> > @@ -0,0 +1,99 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/intel,keembay-display.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Devicetree bindings for Intel Keem Bay display controller
-> > +
-> > +maintainers:
-> > +  - Anitha Chrisanthus <anitha.chrisanthus@intel.com>
-> > +  - Edmond J Dea <edmund.j.dea@intel.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: intel,kmb_display
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Lcd registers range
-> > +      - description: Mipi registers range
->
-> Looking at the registers, the MIPI transceiver seems to be a separate IP,
-> same for D-PHY which should have a proper PHY driver instead of beeing handled
-> here.
->
-> > +      - description: Msscam registers range
->
-> MSScam here seems to be a clock and reset controller for the LCD and MIPI IPs,
-> thus should be handler out of DRM.
->
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: lcd
-> > +      - const: mipi
-> > +      - const: msscam
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: LCD controller clock
-> > +      - description: Mipi DSI clock
-> > +      - description: Mipi DSI econfig clock
-> > +      - description: Mipi DSI config clock
-> > +      - description: System clock or pll0 clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: clk_lcd
-> > +      - const: clk_mipi
-> > +      - const: clk_mipi_ecfg
-> > +      - const: clk_mipi_cfg
-> > +      - const: clk_pll0
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  encoder-slave:
-> > +    description: bridge node entry for mipi to hdmi converter
-> > +
-> > +  port:
-> > +    type: object
-> > +    description: >
-> > +          Port node with one endpoint connected to mipi to hdmi converter node.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - encoder-slave
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #define MOVISOC_KMB_MSS_AUX_LCD
-> > +    #define MOVISOC_KMB_MSS_AUX_MIPI_TX0
-> > +    #define MOVISOC_KMB_MSS_AUX_MIPI_ECFG
-> > +    #define MOVISOC_KMB_MSS_AUX_MIPI_CFG
-> > +    #define MOVISOC_KMB_A53_PLL_0_OUT_0
-> > +    display@20900000 {
-> > +      compatible = "intel,keembay-display";
-> > +      reg = <0x20930000 0x3000>,
-> > +            <0x20900000 0x4000>,
-> > +            <0x20910000 0x30>;
-> > +      reg-names = "lcd", "mipi", "msscam";
-> > +      interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> > +      clocks = <&scmi_clk MOVISOC_KMB_MSS_AUX_LCD>,
-> > +               <&scmi_clk MOVISOC_KMB_MSS_AUX_MIPI_TX0>,
-> > +               <&scmi_clk MOVISOC_KMB_MSS_AUX_MIPI_ECFG>,
-> > +               <&scmi_clk MOVISOC_KMB_MSS_AUX_MIPI_CFG>,
-> > +               <&scmi_clk MOVISOC_KMB_A53_PLL_0_OUT_0>;
-> > +      clock-names = "clk_lcd", "clk_mipi", "clk_mipi_ecfg",
-> > +                    "clk_mipi_cfg", "clk_pll0";
-> > +
-> > +      encoder-slave = <&adv7535>;
-> > +
-> > +      port {
-> > +            dsi_output: endpoint {
-> > +                remote-endpoint = <&adv7535_input>;
-> > +            };
-> > +      };
-> > +    };
-> >
->
-> Anitha, Daniel, this keembay driver should be architectured like other ARM-like display
-> controllers, with separate drivers for MIPI DSI bridge and msscam clock & reset controller.
+On 08/10/2020 19:22, Daniel Lezcano wrote:
+> On 07/10/2020 15:54, Dmitry Baryshkov wrote:
+>> Add support for Thermal Monitoring part of PMIC5. This part is closely
+>> coupled with ADC, using it's channels directly. ADC-TM support
+>> generating interrupts on ADC value crossing low or high voltage bounds,
+>> which is used to support thermal trip points.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/iio/adc/qcom-vadc-common.c       |  62 +++
+>>   drivers/iio/adc/qcom-vadc-common.h       |   3 +
+>>   drivers/thermal/qcom/Kconfig             |  11 +
+>>   drivers/thermal/qcom/Makefile            |   1 +
+>>   drivers/thermal/qcom/qcom-spmi-adc-tm5.c | 622 +++++++++++++++++++++++
+>>   5 files changed, 699 insertions(+)
+>>   create mode 100644 drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+>>
+>> diff --git a/drivers/iio/adc/qcom-vadc-common.c b/drivers/iio/adc/qcom-vadc-common.c
+>> index 40d77b3af1bb..e58e393b8713 100644
+>> --- a/drivers/iio/adc/qcom-vadc-common.c
+>> +++ b/drivers/iio/adc/qcom-vadc-common.c
+>> @@ -377,6 +377,42 @@ static int qcom_vadc_map_voltage_temp(const struct vadc_map_pt *pts,
+>>   	return 0;
+>>   }
+>>   
+>> +static s32 qcom_vadc_map_temp_voltage(const struct vadc_map_pt *pts,
+>> +				      u32 tablesize, int input)
+>> +{
+>> +	bool descending = 1;
+>> +	u32 i = 0;
+>> +
+> 
+> The code seems like a bit
 
-tbh I have no clue about dt, and very little clue about how to do
-armsoc drivers properly. My only take in this entire area is that
-drm/bridges looks confusing with too many different approaches, and
-people should stuck more together and figure out what to do (the
-entire component.c vs not so much component.c discussion, and another
-one is about creating drm-connector or not doing that).
+Could you please clarify, what do you mean?
 
-But how this all should be done I really have not much useful clue, so
-please keep me out of that.
--Daniel
+> 
+>> +	/* Check if table is descending or ascending */
+>> +	if (tablesize > 1) {
+>> +		if (pts[0].y < pts[1].y)
+>> +			descending = 0;
+>> +	}
+>> +
+>> +	while (i < tablesize) {
+>> +		if (descending && pts[i].y < input) {
+>> +			/* table entry is less than measured*/
+>> +			 /* value and table is descending, stop */
+>> +			break;
+>> +		} else if ((!descending) && pts[i].y > input) {
+>> +			/* table entry is greater than measured*/
+>> +			/*value and table is ascending, stop */
+>> +			break;
+>> +		}
+>> +		i++;
+>> +	}
+>> +
+>> +	if (i == 0)
+>> +		return pts[0].x;
+>> +	if (i == tablesize)
+>> +		return pts[tablesize - 1].x;
+>> +
+>> +	/* result is between search_index and search_index-1 */
+>> +	/* interpolate linearly */
+>> +	return fixp_linear_interpolate(pts[i - 1].y, pts[i - 1].x,
+>> +			pts[i].y, pts[i].x, input);
+>> +}
+>> +
+>>   static void qcom_vadc_scale_calib(const struct vadc_linear_graph *calib_graph,
+>>   				  u16 adc_code,
+>>   				  bool absolute,
+
+[....]
+
+>> diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+>> new file mode 100644
+>> index 000000000000..c09a50f59053
+>> --- /dev/null
+>> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+>> @@ -0,0 +1,622 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2020 Linaro Limited
+>> + */
+> 
+> If it is possible, please give a description of this sensor, the
+> different register mapping, etc ... So it will be easier to review and
+> debug in the future.
+
+In which form? I don't often see such descriptions in the code.
+
+> 
+> 
+>> +#include <linux/bitfield.h>
+>> +#include <linux/iio/consumer.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/thermal.h>
+>> +
+>> +#include "../../iio/adc/qcom-vadc-common.h"
+> 
+> Do not use this form of inclusion.
+
+Fixed.
+
+
+[...]
+
+> 
+>> +	if (ret) {
+>> +		dev_err(chip->dev, "read status low failed with %d\n", ret);
+>> +		return IRQ_HANDLED;
+>> +	}
+> 
+> Can you identify the reasons those reads can fail? If it is not supposed
+> to happen it is fine but otherwise we don't want to be flooded with
+> error messages on the console.
+
+Changed to use unlikely(ret) as way to show that this is not supposed to 
+happen.
+
+
+>> +		lower_set = (status_low & BIT(ch)) &&
+>> +			(ctl & ADC_TM5_M_MEAS_EN) &&
+>> +			(ctl & ADC_TM5_M_LOW_THR_INT_EN);
+>> +
+>> +		upper_set = (status_high & BIT(ch)) &&
+>> +			(ctl & ADC_TM5_M_MEAS_EN) &&
+>> +			(ctl & ADC_TM5_M_HIGH_THR_INT_EN);
+> 
+> Is the check (ctl & ADC_TM5_M_[HIGH|LOW]_THR_INT_EN) necessary if
+> status_high or status_low is true ?
+> 
+> Isn't possible to simplify that with:
+> 
+> eg.
+> 
+> 		if (!(ctl & ADC_TM5_M_MEAS_EN)
+> 			continue;
+> 
+> 		if (!(status_high & BIT(ch)) && !(status_low & BIT(ch))
+> 			continue;
+> 
+> 		thermal_zone_device_update(chip->channels[i].tzd,
+> 					THERMAL_EVENT_UNSPECIFIED);
+> 
+> ??
+
+I'd prefer to leave the check as is, having no information if status bit 
+can be updated without actually triggering IRQ.
+
+I've moved ADC_TM5_MEAS_EN check upwards to simplify this.
+
+>> +static int adc_tm5_configure(struct adc_tm5_channel *channel, int low_temp, int high_temp)
+>> +{
+>> +	struct adc_tm5_chip *chip = channel->chip;
+>> +	u8 buf[8];
+>> +	u16 reg = ADC_TM5_M_ADC_CH_SEL_CTL(channel->channel);
+>> +	int ret = 0;
+>> +
+>> +	ret = adc_tm5_read(chip, reg, buf, sizeof(buf));
+>> +	if (ret) {
+>> +		dev_err(chip->dev, "block read failed with %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Update ADC channel select */
+>> +	buf[0] = channel->adc_channel;
+>> +
+>> +	/* Warm temperature corresponds to low voltage threshold */
+>> +	if (high_temp != INT_MAX) {
+>> +		u16 adc_code = qcom_adc_tm5_temp_volt_scale(channel->prescale,
+>> +				chip->data->full_scale_code_volt, high_temp);
+>> +
+>> +		buf[1] = adc_code & 0xff;
+>> +		buf[2] = adc_code >> 8;
+>> +		buf[7] |= ADC_TM5_M_LOW_THR_INT_EN;
+>> +	} else {
+>> +		buf[7] &= ~ADC_TM5_M_LOW_THR_INT_EN;
+>> +	}
+>> +
+>> +	/* Cool temperature corresponds to high voltage threshold */
+>> +	if (low_temp != -INT_MAX) {
+> 
+> Is it really -INT_MAX ? or INT_MIN
+> 
+> -2147483647 vs -2147483648 ?
+
+It is really -INT_MAX, see thermal_zone_set_trips().
+
+[...]
+
+>> +
+>> +	for (i = 0; i < chip->nchannels; i++) {
+>> +		if (chip->channels[i].channel >= channels_available) {
+>> +			dev_err(chip->dev, "Invalid channel %d\n", chip->channels[i].channel);
+>> +			return -EINVAL;
+>> +		}
+> 
+> Is it a sanity check to make sure the hardware and the DT are compatible ?
+
+Yes.
+
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+With best wishes
+Dmitry
