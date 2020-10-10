@@ -2,224 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7F528A256
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 00:57:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1061F28A397
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731252AbgJJW47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 18:56:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41764 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731208AbgJJTxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 15:53:43 -0400
-X-Greylist: delayed 2064 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 10 Oct 2020 10:21:09 PDT
-Received: from wp003.webpack.hosteurope.de (wp003.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:840a::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC35C08EA74;
-        Sat, 10 Oct 2020 10:21:09 -0700 (PDT)
-Received: from p548da7b6.dip0.t-ipconnect.de ([84.141.167.182] helo=kmk0.Speedport_W_724V_09011603_06_006); authenticated
-        by wp003.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1kRI11-0004hK-8M; Sat, 10 Oct 2020 18:46:39 +0200
-From:   Kurt Kanzenbach <kurt@kmk-computers.de>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, kurt@linutronix.de,
-        Kurt Kanzenbach <kurt@kmk-computers.de>
-Subject: [PATCH net-next 2/2] dt-bindings: net: dsa: b53: Drop old bindings
-Date:   Sat, 10 Oct 2020 18:46:27 +0200
-Message-Id: <20201010164627.9309-3-kurt@kmk-computers.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201010164627.9309-1-kurt@kmk-computers.de>
-References: <20201010164627.9309-1-kurt@kmk-computers.de>
+        id S2390269AbgJJW4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 18:56:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48682 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731123AbgJJTCW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Oct 2020 15:02:22 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 112712242B;
+        Sat, 10 Oct 2020 16:57:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602349041;
+        bh=tvRSA9R+WFrxxVwgdjd4mNTVYdF+H8JAqH74nfC64co=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZgbF8bwi2UcwgQkisyGyNYTjjBlwqldV4vgAnD3Jv5bGIF2p9LtXEWQc1F+78JT0D
+         xY4+fZfeFRbH0/40ELyQHlLcLjTNDdVRKOYQhEiTuNQ+liidwbYO0y4f7u9DpGQ5lN
+         EVgZQalZesICskJ4Xb2cFQ0mX0R9DnjdXxYF+l3c=
+Date:   Sat, 10 Oct 2020 17:57:14 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: Re: [PATCH v6 0/3] iio: adc: mt6360: Add ADC driver for MT6360
+Message-ID: <20201010175714.0fb968ab@archlinux>
+In-Reply-To: <1601542448-7433-1-git-send-email-gene.chen.richtek@gmail.com>
+References: <1601542448-7433-1-git-send-email-gene.chen.richtek@gmail.com>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;kurt@kmk-computers.de;1602350469;957663e4;
-X-HE-SMSGID: 1kRI11-0004hK-8M
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The device tree bindings have been converted to YAML. No need to keep
-the text file around. Update MAINTAINERS file accordingly.
+On Thu,  1 Oct 2020 16:54:05 +0800
+Gene Chen <gene.chen.richtek@gmail.com> wrote:
 
-Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
----
- .../devicetree/bindings/net/dsa/b53.txt       | 149 ------------------
- MAINTAINERS                                   |   2 +-
- 2 files changed, 1 insertion(+), 150 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/dsa/b53.txt
+> This patch series add MT6360 ADC support contains driver, testing document
+> and binding document
+> 
+> Gene Chen (2)
+>   dt-bindings: iio: adc: add bindings doc for MT6360 ADC
+>   Documentation: ABI: testing: mt6360: Add ADC sysfs guideline
+>   iio: adc: mt6360: Add ADC driver for MT6360
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/b53.txt b/Documentation/devicetree/bindings/net/dsa/b53.txt
-deleted file mode 100644
-index f1487a751b1a..000000000000
---- a/Documentation/devicetree/bindings/net/dsa/b53.txt
-+++ /dev/null
-@@ -1,149 +0,0 @@
--Broadcom BCM53xx Ethernet switches
--==================================
--
--Required properties:
--
--- compatible: For external switch chips, compatible string must be exactly one
--  of: "brcm,bcm5325"
--      "brcm,bcm53115"
--      "brcm,bcm53125"
--      "brcm,bcm53128"
--      "brcm,bcm5365"
--      "brcm,bcm5395"
--      "brcm,bcm5389"
--      "brcm,bcm5397"
--      "brcm,bcm5398"
--
--  For the BCM11360 SoC, must be:
--      "brcm,bcm11360-srab" and the mandatory "brcm,cygnus-srab" string
--
--  For the BCM5310x SoCs with an integrated switch, must be one of:
--      "brcm,bcm53010-srab"
--      "brcm,bcm53011-srab"
--      "brcm,bcm53012-srab"
--      "brcm,bcm53018-srab"
--      "brcm,bcm53019-srab" and the mandatory "brcm,bcm5301x-srab" string
--
--  For the BCM5831X/BCM1140x SoCs with an integrated switch, must be one of:
--      "brcm,bcm11404-srab"
--      "brcm,bcm11407-srab"
--      "brcm,bcm11409-srab"
--      "brcm,bcm58310-srab"
--      "brcm,bcm58311-srab"
--      "brcm,bcm58313-srab" and the mandatory "brcm,omega-srab" string
--
--  For the BCM585xx/586XX/88312 SoCs with an integrated switch, must be one of:
--      "brcm,bcm58522-srab"
--      "brcm,bcm58523-srab"
--      "brcm,bcm58525-srab"
--      "brcm,bcm58622-srab"
--      "brcm,bcm58623-srab"
--      "brcm,bcm58625-srab"
--      "brcm,bcm88312-srab" and the mandatory "brcm,nsp-srab string
--
--  For the BCM63xx/33xx SoCs with an integrated switch, must be one of:
--      "brcm,bcm3384-switch"
--      "brcm,bcm6328-switch"
--      "brcm,bcm6368-switch" and the mandatory "brcm,bcm63xx-switch"
--
--Required properties for BCM585xx/586xx/88312 SoCs:
--
-- - reg: a total of 3 register base addresses, the first one must be the
--   Switch Register Access block base, the second is the port 5/4 mux
--   configuration register and the third one is the SGMII configuration
--   and status register base address.
--
-- - interrupts: a total of 13 interrupts must be specified, in the following
--   order: port 0-5, 7-8 link status change, then the integrated PHY interrupt,
--   then the timestamping interrupt and the sleep timer interrupts for ports
--   5,7,8.
--
--Optional properties for BCM585xx/586xx/88312 SoCs:
--
--  - reg-names: a total of 3 names matching the 3 base register address, must
--    be in the following order:
--	"srab"
--	"mux_config"
--	"sgmii_config"
--
--  - interrupt-names: a total of 13 names matching the 13 interrupts specified
--    must be in the following order:
--	"link_state_p0"
--	"link_state_p1"
--	"link_state_p2"
--	"link_state_p3"
--	"link_state_p4"
--	"link_state_p5"
--	"link_state_p7"
--	"link_state_p8"
--	"phy"
--	"ts"
--	"imp_sleep_timer_p5"
--	"imp_sleep_timer_p7"
--	"imp_sleep_timer_p8"
--
--See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
--required and optional properties.
--
--Examples:
--
--Ethernet switch connected via MDIO to the host, CPU port wired to eth0:
--
--	eth0: ethernet@10001000 {
--		compatible = "brcm,unimac";
--		reg = <0x10001000 0x1000>;
--
--		fixed-link {
--			speed = <1000>;
--			full-duplex;
--		};
--	};
--
--	mdio0: mdio@10000000 {
--		compatible = "brcm,unimac-mdio";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		switch0: ethernet-switch@1e {
--			compatible = "brcm,bcm53125";
--			reg = <30>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port0@0 {
--					reg = <0>;
--					label = "lan1";
--				};
--
--				port1@1 {
--					reg = <1>;
--					label = "lan2";
--				};
--
--				port5@5 {
--					reg = <5>;
--					label = "cable-modem";
--					fixed-link {
--						speed = <1000>;
--						full-duplex;
--					};
--					phy-mode = "rgmii-txid";
--				};
--
--				port8@8 {
--					reg = <8>;
--					label = "cpu";
--					fixed-link {
--						speed = <1000>;
--						full-duplex;
--					};
--					phy-mode = "rgmii-txid";
--					ethernet = <&eth0>;
--				};
--			};
--		};
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 14c2b168e077..79dca6ec803d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3393,7 +3393,7 @@ M:	Florian Fainelli <f.fainelli@gmail.com>
- L:	netdev@vger.kernel.org
- L:	openwrt-devel@lists.openwrt.org (subscribers-only)
- S:	Supported
--F:	Documentation/devicetree/bindings/net/dsa/b53.txt
-+F:	Documentation/devicetree/bindings/net/dsa/b53.yaml
- F:	drivers/net/dsa/b53/*
- F:	include/linux/platform_data/b53.h
- 
--- 
-2.26.2
+Hi Gene
+
+This looks good to me.  I'm just waiting now on some final
+reviews for the patch that adds the label attribute support.
+Once those are in I'll pick your driver up as well.
+
+If I seem to have lost it, feel free to poke me!
+
+Thanks,
+
+Jonathan
+
+> 
+>  Documentation/ABI/testing/sysfs-bus-iio-adc-mt6360                 |   78 ++
+>  Documentation/devicetree/bindings/iio/adc/mediatek,mt6360-adc.yaml |   34 
+>  drivers/iio/adc/Kconfig                                            |   11 
+>  drivers/iio/adc/Makefile                                           |    1 
+>  drivers/iio/adc/mt6360-adc.c                                       |  362 ++++++++++
+>  5 files changed, 486 insertions(+)
+> 
+> changelogs between v1 & v2
+>  - adc: use IIO_CHAN_INFO_PROCESSED only
+>  - adc: use devm_iio_triggered_buffer_setup
+>  - adc: use use s64 to record timestamp
+> 
+> changelogs between v2 & v3
+>  - Rearrange include file order by alphabet
+>  - Set line length constraint below 100
+>  - Add Document for testing adc sysfs node guideline
+>  - Set compiler 64 bit aligned when handle iio timestamp
+> 
+> changelogs between v3 & v4
+>  - Fix sysfs guideline description
+>  - Replace iio channel processed by raw/scale/offset
+>  - Add comment of read adc flow for special HW design
+> 
+> changelogs between v4 & v5
+>  - Rename dt-bindings aligned to file name
+>  - Aligned sysfs node name with driver and add VBUSDIVX description
+>  - Add ADC channel sysfs node "*_labels"
+> 
+> changelogs between v5 & v6
+>  - Memset aligned adc data
+>  - Remove strong casting void pointer
+> 
 
