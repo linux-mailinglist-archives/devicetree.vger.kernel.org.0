@@ -2,42 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5202C28A39C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F0A28A3A1
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390283AbgJJW4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 18:56:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50680 "EHLO mail.kernel.org"
+        id S2390302AbgJJW4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 18:56:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53936 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731363AbgJJTMW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Oct 2020 15:12:22 -0400
+        id S1731824AbgJJTh1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Oct 2020 15:37:27 -0400
 Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0B0ED22384;
-        Sat, 10 Oct 2020 15:44:48 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4014F2078B;
+        Sat, 10 Oct 2020 16:27:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602344690;
-        bh=tH/e3Syo1QlXY7NwxvGCWBJ4iF2Rv4uqN3ltx+4Topg=;
+        s=default; t=1602347269;
+        bh=T6GGCEhM2gUPnyDP7vWHf219OEKiW5GT1qvoQTUWZu8=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=b/IjqYC3sUKU8cBRPJBBIkmpy4FpzB6TKGXAB5Ks7qoAkIUwcmEbwSJxrB/VMNx+I
-         tIyIYLVSVGMUro6qzIYHqUkfunDAYdWunRP+CIcNOk2qUXVoaURDGNHe1haWBN9A+Q
-         AgJPPwwSQsEncr2vUgJ0xYtaJjEZoYP1RLxj43mQ=
-Date:   Sat, 10 Oct 2020 16:44:45 +0100
+        b=Mlsw1eK1aOcWR09vUEu1jf2qt9iTLm8kA2f+ABYEefr15XEL8rwm6O4pztYr0KnYx
+         Grcqji+mJKCS5J5d9Zful1NgwwNKGI9RN5o/NJJg1jcD1WXDMKFjVuScB0ikB84Sq7
+         Qh5IxBWyfQhU5VnvViDfPEhX/2oFbb11zICaZXrU=
+Date:   Sat, 10 Oct 2020 17:27:44 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Auchter <michael.auchter@ni.com>,
-        linux-kernel@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
-        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] dt-bindings: iio: dac: ad5686: add binding
-Message-ID: <20201010164445.0d324bb9@archlinux>
-In-Reply-To: <20200929185300.GA955613@bogus>
-References: <20200924195215.49443-1-michael.auchter@ni.com>
-        <20200924195215.49443-3-michael.auchter@ni.com>
-        <20200929185300.GA955613@bogus>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, mario.tesi@st.com
+Subject: Re: [PATCH 0/2] add support for LSM6DST
+Message-ID: <20201010172744.395d879c@archlinux>
+In-Reply-To: <cover.1601985763.git.lorenzo@kernel.org>
+References: <cover.1601985763.git.lorenzo@kernel.org>
 X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -46,36 +40,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Sep 2020 13:53:00 -0500
-Rob Herring <robh@kernel.org> wrote:
+On Tue,  6 Oct 2020 14:07:40 +0200
+Lorenzo Bianconi <lorenzo@kernel.org> wrote:
 
-> On Thu, 24 Sep 2020 14:52:14 -0500, Michael Auchter wrote:
-> > Add a binding for AD5686
-> > 
-> > Signed-off-by: Michael Auchter <michael.auchter@ni.com>
-> > ---
-> > Changes since v1:
-> > - Keep supported device sorted
-> > - fix adc -> dac typo in schema path
-> > since v2:
-> > - drop address-cells and size-cells from binding doc
-> > - add "additionalProperties: false"
-> > - end with ...
-> > 
-> >  .../bindings/iio/dac/adi,ad5686.yaml          | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
-> >   
+> Add support for LSM6DST IMU mems sensor
+> https://www.st.com/resource/en/datasheet/lsm6dst.pdf
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Series applied with a slight tweak to patch 1 to constify the channel
-macro inline with recent tidy up patch doing the same to other instances
-in the driver.
+> Lorenzo Bianconi (2):
+>   iio: imu: st_lsm6dsx: add support to LSM6DST
+>   dt-bindings: iio: imu: st_lsm6dsx: add lsm6dst device bindings
+> 
+>  .../bindings/iio/imu/st_lsm6dsx.txt           |   1 +
+>  drivers/iio/imu/st_lsm6dsx/Kconfig            |   4 +-
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h       |   2 +
+>  .../iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c    |   2 +-
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c  | 207 +++++++++++++++++-
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c   |   5 +
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c   |   5 +
+>  7 files changed, 222 insertions(+), 4 deletions(-)
+> 
 
-Applied to the togreg branch of iio.git and pushed out as testing for the
-autobuilders to poke at it and see if we missed anything.
+Applied to the togreg branch of iio.git and as normal pushed out as testing
+for the autobuilders to poke at it and see what we missed.
 
 Thanks,
 
 Jonathan
-
