@@ -2,98 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF0C928A3A3
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8804C28A37F
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390297AbgJJW4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 18:56:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52066 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731415AbgJJTWi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Oct 2020 15:22:38 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0C71522403;
-        Sat, 10 Oct 2020 16:39:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602347956;
-        bh=LrxTBhOIRAvOVxxLMPo1bOOzACc+zp1p+bdGylDekVA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=YGQczH9xZlIu2suyiXmFhkMiyEN8OrcjJRqvpomls3kvVIyXXK3QXzH91BbigN4jV
-         FbL+ddUHB1LRmEDBedebkmXmkMCh6N1VF+AfZ3AHZD0veK8scsm2dYhI988AwBbOAU
-         lenjuLug3UrNA3/lJyIwt4g2tepiZl/zt+m6B690=
-Date:   Sat, 10 Oct 2020 17:39:10 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Daniel Campello <campello@chromium.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/6] iio: sx9310: Support setting various settings
-Message-ID: <20201010173910.2fbfe6e8@archlinux>
-In-Reply-To: <20201007011735.1346994-1-swboyd@chromium.org>
-References: <20201007011735.1346994-1-swboyd@chromium.org>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1731325AbgJJW5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 18:57:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731212AbgJJTxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 15:53:43 -0400
+Received: from wp003.webpack.hosteurope.de (wp003.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:840a::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53AC9C08EA75;
+        Sat, 10 Oct 2020 10:21:12 -0700 (PDT)
+Received: from p548da7b6.dip0.t-ipconnect.de ([84.141.167.182] helo=kmk0.Speedport_W_724V_09011603_06_006); authenticated
+        by wp003.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1kRI10-0004hK-9c; Sat, 10 Oct 2020 18:46:38 +0200
+From:   Kurt Kanzenbach <kurt@kmk-computers.de>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, kurt@linutronix.de,
+        Kurt Kanzenbach <kurt@kmk-computers.de>
+Subject: [PATCH net-next 0/2] dt-bindings: net: dsa: b53: Add YAML bindings
+Date:   Sat, 10 Oct 2020 18:46:25 +0200
+Message-Id: <20201010164627.9309-1-kurt@kmk-computers.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;kurt@kmk-computers.de;1602350472;5eb50426;
+X-HE-SMSGID: 1kRI10-0004hK-9c
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  6 Oct 2020 18:17:29 -0700
-Stephen Boyd <swboyd@chromium.org> wrote:
+Hi,
 
-> I need to configure various settings such as thresholds, gain factors,
-> etc. on this device. Some settings matter at boot, while others can wait
-> for userspace to configure things. This patch series adds support to
-> set these various bits in the registers of this device.
+the DSA device tree bindings have been converted to YAML. Let's start
+using them. Convert the b53 bindings as suggested by Florian Fainelli.
 
-Looks good to me.  I've applied them to the togreg branch of iio.git and
-pushed out as testing for the autobuilders to see if they can find any
-issues.  Note that I can still add tags etc for now if anyone
-wants to send any!
+Kurt Kanzenbach (2):
+  dt-bindings: net: dsa: b53: Add YAML bindings
+  dt-bindings: net: dsa: b53: Drop old bindings
 
-Thanks,
+ .../devicetree/bindings/net/dsa/b53.txt       | 149 -----------
+ .../devicetree/bindings/net/dsa/b53.yaml      | 249 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 250 insertions(+), 150 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/dsa/b53.txt
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/b53.yaml
 
-Jonathan
-
-> 
-> Changes from v2 (https://lore.kernel.org/r/20200930075728.2410327-1-swboyd@chromium.org)
->  - Rolled in a fix from Gwendal on last patch to simplify if-else logic
->  - Fixed binding and picked up Rob's reviewed-by tag
-> 
-> Changes from v1 (https://lore.kernel.org/r/20200903221828.3657250-1-swboyd@chromium.org)
->  - A bunch more patches for userspace settings
->  - Removed body thresholds as they're probably not used
->  - Removed compensate common as it probably doesn't matter
->  - Moved thresholds, gain factor, hysteresis, debounce to userspace
-> 
-> Stephen Boyd (6):
->   iio: sx9310: Support hardware gain factor
->   iio: sx9310: Support setting proximity thresholds
->   iio: sx9310: Support setting hysteresis values
->   iio: sx9310: Support setting debounce values
->   dt-bindings: iio: sx9310: Add various settings as DT properties
->   iio: sx9310: Set various settings from DT
-> 
->  .../iio/proximity/semtech,sx9310.yaml         |  63 +++
->  drivers/iio/proximity/sx9310.c                | 508 +++++++++++++++++-
->  2 files changed, 565 insertions(+), 6 deletions(-)
-> 
-> Cc: Daniel Campello <campello@chromium.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Gwendal Grignou <gwendal@chromium.org>
-> Cc: Evan Green <evgreen@chromium.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> 
-> base-commit: 1bebdcb928eba880f3a119bacb8149216206958a
+-- 
+2.26.2
 
