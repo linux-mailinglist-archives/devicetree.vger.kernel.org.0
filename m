@@ -2,122 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58E5A28A3A0
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17A9128A25A
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 00:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390275AbgJJW4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 18:56:52 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:44348 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1731308AbgJJTIR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Oct 2020 15:08:17 -0400
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id C63C1A7FBBDFF02DE59F;
-        Sat, 10 Oct 2020 18:56:51 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.134) by DGGEMS403-HUB.china.huawei.com
- (10.3.19.203) with Microsoft SMTP Server id 14.3.487.0; Sat, 10 Oct 2020
- 18:56:41 +0800
-Subject: Re: [PATCH v6 16/17] dt-bindings: arm: hisilicon: convert
- hisilicon,hi3798cv200-perictrl bindings to json-schema
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
- <20200930031712.2365-17-thunder.leizhen@huawei.com>
- <20201001063517.GC3018@kozik-lap>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <8c6b5b55-967c-f582-9781-dd8cf0034dee@huawei.com>
-Date:   Sat, 10 Oct 2020 18:56:40 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1731467AbgJJW5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 18:57:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57066 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732633AbgJJTyj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Oct 2020 15:54:39 -0400
+Received: from gaia (unknown [95.149.105.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B1DFA21655;
+        Sat, 10 Oct 2020 12:38:57 +0000 (UTC)
+Date:   Sat, 10 Oct 2020 13:38:55 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Ard Biesheuvel <ardb@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Will Deacon <will@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Memory Management List <linux-mm@kvack.org>,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
+Message-ID: <20201010123854.GA27186@gaia>
+References: <12f33d487eabd626db4c07ded5a1447795eed355.camel@suse.de>
+ <20201009071013.GA12208@lst.de>
+ <CAMj1kXG+7Lq=rgUfyU_XS9LrJwpUiC8nKsRPom+R0=phuXioHQ@mail.gmail.com>
+ <513833810c15b5efeab7c3cbae1963a78c71a79f.camel@suse.de>
+ <CAMj1kXGP_OTKgqMT0-+t3=7EKDY26y9n9xjLodSF1E-mUCe9tg@mail.gmail.com>
+ <20201009152433.GA19953@e121166-lin.cambridge.arm.com>
+ <CAMj1kXFuqw3qNRAB78OzvMws+t7=B6L8pASA36D2fxXobbvpUA@mail.gmail.com>
+ <20201009171051.GL23638@gaia>
+ <CAMj1kXEWeqGVr=QV7zQ+dXBK=t_Lh+W9q1+kLLdBw8=Pj798Ng@mail.gmail.com>
+ <e62784bde26293c26fcc2fee50133dc445c084ab.camel@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20201001063517.GC3018@kozik-lap>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.134]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e62784bde26293c26fcc2fee50133dc445c084ab.camel@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2020/10/1 14:35, Krzysztof Kozlowski wrote:
-> On Wed, Sep 30, 2020 at 11:17:11AM +0800, Zhen Lei wrote:
->> Convert the Hisilicon Hi3798CV200 Peripheral Controller binding to DT
->> schema format using json-schema.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  .../hisilicon/controller/hi3798cv200-perictrl.yaml | 64 ++++++++++++++++++++++
->>  .../controller/hisilicon,hi3798cv200-perictrl.txt  | 21 -------
->>  2 files changed, 64 insertions(+), 21 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
->>
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
->> new file mode 100644
->> index 000000000000000..cba1937aad9a8d3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
->> @@ -0,0 +1,64 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hi3798cv200-perictrl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Hisilicon Hi3798CV200 Peripheral Controller
->> +
->> +maintainers:
->> +  - Wei Xu <xuwei5@hisilicon.com>
->> +
->> +description: |
->> +  The Hi3798CV200 Peripheral Controller controls peripherals, queries
->> +  their status, and configures some functions of peripherals.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: hisilicon,hi3798cv200-perictrl
->> +      - const: syscon
->> +      - const: simple-mfd
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 1
->> +
->> +  ranges: true
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +  - ranges
->> +
->> +additionalProperties:
->> +  type: object
+On Sat, Oct 10, 2020 at 12:53:19PM +0200, Nicolas Saenz Julienne wrote:
+> On Sat, 2020-10-10 at 12:36 +0200, Ard Biesheuvel wrote:
+> > On Fri, 9 Oct 2020 at 19:10, Catalin Marinas <catalin.marinas@arm.com> wrote:
+> > > On Fri, Oct 09, 2020 at 06:23:06PM +0200, Ard Biesheuvel wrote:
+> > > > On Fri, 9 Oct 2020 at 17:24, Lorenzo Pieralisi
+> > > > <lorenzo.pieralisi@arm.com> wrote:
+> > > > > We can move this check to IORT code and call it from arm64 if it
+> > > > > can be made to work.
+> > > > 
+> > > > Finding the smallest value in the IORT, and assigning it to
+> > > > zone_dma_bits if it is < 32 should be easy. But as I understand it,
+> > > > having these separate DMA and DMA32 zones is what breaks kdump, no? So
+> > > > how is this going to fix the underlying issue?
+> > > 
+> > > If zone_dma_bits is 32, ZONE_DMA32 disappears into ZONE_DMA (GFP_DMA32
+> > > allocations fall back to ZONE_DMA).
+> > > 
+> > > kdump wants DMA-able memory and, without a 30-bit ZONE_DMA, that would
+> > > be the bottom 32-bit. With the introduction of ZONE_DMA, this suddenly
+> > > became 1GB. We could change kdump to allocate ZONE_DMA32 but this one
+> > > may also be small as it lost 1GB to ZONE_DMA. However, the kdump kernel
+> > > would need to be rebuilt without ZONE_DMA since it won't have any. IIRC
+> > > (it's been a while since I looked), the kdump allocation couldn't span
+> > > multiple zones.
+> > > 
+> > > In a separate thread, we try to fix kdump to use allocations above 4G as
+> > > a fallback but this only fixes platforms with enough RAM (and maybe it's
+> > > only those platforms that care about kdump).
+> > > 
+> > 
+> > One thing that strikes me as odd is that we are applying the same
+> > shifting logic to ZONE_DMA as we are applying to ZONE_DMA32, i.e., if
+> > DRAM starts outside of the zone, it is shifted upwards.
+> > 
+> > On a typical ARM box, this gives me
+> > 
+> > [    0.000000] Zone ranges:
+> > [    0.000000]   DMA      [mem 0x0000000080000000-0x00000000bfffffff]
+> > [    0.000000]   DMA32    [mem 0x00000000c0000000-0x00000000ffffffff]
+> > [    0.000000]   Normal   [mem 0x0000000100000000-0x0000000fffffffff]
+> > 
+> > i.e., the 30-bit addressable range has bit 31 set, which is weird.
 > 
-> You need to describe all additional properties or objects.
+> Yes I agree it's weird, and IMO plain useless. I sent a series this summer to
+> address this[1], which ultimately triggered the discussion we're having right
+> now.
 
-OK, I will do it in v5.11
+I don't mind assuming that ZONE_DMA is always from pfn 0 (i.e. no
+dma_offset for such constrained devices). But if ZONE_DMA32 is squeezed
+out with ZONE_DMA extended to 4GB, it should allow non-zero upper 32
+bits. IIRC we do have SoCs with RAM starting above 4GB.
 
-> 
-> Best regards,
-> Krzysztof
-> 
-> .
-> 
+However, your patch didn't completely solve the problem for non-RPi4
+platforms as there's hardware with RAM starting at 0 that doesn't need
+the 1GB ZONE_DMA. We may end up with a combination of the two
+approaches.
 
+> Although with with your latest patch and the DT counterpart, we should be OK.
+> It would be weird for a HW description to define DMA constraints that are
+> impossible to reach on that system.
+
+I don't remember the difficulties with parsing a DT early for inferring
+the ZONE_DMA requirements. Could we not check the dma-ranges property in
+the soc node? I can see bcm2711.dtsi defines a 30-bit address range. We
+are not interested in the absolute physical/bus addresses, just the
+size to check whether it's smaller than 32-bit.
+
+> > I wonder if it wouldn't be better (and less problematic in the general
+> > case) to drop this logic for ZONE_DMA, and simply let it remain empty
+> > unless there is really some memory there.
+> 
+> From my experience, you can't have empty ZONE_DMA when enabled. Empty
+> ZONE_DMA32 is OK though. Although I'm sure it's something that can be changed.
+
+Indeed, because we still have GFP_DMA around which can't fall back to
+ZONE_DMA32 (well, unless CONFIG_ZONE_DMA is disabled).
+
+-- 
+Catalin
