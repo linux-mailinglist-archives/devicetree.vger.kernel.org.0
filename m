@@ -2,355 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C2A289E89
-	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 07:33:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F153289EAF
+	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 08:18:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730568AbgJJFcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 01:32:55 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:38498 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730387AbgJJFcT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 01:32:19 -0400
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 09 Oct 2020 22:32:11 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 09 Oct 2020 22:32:10 -0700
-X-QCInternal: smtphost
-Received: from mdalam-linux.qualcomm.com ([10.201.2.71])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 10 Oct 2020 11:01:45 +0530
-Received: by mdalam-linux.qualcomm.com (Postfix, from userid 466583)
-        id 5B2CF21ADE; Sat, 10 Oct 2020 11:01:43 +0530 (IST)
-From:   Md Sadre Alam <mdalam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     mdalam@codeaurora.org, sricharan@codeaurora.org
-Subject: [PATCH 5/5] mtd: rawnand: qcom: Add support for serial training.
-Date:   Sat, 10 Oct 2020 11:01:42 +0530
-Message-Id: <1602307902-16761-6-git-send-email-mdalam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
-References: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
+        id S1726329AbgJJGSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 02:18:32 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:29630 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725802AbgJJGS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 02:18:26 -0400
+X-UUID: 4cbb3f6428a4490d8d4c9f57e03b12d2-20201010
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=61F5Tl8G56sPcS7KsAwbgCO83qs6Yq3c4B1Tn8qYWKc=;
+        b=WYYJhsYIVVxypsuFEv489DssqpGZY5q/ViiyFiYFzpF397nRMxQgaEUuRvC+/vwCJXGrZaFwGTSJWLr2ZqvslF4YhXOBkJtao72m7S9nFXkCW8MQY1JgNflC7xcG3uWRPDtZpkGWe3BHq6VHH3PzU6wHVzGwQrymNnSUaOwNjKo=;
+X-UUID: 4cbb3f6428a4490d8d4c9f57e03b12d2-20201010
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1548687958; Sat, 10 Oct 2020 14:18:11 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 10 Oct
+ 2020 14:18:09 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 10 Oct 2020 14:18:08 +0800
+Message-ID: <1602310691.26323.39.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 02/24] dt-bindings: memory: mediatek: Convert SMI to
+ DT schema
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
+        <ming-fan.chen@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@google.com>,
+        <kernel-team@android.com>
+Date:   Sat, 10 Oct 2020 14:18:11 +0800
+In-Reply-To: <CAJKOXPfOOGnJeNCa58WEZqbzaAFdLHSm-7pyMyGkYgCBEt0+RA@mail.gmail.com>
+References: <20200930070647.10188-1-yong.wu@mediatek.com>
+         <20200930070647.10188-3-yong.wu@mediatek.com> <20201002110831.GD6888@pi3>
+         <1601958428.26323.26.camel@mhfsdcap03>
+         <CAJKOXPfOOGnJeNCa58WEZqbzaAFdLHSm-7pyMyGkYgCBEt0+RA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 2F5B50D45BFEE5DEAF980977B4B60D0C1CC732DEAB64F85D93BF6AB7D84D9C0F2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change will add support for serial training for
-QSPI nand in QPIC.
-
-Due to different PNR and PCB delays, serial read data
-can come with different delays to QPIC. At high frequency
-operations Rx clock should be adjusted according to delays
-so that Rx Data can be captured correctly.CLK_CNTR_INIT_VAL_VEC
-in NAND_FLASH_SPI_CFG register is a 12-bit vector which is divided
-in 4 parts of 3 bits each representing delay of 4 serial input data
-lines. Bit [2:0] corresponds to qspi_miso[0], bit [5:3] corresponds
-to qspi_miso[1], bit [8:6] corresponds to qspi_miso[2] and bit [11:9]
-corresponds to qspi_miso[3]. Delay of each qspi_miso line can be set
-from 0 to 7.
-
-For serial training the following rule should be followd.
-
-1. SW should write a page with any known pattern in flash at lower
-   frequency.
-2. Set the CLK_CNTR_INIT_VAL_VEC for qspi_miso[0] line.
-3. Read that page repetitively in high frequency mode until it
-   gets data accurately.
-4. Repeat above steps for other qspi_miso lines.
-
-Signed-off-by: Md Sadre Alam <mdalam@codeaurora.org>
----
- drivers/mtd/nand/raw/qcom_nandc.c | 219 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 217 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-index 4e8e1dc..fc5e32c 100644
---- a/drivers/mtd/nand/raw/qcom_nandc.c
-+++ b/drivers/mtd/nand/raw/qcom_nandc.c
-@@ -217,6 +217,10 @@
- #define SPI_TRANSFER_MODE_x1	(1 << 29)
- #define SPI_TRANSFER_MODE_x4	(3 << 29)
- #define QPIC_v2_0	0x2
-+#define FEEDBACK_CLK_EN	(1 << 4)
-+#define MAX_TRAINING_BLK	8
-+#define TRAINING_OFFSET	0x0
-+#define TOTAL_NUM_PHASE	7
- 
- #define nandc_set_read_loc(nandc, reg, offset, size, is_last)	\
- nandc_set_reg(nandc, NAND_READ_LOCATION_##reg,			\
-@@ -267,6 +271,16 @@ nandc_set_reg(nandc, NAND_READ_LOCATION_LAST_CW_##reg,			\
- #define NAND_ERASED_CW_SET		BIT(4)
- 
- /*
-+ * An array holding the fixed pattern
-+ */
-+static const u32 qspi_training_block_64[] = {
-+	0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F,
-+	0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F,
-+	0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F,
-+	0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F, 0x0F0F0F0F,
-+};
-+
-+/*
-  * This data type corresponds to the BAM transaction which will be used for all
-  * NAND transfers.
-  * @bam_ce - the array of BAM command elements
-@@ -366,6 +380,7 @@ struct nandc_regs {
- 	__le32 spi_cfg;
- 	__le32 num_addr_cycle;
- 	__le32 busy_wait_cnt;
-+	__le32 mstr_cfg;
- 
- 	__le32 erased_cw_detect_cfg_clr;
- 	__le32 erased_cw_detect_cfg_set;
-@@ -710,6 +725,8 @@ static __le32 *offset_to_nandc_reg(struct nandc_regs *regs, int offset)
- 		return &regs->num_addr_cycle;
- 	case NAND_SPI_BUSY_CHECK_WAIT_CNT:
- 		return &regs->busy_wait_cnt;
-+	case NAND_QSPI_MSTR_CONFIG:
-+		return &regs->mstr_cfg;
- 	default:
- 		return NULL;
- 	}
-@@ -2978,14 +2995,13 @@ static void qspi_write_reg_bam(struct qcom_nand_controller *nandc,
- 		unsigned int val, unsigned int reg)
- {
- 	int ret;
--
- 	clear_bam_transaction(nandc);
- 	nandc_set_reg(nandc, reg, val);
- 	write_reg_dma(nandc, reg, 1, NAND_BAM_NEXT_SGL);
- 
- 	ret = submit_descs(nandc);
- 	if (ret)
--		dev_err(nandc->dev, "Error in submitting descriptor to write config reg\n");
-+		dev_err(nandc->dev, "Error in submitting descriptor to write reg %x\n", reg);
- 	free_descs(nandc);
- }
- 
-@@ -3015,6 +3031,192 @@ static void qspi_nand_init(struct qcom_nand_controller *nandc)
- 	qspi_write_reg_bam(nandc, WAIT_CNT, NAND_SPI_BUSY_CHECK_WAIT_CNT);
- }
- 
-+static void qspi_set_phase(struct qcom_nand_controller *nandc, int phase)
-+{
-+	u32 qspi_cfg_val = 0x0;
-+	int reg = dev_cmd_reg_addr(nandc, NAND_FLASH_SPI_CFG);
-+
-+	qspi_cfg_val = nandc_read(nandc, reg);
-+	qspi_cfg_val |= LOAD_CLK_CNTR_INIT_EN;
-+
-+	qspi_write_reg_bam(nandc, qspi_cfg_val, NAND_FLASH_SPI_CFG);
-+	qspi_cfg_val &= 0xf000ffff;
-+
-+	/* Write phase value for all the lines */
-+	qspi_cfg_val |= ((phase << 16) | (phase << 19) | (phase << 22)
-+			| (phase << 25));
-+	qspi_write_reg_bam(nandc, qspi_cfg_val, NAND_FLASH_SPI_CFG);
-+
-+	/* Clear LOAD_CLK_CNTR_INIT_EN bit to load phase value */
-+	qspi_cfg_val &= ~LOAD_CLK_CNTR_INIT_EN;
-+	qspi_write_reg_bam(nandc, qspi_cfg_val, NAND_FLASH_SPI_CFG);
-+}
-+
-+static int qspi_get_appropriate_phase(struct qcom_nand_controller *nandc, u8 *phase_table,
-+		int phase_count)
-+{
-+	int i, cnt = 0, phase = 0x0;
-+	u8 phase_ranges[TOTAL_NUM_PHASE] = {'\0'};
-+
-+	for (i = 0; i < phase_count; i++) {
-+		if ((phase_table[i] + 1 == phase_table[i + 1]) &&
-+		(phase_table[i + 1] + 1 == phase_table[i + 2]))
-+			phase_ranges[cnt++] = phase_table[i + 1];
-+	}
-+
-+	/* Filter out middle phase */
-+	if (!(cnt & 1))
-+		phase = phase_ranges[cnt/2 - 1];
-+	else
-+		phase = phase_ranges[cnt/2];
-+
-+	return phase;
-+}
-+
-+static int qspi_execute_training(struct qcom_nand_controller *nandc,
-+		struct qcom_nand_host *host, struct mtd_info *mtd)
-+{
-+	u32 pages_per_block = 0, page = 0;
-+	int ret = 0, bb_cnt = 0, i, phase_failed = 0;
-+	int phase_cnt, phase;
-+	u32 training_offset = TRAINING_OFFSET;
-+	u8 *training_data = NULL, trained_phase[TOTAL_NUM_PHASE] = {'\0'};
-+	struct nand_chip *chip = &host->chip;
-+
-+	pages_per_block = 1 << (chip->phys_erase_shift - chip->page_shift);
-+	page = (training_offset >> chip->page_shift) & chip->pagemask;
-+
-+	/* Set feedback clk enable bit to do auto adjustment of phase
-+	 * at lower frequency
-+	 */
-+	qspi_write_reg_bam(nandc, (nandc_read(nandc,
-+			NAND_QSPI_MSTR_CONFIG) | FEEDBACK_CLK_EN),
-+			NAND_QSPI_MSTR_CONFIG);
-+
-+	/* check for bad block in allocated training blocks
-+	 * The training blocks should be continuous good block or
-+	 * continuous bad block, it should be not like good,bad,good etc.
-+	 * avoid to use this type of block for serial training
-+	 */
-+	while (qcom_nandc_block_bad(chip, training_offset)) {
-+		training_offset += mtd->erasesize;
-+		page += pages_per_block;
-+		bb_cnt++;
-+	}
-+
-+	if (bb_cnt == MAX_TRAINING_BLK) {
-+		dev_dbg(nandc->dev, "All training blocks are bad, skipping serial training");
-+		dev_dbg(nandc->dev, "Operatig at lower frequency");
-+		ret = -EINVAL;
-+		goto trng_err;
-+	}
-+
-+	qcom_nandc_command(chip, NAND_CMD_ERASE1, 0, page);
-+
-+	/* Allocate memory to hold one NAND page */
-+	training_data = kzalloc(mtd->writesize, GFP_KERNEL);
-+	if (!training_data) {
-+		ret = -ENOMEM;
-+		goto trng_err;
-+	}
-+	memset(training_data, '\0', mtd->writesize);
-+
-+	for (i = 0; i < mtd->writesize; i += sizeof(qspi_training_block_64))
-+		memcpy(training_data + i, qspi_training_block_64,
-+			sizeof(qspi_training_block_64));
-+
-+	/* Write qspi training data to flash */
-+	ret = qcom_nandc_write_page(chip, training_data, 0, page);
-+	if (ret) {
-+		dev_err(nandc->dev, "Error in writing training data");
-+		ret = -EINVAL;
-+		goto mem_err;
-+	}
-+
-+	/* Read qspi training data @ low freq */
-+	memset(training_data, 0xff, mtd->writesize);
-+	ret = qcom_nandc_read_page(chip, training_data, 0, page);
-+	if (ret) {
-+		dev_err(nandc->dev, "Error in reading training data @ low freq");
-+		ret = -EINVAL;
-+		goto mem_err;
-+	}
-+
-+	/* compare read training data with known pattern */
-+	for (i = 0; i <  mtd->writesize; i += sizeof(qspi_training_block_64)) {
-+		if (memcmp(training_data + i, qspi_training_block_64,
-+				sizeof(qspi_training_block_64))) {
-+			dev_err(nandc->dev, "Training data mismatch @ low freq");
-+			ret = -EINVAL;
-+			goto mem_err;
-+		}
-+	}
-+
-+	/* clear feedback clock bit and start training here */
-+	qspi_write_reg_bam(nandc, (nandc_read(nandc,
-+			NAND_QSPI_MSTR_CONFIG) & ~FEEDBACK_CLK_EN),
-+			NAND_QSPI_MSTR_CONFIG);
-+	phase = 1;
-+	phase_cnt = 0;
-+
-+	/* set higest clock frequecy for io_macro i.e 320MHz so
-+	 * on bus it will be 320/4 = 80MHz.
-+	 */
-+
-+	ret =  clk_set_rate(nandc->iomacro_clk, 320000000);
-+	if (ret) {
-+		dev_err(nandc->dev, "Setting clk rate to 320000000 MHz failed");
-+		goto mem_err;
-+	}
-+
-+	do {
-+		qspi_set_phase(nandc, phase);
-+
-+		/* Prepare clean buffer to read */
-+		memset(training_data, 0xff, mtd->writesize);
-+		ret = qcom_nandc_read_page(chip, training_data, 0, page);
-+		if (ret) {
-+			dev_err(nandc->dev, "Error in reading training data @ high freq");
-+			ret = -EINVAL;
-+			goto mem_err;
-+		}
-+		/* compare read training data with known pattern */
-+		for (i = 0; i <  mtd->writesize; i += sizeof(qspi_training_block_64)) {
-+			if (memcmp(training_data + i, qspi_training_block_64,
-+					sizeof(qspi_training_block_64))) {
-+				phase_failed++;
-+				break;
-+			}
-+		}
-+
-+		if (i == mtd->writesize)
-+			trained_phase[phase_cnt++] = phase;
-+
-+	} while (phase++ < TOTAL_NUM_PHASE);
-+
-+	if (phase_cnt) {
-+		phase = qspi_get_appropriate_phase(nandc, trained_phase, phase_cnt);
-+		qspi_set_phase(nandc, phase);
-+	} else {
-+		dev_err(nandc->dev, "Serial training failed");
-+		dev_err(nandc->dev, "Running @ low freq 50MHz");
-+		/* Run @ lower frequency 50Mhz with feedback clk bit enabled  */
-+		qspi_write_reg_bam(nandc, (nandc_read(nandc,
-+			NAND_QSPI_MSTR_CONFIG) | FEEDBACK_CLK_EN),
-+			NAND_QSPI_MSTR_CONFIG);
-+		ret =  clk_set_rate(nandc->iomacro_clk, 200000000);
-+		if (ret) {
-+			dev_err(nandc->dev, "Setting clk rate to 50000000 MHz failed");
-+			goto mem_err;
-+		}
-+	}
-+
-+mem_err:
-+	kfree(training_data);
-+trng_err:
-+	return ret;
-+}
-+
- static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
- 					    struct qcom_nand_host *host,
- 					    struct device_node *dn)
-@@ -3081,6 +3283,15 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
- 		}
- 	}
- 
-+	/* QSPI serial training is required if io_macro clk frequency
-+	 * is more than 50MHz. This is due to different PNR and PCB delays,
-+	 * serial read data can come with different delays to QPIC. So
-+	 * Rx clock should be adjusted according to delays so that Rx Data
-+	 * can be captured correctly.
-+	 */
-+	if (nandc->props->is_serial_nand)
-+		qspi_execute_training(nandc, host, mtd);
-+
- 	ret = mtd_device_register(mtd, NULL, 0);
- 	if (ret)
- 		nand_cleanup(chip);
-@@ -3178,6 +3389,10 @@ static int qcom_nandc_probe(struct platform_device *pdev)
- 		nandc->iomacro_clk = devm_clk_get(dev, "io_macro");
- 		if (IS_ERR(nandc->iomacro_clk))
- 			return PTR_ERR(nandc->iomacro_clk);
-+
-+		ret =  clk_set_rate(nandc->iomacro_clk, 200000000);
-+		if (ret)
-+			return ret;
- 	}
- 
- 	ret = qcom_nandc_parse_dt(pdev);
--- 
-2.7.4
+T24gVHVlLCAyMDIwLTEwLTA2IGF0IDA5OjE1ICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBPbiBUdWUsIDYgT2N0IDIwMjAgYXQgMDY6MjcsIFlvbmcgV3UgPHlvbmcud3VAbWVk
+aWF0ZWsuY29tPiB3cm90ZToNCj4gPg0KPiA+IE9uIEZyaSwgMjAyMC0xMC0wMiBhdCAxMzowOCAr
+MDIwMCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gPiA+IE9uIFdlZCwgU2VwIDMwLCAy
+MDIwIGF0IDAzOjA2OjI1UE0gKzA4MDAsIFlvbmcgV3Ugd3JvdGU6DQo+ID4gPiA+IENvbnZlcnQg
+TWVkaWFUZWsgU01JIHRvIERUIHNjaGVtYS4NCj4gPiA+ID4NCj4gPiA+ID4gU2lnbmVkLW9mZi1i
+eTogWW9uZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+DQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAg
+Li4uL21lZGlhdGVrLHNtaS1jb21tb24udHh0ICAgICAgICAgICAgICAgICAgIHwgIDQ5IC0tLS0t
+LS0tLQ0KPiA+ID4gPiAgLi4uL21lZGlhdGVrLHNtaS1jb21tb24ueWFtbCAgICAgICAgICAgICAg
+ICAgIHwgMTAwICsrKysrKysrKysrKysrKysrKw0KPiA+ID4gPiAgLi4uL21lbW9yeS1jb250cm9s
+bGVycy9tZWRpYXRlayxzbWktbGFyYi50eHQgIHwgIDQ5IC0tLS0tLS0tLQ0KPiA+ID4gPiAgLi4u
+L21lbW9yeS1jb250cm9sbGVycy9tZWRpYXRlayxzbWktbGFyYi55YW1sIHwgIDkxICsrKysrKysr
+KysrKysrKysNCj4gPiA+ID4gIDQgZmlsZXMgY2hhbmdlZCwgMTkxIGluc2VydGlvbnMoKyksIDk4
+IGRlbGV0aW9ucygtKQ0KPiA+ID4gPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21pLWNvbW1v
+bi50eHQNCj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNtaS1jb21tb24ueWFtbA0K
+PiA+ID4gPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21pLWxhcmIudHh0DQo+ID4gPiA+ICBj
+cmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lbW9y
+eS1jb250cm9sbGVycy9tZWRpYXRlayxzbWktbGFyYi55YW1sDQo+ID4gLi4uDQo+ID4gPiA+ICtw
+cm9wZXJ0aWVzOg0KPiA+ID4gPiArICBjb21wYXRpYmxlOg0KPiA+ID4gPiArICAgIG9uZU9mOg0K
+PiA+ID4gPiArICAgICAgLSBlbnVtOg0KPiA+ID4gPiArICAgICAgICAgIC0gbWVkaWF0ZWssbXQy
+NzAxLXNtaS1jb21tb24NCj4gPiA+ID4gKyAgICAgICAgICAtIG1lZGlhdGVrLG10MjcxMi1zbWkt
+Y29tbW9uDQo+ID4gPiA+ICsgICAgICAgICAgLSBtZWRpYXRlayxtdDY3Nzktc21pLWNvbW1vbg0K
+PiA+ID4gPiArICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTczLXNtaS1jb21tb24NCj4gPiA+ID4g
+KyAgICAgICAgICAtIG1lZGlhdGVrLG10ODE4My1zbWktY29tbW9uDQo+ID4gPiA+ICsNCj4gPiA+
+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IGZvciBtdDc2MjMNCj4gPiA+ID4gKyAgICAgICAgaXRl
+bXM6DQo+ID4gPiA+ICsgICAgICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ3NjIzLXNtaS1jb21t
+b24NCj4gPiA+ID4gKyAgICAgICAgICAtIGNvbnN0OiBtZWRpYXRlayxtdDI3MDEtc21pLWNvbW1v
+bg0KPiA+ID4gPiArDQo+ID4gPiA+ICsgIHJlZzoNCj4gPiA+ID4gKyAgICBtYXhJdGVtczogMQ0K
+PiA+ID4gPiArDQo+ID4gPiA+ICsgIGNsb2NrczoNCj4gPiA+ID4gKyAgICBkZXNjcmlwdGlvbjog
+fA0KPiA+ID4gPiArICAgICAgYXBiIGFuZCBzbWkgYXJlIG1hbmRhdG9yeS4gdGhlIGFzeW5jIGlz
+IG9ubHkgZm9yIGdlbmVyYXRpb24gMSBzbWkgSFcuDQo+ID4gPiA+ICsgICAgICBnYWxzKGdsb2Jh
+bCBhc3luYyBsb2NhbCBzeW5jKSBhbHNvIGlzIG9wdGlvbmFsLCBoZXJlIGlzIHRoZSBsaXN0IHdo
+aWNoDQo+ID4gPiA+ICsgICAgICByZXF1aXJlIGdhbHM6IG10Njc3OSBhbmQgbXQ4MTgzLg0KPiA+
+ID4gPiArICAgIG1pbkl0ZW1zOiAyDQo+ID4gPiA+ICsgICAgbWF4SXRlbXM6IDQNCj4gPiA+ID4g
+KyAgICBpdGVtczoNCj4gPiA+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IGFwYiBpcyBBZHZhbmNl
+ZCBQZXJpcGhlcmFsIEJ1cyBjbG9jaywgSXQncyB0aGUgY2xvY2sgZm9yDQo+ID4gPiA+ICsgICAg
+ICAgICAgc2V0dGluZyB0aGUgcmVnaXN0ZXIuDQo+ID4gPiA+ICsgICAgICAtIGRlc2NyaXB0aW9u
+OiBzbWkgaXMgdGhlIGNsb2NrIGZvciB0cmFuc2ZlciBkYXRhIGFuZCBjb21tYW5kLg0KPiA+ID4g
+PiArICAgICAgLSBkZXNjcmlwdGlvbjogYXN5bmMgaXMgYXN5bmNocm9ub3VzIGNsb2NrLCBpdCBo
+ZWxwIHRyYW5zZm9ybSB0aGUgc21pIGNsb2NrDQo+ID4gPiA+ICsgICAgICAgICAgaW50byB0aGUg
+ZW1pIGNsb2NrIGRvbWFpbi4NCj4gPiA+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IGdhbHMwIGlz
+IHRoZSBwYXRoMCBjbG9jayBvZiBnYWxzLg0KPiA+ID4gPiArICAgICAgLSBkZXNjcmlwdGlvbjog
+Z2FsczEgaXMgdGhlIHBhdGgxIGNsb2NrIG9mIGdhbHMuDQo+ID4gPiA+ICsNCj4gPiA+ID4gKyAg
+Y2xvY2stbmFtZXM6DQo+ID4gPiA+ICsgICAgb25lT2Y6DQo+ID4gPiA+ICsgICAgICAtIGl0ZW1z
+Og0KPiA+ID4gPiArICAgICAgICAgIC0gY29uc3Q6IGFwYg0KPiA+ID4gPiArICAgICAgICAgIC0g
+Y29uc3Q6IHNtaQ0KPiA+ID4gPiArICAgICAgLSBpdGVtczoNCj4gPiA+ID4gKyAgICAgICAgICAt
+IGNvbnN0OiBhcGINCj4gPiA+ID4gKyAgICAgICAgICAtIGNvbnN0OiBzbWkNCj4gPiA+ID4gKyAg
+ICAgICAgICAtIGNvbnN0OiBhc3luYw0KPiA+ID4gPiArICAgICAgLSBpdGVtczoNCj4gPiA+ID4g
+KyAgICAgICAgICAtIGNvbnN0OiBhcGINCj4gPiA+ID4gKyAgICAgICAgICAtIGNvbnN0OiBzbWkN
+Cj4gPiA+ID4gKyAgICAgICAgICAtIGNvbnN0OiBnYWxzMA0KPiA+ID4gPiArICAgICAgICAgIC0g
+Y29uc3Q6IGdhbHMxDQo+ID4gPg0KPiA+ID4gU2ltaWxhcmx5IHRvIG15IGNvbW1lbnQgdG8gb3Ro
+ZXIgcHJvcGVydGllcywgdGhpcyByZXF1aXJlbWVudCBwZXINCj4gPiA+IGNvbXBhdGlibGUgc2hv
+dWxkIGJlIHBhcnQgb2YgdGhlIHNjaGVtYSB3aXRoaW4gJ2lmLXRoZW4nLg0KPiA+DQo+ID4gSSdt
+IG5vdCBzbyBmYW1pbGlhciB3aXRoIHRoaXMgZm9ybWF0LiBEbyB0aGlzIGhhcyAiaWYtdGhlbi0n
+ZWxzZQ0KPiA+IGlmJy10aGVuLWVsc2UiPw0KPiANCj4gVGhlc2UgYXJlIG11dHVhbGx5IGV4Y2x1
+c2l2ZSBjb25kaXRpb25zLCBzbyB5b3UgY2FuIHNraXAgZWxzZToNCj4gIC0gaWYtdGhlbg0KPiAg
+LSBpZi10aGVuDQo+ICAtIGlmLXRoZW4NCj4gSXQgd2lsbCBiZSBtb3JlIHJlYWRhYmxlIHRoZW4g
+c3RhY2tpbmcgJ2lmJyB1bmRlciAnZWxzZScNCg0KVGhhbmtzLiBJIHdpbGwgdXNlIHNvbWV0aGlu
+ZyBsaWtlIHRoaXM6DQoNCiBhbnlPZjoNCiAgIC0gaWY6ICNnZW4xIGh3DQogICAgIHRoZW46DQog
+ICAgICAgdXNlIGFwYi9zbWkvYXN5bmMgY2xvY2tzDQoNCiAgIC0gaWY6ICNnZW4yIGh3IHRoYXQg
+aGFzIGdhbHMuDQogICAgIHRoZW46DQogICAgICAgdXNlIGFwYi9zbWkvZ2FsczAvZ2FsczEgY2xv
+Y2tzDQogICAgIGVsc2U6ICMgZ2VuMiBodyB0aGF0IGRvZXNuJ3QgaGF2ZSBnYWxzLg0KICAgICAg
+IHVzZSBhcGIvc21pIGNsb2Nrcy4NCg0KPiANCj4gPg0KPiA+IEkgdHJpZWQgYmVsb3cgaW5zdGVh
+ZCBvZiB0aGUgY2xvY2tzIHNlZ21lbnQgYWJvdmU6DQo+ID4NCj4gPiA9PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PQ0KPiA+IGlmOg0KPiA+ICAgcHJvcGVydGllczoNCj4gPiAgICAg
+Y29tcGF0aWJsZToNCj4gDQo+IE1pc3NpbmcgY29udGFpbnMuIEp1c3QgdGFrZSBhbiBleGFtcGxl
+IGZyb20gc29tZSBleGlzdGluZyBzY2hlbWEuDQoNCg0KTGlrZSB0aGUgZXhhbXBsZSB5b3UgZ2F2
+ZSBiZWxvdw0KKERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9pZHQsdmVy
+c2FjbG9jazUueWFtbCksIEl0IGFsc28NCmRvZXNuJ3QgaGF2ZSAiY29udGFpbnMiIGluICJpZiIu
+IEkgZ3Vlc3MgaXQgaXMgdW5uZWNlc3NhcnkgaWYgdGhlcmUgaXMNCm9ubHkgb25lIGNvbXBhdGli
+bGUgc3RyaW5nLiBpdCBtYXkgYmUgbmVjZXNzYXJ5IHdoZW4gaXQgaGFzIGJhY2t3YXJkDQpjb21w
+YXRpYmxlIHN0cmluZy4NCg0KPiANCj4gPiAgICAgICBlbnVtOg0KPiA+ICAgICAgICAgLSBtZWRp
+YXRlayxtdDY3Nzktc21pLWNvbW1vbg0KPiA+ICAgICAgICAgLSBtZWRpYXRlayxtdDgxODMtc21p
+LWNvbW1vbg0KPiA+DQo+ID4gdGhlbjoNCj4gPiAgIHByb3BlcnRpZXM6DQo+ID4gICAgIGNsb2Nr
+Og0KPiA+ICAgICAgIGl0ZW1zOg0KPiA+ICAgICAgICAgLSBkZXNjcmlwdGlvbjogYXBiIGlzIHRo
+ZSBjbG9jayBmb3Igc2V0dGluZyB0aGUgcmVnaXN0ZXIuLg0KPiA+ICAgICAgICAgLSBkZXNjcmlw
+dGlvbjogc21pIGlzIHRoZSBjbG9jayBmb3IgdHJhbnNmZXIgZGF0YSBhbmQgY29tbWFuZC4NCj4g
+PiAgICAgICAgIC0gZGVzY3JpcHRpb246IGdhbHMwIGlzIHRoZSBwYXRoMCBjbG9jayBvZiBnYWxz
+KGdsb2JhbCBhc3luYw0KPiA+IGxvY2FsIHN5bmMpLg0KPiA+ICAgICAgICAgLSBkZXNjcmlwdGlv
+bjogZ2FsczEgaXMgdGhlIHBhdGgxIGNsb2NrIG9mIGdhbHMuDQo+ID4gICAgIGNsb2NrLW5hbWVz
+Og0KPiA+ICAgICAgIGl0ZW1zOg0KPiA+ICAgICAgICAgLSBjb25zdDogYXBiDQo+ID4gICAgICAg
+ICAtIGNvbnN0OiBzbWkNCj4gPiAgICAgICAgIC0gY29uc3Q6IGdhbHMwDQo+ID4gICAgICAgICAt
+IGNvbnN0OiBnYWxzMQ0KPiA+IGVsc2U6DQo+ID4gICBpZjoNCj4gPiAgICAgcHJvcGVydGllczoN
+Cj4gPiAgICAgICBjb21wYXRpYmxlOg0KPiA+ICAgICAgICAgY29udGFpbnM6DQo+ID4gICAgICAg
+ICAgIGVudW06DQo+ID4gICAgICAgICAgICAgLSBtZWRpYXRlayxtdDI3MDEtc21pLWNvbW1vbg0K
+PiA+DQo+ID4gICB0aGVuOg0KPiA+ICAgICBwcm9wZXJ0aWVzOg0KPiA+ICAgICAgIGNsb2NrczoN
+Cj4gPiAgICAgICAgIGl0ZW1zOg0KPiA+ICAgICAgICAgICAtIGRlc2NyaXB0aW9uOiBhcGIgaXMg
+dGhlIGNsb2NrIGZvciBzZXR0aW5nIHRoZSByZWdpc3Rlci4NCj4gPiAgICAgICAgICAgLSBkZXNj
+cmlwdGlvbjogc21pIGlzIHRoZSBjbG9jayBmb3IgdHJhbnNmZXIgZGF0YSBhbmQgY29tbWFuZC4N
+Cj4gPiAgICAgICAgICAgLSBkZXNjcmlwdGlvbjogYXN5bmMgaXMgYXN5bmNocm9ub3VzIGNsb2Nr
+LCBpdCBoZWxwIHRyYW5zZm9ybQ0KPiA+IHRoZSBzbWkgY2xvY2sNCj4gPiAgICAgICAgICAgICAg
+IGludG8gdGhlIGVtaSBjbG9jayBkb21haW4uDQo+ID4gICAgICAgY2xvY2stbmFtZXM6DQo+ID4g
+ICAgICAgICBpdGVtczoNCj4gPiAgICAgICAgICAgLSBjb25zdDogYXBiDQo+ID4gICAgICAgICAg
+IC0gY29uc3Q6IHNtaQ0KPiA+ICAgICAgICAgICAtIGNvbnN0OiBhc3luYw0KPiA+ICAgZWxzZToN
+Cj4gPiAgICAgcHJvcGVydGllczoNCj4gPiAgICAgICBjbG9ja3M6DQo+ID4gICAgICAgICBpdGVt
+czoNCj4gPiAgICAgICAgICAgLSBkZXNjcmlwdGlvbjogYXBiIGlzIHRoZSBjbG9jayBmb3Igc2V0
+dGluZyB0aGUgcmVnaXN0ZXIuDQo+ID4gICAgICAgICAgIC0gZGVzY3JpcHRpb246IHNtaSBpcyB0
+aGUgY2xvY2sgZm9yIHRyYW5zZmVyIGRhdGEgYW5kDQo+ID4gY29tbWFuZC4NCj4gPiAgICAgICBj
+bG9jay1uYW1lczoNCj4gPiAgICAgICAgIGl0ZW1zOg0KPiA+ICAgICAgICAgICAtIGNvbnN0OiBh
+cGINCj4gPiAgICAgICAgICAgLSBjb25zdDogc21pDQo+ID4gPT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT0NCj4gPg0KPiA+IEJ1dCBJIGdvdCBhIHdhcm5pbmcgd2hlbiBkdF9iaW5kaW5n
+X2NoZWNrOg0KPiA+DQo+ID4gQ0hLRFQNCj4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNtaS1jb21tb24ueWFtbA0KPiA+ICAg
+U0NIRU1BDQo+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Byb2Nlc3NlZC1z
+Y2hlbWEtZXhhbXBsZXMueWFtbA0KPiA+ICAgRFRDDQo+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVycy9tZWRpYXRlayxzbWktY29tbW9uLmV4YW1w
+bGUuZHQueWFtbA0KPiA+ICAgQ0hFQ0sNCj4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNtaS1jb21tb24uZXhhbXBsZS5kdC55
+YW1sDQo+ID4gLi4uL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1vcnktY29u
+dHJvbGxlcnMvbWVkaWF0ZWssc21pLWNvbW1vbi5leGFtcGxlLmR0LnlhbWw6IHNtaUAxNDAyMjAw
+MDogJ2Nsb2NrLW5hbWVzJywgJ2Nsb2NrcycgZG8gbm90IG1hdGNoIGFueSBvZiB0aGUgcmVnZXhl
+czogJ3BpbmN0cmwtWzAtOV0rJw0KPiANCj4gVGhlcmUgYXJlIHNldmVyYWwgZmlsZXMgd2hpY2gg
+YWxyZWFkeSBjaG9vc2UgZGlmZmVyZW50IGNsb2NrcyBiYXNlZCBvbg0KPiBjb21wYXRpYmxlLCBz
+aW1wbGUgZ3JlcCBzaG93cyB0aGVtOg0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvaWlvL2FkYy9zYW1zdW5nLGV4eW5vcy1hZGMueWFtbA0KPiBEb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvY2xvY2svaWR0LHZlcnNhY2xvY2s1LnlhbWwNCg0KVGhhbmtzIGZvciB0
+aGUgcmV2aWV3LiBJIHdpbGwgc2VuZCB0aGUgbmV4dCB2ZXJzaW9uIGFmdGVyIHY1LjEwLg0KDQo+
+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
 
