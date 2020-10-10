@@ -2,92 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 583B828A383
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34BB1289FEB
+	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 12:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726638AbgJJW46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 18:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41594 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731195AbgJJTxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 15:53:14 -0400
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADF14C0613D7
-        for <devicetree@vger.kernel.org>; Sat, 10 Oct 2020 02:09:57 -0700 (PDT)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4C7fJ21hkXz1rrKZ;
-        Sat, 10 Oct 2020 11:08:50 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4C7fJ20R3bz1qvgd;
-        Sat, 10 Oct 2020 11:08:50 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id 3d4ypTh_aFbm; Sat, 10 Oct 2020 11:08:48 +0200 (CEST)
-X-Auth-Info: VSShtmZctzVahsNuDR5I32dJjEw6fWhdYFF6IzeUW/o=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Sat, 10 Oct 2020 11:08:48 +0200 (CEST)
-Subject: Re: [PATCH v2 3/7] dt-bindings: display: mxsfb: Add a bus-width
- endpoint property
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, Stefan Agner <stefan@agner.ch>,
-        devicetree@vger.kernel.org,
-        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        id S1728385AbgJJKFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 06:05:43 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:31154 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726720AbgJJJva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 05:51:30 -0400
+X-UUID: 57ab3f1bf93346f1a6dffb2710ec11ac-20201010
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=H+ln7qIH6WhzfS8WeSevzwzddMMkN7urwrkqmKBrJkk=;
+        b=TMP0Xzqg0/AlemBSuJbg5oKE+XfYCJoLmsNfSo+jgOzTpRQQwdADzJwvVzI5vUU/BNmlkuMmT2Zov6Z/thCmhCmCm1cafqEZktorabDhtHuC80/Kd3+yFTAigynxbwcztn+ZgEcSOUDxCG+bx4AiOHgZj6wuoG34NGZZ37sON3k=;
+X-UUID: 57ab3f1bf93346f1a6dffb2710ec11ac-20201010
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <wenbin.mei@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1974926838; Sat, 10 Oct 2020 17:18:20 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 10 Oct
+ 2020 17:18:18 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 10 Oct 2020 17:18:18 +0800
+Message-ID: <1602321500.11947.6.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 4/4] mmc: mediatek: Add subsys clock control for
+ MT8192 msdc
+From:   Wenbin Mei <wenbin.mei@mediatek.com>
+To:     Nicolas Boichat <drinkcat@chromium.org>
+CC:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-References: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
- <20201007012438.27970-4-laurent.pinchart@ideasonboard.com>
- <7b8df7af-5ca8-708b-4975-2fdf4280116f@denx.de>
- <20201009235843.GR25040@pendragon.ideasonboard.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <9c7615d6-0f69-5f67-0795-b86ecea2eea8@denx.de>
-Date:   Sat, 10 Oct 2020 10:47:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-mmc@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Date:   Sat, 10 Oct 2020 17:18:20 +0800
+In-Reply-To: <CANMq1KCQ9x1kgME3dAQmGzjUoqkNLuWGS4dG07qhNKQ3N=o_dw@mail.gmail.com>
+References: <20200930083120.11971-1-wenbin.mei@mediatek.com>
+         <20200930083120.11971-5-wenbin.mei@mediatek.com>
+         <CANMq1KCQ9x1kgME3dAQmGzjUoqkNLuWGS4dG07qhNKQ3N=o_dw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20201009235843.GR25040@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 28E61ED4929A78886AAEC66E902D7BDF49F75B5965520A77CC1E21997464EA852000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/20 1:58 AM, Laurent Pinchart wrote:
-> Hi Marek,
+T24gVGh1LCAyMDIwLTEwLTAxIGF0IDE0OjE0ICswODAwLCBOaWNvbGFzIEJvaWNoYXQgd3JvdGU6
+DQo+IE9uIFdlZCwgU2VwIDMwLCAyMDIwIGF0IDQ6MzEgUE0gV2VuYmluIE1laSA8d2VuYmluLm1l
+aUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gTVQ4MTkyIG1zZGMgaXMgYW4gaW5kZXBl
+bmRlbnQgc3ViIHN5c3RlbSwgd2UgbmVlZCBjb250cm9sIG1vcmUgYnVzDQo+ID4gY2xvY2tzIGZv
+ciBpdC4NCj4gPiBBZGQgc3VwcG9ydCBmb3IgdGhlIGFkZGl0aW9uYWwgc3Vic3lzIGNsb2NrcyB0
+byBhbGxvdyBpdCB0byBiZQ0KPiA+IGNvbmZpZ3VyZWQgYXBwcm9wcmlhdGVseS4NCj4gPg0KPiA+
+IFNpZ25lZC1vZmYtYnk6IFdlbmJpbiBNZWkgPHdlbmJpbi5tZWlAbWVkaWF0ZWsuY29tPg0KPiA+
+IC0tLQ0KPiA+ICBkcml2ZXJzL21tYy9ob3N0L210ay1zZC5jIHwgNzcgKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrLS0tLS0tLS0tDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA1OSBpbnNlcnRp
+b25zKCspLCAxOCBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21t
+Yy9ob3N0L210ay1zZC5jIGIvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KPiA+IGluZGV4IGE3
+MDQ3NDVlNTg4Mi4uOWExNDIyOTU1NTkzIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbW1jL2hv
+c3QvbXRrLXNkLmMNCj4gPiArKysgYi9kcml2ZXJzL21tYy9ob3N0L210ay1zZC5jDQo+ID4gQEAg
+LTQyNSw2ICs0MjUsOCBAQCBzdHJ1Y3QgbXNkY19ob3N0IHsNCj4gPiAgICAgICAgIHN0cnVjdCBj
+bGsgKmhfY2xrOyAgICAgIC8qIG1zZGMgaF9jbGsgKi8NCj4gPiAgICAgICAgIHN0cnVjdCBjbGsg
+KmJ1c19jbGs7ICAgIC8qIGJ1cyBjbG9jayB3aGljaCB1c2VkIHRvIGFjY2VzcyByZWdpc3RlciAq
+Lw0KPiA+ICAgICAgICAgc3RydWN0IGNsayAqc3JjX2Nsa19jZzsgLyogbXNkYyBzb3VyY2UgY2xv
+Y2sgY29udHJvbCBnYXRlICovDQo+ID4gKyAgICAgICBzdHJ1Y3QgY2xrICpzeXNfY2xrX2NnOyAv
+KiBtc2RjIHN1YnN5cyBjbG9jayBjb250cm9sIGdhdGUgKi8NCj4gPiArICAgICAgIHN0cnVjdCBj
+bGtfYnVsa19kYXRhIGJ1bGtfY2xrc1szXTsgICAgICAvKiBwY2xrLCBheGksIGFoYiBjbG9jayBj
+b250cm9sIGdhdGUgKi8NCj4gPiAgICAgICAgIHUzMiBtY2xrOyAgICAgICAgICAgICAgIC8qIG1t
+YyBzdWJzeXN0ZW0gY2xvY2sgZnJlcXVlbmN5ICovDQo+ID4gICAgICAgICB1MzIgc3JjX2Nsa19m
+cmVxOyAgICAgICAvKiBzb3VyY2UgY2xvY2sgZnJlcXVlbmN5ICovDQo+ID4gICAgICAgICB1bnNp
+Z25lZCBjaGFyIHRpbWluZzsNCj4gPiBAQCAtNzg0LDYgKzc4Niw4IEBAIHN0YXRpYyB2b2lkIG1z
+ZGNfc2V0X2J1c3lfdGltZW91dChzdHJ1Y3QgbXNkY19ob3N0ICpob3N0LCB1NjQgbnMsIHU2NCBj
+bGtzKQ0KPiA+DQo+ID4gIHN0YXRpYyB2b2lkIG1zZGNfZ2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19o
+b3N0ICpob3N0KQ0KPiA+ICB7DQo+ID4gKyAgICAgICBjbGtfYnVsa19kaXNhYmxlX3VucHJlcGFy
+ZShBUlJBWV9TSVpFKGhvc3QtPmJ1bGtfY2xrcyksDQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBob3N0LT5idWxrX2Nsa3MpOw0KPiA+ICAgICAgICAgY2xrX2Rpc2FibGVf
+dW5wcmVwYXJlKGhvc3QtPnNyY19jbGtfY2cpOw0KPiA+ICAgICAgICAgY2xrX2Rpc2FibGVfdW5w
+cmVwYXJlKGhvc3QtPnNyY19jbGspOw0KPiA+ICAgICAgICAgY2xrX2Rpc2FibGVfdW5wcmVwYXJl
+KGhvc3QtPmJ1c19jbGspOw0KPiA+IEBAIC03OTIsMTAgKzc5NiwxNyBAQCBzdGF0aWMgdm9pZCBt
+c2RjX2dhdGVfY2xvY2soc3RydWN0IG1zZGNfaG9zdCAqaG9zdCkNCj4gPg0KPiA+ICBzdGF0aWMg
+dm9pZCBtc2RjX3VuZ2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KPiA+ICB7DQo+
+ID4gKyAgICAgICBpbnQgcmV0Ow0KPiA+ICsNCj4gPiAgICAgICAgIGNsa19wcmVwYXJlX2VuYWJs
+ZShob3N0LT5oX2Nsayk7DQo+ID4gICAgICAgICBjbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+YnVz
+X2Nsayk7DQo+ID4gICAgICAgICBjbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+c3JjX2Nsayk7DQo+
+ID4gICAgICAgICBjbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+c3JjX2Nsa19jZyk7DQo+ID4gKyAg
+ICAgICByZXQgPSBjbGtfYnVsa19wcmVwYXJlX2VuYWJsZShBUlJBWV9TSVpFKGhvc3QtPmJ1bGtf
+Y2xrcyksDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBob3N0LT5i
+dWxrX2Nsa3MpOw0KPiA+ICsgICAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAgICAgZGV2
+X2RiZyhob3N0LT5kZXYsICJlbmFibGUgY2xrcyBmYWlsZWQhXG4iKTsNCj4gDQo+IGRldl9lcnIg
+bG9va3MgYSBsb3QgbW9yZSBhcHByb3ByaWF0ZS4gQWxzbywgZG9uJ3QgeW91IHdhbnQgdG8gZXhp
+dCB0aGUNCj4gZnVuY3Rpb24gaW4gdGhhdCBjYXNlLCByYXRoZXIgdGhhbiBnb2luZyB0byB0aGUg
+d2hpbGUgbG9vcCBiZWxvdyB3aGVyZQ0KPiB5b3UgbWF5IGdldCBzdHVjaz8NCj4gDQpJIHdpbGwg
+Y2hhbmdlIGl0IGluIHRoZSBuZXh0IHZlcnNpb24uDQo+ID4gKw0KPiA+ICAgICAgICAgd2hpbGUg
+KCEocmVhZGwoaG9zdC0+YmFzZSArIE1TRENfQ0ZHKSAmIE1TRENfQ0ZHX0NLU1RCKSkNCj4gPiAg
+ICAgICAgICAgICAgICAgY3B1X3JlbGF4KCk7DQo+ID4gIH0NCj4gPiBAQCAtMjM2Niw2ICsyMzc3
+LDUyIEBAIHN0YXRpYyB2b2lkIG1zZGNfb2ZfcHJvcGVydHlfcGFyc2Uoc3RydWN0IHBsYXRmb3Jt
+X2RldmljZSAqcGRldiwNCj4gPiAgICAgICAgICAgICAgICAgaG9zdC0+Y3FoY2kgPSBmYWxzZTsN
+Cj4gPiAgfQ0KPiA+DQo+ID4gK3N0YXRpYyBpbnQgbXNkY19vZl9jbG9ja19wYXJzZShzdHJ1Y3Qg
+cGxhdGZvcm1fZGV2aWNlICpwZGV2LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KPiA+ICt7DQo+ID4gKyAgICAgICBzdHJ1Y3QgY2xr
+ICpjbGs7DQo+ID4gKw0KPiA+ICsgICAgICAgaG9zdC0+c3JjX2NsayA9IGRldm1fY2xrX2dldCgm
+cGRldi0+ZGV2LCAic291cmNlIik7DQo+ID4gKyAgICAgICBpZiAoSVNfRVJSKGhvc3QtPnNyY19j
+bGspKQ0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gUFRSX0VSUihob3N0LT5zcmNfY2xrKTsN
+Cj4gPiArDQo+ID4gKyAgICAgICBob3N0LT5oX2NsayA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2
+LCAiaGNsayIpOw0KPiA+ICsgICAgICAgaWYgKElTX0VSUihob3N0LT5oX2NsaykpDQo+ID4gKyAg
+ICAgICAgICAgICAgIHJldHVybiBQVFJfRVJSKGhvc3QtPmhfY2xrKTsNCj4gPiArDQo+ID4gKyAg
+ICAgICBob3N0LT5idXNfY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJidXNfY2xrIik7
+DQo+ID4gKyAgICAgICBpZiAoSVNfRVJSKGhvc3QtPmJ1c19jbGspKQ0KPiA+ICsgICAgICAgICAg
+ICAgICBob3N0LT5idXNfY2xrID0gTlVMTDsNCj4gDQo+IFVzZSBkZXZtX2Nsa19nZXRfb3B0aW9u
+YWwgaW5zdGVhZCAoZGl0dG8gZm9yIHRoZSBuZXh0IDIpLg0KPiANCj4gPiArDQo+ID4gKyAgICAg
+ICAvKnNvdXJjZSBjbG9jayBjb250cm9sIGdhdGUgaXMgb3B0aW9uYWwgY2xvY2sqLw0KPiA+ICsg
+ICAgICAgaG9zdC0+c3JjX2Nsa19jZyA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2LCAic291cmNl
+X2NnIik7DQo+ID4gKyAgICAgICBpZiAoSVNfRVJSKGhvc3QtPnNyY19jbGtfY2cpKQ0KPiA+ICsg
+ICAgICAgICAgICAgICBob3N0LT5zcmNfY2xrX2NnID0gTlVMTDsNCj4gPiArDQo+ID4gKyAgICAg
+ICBob3N0LT5zeXNfY2xrX2NnID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzeXNfY2ciKTsN
+Cj4gPiArICAgICAgIGlmIChJU19FUlIoaG9zdC0+c3lzX2Nsa19jZykpDQo+ID4gKyAgICAgICAg
+ICAgICAgIGhvc3QtPnN5c19jbGtfY2cgPSBOVUxMOw0KPiA+ICsgICAgICAgZWxzZQ0KPiA+ICsg
+ICAgICAgICAgICAgICBjbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+c3lzX2Nsa19jZyk7DQo+IA0K
+PiBUaGlzIGRvZXNuJ3QgbmVlZCB0byBiZSBpbiBhbiBlbHNlIGJyYW5jaCwgY2FsbGluZyBjbGtf
+cHJlcGFyZV9lbmFibGUNCj4gb24gYSBOVUxMIGNsb2NrIGlzIGZpbmUuDQpJIHdpbGwgY2hhbmdl
+IGl0IGluIHRoZSBuZXh0IHZlcnNpb24uDQo+IA0KPiBIb3dldmVyLCBpcyBpdCBleHBlY3RlZCB0
+aGF0IHRoaXMgY2xvY2sgaXMgdHVybmVkIG9uIGZvcmV2ZXIgYWZ0ZXINCj4gcHJvYmU/ISBBdCB0
+aGUgdmVyeSBsZWFzdCwgdGhlIGNsb2NrIHNob3VsZCBiZSBkaXNhYmxlZCBpbg0KPiBtc2RjX2Ry
+dl9yZW1vdmUsIGJ1dCwgcmVhbGx5LCBJIHRoaW5rIGl0IHNob3VsZCBiZSBlbmFibGVkIGFzIG5l
+ZWRlZCwNCj4gbGlrZSB0aGUgb3RoZXIgY2xvY2tzLCBpbiBtc2RjX2dhdGVfY2xvY2s/DQo+IA0K
+VGhpcyBjbG9jayBnYXRlIGNhbiBub3QgYmUgY2xvc2VkLCBpZiBpdCBpcyBjbG9zZWQsIGl0IGNh
+biBub3QgYmUNCmFjY2Vzc2VkIGFuZCBjYW4gbm90IGJlIG9wZW5lZCBhZ2Fpbi4NClNvIGl0IGlz
+IGV4cGVjdGVkIHRoYXQgdGhpcyBjbG9jayBpcyB0dXJuZWQgb24gZm9yZXZlciBhZnRlciBwcm9i
+ZS4NCj4gPiArDQo+ID4gKyAgICAgICBjbGsgPSBkZXZtX2Nsa19nZXQoJnBkZXYtPmRldiwgInBj
+bGtfY2ciKTsNCj4gPiArICAgICAgIGlmIChJU19FUlIoY2xrKSkNCj4gPiArICAgICAgICAgICAg
+ICAgY2xrID0gTlVMTDsNCj4gPiArICAgICAgIGhvc3QtPmJ1bGtfY2xrc1swXS5jbGsgPSBjbGs7
+DQo+ID4gKw0KPiA+ICsgICAgICAgY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJheGlf
+Y2ciKTsNCj4gPiArICAgICAgIGlmIChJU19FUlIoY2xrKSkNCj4gPiArICAgICAgICAgICAgICAg
+Y2xrID0gTlVMTDsNCj4gPiArICAgICAgIGhvc3QtPmJ1bGtfY2xrc1sxXS5jbGsgPSBjbGs7DQo+
+ID4gKw0KPiA+ICsgICAgICAgY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJhaGJfY2ci
+KTsNCj4gPiArICAgICAgIGlmIChJU19FUlIoY2xrKSkNCj4gPiArICAgICAgICAgICAgICAgY2xr
+ID0gTlVMTDsNCj4gPiArICAgICAgIGhvc3QtPmJ1bGtfY2xrc1syXS5jbGsgPSBjbGs7DQo+IA0K
+PiBVc2UgZGV2bV9jbGtfYnVsa19nZXRfb3B0aW9uYWwgZm9yIHRoZXNlIDMuDQo+IA0KSSB3aWxs
+IGNoYW5nZSBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uLg0KPiA+ICsNCj4gPiArICAgICAgIHJldHVy
+biAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICBzdGF0aWMgaW50IG1zZGNfZHJ2X3Byb2JlKHN0cnVj
+dCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gIHsNCj4gPiAgICAgICAgIHN0cnVjdCBtbWNf
+aG9zdCAqbW1jOw0KPiA+IEBAIC0yNDA1LDI1ICsyNDYyLDkgQEAgc3RhdGljIGludCBtc2RjX2Ry
+dl9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiA+ICAgICAgICAgaWYgKHJl
+dCkNCj4gPiAgICAgICAgICAgICAgICAgZ290byBob3N0X2ZyZWU7DQo+ID4NCj4gPiAtICAgICAg
+IGhvc3QtPnNyY19jbGsgPSBkZXZtX2Nsa19nZXQoJnBkZXYtPmRldiwgInNvdXJjZSIpOw0KPiA+
+IC0gICAgICAgaWYgKElTX0VSUihob3N0LT5zcmNfY2xrKSkgew0KPiA+IC0gICAgICAgICAgICAg
+ICByZXQgPSBQVFJfRVJSKGhvc3QtPnNyY19jbGspOw0KPiA+IC0gICAgICAgICAgICAgICBnb3Rv
+IGhvc3RfZnJlZTsNCj4gPiAtICAgICAgIH0NCj4gPiAtDQo+ID4gLSAgICAgICBob3N0LT5oX2Ns
+ayA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2LCAiaGNsayIpOw0KPiA+IC0gICAgICAgaWYgKElT
+X0VSUihob3N0LT5oX2NsaykpIHsNCj4gPiAtICAgICAgICAgICAgICAgcmV0ID0gUFRSX0VSUiho
+b3N0LT5oX2Nsayk7DQo+ID4gKyAgICAgICByZXQgPSBtc2RjX29mX2Nsb2NrX3BhcnNlKHBkZXYs
+IGhvc3QpOw0KPiA+ICsgICAgICAgaWYgKHJldCkNCj4gPiAgICAgICAgICAgICAgICAgZ290byBo
+b3N0X2ZyZWU7DQo+ID4gLSAgICAgICB9DQo+ID4gLQ0KPiA+IC0gICAgICAgaG9zdC0+YnVzX2Ns
+ayA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2LCAiYnVzX2NsayIpOw0KPiA+IC0gICAgICAgaWYg
+KElTX0VSUihob3N0LT5idXNfY2xrKSkNCj4gPiAtICAgICAgICAgICAgICAgaG9zdC0+YnVzX2Ns
+ayA9IE5VTEw7DQo+ID4gLSAgICAgICAvKnNvdXJjZSBjbG9jayBjb250cm9sIGdhdGUgaXMgb3B0
+aW9uYWwgY2xvY2sqLw0KPiA+IC0gICAgICAgaG9zdC0+c3JjX2Nsa19jZyA9IGRldm1fY2xrX2dl
+dCgmcGRldi0+ZGV2LCAic291cmNlX2NnIik7DQo+ID4gLSAgICAgICBpZiAoSVNfRVJSKGhvc3Qt
+PnNyY19jbGtfY2cpKQ0KPiA+IC0gICAgICAgICAgICAgICBob3N0LT5zcmNfY2xrX2NnID0gTlVM
+TDsNCj4gPg0KPiA+ICAgICAgICAgaG9zdC0+cmVzZXQgPSBkZXZtX3Jlc2V0X2NvbnRyb2xfZ2V0
+X29wdGlvbmFsX2V4Y2x1c2l2ZSgmcGRldi0+ZGV2LA0KPiA+ICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaHJzdCIpOw0KPiA+
+IC0tDQo+ID4gMi4xOC4wDQoNCg==
 
-Hi,
-
-> On Wed, Oct 07, 2020 at 10:40:26AM +0200, Marek Vasut wrote:
->> On 10/7/20 3:24 AM, Laurent Pinchart wrote:
->>
->> [...]
->>
->>> +          bus-width:
->>> +            enum: [16, 18, 24]
->>> +            description: |
->>> +              The output bus width. This value overrides the configuration
->>> +              derived from the connected device (encoder or panel). It should
->>> +              only be specified when PCB routing of the data signals require a
->>> +              different bus width on the LCDIF and the connected device. For
->>> +              instance, when a 18-bit RGB panel has its R[5:0], G[5:0] and
->>> +              B[5:0] signals connected to LCD_DATA[7:2], LCD_DATA[15:10] and
->>> +              LCD_DATA[23:18] instead of LCD_DATA[5:0], LCD_DATA[11:6] and
->>> +              LCD_DATA[17:12], bus-width should be set to 24.
->>
->> The iMX6 IPUv3 uses interface-pix-fmt which is a bit more flexible, but
->> I'm not sure whether it's the right way to go about this, see:
->> Documentation/devicetree/bindings/display/imx/fsl-imx-drm.txt
-> 
-> I think specifying the bus with is better. It's a standard property, but
-> more than that, a given bus width can carry different formats. For
-> instance, a 24-bus could carry RGB666 data (with dithering for the
-> LSBs).
-
-I think that's exactly what the interface-pix-fmt was trying to solve
-for the IPUv3, there you could have e.g. both RGB666 and LVDS666 , which
-were different.
