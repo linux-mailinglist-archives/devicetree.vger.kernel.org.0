@@ -2,262 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4318228A37A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF77D28A25D
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 00:57:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727316AbgJJW5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 18:57:02 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:47234 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727172AbgJJVUr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 17:20:47 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4298DB2A;
-        Sat, 10 Oct 2020 23:18:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1602364707;
-        bh=ewMpnY/sAnn7dKCRc/rttEg4diN5OMir1NuSuaSX7zs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=N2Fdfjqdieo0lts12RB+docQBCzLuM2IDbM3WTxs2B/lQzMpMSciolUW07d3NH73e
-         UCqghsJGoMPp45eCxAeNUEInTsdVtuur8mlUz9z14x4wcehwM6eTZO1rPtg9hye6wu
-         RipxO4Sus36cCBhOizam167ogHJeQ696CDPWHffY=
-Date:   Sun, 11 Oct 2020 00:17:43 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     robh+dt@kernel.org, sakari.ailus@iki.fi,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: media: atmel: csi2dc: add bindings
- for microchip csi2dc
-Message-ID: <20201010211743.GB3939@pendragon.ideasonboard.com>
-References: <20200826065142.205000-1-eugen.hristev@microchip.com>
+        id S2390336AbgJJW5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 18:57:03 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57404 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733007AbgJJWmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 18:42:52 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id CE73B8030808;
+        Sat, 10 Oct 2020 22:41:27 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id xogfVj1ipFTm; Sun, 11 Oct 2020 01:41:26 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 00/18] dt-bindings: usb: Add generic USB HCD, xHCI, DWC USB3 DT schema
+Date:   Sun, 11 Oct 2020 01:41:03 +0300
+Message-ID: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200826065142.205000-1-eugen.hristev@microchip.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugen,
+We've performed some work on the Generic USB HCD, xHCI and DWC USB3 DT
+bindings in the framework of the Baikal-T1 SoC support integration into
+the kernel. This patchset is a result of that work.
 
-Thank you for the patch.
+First of all we moved the generic USB properties from the legacy text
+bindings into the USB HCD DT schema. So now the generic USB HCD-compatible
+DT nodes are validated taking into account the optional properties like:
+maximum-speed, dr_mode, otg-rev, usb-role-switch, etc. We've fixed these
+properties a bit so they would correspond to what functionality kernel
+currently supports.
 
-On Wed, Aug 26, 2020 at 09:51:40AM +0300, Eugen Hristev wrote:
-> Add bindings documentation for Microchip CSI2 Demultiplexer controller.
-> 
-> CSI2DC is a demultiplexer from Synopsys IDI interface specification to
-> parallel interface connection or direct memory access.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> ---
-> Changes in v3:
-> - Removed some text from description, as it was explained in the schema
-> - fixed other things as per Rob's review
-> - moved some text inside the schema, like the clock description
-> 
-> Changes in v2:
-> - fixed warnings reported by dt_binding_check
-> 
->  .../bindings/media/microchip,csi2dc.yaml      | 174 ++++++++++++++++++
->  1 file changed, 174 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml b/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
-> new file mode 100644
-> index 000000000000..b4c1b8800a3b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
-> @@ -0,0 +1,174 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/microchip,csi2dc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip CSI2 Demux Controller (CSI2DC)
-> +
-> +maintainers:
-> +  - Eugen Hristev <eugen.hristev@microchip.com>
-> +
-> +description:
-> +  CSI2DC - Camera Serial Interface 2 Demux Controller
-> +
-> +  CSI2DC is a hardware block that receives incoming data from an IDI interface
-> +  and filters packets based on their data type and virtual channel identifier,
-> +  then converts the byte stream into a cross clock domain to a pixel stream
-> +  to a parallel interface that can be read by a sensor controller.
-> +
-> +  CSI2DC provides two pipes, one video pipe and one data pipe. Video pipe
-> +  is connected to a sensor controller and the data pipe is accessible
-> +  as a DMA slave port to a DMA controller.
-> +
-> +  CSI2DC supports a single 'port' node as a source pad with Synopsys 32-bit
-> +  IDI interface. The connected endpoint must be a IDI interface compatible
-> +  device (like Synopsys CSI2HOST) , that can provide 32-bit IDI interface
-> +  connection as sink pad.
-> +  For media entity and endpoints please refer to the bindings defined in
-> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +  For Synopsys IDI interface please refer to
-> +  Documentation/devicetree/bindings/media/snps,dw-csi-plat.txt
-> +
-> +  CSI2DC supports one 'port' node as sink pad with parallel interface. This is
-> +  called video pipe.
-> +  This port has an 'endpoint' can then be used as a source pad for another
-> +  controller (next in pipeline).
-> +  Please refer to the bindings defined in
-> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +
-> +  CSI2DC also supports direct access to the data through AHB, via DMA channel,
-> +  called data pipe.
-> +  Because of this, the sink 'port' child node (second) is not mandatory.
-> +  If the sink 'port' child node is missing, only data pipe is available.
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,sama7g5-csi2dc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    description:
-> +      CSI2DC must have two clocks to function correctly. One clock is the
-> +      peripheral clock for the inside functionality of the hardware block.
-> +      This is named 'pclk'. The second clock must be the cross domain clock,
-> +      in which CSI2DC will perform clock crossing. This clock must be fed
-> +      by the next controller in pipeline, which usually is a sensor controller.
-> +      Normally this clock should be given by this sensor controller who
-> +      is also a clock source. This clock is named 'scck', sensor controller clock.
-> +    items:
-> +      - const: pclk
-> +      - const: scck
-> +
-> +  microchip,clk-gated:
-> +    type: boolean
-> +    description:
-> +      If present, indicates that the clock is gated.
-> +      Otherwise, the clock is free-running.
+Secondly we converted generic USB xHCI text bindings file into the DT
+schema. It had to be split up into two bindings: DT schema with generic
+xHCI properties and a generic xHCI device DT schema. The later will be
+used to validate the pure xHCI-based nodes, while the former can be
+utilized by some vendor-specific versions of xHCI.
 
-I don't think this belongs to the DT bindings, it should instead be
-queried from the source subdev at runtime.
+Thirdly, what was primarily intended to be done for Baikal-T1 SoC USB we
+converted the legacy text-based DWC USB3 bindings to DT schema and altered
+the result a bit so it would be more coherent with what actually
+controller and its driver support. Since we've now got the DWC USB3 DT
+schema, we made it used to validate the sub-nodes of the Qualcom, TI and
+Amlogic DWC3 DT nodes.
 
-> +
-> +  microchip,inter-line-delay:
-> +    allOf:
-> +    - $ref: /schemas/types.yaml#/definitions/uint32
-> +    - minimum: 1
-> +    - maximum: 16
-> +    default: 16
-> +    description:
-> +      Indicates how many clock cycles should be introduced between each line.
+Alas the new DWC USB3 DT schema doesn't support all the DT nodes defined
+as compatible with "snps,dwc3". There are next problems we've discovered
+while were working on this patchset:
 
-This also sounds like a configuration parameter. How does one compute
-the right value for this ?
+1) There are many "snps,dwc3"-compatible DT nodes, which names are defined
+as "^usb[0-9](@.*)", "^dwc3(@.*)" and even "^dwusb(@.*)". It contradicts
+to what usb-hcd.yaml requires. Since it's included into the allOf property
+of the DWC USB3 DT binding, some USB DT nodes declared for Freescale,
+Qualcomm, HiSilicon, Exynos, Allwinner, Omap, Stih and APM will fail the
+dtbs_check validation. This is the main problem and currently I don't
+really know how to fix it better. Ideally we should convert all the
+problematic DT nodes to have "usb@"-prefixed names. But it will be very
+painful due to having a lot of such nodes defined. On the other hand we
+could just fix the usb-hcd.yaml file either by detaching the generic
+properties into a separate DT schema and allOf-ing it in the HCDs with
+non-standard node-names instead of using usb-hcd.yaml there, or just add
+the non-standard node-names into the usb-hcd.yaml file. What do you think
+would be better?
 
-> +
-> +  port@0:
-> +    type: object
-> +    description:
-> +      Input port node, single endpoint describing the input pad.
-> +
-> +    properties:
-> +      reg:
-> +        const: 0
-> +
-> +      endpoint:
-> +        type: object
-> +
-> +        properties:
-> +          remote-endpoint: true
-> +
-> +        required:
-> +          - remote-endpoint
-> +
-> +        additionalProperties: false
-> +
-> +    additionalProperties: false
-> +
-> +  port@1:
-> +    type: object
-> +    description:
-> +      Output port node, single endpoint, describing the output pad.
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      reg:
-> +        const: 1
-> +
-> +    patternProperties:
-> +      "^endpoint@[0-3]$":
-> +        type: object
-> +
-> +        properties:
-> +          reg:
-> +            enum: [0, 1, 2, 3]
-> +            description: virtual channel for the endpoint
+2) amlogic/meson-g12-common.dtsi has got a USB controller node defined
+with boolean "snps,quirk-frame-length-adjustment", which actually is
+supposed to have u32 type.
 
-The virtual channel used by the source is also something that needs to
-be queried from the source at runtime, it doesn't belong to this
-binding.
+3) freescale/imx8mq.dtsi defines a USB controller node with unknown
+"usb3-resume-missing-cas" property.
 
-> +
-> +          remote-endpoint: true
-> +
-> +        required:
-> +          - remote-endpoint
-> +          - reg
-> +
-> +        additionalProperties: false
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - port@0
-> +
-> +examples:
-> +  - |
-> +    csi2dc@e1404000 {
-> +        compatible = "microchip,sama7g5-csi2dc";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        reg = <0xe1404000 0x500>;
-> +        clocks = <&pclk>, <&scck>;
-> +        clock-names = "pclk", "scck";
-> +
-> +        port@0 {
-> +               reg = <0>; /* must be 0, first child port */
-> +               csi2dc_in: endpoint { /* input from IDI interface */
-> +                     remote-endpoint = <&csi2host_out>;
-> +               };
-> +        };
-> +
-> +        port@1 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <1>; /* must be 1, second child port */
-> +                csi2dc_out: endpoint@2 {
-> +                        reg = <2>;  /* virtual channel identifier */
-> +                        remote-endpoint = <&xisc_in>; /* output to sensor controller */
-> +                };
-> +        };
-> +    };
-> +
-> +...
+4) marvell/armada-37xx.dtsi defines a USB controller with unknown
+"marvell,usb-misc-reg" property.
+
+5) socionext/uniphier-pxs3.dtsi, uniphier-pxs2.dtsi define a USB
+controller with too many PHYs.
+
+We haven't fixed the problems denoted above in this patchset for now.
+So any help, suggestions on how they (especially #1) could be fixed,
+following up fixup patches would be appropriate.
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Manu Gautam <mgautam@codeaurora.org>
+Cc: Roger Quadros <rogerq@ti.com>
+Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (18):
+  dt-bindings: usb: usb-hcd: Convert generic USB properties to DT schema
+  dt-bindings: usb: usb-hcd: Add "wireless" maximum-speed property value
+  dt-bindings: usb: usb-hcd: Add "otg-rev" property restriction
+  dt-bindings: usb: usb-hcd: Add "ulpi/serial/hsic" PHY types
+  dt-bindings: usb: usb-hcd: Add "tpl-support" property
+  dt-bindings: usb: usb-hcd: Add generic "usb-phy" property
+  dt-bindings: usb: Convert xHCI bindings to DT schema
+  dt-bindings: usb: xhci: Add Broadcom STB v2 compatible device
+  dt-bindings: usb: renesas-xhci: Refer to the usb-xhci.yaml file
+  dt-bindings: usb: Convert DWC USB3 bindings to DT schema
+  dt-bindings: usb: dwc3: Add interrupt-names property support
+  dt-bindings: usb: dwc3: Add synopsys,dwc3 compatible string
+  dt-bindings: usb: dwc3: Add Tx De-emphasis restrictions
+  dt-bindings: usb: dwc3: Add Frame Length Adj restrictions
+  dt-bindings: usb: meson-g12a-usb: Discard FL-adj property
+  dt-bindings: usb: meson-g12a-usb: Validate DWC2/DWC3 sub-nodes
+  dt-bindings: usb: keystone-dwc3: Validate DWC3 sub-node
+  dt-bindings: usb: qcom,dwc3: Validate DWC3 sub-node
+
+ .../usb/amlogic,meson-g12a-usb-ctrl.yaml      |  16 +-
+ .../devicetree/bindings/usb/dwc3.txt          | 125 -------
+ .../devicetree/bindings/usb/generic-xhci.yaml |  65 ++++
+ .../devicetree/bindings/usb/generic.txt       |  57 ----
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |   9 +-
+ .../bindings/usb/renesas,usb-xhci.yaml        |   4 +-
+ .../devicetree/bindings/usb/snps,dwc3.yaml    | 315 ++++++++++++++++++
+ .../bindings/usb/ti,keystone-dwc3.yaml        |   4 +-
+ .../devicetree/bindings/usb/usb-hcd.yaml      | 100 ++++++
+ .../devicetree/bindings/usb/usb-xhci.txt      |  41 ---
+ .../devicetree/bindings/usb/usb-xhci.yaml     |  40 +++
+ 11 files changed, 540 insertions(+), 236 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/generic-xhci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/generic.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.yaml
 
 -- 
-Regards,
+2.27.0
 
-Laurent Pinchart
