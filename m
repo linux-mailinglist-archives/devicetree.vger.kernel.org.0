@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 440BD28A39E
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58E5A28A3A0
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390276AbgJJW4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2390275AbgJJW4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 10 Oct 2020 18:56:52 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:15274 "EHLO huawei.com"
+Received: from szxga07-in.huawei.com ([45.249.212.35]:44348 "EHLO huawei.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1731310AbgJJTIc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Oct 2020 15:08:32 -0400
-Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id 5ABD8CCF04EED35C079F;
-        Sat, 10 Oct 2020 18:54:43 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.134) by DGGEMS408-HUB.china.huawei.com
- (10.3.19.208) with Microsoft SMTP Server id 14.3.487.0; Sat, 10 Oct 2020
- 18:54:35 +0800
-Subject: Re: [PATCH v6 11/17] dt-bindings: arm: hisilicon: convert
- hisilicon,cpuctrl bindings to json-schema
+        id S1731308AbgJJTIR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Oct 2020 15:08:17 -0400
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id C63C1A7FBBDFF02DE59F;
+        Sat, 10 Oct 2020 18:56:51 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.134) by DGGEMS403-HUB.china.huawei.com
+ (10.3.19.203) with Microsoft SMTP Server id 14.3.487.0; Sat, 10 Oct 2020
+ 18:56:41 +0800
+Subject: Re: [PATCH v6 16/17] dt-bindings: arm: hisilicon: convert
+ hisilicon,hi3798cv200-perictrl bindings to json-schema
 To:     Krzysztof Kozlowski <krzk@kernel.org>
 CC:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
         "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
@@ -28,15 +28,15 @@ CC:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
         Libin <huawei.libin@huawei.com>,
         Kefeng Wang <wangkefeng.wang@huawei.com>
 References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
- <20200930031712.2365-12-thunder.leizhen@huawei.com>
- <20201001064008.GE3018@kozik-lap>
+ <20200930031712.2365-17-thunder.leizhen@huawei.com>
+ <20201001063517.GC3018@kozik-lap>
 From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <f4e4a1bb-7a1d-b9a3-58f0-8c52bfdd0801@huawei.com>
-Date:   Sat, 10 Oct 2020 18:54:34 +0800
+Message-ID: <8c6b5b55-967c-f582-9781-dd8cf0034dee@huawei.com>
+Date:   Sat, 10 Oct 2020 18:56:40 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20201001064008.GE3018@kozik-lap>
+In-Reply-To: <20201001063517.GC3018@kozik-lap>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -48,59 +48,71 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2020/10/1 14:40, Krzysztof Kozlowski wrote:
-> On Wed, Sep 30, 2020 at 11:17:06AM +0800, Zhen Lei wrote:
->> Convert the Hisilicon CPU controller binding to DT schema format using
->> json-schema.
+On 2020/10/1 14:35, Krzysztof Kozlowski wrote:
+> On Wed, Sep 30, 2020 at 11:17:11AM +0800, Zhen Lei wrote:
+>> Convert the Hisilicon Hi3798CV200 Peripheral Controller binding to DT
+>> schema format using json-schema.
 >>
 >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 >> ---
->>  .../bindings/arm/hisilicon/controller/cpuctrl.yaml | 29 ++++++++++++++++++++++
->>  .../arm/hisilicon/controller/hisilicon,cpuctrl.txt |  8 ------
->>  2 files changed, 29 insertions(+), 8 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,cpuctrl.txt
+>>  .../hisilicon/controller/hi3798cv200-perictrl.yaml | 64 ++++++++++++++++++++++
+>>  .../controller/hisilicon,hi3798cv200-perictrl.txt  | 21 -------
+>>  2 files changed, 64 insertions(+), 21 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
 >>
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.yaml
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
 >> new file mode 100644
->> index 000000000000000..f6a314db3a59416
+>> index 000000000000000..cba1937aad9a8d3
 >> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.yaml
->> @@ -0,0 +1,29 @@
+>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
+>> @@ -0,0 +1,64 @@
 >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 >> +%YAML 1.2
 >> +---
->> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/cpuctrl.yaml#
+>> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hi3798cv200-perictrl.yaml#
 >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +title: Hisilicon CPU controller
+>> +title: Hisilicon Hi3798CV200 Peripheral Controller
 >> +
 >> +maintainers:
 >> +  - Wei Xu <xuwei5@hisilicon.com>
 >> +
 >> +description: |
->> +  The clock registers and power registers of secondary cores are defined
->> +  in CPU controller, especially in HIX5HD2 SoC.
+>> +  The Hi3798CV200 Peripheral Controller controls peripherals, queries
+>> +  their status, and configures some functions of peripherals.
 >> +
 >> +properties:
 >> +  compatible:
 >> +    items:
->> +      - const: hisilicon,cpuctrl
+>> +      - const: hisilicon,hi3798cv200-perictrl
+>> +      - const: syscon
+>> +      - const: simple-mfd
 >> +
 >> +  reg:
 >> +    maxItems: 1
 >> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 1
+>> +
+>> +  ranges: true
+>> +
 >> +required:
 >> +  - compatible
 >> +  - reg
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +  - ranges
+>> +
+>> +additionalProperties:
+>> +  type: object
 > 
-> Your own DTS file (arch/arm/boot/dts/hisi-x5hd2.dtsi) does not validate
-> against this dtschema.
+> You need to describe all additional properties or objects.
 
-OK, I saw it. I just sent out a set of patches, to clean up all Hisilicon-related
-errors detected by DT schema on arm32. Because many new YAML files are generated
-this time, so I use the dtbs_check to check all the files at a times. The error
-information did not contain the compatible string, So I didn't see it.
+OK, I will do it in v5.11
 
 > 
 > Best regards,
