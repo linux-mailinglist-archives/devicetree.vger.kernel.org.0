@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C920B289FA6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 11:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5536D28A057
+	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 14:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728621AbgJJJv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 05:51:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58274 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726384AbgJJJuJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Oct 2020 05:50:09 -0400
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C05622184D;
-        Sat, 10 Oct 2020 09:50:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602323408;
-        bh=RXC5xfWPGap97Kf/8w9E8um1wI1s4p6TDrC8nncf/W8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gE+R6o0WgK+hfLUR6OQqXr8LKb9PIamD5KL6oqMOvRkPZaNzPy8vGdhdPh6t/UhVi
-         h7bVtfOrwctRlEiv5bGHWvS8Qe702zkL3CrGxTrzmdIX3D6X4hILxg29c+qOo1F8wV
-         syyPaWy543VBm7D2tBfb4b0ba+xMexpCi+PCROFQ=
-Date:   Sat, 10 Oct 2020 11:50:52 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] dt-bindings: usb: use preferred license tag
-Message-ID: <20201010095052.GA989257@kroah.com>
-References: <3db52d534065dcf28e9a10b8129bea3eced0193e.1602318869.git.chunfeng.yun@mediatek.com>
- <d76ca8b2d64c7c017e3ddaca8497eb38ee514204.1602318869.git.chunfeng.yun@mediatek.com>
+        id S1729494AbgJJMRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 08:17:17 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:15259 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726612AbgJJKQM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Oct 2020 06:16:12 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id C053B28522AC5525DB75;
+        Sat, 10 Oct 2020 17:57:41 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.134) by
+ DGGEMS402-HUB.china.huawei.com (10.3.19.202) with Microsoft SMTP Server id
+ 14.3.487.0; Sat, 10 Oct 2020 17:57:34 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH 00/10] clean up all Hisilicon-related errors detected by DT schema on arm32
+Date:   Sat, 10 Oct 2020 17:56:59 +0800
+Message-ID: <20201010095709.1340-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d76ca8b2d64c7c017e3ddaca8497eb38ee514204.1602318869.git.chunfeng.yun@mediatek.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.134]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 10, 2020 at 04:43:14PM +0800, Chunfeng Yun wrote:
-> This is used to fix the checkpach.pl WARNING:SPDX_LICENSE_TAG
-> 
-> See bindings/submitting-patches.rst:
-> "DT binding files should be dual licensed. The preferred license tag is
->  (GPL-2.0-only OR BSD-2-Clause)."
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
-> v2: new patch
-> ---
->  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> index 42b295afdf32..11b9b9ee2b54 100644
-> --- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> +++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> @@ -1,4 +1,4 @@
-> -# SPDX-License-Identifier: GPL-2.0
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+These patches are based on the latest linux-next.
 
-Are you sure you are allowed to change the license of this file?  Last I
-checked, you did not write this file, and so, you can't change the
-license of it.  You need to get the owners of the file to do so.
 
-thanks,
+Zhen Lei (10):
+  ARM: dts: hisilicon: fix errors detected by snps-dw-apb-uart.yaml
+  ARM: dts: hisilicon: fix errors detected by pl011.yaml
+  ARM: dts: hisilicon: fix errors detected by usb yaml
+  ARM: dts: hisilicon: fix errors detected by simple-bus.yaml
+  ARM: dts: hisilicon: fix errors detected by root-node.yaml
+  ARM: dts: hisilicon: fix errors detected by synopsys-dw-mshc.yaml
+  ARM: dts: hisilicon: fix errors detected by spi-pl022.yaml
+  ARM: dts: hisilicon: fix errors detected by syscon.yaml
+  dt-bindings: arm: hisilicon: add missing properties into sysctrl.yaml
+  dt-bindings: arm: hisilicon: add missing properties into cpuctrl.yaml
 
-greg k-h
+ .../bindings/arm/hisilicon/controller/cpuctrl.yaml | 27 +++++++++++++-
+ .../bindings/arm/hisilicon/controller/sysctrl.yaml | 25 +++++++++++--
+ arch/arm/boot/dts/hi3519-demb.dts                  |  2 +-
+ arch/arm/boot/dts/hi3519.dtsi                      | 32 ++++++++---------
+ arch/arm/boot/dts/hi3620-hi4511.dts                | 24 ++++++-------
+ arch/arm/boot/dts/hi3620.dtsi                      | 32 ++++++++---------
+ arch/arm/boot/dts/hip01-ca9x2.dts                  |  2 +-
+ arch/arm/boot/dts/hip01.dtsi                       | 26 +++++++-------
+ arch/arm/boot/dts/hip04-d01.dts                    |  2 +-
+ arch/arm/boot/dts/hip04.dtsi                       |  6 ++--
+ arch/arm/boot/dts/hisi-x5hd2-dkb.dts               |  2 +-
+ arch/arm/boot/dts/hisi-x5hd2.dtsi                  | 42 +++++++++++-----------
+ 12 files changed, 133 insertions(+), 89 deletions(-)
+
+-- 
+1.8.3
+
+
