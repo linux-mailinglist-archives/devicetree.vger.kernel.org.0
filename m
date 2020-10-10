@@ -2,64 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBCA228A251
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 00:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5202C28A39C
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390319AbgJJW4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 18:56:54 -0400
-Received: from mx2.suse.de ([195.135.220.15]:48164 "EHLO mx2.suse.de"
+        id S2390283AbgJJW4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 18:56:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50680 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732207AbgJJTny (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Oct 2020 15:43:54 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 750BBB158;
-        Sat, 10 Oct 2020 15:12:49 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
-        ardb@kernel.org, linux-kernel@vger.kernel.org,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-mm@kvack.org
-Subject: [PATCH v2 5/5] mm: Update DMA zones description
-Date:   Sat, 10 Oct 2020 17:12:35 +0200
-Message-Id: <20201010151235.20585-6-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201010151235.20585-1-nsaenzjulienne@suse.de>
-References: <20201010151235.20585-1-nsaenzjulienne@suse.de>
+        id S1731363AbgJJTMW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Oct 2020 15:12:22 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0B0ED22384;
+        Sat, 10 Oct 2020 15:44:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602344690;
+        bh=tH/e3Syo1QlXY7NwxvGCWBJ4iF2Rv4uqN3ltx+4Topg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=b/IjqYC3sUKU8cBRPJBBIkmpy4FpzB6TKGXAB5Ks7qoAkIUwcmEbwSJxrB/VMNx+I
+         tIyIYLVSVGMUro6qzIYHqUkfunDAYdWunRP+CIcNOk2qUXVoaURDGNHe1haWBN9A+Q
+         AgJPPwwSQsEncr2vUgJ0xYtaJjEZoYP1RLxj43mQ=
+Date:   Sat, 10 Oct 2020 16:44:45 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Auchter <michael.auchter@ni.com>,
+        linux-kernel@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
+        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] dt-bindings: iio: dac: ad5686: add binding
+Message-ID: <20201010164445.0d324bb9@archlinux>
+In-Reply-To: <20200929185300.GA955613@bogus>
+References: <20200924195215.49443-1-michael.auchter@ni.com>
+        <20200924195215.49443-3-michael.auchter@ni.com>
+        <20200929185300.GA955613@bogus>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The default behavior for arm64 changed, so reflect that.
+On Tue, 29 Sep 2020 13:53:00 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Acked-by: Catalin Marinas <catalin.marinas@arm.com>
----
- include/linux/mmzone.h | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+> On Thu, 24 Sep 2020 14:52:14 -0500, Michael Auchter wrote:
+> > Add a binding for AD5686
+> > 
+> > Signed-off-by: Michael Auchter <michael.auchter@ni.com>
+> > ---
+> > Changes since v1:
+> > - Keep supported device sorted
+> > - fix adc -> dac typo in schema path
+> > since v2:
+> > - drop address-cells and size-cells from binding doc
+> > - add "additionalProperties: false"
+> > - end with ...
+> > 
+> >  .../bindings/iio/dac/adi,ad5686.yaml          | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> >   
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+Series applied with a slight tweak to patch 1 to constify the channel
+macro inline with recent tidy up patch doing the same to other instances
+in the driver.
 
-diff --git a/include/linux/mmzone.h b/include/linux/mmzone.h
-index fb3bf696c05e..4ee2306351b9 100644
---- a/include/linux/mmzone.h
-+++ b/include/linux/mmzone.h
-@@ -363,8 +363,9 @@ enum zone_type {
- 	 *  - arm only uses ZONE_DMA, the size, up to 4G, may vary depending on
- 	 *    the specific device.
- 	 *
--	 *  - arm64 has a fixed 1G ZONE_DMA and ZONE_DMA32 for the rest of the
--	 *    lower 4G.
-+	 *  - arm64 uses a single 4GB ZONE_DMA, except on the Raspberry Pi 4,
-+	 *    in which ZONE_DMA covers the first GB and ZONE_DMA32 the rest of
-+	 *    the lower 4GB.
- 	 *
- 	 *  - powerpc only uses ZONE_DMA, the size, up to 2G, may vary
- 	 *    depending on the specific device.
--- 
-2.28.0
+Applied to the togreg branch of iio.git and pushed out as testing for the
+autobuilders to poke at it and see if we missed anything.
+
+Thanks,
+
+Jonathan
 
