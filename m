@@ -2,70 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E219289FA2
-	for <lists+devicetree@lfdr.de>; Sat, 10 Oct 2020 11:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 583B828A383
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:09:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbgJJJlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 05:41:37 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:48184 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726353AbgJJIpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 04:45:16 -0400
-X-UUID: 68272fba54b846748cbffc4879a12b8e-20201010
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=6sHUyhe2bp+cJmLh9RM83LrzEjRu1vXNQUSVqfN6Cao=;
-        b=nswxptfJcpsq2XP86I3RMRabeq0sbFlDp4Bu/Kmj1Oj6VVx+h3tCUQvKGZyF4rswnBQPEKKGVwXfzIT5qKzPN9PkvE7QXWQhtE6sL9Ve6TBBSEU/d+PXdAEzlN+l2rRu1oARAonjtcx6I0b8T1mpePrkDjn7Sk51l3tPvshIfb8=;
-X-UUID: 68272fba54b846748cbffc4879a12b8e-20201010
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1869498794; Sat, 10 Oct 2020 16:43:18 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 10 Oct 2020 16:43:15 +0800
-Received: from mtkslt301.mediatek.inc (10.21.14.114) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 10 Oct 2020 16:43:16 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-Subject: [PATCH v2 4/4] dt-bindings: usb: use preferred license tag
-Date:   Sat, 10 Oct 2020 16:43:14 +0800
-Message-ID: <d76ca8b2d64c7c017e3ddaca8497eb38ee514204.1602318869.git.chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <3db52d534065dcf28e9a10b8129bea3eced0193e.1602318869.git.chunfeng.yun@mediatek.com>
-References: <3db52d534065dcf28e9a10b8129bea3eced0193e.1602318869.git.chunfeng.yun@mediatek.com>
+        id S1726638AbgJJW46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 18:56:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41594 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731195AbgJJTxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 15:53:14 -0400
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADF14C0613D7
+        for <devicetree@vger.kernel.org>; Sat, 10 Oct 2020 02:09:57 -0700 (PDT)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4C7fJ21hkXz1rrKZ;
+        Sat, 10 Oct 2020 11:08:50 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4C7fJ20R3bz1qvgd;
+        Sat, 10 Oct 2020 11:08:50 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id 3d4ypTh_aFbm; Sat, 10 Oct 2020 11:08:48 +0200 (CEST)
+X-Auth-Info: VSShtmZctzVahsNuDR5I32dJjEw6fWhdYFF6IzeUW/o=
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Sat, 10 Oct 2020 11:08:48 +0200 (CEST)
+Subject: Re: [PATCH v2 3/7] dt-bindings: display: mxsfb: Add a bus-width
+ endpoint property
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, Stefan Agner <stefan@agner.ch>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
+ <20201007012438.27970-4-laurent.pinchart@ideasonboard.com>
+ <7b8df7af-5ca8-708b-4975-2fdf4280116f@denx.de>
+ <20201009235843.GR25040@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <9c7615d6-0f69-5f67-0795-b86ecea2eea8@denx.de>
+Date:   Sat, 10 Oct 2020 10:47:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 81C7BFD56C3FF5DF0971974FD98E8AF19CD3EED26B38F255A7C641B7BC3D0FC82000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20201009235843.GR25040@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBpcyB1c2VkIHRvIGZpeCB0aGUgY2hlY2twYWNoLnBsIFdBUk5JTkc6U1BEWF9MSUNFTlNF
-X1RBRw0KDQpTZWUgYmluZGluZ3Mvc3VibWl0dGluZy1wYXRjaGVzLnJzdDoNCiJEVCBiaW5kaW5n
-IGZpbGVzIHNob3VsZCBiZSBkdWFsIGxpY2Vuc2VkLiBUaGUgcHJlZmVycmVkIGxpY2Vuc2UgdGFn
-IGlzDQogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpLiINCg0KU2lnbmVkLW9mZi1ieTog
-Q2h1bmZlbmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPg0KLS0tDQp2MjogbmV3IHBh
-dGNoDQotLS0NCiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL3VzYi1oY2Qu
-eWFtbCB8IDIgKy0NCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24o
-LSkNCg0KZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2Iv
-dXNiLWhjZC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2It
-aGNkLnlhbWwNCmluZGV4IDQyYjI5NWFmZGYzMi4uMTFiOWI5ZWUyYjU0IDEwMDY0NA0KLS0tIGEv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2ItaGNkLnlhbWwNCisrKyBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvdXNiLWhjZC55YW1sDQpAQCAt
-MSw0ICsxLDQgQEANCi0jIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQorIyBTUERY
-LUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQogJVlB
-TUwgMS4yDQogLS0tDQogJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy91c2IvdXNi
-LWhjZC55YW1sIw0KLS0gDQoyLjE4LjANCg==
+On 10/10/20 1:58 AM, Laurent Pinchart wrote:
+> Hi Marek,
 
+Hi,
+
+> On Wed, Oct 07, 2020 at 10:40:26AM +0200, Marek Vasut wrote:
+>> On 10/7/20 3:24 AM, Laurent Pinchart wrote:
+>>
+>> [...]
+>>
+>>> +          bus-width:
+>>> +            enum: [16, 18, 24]
+>>> +            description: |
+>>> +              The output bus width. This value overrides the configuration
+>>> +              derived from the connected device (encoder or panel). It should
+>>> +              only be specified when PCB routing of the data signals require a
+>>> +              different bus width on the LCDIF and the connected device. For
+>>> +              instance, when a 18-bit RGB panel has its R[5:0], G[5:0] and
+>>> +              B[5:0] signals connected to LCD_DATA[7:2], LCD_DATA[15:10] and
+>>> +              LCD_DATA[23:18] instead of LCD_DATA[5:0], LCD_DATA[11:6] and
+>>> +              LCD_DATA[17:12], bus-width should be set to 24.
+>>
+>> The iMX6 IPUv3 uses interface-pix-fmt which is a bit more flexible, but
+>> I'm not sure whether it's the right way to go about this, see:
+>> Documentation/devicetree/bindings/display/imx/fsl-imx-drm.txt
+> 
+> I think specifying the bus with is better. It's a standard property, but
+> more than that, a given bus width can carry different formats. For
+> instance, a 24-bus could carry RGB666 data (with dithering for the
+> LSBs).
+
+I think that's exactly what the interface-pix-fmt was trying to solve
+for the IPUv3, there you could have e.g. both RGB666 and LVDS666 , which
+were different.
