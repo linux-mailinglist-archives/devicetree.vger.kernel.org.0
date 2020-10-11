@@ -2,168 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1E7728A631
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 09:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 175CC28A657
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 10:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728891AbgJKHrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 03:47:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46852 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726492AbgJKHrT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Oct 2020 03:47:19 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4E90721655;
-        Sun, 11 Oct 2020 07:47:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602402438;
-        bh=LeMk4xJlrd34ez5NF8BLWNvKsm7wmDmT9qOElPmUWJE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=v/c/sPXgnEOq4jJilWSpg55W4tKtlomIYm1wAbddQ2HT95xbpKy1cqZuTe19B0HXa
-         vXtH1ypj1myh2B5wxSb07CcHyn/W0XRokJ8BC/2+18WZAtTserlel3yq1lSoDlkCya
-         siAgTAnuorrjI5JTy0j7BmFwcMGRtGYCNnXGXOu4=
-Received: by mail-oi1-f176.google.com with SMTP id c13so15217421oiy.6;
-        Sun, 11 Oct 2020 00:47:18 -0700 (PDT)
-X-Gm-Message-State: AOAM5316OYFJQBItAJwUum5moAVDWxtXLuNal9MS+I6KNN8Ah4O+7iFF
-        Bj1ZblS/5FRRyY3AZCzLNVYhMmOzRagb0zZQMkw=
-X-Google-Smtp-Source: ABdhPJzehloTufc7iRScDFdIAGd9rllMxSjs4e6a5wOBu7xWhcMoE7AB1Xcx7jsGo6uja6Hkh8/PgItFqPjyPS/T9s4=
-X-Received: by 2002:aca:d845:: with SMTP id p66mr7029591oig.47.1602402437582;
- Sun, 11 Oct 2020 00:47:17 -0700 (PDT)
+        id S1729230AbgJKIcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 04:32:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726441AbgJKIcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 04:32:32 -0400
+Received: from wp003.webpack.hosteurope.de (wp003.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:840a::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4441DC0613CE;
+        Sun, 11 Oct 2020 01:32:31 -0700 (PDT)
+Received: from p548da7b6.dip0.t-ipconnect.de ([84.141.167.182] helo=kmk0); authenticated
+        by wp003.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1kRWm5-0008An-OQ; Sun, 11 Oct 2020 10:32:13 +0200
+From:   Kurt Kanzenbach <kurt@kmk-computers.de>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, kurt@linutronix.de
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: b53: Add YAML bindings
+In-Reply-To: <3249c764-ec4a-26be-a52d-e9e85f3162ea@gmail.com>
+References: <20201010164627.9309-1-kurt@kmk-computers.de>
+ <20201010164627.9309-2-kurt@kmk-computers.de>
+ <3249c764-ec4a-26be-a52d-e9e85f3162ea@gmail.com>
+Date:   Sun, 11 Oct 2020 10:32:02 +0200
+Message-ID: <877drxp3i5.fsf@kmk-computers.de>
 MIME-Version: 1.0
-References: <20201010151235.20585-1-nsaenzjulienne@suse.de> <20201010151235.20585-3-nsaenzjulienne@suse.de>
-In-Reply-To: <20201010151235.20585-3-nsaenzjulienne@suse.de>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Sun, 11 Oct 2020 09:47:06 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXF26z54XA-eMz76eJKuK1T8mZmDfibt+6SQw9bR=RFS_Q@mail.gmail.com>
-Message-ID: <CAMj1kXF26z54XA-eMz76eJKuK1T8mZmDfibt+6SQw9bR=RFS_Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] of/address: Introduce of_dma_lower_bus_limit()
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-rpi-kernel@lists.infradead.org,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        iommu@lists.linux-foundation.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
+X-bounce-key: webpack.hosteurope.de;kurt@kmk-computers.de;1602405151;c918a955;
+X-HE-SMSGID: 1kRWm5-0008An-OQ
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-$SUBJECT is out of sync with the patch below. Also, for legibility, it
-helps if the commit log is intelligible by itself, rather than relying
-on $SUBJECT being the first line of the first paragraph.
-
-On Sat, 10 Oct 2020 at 17:12, Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
+On Sat Oct 10 2020, Florian Fainelli wrote:
+> On 10/10/2020 9:46 AM, Kurt Kanzenbach wrote:
+>> Convert the b53 DSA device tree bindings to YAML in order to allow
+>> for automatic checking and such.
+>>=20
+>> Suggested-by: Florian Fainelli <f.fainelli@gmail.com>
+>> Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
 >
-> The function provides the CPU physical address addressable by the most
-> constrained bus in the system. It might be useful in order to
-> dynamically set up memory zones during boot.
->
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> ---
->  drivers/of/address.c | 34 ++++++++++++++++++++++++++++++++++
->  include/linux/of.h   |  7 +++++++
->  2 files changed, 41 insertions(+)
->
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index eb9ab4f1e80b..755e97b65096 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -1024,6 +1024,40 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
->  }
->  #endif /* CONFIG_HAS_DMA */
->
-> +/**
-> + * of_dma_safe_phys_limit - Get system wide DMA safe address space
-> + *
-> + * Gets the CPU physical address limit for safe DMA addressing system wide by
-> + * searching for the most constraining dma-range. Otherwise it returns ~0ULL.
-> + */
-> +u64 __init of_dma_safe_phys_limit(void)
+> Thanks for making this change, there are quite a few warnings that are=20
+> going to show up because the binding was defined in a way that it would=20
+> define chip compatible strings, which not all DTS files are using.
 
-I don't think 'safe' strikes the right tone here. You are looking for
-the highest CPU address that is addressable by all DMA masters in the
-system.
+Oh, I didn't know there is a second make command for doing the actual
+check against the dtbs. I've just used `make dt_binding_check'.
 
-Something like
+So, it seems like a lot of the errors are caused by the include files
+such as
 
-of_dma_get_max_cpu_address(void)
+[linux]/arch/arm/boot/dts/bcm5301x.dtsi
 
-perhaps? Also, since this is generic code, phys_addr_t is probably a
-better type to return.
+	srab: srab@18007000 {
+		compatible =3D "brcm,bcm5301x-srab";
+		reg =3D <0x18007000 0x1000>;
 
+		status =3D "disabled";
 
-> +{
-> +       struct device_node *np = NULL;
-> +       struct of_range_parser parser;
-> +       const __be32 *ranges = NULL;
+		/* ports are defined in board DTS */
+	};
 
-I think you can drop these NULL initializers.
+The nodename should be "switch" not "srab" as enforced by
+dsa.yaml. Furthermore, some DTS files are not adding the chip specific
+compatible strings and the ports leading to more errors.
 
-> +       u64 phys_dma_limit = ~0ULL;
+There are also some minor errors regarding the reg-names and such for
+specific instances.
 
-PHYS_ADDR_MAX
+How should we proceed? Adding the missing compatible strings and ports
+to the DTS files? Or adjusting the include files?
 
-> +       struct of_range range;
-> +       int len;
-> +
-> +       for_each_of_allnodes(np) {
-> +               dma_addr_t cpu_end = 0;
-> +
-> +               ranges = of_get_property(np, "dma-ranges", &len);
-> +               if (!ranges || !len)
-> +                       continue;
-> +
-> +               of_dma_range_parser_init(&parser, np);
-> +               for_each_of_range(&parser, &range)
-> +                       if (range.cpu_addr + range.size > cpu_end)
-> +                               cpu_end = range.cpu_addr + range.size;
-> +
-> +               if (phys_dma_limit > cpu_end)
-> +                       phys_dma_limit = cpu_end;
-> +       }
-> +
-> +       return phys_dma_limit;
-> +}
-> +
->  /**
->   * of_dma_is_coherent - Check if device is coherent
->   * @np:        device node
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index 481ec0467285..958c64cffa92 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -558,6 +558,8 @@ int of_map_id(struct device_node *np, u32 id,
->                const char *map_name, const char *map_mask_name,
->                struct device_node **target, u32 *id_out);
->
-> +u64 of_dma_safe_phys_limit(void);
-> +
->  #else /* CONFIG_OF */
->
->  static inline void of_core_init(void)
-> @@ -995,6 +997,11 @@ static inline int of_map_id(struct device_node *np, u32 id,
->         return -EINVAL;
->  }
->
-> +static inline u64 of_dma_safe_phys_limit(void)
-> +{
-> +       return ~0ULL;
-> +}
-> +
->  #define of_match_ptr(_ptr)     NULL
->  #define of_match_node(_matches, _node) NULL
->  #endif /* CONFIG_OF */
-> --
-> 2.28.0
->
+> I don't know if Rob would be comfortable with taking this until we
+> resolve all warnings first.
+
+Probably not. We should fix the existing device trees first.
+
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJKBAEBCAA0FiEEiQLjxJIQcNxwU7Bj249qgr3OILkFAl+CwwIWHGt1cnRAa21r
+LWNvbXB1dGVycy5kZQAKCRDbj2qCvc4guTL2D/4/J9yKF/KUjL+XZvYUslqcMSwu
+HkoIg5d416nWzCbbJ1jyZRHdJeQspVOymcoE8plPjjoQl9MjT1nnFfXSCUiAybq+
+lAvxgP/Pj4GrInnRTIWynzvo+W6o5G0jJLrUWO5GdJdMQRqDpoy3SizLAfNk9q/W
+AsGo+7La3CwQAuZmyQ145NdsMph6uRuW8BxCzdwEI8PI44dMz6kUiSF1DKqJfdRl
++56IrhOdUg6ST28ytwUdDlRvMLbPR9Q5BKxKxK6PYuee4M3O83VNyei5OUZ+mKzi
+qUvlT91EmciVqNGnDAM+R14mR5NfVZhvqyxp2YXhIMXlR9KDfLw8dBVypYnyOlkQ
+FFcYznTZcMzSMZDerZ61qw81ciXGLtrEyergSmOcpnPv9QodXTrSlPXQO7D/12rj
+O1b+mHB4anbJsCWUY03MUhCoPRKBKcVmYE2apnkMFTdRR1ogSgUPgcQ+dvbsBUlQ
+N4waVf500qbvJNNOawthiXGQYtzBjo6qaBX6utgbBX/rapLvYp1KffHJHTsoI4TV
+G/PjZDjnR+BxQVPdm2bX57t39fz6bFL/ZNIKq4HYrGlKyexqqEVcuHqE3vmAPAmB
+xsm1O3MdV4A6qBdxq2ctqM4mnMjjan1O+ROiUIeS6YjXg0Rc1/0MD0ZJPDtUF7mX
+4o/+xo7iSiPDKOnFVQ==
+=9iWY
+-----END PGP SIGNATURE-----
+--=-=-=--
