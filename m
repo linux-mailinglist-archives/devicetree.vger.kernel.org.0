@@ -2,115 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 175CC28A657
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 10:32:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00FE728A664
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 10:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729230AbgJKIcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 04:32:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45252 "EHLO
+        id S1729334AbgJKIro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 04:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726441AbgJKIcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 04:32:32 -0400
-Received: from wp003.webpack.hosteurope.de (wp003.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:840a::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4441DC0613CE;
-        Sun, 11 Oct 2020 01:32:31 -0700 (PDT)
-Received: from p548da7b6.dip0.t-ipconnect.de ([84.141.167.182] helo=kmk0); authenticated
-        by wp003.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1kRWm5-0008An-OQ; Sun, 11 Oct 2020 10:32:13 +0200
-From:   Kurt Kanzenbach <kurt@kmk-computers.de>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, kurt@linutronix.de
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: b53: Add YAML bindings
-In-Reply-To: <3249c764-ec4a-26be-a52d-e9e85f3162ea@gmail.com>
-References: <20201010164627.9309-1-kurt@kmk-computers.de>
- <20201010164627.9309-2-kurt@kmk-computers.de>
- <3249c764-ec4a-26be-a52d-e9e85f3162ea@gmail.com>
-Date:   Sun, 11 Oct 2020 10:32:02 +0200
-Message-ID: <877drxp3i5.fsf@kmk-computers.de>
+        with ESMTP id S1728968AbgJKIro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 04:47:44 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C92ADC0613CE;
+        Sun, 11 Oct 2020 01:47:43 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id i2so13848012ljg.4;
+        Sun, 11 Oct 2020 01:47:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=WEkmoWmE+gfjv5nQomkH8CsqwBmk68jyUS3urfyycVc=;
+        b=Ruc2iQFm/qaEgiNba39zG6wMu9GysWNq+KjcUmDta3BB+jPIxuITMJH8kbq846WP+D
+         zKwR79dL5vdHwgA5SYQ3dGqCqIcjHaSEnM6iV5hMTCxEIu0P0VxCbaB5CSmXDG77OQsE
+         l24zWkM2QYXZtxVPppGc825JyEcDErTXFLotoRYg9fnSPimaV+jkfJr+Uf4saExnLf/8
+         Y1J0U8EVaXyHQWWgJbtpBliDcb787Jyp+KZWtTdXFGnDTy79YZ9sBLU/Us1l0IdVwado
+         vZ3Qkfb9KUOTUYsa0zG/WNmOmhrfBfLiDtUEvr1GarMznT9pR4ItoQOJUreiONzDGtN5
+         obHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=WEkmoWmE+gfjv5nQomkH8CsqwBmk68jyUS3urfyycVc=;
+        b=XN8JdmHGdzq6G+EBLnsMh+CA8m2kTpJUDI1pYZo3BkGCM/drNhUzAe6AyQjBAOvKqB
+         s96jUJdT7TEKPWOB0Z6RErWN4EdS51/OS4likrm4vepAf82+wOPoweKhxF5+IQX1OB1J
+         chwnO4LodRKOeRh2sEX1xqKd4GuQQ4N+JvR8F3VM1QFvX7ufQVrtJwQdWk2NasJH99sM
+         D6akqEylgHRyLSfNhbNydlMG10UxtE1aL+TOSeCJxELzrqSs3yq2Afl3eHN7mrzjXh7N
+         /pMZha0KnpWvBgLpmPVY7UiujWQkhDr2aYFK4pOAqD3xk8nkcL2mimT/YItlEXTC2ryL
+         bhIg==
+X-Gm-Message-State: AOAM532AnMN6HwwJA2OM/rPdauPuRQL5q3EEUMmIWo/duzrdYjOYw9DG
+        tbEei0CR0Aj1QxwdOM9DX0eF3S4of2jdJg==
+X-Google-Smtp-Source: ABdhPJwSgU7ysJDeHsLirDGNOmlQUApyMQ/5mDZGew1EJYrQpXM3jMOlk9GY11NrqVqkatJTnRuxPA==
+X-Received: by 2002:a2e:8e8f:: with SMTP id z15mr8821138ljk.238.1602406061600;
+        Sun, 11 Oct 2020 01:47:41 -0700 (PDT)
+Received: from ?IPv6:2a00:1fa0:4275:c0a:6554:d910:ceb:9024? ([2a00:1fa0:4275:c0a:6554:d910:ceb:9024])
+        by smtp.gmail.com with ESMTPSA id e28sm15242ljp.28.2020.10.11.01.47.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Oct 2020 01:47:41 -0700 (PDT)
+Subject: Re: [PATCH 05/18] dt-bindings: usb: usb-hcd: Add "tpl-support"
+ property
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
+ <20201010224121.12672-6-Sergey.Semin@baikalelectronics.ru>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Organization: Brain-dead Software
+Message-ID: <ada3becf-ab69-6bac-9459-c9fb076b3bf4@gmail.com>
+Date:   Sun, 11 Oct 2020 11:47:37 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
-X-bounce-key: webpack.hosteurope.de;kurt@kmk-computers.de;1602405151;c918a955;
-X-HE-SMSGID: 1kRWm5-0008An-OQ
+In-Reply-To: <20201010224121.12672-6-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Hello!
 
-On Sat Oct 10 2020, Florian Fainelli wrote:
-> On 10/10/2020 9:46 AM, Kurt Kanzenbach wrote:
->> Convert the b53 DSA device tree bindings to YAML in order to allow
->> for automatic checking and such.
->>=20
->> Suggested-by: Florian Fainelli <f.fainelli@gmail.com>
->> Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
->
-> Thanks for making this change, there are quite a few warnings that are=20
-> going to show up because the binding was defined in a way that it would=20
-> define chip compatible strings, which not all DTS files are using.
+On 11.10.2020 1:41, Serge Semin wrote:
 
-Oh, I didn't know there is a second make command for doing the actual
-check against the dtbs. I've just used `make dt_binding_check'.
+> The host controller device might be designed to work for the particular
+> products or applications. In that case it' DT node is supposed to be
+                                          ^^^
+    Its?
 
-So, it seems like a lot of the errors are caused by the include files
-such as
+> equipped with the tpl-support property.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+[...]
 
-[linux]/arch/arm/boot/dts/bcm5301x.dtsi
-
-	srab: srab@18007000 {
-		compatible =3D "brcm,bcm5301x-srab";
-		reg =3D <0x18007000 0x1000>;
-
-		status =3D "disabled";
-
-		/* ports are defined in board DTS */
-	};
-
-The nodename should be "switch" not "srab" as enforced by
-dsa.yaml. Furthermore, some DTS files are not adding the chip specific
-compatible strings and the ports leading to more errors.
-
-There are also some minor errors regarding the reg-names and such for
-specific instances.
-
-How should we proceed? Adding the missing compatible strings and ports
-to the DTS files? Or adjusting the include files?
-
-> I don't know if Rob would be comfortable with taking this until we
-> resolve all warnings first.
-
-Probably not. We should fix the existing device trees first.
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJKBAEBCAA0FiEEiQLjxJIQcNxwU7Bj249qgr3OILkFAl+CwwIWHGt1cnRAa21r
-LWNvbXB1dGVycy5kZQAKCRDbj2qCvc4guTL2D/4/J9yKF/KUjL+XZvYUslqcMSwu
-HkoIg5d416nWzCbbJ1jyZRHdJeQspVOymcoE8plPjjoQl9MjT1nnFfXSCUiAybq+
-lAvxgP/Pj4GrInnRTIWynzvo+W6o5G0jJLrUWO5GdJdMQRqDpoy3SizLAfNk9q/W
-AsGo+7La3CwQAuZmyQ145NdsMph6uRuW8BxCzdwEI8PI44dMz6kUiSF1DKqJfdRl
-+56IrhOdUg6ST28ytwUdDlRvMLbPR9Q5BKxKxK6PYuee4M3O83VNyei5OUZ+mKzi
-qUvlT91EmciVqNGnDAM+R14mR5NfVZhvqyxp2YXhIMXlR9KDfLw8dBVypYnyOlkQ
-FFcYznTZcMzSMZDerZ61qw81ciXGLtrEyergSmOcpnPv9QodXTrSlPXQO7D/12rj
-O1b+mHB4anbJsCWUY03MUhCoPRKBKcVmYE2apnkMFTdRR1ogSgUPgcQ+dvbsBUlQ
-N4waVf500qbvJNNOawthiXGQYtzBjo6qaBX6utgbBX/rapLvYp1KffHJHTsoI4TV
-G/PjZDjnR+BxQVPdm2bX57t39fz6bFL/ZNIKq4HYrGlKyexqqEVcuHqE3vmAPAmB
-xsm1O3MdV4A6qBdxq2ctqM4mnMjjan1O+ROiUIeS6YjXg0Rc1/0MD0ZJPDtUF7mX
-4o/+xo7iSiPDKOnFVQ==
-=9iWY
------END PGP SIGNATURE-----
---=-=-=--
+MBR, Sergei
