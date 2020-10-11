@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE57428A50A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 04:48:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B629D28A50D
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 04:49:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730425AbgJKCsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 22:48:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49006 "EHLO
+        id S1730449AbgJKCst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 22:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726473AbgJKCsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 22:48:47 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DC9C0613D0
-        for <devicetree@vger.kernel.org>; Sat, 10 Oct 2020 19:48:46 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id b19so6576219pld.0
-        for <devicetree@vger.kernel.org>; Sat, 10 Oct 2020 19:48:46 -0700 (PDT)
+        with ESMTP id S1730426AbgJKCss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 22:48:48 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B11EFC0613D0
+        for <devicetree@vger.kernel.org>; Sat, 10 Oct 2020 19:48:48 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id y1so3036502plp.6
+        for <devicetree@vger.kernel.org>; Sat, 10 Oct 2020 19:48:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=F6fjmcOmJzSVz0Oy0Rq9zEBYtq/tY9BpvhD8w5xQD/A=;
-        b=Ay8X1xlcQiaQIvb2Fs3y51q3hYVpv86xWv4PwucQ5ugGIOJruN/Xv59WZRq2YS9hTU
-         dmCEQqu9g4Q/0Q5WtF80kyaVUL1Ig/xwhkKmFGl1u8c4SkCDO4Qi9kNoL8dIJed6L23K
-         CwuEMeOHzBxKKp3Mdx/pfigyMeKrOdqiP9/iQ=
+        bh=/Jw3O+moB8PBI3m9s/0bClMlDvqymRLsaEMDouum3nU=;
+        b=lEyn7rvq7DXPi7NHtFiGVK8rcbEZovmJUELLHJdwcgN9pzoDIaAjVNLH/WwAIbNnXo
+         UbQLXAx4j4y3juIp3qUIdddGwsIpAaFTIkW2erDuET7HAYxGSF2QEg0s8FjzAqwMVCBJ
+         9tSJmcy8BrqCzCM+u40eJV6qy9QwdRy9HjGOU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=F6fjmcOmJzSVz0Oy0Rq9zEBYtq/tY9BpvhD8w5xQD/A=;
-        b=RKBNSAcmBrftYcIR0clYFwc6XID3GlvrA76SHRjUN+Eu5Jp1VXzeYxPG6TeSaWi4j0
-         RcaXNgj53JfChQKop71F4DU7h6G73UuMWfCEsYuzNLRIOXbvjrOE37WGzFKYNW751oej
-         p9BOy69z/kOF1mw3cdx52cMA6SHPkvJemW5JfmDbi0vqU7K51LsWvjlFlU7OGs/Nzbzm
-         5CoCXB+cc3CzY/jQqbaEPuD8LLvY7eDY6xLBnhVM+h9jhMUNRTdoTIoPs06W7EuwrYD8
-         xVKTlkXLyhcg6JiEDqPLQ5UlsT0luaeT549xANmBZDsCOxMVCPlQUHY/ENVxb92U1g4g
-         cVHQ==
-X-Gm-Message-State: AOAM532mzXUqL9XLfNBfNw0JjJOwb8UzVTmg7/OB/B+6ZzEAi2cIFQFr
-        ZfC8mvnFnBAfHGPRJ0X0GnnUQQ==
-X-Google-Smtp-Source: ABdhPJxSTPgCoHjzLRWnqWgfhcS2XNc8CkN2wfKQlzuyb4o0tfQBhP2nQcrOR/t2zlOqFm8+tWhaKg==
-X-Received: by 2002:a17:902:b402:b029:d2:686a:4f43 with SMTP id x2-20020a170902b402b02900d2686a4f43mr18210883plr.34.1602384525677;
-        Sat, 10 Oct 2020 19:48:45 -0700 (PDT)
+        bh=/Jw3O+moB8PBI3m9s/0bClMlDvqymRLsaEMDouum3nU=;
+        b=aBHfhjRF4cu8bTrC2xOXnMqkd3eaG7L9O0jwx3wwjhBsnx2sgS6TxeErME9EYPFWvr
+         vyJWoebuc9KulkjL0r74UgE2o8HXi3nR3U89XDEKiRnCL7aaSoELMytrm9FlGJhD1xdT
+         Vnia+KUXsRaFHAowarfmCQUs1vattQGxP9rDryPlkUMipaZXAVE+hcyMaddtb1iE97kJ
+         nrAx5SMY2EWXWGXnlptSnJsCoTp6RuPggzn+2szLV451u1Co8kei1YHe/TNBgo/kt4Vf
+         pUzKia6xFqWG7fSD4cx+0tqG/zJ/rT/InqalZHRetXLoIcGOwIQpYlCKXfolSwiS179o
+         93vw==
+X-Gm-Message-State: AOAM533TwnYSPYL/Bc7shG3WPa/WcPZPT6RSjNl78dLyxdjGLRwyteoF
+        6ba9QSANBIzKCzj86TagcscFLA==
+X-Google-Smtp-Source: ABdhPJwWN2SNSsT0A2LQABrB+N2e6ueoDzG7zcosgummBREIRu9KvgSvks8iZQ/uRmdSY6b7krX/eA==
+X-Received: by 2002:a17:902:7fc9:b029:d3:effa:7162 with SMTP id t9-20020a1709027fc9b02900d3effa7162mr18332697plb.69.1602384528231;
+        Sat, 10 Oct 2020 19:48:48 -0700 (PDT)
 Received: from shiro.work (p1268123-ipngn200803sizuokaden.shizuoka.ocn.ne.jp. [118.13.124.123])
-        by smtp.googlemail.com with ESMTPSA id z25sm14832836pgl.6.2020.10.10.19.48.43
+        by smtp.googlemail.com with ESMTPSA id z25sm14832836pgl.6.2020.10.10.19.48.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Oct 2020 19:48:45 -0700 (PDT)
+        Sat, 10 Oct 2020 19:48:47 -0700 (PDT)
 From:   Daniel Palmer <daniel@0x0f.com>
 To:     linux-gpio@vger.kernel.org
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH 1/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO controller
-Date:   Sun, 11 Oct 2020 11:48:27 +0900
-Message-Id: <20201011024831.3868571-2-daniel@0x0f.com>
+Subject: [PATCH 2/5] dt-bindings: gpio: Add a binding header for the MSC313 GPIO driver
+Date:   Sun, 11 Oct 2020 11:48:28 +0900
+Message-Id: <20201011024831.3868571-3-daniel@0x0f.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20201011024831.3868571-1-daniel@0x0f.com>
 References: <20201011024831.3868571-1-daniel@0x0f.com>
@@ -60,103 +60,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding description for the MStar/SigmaStar GPIO controller
-found in the MSC313 and later ARMv7 SoCs.
+The driver uses the pin names to find the right interrupt for
+a pin from the device tree so this header reduces the need to
+have multiple copies of the same string all over the place.
+
+This header also adds defines for the gpio number of each pin
+from the driver view. The gpio block seems to support 128 lines
+but what line is mapped to a physical pin depends on the chip.
+The driver itself uses the index of a pin's offset in an array
+of the possible offsets for a chip as the gpio number.
+
+The defines remove the need to work out that index to consume
+a pin in the device tree.
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
- .../bindings/gpio/mstar,msc313-gpio.yaml      | 69 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 70 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+ MAINTAINERS                            |  1 +
+ include/dt-bindings/gpio/msc313-gpio.h | 95 ++++++++++++++++++++++++++
+ 2 files changed, 96 insertions(+)
+ create mode 100644 include/dt-bindings/gpio/msc313-gpio.h
 
-diff --git a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-new file mode 100644
-index 000000000000..07ef463273d2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/mstar,msc313-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MStar/SigmaStar GPIO controller
-+
-+maintainers:
-+  - Daniel Palmer <daniel@thingy.jp>
-+
-+properties:
-+  $nodename:
-+    pattern: "^gpio@[0-9a-f]+$"
-+
-+  compatible:
-+    const: mstar,msc313-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-ranges: true
-+
-+  gpio-ranges-group-names:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+
-+  interrupts: true
-+
-+  interrupt-names:
-+    description: |
-+      The interrupt name should match the pin that the interrupt
-+      is connected to.
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/gpio/msc313-gpio.h>
-+
-+    gpio: gpio@207800 {
-+      compatible = "mstar,msc313e-gpio";
-+      #gpio-cells = <2>;
-+      reg = <0x207800 0x200>;
-+      gpio-controller;
-+      gpio-ranges = <&pinctrl 0 36 22>,
-+                    <&pinctrl 22 63 4>,
-+                    <&pinctrl 26 68 6>;
-+      interrupt-parent = <&intc_fiq>;
-+      interrupt-names = MSC313_PINNAME_SPI0_CZ,
-+                        MSC313_PINNAME_SPI0_CK,
-+                        MSC313_PINNAME_SPI0_DI,
-+                        MSC313_PINNAME_SPI0_DO;
-+      interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-+      status = "okay";
-+    };
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 75b04ba10f21..4594b70f2e3a 100644
+index 4594b70f2e3a..ec5b49b9955f 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -2155,6 +2155,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- W:	http://linux-chenxing.org/
- F:	Documentation/devicetree/bindings/arm/mstar/*
-+F:	Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+@@ -2158,6 +2158,7 @@ F:	Documentation/devicetree/bindings/arm/mstar/*
+ F:	Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
  F:	arch/arm/boot/dts/mstar-*
  F:	arch/arm/mach-mstar/
++F:	include/dt-bindings/gpio/msc313-gpio.h
  
+ ARM/NEC MOBILEPRO 900/c MACHINE SUPPORT
+ M:	Michael Petchkovsky <mkpetch@internode.on.net>
+diff --git a/include/dt-bindings/gpio/msc313-gpio.h b/include/dt-bindings/gpio/msc313-gpio.h
+new file mode 100644
+index 000000000000..655fe03de519
+--- /dev/null
++++ b/include/dt-bindings/gpio/msc313-gpio.h
+@@ -0,0 +1,95 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * GPIO definitions for MStar/SigmaStar MSC313 and later SoCs
++ *
++ * Copyright (C) 2020 Daniel Palmer <daniel@thingy.jp>
++ */
++
++#ifndef _DT_BINDINGS_MSC313_GPIO_H
++#define _DT_BINDINGS_MSC313_GPIO_H
++
++/* pin names for fuart, same for all SoCs so far */
++#define MSC313_PINNAME_FUART_RX		"fuart_rx"
++#define MSC313_PINNAME_FUART_TX		"fuart_tx"
++#define MSC313_PINNAME_FUART_CTS	"fuart_cts"
++#define MSC313_PINNAME_FUART_RTS	"fuart_rts"
++
++/* pin names for sr, mercury5 is different */
++#define MSC313_PINNAME_SR_IO2		"sr_io2"
++#define MSC313_PINNAME_SR_IO3		"sr_io3"
++#define MSC313_PINNAME_SR_IO4		"sr_io4"
++#define MSC313_PINNAME_SR_IO5		"sr_io5"
++#define MSC313_PINNAME_SR_IO6		"sr_io6"
++#define MSC313_PINNAME_SR_IO7		"sr_io7"
++#define MSC313_PINNAME_SR_IO8		"sr_io8"
++#define MSC313_PINNAME_SR_IO9		"sr_io9"
++#define MSC313_PINNAME_SR_IO10		"sr_io10"
++#define MSC313_PINNAME_SR_IO11		"sr_io11"
++#define MSC313_PINNAME_SR_IO12		"sr_io12"
++#define MSC313_PINNAME_SR_IO13		"sr_io13"
++#define MSC313_PINNAME_SR_IO14		"sr_io14"
++#define MSC313_PINNAME_SR_IO15		"sr_io15"
++#define MSC313_PINNAME_SR_IO16		"sr_io16"
++#define MSC313_PINNAME_SR_IO17		"sr_io17"
++
++/* pin names for sd, same for all SoCs so far */
++#define MSC313_PINNAME_SD_CLK		"sd_clk"
++#define MSC313_PINNAME_SD_CMD		"sd_cmd"
++#define MSC313_PINNAME_SD_D0		"sd_d0"
++#define MSC313_PINNAME_SD_D1		"sd_d1"
++#define MSC313_PINNAME_SD_D2		"sd_d2"
++#define MSC313_PINNAME_SD_D3		"sd_d3"
++
++/* pin names for i2c1, same for all SoCs so for */
++#define MSC313_PINNAME_I2C1_SCL		"i2c1_scl"
++#define MSC313_PINNAME_I2C1_SCA		"i2c1_sda"
++
++/* pin names for spi0, same for all SoCs so far */
++#define MSC313_PINNAME_SPI0_CZ		"spi0_cz"
++#define MSC313_PINNAME_SPI0_CK		"spi0_ck"
++#define MSC313_PINNAME_SPI0_DI		"spi0_di"
++#define MSC313_PINNAME_SPI0_DO		"spi0_do"
++
++#define MSC313_GPIO_FUART	0
++#define MSC313_GPIO_FUART_RX	(MSC313_GPIO_FUART + 0)
++#define MSC313_GPIO_FUART_TX	(MSC313_GPIO_FUART + 1)
++#define MSC313_GPIO_FUART_CTS	(MSC313_GPIO_FUART + 2)
++#define MSC313_GPIO_FUART_RTS	(MSC313_GPIO_FUART + 3)
++
++#define MSC313_GPIO_SR		(MSC313_GPIO_FUART_RTS + 1)
++#define MSC313_GPIO_SR_IO2	(MSC313_GPIO_SR + 0)
++#define MSC313_GPIO_SR_IO3	(MSC313_GPIO_SR + 1)
++#define MSC313_GPIO_SR_IO4	(MSC313_GPIO_SR + 2)
++#define MSC313_GPIO_SR_IO5	(MSC313_GPIO_SR + 3)
++#define MSC313_GPIO_SR_IO6	(MSC313_GPIO_SR + 4)
++#define MSC313_GPIO_SR_IO7	(MSC313_GPIO_SR + 5)
++#define MSC313_GPIO_SR_IO8	(MSC313_GPIO_SR + 6)
++#define MSC313_GPIO_SR_IO9	(MSC313_GPIO_SR + 7)
++#define MSC313_GPIO_SR_IO10	(MSC313_GPIO_SR + 8)
++#define MSC313_GPIO_SR_IO11	(MSC313_GPIO_SR + 9)
++#define MSC313_GPIO_SR_IO12	(MSC313_GPIO_SR + 10)
++#define MSC313_GPIO_SR_IO13	(MSC313_GPIO_SR + 11)
++#define MSC313_GPIO_SR_IO14	(MSC313_GPIO_SR + 12)
++#define MSC313_GPIO_SR_IO15	(MSC313_GPIO_SR + 13)
++#define MSC313_GPIO_SR_IO16	(MSC313_GPIO_SR + 14)
++#define MSC313_GPIO_SR_IO17	(MSC313_GPIO_SR + 15)
++
++#define MSC313_GPIO_SD		(MSC313_GPIO_SR_IO17 + 1)
++#define MSC313_GPIO_SD_CLK	(MSC313_GPIO_SD + 0)
++#define MSC313_GPIO_SD_CMD	(MSC313_GPIO_SD + 1)
++#define MSC313_GPIO_SD_D0	(MSC313_GPIO_SD + 2)
++#define MSC313_GPIO_SD_D1	(MSC313_GPIO_SD + 3)
++#define MSC313_GPIO_SD_D2	(MSC313_GPIO_SD + 4)
++#define MSC313_GPIO_SD_D3	(MSC313_GPIO_SD + 5)
++
++#define MSC313_GPIO_I2C1	(MSC313_GPIO_SD_D3 + 1)
++#define MSC313_GPIO_I2C1_SCL	(MSC313_GPIO_I2C1 + 0)
++#define MSC313_GPIO_I2C1_SDA	(MSC313_GPIO_I2C1 + 1)
++
++#define MSC313_GPIO_SPI0	(MSC313_GPIO_I2C1_SDA + 1)
++#define MSC313_GPIO_SPI0_CZ	(MSC313_GPIO_SPI0 + 0)
++#define MSC313_GPIO_SPI0_CK	(MSC313_GPIO_SPI0 + 1)
++#define MSC313_GPIO_SPI0_DI	(MSC313_GPIO_SPI0 + 2)
++#define MSC313_GPIO_SPI0_DO	(MSC313_GPIO_SPI0 + 3)
++
++#endif /* _DT_BINDINGS_MSC313_GPIO_H */
 -- 
 2.27.0
 
