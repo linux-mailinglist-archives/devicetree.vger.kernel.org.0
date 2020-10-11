@@ -2,112 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6D628A758
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 14:29:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D72A28A7CF
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 16:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387824AbgJKM3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 08:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53128 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387744AbgJKM3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 08:29:15 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24307C0613CE;
-        Sun, 11 Oct 2020 05:29:15 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1602419352;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=iJdfEiY4PfN/AFpvryhGU/5LSIFVk3RfEZa1/Sumoe4=;
-        b=bO+F2xe02c1f7d8lSe+vg0IynY4IcWkuwQltUf0m8vBr9/YRdV48u/PsCr8wRJ8hidUoID
-        k1pnA6X8TbYxD2z3mS538Aa8cUzXx5Go2cvmTc68udVg+yV6MPO/VC32QRXDcPkjmB3XZe
-        /Gb3lD3A12/EVTxZmHSN4NQRRnNQhnZCJjCeNOhWcxdpLV2WjWxBUvmAwI8NCGcr1Oa1Qk
-        XTG8aGQHHbTd/n9FTakCZ1F/N8hoN0z/Rt2Bv1KlIlF3dkPVX+LPzY648i2AxQspQY518I
-        58spl23CIlDMbyy/NiSSy62a8JOFdzhFcBxPAdZatCvEMp3r8hsCb48MVQoxiQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1602419352;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=iJdfEiY4PfN/AFpvryhGU/5LSIFVk3RfEZa1/Sumoe4=;
-        b=3EWsKYr1tmKSqW2zf/7zx/SkPRqLInhX95082zDmQxsmuUJlPGHqEERUuRKUWbh7Wv2MMf
-        ORmlpy8if2aBBJBA==
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann Hellcreek switches
-In-Reply-To: <20201006135631.73rm3gka7r7krwca@skbuf>
-References: <20201004112911.25085-1-kurt@linutronix.de> <20201004112911.25085-3-kurt@linutronix.de> <20201004125601.aceiu4hdhrawea5z@skbuf> <87lfgj997g.fsf@kurt> <20201006092017.znfuwvye25vsu4z7@skbuf> <878scj8xxr.fsf@kurt> <20201006113237.73rzvw34anilqh4d@skbuf> <87wo037ajr.fsf@kurt> <20201006135631.73rm3gka7r7krwca@skbuf>
-Date:   Sun, 11 Oct 2020 14:29:08 +0200
-Message-ID: <87362lt08b.fsf@kurt>
+        id S2388039AbgJKOmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 10:42:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35124 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388019AbgJKOmk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Oct 2020 10:42:40 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C4AEC20774;
+        Sun, 11 Oct 2020 14:42:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602427359;
+        bh=lF4a1I9ZVW9Lg4QdRVkWBYpQaijCheE3u9HaK8JoALI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=E9p/NYg9lKM4xP5m8vIyV0qi6AxEcrypQcTL4bCHZziIhYK67DvBVqVexpJjYctEV
+         88NY8dH1wW6JS9vDkZKTC+Hr/Xu05srT+Ccg/DQ+M31i6LIbfQDELD3D2mgmbdAXXv
+         SW5zaPFWHEGXoP7pNA3imErekvEOIzM/mKfOyFdg=
+Date:   Sun, 11 Oct 2020 16:42:36 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/18] dt-bindings: usb: usb-hcd: Add "wireless"
+ maximum-speed property value
+Message-ID: <20201011144236.GA271079@kroah.com>
+References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
+ <20201010224121.12672-3-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201010224121.12672-3-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+On Sun, Oct 11, 2020 at 01:41:05AM +0300, Serge Semin wrote:
+> It appears that the "maximum-speed" property can also accept the
+> "wireless" value. Add it to the enumeration of the possible property
+> values then.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> ---
+>  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+> index 815de24127db..e1a82a2b3295 100644
+> --- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+> +++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+> @@ -28,7 +28,7 @@ properties:
+>       isn't passed via DT, USB controllers should default to their maximum HW
+>       capability.
+>     $ref: /schemas/types.yaml#/definitions/string
+> -   enum: ["low-speed", "full-speed", "high-speed", "super-speed",
+> +   enum: ["low-speed", "full-speed", "high-speed", "wireless", "super-speed",
+>            "super-speed-plus"]
 
-On Tue Oct 06 2020, Vladimir Oltean wrote:
-> On Tue, Oct 06, 2020 at 03:23:36PM +0200, Kurt Kanzenbach wrote:
->> So you're saying private VLANs can be used but the user or the other
->> kernel modules shouldn't be allowed to use them to simplify the
->> implementation?  Makes sense to me.
->
-> It would be interesting to see if you could simply turn off VLAN
-> awareness in standalone mode, and still use unique pvids per port.
+Are you sure?  wireless usb has been removed from the kernel, where do
+you see a user of this?  If it's still in there, we need to just drop
+it.
 
-That doesn't work, just tested. When VLAN awareness is disabled,
-everything is switched regardless of VLAN tags and table. Therefore, the
-implementation could look like this:
+thanks,
 
- * bridge without filtering:
-   * vlan_awareness=0
-   * drop private vlans
- * bridge with vlan filtering:
-   * vlan_awareness=1
-   * drop private vlans
- * standalone:
-   * vlan_awareness=1
-   * use private vlans
-   * forbid other users to use private vlans to allow
-     configure_vlans_while_not_filtering behavior in .vlan_prepare()
-   * forbid use of lan0.<X> and lan1.<X> in .port_prechangeupper()
-
-So, this should work, or?
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl+C+pQACgkQeSpbgcuY
-8KaOhQ/+LUNWORnLGdWaAt9Bxg+UNEUCDGMNKl7XkzEOD9Ew6RFPIKGZCh8bt782
-56t8msbcwFyHehAELJOdpOX5wGmhfSGjDjtxN0D/QnSiWKs/qZ+VhwC8EX+bmmfZ
-fq/Sw2gzcu8xWM9gPcsoTBMfosNP2HPIUwVG0VCzzLRT6tRLXIA7DyYArrXdNPWv
-NVC+b3Rf2c/nBGW6ayaaPk7yIJZKH6rNctGdL7HCL857px2yINZU8xlkiMyvGxeh
-asapR6YWqblqFhM6CUaXhh0xFOAuTwZGh1MIqjrJ+BZ0mQrTvANYFzIboT+8SfYi
-WCeUhLGr/9YG1t/jw4yjvN5UkKhdQFgniqVbuZQvnOFy9OrmQP7mVx01ysSrzxQa
-pgQc26LCEhaIfC2XRWTuAHcaq07CxWZ72XPyKnbzxLyJgM2qTzvoErBJ12rgbwlr
-rUbXbqzYepR1MlvR/3am+aK6YeQW+EloCtgWKtWlFgsVvscKfIUGJ+bzylJo2zbH
-LimrYkHwRAwoItWSsgJO6km0qJp4NttPDZaxf5jrVnOMfEbFS9SSU0TdFkv1Yscw
-qAaybIunOh2NVqaC7viU79v4x8TSgzCsr6U3irygZ/ItD7gZwhvaqC7qnYk/02jr
-VKnzthgRkqHkVNvtgsdLJeyxUxn8JVex/Dpoa3vR2mOkBAkgidE=
-=iNiJ
------END PGP SIGNATURE-----
---=-=-=--
+greg k-h
