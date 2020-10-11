@@ -2,192 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4134E28A71C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 13:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A25228A745
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 13:59:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729802AbgJKLRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 07:17:21 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:60298 "EHLO
+        id S2387729AbgJKL7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 07:59:25 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:60526 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725863AbgJKLRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 07:17:20 -0400
+        with ESMTP id S2387690AbgJKL7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 07:59:25 -0400
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: eballetbo)
-        with ESMTPSA id E6EA31F44274
-Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: convert i2c-cros-ec-tunnel to
- json-schema
-To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
-        robh@kernel.org
-Cc:     kernel@collabora.com, bleung@chromium.org, groeck@chromium.org,
-        sjg@chromium.org, dianders@chromium.org,
-        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com
-References: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
- <20201008102825.3812-2-ricardo.canuelo@collabora.com>
+        with ESMTPSA id C04021F4426D
+Subject: Re: [PATCH v6 2/2] dt-bindings: mfd: Add DT compatible string
+ "google,cros_ec_uart"
+To:     Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Raul E Rangel <rrangel@chromium.org>, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Duncan Laurie <dlaurie@google.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Eric Peers <epeers@google.com>,
+        Furquan Shaikh <furquan@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>, Rob Herring <robh@kernel.org>
+References: <20201009132732.v6.1.Ic98067cd92a0b7fed9cd3dfb7b4e736e76551cda@changeid>
+ <20201009132732.v6.2.I8d7530d8372e4ef298ddaaaad612a2cdd24ed93e@changeid>
 From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <e8111e8b-c599-7ce2-6148-80a9aedb58c9@collabora.com>
-Date:   Sun, 11 Oct 2020 13:17:14 +0200
+Message-ID: <8cfa923c-cc7a-6dd3-9541-8a18b98091b7@collabora.com>
+Date:   Sun, 11 Oct 2020 13:59:19 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20201008102825.3812-2-ricardo.canuelo@collabora.com>
+In-Reply-To: <20201009132732.v6.2.I8d7530d8372e4ef298ddaaaad612a2cdd24ed93e@changeid>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo,
+Hi Bhanu,
 
-Thank you for the patches.
+Thank you for your patch.
 
-On 8/10/20 12:28, Ricardo Cañuelo wrote:
-> Convert the google,cros-ec-i2c-tunnel binding to YAML and add it as a
-> property of google,cros-ec.yaml.
+On 9/10/20 23:01, Bhanu Prakash Maiya wrote:
+> Add DT compatible string in
+> Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
 > 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
 
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+The problem with this patchset continues being the same. You are using the trick
+of using a DT compatible string to instantiate an ACPI-only driver. You should
+have an ACPI ID for that device or use a DMI table to match the device and
+instantiate it (see for example the platform/chrome/cros_ec_lpc.c).
 
 Thanks,
-  Enric
+ Enric
 
+> Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../i2c/google,cros-ec-i2c-tunnel.yaml        | 63 +++++++++++++++++++
->  .../bindings/i2c/i2c-cros-ec-tunnel.txt       | 39 ------------
->  .../bindings/mfd/google,cros-ec.yaml          |  5 ++
->  3 files changed, 68 insertions(+), 39 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml b/Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
-> new file mode 100644
-> index 000000000000..f83ff67596e6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/i2c/google,cros-ec-i2c-tunnel.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: I2C bus that tunnels through the ChromeOS EC (cros-ec)
-> +
-> +maintainers:
-> +  - Doug Anderson <dianders@chromium.org>
-> +  - Benson Leung <bleung@chromium.org>
-> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> +
-> +description: |
-> +  On some ChromeOS board designs we've got a connection to the EC
-> +  (embedded controller) but no direct connection to some devices on the
-> +  other side of the EC (like a battery and PMIC).  To get access to
-> +  those devices we need to tunnel our i2c commands through the EC.
-> +
-> +  The node for this device should be under a cros-ec node like
-> +  google,cros-ec-spi or google,cros-ec-i2c.
-> +
-> +properties:
-> +  compatible:
-> +    const: google,cros-ec-i2c-tunnel
-> +
-> +  google,remote-bus:
-> +    description: The EC bus we'd like to talk to.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +required:
-> +  - compatible
-> +  - google,remote-bus
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        cros-ec@0 {
-> +            compatible = "google,cros-ec-spi";
-> +            reg = <0>;
-> +            spi-max-frequency = <5000000>;
-> +
-> +            i2c-tunnel {
-> +                compatible = "google,cros-ec-i2c-tunnel";
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                google,remote-bus = <0>;
-> +
-> +                battery: sbs-battery@b {
-> +                    compatible = "sbs,sbs-battery";
-> +                    reg = <0xb>;
-> +                    sbs,poll-retry-count = <1>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt b/Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
-> deleted file mode 100644
-> index 898f030eba62..000000000000
-> --- a/Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
-> +++ /dev/null
-> @@ -1,39 +0,0 @@
-> -I2C bus that tunnels through the ChromeOS EC (cros-ec)
-> -======================================================
-> -On some ChromeOS board designs we've got a connection to the EC (embedded
-> -controller) but no direct connection to some devices on the other side of
-> -the EC (like a battery and PMIC).  To get access to those devices we need
-> -to tunnel our i2c commands through the EC.
-> -
-> -The node for this device should be under a cros-ec node like google,cros-ec-spi
-> -or google,cros-ec-i2c.
-> -
-> -
-> -Required properties:
-> -- compatible: google,cros-ec-i2c-tunnel
-> -- google,remote-bus: The EC bus we'd like to talk to.
-> -
-> -Optional child nodes:
-> -- One node per I2C device connected to the tunnelled I2C bus.
-> -
-> -
-> -Example:
-> -	cros-ec@0 {
-> -		compatible = "google,cros-ec-spi";
-> -
-> -		...
-> -
-> -		i2c-tunnel {
-> -			compatible = "google,cros-ec-i2c-tunnel";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			google,remote-bus = <0>;
-> -
-> -			battery: sbs-battery@b {
-> -				compatible = "sbs,sbs-battery";
-> -				reg = <0xb>;
-> -				sbs,poll-retry-count = <1>;
-> -			};
-> -		};
-> -	}
+> Changes in v6:
+> - No change
+> 
+> Changes in v5:
+> - No change
+> 
+> Changes in v4:
+> - Changes in commit message.
+> 
+> Changes in v3:
+> - Rebased changes on google,cros-ec.yaml
+> 
+> Changes in v2:
+> - No change
+> 
+>  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
 > diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index f49c0d5d31ad..c45cf30ea3aa 100644
+> index 6a7279a85ec1c..552d1c9bf3de4 100644
 > --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
 > +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -71,6 +71,11 @@ properties:
->    wakeup-source:
->      description: Button can wake-up the system.
+> @@ -10,11 +10,12 @@ maintainers:
+>    - Benson Leung <bleung@chromium.org>
+>    - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+>    - Guenter Roeck <groeck@chromium.org>
+> +  - Bhanu Prakash Maiya <bhanumaiya@chromium.org>
 >  
-> +patternProperties:
-> +  "^i2c-tunnel[0-9]*$":
-> +    type: object
-> +    $ref: "/schemas/i2c/google,cros-ec-i2c-tunnel.yaml#"
-> +
->  required:
->    - compatible
+>  description:
+>    Google's ChromeOS EC is a microcontroller which talks to the AP and
+>    implements various functions such as keyboard and battery charging.
+> -  The EC can be connected through various interfaces (I2C, SPI, and others)
+> +  The EC can be connected through various interfaces (I2C, SPI, UART and others)
+>    and the compatible string specifies which interface is being used.
 >  
+>  properties:
+> @@ -29,6 +30,9 @@ properties:
+>        - description:
+>            For implementations of the EC is connected through RPMSG.
+>          const: google,cros-ec-rpmsg
+> +      - description:
+> +          For implementations of the EC is connected through UART.
+> +        const: google,cros-ec-uart
+>  
+>    google,cros-ec-spi-pre-delay:
+>      description:
 > 
