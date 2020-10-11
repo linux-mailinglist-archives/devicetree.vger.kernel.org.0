@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4731528AAA1
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 23:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E8F28AAA3
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 23:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387432AbgJKVOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 17:14:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48698 "EHLO
+        id S2387458AbgJKVPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 17:15:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387413AbgJKVOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 17:14:47 -0400
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com [IPv6:2607:f8b0:4864:20::f43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2436C0613CE;
-        Sun, 11 Oct 2020 14:14:46 -0700 (PDT)
-Received: by mail-qv1-xf43.google.com with SMTP id bl9so7518659qvb.10;
-        Sun, 11 Oct 2020 14:14:46 -0700 (PDT)
+        with ESMTP id S2387457AbgJKVPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 17:15:20 -0400
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com [IPv6:2607:f8b0:4864:20::f44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F4FC0613CE;
+        Sun, 11 Oct 2020 14:15:20 -0700 (PDT)
+Received: by mail-qv1-xf44.google.com with SMTP id t20so7535202qvv.8;
+        Sun, 11 Oct 2020 14:15:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=QhmDxxDGKX1YozmvjqVq9UocysPhEwMN1IelbdsB+sI=;
-        b=qTPnI04EOSkJ8gdcT9/cztv6OnMi1OI7pj3npgvjpUMkObZPDxF3XHxJVMFO222+K/
-         oAj8yg/0z/iOkqLfd4E293ESSo/PDy6uD13jIH8MqbDL4MbFt7e9vZ8geG/A6a4MgMV5
-         t/GVZlsd0l9cxbTsbZ5HlIJtbpeaOtAc4EZJQ5QWs2cZV47baYddsXOKe/WbXtfdceV6
-         Pg+bzd70S65XDYE4LbmEdkWZYiWk5tg8PkvhVDFESwTUyUOQST4Fovsp2BfDqLu7LtO/
-         2qKRUxNrcptDno0GCzppHArVXLM+ukrf464gnohl1jhwHf9LJK4uutdeeGAwTDE2UW7c
-         KBbA==
+        bh=KK+gbmrPjMAsykJDPuKd1IbU0bhX6bbdgu1ougohE4Q=;
+        b=TsrwuuH73tKylQhfnyT5gC8YKYGWqgDpxxdx1gD89B9nWNsvL5VJ3EA/bZsXyev9nJ
+         pYvXE088k/5LGk6M7WPDTX27KVyicdxMRMwMRiR4ZLnMJp2ioh0KNQvjIc/0AhwOylEE
+         mUKU74njjXiljLa71bq+1WEAi3wTsSkxftGgbqTcOu8ezOTRk+g/0esDjW3B99S3Vx7x
+         clLqzxThy3bCFhDjFc33wndgGfyNMqpZNJj5h7lsJ/vXj3bcPXJFPcD1XF3/RAw6Ul0n
+         uW2bs5lIS2IFwsxsLWxzdbwME60AaYRfdkoTLJoGNwqHJoi6V2C2hpbCzx++5MExGnRN
+         oj4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=QhmDxxDGKX1YozmvjqVq9UocysPhEwMN1IelbdsB+sI=;
-        b=pvVISEdQNODYGHOkG1N+HYul0YDY7+X7wUIU/cDmImXZrYvNfa7ayUAUNmgxZ0SYnP
-         K7BPsbazC1P6f/Z9JTEgFzeBsbeDUWdN9hB/r0MoGuLbY8lgg9cCrdSP9T7rtPXuzhhK
-         9K744KLMZLIM9Jpka3xGLB2aahYDeEvQZidEUoBVVEL2mP3EqSP0YKtE5NBxD/SofGvQ
-         mk2HUTZ+Xt5qyuOwmaQeE1FLUvn5o4j2UoAWfhz5Eztb24XlOxdDM6LctPMJKItM71hh
-         Zy/fVdJL+dNmlHm0gh8+lSvRLRUfIslRGptGZhQCPV7ZqPLdKR/QFYl1X+aoFe8wlEd7
-         P2CA==
-X-Gm-Message-State: AOAM532K+d1rhUvg5kCdwSDeyFBhuRfQchR2CpHODYyfk7Xxbk63K8vq
-        9ScmsTPc7QowuQaTfjY3lak=
-X-Google-Smtp-Source: ABdhPJyD3QF/g7iKXbXNBhbFQ7ULA4RT1EdBH2X4tnmWJKiXzsHxThXG7vWtEenVh6rGuSMZxqKCJw==
-X-Received: by 2002:ad4:4e73:: with SMTP id ec19mr21177629qvb.58.1602450885985;
-        Sun, 11 Oct 2020 14:14:45 -0700 (PDT)
+        bh=KK+gbmrPjMAsykJDPuKd1IbU0bhX6bbdgu1ougohE4Q=;
+        b=jxOP0T9suWLsPIWN637tkU6jTlj9D/osiDBxQSDQfsX1i/Oixa03qO1nCaBU3FPcSM
+         A8arjhE2JI7rOT6xKCbhrhSEM51d0jjDF+CznRFUH6EXvw42G0TR6AtPA7l0NtGPILPy
+         tWqmY3gYA5xtlhiXbVRSn7wRmBf9f2gEQdhNQMbj80exVYeT7jKqtw4ay/WEifCwjU3Y
+         EsBo+Z+nBw52Q2qCadbVUDx6EQpGNPpoRGvzxMbHgbShCo7n/1xayziQULuNtxYnERkC
+         ZgR0hYFoxMTFL87cFeKQBXSeH3NCfNfyhdaBcJaglHCwOqIDtjcxHZjfn37yYy4qhGG7
+         nrfw==
+X-Gm-Message-State: AOAM532kyYpBq5AJ58+UenarP1JFJ5gAisB4N0YGgulEsuGzPvRzB05T
+        zRiYcMTg+wl1OCnPmkjpeiK+AJ/ujjcynQ==
+X-Google-Smtp-Source: ABdhPJwXN0hmh/jcqvx2GaHhWxa3BvM+uklZSkQvHLxoBrJVBT86IfR166TELCOQgrPjxtTQoCqQ4A==
+X-Received: by 2002:ad4:50c9:: with SMTP id e9mr13293592qvq.52.1602450919330;
+        Sun, 11 Oct 2020 14:15:19 -0700 (PDT)
 Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id t186sm11252818qkf.48.2020.10.11.14.14.44
+        by smtp.gmail.com with ESMTPSA id g5sm3029955qto.39.2020.10.11.14.15.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Oct 2020 14:14:45 -0700 (PDT)
+        Sun, 11 Oct 2020 14:15:18 -0700 (PDT)
 From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
 To:     Maxime Ripard <mripard@kernel.org>
 Cc:     =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
         Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: allwinner: beelink-gs1: Update LED power node
-Date:   Sun, 11 Oct 2020 23:14:28 +0200
-Message-Id: <20201011211428.154793-1-peron.clem@gmail.com>
+Subject: [PATCH] arm64: dts: allwinner: pinetab: Drop unnecessary address/size-cells information
+Date:   Sun, 11 Oct 2020 23:15:14 +0200
+Message-Id: <20201011211514.155266-1-peron.clem@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -64,42 +64,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Beelink GS1 LED trigger a warning when running dtbs_check.
+make dtbs_check warm about unknown address/size-cells property in the
+pinetab device-tree.
 
-Update the node with a valid pattern property.
+This is because these information are not necessary.
 
-Also add the function and the color of the LED and drop the
-label which is deprecated.
+Drop them.
 
 Signed-off-by: Clément Péron <peron.clem@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 3f7ceeb1a767..f506d6fa8017 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -7,6 +7,7 @@
- #include "sun50i-h6-cpu-opp.dtsi"
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
+index 3ab0f0347bc9..0494bfaf2ffa 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
+@@ -122,9 +122,6 @@ &csi {
+ 	status = "okay";
  
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	model = "Beelink GS1";
-@@ -43,8 +44,9 @@ ext_osc32k: ext_osc32k_clk {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		power {
--			label = "beelink:white:power";
-+		led-0 {
-+			function = LED_FUNCTION_POWER;
-+			color = LED_COLOR_ID_WHITE;
- 			gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
- 			default-state = "on";
- 		};
+ 	port {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		csi_ep: endpoint {
+ 			remote-endpoint = <&ov5640_ep>;
+ 			bus-width = <8>;
 -- 
 2.25.1
 
