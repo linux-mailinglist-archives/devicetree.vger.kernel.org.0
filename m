@@ -2,27 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE3D28A892
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 19:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEB4228A91F
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 20:03:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388298AbgJKRxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 13:53:45 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:58984 "EHLO
+        id S1725848AbgJKSDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 14:03:47 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:59012 "EHLO
         mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726319AbgJKRxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 13:53:45 -0400
+        with ESMTP id S1725844AbgJKSDr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 14:03:47 -0400
 Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id C28F18030865;
-        Sun, 11 Oct 2020 17:53:41 +0000 (UTC)
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 30D708030866;
+        Sun, 11 Oct 2020 18:03:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at baikalelectronics.ru
 Received: from mail.baikalelectronics.ru ([127.0.0.1])
         by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id gTghl0HaVN0J; Sun, 11 Oct 2020 20:53:41 +0300 (MSK)
-Date:   Sun, 11 Oct 2020 20:53:33 +0300
+        with ESMTP id IWFHi5PHKBw4; Sun, 11 Oct 2020 21:03:44 +0300 (MSK)
+Date:   Sun, 11 Oct 2020 21:03:38 +0300
 From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
 CC:     Mathias Nyman <mathias.nyman@intel.com>,
         Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
@@ -36,60 +37,38 @@ CC:     Mathias Nyman <mathias.nyman@intel.com>,
         Kevin Hilman <khilman@baylibre.com>,
         <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 02/18] dt-bindings: usb: usb-hcd: Add "wireless"
- maximum-speed property value
-Message-ID: <20201011175333.2v46x6kiugqnvlpk@mobilestation>
+Subject: Re: [PATCH 04/18] dt-bindings: usb: usb-hcd: Add "ulpi/serial/hsic"
+ PHY types
+Message-ID: <20201011180338.sdwsy4wzehqyrr3c@mobilestation>
 References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
- <20201010224121.12672-3-Sergey.Semin@baikalelectronics.ru>
- <20201011144236.GA271079@kroah.com>
+ <20201010224121.12672-5-Sergey.Semin@baikalelectronics.ru>
+ <a1fcac64-934a-c68a-cd71-032efce3d0bc@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20201011144236.GA271079@kroah.com>
+In-Reply-To: <a1fcac64-934a-c68a-cd71-032efce3d0bc@gmail.com>
 X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 04:42:36PM +0200, Greg Kroah-Hartman wrote:
-> On Sun, Oct 11, 2020 at 01:41:05AM +0300, Serge Semin wrote:
-> > It appears that the "maximum-speed" property can also accept the
-> > "wireless" value. Add it to the enumeration of the possible property
-> > values then.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > index 815de24127db..e1a82a2b3295 100644
-> > --- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > @@ -28,7 +28,7 @@ properties:
-> >       isn't passed via DT, USB controllers should default to their maximum HW
-> >       capability.
-> >     $ref: /schemas/types.yaml#/definitions/string
-> > -   enum: ["low-speed", "full-speed", "high-speed", "super-speed",
-> > +   enum: ["low-speed", "full-speed", "high-speed", "wireless", "super-speed",
-> >            "super-speed-plus"]
+On Sun, Oct 11, 2020 at 11:49:10AM +0300, Sergei Shtylyov wrote:
+> On 11.10.2020 1:41, Serge Semin wrote:
+> 
+> > Aside from the UTMI+ there are also ULPI, Serial and HSIC PHY types
 > 
 
-> Are you sure?  wireless usb has been removed from the kernel, where do
-> you see a user of this?  If it's still in there, we need to just drop
-> it.
+>    "That" missing after "types"?
 
-My decision on suggesting this patch has been based purely on the speed types
-the USB core API supports and what usb_get_maximum_speed() can return.
-USB_SPEED_WIRELESS type is one of the possible return values. As I can see
-aside the rest of the USB speeds the wireless speed is also defined
-in the kernel USB subsystem. Moreover it is used in some kernel drivers.
-(See the USB_SPEED_WIRELESS enumeration constant usage.)
-Are you sure that the wireless speed support has been really removed?
+Thanks. It really is. I'll fix it in v2.
 
 -Sergey
 
 > 
-> thanks,
+> > can be specified in the phy_type HCD property. Add them to the
+> > enumeration of the acceptable values.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> [...]
 > 
-> greg k-h
+> MBR, Sergei
