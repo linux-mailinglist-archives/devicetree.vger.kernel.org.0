@@ -2,104 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BAC28AAB0
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 23:22:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3593A28AB0A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 01:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387572AbgJKVWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 17:22:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
+        id S1729571AbgJKXBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 19:01:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387570AbgJKVWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 17:22:43 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA9BC0613CE;
-        Sun, 11 Oct 2020 14:22:43 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id o21so12314560qtp.2;
-        Sun, 11 Oct 2020 14:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=v1SI67RBBtDiSYCd7igvyTTY/wfEnfAVpHIYHQEDBdk=;
-        b=o4RtIxrlPXh79GWZ1nNuQZXpnwKphNXfdGSumWnQzcxLNLzdtlHf0ACSeT1KaaYl+4
-         HLtVlcRjqrIBqGCMOvEiXwr0mQOPhY3V5cQzXSmr8nnmrOgwWHXn/HKQYanNoV6WCkRY
-         iXNoxHP5g7/gqTiNHNNkqE0/7siy0HqiJca4Z95Y1TKYCE2qo5qOuwZGX7vabc4/8L70
-         +cEYZfYdDeaMO70ZECZ5kt3THjSKnu0NUuOQFQGl3n8QAhMKdHEptlCEh/Df9MnIAgLC
-         dQHcyQRs/OJ05UGjJaXIaeXlQ/ZjNWXxW+wRNoxkDFQ6zDdMkQKNPNDy4R8K5s5Z8dEh
-         BuCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=v1SI67RBBtDiSYCd7igvyTTY/wfEnfAVpHIYHQEDBdk=;
-        b=ro8vYhiS5XqYZOHytqa3Qny29PuB+4atbySLIkWTpPf+F7h+Otq9T0F1iXPCZZM9aK
-         sSYBEtuVyNDnWF98STTjMZSiqo5OVxQW3Q3A33FE0Yipx5l+iT9EAvLE3chOT/99Yb65
-         7BXlTvLx1hT/TChMe0SmXP6QPqj3TW3Pl25oxE8RX7X6ASbC0dS2x1abiIaZp3CXEGnu
-         cMBwJC/9S0HToJYCmTOlGnFUfix8Q5vsJ6fc7rsOCQBSFHWyL12Vjs/2cHXDUpbu3Mv3
-         zJcyn2K27CRt9qIKeOi+jrJ04F5akmYTfjsds1JmkHjgFHlKUsQcRip7AEQm281A8scz
-         PBmQ==
-X-Gm-Message-State: AOAM533LBn/MPPQqklMF8qTcglNGpWQGvDvWjFK08wAbMRP2+lQ4XSxQ
-        9GzSwXh/g4JoGssnZjIDFOhVqs/YWeUWEg==
-X-Google-Smtp-Source: ABdhPJwq/vY+A+tu9stmwLntgGUCCnOhT/fgZUY+Oyg7gAteUDF40lRNIdZJH8F/LawsigqDCkT58w==
-X-Received: by 2002:ac8:5cc1:: with SMTP id s1mr7263061qta.379.1602451362784;
-        Sun, 11 Oct 2020 14:22:42 -0700 (PDT)
-Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id n57sm11526658qtf.52.2020.10.11.14.22.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Oct 2020 14:22:42 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: allwinner: beelink-gs1: Update LED power node
-Date:   Sun, 11 Oct 2020 23:22:37 +0200
-Message-Id: <20201011212238.174792-1-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1726148AbgJKXBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 19:01:22 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D06C0613CE
+        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 16:01:18 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0A4A9308;
+        Mon, 12 Oct 2020 01:01:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1602457275;
+        bh=uhwaH5dk8caXUXCfjGq8FIzwI8jsBl7UFxbmORYemP4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Jk4XuflM7wT92ttPSgspLWilsQwimZAMmefxagq796kzRwpgOT7Z8E1qWE649FYev
+         gn3eMWmV7BcwfPKp54KMQ8KtYSp7sjhLQ98wiMefKoZR8U6cUBN3b9g1GhpCc1LozR
+         5UAPd2L7DuODEYj5zNh5GoCjOQXu0tFs4sfqOaLY=
+Date:   Mon, 12 Oct 2020 02:00:30 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND v3 1/6] drm/of: Change the prototype of
+ drm_of_lvds_get_dual_link_pixel_order
+Message-ID: <20201011230030.GD3944@pendragon.ideasonboard.com>
+References: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910923.git-series.maxime@cerno.tech>
+ <6169dd15782627c8415583881fa94ba39c4f5221.1601910923.git-series.maxime@cerno.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <6169dd15782627c8415583881fa94ba39c4f5221.1601910923.git-series.maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Beelink GS1 LED trigger a warning when running dtbs_check.
+Hi Maxime,
 
-Update the node with a valid pattern property.
+Thank you for the patch.
 
-Also add the function and the color of the LED and drop the
-label which is deprecated.
+On Mon, Oct 05, 2020 at 05:15:39PM +0200, Maxime Ripard wrote:
+> The drm_of_lvds_get_dual_link_pixel_order() function took so far the
+> device_node of the two ports used together to make up a dual-link LVDS
+> output.
+> 
+> This assumes that a binding would use an entire port for the LVDS output.
+> However, some bindings have used endpoints instead and thus we need to
+> operate at the endpoint level. Change slightly the arguments to allow that.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  drivers/gpu/drm/drm_of.c            | 98 +++++++++++++++---------------
+>  drivers/gpu/drm/rcar-du/rcar_lvds.c |  8 +--
+>  include/drm/drm_of.h                | 16 +++--
+>  3 files changed, 63 insertions(+), 59 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
+> index b50b44e76279..2dcb49b0401b 100644
+> --- a/drivers/gpu/drm/drm_of.c
+> +++ b/drivers/gpu/drm/drm_of.c
+> @@ -291,50 +291,34 @@ static int drm_of_lvds_get_port_pixels_type(struct device_node *port_node)
+>  	       (odd_pixels ? DRM_OF_LVDS_ODD : 0);
+>  }
+>  
+> -static int drm_of_lvds_get_remote_pixels_type(
+> -			const struct device_node *port_node)
+> +static int drm_of_lvds_get_remote_pixels_type(const struct device_node *endpoint)
+>  {
+> -	struct device_node *endpoint = NULL;
+> -	int pixels_type = -EPIPE;
+> +	struct device_node *remote_port;
+> +	int pixels_type;
+>  
+> -	for_each_child_of_node(port_node, endpoint) {
+> -		struct device_node *remote_port;
+> -		int current_pt;
+> -
+> -		if (!of_node_name_eq(endpoint, "endpoint"))
+> -			continue;
+> -
+> -		remote_port = of_graph_get_remote_port(endpoint);
+> -		if (!remote_port) {
+> -			of_node_put(remote_port);
+> -			return -EPIPE;
+> -		}
+> -
+> -		current_pt = drm_of_lvds_get_port_pixels_type(remote_port);
+> +	remote_port = of_graph_get_remote_port(endpoint);
+> +	if (!remote_port) {
+>  		of_node_put(remote_port);
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+You can drop this line.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 3f7ceeb1a767..a364cb4e5b3f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -7,6 +7,7 @@
- #include "sun50i-h6-cpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	model = "Beelink GS1";
-@@ -43,8 +44,9 @@ ext_osc32k: ext_osc32k_clk {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		power {
--			label = "beelink:white:power";
-+		led-0 {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
- 			default-state = "on";
- 		};
+> -		if (pixels_type < 0)
+> -			pixels_type = current_pt;
+> -
+> -		/*
+> -		 * Sanity check, ensure that all remote endpoints have the same
+> -		 * pixel type. We may lift this restriction later if we need to
+> -		 * support multiple sinks with different dual-link
+> -		 * configurations by passing the endpoints explicitly to
+> -		 * drm_of_lvds_get_dual_link_pixel_order().
+> -		 */
+
+Shouldn't we keep this check when endpoint_id is -1 in
+drm_of_lvds_get_dual_link_pixel_order() ?
+
+> -		if (!current_pt || pixels_type != current_pt) {
+> -			of_node_put(remote_port);
+> -			return -EINVAL;
+> -		}
+> +		return -EPIPE;
+>  	}
+>  
+> +	pixels_type = drm_of_lvds_get_port_pixels_type(remote_port);
+> +	of_node_put(remote_port);
+> +
+> +	if (pixels_type < 0)
+> +		pixels_type = -EPIPE;
+> +
+>  	return pixels_type;
+>  }
+>  
+>  /**
+>   * drm_of_lvds_get_dual_link_pixel_order - Get LVDS dual-link pixel order
+> - * @port1: First DT port node of the Dual-link LVDS source
+> - * @port2: Second DT port node of the Dual-link LVDS source
+> + * @dev1: First DT device node of the Dual-Link LVDS source
+> + * @port1_id: ID of the first DT port node of the Dual-Link LVDS source
+> + * @endpoint1_id: ID of the first DT port node of the Dual-Link LVDS source
+
+The port1_id and endpoint1_id parameters have the exact same
+documentation. Same for port2.
+
+I would shorten port1_id to port1 and endpoint1_id to endpoint1, but
+that's up to you.
+
+> + * @dev2: First DT device node of the Dual-Link LVDS source
+> + * @port2_id: ID of the first DT port node of the Dual-Link LVDS source
+> + * @endpoint2_id: ID of the first DT port node of the Dual-Link LVDS source
+>   *
+>   * An LVDS dual-link connection is made of two links, with even pixels
+>   * transitting on one link, and odd pixels on the other link. This function
+> @@ -348,32 +332,48 @@ static int drm_of_lvds_get_remote_pixels_type(
+>   *
+>   * If either port is not connected, this function returns -EPIPE.
+>   *
+> - * @port1 and @port2 are typically DT sibling nodes, but may have different
+> - * parents when, for instance, two separate LVDS encoders carry the even and odd
+> - * pixels.
+> + * @port1_id and @port2_id are typically DT sibling nodes, but may have
+> + * different parents when, for instance, two separate LVDS encoders carry the
+> + * even and odd pixels.
+> + *
+> + * If @port1_id, @port2_id, @endpoint1_id or @endpoint2_id are set to -1, their
+> + * value is going to be ignored.
+
+And what happens when they're ignored ? :-) You should document that
+the first endpoint / port is then used.
+
+>   *
+>   * Return:
+> - * * DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS - @port1 carries even pixels and @port2
+> - *   carries odd pixels
+> - * * DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS - @port1 carries odd pixels and @port2
+> - *   carries even pixels
+> - * * -EINVAL - @port1 and @port2 are not connected to a dual-link LVDS sink, or
+> - *   the sink configuration is invalid
+> - * * -EPIPE - when @port1 or @port2 are not connected
+> + * * DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS - @endpoint1_id carries even pixels and
+> + *   @endpoint2_id carries odd pixels
+> + * * DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS - @endpoint1_id carries odd pixels and
+> + *   @endpoint2_id carries even pixels
+> + * * -EINVAL - @endpoint1_id and @endpoint2_id are not connected to a dual-link
+> + *   LVDS sink, or the sink configuration is invalid
+> + * * -EPIPE - when @endpoint1_id or @endpoint2_id are not connected
+>   */
+> -int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
+> -					  const struct device_node *port2)
+> +int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
+> +					  int port1_id,
+> +					  int endpoint1_id,
+> +					  const struct device_node *dev2,
+> +					  int port2_id,
+> +					  int endpoint2_id)
+>  {
+> +	struct device_node *endpoint1, *endpoint2;
+>  	int remote_p1_pt, remote_p2_pt;
+>  
+> -	if (!port1 || !port2)
+> +	if (!dev1 || !dev2)
+> +		return -EINVAL;
+> +
+> +	endpoint1 = of_graph_get_endpoint_by_regs(dev1, port1_id, endpoint1_id);
+> +	if (!endpoint1)
+> +		return -EINVAL;
+> +
+> +	endpoint2 = of_graph_get_endpoint_by_regs(dev2, port2_id, endpoint2_id);
+> +	if (!endpoint2)
+>  		return -EINVAL;
+
+YOu're leaking a reference to endpoint1 here, and to both endpoint1 and
+endpoint2 in all the error paths (and the success path actually) below.
+
+>  
+> -	remote_p1_pt = drm_of_lvds_get_remote_pixels_type(port1);
+> +	remote_p1_pt = drm_of_lvds_get_remote_pixels_type(endpoint1);
+>  	if (remote_p1_pt < 0)
+>  		return remote_p1_pt;
+>  
+> -	remote_p2_pt = drm_of_lvds_get_remote_pixels_type(port2);
+> +	remote_p2_pt = drm_of_lvds_get_remote_pixels_type(endpoint2);
+>  	if (remote_p2_pt < 0)
+>  		return remote_p2_pt;
+>  
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rcar-du/rcar_lvds.c
+> index ab0d49618cf9..02d8c4ce820e 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
+> @@ -715,7 +715,6 @@ static int rcar_lvds_parse_dt_companion(struct rcar_lvds *lvds)
+>  {
+>  	const struct of_device_id *match;
+>  	struct device_node *companion;
+> -	struct device_node *port0, *port1;
+>  	struct rcar_lvds *companion_lvds;
+>  	struct device *dev = lvds->dev;
+>  	int dual_link;
+> @@ -743,11 +742,8 @@ static int rcar_lvds_parse_dt_companion(struct rcar_lvds *lvds)
+>  	 * connected to, if they are marked as expecting even pixels and
+>  	 * odd pixels than we need to enable vertical stripe output.
+>  	 */
+> -	port0 = of_graph_get_port_by_id(dev->of_node, 1);
+> -	port1 = of_graph_get_port_by_id(companion, 1);
+> -	dual_link = drm_of_lvds_get_dual_link_pixel_order(port0, port1);
+> -	of_node_put(port0);
+> -	of_node_put(port1);
+> +	dual_link = drm_of_lvds_get_dual_link_pixel_order(dev->of_node, 1, -1,
+> +							  companion, 1, -1);
+>  
+>  	switch (dual_link) {
+>  	case DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS:
+> diff --git a/include/drm/drm_of.h b/include/drm/drm_of.h
+> index b9b093add92e..7bb1f6603beb 100644
+> --- a/include/drm/drm_of.h
+> +++ b/include/drm/drm_of.h
+> @@ -47,8 +47,12 @@ int drm_of_find_panel_or_bridge(const struct device_node *np,
+>  				int port, int endpoint,
+>  				struct drm_panel **panel,
+>  				struct drm_bridge **bridge);
+> -int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
+> -					  const struct device_node *port2);
+> +int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
+> +					  int port1_id,
+> +					  int endpoint1_id,
+> +					  const struct device_node *dev2,
+> +					  int port2_id,
+> +					  int endpoint2_id);
+>  #else
+>  static inline uint32_t drm_of_crtc_port_mask(struct drm_device *dev,
+>  					  struct device_node *port)
+> @@ -93,8 +97,12 @@ static inline int drm_of_find_panel_or_bridge(const struct device_node *np,
+>  }
+>  
+>  static inline int
+> -drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
+> -				      const struct device_node *port2)
+> +drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
+> +				      int port1_id,
+> +				      int endpoint1_id,
+> +				      const struct device_node *dev2,
+> +				      int port2_id,
+> +				      int endpoint2_id)
+>  {
+>  	return -EINVAL;
+>  }
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
