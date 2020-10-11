@@ -2,121 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A60D628A7F6
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 17:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A508A28A807
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 17:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388167AbgJKPbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 11:31:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52602 "EHLO
+        id S1728599AbgJKPqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 11:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388162AbgJKPa7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 11:30:59 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59225C0613CE;
-        Sun, 11 Oct 2020 08:30:59 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id i5so14343397edr.5;
-        Sun, 11 Oct 2020 08:30:59 -0700 (PDT)
+        with ESMTP id S1725863AbgJKPqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 11:46:17 -0400
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668EDC0613CE;
+        Sun, 11 Oct 2020 08:46:17 -0700 (PDT)
+Received: by mail-pl1-x643.google.com with SMTP id p11so7091467pld.5;
+        Sun, 11 Oct 2020 08:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=yT7iclCksjyvHogLFtUOukinR9Uqpwagw6AnAve1RRk=;
-        b=LAbaDB+uFCIp7ilYU/QpL3TPS2IAsJHtvfp+OjrGyMGGAgSSflt5/QpAhZK+oJU38M
-         GbRbn8hgjCkYtFSJvDIVzUUgQx/XRmQagLUDaqwwfVjdIdfnYB0eRlFqbK1eGX9D3rWb
-         WjY7EgADGgawWSXAJRw1H7oAupSSW+9ifi6o0UrPo/0bl8XvWNLd/iDQAun3eMoWPl5j
-         M+7oLsbznoLPGx/X/wEalVKrUtpT5R50vEnIvzZ1KwPDtV2BCPohi0UHyto4Rt4uMfGi
-         pnkjOhaEaH9mjxEoFDjJyIczhHlb/vOU6546I30TfXoG721eggdZ3XUGKWwqV7PQiFJe
-         jpJw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zY2KoSzbfaIhwVkFIO/ZqrFUXtDY2dm2OAO420Dfc8w=;
+        b=q4ZRIJJalbaG0vKscrvfgPa9OHtp3gMj6npLFoXv/SelwlmDh6JVUrLoYtgGitLQkv
+         f4/zI91OCQJCEjqnKWnoO6KauQsSUM0dRARMcKOUZDmcC7SUr7/lc3/NJ3GuA0CRvf3H
+         dc51JDPyyemXgObDsdsWekbHqzQzYb27valCRnXxwkA42sjTrPpe8jM2oxeNbZjTAJLv
+         b0UqWB5fvhm6jTBqO8A1hOvI7yyazE6Vb6Rqoyl/cQ3VPGVmspq3BcauKlNVhkyW06Ss
+         Wnl98aEDL05vP5z/6toxsWm4pBKndWUiEzNa0/hTCwZsw6qG2oUtuhqhDo2mXIW2ktW7
+         7e8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yT7iclCksjyvHogLFtUOukinR9Uqpwagw6AnAve1RRk=;
-        b=K+vx4lGWis4JjtYmZT3kgWrI7PYqY6Z6es4w8VZQcWQ2isN46tw/xi73Cd/K/RunAl
-         pmh91htbLdGiHCROZ2/igMActbcU7z+2CSt7Eb6j0sHEEfKgbBhdXWNdoyWdttguBHEb
-         U++m/oerrVJmqylzFLma16B00ApLRt4wyWpxSZc7qB4WqdBZxka6/S6Ngf5Axo4sgYH+
-         L6AjlRuV/uqOixDEUr7XwYdZiJZLBX03OHVAZlni0X2qhVmEUq+95G0wyi6zDTa+QMvy
-         zU96REYbJEqYIqTa7iZvNUWPJchp9tptLpt17mt/hp0VBrXHclFuPFa06XoMdTniq0gQ
-         6JeA==
-X-Gm-Message-State: AOAM533aMPJ+CW2zgkkcP9t+7u0GWcTRqGAvs4YUwMzGXQAdVbwgTwp7
-        RdhaZodUHSbd8pD1+1AR2R0=
-X-Google-Smtp-Source: ABdhPJz27hJTv+CVz9EUFaC/hH1pBYtdr1Q+tDE8YdR+bI3QotRO1IE7H8F/n9V4vWndsPw08kdHmA==
-X-Received: by 2002:a05:6402:651:: with SMTP id u17mr9372591edx.206.1602430257796;
-        Sun, 11 Oct 2020 08:30:57 -0700 (PDT)
-Received: from skbuf ([188.26.174.215])
-        by smtp.gmail.com with ESMTPSA id n22sm9269800eji.106.2020.10.11.08.30.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Oct 2020 08:30:57 -0700 (PDT)
-Date:   Sun, 11 Oct 2020 18:30:55 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zY2KoSzbfaIhwVkFIO/ZqrFUXtDY2dm2OAO420Dfc8w=;
+        b=DpnEJuxrnjzKTtdfWXrWs0MES6XYOXTpoe4n9lT9mP16vsA7adL2cErbVBB8sOsnh8
+         LMTK5+GS6qbO/rEXamsGGylKQoncm9G5oTJ7Ht0XhEB+afN/CsJ2QnHINTke58TVKgSb
+         CW0TeqMp/aMLSiMvoLSOjGqWOwRKX/FZrlNHGOb3AxyLctyxtK/ixin5QHqzd1u8B9ar
+         B7Bzp9jJgX/GM74VsTSPIcsq523aWZthgFFOFguz2KfUQ2FvnWC8DNTiV1DOslaH6NSk
+         iXeIQd3MFZwgG3/M2j2RCyr7r7vQZJarNnHH1snnY7kX+XPrIJ9QZHa3eOhzX9jXsbb/
+         0C1g==
+X-Gm-Message-State: AOAM533oRoIrRc0uf1zTU22yO9YuIQe1yL2ovrioXpILvPXyb9G9usbA
+        YXJeVY1qvrDOd6PovpVZAHs=
+X-Google-Smtp-Source: ABdhPJzIt0mNVAyA9y2OeJQOVFWBaVnMBTxEgP6rLj5RbAkSfk5UxdA0nOfJY0lSN+wASIU87b0K5w==
+X-Received: by 2002:a17:902:ee01:b029:d1:8c50:aa89 with SMTP id z1-20020a170902ee01b02900d18c50aa89mr19751874plb.6.1602431176919;
+        Sun, 11 Oct 2020 08:46:16 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id e16sm14654085pjr.36.2020.10.11.08.46.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Oct 2020 08:46:15 -0700 (PDT)
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: b53: Add YAML
+ bindings
+To:     Kurt Kanzenbach <kurt@kmk-computers.de>,
+        Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 2/7] net: dsa: Add DSA driver for Hirschmann
- Hellcreek switches
-Message-ID: <20201011153055.gottyzqv4hv3qaxv@skbuf>
-References: <20201004112911.25085-1-kurt@linutronix.de>
- <20201004112911.25085-3-kurt@linutronix.de>
- <20201004125601.aceiu4hdhrawea5z@skbuf>
- <87lfgj997g.fsf@kurt>
- <20201006092017.znfuwvye25vsu4z7@skbuf>
- <878scj8xxr.fsf@kurt>
- <20201006113237.73rzvw34anilqh4d@skbuf>
- <87wo037ajr.fsf@kurt>
- <20201006135631.73rm3gka7r7krwca@skbuf>
- <87362lt08b.fsf@kurt>
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, kurt@linutronix.de
+References: <20201010164627.9309-1-kurt@kmk-computers.de>
+ <20201010164627.9309-2-kurt@kmk-computers.de>
+ <3249c764-ec4a-26be-a52d-e9e85f3162ea@gmail.com>
+ <877drxp3i5.fsf@kmk-computers.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <08c1a0f5-84e1-1c92-2c57-466a28d0346a@gmail.com>
+Date:   Sun, 11 Oct 2020 08:46:14 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.3.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87362lt08b.fsf@kurt>
+In-Reply-To: <877drxp3i5.fsf@kmk-computers.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 02:29:08PM +0200, Kurt Kanzenbach wrote:
-> On Tue Oct 06 2020, Vladimir Oltean wrote:
-> > It would be interesting to see if you could simply turn off VLAN
-> > awareness in standalone mode, and still use unique pvids per port.
->
-> That doesn't work, just tested. When VLAN awareness is disabled,
-> everything is switched regardless of VLAN tags and table.
 
-That's strange, do you happen to know where things are going wrong?
-I would expect:
-- port VLAN awareness is disabled, so any packet is classified to the
-  port-based VLAN
-- the port-based VLAN is a private VLAN whose membership includes only
-  that port, plus the CPU port
-- the switch does not forward packets towards a port that is not member
-  of the packets' classified VLAN
-When VLAN awareness is disabled, are you able to cause packet drops by
-deleting the pvid of the ingress port? Therefore, can you confirm that
-lan1 is not a member of lan0's pvid, but the switch still forwards the
-packets to it?
 
-> Therefore, the implementation could look like this:
->
->  * bridge without filtering:
->    * vlan_awareness=0
->    * drop private vlans
->  * bridge with vlan filtering:
->    * vlan_awareness=1
->    * drop private vlans
->  * standalone:
->    * vlan_awareness=1
->    * use private vlans
->    * forbid other users to use private vlans to allow
->      configure_vlans_while_not_filtering behavior in .vlan_prepare()
->    * forbid use of lan0.<X> and lan1.<X> in .port_prechangeupper()
->
-> So, this should work, or?
+On 10/11/2020 1:32 AM, Kurt Kanzenbach wrote:
+> On Sat Oct 10 2020, Florian Fainelli wrote:
+>> On 10/10/2020 9:46 AM, Kurt Kanzenbach wrote:
+>>> Convert the b53 DSA device tree bindings to YAML in order to allow
+>>> for automatic checking and such.
+>>>
+>>> Suggested-by: Florian Fainelli <f.fainelli@gmail.com>
+>>> Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
+>>
+>> Thanks for making this change, there are quite a few warnings that are
+>> going to show up because the binding was defined in a way that it would
+>> define chip compatible strings, which not all DTS files are using.
+> 
+> Oh, I didn't know there is a second make command for doing the actual
+> check against the dtbs. I've just used `make dt_binding_check'.
+> 
+> So, it seems like a lot of the errors are caused by the include files
+> such as
+> 
+> [linux]/arch/arm/boot/dts/bcm5301x.dtsi
+> 
+> 	srab: srab@18007000 {
+> 		compatible = "brcm,bcm5301x-srab";
+> 		reg = <0x18007000 0x1000>;
+> 
+> 		status = "disabled";
+> 
+> 		/* ports are defined in board DTS */
+> 	};
+> 
+> The nodename should be "switch" not "srab" as enforced by
+> dsa.yaml. Furthermore, some DTS files are not adding the chip specific
+> compatible strings and the ports leading to more errors.
+> 
+> There are also some minor errors regarding the reg-names and such for
+> specific instances.
+> 
+> How should we proceed? Adding the missing compatible strings and ports
+> to the DTS files? Or adjusting the include files?
 
-Yes, this is an alternative that could work.
+The include is correct as it provides the fallback family string which 
+is what the driver will be looking for unless we do not provide a chip 
+compatible. The various DTS should be updated to contain both the chip 
+compatible and the fallback family (brcm,bcm5301x-srab) string, I will 
+update the various DTS and submit these for review later next week.
+
+Then we could imagine me taking this YAML change through the Broadcom 
+ARM SoC pull requests that way no new regressions are introduced.
+
+Sounds good?
+-- 
+Florian
