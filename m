@@ -2,150 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B92E928A844
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 18:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D62D028A851
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 19:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388148AbgJKQiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 12:38:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387661AbgJKQiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 12:38:54 -0400
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E317C0613D0
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 09:38:54 -0700 (PDT)
-Received: by mail-yb1-xb43.google.com with SMTP id o70so7648947ybc.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 09:38:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tRGrsGIuHpsCfKgbLO01uLpvEDCDM1u1XXLG6rg/fA8=;
-        b=bvlPXmeK/qf8n8NEPngF8fpdHhCzPCvjqrlMsg772k6imUu/MMbe0009IL5+tmsd1n
-         7pu4L+iVuHDZCz384frL6dbV0MitX9tBNKWHKQy29EcqDzwkX+wqqLkVwiIdd2wJmqcy
-         PzYWlv7nm+b9X3AMfgq7nNxFjnmY80RkJkNRCZsUJ8VzLh6tgDoeL0zrqERXtH8sIwSr
-         l2ajuwgw11uCmUzKqH0T2/dgSOIRuZ5qf7Fbk6ybUFmNu1iW0NLm9b2UVLSRyttB1x3B
-         Y7vN2ibL8LeYP0s5veOpfUpjtZuYw5iimvHv6EXkXI5FrBKTnaOgIcP1l/hcsn3nLkJI
-         7N1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tRGrsGIuHpsCfKgbLO01uLpvEDCDM1u1XXLG6rg/fA8=;
-        b=XSJb4po5mt/w98x9Qw4wCOo4TEeqt6Q3lGvvJfQ9XuaH+jtJWu92ro7uR4mGay6ddz
-         dgsSENXkg2Ofqpik/KZBZNCUK7l+94ZoPWwiQ0/TSQJ/zzRLaQ+8wQu7oTM3CGzTBxAs
-         liTzhHellNfkgES/pxd4XU9gMv16+wC40Lsba/73w3WnEqDGAKTyPsjiG+7oVCvb8adw
-         pJfod7WBsA1kw/bGMgVrDJhvER1Xn0gREXlaHRRUQ4ZwbbhlStGxFlbJoq+L4vAakB3a
-         cM6cIHEsmZx3V4UmtZOSSGRgSg614qcCJ2kbB8G0Llbsm7PLqJGYHjFFXGU+t8Ez4Tmm
-         Tjbg==
-X-Gm-Message-State: AOAM5304CCWqmzGLg6X/kyWwVgRd+jSWDb4mXX/L9zN3KiWxw17PEQBi
-        pdT1lI/K1EOoDpYkJTz20ORfoToip4Gv53WQl1I3+Q==
-X-Google-Smtp-Source: ABdhPJyHAeOQgz49/VL6jtU+i54f8NdtusYvL5ifZQPa6cUV0Dn0B0bM0z0uoe62jZChFcS3kGipw61Kf+ExvkpIoCs=
-X-Received: by 2002:a25:6585:: with SMTP id z127mr139784ybb.33.1602434332955;
- Sun, 11 Oct 2020 09:38:52 -0700 (PDT)
+        id S1729764AbgJKREn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 13:04:43 -0400
+Received: from www381.your-server.de ([78.46.137.84]:34132 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729634AbgJKREm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 13:04:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=ZHKg+MjGa0j1+rV6Y9+svUnYM6ktJkBSOZrPnXxDJSk=; b=YsJbRBAIcDXjKl1zhuQvq+oat3
+        BVQSQaXQC0xlxM+2ElqCoWJlQiAi/iMpPFuTRcJcz6ZuM4cyJpvdGC9iGBLEz0HUDLVjjMyZOsdUF
+        BMlYPXXDfnawZ+Tr4RPhjMsPzamWXTu2KkuhKdtz1k7l9ygOCHl3yab7x0vgH7YsoL9gg6ODO9E0a
+        47o2M+jPzodCte05Y2QngXrAudTtyNrTz6+yvBxVYGdwj983+d4AhLtJ8+MX7fj/7II3Eo8WfXZWj
+        PKeteagXGPGekjQMWpPIqkMjNZBPg0X/zgreSv82kxlc51O5oQ7ybzyhCChsbgwBwcCCGIj3/4h4J
+        Zp705dvg==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1kRelx-00027x-Df; Sun, 11 Oct 2020 19:04:37 +0200
+Received: from [2001:a61:2478:ca01:9e5c:8eff:fe01:8578]
+        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1kRelx-000KES-7J; Sun, 11 Oct 2020 19:04:37 +0200
+Subject: Re: [PATCH] dt-bindings: clock: adi,axi-clkgen: convert old binding
+ to yaml format
+To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "ardeleanalex@gmail.com" <ardeleanalex@gmail.com>
+References: <20201001085035.82938-1-alexandru.ardelean@analog.com>
+ <20201006202449.GA2769322@bogus>
+ <DM6PR03MB441199FB58D492BE288D3E6CF90B0@DM6PR03MB4411.namprd03.prod.outlook.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <b8262dc4-2c35-fdbe-7639-38a9e6970564@metafoo.de>
+Date:   Sun, 11 Oct 2020 19:04:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20201009132732.v6.1.Ic98067cd92a0b7fed9cd3dfb7b4e736e76551cda@changeid>
- <20201009132732.v6.2.I8d7530d8372e4ef298ddaaaad612a2cdd24ed93e@changeid> <8cfa923c-cc7a-6dd3-9541-8a18b98091b7@collabora.com>
-In-Reply-To: <8cfa923c-cc7a-6dd3-9541-8a18b98091b7@collabora.com>
-From:   Duncan Laurie <dlaurie@google.com>
-Date:   Sun, 11 Oct 2020 09:38:36 -0700
-Message-ID: <CADv6+04sHeL9BVSqWVtFeUfuPxBGK+H-jq2+gA0YgpwpbBtYjg@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] dt-bindings: mfd: Add DT compatible string "google,cros_ec_uart"
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Raul E Rangel <rrangel@chromium.org>,
-        devicetree@vger.kernel.org, Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Eric Peers <epeers@google.com>,
-        Furquan Shaikh <furquan@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <DM6PR03MB441199FB58D492BE288D3E6CF90B0@DM6PR03MB4411.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.4/25954/Sun Oct 11 15:58:33 2020)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 4:59 AM Enric Balletbo i Serra
-<enric.balletbo@collabora.com> wrote:
+On 10/8/20 11:28 AM, Ardelean, Alexandru wrote:
 >
-> Hi Bhanu,
->
-> Thank you for your patch.
->
-> On 9/10/20 23:01, Bhanu Prakash Maiya wrote:
-> > Add DT compatible string in
-> > Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> >
->
-> The problem with this patchset continues being the same. You are using the trick
-> of using a DT compatible string to instantiate an ACPI-only driver. You should
-> have an ACPI ID for that device or use a DMI table to match the device and
-> instantiate it (see for example the platform/chrome/cros_ec_lpc.c).
->
+>> -----Original Message-----
+>> From: Rob Herring <robh@kernel.org>
+>> Sent: Tuesday, October 6, 2020 11:25 PM
+>> To: Ardelean, Alexandru <alexandru.Ardelean@analog.com>
+>> Cc: linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; Hennerich, Michael
+>> <Michael.Hennerich@analog.com>; lars@metafoo.de; sboyd@kernel.org;
+>> mturquette@baylibre.com; mdf@kernel.org
+>> Subject: Re: [PATCH] dt-bindings: clock: adi,axi-clkgen: convert old binding to
+>> yaml format
+>>
+>> On Thu, Oct 01, 2020 at 11:50:35AM +0300, Alexandru Ardelean wrote:
+>>> This change converts the old binding for the AXI clkgen driver to a
+>>> yaml format.
+>>>
+>>> As maintainers, added:
+>>>   - Lars-Peter Clausen <lars@metafoo.de> - as original author of driver &
+>>>     binding
+>> Do you have permission for relicensing? The default was GPL-2.0.
+> I talked to Michael Hennerich [he's cc-ed], and we have permission from his side.
+> I think Lars would need to provide permission as well, as the author.
+> If we won't have a reply from him [after by some time-frame] I'll leave it as GPL-2.0.
+> I'm a bit clumsy about licensing in general; and I don't care about it all that much.
 
-It isn't really meant to be an ACPI only driver, it just happens
-to be an x86 system that uses the UART interface first.  We use
-this PRP0001 instantiation method with a lot of different drivers
-like MIPI cameras, fingerprint sensors, the cr50 TPM driver, etc.
+I guess you could argue that the yaml description is original work. 
+Either way
 
-That said it is true that the rest of the cros_ec drivers use
-distinct ACPI IDs.  Bhanu I allocated GOOG0019 for the cros_ec
-UART interface so you can switch to using that instead.
-You'll need to update the coreboot interface as well and might
-want to keep both devices in firmware to ease the transition.
+Acked-by: Lars-Peter Clausen <lars@metafoo.de>
 
--duncan
 
->
-> > Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >
-> > Changes in v6:
-> > - No change
-> >
-> > Changes in v5:
-> > - No change
-> >
-> > Changes in v4:
-> > - Changes in commit message.
-> >
-> > Changes in v3:
-> > - Rebased changes on google,cros-ec.yaml
-> >
-> > Changes in v2:
-> > - No change
-> >
-> >  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > index 6a7279a85ec1c..552d1c9bf3de4 100644
-> > --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > @@ -10,11 +10,12 @@ maintainers:
-> >    - Benson Leung <bleung@chromium.org>
-> >    - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> >    - Guenter Roeck <groeck@chromium.org>
-> > +  - Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-> >
-> >  description:
-> >    Google's ChromeOS EC is a microcontroller which talks to the AP and
-> >    implements various functions such as keyboard and battery charging.
-> > -  The EC can be connected through various interfaces (I2C, SPI, and others)
-> > +  The EC can be connected through various interfaces (I2C, SPI, UART and others)
-> >    and the compatible string specifies which interface is being used.
-> >
-> >  properties:
-> > @@ -29,6 +30,9 @@ properties:
-> >        - description:
-> >            For implementations of the EC is connected through RPMSG.
-> >          const: google,cros-ec-rpmsg
-> > +      - description:
-> > +          For implementations of the EC is connected through UART.
-> > +        const: google,cros-ec-uart
-> >
-> >    google,cros-ec-spi-pre-delay:
-> >      description:
-> >
