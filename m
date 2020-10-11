@@ -2,106 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF95328A349
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 01:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 604E828A502
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 04:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726834AbgJJXH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Oct 2020 19:07:58 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57896 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726353AbgJJXH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 19:07:57 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id DC6488002547;
-        Sat, 10 Oct 2020 22:41:37 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 4maO7b5Sdc2M; Sun, 11 Oct 2020 01:41:37 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: [PATCH 18/18] dt-bindings: usb: qcom,dwc3: Validate DWC3 sub-node
-Date:   Sun, 11 Oct 2020 01:41:21 +0300
-Message-ID: <20201010224121.12672-19-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
-References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
+        id S1730338AbgJKC24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Oct 2020 22:28:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46002 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726473AbgJKC2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Oct 2020 22:28:55 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3610C0613D0;
+        Sat, 10 Oct 2020 19:28:55 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id x13so7690690pfa.9;
+        Sat, 10 Oct 2020 19:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=abrGFb5Z0J48VjjKlVpgG6k2o9tGWZkHPGQ3DWMV9Co=;
+        b=qFjiDRMriXa/bKyFAAUp9AoNztar2N21yLRIQOvBC7CZMu+Uz0hVfNGYMWse/fNZT9
+         4wGRRIEMTIdB7nD5/b8mqMEohziget2goubz3kGKYr4VM4yxEVr7S5kBdF+RYIHGEgLa
+         5Iy9lZVdv829aDY/zhim2puVp+yFPwkLE6YOhne21L9djr2RUeZuBgfPXQwBQBAVGhdP
+         lRODxNfI4KRrOUu/BtzDsdts9zaJ2whYXAQk9HTEZ5Jnr7f5g1hvwJMp7pl0w3e0TTUL
+         d2pANmlNRqGnOtGP1QM2BJvbd6vPP1qy1bxT5tNG9+QQxGcSf9UV0007YheOBHEZkn6x
+         SPdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=abrGFb5Z0J48VjjKlVpgG6k2o9tGWZkHPGQ3DWMV9Co=;
+        b=eOid30DpmFWToXci2zFjszbFzJ/8GjvpDhvgzA6dPvnOcA55+0bDHb6HSJFgLrewhJ
+         rr5b3onUy98+e3KFGeCWFnLfUZTLJk/33fyuS+d4fyz7UVXmr3Sdu2JxFuqF5whtaTa2
+         N0nhjmjV/ou4jaF1Xwr5VOynchE4RdYlMbd1ubnAh4/1gyfwdOV7FH5oKcp5O6o1Kv8n
+         nDUYL3dAcCrL9TTccxOHwsLW7/h/UO6E0k/69KEuF53WVE+z0aWqkDmUSgEu3E06zL/R
+         f3AcyXX+mp4bLaJS4oNGU4C61g2XkYKNi5pY8OKoE0nV5Hc0DPOu6FZSTU0cRmmZMOhS
+         q68A==
+X-Gm-Message-State: AOAM530b8636UB3/8YrRGTKbkqksMwTKb70bjmVuW19r8XrWZdHupmpl
+        Uyb6DT3iUzHzNLOWOvlmLPY=
+X-Google-Smtp-Source: ABdhPJxKpN9puFqVmtWPSWskekDRrRKyjO+qi7DcM2EOGfVNcg1h7/YT2hszcJ7N8YfB3UNh78cKLQ==
+X-Received: by 2002:a65:53cc:: with SMTP id z12mr9071134pgr.333.1602383334387;
+        Sat, 10 Oct 2020 19:28:54 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id o23sm17936124pjw.32.2020.10.10.19.28.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Oct 2020 19:28:53 -0700 (PDT)
+To:     Kurt Kanzenbach <kurt@kmk-computers.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, kurt@linutronix.de
+References: <20201010164627.9309-1-kurt@kmk-computers.de>
+ <20201010164627.9309-2-kurt@kmk-computers.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: b53: Add YAML
+ bindings
+Message-ID: <3249c764-ec4a-26be-a52d-e9e85f3162ea@gmail.com>
+Date:   Sat, 10 Oct 2020 19:28:51 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.3.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <20201010164627.9309-2-kurt@kmk-computers.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm msm8996/sc7180/sdm845 DWC3 compatible DT nodes are supposed to
-have a DWC USB3 compatible sub-node to describe a fully functioning USB
-interface. Let's use the available DWC USB3 DT schema to validate
-the Qualcomm DWC3 sub-nodes.
 
-Note since the generic DWC USB3 DT node is supposed to be named as
-generic USB HCD ("^usb(@.*)?") we have to accordingly extend the sub-nodes
-naming space and fix the DT node example.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+On 10/10/2020 9:46 AM, Kurt Kanzenbach wrote:
+> Convert the b53 DSA device tree bindings to YAML in order to allow
+> for automatic checking and such.
+> 
+> Suggested-by: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
 
----
-
-Alas there are many Qualcomm DTS files, which have got the Qualcomm DWC3
-node defined with sub-nodes named as "^dwc3@.*". Since the generic DWC USB3
-DT schema will be automatically selected for them and the naming doesn't
-comply with the USB HCD DT schema, the dtbs_check procedure will fail.
-I don't really know what is a most suitable way to fix that. It's either
-to alter all the Qualcomm DTS files, or extend the USB HCD schema to
-accept the "dwc3@.*" nodes, or redesign the usb-hcd.yaml schema. What do
-you think?
----
- Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-index dac10848dd7f..b3737f0e4dc1 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-@@ -103,11 +103,8 @@ properties:
- # Required child node:
- 
- patternProperties:
--  "^dwc3@[0-9a-f]+$":
--    type: object
--    description:
--      A child node must exist to represent the core DWC3 IP block
--      The content of the node is defined in dwc3.txt.
-+  "^(usb|dwc3)@[0-9a-f]+$":
-+    $ref: snps,dwc3.yaml#
- 
- required:
-   - compatible
-@@ -160,7 +157,7 @@ examples:
- 
-             resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
--            dwc3@a600000 {
-+            usb@a600000 {
-                 compatible = "snps,dwc3";
-                 reg = <0 0x0a600000 0 0xcd00>;
-                 interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+Thanks for making this change, there are quite a few warnings that are 
+going to show up because the binding was defined in a way that it would 
+define chip compatible strings, which not all DTS files are using. I 
+don't know if Rob would be comfortable with taking this until we resolve 
+all warnings first.
 -- 
-2.27.0
-
+Florian
