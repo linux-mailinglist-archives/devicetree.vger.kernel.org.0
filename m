@@ -2,141 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D353828A9C2
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 21:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C13628AA35
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 22:22:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726398AbgJKTnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 15:43:43 -0400
-Received: from mout.gmx.net ([212.227.15.18]:53013 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726363AbgJKTnn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Oct 2020 15:43:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1602445368;
-        bh=IX/vFdROSTvDBI48dTw6a2ZRF/rMQ74xIWcc6kNdH84=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=jwIrdzfiYQduz/+zIF36bBdfI9cCW6/SDJvsOTevfNlcODKCr6bH+OF55ZhYbTbfF
-         U9CuDeXAfiNkgLSB1NHu0KiDGTVS9fiQSr2bbTrWw3cOSNUdFSUqnCNqOZ06/EPES8
-         VRlvlVbp0GyNyENfGLYj/Ub3iGiLXu1m99ly/JLM=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N2E1M-1kLhGo1TQs-013hnb; Sun, 11
- Oct 2020 21:42:48 +0200
-Date:   Sun, 11 Oct 2020 21:42:41 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
+        id S1729030AbgJKUWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 16:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726579AbgJKUWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 16:22:33 -0400
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835D7C0613CE;
+        Sun, 11 Oct 2020 13:22:33 -0700 (PDT)
+Received: by mail-qk1-x743.google.com with SMTP id s4so16037595qkf.7;
+        Sun, 11 Oct 2020 13:22:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tASCTYBxcthY6OHyZcpvEZ2WGLxMD6Z6m5Bm5NnAUZQ=;
+        b=Dv1lSgAiqpMC+u/tF2AgZlaLQqTUsG6LtAn2oJpLSQ5nxXcyySAqoPQBzql8egLIOJ
+         2TqXFv5N+06kL8+5/4obvGMNM+yhrOEQWIjbH+P5nKXCILkgWE7l4eQcwvATc6ZtIgNV
+         kipf2CK6NshRLdCVbkxsT/M/Rhke9pxyDRhImnHRui/OkCEyUD0bpNQbgBML1iMrNRz9
+         VX2IqA5IhjTMEEByg/cITnfh0Th0ZUoX/tgu/t/dkAcomLSWjcqmZiLv1Htk4GE4m9bT
+         MI/4FwePmlpsMAufc/jXuATMmGLbIV6LE55nvgE6sni6+ms7GJOXiVwVLqoMOobCTTPJ
+         B0vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tASCTYBxcthY6OHyZcpvEZ2WGLxMD6Z6m5Bm5NnAUZQ=;
+        b=T1GP358FZrFu00IzvcT6MC3mBWI9TN5NNRqW0sRBYytTxhzo13sVX6IIUkUMJD2Z1Q
+         NhOxkVQ0VJIVgxPcv2aQ5M9UObTzam7jUTTDSJUz+rKcRs6zOKDNE83QqTOYCXA7Rmuu
+         WDIkabDUaJcEVoQYsZoURfum2uu7QeHQpsKkREsa7a3QepgebkuxNfWfylbLNkGMPtMp
+         X9sFp8yTKIeRMPO0dDPpcAr+uERF2CdCO95QFEjPS84kVQ3EimYTMwPwthy3UUCQONDP
+         r/eBJ694EZkc1xcvKbWzoAAvuUHCWMte9IYjG2WWm6ymyeIT0QDkMvQLdQt0J1AL6WrF
+         CBdA==
+X-Gm-Message-State: AOAM533IfmCMeiE0F/zVRnq4Hrbr9Z38nkkkMtDgnjEA5M7OI4Bz4C2u
+        5HKCSbW2nDU6Kz56EiJoOd8=
+X-Google-Smtp-Source: ABdhPJy8+5x9bAXKsOMAy506+SFXzMiqLE0rZegNwLCZFuT6OQC4+9gTbGyZkXPwfSNLC6JG8E9dbw==
+X-Received: by 2002:ae9:dc03:: with SMTP id q3mr7328008qkf.288.1602447752182;
+        Sun, 11 Oct 2020 13:22:32 -0700 (PDT)
+Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
+        by smtp.gmail.com with ESMTPSA id c72sm2987778qkg.56.2020.10.11.13.22.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Oct 2020 13:22:31 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v3 7/7] ARM: dts: imx50-kobo-aura: Add Netronix embedded
- controller
-Message-ID: <20201011194241.GF500800@latitude>
-References: <20200924192455.2484005-1-j.neuschaefer@gmx.net>
- <20200925050818.2512375-1-j.neuschaefer@gmx.net>
- <CAJKOXPfRh4vyJ21ACM3Bf5+HtWZUy+anV47VBAmtitfLuAeUjw@mail.gmail.com>
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v7 00/14] Add Allwinner H3/H5/H6/A64 HDMI audio
+Date:   Sun, 11 Oct 2020 22:22:10 +0200
+Message-Id: <20201011202224.47544-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="aZoGpuMECXJckB41"
-Content-Disposition: inline
-In-Reply-To: <CAJKOXPfRh4vyJ21ACM3Bf5+HtWZUy+anV47VBAmtitfLuAeUjw@mail.gmail.com>
-X-Provags-ID: V03:K1:8uBU2XblVeoVLjVuw2nVyWSoG0MatCsL9xXa3s67RioQG8LCerN
- G3cjXgjI+c1IhPfhQ8nbCAA73xeV6UWuEfUyjrLv1//EoUQM4TDRW2AUNizmtmmGrXrp+3z
- cpe9fVbO/Bwf4uavG9/19ZWLcXGumfOwy4hoylcUqO24X3zJ+EuvY8E0+EqpHzwyb97TJq8
- /BteoTMlknqPattvPSwSQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:rFhHjenenQY=:EJonwYSKnq432w+kmFsFQB
- no+f5JW1J1g7pNm9e1/fEFed0KoR4We1yM/PtyNR9LER88IDPs1waOBV72exdh3O3QWLz5WA4
- TeqeyiTm11xHCV9wg/UR8glOlcQuK4KaSUFOoNa7h6dmcygXUW4FTTHhODjc+hj05q9YRC8UL
- gvpOI0KZrt17WGx1ewTPR1HlrdD4DrmdVOeFvyVZ6o3OnLiInE961Yvn3tLyXs9GzbDg3+YEs
- zl1wqVK3ykjUkVM7iCK9L1mX7BfB/MCACwD4bB7uDcOzuIEMPySYfWznXVexHaVwscHZW0hXB
- HN94LELS/gO6+fmDiAjvopGq03+nBnqQhX6LENTIbX4Lg/zrfLse/9Mu6rwDMZ6Fr63Gy5WKb
- bxbQ1Pg1shar/gAGgUPwXRhJYJ+/JZaQXpJc8TdAsFjI573kEZ7WtwCmMyUXsZssfv90cY+3Z
- C6Gbt6i1DK9+SeQ6ClyItMo1JoIVXQ/AFxGNcN7Bh6kxc56/1VPe8NjYubyFMkxOJZguhILgm
- 2qMErhdEZGvfhD+bI3BsRqOBEvxmi48jLYlZB76nR/KNYOMVgSqr6Ci8ID/3S9B/NWc6/iggn
- 5CMR6my+bHQU9MOgblHVbA/7SrG93ZROPQ04utyC9suNO1HWDJPwJjYZ8AXwnHcoET8TAKzAI
- 8gO/qWFdoUD/fwkuw/o6VR0Mfc9oYJufaYZxRlUCI/g4LkVOlIIO1KNeLSE2/RU7tAcxEkXIc
- B4gi3DXhNfo0ZGvFhme2FDEBDZeFu1RgATzgv3klUTgSM3hbfTkYz0rjtn1i74SKTx+mle+j+
- m3AIRlIkubTsUBg1e+ngHd0gFB8NTWCcTpfUnI2dpqodUTrGJcggeTS4ti7jXXCN+MUa5jF2z
- pp/Aynm3ISF0hAnNdn46KTpf/tlIte4RhapZhny/fqOiKdpeCfkvNQ4golrW8MkcSdAR2oQNy
- 0/URJKZ62Nw2L7gQYuQIsqr/otHlc/aPjUBmU+4+b5SM3EZ30mWQqAont2J5X/UkoLpL9t8/K
- OaEZfFKAMeXrmFpDt0A5qtnfwa80Jw46Pi43nKubLvPW7Vr3CX9xTg3FFFEgo0vKCuXwc/qYy
- l5i1st5do1o+vJ8C9tVGkuIW7JIy4rXApkLzfwYsj92GP2u7fhJPPgHQfWsARVffJadA3PbMe
- q8W/4tpQBBT4J6cDcty27GWb7hsXOiP8afK778gbl4gYVkoe2NthwlUfL9vRQnwC/Y8Mjrqie
- IAz1hrGaKEVm1VANWaIgWH+3KOdnJXMbRcS9CRA==
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---aZoGpuMECXJckB41
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Just some minor changes compare to v6.
 
-On Wed, Oct 07, 2020 at 09:46:30AM +0200, Krzysztof Kozlowski wrote:
-> On Fri, 25 Sep 2020 at 07:10, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx=
-=2Enet> wrote:
-> >
-> > Enable the Netronix EC on the Kobo Aura ebook reader.
-=2E..
-> >  &iomuxc {
-> > +       pinctrl_ec: ec {
->=20
-> This should fail on dtschema check - pinctrl groups should end with "grp".
+As explain in v6 there is no more HDMI soundcard,
+I will try to introduce a dedicated Allwinner soundcard
+in a next series.
 
-I missed that requirement. I think it's only stated in the i.MX pinctrl
-bindings that have been converted to YAML.
+Clément
 
-I'll fix the names.
+Change since v6:
+- move set_channel_cfg() in first position
+- convert return value to decimal
 
+Change since v5:
+- Drop HDMI simple soundcard
+- Collect Chen-Yu Tsai tags
+- Configure channels from 9 to 15.
+- Remove DMA RX for H3/H5
+- Fix Documentation for H3/H5
 
-Thanks,
-Jonathan Neusch=C3=A4fer
+Change since v4:
+- add more comment on get_wss() and set_channel_cfg() patch
+- merge soundcard and DAI HDMI patches
 
---aZoGpuMECXJckB41
-Content-Type: application/pgp-signature; name="signature.asc"
+Change since v3:
+- add Samuel Holland patch to reconfigure FIFO_TX_REG when suspend is enabled
+- readd inversion to H6 LRCK sun50i_h6_i2s_set_soc_fmt()
+- Fix get_wss() for sun4i
+- Add a commit to fix checkpatch warning
 
------BEGIN PGP SIGNATURE-----
+Change since v2:
+- rebase on next-20200918
+- drop revert LRCK polarity patch
+- readd simple-audio-card,frame-inversion in dts
+- Add patch for changing set_chan_cfg params
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl+DYCAACgkQCDBEmo7z
-X9s8/A//ZXamPTUzHqAqGfLG3IETakiVj/jzL/ROS+aDhNMh5Ulg+6ijWGAml02V
-EuG5G4x6ShKbe2XcBxTsJsE5DUs18gxGbJ0B/nzElExtyN3Lr1Nw7Byz/jYlzMJC
-UbwwO9MBJ/kRGlQxqucJxpluLDWPZ7wB9TMvypRM6hEA/3KV3zpvIL1R5klDJRIm
-JaY0DWXSeX1AHS+DEwHdexK8pytJoYoQEHOIuOeaaOrZGIBEmGk7+2CKUlQmQMTv
-TOtOMx3NQ1cfey5akMKUrV3sdio0dd60zL+YLMVQrr6zljS4eqHD2duECqqG3LN8
-cd/xin+qFJbyKJEwa3SAiI54VLBXM3Oj1ONQODwzg8tyZg0YoX2o4c9C0UJy1V+0
-FauiU7eQfEvYlcwpalIe8GoM4kdcJXQMaJIeMrD2MDXyXixj5HWQm/4/7L1FEfjf
-yxqcgAT4Lf7aJwu+ng1flsnarNEoctZNgfkc01HyZ8rNtKPH2VEJGhptVOhf3kT3
-ggJT0aSBSL3wYV0wi56OxmyISgS2c7inbZaMNxNtFEFkJnYy2nCxsuAYyx4Eu1Lz
-ZBOFWEdqr0opv1rrd/w+WTdyt1L0R2gcdTpb5cVJyzv3FZ/feaWSDennXjl967e2
-zyuCm0sVbC+oE9C33iGmnVSO5fiXLAXe1xw2VNoM73vjdrUw8Y8=
-=bucB
------END PGP SIGNATURE-----
+Change since v1:
+- rebase on next-20200828
+- add revert LRCK polarity
+- remove all simple-audio-card,frame-inversion in dts
+- add Ondrej patches for Orange Pi board
+- Add arm64 defconfig patch
 
---aZoGpuMECXJckB41--
+Clément Péron (6):
+  ASoC: sun4i-i2s: Change set_chan_cfg() params
+  ASoC: sun4i-i2s: Change get_sr() and get_wss() to be more explicit
+  ASoC: sun4i-i2s: Fix sun8i volatile regs
+  ASoC: sun4i-i2s: fix coding-style for callback definition
+  arm64: defconfig: Enable Allwinner i2s driver
+  dt-bindings: sound: sun4i-i2s: Document H3 with missing RX channel
+    possibility
+
+Jernej Skrabec (3):
+  ASoC: sun4i-i2s: Add support for H6 I2S
+  dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+  arm64: dts: allwinner: h6: Add I2S1 node
+
+Marcus Cooper (4):
+  ASoC: sun4i-i2s: Set sign extend sample
+  ASoc: sun4i-i2s: Add 20 and 24 bit support
+  arm64: dts: allwinner: a64: Add I2S2 node
+  arm: dts: sunxi: h3/h5: Add I2S2 node
+
+Samuel Holland (1):
+  ASoC: sun4i-i2s: Fix setting of FIFO modes
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |   6 +-
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  13 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  14 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  13 +
+ arch/arm64/configs/defconfig                  |   1 +
+ sound/soc/sunxi/sun4i-i2s.c                   | 376 +++++++++++++++---
+ 6 files changed, 368 insertions(+), 55 deletions(-)
+
+-- 
+2.25.1
+
