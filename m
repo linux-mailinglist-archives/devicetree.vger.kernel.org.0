@@ -2,129 +2,327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52C5928A687
-	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 11:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAD5728A6BE
+	for <lists+devicetree@lfdr.de>; Sun, 11 Oct 2020 11:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729546AbgJKJKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 05:10:47 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:36151 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729501AbgJKJKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 05:10:40 -0400
-X-UUID: 2d867613a92e4017b69f507552c7cdda-20201011
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=GoereX3z4yLccDhPMr3wMI58d0RbqsyXBZGN1gaGVb0=;
-        b=cQ+zX7uYW2ROUQNrFlKspwBntJrwfdP97dV9IsTz5NDxcJIwkI4fd2TN4qo+rd2OkqOX2Dbo3GmGRlDeqcvM8/GRdVGak6H++PHqAQ6TQneGBlsGMyn8TlMyBuCvIcb20DRNXaiKlIPoiyqKOvPCRsBXLuZ3SRjjGry0tQWDyqo=;
-X-UUID: 2d867613a92e4017b69f507552c7cdda-20201011
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 325027978; Sun, 11 Oct 2020 17:10:37 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 11 Oct 2020 17:10:35 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 11 Oct 2020 17:10:35 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>
-Subject: [PATCH v4 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
-Date:   Sun, 11 Oct 2020 17:10:30 +0800
-Message-ID: <20201011091030.28547-5-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201011091030.28547-1-wenbin.mei@mediatek.com>
-References: <20201011091030.28547-1-wenbin.mei@mediatek.com>
+        id S1729186AbgJKJ4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 05:56:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58000 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725863AbgJKJ4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 05:56:11 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE87EC0613CE;
+        Sun, 11 Oct 2020 02:56:10 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 90CF91F4420C
+Subject: Re: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, dianders@chromium.org,
+        heiko@sntech.de, Collabora Kernel ML <kernel@collabora.com>,
+        Caesar Wang <wxt@rock-chips.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+References: <20200921092951.945382-1-enric.balletbo@collabora.com>
+ <20201007151159.GA221754@bogus>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <0abb7d69-e522-4281-bcb7-a5d3f9372a48@collabora.com>
+Date:   Sun, 11 Oct 2020 11:56:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20201007151159.GA221754@bogus>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TVQ4MTkyIG1zZGMgaXMgYW4gaW5kZXBlbmRlbnQgc3ViIHN5c3RlbSwgd2UgbmVlZCBjb250cm9s
-IG1vcmUgYnVzDQpjbG9ja3MgZm9yIGl0Lg0KQWRkIHN1cHBvcnQgZm9yIHRoZSBhZGRpdGlvbmFs
-IHN1YnN5cyBjbG9ja3MgdG8gYWxsb3cgaXQgdG8gYmUNCmNvbmZpZ3VyZWQgYXBwcm9wcmlhdGVs
-eS4NCg0KU2lnbmVkLW9mZi1ieTogV2VuYmluIE1laSA8d2VuYmluLm1laUBtZWRpYXRlay5jb20+
-DQpSZXZpZXdlZC1ieTogTmljb2xhcyBCb2ljaGF0IDxkcmlua2NhdEBjaHJvbWl1bS5vcmc+DQot
-LS0NCiBkcml2ZXJzL21tYy9ob3N0L210ay1zZC5jIHwgODAgKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrLS0tLS0tLS0tDQogMSBmaWxlIGNoYW5nZWQsIDYyIGluc2VydGlvbnMoKyksIDE4
-IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYyBi
-L2RyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMNCmluZGV4IGE3MDQ3NDVlNTg4Mi4uMzUwZTQ1NDMy
-ZTIxIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KKysrIGIvZHJpdmVy
-cy9tbWMvaG9zdC9tdGstc2QuYw0KQEAgLTQyNSw2ICs0MjUsOCBAQCBzdHJ1Y3QgbXNkY19ob3N0
-IHsNCiAJc3RydWN0IGNsayAqaF9jbGs7ICAgICAgLyogbXNkYyBoX2NsayAqLw0KIAlzdHJ1Y3Qg
-Y2xrICpidXNfY2xrOwkvKiBidXMgY2xvY2sgd2hpY2ggdXNlZCB0byBhY2Nlc3MgcmVnaXN0ZXIg
-Ki8NCiAJc3RydWN0IGNsayAqc3JjX2Nsa19jZzsgLyogbXNkYyBzb3VyY2UgY2xvY2sgY29udHJv
-bCBnYXRlICovDQorCXN0cnVjdCBjbGsgKnN5c19jbGtfY2c7CS8qIG1zZGMgc3Vic3lzIGNsb2Nr
-IGNvbnRyb2wgZ2F0ZSAqLw0KKwlzdHJ1Y3QgY2xrX2J1bGtfZGF0YSBidWxrX2Nsa3NbM107CS8q
-IHBjbGssIGF4aSwgYWhiIGNsb2NrIGNvbnRyb2wgZ2F0ZSAqLw0KIAl1MzIgbWNsazsJCS8qIG1t
-YyBzdWJzeXN0ZW0gY2xvY2sgZnJlcXVlbmN5ICovDQogCXUzMiBzcmNfY2xrX2ZyZXE7CS8qIHNv
-dXJjZSBjbG9jayBmcmVxdWVuY3kgKi8NCiAJdW5zaWduZWQgY2hhciB0aW1pbmc7DQpAQCAtNzg0
-LDYgKzc4Niw4IEBAIHN0YXRpYyB2b2lkIG1zZGNfc2V0X2J1c3lfdGltZW91dChzdHJ1Y3QgbXNk
-Y19ob3N0ICpob3N0LCB1NjQgbnMsIHU2NCBjbGtzKQ0KIA0KIHN0YXRpYyB2b2lkIG1zZGNfZ2F0
-ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KIHsNCisJY2xrX2J1bGtfZGlzYWJsZV91
-bnByZXBhcmUoQVJSQVlfU0laRShob3N0LT5idWxrX2Nsa3MpLA0KKwkJCQkgICBob3N0LT5idWxr
-X2Nsa3MpOw0KIAljbGtfZGlzYWJsZV91bnByZXBhcmUoaG9zdC0+c3JjX2Nsa19jZyk7DQogCWNs
-a19kaXNhYmxlX3VucHJlcGFyZShob3N0LT5zcmNfY2xrKTsNCiAJY2xrX2Rpc2FibGVfdW5wcmVw
-YXJlKGhvc3QtPmJ1c19jbGspOw0KQEAgLTc5MiwxMCArNzk2LDE5IEBAIHN0YXRpYyB2b2lkIG1z
-ZGNfZ2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KIA0KIHN0YXRpYyB2b2lkIG1z
-ZGNfdW5nYXRlX2Nsb2NrKHN0cnVjdCBtc2RjX2hvc3QgKmhvc3QpDQogew0KKwlpbnQgcmV0Ow0K
-Kw0KIAljbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+aF9jbGspOw0KIAljbGtfcHJlcGFyZV9lbmFi
-bGUoaG9zdC0+YnVzX2Nsayk7DQogCWNsa19wcmVwYXJlX2VuYWJsZShob3N0LT5zcmNfY2xrKTsN
-CiAJY2xrX3ByZXBhcmVfZW5hYmxlKGhvc3QtPnNyY19jbGtfY2cpOw0KKwlyZXQgPSBjbGtfYnVs
-a19wcmVwYXJlX2VuYWJsZShBUlJBWV9TSVpFKGhvc3QtPmJ1bGtfY2xrcyksDQorCQkJCSAgICAg
-IGhvc3QtPmJ1bGtfY2xrcyk7DQorCWlmIChyZXQpIHsNCisJCWRldl9lcnIoaG9zdC0+ZGV2LCAi
-ZW5hYmxlIGNsa3MgZmFpbGVkIVxuIik7DQorCQlyZXR1cm47DQorCX0NCisNCiAJd2hpbGUgKCEo
-cmVhZGwoaG9zdC0+YmFzZSArIE1TRENfQ0ZHKSAmIE1TRENfQ0ZHX0NLU1RCKSkNCiAJCWNwdV9y
-ZWxheCgpOw0KIH0NCkBAIC0yMzY2LDYgKzIzNzksNTMgQEAgc3RhdGljIHZvaWQgbXNkY19vZl9w
-cm9wZXJ0eV9wYXJzZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2LA0KIAkJaG9zdC0+Y3Fo
-Y2kgPSBmYWxzZTsNCiB9DQogDQorc3RhdGljIGludCBtc2RjX29mX2Nsb2NrX3BhcnNlKHN0cnVj
-dCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYsDQorCQkJICAgICAgIHN0cnVjdCBtc2RjX2hvc3QgKmhv
-c3QpDQorew0KKwlzdHJ1Y3QgY2xrICpjbGs7DQorDQorCWhvc3QtPnNyY19jbGsgPSBkZXZtX2Ns
-a19nZXRfb3B0aW9uYWwoJnBkZXYtPmRldiwgInNvdXJjZSIpOw0KKwlpZiAoSVNfRVJSKGhvc3Qt
-PnNyY19jbGspKQ0KKwkJcmV0dXJuIFBUUl9FUlIoaG9zdC0+c3JjX2Nsayk7DQorDQorCWhvc3Qt
-PmhfY2xrID0gZGV2bV9jbGtfZ2V0X29wdGlvbmFsKCZwZGV2LT5kZXYsICJoY2xrIik7DQorCWlm
-IChJU19FUlIoaG9zdC0+aF9jbGspKQ0KKwkJcmV0dXJuIFBUUl9FUlIoaG9zdC0+aF9jbGspOw0K
-Kw0KKwlob3N0LT5idXNfY2xrID0gZGV2bV9jbGtfZ2V0X29wdGlvbmFsKCZwZGV2LT5kZXYsICJi
-dXNfY2xrIik7DQorCWlmIChJU19FUlIoaG9zdC0+YnVzX2NsaykpDQorCQlob3N0LT5idXNfY2xr
-ID0gTlVMTDsNCisNCisJLypzb3VyY2UgY2xvY2sgY29udHJvbCBnYXRlIGlzIG9wdGlvbmFsIGNs
-b2NrKi8NCisJaG9zdC0+c3JjX2Nsa19jZyA9IGRldm1fY2xrX2dldF9vcHRpb25hbCgmcGRldi0+
-ZGV2LCAic291cmNlX2NnIik7DQorCWlmIChJU19FUlIoaG9zdC0+c3JjX2Nsa19jZykpDQorCQlo
-b3N0LT5zcmNfY2xrX2NnID0gTlVMTDsNCisNCisJaG9zdC0+c3lzX2Nsa19jZyA9IGRldm1fY2xr
-X2dldF9vcHRpb25hbCgmcGRldi0+ZGV2LCAic3lzX2NnIik7DQorCWlmIChJU19FUlIoaG9zdC0+
-c3lzX2Nsa19jZykpDQorCQlob3N0LT5zeXNfY2xrX2NnID0gTlVMTDsNCisNCisJLyogSWYgcHJl
-c2VudCwgYWx3YXlzIGVuYWJsZSBmb3IgdGhpcyBjbG9jayBnYXRlICovDQorCWNsa19wcmVwYXJl
-X2VuYWJsZShob3N0LT5zeXNfY2xrX2NnKTsNCisNCisJY2xrID0gZGV2bV9jbGtfZ2V0X29wdGlv
-bmFsKCZwZGV2LT5kZXYsICJwY2xrX2NnIik7DQorCWlmIChJU19FUlIoY2xrKSkNCisJCWNsayA9
-IE5VTEw7DQorCWhvc3QtPmJ1bGtfY2xrc1swXS5jbGsgPSBjbGs7DQorDQorCWNsayA9IGRldm1f
-Y2xrX2dldF9vcHRpb25hbCgmcGRldi0+ZGV2LCAiYXhpX2NnIik7DQorCWlmIChJU19FUlIoY2xr
-KSkNCisJCWNsayA9IE5VTEw7DQorCWhvc3QtPmJ1bGtfY2xrc1sxXS5jbGsgPSBjbGs7DQorDQor
-CWNsayA9IGRldm1fY2xrX2dldF9vcHRpb25hbCgmcGRldi0+ZGV2LCAiYWhiX2NnIik7DQorCWlm
-IChJU19FUlIoY2xrKSkNCisJCWNsayA9IE5VTEw7DQorCWhvc3QtPmJ1bGtfY2xrc1syXS5jbGsg
-PSBjbGs7DQorDQorCXJldHVybiAwOw0KK30NCisNCiBzdGF0aWMgaW50IG1zZGNfZHJ2X3Byb2Jl
-KHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQogew0KIAlzdHJ1Y3QgbW1jX2hvc3QgKm1t
-YzsNCkBAIC0yNDA1LDI1ICsyNDY1LDkgQEAgc3RhdGljIGludCBtc2RjX2Rydl9wcm9iZShzdHJ1
-Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KIAlpZiAocmV0KQ0KIAkJZ290byBob3N0X2ZyZWU7
-DQogDQotCWhvc3QtPnNyY19jbGsgPSBkZXZtX2Nsa19nZXQoJnBkZXYtPmRldiwgInNvdXJjZSIp
-Ow0KLQlpZiAoSVNfRVJSKGhvc3QtPnNyY19jbGspKSB7DQotCQlyZXQgPSBQVFJfRVJSKGhvc3Qt
-PnNyY19jbGspOw0KLQkJZ290byBob3N0X2ZyZWU7DQotCX0NCi0NCi0JaG9zdC0+aF9jbGsgPSBk
-ZXZtX2Nsa19nZXQoJnBkZXYtPmRldiwgImhjbGsiKTsNCi0JaWYgKElTX0VSUihob3N0LT5oX2Ns
-aykpIHsNCi0JCXJldCA9IFBUUl9FUlIoaG9zdC0+aF9jbGspOw0KKwlyZXQgPSBtc2RjX29mX2Ns
-b2NrX3BhcnNlKHBkZXYsIGhvc3QpOw0KKwlpZiAocmV0KQ0KIAkJZ290byBob3N0X2ZyZWU7DQot
-CX0NCi0NCi0JaG9zdC0+YnVzX2NsayA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2LCAiYnVzX2Ns
-ayIpOw0KLQlpZiAoSVNfRVJSKGhvc3QtPmJ1c19jbGspKQ0KLQkJaG9zdC0+YnVzX2NsayA9IE5V
-TEw7DQotCS8qc291cmNlIGNsb2NrIGNvbnRyb2wgZ2F0ZSBpcyBvcHRpb25hbCBjbG9jayovDQot
-CWhvc3QtPnNyY19jbGtfY2cgPSBkZXZtX2Nsa19nZXQoJnBkZXYtPmRldiwgInNvdXJjZV9jZyIp
-Ow0KLQlpZiAoSVNfRVJSKGhvc3QtPnNyY19jbGtfY2cpKQ0KLQkJaG9zdC0+c3JjX2Nsa19jZyA9
-IE5VTEw7DQogDQogCWhvc3QtPnJlc2V0ID0gZGV2bV9yZXNldF9jb250cm9sX2dldF9vcHRpb25h
-bF9leGNsdXNpdmUoJnBkZXYtPmRldiwNCiAJCQkJCQkJCSJocnN0Iik7DQotLSANCjIuMTguMA0K
+Hi Rob,
 
+Many thanks for your comments, some questions below.
+
+On 7/10/20 17:11, Rob Herring wrote:
+> On Mon, Sep 21, 2020 at 11:29:51AM +0200, Enric Balletbo i Serra wrote:
+>> Convert the soc/rockchip/power_domain.txt binding document to json-schema
+>> and move to the power bindings directory.
+>>
+>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+>> ---
+>>
+>> Changes in v3:
+>> - Fixed tab errors found by bot
+>>
+>> Changes in v2:
+>> - Fixed a warning that says that 'syscon' should not be used alone.
+>> - Use patternProperties to define a new level for power-domains.
+>> - Add const values for power-domain-cells, address-cells, etc.
+>>
+>>  .../power/rockchip,power-controller.yaml      | 207 ++++++++++++++++++
+>>  .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
+>>  2 files changed, 207 insertions(+), 136 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+>> new file mode 100644
+>> index 000000000000..b23ea37e2a08
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+>> @@ -0,0 +1,207 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/rockchip,power-controller.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Rockchip Power Domains
+>> +
+>> +maintainers:
+>> +  - Caesar Wang <wxt@rock-chips.com>
+>> +  - Heiko Stuebner <heiko@sntech.de>
+>> +
+>> +description: |
+>> +  Rockchip processors include support for multiple power domains which can be
+>> +  powered up/down by software based on different application scenes to save power.
+>> +
+>> +  Power domains contained within power-controller node are generic power domain
+>> +  providers documented in Documentation/devicetree/bindings/power/power-domain.yaml.
+>> +
+>> +  IP cores belonging to a power domain should contain a 'power-domains'
+>> +  property that is a phandle for the power domain node representing the domain.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    const: power-controller
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - rockchip,px30-power-controller
+>> +      - rockchip,rk3036-power-controller
+>> +      - rockchip,rk3066-power-controller
+>> +      - rockchip,rk3128-power-controller
+>> +      - rockchip,rk3188-power-controller
+>> +      - rockchip,rk3228-power-controller
+>> +      - rockchip,rk3288-power-controller
+>> +      - rockchip,rk3328-power-controller
+>> +      - rockchip,rk3366-power-controller
+>> +      - rockchip,rk3368-power-controller
+>> +      - rockchip,rk3399-power-controller
+>> +
+>> +  '#power-domain-cells':
+>> +    const: 1
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +patternProperties:
+>> +  "^power-domain@[0-9]+$":
+> 
+> unit-addresses are hex.
+> 
+
+As explained in the description of 'reg' is more a power domain index than a
+hexadecimal address. Same as done in
+Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+
+Use hex pattern will give a lot of errors, i.e 'pd_edp@25' and many others will
+not match the regexes '^power-domain@[0-9a-f]+$'
+
+Is the hex notation a must here? In that case, I assume I should change all the
+power/rk3*power.h includes to use that notation.
+
+>> +    type: object
+>> +    description: |
+>> +      Represents the power domains within the power controller node as documented
+>> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
+>> +
+>> +    properties:
+>> +
+>> +      '#power-domain-cells':
+>> +        description:
+>> +            Must be 0 for nodes representing a single PM domain and 1 for nodes
+>> +            providing multiple PM domains.
+>> +
+>> +      '#address-cells':
+>> +        const: 1
+>> +
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>> +      reg:
+>> +        description: |
+>> +          Power domain index. Valid values are defined in:
+>> +          "include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
+>> +          "include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
+>> +          "include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
+>> +          "include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
+>> +          "include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
+>> +          "include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
+>> +          "include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
+>> +          "include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
+>> +          "include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
+>> +          "include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
+>> +          "include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
+>> +        maxItems: 1
+> 
+> Range of values?
+> 
+>> +
+>> +      clocks:
+>> +        description: |
+>> +          A number of phandles to clocks that need to be enabled while power domain
+>> +          switches state.
+> 
+> Can you at least put a range of how many clocks?
+> 
+
+minItems could be 0, but from the datasheet, I am not sure if I am able to
+define a maxItems, I think I can do two things, or define a maxItems based on
+current definitions (with the risk that if a new SoC is supported we should
+change that number) or use a finger in the air "safe" value. Should any of these
+solutions be acceptable for you?
+
+
+>> +
+>> +      pm_qos:
+>> +        description: |
+>> +          A number of phandles to qos blocks which need to be saved and restored
+>> +          while power domain switches state.
+> 
+> And here.
+> 
+
+The same as clocks here.
+
+>> +
+>> +    required:
+>> +      - reg
+> 
+>        additionalProperties: false
+> 
+> Which in turn means the nested power domains will throw an error, so you 
+> can do:
+> 
+>        patternProperties:
+> 	 "^power-domain@[0-9a-f]+$":
+>            $ref: '#/patternProperties/^power-domain@[0-9a-f]+$'
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - '#power-domain-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/rk3399-cru.h>
+>> +    #include <dt-bindings/power/rk3399-power.h>
+>> +
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        qos_hdcp: qos@ffa90000 {
+>> +            compatible = "rockchip,rk3399-qos","syscon";
+> 
+> space                                             ^
+> 
+>> +            reg = <0x0 0xffa90000 0x0 0x20>;
+>> +        };
+>> +
+>> +        qos_iep: qos@ffa98000 {
+>> +            compatible = "rk3399-qos","syscon";
+>> +            reg = <0x0 0xffa98000 0x0 0x20>;
+>> +        };
+>> +
+>> +        qos_rga_r: qos@ffab0000 {
+>> +            compatible = "rk3399-qos","syscon";
+>> +            reg = <0x0 0xffab0000 0x0 0x20>;
+>> +        };
+>> +
+>> +        qos_rga_w: qos@ffab0080 {
+>> +            compatible = "rk3399-qos","syscon";
+>> +            reg = <0x0 0xffab0080 0x0 0x20>;
+>> +        };
+>> +
+>> +        qos_video_m0: qos@ffab8000 {
+>> +            compatible = "rk3399-qos","syscon";
+>> +            reg = <0x0 0xffab8000 0x0 0x20>;
+>> +        };
+>> +
+>> +        qos_video_m1_r: qos@ffac0000 {
+>> +            compatible = "rk3399-qos","syscon";
+>> +            reg = <0x0 0xffac0000 0x0 0x20>;
+>> +        };
+>> +
+>> +        qos_video_m1_w: qos@ffac0080 {
+>> +            compatible = "rk3399-qos","syscon";
+>> +            reg = <0x0 0xffac0080 0x0 0x20>;
+>> +        };
+>> +
+>> +        power-management@ff310000 {
+>> +            compatible = "rockchip,rk3399-pmu", "syscon", "simple-mfd";
+>> +            reg = <0x0 0xff310000 0x0 0x1000>;
+>> +
+>> +            power-controller {
+>> +                compatible = "rockchip,rk3399-power-controller";
+>> +                #power-domain-cells = <1>;
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                /* These power domains are grouped by VD_CENTER */
+>> +                power-domain@RK3399_PD_IEP {
+>> +                    reg = <RK3399_PD_IEP>;
+>> +                    clocks = <&cru ACLK_IEP>,
+>> +                             <&cru HCLK_IEP>;
+>> +                    pm_qos = <&qos_iep>;
+>> +                    #power-domain-cells = <0>;
+>> +                };
+>> +                power-domain@RK3399_PD_RGA {
+>> +                    reg = <RK3399_PD_RGA>;
+>> +                    clocks = <&cru ACLK_RGA>,
+>> +                             <&cru HCLK_RGA>;
+>> +                    pm_qos = <&qos_rga_r>,
+>> +                             <&qos_rga_w>;
+>> +                    #power-domain-cells = <0>;
+>> +                };
+>> +                power-domain@RK3399_PD_VCODEC {
+>> +                    reg = <RK3399_PD_VCODEC>;
+>> +                    clocks = <&cru ACLK_VCODEC>,
+>> +                             <&cru HCLK_VCODEC>;
+>> +                    pm_qos = <&qos_video_m0>;
+>> +                    #power-domain-cells = <0>;
+>> +                };
+>> +                power-domain@RK3399_PD_VDU {
+>> +                    reg = <RK3399_PD_VDU>;
+>> +                    clocks = <&cru ACLK_VDU>,
+>> +                             <&cru HCLK_VDU>;
+>> +                    pm_qos = <&qos_video_m1_r>,
+>> +                             <&qos_video_m1_w>;
+>> +                    #power-domain-cells = <0>;
+>> +                };
+>> +                power-domain@RK3399_PD_VIO {
+>> +                    reg = <RK3399_PD_VIO>;
+>> +                    #power-domain-cells = <1>;
+>> +                    #address-cells = <1>;
+>> +                    #size-cells = <0>;
+>> +
+>> +                    power-domain@RK3399_PD_HDCP {
+>> +                        reg = <RK3399_PD_HDCP>;
+>> +                        clocks = <&cru ACLK_HDCP>,
+>> +                                 <&cru HCLK_HDCP>,
+>> +                                 <&cru PCLK_HDCP>;
+>> +                        pm_qos = <&qos_hdcp>;
+>> +                        #power-domain-cells = <0>;
+>> +                    };
+>> +                };
+>> +            };
+>> +        };
+>> +    };
