@@ -2,156 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D6528AC89
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 05:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9EA28AC9B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 05:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727280AbgJLDd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 23:33:27 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:30612 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727376AbgJLDd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 23:33:27 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 09C3Tp4U087377;
-        Mon, 12 Oct 2020 11:29:51 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.9) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Oct
- 2020 11:32:01 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <linux-gpio@vger.kernel.org>, <openbmc@lists.ozlabs.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH 3/3] pinctrl: aspeed-g6: Add sgpiom2 pinctrl setting
-Date:   Mon, 12 Oct 2020 11:31:50 +0800
-Message-ID: <20201012033150.21056-4-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201012033150.21056-1-billy_tsai@aspeedtech.com>
-References: <20201012033150.21056-1-billy_tsai@aspeedtech.com>
+        id S1726189AbgJLDjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 23:39:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726087AbgJLDjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 23:39:06 -0400
+Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20EEC0613D0
+        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 20:39:05 -0700 (PDT)
+Received: by mail-vk1-xa42.google.com with SMTP id l23so2475044vkm.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 20:39:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KiuyMjRQI4UrLg1n7cKhKKhLAfvoAgBKOZvduZBf0aY=;
+        b=GvYw6qfjah6oj28Zd4TyigWyNPLHWgTmQXGUKHFCNco3JwK1pqqfGb+tdfWgJV/aHj
+         S+h2hbUt0Q0CInYosoIAWUWuaIun06dlEqgLRbo4SauF9qtCc8cq4Z0radiQB0tk3mmI
+         IDt/gz0+D1P3VfbCMkRdwLcOAADZSidrs9f3Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KiuyMjRQI4UrLg1n7cKhKKhLAfvoAgBKOZvduZBf0aY=;
+        b=XO6LW96s1aZRIuSfdkYV2uN00Gb12Mlu0oinAejYDe1SxKp79rt1A0+t+LrUqU2fyj
+         yclhRleVDrvV2NzZ0/LAyPWudwrNTU8LjqJ63orhVrjMA+kP7M/AD5UY5gwqrLfAj3d9
+         J/7H+B78NeSfVMt0n+lhRMDUnA2YyQACfLhtAGziLLJICaObfU97YcxfMxirDisiM8O3
+         Hf/Wb/K3OfEQeUzBwJWlqK+fbdIfKXACqlDgRWy3rNwoaZFY4QT5RUpmF7k20UNiQSmP
+         I94wfalFzAgVGvgRlcM362eukg9vqHEYVZph1oZoZrh2boftIhm9+XWNp55gps394/v3
+         q6ww==
+X-Gm-Message-State: AOAM532/M198n2RBAFSJew0/qawSkPMwutdWhrk8f26DwciBwopl7rAc
+        QKOyZ/FXZ5PBAZZ1n2WByqnjaerxleN3JtZ46fhsZQ==
+X-Google-Smtp-Source: ABdhPJwKOiKNGLkhvGKapg/FgDio242ur83cmC2L2lxBLQ0SOgKJTlTt6djxWtCGfhAXNv6m7RcdvSnXNsZSIZ3S6+c=
+X-Received: by 2002:a05:6122:7c7:: with SMTP id l7mr2639856vkr.17.1602473944804;
+ Sun, 11 Oct 2020 20:39:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.10.9]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 09C3Tp4U087377
+References: <20201012024345.8361-1-wenbin.mei@mediatek.com> <20201012024345.8361-5-wenbin.mei@mediatek.com>
+In-Reply-To: <20201012024345.8361-5-wenbin.mei@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Mon, 12 Oct 2020 11:38:53 +0800
+Message-ID: <CANMq1KD5MRvAiwk+EPfOTqaEqjcXz5FUAvmkX+OjQ=kpEP_=8A@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
+To:     Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mmc@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-At ast2600a1 we change feature of master sgpio to 2 sets.
-So this patch is used to add the pinctrl setting of the new sgpio.
+Thanks for the quick turnaround.
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi   |  5 ++++
- drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 30 +++++++++++++++++++---
- 2 files changed, 31 insertions(+), 4 deletions(-)
+And sorry, I should have noticed these issues in my previous pass.
 
-diff --git a/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi b/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-index 7028e21bdd98..a16ecf08e307 100644
---- a/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-@@ -862,6 +862,11 @@
- 		groups = "SGPM1";
- 	};
- 
-+	pinctrl_sgpm2_default: sgpm2_default {
-+		function = "SGPM2";
-+		groups = "SGPM2";
-+	};
-+
- 	pinctrl_sgps1_default: sgps1_default {
- 		function = "SGPS1";
- 		groups = "SGPS1";
-diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-index 34803a6c7664..b673a44ffa3b 100644
---- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-+++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-@@ -46,8 +46,10 @@
- #define SCU620		0x620 /* Disable GPIO Internal Pull-Down #4 */
- #define SCU634		0x634 /* Disable GPIO Internal Pull-Down #5 */
- #define SCU638		0x638 /* Disable GPIO Internal Pull-Down #6 */
-+#define SCU690		0x690 /* Multi-function Pin Control #24 */
- #define SCU694		0x694 /* Multi-function Pin Control #25 */
- #define SCU69C		0x69C /* Multi-function Pin Control #27 */
-+#define SCU6D0		0x6D0 /* Multi-function Pin Control #28 */
- #define SCUC20		0xC20 /* PCIE configuration Setting Control */
- 
- #define ASPEED_G6_NR_PINS 256
-@@ -81,13 +83,21 @@ FUNC_GROUP_DECL(I2C12, L26, K24);
- #define K26 4
- SIG_EXPR_LIST_DECL_SESG(K26, MACLINK1, MACLINK1, SIG_DESC_SET(SCU410, 4));
- SIG_EXPR_LIST_DECL_SESG(K26, SCL13, I2C13, SIG_DESC_SET(SCU4B0, 4));
--PIN_DECL_2(K26, GPIOA4, MACLINK1, SCL13);
-+/*SGPM2 is A1 Only */
-+SIG_EXPR_LIST_DECL_SESG(K26, SGPM2CLK, SGPM2, SIG_DESC_SET(SCU6D0, 4),
-+			  SIG_DESC_CLEAR(SCU410, 4), SIG_DESC_CLEAR(SCU4B0, 4),
-+			  SIG_DESC_CLEAR(SCU690, 4));
-+PIN_DECL_3(K26, GPIOA4, SGPM2CLK, MACLINK1, SCL13);
- FUNC_GROUP_DECL(MACLINK1, K26);
- 
- #define L24 5
- SIG_EXPR_LIST_DECL_SESG(L24, MACLINK2, MACLINK2, SIG_DESC_SET(SCU410, 5));
- SIG_EXPR_LIST_DECL_SESG(L24, SDA13, I2C13, SIG_DESC_SET(SCU4B0, 5));
--PIN_DECL_2(L24, GPIOA5, MACLINK2, SDA13);
-+/*SGPM2 is A1 Only */
-+SIG_EXPR_LIST_DECL_SESG(L24, SGPM2LD, SGPM2, SIG_DESC_SET(SCU6D0, 5),
-+			  SIG_DESC_CLEAR(SCU410, 5), SIG_DESC_CLEAR(SCU4B0, 5),
-+			  SIG_DESC_CLEAR(SCU690, 5));
-+PIN_DECL_3(L24, GPIOA5, SGPM2LD, MACLINK2, SDA13);
- FUNC_GROUP_DECL(MACLINK2, L24);
- 
- FUNC_GROUP_DECL(I2C13, K26, L24);
-@@ -95,16 +105,26 @@ FUNC_GROUP_DECL(I2C13, K26, L24);
- #define L23 6
- SIG_EXPR_LIST_DECL_SESG(L23, MACLINK3, MACLINK3, SIG_DESC_SET(SCU410, 6));
- SIG_EXPR_LIST_DECL_SESG(L23, SCL14, I2C14, SIG_DESC_SET(SCU4B0, 6));
--PIN_DECL_2(L23, GPIOA6, MACLINK3, SCL14);
-+/*SGPM2 is A1 Only */
-+SIG_EXPR_LIST_DECL_SESG(L23, SGPM2O, SGPM2, SIG_DESC_SET(SCU6D0, 6),
-+			  SIG_DESC_CLEAR(SCU410, 6), SIG_DESC_CLEAR(SCU4B0, 6),
-+			  SIG_DESC_CLEAR(SCU690, 6));
-+PIN_DECL_3(L23, GPIOA6, SGPM2O, MACLINK3, SCL14);
- FUNC_GROUP_DECL(MACLINK3, L23);
- 
- #define K25 7
- SIG_EXPR_LIST_DECL_SESG(K25, MACLINK4, MACLINK4, SIG_DESC_SET(SCU410, 7));
- SIG_EXPR_LIST_DECL_SESG(K25, SDA14, I2C14, SIG_DESC_SET(SCU4B0, 7));
--PIN_DECL_2(K25, GPIOA7, MACLINK4, SDA14);
-+/*SGPM2 is A1 Only */
-+SIG_EXPR_LIST_DECL_SESG(K25, SGPM2I, SGPM2, SIG_DESC_SET(SCU6D0, 7),
-+			  SIG_DESC_CLEAR(SCU410, 7), SIG_DESC_CLEAR(SCU4B0, 7),
-+			  SIG_DESC_CLEAR(SCU690, 7));
-+PIN_DECL_3(K25, GPIOA7, SGPM2I, MACLINK4, SDA14);
- FUNC_GROUP_DECL(MACLINK4, K25);
- 
- FUNC_GROUP_DECL(I2C14, L23, K25);
-+/*SGPM2 is A1 Only */
-+FUNC_GROUP_DECL(SGPM2, K26, L24, L23, K25);
- 
- #define J26 8
- SIG_EXPR_LIST_DECL_SESG(J26, SALT1, SALT1, SIG_DESC_SET(SCU410, 8));
-@@ -2060,6 +2080,7 @@ static const struct aspeed_pin_group aspeed_g6_groups[] = {
- 	ASPEED_PINCTRL_GROUP(EMMCG4),
- 	ASPEED_PINCTRL_GROUP(EMMCG8),
- 	ASPEED_PINCTRL_GROUP(SGPM1),
-+	ASPEED_PINCTRL_GROUP(SGPM2),
- 	ASPEED_PINCTRL_GROUP(SGPS1),
- 	ASPEED_PINCTRL_GROUP(SIOONCTRL),
- 	ASPEED_PINCTRL_GROUP(SIOPBI),
-@@ -2276,6 +2297,7 @@ static const struct aspeed_pin_function aspeed_g6_functions[] = {
- 	ASPEED_PINCTRL_FUNC(SD1),
- 	ASPEED_PINCTRL_FUNC(SD2),
- 	ASPEED_PINCTRL_FUNC(SGPM1),
-+	ASPEED_PINCTRL_FUNC(SGPM2),
- 	ASPEED_PINCTRL_FUNC(SGPS1),
- 	ASPEED_PINCTRL_FUNC(SIOONCTRL),
- 	ASPEED_PINCTRL_FUNC(SIOPBI),
--- 
-2.17.1
+On Mon, Oct 12, 2020 at 10:44 AM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
+>
+> MT8192 msdc is an independent sub system, we need control more bus
+> clocks for it.
+> Add support for the additional subsys clocks to allow it to be
+> configured appropriately.
+>
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+> ---
+>  drivers/mmc/host/mtk-sd.c | 74 +++++++++++++++++++++++++++++----------
+>  1 file changed, 56 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> index a704745e5882..41703e6d6b17 100644
+> --- a/drivers/mmc/host/mtk-sd.c
+> +++ b/drivers/mmc/host/mtk-sd.c
+> @@ -35,6 +35,7 @@
+>  #include "cqhci.h"
+>
+>  #define MAX_BD_NUM          1024
+> +#define MSDC_NR_CLOCKS      3
+>
+>  /*--------------------------------------------------------------------------*/
+>  /* Common Definition                                                        */
+> @@ -425,6 +426,8 @@ struct msdc_host {
+>         struct clk *h_clk;      /* msdc h_clk */
+>         struct clk *bus_clk;    /* bus clock which used to access register */
+>         struct clk *src_clk_cg; /* msdc source clock control gate */
+> +       struct clk *sys_clk_cg; /* msdc subsys clock control gate */
+> +       struct clk_bulk_data bulk_clks[MSDC_NR_CLOCKS];
+>         u32 mclk;               /* mmc subsystem clock frequency */
+>         u32 src_clk_freq;       /* source clock frequency */
+>         unsigned char timing;
+> @@ -784,6 +787,7 @@ static void msdc_set_busy_timeout(struct msdc_host *host, u64 ns, u64 clks)
+>
+>  static void msdc_gate_clock(struct msdc_host *host)
+>  {
+> +       clk_bulk_disable_unprepare(MSDC_NR_CLOCKS, host->bulk_clks);
+>         clk_disable_unprepare(host->src_clk_cg);
+>         clk_disable_unprepare(host->src_clk);
+>         clk_disable_unprepare(host->bus_clk);
+> @@ -792,10 +796,18 @@ static void msdc_gate_clock(struct msdc_host *host)
+>
+>  static void msdc_ungate_clock(struct msdc_host *host)
+>  {
+> +       int ret;
+> +
+>         clk_prepare_enable(host->h_clk);
+>         clk_prepare_enable(host->bus_clk);
+>         clk_prepare_enable(host->src_clk);
+>         clk_prepare_enable(host->src_clk_cg);
+> +       ret = clk_bulk_prepare_enable(MSDC_NR_CLOCKS, host->bulk_clks);
+> +       if (ret) {
+> +               dev_err(host->dev, "Cannot enable pclk/axi/ahb clock gates\n");
+> +               return;
+> +       }
 
+It's a bit odd that we only care about the last 3 clocks... Should we
+return early if any of the clocks can't be enabled? Changing the
+behaviour for the other clocks should be in another patch though.
+
+> +
+>         while (!(readl(host->base + MSDC_CFG) & MSDC_CFG_CKSTB))
+>                 cpu_relax();
+>  }
+> @@ -2366,6 +2378,48 @@ static void msdc_of_property_parse(struct platform_device *pdev,
+>                 host->cqhci = false;
+>  }
+>
+> +static int msdc_of_clock_parse(struct platform_device *pdev,
+> +                              struct msdc_host *host)
+> +{
+> +       int ret;
+> +
+> +       host->src_clk = devm_clk_get_optional(&pdev->dev, "source");
+
+I think you want devm_clk_get, as the previous version of the code
+does not make this clock optional.
+
+> +       if (IS_ERR(host->src_clk))
+> +               return PTR_ERR(host->src_clk);
+> +
+> +       host->h_clk = devm_clk_get_optional(&pdev->dev, "hclk");
+
+ditto, devm_clk_get
+
+> +       if (IS_ERR(host->h_clk))
+> +               return PTR_ERR(host->h_clk);
+> +
+> +       host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
+> +       if (IS_ERR(host->bus_clk))
+> +               host->bus_clk = NULL;
+
+This is consistent with previous behaviour, but this looks wrong. If
+the clock exists (!= NULL return value), but you get an error, you
+should return that error. This belongs in another patch though.
+
+> +
+> +       /*source clock control gate is optional clock*/
+> +       host->src_clk_cg = devm_clk_get_optional(&pdev->dev, "source_cg");
+> +       if (IS_ERR(host->src_clk_cg))
+> +               host->src_clk_cg = NULL;
+> +
+> +       host->sys_clk_cg = devm_clk_get_optional(&pdev->dev, "sys_cg");
+> +       if (IS_ERR(host->sys_clk_cg))
+> +               host->sys_clk_cg = NULL;
+> +
+> +       /* If present, always enable for this clock gate */
+> +       clk_prepare_enable(host->sys_clk_cg);
+> +
+> +       host->bulk_clks[0].id = "pclk_cg";
+> +       host->bulk_clks[1].id = "axi_cg";
+> +       host->bulk_clks[2].id = "ahb_cg";
+> +       ret = devm_clk_bulk_get_optional(&pdev->dev, MSDC_NR_CLOCKS,
+> +                                        host->bulk_clks);
+> +       if (ret) {
+> +               dev_err(&pdev->dev, "Cannot get pclk/axi/ahb clock gates\n");
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static int msdc_drv_probe(struct platform_device *pdev)
+>  {
+>         struct mmc_host *mmc;
+> @@ -2405,25 +2459,9 @@ static int msdc_drv_probe(struct platform_device *pdev)
+>         if (ret)
+>                 goto host_free;
+>
+> -       host->src_clk = devm_clk_get(&pdev->dev, "source");
+> -       if (IS_ERR(host->src_clk)) {
+> -               ret = PTR_ERR(host->src_clk);
+> -               goto host_free;
+> -       }
+> -
+> -       host->h_clk = devm_clk_get(&pdev->dev, "hclk");
+> -       if (IS_ERR(host->h_clk)) {
+> -               ret = PTR_ERR(host->h_clk);
+> +       ret = msdc_of_clock_parse(pdev, host);
+> +       if (ret)
+>                 goto host_free;
+> -       }
+> -
+> -       host->bus_clk = devm_clk_get(&pdev->dev, "bus_clk");
+> -       if (IS_ERR(host->bus_clk))
+> -               host->bus_clk = NULL;
+> -       /*source clock control gate is optional clock*/
+> -       host->src_clk_cg = devm_clk_get(&pdev->dev, "source_cg");
+> -       if (IS_ERR(host->src_clk_cg))
+> -               host->src_clk_cg = NULL;
+>
+>         host->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
+>                                                                 "hrst");
+> --
+> 2.18.0
