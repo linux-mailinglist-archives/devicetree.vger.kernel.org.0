@@ -2,188 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6D528C01D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 20:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF1F28C152
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 21:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727505AbgJLS5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 14:57:40 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35964 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727115AbgJLS5k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 14:57:40 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 32so3598551otm.3;
-        Mon, 12 Oct 2020 11:57:39 -0700 (PDT)
+        id S2388269AbgJLTQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 15:16:51 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:36793 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729890AbgJLTQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 15:16:51 -0400
+Received: by mail-ot1-f68.google.com with SMTP id 32so3648371otm.3;
+        Mon, 12 Oct 2020 12:16:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ddIV4HQN24CafNYgtjScHKXn58YYBc4ENbBdZztl7Po=;
-        b=hW7NKjPA9XmDVlbiDZ1SzZSr2fz9arPeXwoM6C4WyojbDOlmGpgEnA9bH+EOF2CZl6
-         1rOP+iwS24Wz6dH22xVMUXMi+06Qzwzg3LL1YXv6hf5nLc9nuXTSO2QhO/A3tG/Wl+kK
-         qVOjp2W03a1DJTWfRv58rYuj6iDXMICFyEPZigqFCVVoZpYmmQB7eb8/DB0P/eLAhBrx
-         OSDMbGqMAkoIXaTu+LEBCzkY4aq5gOSG9mGeEvG4VaNzaAHwPDTghPTHp1NpO5DLivl2
-         KKGZ7rflgmGEay4FjBYZ+6v8nafGaLbqlw8itWDqQCKj3mEwmIVIr3+gzwGp8j6N6v6F
-         FxHQ==
-X-Gm-Message-State: AOAM532LzNDepTE0LNhwz8YUoHqXm50RSD6bb5hbLOr2O8d5EwkgcMKE
-        H9RxgiFMKF48/kztPruufe/aPS5RBbFO
-X-Google-Smtp-Source: ABdhPJw4IVll4ULsuJ5LXi+mVD/6wjOwgXKHePUC517QdcqQleAXdmNv1FWoCkkbRyTDphEGrvoV1g==
-X-Received: by 2002:a05:6830:1e19:: with SMTP id s25mr18618580otr.294.1602529058807;
-        Mon, 12 Oct 2020 11:57:38 -0700 (PDT)
+        bh=i8IIzH69/HPl3rcpeUkhDnS02xzvJsTV9WuTw0oLbQ0=;
+        b=tcQL0WxQivXSk4u6CAaHKkSFJisZ337wOWfJtieF1XgyCp//ivVoGsIp0sFwXcnjkN
+         o3yR9ukK0WzGk0iJdIQF1I4tCPGivveFhZgXn8j3HMeUg7cPtKcseuoruW+bvCjK6VVM
+         r8KNAEfM9TDACge+DLQ4axEnbVclbCg7VGprXU9ggbhQf5fUXwuNLOoKinKXMkO93K9q
+         +CBunW+LERkqCwetkyEQDZjNTPTXXg6QiyOsMxZa3GMdE5oEeicOoZHZugdITmmrvbjS
+         MkzzqZTLij1ltXOEEIG9Uw2nLxlazU55pjskPzshA7aQX+NswRWVT+duKD1FyUtdqW2J
+         IU8g==
+X-Gm-Message-State: AOAM533tvKcIte4pZ56PEKIOJ2EuqSxm9UKlsUasCmILhf1fcjV03SDu
+        tKw6al5Xgr2GF3RG2pSUk0cWG2w37WdU
+X-Google-Smtp-Source: ABdhPJxQGH98B+OFyIc9KWjX/icB7NQGrGC2oNSwLvKNPqCg1BJ9Q3Q59QNi+emB/hdhWgGesb7sHw==
+X-Received: by 2002:a9d:2c05:: with SMTP id f5mr19866081otb.183.1602530209837;
+        Mon, 12 Oct 2020 12:16:49 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 81sm9006727oti.79.2020.10.12.11.57.37
+        by smtp.gmail.com with ESMTPSA id m6sm9152375otm.76.2020.10.12.12.16.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Oct 2020 11:57:38 -0700 (PDT)
-Received: (nullmailer pid 1908487 invoked by uid 1000);
-        Mon, 12 Oct 2020 18:57:37 -0000
-Date:   Mon, 12 Oct 2020 13:57:37 -0500
+        Mon, 12 Oct 2020 12:16:49 -0700 (PDT)
+Received: (nullmailer pid 1934011 invoked by uid 1000);
+        Mon, 12 Oct 2020 19:16:48 -0000
+Date:   Mon, 12 Oct 2020 14:16:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     dmaengine@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: dmaengine: Document qcom,gpi dma
- binding
-Message-ID: <20201012185737.GA1905980@bogus>
-References: <20201008123151.764238-1-vkoul@kernel.org>
- <20201008123151.764238-2-vkoul@kernel.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Jassi Brar <jaswinder.singh@linaro.org>, morten_bp@live.dk,
+        Tushar Khandelwal <Tushar.Khandelwal@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org, Sudeep.Holla@arm.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3] dt-bindings: mailbox: arm,mhuv2: Add bindings
+Message-ID: <20201012191648.GA1908871@bogus>
+References: <2084ef6975776cabe7a0509fffaf53040c13bfde.1602243670.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201008123151.764238-2-vkoul@kernel.org>
+In-Reply-To: <2084ef6975776cabe7a0509fffaf53040c13bfde.1602243670.git.viresh.kumar@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 06:01:49PM +0530, Vinod Koul wrote:
-> Add devicetree binding documentation for GPI DMA controller
-> implemented on Qualcomm SoCs
+On Fri, Oct 09, 2020 at 05:12:38PM +0530, Viresh Kumar wrote:
+> This patch adds device tree binding for ARM Message Handling Unit (MHU)
+> controller version 2.
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Based on earlier work by Morten Borup Petersen.
+> 
+> Co-developed-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
+> Signed-off-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> 
 > ---
->  .../devicetree/bindings/dma/qcom,gpi.yaml     | 86 +++++++++++++++++++
->  include/dt-bindings/dma/qcom-gpi.h            | 11 +++
->  2 files changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/qcom,gpi.yaml
->  create mode 100644 include/dt-bindings/dma/qcom-gpi.h
+> V2->V3:
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+> - compatible is changed to arm-mhuv2-tx/rx. Later version of MHUv2
+>   have an interrupt in the sender mode as well and we can't find if a
+>   mailbox is sender or receiver just based on an interrupt anymore. We
+>   needed a better way.
+> 
+> - arm-mhuv2-mode is renamed to arm,mhuv2-protocols to fit the purpose
+>   better.
+> 
+> - Minor formatting otherwise.
+> 
+> - No longer an RFC.
+> 
+> Morten: Please let me know if you want me to add your sign-off here from
+> some other email id as you no longer work with ARM.
+> ---
+>  .../bindings/mailbox/arm,mhuv2.yaml           | 194 ++++++++++++++++++
+>  1 file changed, 194 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
 > new file mode 100644
-> index 000000000000..4470c1b2fd6c
+> index 000000000000..a2b8ecd639c7
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> @@ -0,0 +1,86 @@
+> +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+> @@ -0,0 +1,194 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
+> +$id: http://devicetree.org/schemas/mailbox/arm,mhuv2.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm Technologies Inc GPI DMA controller
+> +title: ARM MHUv2 Mailbox Controller
 > +
 > +maintainers:
-> +  - Vinod Koul <vkoul@kernel.org>
+> +  - Tushar Khandelwal <tushar.khandelwal@arm.com>
+> +  - Viresh Kumar <viresh.kumar@linaro.org>
 > +
 > +description: |
-> +  QCOM GPI DMA controller provides DMA capabilities for
-> +  peripheral buses such as I2C, UART, and SPI.
+> +  The Arm Message Handling Unit (MHU) Version 2 is a mailbox controller that has
+> +  between 1 and 124 channel windows (each 32-bit wide) to provide unidirectional
+> +  communication with remote processor(s), where the number of channel windows
+> +  are implementation dependent.
 > +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
+> +  Given the unidirectional nature of the controller, an MHUv2 mailbox may only
+> +  be written to or read from. If a pair of MHU controllers is implemented
+> +  between two processing elements to provide bidirectional communication, these
+> +  must be specified as two separate mailboxes.
+> +
+> +  If the interrupts property is present in device tree node, then its treated as
+> +  a "receiver" mailbox, otherwise a "sender".
+> +
+> +  An MHU controller must be specified along with the supported transport
+> +  protocols. The transport protocols determine the method of data transmission
+> +  as well as the number of provided mailbox channels.
+> +
+> +  Following are the possible transport protocols.
+> +
+> +  - Doorbell: Each transfer is made up of single bit flag, using any one of the
+> +    bits in a channel window. A channel window can support up to 32 doorbells
+> +    and the entire window shall be used in doorbell protocol.  Optionally, data
+> +    may be transmitted through a shared memory region, wherein the MHU is used
+> +    strictly as an interrupt generation mechanism but that is out of the scope
+> +    of these bindings.
+> +
+> +  - Single-word: Each transfer is single word, using a single Channel window.
+> +
+> +  - Multi-word: Each transfer is made of two or more words, using two or more
+> +    channel windows.
+> +
+> +# We need a select here so we don't match all nodes with 'arm,primecell'
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - arm,mhuv2-tx
+> +          - arm,mhuv2-rx
+> +  required:
+> +    - compatible
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - qcom,sdm845-gpi-dma
+> +    oneOf:
+> +      - description: Sender mode
+> +        items:
+> +          - const: arm,mhuv2-tx
+> +          - const: arm,primecell
+> +
+> +      - description: Receiver-mode
+> +        items:
+> +          - const: arm,mhuv2-rx
+> +          - const: arm,primecell
 > +
 > +  reg:
 > +    maxItems: 1
 > +
 > +  interrupts:
-> +    description:
-> +      Interrupt lines for each GPI instance
-> +    maxItems: 13
-> +
-> +  "#dma-cells":
-> +    const: 3
-> +    description: >
-> +      DMA clients must use the format described in dma.txt, giving a phandle
-> +      to the DMA controller plus the following 3 integer cells:
-> +      - channel: if set to 0xffffffff, any available channel will be allocated
-> +        for the client. Otherwise, the exact channel specified will be used.
-> +      - seid: serial id of the client as defined in the SoC documentation.
-> +      - client: type of the client as defined in dt-bindings/dma/qcom-gpi.h
-> +
-> +  iommus:
+> +    description: |
+> +      The MHUv2 controller always implements an interrupt in the "receiver"
+> +      mode, while the interrupt in the "sender" mode was not available in the
+> +      version MHUv2.0, but the later versions do have it.
 > +    maxItems: 1
 > +
-> +  dma-channels:
-> +    maximum: 31
-> +
-> +  dma-channel-mask:
+> +  clocks:
 > +    maxItems: 1
+> +
+> +  clock-names:
+> +    maxItems: 1
+> +
+> +  arm,mhuv2-protocols:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description: |
+> +      The MHUv2 controller may contain up to 124 channel windows (each 32-bit
+> +      wide). The hardware and the DT bindings allows any combination of those to
+> +      be used for various transport protocols.
+> +
+> +      This property allows a platform to describe how these channel windows are
+> +      used in various transport protocols. The entries in this property shall be
+> +      present as an array of tuples, where each tuple describes details about
+> +      one of the transport protocol being implemented over some channel
+> +      window(s).
+> +
+> +      The first field of a tuple signifies the transfer protocol, 0 is reserved
+> +      for doorbell protocol, 1 is reserved for single-word protocol and 2 is
+> +      reserved for multi-word protocol. Using any other value in the first field
+> +      of a tuple makes it invalid.
+> +
+> +      The second field of a tuple signifies the number of channel windows where
+> +      the protocol would be used. For doorbell protocol this field signifies the
+> +      number of 32-bit channel windows that implement the doorbell protocol. For
+> +      single-word protocol this field signifies the number of 32-bit channel
+> +      windows that implement separate single-word protocol mailbox channels. For
+> +      multi-word protocol this field signifies the number of channel windows
+> +      used for a multi-word protocol, it should be 2 or more.
+> +
+> +      The total number of channel windows specified here shouldn't be more than
+> +      the ones implemented by the platform, though one can specify lesser number
+> +      of windows here than what the platform implements.
+> +
+> +      mhu: mailbox@2b1f0000 {
+> +          ...
+> +
+> +          arm,mhuv2-protocols = <0 2>, <1 3>, <2 5>, <2 7>;
+> +      }
+> +
+> +      The above example defines the protocols of an ARM MHUv2 mailbox
+> +      controller, where a total of 17 channel windows are used. The first two
+> +      windows are used in doorbell protocol (64 doorbells), the next 3 windows
+> +      are (separately) used in single-word protocol, and the last two mailbox
+> +      channels are used in multi-word protocol of length 5 and 7 channel
+> +      windows.
+
+I think in terms of constraints, this would be:
+
+minItems: 1
+maxItems: 124
+items:
+  items:
+    - enum: [ 0, 1, 2 ]
+    - minimum: 0
+      maximum: 124
+
+
+> +
+> +  '#mbox-cells':
+> +    description: |
+> +      It contains two fields, the first field represents the channel number,
+> +      which may be used in doorbell, single-word, or multi-word protocol, and
+> +      the second field (only relevant in doorbell protocol, should be 0
+> +      otherwise) represents the doorbell number within the 32 bit wide channel
+> +      window.
+> +
+> +      From the example given above for the arm,mhuv2-protocols, here is how a
+> +      client node can reference them.
+> +
+> +      mboxes = <&mhu 0 5>; // Mailbox channel 0, doorbell 5.
+> +      mboxes = <&mhu 1 7>; // Mailbox channel 1, doorbell 7.
+> +      mboxes = <&mhu 2 0>; // Mailbox channel 2, single-word protocol.
+> +      mboxes = <&mhu 4 0>; // Mailbox channel 4, single-word protocol.
+> +      mboxes = <&mhu 6 0>; // Mailbox channel 6, multi-word protocol with 7 windows.
+> +
+> +    const: 2
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - interrupts
-> +  - "#dma-cells"
-> +  - iommus
-> +  - dma-channels
-> +  - dma-channel-mask
-
-additionalProperties: false
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+> +  - '#mbox-cells'
+> +  - arm,mhuv2-protocols
+> +
+> +additionalProperties: false
 > +
 > +examples:
+> +  # Multiple transport protocols implemented by the mailbox controllers
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/dma/qcom-gpi.h>
-> +    gpi_dma0: dma-controller@800000 {
-> +        compatible = "qcom,gpi-dma";
-> +        #dma-cells = <3>;
-> +        reg = <0x00800000 0x60000>;
-> +        iommus = <&apps_smmu 0x0016 0x0>;
-> +        dma-channels = <13>;
-> +        dma-channel-mask = <0xfa>;
-> +        interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>;
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        mhu_tx: mailbox-tx@2b1f0000 {
+
+mailbox@...
+
+Direction is not relevant for node name.
+
+> +            #mbox-cells = <2>;
+> +            compatible = "arm,mhuv2-tx", "arm,primecell";
+> +            reg = <0 0x2b1f0000 0 0x1000>;
+> +            clocks = <&clock 0>;
+> +            clock-names = "apb_pclk";
+> +            arm,mhuv2-protocols = <1 5>, <2 2>, <2 5>, <2 7>, <0 2>;
+> +        };
+> +
+> +        mhu_rx: mailbox-rx@2b1f1000 {
+> +            #mbox-cells = <2>;
+> +            compatible = "arm,mhuv2-rx", "arm,primecell";
+> +            reg = <0 0x2b1f1000 0 0x1000>;
+> +            clocks = <&clock 0>;
+> +            clock-names = "apb_pclk";
+> +            arm,mhuv2-protocols = <1 5>, <2 7>, <0 2>;
+
+A receiver with no interrupt? Should be conditionally required?
+
+
+> +        };
+> +
+> +        mhu_client: scb@2e000000 {
+> +            compatible = "fujitsu,mb86s70-scb-1.0";
+> +            reg = <0 0x2e000000 0 0x4000>;
+> +
+> +            mboxes =
+> +                     //single-word protocol channel 0, mhu-rx
+> +                     <&mhu_rx 0 0>,
+> +                     //single-word protocol channel 4, mhu-tx
+> +                     <&mhu_tx 4 0>,
+> +                     //multi-word protocol channel 6 with 5 windows, mhu-tx
+> +                     <&mhu_tx 6 0>,
+> +                     //doorbell protocol channel 9, doorbell 27, mhu-tx
+> +                     <&mhu_tx 9 27>;
+> +        };
 > +    };
-> +
-> +...
-> diff --git a/include/dt-bindings/dma/qcom-gpi.h b/include/dt-bindings/dma/qcom-gpi.h
-> new file mode 100644
-> index 000000000000..71f79eb7614c
-> --- /dev/null
-> +++ b/include/dt-bindings/dma/qcom-gpi.h
-> @@ -0,0 +1,11 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/* Copyright (c) 2020, Linaro Ltd.  */
-> +
-> +#ifndef __DT_BINDINGS_DMA_QCOM_GPI_H__
-> +#define __DT_BINDINGS_DMA_QCOM_GPI_H__
-> +
-> +#define QCOM_GPI_SPI		1
-> +#define QCOM_GPI_UART		2
-> +#define QCOM_GPI_I2C		3
-> +
-> +#endif /* __DT_BINDINGS_DMA_QCOM_GPI_H__ */
 > -- 
-> 2.26.2
+> 2.25.0.rc1.19.g042ed3e048af
 > 
