@@ -2,107 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C3328ADCD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 07:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8A428ADD5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 07:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726512AbgJLFpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 01:45:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42432 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726072AbgJLFpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 01:45:14 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83927C0613CE;
-        Sun, 11 Oct 2020 22:45:14 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1602481513;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=UMpL/R1nLesM5wL3p0yEU/9E+n3FxnEiinXlmtJm2FI=;
-        b=mVMfimr81cirXB82mVb3JNfX1mMrb2BxY8zjaCdniW1Dibu0CvySmGyfieIz+/3DKrHemw
-        Y2ZvxX6nKHTp+LNd/wUeqHHnjfHz7pz8nHwGhYiVlMlUt9kSyQUzbWY7lXsLK4PMvk30VY
-        Ogbyy+Wjl5HS4vxhNOoccoGZCV6CGAp90RY3B4YOSq6mvfkiy8VAtdRMp2jHfUk1JPIXWi
-        ZLRWizrmpxdgZQFUMFjQvg45WhBIOR60LupOUQQCDF/G8aDxO9eeWoFCUKPvMTqz+EMjQP
-        7HpHBBbF2Igvh3FeRArU7IpFhTyXZBz2Ti/9vrz3I0Aq/J5V+AnGO1FxnYg2Fw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1602481513;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=UMpL/R1nLesM5wL3p0yEU/9E+n3FxnEiinXlmtJm2FI=;
-        b=YARPKng4jcx1hiYl0VOxyal2Iw12Q5CCDn6W8Sws9lXJvH0niNbZVfknb9Wwv/VFmABW9W
-        /Dc28l0RPuzVBTAA==
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Kurt Kanzenbach <kurt@kmk-computers.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: b53: Add YAML bindings
-In-Reply-To: <08c1a0f5-84e1-1c92-2c57-466a28d0346a@gmail.com>
-References: <20201010164627.9309-1-kurt@kmk-computers.de> <20201010164627.9309-2-kurt@kmk-computers.de> <3249c764-ec4a-26be-a52d-e9e85f3162ea@gmail.com> <877drxp3i5.fsf@kmk-computers.de> <08c1a0f5-84e1-1c92-2c57-466a28d0346a@gmail.com>
-Date:   Mon, 12 Oct 2020 07:45:10 +0200
-Message-ID: <87o8l8f15l.fsf@kurt>
+        id S1726874AbgJLFrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 01:47:31 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59630 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726072AbgJLFrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 01:47:31 -0400
+X-UUID: 50f1798ef84d47568f56d89a0de7b4a6-20201012
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Qh32CvLCP7TbrAU9q4uRS7WfIF5HB8P3kFRMssgVV8s=;
+        b=HSQ6gaQ9BT/8awzojpsomr6j0MvxxgkGnmo4bMBO0/udns3AnarywMX9wZUTFmhPjwk423W2hEk1Jls9qEBq0WBjHIwhD1UXHdl/qYS/j7sc6HWD9fmo09CE97oUvdpaeKPvC7lvRnw4RBN2eg8/7u2CvsJmra6sq4or7IFFG0M=;
+X-UUID: 50f1798ef84d47568f56d89a0de7b4a6-20201012
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2105306689; Mon, 12 Oct 2020 13:47:29 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs07n1.mediatek.inc
+ (172.21.101.16) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Oct
+ 2020 13:47:26 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Oct 2020 13:47:25 +0800
+Message-ID: <1602481646.8921.4.camel@mhfsdcap03>
+Subject: Re: [PATCH 3/5] dt-bindings: mediatek: mt8192: add audio afe
+ document
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <shane.chien@mediatek.com>,
+        <robh+dt@kernel.org>, <maowenan@huawei.com>,
+        <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>,
+        <broonie@kernel.org>, <alsa-devel@alsa-project.org>,
+        <kuninori.morimoto.gx@renesas.com>, <devicetree@vger.kernel.org>,
+        <tiwai@suse.com>, <tzungbi@google.com>
+Date:   Mon, 12 Oct 2020 13:47:26 +0800
+In-Reply-To: <20201005135503.GA86716@bogus>
+References: <1601624142-18991-1-git-send-email-jiaxin.yu@mediatek.com>
+         <1601624142-18991-4-git-send-email-jiaxin.yu@mediatek.com>
+         <20201005135503.GA86716@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+T24gTW9uLCAyMDIwLTEwLTA1IGF0IDA4OjU1IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gRnJpLCAwMiBPY3QgMjAyMCAxNTozNTo0MCArMDgwMCwgSmlheGluIFl1IHdyb3RlOg0KPiA+
+IFRoaXMgcGF0Y2ggYWRkcyBtdDgxOTIgYXVkaW8gYWZlIGRvY3VtZW50Lg0KPiA+IA0KPiA+IFNp
+Z25lZC1vZmYtYnk6IEppYXhpbiBZdSA8amlheGluLnl1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0N
+Cj4gPiAgLi4uL2JpbmRpbmdzL3NvdW5kL210ODE5Mi1hZmUtcGNtLnlhbWwgICAgICAgIHwgOTgg
+KysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgOTggaW5zZXJ0aW9ucygr
+KQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3NvdW5kL210ODE5Mi1hZmUtcGNtLnlhbWwNCj4gPiANCj4gDQo+IA0KPiBNeSBib3QgZm91
+bmQgZXJyb3JzIHJ1bm5pbmcgJ21ha2UgZHRfYmluZGluZ19jaGVjaycgb24geW91ciBwYXRjaDoN
+Cj4gDQo+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9tdDgxOTItYWZl
+LXBjbS5leGFtcGxlLmR0czoxOToxODogZmF0YWwgZXJyb3I6IGR0LWJpbmRpbmdzL2Nsb2NrL210
+ODE5Mi1jbGsuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KPiAgICAxOSB8ICAgICAgICAg
+I2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL210ODE5Mi1jbGsuaD4NCj4gICAgICAgfCAgICAg
+ICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+DQo+IGNvbXBpbGF0
+aW9uIHRlcm1pbmF0ZWQuDQo+IG1ha2VbMV06ICoqKiBbc2NyaXB0cy9NYWtlZmlsZS5saWI6MzQy
+OiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvbXQ4MTkyLWFmZS1wY20u
+ZXhhbXBsZS5kdC55YW1sXSBFcnJvciAxDQo+IG1ha2VbMV06ICoqKiBXYWl0aW5nIGZvciB1bmZp
+bmlzaGVkIGpvYnMuLi4uDQo+IG1ha2U6ICoqKiBbTWFrZWZpbGU6MTM2NjogZHRfYmluZGluZ19j
+aGVja10gRXJyb3IgMg0KPiANCj4gDQo+IFNlZSBodHRwczovL3BhdGNod29yay5vemxhYnMub3Jn
+L3BhdGNoLzEzNzU1ODINCj4gDQo+IElmIHlvdSBhbHJlYWR5IHJhbiAnbWFrZSBkdF9iaW5kaW5n
+X2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUNCj4gZXJyb3IocyksIHRoZW4gbWFrZSBz
+dXJlIGR0LXNjaGVtYSBpcyB1cCB0byBkYXRlOg0KPiANCj4gcGlwMyBpbnN0YWxsIGdpdCtodHRw
+czovL2dpdGh1Yi5jb20vZGV2aWNldHJlZS1vcmcvZHQtc2NoZW1hLmdpdEBtYXN0ZXIgLS11cGdy
+YWRlDQo+IA0KPiBQbGVhc2UgY2hlY2sgYW5kIHJlLXN1Ym1pdC4NCj4gDQpTb3JyeSwgSSBzaG91
+bGQgYWRkIGEgZGVwZW5kZW5jeSBkZXNjcmlwdGlvbi4NCiJkdC1iaW5kaW5ncy9jbG9jay9tdDgx
+OTItY2xrLmgiIGlzIGluY2x1ZGVkIGluDQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL2Nv
+dmVyLzExNzUyMjMxIHNlcmllcyBvZiBwYXRjaGVzLCBidXQgdGhleQ0KaGFzIG5vdCBiZWVuIGFj
+Y2VwdGVkLg0KDQo=
 
-On Sun Oct 11 2020, Florian Fainelli wrote:
-> On 10/11/2020 1:32 AM, Kurt Kanzenbach wrote:
->> How should we proceed? Adding the missing compatible strings and ports
->> to the DTS files? Or adjusting the include files?
->
-> The include is correct as it provides the fallback family string which=20
-> is what the driver will be looking for unless we do not provide a chip=20
-> compatible. The various DTS should be updated to contain both the chip=20
-> compatible and the fallback family (brcm,bcm5301x-srab) string, I will=20
-> update the various DTS and submit these for review later next week.
-
-OK. It's not just the compatible strings, there are other issues as
-well. You can check with `make dtbs_check DT_SCHEMA_FILES=3Dpath/to/b53.yam=
-l'.
-
->
-> Then we could imagine me taking this YAML change through the Broadcom=20
-> ARM SoC pull requests that way no new regressions are introduced.
->
-> Sounds good?
-
-Sounds like a plan. But, Rob or other device tree maintainers should
-have a look at the YAML file to spot issues in there first.
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl+D7WYACgkQeSpbgcuY
-8KYI5w//YG1MK/Zs2OSAzXBXPj4K25Z7xSLXkCq+A0IBOpMhCvwWsBTTCVqZ0SUv
-ERu7QqaYlsPW3qL81v4M12FVpAXGuGbB5j4rwunTGidSDeRoj89PCa5hVLsbLe0x
-3Bu+xzjuLxR5tsNjC3AGgh/S4vibVenxnYn9rF3d5jxyuPC0mpcyc0hg7Zv6Eup9
-/+bly+0mtzIz1YVp6UZPmtmzQ4n+rLHZShsVtqJeiROd5XPebeCBBta50PO8C8mn
-y9M7AvVLugrpgg/o4nHsQHeB0Tcnv1W6UBYlRUZlTpyXSTQEuQW9CdUMT/TId3Ky
-0Lymem0rB+1NSX1GwAl9dfjtxU40LRpj1VRmKEWMYBmIDYxsLOvZTAx8sFHWPv96
-HoVPrOgkEOrhgQE6TAcSoRyyvM6cib1SY9M80Rzld3ZHPjy1GEx8WGMYeCBwKv79
-pWYv8DIhExn8Ye2aEX6OTCvJ+LQbzggChfc7rZcmogjoa/qIPiWoDHJ11SX0aOp7
-u39JP42NkgG3Z9VZtrA8z9eG0sVV5Bq4rEY6RUrQ7PXr3tUplFzi3BFAywHW3OJ/
-/r+IroI3kjBOHcbeHWguTiBT28ku1zbwPEE05bIlCrW4htgcw/PW+7Ooc0W7pXOG
-cgOu20D6XenODEKuRi2Q7mlRXEv9LwGakmAZAmLgTvJa8HHruWI=
-=tqms
------END PGP SIGNATURE-----
---=-=-=--
