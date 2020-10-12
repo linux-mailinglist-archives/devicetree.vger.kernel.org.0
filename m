@@ -2,103 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E6F128BC85
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 17:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2699728BCA9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 17:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390720AbgJLPlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 11:41:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47000 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390230AbgJLPlM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 11:41:12 -0400
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EB9F120575;
-        Mon, 12 Oct 2020 15:41:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602517271;
-        bh=4zjbxbiZnTcWfsU0KfqSsCdB4lRjPlB+YmVxhvhPiZg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cJBagWKjX7tJj7n4ywqPFBnd86pkp4ggzcfQCBjYW2yHHYsXaA+Tm6GCio0To5+g8
-         zFlm2o6pEI/EjzJrGwT7tI/V529Xn8t8/1R3pW5+WOvnraD68gGF8K7QB/HwdSXD/S
-         ho3Y771Y3HUr+R/d5siOkIMP54u+89ki4nKdSe04=
-Date:   Mon, 12 Oct 2020 17:41:50 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/18] dt-bindings: usb: usb-hcd: Add "wireless"
- maximum-speed property value
-Message-ID: <20201012154150.GA1565332@kroah.com>
-References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
- <20201010224121.12672-3-Sergey.Semin@baikalelectronics.ru>
- <20201011144236.GA271079@kroah.com>
- <20201011175333.2v46x6kiugqnvlpk@mobilestation>
+        id S2390220AbgJLPoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 11:44:39 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:33533 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2390227AbgJLPoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 11:44:39 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id CE5E85C012C;
+        Mon, 12 Oct 2020 11:44:37 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 12 Oct 2020 11:44:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=k8WjplE7TKDeiOHJMijYVwUdqt6
+        jZCuTNquxdHTd0/w=; b=FeT6WezKJw4PSkzh7P8odROA4nYlnKkoKXiCsSBdWzp
+        cv4wt1oGVgKeUQGYoEz6KikXivl2hkRjPiDGhwTW63pYUPHJqbGolb/SqCWrmBUy
+        fCtqeo0/5tB22S/NwJfLV/gu/6bzngdP8JtJfVE6EcklKtrfn6lF6dwNt1PP58E/
+        AdwWMTlMFWWccHp0q0AXfS0o+fMCPU5gMeRddu9wP4A57SDrbC/qDpjrJ8CXSqzK
+        vpq7GtdfC6o7yXuZy5QiooRZuD0QpPPpqFHlXtaw+sZ336qQ+agYjxJCanbpJmsU
+        3Bnbin+fQ1NleU0slkW1gLDTaS2Djze0HrD89nAHEdg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=k8Wjpl
+        E7TKDeiOHJMijYVwUdqt6jZCuTNquxdHTd0/w=; b=j8RxdLpnFYkhij5+sEMQuQ
+        m5tCG6IDJGR/pR+/Jc4bK8rKmXD4W19EBCIiAku4rn6tHMrvGxb7yY5nsXQDP0tJ
+        Po/SH9EnK7kXRctQXYo+a+hOF4wij2BM6xyWGDCRuFjvU5ypkKbt4pQFX7u35ZfA
+        hC09+w9YO1EPCnWcYj4x81IhQdTrAHHMrsB5X7R/b+7QXkdgga84pGBOhk5ifqvj
+        ybvw5ARJ+1ah/Ojk8NKWJZFG2ME1cijUvhdVrtZN57ShrISxQgpwi0GCD8f/SiN3
+        m093xngHOKmYbb5QpVLix7Q/XJsN1dPi9vPl5FfDgcmAyeRDzBrxhVEijcPXl41A
+        ==
+X-ME-Sender: <xms:5XmEX7xSr8qkag6s_GK8Gl3Lu4xs6o_p2aOtwt59vKrAprR9JVw57Q>
+    <xme:5XmEXzQ-QWbAiyib33sJur1gKMma3ORiJtPGD49L6SmLFVjVcgFtlwaWhY-IfgKaH
+    XBrq7qzZwEwiLYkXWY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrheejgdelgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:5XmEX1WM-o5kyqjQ45IpceBm8DaiILxhws0UArJYyYz_ZVTwVjtRYA>
+    <xmx:5XmEX1iKAVQ28ZoA3varM_rz52do84ptpnKKOLd0fQFCWwwzWF-8xw>
+    <xmx:5XmEX9C7Vjw8gQMLWWaCow6dTiDKVY5QNTn9JjEC4IbvTHzha3DwOg>
+    <xmx:5XmEX8Ozy4bIKnBWSLu5N9o6ZJXwbcD7w-CvszqaRkWoS6hOmY3Dww>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id C05F03280059;
+        Mon, 12 Oct 2020 11:44:36 -0400 (EDT)
+Date:   Mon, 12 Oct 2020 17:44:35 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: allwinner: pinetab: Drop unnecessary
+ address/size-cells information
+Message-ID: <20201012154435.ayna7dgn5nnetinn@gilmour.lan>
+References: <20201011211514.155266-1-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cn4ygwyl7vrddtdr"
 Content-Disposition: inline
-In-Reply-To: <20201011175333.2v46x6kiugqnvlpk@mobilestation>
+In-Reply-To: <20201011211514.155266-1-peron.clem@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 08:53:33PM +0300, Serge Semin wrote:
-> On Sun, Oct 11, 2020 at 04:42:36PM +0200, Greg Kroah-Hartman wrote:
-> > On Sun, Oct 11, 2020 at 01:41:05AM +0300, Serge Semin wrote:
-> > > It appears that the "maximum-speed" property can also accept the
-> > > "wireless" value. Add it to the enumeration of the possible property
-> > > values then.
-> > > 
-> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > ---
-> > >  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > > index 815de24127db..e1a82a2b3295 100644
-> > > --- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > > @@ -28,7 +28,7 @@ properties:
-> > >       isn't passed via DT, USB controllers should default to their maximum HW
-> > >       capability.
-> > >     $ref: /schemas/types.yaml#/definitions/string
-> > > -   enum: ["low-speed", "full-speed", "high-speed", "super-speed",
-> > > +   enum: ["low-speed", "full-speed", "high-speed", "wireless", "super-speed",
-> > >            "super-speed-plus"]
-> > 
-> 
-> > Are you sure?  wireless usb has been removed from the kernel, where do
-> > you see a user of this?  If it's still in there, we need to just drop
-> > it.
-> 
-> My decision on suggesting this patch has been based purely on the speed types
-> the USB core API supports and what usb_get_maximum_speed() can return.
-> USB_SPEED_WIRELESS type is one of the possible return values. As I can see
-> aside the rest of the USB speeds the wireless speed is also defined
-> in the kernel USB subsystem. Moreover it is used in some kernel drivers.
-> (See the USB_SPEED_WIRELESS enumeration constant usage.)
-> Are you sure that the wireless speed support has been really removed?
 
-All of the drivers that implement and support this should have been
-removed.  Code in the USB core is probably not removed, but patches are
-gladly welcome.
+--cn4ygwyl7vrddtdr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please do not add new wireless support as it is not going to happen,
-because there are no wireless devices in the world.
+On Sun, Oct 11, 2020 at 11:15:14PM +0200, Cl=E9ment P=E9ron wrote:
+> make dtbs_check warm about unknown address/size-cells property in the
+> pinetab device-tree.
+>=20
+> This is because these information are not necessary.
+>=20
+> Drop them.
+>=20
+> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
 
-thanks,
+Queued as a fix for 5.10
 
-greg k-h
+Thanks!
+Maxime
+
+--cn4ygwyl7vrddtdr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX4R54wAKCRDj7w1vZxhR
+xenRAQDM1n7LRZJH9FoRcCy16GL7cI3K0XLvqFtcBRyyo1IzyAD/euDk7uh9h1Uz
+80aT/6pWuT4KxO4Je4cneMmA6VTavgs=
+=/ZI4
+-----END PGP SIGNATURE-----
+
+--cn4ygwyl7vrddtdr--
