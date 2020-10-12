@@ -2,197 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A847F28BD55
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 18:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE2128BE02
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 18:30:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390576AbgJLQL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 12:11:58 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:41446 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390543AbgJLQL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 12:11:58 -0400
-Received: by mail-ot1-f67.google.com with SMTP id q21so16275495ota.8;
-        Mon, 12 Oct 2020 09:11:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FBN0i7koeveN6LV2jTrTmRFBh0GWC3oxf9cjLV0OmvE=;
-        b=fO+OGasTjp2D2UTewOwfFHGMRNj2sXdceIu9ZAS9ftTyAuTJsbCVbkOck78tpQlMhX
-         Zsbf7hqwjknqMjGXSwqWgDHtDMeLQu4iTnfuol48wPqWvsff1IboQKwkFWYHTLx3V5VZ
-         LYWuojqO4pWvsabbaIaer/3IOwFFdgqM+7cneK169F903aOXAbxxuovWGiPFRkgflziX
-         aabbT4pUBab9QFZ5meAmflqoNzEwm+QIzs1/pEhiQkdbJyWULUBWZ57Sn4Biyrco1Se4
-         DOv2LEzC5jznV1lnlUctv8UalNAcjsjcuNFN6LzFvZjGmzIewXRSFUxTn+tTTscCacrE
-         XTRA==
-X-Gm-Message-State: AOAM530tNiAGiEU6MqxIbW9jAVIvqvIYnhCUmbSgADz+bRsBiL9VPg0x
-        GWGcRUAanzi+WqCHsIi7Fg==
-X-Google-Smtp-Source: ABdhPJxd+irepjSAW9fP8Aa4hfahEirk3nmWjcRyyszeGcM8hryXomN6TH6qhmZCrZNvsRa4b9k9aw==
-X-Received: by 2002:a9d:1406:: with SMTP id h6mr18026315oth.59.1602519117323;
-        Mon, 12 Oct 2020 09:11:57 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l184sm6711195ooc.10.2020.10.12.09.11.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Oct 2020 09:11:56 -0700 (PDT)
-Received: (nullmailer pid 1636788 invoked by uid 1000);
-        Mon, 12 Oct 2020 16:11:56 -0000
-Date:   Mon, 12 Oct 2020 11:11:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: gpio: Add a binding header for the
- MSC313 GPIO driver
-Message-ID: <20201012161156.GA1635284@bogus>
-References: <20201011024831.3868571-1-daniel@0x0f.com>
- <20201011024831.3868571-3-daniel@0x0f.com>
+        id S2390616AbgJLQaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 12:30:35 -0400
+Received: from foss.arm.com ([217.140.110.172]:56626 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390612AbgJLQaf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 12:30:35 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A20EE31B;
+        Mon, 12 Oct 2020 09:30:34 -0700 (PDT)
+Received: from localhost (unknown [10.1.199.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 442E73F719;
+        Mon, 12 Oct 2020 09:30:34 -0700 (PDT)
+Date:   Mon, 12 Oct 2020 17:30:32 +0100
+From:   Ionela Voinescu <ionela.voinescu@arm.com>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, sudeep.holla@arm.com,
+        chris.redpath@arm.com, morten.rasmussen@arm.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+Message-ID: <20201012163032.GA30838@arm.com>
+References: <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+ <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
+ <20201008150317.GB20268@arm.com>
+ <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
+ <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
+ <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
+ <20201009140141.GA4048593@bogus>
+ <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
+ <20201012105945.GA9219@arm.com>
+ <500510b9-58f3-90b3-8c95-0ac481d468b5@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201011024831.3868571-3-daniel@0x0f.com>
+In-Reply-To: <500510b9-58f3-90b3-8c95-0ac481d468b5@arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 11:48:28AM +0900, Daniel Palmer wrote:
-> The driver uses the pin names to find the right interrupt for
-> a pin from the device tree so this header reduces the need to
-> have multiple copies of the same string all over the place.
-> 
-> This header also adds defines for the gpio number of each pin
-> from the driver view. The gpio block seems to support 128 lines
-> but what line is mapped to a physical pin depends on the chip.
-> The driver itself uses the index of a pin's offset in an array
-> of the possible offsets for a chip as the gpio number.
-> 
-> The defines remove the need to work out that index to consume
-> a pin in the device tree.
-> 
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> ---
->  MAINTAINERS                            |  1 +
->  include/dt-bindings/gpio/msc313-gpio.h | 95 ++++++++++++++++++++++++++
->  2 files changed, 96 insertions(+)
->  create mode 100644 include/dt-bindings/gpio/msc313-gpio.h
+Hi Lukasz,
 
-This should be part of the previous patch to avoid the error.
-
+On Monday 12 Oct 2020 at 14:48:20 (+0100), Lukasz Luba wrote:
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4594b70f2e3a..ec5b49b9955f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2158,6 +2158,7 @@ F:	Documentation/devicetree/bindings/arm/mstar/*
->  F:	Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
->  F:	arch/arm/boot/dts/mstar-*
->  F:	arch/arm/mach-mstar/
-> +F:	include/dt-bindings/gpio/msc313-gpio.h
->  
->  ARM/NEC MOBILEPRO 900/c MACHINE SUPPORT
->  M:	Michael Petchkovsky <mkpetch@internode.on.net>
-> diff --git a/include/dt-bindings/gpio/msc313-gpio.h b/include/dt-bindings/gpio/msc313-gpio.h
-> new file mode 100644
-> index 000000000000..655fe03de519
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/msc313-gpio.h
-> @@ -0,0 +1,95 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-Don't use DT on non-GPL systems?
-
-> +/*
-> + * GPIO definitions for MStar/SigmaStar MSC313 and later SoCs
-> + *
-> + * Copyright (C) 2020 Daniel Palmer <daniel@thingy.jp>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_MSC313_GPIO_H
-> +#define _DT_BINDINGS_MSC313_GPIO_H
-> +
-> +/* pin names for fuart, same for all SoCs so far */
-> +#define MSC313_PINNAME_FUART_RX		"fuart_rx"
-> +#define MSC313_PINNAME_FUART_TX		"fuart_tx"
-> +#define MSC313_PINNAME_FUART_CTS	"fuart_cts"
-> +#define MSC313_PINNAME_FUART_RTS	"fuart_rts"
-> +
-> +/* pin names for sr, mercury5 is different */
-> +#define MSC313_PINNAME_SR_IO2		"sr_io2"
-> +#define MSC313_PINNAME_SR_IO3		"sr_io3"
-> +#define MSC313_PINNAME_SR_IO4		"sr_io4"
-> +#define MSC313_PINNAME_SR_IO5		"sr_io5"
-> +#define MSC313_PINNAME_SR_IO6		"sr_io6"
-> +#define MSC313_PINNAME_SR_IO7		"sr_io7"
-> +#define MSC313_PINNAME_SR_IO8		"sr_io8"
-> +#define MSC313_PINNAME_SR_IO9		"sr_io9"
-> +#define MSC313_PINNAME_SR_IO10		"sr_io10"
-> +#define MSC313_PINNAME_SR_IO11		"sr_io11"
-> +#define MSC313_PINNAME_SR_IO12		"sr_io12"
-> +#define MSC313_PINNAME_SR_IO13		"sr_io13"
-> +#define MSC313_PINNAME_SR_IO14		"sr_io14"
-> +#define MSC313_PINNAME_SR_IO15		"sr_io15"
-> +#define MSC313_PINNAME_SR_IO16		"sr_io16"
-> +#define MSC313_PINNAME_SR_IO17		"sr_io17"
-> +
-> +/* pin names for sd, same for all SoCs so far */
-> +#define MSC313_PINNAME_SD_CLK		"sd_clk"
-> +#define MSC313_PINNAME_SD_CMD		"sd_cmd"
-> +#define MSC313_PINNAME_SD_D0		"sd_d0"
-> +#define MSC313_PINNAME_SD_D1		"sd_d1"
-> +#define MSC313_PINNAME_SD_D2		"sd_d2"
-> +#define MSC313_PINNAME_SD_D3		"sd_d3"
-> +
-> +/* pin names for i2c1, same for all SoCs so for */
-> +#define MSC313_PINNAME_I2C1_SCL		"i2c1_scl"
-> +#define MSC313_PINNAME_I2C1_SCA		"i2c1_sda"
-> +
-> +/* pin names for spi0, same for all SoCs so far */
-> +#define MSC313_PINNAME_SPI0_CZ		"spi0_cz"
-> +#define MSC313_PINNAME_SPI0_CK		"spi0_ck"
-> +#define MSC313_PINNAME_SPI0_DI		"spi0_di"
-> +#define MSC313_PINNAME_SPI0_DO		"spi0_do"
-> +
-> +#define MSC313_GPIO_FUART	0
-> +#define MSC313_GPIO_FUART_RX	(MSC313_GPIO_FUART + 0)
-> +#define MSC313_GPIO_FUART_TX	(MSC313_GPIO_FUART + 1)
-> +#define MSC313_GPIO_FUART_CTS	(MSC313_GPIO_FUART + 2)
-> +#define MSC313_GPIO_FUART_RTS	(MSC313_GPIO_FUART + 3)
-> +
-> +#define MSC313_GPIO_SR		(MSC313_GPIO_FUART_RTS + 1)
-> +#define MSC313_GPIO_SR_IO2	(MSC313_GPIO_SR + 0)
-> +#define MSC313_GPIO_SR_IO3	(MSC313_GPIO_SR + 1)
-> +#define MSC313_GPIO_SR_IO4	(MSC313_GPIO_SR + 2)
-> +#define MSC313_GPIO_SR_IO5	(MSC313_GPIO_SR + 3)
-> +#define MSC313_GPIO_SR_IO6	(MSC313_GPIO_SR + 4)
-> +#define MSC313_GPIO_SR_IO7	(MSC313_GPIO_SR + 5)
-> +#define MSC313_GPIO_SR_IO8	(MSC313_GPIO_SR + 6)
-> +#define MSC313_GPIO_SR_IO9	(MSC313_GPIO_SR + 7)
-> +#define MSC313_GPIO_SR_IO10	(MSC313_GPIO_SR + 8)
-> +#define MSC313_GPIO_SR_IO11	(MSC313_GPIO_SR + 9)
-> +#define MSC313_GPIO_SR_IO12	(MSC313_GPIO_SR + 10)
-> +#define MSC313_GPIO_SR_IO13	(MSC313_GPIO_SR + 11)
-> +#define MSC313_GPIO_SR_IO14	(MSC313_GPIO_SR + 12)
-> +#define MSC313_GPIO_SR_IO15	(MSC313_GPIO_SR + 13)
-> +#define MSC313_GPIO_SR_IO16	(MSC313_GPIO_SR + 14)
-> +#define MSC313_GPIO_SR_IO17	(MSC313_GPIO_SR + 15)
-> +
-> +#define MSC313_GPIO_SD		(MSC313_GPIO_SR_IO17 + 1)
-> +#define MSC313_GPIO_SD_CLK	(MSC313_GPIO_SD + 0)
-> +#define MSC313_GPIO_SD_CMD	(MSC313_GPIO_SD + 1)
-> +#define MSC313_GPIO_SD_D0	(MSC313_GPIO_SD + 2)
-> +#define MSC313_GPIO_SD_D1	(MSC313_GPIO_SD + 3)
-> +#define MSC313_GPIO_SD_D2	(MSC313_GPIO_SD + 4)
-> +#define MSC313_GPIO_SD_D3	(MSC313_GPIO_SD + 5)
-> +
-> +#define MSC313_GPIO_I2C1	(MSC313_GPIO_SD_D3 + 1)
-> +#define MSC313_GPIO_I2C1_SCL	(MSC313_GPIO_I2C1 + 0)
-> +#define MSC313_GPIO_I2C1_SDA	(MSC313_GPIO_I2C1 + 1)
-> +
-> +#define MSC313_GPIO_SPI0	(MSC313_GPIO_I2C1_SDA + 1)
-> +#define MSC313_GPIO_SPI0_CZ	(MSC313_GPIO_SPI0 + 0)
-> +#define MSC313_GPIO_SPI0_CK	(MSC313_GPIO_SPI0 + 1)
-> +#define MSC313_GPIO_SPI0_DI	(MSC313_GPIO_SPI0 + 2)
-> +#define MSC313_GPIO_SPI0_DO	(MSC313_GPIO_SPI0 + 3)
-> +
-> +#endif /* _DT_BINDINGS_MSC313_GPIO_H */
-> -- 
-> 2.27.0
 > 
+> On 10/12/20 11:59 AM, Ionela Voinescu wrote:
+> > On Monday 12 Oct 2020 at 11:22:57 (+0100), Lukasz Luba wrote:
+> > [..]
+> > > > > I thought about it and looked for other platforms' DT to see if can reuse
+> > > > > existing opp information. Unfortunately I don't think it is optimal. The reason
+> > > > > being that, because cpus have the same opp table it does not necessarily mean
+> > > > > that they share a clock wire. It just tells us that they have the same
+> > > > > capabilities (literally just tells us they have the same V/f op points).
+> > > > > Unless I am missing something?
+> > > > > 
+> > > > > When comparing with ACPI/_PSD it becomes more intuitive that there is no
+> > > > > equivalent way to reveal "perf-dependencies" in DT.
+> > > > 
+> > > > You should be able to by examining the clock tree. But perhaps SCMI
+> > > > abstracts all that and just presents virtual clocks without parent
+> > > > clocks available to determine what clocks are shared? Fix SCMI if that's
+> > > > the case.
+> > > 
+> > > True, the SCMI clock does not support discovery of clock tree:
+> > > (from 4.6.1 Clock management protocol background)
+> > > 'The protocol does not cover discovery of the clock tree, which must be
+> > > described through firmware tables instead.' [1]
+> > > 
+> > > In this situation, would it make sense, instead of this binding from
+> > > patch 1/2, create a binding for internal firmware/scmi node?
+> > > 
+> > > Something like:
+> > > 
+> > > firmware {
+> > > 	scmi {
+> > > 	...		
+> > > 		scmi-perf-dep {
+> > > 			compatible = "arm,scmi-perf-dependencies";
+> > > 			cpu-perf-dep0 {
+> > > 				cpu-perf-affinity = <&CPU0>, <&CPU1>;
+> > > 			};
+> > > 			cpu-perf-dep1 {
+> > > 				cpu-perf-affinity = <&CPU3>, <&CPU4>;
+> > > 			};
+> > > 			cpu-perf-dep2 {
+> > > 				cpu-perf-affinity = <&CPU7>;
+> > > 			};
+> > > 		};
+> > > 	};
+> > > };
+> > > 
+> > > The code which is going to parse the binding would be inside the
+> > > scmi perf protocol code and used via API by scmi-cpufreq.c.
+> > > 
+> > 
+> > While SCMI cpufreq would be able to benefit from the functionality that
+> > Nicola is trying to introduce, it's not the only driver, and more
+> > importantly, it's not *going* to be the only driver benefiting from
+> > this.
+> > 
+> > Currently there is also qcom-cpufreq-hw.c and the future
+> > mediatek-cpufreq-hw.c that is currently under review [1]. They both do
+> > their frequency setting by interacting with HW/FW, and could either take
+> > or update their OPP tables from there. Therefore, if the platform would
+> > require it, they could also expose different controls for frequency
+> > setting and could benefit from additional information about clock
+> > domains (either through opp-shared or the new entries in Nicola's patch),
+> > without driver changes.
+> > 
+> > Another point to be made is that I strongly believe this is going to be
+> > the norm in the future. Directly setting PLLs and regulator voltages
+> > has been proven unsafe and unsecure.
+> > 
+> > Therefore, I see this as support for a generic cpufreq feature (a
+> > hardware coordination type), rather than support for a specific driver.
+> > 
+> > [1] https://lkml.org/lkml/2020/9/10/11
+> > 
+> > > 
+> > > Now regarding the 'dependent_cpus' mask.
+> > > 
+> > > We could avoid adding a new field 'dependent_cpus' in policy
+> > > struct, but I am not sure of one bit - Frequency Invariant Engine,
+> > > (which is also not fixed by just adding a new cpumask).
+> >    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> >    Let's take it step by step..
+> > > 
+> > > We have 3 subsystems to fix:
+> > > 1. EAS - EM has API function which takes custom cpumask, so no issue,
+> >             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> > 	   keep in mind that EAS it's using the max aggregation method
+> > 	   that schedutil is using. So if we are to describe the
+> > 	   functionality correctly, it needs both a cpumask describing
+> > 	   the frequency domains and an aggregation method.
+> 
+> EAS does not use schedutil max agregation, it calculates max_util
+> internally.
+> 
+
+But isn't it the same logic mechanism that schedutil uses?
+
+> The compute_energy() loops through the CPUs in the domain and
+> takes the utilization from them via schedutil_cpu_util(cpu_rq(cpu)).
+> It figures out max_util and then em_cpu_energy() maps it to next
+  ^^^^^^^^^^^^^^^^^^^^^^^
+
+Same for schedutil: sugov_next_freq_shared() calls sugov_get_util()
+which then calls schedutil_cpu_util().
+
+If your point is that one is applying the max function in compute_energy()
+while the other is doing it in sugov_next_freq_shared(), I'll re-enforce
+my argument that they are logically doing the same *type* of
+aggregation. EAS is relying on it and schedutil was purposely modified
+for this purpose:
+
+938e5e4b0d15  sched/cpufreq: Prepare schedutil for Energy Aware
+Scheduling
+
+> frequency for the cluster. It just needs proper utilization from
+> CPUs, which is taken from run-queues, which is a sum of utilization
+> of tasks being there. This leads to problem how we account utilization
+> of a task. This is the place where the FIE is involved. EAS assumes the
+> utilization is calculated properly.
+
+This is separate. Above we were discussing the aggregation method and
+what CPUs this is applied on. I'll continue on FIE below.
+
+> > 
+> > >    fix would be to use it via the scmi-cpufreq.c
+> > 
+> > > 2. IPA (for calculating the power of a cluster, not whole thermal needs
+> > >    this knowledge about 'dependent cpus') - this can be fixed internally
+> > 
+> > > 3. Frequency Invariant Engine (FIE) - currently it relies on schedutil
+> > >    filtering and providing max freq of all cpus in the cluster into the
+> > >    FIE; this info is then populated to all 'related_cpus' which will
+> > >    have this freq (we know, because there is no other freq requests);
+> > >    Issues:
+> > > 3.1. Schedutil is not going to check all cpus in the cluster to take
+> > >    max freq, which is then passed into the cpufreq driver and FIE
+> > > 3.2. FIE would have to (or maybe we would drop it) have a logic similar
+> > >    to what schedutil does (max freq search and set, then filter next
+> > >    freq requests from other cpus in the next period e.g. 10ms)
+> > > 3.3. Schedutil is going to invoke freq change for each cpu independently
+> > >    and the current code just calls arch_set_freq_scale() - adding just
+> > >    'dependent_cpus' won't help
+> > 
+> > I don't believe these are issues. As we need changes for EAS and IPA, we'd
+> > need changes for FIE. We don't need more than the cpumask that shows
+> > frequency domains as we already already have the aggregation method that
+> > schedutil uses to propagate the max frequency in a domain across CPUs.
+> 
+> Schedutil is going to work in !policy_is_shared() mode, which leads to
+> sugov_update_single() being the 'main' function. We won't have
+> schedutil goodness which is handling related_cpus use case.
+> 
+
+Agreed! I did not mean that I'd rely on schedutil to do the aggregation
+and hand me the answer. But my suggestion is to use the same logical
+method - maximum, for cases where counters are not present.
+
+> Then in software FIE would you just change the call from:
+> 	arch_set_freq_scale(policy->related_cpus,...)
+> to:
+> 	arch_set_freq_scale(policy->dependent_cpus,...)
+> ?
+> 
+> This code would be called from any CPU (without filtering) and it
+> would loop through cpumask updating freq_scale, which is wrong IMO.
+> You need some 'logic', which is not currently in there.
+> 
+
+Definitely! But that's because the FIE changes above are incomplete.
+That's why whomever does these changes should go beyond:
+s/related_cpus/dependent_cpus.
+
+We don't need more information from DT additional to this dependent_cpus
+maks, but it does not mean the end solution for making use of it will be
+a simple "s/related_cpus/dependent_cpus".
+
+> Leaving the 'related_cpus' would also be wrong (because real CPU
+> frequency is different, so we would account task utilization wrongly).
+> 
+> > 
+> > This would be the default method if cycle counters are not present. It
+> > might not reflect the frequency the cores actually get from HW, but for
+> > that cycle counters should be used.
+> 
+> IMHO the configurations with per-cpu freq requests while there are CPUs
+> 'dependent' and there are no HW counters to use for tasks
+> utilization accounting - should be blocked. Then we don't need
+> 'dependent_cpus' in software FIE. Then one less from your requirements
+> list for new cpumask.
+> 
+
+I'd go for a default.. better have something than removing it
+altogether, but we'll see.
+
+I'll stop this here as I think we're distracting a bit from the main
+purpose of this RFC. I don't believe FIE brings an additional
+requirement. "Software" FIE will need fixing/optimizing/bypassing
+(we'll agree later on the implementation) but it does not need anything
+else from DT/ACPI.
+
+Thank you,
+Ionela.
+
+> > 
+> > > 3.4 What would be the real frequency of these cpus and what would be
+> > >    set to FIE
+> > > 3.5 FIE is going to filter to soon requests from other dependent cpus?
+> > > 
+> > > IMHO the FIE needs more bits than just a new cpumask.
+> > > Maybe we should consider to move FIE arch_set_freq_scale() call into the
+> > > cpufreq driver, which will know better how to aggregate/filter requests
+> > > and then call FIE update?
+> > 
+> > I'm quite strongly against this :). As described before, this is not a
+> > feature that a single driver needs, and even if it was, the aggregation
+> > method for FIE is not a driver policy.
+> 
+> Software version of FIE has issues in this case, schedutil or EAS won't
+> help (different code path).
+> 
+> Regards,
+> Lukasz
