@@ -2,295 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3B3A28B22A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 12:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C045B28B281
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 12:47:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729529AbgJLKXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 06:23:04 -0400
-Received: from foss.arm.com ([217.140.110.172]:35602 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729523AbgJLKXE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 06:23:04 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 03B1031B;
-        Mon, 12 Oct 2020 03:23:03 -0700 (PDT)
-Received: from [10.57.55.84] (unknown [10.57.55.84])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B0CC13F719;
-        Mon, 12 Oct 2020 03:22:59 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-To:     Rob Herring <robh@kernel.org>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Ionela Voinescu <ionela.voinescu@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, sudeep.holla@arm.com,
-        chris.redpath@arm.com, morten.rasmussen@arm.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
- <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
- <20201009140141.GA4048593@bogus>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
-Date:   Mon, 12 Oct 2020 11:22:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2387705AbgJLKrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 06:47:11 -0400
+Received: from mail-dm6nam11on2077.outbound.protection.outlook.com ([40.107.223.77]:59904
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387523AbgJLKrL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 06:47:11 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y3nrzb6++jfkcUcUWbE+FxcCYEvfPr0enUR6jrsstZEUTsXegvIBW4J0V7g7oQUh3SBXRe0iXvQ+r6DxLxPWgUf4juOhkgFBsBqP7LFr4zv9aUdsDco0X2UlEDcUgQ3vvCjp5EMrZ8ZSlSTzdCWiX/1NXayJYyyKc0dvnhb1ANCu6wdHr/GShRFl7JTG3U9wj3gymrzAD+y/liF2RO3r3Il0DbUvw9ZeUgTwTMomb8MjKT5+KEgR/vdBmpFfkGjzV6O+BxFX1ANPpgGwLDx+QWO9iV8ybE6pEnxXo1AFqOxxDsZq5e75E9GLIFnAXabYwBlLq0q5b9k6rf8zSyHd+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o4zCMGB6NjknxOFTV+654uaoWuULpQ1y5BPpRFi4+jk=;
+ b=PMBSvMEL9kpgRRTQULLA7fHyai6xqbxoOhHx4gWtgHu9Fs4Aoz8fU6YsvTZI64qlVWle+pOc0wlQeijKOHQZrBmHDWE3OIepghNpnStqbbwclBHCEF9fNXTOIng1YDJRRGI782AlqKqSnMkNKnV482VtftB/qGDVZwbLSAc4Ph/N2VVRKG4rJS4tVu+eiHPyIirf9eqv4H/y4w90CwXbDBZU0CQZDqIAD+h99U5dNv6doO3WwaE4D6ymf+oj8fWEOykv3UfpYOTxV14Ob03TB4eJw2OOw1UEqWns04XioFS33MbCOtAI+pBd5NYGqzyHYVevAuAejNmy2fOk5qSSFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
+ dkim=pass header.d=silabs.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o4zCMGB6NjknxOFTV+654uaoWuULpQ1y5BPpRFi4+jk=;
+ b=Ag3MOLuNVQHykS4Sf292TUf67AuD4jlJ8Zs6yISTgAGiA612ghcc953tpyEeHzi0beG8i/4St1BWXq4Bjpp7qCkI1BL0sELPn8i0oqdRExsA5Fv1j3guUSpbMvWuylAryll9flj8/9SacdbksBgwjAldH5IMYACnNpT2Rf86YyA=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=silabs.com;
+Received: from SN6PR11MB2718.namprd11.prod.outlook.com (2603:10b6:805:63::18)
+ by SA0PR11MB4734.namprd11.prod.outlook.com (2603:10b6:806:99::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23; Mon, 12 Oct
+ 2020 10:47:06 +0000
+Received: from SN6PR11MB2718.namprd11.prod.outlook.com
+ ([fe80::4f5:fbe5:44a7:cb8a]) by SN6PR11MB2718.namprd11.prod.outlook.com
+ ([fe80::4f5:fbe5:44a7:cb8a%5]) with mapi id 15.20.3455.029; Mon, 12 Oct 2020
+ 10:47:06 +0000
+From:   Jerome Pouiller <Jerome.Pouiller@silabs.com>
+To:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= 
+        <jerome.pouiller@silabs.com>
+Subject: [PATCH 00/23] wfx: get out from the staging area
+Date:   Mon, 12 Oct 2020 12:46:25 +0200
+Message-Id: <20201012104648.985256-1-Jerome.Pouiller@silabs.com>
+X-Mailer: git-send-email 2.28.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+X-Originating-IP: [82.67.86.106]
+X-ClientProxiedBy: PR3P189CA0005.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:102:52::10) To SN6PR11MB2718.namprd11.prod.outlook.com
+ (2603:10b6:805:63::18)
 MIME-Version: 1.0
-In-Reply-To: <20201009140141.GA4048593@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pc-42.home (82.67.86.106) by PR3P189CA0005.EURP189.PROD.OUTLOOK.COM (2603:10a6:102:52::10) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21 via Frontend Transport; Mon, 12 Oct 2020 10:47:04 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8c72a613-8ccf-4b06-7b1f-08d86e9c293e
+X-MS-TrafficTypeDiagnostic: SA0PR11MB4734:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SA0PR11MB4734955EAE24EA9E4562159993070@SA0PR11MB4734.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1186;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qoyjgVvsNFFhfv4ye4WAevPtf5kO/6FJGeTFXe4O+MplcsCTMvzPv64CnDVIIVhq7ynX20buNeNJ1/+bg8YMVgT1LDloFJEphTRRspjfkQMNi4WIZlQBTDliOHmwl4OtMQGYiSPabZaxjOaHa6A5e7aEOHDw9qa+VpuoJnRefe0qyHojzMZU3ciOEFE7/b77V0cTK00FYw/dMjsyoHquclYcljuln5j1m8FwtPPi5bTPxvQFksJ4OmxprmRrULAsJUxd0Jf71DnhPcivwd+YEIoxCzXD91ZFf56CSsyzuBEDZQxcco4M/Y2Rl1Boas9t3b7V7HI1gT0h0Png3F8RvqeVWJ6aMmg2wkMn8O4g+8sDAmixJGLltmQ8ZO7JQ1tGjV2kKUDWZi+UnmWX0inkMw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2718.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(396003)(366004)(136003)(346002)(376002)(66556008)(66476007)(6512007)(26005)(36756003)(66946007)(16526019)(186003)(316002)(4326008)(2616005)(956004)(1076003)(5660300002)(107886003)(6486002)(54906003)(86362001)(966005)(8676002)(83380400001)(83080400001)(8936002)(66574015)(52116002)(2906002)(6506007)(8886007)(6666004)(478600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: vqis7p7qJGeHpKfhFNjSYxr9NeT7NzCdgL066motryGPUowyXXKMkdcHYmkRv29wd0lF2u+t+XXOl5bd16yoBd2m+vfwZflTzh7dz0zc1sos4gOuo/7zNPzkGBg+9wH0Ba7HDbPHrUZ/sH15ssyrYtjL81CZXi7ZGssJqhjy7obWyO2uGz1q8NOpXuXwupTZG3NhFOsm6XVTADZ/dC40KcLLuChzwsxED+JU63aD/t4nexQDfNK4duczLxRP7UeZQzAe5XJu4OrZInRpMS+wZ50FfCmzfDXMo0FQDdx2+zsTyTLH8qqoAMex3uhFU4rvIyECbsWOepezgA0zUn+HQ0C0yntzAPO2SCG9n1ejCcYcQB1mLCjWn0u+0gYoSEgSUzFbUMtiO803dcZpg/gL1M+oIj8YZTccrLYwuZgECyGAluqwr9DpBEwwzZBAGvwjulhQ9AKEJf/8LSR7UXwyA7yLIIRTzDgMWL7SPXsDIvQyFpDpKXAOfIHXdW9byEEfOEpTfiBtTHBFJ8IHZ1/OADpb48J0wHEtr7QsuO4rAKBD+jqRlKhY118L661DtPYWzIG9TCb9JjlGqrCn4kHRsAwRU4P7c6wAlm49Ag6ZDwGNwwbItlC7pUY65QkQeVpGrk1+VEzalOYAoU1OAbeJwA==
+X-OriginatorOrg: silabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c72a613-8ccf-4b06-7b1f-08d86e9c293e
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2718.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2020 10:47:06.0888
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ztngJeN3ZOubXXcVEZErzueudG2IG5fCvF+jUKKPt7RjoEjRUKxhwyHWiDTw8ki/iZSTdeW74rq5XbQhpjyoFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4734
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 10/9/20 3:01 PM, Rob Herring wrote:
-> On Fri, Oct 09, 2020 at 12:10:03PM +0100, Nicola Mazzucato wrote:
->> Hi Viresh, I'm glad it helped.
->>
->> Please find below my reply.
->>
->> On 10/9/20 6:39 AM, Viresh Kumar wrote:
->>> On 08-10-20, 17:00, Nicola Mazzucato wrote:
->>>> On 10/8/20 4:03 PM, Ionela Voinescu wrote:
->>>>> Hi Viresh,
->>>>>
->>>>> On Thursday 08 Oct 2020 at 16:32:41 (+0530), Viresh Kumar wrote:
->>>>>> On 07-10-20, 13:58, Nicola Mazzucato wrote:
->>>>>>> Hi Viresh,
->>>>>>>
->>>>>>> performance controls is what is exposed by the firmware through a protocol that
->>>>>>> is not capable of describing hardware (say SCMI). For example, the firmware can
->>>>>>> tell that the platform has N controls, but it can't say to which hardware they
->>>>>>> are "wired" to. This is done in dt, where, for example, we map these controls
->>>>>>> to cpus, gpus, etc.
->>>>>>>
->>>>>>> Let's focus on cpus.
->>>>>>>
->>>>>>> Normally we would have N of performance controls (what comes from f/w)
->>>>>>> that that correspond to hardware clock/dvfs domains.
->>>>>>>
->>>>>>> However, some firmware implementations might benefit from having finer
->>>>>>> grained information about the performance requirements (e.g.
->>>>>>> per-CPU) and therefore choose to present M performance controls to the
->>>>>>> OS. DT would be adjusted accordingly to "wire" these controls to cpus
->>>>>>> or set of cpus.
->>>>>>> In this scenario, the f/w will make aggregation decisions based on the
->>>>>>> requests it receives on these M controls.
->>>>>>>
->>>>>>> Here we would have M cpufreq policies which do not necessarily reflect the
->>>>>>> underlying clock domains, thus some s/w components will underperform
->>>>>>> (EAS and thermal, for example).
->>>>>>>
->>>>>>> A real example would be a platform in which the firmware describes the system
->>>>>>> having M per-cpu control, and the cpufreq subsystem will have M policies while
->>>>>>> in fact these cpus are "performance-dependent" each other (e.g. are in the same
->>>>>>> clock domain).
->>>>>>
->>>>>> If the CPUs are in the same clock domain, they must be part of the
->>>>>> same cpufreq policy.
->>>>>
->>>>> But cpufreq does not currently support HW_ALL (I'm using the ACPI
->>>>> coordination type to describe the generic scenario of using hardware
->>>>> aggregation and coordination when establishing the clock rate of CPUs).
->>>>>
->>>>> Adding support for HW_ALL* will involve either bypassing some
->>>>> assumptions around cpufreq policies or making core cpufreq changes.
->>>>>
->>>>> In the way I see it, support for HW_ALL involves either:
->>>>>
->>>>>   - (a) Creating per-cpu policies in order to allow each of the CPUs to
->>>>>     send their own frequency request to the hardware which will do
->>>>>     aggregation and clock rate decision at the level of the clock
->>>>>     domain. The PSD domains (ACPI) and the new DT binding will tell
->>>>>     which CPUs are actually in the same clock domain for whomever is
->>>>>     interested, despite those CPUs not being in the same policy.
->>>>>     This requires the extra mask that Nicola introduced.
->>>>>
->>>>>   - (b) Making deep changes to cpufreq (core/governors/drivers) to allow:
->>>>>     - Governors to stop aggregating (usually max) the information
->>>>>       for each of the CPUs in the policy and convey to the core
->>>>>       information for each CPU.
->>>>>     - Cpufreq core to be able to receive and pass this information
->>>>>       down to the drivers.
->>>>>     - Drivers to be able to have some per cpu structures to hold
->>>>>       frequency control (let's say SCP fast channel addresses) for
->>>>>       each of the CPUs in the policy. Or have these structures in the
->>>>>       cpufreq core/policy, to avoid code duplication in drivers.
->>>>>
->>>>> Therefore (a) is the least invasive but we'll be bypassing the rule
->>>>> above. But to make that rule stick we'll have to make invasive cpufreq
->>>>> changes (b).
->>>>
->>>> Regarding the 'rule' above of one cpufreq policy per clock domain, I would like
->>>> to share my understanding on it. Perhaps it's a good opportunity to shed some light.
->>>>
->>>> Looking back in the history of CPUFreq, related_cpus was originally designed
->>>> to hold the map of cpus within the same clock. Later on, the meaning of this
->>>> cpumask changed [1].
->>>> This led to the introduction of a new cpumask 'freqdomain_cpus'
->>>> within acpi-cpufreq to keep the knowledge of hardware clock domains for
->>>> sysfs consumers since related_cpus was not suitable anymore for this.
->>>> Further on, this cpumask was assigned to online+offline cpus within the same clk
->>>> domain when sw coordination is in use [2].
->>>>
->>>> My interpretation is that there is no guarantee that related_cpus holds the
->>>> 'real' hardware clock implementation. As a consequence, it is not true anymore
->>>> that cpus that are in the same clock domain will be part of the same
->>>> policy.
->>>>
->>>> This guided me to think it would be better to have a cpumask which always holds
->>>> the real hw clock domains in the policy.
->>>>
->>>>>
->>>>> This is my current understanding and I'm leaning towards (a). What do
->>>>> you think?
->>>>>
->>>>> *in not so many words, this is what these patches are trying to propose,
->>>>> while also making sure it's supported for both ACPI and DT.
->>>>>
->>>>> BTW, thank you for your effort in making sense of this!
->>>>>
->>>>> Regards,
->>>>> Ionela.
->>>>>
->>>>
->>>> This could be a platform where per-cpu and perf-dependencies will be used:
->>>>
->>>> CPU:              0    1    2    3    4    5    6    7
->>>> Type:             A    A    A    A    B    B    B    B
->>>> Cluster:         [                                    ]
->>>> perf-controls:   [  ] [  ] [  ] [ ]  [ ]  [ ]  [ ]  [ ]
->>>> perf-dependency: [                ]  [                ]
->>>> HW clock:        [                ]  [                ]
->>>>
->>>> The firmware will present 8 controls to the OS and each control is mapped to a
->>>> cpu device via the standard dt. This is done so we can achieve hw coordination.
->>>> What is required in these systems is to present to OS the information of which
->>>> cpus belong to which clock domain. In other words, when hw coordinates we don't
->>>> have any way at present in dt to understand how these cpus are dependent
->>>> each other, from performance perspective (as opposed to ACPI where we have
->>>> _PSD). Hence my proposal for the new cpu-perf-dependencies.
->>>> This is regardless whether we decide to go for either a policy per-cpu or a
->>>> policy per-domain.
->>>>
->>>> Hope it helps.
->>>
->>> Oh yes, I get it now. Finally. Thanks for helping me out :)
->>>
->>> So if I can say all this stuff in simple terms, this is what it will
->>> be like:
->>>
->>> - We don't want software aggregation of frequencies and so we need to
->>>    have per-cpu policies even when they share their clock lines.
->>>
->>> - But we still need a way for other frameworks to know which CPUs
->>>    share the clock lines (that's what the perf-dependency is all about,
->>>    right ?).
->>>
->>> - We can't get it from SCMI, but need a DT based solution.
->>>
->>> - Currently for the cpufreq-case we relied for this on the way OPP
->>>    tables for the CPUs were described. i.e. the opp-table is marked as
->>>    "shared" and multiple CPUs point to it.
->>>
->>> - I wonder if we can keep using that instead of creating new bindings
->>>    for exact same stuff ? Though the difference here would be that the
->>>    OPP may not have any other entries.
->>
->> I thought about it and looked for other platforms' DT to see if can reuse
->> existing opp information. Unfortunately I don't think it is optimal. The reason
->> being that, because cpus have the same opp table it does not necessarily mean
->> that they share a clock wire. It just tells us that they have the same
->> capabilities (literally just tells us they have the same V/f op points).
->> Unless I am missing something?
->>
->> When comparing with ACPI/_PSD it becomes more intuitive that there is no
->> equivalent way to reveal "perf-dependencies" in DT.
-> 
-> You should be able to by examining the clock tree. But perhaps SCMI
-> abstracts all that and just presents virtual clocks without parent
-> clocks available to determine what clocks are shared? Fix SCMI if that's
-> the case.
-
-True, the SCMI clock does not support discovery of clock tree:
-(from 4.6.1 Clock management protocol background)
-'The protocol does not cover discovery of the clock tree, which must be
-described through firmware tables instead.' [1]
-
-In this situation, would it make sense, instead of this binding from
-patch 1/2, create a binding for internal firmware/scmi node?
-
-Something like:
-
-firmware {
-	scmi {
-	...		
-		scmi-perf-dep {
-			compatible = "arm,scmi-perf-dependencies";
-			cpu-perf-dep0 {
-				cpu-perf-affinity = <&CPU0>, <&CPU1>;
-			};
-			cpu-perf-dep1 {
-				cpu-perf-affinity = <&CPU3>, <&CPU4>;
-			};
-			cpu-perf-dep2 {
-				cpu-perf-affinity = <&CPU7>;
-			};
-		};
-	};
-};
-
-The code which is going to parse the binding would be inside the
-scmi perf protocol code and used via API by scmi-cpufreq.c.
-
-
-Now regarding the 'dependent_cpus' mask.
-
-We could avoid adding a new field 'dependent_cpus' in policy
-struct, but I am not sure of one bit - Frequency Invariant Engine,
-(which is also not fixed by just adding a new cpumask).
-
-We have 3 subsystems to fix:
-1. EAS - EM has API function which takes custom cpumask, so no issue,
-   fix would be to use it via the scmi-cpufreq.c
-2. IPA (for calculating the power of a cluster, not whole thermal needs
-   this knowledge about 'dependent cpus') - this can be fixed internally
-3. Frequency Invariant Engine (FIE) - currently it relies on schedutil
-   filtering and providing max freq of all cpus in the cluster into the
-   FIE; this info is then populated to all 'related_cpus' which will
-   have this freq (we know, because there is no other freq requests);
-   Issues:
-3.1. Schedutil is not going to check all cpus in the cluster to take
-   max freq, which is then passed into the cpufreq driver and FIE
-3.2. FIE would have to (or maybe we would drop it) have a logic similar
-   to what schedutil does (max freq search and set, then filter next
-   freq requests from other cpus in the next period e.g. 10ms)
-3.3. Schedutil is going to invoke freq change for each cpu independently
-   and the current code just calls arch_set_freq_scale() - adding just
-   'dependent_cpus' won't help
-3.4 What would be the real frequency of these cpus and what would be
-   set to FIE
-3.5 FIE is going to filter to soon requests from other dependent cpus?
-
-IMHO the FIE needs more bits than just a new cpumask.
-Maybe we should consider to move FIE arch_set_freq_scale() call into the
-cpufreq driver, which will know better how to aggregate/filter requests
-and then call FIE update?
-
-Regards,
-Lukasz
-
-[1] https://developer.arm.com/documentation/den0056/b/
-> 
-> Rob
-> 
+RnJvbTogSsOpcsO0bWUgUG91aWxsZXIgPGplcm9tZS5wb3VpbGxlckBzaWxhYnMuY29tPgoKSSB0
+aGluayB0aGUgd2Z4IGRyaXZlciBpcyBub3cgbWF0dXJlIGVub3VnaCB0byBiZSBhY2NlcHRlZCBp
+biB0aGUKZHJpdmVycy9uZXQvd2lyZWxlc3MgZGlyZWN0b3J5LgoKQXMgcmVxdWVzdGVkIGJ5IEth
+bGxlWzFdLCBJIHNlbmQgb25lIGZpbGUgcGVyIHBhdGNoLiBBdCB0aGUgZW5kLCBhbGwgdGhlCnBh
+dGNoZXMgd2lsbCBiZSBzcXVhc2hlZCAodGhlcmVmb3JlLCBJIGRpZG4ndCBib3RoZXIgdG8gd3Jp
+dGUgcmVhbCBjb21taXQKbWVzc2FnZXMpLgoKSGVyZSBpcyBhIGRpYWdyYW0gb2YgdGhlIGdsb2Jh
+bCBhcmNoaXRlY3R1cmUgdGhhdCBtYXkgaGVscCB0byB1bmRlcnN0YW5kCnRoZSBjb2RlOgoKICAg
+ICwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0uCiAgICB8ICAgICAgICAgICAg
+ICAgIG1hYzgwMjExICAgICAgICAgICAgfAogICAgYC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLScKICAgICwtLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0uCiAg
+ICB8ICAgIHN0YSAgICAgfCAgICAgICAgICAgfCAgICAgICAgICAgfAogICAgfCAgICBzY2FuICAg
+IHwgICAgICAgICAgIHwgICAgICAgICAgIHwKICAgIHwgICAgbWFpbiAgICB8ICAgICAgICAgICB8
+ICAgICAgICAgICB8CiAgICArLS0tLS0tLS0tLS0tKyAgZGF0YV90eCAgfCAgICAgICAgICAgfAog
+ICAgfCAgICBrZXkgICAgIHwgICAgICAgICAgIHwgIGRhdGFfcnggIHwKICAgIHwgaGlmX3R4X21p
+YiB8ICAgcXVldWUgICB8ICAgICAgICAgICB8CiAgICB8ICAgaGlmX3R4ICAgfCAgICAgICAgICAg
+fCAgICAgICAgICAgfAogICAgfCAgIGhpZl9yeCAgIHwgICAgICAgICAgIHwgICAgICAgICAgIHwK
+ICAgIHwgIGhpZl9hcGlfKiB8ICAgICAgICAgICB8ICAgICAgICAgICB8CiAgICArLS0tLS0tLS0t
+LS0tKy0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tKy0tLS0tLS0tLgogICAgfCAgICAgICAgICAgICAg
+ICAgIGJoICAgICAgICAgICAgICAgIHwgIGZ3aW8gIHwKICAgICstLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0rCiAgICB8ICAgICAgICAgICAgICAgICAgICAgaHdp
+byAgICAgICAgICAgICAgICAgICAgfAogICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLSsKICAgIHwgICAgICAgICAgICAgICAgICAgYnVzX3NkaW8gICAgICAg
+ICAgICAgICAgICB8CiAgICB8ICAgICAgICAgICAgICAgICAgIGJ1c19zcGkgICAgICAgICAgICAg
+ICAgICAgfAogICAgYC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LScKICAgICwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0uCiAg
+ICB8ICAgICAgICAgICAgICAgICAgc3BpIC8gc2RpbyAgICAgICAgICAgICAgICAgfAogICAgYC0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLScKClJvdWdobHksIEkg
+aGF2ZSBzZW50IHRoZSBmaWxlcyBmcm9tIHRoZSBib3R0b20gdG8gdGhlIHRvcC4KCgpCZWxvdyB0
+aGUgZGlmZmVyZW5jZXMgd2l0aCB0aGUgZmlsZXMgZnJvbSBkcml2ZXJzL3N0YWdpbmcvd2Z4LzoK
+djE6CiAgLSBEcm9wIHRoZSBmdW5jdGlvbiBuYW1lIGluIHRoZSB3YXJuaW5nIG1lc3NhZ2UgKEth
+bGxlKQogIC0gUmVwbGFjZSBnb3RvIGJ5IHJldHVybiBpbiB3Znhfc2VuZF9wZGF0YV9wZHMoKSAo
+S2FsbGUsIERhbikKICAtIEltcHJvdmUgZXJyb3IgbGFiZWwgaW4gd2Z4X3NlbmRfcGRhdGFfcGRz
+KCkgKEthbGxlKQoKClsxXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzg3ZnQ2cDJuMGgu
+ZnNmQGNvZGVhdXJvcmEub3JnLwoKKioqIEJMVVJCIEhFUkUgKioqCgpKw6lyw7RtZSBQb3VpbGxl
+ciAoMjMpOgogIGR0LWJpbmRpbmdzOiBpbnRyb2R1Y2Ugc2lsYWJzLHdmeC55YW1sCiAgd2Z4OiBh
+ZGQgTWFrZWZpbGUvS2NvbmZpZwogIHdmeDogYWRkIHdmeC5oCiAgd2Z4OiBhZGQgbWFpbi5jL21h
+aW4uaAogIHdmeDogYWRkIGJ1cy5oCiAgd2Z4OiBhZGQgYnVzX3NwaS5jCiAgd2Z4OiBhZGQgYnVz
+X3NkaW8uYwogIHdmeDogYWRkIGh3aW8uYy9od2lvLmgKICB3Zng6IGFkZCBmd2lvLmMvZndpby5o
+CiAgd2Z4OiBhZGQgYmguYy9iaC5oCiAgd2Z4OiBhZGQgaGlmX2FwaV8qLmgKICB3Zng6IGFkZCBo
+aWZfdHgqLmMvaGlmX3R4Ki5oCiAgd2Z4OiBhZGQga2V5LmMva2V5LmgKICB3Zng6IGFkZCBoaWZf
+cnguYy9oaWZfcnguaAogIHdmeDogYWRkIGRhdGFfcnguYy9kYXRhX3J4LmgKICB3Zng6IGFkZCBx
+dWV1ZS5jL3F1ZXVlLmgKICB3Zng6IGFkZCBkYXRhX3R4LmMvZGF0YV90eC5oCiAgd2Z4OiBhZGQg
+c3RhLmMvc3RhLmgKICB3Zng6IGFkZCBzY2FuLmMvc2Nhbi5oCiAgd2Z4OiBhZGQgZGVidWcuYy9k
+ZWJ1Zy5oCiAgd2Z4OiBhZGQgdHJhY2VzLmgKICB3Zng6IHJlbW92ZSBmcm9tIHRoZSBzdGFnaW5n
+IGFyZWEKICB3Zng6IGdldCBvdXQgZnJvbSB0aGUgc3RhZ2luZyBhcmVhCgogLi4uL2JpbmRpbmdz
+L25ldC93aXJlbGVzcy9zaWxhYnMsd2Z4LnlhbWwgICAgICB8ICAwCiBNQUlOVEFJTkVSUyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDMgKystCiBkcml2ZXJzL25ldC93aXJl
+bGVzcy9LY29uZmlnICAgICAgICAgICAgICAgICAgIHwgIDEgKwogZHJpdmVycy9uZXQvd2lyZWxl
+c3MvTWFrZWZpbGUgICAgICAgICAgICAgICAgICB8ICAxICsKIGRyaXZlcnMvbmV0L3dpcmVsZXNz
+L3NpbGFicy9LY29uZmlnICAgICAgICAgICAgfCAxOCArKysrKysrKysrKysrKysrKysKIGRyaXZl
+cnMvbmV0L3dpcmVsZXNzL3NpbGFicy9NYWtlZmlsZSAgICAgICAgICAgfCAgMyArKysKIC4uLi93
+aXJlbGVzcy9zaWxhYnN9L3dmeC9LY29uZmlnICAgICAgICAgICAgICAgfCAgMAogLi4uL3dpcmVs
+ZXNzL3NpbGFic30vd2Z4L01ha2VmaWxlICAgICAgICAgICAgICB8ICAwCiAuLi4ve3N0YWdpbmcg
+PT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2JoLmMgIHwgIDAKIC4uLi97c3RhZ2luZyA9PiBu
+ZXQvd2lyZWxlc3Mvc2lsYWJzfS93ZngvYmguaCAgfCAgMAogLi4uL3tzdGFnaW5nID0+IG5ldC93
+aXJlbGVzcy9zaWxhYnN9L3dmeC9idXMuaCB8ICAwCiAuLi4vd2lyZWxlc3Mvc2lsYWJzfS93Zngv
+YnVzX3NkaW8uYyAgICAgICAgICAgIHwgIDAKIC4uLi93aXJlbGVzcy9zaWxhYnN9L3dmeC9idXNf
+c3BpLmMgICAgICAgICAgICAgfCAgMAogLi4uL3dpcmVsZXNzL3NpbGFic30vd2Z4L2RhdGFfcngu
+YyAgICAgICAgICAgICB8ICAwCiAuLi4vd2lyZWxlc3Mvc2lsYWJzfS93ZngvZGF0YV9yeC5oICAg
+ICAgICAgICAgIHwgIDAKIC4uLi93aXJlbGVzcy9zaWxhYnN9L3dmeC9kYXRhX3R4LmMgICAgICAg
+ICAgICAgfCAgMiArLQogLi4uL3dpcmVsZXNzL3NpbGFic30vd2Z4L2RhdGFfdHguaCAgICAgICAg
+ICAgICB8ICAwCiAuLi4vd2lyZWxlc3Mvc2lsYWJzfS93ZngvZGVidWcuYyAgICAgICAgICAgICAg
+IHwgIDAKIC4uLi93aXJlbGVzcy9zaWxhYnN9L3dmeC9kZWJ1Zy5oICAgICAgICAgICAgICAgfCAg
+MAogLi4uL3dpcmVsZXNzL3NpbGFic30vd2Z4L2Z3aW8uYyAgICAgICAgICAgICAgICB8ICAwCiAu
+Li4vd2lyZWxlc3Mvc2lsYWJzfS93ZngvZndpby5oICAgICAgICAgICAgICAgIHwgIDAKIC4uLi93
+aXJlbGVzcy9zaWxhYnN9L3dmeC9oaWZfYXBpX2NtZC5oICAgICAgICAgfCAgMAogLi4uL3dpcmVs
+ZXNzL3NpbGFic30vd2Z4L2hpZl9hcGlfZ2VuZXJhbC5oICAgICB8ICAwCiAuLi4vd2lyZWxlc3Mv
+c2lsYWJzfS93ZngvaGlmX2FwaV9taWIuaCAgICAgICAgIHwgIDAKIC4uLi93aXJlbGVzcy9zaWxh
+YnN9L3dmeC9oaWZfcnguYyAgICAgICAgICAgICAgfCAgMAogLi4uL3dpcmVsZXNzL3NpbGFic30v
+d2Z4L2hpZl9yeC5oICAgICAgICAgICAgICB8ICAwCiAuLi4vd2lyZWxlc3Mvc2lsYWJzfS93Zngv
+aGlmX3R4LmMgICAgICAgICAgICAgIHwgIDAKIC4uLi93aXJlbGVzcy9zaWxhYnN9L3dmeC9oaWZf
+dHguaCAgICAgICAgICAgICAgfCAgMAogLi4uL3dpcmVsZXNzL3NpbGFic30vd2Z4L2hpZl90eF9t
+aWIuYyAgICAgICAgICB8ICAwCiAuLi4vd2lyZWxlc3Mvc2lsYWJzfS93ZngvaGlmX3R4X21pYi5o
+ICAgICAgICAgIHwgIDAKIC4uLi93aXJlbGVzcy9zaWxhYnN9L3dmeC9od2lvLmMgICAgICAgICAg
+ICAgICAgfCAgMAogLi4uL3dpcmVsZXNzL3NpbGFic30vd2Z4L2h3aW8uaCAgICAgICAgICAgICAg
+ICB8ICAwCiAuLi4ve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2tleS5jIHwg
+IDAKIC4uLi97c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93Zngva2V5LmggfCAgMAog
+Li4uL3dpcmVsZXNzL3NpbGFic30vd2Z4L21haW4uYyAgICAgICAgICAgICAgICB8ICA3ICsrKy0t
+LS0KIC4uLi93aXJlbGVzcy9zaWxhYnN9L3dmeC9tYWluLmggICAgICAgICAgICAgICAgfCAgMAog
+Li4uL3dpcmVsZXNzL3NpbGFic30vd2Z4L3F1ZXVlLmMgICAgICAgICAgICAgICB8ICAwCiAuLi4v
+d2lyZWxlc3Mvc2lsYWJzfS93ZngvcXVldWUuaCAgICAgICAgICAgICAgIHwgIDAKIC4uLi93aXJl
+bGVzcy9zaWxhYnN9L3dmeC9zY2FuLmMgICAgICAgICAgICAgICAgfCAgMAogLi4uL3dpcmVsZXNz
+L3NpbGFic30vd2Z4L3NjYW4uaCAgICAgICAgICAgICAgICB8ICAwCiAuLi4ve3N0YWdpbmcgPT4g
+bmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L3N0YS5jIHwgIDAKIC4uLi97c3RhZ2luZyA9PiBuZXQv
+d2lyZWxlc3Mvc2lsYWJzfS93Zngvc3RhLmggfCAgMAogLi4uL3dpcmVsZXNzL3NpbGFic30vd2Z4
+L3RyYWNlcy5oICAgICAgICAgICAgICB8ICAwCiAuLi4ve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNz
+L3NpbGFic30vd2Z4L3dmeC5oIHwgIDAKIGRyaXZlcnMvc3RhZ2luZy9LY29uZmlnICAgICAgICAg
+ICAgICAgICAgICAgICAgfCAgMiAtLQogZHJpdmVycy9zdGFnaW5nL01ha2VmaWxlICAgICAgICAg
+ICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvc3RhZ2luZy93ZngvVE9ETyAgICAgICAgICAg
+ICAgICAgICAgICAgfCAgNiAtLS0tLS0KIDQ3IGZpbGVzIGNoYW5nZWQsIDI5IGluc2VydGlvbnMo
+KyksIDE1IGRlbGV0aW9ucygtKQogcmVuYW1lIHtkcml2ZXJzL3N0YWdpbmcvd2Z4L0RvY3VtZW50
+YXRpb24gPT4gRG9jdW1lbnRhdGlvbn0vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvd2lyZWxlc3Mv
+c2lsYWJzLHdmeC55YW1sICgxMDAlKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvbmV0L3dp
+cmVsZXNzL3NpbGFicy9LY29uZmlnCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9uZXQvd2ly
+ZWxlc3Mvc2lsYWJzL01ha2VmaWxlCiByZW5hbWUgZHJpdmVycy97c3RhZ2luZyA9PiBuZXQvd2ly
+ZWxlc3Mvc2lsYWJzfS93ZngvS2NvbmZpZyAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5n
+ID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9NYWtlZmlsZSAoMTAwJSkKIHJlbmFtZSBkcml2
+ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9iaC5jICgxMDAlKQogcmVu
+YW1lIGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2JoLmggKDEw
+MCUpCiByZW5hbWUgZHJpdmVycy97c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93Zngv
+YnVzLmggKDEwMCUpCiByZW5hbWUgZHJpdmVycy97c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2ls
+YWJzfS93ZngvYnVzX3NkaW8uYyAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5l
+dC93aXJlbGVzcy9zaWxhYnN9L3dmeC9idXNfc3BpLmMgKDEwMCUpCiByZW5hbWUgZHJpdmVycy97
+c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93ZngvZGF0YV9yeC5jICgxMDAlKQogcmVu
+YW1lIGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2RhdGFfcngu
+aCAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9
+L3dmeC9kYXRhX3R4LmMgKDk5JSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJl
+bGVzcy9zaWxhYnN9L3dmeC9kYXRhX3R4LmggKDEwMCUpCiByZW5hbWUgZHJpdmVycy97c3RhZ2lu
+ZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93ZngvZGVidWcuYyAoMTAwJSkKIHJlbmFtZSBkcml2
+ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9kZWJ1Zy5oICgxMDAlKQog
+cmVuYW1lIGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2Z3aW8u
+YyAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9
+L3dmeC9md2lvLmggKDEwMCUpCiByZW5hbWUgZHJpdmVycy97c3RhZ2luZyA9PiBuZXQvd2lyZWxl
+c3Mvc2lsYWJzfS93ZngvaGlmX2FwaV9jbWQuaCAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFn
+aW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9oaWZfYXBpX2dlbmVyYWwuaCAoMTAwJSkK
+IHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9oaWZf
+YXBpX21pYi5oICgxMDAlKQogcmVuYW1lIGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNz
+L3NpbGFic30vd2Z4L2hpZl9yeC5jICgxMDAlKQogcmVuYW1lIGRyaXZlcnMve3N0YWdpbmcgPT4g
+bmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2hpZl9yeC5oICgxMDAlKQogcmVuYW1lIGRyaXZlcnMv
+e3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2hpZl90eC5jICgxMDAlKQogcmVu
+YW1lIGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2hpZl90eC5o
+ICgxMDAlKQogcmVuYW1lIGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30v
+d2Z4L2hpZl90eF9taWIuYyAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93
+aXJlbGVzcy9zaWxhYnN9L3dmeC9oaWZfdHhfbWliLmggKDEwMCUpCiByZW5hbWUgZHJpdmVycy97
+c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93ZngvaHdpby5jICgxMDAlKQogcmVuYW1l
+IGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4L2h3aW8uaCAoMTAw
+JSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9r
+ZXkuYyAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxh
+YnN9L3dmeC9rZXkuaCAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJl
+bGVzcy9zaWxhYnN9L3dmeC9tYWluLmMgKDk5JSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+
+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9tYWluLmggKDEwMCUpCiByZW5hbWUgZHJpdmVycy97
+c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93ZngvcXVldWUuYyAoMTAwJSkKIHJlbmFt
+ZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9zaWxhYnN9L3dmeC9xdWV1ZS5oICgx
+MDAlKQogcmVuYW1lIGRyaXZlcnMve3N0YWdpbmcgPT4gbmV0L3dpcmVsZXNzL3NpbGFic30vd2Z4
+L3NjYW4uYyAoMTAwJSkKIHJlbmFtZSBkcml2ZXJzL3tzdGFnaW5nID0+IG5ldC93aXJlbGVzcy9z
+aWxhYnN9L3dmeC9zY2FuLmggKDEwMCUpCiByZW5hbWUgZHJpdmVycy97c3RhZ2luZyA9PiBuZXQv
+d2lyZWxlc3Mvc2lsYWJzfS93Zngvc3RhLmMgKDEwMCUpCiByZW5hbWUgZHJpdmVycy97c3RhZ2lu
+ZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93Zngvc3RhLmggKDEwMCUpCiByZW5hbWUgZHJpdmVy
+cy97c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93ZngvdHJhY2VzLmggKDEwMCUpCiBy
+ZW5hbWUgZHJpdmVycy97c3RhZ2luZyA9PiBuZXQvd2lyZWxlc3Mvc2lsYWJzfS93Zngvd2Z4Lmgg
+KDEwMCUpCiBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zdGFnaW5nL3dmeC9UT0RPCgotLSAK
+Mi4yOC4wCgo=
