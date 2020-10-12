@@ -2,100 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4808028ACBF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 06:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B58B28ACFE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 06:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727694AbgJLET6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 00:19:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57672 "EHLO
+        id S1726214AbgJLEaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 00:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726706AbgJLET5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 00:19:57 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D14FCC0613CE
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 21:19:55 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id 10so2837472pfp.5
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 21:19:55 -0700 (PDT)
+        with ESMTP id S1725882AbgJLEaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 00:30:13 -0400
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A57C0613CE;
+        Sun, 11 Oct 2020 21:30:12 -0700 (PDT)
+Received: by mail-qk1-x742.google.com with SMTP id 188so16643144qkk.12;
+        Sun, 11 Oct 2020 21:30:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=d+sLnvZTeiN7/c8MjJpzLtaNxN7gU2/mrKXXOJoa83I=;
-        b=KZNllpqNv5xOOyaT+G76rND+p88FGMLQDwK/cKeOaH0uaaFMeS/R2t/RDbnFjojLn6
-         w3hgXLVskRRdm4HZzepz2AWIxtY3A+S7ZcR/XGzLerA5Lk19lufAV2U/mRlqmm+/cdQr
-         290KuNWsojQRMc8HK5QdcUGyV0KzwahuRZTM4bhE18hiw/gRN7JubTomi2KxG0Qsnp9o
-         t6qI3WrIrhHJtGKqntnM4+IMW90BR988wMzW/TpWaXbloatA8wYUZ53dClTQdEEBXCaC
-         RiHroE/nO6QMJcF3ORz21df3TbOYtzcI/prP0Y3vFmys8Gu9uYnQ7slnpdS4DybE3qus
-         CZ3A==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ix53B+4PxpD3FvNrquTS4wrFrQE1rmLNYwUdzsQBz70=;
+        b=Vi0Okto4r2twCBe/iUIb9WvlHH1xO2X3Pgp/nljP/qcnaXwYhnCYzuh1+uReRXwRdx
+         TPoGM9Rlp+ghbeEWUbk+eDkR+uz9q51GERSJbC0puwH+q4lKe8vhqMSjFp+Sge2IR07V
+         Yz5TD89m4VosCu5dlVKyhk/N9QRS5LXdMkwaU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=d+sLnvZTeiN7/c8MjJpzLtaNxN7gU2/mrKXXOJoa83I=;
-        b=YfJNvLm5J4wh03RoD92PLOjtXBwjjL/cfvA7mw6+TTHW0y4iA2pqBEVmXM0r1U7HQG
-         /VHsAGaQ+TmwyQ2YX5qIBfHAqaM6lVAMmP+urM7ZE48Bk0/XH3+Zk0bQ/zSH+Zo5FmA9
-         LKOQyBHwzXvO2CUDL4KU8Gh+1EeX/WghBcYOoD1Eqh2KXaVQxg/LzjwNPZBqWF1rnSYI
-         BtkcT7KJ9ULjCFZfEVD8bB85y7/WYmG4vupq4B5TngxoSj9A5wkN51uJAD58s/oYJeg2
-         y0wpaLOfwTtRbI8DJvKAU2f8TPx61Mu/lKTA8MZFW7EQ9CLfdN95IJXPWKms2wiOXlyN
-         5Fhw==
-X-Gm-Message-State: AOAM5335fF9+h8X/LpKm/q3f95eYivr6+gArjqcnd58tRwnSjNWsznBR
-        AibGpke0VAa82oQLaR7pXLdAIE9QgcLS0g==
-X-Google-Smtp-Source: ABdhPJwzZau3S/gIoJSK5Yx87xenSxCIZ61I1KDOdlIEpr0ycGp+oIrV+pYht3gAa9PS7YL4RjIgGA==
-X-Received: by 2002:aa7:9358:0:b029:152:b349:8af8 with SMTP id 24-20020aa793580000b0290152b3498af8mr22989089pfn.9.1602476395311;
-        Sun, 11 Oct 2020 21:19:55 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id e21sm15513630pfl.22.2020.10.11.21.19.53
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Oct 2020 21:19:54 -0700 (PDT)
-Date:   Mon, 12 Oct 2020 09:49:51 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Ionela Voinescu <ionela.voinescu@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, sudeep.holla@arm.com,
-        chris.redpath@arm.com, morten.rasmussen@arm.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201012041951.4qytnhuqvvzjionh@vireshk-i7>
-References: <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
- <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
- <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
- <20201009140141.GA4048593@bogus>
- <88f46cd0-226a-fb3c-0bd7-59688a566ea4@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ix53B+4PxpD3FvNrquTS4wrFrQE1rmLNYwUdzsQBz70=;
+        b=eIQ0eICtr791UJxgyG5Dj8yCwjrPSblsnR0/dvIx4v9rcYwWVTB+sywWaOz86YndSr
+         ZaFuF625hZHa5RIFkDf84Mrh5zsObfmZot/JQ6qkkFTst5h9bFUnS4LIvAhiCzTCxkb9
+         MXfsE6CLihSbeJ3Q0OFRAUpN4S7oKGxYdwp8C8pOFk3h4hYM/Z4wnstrVixtJC8tccC6
+         smjln3TJQEn6FhUJIPOKtaHZCsUu1n2hsUKNrQhjfwOSMOasUWbxUMMtQIQQzl1LfNzV
+         xcSTvTkwDzqaNHjfhzEWk0CRs0tcS62LhkiYvJFwae7LKCWJNjuEv+qzTaWo9zankj9F
+         /vWg==
+X-Gm-Message-State: AOAM5327c/VDGzi8UB0A+cV8iXkjHwU03fcTSFrulfSn4A+yryjRUu43
+        PQX90bHUlxfqQGSLqpZ102C1aTDxS+Sso2Bu2mw=
+X-Google-Smtp-Source: ABdhPJyNBsj3Xl5S6RY3Rvn00/GtfkhS8Ore3QHLa1prcwNZOO4RsI2temxvhrolGiYtx4NchxSTU3LmSRQ/3KhH1ts=
+X-Received: by 2002:a05:620a:16aa:: with SMTP id s10mr7987574qkj.273.1602477012120;
+ Sun, 11 Oct 2020 21:30:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <88f46cd0-226a-fb3c-0bd7-59688a566ea4@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20201012033150.21056-1-billy_tsai@aspeedtech.com> <20201012033150.21056-2-billy_tsai@aspeedtech.com>
+In-Reply-To: <20201012033150.21056-2-billy_tsai@aspeedtech.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 12 Oct 2020 04:30:00 +0000
+Message-ID: <CACPK8XcQ+uodvYCyL7_RO9W2QF+AA2LidHhXi2tR3_uriQFccQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] Arm: dts: aspeed-g6: Fix the register range of gpio
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-10-20, 16:28, Nicola Mazzucato wrote:
-> @Viresh
-> I am sorry I misread your reply earlier thus I did not pay attention on that
-> property.
-> And yes, it is exactly as how you have described :)
-> In the case 1 (different opps, different clk) and case 2 (same opps, different
-> clk) we provide v/f points. In case 3, we add 'opp-shared' property in opp table
-> to tell that the cpus with this opp table share a clock line.
-> 
-> Here are my thoughts on this 3rd case:
-> - the information of 'share the same clock line' comes correctly from DT as it's
-> purely a hw description. The same applies for cpu-perf-dependencies.
-> - because the opp table can come from any firmware, we won't have any opp table
-> in DT, thus we won't be able to take advantage of 'opp-shared' I am afraid.
+On Mon, 12 Oct 2020 at 03:32, Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+>
+> This patch is used to fix the memory range of gpio0
+>
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 
-I wonder if we should use an empty OPP table just for parsing this
-information.
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
--- 
-viresh
+> ---
+>  arch/arm/boot/dts/aspeed-g6.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> index 97ca743363d7..ad19dce038ea 100644
+> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> @@ -357,7 +357,7 @@
+>                                 #gpio-cells = <2>;
+>                                 gpio-controller;
+>                                 compatible = "aspeed,ast2600-gpio";
+> -                               reg = <0x1e780000 0x800>;
+> +                               reg = <0x1e780000 0x400>;
+>                                 interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+>                                 gpio-ranges = <&pinctrl 0 0 208>;
+>                                 ngpios = <208>;
+> --
+> 2.17.1
+>
