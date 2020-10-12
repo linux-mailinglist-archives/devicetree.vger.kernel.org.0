@@ -2,171 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72ABE28B2E0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 12:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DFB928B2F6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 12:50:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388130AbgJLKtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 06:49:39 -0400
-Received: from mail-dm6nam11on2077.outbound.protection.outlook.com ([40.107.223.77]:59904
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388070AbgJLKtW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 06:49:22 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ARsIc1PD/Kup7vFBtZ0DNzvo9Cpj5gzYGOTxGRL5zwO7AHwEHLxJGCRw1nz7AMGkbz8ayhDoWrMP84Nsei1ZrwfwPzlloCdMclarLvHly0Q5/eLN2BvLOhnQlPtHcwA7+slsSLfT0cJMwkE4FUDoPhWhqjxybk/XQ7FzXrjVzsm8Mz8fgMdTiDLEzTpzbG1cX1a7BuB6iESh8GabqoXSrl84SR4FtdwO/Z10YwJHUJlAloOixgHZkew4jkzir8E5wCepUr3s4bqvCREBfege2zmmnNtcqYELUUROmokoXYpfYnZ3gLK8Qr7vaLETWZhpL3BYoVCS9Okdw7kJZYQj9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uBLvox2iXc57mCna1AZj9BmpOZQma4jp92Hg5KojRBg=;
- b=KtBjX586DCYeKZxFtAqqLUo+ltpCKxINY6+NL7mmjeRTWfp3712+RO9QzMLFSgAHwwhfPHsYHpo6LM36WlYkEbAdE8qStK+XxlGUS29qF8L1j4WGdqZtamB/mlfMQfjDEaRemiSg2v4wEEGDr2L95OyMptaXbBCKa7uw+QQZgqEpVQ1+diCbZCdTlBT3THYNVI3z8o4HXsMFBEkPil5i40Ns8Poa4JGXvt/OwnizyiR/HyLSAtTtuAby4HqnoJvKyySRfI5DiJDT4Us76AQQKk7lVnT1W2WtA+r+Wddwq6GQkp0Kq2LoqDNRFBJIb7Qe6rF9PQKmHh+N188Dx4BWcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
- dkim=pass header.d=silabs.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uBLvox2iXc57mCna1AZj9BmpOZQma4jp92Hg5KojRBg=;
- b=i928r0XHkqqxT+CHKo/aMg8XgwG3Nq14VLKO+RPJomrmH0mDEBMOLSjjPhVDHfBlLHmiA13wjoq63OI7acB88afgMsPq7YQw8MdQMlkNumukQkDK4eHiVJe0QGmb/Qf/XKuuh5MeVO1ZM6wLW1K9uRaTS1uFIlsSkVdneq6/i5U=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=silabs.com;
-Received: from SN6PR11MB2718.namprd11.prod.outlook.com (2603:10b6:805:63::18)
- by SA0PR11MB4734.namprd11.prod.outlook.com (2603:10b6:806:99::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23; Mon, 12 Oct
- 2020 10:47:49 +0000
-Received: from SN6PR11MB2718.namprd11.prod.outlook.com
- ([fe80::4f5:fbe5:44a7:cb8a]) by SN6PR11MB2718.namprd11.prod.outlook.com
- ([fe80::4f5:fbe5:44a7:cb8a%5]) with mapi id 15.20.3455.029; Mon, 12 Oct 2020
- 10:47:49 +0000
-From:   Jerome Pouiller <Jerome.Pouiller@silabs.com>
-To:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= 
-        <jerome.pouiller@silabs.com>
-Subject: [PATCH 23/23] wfx: get out from the staging area
-Date:   Mon, 12 Oct 2020 12:46:48 +0200
-Message-Id: <20201012104648.985256-24-Jerome.Pouiller@silabs.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201012104648.985256-1-Jerome.Pouiller@silabs.com>
-References: <20201012104648.985256-1-Jerome.Pouiller@silabs.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-X-Originating-IP: [82.67.86.106]
-X-ClientProxiedBy: PR3P189CA0005.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:102:52::10) To SN6PR11MB2718.namprd11.prod.outlook.com
- (2603:10b6:805:63::18)
+        id S2387757AbgJLKui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 06:50:38 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:39448 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387725AbgJLKue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 06:50:34 -0400
+Received: by mail-oi1-f193.google.com with SMTP id c13so18282061oiy.6;
+        Mon, 12 Oct 2020 03:50:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WMLRnHgEd2+UTbCwVmAGO2vPatIox/ifeJ/hHtY6j2A=;
+        b=iU2z2StWs4G/k3pnIKEN67awWa+1UksTL8h2vDS1tP6VelrB+5gevaqUNwd1TmcAfe
+         EPisqrNDaNCriER4mUACxBzXGtAwWN3jvwMkLvVEgxjk7ZTL0nYcGgmKsJacwXvEzSJr
+         ejlThDjT30ZE5SayeBBCA1EWWUogt/UvrhqzpBjDAar6nJJXiTaGFtdVPVZs0jRMAOuF
+         L1tP1va0dsVPm+nONbz+K5Zva7IDbOudUcYs4U1DmoF2qwCi0tRbOb9Sgpbx1nliwne8
+         yaxaWLEsndPy+PPoYEkh2J6e9iTYIfim7RAMr3hLO7ddByAg2k0XpmixFsfkRLdYciss
+         DU9A==
+X-Gm-Message-State: AOAM532OkqczsGzJpZ9/Mjw6SNenWQ6F/tuyhm8zGs3Di+dLrnD/t7wo
+        w3J1XFuXfCL2S2QOSaYc2crmqysv0Et/GTSrNHE=
+X-Google-Smtp-Source: ABdhPJweodSkaD1TqFM0gVkjSrZqR9wJeDtTpPHTUF/hL3u9FQjDc+mDQxtjoKQSfPfpgEUtnvmkI5MwyPp3dYB6d6w=
+X-Received: by 2002:aca:5256:: with SMTP id g83mr5874931oib.71.1602499832340;
+ Mon, 12 Oct 2020 03:50:32 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-42.home (82.67.86.106) by PR3P189CA0005.EURP189.PROD.OUTLOOK.COM (2603:10a6:102:52::10) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21 via Frontend Transport; Mon, 12 Oct 2020 10:47:47 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 93c23425-7e99-4a50-13a9-08d86e9c430d
-X-MS-TrafficTypeDiagnostic: SA0PR11MB4734:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SA0PR11MB4734B766568CDE065836A21D93070@SA0PR11MB4734.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: phu9cX0wbIbRxoqnhUaOxDBOwdDis5xw0fRoMR41vZYvILAXzLGazuj9GRH+2c7AmkuxSz8jFkFEy28mQgkPVCSNZmg2CTMGUGNYplHP3SRde7alpP0Sn+Z7p60P7+MK5eHE9kqmTlSy5NcC+7TdIqeG3c6kLfbfhuCoawqX30lLVCw45sKBC6iZUGjJXREgNqdDqEvkQI4C/Xa+xmUXmvTPCpAEVNUR1s8CpGeHrKS1VQNmJq7xKV1oq8b3VblIaDASVInZ4Ubk7HbCIlxT9859h6OeIvmZy/Owsh3urwDSUFQfj3ndCXZJE3VxrCWYjKZyHArBl5e7zWuYmWvBSpDRIfx0IuQKNOGLMd1klz35PpppBYK9uyEOTP/4UcXXMHLFkRQehRTOLYXtPrfFLg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2718.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(396003)(366004)(136003)(346002)(376002)(66556008)(66476007)(6512007)(26005)(36756003)(66946007)(16526019)(186003)(316002)(4326008)(2616005)(956004)(1076003)(5660300002)(107886003)(6486002)(54906003)(86362001)(966005)(8676002)(83380400001)(83080400001)(8936002)(66574015)(52116002)(2906002)(6506007)(8886007)(478600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 6qXfzDcdYrc+6PYIji1+U18d/YZgtrNXfQJT4MlIy2dKigtJCVrVE7HFxkW/zimTJIWcx/zngA7YPPtKMNNDBeeZElTlbbrb1DI05FWavZpi/9kvnreMcPjeLeix1mZB6i9UTNWSPAnp8CKJn6ExzLg2YujLtJXmLhNttFxYBEmGrFM24E3DoyCTh6y7GhLNhfoj8/HB7Xll3oZeiDK6eHYRqQGqEIlsWQl+oADH2uEWC0unP71lHQiw/xH1ptrUtjy97uxZaaDnf3BioIQ/vW+DOtOSMtoz4rNiOh0cn+K6E3eb69YqeOjw8G5QdcNvU32hyjOx4atbRn/rKG5PXOQg77nAmyMc2L1oBPGoHl4G8gUXkavzkKygWlGz+LTvRVaEEgdt0bi1nVSdsSkwNFqUkm0GNsjErinzf6mslN15Glg9EMCgO2ZuH83ZkcQzEK8NgR44MNC9+9zZTwaO8Lnb0hIXy8yf542GnhzKg3ihcEbZIl+EV/kPEYzjYh2gyPFny2X78uVzoG7BDvbaOUtCmsQFtkDa1dp1d9n66xVwts2bIJh6TGJP8ppyMRfWcfIiNwxHQ0U1stJJ0tqy+JZEPpyc4M30SSVaYd35iQLb+tdgMMK5Fv+QpHqCSSHUUo//lezUfNLgz+VHnirIrA==
-X-OriginatorOrg: silabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93c23425-7e99-4a50-13a9-08d86e9c430d
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2718.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2020 10:47:49.3348
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uuUHvN2uCeZEE6d05jZGRBG0772BbiTaOeqU0BwnJ1OWcoKNkUWGo1FMVdhhOV7q0rUrp2mrjfrBZTHF++7mRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4734
+References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
+ <20200924095347.32148-3-nicola.mazzucato@arm.com> <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
+ <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com> <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
+ <20201008150317.GB20268@arm.com> <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
+ <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7> <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
+ <20201009140141.GA4048593@bogus> <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
+In-Reply-To: <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Mon, 12 Oct 2020 12:50:17 +0200
+Message-ID: <CAJZ5v0h5JiwrL0Ae3FHGJBKxBVb4cPzA9Maknh-rJR-McQFx8w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for cpu-perf-dependencies
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Ionela Voinescu <ionela.voinescu@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Chris Redpath <chris.redpath@arm.com>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogSsOpcsO0bWUgUG91aWxsZXIgPGplcm9tZS5wb3VpbGxlckBzaWxhYnMuY29tPgoKVGhl
-IHdmeCBkcml2ZXIgaXMgbm93IG1hdHVyZSBlbm91Z2ggdG8gbGVhdmUgdGhlIHN0YWdpbmcgYXJl
-YS4KClNpZ25lZC1vZmYtYnk6IErDqXLDtG1lIFBvdWlsbGVyIDxqZXJvbWUucG91aWxsZXJAc2ls
-YWJzLmNvbT4KLS0tCiBNQUlOVEFJTkVSUyAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMyAr
-Ky0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL0tjb25maWcgICAgICAgICB8ICAxICsKIGRyaXZlcnMv
-bmV0L3dpcmVsZXNzL01ha2VmaWxlICAgICAgICB8ICAxICsKIGRyaXZlcnMvbmV0L3dpcmVsZXNz
-L3NpbGFicy9LY29uZmlnICB8IDE4ICsrKysrKysrKysrKysrKysrKwogZHJpdmVycy9uZXQvd2ly
-ZWxlc3Mvc2lsYWJzL01ha2VmaWxlIHwgIDMgKysrCiBkcml2ZXJzL3N0YWdpbmcvS2NvbmZpZyAg
-ICAgICAgICAgICAgfCAgMiAtLQogZHJpdmVycy9zdGFnaW5nL01ha2VmaWxlICAgICAgICAgICAg
-IHwgIDEgLQogZHJpdmVycy9zdGFnaW5nL3dmeC9UT0RPICAgICAgICAgICAgIHwgIDYgLS0tLS0t
-CiA4IGZpbGVzIGNoYW5nZWQsIDI1IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQogY3Jl
-YXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvbmV0L3dpcmVsZXNzL3NpbGFicy9LY29uZmlnCiBjcmVh
-dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9uZXQvd2lyZWxlc3Mvc2lsYWJzL01ha2VmaWxlCiBkZWxl
-dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zdGFnaW5nL3dmeC9UT0RPCgpkaWZmIC0tZ2l0IGEvTUFJ
-TlRBSU5FUlMgYi9NQUlOVEFJTkVSUwppbmRleCA1ZTEwNzM1YmU2NTQuLmQxNjcxYzU0Yjk2NyAx
-MDA2NDQKLS0tIGEvTUFJTlRBSU5FUlMKKysrIGIvTUFJTlRBSU5FUlMKQEAgLTE1Nzk5LDcgKzE1
-Nzk5LDggQEAgRjoJZHJpdmVycy9wbGF0Zm9ybS94ODYvdG91Y2hzY3JlZW5fZG1pLmMKIFNJTElD
-T04gTEFCUyBXSVJFTEVTUyBEUklWRVJTIChmb3IgV0Z4eHggc2VyaWVzKQogTToJSsOpcsO0bWUg
-UG91aWxsZXIgPGplcm9tZS5wb3VpbGxlckBzaWxhYnMuY29tPgogUzoJU3VwcG9ydGVkCi1GOglk
-cml2ZXJzL3N0YWdpbmcvd2Z4LworRjoJRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L25ldC93aXJlbGVzcy9zaWxhYnMsd2Z4LnlhbWwKK0Y6CWRyaXZlcnMvbmV0L3dpcmVsZXNzL3Np
-bGFicy93ZngvCiAKIFNJTElDT04gTU9USU9OIFNNNzEyIEZSQU1FIEJVRkZFUiBEUklWRVIKIE06
-CVN1ZGlwIE11a2hlcmplZSA8c3VkaXBtLm11a2hlcmplZUBnbWFpbC5jb20+CmRpZmYgLS1naXQg
-YS9kcml2ZXJzL25ldC93aXJlbGVzcy9LY29uZmlnIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvS2Nv
-bmZpZwppbmRleCAxNzBhNjRlNjc3MDkuLjY5ZWE4MzI3OTkwNyAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9uZXQvd2lyZWxlc3MvS2NvbmZpZworKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9LY29uZmln
-CkBAIC00NCw2ICs0NCw3IEBAIHNvdXJjZSAiZHJpdmVycy9uZXQvd2lyZWxlc3MvbWljcm9jaGlw
-L0tjb25maWciCiBzb3VyY2UgImRyaXZlcnMvbmV0L3dpcmVsZXNzL3JhbGluay9LY29uZmlnIgog
-c291cmNlICJkcml2ZXJzL25ldC93aXJlbGVzcy9yZWFsdGVrL0tjb25maWciCiBzb3VyY2UgImRy
-aXZlcnMvbmV0L3dpcmVsZXNzL3JzaS9LY29uZmlnIgorc291cmNlICJkcml2ZXJzL25ldC93aXJl
-bGVzcy9zaWxhYnMvS2NvbmZpZyIKIHNvdXJjZSAiZHJpdmVycy9uZXQvd2lyZWxlc3Mvc3QvS2Nv
-bmZpZyIKIHNvdXJjZSAiZHJpdmVycy9uZXQvd2lyZWxlc3MvdGkvS2NvbmZpZyIKIHNvdXJjZSAi
-ZHJpdmVycy9uZXQvd2lyZWxlc3MvenlkYXMvS2NvbmZpZyIKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-bmV0L3dpcmVsZXNzL01ha2VmaWxlIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvTWFrZWZpbGUKaW5k
-ZXggODBiMzI0NDk5Nzg2Li43Njg4NWU1ZjBlYTcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dp
-cmVsZXNzL01ha2VmaWxlCisrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL01ha2VmaWxlCkBAIC0x
-Niw2ICsxNiw3IEBAIG9iai0kKENPTkZJR19XTEFOX1ZFTkRPUl9NSUNST0NISVApICs9IG1pY3Jv
-Y2hpcC8KIG9iai0kKENPTkZJR19XTEFOX1ZFTkRPUl9SQUxJTkspICs9IHJhbGluay8KIG9iai0k
-KENPTkZJR19XTEFOX1ZFTkRPUl9SRUFMVEVLKSArPSByZWFsdGVrLwogb2JqLSQoQ09ORklHX1dM
-QU5fVkVORE9SX1JTSSkgKz0gcnNpLworb2JqLSQoQ09ORklHX1dMQU5fVkVORE9SX1NJTEFCUykg
-Kz0gc2lsYWJzLwogb2JqLSQoQ09ORklHX1dMQU5fVkVORE9SX1NUKSArPSBzdC8KIG9iai0kKENP
-TkZJR19XTEFOX1ZFTkRPUl9USSkgKz0gdGkvCiBvYmotJChDT05GSUdfV0xBTl9WRU5ET1JfWllE
-QVMpICs9IHp5ZGFzLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3Mvc2lsYWJzL0tj
-b25maWcgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9zaWxhYnMvS2NvbmZpZwpuZXcgZmlsZSBtb2Rl
-IDEwMDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLjYyNjJhNzk5YmYzNgotLS0gL2Rldi9udWxsCisr
-KyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL3NpbGFicy9LY29uZmlnCkBAIC0wLDAgKzEsMTggQEAK
-KyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAKKworY29uZmlnIFdMQU5fVkVORE9S
-X1NJTEFCUworCWJvb2wgIlNpbGljb24gTGFib3JhdG9yaWVzIGRldmljZXMiCisJZGVmYXVsdCB5
-CisJaGVscAorCSAgSWYgeW91IGhhdmUgYSB3aXJlbGVzcyBjYXJkIGJlbG9uZ2luZyB0byB0aGlz
-IGNsYXNzLCBzYXkgWS4KKworCSAgTm90ZSB0aGF0IHRoZSBhbnN3ZXIgdG8gdGhpcyBxdWVzdGlv
-biBkb2Vzbid0IGRpcmVjdGx5IGFmZmVjdCB0aGUKKwkgIGtlcm5lbDogc2F5aW5nIE4gd2lsbCBq
-dXN0IGNhdXNlIHRoZSBjb25maWd1cmF0b3IgdG8gc2tpcCBhbGwgdGhlCisJICBxdWVzdGlvbnMg
-YWJvdXQgdGhlc2UgY2FyZHMuIElmIHlvdSBzYXkgWSwgeW91IHdpbGwgYmUgYXNrZWQgZm9yCisJ
-ICB5b3VyIHNwZWNpZmljIGNhcmQgaW4gdGhlIGZvbGxvd2luZyBxdWVzdGlvbnMuCisKK2lmIFdM
-QU5fVkVORE9SX1NJTEFCUworCitzb3VyY2UgImRyaXZlcnMvbmV0L3dpcmVsZXNzL3NpbGFicy93
-ZngvS2NvbmZpZyIKKworZW5kaWYgIyBXTEFOX1ZFTkRPUl9TSUxBQlMKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvbmV0L3dpcmVsZXNzL3NpbGFicy9NYWtlZmlsZSBiL2RyaXZlcnMvbmV0L3dpcmVsZXNz
-L3NpbGFicy9NYWtlZmlsZQpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAwMDAu
-LmMyMjYzZWUyMTAwNgotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL3Np
-bGFicy9NYWtlZmlsZQpAQCAtMCwwICsxLDMgQEAKKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6
-IEdQTC0yLjAKKworb2JqLSQoQ09ORklHX1dGWCkgICAgICArPSB3ZngvCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL3N0YWdpbmcvS2NvbmZpZyBiL2RyaXZlcnMvc3RhZ2luZy9LY29uZmlnCmluZGV4IDJk
-MDMxMDQ0OGViYS4uMmQzMjZiMTYyNzJlIDEwMDY0NAotLS0gYS9kcml2ZXJzL3N0YWdpbmcvS2Nv
-bmZpZworKysgYi9kcml2ZXJzL3N0YWdpbmcvS2NvbmZpZwpAQCAtMTE0LDggKzExNCw2IEBAIHNv
-dXJjZSAiZHJpdmVycy9zdGFnaW5nL2twYzIwMDAvS2NvbmZpZyIKIAogc291cmNlICJkcml2ZXJz
-L3N0YWdpbmcvcWxnZS9LY29uZmlnIgogCi1zb3VyY2UgImRyaXZlcnMvc3RhZ2luZy93ZngvS2Nv
-bmZpZyIKLQogc291cmNlICJkcml2ZXJzL3N0YWdpbmcvaGlrZXk5eHgvS2NvbmZpZyIKIAogZW5k
-aWYgIyBTVEFHSU5HCmRpZmYgLS1naXQgYS9kcml2ZXJzL3N0YWdpbmcvTWFrZWZpbGUgYi9kcml2
-ZXJzL3N0YWdpbmcvTWFrZWZpbGUKaW5kZXggNzU3YTg5MmFiNWI5Li45ZGUyNjA4MDJkYjUgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvc3RhZ2luZy9NYWtlZmlsZQorKysgYi9kcml2ZXJzL3N0YWdpbmcv
-TWFrZWZpbGUKQEAgLTQ3LDUgKzQ3LDQgQEAgb2JqLSQoQ09ORklHX1hJTF9BWElTX0ZJRk8pCSs9
-IGF4aXMtZmlmby8KIG9iai0kKENPTkZJR19GSUVMREJVU19ERVYpICAgICArPSBmaWVsZGJ1cy8K
-IG9iai0kKENPTkZJR19LUEMyMDAwKQkJKz0ga3BjMjAwMC8KIG9iai0kKENPTkZJR19RTEdFKQkJ
-Kz0gcWxnZS8KLW9iai0kKENPTkZJR19XRlgpCQkrPSB3ZngvCiBvYmoteQkJCQkrPSBoaWtleTl4
-eC8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvc3RhZ2luZy93ZngvVE9ETyBiL2RyaXZlcnMvc3RhZ2lu
-Zy93ZngvVE9ETwpkZWxldGVkIGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMWI0YmMyYWY5NGI2Li4w
-MDAwMDAwMDAwMDAKLS0tIGEvZHJpdmVycy9zdGFnaW5nL3dmeC9UT0RPCisrKyAvZGV2L251bGwK
-QEAgLTEsNiArMCwwIEBACi1UaGlzIGlzIGEgbGlzdCBvZiB0aGluZ3MgdGhhdCBuZWVkIHRvIGJl
-IGRvbmUgdG8gZ2V0IHRoaXMgZHJpdmVyIG91dCBvZiB0aGUKLXN0YWdpbmcgZGlyZWN0b3J5Lgot
-Ci0gIC0gQXMgc3VnZ2VzdGVkIGJ5IEZlbGl4LCByYXRlIGNvbnRyb2wgY291bGQgYmUgaW1wcm92
-ZWQgZm9sbG93aW5nIHRoaXMgaWRlYToKLSAgICAgICAgaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-bGttbC8zMDk5NTU5Lmd2M1E3NUtuTjFAcGMtNDIvCi0KLS0gCjIuMjguMAoK
+On Mon, Oct 12, 2020 at 12:23 PM Lukasz Luba <lukasz.luba@arm.com> wrote:
+>
+> Hi Rob,
+>
+> On 10/9/20 3:01 PM, Rob Herring wrote:
+> > On Fri, Oct 09, 2020 at 12:10:03PM +0100, Nicola Mazzucato wrote:
+> >> Hi Viresh, I'm glad it helped.
+> >>
+> >> Please find below my reply.
+> >>
+> >> On 10/9/20 6:39 AM, Viresh Kumar wrote:
+> >>> On 08-10-20, 17:00, Nicola Mazzucato wrote:
+> >>>> On 10/8/20 4:03 PM, Ionela Voinescu wrote:
+> >>>>> Hi Viresh,
+> >>>>>
+> >>>>> On Thursday 08 Oct 2020 at 16:32:41 (+0530), Viresh Kumar wrote:
+> >>>>>> On 07-10-20, 13:58, Nicola Mazzucato wrote:
+> >>>>>>> Hi Viresh,
+> >>>>>>>
+> >>>>>>> performance controls is what is exposed by the firmware through a protocol that
+> >>>>>>> is not capable of describing hardware (say SCMI). For example, the firmware can
+> >>>>>>> tell that the platform has N controls, but it can't say to which hardware they
+> >>>>>>> are "wired" to. This is done in dt, where, for example, we map these controls
+> >>>>>>> to cpus, gpus, etc.
+> >>>>>>>
+> >>>>>>> Let's focus on cpus.
+> >>>>>>>
+> >>>>>>> Normally we would have N of performance controls (what comes from f/w)
+> >>>>>>> that that correspond to hardware clock/dvfs domains.
+> >>>>>>>
+> >>>>>>> However, some firmware implementations might benefit from having finer
+> >>>>>>> grained information about the performance requirements (e.g.
+> >>>>>>> per-CPU) and therefore choose to present M performance controls to the
+> >>>>>>> OS. DT would be adjusted accordingly to "wire" these controls to cpus
+> >>>>>>> or set of cpus.
+> >>>>>>> In this scenario, the f/w will make aggregation decisions based on the
+> >>>>>>> requests it receives on these M controls.
+> >>>>>>>
+> >>>>>>> Here we would have M cpufreq policies which do not necessarily reflect the
+> >>>>>>> underlying clock domains, thus some s/w components will underperform
+> >>>>>>> (EAS and thermal, for example).
+> >>>>>>>
+> >>>>>>> A real example would be a platform in which the firmware describes the system
+> >>>>>>> having M per-cpu control, and the cpufreq subsystem will have M policies while
+> >>>>>>> in fact these cpus are "performance-dependent" each other (e.g. are in the same
+> >>>>>>> clock domain).
+> >>>>>>
+> >>>>>> If the CPUs are in the same clock domain, they must be part of the
+> >>>>>> same cpufreq policy.
+> >>>>>
+> >>>>> But cpufreq does not currently support HW_ALL (I'm using the ACPI
+> >>>>> coordination type to describe the generic scenario of using hardware
+> >>>>> aggregation and coordination when establishing the clock rate of CPUs).
+> >>>>>
+> >>>>> Adding support for HW_ALL* will involve either bypassing some
+> >>>>> assumptions around cpufreq policies or making core cpufreq changes.
+> >>>>>
+> >>>>> In the way I see it, support for HW_ALL involves either:
+> >>>>>
+> >>>>>   - (a) Creating per-cpu policies in order to allow each of the CPUs to
+> >>>>>     send their own frequency request to the hardware which will do
+> >>>>>     aggregation and clock rate decision at the level of the clock
+> >>>>>     domain. The PSD domains (ACPI) and the new DT binding will tell
+> >>>>>     which CPUs are actually in the same clock domain for whomever is
+> >>>>>     interested, despite those CPUs not being in the same policy.
+> >>>>>     This requires the extra mask that Nicola introduced.
+> >>>>>
+> >>>>>   - (b) Making deep changes to cpufreq (core/governors/drivers) to allow:
+> >>>>>     - Governors to stop aggregating (usually max) the information
+> >>>>>       for each of the CPUs in the policy and convey to the core
+> >>>>>       information for each CPU.
+> >>>>>     - Cpufreq core to be able to receive and pass this information
+> >>>>>       down to the drivers.
+> >>>>>     - Drivers to be able to have some per cpu structures to hold
+> >>>>>       frequency control (let's say SCP fast channel addresses) for
+> >>>>>       each of the CPUs in the policy. Or have these structures in the
+> >>>>>       cpufreq core/policy, to avoid code duplication in drivers.
+> >>>>>
+> >>>>> Therefore (a) is the least invasive but we'll be bypassing the rule
+> >>>>> above. But to make that rule stick we'll have to make invasive cpufreq
+> >>>>> changes (b).
+> >>>>
+> >>>> Regarding the 'rule' above of one cpufreq policy per clock domain, I would like
+> >>>> to share my understanding on it. Perhaps it's a good opportunity to shed some light.
+> >>>>
+> >>>> Looking back in the history of CPUFreq, related_cpus was originally designed
+> >>>> to hold the map of cpus within the same clock. Later on, the meaning of this
+> >>>> cpumask changed [1].
+> >>>> This led to the introduction of a new cpumask 'freqdomain_cpus'
+> >>>> within acpi-cpufreq to keep the knowledge of hardware clock domains for
+> >>>> sysfs consumers since related_cpus was not suitable anymore for this.
+> >>>> Further on, this cpumask was assigned to online+offline cpus within the same clk
+> >>>> domain when sw coordination is in use [2].
+> >>>>
+> >>>> My interpretation is that there is no guarantee that related_cpus holds the
+> >>>> 'real' hardware clock implementation. As a consequence, it is not true anymore
+> >>>> that cpus that are in the same clock domain will be part of the same
+> >>>> policy.
+> >>>>
+> >>>> This guided me to think it would be better to have a cpumask which always holds
+> >>>> the real hw clock domains in the policy.
+> >>>>
+> >>>>>
+> >>>>> This is my current understanding and I'm leaning towards (a). What do
+> >>>>> you think?
+> >>>>>
+> >>>>> *in not so many words, this is what these patches are trying to propose,
+> >>>>> while also making sure it's supported for both ACPI and DT.
+> >>>>>
+> >>>>> BTW, thank you for your effort in making sense of this!
+> >>>>>
+> >>>>> Regards,
+> >>>>> Ionela.
+> >>>>>
+> >>>>
+> >>>> This could be a platform where per-cpu and perf-dependencies will be used:
+> >>>>
+> >>>> CPU:              0    1    2    3    4    5    6    7
+> >>>> Type:             A    A    A    A    B    B    B    B
+> >>>> Cluster:         [                                    ]
+> >>>> perf-controls:   [  ] [  ] [  ] [ ]  [ ]  [ ]  [ ]  [ ]
+> >>>> perf-dependency: [                ]  [                ]
+> >>>> HW clock:        [                ]  [                ]
+> >>>>
+> >>>> The firmware will present 8 controls to the OS and each control is mapped to a
+> >>>> cpu device via the standard dt. This is done so we can achieve hw coordination.
+> >>>> What is required in these systems is to present to OS the information of which
+> >>>> cpus belong to which clock domain. In other words, when hw coordinates we don't
+> >>>> have any way at present in dt to understand how these cpus are dependent
+> >>>> each other, from performance perspective (as opposed to ACPI where we have
+> >>>> _PSD). Hence my proposal for the new cpu-perf-dependencies.
+> >>>> This is regardless whether we decide to go for either a policy per-cpu or a
+> >>>> policy per-domain.
+> >>>>
+> >>>> Hope it helps.
+> >>>
+> >>> Oh yes, I get it now. Finally. Thanks for helping me out :)
+> >>>
+> >>> So if I can say all this stuff in simple terms, this is what it will
+> >>> be like:
+> >>>
+> >>> - We don't want software aggregation of frequencies and so we need to
+> >>>    have per-cpu policies even when they share their clock lines.
+> >>>
+> >>> - But we still need a way for other frameworks to know which CPUs
+> >>>    share the clock lines (that's what the perf-dependency is all about,
+> >>>    right ?).
+> >>>
+> >>> - We can't get it from SCMI, but need a DT based solution.
+> >>>
+> >>> - Currently for the cpufreq-case we relied for this on the way OPP
+> >>>    tables for the CPUs were described. i.e. the opp-table is marked as
+> >>>    "shared" and multiple CPUs point to it.
+> >>>
+> >>> - I wonder if we can keep using that instead of creating new bindings
+> >>>    for exact same stuff ? Though the difference here would be that the
+> >>>    OPP may not have any other entries.
+> >>
+> >> I thought about it and looked for other platforms' DT to see if can reuse
+> >> existing opp information. Unfortunately I don't think it is optimal. The reason
+> >> being that, because cpus have the same opp table it does not necessarily mean
+> >> that they share a clock wire. It just tells us that they have the same
+> >> capabilities (literally just tells us they have the same V/f op points).
+> >> Unless I am missing something?
+> >>
+> >> When comparing with ACPI/_PSD it becomes more intuitive that there is no
+> >> equivalent way to reveal "perf-dependencies" in DT.
+> >
+> > You should be able to by examining the clock tree. But perhaps SCMI
+> > abstracts all that and just presents virtual clocks without parent
+> > clocks available to determine what clocks are shared? Fix SCMI if that's
+> > the case.
+>
+> True, the SCMI clock does not support discovery of clock tree:
+> (from 4.6.1 Clock management protocol background)
+> 'The protocol does not cover discovery of the clock tree, which must be
+> described through firmware tables instead.' [1]
+>
+> In this situation, would it make sense, instead of this binding from
+> patch 1/2, create a binding for internal firmware/scmi node?
+>
+> Something like:
+>
+> firmware {
+>         scmi {
+>         ...
+>                 scmi-perf-dep {
+>                         compatible = "arm,scmi-perf-dependencies";
+>                         cpu-perf-dep0 {
+>                                 cpu-perf-affinity = <&CPU0>, <&CPU1>;
+>                         };
+>                         cpu-perf-dep1 {
+>                                 cpu-perf-affinity = <&CPU3>, <&CPU4>;
+>                         };
+>                         cpu-perf-dep2 {
+>                                 cpu-perf-affinity = <&CPU7>;
+>                         };
+>                 };
+>         };
+> };
+>
+> The code which is going to parse the binding would be inside the
+> scmi perf protocol code and used via API by scmi-cpufreq.c.
+>
+>
+> Now regarding the 'dependent_cpus' mask.
+>
+> We could avoid adding a new field 'dependent_cpus' in policy
+> struct, but I am not sure of one bit - Frequency Invariant Engine,
+> (which is also not fixed by just adding a new cpumask).
+>
+> We have 3 subsystems to fix:
+> 1. EAS - EM has API function which takes custom cpumask, so no issue,
+>    fix would be to use it via the scmi-cpufreq.c
+> 2. IPA (for calculating the power of a cluster, not whole thermal needs
+>    this knowledge about 'dependent cpus') - this can be fixed internally
+> 3. Frequency Invariant Engine (FIE) - currently it relies on schedutil
+>    filtering and providing max freq of all cpus in the cluster into the
+>    FIE; this info is then populated to all 'related_cpus' which will
+>    have this freq (we know, because there is no other freq requests);
+>    Issues:
+> 3.1. Schedutil is not going to check all cpus in the cluster to take
+>    max freq, which is then passed into the cpufreq driver and FIE
+> 3.2. FIE would have to (or maybe we would drop it) have a logic similar
+>    to what schedutil does (max freq search and set, then filter next
+>    freq requests from other cpus in the next period e.g. 10ms)
+> 3.3. Schedutil is going to invoke freq change for each cpu independently
+>    and the current code just calls arch_set_freq_scale() - adding just
+>    'dependent_cpus' won't help
+> 3.4 What would be the real frequency of these cpus and what would be
+>    set to FIE
+> 3.5 FIE is going to filter to soon requests from other dependent cpus?
+>
+> IMHO the FIE needs more bits than just a new cpumask.
+> Maybe we should consider to move FIE arch_set_freq_scale() call into the
+> cpufreq driver, which will know better how to aggregate/filter requests
+> and then call FIE update?
+>
+> [1] https://developer.arm.com/documentation/den0056/b/
+
+I'm not sure if I understand your concern correctly, but generally
+speaking in the one-CPU-per-policy case with HW-based frequency
+coordination feedback registers are needed to implement (approximate)
+frequency invariance, which is what happens on x86.
+
+Thanks!
