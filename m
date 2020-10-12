@@ -2,110 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E46DE28B853
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 15:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7124B28B949
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 16:01:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390074AbgJLNv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 09:51:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58574 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389956AbgJLNua (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 09:50:30 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 543F620678;
-        Mon, 12 Oct 2020 13:50:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602510629;
-        bh=gclqk7PlHJkH2Ivqw36sMpSSFpCR5Atw2BLhMIFSeZ8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uBfz4p4Rs+2yLXkEje0vEUczBBX9Wa8UI1+elcZfPtciYMbvFTkbSNNMrr+FrPv9E
-         lyTKL+hZtelhR2hYYQyRxGz5GNnfPqnWLnGrV47YD66zUGy5e/zug9eW1IFmqQGzLQ
-         rp+iMF+8MOkSI+8AIteEQJn6DaMl0iRaM4yayxHM=
-Date:   Mon, 12 Oct 2020 14:50:25 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Cc:     Ajye Huang <ajye.huang@gmail.com>, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        id S2388923AbgJLN7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 09:59:13 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:39167 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731466AbgJLN6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 09:58:49 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E644B5802DE;
+        Mon, 12 Oct 2020 09:58:47 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 12 Oct 2020 09:58:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=sEZcyXmHBZEDouzMk16DQ7A+uj0
+        n9Hmw8HMTAmUqJfE=; b=sNqTujZFyiNiSFlovqDYbgmqHijW/8SVF36UDKYU/tU
+        J/nk7oXUFQX7UD7rs5Y6GbMsXrbvNQCPZabRxPYLevz8+Cmc4epqgShk3HvHQkt0
+        qdrNpT6Ig1skcbAFNGbJUQ6BR9voFaT+MXr3lbLrDuFeFp7TNIqQcan2t7jeq1S0
+        0FO3p7lfq4fbMwO6Im3/fVtcQ1HMDqZdfyW0uBCKs9sRjO35iLyOrt+4weDOeiFt
+        9EboT8moNnJc3PFKABj2rF09KctylrVgAYIdZM0WDLCmHM72/ViByTI2zy2l5mm4
+        8P0U7Y3MR12GIwamvxyXK3JGshlhHkG9VCKknT5ivAg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=sEZcyX
+        mHBZEDouzMk16DQ7A+uj0n9Hmw8HMTAmUqJfE=; b=eYXTngJGlD5XLuscT3f0ex
+        DOhZj5i7CgiqFAuuJmlMKnfhJW4ib8I1mq//bAaWM/0VGNWwA52a2WrhT9/CQbST
+        fQsPhNPwujfdsipbjxlY/NtxTEJ0CqYYrOHH4en9uQMFQj1EwHvfK+iFNh8mzPKU
+        MWjQxigheo8gWq4jYPyEgIw757x1Eav+e7xTq9q4DQz6DOX4ui91E4rfxPxCLgAx
+        ETthHhQBuiD8wk9EWYFArC4m5s23OTUMGrmE1NfYP44XQlwH7qQY5dHm9hiCn1Qn
+        M3zYSiTOlAw/ubC5hnQNs1bPMY/F0+UGoN3rNdvEmhyG44yzbdxuNUIF+V3+6M9Q
+        ==
+X-ME-Sender: <xms:FmGEX1R9UOYg1BipFqTFO1G4FFVuoZZO0hvxY3LVcDhrEA0foITvAA>
+    <xme:FmGEX-zwRAqNLFzxYyw-L0af-HpfZ6HBpI0qaAsv4syQ2I0KOqWS-EOWFtzsYBPRZ
+    zi8Kxzzhulcd33S8tQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrheejgdejudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:FmGEX630vghiH5FBREanLrOx6Jk3-ZWpNdCioDXorraeIE0jUBpV7g>
+    <xmx:FmGEX9AHgSPckErYJ9-I5o5IXw34A6ccxuyOW-Y7t_LqBXVBvAVA-A>
+    <xmx:FmGEX-j3-NoJ9WyhNitdQD1ptwoy670KMcqVDnT4yq8u1Sb17lrBcQ>
+    <xmx:F2GEX_ZgaIP_SSeCWTSSC5MS5yw6_JhptqZgR98wYt_gZj5BnYu25w>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 577493280066;
+        Mon, 12 Oct 2020 09:58:46 -0400 (EDT)
+Date:   Mon, 12 Oct 2020 15:58:45 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rohit kumar <rohitkr@codeaurora.org>, tzungbi@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        Cheng-yi Chiang <cychiang@chromium.org>
-Subject: Re: [PATCH v1 1/2] ASoC: qcom: dt-bindings: Modify sc7180 machine
- bindings
-Message-ID: <20201012135025.GF4332@sirena.org.uk>
-References: <20200928063744.525700-1-ajye_huang@compal.corp-partner.google.com>
- <20200928063744.525700-2-ajye_huang@compal.corp-partner.google.com>
- <20201009135231.GA6655@sirena.org.uk>
- <CALprXBZAFCOpWP2186RaP++613qnjPY3D3NbXEN5CToYsLNsRw@mail.gmail.com>
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v7 01/14] ASoC: sun4i-i2s: Change set_chan_cfg() params
+Message-ID: <20201012135845.s6tknsnjrtsuoacf@gilmour.lan>
+References: <20201011202224.47544-1-peron.clem@gmail.com>
+ <20201011202224.47544-2-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="m1UC1K4AOz1Ywdkx"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="g3qoejqmxfoskuxo"
 Content-Disposition: inline
-In-Reply-To: <CALprXBZAFCOpWP2186RaP++613qnjPY3D3NbXEN5CToYsLNsRw@mail.gmail.com>
-X-Cookie: Fremen add life to spice!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201011202224.47544-2-peron.clem@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---m1UC1K4AOz1Ywdkx
-Content-Type: text/plain; charset=us-ascii
+--g3qoejqmxfoskuxo
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Oct 10, 2020 at 12:07:54AM +0800, Ajye Huang wrote:
-> On Fri, Oct 9, 2020 at 9:52 PM Mark Brown <broonie@kernel.org> wrote:
-> > On Mon, Sep 28, 2020 at 02:37:43PM +0800, Ajye Huang wrote:
+On Sun, Oct 11, 2020 at 10:22:11PM +0200, Cl=E9ment P=E9ron wrote:
+> As slots and slot_width can be set manually using set_tdm().
+> These values are then kept in sun4i_i2s struct.
+> So we need to check if these values are set or not.
+>=20
+> This is not done actually and will trigger a bug.
+> For example, if we set to the simple soundcard in the device-tree
+> dai-tdm-slot-width =3D <32> and then start a stream using S16_LE,
+> currently we would calculate BCLK for 32-bit slots, but program
+> lrck_period for 16-bit slots, making the sample rate double what we
+> expected.
+>=20
+> To fix this, we need to check if these values are set or not but as
+> this logic is already done by the caller. Avoid duplicating this
+> logic and just pass the required values as params to set_chan_cfg().
+>=20
+> Suggested-by: Samuel Holland <samuel@sholland.org>
+> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
 
-> > > Add compatible "qcom,sc7180-sndcard-rt5682-m98357-2mic"
-> > > for 2mic case.
+We still have an ongoing discussion on this one in the v6
 
-> > This doesn't apply against current code, please check and resend.
+Maxime
 
-> Thank you for your reply,
-> This patch depends on  Cheng-Yi's patch series
-> https://patchwork.kernel.org/patch/11773221/.
-
-That's "ASoC: qcom: dt-bindings: Add sc7180 machine bindings" for those
-playing at home.
-
->   If I misunderstand what you mean, please correct me,
-
-A version of some SC7180 patches was applied.  However it does seem like
-that didn't include any machine driver bindings so it must've been a
-different, similar looking series which is presumably waiting for a new
-version - please resend based on that new version (ideally these patches
-could be picked up as part of that series).
-
-Please include human readable descriptions of things like commits and
-issues being discussed in e-mail in your mails, this makes them much
-easier for humans to read especially when they have no internet access.
-I do frequently catch up on my mail on flights or while otherwise
-travelling so this is even more pressing for me than just being about
-making things a bit easier to read.
-
---m1UC1K4AOz1Ywdkx
+--g3qoejqmxfoskuxo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+EXyAACgkQJNaLcl1U
-h9BwIAf/XpfQPd1lFO2YwlgTjpFOBaziPt4AR62h8rbInkhceFG213nkLrJwxqwB
-zd86aM3WLbMco1ub9Cb45c8Ki+XG3JkKzu42jAe57UI7PKDSEUbMPX9ij9syI0rp
-Av2maAjFLvsayqXLMKoPAEeukBfNGxFys7bGRRPVFCFH2Ji9o2JmrRQ3nUOTmxNW
-kZBtjAkb2L7b9gMZj2p+pnwuU/Sx9DWyaE5pIu02YsjxXCp1NSWRCYnoZ/WPmvMh
-la5s2RnQJ7d5etnRM/iKDUmNrJX6bptGu7aFpwIM7ErjhIc2nT8SbtH79lU63t9w
-eGhLoubWxF3WrO9uxYZ9ecN0h4ufwg==
-=78nE
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX4RhFQAKCRDj7w1vZxhR
+xSBFAQC6KZxQXo2wkmG7IYJL8mCSpdD6xPNJqcknI6+pUmt2uwD/QQEBR+rIzK8+
+3i5szDEx6Z3mAunz7uCj/u9/KpumUg8=
+=PQvS
 -----END PGP SIGNATURE-----
 
---m1UC1K4AOz1Ywdkx--
+--g3qoejqmxfoskuxo--
