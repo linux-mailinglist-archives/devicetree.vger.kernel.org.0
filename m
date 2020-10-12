@@ -2,101 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E97128BD24
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 18:03:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B68B628BD37
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 18:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389340AbgJLQDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 12:03:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:55098 "EHLO foss.arm.com"
+        id S2390123AbgJLQGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 12:06:46 -0400
+Received: from foss.arm.com ([217.140.110.172]:55312 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388982AbgJLQDA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 12:03:00 -0400
+        id S2389068AbgJLQGq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 12:06:46 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5C5B631B;
-        Mon, 12 Oct 2020 09:02:59 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D1BC831B;
+        Mon, 12 Oct 2020 09:06:45 -0700 (PDT)
 Received: from bogus (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8F9653F719;
-        Mon, 12 Oct 2020 09:02:57 -0700 (PDT)
-Date:   Mon, 12 Oct 2020 17:02:46 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED2973F719;
+        Mon, 12 Oct 2020 09:06:43 -0700 (PDT)
+Date:   Mon, 12 Oct 2020 17:06:33 +0100
 From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>,
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Ionela Voinescu <ionela.voinescu@arm.com>,
         Viresh Kumar <viresh.kumar@linaro.org>,
-        Ionela Voinescu <ionela.voinescu@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, chris.redpath@arm.com,
-        morten.rasmussen@arm.com, linux-arm-kernel@lists.infradead.org
+        Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Chris Redpath <chris.redpath@arm.com>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
  cpu-perf-dependencies
-Message-ID: <20201012160232.GF16519@bogus>
-References: <20200924095347.32148-3-nicola.mazzucato@arm.com>
+Message-ID: <20201012160633.GG16519@bogus>
+References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
+ <20200924095347.32148-3-nicola.mazzucato@arm.com>
  <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
  <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
  <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
  <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
- <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
- <20201009140141.GA4048593@bogus>
- <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
+ <CAJZ5v0j=g6y53yk_+cPNnUYb6usrQmghCNuiHYc1vbpsypFtCQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
+In-Reply-To: <CAJZ5v0j=g6y53yk_+cPNnUYb6usrQmghCNuiHYc1vbpsypFtCQ@mail.gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 12, 2020 at 11:22:57AM +0100, Lukasz Luba wrote:
+On Thu, Oct 08, 2020 at 05:57:23PM +0200, Rafael J. Wysocki wrote:
+> On Thu, Oct 8, 2020 at 5:03 PM Ionela Voinescu <ionela.voinescu@arm.com> wrote:
+
 [...]
 
-> 
-> True, the SCMI clock does not support discovery of clock tree:
-> (from 4.6.1 Clock management protocol background)
-> 'The protocol does not cover discovery of the clock tree, which must be
-> described through firmware tables instead.' [1]
+>
+> >    The PSD domains (ACPI) and the new DT binding will tell
+> >    which CPUs are actually in the same clock domain for whomever is
+> >    interested, despite those CPUs not being in the same policy.
+>
+> And this information hasn't been used so far in those cases.
 >
 
-By firmware, spec refers to DT or ACPI, just to be clear.
+Indeed, do you see that will change for new heterogeneous CPUs ? Are there
+any plans to use EAS on those ?
 
-> In this situation, would it make sense, instead of this binding from
-> patch 1/2, create a binding for internal firmware/scmi node?
->
-
-Why ? I prefer to solve this in a generic way and make it not scmi
-specific issue. If OPP idea Viresh suggested can be made to work, that
-would be good.
-
-> Something like:
-> 
-> firmware {
-> 	scmi {
-> 	...		
-> 		scmi-perf-dep {
-> 			compatible = "arm,scmi-perf-dependencies";
-> 			cpu-perf-dep0 {
-> 				cpu-perf-affinity = <&CPU0>, <&CPU1>;
-> 			};
-> 			cpu-perf-dep1 {
-> 				cpu-perf-affinity = <&CPU3>, <&CPU4>;
-> 			};
-> 			cpu-perf-dep2 {
-> 				cpu-perf-affinity = <&CPU7>;
-> 			};
-> 		};
-> 	};
-> };
-> 
-> The code which is going to parse the binding would be inside the
-> scmi perf protocol code and used via API by scmi-cpufreq.c.
->
-
-Not completely against it, just need to understand how is this solved
-or will be solved for any DT(non SCMI) and why it can be generic.
-
--- 
+--
 Regards,
 Sudeep
