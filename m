@@ -2,326 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED08A28B35E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 13:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A9A28B3AE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 13:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387683AbgJLLFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 07:05:34 -0400
-Received: from foss.arm.com ([217.140.110.172]:37980 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387594AbgJLLFe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 07:05:34 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7653D30E;
-        Mon, 12 Oct 2020 04:05:32 -0700 (PDT)
-Received: from [10.57.55.84] (unknown [10.57.55.84])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 149493F719;
-        Mon, 12 Oct 2020 04:05:28 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Ionela Voinescu <ionela.voinescu@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Chris Redpath <chris.redpath@arm.com>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
- <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
- <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
- <20201009140141.GA4048593@bogus>
- <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
- <CAJZ5v0h5JiwrL0Ae3FHGJBKxBVb4cPzA9Maknh-rJR-McQFx8w@mail.gmail.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <68a1c36d-f386-b7f9-ca23-21985c2d2cbd@arm.com>
-Date:   Mon, 12 Oct 2020 12:05:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2387859AbgJLLVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 07:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37780 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388048AbgJLLVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 07:21:49 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051ACC0613D1
+        for <devicetree@vger.kernel.org>; Mon, 12 Oct 2020 04:21:47 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id s9so6643932wro.8
+        for <devicetree@vger.kernel.org>; Mon, 12 Oct 2020 04:21:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E+2fT5wM+IZ7ws6Rc2lCDmiMKB5AnOCmm2bmSr1dNrg=;
+        b=LP/RlWXWcERt5aI6VpTOqijkZ7kCphkElXxTeY0p+mODOEgJlmcq7X3ctDuFRXDhBd
+         xf94uxbwszQ1N/RlJPGQVTrxA9cXN5JQbReolAkkmKpKl7rD78q1fHCbiVBN0SUumrjI
+         stzhH02E2fJh5e+sueJ7QDfJpr5+bO7NIWcLTUdv2QgssH7aH97wIPByj376Ekh1Wahd
+         JORn7IE2Lpxg/RCii9rcVhk5ym1wPxOydVEYr77n0oeO/r0lNSDNF6239XR4rpPoR1Ae
+         v34z/3Ib+BaChQEdRPFatO7OVv+8Kmgk1qocLboSHdDzEv53+VcSKkwJsCz2Fw5YW6Em
+         l+3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E+2fT5wM+IZ7ws6Rc2lCDmiMKB5AnOCmm2bmSr1dNrg=;
+        b=WU/PFp0GIsA+LAf5keYNSBbJ/OXV3BiS1bDYoVDuTBjOkSxdr4096fiVmKdAvIhx6J
+         B9PdHomuf3ykKtHARk/ByJHGJ0Ll+faUVPijAqqAf5SMzFSZ/cfeTXxs/2fT9xetsL34
+         A4TzAD2KmhAI6Eyzs71cFal0ROYsb94Bq3Z/sFqTv69OBmZq+ht4bRAdu091Ld7eSMbR
+         w0dLwF4mnrKFv3AjxBwhe+QR59OjhGXAZFitf7s08BTI0UKu7p+aqMu0HrCD3XbnC9wQ
+         Wwx5HeuSopiF5nnlLimRl+Dv59XFsFUvEB8xj836EE5bxmHqYY/6POzrLRoju5Bv3PsF
+         BQEg==
+X-Gm-Message-State: AOAM532YgAue8ru56zD1EzJhtKD4qQPmEid8h4rhOZpYFs35Of0SB6kP
+        DUdJppb2A/mRVhmIb8ErkNfhXQ==
+X-Google-Smtp-Source: ABdhPJyQIhEEaWJAbTeWxA8liIvffJCGZhNc3MKWlvUOboz2e6l6gT04lGubQt34YQcPOcgbRstxpg==
+X-Received: by 2002:a5d:680a:: with SMTP id w10mr30369143wru.5.1602501706529;
+        Mon, 12 Oct 2020 04:21:46 -0700 (PDT)
+Received: from localhost.localdomain (170.175.185.81.rev.sfr.net. [81.185.175.170])
+        by smtp.gmail.com with ESMTPSA id j17sm24714845wrw.68.2020.10.12.04.21.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Oct 2020 04:21:45 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        sboyd@kernel.org
+Cc:     krzk@kernel.org, masahiroy@kernel.org,
+        enric.balletbo@collabora.com, owen.chen@mediatek.com,
+        macpaul.lin@mediatek.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 RESEND 1/2] dt-bindings: clock: mediatek: add bindings for MT8167 clocks
+Date:   Mon, 12 Oct 2020 13:21:42 +0200
+Message-Id: <20201012112143.368863-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <CAJZ5v0h5JiwrL0Ae3FHGJBKxBVb4cPzA9Maknh-rJR-McQFx8w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add binding documentation for topckgen, apmixedsys, infracfg, audsys,
+imgsys, mfgcfg, vdecsys on MT8167 SoC.
 
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
 
-On 10/12/20 11:50 AM, Rafael J. Wysocki wrote:
-> On Mon, Oct 12, 2020 at 12:23 PM Lukasz Luba <lukasz.luba@arm.com> wrote:
->>
->> Hi Rob,
->>
->> On 10/9/20 3:01 PM, Rob Herring wrote:
->>> On Fri, Oct 09, 2020 at 12:10:03PM +0100, Nicola Mazzucato wrote:
->>>> Hi Viresh, I'm glad it helped.
->>>>
->>>> Please find below my reply.
->>>>
->>>> On 10/9/20 6:39 AM, Viresh Kumar wrote:
->>>>> On 08-10-20, 17:00, Nicola Mazzucato wrote:
->>>>>> On 10/8/20 4:03 PM, Ionela Voinescu wrote:
->>>>>>> Hi Viresh,
->>>>>>>
->>>>>>> On Thursday 08 Oct 2020 at 16:32:41 (+0530), Viresh Kumar wrote:
->>>>>>>> On 07-10-20, 13:58, Nicola Mazzucato wrote:
->>>>>>>>> Hi Viresh,
->>>>>>>>>
->>>>>>>>> performance controls is what is exposed by the firmware through a protocol that
->>>>>>>>> is not capable of describing hardware (say SCMI). For example, the firmware can
->>>>>>>>> tell that the platform has N controls, but it can't say to which hardware they
->>>>>>>>> are "wired" to. This is done in dt, where, for example, we map these controls
->>>>>>>>> to cpus, gpus, etc.
->>>>>>>>>
->>>>>>>>> Let's focus on cpus.
->>>>>>>>>
->>>>>>>>> Normally we would have N of performance controls (what comes from f/w)
->>>>>>>>> that that correspond to hardware clock/dvfs domains.
->>>>>>>>>
->>>>>>>>> However, some firmware implementations might benefit from having finer
->>>>>>>>> grained information about the performance requirements (e.g.
->>>>>>>>> per-CPU) and therefore choose to present M performance controls to the
->>>>>>>>> OS. DT would be adjusted accordingly to "wire" these controls to cpus
->>>>>>>>> or set of cpus.
->>>>>>>>> In this scenario, the f/w will make aggregation decisions based on the
->>>>>>>>> requests it receives on these M controls.
->>>>>>>>>
->>>>>>>>> Here we would have M cpufreq policies which do not necessarily reflect the
->>>>>>>>> underlying clock domains, thus some s/w components will underperform
->>>>>>>>> (EAS and thermal, for example).
->>>>>>>>>
->>>>>>>>> A real example would be a platform in which the firmware describes the system
->>>>>>>>> having M per-cpu control, and the cpufreq subsystem will have M policies while
->>>>>>>>> in fact these cpus are "performance-dependent" each other (e.g. are in the same
->>>>>>>>> clock domain).
->>>>>>>>
->>>>>>>> If the CPUs are in the same clock domain, they must be part of the
->>>>>>>> same cpufreq policy.
->>>>>>>
->>>>>>> But cpufreq does not currently support HW_ALL (I'm using the ACPI
->>>>>>> coordination type to describe the generic scenario of using hardware
->>>>>>> aggregation and coordination when establishing the clock rate of CPUs).
->>>>>>>
->>>>>>> Adding support for HW_ALL* will involve either bypassing some
->>>>>>> assumptions around cpufreq policies or making core cpufreq changes.
->>>>>>>
->>>>>>> In the way I see it, support for HW_ALL involves either:
->>>>>>>
->>>>>>>    - (a) Creating per-cpu policies in order to allow each of the CPUs to
->>>>>>>      send their own frequency request to the hardware which will do
->>>>>>>      aggregation and clock rate decision at the level of the clock
->>>>>>>      domain. The PSD domains (ACPI) and the new DT binding will tell
->>>>>>>      which CPUs are actually in the same clock domain for whomever is
->>>>>>>      interested, despite those CPUs not being in the same policy.
->>>>>>>      This requires the extra mask that Nicola introduced.
->>>>>>>
->>>>>>>    - (b) Making deep changes to cpufreq (core/governors/drivers) to allow:
->>>>>>>      - Governors to stop aggregating (usually max) the information
->>>>>>>        for each of the CPUs in the policy and convey to the core
->>>>>>>        information for each CPU.
->>>>>>>      - Cpufreq core to be able to receive and pass this information
->>>>>>>        down to the drivers.
->>>>>>>      - Drivers to be able to have some per cpu structures to hold
->>>>>>>        frequency control (let's say SCP fast channel addresses) for
->>>>>>>        each of the CPUs in the policy. Or have these structures in the
->>>>>>>        cpufreq core/policy, to avoid code duplication in drivers.
->>>>>>>
->>>>>>> Therefore (a) is the least invasive but we'll be bypassing the rule
->>>>>>> above. But to make that rule stick we'll have to make invasive cpufreq
->>>>>>> changes (b).
->>>>>>
->>>>>> Regarding the 'rule' above of one cpufreq policy per clock domain, I would like
->>>>>> to share my understanding on it. Perhaps it's a good opportunity to shed some light.
->>>>>>
->>>>>> Looking back in the history of CPUFreq, related_cpus was originally designed
->>>>>> to hold the map of cpus within the same clock. Later on, the meaning of this
->>>>>> cpumask changed [1].
->>>>>> This led to the introduction of a new cpumask 'freqdomain_cpus'
->>>>>> within acpi-cpufreq to keep the knowledge of hardware clock domains for
->>>>>> sysfs consumers since related_cpus was not suitable anymore for this.
->>>>>> Further on, this cpumask was assigned to online+offline cpus within the same clk
->>>>>> domain when sw coordination is in use [2].
->>>>>>
->>>>>> My interpretation is that there is no guarantee that related_cpus holds the
->>>>>> 'real' hardware clock implementation. As a consequence, it is not true anymore
->>>>>> that cpus that are in the same clock domain will be part of the same
->>>>>> policy.
->>>>>>
->>>>>> This guided me to think it would be better to have a cpumask which always holds
->>>>>> the real hw clock domains in the policy.
->>>>>>
->>>>>>>
->>>>>>> This is my current understanding and I'm leaning towards (a). What do
->>>>>>> you think?
->>>>>>>
->>>>>>> *in not so many words, this is what these patches are trying to propose,
->>>>>>> while also making sure it's supported for both ACPI and DT.
->>>>>>>
->>>>>>> BTW, thank you for your effort in making sense of this!
->>>>>>>
->>>>>>> Regards,
->>>>>>> Ionela.
->>>>>>>
->>>>>>
->>>>>> This could be a platform where per-cpu and perf-dependencies will be used:
->>>>>>
->>>>>> CPU:              0    1    2    3    4    5    6    7
->>>>>> Type:             A    A    A    A    B    B    B    B
->>>>>> Cluster:         [                                    ]
->>>>>> perf-controls:   [  ] [  ] [  ] [ ]  [ ]  [ ]  [ ]  [ ]
->>>>>> perf-dependency: [                ]  [                ]
->>>>>> HW clock:        [                ]  [                ]
->>>>>>
->>>>>> The firmware will present 8 controls to the OS and each control is mapped to a
->>>>>> cpu device via the standard dt. This is done so we can achieve hw coordination.
->>>>>> What is required in these systems is to present to OS the information of which
->>>>>> cpus belong to which clock domain. In other words, when hw coordinates we don't
->>>>>> have any way at present in dt to understand how these cpus are dependent
->>>>>> each other, from performance perspective (as opposed to ACPI where we have
->>>>>> _PSD). Hence my proposal for the new cpu-perf-dependencies.
->>>>>> This is regardless whether we decide to go for either a policy per-cpu or a
->>>>>> policy per-domain.
->>>>>>
->>>>>> Hope it helps.
->>>>>
->>>>> Oh yes, I get it now. Finally. Thanks for helping me out :)
->>>>>
->>>>> So if I can say all this stuff in simple terms, this is what it will
->>>>> be like:
->>>>>
->>>>> - We don't want software aggregation of frequencies and so we need to
->>>>>     have per-cpu policies even when they share their clock lines.
->>>>>
->>>>> - But we still need a way for other frameworks to know which CPUs
->>>>>     share the clock lines (that's what the perf-dependency is all about,
->>>>>     right ?).
->>>>>
->>>>> - We can't get it from SCMI, but need a DT based solution.
->>>>>
->>>>> - Currently for the cpufreq-case we relied for this on the way OPP
->>>>>     tables for the CPUs were described. i.e. the opp-table is marked as
->>>>>     "shared" and multiple CPUs point to it.
->>>>>
->>>>> - I wonder if we can keep using that instead of creating new bindings
->>>>>     for exact same stuff ? Though the difference here would be that the
->>>>>     OPP may not have any other entries.
->>>>
->>>> I thought about it and looked for other platforms' DT to see if can reuse
->>>> existing opp information. Unfortunately I don't think it is optimal. The reason
->>>> being that, because cpus have the same opp table it does not necessarily mean
->>>> that they share a clock wire. It just tells us that they have the same
->>>> capabilities (literally just tells us they have the same V/f op points).
->>>> Unless I am missing something?
->>>>
->>>> When comparing with ACPI/_PSD it becomes more intuitive that there is no
->>>> equivalent way to reveal "perf-dependencies" in DT.
->>>
->>> You should be able to by examining the clock tree. But perhaps SCMI
->>> abstracts all that and just presents virtual clocks without parent
->>> clocks available to determine what clocks are shared? Fix SCMI if that's
->>> the case.
->>
->> True, the SCMI clock does not support discovery of clock tree:
->> (from 4.6.1 Clock management protocol background)
->> 'The protocol does not cover discovery of the clock tree, which must be
->> described through firmware tables instead.' [1]
->>
->> In this situation, would it make sense, instead of this binding from
->> patch 1/2, create a binding for internal firmware/scmi node?
->>
->> Something like:
->>
->> firmware {
->>          scmi {
->>          ...
->>                  scmi-perf-dep {
->>                          compatible = "arm,scmi-perf-dependencies";
->>                          cpu-perf-dep0 {
->>                                  cpu-perf-affinity = <&CPU0>, <&CPU1>;
->>                          };
->>                          cpu-perf-dep1 {
->>                                  cpu-perf-affinity = <&CPU3>, <&CPU4>;
->>                          };
->>                          cpu-perf-dep2 {
->>                                  cpu-perf-affinity = <&CPU7>;
->>                          };
->>                  };
->>          };
->> };
->>
->> The code which is going to parse the binding would be inside the
->> scmi perf protocol code and used via API by scmi-cpufreq.c.
->>
->>
->> Now regarding the 'dependent_cpus' mask.
->>
->> We could avoid adding a new field 'dependent_cpus' in policy
->> struct, but I am not sure of one bit - Frequency Invariant Engine,
->> (which is also not fixed by just adding a new cpumask).
->>
->> We have 3 subsystems to fix:
->> 1. EAS - EM has API function which takes custom cpumask, so no issue,
->>     fix would be to use it via the scmi-cpufreq.c
->> 2. IPA (for calculating the power of a cluster, not whole thermal needs
->>     this knowledge about 'dependent cpus') - this can be fixed internally
->> 3. Frequency Invariant Engine (FIE) - currently it relies on schedutil
->>     filtering and providing max freq of all cpus in the cluster into the
->>     FIE; this info is then populated to all 'related_cpus' which will
->>     have this freq (we know, because there is no other freq requests);
->>     Issues:
->> 3.1. Schedutil is not going to check all cpus in the cluster to take
->>     max freq, which is then passed into the cpufreq driver and FIE
->> 3.2. FIE would have to (or maybe we would drop it) have a logic similar
->>     to what schedutil does (max freq search and set, then filter next
->>     freq requests from other cpus in the next period e.g. 10ms)
->> 3.3. Schedutil is going to invoke freq change for each cpu independently
->>     and the current code just calls arch_set_freq_scale() - adding just
->>     'dependent_cpus' won't help
->> 3.4 What would be the real frequency of these cpus and what would be
->>     set to FIE
->> 3.5 FIE is going to filter to soon requests from other dependent cpus?
->>
->> IMHO the FIE needs more bits than just a new cpumask.
->> Maybe we should consider to move FIE arch_set_freq_scale() call into the
->> cpufreq driver, which will know better how to aggregate/filter requests
->> and then call FIE update?
->>
->> [1] https://developer.arm.com/documentation/den0056/b/
-> 
-> I'm not sure if I understand your concern correctly, but generally
-> speaking in the one-CPU-per-policy case with HW-based frequency
-> coordination feedback registers are needed to implement (approximate)
-> frequency invariance, which is what happens on x86.
-> 
-> Thanks!
-> 
+ChangeLog:
+	V2: no changes
 
-Unfortunately, in Arm, we might have platforms which do not have these
-counters (AMU - similar to mperf, aperf). Even worse, in the same SoC
-some CPUs might have them, while other not. They are 'optional' in Arm
-and some vendors might skip to implement them. This is a good example
-and requirement to make them 'obligatory' (I'll rise this internally).
+ .../arm/mediatek/mediatek,apmixedsys.txt      |   1 +
+ .../bindings/arm/mediatek/mediatek,audsys.txt |   1 +
+ .../bindings/arm/mediatek/mediatek,imgsys.txt |   1 +
+ .../arm/mediatek/mediatek,infracfg.txt        |   1 +
+ .../bindings/arm/mediatek/mediatek,mfgcfg.txt |   1 +
+ .../arm/mediatek/mediatek,topckgen.txt        |   1 +
+ .../arm/mediatek/mediatek,vdecsys.txt         |   1 +
+ include/dt-bindings/clock/mt8167-clk.h        | 131 ++++++++++++++++++
+ 8 files changed, 138 insertions(+)
+ create mode 100644 include/dt-bindings/clock/mt8167-clk.h
 
-I don't know if there is a good solution for these problems. I am not
-convinced that a simple new cpumask would solve them all.
-
-Thank you Rafael for this important comment.
-
-Regards,
-Lukasz
-
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
+index bd7a0fa5801b..ea827e8763de 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
+@@ -15,6 +15,7 @@ Required Properties:
+ 	- "mediatek,mt7623-apmixedsys", "mediatek,mt2701-apmixedsys"
+ 	- "mediatek,mt7629-apmixedsys"
+ 	- "mediatek,mt8135-apmixedsys"
++	- "mediatek,mt8167-apmixedsys", "syscon"
+ 	- "mediatek,mt8173-apmixedsys"
+ 	- "mediatek,mt8183-apmixedsys", "syscon"
+ 	- "mediatek,mt8516-apmixedsys"
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+index 38309db115f5..b32d374193c7 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+@@ -11,6 +11,7 @@ Required Properties:
+ 	- "mediatek,mt6779-audio", "syscon"
+ 	- "mediatek,mt7622-audsys", "syscon"
+ 	- "mediatek,mt7623-audsys", "mediatek,mt2701-audsys", "syscon"
++	- "mediatek,mt8167-audiosys", "syscon"
+ 	- "mediatek,mt8183-audiosys", "syscon"
+ 	- "mediatek,mt8516-audsys", "syscon"
+ - #clock-cells: Must be 1
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt
+index 1e1f00718a7d..dce4c9241932 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imgsys.txt
+@@ -12,6 +12,7 @@ Required Properties:
+ 	- "mediatek,mt6779-imgsys", "syscon"
+ 	- "mediatek,mt6797-imgsys", "syscon"
+ 	- "mediatek,mt7623-imgsys", "mediatek,mt2701-imgsys", "syscon"
++	- "mediatek,mt8167-imgsys", "syscon"
+ 	- "mediatek,mt8173-imgsys", "syscon"
+ 	- "mediatek,mt8183-imgsys", "syscon"
+ - #clock-cells: Must be 1
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+index 49a968be1a80..eb3523c7a7be 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+@@ -16,6 +16,7 @@ Required Properties:
+ 	- "mediatek,mt7623-infracfg", "mediatek,mt2701-infracfg", "syscon"
+ 	- "mediatek,mt7629-infracfg", "syscon"
+ 	- "mediatek,mt8135-infracfg", "syscon"
++	- "mediatek,mt8167-infracfg", "syscon"
+ 	- "mediatek,mt8173-infracfg", "syscon"
+ 	- "mediatek,mt8183-infracfg", "syscon"
+ 	- "mediatek,mt8516-infracfg", "syscon"
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt
+index ad5f9d2f6818..054424fb64b4 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mfgcfg.txt
+@@ -8,6 +8,7 @@ Required Properties:
+ - compatible: Should be one of:
+ 	- "mediatek,mt2712-mfgcfg", "syscon"
+ 	- "mediatek,mt6779-mfgcfg", "syscon"
++	- "mediatek,mt8167-mfgcfg", "syscon"
+ 	- "mediatek,mt8183-mfgcfg", "syscon"
+ - #clock-cells: Must be 1
+ 
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
+index 9b0394cbbdc9..5ce7578cf274 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
+@@ -15,6 +15,7 @@ Required Properties:
+ 	- "mediatek,mt7623-topckgen", "mediatek,mt2701-topckgen"
+ 	- "mediatek,mt7629-topckgen"
+ 	- "mediatek,mt8135-topckgen"
++	- "mediatek,mt8167-topckgen", "syscon"
+ 	- "mediatek,mt8173-topckgen"
+ 	- "mediatek,mt8183-topckgen", "syscon"
+ 	- "mediatek,mt8516-topckgen"
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt
+index 7894558b7a1c..98195169176a 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,vdecsys.txt
+@@ -11,6 +11,7 @@ Required Properties:
+ 	- "mediatek,mt6779-vdecsys", "syscon"
+ 	- "mediatek,mt6797-vdecsys", "syscon"
+ 	- "mediatek,mt7623-vdecsys", "mediatek,mt2701-vdecsys", "syscon"
++	- "mediatek,mt8167-vdecsys", "syscon"
+ 	- "mediatek,mt8173-vdecsys", "syscon"
+ 	- "mediatek,mt8183-vdecsys", "syscon"
+ - #clock-cells: Must be 1
+diff --git a/include/dt-bindings/clock/mt8167-clk.h b/include/dt-bindings/clock/mt8167-clk.h
+new file mode 100644
+index 000000000000..a96158edd817
+--- /dev/null
++++ b/include/dt-bindings/clock/mt8167-clk.h
+@@ -0,0 +1,131 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2020 MediaTek Inc.
++ * Copyright (c) 2020 BayLibre, SAS.
++ * Author: James Liao <jamesjj.liao@mediatek.com>
++ *         Fabien Parent <fparent@baylibre.com>
++ */
++
++#ifndef _DT_BINDINGS_CLK_MT8167_H
++#define _DT_BINDINGS_CLK_MT8167_H
++
++/* MT8167 is based on MT8516 */
++#include <dt-bindings/clock/mt8516-clk.h>
++
++/* APMIXEDSYS */
++
++#define CLK_APMIXED_TVDPLL		(CLK_APMIXED_NR_CLK + 0)
++#define CLK_APMIXED_LVDSPLL		(CLK_APMIXED_NR_CLK + 1)
++#define CLK_APMIXED_HDMI_REF		(CLK_APMIXED_NR_CLK + 2)
++#define MT8167_CLK_APMIXED_NR_CLK	(CLK_APMIXED_NR_CLK + 3)
++
++/* TOPCKGEN */
++
++#define CLK_TOP_DSI0_LNTC_DSICK		(CLK_TOP_NR_CLK + 0)
++#define CLK_TOP_VPLL_DPIX		(CLK_TOP_NR_CLK + 1)
++#define CLK_TOP_LVDSTX_CLKDIG_CTS	(CLK_TOP_NR_CLK + 2)
++#define CLK_TOP_HDMTX_CLKDIG_CTS	(CLK_TOP_NR_CLK + 3)
++#define CLK_TOP_LVDSPLL			(CLK_TOP_NR_CLK + 4)
++#define CLK_TOP_LVDSPLL_D2		(CLK_TOP_NR_CLK + 5)
++#define CLK_TOP_LVDSPLL_D4		(CLK_TOP_NR_CLK + 6)
++#define CLK_TOP_LVDSPLL_D8		(CLK_TOP_NR_CLK + 7)
++#define CLK_TOP_MIPI_26M		(CLK_TOP_NR_CLK + 8)
++#define CLK_TOP_TVDPLL			(CLK_TOP_NR_CLK + 9)
++#define CLK_TOP_TVDPLL_D2		(CLK_TOP_NR_CLK + 10)
++#define CLK_TOP_TVDPLL_D4		(CLK_TOP_NR_CLK + 11)
++#define CLK_TOP_TVDPLL_D8		(CLK_TOP_NR_CLK + 12)
++#define CLK_TOP_TVDPLL_D16		(CLK_TOP_NR_CLK + 13)
++#define CLK_TOP_PWM_MM			(CLK_TOP_NR_CLK + 14)
++#define CLK_TOP_CAM_MM			(CLK_TOP_NR_CLK + 15)
++#define CLK_TOP_MFG_MM			(CLK_TOP_NR_CLK + 16)
++#define CLK_TOP_SPM_52M			(CLK_TOP_NR_CLK + 17)
++#define CLK_TOP_MIPI_26M_DBG		(CLK_TOP_NR_CLK + 18)
++#define CLK_TOP_SCAM_MM			(CLK_TOP_NR_CLK + 19)
++#define CLK_TOP_SMI_MM			(CLK_TOP_NR_CLK + 20)
++#define CLK_TOP_26M_HDMI_SIFM		(CLK_TOP_NR_CLK + 21)
++#define CLK_TOP_26M_CEC			(CLK_TOP_NR_CLK + 22)
++#define CLK_TOP_32K_CEC			(CLK_TOP_NR_CLK + 23)
++#define CLK_TOP_GCPU_B			(CLK_TOP_NR_CLK + 24)
++#define CLK_TOP_RG_VDEC			(CLK_TOP_NR_CLK + 25)
++#define CLK_TOP_RG_FDPI0		(CLK_TOP_NR_CLK + 26)
++#define CLK_TOP_RG_FDPI1		(CLK_TOP_NR_CLK + 27)
++#define CLK_TOP_RG_AXI_MFG		(CLK_TOP_NR_CLK + 28)
++#define CLK_TOP_RG_SLOW_MFG		(CLK_TOP_NR_CLK + 29)
++#define CLK_TOP_GFMUX_EMI1X_SEL		(CLK_TOP_NR_CLK + 30)
++#define CLK_TOP_CSW_MUX_MFG_SEL		(CLK_TOP_NR_CLK + 31)
++#define CLK_TOP_CAMTG_MM_SEL		(CLK_TOP_NR_CLK + 32)
++#define CLK_TOP_PWM_MM_SEL		(CLK_TOP_NR_CLK + 33)
++#define CLK_TOP_SPM_52M_SEL		(CLK_TOP_NR_CLK + 34)
++#define CLK_TOP_MFG_MM_SEL		(CLK_TOP_NR_CLK + 35)
++#define CLK_TOP_SMI_MM_SEL		(CLK_TOP_NR_CLK + 36)
++#define CLK_TOP_SCAM_MM_SEL		(CLK_TOP_NR_CLK + 37)
++#define CLK_TOP_VDEC_MM_SEL		(CLK_TOP_NR_CLK + 38)
++#define CLK_TOP_DPI0_MM_SEL		(CLK_TOP_NR_CLK + 39)
++#define CLK_TOP_DPI1_MM_SEL		(CLK_TOP_NR_CLK + 40)
++#define CLK_TOP_AXI_MFG_IN_SEL		(CLK_TOP_NR_CLK + 41)
++#define CLK_TOP_SLOW_MFG_SEL		(CLK_TOP_NR_CLK + 42)
++#define MT8167_CLK_TOP_NR_CLK		(CLK_TOP_NR_CLK + 43)
++
++/* MFGCFG */
++
++#define CLK_MFG_BAXI			0
++#define CLK_MFG_BMEM			1
++#define CLK_MFG_BG3D			2
++#define CLK_MFG_B26M			3
++#define CLK_MFG_NR_CLK			4
++
++/* MMSYS */
++
++#define CLK_MM_SMI_COMMON		0
++#define CLK_MM_SMI_LARB0		1
++#define CLK_MM_CAM_MDP			2
++#define CLK_MM_MDP_RDMA			3
++#define CLK_MM_MDP_RSZ0			4
++#define CLK_MM_MDP_RSZ1			5
++#define CLK_MM_MDP_TDSHP		6
++#define CLK_MM_MDP_WDMA			7
++#define CLK_MM_MDP_WROT			8
++#define CLK_MM_FAKE_ENG			9
++#define CLK_MM_DISP_OVL0		10
++#define CLK_MM_DISP_RDMA0		11
++#define CLK_MM_DISP_RDMA1		12
++#define CLK_MM_DISP_WDMA		13
++#define CLK_MM_DISP_COLOR		14
++#define CLK_MM_DISP_CCORR		15
++#define CLK_MM_DISP_AAL			16
++#define CLK_MM_DISP_GAMMA		17
++#define CLK_MM_DISP_DITHER		18
++#define CLK_MM_DISP_UFOE		19
++#define CLK_MM_DISP_PWM_MM		20
++#define CLK_MM_DISP_PWM_26M		21
++#define CLK_MM_DSI_ENGINE		22
++#define CLK_MM_DSI_DIGITAL		23
++#define CLK_MM_DPI0_ENGINE		24
++#define CLK_MM_DPI0_PXL			25
++#define CLK_MM_LVDS_PXL			26
++#define CLK_MM_LVDS_CTS			27
++#define CLK_MM_DPI1_ENGINE		28
++#define CLK_MM_DPI1_PXL			29
++#define CLK_MM_HDMI_PXL			30
++#define CLK_MM_HDMI_SPDIF		31
++#define CLK_MM_HDMI_ADSP_BCK		32
++#define CLK_MM_HDMI_PLL			33
++#define CLK_MM_NR_CLK			34
++
++/* IMGSYS */
++
++#define CLK_IMG_LARB1_SMI		0
++#define CLK_IMG_CAM_SMI			1
++#define CLK_IMG_CAM_CAM			2
++#define CLK_IMG_SEN_TG			3
++#define CLK_IMG_SEN_CAM			4
++#define CLK_IMG_VENC			5
++#define CLK_IMG_NR_CLK			6
++
++/* VDECSYS */
++
++#define CLK_VDEC_CKEN			0
++#define CLK_VDEC_LARB1_CKEN		1
++#define CLK_VDEC_NR_CLK			2
++
++#endif /* _DT_BINDINGS_CLK_MT8167_H */
+-- 
+2.28.0
 
