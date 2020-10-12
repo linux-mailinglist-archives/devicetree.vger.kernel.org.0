@@ -2,78 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F2728B3E8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 13:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B7B628B3F2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 13:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388241AbgJLLh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 07:37:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55612 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388239AbgJLLhx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 07:37:53 -0400
-Received: from gaia (unknown [95.149.105.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 196EE206E5;
-        Mon, 12 Oct 2020 11:37:50 +0000 (UTC)
-Date:   Mon, 12 Oct 2020 12:37:48 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
-        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v2 1/5] arm64: mm: Move zone_dma_bits initialization into
- zone_sizes_init()
-Message-ID: <20201012113748.GE9844@gaia>
-References: <20201010151235.20585-1-nsaenzjulienne@suse.de>
- <20201010151235.20585-2-nsaenzjulienne@suse.de>
+        id S2388295AbgJLLjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 07:39:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387985AbgJLLix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 07:38:53 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43520C0613D0
+        for <devicetree@vger.kernel.org>; Mon, 12 Oct 2020 04:38:53 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id n15so18813749wrq.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Oct 2020 04:38:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=er1O3yHYE2dfZAtg9MYR2G3dWLGNVrruH1edHcefbnw=;
+        b=fGv2d15x8t8FMuQO7gEdPG/kMbWbRe2GCYErOzN+qYTexuoeqeQ13RVl4Re6jAm4/J
+         R/mnTWb0U/1ir7iJE4eP5u0riKeXNPrnIlPiW9uVzgL8zlRNCbx1GC4xqtjjWSHjMZvT
+         FvIYfcncwoTVI0IOtaNH62YzTzByGH0FsXiLvWIgOuKidnowQlD03XWFPxJQppPrE4AW
+         T85FGuPH5Z0bZnZgABhqdtXBDCZeIglD6Y5W94LxvC7B3mLwHHq4vVGtajSovmxFOYfV
+         9FC1DbUH+aLAU5IIsbtI9OeoIkudCr9gSMicBLbZfmgzX+W4plZn95pIsa/RvzK8qvAF
+         BnPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=er1O3yHYE2dfZAtg9MYR2G3dWLGNVrruH1edHcefbnw=;
+        b=Qd6PmjmZMODor5Qna+JFIRdx2NmOsyz8kl8s535JLl6SP6lqqKeFKHgYveQZmAimd6
+         /AxHMwc4iZID/tmbbwCLBQEZ4fXqlXDVVaNm8NxJTp+lCQ6FXk9EkXRGg+MxCD0SboIr
+         p5S4iu+4DYkQByHDmgpOZsbIN3VW6U/sJRiQp1rAUr4ucfvD7HwDqpwiTueNTDEqwuMT
+         Mw9chK33s2nEdHFNCC+0LI640skrFr2Yno1dwLijC+ADkBErgwf714PzOeYMRhBAMWLt
+         8/1rrqlOic5vx4kdHOMzBJVYMyJq6UB9NS3t5EwT1dJSKlPhVpUyoRGLEG5umfwlv9hk
+         OkPg==
+X-Gm-Message-State: AOAM530RlSI4IrRf3HDCaIJf+nhrOop0zpqFdlUBEi5mf9MJr8DlPYCh
+        +4HhRZRnmePUEdbbBvIPVYDQnw==
+X-Google-Smtp-Source: ABdhPJziaYfK5ROz2ZhqIXhTGzXACuyMOEE9XE8nlHbMcsWpb1lIfGcTo1l9oqBQueuCIUPQxQaDAg==
+X-Received: by 2002:adf:9e06:: with SMTP id u6mr29835150wre.208.1602502731842;
+        Mon, 12 Oct 2020 04:38:51 -0700 (PDT)
+Received: from localhost.localdomain (170.175.185.81.rev.sfr.net. [81.185.175.170])
+        by smtp.gmail.com with ESMTPSA id o194sm22378065wme.24.2020.10.12.04.38.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Oct 2020 04:38:51 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, matthias.bgg@gmail.com
+Cc:     hsin-hsiung.wang@mediatek.com, lee.jones@linaro.org,
+        robh+dt@kernel.org, dmitry.torokhov@gmail.com,
+        Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 1/3] dt-bindings: mfd: mt6397: Add bindings for MT6392 PMIC
+Date:   Mon, 12 Oct 2020 13:38:38 +0200
+Message-Id: <20201012113840.396358-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201010151235.20585-2-nsaenzjulienne@suse.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 10, 2020 at 05:12:31PM +0200, Nicolas Saenz Julienne wrote:
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index f6902a2b4ea6..0eca5865dcb1 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -196,14 +196,16 @@ static void __init zone_sizes_init(unsigned long min, unsigned long max)
->  	unsigned long max_zone_pfns[MAX_NR_ZONES]  = {0};
->  
->  #ifdef CONFIG_ZONE_DMA
-> +	zone_dma_bits = ARM64_ZONE_DMA_BITS;
-> +
->  	if (IS_ENABLED(CONFIG_ACPI)) {
->  		extern unsigned int acpi_iort_get_zone_dma_size(void);
->  
->  		zone_dma_bits = min(zone_dma_bits,
->  				    acpi_iort_get_zone_dma_size());
-> -		arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
->  	}
->  
-> +	arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
->  	max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
->  #endif
->  #ifdef CONFIG_ZONE_DMA32
-> @@ -394,11 +396,6 @@ void __init arm64_memblock_init(void)
->  
->  	early_init_fdt_scan_reserved_mem();
->  
-> -	if (IS_ENABLED(CONFIG_ZONE_DMA)) {
-> -		zone_dma_bits = ARM64_ZONE_DMA_BITS;
-> -		arm64_dma_phys_limit = max_zone_phys(ARM64_ZONE_DMA_BITS);
-> -	}
+Add the currently supported bindings for the MT6392 PMIC.
 
-arm64_dma_phys_limit is used by memblock_alloc_low() (via
-ARCH_LOW_ADDRESS_LIMIT). I think it's too late to leave its
-initialisation to zone_sizes_init().
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+---
 
+V6:
+	* No changes
+V5:
+	* Rebased, removed regulator documentation because it will be send later
+	on in another patch series
+V4:
+	* No change
+V3:
+	* No change
+V2:
+	* New patch
+
+ Documentation/devicetree/bindings/mfd/mt6397.txt | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
+index 2661775a3825..f051a951ba72 100644
+--- a/Documentation/devicetree/bindings/mfd/mt6397.txt
++++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
+@@ -21,6 +21,7 @@ Required properties:
+ compatible:
+ 	"mediatek,mt6323" for PMIC MT6323
+ 	"mediatek,mt6358" for PMIC MT6358
++	"mediatek,mt6392" for PMIC MT6392
+ 	"mediatek,mt6397" for PMIC MT6397
+ 
+ Optional subnodes:
+@@ -52,7 +53,10 @@ Optional subnodes:
+ 
+ - keys
+ 	Required properties:
+-		- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
++		- compatible:
++			- "mediatek,mt6323-keys"
++			- "mediatek,mt6392-keys", "mediatek,mt6397-keys"
++			- "mediatek,mt6397-keys"
+ 	see ../input/mtk-pmic-keys.txt
+ 
+ - power-controller
 -- 
-Catalin
+2.28.0
+
