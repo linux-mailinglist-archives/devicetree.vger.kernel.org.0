@@ -2,220 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F6D28AB45
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 02:59:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD95728AB65
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 03:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727163AbgJLA7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 20:59:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726600AbgJLA7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 20:59:02 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC856C0613D0
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 17:59:01 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id d4so2637115vsk.13
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 17:59:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pKuO3QKcuUe/F0t0uUwfDC3OUqDsOLuOv/YQ0PPKJlA=;
-        b=ZG/7AljIIxkb5kzG7HUfhx+PenrEEBEfXe2u+72K/l+ASYNVw1bzTK8HkNYSwNlsXK
-         bwSJVF9pjjshsq0EMj7KGo7mcBMXwlnURFfVNlOtH6C34LV6twpBsGEVtA+Eqk+Z/wLn
-         ENLu//cmWsl73fMUH9ggHyTUOLybFWK8/vrMs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pKuO3QKcuUe/F0t0uUwfDC3OUqDsOLuOv/YQ0PPKJlA=;
-        b=nPfe9vr0imwzYazhs9CleWijqI/a0ZUuSgw3OY0XumvaPr9IyyyQT3pLldt7aA0a/r
-         1W5RuOersKUmQUZH3gwSr7TqkgNJgOsz8mEwuTNyeDC+JBK4PbVBMYdcy9GHXUr+5gpD
-         ziNrJLL/H8+2LRGkO4FlKxvztnBlu/LRPvKUXkHPn4SQBsv1D2DJrbsyGQ6GujyCE4ZA
-         UKlIwpo1H8/UNWdDIRMPAVarGW8PA8SfUAREIJhPLDwoMtOH0uPWOJe5i7VCFsMdAPpR
-         vrxe84Hi0E+1s7T2B4hryqi2co1nKoYljUSseosYTR0UgIJUpG9EO/hjTZaxNYZFTKbJ
-         UtGg==
-X-Gm-Message-State: AOAM531nm+E1JHmOYPjNhESwa+6K8ak/bOXiEnzxUX0pQ70LJELOJcR+
-        MnTynsYDzj02bGQQqX2fat9GwCpKS02H7ppg4tODhw==
-X-Google-Smtp-Source: ABdhPJzbMq6z0XxcHIW6V+QcP9xfb/3LB2U9g8w72z9oVPeF9M6hCzMfU7wevdjFzc2rwF7rScRjmqmEOTel5s5bRLY=
-X-Received: by 2002:a67:3344:: with SMTP id z65mr13370348vsz.47.1602464340859;
- Sun, 11 Oct 2020 17:59:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201011091030.28547-1-wenbin.mei@mediatek.com> <20201011091030.28547-5-wenbin.mei@mediatek.com>
-In-Reply-To: <20201011091030.28547-5-wenbin.mei@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Mon, 12 Oct 2020 08:58:49 +0800
-Message-ID: <CANMq1KDSw6gTL=5oicK5h_Q5rLhYUcANXw1M7RT=xRyT2PzUrA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
+        id S1726505AbgJLB0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 21:26:10 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:52733 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725917AbgJLB0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 21:26:10 -0400
+X-UUID: e35f3a41522b44ab82b04b3a3d4f211d-20201012
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=R1q9dfekP6mSdsS/ET+QXDzN+e6bl0PwJAWHtliaE3M=;
+        b=egZlOpHpLj25rSinPIGxOKpqyurq2TpQOT20FwDiNgAfNvECWFMWSyCr+SAHzfaxkwKNJEvCdR67oSDNGVQnZETgTvtNHj/FBlSwUVqUerWH0iqvdt+opb+5SmYvCmIUN09yEgsy+GHV9R0DnlahxdRMVJwPMYupm/L6nEVu7NM=;
+X-UUID: e35f3a41522b44ab82b04b3a3d4f211d-20201012
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 562371480; Mon, 12 Oct 2020 09:25:58 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Oct
+ 2020 09:25:56 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Oct 2020 09:25:55 +0800
+Message-ID: <1602465955.29336.57.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 4/4] dt-bindings: usb: use preferred license tag
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mmc@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Mon, 12 Oct 2020 09:25:55 +0800
+In-Reply-To: <20201010095052.GA989257@kroah.com>
+References: <3db52d534065dcf28e9a10b8129bea3eced0193e.1602318869.git.chunfeng.yun@mediatek.com>
+         <d76ca8b2d64c7c017e3ddaca8497eb38ee514204.1602318869.git.chunfeng.yun@mediatek.com>
+         <20201010095052.GA989257@kroah.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 29B9D6F8DD7D8A01EEF75DC90A0B763AD3F7D6CA7860AF3A06EB30669984C0B72000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 5:10 PM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
->
-> MT8192 msdc is an independent sub system, we need control more bus
-> clocks for it.
-> Add support for the additional subsys clocks to allow it to be
-> configured appropriately.
->
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-> Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
+T24gU2F0LCAyMDIwLTEwLTEwIGF0IDExOjUwICswMjAwLCBHcmVnIEtyb2FoLUhhcnRtYW4gd3Jv
+dGU6DQo+IE9uIFNhdCwgT2N0IDEwLCAyMDIwIGF0IDA0OjQzOjE0UE0gKzA4MDAsIENodW5mZW5n
+IFl1biB3cm90ZToNCj4gPiBUaGlzIGlzIHVzZWQgdG8gZml4IHRoZSBjaGVja3BhY2gucGwgV0FS
+TklORzpTUERYX0xJQ0VOU0VfVEFHDQo+ID4gDQo+ID4gU2VlIGJpbmRpbmdzL3N1Ym1pdHRpbmct
+cGF0Y2hlcy5yc3Q6DQo+ID4gIkRUIGJpbmRpbmcgZmlsZXMgc2hvdWxkIGJlIGR1YWwgbGljZW5z
+ZWQuIFRoZSBwcmVmZXJyZWQgbGljZW5zZSB0YWcgaXMNCj4gPiAgKEdQTC0yLjAtb25seSBPUiBC
+U0QtMi1DbGF1c2UpLiINCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNo
+dW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gdjI6IG5ldyBwYXRjaA0KPiA+
+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL3VzYi1oY2Qu
+eWFtbCB8IDIgKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0
+aW9uKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy91c2IvdXNiLWhjZC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3VzYi91c2ItaGNkLnlhbWwNCj4gPiBpbmRleCA0MmIyOTVhZmRmMzIuLjExYjliOWVlMmI1
+NCAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNi
+L3VzYi1oY2QueWFtbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy91c2IvdXNiLWhjZC55YW1sDQo+ID4gQEAgLTEsNCArMSw0IEBADQo+ID4gLSMgU1BEWC1MaWNl
+bnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+KEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQo+IA0KPiBBcmUgeW91IHN1cmUgeW91IGFy
+ZSBhbGxvd2VkIHRvIGNoYW5nZSB0aGUgbGljZW5zZSBvZiB0aGlzIGZpbGU/ICBMYXN0IEkNCj4g
+Y2hlY2tlZCwgeW91IGRpZCBub3Qgd3JpdGUgdGhpcyBmaWxlLCBhbmQgc28sIHlvdSBjYW4ndCBj
+aGFuZ2UgdGhlDQo+IGxpY2Vuc2Ugb2YgaXQuICBZb3UgbmVlZCB0byBnZXQgdGhlIG93bmVycyBv
+ZiB0aGUgZmlsZSB0byBkbyBzby4NCkdvdCBpdCwgd2lsbCBhYmFuZG9uIGl0IGluIG5leHQgdmVy
+c2lvbg0KDQpUaGFua3MNCg0KPiANCj4gdGhhbmtzLA0KPiANCj4gZ3JlZyBrLWgNCg0K
 
-Err, you must not add R-by tag unless I explicitly say so (yes, I
-reviewed v3, but I didn't add my R-by tag).
-
-> ---
->  drivers/mmc/host/mtk-sd.c | 80 ++++++++++++++++++++++++++++++---------
->  1 file changed, 62 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index a704745e5882..350e45432e21 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-> @@ -425,6 +425,8 @@ struct msdc_host {
->         struct clk *h_clk;      /* msdc h_clk */
->         struct clk *bus_clk;    /* bus clock which used to access register */
->         struct clk *src_clk_cg; /* msdc source clock control gate */
-> +       struct clk *sys_clk_cg; /* msdc subsys clock control gate */
-> +       struct clk_bulk_data bulk_clks[3];      /* pclk, axi, ahb clock control gate */
->         u32 mclk;               /* mmc subsystem clock frequency */
->         u32 src_clk_freq;       /* source clock frequency */
->         unsigned char timing;
-> @@ -784,6 +786,8 @@ static void msdc_set_busy_timeout(struct msdc_host *host, u64 ns, u64 clks)
->
->  static void msdc_gate_clock(struct msdc_host *host)
->  {
-> +       clk_bulk_disable_unprepare(ARRAY_SIZE(host->bulk_clks),
-> +                                  host->bulk_clks);
->         clk_disable_unprepare(host->src_clk_cg);
->         clk_disable_unprepare(host->src_clk);
->         clk_disable_unprepare(host->bus_clk);
-> @@ -792,10 +796,19 @@ static void msdc_gate_clock(struct msdc_host *host)
->
->  static void msdc_ungate_clock(struct msdc_host *host)
->  {
-> +       int ret;
-> +
->         clk_prepare_enable(host->h_clk);
->         clk_prepare_enable(host->bus_clk);
->         clk_prepare_enable(host->src_clk);
->         clk_prepare_enable(host->src_clk_cg);
-> +       ret = clk_bulk_prepare_enable(ARRAY_SIZE(host->bulk_clks),
-> +                                     host->bulk_clks);
-> +       if (ret) {
-> +               dev_err(host->dev, "enable clks failed!\n");
-> +               return;
-> +       }
-> +
->         while (!(readl(host->base + MSDC_CFG) & MSDC_CFG_CKSTB))
->                 cpu_relax();
->  }
-> @@ -2366,6 +2379,53 @@ static void msdc_of_property_parse(struct platform_device *pdev,
->                 host->cqhci = false;
->  }
->
-> +static int msdc_of_clock_parse(struct platform_device *pdev,
-> +                              struct msdc_host *host)
-> +{
-> +       struct clk *clk;
-> +
-> +       host->src_clk = devm_clk_get_optional(&pdev->dev, "source");
-> +       if (IS_ERR(host->src_clk))
-> +               return PTR_ERR(host->src_clk);
-> +
-> +       host->h_clk = devm_clk_get_optional(&pdev->dev, "hclk");
-> +       if (IS_ERR(host->h_clk))
-> +               return PTR_ERR(host->h_clk);
-> +
-> +       host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
-> +       if (IS_ERR(host->bus_clk))
-> +               host->bus_clk = NULL;
-> +
-> +       /*source clock control gate is optional clock*/
-> +       host->src_clk_cg = devm_clk_get_optional(&pdev->dev, "source_cg");
-> +       if (IS_ERR(host->src_clk_cg))
-> +               host->src_clk_cg = NULL;
-> +
-> +       host->sys_clk_cg = devm_clk_get_optional(&pdev->dev, "sys_cg");
-> +       if (IS_ERR(host->sys_clk_cg))
-> +               host->sys_clk_cg = NULL;
-> +
-> +       /* If present, always enable for this clock gate */
-> +       clk_prepare_enable(host->sys_clk_cg);
-
-Understand your reply on v3 (this clock gate cannot be disabled --
-https://patchwork.kernel.org/patch/11808433/#23678227), but I'm still
-unsure if this is the right thing to do to enable it at probe time.
-I'll let others comment.
-
-> +
-> +       clk = devm_clk_get_optional(&pdev->dev, "pclk_cg");
-> +       if (IS_ERR(clk))
-> +               clk = NULL;
-> +       host->bulk_clks[0].clk = clk;
-> +
-> +       clk = devm_clk_get_optional(&pdev->dev, "axi_cg");
-> +       if (IS_ERR(clk))
-> +               clk = NULL;
-> +       host->bulk_clks[1].clk = clk;
-> +
-> +       clk = devm_clk_get_optional(&pdev->dev, "ahb_cg");
-> +       if (IS_ERR(clk))
-> +               clk = NULL;
-> +       host->bulk_clks[2].clk = clk;
-
-Put the clock names in host->bulk_clks[x].id, then call
-devm_clk_bulk_get_optional.
-
-Example here: https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpio-dwapb.c#L675
-
-> +
-> +       return 0;
-> +}
-> +
->  static int msdc_drv_probe(struct platform_device *pdev)
->  {
->         struct mmc_host *mmc;
-> @@ -2405,25 +2465,9 @@ static int msdc_drv_probe(struct platform_device *pdev)
->         if (ret)
->                 goto host_free;
->
-> -       host->src_clk = devm_clk_get(&pdev->dev, "source");
-> -       if (IS_ERR(host->src_clk)) {
-> -               ret = PTR_ERR(host->src_clk);
-> -               goto host_free;
-> -       }
-> -
-> -       host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> -       if (IS_ERR(host->h_clk)) {
-> -               ret = PTR_ERR(host->h_clk);
-> +       ret = msdc_of_clock_parse(pdev, host);
-> +       if (ret)
->                 goto host_free;
-> -       }
-> -
-> -       host->bus_clk = devm_clk_get(&pdev->dev, "bus_clk");
-> -       if (IS_ERR(host->bus_clk))
-> -               host->bus_clk = NULL;
-> -       /*source clock control gate is optional clock*/
-> -       host->src_clk_cg = devm_clk_get(&pdev->dev, "source_cg");
-> -       if (IS_ERR(host->src_clk_cg))
-> -               host->src_clk_cg = NULL;
->
->         host->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
->                                                                 "hrst");
-> --
-> 2.18.0
