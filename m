@@ -2,224 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC2C828C017
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 20:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 340F528C0A7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 21:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730638AbgJLSzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 14:55:41 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45822 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727115AbgJLSzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 14:55:40 -0400
-Received: by mail-ot1-f65.google.com with SMTP id f37so16707920otf.12;
-        Mon, 12 Oct 2020 11:55:39 -0700 (PDT)
+        id S2391313AbgJLTFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 15:05:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53336 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388321AbgJLTFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 15:05:42 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB002C0613D7;
+        Mon, 12 Oct 2020 12:05:08 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id b19so9146078pld.0;
+        Mon, 12 Oct 2020 12:05:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=p3cGg0vwc3FihVmBETo+InQcjCzVvWFZGiYWNMDgXHo=;
+        b=R2KU3BiTA8Nmrr+K+h2kh4PXN+JdaEKRuc92/hX1rea8+M04xV2DSjJQpLRaMmFOr+
+         Cb429Bwwk0r6kfUdw83y/EtX7PKpROIqCEPLVR+F/5rObYZl4l6sDlbnrLEcU85TZDS6
+         9oC9WCirk8Z3FGbpYsR+i5rfPSrZFOBXkVTRdmmItGUJEevsRq5+xAYzi2Gn0s91LEfU
+         a2AY00IIjvAOJLTKklCSa3Vf/Xuqs8Mgn/dot64N407SSJodWreCO9D8VIOKopXhwHYe
+         GGwpGUzvi7ougmirF5pmTBJKUoKrl2yfQdXEPTNAJpAKkWqKXPtOIf6PmUblYgtpaXxw
+         Xynw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5fVAIseMnsnT90XiyJbBgJRxx/Jq3jfkvLK/AZmt1dA=;
-        b=KHyMCiFYwBeALZdmJtVGrOwR5U3I8xhmLFSUQ9ghA+qoZHiKqocz6YMj5ktUKly4Wa
-         o4bMm+EsNkzRUg5k1oc4PWyARqdA3+0QuY4uEnRKnXmfppmjRQl2u5VfqRH3KI+JUeo8
-         kUvs/GzofI8ikDnJZl6rQPhTcdni0ORN1xMRDp0Cv26wNwUD6I755O44GGjYdL2Azddd
-         JJCrRTQoPkL0/ORg+1yvUztphTk4zlkn0Ox19zydt+A3w2cz6DpXv2IsImOVCWqlF6jq
-         ylBN6Th7QJu8bIA6XcXiz3KulOSMK2x+VJLxT89Wj5EgektYrUZlo8wfgx2J9jdapAWK
-         4QAA==
-X-Gm-Message-State: AOAM532I9J4gitktkrWh6xiM2+ZSekYt3hy0ZfJiaynaUINCflYbbG46
-        I258ENHO5QiYHNQQL0oTgw==
-X-Google-Smtp-Source: ABdhPJzXa+bi5zHTxRpC5b5rVaVCpYGUmlSihkflVQ6s/QzKOgruDIXUaHqEfwygdXx8vVrJr2nTdA==
-X-Received: by 2002:a05:6830:2092:: with SMTP id y18mr18910537otq.19.1602528939283;
-        Mon, 12 Oct 2020 11:55:39 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y194sm9979533oie.22.2020.10.12.11.55.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Oct 2020 11:55:38 -0700 (PDT)
-Received: (nullmailer pid 1905660 invoked by uid 1000);
-        Mon, 12 Oct 2020 18:55:37 -0000
-Date:   Mon, 12 Oct 2020 13:55:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: pinctrl: Add bindings for
- pinctrl-microchip-sgpio driver
-Message-ID: <20201012185537.GA1898766@bogus>
-References: <20201008130515.2385825-1-lars.povlsen@microchip.com>
- <20201008130515.2385825-2-lars.povlsen@microchip.com>
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=p3cGg0vwc3FihVmBETo+InQcjCzVvWFZGiYWNMDgXHo=;
+        b=ZxVEnViCjVRGwVI0vUBjYKrR6Hqi/1+aidvaBDj7I1ksbxsQZy+GxOgv6K+TsoDzYD
+         FM/SQPtRSv83jps9VczC2bSOFQ1KTL5itw0K/xg3hLLvMLw1j1eln3q8jb4MXHhUjugx
+         Kda62Y9o0RnxZuHqxNKZMn3m/RBsb4nxfJiZF73JM1cpR1rKDt6W+2OlCkB97ihDOGcg
+         dWCUkV8BUXJ6UqrT1cROK2HrXp7wPHjSTXh/ZyIZkZKumBDTW2sCirNfoPhQRL8yB5r4
+         yMzX92jeAlBSKpLBnxHiNAo9u/BZu/ucunsfBkpU+n6Dx1Nn84vy4/O0uPX1PBXr5Ewq
+         nl+A==
+X-Gm-Message-State: AOAM533XK215eOmbPcsU7axSYp3lzsmoZ/7qXhHhG9sRTnWMnT/7WubM
+        9wrAx6Vi6FKTtwEF8DPltxwUc9rP9lk=
+X-Google-Smtp-Source: ABdhPJzjXdwKjMlIP3AJiMsod6ukBI9sxvQE+gfn2RqN7aXk0BNvM2fP+ILXyldXKpEmA5rdKmvAbQ==
+X-Received: by 2002:a17:902:ee83:b029:d4:bdd6:cabe with SMTP id a3-20020a170902ee83b02900d4bdd6cabemr17253953pld.68.1602529508244;
+        Mon, 12 Oct 2020 12:05:08 -0700 (PDT)
+Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id v20sm15896961pjh.5.2020.10.12.12.05.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 12 Oct 2020 12:05:07 -0700 (PDT)
+Date:   Mon, 12 Oct 2020 11:57:22 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] memory: tegra: Sort tegra210_swgroups by reg address
+Message-ID: <20201012185721.GA17643@Asurada-Nvidia>
+References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+ <20201008003746.25659-4-nicoleotsuka@gmail.com>
+ <20201008103258.GA16358@kozik-lap>
+ <20201008202615.GA32140@Asurada-Nvidia>
+ <20201012164340.GA3557@kozik-lap>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201008130515.2385825-2-lars.povlsen@microchip.com>
+In-Reply-To: <20201012164340.GA3557@kozik-lap>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 03:05:13PM +0200, Lars Povlsen wrote:
-> This adds DT bindings for the Microsemi/Microchip SGPIO controller,
-> bindings microchip,sparx5-sgpio, mscc,ocelot-sgpio and
-> mscc,luton-sgpio.
+On Mon, Oct 12, 2020 at 06:43:40PM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Oct 08, 2020 at 01:26:16PM -0700, Nicolin Chen wrote:
+> > Hi Krzysztof,
+> > 
+> > On Thu, Oct 08, 2020 at 12:32:58PM +0200, Krzysztof Kozlowski wrote:
+> > > On Wed, Oct 07, 2020 at 05:37:44PM -0700, Nicolin Chen wrote:
+> > > > This is a cleanup change to prepare for new swgroups.
+> > > 
+> > > What type of cleanup? Any functional change?
+> > 
+> > It's to sort the swgroup list by reg address as I mentioned in
+> > the subject. Perhaps I should have put in commit message also.
 > 
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> ---
->  .../pinctrl/microchip,sparx5-sgpio.yaml       | 140 ++++++++++++++++++
->  1 file changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
-> new file mode 100644
-> index 000000000000..fc41495800ed
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/microchip,sparx5-sgpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microsemi/Microchip Serial GPIO controller
-> +
-> +maintainers:
-> +  - Lars Povlsen <lars.povlsen@microchip.com>
-> +
-> +description: |
-> +  By using a serial interface, the SIO controller significantly extend
-> +  the number of available GPIOs with a minimum number of additional
-> +  pins on the device. The primary purpose of the SIO controllers is to
-> +  connect control signals from SFP modules and to act as an LED
-> +  controller.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^gpio@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    enum:
-> +      - microchip,sparx5-sgpio
-> +      - mscc,ocelot-sgpio
-> +      - mscc,luton-sgpio
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  microchip,sgpio-port-ranges:
-> +    description: This is a sequence of tuples, defining intervals of
-> +      enabled ports in the serial input stream. The enabled ports must
-> +      match the hardware configuration in order for signals to be
-> +      properly written/read to/from the controller holding
-> +      registers. Being tuples, then number of arguments must be
-> +      even. The tuples mast be ordered (low, high) and are
-> +      inclusive.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    items:
-> +      items:
-> +        - description: |
-> +            "low" indicates start bit number of range
-> +          minimum: 0
-> +          maximum: 31
-> +        - description: |
-> +            "high" indicates end bit number of range
-> +          minimum: 0
-> +          maximum: 31
-> +    minItems: 1
-> +    maxItems: 32
-> +
-> +  microchip,sgpio-frequency:
-> +    description: The sgpio controller frequency (Hz). This dictates
-> +      the serial bitstream speed, which again affects the latency in
-> +      getting control signals back and forth between external shift
-> +      registers. The speed must be no larger than half the system
-> +      clock, and larger than zero.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> Indeed it is sorted by regs, I missed some numbers... looks good. I can
+> adjust the commit msg so no need for resend.
 
-Perhaps use 'bus-frequency' here. If not, needs unit suffix. Either way, 
-you can drop the type in those cases. 
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +    minimum: 1
-> +    default: 12500000
-> +
-> +patternProperties:
-> +  "^gpio@[0-1]$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: microchip,sparx5-sgpio-bank
-> +
-> +      reg:
-> +        description: |
-> +          The GPIO bank number. "0" is designates the input pin bank,
-> +          "1" the output bank.
-> +        maxItems: 1
-> +
-> +      gpio-controller: true
-> +
-> +      '#gpio-cells':
-> +        const: 3
-> +
-> +      ngpios:
-> +        minimum: 1
-> +        maximum: 128
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - gpio-controller
-> +      - '#gpio-cells'
-> +      - ngpios
-> +
-> +    additionalProperties: false
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - microchip,sgpio-port-ranges
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +examples:
-> +  - |
-> +    sgpio2: gpio@1101059c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      compatible = "microchip,sparx5-sgpio";
-> +      clocks = <&sys_clk>;
-> +      pinctrl-0 = <&sgpio2_pins>;
-> +      pinctrl-names = "default";
-> +      reg = <0x1101059c 0x100>;
-> +      microchip,sgpio-port-ranges = <0 0>, <16 18>, <28 31>;
-> +      microchip,sgpio-frequency = <25000000>;
-> +      sgpio_in2: gpio@0 {
-> +        reg = <0>;
-> +        compatible = "microchip,sparx5-sgpio-bank";
-> +        gpio-controller;
-> +        #gpio-cells = <3>;
-> +        ngpios = <96>;
-> +      };
-> +      sgpio_out2: gpio@1 {
-> +        compatible = "microchip,sparx5-sgpio-bank";
-> +        reg = <1>;
-> +        gpio-controller;
-> +        #gpio-cells = <3>;
-> +        ngpios = <96>;
-> +      };
-> +    };
-> --
-> 2.25.1
+Thank you!
