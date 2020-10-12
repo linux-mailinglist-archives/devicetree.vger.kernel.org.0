@@ -2,162 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B59228B622
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 15:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3468728B80D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 15:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729737AbgJLN0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 09:26:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60648 "EHLO mail.kernel.org"
+        id S1731979AbgJLNtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 09:49:04 -0400
+Received: from foss.arm.com ([217.140.110.172]:47532 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729726AbgJLN0U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 09:26:20 -0400
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 87D8420BED;
-        Mon, 12 Oct 2020 13:26:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602509179;
-        bh=yGzfcblPNkEu1jThQo3Kr1pZhnuRpAynpzlLmU3Eyto=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=2D2ESyQOMTChv7yvxLAiD0dAuxlG0M14eT38MlEDqC6L6xVG1ZHu4M9xJTVMu5neu
-         envgnta/HiKRtEOq8DzGGEU2tSlQMCpbouoj1QusJ1hHAbZKyt9hdK0qWJrfv3/G+f
-         WjCjzSGa8vfOIx5nqxsYLyVIBn2+E5lpoNLRstuk=
-Received: by mail-ed1-f46.google.com with SMTP id i5so16917055edr.5;
-        Mon, 12 Oct 2020 06:26:19 -0700 (PDT)
-X-Gm-Message-State: AOAM530/se2Fx6qazsLlzJDGJYxWdgWUzVg15Vgz8P7AGmTXvMg/1GwV
-        FNiQiMq2P6H4xOZJ42dk/E3bBABKV4fYtXq7y2A=
-X-Google-Smtp-Source: ABdhPJxZI9QpirJF8bPQYjiJrUckib3iXod98Zoj/Cz28ZEeJBmZJyvnNsh48f+gVrrDxErmHk+CoScI5f/RtUGp454=
-X-Received: by 2002:a50:8b62:: with SMTP id l89mr14553273edl.132.1602509177952;
- Mon, 12 Oct 2020 06:26:17 -0700 (PDT)
+        id S1731968AbgJLNs0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 09:48:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 73AC1D6E;
+        Mon, 12 Oct 2020 06:48:25 -0700 (PDT)
+Received: from [10.57.55.84] (unknown [10.57.55.84])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7789D3F66B;
+        Mon, 12 Oct 2020 06:48:22 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+To:     Ionela Voinescu <ionela.voinescu@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, sudeep.holla@arm.com,
+        chris.redpath@arm.com, morten.rasmussen@arm.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20200924095347.32148-3-nicola.mazzucato@arm.com>
+ <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
+ <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+ <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
+ <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
+ <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
+ <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
+ <20201009140141.GA4048593@bogus>
+ <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
+ <20201012105945.GA9219@arm.com>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <500510b9-58f3-90b3-8c95-0ac481d468b5@arm.com>
+Date:   Mon, 12 Oct 2020 14:48:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20200930070647.10188-1-yong.wu@mediatek.com> <20200930070647.10188-3-yong.wu@mediatek.com>
- <20201002110831.GD6888@pi3> <1601958428.26323.26.camel@mhfsdcap03>
- <CAJKOXPfOOGnJeNCa58WEZqbzaAFdLHSm-7pyMyGkYgCBEt0+RA@mail.gmail.com>
- <1602310691.26323.39.camel@mhfsdcap03> <20201012071843.GA1889@pi3> <1602504119.26323.54.camel@mhfsdcap03>
-In-Reply-To: <1602504119.26323.54.camel@mhfsdcap03>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Mon, 12 Oct 2020 15:26:05 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcn4scqt2C9eE_EikJ76kqro2QYzThdsXXR_5xtBmyH3g@mail.gmail.com>
-Message-ID: <CAJKOXPcn4scqt2C9eE_EikJ76kqro2QYzThdsXXR_5xtBmyH3g@mail.gmail.com>
-Subject: Re: [PATCH v3 02/24] dt-bindings: memory: mediatek: Convert SMI to DT schema
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
-        Greg Kroah-Hartman <gregkh@google.com>, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201012105945.GA9219@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Oct 2020 at 14:02, Yong Wu <yong.wu@mediatek.com> wrote:
->
-> On Mon, 2020-10-12 at 09:18 +0200, Krzysztof Kozlowski wrote:
-> > On Sat, Oct 10, 2020 at 02:18:11PM +0800, Yong Wu wrote:
-> > > On Tue, 2020-10-06 at 09:15 +0200, Krzysztof Kozlowski wrote:
-> > > > On Tue, 6 Oct 2020 at 06:27, Yong Wu <yong.wu@mediatek.com> wrote:
-> > > > >
-> > > > > On Fri, 2020-10-02 at 13:08 +0200, Krzysztof Kozlowski wrote:
-> > > > > > On Wed, Sep 30, 2020 at 03:06:25PM +0800, Yong Wu wrote:
-> > > > > > > Convert MediaTek SMI to DT schema.
-> > > > > > >
-> > > > > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > > > > > ---
-> > > > > > >  .../mediatek,smi-common.txt                   |  49 ---------
-> > > > > > >  .../mediatek,smi-common.yaml                  | 100 ++++++++++++++++++
-> > > > > > >  .../memory-controllers/mediatek,smi-larb.txt  |  49 ---------
-> > > > > > >  .../memory-controllers/mediatek,smi-larb.yaml |  91 ++++++++++++++++
-> > > > > > >  4 files changed, 191 insertions(+), 98 deletions(-)
-> > > > > > >  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
-> > > > > > >  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> > > > > > >  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
-> > > > > > >  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> > > > > ...
-> > > > > > > +properties:
-> > > > > > > +  compatible:
-> > > > > > > +    oneOf:
-> > > > > > > +      - enum:
-> > > > > > > +          - mediatek,mt2701-smi-common
-> > > > > > > +          - mediatek,mt2712-smi-common
-> > > > > > > +          - mediatek,mt6779-smi-common
-> > > > > > > +          - mediatek,mt8173-smi-common
-> > > > > > > +          - mediatek,mt8183-smi-common
-> > > > > > > +
-> > > > > > > +      - description: for mt7623
-> > > > > > > +        items:
-> > > > > > > +          - const: mediatek,mt7623-smi-common
-> > > > > > > +          - const: mediatek,mt2701-smi-common
-> > > > > > > +
-> > > > > > > +  reg:
-> > > > > > > +    maxItems: 1
-> > > > > > > +
-> > > > > > > +  clocks:
-> > > > > > > +    description: |
-> > > > > > > +      apb and smi are mandatory. the async is only for generation 1 smi HW.
-> > > > > > > +      gals(global async local sync) also is optional, here is the list which
-> > > > > > > +      require gals: mt6779 and mt8183.
-> > > > > > > +    minItems: 2
-> > > > > > > +    maxItems: 4
-> > > > > > > +    items:
-> > > > > > > +      - description: apb is Advanced Peripheral Bus clock, It's the clock for
-> > > > > > > +          setting the register.
-> > > > > > > +      - description: smi is the clock for transfer data and command.
-> > > > > > > +      - description: async is asynchronous clock, it help transform the smi clock
-> > > > > > > +          into the emi clock domain.
-> > > > > > > +      - description: gals0 is the path0 clock of gals.
-> > > > > > > +      - description: gals1 is the path1 clock of gals.
-> > > > > > > +
-> > > > > > > +  clock-names:
-> > > > > > > +    oneOf:
-> > > > > > > +      - items:
-> > > > > > > +          - const: apb
-> > > > > > > +          - const: smi
-> > > > > > > +      - items:
-> > > > > > > +          - const: apb
-> > > > > > > +          - const: smi
-> > > > > > > +          - const: async
-> > > > > > > +      - items:
-> > > > > > > +          - const: apb
-> > > > > > > +          - const: smi
-> > > > > > > +          - const: gals0
-> > > > > > > +          - const: gals1
-> > > > > >
-> > > > > > Similarly to my comment to other properties, this requirement per
-> > > > > > compatible should be part of the schema within 'if-then'.
-> > > > >
-> > > > > I'm not so familiar with this format. Do this has "if-then-'else
-> > > > > if'-then-else"?
-> > > >
-> > > > These are mutually exclusive conditions, so you can skip else:
-> > > >  - if-then
-> > > >  - if-then
-> > > >  - if-then
-> > > > It will be more readable then stacking 'if' under 'else'
-> > >
-> > > Thanks. I will use something like this:
-> > >
-> > >  anyOf:
-> >
-> > Then it should be oneOf as only one condition can be valid.
->
-> I did do this at the beginning. But I get a warning log when
-> dt_binding_check.
 
-Mhmm, right, since "if-else" matches in either of arms, then oneOf
-will complain as it expects only one of items to match.  Then just go
-with allOf. anyOf might match zero of items, so it would not catch
-actual errors, I think.
 
-Best regards,
-Krzysztof
+On 10/12/20 11:59 AM, Ionela Voinescu wrote:
+> On Monday 12 Oct 2020 at 11:22:57 (+0100), Lukasz Luba wrote:
+> [..]
+>>>> I thought about it and looked for other platforms' DT to see if can reuse
+>>>> existing opp information. Unfortunately I don't think it is optimal. The reason
+>>>> being that, because cpus have the same opp table it does not necessarily mean
+>>>> that they share a clock wire. It just tells us that they have the same
+>>>> capabilities (literally just tells us they have the same V/f op points).
+>>>> Unless I am missing something?
+>>>>
+>>>> When comparing with ACPI/_PSD it becomes more intuitive that there is no
+>>>> equivalent way to reveal "perf-dependencies" in DT.
+>>>
+>>> You should be able to by examining the clock tree. But perhaps SCMI
+>>> abstracts all that and just presents virtual clocks without parent
+>>> clocks available to determine what clocks are shared? Fix SCMI if that's
+>>> the case.
+>>
+>> True, the SCMI clock does not support discovery of clock tree:
+>> (from 4.6.1 Clock management protocol background)
+>> 'The protocol does not cover discovery of the clock tree, which must be
+>> described through firmware tables instead.' [1]
+>>
+>> In this situation, would it make sense, instead of this binding from
+>> patch 1/2, create a binding for internal firmware/scmi node?
+>>
+>> Something like:
+>>
+>> firmware {
+>> 	scmi {
+>> 	...		
+>> 		scmi-perf-dep {
+>> 			compatible = "arm,scmi-perf-dependencies";
+>> 			cpu-perf-dep0 {
+>> 				cpu-perf-affinity = <&CPU0>, <&CPU1>;
+>> 			};
+>> 			cpu-perf-dep1 {
+>> 				cpu-perf-affinity = <&CPU3>, <&CPU4>;
+>> 			};
+>> 			cpu-perf-dep2 {
+>> 				cpu-perf-affinity = <&CPU7>;
+>> 			};
+>> 		};
+>> 	};
+>> };
+>>
+>> The code which is going to parse the binding would be inside the
+>> scmi perf protocol code and used via API by scmi-cpufreq.c.
+>>
+> 
+> While SCMI cpufreq would be able to benefit from the functionality that
+> Nicola is trying to introduce, it's not the only driver, and more
+> importantly, it's not *going* to be the only driver benefiting from
+> this.
+> 
+> Currently there is also qcom-cpufreq-hw.c and the future
+> mediatek-cpufreq-hw.c that is currently under review [1]. They both do
+> their frequency setting by interacting with HW/FW, and could either take
+> or update their OPP tables from there. Therefore, if the platform would
+> require it, they could also expose different controls for frequency
+> setting and could benefit from additional information about clock
+> domains (either through opp-shared or the new entries in Nicola's patch),
+> without driver changes.
+> 
+> Another point to be made is that I strongly believe this is going to be
+> the norm in the future. Directly setting PLLs and regulator voltages
+> has been proven unsafe and unsecure.
+> 
+> Therefore, I see this as support for a generic cpufreq feature (a
+> hardware coordination type), rather than support for a specific driver.
+> 
+> [1] https://lkml.org/lkml/2020/9/10/11
+> 
+>>
+>> Now regarding the 'dependent_cpus' mask.
+>>
+>> We could avoid adding a new field 'dependent_cpus' in policy
+>> struct, but I am not sure of one bit - Frequency Invariant Engine,
+>> (which is also not fixed by just adding a new cpumask).
+>    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>    Let's take it step by step..
+>>
+>> We have 3 subsystems to fix:
+>> 1. EAS - EM has API function which takes custom cpumask, so no issue,
+>             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 	   keep in mind that EAS it's using the max aggregation method
+> 	   that schedutil is using. So if we are to describe the
+> 	   functionality correctly, it needs both a cpumask describing
+> 	   the frequency domains and an aggregation method.
+
+EAS does not use schedutil max agregation, it calculates max_util
+internally.
+
+The compute_energy() loops through the CPUs in the domain and
+takes the utilization from them via schedutil_cpu_util(cpu_rq(cpu)).
+It figures out max_util and then em_cpu_energy() maps it to next
+frequency for the cluster. It just needs proper utilization from
+CPUs, which is taken from run-queues, which is a sum of utilization
+of tasks being there. This leads to problem how we account utilization
+of a task. This is the place where the FIE is involved. EAS assumes the
+utilization is calculated properly.
+
+> 
+>>    fix would be to use it via the scmi-cpufreq.c
+> 
+>> 2. IPA (for calculating the power of a cluster, not whole thermal needs
+>>    this knowledge about 'dependent cpus') - this can be fixed internally
+> 
+>> 3. Frequency Invariant Engine (FIE) - currently it relies on schedutil
+>>    filtering and providing max freq of all cpus in the cluster into the
+>>    FIE; this info is then populated to all 'related_cpus' which will
+>>    have this freq (we know, because there is no other freq requests);
+>>    Issues:
+>> 3.1. Schedutil is not going to check all cpus in the cluster to take
+>>    max freq, which is then passed into the cpufreq driver and FIE
+>> 3.2. FIE would have to (or maybe we would drop it) have a logic similar
+>>    to what schedutil does (max freq search and set, then filter next
+>>    freq requests from other cpus in the next period e.g. 10ms)
+>> 3.3. Schedutil is going to invoke freq change for each cpu independently
+>>    and the current code just calls arch_set_freq_scale() - adding just
+>>    'dependent_cpus' won't help
+> 
+> I don't believe these are issues. As we need changes for EAS and IPA, we'd
+> need changes for FIE. We don't need more than the cpumask that shows
+> frequency domains as we already already have the aggregation method that
+> schedutil uses to propagate the max frequency in a domain across CPUs.
+
+Schedutil is going to work in !policy_is_shared() mode, which leads to
+sugov_update_single() being the 'main' function. We won't have
+schedutil goodness which is handling related_cpus use case.
+
+Then in software FIE would you just change the call from:
+	arch_set_freq_scale(policy->related_cpus,...)
+to:
+	arch_set_freq_scale(policy->dependent_cpus,...)
+?
+
+This code would be called from any CPU (without filtering) and it
+would loop through cpumask updating freq_scale, which is wrong IMO.
+You need some 'logic', which is not currently in there.
+
+Leaving the 'related_cpus' would also be wrong (because real CPU
+frequency is different, so we would account task utilization wrongly).
+
+> 
+> This would be the default method if cycle counters are not present. It
+> might not reflect the frequency the cores actually get from HW, but for
+> that cycle counters should be used.
+
+IMHO the configurations with per-cpu freq requests while there are CPUs
+'dependent' and there are no HW counters to use for tasks
+utilization accounting - should be blocked. Then we don't need
+'dependent_cpus' in software FIE. Then one less from your requirements
+list for new cpumask.
+
+> 
+>> 3.4 What would be the real frequency of these cpus and what would be
+>>    set to FIE
+>> 3.5 FIE is going to filter to soon requests from other dependent cpus?
+>>
+>> IMHO the FIE needs more bits than just a new cpumask.
+>> Maybe we should consider to move FIE arch_set_freq_scale() call into the
+>> cpufreq driver, which will know better how to aggregate/filter requests
+>> and then call FIE update?
+> 
+> I'm quite strongly against this :). As described before, this is not a
+> feature that a single driver needs, and even if it was, the aggregation
+> method for FIE is not a driver policy.
+
+Software version of FIE has issues in this case, schedutil or EAS won't
+help (different code path).
+
+Regards,
+Lukasz
