@@ -2,163 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B852028B50C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 14:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A044628B58A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 15:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729945AbgJLMyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 08:54:05 -0400
-Received: from mx.hs-offenburg.de ([141.79.11.25]:55354 "EHLO
-        mx.hs-offenburg.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729944AbgJLMyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 08:54:05 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mx.hs-offenburg.de (Postfix) with ESMTP id B85E5738A76C;
-        Mon, 12 Oct 2020 14:53:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=hs-offenburg.de;
-         h=content-transfer-encoding:mime-version:user-agent
-        :content-type:content-type:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received; s=default;
-         t=1602507239; x=1603371240; bh=+6xZrct3+4JklvRrqYipfRYXbWVljLAh
-        37emHJZd5HI=; b=WNYSWiqOobb0/AfbdBIGLcjMebl8XkYjET/kT1tsLj/c+Uhj
-        cPkdjJTCipXJJjpTaKWFTKaNo3t6Ob34lHBQ68oBzHohAFIDbRMJ20Af9CyccOIC
-        R/YIxDMeAZvqE2fZ6oy0OVsTIiNEEo4ppP9jeJ0L/oZitCI9fGYPiYYO+rw=
-X-Virus-Scanned: amavisd-new at hs-offenburg.de
-Received: from mx.hs-offenburg.de ([127.0.0.1])
-        by localhost (mx.hs-offenburg.de [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id S0D1H2hs5a8l; Mon, 12 Oct 2020 14:53:59 +0200 (CEST)
-Received: from h25-119.emi.hs-offenburg.de (unknown [141.79.25.119])
-        by mx.hs-offenburg.de (Postfix) with ESMTPSA id DDAFB738A769;
-        Mon, 12 Oct 2020 14:53:58 +0200 (CEST)
-Message-ID: <65ecb62de9940991971b965cbd5b902ae5daa09b.camel@hs-offenburg.de>
-Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
- hardware timestamping
-From:   Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        ilias.apalodimas@linaro.org
-Date:   Mon, 12 Oct 2020 14:53:58 +0200
-In-Reply-To: <20201008150951.elxob2yaw2tirkig@skbuf>
-References: <87tuv77a83.fsf@kurt> <20201006133222.74w3r2jwwhq5uop5@skbuf>
-         <87r1qb790w.fsf@kurt> <20201006140102.6q7ep2w62jnilb22@skbuf>
-         <87lfgiqpze.fsf@kurt> <20201007105458.gdbrwyzfjfaygjke@skbuf>
-         <87362pjev0.fsf@kurt> <20201008094440.oede2fucgpgcfx6a@skbuf>
-         <87lfghhw9u.fsf@kurt>
-         <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
-         <20201008150951.elxob2yaw2tirkig@skbuf>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S2388654AbgJLNJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 09:09:39 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:44666 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388651AbgJLNJj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 09:09:39 -0400
+Received: from relay1-d.mail.gandi.net (unknown [217.70.183.193])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 342963B2B91;
+        Mon, 12 Oct 2020 13:00:51 +0000 (UTC)
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 38632240003;
+        Mon, 12 Oct 2020 13:00:24 +0000 (UTC)
+Date:   Mon, 12 Oct 2020 15:04:25 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen.Hristev@microchip.com
+Cc:     laurent.pinchart@ideasonboard.com, robh+dt@kernel.org,
+        sakari.ailus@iki.fi, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: media: atmel: csi2dc: add bindings
+ for microchip csi2dc
+Message-ID: <20201012130425.2rszhgd7eh7nffrv@uno.localdomain>
+References: <20200826065142.205000-1-eugen.hristev@microchip.com>
+ <20201010211743.GB3939@pendragon.ideasonboard.com>
+ <c5d27d11-891b-afd8-0be1-02bf5eb8bef9@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c5d27d11-891b-afd8-0be1-02bf5eb8bef9@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+Hello,
+   just my 2 cents, as I've noticed this patch skimming through the
+   list
 
-On Thu, 2020-10-08 at 18:09 +0300, Vladimir Oltean wrote:
-> Hi Kamil,
-> 
-> On Thu, Oct 08, 2020 at 02:55:57PM +0200, Kamil Alkhouri wrote:
-> > Hello dears,
-> > 
-> > On Thu, 2020-10-08 at 12:01 +0200, Kurt Kanzenbach wrote:
-> > > On Thu Oct 08 2020, Vladimir Oltean wrote:
-> > > > On Thu, Oct 08, 2020 at 10:34:11AM +0200, Kurt Kanzenbach
-> > > > wrote:
-> > > > > On Wed Oct 07 2020, Vladimir Oltean wrote:
-> > > > > > On Wed, Oct 07, 2020 at 12:39:49PM +0200, Kurt Kanzenbach
-> > > > > > wrote:
-> > > > > > > For instance the hellcreek switch has actually three ptp
-> > > > > > > hardware
-> > > > > > > clocks and the time stamping can be configured to use
-> > > > > > > either
-> > > > > > > one of
-> > > > > > > them.
-> > > > > > 
-> > > > > > The sja1105 also has a corrected and an uncorrected PTP
-> > > > > > clock
-> > > > > > that can
-> > > > > > take timestamps. Initially I had thought I'd be going to
-> > > > > > spend
-> > > > > > some time
-> > > > > > figuring out multi-PHC support, but now I don't see any
-> > > > > > practical reason
-> > > > > > to use the uncorrected PHC for anything.
-> > > > > 
-> > > > > Just out of curiosity: How do you implement 802.1AS then? My
-> > > > > understanding is that the free-running clock has to be used
-> > > > > for
-> > > > > the
-> > > > 
-> > > > Has to be? I couldn't find that wording in IEEE 802.1AS-2011.
-> > > 
-> > > It doesn't has to be, it *should* be. That's at least the outcome
-> > > we
-> > > had
-> > > after lots of discussions. Actually Kamil (on Cc) is the expert
-> > > on
-> > > this
-> > > topic.
-> > 
-> > According to 802.1AS-2011 (10.1.1): "The LocalClock entity is a
-> > free-
-> > running clock (see 3.3) that provides a common time to the time-
-> > aware
-> > system, relative to an arbitrary epoch.", "... All timestamps are
-> > taken
-> > relative to the LocalClock entity". The same statement holds true
-> > for
-> > 802.1AS-2020 (10.1.2.1).
-> 
-> Nice having you part of the discussion.
-> 
-> IEEE 802.1AS-rev draft 8.0, clause F.3 PTP options:
-> 
-> 	The physical adjustment of the frequency of the LocalClock
-> 	entity (i.e., physical syntonization) is allowed but not
-> 	required.
+On Mon, Oct 12, 2020 at 07:19:43AM +0000, Eugen.Hristev@microchip.com wrote:
+> On 11.10.2020 00:17, Laurent Pinchart wrote:
+> > Hi Eugen,
+> >
+> > Thank you for the patch.
+>
+> Hi,
+>
+> Thank you for your review,
+>
+> >
+> > On Wed, Aug 26, 2020 at 09:51:40AM +0300, Eugen Hristev wrote:
+> >> Add bindings documentation for Microchip CSI2 Demultiplexer controller.
+> >>
+> >> CSI2DC is a demultiplexer from Synopsys IDI interface specification to
+> >> parallel interface connection or direct memory access.
+> >>
+> >> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> >> ---
+> >> Changes in v3:
+> >> - Removed some text from description, as it was explained in the schema
+> >> - fixed other things as per Rob's review
+> >> - moved some text inside the schema, like the clock description
+> >>
+> >> Changes in v2:
+> >> - fixed warnings reported by dt_binding_check
+> >>
+> >>   .../bindings/media/microchip,csi2dc.yaml      | 174 ++++++++++++++++++
+> >>   1 file changed, 174 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml b/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+> >> new file mode 100644
+> >> index 000000000000..b4c1b8800a3b
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+> >> @@ -0,0 +1,174 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/media/microchip,csi2dc.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Microchip CSI2 Demux Controller (CSI2DC)
+> >> +
+> >> +maintainers:
+> >> +  - Eugen Hristev <eugen.hristev@microchip.com>
+> >> +
+> >> +description:
+> >> +  CSI2DC - Camera Serial Interface 2 Demux Controller
+> >> +
+> >> +  CSI2DC is a hardware block that receives incoming data from an IDI interface
+> >> +  and filters packets based on their data type and virtual channel identifier,
+> >> +  then converts the byte stream into a cross clock domain to a pixel stream
+> >> +  to a parallel interface that can be read by a sensor controller.
+> >> +
+> >> +  CSI2DC provides two pipes, one video pipe and one data pipe. Video pipe
+> >> +  is connected to a sensor controller and the data pipe is accessible
+> >> +  as a DMA slave port to a DMA controller.
+> >> +
+> >> +  CSI2DC supports a single 'port' node as a source pad with Synopsys 32-bit
+> >> +  IDI interface. The connected endpoint must be a IDI interface compatible
+> >> +  device (like Synopsys CSI2HOST) , that can provide 32-bit IDI interface
+> >> +  connection as sink pad.
+> >> +  For media entity and endpoints please refer to the bindings defined in
+> >> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
+> >> +  For Synopsys IDI interface please refer to
+> >> +  Documentation/devicetree/bindings/media/snps,dw-csi-plat.txt
+> >> +
+> >> +  CSI2DC supports one 'port' node as sink pad with parallel interface. This is
+> >> +  called video pipe.
+> >> +  This port has an 'endpoint' can then be used as a source pad for another
+> >> +  controller (next in pipeline).
+> >> +  Please refer to the bindings defined in
+> >> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
+> >> +
+> >> +  CSI2DC also supports direct access to the data through AHB, via DMA channel,
+> >> +  called data pipe.
+> >> +  Because of this, the sink 'port' child node (second) is not mandatory.
+> >> +  If the sink 'port' child node is missing, only data pipe is available.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: microchip,sama7g5-csi2dc
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 2
+> >> +
+> >> +  clock-names:
+> >> +    description:
+> >> +      CSI2DC must have two clocks to function correctly. One clock is the
+> >> +      peripheral clock for the inside functionality of the hardware block.
+> >> +      This is named 'pclk'. The second clock must be the cross domain clock,
+> >> +      in which CSI2DC will perform clock crossing. This clock must be fed
+> >> +      by the next controller in pipeline, which usually is a sensor controller.
+> >> +      Normally this clock should be given by this sensor controller who
+> >> +      is also a clock source. This clock is named 'scck', sensor controller clock.
+> >> +    items:
+> >> +      - const: pclk
+> >> +      - const: scck
+> >> +
+> >> +  microchip,clk-gated:
+> >> +    type: boolean
+> >> +    description:
+> >> +      If present, indicates that the clock is gated.
+> >> +      Otherwise, the clock is free-running.
+> >
+> > I don't think this belongs to the DT bindings, it should instead be
+> > queried from the source subdev at runtime.
+>
+> If this should be queried, do you know what is the v4l2 mechanism to
+> query such information ?
+> The subdevice is connected through a port interface to this device, so
+> it was natural for me to fully describe the interface in the devicetree
+> port description
+>
 
-what about phase adjustment?
-I believe logical syntonization is a main part of 802.1AS-Rev and it is
-actually mandatory (7.5.g). Even though physical syntonization is
-allowed, the standard clearly states that it is slow and prone to gain
-peaking effects (7.3.3). Therefore, it makes sense to use a free-
-running clock to get the most benefit of AS-Rev when it comes to the
-transport of synchronization information. 
+Is this property describing the CSI-2 clock continuous, non-continuous
+mode configuration, or did I mis-interpreted it ?
 
-> 
-> In fact, even if that wasn't explicitly written, I am having a hard
-> time
-> understanding how the "B.1.1 Frequency accuracy" requirement for the
-> LocalClock could be satisfied as long as it is kept free-running.
-> Otherwise said, what should I do as a system designer if the
-> LocalClock's frequency is not within +/- 100 ppm offset to the TAI
-> frequency, and I'm not allowed to correct it.
+We added support for retrieving run-time configuration of the media
+bus with the get_mbus_config pad operations recently. Among the
+configuration flags for MBUS_CSI2_DPHY there are inded CONTINUOUS and
+NON_CONTINUOUS clock flags.
 
-B.1.1 defines the frequency accuracy of the local clock relative to TAI
-and not to grandmaster. In my opinion, this is a physical requirement
-of the quartz oscillator used to drive the time and it should be
-fulfilled for all local clocks even for the ones in non-slave devices.
+> >
+> >> +
+> >> +  microchip,inter-line-delay:
+> >> +    allOf:
+> >> +    - $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    - minimum: 1
+> >> +    - maximum: 16
+> >> +    default: 16
+> >> +    description:
+> >> +      Indicates how many clock cycles should be introduced between each line.
+> >
+> > This also sounds like a configuration parameter. How does one compute
+> > the right value for this ?
+>
+> I think this is a delay that can be added inside the hardware block,
+> depending on the interface speed and bandwidth. I will try to understand
+> more details from the hardware design and come back with a more detailed
+> answer.
+>
+> >
+> >> +
+> >> +  port@0:
+> >> +    type: object
+> >> +    description:
+> >> +      Input port node, single endpoint describing the input pad.
+> >> +
+> >> +    properties:
+> >> +      reg:
+> >> +        const: 0
+> >> +
+> >> +      endpoint:
+> >> +        type: object
+> >> +
+> >> +        properties:
+> >> +          remote-endpoint: true
+> >> +
+> >> +        required:
+> >> +          - remote-endpoint
+> >> +
+> >> +        additionalProperties: false
+> >> +
+> >> +    additionalProperties: false
+> >> +
+> >> +  port@1:
+> >> +    type: object
+> >> +    description:
+> >> +      Output port node, single endpoint, describing the output pad.
+> >> +
+> >> +    properties:
+> >> +      '#address-cells':
+> >> +        const: 1
+> >> +
+> >> +      '#size-cells':
+> >> +        const: 0
+> >> +
+> >> +      reg:
+> >> +        const: 1
+> >> +
+> >> +    patternProperties:
+> >> +      "^endpoint@[0-3]$":
+> >> +        type: object
+> >> +
+> >> +        properties:
+> >> +          reg:
+> >> +            enum: [0, 1, 2, 3]
+> >> +            description: virtual channel for the endpoint
+> >
+> > The virtual channel used by the source is also something that needs to
+> > be queried from the source at runtime, it doesn't belong to this
+> > binding.
+>
+> The same question as for the gated clock configuration. How can we use
+> v4l2 subdevice API to obtain such information from the subdevice? And if
+> the subdevice does not offer such information ?
 
-> 
-> By the way, how would you see the split between an unsynchronized and
-> a
-> synchronized PHC be implemented in the Linux kernel?
+I think the subdev driver should be instrumented to report it instead of
+hard-coding the information in DT which should be otherwise updated
+depending on which sensor is connected to the board. Does it make
+sense to you ?
 
-I'm not an expert in kernel implementation but we have plans to discuss
-possible approaches in the near future.
+Cheers
+   j
 
-> 
-> Thanks,
-> -Vladimir
-
-Thanks,
-Kamil
-
+>
+> Thanks again,
+>
+> Eugen
+> >
+> >> +
+> >> +          remote-endpoint: true
+> >> +
+> >> +        required:
+> >> +          - remote-endpoint
+> >> +          - reg
+> >> +
+> >> +        additionalProperties: false
+> >> +
+> >> +    additionalProperties: false
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - clocks
+> >> +  - clock-names
+> >> +  - port@0
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    csi2dc@e1404000 {
+> >> +        compatible = "microchip,sama7g5-csi2dc";
+> >> +        #address-cells = <1>;
+> >> +        #size-cells = <0>;
+> >> +        reg = <0xe1404000 0x500>;
+> >> +        clocks = <&pclk>, <&scck>;
+> >> +        clock-names = "pclk", "scck";
+> >> +
+> >> +        port@0 {
+> >> +               reg = <0>; /* must be 0, first child port */
+> >> +               csi2dc_in: endpoint { /* input from IDI interface */
+> >> +                     remote-endpoint = <&csi2host_out>;
+> >> +               };
+> >> +        };
+> >> +
+> >> +        port@1 {
+> >> +                #address-cells = <1>;
+> >> +                #size-cells = <0>;
+> >> +                reg = <1>; /* must be 1, second child port */
+> >> +                csi2dc_out: endpoint@2 {
+> >> +                        reg = <2>;  /* virtual channel identifier */
+> >> +                        remote-endpoint = <&xisc_in>; /* output to sensor controller */
+> >> +                };
+> >> +        };
+> >> +    };
+> >> +
+> >> +...
+> >
+> > --
+> > Regards,
+> >
+> > Laurent Pinchart
+> >
+>
