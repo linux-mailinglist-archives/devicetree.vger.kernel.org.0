@@ -2,94 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8979528BBB8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 17:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B033028BBC7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 17:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389225AbgJLPWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 11:22:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35440 "EHLO mail.kernel.org"
+        id S2389847AbgJLPZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 11:25:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36228 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389142AbgJLPWf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 11:22:35 -0400
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+        id S2388984AbgJLPZZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 11:25:25 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 90343208B8;
-        Mon, 12 Oct 2020 15:22:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 34DD2208D5;
+        Mon, 12 Oct 2020 15:25:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602516154;
-        bh=5C/jmTpz0PKuGny4/s3SbSc4Irgi9NI62ZqH3ELIX7s=;
+        s=default; t=1602516324;
+        bh=bIkKTbcUZtX9LoLNwSifZfSlJSm+lTIbvj8ANEPWg+E=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aLX8Vr/+ckwRva0GmI4m4s/4wxSqmx0xqfMUrdDEM+fCprnL6NTcrZ+naQvF0e4eY
-         zWkWUxdyTPmg/GLZ1qz0vTlhsD42q25Wl9SQ1DQi3GpB3+NEg6BXYn4jkrbiLaDa5g
-         wOpkbxvdAoMzjsEH/3QEXKZ8zv++QgW2Lt0sPrOg=
-Received: by mail-ed1-f54.google.com with SMTP id t21so17383564eds.6;
-        Mon, 12 Oct 2020 08:22:34 -0700 (PDT)
-X-Gm-Message-State: AOAM532T5y4AOnMoTRfDeKLTHFdxVr6x93ltylXKuX9mAxZ54GXkm71f
-        Px/xNzbrS3/lxOxBbCYZLde+6qgGlfAkRdAW7Q==
-X-Google-Smtp-Source: ABdhPJwu3cOwmieaIPSGaFSoyA4Wc/3ksuAi+VNzjSghjBXRfe60ms0JWtONwlY6z7lgezHab9z1uAotOlywDThS1cE=
-X-Received: by 2002:a05:6402:1cbb:: with SMTP id cz27mr14412016edb.38.1602516153075;
- Mon, 12 Oct 2020 08:22:33 -0700 (PDT)
+        b=uxZf4iW79VnNA5czZ7+lfYfL5mZh/NTtQp8P1PUO/mrWTeniv1u3OVK8c7bMYmXVw
+         wU947G/HociXcrlo7OV167y6SyyB9Lqora51+m25lwRLW/rlQgarEnehXa9R0cIao6
+         JNo23nmkZcwJ70/WjKMzFieZygaW1q7ZDG+w2wzU=
+Received: by mail-ot1-f51.google.com with SMTP id m11so16122203otk.13;
+        Mon, 12 Oct 2020 08:25:24 -0700 (PDT)
+X-Gm-Message-State: AOAM531TDwHuHn0zHsJJs8yM8vE+GBwaSnlJwSCkF2rJLGMJJwTTmX13
+        6CheKC1FVGJQiL7N5kAtMhSeZR0b0sCPhXFcTQ==
+X-Google-Smtp-Source: ABdhPJzn/48d6MtUs58/VlMn2lXXGtFdr5KMFZ9WLc1IRZmoznfmeWfNkAM04VmTyhwnzuvsMRlIu9LYOOnGR3XI80o=
+X-Received: by 2002:a9d:7993:: with SMTP id h19mr15487657otm.129.1602516323477;
+ Mon, 12 Oct 2020 08:25:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201010070910.11294-1-jitao.shi@mediatek.com>
-In-Reply-To: <20201010070910.11294-1-jitao.shi@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 12 Oct 2020 23:22:21 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-qZni-o11HJeymH74PAFSJw-0Awdz0wdjiQ0u7Ga1MGA@mail.gmail.com>
-Message-ID: <CAAOTY_-qZni-o11HJeymH74PAFSJw-0Awdz0wdjiQ0u7Ga1MGA@mail.gmail.com>
-Subject: Re: [v4 PATCH 0/2] fix scrolling of panel with small hfp or hbp
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        huijuan.xie@mediatek.com, stonea168@163.com,
-        cawa.cheng@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, yingjoe.chen@mediatek.com,
-        eddie.huang@mediatek.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20201010151235.20585-1-nsaenzjulienne@suse.de> <20201010151235.20585-3-nsaenzjulienne@suse.de>
+In-Reply-To: <20201010151235.20585-3-nsaenzjulienne@suse.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 12 Oct 2020 10:25:12 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL2cs+cko-UuTd37fnBKO_=3jQeyjB49USvm_VTBwcS8g@mail.gmail.com>
+Message-ID: <CAL_JsqL2cs+cko-UuTd37fnBKO_=3jQeyjB49USvm_VTBwcS8g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] of/address: Introduce of_dma_lower_bus_limit()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
-
-Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8810=E6=
-=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=883:09=E5=AF=AB=E9=81=93=EF=BC=9A
+On Sat, Oct 10, 2020 at 10:12 AM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
 >
-> Changes since v3:
->  - Revert v2, for v2 will cause some bridge ic no output. the cause
->    the video linetime doesn't match display mode from get mode.
->  - Make sure the horizontal_frontporch_byte and horizontal_backporch_byte
->    are > 0.
-
-Because v2 is merged into mainline, I think you should merge 1/2 and
-2/2 to one patch which fix the problem caused by v2.
-
-Regards,
-Chun-Kuang.
-
+> The function provides the CPU physical address addressable by the most
+> constrained bus in the system. It might be useful in order to
+> dynamically set up memory zones during boot.
 >
-> Jitao Shi (2):
->   Revert "drm/mediatek: dsi: Fix scrolling of panel with small hfp or
->     hbp"
->   drm/mediatek: dsi: fix scrolling of panel with small hfp or hbp
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> ---
+>  drivers/of/address.c | 34 ++++++++++++++++++++++++++++++++++
+>  include/linux/of.h   |  7 +++++++
+>  2 files changed, 41 insertions(+)
 >
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 65 +++++++++++++++-----------------=
-------
->  1 file changed, 25 insertions(+), 40 deletions(-)
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index eb9ab4f1e80b..755e97b65096 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -1024,6 +1024,40 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+>  }
+>  #endif /* CONFIG_HAS_DMA */
 >
+> +/**
+> + * of_dma_safe_phys_limit - Get system wide DMA safe address space
+> + *
+> + * Gets the CPU physical address limit for safe DMA addressing system wide by
+> + * searching for the most constraining dma-range. Otherwise it returns ~0ULL.
+> + */
+> +u64 __init of_dma_safe_phys_limit(void)
+> +{
+> +       struct device_node *np = NULL;
+> +       struct of_range_parser parser;
+> +       const __be32 *ranges = NULL;
+> +       u64 phys_dma_limit = ~0ULL;
+> +       struct of_range range;
+> +       int len;
+> +
+> +       for_each_of_allnodes(np) {
+> +               dma_addr_t cpu_end = 0;
+> +
+> +               ranges = of_get_property(np, "dma-ranges", &len);
+> +               if (!ranges || !len)
+> +                       continue;
+> +
+> +               of_dma_range_parser_init(&parser, np);
+> +               for_each_of_range(&parser, &range)
+> +                       if (range.cpu_addr + range.size > cpu_end)
+> +                               cpu_end = range.cpu_addr + range.size;
+
+This doesn't work if you have more than one level of dma-ranges. The
+address has to be translated first. It should be okay to do that on
+the start or end address (if not, your DT is broken).
+
+Please add/extend a unittest for this.
+
+> +
+> +               if (phys_dma_limit > cpu_end)
+> +                       phys_dma_limit = cpu_end;
+> +       }
+> +
+> +       return phys_dma_limit;
+> +}
+> +
+>  /**
+>   * of_dma_is_coherent - Check if device is coherent
+>   * @np:        device node
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 481ec0467285..958c64cffa92 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -558,6 +558,8 @@ int of_map_id(struct device_node *np, u32 id,
+>                const char *map_name, const char *map_mask_name,
+>                struct device_node **target, u32 *id_out);
+>
+> +u64 of_dma_safe_phys_limit(void);
+> +
+>  #else /* CONFIG_OF */
+>
+>  static inline void of_core_init(void)
+> @@ -995,6 +997,11 @@ static inline int of_map_id(struct device_node *np, u32 id,
+>         return -EINVAL;
+>  }
+>
+> +static inline u64 of_dma_safe_phys_limit(void)
+> +{
+> +       return ~0ULL;
+> +}
+> +
+>  #define of_match_ptr(_ptr)     NULL
+>  #define of_match_node(_matches, _node) NULL
+>  #endif /* CONFIG_OF */
 > --
-> 2.12.5
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 2.28.0
+>
