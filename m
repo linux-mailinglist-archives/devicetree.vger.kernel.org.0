@@ -2,131 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9149828B4DB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 14:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B852028B50C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 14:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729733AbgJLMqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 08:46:01 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:46519 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729701AbgJLMqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 08:46:00 -0400
-X-UUID: 6ac210b394314070bef31344bcb4cf19-20201012
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=fX8ByFn/yQTAJ8dBMdeWDIfLG8p3QqLiCAE8ZcVQ75s=;
-        b=IwLSev0SI1ha1/JcGMAhFh53gtNSjDN5c8OOw3NBIL/snYxwmD1jxaFAamfT+f3ff218926sNtzs0RqF3WywR4ZLSSXC812a6/ZwIoKTKYmWNgrLQhiSXghNrc/sipGLKMg8UHBYKC8sZPN4tfPYoEBibCoDHoGSt53nwu9tGdg=;
-X-UUID: 6ac210b394314070bef31344bcb4cf19-20201012
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1702155387; Mon, 12 Oct 2020 20:45:54 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 12 Oct 2020 20:45:51 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Oct 2020 20:45:51 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>
-Subject: [PATCH v6 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
-Date:   Mon, 12 Oct 2020 20:45:47 +0800
-Message-ID: <20201012124547.16649-5-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201012124547.16649-1-wenbin.mei@mediatek.com>
-References: <20201012124547.16649-1-wenbin.mei@mediatek.com>
+        id S1729945AbgJLMyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 08:54:05 -0400
+Received: from mx.hs-offenburg.de ([141.79.11.25]:55354 "EHLO
+        mx.hs-offenburg.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729944AbgJLMyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 08:54:05 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mx.hs-offenburg.de (Postfix) with ESMTP id B85E5738A76C;
+        Mon, 12 Oct 2020 14:53:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=hs-offenburg.de;
+         h=content-transfer-encoding:mime-version:user-agent
+        :content-type:content-type:references:in-reply-to:date:date:from
+        :from:subject:subject:message-id:received:received; s=default;
+         t=1602507239; x=1603371240; bh=+6xZrct3+4JklvRrqYipfRYXbWVljLAh
+        37emHJZd5HI=; b=WNYSWiqOobb0/AfbdBIGLcjMebl8XkYjET/kT1tsLj/c+Uhj
+        cPkdjJTCipXJJjpTaKWFTKaNo3t6Ob34lHBQ68oBzHohAFIDbRMJ20Af9CyccOIC
+        R/YIxDMeAZvqE2fZ6oy0OVsTIiNEEo4ppP9jeJ0L/oZitCI9fGYPiYYO+rw=
+X-Virus-Scanned: amavisd-new at hs-offenburg.de
+Received: from mx.hs-offenburg.de ([127.0.0.1])
+        by localhost (mx.hs-offenburg.de [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id S0D1H2hs5a8l; Mon, 12 Oct 2020 14:53:59 +0200 (CEST)
+Received: from h25-119.emi.hs-offenburg.de (unknown [141.79.25.119])
+        by mx.hs-offenburg.de (Postfix) with ESMTPSA id DDAFB738A769;
+        Mon, 12 Oct 2020 14:53:58 +0200 (CEST)
+Message-ID: <65ecb62de9940991971b965cbd5b902ae5daa09b.camel@hs-offenburg.de>
+Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
+ hardware timestamping
+From:   Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        ilias.apalodimas@linaro.org
+Date:   Mon, 12 Oct 2020 14:53:58 +0200
+In-Reply-To: <20201008150951.elxob2yaw2tirkig@skbuf>
+References: <87tuv77a83.fsf@kurt> <20201006133222.74w3r2jwwhq5uop5@skbuf>
+         <87r1qb790w.fsf@kurt> <20201006140102.6q7ep2w62jnilb22@skbuf>
+         <87lfgiqpze.fsf@kurt> <20201007105458.gdbrwyzfjfaygjke@skbuf>
+         <87362pjev0.fsf@kurt> <20201008094440.oede2fucgpgcfx6a@skbuf>
+         <87lfghhw9u.fsf@kurt>
+         <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
+         <20201008150951.elxob2yaw2tirkig@skbuf>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TVQ4MTkyIG1zZGMgaXMgYW4gaW5kZXBlbmRlbnQgc3ViIHN5c3RlbSwgd2UgbmVlZCBjb250cm9s
-IG1vcmUgYnVzDQpjbG9ja3MgZm9yIGl0Lg0KQWRkIHN1cHBvcnQgZm9yIHRoZSBhZGRpdGlvbmFs
-IHN1YnN5cyBjbG9ja3MgdG8gYWxsb3cgaXQgdG8gYmUNCmNvbmZpZ3VyZWQgYXBwcm9wcmlhdGVs
-eS4NCg0KU2lnbmVkLW9mZi1ieTogV2VuYmluIE1laSA8d2VuYmluLm1laUBtZWRpYXRlay5jb20+
-DQotLS0NCiBkcml2ZXJzL21tYy9ob3N0L210ay1zZC5jIHwgNzQgKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKystLS0tLS0tLS0tDQogMSBmaWxlIGNoYW5nZWQsIDU2IGluc2VydGlvbnMoKyks
-IDE4IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2Qu
-YyBiL2RyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMNCmluZGV4IGE3MDQ3NDVlNTg4Mi4uYzdkZjc1
-MTBmMTIwIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KKysrIGIvZHJp
-dmVycy9tbWMvaG9zdC9tdGstc2QuYw0KQEAgLTM1LDYgKzM1LDcgQEANCiAjaW5jbHVkZSAiY3Fo
-Y2kuaCINCiANCiAjZGVmaW5lIE1BWF9CRF9OVU0gICAgICAgICAgMTAyNA0KKyNkZWZpbmUgTVNE
-Q19OUl9DTE9DS1MgICAgICAzDQogDQogLyotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSovDQogLyogQ29tbW9u
-IERlZmluaXRpb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICovDQpAQCAtNDI1LDYgKzQyNiw4IEBAIHN0cnVjdCBtc2RjX2hvc3Qgew0KIAlz
-dHJ1Y3QgY2xrICpoX2NsazsgICAgICAvKiBtc2RjIGhfY2xrICovDQogCXN0cnVjdCBjbGsgKmJ1
-c19jbGs7CS8qIGJ1cyBjbG9jayB3aGljaCB1c2VkIHRvIGFjY2VzcyByZWdpc3RlciAqLw0KIAlz
-dHJ1Y3QgY2xrICpzcmNfY2xrX2NnOyAvKiBtc2RjIHNvdXJjZSBjbG9jayBjb250cm9sIGdhdGUg
-Ki8NCisJc3RydWN0IGNsayAqc3lzX2Nsa19jZzsJLyogbXNkYyBzdWJzeXMgY2xvY2sgY29udHJv
-bCBnYXRlICovDQorCXN0cnVjdCBjbGtfYnVsa19kYXRhIGJ1bGtfY2xrc1tNU0RDX05SX0NMT0NL
-U107DQogCXUzMiBtY2xrOwkJLyogbW1jIHN1YnN5c3RlbSBjbG9jayBmcmVxdWVuY3kgKi8NCiAJ
-dTMyIHNyY19jbGtfZnJlcTsJLyogc291cmNlIGNsb2NrIGZyZXF1ZW5jeSAqLw0KIAl1bnNpZ25l
-ZCBjaGFyIHRpbWluZzsNCkBAIC03ODQsNiArNzg3LDcgQEAgc3RhdGljIHZvaWQgbXNkY19zZXRf
-YnVzeV90aW1lb3V0KHN0cnVjdCBtc2RjX2hvc3QgKmhvc3QsIHU2NCBucywgdTY0IGNsa3MpDQog
-DQogc3RhdGljIHZvaWQgbXNkY19nYXRlX2Nsb2NrKHN0cnVjdCBtc2RjX2hvc3QgKmhvc3QpDQog
-ew0KKwljbGtfYnVsa19kaXNhYmxlX3VucHJlcGFyZShNU0RDX05SX0NMT0NLUywgaG9zdC0+YnVs
-a19jbGtzKTsNCiAJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGhvc3QtPnNyY19jbGtfY2cpOw0KIAlj
-bGtfZGlzYWJsZV91bnByZXBhcmUoaG9zdC0+c3JjX2Nsayk7DQogCWNsa19kaXNhYmxlX3VucHJl
-cGFyZShob3N0LT5idXNfY2xrKTsNCkBAIC03OTIsMTAgKzc5NiwxOCBAQCBzdGF0aWMgdm9pZCBt
-c2RjX2dhdGVfY2xvY2soc3RydWN0IG1zZGNfaG9zdCAqaG9zdCkNCiANCiBzdGF0aWMgdm9pZCBt
-c2RjX3VuZ2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KIHsNCisJaW50IHJldDsN
-CisNCiAJY2xrX3ByZXBhcmVfZW5hYmxlKGhvc3QtPmhfY2xrKTsNCiAJY2xrX3ByZXBhcmVfZW5h
-YmxlKGhvc3QtPmJ1c19jbGspOw0KIAljbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+c3JjX2Nsayk7
-DQogCWNsa19wcmVwYXJlX2VuYWJsZShob3N0LT5zcmNfY2xrX2NnKTsNCisJcmV0ID0gY2xrX2J1
-bGtfcHJlcGFyZV9lbmFibGUoTVNEQ19OUl9DTE9DS1MsIGhvc3QtPmJ1bGtfY2xrcyk7DQorCWlm
-IChyZXQpIHsNCisJCWRldl9lcnIoaG9zdC0+ZGV2LCAiQ2Fubm90IGVuYWJsZSBwY2xrL2F4aS9h
-aGIgY2xvY2sgZ2F0ZXNcbiIpOw0KKwkJcmV0dXJuOw0KKwl9DQorDQogCXdoaWxlICghKHJlYWRs
-KGhvc3QtPmJhc2UgKyBNU0RDX0NGRykgJiBNU0RDX0NGR19DS1NUQikpDQogCQljcHVfcmVsYXgo
-KTsNCiB9DQpAQCAtMjM2Niw2ICsyMzc4LDQ4IEBAIHN0YXRpYyB2b2lkIG1zZGNfb2ZfcHJvcGVy
-dHlfcGFyc2Uoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldiwNCiAJCWhvc3QtPmNxaGNpID0g
-ZmFsc2U7DQogfQ0KIA0KK3N0YXRpYyBpbnQgbXNkY19vZl9jbG9ja19wYXJzZShzdHJ1Y3QgcGxh
-dGZvcm1fZGV2aWNlICpwZGV2LA0KKwkJCSAgICAgICBzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0K
-K3sNCisJaW50IHJldDsNCisNCisJaG9zdC0+c3JjX2NsayA9IGRldm1fY2xrX2dldCgmcGRldi0+
-ZGV2LCAic291cmNlIik7DQorCWlmIChJU19FUlIoaG9zdC0+c3JjX2NsaykpDQorCQlyZXR1cm4g
-UFRSX0VSUihob3N0LT5zcmNfY2xrKTsNCisNCisJaG9zdC0+aF9jbGsgPSBkZXZtX2Nsa19nZXQo
-JnBkZXYtPmRldiwgImhjbGsiKTsNCisJaWYgKElTX0VSUihob3N0LT5oX2NsaykpDQorCQlyZXR1
-cm4gUFRSX0VSUihob3N0LT5oX2Nsayk7DQorDQorCWhvc3QtPmJ1c19jbGsgPSBkZXZtX2Nsa19n
-ZXRfb3B0aW9uYWwoJnBkZXYtPmRldiwgImJ1c19jbGsiKTsNCisJaWYgKElTX0VSUihob3N0LT5i
-dXNfY2xrKSkNCisJCWhvc3QtPmJ1c19jbGsgPSBOVUxMOw0KKw0KKwkvKnNvdXJjZSBjbG9jayBj
-b250cm9sIGdhdGUgaXMgb3B0aW9uYWwgY2xvY2sqLw0KKwlob3N0LT5zcmNfY2xrX2NnID0gZGV2
-bV9jbGtfZ2V0X29wdGlvbmFsKCZwZGV2LT5kZXYsICJzb3VyY2VfY2ciKTsNCisJaWYgKElTX0VS
-Uihob3N0LT5zcmNfY2xrX2NnKSkNCisJCWhvc3QtPnNyY19jbGtfY2cgPSBOVUxMOw0KKw0KKwlo
-b3N0LT5zeXNfY2xrX2NnID0gZGV2bV9jbGtfZ2V0X29wdGlvbmFsKCZwZGV2LT5kZXYsICJzeXNf
-Y2ciKTsNCisJaWYgKElTX0VSUihob3N0LT5zeXNfY2xrX2NnKSkNCisJCWhvc3QtPnN5c19jbGtf
-Y2cgPSBOVUxMOw0KKw0KKwkvKiBJZiBwcmVzZW50LCBhbHdheXMgZW5hYmxlIGZvciB0aGlzIGNs
-b2NrIGdhdGUgKi8NCisJY2xrX3ByZXBhcmVfZW5hYmxlKGhvc3QtPnN5c19jbGtfY2cpOw0KKw0K
-Kwlob3N0LT5idWxrX2Nsa3NbMF0uaWQgPSAicGNsa19jZyI7DQorCWhvc3QtPmJ1bGtfY2xrc1sx
-XS5pZCA9ICJheGlfY2ciOw0KKwlob3N0LT5idWxrX2Nsa3NbMl0uaWQgPSAiYWhiX2NnIjsNCisJ
-cmV0ID0gZGV2bV9jbGtfYnVsa19nZXRfb3B0aW9uYWwoJnBkZXYtPmRldiwgTVNEQ19OUl9DTE9D
-S1MsDQorCQkJCQkgaG9zdC0+YnVsa19jbGtzKTsNCisJaWYgKHJldCkgew0KKwkJZGV2X2Vycigm
-cGRldi0+ZGV2LCAiQ2Fubm90IGdldCBwY2xrL2F4aS9haGIgY2xvY2sgZ2F0ZXNcbiIpOw0KKwkJ
-cmV0dXJuIHJldDsNCisJfQ0KKw0KKwlyZXR1cm4gMDsNCit9DQorDQogc3RhdGljIGludCBtc2Rj
-X2Rydl9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KIHsNCiAJc3RydWN0IG1t
-Y19ob3N0ICptbWM7DQpAQCAtMjQwNSwyNSArMjQ1OSw5IEBAIHN0YXRpYyBpbnQgbXNkY19kcnZf
-cHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCiAJaWYgKHJldCkNCiAJCWdvdG8g
-aG9zdF9mcmVlOw0KIA0KLQlob3N0LT5zcmNfY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYs
-ICJzb3VyY2UiKTsNCi0JaWYgKElTX0VSUihob3N0LT5zcmNfY2xrKSkgew0KLQkJcmV0ID0gUFRS
-X0VSUihob3N0LT5zcmNfY2xrKTsNCi0JCWdvdG8gaG9zdF9mcmVlOw0KLQl9DQotDQotCWhvc3Qt
-PmhfY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJoY2xrIik7DQotCWlmIChJU19FUlIo
-aG9zdC0+aF9jbGspKSB7DQotCQlyZXQgPSBQVFJfRVJSKGhvc3QtPmhfY2xrKTsNCisJcmV0ID0g
-bXNkY19vZl9jbG9ja19wYXJzZShwZGV2LCBob3N0KTsNCisJaWYgKHJldCkNCiAJCWdvdG8gaG9z
-dF9mcmVlOw0KLQl9DQotDQotCWhvc3QtPmJ1c19jbGsgPSBkZXZtX2Nsa19nZXQoJnBkZXYtPmRl
-diwgImJ1c19jbGsiKTsNCi0JaWYgKElTX0VSUihob3N0LT5idXNfY2xrKSkNCi0JCWhvc3QtPmJ1
-c19jbGsgPSBOVUxMOw0KLQkvKnNvdXJjZSBjbG9jayBjb250cm9sIGdhdGUgaXMgb3B0aW9uYWwg
-Y2xvY2sqLw0KLQlob3N0LT5zcmNfY2xrX2NnID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJz
-b3VyY2VfY2ciKTsNCi0JaWYgKElTX0VSUihob3N0LT5zcmNfY2xrX2NnKSkNCi0JCWhvc3QtPnNy
-Y19jbGtfY2cgPSBOVUxMOw0KIA0KIAlob3N0LT5yZXNldCA9IGRldm1fcmVzZXRfY29udHJvbF9n
-ZXRfb3B0aW9uYWxfZXhjbHVzaXZlKCZwZGV2LT5kZXYsDQogCQkJCQkJCQkiaHJzdCIpOw0KLS0g
-DQoyLjE4LjANCg==
+Hi Vladimir,
+
+On Thu, 2020-10-08 at 18:09 +0300, Vladimir Oltean wrote:
+> Hi Kamil,
+> 
+> On Thu, Oct 08, 2020 at 02:55:57PM +0200, Kamil Alkhouri wrote:
+> > Hello dears,
+> > 
+> > On Thu, 2020-10-08 at 12:01 +0200, Kurt Kanzenbach wrote:
+> > > On Thu Oct 08 2020, Vladimir Oltean wrote:
+> > > > On Thu, Oct 08, 2020 at 10:34:11AM +0200, Kurt Kanzenbach
+> > > > wrote:
+> > > > > On Wed Oct 07 2020, Vladimir Oltean wrote:
+> > > > > > On Wed, Oct 07, 2020 at 12:39:49PM +0200, Kurt Kanzenbach
+> > > > > > wrote:
+> > > > > > > For instance the hellcreek switch has actually three ptp
+> > > > > > > hardware
+> > > > > > > clocks and the time stamping can be configured to use
+> > > > > > > either
+> > > > > > > one of
+> > > > > > > them.
+> > > > > > 
+> > > > > > The sja1105 also has a corrected and an uncorrected PTP
+> > > > > > clock
+> > > > > > that can
+> > > > > > take timestamps. Initially I had thought I'd be going to
+> > > > > > spend
+> > > > > > some time
+> > > > > > figuring out multi-PHC support, but now I don't see any
+> > > > > > practical reason
+> > > > > > to use the uncorrected PHC for anything.
+> > > > > 
+> > > > > Just out of curiosity: How do you implement 802.1AS then? My
+> > > > > understanding is that the free-running clock has to be used
+> > > > > for
+> > > > > the
+> > > > 
+> > > > Has to be? I couldn't find that wording in IEEE 802.1AS-2011.
+> > > 
+> > > It doesn't has to be, it *should* be. That's at least the outcome
+> > > we
+> > > had
+> > > after lots of discussions. Actually Kamil (on Cc) is the expert
+> > > on
+> > > this
+> > > topic.
+> > 
+> > According to 802.1AS-2011 (10.1.1): "The LocalClock entity is a
+> > free-
+> > running clock (see 3.3) that provides a common time to the time-
+> > aware
+> > system, relative to an arbitrary epoch.", "... All timestamps are
+> > taken
+> > relative to the LocalClock entity". The same statement holds true
+> > for
+> > 802.1AS-2020 (10.1.2.1).
+> 
+> Nice having you part of the discussion.
+> 
+> IEEE 802.1AS-rev draft 8.0, clause F.3 PTP options:
+> 
+> 	The physical adjustment of the frequency of the LocalClock
+> 	entity (i.e., physical syntonization) is allowed but not
+> 	required.
+
+what about phase adjustment?
+I believe logical syntonization is a main part of 802.1AS-Rev and it is
+actually mandatory (7.5.g). Even though physical syntonization is
+allowed, the standard clearly states that it is slow and prone to gain
+peaking effects (7.3.3). Therefore, it makes sense to use a free-
+running clock to get the most benefit of AS-Rev when it comes to the
+transport of synchronization information. 
+
+> 
+> In fact, even if that wasn't explicitly written, I am having a hard
+> time
+> understanding how the "B.1.1 Frequency accuracy" requirement for the
+> LocalClock could be satisfied as long as it is kept free-running.
+> Otherwise said, what should I do as a system designer if the
+> LocalClock's frequency is not within +/- 100 ppm offset to the TAI
+> frequency, and I'm not allowed to correct it.
+
+B.1.1 defines the frequency accuracy of the local clock relative to TAI
+and not to grandmaster. In my opinion, this is a physical requirement
+of the quartz oscillator used to drive the time and it should be
+fulfilled for all local clocks even for the ones in non-slave devices.
+
+> 
+> By the way, how would you see the split between an unsynchronized and
+> a
+> synchronized PHC be implemented in the Linux kernel?
+
+I'm not an expert in kernel implementation but we have plans to discuss
+possible approaches in the near future.
+
+> 
+> Thanks,
+> -Vladimir
+
+Thanks,
+Kamil
 
