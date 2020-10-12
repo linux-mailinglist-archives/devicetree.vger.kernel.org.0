@@ -2,69 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECCD128BF17
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 19:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A759428BF52
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 20:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403827AbgJLRhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 13:37:40 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:40088 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390724AbgJLRhk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 13:37:40 -0400
-Received: by mail-oi1-f196.google.com with SMTP id m128so19496896oig.7;
-        Mon, 12 Oct 2020 10:37:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wbgk4D07H7CuGbzhyg3Gn1Tmoy8o7fxYGrkJpVsJbkk=;
-        b=P7kwI4oTWB0fIwFlxmm96DCAw7ihh320xXecU6Hp2KsW1WSxl/XwOVBFckKRdkodIE
-         eLit0JBTKvjbZqL3ac8h68rp71wIqEsdAVtV1ljH8zyaVm1rL24YEEEQ8vozJXp1gECO
-         Mal+Xgc4y/r7VS6PyV6fzOAmS0TB4s7BZ45JWq9/3E+pdMZv0b8APnMVgP2rVVndXvjQ
-         TEzCI3q1NxGVhAgEgEap5JOGv9ga+RV2NzXvTZfpPhKEjtVCd9annNCQR1Uwm5lU+ntB
-         Wk2ZzRrmsVEM9oEZh70+aXcWI16uILAqPYs3i2Uy6XXLYuu6ZlApeRwwWZGSmY0FJZ+O
-         LtXg==
-X-Gm-Message-State: AOAM530uTyrJT0GgEGWv/Jxg3ke79f0g3UjmrojWHWLRHwn/3MKPo/T6
-        lQnA8ykNKOHo6mteJDvRIQ==
-X-Google-Smtp-Source: ABdhPJyuVzMIc3x8iuqvlKzqJdEkp6n3bvftVjVboxd9/7jMHIUj8f+vyZ17dj8HTqw7G9hRBXghbg==
-X-Received: by 2002:a05:6808:254:: with SMTP id m20mr11796147oie.139.1602524259310;
-        Mon, 12 Oct 2020 10:37:39 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e3sm10515272ooq.0.2020.10.12.10.37.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Oct 2020 10:37:38 -0700 (PDT)
-Received: (nullmailer pid 1801910 invoked by uid 1000);
-        Mon, 12 Oct 2020 17:37:37 -0000
-Date:   Mon, 12 Oct 2020 12:37:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     daire.mcnamara@microchip.com
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        david.abdurachmanov@gmail.com, linux-pci@vger.kernel.org,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com
-Subject: Re: [PATCH v16 3/3] PCI: microchip: Add host driver for Microchip
- PCIe controller
-Message-ID: <20201012173737.GA1801858@bogus>
-References: <20201012105754.22596-1-daire.mcnamara@microchip.com>
- <20201012105754.22596-4-daire.mcnamara@microchip.com>
+        id S2390830AbgJLSEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 14:04:05 -0400
+Received: from mx2.suse.de ([195.135.220.15]:56462 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389885AbgJLSEF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 14:04:05 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 3A2D3AC83;
+        Mon, 12 Oct 2020 18:04:04 +0000 (UTC)
+Date:   Mon, 12 Oct 2020 20:04:02 +0200
+From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Ondrej Jirman <megous@megous.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Stefan Mavrodiev <stefan@olimex.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Georgii Staroselskii <georgii.staroselskii@emlid.com>,
+        Bastian Germann <bage@linutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: arm: sunxi: Fix Orange Pi Zero bindings
+Message-ID: <20201012180402.GT29778@kitsune.suse.cz>
+References: <59f7b5c566825838bbb62b778e05c514fe355e74.1602182270.git.msuchanek@suse.de>
+ <e657976d8bb1bb627c983321fe9c61de5bc003b7.1602182270.git.msuchanek@suse.de>
+ <20201012144753.mdxdacp7ctxxhhl2@gilmour.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201012105754.22596-4-daire.mcnamara@microchip.com>
+In-Reply-To: <20201012144753.mdxdacp7ctxxhhl2@gilmour.lan>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Oct 2020 11:57:54 +0100, daire.mcnamara@microchip.com wrote:
-> Add support for the Microchip PolarFire PCIe controller when
-> configured in host (Root Complex) mode.
+On Mon, Oct 12, 2020 at 04:47:53PM +0200, Maxime Ripard wrote:
+> On Thu, Oct 08, 2020 at 08:40:06PM +0200, Michal Suchanek wrote:
+> > There are two models of Orange Pi zero which are confusingly marketed
+> > under the same name. Old model comes without a flash memory and current
+> > model does have a flash memory. Add bindings for each model.
+> > 
+> > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
 > 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> ---
->  drivers/pci/controller/Kconfig               |   9 +
->  drivers/pci/controller/Makefile              |   1 +
->  drivers/pci/controller/pcie-microchip-host.c | 541 +++++++++++++++++++
->  3 files changed, 551 insertions(+)
->  create mode 100644 drivers/pci/controller/pcie-microchip-host.c
-> 
+> Unfortunately, changing a compatible or a DT filename is not an option
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+So how do you handle the situation when you find out that there are two
+different devices marketed under the same name?
+
+Surely the device tree is labaled by the device name but now you need
+two device trees that describe the two devices.
+
+Thanks
+
+Michal
