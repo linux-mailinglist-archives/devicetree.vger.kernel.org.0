@@ -2,216 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E713228C3AE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 23:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 481AE28C40B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 23:29:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731966AbgJLVBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 17:01:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730730AbgJLVBT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 17:01:19 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6243C0613D0
-        for <devicetree@vger.kernel.org>; Mon, 12 Oct 2020 14:01:19 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kS4wT-0002yn-F6; Mon, 12 Oct 2020 23:01:13 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kS4wS-0001ed-EQ; Mon, 12 Oct 2020 23:01:12 +0200
-Date:   Mon, 12 Oct 2020 23:01:12 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: Re: [PATCH v10 1/2] pwm: Add PWM driver for Intel Keem Bay
-Message-ID: <20201012210112.tdca3so6dzplootw@pengutronix.de>
-References: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
- <a8cb129092283cb6415e56b928293ef7121a851b.1602090900.git.vijayakannan.ayyathurai@intel.com>
- <20201007205734.vguookvp6wt3knuq@pengutronix.de>
- <DM6PR11MB42507C555C3F183ED6EB98ADFB070@DM6PR11MB4250.namprd11.prod.outlook.com>
+        id S1726810AbgJLV3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 17:29:53 -0400
+Received: from vern.gendns.com ([98.142.107.122]:50618 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726348AbgJLV3x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 17:29:53 -0400
+X-Greylist: delayed 1011 seconds by postgrey-1.27 at vger.kernel.org; Mon, 12 Oct 2020 17:29:52 EDT
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=BU8Y8hbTrSCDGFXXrVu4H2rvAgBqEv+1vUT0kZBE8Zw=; b=NLO+BUL9kg7v6b8w+g7ohEzKQ4
+        b5P8SAikT8ovGIopkjef6GIrhawJjABW0MJW41HHaX0Ptv32x4Rrt6+ef7x1gcMTsNMOA1UEiuIAF
+        JuzwdxicA8VF+5WbRIAjx6Ts5JOKXN6nxI9es8bkuQwcxrwsN0WE8qvAYzIkY4oLD/Vj69xaa/EZE
+        LtKj3G85XQMC2/i+LXff9f9qvpA/+Fo4J3svfRYKP0nHik41R3cjSMPwbSNzYVFUThXQz791qk4JU
+        L/Eg2Y6z4+47Lnx35xwiNXe3bPkp3fTFQlJ/nh9O8k6jXAN5WJcIYHO3gJ7sUbozIcf79Yvdym4Af
+        jYEUuHqA==;
+Received: from [2600:1700:4830:165f::19e] (port=52666 helo=freyr.lechnology.com)
+        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <david@lechnology.com>)
+        id 1kS57r-0004Ih-Dt; Mon, 12 Oct 2020 17:12:59 -0400
+From:   David Lechner <david@lechnology.com>
+To:     linux-omap@vger.kernel.org
+Cc:     David Lechner <david@lechnology.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] Enable eQEP counter driver on BeagleBone Blue
+Date:   Mon, 12 Oct 2020 16:12:26 -0500
+Message-Id: <20201012211229.3282128-1-david@lechnology.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="m7qxjxu7pzwt6i3g"
-Content-Disposition: inline
-In-Reply-To: <DM6PR11MB42507C555C3F183ED6EB98ADFB070@DM6PR11MB4250.namprd11.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds device tree nodes for the eQEP portion of the PWMSS on AM33xx
+and enables it on BeagleBone Blue.
 
---m7qxjxu7pzwt6i3g
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I actually submitted these a year ago, but it looks like these patches never got
+applied with the actual eQEP driver when it was merged.
 
-Hello Ayyathurai,
+For reference, there was some previous discussion about the clocks in "ARM: dts:
+am33xx: Add nodes for eQEP". [1]
 
-you're quoting style is strange. I fixed it up and hope I got it right.
+[1]: https://lore.kernel.org/linux-omap/20190723145100.GS5447@atomide.com/
 
-On Mon, Oct 12, 2020 at 08:04:47PM +0000, Ayyathurai, Vijayakannan wrote:
-> > On Thu, Oct 08, 2020 at 01:40:30AM +0800, vijayakannan.ayyathurai@intel=
-=2Ecom wrote:
-> > > +static int keembay_pwm_apply(struct pwm_chip *chip, struct pwm_devic=
-e *pwm,
-> > > +			     const struct pwm_state *state) {
-> > > +	struct keembay_pwm *priv =3D to_keembay_pwm_dev(chip);
-> > > +	struct pwm_state current_state;
-> > > +	u16 pwm_h_count, pwm_l_count;
-> > > +	unsigned long long div;
-> > > +	unsigned long clk_rate;
-> > > +	u32 pwm_count =3D 0;
-> > > +
-> > > +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
-> > > +		return -ENOSYS;
-> > > +
-> > > +	keembay_pwm_update_bits(priv, KMB_PWM_LEADIN_MASK, 0,
-> > > +				KMB_PWM_LEADIN_OFFSET(pwm->hwpwm));
-> > > +
-> > > +	keembay_pwm_get_state(chip, pwm, &current_state);
-> > > +
-> > > +	if (!state->enabled) {
-> > > +		if (current_state.enabled)
-> > > +			keembay_pwm_disable(priv, pwm->hwpwm);
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	/*
-> > > +	 * The upper 16 bits of the KMB_PWM_HIGHLOW_OFFSET register contain
-> > > +	 * the high time of the waveform, while the last 16 bits contain
-> > > +	 * the low time of the waveform, in terms of clock cycles.
-> > > +	 *
-> > > +	 * high time =3D clock rate * duty cycle
-> > > +	 * low time =3D  clock rate * (period - duty cycle)
-> > > +	 */
-> > > +
-> > > +	clk_rate =3D clk_get_rate(priv->clk);
-> > > +	/* Configure waveform high time */
-> > > +	div =3D clk_rate * state->duty_cycle;
-> > > +	div =3D DIV_ROUND_DOWN_ULL(div, NSEC_PER_SEC);
-> > > +	if (div > KMB_PWM_COUNT_MAX)
-> > > +		return -ERANGE;
-> > > +
-> > > +	pwm_h_count =3D div;
-> > > +	/* Configure waveform low time */
-> > > +	div =3D clk_rate * (state->period - state->duty_cycle);
-> > > +	div =3D DIV_ROUND_DOWN_ULL(div, NSEC_PER_SEC - pwm_h_count);
-> >=20
-> > In reply to your v7 I suggested the example:
-> >=20
-> > 	clk_rate =3D 333334 [Hz]
-> > 	state.duty_cycle =3D 1000500 [ns]
-> > 	state.period =3D 2001000 [ns]
-> >=20
-> > where the expected outcome is
-> >=20
-> > 	pwm_h_count =3D 333
-> > 	pwm_l_count =3D 334
-> >=20
-> > . Please reread my feedback there. I tried to construct an example
-> > where the value is more wrong, but with the constraint that
-> > pwm_h_count must be <=3D KMB_PWM_COUNT_MAX this isn't easy. The best I
-> > could come up with is:
-> >=20
-> > 	clk_rate =3D 1000000000
-> > 	state.duty_cycle =3D 65535 [ns]
-> > 	state.period =3D 131070 [ns]
-> >=20
-> > where the right value for pwm_l_count is 65535 while you calculate
-> > 65539 (and then quit with -ERANGE).
->
-> I have applied the formula mentioned in v7 and got different duty
-> cycle result then what was expected.=20
->=20
-> Formula referred by Uwe at v7:
-> pwm_l_count =3D (clk_rate * state->period) / NSEC_PER_SEC - pwm_h_count
->=20
-> %     clk_rate        period          duty_cycle      NSEC_PER_SEC    pwm=
-_h_count             pwm_l_count
-> 50%   333334          2001000         1000500         1000000000      333=
-                     667
-> 25%   500000000       20000           5000            1000000000      250=
-0                    10000
-> 50%   100000000       131070          65535           1000000000      655=
-3                    13107
+I have also included a new patch to enable the eQEP driver in the defconfig.
 
-For the first line:
 
-        (clk_rate * state->period) // NSEC_PER_SEC - pwm_h_count =3D
-        (333334 * 2001000) // 1000000000 - 333 =3D
-        667.001334 - 333 =3D
-        334
+David Lechner (3):
+  ARM: dts: am33xx: Add nodes for eQEP
+  ARM: dts: am335x-boneblue: Enable eQEP
+  ARM: omap2plus_defconfig: Enable TI eQEP counter driver
 
-This gives duty cycle =3D 333 * 1000000000 / 333334 =3D 998998.0020039959 ns
-and a period =3D (333 + 334) * 1000000000 / 333334 =3D 2000995.998008004 ns
-which is well in the limits.
+ arch/arm/boot/dts/am335x-boneblue.dts | 54 +++++++++++++++++++++++++++
+ arch/arm/boot/dts/am33xx-l4.dtsi      | 27 ++++++++++++++
+ arch/arm/configs/omap2plus_defconfig  |  2 +
+ 3 files changed, 83 insertions(+)
 
-I guess you assumed my formula to be
-(clk_rate * state->period) / (NSEC_PER_SEC - pwm_h_count), but that's
-not what I meant.
+-- 
+2.25.1
 
-> Whereas the below table is the result of minor modification from your for=
-mula and getting the right result.
-> pwm_l_count =3D clk_rate * (state->period - state->duty_cycle) / NSEC_PER=
-_SEC - pwm_h_count
->=20
-> %     clk_rate        period          duty_cycle      NSEC_PER_SEC    pwm=
-_h_count             pwm_l_count
-> 50%   333334          2001000         1000500         1000000000      333=
-                     333
-> 25%   500000000       20000           5000            1000000000      250=
-0                    7500
-> 50%   100000000       131070          65535           1000000000      655=
-3                    6553
->=20
-> Please review this and confirm.
-
-In the code you used
-
-        clk_rate * (state->period - state->duty_cycle) / (NSEC_PER_SEC - pw=
-m_h_count)
-
-which is notably different. For the example in the first line again you
-then get 333, which is a less optimal result than 334 I get with my
-(fixed) formula. I'm still convinced my formula is the right and optimal
-one.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---m7qxjxu7pzwt6i3g
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+ExBQACgkQwfwUeK3K
-7AmYjQf+NbKYGiIF5C248lUUAQnRzDMOkhK+R7iq754qNaSiDP0GKZO9dR8ItCPW
-+B8/GAWlGguVaQ/+4vbcVPlxzHYJu5jG3GuOrz1N1skWG8yLpex2ob7qYmJiBjqM
-T/iW7A3nTumvhi1LZllHSRKRhc/Np9XacvuoEUv07pisyA+7HLhZhXEN4lUbJQ2Z
-iG+Pkew0tyZkCSPPi3wZLj+nAy+xiW/v+ic6Eb+vgyTE57LJmbHLilSgRBM5GeDq
-GtReF4/bUNDGpDzI4HMEQOiP2NNOzwx12Fi9VWmRXJ9SgQOX/iRLPIwCftMKSk4Z
-yM9Yjx2yLjL10dBMz/oovbvUJVrWAQ==
-=2F7J
------END PGP SIGNATURE-----
-
---m7qxjxu7pzwt6i3g--
