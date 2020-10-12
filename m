@@ -2,294 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3593A28AB0A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 01:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F6D28AB45
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 02:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729571AbgJKXBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 19:01:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S1727163AbgJLA7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Oct 2020 20:59:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726148AbgJKXBW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 19:01:22 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D06C0613CE
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 16:01:18 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0A4A9308;
-        Mon, 12 Oct 2020 01:01:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1602457275;
-        bh=uhwaH5dk8caXUXCfjGq8FIzwI8jsBl7UFxbmORYemP4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jk4XuflM7wT92ttPSgspLWilsQwimZAMmefxagq796kzRwpgOT7Z8E1qWE649FYev
-         gn3eMWmV7BcwfPKp54KMQ8KtYSp7sjhLQ98wiMefKoZR8U6cUBN3b9g1GhpCc1LozR
-         5UAPd2L7DuODEYj5zNh5GoCjOQXu0tFs4sfqOaLY=
-Date:   Mon, 12 Oct 2020 02:00:30 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RESEND v3 1/6] drm/of: Change the prototype of
- drm_of_lvds_get_dual_link_pixel_order
-Message-ID: <20201011230030.GD3944@pendragon.ideasonboard.com>
-References: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910923.git-series.maxime@cerno.tech>
- <6169dd15782627c8415583881fa94ba39c4f5221.1601910923.git-series.maxime@cerno.tech>
+        with ESMTP id S1726600AbgJLA7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 20:59:02 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC856C0613D0
+        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 17:59:01 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id d4so2637115vsk.13
+        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 17:59:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pKuO3QKcuUe/F0t0uUwfDC3OUqDsOLuOv/YQ0PPKJlA=;
+        b=ZG/7AljIIxkb5kzG7HUfhx+PenrEEBEfXe2u+72K/l+ASYNVw1bzTK8HkNYSwNlsXK
+         bwSJVF9pjjshsq0EMj7KGo7mcBMXwlnURFfVNlOtH6C34LV6twpBsGEVtA+Eqk+Z/wLn
+         ENLu//cmWsl73fMUH9ggHyTUOLybFWK8/vrMs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pKuO3QKcuUe/F0t0uUwfDC3OUqDsOLuOv/YQ0PPKJlA=;
+        b=nPfe9vr0imwzYazhs9CleWijqI/a0ZUuSgw3OY0XumvaPr9IyyyQT3pLldt7aA0a/r
+         1W5RuOersKUmQUZH3gwSr7TqkgNJgOsz8mEwuTNyeDC+JBK4PbVBMYdcy9GHXUr+5gpD
+         ziNrJLL/H8+2LRGkO4FlKxvztnBlu/LRPvKUXkHPn4SQBsv1D2DJrbsyGQ6GujyCE4ZA
+         UKlIwpo1H8/UNWdDIRMPAVarGW8PA8SfUAREIJhPLDwoMtOH0uPWOJe5i7VCFsMdAPpR
+         vrxe84Hi0E+1s7T2B4hryqi2co1nKoYljUSseosYTR0UgIJUpG9EO/hjTZaxNYZFTKbJ
+         UtGg==
+X-Gm-Message-State: AOAM531nm+E1JHmOYPjNhESwa+6K8ak/bOXiEnzxUX0pQ70LJELOJcR+
+        MnTynsYDzj02bGQQqX2fat9GwCpKS02H7ppg4tODhw==
+X-Google-Smtp-Source: ABdhPJzbMq6z0XxcHIW6V+QcP9xfb/3LB2U9g8w72z9oVPeF9M6hCzMfU7wevdjFzc2rwF7rScRjmqmEOTel5s5bRLY=
+X-Received: by 2002:a67:3344:: with SMTP id z65mr13370348vsz.47.1602464340859;
+ Sun, 11 Oct 2020 17:59:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6169dd15782627c8415583881fa94ba39c4f5221.1601910923.git-series.maxime@cerno.tech>
+References: <20201011091030.28547-1-wenbin.mei@mediatek.com> <20201011091030.28547-5-wenbin.mei@mediatek.com>
+In-Reply-To: <20201011091030.28547-5-wenbin.mei@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Mon, 12 Oct 2020 08:58:49 +0800
+Message-ID: <CANMq1KDSw6gTL=5oicK5h_Q5rLhYUcANXw1M7RT=xRyT2PzUrA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
+To:     Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mmc@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+On Sun, Oct 11, 2020 at 5:10 PM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
+>
+> MT8192 msdc is an independent sub system, we need control more bus
+> clocks for it.
+> Add support for the additional subsys clocks to allow it to be
+> configured appropriately.
+>
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+> Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
 
-Thank you for the patch.
+Err, you must not add R-by tag unless I explicitly say so (yes, I
+reviewed v3, but I didn't add my R-by tag).
 
-On Mon, Oct 05, 2020 at 05:15:39PM +0200, Maxime Ripard wrote:
-> The drm_of_lvds_get_dual_link_pixel_order() function took so far the
-> device_node of the two ports used together to make up a dual-link LVDS
-> output.
-> 
-> This assumes that a binding would use an entire port for the LVDS output.
-> However, some bindings have used endpoints instead and thus we need to
-> operate at the endpoint level. Change slightly the arguments to allow that.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  drivers/gpu/drm/drm_of.c            | 98 +++++++++++++++---------------
->  drivers/gpu/drm/rcar-du/rcar_lvds.c |  8 +--
->  include/drm/drm_of.h                | 16 +++--
->  3 files changed, 63 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-> index b50b44e76279..2dcb49b0401b 100644
-> --- a/drivers/gpu/drm/drm_of.c
-> +++ b/drivers/gpu/drm/drm_of.c
-> @@ -291,50 +291,34 @@ static int drm_of_lvds_get_port_pixels_type(struct device_node *port_node)
->  	       (odd_pixels ? DRM_OF_LVDS_ODD : 0);
->  }
->  
-> -static int drm_of_lvds_get_remote_pixels_type(
-> -			const struct device_node *port_node)
-> +static int drm_of_lvds_get_remote_pixels_type(const struct device_node *endpoint)
+>  drivers/mmc/host/mtk-sd.c | 80 ++++++++++++++++++++++++++++++---------
+>  1 file changed, 62 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> index a704745e5882..350e45432e21 100644
+> --- a/drivers/mmc/host/mtk-sd.c
+> +++ b/drivers/mmc/host/mtk-sd.c
+> @@ -425,6 +425,8 @@ struct msdc_host {
+>         struct clk *h_clk;      /* msdc h_clk */
+>         struct clk *bus_clk;    /* bus clock which used to access register */
+>         struct clk *src_clk_cg; /* msdc source clock control gate */
+> +       struct clk *sys_clk_cg; /* msdc subsys clock control gate */
+> +       struct clk_bulk_data bulk_clks[3];      /* pclk, axi, ahb clock control gate */
+>         u32 mclk;               /* mmc subsystem clock frequency */
+>         u32 src_clk_freq;       /* source clock frequency */
+>         unsigned char timing;
+> @@ -784,6 +786,8 @@ static void msdc_set_busy_timeout(struct msdc_host *host, u64 ns, u64 clks)
+>
+>  static void msdc_gate_clock(struct msdc_host *host)
 >  {
-> -	struct device_node *endpoint = NULL;
-> -	int pixels_type = -EPIPE;
-> +	struct device_node *remote_port;
-> +	int pixels_type;
->  
-> -	for_each_child_of_node(port_node, endpoint) {
-> -		struct device_node *remote_port;
-> -		int current_pt;
-> -
-> -		if (!of_node_name_eq(endpoint, "endpoint"))
-> -			continue;
-> -
-> -		remote_port = of_graph_get_remote_port(endpoint);
-> -		if (!remote_port) {
-> -			of_node_put(remote_port);
-> -			return -EPIPE;
-> -		}
-> -
-> -		current_pt = drm_of_lvds_get_port_pixels_type(remote_port);
-> +	remote_port = of_graph_get_remote_port(endpoint);
-> +	if (!remote_port) {
->  		of_node_put(remote_port);
-
-You can drop this line.
-
-> -		if (pixels_type < 0)
-> -			pixels_type = current_pt;
-> -
-> -		/*
-> -		 * Sanity check, ensure that all remote endpoints have the same
-> -		 * pixel type. We may lift this restriction later if we need to
-> -		 * support multiple sinks with different dual-link
-> -		 * configurations by passing the endpoints explicitly to
-> -		 * drm_of_lvds_get_dual_link_pixel_order().
-> -		 */
-
-Shouldn't we keep this check when endpoint_id is -1 in
-drm_of_lvds_get_dual_link_pixel_order() ?
-
-> -		if (!current_pt || pixels_type != current_pt) {
-> -			of_node_put(remote_port);
-> -			return -EINVAL;
-> -		}
-> +		return -EPIPE;
->  	}
->  
-> +	pixels_type = drm_of_lvds_get_port_pixels_type(remote_port);
-> +	of_node_put(remote_port);
-> +
-> +	if (pixels_type < 0)
-> +		pixels_type = -EPIPE;
-> +
->  	return pixels_type;
->  }
->  
->  /**
->   * drm_of_lvds_get_dual_link_pixel_order - Get LVDS dual-link pixel order
-> - * @port1: First DT port node of the Dual-link LVDS source
-> - * @port2: Second DT port node of the Dual-link LVDS source
-> + * @dev1: First DT device node of the Dual-Link LVDS source
-> + * @port1_id: ID of the first DT port node of the Dual-Link LVDS source
-> + * @endpoint1_id: ID of the first DT port node of the Dual-Link LVDS source
-
-The port1_id and endpoint1_id parameters have the exact same
-documentation. Same for port2.
-
-I would shorten port1_id to port1 and endpoint1_id to endpoint1, but
-that's up to you.
-
-> + * @dev2: First DT device node of the Dual-Link LVDS source
-> + * @port2_id: ID of the first DT port node of the Dual-Link LVDS source
-> + * @endpoint2_id: ID of the first DT port node of the Dual-Link LVDS source
->   *
->   * An LVDS dual-link connection is made of two links, with even pixels
->   * transitting on one link, and odd pixels on the other link. This function
-> @@ -348,32 +332,48 @@ static int drm_of_lvds_get_remote_pixels_type(
->   *
->   * If either port is not connected, this function returns -EPIPE.
->   *
-> - * @port1 and @port2 are typically DT sibling nodes, but may have different
-> - * parents when, for instance, two separate LVDS encoders carry the even and odd
-> - * pixels.
-> + * @port1_id and @port2_id are typically DT sibling nodes, but may have
-> + * different parents when, for instance, two separate LVDS encoders carry the
-> + * even and odd pixels.
-> + *
-> + * If @port1_id, @port2_id, @endpoint1_id or @endpoint2_id are set to -1, their
-> + * value is going to be ignored.
-
-And what happens when they're ignored ? :-) You should document that
-the first endpoint / port is then used.
-
->   *
->   * Return:
-> - * * DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS - @port1 carries even pixels and @port2
-> - *   carries odd pixels
-> - * * DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS - @port1 carries odd pixels and @port2
-> - *   carries even pixels
-> - * * -EINVAL - @port1 and @port2 are not connected to a dual-link LVDS sink, or
-> - *   the sink configuration is invalid
-> - * * -EPIPE - when @port1 or @port2 are not connected
-> + * * DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS - @endpoint1_id carries even pixels and
-> + *   @endpoint2_id carries odd pixels
-> + * * DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS - @endpoint1_id carries odd pixels and
-> + *   @endpoint2_id carries even pixels
-> + * * -EINVAL - @endpoint1_id and @endpoint2_id are not connected to a dual-link
-> + *   LVDS sink, or the sink configuration is invalid
-> + * * -EPIPE - when @endpoint1_id or @endpoint2_id are not connected
->   */
-> -int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
-> -					  const struct device_node *port2)
-> +int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
-> +					  int port1_id,
-> +					  int endpoint1_id,
-> +					  const struct device_node *dev2,
-> +					  int port2_id,
-> +					  int endpoint2_id)
+> +       clk_bulk_disable_unprepare(ARRAY_SIZE(host->bulk_clks),
+> +                                  host->bulk_clks);
+>         clk_disable_unprepare(host->src_clk_cg);
+>         clk_disable_unprepare(host->src_clk);
+>         clk_disable_unprepare(host->bus_clk);
+> @@ -792,10 +796,19 @@ static void msdc_gate_clock(struct msdc_host *host)
+>
+>  static void msdc_ungate_clock(struct msdc_host *host)
 >  {
-> +	struct device_node *endpoint1, *endpoint2;
->  	int remote_p1_pt, remote_p2_pt;
->  
-> -	if (!port1 || !port2)
-> +	if (!dev1 || !dev2)
-> +		return -EINVAL;
+> +       int ret;
 > +
-> +	endpoint1 = of_graph_get_endpoint_by_regs(dev1, port1_id, endpoint1_id);
-> +	if (!endpoint1)
-> +		return -EINVAL;
+>         clk_prepare_enable(host->h_clk);
+>         clk_prepare_enable(host->bus_clk);
+>         clk_prepare_enable(host->src_clk);
+>         clk_prepare_enable(host->src_clk_cg);
+> +       ret = clk_bulk_prepare_enable(ARRAY_SIZE(host->bulk_clks),
+> +                                     host->bulk_clks);
+> +       if (ret) {
+> +               dev_err(host->dev, "enable clks failed!\n");
+> +               return;
+> +       }
 > +
-> +	endpoint2 = of_graph_get_endpoint_by_regs(dev2, port2_id, endpoint2_id);
-> +	if (!endpoint2)
->  		return -EINVAL;
-
-YOu're leaking a reference to endpoint1 here, and to both endpoint1 and
-endpoint2 in all the error paths (and the success path actually) below.
-
->  
-> -	remote_p1_pt = drm_of_lvds_get_remote_pixels_type(port1);
-> +	remote_p1_pt = drm_of_lvds_get_remote_pixels_type(endpoint1);
->  	if (remote_p1_pt < 0)
->  		return remote_p1_pt;
->  
-> -	remote_p2_pt = drm_of_lvds_get_remote_pixels_type(port2);
-> +	remote_p2_pt = drm_of_lvds_get_remote_pixels_type(endpoint2);
->  	if (remote_p2_pt < 0)
->  		return remote_p2_pt;
->  
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> index ab0d49618cf9..02d8c4ce820e 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> @@ -715,7 +715,6 @@ static int rcar_lvds_parse_dt_companion(struct rcar_lvds *lvds)
->  {
->  	const struct of_device_id *match;
->  	struct device_node *companion;
-> -	struct device_node *port0, *port1;
->  	struct rcar_lvds *companion_lvds;
->  	struct device *dev = lvds->dev;
->  	int dual_link;
-> @@ -743,11 +742,8 @@ static int rcar_lvds_parse_dt_companion(struct rcar_lvds *lvds)
->  	 * connected to, if they are marked as expecting even pixels and
->  	 * odd pixels than we need to enable vertical stripe output.
->  	 */
-> -	port0 = of_graph_get_port_by_id(dev->of_node, 1);
-> -	port1 = of_graph_get_port_by_id(companion, 1);
-> -	dual_link = drm_of_lvds_get_dual_link_pixel_order(port0, port1);
-> -	of_node_put(port0);
-> -	of_node_put(port1);
-> +	dual_link = drm_of_lvds_get_dual_link_pixel_order(dev->of_node, 1, -1,
-> +							  companion, 1, -1);
->  
->  	switch (dual_link) {
->  	case DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS:
-> diff --git a/include/drm/drm_of.h b/include/drm/drm_of.h
-> index b9b093add92e..7bb1f6603beb 100644
-> --- a/include/drm/drm_of.h
-> +++ b/include/drm/drm_of.h
-> @@ -47,8 +47,12 @@ int drm_of_find_panel_or_bridge(const struct device_node *np,
->  				int port, int endpoint,
->  				struct drm_panel **panel,
->  				struct drm_bridge **bridge);
-> -int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
-> -					  const struct device_node *port2);
-> +int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
-> +					  int port1_id,
-> +					  int endpoint1_id,
-> +					  const struct device_node *dev2,
-> +					  int port2_id,
-> +					  int endpoint2_id);
->  #else
->  static inline uint32_t drm_of_crtc_port_mask(struct drm_device *dev,
->  					  struct device_node *port)
-> @@ -93,8 +97,12 @@ static inline int drm_of_find_panel_or_bridge(const struct device_node *np,
+>         while (!(readl(host->base + MSDC_CFG) & MSDC_CFG_CKSTB))
+>                 cpu_relax();
 >  }
->  
->  static inline int
-> -drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
-> -				      const struct device_node *port2)
-> +drm_of_lvds_get_dual_link_pixel_order(const struct device_node *dev1,
-> +				      int port1_id,
-> +				      int endpoint1_id,
-> +				      const struct device_node *dev2,
-> +				      int port2_id,
-> +				      int endpoint2_id)
->  {
->  	return -EINVAL;
+> @@ -2366,6 +2379,53 @@ static void msdc_of_property_parse(struct platform_device *pdev,
+>                 host->cqhci = false;
 >  }
+>
+> +static int msdc_of_clock_parse(struct platform_device *pdev,
+> +                              struct msdc_host *host)
+> +{
+> +       struct clk *clk;
+> +
+> +       host->src_clk = devm_clk_get_optional(&pdev->dev, "source");
+> +       if (IS_ERR(host->src_clk))
+> +               return PTR_ERR(host->src_clk);
+> +
+> +       host->h_clk = devm_clk_get_optional(&pdev->dev, "hclk");
+> +       if (IS_ERR(host->h_clk))
+> +               return PTR_ERR(host->h_clk);
+> +
+> +       host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
+> +       if (IS_ERR(host->bus_clk))
+> +               host->bus_clk = NULL;
+> +
+> +       /*source clock control gate is optional clock*/
+> +       host->src_clk_cg = devm_clk_get_optional(&pdev->dev, "source_cg");
+> +       if (IS_ERR(host->src_clk_cg))
+> +               host->src_clk_cg = NULL;
+> +
+> +       host->sys_clk_cg = devm_clk_get_optional(&pdev->dev, "sys_cg");
+> +       if (IS_ERR(host->sys_clk_cg))
+> +               host->sys_clk_cg = NULL;
+> +
+> +       /* If present, always enable for this clock gate */
+> +       clk_prepare_enable(host->sys_clk_cg);
 
--- 
-Regards,
+Understand your reply on v3 (this clock gate cannot be disabled --
+https://patchwork.kernel.org/patch/11808433/#23678227), but I'm still
+unsure if this is the right thing to do to enable it at probe time.
+I'll let others comment.
 
-Laurent Pinchart
+> +
+> +       clk = devm_clk_get_optional(&pdev->dev, "pclk_cg");
+> +       if (IS_ERR(clk))
+> +               clk = NULL;
+> +       host->bulk_clks[0].clk = clk;
+> +
+> +       clk = devm_clk_get_optional(&pdev->dev, "axi_cg");
+> +       if (IS_ERR(clk))
+> +               clk = NULL;
+> +       host->bulk_clks[1].clk = clk;
+> +
+> +       clk = devm_clk_get_optional(&pdev->dev, "ahb_cg");
+> +       if (IS_ERR(clk))
+> +               clk = NULL;
+> +       host->bulk_clks[2].clk = clk;
+
+Put the clock names in host->bulk_clks[x].id, then call
+devm_clk_bulk_get_optional.
+
+Example here: https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpio-dwapb.c#L675
+
+> +
+> +       return 0;
+> +}
+> +
+>  static int msdc_drv_probe(struct platform_device *pdev)
+>  {
+>         struct mmc_host *mmc;
+> @@ -2405,25 +2465,9 @@ static int msdc_drv_probe(struct platform_device *pdev)
+>         if (ret)
+>                 goto host_free;
+>
+> -       host->src_clk = devm_clk_get(&pdev->dev, "source");
+> -       if (IS_ERR(host->src_clk)) {
+> -               ret = PTR_ERR(host->src_clk);
+> -               goto host_free;
+> -       }
+> -
+> -       host->h_clk = devm_clk_get(&pdev->dev, "hclk");
+> -       if (IS_ERR(host->h_clk)) {
+> -               ret = PTR_ERR(host->h_clk);
+> +       ret = msdc_of_clock_parse(pdev, host);
+> +       if (ret)
+>                 goto host_free;
+> -       }
+> -
+> -       host->bus_clk = devm_clk_get(&pdev->dev, "bus_clk");
+> -       if (IS_ERR(host->bus_clk))
+> -               host->bus_clk = NULL;
+> -       /*source clock control gate is optional clock*/
+> -       host->src_clk_cg = devm_clk_get(&pdev->dev, "source_cg");
+> -       if (IS_ERR(host->src_clk_cg))
+> -               host->src_clk_cg = NULL;
+>
+>         host->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
+>                                                                 "hrst");
+> --
+> 2.18.0
