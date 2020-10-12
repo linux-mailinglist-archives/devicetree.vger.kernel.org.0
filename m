@@ -2,161 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9C728BBCC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 17:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AC6A28BB7C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 17:01:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389963AbgJLP0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 11:26:01 -0400
-Received: from mx0a-00010702.pphosted.com ([148.163.156.75]:9466 "EHLO
-        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2389555AbgJLP0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 11:26:00 -0400
-Received: from pps.filterd (m0098780.ppops.net [127.0.0.1])
-        by mx0a-00010702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09CEgp5r015568;
-        Mon, 12 Oct 2020 09:48:13 -0500
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2109.outbound.protection.outlook.com [104.47.58.109])
-        by mx0a-00010702.pphosted.com with ESMTP id 343afs3wpm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Oct 2020 09:48:13 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AIL5BUTHTZ9BHRINt6OzjFjrTB39M0DSgamYdaR6ujK7jI3Ck16M0J89WS1UKwbjc3toh/Xj+W03Obg+3iQUjMcJGKWtqXh1aojIG+hgwsK9ac1ARiaHcnnp2ET4UhEum/1hIJ3audq/dC242E6fiNmwIgKWisPAkRbHRQmSB9Rz+nQlDE5sOs4edUr+WLiQ9yt3bj/rdnBmoUkGf82TG9pimb2xERHIbNRwCgU2iV7uvZVwOmb5zBJm5Ge368i/c/y4Jurq5fzvuyATRMViqbAj2xxKhzzet3CRjpanyqDpMsyiS+hhZiiKMr7Fc2AR1XVtjjYq3AuC3fTRl3Urvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qx+kfgwe37pWbM728J9G3qMxn7bfsRKHz97oxhjjqxI=;
- b=j3c5Pxw/O7TTheyQDYj7P4nHTtHc7hG4ZtxxrE2FwC8+bJ3rJtVKZLS0ngrDDdc6gPHk63G7Ro6gG4vbaO7X4KuSNzZPGrSFuC0Ux45azHd1+TQV/jfpJktxh/q5A05PVRf+oIDt+cB8j8FFXFty/34ZojtZSkwwEKhAugGZY9IJ/EyYV4ht+xw3kjbwGQrE7TrMJKDUUXbdGx0Tp6akxl0SdJ4QHWd8jNr3eOonLbvwvkAJjLoPymdspt6AMDZjn7avRbo/5cU/SJacfhS6I5wlWiWGWREJzx9aBEqVwTgZTvdr6KlMxlO7pV1214qc8kqkyYJuJbEWxaHOjUNOPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
+        id S2387930AbgJLPBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 11:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43740 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729937AbgJLPBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 11:01:48 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D73AC0613D2
+        for <devicetree@vger.kernel.org>; Mon, 12 Oct 2020 08:01:48 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id e2so17856026wme.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Oct 2020 08:01:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qx+kfgwe37pWbM728J9G3qMxn7bfsRKHz97oxhjjqxI=;
- b=ABXpgXVa/0zaCM1qfKqdstTIIYb6/1+6eZurj4UH+c8Ag44JggTAiQYH67UJyqSbxt3kGd1ydCAZlfOyIDJ5VGORzg7lWQLilIq/pMiRlYN6fTvRyan/ormpSjjoOZwyG7N/WR5jv3L1OY34g3uvJSJRry7Csp7S+MFf5cgikfs=
-Authentication-Results: samsung.com; dkim=none (message not signed)
- header.d=none;samsung.com; dmarc=none action=none header.from=ni.com;
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29) by SN2PR04MB2207.namprd04.prod.outlook.com
- (2603:10b6:804:10::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Mon, 12 Oct
- 2020 14:48:11 +0000
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84]) by SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84%7]) with mapi id 15.20.3455.029; Mon, 12 Oct 2020
- 14:48:11 +0000
-From:   Michael Auchter <michael.auchter@ni.com>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=smv4foCdAqL2XoII58ApwYmWI8xu702A6XYgKKesQdY=;
+        b=EMEqBzU2HSkOw0v0RmD/R4KFdjw7VG8lJIbGwXpWEbRh4GUvtC9dNcSi8UR55bZl67
+         gbbbD3TF/D3yHR7CGqB06kdvNlALUcHHZfTOz1aJSMbOkAYLnqq1lYftuJoOL41rouw1
+         wHyoMmRrBmmqJILnKq+AsMy5DUDy1jEBMEQdar5tZLTJVMfbAkGO7Y+0BmcvqTkyDgOE
+         vNDb4sbTPIoF14OxOvbZ/CRxLN3ct/aGmyH6McX6bxb/AjkcunM+MrSTTHnpAno/Pgwg
+         gq9c36aCMa/ubXiyHykxXNV5/lQHoaOzxezpF6Dg/gKTjPbs9K3H3cO1N0tLUXtTVCKm
+         CIzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=smv4foCdAqL2XoII58ApwYmWI8xu702A6XYgKKesQdY=;
+        b=HxYkgFXICO4rdn62aK5jYsujd3p6PwkZ+uSF2Nawoo1/0IDcNIHHcdhkNqjYFi+A3o
+         70RmH8118yMZSnTAyBIwKRMChb2cmQfrYNYzxrXAWHNCxrgZfnu8qH9OmXjXnTM77sJu
+         52en/8kqFQNN+YIVAct3MdN9QlplzUKvIe6rsyAhGJxMf4T5WIDx50ix2r0TnW0eUsps
+         lLCqcfeEL5kwKP2YYk4Bu5n6gb6Nzos2fv9suIs2LYco/e11K/sYghRal/YNupX+vOLY
+         /bntlcz3xD9NzcJOowj0IKhT6SU7/1uyq+wxthIeGU1EYeEOp+sHocbJO60uRV7DMUDx
+         l5nw==
+X-Gm-Message-State: AOAM5323/Km46I1q17P1KyHeTaxcK7Fab1vG0cg+VHgU8GkHivgUIbOq
+        PnfgYWrw7YNpUNu7iINh6q5ZDg==
+X-Google-Smtp-Source: ABdhPJxRiBDdyA9QD/MluPgxjMt31OFOynrGNM0/5hC2bJMaXkouDgXsgtrptHrbejGW6/MjYwCxwg==
+X-Received: by 2002:a1c:1d89:: with SMTP id d131mr10099690wmd.188.1602514907105;
+        Mon, 12 Oct 2020 08:01:47 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:35de:80a8:f551:6aa3? ([2a01:e35:2ec0:82b0:35de:80a8:f551:6aa3])
+        by smtp.gmail.com with ESMTPSA id b5sm2994492wrs.97.2020.10.12.08.01.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Oct 2020 08:01:46 -0700 (PDT)
+Subject: Re: [PATCH 15/18] dt-bindings: usb: meson-g12a-usb: Discard FL-adj
+ property
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Auchter <michael.auchter@ni.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: extcon: add binding for TUSB320
-Date:   Mon, 12 Oct 2020 09:47:53 -0500
-Message-Id: <20201012144754.738830-2-michael.auchter@ni.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201012144754.738830-1-michael.auchter@ni.com>
-References: <20201012144754.738830-1-michael.auchter@ni.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [2605:a601:ab23:3c00:cdda:4935:f7a0:c63c]
-X-ClientProxiedBy: DM6PR11CA0003.namprd11.prod.outlook.com
- (2603:10b6:5:190::16) To SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29)
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
+ <20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru>
+ <329129ac-ff44-4928-bca4-805297a8c456@baylibre.com>
+ <20201012142201.7fr2n5xwvei23yog@mobilestation>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <f6e38330-146c-eb7c-5a99-7e156454e90b@baylibre.com>
+Date:   Mon, 12 Oct 2020 17:01:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (2605:a601:ab23:3c00:cdda:4935:f7a0:c63c) by DM6PR11CA0003.namprd11.prod.outlook.com (2603:10b6:5:190::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21 via Frontend Transport; Mon, 12 Oct 2020 14:48:10 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 199bb783-9222-4f33-6eb8-08d86ebdd73b
-X-MS-TrafficTypeDiagnostic: SN2PR04MB2207:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN2PR04MB2207961EE7D8DB4CF50EDA7787070@SN2PR04MB2207.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lvbp75qZcGUECbeEbIcFb+WXOb07cqsJU5/OdAWDaVXxi6hzVp4BlgiYgZALMdIVo4vI8l4xB9mqPe4NOm50JnuafEUGD9EmfOny2Y56WOH/jaBngfU5s977heut+f7bk0MVQnqtEQPZug29lys4/ahKS7qzWhbNC/jZwQFi59xKdYyVUSm9IC/lw9WjXcpZ/DHpgzeumbX2mq6ODhRtwGrm/5W7E2JWt6QUgR5NwAzj91ukOSmMLUcN2Eq9E25jo781sL2P8J2VEhp0sdvZ8KnFUNiBTUlcMeDJqCzeESdJHYJX3GktzDgWt961JKlEfCgM5f+2UYe4YIrukizMOvrV60UVE/eSImJG1GNkM6QZW1WlEKEIYtMBsRyY5etQqQIsGm5B0zJASCWZJImwSz8FDk0O7AXfzrUo0BGMUFc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0401MB3646.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(396003)(39860400002)(366004)(376002)(346002)(5660300002)(66946007)(4326008)(86362001)(66556008)(66476007)(478600001)(69590400008)(2906002)(966005)(1076003)(2616005)(316002)(186003)(16526019)(8936002)(7049001)(8676002)(6666004)(44832011)(6486002)(6506007)(110136005)(36756003)(52116002)(6512007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: rPgneP6MxjolmmvTAVA6zpWx6XG3WliCEVy667YnfcSk4c4uS6Hn+JTSYyDi6/stmbwEU03xwloW4SDWZOOn1GYewUraw6rbqKt+YnXC0LxNRO4W0jF/c+hvRZMumoE6j3v+nwFJ6/s15NsComU66vXlxKwgvu8WXldRjCYt8pNMkEDs23AuLLvqeyJF7DFBYILg98/s2XdlbzYVAxiN7XXusqfpHFJ4l90DJpAk69YX2C7WDQ2kCwjP+8Ca3JnRjyCjODn8u16Drjj6cqjaEs3TGx+ZIhsR5WL13+1kcQRvtuKDFHGYu6RP8WjdryBYniYDG9xXocGXEBV89hJUOgoJlT1AgOajl7qQvaDbpJmxegb6hC9G3ixzsbAJ43oV/1XGxVexKT40V1gqxJozgGih/zjLEOgc0Rq3HCAS2J3xCmpM0NGP3xQvKUwT+QIldz6AgVJSXRyCaMtQyMnFaJG6JCIE2De3dZ2VCCmMZAAU83VToM3kD/EQNlnxjf9QhgTasYkESbeW6VkV71twb8TLi9Qq/AUw27HxCoJs5f3zWRJpUQggge/eePQTloxHG8UKcB+nC3cZ2Hpy5lK8v4cu25nNYFNFcKj4aKLrIGUBTLAzOT0hICuuQuXqWMmZ0IJVe/qM7as873MmGDOrVJ2MBa315FLNH/WgYI7OPRz1Vz4y9YwJixYBiAdxnX4lm1lD0e7hrt5GXA7fyjl+Gw==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 199bb783-9222-4f33-6eb8-08d86ebdd73b
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0401MB3646.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2020 14:48:11.5753
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9IDAfPV6Q2bHqvjC2hXz3mfUozScyrz9yNuyA7QnGEKRxEA28gcjigaSsanGf+lC10+SpITemm9hi7WkU5DoSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN2PR04MB2207
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-12_12:2020-10-12,2020-10-12 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30
- impostorscore=0 spamscore=0 adultscore=0 suspectscore=0 clxscore=1015
- mlxscore=0 mlxlogscore=999 phishscore=0 lowpriorityscore=0 bulkscore=0
- malwarescore=0 priorityscore=1501 classifier=spam adjust=30 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2010120119
+In-Reply-To: <20201012142201.7fr2n5xwvei23yog@mobilestation>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree binding for the TI TUSB320.
+Hi,
 
-Signed-off-by: Michael Auchter <michael.auchter@ni.com>
----
-Changes since v1:
-- use tusb320 instead of extcon in the unit name
+On 12/10/2020 16:22, Serge Semin wrote:
+> On Mon, Oct 12, 2020 at 09:54:25AM +0200, Neil Armstrong wrote:
+>> Hi,
+>>
+>> On 11/10/2020 00:41, Serge Semin wrote:
+>>> An empty snps,quirk-frame-length-adjustment won't cause any change
+>>> performed by the driver. Moreover the DT schema validation will fail,
+>>> since it expects the property being assigned with some value. So just
+>>> discard the property declaration then from the example.
+>>>
+>>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+>>>
+>>> ---
+>>>
+>>> Note the same problem is in the DT source file
+>>> arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi .
+>>> ---
+>>>  .../devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml     | 1 -
+>>>  1 file changed, 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+>>> index 5b04a7dfa018..88184d7e26cc 100644
+>>> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+>>> @@ -209,6 +209,5 @@ examples:
+>>>                interrupts = <30>;
+>>>                dr_mode = "host";
+>>>                snps,dis_u2_susphy_quirk;
+>>> -              snps,quirk-frame-length-adjustment;
+>>>            };
+>>>      };
+>>>
+>>
+> 
+>> Thanks for reporting this, actually the fladj must be 0x20 on this hw,
+>> but we do set this on the PHY side, so we can let the dwc3 side 0 here.
+> 
+> I can convert this patch to initializing the "snps,quirk-frame-length-adjustment"
+> property with 0x20 value instead. Since most likely I'll have to send a v2/v3/etc
+> of this patchset, that modification won't be too much work to do. What do you think?
 
- .../bindings/extcon/extcon-usbc-tusb320.yaml  | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
+Yes, do this please, anyway it's only an example so it's ok.
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-new file mode 100644
-index 000000000000..9875b4d5c356
---- /dev/null
-+++ b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/extcon/extcon-usbc-tusb320.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI TUSB320 USB Type-C CC Logic controller
-+
-+maintainers:
-+  - Michael Auchter <michael.auchter@ni.com>
-+
-+properties:
-+  compatible:
-+    const: ti,tusb320
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        tusb320@61 {
-+            compatible = "ti,tusb320";
-+            reg = <0x61>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <27 1>;
-+        };
-+    };
-+...
--- 
-2.25.4
+> 
+> Anyway please note, that I've fixed the improper property usage in the DT schema
+> example only. "snps,quirk-frame-length-adjustment" defined as boolean still
+> persists in the DTS file: arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi .
+> So if you ever try to validate that dts file with "make dtbs_check" scenario, it
+> will fail.
+
+Yes, I'll push a fix to pass the dtbs_check when this is merged.
+
+Thanks,
+Neil
+
+> 
+> -Sergey
+> 
+>>
+>> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+>>
+>> Neil
+>>
 
