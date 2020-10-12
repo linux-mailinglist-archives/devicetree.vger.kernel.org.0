@@ -2,95 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBDE28AE11
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 08:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 921D228AE16
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 08:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726931AbgJLGJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Oct 2020 02:09:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46330 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726337AbgJLGJV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Oct 2020 02:09:21 -0400
-Received: from localhost (unknown [122.182.245.197])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6BDB920757;
-        Mon, 12 Oct 2020 06:09:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602482961;
-        bh=GPU8CP6xKnWURBquscB890UF3K7DVSENbbTjU0EOU3A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=prFNN/Lgyqvvw6oyH5tHsdNyhvz7J9fnspEpav3BNtPSmXWEHte305llkJ9+etXiM
-         2Zvxj4RuV2Vc2NenmjoWKYzrHqTVnxkWVhxw/itvpB+3ymUqEHmZrdEcQkX6oU8+VR
-         1Gai7wI58vNqj1NZZm/xU2I3LEScUvfdsyQb0lLk=
-Date:   Mon, 12 Oct 2020 11:39:16 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     dmaengine@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dmaengine: add peripheral configuration
-Message-ID: <20201012060916.GI2968@vkoul-mobl>
-References: <20201008123151.764238-1-vkoul@kernel.org>
- <20201008123151.764238-3-vkoul@kernel.org>
- <e2c0323b-4f41-1926-5930-c63624fe1dd1@ti.com>
- <20201009103019.GD2968@vkoul-mobl>
- <a44af464-7d13-1254-54dd-f7783ccfaa0f@ti.com>
- <20201009111515.GF2968@vkoul-mobl>
- <13fdee71-5060-83fc-d69d-8ec73f82fac4@ti.com>
+        id S1727216AbgJLGMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 02:12:48 -0400
+Received: from szxga06-in.huawei.com ([45.249.212.32]:33564 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727172AbgJLGMr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Oct 2020 02:12:47 -0400
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id BA150B73366EE4340348;
+        Mon, 12 Oct 2020 14:12:45 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.134) by
+ DGGEMS414-HUB.china.huawei.com (10.3.19.214) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 12 Oct 2020 14:12:35 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH v2 00/10] clean up all Hisilicon-related errors detected by DT schema on arm32
+Date:   Mon, 12 Oct 2020 14:12:15 +0800
+Message-ID: <20201012061225.1597-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13fdee71-5060-83fc-d69d-8ec73f82fac4@ti.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.134]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-10-20, 14:29, Peter Ujfalusi wrote:
-> 
-> 
-> On 09/10/2020 14.15, Vinod Koul wrote:
-> >>> If for any any reason subsequent txn is for different direction, I would
-> >>> expect that parameters are set again before prep_ calls
-> >>
-> >> But in DEV_TO_DEV?
-> > 
-> > Do we support that :D
-> > 
-> >> If we have two peripherals, both needs config:
-> >> p1_config and p2_config
-> >>
-> >> What and how would one use the single peripheral_config?
-> > 
-> > Since the config is implementation specific, I do not think it limits.
-> > You may create
-> > 
-> > struct peter_config {
-> >         struct p1_config;
-> >         struct p2_config;
-> > };
-> 
-> The use case is:
-> MEM -DMA-> P1 -DMA-> P2
-> or
-> P2 -DMA-> P1 -DMA-> MEM
-> or
-> MEM -DMA-> P2
-> or
-> P2 -DMA-> MEM
-> or
-> MEM -DMA-> P1 -DMA-> MEM
-> 
-> How would the DMA guess what it should do? How would the independent P1
-> and P2 would know how to set up the config?
+v1 --> v2:
+Too deep in arm32. I forgot arm64. Add property "#reset-cells" into sysctrl.yaml (Patch 9).
 
-As I said, we do not support DEV_TO_DEV yet :)
 
-Question is how would p1<-->p2 look, will p1 initiate a DMA txn or p2..?
-who will configure these..
+v1:
+These patches are based on the latest linux-next.
 
-Do you have a real world example in horizon...
+Zhen Lei (10):
+  ARM: dts: hisilicon: fix errors detected by snps-dw-apb-uart.yaml
+  ARM: dts: hisilicon: fix errors detected by pl011.yaml
+  ARM: dts: hisilicon: fix errors detected by usb yaml
+  ARM: dts: hisilicon: fix errors detected by simple-bus.yaml
+  ARM: dts: hisilicon: fix errors detected by root-node.yaml
+  ARM: dts: hisilicon: fix errors detected by synopsys-dw-mshc.yaml
+  ARM: dts: hisilicon: fix errors detected by spi-pl022.yaml
+  ARM: dts: hisilicon: fix errors detected by syscon.yaml
+  dt-bindings: arm: hisilicon: add missing properties into sysctrl.yaml
+  dt-bindings: arm: hisilicon: add missing properties into cpuctrl.yaml
+
+ .../bindings/arm/hisilicon/controller/cpuctrl.yaml | 27 +++++++++++++-
+ .../bindings/arm/hisilicon/controller/sysctrl.yaml | 28 +++++++++++++--
+ arch/arm/boot/dts/hi3519-demb.dts                  |  2 +-
+ arch/arm/boot/dts/hi3519.dtsi                      | 32 ++++++++---------
+ arch/arm/boot/dts/hi3620-hi4511.dts                | 24 ++++++-------
+ arch/arm/boot/dts/hi3620.dtsi                      | 32 ++++++++---------
+ arch/arm/boot/dts/hip01-ca9x2.dts                  |  2 +-
+ arch/arm/boot/dts/hip01.dtsi                       | 26 +++++++-------
+ arch/arm/boot/dts/hip04-d01.dts                    |  2 +-
+ arch/arm/boot/dts/hip04.dtsi                       |  6 ++--
+ arch/arm/boot/dts/hisi-x5hd2-dkb.dts               |  2 +-
+ arch/arm/boot/dts/hisi-x5hd2.dtsi                  | 42 +++++++++++-----------
+ 12 files changed, 136 insertions(+), 89 deletions(-)
 
 -- 
-~Vinod
+1.8.3
+
+
