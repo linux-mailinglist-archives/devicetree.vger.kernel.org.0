@@ -2,225 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D9EA28AC9B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 05:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4808028ACBF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Oct 2020 06:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbgJLDjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Oct 2020 23:39:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
+        id S1727694AbgJLET6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Oct 2020 00:19:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726087AbgJLDjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Oct 2020 23:39:06 -0400
-Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20EEC0613D0
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 20:39:05 -0700 (PDT)
-Received: by mail-vk1-xa42.google.com with SMTP id l23so2475044vkm.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 20:39:05 -0700 (PDT)
+        with ESMTP id S1726706AbgJLET5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Oct 2020 00:19:57 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D14FCC0613CE
+        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 21:19:55 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id 10so2837472pfp.5
+        for <devicetree@vger.kernel.org>; Sun, 11 Oct 2020 21:19:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KiuyMjRQI4UrLg1n7cKhKKhLAfvoAgBKOZvduZBf0aY=;
-        b=GvYw6qfjah6oj28Zd4TyigWyNPLHWgTmQXGUKHFCNco3JwK1pqqfGb+tdfWgJV/aHj
-         S+h2hbUt0Q0CInYosoIAWUWuaIun06dlEqgLRbo4SauF9qtCc8cq4Z0radiQB0tk3mmI
-         IDt/gz0+D1P3VfbCMkRdwLcOAADZSidrs9f3Y=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=d+sLnvZTeiN7/c8MjJpzLtaNxN7gU2/mrKXXOJoa83I=;
+        b=KZNllpqNv5xOOyaT+G76rND+p88FGMLQDwK/cKeOaH0uaaFMeS/R2t/RDbnFjojLn6
+         w3hgXLVskRRdm4HZzepz2AWIxtY3A+S7ZcR/XGzLerA5Lk19lufAV2U/mRlqmm+/cdQr
+         290KuNWsojQRMc8HK5QdcUGyV0KzwahuRZTM4bhE18hiw/gRN7JubTomi2KxG0Qsnp9o
+         t6qI3WrIrhHJtGKqntnM4+IMW90BR988wMzW/TpWaXbloatA8wYUZ53dClTQdEEBXCaC
+         RiHroE/nO6QMJcF3ORz21df3TbOYtzcI/prP0Y3vFmys8Gu9uYnQ7slnpdS4DybE3qus
+         CZ3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KiuyMjRQI4UrLg1n7cKhKKhLAfvoAgBKOZvduZBf0aY=;
-        b=XO6LW96s1aZRIuSfdkYV2uN00Gb12Mlu0oinAejYDe1SxKp79rt1A0+t+LrUqU2fyj
-         yclhRleVDrvV2NzZ0/LAyPWudwrNTU8LjqJ63orhVrjMA+kP7M/AD5UY5gwqrLfAj3d9
-         J/7H+B78NeSfVMt0n+lhRMDUnA2YyQACfLhtAGziLLJICaObfU97YcxfMxirDisiM8O3
-         Hf/Wb/K3OfEQeUzBwJWlqK+fbdIfKXACqlDgRWy3rNwoaZFY4QT5RUpmF7k20UNiQSmP
-         I94wfalFzAgVGvgRlcM362eukg9vqHEYVZph1oZoZrh2boftIhm9+XWNp55gps394/v3
-         q6ww==
-X-Gm-Message-State: AOAM532/M198n2RBAFSJew0/qawSkPMwutdWhrk8f26DwciBwopl7rAc
-        QKOyZ/FXZ5PBAZZ1n2WByqnjaerxleN3JtZ46fhsZQ==
-X-Google-Smtp-Source: ABdhPJwKOiKNGLkhvGKapg/FgDio242ur83cmC2L2lxBLQ0SOgKJTlTt6djxWtCGfhAXNv6m7RcdvSnXNsZSIZ3S6+c=
-X-Received: by 2002:a05:6122:7c7:: with SMTP id l7mr2639856vkr.17.1602473944804;
- Sun, 11 Oct 2020 20:39:04 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=d+sLnvZTeiN7/c8MjJpzLtaNxN7gU2/mrKXXOJoa83I=;
+        b=YfJNvLm5J4wh03RoD92PLOjtXBwjjL/cfvA7mw6+TTHW0y4iA2pqBEVmXM0r1U7HQG
+         /VHsAGaQ+TmwyQ2YX5qIBfHAqaM6lVAMmP+urM7ZE48Bk0/XH3+Zk0bQ/zSH+Zo5FmA9
+         LKOQyBHwzXvO2CUDL4KU8Gh+1EeX/WghBcYOoD1Eqh2KXaVQxg/LzjwNPZBqWF1rnSYI
+         BtkcT7KJ9ULjCFZfEVD8bB85y7/WYmG4vupq4B5TngxoSj9A5wkN51uJAD58s/oYJeg2
+         y0wpaLOfwTtRbI8DJvKAU2f8TPx61Mu/lKTA8MZFW7EQ9CLfdN95IJXPWKms2wiOXlyN
+         5Fhw==
+X-Gm-Message-State: AOAM5335fF9+h8X/LpKm/q3f95eYivr6+gArjqcnd58tRwnSjNWsznBR
+        AibGpke0VAa82oQLaR7pXLdAIE9QgcLS0g==
+X-Google-Smtp-Source: ABdhPJwzZau3S/gIoJSK5Yx87xenSxCIZ61I1KDOdlIEpr0ycGp+oIrV+pYht3gAa9PS7YL4RjIgGA==
+X-Received: by 2002:aa7:9358:0:b029:152:b349:8af8 with SMTP id 24-20020aa793580000b0290152b3498af8mr22989089pfn.9.1602476395311;
+        Sun, 11 Oct 2020 21:19:55 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id e21sm15513630pfl.22.2020.10.11.21.19.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 11 Oct 2020 21:19:54 -0700 (PDT)
+Date:   Mon, 12 Oct 2020 09:49:51 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Ionela Voinescu <ionela.voinescu@arm.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, sudeep.holla@arm.com,
+        chris.redpath@arm.com, morten.rasmussen@arm.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+Message-ID: <20201012041951.4qytnhuqvvzjionh@vireshk-i7>
+References: <20200924095347.32148-3-nicola.mazzucato@arm.com>
+ <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
+ <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+ <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
+ <20201008150317.GB20268@arm.com>
+ <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
+ <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
+ <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
+ <20201009140141.GA4048593@bogus>
+ <88f46cd0-226a-fb3c-0bd7-59688a566ea4@arm.com>
 MIME-Version: 1.0
-References: <20201012024345.8361-1-wenbin.mei@mediatek.com> <20201012024345.8361-5-wenbin.mei@mediatek.com>
-In-Reply-To: <20201012024345.8361-5-wenbin.mei@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Mon, 12 Oct 2020 11:38:53 +0800
-Message-ID: <CANMq1KD5MRvAiwk+EPfOTqaEqjcXz5FUAvmkX+OjQ=kpEP_=8A@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mmc@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <88f46cd0-226a-fb3c-0bd7-59688a566ea4@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the quick turnaround.
+On 09-10-20, 16:28, Nicola Mazzucato wrote:
+> @Viresh
+> I am sorry I misread your reply earlier thus I did not pay attention on that
+> property.
+> And yes, it is exactly as how you have described :)
+> In the case 1 (different opps, different clk) and case 2 (same opps, different
+> clk) we provide v/f points. In case 3, we add 'opp-shared' property in opp table
+> to tell that the cpus with this opp table share a clock line.
+> 
+> Here are my thoughts on this 3rd case:
+> - the information of 'share the same clock line' comes correctly from DT as it's
+> purely a hw description. The same applies for cpu-perf-dependencies.
+> - because the opp table can come from any firmware, we won't have any opp table
+> in DT, thus we won't be able to take advantage of 'opp-shared' I am afraid.
 
-And sorry, I should have noticed these issues in my previous pass.
+I wonder if we should use an empty OPP table just for parsing this
+information.
 
-On Mon, Oct 12, 2020 at 10:44 AM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
->
-> MT8192 msdc is an independent sub system, we need control more bus
-> clocks for it.
-> Add support for the additional subsys clocks to allow it to be
-> configured appropriately.
->
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-> ---
->  drivers/mmc/host/mtk-sd.c | 74 +++++++++++++++++++++++++++++----------
->  1 file changed, 56 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index a704745e5882..41703e6d6b17 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-> @@ -35,6 +35,7 @@
->  #include "cqhci.h"
->
->  #define MAX_BD_NUM          1024
-> +#define MSDC_NR_CLOCKS      3
->
->  /*--------------------------------------------------------------------------*/
->  /* Common Definition                                                        */
-> @@ -425,6 +426,8 @@ struct msdc_host {
->         struct clk *h_clk;      /* msdc h_clk */
->         struct clk *bus_clk;    /* bus clock which used to access register */
->         struct clk *src_clk_cg; /* msdc source clock control gate */
-> +       struct clk *sys_clk_cg; /* msdc subsys clock control gate */
-> +       struct clk_bulk_data bulk_clks[MSDC_NR_CLOCKS];
->         u32 mclk;               /* mmc subsystem clock frequency */
->         u32 src_clk_freq;       /* source clock frequency */
->         unsigned char timing;
-> @@ -784,6 +787,7 @@ static void msdc_set_busy_timeout(struct msdc_host *host, u64 ns, u64 clks)
->
->  static void msdc_gate_clock(struct msdc_host *host)
->  {
-> +       clk_bulk_disable_unprepare(MSDC_NR_CLOCKS, host->bulk_clks);
->         clk_disable_unprepare(host->src_clk_cg);
->         clk_disable_unprepare(host->src_clk);
->         clk_disable_unprepare(host->bus_clk);
-> @@ -792,10 +796,18 @@ static void msdc_gate_clock(struct msdc_host *host)
->
->  static void msdc_ungate_clock(struct msdc_host *host)
->  {
-> +       int ret;
-> +
->         clk_prepare_enable(host->h_clk);
->         clk_prepare_enable(host->bus_clk);
->         clk_prepare_enable(host->src_clk);
->         clk_prepare_enable(host->src_clk_cg);
-> +       ret = clk_bulk_prepare_enable(MSDC_NR_CLOCKS, host->bulk_clks);
-> +       if (ret) {
-> +               dev_err(host->dev, "Cannot enable pclk/axi/ahb clock gates\n");
-> +               return;
-> +       }
-
-It's a bit odd that we only care about the last 3 clocks... Should we
-return early if any of the clocks can't be enabled? Changing the
-behaviour for the other clocks should be in another patch though.
-
-> +
->         while (!(readl(host->base + MSDC_CFG) & MSDC_CFG_CKSTB))
->                 cpu_relax();
->  }
-> @@ -2366,6 +2378,48 @@ static void msdc_of_property_parse(struct platform_device *pdev,
->                 host->cqhci = false;
->  }
->
-> +static int msdc_of_clock_parse(struct platform_device *pdev,
-> +                              struct msdc_host *host)
-> +{
-> +       int ret;
-> +
-> +       host->src_clk = devm_clk_get_optional(&pdev->dev, "source");
-
-I think you want devm_clk_get, as the previous version of the code
-does not make this clock optional.
-
-> +       if (IS_ERR(host->src_clk))
-> +               return PTR_ERR(host->src_clk);
-> +
-> +       host->h_clk = devm_clk_get_optional(&pdev->dev, "hclk");
-
-ditto, devm_clk_get
-
-> +       if (IS_ERR(host->h_clk))
-> +               return PTR_ERR(host->h_clk);
-> +
-> +       host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
-> +       if (IS_ERR(host->bus_clk))
-> +               host->bus_clk = NULL;
-
-This is consistent with previous behaviour, but this looks wrong. If
-the clock exists (!= NULL return value), but you get an error, you
-should return that error. This belongs in another patch though.
-
-> +
-> +       /*source clock control gate is optional clock*/
-> +       host->src_clk_cg = devm_clk_get_optional(&pdev->dev, "source_cg");
-> +       if (IS_ERR(host->src_clk_cg))
-> +               host->src_clk_cg = NULL;
-> +
-> +       host->sys_clk_cg = devm_clk_get_optional(&pdev->dev, "sys_cg");
-> +       if (IS_ERR(host->sys_clk_cg))
-> +               host->sys_clk_cg = NULL;
-> +
-> +       /* If present, always enable for this clock gate */
-> +       clk_prepare_enable(host->sys_clk_cg);
-> +
-> +       host->bulk_clks[0].id = "pclk_cg";
-> +       host->bulk_clks[1].id = "axi_cg";
-> +       host->bulk_clks[2].id = "ahb_cg";
-> +       ret = devm_clk_bulk_get_optional(&pdev->dev, MSDC_NR_CLOCKS,
-> +                                        host->bulk_clks);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "Cannot get pclk/axi/ahb clock gates\n");
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  static int msdc_drv_probe(struct platform_device *pdev)
->  {
->         struct mmc_host *mmc;
-> @@ -2405,25 +2459,9 @@ static int msdc_drv_probe(struct platform_device *pdev)
->         if (ret)
->                 goto host_free;
->
-> -       host->src_clk = devm_clk_get(&pdev->dev, "source");
-> -       if (IS_ERR(host->src_clk)) {
-> -               ret = PTR_ERR(host->src_clk);
-> -               goto host_free;
-> -       }
-> -
-> -       host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> -       if (IS_ERR(host->h_clk)) {
-> -               ret = PTR_ERR(host->h_clk);
-> +       ret = msdc_of_clock_parse(pdev, host);
-> +       if (ret)
->                 goto host_free;
-> -       }
-> -
-> -       host->bus_clk = devm_clk_get(&pdev->dev, "bus_clk");
-> -       if (IS_ERR(host->bus_clk))
-> -               host->bus_clk = NULL;
-> -       /*source clock control gate is optional clock*/
-> -       host->src_clk_cg = devm_clk_get(&pdev->dev, "source_cg");
-> -       if (IS_ERR(host->src_clk_cg))
-> -               host->src_clk_cg = NULL;
->
->         host->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
->                                                                 "hrst");
-> --
-> 2.18.0
+-- 
+viresh
