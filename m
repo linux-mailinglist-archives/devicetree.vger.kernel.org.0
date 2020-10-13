@@ -2,109 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B99928CF21
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C9B28CF2A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728311AbgJMN35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:29:57 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:45672 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727448AbgJMN3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:29:55 -0400
-Received: by mail-ot1-f68.google.com with SMTP id f37so18969007otf.12;
-        Tue, 13 Oct 2020 06:29:54 -0700 (PDT)
+        id S1727759AbgJMNbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:31:35 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:46879 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727448AbgJMNbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:31:34 -0400
+Received: by mail-oi1-f194.google.com with SMTP id s81so10086709oie.13
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:31:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=z0lp6xWsI01a1m0ANLoo+l8DVqU+FBadGPQQZjFQa50=;
-        b=fymanlgrq5FtFzStHbdK7n3JQwJo1sSCKncssZTj6+cPt9cH6dzvQBOsR4/0maMmAP
-         vSeUyVmp+xD3lrb1JMcFg6vQ3tm+83zDGkeSBE8l4yB/h7yMnxCNZ6txAftfX7BsAIxJ
-         nAnSQcFJ49M20GXTY5HZMbbivwzXzTMGVs4Z553YIazeDmOM3eWjdkV7sOFF5q9eE5d/
-         Z32MLRp3bW6eA7cx5dvgXteOzAtgCehl0DV82GdoMyrUfkupkWo9YG73bX1ZEiiULlS5
-         LCkVS1djbFHgtmGQ9r7l2hbQGCefm1dY/+i67lhEMk11jV81X5O4KYYosssvnZE8bYQl
-         BiSw==
-X-Gm-Message-State: AOAM5320r/mnE1yVgVac9eqoBA2b0tTXwBGONb0++U9XCdwaCopFftGv
-        qGrI/OEXm7Wd9YqQ+z96brZ28nvOrA7W
-X-Google-Smtp-Source: ABdhPJzQ1HJ8z0yv6TYdclRehXwZHFO4qTGszihrvWLAnSEqAtYX2bXzbJzwkizSVE3KllkQAzsg3g==
-X-Received: by 2002:a05:6830:1f01:: with SMTP id u1mr22072157otg.271.1602595794545;
-        Tue, 13 Oct 2020 06:29:54 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=omxWJDLwDl9kDvJbxkrhDgT1o15P9mqxmUxctq+I87o=;
+        b=TXGIqK3Osz0VT8jXL4U/9W2P29MRwuiz9T8JWifErbUaBVUSHk3weT04moAIrLTozw
+         qNOUNw6Z3BvkpDzotNU2Gl6u36AxDYDtUz5HpL28atEm4dOxD1gLyWN1qEGHehXfJK1e
+         EBPpfyRD7+9L6T0lkCTVGxGgzlMfzzdVx2p9qzBbZUp82Bq7niPbfeQCCgnrf3TwGJXK
+         LCydaxgF4uK6TXUPaVBMOs2yt9LhBXdPppIAt0hR/KE1BUPcJ6HQ9eG/bz4mFosIWhqb
+         3PfALMckczZYtjZ4C96Luweax/rBARpydn4wwr1GnYM93c8aRzg6VtkV5zbShIan/7h1
+         K+pw==
+X-Gm-Message-State: AOAM531beGE3FkgrRo+JZ9VBkwqUD4l0Tw1yZyNH9NPBjSEwQbTaN+cx
+        /mjqGTEgPYkLN6rUK0Ku+ElhRg2sNXnM
+X-Google-Smtp-Source: ABdhPJyviYBLZ5Uxz1mqtREZ61t7m3UYWJK6Qf1bR+yLrZRbsZfshT/ng+Gh5UV1dmGiw/WvPXC+jA==
+X-Received: by 2002:aca:4d14:: with SMTP id a20mr12920586oib.46.1602595893958;
+        Tue, 13 Oct 2020 06:31:33 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l3sm10056262oth.36.2020.10.13.06.29.53
+        by smtp.gmail.com with ESMTPSA id z25sm12172225ood.21.2020.10.13.06.31.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 06:29:53 -0700 (PDT)
-Received: (nullmailer pid 3379445 invoked by uid 1000);
-        Tue, 13 Oct 2020 13:29:53 -0000
-Date:   Tue, 13 Oct 2020 08:29:53 -0500
+        Tue, 13 Oct 2020 06:31:33 -0700 (PDT)
+Received: (nullmailer pid 3381770 invoked by uid 1000);
+        Tue, 13 Oct 2020 13:31:32 -0000
+Date:   Tue, 13 Oct 2020 08:31:32 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sernia.zhou@foxmail.com
-Subject: Re: [PATCH 1/1] dt-bindings: clock: Add new OST support for the
- upcoming new driver.
-Message-ID: <20201013132953.GA3367990@bogus>
-References: <20201007181407.46889-1-zhouyanjie@wanyeetech.com>
- <20201007181407.46889-2-zhouyanjie@wanyeetech.com>
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     leoyang.li@nxp.com, shawnguo@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 01/11] dt-bindings: net: add the DPAA2 MAC DTS
+ definition
+Message-ID: <20201013133132.GA3381736@bogus>
+References: <20201007203936.23953-1-ioana.ciornei@nxp.com>
+ <20201007203936.23953-2-ioana.ciornei@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201007181407.46889-2-zhouyanjie@wanyeetech.com>
+In-Reply-To: <20201007203936.23953-2-ioana.ciornei@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 02:14:07AM +0800, 周琰杰 (Zhou Yanjie) wrote:
-> The new OST has one global timer and two or four percpu timers, so there will be three
-> combinations in the upcoming new OST driver: the original GLOBAL_TIMER + PERCPU_TIMER,
-> the new GLOBAL_TIMER + PERCPU_TIMER0/1 and GLOBAL_TIMER + PERCPU_TIMER0/1/2/3, For this,
-> add the macro definition about OST_CLK_PERCPU_TIMER0/1/2/3. And in order to ensure that
-> all the combinations work normally, the original ABI values of OST_CLK_PERCPU_TIMER and
-> OST_CLK_GLOBAL_TIMER need to be exchanged to ensure that in any combinations, the clock
-> can be registered (by calling clk_hw_register()) from index 0.
-
-Wrap lines at <80 characters.
-
+On Wed, 07 Oct 2020 23:39:26 +0300, Ioana Ciornei wrote:
+> Add a documentation entry for the DTS bindings needed and supported by
+> the dpaa2-mac driver.
 > 
-> I'm sure that exchanging the ABI values of OST_CLK_PERCPU_TIMER and OST_CLK_GLOBAL_TIMER
-> will not affect the existing related drivers and the SoCs whitch using these drivers, so
-> we should be able to exchange them safely.
-
-Why exactly is this okay?
-
-> 
-> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 > ---
->  include/dt-bindings/clock/ingenic,sysost.h | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
+> Changes in v2:
+>  - new patch
+> Changes in v3:
+>  - renamed dpmac@x into ethernet@x
+>  - renamed the new documentation file to use the same name as the
+>    compatible
+>  - marked additionalProperties as false
+>  - added a reference to ethernet-controller.yaml
 > 
-> diff --git a/include/dt-bindings/clock/ingenic,sysost.h b/include/dt-bindings/clock/ingenic,sysost.h
-> index 9ac88e90babf..063791b01ab3 100644
-> --- a/include/dt-bindings/clock/ingenic,sysost.h
-> +++ b/include/dt-bindings/clock/ingenic,sysost.h
-> @@ -1,12 +1,16 @@
->  /* SPDX-License-Identifier: GPL-2.0 */
->  /*
-> - * This header provides clock numbers for the ingenic,tcu DT binding.
-> + * This header provides clock numbers for the Ingenic OST DT binding.
->   */
->  
->  #ifndef __DT_BINDINGS_CLOCK_INGENIC_OST_H__
->  #define __DT_BINDINGS_CLOCK_INGENIC_OST_H__
->  
-> -#define OST_CLK_PERCPU_TIMER	0
-> -#define OST_CLK_GLOBAL_TIMER	1
-> +#define OST_CLK_PERCPU_TIMER	1
-> +#define OST_CLK_GLOBAL_TIMER	0
-> +#define OST_CLK_PERCPU_TIMER0	1
-> +#define OST_CLK_PERCPU_TIMER1	2
-> +#define OST_CLK_PERCPU_TIMER2	3
-> +#define OST_CLK_PERCPU_TIMER3	4
->  
->  #endif /* __DT_BINDINGS_CLOCK_INGENIC_OST_H__ */
-> -- 
-> 2.11.0
+>  .../bindings/net/fsl,qoriq-mc-dpmac.yaml      | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
