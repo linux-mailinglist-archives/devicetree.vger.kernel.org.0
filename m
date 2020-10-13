@@ -2,97 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4A7528CF1A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B99928CF21
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:29:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728614AbgJMN1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:27:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728609AbgJMN1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:27:25 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2156C0613D2
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:27:24 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id a5so20412026ljj.11
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:27:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6NIDO88L/SfLo7a2I6RUC0k7nZAbu1A3o1CF53Wby8o=;
-        b=MwfmDJKmJ81pU5hFl/rnyB8ayCOt5/lEUwSU27O6JDx9gQHn3DTxf+20E2rDsHteN3
-         9JTXgdXXsFRCbcDH9mN59YWJeO5adNlI1tyTLFP3T75BWSlWOBZlXUIezLx4IvooOzhl
-         iGMrxOm/GgqysYdhsEknsvhLgGgOndvkipKdbiQSRDirQWRFH7UT0/jHGov7IYyeLf9J
-         L5CvqhwM4drP3u2Hx5OyA2YyEVgNmqYg3Rmh4z4C97GCr5h0HIZPZWmqSlg4fwlsX8jR
-         QsCFkAfIZTTPlYPiMnrleySRmUurBcPFBXPWPMEkZ88jIn7qIWgNQRBHz0cZXIkUQY3H
-         7cUg==
+        id S1728311AbgJMN35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:29:57 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45672 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727448AbgJMN3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:29:55 -0400
+Received: by mail-ot1-f68.google.com with SMTP id f37so18969007otf.12;
+        Tue, 13 Oct 2020 06:29:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6NIDO88L/SfLo7a2I6RUC0k7nZAbu1A3o1CF53Wby8o=;
-        b=DTPs2DpVpp2T8LkBqVr1HSWCfpNO7Gfv3YYwHsl0lgVXpQVw6gBU2aaIPf8Y1RtgqR
-         4IY+k9mhESnvC9V8RvLuGY5Qd0dy2a5Tsbe6hGZLV9wN0Ddczx1E0v3wu+kHF0eEO//k
-         nF7khFd+Dr69Ntjyz/o9HzzuW5Ah/AAwrFGR1EWZyErZjzMhfdxH80VcK/TmM97fUD0k
-         xpISA+HkhtAlaOSdNQYjkrlITRA6oE6DUThlER9Li/Tmz8x4FEnE51TvKXInG+XLVUJq
-         3DsBY41dKsaGTfJ7MwAbHJfn0O/LNV6JZgWr0iBR3HMehqtlqbDNE8zMhBwlyrxfOePt
-         ONIw==
-X-Gm-Message-State: AOAM530BupJTiUP3E/BaG9PFVSNIAy7g83pBY17U5Aa1fmu3q0RNQpM9
-        7HCybN00Y9VrGabuXBS1lvIwwwRO6KTCZ5jRg3MViw==
-X-Google-Smtp-Source: ABdhPJyUtzNpor9sibSYIY37lGowERAa80Msa/zFAJYgm+rvw5o4xkcDDfln7nDCdfKgqesfqrths5OjzjeufIK57F0=
-X-Received: by 2002:a2e:b893:: with SMTP id r19mr2025007ljp.104.1602595641517;
- Tue, 13 Oct 2020 06:27:21 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=z0lp6xWsI01a1m0ANLoo+l8DVqU+FBadGPQQZjFQa50=;
+        b=fymanlgrq5FtFzStHbdK7n3JQwJo1sSCKncssZTj6+cPt9cH6dzvQBOsR4/0maMmAP
+         vSeUyVmp+xD3lrb1JMcFg6vQ3tm+83zDGkeSBE8l4yB/h7yMnxCNZ6txAftfX7BsAIxJ
+         nAnSQcFJ49M20GXTY5HZMbbivwzXzTMGVs4Z553YIazeDmOM3eWjdkV7sOFF5q9eE5d/
+         Z32MLRp3bW6eA7cx5dvgXteOzAtgCehl0DV82GdoMyrUfkupkWo9YG73bX1ZEiiULlS5
+         LCkVS1djbFHgtmGQ9r7l2hbQGCefm1dY/+i67lhEMk11jV81X5O4KYYosssvnZE8bYQl
+         BiSw==
+X-Gm-Message-State: AOAM5320r/mnE1yVgVac9eqoBA2b0tTXwBGONb0++U9XCdwaCopFftGv
+        qGrI/OEXm7Wd9YqQ+z96brZ28nvOrA7W
+X-Google-Smtp-Source: ABdhPJzQ1HJ8z0yv6TYdclRehXwZHFO4qTGszihrvWLAnSEqAtYX2bXzbJzwkizSVE3KllkQAzsg3g==
+X-Received: by 2002:a05:6830:1f01:: with SMTP id u1mr22072157otg.271.1602595794545;
+        Tue, 13 Oct 2020 06:29:54 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l3sm10056262oth.36.2020.10.13.06.29.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Oct 2020 06:29:53 -0700 (PDT)
+Received: (nullmailer pid 3379445 invoked by uid 1000);
+        Tue, 13 Oct 2020 13:29:53 -0000
+Date:   Tue, 13 Oct 2020 08:29:53 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sernia.zhou@foxmail.com
+Subject: Re: [PATCH 1/1] dt-bindings: clock: Add new OST support for the
+ upcoming new driver.
+Message-ID: <20201013132953.GA3367990@bogus>
+References: <20201007181407.46889-1-zhouyanjie@wanyeetech.com>
+ <20201007181407.46889-2-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
- <20201004162908.3216898-3-martin.blumenstingl@googlemail.com>
- <CACRpkdbTw4UBw02RXX2prju45AsDZqPchhz=gdzsuT-QjhYHVw@mail.gmail.com> <CAFBinCAFDhWp6mgUqyOjdMVBR5oZQVpmVPjhnZs1Xg16tFa0PQ@mail.gmail.com>
-In-Reply-To: <CAFBinCAFDhWp6mgUqyOjdMVBR5oZQVpmVPjhnZs1Xg16tFa0PQ@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 13 Oct 2020 15:27:10 +0200
-Message-ID: <CACRpkdZdwoQCxxqosn2jQPMXLDnTEjuxSWOxG-L1YGE33wbFrg@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/3] dt-bindings: gpio: Add binding documentation for
- Etron EJ168/EJ188/EJ198
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201007181407.46889-2-zhouyanjie@wanyeetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 7, 2020 at 9:58 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> On Wed, Oct 7, 2020 at 11:19 AM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > On Sun, Oct 4, 2020 at 8:00 PM Martin Blumenstingl
-> > <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - pci1b6f,7023
-> > > +      - pci1b6f,7052
-> >
-> > I think it is better to let the PCI driver for the whole hardware in
-> > drivers/usb/host/xhci-pci.c probe from the PCI configuration space
-> > numbers, and then add a gpio_chip to xhci-pci.c.
->
-> to have everything consistent I will move the binding to
-> Documentation/devicetree/bindings/usb
+On Thu, Oct 08, 2020 at 02:14:07AM +0800, 周琰杰 (Zhou Yanjie) wrote:
+> The new OST has one global timer and two or four percpu timers, so there will be three
+> combinations in the upcoming new OST driver: the original GLOBAL_TIMER + PERCPU_TIMER,
+> the new GLOBAL_TIMER + PERCPU_TIMER0/1 and GLOBAL_TIMER + PERCPU_TIMER0/1/2/3, For this,
+> add the macro definition about OST_CLK_PERCPU_TIMER0/1/2/3. And in order to ensure that
+> all the combinations work normally, the original ABI values of OST_CLK_PERCPU_TIMER and
+> OST_CLK_GLOBAL_TIMER need to be exchanged to ensure that in any combinations, the clock
+> can be registered (by calling clk_hw_register()) from index 0.
 
-I do not understand why a PCI device would need a DT binding
-at all. They just probe from the magic number in the PCI
-config space, they spawn struct pci_dev PCI devices, not the
-type of platform devices coming out of the DT parser code.
-No DT compatible needed.
+Wrap lines at <80 characters.
 
-What am I not understanding about this?
+> 
+> I'm sure that exchanging the ABI values of OST_CLK_PERCPU_TIMER and OST_CLK_GLOBAL_TIMER
+> will not affect the existing related drivers and the SoCs whitch using these drivers, so
+> we should be able to exchange them safely.
 
-Yours,
-Linus Walleij
+Why exactly is this okay?
+
+> 
+> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> ---
+>  include/dt-bindings/clock/ingenic,sysost.h | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/include/dt-bindings/clock/ingenic,sysost.h b/include/dt-bindings/clock/ingenic,sysost.h
+> index 9ac88e90babf..063791b01ab3 100644
+> --- a/include/dt-bindings/clock/ingenic,sysost.h
+> +++ b/include/dt-bindings/clock/ingenic,sysost.h
+> @@ -1,12 +1,16 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+>  /*
+> - * This header provides clock numbers for the ingenic,tcu DT binding.
+> + * This header provides clock numbers for the Ingenic OST DT binding.
+>   */
+>  
+>  #ifndef __DT_BINDINGS_CLOCK_INGENIC_OST_H__
+>  #define __DT_BINDINGS_CLOCK_INGENIC_OST_H__
+>  
+> -#define OST_CLK_PERCPU_TIMER	0
+> -#define OST_CLK_GLOBAL_TIMER	1
+> +#define OST_CLK_PERCPU_TIMER	1
+> +#define OST_CLK_GLOBAL_TIMER	0
+> +#define OST_CLK_PERCPU_TIMER0	1
+> +#define OST_CLK_PERCPU_TIMER1	2
+> +#define OST_CLK_PERCPU_TIMER2	3
+> +#define OST_CLK_PERCPU_TIMER3	4
+>  
+>  #endif /* __DT_BINDINGS_CLOCK_INGENIC_OST_H__ */
+> -- 
+> 2.11.0
+> 
