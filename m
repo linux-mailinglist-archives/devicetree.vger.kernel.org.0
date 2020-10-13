@@ -2,122 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EC4128D07A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 16:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 235DA28D08F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 16:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730197AbgJMOmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 10:42:18 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44509 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbgJMOmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 10:42:15 -0400
-Received: by mail-oi1-f195.google.com with SMTP id x62so22683737oix.11;
-        Tue, 13 Oct 2020 07:42:14 -0700 (PDT)
+        id S2388844AbgJMOpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 10:45:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38478 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730163AbgJMOpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 10:45:20 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7ABC0613D2
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 07:45:19 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id f21so20727845ljh.7
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 07:45:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=antmicro.com; s=google;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=9edqb5x1hDx2fmb/AQX+uLZnlObOSp2lA6s6SJzO18Q=;
+        b=u8AEZInu/u2J5znTIxSlmJ+UbfzvtkomL1HfWc3P8MKYrJwvX+k/f1NodCf4S0ldAV
+         6vNF8gZMjazFvP1k6osN6CEWZtrKVzmWcVKQlVcjecAE1xJYJFDc/6dTZJt+WN8XMGN9
+         i092iuDDbSSpGF2yOvZPvlWMtAo/jdYfQ3HDQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1I9AZ3dVkBSyMQfgKs1TohAW9PkxtWPJANLEevozX18=;
-        b=bo1Om4qdFQtU5iYc84aY4VdLEz31ClJZvTI54Dz66IQnLoK9QExkPuhmM2L/gqlClj
-         qx630K2Mw6r8fnPZsAegIccWPx6O6fEsjBpacAWDe1VshyYSAPrkA7+09RpZj2RJ+EKJ
-         1mf5rdeZbZYq6gxFtJKlWtBbr5FJJ5aZafgPTnXULe6arKW5+EVuuQnjecj/6evmwHKU
-         bVbAlifGfhET2KMTr/RVSfq0kHsCw1EX4rH05Brb+LiH7yYagbs2CRWh0PCZAJotyDwU
-         DwQDmVFVMPpefRcwcmrTR6kJdHE6/15+0NfVSyKQliesXKrCXpE+f/mxBJ7yporkhlJs
-         CHOw==
-X-Gm-Message-State: AOAM533pbPkYObl9VIAbJq8aRVODfDKJA4QBMc3srj2epLjQTX3DlIa4
-        9HuT84Z6ZMxCTQqs2hm92A==
-X-Google-Smtp-Source: ABdhPJwFbKntR2PxJCYnhFnlcnCgf6fko0lXPql9p88A+khxMxqyZ13HIlFoPTEwIgarURWtyfnL4A==
-X-Received: by 2002:aca:5605:: with SMTP id k5mr33668oib.25.1602600133795;
-        Tue, 13 Oct 2020 07:42:13 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z25sm14246ood.21.2020.10.13.07.42.11
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=9edqb5x1hDx2fmb/AQX+uLZnlObOSp2lA6s6SJzO18Q=;
+        b=YefGDHx2sMQuiuupW9LZX6DXhg3Epj5XQyYH4VWng+HvSi8kvNx4qlg5I7i8lEheuz
+         qAUapB/yN5smkYF5vdjrXWzDlgpfiaVovP3q0q0FsZhAbIUH28vYESc8zTJ2kevi48Oa
+         PbFrw8HbbgrJ/LY03Eta6x20FVeClyzOBDRlpJqjZBL+a8SUcVJGmh1osSlv6BpcD+V7
+         LQdPaQo0Qb0T9/xz5TYKgHSsZJxAWPLpSKIJ0N27dJias8JQT2KlB4VwPuYQKrV/VNFS
+         56wtHlhl+MSaaFDtfqjkJ/419ksD9voKyqWPsOp1UxN6XEszAVe66gbnpHds2qeoOMCa
+         FnQA==
+X-Gm-Message-State: AOAM531RHNbIfyryb2bp2c1xKTYnAvqdaxN1U6IvS6Lg/n548SAP40Vn
+        fImIWU7QAGQ9G0xF3adI18Jw/g==
+X-Google-Smtp-Source: ABdhPJzG4EoAVlSK0YMNnG2TCpydpGCLOT0CQKlDJj+Hy/PpfnS/i3lDQhuCHFRwl15pZbNdF9wZNQ==
+X-Received: by 2002:a2e:8956:: with SMTP id b22mr13434318ljk.428.1602600318348;
+        Tue, 13 Oct 2020 07:45:18 -0700 (PDT)
+Received: from localhost.localdomain (d79-196.icpnet.pl. [77.65.79.196])
+        by smtp.gmail.com with ESMTPSA id x5sm4356334lji.78.2020.10.13.07.45.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 07:42:13 -0700 (PDT)
-Received: (nullmailer pid 3475676 invoked by uid 1000);
-        Tue, 13 Oct 2020 14:42:11 -0000
-Date:   Tue, 13 Oct 2020 09:42:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno <kholk11@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>, dmitry.torokhov@gmail.com,
-        rydberg@bitmath.org, priv.luk@gmail.com,
-        linux-input@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] dt-bindings: touchscreen: Add binding for Novatek
- NT36xxx series driver
-Message-ID: <20201013144211.GA3449602@bogus>
-References: <20201008181514.668548-1-kholk11@gmail.com>
- <20201008181514.668548-4-kholk11@gmail.com>
- <CAJKOXPdZ_zo0bPwQd=_dKHhA2KWHgsH4KTH=+cX8hNxSVrqrig@mail.gmail.com>
- <CAK7fi1ZJN=AbkusWqDEbAkZ=AgKEPCvWH43hBpX0-EUDJWOC5g@mail.gmail.com>
+        Tue, 13 Oct 2020 07:45:17 -0700 (PDT)
+Date:   Tue, 13 Oct 2020 16:45:09 +0200
+From:   Mateusz Holenko <mholenko@antmicro.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Cc:     Stafford Horne <shorne@gmail.com>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, "Gabriel L. Somlo" <gsomlo@gmail.com>
+Subject: [PATCH v12 0/5] LiteX SoC controller and LiteUART serial driver
+Message-ID: <20201013164454.2002023-0-mholenko@antmicro.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAK7fi1ZJN=AbkusWqDEbAkZ=AgKEPCvWH43hBpX0-EUDJWOC5g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 10:30:35PM +0200, AngeloGioacchino Del Regno wrote:
-> Il giorno gio 8 ott 2020 alle ore 20:21 Krzysztof Kozlowski
-> <krzk@kernel.org> ha scritto:
-> >
-> > On Thu, 8 Oct 2020 at 20:15, <kholk11@gmail.com> wrote:
-> > >
-> > > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > >
-> > > Add binding for the Novatek NT36xxx series touchscreen driver.
-> > >
-> > > Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > > ---
-> > >  .../input/touchscreen/novatek,nt36xxx.yaml    | 59 +++++++++++++++++++
-> > >  1 file changed, 59 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml b/Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml
-> > > new file mode 100644
-> > > index 000000000000..e747cacae036
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/input/touchscreen/novatek,nt36xxx.yaml
-> > > @@ -0,0 +1,59 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/input/touchscreen/novatek,nt36xxx.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Novatek NT36xxx series touchscreen controller Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: touchscreen.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: novatek,nt36xxx
-> >
-> > Thanks for the changes, they look good except this part here which I
-> > missed before. The compatible should not contain wildcards. If all
-> > devices are really compatible, just add here one const, e.g. "const:
-> > novatek,nt36525". If they are different, you could add multiple
-> > compatibles in enum.
-> >
-> > Best regards,
-> > Krzysztof
-> 
-> They are all managed the same way, but the page addresses are
-> changing between all of them... the driver is reading the chip ID
-> while the TS MCU is in "boot mode", then checking in a ID table
-> if the chip is supported and finally assigning a page address table.
-> This is done for the entire NT36*** series.
+This patchset introduces support for LiteX SoC Controller
+and LiteUART - serial device from LiteX SoC builder
+(https://github.com/enjoy-digital/litex).
 
-The important part is whether everything needed to read the chip ID 
-is identical? Same power supplies and sequencing, clocks, resets, 
-enables, etc.? If any of those vary then you'll need something more 
-specific. You can always have a common fallback.
+In the following patchset I will add
+a new mor1kx-based (OpenRISC) platform that
+uses this device.
 
-Rob
+Later I plan to extend this platform by
+adding support for more devices from LiteX suite.
+
+Changes in v12:
+    - fixed descriptions in yaml files
+    - simplified probe implementations
+    - introduced litex_{read,write}{8,16,32,64}() fast accessors
+    - added formal documentation of litex_get_reg()/litex_set_reg()
+    - fixed possible memory leaks
+    - removed spin locks from CSR accessors
+
+Changes in v11:
+    - added Reviewed-by tag
+    - reformatted some comments
+    - switched to WARN instead of BUG on CSR validation fail
+
+Changes in v10:
+    - added casting to avoid sparse warnings in the SoC Controller's driver
+
+Changes in v9:
+    - fixed the `reg` node notation in the DT example
+    - added exporting of the `litex_set_reg`/`litex_get_reg` symbols
+
+Changes in v8:
+    - fixed help messages in LiteUART's KConfig
+    - removed dependency between LiteUART and LiteX SoC drivers
+    - removed `litex_check_accessors()` helper function
+    - added crashing (BUG) on the failed LiteX CSR access test
+
+Changes in v7:
+    - added missing include directive in UART's driver
+
+Changes in v6:
+    - changed accessors in SoC Controller's driver
+    - reworked UART driver
+
+Changes in v5:
+    - added Reviewed-by tag
+    - removed custom accessors from SoC Controller's driver
+    - fixed error checking in SoC Controller's driver
+
+Changes in v4:
+    - fixed copyright headers
+    - fixed SoC Controller's yaml 
+    - simplified SoC Controller's driver
+
+Changes in v3:
+    - added Acked-by and Reviewed-by tags
+    - introduced LiteX SoC Controller driver
+    - removed endianness detection (handled now by LiteX SoC Controller driver)
+    - modified litex.h header
+    - DTS aliases for LiteUART made optional
+    - renamed SERIAL_LITEUART_NR_PORTS to SERIAL_LITEUART_MAX_PORTS
+    - changed PORT_LITEUART from 122 to 123
+
+Changes in v2:
+    - binding description rewritten to a yaml schema file
+    - added litex.h header with common register access functions
+
+Filip Kokosinski (3):
+  dt-bindings: vendor: add vendor prefix for LiteX
+  dt-bindings: serial: document LiteUART bindings
+  drivers/tty/serial: add LiteUART driver
+
+Pawel Czarnecki (2):
+  dt-bindings: soc: document LiteX SoC Controller bindings
+  drivers/soc/litex: add LiteX SoC Controller driver
+
+ .../bindings/serial/litex,liteuart.yaml       |  38 ++
+ .../soc/litex/litex,soc-controller.yaml       |  39 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   9 +
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/litex/Kconfig                     |  19 +
+ drivers/soc/litex/Makefile                    |   3 +
+ drivers/soc/litex/litex_soc_ctrl.c            | 176 ++++++++
+ drivers/tty/serial/Kconfig                    |  32 ++
+ drivers/tty/serial/Makefile                   |   1 +
+ drivers/tty/serial/liteuart.c                 | 404 ++++++++++++++++++
+ include/linux/litex.h                         | 103 +++++
+ 13 files changed, 831 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/litex,liteuart.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml
+ create mode 100644 drivers/soc/litex/Kconfig
+ create mode 100644 drivers/soc/litex/Makefile
+ create mode 100644 drivers/soc/litex/litex_soc_ctrl.c
+ create mode 100644 drivers/tty/serial/liteuart.c
+ create mode 100644 include/linux/litex.h
+
+-- 
+2.25.1
+
