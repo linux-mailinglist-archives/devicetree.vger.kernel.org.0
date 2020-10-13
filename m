@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFCB628CAC4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 11:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F28AB28CB3E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 11:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404203AbgJMJGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 05:06:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42606 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404121AbgJMJGd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 05:06:33 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F77EC0613D5
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 02:06:31 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id o9so15210851ilo.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 02:06:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h1Kn1e9l6DefK7UeWxKl0RXZdndEdV2fl2mFTDouCI8=;
-        b=IZZqgx3XirUM6a1686Gvw+XBThwLkKU+a3xuShyhmkoSPZ48SquqAhA9Z4BnAarFXW
-         LbYClxfi0KkhUIMPl6p7oUskobKyJBDmxaNC1tMv5jCC8F+6jlPzqVK4nlk+wVMAGHKD
-         Rbie1+mSpsusVDCdqjdjG1a0lCsUrJCic3Q/A732XhRB70efFDFvORaQj6cfdFKixTIt
-         v/OrAGeLC+uM+zSSDmm5J5VRLoj3lncu7aMNBB5UgwIQYW47UnuiELot0tiOBG6bPFkG
-         h2O63hEybPIWYxcPm/yFySfGBtoS4rpSzspXAHPEG4LfbD0KWzY/BlhYv1VTR8hUMCr2
-         DiZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h1Kn1e9l6DefK7UeWxKl0RXZdndEdV2fl2mFTDouCI8=;
-        b=mSa0P7k16EGj0sfhni8hScDWWX7oKlH8LkKDF7OXbN957NwMHAjkJjQpyDPeyaSMx/
-         Dbcf75sJD5W/h58+tANNXr+aODijiWEljf02VLwNu2BYjTUDvXuDq0OQ2f5ttx1yAFEa
-         GsMKTwNIHzgt/woqmqlnOsADSNOeTPM3dKrxlhLyxGEvHJGElvsZGWy8alTfrBBvorqq
-         WuE2dTPHsIAMQB6XxYV1U4O2hzdsgHi1CHjumZXmucUq9fvj6Rx69tptRpTy1JZ5ww7k
-         3WK57eQ5qUn5Toei1Ww5Lb4mwUL+UQTc8r3Qq2yQMpDm59GUgbHMq04qBBQlVFdb6ZSU
-         dnlQ==
-X-Gm-Message-State: AOAM532sM0Bi+8QVOwlTWHCDUnWcmXLqVVTv40JlFcWsJcwHyD/3ALWH
-        2si5OP7ffgiAtw3NNZ0GpjuD0Yso6q+XF6HMCb9rCw==
-X-Google-Smtp-Source: ABdhPJwk5H+Z635Qt/KH04jq7L0usmATbmKO3VNhzThntbBFHaS6R0l7HMM0l/U1X1TkdfOiSYVqKCKcJHL7SaOdHCc=
-X-Received: by 2002:a92:5e18:: with SMTP id s24mr2067841ilb.48.1602579990710;
- Tue, 13 Oct 2020 02:06:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201012205218.3010868-1-fparent@baylibre.com>
- <20201012205218.3010868-2-fparent@baylibre.com> <81a12664-639e-20cc-8b49-6bcb53822a3f@gmail.com>
-In-Reply-To: <81a12664-639e-20cc-8b49-6bcb53822a3f@gmail.com>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Tue, 13 Oct 2020 11:06:20 +0200
-Message-ID: <CAOwMV_yqK+yLZH1tOSeUHP7qz35k-bYmWf7jg6qQpvhO9LeJ6g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8516: add auxadc node
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        id S1727390AbgJMJzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 05:55:20 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:46567 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726120AbgJMJzT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 05:55:19 -0400
+X-UUID: 2d083468002b4a54841e6fb34d9036e9-20201013
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ErW8HdEIq/FdudMvL/XJKMQpzparYDyvJJpkVDGt/9I=;
+        b=A4XIiW+zG7s81RxaMdCDqufQdbZ2FjDXvL2CrFVN760zsODjdZ1mBJ2F+RNEwF2fMV0bP2jiwcFz1BWdD7NNKVuWxg14t8IgtOTRbMQqq9rUE/EkW7gudbCMBR+87GmORZOH0JEzQxqOmgoNtMbpJOUFdoTu86RNHF0z8lowHQ0=;
+X-UUID: 2d083468002b4a54841e6fb34d9036e9-20201013
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1675622749; Tue, 13 Oct 2020 17:55:08 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
+ (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Oct
+ 2020 17:55:06 +0800
+Received: from [10.16.6.141] (10.16.6.141) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 13 Oct 2020 17:55:03 +0800
+Message-ID: <1602582900.10262.0.camel@mszsdaap41>
+Subject: Re: [v4 PATCH 0/2] fix scrolling of panel with small hfp or hbp
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        <huijuan.xie@mediatek.com>, <stonea168@163.com>,
+        <cawa.cheng@mediatek.com>,
         "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, pmeerw@pmeerw.net,
-        lars@metafoo.de, knaack.h@gmx.de, jic23@kernel.org
+        <linux-mediatek@lists.infradead.org>, <yingjoe.chen@mediatek.com>,
+        <eddie.huang@mediatek.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 13 Oct 2020 17:55:00 +0800
+In-Reply-To: <CAAOTY_-qZni-o11HJeymH74PAFSJw-0Awdz0wdjiQ0u7Ga1MGA@mail.gmail.com>
+References: <20201010070910.11294-1-jitao.shi@mediatek.com>
+         <CAAOTY_-qZni-o11HJeymH74PAFSJw-0Awdz0wdjiQ0u7Ga1MGA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 9058B82AC9E991BE078B9380368DAEE655AD1DF6E08AD11FCBEC7D55ED3BBE992000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+T24gTW9uLCAyMDIwLTEwLTEyIGF0IDIzOjIyICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
+PiBIaSwgSml0YW86DQo+IA0KPiBKaXRhbyBTaGkgPGppdGFvLnNoaUBtZWRpYXRlay5jb20+IOaW
+vCAyMDIw5bm0MTDmnIgxMOaXpSDpgLHlha0g5LiL5Y2IMzowOeWvq+mBk++8mg0KPiA+DQo+ID4g
+Q2hhbmdlcyBzaW5jZSB2MzoNCj4gPiAgLSBSZXZlcnQgdjIsIGZvciB2MiB3aWxsIGNhdXNlIHNv
+bWUgYnJpZGdlIGljIG5vIG91dHB1dC4gdGhlIGNhdXNlDQo+ID4gICAgdGhlIHZpZGVvIGxpbmV0
+aW1lIGRvZXNuJ3QgbWF0Y2ggZGlzcGxheSBtb2RlIGZyb20gZ2V0IG1vZGUuDQo+ID4gIC0gTWFr
+ZSBzdXJlIHRoZSBob3Jpem9udGFsX2Zyb250cG9yY2hfYnl0ZSBhbmQgaG9yaXpvbnRhbF9iYWNr
+cG9yY2hfYnl0ZQ0KPiA+ICAgIGFyZSA+IDAuDQo+IA0KPiBCZWNhdXNlIHYyIGlzIG1lcmdlZCBp
+bnRvIG1haW5saW5lLCBJIHRoaW5rIHlvdSBzaG91bGQgbWVyZ2UgMS8yIGFuZA0KPiAyLzIgdG8g
+b25lIHBhdGNoIHdoaWNoIGZpeCB0aGUgcHJvYmxlbSBjYXVzZWQgYnkgdjIuDQo+IA0KPiBSZWdh
+cmRzLA0KPiBDaHVuLUt1YW5nLg0KPiANCg0KVGhhbmtzIGZvciB5b3VyIHJldmlld2luZy4NCkkn
+bGwgdXBkYXRlIG5leHQgdmVyc2lvbi4NCg0KQmVzdCBSZWdhcmRzDQpKaXRhbw0KDQo+ID4NCj4g
+PiBKaXRhbyBTaGkgKDIpOg0KPiA+ICAgUmV2ZXJ0ICJkcm0vbWVkaWF0ZWs6IGRzaTogRml4IHNj
+cm9sbGluZyBvZiBwYW5lbCB3aXRoIHNtYWxsIGhmcCBvcg0KPiA+ICAgICBoYnAiDQo+ID4gICBk
+cm0vbWVkaWF0ZWs6IGRzaTogZml4IHNjcm9sbGluZyBvZiBwYW5lbCB3aXRoIHNtYWxsIGhmcCBv
+ciBoYnANCj4gPg0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RzaS5jIHwgNjUg
+KysrKysrKysrKysrKysrLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiAgMSBmaWxlIGNoYW5n
+ZWQsIDI1IGluc2VydGlvbnMoKyksIDQwIGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gLS0NCj4gPiAy
+LjEyLjUNCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xw0KPiA+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QNCj4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnDQo+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9kcmktZGV2ZWwNCg0K
 
-> Any reason you don't enable the status in the pumpkin dts?
-
-No particular reasons. I looked at what other MTK SoC did for this IP,
-and half went with the status to be disabled and the other half went
-with an enabled status.  So I went the mt8183 way since it is the last
-MTK SoC to have been merged and disabled by default. If you think it
-is better to be enabled by default, I can change it, I don't have any
-strong opinion about this.
