@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E425228CECD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 14:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A71B28CEE2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728268AbgJMM4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 08:56:47 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:37517 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728250AbgJMM4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 08:56:44 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t77so22376498oie.4;
-        Tue, 13 Oct 2020 05:56:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M8tT6t+SMkSYGRLbiqjiihdCsiur/8BZS3zekXOuO4c=;
-        b=UCArX8MonEEocLfBP0HI7+7/ofbGmvv/YaDLRsTwSCCx2StCUZHkhW6hQ3L0mTE+XK
-         fdh74Y6V1eHVZMsj3goHI9DF3KTkgG6usozq4XBaQNypRJDRmzeMn/e4J84ymvSJM7uH
-         fc5G2J39nhNzwtK5WuCYWFJTNik2ami27OjylvpIo1MDoN6AQnkcmBNJtJd7Ekq5f2Ms
-         1NU8z5GA/JZx+LxPYLgGe3P8gcGkMPkLEuyn5s7Jz3nbynS+SeixKh5ELQya8URrZjqP
-         XC+deQKNwMcSBTW6h6x/C+tX4baPRZuKrdwDC5irUfKpkiHmgKz+ef3uYFINh2Jj6vPR
-         q3pQ==
-X-Gm-Message-State: AOAM533iQ/tLcHU4jFBIkZu/UyrjZ5BNHEfu1kw+5gFtjTTqZlPNunoj
-        Cm7gVLUJVYg2RcPCjRvJeQ==
-X-Google-Smtp-Source: ABdhPJy0nqJVWcIvEuGEkLDuJgWPKNNfKS2wBdK+81G1IEouvcyKDFK4oBL31UtNsTqi9Qt0fW3G1w==
-X-Received: by 2002:aca:4bcd:: with SMTP id y196mr13052481oia.151.1602593801944;
-        Tue, 13 Oct 2020 05:56:41 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b17sm11787338oog.25.2020.10.13.05.56.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 05:56:41 -0700 (PDT)
-Received: (nullmailer pid 3335678 invoked by uid 1000);
-        Tue, 13 Oct 2020 12:56:40 -0000
-Date:   Tue, 13 Oct 2020 07:56:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Lypak <junak.pub@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>, linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: pinctrl: qcom: add msm8953 pinctrl
- bindings
-Message-ID: <20201013125640.GA3335626@bogus>
-References: <20201007160611.942754-1-junak.pub@gmail.com>
- <20201007160611.942754-2-junak.pub@gmail.com>
+        id S2387554AbgJMNFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:05:15 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:38768 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2387546AbgJMNFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:05:13 -0400
+X-UUID: cea8e0db39b14872b768a720a4baa583-20201013
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Ma35HvnVMPv2Mtqmq10T4yH5J23SnKvh3FQUK91VnMk=;
+        b=MK+dSZvaqg/95XMe0bYgxpJiDWXwFicA+0EVpEiroI6Gt8BC/kAuF6UcCXYQ34jrmXn9YlsE7bY3edHr2i0eUeuxLTw00PdOeepkOEXGnnb45Qtfq2l31qhnlgaWNOnNOZqtDFl3RSwq8R3oP8xTurEpEgEGgrUmNSx8C3qQYcI=;
+X-UUID: cea8e0db39b14872b768a720a4baa583-20201013
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1278656683; Tue, 13 Oct 2020 21:05:09 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 13 Oct 2020 21:05:08 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 13 Oct 2020 21:05:07 +0800
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     <mchehab@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>
+Subject: [PATCH v15 0/2] media: i2c: Add support for OV02A10 sensor
+Date:   Tue, 13 Oct 2020 21:05:01 +0800
+Message-ID: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
+X-Mailer: git-send-email 2.9.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007160611.942754-2-junak.pub@gmail.com>
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 07 Oct 2020 19:06:12 +0300, Vladimir Lypak wrote:
-> Add device tree bindings documentation for Qualcomm MSM8953
-> pinctrl driver.
-> 
-> Signed-off-by: Vladimir Lypak <junak.pub@gmail.com>
-> ---
-> Changes in V2:
->  - removed "wakeup-parent" property.
->  - changed pincfg property pattern to '-pins$' and added its description.
->  - added "serial-pins" subnode to example.
-> ---
->  .../pinctrl/qcom,msm8953-pinctrl.yaml         | 167 ++++++++++++++++++
->  1 file changed, 167 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8953-pinctrl.yaml
-> 
+SGVsbG8sDQoNCk9taW5pVmlzaW9uIE9WMDJBMTAgaXMgYSAyLW1lZ2FwaXhlbCAxMC1iaXQgUkFX
+IENNT1MgMS81IiBzZW5zb3Igd2hpY2ggaGFzDQphIHNpbmdsZSBNSVBJIGxhbmUgaW50ZXJmYWNl
+LiBUaGlzIGlzIGEgY2FtZXJhIHNlbnNvciB1c2luZyB0aGUgSTJDIGJ1cw0KZm9yIGNvbnRyb2wg
+YW5kIHRoZSBDU0ktMiBidXMgZm9yIGRhdGEuIA0KDQpUaGUgZHJpdmVyIGlzIGltcGxlbWVudGVk
+IHdpdGggVjRMMiBmcmFtZXdvcmsuDQogLSBBc3luYyByZWdpc3RlcmVkIGFzIGEgVjRMMiBzdWIt
+ZGV2aWNlLg0KIC0gQXMgdGhlIGZpcnN0IGNvbXBvbmVudCBvZiBjYW1lcmEgc3lzdGVtIGluY2x1
+ZGluZyBJU1AgcGlwZWxpbmUuDQogLSBBIG1lZGlhIGVudGl0eSBwcm92aWRpbmcgb25lIHNvdXJj
+ZSBwYWQgaW4gY29tbW9uIGFuZCB0d28gZm9yIGR1YWwtY2FtLg0KDQpBbHNvIHRoaXMgZHJpdmVy
+IHN1cHBvcnRzIGZvbGxvd2luZyBmZWF0dXJlczoNCiAtIE1hbnVhbCBleHBvc3VyZSBhbmQgYW5h
+bG9nIGdhaW4gY29udHJvbCBzdXBwb3J0DQogLSBWZXJ0aWNhbCBibGFua2luZyBjb250cm9sIHN1
+cHBvcnQNCiAtIFRlc3QgcGF0dGVybiBzdXBwb3J0DQogLSBNZWRpYSBjb250cm9sbGVyIHN1cHBv
+cnQNCiAtIFJ1bnRpbWUgUE0gc3VwcG9ydA0KIC0gU3VwcG9ydCByZXNvbHV0aW9uOiAxNjAweDEy
+MDAgYXQgMzBGUFMNCg0KQ2hhbmdlcyBvZiB2MTUgbWFpbmx5IGFkZHJlc3MgY29tbWVudHMgZnJv
+bSBSb2IsIEFuZHksIFRvbWFzeiBhbmQgU2FrYXJpLg0KQ29tcGFyZWQgdG8gdjE0Og0KIC0gRml4
+IGltcGVyZmVjdGlvbnMgaW4gRFQNCiAtIFVzZSBkZXZfZXJyX3Byb2JlKCkgQVBJIGluIHByb2Jl
+DQogLSBVc2UgaTJjX3NtYnVzX3JlYWRfd29yZF9zd2FwcGVkKCkgQVBJIHRvIHJlYWQgMTYtYml0
+IGRhdGEuDQogLSBGaXggb3RoZXIgcmV2aWV3IGNvbW1lbnRzIHRvIGltcHJvdmUgcmVhZGFiaWxp
+dHkuDQoNClBsZWFzZSByZXZpZXcuDQpUaGFua3MuDQoNCkRvbmdjaHVuIFpodSAoMik6DQogIG1l
+ZGlhOiBkdC1iaW5kaW5nczogbWVkaWE6IGkyYzogRG9jdW1lbnQgT1YwMkExMCBiaW5kaW5ncw0K
+ICBtZWRpYTogaTJjOiBBZGQgT1YwMkExMCBpbWFnZSBzZW5zb3IgZHJpdmVyDQoNCiAuLi4vYmlu
+ZGluZ3MvbWVkaWEvaTJjL292dGksb3YwMmExMC55YW1sICAgICAgICAgICB8ICAxNjIgKysrDQog
+TUFJTlRBSU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICA4
+ICsNCiBkcml2ZXJzL21lZGlhL2kyYy9LY29uZmlnICAgICAgICAgICAgICAgICAgICAgICAgICB8
+ICAgMTMgKw0KIGRyaXZlcnMvbWVkaWEvaTJjL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgICAgMSArDQogZHJpdmVycy9tZWRpYS9pMmMvb3YwMmExMC5jICAgICAgICAgICAgICAg
+ICAgICAgICAgfCAxMDU4ICsrKysrKysrKysrKysrKysrKysrDQogNSBmaWxlcyBjaGFuZ2VkLCAx
+MjQyIGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL21lZGlhL2kyYy9vdnRpLG92MDJhMTAueWFtbA0KIGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBkcml2ZXJzL21lZGlhL2kyYy9vdjAyYTEwLmMNCg0KLS0gDQoyLjkuMg0K
 
-Reviewed-by: Rob Herring <robh@kernel.org>
