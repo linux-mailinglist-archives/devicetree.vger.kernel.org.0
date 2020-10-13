@@ -2,69 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0068828D2B6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 18:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57A4F28D2CF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 19:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387684AbgJMQ5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 12:57:21 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:33017 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728624AbgJMQ5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 12:57:21 -0400
-Received: by mail-oi1-f196.google.com with SMTP id s21so138470oij.0;
-        Tue, 13 Oct 2020 09:57:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ta4GdvuvHmi0S7nFmW+Yiy1nhXEJzHrWRU11UeLVa/g=;
-        b=Nu5bf4D8vcb6b0t9tNnp+LYsl+xa1baA6f7K6glAvR4/BwEyycsfcYilXmlWd1j26P
-         FBKM8jsVM5rKlz7atlvc8vT3rdHfN36lygJtpdfFiO4TD3a7kwv9lRBnfbSjtZQlnH5f
-         Qar5hsazI/E+UhwQP/3c7NzRhYQTf4yS8FU7tb/N6/Vt3CTjO2yXHDVwJniACPIWkwXM
-         2UoQgaKVQq0o8TBTNVy/120skGksA/mpets5J4qq56hiF/Avc3/rd2oQIH37xEQAE8m/
-         kWD89xxF5t/zrHwpBZxTpYhy+eaXFn31oHHuIttd3V7BZsZfEzRLn3QPOkC09/+MgttS
-         DhKg==
-X-Gm-Message-State: AOAM531DMIwH1voWhZedY0MOAHtQoydqW94XaEJFQrA9t2p9YSUrhyFJ
-        okhtjeBBgRuHP3ss5eU43g==
-X-Google-Smtp-Source: ABdhPJyc1iqysH0fM7XE3YiQYs9B9724pxdYSxpfEhRtBijv2YxICdy4kOOGJVrhiD+itYChMQXtwg==
-X-Received: by 2002:aca:3145:: with SMTP id x66mr379807oix.41.1602608240433;
-        Tue, 13 Oct 2020 09:57:20 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h15sm112140ots.31.2020.10.13.09.57.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 09:57:19 -0700 (PDT)
-Received: (nullmailer pid 3686793 invoked by uid 1000);
-        Tue, 13 Oct 2020 16:57:18 -0000
-Date:   Tue, 13 Oct 2020 11:57:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     srv_heupstream@mediatek.com, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mediatek@lists.infradead.org,
-        Chaotian Jing <chaotian.jing@mediatek.com>
-Subject: Re: [PATCH v6 2/4] mmc: dt-bindings: add support for MT8192 SoC
-Message-ID: <20201013165718.GA3686690@bogus>
-References: <20201012124547.16649-1-wenbin.mei@mediatek.com>
- <20201012124547.16649-3-wenbin.mei@mediatek.com>
+        id S1728678AbgJMRFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 13:05:36 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:60168 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728521AbgJMRFf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 13:05:35 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602608734; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=YTaebKKbSFfDkBLgSmtyi+26Uv70n9SE6Qp6TyuX3HI=; b=dZfJ9/mLSRWbbV7xH4sP8L2oHQPe7YsFrx3w/bDC1PXBr76Q7d27LBOKjQoFPcNI49r1Nh2d
+ 7O8vtOjtjjj4RiFhiF9EkSTPr2g8uKwByw6FWJOZ8q58x7z8AC7va/Ay9mNL1LeQhBytnQ2j
+ Vyp50GuhJCfRtXjorDK8prfiRLs=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 5f85de044f8cc67c310a915b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 13 Oct 2020 17:04:04
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E0A13C43382; Tue, 13 Oct 2020 17:04:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.0.104] (unknown [49.204.182.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 65688C433CB;
+        Tue, 13 Oct 2020 17:03:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 65688C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v1 1/3] clk: qcom: clk-alpha-pll: Add support for
+ controlling Agera PLLs
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org
+References: <1599584848-15530-1-git-send-email-tdas@codeaurora.org>
+ <1599584848-15530-2-git-send-email-tdas@codeaurora.org>
+ <160012882627.4188128.11464299361688037948@swboyd.mtv.corp.google.com>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <a88817ea-6fd2-9225-41e4-b6b9dff2fb13@codeaurora.org>
+Date:   Tue, 13 Oct 2020 22:33:54 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201012124547.16649-3-wenbin.mei@mediatek.com>
+In-Reply-To: <160012882627.4188128.11464299361688037948@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Oct 2020 20:45:45 +0800, Wenbin Mei wrote:
-> MT8192 mmc host ip is compatible with MT8183.
-> Add support for this.
+Thanks for the review Stephen.
+
+On 9/15/2020 5:43 AM, Stephen Boyd wrote:
+> Quoting Taniya Das (2020-09-08 10:07:26)
+>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+>> index 26139ef..fb27fcf 100644
+>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>> @@ -1561,3 +1571,75 @@ const struct clk_ops clk_alpha_pll_postdiv_lucid_ops = {
+>>          .set_rate = clk_alpha_pll_postdiv_fabia_set_rate,
+>>   };
+>>   EXPORT_SYMBOL_GPL(clk_alpha_pll_postdiv_lucid_ops);
+>> +
+>> +void clk_agera_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>> +                       const struct alpha_pll_config *config)
+>> +{
+>> +       if (config->l)
+>> +               regmap_write(regmap, PLL_L_VAL(pll), config->l);
+>> +
+>> +       if (config->alpha)
+>> +               regmap_write(regmap, PLL_ALPHA_VAL(pll), config->alpha);
+>> +
+>> +       if (config->user_ctl_val)
+>> +               regmap_write(regmap, PLL_USER_CTL(pll), config->user_ctl_val);
+>> +
+>> +       if (config->config_ctl_val)
+>> +               regmap_write(regmap, PLL_CONFIG_CTL(pll),
+>> +                                               config->config_ctl_val);
+>> +
+>> +       if (config->config_ctl_hi_val)
+>> +               regmap_write(regmap, PLL_CONFIG_CTL_U(pll),
+>> +                                               config->config_ctl_hi_val);
+>> +
+>> +       if (config->test_ctl_val)
+>> +               regmap_write(regmap, PLL_TEST_CTL(pll),
+>> +                                               config->test_ctl_val);
+>> +
+>> +       if (config->test_ctl_hi_val)
+>> +               regmap_write(regmap,  PLL_TEST_CTL_U(pll),
+>> +                                               config->test_ctl_hi_val);
+>> +}
+>> +EXPORT_SYMBOL_GPL(clk_agera_pll_configure);
+>> +
+>> +static int alpha_pll_agera_set_rate(struct clk_hw *hw, unsigned long rate,
 > 
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
+> Why not clk_alpha_pll prefix? We should prefix the other PLL functions
+> in here with clk_alpha_ like trion and fabia
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yes, I will update this in the next patch.
+
+>> +                                                       unsigned long prate)
+>> +{
+>> +       struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+>> +       u32 l, alpha_width = pll_alpha_width(pll);
+>> +       unsigned long rrate;
+>> +       u64 a;
+>> +
+>> +       rrate = alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
+>> +
+>> +       /*
+>> +        * Due to limited number of bits for fractional rate programming, the
+>> +        * rounded up rate could be marginally higher than the requested rate.
+>> +        */
+>> +       if (rrate > (rate + PLL_RATE_MARGIN) || rrate < rate) {
+>> +               pr_err("Call set rate on the PLL with rounded rates!\n");
+>> +               return -EINVAL;
+>> +       }
+> 
+> See commit f78f29079327 ("clk: qcom: alpha-pll: Make error prints more
+> informative") where I tried to make this better. Can you extract this
+> check into a function that helps us understand the error better?
+> 
+
+Updated to follow the same.
+
+>> +
+>> +       /* change L_VAL without having to go through the power on sequence */
+>> +       regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+>> +       regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
+>> +
+>> +       /* Ensure that the write above goes through before proceeding. */
+>> +       mb();
+> 
+> regmap has an mb() in it. Remove this?
+> 
+
+Yes, will remove it.
+
+>> +
+>> +       if (clk_hw_is_enabled(hw))
+>> +               return wait_for_pll_enable_lock(pll);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +const struct clk_ops clk_alpha_pll_agera_ops = {
+>> +       .enable = clk_alpha_pll_enable,
+>> +       .disable = clk_alpha_pll_disable,
+>> +       .is_enabled = clk_alpha_pll_is_enabled,
+>> +       .recalc_rate = alpha_pll_fabia_recalc_rate,
+>> +       .round_rate = clk_alpha_pll_round_rate,
+>> +       .set_rate = alpha_pll_agera_set_rate,
+>> +};
+>> +EXPORT_SYMBOL_GPL(clk_alpha_pll_agera_ops);
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
+
+--
