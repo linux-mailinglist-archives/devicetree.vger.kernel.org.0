@@ -2,109 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C41128C872
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 08:01:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F4C28C881
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 08:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732391AbgJMGBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 02:01:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732382AbgJMGBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 02:01:03 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA3F2C0613D0;
-        Mon, 12 Oct 2020 23:01:02 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id d3so20446587wma.4;
-        Mon, 12 Oct 2020 23:01:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UXm+TOWOBr2aV3MJtQ1i94fOaFTW9PgytBEAE9CI8Xg=;
-        b=vRItQlazGVVLD1IMqbPCE/lmjR+TjxXbb3QKrDO932MdzkyEi2deyMHQlXoxJoAYGM
-         wiFbQ+YX9nIu4glSWCf2QkaoSRiwI5kj8drodgoVzspgSi4o1aiPTUEqolZKcTP2+NXd
-         uxTVD3ModhFjbNQXYUxRaBCwiNZXL+gsFQYXtdQrQwhG2Wh1n3x8UOzYKjeH3/HqB1QF
-         KnJoF05++3m19ngOYa9c1YAYkDJI9lzLcLSI9ahR9cpZJ0s2b0XqgKFysB7xZOlNiymF
-         NeOZKv8oBN4sakC/A3hmkiZE/cPTXSXtd9r8og1mVkw9is6bY/0GOZrIFUFVHJsmKSd0
-         K5ZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UXm+TOWOBr2aV3MJtQ1i94fOaFTW9PgytBEAE9CI8Xg=;
-        b=pe4HmzQun5ATD+omohNnMG3+2V0aR/K5r9fjWLSW1+U04LBqWLvePjO7Hhxvv/6FOF
-         uiZlth12kY/mYhgwcrpdLgPhwvhbyzY3P/7g29bPPZwSTmW8cXn0iTXvmpJfG47iowuN
-         STQE8U5GSU8XcWfv3XA+vGXQ5SgDuN9e7jN+ccRgunCkaNwQ+CUghMlLM2jjwHBLkMkt
-         INdTgqCxc+sn+j2e2ovId3dFy+plMgcqfra1Eyfi84ho/KztDHjZtcOcf5vQdiwoXAVW
-         oWTE7lAqb4EYErS7hkgoceDlKeyW3jK8QiJmhZTKnWaa2YxTYFx/bIJ8Dq5/UhGpST/B
-         jJOw==
-X-Gm-Message-State: AOAM531ayEzscXjLj3YJMn7lWbegswIBS6az7Mh+BKx6QxR+ghLBJtqf
-        Kl+YxpyTZAw6l4nbpsh4K8I=
-X-Google-Smtp-Source: ABdhPJyRDCZng1TxC0GnuZJK3LAgJuoYiA0N8RXGvN3MjAenWERbNXs+RAhwOTfMc7sFZkEZp4WVeg==
-X-Received: by 2002:a1c:f70b:: with SMTP id v11mr13802429wmh.21.1602568861653;
-        Mon, 12 Oct 2020 23:01:01 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.119.110])
-        by smtp.gmail.com with ESMTPSA id f7sm3525515wrx.64.2020.10.12.23.01.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Oct 2020 23:01:01 -0700 (PDT)
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8516: add auxadc node
-To:     Fabien Parent <fparent@baylibre.com>, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Cc:     robh+dt@kernel.org, pmeerw@pmeerw.net, lars@metafoo.de,
-        knaack.h@gmx.de, jic23@kernel.org
-References: <20201012205218.3010868-1-fparent@baylibre.com>
- <20201012205218.3010868-2-fparent@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <81a12664-639e-20cc-8b49-6bcb53822a3f@gmail.com>
-Date:   Tue, 13 Oct 2020 08:01:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S2389074AbgJMGG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 02:06:57 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:15209 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2388963AbgJMGG4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 02:06:56 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 3739FAD7367EB5382402;
+        Tue, 13 Oct 2020 14:06:50 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.134) by
+ DGGEMS402-HUB.china.huawei.com (10.3.19.202) with Microsoft SMTP Server id
+ 14.3.487.0; Tue, 13 Oct 2020 14:06:42 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        "Scott Branden" <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH 0/2] eliminate two common errors reported by any yaml on arm64
+Date:   Tue, 13 Oct 2020 14:06:21 +0800
+Message-ID: <20201013060623.1711-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-In-Reply-To: <20201012205218.3010868-2-fparent@baylibre.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.134]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The following errors occured no matter which YAML file I executed on arm64.
+Therefore, it is necessary to eliminate it so that people's time and energy are
+not wasted every time.
+
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+
+Zhen Lei (2):
+  arm64: dts: broadcom: remove an unused property dma-ranges
+  arm64: dts: qcom: remove an unused property dma-ranges
+
+ arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi                   | 1 -
+ 2 files changed, 2 deletions(-)
+
+-- 
+1.8.3
 
 
-On 12/10/2020 22:52, Fabien Parent wrote:
-> Add node for the auxadc IP. The IP is compatible with the one found
-> in MT8173 SoC.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8516.dtsi | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> index 89af661e7f63..943c426e9aaf 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> @@ -470,5 +470,15 @@ usb0_port: usb-phy@11110800 {
->   				#phy-cells = <1>;
->   			};
->   		};
-> +
-> +		auxadc: adc@11003000 {
-> +			compatible = "mediatek,mt8516-auxadc",
-> +				     "mediatek,mt8173-auxadc";
-> +			reg = <0 0x11003000 0 0x1000>;
-> +			clocks = <&topckgen CLK_TOP_AUX_ADC>;
-> +			clock-names = "main";
-> +			#io-channel-cells = <1>;
-> +			status = "disabled";
-> +		};
->   	};
->   };
-> 
-
-Any reason you don't enable the status in the pumpkin dts?
-
-Regards,
-Matthias
