@@ -2,93 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50BB828D136
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD66728D138
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:27:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389382AbgJMP1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 11:27:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45052 "EHLO
+        id S2389387AbgJMP1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 11:27:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389378AbgJMP1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:27:05 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77863C0613D0
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 08:27:05 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id e2so84555wme.1
+        with ESMTP id S2389384AbgJMP1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:27:06 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0212CC0613D5
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 08:27:06 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id l15so204784wmh.1
         for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 08:27:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=d1nW1e8BW37kG8S2Q/+J/RTjhvcX6BLWpU1KmHqRl0Y=;
-        b=nSvxSBnIW0+ymq3uWtUfsqXPFdYdr7Lbnal6vp+EV/O3aqxaKLYjdYcZP24aKR/KLo
-         DkA8y4YMhPbQqBTJIIVhrSGWX01xijFkyUQQNLRyyZbjW1bswYA6vwvbOZrGSBT+nNjA
-         zvcdI3KIdbbZDY+MAVfzDvL/29vAH9CIgIVjHpZrMzrrWY3aERRqInSmruYDoq3wtYB7
-         sEasu5tOKqrR1DMY2u93yVFG9lp7+DH5P+0X1u5O+dZJRfq4mk9xoe8xAZaPD3m9Z0yz
-         1cfMi0rdUDlZiXTJzzkVIjrpdBoAwwwCpsaId/nGWs4DkraNYjIKP1sgv0PMp8AVMxAH
-         904g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=KdXDPzN9ufLcbzcaOMQEQHJjCL2OvCuHCwsHPA3iKvU=;
+        b=ujhmPvu6i222VHcnYYVoVM3FjXkWcmWaCG9my0GXk1rk/tlnuZSfSQjXABKdDDb2J7
+         bz3U7YXiCuwYw99K3pocLJQMK/15IZFFiYQpBAYJX8bF17IR6Mkh6p1hvpXYqgqSqMCH
+         3OVyToMzGwXjTp4P/4G8Z5EfKzNzR2iyteehj3T8q53lCbasPGdyS6o/rq7SLMfrGmjb
+         CD3LXm+vpS2hqwwzbo4e22oO0gmWoHnsPBCfdUh54cQFhRbpG+yRvOF9v1bx9z+pHbtJ
+         8aarWyUC8mtTqj4N66WCudL7TpkO+VoMLyqG4esxzaGLNOS/pNOBpXLTnB77gRN1AUyI
+         bjUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=d1nW1e8BW37kG8S2Q/+J/RTjhvcX6BLWpU1KmHqRl0Y=;
-        b=sQzSDtmfchQqZBoSbOjyfjqtI1TR913YX6eBuR/+TWf3Idu99JEBv6tSxhS0Vste67
-         mYfH7ju8Nn4OiikoozUF/ORGr96zSbExHTb6ZJ7ei3dF4mFxbbMzYcRjiWIYJyoBU57c
-         fxN3f8zbphCS92/eTS24ELprCK8HPMPNHEsuDk+SBB5GoqwSxcTHONIPUv9CPW1PMBYN
-         Hc//DtT+v2DFzdZovacZRV5nqH2WEApYrC3rH7SvVn0AboztMb96cbMvDTb7w69EWd8d
-         M7jqgAPrNBJmpLDsgIG9MnTQV2DIY6m+FqocozbU3MgoWE1SFQWLZ135BxVBh4qBiJME
-         YSRA==
-X-Gm-Message-State: AOAM5322rtaC623ySB4N4glZNGTbM/+VmiKXa5YZleCP1p64O3E3Q0Ty
-        jf0YfygsCv7qYMMAvrbMGXd0CQ==
-X-Google-Smtp-Source: ABdhPJwtJpHyandexUO80T5uxJgeW5ugVnrneA9hSgScQAoY6LOGM10nHMAgafB7ITWQK4FSQk7LIA==
-X-Received: by 2002:a7b:c14f:: with SMTP id z15mr403466wmi.73.1602602822252;
-        Tue, 13 Oct 2020 08:27:02 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=KdXDPzN9ufLcbzcaOMQEQHJjCL2OvCuHCwsHPA3iKvU=;
+        b=Xe4WZGBaWSUoLSj+b+Bsnds617C99034Q2IOmJcfzmlaO2Vq++zJOBRZrCTj66g0gH
+         QtkAw9HvhVWGgIyZndt1ULStwRHtlQvWS7daGgLD8FHrRwC/4+txMrD68aTnNdogI8e7
+         BLjtI/envfnAmVx7hHt7AxdppeRRqkbPNAk3wYuj4n39nedUpQkCojspxnL6KPBxGkPX
+         /JyYvfGdCKVc5MAAut5TjU96BwUyHUJS+FKNYseXfnYBxTO85KN0KYM69Bn02mnNjTmE
+         jTVS3H8anY4hlBPl9hCJ7OBhhxEEbEvTDK8fBaUwxc+yzDMZJLKse5pnFgsOCEnSYqZc
+         PMcQ==
+X-Gm-Message-State: AOAM531tpWKtU1XNa13ix81lhAqN/DQ2JUdMqGa3ILdEvTQU+4Of578Q
+        woVXhk7Yq0My9n4qbssQcvzz3g==
+X-Google-Smtp-Source: ABdhPJyQ9E2ewRqPZIXqKm42eAHFDbovB0PeO5uYJAYzjhxT5Hgtaqo1WRMSI7Pf6WNf0LpTU+vuMQ==
+X-Received: by 2002:a7b:c418:: with SMTP id k24mr434135wmi.118.1602602824558;
+        Tue, 13 Oct 2020 08:27:04 -0700 (PDT)
 Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id z127sm111575wmc.2.2020.10.13.08.27.01
+        by smtp.gmail.com with ESMTPSA id z127sm111575wmc.2.2020.10.13.08.27.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 08:27:01 -0700 (PDT)
+        Tue, 13 Oct 2020 08:27:04 -0700 (PDT)
 From:   Rui Miguel Silva <rui.silva@linaro.org>
 X-Google-Original-From: Rui Miguel Silva <rmfrfs@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
         Hans Verkuil <hverkuil@xs4all.nl>
 Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         Rui Miguel Silva <rmfrfs@gmail.com>
-Subject: [PATCH 0/3] dt-bindings: media: imx7 and ov2680 updates to yaml
-Date:   Tue, 13 Oct 2020 16:26:44 +0100
-Message-Id: <20201013152647.537323-1-rmfrfs@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: ov2680: convert bindings to yaml
+Date:   Tue, 13 Oct 2020 16:26:45 +0100
+Message-Id: <20201013152647.537323-2-rmfrfs@gmail.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201013152647.537323-1-rmfrfs@gmail.com>
+References: <20201013152647.537323-1-rmfrfs@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update bindings documentation to json-schema yaml in imx7 csi, mipi csi and
-ov2680 sensor media devices along the respective MAINTAINERS entry.
+Convert ov2680 sensor bindings documentation to yaml schema, remove
+the textual bindings document and update MAINTAINERS entry.
 
-Cheers,
-  Rui
-
-Rui Miguel Silva (3):
-  dt-bindings: ov2680: convert bindings to yaml
-  dt-bindings: imx7-csi: convert bindings to yaml
-  dt-bindings: imx7-mipi-csi2: convert bindings to yaml
-
- .../devicetree/bindings/media/i2c/ov2680.txt  |  46 -----
- .../devicetree/bindings/media/i2c/ov2680.yaml | 131 +++++++++++++
- .../devicetree/bindings/media/imx7-csi.txt    |  42 ----
- .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
- .../bindings/media/nxp,imx7-csi.yaml          |  84 ++++++++
- .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 181 ++++++++++++++++++
- MAINTAINERS                                   |   6 +-
- 7 files changed, 399 insertions(+), 181 deletions(-)
+Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
+---
+ .../devicetree/bindings/media/i2c/ov2680.txt  |  46 ------
+ .../devicetree/bindings/media/i2c/ov2680.yaml | 131 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 132 insertions(+), 47 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.txt
  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/imx7-csi.txt
- delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
- create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
- create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
 
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.txt b/Documentation/devicetree/bindings/media/i2c/ov2680.txt
+deleted file mode 100644
+index 11e925ed9dad..000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/ov2680.txt
++++ /dev/null
+@@ -1,46 +0,0 @@
+-* Omnivision OV2680 MIPI CSI-2 sensor
+-
+-Required Properties:
+-- compatible: should be "ovti,ov2680".
+-- clocks: reference to the xvclk input clock.
+-- clock-names: should be "xvclk".
+-- DOVDD-supply: Digital I/O voltage supply.
+-- DVDD-supply: Digital core voltage supply.
+-- AVDD-supply: Analog voltage supply.
+-
+-Optional Properties:
+-- reset-gpios: reference to the GPIO connected to the powerdown/reset pin,
+-               if any. This is an active low signal to the OV2680.
+-
+-The device node must contain one 'port' child node for its digital output
+-video port, and this port must have a single endpoint in accordance with
+- the video interface bindings defined in
+-Documentation/devicetree/bindings/media/video-interfaces.txt.
+-
+-Endpoint node required properties for CSI-2 connection are:
+-- remote-endpoint: a phandle to the bus receiver's endpoint node.
+-- clock-lanes: should be set to <0> (clock lane on hardware lane 0).
+-- data-lanes: should be set to <1> (one CSI-2 lane supported).
+-
+-Example:
+-
+-&i2c2 {
+-	ov2680: camera-sensor@36 {
+-		compatible = "ovti,ov2680";
+-		reg = <0x36>;
+-		clocks = <&osc>;
+-		clock-names = "xvclk";
+-		reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
+-		DOVDD-supply = <&sw2_reg>;
+-		DVDD-supply = <&sw2_reg>;
+-		AVDD-supply = <&reg_peri_3p15v>;
+-
+-		port {
+-			ov2680_to_mipi: endpoint {
+-				remote-endpoint = <&mipi_from_sensor>;
+-				clock-lanes = <0>;
+-				data-lanes = <1>;
+-			};
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+new file mode 100644
+index 000000000000..2516215a511d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+@@ -0,0 +1,131 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ov2680.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV2680 CMOS Sensor
++
++maintainers:
++  - Rui Miguel Silva <rmfrfs@gmail.com>
++
++description: |-
++  The OV2680 color sensor is a low voltage, high performance 1/5 inch UXGA (2
++  megapixel) CMOS image sensor that provides a single-chip UXGA (1600 x 1200)
++  camera. It provides full-frame, sub-sampled, or windowed 10-bit images in
++  various formats via the control of the Serial Camera Control Bus (SCCB)
++  interface.  The OV2680 has an image array capable of operating at up to 30
++  frames per second (fps) in UXGA resolution.
++
++properties:
++  compatible:
++    const: ovti,ov2680
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    description:
++      Input clock for the sensor.
++    items:
++      - const: xvclk
++
++  reset-gpios:
++    description:
++      The phandle and specifier for the GPIO that controls sensor reset.
++      This corresponds to the hardware pin XSHUTDOWN which is physically
++      active low.
++
++  dovdd-supply:
++    description:
++      Definition of the regulator used as interface power supply.
++
++  avdd-supply:
++    description:
++      Definition of the regulator used as analog power supply.
++
++  dvdd-supply:
++    description:
++      Definition of the regulator used as digital power supply.
++
++  port:
++    type: object
++    additionalProperties: false
++    description:
++      A node containing an output port node with an endpoint definition
++      as documented in
++      Documentation/devicetree/bindings/media/video-interfaces.txt
++
++    properties:
++      endpoint:
++        type: object
++
++        properties:
++          remote-endpoint: true
++
++          data-lanes:
++            description: |-
++              The driver only supports one-lane operation.
++            items:
++              - const: 1
++
++          clock-lanes:
++            description: |-
++              The driver only supports one-lane operation.
++            items:
++              - const: 0
++
++        required:
++          - remote-endpoint
++          - data-lanes
++          - clock-lanes
++
++    required:
++      - endpoint
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - dovdd-supply
++  - avdd-supply
++  - dvdd-supply
++  - reset-gpios
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov2680: camera-sensor@36 {
++                compatible = "ovti,ov2680";
++                reg = <0x36>;
++                clocks = <&osc>;
++                clock-names = "xvclk";
++                reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
++
++                dovdd-supply = <&sw2_reg>;
++                dvdd-supply = <&sw2_reg>;
++                avdd-supply = <&reg_peri_3p15v>;
++
++                port {
++                        ov2680_to_mipi: endpoint {
++                                remote-endpoint = <&mipi_from_sensor>;
++                                clock-lanes = <0>;
++                                data-lanes = <1>;
++                        };
++                };
++        };
++    };
++...
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2e85e114c9c3..926dcdc4794c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12775,7 +12775,7 @@ M:	Rui Miguel Silva <rmfrfs@gmail.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+-F:	Documentation/devicetree/bindings/media/i2c/ov2680.txt
++F:	Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+ F:	drivers/media/i2c/ov2680.c
+ 
+ OMNIVISION OV2685 SENSOR DRIVER
 -- 
 2.28.0
 
