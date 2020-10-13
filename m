@@ -2,176 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D6EA28CEE9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:08:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 791C928CEFE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728341AbgJMNIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:08:44 -0400
-Received: from foss.arm.com ([217.140.110.172]:59690 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727151AbgJMNIo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 09:08:44 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61FA61FB;
-        Tue, 13 Oct 2020 06:08:43 -0700 (PDT)
-Received: from [10.57.48.76] (unknown [10.57.48.76])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 402A33F719;
-        Tue, 13 Oct 2020 06:08:41 -0700 (PDT)
-Subject: Re: [PATCH v4 0/4] Add system mmu support for Armada-806
-To:     Denis Odintsov <d.odintsov@traviangames.com>,
-        Tomasz Nowicki <tn@semihalf.com>
-Cc:     "will@kernel.org" <will@kernel.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "hannah@marvell.com" <hannah@marvell.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "nadavh@marvell.com" <nadavh@marvell.com>,
-        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
-        "mw@semihalf.com" <mw@semihalf.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200715070649.18733-1-tn@semihalf.com>
- <517BB937-1F18-4CCF-81BF-11777BB99779@traviangames.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <08ed4dd7-9c2f-813d-9aea-ff8da07e5641@arm.com>
-Date:   Tue, 13 Oct 2020 14:08:38 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.3.2
+        id S1727526AbgJMNQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:16:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726648AbgJMNQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:16:09 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 394EFC0613D0
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:16:08 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id i1so17878526wro.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:16:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VU2ZxqifLVfdvXSsHtiP10MIVpWQnhcB7qzC0l8n27Q=;
+        b=UufO7gbvHGhekdd1ajNHDbaSed4SdIC7Spgf6zXceCSYOf/ADkjmmkC9V23bqUMbB1
+         ZsrrCkmtKhTx4DbLS4KY8QwRW2CIP8POGiUetpNpMGWyvu2xayQN3CmH/y6R+UkzFZOk
+         y8YrUg4kpIWXTd2gNzWGuF0gER7c7i3EQnJexjIkYzTIZnfAxw8SehnLQOBDKkmNdeFk
+         NXrJ3liIsKToDluLopfwwND95b7h+vHBVPoOKOYPmhOTpJspfjGU4ZUip8DoRN4/k4yZ
+         BKICBEMee6dlz2O01Gebr2Y2B/VhlrIQKrfs/AgiXMR+TqUbTk7P30Fiu+WgLznCVNAU
+         YGWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VU2ZxqifLVfdvXSsHtiP10MIVpWQnhcB7qzC0l8n27Q=;
+        b=nml/vSGXPly3OpMBQf+bIaWAtbFzPUDA7S+Grc3Y/oGkLwz9v7U4v96P0vpH8zi5IN
+         b+UM45BkTf+zIGSrh0sO+t8dwkmT7sZx9C5k/St4DccCfmk+5L084Pw8PRPqRDAStUjX
+         Z2MgdgBi8g50DCm2r5ORPug6epR+flOkyK3o1xx69DM9AXTFJUj60Mw0xHNA4HLfC3Qj
+         x+pIXQn9CtYZ2XDDSZHeHHuAphr7d5NrmwO9FhWX/OIu55fujdw7abNFVjfxmkVJnUhd
+         It2ghiyzfcqghaX8JYH2oL5geay1b0vUHaITGpxP7p5GwmtBhCNYpnvPzx0bDecoOXsV
+         ijSA==
+X-Gm-Message-State: AOAM531xB0LCQz+hCDHSYQN2U1/qncC2+YnUzwg1lDlsqGWPy3ZueiUE
+        p6GOIx09b2BL3lI3c9Z1QzRQkQ==
+X-Google-Smtp-Source: ABdhPJyrMGbPezIyjxdtuy1W66p9EYHvfNv74EcrgGuUCuA1A4K2B3PooNGWh648/iYuSDfIvVd8pQ==
+X-Received: by 2002:a5d:480a:: with SMTP id l10mr34477948wrq.238.1602594966785;
+        Tue, 13 Oct 2020 06:16:06 -0700 (PDT)
+Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id u63sm27362883wmb.13.2020.10.13.06.16.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Oct 2020 06:16:04 -0700 (PDT)
+From:   Rui Miguel Silva <rui.silva@linaro.org>
+X-Google-Original-From: Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Rui Miguel Silva <rmfrfs@gmail.com>
+Subject: [PATCH] dt-bindings: fxas21002c: convert bindings to yaml
+Date:   Tue, 13 Oct 2020 14:15:45 +0100
+Message-Id: <20201013131545.503434-1-rmfrfs@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <517BB937-1F18-4CCF-81BF-11777BB99779@traviangames.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-10-06 16:16, Denis Odintsov wrote:
-> Hi,
-> 
->> Am 15.07.2020 um 09:06 schrieb Tomasz Nowicki <tn@semihalf.com>:
->>
->> The series is meant to support SMMU for AP806 and a workaround
->> for accessing ARM SMMU 64bit registers is the gist of it.
->>
->> For the record, AP-806 can't access SMMU registers with 64bit width.
->> This patches split the readq/writeq into two 32bit accesses instead
->> and update DT bindings.
->>
->> The series was successfully tested on a vanilla v5.8-rc3 kernel and
->> Intel e1000e PCIe NIC. The same for platform devices like SATA and USB.
->>
->> For reference, previous versions are listed below:
->> V1: https://lkml.org/lkml/2018/10/15/373
->> V2: https://lkml.org/lkml/2019/7/11/426
->> V3: https://lkml.org/lkml/2020/7/2/1114
->>
-> 
-> 1) After enabling SMMU on Armada 8040, and ARM_SMMU_DISABLE_BYPASS_BY_DEFAUL=y by default in kernel since 954a03be033c7cef80ddc232e7cbdb17df735663,
-> internal eMMC is prevented from being initialised (as there is no iommus property for ap_sdhci0)
-> Disabling "Disable bypass by default" make it work, but the patch highly suggest doing it properly.
-> I wasn't able to find correct path for ap_sdhci for iommus in any publicly available documentation,
-> would be highly appreciated addressed properly, thank you!
+Convert fxas21002c gyroscope sensor bindings documentation to
+yaml schema and remove the textual bindings document.
 
-FWIW the SMMU tells you the offending unmatched Stream ID, so if faults 
-can reasonably be correlated with a particular device making accesses, 
-you can effectively discover the Stream ID assignment by trial and 
-error. Often that can be easier than trying to find formal documentation 
-anyway ;)
+Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
+---
+ .../bindings/iio/gyroscope/nxp,fxas21002c.txt | 31 --------
+ .../iio/gyroscope/nxp,fxas21002c.yaml         | 77 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 78 insertions(+), 32 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
 
-> 2) Second issue I got (btw I have ClearFog GT 8k armada-8040 based board) is mpci ath10k card.
-> It is found, it is enumerated, it is visible in lspci, but it fails to be initialised. Here is the log:
-> 
-> [    1.743754] armada8k-pcie f2600000.pcie: host bridge /cp0/pcie@f2600000 ranges:
-> [    1.751116] armada8k-pcie f2600000.pcie:      MEM 0x00f6000000..0x00f6efffff -> 0x00f6000000
-> [    1.964690] armada8k-pcie f2600000.pcie: Link up
-> [    1.969379] armada8k-pcie f2600000.pcie: PCI host bridge to bus 0000:00
-> [    1.976026] pci_bus 0000:00: root bus resource [bus 00-ff]
-> [    1.981537] pci_bus 0000:00: root bus resource [mem 0xf6000000-0xf6efffff]
-> [    1.988462] pci 0000:00:00.0: [11ab:0110] type 01 class 0x060400
-> [    1.994504] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x000fffff]
-> [    2.000843] pci 0000:00:00.0: supports D1 D2
-> [    2.005132] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
-> [    2.011853] pci 0000:01:00.0: [168c:003c] type 00 class 0x028000
-> [    2.018001] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x001fffff 64bit]
-> [    2.025002] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
-> [    2.032111] pci 0000:01:00.0: supports D1 D2
-> [    2.049409] pci 0000:00:00.0: BAR 14: assigned [mem 0xf6000000-0xf61fffff]
-> [    2.056322] pci 0000:00:00.0: BAR 0: assigned [mem 0xf6200000-0xf62fffff]
-> [    2.063142] pci 0000:00:00.0: BAR 15: assigned [mem 0xf6300000-0xf63fffff pref]
-> [    2.070484] pci 0000:01:00.0: BAR 0: assigned [mem 0xf6000000-0xf61fffff 64bit]
-> [    2.077880] pci 0000:01:00.0: BAR 6: assigned [mem 0xf6300000-0xf630ffff pref]
-> [    2.085135] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-> [    2.090384] pci 0000:00:00.0:   bridge window [mem 0xf6000000-0xf61fffff]
-> [    2.097202] pci 0000:00:00.0:   bridge window [mem 0xf6300000-0xf63fffff pref]
-> [    2.104539] pcieport 0000:00:00.0: Adding to iommu group 4
-> [    2.110232] pcieport 0000:00:00.0: PME: Signaling with IRQ 38
-> [    2.116141] pcieport 0000:00:00.0: AER: enabled with IRQ 38
-> [    8.131135] ath10k_pci 0000:01:00.0: Adding to iommu group 4
-> [    8.131874] ath10k_pci 0000:01:00.0: enabling device (0000 -> 0002)
-> [    8.132203] ath10k_pci 0000:01:00.0: pci irq msi oper_irq_mode 2 irq_mode 0 reset_mode 0
-> 
-> up to that point the log is the same as without SMMU enabled, except "Adding to iommu group N" lines, and IRQ being 37
+diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
+deleted file mode 100644
+index 465e104bbf14..000000000000
+--- a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-* NXP FXAS21002C Gyroscope device tree bindings
+-
+-http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
+-
+-Required properties:
+-  - compatible : should be "nxp,fxas21002c"
+-  - reg : the I2C address of the sensor or SPI chip select number for the
+-          device.
+-  - vdd-supply: phandle to the regulator that provides power to the sensor.
+-  - vddio-supply: phandle to the regulator that provides power to the bus.
+-
+-Optional properties:
+-  - reset-gpios : gpio used to reset the device, see gpio/gpio.txt
+-  - interrupts : device support 2 interrupts, INT1 and INT2,
+-                 the interrupts can be triggered on rising or falling edges.
+-                 See interrupt-controller/interrupts.txt
+-  - interrupt-names: should contain "INT1" or "INT2", the gyroscope interrupt
+-                     line in use.
+-  - drive-open-drain: the interrupt/data ready line will be configured
+-                      as open drain, which is useful if several sensors share
+-                      the same interrupt line. This is a boolean property.
+-                      (This binding is taken from pinctrl/pinctrl-bindings.txt)
+-
+-Example:
+-
+-gyroscope@20 {
+-	compatible = "nxp,fxas21002c";
+-	reg = <0x20>;
+-	vdd-supply = <&reg_peri_3p15v>;
+-	vddio-supply = <&reg_peri_3p15v>;
+-};
+diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+new file mode 100644
+index 000000000000..7680e97cf1d9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/gyroscope/nxp,fxas21002c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP FXAS21002C Gyroscope Unit
++
++maintainers:
++  - Rui Miguel Silva <rmfrfs@gmail.com>
++
++description: |
++  3 axis digital gyroscope device with an I2C and SPI interface.
++  http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
++
++properties:
++  compatible:
++    enum:
++      - nxp,fxas21002c
++
++  reg:
++    maxItems: 1
++    description: base address of the device
++
++  vdd-supply:
++    description: Regulator that provides power to the sensor
++
++  vddio-supply:
++    description: Regulator that provides power to the bus
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to reset
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++    description: device support 2 interrupts, INT1 and INT2, the interrupts can
++                 be triggered on rising or falling edges.
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      enum:
++        - INT1
++        - INT2
++    description: gyroscope interrupt line in use.
++
++  drive-open-drain:
++    type: boolean
++    description: the interrupt/data ready line will be configured as open drain,
++                 which is useful if several sensors share the same interrupt
++                 line.
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++  - vddio-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        gyroscope@20 {
++          compatible = "nxp,fxas21002c";
++          reg = <0x20>;
++
++          vdd-supply = <&reg_peri_3p15v>;
++          vddio-supply = <&reg_peri_3p15v>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6594f0966716..2e85e114c9c3 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12469,7 +12469,7 @@ NXP FXAS21002C DRIVER
+ M:	Rui Miguel Silva <rmfrfs@gmail.com>
+ L:	linux-iio@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
++F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+ F:	drivers/iio/gyro/fxas21002c.h
+ F:	drivers/iio/gyro/fxas21002c_core.c
+ F:	drivers/iio/gyro/fxas21002c_i2c.c
+-- 
+2.28.0
 
-Does forcing ath10k to use legacy interrupts rather than MSIs make a 
-difference?
-
-Judging by the DT it looks like MSIs ought to be targeting the GICv2M 
-widget, but if things somehow end up trying to use the PCIe controller's 
-internal MSI doorbell (upstream of SMMU translation) instead, then that 
-might account for general interrupt-related weirdness.
-
-Robin.
-
-> [    8.221328] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
-> [    8.313362] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
-> [    8.409373] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
-> [    8.553433] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
-> [    8.641370] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
-> [    8.737979] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
-> [    8.807356] ath10k_pci 0000:01:00.0: Failed to get pcie state addr: -16
-> [    8.814032] ath10k_pci 0000:01:00.0: failed to setup init config: -16
-> [    8.820605] ath10k_pci 0000:01:00.0: could not power on hif bus (-16)
-> [    8.827111] ath10k_pci 0000:01:00.0: could not probe fw (-16)
-> 
-> Thank you!
-> 
->> v3 -> v4
->> - call cfg_probe() impl hook a bit earlier which simplifies errata handling
->> - use hi_lo_readq_relaxed() and hi_lo_writeq_relaxed() for register accessors
->> - keep SMMU status disabled by default and enable where possible (DTS changes)
->> - commit logs improvements and other minor fixes
->>
->> Hanna Hawa (1):
->>   iommu/arm-smmu: Workaround for Marvell Armada-AP806 SoC erratum
->>     #582743
->>
->> Marcin Wojtas (1):
->>   arm64: dts: marvell: add SMMU support
->>
->> Tomasz Nowicki (2):
->>   iommu/arm-smmu: Call configuration impl hook before consuming features
->>   dt-bindings: arm-smmu: add compatible string for Marvell Armada-AP806
->>     SMMU-500
->>
->> Documentation/arm64/silicon-errata.rst        |  3 ++
->> .../devicetree/bindings/iommu/arm,smmu.yaml   |  4 ++
->> arch/arm64/boot/dts/marvell/armada-7040.dtsi  | 28 ++++++++++++
->> arch/arm64/boot/dts/marvell/armada-8040.dtsi  | 40 +++++++++++++++++
->> arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 18 ++++++++
->> drivers/iommu/arm-smmu-impl.c                 | 45 +++++++++++++++++++
->> drivers/iommu/arm-smmu.c                      | 11 +++--
->> 7 files changed, 145 insertions(+), 4 deletions(-)
->>
->> -- 
->> 2.17.1
->>
->> _______________________________________________
->> iommu mailing list
->> iommu@lists.linux-foundation.org
->> https://lists.linuxfoundation.org/mailman/listinfo/iommu
->>
-> 
