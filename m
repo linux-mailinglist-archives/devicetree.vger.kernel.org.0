@@ -2,83 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F28AB28CB3E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 11:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D20E28CB50
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 11:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727390AbgJMJzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 05:55:20 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:46567 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726120AbgJMJzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 05:55:19 -0400
-X-UUID: 2d083468002b4a54841e6fb34d9036e9-20201013
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ErW8HdEIq/FdudMvL/XJKMQpzparYDyvJJpkVDGt/9I=;
-        b=A4XIiW+zG7s81RxaMdCDqufQdbZ2FjDXvL2CrFVN760zsODjdZ1mBJ2F+RNEwF2fMV0bP2jiwcFz1BWdD7NNKVuWxg14t8IgtOTRbMQqq9rUE/EkW7gudbCMBR+87GmORZOH0JEzQxqOmgoNtMbpJOUFdoTu86RNHF0z8lowHQ0=;
-X-UUID: 2d083468002b4a54841e6fb34d9036e9-20201013
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1675622749; Tue, 13 Oct 2020 17:55:08 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
- (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Oct
- 2020 17:55:06 +0800
-Received: from [10.16.6.141] (10.16.6.141) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 13 Oct 2020 17:55:03 +0800
-Message-ID: <1602582900.10262.0.camel@mszsdaap41>
-Subject: Re: [v4 PATCH 0/2] fix scrolling of panel with small hfp or hbp
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        <huijuan.xie@mediatek.com>, <stonea168@163.com>,
-        <cawa.cheng@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, <yingjoe.chen@mediatek.com>,
-        <eddie.huang@mediatek.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 13 Oct 2020 17:55:00 +0800
-In-Reply-To: <CAAOTY_-qZni-o11HJeymH74PAFSJw-0Awdz0wdjiQ0u7Ga1MGA@mail.gmail.com>
-References: <20201010070910.11294-1-jitao.shi@mediatek.com>
-         <CAAOTY_-qZni-o11HJeymH74PAFSJw-0Awdz0wdjiQ0u7Ga1MGA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727433AbgJMJ7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 05:59:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47962 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726120AbgJMJ7G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 05:59:06 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E5029205CA;
+        Tue, 13 Oct 2020 09:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602583145;
+        bh=qlxobwjWhl2P5iAy5mCVmz0GY1/JgqsIlYnM3d89OYM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dbTg4mokRxYkLgRJy29fjf7imyGO1f4KoJU1nlJJ1/IAUbgikezwaq6bgWeyeP871
+         EaYsVhPW1aP8N4wQHfbjNI3b1HWhLchpJGnCTnHwEEa47pOE8iTF/xxpC2s1z8Fk+v
+         QvePW3GXSU68N7D1EYQB+OBIqVROf7H0NKwyXlD0=
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=hot-poop.lan)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kSH5C-000nBg-Ro; Tue, 13 Oct 2020 10:59:03 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Nagarjuna Kristam <nkristam@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: tegra186: Add missing CPU PMUs
+Date:   Tue, 13 Oct 2020 10:58:51 +0100
+Message-Id: <20201013095851.311478-1-maz@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 9058B82AC9E991BE078B9380368DAEE655AD1DF6E08AD11FCBEC7D55ED3BBE992000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com, nkristam@nvidia.com, skomatineni@nvidia.com, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTEwLTEyIGF0IDIzOjIyICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
-PiBIaSwgSml0YW86DQo+IA0KPiBKaXRhbyBTaGkgPGppdGFvLnNoaUBtZWRpYXRlay5jb20+IOaW
-vCAyMDIw5bm0MTDmnIgxMOaXpSDpgLHlha0g5LiL5Y2IMzowOeWvq+mBk++8mg0KPiA+DQo+ID4g
-Q2hhbmdlcyBzaW5jZSB2MzoNCj4gPiAgLSBSZXZlcnQgdjIsIGZvciB2MiB3aWxsIGNhdXNlIHNv
-bWUgYnJpZGdlIGljIG5vIG91dHB1dC4gdGhlIGNhdXNlDQo+ID4gICAgdGhlIHZpZGVvIGxpbmV0
-aW1lIGRvZXNuJ3QgbWF0Y2ggZGlzcGxheSBtb2RlIGZyb20gZ2V0IG1vZGUuDQo+ID4gIC0gTWFr
-ZSBzdXJlIHRoZSBob3Jpem9udGFsX2Zyb250cG9yY2hfYnl0ZSBhbmQgaG9yaXpvbnRhbF9iYWNr
-cG9yY2hfYnl0ZQ0KPiA+ICAgIGFyZSA+IDAuDQo+IA0KPiBCZWNhdXNlIHYyIGlzIG1lcmdlZCBp
-bnRvIG1haW5saW5lLCBJIHRoaW5rIHlvdSBzaG91bGQgbWVyZ2UgMS8yIGFuZA0KPiAyLzIgdG8g
-b25lIHBhdGNoIHdoaWNoIGZpeCB0aGUgcHJvYmxlbSBjYXVzZWQgYnkgdjIuDQo+IA0KPiBSZWdh
-cmRzLA0KPiBDaHVuLUt1YW5nLg0KPiANCg0KVGhhbmtzIGZvciB5b3VyIHJldmlld2luZy4NCkkn
-bGwgdXBkYXRlIG5leHQgdmVyc2lvbi4NCg0KQmVzdCBSZWdhcmRzDQpKaXRhbw0KDQo+ID4NCj4g
-PiBKaXRhbyBTaGkgKDIpOg0KPiA+ICAgUmV2ZXJ0ICJkcm0vbWVkaWF0ZWs6IGRzaTogRml4IHNj
-cm9sbGluZyBvZiBwYW5lbCB3aXRoIHNtYWxsIGhmcCBvcg0KPiA+ICAgICBoYnAiDQo+ID4gICBk
-cm0vbWVkaWF0ZWs6IGRzaTogZml4IHNjcm9sbGluZyBvZiBwYW5lbCB3aXRoIHNtYWxsIGhmcCBv
-ciBoYnANCj4gPg0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RzaS5jIHwgNjUg
-KysrKysrKysrKysrKysrLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiAgMSBmaWxlIGNoYW5n
-ZWQsIDI1IGluc2VydGlvbnMoKyksIDQwIGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gLS0NCj4gPiAy
-LjEyLjUNCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KPiA+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QNCj4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnDQo+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9kcmktZGV2ZWwNCg0K
+Add the description of CPU PMUs for both the Denver and A57 clusters,
+which enables the perf subsystem.
+
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+---
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi | 28 +++++++++++++++++++-----
+ 1 file changed, 22 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+index fd44545e124d..6bb03668a8d3 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+@@ -1321,7 +1321,7 @@ cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+-		cpu@0 {
++		denver_0: cpu@0 {
+ 			compatible = "nvidia,tegra186-denver";
+ 			device_type = "cpu";
+ 			i-cache-size = <0x20000>;
+@@ -1334,7 +1334,7 @@ cpu@0 {
+ 			reg = <0x000>;
+ 		};
+ 
+-		cpu@1 {
++		denver_1: cpu@1 {
+ 			compatible = "nvidia,tegra186-denver";
+ 			device_type = "cpu";
+ 			i-cache-size = <0x20000>;
+@@ -1347,7 +1347,7 @@ cpu@1 {
+ 			reg = <0x001>;
+ 		};
+ 
+-		cpu@2 {
++		ca57_0: cpu@2 {
+ 			compatible = "arm,cortex-a57";
+ 			device_type = "cpu";
+ 			i-cache-size = <0xC000>;
+@@ -1360,7 +1360,7 @@ cpu@2 {
+ 			reg = <0x100>;
+ 		};
+ 
+-		cpu@3 {
++		ca57_1: cpu@3 {
+ 			compatible = "arm,cortex-a57";
+ 			device_type = "cpu";
+ 			i-cache-size = <0xC000>;
+@@ -1373,7 +1373,7 @@ cpu@3 {
+ 			reg = <0x101>;
+ 		};
+ 
+-		cpu@4 {
++		ca57_2: cpu@4 {
+ 			compatible = "arm,cortex-a57";
+ 			device_type = "cpu";
+ 			i-cache-size = <0xC000>;
+@@ -1386,7 +1386,7 @@ cpu@4 {
+ 			reg = <0x102>;
+ 		};
+ 
+-		cpu@5 {
++		ca57_3: cpu@5 {
+ 			compatible = "arm,cortex-a57";
+ 			device_type = "cpu";
+ 			i-cache-size = <0xC000>;
+@@ -1418,6 +1418,22 @@ L2_A57: l2-cache1 {
+ 		};
+ 	};
+ 
++	pmu_denver {
++		compatible = "nvidia,denver-pmu", "arm,armv8-pmuv3";
++		interrupts = <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&denver_0 &denver_1>;
++	};
++
++	pmu_a57 {
++		compatible = "arm,cortex-a57-pmu", "arm,armv8-pmuv3";
++		interrupts = <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&ca57_0 &ca57_1 &ca57_2 &ca57_3>;
++	};
++
+ 	thermal-zones {
+ 		a57 {
+ 			polling-delay = <0>;
+-- 
+2.28.0
 
