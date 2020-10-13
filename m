@@ -2,108 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A239728D0EE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:03:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1814C28D0FD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726634AbgJMPDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 11:03:19 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:46580 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726157AbgJMPDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:03:19 -0400
-Received: by mail-ot1-f68.google.com with SMTP id m11so230810otk.13;
-        Tue, 13 Oct 2020 08:03:18 -0700 (PDT)
+        id S1731002AbgJMPKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 11:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726157AbgJMPKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:10:50 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A002C0613D0;
+        Tue, 13 Oct 2020 08:10:50 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id b8so11275143wrn.0;
+        Tue, 13 Oct 2020 08:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=JuBX8r/Y6bGRUCSeRJ3CivsANkHlQS6AI/ICS0f0yZY=;
+        b=pRt3/UN2sjp/Id17E5+iGB+94CwhIYyP+J0ZVxahLZjhYewvdy85p6E9qVH8mcDu/w
+         Ma3byumuQbCvWjoxsAbJW0h9gvZLfP0hODyLYPb4jaAc6LzlEhDGij6xWsWm3n9sxLUf
+         Y5rBrxFXjECN11m9EMkIOKoMbnLZAve13uQMowkDZfElmt1rBDlqBQDqGG5xuxoTZTGn
+         A6f85//dkMxRUTK45bcV3JGGijKAaJzUd4tVdcH6w2iU+1IQzZjujWhrlRnaPHFO/u5I
+         TwoDZIkPmDhBYcERTV9R8lQD/E/99qfus11PWOKi7U7sNRgo9fP4mXVVptNJKNu/orur
+         1eGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=o5w7AiSSvOScWVEvBemOGxs8ySO+ClTEubv5ALBOy58=;
-        b=OtQE990ujb3vudiDxsW7BS/tA7RnobaliJrzU5wnSXww60xuJdKfRtEHNfkClBk7qU
-         uu9yUFtnHFQrKL8He4/HYO3SxoZ9BPFUOPdgUNP5Fyu9YfopcGZzUV2bDvzugpuEkuZ9
-         dD/Z2tZ4f3H7F4leakKLPpvGObCueI69pBXVfoPycSfW7/86bW9mmbxxXw09eksFV2XD
-         +9cOdPiMTOBr4r+McieTvTNySes8qsuNokRw63MG7hsH9Fj28u4yR24C5CY98Fd/YNCS
-         ZI9XPUaaGCSp5GywqTOLmK5LRFEAykeCMZQvG5jweJbkasTCz7A9jiwFFjqn5tRhqJ9T
-         m5Dw==
-X-Gm-Message-State: AOAM531OjZWexCjDHqIjs1tswW3PgncsxrzzIqcoh4o/vjF7YncyljQO
-        dyOBIVDLHzzGru6E083ZOA==
-X-Google-Smtp-Source: ABdhPJwPcGuIXfIA54rr5+iTWAXBSTcMGC1Q5kdQ2TXck21QX7ObO/HcKjz5tTQsFK0eEc3/kSij2g==
-X-Received: by 2002:a9d:7f15:: with SMTP id j21mr63221otq.76.1602601398326;
-        Tue, 13 Oct 2020 08:03:18 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i5sm31758ooo.32.2020.10.13.08.03.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 08:03:17 -0700 (PDT)
-Received: (nullmailer pid 3511465 invoked by uid 1000);
-        Tue, 13 Oct 2020 15:03:16 -0000
-Date:   Tue, 13 Oct 2020 10:03:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     sboyd@kernel.org, heikki.krogerus@linux.intel.com,
-        agross@kernel.org, gregkh@linuxfoundation.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jackp@codeaurora.org,
-        sergei.shtylyov@gmail.com
-Subject: Re: [PATCH v10 4/4] arm64: boot: dts: qcom: pm8150b: Add DTS node
- for PMIC VBUS booster
-Message-ID: <20201013150316.GB3497815@bogus>
-References: <20201008235934.8931-1-wcheng@codeaurora.org>
- <20201008235934.8931-5-wcheng@codeaurora.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=JuBX8r/Y6bGRUCSeRJ3CivsANkHlQS6AI/ICS0f0yZY=;
+        b=lc/swWILOmF9u8ypz39We7eo0kmyJ4ooklmUvKrdLT+atY2bUE5Z5rTnTVXjwvSjrG
+         vCNP06GpOt1jO1I5P8SJ6SXCtLr8k4oRsaoHE0CDSm52Cp8QTEXwJb+qnCvcW1A5c1gC
+         bF+cJryD6/+X6Kr+qGXhUOxe4innhzugxCEVfLkQEr1vpF3fzo6UeUzPgP3ud6IMGoam
+         dHCfOm+BXl+WkoZmVv1IESnwGjRXvb+ZhJ+iSSivItevnnqMgc7j90Eqfe+NJ1h4TX/t
+         iS53MXV75cMWq37AR55gFXCLVdCgay8Gbp5uPFhU2N7iO1B1NqfkiylAPzL+8YHnNUhc
+         wo+w==
+X-Gm-Message-State: AOAM530d+gdlk7pl53GPOcO38u6PZBIZNQwL27V++xx8nAd3sbR8JkpV
+        c2BEYr07ToGNrM7BskrFTFPcxtNbT86hXw==
+X-Google-Smtp-Source: ABdhPJxvj/okZcxLvRTRo8EX8POYCQcaPyYdM1hZZbF6KXlzxIMolIv8YA31Et7icSS3qcMo/t9L9g==
+X-Received: by 2002:adf:f4d1:: with SMTP id h17mr107075wrp.41.1602601848929;
+        Tue, 13 Oct 2020 08:10:48 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.119.110])
+        by smtp.gmail.com with ESMTPSA id l11sm31014653wrt.54.2020.10.13.08.10.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Oct 2020 08:10:47 -0700 (PDT)
+Subject: Re: [PATCH v6 4/4] mmc: mediatek: Add subsys clock control for MT8192
+ msdc
+To:     Wenbin Mei <wenbin.mei@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Chaotian Jing <chaotian.jing@mediatek.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com
+References: <20201012124547.16649-1-wenbin.mei@mediatek.com>
+ <20201012124547.16649-5-wenbin.mei@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <72ae1d89-fe31-4f50-15c0-29119d662ea1@gmail.com>
+Date:   Tue, 13 Oct 2020 17:10:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201008235934.8931-5-wcheng@codeaurora.org>
+In-Reply-To: <20201012124547.16649-5-wenbin.mei@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 04:59:34PM -0700, Wesley Cheng wrote:
-> Add the required DTS node for the USB VBUS output regulator, which is
-> available on PM8150B.  This will provide the VBUS source to connected
-> peripherals.
+
+
+On 12/10/2020 14:45, Wenbin Mei wrote:
+> MT8192 msdc is an independent sub system, we need control more bus
+> clocks for it.
+> Add support for the additional subsys clocks to allow it to be
+> configured appropriately.
 > 
-> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
 > ---
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi   | 6 ++++++
->  arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 4 ++++
->  2 files changed, 10 insertions(+)
+>   drivers/mmc/host/mtk-sd.c | 74 +++++++++++++++++++++++++++++----------
+>   1 file changed, 56 insertions(+), 18 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> index 2bf385f5a55a..49ea597cc0c5 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> @@ -53,6 +53,12 @@ power-on@800 {
->  			status = "disabled";
->  		};
->  
-> +		pm8150b_vbus: regulator@1100 {
-> +			compatible = "qcom,pm8150b-vbus-reg";
-> +			status = "disabled";
-> +			reg = <0x1100>;
-> +		};
+> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> index a704745e5882..c7df7510f120 100644
+> --- a/drivers/mmc/host/mtk-sd.c
+> +++ b/drivers/mmc/host/mtk-sd.c
+[...]
+> +static int msdc_of_clock_parse(struct platform_device *pdev,
+> +			       struct msdc_host *host)
+> +{
+> +	int ret;
 > +
->  		pm8150b_typec: usb-typec@1500 {
->  			compatible = "qcom,pm8150b-usb-typec";
->  			status = "disabled";
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> index 6c6325c3af59..ba3b5b802954 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> @@ -409,6 +409,10 @@ &ufs_mem_phy {
->  	vdda-pll-max-microamp = <19000>;
->  };
->  
-> +&pm8150b_vbus {
-> +	status = "okay";
-> +};
-
-Why aren't you enabling the TypeC node and providing a complete example?
-
+> +	host->src_clk = devm_clk_get(&pdev->dev, "source");
+> +	if (IS_ERR(host->src_clk))
+> +		return PTR_ERR(host->src_clk);
 > +
->  &usb_1_hsphy {
->  	status = "okay";
->  	vdda-pll-supply = <&vdd_usb_hs_core>;
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+> +	host->h_clk = devm_clk_get(&pdev->dev, "hclk");
+> +	if (IS_ERR(host->h_clk))
+> +		return PTR_ERR(host->h_clk);
+> +
+> +	host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
+> +	if (IS_ERR(host->bus_clk))
+> +		host->bus_clk = NULL;
+> +
+> +	/*source clock control gate is optional clock*/
+> +	host->src_clk_cg = devm_clk_get_optional(&pdev->dev, "source_cg");
+> +	if (IS_ERR(host->src_clk_cg))
+> +		host->src_clk_cg = NULL;
+> +
+> +	host->sys_clk_cg = devm_clk_get_optional(&pdev->dev, "sys_cg");
+> +	if (IS_ERR(host->sys_clk_cg))
+> +		host->sys_clk_cg = NULL;
+> +
+> +	/* If present, always enable for this clock gate */
+> +	clk_prepare_enable(host->sys_clk_cg);
+> +
+> +	host->bulk_clks[0].id = "pclk_cg";
+> +	host->bulk_clks[1].id = "axi_cg";
+> +	host->bulk_clks[2].id = "ahb_cg";
+
+That looks at least suspicious. The pointers of id point to some strings defined 
+in the function. Aren't they out of scope once msdc_of_clock_parse() has returned?
+
+Regards,
+Matthias
