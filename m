@@ -2,74 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95BDF28CBB7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 12:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B2D28CBD6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 12:35:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387499AbgJMKdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 06:33:03 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:45950 "EHLO honk.sigxcpu.org"
+        id S2388804AbgJMKfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 06:35:42 -0400
+Received: from mx2.suse.de ([195.135.220.15]:55358 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730456AbgJMKcz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 06:32:55 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 17B76FB03;
-        Tue, 13 Oct 2020 12:32:53 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 0HSCc21tTcpC; Tue, 13 Oct 2020 12:32:51 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 9A9CF40309; Tue, 13 Oct 2020 12:32:48 +0200 (CEST)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        id S2388136AbgJMKfm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 06:35:42 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 61A3BADA8;
+        Tue, 13 Oct 2020 10:35:40 +0000 (UTC)
+Message-ID: <cc7842ed7f8a4db863024a0ff5d8b7d86de52f50.camel@suse.de>
+Subject: Re: [PATCH 1/3] dt-bindings: pwm: Add binding for RPi firmware PWM
+ bus
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     f.fainelli@gmail.com, linux@roeck-us.net, jdelvare@suse.com,
+        wahrenst@gmx.net, Eric Anholt <eric@anholt.net>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-binding: display: Require two resets on mantix panel
-Date:   Tue, 13 Oct 2020 12:32:48 +0200
-Message-Id: <15d3dc7eb4e031f380be1298ed3ac9085626f26b.1602584953.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <cover.1602584953.git.agx@sigxcpu.org>
-References: <cover.1602584953.git.agx@sigxcpu.org>
+Date:   Tue, 13 Oct 2020 12:35:38 +0200
+In-Reply-To: <20201012070132.it23vl6f3ytavqgj@pengutronix.de>
+References: <20201009153031.986-1-nsaenzjulienne@suse.de>
+         <20201009153031.986-2-nsaenzjulienne@suse.de>
+         <20201012070132.it23vl6f3ytavqgj@pengutronix.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-2iVS7ULrnuve/eAfppuC"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to reset both for the panel to show an image.
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
----
- .../bindings/display/panel/mantix,mlaf057we51-x.yaml          | 4 ++++
- 1 file changed, 4 insertions(+)
+--=-2iVS7ULrnuve/eAfppuC
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-index 937323cc9aaa..51f423297ec8 100644
---- a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-@@ -37,6 +37,9 @@ properties:
- 
-   reset-gpios: true
- 
-+  'mantix,tp-rstn-gpios':
-+    description: second reset line that triggers DSI config load
-+
-   backlight: true
- 
- required:
-@@ -63,6 +66,7 @@ examples:
-             avee-supply = <&reg_avee>;
-             vddi-supply = <&reg_1v8_p>;
-             reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
-+            mantix,tp-rstn-gpios = <&gpio1 24 GPIO_ACTIVE_LOW>;
-             backlight = <&backlight>;
-         };
-     };
--- 
-2.28.0
+Hi Uwe, thanks for having a look at this.
+
+On Mon, 2020-10-12 at 09:01 +0200, Uwe Kleine-K=C3=B6nig wrote:
+> On Fri, Oct 09, 2020 at 05:30:28PM +0200, Nicolas Saenz Julienne wrote:
+> > The PWM bus controlling the fan in RPi's official PoE hat can only be
+> > controlled by the board's co-processor.
+> >=20
+> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > ---
+> >  .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 21 +++++++++++++++++++
+> >  .../pwm/raspberrypi,firmware-pwm.h            | 13 ++++++++++++
+> >  2 files changed, 34 insertions(+)
+> >  create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-pwm.h
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2=
+835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,b=
+cm2835-firmware.yaml
+> > index a2c63c8b1d10..dcaf00e8602e 100644
+> > --- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-fir=
+mware.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-fir=
+mware.yaml
+> > @@ -64,6 +64,22 @@ properties:
+> >        - compatible
+> >        - "#reset-cells"
+> > =20
+> > +  pwm:
+> > +    type: object
+> > +
+> > +    properties:
+> > +      compatible:
+> > +        const: raspberrypi,firmware-pwm
+> > +
+> > +      "#pwm-cells":
+> > +        const: 1
+> > +        description: >
+> > +          The argument is the PWM bus number.
+>=20
+> This is wrong. #pwm-cells specifies the number of "arguments" for
+> phandles pointing to this node. And I would prefer this being 2 to match
+> the stuff described in the generic pwm binding.
+
+I saw buses out there with the same limitation as this one (unable to chang=
+e
+frequency) that used a single cell, so I whent with it. That said I'll be h=
+appy
+to change it and drop the custom *_xlate() function in benefit of the defau=
+lt
+one.
+
+Regards,
+Nicolas
+
+
+--=-2iVS7ULrnuve/eAfppuC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+FgvoACgkQlfZmHno8
+x/5AQAf/UTRVT1pCa5o4xp+ayZmAGGxRlvfxIEn3jBacnTzBtJvYUu4Fp7kxeJ0K
+vmfLrRwzZmNWOGzw8NzlUTS48qVPIxkQTDueEEbJP6p4kRqMNx80RB7p+cuJYI1S
+NyIZQowKwW7j5Nqzoi2bZ5xICNksvOArBzz06Kw5N4JDExGQHK+XHa/GJS7Oku/B
+OAhKs9ZxnN6L6PqhPibL6ZQtbRW4wCGMJQS1ZUZ670UnGbs7jd7P9biUCekeaBXI
+yyQaIXZ0J1npanQUgq/XWY2y2Yvj2vW6S0oeRIDuvu5ivBEv91Fl3huViq5orSuL
+Qf+7NmmTSx1Is6EbimO01zm2cKf1Rw==
+=ek+T
+-----END PGP SIGNATURE-----
+
+--=-2iVS7ULrnuve/eAfppuC--
 
