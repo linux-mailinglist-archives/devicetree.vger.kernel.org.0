@@ -2,195 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65CA428CC08
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 12:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2295C28CC26
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 13:03:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387900AbgJMKyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 06:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59290 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730163AbgJMKyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 06:54:19 -0400
-Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32E1C0613D0
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 03:54:17 -0700 (PDT)
-Received: by mail-vk1-xa42.google.com with SMTP id y10so2558108vkl.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 03:54:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ynUyUlf8ZBc/wosstkfDmHSkC80iEcSV9kvyuaRkng4=;
-        b=NCxMoMNZHtR/f6uBXfzdJQk8jzrc8dbrfZvgIF6hyvcC214r0LB+m+NNlUMfQGJLdP
-         /zg9yuYcYn5wAPieHv5PsxM9+sloG71VPrC41niSEVM377SaFTB3shYj8zCNTNyIbua6
-         iOWtDADZ+xIDrzoOMJULESyfqCSmB0DeWUMpM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ynUyUlf8ZBc/wosstkfDmHSkC80iEcSV9kvyuaRkng4=;
-        b=DAc4ccBBHB5Fb8zGnNh9I0MLvT7ni25jgAcIXUHg5nOblIgBYGo3uQV+LCrUvNT6GN
-         rWhiPJl8zsRMYsBK0xx3IdOe1gQgxezP8YwarwyDiG55cU/kF/6TqHVrM42YKYQU+CEd
-         nkLRY8xQg+niA1kQ6BYj9zX5HszmGwH59v1Rm00ANxxuSexGtrBxH9ldO3DgD2s0fFFi
-         j8LrWzEf8CUiz2Frn12O++wLfCQnd4SLmg5TazE74Qn0JD6XP+6b+UOVb9IpTu7hEead
-         BHPhHgqNmncpPhdU0HIrM4sGQAnvAZModpaKgWrDSCm9+fKfeqkkdMgezdnFle6Vq7Rb
-         L6rw==
-X-Gm-Message-State: AOAM532ESZy0y/a+gs2LIs9z5rWxb4mD3GTDZXpVXccOeI5sWeHgPr2m
-        XsWK9k9qu65vS19nqO6GkHNF5FY9diQk2L/3yzLPiQ==
-X-Google-Smtp-Source: ABdhPJysPQ5eomCeyfTMzrgpCupOQSNSpjtTrgtpcQZw7r3iRalZSOO25Xe+CvFq/MXGQdp/beZjzKxff66coldxr7U=
-X-Received: by 2002:a1f:2450:: with SMTP id k77mr15393251vkk.13.1602586457062;
- Tue, 13 Oct 2020 03:54:17 -0700 (PDT)
+        id S1728441AbgJMLDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 07:03:45 -0400
+Received: from mail-out.m-online.net ([212.18.0.10]:32850 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727097AbgJMLDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 07:03:45 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4C9Xj93vk6z1sFh8;
+        Tue, 13 Oct 2020 13:03:41 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4C9Xj922Hwz1sM8t;
+        Tue, 13 Oct 2020 13:03:41 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id lbCJbeEq6Gsf; Tue, 13 Oct 2020 13:03:39 +0200 (CEST)
+X-Auth-Info: 7b7MojVlzhVUJfyHBIhRH0YBhJXoClv6jE7GG1MmNeA=
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Tue, 13 Oct 2020 13:03:39 +0200 (CEST)
+Subject: Re: [PATCH v2 3/7] dt-bindings: display: mxsfb: Add a bus-width
+ endpoint property
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, Stefan Agner <stefan@agner.ch>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201007012438.27970-1-laurent.pinchart@ideasonboard.com>
+ <20201007012438.27970-4-laurent.pinchart@ideasonboard.com>
+ <7b8df7af-5ca8-708b-4975-2fdf4280116f@denx.de>
+ <20201009235843.GR25040@pendragon.ideasonboard.com>
+ <9c7615d6-0f69-5f67-0795-b86ecea2eea8@denx.de>
+ <20201013020619.GG3942@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <13dfd626-f0a7-d05d-f90a-069c2389a16c@denx.de>
+Date:   Tue, 13 Oct 2020 13:03:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20201013100625.13056-1-jitao.shi@mediatek.com> <20201013100625.13056-2-jitao.shi@mediatek.com>
-In-Reply-To: <20201013100625.13056-2-jitao.shi@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Tue, 13 Oct 2020 18:54:05 +0800
-Message-ID: <CANMq1KBvG54ZW5gCzp4c_cpQjP6pZ9svngvvRUpWJn7FuMHt3Q@mail.gmail.com>
-Subject: Re: [PATCH v5 1/1] drm/mediatek: dsi: fix scrolling of panel with
- small hfp or hbp
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        huijuan.xie@mediatek.com, stonea168@163.com,
-        cawa cheng <cawa.cheng@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201013020619.GG3942@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 6:06 PM Jitao Shi <jitao.shi@mediatek.com> wrote:
->
-> Replace horizontal_backporch_byte with vm->hback_porch * bpp to aovid
-> flowing judgement negative number.
->
-> if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_byte) >
->         data_phy_cycles * dsi->lanes + delta)
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 65 +++++++++++++++-----------------------
->  1 file changed, 25 insertions(+), 40 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index 80b7a082e874..ddddf69ebeaf 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -445,6 +445,7 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->         u32 horizontal_backporch_byte;
->         u32 horizontal_frontporch_byte;
->         u32 dsi_tmp_buf_bpp, data_phy_cycles;
-> +       u32 delta;
->         struct mtk_phy_timing *timing = &dsi->phy_timing;
->
->         struct videomode *vm = &dsi->vm;
-> @@ -466,50 +467,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->         horizontal_sync_active_byte = (vm->hsync_len * dsi_tmp_buf_bpp - 10);
->
->         if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE)
-> -               horizontal_backporch_byte = vm->hback_porch * dsi_tmp_buf_bpp;
-> +               horizontal_backporch_byte =
-> +                       (vm->hback_porch * dsi_tmp_buf_bpp - 10);
+On 10/13/20 4:06 AM, Laurent Pinchart wrote:
+> Hi Marek,
+> 
+> On Sat, Oct 10, 2020 at 10:47:05AM +0200, Marek Vasut wrote:
+>> On 10/10/20 1:58 AM, Laurent Pinchart wrote:
+>>> Hi Marek,
+>>
+>> Hi,
+>>
+>>> On Wed, Oct 07, 2020 at 10:40:26AM +0200, Marek Vasut wrote:
+>>>> On 10/7/20 3:24 AM, Laurent Pinchart wrote:
+>>>>
+>>>> [...]
+>>>>
+>>>>> +          bus-width:
+>>>>> +            enum: [16, 18, 24]
+>>>>> +            description: |
+>>>>> +              The output bus width. This value overrides the configuration
+>>>>> +              derived from the connected device (encoder or panel). It should
+>>>>> +              only be specified when PCB routing of the data signals require a
+>>>>> +              different bus width on the LCDIF and the connected device. For
+>>>>> +              instance, when a 18-bit RGB panel has its R[5:0], G[5:0] and
+>>>>> +              B[5:0] signals connected to LCD_DATA[7:2], LCD_DATA[15:10] and
+>>>>> +              LCD_DATA[23:18] instead of LCD_DATA[5:0], LCD_DATA[11:6] and
+>>>>> +              LCD_DATA[17:12], bus-width should be set to 24.
+>>>>
+>>>> The iMX6 IPUv3 uses interface-pix-fmt which is a bit more flexible, but
+>>>> I'm not sure whether it's the right way to go about this, see:
+>>>> Documentation/devicetree/bindings/display/imx/fsl-imx-drm.txt
+>>>
+>>> I think specifying the bus with is better. It's a standard property, but
+>>> more than that, a given bus width can carry different formats. For
+>>> instance, a 24-bus could carry RGB666 data (with dithering for the
+>>> LSBs).
+>>
+>> I think that's exactly what the interface-pix-fmt was trying to solve
+>> for the IPUv3, there you could have e.g. both RGB666 and LVDS666 , which
+>> were different.
+> 
+> My point is that the driver should support multiple formats that can be
+> carried over a given bus width, with the actual format to be used
+> queried from the sink (usually a panel) instead of being hardcoded in
+> DT.
 
-These parentheses are not required, but it might be a little clearer to write:
-(vm->hback_porch * dsi_tmp_buf_bpp) - 10;
-
->         else
-> -               horizontal_backporch_byte = (vm->hback_porch + vm->hsync_len) *
-> -                                           dsi_tmp_buf_bpp;
-> +               horizontal_backporch_byte = ((vm->hback_porch + vm->hsync_len) *
-> +                       dsi_tmp_buf_bpp - 10);
-
-ditto:
-((vm->hback_porch + vm->hsync_len) * dsi_tmp_buf_bpp) - 10;
-
-But then, _maybe_ it's clearer to drop this hunk and just add this
-below the if/else:
-
-horizontal_backporch_byte -= 10;
-
->
->         data_phy_cycles = timing->lpx + timing->da_hs_prepare +
-> -                         timing->da_hs_zero + timing->da_hs_exit;
-> -
-> -       if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
-> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bpp >
-> -                   data_phy_cycles * dsi->lanes + 18) {
-> -                       horizontal_frontporch_byte =
-> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
-> -                               (data_phy_cycles * dsi->lanes + 18) *
-> -                               vm->hfront_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -
-> -                       horizontal_backporch_byte =
-> -                               horizontal_backporch_byte -
-> -                               (data_phy_cycles * dsi->lanes + 18) *
-> -                               vm->hback_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -               } else {
-> -                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> -                       horizontal_frontporch_byte = vm->hfront_porch *
-> -                                                    dsi_tmp_buf_bpp;
-> -               }
-> +                         timing->da_hs_zero + timing->da_hs_exit + 3;
-
-(for reference, apart from this `+ 3`, there is no functional change
-in this hunk: this just moves delta outside of the if/else block,
-which is a good idea for readability)
-
-> +
-> +       delta = (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) ? 18 : 12;
-> +
-> +       if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_byte) >
-> +           data_phy_cycles * dsi->lanes + delta) {
-> +               horizontal_frontporch_byte =
-> +                       vm->hfront_porch * dsi_tmp_buf_bpp -
-> +                       (data_phy_cycles * dsi->lanes + delta) *
-> +                       vm->hfront_porch /
-> +                       (vm->hfront_porch + vm->hback_porch);
-> +
-> +               horizontal_backporch_byte =
-> +                       horizontal_backporch_byte -
-> +                       (data_phy_cycles * dsi->lanes + delta) *
-> +                       vm->hback_porch /
-> +                       (vm->hfront_porch + vm->hback_porch);
->         } else {
-> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bpp >
-> -                   data_phy_cycles * dsi->lanes + 12) {
-> -                       horizontal_frontporch_byte =
-> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
-> -                               (data_phy_cycles * dsi->lanes + 12) *
-> -                               vm->hfront_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -                       horizontal_backporch_byte = horizontal_backporch_byte -
-> -                               (data_phy_cycles * dsi->lanes + 12) *
-> -                               vm->hback_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -               } else {
-> -                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> -                       horizontal_frontporch_byte = vm->hfront_porch *
-> -                                                    dsi_tmp_buf_bpp;
-> -               }
-> +               DRM_WARN("HFP + HBP less than d-phy, FPS will under 60Hz\n");
-> +               horizontal_frontporch_byte = vm->hfront_porch *
-> +                                            dsi_tmp_buf_bpp;
->         }
->
->         writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
-> --
-> 2.12.5
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+So, should the IPUv3 be fixed as well then ?
