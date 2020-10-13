@@ -2,250 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D35728CDDC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 14:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 477C128CDF4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 14:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726449AbgJMMOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 08:14:45 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:39214 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726707AbgJMMOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 08:14:45 -0400
-Received: by mail-oi1-f194.google.com with SMTP id c13so22233423oiy.6;
-        Tue, 13 Oct 2020 05:14:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VNZrkqo2bIR8rioX8LTdMOLgxj/aN1GPWKl/35Vks+E=;
-        b=hrtf0H94NLkdRz5l1zTdLIUvIIj+ZSMTJSFrpVV2OWolP1FkMhD/9NBMJ2Z5izWDLW
-         Mpgdn7/kOk4AUhPFevN6EsrozBK6sm5zUMigS+uX6md11BrHsceATUrS5AJDE0E6WqgK
-         6lRvcrjXg103Y7CImUlizbXvnagYWaT0El9kU66WIsS/ejKRuk6XUsvnU0ytOtKupm6B
-         lOmYMPyQssIGmt2gXs+A5nkYhzxDVuSmEWmYrppS2eLBEm6kbNwgjlOVYFLn1Rw0XXwG
-         e8GvApYS22FZSdxoXdzoMvvBjIvPjfpVPiP1b791jmTYo4c6tFxz7atlyCRG/ITf2qq9
-         hS8Q==
-X-Gm-Message-State: AOAM53154BoGkrp3kZq1+KrM33tMa4QFMkg9/A36kJGtwhGfAOavitUE
-        eFcvapkrJFjxvne33O/NDcl0M/2EEBb7
-X-Google-Smtp-Source: ABdhPJxc11DpAC5kq8/69t9HYzgMkF+fcfIUO/dYdLcZ3YTHq1DMn2LZXcmOdTlj7pxGSrK//aXIAg==
-X-Received: by 2002:aca:ed06:: with SMTP id l6mr12882931oih.141.1602591283659;
-        Tue, 13 Oct 2020 05:14:43 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v17sm2657704otn.81.2020.10.13.05.14.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 05:14:42 -0700 (PDT)
-Received: (nullmailer pid 3275784 invoked by uid 1000);
-        Tue, 13 Oct 2020 12:14:41 -0000
-Date:   Tue, 13 Oct 2020 07:14:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
+        id S1727440AbgJMMP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 08:15:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41336 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727020AbgJMMO6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 08:14:58 -0400
+Received: from mail.kernel.org (ip5f5ad5b2.dynamic.kabel-deutschland.de [95.90.213.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 50CAC22363;
+        Tue, 13 Oct 2020 12:14:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602591295;
+        bh=Jfl3S5/CVm87dfrfFsJcJ1KcmDiVSxRRxlJQMp3INpw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=W1eYstPcXcFq3NKpMJZUOZWeDlJ/3fKGrkhUrtGfj1AYmVNllVLXSxqzK0KdPe3lj
+         Q8AtYylAYOX22FG/PQGbmtNDXkeAaH8G6No29h/5bskrsIpWELSfYPb+y+2geNsEn7
+         0ITar86K20zICb84mLsSGnQi93lSSY4saheTo2Gw=
+Received: from mchehab by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1kSJCf-006Cob-7l; Tue, 13 Oct 2020 14:14:53 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "Jonathan Corbet" <corbet@lwn.net>,
+        =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= 
+        <jerome.pouiller@silabs.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/18] dt-bindings: usb: usb-hcd: Convert generic USB
- properties to DT schema
-Message-ID: <20201013121441.GA3269269@bogus>
-References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
- <20201010224121.12672-2-Sergey.Semin@baikalelectronics.ru>
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 20/24] MAINTAINERS: fix broken doc refs due to yaml conversion
+Date:   Tue, 13 Oct 2020 14:14:47 +0200
+Message-Id: <2645a845a705a4ba5231db9d3570d7765b6204a0.1602590106.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <cover.1602590106.git.mchehab+huawei@kernel.org>
+References: <cover.1602590106.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201010224121.12672-2-Sergey.Semin@baikalelectronics.ru>
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 01:41:04AM +0300, Serge Semin wrote:
-> The generic USB HCD properties have been described in the legacy bindings
-> text file: Documentation/devicetree/bindings/usb/generic.txt . Let's
-> convert it' content into the USB HCD DT schema properties so all USB DT
-> nodes would be validated to have them properly utilized.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  .../devicetree/bindings/usb/generic.txt       | 57 -------------
->  .../devicetree/bindings/usb/usb-hcd.yaml      | 84 +++++++++++++++++++
->  2 files changed, 84 insertions(+), 57 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/generic.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
-> deleted file mode 100644
-> index ba472e7aefc9..000000000000
-> --- a/Documentation/devicetree/bindings/usb/generic.txt
-> +++ /dev/null
-> @@ -1,57 +0,0 @@
-> -Generic USB Properties
-> -
-> -Optional properties:
-> - - maximum-speed: tells USB controllers we want to work up to a certain
-> -			speed. Valid arguments are "super-speed-plus",
-> -			"super-speed", "high-speed", "full-speed" and
-> -			"low-speed". In case this isn't passed via DT, USB
-> -			controllers should default to their maximum HW
-> -			capability.
-> - - dr_mode: tells Dual-Role USB controllers that we want to work on a
-> -			particular mode. Valid arguments are "host",
-> -			"peripheral" and "otg". In case this attribute isn't
-> -			passed via DT, USB DRD controllers should default to
-> -			OTG.
-> - - phy_type: tells USB controllers that we want to configure the core to support
-> -			a UTMI+ PHY with an 8- or 16-bit interface if UTMI+ is
-> -			selected. Valid arguments are "utmi" and "utmi_wide".
-> -			In case this isn't passed via DT, USB controllers should
-> -			default to HW capability.
-> - - otg-rev: tells usb driver the release number of the OTG and EH supplement
-> -			with which the device and its descriptors are compliant,
-> -			in binary-coded decimal (i.e. 2.0 is 0200H). This
-> -			property is used if any real OTG features(HNP/SRP/ADP)
-> -			is enabled, if ADP is required, otg-rev should be
-> -			0x0200 or above.
-> - - companion: phandle of a companion
-> - - hnp-disable: tells OTG controllers we want to disable OTG HNP, normally HNP
-> -			is the basic function of real OTG except you want it
-> -			to be a srp-capable only B device.
-> - - srp-disable: tells OTG controllers we want to disable OTG SRP, SRP is
-> -			optional for OTG device.
-> - - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
-> -			optional for OTG device.
-> - - usb-role-switch: boolean, indicates that the device is capable of assigning
-> -			the USB data role (USB host or USB device) for a given
-> -			USB connector, such as Type-C, Type-B(micro).
-> -			see connector/usb-connector.yaml.
-> - - role-switch-default-mode: indicating if usb-role-switch is enabled, the
-> -			device default operation mode of controller while usb
-> -			role is USB_ROLE_NONE. Valid arguments are "host" and
-> -			"peripheral". Defaults to "peripheral" if not
-> -			specified.
-> -
-> -
-> -This is an attribute to a USB controller such as:
-> -
-> -dwc3@4a030000 {
-> -	compatible = "synopsys,dwc3";
-> -	reg = <0x4a030000 0xcfff>;
-> -	interrupts = <0 92 4>
-> -	usb-phy = <&usb2_phy>, <&usb3,phy>;
-> -	maximum-speed = "super-speed";
-> -	dr_mode = "otg";
-> -	phy_type = "utmi_wide";
-> -	otg-rev = <0x0200>;
-> -	adp-disable;
-> -};
-> diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> index 7263b7f2b510..815de24127db 100644
-> --- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> +++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> @@ -22,9 +22,93 @@ properties:
->      description:
->        Name specifier for the USB PHY
->  
-> +  maximum-speed:
-> +   description: |
+Several *.txt files got converted to yaml. Update their
+references at MAINTAINERS file accordingly.
 
-Drop the '|' if there's no formatting to preserve.
+Acked-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+---
+ Documentation/devicetree/bindings/clock/hi6220-clock.txt | 2 +-
+ MAINTAINERS                                              | 9 ++++-----
+ .../devicetree/bindings/net/wireless/silabs,wfx.yaml     | 2 +-
+ 3 files changed, 6 insertions(+), 7 deletions(-)
 
-> +     Tells USB controllers we want to work up to a certain speed. In case this
-> +     isn't passed via DT, USB controllers should default to their maximum HW
-> +     capability.
-> +   $ref: /schemas/types.yaml#/definitions/string
-> +   enum: ["low-speed", "full-speed", "high-speed", "super-speed",
-> +          "super-speed-plus"]
+diff --git a/Documentation/devicetree/bindings/clock/hi6220-clock.txt b/Documentation/devicetree/bindings/clock/hi6220-clock.txt
+index ef3deb7b86ea..17ac4a3dd26a 100644
+--- a/Documentation/devicetree/bindings/clock/hi6220-clock.txt
++++ b/Documentation/devicetree/bindings/clock/hi6220-clock.txt
+@@ -4,7 +4,7 @@ Clock control registers reside in different Hi6220 system controllers,
+ please refer the following document to know more about the binding rules
+ for these system controllers:
+ 
+-Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
++Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+ 
+ Required Properties:
+ 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f1eeef654caa..891b735233d3 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -978,7 +978,7 @@ M:	Michael Hennerich <Michael.Hennerich@analog.com>
+ L:	linux-iio@vger.kernel.org
+ S:	Supported
+ W:	http://ez.analog.com/community/linux-device-drivers
+-F:	Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.txt
++F:	Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+ F:	drivers/iio/adc/ad7768-1.c
+ 
+ ANALOG DEVICES INC AD7780 DRIVER
+@@ -3867,7 +3867,7 @@ M:	Roger Quadros <rogerq@ti.com>
+ L:	linux-usb@vger.kernel.org
+ S:	Maintained
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/peter.chen/usb.git
+-F:	Documentation/devicetree/bindings/usb/cdns-usb3.txt
++F:	Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+ F:	drivers/usb/cdns3/
+ 
+ CADET FM/AM RADIO RECEIVER DRIVER
+@@ -7919,7 +7919,7 @@ HISILICON LPC BUS DRIVER
+ M:	john.garry@huawei.com
+ S:	Maintained
+ W:	http://www.hisilicon.com
+-F:	Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
++F:	Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
+ F:	drivers/bus/hisi_lpc.c
+ 
+ HISILICON NETWORK SUBSYSTEM 3 DRIVER (HNS3)
+@@ -14910,7 +14910,6 @@ RENESAS ETHERNET DRIVERS
+ R:	Sergei Shtylyov <sergei.shtylyov@gmail.com>
+ L:	netdev@vger.kernel.org
+ L:	linux-renesas-soc@vger.kernel.org
+-F:	Documentation/devicetree/bindings/net/renesas,*.txt
+ F:	Documentation/devicetree/bindings/net/renesas,*.yaml
+ F:	drivers/net/ethernet/renesas/
+ F:	include/linux/sh_eth.h
+@@ -18114,7 +18113,7 @@ M:	Yu Chen <chenyu56@huawei.com>
+ M:	Binghui Wang <wangbinghui@hisilicon.com>
+ L:	linux-usb@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/phy/phy-hi3660-usb3.txt
++F:	Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
+ F:	drivers/phy/hisilicon/phy-hi3660-usb3.c
+ 
+ USB ISP116X DRIVER
+diff --git a/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+index 43b5630c0407..510edd12ed19 100644
+--- a/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
++++ b/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+@@ -24,7 +24,7 @@ description:
+     In addition, it is recommended to declare a mmc-pwrseq on SDIO host above
+     WFx. Without it, you may encounter issues with warm boot. The mmc-pwrseq
+     should be compatible with mmc-pwrseq-simple. Please consult
+-    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt for more
++    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml for more
+     information.
+ 
+   For SPI':'
+-- 
+2.26.2
 
-One per line and drop the quotes.
-
-> +
-> +  dr_mode:
-> +    description: |
-> +      Tells Dual-Role USB controllers that we want to work on a particular
-> +      mode. In case this attribute isn't passed via DT, USB DRD controllers
-> +      should default to OTG.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: ["host", "peripheral", "otg"]
-> +
-> +  phy_type:
-> +    description: |
-> +      Tells USB controllers that we want to configure the core to support a
-> +      UTMI+ PHY with an 8- or 16-bit interface if UTMI+ is selected. In case
-> +      this isn't passed via DT, USB controllers should default to HW
-> +      capability.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: ["utmi", "utmi_wide"]
-> +
-> +  otg-rev:
-> +    description: |
-> +      Tells usb driver the release number of the OTG and EH supplement with
-> +      which the device and its descriptors are compliant, in binary-coded
-> +      decimal (i.e. 2.0 is 0200H). This property is used if any real OTG
-> +      features (HNP/SRP/ADP) is enabled. If ADP is required, otg-rev should be
-> +      0x0200 or above.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  companion:
-> +    description: Phandle of a companion device
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  hnp-disable:
-> +    description: |
-> +      Tells OTG controllers we want to disable OTG HNP. Normally HNP is the
-> +      basic function of real OTG except you want it to be a srp-capable only B
-> +      device.
-> +    type: boolean
-> +
-> +  srp-disable:
-> +    description: |
-> +      Tells OTG controllers we want to disable OTG SRP. SRP is optional for OTG
-> +      device.
-> +    type: boolean
-> +
-> +  adp-disable:
-> +    description: |
-> +      Tells OTG controllers we want to disable OTG ADP. ADP is optional for OTG
-> +      device.
-> +    type: boolean
-> +
-> +  usb-role-switch:
-> +    description: |
-> +      Indicates that the device is capable of assigning the USB data role
-> +      (USB host or USB device) for a given USB connector, such as Type-C,
-> +      Type-B(micro). See connector/usb-connector.yaml.
-> +
-> +  role-switch-default-mode:
-> +    description: |
-> +      Indicates if usb-role-switch is enabled, the device default operation
-> +      mode of controller while usb role is USB_ROLE_NONE.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: ["host", "peripheral"]
-> +    default: "peripheral"
-> +
->  examples:
->    - |
->      usb {
->          phys = <&usb2_phy1>, <&usb3_phy1>;
->          phy-names = "usb";
->      };
-> +  - |
-> +    usb@4a030000 {
-> +        compatible = "snps,dwc3";
-> +        reg = <0x4a030000 0xcfff>;
-> +        interrupts = <0 92 4>;
-> +        usb-phy = <&usb2_phy>, <&usb3_phy>;
-> +        maximum-speed = "super-speed";
-> +        dr_mode = "otg";
-> +        phy_type = "utmi_wide";
-> +        otg-rev = <0x0200>;
-> +        adp-disable;
-> +    };
-> -- 
-> 2.27.0
-> 
