@@ -2,131 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1814C28D0FD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7291128D107
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:15:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731002AbgJMPKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 11:10:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726157AbgJMPKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:10:50 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A002C0613D0;
-        Tue, 13 Oct 2020 08:10:50 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id b8so11275143wrn.0;
-        Tue, 13 Oct 2020 08:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JuBX8r/Y6bGRUCSeRJ3CivsANkHlQS6AI/ICS0f0yZY=;
-        b=pRt3/UN2sjp/Id17E5+iGB+94CwhIYyP+J0ZVxahLZjhYewvdy85p6E9qVH8mcDu/w
-         Ma3byumuQbCvWjoxsAbJW0h9gvZLfP0hODyLYPb4jaAc6LzlEhDGij6xWsWm3n9sxLUf
-         Y5rBrxFXjECN11m9EMkIOKoMbnLZAve13uQMowkDZfElmt1rBDlqBQDqGG5xuxoTZTGn
-         A6f85//dkMxRUTK45bcV3JGGijKAaJzUd4tVdcH6w2iU+1IQzZjujWhrlRnaPHFO/u5I
-         TwoDZIkPmDhBYcERTV9R8lQD/E/99qfus11PWOKi7U7sNRgo9fP4mXVVptNJKNu/orur
-         1eGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JuBX8r/Y6bGRUCSeRJ3CivsANkHlQS6AI/ICS0f0yZY=;
-        b=lc/swWILOmF9u8ypz39We7eo0kmyJ4ooklmUvKrdLT+atY2bUE5Z5rTnTVXjwvSjrG
-         vCNP06GpOt1jO1I5P8SJ6SXCtLr8k4oRsaoHE0CDSm52Cp8QTEXwJb+qnCvcW1A5c1gC
-         bF+cJryD6/+X6Kr+qGXhUOxe4innhzugxCEVfLkQEr1vpF3fzo6UeUzPgP3ud6IMGoam
-         dHCfOm+BXl+WkoZmVv1IESnwGjRXvb+ZhJ+iSSivItevnnqMgc7j90Eqfe+NJ1h4TX/t
-         iS53MXV75cMWq37AR55gFXCLVdCgay8Gbp5uPFhU2N7iO1B1NqfkiylAPzL+8YHnNUhc
-         wo+w==
-X-Gm-Message-State: AOAM530d+gdlk7pl53GPOcO38u6PZBIZNQwL27V++xx8nAd3sbR8JkpV
-        c2BEYr07ToGNrM7BskrFTFPcxtNbT86hXw==
-X-Google-Smtp-Source: ABdhPJxvj/okZcxLvRTRo8EX8POYCQcaPyYdM1hZZbF6KXlzxIMolIv8YA31Et7icSS3qcMo/t9L9g==
-X-Received: by 2002:adf:f4d1:: with SMTP id h17mr107075wrp.41.1602601848929;
-        Tue, 13 Oct 2020 08:10:48 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.119.110])
-        by smtp.gmail.com with ESMTPSA id l11sm31014653wrt.54.2020.10.13.08.10.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Oct 2020 08:10:47 -0700 (PDT)
-Subject: Re: [PATCH v6 4/4] mmc: mediatek: Add subsys clock control for MT8192
- msdc
-To:     Wenbin Mei <wenbin.mei@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com
-References: <20201012124547.16649-1-wenbin.mei@mediatek.com>
- <20201012124547.16649-5-wenbin.mei@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <72ae1d89-fe31-4f50-15c0-29119d662ea1@gmail.com>
-Date:   Tue, 13 Oct 2020 17:10:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1730802AbgJMPPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 11:15:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57592 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730376AbgJMPPL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 11:15:11 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 95D1B22280;
+        Tue, 13 Oct 2020 15:15:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602602111;
+        bh=VQiYIkv8JxDfMCqXetCvnsQqRv/qB9MbycuOck8T+Ao=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jLfoZ6WqFkBvsSOi2DL42qgNuMVnWoeJJ1W684kMk61N+vmj/UKCQMqrOU+Aa+ht/
+         D9uxHx9VrdLIDlJ2+r49BP3AUDyCtc0Zq3fTpLvyJEdSVB55hzVfiZ4nuDBBVsO5um
+         ROs0AY2Z/8Gkt3m6S/l8/N5NgNjE25qvwsLVQTNw=
+Date:   Tue, 13 Oct 2020 16:15:05 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: Re: [PATCH 1/2] Asoc: qcom: lpass-cpu: Fix clock disable failure
+Message-ID: <20201013151505.GA7913@sirena.org.uk>
+References: <1602596386-9886-1-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20201012124547.16649-5-wenbin.mei@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="AhhlLboLdkugWU4S"
+Content-Disposition: inline
+In-Reply-To: <1602596386-9886-1-git-send-email-srivasam@codeaurora.org>
+X-Cookie: Great minds run in great circles.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--AhhlLboLdkugWU4S
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 12/10/2020 14:45, Wenbin Mei wrote:
-> MT8192 msdc is an independent sub system, we need control more bus
-> clocks for it.
-> Add support for the additional subsys clocks to allow it to be
-> configured appropriately.
-> 
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-> ---
->   drivers/mmc/host/mtk-sd.c | 74 +++++++++++++++++++++++++++++----------
->   1 file changed, 56 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index a704745e5882..c7df7510f120 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-[...]
-> +static int msdc_of_clock_parse(struct platform_device *pdev,
-> +			       struct msdc_host *host)
-> +{
-> +	int ret;
-> +
-> +	host->src_clk = devm_clk_get(&pdev->dev, "source");
-> +	if (IS_ERR(host->src_clk))
-> +		return PTR_ERR(host->src_clk);
-> +
-> +	host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> +	if (IS_ERR(host->h_clk))
-> +		return PTR_ERR(host->h_clk);
-> +
-> +	host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
-> +	if (IS_ERR(host->bus_clk))
-> +		host->bus_clk = NULL;
-> +
-> +	/*source clock control gate is optional clock*/
-> +	host->src_clk_cg = devm_clk_get_optional(&pdev->dev, "source_cg");
-> +	if (IS_ERR(host->src_clk_cg))
-> +		host->src_clk_cg = NULL;
-> +
-> +	host->sys_clk_cg = devm_clk_get_optional(&pdev->dev, "sys_cg");
-> +	if (IS_ERR(host->sys_clk_cg))
-> +		host->sys_clk_cg = NULL;
-> +
-> +	/* If present, always enable for this clock gate */
-> +	clk_prepare_enable(host->sys_clk_cg);
-> +
-> +	host->bulk_clks[0].id = "pclk_cg";
-> +	host->bulk_clks[1].id = "axi_cg";
-> +	host->bulk_clks[2].id = "ahb_cg";
+On Tue, Oct 13, 2020 at 07:09:46PM +0530, Srinivasa Rao Mandadapu wrote:
+> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+>=20
+> Disable MI2S bit clock from PAUSE/STOP/SUSPEND usecase
+> instead of shutdown time. Acheive this by invoking
+> clk_disable_unprepare API from cpu daiops shutdown to
+> cpu daiops trigger.
 
-That looks at least suspicious. The pointers of id point to some strings defined 
-in the function. Aren't they out of scope once msdc_of_clock_parse() has returned?
+I'm missing patch 2 here?
 
-Regards,
-Matthias
+> This Fix is update to the below patch.
+> https://lore.kernel.org/patchwork/patch/1308101/
+
+Fixes should be specified using tags like this:
+
+  Fixes: commit 30fb9454ab23 ("selftests/vm: hmm-tests: remove the libhuget=
+lbfs dependency")
+
+in the changelog.
+
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--AhhlLboLdkugWU4S
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+FxHgACgkQJNaLcl1U
+h9CSsQf6AgNY/ragXX+c9/6OMzAPmShAvnTqYcTGy6bV8AK+nCQjYvWCS789YO1q
+bUzkSCTOMLQHtcHiUKSGB+mpn8djofZCg+rSsC1thvIzpcuTZKutgDOT36/EyCCV
+u81NfxpjYVAajwjwfm010VLi2FaA5duXh8jsi3COrIO3z81ySMxK4ZTAo4BAAZDl
+Glh8soX7WO3aE26ei4zrfPUYsq1ZR4eEzFJ7AVip3mvLeMajeOg8FLXJ8lPPgr1K
+nd32a6EXpZEZGPYA6W0uyByMajSokRh4uXMQdT2NmdXVRuhnz4UyQsE3bEiGsuAe
+2AhG0/MJQMi6amyafwZfTOpLHdfubQ==
+=hBwr
+-----END PGP SIGNATURE-----
+
+--AhhlLboLdkugWU4S--
