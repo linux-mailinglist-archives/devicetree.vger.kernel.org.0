@@ -2,568 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8462328D10D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 825E628D11A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:18:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388568AbgJMPQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 11:16:45 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:41416 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387958AbgJMPQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:16:44 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id F29948030867;
-        Tue, 13 Oct 2020 15:16:38 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id bbPKsQyS5Czz; Tue, 13 Oct 2020 18:16:36 +0300 (MSK)
-Date:   Tue, 13 Oct 2020 18:16:34 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 10/18] dt-bindings: usb: Convert DWC USB3 bindings to DT
- schema
-Message-ID: <20201013151634.qpl7n5gj3bhr2qt5@mobilestation>
-References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
- <20201010224121.12672-11-Sergey.Semin@baikalelectronics.ru>
- <20201013123624.GC3269269@bogus>
+        id S2389263AbgJMPS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 11:18:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389260AbgJMPSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:18:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D18C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 08:18:24 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kSM41-0008HW-Q9; Tue, 13 Oct 2020 17:18:09 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kSM3z-0000Zw-Rx; Tue, 13 Oct 2020 17:18:07 +0200
+Date:   Tue, 13 Oct 2020 17:18:07 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     f.fainelli@gmail.com, linux@roeck-us.net, jdelvare@suse.com,
+        wahrenst@gmx.net, Eric Anholt <eric@anholt.net>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: pwm: Add binding for RPi firmware PWM
+ bus
+Message-ID: <20201013151807.px6o2caoh4vfzlwu@pengutronix.de>
+References: <20201009153031.986-1-nsaenzjulienne@suse.de>
+ <20201009153031.986-2-nsaenzjulienne@suse.de>
+ <20201012070132.it23vl6f3ytavqgj@pengutronix.de>
+ <cc7842ed7f8a4db863024a0ff5d8b7d86de52f50.camel@suse.de>
+ <20201013120823.hhy7wyqsb3f3ufnx@pengutronix.de>
+ <f891916e193707eb55faa9ea93f294ac44925710.camel@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="qn6okevj7lpylitq"
 Content-Disposition: inline
-In-Reply-To: <20201013123624.GC3269269@bogus>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <f891916e193707eb55faa9ea93f294ac44925710.camel@suse.de>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 07:36:24AM -0500, Rob Herring wrote:
-> On Sun, Oct 11, 2020 at 01:41:13AM +0300, Serge Semin wrote:
-> > DWC USB3 DT node is supposed to be compliant with the Generic xHCI
-> > Controller schema, but with additional vendor-specific properties, the
-> > controller-specific reference clocks and PHYs. So let's convert the
-> > currently available legacy text-based DWC USB3 bindings to the DT schema
-> > and make sure the DWC USB3 nodes are also validated against the
-> > usb-xhci.yaml schema.
-> > 
-> > Note we have to discard the nodename restriction of being prefixed with
-> > "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
-> > are supposed to be named as "^usb(@.*)".
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Alas applying the usb-hcd.yaml schema on the DWC USB3 nodes will cause
-> > dtbs_check failures since a lot of "snps,dwc3"-compatible DT nodes are
-> > named with prefixes like "^dwc3@", "^usb[0-9]@" and even "^dwusb@", while
-> > usb-hcd.yaml permits the "^usb@" prefix only. As I see it the better but
-> > more painful solution would be to fix the corresponding DTS files (it's
-> > some of the Qualcomm, HiSilicon, Exynos, Allwinner, Omap, Stih, APM and
-> > Freescale DTS'es) so the DWC USB3 DT nodes would comply with the generic
-> > USB HCD node naming schema. Alternatively we could either extend the
-> > naming space in the usb-hcd.yaml or extract the generic properties to a
-> > dedicated DT schema file. What do you think?
-> 
 
-> IMO, we should fix the node names.
+--qn6okevj7lpylitq
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ok. I'll attach a new patch to the series, which will fix it for all uncompatible
-nodes. (Though the node with "^dwusb@" has got a comment, that the node-name
-should be like that due to some compatibility reasons...)
+On Tue, Oct 13, 2020 at 02:33:20PM +0200, Nicolas Saenz Julienne wrote:
+> On Tue, 2020-10-13 at 14:08 +0200, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Oct 13, 2020 at 12:35:38PM +0200, Nicolas Saenz Julienne wrote:
+> > > Hi Uwe, thanks for having a look at this.
+> > >=20
+> > > On Mon, 2020-10-12 at 09:01 +0200, Uwe Kleine-K=F6nig wrote:
+> > > > On Fri, Oct 09, 2020 at 05:30:28PM +0200, Nicolas Saenz Julienne wr=
+ote:
+> > > > > The PWM bus controlling the fan in RPi's official PoE hat can onl=
+y be
+> > > > > controlled by the board's co-processor.
+> > > > >=20
+> > > > > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > > > > ---
+> > > > >  .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 21 +++++++++++++=
+++++++
+> > > > >  .../pwm/raspberrypi,firmware-pwm.h            | 13 ++++++++++++
+> > > > >  2 files changed, 34 insertions(+)
+> > > > >  create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-=
+pwm.h
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberryp=
+i,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspber=
+rypi,bcm2835-firmware.yaml
+> > > > > index a2c63c8b1d10..dcaf00e8602e 100644
+> > > > > --- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm28=
+35-firmware.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm28=
+35-firmware.yaml
+> > > > > @@ -64,6 +64,22 @@ properties:
+> > > > >        - compatible
+> > > > >        - "#reset-cells"
+> > > > > =20
+> > > > > +  pwm:
+> > > > > +    type: object
+> > > > > +
+> > > > > +    properties:
+> > > > > +      compatible:
+> > > > > +        const: raspberrypi,firmware-pwm
+> > > > > +
+> > > > > +      "#pwm-cells":
+> > > > > +        const: 1
+> > > > > +        description: >
+> > > > > +          The argument is the PWM bus number.
+> > > >=20
+> > > > This is wrong. #pwm-cells specifies the number of "arguments" for
+> > > > phandles pointing to this node. And I would prefer this being 2 to =
+match
+> > > > the stuff described in the generic pwm binding.
+> > >=20
+> > > I saw buses out there with the same limitation as this one (unable to=
+ change
+> > > frequency) that used a single cell, so I whent with it. That said I'l=
+l be happy
+> > > to change it and drop the custom *_xlate() function in benefit of the=
+ default
+> > > one.
+> >=20
+> > As the first cell after the phandle is for the period and only the
+> > second if for flags, this is a poor argument.
+>=20
+> In that case aren't these bindings wrong (and associated xlate() function=
+s)?
 
-> 
-> > ---
-> >  .../devicetree/bindings/usb/dwc3.txt          | 125 --------
-> >  .../devicetree/bindings/usb/snps,dwc3.yaml    | 295 ++++++++++++++++++
-> >  2 files changed, 295 insertions(+), 125 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
-> >  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
-> > deleted file mode 100644
-> > index d03edf9d3935..000000000000
-> > --- a/Documentation/devicetree/bindings/usb/dwc3.txt
-> > +++ /dev/null
-> > @@ -1,125 +0,0 @@
-> > -synopsys DWC3 CORE
-> > -
-> > -DWC3- USB3 CONTROLLER. Complies to the generic USB binding properties
-> > -      as described in 'usb/generic.txt'
-> > -
-> > -Required properties:
-> > - - compatible: must be "snps,dwc3"
-> > - - reg : Address and length of the register set for the device
-> > - - interrupts: Interrupts used by the dwc3 controller.
-> > - - clock-names: list of clock names. Ideally should be "ref",
-> > -                "bus_early", "suspend" but may be less or more.
-> > - - clocks: list of phandle and clock specifier pairs corresponding to
-> > -           entries in the clock-names property.
-> > -
-> > -Exception for clocks:
-> > -  clocks are optional if the parent node (i.e. glue-layer) is compatible to
-> > -  one of the following:
-> > -    "cavium,octeon-7130-usb-uctl"
-> > -    "qcom,dwc3"
-> > -    "samsung,exynos5250-dwusb3"
-> > -    "samsung,exynos5433-dwusb3"
-> > -    "samsung,exynos7-dwusb3"
-> > -    "sprd,sc9860-dwc3"
-> > -    "st,stih407-dwc3"
-> > -    "ti,am437x-dwc3"
-> > -    "ti,dwc3"
-> > -    "ti,keystone-dwc3"
-> > -    "rockchip,rk3399-dwc3"
-> > -    "xlnx,zynqmp-dwc3"
-> > -
-> > -Optional properties:
-> > - - usb-phy : array of phandle for the PHY device.  The first element
-> > -   in the array is expected to be a handle to the USB2/HS PHY and
-> > -   the second element is expected to be a handle to the USB3/SS PHY
-> > - - phys: from the *Generic PHY* bindings
-> > - - phy-names: from the *Generic PHY* bindings; supported names are "usb2-phy"
-> > -	or "usb3-phy".
-> > - - resets: set of phandle and reset specifier pairs
-> > - - snps,usb2-lpm-disable: indicate if we don't want to enable USB2 HW LPM
-> > - - snps,usb3_lpm_capable: determines if platform is USB3 LPM capable
-> > - - snps,dis-start-transfer-quirk: when set, disable isoc START TRANSFER command
-> > -			failure SW work-around for DWC_usb31 version 1.70a-ea06
-> > -			and prior.
-> > - - snps,disable_scramble_quirk: true when SW should disable data scrambling.
-> > -	Only really useful for FPGA builds.
-> > - - snps,has-lpm-erratum: true when DWC3 was configured with LPM Erratum enabled
-> > - - snps,lpm-nyet-threshold: LPM NYET threshold
-> > - - snps,u2exit_lfps_quirk: set if we want to enable u2exit lfps quirk
-> > - - snps,u2ss_inp3_quirk: set if we enable P3 OK for U2/SS Inactive quirk
-> > - - snps,req_p1p2p3_quirk: when set, the core will always request for
-> > -			P1/P2/P3 transition sequence.
-> > - - snps,del_p1p2p3_quirk: when set core will delay P1/P2/P3 until a certain
-> > -			amount of 8B10B errors occur.
-> > - - snps,del_phy_power_chg_quirk: when set core will delay PHY power change
-> > -			from P0 to P1/P2/P3.
-> > - - snps,lfps_filter_quirk: when set core will filter LFPS reception.
-> > - - snps,rx_detect_poll_quirk: when set core will disable a 400us delay to start
-> > -			Polling LFPS after RX.Detect.
-> > - - snps,tx_de_emphasis_quirk: when set core will set Tx de-emphasis value.
-> > - - snps,tx_de_emphasis: the value driven to the PHY is controlled by the
-> > -			LTSSM during USB3 Compliance mode.
-> > - - snps,dis_u3_susphy_quirk: when set core will disable USB3 suspend phy.
-> > - - snps,dis_u2_susphy_quirk: when set core will disable USB2 suspend phy.
-> > - - snps,dis_enblslpm_quirk: when set clears the enblslpm in GUSB2PHYCFG,
-> > -			disabling the suspend signal to the PHY.
-> > - - snps,dis-u1-entry-quirk: set if link entering into U1 needs to be disabled.
-> > - - snps,dis-u2-entry-quirk: set if link entering into U2 needs to be disabled.
-> > - - snps,dis_rxdet_inp3_quirk: when set core will disable receiver detection
-> > -			in PHY P3 power state.
-> > - - snps,dis-u2-freeclk-exists-quirk: when set, clear the u2_freeclk_exists
-> > -			in GUSB2PHYCFG, specify that USB2 PHY doesn't provide
-> > -			a free-running PHY clock.
-> > - - snps,dis-del-phy-power-chg-quirk: when set core will change PHY power
-> > -			from P0 to P1/P2/P3 without delay.
-> > - - snps,dis-tx-ipgap-linecheck-quirk: when set, disable u2mac linestate check
-> > -			during HS transmit.
-> > - - snps,parkmode-disable-ss-quirk: when set, all SuperSpeed bus instances in
-> > -			park mode are disabled.
-> > - - snps,dis_metastability_quirk: when set, disable metastability workaround.
-> > -			CAUTION: use only if you are absolutely sure of it.
-> > - - snps,is-utmi-l1-suspend: true when DWC3 asserts output signal
-> > -			utmi_l1_suspend_n, false when asserts utmi_sleep_n
-> > - - snps,hird-threshold: HIRD threshold
-> > - - snps,hsphy_interface: High-Speed PHY interface selection between "utmi" for
-> > -   UTMI+ and "ulpi" for ULPI when the DWC_USB3_HSPHY_INTERFACE has value 3.
-> > - - snps,quirk-frame-length-adjustment: Value for GFLADJ_30MHZ field of GFLADJ
-> > -	register for post-silicon frame length adjustment when the
-> > -	fladj_30mhz_sdbnd signal is invalid or incorrect.
-> > - - snps,rx-thr-num-pkt-prd: periodic ESS RX packet threshold count - host mode
-> > -			only. Set this and rx-max-burst-prd to a valid,
-> > -			non-zero value 1-16 (DWC_usb31 programming guide
-> > -			section 1.2.4) to enable periodic ESS RX threshold.
-> > - - snps,rx-max-burst-prd: max periodic ESS RX burst size - host mode only. Set
-> > -			this and rx-thr-num-pkt-prd to a valid, non-zero value
-> > -			1-16 (DWC_usb31 programming guide section 1.2.4) to
-> > -			enable periodic ESS RX threshold.
-> > - - snps,tx-thr-num-pkt-prd: periodic ESS TX packet threshold count - host mode
-> > -			only. Set this and tx-max-burst-prd to a valid,
-> > -			non-zero value 1-16 (DWC_usb31 programming guide
-> > -			section 1.2.3) to enable periodic ESS TX threshold.
-> > - - snps,tx-max-burst-prd: max periodic ESS TX burst size - host mode only. Set
-> > -			this and tx-thr-num-pkt-prd to a valid, non-zero value
-> > -			1-16 (DWC_usb31 programming guide section 1.2.3) to
-> > -			enable periodic ESS TX threshold.
-> > -
-> > - - <DEPRECATED> tx-fifo-resize: determines if the FIFO *has* to be reallocated.
-> > - - snps,incr-burst-type-adjustment: Value for INCR burst type of GSBUSCFG0
-> > -			register, undefined length INCR burst type enable and INCRx type.
-> > -			When just one value, which means INCRX burst mode enabled. When
-> > -			more than one value, which means undefined length INCR burst type
-> > -			enabled. The values can be 1, 4, 8, 16, 32, 64, 128 and 256.
-> > -
-> > - - in addition all properties from usb-xhci.txt from the current directory are
-> > -   supported as well
-> > -
-> > -
-> > -This is usually a subnode to DWC3 glue to which it is connected.
-> > -
-> > -dwc3@4a030000 {
-> > -	compatible = "snps,dwc3";
-> > -	reg = <0x4a030000 0xcfff>;
-> > -	interrupts = <0 92 4>
-> > -	usb-phy = <&usb2_phy>, <&usb3,phy>;
-> > -	snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > new file mode 100644
-> > index 000000000000..24808fc2c7e3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > @@ -0,0 +1,295 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/snps,dwc3.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Synopsys DesignWare USB3 Controller
-> > +
-> > +maintainers:
-> > +  - Felipe Balbi <balbi@kernel.org>
-> > +
-> > +description: |
-> > +  This is usually a subnode to DWC3 glue to which it is connected, but can also
-> > +  be presented as a standalone DT node with an optional vendor-specific
-> > +  compatible string.
-> > +
-> > +allOf:
-> > +  - $ref: "usb-xhci.yaml#"
-> > +
-> > +properties:
-> > +  compatible:
-> > +    contains:
-> > +      const: "snps,dwc3"
-> 
+Ah, got it wrong, I want #pwm-cells =3D <3> where the first argument is
+the index, the second the period and the third flags.
 
-> Don't need quotes
+> google,cros-ec-pwm.yaml:
+> [...]
+> 	properties:
+> 	  compatible:
+> 	    const: google,cros-ec-pwm
+> 	  "#pwm-cells":
+> 	    description: The cell specifies the PWM index.
+> 	    const: 1
+> [...]
+>=20
+> cirrus,clps711x-pwm.txt:
+> [...]
+> 	- #pwm-cells: Should be 1. The cell specifies the index of the channel.
+> [...]
+>=20
+> Note that pxa-pwm.txt behaves as you comment.
 
-Ok.
+Hmm, this one has a custom .xlate function, too :-\
 
-> 
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 3
-> > +
-> > +  clocks:
-> > +    description: |
-> > +      In general the core supports three types of clocks. bus_clk_early is a
-> 
+Best regards
+Uwe
 
-> s/bus_clk_early/bus_early/
-> 
-> And the others too.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-I doubted which clock names to use here, so I've utilized the names selected by the
-core Databook for the corresponding clocks. Anyway. Ok. I'll replace them with the
-strings enumerated below.
+--qn6okevj7lpylitq
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> > +      SoC Bus Clock (AHB/AXI/Native). ref_clk generates ITP when the UTMI/ULPI
-> > +      PHY is suspended. suspend_clk clocks a small part of the USB3 core when
-> > +      SS PHY in P3. But particular cases may differ from that having less or
-> > +      more clock sources with another names.
-> > +
-> > +  clock-names:
-> > +    contains:
-> > +      anyOf:
-> > +        - enum: ["bus_early", "ref", "suspend"]
-> > +        - true
-> 
+-----BEGIN PGP SIGNATURE-----
 
-> That's unfortunate...
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+FxSwACgkQwfwUeK3K
+7Al3cAgAjk1ptAKwNfb6sTR0PW+B9xflMvW5NBDs7hGsT9p0ch1OQYp0pmAGdFQR
+ZdylEvKMTVooN8aLEqhADveVZQQSAj6ST3vkmCSNCl6u2c5eOtsO8GaGkassre3o
++6hIwO2cRoUrA/rCzjA0VxQv64lRbGXBkp3Yr5Wv0r8oeys1SevM3e5zpbWgmwef
+GNcoAAkDVcpbBILvocFhWoDHtpZ+/yV6+nmaZ1AZiOl6mlU9TyA5NkRLm1oOzKXm
+ZCJt8P6k7El90eEg3VYf3verHfx1JWYuKEowDbd0k1scsm+a3+Ebgd0idoNK/Rt7
+HqnGOdnTkpnYbhuFSUqeq0D1PPW9Sg==
+=EP00
+-----END PGP SIGNATURE-----
 
-Yeah. That was the best schema I could come up with to get the original
-bindings. Alas there are various clock-names have been used at some
-DWC USB3-compatible DT nodes, so I couldn't just set a stricter restriction
-here.
-
-> 
-> > +
-> > +  usb-phy:
-> > +   minItems: 1
-> > +   items:
-> > +     - description: USB2/HS PHY
-> > +     - description: USB3/SS PHY
-> > +
-> > +  phys:
-> > +    minItems: 1
-> > +    items:
-> > +      - description: USB2/HS PHY
-> > +      - description: USB3/SS PHY
-> > +
-> > +  phy-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: usb2-phy
-> > +      - const: usb3-phy
-> > +
-> > +  resets:
-> > +    minItems: 1
-> > +
-> > +  snps,usb2-lpm-disable:
-> > +    description: Indicate if we don't want to enable USB2 HW LPM
-> > +    type: boolean
-> > +
-> > +  snps,usb3_lpm_capable:
-> > +    description: Determines if platform is USB3 LPM capable
-> > +    type: boolean
-> > +
-> > +  snps,dis-start-transfer-quirk:
-> > +    description: |
-> 
-
-> Drop '|'.
-
-Agreed.
-
--Sergey
-
-> 
-> > +      When set, disable isoc START TRANSFER command failure SW work-around
-> > +      for DWC_usb31 version 1.70a-ea06 and prior.
-> > +    type: boolean
-> > +
-> > +  snps,disable_scramble_quirk:
-> > +    description: |
-> > +      True when SW should disable data scrambling. Only really useful for FPGA
-> > +      builds.
-> > +    type: boolean
-> > +
-> > +  snps,has-lpm-erratum:
-> > +    description: True when DWC3 was configured with LPM Erratum enabled
-> > +    type: boolean
-> > +
-> > +  snps,lpm-nyet-threshold:
-> > +    description: LPM NYET threshold
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +
-> > +  snps,u2exit_lfps_quirk:
-> > +    description: Set if we want to enable u2exit lfps quirk
-> > +    type: boolean
-> > +
-> > +  snps,u2ss_inp3_quirk:
-> > +    description: Set if we enable P3 OK for U2/SS Inactive quirk
-> > +    type: boolean
-> > +
-> > +  snps,req_p1p2p3_quirk:
-> > +    description: |
-> > +      When set, the core will always request for P1/P2/P3 transition sequence.
-> > +    type: boolean
-> > +
-> > +  snps,del_p1p2p3_quirk:
-> > +    description: |
-> > +      When set core will delay P1/P2/P3 until a certain amount of 8B10B errors
-> > +      occur.
-> > +    type: boolean
-> > +
-> > +  snps,del_phy_power_chg_quirk:
-> > +    description: When set core will delay PHY power change from P0 to P1/P2/P3.
-> > +    type: boolean
-> > +
-> > +  snps,lfps_filter_quirk:
-> > +    description: When set core will filter LFPS reception.
-> > +    type: boolean
-> > +
-> > +  snps,rx_detect_poll_quirk:
-> > +    description: |
-> > +      when set core will disable a 400us delay to start Polling LFPS after
-> > +      RX.Detect.
-> > +    type: boolean
-> > +
-> > +  snps,tx_de_emphasis_quirk:
-> > +    description: When set core will set Tx de-emphasis value
-> > +    type: boolean
-> > +
-> > +  snps,tx_de_emphasis:
-> > +    description: |
-> > +      The value driven to the PHY is controlled by the LTSSM during USB3
-> > +      Compliance mode.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +
-> > +  snps,dis_u3_susphy_quirk:
-> > +    description: When set core will disable USB3 suspend phy
-> > +    type: boolean
-> > +
-> > +  snps,dis_u2_susphy_quirk:
-> > +    description: When set core will disable USB2 suspend phy
-> > +    type: boolean
-> > +
-> > +  snps,dis_enblslpm_quirk:
-> > +    description: |
-> > +      When set clears the enblslpm in GUSB2PHYCFG, disabling the suspend signal
-> > +      to the PHY.
-> > +    type: boolean
-> > +
-> > +  snps,dis-u1-entry-quirk:
-> > +    description: Set if link entering into U1 needs to be disabled
-> > +    type: boolean
-> > +
-> > +  snps,dis-u2-entry-quirk:
-> > +    description: Set if link entering into U2 needs to be disabled
-> > +    type: boolean
-> > +
-> > +  snps,dis_rxdet_inp3_quirk:
-> > +    description: |
-> > +      When set core will disable receiver detection in PHY P3 power state.
-> > +    type: boolean
-> > +
-> > +  snps,dis-u2-freeclk-exists-quirk:
-> > +    description: |
-> > +      When set, clear the u2_freeclk_exists in GUSB2PHYCFG, specify that USB2
-> > +      PHY doesn't provide a free-running PHY clock.
-> > +    type: boolean
-> > +
-> > +  snps,dis-del-phy-power-chg-quirk:
-> > +    description: |
-> > +      When set core will change PHY power from P0 to P1/P2/P3 without delay.
-> > +    type: boolean
-> > +
-> > +  snps,dis-tx-ipgap-linecheck-quirk:
-> > +    description: When set, disable u2mac linestate check during HS transmit
-> > +    type: boolean
-> > +
-> > +  snps,parkmode-disable-ss-quirk:
-> > +    description: |
-> > +      When set, all SuperSpeed bus instances in park mode are disabled.
-> > +    type: boolean
-> > +
-> > +  snps,dis_metastability_quirk:
-> > +    description: |
-> > +      When set, disable metastability workaround. CAUTION! Use only if you are
-> > +      absolutely sure of it.
-> > +    type: boolean
-> > +
-> > +  snps,is-utmi-l1-suspend:
-> > +    description: |
-> > +      True when DWC3 asserts output signal utmi_l1_suspend_n, false when
-> > +      asserts utmi_sleep_n.
-> > +    type: boolean
-> > +
-> > +  snps,hird-threshold:
-> > +    description: HIRD threshold
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +
-> > +  snps,hsphy_interface:
-> > +    description: |
-> > +      High-Speed PHY interface selection between UTMI+ and ULPI when the
-> > +      DWC_USB3_HSPHY_INTERFACE has value 3.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    enum: ["utmi", "ulpi"]
-> > +
-> > +  snps,quirk-frame-length-adjustment:
-> > +    description: |
-> > +      Value for GFLADJ_30MHZ field of GFLADJ register for post-silicon frame
-> > +      length adjustment when the fladj_30mhz_sdbnd signal is invalid or
-> > +      incorrect.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  snps,rx-thr-num-pkt-prd:
-> > +    description: |
-> > +      Periodic ESS RX packet threshold count (host mode only). Set this and
-> > +      snps,rx-max-burst-prd to a valid, non-zero value 1-16 (DWC_usb31
-> > +      programming guide section 1.2.4) to enable periodic ESS RX threshold.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    minimum: 1
-> > +    maximum: 16
-> > +
-> > +  snps,rx-max-burst-prd:
-> > +    description: |
-> > +      Max periodic ESS RX burst size (host mode only). Set this and
-> > +      snps,rx-thr-num-pkt-prd to a valid, non-zero value 1-16 (DWC_usb31
-> > +      programming guide section 1.2.4) to enable periodic ESS RX threshold.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    minimum: 1
-> > +    maximum: 16
-> > +
-> > +  snps,tx-thr-num-pkt-prd:
-> > +    description: |
-> > +      Periodic ESS TX packet threshold count (host mode only). Set this and
-> > +      snps,tx-max-burst-prd to a valid, non-zero value 1-16 (DWC_usb31
-> > +      programming guide section 1.2.3) to enable periodic ESS TX threshold.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    minimum: 1
-> > +    maximum: 16
-> > +
-> > +  snps,tx-max-burst-prd:
-> > +    description: |
-> > +      Max periodic ESS TX burst size (host mode only). Set this and
-> > +      snps,tx-thr-num-pkt-prd to a valid, non-zero value 1-16 (DWC_usb31
-> > +      programming guide section 1.2.3) to enable periodic ESS TX threshold.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    minimum: 1
-> > +    maximum: 16
-> > +
-> > +  tx-fifo-resize:
-> > +    description: Determines if the FIFO *has* to be reallocated
-> > +    deprecated: true
-> > +    type: boolean
-> > +
-> > +  snps,incr-burst-type-adjustment:
-> > +    description: |
-> > +      Value for INCR burst type of GSBUSCFG0 register, undefined length INCR
-> > +      burst type enable and INCRx type. A single value means INCRX burst mode
-> > +      enabled. If more than one value specified, undefined length INCR burst
-> > +      type will be enabled with burst lengths utilized up to the maximum
-> > +      of the values passed in this property.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    minItems: 1
-> > +    maxItems: 8
-> > +    uniqueItems: true
-> > +    items:
-> > +      enum: [1, 4, 8, 16, 32, 64, 128, 256]
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +examples:
-> > +  - |
-> > +    usb@4a030000 {
-> > +      compatible = "snps,dwc3";
-> > +      reg = <0x4a030000 0xcfff>;
-> > +      interrupts = <0 92 4>;
-> > +      usb-phy = <&usb2_phy>, <&usb3_phy>;
-> > +      snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-> > +    };
-> > +  - |
-> > +    usb@4a000000 {
-> > +      compatible = "snps,dwc3";
-> > +      reg = <0x4a000000 0xcfff>;
-> > +      interrupts = <0 92 4>;
-> > +      clocks = <&clk 1>, <&clk 2>, <&clk 3>;
-> > +      clock-names = "bus_early", "ref", "suspend";
-> > +      phys = <&usb2_phy>, <&usb3_phy>;
-> > +      phy-names = "usb2-phy", "usb3-phy";
-> > +      snps,dis_u2_susphy_quirk;
-> > +      snps,dis_enblslpm_quirk;
-> > +    };
-> > +...
-> > -- 
-> > 2.27.0
-> > 
+--qn6okevj7lpylitq--
