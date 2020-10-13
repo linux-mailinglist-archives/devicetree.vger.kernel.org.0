@@ -2,157 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 143E328CE31
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 14:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3BA128CE58
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 14:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726566AbgJMMSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 08:18:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726476AbgJMMSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 08:18:15 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1488DC0613D0
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 05:18:15 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kSJFf-000448-Ju; Tue, 13 Oct 2020 14:17:59 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kSJFe-0007iN-NI; Tue, 13 Oct 2020 14:17:58 +0200
-Date:   Tue, 13 Oct 2020 14:17:58 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     f.fainelli@gmail.com, linux@roeck-us.net, jdelvare@suse.com,
-        wahrenst@gmx.net, Eric Anholt <eric@anholt.net>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-hwmon@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] pwm: Add Raspberry Pi Firmware based PWM bus
-Message-ID: <20201013121758.gl6ni4b47ei2bhdf@pengutronix.de>
-References: <20201009153031.986-1-nsaenzjulienne@suse.de>
- <20201009153031.986-4-nsaenzjulienne@suse.de>
- <20201012070626.fzjhp3tkmgglqnm4@pengutronix.de>
- <7899e490543723c97ffad6f42942907f8db6b9b4.camel@suse.de>
+        id S1727191AbgJMMaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 08:30:07 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:43787 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726112AbgJMMaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 08:30:07 -0400
+Received: by mail-oi1-f193.google.com with SMTP id l85so22247287oih.10;
+        Tue, 13 Oct 2020 05:30:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=l13Z8xOhyqZIr9aWHDRCKKN9Zj5vewOvbiekjj4BpAw=;
+        b=ZRvj5Ao+3SaaQ0QSn0xa0CzCJVuUlBYnOUcp6aGKNNtjAYxv/XC70PO9Ov3EcQW7er
+         QT3OkIhEF/gSpazEXaSIgEFsU9crANhEkeqYHirsfgMYRHT/cR/cVu+J4PW8Omi2g0d6
+         fb9LsthGCEQ16QseGT+DORCh8aeCjJVmeFga2DJ+jWrRE5I+xxysKRQvOWIyNd7TEAF4
+         sRJDIbGE/S6WbsA7sNGdJga1denES0u91FKEg3EDbBkqWYCgPWCOfssssYtp4uOIQJwC
+         hH3OQKLEJLF2J2JcZLsa8yG7XRVc/mHFNG9H4CepOXsL/OHRVDJDPRis0vi1oUX8SPpE
+         I4Ug==
+X-Gm-Message-State: AOAM533z8r2LVXb8cSEhG6B23V7inv/TKYLYvDChW3QNGRTDclLcvz7d
+        BBdcI9hBNFscReYq0qm2ow==
+X-Google-Smtp-Source: ABdhPJyndCBj97xf1NjGMItXcmgC5xw9dvQKbfGQbJ9/OHzCsjt3Y6QB40qIJ1XALueJlWUrAlMaeQ==
+X-Received: by 2002:aca:38c1:: with SMTP id f184mr12823576oia.145.1602592205767;
+        Tue, 13 Oct 2020 05:30:05 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v22sm11015668oia.7.2020.10.13.05.30.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Oct 2020 05:30:05 -0700 (PDT)
+Received: (nullmailer pid 3296068 invoked by uid 1000);
+        Tue, 13 Oct 2020 12:30:04 -0000
+Date:   Tue, 13 Oct 2020 07:30:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 07/18] dt-bindings: usb: Convert xHCI bindings to DT
+ schema
+Message-ID: <20201013123004.GB3269269@bogus>
+References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
+ <20201010224121.12672-8-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xntkxwoajyvakbba"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7899e490543723c97ffad6f42942907f8db6b9b4.camel@suse.de>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201010224121.12672-8-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Oct 11, 2020 at 01:41:10AM +0300, Serge Semin wrote:
+> Currently the DT bindings of Generic xHCI Controllers are described by means
+> of the legacy text file. Since such format is deprecated in favor of the
+> DT schema, let's convert the Generic xHCI Controllers bindings file to the
+> corresponding yaml files. There will be two of them: a DT schema for the
+> xHCI controllers on a generic platform and a DT schema validating a generic
+> xHCI controllers properties. The later will be used to validate the xHCI
+> controllers, which aside from some vendor-specific features support the
+> basic xHCI functionality.
+> 
+> An xHCI-compatible DT node shall support the standard USB HCD properties
+> and custom ones like: usb2-lpm-disable, usb3-lpm-capable,
+> quirk-broken-port-ped and imod-interval-ns. In addition if a generic xHCI
+> controller is being validated against the DT schema it is also supposed to
+> be equipped with mandatory compatible string, single registers range,
+> single interrupts source, and is supposed to optionally contain up to two
+> reference clocks for the controller core and CSRs.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> ---
+>  .../devicetree/bindings/usb/generic-xhci.yaml | 63 +++++++++++++++++++
+>  .../devicetree/bindings/usb/usb-xhci.txt      | 41 ------------
+>  .../devicetree/bindings/usb/usb-xhci.yaml     | 40 ++++++++++++
+>  3 files changed, 103 insertions(+), 41 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/generic-xhci.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> new file mode 100644
+> index 000000000000..1ea1d49a8175
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: USB xHCI Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Mathias Nyman <mathias.nyman@intel.com>
+> +
+> +allOf:
+> +  - $ref: "usb-xhci.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description: Generic xHCI device
+> +        const: generic-xhci
+> +      - description: Armada 37xx/375/38x/8k SoCs
+> +        items:
+> +          - enum:
+> +              - marvell,armada3700-xhci
+> +              - marvell,armada-375-xhci
+> +              - marvell,armada-380-xhci
+> +              - marvell,armada-8k-xhci
+> +          - const: generic-xhci
+> +      - description: Broadcom STB SoCs with xHCI
+> +        const: brcm,bcm7445-xhci
+> +      - description: Generic xHCI device
+> +        const: xhci-platform
+> +        deprecated: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: core
+> +      - const: reg
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    usb@f0931000 {
+> +      compatible = "generic-xhci";
+> +      reg = <0xf0931000 0x8c8>;
+> +      interrupts = <0x0 0x4e 0x0>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+> deleted file mode 100644
+> index 0c5cff84a969..000000000000
+> --- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
+> +++ /dev/null
+> @@ -1,41 +0,0 @@
+> -USB xHCI controllers
+> -
+> -Required properties:
+> -  - compatible: should be one or more of
+> -
+> -    - "generic-xhci" for generic XHCI device
+> -    - "marvell,armada3700-xhci" for Armada 37xx SoCs
+> -    - "marvell,armada-375-xhci" for Armada 375 SoCs
+> -    - "marvell,armada-380-xhci" for Armada 38x SoCs
+> -    - "brcm,bcm7445-xhci" for Broadcom STB SoCs with XHCI
+> -    - "xhci-platform" (deprecated)
+> -
+> -    When compatible with the generic version, nodes must list the
+> -    SoC-specific version corresponding to the platform first
+> -    followed by the generic version.
+> -
+> -  - reg: should contain address and length of the standard XHCI
+> -    register set for the device.
+> -  - interrupts: one XHCI interrupt should be described here.
+> -
+> -Optional properties:
+> -  - clocks: reference to the clocks
+> -  - clock-names: mandatory if there is a second clock, in this case
+> -    the name must be "core" for the first clock and "reg" for the
+> -    second one
+> -  - usb2-lpm-disable: indicate if we don't want to enable USB2 HW LPM
+> -  - usb3-lpm-capable: determines if platform is USB3 LPM capable
+> -  - quirk-broken-port-ped: set if the controller has broken port disable mechanism
+> -  - imod-interval-ns: default interrupt moderation interval is 5000ns
+> -  - phys : see usb-hcd.yaml in the current directory
+> -
+> -additionally the properties from usb-hcd.yaml (in the current directory) are
+> -supported.
+> -
+> -
+> -Example:
+> -	usb@f0931000 {
+> -		compatible = "generic-xhci";
+> -		reg = <0xf0931000 0x8c8>;
+> -		interrupts = <0x0 0x4e 0x0>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.yaml b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
+> new file mode 100644
+> index 000000000000..c5c177f2e055
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/usb-xhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic USB xHCI Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Mathias Nyman <mathias.nyman@intel.com>
+> +
+> +allOf:
+> +  - $ref: "usb-hcd.yaml#"
+> +
+> +properties:
+> +  usb2-lpm-disable:
+> +    description: Indicates if we don't want to enable USB2 HW LPM
+> +    type: boolean
+> +
+> +  usb3-lpm-capable:
+> +    description: Determines if platform is USB3 LPM capable
+> +    type: boolean
+> +
+> +  quirk-broken-port-ped:
+> +    description: Set if the controller has broken port disable mechanism
+> +    type: boolean
+> +
+> +  imod-interval-ns:
+> +    description: Interrupt moderation interval
+> +    default: 5000
 
---xntkxwoajyvakbba
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Having additionalProperties or unevaluatedProperties is going to be 
+mandatory, so for this add:
 
-Hello Nicolas,
+additionalProperties: true
 
-On Tue, Oct 13, 2020 at 01:20:00PM +0200, Nicolas Saenz Julienne wrote:
-> On Mon, 2020-10-12 at 09:06 +0200, Uwe Kleine-K=F6nig wrote:
-> > > +	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FI=
-RMWARE)
-> >=20
-> > This is more complicated than necessary.
-> >=20
-> > 	depends on RASPBERRYPI_FIRMWARE || COMPILE_TEST
-> >=20
-> > is logically equivalent.
->=20
-> It's not exactly the same, see patch 7ed915059c300 ("gpio: raspberrypi-ex=
-t: fix
-> firmware dependency ") which explains why this pattern is needed.
-
-Hmm, this is strange, but if Arnd doesn't know a better solution, then
-be it so. Is this idiom usual enough to not justify a comment?
-
-> > What happens if duty_cycle happens to be bigger than RPI_PWM_MAX_DUTY?
-> >=20
-> > I think the right thing to do here is:
-> >=20
-> > 	if (state->period < RPI_PWM_PERIOD_NS ||
->=20
-> Why not using state->period !=3D RPI_PWM_PERIOD_NS here?
-
-=46rom the consumer's point of view having to hit the only correct period
-is hard. So the usual convention is to provide the biggest period not
-bigger than the requested one. (The idea for the future is to provide a
-pwm_round_state() function which allows to find out the effect of
-pwm_apply_state() with the same arguments. This then allows to
-efficiently find the best setting for the consumer.)
-
-> > Huh, why do you have to do this twice, just with different error
-> > messages? I assume you want to set RPI_PWM_DEF_DUTY_REG? What is the
-> > effect of writing this property?
->=20
-> Obviously, I failed to change the register name.
->=20
-> This is supposed to set the default duty cycle after resetting the board.=
- I
-> added it so as to keep compatibility with the downstream version of this.
->=20
-> I'll add a comment to explain this.
-
-fine.
-
-> > > +	int ret;
-> > > +
-> > > +	firmware_node =3D of_get_parent(dev->of_node);
-> > > +	if (!firmware_node) {
-> > > +		dev_err(dev, "Missing firmware node\n");
-> > > +		return -ENOENT;
-> > > +	}
-> > > +
-> > > +	firmware =3D rpi_firmware_get(firmware_node);
-> > > +	of_node_put(firmware_node);
-> > > +	if (!firmware)
-> > > +		return -EPROBE_DEFER;
-> >=20
-> > I don't see a mechanism that prevents the driver providing the firmware
-> > going away while the PWM is still in use.
->=20
-> There isn't an explicit one. But since you depend on a symbol from the fi=
-rmware
-> driver you won't be able to remove the kernel module before removing the =
-PMW
-> one.
-
-this prevents the that the module is unloaded, but not that the driver
-is unbound.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---xntkxwoajyvakbba
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+FmvMACgkQwfwUeK3K
-7Alr6QgAoSvGO1utwKB8imjfhuiIKqO6D57vwFc/bGxPmKrIYCfqkAMhITgHDlGX
-lwyzgxZhJ19q6k/DpQ+H7L6LuQv0X1uKjSyiJtjBSxIVySGOhfdBmKq0rPpfduXa
-0wIj5ioSxBotq1KPo1lGbx2NNi8+V5s0Sf1LQjduMaOLKZtwj1z63AJMnsA6thzb
-mTa40+dNb2TPtpIZBpBJS3G5H82l/iccRvBWCLXipOS8TEHG5dDEmjwRwJK6Zkfl
-2G1vLDe1hxn2VWkTwtkIAPfa+yF3q5RwJW85MBIN0sh6GK9MkV0rJ5tJ9D3q0ID5
-WdUQqTE27kuilbmMhsIsTMLJIT7qjg==
-=+cRP
------END PGP SIGNATURE-----
-
---xntkxwoajyvakbba--
+> +
+> +examples:
+> +  - |
+> +    usb@f0930000 {
+> +      compatible = "generic-xhci";
+> +      reg = <0xf0930000 0x8c8>;
+> +      interrupts = <0x0 0x4e 0x0>;
+> +      usb2-lpm-disable;
+> +      usb3-lpm-capable;
+> +    };
+> -- 
+> 2.27.0
+> 
