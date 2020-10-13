@@ -2,188 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A45728D296
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 18:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B00D28D29E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 18:50:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728439AbgJMQti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 12:49:38 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:38346 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727696AbgJMQti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 12:49:38 -0400
-Received: by mail-ot1-f65.google.com with SMTP id i12so650782ota.5;
-        Tue, 13 Oct 2020 09:49:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=t3HNao7Z7e7NuJhBeYuaJzFgEjzmb6YkqhZHsBnqQYs=;
-        b=VgkHl4mR+32wRGV68lBnzgHMdlQf3EwlUeO+uSWwjrbl5z2k2W6mRCJ1dujYXpPf9z
-         8xA5mDo8bBnll6Fee5Z5jQ+N1PIFXKsegj8dYHu1UnqVt5utL3wpms1aYqAoaa7WDbE1
-         foGL9NgK1DKf8mpJYFBwWsJePEBbVcF2uUmLZZ6u+ej6GcPku65vEYuqfIeDA3cOY/2C
-         5lDMR3PHxeAmshOyxg1qH7avep557WXjuOz5nNlzJUXWr13/HbTmsAK3dsGVLMUBFUS6
-         IwAHVWWcxTAQTVimSC7HDv03/uOoUM9Lbq8xDBPfRsZyVmOR87u8CNgRRkFNfcntFrx2
-         J6DQ==
-X-Gm-Message-State: AOAM5320Hw8CqwvMnt9eBV/taalMMxuNOF40qaZMJLEgVEtanj6JjFZm
-        4KA+j7tl8vYvm3SYCvd1x3nls+l3X1Vy
-X-Google-Smtp-Source: ABdhPJyH/mGcnXgbLGg8F+zEGrAXfo+6YioxMnkhPYtvGQU8P7FvyNa+0b5j5ZW/MgdzWOgEDxx/dg==
-X-Received: by 2002:a9d:66a:: with SMTP id 97mr390825otn.233.1602607776861;
-        Tue, 13 Oct 2020 09:49:36 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a16sm98061otk.39.2020.10.13.09.49.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 09:49:36 -0700 (PDT)
-Received: (nullmailer pid 3675125 invoked by uid 1000);
-        Tue, 13 Oct 2020 16:49:35 -0000
-Date:   Tue, 13 Oct 2020 11:49:35 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 01/23] dt-bindings: introduce silabs,wfx.yaml
-Message-ID: <20201013164935.GA3646933@bogus>
-References: <20201012104648.985256-1-Jerome.Pouiller@silabs.com>
- <20201012104648.985256-2-Jerome.Pouiller@silabs.com>
+        id S2387947AbgJMQuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 12:50:51 -0400
+Received: from mx2.suse.de ([195.135.220.15]:59406 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387919AbgJMQuv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 12:50:51 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id CEF98B2F2;
+        Tue, 13 Oct 2020 16:50:49 +0000 (UTC)
+Message-ID: <c171c837a31dea34c845478b7c7d4bdef865b5e0.camel@suse.de>
+Subject: Re: [PATCH 3/3] pwm: Add Raspberry Pi Firmware based PWM bus
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     f.fainelli@gmail.com, linux@roeck-us.net, jdelvare@suse.com,
+        wahrenst@gmx.net, Eric Anholt <eric@anholt.net>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-hwmon@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Date:   Tue, 13 Oct 2020 18:50:47 +0200
+In-Reply-To: <20201013121758.gl6ni4b47ei2bhdf@pengutronix.de>
+References: <20201009153031.986-1-nsaenzjulienne@suse.de>
+         <20201009153031.986-4-nsaenzjulienne@suse.de>
+         <20201012070626.fzjhp3tkmgglqnm4@pengutronix.de>
+         <7899e490543723c97ffad6f42942907f8db6b9b4.camel@suse.de>
+         <20201013121758.gl6ni4b47ei2bhdf@pengutronix.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-QQL4Z9L5K9obB4kJlsj+"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201012104648.985256-2-Jerome.Pouiller@silabs.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 12, 2020 at 12:46:26PM +0200, Jerome Pouiller wrote:
-> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> 
-> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> ---
->  .../bindings/net/wireless/silabs,wfx.yaml     | 125 ++++++++++++++++++
->  1 file changed, 125 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> new file mode 100644
-> index 000000000000..43b5630c0407
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> @@ -0,0 +1,125 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2020, Silicon Laboratories, Inc.
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/net/wireless/silabs,wfx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Silicon Labs WFxxx devicetree bindings
-> +
-> +maintainers:
-> +  - Jérôme Pouiller <jerome.pouiller@silabs.com>
-> +
-> +description:
-> +  The WFxxx chip series can be connected via SPI or via SDIO.
 
-What does this chip do? WiFi or some other wireless?
+--=-QQL4Z9L5K9obB4kJlsj+
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +  For SDIO':'
-> +
-> +    The driver is able to detect a WFxxx chip on SDIO bus by matching its Vendor
-> +    ID and Product ID. However, driver will only provide limited features in
-> +    this case. Thus declaring WFxxx chip in device tree is recommended (and may
-> +    become mandatory in the future).
-> +
-> +    In addition, it is recommended to declare a mmc-pwrseq on SDIO host above
-> +    WFx. Without it, you may encounter issues with warm boot. The mmc-pwrseq
-> +    should be compatible with mmc-pwrseq-simple. Please consult
-> +    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt for more
-> +    information.
-> +
-> +  For SPI':'
-> +
-> +    In add of the properties below, please consult
-> +    Documentation/devicetree/bindings/spi/spi-controller.yaml for optional SPI
-> +    related properties.
-> +
-> +  Note that in add of the properties below, the WFx driver also supports
-> +  `mac-address` and `local-mac-address` as described in
-> +  Documentation/devicetree/bindings/net/ethernet.txt
+Hi Uwe,
 
-Note what ethernet.txt contains... This should have a $ref to 
-ethernet-controller.yaml to express the above.
+On Tue, 2020-10-13 at 14:17 +0200, Uwe Kleine-K=C3=B6nig wrote:
+> Hello Nicolas,
+>=20
+> On Tue, Oct 13, 2020 at 01:20:00PM +0200, Nicolas Saenz Julienne wrote:
+> > On Mon, 2020-10-12 at 09:06 +0200, Uwe Kleine-K=C3=B6nig wrote:
+> > > > +	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_=
+FIRMWARE)
+> > >=20
+> > > This is more complicated than necessary.
+> > >=20
+> > > 	depends on RASPBERRYPI_FIRMWARE || COMPILE_TEST
+> > >=20
+> > > is logically equivalent.
+> >=20
+> > It's not exactly the same, see patch 7ed915059c300 ("gpio: raspberrypi-=
+ext: fix
+> > firmware dependency ") which explains why this pattern is needed.
 
-You can add 'mac-address: true' if you want to be explicit about what 
-properties are used.
+I'll add a comment.
 
-> +
-> +properties:
-> +  compatible:
-> +    const: silabs,wf200
+> Hmm, this is strange, but if Arnd doesn't know a better solution, then
+> be it so. Is this idiom usual enough to not justify a comment?
+>=20
+> > > What happens if duty_cycle happens to be bigger than RPI_PWM_MAX_DUTY=
+?
+> > >=20
+> > > I think the right thing to do here is:
+> > >=20
+> > > 	if (state->period < RPI_PWM_PERIOD_NS ||
+> >=20
+> > Why not using state->period !=3D RPI_PWM_PERIOD_NS here?
+>=20
+> From the consumer's point of view having to hit the only correct period
+> is hard. So the usual convention is to provide the biggest period not
+> bigger than the requested one. (The idea for the future is to provide a
+> pwm_round_state() function which allows to find out the effect of
+> pwm_apply_state() with the same arguments. This then allows to
+> efficiently find the best setting for the consumer.)
 
-blank line between each DT property.
+Fair enough.
 
-> +  reg:
-> +    description:
-> +      When used on SDIO bus, <reg> must be set to 1. When used on SPI bus, it is
-> +      the chip select address of the device as defined in the SPI devices
-> +      bindings.
-> +    maxItems: 1
-> +  spi-max-frequency:
-> +    description: (SPI only) Maximum SPI clocking speed of device in Hz.
+> > > Huh, why do you have to do this twice, just with different error
+> > > messages? I assume you want to set RPI_PWM_DEF_DUTY_REG? What is the
+> > > effect of writing this property?
+> >=20
+> > Obviously, I failed to change the register name.
+> >=20
+> > This is supposed to set the default duty cycle after resetting the boar=
+d. I
+> > added it so as to keep compatibility with the downstream version of thi=
+s.
+> >=20
+> > I'll add a comment to explain this.
+>=20
+> fine.
+>=20
+> > > > +	int ret;
+> > > > +
+> > > > +	firmware_node =3D of_get_parent(dev->of_node);
+> > > > +	if (!firmware_node) {
+> > > > +		dev_err(dev, "Missing firmware node\n");
+> > > > +		return -ENOENT;
+> > > > +	}
+> > > > +
+> > > > +	firmware =3D rpi_firmware_get(firmware_node);
+> > > > +	of_node_put(firmware_node);
+> > > > +	if (!firmware)
+> > > > +		return -EPROBE_DEFER;
+> > >=20
+> > > I don't see a mechanism that prevents the driver providing the firmwa=
+re
+> > > going away while the PWM is still in use.
+> >=20
+> > There isn't an explicit one. But since you depend on a symbol from the =
+firmware
+> > driver you won't be able to remove the kernel module before removing th=
+e PMW
+> > one.
+>=20
+> this prevents the that the module is unloaded, but not that the driver
+> is unbound.
 
-No need to redefine a common property.
+Yes, if you were to unbind the firmware device all devices that depend on i=
+t
+(there are a bunch of them) would access freed memory. Yet again, there is =
+no
+hotplug functionality, so short of being useful for development it'd be ver=
+y
+rare for someone to unbind it. We've been living with it as such for a long
+time. Not to say that is something not to fix, but from my perspective it's
+just a corner-case.
 
-> +    maxItems: 1
+We are using 'simple-mfd' in order to probe all devices under the
+firmware interface, so my first intuition would be to add support for
+automatically unbinding of consumer devices in of/platform.c. See:
 
-Not an array. Just need:
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index b557a0fcd4ba..d24f2412d518 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -390,7 +390,13 @@ static int of_platform_bus_create(struct device_node *=
+bus,
+        }
+=20
+        dev =3D of_platform_device_create_pdata(bus, bus_id, platform_data,=
+ parent);
+-       if (!dev || !of_match_node(matches, bus))
++       if (!dev)
++               return 0;
++
++       if (parent && of_device_is_compatible(parent->of_node, "simple-mfd"=
+))
++               device_link_add(&dev->dev, parent, DL_FLAG_AUTOREMOVE_CONSU=
+MER);
++
++       if (!of_match_node(matches, bus))
+                return 0;
+=20
+        for_each_child_of_node(bus, child) {
 
-spi-max-frequency: true
+If this is too much for OF maintainers, we could simply create the link upo=
+n
+calling rpi_firmware_get().
 
-> +  interrupts:
-> +    description: The interrupt line. Triggers IRQ_TYPE_LEVEL_HIGH and
-> +      IRQ_TYPE_EDGE_RISING are both supported by the chip and the driver. When
-> +      SPI is used, this property is required. When SDIO is used, the "in-band"
-> +      interrupt provided by the SDIO bus is used unless an interrupt is defined
-> +      in the Device Tree.
-> +    maxItems: 1
-> +  reset-gpios:
-> +    description: (SPI only) Phandle of gpio that will be used to reset chip
-> +      during probe. Without this property, you may encounter issues with warm
-> +      boot. (For legacy purpose, the gpio in inverted when compatible ==
-> +      "silabs,wfx-spi")
-> +
-> +      For SDIO, the reset gpio should declared using a mmc-pwrseq.
-> +    maxItems: 1
-> +  wakeup-gpios:
-> +    description: Phandle of gpio that will be used to wake-up chip. Without this
-> +      property, driver will disable most of power saving features.
-> +    maxItems: 1
-> +  config-file:
-> +    description: Use an alternative file as PDS. Default is `wf200.pds`. Only
-> +      necessary for development/debug purpose.
+This solves the problem of getting a kernel panic because of the use after
+free, but you'll still get some warnings after unbinding from the GPIO
+subsystem, for example, as we just removed a gpiochip that still has consum=
+ers
+up. I guess device links only go so far.
 
-'firmware-name' is typically what we'd use here. Though if just for 
-debug/dev, perhaps do a debugfs interface for this instead. As DT should 
-come from the firmware/bootloader, requiring changing the DT for 
-dev/debug is not the easiest workflow compared to doing something from 
-userspace.
+Any ideas/comments?
 
-> +    maxItems: 1
+Regards,
+Nicolas
 
-Looks like a string, not an array.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
+--=-QQL4Z9L5K9obB4kJlsj+
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-Will need additionalProperties or unevaluatedProperties depending on 
-whether you list out properties from ethernet-controller.yaml or not.
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+F2ucACgkQlfZmHno8
+x/4aKQf+OCDTj2+VaoKNpvJzA4yuSworog5ZQ/I2NeExhZZbxPTs2V2Y/HGEHegl
+n3ejX6yJGqpUsWoeqy5XXDVJhnPSfBTQRWjwzipuI6vUX0PLtJCW9GW5awPc1sTm
+NF2NOFeM0WNPaodHNqzT6JXRbYRRx1EN3NzdfMX89NZ+cx0fQSQBzeXSlqhIWvlC
+rEfGZD3hMMHr/NXzomTPgIp1Wgtq9VRcSs/gGvOzaxYqqSUKrBZf1mnMhwcM5Byb
+KHUJW+hIyCRiTUHrUGItXhRZK3lRHxZDbEN46T8HmtrV6cCRaFTCU2ozTALD47Mn
+CdvAxBZhwALSZ4+AfjB/JwB2C/HfOA==
+=DfAb
+-----END PGP SIGNATURE-----
+
+--=-QQL4Z9L5K9obB4kJlsj+--
+
