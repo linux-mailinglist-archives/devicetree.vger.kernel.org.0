@@ -2,83 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D017528D30D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 19:22:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1667828D30E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 19:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726371AbgJMRWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 13:22:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42258 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725970AbgJMRWG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 13:22:06 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BD48B25349
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 17:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602609725;
-        bh=yA3C/glXv7ykJWpaKaDe+GEUv4RDJquXS6VVlZdR9is=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QQysbI6S5n5H+SSGUrjNlsLFsfDd+zvQIcCTST97rVv1tE6hKONYWBlwSiD5Eagkx
-         fVTgpTchZY2dG1QVCEGDSvGLn1Wx7sINlB3xaKmw3Ho06wGCrzjDHoMpC3tGHm5iPF
-         kXD2c/CvOOzEi0N0mP1NX7KWkQgm4ApBTnYJ8YXU=
-Received: by mail-oi1-f174.google.com with SMTP id m128so174888oig.7
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 10:22:05 -0700 (PDT)
-X-Gm-Message-State: AOAM530h+cJP+yEK/Cyg8Cpj0OS4qAZ9AJRiNwEtKixsMUoIYVTyPTwf
-        FPCTU8zignkjH0ozZKyBYzFksJp3oOpwwPgKkg==
-X-Google-Smtp-Source: ABdhPJxyF0+fiTXHwWwRn/JDJpftS1DbWVjstm+QNS2MDNzCFFXlrKVvJtsNjTjQUVhJJWmbYWI5TFy2jeyYH+8KpSc=
-X-Received: by 2002:a54:4f89:: with SMTP id g9mr496636oiy.106.1602609725043;
- Tue, 13 Oct 2020 10:22:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201007203936.23953-1-ioana.ciornei@nxp.com> <20201007203936.23953-2-ioana.ciornei@nxp.com>
- <20201013133132.GA3381736@bogus> <20201013141918.vulibck3yf2ghlj4@skbuf>
-In-Reply-To: <20201013141918.vulibck3yf2ghlj4@skbuf>
+        id S1726428AbgJMRWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 13:22:32 -0400
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:40051 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725970AbgJMRWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 13:22:32 -0400
+Received: by mail-oo1-f66.google.com with SMTP id w7so67117oow.7;
+        Tue, 13 Oct 2020 10:22:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VFYdK5eEI2q6HITSkcwdVxz4dDBhdqzWyeihWrwEJQY=;
+        b=gbk/pyxWUw8Aq9L7Zc8gGCzlbgwhpdUc96GKl9xr4BVFPXX6M3uY/ktF0nuuD/wBL/
+         mvLvudRUbDFQmgdVNCw5yo7qTtg9UFYlJxUSy1vjONY9osXUfFpmdLWaVUj2PaIDNlNi
+         iqOGlJLYNgb9MoKzTLvR4Q1j0nC/vm+EuRDy8GTahKgobAwB89557T/jRWR9CVQqexoZ
+         hJxfMl/8D2bGdEWndfVzF0oxMgatwr+ximaMJqbZP03waQOPEAUf5fFOMwjBjK17twOc
+         MlEXsTHlE+cSQgcgJB9skt1IOUW3DUe9P4XsbuW4S9seOzvoNSbhg4DydnL0c9Q6G6ji
+         IqyA==
+X-Gm-Message-State: AOAM533Hu/wOVROYt7O67eDlcK6rK7NCmwKkQjrCKP2jtYATct6Oe+wP
+        1PAGrNF/NA6cMoBC6W45XAr3NIbLoaTd
+X-Google-Smtp-Source: ABdhPJzsC/0Ak+zrtd70+RUds9C+1E9Lw/c+pMqT2nbpeqfiPZ/7HAznFBx2dTS3zyPXvelxW8tNZA==
+X-Received: by 2002:a05:6820:30e:: with SMTP id l14mr297849ooe.57.1602609751366;
+        Tue, 13 Oct 2020 10:22:31 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y51sm131571otb.47.2020.10.13.10.22.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Oct 2020 10:22:30 -0700 (PDT)
+Received: (nullmailer pid 3726622 invoked by uid 1000);
+        Tue, 13 Oct 2020 17:22:30 -0000
+Date:   Tue, 13 Oct 2020 12:22:30 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 13 Oct 2020 12:21:53 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL8jJYqeXzxxJTfkMPj23OvRkX1o2Z+kKdR2teY+O-_gQ@mail.gmail.com>
-Message-ID: <CAL_JsqL8jJYqeXzxxJTfkMPj23OvRkX1o2Z+kKdR2teY+O-_gQ@mail.gmail.com>
-Subject: Re: [PATCH v3 01/11] dt-bindings: net: add the DPAA2 MAC DTS definition
-To:     Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc:     Leo Li <leoyang.li@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     pmeerw@pmeerw.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        lars@metafoo.de, knaack.h@gmx.de, matthias.bgg@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, jic23@kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: auxadc: add doc for MT8516 SoC
+Message-ID: <20201013172230.GA3726592@bogus>
+References: <20201012205218.3010868-1-fparent@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201012205218.3010868-1-fparent@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 9:19 AM Ioana Ciornei <ioana.ciornei@nxp.com> wrote:
->
-> On Tue, Oct 13, 2020 at 08:31:32AM -0500, Rob Herring wrote:
-> > On Wed, 07 Oct 2020 23:39:26 +0300, Ioana Ciornei wrote:
-> > > Add a documentation entry for the DTS bindings needed and supported by
-> > > the dpaa2-mac driver.
-> > >
-> > > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > > ---
-> > > Changes in v2:
-> > >  - new patch
-> > > Changes in v3:
-> > >  - renamed dpmac@x into ethernet@x
-> > >  - renamed the new documentation file to use the same name as the
-> > >    compatible
-> > >  - marked additionalProperties as false
-> > >  - added a reference to ethernet-controller.yaml
-> > >
-> > >  .../bindings/net/fsl,qoriq-mc-dpmac.yaml      | 60 +++++++++++++++++++
-> > >  1 file changed, 60 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
-> > >
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> Thanks for the review.
->
-> Is this going in 5.10 by any chance or should I resend these after
-> the merge window with the reviewed-by tags?
+On Mon, 12 Oct 2020 22:52:17 +0200, Fabien Parent wrote:
+> Add documentation for the auxadc binding for MT8516 SoC.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-I just noticed you didn't Cc netdev as I would expect this to go via
-the networking tree. So yes, resend after the merge window.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
