@@ -2,213 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 791C928CEFE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A7528CF1A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727526AbgJMNQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:16:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
+        id S1728614AbgJMN1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:27:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726648AbgJMNQJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:16:09 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 394EFC0613D0
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:16:08 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id i1so17878526wro.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:16:08 -0700 (PDT)
+        with ESMTP id S1728609AbgJMN1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:27:25 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2156C0613D2
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:27:24 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id a5so20412026ljj.11
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:27:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VU2ZxqifLVfdvXSsHtiP10MIVpWQnhcB7qzC0l8n27Q=;
-        b=UufO7gbvHGhekdd1ajNHDbaSed4SdIC7Spgf6zXceCSYOf/ADkjmmkC9V23bqUMbB1
-         ZsrrCkmtKhTx4DbLS4KY8QwRW2CIP8POGiUetpNpMGWyvu2xayQN3CmH/y6R+UkzFZOk
-         y8YrUg4kpIWXTd2gNzWGuF0gER7c7i3EQnJexjIkYzTIZnfAxw8SehnLQOBDKkmNdeFk
-         NXrJ3liIsKToDluLopfwwND95b7h+vHBVPoOKOYPmhOTpJspfjGU4ZUip8DoRN4/k4yZ
-         BKICBEMee6dlz2O01Gebr2Y2B/VhlrIQKrfs/AgiXMR+TqUbTk7P30Fiu+WgLznCVNAU
-         YGWA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6NIDO88L/SfLo7a2I6RUC0k7nZAbu1A3o1CF53Wby8o=;
+        b=MwfmDJKmJ81pU5hFl/rnyB8ayCOt5/lEUwSU27O6JDx9gQHn3DTxf+20E2rDsHteN3
+         9JTXgdXXsFRCbcDH9mN59YWJeO5adNlI1tyTLFP3T75BWSlWOBZlXUIezLx4IvooOzhl
+         iGMrxOm/GgqysYdhsEknsvhLgGgOndvkipKdbiQSRDirQWRFH7UT0/jHGov7IYyeLf9J
+         L5CvqhwM4drP3u2Hx5OyA2YyEVgNmqYg3Rmh4z4C97GCr5h0HIZPZWmqSlg4fwlsX8jR
+         QsCFkAfIZTTPlYPiMnrleySRmUurBcPFBXPWPMEkZ88jIn7qIWgNQRBHz0cZXIkUQY3H
+         7cUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VU2ZxqifLVfdvXSsHtiP10MIVpWQnhcB7qzC0l8n27Q=;
-        b=nml/vSGXPly3OpMBQf+bIaWAtbFzPUDA7S+Grc3Y/oGkLwz9v7U4v96P0vpH8zi5IN
-         b+UM45BkTf+zIGSrh0sO+t8dwkmT7sZx9C5k/St4DccCfmk+5L084Pw8PRPqRDAStUjX
-         Z2MgdgBi8g50DCm2r5ORPug6epR+flOkyK3o1xx69DM9AXTFJUj60Mw0xHNA4HLfC3Qj
-         x+pIXQn9CtYZ2XDDSZHeHHuAphr7d5NrmwO9FhWX/OIu55fujdw7abNFVjfxmkVJnUhd
-         It2ghiyzfcqghaX8JYH2oL5geay1b0vUHaITGpxP7p5GwmtBhCNYpnvPzx0bDecoOXsV
-         ijSA==
-X-Gm-Message-State: AOAM531xB0LCQz+hCDHSYQN2U1/qncC2+YnUzwg1lDlsqGWPy3ZueiUE
-        p6GOIx09b2BL3lI3c9Z1QzRQkQ==
-X-Google-Smtp-Source: ABdhPJyrMGbPezIyjxdtuy1W66p9EYHvfNv74EcrgGuUCuA1A4K2B3PooNGWh648/iYuSDfIvVd8pQ==
-X-Received: by 2002:a5d:480a:: with SMTP id l10mr34477948wrq.238.1602594966785;
-        Tue, 13 Oct 2020 06:16:06 -0700 (PDT)
-Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id u63sm27362883wmb.13.2020.10.13.06.16.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 06:16:04 -0700 (PDT)
-From:   Rui Miguel Silva <rui.silva@linaro.org>
-X-Google-Original-From: Rui Miguel Silva <rmfrfs@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rui Miguel Silva <rmfrfs@gmail.com>
-Subject: [PATCH] dt-bindings: fxas21002c: convert bindings to yaml
-Date:   Tue, 13 Oct 2020 14:15:45 +0100
-Message-Id: <20201013131545.503434-1-rmfrfs@gmail.com>
-X-Mailer: git-send-email 2.28.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6NIDO88L/SfLo7a2I6RUC0k7nZAbu1A3o1CF53Wby8o=;
+        b=DTPs2DpVpp2T8LkBqVr1HSWCfpNO7Gfv3YYwHsl0lgVXpQVw6gBU2aaIPf8Y1RtgqR
+         4IY+k9mhESnvC9V8RvLuGY5Qd0dy2a5Tsbe6hGZLV9wN0Ddczx1E0v3wu+kHF0eEO//k
+         nF7khFd+Dr69Ntjyz/o9HzzuW5Ah/AAwrFGR1EWZyErZjzMhfdxH80VcK/TmM97fUD0k
+         xpISA+HkhtAlaOSdNQYjkrlITRA6oE6DUThlER9Li/Tmz8x4FEnE51TvKXInG+XLVUJq
+         3DsBY41dKsaGTfJ7MwAbHJfn0O/LNV6JZgWr0iBR3HMehqtlqbDNE8zMhBwlyrxfOePt
+         ONIw==
+X-Gm-Message-State: AOAM530BupJTiUP3E/BaG9PFVSNIAy7g83pBY17U5Aa1fmu3q0RNQpM9
+        7HCybN00Y9VrGabuXBS1lvIwwwRO6KTCZ5jRg3MViw==
+X-Google-Smtp-Source: ABdhPJyUtzNpor9sibSYIY37lGowERAa80Msa/zFAJYgm+rvw5o4xkcDDfln7nDCdfKgqesfqrths5OjzjeufIK57F0=
+X-Received: by 2002:a2e:b893:: with SMTP id r19mr2025007ljp.104.1602595641517;
+ Tue, 13 Oct 2020 06:27:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
+ <20201004162908.3216898-3-martin.blumenstingl@googlemail.com>
+ <CACRpkdbTw4UBw02RXX2prju45AsDZqPchhz=gdzsuT-QjhYHVw@mail.gmail.com> <CAFBinCAFDhWp6mgUqyOjdMVBR5oZQVpmVPjhnZs1Xg16tFa0PQ@mail.gmail.com>
+In-Reply-To: <CAFBinCAFDhWp6mgUqyOjdMVBR5oZQVpmVPjhnZs1Xg16tFa0PQ@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 13 Oct 2020 15:27:10 +0200
+Message-ID: <CACRpkdZdwoQCxxqosn2jQPMXLDnTEjuxSWOxG-L1YGE33wbFrg@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/3] dt-bindings: gpio: Add binding documentation for
+ Etron EJ168/EJ188/EJ198
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-pci <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert fxas21002c gyroscope sensor bindings documentation to
-yaml schema and remove the textual bindings document.
+On Wed, Oct 7, 2020 at 9:58 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> On Wed, Oct 7, 2020 at 11:19 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > On Sun, Oct 4, 2020 at 8:00 PM Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> >
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - pci1b6f,7023
+> > > +      - pci1b6f,7052
+> >
+> > I think it is better to let the PCI driver for the whole hardware in
+> > drivers/usb/host/xhci-pci.c probe from the PCI configuration space
+> > numbers, and then add a gpio_chip to xhci-pci.c.
+>
+> to have everything consistent I will move the binding to
+> Documentation/devicetree/bindings/usb
 
-Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
----
- .../bindings/iio/gyroscope/nxp,fxas21002c.txt | 31 --------
- .../iio/gyroscope/nxp,fxas21002c.yaml         | 77 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 78 insertions(+), 32 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
- create mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+I do not understand why a PCI device would need a DT binding
+at all. They just probe from the magic number in the PCI
+config space, they spawn struct pci_dev PCI devices, not the
+type of platform devices coming out of the DT parser code.
+No DT compatible needed.
 
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
-deleted file mode 100644
-index 465e104bbf14..000000000000
---- a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
-+++ /dev/null
-@@ -1,31 +0,0 @@
--* NXP FXAS21002C Gyroscope device tree bindings
--
--http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
--
--Required properties:
--  - compatible : should be "nxp,fxas21002c"
--  - reg : the I2C address of the sensor or SPI chip select number for the
--          device.
--  - vdd-supply: phandle to the regulator that provides power to the sensor.
--  - vddio-supply: phandle to the regulator that provides power to the bus.
--
--Optional properties:
--  - reset-gpios : gpio used to reset the device, see gpio/gpio.txt
--  - interrupts : device support 2 interrupts, INT1 and INT2,
--                 the interrupts can be triggered on rising or falling edges.
--                 See interrupt-controller/interrupts.txt
--  - interrupt-names: should contain "INT1" or "INT2", the gyroscope interrupt
--                     line in use.
--  - drive-open-drain: the interrupt/data ready line will be configured
--                      as open drain, which is useful if several sensors share
--                      the same interrupt line. This is a boolean property.
--                      (This binding is taken from pinctrl/pinctrl-bindings.txt)
--
--Example:
--
--gyroscope@20 {
--	compatible = "nxp,fxas21002c";
--	reg = <0x20>;
--	vdd-supply = <&reg_peri_3p15v>;
--	vddio-supply = <&reg_peri_3p15v>;
--};
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
-new file mode 100644
-index 000000000000..7680e97cf1d9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/gyroscope/nxp,fxas21002c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP FXAS21002C Gyroscope Unit
-+
-+maintainers:
-+  - Rui Miguel Silva <rmfrfs@gmail.com>
-+
-+description: |
-+  3 axis digital gyroscope device with an I2C and SPI interface.
-+  http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,fxas21002c
-+
-+  reg:
-+    maxItems: 1
-+    description: base address of the device
-+
-+  vdd-supply:
-+    description: Regulator that provides power to the sensor
-+
-+  vddio-supply:
-+    description: Regulator that provides power to the bus
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO connected to reset
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+    description: device support 2 interrupts, INT1 and INT2, the interrupts can
-+                 be triggered on rising or falling edges.
-+
-+  interrupt-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      enum:
-+        - INT1
-+        - INT2
-+    description: gyroscope interrupt line in use.
-+
-+  drive-open-drain:
-+    type: boolean
-+    description: the interrupt/data ready line will be configured as open drain,
-+                 which is useful if several sensors share the same interrupt
-+                 line.
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+  - vddio-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        gyroscope@20 {
-+          compatible = "nxp,fxas21002c";
-+          reg = <0x20>;
-+
-+          vdd-supply = <&reg_peri_3p15v>;
-+          vddio-supply = <&reg_peri_3p15v>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6594f0966716..2e85e114c9c3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12469,7 +12469,7 @@ NXP FXAS21002C DRIVER
- M:	Rui Miguel Silva <rmfrfs@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
-+F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
- F:	drivers/iio/gyro/fxas21002c.h
- F:	drivers/iio/gyro/fxas21002c_core.c
- F:	drivers/iio/gyro/fxas21002c_i2c.c
--- 
-2.28.0
+What am I not understanding about this?
 
+Yours,
+Linus Walleij
