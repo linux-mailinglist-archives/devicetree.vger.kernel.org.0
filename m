@@ -2,134 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5EA28CF81
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A87928CF8C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:53:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387979AbgJMNul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:50:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46144 "EHLO mail.kernel.org"
+        id S2387981AbgJMNxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:53:51 -0400
+Received: from foss.arm.com ([217.140.110.172]:60298 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387949AbgJMNuk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 09:50:40 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 17F4F24770;
-        Tue, 13 Oct 2020 13:50:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602597040;
-        bh=ifE0Ha5o2XG4AKS/0u0N1d994tavHWMY4bLOdzKHqbM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Dw6Nvlaelu4WZC9bnk5H5VKQxCdOx0EqMkPeAAGhRvYvXkCnYp0xR8sX+QlaPNhEq
-         WXQ7PBh+Zn8Skv1OrHhiGbQRScHu6h9x86+JGZmdEGgn0UC4wgC4SRubRJHND65yvl
-         M0cOIUo70Th/S1pIBtnZQyA6X7exB0Aqzi0eM96g=
-Received: by mail-ot1-f46.google.com with SMTP id e20so18662894otj.11;
-        Tue, 13 Oct 2020 06:50:40 -0700 (PDT)
-X-Gm-Message-State: AOAM531BmjTDfcOvMMSXPEobG4ZXwKS3DIG1pJZlMHgoQmse5xk2QlAA
-        MGrdGFqPTc31nVd7eiaKc1S9Ev0KHQb+IEzZdg==
-X-Google-Smtp-Source: ABdhPJyy8pkBm/rH1RsgSNwitplg9Rb0bqHTBjDtl+Y96Z/jlmD7XWQdqpFugB9tRrh2WBnMNGylHAKIiG7F2DlEjX0=
-X-Received: by 2002:a9d:7993:: with SMTP id h19mr18816592otm.129.1602597039244;
- Tue, 13 Oct 2020 06:50:39 -0700 (PDT)
+        id S1728982AbgJMNxv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 09:53:51 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 37A6B31B;
+        Tue, 13 Oct 2020 06:53:50 -0700 (PDT)
+Received: from [10.57.51.141] (unknown [10.57.51.141])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 50EF83F66B;
+        Tue, 13 Oct 2020 06:53:47 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        Ionela Voinescu <ionela.voinescu@arm.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        sudeep.holla@arm.com, chris.redpath@arm.com,
+        morten.rasmussen@arm.com, linux-arm-kernel@lists.infradead.org
+References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
+ <20200924095347.32148-3-nicola.mazzucato@arm.com>
+ <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
+ <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+ <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
+ <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
+ <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <6a739b1b-e345-fa09-d815-6e9601aff5f6@arm.com>
+Date:   Tue, 13 Oct 2020 14:53:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20200929024004.244992-1-badhri@google.com> <20200929024004.244992-4-badhri@google.com>
- <20201005144618.GA154206@bogus> <CAPTae5+e74k22Vcf-cnFLFGnR-mBdb9qvN6i-E-31VexhpUSeA@mail.gmail.com>
- <CAL_JsqLqs2qZqwmCOMgCeiGsw4Hj2xMAbRYqWCphH92+8T6qUg@mail.gmail.com>
-In-Reply-To: <CAL_JsqLqs2qZqwmCOMgCeiGsw4Hj2xMAbRYqWCphH92+8T6qUg@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 13 Oct 2020 08:50:28 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+bhEKGXoObGWbWw=1KQAovyJgvvfJe+=n7829HhKmmSw@mail.gmail.com>
-Message-ID: <CAL_Jsq+bhEKGXoObGWbWw=1KQAovyJgvvfJe+=n7829HhKmmSw@mail.gmail.com>
-Subject: Re: [PATCH v9 03/15] dt-bindings: usb: Maxim type-c controller device
- tree binding document
-To:     Badhri Jagan Sridharan <badhri@google.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Prashant Malani <pmalani@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 8:43 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Oct 7, 2020 at 7:43 PM Badhri Jagan Sridharan <badhri@google.com> wrote:
-> >
-> > Hi Robb,
-> >
-> > Thanks for the reviews ! Responses inline.
-> >
-> > Regards,
-> > Badhri
-> >
-> > On Mon, Oct 5, 2020 at 7:46 AM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Mon, Sep 28, 2020 at 07:39:52PM -0700, Badhri Jagan Sridharan wrote:
-> > > > Add device tree binding document for Maxim TCPCI based Type-C chip driver
-> > > >
-> > > > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
-> > > > ---
-> > > > Changes since v1:
-> > > > - Changing patch version to v6 to fix version number confusion.
-> > > >
-> > > > Changes since v6:
-> > > > - Migrated to yaml format.
-> > > >
-> > > > Changes since v7:
-> > > > - Rebase on usb-next
-> > > >
-> > > > Changes since v8:
-> > > > - Fix errors from make dt_binding_check as suggested by
-> > > >   Rob Herring.
-> > > > ---
-> > > >  .../devicetree/bindings/usb/maxim,tcpci.yaml  | 68 +++++++++++++++++++
-> > > >  1 file changed, 68 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..f4b5f1a09b98
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
-> > > > @@ -0,0 +1,68 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: "http://devicetree.org/schemas/usb/maxim,tcpci.yaml#"
-> > > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > > +
-> > > > +title: Maxim TCPCI Type-C PD controller DT bindings
-> > > > +
-> > > > +maintainers:
-> > > > +  - Badhri Jagan Sridharan <badhri@google.com>
-> > > > +
-> > > > +description: Maxim TCPCI Type-C PD controller
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - maxim,tcpci
-> > >
-> > > Is there a datasheet for this? Searching for 'tcpci' doesn't really come
-> > > up with anything other than this patch. Only chip I found is MAX77958.
-> > > Bindings are for specific h/w devices.
-> >
-> > Unfortunately the datasheet cannot be made public yet. Has the datasheet
-> > have to be made public before sending the bindings ?
->
-> No, but we need a part number or some assurance that 'tcpci' is a specific part.
+Hi Viresh,
 
-I guess TCPCI is USB Type-C Port Controller Interface Specification.
+On 10/9/20 6:39 AM, Viresh Kumar wrote:
 
-That's just a protocol definition, not a chip. DT describes h/w which
-is more than just the protocol.
+<snip>
 
-Rob
+> 
+> Oh yes, I get it now. Finally. Thanks for helping me out :)
+> 
+> So if I can say all this stuff in simple terms, this is what it will
+> be like:
+> 
+> - We don't want software aggregation of frequencies and so we need to
+>    have per-cpu policies even when they share their clock lines.
+> 
+> - But we still need a way for other frameworks to know which CPUs
+>    share the clock lines (that's what the perf-dependency is all about,
+>    right ?).
+> 
+> - We can't get it from SCMI, but need a DT based solution.
+> 
+> - Currently for the cpufreq-case we relied for this on the way OPP
+>    tables for the CPUs were described. i.e. the opp-table is marked as
+>    "shared" and multiple CPUs point to it.
+
+
+I've started wondering based on the OPP code if this is a good solution.
+We would end up with one (?) instance of opp_table and list of devices
+pinned to it, in: opp_table->dev_list
+It can be seen e.g. in function dev_pm_opp_get_sharing_cpus(),
+where we retrieve the cpumask simply looping through the devices:
+
+list_for_each_entry(opp_dev, &opp_table->dev_list, node)
+	cpumask_set_cpu(opp_dev->dev->id, cpumask);
+
+
+This means we have a single OPP table for all pinned CPUs.
+I wonder if this is not too strong assumption for still being compliant
+with SCMI spec, when in theory performance levels might differ...
+(please correct me here it that would never happen)
+
+There is also 2nd function dev_pm_opp_of_get_sharing_cpus() which looks
+more promising. But I still don't know if the framework will allow us
+to have private OPP tables when we use 'shared' in DT.
+
+Could you clarify if we would get 'private' opp table for each CPU,
+which could be then populated independently, but still 2nd function will
+work?
+
+Regards,
+Lukasz
