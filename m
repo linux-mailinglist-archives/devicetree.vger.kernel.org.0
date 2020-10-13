@@ -2,235 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37FE828D39F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 20:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 971A228D472
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 21:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731171AbgJMS0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 14:26:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731157AbgJMS0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 14:26:23 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D6EC0613D0
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 11:26:23 -0700 (PDT)
-Received: from [2a0a:edc0:0:900:6245:cbff:fea0:1793] (helo=kresse.office.stw.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kSOzx-0002sJ-67; Tue, 13 Oct 2020 20:26:12 +0200
-Message-ID: <18c98a86aaac86a5742d6f8c4c671ae522751dda.camel@pengutronix.de>
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Jacky Bai <ping.bai@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     dl-linux-imx <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
-Date:   Tue, 13 Oct 2020 20:26:07 +0200
-In-Reply-To: <AM0PR04MB4915BC0D047EBD63D4E4366587090@AM0PR04MB4915.eurprd04.prod.outlook.com>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
-         <AM0PR04MB4915267F67FFEA311E9B79F087080@AM0PR04MB4915.eurprd04.prod.outlook.com>
-         <5287bbc0ede98dd3fc0022f2062148275dafa05c.camel@pengutronix.de>
-         <AM0PR04MB4915BC0D047EBD63D4E4366587090@AM0PR04MB4915.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S1727999AbgJMT0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 15:26:09 -0400
+Received: from mail-eopbgr70052.outbound.protection.outlook.com ([40.107.7.52]:32002
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725919AbgJMT0I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 15:26:08 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kiMrcC0vxubqpV+Fk9L5eHUwJICkaUsmVzWfGMxd0Bx6fVSluJF0RA704yOnEPHSMUa4HthYoWzIMydPuE/kcApb4coGlYeOH8pEKf0oPStN0PYIqDkRn6v7Hdz/yq/Ka9NglO3aiqYJBxgllkmx5YmzxMVCBgu9Hkmb9ncJjV1hCoin1JFNLWFGUNzSNgP+3oIyyVUmyMKXxXldD5U6pqBWicg3AhFVptNcsPxr+pG2bMowc2BN4/GvLxoT7mN7P0SC9Yz8++FS/EIeOL4OLt7xAfdo65HreLn4M5C5tZ5CM/1L+QJB5OiTcvvWjvNEmrzEf7bvVFA3rZ/vXwmOjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ceRP5Ocp7Y7X94mwm0LMthE/jO8dkO9TOpmyVM1BaCg=;
+ b=HqGnEe4wHl8sYdP0oPL5ImWWsra0JcIZAZ/Bolf2OMUJFGT4ZkMLzxLNuhlVmEHFgiwtSBXLasSy0S3S7k/Gwr0ridVNbd47BNmLVc1AfrQfq1oXHdQu9T0zY8Cdbso/YWgZcEQEVqpDES0txt/dWzu2C1kxOIfHcY4Hq0Y3LEwjRN4GbDsTgwNSrherb/Jez2BswJlPJ7xxjrrbCSIp0Yr9k7ZSh8eUTh9sn0LRp3sgRx/dPAGn3hS5LP0S5EmRqaHI99wamQI7LAe8FjX3x2BGKi5YajBtzQrchibmOCqtdZQJqazTUpYBy9R35UAH0OkbXxuFA2WsFfEtBPoA2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ceRP5Ocp7Y7X94mwm0LMthE/jO8dkO9TOpmyVM1BaCg=;
+ b=AcYq1Zzhljn66Txv9XbIYuNGKU/7W00Hs9MBdliXjG9l/P9lGy6DmnHmlr0mg2EiJNLVulFBdOcqJajD5rvS/HEyFSvcAIOWiF9PevO14Aulvnm5Rxl9/AwKdThhWu/QnQz8KBsgfxPpPF6EL6SFYzG2/jZ+fcMPI3rRetqqbXs=
+Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
+ (2603:10a6:803:16::14) by VI1PR04MB4030.eurprd04.prod.outlook.com
+ (2603:10a6:803:49::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.26; Tue, 13 Oct
+ 2020 19:26:03 +0000
+Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
+ ([fe80::607d:cbc4:9191:b324]) by VI1PR0402MB3871.eurprd04.prod.outlook.com
+ ([fe80::607d:cbc4:9191:b324%5]) with mapi id 15.20.3455.030; Tue, 13 Oct 2020
+ 19:26:03 +0000
+From:   Ioana Ciornei <ioana.ciornei@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Leo Li <leoyang.li@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 01/11] dt-bindings: net: add the DPAA2 MAC DTS
+ definition
+Thread-Topic: [PATCH v3 01/11] dt-bindings: net: add the DPAA2 MAC DTS
+ definition
+Thread-Index: AQHWnOoCtr3hTSux8kW/8mxzWP3LvamVkH8AgAANWQCAADMDgIAAIrAA
+Date:   Tue, 13 Oct 2020 19:26:03 +0000
+Message-ID: <20201013192602.4cjdvyeoxrk5lxcs@skbuf>
+References: <20201007203936.23953-1-ioana.ciornei@nxp.com>
+ <20201007203936.23953-2-ioana.ciornei@nxp.com>
+ <20201013133132.GA3381736@bogus> <20201013141918.vulibck3yf2ghlj4@skbuf>
+ <CAL_JsqL8jJYqeXzxxJTfkMPj23OvRkX1o2Z+kKdR2teY+O-_gQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqL8jJYqeXzxxJTfkMPj23OvRkX1o2Z+kKdR2teY+O-_gQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [188.26.174.215]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 6ec9e7ad-aa9d-41fa-8242-08d86fadd30c
+x-ms-traffictypediagnostic: VI1PR04MB4030:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB4030FADDE2E05F5486A75B79E0040@VI1PR04MB4030.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: oue4nhUcMWucr/uV36ecAuU+eE0zAVcE5VuZ0FDCJlU6r2IqRl31nxgZjyFC34tSh7/5oQy3/9cPxFYZB+4nIEH/bavcb4FOMQLxDclDUPtvobNEXR2VFiClfG9liVx3L+c0GZwU8/LsrOTpL3ZWIuiC7kcV7wLI78Y8jP90SXhG3H06YPueKDaFQrQPw63anTqGtDqlzmOSbvUfIl8ISnIxsTYmKd/VnDgublfutXWgYMz3gfgi2RDoO6MqoQpgkbujgr9IDbvQ5/sa+Tn7wpfRWNxWpOhDXAkfVMUfxLvxweHpWUTPSxYBlWUhWd3+4h2Qa9m9FWTtHFPYtILJI03nf0GtXPG0pPX/6pPTBuKUkiDbJ8doKwnfmjXt3Sr97L5N78K9BlURZLPncKggNw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3871.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(346002)(366004)(39860400002)(136003)(376002)(396003)(91956017)(966005)(33716001)(64756008)(66556008)(66946007)(83380400001)(26005)(66476007)(66446008)(76116006)(316002)(186003)(6916009)(9686003)(6512007)(53546011)(5660300002)(1076003)(6506007)(8936002)(478600001)(86362001)(6486002)(54906003)(4326008)(2906002)(44832011)(71200400001)(83080400001)(8676002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: GKSoWXkXqExU/3KXNEo+TJ2TenFR1wNFDf64oG6TbdSPMVSNotwK7NBR7BuBWY6FbxRKyzu5tO/w2Y/1vY7fAb7GBeGoqHhu+KDYWTcSV2c9M3Hg/kTm92kgXpwbpt6+bhp0Nui8yOQkC4ovzolrdnrk7xhzaKC7FFAtaGxfHaDdFBCpd9n/UBOO4//lmkT5YxDSYmiWJXzp5qj75I07qenBBAs0Js+ABaP6Q0k+mKJN4RxtjJfMMfSGu9jLsRAntMQOQpO/wwY/4NgeVcDU7EUIFI/cGaFyy72pnM6As5JHg04DKoz5HBlQoVmTZ8yTjKUXlEGElKCj3G5ZR4zSB+yu/FNuEun9ToggEFCib/1ay/jsXO5KXQpbrRuFGSBKDVVbx6Ekyj2V+Ah3mDbVib5m+vkiTT5gEFBnt+HSjk17jEddpSP8OyxQFstd1a8MIEwMvsG6+sY2zUQhvJqEixNUrFKzDSOMPSP7rKG/yncHbcFkuD1yC78IFLp59lE7AlMM/arNENxceaAGUvpl5TKS/vf0JqrqWas9jR1qAnM3aoe+0IEGOmLB5hCVG/dSFd0HlHHRfxcLopn9zagapzQfWWhWDn4Z/zbwC4s1/ntLMPhF2YEzp0KzUL7anamrRR9pQLMofZO8lIm89Ai5lA==
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <90B9D69D00676248ABF1C9B31AD04625@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:6245:cbff:fea0:1793
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        metis.ext.pengutronix.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_SOFTFAIL,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.2
-Subject: Re: [PATCH 00/11] i.MX8MM power domain support
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3871.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ec9e7ad-aa9d-41fa-8242-08d86fadd30c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2020 19:26:03.2393
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YVdXcERBJIRWFlAzmgkLZTU0QO+OgwkBDyxQAXGcRLGAkpJum9EVd+N5MgMpUZAz9c1ZxLMS/J0zYpZtQRiD+g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4030
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sa, 2020-10-10 at 02:16 +0000, Jacky Bai wrote:
-> > -----Original Message-----
-> > From: Lucas Stach [mailto:l.stach@pengutronix.de]
-> > Sent: Friday, October 9, 2020 7:12 PM
-> > To: Jacky Bai <ping.bai@nxp.com>; Shawn Guo <shawnguo@kernel.org>; Rob
-> > Herring <robh+dt@kernel.org>
-> > Cc: dl-linux-imx <linux-imx@nxp.com>; Fabio Estevam
-> > <festevam@gmail.com>; Frieder Schrempf <frieder.schrempf@kontron.de>;
-> > Marek Vasut <marex@denx.de>; linux-arm-kernel@lists.infradead.org;
-> > devicetree@vger.kernel.org; kernel@pengutronix.de;
-> > patchwork-lst@pengutronix.de
-> > Subject: Re: [PATCH 00/11] i.MX8MM power domain support
-> > 
-> > Hi Jacky,
-> > 
-> > On Fr, 2020-10-09 at 03:00 +0000, Jacky Bai wrote:
-> > > > -----Original Message-----
-> > > > From: Lucas Stach [mailto:l.stach@pengutronix.de]
-> > > > Sent: Wednesday, September 30, 2020 11:50 PM
-> > > > To: Shawn Guo <shawnguo@kernel.org>; Rob Herring
-> > > > <robh+dt@kernel.org>
-> > > > Cc: dl-linux-imx <linux-imx@nxp.com>; Fabio Estevam
-> > > > <festevam@gmail.com>; Frieder Schrempf
-> > > > <frieder.schrempf@kontron.de>; Marek Vasut <marex@denx.de>;
-> > > > linux-arm-kernel@lists.infradead.org;
-> > > > devicetree@vger.kernel.org; kernel@pengutronix.de;
-> > > > patchwork-lst@pengutronix.de
-> > > > Subject: [PATCH 00/11] i.MX8MM power domain support
-> > > > 
-> > > > Hi all,
-> > > > 
-> > > > this adds power domain support for the i.MX8MM to the existing GPCv2
-> > driver.
-> > > > It is not complete yet, as it is still missing the VPU and display
-> > > > power domains, as those require support for the BLK_CTL regions of
-> > > > the VPUMIX and DISPLAYMIX domains. A Linux driver for those regions
-> > > > on the i.MX8MP is currently under development and we plan to use
-> > > > this as a template for the i.MX8MM when the dust has settled. The
-> > > > changes in this series have been made with this in mind, so once the
-> > > > BLK_CTL driver exists it should be a matter of hooking things
-> > > > together via DT, with no further changes required on the GPCv2 driver side
-> > (famous last words).
-> > > > Special thanks to Marek Vasut who helped with testing and debugging
-> > > > of early versions of this code.
-> > > > 
-> > > 
-> > > Lucas,
-> > > 
-> > > thanks for working on this, but I think current support for 8MM can NOT 100%
-> > work due to HW limitation.
-> > > Maybe, we need further discussion before moving forward, otherwise, we
-> > > will meet awkward situation when NXP doing LTS upgrade. Below are some
-> > info shared.
-> > > 1. The GPU & VPU related power domains need to do special handling due
-> > to HW limitation, can refer to the power domain sequence
-> > >   In NXP release.
-> > 
-> > For the GPU this driver already does the same thing as the TF-A based
-> > implementation by driving the GPU2D and GPU3D domains together and
-> > triggering the SRC reset.
-> > 
-> > For the VPU I expect that we can do all the necessary syncing with a proper
-> > VPU BLK_CTL driver.
-> > 
-> 
-> Ok, thanks. I saw the reset handling in this patchset.
-> 
-> > > 2. another reason that we do power domain control in TF-A in NXP release is
-> > that MAIN NOC power domain can only be controlled by
-> > >   TF-A, and before MAIN NOC power domain, we need to check other
-> > MIXs' power status. If other power domain is controlled by linux side,
-> > >   It is not easy to cross world status sync.
-> > 
-> > This is a valid concern and I want to learn more about this. When do you turn
-> > off MAIN NOC power in the TF-A? Is it just system suspend? If so I think it's a
-> > valid requirement for the kernel driver to shut down all the peripheral power
-> > domains before entering system suspend.
-> > 
-> 
-> The main NOC will be off just in system suspend case. Main NoC on/off is controlled by
-> GPC HW slot method. As all the MIXs with ADB400 bridge are connected on the main NoC,
-> we must make sure that all these ADB400 port in power down status when main NoC power off
-> in system suspend, otherwise system will hang when resume. Previously, all the MIX power domain
-> is controlled by TF-A, then TF-A knows the status of each MIX, if any MIX is on, we will skip the NOC
-> power down setting.
+On Tue, Oct 13, 2020 at 12:21:53PM -0500, Rob Herring wrote:
+> On Tue, Oct 13, 2020 at 9:19 AM Ioana Ciornei <ioana.ciornei@nxp.com> wro=
+te:
+> >
+> > On Tue, Oct 13, 2020 at 08:31:32AM -0500, Rob Herring wrote:
+> > > On Wed, 07 Oct 2020 23:39:26 +0300, Ioana Ciornei wrote:
+> > > > Add a documentation entry for the DTS bindings needed and supported=
+ by
+> > > > the dpaa2-mac driver.
+> > > >
+> > > > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> > > > ---
+> > > > Changes in v2:
+> > > >  - new patch
+> > > > Changes in v3:
+> > > >  - renamed dpmac@x into ethernet@x
+> > > >  - renamed the new documentation file to use the same name as the
+> > > >    compatible
+> > > >  - marked additionalProperties as false
+> > > >  - added a reference to ethernet-controller.yaml
+> > > >
+> > > >  .../bindings/net/fsl,qoriq-mc-dpmac.yaml      | 60 +++++++++++++++=
+++++
+> > > >  1 file changed, 60 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/net/fsl,qoriq=
+-mc-dpmac.yaml
+> > > >
+> > >
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> > Thanks for the review.
+> >
+> > Is this going in 5.10 by any chance or should I resend these after
+> > the merge window with the reviewed-by tags?
+>=20
+> I just noticed you didn't Cc netdev as I would expect this to go via
+> the networking tree. So yes, resend after the merge window.
+>=20
 
-And that just means the SoC doesn't enter the desired low-power state
-when going into suspend, right? I think it would be much easier and
-less error prone to just mandate that all peripheral power domains must
-be powered down before trying to enter system suspend.
+David said to an earlier version of this patch set that he would not
+want to pick this up through net-next since it's a sizable change and
+this should go through the devicetree trees.
+https://lore.kernel.org/netdev/20201002.161318.726844448692603677.davem@dav=
+emloft.net/
 
-Is there any use-case where you would legitimately want to enter a high
-power suspend state with some of ther peripheral power domains still
-active?
+This is why I didn't cc again the netdev.
 
-> > > 3. either 8MM, 8MN, or 8MP, the power domain design is different, I am not
-> > sure if it is the good to add hundreds line of code in GPCv2 each time
-> > >   a new SOC is added.
-> > 
-> > I don't buy into this argument. We have lots of drivers in the Linux kernel that
-> > require some changes for new SoC generations, that's what Linux drivers are
-> > for. The complexity of the hardware doesn't disappear just because you push
-> > some of the driver bits into TF-A, you just handle the complexity at a different
-> > palce and IMHO that the wrong place. The power domains have complex
-> > interactions with other drivers in the Linux system, so debugging and
-> > deplyong fixes is much easier when the power domain handling is fully done
-> > by a kernel driver.
-> 
-> Actually, due to the security requirement from other system solution provider,
-> for example, Microsoft Azure Sphere, it has strict requirement for power domain
-> to be controlled by secure subsystem(either TF-A, TEE or dedicated secure domain controller).
-> Same requirement for reset control, and system critical clock control.
-
-Yes, I'm aware of those requirements, but to satisfy those you need a
-full implementation of all those parts in the secure subsystem. Doing
-it just for the power domains adds complexity for no gain, as you still
-won't be able to meet all the requirements and frankly I don't think
-this is a realistic goal to achieve with the current i.MX8M family of
-SoCs. 
-
-Meeting those requirements needs a fully system approach where the
-secure subsystem parts are made sufficiently independent from the non-
-secure parts on a hardware level, which I don't see on the i.MX8M SoC
-and hardware design guide.
-
-> For NXP i.MX8M family, it is ok to implement in linux kernel, just a tradeoff to find out a place
-> to hide the complexity ^_^.
-> 
-> BTW, for virtualization support, it is better to put the power domain in a central place to simplify
-> the VM implementation.
-
-Same as above. If you can make all the relevant bits (clock, reset,
-power-domain, regulator) available via a virtualization friendly API,
-then I would see a point in adding complexity for this abstraction. As
-long as this added abstraction only solves a very tiny bit of the
-overall picture, I just don't see the point in the added complexity and
-(from a Linux PoV) obfuscation.
-
-Regards,
-Lucas
-
-> BR
-> Jacky Bai
-> 
-> > Regards,
-> > Lucas
-> > 
-> > > BR
-> > > Jacky Bai
-> > > 
-> > > > Regards,
-> > > > Lucas
-> > > > 
-> > > > Lucas Stach (11):
-> > > >   soc: imx: gpcv2: move to more ideomatic error handling in probe
-> > > >   soc: imx: gpcv2: move domain mapping to domain driver probe
-> > > >   soc: imx: gpcv2: split power up and power down sequence control
-> > > >   soc: imx: gpcv2: wait for ADB400 handshake
-> > > >   soc: imx: gpcv2: add runtime PM support for power-domains
-> > > >   soc: imx: gpcv2: allow domains without power-sequence control
-> > > >   soc: imx: gpcv2: add support for optional resets
-> > > >   dt-bindings: add defines for i.MX8MM power domains
-> > > >   soc: imx: gpcv2: add support for i.MX8MM power domains
-> > > >   arm64: dts: imx8mm: add GPC node and power domains
-> > > >   arm64: dts: imx8mm: put USB controllers into power-domains
-> > > > 
-> > > >  .../bindings/power/fsl,imx-gpcv2.yaml         |   8 +
-> > > >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  59 +++
-> > > >  drivers/soc/imx/gpcv2.c                       | 501
-> > > > +++++++++++++++---
-> > > >  include/dt-bindings/power/imx8mm-power.h      |  22 +
-> > > >  4 files changed, 516 insertions(+), 74 deletions(-)  create mode
-> > > > 100644 include/dt-bindings/power/imx8mm-power.h
-> > > > 
-> > > > --
-> > > > 2.20.1
-
+Ioana=
