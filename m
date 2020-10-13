@@ -2,67 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEEBD28D366
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 20:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3F1928D37E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 20:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727647AbgJMSDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 14:03:55 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:39170 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725899AbgJMSDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 14:03:55 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09DI3rop078060;
-        Tue, 13 Oct 2020 13:03:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1602612233;
-        bh=qzOJzu34mq4mDb7uWYaWmL6yfIvaed5Y4wmBqocHePs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=SbkZfz4eeI56jY6esPhIn1LQtpEgGQKjwpsDSHZIVrXboZ1TraJA/4GkdFEDM0Z9E
-         h9Bw/IhDM9/dP3fN9BiHfF6OCKBtp4LNJcwsFVopiOWcVHsjCZZZWGXdbvSvLb6hxL
-         6BkWcw/jyq4nzEzNehhffB/VKqU6SzaFdNJCDhAI=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09DI3rR7027585
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Oct 2020 13:03:53 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 13
- Oct 2020 13:03:53 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 13 Oct 2020 13:03:53 -0500
-Received: from [10.250.67.63] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09DI3qNS006602;
-        Tue, 13 Oct 2020 13:03:52 -0500
-Subject: Re: [PATCH v4 1/2] dt-bindings: power: Add the bq25790 dt bindings
-To:     <sre@kernel.org>
-CC:     <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>,
-        Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-References: <20201009144112.3007-1-dmurphy@ti.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <ac52ca59-74f4-7ffd-544c-4a542e799ae5@ti.com>
-Date:   Tue, 13 Oct 2020 13:03:52 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727828AbgJMSRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 14:17:02 -0400
+Received: from mga09.intel.com ([134.134.136.24]:18841 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726829AbgJMSRC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 14:17:02 -0400
+IronPort-SDR: MCuhIMj8OS6tIyttst9UFouHCJLi/4tw6WsKXFPwoXAM1dtb9yGpdjiMhUVmZW33LFaNj1HLYa
+ Kq0sDbKy3oaw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9773"; a="166076758"
+X-IronPort-AV: E=Sophos;i="5.77,371,1596524400"; 
+   d="scan'208";a="166076758"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2020 11:17:00 -0700
+IronPort-SDR: yo3IuQdFNUhW1knAsbyhgEZqkaSQHubJP+1iknJVI8Y3Ei5rpyTgSEdmqUiqjrUVNovyB+vm8a
+ poYpH2gBiIyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,371,1596524400"; 
+   d="scan'208";a="521131457"
+Received: from ubuntu18.png.intel.com ([10.88.229.38])
+  by fmsmga005.fm.intel.com with ESMTP; 13 Oct 2020 11:16:58 -0700
+From:   vijayakannan.ayyathurai@intel.com
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        vijayakannan.ayyathurai@intel.com
+Subject: [PATCH v11 0/2] Add PWM support for Intel Keem Bay SoC
+Date:   Wed, 14 Oct 2020 02:14:11 +0800
+Message-Id: <cover.1602612067.git.vijayakannan.ayyathurai@intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20201009144112.3007-1-dmurphy@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sebastian
+From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-On 10/9/20 9:41 AM, Dan Murphy wrote:
-> Add the bindings for the bq25790.
+Hi,
 
-Also any updates on this series?
+This patch set enables the support for PWM in the Intel Keem Bay SoC.
+Keem Bay is an ARM based SoC, and the GPIO module allows
+configuration of 6 PWM outputs.
 
-Dan
+Patch 1 adds the PWM driver and Patch 2 is for the required
+Device Tree bindings documentation.
+
+This driver was tested on the Keem Bay evaluation module board.
+
+Thank you.
+
+Regards,
+Vijay
+
+Changes since v10:
+- Update low time calculation formula as per Uwe.
+- During distruct remove pwmchip first then disable the clock.
+
+Changes since v9:
+- Remove Reported-by tag from the commit log.
+
+Changes since v8:
+- Fix the compilation error reported by kernel test robot.
+- Add the tag Reported-by: kernel test robot <lkp@intel.com>
+- Minor correction in the pwm low time calculation formula.
+- Rebase with 5.9-rc7
+
+Changes since v7:
+- Change the dependency as ARCH_KEEMBAY instead of ARM64 in Kconfig.
+- Use DIV_ROUND_DOWN_ULL instead of DIV_ROUND_CLOSEST_ULL.
+- Update the right formula as per Uwe.
+- List the tags in chronological order.
+- Add clk_disable_unprepare in the error paths.
+
+Changes since v6:
+- Add reviewed-by tag
+
+Changes since v5:
+- Reorder symbols/Kconfig in drivers/pwm/Kconfig and drivers/pwm/Makefile
+- Use "Limitations" for consistency
+- Add clk_prepare_enable()
+- Reorder keembay_pwm_get_state() function call
+- Rework if conditional for channel disablement in .apply()
+- Remove channel disabling from .probe(), and clear LEADIN register bits
+  in .apply instead
+- Update commit message for Patch 1
+
+Changes since v4:
+- Add co-developed-by tag
+- Include mod_devicetable.h and remove of.h
+- Update comment with correct calulation for high/low time
+- Fix missing return from dev_err_probe
+
+Changes since v3:
+- Removed variable for address and calculate in place instead
+- Utilized u32_replace_bits() when updating KMB_PWM_LEADIN_OFFSET
+- Utilized dev_err_probe() for error reporting
+- Updated comments to use physical units
+- Updated error check for pwmchip_add()
+
+Changes since v2:
+- Include documentation about HW limitation/behaviour
+- Use hex values for KMB_PWM_COUNT_MAX
+- Redefine register macros
+- Utilize FIELD_GET/FIELD_PREP for calculating pwm_l/h_count and
+  pwm_count
+- Round up duty cycle/period values
+- Get current hardware state in .apply instead of cached values
+- Do a polarity check before .enabled
+- Round high time/low time to closest value
+- Set enable bit in KMB_PWM_LEADIN_OFFSET to 0 in probe
+- Correct the naming for MODULE_ALIAS
+- Add additionalProperties: false in DT bindings
+
+Changes since v1:
+- Updated licensing info, "clocks" property and example in DT bindings
+- Updated name of DT bindings document to match compatible string
+- Removed 1 patch for addition of new sysfs attribute "count"
+- Added support for COMPILE_TEST in Kconfig
+- Updated naming of defines and regmap attribute
+- Updated calculation of waveform high time and low time
+- Added range checking for waveform high/low time
+- Implemented .get_state
+- Removed register writes for lead-in and count values (left to default)
+- Updated register access to single-access
+- Folded keembay_pwm_enable/disable_channel,
+  keembay_pwm_config_period/duty_cycle,
+  and keembay_pwm_config into keembay_pwm_apply
+- Updated error messages/error codes
+- Removed pwm_disable from keembay_pwm_remove
+- Removed clk_prepare/clk_enable/clk_disable from driver
+
+Lai, Poey Seng (1):
+  pwm: Add PWM driver for Intel Keem Bay
+
+Vineetha G. Jaya Kumaran (1):
+  dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
+
+ .../bindings/pwm/intel,keembay-pwm.yaml       |  47 ++++
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-keembay.c                     | 228 ++++++++++++++++++
+ 4 files changed, 285 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-keembay.c
+
+
+base-commit: 549738f15da0e5a00275977623be199fbbf7df50
+prerequisite-patch-id: 0a348762b660d0d817b8e70cc71647e83173c78c
+prerequisite-patch-id: 0c6072cfe492b078c44ec864b8f9d1c76eada93b
+prerequisite-patch-id: 12b93428ee51a3d92ca973b928c0e0989f5d585e
+-- 
+2.17.1
 
