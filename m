@@ -2,129 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F62428CF3A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECCC028CF3F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:38:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728109AbgJMNgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:36:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56082 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727477AbgJMNgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:36:43 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9469C0613D5
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:36:42 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id a4so20434355lji.12
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 06:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b/c3jOqm5GCWbl7ngdOAvWeLYoFEl8oppVa37BrtTx0=;
-        b=tJis7yuaN1JSHsLBZLaRMxnuI3b1R3TPtaiy5wihu/GdcUvEXrgzbpveMQDkzE5tlj
-         cbUwn/PXVvgt46YQEHILU5xNbbAhvatw8Ffn0m317aofqzuylkUQ0MlQ1hYQ1ennXije
-         U9YeIYcSUcjRbpr0clUWhuA/RGEXkWwvBWaCZxXx/ZpKv4MKx4CWJo8Y0Qialmv9jI2i
-         6og/C+zO9w74Fi9vW0fgzzzf8y1XrkR8U3kVMisYcUo4S19yJmlzBps7EykhqsY2u8SQ
-         XZDko51TwNb8aVNexQeiHg1qyJjlu8r0hsXvbyb7K+ywzcuMjaEa0yh5+bzQK4yIwf3C
-         Rvvw==
+        id S1728763AbgJMNi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:38:59 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34504 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727245AbgJMNi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:38:58 -0400
+Received: by mail-ot1-f65.google.com with SMTP id d28so9873ote.1;
+        Tue, 13 Oct 2020 06:38:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b/c3jOqm5GCWbl7ngdOAvWeLYoFEl8oppVa37BrtTx0=;
-        b=QUu4+czQAFwcUNrC2Z+uDESXxd5vBrbXoE1GHlwVEbHNln8GRtA/UHwaYLSFjKotva
-         RjlO5DSkjpCuTrN1yXtlWsCbYPtg9VpnNnmg6XYwAByuRLc2yearRR2jj9tlVyutAeGP
-         nqTSyjIBQHRxY6qYxduLHmGcXATAk074zM9LVRrtZJnAcWcJz/55yGvTNe3o3yiBHcV0
-         vFBETd05FEgt7CJEI+eJzymlp4KtT06G5HezpstQqk1Y/LbgoM1ww8xYy4zS2pF7+OnX
-         dcSbRkApZiShYgBF58omb6+Nr8pf4LpnLlahMTi+ygp58Cwt/+ty5/MDU4x/OT2vWNql
-         ULjA==
-X-Gm-Message-State: AOAM531hb/72sANEmEDdpOnTIAnlcokbrFPiKRjuoFrdeUiTHC65y6KG
-        QLKYU7fbNF5bXNOxwfHYWqEl0oLOxp8pW1FWhnMU9A==
-X-Google-Smtp-Source: ABdhPJzzi7AZkl/99MrQJTTOaF4YrzzcdjBPIcLPj5P9/5/vIF1r09/4ln6Ey+By3eLCbHq+rqCmQeho4Uw/iJ4MT8o=
-X-Received: by 2002:a2e:86d4:: with SMTP id n20mr1183020ljj.293.1602596201115;
- Tue, 13 Oct 2020 06:36:41 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NllhPoG9p2Bh0nH2RQW3ypX4VGMuvVMtCW/P5RE0rA0=;
+        b=bvh5lseXETeaegLdBsfMsW7ASS/yLxwbQrG/JufbalSrBgn7yQZGo3HOZ+RyozcKXK
+         LGpm1J2usz6fCmdhOL0iC4zrzuRF4DcH2FubZl10qiJfPF6uSp4B4S/DNXUjpS7DmLd+
+         trqDQMPjFGTDLwMpNEH/6XvJBaYnF8ZHbyoWtMEl00cpVCKMc8e41yB7OlIeciQBC8VO
+         Hqf+EyNYa4I7OojzM8tCd1llz9S2ttglCaNGATjcvQsK4bOuOyD+5p2sxEAan2WaO+fE
+         XipBVQc+S497WEpQl3HM3INBeB4WIrXhqPNIIUHjuJ+4jzd2slU1qjr2VLRVQMoF3UPC
+         DclA==
+X-Gm-Message-State: AOAM533eZplutLIyFpsGZrSKfIR8syuoOpAa2cgjzaQUprmKanE4fEbe
+        CkhNsIlNdiGkj95NEZfu9k9uvj4m6txQ
+X-Google-Smtp-Source: ABdhPJyrwXGntpEdZUiYh7ZuK7r956WgYfc34tUuOK2H1np7c5kp3tOakK2wi1qnfd1YICxpqkfNvg==
+X-Received: by 2002:a9d:d23:: with SMTP id 32mr15564661oti.34.1602596336779;
+        Tue, 13 Oct 2020 06:38:56 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 15sm11395102ooy.36.2020.10.13.06.38.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Oct 2020 06:38:56 -0700 (PDT)
+Received: (nullmailer pid 3391552 invoked by uid 1000);
+        Tue, 13 Oct 2020 13:38:55 -0000
+Date:   Tue, 13 Oct 2020 08:38:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: add trickle-voltage-millivolt
+Message-ID: <20201013133855.GA3382613@bogus>
+References: <20201007220506.360469-1-alexandre.belloni@bootlin.com>
 MIME-Version: 1.0
-References: <20201008130515.2385825-1-lars.povlsen@microchip.com>
- <20201008130515.2385825-2-lars.povlsen@microchip.com> <CACRpkdaFYoXFUuWow5s9TitrRDhMW=wiaxgfMcY6sQkYYgC-Lw@mail.gmail.com>
- <87d01ryb04.fsf@soft-dev15.microsemi.net>
-In-Reply-To: <87d01ryb04.fsf@soft-dev15.microsemi.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 13 Oct 2020 15:36:30 +0200
-Message-ID: <CACRpkdZbxohoxg3bN-XpLXwBUgTDByoP9sNEocUt10R6t9FgXQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: pinctrl: Add bindings for
- pinctrl-microchip-sgpio driver
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201007220506.360469-1-alexandre.belloni@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 9, 2020 at 12:00 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+On Thu, Oct 08, 2020 at 12:05:04AM +0200, Alexandre Belloni wrote:
+> Some RTCs have a trickle charge that is able to output different voltages
+> depending on the type of the connected auxiliary power (battery, supercap,
+> ...). Add a property allowing to specify the necessary voltage.
+> 
+> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> ---
+> 
+> Changes in v2:
+>  - use millivolt suffix instead of mV
 
-> > So here reg = 0 and the out port has reg 1. Isn't that what you also put
-> > in the second cell of the GPIO phandle? Then why? The driver
-> > can very well just parse its own reg property and fill that in.
->
-> NO! The second cell is the second dimension - NOT the direction. As I
-> wrote previously, the direction is now inherent from the handle, ie. the
-> "reg" value of the handle.
+Try again...
 
-OK I get it ... I think :)
-
-> The hardware describe a "port" and a "bit index" addressing, where the
-> second cell in
->
->   gpios = <&sgpio_in2 11 0 GPIO_OUT_LOW>;
->
-> is the "bit index" - not the "reg" from the phandle.
-
-As long as the bindings specify exactly what is meant by bit index
-and the tupe (port, bit_index) is what uniquely addresses a certain
-GPIO line then it is fine I suppose.
-
-> In the example above, note
->
->   ngpios = <96>;
->
-> As the "port" is [0; 31], this defines "bit index" to be [0; 2], so the
-> (input) GPIO cells will be:
->
-> p0b0, p0b1, p0b2
-> ...
-> p31b0, p31b1, p31b2
->
-> being identical to
->
-> <&sgpio_inX 0 0 GPIO_OUT_LOW>
-> <&sgpio_inX 0 1 GPIO_OUT_LOW>
-> <&sgpio_inX 0 2 GPIO_OUT_LOW>
-> ...
-> <&sgpio_inX 31 0 GPIO_OUT_LOW>
-> <&sgpio_inX 31 1 GPIO_OUT_LOW>
-> <&sgpio_inX 31 2 GPIO_OUT_LOW>
->
-> ('X' being the SGPIO controller instance).
-
-So 32 possible ports with 3 possible bit indexes on each?
-This constraint should go into the bindings as well so it becomes
-impossible to put in illegal port numbers or bit indices.
-
-(Use the YAML min/max constraints, I suppose?)
-
-> So no, there *really* is a need for a 3-cell GPIO specifier (or whatever
-> its called).
-
-If that is the natural way to address the hardware lines
-and what is used in the documentation then it's fine, it's just so
-unorthodox that I have to push back on it a bit you know.
-
-Yours,
-Linus Walleij
+> 
+>  Documentation/devicetree/bindings/rtc/rtc.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> index ee237b2ed66a..93f04d5e5307 100644
+> --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> @@ -42,6 +42,13 @@ properties:
+>        Selected resistor for trickle charger. Should be given
+>        if trickle charger should be enabled.
+>  
+> +  trickle-voltage-mV:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Selected voltage for trickle charger. Should be given
+> +      if trickle charger should be enabled and the trickle voltage is different
+> +      from the RTC main power supply.
+> +
+>    wakeup-source:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
+> -- 
+> 2.26.2
+> 
