@@ -2,134 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1DA128CBDC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 12:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65CA428CC08
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 12:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731016AbgJMKgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 06:36:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56554 "EHLO
+        id S2387900AbgJMKyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 06:54:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730205AbgJMKgi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 06:36:38 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B021CC0613D5
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 03:36:37 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id k18so21229013wmj.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 03:36:37 -0700 (PDT)
+        with ESMTP id S1730163AbgJMKyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 06:54:19 -0400
+Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32E1C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 03:54:17 -0700 (PDT)
+Received: by mail-vk1-xa42.google.com with SMTP id y10so2558108vkl.5
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 03:54:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=CiWCv3BMnudQFt/Kh0EA1mCHFgkrHwPIFYjOeIiiAgM=;
-        b=rrHdIIkHJ4RWluKR74GDVBCXZ3fHa+2GckpSDJAnPQr3LIihHVRnyUP0B3Pyy3ZhiX
-         8rSJA7CHd4bBwm+paLicw3yVKCUd7p47cqxTVZOMI8KQTToQQIRbcEkKYaCAJv5rCfEc
-         1bgA/vc4KEWcOYZ4uNSULZ7vzptJAjV8I6Yt5FQdZdfVDCfUWFaaYLymlxMbvCLnuB5g
-         k4Q1OxKAiRD5UMQFq/jNfia58Icqaqxjn9Zw637CxWxICuvMpdldIxOsG31VbTFTfcjx
-         fcwjAwQt64YG5s9nbZkfQG7kDKS53uzrSfQJevNyaAgzQJP/OvC7fnfI1m0PztItBYpx
-         0bKw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ynUyUlf8ZBc/wosstkfDmHSkC80iEcSV9kvyuaRkng4=;
+        b=NCxMoMNZHtR/f6uBXfzdJQk8jzrc8dbrfZvgIF6hyvcC214r0LB+m+NNlUMfQGJLdP
+         /zg9yuYcYn5wAPieHv5PsxM9+sloG71VPrC41niSEVM377SaFTB3shYj8zCNTNyIbua6
+         iOWtDADZ+xIDrzoOMJULESyfqCSmB0DeWUMpM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=CiWCv3BMnudQFt/Kh0EA1mCHFgkrHwPIFYjOeIiiAgM=;
-        b=GTHRVtnbJVN1KulZBrgpf4jHXP1UdHYIiEcy93q4BQ0KErbFMBHcx8FkoK8y7WOI7e
-         ZnXlAd4j5/aaT1MMi7zC26KkDTnmxCfZXT8JJ9kVHEX/k4oPCiNiyA4BvZXCoc9Lfpbq
-         IGnvRgm5Xc3UKend8ubVeDKhODvzQYCo/C7p9zpt3OsX/UEJ3kyPDtAJWUOmrv1+ekzl
-         oIqwGV0cvpuFwK2vipVPMLNQ32GbORRtzl7R2371C6y0OeBq4D67905K3Ygaty/IRgm5
-         aVSji1UENJscbFQnKaDFwUV/62IIC4BbeO1wniUErsGaqxnc/8Zcf3shwbP4QeLxtAgJ
-         4O6A==
-X-Gm-Message-State: AOAM533wV2jFEFaFRlTyJbqE3al4NjPEQ8jyoiXXW5PTWpcyOyFXfTOa
-        5cyfF2wa0Z5KSfOZeMp2PfE7FQ==
-X-Google-Smtp-Source: ABdhPJxiYcDKpnTqq5SWY21dPvFP7GNAu3f5Em/slUL6EOVBNEG9+t+pGtCNV4M0EgkRnYKNBcGB0w==
-X-Received: by 2002:a1c:1905:: with SMTP id 5mr15466149wmz.32.1602585396171;
-        Tue, 13 Oct 2020 03:36:36 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id t6sm31809439wre.30.2020.10.13.03.36.34
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Oct 2020 03:36:35 -0700 (PDT)
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine
- bindings
-To:     Cheng-Yi Chiang <cychiang@chromium.org>,
-        linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>, dianders@chromium.org,
-        dgreid@chromium.org, tzungbi@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
-Date:   Tue, 13 Oct 2020 11:36:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ynUyUlf8ZBc/wosstkfDmHSkC80iEcSV9kvyuaRkng4=;
+        b=DAc4ccBBHB5Fb8zGnNh9I0MLvT7ni25jgAcIXUHg5nOblIgBYGo3uQV+LCrUvNT6GN
+         rWhiPJl8zsRMYsBK0xx3IdOe1gQgxezP8YwarwyDiG55cU/kF/6TqHVrM42YKYQU+CEd
+         nkLRY8xQg+niA1kQ6BYj9zX5HszmGwH59v1Rm00ANxxuSexGtrBxH9ldO3DgD2s0fFFi
+         j8LrWzEf8CUiz2Frn12O++wLfCQnd4SLmg5TazE74Qn0JD6XP+6b+UOVb9IpTu7hEead
+         BHPhHgqNmncpPhdU0HIrM4sGQAnvAZModpaKgWrDSCm9+fKfeqkkdMgezdnFle6Vq7Rb
+         L6rw==
+X-Gm-Message-State: AOAM532ESZy0y/a+gs2LIs9z5rWxb4mD3GTDZXpVXccOeI5sWeHgPr2m
+        XsWK9k9qu65vS19nqO6GkHNF5FY9diQk2L/3yzLPiQ==
+X-Google-Smtp-Source: ABdhPJysPQ5eomCeyfTMzrgpCupOQSNSpjtTrgtpcQZw7r3iRalZSOO25Xe+CvFq/MXGQdp/beZjzKxff66coldxr7U=
+X-Received: by 2002:a1f:2450:: with SMTP id k77mr15393251vkk.13.1602586457062;
+ Tue, 13 Oct 2020 03:54:17 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200914080619.4178587-3-cychiang@chromium.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201013100625.13056-1-jitao.shi@mediatek.com> <20201013100625.13056-2-jitao.shi@mediatek.com>
+In-Reply-To: <20201013100625.13056-2-jitao.shi@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Tue, 13 Oct 2020 18:54:05 +0800
+Message-ID: <CANMq1KBvG54ZW5gCzp4c_cpQjP6pZ9svngvvRUpWJn7FuMHt3Q@mail.gmail.com>
+Subject: Re: [PATCH v5 1/1] drm/mediatek: dsi: fix scrolling of panel with
+ small hfp or hbp
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        huijuan.xie@mediatek.com, stonea168@163.com,
+        cawa cheng <cawa.cheng@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Cheng,
+On Tue, Oct 13, 2020 at 6:06 PM Jitao Shi <jitao.shi@mediatek.com> wrote:
+>
+> Replace horizontal_backporch_byte with vm->hback_porch * bpp to aovid
+> flowing judgement negative number.
+>
+> if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_byte) >
+>         data_phy_cycles * dsi->lanes + delta)
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 65 +++++++++++++++-----------------------
+>  1 file changed, 25 insertions(+), 40 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> index 80b7a082e874..ddddf69ebeaf 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -445,6 +445,7 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
+>         u32 horizontal_backporch_byte;
+>         u32 horizontal_frontporch_byte;
+>         u32 dsi_tmp_buf_bpp, data_phy_cycles;
+> +       u32 delta;
+>         struct mtk_phy_timing *timing = &dsi->phy_timing;
+>
+>         struct videomode *vm = &dsi->vm;
+> @@ -466,50 +467,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
+>         horizontal_sync_active_byte = (vm->hsync_len * dsi_tmp_buf_bpp - 10);
+>
+>         if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE)
+> -               horizontal_backporch_byte = vm->hback_porch * dsi_tmp_buf_bpp;
+> +               horizontal_backporch_byte =
+> +                       (vm->hback_porch * dsi_tmp_buf_bpp - 10);
 
-Sorry for such late review w.r.t compatibles,
+These parentheses are not required, but it might be a little clearer to write:
+(vm->hback_porch * dsi_tmp_buf_bpp) - 10;
 
-On 14/09/2020 09:06, Cheng-Yi Chiang wrote:
-> +---
-> +$id:http://devicetree.org/schemas/sound/qcom,sc7180.yaml#
-> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+>         else
+> -               horizontal_backporch_byte = (vm->hback_porch + vm->hsync_len) *
+> -                                           dsi_tmp_buf_bpp;
+> +               horizontal_backporch_byte = ((vm->hback_porch + vm->hsync_len) *
+> +                       dsi_tmp_buf_bpp - 10);
+
+ditto:
+((vm->hback_porch + vm->hsync_len) * dsi_tmp_buf_bpp) - 10;
+
+But then, _maybe_ it's clearer to drop this hunk and just add this
+below the if/else:
+
+horizontal_backporch_byte -= 10;
+
+>
+>         data_phy_cycles = timing->lpx + timing->da_hs_prepare +
+> -                         timing->da_hs_zero + timing->da_hs_exit;
+> -
+> -       if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
+> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bpp >
+> -                   data_phy_cycles * dsi->lanes + 18) {
+> -                       horizontal_frontporch_byte =
+> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
+> -                               (data_phy_cycles * dsi->lanes + 18) *
+> -                               vm->hfront_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -
+> -                       horizontal_backporch_byte =
+> -                               horizontal_backporch_byte -
+> -                               (data_phy_cycles * dsi->lanes + 18) *
+> -                               vm->hback_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -               } else {
+> -                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
+> -                       horizontal_frontporch_byte = vm->hfront_porch *
+> -                                                    dsi_tmp_buf_bpp;
+> -               }
+> +                         timing->da_hs_zero + timing->da_hs_exit + 3;
+
+(for reference, apart from this `+ 3`, there is no functional change
+in this hunk: this just moves delta outside of the if/else block,
+which is a good idea for readability)
+
 > +
-> +title: Qualcomm Technologies Inc. SC7180 ASoC sound card driver
+> +       delta = (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) ? 18 : 12;
 > +
-> +maintainers:
-> +  - Rohit kumar<rohitkr@codeaurora.org>
-> +  - Cheng-Yi Chiang<cychiang@chromium.org>
+> +       if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_byte) >
+> +           data_phy_cycles * dsi->lanes + delta) {
+> +               horizontal_frontporch_byte =
+> +                       vm->hfront_porch * dsi_tmp_buf_bpp -
+> +                       (data_phy_cycles * dsi->lanes + delta) *
+> +                       vm->hfront_porch /
+> +                       (vm->hfront_porch + vm->hback_porch);
 > +
-> +description:
-> +  This binding describes the SC7180 sound card which uses LPASS for audio.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sc7180-sndcard-rt5682-m98357-1mic
-
-This information can come from the dai link description itself, why 
-should compatible string have this information?
-
-Can't we have better compatible string with actual board name or use the 
-same compatible name as used by other boards?
-
-Can you give us some details on the advantages of doing this way?
-
-Or am I missing something?
-
-AFAIU, you should add proper board name / model name to the compatible 
-string rather than describe how its connected. Connection is already 
-part of dai link definition.
-
-On the other hand model property can include variant information.
-This can also be used to set card long name which will help in UCM2.
-
-The reason I had to bring this up is because the use-space (ucm in this 
-case) will not be in a position to differentiate between different board 
-variants to select correct mixer controls, so its going to be a pain!
-
-
-Thanks,
-srini
+> +               horizontal_backporch_byte =
+> +                       horizontal_backporch_byte -
+> +                       (data_phy_cycles * dsi->lanes + delta) *
+> +                       vm->hback_porch /
+> +                       (vm->hfront_porch + vm->hback_porch);
+>         } else {
+> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bpp >
+> -                   data_phy_cycles * dsi->lanes + 12) {
+> -                       horizontal_frontporch_byte =
+> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
+> -                               (data_phy_cycles * dsi->lanes + 12) *
+> -                               vm->hfront_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -                       horizontal_backporch_byte = horizontal_backporch_byte -
+> -                               (data_phy_cycles * dsi->lanes + 12) *
+> -                               vm->hback_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -               } else {
+> -                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
+> -                       horizontal_frontporch_byte = vm->hfront_porch *
+> -                                                    dsi_tmp_buf_bpp;
+> -               }
+> +               DRM_WARN("HFP + HBP less than d-phy, FPS will under 60Hz\n");
+> +               horizontal_frontporch_byte = vm->hfront_porch *
+> +                                            dsi_tmp_buf_bpp;
+>         }
+>
+>         writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
+> --
+> 2.12.5
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
