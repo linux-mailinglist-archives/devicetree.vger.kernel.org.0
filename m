@@ -2,91 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECCC028CF3F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 455E128CF4E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:40:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728763AbgJMNi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:38:59 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:34504 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727245AbgJMNi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 09:38:58 -0400
-Received: by mail-ot1-f65.google.com with SMTP id d28so9873ote.1;
-        Tue, 13 Oct 2020 06:38:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NllhPoG9p2Bh0nH2RQW3ypX4VGMuvVMtCW/P5RE0rA0=;
-        b=bvh5lseXETeaegLdBsfMsW7ASS/yLxwbQrG/JufbalSrBgn7yQZGo3HOZ+RyozcKXK
-         LGpm1J2usz6fCmdhOL0iC4zrzuRF4DcH2FubZl10qiJfPF6uSp4B4S/DNXUjpS7DmLd+
-         trqDQMPjFGTDLwMpNEH/6XvJBaYnF8ZHbyoWtMEl00cpVCKMc8e41yB7OlIeciQBC8VO
-         Hqf+EyNYa4I7OojzM8tCd1llz9S2ttglCaNGATjcvQsK4bOuOyD+5p2sxEAan2WaO+fE
-         XipBVQc+S497WEpQl3HM3INBeB4WIrXhqPNIIUHjuJ+4jzd2slU1qjr2VLRVQMoF3UPC
-         DclA==
-X-Gm-Message-State: AOAM533eZplutLIyFpsGZrSKfIR8syuoOpAa2cgjzaQUprmKanE4fEbe
-        CkhNsIlNdiGkj95NEZfu9k9uvj4m6txQ
-X-Google-Smtp-Source: ABdhPJyrwXGntpEdZUiYh7ZuK7r956WgYfc34tUuOK2H1np7c5kp3tOakK2wi1qnfd1YICxpqkfNvg==
-X-Received: by 2002:a9d:d23:: with SMTP id 32mr15564661oti.34.1602596336779;
-        Tue, 13 Oct 2020 06:38:56 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 15sm11395102ooy.36.2020.10.13.06.38.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 06:38:56 -0700 (PDT)
-Received: (nullmailer pid 3391552 invoked by uid 1000);
-        Tue, 13 Oct 2020 13:38:55 -0000
-Date:   Tue, 13 Oct 2020 08:38:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: add trickle-voltage-millivolt
-Message-ID: <20201013133855.GA3382613@bogus>
-References: <20201007220506.360469-1-alexandre.belloni@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201007220506.360469-1-alexandre.belloni@bootlin.com>
+        id S1728899AbgJMNkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:40:24 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:17099 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728817AbgJMNkY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 09:40:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602596423; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=lGt94tJR4p8z2VZENAYILwPd3XBTRqEWZsrbh+IenL4=; b=HHo3Wbc76CO3IBtHlVg03/nbGcyFEox/wOuL653EZj+YtmX1h5MWPD6qlg31rr3O9d7wlR2B
+ PtbRnb4by4sjTtjkcfWYZxerpFC8KSLXIXKe1cjpcpzMVu1BD9IQGn2SMVVZSTeup5715ebX
+ WqEYsCVZW37gY6MZJykbb7VFbm8=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 5f85ae3942f9861fb11fe622 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 13 Oct 2020 13:40:09
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B9EEBC433CB; Tue, 13 Oct 2020 13:40:09 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 03A6AC43385;
+        Tue, 13 Oct 2020 13:40:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 03A6AC43385
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH 1/2] Asoc: qcom: lpass-cpu: Fix clock disable failure
+Date:   Tue, 13 Oct 2020 19:09:46 +0530
+Message-Id: <1602596386-9886-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 12:05:04AM +0200, Alexandre Belloni wrote:
-> Some RTCs have a trickle charge that is able to output different voltages
-> depending on the type of the connected auxiliary power (battery, supercap,
-> ...). Add a property allowing to specify the necessary voltage.
-> 
-> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> ---
-> 
-> Changes in v2:
->  - use millivolt suffix instead of mV
+From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-Try again...
+Disable MI2S bit clock from PAUSE/STOP/SUSPEND usecase
+instead of shutdown time. Acheive this by invoking
+clk_disable_unprepare API from cpu daiops shutdown to
+cpu daiops trigger.
+This Fix is update to the below patch.
+https://lore.kernel.org/patchwork/patch/1308101/
 
-> 
->  Documentation/devicetree/bindings/rtc/rtc.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
-> index ee237b2ed66a..93f04d5e5307 100644
-> --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
-> @@ -42,6 +42,13 @@ properties:
->        Selected resistor for trickle charger. Should be given
->        if trickle charger should be enabled.
->  
-> +  trickle-voltage-mV:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Selected voltage for trickle charger. Should be given
-> +      if trickle charger should be enabled and the trickle voltage is different
-> +      from the RTC main power supply.
-> +
->    wakeup-source:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> -- 
-> 2.26.2
-> 
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+ sound/soc/qcom/lpass-cpu.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index ba2aca3..2dfb921 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -88,8 +88,6 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
+ {
+ 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+ 
+-	clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
+-
+ 	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
+ }
+ 
+@@ -324,6 +322,7 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 		if (ret)
+ 			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
+ 				ret);
++		clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
+ 		break;
+ 	}
+ 
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
