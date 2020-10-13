@@ -2,107 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5AE28C9B3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 10:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C75328CA02
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 10:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390701AbgJMIBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 04:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60658 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390591AbgJMIBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 04:01:34 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF62DC0613D5
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 01:01:34 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id h4so1679361pjk.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 01:01:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tsWTpurAuv/vlEeR04dTlVeLk9jDAutyxmmT9x78Hg4=;
-        b=VHXuf5PSGufIuEVtxw7oi/WheNmXY+Z+WfaKAzvMOxnjZwgkxR1OmEB4T8sZQewEtg
-         e1c+/oALAlAF0tmbAPm4p0htrPBmga/hDHq3dCm764yD1Y8h89UBPvIgeOxhpUkmzd9y
-         YzRv8baPNKQB6EzJLbfAejrsl+2fGLM9ZtOCQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tsWTpurAuv/vlEeR04dTlVeLk9jDAutyxmmT9x78Hg4=;
-        b=ZZT9N5EKx4DAH6EGXaf0rnOC7sHAFQUFl79X0+MK5KCclvu9p9eGGzDD02vlepxhf/
-         GV1Ep98VtOXXFkyJxAi8kkFrrfblWQp4yTd5DyagimjYA9ON15c8S9RRuGGdlaXWqT4Z
-         rqpGdsPddjjm0bL5iOVEr4+IgWZWCnQBnLSFyuHQdrFN0rXUI4kXpKsnPXFxrOPOnaSr
-         Tj+GAZsePTe+x35OEsw0lOvtg1FG2SsSm8dWQxH12sA0fzw4KSLJvQYlSp6FagoyQuJq
-         BqM8PsXq4SCV/y2S003JKYfpDiP2n98heUEBh4ImTwEh64V9gruvvbKzBPQ9RBWM7lRN
-         KvxQ==
-X-Gm-Message-State: AOAM5308wjSegbWk46/FFCgr4fmmnuABkL90HlbP2AXkCtmedCMyP436
-        X5frX3D749H48f5nuA+S5v0d3A==
-X-Google-Smtp-Source: ABdhPJzSKtqGpIzDGHTlIfXQtiyAnZNTdOdilKUyo1dojj/V/fNN8+sHQZsbPzxjkylibFLyW4WseA==
-X-Received: by 2002:a17:90a:7d16:: with SMTP id g22mr24517159pjl.135.1602576094443;
-        Tue, 13 Oct 2020 01:01:34 -0700 (PDT)
-Received: from alex-desktop.lan (c-73-63-253-164.hsd1.ca.comcast.net. [73.63.253.164])
-        by smtp.gmail.com with ESMTPSA id y124sm14956924pfy.28.2020.10.13.01.01.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 01:01:33 -0700 (PDT)
-From:   Alexandru Stan <amstan@chromium.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexandru Stan <amstan@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: qcom: trogdor: Add brightness-levels
-Date:   Tue, 13 Oct 2020 01:01:03 -0700
-Message-Id: <20201013010056.v2.3.Ie4d84af5a85e8dcb8f575845518fa39f324a827d@changeid>
+        id S2390815AbgJMIRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 04:17:05 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50578 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727744AbgJMIRF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 04:17:05 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09D8GthU114502;
+        Tue, 13 Oct 2020 03:16:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1602577015;
+        bh=zo2wxbpMBmimLkyAq0CF6UYmn27MgCFWIOPK/30nNeU=;
+        h=From:To:CC:Subject:Date;
+        b=nLIjrUbnNj+9lPo0YO+Z4j7PxDOMWgUXtDETFA/d2SeSTvCnZMmUn8xt1jS4//ghN
+         hqvwOs8eZGgC8fDuVN36I3S2t59whTZVixwmAIKlHyPGSLUwoHPmdFKaCUskw22VG1
+         6YjuK859e3rqHAlyt11n107eBUActo+YmsU/Ek/M=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09D8GtjA039820
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 13 Oct 2020 03:16:55 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 13
+ Oct 2020 03:16:55 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 13 Oct 2020 03:16:55 -0500
+Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09D8GqSY104847;
+        Tue, 13 Oct 2020 03:16:53 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j7200-mcu-wakeup: Enable ADC support
+Date:   Tue, 13 Oct 2020 13:46:50 +0530
+Message-ID: <20201013081650.26090-1-vigneshr@ti.com>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201013080103.410133-1-amstan@chromium.org>
-References: <20201013080103.410133-1-amstan@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have better interpolation for the backlight
-("backlight: pwm_bl: Fix interpolation"), we can now add the curve to
-the trogdor boards, being careful to crop the low end.
+J7200 has a single instance of 8 channel ADC in MCU domain. Add DT node
+for the same.
 
-Signed-off-by: Alexandru Stan <amstan@chromium.org>
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 ---
+ .../dts/ti/k3-j7200-common-proc-board.dts     |  6 ++++++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 19 +++++++++++++++++++
+ 2 files changed, 25 insertions(+)
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index bf875589d364..ccdabc6c4994 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -179,6 +179,15 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
- 
-+		/* The panels don't seem to like anything below ~ 5% */
-+		brightness-levels = <
-+			196 256 324 400 484 576 676 784 900 1024 1156 1296
-+			1444 1600 1764 1936 2116 2304 2500 2704 2916 3136
-+			3364 3600 3844 4096
-+		>;
-+		num-interpolated-steps = <64>;
-+		default-brightness-level = <951>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+index ef03e7636b66..7d2ff1c3b50f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+@@ -213,3 +213,9 @@ &usb0 {
+ 	dr_mode = "otg";
+ 	maximum-speed = "high-speed";
+ };
 +
- 		pwms = <&cros_ec_pwm 1>;
- 		enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
++&tscadc0 {
++	adc {
++		ti,adc-channels = <0 1 2 3 4 5 6 7>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+index eb2a78a53512..bb1fe9c12e44 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -270,4 +270,23 @@ hbmc: hyperbus@47034000 {
+ 			mux-controls = <&hbmc_mux 0>;
+ 		};
+ 	};
++
++	tscadc0: tscadc@40200000 {
++		compatible = "ti,am3359-tscadc";
++		reg = <0x00 0x40200000 0x00 0x1000>;
++		interrupts = <GIC_SPI 860 IRQ_TYPE_LEVEL_HIGH>;
++		power-domains = <&k3_pds 0 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 0 1>;
++		assigned-clocks = <&k3_clks 0 3>;
++		assigned-clock-rates = <60000000>;
++		clock-names = "adc_tsc_fck";
++		dmas = <&main_udmap 0x7400>,
++			<&main_udmap 0x7401>;
++		dma-names = "fifo0", "fifo1";
++
++		adc {
++			#io-channel-cells = <1>;
++			compatible = "ti,am3359-adc";
++		};
++	};
+ };
 -- 
 2.28.0
 
