@@ -2,158 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCC028C82F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 07:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19A2C28C870
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 08:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732352AbgJMFP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 01:15:56 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:48650 "EHLO z5.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732349AbgJMFP4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 01:15:56 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1602566155; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=mLzptLEzGt3ap5c0T2QJDDwVUFSR6Rbgs8XlUGD7pbo=; b=TDorqUE3uSCSi4K0ZGgCHMlnqTHYFdyw4KT4zE1h879GqEcJV2URnzDPoF+b8rPCmGjrZss2
- PhGY/zseTFVKIzIHBYxz+8pcUQ3o8tkpSy5NBkS/Pld5a4qvwNQ045pOQg9PuO4N21CXmEje
- mF4KotAfJY0F9pQ5U6idDppF528=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 5f85380b06d81bc48dd23fbe (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 13 Oct 2020 05:15:55
- GMT
-Sender: kathirav=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 28B84C43387; Tue, 13 Oct 2020 05:15:55 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from kathirav-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kathirav)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3D47CC433CB;
-        Tue, 13 Oct 2020 05:15:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3D47CC433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kathirav@codeaurora.org
-From:   Kathiravan T <kathirav@codeaurora.org>
-To:     agross@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
-        vigneshr@ti.com, robh+dt@kernel.org, sivaprak@codeaurora.org,
-        peter.ujfalusi@ti.com, boris.brezillon@collabora.com,
-        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     kathirav@codeaurora.org,
-        Anusha Canchi Ramachandra Rao <anusharao@codeaurora.org>
-Subject: [PATCH 3/3] arm64: dts: ipq6018: Add the QPIC peripheral nodes
-Date:   Tue, 13 Oct 2020 10:45:24 +0530
-Message-Id: <1602566124-13456-4-git-send-email-kathirav@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1602566124-13456-1-git-send-email-kathirav@codeaurora.org>
-References: <1602566124-13456-1-git-send-email-kathirav@codeaurora.org>
+        id S2388894AbgJMGAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 02:00:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388880AbgJMGAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 02:00:30 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5DF6C0613D0;
+        Mon, 12 Oct 2020 23:00:28 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id d3so20444935wma.4;
+        Mon, 12 Oct 2020 23:00:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jnS/x8SlmHpjDOqz9A1uOS6RzTrMehpndh0O6FN/G6U=;
+        b=afO4cpR+LHdQnJ28NOXE/mkii7qViCz8wl0LWS29yyhmyfzSYeWlV5OrtqJNRvLqvh
+         N5pE8eULXJVrqWaSoNcf4dPPx9VihMP44Ff5NW5KCmaFH6Qznlvr7c7UR5RGcKPVgbHG
+         WWJSVCJ/n2aWcIgf5QTFrrYAA1/6UO3YLFbVjU4IHnSM1M6mWdMXpA0lJ6Hq8+x+TPe3
+         JgpHVTrNcbRbH8UcCxML/8g6tFgPkKJn6WkQRYxt2RFlzxaGANYQHP86Ohl9u82sYGCp
+         Hx7JrEinVP3XbzKd9i4F3gEl5LCii7VuV75Bq8aBLL/YIQQETQF4HJ8hrywejIFH+5oy
+         EzzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jnS/x8SlmHpjDOqz9A1uOS6RzTrMehpndh0O6FN/G6U=;
+        b=cvweZK1vneDfXa+nkpjGCHv0LndSQ0u70P2YYbkkvniwrxvE4556CDn9rlCdVTPMSW
+         z3pJceh2PM5Ge0eaOyU/oIcn4dwvUbdF4lLQYPJNBFrUuIiha9NRo9NQYhjxeHPRQWcA
+         cUxuIRiPuxKJkcx/G5Oe70PhKjIqAQRPWbruC6TZWLyKqlsBI46g870O9JJdKGfW3cG6
+         D45qMrP/AmosQ9In/S+qRq9oOijaW3eYkwHeJry04/G++dn8ZrhrWoL1Kw1oQxVEm1Vs
+         hPwLWZLVI4+vRM/BF3X+G18OLmj9fGxcRJlhgdwYEnXJ1j95CsfroFc5m8mktsYugVPm
+         crgg==
+X-Gm-Message-State: AOAM531l4JtpiX8zVgiTqV2X450Qqmi94XA6lfeUZ0nj1OV2z8s2Yjz9
+        oC8y2gnoVwl6G9ITfBqrzAE=
+X-Google-Smtp-Source: ABdhPJwV3SrDoUWfGVUiifjwE7icpnVDk1AWT+ES8MylI3PskKn0pFqjnIKUIusVGkaOQkyFSOovvg==
+X-Received: by 2002:a7b:c401:: with SMTP id k1mr13535636wmi.120.1602568827375;
+        Mon, 12 Oct 2020 23:00:27 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.119.110])
+        by smtp.gmail.com with ESMTPSA id l8sm18052242wrn.28.2020.10.12.23.00.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Oct 2020 23:00:26 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: auxadc: add doc for MT8516 SoC
+To:     Fabien Parent <fparent@baylibre.com>, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Cc:     robh+dt@kernel.org, pmeerw@pmeerw.net, lars@metafoo.de,
+        knaack.h@gmx.de, jic23@kernel.org
+References: <20201012205218.3010868-1-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <5ac4afb0-3950-3b11-1f5c-01bbf74e64a4@gmail.com>
+Date:   Tue, 13 Oct 2020 08:00:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <20201012205218.3010868-1-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the QPIC BAM and QPIC NAND controller support and
-enable the same in board DTS file.
 
-Co-developed-by: Anusha Canchi Ramachandra Rao <anusharao@codeaurora.org>
-Signed-off-by: Anusha Canchi Ramachandra Rao <anusharao@codeaurora.org>
-Signed-off-by: Kathiravan T <kathirav@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts | 16 ++++++++
- arch/arm64/boot/dts/qcom/ipq6018.dtsi        | 41 ++++++++++++++++++++
- 2 files changed, 57 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-index b31117a93995..6e68de1a0b0a 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-@@ -62,3 +62,19 @@ spi_0_pins: spi-0-pins {
- 		bias-pull-down;
- 	};
- };
-+
-+&qpic_bam {
-+	status = "ok";
-+};
-+
-+&qpic_nand {
-+	status = "ok";
-+
-+	nand@0 {
-+		reg = <0>;
-+
-+		nand-ecc-strength = <4>;
-+		nand-ecc-step-size = <512>;
-+		nand-bus-width = <8>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 1aa8d8579463..6b13e390ee29 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -173,6 +173,17 @@ serial_3_pins: serial3-pinmux {
- 				drive-strength = <8>;
- 				bias-pull-down;
- 			};
-+
-+			qpic_pins: qpic-pins {
-+				pins = "gpio1", "gpio3", "gpio4",
-+					"gpio5", "gpio6", "gpio7",
-+					"gpio8", "gpio10", "gpio11",
-+					"gpio12", "gpio13", "gpio14",
-+					"gpio15", "gpio17";
-+				function = "qpic_pad";
-+				drive-strength = <8>;
-+				bias-disable;
-+			};
- 		};
- 
- 		gcc: gcc@1800000 {
-@@ -274,6 +285,36 @@ i2c_1: i2c@78b7000 { /* BLSP1 QUP2 */
- 			status = "disabled";
- 		};
- 
-+		qpic_bam: dma@7984000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0x07984000 0x1a000>;
-+			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_QPIC_CLK>,
-+				 <&gcc GCC_QPIC_AHB_CLK>;
-+			clock-names = "iface_clk", "bam_clk";
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			status = "disabled";
-+		};
-+
-+		qpic_nand: nand@79b0000 {
-+			compatible = "qcom,ipq6018-nand";
-+			reg = <0x079b0000 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&gcc GCC_QPIC_CLK>,
-+				 <&gcc GCC_QPIC_AHB_CLK>;
-+			clock-names = "core", "aon";
-+
-+			dmas = <&qpic_bam 0>,
-+				<&qpic_bam 1>,
-+				<&qpic_bam 2>;
-+			dma-names = "tx", "rx", "cmd";
-+			pinctrl-0 = <&qpic_pins>;
-+			pinctrl-names = "default";
-+			status = "disabled";
-+		};
-+
- 		intc: interrupt-controller@b000000 {
- 			compatible = "qcom,msm-qgic2";
- 			interrupt-controller;
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+On 12/10/2020 22:52, Fabien Parent wrote:
+> Add documentation for the auxadc binding for MT8516 SoC.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
+> ---
+>   Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt b/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt
+> index 78c06e05c8e5..1b7ff9e5615a 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt
+> +++ b/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt
+> @@ -17,6 +17,7 @@ Required properties:
+>       - "mediatek,mt7622-auxadc": For MT7622 family of SoCs
+>       - "mediatek,mt8173-auxadc": For MT8173 family of SoCs
+>       - "mediatek,mt8183-auxadc", "mediatek,mt8173-auxadc": For MT8183 family of SoCs
+> +    - "mediatek,mt8516-auxadc", "mediatek,mt8173-auxadc": For MT8516 family of SoCs
+>     - reg: Address range of the AUXADC unit.
+>     - clocks: Should contain a clock specifier for each entry in clock-names
+>     - clock-names: Should contain "main".
+> 
