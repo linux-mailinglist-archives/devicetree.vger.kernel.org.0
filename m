@@ -2,188 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5C328D0E5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:03:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A239728D0EE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 17:03:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388871AbgJMPCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 11:02:39 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:48326 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2389084AbgJMPCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 11:02:21 -0400
-X-IronPort-AV: E=Sophos;i="5.77,371,1596466800"; 
-   d="scan'208";a="59459494"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 14 Oct 2020 00:02:20 +0900
-Received: from devel.example.org?044ree.adwin.renesas.com (unknown [10.226.36.120])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8A5F94009410;
-        Wed, 14 Oct 2020 00:02:17 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v3 5/5] arm64: dts: r8a77965: Add DRIF support
-Date:   Tue, 13 Oct 2020 16:01:50 +0100
-Message-Id: <20201013150150.14801-6-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201013150150.14801-1-fabrizio.castro.jz@renesas.com>
-References: <20201013150150.14801-1-fabrizio.castro.jz@renesas.com>
+        id S1726634AbgJMPDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 11:03:19 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:46580 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726157AbgJMPDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 11:03:19 -0400
+Received: by mail-ot1-f68.google.com with SMTP id m11so230810otk.13;
+        Tue, 13 Oct 2020 08:03:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=o5w7AiSSvOScWVEvBemOGxs8ySO+ClTEubv5ALBOy58=;
+        b=OtQE990ujb3vudiDxsW7BS/tA7RnobaliJrzU5wnSXww60xuJdKfRtEHNfkClBk7qU
+         uu9yUFtnHFQrKL8He4/HYO3SxoZ9BPFUOPdgUNP5Fyu9YfopcGZzUV2bDvzugpuEkuZ9
+         dD/Z2tZ4f3H7F4leakKLPpvGObCueI69pBXVfoPycSfW7/86bW9mmbxxXw09eksFV2XD
+         +9cOdPiMTOBr4r+McieTvTNySes8qsuNokRw63MG7hsH9Fj28u4yR24C5CY98Fd/YNCS
+         ZI9XPUaaGCSp5GywqTOLmK5LRFEAykeCMZQvG5jweJbkasTCz7A9jiwFFjqn5tRhqJ9T
+         m5Dw==
+X-Gm-Message-State: AOAM531OjZWexCjDHqIjs1tswW3PgncsxrzzIqcoh4o/vjF7YncyljQO
+        dyOBIVDLHzzGru6E083ZOA==
+X-Google-Smtp-Source: ABdhPJwPcGuIXfIA54rr5+iTWAXBSTcMGC1Q5kdQ2TXck21QX7ObO/HcKjz5tTQsFK0eEc3/kSij2g==
+X-Received: by 2002:a9d:7f15:: with SMTP id j21mr63221otq.76.1602601398326;
+        Tue, 13 Oct 2020 08:03:18 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i5sm31758ooo.32.2020.10.13.08.03.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Oct 2020 08:03:17 -0700 (PDT)
+Received: (nullmailer pid 3511465 invoked by uid 1000);
+        Tue, 13 Oct 2020 15:03:16 -0000
+Date:   Tue, 13 Oct 2020 10:03:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Wesley Cheng <wcheng@codeaurora.org>
+Cc:     sboyd@kernel.org, heikki.krogerus@linux.intel.com,
+        agross@kernel.org, gregkh@linuxfoundation.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jackp@codeaurora.org,
+        sergei.shtylyov@gmail.com
+Subject: Re: [PATCH v10 4/4] arm64: boot: dts: qcom: pm8150b: Add DTS node
+ for PMIC VBUS booster
+Message-ID: <20201013150316.GB3497815@bogus>
+References: <20201008235934.8931-1-wcheng@codeaurora.org>
+ <20201008235934.8931-5-wcheng@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201008235934.8931-5-wcheng@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DRIF controller nodes for r8a77965 (a.k.a. R-Car M3-N).
+On Thu, Oct 08, 2020 at 04:59:34PM -0700, Wesley Cheng wrote:
+> Add the required DTS node for the USB VBUS output regulator, which is
+> available on PM8150B.  This will provide the VBUS source to connected
+> peripherals.
+> 
+> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pm8150b.dtsi   | 6 ++++++
+>  arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 4 ++++
+>  2 files changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> index 2bf385f5a55a..49ea597cc0c5 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> @@ -53,6 +53,12 @@ power-on@800 {
+>  			status = "disabled";
+>  		};
+>  
+> +		pm8150b_vbus: regulator@1100 {
+> +			compatible = "qcom,pm8150b-vbus-reg";
+> +			status = "disabled";
+> +			reg = <0x1100>;
+> +		};
+> +
+>  		pm8150b_typec: usb-typec@1500 {
+>  			compatible = "qcom,pm8150b-usb-typec";
+>  			status = "disabled";
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> index 6c6325c3af59..ba3b5b802954 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> @@ -409,6 +409,10 @@ &ufs_mem_phy {
+>  	vdda-pll-max-microamp = <19000>;
+>  };
+>  
+> +&pm8150b_vbus {
+> +	status = "okay";
+> +};
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
-v2->v3:
-* New patch
+Why aren't you enabling the TypeC node and providing a complete example?
 
- arch/arm64/boot/dts/renesas/r8a77965.dtsi | 120 ++++++++++++++++++++++
- 1 file changed, 120 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-index fe4dc12e2bdf..c5a54dc7ede2 100644
---- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-@@ -1550,6 +1550,126 @@ vin7csi40: endpoint@2 {
- 			};
- 		};
- 
-+		drif00: rif@e6f40000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f40000 0 0x84>;
-+			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 515>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x20>, <&dmac2 0x20>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 515>;
-+			renesas,bonding = <&drif01>;
-+			status = "disabled";
-+		};
-+
-+		drif01: rif@e6f50000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f50000 0 0x84>;
-+			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 514>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x22>, <&dmac2 0x22>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 514>;
-+			renesas,bonding = <&drif00>;
-+			status = "disabled";
-+		};
-+
-+		drif10: rif@e6f60000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f60000 0 0x84>;
-+			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 513>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x24>, <&dmac2 0x24>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 513>;
-+			renesas,bonding = <&drif11>;
-+			status = "disabled";
-+		};
-+
-+		drif11: rif@e6f70000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f70000 0 0x84>;
-+			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 512>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x26>, <&dmac2 0x26>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 512>;
-+			renesas,bonding = <&drif10>;
-+			status = "disabled";
-+		};
-+
-+		drif20: rif@e6f80000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f80000 0 0x84>;
-+			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 511>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x28>, <&dmac2 0x28>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 511>;
-+			renesas,bonding = <&drif21>;
-+			status = "disabled";
-+		};
-+
-+		drif21: rif@e6f90000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f90000 0 0x84>;
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 510>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x2a>, <&dmac2 0x2a>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 510>;
-+			renesas,bonding = <&drif20>;
-+			status = "disabled";
-+		};
-+
-+		drif30: rif@e6fa0000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6fa0000 0 0x84>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 509>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x2c>, <&dmac2 0x2c>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 509>;
-+			renesas,bonding = <&drif31>;
-+			status = "disabled";
-+		};
-+
-+		drif31: rif@e6fb0000 {
-+			compatible = "renesas,r8a77965-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6fb0000 0 0x84>;
-+			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 508>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x2e>, <&dmac2 0x2e>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
-+			resets = <&cpg 508>;
-+			renesas,bonding = <&drif30>;
-+			status = "disabled";
-+		};
-+
- 		rcar_sound: sound@ec500000 {
- 			/*
- 			 * #sound-dai-cells is required
--- 
-2.25.1
-
+> +
+>  &usb_1_hsphy {
+>  	status = "okay";
+>  	vdda-pll-supply = <&vdd_usb_hs_core>;
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
