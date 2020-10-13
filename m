@@ -2,92 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DE6428D2C8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 19:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A3828D2DB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 19:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728221AbgJMREo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 13:04:44 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:36928 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726727AbgJMREo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 13:04:44 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 1A67F1C0B77; Tue, 13 Oct 2020 19:04:40 +0200 (CEST)
-Date:   Tue, 13 Oct 2020 19:04:39 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: leds: choose correct color value of
- multi-led
-Message-ID: <20201013170439.GA28123@duo.ucw.cz>
-References: <20201013160845.1772-1-thunder.leizhen@huawei.com>
- <20201013160845.1772-2-thunder.leizhen@huawei.com>
- <1565f22c-7be9-e771-7def-afbb28ec07a7@ti.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="1yeeQ81UyVL57Vl7"
-Content-Disposition: inline
-In-Reply-To: <1565f22c-7be9-e771-7def-afbb28ec07a7@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1728812AbgJMRME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 13:12:04 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:41149 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728803AbgJMRME (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 13:12:04 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602609123; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=8TGdWSrQ5fv1fYrNwF7QstbVpfG75tMelkMDFGJ2MA4=; b=KzCoY5KiL3nh4rkrvqfjfOPJ6FV7t7ne2chmAjRuRTRt09XaMA7R6d7rfAUv2Boixj6G5REJ
+ 6hOVtS/zdTVnJOufrXx1du3c5Y6Iw3ludhM3UNf5BWMmWxpUU7hUDjQtDV5B/xl5eUeM3Ei5
+ 7IWKikeHmMADo9cQzc0Nk/eadWs=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 5f85dfe3d63768e57b30dc73 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 13 Oct 2020 17:12:03
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id BA081C43382; Tue, 13 Oct 2020 17:12:02 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CB6E1C433CB;
+        Tue, 13 Oct 2020 17:11:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CB6E1C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v2 0/3] Add Camera clock controller driver for SC7180
+Date:   Tue, 13 Oct 2020 22:41:47 +0530
+Message-Id: <1602609110-11504-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+[v2]
+ * Update PLL set rate function : clk_alpha_pll_agera_set_rate
+ * Remove mb()
 
---1yeeQ81UyVL57Vl7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[v1]
+ * Add support for Agera PLL which is used in the camera clock controller.
 
-Hi!
+ * Add driver support for camera clock controller for SC7180 and also
+   update device tree bindings for the various clocks supported in the
+   clock controller.
 
-> > --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-> > @@ -197,7 +197,7 @@ examples:
-> >                  #address-cells =3D <1>;
-> >                  #size-cells =3D <0>;
-> >                  reg =3D <0x2>;
-> > -               color =3D <LED_COLOR_ID_RGB>;
-> > +               color =3D <LED_COLOR_ID_MULTI>;
-> >                  function =3D LED_FUNCTION_STANDBY;
-> >                  linux,default-trigger =3D "heartbeat";
->=20
-> This is not correct.=A0 ID_RGB is the correct variable here.
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git/comm=
-it/?h=3Dfor-next&id=3D3d93edc77515c6f51fa9bbbe2185e2ec32bad024
->=20
-> Correct fix is to update the leds-class-multicolor.yaml
+Taniya Das (3):
+  clk: qcom: clk-alpha-pll: Add support for controlling Agera PLLs
+  dt-bindings: clock: Add YAML schemas for the QCOM Camera clock
+    bindings.
+  clk: qcom: camcc: Add camera clock controller driver for SC7180
 
-Right. So lets not merge this one.
+ .../bindings/clock/qcom,sc7180-camcc.yaml          |   73 +
+ drivers/clk/qcom/Kconfig                           |    9 +
+ drivers/clk/qcom/Makefile                          |    1 +
+ drivers/clk/qcom/camcc-sc7180.c                    | 1737 ++++++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.c                   |   80 +
+ drivers/clk/qcom/clk-alpha-pll.h                   |    4 +
+ include/dt-bindings/clock/qcom,camcc-sc7180.h      |  121 ++
+ 7 files changed, 2025 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-camcc.yaml
+ create mode 100644 drivers/clk/qcom/camcc-sc7180.c
+ create mode 100644 include/dt-bindings/clock/qcom,camcc-sc7180.h
 
-Best regards,
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
---1yeeQ81UyVL57Vl7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX4XeJwAKCRAw5/Bqldv6
-8vUOAJ41V+XbVX0DyC/lyzkofgmV7ZUDSgCePZO4075S4sKZU1LyDLclDD/cimE=
-=Voh5
------END PGP SIGNATURE-----
-
---1yeeQ81UyVL57Vl7--
