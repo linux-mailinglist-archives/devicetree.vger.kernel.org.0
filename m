@@ -2,52 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5608A28D6DA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 01:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C0F628D6FF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 01:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387578AbgJMXMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 19:12:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46694 "EHLO mail.kernel.org"
+        id S2388556AbgJMXaw convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Oct 2020 19:30:52 -0400
+Received: from mga18.intel.com ([134.134.136.126]:63710 "EHLO mga18.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387570AbgJMXMF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 19:12:05 -0400
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C166321D40;
-        Tue, 13 Oct 2020 23:12:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602630724;
-        bh=0zBPSpHevmdq1uHIA4+p1uLGrJhk+puG39JIQUADrUY=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=E6uByxTkGm1IvcvRNNDMXxLnxPNWajuOd5IxZeTX3oPYVop6IH0EdSfk1GHxMq/Br
-         rf4810ui9zUhVY/9HgSzwRmDpz2/pXn9csKjDtteXCYT3XjWanp9ium8O6e72aU3+t
-         Zuve/TQOeQqaG74zVSEc716JxZ2yLbKaqCMoc4fU=
-Content-Type: text/plain; charset="utf-8"
+        id S1726773AbgJMXaw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 19:30:52 -0400
+IronPort-SDR: MYNgG1A7tSH/EpqImiWJCliMLxcn50noY5aO2Nhi2CIoZna0FiFm+h4aE0WO2um/KNWFQauLiD
+ alOWranzGV7g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9773"; a="153837618"
+X-IronPort-AV: E=Sophos;i="5.77,372,1596524400"; 
+   d="scan'208";a="153837618"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2020 16:30:50 -0700
+IronPort-SDR: 235LoJrnDi8tb/2MVYVbqUho211EXcnyCLEh3YDOE9lJvmMGsuGANCF6MixwASEPbaW4LE6+xF
+ xwG/25jfLLIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,372,1596524400"; 
+   d="scan'208";a="345438754"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+  by fmsmga004.fm.intel.com with ESMTP; 13 Oct 2020 16:30:49 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 14 Oct 2020 00:30:47 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Tue, 13 Oct 2020 16:30:46 -0700
+From:   "Paauwe, Bob J" <bob.j.paauwe@intel.com>
+To:     Rob Herring <robh@kernel.org>,
+        "Chrisanthus, Anitha" <anitha.chrisanthus@intel.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        "Dea, Edmund J" <edmund.j.dea@intel.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "Vetter, Daniel" <daniel.vetter@intel.com>,
+        "sam@ravnborg.org" <sam@ravnborg.org>
+Subject: RE: [PATCH v9 1/5] dt-bindings: display: Add support for Intel
+ KeemBay Display
+Thread-Topic: [PATCH v9 1/5] dt-bindings: display: Add support for Intel
+ KeemBay Display
+Thread-Index: AQHWndgeA8gVyqifRECc4bPveICdhKmPcYSAgAW2nACAAQB6AIAAA2rw
+Date:   Tue, 13 Oct 2020 23:30:46 +0000
+Message-ID: <e765f70b66494d6eace3d2de2ee5628d@intel.com>
+References: <1602205443-9036-1-git-send-email-anitha.chrisanthus@intel.com>
+ <1602205443-9036-2-git-send-email-anitha.chrisanthus@intel.com>
+ <dc12f5ea-60bc-8a09-9b93-a4472183adc4@baylibre.com>
+ <BY5PR11MB41827BBE3556CD7972E6C4328C040@BY5PR11MB4182.namprd11.prod.outlook.com>
+ <20201013154236.GA3562909@bogus>
+In-Reply-To: <20201013154236.GA3562909@bogus>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200918132303.2831815-2-fparent@baylibre.com>
-References: <20200918132303.2831815-1-fparent@baylibre.com> <20200918132303.2831815-2-fparent@baylibre.com>
-Subject: Re: [PATCH v2 2/2] clk: mediatek: Add MT8167 clock support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     krzk@kernel.org, masahiroy@kernel.org, ck.hu@mediatek.com,
-        macpaul.lin@mediatek.com, owen.chen@mediatek.com,
-        matthias.bgg@gmail.com, Fabien Parent <fparent@baylibre.com>
-To:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Date:   Tue, 13 Oct 2020 16:12:03 -0700
-Message-ID: <160263072366.310579.8925835742463532920@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Fabien Parent (2020-09-18 06:23:03)
-> Add the following clock support for MT8167 SoC: topckgen, apmixedsys,
-> infracfg, audsys, imgsys, mfgcfg, vdecsys.
->=20
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
+> -----Original Message-----
+> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Rob
+> Herring
+> Sent: Tuesday, October 13, 2020 8:43 AM
+> To: Chrisanthus, Anitha <anitha.chrisanthus@intel.com>
+> Cc: devicetree@vger.kernel.org; Neil Armstrong <narmstrong@baylibre.com>;
+> Dea, Edmund J <edmund.j.dea@intel.com>; dri-devel@lists.freedesktop.org;
+> Vetter, Daniel <daniel.vetter@intel.com>; sam@ravnborg.org
+> Subject: Re: [PATCH v9 1/5] dt-bindings: display: Add support for Intel KeemBay
+> Display
+> 
+> On Tue, Oct 13, 2020 at 12:24:38AM +0000, Chrisanthus, Anitha wrote:
+> > Hi Neil,
+> >
+> >  Thanks for your review, please see my reply inline.
+> >
+> > > -----Original Message-----
+> > > From: Neil Armstrong <narmstrong@baylibre.com>
+> > > Sent: Friday, October 9, 2020 2:10 AM
+> > > To: Chrisanthus, Anitha <anitha.chrisanthus@intel.com>; dri-
+> > > devel@lists.freedesktop.org; devicetree@vger.kernel.org; Vetter, Daniel
+> > > <daniel.vetter@intel.com>
+> > > Cc: Dea, Edmund J <edmund.j.dea@intel.com>; sam@ravnborg.org
+> > > Subject: Re: [PATCH v9 1/5] dt-bindings: display: Add support for Intel
+> > > KeemBay Display
+> > >
+> > > Hi,
+> > >
+> > > On 09/10/2020 03:03, Anitha Chrisanthus wrote:
+> > > > This patch adds bindings for Intel KeemBay Display
+> > > >
+> > > > v2: review changes from Rob Herring
+> > > >
+> > > > Signed-off-by: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+> > > > ---
+> > > >  .../bindings/display/intel,keembay-display.yaml    | 99
+> > > ++++++++++++++++++++++
+> > > >  1 file changed, 99 insertions(+)
+> > > >  create mode 100644
+> > > Documentation/devicetree/bindings/display/intel,keembay-display.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/intel,keembay-
+> > > display.yaml b/Documentation/devicetree/bindings/display/intel,keembay-
+> > > display.yaml
+> > > > new file mode 100644
+> > > > index 0000000..a38493d
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/display/intel,keembay-
+> > > display.yaml
+> > > > @@ -0,0 +1,99 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/display/intel,keembay-
+> > > display.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Devicetree bindings for Intel Keem Bay display controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+> > > > +  - Edmond J Dea <edmund.j.dea@intel.com>
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: intel,kmb_display
+> > > > +
+> > > > +  reg:
+> > > > +    items:
+> > > > +      - description: Lcd registers range
+> > > > +      - description: Mipi registers range
+> > >
+> > > Looking at the registers, the MIPI transceiver seems to be a separate IP,
+> > > same for D-PHY which should have a proper PHY driver instead of beeing
+> > > handled
+> > > here.
+> > >
+> > The LCD, MIPI DSI, DPHY and MSSCAM as a group, are considered the
+> > display subsystem for Keem Bay. As such, there are several
+> > interdependencies that make splitting them up next to impossible and
+> 
+> Please detail what those inter-dependencies are. It's doubtful that you
+> have anything we have not had to deal with in other SoCs.
+> 
+> > currently we do not have the resources available for that effort.
+> 
+> That is certainly not justification for accepting this.
+> 
+> Rob
 
-Applied to clk-next
+Hi Rob,  the wording was probably a bit exaggerated and you're right in that
+there it's not unique from a hardware perspective.
+
+The problem we have (and I know, it's our problem, not yours) is that our 
+program required us to develop this internally first and then try to upstream it. 
+So now that we've put a large effort into developing and testing the driver, it's 
+very difficult for us to justify the resources to re-design it to better match the
+design of other SOC display drivers.
+
+We did review other SOC display drivers before creating this and thought that we
+were following the best practices for the design.
+
+I fully agree that lack of resources is not justification for not fixing something
+broken. But on the flip side,  neither is changing the design because it could
+be "better" justification for not accepting it.
+
+If there is something wrong with the driver and it will cause problems in the
+future, then please, let us know.  That would provide the data needed to 
+justify additional effort.
+
+Bob
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
