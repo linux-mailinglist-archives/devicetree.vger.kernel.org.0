@@ -2,109 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C75328CA02
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 10:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5424128CA4D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 10:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390815AbgJMIRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 04:17:05 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:50578 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727744AbgJMIRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 04:17:05 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09D8GthU114502;
-        Tue, 13 Oct 2020 03:16:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1602577015;
-        bh=zo2wxbpMBmimLkyAq0CF6UYmn27MgCFWIOPK/30nNeU=;
-        h=From:To:CC:Subject:Date;
-        b=nLIjrUbnNj+9lPo0YO+Z4j7PxDOMWgUXtDETFA/d2SeSTvCnZMmUn8xt1jS4//ghN
-         hqvwOs8eZGgC8fDuVN36I3S2t59whTZVixwmAIKlHyPGSLUwoHPmdFKaCUskw22VG1
-         6YjuK859e3rqHAlyt11n107eBUActo+YmsU/Ek/M=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09D8GtjA039820
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Oct 2020 03:16:55 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 13
- Oct 2020 03:16:55 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 13 Oct 2020 03:16:55 -0500
-Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09D8GqSY104847;
-        Tue, 13 Oct 2020 03:16:53 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j7200-mcu-wakeup: Enable ADC support
-Date:   Tue, 13 Oct 2020 13:46:50 +0530
-Message-ID: <20201013081650.26090-1-vigneshr@ti.com>
-X-Mailer: git-send-email 2.28.0
+        id S2391171AbgJMIcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 04:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391002AbgJMIcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 04:32:13 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 261E8C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 01:32:13 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kSFj7-0003lc-Ix; Tue, 13 Oct 2020 10:32:09 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kSFj5-0005M4-Pc; Tue, 13 Oct 2020 10:32:07 +0200
+Date:   Tue, 13 Oct 2020 10:32:07 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: Re: [PATCH v10 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20201013083207.kgtvb4zzjuhfz7vj@pengutronix.de>
+References: <cover.1602090900.git.vijayakannan.ayyathurai@intel.com>
+ <a8cb129092283cb6415e56b928293ef7121a851b.1602090900.git.vijayakannan.ayyathurai@intel.com>
+ <20201007205734.vguookvp6wt3knuq@pengutronix.de>
+ <DM6PR11MB42507C555C3F183ED6EB98ADFB070@DM6PR11MB4250.namprd11.prod.outlook.com>
+ <20201012210112.tdca3so6dzplootw@pengutronix.de>
+ <DM6PR11MB42507506D412B7D7D29DB01CFB040@DM6PR11MB4250.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ao6ub7jcaasvd4dc"
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB42507506D412B7D7D29DB01CFB040@DM6PR11MB4250.namprd11.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J7200 has a single instance of 8 channel ADC in MCU domain. Add DT node
-for the same.
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- .../dts/ti/k3-j7200-common-proc-board.dts     |  6 ++++++
- .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 19 +++++++++++++++++++
- 2 files changed, 25 insertions(+)
+--ao6ub7jcaasvd4dc
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index ef03e7636b66..7d2ff1c3b50f 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -213,3 +213,9 @@ &usb0 {
- 	dr_mode = "otg";
- 	maximum-speed = "high-speed";
- };
-+
-+&tscadc0 {
-+	adc {
-+		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index eb2a78a53512..bb1fe9c12e44 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -270,4 +270,23 @@ hbmc: hyperbus@47034000 {
- 			mux-controls = <&hbmc_mux 0>;
- 		};
- 	};
-+
-+	tscadc0: tscadc@40200000 {
-+		compatible = "ti,am3359-tscadc";
-+		reg = <0x00 0x40200000 0x00 0x1000>;
-+		interrupts = <GIC_SPI 860 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 0 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 0 1>;
-+		assigned-clocks = <&k3_clks 0 3>;
-+		assigned-clock-rates = <60000000>;
-+		clock-names = "adc_tsc_fck";
-+		dmas = <&main_udmap 0x7400>,
-+			<&main_udmap 0x7401>;
-+		dma-names = "fifo0", "fifo1";
-+
-+		adc {
-+			#io-channel-cells = <1>;
-+			compatible = "ti,am3359-adc";
-+		};
-+	};
- };
--- 
-2.28.0
+Hello Ayyathurai,
 
+can you please fix your mailer to quote properly?
+
+On Tue, Oct 13, 2020 at 02:54:31AM +0000, Ayyathurai, Vijayakannan wrote:
+> Thank you for this clarification and I am clear in incorporating it in
+> my next version. Is there any other feedback in this version v10?
+
+I won't promise that I will not spot something in your v11, but
+currently I told you about all issues I saw with v10.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ao6ub7jcaasvd4dc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+FZgQACgkQwfwUeK3K
+7AkXyQf7BKFzUH4vuacoKoUaCa0oYK15w1poje8FRzLJo5JJRfFkWeEcuY9QQZjZ
+zrfjpKDQ1VseR9PHxUBZW2DEPnhG0/wJFFxGLS+DukLLhawlR7JnAXZVx1yIByxY
+V+UQMrM2BpukpD2GCL/v6E8ZYZbNS+l6nwDFCnjaVUuVtyKvikjP/QxkCUktUsr+
+JMCDKbIOFiJmfOgskUrCrvTCjNCZz5wQ1Uv50ZbKx3MFZoviaCV0lSaka/q/pSv+
+dyfmIKQ5BGBmzrWfXMzB9ndn/ZwVvTKGgtfD7VbOF6EdYFhYVbsnFz/vqzaUAo/x
+eRpnk5azaOvsK67lfZZId2C9rikSuw==
+=JC0j
+-----END PGP SIGNATURE-----
+
+--ao6ub7jcaasvd4dc--
