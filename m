@@ -2,259 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8089828D033
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 16:29:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7838128D03C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 16:30:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388536AbgJMO3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 10:29:22 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:41132 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387516AbgJMO3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 10:29:22 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id D035D8030719;
-        Tue, 13 Oct 2020 14:29:14 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id M3o6heArBTLz; Tue, 13 Oct 2020 17:29:13 +0300 (MSK)
-Date:   Tue, 13 Oct 2020 17:29:11 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        id S2388627AbgJMOaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 10:30:39 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:31412 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2387516AbgJMOai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 10:30:38 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09DENOoj012153;
+        Tue, 13 Oct 2020 10:30:24 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 344js7mcs9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Oct 2020 10:30:24 -0400
+Received: from SCSQMBX11.ad.analog.com (scsqmbx11.ad.analog.com [10.77.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 09DEUMPm003712
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Tue, 13 Oct 2020 10:30:23 -0400
+Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
+ SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Tue, 13 Oct 2020 07:30:21 -0700
+Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
+ SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Tue, 13 Oct 2020 07:29:26 -0700
+Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX11.ad.analog.com
+ (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Tue, 13 Oct 2020 07:30:21 -0700
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 09DEUINT020834;
+        Tue, 13 Oct 2020 10:30:18 -0400
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 07/18] dt-bindings: usb: Convert xHCI bindings to DT
- schema
-Message-ID: <20201013142911.pay7g6gi2a5d72q3@mobilestation>
-References: <20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru>
- <20201010224121.12672-8-Sergey.Semin@baikalelectronics.ru>
- <20201013123004.GB3269269@bogus>
+CC:     <michael.hennerich@analog.com>, <lars@metafoo.de>,
+        <mdf@kernel.org>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <mturquette@baylibre.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: [PATCH v2] dt-bindings: clock: adi,axi-clkgen: convert old binding to yaml format
+Date:   Tue, 13 Oct 2020 17:34:20 +0300
+Message-ID: <20201013143421.84188-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201001085035.82938-1-alexandru.ardelean@analog.com>
+References: <20201001085035.82938-1-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201013123004.GB3269269@bogus>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain
+X-ADIRoutedOnPrem: True
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-10-13_06:2020-10-13,2020-10-13 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 phishscore=0 mlxscore=0 malwarescore=0 mlxlogscore=999
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010130109
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 07:30:04AM -0500, Rob Herring wrote:
-> On Sun, Oct 11, 2020 at 01:41:10AM +0300, Serge Semin wrote:
-> > Currently the DT bindings of Generic xHCI Controllers are described by means
-> > of the legacy text file. Since such format is deprecated in favor of the
-> > DT schema, let's convert the Generic xHCI Controllers bindings file to the
-> > corresponding yaml files. There will be two of them: a DT schema for the
-> > xHCI controllers on a generic platform and a DT schema validating a generic
-> > xHCI controllers properties. The later will be used to validate the xHCI
-> > controllers, which aside from some vendor-specific features support the
-> > basic xHCI functionality.
-> > 
-> > An xHCI-compatible DT node shall support the standard USB HCD properties
-> > and custom ones like: usb2-lpm-disable, usb3-lpm-capable,
-> > quirk-broken-port-ped and imod-interval-ns. In addition if a generic xHCI
-> > controller is being validated against the DT schema it is also supposed to
-> > be equipped with mandatory compatible string, single registers range,
-> > single interrupts source, and is supposed to optionally contain up to two
-> > reference clocks for the controller core and CSRs.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  .../devicetree/bindings/usb/generic-xhci.yaml | 63 +++++++++++++++++++
-> >  .../devicetree/bindings/usb/usb-xhci.txt      | 41 ------------
-> >  .../devicetree/bindings/usb/usb-xhci.yaml     | 40 ++++++++++++
-> >  3 files changed, 103 insertions(+), 41 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.txt
-> >  create mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> > new file mode 100644
-> > index 000000000000..1ea1d49a8175
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> > @@ -0,0 +1,63 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: USB xHCI Controller Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Mathias Nyman <mathias.nyman@intel.com>
-> > +
-> > +allOf:
-> > +  - $ref: "usb-xhci.yaml#"
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: Generic xHCI device
-> > +        const: generic-xhci
-> > +      - description: Armada 37xx/375/38x/8k SoCs
-> > +        items:
-> > +          - enum:
-> > +              - marvell,armada3700-xhci
-> > +              - marvell,armada-375-xhci
-> > +              - marvell,armada-380-xhci
-> > +              - marvell,armada-8k-xhci
-> > +          - const: generic-xhci
-> > +      - description: Broadcom STB SoCs with xHCI
-> > +        const: brcm,bcm7445-xhci
-> > +      - description: Generic xHCI device
-> > +        const: xhci-platform
-> > +        deprecated: true
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: core
-> > +      - const: reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +examples:
-> > +  - |
-> > +    usb@f0931000 {
-> > +      compatible = "generic-xhci";
-> > +      reg = <0xf0931000 0x8c8>;
-> > +      interrupts = <0x0 0x4e 0x0>;
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-> > deleted file mode 100644
-> > index 0c5cff84a969..000000000000
-> > --- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
-> > +++ /dev/null
-> > @@ -1,41 +0,0 @@
-> > -USB xHCI controllers
-> > -
-> > -Required properties:
-> > -  - compatible: should be one or more of
-> > -
-> > -    - "generic-xhci" for generic XHCI device
-> > -    - "marvell,armada3700-xhci" for Armada 37xx SoCs
-> > -    - "marvell,armada-375-xhci" for Armada 375 SoCs
-> > -    - "marvell,armada-380-xhci" for Armada 38x SoCs
-> > -    - "brcm,bcm7445-xhci" for Broadcom STB SoCs with XHCI
-> > -    - "xhci-platform" (deprecated)
-> > -
-> > -    When compatible with the generic version, nodes must list the
-> > -    SoC-specific version corresponding to the platform first
-> > -    followed by the generic version.
-> > -
-> > -  - reg: should contain address and length of the standard XHCI
-> > -    register set for the device.
-> > -  - interrupts: one XHCI interrupt should be described here.
-> > -
-> > -Optional properties:
-> > -  - clocks: reference to the clocks
-> > -  - clock-names: mandatory if there is a second clock, in this case
-> > -    the name must be "core" for the first clock and "reg" for the
-> > -    second one
-> > -  - usb2-lpm-disable: indicate if we don't want to enable USB2 HW LPM
-> > -  - usb3-lpm-capable: determines if platform is USB3 LPM capable
-> > -  - quirk-broken-port-ped: set if the controller has broken port disable mechanism
-> > -  - imod-interval-ns: default interrupt moderation interval is 5000ns
-> > -  - phys : see usb-hcd.yaml in the current directory
-> > -
-> > -additionally the properties from usb-hcd.yaml (in the current directory) are
-> > -supported.
-> > -
-> > -
-> > -Example:
-> > -	usb@f0931000 {
-> > -		compatible = "generic-xhci";
-> > -		reg = <0xf0931000 0x8c8>;
-> > -		interrupts = <0x0 0x4e 0x0>;
-> > -	};
-> > diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.yaml b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
-> > new file mode 100644
-> > index 000000000000..c5c177f2e055
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
-> > @@ -0,0 +1,40 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/usb-xhci.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic USB xHCI Controller Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Mathias Nyman <mathias.nyman@intel.com>
-> > +
-> > +allOf:
-> > +  - $ref: "usb-hcd.yaml#"
-> > +
-> > +properties:
-> > +  usb2-lpm-disable:
-> > +    description: Indicates if we don't want to enable USB2 HW LPM
-> > +    type: boolean
-> > +
-> > +  usb3-lpm-capable:
-> > +    description: Determines if platform is USB3 LPM capable
-> > +    type: boolean
-> > +
-> > +  quirk-broken-port-ped:
-> > +    description: Set if the controller has broken port disable mechanism
-> > +    type: boolean
-> > +
-> > +  imod-interval-ns:
-> > +    description: Interrupt moderation interval
-> > +    default: 5000
-> 
+This change converts the old binding for the AXI clkgen driver to a yaml
+format.
 
-> Having additionalProperties or unevaluatedProperties is going to be 
-> mandatory, so for this add:
-> 
-> additionalProperties: true
+As maintainers, added:
+ - Lars-Peter Clausen <lars@metafoo.de> - as original author of driver &
+   binding
+ - Michael Hennerich <michael.hennerich@analog.com> - as supporter of
+   Analog Devices drivers
 
-Ok. I'll get to remember this.
+Acked-by: Michael Hennerich <michael.hennerich@analog.com>
+Acked-by: Lars-Peter Clausen <lars@metafoo.de>
+Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+---
 
--Sergey
+Changelog v1 -> v2:
+* add 'additionalProperties: false'
+* changed 'clock@...' -> 'clock-controller@...' in example
+* added Acked-by for Michael & Lars on the re-licensing
+* updated description for 'clocks' property
 
-> 
-> > +
-> > +examples:
-> > +  - |
-> > +    usb@f0930000 {
-> > +      compatible = "generic-xhci";
-> > +      reg = <0xf0930000 0x8c8>;
-> > +      interrupts = <0x0 0x4e 0x0>;
-> > +      usb2-lpm-disable;
-> > +      usb3-lpm-capable;
-> > +    };
-> > -- 
-> > 2.27.0
-> > 
+ .../bindings/clock/adi,axi-clkgen.yaml        | 53 +++++++++++++++++++
+ .../devicetree/bindings/clock/axi-clkgen.txt  | 25 ---------
+ 2 files changed, 53 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/axi-clkgen.txt
+
+diff --git a/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
+new file mode 100644
+index 000000000000..0d06387184d6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/adi,axi-clkgen.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding for Analog Devices AXI clkgen pcore clock generator
++
++maintainers:
++  - Lars-Peter Clausen <lars@metafoo.de>
++  - Michael Hennerich <michael.hennerich@analog.com>
++
++description: |
++  The axi_clkgen IP core is a software programmable clock generator,
++  that can be synthesized on various FPGA platforms.
++
++  Link: https://wiki.analog.com/resources/fpga/docs/axi_clkgen
++
++properties:
++  compatible:
++    enum:
++      - adi,axi-clkgen-2.00.a
++
++  clocks:
++    description:
++      Specifies the reference clock(s) from which the output frequency is
++      derived. This must either reference one clock if only the first clock
++      input is connected or two if both clock inputs are connected.
++    minItems: 1
++    maxItems: 2
++
++  '#clock-cells':
++    const: 0
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@ff000000 {
++      compatible = "adi,axi-clkgen-2.00.a";
++      #clock-cells = <0>;
++      reg = <0xff000000 0x1000>;
++      clocks = <&osc 1>;
++    };
+diff --git a/Documentation/devicetree/bindings/clock/axi-clkgen.txt b/Documentation/devicetree/bindings/clock/axi-clkgen.txt
+deleted file mode 100644
+index aca94fe9416f..000000000000
+--- a/Documentation/devicetree/bindings/clock/axi-clkgen.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-Binding for the axi-clkgen clock generator
+-
+-This binding uses the common clock binding[1].
+-
+-[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Required properties:
+-- compatible : shall be "adi,axi-clkgen-1.00.a" or "adi,axi-clkgen-2.00.a".
+-- #clock-cells : from common clock binding; Should always be set to 0.
+-- reg : Address and length of the axi-clkgen register set.
+-- clocks : Phandle and clock specifier for the parent clock(s). This must
+-	either reference one clock if only the first clock input is connected or two
+-	if both clock inputs are connected. For the later case the clock connected
+-	to the first input must be specified first.
+-
+-Optional properties:
+-- clock-output-names : From common clock binding.
+-
+-Example:
+-	clock@ff000000 {
+-		compatible = "adi,axi-clkgen";
+-		#clock-cells = <0>;
+-		reg = <0xff000000 0x1000>;
+-		clocks = <&osc 1>;
+-	};
+-- 
+2.17.1
+
