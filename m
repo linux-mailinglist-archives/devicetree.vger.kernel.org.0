@@ -2,99 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 455E128CF4E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF36628CF62
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 15:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728899AbgJMNkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 09:40:24 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:17099 "EHLO m42-4.mailgun.net"
+        id S2387725AbgJMNn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 09:43:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44102 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728817AbgJMNkY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 09:40:24 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1602596423; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=lGt94tJR4p8z2VZENAYILwPd3XBTRqEWZsrbh+IenL4=; b=HHo3Wbc76CO3IBtHlVg03/nbGcyFEox/wOuL653EZj+YtmX1h5MWPD6qlg31rr3O9d7wlR2B
- PtbRnb4by4sjTtjkcfWYZxerpFC8KSLXIXKe1cjpcpzMVu1BD9IQGn2SMVVZSTeup5715ebX
- WqEYsCVZW37gY6MZJykbb7VFbm8=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5f85ae3942f9861fb11fe622 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 13 Oct 2020 13:40:09
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B9EEBC433CB; Tue, 13 Oct 2020 13:40:09 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S2387694AbgJMNn4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 09:43:56 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 03A6AC43385;
-        Tue, 13 Oct 2020 13:40:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 03A6AC43385
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH 1/2] Asoc: qcom: lpass-cpu: Fix clock disable failure
-Date:   Tue, 13 Oct 2020 19:09:46 +0530
-Message-Id: <1602596386-9886-1-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        by mail.kernel.org (Postfix) with ESMTPSA id DD3DF2475A;
+        Tue, 13 Oct 2020 13:43:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602596636;
+        bh=YO2PDs3lYloGofhsa8LTWOri/oY42O9bpA7iUsBsEf8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QRB5ToLr1XeghspTWZnX4kPUDWAoFuDwTVI7OgTShxQtoE+nJQq0lESdtJfAz540G
+         QJxTqFHOZMa0FSQHGfBulHZzGYSxdW5deUGMstZGL1betVugqs99Vk/ZZJxI7FEr1a
+         s2fXHiIry1wsvxx7Xgwx7OxHzExGxDVTWFk7lFKw=
+Received: by mail-ot1-f42.google.com with SMTP id m11so19035250otk.13;
+        Tue, 13 Oct 2020 06:43:55 -0700 (PDT)
+X-Gm-Message-State: AOAM533wa5r8KEtS4NB8dGcQdMKkLG3qoTwmkQEhseaqFq2V3I9EDQfo
+        d02JktiOcrhvCDYnVValOdTEu13b3eg/E0qJIA==
+X-Google-Smtp-Source: ABdhPJx8BldmCpfMxn+SFOS5Dwk2xbrqTUFXlkpLHjC3ZhXrXyxuJZCFCnxfbBvRV1KtGLA76IMsOGHqg/L39PJZqs4=
+X-Received: by 2002:a9d:7993:: with SMTP id h19mr18795049otm.129.1602596635090;
+ Tue, 13 Oct 2020 06:43:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200929024004.244992-1-badhri@google.com> <20200929024004.244992-4-badhri@google.com>
+ <20201005144618.GA154206@bogus> <CAPTae5+e74k22Vcf-cnFLFGnR-mBdb9qvN6i-E-31VexhpUSeA@mail.gmail.com>
+In-Reply-To: <CAPTae5+e74k22Vcf-cnFLFGnR-mBdb9qvN6i-E-31VexhpUSeA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 13 Oct 2020 08:43:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLqs2qZqwmCOMgCeiGsw4Hj2xMAbRYqWCphH92+8T6qUg@mail.gmail.com>
+Message-ID: <CAL_JsqLqs2qZqwmCOMgCeiGsw4Hj2xMAbRYqWCphH92+8T6qUg@mail.gmail.com>
+Subject: Re: [PATCH v9 03/15] dt-bindings: usb: Maxim type-c controller device
+ tree binding document
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On Wed, Oct 7, 2020 at 7:43 PM Badhri Jagan Sridharan <badhri@google.com> wrote:
+>
+> Hi Robb,
+>
+> Thanks for the reviews ! Responses inline.
+>
+> Regards,
+> Badhri
+>
+> On Mon, Oct 5, 2020 at 7:46 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Sep 28, 2020 at 07:39:52PM -0700, Badhri Jagan Sridharan wrote:
+> > > Add device tree binding document for Maxim TCPCI based Type-C chip driver
+> > >
+> > > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+> > > ---
+> > > Changes since v1:
+> > > - Changing patch version to v6 to fix version number confusion.
+> > >
+> > > Changes since v6:
+> > > - Migrated to yaml format.
+> > >
+> > > Changes since v7:
+> > > - Rebase on usb-next
+> > >
+> > > Changes since v8:
+> > > - Fix errors from make dt_binding_check as suggested by
+> > >   Rob Herring.
+> > > ---
+> > >  .../devicetree/bindings/usb/maxim,tcpci.yaml  | 68 +++++++++++++++++++
+> > >  1 file changed, 68 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
+> > > new file mode 100644
+> > > index 000000000000..f4b5f1a09b98
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
+> > > @@ -0,0 +1,68 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: "http://devicetree.org/schemas/usb/maxim,tcpci.yaml#"
+> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > > +
+> > > +title: Maxim TCPCI Type-C PD controller DT bindings
+> > > +
+> > > +maintainers:
+> > > +  - Badhri Jagan Sridharan <badhri@google.com>
+> > > +
+> > > +description: Maxim TCPCI Type-C PD controller
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - maxim,tcpci
+> >
+> > Is there a datasheet for this? Searching for 'tcpci' doesn't really come
+> > up with anything other than this patch. Only chip I found is MAX77958.
+> > Bindings are for specific h/w devices.
+>
+> Unfortunately the datasheet cannot be made public yet. Has the datasheet
+> have to be made public before sending the bindings ?
 
-Disable MI2S bit clock from PAUSE/STOP/SUSPEND usecase
-instead of shutdown time. Acheive this by invoking
-clk_disable_unprepare API from cpu daiops shutdown to
-cpu daiops trigger.
-This Fix is update to the below patch.
-https://lore.kernel.org/patchwork/patch/1308101/
+No, but we need a part number or some assurance that 'tcpci' is a specific part.
 
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-cpu.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index ba2aca3..2dfb921 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -88,8 +88,6 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
- {
- 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
- 
--	clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
--
- 	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
- }
- 
-@@ -324,6 +322,7 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
- 		if (ret)
- 			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
- 				ret);
-+		clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
- 		break;
- 	}
- 
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+Rob
