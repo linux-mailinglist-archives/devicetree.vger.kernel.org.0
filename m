@@ -2,184 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7838128D03C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 16:30:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1765F28D058
+	for <lists+devicetree@lfdr.de>; Tue, 13 Oct 2020 16:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388627AbgJMOaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 10:30:39 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:31412 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2387516AbgJMOai (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 10:30:38 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09DENOoj012153;
-        Tue, 13 Oct 2020 10:30:24 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 344js7mcs9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Oct 2020 10:30:24 -0400
-Received: from SCSQMBX11.ad.analog.com (scsqmbx11.ad.analog.com [10.77.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 09DEUMPm003712
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 13 Oct 2020 10:30:23 -0400
-Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
- SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
+        id S1730092AbgJMOja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 10:39:30 -0400
+Received: from esa4.microchip.iphmx.com ([68.232.154.123]:62061 "EHLO
+        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730080AbgJMOj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 10:39:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1602599968; x=1634135968;
+  h=references:from:to:cc:subject:in-reply-to:date:
+   message-id:mime-version;
+  bh=ZunV55K/zJ9fuNQ1b2ozfALdC7xF+pzn13zPhCsnF+E=;
+  b=RtsoTLC62sTKC2FPOBi89wkvxhNnw5E8F6Wtc+3+nmW3aKiz2B5lG1DT
+   l0NygMj1fR5SlmlqnRfS9+FM9YFlq5mWVawXGEQxZ6fTEAvTsLoCZyVcm
+   u0VtSPAHlt32gY4Ax7fmytuH3irTBvpGURx+2XfLqed/2G1VipNZa+TLa
+   DXeM7waARixeHGPUkUH8h4oIAIlSVEpyNOUJOksBm4ejRynY2NepCRVwm
+   iMzpRNOeI2Y2DGSij/RckDnxCzx0+UJKqcUQqXxatgNJl3mhb0Ra95EjT
+   aBxKldKC7t8MuGGI4Nf/ucvlyyBZiySS7X/8iELvgLo3BMVAP7CSh+6on
+   w==;
+IronPort-SDR: zx2UunMdyIEFUMMI4Ku5+haOGurduL+VYwGSWUaXkhzX+umGjOEjNJEyAe0jX7akTlxLrxt9WK
+ R75V1cunU8f5TXAjcx0SX5R4rNKtXcnLGTyrNyQFD4yvJe6D8rw/5ZEdBxOmJvklRTX3ZhBhYu
+ IRX/kGfhHHtMVCqNk9SR8fo8232xlDUPcXM+76bmnGXMIt7kpcL/wYKzbIJF91TgqlITU9CVAD
+ +hu7BUUa2TjVksILXNSLpLZ4v6suzh+51w89EkJxAC9VRdXqiDkawHcIuYIxnjuw6qGX8izK+2
+ Ep4=
+X-IronPort-AV: E=Sophos;i="5.77,371,1596524400"; 
+   d="scan'208";a="90038135"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Oct 2020 07:39:27 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 13 Oct 2020 07:30:21 -0700
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 13 Oct 2020 07:29:26 -0700
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Tue, 13 Oct 2020 07:30:21 -0700
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 09DEUINT020834;
-        Tue, 13 Oct 2020 10:30:18 -0400
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <michael.hennerich@analog.com>, <lars@metafoo.de>,
-        <mdf@kernel.org>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <mturquette@baylibre.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v2] dt-bindings: clock: adi,axi-clkgen: convert old binding to yaml format
-Date:   Tue, 13 Oct 2020 17:34:20 +0300
-Message-ID: <20201013143421.84188-1-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201001085035.82938-1-alexandru.ardelean@analog.com>
-References: <20201001085035.82938-1-alexandru.ardelean@analog.com>
+ 15.1.1979.3; Tue, 13 Oct 2020 07:39:27 -0700
+Received: from soft-dev15.microsemi.net.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
+ via Frontend Transport; Tue, 13 Oct 2020 07:39:25 -0700
+References: <20201008130515.2385825-1-lars.povlsen@microchip.com> <20201008130515.2385825-2-lars.povlsen@microchip.com> <CACRpkdaFYoXFUuWow5s9TitrRDhMW=wiaxgfMcY6sQkYYgC-Lw@mail.gmail.com> <87d01ryb04.fsf@soft-dev15.microsemi.net> <CACRpkdZbxohoxg3bN-XpLXwBUgTDByoP9sNEocUt10R6t9FgXQ@mail.gmail.com>
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: pinctrl: Add bindings for pinctrl-microchip-sgpio driver
+In-Reply-To: <CACRpkdZbxohoxg3bN-XpLXwBUgTDByoP9sNEocUt10R6t9FgXQ@mail.gmail.com>
+Date:   Tue, 13 Oct 2020 16:39:23 +0200
+Message-ID: <877druxk9w.fsf@soft-dev15.microsemi.net>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-13_06:2020-10-13,2020-10-13 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 phishscore=0 mlxscore=0 malwarescore=0 mlxlogscore=999
- suspectscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2010130109
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change converts the old binding for the AXI clkgen driver to a yaml
-format.
 
-As maintainers, added:
- - Lars-Peter Clausen <lars@metafoo.de> - as original author of driver &
-   binding
- - Michael Hennerich <michael.hennerich@analog.com> - as supporter of
-   Analog Devices drivers
+Linus Walleij writes:
 
-Acked-by: Michael Hennerich <michael.hennerich@analog.com>
-Acked-by: Lars-Peter Clausen <lars@metafoo.de>
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
+> On Fri, Oct 9, 2020 at 12:00 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+>
+>> > So here reg = 0 and the out port has reg 1. Isn't that what you also put
+>> > in the second cell of the GPIO phandle? Then why? The driver
+>> > can very well just parse its own reg property and fill that in.
+>>
+>> NO! The second cell is the second dimension - NOT the direction. As I
+>> wrote previously, the direction is now inherent from the handle, ie. the
+>> "reg" value of the handle.
+>
+> OK I get it ... I think :)
 
-Changelog v1 -> v2:
-* add 'additionalProperties: false'
-* changed 'clock@...' -> 'clock-controller@...' in example
-* added Acked-by for Michael & Lars on the re-licensing
-* updated description for 'clocks' property
+Great!
 
- .../bindings/clock/adi,axi-clkgen.yaml        | 53 +++++++++++++++++++
- .../devicetree/bindings/clock/axi-clkgen.txt  | 25 ---------
- 2 files changed, 53 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/axi-clkgen.txt
+>
+>> The hardware describe a "port" and a "bit index" addressing, where the
+>> second cell in
+>>
+>>   gpios = <&sgpio_in2 11 0 GPIO_OUT_LOW>;
+>>
+>> is the "bit index" - not the "reg" from the phandle.
+>
+> As long as the bindings specify exactly what is meant by bit index
+> and the tupe (port, bit_index) is what uniquely addresses a certain
+> GPIO line then it is fine I suppose.
+>
 
-diff --git a/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
-new file mode 100644
-index 000000000000..0d06387184d6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/adi,axi-clkgen.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Binding for Analog Devices AXI clkgen pcore clock generator
-+
-+maintainers:
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+
-+description: |
-+  The axi_clkgen IP core is a software programmable clock generator,
-+  that can be synthesized on various FPGA platforms.
-+
-+  Link: https://wiki.analog.com/resources/fpga/docs/axi_clkgen
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,axi-clkgen-2.00.a
-+
-+  clocks:
-+    description:
-+      Specifies the reference clock(s) from which the output frequency is
-+      derived. This must either reference one clock if only the first clock
-+      input is connected or two if both clock inputs are connected.
-+    minItems: 1
-+    maxItems: 2
-+
-+  '#clock-cells':
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@ff000000 {
-+      compatible = "adi,axi-clkgen-2.00.a";
-+      #clock-cells = <0>;
-+      reg = <0xff000000 0x1000>;
-+      clocks = <&osc 1>;
-+    };
-diff --git a/Documentation/devicetree/bindings/clock/axi-clkgen.txt b/Documentation/devicetree/bindings/clock/axi-clkgen.txt
-deleted file mode 100644
-index aca94fe9416f..000000000000
---- a/Documentation/devicetree/bindings/clock/axi-clkgen.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Binding for the axi-clkgen clock generator
--
--This binding uses the common clock binding[1].
--
--[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Required properties:
--- compatible : shall be "adi,axi-clkgen-1.00.a" or "adi,axi-clkgen-2.00.a".
--- #clock-cells : from common clock binding; Should always be set to 0.
--- reg : Address and length of the axi-clkgen register set.
--- clocks : Phandle and clock specifier for the parent clock(s). This must
--	either reference one clock if only the first clock input is connected or two
--	if both clock inputs are connected. For the later case the clock connected
--	to the first input must be specified first.
--
--Optional properties:
--- clock-output-names : From common clock binding.
--
--Example:
--	clock@ff000000 {
--		compatible = "adi,axi-clkgen";
--		#clock-cells = <0>;
--		reg = <0xff000000 0x1000>;
--		clocks = <&osc 1>;
--	};
+Yes, that is confirmed.
+
+
+>> In the example above, note
+>>
+>>   ngpios = <96>;
+>>
+>> As the "port" is [0; 31], this defines "bit index" to be [0; 2], so the
+>> (input) GPIO cells will be:
+>>
+>> p0b0, p0b1, p0b2
+>> ...
+>> p31b0, p31b1, p31b2
+>>
+>> being identical to
+>>
+>> <&sgpio_inX 0 0 GPIO_OUT_LOW>
+>> <&sgpio_inX 0 1 GPIO_OUT_LOW>
+>> <&sgpio_inX 0 2 GPIO_OUT_LOW>
+>> ...
+>> <&sgpio_inX 31 0 GPIO_OUT_LOW>
+>> <&sgpio_inX 31 1 GPIO_OUT_LOW>
+>> <&sgpio_inX 31 2 GPIO_OUT_LOW>
+>>
+>> ('X' being the SGPIO controller instance).
+>
+> So 32 possible ports with 3 possible bit indexes on each?
+> This constraint should go into the bindings as well so it becomes
+> impossible to put in illegal port numbers or bit indices.
+>
+> (Use the YAML min/max constraints, I suppose?)
+>
+
+Yes, I will to see if constraints in the GPIO args is possible.
+
+>> So no, there *really* is a need for a 3-cell GPIO specifier (or whatever
+>> its called).
+>
+> If that is the natural way to address the hardware lines
+> and what is used in the documentation then it's fine, it's just so
+> unorthodox that I have to push back on it a bit you know.
+>
+
+Yes, this piece of hw is certainly not a stock GPIO controller, so that
+was kinda expected. But I think we ended up with an abstraction that
+fits as good as possible.
+
+I will send a new (last?) revision that includes the suggestions from
+Rob tomorrow.
+
+Thank you for your time and comments (also Rob!)
+
+---Lars
+
 -- 
-2.17.1
-
+Lars Povlsen,
+Microchip
