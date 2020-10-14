@@ -2,151 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DF8C28DEF3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 12:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BB9228DF60
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 12:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728248AbgJNKdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 06:33:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43762 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727381AbgJNKdl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 06:33:41 -0400
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9666120878;
-        Wed, 14 Oct 2020 10:33:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602671619;
-        bh=YTNSXcW0k5VpGDP+ALIpIyuW3iLRTmD54rqCQ1oyiyA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sBHnz1yyxbvpzxpccOns8mp5Of03gj29/RNRo3g82Ev+clfKBrk3KB5XrR8yt+GLl
-         pmdEOB8h3WOAsY4KGNHM6cEFI07KwBf89dw+Gj6iqzCXZZziXMohhgdikBTZ5zGwnn
-         ltFgloehCf+cN94VB8NVLy20CDewVMaT7n7srMMg=
-Received: by mail-ej1-f45.google.com with SMTP id p5so1298911ejj.2;
-        Wed, 14 Oct 2020 03:33:39 -0700 (PDT)
-X-Gm-Message-State: AOAM532KgEJ3XGCmU0xda99mxHtSh9lVBBIHW/Ul6I67ftqQ/f3WdKhW
-        YIcsf1kxnY5J9Tuqh6EyMMIdczSlsoucu0rJis0=
-X-Google-Smtp-Source: ABdhPJxZBjfPkS/DAl69mvwOwG4fxUYT0dQEW6rrgGKRXDR2yPgf5o4BRFNdNiVveb84vPHaKXSGoZA2E31iHMoZKKE=
-X-Received: by 2002:a17:906:1a11:: with SMTP id i17mr4430823ejf.381.1602671617348;
- Wed, 14 Oct 2020 03:33:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru> <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 14 Oct 2020 12:33:25 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
-Message-ID: <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
-Subject: Re: [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1728303AbgJNKvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 06:51:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725922AbgJNKvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 06:51:10 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BF28C0613D2
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 03:51:10 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id e18so3212614wrw.9
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 03:51:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XWslSzgwelv3+t+krm1VmPXi1dB3IfoNZQoNEIRR3UI=;
+        b=l422eKGq6wTqJuKldBvLXfh3ZD0AkCcFtDAx6mODJzIe6MEGj38yUcTkiXKkRbFn4L
+         /8hzwCo+dNZQMNnT7LtnjvVPtchNaxNMhpERGIeCeBJDJL0i7oeG+KydaA7GhnYLSsGl
+         ry/gxMcI6h62SffUTbmIj4TOUOfoQpZnVx5U44McEGWHubKhKK2YBvx+bv0I7J0KwQUr
+         zKwFwPqwzFAdYpHwePK9DdKHzlu7sUu3Vv1gFCODIxsBcdqgiFQTcUM6XNsBWIp8i30y
+         OuWxug/q56opCAm49bhEY/u5tQ41Gj7UDMNwLA4tFR36FsWBdtWhaZvUpbGrQ5D4c2No
+         A6Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XWslSzgwelv3+t+krm1VmPXi1dB3IfoNZQoNEIRR3UI=;
+        b=WGuOh1BKv7eRCHXNbYG0n2mF69qXHzwBNeUabgvvhiuDc6ydPrdqDjt1VglXwr9Y66
+         fY2UMWLFfZMGJxZLgJl8YgVgAyVW0g6ckbgWY2Ioy9RT0fidLdL7pJ785gGQuVqViZCY
+         fNYS73e1x1APxqHqC91+AtTWpHzi5j8BYtNiukGE01PxCUBh5gnCOzAynA4rRaAyq+dg
+         g0ypOME3gzMkCVVryYD7IBD9Pryklz2OL5Tl/I7ggp+HqQJ6c4YV8KXKryPmhbVTxRTB
+         9xENV5PxgYnLT4f5xP/fc7cvgDPZWu1DXeNM02w98906szry8ScKMcouqIW1W8AV6unt
+         4r1Q==
+X-Gm-Message-State: AOAM5313LTh1lDpJPAwXMQ003yzpdKpjb1vSi/8zojcobZHXotXkyrCX
+        gnU4K9XONdN5UVRWIz8rb88Izw==
+X-Google-Smtp-Source: ABdhPJxwKx/HGtjgU9lsjFsHqEFOnDLNTLTvYwMdj29v6uzzin07cTpEr0O0/9kTmHBusRd7UGwdOw==
+X-Received: by 2002:adf:ce01:: with SMTP id p1mr4519754wrn.33.1602672668770;
+        Wed, 14 Oct 2020 03:51:08 -0700 (PDT)
+Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id c1sm4416464wru.49.2020.10.14.03.51.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 03:51:08 -0700 (PDT)
+From:   Rui Miguel Silva <rui.silva@linaro.org>
+X-Google-Original-From: Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Patrice Chotard <patrice.chotard@st.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Wei Xu <xuwei5@hisilicon.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-omap@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Fabio Estevam <fabio.estevam@nxp.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Rui Miguel Silva <rmfrfs@gmail.com>
+Subject: [PATCH v2] dt-bindings: fxas21002c: convert bindings to yaml
+Date:   Wed, 14 Oct 2020 11:49:26 +0100
+Message-Id: <20201014104926.688666-1-rmfrfs@gmail.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 at 12:23, Serge Semin
-<Sergey.Semin@baikalelectronics.ru> wrote:
->
-> In accordance with the DWC USB3 bindings the corresponding node name is
-> suppose to comply with Generic USB HCD DT schema, which requires the USB
-> nodes to have the name acceptable by the regexp: "^usb(@.*)?" . But a lot
-> of the DWC USB3-compatible nodes defined in the ARM/ARM64 DTS files have
-> name as "^dwc3@.*" or "^usb[1-3]@.*" or even "^dwusb@.*", which will cause
-> the dtbs_check procedure failure. Let's fix the nodes naming to be
-> compatible with the DWC USB3 DT schema to make dtbs_check happy.
->
-> Note we don't change the DWC USB3-compatible nodes names of
-> arch/arm64/boot/dts/apm/{apm-storm.dtsi,apm-shadowcat.dtsi} since the
-> in-source comment says that the nodes name need to be preserved as
-> "^dwusb@.*" for some backward compatibility.
->
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
->
-> ---
->
-> Please, test the patch out to make sure it doesn't brake the dependent DTS
-> files. I did only a manual grepping of the possible nodes dependencies.
+Convert fxas21002c gyroscope sensor bindings documentation to
+yaml schema, remove the textual bindings document and update MAINTAINERS entry.
 
-1. It is you who should compare the decompiled DTS, not us. For example:
-$ for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64
-scripts/dtc/dtx_diff ${i} dts-new/${i#dts-old/} ; done
+Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
+---
+v1 -> v2:
+   Jonathan Cameron:
+       https://lore.kernel.org/linux-iio/20201013153431.000052c9@huawei.com/
+       - remove Unit from tittle
+       - reword interrupts description
+       - drop interrupt-name description
+       - add spi example and bindings
+       - remove vddxx from required list
 
-$ for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64
-fdtdump ${i} > ${i}.fdt ; crosc64 fdtdump dts-new/${i#dts-old/} >
-dts-new/${i#dts-old/}.fdt ; diff -ubB ${i}.fdt
-dts-new/${i#dts-old/}.fdt ; done
+ .../bindings/iio/gyroscope/nxp,fxas21002c.txt | 31 ------
+ .../iio/gyroscope/nxp,fxas21002c.yaml         | 95 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 96 insertions(+), 32 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
 
-2. Split it per arm architectures (and proper subject prefix - not
-"arch") and subarchitectures so maintainers can pick it up.
+diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
+deleted file mode 100644
+index 465e104bbf14..000000000000
+--- a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-* NXP FXAS21002C Gyroscope device tree bindings
+-
+-http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
+-
+-Required properties:
+-  - compatible : should be "nxp,fxas21002c"
+-  - reg : the I2C address of the sensor or SPI chip select number for the
+-          device.
+-  - vdd-supply: phandle to the regulator that provides power to the sensor.
+-  - vddio-supply: phandle to the regulator that provides power to the bus.
+-
+-Optional properties:
+-  - reset-gpios : gpio used to reset the device, see gpio/gpio.txt
+-  - interrupts : device support 2 interrupts, INT1 and INT2,
+-                 the interrupts can be triggered on rising or falling edges.
+-                 See interrupt-controller/interrupts.txt
+-  - interrupt-names: should contain "INT1" or "INT2", the gyroscope interrupt
+-                     line in use.
+-  - drive-open-drain: the interrupt/data ready line will be configured
+-                      as open drain, which is useful if several sensors share
+-                      the same interrupt line. This is a boolean property.
+-                      (This binding is taken from pinctrl/pinctrl-bindings.txt)
+-
+-Example:
+-
+-gyroscope@20 {
+-	compatible = "nxp,fxas21002c";
+-	reg = <0x20>;
+-	vdd-supply = <&reg_peri_3p15v>;
+-	vddio-supply = <&reg_peri_3p15v>;
+-};
+diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+new file mode 100644
+index 000000000000..2560458dc50b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/gyroscope/nxp,fxas21002c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP FXAS21002C Gyroscope
++
++maintainers:
++  - Rui Miguel Silva <rmfrfs@gmail.com>
++
++description: |
++  3 axis digital gyroscope device with an I2C and SPI interface.
++  http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
++
++properties:
++  compatible:
++    const: nxp,fxas21002c
++
++  reg:
++    maxItems: 1
++
++  vdd-supply:
++    description: Regulator that provides power to the sensor
++
++  vddio-supply:
++    description: Regulator that provides power to the bus
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to reset
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++    description: Either interrupt may be triggered on rising or falling edges.
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      enum:
++        - INT1
++        - INT2
++
++  drive-open-drain:
++    type: boolean
++    description: the interrupt/data ready line will be configured as open drain,
++                 which is useful if several sensors share the same interrupt
++                 line.
++
++  spi-max-frequency:
++    maximum: 2000000
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        gyroscope@20 {
++          compatible = "nxp,fxas21002c";
++          reg = <0x20>;
++
++          vdd-supply = <&reg_peri_3p15v>;
++          vddio-supply = <&reg_peri_3p15v>;
++
++          interrupt-parent = <&gpio1>;
++          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
++          interrupt-names = "INT1";
++        };
++    };
++    spi0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        gyroscope@0 {
++          compatible = "nxp,fxas2102c";
++          reg = <0x0>;
++
++          spi-max-frequency = <2000000>;
++
++          interrupt-parent = <&gpio2>;
++          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
++          interrupt-names = "INT2";
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6594f0966716..2e85e114c9c3 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12469,7 +12469,7 @@ NXP FXAS21002C DRIVER
+ M:	Rui Miguel Silva <rmfrfs@gmail.com>
+ L:	linux-iio@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
++F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+ F:	drivers/iio/gyro/fxas21002c.h
+ F:	drivers/iio/gyro/fxas21002c_core.c
+ F:	drivers/iio/gyro/fxas21002c_i2c.c
+-- 
+2.28.0
 
-3. The subject title could be more accurate - there is no fix here
-because there was no errors in the first place. Requirement of DWC
-node names comes recently, so it is more alignment with dtschema.
-Otherwise automatic-pickup-stable-bot might want to pick up... and it
-should not go to stable.
-
-Best regards,
-Krzysztof
-
->  arch/arm/boot/dts/armada-375.dtsi              | 2 +-
->  arch/arm/boot/dts/exynos5250.dtsi              | 2 +-
->  arch/arm/boot/dts/exynos54xx.dtsi              | 4 ++--
->  arch/arm/boot/dts/keystone-k2e.dtsi            | 4 ++--
->  arch/arm/boot/dts/keystone.dtsi                | 2 +-
->  arch/arm/boot/dts/ls1021a.dtsi                 | 2 +-
->  arch/arm/boot/dts/omap5-l4.dtsi                | 2 +-
->  arch/arm/boot/dts/stih407-family.dtsi          | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi   | 2 +-
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi     | 4 ++--
->  arch/arm64/boot/dts/exynos/exynos7.dtsi        | 2 +-
->  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 4 ++--
->  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 6 +++---
->  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 4 ++--
->  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 4 ++--
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi      | 2 +-
->  arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi   | 4 ++--
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi          | 4 ++--
->  arch/arm64/boot/dts/qcom/msm8996.dtsi          | 4 ++--
->  arch/arm64/boot/dts/qcom/msm8998.dtsi          | 2 +-
->  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi       | 2 +-
->  arch/arm64/boot/dts/qcom/qcs404.dtsi           | 4 ++--
->  arch/arm64/boot/dts/qcom/sc7180.dtsi           | 2 +-
->  arch/arm64/boot/dts/qcom/sdm845.dtsi           | 4 ++--
->  arch/arm64/boot/dts/qcom/sm8150.dtsi           | 2 +-
->  25 files changed, 38 insertions(+), 38 deletions(-)
->
