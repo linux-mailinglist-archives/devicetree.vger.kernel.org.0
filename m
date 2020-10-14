@@ -2,141 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9487328DE27
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D06A28DE3D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 12:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728205AbgJNJ64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 05:58:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45920 "EHLO
+        id S1727258AbgJNKFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 06:05:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728780AbgJNJ5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:57:51 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50CF3C061755;
-        Wed, 14 Oct 2020 02:57:51 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id e22so3974247ejr.4;
-        Wed, 14 Oct 2020 02:57:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=VtXUrs3HvkSmOwbOHaAyusjO/2rUgksGvnN5UchroQw=;
-        b=oT5bUv+od9VQQxqGhsrjHG+82/dnpqUHCiQnFTC/DzU00s+f+Si+Rv65bzsGWlg3ZC
-         EJb5vB9z/1mlVOp7+nOeMN14LgusLlDFl9Hzq0CHt90cl25FrAXA7JAyaGBGdj9NbFpI
-         qGrHtYPBx4Jyfo6sxwlDwhhN9S4EOHjSFZUfMI1L1ENFqfWfH/Cegk+eFrm0aDx3JJLo
-         fkvZ54gxk6nPfBSbDjrGjWbfdsbs+kHQQXKPbx6ZXL7/o3L8ZVxz6/0h3/emNvvN6pRL
-         PAUK8m8OJbgJ5ptuZgZ6/oBBTJ5GpSt+PDC7tTK+zQHMsWLt2cv53yByjV9+oAAorcZL
-         zQQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VtXUrs3HvkSmOwbOHaAyusjO/2rUgksGvnN5UchroQw=;
-        b=l8Vi1yshFdLzm/xIjVkoMh9XHi9wY+NrKiJof3j7T2fXMJa8L0eoLXs4Hy0woX69gt
-         HYevhd1YK/o8fAinXjprN2/8PBreCVXWj1abHyZAKpLFO8rFXrMkD36P8UusTvXKQ/gF
-         p+sqdwOHqGejlqBz17VEK76Ihd1dDvrzfASJ8sos6MipJctaapLj9XGF4uUIXyyFYlhN
-         dF3RoDO6jNgAMNHmwKXILyQBqocC8fxYJP6rT+JJH/syEGEoSreo/bfQBFE/qN021P+B
-         CczkGlSYIeqmdrLj4X6cJp/XtU4G2jbKVWAKiZUTIUSr/T96A0DBvZUhODxyri1qY36a
-         5ZkA==
-X-Gm-Message-State: AOAM532uFZao7fy9if/m/vrMB6q2j2Mh7zNABfs6mvB0WqaPzAGZZbZQ
-        XbddBAZlYLZgLxJRSQ/WOKY=
-X-Google-Smtp-Source: ABdhPJw6o1YhX+FsWOwonbrza5pbiIZB9/F71b/Epd/hTd4tScJFuyfs0Cc1v+ymxyTddSylD+cMdw==
-X-Received: by 2002:a17:906:86ce:: with SMTP id j14mr4450200ejy.158.1602669469761;
-        Wed, 14 Oct 2020 02:57:49 -0700 (PDT)
-Received: from skbuf ([188.26.174.215])
-        by smtp.gmail.com with ESMTPSA id v14sm1224071edy.68.2020.10.14.02.57.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2020 02:57:49 -0700 (PDT)
-Date:   Wed, 14 Oct 2020 12:57:47 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
- hardware timestamping
-Message-ID: <20201014095747.xlt3xodch7tlhrhr@skbuf>
-References: <20201006140102.6q7ep2w62jnilb22@skbuf>
- <87lfgiqpze.fsf@kurt>
- <20201007105458.gdbrwyzfjfaygjke@skbuf>
- <87362pjev0.fsf@kurt>
- <20201008094440.oede2fucgpgcfx6a@skbuf>
- <87lfghhw9u.fsf@kurt>
- <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
- <20201008150951.elxob2yaw2tirkig@skbuf>
- <65ecb62de9940991971b965cbd5b902ae5daa09b.camel@hs-offenburg.de>
- <20201012214254.GA1310@hoboy>
+        with ESMTP id S1725985AbgJNKFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 06:05:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E98C061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 03:05:08 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kSdeZ-0000dn-0O; Wed, 14 Oct 2020 12:05:03 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kSdeX-0003j6-Tf; Wed, 14 Oct 2020 12:05:01 +0200
+Date:   Wed, 14 Oct 2020 12:05:01 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 3/3] ARM: dts: add Van der Laan LANMCU board
+Message-ID: <20201014100501.djbfqzdeodowm4ov@pengutronix.de>
+References: <20201014085316.11916-1-o.rempel@pengutronix.de>
+ <20201014085316.11916-3-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201012214254.GA1310@hoboy>
+In-Reply-To: <20201014085316.11916-3-o.rempel@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 11:54:21 up 334 days,  1:12, 373 users,  load average: 0.07, 0.16,
+ 0.12
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 12, 2020 at 02:42:54PM -0700, Richard Cochran wrote:
-> If you want, you can run your PHC using the linuxptp "free_running"
-> option.  Then, you can use the TIME_STATUS_NP management request to
-> use the remote time signal in your application.
+Hi Oleksij,
 
-I was expecting some sort of reaction to this from Kamil or Kurt.
+pls can you send a patch adding this board to:
+Documentation/devicetree/bindings/arm/fsl.yaml
 
-I don't think that 'using the remote time signal in an application' is
-all that needs to be done with the gPTP time, at least for a switch with
-the hardware features that hellcreek has. Ultimately it should be fed
-back into the hardware, such that the scheduler based on 802.1Q clause
-8.6.8.4 "Enhancements for scheduled traffic" has some time scale based
-on which it can run. Running tc-taprio offload on top of an
-unsynchronized clock is not something productive.
+infront of this patch?
 
-So the discussion is about how to have the cake and eat it at the same
-time. Silicon vendors eager to follow the latest trends in standards are
-implementing hybrid PTP clocks, where an unsynchronizable version of the
-clock delivers MAC timestamps to the application stack, and a
-synchronizable wrapper over that same clock is what gets fed into the
-offloading engines, like the ones behind the tc-taprio and tc-gate
-offload. Some of these vendors perform cross-timestamping (they deliver
-a timestamp from the MAC with 2, or 3, or 4, timestamps, depending on
-how many PHCs that MAC has wired to it), some don't, and just deliver a
-single timestamp from a configurable source.
+On 20-10-14 10:53, Oleksij Rempel wrote:
+> Van der Laan LANMCU is a module for the food storage rooms to control
+> proper gas composition.
+> 
+> Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
+> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/Makefile          |   1 +
+>  arch/arm/boot/dts/imx6dl-lanmcu.dts | 468 ++++++++++++++++++++++++++++
+>  2 files changed, 469 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6dl-lanmcu.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 2289a28c0ff6..dc2543a7b7e9 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -447,6 +447,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+>  	imx6dl-icore.dtb \
+>  	imx6dl-icore-mipi.dtb \
+>  	imx6dl-icore-rqs.dtb \
+> +	imx6dl-lanmcu.dtb \
+>  	imx6dl-mamoj.dtb \
+>  	imx6dl-nit6xlite.dtb \
+>  	imx6dl-nitrogen6x.dtb \
+> diff --git a/arch/arm/boot/dts/imx6dl-lanmcu.dts b/arch/arm/boot/dts/imx6dl-lanmcu.dts
+> new file mode 100644
+> index 000000000000..60336c972286
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6dl-lanmcu.dts
+> @@ -0,0 +1,468 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (c) 2019 Protonic Holland
+> + * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
+> + */
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include "imx6dl.dtsi"
+> +
+> +/ {
 
-The operating system is supposed to ??? in order to synchronize the
-synchronizable clock to the virtual time retrieved via TIME_STATUS_NP
-that you're talking about. The question is what to replace that ???
-with, of course.
+...
 
-> > I'm not an expert in kernel implementation but we have plans to discuss
-> > possible approaches in the near future.
->
-> I don't see any need for kernel changes in this area.
+> +&fec {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_enet>;
+> +	phy-mode = "rmii";
+> +	clocks = <&clks IMX6QDL_CLK_ENET>,
+> +		 <&clks IMX6QDL_CLK_ENET>,
+> +		 <&clock_ksz8081>;
+> +	clock-names = "ipg", "ahb", "ptp";
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		/* Microchip KSZ8081RNA PHY */
+> +		rgmii_phy: ethernet-phy@0 {
 
-I'm not an expert in kernel implementation either, but perhaps in the
-light of this, you can revisit the idea that kernel changes will not be
-needed (or explain more, if you still think they aren't).
+Do you need this phandle here?
 
-Since IEEE 60802 keeps talking about multiple time domains to be used
-with 802.1AS-rev (a 'universal clock domain' and a 'working clock
-domain'), a decision needs to be taken somewhere about which time base
-you're going to use as a source for synchronizing your tc-taprio clock.
-That decision should best be taken at the application level, so in my
-opinion this is an argument that the application should have explicit
-access to the unsynchronizable and to the synchronizable versions of the
-PTP clock.
+> +			reg = <0>;
+> +			interrupts-extended = <&gpio5 23 IRQ_TYPE_LEVEL_LOW>;
+> +			reset-gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
+> +			reset-assert-us = <10000>;
+> +			reset-deassert-us = <300>;
+> +		};
+> +	};
+> +};
 
-In the Linux kernel API, a network interface can have at most one PHC.
+...
 
---------------
+> +&i2c3 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	edt-ft5406@38 {
 
-DISCLAIMER
-Yes, I know full well that everyone can write a standard, but not
-everyone can implement one. At the end of the day, I'm not trying to
-make an argument whether the end result is worth making all these
-changes. I'm only here to learn what other people are doing, how, and
-most importantly, why.
+Please use generic names like: touchscreen@38 or touchcontroller@38.
+
+> +		compatible = "edt,edt-ft5406";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_ts_edt>;
+> +		reg = <0x38>;
+
+reg should be 2nd entry.
+
+> +		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		touchscreen-size-x = <1792>;
+> +		touchscreen-size-y = <1024>;
+> +
+> +		touchscreen-fuzz-x = <0>;
+> +		touchscreen-fuzz-y = <0>;
+> +
+> +		/* Touch screen calibration */
+> +		threshold = <50>;
+> +		gain = <5>;
+> +		offset = <10>;
+> +	};
+> +
+> +	rtc@51 {
+> +		compatible = "nxp,pcf8563";
+> +		reg = <0x51>;
+> +	};
+> +};
+
+...
+
+> +&usdhc2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usdhc2>;
+> +	no-1-8-v;
+> +	non-removable;
+> +	mmc-pwrseq = <&usdhc2_wifi_pwrseq>;
+> +	status = "okay";
+
+status is always the last property of this list.
+
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	brcmf: bcrmf@1 {
+> +		reg = <1>;
+> +		compatible = "brcm,bcm4329-fmac";
+> +	};
+> +};
+
+Regards,
+  Marco
