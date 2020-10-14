@@ -2,125 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E776C28DDE0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:44:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BF0528DDD8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:41:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727826AbgJNJof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 05:44:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727165AbgJNJoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:44:34 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497DDC061755
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:44:34 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id b1so2941626lfp.11
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:44:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=u+x9J/s88GKzzAtEEy5lsLGaZp5QyJqhlLOkF7vOqHo=;
-        b=VN8N3opFkftndSv32mL2dfkZRFrrEJI4iyCLh7u5BqfcSRd7q/KnZ6Nni9Qd5pUaBV
-         g2QZRGjkUXMwvziAG2NyuNaMkmjRcAgsH0xn6M/ynTtqdHtDdHOFQwKI2bj19/X8Q/F8
-         V0FETougrLA/QlBHK2L5wCJwbzcb250wSsLhXJUosnWAkhLNX7OtmMyJsXxZ9/c4JeR2
-         q61MCjYyAxlCNMHvqqgnio3MQh0T8pImGiMTM93riVCIvaIiwUpOi9+bQ2ZsZUSqbrda
-         1Y1Of3jpw9FLeARBYy+gZlPep7GKHhs8g7XgZ0rGEOGjA9/DPEuQHwki+HGepDH5j+lS
-         x2KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=u+x9J/s88GKzzAtEEy5lsLGaZp5QyJqhlLOkF7vOqHo=;
-        b=bHglHr0NoA1iGgBpUDWFArQWoNRfmUi8k22nR26BDNFbkf+JlWv6X9CnyOHYXfqiKg
-         LpxhdCgU1p4u/h/navac5f8CzYCqXAfqLMsJbpgGi5nNva9OQuArtt6fzDwvWtoV3Eqv
-         clxs+Xkf5lX49yqLevR/U2OvdpqAhdP3jfC/s46JrFKubAeDV8IilxJnyzoHvgjvkNWh
-         qZjfX5qH15vlm9xXZlAatjFvrxnJ0vQsY1yUkYTd9D22kWEG1tv4PanXki1KKvknq8HN
-         Ytzobow2iWYjbGo0oKdSRM8PAuWAcj0s4/k3KGbcDYuVrRYIQ8xB/vAY5KZgdnb4GB17
-         TvRw==
-X-Gm-Message-State: AOAM532T8uOIA3fZZsi2TVXtXWlURPsV/+clEmd3eHPblLjOOPwVYZsf
-        cjT4R7Jz/DC0iatKNwlgDPab6w==
-X-Google-Smtp-Source: ABdhPJyIO9F8+R8sr0LXYTYFdRfk969bZbzyyF/lg8Iuc/lCHs3/t8j/AQbPM2i8lAz78V+7v9rL0g==
-X-Received: by 2002:a19:f704:: with SMTP id z4mr999048lfe.581.1602668672565;
-        Wed, 14 Oct 2020 02:44:32 -0700 (PDT)
-Received: from [192.168.1.211] ([94.25.229.2])
-        by smtp.gmail.com with ESMTPSA id l9sm988631ljc.86.2020.10.14.02.44.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Oct 2020 02:44:31 -0700 (PDT)
-Subject: Re: [PATCH v1 2/3] clk: qcom: gdsc: enable external switchable power
- domain
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20201005225914.315852-1-dmitry.baryshkov@linaro.org>
- <20201005225914.315852-3-dmitry.baryshkov@linaro.org>
- <160264174883.310579.10321983404701479878@swboyd.mtv.corp.google.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <153b313c-ff06-c91b-5adc-4cc3c5cd1a6f@linaro.org>
-Date:   Wed, 14 Oct 2020 12:44:31 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+        id S1728110AbgJNJky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 05:40:54 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:33859 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726028AbgJNJkx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:40:53 -0400
+X-Greylist: delayed 160822 seconds by postgrey-1.27 at vger.kernel.org; Wed, 14 Oct 2020 05:40:52 EDT
+X-Originating-IP: 93.34.118.233
+Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 7D6ED1C0009;
+        Wed, 14 Oct 2020 09:40:50 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     linux-renesas-soc@vger.kernel.org, geert+renesas@glider.be,
+        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 2/6] dt-bindings: media: renesas,csi2: Add V3U support
+Date:   Wed, 14 Oct 2020 11:44:39 +0200
+Message-Id: <20201014094443.11070-3-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201014094443.11070-1-jacopo+renesas@jmondi.org>
+References: <20201014094443.11070-1-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-In-Reply-To: <160264174883.310579.10321983404701479878@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2020 05:15, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2020-10-05 15:59:13)
->> On SM8250 MDSS_GDSC (and respective dispcc clocks) are children of MMCX
->> power domain. MMCX needs to be enabled to be able to access GDSC
->> registers and to enable display clocks. Use dev_pm/opp to enable
->> corresponding power domain.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
-> 
-> A general question is why is this done in the gdsc code instead of
-> somewhere generic? It seems that genpds may need to change the
-> performance state of other genpds. I vaguely recall that genpd supports
-> connecting different power domains together so maybe this could all be
-> handled in the genpd layer instead of here? Then a regulator could be
-> put behind a genpd and similarly be connected to the gdsc and turned on
-> before turning on the gdsc?
+Add compatible string definition for R-Car V3U.
 
-Basically because we need not only to enable the genpd, but also to set 
-performance state. This would mean creating a separate regulator driver 
-calling dev_pm_genpd_set_performance_state() from enable/disable paths.
-Does that seem like a better solution to you?
+Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+---
+ Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> 
->>   drivers/clk/qcom/gdsc.c | 56 ++++++++++++++++++++++++++++++++++++++---
->>   drivers/clk/qcom/gdsc.h |  5 ++++
->>   2 files changed, 57 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/clk/qcom/gdsc.h b/drivers/clk/qcom/gdsc.h
->> index bd537438c793..d58575f8f25f 100644
->> --- a/drivers/clk/qcom/gdsc.h
->> +++ b/drivers/clk/qcom/gdsc.h
->> @@ -57,6 +57,11 @@ struct gdsc {
->>   
->>          const char                      *supply;
->>          struct regulator                *rsupply;
->> +
->> +       const char                      *domain;
->> +       unsigned int                    perf_idx;
->> +       struct device                   *pd_dev;
->> +       int                             pd_opp;
-> 
-> Please document these fields.
+diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+index 533c2f181db7..4dbcda6b1788 100644
+--- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+@@ -29,6 +29,7 @@ properties:
+           - renesas,r8a77970-csi2 # R-Car V3M
+           - renesas,r8a77980-csi2 # R-Car V3H
+           - renesas,r8a77990-csi2 # R-Car E3
++          - renesas,r8a779a0-csi2 # R-Car V3U
 
-Will do.
+   reg:
+     maxItems: 1
+--
+2.28.0
 
--- 
-With best wishes
-Dmitry
