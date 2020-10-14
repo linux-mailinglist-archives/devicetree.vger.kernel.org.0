@@ -2,118 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3435F28E4DA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 18:51:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4144628E4E6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 18:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388681AbgJNQvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 12:51:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53480 "EHLO
+        id S1731291AbgJNQwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 12:52:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388427AbgJNQvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 12:51:25 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CFAC061755
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 09:51:25 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id q21so2343418pgi.13
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 09:51:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0oKd/1+Q49pwBEic+j1QGYF+5cG+STAkikN4kllIFis=;
-        b=WpXfutAzKSb8AwlyKEbbrghfkcSB7k9AL+h07lEQEaZh1JMnxbsOzfEdql8BJsw0AK
-         zAY4oNLRQ46zuvgRYLjmZaA7DY2JdcJWwAuSgMq/VGmX2baResgV4wYE40yUGQhepKBL
-         gHIG87e6uDjv5VK46UVTRf8gwbs36NnMz3LDJuiL2NcN06VktehgQQRD73/rYb2/2Bp9
-         T3qhJKZr1bE5ms4+5reFbCR+JUrkCvxZp/l2+Tgng8uS0eqBG8wGl/L4evH4UH5CfpP0
-         quIjd6v8H9E2pzXFV+72SC+wtwBguzysisyXSZF1AehfVB8BhZgt+ZeY2eZu8eZF82t4
-         oebA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0oKd/1+Q49pwBEic+j1QGYF+5cG+STAkikN4kllIFis=;
-        b=I2Vsa9n/yWC/k51R5C9ry1Puo/bBZ8R7CN3wkp3yLcFcBrCiKjVZ0GGW8LfTRaxgIJ
-         xFhaPGNeETB0p9NfsiUIWKGNqC/3DSnKCKHosAsw3i6S6MB0iMrcqo1/HMow751WBQ9/
-         rCnG0mHzlala+GDQqmnINQ73IHsSmOGOeJmVlUY6kfXLu6hupKdpBua/oO8j0YgrHGrE
-         8AlgPSudiWzmUKhuLqrtsrdBpRHLDOhzo0T/HQSU0A4haB8Qygjrc3ZSfV5KDyPWJjDu
-         +NvrwJCT/C1KHM5sr2aMl5tzCdbRSMezI4zrI8MnNmBQdXTw8/dg7MQf0dKg3DgQofVk
-         bHJQ==
-X-Gm-Message-State: AOAM531oqgQM9Gm+YKCa5s2gy2MxR6viOP5KKorJwrVY8Yg++OtXLDHx
-        tk2Qd4o7gMzdXiE53D+uEk4qiw==
-X-Google-Smtp-Source: ABdhPJyF+kMGcVCJWKBQTvA0HeUTDn2r3CiRgsDWATdxaTcjHEJZMUafV6IesWwPvzCk/d3d5GUc8A==
-X-Received: by 2002:a62:6507:0:b029:155:3b11:b458 with SMTP id z7-20020a6265070000b02901553b11b458mr216999pfb.45.1602694284480;
-        Wed, 14 Oct 2020 09:51:24 -0700 (PDT)
-Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
-        by smtp.gmail.com with ESMTPSA id j1sm94318pfj.202.2020.10.14.09.51.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2020 09:51:23 -0700 (PDT)
-Date:   Wed, 14 Oct 2020 10:51:21 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud Pouliquen <arnaud.pouliquen@st.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v2 4/4] ARM: dts: stm32: update stm32mp151 for remote
- proc synchronization support
-Message-ID: <20201014165121.GA1406857@xps15>
-References: <20201014125441.2457-1-arnaud.pouliquen@st.com>
- <20201014125441.2457-5-arnaud.pouliquen@st.com>
+        with ESMTP id S1726459AbgJNQwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 12:52:50 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE463C061755;
+        Wed, 14 Oct 2020 09:52:50 -0700 (PDT)
+Received: from [IPv6:2804:14c:483:7f66::1004] (unknown [IPv6:2804:14c:483:7f66::1004])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: koike)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6B07F1F44C76;
+        Wed, 14 Oct 2020 17:52:44 +0100 (BST)
+Subject: Re: [PATCH v5 8/9] arm64: dts: rockchip: add isp0 node for rk3399
+To:     Tomasz Figa <tfiga@chromium.org>
+Cc:     linux-devicetree <devicetree@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devel@driverdev.osuosl.org, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>, kernel@collabora.com,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mark Rutland <mark.rutland@arm.com>, karthik.poduval@gmail.com,
+        jbx6244@gmail.com, Eddie Cai <eddie.cai.linux@gmail.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Robin Murphy <robin.murphy@arm.com>
+References: <20200722155533.252844-1-helen.koike@collabora.com>
+ <20200722155533.252844-9-helen.koike@collabora.com>
+ <20200926130005.GC3781977@chromium.org>
+ <905118dd-f108-6bc0-4cf0-9544fab51690@collabora.com>
+ <CAAFQd5C4BcXyee58DpL4TfVJmaLQ-58_mwQucEm-df899va2Lw@mail.gmail.com>
+From:   Helen Koike <helen.koike@collabora.com>
+Message-ID: <243b5257-0f94-a43d-e623-70ca54d0e9d9@collabora.com>
+Date:   Wed, 14 Oct 2020 13:52:39 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201014125441.2457-5-arnaud.pouliquen@st.com>
+In-Reply-To: <CAAFQd5C4BcXyee58DpL4TfVJmaLQ-58_mwQucEm-df899va2Lw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 02:54:41PM +0200, Arnaud Pouliquen wrote:
-> Two backup registers are used to store the Cortex-M4 state and the resource
-> table address.
-> Declare the tamp node and add associated properties in m4_rproc node
-> to allow Linux to attach to a firmware loaded by the first boot stages.
-> 
-> Associated driver implementation is available in commit 9276536f455b3
-> ("remoteproc: stm32: Parse syscon that will manage M4 synchronisation").
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
-> ---
->  arch/arm/boot/dts/stm32mp151.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index bfe29023fbd5..842ecffae73a 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -1541,6 +1541,11 @@
->  			status = "disabled";
->  		};
->  
-> +		tamp: tamp@5c00a000 {
-> +			compatible = "st,stm32-tamp", "syscon";
-> +			reg = <0x5c00a000 0x400>;
-> +		};
-> +
->  		/*
->  		 * Break node order to solve dependency probe issue between
->  		 * pinctrl and exti.
-> @@ -1717,6 +1722,8 @@
->  			st,syscfg-holdboot = <&rcc 0x10C 0x1>;
->  			st,syscfg-tz = <&rcc 0x000 0x1>;
->  			st,syscfg-pdds = <&pwr_mcu 0x0 0x1>;
-> +			st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
-> +			st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
+Thank you Tomasz and Robin for your comments,
 
-Tested-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
->  			status = "disabled";
->  		};
->  	};
-> -- 
-> 2.17.1
+On 10/14/20 1:43 PM, Tomasz Figa wrote:
+> On Wed, Oct 14, 2020 at 6:27 PM Helen Koike <helen.koike@collabora.com> wrote:
+>>
+>> Hi Tomasz,
+>>
+>> On 9/26/20 10:00 AM, Tomasz Figa wrote:
+>>> Hi Helen,
+>>>
+>>> On Wed, Jul 22, 2020 at 12:55:32PM -0300, Helen Koike wrote:
+>>>> From: Shunqian Zheng <zhengsq@rock-chips.com>
+>>>>
+>>>> RK3399 has two ISPs, but only isp0 was tested.
+>>>> Add isp0 node in rk3399 dtsi
+>>>>
+>>>> Verified with:
+>>>> make ARCH=arm64 dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+>>>>
+>>>> Signed-off-by: Shunqian Zheng <zhengsq@rock-chips.com>
+>>>> Signed-off-by: Jacob Chen <jacob2.chen@rock-chips.com>
+>>>> Signed-off-by: Helen Koike <helen.koike@collabora.com>
+>>>>
+>>>> ---
+>>>>
+>>>> V4:
+>>>> - update clock names
+>>>>
+>>>> V3:
+>>>> - clean up clocks
+>>>>
+>>>> V2:
+>>>> - re-order power-domains property
+>>>>
+>>>> V1:
+>>>> This patch was originally part of this patchset:
+>>>>
+>>>>     https://patchwork.kernel.org/patch/10267431/
+>>>>
+>>>> The only difference is:
+>>>> - add phy properties
+>>>> - add ports
+>>>> ---
+>>>>  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 25 ++++++++++++++++++++++++
+>>>>  1 file changed, 25 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>>> index dba9641947a3a..ed8ba75dbbce8 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>>> @@ -1721,6 +1721,31 @@ vopb_mmu: iommu@ff903f00 {
+>>>>              status = "disabled";
+>>>>      };
+>>>>
+>>>> +    isp0: isp0@ff910000 {
+>>>> +            compatible = "rockchip,rk3399-cif-isp";
+>>>> +            reg = <0x0 0xff910000 0x0 0x4000>;
+>>>> +            interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH 0>;
+>>>> +            clocks = <&cru SCLK_ISP0>,
+>>>> +                     <&cru ACLK_ISP0_WRAPPER>,
+>>>> +                     <&cru HCLK_ISP0_WRAPPER>;
+>>>> +            clock-names = "isp", "aclk", "hclk";
+>>>> +            iommus = <&isp0_mmu>;
+>>>> +            phys = <&mipi_dphy_rx0>;
+>>>> +            phy-names = "dphy";
+>>>> +            power-domains = <&power RK3399_PD_ISP0>;
+>>>
+>>> Should this have status = "disabled" too? The mipi_dphy_rx0 node is
+>>> disabled by default too, so in the default configuration the driver
+>>> would always fail to probe.
+>>
+>> I'm thinking what is the overall guideline here.
+>> Since isp and mipi_dphy are always present in the rk3399, shouldn't they always be enabled?
+>> Or since they are only useful if a sensor is present, we should let the dts of the board to
+>> enable it?
 > 
+> I don't have a strong opinion. I'm fine with enabling both by default
+> as well, as it shouldn't hurt.
+> 
+> That said, I recall some alternative CIF IP block being present on
+> this SoC as well (and patches posted recently), which AFAIR can't be
+> activated at the same time as the ISP, so perhaps both of the
+> alternatives should be disabled by default?
+> 
+> Best regards,
+> Tomasz
+> 
+
+Based on these two last emails, I think it make sense to disable them by default.
+
+I'll just wait for feedback on patch 5/9 to submit an updated version.
+
+Thanks
+Helen
