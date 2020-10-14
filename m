@@ -2,140 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B3A428DFFC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 13:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C031428E00C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 13:52:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388303AbgJNLsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 07:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34710 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388261AbgJNLsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 07:48:24 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC58C061755
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 04:48:16 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id t25so4333187ejd.13
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 04:48:15 -0700 (PDT)
+        id S1726594AbgJNLwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 07:52:24 -0400
+Received: from mail-co1nam11on2076.outbound.protection.outlook.com ([40.107.220.76]:16385
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726822AbgJNLwY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Oct 2020 07:52:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mDoo0l1yPEKMdqBZBarHotoXnAW+46J/ef95Ed6990p3yjk4muXrADDfano/69Dvz+MooMUF03g4iDlue9CzKkj4VzaptkdT4QKJYmwwYDvirmdkc5awgy+ee60ZydTBxc4GBW3b5K5vwh1sxMAKTFMIlxCfB6g3orr3fW6golrWASslxBzdhRzv6b5RWK7j6DM1pcUq7O0UlRH3J2nRV48dO1V962TM3HfU9Xh8Ru9feM81hSGQUEnPgYWiLIvx/iwB3ze1UTfO8yiy+oiVJeEyCQZy+uwwqgQOf08pDcFRxQwO9v4OZLPy4JBrB0jBBx3CFv2GxVOM7i2xteg6uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b+IPhP2Kmrei5f/LsFM+HorqoRrOj/FzsF13ggy24FU=;
+ b=Ene/I6oVQa2VOAGGs+aaeu3CBNJFJVZNHE6IKWtO2D0LayPwgeLGAsv/WPUh5RtqBjgHTEIwYx4mGwmnb1l5BmxGI6B1/nv8YwGYc4LybOkRCu558UpzZDyElU6WHJczVu0/AEJijMNd8QTLyaoaK32WCt4RJZb2fYE9x/SSl6pzl0YaXa1vniZFIJjR1SlUzlc8DhbMvPLEvCL0zedPn3DBbRLIO+3E7fhk6SxLKB3bBgx1iCMBoF59r2zlS/ehMHd87AOjZbqvS9mCSnIE0hOQWDIHS05iZ4kEOL7Dcn30DO5Hd/f3eVlgqLXch1HEh4K6hsJSHRoL6th3+VsR1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
+ dkim=pass header.d=silabs.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gJmE+QzQPKhmVzRh7Mt/ZkUz7d1ef3q7Sc2eKrUP1ek=;
-        b=D5mF2XYQNP+94me/VxKUFpADGfBIU3L6stuWHfhcFjpvl8cFllEzVr2R8gPiy6Y7H5
-         7Jn3E05QFxVTs6FWqON6/czE5exVhvHc+PXVrpU6cNV+QSHwvK363vZMM69bEwZ7xq1k
-         1wMTxa2lATKEQ127Aj9A7/xrT5lOpm18mHUOY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gJmE+QzQPKhmVzRh7Mt/ZkUz7d1ef3q7Sc2eKrUP1ek=;
-        b=kSuBShdoezS9fsXXMcf4Nrw8vIP1NhT46m3upY/a5ArcHcD3NSKuGOsNuCa3olGtVD
-         0LpZRDNF4DWgwjqO+mF1Rd9/136ZKt/0B3HGICQSaxKBoEfuEB9PQkksufF+V4tjj4rw
-         TmWSFdXT34dp/yR3khUHAv793ibXYhaG+Y1ef9wHSM3ZoPFyJ8te0TPmHJYgl54YxCnu
-         Tdm6UUbYsuL7cr+G+GwbEm49dWMntSE9DyK4T7FL5O3MbBonQQ4DZORztb5EYqRELJkj
-         mUFviJtkS8vwa/vFk++OiQpG0eWAiIOpyD4wzmXT/hEXdzWIwvlRdL7SFTJH5UaPrlmP
-         qkKg==
-X-Gm-Message-State: AOAM5309mPfJrub9GTlJvKLqKbDWcpQiq33Gp59sYgrxEMqu7aLvjowT
-        RMVYVB1UNYvVuzDpevFEq2ko2hO2TywiZA==
-X-Google-Smtp-Source: ABdhPJyLJ5YN+j0jhoub4G6m+Ro8baGKJSeb6Qx5gEw5eorD4NNuebqTNmcOo7FvPkuyYpGRJ9Icgg==
-X-Received: by 2002:a17:906:bc4b:: with SMTP id s11mr4941210ejv.437.1602676094354;
-        Wed, 14 Oct 2020 04:48:14 -0700 (PDT)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com. [209.85.221.47])
-        by smtp.gmail.com with ESMTPSA id f23sm1609227ejd.5.2020.10.14.04.48.12
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Oct 2020 04:48:13 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id n6so3390779wrm.13
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 04:48:12 -0700 (PDT)
-X-Received: by 2002:adf:ab05:: with SMTP id q5mr4966749wrc.32.1602676092220;
- Wed, 14 Oct 2020 04:48:12 -0700 (PDT)
+ d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b+IPhP2Kmrei5f/LsFM+HorqoRrOj/FzsF13ggy24FU=;
+ b=gXFhIwg/2fMES5BojVs/UXMH197a1ZK02Coi3SMSuhS2OfxsqWURhKEcJ/850QCT9AApTNnhw1XqFM3Us90ORIPxRkAqzkhLh42xgUdqmox2NG7sLqSbNFXmYKuUf33qHpsSeyWh6vqclzCet+Qqgwfc8xpMJFSgB+4TIeNLfU8=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=silabs.com;
+Received: from SN6PR11MB2718.namprd11.prod.outlook.com (2603:10b6:805:63::18)
+ by SN6PR11MB2893.namprd11.prod.outlook.com (2603:10b6:805:dc::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21; Wed, 14 Oct
+ 2020 11:52:21 +0000
+Received: from SN6PR11MB2718.namprd11.prod.outlook.com
+ ([fe80::4f5:fbe5:44a7:cb8a]) by SN6PR11MB2718.namprd11.prod.outlook.com
+ ([fe80::4f5:fbe5:44a7:cb8a%5]) with mapi id 15.20.3455.031; Wed, 14 Oct 2020
+ 11:52:21 +0000
+From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
+To:     Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 07/23] wfx: add bus_sdio.c
+Date:   Wed, 14 Oct 2020 13:52:15 +0200
+Message-ID: <2628294.9EgBEFZmRI@pc-42>
+Organization: Silicon Labs
+In-Reply-To: <20201013201156.g27gynu5bhvaubul@pali>
+References: <20201012104648.985256-1-Jerome.Pouiller@silabs.com> <20201012104648.985256-8-Jerome.Pouiller@silabs.com> <20201013201156.g27gynu5bhvaubul@pali>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Originating-IP: [82.67.86.106]
+X-ClientProxiedBy: DM5PR07CA0100.namprd07.prod.outlook.com
+ (2603:10b6:4:ae::29) To SN6PR11MB2718.namprd11.prod.outlook.com
+ (2603:10b6:805:63::18)
 MIME-Version: 1.0
-References: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
- <20201013130503.2412-2-dongchun.zhu@mediatek.com> <20201013161938.GE13341@paasikivi.fi.intel.com>
- <1602641418.4733.80.camel@mhfsdcap03> <20201014083139.GG13341@paasikivi.fi.intel.com>
-In-Reply-To: <20201014083139.GG13341@paasikivi.fi.intel.com>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Wed, 14 Oct 2020 13:48:00 +0200
-X-Gmail-Original-Message-ID: <CAAFQd5BVzN=49s4S98E9mGNuxzOt4633dAw9mbyu3Sr-rA61qw@mail.gmail.com>
-Message-ID: <CAAFQd5BVzN=49s4S98E9mGNuxzOt4633dAw9mbyu3Sr-rA61qw@mail.gmail.com>
-Subject: Re: [PATCH v15 1/2] media: dt-bindings: media: i2c: Document OV02A10 bindings
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
-        <shengnan.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pc-42.localnet (82.67.86.106) by DM5PR07CA0100.namprd07.prod.outlook.com (2603:10b6:4:ae::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21 via Frontend Transport; Wed, 14 Oct 2020 11:52:18 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 836a45e2-d48e-4431-2e80-08d870379b52
+X-MS-TrafficTypeDiagnostic: SN6PR11MB2893:
+X-Microsoft-Antispam-PRVS: <SN6PR11MB2893755A4059BC7942E7305D93050@SN6PR11MB2893.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FiIC40Fy6cQHK1pF8DlSw0Lot9isxPUyhqp3ltJipnRP40YjH155KPGZ8fQn/y2Gzm687xL1HDX3RdbjrgAJUcSHvj/JoXvOh7JeA4ob8L7Y219hPYO6A+LGJ8dFEy+Sq12AzM9VDWSJl+pKBE2UqugR4v+8ylfxK/6SFP5ghuy1mx6fOeDt/D2Mx9kk5OCeFz4Ml/P4CJBQe7o9XMbNWTUlA24Dutvknqv2pPNtrpwcsF6JE7oe0il12OllqGSu16yH11QjAibsu3AJCsMronJQ2XgIQcWnyAbWaqQSmFRsc+GufboVNv80YiKxEemIWAbV3kOJfaaWqGskL7iQjx04xzgtDauo9PDipKelMol749wgRv56AMGTQjPcQSty
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2718.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(366004)(136003)(376002)(346002)(396003)(66556008)(66476007)(54906003)(8676002)(316002)(6506007)(6486002)(9686003)(66574015)(6512007)(6916009)(5660300002)(7416002)(8936002)(4326008)(86362001)(478600001)(52116002)(2906002)(66946007)(26005)(186003)(956004)(33716001)(36916002)(83380400001)(16526019)(6666004)(39026012);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 2445WES+e9wE0ygrPmUVFANfPe56hqfhoNSeiwmMq3P2dK32Cs34P9LBB1T5VtudGsxb4Zfb+3GWPogBxvUpBfd7980ULqOBNdHOA6ytEWCovdPbL9h/MO4bxi1LU3xQFnU5VcCoLAu8HWrdLyZkgAACYxHW9Nit2AjZDrPgpQcc25wTl7AESmQugWrejGWJVPSXmlDxy5fY1xPQ1LrAclIv83DZJ9zWIhdtQyEwenTl0ySjnU4Cjyw0e39xk3KRBsTs7U+witG0bvPkHhxYfwxqqQJxns2t+IAPs+soqwE1p1xfWsmQLt2iAUwexjPa9kVeQn+0fDO0bR9yb7ePAsDV8eSRsmDkGm/xbDmcgAhRrIqhOfHdHcRnuZ2o7W8nXteRuBfV9NrHXwd4FOuwwuKoBfHAybVXLtUJOYIFsAyOsZum7Sh5ahhdRtcF/lfjZ/Ek0Ze8IUvQzyx4eyx9GrTZsG81tgCpb3UbUqqH5c2A0GXnGDJvkKp/sXF3MBt2ZK1VmMyVZWkvopTDwm4SDOewoE38OHpddN7hHLXUVaw2TAi0Pki1N3MyL6mZrvaz/EU6wmEVX32Ifdthd+aRlC0B8CnrLA3P3m1DsgwfNd5ahsuEx58l98jWvFnsgjWh+j1DR9dAjoLhDSWl9Mc7yA==
+X-OriginatorOrg: silabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 836a45e2-d48e-4431-2e80-08d870379b52
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2718.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2020 11:52:20.8899
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: C1bpE0MFkrQ6bQMUGQXiTpoQCrIrD2UITrZf1Q24nhcIZkupPan2i8C0R1FMkeQo/vr4e4cN9VV5wKjqUoxaKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2893
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 10:31 AM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> On Wed, Oct 14, 2020 at 10:10:18AM +0800, Dongchun Zhu wrote:
-> > Hello Sakari,
-> >
-> > Thanks for your timely review.
-> >
-> > On Tue, 2020-10-13 at 19:19 +0300, Sakari Ailus wrote:
-> > > Hi Dongchun,
-> > >
-> > > On Tue, Oct 13, 2020 at 09:05:02PM +0800, Dongchun Zhu wrote:
-> > > > Add YAML device tree binding for OV02A10 CMOS image sensor, and the
-> > > > relevant MAINTAINERS entries.
-> > > >
-> > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > > ---
-> > > >  .../bindings/media/i2c/ovti,ov02a10.yaml           | 162 +++++++++++++++++++++
-> > > >  MAINTAINERS                                        |   7 +
-> > > >  2 files changed, 169 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> > > >
-> >
-> > [snip]...
-> >
-> > > > +  ovti,mipi-clock-voltage:
-> > > > +    description:
-> > > > +      An array of 2-tuples items, and each item consists of link frequency and
-> > > > +      MIPI clock voltage unit like <freq-kHz volt-unit>. Clock voltage unit is
-> > > > +      dependent upon link speed, indicating MIPI transmission speed select that
-> > > > +      controls D-PHY timing setting by adjusting MIPI clock voltage to improve
-> > > > +      the clock driver capability.
-> > > > +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-> > > > +    minItems: 2
-> > > > +    default: [390000, 4]
-> > >
-> > > Why do you have the link frequency here as well?
-> > >
-> > > In principle this does belong to the endpoint as link frequencies are
-> > > specific to that, but I don't mind; there's just a single port anyway.
-> > >
-> >
-> > This is an optional property which we model as an array of <link speed,
-> > clock voltage> pairs. An example to have all link speeds up to 390MHz
-> > use the value 4 for current driver. If one wants to select different
-> > voltage for different link, they could do so as well.
->
-> If you think you'd need that, then you need to put this to the endpoint.
+Hello Pali,
 
-The mipi-clock-voltage property is not a property of the endpoint. The
-link frequency there does not set the link frequency - it only
-specifies which link frequency the given voltage should be used for.
+On Tuesday 13 October 2020 22:11:56 CEST Pali Roh=E1r wrote:
+> Hello!
+>=20
+> On Monday 12 October 2020 12:46:32 Jerome Pouiller wrote:
+> > +#define SDIO_VENDOR_ID_SILABS        0x0000
+> > +#define SDIO_DEVICE_ID_SILABS_WF200  0x1000
+> > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> > +     { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF200)=
+ },
+>=20
+> Please move ids into common include file include/linux/mmc/sdio_ids.h
+> where are all SDIO ids. Now all drivers have ids defined in that file.
+>=20
+> > +     // FIXME: ignore VID/PID and only rely on device tree
+> > +     // { SDIO_DEVICE(SDIO_ANY_ID, SDIO_ANY_ID) },
+>=20
+> What is the reason for ignoring vendor and device ids?
 
-Best regards,
-Tomasz
+The device has a particularity, its VID/PID is 0000:1000 (as you can see
+above). This value is weird. The risk of collision with another device is
+high.
+
+So, maybe the device should be probed only if it appears in the DT. Since
+WF200 targets embedded platforms, I don't think it is a problem to rely on
+DT. You will find another FIXME further in the code about that:
+
++               dev_warn(&func->dev,
++                        "device is not declared in DT, features will be li=
+mited\n");
++               // FIXME: ignore VID/PID and only rely on device tree
++               // return -ENODEV;
+
+However, it wouldn't be usual way to manage SDIO devices (and it is the
+reason why the code is commented out).
+
+Anyway, if we choose to rely on the DT, should we also check the VID/PID?
+
+Personally, I am in favor to probe the device only if VID/PID match and if
+a DT node is found, even if it is not the usual way.
+
+--=20
+J=E9r=F4me Pouiller
+
+
