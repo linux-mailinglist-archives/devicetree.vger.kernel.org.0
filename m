@@ -2,124 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A02028E176
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 310BB28E17D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:41:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728782AbgJNNkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 09:40:08 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38541 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727421AbgJNNkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 09:40:08 -0400
-Received: by mail-oi1-f196.google.com with SMTP id h10so3251947oie.5;
-        Wed, 14 Oct 2020 06:40:07 -0700 (PDT)
+        id S1727960AbgJNNlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 09:41:55 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38277 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727200AbgJNNlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 09:41:55 -0400
+Received: by mail-ot1-f66.google.com with SMTP id i12so3446629ota.5;
+        Wed, 14 Oct 2020 06:41:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jCnZ/JpB+JXOTDIrqvdLg2bEBOQwlU7eY0le6lMCNEQ=;
-        b=KuG9M7cz4UWGQEe/qm6OH4axCB1FNOJR2NVEB2cR3hG3sGiq/8sBg8s5iVSYzGq4TV
-         vZwop4tC8HtAsQQq9t7F7BLIN/PvPkeD/ArIubjlTcVj84yxRR45Mqsf/1+SCjd2Xbhj
-         H6TysEXylt3jQFvE7xh/E77NgYQVgAri0h0e804dAoXUFHpZHbh402p/QUUCOStu+O8S
-         aix5gyP9/2YbtUz6rHtrihh5z77p64ZKzTABs2qbVB8WGKqMFUwKQVmyyqAHPXIKsGiD
-         VTRplHK8ggQsoYycki4+6HPXFfwkD1mPssVfd8HZN7SsF7lvUBWwaUvD/SfLv+H/5RcM
-         LPDA==
-X-Gm-Message-State: AOAM5338fk1x7hVC3v9C3JRD/LOBcyGDzmu+gqtVcalNmDkkhKLxbzhX
-        Ye3yh23uBg7XTZKV1Q8mJ8MOKI0tCH9cKuBNyU8=
-X-Google-Smtp-Source: ABdhPJwrKQ8pTGdWIQGUyhJ+Vc2C+9xNkkzXQCNgDfOVBnfJAbhwj0L3O+JuHzMw6QF9CtswUMYLMuLt2N1Gu5O+268=
-X-Received: by 2002:aca:f203:: with SMTP id q3mr2114100oih.148.1602682806605;
- Wed, 14 Oct 2020 06:40:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201013150150.14801-1-fabrizio.castro.jz@renesas.com> <20201013150150.14801-3-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20201013150150.14801-3-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 14 Oct 2020 15:39:54 +0200
-Message-ID: <CAMuHMdU-X0qmM+fVTV9czNa5++c9-N9GRowzaV9c+tcyXyrPHg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] media: dt-bindings: media: renesas,drif: Convert
- to json-schema
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ODkuPdZmS51vjj18LfZxUJIoA3CbimjnhVaLrPWSbJ8=;
+        b=V0kyEuJLfOSbAACGQELlY6Hc4bRdm4ES8qPo8kXByjMWmJvTJG7JiYiKtBruJejC+u
+         V19yNv51leEhGqoG7l1+n86Z576Pl2Ij2FberXQX3Le/ysEdJb6XCYYsxX9LvatAqz6E
+         eDYrBGdMB7+arW34DY4b0bEgBmBkZ1yaUzZhD9EeGsoQH/4Rb3nKzBOuV3dgSKQ7ZBbt
+         JqznRoFKjUG964IQl5K5Ehji0j/YnxZhH7tu5fMe42Q47eFAFuxch0y98i53Anant9Tu
+         Lo41o0MJpNkR7Z/U+lKRZfTPPlBl+Q5Q5dEiEnhvghvooZQ7bxsgIBK5RPxfa4ohWrol
+         7e/Q==
+X-Gm-Message-State: AOAM533w/tFsvJEvxgGkGeb2HcS8MNeYFMjF+GTgJFar9LdwF+lscwSp
+        NETU/r9YzfNOphtHEjUDyYiDbU5TeF41
+X-Google-Smtp-Source: ABdhPJx2mT4anlgAXwIFtYcquTufwd0maY1yyo9ARfmO4AejEUr6gWCV4FXd8hyjIW1aG2Mk1X+9LQ==
+X-Received: by 2002:a9d:8d2:: with SMTP id 76mr3388791otf.270.1602682913956;
+        Wed, 14 Oct 2020 06:41:53 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id c64sm1009630otb.50.2020.10.14.06.41.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 06:41:53 -0700 (PDT)
+Received: (nullmailer pid 1562646 invoked by uid 1000);
+        Wed, 14 Oct 2020 13:41:52 -0000
+Date:   Wed, 14 Oct 2020 08:41:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Benson Leung <bleung@chromium.org>,
+        Dan Murphy <dmurphy@ti.com>, Pavel Machek <pavel@ucw.cz>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Guenter Roeck <groeck@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+        Lubomir Rintel <lkundrak@v3.sk>
+Subject: Re: [PATCH 3/6] spi: dt-bindings: spi-controller: explicitly require
+ #address-cells=<0> for slave mode
+Message-ID: <20201014134152.GA1560405@bogus>
+References: <20201013160845.1772-1-thunder.leizhen@huawei.com>
+ <20201013160845.1772-4-thunder.leizhen@huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201013160845.1772-4-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
-
-On Tue, Oct 13, 2020 at 5:02 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> Convert the Renesas DRIF bindings to DT schema and update
-> MAINTAINERS accordingly.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+On Wed, 14 Oct 2020 00:08:42 +0800, Zhen Lei wrote:
+> scripts/dtc/checks.c:
+> if (get_property(node, "spi-slave"))
+> 	spi_addr_cells = 0;
+> if (node_addr_cells(node) != spi_addr_cells)
+> 	FAIL(c, dti, node, "incorrect #address-cells for SPI bus");
+> if (node_size_cells(node) != 0)
+> 	FAIL(c, dti, node, "incorrect #size-cells for SPI bus");
+> 
+> The above code in check_spi_bus_bridge() require that the number of address
+> cells must be 0. So we should explicitly declare "#address-cells = <0>".
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
-> v2->3:
-> * Removed the definition of pinctrl-0 and pinctrl-names, as
->   suggested by Geert
-> * Added "power-domains" to the list of required properties,
->   as suggested by Geert
-> * Reworked the conditional requirements, Geert, what do you
->   think?
+>  .../devicetree/bindings/spi/spi-controller.yaml      | 20 ++++++++++++++------
+>  1 file changed, 14 insertions(+), 6 deletions(-)
+> 
 
-Thanks for the update!
+Applied, thanks!
 
+Note that I tried fixing this in dtc, but that was rejected. So this 
+gets the schema in sync with dtc.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-
-> +allOf:
-> +  - if:
-> +      required:
-> +        - renesas,primary-bond
-> +    then:
-> +      required:
-> +        - pinctrl-0
-> +        - pinctrl-names
-> +        - port
-> +
-> +  - if:
-> +      required:
-> +        - port
-> +    then:
-> +      required:
-> +        - pinctrl-0
-> +        - pinctrl-names
-> +
-> +  - if:
-> +      not:
-> +        required:
-> +          - port
-> +    then:
-
-This can just be an "else" branch for the previous "if" statement?
-
-> +      properties:
-> +        pinctrl-0: false
-> +        pinctrl-names: false
-
-With the above fixed/clarified:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
