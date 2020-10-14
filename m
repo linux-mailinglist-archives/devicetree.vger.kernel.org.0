@@ -2,91 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC33C28DEDA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 12:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF8C28DEF3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 12:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727147AbgJNKXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 06:23:48 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:41979 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726493AbgJNKXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 06:23:48 -0400
-X-Greylist: delayed 2577 seconds by postgrey-1.27 at vger.kernel.org; Wed, 14 Oct 2020 06:23:47 EDT
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id A2F05E0008;
-        Wed, 14 Oct 2020 10:23:43 +0000 (UTC)
-Date:   Wed, 14 Oct 2020 12:27:45 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        linux-renesas-soc@vger.kernel.org, geert+renesas@glider.be,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/6] dt-bindings: media: renesas,vin: Add V3U support
-Message-ID: <20201014102745.ucicjxvsiohwefzb@uno.localdomain>
-References: <20201014094443.11070-1-jacopo+renesas@jmondi.org>
- <20201014094443.11070-6-jacopo+renesas@jmondi.org>
- <20201014101152.mqmv2klq2mwsjlpf@oden.dyn.berto.se>
+        id S1728248AbgJNKdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 06:33:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43762 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727381AbgJNKdl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Oct 2020 06:33:41 -0400
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9666120878;
+        Wed, 14 Oct 2020 10:33:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602671619;
+        bh=YTNSXcW0k5VpGDP+ALIpIyuW3iLRTmD54rqCQ1oyiyA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sBHnz1yyxbvpzxpccOns8mp5Of03gj29/RNRo3g82Ev+clfKBrk3KB5XrR8yt+GLl
+         pmdEOB8h3WOAsY4KGNHM6cEFI07KwBf89dw+Gj6iqzCXZZziXMohhgdikBTZ5zGwnn
+         ltFgloehCf+cN94VB8NVLy20CDewVMaT7n7srMMg=
+Received: by mail-ej1-f45.google.com with SMTP id p5so1298911ejj.2;
+        Wed, 14 Oct 2020 03:33:39 -0700 (PDT)
+X-Gm-Message-State: AOAM532KgEJ3XGCmU0xda99mxHtSh9lVBBIHW/Ul6I67ftqQ/f3WdKhW
+        YIcsf1kxnY5J9Tuqh6EyMMIdczSlsoucu0rJis0=
+X-Google-Smtp-Source: ABdhPJxZBjfPkS/DAl69mvwOwG4fxUYT0dQEW6rrgGKRXDR2yPgf5o4BRFNdNiVveb84vPHaKXSGoZA2E31iHMoZKKE=
+X-Received: by 2002:a17:906:1a11:: with SMTP id i17mr4430823ejf.381.1602671617348;
+ Wed, 14 Oct 2020 03:33:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201014101152.mqmv2klq2mwsjlpf@oden.dyn.berto.se>
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru> <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 14 Oct 2020 12:33:25 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
+Message-ID: <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
+Subject: Re: [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Wei Xu <xuwei5@hisilicon.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, linux-omap@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
+On Wed, 14 Oct 2020 at 12:23, Serge Semin
+<Sergey.Semin@baikalelectronics.ru> wrote:
+>
+> In accordance with the DWC USB3 bindings the corresponding node name is
+> suppose to comply with Generic USB HCD DT schema, which requires the USB
+> nodes to have the name acceptable by the regexp: "^usb(@.*)?" . But a lot
+> of the DWC USB3-compatible nodes defined in the ARM/ARM64 DTS files have
+> name as "^dwc3@.*" or "^usb[1-3]@.*" or even "^dwusb@.*", which will cause
+> the dtbs_check procedure failure. Let's fix the nodes naming to be
+> compatible with the DWC USB3 DT schema to make dtbs_check happy.
+>
+> Note we don't change the DWC USB3-compatible nodes names of
+> arch/arm64/boot/dts/apm/{apm-storm.dtsi,apm-shadowcat.dtsi} since the
+> in-source comment says that the nodes name need to be preserved as
+> "^dwusb@.*" for some backward compatibility.
+>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+>
+> ---
+>
+> Please, test the patch out to make sure it doesn't brake the dependent DTS
+> files. I did only a manual grepping of the possible nodes dependencies.
 
-On Wed, Oct 14, 2020 at 12:11:52PM +0200, Niklas Söderlund wrote:
-> Hi Jacopo,
->
-> Thanks for your patch.
->
-> On 2020-10-14 11:44:42 +0200, Jacopo Mondi wrote:
-> > Add compatible string definition for R-Car V3U.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > ---
-> >  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > index ad2fe660364b..7b629a6ea035 100644
-> > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > @@ -51,6 +51,7 @@ properties:
-> >                - renesas,vin-r8a77980 # R-Car V3H
-> >                - renesas,vin-r8a77990 # R-Car E3
-> >                - renesas,vin-r8a77995 # R-Car D3
-> > +              - renesas,vin-r8a779a0 # R-Car V3U
->
-> Documenting the compat string here might give the wrong impression the
-> IP is supported. Which it's not as the V3U is quiet different then the
-> it's siblings. Whit a new pipeline and small but important changes in in
-> the register set. I'm primarily thinking about that the IFMD register is
-> gone and dealing with that will be quiet significant work in the driver.
->
-> I'm not yet 100% sure the best idea is to support V3U with this driver,
-> maybe it's finally time to make it more modular, with more distinct
-> support for Gen2, Gen3 and a new module for V3U?
+1. It is you who should compare the decompiled DTS, not us. For example:
+$ for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64
+scripts/dtc/dtx_diff ${i} dts-new/${i#dts-old/} ; done
 
-I see.
+$ for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64
+fdtdump ${i} > ${i}.fdt ; crosc64 fdtdump dts-new/${i#dts-old/} >
+dts-new/${i#dts-old/}.fdt ; diff -ubB ${i}.fdt
+dts-new/${i#dts-old/}.fdt ; done
 
-The first concern I had that had me adding this compatible string is
-that otherwise I cannot specify any compatible string in the DTS
-device nodes...
+2. Split it per arm architectures (and proper subject prefix - not
+"arch") and subarchitectures so maintainers can pick it up.
 
+3. The subject title could be more accurate - there is no fix here
+because there was no errors in the first place. Requirement of DWC
+node names comes recently, so it is more alignment with dtschema.
+Otherwise automatic-pickup-stable-bot might want to pick up... and it
+should not go to stable.
+
+Best regards,
+Krzysztof
+
+>  arch/arm/boot/dts/armada-375.dtsi              | 2 +-
+>  arch/arm/boot/dts/exynos5250.dtsi              | 2 +-
+>  arch/arm/boot/dts/exynos54xx.dtsi              | 4 ++--
+>  arch/arm/boot/dts/keystone-k2e.dtsi            | 4 ++--
+>  arch/arm/boot/dts/keystone.dtsi                | 2 +-
+>  arch/arm/boot/dts/ls1021a.dtsi                 | 2 +-
+>  arch/arm/boot/dts/omap5-l4.dtsi                | 2 +-
+>  arch/arm/boot/dts/stih407-family.dtsi          | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi   | 2 +-
+>  arch/arm64/boot/dts/exynos/exynos5433.dtsi     | 4 ++--
+>  arch/arm64/boot/dts/exynos/exynos7.dtsi        | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 4 ++--
+>  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 6 +++---
+>  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 4 ++--
+>  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 4 ++--
+>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi      | 2 +-
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi   | 4 ++--
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi          | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi          | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi          | 2 +-
+>  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi       | 2 +-
+>  arch/arm64/boot/dts/qcom/qcs404.dtsi           | 4 ++--
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi           | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi           | 4 ++--
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi           | 2 +-
+>  25 files changed, 38 insertions(+), 38 deletions(-)
 >
-> >
-> >    reg:
-> >      maxItems: 1
-> > --
-> > 2.28.0
-> >
->
-> --
-> Regards,
-> Niklas Söderlund
