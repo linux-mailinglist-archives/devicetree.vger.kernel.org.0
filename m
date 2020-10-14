@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F08528DD7D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D33C28D8F7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 05:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730512AbgJNJYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 05:24:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39970 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730348AbgJNJUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:20:01 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2428AC041E4B;
-        Tue, 13 Oct 2020 20:12:41 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id c6so1020382plr.9;
-        Tue, 13 Oct 2020 20:12:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=4nvU+eV7iYHUQLYFDTIcrlgtcxo5Rsjbojd3ypYNoPc=;
-        b=DdZu7BsapmAZuOuDViqs55Nc9qtjJ2aWfxqiyJL9Qyg+FOF8K9STZE6BjZ7gneB7ZE
-         M3qPOGWilyBKx8dB22q23yMTr6VDYdCUvBzq1AEjuV8QXFNcwjVV1anbCz+3bqEwuOGU
-         97n4ZY+n4pZccC6DcMypv2rE6doDcWuM1OZ7REzaDnIo32sAS6ntW52CgD0SwO1Cpb4E
-         MmhsU49DLH3nonz7/EuKIo1NKhAWzvTfxyBwS4DmukTHvoH9fgRNFYHfPunA7ZlhwPsr
-         LZbg0/NL8cU+6m3LZstLFnG8rAFbmoOh3SSbe3Qb8fpVZ99+7IPnIeMMF9s3iIXHTPwj
-         FfxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4nvU+eV7iYHUQLYFDTIcrlgtcxo5Rsjbojd3ypYNoPc=;
-        b=C0jOjX3GEGpxbjLCatej7sip11MaqiiaydrzmyjqQal6IDUTvzZnkEKyBwIwByBUcB
-         IjIO8TgXQLnuphSshH/yPxC6zBJXdaA9xYTR5is3J9AKlRgw9gOl75/o4jkXlDYhJVCa
-         3/e0o2w8WJq0FqLdcZYd5Rx5/k6SV5cRu+xRv6wK/ZeW/MIi509qCdY1L1395Jr9Hb/8
-         l4aazsQC3g/4tYjFmoqU5RZW9teNCBTz20/Qp5wXg5Kffh7tLWj78F6epEJpzJJvFQa/
-         hevA1Y94fSRM3jLK5HR9YktbjMpL7PzAjQi4/kPNbwG+ys94mZGnNXJSQ3wBIizcalLa
-         ZUcw==
-X-Gm-Message-State: AOAM531AgZf5IdDdV5zgm9SuMQzQkrYa5+QjAs/KUm1XYexofM0gQJ15
-        KkvR3L1LivPoC5E086eMDkHOTE+/Gwo=
-X-Google-Smtp-Source: ABdhPJy2Day9JQ/9urHVr7LLwG6P90nqn2XGhFFTNI5IO6XI6iAkYSGFa/o4ogW3rGWET9Abny5AZw==
-X-Received: by 2002:a17:902:342:b029:d5:ab9e:19ce with SMTP id 60-20020a1709020342b02900d5ab9e19cemr2435383pld.48.1602645160113;
-        Tue, 13 Oct 2020 20:12:40 -0700 (PDT)
-Received: from [10.230.29.112] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id k68sm1241671pga.36.2020.10.13.20.12.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Oct 2020 20:12:39 -0700 (PDT)
-Subject: Re: [PATCH 1/2] arm64: dts: broadcom: remove an unused property
- dma-ranges
-To:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20201013060623.1711-1-thunder.leizhen@huawei.com>
- <20201013060623.1711-2-thunder.leizhen@huawei.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <fa40441b-6ae1-6018-3da6-424d0252c1ba@gmail.com>
-Date:   Tue, 13 Oct 2020 20:12:37 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.3.2
+        id S1729567AbgJNDVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 23:21:13 -0400
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:10838 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726049AbgJNDVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 23:21:13 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f866e500000>; Tue, 13 Oct 2020 20:19:44 -0700
+Received: from [10.19.100.177] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 14 Oct
+ 2020 03:21:07 +0000
+Subject: Re: [PATCH v3 04/15] phy: tegra: xusb: tegra210: Do not reset UPHY
+ PLL
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <gregkh@linuxfoundation.org>, <robh@kernel.org>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>,
+        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>
+References: <20200909081041.3190157-1-jckuo@nvidia.com>
+ <20200909081041.3190157-5-jckuo@nvidia.com> <20200928130618.GE3065790@ulmo>
+X-Nvconfidentiality: public
+From:   JC Kuo <jckuo@nvidia.com>
+Message-ID: <0ec9045c-8722-d7cd-20f0-2c163be75619@nvidia.com>
+Date:   Wed, 14 Oct 2020 11:21:06 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201013060623.1711-2-thunder.leizhen@huawei.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20200928130618.GE3065790@ulmo>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1602645584; bh=MpUvsa/wMAY7BzkAhwbdXgZgbZYHy0ZGBz0aDP8EC30=;
+        h=Subject:To:CC:References:X-Nvconfidentiality:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=NbYay9iIS0u9b13wMqVg/7m1S5/uQvHx3hDHKgGcf/5ALGojoN25hgrvBf5wfO7Tm
+         UP71jMjVDMeE+zWpx5YyjWdxHaEX8H2re8CDEEWVQeTqNCIIikzOYnO4UVnZTNex2v
+         1J6Izi/vusu2n1rzG1eiLDeLn4nxLakh72KqFnuOJNq0pXaduNDJAV+P3geg73VtOk
+         QxoiCAIrGre9Wcqgo3WR+HvDlG0Qsr1Cu1YBLXV/P/6JFsbBHJvADGHGzgeBTgAHpZ
+         6EWk1/jrgDJyGCxyxyX1LwTXU7F/Td7ZuEjqP8WGw8gDDpC8q0CAbiPwJwQn87Wl6c
+         ncdUMJmQJor/Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Asserting reset to a PLL when it's managed by hardware power sequencer would
+break sequencer's state machine. Putting PLL in reset doesn't save some extra power.
 
+Thanks for review.
+JC
 
-On 10/12/2020 11:06 PM, Zhen Lei wrote:
-> stingray-usb.dtsi is finally included by three dts files:
-> bcm958802a802x.dts, bcm958742k.dts and bcm958742t.dts. I searched all
-> these three entire expanded dts files, and each of them contains only one
-> dma-ranges. No conversion range is specified, so it cannot work properly.
-> I think this property "dma-ranges" is added by mistake, just remove it.
-> Otherwise, the following error will be reported when any YAML detection
-> is performed on arm64.
+On 9/28/20 9:06 PM, Thierry Reding wrote:
+> On Wed, Sep 09, 2020 at 04:10:30PM +0800, JC Kuo wrote:
+>> Once UPHY PLL hardware power sequencer is enabled, do not assert
+>> reset to PEX/SATA PLLs, otherwise UPHY PLL operation will be broken.
+>> This commit removes reset_control_assert(pcie->rst) and
+>> reset_control_assert(sata->rst) from PEX/SATA UPHY disable procedure.
+>>
+>> Signed-off-by: JC Kuo <jckuo@nvidia.com>
+>> ---
+>> v3:
+>>    new, was a part of "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
+>>
+>>  drivers/phy/tegra/xusb-tegra210.c | 2 --
+>>  1 file changed, 2 deletions(-)
+>>
+>> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
+>> index f06e7bc7a51b..ef4bbcbed60b 100644
+>> --- a/drivers/phy/tegra/xusb-tegra210.c
+>> +++ b/drivers/phy/tegra/xusb-tegra210.c
+>> @@ -504,7 +504,6 @@ static void tegra210_pex_uphy_disable(struct tegra_xusb_padctl *padctl)
+>>  	if (--pcie->enable > 0)
+>>  		goto unlock;
+>>  
+>> -	reset_control_assert(pcie->rst);
+>>  	clk_disable_unprepare(pcie->pll);
+>>  
+>>  unlock:
+>> @@ -746,7 +745,6 @@ static void tegra210_sata_uphy_disable(struct tegra_xusb_padctl *padctl)
+>>  	if (--sata->enable > 0)
+>>  		goto unlock;
+>>  
+>> -	reset_control_assert(sata->rst);
+>>  	clk_disable_unprepare(sata->pll);
+>>  
+>>  unlock:
 > 
-> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
-> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
-> its #address-cells (1) differs from / (2)
-> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
-> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
-> its #size-cells (1) differs from / (2)
+> Does this mean that we can no longer reset these PLLs anymore? Is that
+> safe? Would we ever need to reset them for recovery or similar? For
+> power saving, is disabling the clock enough, or could we save some extra
+> power by putting the PLLs into reset?
 > 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-
-This looks fine to me, Scott, Ray do you want to Ack this patch before I 
-take it?
--- 
-Florian
+> Thierry
+> 
