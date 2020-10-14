@@ -2,166 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EFC28E711
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 21:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A3BF28E744
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 21:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390458AbgJNTMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 15:12:51 -0400
-Received: from smtprelay-out1.synopsys.com ([149.117.87.133]:33482 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726115AbgJNTMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 15:12:49 -0400
-Received: from mailhost.synopsys.com (sv2-mailhost2.synopsys.com [10.205.2.134])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 38C0DC0098;
-        Wed, 14 Oct 2020 19:12:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1602702768; bh=pNp+oRKtpJFt5A5X0gDrLRdOswAHsIIghJhXcuyTBdY=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=iFiKRRnfhrVQteridnYVsijfpu+6Ul6PV1me8BfYiPrAnMNBSQ+sHB34UuSlWskv4
-         6VNYYbnerPuG8C2Z+FEO17Yc3qEbVAY3LI4ENiGVC1HMhpaBKlWu9ZmAPHuARF7EdP
-         TQAFcHSID+Ss/z+hg0UUJAZ1EgrIWcaExJy8zqlAnfK1ZriExfpPANQ5GBk95L9ogx
-         OHqEgvbfj3+Re+zlMK7F+pnmk6SmRVqxshNuIE7vtDyUmCj2gbPLarL7/aBDuzHJPM
-         feRw9foOQcFK6hDU24nM3xVCvqGaaEs2t1YMMC0MoD7DlRoxzOUb/EP176Q1c3vAc/
-         ZaP45iYVPpt0g==
-Received: from o365relay-in.synopsys.com (sv2-o365relay1.synopsys.com [10.202.1.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mailhost.synopsys.com (Postfix) with ESMTPS id 75D3CA0096;
-        Wed, 14 Oct 2020 19:12:29 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2102.outbound.protection.outlook.com [104.47.70.102])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "mail.protection.outlook.com", Issuer "GlobalSign Organization Validation CA - SHA256 - G3" (verified OK))
-        by o365relay-in.synopsys.com (Postfix) with ESMTPS id B404D40107;
-        Wed, 14 Oct 2020 19:12:21 +0000 (UTC)
-Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
-Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=abrodkin@synopsys.com
-Authentication-Results: o365relay-in.synopsys.com;
-        dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.b="EouuL4ix";
-        dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DCxQ+4hkVcTwcDHys9Un1kQxk1pZXP0Ox6tHbrIS6ilS6IReatYyBTsWTrGUqqPjbIDIvAbNa3LIlHi2iG9Wccl9okmguuuQRg8A3pSPGNn0+FK7E3i75VlpY7NhZtJ3KEwPyrKIsUPrBT2mSim1SFhfZIBLZCnMLF8KJhh+xLUaUxnnL09x21eIxaEw871qSJ3Mt9dTCyNiTBmHV59V4OKPSEK61us8JkOiqr72E6lCgD83bSxlED2Mofbf7x5R1CSCESRtN9LG6RDSYPuh6rn5CTs7aXSHa5iQE6XNORK0FeqeKB2UEEscRMJyuCaaCXV21iPXVBp93XKY6XshAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CN3e/ZuCzd92MQejw9kOHfuEy72151UraV3iCDTfNrc=;
- b=WHo44BuvWWJDwqXrwcjnV0toV7OADwjo9iPhdQ/FTiG/dSB8mHKAHpc25koy2dEOfdY8Hz57S3L+NuDnM7USBILN9HE7TjDxKr5rLOXLW94MS7QzUl8ZQJzdIIrILNmdZCDC0HfDRDMjxVeY1Q/I/RT0Lk4oh4cThDKMB8Oc3D3RA+kzUMD7+sWxTc04Bsdvpif+0dLj4AM5cD0WTXarMZiZDRGwSXu5Epd2KoAlAbpZDctACNf7IoseBux2LCprADS3xPyjCOr97Evh43qF4SzA6fkwSAq/o3Nd6XRnKo0wO6ngVH5zMuAwDq1QnDiK0b72zxQvT+FKXY6aHC/Wxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
- dkim=pass header.d=synopsys.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CN3e/ZuCzd92MQejw9kOHfuEy72151UraV3iCDTfNrc=;
- b=EouuL4ixiwcYhYKCoYiw8B/IbkJWAIcmmGlT/FBRHDqSbcUh/A9CMIqMzRfkvG0yBav8cmyV9kcQOUut+21ASLGHcv3U4RuKXo1+wXrSf5lSNlZnbgW9661d0y6/augkufNvXUPHSsS0pKux+3dEt1/5i9oGIZ9XhwIstmyO2Ns=
-Received: from BN8PR12MB3330.namprd12.prod.outlook.com (2603:10b6:408:43::15)
- by BN8PR12MB3027.namprd12.prod.outlook.com (2603:10b6:408:64::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.27; Wed, 14 Oct
- 2020 19:12:19 +0000
-Received: from BN8PR12MB3330.namprd12.prod.outlook.com
- ([fe80::653f:cfaf:d858:a52b]) by BN8PR12MB3330.namprd12.prod.outlook.com
- ([fe80::653f:cfaf:d858:a52b%7]) with mapi id 15.20.3455.030; Wed, 14 Oct 2020
- 19:12:19 +0000
-X-SNPS-Relay: synopsys.com
-From:   Alexey Brodkin <Alexey.Brodkin@synopsys.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-CC:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vineet Gupta <Vineet.Gupta1@synopsys.com>,
+        id S2390623AbgJNT2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 15:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50204 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389668AbgJNT2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 15:28:19 -0400
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3ABBC061755;
+        Wed, 14 Oct 2020 12:28:18 -0700 (PDT)
+Received: by mail-qt1-x842.google.com with SMTP id m9so142060qth.7;
+        Wed, 14 Oct 2020 12:28:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=dTSVWFM2/LTxQv7NidykDGUVu39NOUpLGs/ssfQGR2o=;
+        b=FnmcRvSbgftAvRvHHib/Zk21pZeUQnQvzL3RsLz1EWEJw5qifaWJDZe27scDVl+aj/
+         wBhQhqK4mQP2vMt01+xStlnRCwPxu8Ud+oDIeXAljQRsB/WuAMcN0GUC3c8f/NZ4Oh4T
+         r/v4cpn44UFWoO0xODp+ektZPonyDuqoAM6GIzqGyCo2NDKopn6OZITXc2xBTuqMdQXr
+         IQHzymdQICw6kRAt926M1mYAa4knCIInY94CW2IG9c6XQfCcXOAlGgC+n16PKSxsZNEw
+         wSDeelozQwV7nkPf0IQPOi2iam/lLD7hf88s//IloU66+JaKPDRehIwVPjp/Mr6Fut7u
+         GWag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=dTSVWFM2/LTxQv7NidykDGUVu39NOUpLGs/ssfQGR2o=;
+        b=QttB8CoR5hRMOGxSWyGl2wA0v/e8CoSUOVECV8Q6QGOzu2aOxPMl2vJ6CNDwq7K1Yc
+         U3TqvZPqac3VxZ1n/+6YHG9IXN5Vo5Go8dIGNIzOCnL2QDi/vozvIzlMvvAZiJBIwflO
+         dVXG+LJU78aXuXwcoV5YDGIU3Lw5z92pa9cPYeh7MHCxjcwirM1qZGlF2pAaXmTTerAz
+         hq8xA1PD0N50gQDu9JdmM0rIfJA0gtamPwX14oH6a+fiLufczJMLHpBtQCubk9l6WJge
+         pjhjiKoNLslxqPZ89bSr/PRKFLrMn4E4DBOqo+3SzdC3HuJJnOP0VT5EGXzaQnkjC7N/
+         DQaQ==
+X-Gm-Message-State: AOAM533zLcxbNI62qMWs13maBv/9ElPLEDm2e5KFbSma8HR2siRt8kiB
+        yrWzhbqo3LikmhEZMwW+cx4=
+X-Google-Smtp-Source: ABdhPJzHDKLW+3I7+4RJLxNSa9wmuv9RwAslxZkZOtTWT+Yy4zzFEZhBWAGaZkIDJ2+9jD7wIi4Qdw==
+X-Received: by 2002:ac8:5247:: with SMTP id y7mr689383qtn.205.1602703698179;
+        Wed, 14 Oct 2020 12:28:18 -0700 (PDT)
+Received: from ubuntu.localdomain (ool-45785633.dyn.optonline.net. [69.120.86.51])
+        by smtp.googlemail.com with ESMTPSA id g16sm265387qke.90.2020.10.14.12.28.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 12:28:17 -0700 (PDT)
+From:   Vivek Unune <npcomplete13@gmail.com>
+Cc:     florian.fainelli@broadcom.com,
+        Vivek Unune <npcomplete13@gmail.com>,
         Hauke Mehrtens <hauke@hauke-m.de>,
-        =?iso-8859-2?Q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        "bcm-kernel-feedback-list@broadcom.com" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-snps-arc@lists.infradead.org" 
-        <linux-snps-arc@lists.infradead.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH 18/20] arch: dts: Fix EHCI/OHCI DT nodes name
-Thread-Topic: [PATCH 18/20] arch: dts: Fix EHCI/OHCI DT nodes name
-Thread-Index: AQHWohLONLr1JmaKTE2JNSOSXEmoVqmXcyuAgAADLfw=
-Date:   Wed, 14 Oct 2020 19:12:19 +0000
-Message-ID: <BN8PR12MB33302A8B1549B03CA17A6BDAA1050@BN8PR12MB3330.namprd12.prod.outlook.com>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
-        <20201014101402.18271-19-Sergey.Semin@baikalelectronics.ru>,<DLG7IQ.15UXZI2H6RYC3@crapouillou.net>
-In-Reply-To: <DLG7IQ.15UXZI2H6RYC3@crapouillou.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: crapouillou.net; dkim=none (message not signed)
- header.d=none;crapouillou.net; dmarc=none action=none
- header.from=synopsys.com;
-x-originating-ip: [188.243.7.154]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 097bda4a-75a3-40a7-7068-08d870751289
-x-ms-traffictypediagnostic: BN8PR12MB3027:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN8PR12MB30272E59E915D6BAB6817B91A1050@BN8PR12MB3027.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1728;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ukwa6663jm1N3EoiE1UJar0zVnvMKGx5J68OuAGTqoSnsUJaALS1BctfqNNQPhefsEbHpvCYNH2QJD5Gvdw94tH8oji8hVpUVyVq/85EPiiBAJ/YQdCkN35bQYk+sMcnLPXpwTAxys8JLWH6m1wfSD91UjhvoxMQd7o0l+tjnQO7w96oOizjD+woTWtfS7KJCzIsuKeOgmtO0vhGdhai1sDouzjZpgt8gM5AtVNs+iQxsCRvmvTZbeF5U198PxQQ8qbSXFFQc0TviLs+fmb9IzAG8cPo+3vem0OGbb7YiV/21xKB9NQcmPEfr9kUnO5q
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR12MB3330.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(366004)(396003)(39860400002)(64756008)(8676002)(7416002)(478600001)(71200400001)(2906002)(76116006)(8936002)(7696005)(6506007)(91956017)(7406005)(26005)(4326008)(9686003)(558084003)(186003)(66446008)(66476007)(66556008)(66946007)(110136005)(54906003)(33656002)(86362001)(55016002)(316002)(5660300002)(52536014);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: y5OYozHKwhMxtZU9jB9xK1Io3tnB/qL8nVYnvWKcTR7SLSrg6zbLzEx7VGXeb8lVyp/8FZKTQbtgbFlF79T5bFSpRl/cytp7P6G6lN9LiMHZvYjaI/ZmgPKLl3MIge3HVCFEZkqOBxd1TiScYlRayDvIdFcWev7I85EoNWI1nMi8svDIt5h+6RK74NFNltOXzPI5za4S06+wgzbuPL+UFdUmHYWd58u1LvcQb93ouqC1x9DNoxLXMWVOHcDas+Y3+XotJPcEFcMMC9MGTB2VS4+lkYkk+fR3ffy/lAr0/AYOo3qeCr5Nor+3Z/XqP9lb5ooD19zXId47rEd2fUZYkVV8YbmgyIXGjkUNDJmtm5/44KT0wQX5/QyTz8bGma34SOU6kUZnvfwjcyJ9DPm33qvuet8+m4O7PjkVuBrGXT8IOdyc+BrK4JnItgBfGIfxwG9Hd/DPDy8JSEHLRLdMSb/av79agbT01Z21NSKClA3AFqPvCcrFycO7sEpfqxapZgfVrydKe19IL6G34qSMS/fchvfZB6adVp1MzvlI0TcXVqWkWQ7Lii6z3CN0KZqQqgLT3vLIV+zIo4xRE74ayXYD5mFD8O+bzuzDzTB0quXGLqOIxkqeJVMgZ6sUOiGqWKE0JtDE2PcaHdJLfGGLyg==
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: BCM5301X: Linksys EA9500 add port 5 and port 7
+Date:   Wed, 14 Oct 2020 15:27:27 -0400
+Message-Id: <c51b1d53c9411a4321ddcb1dbcdb0a42945b23c4.1602701516.git.npcomplete13@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1602701516.git.npcomplete13@gmail.com>
+References: <cover.1602701516.git.npcomplete13@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: synopsys.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3330.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 097bda4a-75a3-40a7-7068-08d870751289
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2020 19:12:19.5258
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wMZ+eAPWq5G/hLMTcUL87K0/y4mkdUQBkZw3UOfkrvpHOhGAZIu/7aHHWWdcjMUJrzjMxwBiJ+bHsZf41i4BzA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3027
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,=0A=
-=0A=
->  arch/arc/boot/dts/axs10x_mb.dtsi               | 4 ++--=0A=
->  arch/arc/boot/dts/hsdk.dts                     | 4 ++--=0A=
->  arch/arc/boot/dts/vdk_axs10x_mb.dtsi           | 2 +-=0A=
-=0A=
-For ARC boards=0A=
-=0A=
-Acked-by: Alexey Brodkin <abrodkin@synopsys.com>=
+Add ports 5 and 7 which are connected to gmac cores 1 & 2.
+These will be disabled for now.
+
+Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
+---
+ .../boot/dts/bcm47094-linksys-panamera.dts    | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+index 9fcd215177d7..0ff502d5aa0c 100644
+--- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
++++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+@@ -242,6 +242,30 @@ port@4 {
+ 			label = "wan";
+ 		};
+ 
++		port@5 {
++			reg = <5>;
++			ethernet = <&gmac0>;
++			label = "cpu";
++			status = "disabled";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
++		};
++
++		port@7 {
++			reg = <7>;
++			ethernet = <&gmac1>;
++			label = "cpu";
++			status = "disabled";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
++		};
++
+ 		port@8 {
+ 			reg = <8>;
+ 			ethernet = <&gmac2>;
+-- 
+2.25.1
+
