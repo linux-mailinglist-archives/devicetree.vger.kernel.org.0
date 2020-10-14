@@ -2,65 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA0BF28D798
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 02:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A5CA28D7AE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 02:46:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728028AbgJNAlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 20:41:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54710 "EHLO mail.kernel.org"
+        id S1730641AbgJNAqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 20:46:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57762 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727837AbgJNAly (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 20:41:54 -0400
+        id S1728661AbgJNAql (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 20:46:41 -0400
 Received: from kernel.org (unknown [104.132.1.79])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 87C8021D40;
-        Wed, 14 Oct 2020 00:41:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1CA1A208B3;
+        Wed, 14 Oct 2020 00:46:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602636114;
-        bh=ktlbk/J47pEjprml6nkkSZD4+iNOKh1qZtKuJeWNo64=;
+        s=default; t=1602636401;
+        bh=bHegWhytBbBlLR9BgF+yyPu4sS7bcuWDg/pEYkwLJpM=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Bfo7RQVJRbkrjzVo4gz7VdoH8U27OWZNo1S3Rfq4VRr4jX79Gp9wtnxUTch2Esyz5
-         eIzfpAN7uuKKmBSMiZgcy+6Fv9eZsSxYrhMaCE8J1zOtnoe5qyJ3BNvlOjV0bkLV7O
-         2sc0AnUQ8jMkyZPPEXtxI4uZvnY43EqUe39Yp81k=
+        b=xr58USUJ9omM850KuRI+gCEXQ3GRqp1vWr+UjH6H1yCCUav4ZtLDHJaEaqvOAqmdb
+         FNMnuysLGVD7TpZd6OS9vTS8UZn2mtAnBhLmpAU7KTIZSJXrk1zP4de0IX/Eh8YZlP
+         t5o0ZpX4iAwFxTwtchgVrNOMInKJTKaDHEJJEwkI=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1596009618-25516-3-git-send-email-aisheng.dong@nxp.com>
-References: <1596009618-25516-1-git-send-email-aisheng.dong@nxp.com> <1596009618-25516-3-git-send-email-aisheng.dong@nxp.com>
-Subject: Re: [PATCH v7 02/11] dt-bindings: clock: imx-lpcg: add support to parse clocks from device tree
+In-Reply-To: <20201005225914.315852-2-dmitry.baryshkov@linaro.org>
+References: <20201005225914.315852-1-dmitry.baryshkov@linaro.org> <20201005225914.315852-2-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v1 1/3] dt-bindings: clock: qcom,dispcc: document power domain bindings
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, mturquette@baylibre.com,
-        shawnguo@kernel.org, fabio.estevam@nxp.com, linux-imx@nxp.com,
-        kernel@pengutronix.de, Dong Aisheng <aisheng.dong@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-To:     Dong Aisheng <aisheng.dong@nxp.com>, linux-clk@vger.kernel.org
-Date:   Tue, 13 Oct 2020 17:41:53 -0700
-Message-ID: <160263611343.310579.16763738308745090179@swboyd.mtv.corp.google.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 13 Oct 2020 17:46:39 -0700
+Message-ID: <160263639992.310579.2985110685040776427@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dong Aisheng (2020-07-29 01:00:09)
-> MX8QM and MX8QXP LPCG Clocks are mostly the same except they may reside
-> in different subsystems across CPUs and also vary a bit on the availabili=
-ty.
->=20
-> Same as SCU clock, we want to move the clock definition into device tree
-> which can fully decouple the dependency of Clock ID definition from device
-> tree and make us be able to write a fully generic lpcg clock driver.
->=20
-> And we can also use the existence of clock nodes in device tree to address
-> the device and clock availability differences across different SoCs.
->=20
-> Cc: Sascha Hauer <kernel@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
+Quoting Dmitry Baryshkov (2020-10-05 15:59:12)
+> SM8250 requires special power domain for accessing MMDS_GDSC registers.
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Heh, not sure it's special.
+
+> Add bindings for the MMCX power domain.
+>=20
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/clock/qcom,sdm845-dispcc.yaml    | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.y=
+aml b/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
+> index 4a3be733d042..ff0db55470ac 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
+> @@ -97,5 +108,22 @@ examples:
+>        #clock-cells =3D <1>;
+>        #reset-cells =3D <1>;
+>        #power-domain-cells =3D <1>;
+> +      /* this is a part of sm8250 setup the power domain example */
+> +      power-domains =3D <&rpmhpd SDM845_CX>;
+> +      power-domain-names =3D "mmcx";
+> +      required-opps =3D <&rpmhpd_opp_low_svs>;
+> +    };
+> +    rpmhpd: power-controller {
+
+Do we need this node in the example? I think it isn't required but I
+guess it's OK.
+
+> +      compatible =3D "qcom,sdm845-rpmhpd";
+> +      #power-domain-cells =3D <1>;
+> +      operating-points-v2 =3D <&rpmhpd_opp_table>;
+> +
+> +      rpmhpd_opp_table: opp-table {
+> +        compatible =3D "operating-points-v2";
+> +
+> +        rpmhpd_opp_low_svs: opp3 {
