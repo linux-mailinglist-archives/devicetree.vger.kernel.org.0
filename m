@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE85C28DDC7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:37:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E776C28DDE0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:44:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727997AbgJNJgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 05:36:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42668 "EHLO
+        id S1727826AbgJNJof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 05:44:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726361AbgJNJgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:36:53 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09179C061755
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:36:53 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id f29so2478957ljo.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:36:52 -0700 (PDT)
+        with ESMTP id S1727165AbgJNJoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:44:34 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497DDC061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:44:34 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id b1so2941626lfp.11
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AgJUpeJL7pNpYrMzhgRxfluJZLPcBG484GqTiiuhBbs=;
-        b=Gf/ZthvmpRme7OiTG3JFCoHy07Vnp33A2qrAVTlrlCgmYyMiQvGIGIqaxewRN2k46z
-         6y/vQTQOabTEzacIP1ypJcjQvya/xsXJZTsRuTDc2WR9VxGUcnM9uWtLgTLRbYiEDnwB
-         URTnPechdzySVPPUCcmAf5PYm08d2iBPaHrPuLY7TVrWnz7S8J+QaTzG8I56jW99O2UJ
-         MBrZo9pf30mz3zL1yMtGo1mrYfiEgkKcjin4IZV84D+m+ZQw5PVC4TU1FR7hJmC1oYFp
-         r3oSIUqQQWL7XrIbJNw2rlOy+GOdQIaZqz7Km/bEBaDfmMvh1+2nyyrxO/BnC8xbpMY2
-         ALaw==
+        bh=u+x9J/s88GKzzAtEEy5lsLGaZp5QyJqhlLOkF7vOqHo=;
+        b=VN8N3opFkftndSv32mL2dfkZRFrrEJI4iyCLh7u5BqfcSRd7q/KnZ6Nni9Qd5pUaBV
+         g2QZRGjkUXMwvziAG2NyuNaMkmjRcAgsH0xn6M/ynTtqdHtDdHOFQwKI2bj19/X8Q/F8
+         V0FETougrLA/QlBHK2L5wCJwbzcb250wSsLhXJUosnWAkhLNX7OtmMyJsXxZ9/c4JeR2
+         q61MCjYyAxlCNMHvqqgnio3MQh0T8pImGiMTM93riVCIvaIiwUpOi9+bQ2ZsZUSqbrda
+         1Y1Of3jpw9FLeARBYy+gZlPep7GKHhs8g7XgZ0rGEOGjA9/DPEuQHwki+HGepDH5j+lS
+         x2KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=AgJUpeJL7pNpYrMzhgRxfluJZLPcBG484GqTiiuhBbs=;
-        b=ORzjpAes1NA2YAViuIWcWBi3R5SLuyJVo+NanngFdG8Rqpwv3G9+G1sfkEzrSkLv+o
-         OHW9xbi7hjpR2NysOXaSnquNDkuHeLMpM2+P4HgyGqzKP+d6Vtlvfdjn+8C4BFeAwWqd
-         zge5LVLWYnZge3oEP+c3dDXsQRq4/h0n9rvSGyOLRW5t+baQuK5PUZVyeRYk2miF23AQ
-         lABN5sxQ+TSj48KcBGbeZ1dEFSRGjvoS5n1DH0bP8fLoCqooHsIXMt4v7eveUtHvLMQW
-         Dz5UuZJCZQjMsN9+zMtH4znlXpX0g+djrQdi5eZ5hl+wQBYr7REnhuv5t/hKBUNnj6Aa
-         bTeA==
-X-Gm-Message-State: AOAM532fnTnXlHiuccH/EjWARjOcwOizJG58aPo2FrlpYjRQhPFznUoX
-        r+2OX587CIaEm1tIByQnRZJ+IA==
-X-Google-Smtp-Source: ABdhPJyAOSZov4CPoN126NEQlg6nopJIQBCnBPiTBrs3IFmZ2rfOMBqft4aRHDurkybx81iwENOjvA==
-X-Received: by 2002:a2e:a58a:: with SMTP id m10mr1557154ljp.316.1602668211358;
-        Wed, 14 Oct 2020 02:36:51 -0700 (PDT)
+        bh=u+x9J/s88GKzzAtEEy5lsLGaZp5QyJqhlLOkF7vOqHo=;
+        b=bHglHr0NoA1iGgBpUDWFArQWoNRfmUi8k22nR26BDNFbkf+JlWv6X9CnyOHYXfqiKg
+         LpxhdCgU1p4u/h/navac5f8CzYCqXAfqLMsJbpgGi5nNva9OQuArtt6fzDwvWtoV3Eqv
+         clxs+Xkf5lX49yqLevR/U2OvdpqAhdP3jfC/s46JrFKubAeDV8IilxJnyzoHvgjvkNWh
+         qZjfX5qH15vlm9xXZlAatjFvrxnJ0vQsY1yUkYTd9D22kWEG1tv4PanXki1KKvknq8HN
+         Ytzobow2iWYjbGo0oKdSRM8PAuWAcj0s4/k3KGbcDYuVrRYIQ8xB/vAY5KZgdnb4GB17
+         TvRw==
+X-Gm-Message-State: AOAM532T8uOIA3fZZsi2TVXtXWlURPsV/+clEmd3eHPblLjOOPwVYZsf
+        cjT4R7Jz/DC0iatKNwlgDPab6w==
+X-Google-Smtp-Source: ABdhPJyIO9F8+R8sr0LXYTYFdRfk969bZbzyyF/lg8Iuc/lCHs3/t8j/AQbPM2i8lAz78V+7v9rL0g==
+X-Received: by 2002:a19:f704:: with SMTP id z4mr999048lfe.581.1602668672565;
+        Wed, 14 Oct 2020 02:44:32 -0700 (PDT)
 Received: from [192.168.1.211] ([94.25.229.2])
-        by smtp.gmail.com with ESMTPSA id z22sm943901lfd.23.2020.10.14.02.36.49
+        by smtp.gmail.com with ESMTPSA id l9sm988631ljc.86.2020.10.14.02.44.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Oct 2020 02:36:50 -0700 (PDT)
-Subject: Re: [PATCH v1 1/3] dt-bindings: clock: qcom,dispcc: document power
- domain bindings
+        Wed, 14 Oct 2020 02:44:31 -0700 (PDT)
+Subject: Re: [PATCH v1 2/3] clk: qcom: gdsc: enable external switchable power
+ domain
 To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Jonathan Marek <jonathan@marek.ca>,
@@ -57,18 +57,17 @@ To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
 References: <20201005225914.315852-1-dmitry.baryshkov@linaro.org>
- <20201005225914.315852-2-dmitry.baryshkov@linaro.org>
- <160263639992.310579.2985110685040776427@swboyd.mtv.corp.google.com>
+ <20201005225914.315852-3-dmitry.baryshkov@linaro.org>
+ <160264174883.310579.10321983404701479878@swboyd.mtv.corp.google.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <36c5d7dc-7b31-69d1-6862-4432ee22a2c4@linaro.org>
-Date:   Wed, 14 Oct 2020 12:36:50 +0300
+Message-ID: <153b313c-ff06-c91b-5adc-4cc3c5cd1a6f@linaro.org>
+Date:   Wed, 14 Oct 2020 12:44:31 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.2.2
 MIME-Version: 1.0
-In-Reply-To: <160263639992.310579.2985110685040776427@swboyd.mtv.corp.google.com>
+In-Reply-To: <160264174883.310579.10321983404701479878@swboyd.mtv.corp.google.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -76,50 +75,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2020 03:46, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2020-10-05 15:59:12)
->> SM8250 requires special power domain for accessing MMDS_GDSC registers.
-> 
-> Heh, not sure it's special.
-> 
->> Add bindings for the MMCX power domain.
+On 14/10/2020 05:15, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2020-10-05 15:59:13)
+>> On SM8250 MDSS_GDSC (and respective dispcc clocks) are children of MMCX
+>> power domain. MMCX needs to be enabled to be able to access GDSC
+>> registers and to enable display clocks. Use dev_pm/opp to enable
+>> corresponding power domain.
 >>
 >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
 >> ---
->>   .../bindings/clock/qcom,sdm845-dispcc.yaml    | 28 +++++++++++++++++++
->>   1 file changed, 28 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
->> index 4a3be733d042..ff0db55470ac 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
->> @@ -97,5 +108,22 @@ examples:
->>         #clock-cells = <1>;
->>         #reset-cells = <1>;
->>         #power-domain-cells = <1>;
->> +      /* this is a part of sm8250 setup the power domain example */
->> +      power-domains = <&rpmhpd SDM845_CX>;
->> +      power-domain-names = "mmcx";
->> +      required-opps = <&rpmhpd_opp_low_svs>;
->> +    };
->> +    rpmhpd: power-controller {
 > 
-> Do we need this node in the example? I think it isn't required but I
-> guess it's OK.
+> A general question is why is this done in the gdsc code instead of
+> somewhere generic? It seems that genpds may need to change the
+> performance state of other genpds. I vaguely recall that genpd supports
+> connecting different power domains together so maybe this could all be
+> handled in the genpd layer instead of here? Then a regulator could be
+> put behind a genpd and similarly be connected to the gdsc and turned on
+> before turning on the gdsc?
 
-It is to be able to resolve "power-domains" and "required-opps" 
-properties values.
+Basically because we need not only to enable the genpd, but also to set 
+performance state. This would mean creating a separate regulator driver 
+calling dev_pm_genpd_set_performance_state() from enable/disable paths.
+Does that seem like a better solution to you?
 
->> +      compatible = "qcom,sdm845-rpmhpd";
->> +      #power-domain-cells = <1>;
->> +      operating-points-v2 = <&rpmhpd_opp_table>;
+> 
+>>   drivers/clk/qcom/gdsc.c | 56 ++++++++++++++++++++++++++++++++++++++---
+>>   drivers/clk/qcom/gdsc.h |  5 ++++
+>>   2 files changed, 57 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/clk/qcom/gdsc.h b/drivers/clk/qcom/gdsc.h
+>> index bd537438c793..d58575f8f25f 100644
+>> --- a/drivers/clk/qcom/gdsc.h
+>> +++ b/drivers/clk/qcom/gdsc.h
+>> @@ -57,6 +57,11 @@ struct gdsc {
+>>   
+>>          const char                      *supply;
+>>          struct regulator                *rsupply;
 >> +
->> +      rpmhpd_opp_table: opp-table {
->> +        compatible = "operating-points-v2";
->> +
->> +        rpmhpd_opp_low_svs: opp3 {
+>> +       const char                      *domain;
+>> +       unsigned int                    perf_idx;
+>> +       struct device                   *pd_dev;
+>> +       int                             pd_opp;
+> 
+> Please document these fields.
 
+Will do.
 
 -- 
 With best wishes
