@@ -2,107 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F96728E285
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 16:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6ABD28E292
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 16:55:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730297AbgJNOwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 10:52:04 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39798 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729276AbgJNOwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 10:52:04 -0400
-Received: by mail-ot1-f65.google.com with SMTP id f10so3677954otb.6;
-        Wed, 14 Oct 2020 07:52:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H7EhDwxST9+VQIVrPmCGqIr98KMTxZz8OLqw4mC4ksY=;
-        b=px1eY9ojW3F31Dvh1e4Y/SL64G0QBdg9EQxO8e7bFnJk9KmhEXTK+iG3GF3e3ZBX/x
-         oI2LyNjySCrdW8787dVw8RM3ZsVWYIVzv920knFyUcTQwluXXFvuMxXo2hD1TlTs7Hc/
-         mknYmJU/PatjhfXPD1vk9M+r3+0n9CyVmda9nNLvHNY4jLrxMTHq3dlw+W9WbcIb1y9L
-         MOJrn5Y8D6rmb537Wline/kABnY3X7l5SA7ROKRNRFNyT2oBweBH+FyXnAH61TdsKy+F
-         bDXB1Eo4CEdvmtwFffsYLvjlm5Z8eH6vEwXcXC6RcDNR8JCe6KRXLoWOcW4PYjxpk4R6
-         0IGA==
-X-Gm-Message-State: AOAM532cDiHyS0XY4GyiP2RVePaRVexHp5/NXRBNXTG89/Ad0sAOhXo6
-        WrXFuqDK1P02bZZM1Wl/OQx6vp0GiwA5ukxJWlM=
-X-Google-Smtp-Source: ABdhPJytQ8/100pK0VWl0u3XfP1/UQls0YNqRsQPR+8SOSzC59YaAxwlBA5Fic/E/JzwYaOVzHArsBb9PC3ujKxOG08=
-X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr3728773otc.145.1602687122960;
- Wed, 14 Oct 2020 07:52:02 -0700 (PDT)
+        id S1729683AbgJNOyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 10:54:51 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:19950 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727882AbgJNOyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Oct 2020 10:54:50 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09EEpi7x023902;
+        Wed, 14 Oct 2020 09:54:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=5gpOaifqkyHGSGsd6h7jaAAlzyQmydM3Z2vku9IislI=;
+ b=CYE0Yi8rJr6uMBLKvIu3qBAhGfXDBQuQtdnuGR2zSXR7zLRpCm711jYfnbcJCUhmwaD3
+ INW6bIncywPL3xJExc0wcGZ0KxJt6t/5mGUh+1ci4izXfGBmDoUUuJQfIndRtBAnYWTW
+ utRIbknon7gaNSgFTm4XZS3S9nv7j7hNVunreo8UsqTwprpbglhFFcsD82yzm2jD0cW2
+ 1m2OYEaZ6IIzMLTj2iEQfhFkxigSbOp/q9WApYyUkpBexdVHf72pUsPzgEFWl6u0sL8f
+ +BN2tdmbalFxyX1AvpPIP8tH96KosoTGxuv+fOEI1AruQAQnBtqGJqPfx2FoyMiBzdBo nw== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 343ac1wbwc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 14 Oct 2020 09:54:34 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Wed, 14 Oct
+ 2020 15:54:32 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Wed, 14 Oct 2020 15:54:32 +0100
+Received: from AUSNPC0LSNW1-debian.ad.cirrus.com (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 9D41045;
+        Wed, 14 Oct 2020 14:54:31 +0000 (UTC)
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <nsaenzjulienne@suse.de>
+CC:     <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>
+Subject: [PATCH 0/7] Add dts for Rpi4 + Cirrus Lochnagar and codecs
+Date:   Wed, 14 Oct 2020 15:54:11 +0100
+Message-ID: <20201014145418.31838-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20201013150150.14801-1-fabrizio.castro.jz@renesas.com>
- <20201013150150.14801-5-fabrizio.castro.jz@renesas.com> <CAMuHMdUxCiwjsFRYpVND-FLajaceUf+jWK0ZBR5Rp5xJ+MPDgA@mail.gmail.com>
- <OSAPR01MB274089EA87D5280E83E81C7DC2050@OSAPR01MB2740.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSAPR01MB274089EA87D5280E83E81C7DC2050@OSAPR01MB2740.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 14 Oct 2020 16:51:51 +0200
-Message-ID: <CAMuHMdUPb=Sy1R1pOXCAbDcCiMgWa27tVMvvTWn2rnotanM8cw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] media: dt-bindings: media: renesas,drif: Add
- r8a77965 support
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 lowpriorityscore=0
+ malwarescore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=936 clxscore=1011
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010140108
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+This set of patches provides support for using the Cirrus Logic
+Lochnagar audio development platform plus Cirrus Logic Madera/Arizona
+codecs with the simple-card machine driver and a Raspberry Pi4. The
+ultimate aim is to provide the dts file but some updates are needed to
+the simple-card machine driver.
 
-On Wed, Oct 14, 2020 at 4:35 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > On Tue, Oct 13, 2020 at 5:02 PM Fabrizio Castro
-> > <fabrizio.castro.jz@renesas.com> wrote:
-> > > The r8a77965 (a.k.a. R-Car M3-N) device tree schema is
-> > > compatible with the already documented R-Car Gen3 devices.
-> > >
-> > > Document r8a77965 support within renesas,drif.yaml.
-> > >
-> > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> > > --- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-> > > @@ -53,6 +53,7 @@ properties:
-> > >        - enum:
-> > >          - renesas,r8a7795-drif        # R-Car H3
-> > >          - renesas,r8a7796-drif        # R-Car M3-W
-> > > +        - renesas,r8a77965-drif       # R-Car M3-N
-> > >          - renesas,r8a77990-drif       # R-Car E3
-> > >        - const: renesas,rcar-gen3-drif # Generic R-Car Gen3 compatible device
-> >
-> > I guess you're aware M3-N (and E3) have an extra register?
-> > Probably the driver just relies on its initial value, but it never hurts to be
-> > explicit and initialize it properly.
->
-> Yes, I am aware of the extra register, and that's reflected in the DRIF nodes
-> definition within the SoC specific device trees.
-> I'll tackle initialization and configuration of the extra register at some point,
-> do you think we could use the default value for now?
+Patches are needed to simple-card to enable support for setting the
+component sysclks and plls. The codec sysclks and plls cannot be
+placed under the clock framwork because they are I2C/SPI-connected
+peripherals and access to the registers would cause a nested get
+of the I2C/SPI bus clock. The clock framework does not support this
+and it would result in a deadlock.
 
-Yes, that's fine for me, if it works with the current driver.
+Richard Fitzgerald (7):
+  of: base: Add of_count_phandle_with_fixed_args()
+  ASoC: simple-card: Add plls and sysclks DT schema
+  ASoC: simple-card: Support setting component plls and sysclks
+  ASoC: arizona: Allow codecs to be selected from kernel config
+  ASoC: madera: Allow codecs to be selected from kernel config
+  ARM: dts: Add dts for Raspberry Pi 4 + Cirrus Logic Lochnagar2
+  MAINTAINERS: Add dts for Cirrus Logic Lochnagar on RPi4
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/sound/simple-card.yaml           |   56 +
+ MAINTAINERS                                   |    1 +
+ arch/arm/boot/dts/Makefile                    |    1 +
+ .../dts/bcm2711-rpi4b-cirrus-lochnagar.dts    | 1296 +++++++++++++++++
+ drivers/of/base.c                             |   42 +
+ include/linux/of.h                            |    9 +
+ include/sound/simple_card_utils.h             |   24 +
+ sound/soc/codecs/Kconfig                      |   18 +-
+ sound/soc/generic/simple-card-utils.c         |  184 +++
+ sound/soc/generic/simple-card.c               |   14 +-
+ 10 files changed, 1635 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar.dts
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.20.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
