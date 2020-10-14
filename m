@@ -2,189 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE48428E516
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 19:10:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A39E28E533
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 19:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726320AbgJNRKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 13:10:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56398 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726012AbgJNRKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 13:10:11 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8AD4C061755
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 10:10:10 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id e2so342248wme.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 10:10:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=I0pEDuKxGGGuBmYvVm4TwEpZ23vGsYXeXFdnlUxUTUw=;
-        b=XG+flZeApLSKjELCtEfUK5RLhkkl2AezZuRLW/3HGQqXHI9rfLH//X/riYc2iWGlS4
-         ZdEoupzAN6IKfvxxPOu3fME+Bb/hxrbRCSQLBoT71y4lPQZhB0wdr0jzp3DH3A8ncCon
-         L4higHI9JkFDrd4L6JlUKMafZ25w9RA1pf3zbRRzC4T5Q8Wf/sEmwWskuaQ964q8O7Y4
-         cJ0ulkn3/MbKESdSMRzJOw1wWcXUlx+Ej4lIhFm2t+PoY5Q98gBSh3XKWyUp0w45jUAt
-         I633QBbypN3bg584AFQzgCRRdTTajq3IpO3iQpvF2ZXJceq3VSlnuLaULqEyv6PBd3Vy
-         P0KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=I0pEDuKxGGGuBmYvVm4TwEpZ23vGsYXeXFdnlUxUTUw=;
-        b=ea6qEKWdMUfVwcs+iZobeVzbupL+ltIDzIaTnyxegn715RE14TeK8kDsyN34ftsEVs
-         O7vrp2h27cpVJ7wZtoGwnlTBlePxoEyBQdmLvIS3T0jGRU8MSkIPjPe3SL7wv6MTvmoA
-         aoE9gNsBVFuhxWdkwQpsrZErlZ9IpjXpJxrB2G/Xf+OMykmNydAV3bhb3sBw9hhiOpwG
-         JDWhJqAf1qHj/SUkufM8Vg55GNFCj5d2hTgqpcntJCcyp++0CaLPSKsxYnryzg0hqy8r
-         hPFiW8AbLsn2zL0QA4ZCfFj3sLa8hvxMB0L/l2ghWQPNCdgWtye2bGaSPMc5HK6pKcsd
-         84Ew==
-X-Gm-Message-State: AOAM533TmgDciDjrUbUOKte+lR/gvapUY2x8Y5Fpz74m5TrJjhJGOWcl
-        0f+cvPl+Qqtr4d7FKRtZ3lINvQ==
-X-Google-Smtp-Source: ABdhPJyXOPxJ4gMTARh7uvf1rLbQDsa7rciyJvewLeZvZZGKN3pSdr3HLVGC63ubPZYm4uVL/CS7AQ==
-X-Received: by 2002:a05:600c:1149:: with SMTP id z9mr438655wmz.180.1602695409214;
-        Wed, 14 Oct 2020 10:10:09 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:5400:5b12:4f4c:844b? ([2a01:e34:ed2f:f020:5400:5b12:4f4c:844b])
-        by smtp.googlemail.com with ESMTPSA id q2sm5772845wrw.40.2020.10.14.10.10.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Oct 2020 10:10:08 -0700 (PDT)
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     rjw@rjwysocki.net, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-doc@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, amitk@kernel.org,
-        corbet@lwn.net, Dietmar.Eggemann@arm.com, qperret@google.com,
-        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org
-References: <20201002114426.31277-1-lukasz.luba@arm.com>
- <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
- <765e6603-b614-fb72-64ff-248b42474803@linaro.org>
- <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
- <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
-Date:   Wed, 14 Oct 2020 19:10:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1732035AbgJNRQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 13:16:53 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:49434 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726942AbgJNRQx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 13:16:53 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id BDEBF803073C;
+        Wed, 14 Oct 2020 17:16:46 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id Ys7tOGr55fWZ; Wed, 14 Oct 2020 20:16:46 +0300 (MSK)
+Date:   Wed, 14 Oct 2020 20:16:40 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Wei Xu <xuwei5@hisilicon.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
+Message-ID: <20201014171640.bup52mgaz4jvhtsy@mobilestation>
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
+ <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
+ <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2020 17:24, Lukasz Luba wrote:
-
-[ ... ]
-
-> We have to update the EM doc about allowed abstract scale, which
-> implies EAS, IPA doc update with some information to the community that
-> these components can handle it.
+On Wed, Oct 14, 2020 at 12:33:25PM +0200, Krzysztof Kozlowski wrote:
+> On Wed, 14 Oct 2020 at 12:23, Serge Semin
+> <Sergey.Semin@baikalelectronics.ru> wrote:
+> >
+> > In accordance with the DWC USB3 bindings the corresponding node name is
+> > suppose to comply with Generic USB HCD DT schema, which requires the USB
+> > nodes to have the name acceptable by the regexp: "^usb(@.*)?" . But a lot
+> > of the DWC USB3-compatible nodes defined in the ARM/ARM64 DTS files have
+> > name as "^dwc3@.*" or "^usb[1-3]@.*" or even "^dwusb@.*", which will cause
+> > the dtbs_check procedure failure. Let's fix the nodes naming to be
+> > compatible with the DWC USB3 DT schema to make dtbs_check happy.
+> >
+> > Note we don't change the DWC USB3-compatible nodes names of
+> > arch/arm64/boot/dts/apm/{apm-storm.dtsi,apm-shadowcat.dtsi} since the
+> > in-source comment says that the nodes name need to be preserved as
+> > "^dwusb@.*" for some backward compatibility.
+> >
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> >
+> > ---
+> >
+> > Please, test the patch out to make sure it doesn't brake the dependent DTS
+> > files. I did only a manual grepping of the possible nodes dependencies.
 > 
-> The script will just make developers life easier, but the current
-> documentation does not say anything about abstract scale.
 
-... yes, because there is no consistency across the source of power
-numbers and no tools to ensure DT power numbers consistency, yet.
-
->> In any case, if the DT is specifying real numbers, and SCMI abstract
->> numbers or the opposite, obviously there is a conflict if we are using
->> both.
+> 1. It is you who should compare the decompiled DTS, not us. For example:
+> $ for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64
+> scripts/dtc/dtx_diff ${i} dts-new/${i#dts-old/} ; done
 > 
-> True, DT only allows real numbers (I have Rob's opinion regarding
-> patch 3/3).
+> $ for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64
+> fdtdump ${i} > ${i}.fdt ; crosc64 fdtdump dts-new/${i#dts-old/} >
+> dts-new/${i#dts-old/}.fdt ; diff -ubB ${i}.fdt
+> dts-new/${i#dts-old/}.fdt ; done
+
+So basically you suggest first to compile the old and new dts files, then to
+de-compile them, then diff old and new fdt's, and visually compare the results.
+Personally it isn't that much better than what I did, since each old and new
+dtbs will for sure differ due to the node names change suggested in this patch.
+So it will lead to the visual debugging too, which isn't that effective. But
+your approach is still more demonstrative to make sure that I didn't loose any
+nodes redefinition, since in the occasion the old and new de-compiled nodes will
+differ not only by the node names but with an additional old named node.
+
+So to speak thanks for suggesting it. I'll try it to validate the proposed
+changes.
+
+Two questions:
+1) Any advise of a good inliner/command to compile all dtbs at once? Of course I
+can get all the updated dtsi'es, then find out all the dts'es which include
+them, then directly use dtc to compile the found dts'es... On the other hand I
+can just compile all dts'es, then compare old and new ones. The diff of the
+non-modified dtb'es will be just empty...
+2) What crosc64 is?
+
 > 
-> It's not that there is only SCMI which might use abstract scale. Qcom
-> already has it and other vendors will follow (not exposing real
-> numbers). They would register bogoWatts to EM because they know that EAS
-> can deal with both.
+> 2. Split it per arm architectures (and proper subject prefix - not
+> "arch") and subarchitectures so maintainers can pick it up.
 
-So vendors are using bogoWatts, despite the documentation.
+Why? The changes are simple and can be formatted as a single patch. I've seen
+tons of patches submitted like that, accepted and then merged. What you suggest
+is just much more work, which I don't see quite required.
 
-By updating the documentation saying it supports the abstract values,
-that means every new framework, device with power values, will have to
-comply with that. How is it possible to add a device with power numbers
-if the existing ones are obfuscated ?
-
-With two subsystems using the energy model, evolving independently we
-can see there are conflicts. With more subsystems, that may become a
-source of confusion, especially with different contributors.
-
-I think the energy model should stick to milliwatts and keep the
-documentation unchanged regarding this. And vendors should take the
-responsibility of not sticking to the documentation.
-
->> I suggest to fix the conflict first and provide the features to make the
->> numbers more easy to share (like the script described above and/or the
->> firmware file).
->>
->> Then with the right tools, everything can be documented.
->>
 > 
-> We cannot block one way of registration to EM when the other was used.
-> They might have correct and consistent numbers.
+> 3. The subject title could be more accurate - there is no fix here
+> because there was no errors in the first place. Requirement of DWC
+> node names comes recently, so it is more alignment with dtschema.
+> Otherwise automatic-pickup-stable-bot might want to pick up... and it
+> should not go to stable.
 
-What is the rational of using two firmware power information ?
+Actually it is a fix, because the USB DT nodes should have been named with "usb"
+prefix in the first place. Legacy DWC USB3 bindings didn't define the nodes
+naming, but implied to be "usb"-prefixed by the USB HCD schema. The Qualcomm
+DWC3 schema should have defined the sub-nodes as "dwc3@"-prefixed, which was
+wrong in the first place.
 
-> It's up to the platform developers to choose the path:
-> - go with bogoWatts - if they are not allowed to expose sensitive
->   information, use em_dev_register_perf_domain() in drivers, not DT;
->   make sure everything that is needed works; check the doc, which
->   sub-systems can handle it or needs some tuning (patches 1/3 and 2/3
->   try to help here);
-> - use milliWatts - easier; DT is allowed; help from the community in
->   reviews, possible results comparisons; both EM registration ways
->   might be used;
+Regarding automatic-pickup-stable-bot if it exists I don't think it scans all the
+emails, but most likely the stable@vger.kernel.org list only or the emails
+having the "Fixes:" tag. If I am wrong please give me a link to the bot sources
+or refer to a doc where I can read about the way it works, to take it into
+account in future commits. Just to note I submitted patches which did some fixes,
+had the word "fix" in the subject but weren't selected to be backported to the
+stable kernel.
+
+Anyway I don't really care that much about the subject text using the word "fix"
+or some else. So if you suggest some better alternative, I'd be glad to consider
+it.
+
+-Sergey
+
 > 
-> We cannot force vendors/OEM engineers to store milliWatts in the
-> Energy Model if these values are protected by some NDA. 
-
-If I am able to measure one real power value, (and I'm pretty sure it is
-quite possible), whatever which one, it is possible to deduce all the
-numbers with the linear scale. IMO that is a false debate. Anyway ...
-
-> Your proposed
-> way of providing data into EM from user-space firmware.bin IMHO also
-> falls into the same bucket. That information would be accessible in EM
-> debugfs and they would avoid it.
-
-I think you misunderstood my point.
-
-There is the SCMI and the DT. Because there are two sources where it is
-impossible to know if they are using the same units, we are stuck to
-ensure a consistency for the kernel.
-
-The platform should use:
- - the SCMI only (scaled or real)
- - the DT only (real)
- [ - the firmware file only (scaled or real) ]
-
-
-As it is not possible to know if they are scaled or real, there is no
-choice except making them mutually exclusive.
-
-From my POV, it is not adequate to let SCMI power information co-exists
-with the DT power information if we know they can be with different units.
-
-I've just expressed my opinions:
-
- - vendors take responsibility of putting different units for the EM
-
- - Power numbers should come from the same source
-
-
-Up to Rafael to decide what to do with this documentation update.
-
-Thanks
-  -- Daniel
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+> Best regards,
+> Krzysztof
+> 
+> >  arch/arm/boot/dts/armada-375.dtsi              | 2 +-
+> >  arch/arm/boot/dts/exynos5250.dtsi              | 2 +-
+> >  arch/arm/boot/dts/exynos54xx.dtsi              | 4 ++--
+> >  arch/arm/boot/dts/keystone-k2e.dtsi            | 4 ++--
+> >  arch/arm/boot/dts/keystone.dtsi                | 2 +-
+> >  arch/arm/boot/dts/ls1021a.dtsi                 | 2 +-
+> >  arch/arm/boot/dts/omap5-l4.dtsi                | 2 +-
+> >  arch/arm/boot/dts/stih407-family.dtsi          | 2 +-
+> >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi   | 2 +-
+> >  arch/arm64/boot/dts/exynos/exynos5433.dtsi     | 4 ++--
+> >  arch/arm64/boot/dts/exynos/exynos7.dtsi        | 2 +-
+> >  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 4 ++--
+> >  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 6 +++---
+> >  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 4 ++--
+> >  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 4 ++--
+> >  arch/arm64/boot/dts/hisilicon/hi3660.dtsi      | 2 +-
+> >  arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi   | 4 ++--
+> >  arch/arm64/boot/dts/qcom/ipq8074.dtsi          | 4 ++--
+> >  arch/arm64/boot/dts/qcom/msm8996.dtsi          | 4 ++--
+> >  arch/arm64/boot/dts/qcom/msm8998.dtsi          | 2 +-
+> >  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi       | 2 +-
+> >  arch/arm64/boot/dts/qcom/qcs404.dtsi           | 4 ++--
+> >  arch/arm64/boot/dts/qcom/sc7180.dtsi           | 2 +-
+> >  arch/arm64/boot/dts/qcom/sdm845.dtsi           | 4 ++--
+> >  arch/arm64/boot/dts/qcom/sm8150.dtsi           | 2 +-
+> >  25 files changed, 38 insertions(+), 38 deletions(-)
+> >
