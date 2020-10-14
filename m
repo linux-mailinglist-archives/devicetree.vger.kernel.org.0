@@ -2,98 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D227628DD56
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1205628D872
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 04:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727567AbgJNJX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 05:23:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731193AbgJNJWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:22:40 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5142AC0F26DA
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 19:18:19 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id l16so3376219ilt.13
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 19:18:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=2PIPzHQNECtbqpdZG3AKVSkETjljr6p6GmJMHcMJiQ0=;
-        b=M6NPdd/MA5tw15Ge+1y1d5p67tW7XAILxRrbuShtIuR2XBNW5qJ7t/XuQU74WCcgAB
-         29PrK07+hEPSVnLUL4dP40yDtLGaVrs863SJQ4e58G1jLugIRzmUM1s3afeDTy5Zbr7E
-         a3nWP/MATs5+UWiMuyIArjREJ2WnPhH8h/sm+DldqktMGkcIN9OhWwGswwdKnfhXjJvJ
-         6MyNO5iJN7LH4d2KkmXMKOdLsGdRbgtn0Xm/ANyPT/Sx7vsQjZbhbJLMikVB6AiJCXsw
-         tlq63Ns0OpZbRkgUi15m6gzhnVT8kt1iz+pNfHFCgEXY8/3I2SJVUyQufCfPCah0LX5/
-         Syng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2PIPzHQNECtbqpdZG3AKVSkETjljr6p6GmJMHcMJiQ0=;
-        b=rq9UJtpMZskmI2gPL9GnPu26PyG2uXB9nXiexp4frUrAXi8/XRBj0mSG3ECvH8+kox
-         sqtd8zpkKcxothgkGvfjrTFtC8eXjZtQGzjv2K/fgyv7E84Q4PXFvNVwKlNmu9F4Bi9m
-         saGX728ylIRYrp8nPvVy0HUZS+p9n8mQfAiPZY4b7jxTGlAv8JFTVJuO/BHO1TVyaFBX
-         atq1dR7xbSpyyADnEUlJmYlQdGwpGlLj8PeJNBO4mUE6Av3QWavYx6e3dhRQrVIjllto
-         lKumUV6Ap2v/ZtlV7O0hwuIzb+lbE76lEw9z9ToCW6CnuV5KzOCpnD6hxt5Qz63hQPbY
-         KGhw==
-X-Gm-Message-State: AOAM531j/AzgTKrAgglTbX+tpIeUn2a6CnJK55DMCJY++Jax6UDnnHH4
-        /mr9UL/a75UikLlqEjjF7XLUB9OGa8AyFhBYq8O1yw==
-X-Google-Smtp-Source: ABdhPJwve/28VHUtKsLAA9cVcJAeTTS37qn7VC9IhL4O9CNgm2U00SB3kUOMdn00+jkbsyjgY9ENXj5w1FKg5pLhqws=
-X-Received: by 2002:a92:c04d:: with SMTP id o13mr1989890ilf.218.1602641898266;
- Tue, 13 Oct 2020 19:18:18 -0700 (PDT)
+        id S1727288AbgJNC0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 22:26:52 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:1698 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726120AbgJNC0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Oct 2020 22:26:52 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f8661b00000>; Tue, 13 Oct 2020 19:25:52 -0700
+Received: from [10.19.100.177] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 14 Oct
+ 2020 02:26:46 +0000
+Subject: Re: [PATCH v3 00/15] Tegra XHCI controller ELPG support
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <gregkh@linuxfoundation.org>, <robh@kernel.org>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>,
+        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>
+References: <20200909081041.3190157-1-jckuo@nvidia.com>
+ <20200928125438.GC3065790@ulmo>
+X-Nvconfidentiality: public
+From:   JC Kuo <jckuo@nvidia.com>
+Message-ID: <c38fc162-c4cb-1321-e861-4d92dbfa62ee@nvidia.com>
+Date:   Wed, 14 Oct 2020 10:26:44 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
- <20201008102825.3812-4-ricardo.canuelo@collabora.com> <20201008183818.GB2395464@bogus>
- <20201009054819.di4dlfljadsfs6cw@rcn-XPS-13-9360> <CAL_JsqKGSiHEon=R1vPPWvYVmzW2Ju-RrrVL05EW9OqRCHRSMw@mail.gmail.com>
- <20201013064609.udss7hbdek2of4sw@rcn-XPS-13-9360>
-In-Reply-To: <20201013064609.udss7hbdek2of4sw@rcn-XPS-13-9360>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Wed, 14 Oct 2020 10:18:07 +0800
-Message-ID: <CA+Px+wXwEm+j2AZcaXHtoFUhe9GqaaxMRecQ7X0vu49E2OKH=A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] mfd: google,cros-ec: add missing properties
-To:     =?UTF-8?Q?Ricardo_Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Simon Glass <sjg@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200928125438.GC3065790@ulmo>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1602642352; bh=ZPJkj9lTy0tmAKdms0g6Ssia336rRRZiQeYms/qcGPk=;
+        h=Subject:To:CC:References:X-Nvconfidentiality:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=RkDzxZvpllNv9fRWF18Q6EAW8AK/b3WLu3AU9iKxKvmM7kiqD6BABNUjD21mazF+h
+         t6We8y6ct4dqExW56mAO8q10kZmPUHG1kjhS2dIqEVSkOEFyDM/SFcI8FGuwM0rpwY
+         WVDHhQLN1rAEB3RnFtiT6V9A05pee47WQaCDIajpof+mrsLy/2Vq4RVKUqLlIZ9S7X
+         jz/aO9FLktahJF0S3T9o3TI9aifhBL3GBY2t3PZlr5sw7f8W/q1nsYhrFVf/EHI+NX
+         whkbSa0HEzcUP1I1k7hVHdaQc0uQBG0Z0j72IQ2n+F33GJLvlUWviLB8OEcSdyInPs
+         Cy1eJiTB5dLbg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 2:46 PM Ricardo Ca=C3=B1uelo
-<ricardo.canuelo@collabora.com> wrote:
-> On vie 09-10-2020 08:34:21, Rob Herring wrote:
-> > I would probably go this route. You could add this level if there's
-> > ever more than one codec. However, I'm still not clear what the
-> > address represents for the codec. Is it needed? The address
-> > space/format is defined by the parent node. So is this defined by the
-> > EC? If so, other components don't have an address?
->
-> The address represents the physical base address and length of a shared
-> memory region from the EC. This seems to be the only component in the EC
-> that needs an address AFAICT, so I guess the unit address and the
-> intermediate node are needed to make it compatible with the existing EC
-> binding.
+Yes, it's safe to apply "clk: tegra: Don't enable PLLE HW sequencer at init"
+before the others have applied. Disabling PLLE hardware power sequencer will not
+cause any functionality problem to XUSB/PCIE/SATA. The only thing changed is
+PLLE won't be powered off by hardware when all clients are in low power state,
+i.e., software has to explicitly power off PLLE.
 
-Correct.  The address represents where the EC codec is located.  The
-driver uses the address to find the corresponding shared memory (if
-any, depends on the EC codec's capabilities).
+Thanks for review.
+JC
 
-In practice, there is at most only 1 EC codec per machine.  In theory,
-it can be multiple EC codecs though (multiple microprocessors run EC
-OS for example).
-
-The intermediate layer (i.e. codecs { ... }) breaks current code as
-you already discussed about that in previous threads:
-- of_platform_populate only creates immediate child devices.
-- the codec driver expects its parent is EC node.
+On 9/28/20 8:54 PM, Thierry Reding wrote:
+> On Wed, Sep 09, 2020 at 04:10:26PM +0800, JC Kuo wrote:
+>> Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
+>> state for power saving when all of the connected USB devices are in
+>> suspended state. This patch series includes clk, phy and pmc changes
+>> that are required for properly place controller in ELPG and bring
+>> controller out of ELPG.
+>>
+>> JC Kuo (15):
+>>   clk: tegra: Add PLLE HW power sequencer control
+>>   clk: tegra: Don't enable PLLE HW sequencer at init
+> 
+> Is it safe to apply this second patch before the others have applied?
+> Since we now need to explicitly enable the HW sequencer, it won't be
+> enabled before the corresponding patch does that. So applying patch 2
+> before the others sounds like it would break existing users of the HW
+> sequencer.
+> 
+> Thierry
+> 
