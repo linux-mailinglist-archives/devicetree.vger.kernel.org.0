@@ -2,123 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65C4528E145
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8166128E151
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727624AbgJNN2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 09:28:00 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:38931 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726925AbgJNN2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 09:28:00 -0400
-Received: by mail-ot1-f66.google.com with SMTP id f10so3401313otb.6;
-        Wed, 14 Oct 2020 06:27:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZL5zSCW4abwqO0FHpIH/hdReN6zUDlAhI8F0pVQ1+U0=;
-        b=kXO9eeC5akv8dBqT/XWAq4daeyycPlWK0Nie/VEMjubl7kcRTOKkOM4aXLpF/4U8ke
-         CpRDw/jk1yPBz3U1hA3RWVBhjeU7LWh8bmIOeQ7qtda5VQXXMfEvLborNwXl0yLE3SLq
-         mPLMRFICFXvXS1PqXhT9q19K1LvV5lwI4cgAgBB082qpTbumQvoKZ3likx0WbmjdkEnu
-         UkXL9C/A61NJ9t0QLxBBANL0Z2W/qwxVwW+Ty711bwsvChgynaSO6eTdVCOG/YyjELS6
-         SvwLhylljwxwvbZvFNMCGzaxrvgFUHnXAZCFXiNBWiFvRErWvQAcvozyyqNMwf+DXt/l
-         OL9w==
-X-Gm-Message-State: AOAM531Hnru0L6S2TeFbJEUMPxtaJj1j38wjXcvYITNyUFBH2vFTIMgc
-        bhuDPiFKdytU/G0+7D2OCg==
-X-Google-Smtp-Source: ABdhPJx7vWvJU+mgKZyS7+CbeUNCduplAaoDS6csoJj2fWAGBxKcFikhthRG5g2vB1JTOE0K/Kpwlg==
-X-Received: by 2002:a9d:bd1:: with SMTP id 75mr1500221oth.1.1602682078846;
-        Wed, 14 Oct 2020 06:27:58 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h25sm1165503otj.41.2020.10.14.06.27.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2020 06:27:58 -0700 (PDT)
-Received: (nullmailer pid 1539238 invoked by uid 1000);
-        Wed, 14 Oct 2020 13:27:56 -0000
-Date:   Wed, 14 Oct 2020 08:27:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        devicetree@vger.kernel.org, Roger Quadros <rogerq@ti.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-usb@vger.kernel.org,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-kernel@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-snps-arc@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 04/20] dt-bindings: usb: usb-hcd: Add "tpl-support"
- property
-Message-ID: <20201014132756.GA1538723@bogus>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-5-Sergey.Semin@baikalelectronics.ru>
+        id S1726641AbgJNNaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 09:30:16 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:35847 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728394AbgJNNaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 09:30:16 -0400
+X-UUID: 5762cb86c8f74d258992e45f5ce60326-20201014
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=tckxlqhn5eQcZMpW9b8021KQ2cNKwzjDNMrYHA4GmME=;
+        b=ao36OYAFXVl/HV/IcSTrHQl0y1DgN6NJpQqEg8cV+YuThIhdHL3hwGDQCLu8cC8yNtKBzQe2uF/c/xNwRojELr4aeawfqXW62tX6RaEIZm7/0JpeeoBh8UqSUyKL6kE8Zy5/ojaFlnhU0YgfrYUNhKx0tG5bZnZL9ZokH+XQECI=;
+X-UUID: 5762cb86c8f74d258992e45f5ce60326-20201014
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <crystal.guo@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1257907783; Wed, 14 Oct 2020 21:30:06 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 14 Oct
+ 2020 21:30:04 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 14 Oct 2020 21:30:03 +0800
+Message-ID: <1602682204.14806.53.camel@mhfsdcap03>
+Subject: Re: [v6,1/3] dt-binding: reset-controller: mediatek: add YAML
+ schemas
+From:   Crystal Guo <crystal.guo@mediatek.com>
+To:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+CC:     srv_heupstream <srv_heupstream@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "s-anna@ti.com" <s-anna@ti.com>,
+        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
+        <seiya.wang@mediatek.com>,
+        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
+        <stanley.chu@mediatek.com>,
+        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
+        <Yingjoe.Chen@mediatek.com>,
+        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
+        <fan.chen@mediatek.com>,
+        "Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?=" 
+        <Yong.Liang@mediatek.com>
+Date:   Wed, 14 Oct 2020 21:30:04 +0800
+In-Reply-To: <20200930022159.5559-2-crystal.guo@mediatek.com>
+References: <20200930022159.5559-1-crystal.guo@mediatek.com>
+         <20200930022159.5559-2-crystal.guo@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201014101402.18271-5-Sergey.Semin@baikalelectronics.ru>
+X-TM-SNTS-SMTP: 41791D005C9335D5F39C2B4293C82C0E7193625AFD810F4D058E601C57B8D2622000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 13:13:46 +0300, Serge Semin wrote:
-> The host controller device might be designed to work for the particular
-> products or applications. In that case its DT node is supposed to be
-> equipped with the tpl-support property.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v2:
-> - Grammar fix: "s/it'/its"
-> - Discard '|' from the property description, since we don't need to preserve
->   the text formatting.
-> ---
->  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
-  in "<unicode string>", line 27, column 14
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/usb/usb-hcd.example.dts] Error 1
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/usb-hcd.example.dts'
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/usb/usb-hcd.yaml:27:14: [error] syntax error: mapping values are not allowed here (syntax)
-make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
-make: *** [Makefile:1366: dt_binding_check] Error 2
-
-
-See https://patchwork.ozlabs.org/patch/1382001
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
+SGkgTWFpbnRhaW5lcnMsDQoNCkdlbnRsZSBwaW5nIGZvciB0aGlzIHBhdGNoIHNldC4NCg0KTWFu
+eSB0aGFua3MNCkNyeXN0YWwNCg0KT24gV2VkLCAyMDIwLTA5LTMwIGF0IDEwOjIxICswODAwLCBD
+cnlzdGFsIEd1byB3cm90ZToNCj4gQWRkIGEgWUFNTCBkb2N1bWVudGF0aW9uIGZvciBNZWRpYXRl
+aywgd2hpY2ggdXNlcyB0aSByZXNldC1jb250cm9sbGVyDQo+IGRyaXZlciBkaXJlY3RseS4gVGhl
+IFRJIHJlc2V0IGNvbnRyb2xsZXIgcHJvdmlkZXMgYSBjb21tb24gcmVzZXQNCj4gbWFuYWdlbWVu
+dCwgYW5kIGlzIHN1aXRhYmxlIGZvciBNZWRpYXRlayBTb0NzLg0KPiANCj4gU2lnbmVkLW9mZi1i
+eTogQ3J5c3RhbCBHdW8gPGNyeXN0YWwuZ3VvQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICAuLi4v
+YmluZGluZ3MvcmVzZXQvbWVkaWF0ZWstc3lzY29uLXJlc2V0LnlhbWwgfCA1MSArKysrKysrKysr
+KysrKysrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNTEgaW5zZXJ0aW9ucygrKQ0KPiAgY3JlYXRl
+IG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC9tZWRp
+YXRlay1zeXNjb24tcmVzZXQueWFtbA0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC9tZWRpYXRlay1zeXNjb24tcmVzZXQueWFtbCBiL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC9tZWRpYXRlay1zeXNjb24tcmVz
+ZXQueWFtbA0KPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwMDAwMDAuLjc4
+NzE1NTBjM2M2OQ0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9yZXNldC9tZWRpYXRlay1zeXNjb24tcmVzZXQueWFtbA0KPiBAQCAtMCww
+ICsxLDUxIEBADQo+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9S
+IEJTRC0yLUNsYXVzZSkNCj4gKyVZQU1MIDEuMg0KPiArLS0tDQo+ICskaWQ6IGh0dHA6Ly9kZXZp
+Y2V0cmVlLm9yZy9zY2hlbWFzL3Jlc2V0L21lZGlhdGVrLXN5c2Nvbi1yZXNldC55YW1sIw0KPiAr
+JHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+
+ICsNCj4gK3RpdGxlOiBNZWRpYXRlayBSZXNldCBDb250cm9sbGVyDQo+ICsNCj4gK21haW50YWlu
+ZXJzOg0KPiArICAtIENyeXN0YWwgR3VvIDxjcnlzdGFsLmd1b0BtZWRpYXRlay5jb20+DQo+ICsN
+Cj4gK2Rlc2NyaXB0aW9uOg0KPiArICBUaGUgYmluZGluZ3MgZGVzY3JpYmUgdGhlIHJlc2V0LWNv
+bnRyb2xsZXIgZm9yIE1lZGlhdGVrIFNvQ3MsDQo+ICsgIHdoaWNoIGlzIGJhc2VkIG9uIFRJIHJl
+c2V0IGNvbnRyb2xsZXIuIEZvciBtb3JlIGRldGFpbCwgcGxlYXNlDQo+ICsgIHZpc2l0IERvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC90aS1zeXNjb24tcmVzZXQudHh0Lg0K
+PiArDQo+ICtwcm9wZXJ0aWVzOg0KPiArICBjb21wYXRpYmxlOg0KPiArICAgIGNvbnN0OiBtZWRp
+YXRlayxzeXNjb24tcmVzZXQNCj4gKw0KPiArICAnI3Jlc2V0LWNlbGxzJzoNCj4gKyAgICBjb25z
+dDogMQ0KPiArDQo+ICsgIG1lZGlhdGVrLHJlc2V0LWJpdHM6DQo+ICsgICAgZGVzY3JpcHRpb246
+ID4NCj4gKyAgICAgIENvbnRhaW5zIHRoZSByZXNldCBjb250cm9sIHJlZ2lzdGVyIGluZm9ybWF0
+aW9uLCBwbGVhc2UgcmVmZXIgdG8NCj4gKyAgICAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9yZXNldC90aS1zeXNjb24tcmVzZXQudHh0Lg0KPiArDQo+ICtyZXF1aXJlZDoNCj4g
+KyAgLSBjb21wYXRpYmxlDQo+ICsgIC0gJyNyZXNldC1jZWxscycNCj4gKyAgLSBtZWRpYXRlayxy
+ZXNldC1iaXRzDQo+ICsNCj4gK2FkZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQ0KPiArDQo+ICtl
+eGFtcGxlczoNCj4gKyAgLSB8DQo+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Jlc2V0L3Rp
+LXN5c2Nvbi5oPg0KPiArICAgIGluZnJhY2ZnOiBpbmZyYWNmZ0AxMDAwMTAwMCB7DQo+ICsgICAg
+ICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTkyLWluZnJhY2ZnIiwgInN5c2NvbiIsICJz
+aW1wbGUtbWZkIjsNCj4gKyAgICAgICAgcmVnID0gPDAgMHgxMDAwMTAwMD47DQo+ICsgICAgICAg
+ICNjbG9jay1jZWxscyA9IDwxPjsNCj4gKw0KPiArICAgICAgICBpbmZyYWNmZ19yc3Q6IHJlc2V0
+LWNvbnRyb2xsZXIgew0KPiArICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxzeXNj
+b24tcmVzZXQiOw0KPiArICAgICAgICAgICAgI3Jlc2V0LWNlbGxzID0gPDE+Ow0KPiArICAgICAg
+ICAgICAgbWVkaWF0ZWsscmVzZXQtYml0cyA9IDwNCj4gKyAgICAgICAgICAgICAgIDB4MTQwIDE1
+IDB4MTQ0IDE1IDAgMCAoQVNTRVJUX1NFVCB8IERFQVNTRVJUX1NFVCB8IFNUQVRVU19OT05FKQ0K
+PiArICAgICAgICAgICAgPjsNCj4gKyAgICAgICAgfTsNCj4gKyAgICB9Ow0KDQo=
 
