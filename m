@@ -2,123 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BBE328E553
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 19:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDD6D28E560
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 19:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732070AbgJNR1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 13:27:17 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:49508 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732068AbgJNR1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 13:27:16 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 68971803017E;
-        Wed, 14 Oct 2020 17:27:13 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id PkbvMsci3JDb; Wed, 14 Oct 2020 20:27:12 +0300 (MSK)
-Date:   Wed, 14 Oct 2020 20:27:10 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        <devicetree@vger.kernel.org>, Roger Quadros <rogerq@ti.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        <linux-mips@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <linux-usb@vger.kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        <linux-kernel@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        <linuxppc-dev@lists.ozlabs.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-snps-arc@lists.infradead.org>,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 04/20] dt-bindings: usb: usb-hcd: Add "tpl-support"
- property
-Message-ID: <20201014172710.iay3lvb37saeksaj@mobilestation>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-5-Sergey.Semin@baikalelectronics.ru>
- <20201014132756.GA1538723@bogus>
+        id S1731039AbgJNRaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 13:30:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727591AbgJNRaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 13:30:14 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3255FC061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 10:30:14 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id d15so569003ybl.10
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 10:30:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=a1/6B+ExNOLwgHkYd/gzHX5f5j+4YiWZyKHmyXxDUj8=;
+        b=bwAPSOwC22OH911dd3OisC2/Hvt/5qIPNsp88vJ1KjQXGMq/HVkn2c0Vw5uPjr+/ev
+         uCMef1wuAtuM35lViNYCJdKNHm22MfB+SkiGhgCh+61xjy8UjfWnm90lrIJTxcLqz09A
+         rykWA+Ci/aFYw1en70dLT+ftggFXmOcwTQqv2ppwNBrjrELvDG+3XLQ2KVrjOBDmk40i
+         lF0ucEusyIApuevLPSUaXmGZRmTteaRWqtUCn8wf9w2kVg7J2YpQDa2TU77T1i8rvlKW
+         YOy6MTg+ApFlgYHuU1zXzXSVtsXXvez5QvyOZTAOkTn0N1UU0itA+s5S5PSN86eFS/vS
+         Y02w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=a1/6B+ExNOLwgHkYd/gzHX5f5j+4YiWZyKHmyXxDUj8=;
+        b=BAGXKaWT/bimDANr/TJFTICuRKIxy+d9OTF7DH1vHta5lG4IJDNLeBej3ITVpSph7+
+         kBsAf/UVjPzr25rVIUXPISwM5KYLzVMVGH6Z2e9LFgE4Jqw67GmH7s7PBw1Yg/WdUdoS
+         CIpR6C659xsoKfeKBV9LBZU3lGWWhwOqMh1iPdymbJPI23NPgQ8m0bk03Nhxlz9To1XS
+         h7KgtPS+DE0DiAyo69OuK1wfKwODCq6dwFjcmjU0JD5UF6Rer3v13IQ6JclK6NyoV/Og
+         OuYU40PMws9x4t33uWrMB6veRK1IKVPGic3n69ios2BRTMW0OWak1EDg9B/5Lmsei5JL
+         nnEA==
+X-Gm-Message-State: AOAM533jCTDgYOe45n1Hg+2w5dKDHQD9uQ14Q6VTTaaKjkDhwNLPlDV4
+        kXZnr1YVWEBh4uus3jQSv6UpGoDAyzZu1noZeambkw==
+X-Google-Smtp-Source: ABdhPJySwERIE8BCo2AspT1JClHe8uDyPag/q5spkL9SIYg81C45VzibA+lnYltI+d6N0mcbx0foZRdRWa6P+J+fs7A=
+X-Received: by 2002:a25:244c:: with SMTP id k73mr742738ybk.96.1602696612942;
+ Wed, 14 Oct 2020 10:30:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201014132756.GA1538723@bogus>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+References: <20201014191235.7f71fcb4@xhacker.debian>
+In-Reply-To: <20201014191235.7f71fcb4@xhacker.debian>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 14 Oct 2020 10:29:36 -0700
+Message-ID: <CAGETcx9PiX==mLxB9PO8Myyk6u2vhPVwTMsA5NkD-ywH5xhusw@mail.gmail.com>
+Subject: Re: fw_devlink on will break all snps,dw-apb-gpio users
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 08:27:56AM -0500, Rob Herring wrote:
-> On Wed, 14 Oct 2020 13:13:46 +0300, Serge Semin wrote:
-> > The host controller device might be designed to work for the particular
-> > products or applications. In that case its DT node is supposed to be
-> > equipped with the tpl-support property.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Changelog v2:
-> > - Grammar fix: "s/it'/its"
-> > - Discard '|' from the property description, since we don't need to preserve
-> >   the text formatting.
-> > ---
-> >  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> Traceback (most recent call last):
->   File "/usr/local/bin/dt-extract-example", line 45, in <module>
->     binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
->     return constructor.get_single_data()
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
->     node = self.composer.get_single_node()
->   File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
->   File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
->   File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
->   File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
->   File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-> ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
->   in "<unicode string>", line 27, column 14
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/usb/usb-hcd.example.dts] Error 1
-> make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/usb-hcd.example.dts'
-> make[1]: *** Waiting for unfinished jobs....
-> ./Documentation/devicetree/bindings/usb/usb-hcd.yaml:27:14: [error] syntax error: mapping values are not allowed here (syntax)
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
-> make: *** [Makefile:1366: dt_binding_check] Error 2
-> 
-> 
-> See https://patchwork.ozlabs.org/patch/1382001
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure dt-schema is up to date:
-> 
-> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-> 
-> Please check and re-submit.
+On Wed, Oct 14, 2020 at 4:12 AM Jisheng Zhang
+<Jisheng.Zhang@synaptics.com> wrote:
+>
+> Hi,
+>
+> If set fw_devlink as on, any consumers of dw apb gpio won't probe.
+>
+> The related dts looks like:
+>
+> gpio0: gpio@2400 {
+>        compatible = "snps,dw-apb-gpio";
+>        #address-cells = <1>;
+>        #size-cells = <0>;
+>
+>        porta: gpio-port@0 {
+>               compatible = "snps,dw-apb-gpio-port";
+>               gpio-controller;
+>               #gpio-cells = <2>;
+>               ngpios = <32>;
+>               reg = <0>;
+>        };
+> };
+>
+> device_foo {
+>         status = "okay"
+>         ...;
+>         reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
+> };
+>
+> If I change the reset-gpio property to use another kind of gpio phandle,
+> e.g gpio expander, then device_foo can be probed successfully.
+>
+> The gpio expander dt node looks like:
+>
+>         expander3: gpio@44 {
+>                 compatible = "fcs,fxl6408";
+>                 pinctrl-names = "default";
+>                 pinctrl-0 = <&expander3_pmux>;
+>                 reg = <0x44>;
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>                 interrupt-parent = <&portb>;
+>                 interrupts = <23 IRQ_TYPE_NONE>;
+>                 interrupt-controller;
+>                 #interrupt-cells = <2>;
+>         };
+>
+> The common pattern looks like the devlink can't cope with suppliers from
+> child dt node.
 
-Hm, that's weird. Of course I did the dt_binding_check before submission, but
-even after the dt-schema repo update I failed to see the error:
+fw_devlink doesn't have any problem dealing with child devices being
+suppliers. The problem with your case is that the
+drivers/gpio/gpio-dwapb.c driver directly parses the child nodes and
+never creates struct devices for them. If you have a node with
+compatible string, fw_devlink expects you to create and probe a struct
+device for it. So change your driver to add the child devices as
+devices instead of just parsing the node directly and doing stuff with
+it.
 
-$ make -j8 ARCH=mips CROSS_COMPILE=mipsel-baikal-linux- dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/usb-hcd.yaml
-  CHKDT   Documentation/devicetree/bindings/usb/usb-hcd.yaml
-  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.yaml
-  DTC     Documentation/devicetree/bindings/usb/usb-hcd.example.dt.yaml
-  CHECK   Documentation/devicetree/bindings/usb/usb-hcd.example.dt.yaml
+Either that, or stop putting "compatible" string in a node if you
+don't plan to actually treat it as a device -- but that's too late for
+this driver (it needs to be backward compatible). So change the driver
+to add of_platform_populate() and write a driver that probes
+"snps,dw-apb-gpio-port".
 
-Rob, any idea why has the bot got mad at me?
-
--Sergey
-
-> 
+-Saravana
