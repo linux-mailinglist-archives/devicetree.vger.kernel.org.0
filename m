@@ -2,118 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CCF528E1AC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:50:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5994A28E1B4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729027AbgJNNuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 09:50:22 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41202 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726680AbgJNNuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 09:50:21 -0400
-Received: by mail-oi1-f195.google.com with SMTP id q136so3267447oic.8;
-        Wed, 14 Oct 2020 06:50:21 -0700 (PDT)
+        id S1729763AbgJNNvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 09:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726119AbgJNNvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 09:51:35 -0400
+Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF0DC061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 06:51:34 -0700 (PDT)
+Received: by mail-vk1-xa44.google.com with SMTP id y10so762473vkl.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 06:51:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mzp0uOZxXIMEmqgMQM3rOPvqT0bfptiQ8aXw/0OajwY=;
+        b=FGMxXMcQ0fjPjm1NdHS2BrYWsaDp4MrMRsFJoVrZbqnME3EkBT2AMgXYXzHOfhwBKt
+         +9vHfHlxbgATM2OCJ/GfHuM2abN5A0cQN9Jl8j9/Kuq7YW1nqmfhh2CZpbu02TbKF+Yt
+         zxUXw7yuVqMUnC30hkzguLE0NxbAvMup2Wq+g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=T+lXWYZNK3Q/86DTyObhFOK72+nQRALeWr13HjYTpkA=;
-        b=BUXkctr/cJA0sCd2qSPqBRJOSYhxRU5OKyr8UlMbAgTlXsGZJfEDNBCo6HaJAmVlyC
-         3ssELGWk9iDW8aj2UIFagrn/0NqcVpYIiFR4c68YmZ4Orwl6fgt7YEI8qVcoMs1yAigz
-         kQzuxYW3/B4SjqEdKkgwi5mnWGnkJXkZwThN0pVH+Xjpvn7aK9iGa80SGyjTzEH4g2dw
-         /KHo5UcSzvZnSO98fuh8oDPMep7DBwWzGl0c6Tz/EDyb8fqUB3MLCBVcg6IbrvYpsk3l
-         vApGAc7l0fCb2HsgIJ5qhImJH69DZwKN/xmY6L985bYWyvuZGeKmLu8un8V2j20dtNWf
-         tosg==
-X-Gm-Message-State: AOAM531qYP8Dfm4uejRmO7mSklg17BNV5EUfh7lSUfdoADbg2v9F+qZW
-        BFxe/Yfld6dzi8BU0o2/AA==
-X-Google-Smtp-Source: ABdhPJwBwzjfoCwN+5C7fXVadoxI98n+WgVzrNbDfrKV3BDTP85OLoUwNnnp9bI2euXzw7/77YIU8Q==
-X-Received: by 2002:aca:54c2:: with SMTP id i185mr2099742oib.169.1602683420675;
-        Wed, 14 Oct 2020 06:50:20 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h5sm1211010otb.11.2020.10.14.06.50.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2020 06:50:19 -0700 (PDT)
-Received: (nullmailer pid 1576100 invoked by uid 1000);
-        Wed, 14 Oct 2020 13:50:19 -0000
-Date:   Wed, 14 Oct 2020 08:50:19 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Dan Murphy <dmurphy@ti.com>, Pavel Machek <pavel@ucw.cz>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 6/6] dt-bindings: misc: correct the property name
- cmd-gpios to cmd-gpio
-Message-ID: <20201014135019.GA1563910@bogus>
-References: <20201013160845.1772-1-thunder.leizhen@huawei.com>
- <20201013160845.1772-7-thunder.leizhen@huawei.com>
- <bda5f620-7140-51fb-fadd-6ebd3c0db935@ti.com>
- <4f5f9b55-9fad-9318-82d4-6b258643738b@huawei.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mzp0uOZxXIMEmqgMQM3rOPvqT0bfptiQ8aXw/0OajwY=;
+        b=Ygnsq4BIyK1/TdwjO9TKpwr9+50UnXUDSQFcoQgcll3qjSJWe1xJ45k5fEegZaLMUb
+         YO3xhZf7qkDyWXz5pORqwr2J9XwvGW1OAYEYyE/5h4oqCPkTiI/kNEnEkGoRANWL7AlL
+         0vf9DfC3lPHiIaFNZOuWuGkjb+37CFCZktDiozAZ+a757Cgy63QP1h+L8NlT4hmMsUcX
+         vApc3AP6QuFk526UWy/1RQgMyYQhLiRAv56CAzJP3JxdhOwX/0LknddRcwkdJ+5khOTn
+         W8EhWU5vg6k7RxfjfIcGApAmfexE2A0WkPJfyICuHFEAZYAab7iZ0epCJnZY3x18Ym9P
+         HuRA==
+X-Gm-Message-State: AOAM533Mlw3lvTP6th0OjxbhbbMqeSit+zTRGBvy1PXAwaFf8VRtIxbC
+        Vx2BFGu+r/2T0U3e16wTZKPiJETtHmncog==
+X-Google-Smtp-Source: ABdhPJw2zOD/GOeyMfyXJwUduW+NmIPB/8enZ67BTpnDvCYgU8/NRkjZC2qf3wKv9Lp2ItQajaobVA==
+X-Received: by 2002:a1f:b24d:: with SMTP id b74mr3323792vkf.2.1602683492333;
+        Wed, 14 Oct 2020 06:51:32 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id t197sm973751vst.16.2020.10.14.06.51.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Oct 2020 06:51:31 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id r1so2085997vsi.12
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 06:51:31 -0700 (PDT)
+X-Received: by 2002:a67:e3b9:: with SMTP id j25mr3194594vsm.37.1602683490772;
+ Wed, 14 Oct 2020 06:51:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4f5f9b55-9fad-9318-82d4-6b258643738b@huawei.com>
+References: <20201013080103.410133-1-amstan@chromium.org> <20201013010056.v2.3.Ie4d84af5a85e8dcb8f575845518fa39f324a827d@changeid>
+ <CAD=FV=W4fv_AdS7G2FFe2Kan3YYJ4D0MVJD90aJMrgCja5N4vg@mail.gmail.com> <20201014113313.y5uzugw5lpcbo46p@holly.lan>
+In-Reply-To: <20201014113313.y5uzugw5lpcbo46p@holly.lan>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 14 Oct 2020 06:51:19 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WGm4sc_At+7YPFbZ4YPY7rKfTLDVUMKt2MvCLgt7vF1Q@mail.gmail.com>
+Message-ID: <CAD=FV=WGm4sc_At+7YPFbZ4YPY7rKfTLDVUMKt2MvCLgt7vF1Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: trogdor: Add brightness-levels
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     Alexandru Stan <amstan@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 09:29:26AM +0800, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2020/10/14 1:32, Dan Murphy wrote:
-> > Zhen
-> > 
-> > On 10/13/20 11:08 AM, Zhen Lei wrote:
-> >> The property name used in arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts is
-> >> cmd-gpio.
-> >>
-> >> arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:235:
-> >> cmd-gpio = <&gpio 155 GPIO_ACTIVE_HIGH>;
-> >>
-> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> >> ---
-> >>   Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml | 6 +++---
-> >>   1 file changed, 3 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-> >> index b3c45c046ba5e37..c7a06a9650db2ed 100644
-> >> --- a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-> >> +++ b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-> >> @@ -24,7 +24,7 @@ properties:
-> >>     compatible:
-> >>       const: olpc,xo1.75-ec
-> >>   -  cmd-gpios:
-> >> +  cmd-gpio:
-> > 
-> > Preference is gpios not gpio. But Rob H accept or reject
-> 
-> Look at the search result below. It seems that the driver have not been merged into mainline.
+Hi,
 
-Yes, in drivers/platform/olpc/olpc-xo175-ec.c.
+On Wed, Oct 14, 2020 at 4:33 AM Daniel Thompson
+<daniel.thompson@linaro.org> wrote:
+>
+> On Tue, Oct 13, 2020 at 09:28:38AM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Tue, Oct 13, 2020 at 1:01 AM Alexandru Stan <amstan@chromium.org> wrote:
+> > >
+> > > Now that we have better interpolation for the backlight
+> > > ("backlight: pwm_bl: Fix interpolation"), we can now add the curve to
+> > > the trogdor boards, being careful to crop the low end.
+> >
+> > Just to make it clear, the patch this depends on hasn't landed yet.
+> > Presumably it will land in the v5.10 timeframe?  That means that
+> > without extra coordination this patch can target v5.11.
+>
+> You're talking about patch 1 from this set? Despite the title I view
+> the patch as changing policy (albeit one that does also fix some annoying
+> quantization errors at the same time) so it's not necessarily a
+> candidate for merging outside the merge window (I've not checked with
+> Lee but I think it likely the shutter is already down for features).
 
-Your mistake is the gpiod api takes just 'cmd' as the GPIO core handles 
-both forms.
+Ugh, I'm off by one.  :(  Right.  New features prepared for v5.10
+should already have been baking in linuxnext and merge requests have
+already started flowing towards Linus.  After v5.10-rc1 then it'd just
+fixes and this doesn't really qualify.  So the timing dictates that
+patch #1 will land in v5.11, not v5.10.
 
-> But the property name is really used as cmd-gpio at mmp2-olpc-xo-1-75.dts:235, I don't think
-> the mmp2-olpc-xo-1-75.dts can make a mistake. Otherwise, the driver will not work properly.
-> Meanwhile, Both names cmd-gpios and cmd-gpio seem to be in use. But I prefer cmd-gpio, after
-> all, only one gpio is assigned now. The motorola,cmd-gpios add "s" because it contains 3 gpio.
 
-The preference is it is always '-gpios' just like it's always 
-'interrupts' or 'clocks'.
+> Moreover I'm not clear why there a dependency here that would stop the
+> changes landing in different trees.
 
-However, whether to change this is really up to the OLPC folks. Given 
-the driver has always supported both forms, it should be okay to change 
-the dts. Though there could be other users besides the kernel.
+I haven't tried Alexandru's device tree patch without the associated
+code changes, but I guess I just assumed that it would make a really
+ugly (non)ideal backlight curve and we'd be better off with what we
+currently have (AKA no curve specified at all).
 
-Rob
+Hrm, thinking about it, I guess the worst case is a slightly non-ideal
+backlight curve and it would be all good in the final v5.11 which
+would have the device tree and code changes, so you're right that both
+the code and device tree could target v5.11 without anything too
+bad...
+
+
+> Daniel.
+>
+>
+> > > Signed-off-by: Alexandru Stan <amstan@chromium.org>
+> > > ---
+> > >
+> > >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > index bf875589d364..ccdabc6c4994 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > @@ -179,6 +179,15 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
+> > >         backlight: backlight {
+> > >                 compatible = "pwm-backlight";
+> > >
+> > > +               /* The panels don't seem to like anything below ~ 5% */
+> > > +               brightness-levels = <
+> > > +                       196 256 324 400 484 576 676 784 900 1024 1156 1296
+> > > +                       1444 1600 1764 1936 2116 2304 2500 2704 2916 3136
+> > > +                       3364 3600 3844 4096
+> > > +               >;
+> > > +               num-interpolated-steps = <64>;
+> > > +               default-brightness-level = <951>;
+> >
+> > I haven't done lots of digging here, but this matches what Alexandru
+> > and Matthias agreed upon for the downstream tree and seems sane.
+> > Thus:
+> >
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
