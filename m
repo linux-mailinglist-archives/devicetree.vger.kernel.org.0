@@ -2,112 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F9ED28E8A2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 00:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4978828EA84
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 03:54:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726897AbgJNWEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 18:04:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47290 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725899AbgJNWEn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 18:04:43 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5C31A2224E;
-        Wed, 14 Oct 2020 22:04:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602713082;
-        bh=2zxpdSUShETO8tOrEebuH3FEpgqr1/cYJUaqMy6YzLI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PL3xl9TEA4q0/1MEIx1Ikx+tz3HGIsT86wGyFex+TmWPGfJIfVtla5dKIbE2f9pjP
-         biko9X5iDzNpabXOngSdhYPACa4jIGmnH2CVnSWaF3KOAUAQQdusZAqfEUNaUKlK2R
-         HLso/M5B0NBXKRByqcy5R7syyu4y/9z9mgu6wzlU=
-Received: by mail-oi1-f180.google.com with SMTP id w141so874517oia.2;
-        Wed, 14 Oct 2020 15:04:42 -0700 (PDT)
-X-Gm-Message-State: AOAM531yNYGa93rH/iOjbzDNhpdBsXqu8yy+P9w/CpTFgAMl7VscSMTI
-        6wRU8mFYjEKYL8act2/DMyl/orNKk7oWZVhgqw==
-X-Google-Smtp-Source: ABdhPJzXFxZwWyGnc9TNmrtU0RSpAPz5wj+JC9I4DklEciLqy/06NwQfoIR1rLErg1OAmFLR4vmaArWnDM+vbUZxLsc=
-X-Received: by 2002:a05:6808:10e:: with SMTP id b14mr190700oie.152.1602713081587;
- Wed, 14 Oct 2020 15:04:41 -0700 (PDT)
+        id S1732426AbgJOByi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 21:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732405AbgJOByh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 21:54:37 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944F8C0613BE
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 15:19:24 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id n15so1133913otl.8
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 15:19:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=RRjGeO/tlzjrZ9J3RrPGuGS/1yOeW5L71HWGM1q9PqM=;
+        b=mv4K9pQTVn31rCM+RtELHJJEN9cJcDk1Vd6rueXFN+ur+DaBM9Qq6TK1m1WezBf4hr
+         MQc4sM/fZNpoQKwJNk0jefV/29a2Gbpvzk8lFhkPydaWTLr63a2DTl1r3yhg6YPa/3X7
+         GMmiNAEf3/5wkoQNpNIufrrELvJm1hzUZ4d5PU3Jto2lwEFOoxAzKXsFath4PAacm8Rk
+         ZlO1sQURY4EWIvlOqPlPAW3Y0R6KtQ9uEyAF0kwX1a/HsEDfF9f3sScPa4odkSIEPkkR
+         oQt72Sd4vg9XkFEeqhqZrGx1AchS1N4vkcJYy7b4nnFinyY/IYoOdPvA8MVmt/JKcj4Z
+         llKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RRjGeO/tlzjrZ9J3RrPGuGS/1yOeW5L71HWGM1q9PqM=;
+        b=ZBMfEfdxDRAoDuO/9FFEpIsjYKBMInjwEcxQTs4cbF0ErimzJsiNeeFK40mZ4VTYuD
+         ZVcCsrD974LczOWjEdwPTRjkYR3AIBzi/Lkp7EI7YbbyXv8+/1FSH2javRlFAj/zW96C
+         i3ZKTrCrAgm4/uxZpbGEwOLJjllkuDXeD7+sh8vqRm88y4fYSccIhfyVRw1GFJcUyw4m
+         TmbAqytj88F2eg1iTkJDk3FVMcoCTFbY6UCr0zKp4cUHptVyJ5dvugQIl9AtR66USPsM
+         HL2eGbQQBTZ8FONDfmF7dizZJHvvTmRY5Rqrz7j20xQr9o4Q9BTnQ2IRS0TjR0X7GcS7
+         /5iA==
+X-Gm-Message-State: AOAM5332xld7UCOVacXDM/svREzC+LeB9eUowOTXlgOqtFevxzjW92ws
+        VZ5ERyEEX9u05xmFzaW/t4cSnw==
+X-Google-Smtp-Source: ABdhPJxDI9ig5Teru80krEOu8rMTShtx9klUW2MoC+kc1i2hN5KpLmX7EJYBnDsiZFyWnkmRIXuaHQ==
+X-Received: by 2002:a9d:6a55:: with SMTP id h21mr607071otn.297.1602713963840;
+        Wed, 14 Oct 2020 15:19:23 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id q81sm337035oia.46.2020.10.14.15.19.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 15:19:23 -0700 (PDT)
+Date:   Wed, 14 Oct 2020 17:14:40 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     kholk11@gmail.com
+Cc:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 8/8] iommu/arm-smmu-qcom: Add stream_mapping_reset detail
+ to QCOM SMMUv2
+Message-ID: <20201014221440.GA299663@builder.lan>
+References: <20200926130004.13528-1-kholk11@gmail.com>
+ <20200926130004.13528-9-kholk11@gmail.com>
 MIME-Version: 1.0
-References: <20201014191211.27029-1-nsaenzjulienne@suse.de> <20201014191211.27029-5-nsaenzjulienne@suse.de>
-In-Reply-To: <20201014191211.27029-5-nsaenzjulienne@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 14 Oct 2020 17:04:30 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLC5vAnPjCrr4H3ik_Gh_7vW6+uzyrnjd8WnDxtwypgyQ@mail.gmail.com>
-Message-ID: <CAL_JsqLC5vAnPjCrr4H3ik_Gh_7vW6+uzyrnjd8WnDxtwypgyQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/8] of: unittest: Add test for of_dma_get_max_cpu_address()
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200926130004.13528-9-kholk11@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 2:12 PM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> Introduce a test for of_dma_get_max_cup_address(), it uses the same DT
-> data as the rest of dma-ranges unit tests.
->
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+On Sat 26 Sep 08:00 CDT 2020, kholk11@gmail.com wrote:
+
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> 
+> On some Qualcomm SoCs with certain hypervisor configurations,
+> some context banks are hyp-protected and cannot be disabled,
+> nor the relative S2CRs can be set as bypass, or a hyp-fault
+> will be triggered and the system will hang.
+> 
+> This is seen on at least Qualcomm SDM630, SDM636 and SDM660.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > ---
->  drivers/of/unittest.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 06cc988faf78..2cbf2a585c9f 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -869,6 +869,25 @@ static void __init of_unittest_changeset(void)
->  #endif
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> index b18e70bddf29..364908cc2adf 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> @@ -85,6 +85,18 @@ static int qcom_smmuv2_cfg_probe(struct arm_smmu_device *smmu)
+>  	return 0;
 >  }
->
-> +static void __init of_unittest_dma_get_max_cpu_address(void)
+>  
+> +static void qcom_smmuv2_stream_mapping_reset(struct arm_smmu_device *smmu)
 > +{
-> +#ifdef CONFIG_HAS_DMA
+> +	/*
+> +	 * Broken firmware quirk:
+> +	 * On some Qualcomm SoCs with certain hypervisor configurations,
+> +	 * some context banks are hyp-protected and cannot be disabled,
 
-Can't the unittest run without this? I run the unittests under UML.
+Wouldn't you run into the same problem when init_domain_context() later
+comes along and "accidentally" pick one of these context banks?
 
-> +       struct device_node *np;
-> +       phys_addr_t cpu_addr;
-> +
-> +       np = of_find_node_by_path("/testcase-data/address-tests");
-> +       if (!np) {
-> +               pr_err("missing testcase data\n");
-> +               return;
-> +       }
-> +
-> +       cpu_addr = of_dma_get_max_cpu_address(np);
-> +       unittest(cpu_addr == 0x50000000ULL,
-> +                "of_dma_get_max_cpu_address: wrong CPU addr %pad (expecting %llx)\n",
-> +                &cpu_addr, 0x50000000ULL);
-> +#endif
+Do we have any way of knowing which banks this is, so we can mark them
+as busy?
+
+> +	 * nor the relative S2CRs can be set as bypass, or a hyp-fault
+
+On platforms such as SDM845, SM8150, SM8250 etc, writing S2CR of type
+BYPASS is trapped by the hypervisor and FAULT is actually written to the
+hardware - resulting in a system reset when the associated hardware
+tries to perform a memory access.
+
+
+Is it the actual S2CR write that causes the problem you're seeing or the
+fact that it happens to be that you shoot down the display stream as
+soon as you touch these registers?
+
+Regards,
+Bjorn
+
+> +	 * will be triggered and the system will hang.
+> +	 */
+> +	return;
 > +}
 > +
->  static void __init of_unittest_dma_ranges_one(const char *path,
->                 u64 expect_dma_addr, u64 expect_paddr)
+>  static void qcom_smmuv2_test_smr_masks(struct arm_smmu_device *smmu)
 >  {
-> @@ -3266,6 +3285,7 @@ static int __init of_unittest(void)
->         of_unittest_changeset();
->         of_unittest_parse_interrupts();
->         of_unittest_parse_interrupts_extended();
-> +       of_unittest_dma_get_max_cpu_address();
->         of_unittest_parse_dma_ranges();
->         of_unittest_pci_dma_ranges();
->         of_unittest_match_node();
-> --
+>  	/*
+> @@ -99,6 +111,7 @@ static void qcom_smmuv2_test_smr_masks(struct arm_smmu_device *smmu)
+>  
+>  static const struct arm_smmu_impl qcom_smmuv2_impl = {
+>  	.cfg_probe = qcom_smmuv2_cfg_probe,
+> +	.stream_mapping_reset = qcom_smmuv2_stream_mapping_reset,
+>  	.test_smr_masks = qcom_smmuv2_test_smr_masks,
+>  };
+>  
+> -- 
 > 2.28.0
->
+> 
