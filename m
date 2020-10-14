@@ -2,68 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4D1028E065
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 14:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BF128E078
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 14:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729924AbgJNMRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 08:17:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40322 "EHLO mail.kernel.org"
+        id S1725963AbgJNMYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 08:24:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41594 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727112AbgJNMRg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 08:17:36 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        id S1729548AbgJNMYF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Oct 2020 08:24:05 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8B8F820848;
-        Wed, 14 Oct 2020 12:17:35 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id DC8E12222A;
+        Wed, 14 Oct 2020 12:24:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602677855;
-        bh=UnglWlgDMyRAQjyYpzLo/EzUEQTCtgFkf+XvinTiyQY=;
+        s=default; t=1602678245;
+        bh=t0IBPBNo+yYO11jhv9fM4cJG+wfMTFGo8MY5tqsXG5U=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dvqqiYrQbivtEH0AQFNlp8v1cPl7wEhvK85kQSKTdmxl0i3m9NB9oYXTIujUrpCbq
-         hG29fQzWdroD9ae8M4s565kbn1Hl0hrpfKFZr3BEKGKdtObmM79gcDhfF6YyswteIq
-         KldPePiu4K6d36TV6uMKZYocw/zGgsuJVne+qk5Q=
-Received: by mail-ot1-f52.google.com with SMTP id d28so3220958ote.1;
-        Wed, 14 Oct 2020 05:17:35 -0700 (PDT)
-X-Gm-Message-State: AOAM5323KZgA0Kbek4ePzkXnbjsz1nMNgIW5wPTYA5CCwzE+UWZWkINU
-        zaYs5m3ciM8CtOPvy2353DjL4nVpUvF/aNKEWw==
-X-Google-Smtp-Source: ABdhPJxkxuqmjftMYOcKCMoLmsnUGWEAmRTqLh/i0hi30/43bXjm9pgfpjRmitKZgflw+uL4sDdr/nDs4pOg1f1UEGo=
-X-Received: by 2002:a9d:7993:: with SMTP id h19mr3287795otm.129.1602677854790;
- Wed, 14 Oct 2020 05:17:34 -0700 (PDT)
+        b=TMTgWqc23Fp8S68g+EvPHtyVYNZmNP+z9x9jAytDBLk4QMUzqVyPKEIwZja6i1w/V
+         ybqg/7GHRaA/08pwv902eetV+9kH5fhw/n5TFlL5PPESAYu1KwG0J/AEdYl6TPgSYb
+         anMWS3fr1jbXFcPH9vs8yiRtnplOtBuDc621PUqI=
+Received: by mail-ot1-f50.google.com with SMTP id f37so3180771otf.12;
+        Wed, 14 Oct 2020 05:24:04 -0700 (PDT)
+X-Gm-Message-State: AOAM5314dnij2y7ClmZMfBfCnU3H0Ej6J9RI3/5ypa1/jjmDw0X1949U
+        OMK39btaZloBuimwJB08pHZ6CMELi0ORKcuikw==
+X-Google-Smtp-Source: ABdhPJy9xd9p7AIQ89atOIFtAtTvVkcZBoUqHoM2d76WPGxs9lK5Ru8GlYDbiDS8fYIzTNRaOfPecpecUgbDqkGL+7A=
+X-Received: by 2002:a9d:5e14:: with SMTP id d20mr3002538oti.107.1602678244026;
+ Wed, 14 Oct 2020 05:24:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-3-daniel@0x0f.com>
- <20201012161156.GA1635284@bogus> <CAFr9PXnK8wsTURRy77jMwsAS9vkjo6ibTVJch0BEUgvT4ALEhw@mail.gmail.com>
-In-Reply-To: <CAFr9PXnK8wsTURRy77jMwsAS9vkjo6ibTVJch0BEUgvT4ALEhw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 14 Oct 2020 07:17:23 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+qWvd-Y_NcXb579TDDRPxbrcYtOdFHoZEedWA2u3cPyw@mail.gmail.com>
-Message-ID: <CAL_Jsq+qWvd-Y_NcXb579TDDRPxbrcYtOdFHoZEedWA2u3cPyw@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: gpio: Add a binding header for the
- MSC313 GPIO driver
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
+References: <20201010151235.20585-1-nsaenzjulienne@suse.de>
+ <20201010151235.20585-3-nsaenzjulienne@suse.de> <CAL_JsqL2cs+cko-UuTd37fnBKO_=3jQeyjB49USvm_VTBwcS8g@mail.gmail.com>
+ <6740c49b73b11aaf1d74d216dc6e055e0a0ceac3.camel@suse.de>
+In-Reply-To: <6740c49b73b11aaf1d74d216dc6e055e0a0ceac3.camel@suse.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 14 Oct 2020 07:23:53 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+cPQS7836YqVos=n-TFOvc8kXa8ZXGq5_=rZAzz8RLLQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+cPQS7836YqVos=n-TFOvc8kXa8ZXGq5_=rZAzz8RLLQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] of/address: Introduce of_dma_lower_bus_limit()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 4:46 AM Daniel Palmer <daniel@0x0f.com> wrote:
+On Wed, Oct 14, 2020 at 6:52 AM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
 >
 > Hi Rob,
 >
-> On Tue, 13 Oct 2020 at 01:11, Rob Herring <robh@kernel.org> wrote:
-> <snip>
-> > >  MAINTAINERS                            |  1 +
-> > >  include/dt-bindings/gpio/msc313-gpio.h | 95 ++++++++++++++++++++++++++
-> > >  2 files changed, 96 insertions(+)
-> > >  create mode 100644 include/dt-bindings/gpio/msc313-gpio.h
+> On Mon, 2020-10-12 at 10:25 -0500, Rob Herring wrote:
+> > On Sat, Oct 10, 2020 at 10:12 AM Nicolas Saenz Julienne
+> > <nsaenzjulienne@suse.de> wrote:
+> > > The function provides the CPU physical address addressable by the most
+> > > constrained bus in the system. It might be useful in order to
+> > > dynamically set up memory zones during boot.
+> > >
+> > > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > > ---
+> > >  drivers/of/address.c | 34 ++++++++++++++++++++++++++++++++++
+> > >  include/linux/of.h   |  7 +++++++
+> > >  2 files changed, 41 insertions(+)
+> > >
+> > > diff --git a/drivers/of/address.c b/drivers/of/address.c
+> > > index eb9ab4f1e80b..755e97b65096 100644
+> > > --- a/drivers/of/address.c
+> > > +++ b/drivers/of/address.c
+> > > @@ -1024,6 +1024,40 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+> > >  }
+> > >  #endif /* CONFIG_HAS_DMA */
+> > >
+> > > +/**
+> > > + * of_dma_safe_phys_limit - Get system wide DMA safe address space
+> > > + *
+> > > + * Gets the CPU physical address limit for safe DMA addressing system wide by
+> > > + * searching for the most constraining dma-range. Otherwise it returns ~0ULL.
+> > > + */
+> > > +u64 __init of_dma_safe_phys_limit(void)
+> > > +{
+> > > +       struct device_node *np = NULL;
+> > > +       struct of_range_parser parser;
+> > > +       const __be32 *ranges = NULL;
+> > > +       u64 phys_dma_limit = ~0ULL;
+> > > +       struct of_range range;
+> > > +       int len;
+> > > +
+> > > +       for_each_of_allnodes(np) {
+> > > +               dma_addr_t cpu_end = 0;
+> > > +
+> > > +               ranges = of_get_property(np, "dma-ranges", &len);
+> > > +               if (!ranges || !len)
+> > > +                       continue;
+> > > +
+> > > +               of_dma_range_parser_init(&parser, np);
+> > > +               for_each_of_range(&parser, &range)
+> > > +                       if (range.cpu_addr + range.size > cpu_end)
+> > > +                               cpu_end = range.cpu_addr + range.size;
 > >
-> > This should be part of the previous patch to avoid the error.
+> > This doesn't work if you have more than one level of dma-ranges. The
+> > address has to be translated first. It should be okay to do that on
+> > the start or end address (if not, your DT is broken).
 >
-> Would reordering the patches to make this header before the yaml file
-> be acceptable?
+> for_each_of_range() calls of_pci_range_parser_one() which utimately populates
+> range.cpu_addr with of_translate_dma_address() results. Isn't that good enough?
 
-Sure.
+Indeed. I guess I was remembering the cases not using
+for_each_of_range which forgot to do that...
+
+Rob
