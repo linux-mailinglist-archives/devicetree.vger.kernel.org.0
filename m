@@ -2,151 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B338728DA4A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 09:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF43328DA4E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 09:07:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726354AbgJNHH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 03:07:26 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:55502 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726141AbgJNHHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 03:07:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1602659244; x=1605251244;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=V8DELpswpUebMaklhDWQ3Gh6K29prCEHKBIPgCE1N70=;
-        b=b/WN/UrEPDx0af2uI5Lt7a3/BFGfX4LKpnSLsn/QG4307ivdFyZx8xa2aUhjTI9O
-        T4E/GVsyWeGaQnwOdWxEKCwIYstqnzxtjLO7EyGcFi3ugTSaur+mUwEYJC7FtHQ5
-        mOWL31n/MPHi8hNa8yr3GqndrNh5PbPPczgEwGK01nM=;
-X-AuditID: c39127d2-253ff70000001c25-5c-5f86a3ac49cd
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id CE.6D.07205.CA3A68F5; Wed, 14 Oct 2020 09:07:24 +0200 (CEST)
-Received: from [172.16.23.108] ([172.16.23.108])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2020101409072414-603760 ;
-          Wed, 14 Oct 2020 09:07:24 +0200 
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: add Phytec Nunki boards
-To:     Marco Felsch <m.felsch@pengutronix.de>, robh+dt@kernel.org,
-        shawnguo@kernel.org
-Cc:     festevam@gmail.com, linux-imx@nxp.com, m.podolszki@phytec.de,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        c.hemp@phytec.de, j.remmet@phytec.de
-References: <20201007133037.25315-1-m.felsch@pengutronix.de>
- <20201007133450.rx7jrqb3euxstjiw@pengutronix.de>
-From:   =?UTF-8?Q?Stefan_Riedm=c3=bcller?= <s.riedmueller@phytec.de>
-Message-ID: <1bf364fd-6530-ca5a-06f2-25c3c9dd684a@phytec.de>
-Date:   Wed, 14 Oct 2020 09:07:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727894AbgJNHHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 03:07:46 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:61231 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726141AbgJNHHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 03:07:46 -0400
+X-UUID: 597ff07714d449a18eed34164f43ca0d-20201014
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=liqqNPZ7bhnTmHQkiIXmgSnZuggaH0is3HAOFrjhmfI=;
+        b=rJ47ziMLdbDOQz4WrNOmGUq+hrZ/ysAxMX2mxZGu1FikYksj9EtRVM+/pNzT6Lsn0OYVrvm+jySBPKJPYnhlVIQ5fv0TCz0g7DD6k29OSMWQVDSfWz4SdfVJmtqJjJsc6wpwm8QWZZe2spDEwvIo7C8tv4P7MEje4TzBUwDAU5o=;
+X-UUID: 597ff07714d449a18eed34164f43ca0d-20201014
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1753992200; Wed, 14 Oct 2020 15:07:36 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 14 Oct
+ 2020 15:07:33 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 14 Oct 2020 15:07:32 +0800
+Message-ID: <1602659253.29336.79.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 4/8] dt-bindings: phy: convert HDMI PHY binding to
+ YAML schema
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Min Guo <min.guo@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
+Date:   Wed, 14 Oct 2020 15:07:33 +0800
+In-Reply-To: <1602650671.27998.2.camel@mtksdaap41>
+References: <20201013085207.17749-1-chunfeng.yun@mediatek.com>
+         <20201013085207.17749-4-chunfeng.yun@mediatek.com>
+         <1602650671.27998.2.camel@mtksdaap41>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20201007133450.rx7jrqb3euxstjiw@pengutronix.de>
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 14.10.2020 09:07:24,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 14.10.2020 09:07:24,
-        Serialize complete at 14.10.2020 09:07:24
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFLMWRmVeSWpSXmKPExsWyRoCBS3fN4rZ4g4lzRSzmHznHavHwqr/F
-        qqk7WSy6fq1ktviw6yqzReveI+wWL7aIO7B77Jx1l91j06pONo+N73YwefT/NfD4vEkugDWK
-        yyYlNSezLLVI3y6BK+Pqty6Wgq9CFfNOsDYwtvB1MXJySAiYSHyYN5Gli5GLQ0hgG6PEqZkn
-        oZwzjBILl+xgBakSFnCXOHd2KwuILSIQLDH/yjE2kCJmgZmMEl8ermIGSQgJ5Ets3PuJEcRm
-        E3CSWHy+A6iIg4NXwEbiyvIIEJNFQFXi1K8EEFNUIFJi5w5LkGJeAUGJkzOfgE3nFLCVON78
-        iBVkuoRAI5PEp689rBCHCkmcXnwWbBOzgLzE9rdzoGwziXmbH0LZ4hK3nsxnmsAoNAvJ3FlI
-        WmYhaZmFpGUBI8sqRqHczOTs1KLMbL2CjMqS1GS9lNRNjMD4ODxR/dIOxr45HocYmTgYDzFK
-        cDArifC+km6LF+JNSaysSi3Kjy8qzUktPsQozcGiJM67gbckTEggPbEkNTs1tSC1CCbLxMEp
-        1cC4Svt3xsFu64dv/cWskgvmrplnc7LCWWjSXMWgQ/piAhtrVttomivw9Smpmf3ZlD+/tONd
-        aniRym+92QlvShZKFQt6VE1WOVu9obVcrD163rRdnGsW//xoNNmjouFSa3Tii7udXVeMju34
-        qLTh/f89u0xLz8luCHPU/1f3sYw7IuEy79E1Rg+UWIozEg21mIuKEwFjB8GAfQIAAA==
+X-TM-SNTS-SMTP: 7D3A8E0BF2FC977AE7986068420E20580FCD3FFE574376E72318CF014D5E6D432000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+T24gV2VkLCAyMDIwLTEwLTE0IGF0IDEyOjQ0ICswODAwLCBDSyBIdSB3cm90ZToNCj4gSGksIENo
+dW5mZW5nOg0KPiANCj4gT24gVHVlLCAyMDIwLTEwLTEzIGF0IDE2OjUyICswODAwLCBDaHVuZmVu
+ZyBZdW4gd3JvdGU6DQo+ID4gQ29udmVydCBIRE1JIFBIWSBiaW5kaW5nIHRvIFlBTUwgc2NoZW1h
+IG1lZGlhdGVrLHVmcy1waHkueWFtbA0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IENodW5mZW5n
+IFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiB2MjogZml4IGJp
+bmRpbmcgY2hlY2sgd2FybmluZyBvZiByZWcgaW4gZXhhbXBsZQ0KPiA+IC0tLQ0KPiA+ICAuLi4v
+ZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxoZG1pLnR4dCAgICAgICAgfCAxNyArLS0tDQo+ID4g
+IC4uLi9iaW5kaW5ncy9waHkvbWVkaWF0ZWssaGRtaS1waHkueWFtbCAgICAgICB8IDkwICsrKysr
+KysrKysrKysrKysrKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA5MSBpbnNlcnRpb25zKCspLCAx
+NiBkZWxldGlvbnMoLSkNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9waHkvbWVkaWF0ZWssaGRtaS1waHkueWFtbA0KPiA+IA0KPiA+IGRp
+ZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRp
+YXRlay9tZWRpYXRlayxoZG1pLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGhkbWkudHh0DQo+ID4gaW5kZXggN2IxMjQyNDJi
+MGM1Li5lZGFjMTg5NTFhNzUgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssaGRtaS50eHQNCj4gPiArKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRp
+YXRlayxoZG1pLnR4dA0KPiA+IEBAIC01MCwyMiArNTAsNyBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVz
+Og0KPiA+ICANCj4gPiAgSERNSSBQSFkNCj4gPiAgPT09PT09PT0NCj4gPiAtDQo+ID4gLVRoZSBI
+RE1JIFBIWSBzZXJpYWxpemVzIHRoZSBIRE1JIGVuY29kZXIncyB0aHJlZSBjaGFubmVsIDEwLWJp
+dCBwYXJhbGxlbA0KPiA+IC1vdXRwdXQgYW5kIGRyaXZlcyB0aGUgSERNSSBwYWRzLg0KPiA+IC0N
+Cj4gPiAtUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiAtLSBjb21wYXRpYmxlOiAibWVkaWF0ZWss
+PGNoaXA+LWhkbWktcGh5Ig0KPiA+IC0tIHJlZzogUGh5c2ljYWwgYmFzZSBhZGRyZXNzIGFuZCBs
+ZW5ndGggb2YgdGhlIG1vZHVsZSdzIHJlZ2lzdGVycw0KPiA+IC0tIGNsb2NrczogUExMIHJlZmVy
+ZW5jZSBjbG9jaw0KPiA+IC0tIGNsb2NrLW5hbWVzOiBtdXN0IGNvbnRhaW4gInBsbF9yZWYiDQo+
+ID4gLS0gY2xvY2stb3V0cHV0LW5hbWVzOiBtdXN0IGJlICJoZG1pdHhfZGlnX2N0cyIgb24gbXQ4
+MTczDQo+ID4gLS0gI3BoeS1jZWxsczogbXVzdCBiZSA8MD4NCj4gPiAtLSAjY2xvY2stY2VsbHM6
+IG11c3QgYmUgPDA+DQo+ID4gLQ0KPiA+IC1PcHRpb25hbCBwcm9wZXJ0aWVzOg0KPiA+IC0tIG1l
+ZGlhdGVrLGliaWFzOiBUWCBEUlYgYmlhcyBjdXJyZW50IGZvciA8MS42NUdicHMsIGRlZmF1bHRz
+IHRvIDB4YQ0KPiA+IC0tIG1lZGlhdGVrLGliaWFzX3VwOiBUWCBEUlYgYmlhcyBjdXJyZW50IGZv
+ciA+MS42NUdicHMsIGRlZmF1bHRzIHRvIDB4MWMNCj4gPiArU2VlIHBoeS9tZWRpYXRlayxoZG1p
+LXBoeS55YW1sDQo+ID4gIA0KPiA+ICBFeGFtcGxlOg0KPiA+ICANCj4gPiBkaWZmIC0tZ2l0IGEv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1pLXBoeS55
+YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1p
+LXBoeS55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAw
+MDAuLjc3ZGY1MDIwNDYwNg0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwNCj4gPiBA
+QCAtMCwwICsxLDkwIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4w
+LW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICsjIENvcHlyaWdodCAoYykgMjAyMCBNZWRpYVRl
+aw0KPiA+ICslWUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUu
+b3JnL3NjaGVtYXMvcGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwjDQo+ID4gKyRzY2hlbWE6IGh0
+dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiA+ICsNCj4gPiAr
+dGl0bGU6IE1lZGlhVGVrIEhpZ2ggRGVmaW5pdGlvbiBNdWx0aW1lZGlhIEludGVyZmFjZSAoSERN
+SSkgUEhZIGJpbmRpbmcNCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gQ0sgSHUg
+PGNrLmh1QG1lZGlhdGVrLmNvbT4NCj4gDQo+IEkgdGhpbmsgeW91IHNob3VsZCByZW1vdmUgIkNL
+IEh1IDxjay5odUBtZWRpYXRlay5jb20+IiBhbmQgYWRkIGxhdGVzdA0KPiBtZWRpYXRlayBkcm0g
+bWFpbnRhaW5lcjoNCk9rLCB3aWxsIGRvIGl0LCB0aGFua3MNCg0KPiANCj4gRFJNIERSSVZFUlMg
+Rk9SIE1FRElBVEVLDQo+IE06CUNodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5odUBrZXJuZWwub3Jn
+Pg0KPiBNOglQaGlsaXBwIFphYmVsIDxwLnphYmVsQHBlbmd1dHJvbml4LmRlPg0KPiBMOglkcmkt
+ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFM6CVN1cHBvcnRlZA0KPiBGOglEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay8NCj4gRjoJZHJpdmVy
+cy9ncHUvZHJtL21lZGlhdGVrLw0KPiANCj4gUmVnYXJkcywNCj4gQ0sNCg0K
 
-On 07.10.20 15:34, Marco Felsch wrote:
-> Add missing Phytec developers to Cc.
-> 
-> Regards,
->    Marco
-> 
-> On 20-10-07 15:30, Marco Felsch wrote:
->> Add bindings for the Phytec PhyBOARD-Nunki evalboards.
->>
->> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->> ---
->> Hi,
->>
->> I copied the imx6q-phytec-nunki-rdk-nand.dts and
->> imx6qdl-phytec-nunki.dtsi from the phytec downstream kernel repo and
->> added support for the imx6qp-phytec-nunki-rdk-nand.dts.
->>
->> @Phytec
->> I adapted the "phytec,imx6q-pbac11-nand" to "phytec,imx6qp-pbac11-nand"
->> and "phytec,imx6q-pbac11" to "phytec,imx6qp-pbac11". Can you verify that
->> since I have no knowledge about the internal naming scheme, thanks.
-
-Yes, that is correct.
-
->>
->> Regards,
->>    Marco
->>
->>   Documentation/devicetree/bindings/arm/fsl.yaml | 14 ++++++++++++++
->>   1 file changed, 14 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->> index 6da9d734cdb7..26410a42c411 100644
->> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->> @@ -156,6 +156,13 @@ properties:
->>             - const: gw,ventana
->>             - const: fsl,imx6q
->>   
->> +      - description: i.MX6Q Phytec PhyBOARD-Nunki Board
-
-Please use all caps for PHYTEC and start phyBOARD with a lower case p.
-
->> +        items:
->> +          - const: phytec,imx6q-pbac11-nand
->> +          - const: phytec,imx6q-pbac11
->> +          - const: phytec,imx6qdl-pcm058
->> +          - const: fsl,imx6q
->> +
->>         - description: i.MX6QP based Boards
->>           items:
->>             - enum:
->> @@ -163,6 +170,13 @@ properties:
->>                 - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart Device Board
->>             - const: fsl,imx6qp
->>   
->> +      - description: i.MX6QP Phytec PhyBOARD-Nunki Board
-
-Same here.
-
-With these changes you can add my
-Reviewed-by: Stefan Riedmueller <s.riedmueller@phytec.de>
-
-Thanks,
-Stefan
-
->> +        items:
->> +          - const: phytec,imx6qp-pbac11-nand
->> +          - const: phytec,imx6qp-pbac11
->> +          - const: phytec,imx6qdl-pcm058
->> +          - const: fsl,imx6qp
->> +
->>         - description: i.MX6DL based Boards
->>           items:
->>             - enum:
->> -- 
->> 2.20.1
->>
->>
->>
-> 
