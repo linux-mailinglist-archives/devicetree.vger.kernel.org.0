@@ -2,52 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1867728E911
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 01:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC0B28EAF1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 04:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731089AbgJNXCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 19:02:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46332 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730991AbgJNXCO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 19:02:14 -0400
-Subject: Re: [GIT PULL] Devicetree updates for v5.10
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602716533;
-        bh=GzhuZjhmlGjjIsxQPtT+zNJkmPR3avhhAFcQEBb3NiY=;
-        h=From:In-Reply-To:References:Date:To:Cc:From;
-        b=NqbQmqq1VIgox20SkKZoY9oZ+WnBM/P9zrua7BeUceZsaFaD+QVylX9L31YtN3OpH
-         n/uMORr/6dyYO/dQb4LSubfSWicvDQjYTjN9iR/LxPxoNT575F7DGSaCYsdZedPNuD
-         00x2A40q8PCBv/tzeuEfskQGGP+2CxlaDSwKk6Vg=
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20201014155304.GA1778149@bogus>
-References: <20201014155304.GA1778149@bogus>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20201014155304.GA1778149@bogus>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.10
-X-PR-Tracked-Commit-Id: bd36e51d10e7c2b7d39ffa7d075aed98a8e7473c
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: f888bdf9823c85fe945c4eb3ba353f749dec3856
-Message-Id: <160271653351.18101.3576475241040276818.pr-tracker-bot@kernel.org>
-Date:   Wed, 14 Oct 2020 23:02:13 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        id S1729143AbgJOCJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 22:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728760AbgJOCJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 22:09:37 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F57BC025245
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 16:42:53 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id q21so624533pgi.13
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 16:42:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UFheJw6XVQO5isnDiFQR+xrCu7msKsOYw9OYk1rLMK0=;
+        b=N8IGdTigzihNqkAyPolGmtVpC/VuZ2GtitBdeBYF6g+CQD2Rlv3lnEY6Wl+kbYtcCC
+         PvI3COWqViJ/dNjYhYzhaSvwGVmctTK8TlXDI3oJpspOJZvMMugyesKKKvqFOYL7b66a
+         5zI356jrVZvFtSVXyMLanfGw9/+06KWWqN7vA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UFheJw6XVQO5isnDiFQR+xrCu7msKsOYw9OYk1rLMK0=;
+        b=ghjiuSaPFbXTTsyDEIWiHe0sNKA+1FclqZhD73TcgngwQP3GZZoEJ73lxpeIs4tERK
+         arc1bDGh9+AuVQ9gyxqjsj1k/nfqsJ4KlcTqJP/AguawJifXZzdcsYmvb+fzgNjkgDA3
+         hPPvcGGZ5pXErBzMtDGFQ/m0a8VEDnOwoSeesxtBveyowZZRXooK1xisJDJXLLCZwEUS
+         ae1wfsY2K9kRB8IvPEKkVVevDiSC2yXflw+90QX25MKUdLG7Y2jH/qqK+R/6ole7efwA
+         XaM9zig/XbJOhLXtiXPaz0gcoJPSEkZt1ew2Ap7sL+YaSCOPrQJWP4RqAAzgNx37qWqM
+         Jwgw==
+X-Gm-Message-State: AOAM533vC5Xkgu0q0c3m3i337/YdS3ZXAbNg0+ZMQ/eRrG4EQT8BbgWB
+        WG8MuLYpu2xNGHDHK9wAmXhenw==
+X-Google-Smtp-Source: ABdhPJyE77i9Lzw2HZDV09mx6eVpDdKG4unVyuuvO8MZz7RKVFf77G7hx4sJuUbtEGOOT4Hd5lZvLw==
+X-Received: by 2002:a63:4459:: with SMTP id t25mr1115407pgk.104.1602718972789;
+        Wed, 14 Oct 2020 16:42:52 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
+        by smtp.gmail.com with ESMTPSA id d145sm808331pfd.136.2020.10.14.16.42.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 16:42:52 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
+        gregkh@linuxfoundation.org
+Cc:     kai.heng.feng@canonical.com, linux-input@vger.kernel.org,
+        hdegoede@redhat.com, andrea@borgia.bo.it, swboyd@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: HID: i2c-hid: Add the ability to control a reset GPIO
+Date:   Wed, 14 Oct 2020 16:42:20 -0700
+Message-Id: <20201014164203.1.I1c2d6236990449717b861539a2234354153b1656@changeid>
+X-Mailer: git-send-email 2.28.0.1011.ga647a8990f-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Wed, 14 Oct 2020 10:53:04 -0500:
+Apparently some devices connected via i2c-hid have timing requirements
+around when a reset GPIO should be asserted to them.  The diagram I
+have seen, which I believe is from a Goodix device, looked like this:
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.10
+         +----------------------------------
+         |
+AVDD ----+
+               +------------------------------
+         | (a) |
+RESET ---------+
+                     +-------------
+               | (b) |
+I2C comm OK ---------+
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/f888bdf9823c85fe945c4eb3ba353f749dec3856
+Where (a) is 10 ms and (b) is 120 ms.
 
-Thank you!
+Let's add the ability to specify these timings to the devicetree
+bindings.
 
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+I notice this bindings file is still a ".txt" file.  Some searching on
+The Internets(TM) shows that Rob has maybe started a conversion 5
+years ago [1], but that looks ancient.  I can try to put something
+together if need be, or we can just land this fix.  ;-)
+
+Note that the .txt version of the bindings seems to indicate that
+anyone using one of the optional properties is supposed to declare
+their special compatible string.  I'm not sure if that's still
+considered important or not?  Once you manage to get these devices
+powered on and talking i2c they self-describe themselves...
+
+[1] https://kernel.googlesource.com/pub/scm/linux/kernel/git/robh/linux/+/refs/heads/dt-yaml/Documentation/devicetree/bindings/hid/hid-over-i2c.yaml
+
+ Documentation/devicetree/bindings/input/hid-over-i2c.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.txt b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+index c76bafaf98d2..6fca39aa8cc6 100644
+--- a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
++++ b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+@@ -32,6 +32,11 @@ device-specific compatible properties, which should be used in addition to the
+ - vdd-supply: phandle of the regulator that provides the supply voltage.
+ - post-power-on-delay-ms: time required by the device after enabling its regulators
+   or powering it on, before it is ready for communication.
++- reset-gpios: GPIOs to assert to reset the device. This GPIO is asserted when
++  the device is powered off and released post-power-on-delay-ms after
++  enabling the regulators.
++- post-gpio-reset-delay-ms: After deasserting reset we'll delay for this many
++  more milliseconds.
+ 
+ Example:
+ 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.28.0.1011.ga647a8990f-goog
+
