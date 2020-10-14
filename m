@@ -2,191 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBE9A28E098
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 14:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A107528E0A9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 14:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726798AbgJNMgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 08:36:52 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:52923 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726394AbgJNMgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 08:36:51 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09ECRGnc023713;
-        Wed, 14 Oct 2020 14:35:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=a6IV5Cv8z3GpD5NHvsPPGT16JAZW0AbP5VtlTBCZgbY=;
- b=0gW3dTGUMUCPCrLlHSKbLXNUakOrE1zSS5pc8R4iwImq9dmyN8jYSMPtrnaYSkyrykfV
- 7+fnKYW3/gxGpk1teSImS2SFtMyGBfTAQ1mSF+IxGduO+IT6i/MQMDTuxp2Q/R8s4O68
- EyH5zrjGFmkmZd61NQdVcNamD0ru9hXfZ0Jw+iTQxrWWSjYKw/Q+3BXTZ021nSyh6X1y
- RKcwAtrn9B01U+7SNaQOqIjhUTgEHeGTtwtlixKDnYtBmB+OuVLC7QWa5oN00DGtltbh
- +ZnktVyB3bRl2RVsa1n0IdnjMmckEGTKcr6PxZRQb516T16Jn8Z7Se3BCVfUq7uI8XB5 0g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3435875rh5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Oct 2020 14:35:56 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 732A010002A;
-        Wed, 14 Oct 2020 14:35:54 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E8B382D0088;
-        Wed, 14 Oct 2020 14:35:53 +0200 (CEST)
-Received: from localhost (10.75.127.44) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 14 Oct 2020 14:35:53
- +0200
-From:   Olivier Moysan <olivier.moysan@st.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <alexandre.torgue@st.com>, <robh@kernel.org>,
-        <mark.rutland@arm.com>, <olivier.moysan@st.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <arnaud.pouliquen@st.com>
-Subject: [PATCH 1/1] ASoC: dt-bindings: stm32: convert audio dfsdm to json-schema
-Date:   Wed, 14 Oct 2020 14:35:31 +0200
-Message-ID: <20201014123531.6991-1-olivier.moysan@st.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726017AbgJNMnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 08:43:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44574 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727061AbgJNMni (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Oct 2020 08:43:38 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8447720848;
+        Wed, 14 Oct 2020 12:43:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602679417;
+        bh=jW0i/QQSQbgHdq+AcCmwrK02JHOb8iHkGsSyJ9m/xxE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D56R7MepUimHoXTW8BAKEcxBCdmFAGZZt2vGgj8O0TSMzweDfN+v2d/7pi1G2qKXs
+         EpH1ZWCUEhPzupaupQcWTnSQDXehpQ+tXteOJSA7dNuJNnf0OIJkbNasyMa/7KTgmH
+         b9SjangPukrd+RMj2fT+KfjxZzl9V8ekOr+Fy5gA=
+Received: by pali.im (Postfix)
+        id 190F66EE; Wed, 14 Oct 2020 14:43:35 +0200 (CEST)
+Date:   Wed, 14 Oct 2020 14:43:34 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org
+Subject: Re: [PATCH 07/23] wfx: add bus_sdio.c
+Message-ID: <20201014124334.lgx53qvtgkmfkepc@pali>
+References: <20201012104648.985256-1-Jerome.Pouiller@silabs.com>
+ <20201012104648.985256-8-Jerome.Pouiller@silabs.com>
+ <20201013201156.g27gynu5bhvaubul@pali>
+ <2628294.9EgBEFZmRI@pc-42>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-14_07:2020-10-14,2020-10-14 signatures=0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2628294.9EgBEFZmRI@pc-42>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the STM32 DFSDM audio bindings to DT schema format
-using json-schema.
+On Wednesday 14 October 2020 13:52:15 Jérôme Pouiller wrote:
+> Hello Pali,
+> 
+> On Tuesday 13 October 2020 22:11:56 CEST Pali Rohár wrote:
+> > Hello!
+> > 
+> > On Monday 12 October 2020 12:46:32 Jerome Pouiller wrote:
+> > > +#define SDIO_VENDOR_ID_SILABS        0x0000
+> > > +#define SDIO_DEVICE_ID_SILABS_WF200  0x1000
+> > > +static const struct sdio_device_id wfx_sdio_ids[] = {
+> > > +     { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF200) },
+> > 
+> > Please move ids into common include file include/linux/mmc/sdio_ids.h
+> > where are all SDIO ids. Now all drivers have ids defined in that file.
+> > 
+> > > +     // FIXME: ignore VID/PID and only rely on device tree
+> > > +     // { SDIO_DEVICE(SDIO_ANY_ID, SDIO_ANY_ID) },
+> > 
+> > What is the reason for ignoring vendor and device ids?
+> 
+> The device has a particularity, its VID/PID is 0000:1000 (as you can see
+> above). This value is weird. The risk of collision with another device is
+> high.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
----
- .../bindings/sound/st,stm32-adfsdm.txt        | 63 -------------------
- .../bindings/sound/st,stm32-adfsdm.yaml       | 42 +++++++++++++
- 2 files changed, 42 insertions(+), 63 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/st,stm32-adfsdm.txt
- create mode 100644 Documentation/devicetree/bindings/sound/st,stm32-adfsdm.yaml
+Those ids looks strange. You are from Silabs, can you check internally
+in Silabs if ids are really correct? And which sdio vendor id you in
+Silabs got assigned for your products?
 
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-adfsdm.txt b/Documentation/devicetree/bindings/sound/st,stm32-adfsdm.txt
-deleted file mode 100644
-index 864f5b00b031..000000000000
---- a/Documentation/devicetree/bindings/sound/st,stm32-adfsdm.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
--STMicroelectronics Audio Digital Filter Sigma Delta modulators(DFSDM)
--
--The DFSDM allows PDM microphones capture through SPI interface. The Audio
--interface is seems as a sub block of the DFSDM device.
--For details on DFSDM bindings refer to ../iio/adc/st,stm32-dfsdm-adc.txt
--
--Required properties:
--  - compatible: "st,stm32h7-dfsdm-dai".
--
--  - #sound-dai-cells : Must be equal to 0
--
--  - io-channels : phandle to iio dfsdm instance node.
--
--Example of a sound card using audio DFSDM node.
--
--	sound_card {
--		compatible = "audio-graph-card";
--
--		dais = <&cpu_port>;
--	};
--
--	dfsdm: dfsdm@40017000 {
--		compatible = "st,stm32h7-dfsdm";
--		reg = <0x40017000 0x400>;
--		clocks = <&rcc DFSDM1_CK>;
--		clock-names = "dfsdm";
--		#interrupt-cells = <1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		dfsdm_adc0: filter@0 {
--			compatible = "st,stm32-dfsdm-dmic";
--			reg = <0>;
--			interrupts = <110>;
--			dmas = <&dmamux1 101 0x400 0x00>;
--			dma-names = "rx";
--			st,adc-channels = <1>;
--			st,adc-channel-names = "dmic0";
--			st,adc-channel-types = "SPI_R";
--			st,adc-channel-clk-src = "CLKOUT";
--			st,filter-order = <5>;
--
--			dfsdm_dai0: dfsdm-dai {
--				compatible = "st,stm32h7-dfsdm-dai";
--				#sound-dai-cells = <0>;
--				io-channels = <&dfsdm_adc0 0>;
--				cpu_port: port {
--				dfsdm_endpoint: endpoint {
--					remote-endpoint = <&dmic0_endpoint>;
--				};
--			};
--		};
--	};
--
--	dmic0: dmic@0 {
--		compatible = "dmic-codec";
--		#sound-dai-cells = <0>;
--		port {
--			dmic0_endpoint: endpoint {
--				remote-endpoint = <&dfsdm_endpoint>;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-adfsdm.yaml b/Documentation/devicetree/bindings/sound/st,stm32-adfsdm.yaml
-new file mode 100644
-index 000000000000..d953ec524ba2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-adfsdm.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/st,stm32-adfsdm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics Audio Digital Filter Sigma Delta modulators(DFSDM)
-+
-+maintainers:
-+  - Olivier Moysan <olivier.moysan@st.com>
-+
-+description:
-+  The DFSDM allows PDM microphones capture through the SPI interface.
-+  The Audio interface is seen as a sub block of the DFSDM device.
-+  For details on DFSDM bindings refer to ../iio/adc/st,stm32-dfsdm-adc.yaml
-+
-+properties:
-+  compatible:
-+    enum:
-+      - st,stm32h7-dfsdm-dai
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  io-channels:
-+    description: phandle to iio dfsdm instance node
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - "#sound-dai-cells"
-+  - io-channels
-+
-+examples:
-+  - |
-+    asoc_pdm0: dfsdm-dai {
-+      compatible = "st,stm32h7-dfsdm-dai";
-+      #sound-dai-cells = <0>;
-+      io-channels = <&dfsdm0 0>;
-+    };
-+
-+...
--- 
-2.17.1
+I know that sdio devices with multiple functions may have different sdio
+vendor/device id particular function and in common CIS (function 0).
 
+Could not be a problem that on one place is vendor/device id correct and
+on other place is that strange value?
+
+I have sent following patch (now part of upstream kernel) which exports
+these ids to userspace:
+https://lore.kernel.org/linux-mmc/20200527110858.17504-2-pali@kernel.org/T/#u
+
+Also for debugging ids and information about sdio cards, I sent another
+patch which export additional data:
+https://lore.kernel.org/linux-mmc/20200727133837.19086-1-pali@kernel.org/T/#u
+
+Could you try them and look at /sys/class/mmc_host/ attribute outputs?
+
+> So, maybe the device should be probed only if it appears in the DT. Since
+> WF200 targets embedded platforms, I don't think it is a problem to rely on
+> DT. You will find another FIXME further in the code about that:
+> 
+> +               dev_warn(&func->dev,
+> +                        "device is not declared in DT, features will be limited\n");
+> +               // FIXME: ignore VID/PID and only rely on device tree
+> +               // return -ENODEV;
+> 
+> However, it wouldn't be usual way to manage SDIO devices (and it is the
+> reason why the code is commented out).
+> 
+> Anyway, if we choose to rely on the DT, should we also check the VID/PID?
+> 
+> Personally, I am in favor to probe the device only if VID/PID match and if
+> a DT node is found, even if it is not the usual way.
+
+Normally all sdio devices are hotplugged in linux kernel based on sdio
+device and vendor ids. And these ids are unique identifiers of sdio
+devices. So should be enough for detection.
+
+Months ago I have checked it and moved all SDIO device and vendor ids
+into common include/linux/mmc/sdio_ids.h file. I would like to not have
+this "mess" again, which was basically fully cleaned.
+
+I'm adding linux-mmc mailing list and Ulf Hansson to loop.
+
+Ulf, can you look at this "problem"? What do you think about those
+"strange" sdio ids?
