@@ -2,139 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B867328DFE4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 13:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B3A428DFFC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 13:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387945AbgJNLhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 07:37:51 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:57896 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387867AbgJNLhv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 07:37:51 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1602675469;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=fgQVMv6QFJMTaseF5aPPZGWUnwUKlJlJ27Irewy1FdI=;
-        b=14ZGnGcnpWvkGYSiiAbRoXiY6OZARP9jjRty74t4nUi4e2P6ZIpePsci7LE6hXwnD87ND/
-        ja7UJ/DiFotNZavJE/h0cpS1TC2Qlh9kj0ctNE7+3FXmQXS3/7YKCNtV5Tx2YIJT18k5aJ
-        RnFDBTcN07JpDPMLlVLEwca4wugmGYw0z1H9+IFtjoHJgoenPH4Mc7e4ti13QaUyAP0wQb
-        +WRP3c/DZjN/JCqfFWM7af5Jk3YVqW8120eJHcKL1bxU6aAwrE/ASiJ3QjiP+o82GRIadF
-        h7Jz7V6nRryTnzNxcYW4raN2AVOiF3Y+nq1vDGVainswwx81KwO9Ba1S9H+qkw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1602675469;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=fgQVMv6QFJMTaseF5aPPZGWUnwUKlJlJ27Irewy1FdI=;
-        b=yzl/hEDh/R9P0pJa6SqIQ+/FpwJPr5TTzRCavXIkLp+cVOVlvYvNHl45lFrt53QGgzdsRc
-        k8rIin985AKDJvCw==
-To:     Richard Cochran <richardcochran@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        ilias.apalodimas@linaro.org
-Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for hardware timestamping
-In-Reply-To: <20201014110113.GA1646@hoboy>
-References: <87lfgiqpze.fsf@kurt> <20201007105458.gdbrwyzfjfaygjke@skbuf> <87362pjev0.fsf@kurt> <20201008094440.oede2fucgpgcfx6a@skbuf> <87lfghhw9u.fsf@kurt> <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de> <20201008150951.elxob2yaw2tirkig@skbuf> <65ecb62de9940991971b965cbd5b902ae5daa09b.camel@hs-offenburg.de> <20201012214254.GA1310@hoboy> <20201014095747.xlt3xodch7tlhrhr@skbuf> <20201014110113.GA1646@hoboy>
-Date:   Wed, 14 Oct 2020 13:37:47 +0200
-Message-ID: <87eem111is.fsf@kurt>
+        id S2388303AbgJNLsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 07:48:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34710 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388261AbgJNLsY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 07:48:24 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC58C061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 04:48:16 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id t25so4333187ejd.13
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 04:48:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gJmE+QzQPKhmVzRh7Mt/ZkUz7d1ef3q7Sc2eKrUP1ek=;
+        b=D5mF2XYQNP+94me/VxKUFpADGfBIU3L6stuWHfhcFjpvl8cFllEzVr2R8gPiy6Y7H5
+         7Jn3E05QFxVTs6FWqON6/czE5exVhvHc+PXVrpU6cNV+QSHwvK363vZMM69bEwZ7xq1k
+         1wMTxa2lATKEQ127Aj9A7/xrT5lOpm18mHUOY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gJmE+QzQPKhmVzRh7Mt/ZkUz7d1ef3q7Sc2eKrUP1ek=;
+        b=kSuBShdoezS9fsXXMcf4Nrw8vIP1NhT46m3upY/a5ArcHcD3NSKuGOsNuCa3olGtVD
+         0LpZRDNF4DWgwjqO+mF1Rd9/136ZKt/0B3HGICQSaxKBoEfuEB9PQkksufF+V4tjj4rw
+         TmWSFdXT34dp/yR3khUHAv793ibXYhaG+Y1ef9wHSM3ZoPFyJ8te0TPmHJYgl54YxCnu
+         Tdm6UUbYsuL7cr+G+GwbEm49dWMntSE9DyK4T7FL5O3MbBonQQ4DZORztb5EYqRELJkj
+         mUFviJtkS8vwa/vFk++OiQpG0eWAiIOpyD4wzmXT/hEXdzWIwvlRdL7SFTJH5UaPrlmP
+         qkKg==
+X-Gm-Message-State: AOAM5309mPfJrub9GTlJvKLqKbDWcpQiq33Gp59sYgrxEMqu7aLvjowT
+        RMVYVB1UNYvVuzDpevFEq2ko2hO2TywiZA==
+X-Google-Smtp-Source: ABdhPJyLJ5YN+j0jhoub4G6m+Ro8baGKJSeb6Qx5gEw5eorD4NNuebqTNmcOo7FvPkuyYpGRJ9Icgg==
+X-Received: by 2002:a17:906:bc4b:: with SMTP id s11mr4941210ejv.437.1602676094354;
+        Wed, 14 Oct 2020 04:48:14 -0700 (PDT)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com. [209.85.221.47])
+        by smtp.gmail.com with ESMTPSA id f23sm1609227ejd.5.2020.10.14.04.48.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Oct 2020 04:48:13 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id n6so3390779wrm.13
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 04:48:12 -0700 (PDT)
+X-Received: by 2002:adf:ab05:: with SMTP id q5mr4966749wrc.32.1602676092220;
+ Wed, 14 Oct 2020 04:48:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+References: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
+ <20201013130503.2412-2-dongchun.zhu@mediatek.com> <20201013161938.GE13341@paasikivi.fi.intel.com>
+ <1602641418.4733.80.camel@mhfsdcap03> <20201014083139.GG13341@paasikivi.fi.intel.com>
+In-Reply-To: <20201014083139.GG13341@paasikivi.fi.intel.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Wed, 14 Oct 2020 13:48:00 +0200
+X-Gmail-Original-Message-ID: <CAAFQd5BVzN=49s4S98E9mGNuxzOt4633dAw9mbyu3Sr-rA61qw@mail.gmail.com>
+Message-ID: <CAAFQd5BVzN=49s4S98E9mGNuxzOt4633dAw9mbyu3Sr-rA61qw@mail.gmail.com>
+Subject: Re: [PATCH v15 1/2] media: dt-bindings: media: i2c: Document OV02A10 bindings
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
+        <shengnan.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-
-On Wed Oct 14 2020, Richard Cochran wrote:
-> On Wed, Oct 14, 2020 at 12:57:47PM +0300, Vladimir Oltean wrote:
->> So the discussion is about how to have the cake and eat it at the same
->> time.
+On Wed, Oct 14, 2020 at 10:31 AM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
 >
-> And I wish for a pony.  With sparkles.  And a unicorn.  And a rainbow.
+> On Wed, Oct 14, 2020 at 10:10:18AM +0800, Dongchun Zhu wrote:
+> > Hello Sakari,
+> >
+> > Thanks for your timely review.
+> >
+> > On Tue, 2020-10-13 at 19:19 +0300, Sakari Ailus wrote:
+> > > Hi Dongchun,
+> > >
+> > > On Tue, Oct 13, 2020 at 09:05:02PM +0800, Dongchun Zhu wrote:
+> > > > Add YAML device tree binding for OV02A10 CMOS image sensor, and the
+> > > > relevant MAINTAINERS entries.
+> > > >
+> > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > > > ---
+> > > >  .../bindings/media/i2c/ovti,ov02a10.yaml           | 162 +++++++++++++++++++++
+> > > >  MAINTAINERS                                        |   7 +
+> > > >  2 files changed, 169 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> > > >
+> >
+> > [snip]...
+> >
+> > > > +  ovti,mipi-clock-voltage:
+> > > > +    description:
+> > > > +      An array of 2-tuples items, and each item consists of link frequency and
+> > > > +      MIPI clock voltage unit like <freq-kHz volt-unit>. Clock voltage unit is
+> > > > +      dependent upon link speed, indicating MIPI transmission speed select that
+> > > > +      controls D-PHY timing setting by adjusting MIPI clock voltage to improve
+> > > > +      the clock driver capability.
+> > > > +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
+> > > > +    minItems: 2
+> > > > +    default: [390000, 4]
+> > >
+> > > Why do you have the link frequency here as well?
+> > >
+> > > In principle this does belong to the endpoint as link frequencies are
+> > > specific to that, but I don't mind; there's just a single port anyway.
+> > >
+> >
+> > This is an optional property which we model as an array of <link speed,
+> > clock voltage> pairs. An example to have all link speeds up to 390MHz
+> > use the value 4 for current driver. If one wants to select different
+> > voltage for different link, they could do so as well.
 >
->> Silicon vendors eager to follow the latest trends in standards are
->> implementing hybrid PTP clocks, where an unsynchronizable version of the
->> clock delivers MAC timestamps to the application stack, and a
->> synchronizable wrapper over that same clock is what gets fed into the
->> offloading engines, like the ones behind the tc-taprio and tc-gate
->> offload. Some of these vendors perform cross-timestamping (they deliver
->> a timestamp from the MAC with 2, or 3, or 4, timestamps, depending on
->> how many PHCs that MAC has wired to it), some don't, and just deliver a
->> single timestamp from a configurable source.
->
-> Sounds like it will be nearly impossible to make a single tc-taprio
-> framework that fits all the hardware variants.
+> If you think you'd need that, then you need to put this to the endpoint.
 
-Why? All the gate operations work on the synchronized clock. I assume
-all Qbv capable switches have a synchronized clock?
+The mipi-clock-voltage property is not a property of the endpoint. The
+link frequency there does not set the link frequency - it only
+specifies which link frequency the given voltage should be used for.
 
-It's just that some switches have multiple PHCs instead of a single
-one. It seems to be quite common to have a free-running as well as a
-synchronized clock. In order for a better(?) or more accurate(?) ptp
-implementation they expose not a single but rather multiple timestamps
-from all PHCs (-> cross-timestamping) to user space for the ptp event
-messages. That's at least my very limited understanding.
-
->
->> The operating system is supposed to ??? in order to synchronize the
->> synchronizable clock to the virtual time retrieved via TIME_STATUS_NP
->> that you're talking about. The question is what to replace that ???
->> with, of course.
->
-> You have a choice.  Either you synchronize the local PHC to the global
-> TAI time base or not.  If you do synchronize the PHC, then everything
-> (like the globally scheduled time slots) just works.  If you decide to
-> follow the nonsensical idea (following 802.1-AS) and leave the PHC
-> free running, then you will have a difficult time scheduling those
-> time windows.
->
-> So it is all up to you.
->
->> I'm not an expert in kernel implementation either, but perhaps in the
->> light of this, you can revisit the idea that kernel changes will not be
->> needed (or explain more, if you still think they aren't).
->
-> I am not opposed to kernel changes, but there must be:
->
-> - A clear statement of the background context, and
-> - an explanation of the issue to solved, and
-> - a realistic solution that will support the wide variety of HW.=20
-
-Agreed.
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl+G4wsACgkQeSpbgcuY
-8KbF0BAAtk9IZ6ejCsNNkQIznvS9WeH31TGltyeHfmNzjnjVX0MtMtIucKYWlAM3
-cRUPL/zt2b9PSKOXcaj+7H+pIeu+aCZ3e+YOuAWMEvxV64rXR34PFptF+jxFgWnP
-OAhJUSAqWGkgX0Hj9awD0nf6uxpKiHEpZjtHsu4a74/TOKwfh+bOqJma0S2iCSco
-RSXHbP0HNzQeW2mt8wljZfW+xG9YXT/wJePhH83U8sPAiwfnmcEHXb4RDGnaiaaQ
-tpwMZ9kz2Sd7EnNataIt/81YcrNZOZEkx9de0IQR37iktBP7WYQEZK/T3LSlIpH5
-/k1UzR72SJ+i+BqdswwkAWRXgIXW3it+aFOa+nkWWsMYiA/+i6DuWAkp3kkMAVWW
-xTZgXO+PQktzWvr7xBfOvV/1FH+OEmvyUm+j0RbLy3BV3+S4W+dKYb9Poqb9FCnh
-vWIMw64sph2UQuUtO2gF3lwKtkBQo8kmFhJUBOpIg+7PKaDCWot/1aTrof++vgDJ
-AiZa2d3cJHCbkuMrbkb5f/zwJbKRDfGq3RR2ljX/8tjnECLkJPje/Tf48YfIY85A
-BgjYp+AGw+I7n3E2QT0GAp5yjO2CEQu1P1y3ePXyOdvks46cbsVUfrCxxgiCuXhb
-4/fP6kv3U+VVxgxH3IrWHMrHjRMoIP0kULx8PLpSCt5paPr411o=
-=OCg2
------END PGP SIGNATURE-----
---=-=-=--
+Best regards,
+Tomasz
