@@ -2,48 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 394AF28DC75
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE85C28DDC7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:37:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726482AbgJNJLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 05:11:36 -0400
-Received: from foss.arm.com ([217.140.110.172]:56956 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725899AbgJNJLg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 05:11:36 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17C7530E;
-        Wed, 14 Oct 2020 02:11:35 -0700 (PDT)
-Received: from [10.57.50.223] (unknown [10.57.50.223])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 324C23F73C;
-        Wed, 14 Oct 2020 02:11:32 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Ionela Voinescu <ionela.voinescu@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        chris.redpath@arm.com, morten.rasmussen@arm.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7> <20201012154915.GD16519@bogus>
- <20201012165219.GA3573@arm.com>
- <17819d4d-9e7e-9a38-4227-d0d10a0749f1@arm.com>
- <20201014042531.r7iykzygkvmpsqck@vireshk-i7>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <666fc9cf-ac5a-2289-d838-14c36dc8dfcb@arm.com>
-Date:   Wed, 14 Oct 2020 10:11:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727997AbgJNJgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 05:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726361AbgJNJgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:36:53 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09179C061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:36:53 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id f29so2478957ljo.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 02:36:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=AgJUpeJL7pNpYrMzhgRxfluJZLPcBG484GqTiiuhBbs=;
+        b=Gf/ZthvmpRme7OiTG3JFCoHy07Vnp33A2qrAVTlrlCgmYyMiQvGIGIqaxewRN2k46z
+         6y/vQTQOabTEzacIP1ypJcjQvya/xsXJZTsRuTDc2WR9VxGUcnM9uWtLgTLRbYiEDnwB
+         URTnPechdzySVPPUCcmAf5PYm08d2iBPaHrPuLY7TVrWnz7S8J+QaTzG8I56jW99O2UJ
+         MBrZo9pf30mz3zL1yMtGo1mrYfiEgkKcjin4IZV84D+m+ZQw5PVC4TU1FR7hJmC1oYFp
+         r3oSIUqQQWL7XrIbJNw2rlOy+GOdQIaZqz7Km/bEBaDfmMvh1+2nyyrxO/BnC8xbpMY2
+         ALaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=AgJUpeJL7pNpYrMzhgRxfluJZLPcBG484GqTiiuhBbs=;
+        b=ORzjpAes1NA2YAViuIWcWBi3R5SLuyJVo+NanngFdG8Rqpwv3G9+G1sfkEzrSkLv+o
+         OHW9xbi7hjpR2NysOXaSnquNDkuHeLMpM2+P4HgyGqzKP+d6Vtlvfdjn+8C4BFeAwWqd
+         zge5LVLWYnZge3oEP+c3dDXsQRq4/h0n9rvSGyOLRW5t+baQuK5PUZVyeRYk2miF23AQ
+         lABN5sxQ+TSj48KcBGbeZ1dEFSRGjvoS5n1DH0bP8fLoCqooHsIXMt4v7eveUtHvLMQW
+         Dz5UuZJCZQjMsN9+zMtH4znlXpX0g+djrQdi5eZ5hl+wQBYr7REnhuv5t/hKBUNnj6Aa
+         bTeA==
+X-Gm-Message-State: AOAM532fnTnXlHiuccH/EjWARjOcwOizJG58aPo2FrlpYjRQhPFznUoX
+        r+2OX587CIaEm1tIByQnRZJ+IA==
+X-Google-Smtp-Source: ABdhPJyAOSZov4CPoN126NEQlg6nopJIQBCnBPiTBrs3IFmZ2rfOMBqft4aRHDurkybx81iwENOjvA==
+X-Received: by 2002:a2e:a58a:: with SMTP id m10mr1557154ljp.316.1602668211358;
+        Wed, 14 Oct 2020 02:36:51 -0700 (PDT)
+Received: from [192.168.1.211] ([94.25.229.2])
+        by smtp.gmail.com with ESMTPSA id z22sm943901lfd.23.2020.10.14.02.36.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Oct 2020 02:36:50 -0700 (PDT)
+Subject: Re: [PATCH v1 1/3] dt-bindings: clock: qcom,dispcc: document power
+ domain bindings
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20201005225914.315852-1-dmitry.baryshkov@linaro.org>
+ <20201005225914.315852-2-dmitry.baryshkov@linaro.org>
+ <160263639992.310579.2985110685040776427@swboyd.mtv.corp.google.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <36c5d7dc-7b31-69d1-6862-4432ee22a2c4@linaro.org>
+Date:   Wed, 14 Oct 2020 12:36:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
-In-Reply-To: <20201014042531.r7iykzygkvmpsqck@vireshk-i7>
+In-Reply-To: <160263639992.310579.2985110685040776427@swboyd.mtv.corp.google.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -51,44 +76,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/14/20 5:25 AM, Viresh Kumar wrote:
-> On 12-10-20, 18:18, Lukasz Luba wrote:
->> On 10/12/20 5:52 PM, Ionela Voinescu wrote:
->>> On Monday 12 Oct 2020 at 16:49:30 (+0100), Sudeep Holla wrote:
->>>> On Fri, Oct 09, 2020 at 11:09:21AM +0530, Viresh Kumar wrote:
->>>>> - I wonder if we can keep using that instead of creating new bindings
->>>>>     for exact same stuff ? Though the difference here would be that the
->>>>>     OPP may not have any other entries.
->>>>
->>>> Well summarised, sorry for chiming in late. I could have not summarised
->>>> any better. Just saw the big thread and was thinking of summarising.
->>>> If the last point on OPP is possible(i.e. no OPP entries but just use
->>>> it for fetch the information) for $subject patch is trying to achieve,
->>>> then it would be good.
+On 14/10/2020 03:46, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2020-10-05 15:59:12)
+>> SM8250 requires special power domain for accessing MMDS_GDSC registers.
 > 
-> Under normal circumstances, I wouldn't have suggested empty opp-tables
-> for sure but it doesn't seem worth adding another binding to get this
-> information out :)
+> Heh, not sure it's special.
 > 
->>>
->>> Just to put in my two pennies worth: using opp-shared (in possibly empty
->>> OPP table) as alternative to cpu-perf-dependencies sounds good enough
->>> to me as well.
+>> Add bindings for the MMCX power domain.
 >>
->> +1
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   .../bindings/clock/qcom,sdm845-dispcc.yaml    | 28 +++++++++++++++++++
+>>   1 file changed, 28 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
+>> index 4a3be733d042..ff0db55470ac 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
+>> @@ -97,5 +108,22 @@ examples:
+>>         #clock-cells = <1>;
+>>         #reset-cells = <1>;
+>>         #power-domain-cells = <1>;
+>> +      /* this is a part of sm8250 setup the power domain example */
+>> +      power-domains = <&rpmhpd SDM845_CX>;
+>> +      power-domain-names = "mmcx";
+>> +      required-opps = <&rpmhpd_opp_low_svs>;
+>> +    };
+>> +    rpmhpd: power-controller {
 > 
-> Now that (almost) everyone agrees, I don't think we need to make any
-> change anywhere, in code or bindings. This should work right now as
-> well.  The code should never try to create OPP tables and the core
-> will not create one. Your driver (which want to get this information
-> out of empty OPP tables) shall call dev_pm_opp_of_get_sharing_cpus(),
-> which just parses the DT to get this information out.
-> 
+> Do we need this node in the example? I think it isn't required but I
+> guess it's OK.
 
-Thank you Viresh. We are going to experiment with this and come back
-soon.
+It is to be able to resolve "power-domains" and "required-opps" 
+properties values.
 
-Regards,
-Lukasz
+>> +      compatible = "qcom,sdm845-rpmhpd";
+>> +      #power-domain-cells = <1>;
+>> +      operating-points-v2 = <&rpmhpd_opp_table>;
+>> +
+>> +      rpmhpd_opp_table: opp-table {
+>> +        compatible = "operating-points-v2";
+>> +
+>> +        rpmhpd_opp_low_svs: opp3 {
+
+
+-- 
+With best wishes
+Dmitry
