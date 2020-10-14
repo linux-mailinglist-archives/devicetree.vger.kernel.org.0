@@ -2,240 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB9228DF60
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 12:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 510D228DF85
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 13:01:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728303AbgJNKvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 06:51:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
+        id S1729638AbgJNLBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 07:01:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725922AbgJNKvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 06:51:10 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BF28C0613D2
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 03:51:10 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id e18so3212614wrw.9
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 03:51:10 -0700 (PDT)
+        with ESMTP id S1729633AbgJNLBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 07:01:19 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 600F0C061755;
+        Wed, 14 Oct 2020 04:01:18 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id gv6so1444673pjb.4;
+        Wed, 14 Oct 2020 04:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XWslSzgwelv3+t+krm1VmPXi1dB3IfoNZQoNEIRR3UI=;
-        b=l422eKGq6wTqJuKldBvLXfh3ZD0AkCcFtDAx6mODJzIe6MEGj38yUcTkiXKkRbFn4L
-         /8hzwCo+dNZQMNnT7LtnjvVPtchNaxNMhpERGIeCeBJDJL0i7oeG+KydaA7GhnYLSsGl
-         ry/gxMcI6h62SffUTbmIj4TOUOfoQpZnVx5U44McEGWHubKhKK2YBvx+bv0I7J0KwQUr
-         zKwFwPqwzFAdYpHwePK9DdKHzlu7sUu3Vv1gFCODIxsBcdqgiFQTcUM6XNsBWIp8i30y
-         OuWxug/q56opCAm49bhEY/u5tQ41Gj7UDMNwLA4tFR36FsWBdtWhaZvUpbGrQ5D4c2No
-         A6Gw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=39vxUfo9kUr/ORglanv6XpeBZZtxBlP4sJxydSsaVzk=;
+        b=Boo9/wsmz4nLf4Amren52ut9/aDpz4K3SHVOItYNSqMtsjsL7mfvV+yc99rOBfL4g5
+         OP3Rk7vELk5oM0mu1mI5fhL250T3o7Gy/yNZlNU/iEgAZ7dSu+LXGR6tTFr7WzRYNEN0
+         e90bMKOMOfz17BVj0UE/S23USyfGeMteJVGc2SYUw7xdgvNeM/qNgXHZFrsS02+b2L/F
+         u1AnPyjy5u01T8HNk+adq5WzyUhmZJngp7O95kVdq/rT8kP9DiPh1Olml/3yRiGttEht
+         /zR/6RXhG5nprSNZ16YrjQo7BZPye1+WEYJhN/MPHc7Kb8movFMlQqg9D5mLOWZgSRsO
+         PPIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XWslSzgwelv3+t+krm1VmPXi1dB3IfoNZQoNEIRR3UI=;
-        b=WGuOh1BKv7eRCHXNbYG0n2mF69qXHzwBNeUabgvvhiuDc6ydPrdqDjt1VglXwr9Y66
-         fY2UMWLFfZMGJxZLgJl8YgVgAyVW0g6ckbgWY2Ioy9RT0fidLdL7pJ785gGQuVqViZCY
-         fNYS73e1x1APxqHqC91+AtTWpHzi5j8BYtNiukGE01PxCUBh5gnCOzAynA4rRaAyq+dg
-         g0ypOME3gzMkCVVryYD7IBD9Pryklz2OL5Tl/I7ggp+HqQJ6c4YV8KXKryPmhbVTxRTB
-         9xENV5PxgYnLT4f5xP/fc7cvgDPZWu1DXeNM02w98906szry8ScKMcouqIW1W8AV6unt
-         4r1Q==
-X-Gm-Message-State: AOAM5313LTh1lDpJPAwXMQ003yzpdKpjb1vSi/8zojcobZHXotXkyrCX
-        gnU4K9XONdN5UVRWIz8rb88Izw==
-X-Google-Smtp-Source: ABdhPJxwKx/HGtjgU9lsjFsHqEFOnDLNTLTvYwMdj29v6uzzin07cTpEr0O0/9kTmHBusRd7UGwdOw==
-X-Received: by 2002:adf:ce01:: with SMTP id p1mr4519754wrn.33.1602672668770;
-        Wed, 14 Oct 2020 03:51:08 -0700 (PDT)
-Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id c1sm4416464wru.49.2020.10.14.03.51.07
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=39vxUfo9kUr/ORglanv6XpeBZZtxBlP4sJxydSsaVzk=;
+        b=h1jxC3ueuX7lZlXlSwk8eEG7fTwSoxsyABjTcckCmMdaE3HI2rGmIPfS/nYMjYNH6v
+         pOVOaXeXvs1UamjyPEtE15Tx04jNSxRbe11oi1+V+S/VSa1XfMjgM0bATf56Y4+RrmYa
+         usO0Nk3gLnyHZb9pj2UQM9xv2PuGtZ2M/sOm631yA/z5abiD2W9sr7Ekh7vp1U5L5wuH
+         btRKMxttirnBkChjVw99kKHvInr+6OsH3D5xgFIAzYfvw+sSw0oZP4QKSOyKn0uamY1j
+         xhvA1kho48WVlPUfSj/+FR+vwVGkop6+GxHTxAwhTKt91Z2q1Xq5s9UUimMMOywdw7aF
+         mwTg==
+X-Gm-Message-State: AOAM530Jv3QhshaqcKVP8HuLJsp+N3ibmWjTS/2M4Xk7FD1IN3md/Wws
+        vL3W5QUivXuBLQiJUfl65fg=
+X-Google-Smtp-Source: ABdhPJwqJxACPzCD9HfMQhSj8RiZBsMs0NPgKDh778vtuoVaUf6L3ECp4t5sjgOlIQBpF01n2cVzfQ==
+X-Received: by 2002:a17:90a:fe13:: with SMTP id ck19mr2942003pjb.207.1602673277638;
+        Wed, 14 Oct 2020 04:01:17 -0700 (PDT)
+Received: from hoboy (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
+        by smtp.gmail.com with ESMTPSA id v21sm2618483pjg.44.2020.10.14.04.01.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2020 03:51:08 -0700 (PDT)
-From:   Rui Miguel Silva <rui.silva@linaro.org>
-X-Google-Original-From: Rui Miguel Silva <rmfrfs@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rui Miguel Silva <rmfrfs@gmail.com>
-Subject: [PATCH v2] dt-bindings: fxas21002c: convert bindings to yaml
-Date:   Wed, 14 Oct 2020 11:49:26 +0100
-Message-Id: <20201014104926.688666-1-rmfrfs@gmail.com>
-X-Mailer: git-send-email 2.28.0
+        Wed, 14 Oct 2020 04:01:16 -0700 (PDT)
+Date:   Wed, 14 Oct 2020 04:01:13 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        ilias.apalodimas@linaro.org
+Subject: Re: [PATCH net-next v6 4/7] net: dsa: hellcreek: Add support for
+ hardware timestamping
+Message-ID: <20201014110113.GA1646@hoboy>
+References: <87lfgiqpze.fsf@kurt>
+ <20201007105458.gdbrwyzfjfaygjke@skbuf>
+ <87362pjev0.fsf@kurt>
+ <20201008094440.oede2fucgpgcfx6a@skbuf>
+ <87lfghhw9u.fsf@kurt>
+ <f040ba36070dd1e07b05cc63a392d8267ce4efe2.camel@hs-offenburg.de>
+ <20201008150951.elxob2yaw2tirkig@skbuf>
+ <65ecb62de9940991971b965cbd5b902ae5daa09b.camel@hs-offenburg.de>
+ <20201012214254.GA1310@hoboy>
+ <20201014095747.xlt3xodch7tlhrhr@skbuf>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201014095747.xlt3xodch7tlhrhr@skbuf>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert fxas21002c gyroscope sensor bindings documentation to
-yaml schema, remove the textual bindings document and update MAINTAINERS entry.
+On Wed, Oct 14, 2020 at 12:57:47PM +0300, Vladimir Oltean wrote:
+> So the discussion is about how to have the cake and eat it at the same
+> time.
 
-Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
----
-v1 -> v2:
-   Jonathan Cameron:
-       https://lore.kernel.org/linux-iio/20201013153431.000052c9@huawei.com/
-       - remove Unit from tittle
-       - reword interrupts description
-       - drop interrupt-name description
-       - add spi example and bindings
-       - remove vddxx from required list
+And I wish for a pony.  With sparkles.  And a unicorn.  And a rainbow.
 
- .../bindings/iio/gyroscope/nxp,fxas21002c.txt | 31 ------
- .../iio/gyroscope/nxp,fxas21002c.yaml         | 95 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 96 insertions(+), 32 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
- create mode 100644 Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
+> Silicon vendors eager to follow the latest trends in standards are
+> implementing hybrid PTP clocks, where an unsynchronizable version of the
+> clock delivers MAC timestamps to the application stack, and a
+> synchronizable wrapper over that same clock is what gets fed into the
+> offloading engines, like the ones behind the tc-taprio and tc-gate
+> offload. Some of these vendors perform cross-timestamping (they deliver
+> a timestamp from the MAC with 2, or 3, or 4, timestamps, depending on
+> how many PHCs that MAC has wired to it), some don't, and just deliver a
+> single timestamp from a configurable source.
 
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
-deleted file mode 100644
-index 465e104bbf14..000000000000
---- a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
-+++ /dev/null
-@@ -1,31 +0,0 @@
--* NXP FXAS21002C Gyroscope device tree bindings
--
--http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
--
--Required properties:
--  - compatible : should be "nxp,fxas21002c"
--  - reg : the I2C address of the sensor or SPI chip select number for the
--          device.
--  - vdd-supply: phandle to the regulator that provides power to the sensor.
--  - vddio-supply: phandle to the regulator that provides power to the bus.
--
--Optional properties:
--  - reset-gpios : gpio used to reset the device, see gpio/gpio.txt
--  - interrupts : device support 2 interrupts, INT1 and INT2,
--                 the interrupts can be triggered on rising or falling edges.
--                 See interrupt-controller/interrupts.txt
--  - interrupt-names: should contain "INT1" or "INT2", the gyroscope interrupt
--                     line in use.
--  - drive-open-drain: the interrupt/data ready line will be configured
--                      as open drain, which is useful if several sensors share
--                      the same interrupt line. This is a boolean property.
--                      (This binding is taken from pinctrl/pinctrl-bindings.txt)
--
--Example:
--
--gyroscope@20 {
--	compatible = "nxp,fxas21002c";
--	reg = <0x20>;
--	vdd-supply = <&reg_peri_3p15v>;
--	vddio-supply = <&reg_peri_3p15v>;
--};
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
-new file mode 100644
-index 000000000000..2560458dc50b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/gyroscope/nxp,fxas21002c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP FXAS21002C Gyroscope
-+
-+maintainers:
-+  - Rui Miguel Silva <rmfrfs@gmail.com>
-+
-+description: |
-+  3 axis digital gyroscope device with an I2C and SPI interface.
-+  http://www.nxp.com/products/sensors/gyroscopes/3-axis-digital-gyroscope:FXAS21002C
-+
-+properties:
-+  compatible:
-+    const: nxp,fxas21002c
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: Regulator that provides power to the sensor
-+
-+  vddio-supply:
-+    description: Regulator that provides power to the bus
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO connected to reset
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+    description: Either interrupt may be triggered on rising or falling edges.
-+
-+  interrupt-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      enum:
-+        - INT1
-+        - INT2
-+
-+  drive-open-drain:
-+    type: boolean
-+    description: the interrupt/data ready line will be configured as open drain,
-+                 which is useful if several sensors share the same interrupt
-+                 line.
-+
-+  spi-max-frequency:
-+    maximum: 2000000
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        gyroscope@20 {
-+          compatible = "nxp,fxas21002c";
-+          reg = <0x20>;
-+
-+          vdd-supply = <&reg_peri_3p15v>;
-+          vddio-supply = <&reg_peri_3p15v>;
-+
-+          interrupt-parent = <&gpio1>;
-+          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
-+          interrupt-names = "INT1";
-+        };
-+    };
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        gyroscope@0 {
-+          compatible = "nxp,fxas2102c";
-+          reg = <0x0>;
-+
-+          spi-max-frequency = <2000000>;
-+
-+          interrupt-parent = <&gpio2>;
-+          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
-+          interrupt-names = "INT2";
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6594f0966716..2e85e114c9c3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12469,7 +12469,7 @@ NXP FXAS21002C DRIVER
- M:	Rui Miguel Silva <rmfrfs@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.txt
-+F:	Documentation/devicetree/bindings/iio/gyroscope/nxp,fxas21002c.yaml
- F:	drivers/iio/gyro/fxas21002c.h
- F:	drivers/iio/gyro/fxas21002c_core.c
- F:	drivers/iio/gyro/fxas21002c_i2c.c
--- 
-2.28.0
+Sounds like it will be nearly impossible to make a single tc-taprio
+framework that fits all the hardware variants.
 
+> The operating system is supposed to ??? in order to synchronize the
+> synchronizable clock to the virtual time retrieved via TIME_STATUS_NP
+> that you're talking about. The question is what to replace that ???
+> with, of course.
+
+You have a choice.  Either you synchronize the local PHC to the global
+TAI time base or not.  If you do synchronize the PHC, then everything
+(like the globally scheduled time slots) just works.  If you decide to
+follow the nonsensical idea (following 802.1-AS) and leave the PHC
+free running, then you will have a difficult time scheduling those
+time windows.
+
+So it is all up to you.
+
+> I'm not an expert in kernel implementation either, but perhaps in the
+> light of this, you can revisit the idea that kernel changes will not be
+> needed (or explain more, if you still think they aren't).
+
+I am not opposed to kernel changes, but there must be:
+
+- A clear statement of the background context, and
+- an explanation of the issue to solved, and
+- a realistic solution that will support the wide variety of HW. 
+
+> DISCLAIMER
+> Yes, I know full well that everyone can write a standard, but not
+> everyone can implement one. At the end of the day, I'm not trying to
+> make an argument whether the end result is worth making all these
+> changes.
+
++1
+
+That is the question.  You can easily solve this issue by simply
+synchronizing the PHC to the global time base.
+
+Thanks,
+Richard
