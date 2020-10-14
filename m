@@ -2,87 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EF1228DAED
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 10:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D857D28DC80
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728198AbgJNIOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 04:14:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57888 "EHLO
+        id S1729046AbgJNJOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 05:14:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728671AbgJNIOj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 04:14:39 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE266C045864;
-        Tue, 13 Oct 2020 22:46:06 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id j8so965806pjy.5;
-        Tue, 13 Oct 2020 22:46:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7Rp+G8DZZhkfAL9cWtudlZ9LPgIaBKBM+aO/cPwol6M=;
-        b=EjuzKISfcRwMWyuJ84hl/XIJfHvlfJtu96k58Vd9ubhMhpEFiRfC9GsSebnHufk/uy
-         a3EU7kZEMPLz25Z7fhNUxlaSI/z4kUMYu9ne6sL/z8Esf0JI12kYuW2kU2rkz2oPmqkZ
-         wtJKtf40mq/DV5UlnLh0HBPZ7cyJRIk052ARvv3ibKMrSl9L/Zup6T1mYQ0RPmPSRcZA
-         9yKsABLLcLSq30LFCmvB/XFxV+iM5tyAdA+HwBHyF8i87+yMbLyER/ht4R2co0j7MiHE
-         fFLCUShHi0Ymuh6AwORttGuCm0sPcb40atx8eHYk8yTR/arA9J6j0emw0Qq2MKLa/pq9
-         Tecg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7Rp+G8DZZhkfAL9cWtudlZ9LPgIaBKBM+aO/cPwol6M=;
-        b=VmRQv824paPnnKjFoWhZkQg6KIg/YqaFfKmfOE23sWi+2h2FrHtYjOf7pqastqAg3z
-         lJBUOCJGq5npLeCGqUNWwN++lgtkjKUfj/85ChaG7lZ/nn+cl7FEhzve84u30oz9S4gb
-         u4o8KYddqNWtj2QWhkP/FWah1NccSFwMc50u7r6Zxv5eDBXv3qMTr61YICiD4PUEvmNs
-         Fz40Q3lKctNQp6iBmFqp7y1TQzq5Q2duAp79hFFrbKHLNUGMZkUjs32+zwQ675PU/srQ
-         MEfgs8N3cQHoKh4s/TD0lVkiZViR9VFRf2c6+FqJkcQDQzuxvNRg0vuO9drCXyQ2EtD8
-         A20A==
-X-Gm-Message-State: AOAM5309t1bLiJVxAGFbm6YP5oToru01FVEF/4w0lU/egxuWhw5ahAbc
-        L/xWVGmD9LloXMJtO1MPQmE=
-X-Google-Smtp-Source: ABdhPJxIt969XM2Lx9QtYISAlFDV3pi3XqyjKgkyokQT7WD3SyoIh5WPzQAIxlulAvwbLXckBylbew==
-X-Received: by 2002:a17:90b:3841:: with SMTP id nl1mr1978234pjb.69.1602654366301;
-        Tue, 13 Oct 2020 22:46:06 -0700 (PDT)
-Received: from HVD6JC2.Broadcom.net ([192.19.252.250])
-        by smtp.gmail.com with ESMTPSA id w187sm1620996pfb.93.2020.10.13.22.46.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2020 22:46:05 -0700 (PDT)
-From:   Amitesh Chandra <amitesh.chandra@gmail.com>
-To:     davem@davemloft.net, robh+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     amitesh.chandra@broadcom.com, ravi.nagarajan@broadcom.com,
-        cheneyni@google.com
-Subject: [PATCH 2/3] dt-bindings: net: bluetooth: Add broadcom BCM4389 support
-Date:   Wed, 14 Oct 2020 11:15:43 +0530
-Message-Id: <20201014054543.2457-1-amitesh.chandra@gmail.com>
-X-Mailer: git-send-email 2.28.0.windows.1
+        with ESMTP id S1729091AbgJNJOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:14:36 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50106C05110A
+        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 23:49:17 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kSab2-0004WE-Ds; Wed, 14 Oct 2020 08:49:12 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kSab0-00047U-Gx; Wed, 14 Oct 2020 08:49:10 +0200
+Date:   Wed, 14 Oct 2020 08:49:10 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v11 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20201014064910.jwb664re6frsqd5a@pengutronix.de>
+References: <cover.1602612067.git.vijayakannan.ayyathurai@intel.com>
+ <d5312c9bef22f4439deb27a00d0bf51d7a2b92c6.1602612067.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yx43rknoeurrq3mn"
+Content-Disposition: inline
+In-Reply-To: <d5312c9bef22f4439deb27a00d0bf51d7a2b92c6.1602612067.git.vijayakannan.ayyathurai@intel.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amitesh Chandra <amitesh.chandra@broadcom.com>
 
-Add bindings for BCM4389 bluetooth controller.
+--yx43rknoeurrq3mn
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Amitesh Chandra <amitesh.chandra@broadcom.com>
----
- Documentation/devicetree/bindings/net/broadcom-bluetooth.txt | 1 +
- 1 file changed, 1 insertion(+)
+Hello,
 
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-index 4fa00e2..ae48e42 100644
---- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-+++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-@@ -14,6 +14,7 @@ Required properties:
-    * "brcm,bcm4330-bt"
-    * "brcm,bcm43438-bt"
-    * "brcm,bcm4345c5"
-+   * "brcm,bcm4389-bt"
- 
- Optional properties:
- 
--- 
-2.7.4
+sorry, I still found a problem that I want to have addressed. I'll point
+out a few minor things en passant.
 
+But after that I really have a good feeling and like the driver now.
+
+On Wed, Oct 14, 2020 at 02:14:12AM +0800, vijayakannan.ayyathurai@intel.com=
+ wrote:
+> +static void keembay_pwm_get_state(struct pwm_chip *chip, struct pwm_devi=
+ce *pwm,
+> +				  struct pwm_state *state)
+> +{
+> +	struct keembay_pwm *priv =3D to_keembay_pwm_dev(chip);
+> +	unsigned long long pwm_h_count, pwm_l_count;
+> +	unsigned long clk_rate;
+> +	u32 buff;
+> +
+> +	clk_rate =3D clk_get_rate(priv->clk);
+> +
+> +	/* Read channel enabled status */
+> +	buff =3D readl(priv->base + KMB_PWM_LEADIN_OFFSET(pwm->hwpwm));
+> +	if (buff & KMB_PWM_EN_BIT)
+> +		state->enabled =3D true;
+> +	else
+> +		state->enabled =3D false;
+> +
+> +	/* Read period and duty cycle */
+> +	buff =3D readl(priv->base + KMB_PWM_HIGHLOW_OFFSET(pwm->hwpwm));
+> +	pwm_l_count =3D FIELD_GET(KMB_PWM_LOW_MASK, buff) * NSEC_PER_SEC;
+> +	pwm_h_count =3D FIELD_GET(KMB_PWM_HIGH_MASK, buff) * NSEC_PER_SEC;
+
+<minor nit>: The variable names are not optimal. I'd use "highlow"
+instead of "buff". pwm_l_count would be appropriate for
+FIELD_GET(KMB_PWM_LOW_MASK, buff); when multiplied with NSEC_PER_SEC
+it's not really matching. Maybe just use "low"?! (and "high" instead of
+pwm_h_count)
+
+> +	state->duty_cycle =3D DIV_ROUND_UP_ULL(pwm_h_count, clk_rate);
+> +	state->period =3D DIV_ROUND_UP_ULL(pwm_h_count + pwm_l_count, clk_rate);
+
+state->polarity =3D PWM_POLARITY_NORMAL; (That's the important bit here.)
+
+> +}
+> +
+> +static int keembay_pwm_apply(struct pwm_chip *chip, struct pwm_device *p=
+wm,
+> +			     const struct pwm_state *state)
+> +{
+> +	struct keembay_pwm *priv =3D to_keembay_pwm_dev(chip);
+> +	struct pwm_state current_state;
+> +	u16 pwm_h_count, pwm_l_count;
+> +	unsigned long long div;
+> +	unsigned long clk_rate;
+> +	u32 pwm_count =3D 0;
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -ENOSYS;
+> +
+> +	keembay_pwm_update_bits(priv, KMB_PWM_LEADIN_MASK, 0,
+> +				KMB_PWM_LEADIN_OFFSET(pwm->hwpwm));
+
+A comment describing the effect of this register would be great.
+
+> +	keembay_pwm_get_state(chip, pwm, &current_state);
+> +
+> +	if (!state->enabled) {
+> +		if (current_state.enabled)
+> +			keembay_pwm_disable(priv, pwm->hwpwm);
+> +		return 0;
+> +	}
+> +
+> [...]
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--yx43rknoeurrq3mn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+Gn2MACgkQwfwUeK3K
+7Al7xgf/XG+s4p97S6RCv1PhTDpBnQxQnC4jQPqNrY33kMyI6UP8yqp/jGPHMvHU
+1XZwZh+KFm1j29gxuGgHVJZhWPK/O53aRlQKOMINkMgPZrp0hP/OiTJDqURm2L5E
+fOfB5+pGcYD1JLf2MSUKlA4ri0Bu0l4Zc4EG+cCLgfkezr1jqWDtXl4waYrRCmII
+atFpiWbQJRvQmBh2yw7Oj8bfahAmKr+z/oMJ71L2fc3qD/dYaxcWh747cNo/95Bx
+Q3OF2pqyGYVd+aW9EQT8iEx0J8TJxDbJT232LqMridF+r4h+5j9Y64QRxhXvkjTe
+cJKFkQHJCfTOlLLjBXSwRiIVZO3mig==
+=0nEz
+-----END PGP SIGNATURE-----
+
+--yx43rknoeurrq3mn--
