@@ -2,74 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5889728E55C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 19:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2835228E581
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 19:40:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730056AbgJNR37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 13:29:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54150 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728813AbgJNR36 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 13:29:58 -0400
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CA07D21D7F;
-        Wed, 14 Oct 2020 17:29:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602696597;
-        bh=9437E/K9Qu+aoCzM51wOQqODMRawCtymxfccbkH8RAg=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=eks+5Kx4x2WnR4nUpLvMdfiVWyzWm5JoGDPo9Bq00dK+flYHLoHgfmbKE240fVYJV
-         sbwxEVQFAvy6fydc0i1sIQW1ykWt92bll4Or+qHXsJTEeQuqp2RCKX+gfiI+WJxfJL
-         jn4xKmR0TfVZWouJjCFRZyXN6xaybJyawk5JmxHA=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <153b313c-ff06-c91b-5adc-4cc3c5cd1a6f@linaro.org>
-References: <20201005225914.315852-1-dmitry.baryshkov@linaro.org> <20201005225914.315852-3-dmitry.baryshkov@linaro.org> <160264174883.310579.10321983404701479878@swboyd.mtv.corp.google.com> <153b313c-ff06-c91b-5adc-4cc3c5cd1a6f@linaro.org>
-Subject: Re: [PATCH v1 2/3] clk: qcom: gdsc: enable external switchable power domain
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-To:     Andy Gross <agross@kernel.org>,
+        id S2389171AbgJNRhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 13:37:11 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:49556 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388902AbgJNRhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 13:37:11 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 0B34B803073E;
+        Wed, 14 Oct 2020 17:37:09 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id qiTZazrqpn09; Wed, 14 Oct 2020 20:37:08 +0300 (MSK)
+Date:   Wed, 14 Oct 2020 20:37:06 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Andy Gross <agross@kernel.org>, <linux-kernel@vger.kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        <linux-usb@vger.kernel.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 14 Oct 2020 10:29:56 -0700
-Message-ID: <160269659638.884498.4031967462806977493@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+        Rob Herring <robh+dt@kernel.org>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Felipe Balbi <balbi@kernel.org>, Roger Quadros <rogerq@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        <linux-snps-arc@lists.infradead.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 09/20] dt-bindings: usb: Convert DWC USB3 bindings to DT
+ schema
+Message-ID: <20201014173706.jojxkhdicyg62hlo@mobilestation>
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
+ <20201014101402.18271-10-Sergey.Semin@baikalelectronics.ru>
+ <20201014133219.GA1545403@bogus>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201014133219.GA1545403@bogus>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2020-10-14 02:44:31)
-> On 14/10/2020 05:15, Stephen Boyd wrote:
-> > Quoting Dmitry Baryshkov (2020-10-05 15:59:13)
-> >> On SM8250 MDSS_GDSC (and respective dispcc clocks) are children of MMCX
-> >> power domain. MMCX needs to be enabled to be able to access GDSC
-> >> registers and to enable display clocks. Use dev_pm/opp to enable
-> >> corresponding power domain.
-> >>
-> >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >> ---
-> >=20
-> > A general question is why is this done in the gdsc code instead of
-> > somewhere generic? It seems that genpds may need to change the
-> > performance state of other genpds. I vaguely recall that genpd supports
-> > connecting different power domains together so maybe this could all be
-> > handled in the genpd layer instead of here? Then a regulator could be
-> > put behind a genpd and similarly be connected to the gdsc and turned on
-> > before turning on the gdsc?
->=20
-> Basically because we need not only to enable the genpd, but also to set=20
-> performance state. This would mean creating a separate regulator driver=20
-> calling dev_pm_genpd_set_performance_state() from enable/disable paths.
-> Does that seem like a better solution to you?
+On Wed, Oct 14, 2020 at 08:32:19AM -0500, Rob Herring wrote:
+> On Wed, 14 Oct 2020 13:13:51 +0300, Serge Semin wrote:
+> > DWC USB3 DT node is supposed to be compliant with the Generic xHCI
+> > Controller schema, but with additional vendor-specific properties, the
+> > controller-specific reference clocks and PHYs. So let's convert the
+> > currently available legacy text-based DWC USB3 bindings to the DT schema
+> > and make sure the DWC USB3 nodes are also validated against the
+> > usb-xhci.yaml schema.
+> > 
+> > Note we have to discard the nodename restriction of being prefixed with
+> > "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
+> > are supposed to be named as "^usb(@.*)".
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Changelog v2:
+> > - Discard '|' from the descriptions, since we don't need to preserve
+> >   the text formatting in any of them.
+> > - Drop quotes from around the string constants.
+> > - Fix the "clock-names" prop description to be referring the enumerated
+> >   clock-names instead of the ones from the Databook.
+> > ---
+> >  .../devicetree/bindings/usb/dwc3.txt          | 125 --------
+> >  .../devicetree/bindings/usb/snps,dwc3.yaml    | 295 ++++++++++++++++++
+> >  2 files changed, 295 insertions(+), 125 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
+> >  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > 
+> 
+> 
 
-It does sound like a better solution to me. Unfortunately we already
-have that generic code here in the gdsc file so lifting it up into the
-genpd layer is a bunch of work. It is certainly the end goal.
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> ./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:44:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dt.yaml: dwc3@a600000: $nodename:0: 'dwc3@a600000' does not match '^usb(@.*)?'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dt.yaml: usb@ff500000: snps,quirk-frame-length-adjustment: True is not of type 'array'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> 
+> 
+> See https://patchwork.ozlabs.org/patch/1382003
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure dt-schema is up to date:
+> 
+> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+> 
+> Please check and re-submit.
+> 
+
+Both of these errors are fixed in the following patches of the series:
+[PATCH 17/20] dt-bindings: usb: qcom,dwc3: Validate DWC3 sub-node
+[PATCH 15/20] dt-bindings: usb: meson-g12a-usb: Fix FL-adj property value
+
+This patch preserves the original legacy bindings and doesn't touch the
+depended bogus DT schemas.
+
+-Sergey
+
