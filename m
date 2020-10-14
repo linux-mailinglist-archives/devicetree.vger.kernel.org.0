@@ -2,115 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 791C328DC4D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 11:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E319628D95B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 06:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725887AbgJNJEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 05:04:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726111AbgJNJEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 05:04:36 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F67DC041E6A
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 21:25:35 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id h2so1089255pll.11
-        for <devicetree@vger.kernel.org>; Tue, 13 Oct 2020 21:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=jqWcpa42URbsJYkeNmmPzi1+jlodeSMihJOMagBFEDU=;
-        b=s6HeF1SGVHGC2oyxQ8WdZxfrtDy2ZitX5zAuOzD9yQHVn4I2hw7IgAiExwnQDPTNwp
-         BQzt1X6Lqj/bV5R9WfIkgLiAMwGl79iatHK+6F34QMdfB2gEJBvUWHlF7OMek+eg7XNh
-         Zf8bOdnzDhDDd84GGrP30nYG6HAupQEe9duBKveBLqZZ5ub4YyYxUqs1GY8HXqlje7EG
-         9Srbo+QHUZcuAJdu2s2DY6uuTS2dCRk9JeEzXJz7g5Z5v3ROQW0wqrImBTQda6BpPv4B
-         gqgHetIwJDrXe31u47pP9izHMISBFfQNdl3cn7gFxF8oPNSm27NnMaim7WaboldcjiLt
-         FVXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jqWcpa42URbsJYkeNmmPzi1+jlodeSMihJOMagBFEDU=;
-        b=bErspgTCVNLths7AUHBAF+Hb+qysFznczXqzviidXW9IcrTq/8ZomjRLOdK/ItvxKY
-         JAKSlD5kAWzDv20pr1A4oAzP76mBImw/dnOt0uoCQA1V/n3JpvaLh4zZYFwKnRlz0FYy
-         83W/Rr6AAfSth9aQNNf9+ODct0T63hBkjEU7vfxfWmttYm/zlvEi7CfobwJPhS8I2uJQ
-         tYQLf/nyBG+QDIq2bah206+8ctH0jBTlP2FdWXv0HUyLtOSmSvNiXLtix4iLsnKlS4De
-         USSIBkZ0ZUwBzetqWbz9yJEW4WJL285FaIHVQHczdvfV+qfQIfpaI7NhmV/2/lx7oF5t
-         8dDQ==
-X-Gm-Message-State: AOAM532QUE0xyn1ecRAeEkPx718mmgp6hFBZJiWo0d9hznN5i24OT5BM
-        /rAYrWzs5pf25HRS6DXi2dTj2w==
-X-Google-Smtp-Source: ABdhPJwZV7/AgPKuIFGMcWKwWD0cpwn6OGmDMCdsyMZsRdpT0FErCuGiayAGS2xywEAgwCY+6FKuRA==
-X-Received: by 2002:a17:902:7002:b029:d5:3e:3b0c with SMTP id y2-20020a1709027002b02900d5003e3b0cmr2581898plk.52.1602649534683;
-        Tue, 13 Oct 2020 21:25:34 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id n203sm1443308pfd.81.2020.10.13.21.25.33
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Oct 2020 21:25:33 -0700 (PDT)
-Date:   Wed, 14 Oct 2020 09:55:31 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Ionela Voinescu <ionela.voinescu@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        chris.redpath@arm.com, morten.rasmussen@arm.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201014042531.r7iykzygkvmpsqck@vireshk-i7>
-References: <20200924095347.32148-3-nicola.mazzucato@arm.com>
- <20201006071909.3cgz7i5v35dgnuzn@vireshk-i7>
- <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
- <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
- <20201012154915.GD16519@bogus>
- <20201012165219.GA3573@arm.com>
- <17819d4d-9e7e-9a38-4227-d0d10a0749f1@arm.com>
+        id S1727144AbgJNEoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 00:44:38 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:49647 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726037AbgJNEoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 00:44:38 -0400
+X-UUID: 18ebda2e8bf74f3095a7a10152753375-20201014
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=x91QPLRNfibON85F9Jml+ohJ1lXenPHGO335BQtB9sE=;
+        b=TkmPB3Asx3A3tAuOhtUvOJ/an4GLImdom4xnu2GyuqJibgVxpjk67Gz4xUfdNZ4XWl/1k7Mtql8Xg4u4jnB30Oc8gwKwpl9Q4BoIHYAFCClDVEmxupIAgAF2zYh1HYiTGr5AuSs9VpDFP+b9GrTplju/Apckqqvix0gNfnrVi4U=;
+X-UUID: 18ebda2e8bf74f3095a7a10152753375-20201014
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 262329850; Wed, 14 Oct 2020 12:44:32 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 14 Oct 2020 12:44:30 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 14 Oct 2020 12:44:30 +0800
+Message-ID: <1602650671.27998.2.camel@mtksdaap41>
+Subject: Re: [PATCH v2 4/8] dt-bindings: phy: convert HDMI PHY binding to
+ YAML schema
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Min Guo <min.guo@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
+Date:   Wed, 14 Oct 2020 12:44:31 +0800
+In-Reply-To: <20201013085207.17749-4-chunfeng.yun@mediatek.com>
+References: <20201013085207.17749-1-chunfeng.yun@mediatek.com>
+         <20201013085207.17749-4-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17819d4d-9e7e-9a38-4227-d0d10a0749f1@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-10-20, 18:18, Lukasz Luba wrote:
-> On 10/12/20 5:52 PM, Ionela Voinescu wrote:
-> > On Monday 12 Oct 2020 at 16:49:30 (+0100), Sudeep Holla wrote:
-> > > On Fri, Oct 09, 2020 at 11:09:21AM +0530, Viresh Kumar wrote:
-> > > > - I wonder if we can keep using that instead of creating new bindings
-> > > >    for exact same stuff ? Though the difference here would be that the
-> > > >    OPP may not have any other entries.
-> > > 
-> > > Well summarised, sorry for chiming in late. I could have not summarised
-> > > any better. Just saw the big thread and was thinking of summarising.
-> > > If the last point on OPP is possible(i.e. no OPP entries but just use
-> > > it for fetch the information) for $subject patch is trying to achieve,
-> > > then it would be good.
+SGksIENodW5mZW5nOg0KDQpPbiBUdWUsIDIwMjAtMTAtMTMgYXQgMTY6NTIgKzA4MDAsIENodW5m
+ZW5nIFl1biB3cm90ZToNCj4gQ29udmVydCBIRE1JIFBIWSBiaW5kaW5nIHRvIFlBTUwgc2NoZW1h
+IG1lZGlhdGVrLHVmcy1waHkueWFtbA0KPiANCj4gU2lnbmVkLW9mZi1ieTogQ2h1bmZlbmcgWXVu
+IDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gdjI6IGZpeCBiaW5kaW5nIGNo
+ZWNrIHdhcm5pbmcgb2YgcmVnIGluIGV4YW1wbGUNCj4gLS0tDQo+ICAuLi4vZGlzcGxheS9tZWRp
+YXRlay9tZWRpYXRlayxoZG1pLnR4dCAgICAgICAgfCAxNyArLS0tDQo+ICAuLi4vYmluZGluZ3Mv
+cGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwgICAgICAgfCA5MCArKysrKysrKysrKysrKysrKysr
+DQo+ICAyIGZpbGVzIGNoYW5nZWQsIDkxIGluc2VydGlvbnMoKyksIDE2IGRlbGV0aW9ucygtKQ0K
+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9w
+aHkvbWVkaWF0ZWssaGRtaS1waHkueWFtbA0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGhkbWkudHh0
+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVk
+aWF0ZWssaGRtaS50eHQNCj4gaW5kZXggN2IxMjQyNDJiMGM1Li5lZGFjMTg5NTFhNzUgMTAwNjQ0
+DQo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlh
+dGVrL21lZGlhdGVrLGhkbWkudHh0DQo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGhkbWkudHh0DQo+IEBAIC01MCwyMiAr
+NTAsNyBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiAgDQo+ICBIRE1JIFBIWQ0KPiAgPT09PT09
+PT0NCj4gLQ0KPiAtVGhlIEhETUkgUEhZIHNlcmlhbGl6ZXMgdGhlIEhETUkgZW5jb2RlcidzIHRo
+cmVlIGNoYW5uZWwgMTAtYml0IHBhcmFsbGVsDQo+IC1vdXRwdXQgYW5kIGRyaXZlcyB0aGUgSERN
+SSBwYWRzLg0KPiAtDQo+IC1SZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiAtLSBjb21wYXRpYmxlOiAi
+bWVkaWF0ZWssPGNoaXA+LWhkbWktcGh5Ig0KPiAtLSByZWc6IFBoeXNpY2FsIGJhc2UgYWRkcmVz
+cyBhbmQgbGVuZ3RoIG9mIHRoZSBtb2R1bGUncyByZWdpc3RlcnMNCj4gLS0gY2xvY2tzOiBQTEwg
+cmVmZXJlbmNlIGNsb2NrDQo+IC0tIGNsb2NrLW5hbWVzOiBtdXN0IGNvbnRhaW4gInBsbF9yZWYi
+DQo+IC0tIGNsb2NrLW91dHB1dC1uYW1lczogbXVzdCBiZSAiaGRtaXR4X2RpZ19jdHMiIG9uIG10
+ODE3Mw0KPiAtLSAjcGh5LWNlbGxzOiBtdXN0IGJlIDwwPg0KPiAtLSAjY2xvY2stY2VsbHM6IG11
+c3QgYmUgPDA+DQo+IC0NCj4gLU9wdGlvbmFsIHByb3BlcnRpZXM6DQo+IC0tIG1lZGlhdGVrLGli
+aWFzOiBUWCBEUlYgYmlhcyBjdXJyZW50IGZvciA8MS42NUdicHMsIGRlZmF1bHRzIHRvIDB4YQ0K
+PiAtLSBtZWRpYXRlayxpYmlhc191cDogVFggRFJWIGJpYXMgY3VycmVudCBmb3IgPjEuNjVHYnBz
+LCBkZWZhdWx0cyB0byAweDFjDQo+ICtTZWUgcGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwNCj4g
+IA0KPiAgRXhhbXBsZToNCj4gIA0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1pLXBoeS55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1pLXBoeS55YW1sDQo+IG5ldyBmaWxl
+IG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMC4uNzdkZjUwMjA0NjA2DQo+IC0tLSAv
+ZGV2L251bGwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9t
+ZWRpYXRlayxoZG1pLXBoeS55YW1sDQo+IEBAIC0wLDAgKzEsOTAgQEANCj4gKyMgU1BEWC1MaWNl
+bnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiArIyBDb3B5
+cmlnaHQgKGMpIDIwMjAgTWVkaWFUZWsNCj4gKyVZQU1MIDEuMg0KPiArLS0tDQo+ICskaWQ6IGh0
+dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3BoeS9tZWRpYXRlayxoZG1pLXBoeS55YW1sIw0K
+PiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwj
+DQo+ICsNCj4gK3RpdGxlOiBNZWRpYVRlayBIaWdoIERlZmluaXRpb24gTXVsdGltZWRpYSBJbnRl
+cmZhY2UgKEhETUkpIFBIWSBiaW5kaW5nDQo+ICsNCj4gK21haW50YWluZXJzOg0KPiArICAtIENL
+IEh1IDxjay5odUBtZWRpYXRlay5jb20+DQoNCkkgdGhpbmsgeW91IHNob3VsZCByZW1vdmUgIkNL
+IEh1IDxjay5odUBtZWRpYXRlay5jb20+IiBhbmQgYWRkIGxhdGVzdA0KbWVkaWF0ZWsgZHJtIG1h
+aW50YWluZXI6DQoNCkRSTSBEUklWRVJTIEZPUiBNRURJQVRFSw0KTToJQ2h1bi1LdWFuZyBIdSA8
+Y2h1bmt1YW5nLmh1QGtlcm5lbC5vcmc+DQpNOglQaGlsaXBwIFphYmVsIDxwLnphYmVsQHBlbmd1
+dHJvbml4LmRlPg0KTDoJZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KUzoJU3VwcG9y
+dGVkDQpGOglEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRl
+ay8NCkY6CWRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay8NCg0KUmVnYXJkcywNCkNLDQoNCj4gKyAg
+LSBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+ICsNCj4gK2Rlc2Ny
+aXB0aW9uOiB8DQo+ICsgIFRoZSBIRE1JIFBIWSBzZXJpYWxpemVzIHRoZSBIRE1JIGVuY29kZXIn
+cyB0aHJlZSBjaGFubmVsIDEwLWJpdCBwYXJhbGxlbA0KPiArICBvdXRwdXQgYW5kIGRyaXZlcyB0
+aGUgSERNSSBwYWRzLg0KPiArDQo+ICtwcm9wZXJ0aWVzOg0KPiArICAkbm9kZW5hbWU6DQo+ICsg
+ICAgcGF0dGVybjogIl5oZG1pLXBoeUBbMC05YS1mXSskIg0KPiArDQo+ICsgIGNvbXBhdGlibGU6
+DQo+ICsgICAgZW51bToNCj4gKyAgICAgIC0gbWVkaWF0ZWssbXQyNzAxLWhkbWktcGh5DQo+ICsg
+ICAgICAtIG1lZGlhdGVrLG10ODE3My1oZG1pLXBoeQ0KPiArDQo+ICsgIHJlZzoNCj4gKyAgICBt
+YXhJdGVtczogMQ0KPiArDQo+ICsgIGNsb2NrczoNCj4gKyAgICBpdGVtczoNCj4gKyAgICAgIC0g
+ZGVzY3JpcHRpb246IFBMTCByZWZlcmVuY2UgY2xvY2sNCj4gKw0KPiArICBjbG9jay1uYW1lczoN
+Cj4gKyAgICBpdGVtczoNCj4gKyAgICAgIC0gY29uc3Q6IHBsbF9yZWYNCj4gKw0KPiArICBjbG9j
+ay1vdXRwdXQtbmFtZXM6DQo+ICsgICAgaXRlbXM6DQo+ICsgICAgICAtIGNvbnN0OiBoZG1pdHhf
+ZGlnX2N0cw0KPiArDQo+ICsgICIjcGh5LWNlbGxzIjoNCj4gKyAgICBjb25zdDogMA0KPiArDQo+
+ICsgICIjY2xvY2stY2VsbHMiOg0KPiArICAgIGNvbnN0OiAwDQo+ICsNCj4gKyAgbWVkaWF0ZWss
+aWJpYXM6DQo+ICsgICAgZGVzY3JpcHRpb246DQo+ICsgICAgICBUWCBEUlYgYmlhcyBjdXJyZW50
+IGZvciA8IDEuNjVHYnBzDQo+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5p
+dGlvbnMvdWludDMyDQo+ICsgICAgbWluaW11bTogMA0KPiArICAgIG1heGltdW06IDYzDQo+ICsg
+ICAgZGVmYXVsdDogMHhhDQo+ICsNCj4gKyAgbWVkaWF0ZWssaWJpYXNfdXA6DQo+ICsgICAgZGVz
+Y3JpcHRpb246DQo+ICsgICAgICBUWCBEUlYgYmlhcyBjdXJyZW50IGZvciA+PSAxLjY1R2Jwcw0K
+PiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiAr
+ICAgIG1pbmltdW06IDANCj4gKyAgICBtYXhpbXVtOiA2Mw0KPiArICAgIGRlZmF1bHQ6IDB4MWMN
+Cj4gKw0KPiArcmVxdWlyZWQ6DQo+ICsgIC0gY29tcGF0aWJsZQ0KPiArICAtIHJlZw0KPiArICAt
+IGNsb2Nrcw0KPiArICAtIGNsb2NrLW5hbWVzDQo+ICsgIC0gY2xvY2stb3V0cHV0LW5hbWVzDQo+
+ICsgIC0gIiNwaHktY2VsbHMiDQo+ICsgIC0gIiNjbG9jay1jZWxscyINCj4gKw0KPiArYWRkaXRp
+b25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ICsNCj4gK2V4YW1wbGVzOg0KPiArICAtIHwNCj4gKyAg
+ICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svbXQ4MTczLWNsay5oPg0KPiArICAgIGhkbWlf
+cGh5OiBoZG1pLXBoeUAxMDIwOTEwMCB7DQo+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0
+ZWssbXQ4MTczLWhkbWktcGh5IjsNCj4gKyAgICAgICAgcmVnID0gPDB4MTAyMDkxMDAgMHgyND47
+DQo+ICsgICAgICAgIGNsb2NrcyA9IDwmYXBtaXhlZHN5cyBDTEtfQVBNSVhFRF9IRE1JX1JFRj47
+DQo+ICsgICAgICAgIGNsb2NrLW5hbWVzID0gInBsbF9yZWYiOw0KPiArICAgICAgICBjbG9jay1v
+dXRwdXQtbmFtZXMgPSAiaGRtaXR4X2RpZ19jdHMiOw0KPiArICAgICAgICBtZWRpYXRlayxpYmlh
+cyA9IDwweGE+Ow0KPiArICAgICAgICBtZWRpYXRlayxpYmlhc191cCA9IDwweDFjPjsNCj4gKyAg
+ICAgICAgI2Nsb2NrLWNlbGxzID0gPDA+Ow0KPiArICAgICAgICAjcGh5LWNlbGxzID0gPDA+Ow0K
+PiArICAgIH07DQo+ICsNCj4gKy4uLg0KDQo=
 
-Under normal circumstances, I wouldn't have suggested empty opp-tables
-for sure but it doesn't seem worth adding another binding to get this
-information out :)
-
-> > 
-> > Just to put in my two pennies worth: using opp-shared (in possibly empty
-> > OPP table) as alternative to cpu-perf-dependencies sounds good enough
-> > to me as well.
-> 
-> +1
-
-Now that (almost) everyone agrees, I don't think we need to make any
-change anywhere, in code or bindings. This should work right now as
-well.  The code should never try to create OPP tables and the core
-will not create one. Your driver (which want to get this information
-out of empty OPP tables) shall call dev_pm_opp_of_get_sharing_cpus(),
-which just parses the DT to get this information out.
-
--- 
-viresh
