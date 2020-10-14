@@ -2,108 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB41928E0D8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 14:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EEA528E0E4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 14:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729928AbgJNMzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 08:55:24 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:41388 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729886AbgJNMzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 08:55:24 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09ECqtv0015297;
-        Wed, 14 Oct 2020 14:55:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=9bTCitwnBAltRZQ7gOYLHIo8QHxlqk1VrxB1btIyl3k=;
- b=KzTLNfTxLA+SdECp61CYy4zvOHuw/EYembLjHrSng9UqSuZRY/IbUv/f5q5k9nhJGcgo
- lMe3N7vYUHM1hC3QjFxmQUFbMxgyYf7dhwJBiEUJpRH/GxmtM7+CH+vcKDnhNsZ/zpHI
- 407uxuP/xWF1a+1n8u+K7E18TnGwv041b6obfQowhUWG6rAFfDFG4F3gIqGGOaJFK9Ge
- Rj4lLT81qC8MndoDsw0VrJzf3exPDLM6ZpDaV9M50VPqP/PPINCOxZUWpzgtY9XO8Gwo
- GjfiFb0p4JJSAuJI4xVixQ2LwwwT0TUZoEZ3B46yQ7veLlXYsRhYTjODZtO8Xw3cP31U Sg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3455c8hqrm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Oct 2020 14:55:14 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6536810002A;
-        Wed, 14 Oct 2020 14:55:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 55D6F2DA52D;
-        Wed, 14 Oct 2020 14:55:14 +0200 (CEST)
-Received: from localhost (10.75.127.45) by SFHDAG3NODE1.st.com (10.75.127.7)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 14 Oct 2020 14:55:13
- +0200
-From:   Arnaud Pouliquen <arnaud.pouliquen@st.com>
-To:     Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: [PATCH v2 4/4] ARM: dts: stm32: update stm32mp151 for remote proc synchronization support
-Date:   Wed, 14 Oct 2020 14:54:41 +0200
-Message-ID: <20201014125441.2457-5-arnaud.pouliquen@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201014125441.2457-1-arnaud.pouliquen@st.com>
-References: <20201014125441.2457-1-arnaud.pouliquen@st.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG3NODE1.st.com
- (10.75.127.7)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-14_07:2020-10-14,2020-10-14 signatures=0
+        id S2387972AbgJNM6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 08:58:47 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:15486 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730495AbgJNM6r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 08:58:47 -0400
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 14 Oct 2020 05:58:43 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 14 Oct 2020 05:58:41 -0700
+X-QCInternal: smtphost
+Received: from mkrishn-linux.qualcomm.com ([10.204.66.35])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 14 Oct 2020 18:28:21 +0530
+Received: by mkrishn-linux.qualcomm.com (Postfix, from userid 438394)
+        id 5D0242141F; Wed, 14 Oct 2020 18:28:20 +0530 (IST)
+From:   Krishna Manikandan <mkrishn@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Krishna Manikandan <mkrishn@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        kalyan_t@codeaurora.org, dianders@chromium.org
+Subject: [v1] drm/msm: Fix race condition in msm driver with async layer updates
+Date:   Wed, 14 Oct 2020 18:28:16 +0530
+Message-Id: <1602680296-8965-1-git-send-email-mkrishn@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two backup registers are used to store the Cortex-M4 state and the resource
-table address.
-Declare the tamp node and add associated properties in m4_rproc node
-to allow Linux to attach to a firmware loaded by the first boot stages.
+When there are back to back commits with async cursor update,
+there is a case where second commit can program the DPU hw
+blocks while first didn't complete flushing config to HW.
 
-Associated driver implementation is available in commit 9276536f455b3
-("remoteproc: stm32: Parse syscon that will manage M4 synchronisation").
+Synchronize the compositions such that second commit waits
+until first commit flushes the composition.
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
+This change also introduces per crtc commit lock, such that
+commits on different crtcs are not blocked by each other.
+
+Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
 ---
- arch/arm/boot/dts/stm32mp151.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c |  1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h |  1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c  | 26 ++++++++++++++++++++++++
+ drivers/gpu/drm/msm/msm_atomic.c         | 35 ++++++++++++++++++++++----------
+ drivers/gpu/drm/msm/msm_kms.h            |  5 +++++
+ 5 files changed, 57 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index bfe29023fbd5..842ecffae73a 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1541,6 +1541,11 @@
- 			status = "disabled";
- 		};
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+index c2729f7..9024719 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+@@ -1383,6 +1383,7 @@ struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
  
-+		tamp: tamp@5c00a000 {
-+			compatible = "st,stm32-tamp", "syscon";
-+			reg = <0x5c00a000 0x400>;
-+		};
+ 	/* initialize event handling */
+ 	spin_lock_init(&dpu_crtc->event_lock);
++	mutex_init(&dpu_crtc->commit_lock);
+ 
+ 	DPU_DEBUG("%s: successfully initialized crtc\n", dpu_crtc->name);
+ 	return crtc;
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+index cec3474..1eeb73d 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+@@ -169,6 +169,7 @@ struct dpu_crtc {
+ 
+ 	/* for handling internal event thread */
+ 	spinlock_t event_lock;
++	struct mutex commit_lock;
+ 
+ 	struct dpu_core_perf_params cur_perf;
+ 
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+index c0a4d4e..f99ae7a 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+@@ -445,6 +445,30 @@ static void dpu_kms_wait_flush(struct msm_kms *kms, unsigned crtc_mask)
+ 		dpu_kms_wait_for_commit_done(kms, crtc);
+ }
+ 
++static void dpu_kms_commit_lock(struct msm_kms *kms, unsigned int crtc_mask)
++{
++	struct dpu_kms *dpu_kms = to_dpu_kms(kms);
++	struct drm_crtc *crtc;
++	struct dpu_crtc *dpu_crtc;
 +
++	for_each_crtc_mask(dpu_kms->dev, crtc, crtc_mask) {
++		dpu_crtc = to_dpu_crtc(crtc);
++		mutex_lock(&dpu_crtc->commit_lock);
++	}
++}
++
++static void dpu_kms_commit_unlock(struct msm_kms *kms, unsigned int crtc_mask)
++{
++	struct dpu_kms *dpu_kms = to_dpu_kms(kms);
++	struct drm_crtc *crtc;
++	struct dpu_crtc *dpu_crtc;
++
++	for_each_crtc_mask(dpu_kms->dev, crtc, crtc_mask) {
++		dpu_crtc = to_dpu_crtc(crtc);
++		mutex_unlock(&dpu_crtc->commit_lock);
++	}
++}
++
+ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
+ 				    struct msm_drm_private *priv,
+ 				    struct dpu_kms *dpu_kms)
+@@ -738,6 +762,8 @@ static const struct msm_kms_funcs kms_funcs = {
+ #ifdef CONFIG_DEBUG_FS
+ 	.debugfs_init    = dpu_kms_debugfs_init,
+ #endif
++	.commit_lock     = dpu_kms_commit_lock,
++	.commit_unlock   = dpu_kms_commit_unlock,
+ };
+ 
+ static void _dpu_kms_mmu_destroy(struct dpu_kms *dpu_kms)
+diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
+index 561bfa4..d33253f 100644
+--- a/drivers/gpu/drm/msm/msm_atomic.c
++++ b/drivers/gpu/drm/msm/msm_atomic.c
+@@ -55,16 +55,32 @@ static void vblank_put(struct msm_kms *kms, unsigned crtc_mask)
+ 	}
+ }
+ 
++static void msm_commit_lock(struct msm_kms *kms, unsigned int crtc_mask)
++{
++	if (kms->funcs->commit_lock)
++		kms->funcs->commit_lock(kms, crtc_mask);
++	else
++		mutex_lock(&kms->commit_lock);
++}
++
++static void msm_commit_unlock(struct msm_kms *kms, unsigned int crtc_mask)
++{
++	if (kms->funcs->commit_unlock)
++		kms->funcs->commit_unlock(kms, crtc_mask);
++	else
++		mutex_unlock(&kms->commit_lock);
++}
++
+ static void msm_atomic_async_commit(struct msm_kms *kms, int crtc_idx)
+ {
+ 	unsigned crtc_mask = BIT(crtc_idx);
+ 
+ 	trace_msm_atomic_async_commit_start(crtc_mask);
+ 
+-	mutex_lock(&kms->commit_lock);
++	msm_commit_lock(kms, crtc_mask);
+ 
+ 	if (!(kms->pending_crtc_mask & crtc_mask)) {
+-		mutex_unlock(&kms->commit_lock);
++		msm_commit_unlock(kms, crtc_mask);
+ 		goto out;
+ 	}
+ 
+@@ -79,7 +95,6 @@ static void msm_atomic_async_commit(struct msm_kms *kms, int crtc_idx)
+ 	 */
+ 	trace_msm_atomic_flush_commit(crtc_mask);
+ 	kms->funcs->flush_commit(kms, crtc_mask);
+-	mutex_unlock(&kms->commit_lock);
+ 
+ 	/*
+ 	 * Wait for flush to complete:
+@@ -90,9 +105,8 @@ static void msm_atomic_async_commit(struct msm_kms *kms, int crtc_idx)
+ 
+ 	vblank_put(kms, crtc_mask);
+ 
+-	mutex_lock(&kms->commit_lock);
+ 	kms->funcs->complete_commit(kms, crtc_mask);
+-	mutex_unlock(&kms->commit_lock);
++	msm_commit_unlock(kms, crtc_mask);
+ 	kms->funcs->disable_commit(kms);
+ 
+ out:
+@@ -189,12 +203,11 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
+ 	 * Ensure any previous (potentially async) commit has
+ 	 * completed:
+ 	 */
++	msm_commit_lock(kms, crtc_mask);
+ 	trace_msm_atomic_wait_flush_start(crtc_mask);
+ 	kms->funcs->wait_flush(kms, crtc_mask);
+ 	trace_msm_atomic_wait_flush_finish(crtc_mask);
+ 
+-	mutex_lock(&kms->commit_lock);
+-
+ 	/*
+ 	 * Now that there is no in-progress flush, prepare the
+ 	 * current update:
+@@ -232,7 +245,7 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
+ 		}
+ 
+ 		kms->funcs->disable_commit(kms);
+-		mutex_unlock(&kms->commit_lock);
++		msm_commit_unlock(kms, crtc_mask);
+ 
  		/*
- 		 * Break node order to solve dependency probe issue between
- 		 * pinctrl and exti.
-@@ -1717,6 +1722,8 @@
- 			st,syscfg-holdboot = <&rcc 0x10C 0x1>;
- 			st,syscfg-tz = <&rcc 0x000 0x1>;
- 			st,syscfg-pdds = <&pwr_mcu 0x0 0x1>;
-+			st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
-+			st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
- 			status = "disabled";
- 		};
- 	};
+ 		 * At this point, from drm core's perspective, we
+@@ -260,7 +273,7 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
+ 	 */
+ 	trace_msm_atomic_flush_commit(crtc_mask);
+ 	kms->funcs->flush_commit(kms, crtc_mask);
+-	mutex_unlock(&kms->commit_lock);
++	msm_commit_unlock(kms, crtc_mask);
+ 
+ 	/*
+ 	 * Wait for flush to complete:
+@@ -271,9 +284,9 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
+ 
+ 	vblank_put(kms, crtc_mask);
+ 
+-	mutex_lock(&kms->commit_lock);
++	msm_commit_lock(kms, crtc_mask);
+ 	kms->funcs->complete_commit(kms, crtc_mask);
+-	mutex_unlock(&kms->commit_lock);
++	msm_commit_unlock(kms, crtc_mask);
+ 	kms->funcs->disable_commit(kms);
+ 
+ 	drm_atomic_helper_commit_hw_done(state);
+diff --git a/drivers/gpu/drm/msm/msm_kms.h b/drivers/gpu/drm/msm/msm_kms.h
+index 1cbef6b..f02e73e 100644
+--- a/drivers/gpu/drm/msm/msm_kms.h
++++ b/drivers/gpu/drm/msm/msm_kms.h
+@@ -126,6 +126,11 @@ struct msm_kms_funcs {
+ 	/* debugfs: */
+ 	int (*debugfs_init)(struct msm_kms *kms, struct drm_minor *minor);
+ #endif
++	/* commit lock for crtc */
++	void (*commit_lock)(struct msm_kms *kms, unsigned int crtc_mask);
++
++	/* commit unlock for crtc */
++	void (*commit_unlock)(struct msm_kms *kms, unsigned int crtc_mask);
+ };
+ 
+ struct msm_kms;
 -- 
-2.17.1
+2.7.4
 
