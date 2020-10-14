@@ -2,120 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A939E28E15B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D156C28E16A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 15:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727695AbgJNNcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 09:32:23 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41310 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727250AbgJNNcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 09:32:22 -0400
-Received: by mail-oi1-f195.google.com with SMTP id q136so3207636oic.8;
-        Wed, 14 Oct 2020 06:32:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RfUVv3fCiTl2E9POO6Buswiqzr2whvPDBuKBRK/9qXo=;
-        b=Br2rDl/wy/hG61xdFs1wMZ/sr69Q+sP0b/xcZpwc2PDXB71uy7D+XpvGpwb26tJdHo
-         d2GssCjK4eFZCXwl03Gkfkb3xOVDKEck7USPf8wwRrC6XBCCjewR4OJsG/RPcpvExITA
-         WqOcxQNQo1vl/GaZy4w97ZHsW44qcglKfjKQEX883xERjL2esP7bUTQlGKDjIyeNzaWu
-         JMApsr6wpBAuiNgeyTXbJYVkyQvGJMq0uy0+09L6UnWlUK7aAmhU+hZoZ6J7qN9o92Zi
-         iwoE4tEJS5jRhf9WPLYteKE9kctJrFvHUBolOtwUgoExiqdr+D5UH5cPeEBlQhC4BviO
-         GaMw==
-X-Gm-Message-State: AOAM530lNJfDpF9cCUG6TLwCQuDMYcBUHmuKbwnWoribjHbRe5A7VNq5
-        GjQTAHQQyb5zTPVmLpFkug==
-X-Google-Smtp-Source: ABdhPJxd/P4qzAtPsd2916G42APosJoO+yYmHIG+zpWj3QmjNHSypnWafNQcsvqbK5VxDOltQFbAXQ==
-X-Received: by 2002:aca:ea84:: with SMTP id i126mr1059134oih.98.1602682341597;
-        Wed, 14 Oct 2020 06:32:21 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 92sm1204900otl.1.2020.10.14.06.32.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2020 06:32:20 -0700 (PDT)
-Received: (nullmailer pid 1546268 invoked by uid 1000);
-        Wed, 14 Oct 2020 13:32:19 -0000
-Date:   Wed, 14 Oct 2020 08:32:19 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org,
+        id S1728927AbgJNNgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 09:36:51 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:15287 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728666AbgJNNgv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Oct 2020 09:36:51 -0400
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 8D4C92EF973859B1596E;
+        Wed, 14 Oct 2020 21:36:09 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.134) by DGGEMS414-HUB.china.huawei.com
+ (10.3.19.214) with Microsoft SMTP Server id 14.3.487.0; Wed, 14 Oct 2020
+ 21:36:05 +0800
+Subject: Re: [PATCH 1/2] arm64: dts: broadcom: remove an unused property
+ dma-ranges
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Florian Fainelli <f.fainelli@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        "Scott Branden" <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Felipe Balbi <balbi@kernel.org>, Roger Quadros <rogerq@ti.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-snps-arc@lists.infradead.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 09/20] dt-bindings: usb: Convert DWC USB3 bindings to DT
- schema
-Message-ID: <20201014133219.GA1545403@bogus>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-10-Sergey.Semin@baikalelectronics.ru>
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20201013060623.1711-1-thunder.leizhen@huawei.com>
+ <20201013060623.1711-2-thunder.leizhen@huawei.com>
+ <fa40441b-6ae1-6018-3da6-424d0252c1ba@gmail.com>
+ <CAK8P3a3MtCDpbCgNEnLf1QcE+1O0oGZtob2KY7G-77oA95bLJQ@mail.gmail.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <b25dd804-c691-b987-9f6a-de043aa45755@huawei.com>
+Date:   Wed, 14 Oct 2020 21:36:03 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201014101402.18271-10-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <CAK8P3a3MtCDpbCgNEnLf1QcE+1O0oGZtob2KY7G-77oA95bLJQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.134]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 13:13:51 +0300, Serge Semin wrote:
-> DWC USB3 DT node is supposed to be compliant with the Generic xHCI
-> Controller schema, but with additional vendor-specific properties, the
-> controller-specific reference clocks and PHYs. So let's convert the
-> currently available legacy text-based DWC USB3 bindings to the DT schema
-> and make sure the DWC USB3 nodes are also validated against the
-> usb-xhci.yaml schema.
+
+
+On 2020/10/14 15:38, Arnd Bergmann wrote:
+> On Wed, Oct 14, 2020 at 5:15 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>> On 10/12/2020 11:06 PM, Zhen Lei wrote:
+>>> stingray-usb.dtsi is finally included by three dts files:
+>>> bcm958802a802x.dts, bcm958742k.dts and bcm958742t.dts. I searched all
+>>> these three entire expanded dts files, and each of them contains only one
+>>> dma-ranges. No conversion range is specified, so it cannot work properly.
+>>> I think this property "dma-ranges" is added by mistake, just remove it.
+>>> Otherwise, the following error will be reported when any YAML detection
+>>> is performed on arm64.
+>>>
+>>> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
+>>> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
+>>> its #address-cells (1) differs from / (2)
+>>> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
+>>> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
+>>> its #size-cells (1) differs from / (2)
+>>>
+>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>>
+>> This looks fine to me, Scott, Ray do you want to Ack this patch before I
+>> take it?
 > 
-> Note we have to discard the nodename restriction of being prefixed with
-> "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
-> are supposed to be named as "^usb(@.*)".
+> Does it mean that there are no devices on this bus that can do DMA?
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Usually there should be a dma-ranges property to identify that DMA
+> is possible and what the limits are, though we have failed to enforce
+> that.
+
+Documentation/devicetree/bindings/iommu/iommu.txt +79
+When an "iommus" property is specified in a device tree node, the IOMMU will
+be used for address translation. If a "dma-ranges" property exists in the
+device's parent node it will be ignored. An exception to this rule is if the
+referenced IOMMU is disabled, in which case the "dma-ranges" property of the
+parent shall take effect.
+
+The dma-ranges is only required by IOMMU disabled case. And should exist in
+the parent node of IOMMU device. But this deleted dma-ranges is under the usb
+bus node.
+
 > 
-> ---
+> Also note that the #address-cells=<1> means that any device under
+> this bus is assumed to only support 32-bit addressing, and DMA will
+> have to go through a slow swiotlb in the absence of an IOMMU.
+
+The dma_alloc_coherent() will allocate memory with GFP_DMA32 flag and
+try the 0-4G first. The reserved swiotlb buffer memory is used only
+when the allocation failed.
+
+ memory@80000000:
+    device_type: ["memory"]
+    reg: [[0x0, 0x80000000, 0x0, 0x80000000], [0x8, 0x80000000, 0x1, 0x80000000]]
+
+If this is the actual physical memory size, the #address-cells should be set to <1>.
+
 > 
-> Changelog v2:
-> - Discard '|' from the descriptions, since we don't need to preserve
->   the text formatting in any of them.
-> - Drop quotes from around the string constants.
-> - Fix the "clock-names" prop description to be referring the enumerated
->   clock-names instead of the ones from the Databook.
-> ---
->  .../devicetree/bindings/usb/dwc3.txt          | 125 --------
->  .../devicetree/bindings/usb/snps,dwc3.yaml    | 295 ++++++++++++++++++
->  2 files changed, 295 insertions(+), 125 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>       Arnd
 > 
-
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:44:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dt.yaml: dwc3@a600000: $nodename:0: 'dwc3@a600000' does not match '^usb(@.*)?'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dt.yaml: usb@ff500000: snps,quirk-frame-length-adjustment: True is not of type 'array'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1382003
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
+> .
+> 
 
