@@ -2,126 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D99FC28E1E9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 16:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F1228E21A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 16:19:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730547AbgJNOJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 10:09:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36338 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727674AbgJNOJ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Oct 2020 10:09:59 -0400
-Received: from saruman (88-113-213-94.elisa-laajakaista.fi [88.113.213.94])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2B74722201;
-        Wed, 14 Oct 2020 14:09:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602684598;
-        bh=nXHNrmeiegcAFrQHpZXClaxYDTMwa1rlJ2izCsCrXN8=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=YKV/QHc62ApKcYfobKVgr7H4uuaIl0Ym5KPsO03PueFYTPIdAa9yS3LR0EwZ8HOwE
-         TcL6jF+RwT4ABH1kDb5oHOxvnawJXJUclIoLNBHrYdepJyQT5rQ5R11/OPvOyIAMKq
-         7ODxxrUbh0gZi9Rm21ebmCKNc4FTGHkE4lsI7GBs=
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1726956AbgJNOTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 10:19:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726012AbgJNOTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 10:19:53 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B5C3C061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 07:19:51 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id p15so2451100wmi.4
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 07:19:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ujYG5VF4LvrSV22lkx9qOMlIjb18yncwxkcr5GCM7hw=;
+        b=Fye/mZ83y9B+0r+U9CJZ1waeayX+85FMlLHSc4+gTJWWZf4vBLP2YxZjSTBfzYBG8u
+         8APzEnC430HqQz/llme76vMg8opmfPSROhfWmdUUgRVFP5yBpx4xlGeLcRaI5yoXYdkz
+         5dzLed7XQ0dpRBNNDkzNdlSU9oKJDhO2qys/7oXsPla+LJdfvvjJF6hPB9SdlBPOXovk
+         TmOGtJuIKFI4KHnsX1xLbC6gEPjK+oXdU8eSTh4nvZb2ThNHkeN207h50olGTuEFE5ax
+         YavntgaTXvTtRdYN+fpGSbF9FWQHfY57Hr44ujNADGf3Y7GQB9kdlTGJ5ifZf3lFCToP
+         ByJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ujYG5VF4LvrSV22lkx9qOMlIjb18yncwxkcr5GCM7hw=;
+        b=itIouEyBh6ulGhVCHgNgpJQJSb6PXRy5oJOGBbnHeRYoVcfdbu9Vrgt9tGjoc55ghA
+         uROr8b+pXohXKZZtEQ9tjNzrgWGew7xl+jlSxeH+zjQrU59XN3O1MxWmw7NDK+ltErfd
+         27G45sFu23lNkBn7BpQe3nMCmJMp6k5NZgns/4GAZHBIF7Fj5MhzUd0b3Cw1phvwu4Dn
+         KLTiDo0ilI56VoqB2NuwgtbEFuR25bbsHvu32kJmXjHlfftVJPa3AEfbC+INrYBFZdbM
+         hnjj182ui2UEiVnyEsoOnGfjWvFs0T6QV+p6OHFKb9mfq3H20RmvGevvARPieTUblw/b
+         JPNQ==
+X-Gm-Message-State: AOAM533+8pZjPSJ23NxSXwDcd2NAAVK/fQ9C6FgLFHtcFj6Q7+mPLC1k
+        8OlIdrF5BopodatGuD2+NaoedA==
+X-Google-Smtp-Source: ABdhPJwhR5pVDkdV21ZSdeSLhJ7AM3WRmBim9XMCrehLjwtv0ScetmpTUZvdsADXzGFUQx3KVOD3YQ==
+X-Received: by 2002:a1c:e1c2:: with SMTP id y185mr3557489wmg.81.1602685189944;
+        Wed, 14 Oct 2020 07:19:49 -0700 (PDT)
+Received: from holly.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id m14sm5155294wro.43.2020.10.14.07.19.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 07:19:49 -0700 (PDT)
+Date:   Wed, 14 Oct 2020 15:19:46 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Alexandru Stan <amstan@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Patrice Chotard <patrice.chotard@st.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Wei Xu <xuwei5@hisilicon.com>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
-In-Reply-To: <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
-Date:   Wed, 14 Oct 2020 17:09:37 +0300
-Message-ID: <878sc8lx0e.fsf@kernel.org>
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] ARM: dts: rockchip: veyron: Remove 0 point from
+ brightness-levels
+Message-ID: <20201014141946.mkrvpkrttucffkhj@holly.lan>
+References: <20201013080103.410133-1-amstan@chromium.org>
+ <20201013010056.v2.2.I96b8d872ec51171f19274e43e96cadc092881271@changeid>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201013010056.v2.2.I96b8d872ec51171f19274e43e96cadc092881271@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+On Tue, Oct 13, 2020 at 01:01:02AM -0700, Alexandru Stan wrote:
+> After the "PWM backlight interpolation adjustments" patches, the
+> backlight interpolation works a little differently. The way these
+> dts files were working before was relying on a bug (IMHO).
+> 
+> Remove the 0-3 range since otherwise we would have a 252 long
+> interpolation that would slowly go between 0 and 3, looking really bad
+> in userspace.
+> 
+> We don't need the 0% point, userspace seems to handle this just fine
+> because it uses the bl_power property to turn off the display.
+> 
+> Signed-off-by: Alexandru Stan <amstan@chromium.org>
+
+Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+
+Note also shouldn't this be patch 1 of the set. AFAICT it makes sense
+whether or not the interpolation algorithm is changed.
 
 
-Hi Serge,
+Daniel.
 
-Serge Semin <Sergey.Semin@baikalelectronics.ru> writes:
-> In accordance with the DWC USB3 bindings the corresponding node name is
-> suppose to comply with Generic USB HCD DT schema, which requires the USB
-
-DWC3 is not a simple HDC, though.
-
-> nodes to have the name acceptable by the regexp: "^usb(@.*)?" . But a lot
-> of the DWC USB3-compatible nodes defined in the ARM/ARM64 DTS files have
-> name as "^dwc3@.*" or "^usb[1-3]@.*" or even "^dwusb@.*", which will cause
-> the dtbs_check procedure failure. Let's fix the nodes naming to be
-> compatible with the DWC USB3 DT schema to make dtbs_check happy.
->
-> Note we don't change the DWC USB3-compatible nodes names of
-> arch/arm64/boot/dts/apm/{apm-storm.dtsi,apm-shadowcat.dtsi} since the
-> in-source comment says that the nodes name need to be preserved as
-> "^dwusb@.*" for some backward compatibility.
-
-interesting, compatibility with what? Some debugfs files, perhaps? :-)
-
-In any case, I don't have any problems with this, so I'll let other
-folks comment.
-
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl+HBqERHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQZk7w//f7M1cvtdCrKz6Ex3lntgWpy1b1/3CtTd
-mvDjI3ih9c0Lb8I32xXaiI6KCbZ4eNrTj44yQGYTqyCX3MTK3XhtDsifpFsScl3V
-HNZ5Aeru3C07GbrJgOm7anOpkrtOe8D5prOys0uLczDpjlK2nhg58Sy41jGaoqjH
-X4AW8yiKWmvPhuqqX/vzqhYettYoS2B6bNL21uXqyfcmXubL2+WOBKoXeYrZUfd+
-1xuyAt/jucQh8nhY5050kmbWKt7l5R3eUxe8be064Vi3n6CgDELde8+i+t3ULBkn
-GzjZjv9cTjZXcd3qpLXLamKnCGSmM5ckc5O5sRKQHaBmtHuCW7SbH4/6iTJBv+n/
-0WlVCedKu6N5OM3Q/+kfu33BDFfG2Dl6uK6vrt97G3jbx/IeddwccIGU9DmFfI8J
-5Yv7hMCi9vPLxVNPCi/26FxsL7PmziOjofwUfuvP5ot8EKs90frsJCsE//ADssca
-n+st1b+uqmK8qEtUigv9cC6h0DlrpzGTMyOwx4QBo4BN6YEICxzXq9wI/UOoZopx
-tOoqi5JpD/2MpJ2qQhNLlsJ6voBSI4pMSGAV18RpSchZ5WhvL+IvFUU1gFsq7fek
-MtrO6wBURV7ypfo9V7dWpM2trYsJQIWZs7x5nR8vnejZ/YspsdOcipU3QlKW+Eez
-Pu/hVbbAotY=
-=wmBj
------END PGP SIGNATURE-----
---=-=-=--
+> ---
+> 
+>  arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 2 +-
+>  arch/arm/boot/dts/rk3288-veyron-minnie.dts | 2 +-
+>  arch/arm/boot/dts/rk3288-veyron-tiger.dts  | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/rk3288-veyron-jaq.dts b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+> index af77ab20586d..4a148cf1defc 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+> +++ b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+> @@ -20,7 +20,7 @@ / {
+>  
+>  &backlight {
+>  	/* Jaq panel PWM must be >= 3%, so start non-zero brightness at 8 */
+> -	brightness-levels = <0 8 255>;
+> +	brightness-levels = <8 255>;
+>  	num-interpolated-steps = <247>;
+>  };
+>  
+> diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+> index f8b69e0a16a0..82fc6fba9999 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+> +++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+> @@ -39,7 +39,7 @@ volum_up {
+>  
+>  &backlight {
+>  	/* Minnie panel PWM must be >= 1%, so start non-zero brightness at 3 */
+> -	brightness-levels = <0 3 255>;
+> +	brightness-levels = <3 255>;
+>  	num-interpolated-steps = <252>;
+>  };
+>  
+> diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+> index 069f0c2c1fdf..52a84cbe7a90 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+> +++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+> @@ -23,7 +23,7 @@ / {
+>  
+>  &backlight {
+>  	/* Tiger panel PWM must be >= 1%, so start non-zero brightness at 3 */
+> -	brightness-levels = <0 3 255>;
+> +	brightness-levels = <3 255>;
+>  	num-interpolated-steps = <252>;
+>  };
+>  
+> -- 
+> 2.28.0
+> 
