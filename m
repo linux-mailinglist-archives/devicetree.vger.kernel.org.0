@@ -2,57 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C5128D7C4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 03:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61CF228D7CE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 03:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726731AbgJNBEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Oct 2020 21:04:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36404 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726111AbgJNBEm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Oct 2020 21:04:42 -0400
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 81B14208B3;
-        Wed, 14 Oct 2020 01:04:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602637481;
-        bh=aRDby6Tf6kApngD6WPLRPBLIWKE1Nq1LU0dmXuOlRQ8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=BH59Cqu66D0PzaM+IS0XDCugZ2tLznqGPlx1Bt4D+8klumtcftrrKUaqhiK2CC7+D
-         OBUJG7DOAVItF3Hnh09u1tVMUzFr/77zUYRTbEK75tAWajPsSwvU51HTPI4WcgrdTB
-         TCjlfEyJfV4wy3F7qRy03Ow153oiBTLcPSFOSgrY=
-Content-Type: text/plain; charset="utf-8"
+        id S1730788AbgJNBIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Oct 2020 21:08:31 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:15283 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727331AbgJNBIb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Oct 2020 21:08:31 -0400
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id AC2001451D627FFCD02E;
+        Wed, 14 Oct 2020 09:08:21 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.134) by DGGEMS414-HUB.china.huawei.com
+ (10.3.19.214) with Microsoft SMTP Server id 14.3.487.0; Wed, 14 Oct 2020
+ 09:08:18 +0800
+Subject: Re: [PATCH 1/6] dt-bindings: leds: choose correct color value of
+ multi-led
+To:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        "Pavel Machek" <pavel@ucw.cz>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20201013160845.1772-1-thunder.leizhen@huawei.com>
+ <20201013160845.1772-2-thunder.leizhen@huawei.com>
+ <1565f22c-7be9-e771-7def-afbb28ec07a7@ti.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <82761c4f-6533-9b63-daa4-146a58816f5b@huawei.com>
+Date:   Wed, 14 Oct 2020 09:08:16 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20201005145855.149206-1-konradybcio@gmail.com>
-References: <20201005145855.149206-1-konradybcio@gmail.com>
-Subject: Re: [PATCH] clk: qcom: gcc-msm8994: Add missing clocks, resets and GDSCs
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To:     konradybcio@gmail.com
-Date:   Tue, 13 Oct 2020 18:04:40 -0700
-Message-ID: <160263748035.310579.4403245633255183131@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <1565f22c-7be9-e771-7def-afbb28ec07a7@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.177.134]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Konrad Dybcio (2020-10-05 07:58:55)
-> This change adds GDSCs, resets and most of the missing
-> clocks to the msm8994 GCC driver. The remaining ones
-> are of local_vote_clk and gate_clk type, which are not
-> yet supported upstream. Also reorder them to match the
-> original downstream driver.
->=20
-> Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
-> ---
 
-Applied to clk-next
+
+On 2020/10/14 0:17, Dan Murphy wrote:
+> Zhen
+> 
+> On 10/13/20 11:08 AM, Zhen Lei wrote:
+>> The color value of multi-led is fixed to "const: 8 #LED_COLOR_ID_MULTI",
+>> which is required by leds-class-multicolor.yaml.
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>   Documentation/devicetree/bindings/leds/leds-lp55xx.yaml | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+>> index 58e974793a7976b..cd877e817ad1a1c 100644
+>> --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+>> @@ -197,7 +197,7 @@ examples:
+>>                  #address-cells = <1>;
+>>                  #size-cells = <0>;
+>>                  reg = <0x2>;
+>> -               color = <LED_COLOR_ID_RGB>;
+>> +               color = <LED_COLOR_ID_MULTI>;
+>>                  function = LED_FUNCTION_STANDBY;
+>>                  linux,default-trigger = "heartbeat";
+>>   
+> 
+> This is not correct.  ID_RGB is the correct variable here.
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git/commit/?h=for-next&id=3d93edc77515c6f51fa9bbbe2185e2ec32bad024
+> 
+> Correct fix is to update the leds-class-multicolor.yaml
+
+OK
+
+> 
+> Dan
+> 
+> 
+> .
+> 
+
