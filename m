@@ -2,96 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF5228E7B2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 22:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0605828E7CB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Oct 2020 22:18:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729380AbgJNUFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Oct 2020 16:05:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728865AbgJNUFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 16:05:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73D99C061755
-        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 13:05:00 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kSn15-0000qa-R7; Wed, 14 Oct 2020 22:04:55 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kSn13-0000yi-U4; Wed, 14 Oct 2020 22:04:53 +0200
-Date:   Wed, 14 Oct 2020 22:04:53 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     vijayakannan.ayyathurai@intel.com
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
-Message-ID: <20201014200453.k5qejablwz6idjxt@pengutronix.de>
-References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
+        id S1730031AbgJNUSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Oct 2020 16:18:25 -0400
+Received: from mail-ej1-f66.google.com ([209.85.218.66]:45651 "EHLO
+        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726111AbgJNUSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Oct 2020 16:18:24 -0400
+Received: by mail-ej1-f66.google.com with SMTP id dt13so303158ejb.12;
+        Wed, 14 Oct 2020 13:18:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0MyUw0Y3gJD9KhX/3YhqYIS6k+1q8f/JNR3G4Oc+mO0=;
+        b=OskOucAhDFwQ2kcgHj7hRJfshk9+krQ98eV7j8tLUdRWynKfnRfAyVgH6cQuzzldQM
+         IoaXxnYeBZgErj2W6GobcC/hR9saMe44H1xW0NR7n/mFJpJYftYXqrM6Pzl/r8h4UdRL
+         ND9+iSWwaQvBHcKCB+gm3vHduhDaZjQA5NSFEl01f4dXlOflsA/hU2KZPZo98MM2RI8w
+         wdtreyoL5WALjHHTJhj9Et2gaVjhYQrNMRb/KPEekhgQ5Cg3VCtfsRfB6dkKEzxcmz0K
+         lab2atL/5m1jxaSxJYGdjleJlmIKOgmC7QFavtDMIuhnKohrz8ns5UtrrYJ/rhQcTF0e
+         wnVQ==
+X-Gm-Message-State: AOAM531iEakl9PneyfCXMlchOlYHizdaCb39Oz5Da3GBSTuajKeQaRNf
+        GjifmRWwg7zEDN11GXOvbBE=
+X-Google-Smtp-Source: ABdhPJyD9mvSdzTeswKoJSSkNRNYZJV/A491oP4RLt7gITN4T+XTScFWRX+EpK8W5zlRYXEzJ8uEig==
+X-Received: by 2002:a17:906:1e45:: with SMTP id i5mr798232ejj.203.1602706702595;
+        Wed, 14 Oct 2020 13:18:22 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.171])
+        by smtp.googlemail.com with ESMTPSA id i18sm222556ejr.59.2020.10.14.13.18.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 13:18:21 -0700 (PDT)
+Date:   Wed, 14 Oct 2020 22:18:18 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 11/20] dt-bindings: usb: dwc3: Add synopsys,dwc3
+ compatible string
+Message-ID: <20201014201818.GA6926@kozik-lap>
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
+ <20201014101402.18271-12-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jbgoyawyzvdbxdjz"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201014101402.18271-12-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 14, 2020 at 01:13:53PM +0300, Serge Semin wrote:
+> The DWC USB3 driver and some DTS files like Exynos 5250, Keystone k2e, etc
+> expects the DWC USB3 DT node to have the compatible string with the
+> "synopsys" vendor prefix. Let's add the corresponding compatible string to
+> the controller DT schema, but mark it as deprecated seeing the Synopsys,
+> Inc. is presented with just "snps" vendor prefix.
 
---jbgoyawyzvdbxdjz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Instead of adding deprecated schema just correct the DTSes to use snps.
+The "synopsys" is not even in vendor prefixes.
 
-On Thu, Oct 15, 2020 at 03:36:09AM +0800, vijayakannan.ayyathurai@intel.com=
- wrote:
-> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
->=20
-> The Intel Keem Bay SoC requires PWM support.
-> Add the pwm-keembay driver to enable this.
->=20
-> Signed-off-by: Lai, Poey Seng <poey.seng.lai@intel.com>
-> Co-developed-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.=
-com>
-> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.co=
-m>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Thanks for your persistence to create a great driver.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---jbgoyawyzvdbxdjz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+HWd8ACgkQwfwUeK3K
-7Amxzwf/fhmrdmKQsVVTvRHqFyyCBl2+BlZIoYqRAmBKOBlxX54uLOmA1lirvyob
-tcVOjOW7LUYrztsKLegxcjgu9AmQPZU0KdBtdU2WsaQPw0VD4CZ6/W0mkDRz9+s7
-w/Sv+iLvQpcuFIRs0bvXFVbUZCa3CMVNjCgg+KCg2aKQ9jrSgGk5IgRCz/GiX+kq
-VW6YGUuIgDUGWe1d5YBRC9o66pZ1+5jfWNkryoCrG71xSHWxWcr1LkPF3CpEAnpU
-15Z0xoV61bDCKiuXJa76iWtm4hETwyPastsJD017eyKDIoEnj0qoaHaiREv5so1F
-4hu9zlhzw6cgGVyy/tfoMxqksu7WYQ==
-=M/D6
------END PGP SIGNATURE-----
-
---jbgoyawyzvdbxdjz--
+Best regards,
+Krzysztof
