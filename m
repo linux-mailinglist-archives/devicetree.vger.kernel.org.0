@@ -2,131 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04AB028ED52
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 09:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4AF228ED5A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 09:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728912AbgJOHBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 03:01:43 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:33902 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725208AbgJOHBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 03:01:43 -0400
-Received: by mail-ot1-f67.google.com with SMTP id d28so2033693ote.1;
-        Thu, 15 Oct 2020 00:01:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iPLUR88amB7KBARO7+kMfSt7cx4viHKBRUai+VtfqT4=;
-        b=psV0umtNbcGawPMDyo3RJpMjXj/nl+VmWnFSstYHKU4a/C2VtSCOfS4QE93NFU6R47
-         h2wayFzj1Llw9J4XGblvKYF0LEBubogeuvnoElXd6+WJ1l8SPWtAnWn20yLxvQZTTD+R
-         VIRaheYYiu40jzssOhoKQCC6DIxBfmQOAoWeTIQ4JGvrcXkaK7N15/VSOmx1sc7e9ZBh
-         XNP00iW+189w3NIY2HozkxM6Z62jeuGGxwHJAsN6oEBMupZzwJN8JVo5qNK+yzmIPyUT
-         m0PCSLfoutixp+BhdygOAQ7v12awtdy9mGF0ftDLQwKgJZLRuoXT7AK1PhPSQEMvVzVW
-         5U0w==
-X-Gm-Message-State: AOAM530TTNpxsC4gY6/IZP8VrRhLaG4GoKOpe9VZot1OPmmPs9XxPVkK
-        0GJCVat9eM3qBCHmUwIYdMP81lCGHKHdwjLCceo=
-X-Google-Smtp-Source: ABdhPJw/Ad6i6yr+PF7fjWW8q0TTSdHShD5ypNJBORc48VBWqXaAcZ89lIVXq4AjQaIajAOjvjZDRUmA7xIhuGKEGVA=
-X-Received: by 2002:a9d:3b76:: with SMTP id z109mr1743996otb.250.1602745301068;
- Thu, 15 Oct 2020 00:01:41 -0700 (PDT)
+        id S1727290AbgJOHF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 03:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727137AbgJOHF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 03:05:28 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D92C061755;
+        Thu, 15 Oct 2020 00:05:27 -0700 (PDT)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1602745525;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wKx5IQSzdiykghzSAGrSkF1QExk5tgl8xdQy5xIGQlI=;
+        b=02E6X/Pz1T1A1QvesbvdrsGJE9xGHbq4N0qDGaaIU2vzBPedUHPfmISrDdN0fh/wXnTcVj
+        eZNTqX91kACLjWKYhuPpIoHRad87xla2nPTxgWUfoYY83kubQwig+j48Ppcm7JM2CN09X6
+        TM6rXZKI30/xPY3zAbrkJKgHeydjBJ2eYdnQotus/P384Jt/eJhIHBN7YeNrqf7kj8SJGV
+        CPzz/Dh4RwvJfEeanB9CqKD+1ypBIEHDfGu/UoxqKH9gvSKREjVK3T0UcwDzFdrX5IANej
+        wlCxI6BuQzmvxQhzgBYTY/188PPVbzB9QL1F58RrWvf7uDIt3KB6b5f5xvh40g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1602745525;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wKx5IQSzdiykghzSAGrSkF1QExk5tgl8xdQy5xIGQlI=;
+        b=Gjf4bPCSAYj99xYmrZ+Z/w5XdO2HV6/VYG4ftjuHoX2totlu7ZQby5ZN4wxVoaCbzqeWdp
+        QxAL9loyOyOiOdCw==
+To:     Rob Herring <robh@kernel.org>,
+        Kurt Kanzenbach <kurt@kmk-computers.de>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] dt-bindings: net: dsa: b53: Drop old bindings
+In-Reply-To: <20201012184707.GA1886314@bogus>
+References: <20201010164627.9309-1-kurt@kmk-computers.de> <20201010164627.9309-3-kurt@kmk-computers.de> <20201012184707.GA1886314@bogus>
+Date:   Thu, 15 Oct 2020 09:05:23 +0200
+Message-ID: <87r1q0c6ks.fsf@kurt>
 MIME-Version: 1.0
-References: <20201015044443.1828-1-thunder.leizhen@huawei.com> <20201015044443.1828-2-thunder.leizhen@huawei.com>
-In-Reply-To: <20201015044443.1828-2-thunder.leizhen@huawei.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 15 Oct 2020 09:01:29 +0200
-Message-ID: <CAMuHMdX6qLJbk=ik1CoqbycrLSr+vMwzpY6esnKRpXsTxaiSAw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: misc: add support for both property
- names cmd-gpios and cmd-gpio
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhen,
+--=-=-=
+Content-Type: text/plain
 
-Thanks for your patch!
-
-On Thu, Oct 15, 2020 at 6:52 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
-> The definition "gpio_suffixes[] = { "gpios", "gpio" }" shows that both
-> property names "cmd-gpios" and "cmd-gpio" are supported. But currently
-> only "cmd-gpios" is allowed in this yaml, and the name used in
-> mmp2-olpc-xo-1-75.dts is cmd-gpio. As a result, the following errors is
-> reported.
+On Mon Oct 12 2020, Rob Herring wrote:
+> On Sat, Oct 10, 2020 at 06:46:27PM +0200, Kurt Kanzenbach wrote:
+>> The device tree bindings have been converted to YAML. No need to keep
+>> the text file around. Update MAINTAINERS file accordingly.
 >
-> slave: 'cmd-gpios' is a required property
-> slave: 'cmd-gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
->
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-> index b3c45c046ba5e37..dd549380a085709 100644
-> --- a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-> +++ b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-> @@ -24,15 +24,21 @@ properties:
->    compatible:
->      const: olpc,xo1.75-ec
->
-> -  cmd-gpios:
-> +  spi-cpha: true
-> +
-> +patternProperties:
-> +  "^cmd-gpio[s]?$":
->      description: GPIO uspecifier of the CMD pin
->      maxItems: 1
+> You can squash this into the previous patch.
 
-In general, the *-gpio form is deprecated.  So why complicate the DT
-bindings by adding support for deprecated properties?
+OK, sure.
 
-  1. Explicitly allowing deprecated properties means new users may be
-     added,
-  2. Once all in-tree DTS files are converted, the warnings will be gone
-     anyway,
-  3. Out-of-tree DTB will still work, as it's very unlikely support for
-     the "gpio" suffix can/will be dropped anytime soon,
-  4. If anyone runs the validator on out-of-tree DTS files, the most
-     probable intention is to fix any detected issues anyway, and the
-     files can be updated, too,
-  5. If any out-of-tree code or tooling relies on the *-gpio form, it
-     may already be broken.
+@Florian: Should I send a v2?
 
-> -  spi-cpha: true
-> -
->  required:
->    - compatible
-> -  - cmd-gpios
-> +
-> +oneOf:
-> +  - required:
-> +      - cmd-gpio
-> +  - required:
-> +      - cmd-gpios
->
->  additionalProperties: false
+Thanks,
+Kurt
 
-Gr{oetje,eeting}s,
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
-                        Geert
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl+H9LMACgkQeSpbgcuY
+8KbWBg//ULnvu0TuzNgWeAQCizn9k6joUmB9PybzhYqAe9vm2t1vDvP2Z8Q5THdB
+oDTrwWU1GrP02lsXbKVK/U3qEnP6s97RHJ6ZmKW+ev4zG2RsaSVGujvL55lnAgma
+F/Mxkxw4pBS9ixthQTsdQxy+3Py3lNUvcynxU45pK+GrW9YIUtfuQpBA7AWTJ+7u
+VYqGe5bVclStHf0/nHo59wrdJqixm98DXqXKsTzXgaVWa/DMzKlU0qYbpQJv2vWM
+4+agdGRyPGzbsuktfhSooMcvawEwIAGnnitVH5AnrQ18rUTw2S7IjaLNvhtIWAOe
+uP/rwB3S1pUSmNlHDg0navwdzcyDGBWMHCA5V90SdWNjy1L9vQVNWjWMr2/kA5X/
+6WNpGKVULE/ME6ERzT5GQ0/kQuX3IbZCuGalyWGn4+0tSFmFUH8qce4pirObLyqo
+gg4S4vPX1eH6wBlS1PL/rO3X6QJH0o9J5Yr1qzMoIcFLg0K5MitJMJltMG1nSONT
+K9QwMeNI9Dp8Ykngirhk/j21xzVJ27oF1M/QQlrYenfDKNFFhJMrzhJts50/VREx
+n4Bv2laXq9RmZPkrkdq7AAsl3uk5TgSAvzA7dVNIcrvw0cvMIeeeDcoFmVUwfdzk
+sBRSqWjSr8mO1gRsyzDiFdstgxnqGAWuARLgBwFYGbkkfOqARBo=
+=I6/s
+-----END PGP SIGNATURE-----
+--=-=-=--
