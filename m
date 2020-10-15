@@ -2,166 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C26CF28F45B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9642328F460
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730360AbgJOOH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 10:07:59 -0400
-Received: from mx0a-00010702.pphosted.com ([148.163.156.75]:64594 "EHLO
-        mx0b-00010702.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729647AbgJOOH6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 10:07:58 -0400
-Received: from pps.filterd (m0098780.ppops.net [127.0.0.1])
-        by mx0a-00010702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09FE4Zaq025915;
-        Thu, 15 Oct 2020 09:07:54 -0500
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2101.outbound.protection.outlook.com [104.47.55.101])
-        by mx0a-00010702.pphosted.com with ESMTP id 343afse63y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Oct 2020 09:07:54 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C0EIl84a8f//hWahXZ4DMQ+Djeekx41wDy+sRoBEiuAC4VLKVyOitBaQtaKO5Rrfdmt8grUG8GYeZxLaq0xv5/HyQBiJKoScLGa9GGq9XXzHsD4l08TO8pZSVXWi+e9av15hgJIYPoISfYwNCCkR8U4jDJDPKkN04WrgFsH+Mhuo5XGEaBWxVI67xKfSS13BFTMao8MNM+Tkkud+lwmeaZergiLPOuCvFy0UXtLoC3GS30BiVC/f80INKQE/PcT6BlhFhbwxkRFtMeaM/2GhkNRjUXiQmo9tScqxnFj9hEzYAOTkjcmAjcxit4cj7Lb20QLM9NE5aFKzYDD3onBlig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rn3Y74wdwkkGzKNymGQpG/7NlYm3tsINrJm4MnHSiDw=;
- b=i6VHqJOSQMXj5xfO7zkRjIJNeOt/EEQaH7xrGOxF2JKQT3uwOUd2r5pZnuIAXzpUxqeO8iLgx5rjMPqZUzYVKZ2sHAgDFoN4jTLeW6kZSqJqqSMnbw+iGb6URID36BgZapvgYv5MUdWDS2TUnJ2pCEQyx0yEg7K4cwjGwbd2oSCkhmc20cBYY89j0i7dqkHs/YB+rNxueBalklPy8rl+qjoF1U0guktwqqtj96kHwPkF6REhtzRdTBC6UXbHF0CVlWw91OV6LesQAU61URYZEw9GuNndPCyUZoYbffA6JmyIQAgoI061Dvpwh1r3oBrLuPgvNrQZ+Q18/crnKuK9RQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rn3Y74wdwkkGzKNymGQpG/7NlYm3tsINrJm4MnHSiDw=;
- b=hAWyKg77er70UoPACu/hF+sS5kfRXO+eH9sd5JreIMBaA1ihABhlaCvUYxUqWqA6C4KX4B7RnRyMk3050vOKe95MXhcL4uFJQKPkWrl+rWXQ5hoY9JNZiB711AW4NIGOx3ggGUxNTA/7ueTEAZlDUcxFC6HpAPI5srPfiDBgATE=
-Authentication-Results: samsung.com; dkim=none (message not signed)
- header.d=none;samsung.com; dmarc=none action=none header.from=ni.com;
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- (2603:10b6:803:4b::29) by SN6PR04MB5421.namprd04.prod.outlook.com
- (2603:10b6:805:f6::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.25; Thu, 15 Oct
- 2020 14:07:52 +0000
-Received: from SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84]) by SN4PR0401MB3646.namprd04.prod.outlook.com
- ([fe80::f4f0:f1bc:f09a:da84%7]) with mapi id 15.20.3455.034; Thu, 15 Oct 2020
- 14:07:52 +0000
-From:   Michael Auchter <michael.auchter@ni.com>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+        id S1730489AbgJOOIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 10:08:38 -0400
+Received: from foss.arm.com ([217.140.110.172]:44924 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727988AbgJOOIh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 10:08:37 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BF6CC13D5;
+        Thu, 15 Oct 2020 07:08:36 -0700 (PDT)
+Received: from [10.57.48.76] (unknown [10.57.48.76])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A16B63F719;
+        Thu, 15 Oct 2020 07:08:34 -0700 (PDT)
+Subject: Re: fw_devlink on will break all snps,dw-apb-gpio users
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
+        Saravana Kannan <saravanak@google.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        LKML <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Auchter <michael.auchter@ni.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: extcon: add binding for TUSB320
-Date:   Thu, 15 Oct 2020 09:07:35 -0500
-Message-Id: <20201015140737.1183818-2-michael.auchter@ni.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201015140737.1183818-1-michael.auchter@ni.com>
-References: <20201015140737.1183818-1-michael.auchter@ni.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [2605:a601:ab23:3c00:cdda:4935:f7a0:c63c]
-X-ClientProxiedBy: DM5PR10CA0007.namprd10.prod.outlook.com (2603:10b6:4:2::17)
- To SN4PR0401MB3646.namprd04.prod.outlook.com (2603:10b6:803:4b::29)
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20201014191235.7f71fcb4@xhacker.debian>
+ <CAGETcx9PiX==mLxB9PO8Myyk6u2vhPVwTMsA5NkD-ywH5xhusw@mail.gmail.com>
+ <20201015120206.41b6a454@xhacker.debian>
+ <CAGETcx_jzF_iV5oJQ8BuDBu0b5Z8G=uL0DhA4uS5U9XLuYryjg@mail.gmail.com>
+ <20201015161455.744d5041@xhacker.debian>
+ <CAGETcx_hORWf2HkcUP=Dj6noCUsbj9KsycZ-Hr80BUOwyZaQBg@mail.gmail.com>
+ <20201015175231.1a690c21@xhacker.debian>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <d3e59e01-9921-5f8b-ef12-55baef420277@arm.com>
+Date:   Thu, 15 Oct 2020 15:08:33 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (2605:a601:ab23:3c00:cdda:4935:f7a0:c63c) by DM5PR10CA0007.namprd10.prod.outlook.com (2603:10b6:4:2::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21 via Frontend Transport; Thu, 15 Oct 2020 14:07:52 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f95c792b-4b09-4a8b-3e6d-08d87113b4e0
-X-MS-TrafficTypeDiagnostic: SN6PR04MB5421:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN6PR04MB5421A899BFCF07DC4B639F0187020@SN6PR04MB5421.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A7CE2gF53ALpiVLpwQK6L0eFxEtOSe5LPpZd4ojHBGefWin/5gm5xDjwh4+oW5Emp4KrSmHlQiILN4n+Rr9h1EzpkeAMHyESPcqytWAJqFC6oqR0v/DGImyon10TGkXHvvbMpOjjfU1EpiQxzcmtxiHZ7P6KM10mnDhuL7bzWA9dXi/+o0lr1HxhlP+M9P2dEDDhpV/my9NKYLhDWenRQRJYczyM3ApSwoHtheTVrF6nyU6RabwG6GCZkDTtG0CeAqobIFXkE6IFp90PkSY2TcriiQO9aGh3hL3zePYN4Ajk0TyxHc7vr+jPzpkL+2ktxj76O+M0otwgMb61RuKdiOxNKHRlSy9LPzih+nHUz8CGQQs/Vd6VFN6q7qAnXV5YEE5ck+7R7ILFChaA5UGrq+eo4Tm4eqoQSYgh06u17N6CI1+MzloIHKzv+F8th+dqfq+rU1VUgPt3LMAMUWKAnQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0401MB3646.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(346002)(376002)(39860400002)(366004)(136003)(69590400008)(83080400001)(4326008)(7049001)(6666004)(478600001)(8936002)(2906002)(8676002)(186003)(16526019)(66946007)(110136005)(316002)(66556008)(966005)(86362001)(66476007)(2616005)(5660300002)(6486002)(1076003)(6512007)(6506007)(52116002)(36756003)(44832011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: f8QnP/et7mLjS0/UpZtMtm1P9TgAE/aWO0JKt31nCuytmH2Kg/TkmgtnPdw/Rh+uxejk4xxsGxyKNz/DeVwdW58fWXVMQGQ286r/tORTVPvCRfXRNALxZcxdvB5I7lb78fQ+eL5OJssZS/3Tkzfbw8uANrUA/yiWenRrUjWk0pIp4bFpA4ldPwh5KMMY8fJNqxauoidlzObgHka/LzfiyPuvDbdOzsmJ4RbVDvLT+pHItDpAydlIEokk0Es+nPh6XBInhgbKPiRsXRrZMzbBtSjxk440hsHZH0vx6GGdKJJN9JS8EtEaPJX5SpCDfdZUMWzoFWuGu5v1TF6Hx7vQWy2ApNvN2Pcwzo/aEdePSQrfY9xylyLVYpggTafC4TslhlIQtSwwvm5ENxwKZyzYH036zzdNOfKK5H4596gJF4AkdeRPlPjGHrBL/2QLULWP5I+Rnjn3EZ05pf60FdG71gZWq6/+hRi90HKIuwTFEexykhKCvLB5ulYqWvps6+gY9glrH1VNheMIh25CdZS1DslpeLhjEJcMzFFLx9c2v3q60be+BpWjxeTltzxtuOUYlvdLQWfiou4PXtWJjF/RjLgHlqQFmwiTrlTj9pxQl7UZdvvugfj5fuSqFpo07xXLKqnNoBqYdiWH+PmTC1OkWg+eJ7W6YTxoxPgp3EaFWa8KZ+4H6RCaNKouMpd2pu+iOe79YVa+OBGkAwrRkfeXDQ==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f95c792b-4b09-4a8b-3e6d-08d87113b4e0
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0401MB3646.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2020 14:07:52.7416
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: p1+w2yxVGvlOEasJZHIKH8yTNOSHzZRCIcpn8Wy29xx0VhkCEJ9N4VwFx93+1ebUfbW0TMOyCaN5TnvA6SCg+Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB5421
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-15_08:2020-10-14,2020-10-15 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30
- impostorscore=0 spamscore=0 adultscore=0 suspectscore=0 clxscore=1015
- mlxscore=0 mlxlogscore=999 phishscore=0 lowpriorityscore=0 bulkscore=0
- malwarescore=0 priorityscore=1501 classifier=spam adjust=30 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2010150099
+In-Reply-To: <20201015175231.1a690c21@xhacker.debian>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree binding for the TI TUSB320.
+On 2020-10-15 10:52, Jisheng Zhang wrote:
+> On Thu, 15 Oct 2020 01:48:13 -0700
+> Saravana Kannan <saravanak@google.com> wrote:
+> 
+>> On Thu, Oct 15, 2020 at 1:15 AM Jisheng Zhang
+>> <Jisheng.Zhang@synaptics.com> wrote:
+>>>
+>>> On Wed, 14 Oct 2020 22:04:24 -0700 Saravana Kannan wrote:
+>>>   
+>>>>
+>>>>
+>>>> On Wed, Oct 14, 2020 at 9:02 PM Jisheng Zhang
+>>>> <Jisheng.Zhang@synaptics.com> wrote:
+>>>>>
+>>>>> On Wed, 14 Oct 2020 10:29:36 -0700
+>>>>> Saravana Kannan <saravanak@google.com> wrote:
+>>>>>   
+>>>>>>
+>>>>>>
+>>>>>> On Wed, Oct 14, 2020 at 4:12 AM Jisheng Zhang
+>>>>>> <Jisheng.Zhang@synaptics.com> wrote:
+>>>>>>>
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> If set fw_devlink as on, any consumers of dw apb gpio won't probe.
+>>>>>>>
+>>>>>>> The related dts looks like:
+>>>>>>>
+>>>>>>> gpio0: gpio@2400 {
+>>>>>>>         compatible = "snps,dw-apb-gpio";
+>>>>>>>         #address-cells = <1>;
+>>>>>>>         #size-cells = <0>;
+>>>>>>>
+>>>>>>>         porta: gpio-port@0 {
+>>>>>>>                compatible = "snps,dw-apb-gpio-port";
+>>>>>>>                gpio-controller;
+>>>>>>>                #gpio-cells = <2>;
+>>>>>>>                ngpios = <32>;
+>>>>>>>                reg = <0>;
+>>>>>>>         };
+>>>>>>> };
+>>>>>>>
+>>>>>>> device_foo {
+>>>>>>>          status = "okay"
+>>>>>>>          ...;
+>>>>>>>          reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
+>>>>>>> };
+>>>>>>>
+>>>>>>> If I change the reset-gpio property to use another kind of gpio phandle,
+>>>>>>> e.g gpio expander, then device_foo can be probed successfully.
+>>>>>>>
+>>>>>>> The gpio expander dt node looks like:
+>>>>>>>
+>>>>>>>          expander3: gpio@44 {
+>>>>>>>                  compatible = "fcs,fxl6408";
+>>>>>>>                  pinctrl-names = "default";
+>>>>>>>                  pinctrl-0 = <&expander3_pmux>;
+>>>>>>>                  reg = <0x44>;
+>>>>>>>                  gpio-controller;
+>>>>>>>                  #gpio-cells = <2>;
+>>>>>>>                  interrupt-parent = <&portb>;
+>>>>>>>                  interrupts = <23 IRQ_TYPE_NONE>;
+>>>>>>>                  interrupt-controller;
+>>>>>>>                  #interrupt-cells = <2>;
+>>>>>>>          };
+>>>>>>>
+>>>>>>> The common pattern looks like the devlink can't cope with suppliers from
+>>>>>>> child dt node.
+>>>>>>
+>>>>>> fw_devlink doesn't have any problem dealing with child devices being
+>>>>>> suppliers. The problem with your case is that the
+>>>>>> drivers/gpio/gpio-dwapb.c driver directly parses the child nodes and
+>>>>>> never creates struct devices for them. If you have a node with
+>>>>>> compatible string, fw_devlink expects you to create and probe a struct
+>>>>>> device for it. So change your driver to add the child devices as
+>>>>>> devices instead of just parsing the node directly and doing stuff with
+>>>>>> it.
+>>>>>>
+>>>>>> Either that, or stop putting "compatible" string in a node if you
+>>>>>> don't plan to actually treat it as a device -- but that's too late for
+>>>>>> this driver (it needs to be backward compatible). So change the driver
+>>>>>> to add of_platform_populate() and write a driver that probes
+>>>>>> "snps,dw-apb-gpio-port".
+>>>>>>   
+>>>>>
+>>>>> Thanks for the information. The "snps,dw-apb-gpio-port" is never used,
+>>>>> so I just sent out a series to remove it.
+>>>>
+>>>> I'd actually prefer that you fix the kernel code to actually use it.
+>>>> So that fw_devlink can be backward compatible (Older DT + new kernel).
+>>>> The change is pretty trivial (I just have time to do it for you).
+>>>>   
+>>>
+>>> I agree the change is trivial, but it will add some useless LoCs like below.
+>>
+>> It's not useless if it preserves backward compatibility with DT.
+>>
+>>> I'm not sure whether this is acceptable.So add GPIO and DT maintainers to comment.
+>>>
+>>> Hi Linus, Rob,
+>>>
+>>> Could you please comment? A simple introduction of the problem:
+>>>
+>>> As pointed out by Saravana, "gpio-dwapb.c driver directly parses the child
+>>> nodes and never creates struct devices for them. If you have a node with
+>>> compatible string, fw_devlink expects you to create and probe a struct
+>>> device for it", so once we set fw_devlink=on, then any users of gpio-dwapb
+>>> as below won't be probed.
+>>>
+>>> device_foo {
+>>>           status = "okay"
+>>>           ...;
+>>>           reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
+>>> };
+>>>
+>>> The compatible string "snps,dw-apb-gpio-port" is never used, but it's in
+>>> the dt-binding since the dw gpio mainlined. I believe the every dw apb
+>>> users just copy the compatible string in to soc dtsi. So I submit a series
+>>> to remove the unused "snps,dw-apb-gpio-port" https://lkml.org/lkml/2020/10/14/1186
+>>> But this will break Older DT + new kernel with fw_devlink on. Which solution
+>>> is better?
+>>>
+>>> If the following patch is acceptable, I can submit it once 5.10-rc1 is out.
+>>>
+>>> thanks
+>>>
+>>> diff --git a/drivers/gpio/gpio-dwapb.c b/drivers/gpio/gpio-dwapb.c
+>>> index 1d8d55bd63aa..b8e012e48b59 100644
+>>> --- a/drivers/gpio/gpio-dwapb.c
+>>> +++ b/drivers/gpio/gpio-dwapb.c
+>>> @@ -19,6 +19,7 @@
+>>>   #include <linux/of_address.h>
+>>>   #include <linux/of_device.h>
+>>>   #include <linux/of_irq.h>
+>>> +#include <linux/of_platform.h>
+>>>   #include <linux/platform_device.h>
+>>>   #include <linux/property.h>
+>>>   #include <linux/reset.h>
+>>> @@ -694,6 +695,10 @@ static int dwapb_gpio_probe(struct platform_device *pdev)
+>>>          }
+>>>          platform_set_drvdata(pdev, gpio);
+>>>
+>>> +       err = devm_of_platform_populate(dev);
+>>> +       if (err)
+>>> +               goto out_unregister;
+>>> +
+>>>          return 0;
+>>>
+>>>   out_unregister:
+>>> @@ -820,6 +825,25 @@ static struct platform_driver dwapb_gpio_driver = {
+>>>
+>>>   module_platform_driver(dwapb_gpio_driver);
+>>>
+>>> +static const struct of_device_id dwapb_port_of_match[] = {
+>>> +       { .compatible = "snps,dw-apb-gpio-port" },
+>>> +       { /* Sentinel */ }
+>>> +};
+>>> +
+>>> +static int dwapb_gpio_port_probe(struct platform_device *pdev)
+>>> +{
+>>> +       return 0;
+>>
+>> No, I'm not asking to do a stub/dummy probe. Move the stuff you do
+>> inside device_for_each_child_node{} and dwapb_gpio_add_port() into
+>> this probe function. Those two pieces of code together are effectively
+>> "probing" a separate gpio controller for each of the child nodes. So
+>> just create a real struct device (like we do for every other
+>> "compatible" DT node) and probe each of them properly using the device
+>> driver core.
+> 
+> Then I believe the modifications are non-trivial. Maybe Linus and Rob
+> can comment which way is better, fix the dts or modify the gpio-dwapb.c.
+> Personally, I prefer fixing dts, because this doesn't remove or modify
+> any used properties or compatible string, it just removes the unused
+> compatible string.
 
-Signed-off-by: Michael Auchter <michael.auchter@ni.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+You appear to be assuming that:
 
----
+A) There a no consumers of DTBs and DT bindings other than Linux.
+B) No Linux user ever updates their kernel image without also updating 
+their DTB.
 
-Changes since v1:
-- use tusb320 instead of extcon in the unit name
-since v2:
-- None
+I can assure you that, in general, neither of those hold true. Hacking 
+DTs to work around internal implementation details in Linux is rarely if 
+ever a good or even viable idea.
 
- .../bindings/extcon/extcon-usbc-tusb320.yaml  | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
+Robin.
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-new file mode 100644
-index 000000000000..9875b4d5c356
---- /dev/null
-+++ b/Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/extcon/extcon-usbc-tusb320.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI TUSB320 USB Type-C CC Logic controller
-+
-+maintainers:
-+  - Michael Auchter <michael.auchter@ni.com>
-+
-+properties:
-+  compatible:
-+    const: ti,tusb320
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        tusb320@61 {
-+            compatible = "ti,tusb320";
-+            reg = <0x61>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <27 1>;
-+        };
-+    };
-+...
--- 
-2.25.4
-
+> 
+> Thanks
+> 
+> 
+>>
+>>> +}
+>>> +
+>>> +static struct platform_driver dwapb_gpio_port_driver = {
+>>> +       .driver         = {
+>>> +               .name   = "gpio-dwapb-port",
+>>> +               .of_match_table = dwapb_port_of_match,
+>>> +       },
+>>> +       .probe          = dwapb_gpio_port_probe,
+>>> +};
+>>> +module_platform_driver(dwapb_gpio_port_driver);
+>>> +
+>>>   MODULE_LICENSE("GPL");
+>>>   MODULE_AUTHOR("Jamie Iles");
+>>>   MODULE_DESCRIPTION("Synopsys DesignWare APB GPIO driver");
+>>>   
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
