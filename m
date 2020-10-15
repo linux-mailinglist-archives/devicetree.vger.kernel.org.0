@@ -2,166 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75BD228EBE5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 06:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E572A28EC65
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 06:46:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728580AbgJOECU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 00:02:20 -0400
-Received: from mail-mw2nam10on2052.outbound.protection.outlook.com ([40.107.94.52]:30844
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        id S1729103AbgJOEqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 00:46:38 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:15216 "EHLO huawei.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728576AbgJOECU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 00:02:20 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JPh8roRG7MJSodAf0ohZNcX2jWVSuqq33h+pIZrtrhI7qiUyL35pDapL9rHfll5WKZh4jFc+RpDzTPVqButwXpPQF25t3pAtiP79vf/o9Uc99s1T4aPBYmLmAxnEp9559h8TUeIpVlc6xKJLnjkLPk4shDoPZbm6KL0Y3wX8/aY7MRBKNRD9OhshiZh4uQyzKHMvo7NL/6p3cNw7fD9SRwqTNL437yrycEWuGzlr8qYx9ZXcJNQNjnmIsJCv600L+f0kGGsr1qMWcMH+oV+k79UgGy12oA5qS+ux4WLj/Lb/y5HefDD72608Jb9dPvS4LMi+80qn00+H6ImdxZy8Jg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AS/93Lz2wRDzjoOAMvuot7TW0egRI0Q/qdC8slEHKYI=;
- b=VE+4mMAiaWkM8ZFKat/F5P0SMADvHTHoebwWxHq4WFDQz/tK5tvjLmh/5pliwiOPS8LhAoLY2i7DdrZ4hFYqNMxJJBFhFwNsoRfn9/a6LIvmwbMmsuyg01ATdXkHLg+fAsvTTfH4UwdSHVhFmDHKTtF2T9Yf17oDs024krIyrvfUpvMN5faNKzctAjZCAiQu50JTZVcbY/DnQDm8PPS4+5af1PbwZqg2HgR4Xr6CayVTstf6zIcjGzYDmmLmrCLL+N7+d9LgmiAOlbRkFaG96m56y2zRcP5YhPvaVRXuLF14F5wxz0u15AZgyIGLIqp1zJy6u6GnqguDa+ky1I0yoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AS/93Lz2wRDzjoOAMvuot7TW0egRI0Q/qdC8slEHKYI=;
- b=BKyj2wiZ2scu7/+I+aJHktWgK/OCTRuPdtBUhglQD+eUdPDP/5NyA+u9vy1+Sjg7SptXfTEHg7hc9H8A56Fq0gvIX6M1elkq/QnUq6mN6hwxZosTe3EgZlULYZu/45UpX+2iMa25FvpmAbDPKUxrZOfCkzWvBJNLVBFxmoewOlM=
-Authentication-Results: google.com; dkim=none (message not signed)
- header.d=none;google.com; dmarc=none action=none header.from=synaptics.com;
-Received: from DM6PR03MB4555.namprd03.prod.outlook.com (2603:10b6:5:102::17)
- by DM6PR03MB4555.namprd03.prod.outlook.com (2603:10b6:5:102::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20; Thu, 15 Oct
- 2020 04:02:17 +0000
-Received: from DM6PR03MB4555.namprd03.prod.outlook.com
- ([fe80::e494:740f:155:4a38]) by DM6PR03MB4555.namprd03.prod.outlook.com
- ([fe80::e494:740f:155:4a38%7]) with mapi id 15.20.3477.020; Thu, 15 Oct 2020
- 04:02:17 +0000
-Date:   Thu, 15 Oct 2020 12:02:06 +0800
-From:   Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: fw_devlink on will break all snps,dw-apb-gpio users
-Message-ID: <20201015120206.41b6a454@xhacker.debian>
-In-Reply-To: <CAGETcx9PiX==mLxB9PO8Myyk6u2vhPVwTMsA5NkD-ywH5xhusw@mail.gmail.com>
-References: <20201014191235.7f71fcb4@xhacker.debian>
-        <CAGETcx9PiX==mLxB9PO8Myyk6u2vhPVwTMsA5NkD-ywH5xhusw@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [192.147.44.15]
-X-ClientProxiedBy: BYAPR07CA0033.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::46) To DM6PR03MB4555.namprd03.prod.outlook.com
- (2603:10b6:5:102::17)
+        id S1726012AbgJOEqf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 00:46:35 -0400
+Received: from DGGEMS409-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id EA2F06D32FCB579826F0;
+        Thu, 15 Oct 2020 12:46:28 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.134) by
+ DGGEMS409-HUB.china.huawei.com (10.3.19.209) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 15 Oct 2020 12:46:19 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH v2 0/1] fix all errors except one reported by dt_binding_check
+Date:   Thu, 15 Oct 2020 12:44:42 +0800
+Message-ID: <20201015044443.1828-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from xhacker.debian (192.147.44.15) by BYAPR07CA0033.namprd07.prod.outlook.com (2603:10b6:a02:bc::46) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21 via Frontend Transport; Thu, 15 Oct 2020 04:02:14 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 533e699e-0a96-4b83-3c20-08d870bf1b4d
-X-MS-TrafficTypeDiagnostic: DM6PR03MB4555:
-X-Microsoft-Antispam-PRVS: <DM6PR03MB4555247DFA59786E93F27AD1ED020@DM6PR03MB4555.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pUW/h1hvj1lnHOWQrHtplsIrcf01L1ekDim2X3lphRwbsqSCmAP2G48Dnqm88inroyQlIvO9VNY9f78OboM2I4BxxCvoifAwjPHY+OKFZtSSZ3Ws6b+eJTRMi59sUhTQnLp9X64lw/rZff5JJSaB5bVASSeCqLkOc+FdoPX/QC5JoHxLcE6gNWTvhZtp4EJHud/r6uwLrmXXTyzUrtASSHiFXs2cDjvsd+eOdMMjf+Td3tuRjYHc7KVyqnP+yIF1s+j6AMm243PojydS2/y4pkgtG73+ek4TowkZYfyUJLiYOn9uQ3cvIiZLx49N9v5fuxi1ZJzp6556L9AGrjJcw3y3lDDQ0BwY7OFHlmAFewCZskJ3Qb3/5nbCIk/OUO/KsRj7XnjEcBws+qoqaBWsXO1L2mB7yjq4KmEUTKjCmA0NmSNwkUr3H3sGD93taOgA
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR03MB4555.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(39860400002)(396003)(366004)(83380400001)(4326008)(316002)(1076003)(54906003)(7696005)(478600001)(52116002)(55016002)(86362001)(2906002)(26005)(6916009)(66556008)(8676002)(6666004)(53546011)(66946007)(186003)(16526019)(956004)(6506007)(9686003)(5660300002)(8936002)(34490700002)(66476007)(26730200005)(19860200003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: ra09PAA/DW4yVidZgn/N9Lo7YoDzPlR+gdwfdvrcXdqv8CGDhqnTPPD1Jwjltv7gYmBLT9ljCw2yfgyeU5T7SESYJRiYsqm6KcGPiUr/xjd2OEj/gdr96dzTtEqovMbNX8SjCxWF1XD11kJZ1FEQXUy8TurInKJmoUeWDQCMC9hv/ZtdSetf1yC3NI38Xa4i4ExbbVJpvnCozaC7cvHJaT7zshHxNzwYvIVm6MzFJg96k64uIk6EOaq+l1C5/XJa6k2T0LPZBJzB1wvZqNMQzKJ43E5RcggiGfWQhCrgvIKoVaIr9G4IOyowFTQXWaGaCec7gjVYVmRycDQCqJNSpQfDNCKOe7gTF6NuaNdsUGUwOazG1vKSBegZw53wWTrhSYCXlrfJcGeEnLVe/H2Ba9DLewppWewdt/0tQMK0RWKQhLLcpWy7iiQofK/ZRKUUT1vKrrEXRtuDDMGXiLevs3HT/VwwIS8MGx3oP/8x78aagN16zWc9xn0OjceO+BYElQWqUgnBtYky/TGYLX3G5BQ2Prqkvz7spA+Fp56qUwgv1jWv0CZZx5hrY/MKDE8SuntmCXOy6lxDp8QbYRWykn+Ij/QU1C3daqYG/oenrRz+1rN7BoDzPHB0INjWj+ZbOfXUVFrfpTxi/L5ZxBRT0A==
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 533e699e-0a96-4b83-3c20-08d870bf1b4d
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR03MB4555.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2020 04:02:17.5564
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: brAM10G6GIRmjWnlDGz5nh9Wwixj2NwDPNY7cFuAklCEx6y/kQXZW6BOcsjBJ7qb5NlRUeCB8liEkP6F6AIf3Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4555
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.134]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 10:29:36 -0700
-Saravana Kannan <saravanak@google.com> wrote:
+v1 --> v2:
+1. I'm sorry. I'm not familiar with the GPIO driver, which leads to a low-level
+   mistake. Now, I rewrite the patch 6/6 in v1. For more detail, please refer:   
+   https://lore.kernel.org/linux-arm-kernel/49b680f8-d7d7-8ea3-894c-73cbfacc5ba4@huawei.com/T/#u
 
-> CAUTION: Email originated externally, do not click links or open attachments unless you recognize the sender and know the content is safe.
-> 
-> 
-> On Wed, Oct 14, 2020 at 4:12 AM Jisheng Zhang
-> <Jisheng.Zhang@synaptics.com> wrote:
-> >
-> > Hi,
-> >
-> > If set fw_devlink as on, any consumers of dw apb gpio won't probe.
-> >
-> > The related dts looks like:
-> >
-> > gpio0: gpio@2400 {
-> >        compatible = "snps,dw-apb-gpio";
-> >        #address-cells = <1>;
-> >        #size-cells = <0>;
-> >
-> >        porta: gpio-port@0 {
-> >               compatible = "snps,dw-apb-gpio-port";
-> >               gpio-controller;
-> >               #gpio-cells = <2>;
-> >               ngpios = <32>;
-> >               reg = <0>;
-> >        };
-> > };
-> >
-> > device_foo {
-> >         status = "okay"
-> >         ...;
-> >         reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
-> > };
-> >
-> > If I change the reset-gpio property to use another kind of gpio phandle,
-> > e.g gpio expander, then device_foo can be probed successfully.
-> >
-> > The gpio expander dt node looks like:
-> >
-> >         expander3: gpio@44 {
-> >                 compatible = "fcs,fxl6408";
-> >                 pinctrl-names = "default";
-> >                 pinctrl-0 = <&expander3_pmux>;
-> >                 reg = <0x44>;
-> >                 gpio-controller;
-> >                 #gpio-cells = <2>;
-> >                 interrupt-parent = <&portb>;
-> >                 interrupts = <23 IRQ_TYPE_NONE>;
-> >                 interrupt-controller;
-> >                 #interrupt-cells = <2>;
-> >         };
-> >
-> > The common pattern looks like the devlink can't cope with suppliers from
-> > child dt node.  
-> 
-> fw_devlink doesn't have any problem dealing with child devices being
-> suppliers. The problem with your case is that the
-> drivers/gpio/gpio-dwapb.c driver directly parses the child nodes and
-> never creates struct devices for them. If you have a node with
-> compatible string, fw_devlink expects you to create and probe a struct
-> device for it. So change your driver to add the child devices as
-> devices instead of just parsing the node directly and doing stuff with
-> it.
-> 
-> Either that, or stop putting "compatible" string in a node if you
-> don't plan to actually treat it as a device -- but that's too late for
-> this driver (it needs to be backward compatible). So change the driver
-> to add of_platform_populate() and write a driver that probes
-> "snps,dw-apb-gpio-port".
-> 
 
-Thanks for the information. The "snps,dw-apb-gpio-port" is never used,
-so I just sent out a series to remove it.
+v1:
+When people add multiple or common YAML files, they usually perform a full
+dt_binding_check. Unfortunately, some YAML files cannot pass the self-check.
+The errors or warning are listed below. It is necessary to eliminate them,
+so that people's time and energy are not wasted every time when execute
+comprehensive dt_binding_check.
 
-Thanks
+This error is fixed by Patch 1:
+/root/leizhen/linux-next/Documentation/devicetree/bindings/leds/leds-lp55xx.example.dt.yaml: led-controller@33: multi-led@2:color:0:0: 9 is greater than the maximum of 8
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+
+These errors are fixed by Patch 2:
+/root/leizhen/linux-next/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.example.dt.yaml: ec@0: 'typec' does not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+/root/leizhen/linux-next/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.example.dt.yaml: cros-ec@0: 'extcon0', 'extcon1' do not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+/root/leizhen/linux-next/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.example.dt.yaml: cros-ec@0: 'ec-pwm' does not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+/root/leizhen/linux-next/Documentation/devicetree/bindings/regulator/google,cros-ec-regulator.example.dt.yaml: ec@0: '#address-cells', '#size-cells', 'regulator@0' do not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+/root/leizhen/linux-next/Documentation/devicetree/bindings/sound/google,cros-ec-codec.example.dt.yaml: cros-ec@0: '#address-cells', '#size-cells', 'ec-codec@10500000' do not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+
+These errors are fixed by Patch 3 and 4:
+Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.example.dts:21.13-30.11: Warning (spi_bus_bridge): /example-0/spi: incorrect #address-cells for SPI bus
+Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.example.dts:21.13-30.11: Warning (spi_bus_bridge): /example-0/spi: incorrect #size-cells for SPI bus
+Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'spi_bus_bridge'
+
+Patch 5 and 6 fix the dtbs_check errors detected by Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge): /soc/apb@d4000000/spi@d4037000: incorrect #address-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge): /soc/apb@d4000000/spi@d4037000: incorrect #size-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2-olpc-xo-1-75.dtb: Warning (spi_bus_reg): Failed prerequisite 'spi_bus_bridge'
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge): /soc/apb@d4000000/spi@d4037000: incorrect #address-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge): /soc/apb@d4000000/spi@d4037000: incorrect #size-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2-olpc-xo-1-75.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'spi_bus_bridge'
+/root/leizhen/linux-next/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dt.yaml: slave: 'cmd-gpios' is a required property
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
+/root/leizhen/linux-next/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dt.yaml: slave: 'cmd-gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
+
+I have no good idea for this one, so leave it.
+Documentation/devicetree/bindings/pci/xilinx-versal-cpm.example.dts:43.62-47.30: Warning (pci_device_reg): /example-0/versal/pcie@fca10000/interrupt-controller: missing PCI reg property
+
+Zhen Lei (1):
+  dt-bindings: misc: add support for both property names cmd-gpios and
+    cmd-gpio
+
+ Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+-- 
+1.8.3
+
+
