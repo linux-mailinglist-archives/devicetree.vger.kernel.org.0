@@ -2,141 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C64928FAB5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 23:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 572E928FC24
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 02:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728419AbgJOVeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 17:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38494 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727664AbgJOVeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 17:34:50 -0400
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FE48C061755;
-        Thu, 15 Oct 2020 14:34:50 -0700 (PDT)
-Received: by mail-qt1-x843.google.com with SMTP id q26so409500qtb.5;
-        Thu, 15 Oct 2020 14:34:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8mdlzifETD7dDuA1V3YKKF+U9XTqlEODnK2lvnXX8zE=;
-        b=uKyqjiLAm8LXPyz0bkIR6peoreT/vMSjZlV3h7LzOA6c6I0uX7c/bIOEA7M+VRlB5t
-         4S6si8clfoTSqtAS4kuONir7ltmQQuz3YltaOsdCAz0KYm8om0D173SEaYm5Q7puVVLK
-         bQP7REoi9lKkPNT8z9KYLZ0u88dbXyAhhHAWQCRvuZK0HbITHfqhk8OXo8lt3izf0FxN
-         hdI8eprx8e9SKsAW9QwLmWNbqPylYENDoEG5NpHCd5DsP0I9qRBOE4uyvr5H9i/sRIjL
-         DVW53Lf+x+qHOdHy9svh3jqDf3TJLOwA96YD/RovKI1fIfAzoiyB9on/wWD9ibrAf5uu
-         3OWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8mdlzifETD7dDuA1V3YKKF+U9XTqlEODnK2lvnXX8zE=;
-        b=ji/rO/2/HeyfH3/b5JR4sfB2udZYtyvSt5VzvfHTfga+piIoCrnpwptotPrvtb4Lg/
-         JSnApvwKVmO+xq5+QsgAWOGyqJBkVUBgkDYkyuEdDj2HQ4YE5SAQegIMkVoCj5GBkX/f
-         mGpHGdxn8SZ7JABz1+XCMdT93xzWiIdGIYfqxgtaUfeNGFGJy9gV301mOfdA41gLKzUi
-         AKs6pJN33EHux6quIgfGqKliwNdTI6OHGhiCU5GKkQlosfw1fuhLp5J+Dxq7p/dCXAMl
-         LyFMONguOxVdr5TxkB8y6sIOCw+kELpqDEDMAAjYMiwF4C9uKF60dhDyevi8ezNciKqj
-         Tkwg==
-X-Gm-Message-State: AOAM530icO/GPWGDxhQMc4iafL6y8XBqTXmoqFoBfXxQ0Qi0sZMhOBHp
-        9gePK6Ow0SvwD4har3AQQMc=
-X-Google-Smtp-Source: ABdhPJxYVzslPxZmQVqTEb18qiPnUfZjT7AMkQGFO0v2P8KO5mXkcRKEvxEBsw1knmTlZfHSecuUMg==
-X-Received: by 2002:aed:2ce5:: with SMTP id g92mr364144qtd.107.1602797689037;
-        Thu, 15 Oct 2020 14:34:49 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id r8sm81317qkm.115.2020.10.15.14.34.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Oct 2020 14:34:48 -0700 (PDT)
-Subject: Re: [RFC PATCH 0/3] Fix errors on DT overlay removal with devlinks
-To:     Michael Auchter <michael.auchter@ni.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     saravanak@google.com, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org, rafael@kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20201014193615.1045792-1-michael.auchter@ni.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <8c123831-1a35-0a28-d583-5bab4735edfd@gmail.com>
-Date:   Thu, 15 Oct 2020 16:34:47 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2388471AbgJPAoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 20:44:22 -0400
+Received: from gateway31.websitewelcome.com ([192.185.144.94]:39451 "EHLO
+        gateway31.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2388435AbgJPAoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 20:44:22 -0400
+X-Greylist: delayed 1499 seconds by postgrey-1.27 at vger.kernel.org; Thu, 15 Oct 2020 20:44:21 EDT
+Received: from cm16.websitewelcome.com (cm16.websitewelcome.com [100.42.49.19])
+        by gateway31.websitewelcome.com (Postfix) with ESMTP id 617669A3F3
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 18:57:08 -0500 (CDT)
+Received: from br164.hostgator.com.br ([192.185.176.180])
+        by cmsmtp with SMTP
+        id TD7Mk3ViSCjCVTD7MkNxVy; Thu, 15 Oct 2020 18:57:08 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Gy3P67RxNUL9omx5MlSP0/Wj6c2IxeNn3fMV33pKe/8=; b=ZVcnMlOYnf+TIKhFwR374JfrnZ
+        6andPUbQDwXLgS87uNZxg3+ZZQPi3Zt4SkFuaMigJ2okoZV4umgaXwFUM2GnmI/aiEAKXvP9+21ki
+        BRXYQCf8I78kxAJMW8LB7+TrvN+NDnZdkQ1xuE82VV4nyztV4CunUuY8S0qr6+S8X7TExYzj5gZpT
+        qYQajBgg+pC9Xsn11LctlAiRGLPUgO6Bmt/kiQq54rKStD8E2+ESD4u1I7Li9/E4HcXzfJHqneHE+
+        dK4ti91e4uQ7kPEt1apPM6K7sqxTWv1S4vY06BYERMEAuU/rwMbpFC5cCREiiibVks+IwuNH2JVab
+        WS9v2JqQ==;
+Received: from 179-197-124-241.user.veloxzone.com.br ([179.197.124.241]:57026 helo=[192.168.1.69])
+        by br164.hostgator.com.br with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <matheus@castello.eng.br>)
+        id 1kTD7L-0019KL-Sd; Thu, 15 Oct 2020 20:57:08 -0300
+Subject: Re: [PATCH v7 4/4] arm64: dts: Add Caninos Loucos Labrador v3
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, edgar.righi@lsitec.org.br,
+        igor.lima@lsitec.org.br, Helen Koike <helen.koike@collabora.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-actions@lists.infradead.org, Will Deacon <will@kernel.org>
+References: <20200922024302.205062-1-matheus@castello.eng.br>
+ <20200922024302.205062-5-matheus@castello.eng.br>
+ <20200922061454.GA29035@Mani-XPS-13-9360>
+ <CAK8P3a0yGN80nJU0kcrvYGsSjpaNpU_nmu-ENwE3GMC_9DNBhg@mail.gmail.com>
+ <20200922102605.GE15643@gaia>
+From:   Matheus Castello <matheus@castello.eng.br>
+Message-ID: <4fc1047f-2b14-4430-b9b2-1e682881de0c@castello.eng.br>
+Date:   Thu, 15 Oct 2020 20:57:01 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
-In-Reply-To: <20201014193615.1045792-1-michael.auchter@ni.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <20200922102605.GE15643@gaia>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: pt-BR
 Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - castello.eng.br
+X-BWhitelist: no
+X-Source-IP: 179.197.124.241
+X-Source-L: No
+X-Exim-ID: 1kTD7L-0019KL-Sd
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 179-197-124-241.user.veloxzone.com.br ([192.168.1.69]) [179.197.124.241]:57026
+X-Source-Auth: matheus@castello.eng.br
+X-Email-Count: 13
+X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
+X-Local-Domain: yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
 
-On 10/14/20 2:36 PM, Michael Auchter wrote:
-> After updating to v5.9, I've started seeing errors in the kernel log
-> when using device tree overlays. Specifically, the problem seems to
-> happen when removing a device tree overlay that contains two devices
-> with some dependency between them (e.g., a device that provides a clock
-> and a device that consumes that clock). Removing such an overlay results
-> in:
+Em 9/22/20 7:26 AM, Catalin Marinas escreveu:
+> On Tue, Sep 22, 2020 at 10:32:06AM +0200, Arnd Bergmann wrote:
+>> On Tue, Sep 22, 2020 at 8:15 AM Manivannan Sadhasivam
+>> <manivannan.sadhasivam@linaro.org> wrote:
+>>> On Mon, Sep 21, 2020 at 11:43:02PM -0300, Matheus Castello wrote:
+>>>> +     /* Labrador v3 firmware does not support PSCI */
+>>>
+>>> Oops. This is unfortunate... I'm not sure if this is even acceptable for
+>>> ARM64 machines.
+>>>
+>>> Let me add Olof and Arnd...
+>>
+>> Adding Catalin and Will for additional input as well, this is more their
+>> area than ours.
+>>
+>> I don't think we have formalized this as a policy, but we clearly don't
+>> want new boards to use the spin table hack. As there are other
+>> boards using psci on the same chip, I don't think this is a
+>> hardware bug.
 > 
->   OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy
->   OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy
+> I fully agree, we shouldn't allow new boards to use the spin-table
+> method unless EL3 is missing on the CPU implementation (not the case
+> here; only the APM hardware has this issue). Unfortunately we missed
+> another platform with A53, see commit bc66392d8258 ("arm64: dts: fsl:
+> Add device tree for S32V234-EVB").
 > 
-> followed by hitting some REFCOUNT_WARNs in refcount.c
+> The kernel relies on firmware for other things (power management, errata
+> workarounds), so an SMC calling convention compliant firmware is highly
+> recommended. I also don't see why it would be that hard to add PSCI.
+> Even if you don't port something like Trusted Firmware, U-Boot has basic
+> support for PSCI.
 > 
-> In the first patch, I've included a unittest that can be used to
-> reproduce this when built with CONFIG_OF_UNITTEST [1].
-> 
-> I believe the issue is caused by the cleanup performed when releasing
-> the devlink device that's created to represent the dependency between
-> devices. The devlink device has references to the consumer and supplier
-> devices, which it drops in device_link_free; the devlink device's
-> release callback calls device_link_free via call_srcu.
-> 
-> When the overlay is being removed, all devices are removed, and
-> eventually the release callback for the devlink device run, and
-> schedules cleanup using call_srcu. Before device_link_free can and call
-> put_device on the consumer/supplier, the rest of the overlay removal
-> process runs, resulting in the error traces above.
-> 
-> Patches 2 and 3 are an attempt at fixing this: call srcu_barrier to wait
-> for any pending device_link_free's to execute before continuing on with
-> the removal process.
-> 
-> These patches resolve the issue, but probably not in the best way. In
-> particular, it seems strange to need to leak details of devlinks into
-> the device tree overlay code. So, I'd be curious to get some feedback or
-> hear any other ideas for how to resolve this issue.
+> So from my perspective, NAK on this patch.
+>
 
-Thanks for finding the problem, analyzing it, creating a unittest, and
-creating a fix.
+Thanks Arnd and Catalin, this is really just a limitation of the 
+bootloader developed by manufactures that comes embedded in the board. I 
+will drop this in the next version.
 
-I agree with your analysis that there are issues with the implementation
-of the test and fix.  I'll dig into this to see if I can provide some
-useful improvements.
-
--Frank
-
+> I'm tempted to also modify smp_spin_table_cpu_init() to print a big
+> warning and return an error if this is attempted on new platforms. IOW,
+> we make it a policy from now on.
 > 
-> Thanks,
->  Michael
-> 
-> 1. Note that this isn't a very good unit test: it will report a "pass"
->    even if it fails with the aforementioned errors, as these errors
->    aren't propogated.
-> 
-> Michael Auchter (3):
->   of: unittest: add test of overlay with devlinks
->   driver core: add device_links_barrier
->   of: dynamic: add device links barrier before detach
-> 
->  drivers/base/core.c                     | 10 ++++++++++
->  drivers/of/dynamic.c                    |  3 +++
->  drivers/of/unittest-data/Makefile       |  1 +
->  drivers/of/unittest-data/overlay_16.dts | 26 +++++++++++++++++++++++++
->  drivers/of/unittest.c                   | 16 +++++++++++++++
->  include/linux/device.h                  |  1 +
->  6 files changed, 57 insertions(+)
->  create mode 100644 drivers/of/unittest-data/overlay_16.dts
-> 
-
