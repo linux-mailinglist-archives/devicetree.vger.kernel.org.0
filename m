@@ -2,266 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9642328F460
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC6028F48E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:15:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730489AbgJOOIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 10:08:38 -0400
-Received: from foss.arm.com ([217.140.110.172]:44924 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727988AbgJOOIh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 10:08:37 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BF6CC13D5;
-        Thu, 15 Oct 2020 07:08:36 -0700 (PDT)
-Received: from [10.57.48.76] (unknown [10.57.48.76])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A16B63F719;
-        Thu, 15 Oct 2020 07:08:34 -0700 (PDT)
-Subject: Re: fw_devlink on will break all snps,dw-apb-gpio users
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        id S1730762AbgJOOPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 10:15:40 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:55838 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730737AbgJOOPk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 10:15:40 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 205078030719;
+        Thu, 15 Oct 2020 14:15:35 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id HCX0OAgYPjwG; Thu, 15 Oct 2020 17:15:34 +0300 (MSK)
+Date:   Thu, 15 Oct 2020 17:15:31 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20201014191235.7f71fcb4@xhacker.debian>
- <CAGETcx9PiX==mLxB9PO8Myyk6u2vhPVwTMsA5NkD-ywH5xhusw@mail.gmail.com>
- <20201015120206.41b6a454@xhacker.debian>
- <CAGETcx_jzF_iV5oJQ8BuDBu0b5Z8G=uL0DhA4uS5U9XLuYryjg@mail.gmail.com>
- <20201015161455.744d5041@xhacker.debian>
- <CAGETcx_hORWf2HkcUP=Dj6noCUsbj9KsycZ-Hr80BUOwyZaQBg@mail.gmail.com>
- <20201015175231.1a690c21@xhacker.debian>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <d3e59e01-9921-5f8b-ef12-55baef420277@arm.com>
-Date:   Thu, 15 Oct 2020 15:08:33 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.3.2
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Wei Xu <xuwei5@hisilicon.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
+Message-ID: <20201015141531.zxmcgq6k4akm3lmo@mobilestation>
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
+ <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
+ <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
+ <20201014171640.bup52mgaz4jvhtsy@mobilestation>
+ <CAJKOXPcHi_=jea=0YrPNo4dh6k03+63Tc2Uo+sd0u8+XPdQjOw@mail.gmail.com>
+ <20201014235105.kj4rtwiidph7gyen@mobilestation>
+ <20201015061439.GA2926@kozik-lap>
 MIME-Version: 1.0
-In-Reply-To: <20201015175231.1a690c21@xhacker.debian>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201015061439.GA2926@kozik-lap>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-10-15 10:52, Jisheng Zhang wrote:
-> On Thu, 15 Oct 2020 01:48:13 -0700
-> Saravana Kannan <saravanak@google.com> wrote:
+On Thu, Oct 15, 2020 at 08:14:39AM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Oct 15, 2020 at 02:51:05AM +0300, Serge Semin wrote:
+>  > >
+> > > > So to speak thanks for suggesting it. I'll try it to validate the proposed
+> > > > changes.
+> > > >
+> > > > Two questions:
+> > > > 1) Any advise of a good inliner/command to compile all dtbs at once? Of course I
+> > > > can get all the updated dtsi'es, then find out all the dts'es which include
+> > > > them, then directly use dtc to compile the found dts'es... On the other hand I
+> > > > can just compile all dts'es, then compare old and new ones. The diff of the
+> > > > non-modified dtb'es will be just empty...
+> > > 
+> > 
+> > > make dtbs
+> > 
+> > It's not that easy.) "make dtbs" will build dtbs only for enabled boards, which
+> > first need to be enabled in the kernel config. So I'll need to have a config
+> > with all the affected dts. The later is the same as if I just found all the
+> > affected dts and built them one-by-one by directly calling dtc.
 > 
->> On Thu, Oct 15, 2020 at 1:15 AM Jisheng Zhang
->> <Jisheng.Zhang@synaptics.com> wrote:
->>>
->>> On Wed, 14 Oct 2020 22:04:24 -0700 Saravana Kannan wrote:
->>>   
->>>>
->>>>
->>>> On Wed, Oct 14, 2020 at 9:02 PM Jisheng Zhang
->>>> <Jisheng.Zhang@synaptics.com> wrote:
->>>>>
->>>>> On Wed, 14 Oct 2020 10:29:36 -0700
->>>>> Saravana Kannan <saravanak@google.com> wrote:
->>>>>   
->>>>>>
->>>>>>
->>>>>> On Wed, Oct 14, 2020 at 4:12 AM Jisheng Zhang
->>>>>> <Jisheng.Zhang@synaptics.com> wrote:
->>>>>>>
->>>>>>> Hi,
->>>>>>>
->>>>>>> If set fw_devlink as on, any consumers of dw apb gpio won't probe.
->>>>>>>
->>>>>>> The related dts looks like:
->>>>>>>
->>>>>>> gpio0: gpio@2400 {
->>>>>>>         compatible = "snps,dw-apb-gpio";
->>>>>>>         #address-cells = <1>;
->>>>>>>         #size-cells = <0>;
->>>>>>>
->>>>>>>         porta: gpio-port@0 {
->>>>>>>                compatible = "snps,dw-apb-gpio-port";
->>>>>>>                gpio-controller;
->>>>>>>                #gpio-cells = <2>;
->>>>>>>                ngpios = <32>;
->>>>>>>                reg = <0>;
->>>>>>>         };
->>>>>>> };
->>>>>>>
->>>>>>> device_foo {
->>>>>>>          status = "okay"
->>>>>>>          ...;
->>>>>>>          reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
->>>>>>> };
->>>>>>>
->>>>>>> If I change the reset-gpio property to use another kind of gpio phandle,
->>>>>>> e.g gpio expander, then device_foo can be probed successfully.
->>>>>>>
->>>>>>> The gpio expander dt node looks like:
->>>>>>>
->>>>>>>          expander3: gpio@44 {
->>>>>>>                  compatible = "fcs,fxl6408";
->>>>>>>                  pinctrl-names = "default";
->>>>>>>                  pinctrl-0 = <&expander3_pmux>;
->>>>>>>                  reg = <0x44>;
->>>>>>>                  gpio-controller;
->>>>>>>                  #gpio-cells = <2>;
->>>>>>>                  interrupt-parent = <&portb>;
->>>>>>>                  interrupts = <23 IRQ_TYPE_NONE>;
->>>>>>>                  interrupt-controller;
->>>>>>>                  #interrupt-cells = <2>;
->>>>>>>          };
->>>>>>>
->>>>>>> The common pattern looks like the devlink can't cope with suppliers from
->>>>>>> child dt node.
->>>>>>
->>>>>> fw_devlink doesn't have any problem dealing with child devices being
->>>>>> suppliers. The problem with your case is that the
->>>>>> drivers/gpio/gpio-dwapb.c driver directly parses the child nodes and
->>>>>> never creates struct devices for them. If you have a node with
->>>>>> compatible string, fw_devlink expects you to create and probe a struct
->>>>>> device for it. So change your driver to add the child devices as
->>>>>> devices instead of just parsing the node directly and doing stuff with
->>>>>> it.
->>>>>>
->>>>>> Either that, or stop putting "compatible" string in a node if you
->>>>>> don't plan to actually treat it as a device -- but that's too late for
->>>>>> this driver (it needs to be backward compatible). So change the driver
->>>>>> to add of_platform_populate() and write a driver that probes
->>>>>> "snps,dw-apb-gpio-port".
->>>>>>   
->>>>>
->>>>> Thanks for the information. The "snps,dw-apb-gpio-port" is never used,
->>>>> so I just sent out a series to remove it.
->>>>
->>>> I'd actually prefer that you fix the kernel code to actually use it.
->>>> So that fw_devlink can be backward compatible (Older DT + new kernel).
->>>> The change is pretty trivial (I just have time to do it for you).
->>>>   
->>>
->>> I agree the change is trivial, but it will add some useless LoCs like below.
->>
->> It's not useless if it preserves backward compatibility with DT.
->>
->>> I'm not sure whether this is acceptable.So add GPIO and DT maintainers to comment.
->>>
->>> Hi Linus, Rob,
->>>
->>> Could you please comment? A simple introduction of the problem:
->>>
->>> As pointed out by Saravana, "gpio-dwapb.c driver directly parses the child
->>> nodes and never creates struct devices for them. If you have a node with
->>> compatible string, fw_devlink expects you to create and probe a struct
->>> device for it", so once we set fw_devlink=on, then any users of gpio-dwapb
->>> as below won't be probed.
->>>
->>> device_foo {
->>>           status = "okay"
->>>           ...;
->>>           reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
->>> };
->>>
->>> The compatible string "snps,dw-apb-gpio-port" is never used, but it's in
->>> the dt-binding since the dw gpio mainlined. I believe the every dw apb
->>> users just copy the compatible string in to soc dtsi. So I submit a series
->>> to remove the unused "snps,dw-apb-gpio-port" https://lkml.org/lkml/2020/10/14/1186
->>> But this will break Older DT + new kernel with fw_devlink on. Which solution
->>> is better?
->>>
->>> If the following patch is acceptable, I can submit it once 5.10-rc1 is out.
->>>
->>> thanks
->>>
->>> diff --git a/drivers/gpio/gpio-dwapb.c b/drivers/gpio/gpio-dwapb.c
->>> index 1d8d55bd63aa..b8e012e48b59 100644
->>> --- a/drivers/gpio/gpio-dwapb.c
->>> +++ b/drivers/gpio/gpio-dwapb.c
->>> @@ -19,6 +19,7 @@
->>>   #include <linux/of_address.h>
->>>   #include <linux/of_device.h>
->>>   #include <linux/of_irq.h>
->>> +#include <linux/of_platform.h>
->>>   #include <linux/platform_device.h>
->>>   #include <linux/property.h>
->>>   #include <linux/reset.h>
->>> @@ -694,6 +695,10 @@ static int dwapb_gpio_probe(struct platform_device *pdev)
->>>          }
->>>          platform_set_drvdata(pdev, gpio);
->>>
->>> +       err = devm_of_platform_populate(dev);
->>> +       if (err)
->>> +               goto out_unregister;
->>> +
->>>          return 0;
->>>
->>>   out_unregister:
->>> @@ -820,6 +825,25 @@ static struct platform_driver dwapb_gpio_driver = {
->>>
->>>   module_platform_driver(dwapb_gpio_driver);
->>>
->>> +static const struct of_device_id dwapb_port_of_match[] = {
->>> +       { .compatible = "snps,dw-apb-gpio-port" },
->>> +       { /* Sentinel */ }
->>> +};
->>> +
->>> +static int dwapb_gpio_port_probe(struct platform_device *pdev)
->>> +{
->>> +       return 0;
->>
->> No, I'm not asking to do a stub/dummy probe. Move the stuff you do
->> inside device_for_each_child_node{} and dwapb_gpio_add_port() into
->> this probe function. Those two pieces of code together are effectively
->> "probing" a separate gpio controller for each of the child nodes. So
->> just create a real struct device (like we do for every other
->> "compatible" DT node) and probe each of them properly using the device
->> driver core.
+> True. Sometimes allyesconfig for given arch might be helpful but not
+> always (e.g. for ARM it does not select all of ARMv4 and ARMv5 boards).
+> Most likely your approach is actually faster/more reliable.
 > 
-> Then I believe the modifications are non-trivial. Maybe Linus and Rob
-> can comment which way is better, fix the dts or modify the gpio-dwapb.c.
-> Personally, I prefer fixing dts, because this doesn't remove or modify
-> any used properties or compatible string, it just removes the unused
-> compatible string.
+> > 
+> > > touch your dts or git stash pop
+> > > make dtbs
+> > > compare
+> > > diff for all unchanged will be simply empty, so easy to spot
+> > > 
+> > > > 2) What crosc64 is?
+> > > 
+> > > Ah, just an alias for cross compiling + ccache + kbuild out. I just
+> > > copied you my helpers, so you need to tweak them.
+> > > 
+> > > >
+> > > > >
+> > > > > 2. Split it per arm architectures (and proper subject prefix - not
+> > > > > "arch") and subarchitectures so maintainers can pick it up.
+> > > >
+> > > > Why? The changes are simple and can be formatted as a single patch. I've seen
+> > > > tons of patches submitted like that, accepted and then merged. What you suggest
+> > > > is just much more work, which I don't see quite required.
+> > > 
+> > 
+> > > DTS changes go separate between arm64 and arm. There is nothing
+> > > unusual here - all changes are submitted like this.
+> > > Second topic is to split by subarchitectures which is necessary if you
+> > > want it to be picked up by maintainers. It also makes it easier to
+> > > review.
+> > 
+> > The current patches are easy enough for review. The last three patches of the
+> > series is a collection of the one-type changes concerning the same type of
+> > nodes. So reviewing them won't cause any difficulty. But I assume that's not
+> > the main point in this discussion.
+> > 
+> > > Sure, without split ber subarchitectures this could be picked
+> > > up by SoC folks but you did not even CC them. So if you do not want to
+> > > split it per subarchitectures for maintainers and you do not CC SoC,
+> > > then how do you believe this should be picked up? Out of the regular
+> > > patch submission way? That's not how the changes are handled.
+> > 
+> > AFAIU there are another ways of merging comprehensive patches. If they get to collect
+> > all the Acked-by tags, they could be merged in, for instance, through Greg' or Rob'
+> > (for dts) repos, if of course they get to agree with doing that. Am I wrong?
+> > 
+> > My hope was to ask Rob or Greg to get the patches merged in when they get
+> > to collect all the ackes, since I thought it was an option in such cases. So if
+> > they refuse to do so I'll have no choice but to split the series up into a
+> > smaller patches as you say.
+> 
 
-You appear to be assuming that:
+> This is neither Rob's nor Greg's patch to pick up, but ARM SoC (which was
+> not CCed here). And most likely they won't pick it up because judging by
+> contents it is obvious it should go via ARM SoC.
+> 
+> Sure, if there are dependencies between some patches they can go with
+> acks through unrelated trees, but this not the usual way. This is an
+> exception in the process to solve particular dependency problem.  It has
+> drawbacks - increases the chances of annoying conflicts.
+> 
+> The case here does not fall into this criteria - there is no dependency
+> of this patch on the others  Therefore there is no reason to use the
+> unusual/exceptional way of handling patches.  There is no reason why
+> this shouldn't go via either specific ARM subarchitecture maintainers or
+> via ARM SoC.
 
-A) There a no consumers of DTBs and DT bindings other than Linux.
-B) No Linux user ever updates their kernel image without also updating 
-their DTB.
+Ok. I see your point. To sum it up I've studied the git log arch/ commit
+messages and it turns out even Rob has to split the cleanup changes like this
+ones. So thanks for your patience with stating your point. I'll split the last
+three patches up to be merged in via the corresponding archs/subarch'es repos.
 
-I can assure you that, in general, neither of those hold true. Hacking 
-DTs to work around internal implementation details in Linux is rarely if 
-ever a good or even viable idea.
-
-Robin.
+-Sergey
 
 > 
-> Thanks
+> > > > > 3. The subject title could be more accurate - there is no fix here
+> > > > > because there was no errors in the first place. Requirement of DWC
+> > > > > node names comes recently, so it is more alignment with dtschema.
+> > > > > Otherwise automatic-pickup-stable-bot might want to pick up... and it
+> > > > > should not go to stable.
+> > > >
+> > > > Actually it is a fix, because the USB DT nodes should have been named with "usb"
+> > > > prefix in the first place. Legacy DWC USB3 bindings didn't define the nodes
+> > > > naming, but implied to be "usb"-prefixed by the USB HCD schema. The Qualcomm
+> > > > DWC3 schema should have defined the sub-nodes as "dwc3@"-prefixed, which was
+> > > > wrong in the first place.
+> > > 
+> > 
+> > > Not following the naming convention of DT spec which was loosely
+> > > enforced is not an error which should be "fixed". Simply wrong title.
+> > > This is an alignment with dtschema or correcting naming convention.
+> > > Not fixing errors.
+> > 
+> > From your perspective it wasn't an error, from mine and most likely Rob' it
+> > was.) Anyway as I said I don't care that much about preserving the subject
+> > wording, so what about the next one:
+> > <arch>: <subarch>: Harmonize DWC USB3 nodes name with DT schema
+> > ?
 > 
+> Looks good.
 > 
->>
->>> +}
->>> +
->>> +static struct platform_driver dwapb_gpio_port_driver = {
->>> +       .driver         = {
->>> +               .name   = "gpio-dwapb-port",
->>> +               .of_match_table = dwapb_port_of_match,
->>> +       },
->>> +       .probe          = dwapb_gpio_port_probe,
->>> +};
->>> +module_platform_driver(dwapb_gpio_port_driver);
->>> +
->>>   MODULE_LICENSE("GPL");
->>>   MODULE_AUTHOR("Jamie Iles");
->>>   MODULE_DESCRIPTION("Synopsys DesignWare APB GPIO driver");
->>>   
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> Best regards,
+> Krzysztof
 > 
