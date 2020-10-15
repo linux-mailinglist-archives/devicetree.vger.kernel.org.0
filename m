@@ -2,400 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FF9828F43E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB2A428F63A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 17:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729969AbgJOOBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 10:01:54 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:59670 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729930AbgJOOBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 10:01:54 -0400
-Received: from relay11.mail.gandi.net (unknown [217.70.178.231])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id CA8533B3ADE
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 13:53:33 +0000 (UTC)
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 5BBD4100015;
-        Thu, 15 Oct 2020 13:53:07 +0000 (UTC)
-Date:   Thu, 15 Oct 2020 17:52:51 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Rui Miguel Silva <rmfrfs@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: imx7-mipi-csi2: convert bindings to
- yaml
-Message-ID: <20201015155251.3npqi2t4oghuguab@uno.localdomain>
-References: <20201014142759.726823-1-rmfrfs@gmail.com>
- <20201014142759.726823-4-rmfrfs@gmail.com>
+        id S2389775AbgJOP5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 11:57:11 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:43593 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389713AbgJOP5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 11:57:10 -0400
+Received: by mail-ot1-f67.google.com with SMTP id n61so3326028ota.10;
+        Thu, 15 Oct 2020 08:57:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/4GgpJhvEPw5RrmkaieTPcF/Ng6iwVy7UMFgWDDaTjU=;
+        b=TJTDQ36rTUSbUG5hOOlDHPE0atfzD8ymRTXloqoWPFI2RNEzhC21z/g8dRzHsqthbD
+         QAu0RN+Lnje3WQ6l26b64GcX5PvuiTV5Hx3tfr+R90oCqvepTQjJyWreR1uX6wAlNlDl
+         5pRCAsCG0vhOuLbskdfr/yMcOUylfh/N/SpMqP+eh4lkUvnH06DA3TgfShcLXm31IFKR
+         9fazbrsYXbTleuDK12Ks1iCEOVzCfBC5taJtu0BLp0sBWRWkvo0Z0UftgXLNTQj6Zkqx
+         6FuBLYZp29lBFw+3iYRmUvOHe7bK70iWVwcZfpRFXvEFJmgufcqD0HusPXoC6a0m4xhl
+         axlA==
+X-Gm-Message-State: AOAM531pWBPEG8wetuMCr1rHgAPQAVukG5jQudc4VtVJZe/qdYXb1zYZ
+        XXbKYmn3OBIdCVKUtzGPOMN7wI8nLNqpgjXqsZ8=
+X-Google-Smtp-Source: ABdhPJyoltGbkt59n4Bo3l3lomRSlxR74vdWZMPehbXbYcmhXPVPGK9lsyyM/iMmR5AAB2q/h2XA+bsJcjxkwerJJsY=
+X-Received: by 2002:a9d:ac9:: with SMTP id 67mr3254584otq.321.1602777428385;
+ Thu, 15 Oct 2020 08:57:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201014142759.726823-4-rmfrfs@gmail.com>
+References: <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7> <42e3c8e9-cadc-d013-1e1f-fa06af4a45ff@arm.com>
+ <20201009140141.GA4048593@bogus> <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
+ <20201012105945.GA9219@arm.com> <500510b9-58f3-90b3-8c95-0ac481d468b5@arm.com>
+ <20201012163032.GA30838@arm.com> <9fe56600-ba7d-d3b6-eea3-885475d94d7a@arm.com>
+ <20201012220132.GA1715@arm.com> <CAJZ5v0hMtPARYezJEZqeUZBsyaSggQvtvvfEvONhz6Z=Y32bhQ@mail.gmail.com>
+ <20201013123901.GA4945@arm.com>
+In-Reply-To: <20201013123901.GA4945@arm.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Thu, 15 Oct 2020 17:56:56 +0200
+Message-ID: <CAJZ5v0gDfzFpJTLYMD=HsWKm5ORpx=398v+3q9DDoBbAh-aEsg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for cpu-perf-dependencies
+To:     Ionela Voinescu <ionela.voinescu@arm.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Chris Redpath <chris.redpath@arm.com>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rui,
-
-On Wed, Oct 14, 2020 at 03:27:59PM +0100, Rui Miguel Silva wrote:
-> Convert imx7 mipi csi2 bindings documentation to yaml schema, remove
-> the textual document and update MAINTAINERS entry.
+On Tue, Oct 13, 2020 at 2:39 PM Ionela Voinescu <ionela.voinescu@arm.com> wrote:
 >
-> Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
-> ---
->  .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
->  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 181 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 182 insertions(+), 91 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+> Hi Rafael,
 >
-> diff --git a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt b/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
-> deleted file mode 100644
-> index 71fd74ed3ec8..000000000000
-> --- a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
-> +++ /dev/null
-> @@ -1,90 +0,0 @@
-> -Freescale i.MX7 Mipi CSI2
-> -=========================
-> -
-> -mipi_csi2 node
-> ---------------
-> -
-> -This is the device node for the MIPI CSI-2 receiver core in i.MX7 SoC. It is
-> -compatible with previous version of Samsung D-phy.
-> -
-> -Required properties:
-> -
-> -- compatible    : "fsl,imx7-mipi-csi2";
-> -- reg           : base address and length of the register set for the device;
-> -- interrupts    : should contain MIPI CSIS interrupt;
-> -- clocks        : list of clock specifiers, see
-> -        Documentation/devicetree/bindings/clock/clock-bindings.txt for details;
-> -- clock-names   : must contain "pclk", "wrap" and "phy" entries, matching
-> -                  entries in the clock property;
-> -- power-domains : a phandle to the power domain, see
-> -          Documentation/devicetree/bindings/power/power_domain.txt for details.
-> -- reset-names   : should include following entry "mrst";
-> -- resets        : a list of phandle, should contain reset entry of
-> -                  reset-names;
-> -- phy-supply    : from the generic phy bindings, a phandle to a regulator that
-> -	          provides power to MIPI CSIS core;
-> -
-> -Optional properties:
-> -
-> -- clock-frequency : The IP's main (system bus) clock frequency in Hz, default
-> -		    value when this property is not specified is 166 MHz;
-> -- fsl,csis-hs-settle : differential receiver (HS-RX) settle time;
-> -
-> -The device node should contain two 'port' child nodes with one child 'endpoint'
-> -node, according to the bindings defined in:
-> - Documentation/devicetree/bindings/ media/video-interfaces.txt.
-> - The following are properties specific to those nodes.
-> -
-> -port node
-> ----------
-> -
-> -- reg		  : (required) can take the values 0 or 1, where 0 shall be
-> -                     related to the sink port and port 1 shall be the source
-> -                     one;
-> -
-> -endpoint node
-> --------------
-> -
-> -- data-lanes    : (required) an array specifying active physical MIPI-CSI2
-> -		    data input lanes and their mapping to logical lanes; this
-> -                    shall only be applied to port 0 (sink port), the array's
-> -                    content is unused only its length is meaningful,
-> -                    in this case the maximum length supported is 2;
-> -
-> -example:
-> -
-> -        mipi_csi: mipi-csi@30750000 {
-> -                #address-cells = <1>;
-> -                #size-cells = <0>;
-> -
-> -                compatible = "fsl,imx7-mipi-csi2";
-> -                reg = <0x30750000 0x10000>;
-> -                interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> -                clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-> -                                <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
-> -                                <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
-> -                clock-names = "pclk", "wrap", "phy";
-> -                clock-frequency = <166000000>;
-> -                power-domains = <&pgc_mipi_phy>;
-> -                phy-supply = <&reg_1p0d>;
-> -                resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
-> -                reset-names = "mrst";
-> -                fsl,csis-hs-settle = <3>;
-> -
-> -                port@0 {
-> -                        reg = <0>;
-> -
-> -                        mipi_from_sensor: endpoint {
-> -                                remote-endpoint = <&ov2680_to_mipi>;
-> -                                data-lanes = <1>;
-> -                        };
-> -                };
-> -
-> -                port@1 {
-> -                        reg = <1>;
-> -
-> -                        mipi_vc0_to_csi_mux: endpoint {
-> -                                remote-endpoint = <&csi_mux_from_mipi_vc0>;
-> -                        };
-> -                };
-> -        };
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-> new file mode 100644
-> index 000000000000..0438b28232ed
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-> @@ -0,0 +1,181 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-
-Same question about dual licensing
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nxp,imx7-mipi-csi2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX7 Mipi CSI2
-> +
-> +maintainers:
-> +  - Rui Miguel Silva <rmfrfs@gmail.com>
-> +
-> +description: |
-> +  this is the device node for the mipi csi-2 receiver core in i.mx7 soc. it is
-> +  compatible with previous version of samsung d-phy.
-
-nit: missing a few captial letters (beginning and after a full stop).
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,imx7-mipi-csi2
-
-Should enum with a single item be expressed as a const ?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: wrap
-> +      - const: phy
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  phy-supply:
-> +    description:
-> +      Phandle to a regulator that provides power to the PHY. This
-> +      regulator will be managed during the PHY power on/off sequence.
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: mrst
-> +
-> +  clock-frequency:
-
-This was here already, but shouldn't this property be assigned in the
-clock provider and you should have here a reference to it ? Otherwise,
-is this really a custom property hijacking a standard property name ?
-
-I see it is mentioned in the example-schema.yaml, so it's probably
-correct.
-
-> +    description:
-> +      The IP main (system bus) clock frequency in Hertz
-> +    default: 166000000
-> +
-> +  fsl,csis-hs-settle:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      differential receiver (HS-RX) settle time
-
-You have used capital letters at the beginning of documentation blocks
-before.
-
-> +
-> +  ports:
-> +    type: object
-> +    description:
-> +      A node containing input and output port nodes with endpoint definitions
-> +      as documented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      port@0:
-> +        type: object
-> +        description:
-> +          Input port node, single endpoint describing the CSI-2 transmitter.
-> +
-> +        properties:
-> +          reg:
-> +            const: 0
-> +
-> +          endpoint:
-> +            type: object
-> +
-> +            properties:
-> +              data-lanes:
-> +                maxItems: 1
-
-How many data lanes does this receiver supports ? I see in the txt
-bindingsd:
-    data-lanes    : (required) an array specifying active physical MIPI-CSI2
-                    data input lanes and their mapping to logical lanes; this
-                    shall only be applied to port 0 (sink port), the array's
-                    content is unused only its length is meaningful,
-                    in this case the maximum length supported is 2;
-
-I'm not sure I fully get this. Does this mean up to 2 data lanes are
-supported ?
-
-> +
-> +              remote-endpoint: true
-> +
-> +            required:
-> +              - data-lanes
-> +              - remote-endpoint
-> +
-> +            additionalProperties: false
-> +
-> +        additionalProperties: false
-> +
-> +      port@1:
-> +        type: object
-> +        description:
-> +          Output port node,
-
-Rougue ',' at the end. You probably want a full stop or
-> +
-> +        properties:
-> +          reg:
-> +            const: 1
-> +
-> +          endpoint:
-> +              type: object
-> +
-> +              properties:
-> +                remote-endpoint: true
-> +
-> +              required:
-> +                - remote-endpoint
-> +
-> +              additionalProperties: false
-
-As no other endpoint property is specified, the whole 'endpoint' block
-can probably be omitted ?
-
-> +
-> +        additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +  - ports
-
-phy-supply was listed as required in the txt bindings
-
-> +
-> +unevaluatedProperties: false
-
-additionalProperties: false
-
-Thanks
-  j
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx7d-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/reset/imx7-reset.h>
-> +
-> +    mipi_csi: mipi-csi@30750000 {
-> +            compatible = "fsl,imx7-mipi-csi2";
-> +            reg = <0x30750000 0x10000>;
-> +            interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +            clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-> +                     <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
-> +                     <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
-> +            clock-names = "pclk", "wrap", "phy";
-> +            clock-frequency = <166000000>;
-> +
-> +            power-domains = <&pgc_mipi_phy>;
-> +            phy-supply = <&reg_1p0d>;
-> +            resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
-> +            reset-names = "mrst";
-> +            fsl,csis-hs-settle = <3>;
-> +
-> +            ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    port@0 {
-> +                            reg = <0>;
-> +
-> +                            mipi_from_sensor: endpoint {
-> +                                    remote-endpoint = <&ov2680_to_mipi>;
-> +                                    data-lanes = <1>;
-> +                            };
-> +                    };
-> +
-> +                    port@1 {
-> +                            reg = <1>;
-> +
-> +                            mipi_vc0_to_csi_mux: endpoint {
-> +                                    remote-endpoint = <&csi_mux_from_mipi_vc0>;
-> +                            };
-> +                    };
-> +            };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b7f7f14cd85b..9da67222b0c7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -10773,8 +10773,8 @@ L:	linux-media@vger.kernel.org
->  S:	Maintained
->  T:	git git://linuxtv.org/media_tree.git
->  F:	Documentation/admin-guide/media/imx7.rst
-> -F:	Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
->  F:	Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> +F:	Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
->  F:	drivers/staging/media/imx/imx7-media-csi.c
->  F:	drivers/staging/media/imx/imx7-mipi-csis.c
+> On Tuesday 13 Oct 2020 at 13:53:37 (+0200), Rafael J. Wysocki wrote:
+> > On Tue, Oct 13, 2020 at 12:01 AM Ionela Voinescu
+> > <ionela.voinescu@arm.com> wrote:
+> > >
+> > > Hey Lukasz,
+> > >
+> > > I think after all this discussion (in our own way of describing things)
+> > > we agree on how the current cpufreq based FIE implementation is affected
+> > > in systems that use hardware coordination.
+> > >
+> > > What we don't agree on is the location where that implementation (that
+> > > uses the new mask and aggregation) should be.
+> > >
+> > > On Monday 12 Oct 2020 at 19:19:29 (+0100), Lukasz Luba wrote:
+> > > [..]
+> > > > The previous FIE implementation where arch_set_freq_scale()
+> > > > was called from the drivers, was better suited for this issue.
+> > > > Driver could just use internal dependency cpumask or even
+> > > > do the aggregation to figure out the max freq for cluster
+> > > > if there is a need, before calling arch_set_freq_scale().
+> > > >
+> > > > It is not perfect solution for software FIE, but one of possible
+> > > > when there is no hw counters.
+> > > >
+> > > [..]
+> > >
+> > > > Difference between new FIE and old FIE (from v5.8) is that the new one
+> > > > purely relies on schedutil max freq value (which will now be missing),
+> > > > while the old FIE was called by the driver and thus it was an option to
+> > > > fix only the affected cpufreq driver [1][2].
+> > > >
+> > >
+> > > My final argument is that now you have 2 drivers that would need this
+> > > support, next you'll have 3 (the new mediatek driver), and in the future
+> > > there will be more. So why limit and duplicate this functionality in the
+> > > drivers? Why not make it generic for all drivers to use if the system
+> > > is using hardware coordination?
+> > >
+> > > Additionally, I don't think drivers should not even need to know about
+> > > these dependency/clock domains. They should act at the level of the
+> > > policy, which in this case will be at the level of each CPU.
+> >
+> > The policies come from the driver, though.
+> >
+> > The driver decides how many CPUs will be there in a policy and how to
+> > handle them at the initialization time.
 >
-> --
-> 2.28.0
+> Yes, policies are built based on information populated from the drivers
+> at .init(): what CPUs will belong to a policy, what methods to use for
+> setting and getting frequency, etc.
 >
+> So they do pass this information to the cpufreq core to be stored at the
+> level of the policy, but later drivers (in the majority of cases) will
+> not need to store on their own information on what CPUs belong to a
+> frequency domain, they rely on having passed that information to the
+> core, and the core mechanisms hold this information on the clock domains
+> (currently through policy->cpus and policy->related_cpus).
+
+Strictly speaking, not quite.
+
+In fact policy->related_cpus is a set of CPUs that share a common perf
+control HW/FW interface which may or may not match the boundaries of
+clock domains etc.  That's what the entire cpufreq needs to know and
+cares about.
+
+AFAICS your scale invariance rework patches were based on the
+assumption that CPUs sharing an interface like that should also belong
+to the same frequency domain, which is reasonable and that's why I
+didn't have a problem with it, but if you were really assuming that
+policy->related_cpus must always reflect a frequency domain, then I'm
+afraid that you were not going in the right direction (the
+one-CPU-per-policy with HW coordination example should be sufficient
+to illustrate that).
+
+It is correct that drivers generally don't need to know about the HW
+clock (or voltage for that matter) coordination dependencies, but the
+rest of cpufreq doesn't need to know about them either.  If that
+information is needed for something else, I don't see a reason to put
+it into cpufreq.
