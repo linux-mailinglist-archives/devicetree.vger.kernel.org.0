@@ -2,279 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72BD628F2A8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 14:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36B9D28F57A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 17:04:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726103AbgJOMtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 08:49:25 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:44069 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725899AbgJOMtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 08:49:25 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 773FAC0007;
-        Thu, 15 Oct 2020 12:49:21 +0000 (UTC)
-Date:   Thu, 15 Oct 2020 16:49:05 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Rui Miguel Silva <rmfrfs@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: ov2680: convert bindings to yaml
-Message-ID: <20201015144905.4b23k5uy7ycuhvlo@uno.localdomain>
-References: <20201014142759.726823-1-rmfrfs@gmail.com>
- <20201014142759.726823-2-rmfrfs@gmail.com>
+        id S2389332AbgJOPEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 11:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34460 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388743AbgJOPET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 11:04:19 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90B7EC0613D4
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 08:04:17 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id i1so3927225wro.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 08:04:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=aM2rdd0kq3Z2pAcYt+iHv5sB+JPN3rjkl3TpYzl6xyc=;
+        b=UKAndxXHYto5P21FGeL51//alyDJpo5kZPud/VLYgQq0N3AMkjZx8Lk2sctmT6dujy
+         /DDzUg4xNokRkcYSOd8r8Ee3li5lhs1pZ35KRRkW2GSVSxLbf9PhvDGkMNoEnxDpk1pS
+         ZouASX6HTudRFi7bf7AIaEeIumeQzIkdRy1tK40IGjIw+H2s2t5aQu7x4vrGhJDASE9r
+         LYOzTGJWt6uH6EPhzDgWKDHHBzAQNnAP/SJQB661E2Umc1emtvMLwDs4BQq/sGSf27M0
+         lSkPoyj9JDnHWxgP5YNEr9V2NXKGYbCxUrsIUqcZYDqArO7afYzxk79A3I1tjVzOAgc5
+         zNRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aM2rdd0kq3Z2pAcYt+iHv5sB+JPN3rjkl3TpYzl6xyc=;
+        b=VrJoQa/MDBP/LZQLFyAcAAnUYEcLv967s7kONpNg+LaG1HIm7H/XuIDKglXWIhV3ha
+         OOnHdjjs1QSYFfvdBkUhFZ5dbaSs7q2xlXtHLTHjlt5TEtWzUO6mr1HEIO+8shg0JhBN
+         Ab76el4nWMtcScJYh577dbwGLCgw49slPph9qBytjJHawaOYoUibJC9IXSk4g8X69IUX
+         cIOn54OogFEM6LA4RZnhR8uOTJyUCqVroSLILWjnPkuIAR7kTB5Iry+lZDTZNdhGn85Y
+         hoHGyWNk7vkOu/rdYxbj8fgFiVt0zVseTACud9MM2KIEU2kOqpYDa2H6MUrZ6xIDEHkj
+         +Vww==
+X-Gm-Message-State: AOAM531kK4XxgQBv27n3DMBK8CW4VD2JOeSa0o3rPK66H1deDXvHAJjy
+        0Xk+L8xXljpQNL439oIXGSSHMA==
+X-Google-Smtp-Source: ABdhPJxJMiuBO2wfbeo+8BN1kdMoWtXi/rlDqTUmwuk2W5nU946ZQ42veLZHYl+13YOi4BDx41lOig==
+X-Received: by 2002:adf:ce0b:: with SMTP id p11mr4801689wrn.318.1602774255908;
+        Thu, 15 Oct 2020 08:04:15 -0700 (PDT)
+Received: from google.com ([2a00:79e0:d:110:f693:9fff:fef4:a7ef])
+        by smtp.gmail.com with ESMTPSA id w4sm4612378wmi.10.2020.10.15.08.04.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Oct 2020 08:04:15 -0700 (PDT)
+Date:   Thu, 15 Oct 2020 16:04:11 +0100
+From:   Quentin Perret <qperret@google.com>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        "Nayak, Rajendra" <rnayak@codeaurora.org>
+Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
+ Energy Model, EAS and IPA
+Message-ID: <20201015150411.GA1859176@google.com>
+References: <20201002114426.31277-1-lukasz.luba@arm.com>
+ <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
+ <765e6603-b614-fb72-64ff-248b42474803@linaro.org>
+ <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
+ <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
+ <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
+ <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
+ <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
+ <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
+ <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201014142759.726823-2-rmfrfs@gmail.com>
+In-Reply-To: <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rui,
+On Thursday 15 Oct 2020 at 15:40:16 (+0200), Rafael J. Wysocki wrote:
+> On Thu, Oct 15, 2020 at 12:22 PM Daniel Lezcano
+> <daniel.lezcano@linaro.org> wrote:
+> >
+> > On 15/10/2020 11:00, Lukasz Luba wrote:
+> >
+> > [ ... ]
+> >
+> > >> There is the SCMI and the DT. Because there are two sources where it is
+> > >> impossible to know if they are using the same units, we are stuck to
+> > >> ensure a consistency for the kernel.
+> > >>
+> > >> The platform should use:
+> > >>   - the SCMI only (scaled or real)
+> > >>   - the DT only (real)
+> > >>   [ - the firmware file only (scaled or real) ]
+> > >>
+> > >
+> > > Do you mean by SCMI - registration using em_dev_register_perf_domain() ?
+> >
+> > It was high level description, but yes, I guess it is the case.
+> >
+> > >> As it is not possible to know if they are scaled or real, there is no
+> > >> choice except making them mutually exclusive.
+> > >
+> > > So you propose a bit more restriction in registration EM, to not get
+> > > lost in the future. I also have these doubts. Let's consider it and
+> > > maybe agree.
+> > >
+> > > I've recommended Qcom to use em_dev_register_perf_domain() when they
+> > > have this obfuscated power values. Then any developer in the future
+> > > who wants to add EM for a new device on that platform, should use the
+> > > em_dev_register_perf_domain().
+> > >
+> > > In this case the flag in EM that you have proposed makes sense.
+> > > We probably need an argument 'bool abstract_scale' in the
+> > > em_dev_register_perf_domain(..., bool abstract_scale)
+> > > as a source of information.
+> >
+> > I was suggesting to add a flag to the em_perf_domain structure giving
+> > the source of the power numbers.
+> >
+> > So if the IPA is having the 'sustainable-power' set in DT but the
+> > em_perf_domain is flagged with power number coming from SCMI, then they
+> > will be incompatible, the thermal zone will fail to register.
+> >
+> >
+> > > We would allow to co-exist em_dev_register_perf_domain(..., false)
+> > > with dev_pm_opp_of_register_em() EM devices.
+> > >
+> > > Is it make sense?
+> >
+> > Well, it does not change my opinion. We should assume the energy model
+> > is always milliwatts. If the SoC vendors find a way to get around with
+> > bogoWatts, then good to them and up to them to deal with in the future.
+> 
+> That sounds fair enough, but it also means that any kernel patches
+> using power units different from milliwatts for the EM should be
+> rejected in the future, doesn't it?
+> 
+> And the existing code using different power units for the EM (if any)
+> should be updated/fixed accordingly, shouldn't it?
+> 
+> Otherwise I don't see now this can be regarded as a hard rule.
 
-On Wed, Oct 14, 2020 at 03:27:57PM +0100, Rui Miguel Silva wrote:
-> Convert ov2680 sensor bindings documentation to yaml schema, remove
-> the textual bindings document and update MAINTAINERS entry.
->
-> Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
-> ---
->
-> v1 -> v2:
->   Sakari Ailus - Patch 1/3:
->   https://lore.kernel.org/linux-media/20201013160908.GC13341@paasikivi.fi.intel.com/
->   - omit remote-endpoint
->   - remove not needed clock-lanes and data-lanes
->
->  .../devicetree/bindings/media/i2c/ov2680.txt  |  46 --------
->  .../devicetree/bindings/media/i2c/ov2680.yaml | 109 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 110 insertions(+), 47 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.txt b/Documentation/devicetree/bindings/media/i2c/ov2680.txt
-> deleted file mode 100644
-> index 11e925ed9dad..000000000000
-> --- a/Documentation/devicetree/bindings/media/i2c/ov2680.txt
-> +++ /dev/null
-> @@ -1,46 +0,0 @@
-> -* Omnivision OV2680 MIPI CSI-2 sensor
-> -
-> -Required Properties:
-> -- compatible: should be "ovti,ov2680".
-> -- clocks: reference to the xvclk input clock.
-> -- clock-names: should be "xvclk".
-> -- DOVDD-supply: Digital I/O voltage supply.
-> -- DVDD-supply: Digital core voltage supply.
-> -- AVDD-supply: Analog voltage supply.
-> -
-> -Optional Properties:
-> -- reset-gpios: reference to the GPIO connected to the powerdown/reset pin,
-> -               if any. This is an active low signal to the OV2680.
-> -
-> -The device node must contain one 'port' child node for its digital output
-> -video port, and this port must have a single endpoint in accordance with
-> - the video interface bindings defined in
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -Endpoint node required properties for CSI-2 connection are:
-> -- remote-endpoint: a phandle to the bus receiver's endpoint node.
-> -- clock-lanes: should be set to <0> (clock lane on hardware lane 0).
-> -- data-lanes: should be set to <1> (one CSI-2 lane supported).
-> -
-> -Example:
-> -
-> -&i2c2 {
-> -	ov2680: camera-sensor@36 {
-> -		compatible = "ovti,ov2680";
-> -		reg = <0x36>;
-> -		clocks = <&osc>;
-> -		clock-names = "xvclk";
-> -		reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
-> -		DOVDD-supply = <&sw2_reg>;
-> -		DVDD-supply = <&sw2_reg>;
-> -		AVDD-supply = <&reg_peri_3p15v>;
-> -
-> -		port {
-> -			ov2680_to_mipi: endpoint {
-> -				remote-endpoint = <&mipi_from_sensor>;
-> -				clock-lanes = <0>;
-> -				data-lanes = <1>;
-> -			};
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+Sorry, jumping late in the discussion :)
 
-Might this be a good occasion to rename the file to ovti,ov2680.yaml ?
+To add a bit of background to this, it's been the plan from the very
+beginning to make PM_EM use an abstract scale. The only reason it was
+not merged like that is because the first version only worked for CPUs,
+and IPA was using a totally different source for other devices. So we
+had no choice but to specify PM_EM in mW to keep things compatible and
+allow to transition IPA. But that is no longer true, so I'm in favor of
+evolving PM_EM where it was supposed to be to begin with.
 
-> new file mode 100644
-> index 000000000000..ef2b45b03dcc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ov2680.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Omnivision OV2680 CMOS Sensor
-> +
-> +maintainers:
-> +  - Rui Miguel Silva <rmfrfs@gmail.com>
-> +
-> +description: |-
-> +  The OV2680 color sensor is a low voltage, high performance 1/5 inch UXGA (2
-> +  megapixel) CMOS image sensor that provides a single-chip UXGA (1600 x 1200)
-> +  camera. It provides full-frame, sub-sampled, or windowed 10-bit images in
-> +  various formats via the control of the Serial Camera Control Bus (SCCB)
-> +  interface.  The OV2680 has an image array capable of operating at up to 30
-                ^ double space
+IMO, the only thing the kernel cares about is consistency across power
+numbers, but not about the exact unit. And I agree with Rafael, we have
+code paths in the kernel that feed data in PM_EM but _cannot_ guarantee
+mW, SCMI being a prime example, so I don't think it is reasonable to
+mandate that.
 
-> +  frames per second (fps) in UXGA resolution.
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov2680
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description:
+Having that properly documented + an 'abstract_scale' parameter in
+dev_pm_opp_of_register_em() (or even a unit, which could be bogo-watts)
+should work IMO. What is the concern with this approach?
 
-I'll never get yaml right, doesn't breaking lines require '|' after
-the semicolon ? The validator does not complain, so I guess not.
-
-> +      Input clock for the sensor.
-> +    items:
-> +      - const: xvclk
-> +
-> +  reset-gpios:
-> +    description:
-> +      The phandle and specifier for the GPIO that controls sensor reset.
-> +      This corresponds to the hardware pin XSHUTDOWN which is physically
-> +      active low.
-> +
-> +  dovdd-supply:
-> +    description:
-> +      Definition of the regulator used as interface power supply.
-> +
-> +  avdd-supply:
-> +    description:
-> +      Definition of the regulator used as analog power supply.
-> +
-> +  dvdd-supply:
-> +    description:
-> +      Definition of the regulator used as digital power supply.
-> +
-> +  port:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      A node containing an output port node with an endpoint definition
-> +      as documented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +
-> +    required:
-> +      - endpoint
-
-If no endpoint properties are specified, the last 6 lines here can be
-omitted. The rationale is that 'port' will be validated against a
-forthcoming 'of-graph.yaml' schema. So just:
-
-   port:
-     type: object
-     additionalProperties: false
-     description:
-       A node containing an output port node with an endpoint definition
-       as documented in
-       Documentation/devicetree/bindings/media/video-interfaces.txt
-
-With 'port' listed as mandatory, as you do already.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - dovdd-supply
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - reset-gpios
-> +  - port
-> +
-> +unevaluatedProperties: false
-
-'additionalProperties: false' too ?
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov2680: camera-sensor@36 {
-> +                compatible = "ovti,ov2680";
-> +                reg = <0x36>;
-> +                clocks = <&osc>;
-> +                clock-names = "xvclk";
-> +                reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
-> +
-> +                dovdd-supply = <&sw2_reg>;
-> +                dvdd-supply = <&sw2_reg>;
-> +                avdd-supply = <&reg_peri_3p15v>;
-> +
-> +                port {
-> +                        ov2680_to_mipi: endpoint {
-> +                                remote-endpoint = <&mipi_from_sensor>;
-> +                        };
-> +                };
-> +        };
-> +    };
-> +...
-> +
-
-Applying the patch gives me:
-.git/rebase-apply/patch:182: new blank line at EOF.
-
-I see most bindings have an empty line before '...'
-
-With this small issues fixed:
-Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-
-Thanks
-   j
-
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2e85e114c9c3..926dcdc4794c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12775,7 +12775,7 @@ M:	Rui Miguel Silva <rmfrfs@gmail.com>
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
->  T:	git git://linuxtv.org/media_tree.git
-> -F:	Documentation/devicetree/bindings/media/i2c/ov2680.txt
-> +F:	Documentation/devicetree/bindings/media/i2c/ov2680.yaml
->  F:	drivers/media/i2c/ov2680.c
->
->  OMNIVISION OV2685 SENSOR DRIVER
-> --
-> 2.28.0
->
+Thanks,
+Quentin
