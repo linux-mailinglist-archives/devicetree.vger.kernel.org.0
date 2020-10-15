@@ -2,81 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1BBB28F081
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 13:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0191528F0C5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 13:14:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727302AbgJOLAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 07:00:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52914 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726144AbgJOLAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 07:00:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805A4C061755
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 04:00:24 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kT0zb-0005EJ-GU; Thu, 15 Oct 2020 13:00:19 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kT0za-0005Vw-FH; Thu, 15 Oct 2020 13:00:18 +0200
-Date:   Thu, 15 Oct 2020 13:00:18 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 3/3] ARM: dts: add Van der Laan LANMCU board
-Message-ID: <20201015110018.7u3v7kdsi5osmxs7@pengutronix.de>
-References: <20201014085316.11916-1-o.rempel@pengutronix.de>
- <20201014085316.11916-3-o.rempel@pengutronix.de>
- <20201014100501.djbfqzdeodowm4ov@pengutronix.de>
- <20201015090245.ogtzxflo4icxbakv@pengutronix.de>
+        id S1725984AbgJOLOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 07:14:40 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:6594 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725899AbgJOLOj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 07:14:39 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09FBDcLX003370;
+        Thu, 15 Oct 2020 06:14:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=6MtK5HTjl7O8ZLDUURV0+Pu2XnudzYXw1xSbOLCaSLM=;
+ b=NfTvKcNInwlTR4ftDqXW+H0MtdXOkDJ9YRN7ui0qYh6FdpD1DoiOw0n3EQBUs9OEcjoj
+ MaVy7+x0m6x5kRbgecOTnx2lQWkppeEmT26BLzu8TEARY2t1vstnO0qJkDz9J5zXige+
+ SDk92oG7Ay7XxZGS7KdANAdYITQaFlvbtmsKfncFNf/FOJu/eBJz43L1Z7fw35Ohb+Jb
+ yBS8oflfP6sJCzfYWr0OI+odh9708s1HpuEU+JEs7lfQKtEPJqoUwoyhEITBrtQEAS8W
+ 6lJfOk+yTt7G39/aOMO8mifWqtxqzQmpl6mYANTcK/6IL4rN8LY3Ecs6M4Xg2ADjX2Ma 8Q== 
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 343ac1xkvd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 15 Oct 2020 06:14:23 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Thu, 15 Oct
+ 2020 12:14:21 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Thu, 15 Oct 2020 12:14:21 +0100
+Received: from [10.0.2.15] (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2AA3B2AA;
+        Thu, 15 Oct 2020 11:14:21 +0000 (UTC)
+Subject: Re: [PATCH 6/7] ARM: dts: Add dts for Raspberry Pi 4 + Cirrus Logic
+ Lochnagar2
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+ <20201014145418.31838-7-rf@opensource.cirrus.com>
+ <e9db1a11519dce0938cef867179160a818ec4143.camel@suse.de>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+Message-ID: <89913f8b-fe92-1a31-77ff-49ea3f3d3294@opensource.cirrus.com>
+Date:   Thu, 15 Oct 2020 12:14:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201015090245.ogtzxflo4icxbakv@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:59:39 up 335 days,  2:18, 375 users,  load average: 0.11, 0.11,
- 0.09
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <e9db1a11519dce0938cef867179160a818ec4143.camel@suse.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 lowpriorityscore=0
+ malwarescore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=999 clxscore=1015
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010150080
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-10-15 11:02, Oleksij Rempel wrote:
-> Hi Marco,
-> 
-> thank you for review!
-> 
-> On Wed, Oct 14, 2020 at 12:05:01PM +0200, Marco Felsch wrote:
-> > Hi Oleksij,
-> > 
-> > pls can you send a patch adding this board to:
-> > Documentation/devicetree/bindings/arm/fsl.yaml
-> > 
-> > infront of this patch?
-> 
-> This is patch 3/3 and fsl.yaml 2/3. Do I'm missing some thing?
 
-Argh.. didn't saw this patch 2/3..
+On 15/10/2020 11:25, Nicolas Saenz Julienne wrote:
+> Hi Richard,
+> your series is very welcome, upstream support for audio codecs on the RPi4 has
+> always been lackluster.
+> 
+> Could you provide more information on the actual products? Are there custom
+> made hats for the RPi4 or this wired into a generic development board.
+> 
+Info on the codecs is available from www.cirrus.com.
+The Lochnagar audio development board is not a hat, but it can be wired
+over to the RPi GPIO header. It is not specific to the RPi.
 
-Regards,
-  Marco
+> On Wed, 2020-10-14 at 15:54 +0100, Richard Fitzgerald wrote:
+>> This is based on the default bcm2711-rpi-4-b.dts.
+> 
+> Note that you could've included bcm2711-rpi-4.dts (as if it was a .dtsi).
+> 
+Ok, will change.
+
+>> Configurations are provided for Cirrus Logic codecs CS42L92, CS47L15,
+>> CS47L24, CS47L35, CS47L90 and WM8998.
+>>
+>> For each codec there is a sound node and a codec device node and both
+>> default to disabled. Enable the pair for the codec in use.
+>>
+>> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+>> ---
+> 
+> Sadly I don't think creating a new device tree is a good solution here. If we
+> were to do so for every RPi hat/usage it'd become unmanageable very fast. There
+> is a way to maintain this in the open nonetheless. I suggest you build a DT
+> overlay and submit it to https://github.com/raspberrypi/linux, see
+> 'arch/arm/boot/dts/overlays.' The Raspberry Pi engineers have a kernel branch
+
+We want something in mainline so that it can be used by people
+developing on mainline and taken as a starting point for configuring
+the codecs for other host platforms. The RPi is a convenient platform to
+use as the base because it is widely available and low-cost.
+
+> that tracks of the latest kernel release, so once you get the rest of patches
+> sorted out and they are included in a release it'll make sense to do so.
+> 
+> I can't tell for other distros, but opensuse packages overlays, so the effort
+> will ultimately be useful to users.
+> 
+> Regards,
+> Nicolas
+> 
+> 
