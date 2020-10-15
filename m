@@ -2,105 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C74E28F026
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 12:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB1B528F038
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 12:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731130AbgJOKZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 06:25:53 -0400
-Received: from mx2.suse.de ([195.135.220.15]:35470 "EHLO mx2.suse.de"
+        id S1731158AbgJOKbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 06:31:14 -0400
+Received: from foss.arm.com ([217.140.110.172]:56618 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726678AbgJOKZw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 06:25:52 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id AF2B5AC83;
-        Thu, 15 Oct 2020 10:25:50 +0000 (UTC)
-Message-ID: <e9db1a11519dce0938cef867179160a818ec4143.camel@suse.de>
-Subject: Re: [PATCH 6/7] ARM: dts: Add dts for Raspberry Pi 4 + Cirrus Logic
- Lochnagar2
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>, broonie@kernel.org,
-        robh+dt@kernel.org
-Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1731151AbgJOKbO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 06:31:14 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 08B94D6E;
+        Thu, 15 Oct 2020 03:31:14 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AF34F3F66B;
+        Thu, 15 Oct 2020 03:31:11 -0700 (PDT)
+Date:   Thu, 15 Oct 2020 11:31:06 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        ardb@kernel.org, linux-kernel@vger.kernel.org,
+        Hanjun Guo <guohanjun@huawei.com>,
+        Sudeep Holla <sudeep.holla@arm.com>, robin.murphy@arm.com,
         linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org
-Date:   Thu, 15 Oct 2020 12:25:49 +0200
-In-Reply-To: <20201014145418.31838-7-rf@opensource.cirrus.com>
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
-         <20201014145418.31838-7-rf@opensource.cirrus.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-rg1Z1psyHTidcmcRlxsR"
-User-Agent: Evolution 3.36.5 
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT
+ scan
+Message-ID: <20201015103106.GA24739@e121166-lin.cambridge.arm.com>
+References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
+ <20201014191211.27029-8-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201014191211.27029-8-nsaenzjulienne@suse.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 14, 2020 at 09:12:09PM +0200, Nicolas Saenz Julienne wrote:
 
---=-rg1Z1psyHTidcmcRlxsR
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+[...]
 
-Hi Richard,
-your series is very welcome, upstream support for audio codecs on the RPi4 =
-has
-always been lackluster.
+> +unsigned int __init acpi_iort_get_zone_dma_size(void)
+> +{
+> +	struct acpi_table_iort *iort;
+> +	struct acpi_iort_node *node, *end;
+> +	acpi_status status;
+> +	u8 limit = 32;
+> +	int i;
+> +
+> +	if (acpi_disabled)
+> +		return limit;
+> +
+> +	status = acpi_get_table(ACPI_SIG_IORT, 0,
+> +				(struct acpi_table_header **)&iort);
+> +	if (ACPI_FAILURE(status))
+> +		return limit;
+> +
+> +	node = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->node_offset);
+> +	end = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->header.length);
+> +
+> +	for (i = 0; i < iort->node_count; i++) {
+> +		if (node >= end)
+> +			break;
+> +
+> +		switch (node->type) {
+> +			struct acpi_iort_named_component *ncomp;
+> +			struct acpi_iort_root_complex *rc;
+> +
+> +		case ACPI_IORT_NODE_NAMED_COMPONENT:
+> +			ncomp = (struct acpi_iort_named_component *)node->node_data;
+> +			if (ncomp->memory_address_limit)
+> +				limit = min(limit, ncomp->memory_address_limit);
+> +			break;
+> +
+> +		case ACPI_IORT_NODE_PCI_ROOT_COMPLEX:
+> +			rc = (struct acpi_iort_root_complex *)node->node_data;
+> +			if (rc->memory_address_limit)
 
-Could you provide more information on the actual products? Are there custom
-made hats for the RPi4 or this wired into a generic development board.
+You need to add a node revision check here, see rc_dma_get_range() in
+drivers/acpi/arm64/iort.c, otherwise we may be reading junk data
+in older IORT tables - acpica structures are always referring to the
+latest specs.
 
-On Wed, 2020-10-14 at 15:54 +0100, Richard Fitzgerald wrote:
-> This is based on the default bcm2711-rpi-4-b.dts.
+Thanks,
+Lorenzo
 
-Note that you could've included bcm2711-rpi-4.dts (as if it was a .dtsi).
-
-> Configurations are provided for Cirrus Logic codecs CS42L92, CS47L15,
-> CS47L24, CS47L35, CS47L90 and WM8998.
->=20
-> For each codec there is a sound node and a codec device node and both
-> default to disabled. Enable the pair for the codec in use.
->=20
-> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
-> ---
-
-Sadly I don't think creating a new device tree is a good solution here. If =
-we
-were to do so for every RPi hat/usage it'd become unmanageable very fast. T=
-here
-is a way to maintain this in the open nonetheless. I suggest you build a DT
-overlay and submit it to https://github.com/raspberrypi/linux, see
-'arch/arm/boot/dts/overlays.' The Raspberry Pi engineers have a kernel bran=
-ch
-that tracks of the latest kernel release, so once you get the rest of patch=
-es
-sorted out and they are included in a release it'll make sense to do so.
-
-I can't tell for other distros, but opensuse packages overlays, so the effo=
-rt
-will ultimately be useful to users.
-
-Regards,
-Nicolas
-
-
-
---=-rg1Z1psyHTidcmcRlxsR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+II60ACgkQlfZmHno8
-x/4U9wgAsWhm4/aDqQO9wUk6ramYK5rUch1Csrbbalv3FNu6rXMMkEmpue5N6A1F
-4paxIRqGcyBoG8/h2v0ZwR9vtxQsfVjowhMT8Zg7I18Q5NyY8BLnpcgAVnwHaJPK
-8mDXlnNW7z7lDW4iPquUynmKIXWxoEiBVU5jRiZG/z7q7Q6y6sWw0jxA9RDdW6Tb
-sEqixk28Ood4n0o/F01/o3CLyiw1wc+PR/0F93eDsTrfzRhrqokO/8oAhpS9ka6S
-5QdcQfiLNtmgw+pC7of84rmMxQq/cLkzz1hpy0UVUTFwrB1gns3fIPJF8DBYcoP5
-xz5IwG+98djRhcojk1ncD+uTqoHi3g==
-=iBXI
------END PGP SIGNATURE-----
-
---=-rg1Z1psyHTidcmcRlxsR--
-
+> +				limit = min(limit, rc->memory_address_limit);
+> +			break;
+> +		}
+> +		node = ACPI_ADD_PTR(struct acpi_iort_node, node, node->length);
+> +	}
+> +	acpi_put_table(&iort->header);
+> +	return limit;
+> +}
+> +#endif
+> diff --git a/include/linux/acpi_iort.h b/include/linux/acpi_iort.h
+> index 20a32120bb88..7d2e184f0d4d 100644
+> --- a/include/linux/acpi_iort.h
+> +++ b/include/linux/acpi_iort.h
+> @@ -38,6 +38,7 @@ void iort_dma_setup(struct device *dev, u64 *dma_addr, u64 *size);
+>  const struct iommu_ops *iort_iommu_configure_id(struct device *dev,
+>  						const u32 *id_in);
+>  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head);
+> +unsigned int acpi_iort_get_zone_dma_size(void);
+>  #else
+>  static inline void acpi_iort_init(void) { }
+>  static inline u32 iort_msi_map_id(struct device *dev, u32 id)
+> @@ -55,6 +56,9 @@ static inline const struct iommu_ops *iort_iommu_configure_id(
+>  static inline
+>  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head)
+>  { return 0; }
+> +
+> +static inline unsigned int acpi_iort_get_zone_dma_size(void)
+> +{ return 32; }
+>  #endif
+>  
+>  #endif /* __ACPI_IORT_H__ */
+> -- 
+> 2.28.0
+> 
