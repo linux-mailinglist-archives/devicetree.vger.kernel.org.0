@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F1528EE6C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 10:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CA528EE88
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 10:33:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726054AbgJOIZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 04:25:46 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:56726 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725959AbgJOIZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 04:25:46 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 87F471F4591F
-Subject: Re: [PATCH v2 3/3] mfd: google,cros-ec: add missing properties
-To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
-        Tzung-Bi Shih <tzungbi@google.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Simon Glass <sjg@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-References: <20201008102825.3812-1-ricardo.canuelo@collabora.com>
- <20201008102825.3812-4-ricardo.canuelo@collabora.com>
- <20201008183818.GB2395464@bogus>
- <20201009054819.di4dlfljadsfs6cw@rcn-XPS-13-9360>
- <CAL_JsqKGSiHEon=R1vPPWvYVmzW2Ju-RrrVL05EW9OqRCHRSMw@mail.gmail.com>
- <20201013064609.udss7hbdek2of4sw@rcn-XPS-13-9360>
- <CA+Px+wXwEm+j2AZcaXHtoFUhe9GqaaxMRecQ7X0vu49E2OKH=A@mail.gmail.com>
- <0578a7e56430da42daee95aabc05850da3dcc294.camel@collabora.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <8c5c7a2b-667b-cb15-1fbd-c7015f5b97dd@collabora.com>
-Date:   Thu, 15 Oct 2020 10:25:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1729227AbgJOIdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 04:33:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59660 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727121AbgJOIdH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 04:33:07 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A6E482075B;
+        Thu, 15 Oct 2020 08:33:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602750787;
+        bh=FdpvF3CuF8OZL1btI9vHfGMHD6Vr4KGDEmjf13C+eoM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LhjFtfBN1tr0o9FX6HiDlzY3OMkRxr/kb45pcWzL0am4sASuzoJb4FljvkvDQ3IkK
+         AvlPgu4vNaxpDx0khpdvm0nXmYy1SibO8bfUc/4PclgCXNg0Pd1quL/1cKfvTbNPqI
+         kziJVYS2dG3Ar6JFgCuubDzrL8AbJW886HgGp55Y=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH] dt-bindings: writing-schema: install from PyPI repository
+Date:   Thu, 15 Oct 2020 10:32:57 +0200
+Message-Id: <20201015083257.15450-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <0578a7e56430da42daee95aabc05850da3dcc294.camel@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tzung-Bi,
+Installing dtschema from github.com/devicetree-org is not needed anymore
+because dtschema is now part of regular PyPI repository.  In certain
+cases it might cause some troubles as it brings latest master version,
+not the stable release:
 
-On 15/10/20 8:52, Ricardo Cañuelo wrote:
-> On Wed, 2020-10-14 at 10:18 +0800, Tzung-Bi Shih wrote:
->> The intermediate layer (i.e. codecs { ... }) breaks current code as
->> you already discussed about that in previous threads:
->> - of_platform_populate only creates immediate child devices.
->> - the codec driver expects its parent is EC node.
-> 
-> Thanks for your input, I'll try to address these issues in the drivers in v3.
-> 
+    $ pip3 show dtschema
+    Version: 2020.8.2.dev4+g341f3e3
+    $ make dt_binding_check
+    RROR: dtschema minimum version is v2020.8.1
 
-Can you remind us which platforms support cros-ec-codec and why there is no an
-EC_FEATURE for that?
+Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ Documentation/devicetree/writing-schema.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks,
- Enric
+diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
+index 16f21e182ff6..b3cccb7e2059 100644
+--- a/Documentation/devicetree/writing-schema.rst
++++ b/Documentation/devicetree/writing-schema.rst
+@@ -115,7 +115,7 @@ The DT schema project must be installed in order to validate the DT schema
+ binding documents and validate DTS files using the DT schema. The DT schema
+ project can be installed with pip::
+ 
+-    pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
++    pip3 install dtschema
+ 
+ Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
+ installed. Ensure they are in your PATH (~/.local/bin by default).
+-- 
+2.25.1
 
-> Cheers,
-> Ricardo
-> 
