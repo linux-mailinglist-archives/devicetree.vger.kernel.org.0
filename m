@@ -2,136 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A008F28F730
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 18:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B2728F72D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 18:52:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731061AbgJOQwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 12:52:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730137AbgJOQwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 12:52:55 -0400
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8670CC0613D2
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 09:52:55 -0700 (PDT)
-Received: by mail-yb1-xb42.google.com with SMTP id h9so2817120ybm.4
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 09:52:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kMr40LI/hXcWSQOOPZsCuoJBcw+0XKBqS6dhgqIQMko=;
-        b=SDoAAQkWLCC2CkjWAeHxvm15SKFsOztI8gbQF02ZA9606gUcHwv/NfHe/aWdYXy0f+
-         IIE0nZgGXJfdssTpvo3/MzvXFGaks0dvKHV4q37EbIQ6BrHTZXU704YMuo6PbLuv3UUU
-         JF66q1OHUVsABa2fRI0XBdDlKTcfCCmLfnsRq0Xj6PEPsp1f8zXXhx1fcf4nYXM6qqLN
-         H3mCx56zOs41I0md0TPtr5kz9jgePYIiaUn/iBc8ERntQ3FPbE+8sSng7BwJiZ+ND2vm
-         fOLBD3NmbEE9HMo0Ebq7Mg8PvMFcewF85ASCRWpQw9GkzTcNKUe/PSyIx9hb69Q52hFi
-         3oyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kMr40LI/hXcWSQOOPZsCuoJBcw+0XKBqS6dhgqIQMko=;
-        b=Ql1Jahtk34Kr0bAO3TVwBBR00SMFOZPdahI3Wai1XR6C5o8G2zXCS57d6IoMOttTjv
-         0TIbZ7eQQoyIk0oQJKV5cJSwTGXkbiHjUIG0Vzn9RSyxQk2jk4K9bee+Ql8pUc2yetWE
-         1SGzUlvQ3pb+6CVkmnIBED3ZcjEpah/wVv7PnEpMjR/pxHoLtR0DUgTekV90HbwncwKf
-         2itJ/3TFQmsPM/P2vU/YH3UL8bGDm6YXn9c/1qzHZU8HLpIFCTK6FKZ7Cgt98DEhquyR
-         +z40IT8JyRVmYH+N5LtryEqe/0KB6mlcaJtYeT8pLvCN8M57DHYemPDvS1ljyznrjmJ2
-         QhQQ==
-X-Gm-Message-State: AOAM5315MJTSQ/oSkNxwSh13AEPeOllNCaQ4JkciyEmyIh92EIylHYXr
-        12Bc+xpPjga5BOLgbBNMgaYBsWD6r/Be8wBIghQnVw==
-X-Google-Smtp-Source: ABdhPJxCJTI4uchgyYaGQsVOXlattOcLY8lElgxdbtmYlmczpvbLirt51rqV00R+R7TNCDkQtdynZAIl6CZQmMot53U=
-X-Received: by 2002:a25:380c:: with SMTP id f12mr7111559yba.32.1602780774204;
- Thu, 15 Oct 2020 09:52:54 -0700 (PDT)
+        id S2389747AbgJOQwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 12:52:40 -0400
+Received: from foss.arm.com ([217.140.110.172]:49004 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730137AbgJOQwj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 12:52:39 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CFB08D6E;
+        Thu, 15 Oct 2020 09:52:38 -0700 (PDT)
+Received: from [10.57.48.76] (unknown [10.57.48.76])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D8F013F71F;
+        Thu, 15 Oct 2020 09:52:36 -0700 (PDT)
+Subject: Re: [PATCH 1/7] of: base: Add of_count_phandle_with_fixed_args()
+To:     Rob Herring <robh+dt@kernel.org>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     devicetree@vger.kernel.org,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        - <patches@opensource.cirrus.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+ <20201014145418.31838-2-rf@opensource.cirrus.com>
+ <CAL_Jsq+qdcHc9H7qUVwLieHrLM8E20HZXa8DkarMiuXfCh8WOQ@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
+Date:   Thu, 15 Oct 2020 17:52:35 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-References: <20201015114346.15743-1-nsaenzjulienne@suse.de>
-In-Reply-To: <20201015114346.15743-1-nsaenzjulienne@suse.de>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 15 Oct 2020 09:52:18 -0700
-Message-ID: <CAGETcx9OxQKtYwYtHS7brKpUxfbcbd+VWju3tB1MSPR4dUYxQg@mail.gmail.com>
-Subject: Re: [RFC] of/platform: Create device link between simple-mfd and its children
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, f.fainelli@gmail.com,
-        linux-rpi-kernel@lists.infradead.org,
-        u.kleine-koenig@pengutronix.de,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_Jsq+qdcHc9H7qUVwLieHrLM8E20HZXa8DkarMiuXfCh8WOQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 4:43 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> 'simple-mfd' usage implies there might be some kind of resource sharing
-> between the parent device and its children. By creating a device link
-> with DL_FLAG_AUTOREMOVE_CONSUMER we make sure that at no point in time
-> the parent device is unbound while leaving its children unaware that
-> some of their resources disappeared.
+On 2020-10-14 19:39, Rob Herring wrote:
+> On Wed, Oct 14, 2020 at 9:54 AM Richard Fitzgerald
+> <rf@opensource.cirrus.com> wrote:
+>>
+>> Add an equivalent of of_count_phandle_with_args() for fixed argument
+>> sets, to pair with of_parse_phandle_with_fixed_args().
+>>
+>> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+>> ---
+>>   drivers/of/base.c  | 42 ++++++++++++++++++++++++++++++++++++++++++
+>>   include/linux/of.h |  9 +++++++++
+>>   2 files changed, 51 insertions(+)
+>>
+>> diff --git a/drivers/of/base.c b/drivers/of/base.c
+>> index ea44fea99813..45d8b0e65345 100644
+>> --- a/drivers/of/base.c
+>> +++ b/drivers/of/base.c
+>> @@ -1772,6 +1772,48 @@ int of_count_phandle_with_args(const struct device_node *np, const char *list_na
+>>   }
+>>   EXPORT_SYMBOL(of_count_phandle_with_args);
+>>
+>> +/**
+>> + * of_count_phandle_with_fixed_args() - Find the number of phandles references in a property
+>> + * @np:                pointer to a device tree node containing a list
+>> + * @list_name: property name that contains a list
+>> + * @cell_count: number of argument cells following the phandle
+>> + *
+>> + * Returns the number of phandle + argument tuples within a property. It
+>> + * is a typical pattern to encode a list of phandle and variable
+>> + * arguments into a single property.
+>> + */
+>> +int of_count_phandle_with_fixed_args(const struct device_node *np,
+>> +                                    const char *list_name,
+>> +                                    int cells_count)
+>> +{
+> 
+> Looks to me like you can refactor of_count_phandle_with_args to handle
+> both case and then make this and of_count_phandle_with_args simple
+> wrapper functions.
 
-Doesn't the parent child relationship already ensure that? If not,
-maybe that's what needs fixing?
+Although for just counting the number of phandles each with n arguments 
+that a property contains, isn't that simply a case of dividing the 
+property length by n + 1? The phandles themselves will be validated by 
+any subsequent of_parse_phandle*() call anyway, so there doesn't seem 
+much point in doing more work then necessary here.
 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
->
-> ---
->
-> Some questions:
->
-> - To what extent do we care about cleanly unbinding platform devices at
->   runtime? My rationale here is: "It's a platform device, for all you
->   know you might be unbinding someting essential to the system. So if
->   you're doing it, you better know what you're doing."
->
-> - Would this be an abuse of device links?
+>> +       struct of_phandle_iterator it;
+>> +       int rc, cur_index = 0;
+>> +
+>> +       if (!cells_count) {
+>> +               const __be32 *list;
+>> +               int size;
+>> +
+>> +               list = of_get_property(np, list_name, &size);
+>> +               if (!list)
+>> +                       return -ENOENT;
+>> +
+>> +               return size / sizeof(*list);
 
-Feels like it.
+Case in point - if it's OK to do exactly that for n == 0, then clearly 
+we're *aren't* fussed about validating anything, so the n > 0 code below 
+is nothing more than a massively expensive way to check for a nonzero 
+remainder :/
 
->
-> - If applying this to all simple-mfd devices is a bit too much, would
->   this be acceptable for a specific device setup. For example RPi4's
->   firmware interface (simple-mfd user) is passed to consumer drivers
->   trough a custom API (see rpi_firmware_get()). So, when unbound,
->   consumers are left with a firmware handle that points to nothing.
+Robin.
 
-You can always create device link between the real suppliers and consumers.
-
->
->  drivers/of/platform.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index b557a0fcd4ba..8d5b55b81764 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -390,8 +390,14 @@ static int of_platform_bus_create(struct device_node *bus,
->         }
->
->         dev = of_platform_device_create_pdata(bus, bus_id, platform_data, parent);
-> -       if (!dev || !of_match_node(matches, bus))
-> -               return 0;
-> +       if (!dev)
-> +              return 0;
-> +
-> +       if (parent && of_device_is_compatible(parent->of_node, "simple-mfd"))
-> +              device_link_add(&dev->dev, parent, DL_FLAG_AUTOREMOVE_CONSUMER);
-> +
-> +       if (!of_match_node(matches, bus))
-> +              return 0;
-
-Even if we think we should add this between parent and child (this
-still seems like not a good place to do it). Matching it by compatible
-string and doing special stuff doesn't feel right inside here.
-
--Saravana
-
->
->         for_each_child_of_node(bus, child) {
->                 pr_debug("   create child: %pOF\n", child);
-> --
-> 2.28.0
->
+>> +       }
+>> +
+>> +       rc = of_phandle_iterator_init(&it, np, list_name, NULL, cells_count);
+>> +       if (rc)
+>> +               return rc;
+>> +
+>> +       while ((rc = of_phandle_iterator_next(&it)) == 0)
+>> +               cur_index += 1;
+>> +
+>> +       if (rc != -ENOENT)
+>> +               return rc;
+>> +
+>> +       return cur_index;
+>> +}
+>> +EXPORT_SYMBOL(of_count_phandle_with_fixed_args);
+>> +
+>>   /**
+>>    * __of_add_property - Add a property to a node without lock operations
+>>    */
+>> diff --git a/include/linux/of.h b/include/linux/of.h
+>> index 5cf7ae0465d1..9f315da4e9da 100644
+>> --- a/include/linux/of.h
+>> +++ b/include/linux/of.h
+>> @@ -377,6 +377,8 @@ extern int of_parse_phandle_with_fixed_args(const struct device_node *np,
+>>          struct of_phandle_args *out_args);
+>>   extern int of_count_phandle_with_args(const struct device_node *np,
+>>          const char *list_name, const char *cells_name);
+>> +extern int of_count_phandle_with_fixed_args(const struct device_node *np,
+>> +       const char *list_name, int cells_count);
+>>
+>>   /* phandle iterator functions */
+>>   extern int of_phandle_iterator_init(struct of_phandle_iterator *it,
+>> @@ -886,6 +888,13 @@ static inline int of_count_phandle_with_args(struct device_node *np,
+>>          return -ENOSYS;
+>>   }
+>>
+>> +static inline int of_count_phandle_with_fixed_args(const struct device_node *np,
+>> +                                                  const char *list_name,
+>> +                                                  int cells_count)
+>> +{
+>> +       return -ENOSYS;
+>> +}
+>> +
+>>   static inline int of_phandle_iterator_init(struct of_phandle_iterator *it,
+>>                                             const struct device_node *np,
+>>                                             const char *list_name,
+>> --
+>> 2.20.1
+>>
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
