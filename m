@@ -2,87 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 915B528F7DB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 19:53:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 531CB28F816
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 20:03:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727618AbgJORxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 13:53:22 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:15512 "EHLO z5.mailgun.us"
+        id S1732708AbgJOSDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 14:03:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52066 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728419AbgJORxV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 13:53:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1602784401; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=uv8j/yWLlRZHpyZ+gdLOchrpwCQr7tFLLmD7RGRa7Go=; b=YHerHJUZUbA4uUFQJs7gTKb6n0wzSEqpiWbLuGxAhz9myRJJSaxtG6qu3sSpfXDVD5u8BlLY
- uA0GTuGV7y5CqR49szofDwqk3eybGxBvKDfdDDWkkGqf12HJ6N8Ul1y9rXgGkmQyXnNeD5tS
- 7HBm4VDfkUhotj8iaroUUrGh6gg=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 5f888c90ef891f1ee26a16f1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 15 Oct 2020 17:53:20
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 5968CC53A38; Thu, 15 Oct 2020 17:45:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1728460AbgJOSDs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 14:03:48 -0400
+Received: from gaia (unknown [95.149.105.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B19DFC55682;
-        Thu, 15 Oct 2020 17:45:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B19DFC55682
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     bjorn.andersson@linaro.org, mka@chromium.org
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        evgreen@chromium.org, dianders@chromium.org, robh+dt@kernel.org,
-        swboyd@chromium.org, Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sc7180: Add DDR/L3 votes for the pro variant
-Date:   Thu, 15 Oct 2020 23:15:39 +0530
-Message-Id: <1602783939-7177-2-git-send-email-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1602783939-7177-1-git-send-email-sibis@codeaurora.org>
-References: <1602783939-7177-1-git-send-email-sibis@codeaurora.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id DCEC820797;
+        Thu, 15 Oct 2020 18:03:43 +0000 (UTC)
+Date:   Thu, 15 Oct 2020 19:03:41 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Hanjun Guo <guohanjun@huawei.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>, robin.murphy@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT
+ scan
+Message-ID: <20201015180340.GB2624@gaia>
+References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
+ <20201014191211.27029-8-nsaenzjulienne@suse.de>
+ <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DDR/L3 bandwidth votes for the pro variant of SC7180 SoC, as it support
-frequencies upto 2.5 GHz.
+On Thu, Oct 15, 2020 at 10:26:18PM +0800, Hanjun Guo wrote:
+> On 2020/10/15 3:12, Nicolas Saenz Julienne wrote:
+> > From: Ard Biesheuvel <ardb@kernel.org>
+> > 
+> > We recently introduced a 1 GB sized ZONE_DMA to cater for platforms
+> > incorporating masters that can address less than 32 bits of DMA, in
+> > particular the Raspberry Pi 4, which has 4 or 8 GB of DRAM, but has
+> > peripherals that can only address up to 1 GB (and its PCIe host
+> > bridge can only access the bottom 3 GB)
+> > 
+> > Instructing the DMA layer about these limitations is straight-forward,
+> > even though we had to fix some issues regarding memory limits set in
+> > the IORT for named components, and regarding the handling of ACPI _DMA
+> > methods. However, the DMA layer also needs to be able to allocate
+> > memory that is guaranteed to meet those DMA constraints, for bounce
+> > buffering as well as allocating the backing for consistent mappings.
+> > 
+> > This is why the 1 GB ZONE_DMA was introduced recently. Unfortunately,
+> > it turns out the having a 1 GB ZONE_DMA as well as a ZONE_DMA32 causes
+> > problems with kdump, and potentially in other places where allocations
+> > cannot cross zone boundaries. Therefore, we should avoid having two
+> > separate DMA zones when possible.
+> > 
+> > So let's do an early scan of the IORT, and only create the ZONE_DMA
+> > if we encounter any devices that need it. This puts the burden on
+> > the firmware to describe such limitations in the IORT, which may be
+> > redundant (and less precise) if _DMA methods are also being provided.
+> > However, it should be noted that this situation is highly unusual for
+> > arm64 ACPI machines. Also, the DMA subsystem still gives precedence to
+> > the _DMA method if implemented, and so we will not lose the ability to
+> > perform streaming DMA outside the ZONE_DMA if the _DMA method permits
+> > it.
+> 
+> Sorry, I'm still a little bit confused. With this patch, if we have
+> a device which set the right _DMA method (DMA size >= 32), but with the
+> wrong DMA size in IORT, we still have the ZONE_DMA created which
+> is actually not needed?
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+With the current kernel, we get a ZONE_DMA already with an arbitrary
+size of 1GB that matches what RPi4 needs. We are trying to eliminate
+such unnecessary ZONE_DMA based on some heuristics (well, something that
+looks "better" than a OEM ID based quirk). Now, if we learn that IORT
+for platforms in the field is that broken as to describe few bits-wide
+DMA masks, we may have to go back to the OEM ID quirk.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 6678f1e8e395..4a39c35119ce 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -525,6 +525,11 @@
- 			opp-hz = /bits/ 64 <2400000000>;
- 			opp-peak-kBps = <8532000 23347200>;
- 		};
-+
-+		cpu6_opp16: opp-2553600000 {
-+			opp-hz = /bits/ 64 <2553600000>;
-+			opp-peak-kBps = <8532000 23347200>;
-+		};
- 	};
- 
- 	memory@80000000 {
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+Catalin
