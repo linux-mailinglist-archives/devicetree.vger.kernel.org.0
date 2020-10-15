@@ -2,141 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 071DF28F1CC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 14:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91D9428F224
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 14:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726255AbgJOMFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 08:05:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34752 "EHLO
+        id S1728554AbgJOMdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 08:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726121AbgJOMFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 08:05:08 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD41DC061755;
-        Thu, 15 Oct 2020 05:05:07 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id a5so2830754ljj.11;
-        Thu, 15 Oct 2020 05:05:07 -0700 (PDT)
+        with ESMTP id S1727893AbgJOMdV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 08:33:21 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9B6FC0613D2
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 05:33:20 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id e2so3446988wme.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 05:33:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=b84hsRMoXS6GSIJgvfo2S0Egn1CWq+Hpix6sK2IAdUE=;
-        b=M9pJeRxWl/yzHIyVox8DH1/36P4oGErk7sMFdyEZekt4dWZSdmimLtSAx+AVZmf29u
-         j+8kssj4JNre8sIqmrLLZElE9YkOeSjXvejl/F1a5MryXWtsdg5I8BgEo+ospPwV+VwC
-         f7NVefdUm+SkIPSkOmoWF5fUjO/Ugjx37AgGm/sVpMVB5J3OsfSXF8RGdzVAFwb50oU1
-         ZXTRFtX3qtNLgoLtvewOvHwDDY7tPS7dyYA/Yye62dAhp40wo13id8JKWEq8jCkd8D21
-         RKerY4o82571VLersFP83OuHuOrND8iT1eME1mpPn0B4X+v90jcbB09ont9P3Bf5G1BE
-         baoA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0gAf5fB5iQjUkbZE2PNnBqlTvtlb0W+hOlezFL2z0t0=;
+        b=phvyFg4xjOGamHGSk/i05nAsDluAs0yWPaT2/eZkZDWz6fh0DSNW+CxmypNWD3fgle
+         8AC8w0CuYMtRyP2XvJCqOl7LznkwXyw+cmbpYGi9Qvqk8v4qgD+YVngklOb1YPlZNUpY
+         PUWRaFKto7ziGDDuVUXqr9Gw9rozNF27/AkXBF4b5bOmiDhfX6B8+YubTpadSuWCYwie
+         5taGkWoqWKn2JjKsSHJby4S6ytLFCNrBGBbw946DYXamCF6ZEmR3PIZB5q+GCgpnYqgd
+         xZCtA59kD753+zU0S0xYgVc8jfTVBYa3C4BjN1b3+U879tXdYkKFu/JEEAjFabYwHVHo
+         Vfdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=b84hsRMoXS6GSIJgvfo2S0Egn1CWq+Hpix6sK2IAdUE=;
-        b=U3zRRhB62QQpvrt4s5z1dDsQliPw9jCgiUbuoDD6kyuTDY/sMsh8FApqxMM9QwYZB/
-         GbueC+OMdwOGTFxoIiLllR9K/pnaVyG7oEdiasJ4M17JDUZy5jN4tMhPwr7Dg/IR+Do7
-         UBIhnLZrmjjJXIpkLUJ5IEH9xAXZmcLxEY414f3tYW5taE98LIAucynsYrBNYRgGpmv+
-         GiMAM4BH8qqlrduZIKnKrLgRb5RNLY+XLY2dU3p6vRoOEa50573VomB5xf9xcAYwTn9f
-         lGlg81xTrV0aqxlgZkF8zGe0djW8inAKJcEjqkGJAVLgJCkCbsHw05c1SOruRSWf01rH
-         ZuBQ==
-X-Gm-Message-State: AOAM531ct0URv4LeyxkALFBwLnk9YWgL4PJup+WHJ0I6BXlOwzIJHQ3i
-        5AkUvFub1gmAN+BDVMJjUN0=
-X-Google-Smtp-Source: ABdhPJwwt3EyjuYq57Lukv1Wqv/KyjW0MQ9OTploRIduCcyLajK657qmY9eO1Kj6MoiwK7QuR74ZqQ==
-X-Received: by 2002:a2e:864c:: with SMTP id i12mr1075757ljj.396.1602763505518;
-        Thu, 15 Oct 2020 05:05:05 -0700 (PDT)
-Received: from mobilestation ([95.79.141.114])
-        by smtp.gmail.com with ESMTPSA id x4sm1213347ljj.62.2020.10.15.05.05.04
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0gAf5fB5iQjUkbZE2PNnBqlTvtlb0W+hOlezFL2z0t0=;
+        b=Zr0OdC8E7Z8Nax/JmrMQ4CYYOkffuTt9xH8SHn5DOis5Q2T94RaXi8j7Y/YFqcd6Cj
+         QSal0VbGCvYcTvTZwHxATVsZsSVMcJQf6hwlIZgfKqMjiyBzl8U3G4foPMghVrU4SMWq
+         onFuB0KZeEjyGX+hNF0XXQiTR13E3ScrvGv5CpnQ9pyMj0CwtLdB6cBc3WV9tyEAFZjG
+         RP8UZBnaDo8smPVvJJ6uV//jNtrqsm4K8eSGEWDm0pLvMxz1ea0IeMcFMa93Arpil3bE
+         Ir8Dg1WLGI2Yc1V6rUjrEZFr8rknPkL5Vt3YIORy9uWR9yELpcGuLdzzlO6VixcDhTpu
+         ayug==
+X-Gm-Message-State: AOAM533aj3eyzThva0Mz3LVeAUUNwImh5nlJkEGHivEUtDkB45t6p6iW
+        k3+9LqDwFgLOa7NRXEKKrdjL0g==
+X-Google-Smtp-Source: ABdhPJwMWmhzac8KOGYrXil1jcjuEazEomj2N1xyRdOMuoCb7xSRa3SeIB2Z0+rBWSrgh8MElOQYdQ==
+X-Received: by 2002:a05:600c:2905:: with SMTP id i5mr3815469wmd.9.1602765199464;
+        Thu, 15 Oct 2020 05:33:19 -0700 (PDT)
+Received: from localhost.localdomain (129.163.185.81.rev.sfr.net. [81.185.163.129])
+        by smtp.gmail.com with ESMTPSA id j7sm4017406wmc.7.2020.10.15.05.33.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Oct 2020 05:05:04 -0700 (PDT)
-Date:   Thu, 15 Oct 2020 15:04:57 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Hoan Tran <hoan@os.amperecomputing.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 8/8] dt-bindings: gpio: dw-apb: remove never-used
- "snps,dw-apb-gpio-port"
-Message-ID: <20201015120457.qaooft5y5dzl4z7s@mobilestation>
-References: <20201015115524.24e3c36b@xhacker.debian>
- <20201015115903.2a782f78@xhacker.debian>
+        Thu, 15 Oct 2020 05:33:18 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, vkoul@kernel.org,
+        sean.wang@mediatek.com, Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH 1/2] dt-bindings: dma: mtk-apdma: add bindings for MT8516 SOC
+Date:   Thu, 15 Oct 2020 14:33:14 +0200
+Message-Id: <20201015123315.334919-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201015115903.2a782f78@xhacker.debian>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 11:59:03AM +0800, Jisheng Zhang wrote:
-> The compatible string is never used.
+Add bindings to APDMA for MT8516 SoC. MT8516 is compatible with MT6577.
 
-Before sending v2 could you run "make dt_binding_check" for the DT schema
-modified in this patch? Like this:
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-make -j8 ARCH=mips CROSS_COMPILE=mipsel-baikal-linux- dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+diff --git a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+index 2117db0ce4f2..fef9c1eeb264 100644
+--- a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
++++ b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+@@ -4,6 +4,7 @@ Required properties:
+ - compatible should contain:
+   * "mediatek,mt2712-uart-dma" for MT2712 compatible APDMA
+   * "mediatek,mt6577-uart-dma" for MT6577 and all of the above
++  * "mediatek,mt8516-uart-dma", "mediatek,mt6577" for MT8516 SoC
+ 
+ - reg: The base address of the APDMA register bank.
+ 
+-- 
+2.28.0
 
-> 
-> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-> ---
->  Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-> index 1240f6289249..76e7b07d592f 100644
-> --- a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-> @@ -50,9 +50,6 @@ patternProperties:
->    "^gpio-(port|controller)@[0-9a-f]+$":
->      type: object
->      properties:
-
-> -      compatible:
-> -        const: snps,dw-apb-gpio-port
-> -
-
-Yep, you've removed the "compatible" property but forgot to do the same from the
-"required:" property of the sub-nodes schema. That's why the suggested
-make-command above would have failed during the DT schema examples validation if
-you ran it. Please, fix it and resend the series.
-
->        reg:
->          maxItems: 1
-
-Yeah. Here I've forgotten to add the "reg" property constraints. Since certainly
-the controller won't have more than four sub-nodes by design, could you add one
-in an additional patch of the series since you'll need to resend the patchset anyway?
-Like this:
-       reg:
--        maxItems: 1
-+        minimum: 0
-+        maximum: 3
-
--Sergey
-
->  
-> @@ -111,7 +108,6 @@ examples:
->        #size-cells = <0>;
->  
->        porta: gpio-port@0 {
-> -        compatible = "snps,dw-apb-gpio-port";
->          reg = <0>;
->          gpio-controller;
->          #gpio-cells = <2>;
-> @@ -123,7 +119,6 @@ examples:
->        };
->  
->        portb: gpio-port@1 {
-> -        compatible = "snps,dw-apb-gpio-port";
->          reg = <1>;
->          gpio-controller;
->          #gpio-cells = <2>;
-> -- 
-> 2.28.0
-> 
