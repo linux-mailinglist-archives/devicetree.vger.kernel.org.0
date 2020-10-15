@@ -2,221 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3FF28F4AC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72BD628F2A8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 14:49:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388217AbgJOO0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 10:26:30 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:15221 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2387776AbgJOO0a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 10:26:30 -0400
-Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id B13A6E19BE4EE9CE4DA9;
-        Thu, 15 Oct 2020 22:26:24 +0800 (CST)
-Received: from [10.174.179.182] (10.174.179.182) by
- DGGEMS404-HUB.china.huawei.com (10.3.19.204) with Microsoft SMTP Server id
- 14.3.487.0; Thu, 15 Oct 2020 22:26:19 +0800
-Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT
- scan
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        <robh+dt@kernel.org>, <catalin.marinas@arm.com>, <hch@lst.de>,
-        <ardb@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-CC:     <robin.murphy@arm.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-rpi-kernel@lists.infradead.org>, <jeremy.linton@arm.com>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        "Anshuman Khandual" <anshuman.khandual@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <lenb@kernel.org>, <linux-acpi@vger.kernel.org>
-References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
- <20201014191211.27029-8-nsaenzjulienne@suse.de>
-From:   Hanjun Guo <guohanjun@huawei.com>
-Message-ID: <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
-Date:   Thu, 15 Oct 2020 22:26:18 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1726103AbgJOMtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 08:49:25 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:44069 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725899AbgJOMtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 08:49:25 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 773FAC0007;
+        Thu, 15 Oct 2020 12:49:21 +0000 (UTC)
+Date:   Thu, 15 Oct 2020 16:49:05 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Rui Miguel Silva <rmfrfs@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: ov2680: convert bindings to yaml
+Message-ID: <20201015144905.4b23k5uy7ycuhvlo@uno.localdomain>
+References: <20201014142759.726823-1-rmfrfs@gmail.com>
+ <20201014142759.726823-2-rmfrfs@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201014191211.27029-8-nsaenzjulienne@suse.de>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.179.182]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201014142759.726823-2-rmfrfs@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/10/15 3:12, Nicolas Saenz Julienne wrote:
-> From: Ard Biesheuvel <ardb@kernel.org>
-> 
-> We recently introduced a 1 GB sized ZONE_DMA to cater for platforms
-> incorporating masters that can address less than 32 bits of DMA, in
-> particular the Raspberry Pi 4, which has 4 or 8 GB of DRAM, but has
-> peripherals that can only address up to 1 GB (and its PCIe host
-> bridge can only access the bottom 3 GB)
-> 
-> Instructing the DMA layer about these limitations is straight-forward,
-> even though we had to fix some issues regarding memory limits set in
-> the IORT for named components, and regarding the handling of ACPI _DMA
-> methods. However, the DMA layer also needs to be able to allocate
-> memory that is guaranteed to meet those DMA constraints, for bounce
-> buffering as well as allocating the backing for consistent mappings.
-> 
-> This is why the 1 GB ZONE_DMA was introduced recently. Unfortunately,
-> it turns out the having a 1 GB ZONE_DMA as well as a ZONE_DMA32 causes
-> problems with kdump, and potentially in other places where allocations
-> cannot cross zone boundaries. Therefore, we should avoid having two
-> separate DMA zones when possible.
-> 
-> So let's do an early scan of the IORT, and only create the ZONE_DMA
-> if we encounter any devices that need it. This puts the burden on
-> the firmware to describe such limitations in the IORT, which may be
-> redundant (and less precise) if _DMA methods are also being provided.
-> However, it should be noted that this situation is highly unusual for
-> arm64 ACPI machines. Also, the DMA subsystem still gives precedence to
-> the _DMA method if implemented, and so we will not lose the ability to
-> perform streaming DMA outside the ZONE_DMA if the _DMA method permits
-> it.
+Hi Rui,
 
-Sorry, I'm still a little bit confused. With this patch, if we have
-a device which set the right _DMA method (DMA size >= 32), but with the
-wrong DMA size in IORT, we still have the ZONE_DMA created which
-is actually not needed?
-
-> 
-> Cc: Jeremy Linton <jeremy.linton@arm.com>
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Christoph Hellwig <hch@lst.de>
-> Cc: Robin Murphy <robin.murphy@arm.com>
-> Cc: Hanjun Guo <guohanjun@huawei.com>
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: Anshuman Khandual <anshuman.khandual@arm.com>
-> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> [nsaenz: Rebased, removed documentation change, warnings and add
-> declaration in acpi_iort.h]
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+On Wed, Oct 14, 2020 at 03:27:57PM +0100, Rui Miguel Silva wrote:
+> Convert ov2680 sensor bindings documentation to yaml schema, remove
+> the textual bindings document and update MAINTAINERS entry.
+>
+> Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
 > ---
->   arch/arm64/mm/init.c      |  6 +++++
->   drivers/acpi/arm64/iort.c | 51 +++++++++++++++++++++++++++++++++++++++
->   include/linux/acpi_iort.h |  4 +++
->   3 files changed, 61 insertions(+)
-> 
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 97b0d2768349..f321761eedb2 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -29,6 +29,7 @@
->   #include <linux/kexec.h>
->   #include <linux/crash_dump.h>
->   #include <linux/hugetlb.h>
-> +#include <linux/acpi_iort.h>
->   
->   #include <asm/boot.h>
->   #include <asm/fixmap.h>
-> @@ -196,6 +197,11 @@ static void __init zone_sizes_init(unsigned long min, unsigned long max)
->   #ifdef CONFIG_ZONE_DMA
->   	zone_dma_bits = min(zone_dma_bits,
->   			    (unsigned int)ilog2(of_dma_get_max_cpu_address(NULL)));
-> +
-> +	if (IS_ENABLED(CONFIG_ACPI))
-> +		zone_dma_bits = min(zone_dma_bits,
-> +				    acpi_iort_get_zone_dma_size());
-> +
->   	arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
->   	max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
->   #endif
-> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
-> index 9929ff50c0c0..8f530bf3c03b 100644
-> --- a/drivers/acpi/arm64/iort.c
-> +++ b/drivers/acpi/arm64/iort.c
-> @@ -1718,3 +1718,54 @@ void __init acpi_iort_init(void)
->   
->   	iort_init_platform_devices();
->   }
-> +
-> +#ifdef CONFIG_ZONE_DMA
-> +/*
-> + * Check the IORT whether any devices exist whose DMA mask is < 32 bits.
-> + * If so, return the smallest value encountered, or 32 otherwise.
-> + */
-> +unsigned int __init acpi_iort_get_zone_dma_size(void)
-> +{
-> +	struct acpi_table_iort *iort;
-> +	struct acpi_iort_node *node, *end;
-> +	acpi_status status;
-> +	u8 limit = 32;
-> +	int i;
-> +
-> +	if (acpi_disabled)
-> +		return limit;
-> +
-> +	status = acpi_get_table(ACPI_SIG_IORT, 0,
-> +				(struct acpi_table_header **)&iort);
-> +	if (ACPI_FAILURE(status))
-> +		return limit;
-> +
-> +	node = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->node_offset);
-> +	end = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->header.length);
-> +
-> +	for (i = 0; i < iort->node_count; i++) {
-> +		if (node >= end)
-> +			break;
-> +
-> +		switch (node->type) {
-> +			struct acpi_iort_named_component *ncomp;
-> +			struct acpi_iort_root_complex *rc;
-> +
-> +		case ACPI_IORT_NODE_NAMED_COMPONENT:
-> +			ncomp = (struct acpi_iort_named_component *)node->node_data;
-> +			if (ncomp->memory_address_limit)
-> +				limit = min(limit, ncomp->memory_address_limit);
-> +			break;
-> +
-> +		case ACPI_IORT_NODE_PCI_ROOT_COMPLEX:
-> +			rc = (struct acpi_iort_root_complex *)node->node_data;
-> +			if (rc->memory_address_limit)
-> +				limit = min(limit, rc->memory_address_limit);
+>
+> v1 -> v2:
+>   Sakari Ailus - Patch 1/3:
+>   https://lore.kernel.org/linux-media/20201013160908.GC13341@paasikivi.fi.intel.com/
+>   - omit remote-endpoint
+>   - remove not needed clock-lanes and data-lanes
+>
+>  .../devicetree/bindings/media/i2c/ov2680.txt  |  46 --------
+>  .../devicetree/bindings/media/i2c/ov2680.yaml | 109 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 110 insertions(+), 47 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.txt b/Documentation/devicetree/bindings/media/i2c/ov2680.txt
+> deleted file mode 100644
+> index 11e925ed9dad..000000000000
+> --- a/Documentation/devicetree/bindings/media/i2c/ov2680.txt
+> +++ /dev/null
+> @@ -1,46 +0,0 @@
+> -* Omnivision OV2680 MIPI CSI-2 sensor
+> -
+> -Required Properties:
+> -- compatible: should be "ovti,ov2680".
+> -- clocks: reference to the xvclk input clock.
+> -- clock-names: should be "xvclk".
+> -- DOVDD-supply: Digital I/O voltage supply.
+> -- DVDD-supply: Digital core voltage supply.
+> -- AVDD-supply: Analog voltage supply.
+> -
+> -Optional Properties:
+> -- reset-gpios: reference to the GPIO connected to the powerdown/reset pin,
+> -               if any. This is an active low signal to the OV2680.
+> -
+> -The device node must contain one 'port' child node for its digital output
+> -video port, and this port must have a single endpoint in accordance with
+> - the video interface bindings defined in
+> -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> -
+> -Endpoint node required properties for CSI-2 connection are:
+> -- remote-endpoint: a phandle to the bus receiver's endpoint node.
+> -- clock-lanes: should be set to <0> (clock lane on hardware lane 0).
+> -- data-lanes: should be set to <1> (one CSI-2 lane supported).
+> -
+> -Example:
+> -
+> -&i2c2 {
+> -	ov2680: camera-sensor@36 {
+> -		compatible = "ovti,ov2680";
+> -		reg = <0x36>;
+> -		clocks = <&osc>;
+> -		clock-names = "xvclk";
+> -		reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
+> -		DOVDD-supply = <&sw2_reg>;
+> -		DVDD-supply = <&sw2_reg>;
+> -		AVDD-supply = <&reg_peri_3p15v>;
+> -
+> -		port {
+> -			ov2680_to_mipi: endpoint {
+> -				remote-endpoint = <&mipi_from_sensor>;
+> -				clock-lanes = <0>;
+> -				data-lanes = <1>;
+> -			};
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
 
-There is no "Memory address size limit" field in revision 0 table, so as
-Lorenzo reminded, please add a revision check here.
+Might this be a good occasion to rename the file to ovti,ov2680.yaml ?
+
+> new file mode 100644
+> index 000000000000..ef2b45b03dcc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+> @@ -0,0 +1,109 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ov2680.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Omnivision OV2680 CMOS Sensor
+> +
+> +maintainers:
+> +  - Rui Miguel Silva <rmfrfs@gmail.com>
+> +
+> +description: |-
+> +  The OV2680 color sensor is a low voltage, high performance 1/5 inch UXGA (2
+> +  megapixel) CMOS image sensor that provides a single-chip UXGA (1600 x 1200)
+> +  camera. It provides full-frame, sub-sampled, or windowed 10-bit images in
+> +  various formats via the control of the Serial Camera Control Bus (SCCB)
+> +  interface.  The OV2680 has an image array capable of operating at up to 30
+                ^ double space
+
+> +  frames per second (fps) in UXGA resolution.
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov2680
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description:
+
+I'll never get yaml right, doesn't breaking lines require '|' after
+the semicolon ? The validator does not complain, so I guess not.
+
+> +      Input clock for the sensor.
+> +    items:
+> +      - const: xvclk
+> +
+> +  reset-gpios:
+> +    description:
+> +      The phandle and specifier for the GPIO that controls sensor reset.
+> +      This corresponds to the hardware pin XSHUTDOWN which is physically
+> +      active low.
+> +
+> +  dovdd-supply:
+> +    description:
+> +      Definition of the regulator used as interface power supply.
+> +
+> +  avdd-supply:
+> +    description:
+> +      Definition of the regulator used as analog power supply.
+> +
+> +  dvdd-supply:
+> +    description:
+> +      Definition of the regulator used as digital power supply.
+> +
+> +  port:
+> +    type: object
+> +    additionalProperties: false
+> +    description:
+> +      A node containing an output port node with an endpoint definition
+> +      as documented in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +
+> +    required:
+> +      - endpoint
+
+If no endpoint properties are specified, the last 6 lines here can be
+omitted. The rationale is that 'port' will be validated against a
+forthcoming 'of-graph.yaml' schema. So just:
+
+   port:
+     type: object
+     additionalProperties: false
+     description:
+       A node containing an output port node with an endpoint definition
+       as documented in
+       Documentation/devicetree/bindings/media/video-interfaces.txt
+
+With 'port' listed as mandatory, as you do already.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - dovdd-supply
+> +  - avdd-supply
+> +  - dvdd-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +unevaluatedProperties: false
+
+'additionalProperties: false' too ?
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ov2680: camera-sensor@36 {
+> +                compatible = "ovti,ov2680";
+> +                reg = <0x36>;
+> +                clocks = <&osc>;
+> +                clock-names = "xvclk";
+> +                reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
+> +
+> +                dovdd-supply = <&sw2_reg>;
+> +                dvdd-supply = <&sw2_reg>;
+> +                avdd-supply = <&reg_peri_3p15v>;
+> +
+> +                port {
+> +                        ov2680_to_mipi: endpoint {
+> +                                remote-endpoint = <&mipi_from_sensor>;
+> +                        };
+> +                };
+> +        };
+> +    };
+> +...
+> +
+
+Applying the patch gives me:
+.git/rebase-apply/patch:182: new blank line at EOF.
+
+I see most bindings have an empty line before '...'
+
+With this small issues fixed:
+Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 
 Thanks
-Hanjun
+   j
 
-
-> +			break;
-> +		}
-> +		node = ACPI_ADD_PTR(struct acpi_iort_node, node, node->length);
-> +	}
-> +	acpi_put_table(&iort->header);
-> +	return limit;
-> +}
-> +#endif
-> diff --git a/include/linux/acpi_iort.h b/include/linux/acpi_iort.h
-> index 20a32120bb88..7d2e184f0d4d 100644
-> --- a/include/linux/acpi_iort.h
-> +++ b/include/linux/acpi_iort.h
-> @@ -38,6 +38,7 @@ void iort_dma_setup(struct device *dev, u64 *dma_addr, u64 *size);
->   const struct iommu_ops *iort_iommu_configure_id(struct device *dev,
->   						const u32 *id_in);
->   int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head);
-> +unsigned int acpi_iort_get_zone_dma_size(void);
->   #else
->   static inline void acpi_iort_init(void) { }
->   static inline u32 iort_msi_map_id(struct device *dev, u32 id)
-> @@ -55,6 +56,9 @@ static inline const struct iommu_ops *iort_iommu_configure_id(
->   static inline
->   int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head)
->   { return 0; }
-> +
-> +static inline unsigned int acpi_iort_get_zone_dma_size(void)
-> +{ return 32; }
->   #endif
->   
->   #endif /* __ACPI_IORT_H__ */
-> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2e85e114c9c3..926dcdc4794c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12775,7 +12775,7 @@ M:	Rui Miguel Silva <rmfrfs@gmail.com>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  T:	git git://linuxtv.org/media_tree.git
+> -F:	Documentation/devicetree/bindings/media/i2c/ov2680.txt
+> +F:	Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+>  F:	drivers/media/i2c/ov2680.c
+>
+>  OMNIVISION OV2685 SENSOR DRIVER
+> --
+> 2.28.0
+>
