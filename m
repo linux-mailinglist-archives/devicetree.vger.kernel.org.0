@@ -2,65 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6300328F31F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CD0A28F659
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 18:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729108AbgJONYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 09:24:02 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:50898 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728521AbgJONYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 09:24:00 -0400
-X-IronPort-AV: E=Sophos;i="5.77,379,1596466800"; 
-   d="scan'208";a="59668181"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 15 Oct 2020 22:23:58 +0900
-Received: from localhost.localdomain (unknown [172.29.52.47])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D829D4009F6E;
-        Thu, 15 Oct 2020 22:23:55 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: cat875: Remove rxc-skew-ps from ethernet-phy node
-Date:   Thu, 15 Oct 2020 14:23:50 +0100
-Message-Id: <20201015132350.8360-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201015132350.8360-1-biju.das.jz@bp.renesas.com>
-References: <20201015132350.8360-1-biju.das.jz@bp.renesas.com>
+        id S2389541AbgJOQDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 12:03:41 -0400
+Received: from edge.kilargo.pl ([77.252.52.110]:54141 "EHLO edge.kilargo.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389539AbgJOQDl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 12:03:41 -0400
+X-Greylist: delayed 413 seconds by postgrey-1.27 at vger.kernel.org; Thu, 15 Oct 2020 12:03:39 EDT
+Received: from mail.kilargo.pl (77.252.52.107) by edge.kilargo.pl
+ (77.252.52.109) with Microsoft SMTP Server (TLS) id 8.3.485.1; Thu, 15 Oct
+ 2020 16:02:51 +0200
+Received: from User (185.248.12.71) by MAIL.kilargo.pl (172.22.0.36) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 15 Oct 2020 15:30:06 +0200
+Reply-To: <kim.leang2011@yahoo.com>
+From:   Kim Leang <mechanik@kilargo.pl>
+Subject: Greeting! !!   
+Date:   Thu, 15 Oct 2020 16:30:11 +0300
+MIME-Version: 1.0
+Content-Type: text/plain; charset="Windows-1251"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+Message-ID: <0dd778ceadd44bd6a9d1c70c66e868f8@mail.kilargo.pl>
+To:     Undisclosed recipients:;
+X-Originating-IP: [185.248.12.71]
+X-ClientProxiedBy: mail.kilargo.pl (172.22.0.36) To MAIL.kilargo.pl
+ (172.22.0.36)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A295AAB9B6B647163
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The CAT875 sub board from Silicon Linux uses Realtek phy and the driver
-does not support rxc-skew-ps property.
+Greeting!
 
-Fixes: 6b170cd3ed02949f ("arm64: dts: renesas: cat875: Add ethernet support")
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/cat875.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+I am contacting you to receive and share with me an abandoned fund ( $21,537.000.00 ) left in our bank by a deceased customer. I was going through the Internet search when I found your email address. My name is Mr. Kim Leang.
 
-diff --git a/arch/arm64/boot/dts/renesas/cat875.dtsi b/arch/arm64/boot/dts/renesas/cat875.dtsi
-index 33daa9570684..801ea54b027c 100644
---- a/arch/arm64/boot/dts/renesas/cat875.dtsi
-+++ b/arch/arm64/boot/dts/renesas/cat875.dtsi
-@@ -21,7 +21,6 @@
- 	status = "okay";
- 
- 	phy0: ethernet-phy@0 {
--		rxc-skew-ps = <1500>;
- 		reg = <0>;
- 		interrupt-parent = <&gpio2>;
- 		interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
--- 
-2.17.1
+I want to utilize this opportunity and make use of this fund if I should present your name to the bank to stand as his business associate/ trustee for the fund to be released to you via Visa card for easy withdrawals in any VISA ATM machine anywhere in the World.
 
+The bank will also give you international online transfer options. With these you can transfer the funds without any risk.
+
+Should you be interested in working with me in this project? Please reply back and let's benefit from this golden opportunity.You are my first contact. I shall wait a few days and if I do not hear from you, I shall look for another person.
+
+Thanks and have a nice day,
+Mr. Kim Leang.
