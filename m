@@ -2,76 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE4B528EFD7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 12:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E1528EFF6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 12:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729241AbgJOKFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 06:05:50 -0400
-Received: from mx2.suse.de ([195.135.220.15]:46796 "EHLO mx2.suse.de"
+        id S2389150AbgJOKPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 06:15:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60946 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727554AbgJOKFu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 06:05:50 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 07720AC5F;
-        Thu, 15 Oct 2020 10:05:49 +0000 (UTC)
-Message-ID: <e14f6d6b12962da6cd32462b02b0bf051444894b.camel@suse.de>
-Subject: Re: [PATCH v3 6/8] arm64: mm: Set ZONE_DMA size based on
- devicetree's dma-ranges
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, ardb@kernel.org,
-        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
+        id S2389099AbgJOKPx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 06:15:53 -0400
+Received: from saruman (88-113-213-94.elisa-laajakaista.fi [88.113.213.94])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2533920BED;
+        Thu, 15 Oct 2020 10:15:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602756952;
+        bh=Z6L85tl0hUzxc/Wf2yAWwRbRBy0g42YVSMNsAOso/ic=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=WCURctuRAO7apKBpnigKSW4w0RrSEIpplBnDIjs+ve/o+8+46MlY5TmxYzakNSnGt
+         wshd18tKRcbQS+ist8JlaxoOpSixojILJcBphDceJNvzEVJ7nc77SPULh7DZu7zIN5
+         MdYW0FZqoioit4bvm377ZfhSD1iKvlH90Ra8372k=
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Wei Xu <xuwei5@hisilicon.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Will Deacon <will@kernel.org>
-Date:   Thu, 15 Oct 2020 12:05:47 +0200
-In-Reply-To: <20201015053948.GB12218@lst.de>
-References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
-         <20201014191211.27029-7-nsaenzjulienne@suse.de>
-         <20201015053948.GB12218@lst.de>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-OaOQtpsUFcwLROOxxpTG"
-User-Agent: Evolution 3.36.5 
+        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
+In-Reply-To: <20201014143720.yny3jco5pkb7dr4b@mobilestation>
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
+ <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
+ <878sc8lx0e.fsf@kernel.org>
+ <20201014143720.yny3jco5pkb7dr4b@mobilestation>
+Date:   Thu, 15 Oct 2020 13:15:37 +0300
+Message-ID: <875z7blrqu.fsf@kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---=-OaOQtpsUFcwLROOxxpTG
-Content-Type: text/plain; charset="UTF-8"
+--=-=-=
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2020-10-15 at 07:39 +0200, Christoph Hellwig wrote:
-> On Wed, Oct 14, 2020 at 09:12:08PM +0200, Nicolas Saenz Julienne wrote:
-> > +	zone_dma_bits =3D min(zone_dma_bits,
-> > +			    (unsigned int)ilog2(of_dma_get_max_cpu_address(NULL)));
->=20
-> Plase avoid pointlessly long lines.  Especially if it is completely trivi=
-al
-> by using either min_t or not overindenting like here.
+Serge Semin <Sergey.Semin@baikalelectronics.ru> writes:
 
-Noted
+> On Wed, Oct 14, 2020 at 05:09:37PM +0300, Felipe Balbi wrote:
+>>=20
+>> Hi Serge,
+>>=20
+>> Serge Semin <Sergey.Semin@baikalelectronics.ru> writes:
+>> > In accordance with the DWC USB3 bindings the corresponding node name is
+>> > suppose to comply with Generic USB HCD DT schema, which requires the U=
+SB
+>>=20
+>
+>> DWC3 is not a simple HDC, though.
+>
+> Yeah, strictly speaking it is equipped with a lot of vendor-specific stuf=
+f,
+> which are tuned by the DWC USB3 driver in the kernel. But after that the
+> controller is registered as xhci-hcd device so it's serviced by the xHCI =
+driver,
 
+in Dual-role or host-only builds, that's correct. We can also have
+peripheral-only builds (both SW or HW versions) which means xhci isn't
+even in the picture.
 
---=-OaOQtpsUFcwLROOxxpTG
+=2D-=20
+balbi
+
+--=-=-=
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+IHvsACgkQlfZmHno8
-x/511ggAimtLNT1WNeWV5A+8xmnbf6JaeGSMxX4cRu7fCOEQY3+w1xLBF994fK2Z
-kHNQZKeMTUpyU5J1peNUeL52DcoXp3z8htpZnX/w3v1RR8SRfii+A/t0d0uFKMeo
-v7Fs/E4MHQDQWCfOBFCZM3htkNroqUEPAqYokg3He813rN9XLva43uK4ZovOHOC6
-9JN/hGr8SIH4ETOtshdRr5vOtXWfDNAvF1xXn/7GBiZQvK4JqYn+xQQH2+Of8X+G
-hF6lOhwA0/OZr33K5Dg0E+8wBDFGYwkX8UQ4BQpQC6vplNalO7Uo3TtQdqrEPB6W
-L9yUr3CbkmXh5Uo5Wl5oa/bf5phnpw==
-=NZRQ
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl+IIUoRHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQZO3Q//SiuQrPc8kbjk55HntU2Nq2ql7KHubHOj
+ZhrcegAbPbzA0vqIIasxjkXAC8Abbz3Bn59kDuu0ohRtTG1sKXMrN1aqkIo1tTh+
+zkF7t+k5cdunzJ19jb0lohFu/eDK0JPuXRoByJfUhbxIZfWbacO7bG8TkClU7zhL
+denO6pfQG1nOetdAaHZV9imMuTKJOrnl+bcHx5tNcV9sH02sC6OVXBn4dN5ZnABf
+/FdDd671tZMcz43t7jm1vNk7yxgZPSqQ6myBeXQ45ZL2mn9i0gyi4eEWy29vLwu9
+kVUhb9nrliaBsf/X/+oh05qRACLg/noIcuSpXMtu8tmR2DIcwDijYG8XOsBaDLEj
+ZYSJju7/JQ2XUmrS2s/xWtjcqQN0ZxVsJx0Vy4JZNRQ404qs2cqjDeUFdclP+fdJ
+90W74TKzXS1/t52pQyG84LSM648I/7PhUWara2RV9jds7XPgFuFCwWTxEKkyQCSW
+ayPWVASHrKX0Kzp77GW2UUILCIo+luyMMd7V/BraTI6L+PMBL6+etB/O72UUXdb9
+E2hQyJojMpg7BZ6dnpLcvbtHetLtW1hLisTOfD3NbPUyJzPJAgLt8D77SN5ncTUy
+nC8/57GA0Bs2uzYEB6TlPV4i7c9tLT3MJrlVE/p4uziQ7R/b34xbHDX3xNcspk9Q
+vO7uMM8lF9I=
+=XrV0
 -----END PGP SIGNATURE-----
-
---=-OaOQtpsUFcwLROOxxpTG--
-
+--=-=-=--
