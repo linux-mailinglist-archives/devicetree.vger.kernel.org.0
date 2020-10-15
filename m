@@ -2,222 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C624928FA5B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 23:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F236E28FAAC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 23:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392478AbgJOVEg convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 15 Oct 2020 17:04:36 -0400
-Received: from mailoutvs38.siol.net ([185.57.226.229]:57212 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2392476AbgJOVEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 17:04:36 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 8C5C9526FB0;
-        Thu, 15 Oct 2020 23:04:31 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id FG2958MajVAL; Thu, 15 Oct 2020 23:04:31 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id ECA1E526FA2;
-        Thu, 15 Oct 2020 23:04:30 +0200 (CEST)
-Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 3DB14526EE1;
-        Thu, 15 Oct 2020 23:04:30 +0200 (CEST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: Re: [PATCH v2] arm64: dts: allwinner: h6: add eMMC voltage property for Beelink GS1
-Date:   Thu, 15 Oct 2020 23:09:51 +0200
-Message-ID: <8575197.bU9TK3i2h4@kista>
-In-Reply-To: <20201015093544.zwxjzwmu77jz55d7@gilmour.lan>
-References: <20201003092001.405238-1-peron.clem@gmail.com> <2745255.UFgyrzHpml@kista> <20201015093544.zwxjzwmu77jz55d7@gilmour.lan>
+        id S1731021AbgJOV3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 17:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726365AbgJOV3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 17:29:45 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20A1C061755
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 14:29:44 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id x7so183075eje.8
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 14:29:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=shNugDWCSFxMFaQhudWs8qBWQPZ07aTny77+Ie1FHlk=;
+        b=WsvessV78yuDktprTp/4iqa3Adv1XtNl2N/v19ZJnZoqVtqW3R89jenV6efR955q/r
+         w/t7xoaoNh7s+6TICZL6hGqJEjkuoQuGozFyTv0FDKf47JoY98kaBG86Az0J9yrlcxxG
+         WWCFFWYtDAiJztGSud9FB31svTcPtnbTB6Mhc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=shNugDWCSFxMFaQhudWs8qBWQPZ07aTny77+Ie1FHlk=;
+        b=uKq1ED4a6O7UJefSk1Z2Xd+o4X7G/M6e0D0O0t5AxA2F6Vmn7lnWrl9oVCS7XGWuZf
+         QbkvpmUUQH2A3wqjQy7w8GxkvU6kdbq/rlnvVC6KmtjkJK6tg+RTgvbsPH7XZzdfoN6G
+         xaXZaLMYNkDMIYdR1+ZpU8CMEisa1cxVv8NXBIPpB+xPh9efRCAAcTj730AuLP9G7FKu
+         K8kOjRFKdMiwk5uIy8iAM/+hncwKMbkNWTpQtTWDjGuR/8QOMwEKjpPgJkmajcdyjhhe
+         d9gJASGZTBWnGxYdU5kSOAU1e3ZY8xekTFQQ/G9ach5WdZJrxAO8Me/S7Gmz7owhRJ87
+         UB6w==
+X-Gm-Message-State: AOAM53390QgH/jsB9LLnApAJoCjrQvGPfon6iPBv9J52vxG3d5mIUVgY
+        KamS8EMgt4yygSnuHCDxpbba3mvzCfTAUA==
+X-Google-Smtp-Source: ABdhPJy28sl7CJrzbiecFn0WB1kKy3nCQQrMg6idilPk379jcACEw2zxT23JeN9/9jAq74DWlA1FJw==
+X-Received: by 2002:a17:906:4b19:: with SMTP id y25mr321436eju.393.1602797383403;
+        Thu, 15 Oct 2020 14:29:43 -0700 (PDT)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com. [209.85.208.52])
+        by smtp.gmail.com with ESMTPSA id v21sm98973edt.80.2020.10.15.14.29.42
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Oct 2020 14:29:42 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id x1so247555eds.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 14:29:42 -0700 (PDT)
+X-Received: by 2002:a50:e40b:: with SMTP id d11mr491296edm.198.1602797381996;
+ Thu, 15 Oct 2020 14:29:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
+References: <20201013080103.410133-1-amstan@chromium.org> <20201013010056.v2.2.I96b8d872ec51171f19274e43e96cadc092881271@changeid>
+ <20201014141946.mkrvpkrttucffkhj@holly.lan>
+In-Reply-To: <20201014141946.mkrvpkrttucffkhj@holly.lan>
+From:   Alexandru M Stan <amstan@chromium.org>
+Date:   Thu, 15 Oct 2020 14:29:05 -0700
+X-Gmail-Original-Message-ID: <CAHNYxRx3J7XUE-hWa8-6_bOePsw1oeY9uuuehy=yCxN2RyqsjQ@mail.gmail.com>
+Message-ID: <CAHNYxRx3J7XUE-hWa8-6_bOePsw1oeY9uuuehy=yCxN2RyqsjQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] ARM: dts: rockchip: veyron: Remove 0 point from brightness-levels
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne četrtek, 15. oktober 2020 ob 11:35:44 CEST je Maxime Ripard napisal(a):
-> On Tue, Oct 13, 2020 at 11:27:33PM +0200, Jernej Škrabec wrote:
-> > Dne petek, 09. oktober 2020 ob 09:36:51 CEST je Maxime Ripard napisal(a):
-> > > On Thu, Oct 08, 2020 at 10:00:06PM +0200, Clément Péron wrote:
-> > > > Hi Maxime,
-> > > > 
-> > > > Adding linux-sunxi and Jernej Skrabec to this discussion.
-> > > > 
-> > > > On Thu, 8 Oct 2020 at 17:10, Maxime Ripard <maxime@cerno.tech> wrote:
-> > > > >
-> > > > > Hi Clément,
-> > > > >
-> > > > > On Mon, Oct 05, 2020 at 08:47:19PM +0200, Clément Péron wrote:
-> > > > > > On Mon, 5 Oct 2020 at 11:21, Maxime Ripard <maxime@cerno.tech> 
-wrote:
-> > > > > > >
-> > > > > > > Hi Clément,
-> > > > > > >
-> > > > > > > On Sat, Oct 03, 2020 at 11:20:01AM +0200, Clément Péron wrote:
-> > > > > > > > Sunxi MMC driver can't distinguish at runtime what's the I/O 
-> > voltage
-> > > > > > > > for HS200 mode.
-> > > > > > >
-> > > > > > > Unfortunately, that's not true (or at least, that's not related 
-to 
-> > your patch).
-> > > > > > >
-> > > > > > > > Add a property in the device-tree to notify MMC core about 
-this
-> > > > > > > > configuration.
-> > > > > > > >
-> > > > > > > > Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce 
-Beelink 
-> > GS1 board")
-> > > > > > > > Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> > > > > > > > ---
-> > > > > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
-> > > > > > > >  1 file changed, 1 insertion(+)
-> > > > > > > >
-> > > > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-
-> > gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > > > > > > index 049c21718846..3f20d2c9bbbb 100644
-> > > > > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > > > > > > @@ -145,6 +145,7 @@ &mmc2 {
-> > > > > > > >       vqmmc-supply = <&reg_bldo2>;
-> > > > > > > >       non-removable;
-> > > > > > > >       cap-mmc-hw-reset;
-> > > > > > > > +     mmc-hs200-1_8v;
-> > > > > > > >       bus-width = <8>;
-> > > > > > > >       status = "okay";
-> > > > > > > >  };
-> > > > > > >
-> > > > > > > I'm not really sure what you're trying to fix here, but as far as 
-MMC
-> > > > > > > goes, eMMC's can support io voltage of 3.3, 1.8 and 1.2V. Modes 
-up 
-> > until
-> > > > > > > HS DDR (50MHz in DDR) will use an IO voltage of 3.3V, higher 
-speed 
-> > modes
-> > > > > > > (HS200 and HS400) supporting 1.8V and 1.2V.
-> > > > > >
-> > > > > > Some users report that the eMMC is not working properly on their
-> > > > > > Beelink GS1 boards.
-> > > > > >
-> > > > > > > The mmc-hs200-1_8v property states that the MMC controller 
-supports 
-> > the
-> > > > > > > HS200 mode at 1.8V. Now, I can only assume that since BLDO2 is 
-set 
-> > up at
-> > > > > > > 1.8V then otherwise, the MMC core will rightfully decide to use 
-the
-> > > > > > > highest supported mode. In this case, since the driver sets it, 
-it 
-> > would
-> > > > > > > be HS-DDR at 3.3V, which won't work with that fixed regulator.
-> > > > > > >
-> > > > > > > I can only assume that enabling HS200 at 1.8V only fixes the 
-issue 
-> > you
-> > > > > > > have because otherwise it would use HS-DDR at 3.3V, ie not 
-actually
-> > > > > > > fixing the issue but sweeping it under the rug.
-> > > > > > >
-> > > > > > > Trying to add mmc-ddr-1_8v would be a good idea
-> > > > > >
-> > > > > > Thanks for the explanation, this is indeed the correct one.
-> > > > > > So It looks like the SDIO controller has an issue on some boards 
-when
-> > > > > > using HS-DDR mode.
-> > > > > >
-> > > > > > Is this patch acceptable with the proper commit log?
-> > > > >
-> > > > > If HS-DDR works, yes, but I assume it doesn't?
-> > > > 
-> > > > After discussing with Jernej about this issue, I understood that:
-> > > > - Automatic delay calibration is not implemented
-> > > > - We also miss some handling of DDR related bits in control register
-> > > > 
-> > > > So none of H5/H6 boards should actually work.
-> > > > (Some 'lucky' boards seem to work enough to switch to HS200 mode...)
-> > > > 
-> > > > To "fix" this the H5 disable the HS-DDR mode in sunxi mmc driver :
-> > > > https://github.com/torvalds/linux/blob/master/drivers/mmc/host/sunxi-mmc.c#L1409
-> > > 
-> > > I find it suspicious that some boards would have traces not good enough
-> > > for HS-DDR (50MHz in DDR) but would work fine in HS200 (200MHz in SDR).
-> > > If there's some mismatch on the traces, it will only be worse in HS200.
-> > 
-> > FYI, similar situation is also with Tanix TX6 board. Mine works well in 
-HS-DDR 
-> > mode, but some people reported that it doesn't work for them. The only 
-> > possible difference could be different eMMC IC. I'll try to confirm that.
-> > 
-> > Anyway, I did some tests on OrangePi 3 board which also have eMMC. Both 
-modes 
-> > (HS-DDR and HS200) are supported and work well.
-> 
-> The Orange Pi 3 has an HS400-capable eMMC ?!
-> 
-> That's really good news, I've initially done the HS200 support on a
-> custom board I had to give back and couldn't find any board with
-> HS200/HS400 since.
+On Wed, Oct 14, 2020 at 7:19 AM Daniel Thompson
+<daniel.thompson@linaro.org> wrote:
+>
+> On Tue, Oct 13, 2020 at 01:01:02AM -0700, Alexandru Stan wrote:
+> > After the "PWM backlight interpolation adjustments" patches, the
+> > backlight interpolation works a little differently. The way these
+> > dts files were working before was relying on a bug (IMHO).
+> >
+> > Remove the 0-3 range since otherwise we would have a 252 long
+> > interpolation that would slowly go between 0 and 3, looking really bad
+> > in userspace.
+> >
+> > We don't need the 0% point, userspace seems to handle this just fine
+> > because it uses the bl_power property to turn off the display.
+> >
+> > Signed-off-by: Alexandru Stan <amstan@chromium.org>
+>
+> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
 
-Yes, I think all H6 boards with eMMC support HS400. If you didn't already 
-erase Android from eMMC, I suggest to run it and grep dmesg for HS400. I'm 
-pretty sure it will be there.
+Thank you!
 
-> 
-> > Interesting observation is that speed test (hdparm -t) reported 80.58
-> > MB/sec for HS-DDR mode and 43.40 MB/sec for HS200. As it can be seen
-> > here, HS-DDR is quicker by a factor of 2, but it should be the other
-> > way around. Reason for this is that both modes use same base clock and
-> > thus HS-DDR produces higher speed. If I change f_max to 150 MHz (max.
-> > per datasheet for SDR @ 1.8 V) then naturally HS200 mode is faster
-> > (124.63 MB/sec) as HS-DDR as it should be.
-> 
-> If it work fine on the H6, we should set the max-frequency property on
-> the DT, just like I did on the A64.
+>
+> Note also shouldn't this be patch 1 of the set. AFAICT it makes sense
+> whether or not the interpolation algorithm is changed.
 
-Oh, I missed that property. I'll check. However, we can't blindly set max-
-frequency. According to user manual, HS400 supports lower max. frequency than 
-HS200.
+Yeah, I guess it could be. Sorry I didn't think of it that way before,
+I'm used to landing things in a group.
 
-> 
-> > This would be actually correct test for problematic boards but
-> > unfortunately I don't have it. I also hacked in support for HS400
-> > (~143 MB/s) and this mode is the only one which really needs
-> > calibration on my board.
-> > 
-> > Two observations from BSP driver:
-> > 1. Module clock is disabled before adjusting DDR bit and afterwards it's 
-re-
-> > enabled . That could fix some kind of glitches.
-> > 2. SDMMC peripheral runs on higher clock than on mainline.
-> > 
-> > > And for the delay calibration, iirc, that's only necessary for HS400
-> > > that we don't support?
-> > 
-> > According to BSP driver and its DT, HS200 also needs calibration. However, 
-it 
-> > seems that using it on lower speed it isn't needed.
-> 
-> Which calibration do you mean? IIRC, the data strobe signal is only used
-> (optionally) in HS400. The controller might have some internal
-> calibration for other modes though.
+In particular on veyron I assume it will almost be a noop without
+having my driver patch (especially with the findings of 0% not being
+that important).
 
-Actually both. BSP always adjust both calibration values at the same time 
-based on table from DT.
+Feel free to land this independently.
 
-Best regards,
-Jernej
+>
+>
+> Daniel.
 
-
+Alexandru Stan (amstan)
