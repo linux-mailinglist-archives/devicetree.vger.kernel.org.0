@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2517928F37E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C54428F387
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:42:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730033AbgJONk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 09:40:29 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:40593 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729837AbgJONk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 09:40:29 -0400
-Received: by mail-oi1-f193.google.com with SMTP id m128so3126273oig.7;
-        Thu, 15 Oct 2020 06:40:28 -0700 (PDT)
+        id S1729822AbgJONmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 09:42:08 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:41076 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729543AbgJONmI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 09:42:08 -0400
+Received: by mail-oi1-f196.google.com with SMTP id q136so3132295oic.8;
+        Thu, 15 Oct 2020 06:42:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=EOqcpAW3QJidtNkzeDWtmKSshgjwO1Lbx6qQkgeNQdo=;
-        b=Uga8vmOL7MQNdgsyjkcUgaZNRIkUfK8IHojXm1/j7e+77bJJa/2tumwc8hUmhfLacu
-         yF6AhG07L1RQxlWyANQk0vqQJZOrWM8q43q5jdUqyCW7i3XcbuPZaChd9OwhEDKm4NE7
-         rE6JoynEqjc4vNpnEWJryIVlXH6ieoKgm1LNDX6cWk1CX2Y7CrTUSOqk0kvnBx3/rnFp
-         GmeF5aKKIR3Gx5DNdq88pn4zJyXTwnY0q6MenDsL6PhC2P1EOvKGMWRsd5+Q2HAJEc8X
-         Ukk+snIl+p3elq4lF1aJeATt3LsE3kb9qXY776vuPh+mkGVTZPGdFv+G1wc/KRbe2ZHc
-         ROlA==
-X-Gm-Message-State: AOAM532lOSQJNClSzl1qbx5UkvwxyyHTUV/p5Ti5o4CYaDiTEzAlIZvM
-        iFeKsfLoI55vHc+dcJ5mNDqpm1cMJjER4V4g0Wm6IK5L
-X-Google-Smtp-Source: ABdhPJw9Zr5JPQTUmWofZa2CwNMCls3dZWBOXE34dhtBiHfQoGf5kljzQNOu/ZUFgYkdU0wYWGiXd6IymaFqmZLhMlc=
-X-Received: by 2002:aca:724a:: with SMTP id p71mr2189525oic.157.1602769228038;
- Thu, 15 Oct 2020 06:40:28 -0700 (PDT)
+        bh=orF3cUU9oOlrO0FJRLdebs2VBGQcFMsbBrA1OLiycKc=;
+        b=E/Pycu/0l1XZnpUdw5stPYHepQP6695avZbWdQQM8OOaKtWzpwfKWnA8qWYOwrWWlP
+         Uyo9GrzhkM8gIM0wUEmfv00ojlMBa9FnODWiggpBiedP+pDsU5SvcOdIyTWyoUELDuA4
+         5YcY3ypl+8rHci2Po9LUsNX2wduaWarlG/mejOmOinVrfSVxqxLLW3U2OJ9egLLEJIx7
+         EzPV4quwaotN8pKh7OAL7pdUlmbt/o+bkHSojx/hYSzOaI6OYmq9LHl0MHP+4cdEEvQP
+         evRBMf0VgHWceVXlHB0cziYH8LN2L+heK8jfwzQ/uxN0qcM3g3+MpxqV/5fKCEzOuqNY
+         ESRQ==
+X-Gm-Message-State: AOAM533TeRMSSjUyj51A+aiQ/sUwCf7FGxVHJxbBhaYiQ3KO0rb/0c54
+        C02YCTlvXw04r+o80u2UaH80Nb6+jCTZSvvYO4w=
+X-Google-Smtp-Source: ABdhPJwIHm97HoA7V3FJf/i1TcP1cp8zPRHXwEDlwF/Nb56j3OiUhYXo+FNYC1Wl0GFutzFDpqRcyF818BuYmu4Dmng=
+X-Received: by 2002:aca:c490:: with SMTP id u138mr2200333oif.54.1602769327067;
+ Thu, 15 Oct 2020 06:42:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201002114426.31277-1-lukasz.luba@arm.com> <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
- <765e6603-b614-fb72-64ff-248b42474803@linaro.org> <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org> <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org> <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
- <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
-In-Reply-To: <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Thu, 15 Oct 2020 15:40:16 +0200
-Message-ID: <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Quentin Perret <qperret@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>
+References: <20201015132350.8360-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20201015132350.8360-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 15 Oct 2020 15:41:56 +0200
+Message-ID: <CAMuHMdUogbfHYv+g3+2=7JwhgH3MngmDEe5nvjZwkjTOJyn9dQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: hihope-rzg2-ex: Drop rxc-skew-ps
+ from ethernet-phy node
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 12:22 PM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
-> On 15/10/2020 11:00, Lukasz Luba wrote:
->
-> [ ... ]
->
-> >> There is the SCMI and the DT. Because there are two sources where it is
-> >> impossible to know if they are using the same units, we are stuck to
-> >> ensure a consistency for the kernel.
-> >>
-> >> The platform should use:
-> >>   - the SCMI only (scaled or real)
-> >>   - the DT only (real)
-> >>   [ - the firmware file only (scaled or real) ]
-> >>
-> >
-> > Do you mean by SCMI - registration using em_dev_register_perf_domain() ?
->
-> It was high level description, but yes, I guess it is the case.
->
-> >> As it is not possible to know if they are scaled or real, there is no
-> >> choice except making them mutually exclusive.
-> >
-> > So you propose a bit more restriction in registration EM, to not get
-> > lost in the future. I also have these doubts. Let's consider it and
-> > maybe agree.
-> >
-> > I've recommended Qcom to use em_dev_register_perf_domain() when they
-> > have this obfuscated power values. Then any developer in the future
-> > who wants to add EM for a new device on that platform, should use the
-> > em_dev_register_perf_domain().
-> >
-> > In this case the flag in EM that you have proposed makes sense.
-> > We probably need an argument 'bool abstract_scale' in the
-> > em_dev_register_perf_domain(..., bool abstract_scale)
-> > as a source of information.
->
-> I was suggesting to add a flag to the em_perf_domain structure giving
-> the source of the power numbers.
->
-> So if the IPA is having the 'sustainable-power' set in DT but the
-> em_perf_domain is flagged with power number coming from SCMI, then they
-> will be incompatible, the thermal zone will fail to register.
->
->
-> > We would allow to co-exist em_dev_register_perf_domain(..., false)
-> > with dev_pm_opp_of_register_em() EM devices.
-> >
-> > Is it make sense?
->
-> Well, it does not change my opinion. We should assume the energy model
-> is always milliwatts. If the SoC vendors find a way to get around with
-> bogoWatts, then good to them and up to them to deal with in the future.
+Hi Biju,
 
-That sounds fair enough, but it also means that any kernel patches
-using power units different from milliwatts for the EM should be
-rejected in the future, doesn't it?
+On Thu, Oct 15, 2020 at 3:24 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> HiHope RZG2[HMN] boards uses Realtek phy and the driver does not support
+> rxc-skew-ps property. So remove rxc-skew-ps from ethernet-phy node.
+>
+> Fixes: 7433f1fb8ec8fe ("arm64: dts: renesas: Add HiHope RZ/G2M sub board support")
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-And the existing code using different power units for the EM (if any)
-should be updated/fixed accordingly, shouldn't it?
+Thanks for your patch!
 
-Otherwise I don't see now this can be regarded as a hard rule.
+> --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+> @@ -23,7 +23,6 @@
+>         status = "okay";
+>
+>         phy0: ethernet-phy@0 {
+> -               rxc-skew-ps = <1500>;
+>                 reg = <0>;
+>                 interrupt-parent = <&gpio2>;
+>                 interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+
+Should "rx-internal-delay-ps = <1800>" be added to the avb node instead
+(after [1] has entered v5.10-rc1, and the DTS part of [2] has been
+ applied to renesas-devel)?
+
+[1] [PATCH net-next v4 resend 5/5] ravb: Add support for explicit
+internal clock delay configuration
+    https://lore.kernel.org/linux-renesas-soc/20201001101008.14365-6-geert+renesas@glider.be/
+[2] [PATCH v3 0/7] net/ravb: Add support for explicit internal clock
+delay configuration
+    https://lore.kernel.org/linux-renesas-soc/20200819134344.27813-1-geert+renesas@glider.be
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
