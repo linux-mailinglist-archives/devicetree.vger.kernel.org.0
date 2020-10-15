@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0754728F012
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 12:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C74E28F026
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 12:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389264AbgJOKWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 06:22:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47034 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389258AbgJOKWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 06:22:00 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A432C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 03:22:00 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id n6so2707545wrm.13
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 03:22:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HSLoaI3Bb+OZrae1XegNlhU8itLV0T9QFLmqbbYjrSE=;
-        b=njFZ7+MCpBTWYGR9y3/X+X/ytYtI07rgf4gZK9LzXmwOutQ8kBYZtgQDtP1kssCS44
-         xnvCjf9B8hjm8GsI3tMCgFSTnAzXI/BzTXUHGjw+Kv9m4yYCFV0vQO/nGZkaQHYI4KOY
-         mwjdo8uVWcGjiGJ/qS646+02iibE8IatAJt5W0yIjkNZrqqPQIjQFsaa2rGDMETeHsK/
-         1nLhBl2coETZoab3Dowu9J5fPiaJjk0FarQb46H0+BFPhgUbH4dwurPycn8ldNgs2f+s
-         XP6rXLQskJuqrZ8jBdwuURi1FXhq1Ae2vV5yI7nOHt0BFJREmVdwz6VSlwa0WhWKIuGp
-         /aVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HSLoaI3Bb+OZrae1XegNlhU8itLV0T9QFLmqbbYjrSE=;
-        b=qtAnL+iJGEr/Yw7WenSiwSSC25eUAgxYjd6I0PPo9gYDQ1T9XRBfgGCS7jlNAUM3/3
-         IlXDejYKtwZzSa9G+AoYCbReAqMIztKeBOpXTU0e2KFh5o7lUpxT5uqAI9e7Qjt2mfwy
-         kpPx6VJI04SQrnBb2603jLTV184PzzEznplr7Kho58YndkDE1IfHbbS4riG8NC8iqHX2
-         1ig6coL7OdyMc8rMgAb1mdbi46CBpnROjD1LBF7c8aRXTsMhCq0JvZ5k7uai9GgIVbK3
-         OSz5zaRs1Dk53zR37HK2h3Dg9qCU9JumnPYoVW4Z63K4jQXEiTpO3b0KIQfmwj30eHi+
-         zvHA==
-X-Gm-Message-State: AOAM532fbMN3PVwKp0+Ky7WJPIyTP7Mu5+9sE9kegxBcfwgC/W0oQnNN
-        f+3eQaHnt2O8XikXAGHEgWx61g==
-X-Google-Smtp-Source: ABdhPJzJncH5BCQjJ4evPmXyN+1spvZRDp4Rs202jnAZ/jtV+lnqrDDddpV2zfaeIyf0COpuFX86AA==
-X-Received: by 2002:adf:f182:: with SMTP id h2mr3452294wro.199.1602757318825;
-        Thu, 15 Oct 2020 03:21:58 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:5400:5b12:4f4c:844b? ([2a01:e34:ed2f:f020:5400:5b12:4f4c:844b])
-        by smtp.googlemail.com with ESMTPSA id u6sm3437856wmj.40.2020.10.15.03.21.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Oct 2020 03:21:58 -0700 (PDT)
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     rjw@rjwysocki.net, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-doc@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, amitk@kernel.org,
-        corbet@lwn.net, Dietmar.Eggemann@arm.com, qperret@google.com,
-        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org
-References: <20201002114426.31277-1-lukasz.luba@arm.com>
- <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
- <765e6603-b614-fb72-64ff-248b42474803@linaro.org>
- <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
- <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
- <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
-Date:   Thu, 15 Oct 2020 12:21:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1731130AbgJOKZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 06:25:53 -0400
+Received: from mx2.suse.de ([195.135.220.15]:35470 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726678AbgJOKZw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 06:25:52 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id AF2B5AC83;
+        Thu, 15 Oct 2020 10:25:50 +0000 (UTC)
+Message-ID: <e9db1a11519dce0938cef867179160a818ec4143.camel@suse.de>
+Subject: Re: [PATCH 6/7] ARM: dts: Add dts for Raspberry Pi 4 + Cirrus Logic
+ Lochnagar2
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>, broonie@kernel.org,
+        robh+dt@kernel.org
+Cc:     patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org
+Date:   Thu, 15 Oct 2020 12:25:49 +0200
+In-Reply-To: <20201014145418.31838-7-rf@opensource.cirrus.com>
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+         <20201014145418.31838-7-rf@opensource.cirrus.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-rg1Z1psyHTidcmcRlxsR"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-In-Reply-To: <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/10/2020 11:00, Lukasz Luba wrote:
 
-[ ... ]
+--=-rg1Z1psyHTidcmcRlxsR
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->> There is the SCMI and the DT. Because there are two sources where it is
->> impossible to know if they are using the same units, we are stuck to
->> ensure a consistency for the kernel.
->>
->> The platform should use:
->>   - the SCMI only (scaled or real)
->>   - the DT only (real)
->>   [ - the firmware file only (scaled or real) ]
->>
-> 
-> Do you mean by SCMI - registration using em_dev_register_perf_domain() ?
+Hi Richard,
+your series is very welcome, upstream support for audio codecs on the RPi4 =
+has
+always been lackluster.
 
-It was high level description, but yes, I guess it is the case.
+Could you provide more information on the actual products? Are there custom
+made hats for the RPi4 or this wired into a generic development board.
 
->> As it is not possible to know if they are scaled or real, there is no
->> choice except making them mutually exclusive.
-> 
-> So you propose a bit more restriction in registration EM, to not get
-> lost in the future. I also have these doubts. Let's consider it and
-> maybe agree.
-> 
-> I've recommended Qcom to use em_dev_register_perf_domain() when they
-> have this obfuscated power values. Then any developer in the future
-> who wants to add EM for a new device on that platform, should use the
-> em_dev_register_perf_domain().
-> 
-> In this case the flag in EM that you have proposed makes sense.
-> We probably need an argument 'bool abstract_scale' in the
-> em_dev_register_perf_domain(..., bool abstract_scale)
-> as a source of information.
+On Wed, 2020-10-14 at 15:54 +0100, Richard Fitzgerald wrote:
+> This is based on the default bcm2711-rpi-4-b.dts.
 
-I was suggesting to add a flag to the em_perf_domain structure giving
-the source of the power numbers.
+Note that you could've included bcm2711-rpi-4.dts (as if it was a .dtsi).
 
-So if the IPA is having the 'sustainable-power' set in DT but the
-em_perf_domain is flagged with power number coming from SCMI, then they
-will be incompatible, the thermal zone will fail to register.
+> Configurations are provided for Cirrus Logic codecs CS42L92, CS47L15,
+> CS47L24, CS47L35, CS47L90 and WM8998.
+>=20
+> For each codec there is a sound node and a codec device node and both
+> default to disabled. Enable the pair for the codec in use.
+>=20
+> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+> ---
 
+Sadly I don't think creating a new device tree is a good solution here. If =
+we
+were to do so for every RPi hat/usage it'd become unmanageable very fast. T=
+here
+is a way to maintain this in the open nonetheless. I suggest you build a DT
+overlay and submit it to https://github.com/raspberrypi/linux, see
+'arch/arm/boot/dts/overlays.' The Raspberry Pi engineers have a kernel bran=
+ch
+that tracks of the latest kernel release, so once you get the rest of patch=
+es
+sorted out and they are included in a release it'll make sense to do so.
 
-> We would allow to co-exist em_dev_register_perf_domain(..., false)
-> with dev_pm_opp_of_register_em() EM devices.
-> 
-> Is it make sense?
+I can't tell for other distros, but opensuse packages overlays, so the effo=
+rt
+will ultimately be useful to users.
 
-Well, it does not change my opinion. We should assume the energy model
-is always milliwatts. If the SoC vendors find a way to get around with
-bogoWatts, then good to them and up to them to deal with in the future.
+Regards,
+Nicolas
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+--=-rg1Z1psyHTidcmcRlxsR
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+II60ACgkQlfZmHno8
+x/4U9wgAsWhm4/aDqQO9wUk6ramYK5rUch1Csrbbalv3FNu6rXMMkEmpue5N6A1F
+4paxIRqGcyBoG8/h2v0ZwR9vtxQsfVjowhMT8Zg7I18Q5NyY8BLnpcgAVnwHaJPK
+8mDXlnNW7z7lDW4iPquUynmKIXWxoEiBVU5jRiZG/z7q7Q6y6sWw0jxA9RDdW6Tb
+sEqixk28Ood4n0o/F01/o3CLyiw1wc+PR/0F93eDsTrfzRhrqokO/8oAhpS9ka6S
+5QdcQfiLNtmgw+pC7of84rmMxQq/cLkzz1hpy0UVUTFwrB1gns3fIPJF8DBYcoP5
+xz5IwG+98djRhcojk1ncD+uTqoHi3g==
+=iBXI
+-----END PGP SIGNATURE-----
+
+--=-rg1Z1psyHTidcmcRlxsR--
+
