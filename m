@@ -2,251 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4819C28EEC1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 10:48:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4920628EED2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 10:54:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388398AbgJOIsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 04:48:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388361AbgJOIsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 04:48:51 -0400
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A0CCC0613D2
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 01:48:50 -0700 (PDT)
-Received: by mail-yb1-xb43.google.com with SMTP id b138so1624120yba.5
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 01:48:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OCGpkfyXT7lalrSxx6+zXRftdaVMIWoaY7ihJlTQLBI=;
-        b=Xw6YPMFSfKyv8GbppbQLPH1uhiSuiI0YHWUGxoVSB0YeYm6wzEUG7H8CnEvj5yCdrB
-         P11/KyDp+DQtqqZMq7+peIkEZbViFdaTZuRYvMzqh2dBMa0ZvmbeANp9myWDwxssmsAF
-         bjMRUQM0K3elK3DkMFQUOts+q8ySjqWWTzpPaEY7naWyxXP3UNQM3Zl36Zs5gY+OzVnA
-         f9dlMkhEkdPB54jiImjHbKLKP034vUaqZQMaG6GOiCOocW7D81JmirEcDaURUk981ihS
-         DrdaxZ+b5sWJwz9TgFm0pf7II2wbLM4cnn6Qh2SSKYlRqpGuOBP8noHXVt2Cq7DG4BEP
-         me9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OCGpkfyXT7lalrSxx6+zXRftdaVMIWoaY7ihJlTQLBI=;
-        b=M8D0IoNhxCDeoayXu7xdCmBIpmX2uduLi3lDkPaofcLlkungxme0WKp1ELkEsdmU+l
-         u+CTn/0J70I6UCHC8SeYqIVzGsBe5NRK4MbQQu+E5oT+dMDkenO7nrKAVKVODeJvobpu
-         v0mGJnEc2xWq3cqwAnIH4BOVHz06jcbsWwnwpcLrEGQlHwC/B8jsEheLV4EJFNlbVbcL
-         Rxz8IJdOZhTZcWejOzEXn+6OzYbEADcLuOmCrurnEa9OuQmFOkHzJU7dV/6yfPJcqJt9
-         zr4Wp+ITj+a7/ayyrZTJZpkxmyLzKFyYn60x4E9+HCZcwITmQQw+S0zFqN99yUzR9GUd
-         sTqw==
-X-Gm-Message-State: AOAM5300X/+quui6W8GAMQFTCaw1H+qbf4tY8Pv2GJT/ofRX5wMC+4jV
-        AICLUF4RHgEJdBIkCjwzVDybrR4UCSzJz/YhpJbrHA==
-X-Google-Smtp-Source: ABdhPJzWywG9BWdJEo12OJvVtmVGYe0NCflxSGAea2GAb9mDuTV1WWKwEr9Fioor3y0HP+FfaILfGYHL43eOiGLoQvg=
-X-Received: by 2002:a25:c512:: with SMTP id v18mr4143059ybe.20.1602751729239;
- Thu, 15 Oct 2020 01:48:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201014191235.7f71fcb4@xhacker.debian> <CAGETcx9PiX==mLxB9PO8Myyk6u2vhPVwTMsA5NkD-ywH5xhusw@mail.gmail.com>
- <20201015120206.41b6a454@xhacker.debian> <CAGETcx_jzF_iV5oJQ8BuDBu0b5Z8G=uL0DhA4uS5U9XLuYryjg@mail.gmail.com>
- <20201015161455.744d5041@xhacker.debian>
-In-Reply-To: <20201015161455.744d5041@xhacker.debian>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 15 Oct 2020 01:48:13 -0700
-Message-ID: <CAGETcx_hORWf2HkcUP=Dj6noCUsbj9KsycZ-Hr80BUOwyZaQBg@mail.gmail.com>
-Subject: Re: fw_devlink on will break all snps,dw-apb-gpio users
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
+        id S1730432AbgJOIyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 04:54:15 -0400
+Received: from mx2.suse.de ([195.135.220.15]:57748 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730383AbgJOIyP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 04:54:15 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id E0BDEAEC2;
+        Thu, 15 Oct 2020 08:54:12 +0000 (UTC)
+Message-ID: <de5e33352782331cf0a6ee32c1c8c6bdfe20b6af.camel@suse.de>
+Subject: Re: [PATCH v3 3/8] of/address: Introduce
+ of_dma_get_max_cpu_address()
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        devicetree@vger.kernel.org
+Date:   Thu, 15 Oct 2020 10:54:11 +0200
+In-Reply-To: <CAL_JsqKMGSCTmKF2Lt8GQFx0DVFFH1bLVBw=bRDM7upahGvKDQ@mail.gmail.com>
+References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
+         <20201014191211.27029-4-nsaenzjulienne@suse.de>
+         <CAL_JsqKMGSCTmKF2Lt8GQFx0DVFFH1bLVBw=bRDM7upahGvKDQ@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-YUQJ5U+i4xNz/NZrjBJR"
+User-Agent: Evolution 3.36.5 
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 1:15 AM Jisheng Zhang
-<Jisheng.Zhang@synaptics.com> wrote:
->
-> On Wed, 14 Oct 2020 22:04:24 -0700 Saravana Kannan wrote:
->
-> >
-> >
-> > On Wed, Oct 14, 2020 at 9:02 PM Jisheng Zhang
-> > <Jisheng.Zhang@synaptics.com> wrote:
-> > >
-> > > On Wed, 14 Oct 2020 10:29:36 -0700
-> > > Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > >
-> > > >
-> > > > On Wed, Oct 14, 2020 at 4:12 AM Jisheng Zhang
-> > > > <Jisheng.Zhang@synaptics.com> wrote:
-> > > > >
-> > > > > Hi,
-> > > > >
-> > > > > If set fw_devlink as on, any consumers of dw apb gpio won't probe.
-> > > > >
-> > > > > The related dts looks like:
-> > > > >
-> > > > > gpio0: gpio@2400 {
-> > > > >        compatible = "snps,dw-apb-gpio";
-> > > > >        #address-cells = <1>;
-> > > > >        #size-cells = <0>;
-> > > > >
-> > > > >        porta: gpio-port@0 {
-> > > > >               compatible = "snps,dw-apb-gpio-port";
-> > > > >               gpio-controller;
-> > > > >               #gpio-cells = <2>;
-> > > > >               ngpios = <32>;
-> > > > >               reg = <0>;
-> > > > >        };
-> > > > > };
-> > > > >
-> > > > > device_foo {
-> > > > >         status = "okay"
-> > > > >         ...;
-> > > > >         reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
-> > > > > };
-> > > > >
-> > > > > If I change the reset-gpio property to use another kind of gpio phandle,
-> > > > > e.g gpio expander, then device_foo can be probed successfully.
-> > > > >
-> > > > > The gpio expander dt node looks like:
-> > > > >
-> > > > >         expander3: gpio@44 {
-> > > > >                 compatible = "fcs,fxl6408";
-> > > > >                 pinctrl-names = "default";
-> > > > >                 pinctrl-0 = <&expander3_pmux>;
-> > > > >                 reg = <0x44>;
-> > > > >                 gpio-controller;
-> > > > >                 #gpio-cells = <2>;
-> > > > >                 interrupt-parent = <&portb>;
-> > > > >                 interrupts = <23 IRQ_TYPE_NONE>;
-> > > > >                 interrupt-controller;
-> > > > >                 #interrupt-cells = <2>;
-> > > > >         };
-> > > > >
-> > > > > The common pattern looks like the devlink can't cope with suppliers from
-> > > > > child dt node.
-> > > >
-> > > > fw_devlink doesn't have any problem dealing with child devices being
-> > > > suppliers. The problem with your case is that the
-> > > > drivers/gpio/gpio-dwapb.c driver directly parses the child nodes and
-> > > > never creates struct devices for them. If you have a node with
-> > > > compatible string, fw_devlink expects you to create and probe a struct
-> > > > device for it. So change your driver to add the child devices as
-> > > > devices instead of just parsing the node directly and doing stuff with
-> > > > it.
-> > > >
-> > > > Either that, or stop putting "compatible" string in a node if you
-> > > > don't plan to actually treat it as a device -- but that's too late for
-> > > > this driver (it needs to be backward compatible). So change the driver
-> > > > to add of_platform_populate() and write a driver that probes
-> > > > "snps,dw-apb-gpio-port".
-> > > >
-> > >
-> > > Thanks for the information. The "snps,dw-apb-gpio-port" is never used,
-> > > so I just sent out a series to remove it.
-> >
-> > I'd actually prefer that you fix the kernel code to actually use it.
-> > So that fw_devlink can be backward compatible (Older DT + new kernel).
-> > The change is pretty trivial (I just have time to do it for you).
-> >
->
-> I agree the change is trivial, but it will add some useless LoCs like below.
 
-It's not useless if it preserves backward compatibility with DT.
+--=-YUQJ5U+i4xNz/NZrjBJR
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> I'm not sure whether this is acceptable.So add GPIO and DT maintainers to comment.
->
-> Hi Linus, Rob,
->
-> Could you please comment? A simple introduction of the problem:
->
-> As pointed out by Saravana, "gpio-dwapb.c driver directly parses the child
-> nodes and never creates struct devices for them. If you have a node with
-> compatible string, fw_devlink expects you to create and probe a struct
-> device for it", so once we set fw_devlink=on, then any users of gpio-dwapb
-> as below won't be probed.
->
-> device_foo {
->          status = "okay"
->          ...;
->          reset-gpio = <&porta, 0, GPIO_ACTIVE_HIGH>;
-> };
->
-> The compatible string "snps,dw-apb-gpio-port" is never used, but it's in
-> the dt-binding since the dw gpio mainlined. I believe the every dw apb
-> users just copy the compatible string in to soc dtsi. So I submit a series
-> to remove the unused "snps,dw-apb-gpio-port" https://lkml.org/lkml/2020/10/14/1186
-> But this will break Older DT + new kernel with fw_devlink on. Which solution
-> is better?
->
-> If the following patch is acceptable, I can submit it once 5.10-rc1 is out.
->
-> thanks
->
-> diff --git a/drivers/gpio/gpio-dwapb.c b/drivers/gpio/gpio-dwapb.c
-> index 1d8d55bd63aa..b8e012e48b59 100644
-> --- a/drivers/gpio/gpio-dwapb.c
-> +++ b/drivers/gpio/gpio-dwapb.c
-> @@ -19,6 +19,7 @@
->  #include <linux/of_address.h>
->  #include <linux/of_device.h>
->  #include <linux/of_irq.h>
-> +#include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/property.h>
->  #include <linux/reset.h>
-> @@ -694,6 +695,10 @@ static int dwapb_gpio_probe(struct platform_device *pdev)
->         }
->         platform_set_drvdata(pdev, gpio);
->
-> +       err = devm_of_platform_populate(dev);
-> +       if (err)
-> +               goto out_unregister;
-> +
->         return 0;
->
->  out_unregister:
-> @@ -820,6 +825,25 @@ static struct platform_driver dwapb_gpio_driver = {
->
->  module_platform_driver(dwapb_gpio_driver);
->
-> +static const struct of_device_id dwapb_port_of_match[] = {
-> +       { .compatible = "snps,dw-apb-gpio-port" },
-> +       { /* Sentinel */ }
-> +};
-> +
-> +static int dwapb_gpio_port_probe(struct platform_device *pdev)
-> +{
-> +       return 0;
+On Wed, 2020-10-14 at 17:02 -0500, Rob Herring wrote:
+> On Wed, Oct 14, 2020 at 2:12 PM Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> > Introduce of_dma_get_max_cpu_address(), which provides the highest CPU
+> > physical address addressable by all DMA masters in the system. It's
+> > specially useful for setting memory zones sizes at early boot time.
+> >=20
+> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> >=20
+> > ---
 
-No, I'm not asking to do a stub/dummy probe. Move the stuff you do
-inside device_for_each_child_node{} and dwapb_gpio_add_port() into
-this probe function. Those two pieces of code together are effectively
-"probing" a separate gpio controller for each of the child nodes. So
-just create a real struct device (like we do for every other
-"compatible" DT node) and probe each of them properly using the device
-driver core.
+[...]
 
--Saravana
+> > +       struct of_range_parser parser;
+> > +       phys_addr_t subtree_max_addr;
+> > +       struct device_node *child;
+> > +       phys_addr_t cpu_end =3D 0;
+> > +       struct of_range range;
+> > +       const __be32 *ranges;
+> > +       int len;
+> > +
+> > +       if (!np)
+> > +               np =3D of_root;
+> > +
+> > +       ranges =3D of_get_property(np, "dma-ranges", &len);
+>=20
+> I'm not really following why you changed the algorithm here. You're
+> skipping disabled nodes which is good. Was there some other reason?
 
-> +}
-> +
-> +static struct platform_driver dwapb_gpio_port_driver = {
-> +       .driver         = {
-> +               .name   = "gpio-dwapb-port",
-> +               .of_match_table = dwapb_port_of_match,
-> +       },
-> +       .probe          = dwapb_gpio_port_probe,
-> +};
-> +module_platform_driver(dwapb_gpio_port_driver);
-> +
->  MODULE_LICENSE("GPL");
->  MODULE_AUTHOR("Jamie Iles");
->  MODULE_DESCRIPTION("Synopsys DesignWare APB GPIO driver");
->
+Yes, it's a little more complex. But I had to change it in order to be able=
+ to
+start parsing down from an arbitrary device node, which is needed for the u=
+nit
+tests.
+
+for_each_of_allnodes() and friends will traverse the whole tree, regardless=
+ of
+the starting point. I couldn't find a similar function that would just iter=
+ate
+over a subsection of the tree, so I went with this recursive approach.
+
+Regards,
+Nicolas
+
+
+--=-YUQJ5U+i4xNz/NZrjBJR
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+IDjMACgkQlfZmHno8
+x/7rjAf+KrPaZm2zT8XfzDn5CDIf7492No2jTgiouPN9YLIyCBwWqNc3j9ApACr0
+Boxl6eP0BL49yAtVQJz+hq86/9a1TTbqs+xj1mdUG0KruCrKQvSm8sd8DexTFBaV
+zw7F1cvFs6HgYqAmNfK5ybVBoDy1Br0LVK5E05S2baUkID/HZDVSGEwhS3FSaRQP
+WcMPbmIvPgxNg1/Tk16wi9rX2FToZCJymwwil45nHAFnc4hSsudcTHFmX4Td8J01
+jd51b5qeWQ1mX3LY7a4xo0YiR18m69VB0ToPRpQKQvAb24nxMatXip9NtseykiQs
+4jVbFSQAT/FxsnzgjJRMVHJOBZFvAQ==
+=1G9v
+-----END PGP SIGNATURE-----
+
+--=-YUQJ5U+i4xNz/NZrjBJR--
+
