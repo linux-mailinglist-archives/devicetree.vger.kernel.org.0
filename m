@@ -2,225 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E1D28F326
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FF2228F60F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 17:45:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728418AbgJON0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 09:26:08 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:53249 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728216AbgJON0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 09:26:08 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id E19F820011;
-        Thu, 15 Oct 2020 13:26:02 +0000 (UTC)
-Date:   Thu, 15 Oct 2020 17:25:46 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Rui Miguel Silva <rmfrfs@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: imx7-csi: convert bindings to yaml
-Message-ID: <20201015152546.s5fvuxklgludyv2u@uno.localdomain>
-References: <20201014142759.726823-1-rmfrfs@gmail.com>
- <20201014142759.726823-3-rmfrfs@gmail.com>
+        id S1731137AbgJOPpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 11:45:46 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:32646 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731115AbgJOPpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 11:45:46 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09FFXNYu030506;
+        Thu, 15 Oct 2020 17:45:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=FlUps5l1qHs3UktBsfAqXmT7hDBXF55BDMjiS5k1x7Y=;
+ b=NnlY2B+UeYSZo/SFQkGwmcD8r7wIyOUdTGpu3ltoloIfmHj9aJ2KHi4gO1LAbJMlrzCW
+ r08UwbkP0LdFAZl5S8155tLHSA1oaIoGlNuQ6KHEy3O55gkdlXC/6t9r1wW9Demx6SSM
+ +Pc0B3asM1TnVBD1FCtwwHpP9M9r9Q+5E0mRD/XUAABGPkldPVeL7DEem7Q/xh6BR1gF
+ Hk+FwUkMmU6PpCt3chbyfKACed64VSbHFsLkgGqzM/pY0JPycEwFQMZZOLRkqw86vA1g
+ r753221eIgs51gOmZ8uSyjoo8X6c/Qe55+/mDuJR0Sb13czfC3dfOEZDfeTpYsM7PToX 2Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34356enyr4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Oct 2020 17:45:30 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BA2CA10002A;
+        Thu, 15 Oct 2020 17:45:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 641392CA83C;
+        Thu, 15 Oct 2020 17:45:25 +0200 (CEST)
+Received: from SFHDAG2NODE3.st.com (10.75.127.6) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 15 Oct
+ 2020 17:45:24 +0200
+Received: from SFHDAG2NODE3.st.com ([fe80::31b3:13bf:2dbe:f64c]) by
+ SFHDAG2NODE3.st.com ([fe80::31b3:13bf:2dbe:f64c%20]) with mapi id
+ 15.00.1473.003; Thu, 15 Oct 2020 17:45:24 +0200
+From:   Philippe CORNU <philippe.cornu@st.com>
+To:     Rob Herring <robh@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Eric Anholt <eric@anholt.net>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        "Florian Fainelli" <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "bcm-kernel-feedback-list@broadcom.com" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        =?utf-8?B?R3VpZG8gR8O6bnRoZXI=?= <agx@sigxcpu.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Yannick FERTRE <yannick.fertre@st.com>
+Subject: Re: [PATCH] dt-bindings: display: Add dsi-controller.yaml in DSI
+ controller schemas
+Thread-Topic: [PATCH] dt-bindings: display: Add dsi-controller.yaml in DSI
+ controller schemas
+Thread-Index: AQHWmQ+ulgrOjTAQxEucP5u428qq1amYwL0A
+Date:   Thu, 15 Oct 2020 15:45:24 +0000
+Message-ID: <96cfe905-6d6b-646f-8b81-c4deb110d13c@st.com>
+References: <20201002225924.3513700-1-robh@kernel.org>
+In-Reply-To: <20201002225924.3513700-1-robh@kernel.org>
+Accept-Language: fr-FR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.45]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <554B802CDF0F7B47B9FA5FABAD1C4879@st.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201014142759.726823-3-rmfrfs@gmail.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-10-15_09:2020-10-14,2020-10-15 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rui,
-
-On Wed, Oct 14, 2020 at 03:27:58PM +0100, Rui Miguel Silva wrote:
-> Convert imx7-csi bindings documentation to yaml schema, remove the
-> textual bindings document and update MAINTAINERS entry.
->
-> Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
-> ---
->  .../devicetree/bindings/media/imx7-csi.txt    | 42 ----------
->  .../bindings/media/nxp,imx7-csi.yaml          | 84 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 85 insertions(+), 43 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/imx7-csi.txt
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/imx7-csi.txt b/Documentation/devicetree/bindings/media/imx7-csi.txt
-> deleted file mode 100644
-> index d80ceefa0c00..000000000000
-> --- a/Documentation/devicetree/bindings/media/imx7-csi.txt
-> +++ /dev/null
-> @@ -1,42 +0,0 @@
-> -Freescale i.MX7 CMOS Sensor Interface
-> -=====================================
-> -
-> -csi node
-> ---------
-> -
-> -This is device node for the CMOS Sensor Interface (CSI) which enables the chip
-> -to connect directly to external CMOS image sensors.
-> -
-> -Required properties:
-> -
-> -- compatible    : "fsl,imx7-csi" or "fsl,imx6ul-csi";
-> -- reg           : base address and length of the register set for the device;
-> -- interrupts    : should contain CSI interrupt;
-> -- clocks        : list of clock specifiers, see
-> -        Documentation/devicetree/bindings/clock/clock-bindings.txt for details;
-> -- clock-names   : must contain "mclk";
-> -
-> -The device node shall contain one 'port' child node with one child 'endpoint'
-> -node, according to the bindings defined in:
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -In the following example a remote endpoint is a video multiplexer.
-> -
-> -example:
-> -
-> -                csi: csi@30710000 {
-> -                        #address-cells = <1>;
-> -                        #size-cells = <0>;
-> -
-> -                        compatible = "fsl,imx7-csi";
-> -                        reg = <0x30710000 0x10000>;
-> -                        interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> -                        clocks = <&clks IMX7D_CSI_MCLK_ROOT_CLK>;
-> -                        clock-names = "mclk";
-> -
-> -                        port {
-> -                                csi_from_csi_mux: endpoint {
-> -                                        remote-endpoint = <&csi_mux_to_csi>;
-> -                                };
-> -                        };
-> -                };
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> new file mode 100644
-> index 000000000000..9fe064dd5ba3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: GPL-2.0
-
-Shouldn't bindings be dual licensed ?
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nxp,imx7-csi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX7 CMOS Sensor Interface
-> +
-> +maintainers:
-> +  - Rui Miguel Silva <rmfrfs@gmail.com>
-> +
-> +description: |
-> +  This is device node for the CMOS Sensor Interface (CSI) which enables the
-> +  chip to connect directly to external CMOS image sensors.
-
-Pretty cryptic, not your fault as it was there already. Is NXP using
-CSI as a name but it's not really MIPI CSI-2 ? This seems to be a
-bridge, right ?
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx7-csi
-> +      - fsl,imx6ul-csi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mclk
-> +
-> +  port:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      A node containing input port nodes with endpoint definitions as documented
-> +      in Documentation/devicetree/bindings/media/video-interfaces.txt
-> +
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          remote-endpoint: true
-> +
-> +        required:
-> +          - remote-endpoint
-> +
-> +    required:
-> +      - endpoint
-
-As per the comment on ov2680, this last part can be removed
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +
-> +unevaluatedProperties: false
-
-additionalProperties: false ?
-
-This apart
-Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-
-Thanks
-  j
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx7d-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    csi: csi@30710000 {
-> +            compatible = "fsl,imx7-csi";
-> +            reg = <0x30710000 0x10000>;
-> +            interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&clks IMX7D_CSI_MCLK_ROOT_CLK>;
-> +            clock-names = "mclk";
-> +
-> +            port {
-> +                    csi_from_csi_mux: endpoint {
-> +                            remote-endpoint = <&csi_mux_to_csi>;
-> +                    };
-> +            };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 926dcdc4794c..b7f7f14cd85b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -10773,8 +10773,8 @@ L:	linux-media@vger.kernel.org
->  S:	Maintained
->  T:	git git://linuxtv.org/media_tree.git
->  F:	Documentation/admin-guide/media/imx7.rst
-> -F:	Documentation/devicetree/bindings/media/imx7-csi.txt
->  F:	Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
-> +F:	Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
->  F:	drivers/staging/media/imx/imx7-media-csi.c
->  F:	drivers/staging/media/imx/imx7-mipi-csis.c
->
-> --
-> 2.28.0
->
+DQoNCk9uIDEwLzMvMjAgMTI6NTkgQU0sIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiBTb21lIERTSSBj
+b250cm9sbGVycyBhcmUgbWlzc2luZyBhIHJlZmVyZW5jZSB0byB0aGUgcmVjZW50bHkgYWRkZWQN
+Cj4gZHNpLWNvbnRyb2xsZXIueWFtbCBzY2hlbWEuIEFkZCBpdCBhbmQgd2UgY2FuIGRyb3AgdGhl
+IGR1cGxpY2F0ZSBwYXJ0cy4NCj4gDQo+IENjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtlcm5l
+bC5vcmc+DQo+IENjOiBDaGVuLVl1IFRzYWkgPHdlbnNAY3NpZS5vcmc+DQo+IENjOiBFcmljIEFu
+aG9sdCA8ZXJpY0BhbmhvbHQubmV0Pg0KPiBDYzogTmljb2xhcyBTYWVueiBKdWxpZW5uZSA8bnNh
+ZW56anVsaWVubmVAc3VzZS5kZT4NCj4gQ2M6IEZsb3JpYW4gRmFpbmVsbGkgPGYuZmFpbmVsbGlA
+Z21haWwuY29tPg0KPiBDYzogUmF5IEp1aSA8cmp1aUBicm9hZGNvbS5jb20+DQo+IENjOiBTY290
+dCBCcmFuZGVuIDxzYnJhbmRlbkBicm9hZGNvbS5jb20+DQo+IENjOiBiY20ta2VybmVsLWZlZWRi
+YWNrLWxpc3RAYnJvYWRjb20uY29tDQo+IENjOiBNYXhpbWUgQ29xdWVsaW4gPG1jb3F1ZWxpbi5z
+dG0zMkBnbWFpbC5jb20+DQo+IENjOiBBbGV4YW5kcmUgVG9yZ3VlIDxhbGV4YW5kcmUudG9yZ3Vl
+QHN0LmNvbT4NCj4gQ2M6ICJHdWlkbyBHw7pudGhlciIgPGFneEBzaWd4Y3B1Lm9yZz4NCj4gQ2M6
+IFJvYmVydCBDaGlyYXMgPHJvYmVydC5jaGlyYXNAbnhwLmNvbT4NCj4gQ2M6IFBoaWxpcHBlIENv
+cm51IDxwaGlsaXBwZS5jb3JudUBzdC5jb20+DQoNCg0KSGkgUm9iLA0KYW5kIG1hbnkgdGhhbmtz
+IGZvciB0aGUgcGF0Y2guDQpGb3IgdGhlIHN0bTMyIHBhcnQsDQpSZXZpZXdlZC1ieTogUGhpbGlw
+cGUgQ29ybnUgPHBoaWxpcHBlLmNvcm51QHN0LmNvbT4NCg0KUGhpbGlwcGUgOi0p
