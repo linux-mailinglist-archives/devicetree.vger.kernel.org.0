@@ -2,553 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D88728EF29
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 11:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2AE28EF32
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 11:13:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730503AbgJOJJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 05:09:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35842 "EHLO
+        id S1726202AbgJOJNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 05:13:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730498AbgJOJJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 05:09:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A12C061755
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 02:09:54 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kSzGP-0000hm-Sv; Thu, 15 Oct 2020 11:09:33 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kSzGP-0001dB-8H; Thu, 15 Oct 2020 11:09:33 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Robin van der Gracht <robin@protonic.nl>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: [PATCH v2 3/3] ARM: dts: add Van der Laan LANMCU board
-Date:   Thu, 15 Oct 2020 11:09:24 +0200
-Message-Id: <20201015090924.6185-4-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201015090924.6185-1-o.rempel@pengutronix.de>
-References: <20201015090924.6185-1-o.rempel@pengutronix.de>
+        with ESMTP id S1726185AbgJOJNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 05:13:51 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CAFEC061755;
+        Thu, 15 Oct 2020 02:13:51 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id h7so2510525wre.4;
+        Thu, 15 Oct 2020 02:13:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=A5VqVZaCxXPdKV0bJ6e/lxbXj3PVs7Fd+/vx+IhRFsc=;
+        b=h3DdtBPXe4J+VunFr8LqpY18tJf9rTH9HJEsmp8EvUOZK+jnA08olp8uDK3lTC69Fp
+         bOdKJjubfdgKAsufE4rpYqtTj+zuKYm4kNxb24GhXlhXe380SQoDV2Xfm7vC7C5K4ujI
+         NUTL38uf1p/fnpgsgkMDBsRtwVZmfV0a/l5RvJm8gKkUx8S5impL+5Nwho+e3DdQgeiP
+         rNJzrHs7K0j391iiDzf8LVq6X9pEDqZQ6sEWDLQABmXnQS+g6xG1uiyqj4uL4w1CHL2x
+         jr4Xe58aGLZgJsSZ6Iq7V26MchlrcBphi2cpUCxQfGH3V/ikX1A9VLfwpIVWFPMuQtlb
+         FkHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=A5VqVZaCxXPdKV0bJ6e/lxbXj3PVs7Fd+/vx+IhRFsc=;
+        b=VwS8+AAPL5FOJnPP++Ow+K7Li1MDdgTm78Jy30ARZYxR2CkO2VgBVzcXKuWYr03gcL
+         ZCa5EF7tqma0sYc9ZvqQNDcwIetpKad2sQ26NBbTY7Xti5eRlSJBKUxrbI4dfERrzKvU
+         ReNf+gpdopNP2uW0EKeRz1Ox0qssx51WIM5CjEQhILaUr2/xm5HTI6wsgmHIFTV+7mw2
+         N2TvqZtMbjo4x2qFvy2AlWJXbXb8Z5cbOYb/1YB3SCNarU4J8iWMKT9to+JKlfgsEydc
+         xkuXZeBRjEb/xLtlwUZf9j5gwLsNVEVijj5SoNikcgNWFklClLJGB2bRYJBpGwyP+Ypw
+         p8/Q==
+X-Gm-Message-State: AOAM533mM2VrM0+TKj5077Pqo5Sok/X6ryva8harw4CgYT1E0WGx3g8r
+        VeO0rAKxUSaw3WJP+HDWhuYdX+XhN42vEA==
+X-Google-Smtp-Source: ABdhPJzFwvWaKtfDPdwDPVvA9EabbSQw9Ukdhfdkgwnoo5xuU9VSbTIlTrGeB7ahBceyeanZcP/arg==
+X-Received: by 2002:adf:a345:: with SMTP id d5mr3414231wrb.55.1602753229966;
+        Thu, 15 Oct 2020 02:13:49 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.119.110])
+        by smtp.gmail.com with ESMTPSA id d7sm3233985wmd.48.2020.10.15.02.13.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Oct 2020 02:13:49 -0700 (PDT)
+Subject: Re: [PATCH v7 2/2] soc: mediatek: add mt6779 devapc driver
+To:     Neal Liu <neal.liu@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>
+References: <1598497593-15781-1-git-send-email-neal.liu@mediatek.com>
+ <1598497593-15781-3-git-send-email-neal.liu@mediatek.com>
+ <c41ec664-73a0-3c63-a31c-48c89028dfac@gmail.com>
+ <1602124514.28301.17.camel@mtkswgap22> <1602728017.11536.5.camel@mtkswgap22>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <bf202a0f-49e3-c618-5d74-934fe739dd18@gmail.com>
+Date:   Thu, 15 Oct 2020 11:13:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1602728017.11536.5.camel@mtkswgap22>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Van der Laan LANMCU is a module for the food storage rooms to control
-proper gas composition.
 
-Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
-Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/Makefile          |   1 +
- arch/arm/boot/dts/imx6dl-lanmcu.dts | 469 ++++++++++++++++++++++++++++
- 2 files changed, 470 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-lanmcu.dts
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 2289a28c0ff6..dc2543a7b7e9 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -447,6 +447,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-icore.dtb \
- 	imx6dl-icore-mipi.dtb \
- 	imx6dl-icore-rqs.dtb \
-+	imx6dl-lanmcu.dtb \
- 	imx6dl-mamoj.dtb \
- 	imx6dl-nit6xlite.dtb \
- 	imx6dl-nitrogen6x.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-lanmcu.dts b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-new file mode 100644
-index 000000000000..36c029dcc832
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-@@ -0,0 +1,469 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2019 Protonic Holland
-+ * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "imx6dl.dtsi"
-+
-+/ {
-+	model = "Van der Laan LANMCU";
-+	compatible = "vdl,lanmcu", "fsl,imx6dl";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	clock_ksz8081: clock-ksz8081 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 5000000 0>;
-+		brightness-levels = <0 1000>;
-+		num-interpolated-steps = <20>;
-+		default-brightness-level = <19>;
-+	};
-+
-+	display {
-+		compatible = "fsl,imx-parallel-display";
-+		pinctrl-0 = <&pinctrl_ipu1_disp>;
-+		pinctrl-names = "default";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			display_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			display_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		led-debug {
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	panel {
-+		compatible = "edt,etm0700g0bdh6";
-+		backlight = <&backlight>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+
-+	reg_otg_vbus: regulator-otg-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "otg-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usdhc2_wifi_pwrseq: usdhc2-wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wifi_npd>;
-+		reset-gpios = <&gpio6 10 GPIO_ACTIVE_LOW>;
-+	};
-+
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1>;
-+	status = "okay";
-+};
-+
-+&can2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can2>;
-+	status = "okay";
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rmii";
-+	clocks = <&clks IMX6QDL_CLK_ENET>,
-+		 <&clks IMX6QDL_CLK_ENET>,
-+		 <&clock_ksz8081>;
-+	clock-names = "ipg", "ahb", "ptp";
-+	phy-handle = <&rgmii_phy>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Microchip KSZ8081RNA PHY */
-+		rgmii_phy: ethernet-phy@0 {
-+			reg = <0>;
-+			interrupts-extended = <&gpio5 23 IRQ_TYPE_LEVEL_LOW>;
-+			reset-gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+		};
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+		"", "SD1_CD", "", "", "", "", "", "",
-+		"DEBUG_0", "BL_PWM", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "ENET_LED_GREEN",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "TS_INT", "USB_OTG1_OC", "USB_OTG1_PWR", "",
-+		"", "", "", "", "UART2_CTS", "", "UART3_CTS", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "ENET_RST", "ENET_INT",
-+		"", "", "I2C1_SDA", "I2C1_SCL", "", "", "", "";
-+};
-+
-+&gpio6 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "WLAN_REG_ON", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio7 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"EMMC_RST", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	/* additional i2c devices are added automatically by the boot loader */
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5406";
-+		reg = <0x38>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ts_edt>;
-+		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
-+
-+		touchscreen-size-x = <1792>;
-+		touchscreen-size-y = <1024>;
-+
-+		touchscreen-fuzz-x = <0>;
-+		touchscreen-fuzz-y = <0>;
-+
-+		/* Touch screen calibration */
-+		threshold = <50>;
-+		gain = <5>;
-+		offset = <10>;
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&display_in>;
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	linux,rs485-enabled-at-boot-time;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	linux,rs485-enabled-at-boot-time;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	vbus-supply = <&reg_otg_vbus>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	phy_type = "utmi";
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	cd-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	no-1-8-v;
-+	non-removable;
-+	mmc-pwrseq = <&usdhc2_wifi_pwrseq>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	brcmf: bcrmf@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	bus-width = <8>;
-+	no-1-8-v;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_can1: can1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX		0x3008
-+		>;
-+	};
-+
-+	pinctrl_can2: can2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX		0x3008
-+		>;
-+	};
-+
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			/* MX6QDL_ENET_PINGRP4 */
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC			0x1b0b0
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO			0x1b0b0
-+			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER		0x1b0b0
-+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN		0x1b0b0
-+
-+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK		0x1b0b0
-+			/* Phy reset */
-+			MX6QDL_PAD_CSI0_DAT4__GPIO5_IO22		0x1b0b0
-+			/* nINTRP */
-+			MX6QDL_PAD_CSI0_DAT5__GPIO5_IO23		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA			0x4001f8b1
-+			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL			0x4001f8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_5__I2C3_SCL			0x4001b8b1
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA			0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_ipu1_disp: ipudisp1grp {
-+		fsl,pins = <
-+			/* DSE 0x30 => 25 Ohm, 0x20 => 37 Ohm, 0x10 => 75 Ohm */
-+			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x30
-+			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x30
-+			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x30
-+			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x30
-+			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x30
-+			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x30
-+			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x30
-+			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x30
-+			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x30
-+			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x30
-+			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x30
-+			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x30
-+			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x30
-+			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x30
-+			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x30
-+			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x30
-+			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x30
-+			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x30
-+			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x30
-+			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x30
-+			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x30
-+			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x30
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_8__GPIO1_IO08			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_9__PWM1_OUT			0x8
-+		>;
-+	};
-+
-+	pinctrl_ts_edt: ts1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D20__GPIO3_IO20			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D26__UART2_RX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D27__UART2_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D28__UART2_CTS_B			0x130b1
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D24__UART3_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D25__UART3_RX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D30__UART3_CTS_B			0x130b1
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usbotg: usbotggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D21__USB_OTG_OC			0x1b0b0
-+			/* power enable, high active */
-+			MX6QDL_PAD_EIM_D22__GPIO3_IO22			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_CMD__SD1_CMD			0x170f9
-+			MX6QDL_PAD_SD1_CLK__SD1_CLK			0x100f9
-+			MX6QDL_PAD_SD1_DAT0__SD1_DATA0			0x170f9
-+			MX6QDL_PAD_SD1_DAT1__SD1_DATA1			0x170f9
-+			MX6QDL_PAD_SD1_DAT2__SD1_DATA2			0x170f9
-+			MX6QDL_PAD_SD1_DAT3__SD1_DATA3			0x170f9
-+			MX6QDL_PAD_GPIO_1__SD1_CD_B			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD2_CMD__SD2_CMD			0x170b9
-+			MX6QDL_PAD_SD2_CLK__SD2_CLK			0x100b9
-+			MX6QDL_PAD_SD2_DAT0__SD2_DATA0			0x170b9
-+			MX6QDL_PAD_SD2_DAT1__SD2_DATA1			0x170b9
-+			MX6QDL_PAD_SD2_DAT2__SD2_DATA2			0x170b9
-+			MX6QDL_PAD_SD2_DAT3__SD2_DATA3			0x170b9
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD			0x17099
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK			0x10099
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0			0x17099
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1			0x17099
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2			0x17099
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3			0x17099
-+			MX6QDL_PAD_SD3_DAT4__SD3_DATA4			0x17099
-+			MX6QDL_PAD_SD3_DAT5__SD3_DATA5			0x17099
-+			MX6QDL_PAD_SD3_DAT6__SD3_DATA6			0x17099
-+			MX6QDL_PAD_SD3_DAT7__SD3_DATA7			0x17099
-+			MX6QDL_PAD_SD3_RST__SD3_RESET			0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_wifi_npd: wifinpd {
-+		fsl,pins = <
-+			/* WL_REG_ON */
-+			MX6QDL_PAD_NANDF_RB0__GPIO6_IO10		0x13069
-+		>;
-+	};
-+};
--- 
-2.28.0
+On 15/10/2020 04:13, Neal Liu wrote:
+> On Thu, 2020-10-08 at 10:35 +0800, Neal Liu wrote:
+>> On Wed, 2020-10-07 at 12:44 +0200, Matthias Brugger wrote:
+>>>
+>>> On 27/08/2020 05:06, Neal Liu wrote:
+> [...]
+> 
+>>>> +static int devapc_sync_vio_dbg(struct mtk_devapc_context *ctx)
+>>>> +{
+>>>> +	void __iomem *pd_vio_shift_sta_reg;
+>>>> +	void __iomem *pd_vio_shift_sel_reg;
+>>>> +	void __iomem *pd_vio_shift_con_reg;
+>>>> +	int min_shift_group;
+>>>> +	int ret;
+>>>> +	u32 val;
+>>>> +
+>>>> +	pd_vio_shift_sta_reg = ctx->infra_base +
+>>>> +			       ctx->data->vio_shift_sta_offset;
+>>>> +	pd_vio_shift_sel_reg = ctx->infra_base +
+>>>> +			       ctx->data->vio_shift_sel_offset;
+>>>> +	pd_vio_shift_con_reg = ctx->infra_base +
+>>>> +			       ctx->data->vio_shift_con_offset;
+>>>> +
+>>>> +	/* Find the minimum shift group which has violation */
+>>>> +	val = readl(pd_vio_shift_sta_reg);
+>>>> +	if (!val)
+>>>> +		return false;
+>>>
+>>> So bit 0 of selection register (pd_vio_shift_sel_reg) does not represent a
+>>> violation group?
+>>> I don't know how the HW works, but is seems odd to me. In case that's bit 0
+>>> actually doesn't represent anything: how can an interrupt be triggered without
+>>> any debug information present (means val == 0)?
+>>
+>> This check implies HW status has something wrong. It cannot get any
+>> debug information for this case.
+>> It won't happen in normal scenario. Should we remove this check?
+>>
+> 
+> Sorry, I missed the most common part. Is function is in the while loop:
+> while (devapc_sync_vio_dbg(ctx))
+> ...
+> 
+> We keep find the minimum bit in pd_vio_shift_sta_reg to get the
+> violation information, (pd_vio_shift_sta_reg might raise multiple bits)
+> until all raised bit (shift group) has been handled.
+> So I don't think it's necessary to add WARN message in this case.
+> Thanks
+> 
 
+Correct we would get a warning every time once we have read and cleared all 
+violations, but we are only concerned about the IRQ triggered with no violation 
+present. But we can skip that check for now, if we see that there could be a HW 
+error we can think about it in the future.
+
+Regards,
+Matthias
