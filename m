@@ -2,108 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 866B428F370
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6A528F373
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726329AbgJONjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 09:39:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729760AbgJONjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 09:39:25 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEA1C0613D3
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 06:39:24 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id 13so3235198wmf.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 06:39:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=o2Nh6KJm4jPGdm8+1OLljLZrSt0m6NW06Aa+KD07b00=;
-        b=hv2CDDRO2tkNNRofdtyGczxALxVwH4U+r/AF4hjKShlob9En1V/hZpPy+qjwW/Ps4V
-         NQyU3olnRIylVF+P8VLYAFzHZVRHYeTMl484i3qS7sVykQvixx9xvfXS84cTe1VonRMa
-         bQ5samKS9ScnJ9ibQ12oJlA/Ie2dg6pWHF2CK/WrkhBRSVGmjpOjZRdr7Pzwnk1ytNs/
-         67q68LN8YA8frqWhvf72+lpFBu0wmSnnubuZWrTDSQit1l2UIThXrNl4n77Muz7iAyWM
-         x9FE/QxkWrueH12IiZx1nyuO9Tjaiz9WZdZ86Bxqc50Bj3vQY2yBk07lUxwhlNZiS0NB
-         GyMg==
+        id S1729729AbgJONjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 09:39:48 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:35606 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727845AbgJONjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 09:39:48 -0400
+Received: by mail-ot1-f65.google.com with SMTP id s66so2938753otb.2;
+        Thu, 15 Oct 2020 06:39:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=o2Nh6KJm4jPGdm8+1OLljLZrSt0m6NW06Aa+KD07b00=;
-        b=F2Kik5gYWLKexXtx8vA6AcHlvUlwSakwUqXGi6qxJHYBE1LyI13FJRorIVGnIEg9Os
-         ROTAl24cX0npb9Nlo4HmB5JSkFBHvPigV1zoavEXLx5yDHSquepgiFX94o2Jf3f4jHfJ
-         n7E7JoOEXKacU6XeGqz8yVcDihl9qhlSRQuqoa1Eqw2eHTjr35QlFOCQ4Dvdm5a/N5oE
-         QcR/tjR0iNr2Mkb9WNJ5K7AUtjGdfZmDNsN6JaREAFFxRPf8hejJbI792SDM8pyNy9qW
-         Qurdri8CFAF7RW923i4mTRoDRguoDQ4huECQoP4dYgignyvqv9utgaLb7WtyBsyWMfxG
-         YJLg==
-X-Gm-Message-State: AOAM531KA3lqYIerl4hoiT6Qlyio8sgIIXKHSDQbQmb8lvJXIy4uAom4
-        QUhepFm5RWnnwju6PMif1pJnng==
-X-Google-Smtp-Source: ABdhPJx2lu3FnUf0sJpN8vCYCdGRv5t8JUlS/lE5EZosWOJK9Taj+BresQtefuQQdeBIDXMdGqhbAQ==
-X-Received: by 2002:a1c:449:: with SMTP id 70mr4008121wme.40.1602769163466;
-        Thu, 15 Oct 2020 06:39:23 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:5400:5b12:4f4c:844b? ([2a01:e34:ed2f:f020:5400:5b12:4f4c:844b])
-        by smtp.googlemail.com with ESMTPSA id b5sm4539952wrs.97.2020.10.15.06.39.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Oct 2020 06:39:22 -0700 (PDT)
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Quentin Perret <qperret@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>
-References: <20201002114426.31277-1-lukasz.luba@arm.com>
- <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
- <765e6603-b614-fb72-64ff-248b42474803@linaro.org>
- <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
- <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
- <CAJZ5v0jmTYtMyujxxTBezmiO-j3iW_RjRKOkCpqU4gtRe+OJ2Q@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <03baa329-8fce-410c-ba51-385d4041aaa9@linaro.org>
-Date:   Thu, 15 Oct 2020 15:39:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=E/M/Pc0HbldfufL0yjiT7Vgey1LfUPuA+fwHq/WSxEE=;
+        b=McOV9PBcf+ZQ0voFBbGUEQkXm3NVEzRIu82xBk6XzAR8h6i12yJ4dpiUQvqPWitieJ
+         5NuQlrIfKGUNwobWZq2BzaFffrQyySP85mGtIKg+9RMpf5pzXixXCy6TMRtxZLNUNpNk
+         hFLLibS6CrsIV3ePqeEXdhYEnYAwBh05wdDAHDXuok9TZibYMqQ6su8eppgNNEmoGya/
+         bbH4p9PGyy/FvoBTE79hGYrACckhP6FRQAYzLF/KWzS8I01SfadT/b2xel2vYMok7Lf/
+         J8ruMToZJTjoFU/Pk2R2ZALKN9W+PgRcJ5P5sHkQP9PLJelMT+x2/RSIbncmIdEFJRaW
+         5G/A==
+X-Gm-Message-State: AOAM532Ou9AkuMdelCngUhaHLmmnP3I5xJ4QtdOxLRQm7+hQypM+Cs2J
+        Km1bLPIk87Uuy1WpQV012ue/Y1lDmh3eteSifPfPSYewFQg=
+X-Google-Smtp-Source: ABdhPJzzvw47VJtPKUJ8vBhxk5hsE2yuYwJ3HOHcFuuYpB4kVX8SXSTUpWPiUez9CtY0q72vviwost5V3tbMt13QbIw=
+X-Received: by 2002:a9d:5e14:: with SMTP id d20mr2520241oti.107.1602769187312;
+ Thu, 15 Oct 2020 06:39:47 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJZ5v0jmTYtMyujxxTBezmiO-j3iW_RjRKOkCpqU4gtRe+OJ2Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201015132350.8360-1-biju.das.jz@bp.renesas.com> <20201015132350.8360-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20201015132350.8360-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 15 Oct 2020 15:39:36 +0200
+Message-ID: <CAMuHMdXu3AKFAY3b6SfWgpQL9VBJBC9HL4ZK5EFu=7FZ2zJoXA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: cat875: Remove rxc-skew-ps from
+ ethernet-phy node
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/10/2020 15:33, Rafael J. Wysocki wrote:
+Hi Biju,
 
-[ ... ]
+On Thu, Oct 15, 2020 at 3:24 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> The CAT875 sub board from Silicon Linux uses Realtek phy and the driver
+> does not support rxc-skew-ps property.
+>
+> Fixes: 6b170cd3ed02949f ("arm64: dts: renesas: cat875: Add ethernet support")
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
->> Up to Rafael to decide what to do with this documentation update.
-> 
-> Well, I was hoping that you both would reach some kind of agreement.
-> 
-> I don't feel like the decision is mine here to be honest.
+Thanks for your patch!
 
-No problem, probably we have to think about that a bit more before
-reaching the agreement.
+> --- a/arch/arm64/boot/dts/renesas/cat875.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/cat875.dtsi
+> @@ -21,7 +21,6 @@
+>         status = "okay";
+>
+>         phy0: ethernet-phy@0 {
+> -               rxc-skew-ps = <1500>;
+>                 reg = <0>;
+>                 interrupt-parent = <&gpio2>;
+>                 interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
 
+Should "rx-internal-delay-ps = <1800>" be added to the avb node instead
+(after [1] has entered v5.10-rc1, and the DTS part of [2] has been
+ applied to renesas-devel)?
+
+[1] [PATCH net-next v4 resend 5/5] ravb: Add support for explicit
+internal clock delay configuration
+    https://lore.kernel.org/linux-renesas-soc/20201001101008.14365-6-geert+renesas@glider.be/
+[2] [PATCH v3 0/7] net/ravb: Add support for explicit internal clock
+delay configuration
+    https://lore.kernel.org/linux-renesas-soc/20200819134344.27813-1-geert+renesas@glider.be
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
