@@ -2,96 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCDF28EC5E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 06:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F49D28EC83
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 06:58:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727479AbgJOEqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 00:46:34 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:15215 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726535AbgJOEqe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 00:46:34 -0400
-Received: from DGGEMS409-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id DCD3BC3150ACB8255FE8;
-        Thu, 15 Oct 2020 12:46:28 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.134) by
- DGGEMS409-HUB.china.huawei.com (10.3.19.209) with Microsoft SMTP Server id
- 14.3.487.0; Thu, 15 Oct 2020 12:46:20 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH v2 1/1] dt-bindings: misc: add support for both property names cmd-gpios and cmd-gpio
-Date:   Thu, 15 Oct 2020 12:44:43 +0800
-Message-ID: <20201015044443.1828-2-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20201015044443.1828-1-thunder.leizhen@huawei.com>
-References: <20201015044443.1828-1-thunder.leizhen@huawei.com>
+        id S1726265AbgJOE6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 00:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53506 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725208AbgJOE6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 00:58:16 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0810BC061755
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 21:58:16 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id d24so1732809ljg.10
+        for <devicetree@vger.kernel.org>; Wed, 14 Oct 2020 21:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ARgqhuWJgBKVPlDxiUpgFCXHBc6+vc3xWY2ELMDeV+E=;
+        b=jlZHqT6sNfNMWBuwznhHHdxyJ0c02U+o6Csoo0lyR4588J9wbAkQfzLC28PFD9lClq
+         XsyTQNQiPnDGMbV1qthOuX4AIrFoOUVD5FiRIBU/zVODoGK/t06K0emws94Pk4viNbsV
+         u7BtZtk9paNaDDZSB2g8lhjvrcoHwBRIwFuO/vpZDUD42hL6LAT+u9yaup1Wpl6fMmVg
+         3/HJr43CdGGIKTBEdw5N2+0UioNiRw94BwhPdn/kFVm0fzcLxqydH0YvWLlZGf00qMwX
+         yABsUFpk67+29VKYaAe6GC/QVN3DjEol/X7BtcZ4CMQiMUMytMviNmY3OyCjcJspqcom
+         WYHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ARgqhuWJgBKVPlDxiUpgFCXHBc6+vc3xWY2ELMDeV+E=;
+        b=DgJPznA+XwS+2+tW5Ir4/flqUwddkYlXxuJ9a8FKgIys/nbWJbVoy8EHY7zhKRHfa4
+         G3vvATD3Uc5t1AZeo/oXVe0DiAUyN9JK1PzN3RrD6YFXQXN5ByKmP4V0+6f2e6Q2JgLj
+         Oh5VT+xcgpwfWUoHnXTpcPO1Bcv/rtpL49vlrd27qjyAwAbMIAxrF4qP7Ej3hbZ0nhw8
+         n9oE3AmAHqYRjwXfsBjF20xCdIF9qIud6o5lXeovbugi77QkM5BOB1pDMA9bGdKZifRi
+         8r/yxD9xb8yhqMVwpXwf4vk48OOsHQqcz5Kqg4Ogv8w5gG3IH/bF05L69RVNBdkwImSv
+         jOIw==
+X-Gm-Message-State: AOAM532CvYLqWYyK5y+2amQndkdLSuJ6taG7jnKjS3QoLAy5BNoHkA7y
+        Dq2wM+gEMQb8KXbbB9be/bU9jTkV90gPs7lH7maZwQ==
+X-Google-Smtp-Source: ABdhPJyZNCn/C2YqRNcW/gqfGXjeYLfj+Z/ZOqGrssHEukXnkxVx6V70NcnazmxXOll+joqb2ca0vMizBXVcnRZjvXI=
+X-Received: by 2002:a2e:88cb:: with SMTP id a11mr585052ljk.304.1602737894449;
+ Wed, 14 Oct 2020 21:58:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.134]
-X-CFilter-Loop: Reflected
+References: <20200902064407.30712-1-sumit.semwal@linaro.org>
+ <20200902064407.30712-2-sumit.semwal@linaro.org> <20201014184443.GA835495@ravnborg.org>
+In-Reply-To: <20201014184443.GA835495@ravnborg.org>
+From:   Sumit Semwal <sumit.semwal@linaro.org>
+Date:   Thu, 15 Oct 2020 10:28:03 +0530
+Message-ID: <CAO_48GHy3KjSoxKigejG61Q5FdeTj-EebHjY8-2WAS_DAyJ1DA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/2] dt-bindings: display: panel: Add bindings for
+ Novatek nt36672a
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        LKML <linux-kernel@vger.kernel.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The definition "gpio_suffixes[] = { "gpios", "gpio" }" shows that both
-property names "cmd-gpios" and "cmd-gpio" are supported. But currently
-only "cmd-gpios" is allowed in this yaml, and the name used in
-mmp2-olpc-xo-1-75.dts is cmd-gpio. As a result, the following errors is
-reported.
+Hi Sam,
 
-slave: 'cmd-gpios' is a required property
-slave: 'cmd-gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
+On Thu, 15 Oct 2020 at 00:14, Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Sumit.
+> On Wed, Sep 02, 2020 at 12:14:06PM +0530, Sumit Semwal wrote:
+> > Novatek nt36672a is a display driver IC that can drive DSI panel. It
+> > is also present in the Tianma video mode panel, which is a FHD+ panel
+> > with a resolution of 1080x2246 and 6.18 inches size. It is found in
+> > some of the Poco F1 phones.
+> >
+> > This patch adds the display driver for the IC, with support added for
+> > this tianma fhd video mode panel.
+> >
+> > Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> I assume you will apply the patch yourself.
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+Thanks, I will.
 
-diff --git a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-index b3c45c046ba5e37..dd549380a085709 100644
---- a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-+++ b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-@@ -24,15 +24,21 @@ properties:
-   compatible:
-     const: olpc,xo1.75-ec
- 
--  cmd-gpios:
-+  spi-cpha: true
-+
-+patternProperties:
-+  "^cmd-gpio[s]?$":
-     description: GPIO uspecifier of the CMD pin
-     maxItems: 1
- 
--  spi-cpha: true
--
- required:
-   - compatible
--  - cmd-gpios
-+
-+oneOf:
-+  - required:
-+      - cmd-gpio
-+  - required:
-+      - cmd-gpios
- 
- additionalProperties: false
- 
--- 
-1.8.3
-
-
+>
+>         Sam
+Best,
+Sumit.
+> >
+> > ---
+> > v2: remove ports node, making port@0 directly under panel@0 node.
+> > v3: updated to replace port@0 to just 'port'.
+> > v5: renamed to novatek,nt36672a, since the binding is for the IC and not
+> >       the panel.
+> > v6: v5 review comments incorporated.
+> >     - added enum for the compatible part, since it can be extended in
+> >       future.
+> >     - few cosmetic updates.
+> > ---
+> >  .../display/panel/novatek,nt36672a.yaml       | 87 +++++++++++++++++++
+> >  1 file changed, 87 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> > new file mode 100644
+> > index 000000000000..d2170de6b723
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> > @@ -0,0 +1,87 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/novatek,nt36672a.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Novatek NT36672A based DSI display Panels
+> > +
+> > +maintainers:
+> > +  - Sumit Semwal <sumit.semwal@linaro.org>
+> > +
+> > +description: |
+> > +  The nt36672a IC from Novatek is a generic DSI Panel IC used to drive dsi
+> > +  panels.
+> > +  Right now, support is added only for a Tianma FHD+ LCD display panel with a
+> > +  resolution of 1080x2246. It is a video mode DSI panel.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +         - tianma,fhd-video
+> > +      - const: novatek,nt36672a
+> > +    description: This indicates the panel manufacturer of the panel that is
+> > +      in turn using the NT36672A panel driver. This compatible string
+> > +      determines how the NT36672A panel driver is configured for the indicated
+> > +      panel. The novatek,nt36672a compatible shall always be provided as a fallback.
+> > +
+> > +  reset-gpios:
+> > +    description: phandle of gpio for reset line - This should be 8mA, gpio
+> > +      can be configured using mux, pinctrl, pinctrl-names (active high)
+> > +
+> > +  vddio-supply:
+> > +    description: phandle of the regulator that provides the supply voltage
+> > +      Power IC supply
+> > +
+> > +  vddpos-supply:
+> > +    description: phandle of the positive boost supply regulator
+> > +
+> > +  vddneg-supply:
+> > +    description: phandle of the negative boost supply regulator
+> > +
+> > +  reg: true
+> > +  port: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vddi0-supply
+> > +  - vddpos-supply
+> > +  - vddneg-supply
+> > +  - reset-gpios
+> > +  - port
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |+
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    dsi0 {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        panel@0 {
+> > +            compatible = "tianma,fhd-video", "novatek,nt36672a";
+> > +            reg = <0>;
+> > +            vddi0-supply = <&vreg_l14a_1p88>;
+> > +            vddpos-supply = <&lab>;
+> > +            vddneg-supply = <&ibb>;
+> > +
+> > +            reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+> > +
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +            port {
+> > +                tianma_nt36672a_in_0: endpoint {
+> > +                    remote-endpoint = <&dsi0_out>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.28.0
+> >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
