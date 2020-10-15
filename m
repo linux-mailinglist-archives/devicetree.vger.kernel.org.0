@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6CA528EE88
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 10:33:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6F128EEA6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 10:40:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729227AbgJOIdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 04:33:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59660 "EHLO mail.kernel.org"
+        id S2387873AbgJOIkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 04:40:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33504 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727121AbgJOIdH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 04:33:07 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S2387734AbgJOIkP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 04:40:15 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A6E482075B;
-        Thu, 15 Oct 2020 08:33:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8C8A22224A;
+        Thu, 15 Oct 2020 08:40:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602750787;
-        bh=FdpvF3CuF8OZL1btI9vHfGMHD6Vr4KGDEmjf13C+eoM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=LhjFtfBN1tr0o9FX6HiDlzY3OMkRxr/kb45pcWzL0am4sASuzoJb4FljvkvDQ3IkK
-         AvlPgu4vNaxpDx0khpdvm0nXmYy1SibO8bfUc/4PclgCXNg0Pd1quL/1cKfvTbNPqI
-         kziJVYS2dG3Ar6JFgCuubDzrL8AbJW886HgGp55Y=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH] dt-bindings: writing-schema: install from PyPI repository
-Date:   Thu, 15 Oct 2020 10:32:57 +0200
-Message-Id: <20201015083257.15450-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        s=default; t=1602751214;
+        bh=iEOV0qFCwAa4x2I6L0Fl5blrVz6Ofac36yk+aR5M4b4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=p36N9EioeWHKRZCdCRXZArhO6aOx6gew9HVR/iPljFlmjsblV774sa8gxH5li5rkN
+         Jnv0Gfk4vaQfWLMlJkgz4hGBVwVZ3GYUn1HkoBhaTMBdSiFl7EVaP34okdEbS0cu96
+         waYgH1X+2jD1CY8Jsnd+uCwWlpp66CcW0oDM215Q=
+Date:   Thu, 15 Oct 2020 09:40:09 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        ardb@kernel.org, linux-kernel@vger.kernel.org,
+        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/8] arm64: mm: Move reserve_crashkernel() into
+ mem_init()
+Message-ID: <20201015084008.GB4537@willie-the-truck>
+References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
+ <20201014191211.27029-2-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201014191211.27029-2-nsaenzjulienne@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Installing dtschema from github.com/devicetree-org is not needed anymore
-because dtschema is now part of regular PyPI repository.  In certain
-cases it might cause some troubles as it brings latest master version,
-not the stable release:
+On Wed, Oct 14, 2020 at 09:12:03PM +0200, Nicolas Saenz Julienne wrote:
+> crashkernel might reserve memory located in ZONE_DMA. We plan to delay
+> ZONE_DMA's initialization after unflattening the devicetree and ACPI's
+> boot table initialization, so move it later in the boot process.
+> Specifically into mem_init(), this is the last place crashkernel will be
+> able to reserve the memory before the page allocator kicks in and there is
+> no need to do it earlier.
+> 
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> ---
+>  arch/arm64/mm/init.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-    $ pip3 show dtschema
-    Version: 2020.8.2.dev4+g341f3e3
-    $ make dt_binding_check
-    RROR: dtschema minimum version is v2020.8.1
+Please can you cc me on the whole series next time? I know different
+maintainers have different preferences here, but I find it much easier to
+figure out what's happening when I can see all of the changes together.
 
-Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- Documentation/devicetree/writing-schema.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks,
 
-diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
-index 16f21e182ff6..b3cccb7e2059 100644
---- a/Documentation/devicetree/writing-schema.rst
-+++ b/Documentation/devicetree/writing-schema.rst
-@@ -115,7 +115,7 @@ The DT schema project must be installed in order to validate the DT schema
- binding documents and validate DTS files using the DT schema. The DT schema
- project can be installed with pip::
- 
--    pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
-+    pip3 install dtschema
- 
- Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
- installed. Ensure they are in your PATH (~/.local/bin by default).
--- 
-2.25.1
-
+Will
