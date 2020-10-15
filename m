@@ -2,94 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 531CB28F816
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 20:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5574E28F850
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 20:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732708AbgJOSDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 14:03:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52066 "EHLO mail.kernel.org"
+        id S1732929AbgJOSU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 14:20:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56316 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728460AbgJOSDs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 14:03:48 -0400
-Received: from gaia (unknown [95.149.105.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1732918AbgJOSU4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 14:20:56 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DCEC820797;
-        Thu, 15 Oct 2020 18:03:43 +0000 (UTC)
-Date:   Thu, 15 Oct 2020 19:03:41 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Hanjun Guo <guohanjun@huawei.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
-        linux-kernel@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>, robin.murphy@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT
- scan
-Message-ID: <20201015180340.GB2624@gaia>
-References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
- <20201014191211.27029-8-nsaenzjulienne@suse.de>
- <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
+        by mail.kernel.org (Postfix) with ESMTPSA id F3F3420760;
+        Thu, 15 Oct 2020 18:20:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602786055;
+        bh=4PM3lkFsHSYdM+Xy64virN9A07FT5yYAZKvrk/oAr6g=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gT3M3YzNo7pyxR1DfBVU7GobBpHX5lbRW+Uic+Jkfhn18bizF3XJv9x9qsdeIcGy1
+         5FpBm3ZoOVkd5mRjGFW9TDCWVt73NTHncBn9NPTyMZwqdoFrD39779iZfFVPHRQqps
+         +H6X3Q9oGUOO/u4RR0/dxG1ys+onQfuUqrHDNg7Y=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Gabriel Ribba Esteva <gabriel.ribbae@gmail.com>,
+        stable@vger.kernel.org
+Subject: [PATCH 1/4] ARM: dts: exynos: fix roles of USB 3.0 ports on Odroid XU
+Date:   Thu, 15 Oct 2020 20:20:41 +0200
+Message-Id: <20201015182044.480562-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 10:26:18PM +0800, Hanjun Guo wrote:
-> On 2020/10/15 3:12, Nicolas Saenz Julienne wrote:
-> > From: Ard Biesheuvel <ardb@kernel.org>
-> > 
-> > We recently introduced a 1 GB sized ZONE_DMA to cater for platforms
-> > incorporating masters that can address less than 32 bits of DMA, in
-> > particular the Raspberry Pi 4, which has 4 or 8 GB of DRAM, but has
-> > peripherals that can only address up to 1 GB (and its PCIe host
-> > bridge can only access the bottom 3 GB)
-> > 
-> > Instructing the DMA layer about these limitations is straight-forward,
-> > even though we had to fix some issues regarding memory limits set in
-> > the IORT for named components, and regarding the handling of ACPI _DMA
-> > methods. However, the DMA layer also needs to be able to allocate
-> > memory that is guaranteed to meet those DMA constraints, for bounce
-> > buffering as well as allocating the backing for consistent mappings.
-> > 
-> > This is why the 1 GB ZONE_DMA was introduced recently. Unfortunately,
-> > it turns out the having a 1 GB ZONE_DMA as well as a ZONE_DMA32 causes
-> > problems with kdump, and potentially in other places where allocations
-> > cannot cross zone boundaries. Therefore, we should avoid having two
-> > separate DMA zones when possible.
-> > 
-> > So let's do an early scan of the IORT, and only create the ZONE_DMA
-> > if we encounter any devices that need it. This puts the burden on
-> > the firmware to describe such limitations in the IORT, which may be
-> > redundant (and less precise) if _DMA methods are also being provided.
-> > However, it should be noted that this situation is highly unusual for
-> > arm64 ACPI machines. Also, the DMA subsystem still gives precedence to
-> > the _DMA method if implemented, and so we will not lose the ability to
-> > perform streaming DMA outside the ZONE_DMA if the _DMA method permits
-> > it.
-> 
-> Sorry, I'm still a little bit confused. With this patch, if we have
-> a device which set the right _DMA method (DMA size >= 32), but with the
-> wrong DMA size in IORT, we still have the ZONE_DMA created which
-> is actually not needed?
+On Odroid XU board the USB3-0 port is a microUSB and USB3-1 port is USB
+type A (host).  The roles were copied from Odroid XU3 (Exynos5422)
+design which has it reversed.
 
-With the current kernel, we get a ZONE_DMA already with an arbitrary
-size of 1GB that matches what RPi4 needs. We are trying to eliminate
-such unnecessary ZONE_DMA based on some heuristics (well, something that
-looks "better" than a OEM ID based quirk). Now, if we learn that IORT
-for platforms in the field is that broken as to describe few bits-wide
-DMA masks, we may have to go back to the OEM ID quirk.
+Fixes: 8149afe4dbf9 ("ARM: dts: exynos: Add initial support for Odroid XU board")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm/boot/dts/exynos5410-odroidxu.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm/boot/dts/exynos5410-odroidxu.dts b/arch/arm/boot/dts/exynos5410-odroidxu.dts
+index 4f9297ae0763..353eb6ef3a04 100644
+--- a/arch/arm/boot/dts/exynos5410-odroidxu.dts
++++ b/arch/arm/boot/dts/exynos5410-odroidxu.dts
+@@ -637,11 +637,11 @@ &tmu_cpu3 {
+ };
+ 
+ &usbdrd_dwc3_0 {
+-	dr_mode = "host";
++	dr_mode = "peripheral";
+ };
+ 
+ &usbdrd_dwc3_1 {
+-	dr_mode = "peripheral";
++	dr_mode = "host";
+ };
+ 
+ &usbdrd3_0 {
 -- 
-Catalin
+2.25.1
+
