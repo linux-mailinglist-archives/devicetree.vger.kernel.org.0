@@ -2,97 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C54428F387
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:42:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB28E28F394
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 15:46:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729822AbgJONmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 09:42:08 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:41076 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729543AbgJONmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 09:42:08 -0400
-Received: by mail-oi1-f196.google.com with SMTP id q136so3132295oic.8;
-        Thu, 15 Oct 2020 06:42:07 -0700 (PDT)
+        id S1730000AbgJONqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 09:46:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729969AbgJONqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 09:46:32 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9BB2C0613D3
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 06:46:30 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id r127so3625077lff.12
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 06:46:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lpSXdaWuU/6COGOcHpr2bLNzbwX0ucQjW3uoyXQpUkY=;
+        b=VZfFogEfemTr56xl428GCHtrlFvPHfhh5dj8KtBbktrwjRkJi+4dgFayYmHCqkSqgi
+         tQKfTotWUZ8FPjZrJTAV7AP+O5nFRhbPeJFj83M+OTxv7pnYgBCvFz60tBRdkOxzUDB+
+         tOqMR5NX1erw+FWRkAk65Y2ErReviykrP6S+IlyTgiQ3mGuZ83SvxmeGoGciLYGvC/e3
+         AIP6pAOa1BvDIrUBHrqYHbR2VoF3ZGCv+bu4Wh+Kj6uqNkqAGeNSqEwwSYvd+QMG35+c
+         H3xBAn3vG24e/AJwiJxNhlNDjjKAoVrWrWLrLQOLzxsYLVUOPOsuP60xlNyU5hZUCagH
+         O1wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=orF3cUU9oOlrO0FJRLdebs2VBGQcFMsbBrA1OLiycKc=;
-        b=E/Pycu/0l1XZnpUdw5stPYHepQP6695avZbWdQQM8OOaKtWzpwfKWnA8qWYOwrWWlP
-         Uyo9GrzhkM8gIM0wUEmfv00ojlMBa9FnODWiggpBiedP+pDsU5SvcOdIyTWyoUELDuA4
-         5YcY3ypl+8rHci2Po9LUsNX2wduaWarlG/mejOmOinVrfSVxqxLLW3U2OJ9egLLEJIx7
-         EzPV4quwaotN8pKh7OAL7pdUlmbt/o+bkHSojx/hYSzOaI6OYmq9LHl0MHP+4cdEEvQP
-         evRBMf0VgHWceVXlHB0cziYH8LN2L+heK8jfwzQ/uxN0qcM3g3+MpxqV/5fKCEzOuqNY
-         ESRQ==
-X-Gm-Message-State: AOAM533TeRMSSjUyj51A+aiQ/sUwCf7FGxVHJxbBhaYiQ3KO0rb/0c54
-        C02YCTlvXw04r+o80u2UaH80Nb6+jCTZSvvYO4w=
-X-Google-Smtp-Source: ABdhPJwIHm97HoA7V3FJf/i1TcP1cp8zPRHXwEDlwF/Nb56j3OiUhYXo+FNYC1Wl0GFutzFDpqRcyF818BuYmu4Dmng=
-X-Received: by 2002:aca:c490:: with SMTP id u138mr2200333oif.54.1602769327067;
- Thu, 15 Oct 2020 06:42:07 -0700 (PDT)
+        bh=lpSXdaWuU/6COGOcHpr2bLNzbwX0ucQjW3uoyXQpUkY=;
+        b=Jmg6hLO1402E5CWT54nfojWWtsvxPVeUUgfdmFhNcbzxW5pL6UvdpT2mbphvcPRcnK
+         pLDvhhQLo89R2UoRfN75yO2dF04XX832VMAz0zr+n7ImB1RerPMiSUtMEBXMQwYp2Kol
+         WBjbZw4DFc/CsimIfRUglEA5GG8rbmki3YPLqi2jiXp1tpJXwjS9jDQs90Dg7Vey1brs
+         g8MuO94/Db1lcB65DI6Frl9twhf+VOQkfT79wFCIib0afW3T399yUh9mfE2iu/8Cc54k
+         I6NzuiN+DhGCI+mEY6+gS15cJ9S4YNfUZXg/tGHpauBb3uHjr7g+qkz8iblFWxhux97b
+         Zcuw==
+X-Gm-Message-State: AOAM531u8jJ3oXYqUcMfjqrkD+ZvZ4MdmyenCoa7BOTZ8G8E0Rw0QnHM
+        pLLxuw86WAP8o2qUMOuWzlA4w9UO6QsNEb1KVDjbZw==
+X-Google-Smtp-Source: ABdhPJzQVhr0MMNzKgdiVR0noDJaHS0oQ/mwqQtAcL1VdTct7o7Hm7xA6/UXYjE4L9oM3GtTQnnlnCttl4RmK5sn+2M=
+X-Received: by 2002:a05:6512:3b6:: with SMTP id v22mr1043854lfp.536.1602769589120;
+ Thu, 15 Oct 2020 06:46:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201015132350.8360-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20201015132350.8360-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 15 Oct 2020 15:41:56 +0200
-Message-ID: <CAMuHMdUogbfHYv+g3+2=7JwhgH3MngmDEe5nvjZwkjTOJyn9dQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: hihope-rzg2-ex: Drop rxc-skew-ps
- from ethernet-phy node
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20200928063744.525700-1-ajye_huang@compal.corp-partner.google.com>
+ <20200928063744.525700-2-ajye_huang@compal.corp-partner.google.com>
+ <20201009135231.GA6655@sirena.org.uk> <CALprXBZAFCOpWP2186RaP++613qnjPY3D3NbXEN5CToYsLNsRw@mail.gmail.com>
+ <20201012135025.GF4332@sirena.org.uk>
+In-Reply-To: <20201012135025.GF4332@sirena.org.uk>
+From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Date:   Thu, 15 Oct 2020 21:46:18 +0800
+Message-ID: <CALprXBYfuqtJKtSrK=5pAS9N0V0Jb3CYv3EMZeGZ4OxF++dMAg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] ASoC: qcom: dt-bindings: Modify sc7180 machine bindings
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Ajye Huang <ajye.huang@gmail.com>, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rohit kumar <rohitkr@codeaurora.org>, tzungbi@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        Cheng-yi Chiang <cychiang@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
-
-On Thu, Oct 15, 2020 at 3:24 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> HiHope RZG2[HMN] boards uses Realtek phy and the driver does not support
-> rxc-skew-ps property. So remove rxc-skew-ps from ethernet-phy node.
+On Mon, Oct 12, 2020 at 9:50 PM Mark Brown <broonie@kernel.org> wrote:
 >
-> Fixes: 7433f1fb8ec8fe ("arm64: dts: renesas: Add HiHope RZ/G2M sub board support")
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-> @@ -23,7 +23,6 @@
->         status = "okay";
+> On Sat, Oct 10, 2020 at 12:07:54AM +0800, Ajye Huang wrote:
+> > On Fri, Oct 9, 2020 at 9:52 PM Mark Brown <broonie@kernel.org> wrote:
+> > > On Mon, Sep 28, 2020 at 02:37:43PM +0800, Ajye Huang wrote:
 >
->         phy0: ethernet-phy@0 {
-> -               rxc-skew-ps = <1500>;
->                 reg = <0>;
->                 interrupt-parent = <&gpio2>;
->                 interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> > > > Add compatible "qcom,sc7180-sndcard-rt5682-m98357-2mic"
+> > > > for 2mic case.
+>
+> > > This doesn't apply against current code, please check and resend.
+>
+> > Thank you for your reply,
+> > This patch depends on  Cheng-Yi's patch series
+> > https://patchwork.kernel.org/patch/11773221/.
+>
+> That's "ASoC: qcom: dt-bindings: Add sc7180 machine bindings" for those
+> playing at home.
+>
+> >   If I misunderstand what you mean, please correct me,
+>
+> A version of some SC7180 patches was applied.  However it does seem like
+> that didn't include any machine driver bindings so it must've been a
+> different, similar looking series which is presumably waiting for a new
+> version - please resend based on that new version (ideally these patches
+> could be picked up as part of that series).
+>
+> Please include human readable descriptions of things like commits and
+> issues being discussed in e-mail in your mails, this makes them much
+> easier for humans to read especially when they have no internet access.
+> I do frequently catch up on my mail on flights or while otherwise
+> travelling so this is even more pressing for me than just being about
+> making things a bit easier to read.
 
-Should "rx-internal-delay-ps = <1800>" be added to the avb node instead
-(after [1] has entered v5.10-rc1, and the DTS part of [2] has been
- applied to renesas-devel)?
+Hi, Mark
 
-[1] [PATCH net-next v4 resend 5/5] ravb: Add support for explicit
-internal clock delay configuration
-    https://lore.kernel.org/linux-renesas-soc/20201001101008.14365-6-geert+renesas@glider.be/
-[2] [PATCH v3 0/7] net/ravb: Add support for explicit internal clock
-delay configuration
-    https://lore.kernel.org/linux-renesas-soc/20200819134344.27813-1-geert+renesas@glider.be
+Thank you for your reply, I understand you point now, I will resend
+when it is done.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+thank you.
