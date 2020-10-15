@@ -2,225 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8130328F8BD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 20:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C624928FA5B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 23:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733100AbgJOSi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 14:38:28 -0400
-Received: from foss.arm.com ([217.140.110.172]:57454 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733078AbgJOSi1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 14:38:27 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5776B13D5;
-        Thu, 15 Oct 2020 11:38:26 -0700 (PDT)
-Received: from localhost (e108754-lin.cambridge.arm.com [10.1.199.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EBD793F71F;
-        Thu, 15 Oct 2020 11:38:25 -0700 (PDT)
-Date:   Thu, 15 Oct 2020 19:38:24 +0100
-From:   Ionela Voinescu <ionela.voinescu@arm.com>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Chris Redpath <chris.redpath@arm.com>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201015183824.GA9440@arm.com>
-References: <20201009140141.GA4048593@bogus>
- <2b7b6486-2898-1279-ce9f-9e7bd3512152@arm.com>
- <20201012105945.GA9219@arm.com>
- <500510b9-58f3-90b3-8c95-0ac481d468b5@arm.com>
- <20201012163032.GA30838@arm.com>
- <9fe56600-ba7d-d3b6-eea3-885475d94d7a@arm.com>
- <20201012220132.GA1715@arm.com>
- <CAJZ5v0hMtPARYezJEZqeUZBsyaSggQvtvvfEvONhz6Z=Y32bhQ@mail.gmail.com>
- <20201013123901.GA4945@arm.com>
- <CAJZ5v0gDfzFpJTLYMD=HsWKm5ORpx=398v+3q9DDoBbAh-aEsg@mail.gmail.com>
+        id S2392478AbgJOVEg convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 15 Oct 2020 17:04:36 -0400
+Received: from mailoutvs38.siol.net ([185.57.226.229]:57212 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2392476AbgJOVEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 17:04:36 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 8C5C9526FB0;
+        Thu, 15 Oct 2020 23:04:31 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id FG2958MajVAL; Thu, 15 Oct 2020 23:04:31 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id ECA1E526FA2;
+        Thu, 15 Oct 2020 23:04:30 +0200 (CEST)
+Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 3DB14526EE1;
+        Thu, 15 Oct 2020 23:04:30 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: Re: [PATCH v2] arm64: dts: allwinner: h6: add eMMC voltage property for Beelink GS1
+Date:   Thu, 15 Oct 2020 23:09:51 +0200
+Message-ID: <8575197.bU9TK3i2h4@kista>
+In-Reply-To: <20201015093544.zwxjzwmu77jz55d7@gilmour.lan>
+References: <20201003092001.405238-1-peron.clem@gmail.com> <2745255.UFgyrzHpml@kista> <20201015093544.zwxjzwmu77jz55d7@gilmour.lan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJZ5v0gDfzFpJTLYMD=HsWKm5ORpx=398v+3q9DDoBbAh-aEsg@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rafael,
-
-Sorry in advance for the long writing. I hope it makes sense.
-
-On Thursday 15 Oct 2020 at 17:56:56 (+0200), Rafael J. Wysocki wrote:
-> On Tue, Oct 13, 2020 at 2:39 PM Ionela Voinescu <ionela.voinescu@arm.com> wrote:
-> >
-> > Hi Rafael,
-> >
-> > On Tuesday 13 Oct 2020 at 13:53:37 (+0200), Rafael J. Wysocki wrote:
-> > > On Tue, Oct 13, 2020 at 12:01 AM Ionela Voinescu
-> > > <ionela.voinescu@arm.com> wrote:
-> > > >
-> > > > Hey Lukasz,
-> > > >
-> > > > I think after all this discussion (in our own way of describing things)
-> > > > we agree on how the current cpufreq based FIE implementation is affected
-> > > > in systems that use hardware coordination.
-> > > >
-> > > > What we don't agree on is the location where that implementation (that
-> > > > uses the new mask and aggregation) should be.
-> > > >
-> > > > On Monday 12 Oct 2020 at 19:19:29 (+0100), Lukasz Luba wrote:
-> > > > [..]
-> > > > > The previous FIE implementation where arch_set_freq_scale()
-> > > > > was called from the drivers, was better suited for this issue.
-> > > > > Driver could just use internal dependency cpumask or even
-> > > > > do the aggregation to figure out the max freq for cluster
-> > > > > if there is a need, before calling arch_set_freq_scale().
+Dne četrtek, 15. oktober 2020 ob 11:35:44 CEST je Maxime Ripard napisal(a):
+> On Tue, Oct 13, 2020 at 11:27:33PM +0200, Jernej Škrabec wrote:
+> > Dne petek, 09. oktober 2020 ob 09:36:51 CEST je Maxime Ripard napisal(a):
+> > > On Thu, Oct 08, 2020 at 10:00:06PM +0200, Clément Péron wrote:
+> > > > Hi Maxime,
+> > > > 
+> > > > Adding linux-sunxi and Jernej Skrabec to this discussion.
+> > > > 
+> > > > On Thu, 8 Oct 2020 at 17:10, Maxime Ripard <maxime@cerno.tech> wrote:
 > > > > >
-> > > > > It is not perfect solution for software FIE, but one of possible
-> > > > > when there is no hw counters.
+> > > > > Hi Clément,
 > > > > >
-> > > > [..]
-> > > >
-> > > > > Difference between new FIE and old FIE (from v5.8) is that the new one
-> > > > > purely relies on schedutil max freq value (which will now be missing),
-> > > > > while the old FIE was called by the driver and thus it was an option to
-> > > > > fix only the affected cpufreq driver [1][2].
+> > > > > On Mon, Oct 05, 2020 at 08:47:19PM +0200, Clément Péron wrote:
+> > > > > > On Mon, 5 Oct 2020 at 11:21, Maxime Ripard <maxime@cerno.tech> 
+wrote:
+> > > > > > >
+> > > > > > > Hi Clément,
+> > > > > > >
+> > > > > > > On Sat, Oct 03, 2020 at 11:20:01AM +0200, Clément Péron wrote:
+> > > > > > > > Sunxi MMC driver can't distinguish at runtime what's the I/O 
+> > voltage
+> > > > > > > > for HS200 mode.
+> > > > > > >
+> > > > > > > Unfortunately, that's not true (or at least, that's not related 
+to 
+> > your patch).
+> > > > > > >
+> > > > > > > > Add a property in the device-tree to notify MMC core about 
+this
+> > > > > > > > configuration.
+> > > > > > > >
+> > > > > > > > Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce 
+Beelink 
+> > GS1 board")
+> > > > > > > > Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> > > > > > > > ---
+> > > > > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
+> > > > > > > >  1 file changed, 1 insertion(+)
+> > > > > > > >
+> > > > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-
+> > gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> > > > > > > > index 049c21718846..3f20d2c9bbbb 100644
+> > > > > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> > > > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> > > > > > > > @@ -145,6 +145,7 @@ &mmc2 {
+> > > > > > > >       vqmmc-supply = <&reg_bldo2>;
+> > > > > > > >       non-removable;
+> > > > > > > >       cap-mmc-hw-reset;
+> > > > > > > > +     mmc-hs200-1_8v;
+> > > > > > > >       bus-width = <8>;
+> > > > > > > >       status = "okay";
+> > > > > > > >  };
+> > > > > > >
+> > > > > > > I'm not really sure what you're trying to fix here, but as far as 
+MMC
+> > > > > > > goes, eMMC's can support io voltage of 3.3, 1.8 and 1.2V. Modes 
+up 
+> > until
+> > > > > > > HS DDR (50MHz in DDR) will use an IO voltage of 3.3V, higher 
+speed 
+> > modes
+> > > > > > > (HS200 and HS400) supporting 1.8V and 1.2V.
+> > > > > >
+> > > > > > Some users report that the eMMC is not working properly on their
+> > > > > > Beelink GS1 boards.
+> > > > > >
+> > > > > > > The mmc-hs200-1_8v property states that the MMC controller 
+supports 
+> > the
+> > > > > > > HS200 mode at 1.8V. Now, I can only assume that since BLDO2 is 
+set 
+> > up at
+> > > > > > > 1.8V then otherwise, the MMC core will rightfully decide to use 
+the
+> > > > > > > highest supported mode. In this case, since the driver sets it, 
+it 
+> > would
+> > > > > > > be HS-DDR at 3.3V, which won't work with that fixed regulator.
+> > > > > > >
+> > > > > > > I can only assume that enabling HS200 at 1.8V only fixes the 
+issue 
+> > you
+> > > > > > > have because otherwise it would use HS-DDR at 3.3V, ie not 
+actually
+> > > > > > > fixing the issue but sweeping it under the rug.
+> > > > > > >
+> > > > > > > Trying to add mmc-ddr-1_8v would be a good idea
+> > > > > >
+> > > > > > Thanks for the explanation, this is indeed the correct one.
+> > > > > > So It looks like the SDIO controller has an issue on some boards 
+when
+> > > > > > using HS-DDR mode.
+> > > > > >
+> > > > > > Is this patch acceptable with the proper commit log?
 > > > > >
-> > > >
-> > > > My final argument is that now you have 2 drivers that would need this
-> > > > support, next you'll have 3 (the new mediatek driver), and in the future
-> > > > there will be more. So why limit and duplicate this functionality in the
-> > > > drivers? Why not make it generic for all drivers to use if the system
-> > > > is using hardware coordination?
-> > > >
-> > > > Additionally, I don't think drivers should not even need to know about
-> > > > these dependency/clock domains. They should act at the level of the
-> > > > policy, which in this case will be at the level of each CPU.
-> > >
-> > > The policies come from the driver, though.
-> > >
-> > > The driver decides how many CPUs will be there in a policy and how to
-> > > handle them at the initialization time.
-> >
-> > Yes, policies are built based on information populated from the drivers
-> > at .init(): what CPUs will belong to a policy, what methods to use for
-> > setting and getting frequency, etc.
-> >
-> > So they do pass this information to the cpufreq core to be stored at the
-> > level of the policy, but later drivers (in the majority of cases) will
-> > not need to store on their own information on what CPUs belong to a
-> > frequency domain, they rely on having passed that information to the
-> > core, and the core mechanisms hold this information on the clock domains
-> > (currently through policy->cpus and policy->related_cpus).
+> > > > > If HS-DDR works, yes, but I assume it doesn't?
+> > > > 
+> > > > After discussing with Jernej about this issue, I understood that:
+> > > > - Automatic delay calibration is not implemented
+> > > > - We also miss some handling of DDR related bits in control register
+> > > > 
+> > > > So none of H5/H6 boards should actually work.
+> > > > (Some 'lucky' boards seem to work enough to switch to HS200 mode...)
+> > > > 
+> > > > To "fix" this the H5 disable the HS-DDR mode in sunxi mmc driver :
+> > > > https://github.com/torvalds/linux/blob/master/drivers/mmc/host/sunxi-mmc.c#L1409
+> > > 
+> > > I find it suspicious that some boards would have traces not good enough
+> > > for HS-DDR (50MHz in DDR) but would work fine in HS200 (200MHz in SDR).
+> > > If there's some mismatch on the traces, it will only be worse in HS200.
+> > 
+> > FYI, similar situation is also with Tanix TX6 board. Mine works well in 
+HS-DDR 
+> > mode, but some people reported that it doesn't work for them. The only 
+> > possible difference could be different eMMC IC. I'll try to confirm that.
+> > 
+> > Anyway, I did some tests on OrangePi 3 board which also have eMMC. Both 
+modes 
+> > (HS-DDR and HS200) are supported and work well.
 > 
-> Strictly speaking, not quite.
+> The Orange Pi 3 has an HS400-capable eMMC ?!
 > 
-> In fact policy->related_cpus is a set of CPUs that share a common perf
-> control HW/FW interface which may or may not match the boundaries of
-> clock domains etc.  That's what the entire cpufreq needs to know and
-> cares about.
+> That's really good news, I've initially done the HS200 support on a
+> custom board I had to give back and couldn't find any board with
+> HS200/HS400 since.
+
+Yes, I think all H6 boards with eMMC support HS400. If you didn't already 
+erase Android from eMMC, I suggest to run it and grep dmesg for HS400. I'm 
+pretty sure it will be there.
+
 > 
-
-Yes, generally speaking, you are absolutely correct, and actually this
-is the motivation behind these patches: policy->related_cpus shows cpus
-sharing the same perf controls, but we need "something else" to show us
-the cpus sharing the same clocks.
-
-It was my mistake for describing policy->related_cpus in the way I have
-above, but my "excuse" is that I was referring to arm/arm64 platforms, in
-the context of this cpufreq driver FIE, which is only present on
-arm/arm64 platforms. I'll expand on this below.
-
-Speaking practically, again referring to arm/arm64 platforms, for most*
-of them, policy->related_cpus does also identify CPUs in the same clock
-domain and therefore is used as if that was true. The obvious examples
-are exactly the users that were presented as part of the motivation of
-these patches: EAS, IPA, cpufreq-based FIE. They treat
-policy->related_cpus as dependent cpus (cpus that change they performance
-together or are clocked together).
-
-*one of the exceptions is that old BL_SWITCHER support.
-
-Another example of how the two (perf controls vs clock domains) are not
-quite as separate in practice, is the cppc_cpufreq driver: that driver
-reads the PSD domains and creates the policies based on the domains, not
-based on the CPPC controls. It does mention only support for SW_ANY, but
-that does not change the fact that the PSD (p-state dependency) is used to
-populate policy->related_cpus and not any sharing of controls from _CPC.
-
-Also, generically, policy->cpus (in schedutil or the ondemand governor)
-is used as the basis for software coordination. I suppose software
-coordination only has meaning at the level of a domain, so policy->cpus
-is used as if providing the CPUs in a domain. If that wasn't the case,
-their logic would not stand.
-
-> AFAICS your scale invariance rework patches were based on the
-> assumption that CPUs sharing an interface like that should also belong
-> to the same frequency domain, which is reasonable and that's why I
-> didn't have a problem with it, but if you were really assuming that
-> policy->related_cpus must always reflect a frequency domain, then I'm
-> afraid that you were not going in the right direction (the
-> one-CPU-per-policy with HW coordination example should be sufficient
-> to illustrate that).
+> > Interesting observation is that speed test (hdparm -t) reported 80.58
+> > MB/sec for HS-DDR mode and 43.40 MB/sec for HS200. As it can be seen
+> > here, HS-DDR is quicker by a factor of 2, but it should be the other
+> > way around. Reason for this is that both modes use same base clock and
+> > thus HS-DDR produces higher speed. If I change f_max to 150 MHz (max.
+> > per datasheet for SDR @ 1.8 V) then naturally HS200 mode is faster
+> > (124.63 MB/sec) as HS-DDR as it should be.
 > 
+> If it work fine on the H6, we should set the max-frequency property on
+> the DT, just like I did on the A64.
 
-In my defence, I was definitely not assuming that, and I was one of the
-first people bringing up HW_ALL in this thread :).
+Oh, I missed that property. I'll check. However, we can't blindly set max-
+frequency. According to user manual, HS400 supports lower max. frequency than 
+HS200.
 
-To expand on that, I never assumed policy->related_cpus *must always*
-reflect frequency domains. But to that I have to add that FIE, as well
-as EAS and IPA, are acting on policy->related_cpus as the closest to
-accurate information on frequency domains that they can get. That is
-the best information they have got and historically that was good enough.
-That is exactly because on arm/arm64 platforms policy->related_cpus has,
-more often than not, been describing clock domains as well. And again,
-cpufreq-based FIE using policy->related_cpus is only implemented on
-arm/arm64 platforms. For anything more accurate, counters should be
-used.
+> 
+> > This would be actually correct test for problematic boards but
+> > unfortunately I don't have it. I also hacked in support for HS400
+> > (~143 MB/s) and this mode is the only one which really needs
+> > calibration on my board.
+> > 
+> > Two observations from BSP driver:
+> > 1. Module clock is disabled before adjusting DDR bit and afterwards it's 
+re-
+> > enabled . That could fix some kind of glitches.
+> > 2. SDMMC peripheral runs on higher clock than on mainline.
+> > 
+> > > And for the delay calibration, iirc, that's only necessary for HS400
+> > > that we don't support?
+> > 
+> > According to BSP driver and its DT, HS200 also needs calibration. However, 
+it 
+> > seems that using it on lower speed it isn't needed.
+> 
+> Which calibration do you mean? IIRC, the data strobe signal is only used
+> (optionally) in HS400. The controller might have some internal
+> calibration for other modes though.
 
-Therefore, EAS, FIE, IPA, and even the schedutil and ondmand governors
-for that matter, will always work best if policy->related_cpus reflects
-the full composition of clock domains as well. It might not be always
-true, but that is the best information that they can act on.
+Actually both. BSP always adjust both calibration values at the same time 
+based on table from DT.
 
-But now that new platforms are breaking these historical assumptions,
-through these patches, the intention is to give these users better
-information to act on, that is information about the real composition of
-performance domains.
+Best regards,
+Jernej
 
-> It is correct that drivers generally don't need to know about the HW
-> clock (or voltage for that matter) coordination dependencies, but the
-> rest of cpufreq doesn't need to know about them either.  If that
-> information is needed for something else, I don't see a reason to put
-> it into cpufreq.
 
-Right! If we say that cpufreq is meant for frequency control only, there
-would be no reason. But I believe that is not so easy to separate
-frequency control from frequency dependency. I suppose that was the
-reason behind having policy->shared_type (as another example to
-schedutil and ondemand software coordination). I believe coordination
-only has meaning at the level of a domain and therefore should not
-belong to a framework that would only reflect control.
-
-Therefore, given precedents, it does seem consistent for information about
-dependency domains to be placed in cpufreq as well, and possibly a good
-place to make a clear separation between sharing of controls and sharing
-of coordination.
-
-But it might just be my interpretation. In any case, I appreciate your
-time spent on this.
-
-If cpufreq is not the correct location, are there better options that you
-can recommend?
-
-Thank you,
-Ionela.
