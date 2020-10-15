@@ -2,119 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F236E28FAAC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 23:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C64928FAB5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 23:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731021AbgJOV3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 17:29:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
+        id S1728419AbgJOVeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 17:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726365AbgJOV3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 17:29:45 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20A1C061755
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 14:29:44 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id x7so183075eje.8
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 14:29:44 -0700 (PDT)
+        with ESMTP id S1727664AbgJOVeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 17:34:50 -0400
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FE48C061755;
+        Thu, 15 Oct 2020 14:34:50 -0700 (PDT)
+Received: by mail-qt1-x843.google.com with SMTP id q26so409500qtb.5;
+        Thu, 15 Oct 2020 14:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=shNugDWCSFxMFaQhudWs8qBWQPZ07aTny77+Ie1FHlk=;
-        b=WsvessV78yuDktprTp/4iqa3Adv1XtNl2N/v19ZJnZoqVtqW3R89jenV6efR955q/r
-         w/t7xoaoNh7s+6TICZL6hGqJEjkuoQuGozFyTv0FDKf47JoY98kaBG86Az0J9yrlcxxG
-         WWCFFWYtDAiJztGSud9FB31svTcPtnbTB6Mhc=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8mdlzifETD7dDuA1V3YKKF+U9XTqlEODnK2lvnXX8zE=;
+        b=uKyqjiLAm8LXPyz0bkIR6peoreT/vMSjZlV3h7LzOA6c6I0uX7c/bIOEA7M+VRlB5t
+         4S6si8clfoTSqtAS4kuONir7ltmQQuz3YltaOsdCAz0KYm8om0D173SEaYm5Q7puVVLK
+         bQP7REoi9lKkPNT8z9KYLZ0u88dbXyAhhHAWQCRvuZK0HbITHfqhk8OXo8lt3izf0FxN
+         hdI8eprx8e9SKsAW9QwLmWNbqPylYENDoEG5NpHCd5DsP0I9qRBOE4uyvr5H9i/sRIjL
+         DVW53Lf+x+qHOdHy9svh3jqDf3TJLOwA96YD/RovKI1fIfAzoiyB9on/wWD9ibrAf5uu
+         3OWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=shNugDWCSFxMFaQhudWs8qBWQPZ07aTny77+Ie1FHlk=;
-        b=uKq1ED4a6O7UJefSk1Z2Xd+o4X7G/M6e0D0O0t5AxA2F6Vmn7lnWrl9oVCS7XGWuZf
-         QbkvpmUUQH2A3wqjQy7w8GxkvU6kdbq/rlnvVC6KmtjkJK6tg+RTgvbsPH7XZzdfoN6G
-         xaXZaLMYNkDMIYdR1+ZpU8CMEisa1cxVv8NXBIPpB+xPh9efRCAAcTj730AuLP9G7FKu
-         K8kOjRFKdMiwk5uIy8iAM/+hncwKMbkNWTpQtTWDjGuR/8QOMwEKjpPgJkmajcdyjhhe
-         d9gJASGZTBWnGxYdU5kSOAU1e3ZY8xekTFQQ/G9ach5WdZJrxAO8Me/S7Gmz7owhRJ87
-         UB6w==
-X-Gm-Message-State: AOAM53390QgH/jsB9LLnApAJoCjrQvGPfon6iPBv9J52vxG3d5mIUVgY
-        KamS8EMgt4yygSnuHCDxpbba3mvzCfTAUA==
-X-Google-Smtp-Source: ABdhPJy28sl7CJrzbiecFn0WB1kKy3nCQQrMg6idilPk379jcACEw2zxT23JeN9/9jAq74DWlA1FJw==
-X-Received: by 2002:a17:906:4b19:: with SMTP id y25mr321436eju.393.1602797383403;
-        Thu, 15 Oct 2020 14:29:43 -0700 (PDT)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com. [209.85.208.52])
-        by smtp.gmail.com with ESMTPSA id v21sm98973edt.80.2020.10.15.14.29.42
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8mdlzifETD7dDuA1V3YKKF+U9XTqlEODnK2lvnXX8zE=;
+        b=ji/rO/2/HeyfH3/b5JR4sfB2udZYtyvSt5VzvfHTfga+piIoCrnpwptotPrvtb4Lg/
+         JSnApvwKVmO+xq5+QsgAWOGyqJBkVUBgkDYkyuEdDj2HQ4YE5SAQegIMkVoCj5GBkX/f
+         mGpHGdxn8SZ7JABz1+XCMdT93xzWiIdGIYfqxgtaUfeNGFGJy9gV301mOfdA41gLKzUi
+         AKs6pJN33EHux6quIgfGqKliwNdTI6OHGhiCU5GKkQlosfw1fuhLp5J+Dxq7p/dCXAMl
+         LyFMONguOxVdr5TxkB8y6sIOCw+kELpqDEDMAAjYMiwF4C9uKF60dhDyevi8ezNciKqj
+         Tkwg==
+X-Gm-Message-State: AOAM530icO/GPWGDxhQMc4iafL6y8XBqTXmoqFoBfXxQ0Qi0sZMhOBHp
+        9gePK6Ow0SvwD4har3AQQMc=
+X-Google-Smtp-Source: ABdhPJxYVzslPxZmQVqTEb18qiPnUfZjT7AMkQGFO0v2P8KO5mXkcRKEvxEBsw1knmTlZfHSecuUMg==
+X-Received: by 2002:aed:2ce5:: with SMTP id g92mr364144qtd.107.1602797689037;
+        Thu, 15 Oct 2020 14:34:49 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id r8sm81317qkm.115.2020.10.15.14.34.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Oct 2020 14:29:42 -0700 (PDT)
-Received: by mail-ed1-f52.google.com with SMTP id x1so247555eds.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 14:29:42 -0700 (PDT)
-X-Received: by 2002:a50:e40b:: with SMTP id d11mr491296edm.198.1602797381996;
- Thu, 15 Oct 2020 14:29:41 -0700 (PDT)
+        Thu, 15 Oct 2020 14:34:48 -0700 (PDT)
+Subject: Re: [RFC PATCH 0/3] Fix errors on DT overlay removal with devlinks
+To:     Michael Auchter <michael.auchter@ni.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     saravanak@google.com, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org, rafael@kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20201014193615.1045792-1-michael.auchter@ni.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <8c123831-1a35-0a28-d583-5bab4735edfd@gmail.com>
+Date:   Thu, 15 Oct 2020 16:34:47 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201013080103.410133-1-amstan@chromium.org> <20201013010056.v2.2.I96b8d872ec51171f19274e43e96cadc092881271@changeid>
- <20201014141946.mkrvpkrttucffkhj@holly.lan>
-In-Reply-To: <20201014141946.mkrvpkrttucffkhj@holly.lan>
-From:   Alexandru M Stan <amstan@chromium.org>
-Date:   Thu, 15 Oct 2020 14:29:05 -0700
-X-Gmail-Original-Message-ID: <CAHNYxRx3J7XUE-hWa8-6_bOePsw1oeY9uuuehy=yCxN2RyqsjQ@mail.gmail.com>
-Message-ID: <CAHNYxRx3J7XUE-hWa8-6_bOePsw1oeY9uuuehy=yCxN2RyqsjQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] ARM: dts: rockchip: veyron: Remove 0 point from brightness-levels
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201014193615.1045792-1-michael.auchter@ni.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 7:19 AM Daniel Thompson
-<daniel.thompson@linaro.org> wrote:
->
-> On Tue, Oct 13, 2020 at 01:01:02AM -0700, Alexandru Stan wrote:
-> > After the "PWM backlight interpolation adjustments" patches, the
-> > backlight interpolation works a little differently. The way these
-> > dts files were working before was relying on a bug (IMHO).
-> >
-> > Remove the 0-3 range since otherwise we would have a 252 long
-> > interpolation that would slowly go between 0 and 3, looking really bad
-> > in userspace.
-> >
-> > We don't need the 0% point, userspace seems to handle this just fine
-> > because it uses the bl_power property to turn off the display.
-> >
-> > Signed-off-by: Alexandru Stan <amstan@chromium.org>
->
-> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+Hi Michael,
 
-Thank you!
+On 10/14/20 2:36 PM, Michael Auchter wrote:
+> After updating to v5.9, I've started seeing errors in the kernel log
+> when using device tree overlays. Specifically, the problem seems to
+> happen when removing a device tree overlay that contains two devices
+> with some dependency between them (e.g., a device that provides a clock
+> and a device that consumes that clock). Removing such an overlay results
+> in:
+> 
+>   OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy
+>   OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy
+> 
+> followed by hitting some REFCOUNT_WARNs in refcount.c
+> 
+> In the first patch, I've included a unittest that can be used to
+> reproduce this when built with CONFIG_OF_UNITTEST [1].
+> 
+> I believe the issue is caused by the cleanup performed when releasing
+> the devlink device that's created to represent the dependency between
+> devices. The devlink device has references to the consumer and supplier
+> devices, which it drops in device_link_free; the devlink device's
+> release callback calls device_link_free via call_srcu.
+> 
+> When the overlay is being removed, all devices are removed, and
+> eventually the release callback for the devlink device run, and
+> schedules cleanup using call_srcu. Before device_link_free can and call
+> put_device on the consumer/supplier, the rest of the overlay removal
+> process runs, resulting in the error traces above.
+> 
+> Patches 2 and 3 are an attempt at fixing this: call srcu_barrier to wait
+> for any pending device_link_free's to execute before continuing on with
+> the removal process.
+> 
+> These patches resolve the issue, but probably not in the best way. In
+> particular, it seems strange to need to leak details of devlinks into
+> the device tree overlay code. So, I'd be curious to get some feedback or
+> hear any other ideas for how to resolve this issue.
 
->
-> Note also shouldn't this be patch 1 of the set. AFAICT it makes sense
-> whether or not the interpolation algorithm is changed.
+Thanks for finding the problem, analyzing it, creating a unittest, and
+creating a fix.
 
-Yeah, I guess it could be. Sorry I didn't think of it that way before,
-I'm used to landing things in a group.
+I agree with your analysis that there are issues with the implementation
+of the test and fix.  I'll dig into this to see if I can provide some
+useful improvements.
 
-In particular on veyron I assume it will almost be a noop without
-having my driver patch (especially with the findings of 0% not being
-that important).
+-Frank
 
-Feel free to land this independently.
+> 
+> Thanks,
+>  Michael
+> 
+> 1. Note that this isn't a very good unit test: it will report a "pass"
+>    even if it fails with the aforementioned errors, as these errors
+>    aren't propogated.
+> 
+> Michael Auchter (3):
+>   of: unittest: add test of overlay with devlinks
+>   driver core: add device_links_barrier
+>   of: dynamic: add device links barrier before detach
+> 
+>  drivers/base/core.c                     | 10 ++++++++++
+>  drivers/of/dynamic.c                    |  3 +++
+>  drivers/of/unittest-data/Makefile       |  1 +
+>  drivers/of/unittest-data/overlay_16.dts | 26 +++++++++++++++++++++++++
+>  drivers/of/unittest.c                   | 16 +++++++++++++++
+>  include/linux/device.h                  |  1 +
+>  6 files changed, 57 insertions(+)
+>  create mode 100644 drivers/of/unittest-data/overlay_16.dts
+> 
 
->
->
-> Daniel.
-
-Alexandru Stan (amstan)
