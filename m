@@ -2,88 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3C2D28F7A6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 19:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AECD328F8F1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 20:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727071AbgJORcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 13:32:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43120 "EHLO mail.kernel.org"
+        id S2391071AbgJOSxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 14:53:22 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:22761 "EHLO m42-4.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725977AbgJORcY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Oct 2020 13:32:24 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S2391042AbgJOSxW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 14:53:22 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602788001; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=XR93iGlmoAESFU5uNaPo2m0rZ/7/TZZIlkqOmEa3nmg=; b=wYpsfPqZ7vdrlNfbdohrY4oM71XEiMFzUjb+xDPNQAUDIZ24dWpEHMcReqTEhruyytdaG9Xw
+ tg4nlMYzFWekuUqptfA7q5TBXZjdAckkk1TK21Vgq2s+8ygzH7W3BbuLdv0Qy+SE07AR/EYu
+ 2ddXTq4m+7Oh4WUvtCpVSsxUHGQ=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 5f888c90ad37af35ec3161a9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 15 Oct 2020 17:53:20
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B7FFAC55687; Thu, 15 Oct 2020 17:45:54 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4DA9C22243;
-        Thu, 15 Oct 2020 17:32:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602783143;
-        bh=7/ktMrN+y9RlPlNt0esVc1KuysNkY3EZ6vHms7U3vkI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LD45W9726yurL26MnLtgE/4TPDHPiyUFXea8r3OIhuyK+bTUokXp6nAYQf+SACX7V
-         X/bjtyJ+65dY+/V0mXFmOCRV/DNPxRTAgrxHcZUJ+w4qbX7/fX8MSgRkZ5EfYAchYT
-         cHsBHs7nN1KmigHWJTXNHVqFze2+ZD/Kzk15dsHw=
-Date:   Thu, 15 Oct 2020 18:32:16 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Richard Fitzgerald <rf@opensource.cirrus.com>, robh+dt@kernel.org,
-        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 06537C5383E;
+        Thu, 15 Oct 2020 17:45:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 06537C5383E
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org, mka@chromium.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/7] ARM: dts: Add dts for Raspberry Pi 4 + Cirrus Logic
- Lochnagar2
-Message-ID: <20201015173216.GH4390@sirena.org.uk>
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
- <20201014145418.31838-7-rf@opensource.cirrus.com>
- <e9db1a11519dce0938cef867179160a818ec4143.camel@suse.de>
- <89913f8b-fe92-1a31-77ff-49ea3f3d3294@opensource.cirrus.com>
- <5d2587193f0e99996445d5fa507a8acf7854fed3.camel@suse.de>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Rn7IEEq3VEzCw+ji"
-Content-Disposition: inline
-In-Reply-To: <5d2587193f0e99996445d5fa507a8acf7854fed3.camel@suse.de>
-X-Cookie: Neutrinos have bad breadth.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        evgreen@chromium.org, dianders@chromium.org, robh+dt@kernel.org,
+        swboyd@chromium.org, Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sc7180-lite: Tweak DDR/L3 scaling on SC7180-lite
+Date:   Thu, 15 Oct 2020 23:15:38 +0530
+Message-Id: <1602783939-7177-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Tweak the DDR/L3 bandwidth votes on the lite variant of the SC7180 SoC
+since the gold cores only support frequencies upto 2.1 GHz.
 
---Rn7IEEq3VEzCw+ji
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180-lite.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
 
-On Thu, Oct 15, 2020 at 05:12:42PM +0200, Nicolas Saenz Julienne wrote:
-> On Thu, 2020-10-15 at 12:14 +0100, Richard Fitzgerald wrote:
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi b/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+new file mode 100644
+index 000000000000..cff50275cfe1
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+@@ -0,0 +1,14 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * SC7180 lite device tree source
++ *
++ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
++ */
++
++&cpu6_opp11 {
++	opp-peak-kBps = <8532000 22425600>;
++};
++
++&cpu6_opp12 {
++	opp-peak-kBps = <8532000 23347200>;
++};
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-> > We want something in mainline so that it can be used by people
-> > developing on mainline and taken as a starting point for configuring
-> > the codecs for other host platforms. The RPi is a convenient platform to
-> > use as the base because it is widely available and low-cost.
-
-> If what you want to convey is the proper way of configuring your specific
-> device the way to go is writing a devicetree binding. See
-> Documentation/devicetree. It's even possible to validate a given devicetree
-> against the bindings (given they are written in yaml format).
-
-These devices already have bindings, that doesn't really help with
-describing how a specific board is wired up.
-
---Rn7IEEq3VEzCw+ji
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+Ih6AACgkQJNaLcl1U
-h9A9yQf8Dm2aPZjUMMPafvwdr+3w8pMcyoUheiSN5MklP1b8yRi2feJfIB5PqzQn
-bk13oOB7cxs4WNQgbZqLPLjJf8bgkutB5Kwga1mm2xDDIdt620GgvMrOosXH05io
-xcm3oyOP5mZrvhzHyBdQV6J9DTF6t/ITVF1pefQhP0JiyOsG+jgU+ScDHrLlqXcO
-yOpJiU0V2D9PEa38sCfBwHtvqBmYioIfDtAr9IZdoXgIRX+h6TQ2tnzpkrTUmXjY
-vDxYu6IRjpvtT6vSvN9I0hM5VS/2AmOE8+taDkVdLUriN13gPPpk5HVJoKv9/qzw
-nY4VIdhSllJWzlilek+ouj4S61KrwQ==
-=cCIV
------END PGP SIGNATURE-----
-
---Rn7IEEq3VEzCw+ji--
