@@ -2,151 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02D2A28F6FD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 18:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A008F28F730
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 18:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390011AbgJOQjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 12:39:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49312 "EHLO
+        id S1731061AbgJOQwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 12:52:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388946AbgJOQjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 12:39:53 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846C3C061755;
-        Thu, 15 Oct 2020 09:39:53 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id o3so2233095pgr.11;
-        Thu, 15 Oct 2020 09:39:53 -0700 (PDT)
+        with ESMTP id S1730137AbgJOQwz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 12:52:55 -0400
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8670CC0613D2
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 09:52:55 -0700 (PDT)
+Received: by mail-yb1-xb42.google.com with SMTP id h9so2817120ybm.4
+        for <devicetree@vger.kernel.org>; Thu, 15 Oct 2020 09:52:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=gqWIMQYBUG7yq8NtnkvmW24LTsh1QU6pWh/+ugrYrxg=;
-        b=qQZd5xTUnsF3HRylAKoGTioMFW7uqnoMXRtBLq+c1p4V/aRRTXrGb8cTFAc3nvALjp
-         aquNHctfkqLrSvEdPhxpeTSHfctsGe2UI7sEhajhMS700kAS9Y5xnWGK1BfZupaY0PWN
-         Y7Yow4982zp9cphiZsHNFyV/jjhZCQ3xy/8lxe6JoYN93I4GDpYX4OoQOteSfMdEFtQX
-         RbYeMftNCsU9AahTo+KF8hh5DeHEdWySDzZmbfS3yW3blX1ceQcfA7DfKPts1+hoSdWY
-         15siQyc5iyGg71kJ9IQrBvubOFT2B1xxUMsoiffkxULFpacN7amxN/R35qegSCEu+VTQ
-         6X8A==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kMr40LI/hXcWSQOOPZsCuoJBcw+0XKBqS6dhgqIQMko=;
+        b=SDoAAQkWLCC2CkjWAeHxvm15SKFsOztI8gbQF02ZA9606gUcHwv/NfHe/aWdYXy0f+
+         IIE0nZgGXJfdssTpvo3/MzvXFGaks0dvKHV4q37EbIQ6BrHTZXU704YMuo6PbLuv3UUU
+         JF66q1OHUVsABa2fRI0XBdDlKTcfCCmLfnsRq0Xj6PEPsp1f8zXXhx1fcf4nYXM6qqLN
+         H3mCx56zOs41I0md0TPtr5kz9jgePYIiaUn/iBc8ERntQ3FPbE+8sSng7BwJiZ+ND2vm
+         fOLBD3NmbEE9HMo0Ebq7Mg8PvMFcewF85ASCRWpQw9GkzTcNKUe/PSyIx9hb69Q52hFi
+         3oyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=gqWIMQYBUG7yq8NtnkvmW24LTsh1QU6pWh/+ugrYrxg=;
-        b=aOWqooLMWnFKczNCZttelJMtr+zJG5BSo8KCOgfY/5mvaQPLdXDxZvpV910gALIbrk
-         opIFoN1uNcWVEZXS8+vtaO6jgz1iBCiZIc5WxlNzpDOzgkvwJgdH48aeEm/z/LNZBICn
-         CB/sk1tjIzBjN7ob51+32DSwdi60CkAeWkdtUMtgKkgZ5jrD6HjMwHer3i5/mMAwwaJJ
-         S4zvN8Tiq1KkCsgWIqElsEBcx5gjyKyh8BQ4yl6HnC60QH0BySVW2VH9lfMsjme0P6Cm
-         SjcfY50iFNlgUuRzf7GKz0G0qWQO/ChzY1uhvZuIr04mdAQofkuPBB2H1lQukztMaKaN
-         PeUg==
-X-Gm-Message-State: AOAM531XRTzQ2gsMdM+P2DIEsituDk8Jq0bNT8LGTLKXSfvSdo4Y9ilP
-        pXDMr1AJDKoZoSyWL3DRRvQ=
-X-Google-Smtp-Source: ABdhPJwgDSuInYqELEMF2gM4bang7qs6+eCuObab8CoTswYVwtM747vlKk75TLuWENwkNpd4KmIYcw==
-X-Received: by 2002:a62:5b85:0:b029:142:2501:34e1 with SMTP id p127-20020a625b850000b0290142250134e1mr4860567pfb.58.1602779993043;
-        Thu, 15 Oct 2020 09:39:53 -0700 (PDT)
-Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id y5sm3858293pgo.5.2020.10.15.09.39.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Oct 2020 09:39:51 -0700 (PDT)
-Subject: Re: [PATCH 07/20] dt-bindings: usb: xhci: Add Broadcom STB v2
- compatible device
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-snps-arc@lists.infradead.org,
-        linux-mips@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@ti.com>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-8-Sergey.Semin@baikalelectronics.ru>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <385b0c37-a22f-3c13-71be-803f39c391af@gmail.com>
-Date:   Thu, 15 Oct 2020 09:39:48 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kMr40LI/hXcWSQOOPZsCuoJBcw+0XKBqS6dhgqIQMko=;
+        b=Ql1Jahtk34Kr0bAO3TVwBBR00SMFOZPdahI3Wai1XR6C5o8G2zXCS57d6IoMOttTjv
+         0TIbZ7eQQoyIk0oQJKV5cJSwTGXkbiHjUIG0Vzn9RSyxQk2jk4K9bee+Ql8pUc2yetWE
+         1SGzUlvQ3pb+6CVkmnIBED3ZcjEpah/wVv7PnEpMjR/pxHoLtR0DUgTekV90HbwncwKf
+         2itJ/3TFQmsPM/P2vU/YH3UL8bGDm6YXn9c/1qzHZU8HLpIFCTK6FKZ7Cgt98DEhquyR
+         +z40IT8JyRVmYH+N5LtryEqe/0KB6mlcaJtYeT8pLvCN8M57DHYemPDvS1ljyznrjmJ2
+         QhQQ==
+X-Gm-Message-State: AOAM5315MJTSQ/oSkNxwSh13AEPeOllNCaQ4JkciyEmyIh92EIylHYXr
+        12Bc+xpPjga5BOLgbBNMgaYBsWD6r/Be8wBIghQnVw==
+X-Google-Smtp-Source: ABdhPJxCJTI4uchgyYaGQsVOXlattOcLY8lElgxdbtmYlmczpvbLirt51rqV00R+R7TNCDkQtdynZAIl6CZQmMot53U=
+X-Received: by 2002:a25:380c:: with SMTP id f12mr7111559yba.32.1602780774204;
+ Thu, 15 Oct 2020 09:52:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201014101402.18271-8-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201015114346.15743-1-nsaenzjulienne@suse.de>
+In-Reply-To: <20201015114346.15743-1-nsaenzjulienne@suse.de>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 15 Oct 2020 09:52:18 -0700
+Message-ID: <CAGETcx9OxQKtYwYtHS7brKpUxfbcbd+VWju3tB1MSPR4dUYxQg@mail.gmail.com>
+Subject: Re: [RFC] of/platform: Create device link between simple-mfd and its children
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, f.fainelli@gmail.com,
+        linux-rpi-kernel@lists.infradead.org,
+        u.kleine-koenig@pengutronix.de,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/14/20 3:13 AM, Serge Semin wrote:
-> For some reason the "brcm,xhci-brcm-v2" compatible string has been missing
-> in the original bindings file. Add it to the Generic xHCI Controllers DT
-> schema since the controller driver expects it to be supported.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+On Thu, Oct 15, 2020 at 4:43 AM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
+>
+> 'simple-mfd' usage implies there might be some kind of resource sharing
+> between the parent device and its children. By creating a device link
+> with DL_FLAG_AUTOREMOVE_CONSUMER we make sure that at no point in time
+> the parent device is unbound while leaving its children unaware that
+> some of their resources disappeared.
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Doesn't the parent child relationship already ensure that? If not,
+maybe that's what needs fixing?
+
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+>
+> ---
+>
+> Some questions:
+>
+> - To what extent do we care about cleanly unbinding platform devices at
+>   runtime? My rationale here is: "It's a platform device, for all you
+>   know you might be unbinding someting essential to the system. So if
+>   you're doing it, you better know what you're doing."
+>
+> - Would this be an abuse of device links?
+
+Feels like it.
+
+>
+> - If applying this to all simple-mfd devices is a bit too much, would
+>   this be acceptable for a specific device setup. For example RPi4's
+>   firmware interface (simple-mfd user) is passed to consumer drivers
+>   trough a custom API (see rpi_firmware_get()). So, when unbound,
+>   consumers are left with a firmware handle that points to nothing.
+
+You can always create device link between the real suppliers and consumers.
+
+>
+>  drivers/of/platform.c | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index b557a0fcd4ba..8d5b55b81764 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -390,8 +390,14 @@ static int of_platform_bus_create(struct device_node *bus,
+>         }
+>
+>         dev = of_platform_device_create_pdata(bus, bus_id, platform_data, parent);
+> -       if (!dev || !of_match_node(matches, bus))
+> -               return 0;
+> +       if (!dev)
+> +              return 0;
+> +
+> +       if (parent && of_device_is_compatible(parent->of_node, "simple-mfd"))
+> +              device_link_add(&dev->dev, parent, DL_FLAG_AUTOREMOVE_CONSUMER);
+> +
+> +       if (!of_match_node(matches, bus))
+> +              return 0;
+
+Even if we think we should add this between parent and child (this
+still seems like not a good place to do it). Matching it by compatible
+string and doing special stuff doesn't feel right inside here.
+
+-Saravana
+
+>
+>         for_each_child_of_node(bus, child) {
+>                 pr_debug("   create child: %pOF\n", child);
+> --
+> 2.28.0
+>
