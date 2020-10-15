@@ -2,200 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC6028F48E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD3FF28F4AC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Oct 2020 16:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730762AbgJOOPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Oct 2020 10:15:40 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:55838 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730737AbgJOOPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Oct 2020 10:15:40 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 205078030719;
-        Thu, 15 Oct 2020 14:15:35 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id HCX0OAgYPjwG; Thu, 15 Oct 2020 17:15:34 +0300 (MSK)
-Date:   Thu, 15 Oct 2020 17:15:31 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Patrice Chotard <patrice.chotard@st.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Wei Xu <xuwei5@hisilicon.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
-        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
-Message-ID: <20201015141531.zxmcgq6k4akm3lmo@mobilestation>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-21-Sergey.Semin@baikalelectronics.ru>
- <CAJKOXPeErocR5-3xCDqBR3-k3w_2EQ_768d71n229cbzeo4TtQ@mail.gmail.com>
- <20201014171640.bup52mgaz4jvhtsy@mobilestation>
- <CAJKOXPcHi_=jea=0YrPNo4dh6k03+63Tc2Uo+sd0u8+XPdQjOw@mail.gmail.com>
- <20201014235105.kj4rtwiidph7gyen@mobilestation>
- <20201015061439.GA2926@kozik-lap>
+        id S2388217AbgJOO0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Oct 2020 10:26:30 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:15221 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387776AbgJOO0a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Oct 2020 10:26:30 -0400
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id B13A6E19BE4EE9CE4DA9;
+        Thu, 15 Oct 2020 22:26:24 +0800 (CST)
+Received: from [10.174.179.182] (10.174.179.182) by
+ DGGEMS404-HUB.china.huawei.com (10.3.19.204) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 15 Oct 2020 22:26:19 +0800
+Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT
+ scan
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        <robh+dt@kernel.org>, <catalin.marinas@arm.com>, <hch@lst.de>,
+        <ardb@kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+CC:     <robin.murphy@arm.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>, <jeremy.linton@arm.com>,
+        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        "Anshuman Khandual" <anshuman.khandual@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <lenb@kernel.org>, <linux-acpi@vger.kernel.org>
+References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
+ <20201014191211.27029-8-nsaenzjulienne@suse.de>
+From:   Hanjun Guo <guohanjun@huawei.com>
+Message-ID: <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
+Date:   Thu, 15 Oct 2020 22:26:18 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201015061439.GA2926@kozik-lap>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <20201014191211.27029-8-nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.179.182]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 08:14:39AM +0200, Krzysztof Kozlowski wrote:
-> On Thu, Oct 15, 2020 at 02:51:05AM +0300, Serge Semin wrote:
->  > >
-> > > > So to speak thanks for suggesting it. I'll try it to validate the proposed
-> > > > changes.
-> > > >
-> > > > Two questions:
-> > > > 1) Any advise of a good inliner/command to compile all dtbs at once? Of course I
-> > > > can get all the updated dtsi'es, then find out all the dts'es which include
-> > > > them, then directly use dtc to compile the found dts'es... On the other hand I
-> > > > can just compile all dts'es, then compare old and new ones. The diff of the
-> > > > non-modified dtb'es will be just empty...
-> > > 
-> > 
-> > > make dtbs
-> > 
-> > It's not that easy.) "make dtbs" will build dtbs only for enabled boards, which
-> > first need to be enabled in the kernel config. So I'll need to have a config
-> > with all the affected dts. The later is the same as if I just found all the
-> > affected dts and built them one-by-one by directly calling dtc.
+On 2020/10/15 3:12, Nicolas Saenz Julienne wrote:
+> From: Ard Biesheuvel <ardb@kernel.org>
 > 
-> True. Sometimes allyesconfig for given arch might be helpful but not
-> always (e.g. for ARM it does not select all of ARMv4 and ARMv5 boards).
-> Most likely your approach is actually faster/more reliable.
+> We recently introduced a 1 GB sized ZONE_DMA to cater for platforms
+> incorporating masters that can address less than 32 bits of DMA, in
+> particular the Raspberry Pi 4, which has 4 or 8 GB of DRAM, but has
+> peripherals that can only address up to 1 GB (and its PCIe host
+> bridge can only access the bottom 3 GB)
 > 
-> > 
-> > > touch your dts or git stash pop
-> > > make dtbs
-> > > compare
-> > > diff for all unchanged will be simply empty, so easy to spot
-> > > 
-> > > > 2) What crosc64 is?
-> > > 
-> > > Ah, just an alias for cross compiling + ccache + kbuild out. I just
-> > > copied you my helpers, so you need to tweak them.
-> > > 
-> > > >
-> > > > >
-> > > > > 2. Split it per arm architectures (and proper subject prefix - not
-> > > > > "arch") and subarchitectures so maintainers can pick it up.
-> > > >
-> > > > Why? The changes are simple and can be formatted as a single patch. I've seen
-> > > > tons of patches submitted like that, accepted and then merged. What you suggest
-> > > > is just much more work, which I don't see quite required.
-> > > 
-> > 
-> > > DTS changes go separate between arm64 and arm. There is nothing
-> > > unusual here - all changes are submitted like this.
-> > > Second topic is to split by subarchitectures which is necessary if you
-> > > want it to be picked up by maintainers. It also makes it easier to
-> > > review.
-> > 
-> > The current patches are easy enough for review. The last three patches of the
-> > series is a collection of the one-type changes concerning the same type of
-> > nodes. So reviewing them won't cause any difficulty. But I assume that's not
-> > the main point in this discussion.
-> > 
-> > > Sure, without split ber subarchitectures this could be picked
-> > > up by SoC folks but you did not even CC them. So if you do not want to
-> > > split it per subarchitectures for maintainers and you do not CC SoC,
-> > > then how do you believe this should be picked up? Out of the regular
-> > > patch submission way? That's not how the changes are handled.
-> > 
-> > AFAIU there are another ways of merging comprehensive patches. If they get to collect
-> > all the Acked-by tags, they could be merged in, for instance, through Greg' or Rob'
-> > (for dts) repos, if of course they get to agree with doing that. Am I wrong?
-> > 
-> > My hope was to ask Rob or Greg to get the patches merged in when they get
-> > to collect all the ackes, since I thought it was an option in such cases. So if
-> > they refuse to do so I'll have no choice but to split the series up into a
-> > smaller patches as you say.
+> Instructing the DMA layer about these limitations is straight-forward,
+> even though we had to fix some issues regarding memory limits set in
+> the IORT for named components, and regarding the handling of ACPI _DMA
+> methods. However, the DMA layer also needs to be able to allocate
+> memory that is guaranteed to meet those DMA constraints, for bounce
+> buffering as well as allocating the backing for consistent mappings.
 > 
+> This is why the 1 GB ZONE_DMA was introduced recently. Unfortunately,
+> it turns out the having a 1 GB ZONE_DMA as well as a ZONE_DMA32 causes
+> problems with kdump, and potentially in other places where allocations
+> cannot cross zone boundaries. Therefore, we should avoid having two
+> separate DMA zones when possible.
+> 
+> So let's do an early scan of the IORT, and only create the ZONE_DMA
+> if we encounter any devices that need it. This puts the burden on
+> the firmware to describe such limitations in the IORT, which may be
+> redundant (and less precise) if _DMA methods are also being provided.
+> However, it should be noted that this situation is highly unusual for
+> arm64 ACPI machines. Also, the DMA subsystem still gives precedence to
+> the _DMA method if implemented, and so we will not lose the ability to
+> perform streaming DMA outside the ZONE_DMA if the _DMA method permits
+> it.
 
-> This is neither Rob's nor Greg's patch to pick up, but ARM SoC (which was
-> not CCed here). And most likely they won't pick it up because judging by
-> contents it is obvious it should go via ARM SoC.
-> 
-> Sure, if there are dependencies between some patches they can go with
-> acks through unrelated trees, but this not the usual way. This is an
-> exception in the process to solve particular dependency problem.  It has
-> drawbacks - increases the chances of annoying conflicts.
-> 
-> The case here does not fall into this criteria - there is no dependency
-> of this patch on the others  Therefore there is no reason to use the
-> unusual/exceptional way of handling patches.  There is no reason why
-> this shouldn't go via either specific ARM subarchitecture maintainers or
-> via ARM SoC.
-
-Ok. I see your point. To sum it up I've studied the git log arch/ commit
-messages and it turns out even Rob has to split the cleanup changes like this
-ones. So thanks for your patience with stating your point. I'll split the last
-three patches up to be merged in via the corresponding archs/subarch'es repos.
-
--Sergey
+Sorry, I'm still a little bit confused. With this patch, if we have
+a device which set the right _DMA method (DMA size >= 32), but with the
+wrong DMA size in IORT, we still have the ZONE_DMA created which
+is actually not needed?
 
 > 
-> > > > > 3. The subject title could be more accurate - there is no fix here
-> > > > > because there was no errors in the first place. Requirement of DWC
-> > > > > node names comes recently, so it is more alignment with dtschema.
-> > > > > Otherwise automatic-pickup-stable-bot might want to pick up... and it
-> > > > > should not go to stable.
-> > > >
-> > > > Actually it is a fix, because the USB DT nodes should have been named with "usb"
-> > > > prefix in the first place. Legacy DWC USB3 bindings didn't define the nodes
-> > > > naming, but implied to be "usb"-prefixed by the USB HCD schema. The Qualcomm
-> > > > DWC3 schema should have defined the sub-nodes as "dwc3@"-prefixed, which was
-> > > > wrong in the first place.
-> > > 
-> > 
-> > > Not following the naming convention of DT spec which was loosely
-> > > enforced is not an error which should be "fixed". Simply wrong title.
-> > > This is an alignment with dtschema or correcting naming convention.
-> > > Not fixing errors.
-> > 
-> > From your perspective it wasn't an error, from mine and most likely Rob' it
-> > was.) Anyway as I said I don't care that much about preserving the subject
-> > wording, so what about the next one:
-> > <arch>: <subarch>: Harmonize DWC USB3 nodes name with DT schema
-> > ?
+> Cc: Jeremy Linton <jeremy.linton@arm.com>
+> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Christoph Hellwig <hch@lst.de>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Hanjun Guo <guohanjun@huawei.com>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Anshuman Khandual <anshuman.khandual@arm.com>
+> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+> [nsaenz: Rebased, removed documentation change, warnings and add
+> declaration in acpi_iort.h]
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> ---
+>   arch/arm64/mm/init.c      |  6 +++++
+>   drivers/acpi/arm64/iort.c | 51 +++++++++++++++++++++++++++++++++++++++
+>   include/linux/acpi_iort.h |  4 +++
+>   3 files changed, 61 insertions(+)
 > 
-> Looks good.
-> 
-> Best regards,
-> Krzysztof
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 97b0d2768349..f321761eedb2 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -29,6 +29,7 @@
+>   #include <linux/kexec.h>
+>   #include <linux/crash_dump.h>
+>   #include <linux/hugetlb.h>
+> +#include <linux/acpi_iort.h>
+>   
+>   #include <asm/boot.h>
+>   #include <asm/fixmap.h>
+> @@ -196,6 +197,11 @@ static void __init zone_sizes_init(unsigned long min, unsigned long max)
+>   #ifdef CONFIG_ZONE_DMA
+>   	zone_dma_bits = min(zone_dma_bits,
+>   			    (unsigned int)ilog2(of_dma_get_max_cpu_address(NULL)));
+> +
+> +	if (IS_ENABLED(CONFIG_ACPI))
+> +		zone_dma_bits = min(zone_dma_bits,
+> +				    acpi_iort_get_zone_dma_size());
+> +
+>   	arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
+>   	max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
+>   #endif
+> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+> index 9929ff50c0c0..8f530bf3c03b 100644
+> --- a/drivers/acpi/arm64/iort.c
+> +++ b/drivers/acpi/arm64/iort.c
+> @@ -1718,3 +1718,54 @@ void __init acpi_iort_init(void)
+>   
+>   	iort_init_platform_devices();
+>   }
+> +
+> +#ifdef CONFIG_ZONE_DMA
+> +/*
+> + * Check the IORT whether any devices exist whose DMA mask is < 32 bits.
+> + * If so, return the smallest value encountered, or 32 otherwise.
+> + */
+> +unsigned int __init acpi_iort_get_zone_dma_size(void)
+> +{
+> +	struct acpi_table_iort *iort;
+> +	struct acpi_iort_node *node, *end;
+> +	acpi_status status;
+> +	u8 limit = 32;
+> +	int i;
+> +
+> +	if (acpi_disabled)
+> +		return limit;
+> +
+> +	status = acpi_get_table(ACPI_SIG_IORT, 0,
+> +				(struct acpi_table_header **)&iort);
+> +	if (ACPI_FAILURE(status))
+> +		return limit;
+> +
+> +	node = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->node_offset);
+> +	end = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->header.length);
+> +
+> +	for (i = 0; i < iort->node_count; i++) {
+> +		if (node >= end)
+> +			break;
+> +
+> +		switch (node->type) {
+> +			struct acpi_iort_named_component *ncomp;
+> +			struct acpi_iort_root_complex *rc;
+> +
+> +		case ACPI_IORT_NODE_NAMED_COMPONENT:
+> +			ncomp = (struct acpi_iort_named_component *)node->node_data;
+> +			if (ncomp->memory_address_limit)
+> +				limit = min(limit, ncomp->memory_address_limit);
+> +			break;
+> +
+> +		case ACPI_IORT_NODE_PCI_ROOT_COMPLEX:
+> +			rc = (struct acpi_iort_root_complex *)node->node_data;
+> +			if (rc->memory_address_limit)
+> +				limit = min(limit, rc->memory_address_limit);
+
+There is no "Memory address size limit" field in revision 0 table, so as
+Lorenzo reminded, please add a revision check here.
+
+Thanks
+Hanjun
+
+
+> +			break;
+> +		}
+> +		node = ACPI_ADD_PTR(struct acpi_iort_node, node, node->length);
+> +	}
+> +	acpi_put_table(&iort->header);
+> +	return limit;
+> +}
+> +#endif
+> diff --git a/include/linux/acpi_iort.h b/include/linux/acpi_iort.h
+> index 20a32120bb88..7d2e184f0d4d 100644
+> --- a/include/linux/acpi_iort.h
+> +++ b/include/linux/acpi_iort.h
+> @@ -38,6 +38,7 @@ void iort_dma_setup(struct device *dev, u64 *dma_addr, u64 *size);
+>   const struct iommu_ops *iort_iommu_configure_id(struct device *dev,
+>   						const u32 *id_in);
+>   int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head);
+> +unsigned int acpi_iort_get_zone_dma_size(void);
+>   #else
+>   static inline void acpi_iort_init(void) { }
+>   static inline u32 iort_msi_map_id(struct device *dev, u32 id)
+> @@ -55,6 +56,9 @@ static inline const struct iommu_ops *iort_iommu_configure_id(
+>   static inline
+>   int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head)
+>   { return 0; }
+> +
+> +static inline unsigned int acpi_iort_get_zone_dma_size(void)
+> +{ return 32; }
+>   #endif
+>   
+>   #endif /* __ACPI_IORT_H__ */
 > 
