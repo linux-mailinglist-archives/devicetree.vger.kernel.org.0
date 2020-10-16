@@ -2,335 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 173B6290760
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB8729076E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:43:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405634AbgJPOmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 10:42:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56324 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2395258AbgJPOmK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 10:42:10 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72E9C061755;
-        Fri, 16 Oct 2020 07:42:09 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id j136so3239232wmj.2;
-        Fri, 16 Oct 2020 07:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vboLU1koxpPIQBOoTbGtXBkZYCehVDhO9l5JYy2MLxc=;
-        b=DHUqeU67o/gh1IMc2HZu5ORst63DD5hPpGj/mIm6TJpDvC5WeKI0lz8nROaKnqPv0d
-         u+ZmJYJLuw7huWmIgnh3owbw/rIzgwmzz6KfRnp8Rxn/Oz3M936VyPOAop3hPFjf/NHy
-         g1yPMr4P/vvqjOgl7gCwtqEh44tfmlfd5snYNC4sbtxYsfWNik0gJo4RCjQ2BxL712jV
-         VD1UJhQNKpHmEDuc1ohISGpBkMjC/SZtc1D8UBlUM2oflqLm9MSKw5Vgk8+2d/20Q4Pi
-         F0BnMqv7vwQaAExOFlwMwSLeNKkOwhOe7haJE/QdFpkrPipywDKjn5JesDj0MQ4c/2SW
-         FLGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vboLU1koxpPIQBOoTbGtXBkZYCehVDhO9l5JYy2MLxc=;
-        b=EaUEuSnucymsb21XT2fid3pCgIvGfVTft7OMt1Iy0SsMKb5DiP5dJma04Cem4I/eKJ
-         mRDFQXWCKmLjE2hVF3iMTuU1npVK2d6ORbYcAb63KcdiMw0I6Wv0VBhAwSI58RIupWbY
-         NhaTvsHPkVvivkHnFEZIg73g/zLuzUHGZy5ex+L6K/Gn5LNu+ZcM/XtYU4XmApy75V+y
-         jMlbtAook746qLhAqo024tOdY16f0BB50eaBf/sPi7Bcq4VEqTzMLjfX+vhQmSpl+qRb
-         zqiIwGi5C0qUE7R9oclzaFGAaptz2lyV2KR2guHaNUVEvEVUDsllIUzrKxkIiofcfBdY
-         S16w==
-X-Gm-Message-State: AOAM533kngmfkUNwyAryS9yrGkQi0cs2CYwuaR4nk8w4USVMycXSyJ/9
-        i58m3Tl5ag0QwJISqd05R2s=
-X-Google-Smtp-Source: ABdhPJyAvr/dCjR5tF5N5anYSWloY8Mf5F01vgyGPm4dnZikDgVTFClZGColpP2DuPrTt0x2UWHWZg==
-X-Received: by 2002:a7b:c408:: with SMTP id k8mr4241462wmi.68.1602859328364;
-        Fri, 16 Oct 2020 07:42:08 -0700 (PDT)
-Received: from arch-thunder.localdomain (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id c16sm3840130wrx.31.2020.10.16.07.42.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 07:42:07 -0700 (PDT)
-Date:   Fri, 16 Oct 2020 15:42:04 +0100
-From:   Rui Miguel Silva <rmfrfs@gmail.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: ov2680: convert bindings to yaml
-Message-ID: <20201016144204.3viee7spmvwtms5i@arch-thunder.localdomain>
-References: <20201014142759.726823-1-rmfrfs@gmail.com>
- <20201014142759.726823-2-rmfrfs@gmail.com>
- <20201015144905.4b23k5uy7ycuhvlo@uno.localdomain>
+        id S2409110AbgJPOn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 10:43:28 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:11060 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395275AbgJPOn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 10:43:26 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f89b1610000>; Fri, 16 Oct 2020 07:42:41 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 16 Oct
+ 2020 14:43:24 +0000
+Received: from audio.nvidia.com (10.124.1.5) by mail.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Fri, 16 Oct 2020 14:43:19 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <kuninori.morimoto.gx@renesas.com>,
+        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <p.zabel@pengutronix.de>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>, <mkumard@nvidia.com>,
+        <viswanathl@nvidia.com>, <rlokhande@nvidia.com>,
+        <dramesh@nvidia.com>, <atalambedu@nvidia.com>,
+        <nwartikar@nvidia.com>, <swarren@nvidia.com>,
+        <nicoleotsuka@gmail.com>, Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v4 00/15] Audio graph card updates and usage with Tegra210 audio
+Date:   Fri, 16 Oct 2020 20:12:47 +0530
+Message-ID: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201015144905.4b23k5uy7ycuhvlo@uno.localdomain>
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1602859361; bh=B4PkmNk75DMcC+D3L2aFsIvwxCAZ+5gpy/O+QzN4i9Q=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         Content-Type;
+        b=YsJ1DtNPK/2F7JU9zp9f91tnJoGdtjK/uObmAoHJVCQ+/LNPIu0aEx7rAMQ9HE2+y
+         fcA4YIrqp7VzcUZzhYNuCcT0LDnAzNZ67piYn91gnF/ZPYhi7aCCslYnkGIxeHSOo2
+         9TwEiHlCe0fvav2erIB4I6tfmdKRnuCJ+f8QXX6U3jyoj2z7zdpjAGi+k58QwixPV0
+         7Di7u7sb4ZNI0XTNwXOqGtknuTKfEgLVpdOv5VAzON/jDzTuUNfdFcV2masSsTLkA0
+         2fvF24FtAiwWivtmHHpxQLdR1tA+3/xzqh9xMGZ4J5UkbOIbvfyd5AgxE/LK2ok1e9
+         wzbd78xNtjMYQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Jacopo,
-Thanks for the review.
+Summary of changes:
+ * Support multiple instances of a component. For example there can be
+   multiple I2S devices which can use the same component driver.
 
-On Thu, Oct 15, 2020 at 04:49:05PM +0200, Jacopo Mondi wrote:
-> Hi Rui,
-> 
-> On Wed, Oct 14, 2020 at 03:27:57PM +0100, Rui Miguel Silva wrote:
-> > Convert ov2680 sensor bindings documentation to yaml schema, remove
-> > the textual bindings document and update MAINTAINERS entry.
-> >
-> > Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
-> > ---
-> >
-> > v1 -> v2:
-> >   Sakari Ailus - Patch 1/3:
-> >   https://lore.kernel.org/linux-media/20201013160908.GC13341@paasikivi.fi.intel.com/
-> >   - omit remote-endpoint
-> >   - remove not needed clock-lanes and data-lanes
-> >
-> >  .../devicetree/bindings/media/i2c/ov2680.txt  |  46 --------
-> >  .../devicetree/bindings/media/i2c/ov2680.yaml | 109 ++++++++++++++++++
-> >  MAINTAINERS                                   |   2 +-
-> >  3 files changed, 110 insertions(+), 47 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.txt b/Documentation/devicetree/bindings/media/i2c/ov2680.txt
-> > deleted file mode 100644
-> > index 11e925ed9dad..000000000000
-> > --- a/Documentation/devicetree/bindings/media/i2c/ov2680.txt
-> > +++ /dev/null
-> > @@ -1,46 +0,0 @@
-> > -* Omnivision OV2680 MIPI CSI-2 sensor
-> > -
-> > -Required Properties:
-> > -- compatible: should be "ovti,ov2680".
-> > -- clocks: reference to the xvclk input clock.
-> > -- clock-names: should be "xvclk".
-> > -- DOVDD-supply: Digital I/O voltage supply.
-> > -- DVDD-supply: Digital core voltage supply.
-> > -- AVDD-supply: Analog voltage supply.
-> > -
-> > -Optional Properties:
-> > -- reset-gpios: reference to the GPIO connected to the powerdown/reset pin,
-> > -               if any. This is an active low signal to the OV2680.
-> > -
-> > -The device node must contain one 'port' child node for its digital output
-> > -video port, and this port must have a single endpoint in accordance with
-> > - the video interface bindings defined in
-> > -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > -
-> > -Endpoint node required properties for CSI-2 connection are:
-> > -- remote-endpoint: a phandle to the bus receiver's endpoint node.
-> > -- clock-lanes: should be set to <0> (clock lane on hardware lane 0).
-> > -- data-lanes: should be set to <1> (one CSI-2 lane supported).
-> > -
-> > -Example:
-> > -
-> > -&i2c2 {
-> > -	ov2680: camera-sensor@36 {
-> > -		compatible = "ovti,ov2680";
-> > -		reg = <0x36>;
-> > -		clocks = <&osc>;
-> > -		clock-names = "xvclk";
-> > -		reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
-> > -		DOVDD-supply = <&sw2_reg>;
-> > -		DVDD-supply = <&sw2_reg>;
-> > -		AVDD-supply = <&reg_peri_3p15v>;
-> > -
-> > -		port {
-> > -			ov2680_to_mipi: endpoint {
-> > -				remote-endpoint = <&mipi_from_sensor>;
-> > -				clock-lanes = <0>;
-> > -				data-lanes = <1>;
-> > -			};
-> > -		};
-> > -	};
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
-> 
-> Might this be a good occasion to rename the file to ovti,ov2680.yaml ?
+ * Support open platforms with empty Codec endpoint. Customers can plug
+   their own HW and can populate codec endpoint.
 
-Yeah, was just following your precedent in ov5647 and the other ov
-already ported to yaml in the directory. But I agree that it makes
-sense to rename the files.
+ * In a component model there can be many components which can be
+   connected togethe. In such cases Identify no-pcm DPCM DAI links which
+   can be used in BE<->BE connections.
 
-> 
-> > new file mode 100644
-> > index 000000000000..ef2b45b03dcc
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
-> > @@ -0,0 +1,109 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/ov2680.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Omnivision OV2680 CMOS Sensor
-> > +
-> > +maintainers:
-> > +  - Rui Miguel Silva <rmfrfs@gmail.com>
-> > +
-> > +description: |-
-> > +  The OV2680 color sensor is a low voltage, high performance 1/5 inch UXGA (2
-> > +  megapixel) CMOS image sensor that provides a single-chip UXGA (1600 x 1200)
-> > +  camera. It provides full-frame, sub-sampled, or windowed 10-bit images in
-> > +  various formats via the control of the Serial Camera Control Bus (SCCB)
-> > +  interface.  The OV2680 has an image array capable of operating at up to 30
->                 ^ double space
-> 
-> > +  frames per second (fps) in UXGA resolution.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ovti,ov2680
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    description:
-> 
-> I'll never get yaml right, doesn't breaking lines require '|' after
-> the semicolon ? The validator does not complain, so I guess not.
+ * Add Tegra audio graph driver which is based on generic audio graph
+   driver and specific customizations are done in Tegra driver.
 
-I also had that idea, but looking also to other cases, and also in the
-examlpe-schema where you have both cases, looks like it is not needed.
+ * This pushes DT support for Tegra210 based platforms which uses
+   audio-graph card and above enhancements.
 
-> 
-> > +      Input clock for the sensor.
-> > +    items:
-> > +      - const: xvclk
-> > +
-> > +  reset-gpios:
-> > +    description:
-> > +      The phandle and specifier for the GPIO that controls sensor reset.
-> > +      This corresponds to the hardware pin XSHUTDOWN which is physically
-> > +      active low.
-> > +
-> > +  dovdd-supply:
-> > +    description:
-> > +      Definition of the regulator used as interface power supply.
-> > +
-> > +  avdd-supply:
-> > +    description:
-> > +      Definition of the regulator used as analog power supply.
-> > +
-> > +  dvdd-supply:
-> > +    description:
-> > +      Definition of the regulator used as digital power supply.
-> > +
-> > +  port:
-> > +    type: object
-> > +    additionalProperties: false
-> > +    description:
-> > +      A node containing an output port node with an endpoint definition
-> > +      as documented in
-> > +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        type: object
-> > +
-> > +    required:
-> > +      - endpoint
-> 
-> If no endpoint properties are specified, the last 6 lines here can be
-> omitted. The rationale is that 'port' will be validated against a
-> forthcoming 'of-graph.yaml' schema. So just:
-> 
->    port:
->      type: object
->      additionalProperties: false
->      description:
->        A node containing an output port node with an endpoint definition
->        as documented in
->        Documentation/devicetree/bindings/media/video-interfaces.txt
-> 
-> With 'port' listed as mandatory, as you do already.
+The series is based on following references where DPCM usgae for Tegra
+Audio and simple-card driver proposal were discussed.
 
-you are right, will fix this.
+ * https://lkml.org/lkml/2020/4/30/519 (DPCM for Tegra)
+ * https://lkml.org/lkml/2020/6/27/4 (simple-card driver)
 
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - dovdd-supply
-> > +  - avdd-supply
-> > +  - dvdd-supply
-> > +  - reset-gpios
-> > +  - port
-> > +
-> > +unevaluatedProperties: false
-> 
-> 'additionalProperties: false' too ?
+Changelog
+=========
 
-instead.
+v3 -> v4
+--------
+ * Added new patches to convert graph.txt and audio-graph-card.txt
+   to corresponding json-schema files. Later these references
+   are used in Tegra audio graph schema.
 
-> 
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        ov2680: camera-sensor@36 {
-> > +                compatible = "ovti,ov2680";
-> > +                reg = <0x36>;
-> > +                clocks = <&osc>;
-> > +                clock-names = "xvclk";
-> > +                reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
-> > +
-> > +                dovdd-supply = <&sw2_reg>;
-> > +                dvdd-supply = <&sw2_reg>;
-> > +                avdd-supply = <&reg_peri_3p15v>;
-> > +
-> > +                port {
-> > +                        ov2680_to_mipi: endpoint {
-> > +                                remote-endpoint = <&mipi_from_sensor>;
-> > +                        };
-> > +                };
-> > +        };
-> > +    };
-> > +...
-> > +
-> 
-> Applying the patch gives me:
-> .git/rebase-apply/patch:182: new blank line at EOF.
-> 
-> I see most bindings have an empty line before '...'
-> 
-> With this small issues fixed:
-> Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
- 
- Thanks again Jacopo.
+ * AHUB component binding docs are updated to reflect the usage
+   of ports/port/endpoint
 
- Cheers,
-    Rui
-> 
-> Thanks
->    j
-> 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 2e85e114c9c3..926dcdc4794c 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -12775,7 +12775,7 @@ M:	Rui Miguel Silva <rmfrfs@gmail.com>
-> >  L:	linux-media@vger.kernel.org
-> >  S:	Maintained
-> >  T:	git git://linuxtv.org/media_tree.git
-> > -F:	Documentation/devicetree/bindings/media/i2c/ov2680.txt
-> > +F:	Documentation/devicetree/bindings/media/i2c/ov2680.yaml
-> >  F:	drivers/media/i2c/ov2680.c
-> >
-> >  OMNIVISION OV2685 SENSOR DRIVER
-> > --
-> > 2.28.0
-> >
+ * More common stuff is moved into graph_parse_of() and this is
+   used by both generic and Tegra audio graph.
+
+ * DT binding for Tegra audio graph is updated to included "ports { }"
+
+ * As per the suggestion 'void *data' member is dropped from
+   'asoc_simple_priv' and instead container method is used to
+   maintain required custom data internal to Tegra audio graph. 
+
+v2 -> v3
+--------
+ * Dropped new compatible addition in generic graph driver
+   after reviewing it with Morimoto-san. Instead added Tegra
+   audio graph driver and new compatibles are added in the same.
+ * Added new patches to expose new members for customization
+   in audio graph driver.
+ * Added new patch for Tegra audio graph driver and related
+   documentation.
+ * Minor change in below commit where mutex version of helper is used
+   "ASoC: audio-graph: Identify 'no_pcm' DAI links for DPCM"
+ * DT binding is updated to use the newly exposed compatibles
+ * No changes in other patches
+
+v1 -> v2
+--------
+ * Re-organized ports/endpoints description for ADMAIF and XBAR.
+   Updated DT patches accordingly.
+ * After above change, multiple Codec endpoint support is not
+   required and hence dropped for now. This will be considered
+   separately if at all required in future.
+ * Re-ordered patches in the series.
+
+Sameer Pujar (15):
+  ASoC: soc-core: Fix component name_prefix parsing
+  ASoC: soc-pcm: Get all BEs along DAPM path
+  ASoC: audio-graph: Use of_node and DAI for DPCM DAI link names
+  ASoC: audio-graph: Identify 'no_pcm' DAI links for DPCM
+  ASoC: audio-graph: Support empty Codec endpoint
+  ASoC: audio-graph: Expose new members for asoc_simple_priv
+  ASoC: audio-graph: Expose helpers from audio graph
+  Documentation: of: Convert graph bindings to json-schema
+  ASoC: dt-bindings: audio-graph: Convert bindings to json-schema
+  ASoC: dt-bindings: tegra: Add graph bindings
+  ASoC: dt-bindings: tegra: Add json-schema for Tegra audio graph card
+  ASoC: tegra: Add audio graph based card driver
+  arm64: defconfig: Enable Tegra audio graph card driver
+  arm64: tegra: Audio graph header for Tegra210
+  arm64: tegra: Audio graph sound card for Jetson Nano and TX1
+
+ Documentation/devicetree/bindings/graph.txt        | 128 -----
+ Documentation/devicetree/bindings/graph.yaml       | 170 +++++++
+ .../devicetree/bindings/sound/audio-graph-card.txt | 337 -------------
+ .../bindings/sound/audio-graph-card.yaml           | 548 +++++++++++++++++++++
+ .../sound/nvidia,tegra-audio-graph-card.yaml       | 158 ++++++
+ .../bindings/sound/nvidia,tegra186-dspk.yaml       |   7 +
+ .../bindings/sound/nvidia,tegra210-admaif.yaml     |   7 +
+ .../bindings/sound/nvidia,tegra210-ahub.yaml       |   7 +
+ .../bindings/sound/nvidia,tegra210-dmic.yaml       |   7 +
+ .../bindings/sound/nvidia,tegra210-i2s.yaml        |   7 +
+ .../boot/dts/nvidia/tegra210-audio-graph.dtsi      | 153 ++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts | 262 ++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 146 ++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ include/sound/graph_card.h                         |  16 +
+ include/sound/simple_card_utils.h                  |   3 +
+ include/sound/soc.h                                |   1 +
+ sound/soc/generic/audio-graph-card.c               | 175 ++++---
+ sound/soc/soc-core.c                               |   3 +-
+ sound/soc/soc-pcm.c                                |   3 +-
+ sound/soc/tegra/Kconfig                            |   9 +
+ sound/soc/tegra/Makefile                           |   2 +
+ sound/soc/tegra/tegra_audio_graph_card.c           | 255 ++++++++++
+ 23 files changed, 1882 insertions(+), 523 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/graph.txt
+ create mode 100644 Documentation/devicetree/bindings/graph.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra210-audio-graph.dtsi
+ create mode 100644 include/sound/graph_card.h
+ create mode 100644 sound/soc/tegra/tegra_audio_graph_card.c
+
+-- 
+2.7.4
+
