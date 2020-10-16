@@ -2,88 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E51290B63
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 20:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97003290B75
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 20:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391892AbgJPSe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 14:34:27 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:44954 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390625AbgJPSeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 14:34:15 -0400
-Received: by mail-ot1-f67.google.com with SMTP id e20so3280740otj.11;
-        Fri, 16 Oct 2020 11:34:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Qwu3JG9+LDlewH987hNzyQoOEX0CL8g7zvaZjjCcw4U=;
-        b=ngP/cqAuwC/pPeCaWClziGog/bfnUC4wbDkk1UBWlN0Gy0fjhEThazJEwNsLKyF/Mv
-         fx+QeUXlwZvwbicnnxDcywlJQZy5jaJ3Ssp+wQj6KkLme1V6wAfvEjfFdzuhQu56NAno
-         OWGLFo5usW5QIV8YneflEL71C7bx6mlyUWp8mrQdid4sFrwri0CWUJZAAfeRBYRvFoeY
-         6Gf2gqQXPOwe3yrLRQK7/cjuIDyZ+FdOwyCg2xUqWX00VBcp493+ZJfxt5QNq4ozc/Yi
-         8ZgLcgmn+wMXG8yRrm9gtrgZUWnjCl5JOkP/CnnWkJ4WVdYOfvONZAzsNGGSoFo+m7zr
-         uGDg==
-X-Gm-Message-State: AOAM532YyJ/bgze11WQPtKiuA+FJPL3BGY4+4IFghtB4mD+a0y0s+4Lz
-        7z9CO7mbGTMtcowRWgZNsw==
-X-Google-Smtp-Source: ABdhPJyi6z0hP/x6L+MrsJNmQGndEN2hAnyiGpicmxYQV/nKNfR9ytGgBHm+fPvoXX+6vbcG4GvIAA==
-X-Received: by 2002:a9d:53cc:: with SMTP id i12mr3447418oth.215.1602873254082;
-        Fri, 16 Oct 2020 11:34:14 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m23sm1354610ooq.30.2020.10.16.11.34.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 11:34:13 -0700 (PDT)
-Received: (nullmailer pid 1699483 invoked by uid 1000);
-        Fri, 16 Oct 2020 18:34:12 -0000
-Date:   Fri, 16 Oct 2020 13:34:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     linux-snps-arc@lists.infradead.org, linux-usb@vger.kernel.org,
-        Serge Semin <fancer.lancer@gmail.com>,
-        linux-mips@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Roger Quadros <rogerq@ti.com>, linux-kernel@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 03/20] dt-bindings: usb: usb-hcd: Add "ulpi/serial/hsic"
- PHY types
-Message-ID: <20201016183412.GA1699346@bogus>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-4-Sergey.Semin@baikalelectronics.ru>
+        id S2392476AbgJPSjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 14:39:07 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:16183 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2392389AbgJPSjH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 14:39:07 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602873546; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=tghyBVUWLI7t5xbuuIwx+4+eBlmCinuuCN57kJKXtLE=; b=lDczr6lj/Jc5ev7JUOPnTZ95WzOVKs2/38d+S6a0YdufM+9k6cHVw5QDCFdl9/KKhFgNFgrA
+ UK0LRlhB52oSl5DJ7H21VU2CjNdZdkAO49MUe7X+4pPDYG+OU3AkgvmkSJ33E7cVNjLKHtoI
+ USJkxRmXOUZnX4VuRBR6nPJMvrc=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 5f89e8c94f8cc67c319bc9f5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Oct 2020 18:39:05
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EA502C433F1; Fri, 16 Oct 2020 18:39:04 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.0.105] (unknown [49.204.183.234])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 34E4FC433CB;
+        Fri, 16 Oct 2020 18:39:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 34E4FC433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v2 1/3] clk: qcom: clk-alpha-pll: Add support for
+ controlling Agera PLLs
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org
+References: <1602609110-11504-1-git-send-email-tdas@codeaurora.org>
+ <1602609110-11504-2-git-send-email-tdas@codeaurora.org>
+ <160264125446.310579.18150875025884105137@swboyd.mtv.corp.google.com>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <1d969460-92c7-ce9a-d727-2c0a31c5d3c5@codeaurora.org>
+Date:   Sat, 17 Oct 2020 00:08:58 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201014101402.18271-4-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <160264125446.310579.18150875025884105137@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 13:13:45 +0300, Serge Semin wrote:
-> Aside from the UTMI+ there are also ULPI, Serial and HSIC PHY types
-> that can be specified in the phy_type HCD property. Add them to the
-> enumeration of the acceptable values.
+Thanks Stephen for the review comments.
+
+On 10/14/2020 7:37 AM, Stephen Boyd wrote:
+> Quoting Taniya Das (2020-10-13 10:11:48)
+>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+>> index 26139ef..17e1fc0 100644
+>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>> @@ -1561,3 +1571,73 @@ const struct clk_ops clk_alpha_pll_postdiv_lucid_ops = {
+>>          .set_rate = clk_alpha_pll_postdiv_fabia_set_rate,
+>>   };
+>>   EXPORT_SYMBOL_GPL(clk_alpha_pll_postdiv_lucid_ops);
+>> +
+>> +void clk_agera_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>> +                       const struct alpha_pll_config *config)
+>> +{
+>> +       if (config->l)
+>> +               regmap_write(regmap, PLL_L_VAL(pll), config->l);
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v2:
-> - Grammar fix: "s/PHY types can be/PHY types that can be"
-> - Drop quotes from around the string constants.
-> ---
->  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
+> Maybe make a helper function for this too. That way we can't mix up the
+> if condition with the value in the write.
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Sure, I will add a helper function.
+
+> 	clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
+> 
+> static void clk_alpha_pll_write_config(struct regmap *regmap,
+> 				       unsigned int reg,
+> 				       unsigned int val) {
+> 	if (val)
+> 		regmap_write(regmap, reg, val);
+> }
+> 
+> and how are we so lucky that zero isn't a value that we may need to
+> write?
+> 
+>> +
+>> +       if (config->alpha)
+>> +               regmap_write(regmap, PLL_ALPHA_VAL(pll), config->alpha);
+>> +
+>> +       if (config->user_ctl_val)
+>> +               regmap_write(regmap, PLL_USER_CTL(pll), config->user_ctl_val);
+>> +
+>> +       if (config->config_ctl_val)
+>> +               regmap_write(regmap, PLL_CONFIG_CTL(pll),
+>> +                                               config->config_ctl_val);
+>> +
+>> +       if (config->config_ctl_hi_val)
+>> +               regmap_write(regmap, PLL_CONFIG_CTL_U(pll),
+>> +                                               config->config_ctl_hi_val);
+>> +
+>> +       if (config->test_ctl_val)
+>> +               regmap_write(regmap, PLL_TEST_CTL(pll),
+>> +                                               config->test_ctl_val);
+>> +
+>> +       if (config->test_ctl_hi_val)
+>> +               regmap_write(regmap,  PLL_TEST_CTL_U(pll),
+>> +                                               config->test_ctl_hi_val);
+>> +}
+>> +EXPORT_SYMBOL_GPL(clk_agera_pll_configure);
+>> +
+>> +static int clk_alpha_pll_agera_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +                                                       unsigned long prate)
+>> +{
+>> +       struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+>> +       u32 l, alpha_width = pll_alpha_width(pll);
+>> +       unsigned long rrate, max = rate + PLL_RATE_MARGIN;
+>> +       u64 a;
+>> +
+>> +       rrate = alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
+>> +
+>> +       /*
+>> +        * Due to limited number of bits for fractional rate programming, the
+>> +        * rounded up rate could be marginally higher than the requested rate.
+>> +        */
+>> +       if (rrate > (rate + PLL_RATE_MARGIN) || rrate < rate) {
+>> +               pr_err("%s: Rounded rate %lu not within range [%lu, %lu)\n",
+>> +                      clk_hw_get_name(hw), rrate, rate, max);
+>> +               return -EINVAL;
+>> +       }
+> 
+> Can this be extracted into a helper function?
+> 
+
+Yes, I will add this too.
+
+>> +
+>> +       /* change L_VAL without having to go through the power on sequence */
+>> +       regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+>> +       regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
+>> +
+>> +       if (clk_hw_is_enabled(hw))
+>> +               return wait_for_pll_enable_lock(pll);
+>> +
+>> +       return 0;
+>> +}
+>> +
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
+
+--
