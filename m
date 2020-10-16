@@ -2,70 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4CB2290730
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 132A9290739
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408830AbgJPOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 10:30:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41140 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2407335AbgJPOaM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 10:30:12 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E83502084C
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 14:30:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602858612;
-        bh=9EyxHYqClpX3UwS3zfUTeHuxQsxcwne1NcvcZiES3PU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cyUjTRUjAyFV3YWb1/7IsGRxLvNqwY4aFkxD1zZ5AG3yOs93F86j21oyxVcbqdEEG
-         4xuUj1aRfwhV+vRGl8xz+qALpXrqvzQnTXTbqnT1+3qeEBdzUYDGJ2jaP4kXH1DERp
-         PqbyPYVqz1F/24WcdVN4KzB5yMtzTXaFsr8viXx4=
-Received: by mail-ot1-f45.google.com with SMTP id 32so2599284otm.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 07:30:11 -0700 (PDT)
-X-Gm-Message-State: AOAM531wY1U4VAys1u84tdxYK6sApZSzy5+fZZRKDtL19ZXTiYN62RlA
-        pYlrS7/ZgBmNYPYoXQVQzUi6NIo8HfqZmB8SDA==
-X-Google-Smtp-Source: ABdhPJxaGtPDoYxJFNqM/ELyihD+uZhMXL+3s2By0Z2TUq2FXp3Nb2CiEp5u3IsFAtnaBV8hpEXqOVLMsUbFOw1oTWk=
-X-Received: by 2002:a9d:5e14:: with SMTP id d20mr2605283oti.107.1602858611164;
- Fri, 16 Oct 2020 07:30:11 -0700 (PDT)
+        id S2406121AbgJPOd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 10:33:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405628AbgJPOd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 10:33:26 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3FEFC061755;
+        Fri, 16 Oct 2020 07:33:26 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id ds1so1487949pjb.5;
+        Fri, 16 Oct 2020 07:33:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KF2OHmi3Hm9dz3KRKT0p1ji0RuquRawxEOEyVtCtb1Q=;
+        b=oG8r9fSD1r5uk75/nEX/vkwm/k3p/5kLORFfo2evLdgBOPeDn8LSrGON2l4sFsLxSV
+         Cia2y6WmpLftleEKlPYfOPGG/7p6U9qKGw1Pc5NlykLHxeDaNnwG6cxw04SkB1bdxJfK
+         2Fbaww/iFyMcU1IchELefWf9kpdnFWXwevkoLGJnImO2vPHrhOx1ph6RGL6CyPzkdE5Q
+         GrVwPRDhvI4L1ISfk2khNOm35JPV0n+9T9O3csmRud+q7bMEDF9GLrOmAka3Q3OAW37r
+         c9eHYEMIrxSseNHxb9o1M6UVeVVUYt2tz8d3FxQ7+oZg5MeGLC3y94e4MEAtDiv/6i0Z
+         FTtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KF2OHmi3Hm9dz3KRKT0p1ji0RuquRawxEOEyVtCtb1Q=;
+        b=Er5mXmuqPyZcvTPwZfK3iXr0vv6463St5TkPGLu8DkuCdLwZ+I7ooiICRSYtsZoX1a
+         whGeX+cK6JYFt0imzU9ogHEBUbVsJfPwdl3pgMfqer2gjO/a7gLMubFFZKssiR6W0k2h
+         oEcXjMkFLE1wnM+Yj1nd9ziuNvB8cqm6PDqWmaFZ0w0ca7T1IxoAbXYjZOKSG4TMjfKJ
+         XKMH7Mk+Qqmc9evp7sm+aCWU4q72qQIh/cR0wWo4xzyRKNEo6JxcClZqOvYRYHrB3Yoj
+         iz8QdrxLa0l6a5dkNKcBwO4z2jkEQ37clBzhuG6cwqO7NpGI00SWSUfOPm7yl21Fx2Ki
+         yXaA==
+X-Gm-Message-State: AOAM533bOJbXnHUPCoaK2mEucNKEgLMzJ2M4h4TbXDIzxuF6hKl3BSdN
+        Kan08CTeI3VQy59Fn58GcsDmFMIVP0VcM6e2+F0=
+X-Google-Smtp-Source: ABdhPJwi6nosLW1r7DhD0+BQ2E58/G1wVWIMDf17j7lx+tE8z7JpCaVWixIXAx3UJ6NWpNSHxowrREox+LfbZ087j1Y=
+X-Received: by 2002:a17:90b:305:: with SMTP id ay5mr4404555pjb.129.1602858806218;
+ Fri, 16 Oct 2020 07:33:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200917094024.17215-1-u.kleine-koenig@pengutronix.de>
- <20200919143922.22793-1-u.kleine-koenig@pengutronix.de> <CAK7LNAT5f6RxFjOTOm8RvzZ3N2-48fr5e7wVoiE9hVeMBLSKBA@mail.gmail.com>
-In-Reply-To: <CAK7LNAT5f6RxFjOTOm8RvzZ3N2-48fr5e7wVoiE9hVeMBLSKBA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 16 Oct 2020 09:30:00 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJDPq-7V-JkeVEQh8J9dUd8uCqp0u5LnP6pYXmpzLRcwg@mail.gmail.com>
-Message-ID: <CAL_JsqJDPq-7V-JkeVEQh8J9dUd8uCqp0u5LnP6pYXmpzLRcwg@mail.gmail.com>
-Subject: Re: [PATCH] scripts/dtc: only append to HOST_EXTRACFLAGS instead of overwriting
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        DTML <devicetree@vger.kernel.org>
+References: <20201014100707.2728637-1-lars.povlsen@microchip.com> <20201014100707.2728637-3-lars.povlsen@microchip.com>
+In-Reply-To: <20201014100707.2728637-3-lars.povlsen@microchip.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 16 Oct 2020 17:34:15 +0300
+Message-ID: <CAHp75Vdd6ECJaWytYVz+5GYZrwybzZmviUOt3H=t-4LH=_idKg@mail.gmail.com>
+Subject: Re: [PATCH v6 2/3] pinctrl: pinctrl-microchip-sgpio: Add pinctrl
+ driver for Microsemi Serial GPIO
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 16, 2020 at 2:11 AM Masahiro Yamada <masahiroy@kernel.org> wrot=
-e:
+On Wed, Oct 14, 2020 at 6:25 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
 >
-> On Sat, Sep 19, 2020 at 11:39 PM Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@pengutronix.de> wrote:
-> >
-> > When building with
-> >
-> >         $ HOST_EXTRACFLAGS=3D-g make
->
->
-> I do not think this is the intended usage
-> of HOST_EXTRACFLAGS.
+> This adds a pinctrl driver for the Microsemi/Microchip Serial GPIO
+> (SGPIO) device used in various SoC's.
 
-Okay, but I looked at all the other instances of HOST_EXTRACFLAGS and
-they do '+=3D'. Are they all wrong?
+...
 
-Rob
+> +#define PIN_NAM_SZ     (sizeof("SGPIO_D_pXXbY")+1)
+
++1 for what?
+
+...
+
+> +#define __shf(x)               (__builtin_ffsll(x) - 1)
+> +#define __BF_PREP(bf, x)       (bf & ((x) << __shf(bf)))
+> +#define __BF_GET(bf, x)                (((x & bf) >> __shf(bf)))
+
+This smells like bitfield.h.
+
+...
+
+> +static int sgpio_input_get(struct sgpio_priv *priv,
+> +                          struct sgpio_port_addr *addr)
+> +{
+
+> +       int ret;
+> +
+> +       ret = !!(sgpio_readl(priv, REG_INPUT_DATA, addr->bit) &
+> +                BIT(addr->port));
+> +
+> +       return ret;
+
+Sounds like one line.
+
+> +}
+
+> +static int sgpio_get_functions_count(struct pinctrl_dev *pctldev)
+> +{
+
+> +       return 1;
+
+I didn't get why it's not a pure GPIO driver?
+It has only one function (no pinmux).
+I didn't find any pin control features either.
+
+What did I miss?
+
+...
+
+> +static int microchip_sgpio_get_value(struct gpio_chip *gc, unsigned int gpio)
+> +{
+> +       struct sgpio_bank *bank = gpiochip_get_data(gc);
+> +       struct sgpio_priv *priv = bank->priv;
+> +       struct sgpio_port_addr addr;
+
+> +       int ret;
+
+No need.
+
+> +
+> +       sgpio_pin_to_addr(priv, gpio, &addr);
+> +
+> +       if (bank->is_input)
+> +               ret = sgpio_input_get(priv, &addr);
+> +       else
+> +               ret = sgpio_output_get(priv, &addr);
+> +
+> +       return ret;
+> +}
+
+
+...
+
+
+> +       ret = devm_gpiochip_add_data(dev, gc, bank);
+> +       if (ret == 0)
+
+> +               dev_info(dev, "Registered %d GPIOs\n", ngpios);
+
+No noise.
+
+> +       else
+> +               dev_err(dev, "Failed to register: ret %d\n", ret);
+> +
+
+...
+
+> +       /* Get register map */
+> +       regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       priv->regs = devm_ioremap_resource(dev, regs);
+
+devm_platform_ioremap_resource();
+
+> +       if (IS_ERR(priv->regs))
+> +               return PTR_ERR(priv->regs);
+
+> +       priv->properties = of_device_get_match_data(dev);
+
+It's interesting you have a mix between OF APIs and device property
+APIs. Choose one. If you stick with OF, use of_property_ and so,
+otherwise replace of_*() by corresponding device_*() or generic calls.
+
+Can you use gpio-regmap APIs?
+
+-- 
+With Best Regards,
+Andy Shevchenko
