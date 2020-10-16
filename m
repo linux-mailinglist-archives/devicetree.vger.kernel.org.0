@@ -2,82 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68CB329062C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:20:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B5B290650
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:30:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406699AbgJPNUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 09:20:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37268 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2406175AbgJPNUA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 09:20:00 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 91101208E4;
-        Fri, 16 Oct 2020 13:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602854399;
-        bh=rfvuV6Al+rLb9nUjAfzHGQK9DuIWt6YUWVj+UIEKlz8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KD55CXGuyZ12HyX0m/0olwjfr6HTDjY7uf1hHPOTIXPDMBkTlOqSdyRJvJniVYkKO
-         Lie30rb7KlUHlIw0WLIWVhZFw4XOcpwDK45E+1tbtu3P6pA0zJcwTiu6i1ACdaFV4g
-         jgAIZvyIzEkTNvn854dV6qoNzny0h7hJ8Jrocjq4=
-Received: by mail-oi1-f176.google.com with SMTP id c13so2383745oiy.6;
-        Fri, 16 Oct 2020 06:19:59 -0700 (PDT)
-X-Gm-Message-State: AOAM532VCFhtfNl9e8rsb4TXoWf1HGOPB9MzCfFG6cF+NlHQNnZ/xP6q
-        iuuA1ODlNVmoBuBhD8roh7hMYGBWgsu1vr29kA==
-X-Google-Smtp-Source: ABdhPJwxbMynzIU6zuNouBn+wKZ+/vyBd3EU7EY1Rlpcr59uCRZiPaTsqPTK2OQmhPBQ1tNjnBtuXZGHrNkXaL1AnJk=
-X-Received: by 2002:aca:4c52:: with SMTP id z79mr2509589oia.147.1602854398739;
- Fri, 16 Oct 2020 06:19:58 -0700 (PDT)
+        id S2407427AbgJPNaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 09:30:23 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:37922 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2407834AbgJPNaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 09:30:23 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09GDKuI8031555;
+        Fri, 16 Oct 2020 08:30:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=EIFdycrd2ap6D7qPrimuZQwoebezAFOPU6dKTD7N7RY=;
+ b=jLPerM7HmVGBq0QyY8rZARuxbCIh18RcB6tih9Ep0hzLcDCOyiZzOUW6Er3dmUVw9eNT
+ owe5oejeZrBeHmgXhaTocEsaQDdeYSChGFDkAGWuF8MtlNA7GafLeV62kGi+eLmeUYr8
+ rAKS7h6wws6PnJw6vJS3PDxkZxrivhA+r6/gz3hPy6qbh/ME4O3EfPaSrk36b4H0UWy2
+ vIvs9luwrnSpeOkNbHbGSclu4ykAlTVCmMhEZhCcZRuh+vOEjItmY+7HTyhqn9T81bQY
+ CINAZRPc9DqnuYst8YMFoQJB9xl2+8vTLYc1NDFFkZ6UbuuMm9BTKfth0BxwT8QGtH/K EQ== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 3439cng6gb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 16 Oct 2020 08:30:11 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
+ 2020 14:30:09 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Fri, 16 Oct 2020 14:30:09 +0100
+Received: from [10.0.2.15] (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0C87345;
+        Fri, 16 Oct 2020 13:30:09 +0000 (UTC)
+Subject: Re: [PATCH 0/7] Add dts for Rpi4 + Cirrus Lochnagar and codecs
+To:     Mark Brown <broonie@kernel.org>
+CC:     <robh+dt@kernel.org>, <nsaenzjulienne@suse.de>,
+        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+ <20201014185632.GD4580@sirena.org.uk>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+Message-ID: <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
+Date:   Fri, 16 Oct 2020 14:30:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
- <20201014191211.27029-4-nsaenzjulienne@suse.de> <20201015054244.GD12218@lst.de>
-In-Reply-To: <20201015054244.GD12218@lst.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 16 Oct 2020 08:19:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKyRby5tp2JS1COodYf7F7sB_DJivyAe7FqQivp4KM6OA@mail.gmail.com>
-Message-ID: <CAL_JsqKyRby5tp2JS1COodYf7F7sB_DJivyAe7FqQivp4KM6OA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/8] of/address: Introduce of_dma_get_max_cpu_address()
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201014185632.GD4580@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0 impostorscore=0
+ mlxlogscore=809 lowpriorityscore=0 phishscore=0 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010160100
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 12:42 AM Christoph Hellwig <hch@lst.de> wrote:
->
-> > +phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
-> > +{
-> > +     phys_addr_t max_cpu_addr = PHYS_ADDR_MAX;
-> > +     struct of_range_parser parser;
-> > +     phys_addr_t subtree_max_addr;
-> > +     struct device_node *child;
-> > +     phys_addr_t cpu_end = 0;
-> > +     struct of_range range;
-> > +     const __be32 *ranges;
-> > +     int len;
-> > +
-> > +     if (!np)
-> > +             np = of_root;
->
-> Requiring of_root to be passed explicitly would seem more natural
-> to me than the magic NULL argument.  There doesn't seem to be any
-> precedent for that kind of calling convention either.
+On 14/10/2020 19:56, Mark Brown wrote:
+> On Wed, Oct 14, 2020 at 03:54:11PM +0100, Richard Fitzgerald wrote:
+>> This set of patches provides support for using the Cirrus Logic
+>> Lochnagar audio development platform plus Cirrus Logic Madera/Arizona
+>> codecs with the simple-card machine driver and a Raspberry Pi4. The
+>> ultimate aim is to provide the dts file but some updates are needed to
+>> the simple-card machine driver.
+> 
+> Why extend simple-card and not the more modern and flexible
+> audio-graph-card?
+> 
 
-I prefer that of_root is not more widely exposed and NULL regularly
-means 'the whole tree'.
+I'm struggling to understand how to use audio-graph-card where there are
+multiple alternative codecs. The host I2S endpoint has to point back to
+the codec endpoint, like this:
 
-Rob
+	cpu_i2s_ep_cs47l15: endpoint {
+		remote-endpoint = <&cs47l15_aif1>;
+	};
+
+But obviously that depends on which codec node was enabled. Listing
+multiple endpoints makes the whole port node disabled if any remote
+endpoint is in a disabled node. I've tried adding status="disabled"
+to endpoints or multiple port definitions with status="disabled" but
+I haven't figured out a solution.
