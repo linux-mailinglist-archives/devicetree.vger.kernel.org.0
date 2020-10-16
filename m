@@ -2,79 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3CCF2901C8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C09CF2901F7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405088AbgJPJYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 05:24:12 -0400
-Received: from mga18.intel.com ([134.134.136.126]:24207 "EHLO mga18.intel.com"
+        id S2394993AbgJPJck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 05:32:40 -0400
+Received: from mga05.intel.com ([192.55.52.43]:13863 "EHLO mga05.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404499AbgJPJYL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 05:24:11 -0400
-IronPort-SDR: 7EIB8gktI96mPbPKEtv6Akhj7L2HsDChz+OWV1q2SrRnKqKvQlcz95aPR3qFxCiNhNNwC4Px5s
- O9Z6lh1s98Lw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="154371998"
+        id S2394926AbgJPJck (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 05:32:40 -0400
+IronPort-SDR: 8TjIjk4A7P2OdlrDY5KhLQMR42qkAOjvqliQ4TlA0YDiG+fd4SC4Lflq7i9T0v6hUB0iZpeLs3
+ pTABurC6Mo4Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="251262326"
 X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
-   d="scan'208";a="154371998"
+   d="scan'208";a="251262326"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 02:24:10 -0700
-IronPort-SDR: mlXEtulFxgODm6K5CtmsjFXusLEtPGooPn/6pPMOe9ZLe1pRJb4lSq2zVvUblVKC3+O5VdmcYG
- yO0pJTjewzxQ==
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 02:32:40 -0700
+IronPort-SDR: b3IAJ/inc4Ors43S6Y/XBEMgQ4ArEtssPm3w5MiKzpq4v0R6V6QLk4Y5pZOOBIPknp+UFJYS1K
+ uEiFenBq9I+Q==
+X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
-   d="scan'208";a="331110121"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 02:24:08 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kTLz4-0088CE-NC; Fri, 16 Oct 2020 12:25:10 +0300
-Date:   Fri, 16 Oct 2020 12:25:10 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: Re: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
-Message-ID: <20201016092510.GH4077@smile.fi.intel.com>
-References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <20201015104217.GR4077@smile.fi.intel.com>
- <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
- <20201016073426.vyjehbkyn3sxn7d5@pengutronix.de>
- <DM6PR11MB4250C00BB0FFB3CD97D5207CFB030@DM6PR11MB4250.namprd11.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM6PR11MB4250C00BB0FFB3CD97D5207CFB030@DM6PR11MB4250.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+   d="scan'208";a="346481812"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga004.fm.intel.com with ESMTP; 16 Oct 2020 02:31:44 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     vigneshr@ti.com, tudor.ambarus@microchip.com, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, miquel.raynal@bootlin.com,
+        simon.k.r.goldschmidt@gmail.com, dinguyen@kernel.org,
+        richard@nod.at, cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v1 0/6] spi: cadence-quadspi: Add QSPI controller support for Intel LGM SoC
+Date:   Fri, 16 Oct 2020 17:31:32 +0800
+Message-Id: <20201016093138.28871-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 16, 2020 at 08:32:05AM +0000, Ayyathurai, Vijayakannan wrote:
-> From: Uwe Kleine-König <u.kleine-koenig@pengutronix.de> 
-> Sent: Friday, 16 October, 2020 1:04 PM
-> Hello Ayyathurai,
-> 
-> Can you please fix your MUA to properly quote when replying, this is really annoying.
-> 
-> Sorry for that MUA (Made Up Acronym). 
+Add QSPI controller support for Intel LGM SoC.
 
-MUA = Mail User Agent. And your quoting is a mess. Please, fix this for any
-replies in OSS mailing lists.
+Note from Vignesh(mtd subsystem maintainer):
+This series is a subset of "[PATCH v12 0/4] spi: cadence-quadspi: Add
+support for the Cadence QSPI controller" by Ramuthevar,Vadivel MuruganX
+<vadivel.muruganx.ramuthevar@linux.intel.com> that intended to move
+cadence-quadspi driver to spi-mem framework
+
+Those patches were trying to accomplish too many things in a single set
+of patches and need to split into smaller patches. This is reduced
+version of above series.
+
+Changes that are intended to make migration easy are split into separate
+patches. Patches 1 to 3 drop features that cannot be supported under
+spi-mem at the moment (backward compatibility is maintained).
+Patch 4-5 are trivial cleanups. Patch 6 does the actual conversion to
+spi-mem and patch 7 moves the driver to drivers/spi folder.
+
+I have tested both INDAC mode (used by non TI platforms like Altera
+SoCFPGA) and DAC mode (used by TI platforms) on TI EVMs.
+
+Patches to move move bindings over to
+"Documentation/devicetree/bindings/spi/" directory and also conversion
+of bindig doc to YAML will be posted separately.  Support for Intel
+platform would follow that.
+
+Reference:
+	https://lkml.org/lkml/2020/6/1/50
+
+Ramuthevar Vadivel Murugan (6):
+  spi: Move cadence-quadspi.txt to Documentation/devicetree/bindings/spi
+  dt-bindings: spi: Convert cadence-quadspi.txt to cadence-quadspi.yaml
+  dt-bindings: spi: Add compatible for Intel LGM SoC
+  spi: cadence-quadspi: Add QSPI support for Intel LGM SoC
+  spi: cadence-quadspi: Disable the DAC for Intel LGM SoC
+  spi: cadence-quadspi: Add multi-chipselect support for Intel LGM SoC
+
+ .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 ---------
+ .../devicetree/bindings/spi/cadence-quadspi.yaml   | 149 +++++++++++++++++++++
+ drivers/spi/Kconfig                                |   2 +-
+ drivers/spi/spi-cadence-quadspi.c                  |  29 ++++
+ 4 files changed, 179 insertions(+), 68 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.11.0
 
