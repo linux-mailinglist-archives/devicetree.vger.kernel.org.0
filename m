@@ -2,157 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9EDD2901BC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 937B12901CB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405568AbgJPJU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 05:20:27 -0400
-Received: from mga14.intel.com ([192.55.52.115]:61105 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394987AbgJPJU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 05:20:27 -0400
-IronPort-SDR: ABmvZ7KK/26x7I6y/25sUh40oasJMbORsIkE+LvIaOa0iUGdfPqaaD2+Q36hFJtYkvmWL1OF6s
- aYdwx8eun2qg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="165799562"
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
-   d="scan'208";a="165799562"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 02:20:26 -0700
-IronPort-SDR: e76N9CeG4MdDtrqHMptxm9uAhbobrboaLyyt1l2jgUC1hb6BMHX4CzMdWz+1Kpo72odoecD/EY
- 7V2DwDjCyGbQ==
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
-   d="scan'208";a="319388347"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 02:20:24 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kTLvT-00884J-1o; Fri, 16 Oct 2020 12:21:27 +0300
-Date:   Fri, 16 Oct 2020 12:21:27 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        id S2405201AbgJPJYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 05:24:19 -0400
+Received: from mail-eopbgr30079.outbound.protection.outlook.com ([40.107.3.79]:34948
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2404499AbgJPJYS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 05:24:18 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L/wyLvT1ZguhtVIyWErOAwxZiek3fuYgp/92SxY+h/zR0W/csJLmtPh4nuKpdW3vqR7WMCLjR22ZwQmOB8iKx2Nn854OwWn8Ixlx8dKSE80PLFCjo/A3evwq1P2iPq3dxsXXiHEIWz5przv6ctAVx07ay5/D6EI5hdpUoaJjFIijBajhZKoFDFkXCcEbDkOfkiXexH61S/M5p+JLmTwVrSrt9QUyWd9yEioFSbJL0UIAR/78zk/zCc+pnNEh21w+rgqSzcun202w3SlRXCHiJipcNNE9/1t6zr4ERbqLrDkTjiOL3UrcOboNvRMMxYiM7C4alRY4INOhkRqVh+rM4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/0/5zS/t8BM1kIoF6h/iN4hsEzx1OmHTnLL9j+3qmds=;
+ b=VBaKcoVuu5ar8ad5xjCchbCl+AX/hDAc752GqTiCiVXlxnd9RapGhlrQVGOtFXPa/aLfTTDYoV51haJBZ9LYIBId7Ot/OvR7gZvXtTOLHSb3nu6J7limWQZD9MoL50jS+u1k75xnIwGGJxR3xOnSkvjIAkNoRLnY5N/49LQ2UtzfMHKKcbykduqwI2fJ0oAT2QhVwegRTQk8m9/yzS/E3uj0XyzyyCAGGRX34AhLD/JLVsfRtAzDdQs2M6Qx2bBsfM1ZbJCsMNOQB/g9Zk722GP+6IuAItEuYFdIme0ckomz6g+1bwN4k0/Aj80D0+ld8maq0aWhQucFDyayOR6rww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/0/5zS/t8BM1kIoF6h/iN4hsEzx1OmHTnLL9j+3qmds=;
+ b=QJ/nq0XAjDkDONZUAi1BMsY3WmT/S+XIq1PgQ8mo/g3DxgkGVDZ3WQydjmjDxQ73tL0pwR0RBJRFydZ+nNC7YrjLQNMcdLM8g4/JoK3jhmE+dRKHnyE4NV6fLcpg8UtkazuAIpeVJ3yg33zpQHR07YW4HzZEjrFEExDdWXXCdlw=
+Received: from VI1PR0401MB2446.eurprd04.prod.outlook.com
+ (2603:10a6:800:4e::21) by VI1PR0401MB2446.eurprd04.prod.outlook.com
+ (2603:10a6:800:4e::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.24; Fri, 16 Oct
+ 2020 09:24:10 +0000
+Received: from VI1PR0401MB2446.eurprd04.prod.outlook.com
+ ([fe80::c90a:a180:40a2:8996]) by VI1PR0401MB2446.eurprd04.prod.outlook.com
+ ([fe80::c90a:a180:40a2:8996%12]) with mapi id 15.20.3477.024; Fri, 16 Oct
+ 2020 09:24:10 +0000
+From:   "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
+To:     Rob Herring <robh@kernel.org>,
+        "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
+CC:     "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: Re: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
-Message-ID: <20201016092127.GF4077@smile.fi.intel.com>
-References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <20201015104217.GR4077@smile.fi.intel.com>
- <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
+        Reinhard Pfau <pfau@gdsys.de>
+Subject: RE: [PATCH] hwmon: add support for SMSC EMC2305/03/02/01 fan
+ controller
+Thread-Topic: [PATCH] hwmon: add support for SMSC EMC2305/03/02/01 fan
+ controller
+Thread-Index: AQHWo54a8ltQoVA500aCu7wxAPXsNw==
+Date:   Fri, 16 Oct 2020 09:24:09 +0000
+Message-ID: <VI1PR0401MB244636CEDEEC9E1F84FD18F78F030@VI1PR0401MB2446.eurprd04.prod.outlook.com>
+References: <20200928104326.40386-1-biwen.li@oss.nxp.com>
+ <20200929194937.GA1046240@bogus>
+In-Reply-To: <20200929194937.GA1046240@bogus>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 4c326bce-4ab9-4e02-4d47-08d871b53d24
+x-ms-traffictypediagnostic: VI1PR0401MB2446:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0401MB24461313A2E04248AF734262CE030@VI1PR0401MB2446.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: K53pOzrS65lhC2J/WkW3iB3X1TOwG3dEUSUTHLW7H2aEJuwKnpqiQxKq6wuM3ESXz5J4M/DDgJl37TkyUPY7bvC3LIby9v+oEWM0ty6wDdHMSLc8/zoaz1Q3dnccPWYJnt4e6Muakb4Z7VakKZ3LTT8ApIlq+VvR+dMcMOcYQZ+uWH4DlJwDbR6L0s4LTxwdsv64hebWIvGci2k3OweJITGkIEu8ISy6AO7sj03vwD9g43IjdYq5SiX52yAvqIo2PhBKRo0CtPsWSNoFeRN15qoDRgHkkRB/OwdC/Kw5oLAd9i8bhHif1ixllGFh8Jq7CbJjHU//SgBpYA0vFwAWMw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2446.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(346002)(376002)(396003)(366004)(186003)(110136005)(54906003)(52536014)(316002)(55016002)(9686003)(8936002)(8676002)(7696005)(86362001)(33656002)(5660300002)(76116006)(71200400001)(478600001)(66946007)(66476007)(66556008)(66446008)(64756008)(26005)(4326008)(6506007)(2906002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: FhHMLFuzH/kHe9uZrNaqSlK+8Shj7qYHFbazsYLLUQAgng4m4NHmYI/rFQqW8sEL/Ld35fgcgauq+YpPskYgwPe+kV6uNoKtHVlFmmOHTqNbIFYnMHK6oe8lKm+EVN8FbFQyz9UM8tjiKflkmhySoExCw2WWG2iCjC6auBQwI3Iio7yv1oH23gsBKPNmH8GaYQoP53Hk+tEvLD5GuVIYaBMxlxVfeDS51S4i5603fY79fOtK6azXcP5i1zU9LbPs3b/D5LBL8DGq+QkQdYe+OsS5uptKUToiYtwU0Cm+hiZo2jgZ0hel/9Ci/WgylZxlad4XDimGeej24bXrEwO2WgBbtHY4IU18W94eIEwoFsINP15z7ToHHz6j8GTygMxeJ1JBwbrsrlO/+aMfbv7TZi/zI31RJoV9zNVllNJt73/0eQF53phWtpw1VIQEzrVXj09JhCqBICFheneExe6l/4WKgSzgNbkr+QQOk7aTKMzWx3Y/6ZGdU1Z2TRKJTj6Xjm16do9IjUOgXnYwO3UkDwNZMak/lnUuuxrA7lohVzA+tD7Yz4T6ZYW7jLVbj96roECrO77L7tYiJwFH55Mq++nGcjkg4NIAUONYj7tvNngxjczEYBYSs7nXmi9gH93SuEmIiHOL2aFJHXLFqnuBdQ==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2446.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c326bce-4ab9-4e02-4d47-08d871b53d24
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2020 09:24:10.0204
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pPRnx//iE69saqFPDXu4SbXZWveTItlYgyOrOi+5VkVrDmbI/4Dn+PoJmUeYbgwGNH6l4skC0vby3LubRlVnpQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2446
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 16, 2020 at 03:18:08AM +0000, Ayyathurai, Vijayakannan wrote:
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com> 
-> Sent: Thursday, 15 October, 2020 4:12 PM
-> On Thu, Oct 15, 2020 at 03:36:09AM +0800, vijayakannan.ayyathurai@intel.com wrote:
-> > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-
-...
-
-> > +	priv->clk = devm_clk_get(dev, NULL);
-> > +	if (IS_ERR(priv->clk))
-> > +		return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to get 
-> > +clock\n");
-> > +
-> > +	ret = clk_prepare_enable(priv->clk);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	priv->base = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(priv->base)) {
-> 
-> > +		clk_disable_unprepare(priv->clk);
-> 
-> See below.
-> 
-> > +		return PTR_ERR(priv->base);
-> > +	}
-> > +
-> > +	priv->chip.base = -1;
-> > +	priv->chip.dev = dev;
-> > +	priv->chip.ops = &keembay_pwm_ops;
-> > +	priv->chip.npwm = KMB_TOTAL_PWM_CHANNELS;
-> > +
-> > +	ret = pwmchip_add(&priv->chip);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to add PWM chip: %pe\n", ERR_PTR(ret));
-> 
-> > +		clk_disable_unprepare(priv->clk);
-> 
-> This messes up with ordering of things.
-> 
-> That's why devm golden rule is either all or none. You may fix this by switching to devm_add_action_or_reset().
-> 
-> One of possible way is like in below drivers:
-> 
-> 	% git grep -n devm_add_action_or_reset.*disable_unprepare -- drivers/
-> 
-> But it may be fixed in follow up change. Depends on maintainers' wishes.
-> 
-> Sure. I shall incorporate and check based on maintainers wish in the next version.
-> 
-> > +		return ret;
-> > +	}
-> > +
-> > +	platform_set_drvdata(pdev, priv);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int keembay_pwm_remove(struct platform_device *pdev) {
-> > +	struct keembay_pwm *priv = platform_get_drvdata(pdev);
-> > +	int ret;
-> > +
-> > +	ret = pwmchip_remove(&priv->chip);
-> > +	clk_disable_unprepare(priv->clk);
-> > +
-> > +	return ret;
-> 
-> ...and this will be simplified to
-> 
-> 	return pwmchip_remove(&priv->chip);
-> 
-> Until v10, It is as per your suggestion. But I have changed it in v11 to overcome the issue mentioned by Uwe. I have kept the snip of v10 FYR below.
-> 
-> //Start snip from v10 review mailing list
-> //> +static int keembay_pwm_remove(struct platform_device *pdev) {
-> //> +	struct keembay_pwm *priv = platform_get_drvdata(pdev);
-> //> +
-> //> +	clk_disable_unprepare(priv->clk);
-> //> +
-> //> +	return pwmchip_remove(&priv->chip);
-> //
-> //You have to call pwmchip_remove first. Otherwise you're stopping the PWM while the framework still believes everything to be fine.
-> //
-> //> +}
-> //End snip from v10 review mailing review
-> 
-> > +}
-
-What I said does not contradict with what Uwe said. So, please, fix ordering
-either by dropping devm_ in the middle or adding devm_ action.
-
-Now you moved serious ordering issue in ->remove() (which Uwe noted) to less
-serious in ->probe(). But issue is still present.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>=20
+> On Mon, Sep 28, 2020 at 06:43:26PM +0800, Biwen Li wrote:
+> > From: Reinhard Pfau <pfau@gdsys.de>
+> >
+> > Add support for SMSC EMC2305, EMC2303, EMC2302, EMC2301 fan controller
+> > chips.
+> > The driver primary supports the EMC2305 chip which provides RPM-based
+> > PWM control and monitoring for up to 5 fans.
+> >
+> > According to the SMSC data sheets the EMC2303, EMC2302 and EMC2301
+> > chips have basically the same functionality and register layout, but
+> > support less fans and (in case of EMC2302 and EMC2301) less possible I2=
+C
+> addresses.
+> > The driver supports them, too.
+> >
+> > The driver supports configuration via devicetree. This can also be
+> > used to restrict the fans exposed via sysfs (see doc for details).
+> >
+> > Signed-off-by: Reinhard Pfau <pfau@gdsys.de>
+> > Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> > ---
+> >  .../devicetree/bindings/hwmon/emc2305.txt     |  33 +
+>=20
+> Split to a separate patch and should be in DT schema format.
+> checkpatch.pl will tell you both of these things.
+Okay, got it, thanks.
+>=20
+> >  Documentation/hwmon/emc2305.rst               |  34 +
+> >  MAINTAINERS                                   |   8 +
+> >  drivers/hwmon/Kconfig                         |  10 +
+> >  drivers/hwmon/Makefile                        |   1 +
+> >  drivers/hwmon/emc2305.c                       | 689
+> ++++++++++++++++++
+> >  6 files changed, 775 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/hwmon/emc2305.txt
+> >  create mode 100644 Documentation/hwmon/emc2305.rst  create mode
+> > 100644 drivers/hwmon/emc2305.c
