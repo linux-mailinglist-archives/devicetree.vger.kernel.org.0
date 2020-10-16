@@ -2,103 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE564290D08
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 23:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7D6C290CD4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 22:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409826AbgJPVAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 17:00:38 -0400
-Received: from mxwww.masterlogin.de ([95.129.51.170]:58698 "EHLO
-        mxwww.masterlogin.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390931AbgJPVAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 17:00:38 -0400
-Received: from mxout2.routing.net (unknown [192.168.10.82])
-        by backup.mxwww.masterlogin.de (Postfix) with ESMTPS id 813742C460;
-        Fri, 16 Oct 2020 20:40:47 +0000 (UTC)
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-        by mxout2.routing.net (Postfix) with ESMTP id 6AA0A5FA21;
-        Fri, 16 Oct 2020 20:40:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1602880843;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Nq64YXij9tzn9ukxd1xli05D6EoZxP+TcI13tNDVaEk=;
-        b=S4GwSQZHgZGnhYpsYIzMW4OWVfWIXiRYfXE3/EJ7LvcWBT9QJdacMxLESXBtbTyZ2UFbSC
-        12BFYNZT2/v5bBlHIxIlkJ33lByNC2L4rF9LMPY6f6ZdgQOrM/NRq1UDrd0SnOKKIDtS8l
-        jJjqIUwNFwBnq5OV+2Msr0pTcT/OKOk=
-Received: from localhost.localdomain (fttx-pool-80.208.213.194.bambit.de [80.208.213.194])
-        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id CDF5836023B;
-        Fri, 16 Oct 2020 20:40:42 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Sean Wang <sean.wang@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-Subject: [RFC 3/3] pinctl: mt7622: drop pwm ch7 as mt7622 only has 6 channels
-Date:   Fri, 16 Oct 2020 22:40:19 +0200
-Message-Id: <20201016204019.2606-4-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201016204019.2606-1-linux@fw-web.de>
-References: <20201016204019.2606-1-linux@fw-web.de>
+        id S2408337AbgJPUqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 16:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56330 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2408077AbgJPUqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 16:46:37 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFEB3C061755;
+        Fri, 16 Oct 2020 13:46:36 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id md26so5048299ejb.10;
+        Fri, 16 Oct 2020 13:46:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mAY0QDFqvIDjx5HUOQ+MdvNYA3kylWMqxJWjR23AFzk=;
+        b=Pge7XeimtOGQPWwobIeFhAVFY6hovQZpX0ZLcKzZ8AVgQQQ672h2NV6G4tVk7cpmI+
+         1+gpE/GaiJ6rOXia2sUQl2tkgPYRwpujI/1jI9yUuZbMHNhhdIPSSFFZisDCvdGyMNCm
+         Bv7XKMjurquBEjLiG0g7MIjYLAxlPxapoizFVEWiVkAHI83UW9jV/Zr0Oj+Y0jv0AGkL
+         cttkNhvMmB1Ql9iOu8/GJqu+JOcP+inoZKVjC8g7gRUssTThoHFHguWhzOQMKNXZP0Bi
+         /t44sdZ14d2mGGgRgIH93pq2zHZDD0h2Gi9RGZg69aSc7fX52eFBBVlYAcrwgabfDNox
+         6p+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mAY0QDFqvIDjx5HUOQ+MdvNYA3kylWMqxJWjR23AFzk=;
+        b=po1m8uwegap4OUymmHUBI9SwKOHwckXU2OC+oiIfQhE+ThvXWPpo5k4oN7rLNr72Zt
+         d99Bn9ezles6r2hqXk5bc610CUl5TA7TVO5Pz9NGo3Pg8wu51mlZTbsj4WD8St9qR6Be
+         h3U1sav7E7VSqxNAn+NE0nU98gO3SKATKmFFzbZuVxy+ZiiDSK6DnrWggX1G5keX2Oay
+         zdU5Sj2rYvz2F+hca8SvlOAcOVf5TU7zygVi7aSnWMBTXqHXCNKiXV/30AbaN+OLcTpT
+         /YQJX6LcgiRhDzhgfoaBcKcV/04RKBRkKgtLlz/+QTDHuwgEvJ0wp/h7jqUOHZ9uhbW4
+         YHSA==
+X-Gm-Message-State: AOAM530Tt76x/TK4Bs8Ke5DCe6WyeIN8qMozxEQmk0rN5vpF6whMs7Fx
+        FNCrF2FBXh+k3n2UCGvBvjuh361MEtqB/VT9zsYy7DZgW9c=
+X-Google-Smtp-Source: ABdhPJzZH9WV53owno/ZkjiRehR4EVV/83Ve6RR9ZDeTZs5Z1Fi5I5Jf9JSdZ0IMRjggvROTLl8Mkpi59PwKfkncEXs=
+X-Received: by 2002:a17:906:cc0d:: with SMTP id ml13mr5630435ejb.2.1602881195652;
+ Fri, 16 Oct 2020 13:46:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru> <20201014101402.18271-15-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201014101402.18271-15-Sergey.Semin@baikalelectronics.ru>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Fri, 16 Oct 2020 22:46:24 +0200
+Message-ID: <CAFBinCDYu+C62P37QjY75xG8iXa+MwZEL-agNhoOsaXQ0OQpgQ@mail.gmail.com>
+Subject: Re: [PATCH 14/20] dt-bindings: usb: meson-g12a-usb: Fix FL-adj
+ property value
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
-
-mt7622 is reported by mediatek to have only 6 pwm channels
-so drop pindefines for 7th channel
-
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- drivers/pinctrl/mediatek/pinctrl-mt7622.c | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
-
-diff --git a/drivers/pinctrl/mediatek/pinctrl-mt7622.c b/drivers/pinctrl/mediatek/pinctrl-mt7622.c
-index ce4a8a0cc19c..260ffadd24e4 100644
---- a/drivers/pinctrl/mediatek/pinctrl-mt7622.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-mt7622.c
-@@ -439,12 +439,6 @@ static int mt7622_pwm_ch6_2_pins[] = { 81, };
- static int mt7622_pwm_ch6_2_funcs[] = { 4, };
- static int mt7622_pwm_ch6_3_pins[] = { 100, };
- static int mt7622_pwm_ch6_3_funcs[] = { 0, };
--static int mt7622_pwm_ch7_0_pins[] = { 70, };
--static int mt7622_pwm_ch7_0_funcs[] = { 3, };
--static int mt7622_pwm_ch7_1_pins[] = { 82, };
--static int mt7622_pwm_ch7_1_funcs[] = { 4, };
--static int mt7622_pwm_ch7_2_pins[] = { 101, };
--static int mt7622_pwm_ch7_2_funcs[] = { 0, };
- 
- /* SD */
- static int mt7622_sd_0_pins[] = { 16, 17, 18, 19, 20, 21, };
-@@ -611,9 +605,6 @@ static const struct group_desc mt7622_groups[] = {
- 	PINCTRL_PIN_GROUP("pwm_ch6_1", mt7622_pwm_ch6_1),
- 	PINCTRL_PIN_GROUP("pwm_ch6_2", mt7622_pwm_ch6_2),
- 	PINCTRL_PIN_GROUP("pwm_ch6_3", mt7622_pwm_ch6_3),
--	PINCTRL_PIN_GROUP("pwm_ch7_0", mt7622_pwm_ch7_0),
--	PINCTRL_PIN_GROUP("pwm_ch7_1", mt7622_pwm_ch7_1),
--	PINCTRL_PIN_GROUP("pwm_ch7_2", mt7622_pwm_ch7_2),
- 	PINCTRL_PIN_GROUP("sd_0", mt7622_sd_0),
- 	PINCTRL_PIN_GROUP("sd_1", mt7622_sd_1),
- 	PINCTRL_PIN_GROUP("snfi", mt7622_snfi),
-@@ -700,9 +691,7 @@ static const char *mt7622_pwm_groups[] = { "pwm_ch1_0", "pwm_ch1_1",
- 					   "pwm_ch4_3", "pwm_ch5_0",
- 					   "pwm_ch5_1", "pwm_ch5_2",
- 					   "pwm_ch6_0", "pwm_ch6_1",
--					   "pwm_ch6_2", "pwm_ch6_3",
--					   "pwm_ch7_0", "pwm_ch7_1",
--					   "pwm_ch7_2", };
-+					   "pwm_ch6_2", "pwm_ch6_3", };
- static const char *mt7622_sd_groups[] = { "sd_0", "sd_1", };
- static const char *mt7622_spic_groups[] = { "spic0_0", "spic0_1", "spic1_0",
- 					    "spic1_1", "spic2_0",
--- 
-2.25.1
-
+On Wed, Oct 14, 2020 at 12:14 PM Serge Semin
+<Sergey.Semin@baikalelectronics.ru> wrote:
+>
+> An empty snps,quirk-frame-length-adjustment won't cause any change
+> performed by the driver. Moreover the DT schema validation will fail,
+> since it expects the property being assigned with some value. So set
+> fix the example by setting a valid FL-adj value in accordance with
+> Neil Armstrong comment.
+>
+> Link: https://lore.kernel.org/linux-usb/20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru/
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
