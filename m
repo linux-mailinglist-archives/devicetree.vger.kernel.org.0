@@ -2,138 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD74C28FF31
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 09:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9372F28FF5C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 09:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404568AbgJPHeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 03:34:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46270 "EHLO
+        id S2404652AbgJPHop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 03:44:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404671AbgJPHea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 03:34:30 -0400
+        with ESMTP id S2404704AbgJPHon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 03:44:43 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F32C061755
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 00:34:30 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B582C061755
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 00:44:43 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kTKFu-0006Gf-QO; Fri, 16 Oct 2020 09:34:26 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kTKFu-0004sy-8k; Fri, 16 Oct 2020 09:34:26 +0200
-Date:   Fri, 16 Oct 2020 09:34:26 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: Re: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
-Message-ID: <20201016073426.vyjehbkyn3sxn7d5@pengutronix.de>
-References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <20201015104217.GR4077@smile.fi.intel.com>
- <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
+        (envelope-from <ore@pengutronix.de>)
+        id 1kTKPj-0007Q6-Gn; Fri, 16 Oct 2020 09:44:35 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kTKPi-0006rP-Ty; Fri, 16 Oct 2020 09:44:34 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     mkl@pengutronix.de, Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Joakim Zhang <qiangqing.zhang@nxp.com>
+Subject: [PATCH v1] ARM: dts: imx6/7: sync fsl,stop-mode with current flexcan driver
+Date:   Fri, 16 Oct 2020 09:44:32 +0200
+Message-Id: <20201016074432.26323-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="s3e632f7peb5icpv"
-Content-Disposition: inline
-In-Reply-To: <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+After this patch we need 2 arguments less for the fsl,stop-mode
+property:
 
---s3e632f7peb5icpv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+| commit d9b081e3fc4bdc33e672dcb7bb256394909432fc
+| Author: Marc Kleine-Budde <mkl@pengutronix.de>
+| Date:   Sun Jun 14 21:09:20 2020 +0200
+|
+| can: flexcan: remove ack_grp and ack_bit handling from driver
+|
+| Since commit:
+|
+|  048e3a34a2e7 can: flexcan: poll MCR_LPM_ACK instead of GPR ACK for stop mode acknowledgment
+|
+| the driver polls the IP core's internal bit MCR[LPM_ACK] as stop mode
+| acknowledge and not the acknowledgment on chip level.
+|
+| This means the 4th and 5th value of the property "fsl,stop-mode" isn't used
+| anymore. This patch removes the used "ack_gpr" and "ack_bit" from the driver.
 
-Hello Ayyathurai,
+This patch removes the two last arguments, as they are not needed
+anymore.
 
-Can you please fix your MUA to properly quote when replying, this is
-really annoying.
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-On Fri, Oct 16, 2020 at 03:18:08AM +0000, Ayyathurai, Vijayakannan wrote:
-> > On Thu, Oct 15, 2020 at 03:36:09AM +0800, vijayakannan.ayyathurai@intel=
-=2Ecom wrote:
-> > > +static int keembay_pwm_remove(struct platform_device *pdev) {
-> > > +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
-> > > +	int ret;
-> > > +
-> > > +	ret =3D pwmchip_remove(&priv->chip);
-> > > +	clk_disable_unprepare(priv->clk);
-> > > +
-> > > +	return ret;
-> >=20
-> > ...and this will be simplified to
-> >=20
-> > 	return pwmchip_remove(&priv->chip);
->
-> Until v10, It is as per your suggestion. But I have changed it in v11
-> to overcome the issue mentioned by Uwe. I have kept the snip of v10
-> FYR below.
->=20
-> //Start snip from v10 review mailing list
-> //> +static int keembay_pwm_remove(struct platform_device *pdev) {
-> //> +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
-> //> +
-> //> +	clk_disable_unprepare(priv->clk);
-> //> +
-> //> +	return pwmchip_remove(&priv->chip);
-> //
-> //You have to call pwmchip_remove first. Otherwise you're stopping the PW=
-M while the framework still believes everything to be fine.
-> //
-> //> +}
-> //End snip from v10 review mailing review
+ # Please enter the commit message for your changes. Lines starting
+---
+ arch/arm/boot/dts/imx6qdl.dtsi | 4 ++--
+ arch/arm/boot/dts/imx6sx.dtsi  | 4 ++--
+ arch/arm/boot/dts/imx6ul.dtsi  | 4 ++--
+ arch/arm/boot/dts/imx7s.dtsi   | 4 ++--
+ 4 files changed, 8 insertions(+), 8 deletions(-)
 
-Note that we're both (Andy and I) are right. You must not disable the
-clocks before pwmchip_remove() (otherwise for a short time the PWM looks
-ready but isn't). And if you use devm-stuff to enable the clock it will
-be disabled only after the remove callback completed and your .remove
-may look like:
+diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+index 43edbf1156c7..5efb9b923bf9 100644
+--- a/arch/arm/boot/dts/imx6qdl.dtsi
++++ b/arch/arm/boot/dts/imx6qdl.dtsi
+@@ -549,7 +549,7 @@ can1: flexcan@2090000 {
+ 				clocks = <&clks IMX6QDL_CLK_CAN1_IPG>,
+ 					 <&clks IMX6QDL_CLK_CAN1_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x34 28 0x10 17>;
++				fsl,stop-mode = <&gpr 0x34 28>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -560,7 +560,7 @@ can2: flexcan@2094000 {
+ 				clocks = <&clks IMX6QDL_CLK_CAN2_IPG>,
+ 					 <&clks IMX6QDL_CLK_CAN2_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x34 29 0x10 18>;
++				fsl,stop-mode = <&gpr 0x34 29>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+index b480dfa9e251..8770e522d21c 100644
+--- a/arch/arm/boot/dts/imx6sx.dtsi
++++ b/arch/arm/boot/dts/imx6sx.dtsi
+@@ -463,7 +463,7 @@ flexcan1: can@2090000 {
+ 				clocks = <&clks IMX6SX_CLK_CAN1_IPG>,
+ 					 <&clks IMX6SX_CLK_CAN1_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 1 0x10 17>;
++				fsl,stop-mode = <&gpr 0x10 1>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -474,7 +474,7 @@ flexcan2: can@2094000 {
+ 				clocks = <&clks IMX6SX_CLK_CAN2_IPG>,
+ 					 <&clks IMX6SX_CLK_CAN2_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 2 0x10 18>;
++				fsl,stop-mode = <&gpr 0x10 2>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index 2b088f210331..4a059708ff20 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -430,7 +430,7 @@ can1: flexcan@2090000 {
+ 				clocks = <&clks IMX6UL_CLK_CAN1_IPG>,
+ 					 <&clks IMX6UL_CLK_CAN1_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 1 0x10 17>;
++				fsl,stop-mode = <&gpr 0x10 1>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -441,7 +441,7 @@ can2: flexcan@2094000 {
+ 				clocks = <&clks IMX6UL_CLK_CAN2_IPG>,
+ 					 <&clks IMX6UL_CLK_CAN2_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 2 0x10 18>;
++				fsl,stop-mode = <&gpr 0x10 2>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+index 1cfaf410aa43..837f0da08686 100644
+--- a/arch/arm/boot/dts/imx7s.dtsi
++++ b/arch/arm/boot/dts/imx7s.dtsi
+@@ -971,7 +971,7 @@ flexcan1: can@30a00000 {
+ 				clocks = <&clks IMX7D_CLK_DUMMY>,
+ 					<&clks IMX7D_CAN1_ROOT_CLK>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 1 0x10 17>;
++				fsl,stop-mode = <&gpr 0x10 1>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -982,7 +982,7 @@ flexcan2: can@30a10000 {
+ 				clocks = <&clks IMX7D_CLK_DUMMY>,
+ 					<&clks IMX7D_CAN2_ROOT_CLK>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 2 0x10 18>;
++				fsl,stop-mode = <&gpr 0x10 2>;
+ 				status = "disabled";
+ 			};
+ 
+-- 
+2.28.0
 
-	static int keembay_pwm_remove(struct platform_device *pdev)
-	{
-		struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
-
-		return pwmchip_remove(&priv->chip);
-	}
-
-because you won't have to care for the clock explicitly.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---s3e632f7peb5icpv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+JTP8ACgkQwfwUeK3K
-7An1Fgf/b2bq68yJEXElIdOAqbvuMPT9ZRnrewxfZ6WTx3SUUSfa04D5+6G9Qedm
-yXm9T2uN8xb+mkA6O8gykLKaaSALFkT15wvgedgAqcPMMrL/fS30Z7z9q3O2mvLN
-bTHAxCXgroDl+xAeQr8VRRY6wE2Hn5gRSa+Zy8mKn+V6neZTkj6Sdj4a5JKTS/R0
-Tgb7CAi8W+gVFBB1xP3jrhEZysp7XfqEwQm3bovlJNoSNAQMzB8UhDudvJ8ta2eq
-r2u8gljkSwuBZ0C3utcoevSlVu/dpw0pFAQdZKVCebaySHusyjP2Bwtk1zpj5z3I
-HdzoT9bzLvbwocioCkqgcV+rv7h0GQ==
-=PCCl
------END PGP SIGNATURE-----
-
---s3e632f7peb5icpv--
