@@ -2,181 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 886972906EE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 547422906FD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408625AbgJPONK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 10:13:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51832 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2408683AbgJPONI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 10:13:08 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC32BC0613DE
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 07:13:03 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id j136so3145741wmj.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 07:13:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=csBLm3ebHLvfnJwPW+GEPGSRmaYpvOkO16WRyubpNjA=;
-        b=jCjzqcNL3iczaFS9JnMzZxi14XrBwh6PymeoF2RT1H0/QG7D8NXJrQlSFIICo6fCje
-         VSwaeZBsX7kgRyl/muJVSBdlOZLyv6SBkKHNvNJQgZJoPEYIMLUZ3PvI9N8XUAnOWl34
-         rr+V3YDkQJUo/JIKTJQm0nmWTv40JBy98of/EI0pHKaQ12Os/6Yy/3/NIZFTPiRUZeHZ
-         feUAitr8HCDmZ3MN1y/2/EV8HGpOTtSzQMeHev6ZtCefBcjOwK3mo68KlOZs9gpPvFSG
-         ZlvVi658Ux+XtMnfLUO5x9nBd+Ka3cZsCmx4MuAoBWIjfvKAr14p8bOsV6IckMsr4Bja
-         H1gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=csBLm3ebHLvfnJwPW+GEPGSRmaYpvOkO16WRyubpNjA=;
-        b=nmb53RIqU3WW+7HDdmzesC73zcT+FT4CjAuAwtKybkBkm6KuF3/AelUJSZPKrwaOG4
-         m8DeCDt8Xv5IMzZr9l8pJqo+rcKQ5ZJS4ht1rZtvCJbXdIMoW4HFA6ay26HcpG2FQ40v
-         QvTbmZX6HYf2mWgISxhIcsBK3zpkyiLEzMqXO/hGzySZEggeTtb6gWjqKeShGPtYniiq
-         cmX9gESM2ZjwPZhsOHl5giPpcd84Cf+NXi4Nd/phK3e7QTh2D0qREzs5OftI3hf1YAKV
-         1qpGwleiMGf+I1L3cFLNZR8eymkOyml55FTKbXLrA/GKt+BltNL8Ao/DHZ++e0oojlHA
-         1XxA==
-X-Gm-Message-State: AOAM531HzOsgv27+5/Kee5oydTy+aKW23rKMN1bb7AqtyTfzkjnPov0x
-        X6wb1qOxeTDJWNUs8+A+wthhiA==
-X-Google-Smtp-Source: ABdhPJztJYMzw77XeJJ3pv8HapvOVXwLIeNdsf+UvYW+xSxEtrOnGrmLbSV0sKAdo4muyM3bs/vyow==
-X-Received: by 2002:a1c:c28a:: with SMTP id s132mr3958670wmf.67.1602857582631;
-        Fri, 16 Oct 2020 07:13:02 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id p9sm2982284wma.12.2020.10.16.07.13.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 07:13:01 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 4/4] clk: qcom: Add support to LPASS AON_CC Glitch Free Mux clocks
-Date:   Fri, 16 Oct 2020 15:12:41 +0100
-Message-Id: <20201016141241.5839-5-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20201016141241.5839-1-srinivas.kandagatla@linaro.org>
-References: <20201016141241.5839-1-srinivas.kandagatla@linaro.org>
+        id S2406098AbgJPOOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 10:14:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52542 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2395282AbgJPOOD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 10:14:03 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7339321527;
+        Fri, 16 Oct 2020 14:14:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602857642;
+        bh=/Wy1dqxW7oC6Qye976pyOHB3NEyzVajEMIVxWnNoiWI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GvfirHosPoQlrZ9dHvK/MiR7ld0pnZ1gIqpgnPDdlppchrxHv71dL73zET/FkkRbX
+         tpqynbY8hwuhIjWFSMFkHjBO9r32xo2deIPkDs7E/9OfxpB5pjmz47kNzImHNVhmWP
+         Gky4SSBzFgYnYuDePGs3dGZiWfdwrzyOS730N2ug=
+Received: by mail-oi1-f180.google.com with SMTP id h10so2597082oie.5;
+        Fri, 16 Oct 2020 07:14:02 -0700 (PDT)
+X-Gm-Message-State: AOAM5332Zt9j9+/2e3ssCOcDCWxTZ2BFwwWZRU0xSKaHVO8SRA8RNBNQ
+        it5k5E9hTlDFu4inXIjklq1Mv4BeEcGzLm2SBg==
+X-Google-Smtp-Source: ABdhPJwvkvemmhvQLSwCQm4gpIYMftfka7WMIAmWLyZGAJSnJ52MchXcPRDmVK7L+Va3qkbuIITfwhAYwzEjNkMAFBA=
+X-Received: by 2002:aca:4c52:: with SMTP id z79mr2691947oia.147.1602857641568;
+ Fri, 16 Oct 2020 07:14:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201013160845.1772-1-thunder.leizhen@huawei.com>
+ <20201013160845.1772-7-thunder.leizhen@huawei.com> <bda5f620-7140-51fb-fadd-6ebd3c0db935@ti.com>
+ <4f5f9b55-9fad-9318-82d4-6b258643738b@huawei.com> <20201014135019.GA1563910@bogus>
+ <49b680f8-d7d7-8ea3-894c-73cbfacc5ba4@huawei.com>
+In-Reply-To: <49b680f8-d7d7-8ea3-894c-73cbfacc5ba4@huawei.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 16 Oct 2020 09:13:49 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJKOeZybxnu+Z2ugaGwebrnbtmJ8n0st-=n3NbAf9_pyw@mail.gmail.com>
+Message-ID: <CAL_JsqJKOeZybxnu+Z2ugaGwebrnbtmJ8n0st-=n3NbAf9_pyw@mail.gmail.com>
+Subject: Re: [PATCH 6/6] dt-bindings: misc: correct the property name
+ cmd-gpios to cmd-gpio
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Dan Murphy <dmurphy@ti.com>, Pavel Machek <pavel@ucw.cz>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LPASS Always ON Clock controller has one GFM mux to control VA
-and TX clocks to codec macro on LPASS.
-This patch adds support to this mux.
+On Wed, Oct 14, 2020 at 10:23 PM Leizhen (ThunderTown)
+<thunder.leizhen@huawei.com> wrote:
+>
+>
+>
+> On 2020/10/14 21:50, Rob Herring wrote:
+> > On Wed, Oct 14, 2020 at 09:29:26AM +0800, Leizhen (ThunderTown) wrote:
+> >>
+> >>
+> >> On 2020/10/14 1:32, Dan Murphy wrote:
+> >>> Zhen
+> >>>
+> >>> On 10/13/20 11:08 AM, Zhen Lei wrote:
+> >>>> The property name used in arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts is
+> >>>> cmd-gpio.
+> >>>>
+> >>>> arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:235:
+> >>>> cmd-gpio = <&gpio 155 GPIO_ACTIVE_HIGH>;
+> >>>>
+> >>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> >>>> ---
+> >>>>   Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml | 6 +++---
+> >>>>   1 file changed, 3 insertions(+), 3 deletions(-)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
+> >>>> index b3c45c046ba5e37..c7a06a9650db2ed 100644
+> >>>> --- a/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
+> >>>> @@ -24,7 +24,7 @@ properties:
+> >>>>     compatible:
+> >>>>       const: olpc,xo1.75-ec
+> >>>>   -  cmd-gpios:
+> >>>> +  cmd-gpio:
+> >>>
+> >>> Preference is gpios not gpio. But Rob H accept or reject
+> >>
+> >> Look at the search result below. It seems that the driver have not been merged into mainline.
+> >
+> > Yes, in drivers/platform/olpc/olpc-xo175-ec.c.
+> >
+> > Your mistake is the gpiod api takes just 'cmd' as the GPIO core handles
+> > both forms.
+>
+> OK, thanks for your information. I have found that it defined by gpio_suffixes[].
+>
+> >
+> >> But the property name is really used as cmd-gpio at mmp2-olpc-xo-1-75.dts:235, I don't think
+> >> the mmp2-olpc-xo-1-75.dts can make a mistake. Otherwise, the driver will not work properly.
+> >> Meanwhile, Both names cmd-gpios and cmd-gpio seem to be in use. But I prefer cmd-gpio, after
+> >> all, only one gpio is assigned now. The motorola,cmd-gpios add "s" because it contains 3 gpio.
+> >
+> > The preference is it is always '-gpios' just like it's always
+> > 'interrupts' or 'clocks'.
+> >
+> > However, whether to change this is really up to the OLPC folks. Given
+> > the driver has always supported both forms, it should be okay to change
+> > the dts. Though there could be other users besides the kernel.
+>
+> If both "cmd-gpios" and "cmd-gpio" are supported, should we use enum to list both
+> of them in yaml? or use patternProperties?
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- drivers/clk/qcom/lpass-gfm-sm8250.c | 63 +++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+No, we pick one or the other. Given Lubomir is okay with a dts change,
+we should use just 'cmd-gpios'.
 
-diff --git a/drivers/clk/qcom/lpass-gfm-sm8250.c b/drivers/clk/qcom/lpass-gfm-sm8250.c
-index 48a73dd97d0d..d366c7c2abc7 100644
---- a/drivers/clk/qcom/lpass-gfm-sm8250.c
-+++ b/drivers/clk/qcom/lpass-gfm-sm8250.c
-@@ -18,6 +18,7 @@
- #include <linux/platform_device.h>
- #include <linux/of_device.h>
- #include <dt-bindings/clock/qcom,sm8250-lpass-audiocc.h>
-+#include <dt-bindings/clock/qcom,sm8250-lpass-aoncc.h>
- 
- struct lpass_gfm {
- 	struct device *dev;
-@@ -65,6 +66,46 @@ static const struct clk_ops clk_gfm_ops = {
- 	.determine_rate = __clk_mux_determine_rate,
- };
- 
-+static struct clk_gfm lpass_gfm_va_mclk = {
-+	.mux_reg = 0x20000,
-+	.mux_mask = BIT(0),
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "VA_MCLK",
-+		.ops = &clk_gfm_ops,
-+		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
-+		.num_parents = 2,
-+		.parent_data = (const struct clk_parent_data[]){
-+			{
-+				.index = 0,
-+				.fw_name = "LPASS_CLK_ID_TX_CORE_MCLK",
-+			}, {
-+				.index = 1,
-+				.fw_name = "LPASS_CLK_ID_VA_CORE_MCLK",
-+			},
-+		},
-+	},
-+};
-+
-+static struct clk_gfm lpass_gfm_tx_npl = {
-+	.mux_reg = 0x20000,
-+	.mux_mask = BIT(0),
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "TX_NPL",
-+		.ops = &clk_gfm_ops,
-+		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
-+		.parent_data = (const struct clk_parent_data[]){
-+			{
-+				.index = 0,
-+				.fw_name = "LPASS_CLK_ID_TX_CORE_NPL_MCLK",
-+			}, {
-+				.index = 1,
-+				.fw_name = "LPASS_CLK_ID_VA_CORE_2X_MCLK",
-+			},
-+		},
-+		.num_parents = 2,
-+	},
-+};
-+
- static struct clk_gfm lpass_gfm_wsa_mclk = {
- 	.mux_reg = 0x220d8,
- 	.mux_mask = BIT(0),
-@@ -145,6 +186,19 @@ static struct clk_gfm lpass_gfm_rx_npl = {
- 	},
- };
- 
-+static struct clk_gfm *aoncc_gfm_clks[] = {
-+	[LPASS_CDC_VA_MCLK]		= &lpass_gfm_va_mclk,
-+	[LPASS_CDC_TX_NPL]		= &lpass_gfm_tx_npl,
-+};
-+
-+static struct clk_hw_onecell_data aoncc_hw_onecell_data = {
-+	.hws = {
-+		[LPASS_CDC_VA_MCLK]	= &lpass_gfm_va_mclk.hw,
-+		[LPASS_CDC_TX_NPL]	= &lpass_gfm_tx_npl.hw,
-+	},
-+	.num = ARRAY_SIZE(aoncc_gfm_clks),
-+};
-+
- static struct clk_gfm *audiocc_gfm_clks[] = {
- 	[LPASS_CDC_WSA_NPL]		= &lpass_gfm_wsa_npl,
- 	[LPASS_CDC_WSA_MCLK]		= &lpass_gfm_wsa_mclk,
-@@ -172,6 +226,11 @@ static struct lpass_gfm_data audiocc_data = {
- 	.gfm_clks = audiocc_gfm_clks,
- };
- 
-+static struct lpass_gfm_data aoncc_data = {
-+	.onecell_data = &aoncc_hw_onecell_data,
-+	.gfm_clks = aoncc_gfm_clks,
-+};
-+
- static int lpass_gfm_clk_driver_probe(struct platform_device *pdev)
- {
- 	const struct lpass_gfm_data *data;
-@@ -233,6 +292,10 @@ static int lpass_gfm_clk_driver_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id lpass_gfm_clk_match_table[] = {
-+	{
-+		.compatible = "qcom,sm8250-lpass-aoncc",
-+		.data = &aoncc_data,
-+	},
- 	{
- 		.compatible = "qcom,sm8250-lpass-audiocc",
- 		.data = &audiocc_data,
--- 
-2.21.0
-
+Rob
