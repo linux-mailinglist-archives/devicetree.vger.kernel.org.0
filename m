@@ -2,67 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6F92290AAE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 19:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C504F290AB6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 19:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390762AbgJPR0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 13:26:21 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36359 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390753AbgJPR0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 13:26:21 -0400
-Received: by mail-oi1-f194.google.com with SMTP id u17so3264485oie.3;
-        Fri, 16 Oct 2020 10:26:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=omBtvAFklWNlMUExD+4CJmUl79VsD9qGgMC2YooqDqQ=;
-        b=O3vyaTUN1322Q7xxUo+EDsOaHITA9I17aSGKABBfnKF41NjIGBVPtIPA6L2pycDJCF
-         0pHVjXGQ4wEnNfJ8gHLMg0k4fJ45hY5mViwFMeoEK+1OepYt3y/RynhqhnOyHEJcHQ14
-         aKCnuwIGngQASYV7jogmPXPQXy+enGMQoiaXcheTgEfHjXQLotc+kMWuvaKvKyGQetbJ
-         4WqGfXa6DVfie9a+TLkUwBVXr24EsfP6mjzVclQP0Vfr/1jEePdDc/Y+e4qPJp34GVfW
-         LeCMkKsOLtaWlGKtjRO1JWxl4ME/UWrufAL/KqkYDWNm7QtNDc5Zw9Joj8ItfbwmfmS6
-         470A==
-X-Gm-Message-State: AOAM533XOcrXqlAqAzXXIV+yluSw5diFwfxYVcI9w8U8U1/6M0TQCVX3
-        Ev36PUrYv0TfyxBDlRYTyg==
-X-Google-Smtp-Source: ABdhPJzPn9Z+rZQLCishbk/PK12xWXQbmx1o3tzrhz0RLIx7LPM64CTl4qb0i2NU5xp5XJ3dwvEfhg==
-X-Received: by 2002:aca:eb48:: with SMTP id j69mr3293005oih.149.1602869178902;
-        Fri, 16 Oct 2020 10:26:18 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r62sm1226958oih.12.2020.10.16.10.26.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 10:26:18 -0700 (PDT)
-Received: (nullmailer pid 1609608 invoked by uid 1000);
-        Fri, 16 Oct 2020 17:26:17 -0000
-Date:   Fri, 16 Oct 2020 12:26:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Amitesh Chandra <amitesh.chandra@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        robh+dt@kernel.org, ravi.nagarajan@broadcom.com,
-        cheneyni@google.com, amitesh.chandra@broadcom.com,
-        davem@davemloft.net, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: net: bluetooth: Add broadcom BCM4389
- support
-Message-ID: <20201016172617.GA1609528@bogus>
-References: <20201014054543.2457-1-amitesh.chandra@gmail.com>
+        id S2390949AbgJPR2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 13:28:31 -0400
+Received: from mga02.intel.com ([134.134.136.20]:5396 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732302AbgJPR2b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 13:28:31 -0400
+IronPort-SDR: F1ZdE3lPQMzh+tzhA4Z+BBc96NAucCQGhN//mk22lduK/Q9qQcwhlou/GqBf9dSkVX8HlRvqQx
+ qdLF07VtVebQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9776"; a="153570022"
+X-IronPort-AV: E=Sophos;i="5.77,383,1596524400"; 
+   d="scan'208";a="153570022"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 10:28:23 -0700
+IronPort-SDR: qWDqfqZU10c7b/gbksS0K0nf5uubNWZ5cv12KWD7Ys5lkkWtd0VPCvAX+oakzXqLJbEGACOHDA
+ q3yBhJFyt4dQ==
+X-IronPort-AV: E=Sophos;i="5.77,383,1596524400"; 
+   d="scan'208";a="464750835"
+Received: from apurdea-mobl1.ger.corp.intel.com (HELO dalessan-mobl1.ir.intel.com) ([10.251.84.178])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 10:28:20 -0700
+From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Gross <mgross@linux.intel.com>,
+        Declan Murphy <declan.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Subject: [PATCH 0/3] crypto: Add Keem Bay OCS HCU driver
+Date:   Fri, 16 Oct 2020 18:27:56 +0100
+Message-Id: <20201016172759.1260407-1-daniele.alessandrelli@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201014054543.2457-1-amitesh.chandra@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 11:15:43 +0530, Amitesh Chandra wrote:
-> From: Amitesh Chandra <amitesh.chandra@broadcom.com>
-> 
-> Add bindings for BCM4389 bluetooth controller.
-> 
-> Signed-off-by: Amitesh Chandra <amitesh.chandra@broadcom.com>
-> ---
->  Documentation/devicetree/bindings/net/broadcom-bluetooth.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+The Intel Keem Bay SoC has an Offload Crypto Subsystem (OCS) featuring a
+Hashing Control Unit (HCU) for accelerating hashing operations.
 
-Acked-by: Rob Herring <robh@kernel.org>
+This driver adds support for such hardware thus enabling hardware-accelerated
+hashing on the Keem Bay SoC for the following algorithms:
+- sha224 and hmac(sha224)
+- sha256 and hmac(sha256)
+- sha384 and hmac(sha384)
+- sha512 and hmac(sha512)
+- sm3    and hmac(sm3)
+
+The driver is passing crypto manager self-tests, including the extra tests
+(CRYPTO_MANAGER_EXTRA_TESTS=y).
+
+
+Daniele Alessandrelli (1):
+  MAINTAINERS: Add maintainers for Keem Bay OCS HCU driver
+
+Declan Murphy (2):
+  dt-bindings: crypto: Add Keem Bay OCS HCU bindings
+  crypto: keembay: Add Keem Bay OCS HCU driver
+
+ .../crypto/intel,keembay-ocs-hcu.yaml         |   52 +
+ MAINTAINERS                                   |   11 +
+ drivers/crypto/Kconfig                        |    2 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/keembay/Kconfig                |   23 +
+ drivers/crypto/keembay/Makefile               |    5 +
+ drivers/crypto/keembay/keembay-ocs-hcu-core.c | 1473 +++++++++++++++++
+ drivers/crypto/keembay/ocs-hcu.c              |  590 +++++++
+ drivers/crypto/keembay/ocs-hcu.h              |  113 ++
+ 9 files changed, 2270 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+ create mode 100644 drivers/crypto/keembay/Kconfig
+ create mode 100644 drivers/crypto/keembay/Makefile
+ create mode 100644 drivers/crypto/keembay/keembay-ocs-hcu-core.c
+ create mode 100644 drivers/crypto/keembay/ocs-hcu.c
+ create mode 100644 drivers/crypto/keembay/ocs-hcu.h
+
+
+base-commit: 3093e7c16e12d729c325adb3c53dde7308cefbd8
+-- 
+2.26.2
+
