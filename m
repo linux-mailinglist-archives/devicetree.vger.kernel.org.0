@@ -2,177 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4CA290450
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 13:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D10F429046F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 13:55:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394876AbgJPLsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 07:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57494 "EHLO
+        id S2407004AbgJPLz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 07:55:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404255AbgJPLsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 07:48:37 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32DABC0613D4
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 04:48:37 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id e2so2638765wme.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 04:48:37 -0700 (PDT)
+        with ESMTP id S2406854AbgJPLz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 07:55:26 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24933C0613D5
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 04:55:26 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id b3so1266040vsc.5
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 04:55:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tkJ6vBaz3G5IwdB8Lg8ppojVTnQOkfwjYi/pmtrKvtY=;
-        b=K3AUdSrJUNqBT+9eMbnfsnzyoaatQyFjkJArkqEqxkFZaEQX2ySi7qZuZKv9jzzBi7
-         docQAuack5TT+lb31NtHVnC+oiI8fWpB3sYS95ITCmIss6IyRdKsHluTXINkGuTcPLXt
-         /nOkbXExWurUdksNsHVHin7d+mlu00PGEdplcS1+GqhjjZ8OtvewBp/7Sm1UggbrhZ3q
-         nE7KP+vyIW7Uejuybg6KiZNsU5Rb85H5hwjLNK2nGmtCsd57eFArsC1DaxHSECGMYt1p
-         Guu24o42dbd3i8hIe2Ql++aFiHrxCR+vC3HEjNcZA5swI6ppmjXb+e3zFuCxZXOj8Qhq
-         x+aw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=SsBIR3dvaDHQ902c3OEzYsauqWLqJtVfaaprWeq67qQ=;
+        b=ztCGwyttV6ILTkzUSbC/kl0Qoc70NUKpuzd2TtG+zixnssKL5XXWDDBZ6VIu63L7fT
+         KrvtukVMPdL7oSDor6ieoMDilEsOm3qFWHrawKqLLMUqP/5yiB8GRrxBUvUigklgYnaG
+         VONDu89Hp9GWmOePfff/CwpMnWG78JVt9hViaxHWhSMC8ZHzBhnXghk6WKU+kQk9AQeQ
+         m44I8f9EGlwMTML9BFL0UL8xrSLkHQFLQhsq8MRtrT31TgKEQTNDpGleQNzIlDGGlXVs
+         kh1IF5AnIBZ2697Ed+rxRyneYYcZmidVemYQn68F5LJwwYjDz4lS2a7y0x3pPk1bw33J
+         R7pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tkJ6vBaz3G5IwdB8Lg8ppojVTnQOkfwjYi/pmtrKvtY=;
-        b=FZsbZ2W8Tk4M4gT+RI27DerJqguiQQctNy6PK1D0YYzqtNhpJDXj1tOi9A+5lgO+sE
-         f1Z1RGM7wE+UEYbskgK5SM3bX0g/7Y25dX3FC+z2tF2J9Fj+r0nr/2SnW60+01qQT0FX
-         LjhtqGR8im9OdYHng/Mt6JXuHSedJBC0eFMIbJXQqoMPWfqLkXhvTgliRnD0V8uVhrDD
-         Q4fN7sDNQGv+yDg3TS+xyG6Qf1moBBHQz/wnLJVefFsc32P1u3KbosqHRQoWC5jt3VaJ
-         vVfxDyxk+9rp0WaLqmHLgSIqhXZ4P3ylB7WQolHodkiA+6B6ZLV9D5mVUhNenBFJV6/u
-         LqcQ==
-X-Gm-Message-State: AOAM532BCsTPI8pJyyw/Th1jOcwlv4Cuf8Zi0Zx10vg6/epDUaqn0X93
-        8CNr4rxSIeZ6dRHBP0DO0LE3FA==
-X-Google-Smtp-Source: ABdhPJzIh0gyjgnwTmNsufvBdiYn1uCOXZAh0ZgDPqxiAQnmADiHb5tQAhCutRDRz/iqz/gBUwIPFw==
-X-Received: by 2002:a1c:2681:: with SMTP id m123mr3316003wmm.138.1602848915555;
-        Fri, 16 Oct 2020 04:48:35 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:c9d8:1700:5168:39b? ([2a01:e34:ed2f:f020:c9d8:1700:5168:39b])
-        by smtp.googlemail.com with ESMTPSA id 24sm2467947wmg.8.2020.10.16.04.48.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Oct 2020 04:48:34 -0700 (PDT)
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Quentin Perret <qperret@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>
-References: <20201002114426.31277-1-lukasz.luba@arm.com>
- <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
- <765e6603-b614-fb72-64ff-248b42474803@linaro.org>
- <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
- <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
- <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
- <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
- <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <e321191c-61d2-a15d-47c2-653b277984ca@linaro.org>
-Date:   Fri, 16 Oct 2020 13:48:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=SsBIR3dvaDHQ902c3OEzYsauqWLqJtVfaaprWeq67qQ=;
+        b=bGewYk6bDvtaTbGeNWZGSEvhAVUQT2mtx3gDCPdXTBIWiasaF1G21Gzvon/jljhdeh
+         b2sh8ee0NKs6HaN4md44FrDbH+Iiorp8/muW+oQlIfU6h3k+o1sxiNgngHSaw+GBXiSh
+         Xtlm8TZTZxLb5SXAFqXA8pj0utyh/Kx1noToufS5CXjYItXYYJyv+wTsXRqdZcqxKHzz
+         wX0yiQwfB/0IcJXJ14G47ve8otQSmEcGUHPXSocuZaFEBeGSH5EULOQfW9AkUSe+B/lS
+         Y6aD9ofMvRzmJgnAxYgk8qRPKth25Kgo/C7WWWcbxu5RG/MRSaRvfovgPEid/FF0KRXw
+         u5Gw==
+X-Gm-Message-State: AOAM531eHDqyCg+O3TasftvqRVp8qVZ5j85BTvGo2ZHZAmpyVijM9VkW
+        jqPkQ85+nTYsWnvKtGcAdHYlh0a7NFiRAWiQ5cOrqw==
+X-Google-Smtp-Source: ABdhPJyeYjE+8eamILtS1pokBl5vFazdX2HSavvELgO98C6wDqKlcBKSz+b4lYCJM39oW1Ee51+NCV37XT3kR1P6R5g=
+X-Received: by 2002:a67:6c86:: with SMTP id h128mr1531354vsc.42.1602849324804;
+ Fri, 16 Oct 2020 04:55:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201012104648.985256-1-Jerome.Pouiller@silabs.com>
+ <2628294.9EgBEFZmRI@pc-42> <20201014124334.lgx53qvtgkmfkepc@pali> <2444203.ROLCPKctRj@pc-42>
+In-Reply-To: <2444203.ROLCPKctRj@pc-42>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 16 Oct 2020 13:54:48 +0200
+Message-ID: <CAPDyKFqCn386r4ecLDnMQmxrAZCvU9r=-eY71UUNpXWNxKOz2g@mail.gmail.com>
+Subject: Re: [PATCH 07/23] wfx: add bus_sdio.c
+To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+Cc:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/10/2020 15:40, Rafael J. Wysocki wrote:
-> On Thu, Oct 15, 2020 at 12:22 PM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
+On Thu, 15 Oct 2020 at 16:03, J=C3=A9r=C3=B4me Pouiller
+<jerome.pouiller@silabs.com> wrote:
+>
+> On Wednesday 14 October 2020 14:43:34 CEST Pali Roh=C3=A1r wrote:
+> > On Wednesday 14 October 2020 13:52:15 J=C3=A9r=C3=B4me Pouiller wrote:
+> > > On Tuesday 13 October 2020 22:11:56 CEST Pali Roh=C3=A1r wrote:
+> > > > On Monday 12 October 2020 12:46:32 Jerome Pouiller wrote:
+> > > > > +#define SDIO_VENDOR_ID_SILABS        0x0000
+> > > > > +#define SDIO_DEVICE_ID_SILABS_WF200  0x1000
+> > > > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> > > > > +     { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_=
+WF200) },
+> > > >
+> > > > Please move ids into common include file include/linux/mmc/sdio_ids=
+.h
+> > > > where are all SDIO ids. Now all drivers have ids defined in that fi=
+le.
+> > > >
+> > > > > +     // FIXME: ignore VID/PID and only rely on device tree
+> > > > > +     // { SDIO_DEVICE(SDIO_ANY_ID, SDIO_ANY_ID) },
+> > > >
+> > > > What is the reason for ignoring vendor and device ids?
+> > >
+> > > The device has a particularity, its VID/PID is 0000:1000 (as you can =
+see
+> > > above). This value is weird. The risk of collision with another devic=
+e is
+> > > high.
+> >
+> > Those ids looks strange. You are from Silabs, can you check internally
+> > in Silabs if ids are really correct? And which sdio vendor id you in
+> > Silabs got assigned for your products?
+>
+> I confirm these ids are the ones burned in the WF200. We have to deal wit=
+h
+> that :( .
 
-[ ... ]
+Yep. Unfortunately this isn't so uncommon when targeting the embedded
+types of devices.
 
->>> We would allow to co-exist em_dev_register_perf_domain(..., false)
->>> with dev_pm_opp_of_register_em() EM devices.
->>>
->>> Is it make sense?
->>
->> Well, it does not change my opinion. We should assume the energy model
->> is always milliwatts. If the SoC vendors find a way to get around with
->> bogoWatts, then good to them and up to them to deal with in the future.
-> 
-> That sounds fair enough, but it also means that any kernel patches
-> using power units different from milliwatts for the EM should be
-> rejected in the future, doesn't it?
+The good thing is, that we already have bindings allowing us to specify thi=
+s.
 
-Actually there are two things: the units and the numbers.
+>
+>
+> > I know that sdio devices with multiple functions may have different sdi=
+o
+> > vendor/device id particular function and in common CIS (function 0).
+> >
+> > Could not be a problem that on one place is vendor/device id correct an=
+d
+> > on other place is that strange value?
+> >
+> > I have sent following patch (now part of upstream kernel) which exports
+> > these ids to userspace:
+> > https://lore.kernel.org/linux-mmc/20200527110858.17504-2-pali@kernel.or=
+g/T/#u
+> >
+> > Also for debugging ids and information about sdio cards, I sent another
+> > patch which export additional data:
+> > https://lore.kernel.org/linux-mmc/20200727133837.19086-1-pali@kernel.or=
+g/T/#u
+> >
+> > Could you try them and look at /sys/class/mmc_host/ attribute outputs?
+>
+> Here is:
+>
+>     # cd /sys/class/mmc_host/ && grep -r . mmc1/
+>     mmc1/power/runtime_suspended_time:0
+>     grep: mmc1/power/autosuspend_delay_ms: Input/output error
+>     mmc1/power/runtime_active_time:0
+>     mmc1/power/control:auto
+>     mmc1/power/runtime_status:unsupported
+>     mmc1/mmc1:0001/vendor:0x0000
+>     mmc1/mmc1:0001/rca:0x0001
+>     mmc1/mmc1:0001/device:0x1000
+>     mmc1/mmc1:0001/mmc1:0001:1/vendor:0x0000
+>     mmc1/mmc1:0001/mmc1:0001:1/device:0x1000
+>     grep: mmc1/mmc1:0001/mmc1:0001:1/info4: No data available
+>     mmc1/mmc1:0001/mmc1:0001:1/power/runtime_suspended_time:0
+>     grep: mmc1/mmc1:0001/mmc1:0001:1/power/autosuspend_delay_ms: Input/ou=
+tput error
+>     mmc1/mmc1:0001/mmc1:0001:1/power/runtime_active_time:0
+>     mmc1/mmc1:0001/mmc1:0001:1/power/control:auto
+>     mmc1/mmc1:0001/mmc1:0001:1/power/runtime_status:unsupported
+>     mmc1/mmc1:0001/mmc1:0001:1/class:0x00
+>     grep: mmc1/mmc1:0001/mmc1:0001:1/info2: No data available
+>     mmc1/mmc1:0001/mmc1:0001:1/modalias:sdio:c00v0000d1000
+>     mmc1/mmc1:0001/mmc1:0001:1/revision:0.0
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_NAME=3Dmmc
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_FULLNAME=3D/soc/sdhci@7e300000/m=
+mc@1
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_COMPATIBLE_0=3Dsilabs,wfx-sdio
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_COMPATIBLE_N=3D1
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:SDIO_CLASS=3D00
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:SDIO_ID=3D0000:1000
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:SDIO_REVISION=3D0.0
+>     mmc1/mmc1:0001/mmc1:0001:1/uevent:MODALIAS=3Dsdio:c00v0000d1000
+>     grep: mmc1/mmc1:0001/mmc1:0001:1/info3: No data available
+>     grep: mmc1/mmc1:0001/mmc1:0001:1/info1: No data available
+>     mmc1/mmc1:0001/ocr:0x00200000
+>     grep: mmc1/mmc1:0001/info4: No data available
+>     mmc1/mmc1:0001/power/runtime_suspended_time:0
+>     grep: mmc1/mmc1:0001/power/autosuspend_delay_ms: Input/output error
+>     mmc1/mmc1:0001/power/runtime_active_time:0
+>     mmc1/mmc1:0001/power/control:auto
+>     mmc1/mmc1:0001/power/runtime_status:unsupported
+>     grep: mmc1/mmc1:0001/info2: No data available
+>     mmc1/mmc1:0001/type:SDIO
+>     mmc1/mmc1:0001/revision:0.0
+>     mmc1/mmc1:0001/uevent:MMC_TYPE=3DSDIO
+>     mmc1/mmc1:0001/uevent:SDIO_ID=3D0000:1000
+>     mmc1/mmc1:0001/uevent:SDIO_REVISION=3D0.0
+>     grep: mmc1/mmc1:0001/info3: No data available
+>     grep: mmc1/mmc1:0001/info1: No data available
+>
+>
 
-The energy model is expressed in mW.
+Please have a look at the
+Documentation/devicetree/bindings/mmc/mmc-controller.yaml, there you
+find that from a child node of the mmc host's node, we can specify an
+embedded SDIO functional device.
 
-All the frameworks (EAS, IPA, hopefully DTPM) using the energy model
-should stick to the same unit, which I believe makes sense.
+In sdio_add_func(), which calls sdio_set_of_node() - we assign the
+func->dev.of_node its corresponding child node for the SDIO func.
+Allowing the sdio functional driver to be matched with the SDIO func
+device.
 
-The numbers are provided by the SoC vendor or any contributors [1][2].
+Perhaps what is missing, is that we may want to avoid probing an
+in-correct sdio driver, based upon buggy SDIO ids. I don't think we
+take some actions in the mmc core to prevent this, but maybe it's not
+a big problem anyway.
 
-The different frameworks depends on those numbers.
+When it comes to documenting the buggy SDIO ids, please add some
+information about this in the common SDIO headers. It's nice to have a
+that information, if any issue comes up later on.
 
-If we specify in the documentation we support abstract numbers for the
-EM, then that will imply any framework using it will have to comply with
-that.
-
-My point is we use milliwatts as a reference.
-
-If we want to support abstract values, then the code should be changed
-by *explicitly* use with these values, so if the other frameworks are
-expecting real watts, they can detect they are not available and take
-another action, like the scmi scaled power numbers and the
-sustainable-power of the thermal which are incompatible.
-
-If the consistency across the frameworks is guarantee by identifying the
-kind of values (abstract or real), then we can put in the documentation
-we support abstract value.
-
-Unfortunately, IIUC, scmi does not tell us if the power numbers are real
-or abstract ... :/
-
-I don't see how we can ensure a consistency across the framework without
-enforcing a strong policy.
-
-> And the existing code using different power units for the EM (if any)
-> should be updated/fixed accordingly, shouldn't it?
-
-Currently, the power units are expressed in mwatts for the energy model
-and the frameworks using it.  AFAICT, no change is needed if we keep mW.
-
-If we use scaled numbers, the EAS will work correctly (but the energy
-values will be incorrect), but other frameworks won't.
-
-The power numbers are provided by the DT (as supposed real), or by SCMI
-(real or abstract).
-
-If the SCMI is returning abstract numbers, the thermal IPA governor will
-use these numbers as a reference to mitigate the temperature at the
-specified sustainable power which is expressed in mW in the DT. So it
-does not work and we can not detect such conflict.
-
-That is why I'm advocating to keep mW for the energy model and make the
-SCMI and DT power numbers incompatible.
-
-  -- Daniel
-
-
-[1]
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/1500974575-2244-1-git-send-email-wxt@rock-chips.com/
-
-[2]
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20190604165802.7338-2-daniel.lezcano@linaro.org/#22686211
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Kind regards
+Uffe
