@@ -2,228 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D35290804
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A084A290811
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409824AbgJPPNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 11:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32936 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409810AbgJPPNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 11:13:36 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5401AC061755;
-        Fri, 16 Oct 2020 08:13:36 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id e2so3355324wme.1;
-        Fri, 16 Oct 2020 08:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4caXpkclqb0kte1ui2rZGOT3gO9tw5QkWF6WaM5340U=;
-        b=bw0C7RL0+fhKMO0EAe8XGEcHwb8wyybaCpfl8P7sGnfdkZI9j4tysI6uZ0YoR29/ha
-         YOX4aILlakJ066q+xevlet5l+Z+N9q/nV7+KQ/NKKo3PoqCwvkqKc4MR4ryRAmfVyqTJ
-         uz9QwYlBWj2ZUFkyZ/iB50AZoKJOmHEFk3aQyW2Q+ljkXeftI1rA7efNHa+FZThIiT4K
-         wnmZSuOqxrB01w27tBcLSH/JQmZ6evhSO/vqsZliSKtLWCHF4Bm+V6PvS55UoVIl4rIy
-         DKgs589sQo9GoZg5GOugVRSrxKtqGwZuZqZxIpdhnOn/1/ZjONqYyoPkPZqi0JtPd9tA
-         H/bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4caXpkclqb0kte1ui2rZGOT3gO9tw5QkWF6WaM5340U=;
-        b=URbglXgCr8xtVv0EEkKQ0fcCFjJHrE24DHS/T3tmMgzSK6jhpfEH1K4+KvUlmynPC6
-         WlV7eG3ZxdDaiA0+Ail4WK41i2OliIHKpd5P1zpNZQh01pbgnZCX7g+U/78QBhHWZaHV
-         PW3exzLKDJgcGxdOuw7NojZyyMDGBECKAbfYGtEm29Ki5lWu1Y7n+Ss42TQ6MTY2p11G
-         Wibe0Xf1+aR555EIfMQNrNt0QbAu8gUgCbPuOUg49+/sJEHOrbrrcuV1n2IOInt592r4
-         uD8CRJu9RJU3WfMEFG5iyhlFYMe2FtzdZ7Xorv3jLwIQwvxYeXnofJ7kgRF/6frt/lR8
-         tF3w==
-X-Gm-Message-State: AOAM5315qmZa+Nx4ZGrLD0ZPM38bRZBjAat2Qh2diZJ9f46x5OpOjXiV
-        FHZNwVwhHI83Vz0+8dZsBRrP39eptYnsKe6MzYDIQPxKUWs=
-X-Google-Smtp-Source: ABdhPJzr3VYyUdzLIDtBlIsdA+pEKl3QsosK5nMd+7onCOzT6+6p6L4hMZjIv11pJzsNcjZWS7NXyiKQkqyJvnToGuo=
-X-Received: by 2002:a05:600c:2241:: with SMTP id a1mr4437272wmm.49.1602861212981;
- Fri, 16 Oct 2020 08:13:32 -0700 (PDT)
+        id S2407338AbgJPPPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 11:15:01 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:48676 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2407202AbgJPPPB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 11:15:01 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09GFAilX018346;
+        Fri, 16 Oct 2020 10:14:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=xqJa7ke2bej+Y2/yTZCs2JgbiMjO2DRRIlRYVcz8XVI=;
+ b=lmVCs/iv5yXyzLP36G1sZy/Gmdxojo/mafF7AdQAH6vCS2wF8tUbMEhyiJuUS8grLEN2
+ DHZrIY5kwqkVYp01pPgpiq32BIsMwK/PVVfC3uUIfW52MjYKgQebYEr134yHOtt+TVGU
+ VHntl0Zu7aBONdahAsWTWT7BUr0zI8e6TjtpdZ0lFu4JjiirsAol58ysuqF4DLW5oJtE
+ G9ZXqxsNJagA6vek7sMd1znVWR3Si19q8P9DpTxASchg6UJISQBZMAbW2Ur74uTL9rmY
+ 7e4vUt3oOMWpRW2IKnuX0vVU+/T5OfHw8s7dJ8A6dcOAoRQM88KR+3/3QjTz+lGQvdml uw== 
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 3439cngaya-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 16 Oct 2020 10:14:46 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
+ 2020 16:14:45 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Fri, 16 Oct 2020 16:14:45 +0100
+Received: from [10.0.2.15] (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id A8A4345;
+        Fri, 16 Oct 2020 15:14:44 +0000 (UTC)
+Subject: Re: [PATCH 1/7] of: base: Add of_count_phandle_with_fixed_args()
+To:     Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+CC:     <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        - <patches@opensource.cirrus.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+ <20201014145418.31838-2-rf@opensource.cirrus.com>
+ <CAL_Jsq+qdcHc9H7qUVwLieHrLM8E20HZXa8DkarMiuXfCh8WOQ@mail.gmail.com>
+ <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
+ <CAL_JsqKAvJ9fv9pm82iv5YjWVCJu1fmP-t+Fyc95pzUaCEL3XQ@mail.gmail.com>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+Message-ID: <474edf9d-e15a-cc20-1b56-2fe1d7fccf55@opensource.cirrus.com>
+Date:   Fri, 16 Oct 2020 16:14:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-References: <1602857443-27317-1-git-send-email-mkrishn@codeaurora.org>
-In-Reply-To: <1602857443-27317-1-git-send-email-mkrishn@codeaurora.org>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Fri, 16 Oct 2020 08:13:18 -0700
-Message-ID: <CAF6AEGuc967Ooq+YJSej5nmyD9pqAYkN83odieOJ=4fRsdwdeA@mail.gmail.com>
-Subject: Re: [v3] drm/msm: Fix race condition in msm driver with async layer updates
-To:     Krishna Manikandan <mkrishn@codeaurora.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqKAvJ9fv9pm82iv5YjWVCJu1fmP-t+Fyc95pzUaCEL3XQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0 impostorscore=0
+ mlxlogscore=999 lowpriorityscore=0 phishscore=0 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010160116
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 16, 2020 at 7:11 AM Krishna Manikandan
-<mkrishn@codeaurora.org> wrote:
+On 16/10/2020 14:31, Rob Herring wrote:
+> On Thu, Oct 15, 2020 at 11:52 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>>
+>> On 2020-10-14 19:39, Rob Herring wrote:
+>>> On Wed, Oct 14, 2020 at 9:54 AM Richard Fitzgerald
+>>> <rf@opensource.cirrus.com> wrote:
+>>>>
+>>>> Add an equivalent of of_count_phandle_with_args() for fixed argument
+>>>> sets, to pair with of_parse_phandle_with_fixed_args().
+>>>>
+>>>> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+>>>> ---
+>>>>    drivers/of/base.c  | 42 ++++++++++++++++++++++++++++++++++++++++++
+>>>>    include/linux/of.h |  9 +++++++++
+>>>>    2 files changed, 51 insertions(+)
+>>>>
+>>>> diff --git a/drivers/of/base.c b/drivers/of/base.c
+>>>> index ea44fea99813..45d8b0e65345 100644
+>>>> --- a/drivers/of/base.c
+>>>> +++ b/drivers/of/base.c
+>>>> @@ -1772,6 +1772,48 @@ int of_count_phandle_with_args(const struct device_node *np, const char *list_na
+>>>>    }
+>>>>    EXPORT_SYMBOL(of_count_phandle_with_args);
+>>>>
+>>>> +/**
+>>>> + * of_count_phandle_with_fixed_args() - Find the number of phandles references in a property
+>>>> + * @np:                pointer to a device tree node containing a list
+>>>> + * @list_name: property name that contains a list
+>>>> + * @cell_count: number of argument cells following the phandle
+>>>> + *
+>>>> + * Returns the number of phandle + argument tuples within a property. It
+>>>> + * is a typical pattern to encode a list of phandle and variable
+>>>> + * arguments into a single property.
+>>>> + */
+>>>> +int of_count_phandle_with_fixed_args(const struct device_node *np,
+>>>> +                                    const char *list_name,
+>>>> +                                    int cells_count)
+>>>> +{
+>>>
+>>> Looks to me like you can refactor of_count_phandle_with_args to handle
+>>> both case and then make this and of_count_phandle_with_args simple
+>>> wrapper functions.
+>>
+>> Although for just counting the number of phandles each with n arguments
+>> that a property contains, isn't that simply a case of dividing the
+>> property length by n + 1? The phandles themselves will be validated by
+>> any subsequent of_parse_phandle*() call anyway, so there doesn't seem
+>> much point in doing more work then necessary here.
+>>
+>>>> +       struct of_phandle_iterator it;
+>>>> +       int rc, cur_index = 0;
+>>>> +
+>>>> +       if (!cells_count) {
+>>>> +               const __be32 *list;
+>>>> +               int size;
+>>>> +
+>>>> +               list = of_get_property(np, list_name, &size);
+>>>> +               if (!list)
+>>>> +                       return -ENOENT;
+>>>> +
+>>>> +               return size / sizeof(*list);
+>>
+>> Case in point - if it's OK to do exactly that for n == 0, then clearly
+>> we're *aren't* fussed about validating anything, so the n > 0 code below
+>> is nothing more than a massively expensive way to check for a nonzero
+>> remainder :/
+> 
+> Indeed. We should just generalize this. It can still be refactored to
+> shared code.
+> 
+> It's probably worthwhile to check for a remainder here IMO.
 >
-> When there are back to back commits with async cursor update,
-> there is a case where second commit can program the DPU hw
-> blocks while first didn't complete flushing config to HW.
->
-> Synchronize the compositions such that second commit waits
-> until first commit flushes the composition.
->
-> This change also introduces per crtc commit lock, such that
-> commits on different crtcs are not blocked by each other.
->
-> Changes in v2:
->         - Use an array of mutexes in kms to handle commit
->           lock per crtc. (Rob Clark)
->
-> Changes in v3:
->         - Add wrapper functions to handle lock and unlock of
->           commit_lock for each crtc. (Rob Clark)
->
-> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
 
-Reviewed-by: Rob Clark <robdclark@gmail.com>
+Ok, I looked at the implementation of of_phandle_iterator_next() and
+it is in fact simply incrementing by 'count' 32-bit words. So as Robin
+said the count_phandle_with_x_args()functions could simply divide the
+length by count+1.
 
-> ---
->  drivers/gpu/drm/msm/msm_atomic.c | 37 ++++++++++++++++++++++++-------------
->  drivers/gpu/drm/msm/msm_kms.h    |  6 ++++--
->  2 files changed, 28 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
-> index 561bfa4..575e9af 100644
-> --- a/drivers/gpu/drm/msm/msm_atomic.c
-> +++ b/drivers/gpu/drm/msm/msm_atomic.c
-> @@ -55,16 +55,32 @@ static void vblank_put(struct msm_kms *kms, unsigned crtc_mask)
->         }
->  }
->
-> +static void lock_crtcs(struct msm_kms *kms, unsigned int crtc_mask)
-> +{
-> +       struct drm_crtc *crtc;
-> +
-> +       for_each_crtc_mask(kms->dev, crtc, crtc_mask)
-> +               mutex_lock(&kms->commit_lock[drm_crtc_index(crtc)]);
-> +}
-> +
-> +static void unlock_crtcs(struct msm_kms *kms, unsigned int crtc_mask)
-> +{
-> +       struct drm_crtc *crtc;
-> +
-> +       for_each_crtc_mask(kms->dev, crtc, crtc_mask)
-> +               mutex_unlock(&kms->commit_lock[drm_crtc_index(crtc)]);
-> +}
-> +
->  static void msm_atomic_async_commit(struct msm_kms *kms, int crtc_idx)
->  {
->         unsigned crtc_mask = BIT(crtc_idx);
->
->         trace_msm_atomic_async_commit_start(crtc_mask);
->
-> -       mutex_lock(&kms->commit_lock);
-> +       lock_crtcs(kms, crtc_mask);
->
->         if (!(kms->pending_crtc_mask & crtc_mask)) {
-> -               mutex_unlock(&kms->commit_lock);
-> +               unlock_crtcs(kms, crtc_mask);
->                 goto out;
->         }
->
-> @@ -79,7 +95,6 @@ static void msm_atomic_async_commit(struct msm_kms *kms, int crtc_idx)
->          */
->         trace_msm_atomic_flush_commit(crtc_mask);
->         kms->funcs->flush_commit(kms, crtc_mask);
-> -       mutex_unlock(&kms->commit_lock);
->
->         /*
->          * Wait for flush to complete:
-> @@ -90,9 +105,8 @@ static void msm_atomic_async_commit(struct msm_kms *kms, int crtc_idx)
->
->         vblank_put(kms, crtc_mask);
->
-> -       mutex_lock(&kms->commit_lock);
->         kms->funcs->complete_commit(kms, crtc_mask);
-> -       mutex_unlock(&kms->commit_lock);
-> +       unlock_crtcs(kms, crtc_mask);
->         kms->funcs->disable_commit(kms);
->
->  out:
-> @@ -189,12 +203,11 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
->          * Ensure any previous (potentially async) commit has
->          * completed:
->          */
-> +       lock_crtcs(kms, crtc_mask);
->         trace_msm_atomic_wait_flush_start(crtc_mask);
->         kms->funcs->wait_flush(kms, crtc_mask);
->         trace_msm_atomic_wait_flush_finish(crtc_mask);
->
-> -       mutex_lock(&kms->commit_lock);
-> -
->         /*
->          * Now that there is no in-progress flush, prepare the
->          * current update:
-> @@ -232,8 +245,7 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
->                 }
->
->                 kms->funcs->disable_commit(kms);
-> -               mutex_unlock(&kms->commit_lock);
-> -
-> +               unlock_crtcs(kms, crtc_mask);
->                 /*
->                  * At this point, from drm core's perspective, we
->                  * are done with the atomic update, so we can just
-> @@ -260,8 +272,7 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
->          */
->         trace_msm_atomic_flush_commit(crtc_mask);
->         kms->funcs->flush_commit(kms, crtc_mask);
-> -       mutex_unlock(&kms->commit_lock);
-> -
-> +       unlock_crtcs(kms, crtc_mask);
->         /*
->          * Wait for flush to complete:
->          */
-> @@ -271,9 +282,9 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
->
->         vblank_put(kms, crtc_mask);
->
-> -       mutex_lock(&kms->commit_lock);
-> +       lock_crtcs(kms, crtc_mask);
->         kms->funcs->complete_commit(kms, crtc_mask);
-> -       mutex_unlock(&kms->commit_lock);
-> +       unlock_crtcs(kms, crtc_mask);
->         kms->funcs->disable_commit(kms);
->
->         drm_atomic_helper_commit_hw_done(state);
-> diff --git a/drivers/gpu/drm/msm/msm_kms.h b/drivers/gpu/drm/msm/msm_kms.h
-> index 1cbef6b..2049847 100644
-> --- a/drivers/gpu/drm/msm/msm_kms.h
-> +++ b/drivers/gpu/drm/msm/msm_kms.h
-> @@ -155,7 +155,7 @@ struct msm_kms {
->          * For async commit, where ->flush_commit() and later happens
->          * from the crtc's pending_timer close to end of the frame:
->          */
-> -       struct mutex commit_lock;
-> +       struct mutex commit_lock[MAX_CRTCS];
->         unsigned pending_crtc_mask;
->         struct msm_pending_timer pending_timers[MAX_CRTCS];
->  };
-> @@ -165,7 +165,9 @@ static inline void msm_kms_init(struct msm_kms *kms,
->  {
->         unsigned i;
->
-> -       mutex_init(&kms->commit_lock);
-> +       for (i = 0; i < ARRAY_SIZE(kms->commit_lock); i++)
-> +               mutex_init(&kms->commit_lock[i]);
-> +
->         kms->funcs = funcs;
->
->         for (i = 0; i < ARRAY_SIZE(kms->pending_timers); i++)
-> --
-> 2.7.4
->
+However, may I suggest that should be done in a separate patch after my
+patch to add count_phandle_with_fixed_args()? That way, if replacing the
+iteration with the simple length divide causes any unforeseen problems
+the patch can just be reverted.
+
+> Rob
+> 
