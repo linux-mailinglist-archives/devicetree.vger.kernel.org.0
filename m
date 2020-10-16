@@ -2,82 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 151C7290ABD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 19:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E82F2290AD1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 19:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390529AbgJPR2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 13:28:34 -0400
-Received: from mga02.intel.com ([134.134.136.20]:5405 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390238AbgJPR2d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 13:28:33 -0400
-IronPort-SDR: vhk2KrNxrR9qRZ+0qaoh7uaGhYc9qYSYycXcxy9N/OqhcYZcPKNcCKDNSAcaRHO7l0z46ETTOw
- q8YR1DTU4lyg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9776"; a="153570114"
-X-IronPort-AV: E=Sophos;i="5.77,383,1596524400"; 
-   d="scan'208";a="153570114"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 10:28:33 -0700
-IronPort-SDR: rFp/wyngmAesjUtGBR+3gnnagkbvPewdv9yjmWZa+dVI2QXvpLCJIY55YFK1j4JvenFxkniess
- OACH8QK/U59Q==
-X-IronPort-AV: E=Sophos;i="5.77,383,1596524400"; 
-   d="scan'208";a="464750867"
-Received: from apurdea-mobl1.ger.corp.intel.com (HELO dalessan-mobl1.ir.intel.com) ([10.251.84.178])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 10:28:30 -0700
-From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Gross <mgross@linux.intel.com>,
-        Declan Murphy <declan.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Subject: [PATCH 3/3] MAINTAINERS: Add maintainers for Keem Bay OCS HCU driver
-Date:   Fri, 16 Oct 2020 18:27:59 +0100
-Message-Id: <20201016172759.1260407-4-daniele.alessandrelli@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201016172759.1260407-1-daniele.alessandrelli@linux.intel.com>
-References: <20201016172759.1260407-1-daniele.alessandrelli@linux.intel.com>
+        id S2391690AbgJPRgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 13:36:06 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:60992 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2391668AbgJPRgD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 13:36:03 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09GHQLpa024369;
+        Fri, 16 Oct 2020 12:35:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=5ARtZ8iuUZWTt92xPnGmGgGIFglUvN30JaId3ybKh1U=;
+ b=GqfLhYq5fVpf+NH05aA5aX6efreXaoZKcOKIXf8AFjnDuhgwGvpB1ZBdaBjpsln/gC4h
+ JajQmv+HrdtfuzSRUt6s0d56rZpsJrlr5b2w9tBdrsFyeTfMVxdg/hKEVTChxPzitGdu
+ eDOZxAHo//3K9LsLrF990RCy/EtNOI8CnUgEec0At13WXlzHXkec6cDmo8VpzgKUoFhc
+ gSsRcekD0ACXP5JEKop4s3VrbLNltWrWYda8QbtJSdkloLcHmkGdKSTurH9qYQrOPHvs
+ dEp6D9CwM1cUKzqgcnPc8lQRXiQ2R2WmzjRP4t5AwdmnIoceJFvYUlpeatKfe51Lz7JB dg== 
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 343ac20jk8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 16 Oct 2020 12:35:46 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
+ 2020 18:35:44 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Fri, 16 Oct 2020 18:35:44 +0100
+Received: from AUSNPC0LSNW1-debian.ad.cirrus.com (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1542545;
+        Fri, 16 Oct 2020 17:35:44 +0000 (UTC)
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <nsaenzjulienne@suse.de>
+CC:     <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>
+Subject: [PATCH v2 0/7] Add support for Rpi4b + Cirrus Lochnagar2 and CS47L15
+Date:   Fri, 16 Oct 2020 18:35:34 +0100
+Message-ID: <20201016173541.21180-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 lowpriorityscore=0
+ malwarescore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=871 clxscore=1015
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010160130
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+This set of patches provides support for using the Raspberry Pi 4b with
+a Cirrus Logic Lochnagar 2 audio development platform plus Cirrus Logic
+CS47L15 codec.
 
-Add maintainers for the Intel Keem Bay Offload Crypto Subsystem (OCS)
-Hash Control Unit (HCU) crypto driver.
+Patches are needed to audio-graph-card to enable support for setting the
+component sysclks and plls. The codec sysclks and plls cannot be placed
+under the clock framwork because they are I2C/SPI-connected peripherals
+and access to the registers would cause a nested get of the I2C/SPI bus
+clock. The clock framework does not support this and it would result in
+a deadlock.
 
-Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Richard Fitzgerald (7):
+  of: base: Add of_count_phandle_with_fixed_args()
+  ASoC: audio-graph-card: Add plls and sysclks DT bindings
+  ASoC: audio-graph-card: Support setting component plls and sysclks
+  ASoC: arizona: Allow codecs to be selected from kernel config
+  ASoC: madera: Allow codecs to be selected from kernel config
+  ARM: dts: Add dts for RPi4b + Cirrus Logic Lochnagar2 + CS47L15
+  MAINTAINERS: Add dts for Cirrus Logic Lochnagar on RPi4
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 606f9d7ef19a..1a0d7368c468 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8863,6 +8863,17 @@ M:	Deepak Saxena <dsaxena@plexity.net>
- S:	Maintained
- F:	drivers/char/hw_random/ixp4xx-rng.c
- 
-+INTEL KEEM BAY OCS HCU CRYPTO DRIVER
-+M:	Declan Murphy <declan.murphy@intel.com>
-+M:	Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
-+F:	drivers/crypto/keembay/Kconfig
-+F:	drivers/crypto/keembay/Makefile
-+F:	drivers/crypto/keembay/keembay-ocs-hcu-core.c
-+F:	drivers/crypto/keembay/ocs-hcu.c
-+F:	drivers/crypto/keembay/ocs-hcu.h
-+
- INTEL MANAGEMENT ENGINE (mei)
- M:	Tomas Winkler <tomas.winkler@intel.com>
- L:	linux-kernel@vger.kernel.org
+ .../bindings/sound/audio-graph-card.txt       |  44 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ ...bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts | 166 +++++++++++++++
+ .../dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi   | 201 ++++++++++++++++++
+ drivers/of/base.c                             |  73 +++++--
+ include/linux/of.h                            |   9 +
+ include/sound/simple_card_utils.h             |  24 +++
+ sound/soc/codecs/Kconfig                      |  18 +-
+ sound/soc/generic/audio-graph-card.c          |  16 +-
+ sound/soc/generic/simple-card-utils.c         | 184 ++++++++++++++++
+ 11 files changed, 703 insertions(+), 34 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi
+
 -- 
-2.26.2
+2.20.1
 
