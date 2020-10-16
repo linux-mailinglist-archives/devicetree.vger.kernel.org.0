@@ -2,84 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B0628FF2A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 09:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD74C28FF31
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 09:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404653AbgJPHeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 03:34:24 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:40466 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2404651AbgJPHeY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 03:34:24 -0400
-Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id C7DCF20730CFDFF190F3;
-        Fri, 16 Oct 2020 15:34:21 +0800 (CST)
-Received: from [10.174.179.182] (10.174.179.182) by
- DGGEMS406-HUB.china.huawei.com (10.3.19.206) with Microsoft SMTP Server id
- 14.3.487.0; Fri, 16 Oct 2020 15:34:11 +0800
-Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT
- scan
-From:   Hanjun Guo <guohanjun@huawei.com>
-To:     Ard Biesheuvel <ardb@kernel.org>
-CC:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linuxarm <linuxarm@huawei.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Len Brown <lenb@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Christoph Hellwig" <hch@lst.de>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
- <20201014191211.27029-8-nsaenzjulienne@suse.de>
- <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
- <20201015180340.GB2624@gaia>
- <35faab1c-5c32-6cd3-0a14-77057dd223f5@huawei.com>
- <CAMj1kXFzYbr_mYm-zhsio2XV+KGgDBjtgy_NWNYnanyfU-U-Nw@mail.gmail.com>
- <89ed58a5-b3ca-e361-94d8-b6754ce5eb34@huawei.com>
-Message-ID: <6efd3623-e758-30a7-b798-c06a624bed4e@huawei.com>
-Date:   Fri, 16 Oct 2020 15:34:11 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S2404568AbgJPHeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 03:34:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46270 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404671AbgJPHea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 03:34:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F32C061755
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 00:34:30 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kTKFu-0006Gf-QO; Fri, 16 Oct 2020 09:34:26 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kTKFu-0004sy-8k; Fri, 16 Oct 2020 09:34:26 +0200
+Date:   Fri, 16 Oct 2020 09:34:26 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: Re: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20201016073426.vyjehbkyn3sxn7d5@pengutronix.de>
+References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
+ <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
+ <20201015104217.GR4077@smile.fi.intel.com>
+ <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <89ed58a5-b3ca-e361-94d8-b6754ce5eb34@huawei.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.179.182]
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="s3e632f7peb5icpv"
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/10/16 15:27, Hanjun Guo wrote:
->> The patch only takes the address limit field into account if its value 
->> > 0.
-> 
-> Sorry I missed the if (*->memory_address_limit) check, thanks
-> for the reminding.
-> 
->>
->> Also, before commit 7fb89e1d44cb6aec ("ACPI/IORT: take _DMA methods
->> into account for named components"), the _DMA method was not taken
->> into account for named components at all, and only the IORT limit was
->> used, so I do not anticipate any problems with that.
-> 
-> Then this patch is fine to me.
 
-Certainly we need to address Lorenzo's comments.
+--s3e632f7peb5icpv
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks
-Hanjun
+Hello Ayyathurai,
+
+Can you please fix your MUA to properly quote when replying, this is
+really annoying.
+
+On Fri, Oct 16, 2020 at 03:18:08AM +0000, Ayyathurai, Vijayakannan wrote:
+> > On Thu, Oct 15, 2020 at 03:36:09AM +0800, vijayakannan.ayyathurai@intel=
+=2Ecom wrote:
+> > > +static int keembay_pwm_remove(struct platform_device *pdev) {
+> > > +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
+> > > +	int ret;
+> > > +
+> > > +	ret =3D pwmchip_remove(&priv->chip);
+> > > +	clk_disable_unprepare(priv->clk);
+> > > +
+> > > +	return ret;
+> >=20
+> > ...and this will be simplified to
+> >=20
+> > 	return pwmchip_remove(&priv->chip);
+>
+> Until v10, It is as per your suggestion. But I have changed it in v11
+> to overcome the issue mentioned by Uwe. I have kept the snip of v10
+> FYR below.
+>=20
+> //Start snip from v10 review mailing list
+> //> +static int keembay_pwm_remove(struct platform_device *pdev) {
+> //> +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
+> //> +
+> //> +	clk_disable_unprepare(priv->clk);
+> //> +
+> //> +	return pwmchip_remove(&priv->chip);
+> //
+> //You have to call pwmchip_remove first. Otherwise you're stopping the PW=
+M while the framework still believes everything to be fine.
+> //
+> //> +}
+> //End snip from v10 review mailing review
+
+Note that we're both (Andy and I) are right. You must not disable the
+clocks before pwmchip_remove() (otherwise for a short time the PWM looks
+ready but isn't). And if you use devm-stuff to enable the clock it will
+be disabled only after the remove callback completed and your .remove
+may look like:
+
+	static int keembay_pwm_remove(struct platform_device *pdev)
+	{
+		struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
+
+		return pwmchip_remove(&priv->chip);
+	}
+
+because you won't have to care for the clock explicitly.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--s3e632f7peb5icpv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+JTP8ACgkQwfwUeK3K
+7An1Fgf/b2bq68yJEXElIdOAqbvuMPT9ZRnrewxfZ6WTx3SUUSfa04D5+6G9Qedm
+yXm9T2uN8xb+mkA6O8gykLKaaSALFkT15wvgedgAqcPMMrL/fS30Z7z9q3O2mvLN
+bTHAxCXgroDl+xAeQr8VRRY6wE2Hn5gRSa+Zy8mKn+V6neZTkj6Sdj4a5JKTS/R0
+Tgb7CAi8W+gVFBB1xP3jrhEZysp7XfqEwQm3bovlJNoSNAQMzB8UhDudvJ8ta2eq
+r2u8gljkSwuBZ0C3utcoevSlVu/dpw0pFAQdZKVCebaySHusyjP2Bwtk1zpj5z3I
+HdzoT9bzLvbwocioCkqgcV+rv7h0GQ==
+=PCCl
+-----END PGP SIGNATURE-----
+
+--s3e632f7peb5icpv--
