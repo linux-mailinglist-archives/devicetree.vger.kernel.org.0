@@ -2,129 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 434DE290659
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9164F28FDAB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 07:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408075AbgJPNcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 09:32:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42404 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408074AbgJPNcA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 09:32:00 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D433E21527;
-        Fri, 16 Oct 2020 13:31:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602855120;
-        bh=jHgolZn+yVwazInZpUXsUIXLz+WFq+LCgt1cjWpEkcA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uI2me769AwM75eyyDkh95DsmJO9h6Qvu8z0Ayc7beFMa6u/y6sPTX58dfz9663RqB
-         2zP0XAvHzdeE75ZAtl270HHG5NqWq89oDsrxpoLa+652g3AM6k+qlqenzQba0AHyAX
-         Fk5C7pqNZ14YtAy/k6zL/cWuHXg3qD5gkOKP2phA=
-Received: by mail-oi1-f181.google.com with SMTP id 16so2411031oix.9;
-        Fri, 16 Oct 2020 06:31:59 -0700 (PDT)
-X-Gm-Message-State: AOAM531+LIxpTqrMmcL/XbCzmpoGptAhH0QLmFIKyG8bSoLXt/8YLBoH
-        MuYoHrJzKLiIuTsl5v29o+6kFpt6Qw74P+kGgQ==
-X-Google-Smtp-Source: ABdhPJxDzoh5TQYux51VfrCvIKr2H0fC6EMtKmXq9osyCrsQpVXMppGQGpG8GNPS7dXZ2wVY+84RyeI4fqmJDgomP0U=
-X-Received: by 2002:a54:4f89:: with SMTP id g9mr2514377oiy.106.1602855119044;
- Fri, 16 Oct 2020 06:31:59 -0700 (PDT)
+        id S2388852AbgJPFnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 01:43:00 -0400
+Received: from mail-am6eur05on2079.outbound.protection.outlook.com ([40.107.22.79]:15680
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2388851AbgJPFm7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 01:42:59 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LR6fbpUeOPbHXpxvd0B4y9TzKWs3Brom1i7EfLFDhigkOeMHUoRzonNXiwtRFLbyeqN4HNfy0+4ACanp9tgLU/wh7sf1iMR4Po/6cZcjZUEbZDj1NrbPUuoczcfppT59w4F2nPo8fjhwYjJzFNCNhrcRVbuRqdqicsVtP2oEFmZsepsVYm7AwJ4t9kTs1b0piEOEMDadAtpKnYf79hq5WEVCAX8heXcm5d7wGYgefbVQVrcfklQHC5LFMpWLdRCQ9E8AZn4/2ZsKFzy6tyf4mEiunYyoMIySABlmQsGdhCe10yGdljEJGEkREvzh+xFidOxRxe1yGT8yKoztIcUb8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pAgkwMEeOM5r99rJM4FyZZ7DcfLlVaOMTBPHBwjwISA=;
+ b=HC7Mk8e1JqIEI6lW+nBJZO01SaiB+giDAcYqR5RWj34NpWdSsUcZnp6iwzOAidyF1LPpZL8L48N89tPOUVb2U+mxn0um9nUvoLB+jMHp0Gmdlo+ohSvxuMpyh5k0sqYvbtXRLHVQ/Ne2ZLTkGDLpiR113l/Umk2pyVXohSm5Ok2rdcA74z61SX8Bc1LTRel6j6Mcgg8R516frxtZsyWF3epUGGdDBjRBrfpGywPhRzPp47Un0dl7P8amuucvu/Idq+HdnRVMt7FnhqBubkzs6JIVzYL+4fF+xuRb9R9jJb6RjsyVf1CUz731orN6HVtKGyBReQiKZi/vKpoAginJfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pAgkwMEeOM5r99rJM4FyZZ7DcfLlVaOMTBPHBwjwISA=;
+ b=I8Or0q6w3gXVBU7LwCaOqYHltu6lky0zFxXD89g5pCUdzgMpQ5318R5sUBc38kO0tqXc9HIYTEwmnLVBBi0L2n/pNmlCssH1yEWXFYE0rWJpbg9zqQKGm9uIq2GnUh6Ak2Z7/uUaQknDWEdaeu7irdtElynxpXTkUTqf3beDMk8=
+Authentication-Results: pengutronix.de; dkim=none (message not signed)
+ header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DBAPR04MB7333.eurprd04.prod.outlook.com (2603:10a6:10:1b2::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Fri, 16 Oct
+ 2020 05:42:56 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::3c3a:58b9:a1cc:cbcc]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::3c3a:58b9:a1cc:cbcc%9]) with mapi id 15.20.3477.021; Fri, 16 Oct 2020
+ 05:42:56 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     mkl@pengutronix.de, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, victor.liu@nxp.com,
+        peng.fan@nxp.com, linux-can@vger.kernel.org, pankaj.bansal@nxp.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] can: flexcan: add stop mode support for i.MX8QM
+Date:   Fri, 16 Oct 2020 21:43:14 +0800
+Message-Id: <20201016134320.20321-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: SG2PR02CA0068.apcprd02.prod.outlook.com
+ (2603:1096:4:54::32) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
 MIME-Version: 1.0
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
- <20201014145418.31838-2-rf@opensource.cirrus.com> <CAL_Jsq+qdcHc9H7qUVwLieHrLM8E20HZXa8DkarMiuXfCh8WOQ@mail.gmail.com>
- <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
-In-Reply-To: <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 16 Oct 2020 08:31:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKAvJ9fv9pm82iv5YjWVCJu1fmP-t+Fyc95pzUaCEL3XQ@mail.gmail.com>
-Message-ID: <CAL_JsqKAvJ9fv9pm82iv5YjWVCJu1fmP-t+Fyc95pzUaCEL3XQ@mail.gmail.com>
-Subject: Re: [PATCH 1/7] of: base: Add of_count_phandle_with_fixed_args()
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     devicetree@vger.kernel.org,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        - <patches@opensource.cirrus.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SG2PR02CA0068.apcprd02.prod.outlook.com (2603:1096:4:54::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21 via Frontend Transport; Fri, 16 Oct 2020 05:42:52 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 2371ec91-0659-4edc-cd86-08d871965546
+X-MS-TrafficTypeDiagnostic: DBAPR04MB7333:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBAPR04MB7333FE3FB64429312A44989FE6030@DBAPR04MB7333.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vKOR6f825JSS+4FaUtiLu+s1+mOrUvAz68Z3BW2uyMWGAu5VwzAQHrtpoeLS3kRrKJBMtRU1+VENFeMdFeSN148k+HOoORmopZAtM5ZqwzS559o1zLmot6GuF3l53xHns/cmsvCck2+ie9zuGmYepAE/ytHmQE5ceT4+lIXr5hZgivJhDKQ6pbxG6iGLsnGTuUAEhHdn0tBS1tF0pRZq2FL8w3MsukBPUpP+3iJ7qTp57zWFFgU7MVZGW+kEyVN0r2q23vUHSSuxeYEupm0eRD+IRQEKrS/HgmD682uU7MY5cB57mxCVLS5V8782Sx4pJDONbPHCpKVO/OzOKunf0u6uRbiog+SF4SVZcQvZfR3XUegHidwsZps6bb59C2ycyLhmLDiW3tKzbFBPp/rnviDrHSCNSvAAfReYMQVP4Fs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(376002)(39860400002)(366004)(136003)(34490700002)(2906002)(316002)(6512007)(8936002)(86362001)(5660300002)(4744005)(1076003)(69590400008)(478600001)(52116002)(6506007)(6486002)(66556008)(83380400001)(36756003)(4326008)(6666004)(26005)(186003)(2616005)(956004)(16526019)(8676002)(66946007)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 8gs/X/1pzQeLbBTLYs0AFVRzOByUVHeQLytXRuiAOWVauMdox2KngsxCelt6A3eykU9dBeWvB51q0lOvFrRQgdL43sc66Z9cZ/IlfpELG8Uaa9/E80ut0RrNV8ynZb/LJ3txIXF+A7M7H550ydLQUAu4i9JX2q6AavJBRL3dQnjVvEyBBId9x0FNXO10goYfM7kNH8ag2sTaRAT3FCz69A72axVsMtj2Ij5NGGGAZFDKHDq/EntT0uD4a1VoP1dbgveK316LRkLsNUtwTMqELz4vw5LmvsJ5zHFlcu5fWx5uEtkb2mSmdu6Sa/MCksW6OS8LOfOIrskBOltRP6a/m572PDsPMboVZWM2EF0aOUs1qAwAYZ2V58e8PMrvECldzeOT+e87U6xASGJllD1+ECJV5ZU0+eHE89OTzq8ZNZPIbJfD7Yb1unQi0uqeGkh1qE/hFFAJZsipdjSlKpmj+Io9fKWa2WOI365FbgRuei0a4YKuPpu7n+M+7rfXDF4LHlOAfH7N9TAjhNUEMGeCSq5q5k+i0aXwht4/6XKFTTP3c5zETaNrB891inFpZhbePwHjsziZKG0oFeC21gZwXuheDoul84uGbIQO5VNI9PeSUmNCEpY04MyIf1tQ1qz8CVkVFcT8gtEyIcuWv7Dbrg==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2371ec91-0659-4edc-cd86-08d871965546
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2020 05:42:56.6783
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KV2FxjyRxm7kdzRoJtnH8wbO19SGMZSnVdFMJicaMo44VoHwvLITulTyZwGSdz2RQiV56d8OLxjoiwnmqKSdfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7333
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 11:52 AM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2020-10-14 19:39, Rob Herring wrote:
-> > On Wed, Oct 14, 2020 at 9:54 AM Richard Fitzgerald
-> > <rf@opensource.cirrus.com> wrote:
-> >>
-> >> Add an equivalent of of_count_phandle_with_args() for fixed argument
-> >> sets, to pair with of_parse_phandle_with_fixed_args().
-> >>
-> >> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
-> >> ---
-> >>   drivers/of/base.c  | 42 ++++++++++++++++++++++++++++++++++++++++++
-> >>   include/linux/of.h |  9 +++++++++
-> >>   2 files changed, 51 insertions(+)
-> >>
-> >> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> >> index ea44fea99813..45d8b0e65345 100644
-> >> --- a/drivers/of/base.c
-> >> +++ b/drivers/of/base.c
-> >> @@ -1772,6 +1772,48 @@ int of_count_phandle_with_args(const struct device_node *np, const char *list_na
-> >>   }
-> >>   EXPORT_SYMBOL(of_count_phandle_with_args);
-> >>
-> >> +/**
-> >> + * of_count_phandle_with_fixed_args() - Find the number of phandles references in a property
-> >> + * @np:                pointer to a device tree node containing a list
-> >> + * @list_name: property name that contains a list
-> >> + * @cell_count: number of argument cells following the phandle
-> >> + *
-> >> + * Returns the number of phandle + argument tuples within a property. It
-> >> + * is a typical pattern to encode a list of phandle and variable
-> >> + * arguments into a single property.
-> >> + */
-> >> +int of_count_phandle_with_fixed_args(const struct device_node *np,
-> >> +                                    const char *list_name,
-> >> +                                    int cells_count)
-> >> +{
-> >
-> > Looks to me like you can refactor of_count_phandle_with_args to handle
-> > both case and then make this and of_count_phandle_with_args simple
-> > wrapper functions.
->
-> Although for just counting the number of phandles each with n arguments
-> that a property contains, isn't that simply a case of dividing the
-> property length by n + 1? The phandles themselves will be validated by
-> any subsequent of_parse_phandle*() call anyway, so there doesn't seem
-> much point in doing more work then necessary here.
->
-> >> +       struct of_phandle_iterator it;
-> >> +       int rc, cur_index = 0;
-> >> +
-> >> +       if (!cells_count) {
-> >> +               const __be32 *list;
-> >> +               int size;
-> >> +
-> >> +               list = of_get_property(np, list_name, &size);
-> >> +               if (!list)
-> >> +                       return -ENOENT;
-> >> +
-> >> +               return size / sizeof(*list);
->
-> Case in point - if it's OK to do exactly that for n == 0, then clearly
-> we're *aren't* fussed about validating anything, so the n > 0 code below
-> is nothing more than a massively expensive way to check for a nonzero
-> remainder :/
+The first patch from Liu Ying aims to export SCU symbols for SoCs w/wo
+SCU, so that no need to check CONFIG_IMX_SCU in the specific driver.
 
-Indeed. We should just generalize this. It can still be refactored to
-shared code.
+The following patches are for flexcan to add stop mode support for
+i.MX8QM.
 
-It's probably worthwhile to check for a remainder here IMO.
+Joakim Zhang (5):
+  dt-bindings: can: flexcan: fix fsl,clk-source property
+  dt-bindings: can: flexcan: add fsl,can-index property to indicate a
+    resource
+  can: flexcan: rename macro FLEXCAN_QUIRK_SETUP_STOP_MODE ->
+    FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR
+  can: flexcan: add CAN wakeup function for i.MX8QM
+  can: flexcan: fix ECC function on LS1021A/LX2160A
 
-Rob
+Liu Ying (1):
+  firmware: imx: always export SCU symbols
+
+ .../bindings/net/can/fsl-flexcan.txt          |   7 +-
+ drivers/net/can/flexcan.c                     | 143 ++++++++++++++----
+ include/linux/firmware/imx/ipc.h              |  15 ++
+ include/linux/firmware/imx/svc/misc.h         |  23 +++
+ 4 files changed, 160 insertions(+), 28 deletions(-)
+
+-- 
+2.17.1
+
