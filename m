@@ -2,116 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A28F7290846
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E16D29084C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:27:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2410050AbgJPP1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 11:27:01 -0400
-Received: from mx2.suse.de ([195.135.220.15]:55536 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2410005AbgJPP1A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 11:27:00 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 9C5F2AD87;
-        Fri, 16 Oct 2020 15:26:58 +0000 (UTC)
-Message-ID: <0f0b7021e85a832afd42c6f9016158d6d8b0b28b.camel@suse.de>
-Subject: Re: [RFC] of/platform: Create device link between simple-mfd and
- its children
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Date:   Fri, 16 Oct 2020 17:26:56 +0200
-In-Reply-To: <CAL_JsqLvzsdAfx56jQqPSd1r=P20C8DURKKZ9kke-L2owqr0fg@mail.gmail.com>
-References: <20201015114346.15743-1-nsaenzjulienne@suse.de>
-         <CAL_JsqLvzsdAfx56jQqPSd1r=P20C8DURKKZ9kke-L2owqr0fg@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-qL4wvvXdx8WWS17CadgZ"
-User-Agent: Evolution 3.36.5 
+        id S2410069AbgJPP1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 11:27:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2410006AbgJPP1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 11:27:41 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E65C061755;
+        Fri, 16 Oct 2020 08:27:41 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id o9so1455464plx.10;
+        Fri, 16 Oct 2020 08:27:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HjOH7NSlzQ7luzN2AMo9usje/o0UOzhmlVRD7uHXj6M=;
+        b=K9x1Rli/OUH/hZT7zUWaeKHbnNXAbCLRgnq0lD6FZZwPEaGKZS/DVU3KPE84bipH/B
+         REnPrkeicA7AASNY+yqg1FXbsPnMR3zKPn6JXkOratJxVKyNVuWr4Q/nIYybDMVB0Goy
+         hhGA5ji82UU8gx0AI5grKhfo9TXKvDhVfi9rhxSd21jZyg0csK1TnZdTtCIdRaARL9MA
+         byqR//9GsK62PBX7Et/5o3UB7+xP8bp4zsFkWtERoMFXCas2mgovU0yHFL5Y2iiCpXg7
+         LaYWioxVs2rrcylQQ6LgbaQEOswEc5Ver2g0lpaUfike4R1VFfCKlceSqmwm7EfIbJXl
+         yjVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HjOH7NSlzQ7luzN2AMo9usje/o0UOzhmlVRD7uHXj6M=;
+        b=XQggIq6WC3oMwiUIb0URf5VBzqspuRRwEOc454dt9xMbnVOJmpx5tFsEj91O22hfYy
+         b9Gm8R8T3eUZDbiNFwe3QyUWzeFtgE/RYFkrV4kp1WoILeIkaxpWKuHNCHhMa3nNU6Uw
+         WPEPTtumDKBjNGTbuuhQ5AT9OMY8Izh2Z3HF3JEU8JaqgHcYIF7OYad1efFrYIVxTipG
+         CTdJoN+dF0nlz9T3HM77sIYi+zUd1og/9UqID0HOAtGp43ouMHYPK/nEXBL0r7IpNDC3
+         y1fHFagMD7k8F82PObGrj51xWIGzpbbAg220i5YHzCuqbqAD2gpHHTjpYU1xyD2gZBd8
+         YhqQ==
+X-Gm-Message-State: AOAM531TaQGID03t8EVymmMv/LKeW6KoIckwDsAN6eykh+jJQKXcNbRw
+        OEAnYX/q1HkS+KFLCLlG9ptMvTQrkY70++i9kXI=
+X-Google-Smtp-Source: ABdhPJyEcO5/SUrS3pBTLwVxNUw44/tRmS0EyySbmvXAf/Ih98PiyY0i3H9Nfb9IY7DnsI6E/rU3+aLtOuYddVVQDwY=
+X-Received: by 2002:a17:902:aa8a:b029:d3:c9dd:77d1 with SMTP id
+ d10-20020a170902aa8ab02900d3c9dd77d1mr4688408plr.0.1602862060726; Fri, 16 Oct
+ 2020 08:27:40 -0700 (PDT)
 MIME-Version: 1.0
+References: <1601542448-7433-1-git-send-email-gene.chen.richtek@gmail.com> <1601542448-7433-4-git-send-email-gene.chen.richtek@gmail.com>
+In-Reply-To: <1601542448-7433-4-git-send-email-gene.chen.richtek@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 16 Oct 2020 18:28:29 +0300
+Message-ID: <CAHp75VdPjT-wNw0_fNXBEd9ub2Eg_thM2wY9QqrjhwYcz+=ytQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] iio: adc: mt6360: Add ADC driver for MT6360
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 30, 2020 at 11:55 AM Gene Chen <gene.chen.richtek@gmail.com> wrote:
+>
+> From: Gene Chen <gene_chen@richtek.com>
+>
+> Add MT6360 ADC driver include Charger Current, Voltage, and
 
---=-qL4wvvXdx8WWS17CadgZ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+including
 
-On Fri, 2020-10-16 at 09:38 -0500, Rob Herring wrote:
-> On Thu, Oct 15, 2020 at 6:43 AM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> > 'simple-mfd' usage implies there might be some kind of resource sharing
-> > between the parent device and its children.
->=20
-> It does? No! The reason behind simple-mfd was specifically because
-> there was no parent driver or dependency on the parent. No doubt
-> simple-mfd has been abused.
+> Temperature.
 
-Fair enough, so we're doing things wrong. Just for the record, I'm looking =
-at
-RPi=C2=B4s firmware interface:
+...
 
-	firmware: firmware {
-		compatible =3D "raspberrypi,bcm2835-firmware", "simple-mfd";
-		#address-cells =3D <1>;
-		#size-cells =3D <1>;
-		mboxes =3D <&mailbox>;
+> +#define MT6360_AICR_MASK       GENMASK(7, 2)
 
-		firmware_clocks: clocks {
-			compatible =3D "raspberrypi,firmware-clocks";
-			#clock-cells =3D <1>;
-		};
+bits.h is missed.
 
-		reset: reset {
-			compatible =3D "raspberrypi,firmware-reset";
-			#reset-cells =3D <1>;
-		};
-		[...]
-	};
+...
 
-Note that "raspberrypi,bcm2835-firmware" has a driver, it's not just a
-placeholder. Consumer drivers get a handle to RPi's firmware interface thro=
-ugh
-the supplier's API, rpi_firmware_get(). The handle to firmware becomes
-meaningless if it is unbinded, which I want to protect myself against.
+> +#define MT6360_ADCEN_MASK      0x8000
 
-A simpler solution would be to manually create a device link between both
-devices ("raspberrypi,bcm2835-firmware" and "raspberrypi,firmware-clocks" f=
-or
-example) upon calling rpi_firmware_get(). But I wanted to try addressing th=
-e
-problem in a generic way first.
+BIT() ?
 
-Regards,
-Nicolas
+...
 
+> +static int mt6360_adc_read_channel(struct mt6360_adc_data *mad, int channel, int *val)
+> +{
 
---=-qL4wvvXdx8WWS17CadgZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+> +       start_t = ktime_get();
+> +       predict_end_t = ktime_add_ms(mad->last_off_timestamps[channel], 2 * ADC_WAIT_TIME_MS);
+> +
+> +       if (ktime_after(start_t, predict_end_t))
+> +               pre_wait_time = ADC_WAIT_TIME_MS;
+> +       else
+> +               pre_wait_time = 3 * ADC_WAIT_TIME_MS;
+> +
+> +       msleep(pre_wait_time);
 
------BEGIN PGP SIGNATURE-----
+This looks like NIH of wait_interruptible() or so.
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+Ju8AACgkQlfZmHno8
-x/5rNgf/RWzw8B+m3lZjCQJdOUIVBcSgEtXTgg+1Rw64UrNVIYeCYwRa8GbiXN6Y
-KzbRjnNiAIFLworJ8rpWKfKY52/Y39CJhgbXem0tM9BWJE7gLRZA8f+B0GfvXvzz
-/bAFMkcywkakmPssQ94zslmWhgiE3zoYQD1sSVesYBV/0cqt/2TXt8wXsdyybzbD
-zMLs+vkCHhQIVaYNmmB10wLmiBo9g7PMFRD9panuRsaQ1Yyrk+NvgPcOCYYtyRxS
-NUBmVHMcbtYv+NvxGatfp8q5kyhTUeIubYmNHXgaovlo71Rg2HCWeWZkaj5TkX7s
-6n7yNJPNKEE+DcmOcwM61NaI9aYurA==
-=2J8u
------END PGP SIGNATURE-----
+...
 
---=-qL4wvvXdx8WWS17CadgZ--
+> +       while (true) {
 
+Oh, please avoid infinite loops.
+
+> +               ret = regmap_raw_read(mad->regmap, MT6360_REG_PMUADCRPT1, rpt, sizeof(rpt));
+> +               if (ret)
+> +                       goto out_adc_conv;
+> +
+> +               /*
+> +                * There are two functions, ZCV and TypeC OTP, running ADC VBAT and TS in
+> +                * background, and ADC samples are taken on a fixed frequency no matter read the
+> +                * previous one or not.
+> +                * To avoid conflict, We set minimum time threshold after enable ADC and
+> +                * check report channel is the same.
+> +                * The worst case is run the same ADC twice and background function is also running,
+> +                * ADC conversion sequence is desire channel before start ADC, background ADC,
+> +                * desire channel after start ADC.
+> +                * So the minimum correct data is three times of typical conversion time.
+> +                */
+> +               if ((rpt[0] & MT6360_RPTCH_MASK) == channel)
+> +                       break;
+> +
+> +               msleep(ADC_WAIT_TIME_MS);
+> +       }
+
+So, a new NIH of regmap_read_poll_timeout() ?
+
+...
+
+> +       /* rpt[1]: ADC_HI_BYTE, rpt[2]: ADC_LOW_BYTE */
+> +       *val = rpt[1] << 8 | rpt[2];
+
+get_unalined_be16() and hence redundant comment.
+
+...
+
+> +static int mt6360_adc_read_offset(struct mt6360_adc_data *mad, int channel, int *val)
+> +{
+> +       *val = (channel == MT6360_CHAN_TEMP_JC) ? -80 : 0;
+> +       return IIO_VAL_INT;
+
+> +
+
+Misplaced blank line.
+
+> +}
+
+> +static const char *mt6360_channel_labels[MT6360_CHAN_MAX] = {
+> +       "usbid", "vbusdiv5", "vbusdiv2", "vsys", "vbat", "ibus", "ibat", "chg_vddp", "temp_jc",
+> +       "vref_ts", "ts"
+
+Leave comma.
+And split  either by power of two or equally between the lines (seems
+like 8 + 3 here).
+
+> +};
+
+...
+
+> +       /* Reset all channel off time to the current one */
+> +       all_off_time = ktime_get();
+> +       for (i = 0; i < MT6360_CHAN_MAX; i++)
+> +               info->last_off_timestamps[i] = all_off_time;
+
+memset32() / memset64() / memset_l()
+(Not applicable, but JFYI: memset_p() also present)
+
+-- 
+With Best Regards,
+Andy Shevchenko
