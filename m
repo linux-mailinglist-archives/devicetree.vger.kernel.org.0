@@ -2,119 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C6A628FEAB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 08:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ABF828FEC0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 08:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394504AbgJPG41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 02:56:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40470 "EHLO mail.kernel.org"
+        id S2394534AbgJPG7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 02:59:42 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:18693 "EHLO z5.mailgun.us"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394370AbgJPG41 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 02:56:27 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S2394515AbgJPG7k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 02:59:40 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1602831579; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=xcxsmxCIUvsJlF//IDWUoNfp3dAUx1VoQAyhaIngGw0=; b=jxy7iJd/jmUkvlFaijpBSHkps1iXXzalDAiwN8xtf6GEgjBIZ3eUx5a6KunC9BB37D/OyeD8
+ ECq1FD5Zz3ejGufI2h9QqASQvLUcJkrI+CsFr5SWCCE3rT2M2Mx2pZGwqEF+PtsXJsuCiuu6
+ aRm1Tmkt3CJyRjw9oKZSImLz9E4=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 5f8944d0588858a3043824f4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Oct 2020 06:59:27
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2628EC43382; Fri, 16 Oct 2020 06:59:27 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6528A20878;
-        Fri, 16 Oct 2020 06:56:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602831386;
-        bh=Qt5cK4GbMy1zYjzp9yoahcnNoGCra0PWF0mygx/BzDY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kW25M9o0mHtPxHMea8yV80oWEA7vsMtr2BnXS+nM5/3MQhqUaPvN+MhMXTh+FopX7
-         uX5bRbMj4YsNF7JnVpLGJ8bkygcEu+ZEiqZ/YvRS766TMA7DF9cF/fcUls1f6GBkDC
-         KZugE4D2A0tX8R0wG7oMBjzYLxgCNaiu0dmN+tRI=
-Received: by mail-oi1-f181.google.com with SMTP id 16so1304914oix.9;
-        Thu, 15 Oct 2020 23:56:26 -0700 (PDT)
-X-Gm-Message-State: AOAM531HCuQEnna6iOxKGOyB3vnnPvZ0yNCKizN5R3cmxlOivjNic3jN
-        6A2xymeivDxvxmdva287P2YvJNCmV9NpU6zqybs=
-X-Google-Smtp-Source: ABdhPJz06rV6WAWm42aN14z1C+ajNWUQE5kD2qLfjxAdRc9MpB29T/PNIdoPGp5uO2oI3ZIgGfWCv7Dbtg/8qUfzXjc=
-X-Received: by 2002:aca:d64f:: with SMTP id n76mr1596675oig.174.1602831385656;
- Thu, 15 Oct 2020 23:56:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
- <20201014191211.27029-8-nsaenzjulienne@suse.de> <20201015103106.GA24739@e121166-lin.cambridge.arm.com>
-In-Reply-To: <20201015103106.GA24739@e121166-lin.cambridge.arm.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Fri, 16 Oct 2020 08:56:14 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXGRcP_8OMHAdjTLNod40N_8dzqrX9=F+s7pd0EXy8O6DQ@mail.gmail.com>
-Message-ID: <CAMj1kXGRcP_8OMHAdjTLNod40N_8dzqrX9=F+s7pd0EXy8O6DQ@mail.gmail.com>
-Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT scan
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <lenb@kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7AAA8C433F1;
+        Fri, 16 Oct 2020 06:59:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7AAA8C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add sc7280 pinctrl bindings
+Date:   Fri, 16 Oct 2020 12:28:51 +0530
+Message-Id: <1602831532-24818-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Oct 2020 at 12:31, Lorenzo Pieralisi
-<lorenzo.pieralisi@arm.com> wrote:
->
-> On Wed, Oct 14, 2020 at 09:12:09PM +0200, Nicolas Saenz Julienne wrote:
->
-> [...]
->
-> > +unsigned int __init acpi_iort_get_zone_dma_size(void)
-> > +{
-> > +     struct acpi_table_iort *iort;
-> > +     struct acpi_iort_node *node, *end;
-> > +     acpi_status status;
-> > +     u8 limit = 32;
-> > +     int i;
-> > +
-> > +     if (acpi_disabled)
-> > +             return limit;
-> > +
-> > +     status = acpi_get_table(ACPI_SIG_IORT, 0,
-> > +                             (struct acpi_table_header **)&iort);
-> > +     if (ACPI_FAILURE(status))
-> > +             return limit;
-> > +
-> > +     node = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->node_offset);
-> > +     end = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->header.length);
-> > +
-> > +     for (i = 0; i < iort->node_count; i++) {
-> > +             if (node >= end)
-> > +                     break;
-> > +
-> > +             switch (node->type) {
-> > +                     struct acpi_iort_named_component *ncomp;
-> > +                     struct acpi_iort_root_complex *rc;
-> > +
-> > +             case ACPI_IORT_NODE_NAMED_COMPONENT:
-> > +                     ncomp = (struct acpi_iort_named_component *)node->node_data;
-> > +                     if (ncomp->memory_address_limit)
-> > +                             limit = min(limit, ncomp->memory_address_limit);
-> > +                     break;
-> > +
-> > +             case ACPI_IORT_NODE_PCI_ROOT_COMPLEX:
-> > +                     rc = (struct acpi_iort_root_complex *)node->node_data;
-> > +                     if (rc->memory_address_limit)
->
-> You need to add a node revision check here, see rc_dma_get_range() in
-> drivers/acpi/arm64/iort.c, otherwise we may be reading junk data
-> in older IORT tables - acpica structures are always referring to the
-> latest specs.
->
+Add device tree binding Documentation details for Qualcomm SC7280
+TLMM block.
 
-Indeed - apologies for not mentioning that when handing over the patch.
+Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+---
+ .../bindings/pinctrl/qcom,sc7280-pinctrl.yaml      | 170 +++++++++++++++++++++
+ 1 file changed, 170 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
 
-Also, we could use min_not_zero() here instead of the if ()
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
+new file mode 100644
+index 0000000..971cfaf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
+@@ -0,0 +1,170 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,sc7280-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. SC7280 TLMM block
++
++maintainers:
++  - Rajendra Nayak <rnayak@codeaurora.org>
++
++description: |
++  This binding describes the Top Level Mode Multiplexer block found in the
++  SC7280 platform.
++
++properties:
++  compatible:
++    const: qcom,sc7280-pinctrl
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: Specifies the TLMM summary IRQ
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    description:
++      Specifies the PIN numbers and Flags, as defined in defined in
++      include/dt-bindings/interrupt-controller/irq.h
++    const: 2
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    description: Specifying the pin number and flags, as defined in
++      include/dt-bindings/gpio/gpio.h
++    const: 2
++
++  gpio-ranges:
++    maxItems: 1
++
++  wakeup-parent:
++    maxItems: 1
++
++#PIN CONFIGURATION NODES
++patternProperties:
++  '-pins$':
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: "/schemas/pinctrl/pincfg-node.yaml"
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-4])$"
++            - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk,
++                      sdc2_cmd, sdc2_data, ufs_reset ]
++        minItems: 1
++        maxItems: 16
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++        enum: [ atest_char, atest_char0, atest_char1, atest_char2,
++                atest_char3, atest_usb0, atest_usb00, atest_usb01,
++                atest_usb02, atest_usb03, atest_usb1, atest_usb10,
++                atest_usb11, atest_usb12, atest_usb13, audio_ref,
++                cam_mclk, cci_async, cci_i2c, cci_timer0, cci_timer1,
++                cci_timer2, cci_timer3, cci_timer4, cmu_rng0, cmu_rng1,
++                cmu_rng2, cmu_rng3, coex_uart1, cri_trng, cri_trng0,
++                cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1, dp_hot,
++                dp_lcd, edp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
++                gpio, host2wlan_sol, ibi_i3c, jitter_bist, lpass_slimbus,
++                mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3,
++                mdp_vsync4, mdp_vsync5, mi2s0_data0, mi2s0_data1, mi2s0_sck,
++                mi2s0_ws, mi2s1_data0, mi2s1_data1, mi2s1_sck, mi2s1_ws,
++                mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws, mss_grfc0,
++                mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12, mss_grfc2,
++                mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6, mss_grfc7,
++                mss_grfc8, mss_grfc9, nav_gpio0, nav_gpio1, nav_gpio2,
++                pa_indicator, pcie0_clkreqn, pcie1_clkreqn, phase_flag0,
++                phase_flag1, phase_flag10, phase_flag11, phase_flag12,
++                phase_flag13, phase_flag14, phase_flag15, phase_flag16,
++                phase_flag17, phase_flag18, phase_flag19, phase_flag2,
++                phase_flag20, phase_flag21, phase_flag22, phase_flag23,
++                phase_flag24, phase_flag25, phase_flag26, phase_flag27,
++                phase_flag28, phase_flag29, phase_flag3, phase_flag30,
++                phase_flag31, phase_flag4, phase_flag5, phase_flag6,
++                phase_flag7, phase_flag8, phase_flag9, pll_bist,
++                pll_bypassnl, pll_clk, pll_reset, pri_mi2s, prng_rosc,
++                qdss_cti, qdss_gpio, qdss_gpio0, qdss_gpio1, qdss_gpio10,
++                qdss_gpio11, qdss_gpio12, qdss_gpio13, qdss_gpio14,
++                qdss_gpio15, qdss_gpio2, qdss_gpio3, qdss_gpio4, qdss_gpio5,
++                qdss_gpio6, qdss_gpio7, qdss_gpio8, qdss_gpio9,
++                qlink0_enable, qlink0_request, qlink0_wmss, qlink1_enable,
++                qlink1_request, qlink1_wmss, qspi_clk, qspi_cs, qspi_data,
++                qup00, qup01, qup02, qup03, qup04, qup05, qup06, qup07,
++                qup10, qup11, qup12, qup13, qup14, qup15, qup16, qup17,
++                sdc40, sdc41, sdc42, sdc43, sdc4_clk, sdc4_cmd, sd_write,
++                sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tsense_pwm1,
++                tsense_pwm2, uim0_clk, uim0_data, uim0_present, uim0_reset,
++                uim1_clk, uim1_data, uim1_present, uim1_reset, usb2phy_ac,
++                usb_phy, vfr_0, vfr_1, vsense_trigger ]
++
++      drive-strength:
++        enum: [2, 4, 6, 8, 10, 12, 14, 16]
++        default: 2
++        description:
++          Selects the drive strength for the specified pins, in mA.
++
++      bias-pull-down: true
++
++      bias-pull-up: true
++
++      bias-disable: true
++
++      output-high: true
++
++      output-low: true
++
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - '#interrupt-cells'
++  - gpio-controller
++  - '#gpio-cells'
++  - gpio-ranges
++
++additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        tlmm: pinctrl@f000000 {
++                compatible = "qcom,sc7280-pinctrl";
++                reg = <0xf000000 0x1000000>;
++                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++                gpio-ranges = <&tlmm 0 0 175>;
++                wakeup-parent = <&pdc>;
++
++                qup_uart5_default: qup-uart5-pins {
++                        pins = "gpio46", "gpio47";
++                        function = "qup13";
++                        drive-strength = <2>;
++                        bias-disable;
++                };
++        };
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
