@@ -2,126 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5297C2905FE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68CB329062C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405129AbgJPNJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 09:09:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2408199AbgJPNJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 09:09:12 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718A1C0613D3
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 06:09:11 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id e17so2805794wru.12
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 06:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=eyHBJddDTbNPFeEpW+RroYrsG4+cEx3Q/2uix0wzOfQ=;
-        b=E9r8pmWqGNv7QdV+tX6/6JYGehMkG0K7T0kEJ6WtZgJWRJGjrtTAnbe+IP3139FQH1
-         pmStuVpaB0g1MaCmOFsN2UclDZMzpUN1tLt007fD0IBnDezvtqaxabzZiZZMzs0yVnSM
-         FmkAiigUXgmK177YJvOq0/1sTmPbB5JGk7r2uS4VsZmrvD2ZEznJD1d+mBStQF9yEOtZ
-         kVCFpsoXd8gBvmVXB8ePrHyT0A0uyg+Cs/FghA+LZslDdJYh+CrAyjIqh502bf1MzRKP
-         vHgve0jdyaKaeSgyGmyy+KTwwCqmBVZ9QLb9yI737edsqY+8oe7a5k0jYY5peDSuBXRT
-         AfVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eyHBJddDTbNPFeEpW+RroYrsG4+cEx3Q/2uix0wzOfQ=;
-        b=DpvEKYKmv1QvOz0MpTFRpSyxHoBsz4VVt47o4pZgWkQGAuKniuXidhL4lYSmR+VeOz
-         IVas9Ij/UWDwiGEe1uHjcnlKwUYM98NZ2aU/wiJuKcTBS7TNtxm77TxkVeqqKAmoa/sY
-         ruwbaCeoHpZtLXkUMkUAAauzbWamzo76J0ik/PbGy1AAaLoGPWOffQ8PJ6PkmwDfwxjT
-         W48IxVF7XBb1QpSuD9O0vilpW4Scqq183jLBiwpoL8g4e69f5/JNOqPKIy/D+bT4R6+g
-         M0wTZz2zUQ2cj2dP3k4R5boD3Aulw9/3dn4O3/QXyoeSygxjd9pwljK7GOba/GAq8wO+
-         64rg==
-X-Gm-Message-State: AOAM5328tpfuvNRj6fLDseCJQyFy4OVbw3O6iX8QdSU7GxGAYGdKKZwk
-        S+0ZfPGc83BZ7YSkZA7VLJiSyQ==
-X-Google-Smtp-Source: ABdhPJyJx2ziKX8CMV9mtHGWssCPDzWgGWdhDq5rg06Ua4cfCHB0ZtCFKPT068dgSrnPDzX14r37mQ==
-X-Received: by 2002:a5d:5090:: with SMTP id a16mr3713627wrt.281.1602853749936;
-        Fri, 16 Oct 2020 06:09:09 -0700 (PDT)
-Received: from google.com ([2a00:79e0:d:110:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id s1sm2694735wmh.22.2020.10.16.06.09.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 06:09:09 -0700 (PDT)
-Date:   Fri, 16 Oct 2020 14:09:05 +0100
-From:   Quentin Perret <qperret@google.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-Message-ID: <20201016130905.GA2426638@google.com>
-References: <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
- <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
- <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
- <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
- <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
- <e321191c-61d2-a15d-47c2-653b277984ca@linaro.org>
- <20201016121844.GA2420691@google.com>
- <b3c6d7a5-0564-6e84-77ff-9afe10d7ee27@linaro.org>
+        id S2406699AbgJPNUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 09:20:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37268 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2406175AbgJPNUA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 09:20:00 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 91101208E4;
+        Fri, 16 Oct 2020 13:19:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602854399;
+        bh=rfvuV6Al+rLb9nUjAfzHGQK9DuIWt6YUWVj+UIEKlz8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KD55CXGuyZ12HyX0m/0olwjfr6HTDjY7uf1hHPOTIXPDMBkTlOqSdyRJvJniVYkKO
+         Lie30rb7KlUHlIw0WLIWVhZFw4XOcpwDK45E+1tbtu3P6pA0zJcwTiu6i1ACdaFV4g
+         jgAIZvyIzEkTNvn854dV6qoNzny0h7hJ8Jrocjq4=
+Received: by mail-oi1-f176.google.com with SMTP id c13so2383745oiy.6;
+        Fri, 16 Oct 2020 06:19:59 -0700 (PDT)
+X-Gm-Message-State: AOAM532VCFhtfNl9e8rsb4TXoWf1HGOPB9MzCfFG6cF+NlHQNnZ/xP6q
+        iuuA1ODlNVmoBuBhD8roh7hMYGBWgsu1vr29kA==
+X-Google-Smtp-Source: ABdhPJwxbMynzIU6zuNouBn+wKZ+/vyBd3EU7EY1Rlpcr59uCRZiPaTsqPTK2OQmhPBQ1tNjnBtuXZGHrNkXaL1AnJk=
+X-Received: by 2002:aca:4c52:: with SMTP id z79mr2509589oia.147.1602854398739;
+ Fri, 16 Oct 2020 06:19:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b3c6d7a5-0564-6e84-77ff-9afe10d7ee27@linaro.org>
+References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
+ <20201014191211.27029-4-nsaenzjulienne@suse.de> <20201015054244.GD12218@lst.de>
+In-Reply-To: <20201015054244.GD12218@lst.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 16 Oct 2020 08:19:47 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKyRby5tp2JS1COodYf7F7sB_DJivyAe7FqQivp4KM6OA@mail.gmail.com>
+Message-ID: <CAL_JsqKyRby5tp2JS1COodYf7F7sB_DJivyAe7FqQivp4KM6OA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/8] of/address: Introduce of_dma_get_max_cpu_address()
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 16 Oct 2020 at 14:50:29 (+0200), Daniel Lezcano wrote:
-> On 16/10/2020 14:18, Quentin Perret wrote:
-> > On Friday 16 Oct 2020 at 13:48:33 (+0200), Daniel Lezcano wrote:
-> >> If the SCMI is returning abstract numbers, the thermal IPA governor will
-> >> use these numbers as a reference to mitigate the temperature at the
-> >> specified sustainable power which is expressed in mW in the DT. So it
-> >> does not work and we can not detect such conflict.
-> >>
-> >> That is why I'm advocating to keep mW for the energy model and make the
-> >> SCMI and DT power numbers incompatible.
-> > 
-> > I think it's fair to say SCMI-provided number should only be compared to
-> > other SCMI-provided numbers, so +1 on that. But what I don't understand
-> > is why specifying the EM in mW helps with that?
-> 
-> It is already specified in mW. I'm just saying to not add the
-> 'scale'/'abstract'/'bogoWatt' in the documentation.
-> 
-> > Can we not let the providers specify the unit? 
-> 
-> Yes, it is possible but the provider must give the 'unit' and the energy
-> model must store this information along with the "power" numbers, so we
-> can compare apple with apple.
-> 
-> Today, the energy model is using the mW unit only and the providers are
-> not telling the 'unit', so both are missing.
-> 
-> Because both are missing, it does not make sense to talk about
-> 'abstract' values in the energy model documentation until the above is
-> fixed.
+On Thu, Oct 15, 2020 at 12:42 AM Christoph Hellwig <hch@lst.de> wrote:
+>
+> > +phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
+> > +{
+> > +     phys_addr_t max_cpu_addr = PHYS_ADDR_MAX;
+> > +     struct of_range_parser parser;
+> > +     phys_addr_t subtree_max_addr;
+> > +     struct device_node *child;
+> > +     phys_addr_t cpu_end = 0;
+> > +     struct of_range range;
+> > +     const __be32 *ranges;
+> > +     int len;
+> > +
+> > +     if (!np)
+> > +             np = of_root;
+>
+> Requiring of_root to be passed explicitly would seem more natural
+> to me than the magic NULL argument.  There doesn't seem to be any
+> precedent for that kind of calling convention either.
 
-Right, so that sounds like a reasonable way forward with this series.
+I prefer that of_root is not more widely exposed and NULL regularly
+means 'the whole tree'.
 
-Lukasz would you be able to re-spin this with a first patch that allows
-the EM provider to specify a unit? And perhaps we could use Doug's idea
-for the sustained power DT binding and allow specifying a unit
-explicitly there too, so we're sure to compare apples with apples.
-
-Thanks,
-Quentin
+Rob
