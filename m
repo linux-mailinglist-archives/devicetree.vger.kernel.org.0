@@ -2,114 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69128290A62
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 19:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5D5A290A6F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 19:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732284AbgJPRQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 13:16:15 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:34894 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728367AbgJPRQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 13:16:15 -0400
-Received: by mail-ot1-f65.google.com with SMTP id f22so481082ots.2;
-        Fri, 16 Oct 2020 10:16:15 -0700 (PDT)
+        id S1732510AbgJPRRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 13:17:52 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:46824 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731820AbgJPRRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 13:17:52 -0400
+Received: by mail-oi1-f196.google.com with SMTP id s81so3181181oie.13;
+        Fri, 16 Oct 2020 10:17:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ZmPWxKpDTknAmEe7UdqFdRj8Owf4EcjFeMtD8aGa6yA=;
-        b=aFQ1pb6TWRwo41XultgA2RQo9jXf8HphiX2utd1RfFHKeXeehO6pJzZOeaiPKt+ifR
-         yy8Z3mi3SXfOX33Hb2pGlZ3gvWLSPC1iypJFK8omK0LlWCzza2b9dJjgdE5qX55DBuXs
-         1QINw5GIy5Sogz2AMBY3OiAHF1I71R560c59aW+W34GBBMJzY4VUjQ63Qv/KXH0IO9mq
-         u5nrB6HKvrncJnuydtHsyKrwn2grlyFytfqW9Ce5BK3Peis2VOoZqKkHD5VLkXZDVaUo
-         fsypCHnsRii3xdLX0oJ2XxnVJhw97eaFJckCteIsXnEyK6B2IqGsq48ybFnqvt9EW4hE
-         XQLQ==
-X-Gm-Message-State: AOAM530jHjnxlQXV1FfYxEdeU+BDrUN5jLkkuyKAaa1YFrsLwNB0iuVM
-        VMyRnS8huymvLLrpYh9HOPT4Zt1Ygg==
-X-Google-Smtp-Source: ABdhPJwNFTc03Dpq8hQaQDs+x9At0y/IfS8Tw88Q4LOwNP/y70SOX0/J9aHLsKBqBo0dt8/jeyr6pw==
-X-Received: by 2002:a05:6830:13c5:: with SMTP id e5mr3209070otq.319.1602868574593;
-        Fri, 16 Oct 2020 10:16:14 -0700 (PDT)
+        bh=ERbnFskVROyz/pusq0tPmpG01bF6U8YGRnegt7uD+BQ=;
+        b=KOTIWHSGHtEX2rgPk+1FE7te3HKaXBeqKDTWdGxBCaaNKoyMFkKw1GVoQLd84lpokU
+         sKYoy0avvpc8hg2u64TSYAEWHdW9fnOGPDoK3Sft3/G7YxdUFB1DS9EdjVxMF0cvuDfi
+         4omsHd6mfWoQ7ZGtdWgpBUzgUYFmzM7kvJJaNxw3yQBzamUJTM4sjpniItWtyW/zKuJf
+         nJKcGhMiRoZ/8nIjbYMF2PvxIHotMW8ycKhM8O59ktPyoHFXAn4LhZ6vvezvtjTy0Qf/
+         QZ08IHuwl49202zPfdD8MvTjpbeCfPqR/klURboNhcE4sMNN3R1oxAFaKJOkuGCFYmPe
+         MoaA==
+X-Gm-Message-State: AOAM532LCdQkE3ZHh0sfY6+DiEIAi+uvv26I7UWrfhmZxQyCKuEIaOpJ
+        0Fyg7TnslQ2vAE3I9yLGmw==
+X-Google-Smtp-Source: ABdhPJzkHaNyeKJvhTFdbLO/y2u79BYQP6B4K5spT7qIr+MdGwla4Ht7FPubs9pHpSp9hmW7GPF0kQ==
+X-Received: by 2002:aca:52c4:: with SMTP id g187mr2972481oib.101.1602868671744;
+        Fri, 16 Oct 2020 10:17:51 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p11sm1158258otp.8.2020.10.16.10.16.13
+        by smtp.gmail.com with ESMTPSA id t29sm1138160otd.51.2020.10.16.10.17.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 10:16:13 -0700 (PDT)
-Received: (nullmailer pid 1595441 invoked by uid 1000);
-        Fri, 16 Oct 2020 17:16:12 -0000
-Date:   Fri, 16 Oct 2020 12:16:12 -0500
+        Fri, 16 Oct 2020 10:17:51 -0700 (PDT)
+Received: (nullmailer pid 1597850 invoked by uid 1000);
+        Fri, 16 Oct 2020 17:17:50 -0000
+Date:   Fri, 16 Oct 2020 12:17:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     jic23@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, joel@jms.id.au, andrew@aj.id.au,
-        p.zabel@pengutronix.de, alexandru.ardelean@analog.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 3/3] iio: adc: aspeed: Setting ref_voltage in probe
-Message-ID: <20201016171612.GA1593560@bogus>
-References: <20201013103245.16723-1-billy_tsai@aspeedtech.com>
- <20201013103245.16723-4-billy_tsai@aspeedtech.com>
+To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
+Cc:     Viorel Suman <viorel.suman@nxp.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        alsa-devel@alsa-project.org, Timur Tabi <timur@kernel.org>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v4 2/2] ASoC: dt-bindings: fsl_xcvr: Add document for XCVR
+Message-ID: <20201016171750.GA1597815@bogus>
+References: <20201013121733.83684-1-viorel.suman@oss.nxp.com>
+ <20201013121733.83684-3-viorel.suman@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201013103245.16723-4-billy_tsai@aspeedtech.com>
+In-Reply-To: <20201013121733.83684-3-viorel.suman@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 06:32:45PM +0800, Billy Tsai wrote:
-> At ast2600 ref_voltage becomes configurable and this property is board
-> dependency.
+On Tue, 13 Oct 2020 15:17:33 +0300, Viorel Suman (OSS) wrote:
+> From: Viorel Suman <viorel.suman@nxp.com>
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> XCVR (Audio Transceiver) is a new IP module found on i.MX8MP.
+> 
+> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
 > ---
->  .../devicetree/bindings/iio/adc/aspeed_adc.txt   | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/sound/fsl,xcvr.yaml   | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt b/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
-> index 034fc2ba100e..0ba1980c4e06 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
-> +++ b/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
-> @@ -3,8 +3,11 @@ Aspeed ADC
->  This device is a 10-bit converter for 16 voltage channels.  All inputs are
->  single ended.
->  
-> +At ast2600, this device split into two individual IPs and each contains 8 voltage channels.
-> +
-> +Chip level dtsi:
->  Required properties:
-> -- compatible: Should be "aspeed,ast2400-adc" or "aspeed,ast2500-adc"
-> +- compatible: Should be "aspeed,ast2400-adc" or "aspeed,ast2500-adc" or "aspeed,ast2600-adc"
->  - reg: memory window mapping address and length
->  - clocks: Input clock used to derive the sample clock. Expected to be the
->            SoC's APB clock.
-> @@ -20,3 +23,14 @@ Example:
->  		resets = <&syscon ASPEED_RESET_ADC>;
->  		#io-channel-cells = <1>;
->  	};
-> +
-> +Board level dts:
 
-This split is convention, but not relevant to the binding.
-
-> +Required properties:
-> +- ref_voltage: (ast2600 only)
-
-s/_/-/
-
-And needs a vendor prefix.
-
-> +	- Reference voltage in millivolts for the conversions.
-> +	- The range of value is 900 to 2700 mv.
-> +
-> +Example:
-> +&adc0 {
-> +	ref_voltage = <2500>;
-> +};
-> \ No newline at end of file
-
-Fix this.
-
-> -- 
-> 2.17.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
