@@ -2,88 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98D4A290ADB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 19:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 310AB2908EE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:54:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727314AbgJPRgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 13:36:24 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:44466 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2391676AbgJPRgF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 13:36:05 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09GHQLpg024369;
-        Fri, 16 Oct 2020 12:35:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=PODMain02222019;
- bh=277Z0PefD7/3bHCFPZvHO3OjpBunOgY+as+ShFpcA00=;
- b=k3FPVmQtepxCKMeD69J8smRcmnQILFOGua0wtRXOO9SBOMtfiAlHyBd7oO3fp15o2xNl
- QYS9GeWp/dBxOWyLUgv35PQ7k5tPB8ygdi7zNPDYBypp/uvy+FEqO2CuxvejUouON2UM
- vEE24elPMfe4LZvzSYQdOTonPvqcFfg2O79obvzCpd81FFHGallnoLPkMc06fthMqyp+
- KUwORcL84kWSzOi0c2ZMYFBqlnQrCNu/B8hp6h5wk1OeAJ2ghlJntfQO8zX2yR8KjOt+
- 6GKO0gBHVKcXck6oco7N3/GIS9skHsUrOsPczYz9bByoaFl2Xn8eLwjisjrizRSQR1OA hQ== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 343ac20jk8-6
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 16 Oct 2020 12:35:51 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
- 2020 18:35:47 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Fri, 16 Oct 2020 18:35:47 +0100
-Received: from AUSNPC0LSNW1-debian.ad.cirrus.com (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 616D045;
-        Fri, 16 Oct 2020 17:35:47 +0000 (UTC)
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <nsaenzjulienne@suse.de>
-CC:     <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>
-Subject: [PATCH v2 7/7] MAINTAINERS: Add dts for Cirrus Logic Lochnagar on RPi4
-Date:   Fri, 16 Oct 2020 18:35:41 +0100
-Message-ID: <20201016173541.21180-8-rf@opensource.cirrus.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201016173541.21180-1-rf@opensource.cirrus.com>
-References: <20201016173541.21180-1-rf@opensource.cirrus.com>
+        id S2408876AbgJPPy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 11:54:27 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:42499 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2408822AbgJPPy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 11:54:27 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 620264000A;
+        Fri, 16 Oct 2020 15:54:20 +0000 (UTC)
+Date:   Fri, 16 Oct 2020 19:54:06 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen.Hristev@microchip.com
+Cc:     laurent.pinchart@ideasonboard.com, robh+dt@kernel.org,
+        sakari.ailus@iki.fi, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: media: atmel: csi2dc: add bindings
+ for microchip csi2dc
+Message-ID: <20201016175406.meg2wbsjmhj4xf7z@uno.localdomain>
+References: <20200826065142.205000-1-eugen.hristev@microchip.com>
+ <20201010211743.GB3939@pendragon.ideasonboard.com>
+ <c5d27d11-891b-afd8-0be1-02bf5eb8bef9@microchip.com>
+ <20201012130425.2rszhgd7eh7nffrv@uno.localdomain>
+ <c473748a-18f9-082a-9121-9c04c663e434@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 lowpriorityscore=0
- malwarescore=0 priorityscore=1501 suspectscore=0 impostorscore=0
- mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=999 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2010160130
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c473748a-18f9-082a-9121-9c04c663e434@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the Cirrus Logic driver maintainers to include the device
-tree files for using the Lochnagar with a Raspberry Pi 4.
+Hello Eugen,
 
-Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, Oct 16, 2020 at 12:30:59PM +0000, Eugen.Hristev@microchip.com wrote:
+> On 12.10.2020 16:04, Jacopo Mondi wrote:
+> > Hello,
+> >     just my 2 cents, as I've noticed this patch skimming through the
+> >     list
+> >
+> > On Mon, Oct 12, 2020 at 07:19:43AM +0000, Eugen.Hristev@microchip.com wrote:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0f59b0412953..d0065cba9535 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4193,6 +4193,7 @@ M:	Charles Keepax <ckeepax@opensource.cirrus.com>
- M:	Richard Fitzgerald <rf@opensource.cirrus.com>
- L:	patches@opensource.cirrus.com
- S:	Supported
-+F:	arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar*
- F:	Documentation/devicetree/bindings/clock/cirrus,lochnagar.yaml
- F:	Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.yaml
- F:	Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
--- 
-2.20.1
+[snip]
 
+>
+> Hi,
+>
+> Thanks for helping,
+> >
+> > Is this property describing the CSI-2 clock continuous, non-continuous
+> > mode configuration, or did I mis-interpreted it ?
+>
+> I think so. This is a setting inside the csi2dc regarding clock. If we
+> can obtain it from pads operations, then it's good, but the question is,
+> if the devices can provide this or not ?
+
+The transmitter can provide this information, as it knows which clock
+mode it is going to use (it's not clear from the CSI-2 spec which side
+is in charge of the selection, but it seems natural to me that it's up
+to the transmitter side). Whether they implement the right operation
+to do so, well... see below
+
+> >
+> > We added support for retrieving run-time configuration of the media
+> > bus with the get_mbus_config pad operations recently. Among the
+> > configuration flags for MBUS_CSI2_DPHY there are inded CONTINUOUS and
+> > NON_CONTINUOUS clock flags.
+> >
+> >>>
+> >>>> +
+> >>>> +  microchip,inter-line-delay:
+> >>>> +    allOf:
+> >>>> +    - $ref: /schemas/types.yaml#/definitions/uint32
+> >>>> +    - minimum: 1
+> >>>> +    - maximum: 16
+> >>>> +    default: 16
+> >>>> +    description:
+> >>>> +      Indicates how many clock cycles should be introduced between each line.
+> >>>
+> >>> This also sounds like a configuration parameter. How does one compute
+> >>> the right value for this ?
+> >>
+> >> I think this is a delay that can be added inside the hardware block,
+> >> depending on the interface speed and bandwidth. I will try to understand
+> >> more details from the hardware design and come back with a more detailed
+> >> answer.
+> >>
+>
+> Regarding this, I will remove it. Our design team advised to have a
+> hardcoded value for this product.
+>
+> >>>
+> >>>> +
+> >>>> +
+> >>>> +        properties:
+> >>>> +          reg:
+> >>>> +            enum: [0, 1, 2, 3]
+> >>>> +            description: virtual channel for the endpoint
+> >>>
+> >>> The virtual channel used by the source is also something that needs to
+> >>> be queried from the source at runtime, it doesn't belong to this
+> >>> binding.
+> >>
+> >> The same question as for the gated clock configuration. How can we use
+> >> v4l2 subdevice API to obtain such information from the subdevice? And if
+> >> the subdevice does not offer such information ?
+> >
+> > I think the subdev driver should be instrumented to report it instead of
+> > hard-coding the information in DT which should be otherwise updated
+> > depending on which sensor is connected to the board. Does it make
+> > sense to you ?
+>
+> It does, but then, it won't work unless connected to instrumented
+> subdevices. Which is not really something I would do, since it would
+> completely limit the usability.
+> Do you have any example on how to get the virtual id from the subdev ?
+
+As examples of CSI-2 transmitters implementing get_mbus_config() we
+have tc358743 and adv748x reporting the number of active data lanes.
+
+Reporting the virtual channel in use is a matter of using one of the
+following flags:
+
+/* CSI-2 Virtual Channel identifiers. */
+#define V4L2_MBUS_CSI2_CHANNEL_0		BIT(4)
+#define V4L2_MBUS_CSI2_CHANNEL_1		BIT(5)
+#define V4L2_MBUS_CSI2_CHANNEL_2		BIT(6)
+#define V4L2_MBUS_CSI2_CHANNEL_3		BIT(7)
+
+As an example of a receiver driver rcar-csi2 uses the operation to
+dynamically negotiate the number of data lanes. To handle virtual
+channel you would need to inspect which of the above flags have been
+set by the subdevice.
+
+On deciding if this better handled by using a subdev operation or a DT
+property, I understand the subdev driver needs to implement
+get_mbus_config, but hardcoding it in DT I fear is a no-go for
+mainline and honestly it doesn't sound much more advantageous, as it
+needs to be adapted according to the connected sensor anyway, doesn't
+it ? But I'm happy to defer this call to the maintainers, I hope I
+just have provided some useful references.
+
+Cheers
+   j
+
+>
+> Thanks again,
+>
+> Eugen
+> >
+> > Cheers
+> >     j
+> >
+> >>
+> >> Thanks again,
+> >>
+> >> Eugen
+> >>>
+> >>>> +
+> >>>> +          remote-endpoint: true
+> >>>> +
+> >>>> +        required:
+> >>>> +          - remote-endpoint
+> >>>> +          - reg
+> >>>> +
+> >>>> +        additionalProperties: false
+> >>>> +
+> >>>> +    additionalProperties: false
+> >>>> +
+> >>>> +required:
+> >>>> +  - compatible
+> >>>> +  - reg
+> >>>> +  - clocks
+> >>>> +  - clock-names
+> >>>> +  - port@0
+> >>>> +
+> >>>> +examples:
+> >>>> +  - |
+> >>>> +    csi2dc@e1404000 {
+> >>>> +        compatible = "microchip,sama7g5-csi2dc";
+> >>>> +        #address-cells = <1>;
+> >>>> +        #size-cells = <0>;
+> >>>> +        reg = <0xe1404000 0x500>;
+> >>>> +        clocks = <&pclk>, <&scck>;
+> >>>> +        clock-names = "pclk", "scck";
+> >>>> +
+> >>>> +        port@0 {
+> >>>> +               reg = <0>; /* must be 0, first child port */
+> >>>> +               csi2dc_in: endpoint { /* input from IDI interface */
+> >>>> +                     remote-endpoint = <&csi2host_out>;
+> >>>> +               };
+> >>>> +        };
+> >>>> +
+> >>>> +        port@1 {
+> >>>> +                #address-cells = <1>;
+> >>>> +                #size-cells = <0>;
+> >>>> +                reg = <1>; /* must be 1, second child port */
+> >>>> +                csi2dc_out: endpoint@2 {
+> >>>> +                        reg = <2>;  /* virtual channel identifier */
+> >>>> +                        remote-endpoint = <&xisc_in>; /* output to sensor controller */
+> >>>> +                };
+> >>>> +        };
+> >>>> +    };
+> >>>> +
+> >>>> +...
+> >>>
+> >>> --
+> >>> Regards,
+> >>>
+> >>> Laurent Pinchart
+> >>>
+> >>
+>
