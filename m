@@ -2,133 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E17E29076A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E39CB290796
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:44:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395350AbgJPOnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 10:43:24 -0400
-Received: from foss.arm.com ([217.140.110.172]:38476 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2395275AbgJPOnY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 10:43:24 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A2BF030E;
-        Fri, 16 Oct 2020 07:43:22 -0700 (PDT)
-Received: from [10.57.21.20] (unknown [10.57.21.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 698AA3F71F;
-        Fri, 16 Oct 2020 07:43:18 -0700 (PDT)
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     Quentin Perret <qperret@google.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>
-References: <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
- <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
- <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
- <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
- <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
- <e321191c-61d2-a15d-47c2-653b277984ca@linaro.org>
- <20201016121844.GA2420691@google.com>
- <b3c6d7a5-0564-6e84-77ff-9afe10d7ee27@linaro.org>
- <20201016130905.GA2426638@google.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <deffb2b4-34cb-3f46-af89-cc216d1cf5c5@arm.com>
-Date:   Fri, 16 Oct 2020 15:42:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2409081AbgJPOoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 10:44:34 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:5288 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2409227AbgJPOoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 10:44:34 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f89b1c50000>; Fri, 16 Oct 2020 07:44:21 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 16 Oct
+ 2020 14:44:32 +0000
+Received: from audio.nvidia.com (10.124.1.5) by mail.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Fri, 16 Oct 2020 14:44:26 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <kuninori.morimoto.gx@renesas.com>,
+        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <p.zabel@pengutronix.de>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>, <mkumard@nvidia.com>,
+        <viswanathl@nvidia.com>, <rlokhande@nvidia.com>,
+        <dramesh@nvidia.com>, <atalambedu@nvidia.com>,
+        <nwartikar@nvidia.com>, <swarren@nvidia.com>,
+        <nicoleotsuka@gmail.com>, Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v4 11/15] ASoC: dt-bindings: tegra: Add json-schema for Tegra audio graph card
+Date:   Fri, 16 Oct 2020 20:12:58 +0530
+Message-ID: <1602859382-19505-12-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
+References: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <20201016130905.GA2426638@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1602859461; bh=xaEKGdSJZpTs34Twkb/qEzNmCGGuDz9UrGpSqe3rqHo=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
+         References:MIME-Version:Content-Type;
+        b=Gx0b2dL+nu5LPRbtcQgF0HkfqLE1ekVmKJZUUDyIEPrspvRehMVcYvnsmxsYCjc5l
+         5c0FU6ymVCkuo9aZ208scdfHc6gwQ2tOzuS9rENTnr2te5ZsCXt9NGGj1/KTys+6Ja
+         lRYbTS48mhc8RaflOu3J9KeAK2w5WeqFChpUzBoK5csU+OMsumQdOiE7ime8qWdc4c
+         ECmthX5NFRx1toYeuobXJGT+4nXv4gIGTDGIOTlcwVuzHPhpx6EfBUBxaOMqC9Kvrf
+         +mKEWnOLRu5ZTd4lMzNKu6Uz7eUWfrlZwOqGVu88aKkaFcC6Dz+pYBkzNZGQAx6CsD
+         I20vFeZMIaZUw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add YAML schema for Tegra audio graph sound card DT bindings. It uses the
+same DT bindings provided by generic audio graph driver. Along with this
+few standard clock DT bindings are added which are specifically required
+for Tegra audio.
 
+Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+---
+ .../sound/nvidia,tegra-audio-graph-card.yaml       | 158 +++++++++++++++++++++
+ 1 file changed, 158 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
 
-On 10/16/20 2:09 PM, Quentin Perret wrote:
-> On Friday 16 Oct 2020 at 14:50:29 (+0200), Daniel Lezcano wrote:
->> On 16/10/2020 14:18, Quentin Perret wrote:
->>> On Friday 16 Oct 2020 at 13:48:33 (+0200), Daniel Lezcano wrote:
->>>> If the SCMI is returning abstract numbers, the thermal IPA governor will
->>>> use these numbers as a reference to mitigate the temperature at the
->>>> specified sustainable power which is expressed in mW in the DT. So it
->>>> does not work and we can not detect such conflict.
->>>>
->>>> That is why I'm advocating to keep mW for the energy model and make the
->>>> SCMI and DT power numbers incompatible.
->>>
->>> I think it's fair to say SCMI-provided number should only be compared to
->>> other SCMI-provided numbers, so +1 on that. But what I don't understand
->>> is why specifying the EM in mW helps with that?
->>
->> It is already specified in mW. I'm just saying to not add the
->> 'scale'/'abstract'/'bogoWatt' in the documentation.
->>
->>> Can we not let the providers specify the unit?
->>
->> Yes, it is possible but the provider must give the 'unit' and the energy
->> model must store this information along with the "power" numbers, so we
->> can compare apple with apple.
->>
->> Today, the energy model is using the mW unit only and the providers are
->> not telling the 'unit', so both are missing.
->>
->> Because both are missing, it does not make sense to talk about
->> 'abstract' values in the energy model documentation until the above is
->> fixed.
-> 
-> Right, so that sounds like a reasonable way forward with this series.
-> 
-> Lukasz would you be able to re-spin this with a first patch that allows
-> the EM provider to specify a unit? And perhaps we could use Doug's idea
-> for the sustained power DT binding and allow specifying a unit
-> explicitly there too, so we're sure to compare apples with apples.
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
+new file mode 100644
+index 0000000..284d185
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
+@@ -0,0 +1,158 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-graph-card.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Audio Graph based Tegra sound card driver
++
++description: |
++  This is based on generic audio graph card driver along with additional
++  customizations for Tegra platforms. It uses the same bindings with
++  additional standard clock DT bindings required for Tegra.
++
++  See{LINUX}/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
++
++maintainers:
++  - Jon Hunter <jonathanh@nvidia.com>
++  - Sameer Pujar <spujar@nvidia.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - nvidia,tegra210-audio-graph-card
++          - nvidia,tegra186-audio-graph-card
++
++  dais:
++    $ref: /schemas/sound/audio-graph-card.yaml#/properties/dais
++
++  label:
++    $ref: /schemas/sound/simple-card.yaml#/properties/label
++
++  pa-gpios:
++    $ref: /schemas/sound/audio-graph-card.yaml#/properties/pa-gpios
++
++  widgets:
++    $ref: /schemas/sound/simple-card.yaml#/definitions/widgets
++
++  routing:
++    $ref: /schemas/sound/simple-card.yaml#/definitions/routing
++
++  mclk-fs:
++    $ref: /schemas/sound/simple-card.yaml#/definitions/mclk-fs
++
++  prefix:
++    $ref: /schemas/sound/simple-card.yaml#/definitions/prefix
++
++  clocks:
++   minItems: 2
++
++  clock-names:
++   minItems: 2
++   items:
++     - const: pll_a
++     - const: plla_out0
++
++  assigned-clocks:
++    minItems: 1
++    maxItems: 3
++
++  assigned-clock-parents:
++    minItems: 1
++    maxItems: 3
++
++  assigned-clock-rates:
++    minItems: 1
++    maxItems: 3
++
++  ports:
++    $ref: /schemas/sound/audio-graph-card.yaml#/properties/ports
++
++patternProperties:
++  "^port(@[0-9a-f]+)?$":
++    $ref: /schemas/sound/audio-graph-card.yaml#/definitions/port
++
++additionalProperties: false
++
++required:
++  - compatible
++  - dais
++  - clocks
++  - clock-names
++  - assigned-clocks
++  - assigned-clock-parents
++
++examples:
++  - |
++    #include<dt-bindings/clock/tegra210-car.h>
++
++    tegra_sound {
++        compatible = "nvidia,tegra210-audio-graph-card";
++
++        clocks = <&tegra_car TEGRA210_CLK_PLL_A>,
++                 <&tegra_car TEGRA210_CLK_PLL_A_OUT0>;
++        clock-names = "pll_a", "plla_out0";
++
++        assigned-clocks = <&tegra_car TEGRA210_CLK_PLL_A>,
++                          <&tegra_car TEGRA210_CLK_PLL_A_OUT0>,
++                          <&tegra_car TEGRA210_CLK_EXTERN1>;
++        assigned-clock-parents = <0>, <0>, <&tegra_car TEGRA210_CLK_PLL_A_OUT0>;
++        assigned-clock-rates = <368640000>, <49152000>, <12288000>;
++
++        dais = /* FE */
++               <&admaif1_port>,
++               /* Router */
++               <&xbar_i2s1_port>,
++               /* I/O DAP Ports */
++               <&i2s1_port>;
++
++        label = "jetson-tx1-ape";
++    };
++
++    tegra_ahub: ahub@702d0800 {
++        // ...
++
++        reg = <0x702d0800 0x800>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            xbar_i2s1_port: port@a {
++                reg = <0xa>;
++                xbar_i2s1_ep: endpoint {
++                    remote-endpoint = <&i2s1_cif_ep>;
++                };
++            };
++        };
++    };
++
++    tegra_i2s1: i2s@702d1000 {
++        // ...
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        reg = <0x702d1000 0x100>;
++
++        port@0 {
++            reg = <0>;
++
++            i2s1_cif_ep: endpoint {
++                remote-endpoint = <&xbar_i2s1_ep>;
++            };
++        };
++
++        i2s1_port: port@1 {
++            reg = <1>;
++
++            i2s1_dap: endpoint {
++                dai-format = "i2s";
++
++                // ...
++            };
++        };
++    };
++
++...
+-- 
+2.7.4
 
-Do you mean a new entry in DT which will be always below
-'dynamic-power-coefficient' and/or 'sustainable-power' saying the unit
-of above value?
-
-There was discussion with Rob (and Doug) about this. I got the
-impression he was against any new DT stuff [1].
-We don't have to, I think we all agree that DT will only support mW.
-
-I have agreed to this idea having a 'flag' inside EM [2], which
-indicates the mW or bogoWatts. It could be set via API:
-em_dev_register_perf_domain() and this new last argument.
-
-I can write that patch. There is only two usage (3rd is on LKML) of
-that function. The DT way, which is via:
-dev_pm_opp_of_register_em() will always set 'true';
-Driver direct calls of em_dev_register_perf_domain(), will have to
-set appropriate value ('true' or 'false'). The EM struct em_perf_domain
-will have the new bool field set based on that.
-Is it make sense?
-
-Regards,
-Lukasz
-
-[1] 
-https://lore.kernel.org/lkml/CAL_JsqJ=brfbLiTm9D+p2N0Az-gcStbYj=RS2EaG50dHo0-5WA@mail.gmail.com/
-[2] 
-https://lore.kernel.org/lkml/3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com/
-
-> 
-> Thanks,
-> Quentin
-> 
