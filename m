@@ -2,107 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DC6328FD69
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 06:45:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2475D28FD90
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 07:14:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733143AbgJPEp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 00:45:58 -0400
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:57941 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2387592AbgJPEp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 00:45:57 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id EF479F8E;
-        Fri, 16 Oct 2020 00:36:17 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 16 Oct 2020 00:36:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=WXebYGUOxo1OO
-        laEW5dDl3iLC0qxgbnBraqL8r8/PQA=; b=ibn3w8QeOpGy5z6YxsRL4s7DugbjY
-        pcC2qXS0x5AsdKtiQZLbSoKE1TEDOz898Q7UwmaK5Xx4v9btkkqAeQ6f6TLIctm7
-        6iL53dDQjmBt0p3dX6hTXBcqDJfJuGGyeZBHQT2pBjeAbmGOrxhYSVfnahvEPVBi
-        egHW3ZYOQlkUXjy+xpfQ3psulga+ShRzdnyjiFe19RsXxzhIR5r9bgJguXOUjCNr
-        pB2W7n9m9rue2Z+funoiLx66P+RGBXJJTfQRTSC6aZiEZNWq5r8sX7so0h7Qmxd8
-        +iXJ6aCLI9zAGochRlwiJnz2jk/TUFz/TKWpTuhZZv4DSYkYHDDXYaU3w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=WXebYGUOxo1OOlaEW5dDl3iLC0qxgbnBraqL8r8/PQA=; b=W7ay5OM4
-        gZTxeKzs4zVaV3+LIL+QVsxtM055iwA08B2HcOxuHX3M5V2n/XDs9eizH0waIVyr
-        P19cfSmTT2CMMnXSjEdg3w1HmrYLcYdFT/l7mHkxdgFwNRJF/2M+fPr5qwHxoUwW
-        +myVNM/kS9gJoV+faPRbvW/COMkNCMJYAu7GAjhXixe0qHS5WYIMk1q0l/FAY3dS
-        02pcsGCp5D7HzKZu7nEIvkE8BPhegMSuyNo8Qij9/GUJM3hCrNanfgAJhjWuRosu
-        RRzVEe3FyLh40s5Tlnoi6Ic+wuRoJI6b6kvke/YcU1QEpmFCXpcR7YiI45MEIyJg
-        AHdsOQqAEn/aEQ==
-X-ME-Sender: <xms:QSOJX78dpbHmPOvuwIKe81TMf_JpNMDxBrJ83RWb05HRGfNql80acA>
-    <xme:QSOJX3tgEVJjzPV1-2RuDascabuw5eYzty82KAVzTrPLnppPERqlX4TbfZpBJVDW8
-    up2w4wJQsuW3s_Sjw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrieeggdekiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghj
-    rdhiugdrrghuqeenucggtffrrghtthgvrhhnpeejgfdvveehteekveeggeellefgleette
-    ejffelffdvudduveeiffegteelvefhteenucfkphepuddukedrvddutddrjedrudektden
-    ucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurh
-    gvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:QSOJX5Du2CDI9BOqQJ92pP72W5hVtXySe9rS9M6LFNiLX4atifAoHg>
-    <xmx:QSOJX3dfVvSj67SvFIVgHmmgRfyVBkd9CyoAfpPh5KYVrf6ejOEXGQ>
-    <xmx:QSOJXwNUgxLzj1IQkwpuXdlkuEaUxgj4jMvxEUc6JNyAkHIarLdjww>
-    <xmx:QSOJX1rzA80USFqw2VPqb3NjxQpT1Ny0284pluUMw6K-HW45yIneAg>
-Received: from localhost.localdomain (ppp118-210-7-180.adl-adc-lon-bras31.tpg.internode.on.net [118.210.7.180])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3F7483280059;
-        Fri, 16 Oct 2020 00:36:14 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     joel@jms.id.au
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: tacoma: Add reserved memory for ramoops
-Date:   Fri, 16 Oct 2020 15:05:13 +1030
-Message-Id: <20201016043513.119841-3-andrew@aj.id.au>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201016043513.119841-1-andrew@aj.id.au>
-References: <20201016043513.119841-1-andrew@aj.id.au>
+        id S1730586AbgJPFOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 01:14:32 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:10312 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726334AbgJPFOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 01:14:32 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f892c2b0000>; Thu, 15 Oct 2020 22:14:19 -0700
+Received: from [10.25.98.225] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 16 Oct
+ 2020 05:14:19 +0000
+Subject: Re: [PATCH v3 09/13] ASoC: dt-bindings: tegra: Add schema for audio
+ graph card
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <kuninori.morimoto.gx@renesas.com>,
+        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sharadg@nvidia.com>,
+        <mkumard@nvidia.com>, <viswanathl@nvidia.com>,
+        <rlokhande@nvidia.com>, <dramesh@nvidia.com>,
+        <atalambedu@nvidia.com>, <nwartikar@nvidia.com>,
+        <swarren@nvidia.com>, <nicoleotsuka@gmail.com>
+References: <1601573587-15288-1-git-send-email-spujar@nvidia.com>
+ <1601573587-15288-10-git-send-email-spujar@nvidia.com>
+ <20201006203433.GA2786434@bogus>
+ <a5bc07d8-fb2e-e86e-f0d3-be19166ad7bb@nvidia.com>
+Message-ID: <acbcd136-a933-e5e0-863b-f435dafe1697@nvidia.com>
+Date:   Fri, 16 Oct 2020 10:44:15 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <a5bc07d8-fb2e-e86e-f0d3-be19166ad7bb@nvidia.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-GB
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1602825259; bh=58G5hh5VTCRWNjS2NbwxGT+Sa6kUqX0udY4utQfHKx4=;
+        h=Subject:From:To:CC:References:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=rkMkit/dwJWZjwBML9DdGRm+RNMv9B5Kz7OUNznxWxt1JLSqpH5lHP4OWCQNRdJf5
+         AvU6R5Buf8OP2UclEUIXoAAcYfYNqtLZCpZxiqF4Vr/t5ZyBOAvFO259diZQnwxnJ5
+         PJmLj17dQgUYtijjaRy7Do2j9Vh9oOKDAwkbsfnwQXY5XW5giTTuJZEAV4eRyc43/w
+         0jw6nBHxUXE6faiST7IY30d425/tOOWm01PXWSimZhXK8ylwk0U93tJCaanvdekoBw
+         EpmB7r5c/s+z2Wtg7z5FB+uZ+rhTx9Y7nKpHbzotX2CXRHWigkuDKq9OxDo6w9Dp0e
+         lqPyJ9p8O8KmQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reserve a 1.5MiB region of memory to record kmsg dumps, console and
-userspace message state into 16kiB ring-buffer slots. The sizing allows
-for up to 32 dumps to be captured and read out.
 
-Set max-reason to KMSG_DUMP_EMERG to capture bad-path reboots.
+>>> Add YAML schema for Tegra audio graph sound card DT bindings. It=20
+>>> uses the
+>>> same DT bindings provided by generic audio graph driver. Along with=20
+>>> this
+>>> few standard clock DT bindings are added which are specifically=20
+>>> required
+>>> for Tegra audio.
+>>>
+>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>>> ---
+>>> =C2=A0 .../sound/nvidia,tegra-audio-graph-card.yaml | 70=20
+>>> ++++++++++++++++++++++
+>>> =C2=A0 1 file changed, 70 insertions(+)
+>>> =C2=A0 create mode 100644=20
+>>> Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.y=
+aml
+>>>
+>>> diff --git=20
+>>> a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card=
+.yaml=20
+>>> b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card=
+.yaml=20
+>>>
+>>> new file mode 100644
+>>> index 0000000..b73fbe5
+>>> --- /dev/null
+>>> +++=20
+>>> b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card=
+.yaml
+>>> @@ -0,0 +1,70 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id:=20
+>>> http://devicetree.org/schemas/sound/nvidia,tegra-audio-graph-card.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Audio Graph based Tegra sound card driver
+>>> +
+>>> +description: |
+>>> +=C2=A0 This is based on generic audio graph card driver along with=20
+>>> additional
+>>> +=C2=A0 customizations for Tegra platforms. It uses the same bindings w=
+ith
+>>> +=C2=A0 additional standard clock DT bindings required for Tegra.
+>>> +
+>>> +=20
+>>> See{LINUX}/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+>>> +
+>>> +maintainers:
+>>> +=C2=A0 - Jon Hunter <jonathanh@nvidia.com>
+>>> +=C2=A0 - Sameer Pujar <spujar@nvidia.com>
+>>> +
+>>> +properties:
+>>> +=C2=A0 compatible:
+>>> +=C2=A0=C2=A0=C2=A0 oneOf:
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: nvidia,tegra210-audio-graph-ca=
+rd
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: nvidia,tegra186-audio-graph-ca=
+rd
+>>> +
+>>> +=C2=A0 clocks:
+>>> +=C2=A0=C2=A0 minItems: 2
+>>> +
+>>> +=C2=A0 clock-names:
+>>> +=C2=A0=C2=A0 minItems: 2
+>>> +=C2=A0=C2=A0 items:
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0 - const: pll_a
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0 - const: plla_out0
+>>> +
+>>> +=C2=A0 assigned-clocks:
+>>> +=C2=A0=C2=A0=C2=A0 minItems: 1
+>>> +=C2=A0=C2=A0=C2=A0 maxItems: 3
+>>> +
+>>> +=C2=A0 assigned-clock-parents:
+>>> +=C2=A0=C2=A0=C2=A0 minItems: 1
+>>> +=C2=A0=C2=A0=C2=A0 maxItems: 3
+>>> +
+>>> +=C2=A0 assigned-clock-rates:
+>>> +=C2=A0=C2=A0=C2=A0 minItems: 1
+>>> +=C2=A0=C2=A0=C2=A0 maxItems: 3
+>>> +
+>>> +required:
+>>> +=C2=A0 - compatible
+>>> +=C2=A0 - clocks
+>>> +=C2=A0 - clock-names
+>>> +=C2=A0 - assigned-clocks
+>>> +=C2=A0 - assigned-clock-parents
+>> Where's the graph? You need to define the ports and reference the common
+>> schema.
+>
+> I am looking to reference the bindings used in below doc which is not=20
+> yet in YAML format. Only additional properties I listed here.
+> {LINUX}/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+>
+> Should I keep this doc to *.txt format as well and later move to YAML=20
+> or is there a way to reference *.txt doc here?
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
- arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+The dependency here is like below,
+Tegra audio graph card -> generic audio graph card=20
+(audio-graph-card.txt) -> graph (graph.txt)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-index 46f2f538baba..4f7e9b490e1a 100644
---- a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-@@ -26,6 +26,15 @@ reserved-memory {
- 		#size-cells = <1>;
- 		ranges;
- 
-+		ramoops@b9e80000 {
-+			compatible = "ramoops";
-+			reg = <0xb9e80000 0x180000>;
-+			record-size = <0x4000>;
-+			console-size = <0x4000>;
-+			pmsg-size = <0x4000>;
-+			max-reason = <3>; /* KMSG_DUMP_EMERG */
-+		};
-+
- 		flash_memory: region@ba000000 {
- 			no-map;
- 			reg = <0xb8000000 0x4000000>; /* 64M */
--- 
-2.25.1
+I plan to convert dependencies to json-schema in next revision and then=20
+refer these for Tegra audio graph card.
 
