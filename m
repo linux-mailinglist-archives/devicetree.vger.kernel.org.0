@@ -2,85 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2FA92909BD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DA542909CE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2410244AbgJPQd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 12:33:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48438 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408718AbgJPQd1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 12:33:27 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A532320829;
-        Fri, 16 Oct 2020 16:33:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602866007;
-        bh=u46vp5B1uwzNW0JBMl2fGW4TXHe2IaVrLlXw6hGjEVM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EARcUo2/+3Kkn0bnoTfu6mtSthjhpEJ87uidMjq6vETgPO4BEPqjy+43uedsrET6Y
-         mTCBFcTgNlasKNJv+U/OLTts0AghFy1iDGtPAM1z32L9xMJgTnj1FD6B366AOqP6m8
-         RyWUDStatecR7gfRXHbMmm3JEVzPF9FGRyj5RAUk=
-Date:   Fri, 16 Oct 2020 17:33:18 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     vigneshr@ti.com, tudor.ambarus@microchip.com,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        miquel.raynal@bootlin.com, simon.k.r.goldschmidt@gmail.com,
-        dinguyen@kernel.org, richard@nod.at, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-Subject: Re: [PATCH v1 4/6] spi: cadence-quadspi: Add QSPI support for Intel
- LGM SoC
-Message-ID: <20201016163318.GI5274@sirena.org.uk>
-References: <20201016093138.28871-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201016093138.28871-5-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S2410852AbgJPQg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 12:36:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46004 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2410841AbgJPQg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 12:36:56 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D221C061755
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 09:36:57 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id a7so3709065lfk.9
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 09:36:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WmkPqZjVOnt+PO6/OfriQ8dmNuyxwjpGGyQVkjhisNs=;
+        b=uZVWXEBHQTBneEEtljRPV1nwiyWBRW+wmCfKietxc2rp/g0Bozc8TSl5uQH3dnAdcb
+         HKc19zHBULscDZFlUZPzShJhaqVxb/waSMsT2hsSd55rZNUC+gBdjmgXlM0yVITOE+fm
+         hfUGZP0+AFy74RDfqBRpGOdtHZMlnlGJrG7s4MEZmRRihXUGWy5CcIaOL2LuakeIpT/T
+         GBi6IUZinLt+Cj/sYDJbdmR1YFesCvhxHiWKgjDiHLBjPYnVjK//9Tl5sbehOIfRmKF+
+         LgW0xM3GTHdVIL6Zqc5TQoKvtsbUpB2W2K88aKG4QmdlFfkxKE2Tey2zvd0eQ9t9sXKA
+         6oQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WmkPqZjVOnt+PO6/OfriQ8dmNuyxwjpGGyQVkjhisNs=;
+        b=Sley3DGGwkmKXzrcBftQZp4iXFjAl8o2pQS50mO3bUdYN8JMx5Lu3PiNdDrVYflrVL
+         mL4Bzfj2JqLdT9EHZxnBhY/iQPXssLaIbayQwTnxhJHL1QmfUXiAHhgxX9xuh9fjZdFD
+         +eLW+Xn7PlZC9MP/5tY6EmI0UmdXvScXQrx6USB3wvMTFTOiD2yFLj3hq7UodcfDS1rk
+         rnwHh9rsD6IEAB515+iXzOmXFI6fh4sHaOEOIe4HU8yvBd0AQmMhKq2tdOIc3oUskA14
+         3WmkjSOoZl3mDnGkVLZx9MeL/Sv58+oe30590d1npYiJDy5D6Kf1VazdqkuB8kqN0nBT
+         Q/KA==
+X-Gm-Message-State: AOAM532UBgQ1cXzNHW81HbL0erEhNFhuYnJf7bELWVFjsBJyXjaS9Nfw
+        au10Yd8Carqnd8jTAwp3DYOrTZmqcNB1E2OFl4GRQGYUQ0YNaw==
+X-Google-Smtp-Source: ABdhPJwwVmXv+e1KBN+rs4Cm9f+yYpq0jUFaCN+rAAAr7TEb2ius4jvb33uqSPwO1D4bIXyb5iqQ3Xhy82M3gYeDjvY=
+X-Received: by 2002:a19:1c8:: with SMTP id 191mr1635934lfb.585.1602866215929;
+ Fri, 16 Oct 2020 09:36:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lqaZmxkhekPBfBzr"
-Content-Disposition: inline
-In-Reply-To: <20201016093138.28871-5-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Cookie: Pournelle must die!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-2-daniel@0x0f.com>
+In-Reply-To: <20201011024831.3868571-2-daniel@0x0f.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 16 Oct 2020 18:36:44 +0200
+Message-ID: <CACRpkdZDyp83AiGkX9eFe2_w9eK1NXREFG896DZfPUaHboy+0g@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO controller
+To:     Daniel Palmer <daniel@0x0f.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Oct 11, 2020 at 4:48 AM Daniel Palmer <daniel@0x0f.com> wrote:
 
---lqaZmxkhekPBfBzr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> Add a binding description for the MStar/SigmaStar GPIO controller
+> found in the MSC313 and later ARMv7 SoCs.
+>
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 
-On Fri, Oct 16, 2020 at 05:31:36PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+I think Krzysztof is working on some generic bindings that
+will make it easier to write YAML GPIO controller bindings,
+but I don't know the status of them. I would be happy to merge
+them early for v5.11 though.
 
-> +	depends on OF && (ARM || ARM64 || X86 || COMPILE_TEST)
-
-> +	{
-> +		.compatible = "intel,lgm-qspi",
-> +	},
-
-This is an x86 SoC (or SoC series) - is it really going to use DT for
-the firmware interfaces?  It's not specifically a problem, just
-surprising to see something other than ACPI.  Or is the intention to use
-PRP0001?  There's a new comaptible here which wasn't really the use case
-for PRP0001.  Like I say not really a problem, just curious.
-
---lqaZmxkhekPBfBzr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+Jy00ACgkQJNaLcl1U
-h9Bq8wf/eT9A/EcP5eME3WAszgCqlKMUJ8CrSp67m0XtbQP4LhkACvP3aeM0ir5A
-HYTfoTWqPB7xZdY9lAc3YavBGQLqhFStHMunKkxVQmGR1R5/Tqs0PBfhzlsg9TES
-fB2UxQzrU1bWnV5ElyCHioHkWCwgk2vBdi6PuZ2ZMDal3eX9i11sh70OlVpOm7O+
-/HQdX8CM3+OZFOsmhRtjPo17TY2808W41IW7jF+5vCMZ/V2Xty7BgLdd4q2bZOLI
-h2RFMddJDFpxOkcQJnoU8snriFMJLAcDjF0J9sgpRVj0gizAZ+geR1w48VhzNVKP
-sMsp97jcpwXvv3UWUO8cXF4gnxRvvg==
-=RVw+
------END PGP SIGNATURE-----
-
---lqaZmxkhekPBfBzr--
+Yours,
+Linus Walleij
