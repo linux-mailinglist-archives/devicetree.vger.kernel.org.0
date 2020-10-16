@@ -2,129 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF4EC29058B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 14:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CE522905D6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407831AbgJPMue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 08:50:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38938 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406430AbgJPMue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 08:50:34 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97EE1C0613D5
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 05:50:33 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id d81so2353900wmc.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 05:50:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=CrMlB8wZnz1QSRMDLaaqihjuRkl23NGRAQ7yTr/KKgU=;
-        b=Clni0cNlsKDQqQNx9Z1oea1qbI5trbL18Iwm/RppeJEeDU5onspHP+KN+DucCmqcpr
-         83zcVFENnk98nG7FAfwFElxxybgV2pzT2pSgM81VeOQzDSMxo3KvK/oBUr6gZENqPREC
-         Qkfm1jEKyT9XhdjMCrNsYLL4T+qZTbXTOOm+PYNIyqgd9H+V5BiMUcGSlQBkNyj9kBHS
-         HJu9xFj7y65JJdwxs8rQkmrNYeKw8u6w4LcCr+IKygGQmg6FCDKpfEsjYX58XNWbY+MS
-         fznHd8MrGWW6vLo0g1BieoHkqw4Rk9MDTCiFEdSwEsYwURoaoU9zpKfa4hxH3a57OMDJ
-         9kBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=CrMlB8wZnz1QSRMDLaaqihjuRkl23NGRAQ7yTr/KKgU=;
-        b=sy5KSlvkwRDYq/3Z+1FYaWGsRfnXaFwrh11BDROFh5oSA2FWqFdGeZKnezwyUdYfIE
-         IUxm4Lqmu1i55Y8fMRp2BIofb+CC3CyFsOefVXPID4mSCkKT+HnZtK3VAOpU1Yhj+Ktw
-         3oBZLjDyqAjd1rxaS+If7qx7KokX2ZPIBc456OHNrFXhWZTY0XWyC5aeMviYJEh83qf8
-         QlIDaG9ohXk1LlhCJ1fu9j4vPR8JK9zEIi8fvDDvixsTMVwWSt8Tod0SHfNWAU/4SDbh
-         JxjYaMTjLKG22mqjuGSFxXHpyIvxWrgyLp22c1VMI24OYsW6fjpkMq/+cYjTD5VzOD/Z
-         3jXw==
-X-Gm-Message-State: AOAM531jXsK+5oLCcdkLwx9HMsrGDmf+Mfg4iiIquBcxhbYwrN+dKvgA
-        vrcqZ2z4mERV8RfG3pDYgQTw4A==
-X-Google-Smtp-Source: ABdhPJwc6OQCnkD3OpBg2RnakL6syJWoFj3OemWf0bJrqBo0e6K5q4D9gFKaC16wyZgW5X4c9QHMMw==
-X-Received: by 2002:a1c:495:: with SMTP id 143mr3543475wme.63.1602852631989;
-        Fri, 16 Oct 2020 05:50:31 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:c9d8:1700:5168:39b? ([2a01:e34:ed2f:f020:c9d8:1700:5168:39b])
-        by smtp.googlemail.com with ESMTPSA id 14sm2610405wmf.27.2020.10.16.05.50.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Oct 2020 05:50:31 -0700 (PDT)
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     Quentin Perret <qperret@google.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>
-References: <d2960f6a-1805-1fb4-98ae-4a756d20370b@arm.com>
- <765e6603-b614-fb72-64ff-248b42474803@linaro.org>
- <b19c1f12-b7cf-fcae-4ebb-617019effe2e@arm.com>
- <55d3fb0f-f7d8-63c5-2bdb-53eaa62380e0@linaro.org>
- <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
- <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
- <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
- <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
- <e321191c-61d2-a15d-47c2-653b277984ca@linaro.org>
- <20201016121844.GA2420691@google.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <b3c6d7a5-0564-6e84-77ff-9afe10d7ee27@linaro.org>
-Date:   Fri, 16 Oct 2020 14:50:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2395345AbgJPNH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 09:07:59 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:2702 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395254AbgJPNH7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 09:07:59 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f899b020000>; Fri, 16 Oct 2020 06:07:14 -0700
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 16 Oct
+ 2020 13:07:54 +0000
+Received: from jckuo-lt.nvidia.com (172.20.13.39) by mail.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Fri, 16 Oct 2020 13:07:52 +0000
+From:   JC Kuo <jckuo@nvidia.com>
+To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <robh@kernel.org>, <jonathanh@nvidia.com>, <kishon@ti.com>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>, JC Kuo <jckuo@nvidia.com>
+Subject: [PATCH v4 00/16] Tegra XHCI controller ELPG support
+Date:   Fri, 16 Oct 2020 21:07:10 +0800
+Message-ID: <20201016130726.1378666-1-jckuo@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20201016121844.GA2420691@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-NVConfidentiality: public
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1602853634; bh=YkO2t0rIIwcVrNzhypUYnIinihM/c7O3S90mLz30bVs=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         X-NVConfidentiality:Content-Transfer-Encoding:Content-Type;
+        b=DwF0y22s+x28o7MBHZzFANCTVAbz/01jmC6OJ85NLEPCPZL/utbMi/O4VtVhOFvbC
+         faauvpgRwl7+APPyfKcq9zaGaub//UV4bdtr7resm4yWlyYyuawPggDRd8Y7iGb34Z
+         wrA9/w81qC+7azdR97tq0Qy/mbbq4nmxexhHIXP4CU3WUzK1PTUD5bTny+BpeEjxjK
+         zwYL5FpsWeexypixvOTf/UFJowklPaF2APfbdfut+XH8g3R/Jx8gzaCwLQ4ADlmUi0
+         oifW+KYYK5a1uodiCJ+xJjWpDYR8Hde0UTf6JRbEKteZxPbWVkNXHOh1F/mnDAcXJB
+         OEp4q5yTtrJVQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/10/2020 14:18, Quentin Perret wrote:
-> On Friday 16 Oct 2020 at 13:48:33 (+0200), Daniel Lezcano wrote:
->> If the SCMI is returning abstract numbers, the thermal IPA governor will
->> use these numbers as a reference to mitigate the temperature at the
->> specified sustainable power which is expressed in mW in the DT. So it
->> does not work and we can not detect such conflict.
->>
->> That is why I'm advocating to keep mW for the energy model and make the
->> SCMI and DT power numbers incompatible.
-> 
-> I think it's fair to say SCMI-provided number should only be compared to
-> other SCMI-provided numbers, so +1 on that. But what I don't understand
-> is why specifying the EM in mW helps with that?
+Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
+state for power saving when all of the connected USB devices are in
+suspended state. This patch series includes clk, phy and pmc changes
+that are required for properly place controller in ELPG and bring
+controller out of ELPG.
 
-It is already specified in mW. I'm just saying to not add the
-'scale'/'abstract'/'bogoWatt' in the documentation.
+JC Kuo (16):
+  clk: tegra: Add PLLE HW power sequencer control
+  clk: tegra: Don't enable PLLE HW sequencer at init
+  phy: tegra: xusb: Move usb3 port init for Tegra210
+  phy: tegra: xusb: tegra210: Do not reset UPHY PLL
+  phy: tegra: xusb: Rearrange UPHY init on Tegra210
+  phy: tegra: xusb: Add Tegra210 lane_iddq operation
+  phy: tegra: xusb: Add sleepwalk and suspend/resume
+  soc/tegra: pmc: Provide USB sleepwalk register map
+  arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
+  dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
+  phy: tegra: xusb: Add wake/sleepwalk for Tegra210
+  phy: tegra: xusb: Tegra210 host mode VBUS control
+  phy: tegra: xusb: Add wake/sleepwalk for Tegra186
+  arm64: tegra210/tegra186/tegra194: XUSB PADCTL irq
+  usb: host: xhci-tegra: Unlink power domain devices
+  xhci: tegra: Enable ELPG for runtime/system PM
 
-> Can we not let the providers specify the unit? 
+ .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |    1 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |    1 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    2 +
+ drivers/clk/tegra/clk-pll.c                   |   12 -
+ drivers/clk/tegra/clk-tegra210.c              |   53 +-
+ drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
+ drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++----
+ drivers/phy/tegra/xusb.c                      |   92 +-
+ drivers/phy/tegra/xusb.h                      |   22 +-
+ drivers/soc/tegra/pmc.c                       |   94 +
+ drivers/usb/host/xhci-tegra.c                 |  610 ++++--
+ include/linux/clk/tegra.h                     |    4 +-
+ include/linux/phy/tegra/xusb.h                |   10 +-
+ 14 files changed, 2785 insertions(+), 564 deletions(-)
 
-Yes, it is possible but the provider must give the 'unit' and the energy
-model must store this information along with the "power" numbers, so we
-can compare apple with apple.
+--=20
+2.25.1
 
-Today, the energy model is using the mW unit only and the providers are
-not telling the 'unit', so both are missing.
-
-Because both are missing, it does not make sense to talk about
-'abstract' values in the energy model documentation until the above is
-fixed.
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
