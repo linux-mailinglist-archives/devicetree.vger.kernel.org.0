@@ -2,77 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DA542909CE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98AA52909DD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:43:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2410852AbgJPQg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 12:36:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2410841AbgJPQg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 12:36:56 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D221C061755
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 09:36:57 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id a7so3709065lfk.9
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 09:36:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WmkPqZjVOnt+PO6/OfriQ8dmNuyxwjpGGyQVkjhisNs=;
-        b=uZVWXEBHQTBneEEtljRPV1nwiyWBRW+wmCfKietxc2rp/g0Bozc8TSl5uQH3dnAdcb
-         HKc19zHBULscDZFlUZPzShJhaqVxb/waSMsT2hsSd55rZNUC+gBdjmgXlM0yVITOE+fm
-         hfUGZP0+AFy74RDfqBRpGOdtHZMlnlGJrG7s4MEZmRRihXUGWy5CcIaOL2LuakeIpT/T
-         GBi6IUZinLt+Cj/sYDJbdmR1YFesCvhxHiWKgjDiHLBjPYnVjK//9Tl5sbehOIfRmKF+
-         LgW0xM3GTHdVIL6Zqc5TQoKvtsbUpB2W2K88aKG4QmdlFfkxKE2Tey2zvd0eQ9t9sXKA
-         6oQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WmkPqZjVOnt+PO6/OfriQ8dmNuyxwjpGGyQVkjhisNs=;
-        b=Sley3DGGwkmKXzrcBftQZp4iXFjAl8o2pQS50mO3bUdYN8JMx5Lu3PiNdDrVYflrVL
-         mL4Bzfj2JqLdT9EHZxnBhY/iQPXssLaIbayQwTnxhJHL1QmfUXiAHhgxX9xuh9fjZdFD
-         +eLW+Xn7PlZC9MP/5tY6EmI0UmdXvScXQrx6USB3wvMTFTOiD2yFLj3hq7UodcfDS1rk
-         rnwHh9rsD6IEAB515+iXzOmXFI6fh4sHaOEOIe4HU8yvBd0AQmMhKq2tdOIc3oUskA14
-         3WmkjSOoZl3mDnGkVLZx9MeL/Sv58+oe30590d1npYiJDy5D6Kf1VazdqkuB8kqN0nBT
-         Q/KA==
-X-Gm-Message-State: AOAM532UBgQ1cXzNHW81HbL0erEhNFhuYnJf7bELWVFjsBJyXjaS9Nfw
-        au10Yd8Carqnd8jTAwp3DYOrTZmqcNB1E2OFl4GRQGYUQ0YNaw==
-X-Google-Smtp-Source: ABdhPJwwVmXv+e1KBN+rs4Cm9f+yYpq0jUFaCN+rAAAr7TEb2ius4jvb33uqSPwO1D4bIXyb5iqQ3Xhy82M3gYeDjvY=
-X-Received: by 2002:a19:1c8:: with SMTP id 191mr1635934lfb.585.1602866215929;
- Fri, 16 Oct 2020 09:36:55 -0700 (PDT)
+        id S2409079AbgJPQm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 12:42:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52472 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405198AbgJPQm6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 12:42:58 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D995820848;
+        Fri, 16 Oct 2020 16:42:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602866578;
+        bh=jr84u8hTDw7KLKrQ9vFJzO0wHhG/H9Q/V0cChZLCaO4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i7kJtcFX1rlebxCP8OvS8KDC6rnqrJMllH/Ff9YX8pj76Dt61+nzSr2JzXKEgE5b3
+         nbWsuJxtsl8TAivQIiG8DJzZSW0KXNH8qJToutOcvptVIJ9ujOxaWvaAvLyvqFLfNR
+         CHpL4M5S6Vy8KfW5S/suGkcTyXLXZ5cSOwkemrSU=
+Date:   Fri, 16 Oct 2020 17:42:50 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     Rob Herring <robh@kernel.org>, lgirdwood@gmail.com,
+        kuninori.morimoto.gx@renesas.com,
+        pierre-louis.bossart@linux.intel.com, perex@perex.cz,
+        tiwai@suse.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sharadg@nvidia.com, mkumard@nvidia.com, viswanathl@nvidia.com,
+        rlokhande@nvidia.com, dramesh@nvidia.com, atalambedu@nvidia.com,
+        nwartikar@nvidia.com, swarren@nvidia.com, nicoleotsuka@gmail.com
+Subject: Re: [PATCH v3 09/13] ASoC: dt-bindings: tegra: Add schema for audio
+ graph card
+Message-ID: <20201016164250.GK5274@sirena.org.uk>
+References: <1601573587-15288-1-git-send-email-spujar@nvidia.com>
+ <1601573587-15288-10-git-send-email-spujar@nvidia.com>
+ <20201006203433.GA2786434@bogus>
+ <a5bc07d8-fb2e-e86e-f0d3-be19166ad7bb@nvidia.com>
+ <acbcd136-a933-e5e0-863b-f435dafe1697@nvidia.com>
 MIME-Version: 1.0
-References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-2-daniel@0x0f.com>
-In-Reply-To: <20201011024831.3868571-2-daniel@0x0f.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 16 Oct 2020 18:36:44 +0200
-Message-ID: <CACRpkdZDyp83AiGkX9eFe2_w9eK1NXREFG896DZfPUaHboy+0g@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO controller
-To:     Daniel Palmer <daniel@0x0f.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vbzKE9fGfpHIBC6T"
+Content-Disposition: inline
+In-Reply-To: <acbcd136-a933-e5e0-863b-f435dafe1697@nvidia.com>
+X-Cookie: Pournelle must die!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 11, 2020 at 4:48 AM Daniel Palmer <daniel@0x0f.com> wrote:
 
-> Add a binding description for the MStar/SigmaStar GPIO controller
-> found in the MSC313 and later ARMv7 SoCs.
->
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+--vbzKE9fGfpHIBC6T
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I think Krzysztof is working on some generic bindings that
-will make it easier to write YAML GPIO controller bindings,
-but I don't know the status of them. I would be happy to merge
-them early for v5.11 though.
+On Fri, Oct 16, 2020 at 10:44:15AM +0530, Sameer Pujar wrote:
 
-Yours,
-Linus Walleij
+> > I am looking to reference the bindings used in below doc which is not
+> > yet in YAML format. Only additional properties I listed here.
+> > {LINUX}/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+
+> > Should I keep this doc to *.txt format as well and later move to YAML or
+> > is there a way to reference *.txt doc here?
+
+> The dependency here is like below,
+> Tegra audio graph card -> generic audio graph card (audio-graph-card.txt) ->
+> graph (graph.txt)
+
+> I plan to convert dependencies to json-schema in next revision and then
+> refer these for Tegra audio graph card.
+
+Yeah, unfortunately you need to do it that way around - you can't
+reference text bindings from YAML ones as the tooling can't parse the
+text bindings for validation.
+
+--vbzKE9fGfpHIBC6T
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+JzYkACgkQJNaLcl1U
+h9DbqAf8DYA4YLlsLe3VZcZ+MHzvpMsnsHwATSDyKbIzcuVEyS5py0YVyaL9jfsN
+wCv986CR6B7LLmAIo6TRfbbk7kDdHAgLDqFz6be5ypPoDkBrPk+PnQP/rPxZXMX3
+K5Vq4oZDL3vjdJ5I0K4OLw2xXVnSny/Y/GcKNytTbrb7uKmbl8AWFXF7WUq2sivV
+crmj6BSiKwt+pIrxeUDfWW5KdtatTanevhOx+d8lClG+mzCg0oGuUVjBzA8ZMGu8
+EfPRMTAqnrEo9xaAMEIxdVvsntV+ibFSqT8o5dXozhL7+nw86FH8DFEOIRzDBLYM
+hC5VtDA4CObZ/gwHIFkasu0/KOS1ew==
+=/9Pr
+-----END PGP SIGNATURE-----
+
+--vbzKE9fGfpHIBC6T--
