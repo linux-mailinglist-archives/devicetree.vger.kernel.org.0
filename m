@@ -2,73 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F158629074C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B2C29075A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406371AbgJPOil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 10:38:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50144 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405115AbgJPOil (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 10:38:41 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1BAD020897;
-        Fri, 16 Oct 2020 14:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602859120;
-        bh=Dj9uWqEbqW66sbMIJGFmXibyUPobFQVl5+7gB59p9n0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Hvf3aS1MbT4THmpMjl+1T3sIdNl2DWV9lzy0OQvQ4cqSOtTJiLANqI/00SxctkNLS
-         6px5oPGWl5XxHnbt4InpAi++44DtdvoE2b/YNJVeQFJI1BG53hH1+WywRayu9S6bQB
-         seY/8OThcC2dKhIdgrIA4bRffhX09jbw++ST3l8Q=
-Received: by mail-ot1-f41.google.com with SMTP id l4so2599321ota.7;
-        Fri, 16 Oct 2020 07:38:40 -0700 (PDT)
-X-Gm-Message-State: AOAM533h/VcHKOwjjpihIkR6iafhjf/4hd2mg4mT8c1fEeuLsZNq+0/e
-        sECcfpJG0tvIQF5dOHBg+sbQSw9J/LSKWR0/Ww==
-X-Google-Smtp-Source: ABdhPJz6Bmpb+GYefONLDo54757hps1sVxCvdYy7l4YBZKUFvQQ0PRd2mAVdl5gWfI7QYLDcWRfuXbx3j4IZTce96rE=
-X-Received: by 2002:a9d:7993:: with SMTP id h19mr2889277otm.129.1602859119266;
- Fri, 16 Oct 2020 07:38:39 -0700 (PDT)
+        id S2409047AbgJPOlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 10:41:11 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:28958 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2408896AbgJPOlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 10:41:10 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09GEbTax028212;
+        Fri, 16 Oct 2020 16:40:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=+xoyFgWKF9M39CdJct5WeDHycIdVDU9Tp6gD7JbDFWc=;
+ b=uKNyqNJ2AOeJsSVMHI4yW8bTdNSOGr8huiK/mgyYPnQIAEy7lIk/LfI61fSQwnM8PHeV
+ e5cmskMgfaGeeQF/8FqNVuswWsDC+epTZqvr8c+ocf6RyIXrJT6Odn3NkBph2jMpQKW/
+ esG798Td+hmPCghum+39tRN1fPrgFVK+dLfI4NzZVZOwudyFPbrW9KADAxjujeYhULMB
+ 7J7XLVSu+yFb9Fe6b+0hCYckIuPEO/IpK/S9PieHMz4A1yc82OicP+sx8HTar6dUdvQc
+ nv6yf6r9idDGkV5bMRFUC08vl16G2w2+vRKYnbZ8yR2gydNuL9zpXUJTG2A5ejUoXqhV uA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 343587kw0u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Oct 2020 16:40:43 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DA13D10002A;
+        Fri, 16 Oct 2020 16:40:42 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag1node3.st.com [10.75.127.3])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B4E2A2AF739;
+        Fri, 16 Oct 2020 16:40:42 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG1NODE3.st.com (10.75.127.3)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 16 Oct 2020 16:40:41
+ +0200
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+To:     <tglx@linutronix.de>, <jason@lakedaemon.net>, <maz@kernel.org>,
+        <alexandre.torgue@st.com>
+CC:     <robh+dt@kernel.org>, <fabrice.gasnier@st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] Add STM32 LP timer EXTI interrupts
+Date:   Fri, 16 Oct 2020 16:40:16 +0200
+Message-ID: <1602859219-15684-1-git-send-email-fabrice.gasnier@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20201015114346.15743-1-nsaenzjulienne@suse.de>
-In-Reply-To: <20201015114346.15743-1-nsaenzjulienne@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 16 Oct 2020 09:38:28 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLvzsdAfx56jQqPSd1r=P20C8DURKKZ9kke-L2owqr0fg@mail.gmail.com>
-Message-ID: <CAL_JsqLvzsdAfx56jQqPSd1r=P20C8DURKKZ9kke-L2owqr0fg@mail.gmail.com>
-Subject: Re: [RFC] of/platform: Create device link between simple-mfd and its children
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Saravana Kannan <saravanak@google.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG7NODE3.st.com (10.75.127.21) To SFHDAG1NODE3.st.com
+ (10.75.127.3)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-10-16_07:2020-10-16,2020-10-16 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 15, 2020 at 6:43 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> 'simple-mfd' usage implies there might be some kind of resource sharing
-> between the parent device and its children.
+STM32 LP timer that's available on STM32MP15x can wakeup the platform
+using EXTI interrupts.
 
-It does? No! The reason behind simple-mfd was specifically because
-there was no parent driver or dependency on the parent. No doubt
-simple-mfd has been abused.
+This series add:
+- LP timer EXTI - GIC interrupt events to EXTI driver and device-tree
+- LP timer wakeup-source to device-tree
 
-Rob
+Fabrice Gasnier (3):
+  irqchip/stm32-exti: Add all LP timer exti direct events support
+  ARM: dts: stm32: Add LP timer irqs on stm32mp151
+  ARM: dts: stm32: Add LP timer wakeup-source on stm32mp151
 
-> By creating a device link
-> with DL_FLAG_AUTOREMOVE_CONSUMER we make sure that at no point in time
-> the parent device is unbound while leaving its children unaware that
-> some of their resources disappeared.
->
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+ arch/arm/boot/dts/stm32mp151.dtsi | 10 ++++++++++
+ drivers/irqchip/irq-stm32-exti.c  |  4 ++++
+ 2 files changed, 14 insertions(+)
+
+-- 
+2.7.4
+
