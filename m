@@ -2,118 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA37290912
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:02:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A83229092A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2410485AbgJPQCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 12:02:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409115AbgJPQC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 12:02:26 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B83C0613D5
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 09:02:24 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id g12so3478073wrp.10
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 09:02:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=idIwMLR1qbs0LEcD4O/aA7HLr22tz18ZNCJ0k8fk7cI=;
-        b=bfcdoIjsQPz/8DQCpMyYBVd2UI3qSwKRY7v0yRNoQQEj+Rp6gz/TJ+c+2aWwlGHNVl
-         tiWyM8kv8AOh7Ry003DOQGVEY/Yo37LIfjtqubjeH+3GIc7jpULAg9u9A04CLk6Gu0jw
-         /yHdR+t2GMgvN4HgERBfhetl6TIGtenJyPCUVu9f0A5KjcDVAt1VGQuBWexBUxlScauj
-         qXh81fyybu0RrScobfpBu4N+/1SeZ+vk0sL9lFOyJAAxEPH/RrUItlQpfY+BqoIuODn9
-         3iiy7tMPTXq85miUzLQmeHsOmh1kCps1DU5tNZfoEk77LDH1+enI9uxbUIpTWvRPCf5j
-         qz4g==
+        id S2409175AbgJPQEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 12:04:12 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:42479 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2409170AbgJPQEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 12:04:11 -0400
+Received: by mail-oi1-f193.google.com with SMTP id 16so2952911oix.9;
+        Fri, 16 Oct 2020 09:04:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=idIwMLR1qbs0LEcD4O/aA7HLr22tz18ZNCJ0k8fk7cI=;
-        b=Gt++SYl+84d3s/6LTceYBCBsj517SaxsqEnFm5TNFY1YcbJde7jYlPh+v/h+1ZMIG1
-         xGXr0P2jwo6k3OulDgXRNYbuu3EVN7W1HBTkDc+OBsV4F33WEvavWzGEm8zJURg6ndGe
-         9rhgz3ZkFLG1gV8n0bJcFyi+gzrqV08xSCAZgANyXvOQ5SHJ8rr7GNci21+BXcPeuN47
-         qwTmoe0M4e5Yz/CdbQPZte5xfEA/K5mbE48iKDCl6HmJNya9uGgsGRZhVCQpF60bwhQZ
-         A/gMx+ffNPgaRKo98yvquQaKiXIjoTapMkt5QbHFUASvq4heJRl+XfEiWTlnOSimCf5i
-         Vxsg==
-X-Gm-Message-State: AOAM531sx49/fT+UHdB4Ie/HR9y/EcaLW8osgpQ6a56lcWB4tktKCTTv
-        vJbV05AtiZkO478PDMPCVDit/A==
-X-Google-Smtp-Source: ABdhPJxB52djZ3CepWUJhRrmaEr1bcJ872guTYx2BYGnWlp5WrfpVEhYvfdeFcH5WB/FurcQW0ROnQ==
-X-Received: by 2002:adf:f54c:: with SMTP id j12mr4751369wrp.413.1602864143339;
-        Fri, 16 Oct 2020 09:02:23 -0700 (PDT)
-Received: from google.com ([2a00:79e0:d:110:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id p9sm3193871wmm.4.2020.10.16.09.02.21
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zkprbk0K/dvPokaiWlkn/QFdHthGYxnFbcj69izoSew=;
+        b=gE8qoEqavyOATCva1uGWumR+Het/mxCiOxUkO7IKVbrDaA4ZwX7LAjZbUe3H7UEuvK
+         cMxmX67iWqjbDfcaM52iqM4MgT6EqEaIjiMMKIeTZd++aRKSwAm/HE/VAGj3NtilS3m+
+         WGhWErjvnu6IQ4RkkAqkBivMgAgdzslrjsJf3k3TgA9sQyYbNlMD8yGYAHTLQFNqKa83
+         iel3+uiZ815tCcwgFmbnrLkBB8vOEcPdGunfDEcQ9gWJeFAyCurUEqhsl3iDBXOn4sxU
+         +JmjUllv2LfIAl5ZaI2GQ3/RaxUMd93lsR2aBQOx19/0n8vWcuTSxCCumsDErhdr8+Ce
+         CkFw==
+X-Gm-Message-State: AOAM530PX0NL2F63pWkbumcj20xUtke7xCmnirQSlRdAyX6wDd8zuU6C
+        5sclXU/O7jMoqjyYKj9WqQ==
+X-Google-Smtp-Source: ABdhPJx4uuGxP3akS8UJPfnhisJm/Q5p7JbPI7KfJO0oQk/gt3oFAPe2b+T4gOV/1WoD1d9zQxtbcg==
+X-Received: by 2002:aca:cc0a:: with SMTP id c10mr3024760oig.166.1602864250851;
+        Fri, 16 Oct 2020 09:04:10 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m29sm1098155otj.38.2020.10.16.09.04.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 09:02:21 -0700 (PDT)
-Date:   Fri, 16 Oct 2020 17:02:18 +0100
-From:   Quentin Perret <qperret@google.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>
-Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-Message-ID: <20201016160218.GC2426638@google.com>
-References: <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
- <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
- <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
- <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
- <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
- <e321191c-61d2-a15d-47c2-653b277984ca@linaro.org>
- <20201016121844.GA2420691@google.com>
- <b3c6d7a5-0564-6e84-77ff-9afe10d7ee27@linaro.org>
- <20201016130905.GA2426638@google.com>
- <deffb2b4-34cb-3f46-af89-cc216d1cf5c5@arm.com>
+        Fri, 16 Oct 2020 09:04:09 -0700 (PDT)
+Received: (nullmailer pid 1495258 invoked by uid 1000);
+        Fri, 16 Oct 2020 16:04:09 -0000
+Date:   Fri, 16 Oct 2020 11:04:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de,
+        lakshmi.bai.raja.subramanian@intel.com, mgross@linux.intel.com,
+        wan.ahmad.zainie.wan.mohamad@intel.com, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v12 2/2] dt-bindings: pwm: keembay: Add bindings for
+ Intel Keem Bay PWM
+Message-ID: <20201016160409.GA1494813@bogus>
+References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
+ <9cff78f955eb7b1f243380c79cdd48aa6d2ddc81.1602703463.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <deffb2b4-34cb-3f46-af89-cc216d1cf5c5@arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9cff78f955eb7b1f243380c79cdd48aa6d2ddc81.1602703463.git.vijayakannan.ayyathurai@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 16 Oct 2020 at 15:42:57 (+0100), Lukasz Luba wrote:
-> Do you mean a new entry in DT which will be always below
-> 'dynamic-power-coefficient' and/or 'sustainable-power' saying the unit
-> of above value?
-
-Yes, something like that.
-
-> There was discussion with Rob (and Doug) about this. I got the
-> impression he was against any new DT stuff [1].
-> We don't have to, I think we all agree that DT will only support mW.
-
-Right, I agree this is a 'nice-to-have'.
-
-> I have agreed to this idea having a 'flag' inside EM [2], which
-> indicates the mW or bogoWatts. It could be set via API:
-> em_dev_register_perf_domain() and this new last argument.
+On Thu, 15 Oct 2020 03:36:10 +0800, vijayakannan.ayyathurai@intel.com wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 > 
-> I can write that patch. There is only two usage (3rd is on LKML) of
-> that function. The DT way, which is via:
-> dev_pm_opp_of_register_em() will always set 'true';
-> Driver direct calls of em_dev_register_perf_domain(), will have to
-> set appropriate value ('true' or 'false'). The EM struct em_perf_domain
-> will have the new bool field set based on that.
-> Is it make sense?
+> Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
+> 
+> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> ---
+>  .../bindings/pwm/intel,keembay-pwm.yaml       | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+> 
 
-I had something more complicated in mind, where units are arbitrary
-('milliwats', 'scmi-bogowatts', ...) as that would help if units can be
-specified in the DT too, but if we don't care about that then yes I
-suppose a boolean flag should do.
 
-Thanks!
-Quentin
+My bot found errors running 'make dt_binding_check' on your patch:
+
+./Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml:31:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+
+
+See https://patchwork.ozlabs.org/patch/1382326
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
