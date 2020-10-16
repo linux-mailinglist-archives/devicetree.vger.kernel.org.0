@@ -2,129 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE8E28FE49
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 08:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4B328FE57
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 08:31:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394238AbgJPG0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 02:26:23 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:63391 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2394010AbgJPG0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 02:26:22 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 09G6Njfq073161;
-        Fri, 16 Oct 2020 14:23:45 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.9) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 16 Oct
- 2020 14:26:08 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <jae.hyun.yoo@linux.intel.com>, <billy_tsai@aspeedtech.com>,
-        <haiyue.wang@linux.intel.com>, <james.feist@linux.intel.com>,
-        <vernon.mauery@linux.intel.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH 3/3] dt-bindings: Change the meaning of clock-frequency
-Date:   Fri, 16 Oct 2020 14:26:02 +0800
-Message-ID: <20201016062602.20014-4-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201016062602.20014-1-billy_tsai@aspeedtech.com>
-References: <20201016062602.20014-1-billy_tsai@aspeedtech.com>
+        id S2394248AbgJPGbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 02:31:09 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:44017 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394244AbgJPGbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 02:31:09 -0400
+Received: by mail-ot1-f68.google.com with SMTP id n61so1454163ota.10;
+        Thu, 15 Oct 2020 23:31:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Udwqr7O5zi30yP/PtquvZaBuILNM0n87MEoRaEeVK4Q=;
+        b=jrS/olqNZPq1/FwNt4qOhkCHyeppdRqVUX1aQH8VnDlMonKylX8cuARxFmauTcowg3
+         B2GNFUjH0WfLK0WZz8FJ+YsM9a/Y/7WjdG5jc5KcXGFUDUYhR571Lw/cb01bYk9gorRR
+         NDNGvRcQAppTAaPdri4IuvD8Gq2SBBHyo89dLEYGucLVuKZfmHIv92iqiEvpg2dchuQK
+         gRHvADAnL+C8RPHmT9rrubZUrOgF4jlH0LxHNT4Ji+LJ5C6uYxJ0dyTYhYUEVaipbuUN
+         EP6X/eesOac/nH/Et9V6543DCW23heUnpEGmYktw/jv6unFQCddhz9YDrpoQCvJklZVv
+         kUzw==
+X-Gm-Message-State: AOAM5339/YDgpf4D8Aw6ofDygMGvH2DWUMKZBrGqgxdSFo/10saR+eJu
+        rtbGerI2y8Aha3YpreSCuBhQz29KN2cxy/qM2P4=
+X-Google-Smtp-Source: ABdhPJxfyd1l4/BjCcqgxqJFxu8WkoXmr8FOL4ykQG/DWe5YKgf6zXtU/Z3ewSDOuHHdkA7eQNYLBhWh5joXNBmXess=
+X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr1472820otc.145.1602829868635;
+ Thu, 15 Oct 2020 23:31:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.10.9]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 09G6Njfq073161
+References: <20201015132350.8360-1-biju.das.jz@bp.renesas.com>
+ <CAMuHMdUogbfHYv+g3+2=7JwhgH3MngmDEe5nvjZwkjTOJyn9dQ@mail.gmail.com> <TYBPR01MB53091FA117DF513BAF6A46E486030@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYBPR01MB53091FA117DF513BAF6A46E486030@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 16 Oct 2020 08:30:57 +0200
+Message-ID: <CAMuHMdV5baxxGxWc5Y5O5dKXAXZcNhUdJdWfgwKrzcUGj8p=LQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: hihope-rzg2-ex: Drop rxc-skew-ps
+ from ethernet-phy node
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Integration of the usage of msg-timing and addr-timing to clock-frequency.
-User can just set it to adjust the peci work efficient.
+Hi Biju,
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- .../devicetree/bindings/peci/peci-aspeed.yaml | 56 +++++++++----------
- 1 file changed, 28 insertions(+), 28 deletions(-)
+On Fri, Oct 16, 2020 at 8:15 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH 1/2] arm64: dts: renesas: hihope-rzg2-ex: Drop rxc-
+> > skew-ps from ethernet-phy node
+> > On Thu, Oct 15, 2020 at 3:24 PM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > HiHope RZG2[HMN] boards uses Realtek phy and the driver does not
+> > > support rxc-skew-ps property. So remove rxc-skew-ps from ethernet-phy
+> > node.
+> > >
+> > > Fixes: 7433f1fb8ec8fe ("arm64: dts: renesas: Add HiHope RZ/G2M sub
+> > > board support")
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-
+> > lad.rj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+> > > @@ -23,7 +23,6 @@
+> > >         status = "okay";
+> > >
+> > >         phy0: ethernet-phy@0 {
+> > > -               rxc-skew-ps = <1500>;
+> > >                 reg = <0>;
+> > >                 interrupt-parent = <&gpio2>;
+> > >                 interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> >
+> > Should "rx-internal-delay-ps = <1800>" be added to the avb node instead
+> > (after [1] has entered v5.10-rc1, and the DTS part of [2] has been  applied to
+> > renesas-devel)?
+>
+> Looking at the schematic, it is not needed, since it has "2ns" internal delay  (4.7K Ohm latched to 2.5 V) on the Rx side.
 
-diff --git a/Documentation/devicetree/bindings/peci/peci-aspeed.yaml b/Documentation/devicetree/bindings/peci/peci-aspeed.yaml
-index 0f5c2993fe9b..7c6c895784af 100644
---- a/Documentation/devicetree/bindings/peci/peci-aspeed.yaml
-+++ b/Documentation/devicetree/bindings/peci/peci-aspeed.yaml
-@@ -40,31 +40,33 @@ properties:
-     maxItems: 1
- 
-   clock-frequency:
--    # Operation frequency of PECI controller in units of Hz.
--    minimum: 187500
--    maximum: 24000000
--
--  msg-timing:
--    description: |
--      Message timing negotiation period. This value will determine the period
--      of message timing negotiation to be issued by PECI controller. The unit
--      of the programmed value is four times of PECI clock period.
--    allOf:
--      - $ref: /schemas/types.yaml#/definitions/uint32
--      - minimum: 0
--        maximum: 255
--        default: 1
--
--  addr-timing:
--    description: |
--      Address timing negotiation period. This value will determine the period
--      of address timing negotiation to be issued by PECI controller. The unit
--      of the programmed value is four times of PECI clock period.
--    allOf:
--      - $ref: /schemas/types.yaml#/definitions/uint32
--      - minimum: 0
--        maximum: 255
--        default: 1
-+    # The bit frequency of PECI negotiation stage in units of Hz.
-+    # Driver will calculate the best divisor setting of msg-timing and
-+    # addr-timing to meet the value.
-+    minimum: 2000
-+    maximum: 2000000
-+
-+  # msg-timing:
-+  #   description: |
-+  #     Message timing negotiation period. This value will determine the period
-+  #     of message timing negotiation to be issued by PECI controller. The unit
-+  #     of the programmed value is four times of PECI clock period.
-+  #   allOf:
-+  #     - $ref: /schemas/types.yaml#/definitions/uint32
-+  #     - minimum: 0
-+  #       maximum: 255
-+  #       default: 1
-+
-+  # addr-timing:
-+  #   description: |
-+  #     Address timing negotiation period. This value will determine the period
-+  #     of address timing negotiation to be issued by PECI controller. The unit
-+  #     of the programmed value is four times of PECI clock period.
-+  #   allOf:
-+  #     - $ref: /schemas/types.yaml#/definitions/uint32
-+  #     - minimum: 0
-+  #       maximum: 255
-+  #       default: 1
- 
-   rd-sampling-point:
-     description: |
-@@ -114,9 +116,7 @@ examples:
-             interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-             clocks = <&syscon ASPEED_CLK_GATE_REF0CLK>;
-             resets = <&syscon ASPEED_RESET_PECI>;
--            clock-frequency = <24000000>;
--            msg-timing = <1>;
--            addr-timing = <1>;
-+            clock-frequency = <2000000>;
-             rd-sampling-point = <8>;
-             cmd-timeout-ms = <1000>;
-         };
+Thanks for the pointer, I can confirm LED2_RXDLY is strapped high
+(to 3.3V, not 2.5V though).
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.11.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
