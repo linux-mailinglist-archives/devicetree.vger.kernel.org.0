@@ -2,95 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91B1B29072A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4CB2290730
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 16:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408821AbgJPO3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 10:29:22 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:53274 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2408814AbgJPO3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 10:29:21 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S2408830AbgJPOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 10:30:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41140 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2407335AbgJPOaM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 10:30:12 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id ABB1E80699;
-        Fri, 16 Oct 2020 16:29:17 +0200 (CEST)
-Date:   Fri, 16 Oct 2020 16:29:16 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] drm/panel: mantix panel reset fixes
-Message-ID: <20201016142916.GA1184974@ravnborg.org>
-References: <cover.1602584953.git.agx@sigxcpu.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id E83502084C
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 14:30:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602858612;
+        bh=9EyxHYqClpX3UwS3zfUTeHuxQsxcwne1NcvcZiES3PU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cyUjTRUjAyFV3YWb1/7IsGRxLvNqwY4aFkxD1zZ5AG3yOs93F86j21oyxVcbqdEEG
+         4xuUj1aRfwhV+vRGl8xz+qALpXrqvzQnTXTbqnT1+3qeEBdzUYDGJ2jaP4kXH1DERp
+         PqbyPYVqz1F/24WcdVN4KzB5yMtzTXaFsr8viXx4=
+Received: by mail-ot1-f45.google.com with SMTP id 32so2599284otm.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 07:30:11 -0700 (PDT)
+X-Gm-Message-State: AOAM531wY1U4VAys1u84tdxYK6sApZSzy5+fZZRKDtL19ZXTiYN62RlA
+        pYlrS7/ZgBmNYPYoXQVQzUi6NIo8HfqZmB8SDA==
+X-Google-Smtp-Source: ABdhPJxaGtPDoYxJFNqM/ELyihD+uZhMXL+3s2By0Z2TUq2FXp3Nb2CiEp5u3IsFAtnaBV8hpEXqOVLMsUbFOw1oTWk=
+X-Received: by 2002:a9d:5e14:: with SMTP id d20mr2605283oti.107.1602858611164;
+ Fri, 16 Oct 2020 07:30:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1602584953.git.agx@sigxcpu.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=fu7ymmwf c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=8nJEP1OIZ-IA:10 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
-        a=4K8JB3y5jV4O36iYuCkA:9 a=wPNLvfGTeEIA:10 a=AjGcO6oz07-iQ99wixmX:22
-        a=Vxmtnl_E_bksehYqCbjh:22
+References: <20200917094024.17215-1-u.kleine-koenig@pengutronix.de>
+ <20200919143922.22793-1-u.kleine-koenig@pengutronix.de> <CAK7LNAT5f6RxFjOTOm8RvzZ3N2-48fr5e7wVoiE9hVeMBLSKBA@mail.gmail.com>
+In-Reply-To: <CAK7LNAT5f6RxFjOTOm8RvzZ3N2-48fr5e7wVoiE9hVeMBLSKBA@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 16 Oct 2020 09:30:00 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJDPq-7V-JkeVEQh8J9dUd8uCqp0u5LnP6pYXmpzLRcwg@mail.gmail.com>
+Message-ID: <CAL_JsqJDPq-7V-JkeVEQh8J9dUd8uCqp0u5LnP6pYXmpzLRcwg@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc: only append to HOST_EXTRACFLAGS instead of overwriting
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido.
-On Tue, Oct 13, 2020 at 12:32:45PM +0200, Guido Günther wrote:
-> 
-> The first patch in this series fixes dereferencing a NULL mode in the error
-> path. The second one extends the resets to not only reset RESX but also TP_RSTN
-> since otherwise the display will stay completely blank. I didn't spot that
-> before initial submission since the reset line was bound to the touch
-> controller and although that failed to probe it came far enough to deassert the
-> reset line (at an arbitrary point in time during boot) and hence we got a
-> picture. Since touch and panel are on the same IC they're not completely
-> independent and i might have to turn the whole thing into an MFD at some point
-> but this series gets the panel to a reliably working state on boot and on fb
-> blank/unblank.
-> 
-> Since the reset-gpios are active low we can deassert in prepare and assert in
-> unprepare simplifying the code making sure lines are kept low when the
-> panel is off.
-> 
-> The binding were not part of a stable kernel so I hope it's okay to not worry
-> about backward compatibility.
-> 
-> Changes from v1:
->  - As per review comments by Fabio Estevam
->    https://lore.kernel.org/dri-devel/CAOMZO5B5ECcConvKej=RcaF8wvOxgq7nUzKJ-ad0aSAOzUqtbQ@mail.gmail.com/
->    - Fix typo in commit messages
->  - As per review comments by Rob Herring
->    https://lore.kernel.org/dri-devel/20200929174624.GA832332@bogus/
->    - Don't use an array of reset lines
-> 
-> Guido Günther (3):
->   drm/panel: mantix: Don't dereference NULL mode
->   drm/panel: mantix: Fix panel reset
->   dt-binding: display: Require two resets on mantix panel
+On Fri, Oct 16, 2020 at 2:11 AM Masahiro Yamada <masahiroy@kernel.org> wrot=
+e:
+>
+> On Sat, Sep 19, 2020 at 11:39 PM Uwe Kleine-K=C3=B6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> >
+> > When building with
+> >
+> >         $ HOST_EXTRACFLAGS=3D-g make
+>
+>
+> I do not think this is the intended usage
+> of HOST_EXTRACFLAGS.
 
-All applied to drm-misc-next and pushed out.
-And then I remembered you had commit right - sigh.
+Okay, but I looked at all the other instances of HOST_EXTRACFLAGS and
+they do '+=3D'. Are they all wrong?
 
-	Sam
-
-> 
->  .../display/panel/mantix,mlaf057we51-x.yaml   |  4 +++
->  .../gpu/drm/panel/panel-mantix-mlaf057we51.c  | 25 +++++++++++++------
->  2 files changed, 21 insertions(+), 8 deletions(-)
-> 
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Rob
