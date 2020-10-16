@@ -2,99 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0AD290832
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A28F7290846
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407914AbgJPPSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 11:18:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44244 "EHLO mail.kernel.org"
+        id S2410050AbgJPP1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 11:27:01 -0400
+Received: from mx2.suse.de ([195.135.220.15]:55536 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2395343AbgJPPSk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 11:18:40 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E891C20897;
-        Fri, 16 Oct 2020 15:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1602861520;
-        bh=rgeQjAZ0kzxnk8SwXsOvCKN7o5QSYlfcQcgpKjlVIBE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=xOFC0xX1gIoo4Cbk07OV9cXGBwYcCa9MigKKW1zmacVlTi811BbqPB4d805bK3D7z
-         wEt5uMbXHm4huhSU6vgLL+2AtqkdgW1XoSV0iBeKGnzZ2ewKvOTR3rmYOHNW3rV/uQ
-         Kg90usJVdKnr6IvoZcAkhmQNdFzSxraX4Q7b587A=
-Date:   Fri, 16 Oct 2020 16:18:31 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     robh+dt@kernel.org, nsaenzjulienne@suse.de,
-        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/7] Add dts for Rpi4 + Cirrus Lochnagar and codecs
-Message-ID: <20201016151831.GE5274@sirena.org.uk>
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
- <20201014185632.GD4580@sirena.org.uk>
- <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
+        id S2410005AbgJPP1A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 11:27:00 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 9C5F2AD87;
+        Fri, 16 Oct 2020 15:26:58 +0000 (UTC)
+Message-ID: <0f0b7021e85a832afd42c6f9016158d6d8b0b28b.camel@suse.de>
+Subject: Re: [RFC] of/platform: Create device link between simple-mfd and
+ its children
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Fri, 16 Oct 2020 17:26:56 +0200
+In-Reply-To: <CAL_JsqLvzsdAfx56jQqPSd1r=P20C8DURKKZ9kke-L2owqr0fg@mail.gmail.com>
+References: <20201015114346.15743-1-nsaenzjulienne@suse.de>
+         <CAL_JsqLvzsdAfx56jQqPSd1r=P20C8DURKKZ9kke-L2owqr0fg@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-qL4wvvXdx8WWS17CadgZ"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="10jrOL3x2xqLmOsH"
-Content-Disposition: inline
-In-Reply-To: <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
-X-Cookie: Pournelle must die!
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---10jrOL3x2xqLmOsH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--=-qL4wvvXdx8WWS17CadgZ
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 16, 2020 at 02:30:08PM +0100, Richard Fitzgerald wrote:
-> On 14/10/2020 19:56, Mark Brown wrote:
+On Fri, 2020-10-16 at 09:38 -0500, Rob Herring wrote:
+> On Thu, Oct 15, 2020 at 6:43 AM Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> > 'simple-mfd' usage implies there might be some kind of resource sharing
+> > between the parent device and its children.
+>=20
+> It does? No! The reason behind simple-mfd was specifically because
+> there was no parent driver or dependency on the parent. No doubt
+> simple-mfd has been abused.
 
-> > Why extend simple-card and not the more modern and flexible
-> > audio-graph-card?
+Fair enough, so we're doing things wrong. Just for the record, I'm looking =
+at
+RPi=C2=B4s firmware interface:
 
-> I'm struggling to understand how to use audio-graph-card where there are
-> multiple alternative codecs. The host I2S endpoint has to point back to
-> the codec endpoint, like this:
+	firmware: firmware {
+		compatible =3D "raspberrypi,bcm2835-firmware", "simple-mfd";
+		#address-cells =3D <1>;
+		#size-cells =3D <1>;
+		mboxes =3D <&mailbox>;
 
-OK, this seems like a more urgent problem to address given that the
-graph card is supposed to be able to support things like TDM.
-However...
+		firmware_clocks: clocks {
+			compatible =3D "raspberrypi,firmware-clocks";
+			#clock-cells =3D <1>;
+		};
 
-> 	cpu_i2s_ep_cs47l15: endpoint {
-> 		remote-endpoint = <&cs47l15_aif1>;
-> 	};
+		reset: reset {
+			compatible =3D "raspberrypi,firmware-reset";
+			#reset-cells =3D <1>;
+		};
+		[...]
+	};
 
-> But obviously that depends on which codec node was enabled. Listing
-> multiple endpoints makes the whole port node disabled if any remote
-> endpoint is in a disabled node. I've tried adding status="disabled"
-> to endpoints or multiple port definitions with status="disabled" but
-> I haven't figured out a solution.
+Note that "raspberrypi,bcm2835-firmware" has a driver, it's not just a
+placeholder. Consumer drivers get a handle to RPi's firmware interface thro=
+ugh
+the supplier's API, rpi_firmware_get(). The handle to firmware becomes
+meaningless if it is unbinded, which I want to protect myself against.
 
-...it seems like the issue here is that you're essentially trying to
-define multiple cards at once in the same overlay.  TBH this feels like
-you want two nested levels of overlay, with the extra layer patching the
-CODEC compatible.  Or if this is mainly as an example for people you
-could just pick one and use that?
+A simpler solution would be to manually create a device link between both
+devices ("raspberrypi,bcm2835-firmware" and "raspberrypi,firmware-clocks" f=
+or
+example) upon calling rpi_firmware_get(). But I wanted to try addressing th=
+e
+problem in a generic way first.
 
---10jrOL3x2xqLmOsH
+Regards,
+Nicolas
+
+
+--=-qL4wvvXdx8WWS17CadgZ
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+JuccACgkQJNaLcl1U
-h9AnaQf+LQ6dXnZyQXkJi780zdCEyQ12TcEOc3Mb5/WE51kiHuRDa4Luy5Xk97Gt
-XI6V2WO9lJyYVgZt5BgLjAJJohah5WBPo+ShXgwgZI1bo4Y6N+6jctbqC6/DPtHe
-yIKyeZMlemrwsqbuRJI937EZMfGRhdF5ba8JymF6N7K8xjjZyls0g/VE8KqOZjFr
-7MUpgcSaWVeazF8LLRcQkhA8f4YT0mnMuFtvy07u4plMMyxRTtNdF2szMHNY9rTu
-Lnhd8/OE6tNFNnoEeAzrREHbeuqtQ4NCSiTl3vEfO4yMR/cby7caXXdSqODGYhC9
-gPAU+bIAOvQQV6vzj+AX9zbuVE/C2w==
-=H9bK
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+Ju8AACgkQlfZmHno8
+x/5rNgf/RWzw8B+m3lZjCQJdOUIVBcSgEtXTgg+1Rw64UrNVIYeCYwRa8GbiXN6Y
+KzbRjnNiAIFLworJ8rpWKfKY52/Y39CJhgbXem0tM9BWJE7gLRZA8f+B0GfvXvzz
+/bAFMkcywkakmPssQ94zslmWhgiE3zoYQD1sSVesYBV/0cqt/2TXt8wXsdyybzbD
+zMLs+vkCHhQIVaYNmmB10wLmiBo9g7PMFRD9panuRsaQ1Yyrk+NvgPcOCYYtyRxS
+NUBmVHMcbtYv+NvxGatfp8q5kyhTUeIubYmNHXgaovlo71Rg2HCWeWZkaj5TkX7s
+6n7yNJPNKEE+DcmOcwM61NaI9aYurA==
+=2J8u
 -----END PGP SIGNATURE-----
 
---10jrOL3x2xqLmOsH--
+--=-qL4wvvXdx8WWS17CadgZ--
+
