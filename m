@@ -2,214 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC46C290143
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9EDD2901BC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:20:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405297AbgJPJMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 05:12:47 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:31656 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2395072AbgJPJKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 05:10:49 -0400
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09G9AUP9014238;
-        Fri, 16 Oct 2020 04:10:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=5GgvYFVOQXr2tlU+lzmQtw6n7e7CS2uC5plEf2o1xhA=;
- b=KvFvBNrKAIUA4F+g8fCFhfAZAXBPLdAhsDpajjHdZHzhvE+51PeJAaGFxsj00FAmf/yv
- cde1yIijg1JeLtvVO5Pp1IO0qYO3YWpNEWvgkS1o1me4exeIb7i4Twc07mPCk6Gcvry6
- xX+jS3bRJjFbRZPBr8bG5p6yiSIaevdcTpId4lSQLoaZZPrwgH0dN8FCozi8Mk0did7t
- oH1rvaK3nbRONs6JGOm4IaThtE3L9sCk9rovyjHFiMbDNK2IMU9WteroHSZ1484mDkTO
- z7g1op4W048AV19gagc/TILN4bu2lN2v/FYzCYMxaJlj1QGTJ50WNeO+gOkE+IIXOLyd vA== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 3439cnfx63-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 16 Oct 2020 04:10:18 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
- 2020 10:10:16 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Fri, 16 Oct 2020 10:10:16 +0100
-Received: from [10.0.2.15] (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2283145;
-        Fri, 16 Oct 2020 09:10:16 +0000 (UTC)
-Subject: Re: [PATCH 1/7] of: base: Add of_count_phandle_with_fixed_args()
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        - <patches@opensource.cirrus.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
- <20201014145418.31838-2-rf@opensource.cirrus.com>
- <CAL_Jsq+qdcHc9H7qUVwLieHrLM8E20HZXa8DkarMiuXfCh8WOQ@mail.gmail.com>
- <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <008108c4-952b-a8a3-af81-af9e40643f36@opensource.cirrus.com>
-Date:   Fri, 16 Oct 2020 10:10:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        id S2405568AbgJPJU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 05:20:27 -0400
+Received: from mga14.intel.com ([192.55.52.115]:61105 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2394987AbgJPJU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 05:20:27 -0400
+IronPort-SDR: ABmvZ7KK/26x7I6y/25sUh40oasJMbORsIkE+LvIaOa0iUGdfPqaaD2+Q36hFJtYkvmWL1OF6s
+ aYdwx8eun2qg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="165799562"
+X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
+   d="scan'208";a="165799562"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 02:20:26 -0700
+IronPort-SDR: e76N9CeG4MdDtrqHMptxm9uAhbobrboaLyyt1l2jgUC1hb6BMHX4CzMdWz+1Kpo72odoecD/EY
+ 7V2DwDjCyGbQ==
+X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
+   d="scan'208";a="319388347"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 02:20:24 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kTLvT-00884J-1o; Fri, 16 Oct 2020 12:21:27 +0300
+Date:   Fri, 16 Oct 2020 12:21:27 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: Re: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20201016092127.GF4077@smile.fi.intel.com>
+References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
+ <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
+ <20201015104217.GR4077@smile.fi.intel.com>
+ <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 bulkscore=0 malwarescore=0
- spamscore=0 adultscore=0 mlxlogscore=999 phishscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2010160068
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 16, 2020 at 03:18:08AM +0000, Ayyathurai, Vijayakannan wrote:
+> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com> 
+> Sent: Thursday, 15 October, 2020 4:12 PM
+> On Thu, Oct 15, 2020 at 03:36:09AM +0800, vijayakannan.ayyathurai@intel.com wrote:
+> > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-On 15/10/2020 17:52, Robin Murphy wrote:
-> On 2020-10-14 19:39, Rob Herring wrote:
->> On Wed, Oct 14, 2020 at 9:54 AM Richard Fitzgerald
->> <rf@opensource.cirrus.com> wrote:
->>>
->>> Add an equivalent of of_count_phandle_with_args() for fixed argument
->>> sets, to pair with of_parse_phandle_with_fixed_args().
->>>
->>> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
->>> ---
->>>   drivers/of/base.c  | 42 ++++++++++++++++++++++++++++++++++++++++++
->>>   include/linux/of.h |  9 +++++++++
->>>   2 files changed, 51 insertions(+)
->>>
->>> diff --git a/drivers/of/base.c b/drivers/of/base.c
->>> index ea44fea99813..45d8b0e65345 100644
->>> --- a/drivers/of/base.c
->>> +++ b/drivers/of/base.c
->>> @@ -1772,6 +1772,48 @@ int of_count_phandle_with_args(const struct 
->>> device_node *np, const char *list_na
->>>   }
->>>   EXPORT_SYMBOL(of_count_phandle_with_args);
->>>
->>> +/**
->>> + * of_count_phandle_with_fixed_args() - Find the number of phandles 
->>> references in a property
->>> + * @np:                pointer to a device tree node containing a list
->>> + * @list_name: property name that contains a list
->>> + * @cell_count: number of argument cells following the phandle
->>> + *
->>> + * Returns the number of phandle + argument tuples within a 
->>> property. It
->>> + * is a typical pattern to encode a list of phandle and variable
->>> + * arguments into a single property.
->>> + */
->>> +int of_count_phandle_with_fixed_args(const struct device_node *np,
->>> +                                    const char *list_name,
->>> +                                    int cells_count)
->>> +{
->>
->> Looks to me like you can refactor of_count_phandle_with_args to handle
->> both case and then make this and of_count_phandle_with_args simple
->> wrapper functions.
-> 
-> Although for just counting the number of phandles each with n arguments 
-> that a property contains, isn't that simply a case of dividing the 
-> property length by n + 1? The phandles themselves will be validated by 
-> any subsequent of_parse_phandle*() call anyway, so there doesn't seem 
-> much point in doing more work then necessary here.
-> 
+...
 
-As I'm not a DT expert, I'm reluctant to change existing algorithms that
-could break everything just for the trivial case of adding a fixed
-arguments count. I have a re-worked patch as suggested by Rob that
-re-uses the existing counting function for both cases.
+> > +	priv->clk = devm_clk_get(dev, NULL);
+> > +	if (IS_ERR(priv->clk))
+> > +		return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to get 
+> > +clock\n");
+> > +
+> > +	ret = clk_prepare_enable(priv->clk);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(priv->base)) {
+> 
+> > +		clk_disable_unprepare(priv->clk);
+> 
+> See below.
+> 
+> > +		return PTR_ERR(priv->base);
+> > +	}
+> > +
+> > +	priv->chip.base = -1;
+> > +	priv->chip.dev = dev;
+> > +	priv->chip.ops = &keembay_pwm_ops;
+> > +	priv->chip.npwm = KMB_TOTAL_PWM_CHANNELS;
+> > +
+> > +	ret = pwmchip_add(&priv->chip);
+> > +	if (ret) {
+> > +		dev_err(dev, "Failed to add PWM chip: %pe\n", ERR_PTR(ret));
+> 
+> > +		clk_disable_unprepare(priv->clk);
+> 
+> This messes up with ordering of things.
+> 
+> That's why devm golden rule is either all or none. You may fix this by switching to devm_add_action_or_reset().
+> 
+> One of possible way is like in below drivers:
+> 
+> 	% git grep -n devm_add_action_or_reset.*disable_unprepare -- drivers/
+> 
+> But it may be fixed in follow up change. Depends on maintainers' wishes.
+> 
+> Sure. I shall incorporate and check based on maintainers wish in the next version.
+> 
+> > +		return ret;
+> > +	}
+> > +
+> > +	platform_set_drvdata(pdev, priv);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int keembay_pwm_remove(struct platform_device *pdev) {
+> > +	struct keembay_pwm *priv = platform_get_drvdata(pdev);
+> > +	int ret;
+> > +
+> > +	ret = pwmchip_remove(&priv->chip);
+> > +	clk_disable_unprepare(priv->clk);
+> > +
+> > +	return ret;
+> 
+> ...and this will be simplified to
+> 
+> 	return pwmchip_remove(&priv->chip);
+> 
+> Until v10, It is as per your suggestion. But I have changed it in v11 to overcome the issue mentioned by Uwe. I have kept the snip of v10 FYR below.
+> 
+> //Start snip from v10 review mailing list
+> //> +static int keembay_pwm_remove(struct platform_device *pdev) {
+> //> +	struct keembay_pwm *priv = platform_get_drvdata(pdev);
+> //> +
+> //> +	clk_disable_unprepare(priv->clk);
+> //> +
+> //> +	return pwmchip_remove(&priv->chip);
+> //
+> //You have to call pwmchip_remove first. Otherwise you're stopping the PWM while the framework still believes everything to be fine.
+> //
+> //> +}
+> //End snip from v10 review mailing review
+> 
+> > +}
 
->>> +       struct of_phandle_iterator it;
->>> +       int rc, cur_index = 0;
->>> +
->>> +       if (!cells_count) {
->>> +               const __be32 *list;
->>> +               int size;
->>> +
->>> +               list = of_get_property(np, list_name, &size);
->>> +               if (!list)
->>> +                       return -ENOENT;
->>> +
->>> +               return size / sizeof(*list);
-> 
-> Case in point - if it's OK to do exactly that for n == 0, then clearly 
-> we're *aren't* fussed about validating anything, so the n > 0 code below 
-> is nothing more than a massively expensive way to check for a nonzero 
-> remainder :/
-> 
-> Robin.
-> 
->>> +       }
->>> +
->>> +       rc = of_phandle_iterator_init(&it, np, list_name, NULL, 
->>> cells_count);
->>> +       if (rc)
->>> +               return rc;
->>> +
->>> +       while ((rc = of_phandle_iterator_next(&it)) == 0)
->>> +               cur_index += 1;
->>> +
->>> +       if (rc != -ENOENT)
->>> +               return rc;
->>> +
->>> +       return cur_index;
->>> +}
->>> +EXPORT_SYMBOL(of_count_phandle_with_fixed_args);
->>> +
->>>   /**
->>>    * __of_add_property - Add a property to a node without lock 
->>> operations
->>>    */
->>> diff --git a/include/linux/of.h b/include/linux/of.h
->>> index 5cf7ae0465d1..9f315da4e9da 100644
->>> --- a/include/linux/of.h
->>> +++ b/include/linux/of.h
->>> @@ -377,6 +377,8 @@ extern int of_parse_phandle_with_fixed_args(const 
->>> struct device_node *np,
->>>          struct of_phandle_args *out_args);
->>>   extern int of_count_phandle_with_args(const struct device_node *np,
->>>          const char *list_name, const char *cells_name);
->>> +extern int of_count_phandle_with_fixed_args(const struct device_node 
->>> *np,
->>> +       const char *list_name, int cells_count);
->>>
->>>   /* phandle iterator functions */
->>>   extern int of_phandle_iterator_init(struct of_phandle_iterator *it,
->>> @@ -886,6 +888,13 @@ static inline int 
->>> of_count_phandle_with_args(struct device_node *np,
->>>          return -ENOSYS;
->>>   }
->>>
->>> +static inline int of_count_phandle_with_fixed_args(const struct 
->>> device_node *np,
->>> +                                                  const char 
->>> *list_name,
->>> +                                                  int cells_count)
->>> +{
->>> +       return -ENOSYS;
->>> +}
->>> +
->>>   static inline int of_phandle_iterator_init(struct 
->>> of_phandle_iterator *it,
->>>                                             const struct device_node 
->>> *np,
->>>                                             const char *list_name,
->>> -- 
->>> 2.20.1
->>>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
->>
+What I said does not contradict with what Uwe said. So, please, fix ordering
+either by dropping devm_ in the middle or adding devm_ action.
+
+Now you moved serious ordering issue in ->remove() (which Uwe noted) to less
+serious in ->probe(). But issue is still present.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
