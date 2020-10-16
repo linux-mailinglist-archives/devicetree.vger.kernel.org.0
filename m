@@ -2,211 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2201A28FFFE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 10:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A03D629000F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 10:41:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394493AbgJPIcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 04:32:10 -0400
-Received: from mga12.intel.com ([192.55.52.136]:61978 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394465AbgJPIcJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 04:32:09 -0400
-IronPort-SDR: 5QW+WhprPClo64fWB/ga3P3irbvcgK7d8QoLFWlYPhN/U8RahZ2x9x8y/2ihEyKJdKLmLa6UPn
- H1h4kf5yivlA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="145864581"
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
-   d="scan'208";a="145864581"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2020 01:32:08 -0700
-IronPort-SDR: dREwULERi7WUEwIZ3k0l3Pw1Z/4dIjBiSe8A81rP7//eZLy2A8igiqQgdQbpoP+VC+eZSBeHss
- 6A7AX7WWVi5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; 
-   d="scan'208";a="358017617"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
-  by orsmga007.jf.intel.com with ESMTP; 16 Oct 2020 01:32:07 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 16 Oct 2020 01:32:07 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 16 Oct 2020 01:32:07 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Fri, 16 Oct 2020 01:32:07 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Fri, 16 Oct 2020 01:32:07 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T1me2HzvgqLAJsswa5tu7Jg9GBtIsY84AbcW11o5HcoiTcdm0f/jymxkF7uR6OlHUWMzLpqLDnPp22bXYQpC9YGo9O0P/d47PwT86Sb2F0/k+J0CCfPJ1+ph3OSHEkXMVhD8wPK9QDvZWst81OwHOE8TyKiGftxOX3b6QAozy4a/bqPeqESEsU7zjs04JWVgNbx0YwcbJKmMg+xswYWMaMA2hGudEc+EJhaZQvYRiMZFtZOmjArVAtZWH4JeLzxoPukokjzbuRrafXAc6xn8C8fqxJqwYDdytdoZ6PY41jGG3FAT57YqkhmsX7IN/uk5sBiN6fveKLn78Fzf2LKWBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O/nPypaocoQ6LoYcYrtenBaAqB8IYOn3DKufsI6/UyU=;
- b=l3F6nF0yo1ZAGVY2iBXPxHzn+DVEcWmU+Vcvcrecz4g2Q5xcC8Xga8CAWSkG+cuPjjI8QWs+EQR50QcgMb0b/upTaeg4MSAgfy4OUF/b65oiwwFcvHUOV6+JXkHcCtZxiHPnKYDZQkJpPjuHLuTwzdG4vvD4bNfILsW+cgAYmN6obVUCqwm+2MKQphJ2ncAtbSfaZs1asNetID493a6A6EyXdARNXuw8WRzZMGKtV3UODfvIl8ZjPDcCxZPWph5Y+HwEnFr94Gj+bWTFuRu0hwylt43Hy51nBLnWGKzsBE2wcbj2Nk6Hf1vlrxFOj+sUWkRr9I9tr8BgJxsb3n5fLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O/nPypaocoQ6LoYcYrtenBaAqB8IYOn3DKufsI6/UyU=;
- b=eI0f049CTlDDCLT4pdfOXCnjBx57nVwsjae2tvrs7KZrMlU5HQFdE+pPxg+HMN5FJBCZr4we1bzCyV0gfac08wiAs8pIKvRI2H1CAgi5CMb2QFSX4kotcdT5fT+/EqCuG3pVwCVvrtqr5aE7fAvTx0TdgzuyOr2NM83JHyEq5SU=
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
- by DM6PR11MB4531.namprd11.prod.outlook.com (2603:10b6:5:2a5::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23; Fri, 16 Oct
- 2020 08:32:06 +0000
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::7448:c067:e80d:3c09]) by DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::7448:c067:e80d:3c09%3]) with mapi id 15.20.3477.021; Fri, 16 Oct 2020
- 08:32:06 +0000
-From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-To:     =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: RE: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
-Thread-Topic: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
-Thread-Index: AQHWomCF+NkKYBj1fUCQimGsu2FSAKmYevKAgAENFDCAAFDFAIAADNpQ
-Date:   Fri, 16 Oct 2020 08:32:05 +0000
-Message-ID: <DM6PR11MB4250C00BB0FFB3CD97D5207CFB030@DM6PR11MB4250.namprd11.prod.outlook.com>
-References: <cover.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <5fc6189f9c4cf382d54ae00e663f296baeb2c06e.1602703463.git.vijayakannan.ayyathurai@intel.com>
- <20201015104217.GR4077@smile.fi.intel.com>
- <DM6PR11MB425089996A0CC9A43CBC50C5FB030@DM6PR11MB4250.namprd11.prod.outlook.com>
- <20201016073426.vyjehbkyn3sxn7d5@pengutronix.de>
-In-Reply-To: <20201016073426.vyjehbkyn3sxn7d5@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [42.111.145.160]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 81038e56-efe0-4b9d-f2e2-08d871adf71d
-x-ms-traffictypediagnostic: DM6PR11MB4531:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR11MB453184D9B37DDAE3589E3E99FB030@DM6PR11MB4531.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4125;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BX8pI51ssX6K3VolH/uBmK2BQ2w6vXTTV/GPjwE5iTPkQuqnhgWPbCAmPiqQ6XsN/yc+Km0EN2mM3N3XauQ2K1A4ZDvMNZcHzIBiQxJzyzl8Ef2ua1ujcTaAbuGyxqg3jBtM30kkQmgwB3qMOA3fjga7DIerlcL/d2Pzk6K36cAL7zN4n6Ov9iWJjWVV1s42vxHLZYWHLHLhZDPqw7liaOUEBxpZ353P1PV4pp8cqBd0Ks+eeSMKfsI5l//O7WntGqAnOrL3yVTuWJmPcPbTIJ9pPaygg41RLzxSti+eH31Z9aK0qKgbB2Ucs/T0ax6evogN+7VupjeMWB93tEjdqhp029+CBB/YpG7xbN4hFIcAzyusRlWkPtCk6NGutYAqosjpn48Hz/+PXu+o+a/prA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(376002)(39860400002)(366004)(136003)(316002)(8936002)(66946007)(55016002)(54906003)(71200400001)(186003)(66574015)(83380400001)(52536014)(7696005)(8676002)(76116006)(4326008)(64756008)(66476007)(5660300002)(86362001)(53546011)(6916009)(478600001)(9686003)(66556008)(66446008)(966005)(2906002)(33656002)(6506007)(26005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: Lo9c3inLAWx9jVjGN+FI7X5Es5WpSovDUKVVRAeXmvAzhk4XBR2c4SLcpdgdXfiF6EH3j3GoUcpV6rBqDToR71FXEL6dQwwAz03X/Oy1uGKlhe8EcF23JLq7Gmenx1Vs8mA4QmFx5INfQNZg9tsz7j3Z+7ziRkVViqcGFg4tQMcLIS1iATO8bAcvybJSWJQ7luOHPP0H8LczDe6e6/qIjqWZ4IT4e4QL2Nez9NBe09CXceZIZeRGGm13//Hkk08PGmT9sSXexZjk2enkO6LC8Z3aeLCdym1BD3mWfyeZ6g9jP4IUiQWIWBqr7yPDMB0A8O7ixRdI+upXtnH2A78RglXR+gjfH86y+/nx4/pYDYnPN3DOPloWqwaCHW4r6cKxv44RwwlDdx7CQ1pvlRPzfuOk9PZRdM2iX5bsQJrJBaDOV/nxLZ4yDUiH+9IbdPFYiuxMqno4bG8ziOqr5unJ8uwc7ne0LI3HNJo6tIjpvM2wW/AVKaujn5Xbq7fnYbkS03zeK+7Pb6bSZSncQ/EOnC9Qap88oA0DPUhSZX4AdssCHfGwhMHqKliJWqoD7ebXh2XdoZyiyLrbBt3qoSEP91Pwh3UrfXXet7lTdydEeQWfYHLNG9B51HgqpkVJxLeFvDcScKC8Vvo6aL/xWWCwKw==
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S2394720AbgJPIla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 04:41:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56632 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394717AbgJPIl3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 04:41:29 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A0FDC0613D4
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 01:41:29 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id e18so1758432wrw.9
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 01:41:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uQtk+JkWwMEwATgr+OhTpaNDc3LvbNZB+56/tR3CRGc=;
+        b=g6aDk1qZRqu1sSIfLksRLGEGveUEmd6U/VdaytxMoY0CorU/S7i/BkT8/apGW/zW1N
+         lgcFmP1nvE9rPx++8e7QLcq5x527D2uDlPLHc1wsExoqv5wNOW1luL0pNdjw+RzMzzQd
+         M/1xkXnkJNZfYRq9tvIRKJkdg0JWL/MY3NOCO6ssEC4V8aThV6KznIHCGQLDpm4UqX7u
+         x6C9swI0ag55gIGoOkSmN9haSiyPkeZgPMjJqhHSYZrRnKv5k0J6WcLcH+wdQBdZoEeu
+         z6ywXa+E0CwLcugppe7h6mG4iLaIQ5Ry05Jb1O9RpHN75B+p5Ej2a9v0P++Nwrf+13lY
+         znRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uQtk+JkWwMEwATgr+OhTpaNDc3LvbNZB+56/tR3CRGc=;
+        b=gnBwhc2YmJkpKirSqI+EyRERmO88HAxJdc+hboPt5EMI7gLX6tdDwtVf7wKf3gHtrG
+         Y5+ffQ9tFTvFBQTWUV1GunsHrzwRAqSkiWYwwxHCzWcV4DTJlYkXesZw9i5rq2gUZJpA
+         X9A3BxAP7ywA52SO7jlkIFUZ973uifk5LQIPC9uoKHBWc9HzO7m3n5CGfVIb37bX7Mbl
+         5kMZQS7Rs7PiPaGOHwZQwuvrzNOx1PFVRbBpq6kEDJlMQxyGPLtPmDMYo7XaByQm2NIa
+         BHaYYMTnnbVRj6E5h3czApfAd9sWGVTl84RJpM238XzxCdXcblCMERm2zF+Ykwo57qQa
+         sEQg==
+X-Gm-Message-State: AOAM533xjUt9VRj6y1rIX6Cg1xOUCzI/K/HlFgaBDqgY6SS9YlWimDgp
+        4r7gDIreUKkkJ2tIYlyphNWsrw==
+X-Google-Smtp-Source: ABdhPJz9m3JGp984AVtKeGBkdjCiktIcI1tKy4izElWyZLcVxTVch5Uw/IS4XIpF8j0oVFqEOw92Mg==
+X-Received: by 2002:adf:dd46:: with SMTP id u6mr2609097wrm.295.1602837688010;
+        Fri, 16 Oct 2020 01:41:28 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id j7sm2577408wrn.81.2020.10.16.01.41.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Oct 2020 01:41:27 -0700 (PDT)
+Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add bindings for
+ Qualcomm SDM660 NoC
+To:     kholk11@gmail.com, bjorn.andersson@linaro.org
+Cc:     robh+dt@kernel.org, agross@kernel.org, marijns95@gmail.com,
+        konradybcio@gmail.com, martin.botka1@gmail.com,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20201008204515.695210-1-kholk11@gmail.com>
+ <20201008204515.695210-2-kholk11@gmail.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <51622859-3c60-9547-7253-8df5cf5ccd0d@linaro.org>
+Date:   Fri, 16 Oct 2020 11:41:24 +0300
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81038e56-efe0-4b9d-f2e2-08d871adf71d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2020 08:32:06.0981
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PpjKhCjcJYB5PNMfszVUF/es9M7nsvd6sCDGpDYz2bg5ieZ7xPHndcHBE38cM2HcFUZEd+OZcC1PO2UODlwyRX+JcQ2vvEkTrQW3rdclJe9skVybw5LUgmRqCD45+UuE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4531
-X-OriginatorOrg: intel.com
+In-Reply-To: <20201008204515.695210-2-kholk11@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+Hi,
 
------Original Message-----
-From: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>=20
-Sent: Friday, 16 October, 2020 1:04 PM
-To: Ayyathurai, Vijayakannan <vijayakannan.ayyathurai@intel.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>; thierry.reding@gma=
-il.com; robh+dt@kernel.org; linux-pwm@vger.kernel.org; devicetree@vger.kern=
-el.org; Wan Mohamad, Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.c=
-om>; mgross@linux.intel.com; Raja Subramanian, Lakshmi Bai <lakshmi.bai.raj=
-a.subramanian@intel.com>
-Subject: Re: [PATCH v12 1/2] pwm: Add PWM driver for Intel Keem Bay
+On 10/8/20 23:45, kholk11@gmail.com wrote:
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> 
+> Add the bindings for the Qualcomm SDM660-class NoC, valid for
+> SDM630, SDM636, SDM660 and SDA variants.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> ---
+>  .../bindings/interconnect/qcom,sdm660.yaml    | 147 ++++++++++++++++++
+>  .../dt-bindings/interconnect/qcom,sdm660.h    | 116 ++++++++++++++
+>  2 files changed, 263 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
+>  create mode 100644 include/dt-bindings/interconnect/qcom,sdm660.h
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
+> new file mode 100644
+> index 000000000000..440e9bc1382a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
+> @@ -0,0 +1,147 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interconnect/qcom,sdm660.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SDM660 Network-On-Chip interconnect
+> +
+> +maintainers:
+> +  - Georgi Djakov <georgi.djakov@linaro.org>
 
-Hello Ayyathurai,
-
-Can you please fix your MUA to properly quote when replying, this is really=
- annoying.
-
-Sorry for that MUA (Made Up Acronym).=20
-
-On Fri, Oct 16, 2020 at 03:18:08AM +0000, Ayyathurai, Vijayakannan wrote:
-> > On Thu, Oct 15, 2020 at 03:36:09AM +0800, vijayakannan.ayyathurai@intel=
-.com wrote:
-> > > +static int keembay_pwm_remove(struct platform_device *pdev) {
-> > > +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
-> > > +	int ret;
-> > > +
-> > > +	ret =3D pwmchip_remove(&priv->chip);
-> > > +	clk_disable_unprepare(priv->clk);
-> > > +
-> > > +	return ret;
-> >=20
-> > ...and this will be simplified to
-> >=20
-> > 	return pwmchip_remove(&priv->chip);
->
-> Until v10, It is as per your suggestion. But I have changed it in v11=20
-> to overcome the issue mentioned by Uwe. I have kept the snip of v10=20
-> FYR below.
->=20
-> //Start snip from v10 review mailing list //> +static int=20
-> keembay_pwm_remove(struct platform_device *pdev) {
-> //> +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
-> //> +
-> //> +	clk_disable_unprepare(priv->clk);
-> //> +
-> //> +	return pwmchip_remove(&priv->chip);
-> //
-> //You have to call pwmchip_remove first. Otherwise you're stopping the PW=
-M while the framework still believes everything to be fine.
-> //
-> //> +}
-> //End snip from v10 review mailing review
-
-Note that we're both (Andy and I) are right. You must not disable the clock=
-s before pwmchip_remove() (otherwise for a short time the PWM looks ready b=
-ut isn't). And if you use devm-stuff to enable the clock it will be disable=
-d only after the remove callback completed and your .remove may look like:
-
-	static int keembay_pwm_remove(struct platform_device *pdev)
-	{
-		struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
-
-		return pwmchip_remove(&priv->chip);
-	}
-
-because you won't have to care for the clock explicitly.
-
-OK. I will incorporate it in the next version.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            =
-|
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Why me? This should be you.
 
 Thanks,
-Vijay
+Georgi
