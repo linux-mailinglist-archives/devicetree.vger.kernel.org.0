@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA99B290985
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:18:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9613B29098F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 18:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409906AbgJPQSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 12:18:31 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:36158 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409855AbgJPQSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 12:18:30 -0400
-Received: by mail-oi1-f195.google.com with SMTP id u17so3037400oie.3;
-        Fri, 16 Oct 2020 09:18:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uISo57yfUZpTzroMJhAVgeLo1/yelMiKsufW7Z+pWqo=;
-        b=m/FHxZAjzDw6+iURm5HXzRFnzv/1zD5JWvP2f4eMso4nTlQ4MTQKWoKUCdQnwaC5Bp
-         kdn4Q215XDh2i4xVHqfNXVvYX3ydimglgp9yUpPBAJ0wnr9bH05fftUrdLQ3toyJ0cnp
-         mleZ0bejFAOo0B/xSoTP47Kz60gOAjtzZEDsbnPBOp+Jh/W98/LvSlDBT7bSYZIOeR70
-         i0FneXckXDOR3H8BJDp4F9t4RZc1ntPMvSOtnF904dQNcuOTiaWCnV05bzHzYTXogUuS
-         fK4aflHqG2sGP0ExNU/rPI+A2n8YuhDZD8LQVIDbpNoqlr+qCWMDsjkTb0Bh1mGdDqoK
-         ZObw==
-X-Gm-Message-State: AOAM5314dMmyG5lv4Lnj+YgMVaB3cRqpU5GaUHwD5c8KuYXtMzlioHyp
-        DOe4/Lx1oGbYrkbrYmVcsg==
-X-Google-Smtp-Source: ABdhPJxXWV44wqWW/P4G+jW/m/jxEn6yv6aGQSaC4SmYzaJjQxINSxxLka7EviDs9inU1aAGasqeyA==
-X-Received: by 2002:aca:aa08:: with SMTP id t8mr3126702oie.129.1602865110271;
-        Fri, 16 Oct 2020 09:18:30 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u22sm1266354oor.13.2020.10.16.09.18.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2020 09:18:29 -0700 (PDT)
-Received: (nullmailer pid 1517766 invoked by uid 1000);
-        Fri, 16 Oct 2020 16:18:28 -0000
-Date:   Fri, 16 Oct 2020 11:18:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 2/4] mmc: dt-bindings: add support for MT8192 SoC
-Message-ID: <20201016161828.GA1517686@bogus>
-References: <20201014030846.12428-1-wenbin.mei@mediatek.com>
- <20201014030846.12428-3-wenbin.mei@mediatek.com>
+        id S2410758AbgJPQSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 12:18:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44428 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2410751AbgJPQSx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 12:18:53 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2C4B6207BC;
+        Fri, 16 Oct 2020 16:18:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602865132;
+        bh=HtlLolkp5hR0VMPg+WOgBQp8RKSusLTKuW8c46vYJgs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=p8k+vRIxvh61Veg2Pz/2x2LvRjPmAfLnbPI2iNgowenQOJ70GBvDl+swG2TyuLs0h
+         D+QDG8CafsI9cukSFGGmGitp8e6auM5WFBJ29IH0hdsCDqQdFX5DltteNIyGoF0Ti2
+         zbfPzBFxz4B0GShvjBu7klo7MtA9rVfVJtaOaw0Y=
+Date:   Fri, 16 Oct 2020 17:18:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     vigneshr@ti.com, tudor.ambarus@microchip.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        miquel.raynal@bootlin.com, simon.k.r.goldschmidt@gmail.com,
+        dinguyen@kernel.org, richard@nod.at, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+Subject: Re: [PATCH v1 2/6] dt-bindings: spi: Convert cadence-quadspi.txt to
+ cadence-quadspi.yaml
+Message-ID: <20201016161844.GH5274@sirena.org.uk>
+References: <20201016093138.28871-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201016093138.28871-3-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="bygAmIonOAIqBxQB"
 Content-Disposition: inline
-In-Reply-To: <20201014030846.12428-3-wenbin.mei@mediatek.com>
+In-Reply-To: <20201016093138.28871-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Cookie: Pournelle must die!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 11:08:44 +0800, Wenbin Mei wrote:
-> MT8192 mmc host ip is compatible with MT8183.
-> Add support for this.
-> 
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
-> 
 
+--bygAmIonOAIqBxQB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+On Fri, Oct 16, 2020 at 05:31:34PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel=
+=2Ecom>
+>=20
+> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
+> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
 
-If a tag was not added on purpose, please state why and what changed.
+Please make YAML conversions the last thing in any patch series -
+there's sometimes a backlog on reviews as the DT maintainers are very
+busy so this means that delays with them don't hold the rest of the
+series up.
 
+--bygAmIonOAIqBxQB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+Jx+MACgkQJNaLcl1U
+h9Dndgf/WIBohsik4TAsHbT7NjLwWhhyd6itL+7pmlPnRG87WCHo6txvKu/HYUxr
+dgYts7F7r8iGhaXdSgFVybwbdDOYPKMClFPAwDulQKt/ieAm86VS35Wu9i4hsgx8
+hsRg3aF7GsYTqqkMHRjVGPUxLiGfIbEHzG87WGVQVpSIdwwS8tubDD1sIUiQ6NaI
+szsC8tP5EMyz2aR+hsAXReAl3H3X/EWZkAiQLzqF40+DIb4r9ZTI7jvH256kHba0
+nfnsbFLq+N1hh5yNnbcRYARtusmhbuYRJN3qI3cFw8remiBsWXzVrAJFPhreCMrw
+2bWhyivezbTpl0HPqc+ZO+SUSDOWvg==
+=eZL+
+-----END PGP SIGNATURE-----
+
+--bygAmIonOAIqBxQB--
