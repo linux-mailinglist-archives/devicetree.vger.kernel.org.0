@@ -2,164 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E89E28FE81
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 08:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAFE28FE89
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 08:51:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391221AbgJPGtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 02:49:52 -0400
-Received: from mail-eopbgr20062.outbound.protection.outlook.com ([40.107.2.62]:56385
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        id S2394452AbgJPGv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 02:51:27 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:15302 "EHLO huawei.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732446AbgJPGtw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 02:49:52 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AT6ukXBnhwke2NOprQRN9crMA8nUoinneNRSm/lUvi+hJ7HNTwZz5rLTCh2cby8hPwzpSnJKqoWccO7MOWsxSb5wqx6Raps5bWLhP+CmDwEw7fBarp+gGlkyq/VflpXYSHNIREZ0ZzGP3HGdGC9klccAiN+xdmxjbE769xWDnaKBAe/sauFNoHm2dK77cLa6RzdaiYQjfgy0lYZvLDtwPbDfAwWYtHM5EEeFG5jXzXaP7Tz6RmzvidaoTUZ3oR7JtbZvODgdyo+31+0HWAzwnqUljdN4S0kGnWAOqTnBWHD7bqLam1xIB2PrtOHxA826GS4Tr55RWwJzV3jLXIHuYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CxGLqUuTvCUYpAe+2rCtBm7BONTkC3hHq1VbPxkxyKo=;
- b=WGqPDWRCWBB+D4jTmia7PClnkjblbiVVWYFKVmejhWFILV9kGo3OIzUo8xGkgZYfy8nd2DnpbFWYEk6/jeNPWBcaKaYbCk6x4/Lb+/ITn7mPXRTxlvZXCWgZ0dAuULcUAq9UoFHSAymKQW92Kyeqznc/aviz59MKBs+Ci4CsZURLd0mbmF2rqmyWaDT1yzH+O8zCqNp65DXeC1Xj1ZxG/FTTnYCCmmHF8qhfunopnPU6rg+I3iCKJ7Fc8yrAd5rP8ggPHituUUR8EHUPn+kBggBdeib1mMZD8TreGb8JduD6eJXyjFC8/CTxPlUpGgY7nrXJo25zoHQA6dXkXDAc2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CxGLqUuTvCUYpAe+2rCtBm7BONTkC3hHq1VbPxkxyKo=;
- b=RPNazc0SYxMsOKHp0mlkQt4D3qQJvGuTK+V2eOcu+Qo4HFCtqpMlJsG5vAFMcOClCC1+dqSQNjiekM98Tw1zfeYbmi+GbaeZIIIXL8sQddTpKIHlKR89XCo2CH5O24Nfm1uskxEfJLA3hT7ugHr6nYK5v9L75ilLPQcKAU5GSeo=
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DB6PR0402MB2725.eurprd04.prod.outlook.com (2603:10a6:4:95::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Fri, 16 Oct
- 2020 06:49:42 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3c3a:58b9:a1cc:cbcc]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3c3a:58b9:a1cc:cbcc%9]) with mapi id 15.20.3477.021; Fri, 16 Oct 2020
- 06:49:42 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Ying Liu <victor.liu@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        Pankaj Bansal <pankaj.bansal@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 6/6] can: flexcan: fix ECC function on LS1021A/LX2160A
-Thread-Topic: [PATCH 6/6] can: flexcan: fix ECC function on LS1021A/LX2160A
-Thread-Index: AQHWo39DUYQntMreCkyBIBnNfeboTKmZvYUAgAAJDPA=
-Date:   Fri, 16 Oct 2020 06:49:42 +0000
-Message-ID: <DB8PR04MB67952876A98761963BBB84F2E6030@DB8PR04MB6795.eurprd04.prod.outlook.com>
-References: <20201016134320.20321-1-qiangqing.zhang@nxp.com>
- <20201016134320.20321-7-qiangqing.zhang@nxp.com>
- <17678245-34fb-face-92ed-f32cd7423053@pengutronix.de>
-In-Reply-To: <17678245-34fb-face-92ed-f32cd7423053@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: c5d6ff96-80fb-4b87-ea00-08d8719fa91e
-x-ms-traffictypediagnostic: DB6PR0402MB2725:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB6PR0402MB27258E6389FD90F3530B492FE6030@DB6PR0402MB2725.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mH3JP2uAchZmPMVrBH/UT3cQeaGsZKaFKwCfTSnz5Gye/Ra66fPnF32S5B7Ao3UpqSaP4Zgr6xTd9iIO9YVKjd4debp+RwdAj+3oiZzIg8Pp2dj+ZHm50+cA1OZ7MFRI9peMhzSmgDDd4RQ+Tru0/T/IBxesbd3Otnl5jWjTd+o1pssc/9zPMQDe35YlZXFy+82Iw6NI2hbxHUIbKRL+bGC+4clrugdYKIjd4XcG6ajobJepJqkuOL8lb9m2fEZJMFx2G2zuA7Us87qCCWCpeeFDiftz6Q9h3IHCsVa37sB6kxlAntL0c1xXZkkvhx6ep1YOY4lNIdXRw4J/AXRW+539QPRxicLWi4hfSbJVAGqu9L6BKEncG6h+i+4EBplilgOATL8Yg7mfdFDZ7TLgYw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39860400002)(366004)(136003)(76116006)(8936002)(71200400001)(966005)(66446008)(478600001)(64756008)(33656002)(7696005)(54906003)(2906002)(110136005)(66556008)(4326008)(5660300002)(66946007)(66476007)(6506007)(316002)(53546011)(9686003)(52536014)(26005)(55016002)(186003)(86362001)(8676002)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: L7k7ikpD0ZWvBNZjuVVe9VRLVvSKdCEFL/zTtO57Z0ZhaTcOBm0eOFvw7+Bb5FtNvZE9RcYvUng8L1k+B/TW8XsbG1FLxJSLfuyF3Rntd5V+hcw7OjdF6AIy/9qQwRb3QV9Baug5t4ONSFRUjxzPP+mo0nfVScYcVYTO36LCZwjeSyYMQOK/hUNxJnr85EFH9Yp6bXnxUjl/5hhJGXqGzLgMiLlyR4belVeShTA68vB89AJWltLtpikFTV8PY13un3JL2hEnAObqzuN3yVkLQYMAFo6BEUXWypXonVB+vJrmiydWwH974L7ouCN7XR90hRGlciLsNZEItPYwu75xBCAyFX/1jsx4H/Bmytn+DcuwWzV+yed9Gdc8NbOXXor4M+CbQCVuY43NEl69zlnBojn+GdiPdsQ9EMrv6YUF0FJQTn4NLIggACPfnhp1+BivIHZcBuTPBX9Kr6v0i2nrl3iTlZaXIfMNCDl0fQZmZ9rMCyEF/IcWW/nVk7dqhYezYGMTzNftl5VnRnqoCOX6lZF0ZFQZHy7OT34Mw+HzqhevO4o6ue/WlWrNWm5c0lzI2nu5cZECs+7L5LfCDDLww4ge7xS8u1g4189kpuAvs7bwNePPRwQhtWDiGxm8zrlvAe3TZBwVSG8IcmLuWHXlaA==
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S2391881AbgJPGv0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 02:51:26 -0400
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 419B7DF0B12213270867;
+        Fri, 16 Oct 2020 14:51:17 +0800 (CST)
+Received: from [10.174.179.182] (10.174.179.182) by
+ DGGEMS413-HUB.china.huawei.com (10.3.19.213) with Microsoft SMTP Server id
+ 14.3.487.0; Fri, 16 Oct 2020 14:51:09 +0800
+Subject: Re: [PATCH v3 7/8] arm64: mm: Set ZONE_DMA size based on early IORT
+ scan
+To:     Catalin Marinas <catalin.marinas@arm.com>
+CC:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        <robh+dt@kernel.org>, <hch@lst.de>, <ardb@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Lorenzo Pieralisi" <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>, <robin.murphy@arm.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>, <jeremy.linton@arm.com>,
+        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        "Anshuman Khandual" <anshuman.khandual@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <lenb@kernel.org>, <linux-acpi@vger.kernel.org>,
+        Linuxarm <linuxarm@huawei.com>
+References: <20201014191211.27029-1-nsaenzjulienne@suse.de>
+ <20201014191211.27029-8-nsaenzjulienne@suse.de>
+ <1a3df60a-4568-cb72-db62-36127d0ffb7e@huawei.com>
+ <20201015180340.GB2624@gaia>
+From:   Hanjun Guo <guohanjun@huawei.com>
+Message-ID: <35faab1c-5c32-6cd3-0a14-77057dd223f5@huawei.com>
+Date:   Fri, 16 Oct 2020 14:51:09 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5d6ff96-80fb-4b87-ea00-08d8719fa91e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2020 06:49:42.3252
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zm5mOxE3JPCJ0sE5+JrDYXS61oIDDlWmk2iB/CkJix8gQ4OzQBodfekVWmB8vJbl6wIjnRVZCtq1c25mus26ew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0402MB2725
+In-Reply-To: <20201015180340.GB2624@gaia>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.179.182]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTWFyYywNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBNYXJjIEts
-ZWluZS1CdWRkZSA8bWtsQHBlbmd1dHJvbml4LmRlPg0KPiBTZW50OiAyMDIwxOoxMNTCMTbI1SAx
-NDowNQ0KPiBUbzogSm9ha2ltIFpoYW5nIDxxaWFuZ3FpbmcuemhhbmdAbnhwLmNvbT47IHJvYmgr
-ZHRAa2VybmVsLm9yZzsNCj4gc2hhd25ndW9Aa2VybmVsLm9yZzsgcy5oYXVlckBwZW5ndXRyb25p
-eC5kZQ0KPiBDYzoga2VybmVsQHBlbmd1dHJvbml4LmRlOyBkbC1saW51eC1pbXggPGxpbnV4LWlt
-eEBueHAuY29tPjsgWWluZyBMaXUNCj4gPHZpY3Rvci5saXVAbnhwLmNvbT47IFBlbmcgRmFuIDxw
-ZW5nLmZhbkBueHAuY29tPjsNCj4gbGludXgtY2FuQHZnZXIua2VybmVsLm9yZzsgUGFua2FqIEJh
-bnNhbCA8cGFua2FqLmJhbnNhbEBueHAuY29tPjsNCj4gbmV0ZGV2QHZnZXIua2VybmVsLm9yZzsg
-ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5v
-cmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCA2LzZdIGNhbjogZmxleGNhbjogZml4IEVDQyBmdW5j
-dGlvbiBvbiBMUzEwMjFBL0xYMjE2MEENCj4gDQo+IE9uIDEwLzE2LzIwIDM6NDMgUE0sIEpvYWtp
-bSBaaGFuZyB3cm90ZToNCj4gPiBBZnRlciBkb3VibGUgY2hlY2sgd2l0aCBMYXllcnNjYXBlIENB
-TiBvd25lciAoUGFua2FqIEJhbnNhbCksIGNvbmZpcm0NCj4gPiB0aGF0IExTMTAyMUEgZG9lc24n
-dCBzdXBwb3J0IEVDQywgYW5kIExYMjE2MEEgaW5kZWVkIHN1cHBvcnRzIEVDQy4NCj4gPg0KPiA+
-IEZvciBTb0NzIHdpdGggRUNDIHN1cHBvcnRlZCwgZXZlbiB1c2UgRkxFWENBTl9RVUlSS19ESVNB
-QkxFX01FQ1INCj4gcXVpcmsNCj4gPiB0byBkaXNhYmxlIG5vbi1jb3JyZWN0YWJsZSBlcnJvcnMg
-aW50ZXJydXB0IGFuZCBmcmVlemUgbW9kZSwgaGFkDQo+ID4gYmV0dGVyIHVzZSBGTEVYQ0FOX1FV
-SVJLX1NVUFBPUlRfRUNDIHF1aXJrIHRvIGluaXRpYWxpemUgYWxsIG1lbW9yeS4NCj4gPg0KPiA+
-IFNpZ25lZC1vZmYtYnk6IEpvYWtpbSBaaGFuZyA8cWlhbmdxaW5nLnpoYW5nQG54cC5jb20+DQo+
-ID4gLS0tDQo+ID4gIGRyaXZlcnMvbmV0L2Nhbi9mbGV4Y2FuLmMgfCAxMCArKysrKy0tLS0tDQo+
-ID4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ID4N
-Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvY2FuL2ZsZXhjYW4uYyBiL2RyaXZlcnMvbmV0
-L2Nhbi9mbGV4Y2FuLmMNCj4gPiBpbmRleCBhNTVlYThmMjdmN2MuLjdiMGViNjA4ZmM5ZCAxMDA2
-NDQNCj4gPiAtLS0gYS9kcml2ZXJzL25ldC9jYW4vZmxleGNhbi5jDQo+ID4gKysrIGIvZHJpdmVy
-cy9uZXQvY2FuL2ZsZXhjYW4uYw0KPiA+IEBAIC0yMTksNyArMjE5LDcgQEANCj4gPiAgICogICBN
-WDhNUCBGbGV4Q0FOMyAgMDMuMDAuMTcuMDEgICAgeWVzICAgICAgIHllcyAgICAgICAgbm8NCj4g
-eWVzICAgICAgIHllcyAgICAgICAgICB5ZXMNCj4gPiAgICogICBWRjYxMCBGbGV4Q0FOMyAgPyAg
-ICAgICAgICAgICAgIG5vICAgICAgIHllcyAgICAgICAgbm8NCj4geWVzICAgICAgIHllcz8gICAg
-ICAgICAgbm8NCj4gPiAgICogTFMxMDIxQSBGbGV4Q0FOMiAgMDMuMDAuMDQuMDAgICAgIG5vICAg
-ICAgIHllcyAgICAgICAgbm8NCj4gbm8gICAgICAgeWVzICAgICAgICAgICBubw0KPiA+IC0gKiBM
-WDIxNjBBIEZsZXhDQU4zICAwMy4wMC4yMy4wMCAgICAgbm8gICAgICAgeWVzICAgICAgICBubw0K
-PiBubyAgICAgICB5ZXMgICAgICAgICAgeWVzDQo+ID4gKyAqIExYMjE2MEEgRmxleENBTjMgIDAz
-LjAwLjIzLjAwICAgICBubyAgICAgICB5ZXMgICAgICAgIG5vDQo+IHllcyAgICAgICB5ZXMgICAg
-ICAgICAgeWVzDQo+ID4gICAqDQo+ID4gICAqIFNvbWUgU09DcyBkbyBub3QgaGF2ZSB0aGUgUlhf
-V0FSTiAmIFRYX1dBUk4gaW50ZXJydXB0IGxpbmUNCj4gY29ubmVjdGVkLg0KPiA+ICAgKi8NCj4g
-PiBAQCAtNDA4LDE5ICs0MDgsMTkgQEAgc3RhdGljIHN0cnVjdCBmbGV4Y2FuX2RldnR5cGVfZGF0
-YQ0KPiA+IGZzbF9pbXg4bXBfZGV2dHlwZV9kYXRhID0geyAgc3RhdGljIGNvbnN0IHN0cnVjdCBm
-bGV4Y2FuX2RldnR5cGVfZGF0YQ0KPiBmc2xfdmY2MTBfZGV2dHlwZV9kYXRhID0gew0KPiA+ICAJ
-LnF1aXJrcyA9IEZMRVhDQU5fUVVJUktfRElTQUJMRV9SWEZHIHwNCj4gRkxFWENBTl9RVUlSS19F
-TkFCTEVfRUFDRU5fUlJTIHwNCj4gPiAgCQlGTEVYQ0FOX1FVSVJLX0RJU0FCTEVfTUVDUiB8DQo+
-IEZMRVhDQU5fUVVJUktfVVNFX09GRl9USU1FU1RBTVAgfA0KPiA+IC0JCUZMRVhDQU5fUVVJUktf
-QlJPS0VOX1BFUlJfU1RBVEUsDQo+ID4gKwkJRkxFWENBTl9RVUlSS19CUk9LRU5fUEVSUl9TVEFU
-RSB8DQo+IEZMRVhDQU5fUVVJUktfU1VQUE9SVF9FQ0MsDQo+IA0KPiBZb3UgYWRkIHRoZSBtaXNz
-aW5nIEVDQyBpbml0IGZvciB2ZjYxMCwgYnV0IGRvbid0IG1lbnRpb24gaXQgaW4gdGhlIHBhdGNo
-IHN1YmplY3QNCj4gbm9yIGRlc2NyaXB0aW9uLiBQbGVhc2UgbWFrZSB0aGlzIGEgc2VwZXJhdGUg
-cGF0Y2ggYW5kIGFkZCBhIEZpeGVzOiBsaW5lLg0KT0suDQoNCj4gPiAgfTsNCj4gPg0KPiA+ICBz
-dGF0aWMgY29uc3Qgc3RydWN0IGZsZXhjYW5fZGV2dHlwZV9kYXRhIGZzbF9sczEwMjFhX3IyX2Rl
-dnR5cGVfZGF0YSA9IHsNCj4gPiAgCS5xdWlya3MgPSBGTEVYQ0FOX1FVSVJLX0RJU0FCTEVfUlhG
-RyB8DQo+IEZMRVhDQU5fUVVJUktfRU5BQkxFX0VBQ0VOX1JSUyB8DQo+ID4gLQkJRkxFWENBTl9R
-VUlSS19ESVNBQkxFX01FQ1IgfA0KPiBGTEVYQ0FOX1FVSVJLX0JST0tFTl9QRVJSX1NUQVRFIHwN
-Cj4gPiAtCQlGTEVYQ0FOX1FVSVJLX1VTRV9PRkZfVElNRVNUQU1QLA0KPiA+ICsJCUZMRVhDQU5f
-UVVJUktfQlJPS0VOX1BFUlJfU1RBVEUgfA0KPiBGTEVYQ0FOX1FVSVJLX1VTRV9PRkZfVElNRVNU
-QU1QLA0KPiA+ICB9Ow0KPiANCj4gUGxlYXNlIG1ha2UgdGhpcyBhIHNlcGVyYXRlIHBhdGNoLCB0
-b28sIGFsb25nIHdpdGggdGhlIEZpeGVzIGxpbmUuDQpPSy4NCg0KQmVzdCBSZWdhcmRzLA0KSm9h
-a2ltIFpoYW5nDQo+ID4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZmxleGNhbl9kZXZ0eXBlX2RhdGEg
-ZnNsX2x4MjE2MGFfcjFfZGV2dHlwZV9kYXRhID0gew0KPiA+ICAJLnF1aXJrcyA9IEZMRVhDQU5f
-UVVJUktfRElTQUJMRV9SWEZHIHwNCj4gRkxFWENBTl9RVUlSS19FTkFCTEVfRUFDRU5fUlJTIHwN
-Cj4gPiAgCQlGTEVYQ0FOX1FVSVJLX0RJU0FCTEVfTUVDUiB8DQo+IEZMRVhDQU5fUVVJUktfQlJP
-S0VOX1BFUlJfU1RBVEUgfA0KPiA+IC0JCUZMRVhDQU5fUVVJUktfVVNFX09GRl9USU1FU1RBTVAg
-fA0KPiBGTEVYQ0FOX1FVSVJLX1NVUFBPUlRfRkQsDQo+ID4gKwkJRkxFWENBTl9RVUlSS19VU0Vf
-T0ZGX1RJTUVTVEFNUCB8DQo+IEZMRVhDQU5fUVVJUktfU1VQUE9SVF9GRCB8DQo+ID4gKwkJRkxF
-WENBTl9RVUlSS19TVVBQT1JUX0VDQywNCj4gPiAgfTsNCj4gPg0KPiA+ICBzdGF0aWMgY29uc3Qg
-c3RydWN0IGNhbl9iaXR0aW1pbmdfY29uc3QgZmxleGNhbl9iaXR0aW1pbmdfY29uc3QgPSB7DQo+
-ID4NCj4gDQo+IA0KPiAtLQ0KPiBQZW5ndXRyb25peCBlLksuICAgICAgICAgICAgICAgICB8IE1h
-cmMgS2xlaW5lLUJ1ZGRlICAgICAgICAgICB8DQo+IEVtYmVkZGVkIExpbnV4ICAgICAgICAgICAg
-ICAgICAgIHwgaHR0cHM6Ly93d3cucGVuZ3V0cm9uaXguZGUgIHwNCj4gVmVydHJldHVuZyBXZXN0
-L0RvcnRtdW5kICAgICAgICAgfCBQaG9uZTogKzQ5LTIzMS0yODI2LTkyNCAgICAgfA0KPiBBbXRz
-Z2VyaWNodCBIaWxkZXNoZWltLCBIUkEgMjY4NiB8IEZheDogICArNDktNTEyMS0yMDY5MTctNTU1
-NSB8DQoNCg==
+On 2020/10/16 2:03, Catalin Marinas wrote:
+> On Thu, Oct 15, 2020 at 10:26:18PM +0800, Hanjun Guo wrote:
+>> On 2020/10/15 3:12, Nicolas Saenz Julienne wrote:
+>>> From: Ard Biesheuvel <ardb@kernel.org>
+>>>
+>>> We recently introduced a 1 GB sized ZONE_DMA to cater for platforms
+>>> incorporating masters that can address less than 32 bits of DMA, in
+>>> particular the Raspberry Pi 4, which has 4 or 8 GB of DRAM, but has
+>>> peripherals that can only address up to 1 GB (and its PCIe host
+>>> bridge can only access the bottom 3 GB)
+>>>
+>>> Instructing the DMA layer about these limitations is straight-forward,
+>>> even though we had to fix some issues regarding memory limits set in
+>>> the IORT for named components, and regarding the handling of ACPI _DMA
+>>> methods. However, the DMA layer also needs to be able to allocate
+>>> memory that is guaranteed to meet those DMA constraints, for bounce
+>>> buffering as well as allocating the backing for consistent mappings.
+>>>
+>>> This is why the 1 GB ZONE_DMA was introduced recently. Unfortunately,
+>>> it turns out the having a 1 GB ZONE_DMA as well as a ZONE_DMA32 causes
+>>> problems with kdump, and potentially in other places where allocations
+>>> cannot cross zone boundaries. Therefore, we should avoid having two
+>>> separate DMA zones when possible.
+>>>
+>>> So let's do an early scan of the IORT, and only create the ZONE_DMA
+>>> if we encounter any devices that need it. This puts the burden on
+>>> the firmware to describe such limitations in the IORT, which may be
+>>> redundant (and less precise) if _DMA methods are also being provided.
+>>> However, it should be noted that this situation is highly unusual for
+>>> arm64 ACPI machines. Also, the DMA subsystem still gives precedence to
+>>> the _DMA method if implemented, and so we will not lose the ability to
+>>> perform streaming DMA outside the ZONE_DMA if the _DMA method permits
+>>> it.
+>>
+>> Sorry, I'm still a little bit confused. With this patch, if we have
+>> a device which set the right _DMA method (DMA size >= 32), but with the
+>> wrong DMA size in IORT, we still have the ZONE_DMA created which
+>> is actually not needed?
+> 
+> With the current kernel, we get a ZONE_DMA already with an arbitrary
+> size of 1GB that matches what RPi4 needs. We are trying to eliminate
+> such unnecessary ZONE_DMA based on some heuristics (well, something that
+> looks "better" than a OEM ID based quirk). Now, if we learn that IORT
+> for platforms in the field is that broken as to describe few bits-wide
+> DMA masks, we may have to go back to the OEM ID quirk.
+
+Some platforms using 0 as the memory size limit, for example D05 [0] and
+D06 [1], I think we need to go back to the OEM ID quirk.
+
+For D05/D06, there are multi interrupt controllers named as mbigen,
+mbigen is using the named component to describe the mappings with
+the ITS controller, and mbigen is using 0 as the memory size limit.
+
+Also since the memory size limit for PCI RC was introduced by later
+IORT revision, so firmware people may think it's fine to set that
+as 0 because the system works without it.
+
+Thanks
+Hanjun
+
+[0]:
+https://github.com/tianocore/edk2-platforms/blob/master/Silicon/Hisilicon/Hi1616/D05AcpiTables/D05Iort.asl
+[1]:
+https://github.com/tianocore/edk2-platforms/blob/master/Silicon/Hisilicon/Hi1620/Hi1620AcpiTables/Hi1620Iort.asl
