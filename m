@@ -2,148 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A904290394
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 12:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19140290405
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 13:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395566AbgJPK5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 06:57:36 -0400
-Received: from mail-vi1eur05on2052.outbound.protection.outlook.com ([40.107.21.52]:20449
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2395565AbgJPK5g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 06:57:36 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Lk+tzh0VMDSlAknQBPCVW7mJIjW5YZzoQhHiMrqGpayW3Yo6cRBbOtorH2a2JOgGgNPkwQP/b5cz7iKfNWikyApE37M9mcPsMU7r5GDB2z5ZKAmJgji8h/S/jyrpU8CJnPfJx62CXyRRf8ar9wug6ngSB4vnS8K3wHDVxhkiguZ9CogH8JB5k4XTtiQCoKt0WX/t+GAkgdJPN2HMVyDyMV3IZ7yn+KarJzuuCrVXN8YAAL/rEvaqGnCCezrD2M3iXXEWjgAsBWAfn7tcFmFnUIevBodvMzSVKE3loY/n0TdgrFKM5vgDP92XR6YQyrP5Mgqhgg+VjiC5xZQs5CaCFg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=66iGkTjQSTclV4EjAM8SFdlbrdrLuZluqKmBCLoC1d0=;
- b=NrUt6ABSGCn7XQFUfas/NDOX9gYEkpR0CjJLk+bir+7nftt7PHY8t43PaR8zhMuSSiov/j12KyRdI7I2cnJQC0ucpuxhVpzTlOOoaeWoEgbr3BZOSyshvVgP4/VNDpKi0pme1IC4fH+e6SFlRh6XVoohpE/FeNDiTN8NzGQgkdX0QT3CkJkmsLYxKOZ7N8DfbISK6ekLMJ2OniM6sj85yqFrqMH29kfbBEAUeT9HG6DLeMGq/dbHvde09yUm11RUFzsr1DEsoISl/UUtZINXUj6thOXBMUcl0VOFMwZ/Cfm118ichnXNa+da0utb0iBEKVfY/b95mY6tCUs8M1NbHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=66iGkTjQSTclV4EjAM8SFdlbrdrLuZluqKmBCLoC1d0=;
- b=JXaa+il1KViaIPXdRmFZZBF9aRyKgnKyXnMG5tBavw85orVuUzfloPCL3eUoy99l0lEb+kv6TXlbjqL0wh3MaCstdosJbPzFBMDKHNtBnfD7cDJjspaGHBFp0xO+kzaJJhSQlB6RlBVk3UiKUHOo0xbbjT9/ZlXydJeGAwwF/fg=
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DB3PR0402MB3851.eurprd04.prod.outlook.com (2603:10a6:8:12::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23; Fri, 16 Oct
- 2020 10:57:29 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3c3a:58b9:a1cc:cbcc]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3c3a:58b9:a1cc:cbcc%9]) with mapi id 15.20.3477.021; Fri, 16 Oct 2020
- 10:57:29 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Ying Liu <victor.liu@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        Pankaj Bansal <pankaj.bansal@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 5/6] can: flexcan: add CAN wakeup function for i.MX8QM
-Thread-Topic: [PATCH 5/6] can: flexcan: add CAN wakeup function for i.MX8QM
-Thread-Index: AQHWo39An99v7VNKtkiYHjTJFb8gxqmZwW4AgAAFs9CAADP4sIAAD1AAgAAB1MA=
-Date:   Fri, 16 Oct 2020 10:57:29 +0000
-Message-ID: <DB8PR04MB67954A044B1B67BBE48B9D24E6030@DB8PR04MB6795.eurprd04.prod.outlook.com>
-References: <20201016134320.20321-1-qiangqing.zhang@nxp.com>
- <20201016134320.20321-6-qiangqing.zhang@nxp.com>
- <0e3f5abc-6baf-53e2-959b-793dfd41c17b@pengutronix.de>
- <DB8PR04MB6795DEDFA271889A162539EFE6030@DB8PR04MB6795.eurprd04.prod.outlook.com>
- <DB8PR04MB67952A058934D5013946EE97E6030@DB8PR04MB6795.eurprd04.prod.outlook.com>
- <44f939d8-81a5-bd8d-d6a9-3ca990abeb55@pengutronix.de>
-In-Reply-To: <44f939d8-81a5-bd8d-d6a9-3ca990abeb55@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: c69e259d-febe-4bda-cbd3-08d871c246ab
-x-ms-traffictypediagnostic: DB3PR0402MB3851:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB3PR0402MB38517F93B90096A11A440C2CE6030@DB3PR0402MB3851.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8YuSVe8Nm0RLh6X4oy6jhskaf6JRskL5QWDtRNKQ7IVGvLtB3+cq+LqJrH3Y/J6VB+Qr2KVqda2VMLcPNxnqFCcjsH4h0Tby85wV29HJMtDutzTM67BfcyfuyTmB+V3G/KPyiD/JYljgLD9YTKjbEu2lBzOSTgDa1bNYRhVz3uKlnnm6NN9/dFldV5FD4EIqX3Ah901EZfba8ZiryWDYJiZ4hESkd2eOS1T95ajTFsjhbURS3c8F+igyM48NRjCaQ3y33UykbW6CZba0xexYVy4olE4qjZHKCYtbrjpq0eeGyrzR0ADw3YTWm3c2SViaI0DDwLC2KOMRcs9eIbX9eH9SkQBmU+mQKuycgOdhkmpMMGuaQNUUrc9umDuczoi/Cm849qXi7vslyjkgBhhMVg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(366004)(39860400002)(376002)(346002)(2906002)(8936002)(76116006)(66476007)(71200400001)(64756008)(4326008)(83380400001)(66446008)(66556008)(316002)(66946007)(110136005)(54906003)(8676002)(86362001)(186003)(53546011)(478600001)(6506007)(26005)(55016002)(966005)(7696005)(5660300002)(33656002)(52536014)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: FwBNpHtFKhq23R0YHyWm3UqmUPUWfYHM93kHyciQz9bLEj1gEytrnykraVQM9UjWXvEPcgsOOB++Pct9QfM8YGwQeK1xOip6mqftsUqHUoXI4WUi7OIwfM4lAb2d7w84zOOHk4pXxwjAvxNMzwKcEMuD49ipWxNDd1FuVTCeeVyeMXAew5VSHt2QevH9xbOW5l5vLheGB3P1/cbGVLEQuqXa73gxmZ+rhGiJMp1U2P1Xq6+8hnJyhjiUWFGofkF3t9Ve+J9k6HJPl8t02H4NaGlLzs5SajjRWkJxbrNSwXb/S0P2pR0FgDYKPw2kpPoFwQDplJcWj9dYcNi3Gzz6DAp8nkG05SXu7f+4zp2nz0dsQ2jzSo9RkZFcFj2hOAjN+BHjtPUqDlCvYbkZZRrZiSxIvLQeJcHKeEsH4g3rxRO1P4V+p2olfLBlnoiXI/4/CC6ILdA0gS0HEOd6/u1+CtgPxuXZzM6/L/Q9qFtTtA51cP2r89mppoAwk405ieVWsqd0D9uXE3cuTo5JXvE7IOj/w8kP8m9fpSwO4bqbtGYno8k0+8Hz+UBkRLZEdPLiwYlBg+MG+/mUrrGtR0v47YQkHC1w1GDjuNBYdaBMBOoD3Kk+NGkgjgVR3dWDOe7NYa4jSOaP7z2HWav9CYXnEw==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S2406556AbgJPLbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 07:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54786 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406550AbgJPLbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 07:31:11 -0400
+Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940CBC0613D4
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 04:31:09 -0700 (PDT)
+Received: by mail-vk1-xa44.google.com with SMTP id a8so548242vkm.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 04:31:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=VfR2k3sQxdqJVPvkLHgRVDpnfd48L/sAbfIZJJQVUGU=;
+        b=U3arh0PpNKrL1ViPiMAT0p2E0sl1OdJBhyvUHT4isXu6+XcRLSALuWaqK3qkJaGkEy
+         t8bLEKQge3lIp5OeEMAmTMP3eHUZOfzzoYTvA+hKG5gzjJ6jBJwXNnuAODzY7/gqLhDg
+         pprH6HvpZvmUmEi3fYOlqSuW8lbgPlNp2+o8TswEl5CIop61UyNKvxY/My5zTTEmkTL7
+         wn7UUyyNWiq7oamyFJrfUF8XrsQme69ZI9KAaHUTjCnMWs6AcYLhu3MzDdEDy0r1G8ki
+         SwesbK5trA8dGyyUxob6ItDYO0XA4TU9d9EUSvSHSmSxKVk3Jb3n/Z9s606yVsheLKJl
+         +YBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=VfR2k3sQxdqJVPvkLHgRVDpnfd48L/sAbfIZJJQVUGU=;
+        b=l5dX8FDFmFTMps8PxmlplH0VH1d8D0Lj6dNZeTwPngg6Yl9sOvSo1+UVX6rUaOAyd8
+         yPGexk6EXBlWwlwbEsR021FQ1MzC2EUTZQOh+Hw7cISmPMRnTSqCTPdme+3R1aVUv4sr
+         9U4Z/z3QhsfDZohahLWqBr5OhHd6r+zAbeo5O2iskgd77H0WW4V3pav99wGUQr/2Sxxn
+         dly23OuX1Gx5UrNJBB9icqWa8Z0PpK7M+G3lhoW66HmeIidCV9w6w1+8oeFtWZiROsSI
+         F2CCk/wUNGxssclvCWxj3Ummy4+OQgfwPhD+fNcUMVVkvW6Dm9lPwbaQq7p6KOMVLyQ0
+         314Q==
+X-Gm-Message-State: AOAM53259fNWnG8lGOKdcrJlCx1PYFox+P/mkPogzlRNY+z7/iRaNCm+
+        aPsHAKWwsAyFyQs7YdibAqegc7k4NGTbUCgGI8NyIQ==
+X-Google-Smtp-Source: ABdhPJxYAVqNSgwSx1Eoge43VUADHeCK6li9b/4u8o1NT7/3wN77SDJYFQCZnpPpHiOo14iB/Ng7q8JPB3TjsN9qSbg=
+X-Received: by 2002:a1f:ae85:: with SMTP id x127mr1798903vke.8.1602847868573;
+ Fri, 16 Oct 2020 04:31:08 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c69e259d-febe-4bda-cbd3-08d871c246ab
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2020 10:57:29.4430
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: r/2h6157FKTqWViIMMHKR2HClJHE5r+4xHyLp8uwGf2Wcege5ejTYhLtivkldiBhpAcRgNgZVaomwevIIorbgA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3851
+References: <20201012104648.985256-1-Jerome.Pouiller@silabs.com> <20201012104648.985256-8-Jerome.Pouiller@silabs.com>
+In-Reply-To: <20201012104648.985256-8-Jerome.Pouiller@silabs.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 16 Oct 2020 13:30:30 +0200
+Message-ID: <CAPDyKFpP6xBru79Xh2oe=J8HWO3uk1VpcMzEiG6X7WX-AOvgkA@mail.gmail.com>
+Subject: Re: [PATCH 07/23] wfx: add bus_sdio.c
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpIaSBNYXJjLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IE1hcmMg
-S2xlaW5lLUJ1ZGRlIDxta2xAcGVuZ3V0cm9uaXguZGU+DQo+IFNlbnQ6IDIwMjDlubQxMOaciDE2
-5pelIDE4OjQwDQo+IFRvOiBKb2FraW0gWmhhbmcgPHFpYW5ncWluZy56aGFuZ0BueHAuY29tPjsg
-cm9iaCtkdEBrZXJuZWwub3JnOw0KPiBzaGF3bmd1b0BrZXJuZWwub3JnOyBzLmhhdWVyQHBlbmd1
-dHJvbml4LmRlDQo+IENjOiBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGRsLWxpbnV4LWlteCA8bGlu
-dXgtaW14QG54cC5jb20+OyBZaW5nIExpdQ0KPiA8dmljdG9yLmxpdUBueHAuY29tPjsgUGVuZyBG
-YW4gPHBlbmcuZmFuQG54cC5jb20+Ow0KPiBsaW51eC1jYW5Admdlci5rZXJuZWwub3JnOyBQYW5r
-YWogQmFuc2FsIDxwYW5rYWouYmFuc2FsQG54cC5jb20+Ow0KPiBuZXRkZXZAdmdlci5rZXJuZWwu
-b3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2Vy
-bmVsLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENIIDUvNl0gY2FuOiBmbGV4Y2FuOiBhZGQgQ0FO
-IHdha2V1cCBmdW5jdGlvbiBmb3IgaS5NWDhRTQ0KPiANCj4gT24gMTAvMTYvMjAgMTI6MDAgUE0s
-IEpvYWtpbSBaaGFuZyB3cm90ZToNCj4gPj4+PiArc3RhdGljIGludCBmbGV4Y2FuX3N0b3BfbW9k
-ZV9lbmFibGVfc2NmdyhzdHJ1Y3QgZmxleGNhbl9wcml2DQo+ID4+Pj4gKypwcml2LCBib29sIGVu
-YWJsZWQpIHsNCj4gPj4+PiArCXU4IGlkeCA9IHByaXYtPmNhbl9pZHg7DQo+ID4+Pj4gKwl1MzIg
-cnNyY19pZCwgdmFsOw0KPiA+Pj4+ICsNCj4gPj4+PiArCWlmIChpZHggPT0gMCkNCj4gPj4+PiAr
-CQlyc3JjX2lkID0gSU1YX1NDX1JfQ0FOXzA7DQo+ID4+Pj4gKwllbHNlIGlmIChpZHggPT0gMSkN
-Cj4gPj4+PiArCQlyc3JjX2lkID0gSU1YX1NDX1JfQ0FOXzE7DQo+ID4+Pj4gKwllbHNlDQo+ID4+
-Pj4gKwkJcnNyY19pZCA9IElNWF9TQ19SX0NBTl8yOw0KPiA+Pj4NCj4gPj4+IENhbiB5b3UgaW50
-cm9kdWNlIHNvbWV0aGluZyBsaWtlIGFuZCBtYWtlIHVzZSBvZiBpdDoNCj4gPj4+DQo+ID4+PiAj
-ZGVmaW5lIElNWF9TQ19SX0NBTih4KQkJCSgxMDUgKyAoeCkpDQo+ID4+IE9LLg0KPiA+DQo+ID4g
-SSB0aG91Z2h0IGl0IG92ZXIgYWdhaW4sIGZyb20gbXkgcG9pbnQgb2YgdmlldywgdXNlIG1hY3Jv
-IGhlcmUNCj4gPiBkaXJlY3RseSBjb3VsZCBiZSBtb3JlIGludHVpdGl2ZSwgYW5kIGNhbiBhY2hp
-ZXZlIGEgZGlyZWN0IGp1bXAuDQo+ID4gSWYgY2hhbmdlIHRvIGFib3ZlIHdyYXBwZXIsIG9uIHRo
-ZSBjb250cmFyeSBtYWtlIGNvbmZ1c2lvbiwgYW5kDQo+ID4gZ2VuZXJhdGUgdGhlIG1hZ2ljIG51
-bWJlciAxMDUuIOKYuQ0KPiANCj4gVGhlIGRlZmluZSBzaG91bGQgZ28gaW50byB0aGUgcnNyYy5o
-LCBhbmQgcHJvYmFibHkgYmU6DQo+IA0KPiAjZGVmaW5lIElNWF9TQ19SX0NBTih4KQkJKElNWF9T
-Q19SX0NBTl8wICsgKHgpKQ0KPiANCj4gYW5kIGlmIHlvdSBjaGFuZ2UgdGhlIGZpcm13YXJlIGlu
-dGVyZmFjZSwgeW91IHByb2JhYmx5IGhhdmUgbW9yZSBwcm9ibGVtcyA6KQ0KDQpyc3JjLmg6DQog
-LyoNCiAgKiBUaGVzZSBkZWZpbmVzIGFyZSB1c2VkIHRvIGluZGljYXRlIGEgcmVzb3VyY2UuIFJl
-c291cmNlcyBpbmNsdWRlIHBlcmlwaGVyYWxzDQogICogYW5kIGJ1cyBtYXN0ZXJzIChidXQgbm90
-IG1lbW9yeSByZWdpb25zKS4gTm90ZSBpdGVtcyBmcm9tIGxpc3Qgc2hvdWxkDQogICogbmV2ZXIg
-YmUgY2hhbmdlZCBvciByZW1vdmVkIChvbmx5IGFkZGVkIHRvIGF0IHRoZSBlbmQgb2YgdGhlIGxp
-c3QpLg0KICAqLw0KSG1tLCBpdCBqdXN0IGxpc3QgYWxsIHJlc291cmNlIGlkLCBhbmQgbmV2ZXIg
-YmUgY2hhbmdlZC4gQW55d2F5LCBpZiB5b3UgdGhpbmsgYWJvdmUgd2F5IGlzIGJldHRlciwgSSB3
-aWxsIHR1cm4gdG8gaXQuDQoNCj4gPj4+PiArDQo+ID4+Pj4gKwlpZiAoZW5hYmxlZCkNCj4gPj4+
-PiArCQl2YWwgPSAxOw0KPiA+Pj4+ICsJZWxzZQ0KPiA+Pj4+ICsJCXZhbCA9IDA7DQo+ID4+Pj4g
-Kw0KPiA+Pj4+ICsJLyogc3RvcCBtb2RlIHJlcXVlc3QgdmlhIHNjdSBmaXJtd2FyZSAqLw0KPiA+
-Pj4+ICsJcmV0dXJuIGlteF9zY19taXNjX3NldF9jb250cm9sKHByaXYtPnNjX2lwY19oYW5kbGUs
-IHJzcmNfaWQsDQo+ID4+Pj4gK0lNWF9TQ19DX0lQR19TVE9QLCB2YWwpOyB9DQo+ID4NCj4gPiBX
-ZSBzdGlsbCBuZWVkIHVzZSBJTVhfU0NfQ19JUEdfU1RPUCwgd2h5IG5vdCBiZSBjb25zaXN0ZW50
-Pw0KPiANCj4gU29ycnkgSSBkb24ndCBnZXQgd2hhdCB5b3Ugd2FudCB0byB0ZWxsIG1lIGhlcmUu
-DQoNCk5lZWQgbWUgYWRkIElNWF9TQ19DX0lQR19TVE9QIG1hY3JvIGluIHRoZSBkcml2ZXIgZGly
-ZWN0bHk/DQoNClN1Y2ggYXMsICNkZWZpbmUgSU1YX1NDX0NfSVBHX1NUT1AgNTIsIHNvIHRoYXQg
-bm8gbmVlZCB0byBpbmNsdWRlIHJzcmMuaCBmaWxlIGluIHRoZSBkcml2ZXIuDQoNCkJlc3QgUmVn
-YXJkcywNCkpvYWtpbSBaaGFuZw0KPiBNYXJjDQo+IA0KPiAtLQ0KPiBQZW5ndXRyb25peCBlLksu
-ICAgICAgICAgICAgICAgICB8IE1hcmMgS2xlaW5lLUJ1ZGRlICAgICAgICAgICB8DQo+IEVtYmVk
-ZGVkIExpbnV4ICAgICAgICAgICAgICAgICAgIHwgaHR0cHM6Ly93d3cucGVuZ3V0cm9uaXguZGUg
-IHwNCj4gVmVydHJldHVuZyBXZXN0L0RvcnRtdW5kICAgICAgICAgfCBQaG9uZTogKzQ5LTIzMS0y
-ODI2LTkyNCAgICAgfA0KPiBBbXRzZ2VyaWNodCBIaWxkZXNoZWltLCBIUkEgMjY4NiB8IEZheDog
-ICArNDktNTEyMS0yMDY5MTctNTU1NSB8DQoNCg==
+On Mon, 12 Oct 2020 at 12:47, Jerome Pouiller
+<Jerome.Pouiller@silabs.com> wrote:
+>
+> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+
+Please fill out this commit message to explain a bit more about the
+patch and the HW it enables support for.
+
+>
+> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+> ---
+>  drivers/net/wireless/silabs/wfx/bus_sdio.c | 269 +++++++++++++++++++++
+>  1 file changed, 269 insertions(+)
+>  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
+>
+> diff --git a/drivers/net/wireless/silabs/wfx/bus_sdio.c b/drivers/net/wir=
+eless/silabs/wfx/bus_sdio.c
+> new file mode 100644
+> index 000000000000..e06d7e1ebe9c
+
+[...]
+
+> +
+> +static int wfx_sdio_irq_subscribe(void *priv)
+> +{
+> +       struct wfx_sdio_priv *bus =3D priv;
+> +       u32 flags;
+> +       int ret;
+> +       u8 cccr;
+> +
+
+I would appreciate a comment about an out-of-band IRQ line. If it's
+supported, that is the preferred option to use, else the SDIO IRQs.
+
+> +       if (!bus->of_irq) {
+> +               sdio_claim_host(bus->func);
+> +               ret =3D sdio_claim_irq(bus->func, wfx_sdio_irq_handler);
+> +               sdio_release_host(bus->func);
+> +               return ret;
+> +       }
+> +
+> +       sdio_claim_host(bus->func);
+> +       cccr =3D sdio_f0_readb(bus->func, SDIO_CCCR_IENx, NULL);
+> +       cccr |=3D BIT(0);
+> +       cccr |=3D BIT(bus->func->num);
+> +       sdio_f0_writeb(bus->func, cccr, SDIO_CCCR_IENx, NULL);
+> +       sdio_release_host(bus->func);
+> +       flags =3D irq_get_trigger_type(bus->of_irq);
+> +       if (!flags)
+> +               flags =3D IRQF_TRIGGER_HIGH;
+> +       flags |=3D IRQF_ONESHOT;
+> +       return devm_request_threaded_irq(&bus->func->dev, bus->of_irq, NU=
+LL,
+> +                                        wfx_sdio_irq_handler_ext, flags,
+> +                                        "wfx", bus);
+> +}
+> +
+
+[...]
+
+> +
+> +#define SDIO_VENDOR_ID_SILABS        0x0000
+> +#define SDIO_DEVICE_ID_SILABS_WF200  0x1000
+> +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF200)=
+ },
+> +       // FIXME: ignore VID/PID and only rely on device tree
+> +       // { SDIO_DEVICE(SDIO_ANY_ID, SDIO_ANY_ID) },
+> +       { },
+> +};
+> +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
+
+I will comment about the sdio IDs separately, replying to the other
+thread between you and Pali.
+
+> +
+> +struct sdio_driver wfx_sdio_driver =3D {
+> +       .name =3D "wfx-sdio",
+> +       .id_table =3D wfx_sdio_ids,
+> +       .probe =3D wfx_sdio_probe,
+> +       .remove =3D wfx_sdio_remove,
+> +       .drv =3D {
+> +               .owner =3D THIS_MODULE,
+> +               .of_match_table =3D wfx_sdio_of_match,
+> +       }
+> +};
+
+I couldn't find where you call sdio_register|unregister_driver(), but
+maybe that's done from another patch in series?
+
+Kind regards
+Uffe
