@@ -2,184 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E16D29084C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42A4529089C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 17:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2410069AbgJPP1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 11:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2410006AbgJPP1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 11:27:41 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E65C061755;
-        Fri, 16 Oct 2020 08:27:41 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id o9so1455464plx.10;
-        Fri, 16 Oct 2020 08:27:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HjOH7NSlzQ7luzN2AMo9usje/o0UOzhmlVRD7uHXj6M=;
-        b=K9x1Rli/OUH/hZT7zUWaeKHbnNXAbCLRgnq0lD6FZZwPEaGKZS/DVU3KPE84bipH/B
-         REnPrkeicA7AASNY+yqg1FXbsPnMR3zKPn6JXkOratJxVKyNVuWr4Q/nIYybDMVB0Goy
-         hhGA5ji82UU8gx0AI5grKhfo9TXKvDhVfi9rhxSd21jZyg0csK1TnZdTtCIdRaARL9MA
-         byqR//9GsK62PBX7Et/5o3UB7+xP8bp4zsFkWtERoMFXCas2mgovU0yHFL5Y2iiCpXg7
-         LaYWioxVs2rrcylQQ6LgbaQEOswEc5Ver2g0lpaUfike4R1VFfCKlceSqmwm7EfIbJXl
-         yjVA==
+        id S2408466AbgJPPi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 11:38:29 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:38197 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2408427AbgJPPi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 11:38:29 -0400
+Received: by mail-ed1-f67.google.com with SMTP id i5so2900389edr.5;
+        Fri, 16 Oct 2020 08:38:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HjOH7NSlzQ7luzN2AMo9usje/o0UOzhmlVRD7uHXj6M=;
-        b=XQggIq6WC3oMwiUIb0URf5VBzqspuRRwEOc454dt9xMbnVOJmpx5tFsEj91O22hfYy
-         b9Gm8R8T3eUZDbiNFwe3QyUWzeFtgE/RYFkrV4kp1WoILeIkaxpWKuHNCHhMa3nNU6Uw
-         WPEPTtumDKBjNGTbuuhQ5AT9OMY8Izh2Z3HF3JEU8JaqgHcYIF7OYad1efFrYIVxTipG
-         CTdJoN+dF0nlz9T3HM77sIYi+zUd1og/9UqID0HOAtGp43ouMHYPK/nEXBL0r7IpNDC3
-         y1fHFagMD7k8F82PObGrj51xWIGzpbbAg220i5YHzCuqbqAD2gpHHTjpYU1xyD2gZBd8
-         YhqQ==
-X-Gm-Message-State: AOAM531TaQGID03t8EVymmMv/LKeW6KoIckwDsAN6eykh+jJQKXcNbRw
-        OEAnYX/q1HkS+KFLCLlG9ptMvTQrkY70++i9kXI=
-X-Google-Smtp-Source: ABdhPJyEcO5/SUrS3pBTLwVxNUw44/tRmS0EyySbmvXAf/Ih98PiyY0i3H9Nfb9IY7DnsI6E/rU3+aLtOuYddVVQDwY=
-X-Received: by 2002:a17:902:aa8a:b029:d3:c9dd:77d1 with SMTP id
- d10-20020a170902aa8ab02900d3c9dd77d1mr4688408plr.0.1602862060726; Fri, 16 Oct
- 2020 08:27:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <1601542448-7433-1-git-send-email-gene.chen.richtek@gmail.com> <1601542448-7433-4-git-send-email-gene.chen.richtek@gmail.com>
-In-Reply-To: <1601542448-7433-4-git-send-email-gene.chen.richtek@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 16 Oct 2020 18:28:29 +0300
-Message-ID: <CAHp75VdPjT-wNw0_fNXBEd9ub2Eg_thM2wY9QqrjhwYcz+=ytQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] iio: adc: mt6360: Add ADC driver for MT6360
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=l7ooLLyjU79cfl+bt7sttr4E3DYykAdem+WSTdZT84Q=;
+        b=cPO2H6lrMx3ANOh7oH82eqjP9PYFhHHZMmUEWrKH049ckoc5ZP4FKGExZsh/2X1aJw
+         iiAbCQ/7w461JvNwBanHcQ/fSMifHUc/LUQWaWXlY0Ytqr7GxHPe/elWQPar7GWJjmHk
+         uXAXsNi8J9/mBxpX3MRfWEXNizlLI9LDQOdsISS9utip8I1ELnuJDs0fdlcaVwibXLJZ
+         gzPLqjGYVCcFFRWLPF2q8GQ5iJ6tbZv6is9a3s+fwJ9NN6B8ZW017kDz8J994X17QSVI
+         TFYGKK58I30hydV9PSM6/s2vYmH5VcSBzbbsWhuDGFH5zxm//MKotb14ljUqQGbwhyxU
+         MuGg==
+X-Gm-Message-State: AOAM5304I3iufa+nwgC7/Ekf2zZhF/gewBORfp7FqthqI0ut2JV3vG2g
+        zHWG3hgc55J78jzUqgPgOcE=
+X-Google-Smtp-Source: ABdhPJx2vXirUY8EO6Lr8GnfzXGhnxo0d9l8dBuveqgE4nywFvaNT1O0eVe8BcAWvhYByAs4SHpmPw==
+X-Received: by 2002:aa7:d7c1:: with SMTP id e1mr4740554eds.4.1602862706986;
+        Fri, 16 Oct 2020 08:38:26 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.171])
+        by smtp.googlemail.com with ESMTPSA id s25sm1894221ejc.29.2020.10.16.08.38.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Oct 2020 08:38:25 -0700 (PDT)
+Date:   Fri, 16 Oct 2020 17:38:23 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Cc:     sre@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Gene Chen <gene_chen@richtek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add bindings document for
+ Charger support on MT6360 PMIC
+Message-ID: <20201016153823.GA9890@kozik-lap>
+References: <1600859910-15855-1-git-send-email-gene.chen.richtek@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1600859910-15855-1-git-send-email-gene.chen.richtek@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 11:55 AM Gene Chen <gene.chen.richtek@gmail.com> wrote:
->
+On Wed, Sep 23, 2020 at 07:18:29PM +0800, Gene Chen wrote:
 > From: Gene Chen <gene_chen@richtek.com>
->
-> Add MT6360 ADC driver include Charger Current, Voltage, and
-
-including
-
-> Temperature.
-
-...
-
-> +#define MT6360_AICR_MASK       GENMASK(7, 2)
-
-bits.h is missed.
-
-...
-
-> +#define MT6360_ADCEN_MASK      0x8000
-
-BIT() ?
-
-...
-
-> +static int mt6360_adc_read_channel(struct mt6360_adc_data *mad, int channel, int *val)
-> +{
-
-> +       start_t = ktime_get();
-> +       predict_end_t = ktime_add_ms(mad->last_off_timestamps[channel], 2 * ADC_WAIT_TIME_MS);
+> 
+> Add bindings document for Charger support on MT6360 PMIC
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> ---
+>  .../bindings/power/supply/mt6360_charger.yaml      | 44 ++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml b/Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml
+> new file mode 100644
+> index 0000000..711fc19
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/mt6360_charger.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       if (ktime_after(start_t, predict_end_t))
-> +               pre_wait_time = ADC_WAIT_TIME_MS;
-> +       else
-> +               pre_wait_time = 3 * ADC_WAIT_TIME_MS;
+> +title: Battery charger driver for MT6360 PMIC from MediaTek Integrated.
 > +
-> +       msleep(pre_wait_time);
-
-This looks like NIH of wait_interruptible() or so.
-
-...
-
-> +       while (true) {
-
-Oh, please avoid infinite loops.
-
-> +               ret = regmap_raw_read(mad->regmap, MT6360_REG_PMUADCRPT1, rpt, sizeof(rpt));
-> +               if (ret)
-> +                       goto out_adc_conv;
+> +maintainers:
+> +  - Gene Chen <gene_chen@richtek.com>
 > +
-> +               /*
-> +                * There are two functions, ZCV and TypeC OTP, running ADC VBAT and TS in
-> +                * background, and ADC samples are taken on a fixed frequency no matter read the
-> +                * previous one or not.
-> +                * To avoid conflict, We set minimum time threshold after enable ADC and
-> +                * check report channel is the same.
-> +                * The worst case is run the same ADC twice and background function is also running,
-> +                * ADC conversion sequence is desire channel before start ADC, background ADC,
-> +                * desire channel after start ADC.
-> +                * So the minimum correct data is three times of typical conversion time.
-> +                */
-> +               if ((rpt[0] & MT6360_RPTCH_MASK) == channel)
-> +                       break;
+> +description: |
+> +  This module is part of the MT6360 MFD device.
+> +  Provides Battery Charger, Boost for OTG devices and BC1.2 detection.
 > +
-> +               msleep(ADC_WAIT_TIME_MS);
-> +       }
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6360-chg
+> +
+> +  vinovp:
+> +    description:
+> +      Maximum CHGIN regulation voltage.
 
-So, a new NIH of regmap_read_poll_timeout() ?
-
-...
-
-> +       /* rpt[1]: ADC_HI_BYTE, rpt[2]: ADC_LOW_BYTE */
-> +       *val = rpt[1] << 8 | rpt[2];
-
-get_unalined_be16() and hence redundant comment.
-
-...
-
-> +static int mt6360_adc_read_offset(struct mt6360_adc_data *mad, int channel, int *val)
-> +{
-> +       *val = (channel == MT6360_CHAN_TEMP_JC) ? -80 : 0;
-> +       return IIO_VAL_INT;
+1. You need to describe the type.
+2. Use proper unit suffix (see property-units.txt).
+3. Is this a custom property? If yes, it misses vendor prefix. If not,
+   most likely there is already such property. Reuse.
 
 > +
+> +  usb-otg-vbus:
+> +      $ref: /schemas/regulator/regulator.yaml#
 
-Misplaced blank line.
+1. Wrong indentation.
+2. Name should be more or less generic, so maybe
+   "usb-otg-vbus-regulator".
 
-> +}
+> +
+> +required:
+> +  - compatible
 
-> +static const char *mt6360_channel_labels[MT6360_CHAN_MAX] = {
-> +       "usbid", "vbusdiv5", "vbusdiv2", "vsys", "vbat", "ibus", "ibat", "chg_vddp", "temp_jc",
-> +       "vref_ts", "ts"
+No address/reg? How does it bind?
 
-Leave comma.
-And split  either by power of two or equally between the lines (seems
-like 8 + 3 here).
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mt6360_chg: chg {
 
-> +};
+s/chg/charger/
 
-...
+> +      compatible = "mediatek,mt6360-chg";
+> +      vinovp = <14500000>;
 
-> +       /* Reset all channel off time to the current one */
-> +       all_off_time = ktime_get();
-> +       for (i = 0; i < MT6360_CHAN_MAX; i++)
-> +               info->last_off_timestamps[i] = all_off_time;
+Empty line break
 
-memset32() / memset64() / memset_l()
-(Not applicable, but JFYI: memset_p() also present)
-
--- 
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Krzysztof
