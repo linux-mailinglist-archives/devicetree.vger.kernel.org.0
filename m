@@ -2,92 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B5B290650
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 434DE290659
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 15:32:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407427AbgJPNaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 09:30:23 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:37922 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2407834AbgJPNaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 09:30:23 -0400
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09GDKuI8031555;
-        Fri, 16 Oct 2020 08:30:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=EIFdycrd2ap6D7qPrimuZQwoebezAFOPU6dKTD7N7RY=;
- b=jLPerM7HmVGBq0QyY8rZARuxbCIh18RcB6tih9Ep0hzLcDCOyiZzOUW6Er3dmUVw9eNT
- owe5oejeZrBeHmgXhaTocEsaQDdeYSChGFDkAGWuF8MtlNA7GafLeV62kGi+eLmeUYr8
- rAKS7h6wws6PnJw6vJS3PDxkZxrivhA+r6/gz3hPy6qbh/ME4O3EfPaSrk36b4H0UWy2
- vIvs9luwrnSpeOkNbHbGSclu4ykAlTVCmMhEZhCcZRuh+vOEjItmY+7HTyhqn9T81bQY
- CINAZRPc9DqnuYst8YMFoQJB9xl2+8vTLYc1NDFFkZ6UbuuMm9BTKfth0BxwT8QGtH/K EQ== 
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 3439cng6gb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 16 Oct 2020 08:30:11 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
- 2020 14:30:09 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Fri, 16 Oct 2020 14:30:09 +0100
-Received: from [10.0.2.15] (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0C87345;
-        Fri, 16 Oct 2020 13:30:09 +0000 (UTC)
-Subject: Re: [PATCH 0/7] Add dts for Rpi4 + Cirrus Lochnagar and codecs
-To:     Mark Brown <broonie@kernel.org>
-CC:     <robh+dt@kernel.org>, <nsaenzjulienne@suse.de>,
-        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-rpi-kernel@lists.infradead.org>
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
- <20201014185632.GD4580@sirena.org.uk>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
-Date:   Fri, 16 Oct 2020 14:30:08 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        id S2408075AbgJPNcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 09:32:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42404 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2408074AbgJPNcA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 09:32:00 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D433E21527;
+        Fri, 16 Oct 2020 13:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602855120;
+        bh=jHgolZn+yVwazInZpUXsUIXLz+WFq+LCgt1cjWpEkcA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=uI2me769AwM75eyyDkh95DsmJO9h6Qvu8z0Ayc7beFMa6u/y6sPTX58dfz9663RqB
+         2zP0XAvHzdeE75ZAtl270HHG5NqWq89oDsrxpoLa+652g3AM6k+qlqenzQba0AHyAX
+         Fk5C7pqNZ14YtAy/k6zL/cWuHXg3qD5gkOKP2phA=
+Received: by mail-oi1-f181.google.com with SMTP id 16so2411031oix.9;
+        Fri, 16 Oct 2020 06:31:59 -0700 (PDT)
+X-Gm-Message-State: AOAM531+LIxpTqrMmcL/XbCzmpoGptAhH0QLmFIKyG8bSoLXt/8YLBoH
+        MuYoHrJzKLiIuTsl5v29o+6kFpt6Qw74P+kGgQ==
+X-Google-Smtp-Source: ABdhPJxDzoh5TQYux51VfrCvIKr2H0fC6EMtKmXq9osyCrsQpVXMppGQGpG8GNPS7dXZ2wVY+84RyeI4fqmJDgomP0U=
+X-Received: by 2002:a54:4f89:: with SMTP id g9mr2514377oiy.106.1602855119044;
+ Fri, 16 Oct 2020 06:31:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201014185632.GD4580@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0 impostorscore=0
- mlxlogscore=809 lowpriorityscore=0 phishscore=0 clxscore=1015
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2010160100
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+ <20201014145418.31838-2-rf@opensource.cirrus.com> <CAL_Jsq+qdcHc9H7qUVwLieHrLM8E20HZXa8DkarMiuXfCh8WOQ@mail.gmail.com>
+ <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
+In-Reply-To: <90600a67-25e4-7933-35c3-f515deaee94f@arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 16 Oct 2020 08:31:47 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKAvJ9fv9pm82iv5YjWVCJu1fmP-t+Fyc95pzUaCEL3XQ@mail.gmail.com>
+Message-ID: <CAL_JsqKAvJ9fv9pm82iv5YjWVCJu1fmP-t+Fyc95pzUaCEL3XQ@mail.gmail.com>
+Subject: Re: [PATCH 1/7] of: base: Add of_count_phandle_with_fixed_args()
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     devicetree@vger.kernel.org,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        - <patches@opensource.cirrus.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2020 19:56, Mark Brown wrote:
-> On Wed, Oct 14, 2020 at 03:54:11PM +0100, Richard Fitzgerald wrote:
->> This set of patches provides support for using the Cirrus Logic
->> Lochnagar audio development platform plus Cirrus Logic Madera/Arizona
->> codecs with the simple-card machine driver and a Raspberry Pi4. The
->> ultimate aim is to provide the dts file but some updates are needed to
->> the simple-card machine driver.
-> 
-> Why extend simple-card and not the more modern and flexible
-> audio-graph-card?
-> 
+On Thu, Oct 15, 2020 at 11:52 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 2020-10-14 19:39, Rob Herring wrote:
+> > On Wed, Oct 14, 2020 at 9:54 AM Richard Fitzgerald
+> > <rf@opensource.cirrus.com> wrote:
+> >>
+> >> Add an equivalent of of_count_phandle_with_args() for fixed argument
+> >> sets, to pair with of_parse_phandle_with_fixed_args().
+> >>
+> >> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+> >> ---
+> >>   drivers/of/base.c  | 42 ++++++++++++++++++++++++++++++++++++++++++
+> >>   include/linux/of.h |  9 +++++++++
+> >>   2 files changed, 51 insertions(+)
+> >>
+> >> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> >> index ea44fea99813..45d8b0e65345 100644
+> >> --- a/drivers/of/base.c
+> >> +++ b/drivers/of/base.c
+> >> @@ -1772,6 +1772,48 @@ int of_count_phandle_with_args(const struct device_node *np, const char *list_na
+> >>   }
+> >>   EXPORT_SYMBOL(of_count_phandle_with_args);
+> >>
+> >> +/**
+> >> + * of_count_phandle_with_fixed_args() - Find the number of phandles references in a property
+> >> + * @np:                pointer to a device tree node containing a list
+> >> + * @list_name: property name that contains a list
+> >> + * @cell_count: number of argument cells following the phandle
+> >> + *
+> >> + * Returns the number of phandle + argument tuples within a property. It
+> >> + * is a typical pattern to encode a list of phandle and variable
+> >> + * arguments into a single property.
+> >> + */
+> >> +int of_count_phandle_with_fixed_args(const struct device_node *np,
+> >> +                                    const char *list_name,
+> >> +                                    int cells_count)
+> >> +{
+> >
+> > Looks to me like you can refactor of_count_phandle_with_args to handle
+> > both case and then make this and of_count_phandle_with_args simple
+> > wrapper functions.
+>
+> Although for just counting the number of phandles each with n arguments
+> that a property contains, isn't that simply a case of dividing the
+> property length by n + 1? The phandles themselves will be validated by
+> any subsequent of_parse_phandle*() call anyway, so there doesn't seem
+> much point in doing more work then necessary here.
+>
+> >> +       struct of_phandle_iterator it;
+> >> +       int rc, cur_index = 0;
+> >> +
+> >> +       if (!cells_count) {
+> >> +               const __be32 *list;
+> >> +               int size;
+> >> +
+> >> +               list = of_get_property(np, list_name, &size);
+> >> +               if (!list)
+> >> +                       return -ENOENT;
+> >> +
+> >> +               return size / sizeof(*list);
+>
+> Case in point - if it's OK to do exactly that for n == 0, then clearly
+> we're *aren't* fussed about validating anything, so the n > 0 code below
+> is nothing more than a massively expensive way to check for a nonzero
+> remainder :/
 
-I'm struggling to understand how to use audio-graph-card where there are
-multiple alternative codecs. The host I2S endpoint has to point back to
-the codec endpoint, like this:
+Indeed. We should just generalize this. It can still be refactored to
+shared code.
 
-	cpu_i2s_ep_cs47l15: endpoint {
-		remote-endpoint = <&cs47l15_aif1>;
-	};
+It's probably worthwhile to check for a remainder here IMO.
 
-But obviously that depends on which codec node was enabled. Listing
-multiple endpoints makes the whole port node disabled if any remote
-endpoint is in a disabled node. I've tried adding status="disabled"
-to endpoints or multiple port definitions with status="disabled" but
-I haven't figured out a solution.
+Rob
