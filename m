@@ -2,108 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5F729006A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 382862900D0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:12:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394871AbgJPJCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 05:02:07 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:30844 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2394475AbgJPJCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Oct 2020 05:02:06 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09G8wG0j010538;
-        Fri, 16 Oct 2020 04:01:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=qbEy+RUlEXHlen/P4VXawLv+5FTJsE1+6IDxyiw8LTI=;
- b=J/qVoHmAjZUMueeTEUwfSo4C1K2sxvsCu+l5VrkAfS98YfacpadkYPJ8lk0ETdddxq32
- Z2C9xD9M89y/vYPS0rs8CP/rhzGuHk8X7oYFOLEL+5epQvCR45vilSWzDILJum0hV0rN
- hdlLu8Lg/yft05iafyBOcx5T18vSrYRsWyAW0XMRTGqWqIOBN9g7QMamlBBi6/UJOijA
- h1NoLmD1AQhLqQ/bbwD58aNWmdqivXJKbF24qvIXaRCaVhQ4V+WTw1agURSeoZ4dSZ/n
- APT9Ka+Ir6UP6piwaSwwBWuCbGjo2OdKPjrMs+xhmVhAHRxJHGC7D7CQUEPmAJqw19vl pQ== 
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 343ac1yyfx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 16 Oct 2020 04:01:49 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
- 2020 10:01:46 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Fri, 16 Oct 2020 10:01:46 +0100
-Received: from [10.0.2.15] (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7F7DB45;
-        Fri, 16 Oct 2020 09:01:46 +0000 (UTC)
-Subject: Re: [PATCH 6/7] ARM: dts: Add dts for Raspberry Pi 4 + Cirrus Logic
- Lochnagar2
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <linux-kernel@vger.kernel.org>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
- <20201014145418.31838-7-rf@opensource.cirrus.com>
- <e9db1a11519dce0938cef867179160a818ec4143.camel@suse.de>
- <89913f8b-fe92-1a31-77ff-49ea3f3d3294@opensource.cirrus.com>
- <5d2587193f0e99996445d5fa507a8acf7854fed3.camel@suse.de>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <72eb1414-0657-fd62-e0c7-fc5f53d6aa6c@opensource.cirrus.com>
-Date:   Fri, 16 Oct 2020 10:01:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        id S2395013AbgJPJJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 05:09:21 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:44326 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2394982AbgJPJJF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 05:09:05 -0400
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id F05E89640A3407912883;
+        Fri, 16 Oct 2020 17:09:00 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.134) by
+ DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
+ 14.3.487.0; Fri, 16 Oct 2020 17:08:54 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "Florian Fainelli" <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH v2 0/2] eliminate two common errors reported by any yaml on arm64
+Date:   Fri, 16 Oct 2020 17:08:31 +0800
+Message-ID: <20201016090833.1892-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-In-Reply-To: <5d2587193f0e99996445d5fa507a8acf7854fed3.camel@suse.de>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 lowpriorityscore=0
- malwarescore=0 priorityscore=1501 suspectscore=0 impostorscore=0
- mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=999 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2010160065
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.134]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v1 --> v2:
+Although it's simpler to delete the empty "dma-ranges" property, and the function
+of_translate_one() in drivers/of/address.c will treate non "dma-ranges" case as
+empty "dma-ranges". But as Arnd Bergmann suggested: it's not good for the scenario
+of IOMMU disabled or absented.
 
-On 15/10/2020 16:12, Nicolas Saenz Julienne wrote:
-> On Thu, 2020-10-15 at 12:14 +0100, Richard Fitzgerald wrote:
->>> Sadly I don't think creating a new device tree is a good solution here. If we
->>> were to do so for every RPi hat/usage it'd become unmanageable very fast. There
->>> is a way to maintain this in the open nonetheless. I suggest you build a DT
->>> overlay and submit it to https://github.com/raspberrypi/linux, see
->>> 'arch/arm/boot/dts/overlays.' The Raspberry Pi engineers have a kernel branch
->>
->> We want something in mainline so that it can be used by people
->> developing on mainline and taken as a starting point for configuring
->> the codecs for other host platforms. The RPi is a convenient platform to
->> use as the base because it is widely available and low-cost.
-> 
-> If what you want to convey is the proper way of configuring your specific
-> device the way to go is writing a devicetree binding. See
+This version make sure that the node have empty "dma-ranges" property have the same
+"#address-cells" and "#size-cells" values as its parent node.
 
-If we have a working configuration it is unreasonable not to make this
-available for people who want to use it or examine it. A working example
-can be more helpful than a ton of documentation.
 
-It's also worth noting that setting up a working sound system involves
-configuring multiple drivers (for example you also need a properly
-configured ASoC machine driver at least) crossing multiple driver
-bindings. So a complete working example is valuable to see how
-it fits together.
+v1:
+The following errors occured no matter which YAML file I executed on arm64.
+Therefore, it is necessary to eliminate it so that people's time and energy are
+not wasted every time.
 
-> Documentation/devicetree. It's even possible to validate a given devicetree
-> against the bindings (given they are written in yaml format).
-> 
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
 
-Validating only checks syntax and bounds. It doesn't prove that it will
-work.
+Zhen Lei (2):
+  arm64: dts: broadcom: clear the warnings caused by empty dma-ranges
+  arm64: dts: qcom: clear the warnings caused by empty dma-ranges
 
-> Regards,
-> Nicolas
-> 
+ .../boot/dts/broadcom/stingray/stingray-usb.dtsi   | 20 +++---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              | 72 +++++++++++-----------
+ 2 files changed, 46 insertions(+), 46 deletions(-)
+
+-- 
+1.8.3
+
+
