@@ -2,124 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5319290033
-	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 10:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D5F729006A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Oct 2020 11:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404690AbgJPIwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Oct 2020 04:52:50 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:59940 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404319AbgJPIwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Oct 2020 04:52:50 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 8039D8030808;
-        Fri, 16 Oct 2020 08:52:41 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id PNU5UTBKGSXE; Fri, 16 Oct 2020 11:52:40 +0300 (MSK)
-Date:   Fri, 16 Oct 2020 11:52:35 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Alexandre Torgue <alexandre.torgue@st.com>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexey Brodkin <abrodkin@synopsys.com>,
-        Vineet Gupta <vgupta@synopsys.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
-        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH 18/20] arch: dts: Fix EHCI/OHCI DT nodes name
-Message-ID: <20201016085235.znzzbqxac4yvh3cz@mobilestation>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-19-Sergey.Semin@baikalelectronics.ru>
- <8a7af322-227b-9923-8fb6-f284af582b40@st.com>
+        id S2394871AbgJPJCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Oct 2020 05:02:07 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:30844 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2394475AbgJPJCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Oct 2020 05:02:06 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 09G8wG0j010538;
+        Fri, 16 Oct 2020 04:01:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=qbEy+RUlEXHlen/P4VXawLv+5FTJsE1+6IDxyiw8LTI=;
+ b=J/qVoHmAjZUMueeTEUwfSo4C1K2sxvsCu+l5VrkAfS98YfacpadkYPJ8lk0ETdddxq32
+ Z2C9xD9M89y/vYPS0rs8CP/rhzGuHk8X7oYFOLEL+5epQvCR45vilSWzDILJum0hV0rN
+ hdlLu8Lg/yft05iafyBOcx5T18vSrYRsWyAW0XMRTGqWqIOBN9g7QMamlBBi6/UJOijA
+ h1NoLmD1AQhLqQ/bbwD58aNWmdqivXJKbF24qvIXaRCaVhQ4V+WTw1agURSeoZ4dSZ/n
+ APT9Ka+Ir6UP6piwaSwwBWuCbGjo2OdKPjrMs+xhmVhAHRxJHGC7D7CQUEPmAJqw19vl pQ== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 343ac1yyfx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 16 Oct 2020 04:01:49 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 16 Oct
+ 2020 10:01:46 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Fri, 16 Oct 2020 10:01:46 +0100
+Received: from [10.0.2.15] (ausnpc0lsnw1.ad.cirrus.com [198.61.64.143])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7F7DB45;
+        Fri, 16 Oct 2020 09:01:46 +0000 (UTC)
+Subject: Re: [PATCH 6/7] ARM: dts: Add dts for Raspberry Pi 4 + Cirrus Logic
+ Lochnagar2
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <linux-kernel@vger.kernel.org>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+ <20201014145418.31838-7-rf@opensource.cirrus.com>
+ <e9db1a11519dce0938cef867179160a818ec4143.camel@suse.de>
+ <89913f8b-fe92-1a31-77ff-49ea3f3d3294@opensource.cirrus.com>
+ <5d2587193f0e99996445d5fa507a8acf7854fed3.camel@suse.de>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+Message-ID: <72eb1414-0657-fd62-e0c7-fc5f53d6aa6c@opensource.cirrus.com>
+Date:   Fri, 16 Oct 2020 10:01:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <8a7af322-227b-9923-8fb6-f284af582b40@st.com>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <5d2587193f0e99996445d5fa507a8acf7854fed3.camel@suse.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 lowpriorityscore=0
+ malwarescore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=999 clxscore=1015
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010160065
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Alexandre,
 
-On Fri, Oct 16, 2020 at 09:08:23AM +0200, Alexandre Torgue wrote:
-> Hi Serge,
+On 15/10/2020 16:12, Nicolas Saenz Julienne wrote:
+> On Thu, 2020-10-15 at 12:14 +0100, Richard Fitzgerald wrote:
+>>> Sadly I don't think creating a new device tree is a good solution here. If we
+>>> were to do so for every RPi hat/usage it'd become unmanageable very fast. There
+>>> is a way to maintain this in the open nonetheless. I suggest you build a DT
+>>> overlay and submit it to https://github.com/raspberrypi/linux, see
+>>> 'arch/arm/boot/dts/overlays.' The Raspberry Pi engineers have a kernel branch
+>>
+>> We want something in mainline so that it can be used by people
+>> developing on mainline and taken as a starting point for configuring
+>> the codecs for other host platforms. The RPi is a convenient platform to
+>> use as the base because it is widely available and low-cost.
 > 
-> On 10/14/20 12:14 PM, Serge Semin wrote:
-> > In accordance with the Generic EHCI/OHCI bindings the corresponding node
-> > name is suppose to comply with the Generic USB HCD DT schema, which
-> > requires the USB nodes to have the name acceptable by the regexp:
-> > "^usb(@.*)?" . Let's fix the DTS files, which have the nodes defined with
-> > incompatible names.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Please, test the patch out to make sure it doesn't brake the dependent DTS
-> > files. I did only a manual grepping of the possible nodes dependencies.
-> > ---
-> >   arch/arc/boot/dts/axs10x_mb.dtsi               | 4 ++--
-> >   arch/arc/boot/dts/hsdk.dts                     | 4 ++--
-> >   arch/arc/boot/dts/vdk_axs10x_mb.dtsi           | 2 +-
-> >   arch/arm/boot/dts/bcm5301x.dtsi                | 4 ++--
-> >   arch/arm/boot/dts/bcm53573.dtsi                | 4 ++--
-> >   arch/arm/boot/dts/hisi-x5hd2.dtsi              | 4 ++--
-> >   arch/arm/boot/dts/lpc18xx.dtsi                 | 4 ++--
-> >   arch/arm/boot/dts/stm32mp151.dtsi              | 4 ++--
-> >   arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 4 ++--
-> >   arch/arm64/boot/dts/hisilicon/hip06.dtsi       | 4 ++--
-> >   arch/arm64/boot/dts/hisilicon/hip07.dtsi       | 4 ++--
-> >   arch/mips/boot/dts/ingenic/jz4740.dtsi         | 2 +-
-> >   arch/mips/boot/dts/ingenic/jz4770.dtsi         | 2 +-
-> >   arch/mips/boot/dts/mti/sead3.dts               | 2 +-
-> >   arch/mips/boot/dts/ralink/mt7628a.dtsi         | 2 +-
-> >   arch/powerpc/boot/dts/akebono.dts              | 6 +++---
-> >   16 files changed, 28 insertions(+), 28 deletions(-)
-> > 
+> If what you want to convey is the proper way of configuring your specific
+> device the way to go is writing a devicetree binding. See
+
+If we have a working configuration it is unreasonable not to make this
+available for people who want to use it or examine it. A working example
+can be more helpful than a ton of documentation.
+
+It's also worth noting that setting up a working sound system involves
+configuring multiple drivers (for example you also need a properly
+configured ASoC machine driver at least) crossing multiple driver
+bindings. So a complete working example is valuable to see how
+it fits together.
+
+> Documentation/devicetree. It's even possible to validate a given devicetree
+> against the bindings (given they are written in yaml format).
 > 
 
-> I surely missed something, but we have here in the same patch modifications
-> for different architectures and different vendors.
-> 
-> Do you plan to split this patch after getting some Acked-by / Tested-by ?
+Validating only checks syntax and bounds. It doesn't prove that it will
+work.
 
-Yeah, I'll split this patch and two next ones up in v3.
-
--Sergey
-
-> 
-> regards
-> Alex
-> 
+> Regards,
+> Nicolas
 > 
