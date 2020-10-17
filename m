@@ -2,90 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 958C2291469
-	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 22:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27C1C2914AD
+	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 23:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439120AbgJQU5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Oct 2020 16:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53222 "EHLO
+        id S2439267AbgJQVQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Oct 2020 17:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439117AbgJQU5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 16:57:47 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C850C061755
-        for <devicetree@vger.kernel.org>; Sat, 17 Oct 2020 13:57:46 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id a9so7987321lfc.7
-        for <devicetree@vger.kernel.org>; Sat, 17 Oct 2020 13:57:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GsAKwQUklDguAeMO9EuBCZ2lqiZiq3xQEaWi886htd0=;
-        b=Rhzup4iVhyFLLhd7kLLr5pAI+BsRypSaQsQvQEFGr7kEwXZlp4ivvLKDdOzgqTeLPs
-         jzAckXxSDT0tbXWIFeqjtwLL8PtufdchIL3XGj4ACRA7DcNz74EYisShs5U4CNFW3+04
-         jsj18Wlnl1WTTcILDpWGk5BUxIlbGZoX4yqWPLy+7Juk4JQKxy3oy5BtkRj78kw6TcJW
-         6fXxom1XFWxW3fd7TrKP5y4gVIQzFFOsrV/ZOo7BYP85u0vhLzTh6z1QYk/nWS/LCB3T
-         5mM3/GETScqUHhRGExpAE5w7Hxjf8UpAR8zMMEyAPL9DYCo8ijzmuep+tfYXob6bKpAr
-         JeDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GsAKwQUklDguAeMO9EuBCZ2lqiZiq3xQEaWi886htd0=;
-        b=LjCeLkoNZndI4NQnMddPwpQirrjNK0pj3OPjecOx7CpvSZBzBcgq3JMArgCIE3+wra
-         rrpsWod6M8ymZW4DQHePW30+cf3RrohRmHFijbkUKk4MTjHoIdAwZ3sqy80IFDzAdsnH
-         IUgSlLSv33yCWSTUeJGGQUGe0WQZHMP3rxFcHFVw7Wy/OBvJxbQkhAczhPKhNkOyorE3
-         uG+HgxmHo4A5/Zkeo6tfrRn8CgiMrH/1rHJhBr9ZrO6KDYuESjBB9nfZG3SAe2lxhRfz
-         vhEAJk8RXui/kMdrt1A14h67KXc/In4HRRoEeoKYVaiVme03Dsr8zBuwSf/L35yO6+s3
-         p/mw==
-X-Gm-Message-State: AOAM530NZ+EFhTrV2tjUllc9BaiVc319CD841Imvid0CcX11mUPpVca/
-        dvRlpzV3qVQtun443HcVFLqXojuxKF0=
-X-Google-Smtp-Source: ABdhPJyH6L3P6fekT8qK4BA31Hcm/N2AJYOJAr8Tfp5c0JpN5feMPev4dkBfw5LFE1kGLSJJ3m1hLw==
-X-Received: by 2002:a05:6512:3248:: with SMTP id c8mr3466085lfr.156.1602968260497;
-        Sat, 17 Oct 2020 13:57:40 -0700 (PDT)
-Received: from localhost.localdomain ([5.188.167.245])
-        by smtp.googlemail.com with ESMTPSA id q5sm2251013lfn.215.2020.10.17.13.57.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Oct 2020 13:57:39 -0700 (PDT)
-From:   Sergey Matyukevich <geomatsi@gmail.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sergey Matyukevich <geomatsi@gmail.com>
-Subject: [PATCH] ARM: dts: imx6qdl-udoo: fix rgmii phy-mode for ksz9031 phy
-Date:   Sun, 18 Oct 2020 00:03:24 +0300
-Message-Id: <20201017210324.556454-1-geomatsi@gmail.com>
-X-Mailer: git-send-email 2.28.0
+        with ESMTP id S2439264AbgJQVQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 17:16:55 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB266C0613CE
+        for <devicetree@vger.kernel.org>; Sat, 17 Oct 2020 14:16:54 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kTtZ5-0006Fj-TO; Sat, 17 Oct 2020 23:16:35 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kTtZ4-0004pP-RR; Sat, 17 Oct 2020 23:16:34 +0200
+Date:   Sat, 17 Oct 2020 23:16:32 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, lee.jones@linaro.org, thierry.reding@gmail.com
+Subject: Re: [PATCH] dt-bindings: pwm: mtk-disp: add MT8167 SoC binding
+Message-ID: <20201017211632.ufgcsmjhbdmcj7hr@pengutronix.de>
+References: <20201016185015.3371433-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dkesq5stxul6y32h"
+Content-Disposition: inline
+In-Reply-To: <20201016185015.3371433-1-fparent@baylibre.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit bcf3440c6dd7 ("net: phy: micrel: add phy-mode support for the
-KSZ9031 PHY") fixed micrel phy driver adding proper support for phy
-modes. Adapt imx6q-udoo board phy settings accordingly: explicitly
-set required delay configuration using "rgmii-id".
 
-Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
----
- arch/arm/boot/dts/imx6qdl-udoo.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--dkesq5stxul6y32h
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/imx6qdl-udoo.dtsi b/arch/arm/boot/dts/imx6qdl-udoo.dtsi
-index c9e122865312..050642d7c582 100644
---- a/arch/arm/boot/dts/imx6qdl-udoo.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-udoo.dtsi
-@@ -98,7 +98,7 @@ sound {
- &fec {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_enet>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
- 
--- 
-2.28.0
+On Fri, Oct 16, 2020 at 08:50:15PM +0200, Fabien Parent wrote:
+> Add binding for MT8167 SoC. The IP is compatible with MT8173.
+>=20
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt b/Doc=
+umentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
+> index 0521957c253f..902b271891ae 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
+> @@ -4,6 +4,7 @@ Required properties:
+>   - compatible: should be "mediatek,<name>-disp-pwm":
+>     - "mediatek,mt2701-disp-pwm": found on mt2701 SoC.
+>     - "mediatek,mt6595-disp-pwm": found on mt6595 SoC.
+> +   - "mediatek,mt8167-disp-pwm", "mediatek,mt8173-disp-pwm": found on mt=
+8167 SoC.
+>     - "mediatek,mt8173-disp-pwm": found on mt8173 SoC.
+>   - reg: physical base address and length of the controller's registers.
+>   - #pwm-cells: must be 2. See pwm.yaml in this directory for a descripti=
+on of
 
+LGTM:
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--dkesq5stxul6y32h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+LXy0ACgkQwfwUeK3K
+7AkGVQf/W23j54YXyBoJHOo0UT7KjtVUZs7RlAf41JjeatSLPQ2AFfeInknaMEkX
+rGoUteV8Dj36mb5SWUJhGN4tmBUGX7e5u/XRhkHRjuJeA41MThhw16ubjIPBxXks
+GiB0mtz69sFQp5T9w7Nyz4iI6qCEvP2GOuNisELgRJXAECob6gX33RYFhvJZK1Gg
+v/hR0xjoblqnJ15jKKoUiuw75Qbtj7Bj9ei+6ypNRTu/zYRSSUsrXaYX6gcYr0Ar
+ZAPLhiaOKv9utkDGnrvcV97qHRQxkoSBOLljtx3EikgkRkIC4uoT3T7oQuaV9fvG
+kE00SKEPLcxAeOj8mGGn6mSkloQxGQ==
+=DF3E
+-----END PGP SIGNATURE-----
+
+--dkesq5stxul6y32h--
