@@ -2,174 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0CCD290F4E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 07:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35884290F3B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 07:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2411781AbgJQFev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Oct 2020 01:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
+        id S2411621AbgJQFaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Oct 2020 01:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2411770AbgJQFeo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 01:34:44 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1AAC0610DF
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 18:57:47 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id q5so5224988wmq.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 18:57:47 -0700 (PDT)
+        with ESMTP id S2411644AbgJQF3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 01:29:44 -0400
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 659F3C05BD32
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 22:20:17 -0700 (PDT)
+Received: by mail-ot1-x344.google.com with SMTP id m22so4562116ots.4
+        for <devicetree@vger.kernel.org>; Fri, 16 Oct 2020 22:20:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nuh/bmn3RkFq4gADcA0ZAUJL6az2qyr09AghLknddnE=;
-        b=Hc8aQmwnLL+wERyyQ7CpO51Fsn3derfmkT8umMZkwXPkhXFcXuK1+srj5bzWdyGS8X
-         w44FRI2rzKxxk+WBy/GE7xvWOVWLkwNIvcfxSm9c9uuhAX+67wPWEgXL3kgROKrUsuvf
-         zsmczeVNeaUiEkBC4f+DsFxJ2lpdyqlb7kjm8=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yoJyq6OLL3E5x13cNBRugp0CPYddMVHysDILDRGaDnk=;
+        b=WsQ5NKNWEQyp/lNHV86huvvV1ORT8c4bxu11FIMcxzdN+z/DjV9sC7OrCC8H8YX4wr
+         6CVtKlfUDTKTeGXtV6SRK+rVWrRC6f14KCwaFeE7Add7TS9AUJBsDMwAU47lHrT8kAba
+         xQ+PQBHv8dVCdKn9r4SKcSQvMkRKy9uefLQhwdwu3pvXuiaeYB6q1/9eJo+5G1ipaTH1
+         YiOWgNg1Dl0z6ISfgO8Y13BIsmIiQ2+vFKl4tsF2zvpmWJBjSXrD8EwgzeAO1wnQYY9i
+         S1Y5Aqm1n15nBdah8hSoPZ+LqZuv8A5pvbIvizzTXuZXNnHvYtfKmdAtykiy/TGtIIOm
+         rBsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nuh/bmn3RkFq4gADcA0ZAUJL6az2qyr09AghLknddnE=;
-        b=H/A3JDRk9V6vGwvHWED7ZYRWeSI1up/zUw+IeQ97UhxSo7pFVYVb4TJqt4Hcq7Y7P5
-         84c3n2oklqPJmjU6IaS3POkITux2FvCMPMELLJxmI+onCJzMyBlAtHJ6UhP36L+Iw5SF
-         fPD3GmRVb50y8ja6tNK696iNuF9FydJh2vkoYdm0Gt2zUGmIIsyYOD1cXPxw2bWaMPwX
-         MjDGto+ZPsfz1t2TeO8JS09HKWygzl8tg61F5HsJ9+WenWJR7UNlb5PSYZGr9pw9WM8D
-         hYUel1urZkGpJObMcyiDKW62NgtNaowvVOqPCjPIYi0ctpG1nAEfjyhnc/VVVHBgVele
-         7Xrg==
-X-Gm-Message-State: AOAM5333hRsEu5nih+67MAD+vd3xxvpK7aq3SxZ6/j1HwlfB5r4Y39Uf
-        zqbET/mhHmdDiXB8dbiHFOReuJbjNGLt5mD3aI34NA==
-X-Google-Smtp-Source: ABdhPJz2dwlicRXSki8sbde0WGJf342Dhw9U8otxbpBoITFVZF9Vdk/vRb8AtHXnj/BTbponqM3On9YyYJ9zovqDyQ0=
-X-Received: by 2002:a7b:c935:: with SMTP id h21mr6120268wml.99.1602899865888;
- Fri, 16 Oct 2020 18:57:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yoJyq6OLL3E5x13cNBRugp0CPYddMVHysDILDRGaDnk=;
+        b=duPhrFOTaoclUUM5/cUAxI8ZPikH3qLosYZ3/DRE1lHTEFcIhJBl4FEhnn2FaTFxdU
+         zmsGs8+/9ZM8fcClqaasOg4WtvDlmGh2kFtRTxr81cO85HTFrLsnBiMtaQtQyFAOKy33
+         5U31jJbW0/67cjo3fDoUouGoCBH2P8abT26/gQN1jVNjukO5k2RvIoTr+iJ09yDKPT9D
+         n4x51emciEguHD3+W/SIRr4dybH3n8MVQ5N72u1Zzh+snBiWHAdW2XU06lKfPMEQLIfZ
+         ZRPnycElj1i5gLNHESOyYmCLR+5mfqb8UBrpEoJzNZMAjmDNegGzWeWTqFwccu83jut1
+         KauA==
+X-Gm-Message-State: AOAM533DfkrRZRZGDl2Z2nnCpD/+H+Y+SrAd20iZoWu8EhexG2aFK5ih
+        MDfxmOYY4suSR1kiRaCXPAitmg==
+X-Google-Smtp-Source: ABdhPJz/PYEQ27V6dj+y6ecyGo++ehAUJb2XYgGhMfsvY4XVD97JcbWmXfJf+e8G+BCOzG7Vv3gQQw==
+X-Received: by 2002:a9d:34d:: with SMTP id 71mr4689442otv.251.1602912016658;
+        Fri, 16 Oct 2020 22:20:16 -0700 (PDT)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id f2sm1572769ots.64.2020.10.16.22.20.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Oct 2020 22:20:15 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Martin Botka <martin.botka1@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: [PATCH v5 0/4] Qualcomm Light Pulse Generator
+Date:   Fri, 16 Oct 2020 22:20:53 -0700
+Message-Id: <20201017052057.2698588-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-4-daniel@0x0f.com>
- <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
-In-Reply-To: <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sat, 17 Oct 2020 10:57:35 +0900
-Message-ID: <CAFr9PX==5iqX6UfE7KOagkuYviUhM2cSuyHYNquhxcxJU5hFMA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus
+This series introduces a generic pattern interface in the LED class and
+a driver for the Qualcomm Light Pulse Generator.
 
-On Sat, 17 Oct 2020 at 01:56, Linus Walleij <linus.walleij@linaro.org> wrote:
-> (...)
->
-> > +config GPIO_MSC313
-> > +       bool "MStar MSC313 GPIO support"
-> > +       default y if ARCH_MSTARV7
-> > +       depends on ARCH_MSTARV7
-> > +       select GPIO_GENERIC
->
-> Selecting GPIO_GENERIC, that is good.
-> But you're not using it, because you can't.
-> This chip does not have the bits lined up nicely
-> in one register, instead there seems to be something
-> like one register per line, right?
-> So skip GPIO_GENERIC.
+It seems like it's been almost 3 years since I posted v3, which was hung
+up on the lack of conclusion on the hw_pattern and multicolor support.
+Now that those are concluded I hope we can make some progress on the LPG
+support again.
 
-Well spotted. Copy/paste fail on my side :).
+The dts patches are included in the series as "examples", ultimately my
+expectation is that the dt binding and driver patches are picked up
+through the leds tree, while Andy or myself take the dts patches.
 
-> > +#define MSC313_GPIO_IN  BIT(0)
-> > +#define MSC313_GPIO_OUT BIT(4)
-> > +#define MSC313_GPIO_OEN BIT(5)
-> > +
-> > +#define MSC313_GPIO_BITSTOSAVE (MSC313_GPIO_OUT | MSC313_GPIO_OEN)
->
-> Some comment here telling us why these need saving and
-> not others.
+Bjorn Andersson (4):
+  dt-bindings: leds: Add Qualcomm Light Pulse Generator binding
+  leds: Add driver for Qualcomm LPG
+  arm64: dts: qcom: pm(i)8994: Add mpp and lpg blocks
+  arm64: dts: qcom: Add user LEDs on db820c
 
-There is a comment near to the save function that explains it I think.
-When the hardware goes into low power mode with the CPU turned off
-the register contents are lost and those two bits are the only ones that are
-writable from what I can tell. I'll add an extra comment above that line.
+ .../bindings/leds/leds-qcom-lpg.yaml          |  170 +++
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi  |   49 +
+ arch/arm64/boot/dts/qcom/pm8994.dtsi          |    9 +
+ arch/arm64/boot/dts/qcom/pmi8994.dtsi         |   20 +
+ drivers/leds/Kconfig                          |    9 +
+ drivers/leds/Makefile                         |    1 +
+ drivers/leds/leds-qcom-lpg.c                  | 1206 +++++++++++++++++
+ 7 files changed, 1464 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+ create mode 100644 drivers/leds/leds-qcom-lpg.c
 
-> > +#define FUART_NAMES                    \
-> > +       MSC313_PINNAME_FUART_RX,        \
-> > +       MSC313_PINNAME_FUART_TX,        \
-> > +       MSC313_PINNAME_FUART_CTS,       \
-> > +       MSC313_PINNAME_FUART_RTS
-> > +
-> > +#define OFF_FUART_RX   0x50
-> > +#define OFF_FUART_TX   0x54
-> > +#define OFF_FUART_CTS  0x58
-> > +#define OFF_FUART_RTS  0x5c
-> > +
-> > +#define FUART_OFFSETS  \
-> > +       OFF_FUART_RX,   \
-> > +       OFF_FUART_TX,   \
-> > +       OFF_FUART_CTS,  \
-> > +       OFF_FUART_RTS
->
-> This looks a bit strange. The GPIO driver should not really
-> have to know about any other use cases for pins than
-> GPIO. But I guess it is intuitive for the driver.
->
-<snip>
->
-> Same with all these. I suppose it is the offsets of stuff
-> that would be there unless we were using it for GPIO.
+-- 
+2.28.0
 
-The pad FUART_RX can't move but the function FUART_RX can.
-If the function FUART_RX (or another function) isn't on the pad/pin
-FUART_RX it's connected to the GPIO block.
-Even more confusingly some of the other chips (SSD201/SSD202)
-have pads called GPIO1, GPIO2 etc that only have GPIO functionality
-but the offsets of the registers to control the GPIO on those pads might
-not have a relation to the name.
-GPIO1 isn't gpio_base + (1 * 4) and instead some random address.
-
-Basically using the pad name as the name of the GPIO made sense
-because it's fixed and the pad name and offset are the same with all
-of the chips I've seen so far.
-
-> > +static int msc313_gpio_to_irq(struct gpio_chip *chip, unsigned int offset)
-> > +{
-> > +       struct msc313_gpio *gpio = gpiochip_get_data(chip);
-> > +> +
->
-> > +       return gpio->irqs[offset];
-> > +}
->
-> Please do not use custom IRQ handling like this.
-> As there seems to be one IRQ per line, look into using
->
->         select GPIOLIB_IRQCHIP
->         select IRQ_DOMAIN_HIERARCHY
->
-> See for example in gpio-ixp4xx.c how we deal with
-> hiearchical GPIO IRQs.
-
-<snip>
-
-> Use hierarchical generic GPIO IRQs for these.
->
-> Assign ->fwnode, ->parent_domain, ->child_to_parent_hwirq,
-> and probably also ->handler on the struct gpio_irq_chip *.
->
-> Skip assigning gpiochip->to_irq, the generic code will
-> handle that.
->
-> Again see gpio-ixp4xx.c for an example.
-
-I'll look into this.
-I don't have datasheets so I'm working from some crusty header
-files from the vendor kernel but there isn't one irq per line from
-what I can tell.
-There seems to have been 4 spare lines on an interrupt controller
-so they wired GPIOs to them.
-
-Thank you for the comments. I'll send a v2 in a few days.
-
-Thanks,
-
-Daniel
