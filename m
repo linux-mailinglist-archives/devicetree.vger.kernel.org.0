@@ -2,41 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27C1C2914AD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 23:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 885782914B4
+	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 23:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439267AbgJQVQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Oct 2020 17:16:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56236 "EHLO
+        id S2439443AbgJQVZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Oct 2020 17:25:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439264AbgJQVQz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 17:16:55 -0400
+        with ESMTP id S2439436AbgJQVZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 17:25:01 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB266C0613CE
-        for <devicetree@vger.kernel.org>; Sat, 17 Oct 2020 14:16:54 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60508C061755
+        for <devicetree@vger.kernel.org>; Sat, 17 Oct 2020 14:25:01 -0700 (PDT)
 Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
         by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ukl@pengutronix.de>)
-        id 1kTtZ5-0006Fj-TO; Sat, 17 Oct 2020 23:16:35 +0200
+        id 1kTthB-0006ny-87; Sat, 17 Oct 2020 23:24:57 +0200
 Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
         (envelope-from <ukl@pengutronix.de>)
-        id 1kTtZ4-0004pP-RR; Sat, 17 Oct 2020 23:16:34 +0200
-Date:   Sat, 17 Oct 2020 23:16:32 +0200
+        id 1kTthA-0004xe-QU; Sat, 17 Oct 2020 23:24:56 +0200
+Date:   Sat, 17 Oct 2020 23:24:53 +0200
 From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, lee.jones@linaro.org, thierry.reding@gmail.com
-Subject: Re: [PATCH] dt-bindings: pwm: mtk-disp: add MT8167 SoC binding
-Message-ID: <20201017211632.ufgcsmjhbdmcj7hr@pengutronix.de>
-References: <20201016185015.3371433-1-fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>
+Subject: Re: [PATCH] scripts/dtc: only append to HOST_EXTRACFLAGS instead of
+ overwriting
+Message-ID: <20201017212453.6ovoxoop74z5rmtn@pengutronix.de>
+References: <20200917094024.17215-1-u.kleine-koenig@pengutronix.de>
+ <20200919143922.22793-1-u.kleine-koenig@pengutronix.de>
+ <CAK7LNAT5f6RxFjOTOm8RvzZ3N2-48fr5e7wVoiE9hVeMBLSKBA@mail.gmail.com>
+ <CAL_JsqJDPq-7V-JkeVEQh8J9dUd8uCqp0u5LnP6pYXmpzLRcwg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dkesq5stxul6y32h"
+        protocol="application/pgp-signature"; boundary="rkjaumq6t3tkmbrc"
 Content-Disposition: inline
-In-Reply-To: <20201016185015.3371433-1-fparent@baylibre.com>
+In-Reply-To: <CAL_JsqJDPq-7V-JkeVEQh8J9dUd8uCqp0u5LnP6pYXmpzLRcwg@mail.gmail.com>
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
 X-SA-Exim-Mail-From: ukl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
@@ -46,38 +50,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---dkesq5stxul6y32h
+--rkjaumq6t3tkmbrc
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 16, 2020 at 08:50:15PM +0200, Fabien Parent wrote:
-> Add binding for MT8167 SoC. The IP is compatible with MT8173.
+On Fri, Oct 16, 2020 at 09:30:00AM -0500, Rob Herring wrote:
+> On Fri, Oct 16, 2020 at 2:11 AM Masahiro Yamada <masahiroy@kernel.org> wr=
+ote:
+> >
+> > On Sat, Sep 19, 2020 at 11:39 PM Uwe Kleine-K=F6nig
+> > <u.kleine-koenig@pengutronix.de> wrote:
+> > >
+> > > When building with
+> > >
+> > >         $ HOST_EXTRACFLAGS=3D-g make
+> >
+> >
+> > I do not think this is the intended usage
+> > of HOST_EXTRACFLAGS.
 >=20
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt b/Doc=
-umentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
-> index 0521957c253f..902b271891ae 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
-> @@ -4,6 +4,7 @@ Required properties:
->   - compatible: should be "mediatek,<name>-disp-pwm":
->     - "mediatek,mt2701-disp-pwm": found on mt2701 SoC.
->     - "mediatek,mt6595-disp-pwm": found on mt6595 SoC.
-> +   - "mediatek,mt8167-disp-pwm", "mediatek,mt8173-disp-pwm": found on mt=
-8167 SoC.
->     - "mediatek,mt8173-disp-pwm": found on mt8173 SoC.
->   - reg: physical base address and length of the controller's registers.
->   - #pwm-cells: must be 2. See pwm.yaml in this directory for a descripti=
-on of
+> Okay, but I looked at all the other instances of HOST_EXTRACFLAGS and
+> they do '+=3D'. Are they all wrong?
 
-LGTM:
+Hmm, I just tested that and indeed
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+	HOSTCFLAGS=3D-g make
+
+has the intended effect. Then the commit log is not optimal. I'd still
+say the patch is good even though the reasoning is now only aligning the
+assignment to others in the kernel tree.
+
+@Rob: Assuming you agree, do you throw out hte patch again and I resend
+with an improved commit log?
 
 Best regards
 Uwe
@@ -86,19 +91,19 @@ Uwe
 Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
 Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---dkesq5stxul6y32h
+--rkjaumq6t3tkmbrc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+LXy0ACgkQwfwUeK3K
-7AkGVQf/W23j54YXyBoJHOo0UT7KjtVUZs7RlAf41JjeatSLPQ2AFfeInknaMEkX
-rGoUteV8Dj36mb5SWUJhGN4tmBUGX7e5u/XRhkHRjuJeA41MThhw16ubjIPBxXks
-GiB0mtz69sFQp5T9w7Nyz4iI6qCEvP2GOuNisELgRJXAECob6gX33RYFhvJZK1Gg
-v/hR0xjoblqnJ15jKKoUiuw75Qbtj7Bj9ei+6ypNRTu/zYRSSUsrXaYX6gcYr0Ar
-ZAPLhiaOKv9utkDGnrvcV97qHRQxkoSBOLljtx3EikgkRkIC4uoT3T7oQuaV9fvG
-kE00SKEPLcxAeOj8mGGn6mSkloQxGQ==
-=DF3E
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+LYSMACgkQwfwUeK3K
+7Aka+Qf/eIe3SDDReD6gXUQ9G1AXEtGR/8JpnHBstfr18g6LDUC3PweLewjhVUUr
+aMGvOhUhlfL7Wj+sZOW3C8EWuaTm3QfPvANCBFKzQWk7s38lOJJlycpOPEbTKEIi
+O2bvajZ7pLidgfuN0UiDjwvowt9rGgVNf0ad80w5/Rnp9jaJNffJkkiiEyFo80Xn
+ypj/9Rzlp94TqxAgDfAnpqU/K/rEe0tZiCr76zxqcz3frcIx/UeKwudLOXF7p+CP
+zkUB2HdDMfQoiMhC5si/BVX8XdTQC9C+yfoKhy00+DU6odCKWgOcUK21EQ1o5yAa
+u6tZr2RtyXJbXAwskceiFFiObZ9AAA==
+=S9mL
 -----END PGP SIGNATURE-----
 
---dkesq5stxul6y32h--
+--rkjaumq6t3tkmbrc--
