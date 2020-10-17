@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B71C291033
-	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 08:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48298291077
+	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 09:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437166AbgJQGlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Oct 2020 02:41:49 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:34122 "EHLO
+        id S2411738AbgJQHRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Oct 2020 03:17:45 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:39972 "EHLO
         asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437151AbgJQGls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 02:41:48 -0400
+        with ESMTP id S2411713AbgJQHRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 03:17:45 -0400
 Received: from ravnborg.org (unknown [188.228.123.71])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 08C0F80608;
-        Sat, 17 Oct 2020 08:41:44 +0200 (CEST)
-Date:   Sat, 17 Oct 2020 08:41:43 +0200
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 812DD8055B;
+        Sat, 17 Oct 2020 09:17:42 +0200 (CEST)
+Date:   Sat, 17 Oct 2020 09:17:40 +0200
 From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Neil Armstrong <narmstrong@baylibre.com>,
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         David Airlie <airlied@linux.ie>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v3 0/2] Add LT9611UXC DSI to HDMI bridge support
-Message-ID: <20201017064143.GI2242298@ravnborg.org>
-References: <20200909092823.64810-1-dmitry.baryshkov@linaro.org>
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-amarula@amarulasolutions.com, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Yes Optoelectronics
+Message-ID: <20201017071740.GJ2242298@ravnborg.org>
+References: <20200904180821.302194-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200909092823.64810-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20200904180821.302194-1-jagan@amarulasolutions.com>
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.3 cv=fu7ymmwf c=1 sm=1 tr=0
         a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=EUspDBNiAAAA:8 a=8n8SyL_cAAAA:8
-        a=9PYKBtNqa2uEeENYDCgA:9 a=CjuIK1q_8ugA:10 a=rMCfJy6NHDicN4J276Yl:22
-        a=-K6Y0kWoOJXvxDHPO-NO:22
+        a=kj9zAlcOel0A:10 a=iP-xVBlJAAAA:8 a=e5mUnYsNAAAA:8
+        a=9mebZdXVrDbmM0H2kEcA:9 a=CjuIK1q_8ugA:10 a=lHLH-nfn2y1bM_0xSXwp:22
+        a=Vxmtnl_E_bksehYqCbjh:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry
+Hi Jagan.
 
-On Wed, Sep 09, 2020 at 12:28:21PM +0300, Dmitry Baryshkov wrote:
-> Hi,
+On Fri, Sep 04, 2020 at 11:38:19PM +0530, Jagan Teki wrote:
+> Add vendor dt-bindings for Yes Optoelectronics Co.,Ltd.
 > 
-> This series adds support for Lontium LT9611UXC bridge chip which takes
-> MIPI DSI as input and provides HDMI signal as output.
-> 
-> The chip can be found in Qualcomm RB5 platform [1], [2].
-> 
-> [1] https://www.qualcomm.com/products/qualcomm-robotics-rb5-platform
-> [2] https://www.thundercomm.com/app_en/product/1590131656070623
-> 
-> Changes since v2:
->  - Squashed connector support into main patch
->  - Added comment on modes table
->  - Dropped display timings support, covered by EDID
->  - Dropped sleep mode support
->  - Dropped hpd_status reading from ISR handler
->  - Added "sentinel" comments to empty table entries
-> 
-> Changes since v1:
->  - Fix whitespaces/indentation
->  - Support working without DRM_BRIDGE_ATTACH_NO_CONNECTOR
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 
-Sorry for taking so long time to get back to you.
-Which display driver will this be used together with?
-
-The preference is that the display driver adds support for
-creating the connector so we can drop this from the bridge
-as this is not how things should be done these days.
-
-All the rest looked good.
+I have applied the full series to drm-misc-next.
+Sorry for the delay.
 
 	Sam
+
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 9aeab66be85f..15a6a8e7260d 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1167,6 +1167,8 @@ patternProperties:
+>      description: Shenzhen Xunlong Software CO.,Limited
+>    "^xylon,.*":
+>      description: Xylon
+> +  "^yes-optoelectronics,.*":
+> +    description: Yes Optoelectronics Co.,Ltd.
+>    "^yna,.*":
+>      description: YSH & ATIL
+>    "^yones-toptech,.*":
+> -- 
+> 2.25.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
