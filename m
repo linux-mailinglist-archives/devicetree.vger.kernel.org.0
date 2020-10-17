@@ -2,96 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FDF12910AD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 10:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3942910E1
+	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 11:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437609AbgJQIHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Oct 2020 04:07:51 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:48006 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406626AbgJQIHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 04:07:50 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 473A980613;
-        Sat, 17 Oct 2020 10:07:47 +0200 (CEST)
-Date:   Sat, 17 Oct 2020 10:07:45 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Lubomir Rintel <lkundrak@v3.sk>
+        id S2411768AbgJQJNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Oct 2020 05:13:12 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:47194 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2408830AbgJQJNM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Oct 2020 05:13:12 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 517B1FB03;
+        Sat, 17 Oct 2020 11:13:09 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id xClCHw0Jhbs4; Sat, 17 Oct 2020 11:13:08 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 55F3B402F3; Sat, 17 Oct 2020 11:13:07 +0200 (CEST)
+Date:   Sat, 17 Oct 2020 11:13:07 +0200
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Sam Ravnborg <sam@ravnborg.org>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add support for Innolux LS075AT011
-Message-ID: <20201017080745.GC2568873@ravnborg.org>
-References: <20200819101206.633253-1-lkundrak@v3.sk>
- <20200819101206.633253-3-lkundrak@v3.sk>
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] drm/panel: mantix panel reset fixes
+Message-ID: <20201017091307.GA2885@bogon.m.sigxcpu.org>
+References: <cover.1602584953.git.agx@sigxcpu.org>
+ <20201016142916.GA1184974@ravnborg.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200819101206.633253-3-lkundrak@v3.sk>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=fu7ymmwf c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=xLo76rB1dlWsSdU1wyoA:9 a=CjuIK1q_8ugA:10
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201016142916.GA1184974@ravnborg.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lubomir.
-
-Sorry for the late feedback!
-
-On Wed, Aug 19, 2020 at 12:12:06PM +0200, Lubomir Rintel wrote:
-> This adds support for the Innolux LS075AT011 7.5" 1200x900 panel. There's
-> no public data sheet for the panel -- the values have been taken from Open
-> Firmware and the documentation for the display controller that drives
-> the panel and tested on the OLPC laptop.
+Hi Sam,
+On Fri, Oct 16, 2020 at 04:29:16PM +0200, Sam Ravnborg wrote:
+> Hi Guido.
+> On Tue, Oct 13, 2020 at 12:32:45PM +0200, Guido Günther wrote:
+[..snip..]
+> > 
+> > Changes from v1:
+> >  - As per review comments by Fabio Estevam
+> >    https://lore.kernel.org/dri-devel/CAOMZO5B5ECcConvKej=RcaF8wvOxgq7nUzKJ-ad0aSAOzUqtbQ@mail.gmail.com/
+> >    - Fix typo in commit messages
+> >  - As per review comments by Rob Herring
+> >    https://lore.kernel.org/dri-devel/20200929174624.GA832332@bogus/
+> >    - Don't use an array of reset lines
+> > 
+> > Guido Günther (3):
+> >   drm/panel: mantix: Don't dereference NULL mode
+> >   drm/panel: mantix: Fix panel reset
+> >   dt-binding: display: Require two resets on mantix panel
 > 
-> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> ---
->  drivers/gpu/drm/panel/panel-simple.c | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+> All applied to drm-misc-next and pushed out.
+> And then I remembered you had commit right - sigh.
+
+Thanks! Is there any special care needed to get that into 5.10? The
+driver landed there in 72967d5616d3f0c714f8eb6c4e258179a9031c45.
+Cheers,
+ -- Guido
+
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index cb6550d37e858..dfc69457ed2d4 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -2121,6 +2121,30 @@ static const struct panel_desc innolux_g121x1_l03 = {
->  	},
->  };
->  
-> +static const struct display_timing innolux_ls075at011_timing = {
-> +	.pixelclock = { 56000000, 57000000, 58000000 },
-> +	.hactive = { 1200, 1200, 1200 },
-> +	.hfront_porch = { 26, 26, 26 },
-> +	.hback_porch = { 24, 24, 24 },
-> +	.hsync_len = { 6, 6, 6 },
-> +	.vactive = { 900, 900, 900 },
-> +	.vfront_porch = { 4, 4, 4 },
-> +	.vback_porch = { 5, 5, 5 },
-> +	.vsync_len = { 3, 3, 3 },
-> +	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
-> +};
-> +
-> +static const struct panel_desc innolux_ls075at011 = {
-> +	.timings = &innolux_ls075at011_timing,
-> +	.num_timings = 1,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 152,
-> +		.height = 115,
-> +	},
-> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> +};
-For LVDS panels following info is mandatory:
-.bus_flags
-.bus_format
-
-You have .bpc - so this part is OK.
-
-See the checks in panel_simple_probe() - thay are not allowed to trigger
-for any new panels.
-
-	Sam
+> 	Sam
+> 
+> > 
+> >  .../display/panel/mantix,mlaf057we51-x.yaml   |  4 +++
+> >  .../gpu/drm/panel/panel-mantix-mlaf057we51.c  | 25 +++++++++++++------
+> >  2 files changed, 21 insertions(+), 8 deletions(-)
+> > 
+> > -- 
+> > 2.28.0
+> > 
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
