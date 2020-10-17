@@ -2,87 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE073290FF7
-	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 08:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 996C0290FF4
+	for <lists+devicetree@lfdr.de>; Sat, 17 Oct 2020 08:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2411732AbgJQGDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Oct 2020 02:03:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57314 "EHLO
+        id S2437046AbgJQGC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Oct 2020 02:02:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2411696AbgJQGBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 02:01:37 -0400
+        with ESMTP id S2411778AbgJQGBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Oct 2020 02:01:38 -0400
 Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E832C0613A9;
-        Fri, 16 Oct 2020 18:26:04 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id 10so2473875pfp.5;
-        Fri, 16 Oct 2020 18:26:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0262C0613AE;
+        Fri, 16 Oct 2020 18:31:55 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id a200so2466370pfa.10;
+        Fri, 16 Oct 2020 18:31:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=rRFRUFeNNAwvjKBB1fE6qSaSpbNzd7iDj3KBBS9Wi24=;
-        b=BuFPK4FJjOiSIUHGD7OM2XveIj3tBrf87q24Lrgnu+LjUUrdp0wG5I19CPCKob/guJ
-         QXBtQDPHZww3sdBO+hjkhHdXWlS5OU9k267rzwmKaimvsbAOxucxxH7QGyCEzB3ZX3VO
-         BybuTUFk371oC5XZ5aWLrKvy9Jt54/AUpZ8zUn8QTLQC5dVnUEWnl1gzwuAA+FM1VS1S
-         Ju6udc81wtlOMR4ePVzJxyBW2HVQk3pQWEh4OmAgMprXg9DC2XnLrFhrOyV2ydCcy/n4
-         aaEOpLgKmBi4cUE0DrCVQPXScPJlAtozf/1k6csHO9se9Q4th86LiiHgqedREdDtz7G0
-         ycOw==
+        bh=6ZC06D0iTTUO33G/T+lGdFmHtlewUgM9PFYLzb4iwrw=;
+        b=Xwl7fTXakw+Id+GamJRignbC3wIuvgG4DCZ5BdtMm3nt5spLmoBywf2pjwTIYCZwB9
+         Q6wf6g5wn9q//ujl3fgP8S0Y/j77hmpsX4GHZCbSCVX1d7OhJIgCHmqjV96PzfA4FgGE
+         RMaNFr/6rdNbBIomEVktNvrwhioUCH5x5IAs6/56kx5FdqYpIOnxG09rYttZVJYXsEsQ
+         0IgfprM38tLVQj526n5jQCshEC4qbYe0sPbqjUfwAom+5J5aRThUgOE5WmCCvuXs115m
+         Ob2l1rJNAIAQht+Nml/KSb/0QuBX5n27I52MgWgIlbZvoX3v5EATNoXn/UzMsP8KP4nk
+         QEqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rRFRUFeNNAwvjKBB1fE6qSaSpbNzd7iDj3KBBS9Wi24=;
-        b=ck1GwynPwgpEnjb46aNUeRVxHhwUL60zlpO9QCWxjZtAiiRTxvPaXOx+RCXPchpwqz
-         tz694kNbXA7HYXjQKwKuOf/ep6VcsoNja9ag6fF8XcDHhI0PhdGVoCqSIZLeCccPpylB
-         3PY/W8cfeR+FDJFZAc2t+7GC9dyA7MzqZNAzU/9fDJovV+gthiaDgFFJlfb81X/JsZWq
-         rf7cwZyjafhDANgOnqt2HrjVsrsA8NxAIje2WGL419sGsYhe2Z23db+q+HF9uv9B7Svr
-         91EK96OnOyI2CmB7iEt+ruvteNi6hCTlbIDKn3GfVBN4nd94JvpkRLG0g48s6trTAWUf
-         lidA==
-X-Gm-Message-State: AOAM532djRFF1JgeyK4z8MxgBMI0mC+YqiFQoUKRDG746JVEWW9+uQWB
-        yjfqQ9Gkw/TBDxMqc6Nour4=
-X-Google-Smtp-Source: ABdhPJxDcmWpg0O4z3LieL6I8S03PlsvcZQSH/YCpoH4Q7Ghg9XaHg0XS98S2kNrz+YFd1mvx/cu+Q==
-X-Received: by 2002:a63:5b03:: with SMTP id p3mr5366880pgb.154.1602897963819;
-        Fri, 16 Oct 2020 18:26:03 -0700 (PDT)
+        bh=6ZC06D0iTTUO33G/T+lGdFmHtlewUgM9PFYLzb4iwrw=;
+        b=bl985f/ChhqeRsYTuDLUIgmSrIpkJd/UzNm+OGXaDupLD0s+ZwTHyCsIV1Q2B9satg
+         qpyu4i9Pgxy2mM2De0Ql3+Ym0sM0R0yYaubJqzFtYssfS5IX5ztnG5mb9frJFFauQ6jZ
+         UDJ50ngreQdcLMTvyvf9JCttSRjbbAJ4Rvp6YqE2DTiPJAv7I79ubv9sh+BgjdzNU8Fu
+         DQS2Zw6UTU4vvh56IBfAmFO3WzUfcf8wQ4/un2In9QvAUMqJ8aDzK0VKQx7/o/rPxeg4
+         Pk7bNgMOIQrWcfzN2Pi8SYTj1Cj4XwNFzlGTPoD7FSrs9Hham4IXO0NIWcURvUmNMTIR
+         qifg==
+X-Gm-Message-State: AOAM531ZTub+4HDuiAKSezdthk1x9rpqFjtS3JGWF3cLI5vJD1tMSfLh
+        Zg12UV/7FK/hFfRjqykHXIM=
+X-Google-Smtp-Source: ABdhPJy9Sq3Gb2gNQVBxCZsnLTyNuwhLGfjeZ3YDfcSBoV/3Kocl9r/EvT9sZigEX7aCkakAlBPdNw==
+X-Received: by 2002:a63:3e41:: with SMTP id l62mr5514054pga.419.1602898315175;
+        Fri, 16 Oct 2020 18:31:55 -0700 (PDT)
 Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id i7sm3868098pfo.208.2020.10.16.18.26.01
+        by smtp.gmail.com with ESMTPSA id 194sm3958054pfz.182.2020.10.16.18.31.53
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 16 Oct 2020 18:26:03 -0700 (PDT)
-Date:   Fri, 16 Oct 2020 18:17:32 -0700
+        Fri, 16 Oct 2020 18:31:54 -0700 (PDT)
+Date:   Fri, 16 Oct 2020 18:23:26 -0700
 From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v4 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-Message-ID: <20201017011731.GA7203@Asurada-Nvidia>
-References: <20201013121733.83684-1-viorel.suman@oss.nxp.com>
- <20201013121733.83684-2-viorel.suman@oss.nxp.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ASoC: fsl_spdif: Add support for i.MX8QM platform
+Message-ID: <20201017012325.GB7203@Asurada-Nvidia>
+References: <1602739728-4433-1-git-send-email-shengjiu.wang@nxp.com>
+ <1602739728-4433-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201013121733.83684-2-viorel.suman@oss.nxp.com>
+In-Reply-To: <1602739728-4433-2-git-send-email-shengjiu.wang@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 03:17:32PM +0300, Viorel Suman (OSS) wrote:
-> From: Viorel Suman <viorel.suman@nxp.com>
+On Thu, Oct 15, 2020 at 01:28:48PM +0800, Shengjiu Wang wrote:
+> On i.MX8QM, there are separate interrupts for TX and RX.
 > 
-> XCVR (Audio Transceiver) is a on-chip functional module found
-> on i.MX8MP. It support HDMI2.1 eARC, HDMI1.4 ARC and SPDIF.
+> As the EDMA can't be configured to swing back to first FIFO
+> after writing the second FIFO, so we need to force the burst
+> size to be 2 on i.MX8QM. And EDMA don't support to shift
+> the data from S24_LE to S16_LE, so the supported TX format
+> is also different on i.MX8QM.
 > 
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+
+One small nit, yet I am okay if you don't resend. So:
 
 Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
+
+>  /* Check if clk is a root clock that does not share clock source with others */
+> @@ -1283,6 +1313,8 @@ static int fsl_spdif_probe(struct platform_device *pdev)
+>  	/* Initialize this copy of the CPU DAI driver structure */
+>  	memcpy(&spdif_priv->cpu_dai_drv, &fsl_spdif_dai, sizeof(fsl_spdif_dai));
+>  	spdif_priv->cpu_dai_drv.name = dev_name(&pdev->dev);
+> +	spdif_priv->cpu_dai_drv.playback.formats =
+> +				spdif_priv->soc->tx_formats;
+
+Kernel no longer has strict 80-character limit now, and it seems
+to fits 80 characters?
