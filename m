@@ -2,112 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E222917A3
-	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 15:38:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A2029189C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 19:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725837AbgJRNiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Oct 2020 09:38:50 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:39278 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726709AbgJRNiu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 09:38:50 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 388F320020;
-        Sun, 18 Oct 2020 15:38:47 +0200 (CEST)
-Date:   Sun, 18 Oct 2020 15:38:45 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH v2 0/3] drm/panel: mantix panel reset fixes
-Message-ID: <20201018133845.GA361365@ravnborg.org>
-References: <cover.1602584953.git.agx@sigxcpu.org>
- <20201016142916.GA1184974@ravnborg.org>
- <20201017091307.GA2885@bogon.m.sigxcpu.org>
- <20201017104736.GA2822081@ravnborg.org>
- <20201018130122.GA3705@bogon.m.sigxcpu.org>
+        id S1726793AbgJRRYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Oct 2020 13:24:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725776AbgJRRYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 13:24:17 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E515C061755;
+        Sun, 18 Oct 2020 10:24:16 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id n15so8834942wrq.2;
+        Sun, 18 Oct 2020 10:24:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mLdfSAR0LwOOtqwUC8udPXOOYAtdKU3B5mmLxtalmVY=;
+        b=jTzRpx++WPceEK9RoYdLVnjHAf4Oy/71STRL4VcaJ7/IHjbAURWV3bnpeoIex3mwYu
+         ho8AV7D6wJ8GYaiN2dzi8PHwkk8voiaoUjdGMJYlxBo+mW5y1DKbHOrC51LR5WyhSlON
+         S4LAndxXEQvWVr3PaYSt3suUrmrIsgU2mVF15hPp9OixdPjM9TbL4iKru0ovwV92ZJ6w
+         QrdlPFCI0U8r9Rke5iubYvcRHO8wEAs2zc6cYZjrMTYHsXUKA++I3CANF+P7VlgtgUg1
+         2uHCq3BbtnBPMS9mu7G1ZSpcTcXFRP2nwyRWLvbqwpjgl7xhgHZ0qhAQC8DHnfBjL5h/
+         ID7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mLdfSAR0LwOOtqwUC8udPXOOYAtdKU3B5mmLxtalmVY=;
+        b=GABDbMr+UF/ElLmNmh9c6o4glEuUDCboppt3di+t70ZJEDAA6OoAC7pQU9WUJbsvbg
+         p+1nX5L66K7TvJPLtkOwqnLk6BJJK4j/uKYku83Sz7tXm4UtlBhMm6zQVOWaBnwKC8MU
+         v6Ic14bAuCcaDl3mzfhvMTwIq9mo3jENG+RsT6yTyixh/xO7gdKs7JHQZH/hzU5RQNpn
+         SMJdJBban9ZFy/jNLnaZ/q1TaELFLILLeCpP0fYBRWLIzdbMfWJr6Zlo5YHPCPdtc3iY
+         YsYfoM3fGrddW+l2PlFodsQjfK6Utj/mCPuuM5B0hUZSsLJzNuWlsPuJSl7HadwUja9w
+         vALA==
+X-Gm-Message-State: AOAM530y6G8Ed8iqhD0+/c21I3+/ivh5F3lVfv+eDP08jJnygix7dajL
+        cJ31OM744GH84tUwAFeUr5U=
+X-Google-Smtp-Source: ABdhPJzqeAG7+AstLsB9Ivo+7f37ckUYlHOxLO7uMV0wguDsRO7FcNYu7MRIF0rSl2Ot7PEoUNV8MQ==
+X-Received: by 2002:adf:f1cd:: with SMTP id z13mr15757991wro.197.1603041855000;
+        Sun, 18 Oct 2020 10:24:15 -0700 (PDT)
+Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
+        by smtp.gmail.com with ESMTPSA id q7sm9697505wrr.39.2020.10.18.10.24.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Oct 2020 10:24:14 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: allwinner: beelink-gs1: Enable both RGMII RX/TX delay
+Date:   Sun, 18 Oct 2020 19:24:09 +0200
+Message-Id: <20201018172409.1754775-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201018130122.GA3705@bogon.m.sigxcpu.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=S433PrkP c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=8nJEP1OIZ-IA:10 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
-        a=I_DR3_W_4JJieZY4840A:9 a=wPNLvfGTeEIA:10 a=AjGcO6oz07-iQ99wixmX:22
-        a=Vxmtnl_E_bksehYqCbjh:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Hi Guido
-> On Sun, Oct 18, 2020 at 03:01:22PM +0200, Guido G¸nther wrote:
-> Hi Sam,
-> On Sat, Oct 17, 2020 at 12:47:36PM +0200, Sam Ravnborg wrote:
-> > Hi Guido.
-> > 
-> > On Sat, Oct 17, 2020 at 11:13:07AM +0200, Guido G¸nther wrote:
-> > > Hi Sam,
-> > > On Fri, Oct 16, 2020 at 04:29:16PM +0200, Sam Ravnborg wrote:
-> > > > Hi Guido.
-> > > > On Tue, Oct 13, 2020 at 12:32:45PM +0200, Guido G¸nther wrote:
-> > > [..snip..]
-> > > > > 
-> > > > > Changes from v1:
-> > > > >  - As per review comments by Fabio Estevam
-> > > > >    https://lore.kernel.org/dri-devel/CAOMZO5B5ECcConvKej=RcaF8wvOxgq7nUzKJ-ad0aSAOzUqtbQ@mail.gmail.com/
-> > > > >    - Fix typo in commit messages
-> > > > >  - As per review comments by Rob Herring
-> > > > >    https://lore.kernel.org/dri-devel/20200929174624.GA832332@bogus/
-> > > > >    - Don't use an array of reset lines
-> > > > > 
-> > > > > Guido G¸nther (3):
-> > > > >   drm/panel: mantix: Don't dereference NULL mode
-> > > > >   drm/panel: mantix: Fix panel reset
-> > > > >   dt-binding: display: Require two resets on mantix panel
-> > > > 
-> > > > All applied to drm-misc-next and pushed out.
-> > > > And then I remembered you had commit right - sigh.
-> > > 
-> > > Thanks! Is there any special care needed to get that into 5.10? The
-> > > driver landed there in 72967d5616d3f0c714f8eb6c4e258179a9031c45.
-> > 
-> > As the patches was applied to drm-misc-next the easiet path would
-> > be to cherry-pick them and apply to drm-misc-fixes.
-> > dim has cherry-pick support - try to use it rahter than doing it by
-> > hand.
-> 
-> Does that require any further ACKs or just cherry-pick and push out?
-To the best of my knowledge just cherry-pick, test and push out.
+Before the commit:
+net: phy: realtek: fix rtl8211e rx/tx delay config
 
-	Sam
+The software overwrite for RX/TX delays of the RTL8211e were not
+working properly and the Beelink GS1 had both RX/TX delay of RGMII
+interface set using pull-up on the TXDLY and RXDLY pins.
 
-> 
-> > When you apply to drm-misc-fixes include a Fixes: tag so the tooling
-> > will pick the patches automagically.
-> 
-> Will do. It was unfortunate that the initial ones didn't get them but
-> i think the drm merge happened while v2 was out on the list. I'll try
-> add that relevant information to the cover letter in the future.
-> 
-> Cheers,
->  -- Guido
-> 
-> > 
-> > In hindsight the patches should have carried a Fixes: tag from a start
-> > and should have been applied to drm-misc-fixes from a start too.
-> > 
-> > I have done something like above once or twice but anyway reach out if
-> > you have questions. Or ask at #dri-devel.
-> > 
-> > 	Sam
-> > 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Now that these delays are working properly they overwrite the HW
+config and set this to 'rgmii' meaning no delay on both RX/TX.
+This makes the ethernet of this board not working anymore.
+
+Set the phy-mode to 'rgmii-id' meaning RGMII with RX/TX delays
+in the device-tree to keep the correct configuration.
+
+Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink GS1 board")
+Signed-off-by: Cl√©ment P√©ron <peron.clem@gmail.com>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+index a364cb4e5b3f..6ab53860e447 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+@@ -99,7 +99,7 @@ &ehci0 {
+ &emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&ext_rgmii_pins>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-handle = <&ext_rgmii_phy>;
+ 	phy-supply = <&reg_aldo2>;
+ 	status = "okay";
+-- 
+2.25.1
+
