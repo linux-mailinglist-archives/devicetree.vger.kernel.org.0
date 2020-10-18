@@ -2,222 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4978029175E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 14:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 692CF291766
+	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 14:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726748AbgJRMbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Oct 2020 08:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54678 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726578AbgJRMbO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 08:31:14 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE60C0613CE;
-        Sun, 18 Oct 2020 05:31:12 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id j136so10010611wmj.2;
-        Sun, 18 Oct 2020 05:31:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=l5krHm/bo+C26sgi9z1Mg3sNFoVSJVuUbTBE8mDuBFE=;
-        b=cxUuY+q00E3MQiermTeSmkbZPW1mHZ/4dwqStrl7FHanVGucCuYaVglF7bF+F2qpma
-         85ehto2JZXKMFEfuwKyYs45/H0fEZOHSp6cbTeaODm8lxk8VrrFcRDRAdRNk7dYBv3QO
-         TuWhG67KppoBNTyVEd1+UFxaSVMc63TTzVk+Qt6Q++TM7Qkb7wmkT3P8Bq3E/P3X2Yp6
-         njQfae2aDb6ER1WXo63d4gSgN47nV029nu9OWJNLG6VtFPCewrUBfgfi5GDSh3nR9HX9
-         0Dc6K5szdqVbEUfN2iw7qYOxr1ZtDr5xFXjT3fT/rYjng9uUsEGDKpB9HykvpAxmnpJV
-         ewjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=l5krHm/bo+C26sgi9z1Mg3sNFoVSJVuUbTBE8mDuBFE=;
-        b=I++7w5DQl9XZ0w2Jlr8lcOS0HUttLp847ZDZiFNcE66yAbPRP7L1y+cVf7QWVgQQby
-         zZX+KueU3dc2iUEu7VwmsPbi+0PMgj/LZqrU3Y5Dt7eA5rvzluyeje6x2h8FpMY8uZWC
-         38jWssLEfXXVh7zrE5eqOgH9fJL4oKnfba9JtiEQssCMXzb1FxG6834TGzgv1sxdTRt4
-         oTCMv5rFern3pQhNBc3Ll2GD3/dPwC5vq4VekhgLfYhYdEibdPiGmMdBxq6W4f64LkUh
-         et7hpDSkWr6djQaIfyyM2wJdY3Zov6Pq0lE1AgCYA/BvtEoSd/MxsZgqXXo+w5ij4jWB
-         KWtw==
-X-Gm-Message-State: AOAM530dzZHDdv2MgJf/LMM0usix481Jpv7R7/uIu9KUxTMuYJYUbE3i
-        74LgKtXj0YNTyB11ZfCgKOE=
-X-Google-Smtp-Source: ABdhPJz5DmBiPThiLd9R0+6VBUTm7Qpg2ueKyNO4KvoNAz/9NtlrA3tgoWvoAjSYeYKZi0sk2ksSxA==
-X-Received: by 2002:a1c:7d54:: with SMTP id y81mr12309565wmc.114.1603024270977;
-        Sun, 18 Oct 2020 05:31:10 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
-        by smtp.gmail.com with ESMTPSA id q2sm13308568wrw.40.2020.10.18.05.31.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Oct 2020 05:31:10 -0700 (PDT)
-From:   kholk11@gmail.com
-To:     mchehab@kernel.org
-Cc:     robh+dt@kernel.org, marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>
-Subject: [PATCH 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS sensor binding
-Date:   Sun, 18 Oct 2020 14:31:06 +0200
-Message-Id: <20201018123106.14917-3-kholk11@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201018123106.14917-1-kholk11@gmail.com>
-References: <20201018123106.14917-1-kholk11@gmail.com>
+        id S1725784AbgJRMdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Oct 2020 08:33:41 -0400
+Received: from mail-03.mail-europe.com ([91.134.188.129]:57160 "EHLO
+        mail-03.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725776AbgJRMdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 08:33:40 -0400
+Date:   Sun, 18 Oct 2020 12:33:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1603024416;
+        bh=GCCxJzqOnfsVI/hX933byDTiphe1ufjEW2PregmWSLo=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=f+hV804e70VkKoIWRn7lDMgkeqT2qE8ENc6nW6FtprsQ95OUyJzlP0nWidHtODY3t
+         2rzpoWw8FEbph1STSYBYkit71a3mtR/Xze3Z7XyeILvONxAqoJBCNyeUaSfRCUz070
+         KmqilvG2Lhych3aFR83Oq7sZeDM//DxKss96mhgQ=
+To:     Rob Herring <robh@kernel.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 2/5] dt-bindings: panel: add documentation for oneplus6 panel
+Message-ID: <3b3f9ede-89ef-26c7-3ade-bf498ea483b8@connolly.tech>
+In-Reply-To: <20201009140544.GB4071736@bogus>
+References: <20201007174736.292968-1-caleb@connolly.tech> <20201007174736.292968-3-caleb@connolly.tech> <20201009140544.GB4071736@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+On 2020-10-09 15:05, Rob Herring wrote:
+> On Wed, Oct 07, 2020 at 05:49:14PM +0000, Caleb Connolly wrote:
+>> Document the OnePlus 6/T common panel driver, example from
+>> arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>>
+>> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+>> ---
+>>   .../display/panel/panel-oneplus6.yaml         | 73 +++++++++++++++++++
+>>   1 file changed, 73 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/display/panel/pan=
+el-oneplus6.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-onepl=
+us6.yaml b/Documentation/devicetree/bindings/display/panel/panel-oneplus6.y=
+aml
+>> new file mode 100644
+>> index 000000000000..23ba369cc2f5
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-oneplus6.yam=
+l
+>> @@ -0,0 +1,73 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/panel/panel-oneplus6.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: OnePlus 6/T panel driver
+>> +
+>> +description: |
+>> +  The OnePlus 6 panel driver encompasses the display panels found in th=
+e
+>> +  OnePlus 6 and 6T devices, the panels have almost identical behaviour =
+and
+>> +  are not used by any other devices.
+>> +
+>> +maintainers:
+>> +  - Caleb Connolly <caleb@connolly.tech>
+>> +
+>> +allOf:
+>> +  - $ref: panel-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - samsung,sofef00
+>> +      - samsung,s6e3fc2x01
+>> +
+>> +  reg: true
+>> +  reset-gpios: true
+>> +  port: true
+>> +
+>> +  vddio-supply:
+>> +    description: VDDIO regulator
+> A panel with a single supply can use panel-simple-dsi.yaml.
+>
+> 'reset-gpios' was missing, but has been added recently.
+>
+> Rob
 
-Add YAML device tree binding for IMX300 CMOS image sensor, and
-the relevant MAINTAINERS entries.
+Thanks, I'll move docs into panel-simple-dsi.yaml
 
-Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
----
- .../devicetree/bindings/media/i2c/imx300.yaml | 115 ++++++++++++++++++
- MAINTAINERS                                   |   8 ++
- 2 files changed, 123 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/imx300.yaml
+Caleb
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/imx300.yaml b/Documentation/devicetree/bindings/media/i2c/imx300.yaml
-new file mode 100644
-index 000000000000..82fb19c5018c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/imx300.yaml
-@@ -0,0 +1,115 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/imx300.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sony 1/2.3-Inch 8Mpixel Stacked CMOS Digital Image Sensor
-+
-+maintainers:
-+  - AngeloGioacchino Del Regno <kholk11@gmail.com>
-+
-+description: |-
-+  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
-+  sensor with a pixel size of 1.08um and an active array size of
-+  5948H x 4140V. It is programmable through I2C interface at address 0x10.
-+  Image data is sent through MIPI CSI-2, which is configured as either 2 or
-+  4 data lanes.
-+
-+properties:
-+  compatible:
-+    const: sony,imx300
-+
-+  reg:
-+    description: I2C device address
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  VDIG-supply:
-+    description:
-+      Digital I/O voltage supply, 1.15-1.20 volts
-+
-+  VANA-supply:
-+    description:
-+      Analog voltage supply, 2.2 volts
-+
-+  VDDL-supply:
-+    description:
-+      Digital core voltage supply, 1.8 volts
-+
-+  reset-gpios:
-+    description: |-
-+      Reference to the GPIO connected to the xclr pin, if any.
-+      Must be released (set high) after all supplies are applied.
-+
-+  # See ../video-interfaces.txt for more details
-+  port:
-+    type: object
-+    properties:
-+      endpoint:
-+        type: object
-+        properties:
-+          data-lanes:
-+            description: |-
-+              The sensor supports either two-lane, or four-lane operation.
-+              If this property is omitted four-lane operation is assumed.
-+              For four-lane operation the property must be set to <0 1 2 3>.
-+            items:
-+              - const: 0
-+              - const: 1
-+              - const: 2
-+              - const: 3
-+
-+          clock-noncontinuous:
-+            type: boolean
-+            description: |-
-+              MIPI CSI-2 clock is non-continuous if this property is present,
-+              otherwise it's continuous.
-+
-+          link-frequencies:
-+            $ref: /schemas/types.yaml#/definitions/uint64-array
-+            description:
-+              Allowed data bus frequencies.
-+
-+        required:
-+          - link-frequencies
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - VANA-supply
-+  - VDIG-supply
-+  - VDDL-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        imx300: sensor@10 {
-+            compatible = "sony,imx300";
-+            reg = <0x10>;
-+            clocks = <&imx300_xclk>;
-+            VANA-supply = <&imx300_vana>;   /* 2.2v */
-+            VDIG-supply = <&imx300_vdig>;   /* 1.2v */
-+            VDDL-supply = <&imx300_vddl>;   /* 1.8v */
-+
-+            port {
-+                imx300_0: endpoint {
-+                    remote-endpoint = <&csi1_ep>;
-+                    data-lanes = <0 1 2 3>;
-+                    clock-noncontinuous;
-+                    link-frequencies = /bits/ 64 <780000000 480000000>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c66710dd7e0a..231937d9d16a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16279,6 +16279,14 @@ T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
- F:	drivers/media/i2c/imx290.c
- 
-+SONY IMX300 SENSOR DRIVER
-+M:	AngeloGioacchino Del Regno <kholk11@gmail.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/imx300.yaml
-+F:	drivers/media/i2c/imx300.c
-+
- SONY IMX319 SENSOR DRIVER
- M:	Bingbu Cao <bingbu.cao@intel.com>
- L:	linux-media@vger.kernel.org
--- 
-2.28.0
 
