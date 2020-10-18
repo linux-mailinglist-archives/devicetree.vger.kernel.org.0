@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FCD02918A0
-	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 19:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A828F2918B5
+	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 19:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727074AbgJRRZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Oct 2020 13:25:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43306 "EHLO
+        id S1725945AbgJRR5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Oct 2020 13:57:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727064AbgJRRZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 13:25:24 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D87FC061755;
-        Sun, 18 Oct 2020 10:25:23 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id b15so6417151iod.13;
-        Sun, 18 Oct 2020 10:25:23 -0700 (PDT)
+        with ESMTP id S1725776AbgJRR5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 13:57:31 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6237FC061755;
+        Sun, 18 Oct 2020 10:57:31 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id b15so6479253iod.13;
+        Sun, 18 Oct 2020 10:57:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=EF0d0rPxPBP+eQ08m8KipVtvfWo4S1ML+teg9iAvEgM=;
-        b=KxNJ94VbFWhQMgJG9lsw14cyd2TbyC3LMiUEL6t5S2ulBXZX1Y0zrZQNi0D8+GzxpU
-         GAIXJLQAEHstwd1UXgnK74GEx75Z1kCr0rsVssy8CDouOXLG1sRnG/MFY3jyi+utmUlj
-         9nKjzsEW1PB6Y9pkaFXZn6lR+ysPt1cn0PFowfpAZKWaJyGRmmzJuX67qm9iI6VO5QkA
-         Br14LBIyj9Zmka7/3GFoWmGLtLyfGlQ7aHRy3Jlc7bRB5WKPoWnSW4egzcQm/ec/UGwe
-         P095iapWehaQOF7exvA/ueAf2pcgU9L1TeSMfQPnsOPxcde4pOxcY2aqt24gqGIemMXv
-         zjZw==
+        bh=OwO+2ZoIYjKx+96e5MqXXHni5zWxT99/uuVKtCrnVVo=;
+        b=ceXunY3GU5QjPeRYXc3VZxMqop3hJMRfsJRoNP5K7dRjVbltTMllPJaBu+Ie2l9Gx2
+         6Xx9tS6W+nq3YPiPAFoC2WtAz7xNQwMP5puEvlJSdf2MvCf9PExectwcjn9yh+ncDDqE
+         Jqav5fiP0OfgA7vJfHU4w8on0cgRBXy8YUXXrinSVUIa4wNexJnpEVvXd8SCYk0AnniZ
+         j5PdaMMmhn8OXqZWRWeYYsW/NgQpxFHcMCFNZnBmOyI+qFNv0zog5L1xATW7rUH5MjYz
+         6sg6/XqhDNCLiDqMe3OHKn9F5DK3HWa2ke3OlnkAiYhOFnHF8QKaXCklYI/vsuzfJ5a5
+         5PHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=EF0d0rPxPBP+eQ08m8KipVtvfWo4S1ML+teg9iAvEgM=;
-        b=Llum++LmLezI9KGHj9NFsTy47OaFKoVASH5O1D7fNkMxDfbNMhsWLsRtA0FdkkzEHP
-         VaTkAE37fJzXD/Hk7kf7avSLfXT2ElS4HqHlxP6z9cgDc2d+OxXDXy1BJ9uBZYTAXB1T
-         KhbND4R0kYASFc9rkWLx7FfskNnEL+Z9pIcWlBvleeLtLZUFG3sB1Isxj2Cv2qsRqi9R
-         kFWrlfq6ADSWhimkOI3Dv7tC6h61vxQwFv8xO13YUVc+y6ZbvHbl+RPT+p2ZS+uzxTfb
-         amnP/ajq3nl7RmS/c3IQlLzUJa3h3NnERgz5Q4vBGxWtsEnv7AxxI/lvRzjEhvPay12r
-         buCA==
-X-Gm-Message-State: AOAM530TDFtAH0pHGu7nPpRbhLIQWAD9NYkHYqH+LkAu6AkXAw8gHl8K
-        DsKkrqz0CoeR/n0oE5FUubQox2EI9XWCjYpNrJo=
-X-Google-Smtp-Source: ABdhPJyTT8m3C4AeKq24obqVZhbsLHjyeL/1sJFdbSFOu5S2S1/2OY9bDRPr9FVGZLj6lYSyArc2jnZFmgBKWRAecYk=
-X-Received: by 2002:a6b:b208:: with SMTP id b8mr8348127iof.36.1603041922246;
- Sun, 18 Oct 2020 10:25:22 -0700 (PDT)
+        bh=OwO+2ZoIYjKx+96e5MqXXHni5zWxT99/uuVKtCrnVVo=;
+        b=ShBfniRGmlCBTvMkKEnEGRYswVz7gXppw3OGFRty4DYNgoX1I+Yl6QzFlySufRn71e
+         MTykJ9glTyajd7MgbOmM4cY+DVUBwlhGUxRpIGljRWANcKTSRNBan544IHYOFFvyOkRu
+         eCRXVfcuBTejRcLX9h4u3+j18vO/SsyNQ+Rm8ZjugZrNap+lWzZipHWE6kTwc+BjkzTI
+         yoBGiK1Wsxbi1Bk1xBUp3o4D5k/huQhYwmtqj2dOZx4UG2on6DbXDY8McYPl9SHD8j6s
+         11wz97dNeI8fgHGx0NhPW3nTlikTQJbm4W6jKpQwMXIOh2e5zIs+PU67ktFY/rqlWwF6
+         /E/Q==
+X-Gm-Message-State: AOAM533zd+8MQD59u3R3XR/Lges34ZWj2nZWh+LKMpOgYVAJgkSjb8ms
+        NBmODKgpeCKZkppxDmp3bayVOX4GHfgm6wTMBX8=
+X-Google-Smtp-Source: ABdhPJwr6NI8pWAaho1g3dNXpZysRqfWDeooGwv6tQWtY7JMiU1nkjvZkaRS8fJroNaHrqiI1LxMLwIoYdJMGXMw/9M=
+X-Received: by 2002:a6b:610c:: with SMTP id v12mr8342499iob.101.1603043850518;
+ Sun, 18 Oct 2020 10:57:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201011212238.174792-1-peron.clem@gmail.com> <20201012112218.juke4ll4dnwrmwzw@gilmour.lan>
-In-Reply-To: <20201012112218.juke4ll4dnwrmwzw@gilmour.lan>
+References: <20201018172409.1754775-1-peron.clem@gmail.com>
+In-Reply-To: <20201018172409.1754775-1-peron.clem@gmail.com>
 From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sun, 18 Oct 2020 19:25:10 +0200
-Message-ID: <CAJiuCceNOgZVNquFx7Fytxi-e0hvA_==V2Oudq+fYWSRKWD5sA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: allwinner: beelink-gs1: Update LED power node
-To:     Maxime Ripard <maxime@cerno.tech>
+Date:   Sun, 18 Oct 2020 19:57:19 +0200
+Message-ID: <CAJiuCce+VHusdYPv7QutYvCcCByz=nRcBotPNL6E=jA4U4=YoA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: beelink-gs1: Enable both RGMII
+ RX/TX delay
+To:     Maxime Ripard <mripard@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         devicetree <devicetree@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
@@ -61,64 +62,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Maxime,
+Hi,
 
-On Mon, 12 Oct 2020 at 13:22, Maxime Ripard <maxime@cerno.tech> wrote:
+On Sun, 18 Oct 2020 at 19:24, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com=
+> wrote:
 >
-> Hi!
->
-> On Sun, Oct 11, 2020 at 11:22:37PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> > Beelink GS1 LED trigger a warning when running dtbs_check.
-> >
-> > Update the node with a valid pattern property.
-> >
-> > Also add the function and the color of the LED and drop the
-> > label which is deprecated.
-> >
-> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/=
-arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > index 3f7ceeb1a767..a364cb4e5b3f 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > @@ -7,6 +7,7 @@
-> >  #include "sun50i-h6-cpu-opp.dtsi"
-> >
-> >  #include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/leds/common.h>
-> >
-> >  / {
-> >       model =3D "Beelink GS1";
-> > @@ -43,8 +44,9 @@ ext_osc32k: ext_osc32k_clk {
-> >       leds {
-> >               compatible =3D "gpio-leds";
-> >
-> > -             power {
-> > -                     label =3D "beelink:white:power";
-> > +             led-0 {
-> > +                     function =3D LED_FUNCTION_POWER;
-> > +                     color =3D <LED_COLOR_ID_WHITE>;
-> >                       gpios =3D <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 *=
-/
-> >                       default-state =3D "on";
-> >               };
->
-> Doesn't that also change the sysfs file that LED is exposed to the usersp=
-ace with?
+> Before the commit:
+> net: phy: realtek: fix rtl8211e rx/tx delay config
+bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config")
 
-Indeed the previous led sysfs:
-/sys/class/leds/beelink:white:power/
-is now
-/sys/class/leds/white:power/
-
-Do you want me to keep the label property to avoid this sysfs change ?
-
-Regards,
+With the hash for reference it's better :)
 Clement
 
 >
-> Maxime
+> The software overwrite for RX/TX delays of the RTL8211e were not
+> working properly and the Beelink GS1 had both RX/TX delay of RGMII
+> interface set using pull-up on the TXDLY and RXDLY pins.
+>
+> Now that these delays are working properly they overwrite the HW
+> config and set this to 'rgmii' meaning no delay on both RX/TX.
+> This makes the ethernet of this board not working anymore.
+>
+> Set the phy-mode to 'rgmii-id' meaning RGMII with RX/TX delays
+> in the device-tree to keep the correct configuration.
+>
+> Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink GS1 bo=
+ard")
+> Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/ar=
+ch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> index a364cb4e5b3f..6ab53860e447 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> @@ -99,7 +99,7 @@ &ehci0 {
+>  &emac {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&ext_rgmii_pins>;
+> -       phy-mode =3D "rgmii";
+> +       phy-mode =3D "rgmii-id";
+>         phy-handle =3D <&ext_rgmii_phy>;
+>         phy-supply =3D <&reg_aldo2>;
+>         status =3D "okay";
+> --
+> 2.25.1
+>
