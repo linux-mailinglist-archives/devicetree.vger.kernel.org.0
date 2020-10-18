@@ -2,96 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77EA72918D3
-	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 20:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E480291B3C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 21:30:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727298AbgJRS1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Oct 2020 14:27:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52702 "EHLO
+        id S1732497AbgJRTaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Oct 2020 15:30:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727094AbgJRS1E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 14:27:04 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E9C3C061755;
-        Sun, 18 Oct 2020 11:27:02 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id b23so4652842pgb.3;
-        Sun, 18 Oct 2020 11:27:02 -0700 (PDT)
+        with ESMTP id S1731584AbgJRTaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 15:30:21 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2013C061755
+        for <devicetree@vger.kernel.org>; Sun, 18 Oct 2020 12:30:20 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id s9so9009979wro.8
+        for <devicetree@vger.kernel.org>; Sun, 18 Oct 2020 12:30:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5m1S5sZujQt2BwrJwE08lEoVDm6unn9shH52UvLq8Pg=;
-        b=eCP39ru/wgTWoNuwiKr05wbnzi+MNNugEbNjFFhzbv9bIlF4z0H41WAb7F4QFdrzUs
-         3wApOFJXpSx7+78Xj1hxnR2j5WckIejtQxGjFSu6/frC7Px0NHZdr7s+cR+aVnqBAMZy
-         L0pru/h6bvGuBNskG6WWNXhhERcHqmM0Ya6D7tREXWbwpbb8ked7joDGAyt2LB/uNhkv
-         igmMotPA4vei9LB5S8fw9yuBKvoMeL1jnh7i4hoj4IlvXjn0CuTJS4dI4RAfo2vWHCyl
-         luAzC2CT5EzaYE5fTWW6bfM6kXw4OtDs4OvbUeOXBWMgILs0ZaFG4zihUOnNsvQvL3Cr
-         GAPQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OiO/CbYiErh+VMCoZF8e42eNV4rVIWemGcIMMY1+JXo=;
+        b=NO4BBseFZMaLr8Ping9guGMNWZ1CDpYUAPxPRADAuwkhBTiCKXXny83bHqMUO4pWHp
+         Cb7yex3BZ8LvGX/cOXX101giFa0IVT/1ZaVCjJelWjS/u1jDcxX96OZwmUfGTuj4feQ+
+         eIRwxPqkGXyVHPScYlmqJYOGX8lkUD9NKIqKqnykzjy7guTsquwJgQqOE5GLVAXwjhnd
+         aJazSik69uPmb5OZk2jvnmiJTVCB7PYCvUsUeXtaRSuG+H0ZHW7pEZKnKkLvIu4/fiWr
+         QZc18ABP001JKDv1CDH5APJsH4sCP2NIkr38QBNYXXwQRpRgzocDlC3nwAgTliYvDrjy
+         911A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5m1S5sZujQt2BwrJwE08lEoVDm6unn9shH52UvLq8Pg=;
-        b=ESOOf98xbVzQgPAEXSKtuzpNsrZ0B6YO8YjBvuRaBPu+Gy6GzWJwlgxkITUKlEm5RQ
-         puZ2OWZw4RI9lcXXrfJ0xy9/sGiV7Mh0Y5YGBhETzb/VAjko1WZSZX5x3ebsLejspe+v
-         blUGrR/Sz+PAyB2IUzHPFxXeJH7AcMGhP0q0hqKNIWbXlAri9sQ0GQe0oq1KTo4AZGMM
-         5iS3wxEGYdsLDUqD5xbFhOL/8Pr7hdaJqnPmLtm1oQmW2h8/WQr5qWpwwcSgR0rzMQHZ
-         gyzhORkgPYvAawa4V3U+peYS1i7c5AeqezY5tEQzbtalUXh+jdy03eKR+/lOi65wGjKX
-         q1EQ==
-X-Gm-Message-State: AOAM533TMxbLngHFFHMWXPpqSFL1eWYi8bdXVp/sF9P1Gj3EpgMMmNws
-        ItLH9e4KfoBWJ7g0iDfLSR8dghdNSKeZAfMjSa8=
-X-Google-Smtp-Source: ABdhPJwGULC56yMeMCTuCfZOR7vq/3gi+527g6HGEFWCQUoYxjC3jZWMZspFWo8az4pMvmRQfXU/2rwfArpqJE7bIq4=
-X-Received: by 2002:a65:47c2:: with SMTP id f2mr11362279pgs.4.1603045621632;
- Sun, 18 Oct 2020 11:27:01 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OiO/CbYiErh+VMCoZF8e42eNV4rVIWemGcIMMY1+JXo=;
+        b=K0j+inCUjYTwvxdovIFa3ujaYwNkYcn3GXiJq6Al55+TlH2i1vfuGN3O/4Z0JS0YDR
+         JdmKQhif3t962VQBMDb+jqyIiRR2NxzyWaC5KcuKCMiCbyQMCLmgG3oMWAWI1YjLkhWA
+         GbR7SE7oM7UQqLlXneLBrmERKFJ5y2NXPInfq2IcWUosB60GvAuQI4AzRsGshetQ0P0y
+         yrbMaYWfGZbMfoygqoysz7JXEkWzrPPnJcmthWhc/SDdR+fwPezHwBIoz2QyElCLxJsw
+         D3p6QHxEcYbduadTK9NSZLVIFXuVyWiQBHEdSMDNmQxecVYRbXwDrDbcqYrxzWoQrozy
+         q0OQ==
+X-Gm-Message-State: AOAM530CS5SnAevnfC/QQGz27MEps63uq3fhsTimlpWYMD/05bHt5dBG
+        Aw9vDrZQrgDiUUpGzIoEoKvQSQ==
+X-Google-Smtp-Source: ABdhPJxjk2lJO5ut9RfrL95tkil3NUyCvwqdq6rPg6tJq6126c2Etcp0yxa8XlIz5XjHq8J8lTbXqQ==
+X-Received: by 2002:adf:e589:: with SMTP id l9mr15846465wrm.110.1603049419718;
+        Sun, 18 Oct 2020 12:30:19 -0700 (PDT)
+Received: from localhost.localdomain (124.171.185.81.rev.sfr.net. [81.185.171.124])
+        by smtp.gmail.com with ESMTPSA id v8sm13571628wmb.20.2020.10.18.12.30.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Oct 2020 12:30:19 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     dennis-yc.hsieh@mediatek.com, ck.hu@mediatek.com,
+        bibby.hsieh@mediatek.com, jaswinder.singh@linaro.org,
+        matthias.bgg@gmail.com, Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH] dt-bindings: mailbox: mtk-gce: fix incorrect mbox-cells value
+Date:   Sun, 18 Oct 2020 21:30:16 +0200
+Message-Id: <20201018193016.3339045-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20201013103245.16723-1-billy_tsai@aspeedtech.com>
- <20201013103245.16723-2-billy_tsai@aspeedtech.com> <20201018112249.44dd3bde@archlinux>
-In-Reply-To: <20201018112249.44dd3bde@archlinux>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 18 Oct 2020 21:26:45 +0300
-Message-ID: <CAHp75Vd4Sequmg_qLbtkk2JktM95bk+xg65P0gJNzPO3OQ7Vkg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] iio: adc: aspeed: Orgnaize and add the define of adc
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed@lists.ozlabs.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        BMC-SW@aspeedtech.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 18, 2020 at 1:32 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> On Tue, 13 Oct 2020 18:32:43 +0800
-> Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+As the binding documentation says, #mbox-cells must have a value of 2,
+but the example use a value 3. The MT8173 device tree correctly use
+mbox-cells = <2>. This commit fixes the example.
 
-...
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ Documentation/devicetree/bindings/mailbox/mtk-gce.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> > +/* [31:16] */
-
-Useless comment.
-
-> > +#define ASPEED_ADC_CTRL_CH_EN(n)     (1 << (16 + n))
-> > +#define ASPEED_ADC_CTRL_CH_EN_ALL    GENMASK(31, 16)
-
-But the main point is here.
-First of all you may use BIT() in above.
-Second, it's a good practice to put variables in the additional
-parentheses in macros in case you are doing some operations with.
-
-So, something like BIT(16 + (n)) would be nice to have at the end.
-
+diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+index cf48cd806e00..7771ecaac586 100644
+--- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
++++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+@@ -47,7 +47,7 @@ Example:
+ 		interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
+ 		clocks = <&infracfg CLK_INFRA_GCE>;
+ 		clock-names = "gce";
+-		#mbox-cells = <3>;
++		#mbox-cells = <2>;
+ 	};
+ 
+ Example for a client device:
 -- 
-With Best Regards,
-Andy Shevchenko
+2.28.0
+
