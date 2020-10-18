@@ -2,111 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A828F2918B5
-	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 19:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77EA72918D3
+	for <lists+devicetree@lfdr.de>; Sun, 18 Oct 2020 20:27:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725945AbgJRR5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Oct 2020 13:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48220 "EHLO
+        id S1727298AbgJRS1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Oct 2020 14:27:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725776AbgJRR5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 13:57:31 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6237FC061755;
-        Sun, 18 Oct 2020 10:57:31 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id b15so6479253iod.13;
-        Sun, 18 Oct 2020 10:57:31 -0700 (PDT)
+        with ESMTP id S1727094AbgJRS1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Oct 2020 14:27:04 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E9C3C061755;
+        Sun, 18 Oct 2020 11:27:02 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id b23so4652842pgb.3;
+        Sun, 18 Oct 2020 11:27:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=OwO+2ZoIYjKx+96e5MqXXHni5zWxT99/uuVKtCrnVVo=;
-        b=ceXunY3GU5QjPeRYXc3VZxMqop3hJMRfsJRoNP5K7dRjVbltTMllPJaBu+Ie2l9Gx2
-         6Xx9tS6W+nq3YPiPAFoC2WtAz7xNQwMP5puEvlJSdf2MvCf9PExectwcjn9yh+ncDDqE
-         Jqav5fiP0OfgA7vJfHU4w8on0cgRBXy8YUXXrinSVUIa4wNexJnpEVvXd8SCYk0AnniZ
-         j5PdaMMmhn8OXqZWRWeYYsW/NgQpxFHcMCFNZnBmOyI+qFNv0zog5L1xATW7rUH5MjYz
-         6sg6/XqhDNCLiDqMe3OHKn9F5DK3HWa2ke3OlnkAiYhOFnHF8QKaXCklYI/vsuzfJ5a5
-         5PHg==
+         :cc;
+        bh=5m1S5sZujQt2BwrJwE08lEoVDm6unn9shH52UvLq8Pg=;
+        b=eCP39ru/wgTWoNuwiKr05wbnzi+MNNugEbNjFFhzbv9bIlF4z0H41WAb7F4QFdrzUs
+         3wApOFJXpSx7+78Xj1hxnR2j5WckIejtQxGjFSu6/frC7Px0NHZdr7s+cR+aVnqBAMZy
+         L0pru/h6bvGuBNskG6WWNXhhERcHqmM0Ya6D7tREXWbwpbb8ked7joDGAyt2LB/uNhkv
+         igmMotPA4vei9LB5S8fw9yuBKvoMeL1jnh7i4hoj4IlvXjn0CuTJS4dI4RAfo2vWHCyl
+         luAzC2CT5EzaYE5fTWW6bfM6kXw4OtDs4OvbUeOXBWMgILs0ZaFG4zihUOnNsvQvL3Cr
+         GAPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=OwO+2ZoIYjKx+96e5MqXXHni5zWxT99/uuVKtCrnVVo=;
-        b=ShBfniRGmlCBTvMkKEnEGRYswVz7gXppw3OGFRty4DYNgoX1I+Yl6QzFlySufRn71e
-         MTykJ9glTyajd7MgbOmM4cY+DVUBwlhGUxRpIGljRWANcKTSRNBan544IHYOFFvyOkRu
-         eCRXVfcuBTejRcLX9h4u3+j18vO/SsyNQ+Rm8ZjugZrNap+lWzZipHWE6kTwc+BjkzTI
-         yoBGiK1Wsxbi1Bk1xBUp3o4D5k/huQhYwmtqj2dOZx4UG2on6DbXDY8McYPl9SHD8j6s
-         11wz97dNeI8fgHGx0NhPW3nTlikTQJbm4W6jKpQwMXIOh2e5zIs+PU67ktFY/rqlWwF6
-         /E/Q==
-X-Gm-Message-State: AOAM533zd+8MQD59u3R3XR/Lges34ZWj2nZWh+LKMpOgYVAJgkSjb8ms
-        NBmODKgpeCKZkppxDmp3bayVOX4GHfgm6wTMBX8=
-X-Google-Smtp-Source: ABdhPJwr6NI8pWAaho1g3dNXpZysRqfWDeooGwv6tQWtY7JMiU1nkjvZkaRS8fJroNaHrqiI1LxMLwIoYdJMGXMw/9M=
-X-Received: by 2002:a6b:610c:: with SMTP id v12mr8342499iob.101.1603043850518;
- Sun, 18 Oct 2020 10:57:30 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=5m1S5sZujQt2BwrJwE08lEoVDm6unn9shH52UvLq8Pg=;
+        b=ESOOf98xbVzQgPAEXSKtuzpNsrZ0B6YO8YjBvuRaBPu+Gy6GzWJwlgxkITUKlEm5RQ
+         puZ2OWZw4RI9lcXXrfJ0xy9/sGiV7Mh0Y5YGBhETzb/VAjko1WZSZX5x3ebsLejspe+v
+         blUGrR/Sz+PAyB2IUzHPFxXeJH7AcMGhP0q0hqKNIWbXlAri9sQ0GQe0oq1KTo4AZGMM
+         5iS3wxEGYdsLDUqD5xbFhOL/8Pr7hdaJqnPmLtm1oQmW2h8/WQr5qWpwwcSgR0rzMQHZ
+         gyzhORkgPYvAawa4V3U+peYS1i7c5AeqezY5tEQzbtalUXh+jdy03eKR+/lOi65wGjKX
+         q1EQ==
+X-Gm-Message-State: AOAM533TMxbLngHFFHMWXPpqSFL1eWYi8bdXVp/sF9P1Gj3EpgMMmNws
+        ItLH9e4KfoBWJ7g0iDfLSR8dghdNSKeZAfMjSa8=
+X-Google-Smtp-Source: ABdhPJwGULC56yMeMCTuCfZOR7vq/3gi+527g6HGEFWCQUoYxjC3jZWMZspFWo8az4pMvmRQfXU/2rwfArpqJE7bIq4=
+X-Received: by 2002:a65:47c2:: with SMTP id f2mr11362279pgs.4.1603045621632;
+ Sun, 18 Oct 2020 11:27:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201018172409.1754775-1-peron.clem@gmail.com>
-In-Reply-To: <20201018172409.1754775-1-peron.clem@gmail.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sun, 18 Oct 2020 19:57:19 +0200
-Message-ID: <CAJiuCce+VHusdYPv7QutYvCcCByz=nRcBotPNL6E=jA4U4=YoA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: beelink-gs1: Enable both RGMII
- RX/TX delay
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+References: <20201013103245.16723-1-billy_tsai@aspeedtech.com>
+ <20201013103245.16723-2-billy_tsai@aspeedtech.com> <20201018112249.44dd3bde@archlinux>
+In-Reply-To: <20201018112249.44dd3bde@archlinux>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 18 Oct 2020 21:26:45 +0300
+Message-ID: <CAHp75Vd4Sequmg_qLbtkk2JktM95bk+xg65P0gJNzPO3OQ7Vkg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] iio: adc: aspeed: Orgnaize and add the define of adc
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        BMC-SW@aspeedtech.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Sun, Oct 18, 2020 at 1:32 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> On Tue, 13 Oct 2020 18:32:43 +0800
+> Billy Tsai <billy_tsai@aspeedtech.com> wrote:
 
-On Sun, 18 Oct 2020 at 19:24, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com=
-> wrote:
->
-> Before the commit:
-> net: phy: realtek: fix rtl8211e rx/tx delay config
-bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config")
+...
 
-With the hash for reference it's better :)
-Clement
+> > +/* [31:16] */
 
->
-> The software overwrite for RX/TX delays of the RTL8211e were not
-> working properly and the Beelink GS1 had both RX/TX delay of RGMII
-> interface set using pull-up on the TXDLY and RXDLY pins.
->
-> Now that these delays are working properly they overwrite the HW
-> config and set this to 'rgmii' meaning no delay on both RX/TX.
-> This makes the ethernet of this board not working anymore.
->
-> Set the phy-mode to 'rgmii-id' meaning RGMII with RX/TX delays
-> in the device-tree to keep the correct configuration.
->
-> Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink GS1 bo=
-ard")
-> Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> index a364cb4e5b3f..6ab53860e447 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> @@ -99,7 +99,7 @@ &ehci0 {
->  &emac {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&ext_rgmii_pins>;
-> -       phy-mode =3D "rgmii";
-> +       phy-mode =3D "rgmii-id";
->         phy-handle =3D <&ext_rgmii_phy>;
->         phy-supply =3D <&reg_aldo2>;
->         status =3D "okay";
-> --
-> 2.25.1
->
+Useless comment.
+
+> > +#define ASPEED_ADC_CTRL_CH_EN(n)     (1 << (16 + n))
+> > +#define ASPEED_ADC_CTRL_CH_EN_ALL    GENMASK(31, 16)
+
+But the main point is here.
+First of all you may use BIT() in above.
+Second, it's a good practice to put variables in the additional
+parentheses in macros in case you are doing some operations with.
+
+So, something like BIT(16 + (n)) would be nice to have at the end.
+
+-- 
+With Best Regards,
+Andy Shevchenko
