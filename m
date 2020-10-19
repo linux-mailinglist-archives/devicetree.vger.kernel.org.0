@@ -2,130 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 665D6292358
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 10:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9FB8292380
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 10:19:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727505AbgJSIEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 04:04:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42612 "EHLO mail.kernel.org"
+        id S1728847AbgJSITh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 04:19:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49494 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727349AbgJSIEM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 04:04:12 -0400
+        id S1728781AbgJSITh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 04:19:37 -0400
 Received: from pali.im (pali.im [31.31.79.79])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8BBF92224D;
-        Mon, 19 Oct 2020 08:04:11 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5DA872225F;
+        Mon, 19 Oct 2020 08:19:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603094651;
-        bh=7fgajnOQSM7B/+cKJc84EGHLV3zHY5ZxYix7uHpO6O4=;
+        s=default; t=1603095576;
+        bh=1Z6GkNNCLc/Ru7IMkiC0ql5jezqPmhpjXzrpxYKJbbE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hw/kPg7Xl3a0wPXfyoSA+NkMy8bC8FTxoKFyYm+YUeJJL3Np4/2DDpEE+fl3JjZ/3
-         8x90mpPWvGYPfGV7+UYl5pfqG2TbWaIh3ABZDouKG9K8iE1QxgdVhDWJf58tVjvpUu
-         ts1o6jvLSm6KzgITZCJQeAULiyNu2/Dun5sv53gs=
+        b=hwHnfMEG4pCtPEAYIRIhQuQzztVUyjcdpf7gs+irKqKYuMNVNxD2ZRlrhByawlaRG
+         K6OPtMMHM3RrrrFlbBK6YtCBFn7rOixdNqs+m+4WseSR5hOHYHHVoq8vzmMBvNp8BK
+         ZsF8GthSHimfAjP94KwmuOwxSYEtkRWLn667gk7c=
 Received: by pali.im (Postfix)
-        id 17853B70; Mon, 19 Oct 2020 10:04:09 +0200 (CEST)
-Date:   Mon, 19 Oct 2020 10:04:08 +0200
+        id 14817B70; Mon, 19 Oct 2020 10:19:34 +0200 (CEST)
+Date:   Mon, 19 Oct 2020 10:19:33 +0200
 From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
         Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andre Heider <a.heider@gmail.com>,
-        =?utf-8?Q?G=C3=A9rald?= Kerma <gerald@gk2.net>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add support for LED2
-Message-ID: <20201019080408.iv7vmj63cgt2i6vg@pali>
-References: <20201006124455.16617-1-pali@kernel.org>
+        Andre Heider <a.heider@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: marvell: espressobin: Update link to V7
+ schematic
+Message-ID: <20201019081933.32w6flugk55n2i4q@pali>
+References: <20200925084306.16309-1-pali@kernel.org>
+ <20201005133513.8649-1-pali@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201006124455.16617-1-pali@kernel.org>
+In-Reply-To: <20201005133513.8649-1-pali@kernel.org>
 User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello! Gregory, I would like to remind you following patch.
+Gregory, it is OK now?
 
-Andre, if you have a time, could you test it too?
-
-On Tuesday 06 October 2020 14:44:55 Pali Rohár wrote:
-> LED2 is connected to MPP1_2 pin. It is working only on V7 boards.
-> V5 boards have hw bug which cause that LED2 is non-working.
-> 
-> So enable LED2 only for Espressobin V7 boards.
-> 
-> Note that LED1 is connected to LED_WLAN# pin on miniPCIe card and LED3 to
-> power supply. Therefore on Espressobin board only LED2 can be controlled
-> directly from the host. LED1 is possible to control via WiFi card inserted
-> in miniPCIe slot if driver for particular card supports it.
+On Monday 05 October 2020 15:35:13 Pali Rohár wrote:
+> Up-to-date version of V7 schematic is on new URL linked from official
+> tech-spec webpage http://espressobin.net/tech-spec/
 > 
 > Signed-off-by: Pali Rohár <pali@kernel.org>
-> Tested-by: Gérald Kerma <gerald@gk2.net>
 > 
 > ---
-> 
-> Previous version of this patch was sent by Uwe in March 2018, but it did
-> not work on any tested V5 board. Now we know it was due to V5 HW bug.
-> 
-> https://lore.kernel.org/linux-arm-kernel/20180321105005.18426-3-u.kleine-koenig@pengutronix.de/
+> Changes in V2:
+> * Added commit description
 > ---
->  .../dts/marvell/armada-3720-espressobin-v7-emmc.dts |  4 ++++
->  .../boot/dts/marvell/armada-3720-espressobin-v7.dts |  4 ++++
->  .../boot/dts/marvell/armada-3720-espressobin.dtsi   | 13 +++++++++++++
->  3 files changed, 21 insertions(+)
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts      | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> index 4775a7eda481..75401eab4d42 100644
+> index e225dce64b9e..4775a7eda481 100644
 > --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
 > +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> @@ -39,3 +39,7 @@
->  &sdhci0 {
->  	status = "okay";
->  };
-> +
-> +&led2 {
-> +	status = "okay";
-> +};
+> @@ -8,7 +8,7 @@
+>   *
+>   */
+>  /*
+> - * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
+> + * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+>   */
+>  
+>  /dts-v1/;
 > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> index c47a93978386..48a7f50fb427 100644
+> index 44dbe9a21cc7..c47a93978386 100644
 > --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
 > +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> @@ -34,3 +34,7 @@
->  &switch0port3 {
->  	label = "wan";
->  };
-> +
-> +&led2 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> index 8a1c678bea5f..daffe136c523 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> @@ -41,6 +41,19 @@
->  			  3300000 0x0>;
->  		enable-active-high;
->  	};
-> +
-> +	led2: gpio-led2 {
-> +		/* led2 is working only on v7 board */
-> +		status = "disabled";
-> +
-> +		compatible = "gpio-leds";
-> +
-> +		led2 {
-> +			label = "led2";
-> +			gpios = <&gpionb 2 GPIO_ACTIVE_LOW>;
-> +			default-state = "off";
-> +		};
-> +	};
->  };
+> @@ -8,7 +8,7 @@
+>   *
+>   */
+>  /*
+> - * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
+> + * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+>   */
 >  
->  /* J9 */
+>  /dts-v1/;
 > -- 
 > 2.20.1
 > 
