@@ -2,109 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 310FC2928A4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 15:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 641502928C7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 16:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728717AbgJSNz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 09:55:28 -0400
-Received: from mga14.intel.com ([192.55.52.115]:51770 "EHLO mga14.intel.com"
+        id S1728872AbgJSOGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 10:06:21 -0400
+Received: from foss.arm.com ([217.140.110.172]:58292 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728507AbgJSNz2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 09:55:28 -0400
-IronPort-SDR: 40hB9xW/WnuhsSwq3i693M36LUwagbZjyRYinQgycHIfcrkJB7X7QdK0Fiv0psbO/bglmtx5LS
- rQ5rE7D+6csg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9778"; a="166257574"
-X-IronPort-AV: E=Sophos;i="5.77,394,1596524400"; 
-   d="scan'208";a="166257574"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2020 06:55:27 -0700
-IronPort-SDR: 9D83PNF9XVXbPxxDX81V9DJwQUlAum87+ShWsbUDqmTtiQfaeSRTMsdKj9jYFRGdJg4707QgDc
- /nFY3D/Ol6sQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,394,1596524400"; 
-   d="scan'208";a="422187700"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 19 Oct 2020 06:55:23 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 19 Oct 2020 16:55:22 +0300
-Date:   Mon, 19 Oct 2020 16:55:22 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Badhri Jagan Sridharan <badhri@google.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Prashant Malani <pmalani@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, Amelie Delaunay <amelie.delaunay@st.com>
-Subject: Re: [PATCH v10 00/15] TCPM support for FRS and AutoDischarge
- Disconnect
-Message-ID: <20201019135522.GJ1667571@kuha.fi.intel.com>
-References: <20201008061556.1402293-1-badhri@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201008061556.1402293-1-badhri@google.com>
+        id S1728557AbgJSOGU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 10:06:20 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2CBEFD6E;
+        Mon, 19 Oct 2020 07:06:20 -0700 (PDT)
+Received: from e123648.arm.com (unknown [10.57.15.200])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 91F893F66E;
+        Mon, 19 Oct 2020 07:06:15 -0700 (PDT)
+From:   Lukasz Luba <lukasz.luba@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     robh+dt@kernel.org, amitk@kernel.org, corbet@lwn.net,
+        daniel.lezcano@linaro.org, lukasz.luba@arm.com,
+        Dietmar.Eggemann@arm.com, morten.rasmussen@arm.com,
+        qperret@google.com, dianders@chromium.org, mka@chromium.org,
+        rnayak@codeaurora.org, rafael@kernel.org, sudeep.holla@arm.com,
+        viresh.kumar@linaro.org, sboyd@kernel.org, nm@ti.com
+Subject: [PATCH v3 0/4] Clarify abstract scale usage for power values in Energy Model, EAS and IPA
+Date:   Mon, 19 Oct 2020 15:05:57 +0100
+Message-Id: <20201019140601.3047-1-lukasz.luba@arm.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 11:15:41PM -0700, Badhri Jagan Sridharan wrote:
-> Hi,
-> 
-> Made two changes:
-> 
-> 1. Added "additionalProperties: false" as suggested by Rob Herring in
-> https://lore.kernel.org/linux-usb/20201005144618.GA154206@bogus/
-> 
-> 2. Removed FRS dts binding constants to address Rob Herring's comment in
-> https://lore.kernel.org/linux-usb/20201006182940.GA2574941@bogus/
+Hi all,
 
-I skipped 12/15. I thought that we better wait for Rob's approval for
-the device property.
+The Energy Model supports power values expressed in an abstract scale.
+This has an impact on Intelligent Power Allocation (IPA) and should be
+documented properly. Kernel sub-systems like EAS, IPA and DTPM
+(new comming PowerCap framework) would use the new flag to capture
+potential miss-configuration where the devices have registered different
+power scales, thus cannot operate together.
 
-> Thanks,
-> Badhri
-> 
-> Badhri Jagan Sridharan (15):
->   usb: typec: tcpci: Add a getter method to retrieve tcpm_port reference
->   usb: typec: tcpci: Add set_vbus tcpci callback
->   dt-bindings: usb: Maxim type-c controller device tree binding document
->   usb: typec: tcpci_maxim: Chip level TCPC driver
->   dt-bindings: connector: Add property to set initial current cap for
->     FRS
->   usb: typec: tcpm: Add support for Sink Fast Role SWAP(FRS)
->   usb: typec: tcpci: Implement callbacks for FRS
->   usb: typec: tcpci_maxim: Add support for Sink FRS
->   usb: typec: tcpm: frs sourcing vbus callback
->   usb: typec: tcpci: frs sourcing vbus callback
->   usb: typec: tcpci_max77759: Fix vbus stuck on upon diconnecting sink
->   usb: typec: tcpm: Parse frs type-c current from device tree
->   usb: typec: tcpm: Implement enabling Auto Discharge disconnect support
->   usb: typec: tcpci: Implement Auto discharge disconnect callbacks
->   usb: typec: tcpci_maxim: Enable auto discharge disconnect
-> 
->  .../bindings/connector/usb-connector.yaml     |  26 +
->  .../devicetree/bindings/usb/maxim,tcpci.yaml  |  70 +++
->  drivers/usb/typec/tcpm/Kconfig                |   6 +
->  drivers/usb/typec/tcpm/Makefile               |  15 +-
->  drivers/usb/typec/tcpm/tcpci.c                | 102 +++-
->  drivers/usb/typec/tcpm/tcpci.h                |  30 +-
->  drivers/usb/typec/tcpm/tcpci_maxim.c          | 504 ++++++++++++++++++
->  drivers/usb/typec/tcpm/tcpm.c                 | 299 ++++++++++-
->  include/linux/usb/pd.h                        |  19 +-
->  include/linux/usb/tcpm.h                      |  27 +-
->  include/linux/usb/typec.h                     |  12 +
->  11 files changed, 1085 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
->  create mode 100644 drivers/usb/typec/tcpm/tcpci_maxim.c
+There was a discussion below v2 of this patch series, which might help
+you to get context of these changes [2].
 
-thanks,
+The agreed approach is to have the DT as a source of power values expressed
+always in milli-Watts and the only way to submit with abstract scale values
+is via the em_dev_register_perf_domain() API.
+
+Changes:
+v3:
+- added boolean flag to struct em_perf_domain and registration function
+  indicating if EM holds real power values in milli-Watts (suggested by
+  Daniel and aggreed with Quentin)
+- updated documentation regarding this new flag
+- dropped DT binding change for 'sustainable-power'
+- added more maintainers on CC (due to patch 1/4 touching different things)
+v2 [2]:
+- updated sustainable power section in IPA documentation
+- updated DT binding for the 'sustainable-power'
+v1 [1]:
+- simple documenation update with new 'abstract scale' in EAS, EM, IPA
+
+Regards,
+Lukasz Luba
+
+[1] https://lore.kernel.org/linux-doc/20200929121610.16060-1-lukasz.luba@arm.com/
+[2] https://lore.kernel.org/lkml/20201002114426.31277-1-lukasz.luba@arm.com/
+
+Lukasz Luba (4):
+  PM / EM: Add a flag indicating units of power values in Energy Model
+  docs: Clarify abstract scale usage for power values in Energy Model
+  PM / EM: update the comments related to power scale
+  docs: power: Update Energy Model with new flag indicating power scale
+
+ .../driver-api/thermal/power_allocator.rst    | 13 +++++++-
+ Documentation/power/energy-model.rst          | 30 +++++++++++++++----
+ Documentation/scheduler/sched-energy.rst      |  5 ++++
+ drivers/cpufreq/scmi-cpufreq.c                |  3 +-
+ drivers/opp/of.c                              |  2 +-
+ include/linux/energy_model.h                  | 20 ++++++++-----
+ kernel/power/energy_model.c                   | 26 ++++++++++++++--
+ 7 files changed, 81 insertions(+), 18 deletions(-)
 
 -- 
-heikki
+2.17.1
+
