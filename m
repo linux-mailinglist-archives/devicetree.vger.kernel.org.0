@@ -2,91 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04150292907
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 16:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8752D292920
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 16:18:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729305AbgJSOKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 10:10:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38464 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729404AbgJSOKa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 10:10:30 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3FF6C0613D0
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 07:10:28 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id gv6so5788854pjb.4
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 07:10:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1yRFSCl/mRcUkS6OvmVba08bS0ib90mEnvumV93631A=;
-        b=PpbzUn3bSYybM/B+P67kwVSTJcSculclJ5cYp+qp02sY9e/t2qzNdkZoyBhy1uYr/G
-         ihQHQwNUe/HNv99lgh72wXRgzmFk0PD3Jaxkj4mdBrs6csNqGxPob+KkU30UKCpyayu4
-         HFSlbcGJutFyRy5lWg97w43r3cIY7W+gesEZ4=
+        id S1729004AbgJSOSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 10:18:52 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33646 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728311AbgJSOSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 10:18:51 -0400
+Received: by mail-ot1-f68.google.com with SMTP id t15so10617468otk.0;
+        Mon, 19 Oct 2020 07:18:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1yRFSCl/mRcUkS6OvmVba08bS0ib90mEnvumV93631A=;
-        b=midbgbqnmH1rhft1WRkSpDSLa5RFV6ZevCIZCGyyz2TJn+wCD0oYP7ZFMySvhXhpDY
-         r6wJhaxUKM7fIaavb9McNcZFp64kyHyCfEPflD6JjKFK5KjQvQToBdwiQnRszwD8AEPL
-         JFgzvoH5k3rGJxtSlO3P5ElMju/4JRt6WgvfVuwbBVrF+l/L7+Uz3Dsvdajirim7oSYV
-         W6PXu3hQtxrUQGzrEPrNNPm9JqtAln09eXzZ1zclvBs6wXx/A+/zS1AwGpH+tBpamw6o
-         G2cXhgc3hgBNK4v/OoaSN87l7uQfsKWD+DcpcuMs0gh4i7nZkJtlwLJw76DcewSa/ypn
-         44+A==
-X-Gm-Message-State: AOAM530KBfqfBN+x0eOzkEaC48GxyGOAugtNcUl/Ub5a7S1QwDjSN24q
-        R3sbL9j1iuxgGZnCCt7Gcn3Jwg==
-X-Google-Smtp-Source: ABdhPJyICwRj7p9WMfp/BM1uvsfQPI+SYkKUzGl5TcvdYBXqf14o3hbbIsviNl3qL3r4B3WvD+HnFQ==
-X-Received: by 2002:a17:90a:3e4a:: with SMTP id t10mr17389449pjm.151.1603116628488;
-        Mon, 19 Oct 2020 07:10:28 -0700 (PDT)
-Received: from shiro.work (p1268123-ipngn200803sizuokaden.shizuoka.ocn.ne.jp. [118.13.124.123])
-        by smtp.googlemail.com with ESMTPSA id 131sm78999pfy.5.2020.10.19.07.10.26
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Z24gVtSLB9rMmRuyKZCmyYJQn2Pd/8+qOLiSmvSdEls=;
+        b=JGRvv6+oXNGOBRmRBR7xjui9dlZ9CT0H/dnOPQC3Dvfw86GU5ZKdFyybRce0bWyf/A
+         olmRhckkU2JC6CMTdsrcd3b4mN7bbM94C6hl0woZlMPgrgjEKJMalM+N8AkTY2Ck+cYC
+         cZv05etvxF6Lijnmv3aLbfYxwSOv2tOpLwbHRCa0tMa0xU0kjdVjFNgVxq+sKSUZEv8o
+         l/R3mrcgTMhpLgkQbZr1LHm/7O+Eq8zZgxrO0fePP3JX0psIn5fRPOc6hG3WHQ1c3af1
+         S2xJtB6G4o+mOSJndXqC68XJ9vm0UmX9itPUkyg38Xui0sb8PRhhaMcHHDJvxBvGkoG3
+         XatQ==
+X-Gm-Message-State: AOAM530iHj32ZFlAv3/xDiEK3SC4QYeBHG67qNtXzGVw8avtWfuH55wc
+        ffiMZXpJUb4H3XASoWVbFg==
+X-Google-Smtp-Source: ABdhPJzckhvgxw/qMc6EYqyurH71faTEzRho8uZp+h9D0opQzmdm2mlLotPw1M327xXTwCWLmrS5/A==
+X-Received: by 2002:a9d:61:: with SMTP id 88mr143344ota.109.1603117130528;
+        Mon, 19 Oct 2020 07:18:50 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t84sm3580828oih.35.2020.10.19.07.18.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Oct 2020 07:10:27 -0700 (PDT)
-From:   Daniel Palmer <daniel@0x0f.com>
-To:     linux-gpio@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
-        Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH v2 5/5] ARM: mstar: Fill in GPIO controller properties for infinity
-Date:   Mon, 19 Oct 2020 23:10:08 +0900
-Message-Id: <20201019141008.871177-6-daniel@0x0f.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201019141008.871177-1-daniel@0x0f.com>
-References: <20201019141008.871177-1-daniel@0x0f.com>
+        Mon, 19 Oct 2020 07:18:49 -0700 (PDT)
+Received: (nullmailer pid 3036284 invoked by uid 1000);
+        Mon, 19 Oct 2020 14:18:48 -0000
+Date:   Mon, 19 Oct 2020 09:18:48 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org, sboyd@kernel.org,
+        linux-arm-msm@vger.kernel.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: Add support for LPASS Audio
+ Clock Controller
+Message-ID: <20201019141848.GA3035809@bogus>
+References: <20201016141241.5839-1-srinivas.kandagatla@linaro.org>
+ <20201016141241.5839-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201016141241.5839-2-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fill in the properties needed to use the GPIO controller
-in the infinity and infinity3 chips.
+On Fri, 16 Oct 2020 15:12:38 +0100, Srinivas Kandagatla wrote:
+> Audio Clock controller is a block inside LPASS which controls
+> 2 Glitch free muxes to LPASS codec Macros.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../bindings/clock/qcom,audiocc-sm8250.yaml   | 58 +++++++++++++++++++
+>  .../clock/qcom,sm8250-lpass-audiocc.h         | 13 +++++
+>  2 files changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
+> 
 
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
----
- arch/arm/boot/dts/mstar-infinity.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mstar-infinity.dtsi b/arch/arm/boot/dts/mstar-infinity.dtsi
-index cd911adef014..0bee517797f4 100644
---- a/arch/arm/boot/dts/mstar-infinity.dtsi
-+++ b/arch/arm/boot/dts/mstar-infinity.dtsi
-@@ -6,6 +6,13 @@
- 
- #include "mstar-v7.dtsi"
- 
-+#include <dt-bindings/gpio/msc313-gpio.h>
-+
- &imi {
- 	reg = <0xa0000000 0x16000>;
- };
-+
-+&gpio {
-+	compatible = "mstar,msc313-gpio";
-+	status = "okay";
-+};
--- 
-2.28.0
+My bot found errors running 'make dt_binding_check' on your patch:
+
+Error: Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.example.dts:25.30-31 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1366: dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1383373
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
