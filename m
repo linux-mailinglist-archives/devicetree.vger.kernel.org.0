@@ -2,254 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 939D8293107
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 00:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7BAD29310D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 00:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387976AbgJSWQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 18:16:15 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:41063 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729813AbgJSWQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 18:16:15 -0400
-Received: by mail-ot1-f65.google.com with SMTP id n15so1336190otl.8;
-        Mon, 19 Oct 2020 15:16:14 -0700 (PDT)
+        id S1733268AbgJSWTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 18:19:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58858 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733165AbgJSWTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 18:19:22 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD4EC0613CE
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 15:19:21 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id qp15so1287049ejb.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 15:19:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=esjy4fO6uR8UuEGzW2jO/GdK5i6J6fi0x2H/iZ6R1N8=;
+        b=wKPpET+Z60l85A7FrEPFHx6GoC8am5+vXgQcj7a1kyOBVmOLsyV0F80paN+bu/E3eT
+         3LEZgQlkOhpB8ONFQVSK3mYafxu4Pe2lb2ZS+wwJnQS7L84uZ4Gmuf46olvAqzdtyEKr
+         NRq7hidNW9My8I5LWq++lPJewjPyLCB2ujjOKkfwhACqEoUxn4zZjA3cHdf3ut7Qdz6B
+         Tb3IdQHD5qvnwxbomnuI/K4RG1/TSBflctLX1gVXjHtECQuRNCKECRK4jVZeFQzMmjqK
+         dsMEUZY87gJPdKl1WM1SkPWzb3K30rRDLoWwegSV7AkYN+D4h4KPMmwgKLzmJZyhnEiw
+         XwMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7ro/YQVjz81P9SXrPqBg+aSAZ3CY21lcJ/N+W67/ad0=;
-        b=K8kW4jCUVRCf5TwF1Nv/sJeqOk3aP8NEa1MUAxnCJ7dCyEy9AhtKyC0B3Lc6PyJWyY
-         LBO8xPd09afTtgcTCN59DfLRiQd6TJ3IpwzPMvVHufGobWrZHF9aANGYshfBzRuC9pk4
-         9ieY82vgEkeuDW96uK7UlV32Be2PNgSp4fKnzSG4pterRXqd82XBJ6cSQRQ4PsQKRmee
-         52gopXqr6JzloNDZfcabnf7OWgYc9EYuV/c19h2o6x1G/N4YBcp5eWpUFEtegfh8HnEn
-         2X4aSgKs7lWb02MPmkbYk7+vLjXsWLwXSHJSTvx1nvksK5MDYa1dMKbqAtF8UuxNbKuS
-         0N0g==
-X-Gm-Message-State: AOAM531u23oLtWwTuFvrl2znyzjUDnWRyrcTweR/hJ8Md4wO2oPLf6k6
-        mmr+TE9/OOYUTTPCTSsDDQ==
-X-Google-Smtp-Source: ABdhPJwToqJ2946gzDsGsazKbQCSDFHji8pzyB1wMCh7IO4Irb4cjEHJvy/roabKqFJ7wELd+1le8w==
-X-Received: by 2002:a9d:42e:: with SMTP id 43mr1489058otc.199.1603145774004;
-        Mon, 19 Oct 2020 15:16:14 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p10sm312216oig.37.2020.10.19.15.16.12
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=esjy4fO6uR8UuEGzW2jO/GdK5i6J6fi0x2H/iZ6R1N8=;
+        b=SYkAm/LdfU2ECQKLGiyFmMeVtP6coHmC5/zfeZ2fXTrdzMWrZnNAagjthVY+PdDiV1
+         DTpG8ROsQqrLvdyWW5oATtzEdIhOp3FgYL2j5RVLbtmA8HOaxYzNwZAJSwX0cqKhwnoB
+         Ss6cXxeWvkX48FeD6hnbAh607CzswL5ZcO1nyIfXPhiUbfk0Jo6BZuiknGS1wiUhZdVf
+         oy0VA7KKWoYrzIZfha+Wo3+raZK5WnbYqSzkH/SEKXw4tkOagoOIz+8mgqHgIjyH27Qq
+         LQ8lacHqSU6lSxtgIZ7v5kXlhHmLWnoFCCtbP3aaL//yTMQye4re6poKeMOjETw4tGVv
+         1WMw==
+X-Gm-Message-State: AOAM531TRk4i7LiCRGiVCfYsVhQci7Bk3NsM2QW6zAOmAYJJ2V2QZp/G
+        c5Q6TKl8sHK0Vth9nc25qkv+2Q==
+X-Google-Smtp-Source: ABdhPJy0pzsymzb1hhgBD3YNQ2LOD5EEXAd8UaXkBPI2wO+SloqCc/wyfxC+hXnSptarjy1X3gtKeg==
+X-Received: by 2002:a17:906:1246:: with SMTP id u6mr7411eja.432.1603145960487;
+        Mon, 19 Oct 2020 15:19:20 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:ee2:4b0d:3001:fbc5:498b:ed6d:cfac])
+        by smtp.gmail.com with ESMTPSA id e17sm1645400ejh.64.2020.10.19.15.19.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Oct 2020 15:16:13 -0700 (PDT)
-Received: (nullmailer pid 3695429 invoked by uid 1000);
-        Mon, 19 Oct 2020 22:16:12 -0000
-Date:   Mon, 19 Oct 2020 17:16:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com,
-        kuninori.morimoto.gx@renesas.com,
-        pierre-louis.bossart@linux.intel.com, perex@perex.cz,
-        tiwai@suse.com, p.zabel@pengutronix.de, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
-        mkumard@nvidia.com, viswanathl@nvidia.com, rlokhande@nvidia.com,
-        dramesh@nvidia.com, atalambedu@nvidia.com, nwartikar@nvidia.com,
-        swarren@nvidia.com, nicoleotsuka@gmail.com
-Subject: Re: [PATCH v4 11/15] ASoC: dt-bindings: tegra: Add json-schema for
- Tegra audio graph card
-Message-ID: <20201019221612.GA3690258@bogus>
-References: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
- <1602859382-19505-12-git-send-email-spujar@nvidia.com>
+        Mon, 19 Oct 2020 15:19:19 -0700 (PDT)
+From:   Luka Kovacic <luka.kovacic@sartura.hr>
+To:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     lee.jones@linaro.org, pavel@ucw.cz, dmurphy@ti.com,
+        robh+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
+        marek.behun@nic.cz, luka.perkov@sartura.hr,
+        andy.shevchenko@gmail.com, robert.marko@sartura.hr,
+        Luka Kovacic <luka.kovacic@sartura.hr>
+Subject: [PATCH v6 0/6] Add support for the iEi WT61P803 PUZZLE MCU
+Date:   Tue, 20 Oct 2020 00:18:53 +0200
+Message-Id: <20201019221859.56680-1-luka.kovacic@sartura.hr>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1602859382-19505-12-git-send-email-spujar@nvidia.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 16, 2020 at 08:12:58PM +0530, Sameer Pujar wrote:
-> Add YAML schema for Tegra audio graph sound card DT bindings. It uses the
-> same DT bindings provided by generic audio graph driver. Along with this
-> few standard clock DT bindings are added which are specifically required
-> for Tegra audio.
-> 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  .../sound/nvidia,tegra-audio-graph-card.yaml       | 158 +++++++++++++++++++++
->  1 file changed, 158 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
-> new file mode 100644
-> index 0000000..284d185
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
-> @@ -0,0 +1,158 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-graph-card.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Audio Graph based Tegra sound card driver
-> +
-> +description: |
-> +  This is based on generic audio graph card driver along with additional
-> +  customizations for Tegra platforms. It uses the same bindings with
-> +  additional standard clock DT bindings required for Tegra.
-> +
-> +  See{LINUX}/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+This patchset adds support for the iEi WT61P803 PUZZLE microcontroller,
+which enables some board specific features like fan and LED control,
+system power management and temperature sensor reading on some iEi
+Puzzle series boards.
 
-You should be able to just $ref this at the top level.
+The first board to use this functionality is iEi Puzzle-M801 1U
+Rackmount Network Appliance and is since v4 sent separately, as a
+standalone patch.
 
-> +
-> +maintainers:
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +  - Sameer Pujar <spujar@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - nvidia,tegra210-audio-graph-card
-> +          - nvidia,tegra186-audio-graph-card
-> +
+Changes for v2:
+   - Use LAAs for local-mac-address and match reg values
+   - Code styling changes
+   - Error handling moved to the end of the function
+   - Define all magic numbers in the main header file
+   - Convert the driver to make it OF independent
+   - Refactor hwmon to use devm_hwmon_device_register_with_info()
+   - Reduce the number of mutex locks
+   - Allocate memory once for the response buffer
+   - Reduce managed memory allocations
+Changes for v3:
+   - Move iei-wt61p803-puzzle driver sysfs interface documentation to testing
+   - Change some internal functions to static
+   - Sync dt-bindings examples with the iEi Puzzle-M801 board dts
+   - Remove obsolete device tree properties and correct LED functions
+   - Reverse christmas tree variable declaration order, where possible
+   - MAC address sysfs function rewrite
+   - Fixed struct members size, where reasonable (MFD driver)
+   - Add an error check for hwmon_dev
+   - Use devm_led_classdev_register_ext() in the LED driver
+Changes for v4:
+   - Clean up sensible checks reported by checkpatch --strict
+   - Document the mutex lock usage in the LED driver
+   - Fix error handling and code styling issues in the HWMON driver
+   - Break up the patchset and send the iEi Puzzle-M801 board support
+patch separately
+Changes for v5:
+   - Remove the return before goto to also fwnode_handle_put(child)
+when ret is 0 (LED driver)
+   - Change unsigned char arrays to static where applicable
+   - Fix unconventional line indentations
+   - Remove unnecessary checks in the HWMON driver
+   - Remove unnecessary type casts
+   - Clear up command array assignments, where the command array is
+modified before it is sent
+   - Resolve a checksum calculation issue
+   - Add Luka Perkov to MAINTAINERS
+Changes for v6:
+   - Use the container_of() macro to get the led_cdev parent struct
+   - Use %u instead of %lu in a printf() (LED driver) 
 
-> +  dais:
-> +    $ref: /schemas/sound/audio-graph-card.yaml#/properties/dais
-> +
-> +  label:
-> +    $ref: /schemas/sound/simple-card.yaml#/properties/label
-> +
-> +  pa-gpios:
-> +    $ref: /schemas/sound/audio-graph-card.yaml#/properties/pa-gpios
-> +
-> +  widgets:
-> +    $ref: /schemas/sound/simple-card.yaml#/definitions/widgets
-> +
-> +  routing:
-> +    $ref: /schemas/sound/simple-card.yaml#/definitions/routing
-> +
-> +  mclk-fs:
-> +    $ref: /schemas/sound/simple-card.yaml#/definitions/mclk-fs
-> +
-> +  prefix:
-> +    $ref: /schemas/sound/simple-card.yaml#/definitions/prefix
+Luka Kovacic (6):
+  dt-bindings: Add iEi vendor prefix and iEi WT61P803 PUZZLE driver
+    bindings
+  drivers: mfd: Add a driver for iEi WT61P803 PUZZLE MCU
+  drivers: hwmon: Add the iEi WT61P803 PUZZLE HWMON driver
+  drivers: leds: Add the iEi WT61P803 PUZZLE LED driver
+  Documentation/ABI: Add iei-wt61p803-puzzle driver sysfs interface
+    documentation
+  MAINTAINERS: Add an entry for the iEi WT61P803 PUZZLE driver
 
-And drop all of these.
+ .../testing/sysfs-driver-iei-wt61p803-puzzle  |   55 +
+ .../hwmon/iei,wt61p803-puzzle-hwmon.yaml      |   41 +
+ .../leds/iei,wt61p803-puzzle-leds.yaml        |   45 +
+ .../bindings/mfd/iei,wt61p803-puzzle.yaml     |   82 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |   14 +
+ drivers/hwmon/Kconfig                         |    8 +
+ drivers/hwmon/Makefile                        |    1 +
+ drivers/hwmon/iei-wt61p803-puzzle-hwmon.c     |  410 +++++++
+ drivers/leds/Kconfig                          |    8 +
+ drivers/leds/Makefile                         |    1 +
+ drivers/leds/leds-iei-wt61p803-puzzle.c       |  147 +++
+ drivers/mfd/Kconfig                           |    8 +
+ drivers/mfd/Makefile                          |    1 +
+ drivers/mfd/iei-wt61p803-puzzle.c             | 1043 +++++++++++++++++
+ include/linux/mfd/iei-wt61p803-puzzle.h       |   66 ++
+ 16 files changed, 1932 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-iei-wt61p803-puzzle
+ create mode 100644 Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+ create mode 100644 drivers/hwmon/iei-wt61p803-puzzle-hwmon.c
+ create mode 100644 drivers/leds/leds-iei-wt61p803-puzzle.c
+ create mode 100644 drivers/mfd/iei-wt61p803-puzzle.c
+ create mode 100644 include/linux/mfd/iei-wt61p803-puzzle.h
 
-> +
-> +  clocks:
-> +   minItems: 2
-> +
-> +  clock-names:
-> +   minItems: 2
+-- 
+2.26.2
 
-Don't need this.
-
-> +   items:
-> +     - const: pll_a
-> +     - const: plla_out0
-> +
-> +  assigned-clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  assigned-clock-parents:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  assigned-clock-rates:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  ports:
-> +    $ref: /schemas/sound/audio-graph-card.yaml#/properties/ports
-> +
-> +patternProperties:
-> +  "^port(@[0-9a-f]+)?$":
-> +    $ref: /schemas/sound/audio-graph-card.yaml#/definitions/port
-
-And these can be dropped. Unless what each port is is Tegra specific.
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - dais
-> +  - clocks
-> +  - clock-names
-> +  - assigned-clocks
-> +  - assigned-clock-parents
-> +
-> +examples:
-> +  - |
-> +    #include<dt-bindings/clock/tegra210-car.h>
-> +
-> +    tegra_sound {
-> +        compatible = "nvidia,tegra210-audio-graph-card";
-> +
-> +        clocks = <&tegra_car TEGRA210_CLK_PLL_A>,
-> +                 <&tegra_car TEGRA210_CLK_PLL_A_OUT0>;
-> +        clock-names = "pll_a", "plla_out0";
-> +
-> +        assigned-clocks = <&tegra_car TEGRA210_CLK_PLL_A>,
-> +                          <&tegra_car TEGRA210_CLK_PLL_A_OUT0>,
-> +                          <&tegra_car TEGRA210_CLK_EXTERN1>;
-> +        assigned-clock-parents = <0>, <0>, <&tegra_car TEGRA210_CLK_PLL_A_OUT0>;
-> +        assigned-clock-rates = <368640000>, <49152000>, <12288000>;
-> +
-> +        dais = /* FE */
-> +               <&admaif1_port>,
-> +               /* Router */
-> +               <&xbar_i2s1_port>,
-> +               /* I/O DAP Ports */
-> +               <&i2s1_port>;
-> +
-> +        label = "jetson-tx1-ape";
-> +    };
-> +
-> +    tegra_ahub: ahub@702d0800 {
-> +        // ...
-> +
-> +        reg = <0x702d0800 0x800>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            xbar_i2s1_port: port@a {
-> +                reg = <0xa>;
-> +                xbar_i2s1_ep: endpoint {
-> +                    remote-endpoint = <&i2s1_cif_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +    tegra_i2s1: i2s@702d1000 {
-> +        // ...
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        reg = <0x702d1000 0x100>;
-> +
-> +        port@0 {
-> +            reg = <0>;
-> +
-> +            i2s1_cif_ep: endpoint {
-> +                remote-endpoint = <&xbar_i2s1_ep>;
-> +            };
-> +        };
-> +
-> +        i2s1_port: port@1 {
-> +            reg = <1>;
-> +
-> +            i2s1_dap: endpoint {
-> +                dai-format = "i2s";
-> +
-> +                // ...
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.7.4
-> 
