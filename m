@@ -2,101 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A77632927FB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 15:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DDA629283E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 15:35:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727982AbgJSNOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 09:14:52 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:18310 "EHLO z5.mailgun.us"
+        id S1727811AbgJSNfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 09:35:16 -0400
+Received: from foss.arm.com ([217.140.110.172]:57736 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727952AbgJSNOu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 09:14:50 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1603113289; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=EDT6u1q6ACEvrBc2BppeDYMdoHFAYde7oPctSzlqmv4=; b=YYOQCoH9MadfRT35Mam++br342aVCtjAmqJd+HrDcl/I7jdqN8w28fcFEJazQ9zy99y6/8H5
- UTKbaWT+GnNS/GodfpLrEHWYiAnK3tNh9qSrREAaPocwV4zSV1mKPNYqwlTbuQYsPyC+jdmz
- sqqIpmoxCB0uBsKrQ5X53/dVW1A=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 5f8d9149588858a304e4373e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 19 Oct 2020 13:14:49
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A2E2CC43382; Mon, 19 Oct 2020 13:14:48 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from akhilpo-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E4E74C433FF;
-        Mon, 19 Oct 2020 13:14:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E4E74C433FF
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jcrouse@codeaurora.org,
-        mka@chromium.org, robdclark@gmail.com, dianders@chromium.org
-Subject: [PATCH v2 3/3] dt-bindings: drm/msm/gpu: Add cooling device support
-Date:   Mon, 19 Oct 2020 18:44:28 +0530
-Message-Id: <1603113268-21161-3-git-send-email-akhilpo@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1603113268-21161-1-git-send-email-akhilpo@codeaurora.org>
-References: <1603113268-21161-1-git-send-email-akhilpo@codeaurora.org>
+        id S1727297AbgJSNfQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 09:35:16 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 212E6D6E;
+        Mon, 19 Oct 2020 06:35:15 -0700 (PDT)
+Received: from [10.57.14.99] (unknown [10.57.14.99])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ECC563F719;
+        Mon, 19 Oct 2020 06:35:12 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Lukasz Luba <lukasz.luba@arm.com>,
+        Ionela Voinescu <ionela.voinescu@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        chris.redpath@arm.com, morten.rasmussen@arm.com,
+        linux-arm-kernel@lists.infradead.org
+References: <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+ <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
+ <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
+ <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7> <20201012154915.GD16519@bogus>
+ <20201012165219.GA3573@arm.com>
+ <17819d4d-9e7e-9a38-4227-d0d10a0749f1@arm.com>
+ <20201014042531.r7iykzygkvmpsqck@vireshk-i7>
+ <503af305-77a4-964a-ed17-8df8b4e3a546@arm.com>
+ <20201019094633.m3yvxurfm2xwsb6a@vireshk-i7>
+From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
+Message-ID: <e3b3a583-5e0f-f512-85e6-81c55a0e6db5@arm.com>
+Date:   Mon, 19 Oct 2020 14:36:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <20201019094633.m3yvxurfm2xwsb6a@vireshk-i7>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add cooling device support to gpu. A cooling device is bound to a
-thermal zone to allow thermal mitigation.
+Hi Viresh,
 
-Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
----
- Documentation/devicetree/bindings/display/msm/gpu.txt | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-index 1af0ff1..a496381 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.txt
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.txt
-@@ -39,6 +39,10 @@ Required properties:
-         a4xx Snapdragon SoCs. See
-         Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
- 
-+Optional properties:
-+- #cooling-cells: The value must be 2. Please refer
-+	Documentation/devicetree/bindings/thermal/thermal.txt for detail.
-+
- Example 3xx/4xx:
- 
- / {
-@@ -61,6 +65,7 @@ Example 3xx/4xx:
- 		power-domains = <&mmcc OXILICX_GDSC>;
- 		operating-points-v2 = <&gpu_opp_table>;
- 		iommus = <&gpu_iommu 0>;
-+		#cooling-cells = <2>;
- 	};
- 
- 	gpu_sram: ocmem@fdd00000 {
-@@ -98,6 +103,8 @@ Example a6xx (with GMU):
- 		reg = <0x5000000 0x40000>, <0x509e000 0x10>;
- 		reg-names = "kgsl_3d0_reg_memory", "cx_mem";
- 
-+		#cooling-cells = <2>;
-+
- 		/*
- 		 * Look ma, no clocks! The GPU clocks and power are
- 		 * controlled entirely by the GMU
--- 
-2.7.4
+On 10/19/20 10:46 AM, Viresh Kumar wrote:
+> On 19-10-20, 09:50, Nicola Mazzucato wrote:
+>> Hi Viresh,
+>>
+>> thank you for your suggestion on using 'opp-shared'.
+>> I think it could work for most of the cases we explained earlier.
+>>
+>> Summarising, there are two parts of this entire proposal:
+>> 1) where/how to get the information: now we are focusing on taking advantage of
+>> 'opp-shared' within an empty opp table
+>> 2) and how/where this information will be consumed
+>>
+>> Further details below:
+>>
+>> 1) a CPUFreq driver that takes the OPPs from firmware, can call
+>> dev_pm_opp_of_get_sharing_cpus like you suggested. When doing so, a provided
+>> cpumaksk will be populated with the corresponding cpus that share the same
+>> (empty) table opp in DT.
+>> All good so far.
+> 
+> Great.
+> 
+>> The current opp core is not expecting an empty table and therefore some errors
+>> are thrown when this happens.
+>> Since we are now allowing this corner-case, I am presenting below where I think
+>> some minor corrections may be needed:
+>>
+>> --- a/drivers/opp/of.c
+>> +++ b/drivers/opp/of.c
+>> @@ static void _opp_table_alloc_required_tables(struct opp_table *opp_table,
+>>         struct device_node *required_np, *np;
+>>         int count, i;
+>>
+>>         /* Traversing the first OPP node is all we need */
+>>         np = of_get_next_available_child(opp_np, NULL);
+>>         if (!np) {
+>> -               dev_err(dev, "Empty OPP table\n");
+>> +               dev_warn(dev, "Empty OPP table\n");
+>> +
+>> +               /*
+>> +                * With empty table we remove shared_opp. This is to leave the
+>> +                * responsibility to decide which opp are shared to the opp users
+>> +                */
+>> +               opp_table->shared_opp = OPP_TABLE_ACCESS_EXCLUSIVE;
+>> +
+>>                 return;
+>>         }
+>>
+>> @@ int dev_pm_opp_of_find_icc_paths(struct device *dev,
+>>         int ret, i, count, num_paths;
+>>         struct icc_path **paths;
+>>
+>>         ret = _bandwidth_supported(dev, opp_table);
+>> -       if (ret <= 0)
+>> +       if (ret == -EINVAL)
+>> +               return 0; /* Empty OPP table is a valid corner-case, let's not
+>> fail */
+>> +       else if (ret <= 0)
+>>                 return ret;
+>>
+>> The above are not 'strictly' necessary to achieve the intended goal, but they
+>> make clearer that an empty table is now allowed and not an error anymore.
+>> What it is your point of view on this?
+> 
+> Why is this stuff getting called in your case ? We shouldn't be trying
+> to create an OPP table here and it should still be an error in the
+> code if we are asked to parse an empty OPP table.
 
+A driver that gets a set of opp-points from f/w needs to add them to each
+device. To do so, it will call dev_pm_opp_add(). If an opp_table struct for this
+device is not found, one will be created and the opp-point will be added to it.
+When allocation a new opp_table the opp will try to initialise it by parsing the
+values in DT. It will also try to find_icc_paths.
+
+Everything happens silently if we don't have a table in DT.
+
+> 
+>> In addition, I think it would also be appropriate to update the documentation
+>> (Documentation/devicetree/bindings/opp/opp.txt) to reflect this new case
+>> (required properties etc).
+>> Any different thoughts?
+> 
+> Yes, this needs a small update in the required-opps section.
+
+Cool, I'll sketch something in the next version.
+
+> 
+>> 2) Once the driver gets the 'performance dependencies' by
+>> dev_pm_opp_of_get_sharing_cpus(), this information will have to be shared with
+>> EAS, thermal, etc.. The natural way to do so would be to add a new cpumask like
+>> I proposed in this RFC.
+>> I see this as an improvement for the whole subsystem and a scalable choice since
+>> we can unambiguously provide the correct information to whoever needs it, given
+>> that we don't enforce "hw dependencies" for related_cpus.
+>> The changes would be trivial (it's in the original RFC).
+>> On the other hand, we can't unload this h/w detail into related_cpus IMO as we
+>> are dealing with per-cpu systems in this context.
+>> Hope it makes sense?
+> 
+> I will have another look at this stuff, honestly I haven't looked at
+> this in detail yet. But I do understand that we can't really use
+> related-cpu here without changing its earlier meaning.
+
+Sure. thanks
+> 
+
+Hope it helps
+
+Best regards
+Nicola
