@@ -2,80 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D79C6292C00
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 18:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC799292C23
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 19:03:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730660AbgJSQ62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 12:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37018 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730186AbgJSQ61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 12:58:27 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 796EEC0613CE
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 09:58:27 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id a9so314178lfc.7
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 09:58:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5NHR3Np8fNGXIXRruqbIIE6HHkI6yNWHe+R9ceI9aVA=;
-        b=CCB8cgaeWeZOhlJgMBWEEX4hO2i9pzvsX1LKKNk/MnzUskj5jIGMpALafTZGc6XlS7
-         p0vuxut5VxtzgeBzemcAvpIYd7POiHZczki1IyB2OoO1qwWKDjpr9mL3ZUKifyllIDXt
-         3pb2fuXmiznrkVRdpKOhsLg0g84B5a3Vby2BHa0XXz7FHDiyfwUlW9ln3Ng4wgZgFtTJ
-         a1DUT2t8UQvJppM1Aq3zsL9J4IKYGzILJ/+lRM1QmX6mxpjvda3fBke8rD+/NYTELHo1
-         dwsjpkbOKq9Q63CijgE49hziF5tlHaqPnmOhzoN0EX1lZxg1mw6OtaaRJlaNztf2EzZu
-         k5dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5NHR3Np8fNGXIXRruqbIIE6HHkI6yNWHe+R9ceI9aVA=;
-        b=tO1NCpIxc0D5d0RbZnKxGxO4fWLKa2ypuVYU43uwCMz3mdsFzVqvDJz5WbnYal36dy
-         vJzSqE2NNH7rq/0A39a7+TSva9R2QO3dIVC7DPis6fWZhIq/3K/rNGqJJ/7v8gtNZxyy
-         09qKixbxPh/thzR9Ov3v53h9jWBW1gP+dH/5fmvFmE6goR7mipRGaFrAnQ3Us8ED3YcJ
-         h/ZDApaG+SWuSJmSoE3w1jPGDSfpzipMRXV1dq1q5o13j+GhVQZqlrDOPVBWS5crdVSU
-         q5h30JtcSMp6WjlMF9Jz/8S6oSAkeIk9DJeQcb8Niq77f0PcK1N65XJGCJrqXppP06ge
-         oNcg==
-X-Gm-Message-State: AOAM533hW87AZ8ZzgGLAXzocUfxkQfWOYxjh9Ywjfr8PTfTxqRPnevZR
-        jTiiDDxwRhRLUTvFCkPpOV7+5fEngle5d1jhwZpBye0hr0c=
-X-Google-Smtp-Source: ABdhPJygY/c9drBARc17MFxIHLPBGo4JDFRy8RLIMQ62lThApuVD4K6kvp1h8gS2kpaTCapjKPkXp2i8Xjn4Z8cbunU=
-X-Received: by 2002:ac2:4e90:: with SMTP id o16mr208546lfr.251.1603126705990;
- Mon, 19 Oct 2020 09:58:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201017210324.556454-1-geomatsi@gmail.com>
-In-Reply-To: <20201017210324.556454-1-geomatsi@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 19 Oct 2020 13:58:14 -0300
-Message-ID: <CAOMZO5AoeYuAaf3wEP=9BbUyv8Rv-mD+fagtJOOrbLAUVaQEOw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx6qdl-udoo: fix rgmii phy-mode for ksz9031 phy
-To:     Sergey Matyukevich <geomatsi@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
+        id S1731035AbgJSRDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 13:03:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35946 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731033AbgJSRDA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 13:03:00 -0400
+Received: from localhost.localdomain (unknown [194.230.155.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C98AC205ED;
+        Mon, 19 Oct 2020 17:02:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603126979;
+        bh=5m3PXqqc5gUg7E17UxkNthGmAsWQFVOiTy+EyGvAX4Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aQaCuB1baKgVuEgGfaK+keOXYRuF+p6Tu69qWkmnh9KfdEYe3Fl9Can/ka6Kh+cBW
+         9Ormi2H9eLAiCk5FEJTn+ym8zGQu+bFxpQD6ijs/mH+dCGDj7GiIPqlxv8PT2odLN4
+         5gTE0TQ/oVDM7CzcA5R9vUJ6aTRac8LbGJOyD44M=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 1/4] dt-bindings: media: imx258: add bindings for IMX258 sensor
+Date:   Mon, 19 Oct 2020 19:02:44 +0200
+Message-Id: <20201019170247.92002-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
+Add bindings for the IMX258 camera sensor.  The bindings, just like the
+driver, are quite limited, e.g. do not support regulator supplies.
 
-On Sat, Oct 17, 2020 at 5:57 PM Sergey Matyukevich <geomatsi@gmail.com> wrote:
->
-> Commit bcf3440c6dd7 ("net: phy: micrel: add phy-mode support for the
-> KSZ9031 PHY") fixed micrel phy driver adding proper support for phy
-> modes. Adapt imx6q-udoo board phy settings accordingly: explicitly
-> set required delay configuration using "rgmii-id".
->
-> Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-I suppose this fixes a regression, correct?
+---
 
-In this case, it would be nice to provide a Fixes tag, so that the fix
-can go to the stable tree.
+Changes since v4:
+1. Add clock-lanes,
+2. Add Rob's review,
+3. Add one more example and extend existing one,
+4. Add common clock properties (assigned-*).
 
-Thanks
+Changes since v3:
+1. Document also two lane setup.
+
+Changes since v2:
+1. Remove clock-frequency, add reset GPIOs, add supplies.
+2. Use additionalProperties.
+
+Changes since v1:
+1. None
+---
+ .../devicetree/bindings/media/i2c/imx258.yaml | 140 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 141 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/imx258.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/imx258.yaml b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+new file mode 100644
+index 000000000000..4a3471fb88a1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+@@ -0,0 +1,140 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/imx258.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sony IMX258 13 Mpixel CMOS Digital Image Sensor
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++description: |-
++  IMX258 is a diagonal 5.867mm (Type 1/3.06) 13 Mega-pixel CMOS active pixel
++  type stacked image sensor with a square pixel array of size 4208 x 3120. It
++  is programmable through I2C interface.  Image data is sent through MIPI
++  CSI-2.
++
++properties:
++  compatible:
++    const: sony,imx258
++
++  assigned-clocks: true
++  assigned-clock-parents: true
++  assigned-clock-rates: true
++
++  clocks:
++    description:
++      Clock frequency from 6 to 27 MHz.
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    description: |-
++      Reference to the GPIO connected to the XCLR pin, if any.
++
++  vana-supply:
++    description:
++      Analog voltage (VANA) supply, 2.7 V
++
++  vdig-supply:
++    description:
++      Digital I/O voltage (VDIG) supply, 1.2 V
++
++  vif-supply:
++    description:
++      Interface voltage (VIF) supply, 1.8 V
++
++  # See ../video-interfaces.txt for more details
++  port:
++    type: object
++    properties:
++      endpoint:
++        type: object
++        properties:
++          clock-lanes:
++            const: 0
++
++          data-lanes:
++            oneOf:
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++              - items:
++                  - const: 1
++                  - const: 2
++
++          link-frequencies:
++            allOf:
++              - $ref: /schemas/types.yaml#/definitions/uint64-array
++            description:
++              Allowed data bus frequencies.
++
++        required:
++          - clock-lanes
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sensor@6c {
++            compatible = "sony,imx258";
++            reg = <0x6c>;
++            clocks = <&imx258_clk>;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&csi1_ep>;
++                    clock-lanes = <0>;
++                    data-lanes = <1 2 3 4>;
++                    link-frequencies = /bits/ 64 <320000000>;
++                };
++            };
++        };
++    };
++
++    /* Oscillator on the camera board */
++    imx258_clk: clk {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <19200000>;
++    };
++
++  - |
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sensor@6c {
++            compatible = "sony,imx258";
++            reg = <0x6c>;
++            clocks = <&imx258_clk>;
++
++            assigned-clocks = <&imx258_clk>;
++            assigned-clock-rates = <19200000>;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&csi1_ep>;
++                    clock-lanes = <0>;
++                    data-lanes = <1 2 3 4>;
++                    link-frequencies = /bits/ 64 <633600000>;
++                };
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5b9621ca2b31..68f30a283a2c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16262,6 +16262,7 @@ M:	Sakari Ailus <sakari.ailus@linux.intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/imx258.yaml
+ F:	drivers/media/i2c/imx258.c
+ 
+ SONY IMX274 SENSOR DRIVER
+-- 
+2.25.1
+
