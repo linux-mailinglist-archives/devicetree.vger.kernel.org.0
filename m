@@ -2,88 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7979C29292F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 16:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0C52292949
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 16:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729359AbgJSOVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 10:21:43 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:38623 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728311AbgJSOVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 10:21:43 -0400
-Received: by mail-ot1-f68.google.com with SMTP id i12so10588335ota.5;
-        Mon, 19 Oct 2020 07:21:42 -0700 (PDT)
+        id S1729114AbgJSO1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 10:27:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41100 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728311AbgJSO1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 10:27:42 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA6AC0613CE;
+        Mon, 19 Oct 2020 07:27:41 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id x7so11737616wrl.3;
+        Mon, 19 Oct 2020 07:27:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=J4XrE9HXCwR/KsIjqo1txSO+XN0eoJhfpbzWewRFJS4=;
+        b=uxS9qthpVn3xJuHFts06PWunbbuZJSC4Fc/PvBwMhICn2Na9aaKscOIwWYX/J4F3Al
+         ZfO670d04wzxjcAKPJsXo7WatjigwbNqg0VIf/YF8KW717LoKsIJ/hQXex4GDfWXu4Jx
+         Vz20/NPw1O9Aw/FQy50u8BSKb/YwGbWBoxlK3RtUk53KjAupDw58jIp+caYbrFGXGIdP
+         RgAaMsRpeB2bGZxLdf8qcCFBcwRZzPFBrdx5rTYwpVFeUwKTKaEyZ6cM+gu0zcXgTLGo
+         kSkxmM7HxUqAg9dqguSYzD98ZJ5I/1TUZKeIPW4Ipm0zZ1vy+45yI0i8NlSB6JpUkOYH
+         NcSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=12l3M2TcKuloid6NoQYFwjNiQUKK0pB5u9CaECZ0MIg=;
-        b=mHZpLha75oDW7QFc3w4LujIhKCfnP155o+pNWAvoQye/iSgH3zFLIHKpPbCM8Nd6+k
-         LV2hXSGRoQ2Ah/mruwmkulmzqG+/8Hyvv/0m2qHQAqJyelpuoqxrhhZr5fAFORvm+EhR
-         nnkS2KIRpHdrHxmAggA2A+ko2ype6N52F6EoG6YnRiXED5jIHJLcCZP1K/ZCJV6a+Hkp
-         Q9v/19mJSVB8N0VPSwdVE/Yvy2bIT3zMlXXAwjemRDDNviA5U9AWVpxz8uIJxOsYqNzA
-         4wddJRL2PU7mrCcuVMDwbL3eQEnJ3T2sTrpkML0+wMnqbZRYYv33cF2JngKmyRZKZhNW
-         5EuQ==
-X-Gm-Message-State: AOAM532OyflUCCQotgZwtegkswjnnnG+Z+/NM7/HGmfM6nr3nLy5JAEP
-        8HPCpQnzhf4LRWC0KCqF+A==
-X-Google-Smtp-Source: ABdhPJwUgb6IMG5++/5tCBbcC6g5JzsG+i38bL077Cp+wDdLPp0NyvDVE1q8HJYLs7/QT32gopDQDg==
-X-Received: by 2002:a9d:2947:: with SMTP id d65mr143936otb.219.1603117302027;
-        Mon, 19 Oct 2020 07:21:42 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u125sm3611745oif.21.2020.10.19.07.21.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Oct 2020 07:21:40 -0700 (PDT)
-Received: (nullmailer pid 3040360 invoked by uid 1000);
-        Mon, 19 Oct 2020 14:21:40 -0000
-Date:   Mon, 19 Oct 2020 09:21:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: clock: Add support for LPASS Always
- ON Controller
-Message-ID: <20201019142140.GA3040103@bogus>
-References: <20201016141241.5839-1-srinivas.kandagatla@linaro.org>
- <20201016141241.5839-3-srinivas.kandagatla@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=J4XrE9HXCwR/KsIjqo1txSO+XN0eoJhfpbzWewRFJS4=;
+        b=ldza+qnsS1pE99vIY/0CELKtRyInTWIfZXdAZhTZh41bNXdqNDFNC6HOUl97Dqo8Wo
+         lYFMRd4IeMj4rZ4VPZr/5L+b6M9JuADNKTvDE2pYwudIwKeOmimhWQBZtEAGyXZkWIvd
+         SgizqbDUesUyx8hAoujjjTBsW0smq8nQzt2DUMo6ZVr6dGBNR6UVkzDz4t6ekCXgNiY2
+         D6hoL0JqZDmn7KXWZrQTATH9QeeB2ikbacZumK0teZx1q1pWHOyfcqiHctkfChi42BbL
+         tVU7NHzggNny4t7n1WWj383SCoszy1kjGdPa/tZ3XzzpG16fuByJ+8VkzYOm9wRLuett
+         0rGw==
+X-Gm-Message-State: AOAM531TOJAyPgAlR+uBICM4PRDd0bIPIpHoSdNNqJfTG6aLf0F/q2pq
+        bSoTf/c4KAW9M2pPVmTuVA4=
+X-Google-Smtp-Source: ABdhPJxclmK5tJHztft/7mXls1Pr5LGv+p9qBjz187C5S/MF0DBGSXopG+EkdGf+Fugo0q/XVD5QDg==
+X-Received: by 2002:adf:8290:: with SMTP id 16mr21330161wrc.103.1603117660325;
+        Mon, 19 Oct 2020 07:27:40 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.119.110])
+        by smtp.gmail.com with ESMTPSA id s185sm261888wmf.3.2020.10.19.07.27.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Oct 2020 07:27:39 -0700 (PDT)
+Subject: Re: [PATCH 2/5] pwm: pwm-mediatek: always use bus clock
+To:     Fabien Parent <fparent@baylibre.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
+Cc:     robh+dt@kernel.org, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com
+References: <20201019140705.1518822-1-fparent@baylibre.com>
+ <20201019140705.1518822-3-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <0f2dc182-868c-43c3-8ae8-999e7cf1d986@gmail.com>
+Date:   Mon, 19 Oct 2020 16:27:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201016141241.5839-3-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20201019140705.1518822-3-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Oct 2020 15:12:39 +0100, Srinivas Kandagatla wrote:
-> Always ON Clock controller is a block inside LPASS which controls
-> 1 Glitch free muxes to LPASS codec Macros.
+
+
+On 19/10/2020 16:07, Fabien Parent wrote:
+> The MediaTek PWM IP can sometimes use the 26MHz source clock to generate
+> the PWM signal, but the driver currently assumes that we always use
+> the PWM bus clock to generate the PWM signal.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> This commit modifies the PWM driver in order to force the PWM IP to
+> always use the bus clock as source clock.
+> 
+> I do not have the datasheet of all the MediaTek SoC, so I don't know
+> if the register to choose the source clk is present in all the SoCs
+> or only in subset. As a consequence I made this change optional by
+> using a platform data paremeter to says whether this register is
+> supported or not. On all the SoC I don't have the datasheet
+> (MT2712, MT7622, MT7623, MT7628, MT7629) I kept the behavior
+> to be the same as before this change.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
 > ---
->  .../bindings/clock/qcom,aoncc-sm8250.yaml     | 58 +++++++++++++++++++
->  .../clock/qcom,sm8250-lpass-aoncc.h           | 11 ++++
->  2 files changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+>   drivers/pwm/pwm-mediatek.c | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
 > 
-
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-Error: Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.example.dts:25.30-31 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1366: dt_binding_check] Error 2
-
-
-See https://patchwork.ozlabs.org/patch/1383375
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
+> diff --git a/drivers/pwm/pwm-mediatek.c b/drivers/pwm/pwm-mediatek.c
+> index ab001ce55178..108881619aea 100644
+> --- a/drivers/pwm/pwm-mediatek.c
+> +++ b/drivers/pwm/pwm-mediatek.c
+> @@ -30,12 +30,14 @@
+>   #define PWM45DWIDTH_FIXUP	0x30
+>   #define PWMTHRES		0x30
+>   #define PWM45THRES_FIXUP	0x34
+> +#define PWM_CK_26M_SEL		0x210
+>   
+>   #define PWM_CLK_DIV_MAX		7
+>   
+>   struct pwm_mediatek_of_data {
+>   	unsigned int num_pwms;
+>   	bool pwm45_fixup;
+> +	bool has_ck_26m_sel;
+>   };
+>   
+>   /**
+> @@ -132,6 +134,10 @@ static int pwm_mediatek_config(struct pwm_chip *chip, struct pwm_device *pwm,
+>   	if (ret < 0)
+>   		return ret;
+>   
+> +	/* Make sure we use the bus clock and not the 26MHz clock */
+> +	if (pc->soc->has_ck_26m_sel)
+> +		writel(0, pc->regs + PWM_CK_26M_SEL);
+> +
+>   	/* Using resolution in picosecond gets accuracy higher */
+>   	resolution = (u64)NSEC_PER_SEC * 1000;
+>   	do_div(resolution, clk_get_rate(pc->clk_pwms[pwm->hwpwm]));
+> @@ -281,31 +287,37 @@ static int pwm_mediatek_remove(struct platform_device *pdev)
+>   static const struct pwm_mediatek_of_data mt2712_pwm_data = {
+>   	.num_pwms = 8,
+>   	.pwm45_fixup = false,
+> +	.has_ck_26m_sel = false,
+>   };
+>   
+>   static const struct pwm_mediatek_of_data mt7622_pwm_data = {
+>   	.num_pwms = 6,
+>   	.pwm45_fixup = false,
+> +	.has_ck_26m_sel = false,
+>   };
+>   
+>   static const struct pwm_mediatek_of_data mt7623_pwm_data = {
+>   	.num_pwms = 5,
+>   	.pwm45_fixup = true,
+> +	.has_ck_26m_sel = false,
+>   };
+>   
+>   static const struct pwm_mediatek_of_data mt7628_pwm_data = {
+>   	.num_pwms = 4,
+>   	.pwm45_fixup = true,
+> +	.has_ck_26m_sel = false,
+>   };
+>   
+>   static const struct pwm_mediatek_of_data mt7629_pwm_data = {
+>   	.num_pwms = 1,
+>   	.pwm45_fixup = false,
+> +	.has_ck_26m_sel = false,
+>   };
+>   
+>   static const struct pwm_mediatek_of_data mt8516_pwm_data = {
+>   	.num_pwms = 5,
+>   	.pwm45_fixup = false,
+> +	.has_ck_26m_sel = true,
+>   };
+>   
+>   static const struct of_device_id pwm_mediatek_of_match[] = {
+> 
