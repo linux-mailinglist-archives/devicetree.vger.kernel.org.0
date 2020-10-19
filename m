@@ -2,159 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C0E22925E5
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 12:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 217F02925EC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 12:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727039AbgJSKfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 06:35:02 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:49725 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726791AbgJSKfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 06:35:02 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7EBDA5C00DA;
-        Mon, 19 Oct 2020 06:35:00 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 19 Oct 2020 06:35:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=x1zUlvl7MAJX2jsFZNJsQT88znY
-        tzZshjbMQGDPEvW8=; b=mk0b2dBL8tYplOKJUHt68NAkVis775nX7RJ9/H7EYhh
-        f2ppDVmL+niXUZ38Qb4Mv2bwBtwzff+tREVaiWuSskNvdlJFLydsN+wntAHr2uMx
-        CEBiCaOMpLskkzvD2YTkZSLYvgfbxyeWJ3o27d6W1sshAIz8Idsffyz4BWsQ8/2C
-        lUMOgzzuARcpQIiuuAEqBxJO9brT57RpMAB8Vq9kifo9bCDyAuHuYgwpIBT/eqVo
-        r1jLRiUkPiJFt/0BsFYWfvDVslc7Jtga2lTwNH0tXT0Yb1FdM8yTWCZLorTzJcr8
-        ktRdaijrYlJ2PGkYHPJIqd/BPYVf//1vBevyGWgN0NA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=x1zUlv
-        l7MAJX2jsFZNJsQT88znYtzZshjbMQGDPEvW8=; b=GerGs17G201BPLHWm6MOeT
-        4GcP2/BC5us9tS2mSuKr3cdU8B8kgRsnsbaB1cMeHq8SSzr1zytK4q0XnJYpAhTQ
-        mudhsCSJOo4vRcRZtQ7Y9XPxjw8OgYxRrDOPWSl8P6JcJkNpDoUNh3VYBJLmfODJ
-        RKbVIOXP1GkGhmPl+XQevieb4/OQu8irjb7a99FrbAf/PVPiaTLWRFbiiHZMHVQ9
-        QCwYPMUVHEUDqGbK2bu7xZOaqXm1+7L2KuJxWTG3MA0nj+ZF8fH7on00VPP9W4p2
-        TPg7EdfWGHgxbQgICfGwmGcxnQ7IWhhExVkhaohvopEyKVdilXGhD2Fi7bFGADwg
-        ==
-X-ME-Sender: <xms:02uNX_nH-QK53_ut5SwuLSJ8uyxQQRWsa58TWdP2DezddK7mnDkH-A>
-    <xme:02uNXy33hT2IZsFEjMWDG7rtwhwRd9SMG-f4F3ylWxbeB_CVTqedEd1z420YlVoB2
-    CW8slPVSg0bZGVfqmw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrjedugdeftdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
-    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:02uNX1oE-WjvRlTI8-npkSXZIT4Y-6yfnf6DE3jtTP3E8wUwH_hJMA>
-    <xmx:02uNX3kiy78UMigI5tTTug8JnhVJ5dDSQdDrX7wNwheRD07Fdmg7kA>
-    <xmx:02uNX90nRhxQd0Vqyij2Hez9fgZmf95wBx7FtBvPveuiHx-UN4MkyA>
-    <xmx:1GuNX2xrtX_QRvRhEdNjrLoymOnF0ZR3LDlWjsBjpSIutIfh3X-ixQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 8787A328005A;
-        Mon, 19 Oct 2020 06:34:59 -0400 (EDT)
-Date:   Mon, 19 Oct 2020 12:34:57 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: allwinner: beelink-gs1: Update LED power
- node
-Message-ID: <20201019103457.imvvjktozc2jybze@gilmour.lan>
-References: <20201011212238.174792-1-peron.clem@gmail.com>
- <20201012112218.juke4ll4dnwrmwzw@gilmour.lan>
- <CAJiuCceNOgZVNquFx7Fytxi-e0hvA_==V2Oudq+fYWSRKWD5sA@mail.gmail.com>
+        id S1727334AbgJSKfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 06:35:43 -0400
+Received: from foss.arm.com ([217.140.110.172]:54764 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727272AbgJSKfm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 06:35:42 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BFEE430E;
+        Mon, 19 Oct 2020 03:35:40 -0700 (PDT)
+Received: from [10.57.15.200] (unknown [10.57.15.200])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A2E623F66E;
+        Mon, 19 Oct 2020 03:35:37 -0700 (PDT)
+Subject: Re: [PATCH v2 0/3] Clarify abstract scale usage for power values in
+ Energy Model, EAS and IPA
+To:     Quentin Perret <qperret@google.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        "Nayak, Rajendra" <rnayak@codeaurora.org>
+References: <f660731e-132b-2514-f526-d7123ed3522c@arm.com>
+ <d04019bd-9e85-5f3e-2a1b-66780b8df3dc@linaro.org>
+ <3e3dd42c-48ac-7267-45c5-ca88205611bd@arm.com>
+ <00ceec64-3273-bb4a-6f38-22de8d877ab5@linaro.org>
+ <CAJZ5v0hV8fwRnADdjiiF=zapO3AE6=_W_PeOQ_WhUirCcFkgdA@mail.gmail.com>
+ <e321191c-61d2-a15d-47c2-653b277984ca@linaro.org>
+ <20201016121844.GA2420691@google.com>
+ <b3c6d7a5-0564-6e84-77ff-9afe10d7ee27@linaro.org>
+ <20201016130905.GA2426638@google.com>
+ <deffb2b4-34cb-3f46-af89-cc216d1cf5c5@arm.com>
+ <20201016160218.GC2426638@google.com>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <d8ea69a4-515d-b06c-368f-47bb212e071f@arm.com>
+Date:   Mon, 19 Oct 2020 11:35:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="a7gtrmvmv7q5j7sp"
-Content-Disposition: inline
-In-Reply-To: <CAJiuCceNOgZVNquFx7Fytxi-e0hvA_==V2Oudq+fYWSRKWD5sA@mail.gmail.com>
+In-Reply-To: <20201016160218.GC2426638@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---a7gtrmvmv7q5j7sp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, Oct 18, 2020 at 07:25:10PM +0200, Cl=E9ment P=E9ron wrote:
-> HI Maxime,
->=20
-> On Mon, 12 Oct 2020 at 13:22, Maxime Ripard <maxime@cerno.tech> wrote:
-> >
-> > Hi!
-> >
-> > On Sun, Oct 11, 2020 at 11:22:37PM +0200, Cl=E9ment P=E9ron wrote:
-> > > Beelink GS1 LED trigger a warning when running dtbs_check.
-> > >
-> > > Update the node with a valid pattern property.
-> > >
-> > > Also add the function and the color of the LED and drop the
-> > > label which is deprecated.
-> > >
-> > > Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 6 ++++--
-> > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts =
-b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > index 3f7ceeb1a767..a364cb4e5b3f 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > > @@ -7,6 +7,7 @@
-> > >  #include "sun50i-h6-cpu-opp.dtsi"
-> > >
-> > >  #include <dt-bindings/gpio/gpio.h>
-> > > +#include <dt-bindings/leds/common.h>
-> > >
-> > >  / {
-> > >       model =3D "Beelink GS1";
-> > > @@ -43,8 +44,9 @@ ext_osc32k: ext_osc32k_clk {
-> > >       leds {
-> > >               compatible =3D "gpio-leds";
-> > >
-> > > -             power {
-> > > -                     label =3D "beelink:white:power";
-> > > +             led-0 {
-> > > +                     function =3D LED_FUNCTION_POWER;
-> > > +                     color =3D <LED_COLOR_ID_WHITE>;
-> > >                       gpios =3D <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4=
- */
-> > >                       default-state =3D "on";
-> > >               };
-> >
-> > Doesn't that also change the sysfs file that LED is exposed to the user=
-space with?
->=20
-> Indeed the previous led sysfs:
-> /sys/class/leds/beelink:white:power/
-> is now
-> /sys/class/leds/white:power/
->=20
-> Do you want me to keep the label property to avoid this sysfs change ?
+On 10/16/20 5:02 PM, Quentin Perret wrote:
+> On Friday 16 Oct 2020 at 15:42:57 (+0100), Lukasz Luba wrote:
+>> Do you mean a new entry in DT which will be always below
+>> 'dynamic-power-coefficient' and/or 'sustainable-power' saying the unit
+>> of above value?
+> 
+> Yes, something like that.
+> 
+>> There was discussion with Rob (and Doug) about this. I got the
+>> impression he was against any new DT stuff [1].
+>> We don't have to, I think we all agree that DT will only support mW.
+> 
+> Right, I agree this is a 'nice-to-have'.
+> 
+>> I have agreed to this idea having a 'flag' inside EM [2], which
+>> indicates the mW or bogoWatts. It could be set via API:
+>> em_dev_register_perf_domain() and this new last argument.
+>>
+>> I can write that patch. There is only two usage (3rd is on LKML) of
+>> that function. The DT way, which is via:
+>> dev_pm_opp_of_register_em() will always set 'true';
+>> Driver direct calls of em_dev_register_perf_domain(), will have to
+>> set appropriate value ('true' or 'false'). The EM struct em_perf_domain
+>> will have the new bool field set based on that.
+>> Is it make sense?
+> 
+> I had something more complicated in mind, where units are arbitrary
+> ('milliwats', 'scmi-bogowatts', ...) as that would help if units can be
+> specified in the DT too, but if we don't care about that then yes I
+> suppose a boolean flag should do.
 
-I don't know, the documentation seems to indicate that we should use one
-or the other, but I'm not sure if both makes sense or not. I guess we
-should ask Pavel or Rob?
+Thank you Quentin for help in sorting this out.
+I'll send the v3.
 
-Maxime
+Regards,
+Lukasz
 
---a7gtrmvmv7q5j7sp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX41r0QAKCRDj7w1vZxhR
-xQvlAP9f09QWfBLwHoAIwRXyOLDPy/b3vrppYyDpbh1S7WF6MgD+Nsbfx8GF+Wpm
-YmUg6uWKKMDJkUzuXaB3SBt0NwRvBAY=
-=yTde
------END PGP SIGNATURE-----
-
---a7gtrmvmv7q5j7sp--
+> 
+> Thanks!
+> Quentin
+> 
