@@ -2,231 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F22B2924F2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 11:48:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C54029252B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 12:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728937AbgJSJsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 05:48:23 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:36296 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728733AbgJSJsR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 05:48:17 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201019094750euoutp01e2e1b73e5f3af3160f87c20158eff7e8~-W794YMPm2362123621euoutp01x
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 09:47:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201019094750euoutp01e2e1b73e5f3af3160f87c20158eff7e8~-W794YMPm2362123621euoutp01x
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1603100870;
-        bh=1yaYI18k7RsdM2gsx6IUAQoC1QhJiiWneSZblenzeJM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PoE5kynMYkiYSLzNOPEUGMNs0LWmW6CB/30d4w8VF+TwW8ytKMg2GuFPncsh8Ywza
-         Yj6ydMjhd2SB9tGH162qMUAL4rrXYwedTpB9oRvxvF5nFVCDyN0oHVmMfWRYEsEULT
-         RAWb4kS0ZnOR/j/A+dmOKcbmJtO4u51ESRA+eFeE=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201019094741eucas1p1d6311fac3637c25544e2a49c66c70675~-W72JE4Cz1124911249eucas1p1J;
-        Mon, 19 Oct 2020 09:47:41 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 4A.F2.05997.DB06D8F5; Mon, 19
-        Oct 2020 10:47:41 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201019094741eucas1p1b4934cd5024a18804fcee921294acee0~-W71jdajx1115511155eucas1p1p;
-        Mon, 19 Oct 2020 09:47:41 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201019094741eusmtrp2ff1e4745786cb611fe9b0a71d8e84f9a~-W71ioRl-2596225962eusmtrp26;
-        Mon, 19 Oct 2020 09:47:41 +0000 (GMT)
-X-AuditID: cbfec7f4-65dff7000000176d-4e-5f8d60bdca5f
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id B1.DB.06017.DB06D8F5; Mon, 19
-        Oct 2020 10:47:41 +0100 (BST)
-Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20201019094740eusmtip152f8f58d57adbbdf89840488b764eb51~-W709jZWv1445014450eusmtip1U;
-        Mon, 19 Oct 2020 09:47:40 +0000 (GMT)
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-To:     linux-samsung-soc@vger.kernel.org, linux-pci@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 6/6] arm64: dts: exynos: add the WiFi/PCIe support to TM2(e)
- boards
-Date:   Mon, 19 Oct 2020 11:47:15 +0200
-Message-Id: <20201019094715.15343-7-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201019094715.15343-1-m.szyprowski@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0WSbUhTURzGO7t3u3cXZ9dpeViRMbQoyLcsLqQyRWJEHyToQ4Hp0psz3Wab
-        s+xDDM2Xpmn2RR2hNtN0atoUy5XlZDhruUmSjXJRkZKVqWlivlS7XrNvv//zf57zHA4HR4RG
-        rgjPUObQaqUsS8wj0J7BX64DfSnXk8MH56KoO/lyqs7m5FLu5SIu1bxQg1EjE2U8yuXqxKhR
-        yy0eNVxr51HVricc6tvKZ4xqt3kwqrDPhlG940OIRCBtq20D0l6DB5PWm7VSs+kaT1rebQJS
-        u/sBRzpv3pWInSai0+isjFxaHRabQsgHuxbR7KWgS5MtXzk6UCnSAz4OySjY396IMiwkmwEs
-        HPHTA8LLCwCuPS9F2WEewCrbHOdfomn26sbiLoAFy6vczYhnyMpjXDwyAuqn9V7G8QBSApd+
-        UowHIY0I1FXYAOPxJ0/C1oYaLsMoGQLLPeb1BgEZA1uGPmJsWxBs7exHGOaTsVB/uwlhDoJk
-        EwYfzX5CWVMCLLbpAMv+8Iu9eyO8E/7preOwgQIAPzjbMXYoA3A0v3ojcQSOO5fXr4qQ+2CH
-        JYyV46B7qhZlZEj6Qve0HyMjXrzZU4WwsgCWFAlZ9x5osN/brLWOvERYlsL7HYsI+0CVAJb2
-        z3BvgCDD/7J6AEwgkNZqFOm0JlJJXwzVyBQarTI9NFWlMAPvz3H8ti88BJbVswOAxIHYR/Be
-        VZYs5MpyNXmKAQBxRBwgiB92nBEK0mR5l2m1KlmtzaI1A2AHjooDBQeNU0lCMl2WQ2fSdDat
-        /rfl4HyRDpQ7HRdUM+CEIYMoeNfaKelG88nHFGFwCwmr4Zlxi4+u+xR/t49pMtw3JtHNn8tU
-        /sgdMCccU56PdlyZeyrpshjfFhvHDxEr8Q1d2rbg7y758Sxi696kmfa1YGe59cVY0GGLOxWt
-        efXm3FFH3LioornFoWwci3w9sb1kW0iCGNXIZRH7EbVG9hejNuGuNQMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphkeLIzCtJLcpLzFFi42I5/e/4Xd29Cb3xBre/CFosacqwmH/kHKvF
-        jV9trBYrvsxkt7jwtIfN4vz5DewWl3fNYbM4O+84m8WM8/uYLN78fsFusfbIXXaL1r1H2C12
-        3jnB7MDrsWbeGkaPnbPusnss2FTqsWlVJ5tH35ZVjB7Hb2xn8vi8SS6APUrPpii/tCRVISO/
-        uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/OJiU1J7MstUjfLkEv49jmbywFP+Qrnq18zdTA
-        OFGqi5GTQ0LARGLZhxaWLkYuDiGBpYwS7e8+sEMkZCROTmtghbCFJf5c62KDKPrEKLF373o2
-        kASbgKFE19suMFtEwEni/eSLzCBFzAJrmCUa27qZQBLCAsESz35+AZvKIqAq0Xd3E1icV8BW
-        YuWJR1Db5CVWbzjADGJzCthJdC1cBmYLAdV0rZzGMoGRbwEjwypGkdTS4tz03GIjveLE3OLS
-        vHS95PzcTYzAGNh27OeWHYxd74IPMQpwMCrx8D7I74kXYk0sK67MPcQowcGsJMLrdPZ0nBBv
-        SmJlVWpRfnxRaU5q8SFGU6CjJjJLiSbnA+MzryTe0NTQ3MLS0NzY3NjMQkmct0PgYIyQQHpi
-        SWp2ampBahFMHxMHp1QDY6Lhj30l1obKM7Yazlr5Sag65qdtYm6NH1+V2/WemnUnL1/e2pGX
-        ztwZ//ux69lWu67L2o+96mb83H6bKUlxUVr7Cx+OC6crdjFcPaS60iFslvJiHvOCns5Zunf3
-        675bKXWxV/r8lN/xt+/cDTS1fpi4lNci8k1nQNPxaoFZ9bP7sn+nTnz/X4mlOCPRUIu5qDgR
-        AJeb1f2XAgAA
-X-CMS-MailID: 20201019094741eucas1p1b4934cd5024a18804fcee921294acee0
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201019094741eucas1p1b4934cd5024a18804fcee921294acee0
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201019094741eucas1p1b4934cd5024a18804fcee921294acee0
-References: <20201019094715.15343-1-m.szyprowski@samsung.com>
-        <CGME20201019094741eucas1p1b4934cd5024a18804fcee921294acee0@eucas1p1.samsung.com>
+        id S1728768AbgJSKIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 06:08:44 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:60801 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727192AbgJSKIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 06:08:44 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 0571A5C013A;
+        Mon, 19 Oct 2020 06:08:43 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 19 Oct 2020 06:08:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=34lTEUkxXEEYOk9ylxSpTaMMgwC
+        XAUNQHtvP3Fum2F4=; b=VTKh39gHTt5XWAP90IKuZVnwpbrTDT1UIoMTQtyqzxm
+        41j5dCMov0Lp9A8Cy5WOqC5G0DwHPAGAAqxdvfJ6Da7segfCZvoc2hiC70W9KcRl
+        KuhpyHrwSqcFytyKSvwF/KcBuVNOWH2CRVSY0C5qALlsYV3ZPhfP8z/2mPeuyCuu
+        g8HODwX9e4slObjPpKMXU5MZGT74hEShfldvkkHg+JU85jUg7xUvuwUtmEyPb97l
+        3HDKFWJrbc0XIsMHEal629ZuozEbFdyOE4CQSCovn3+9hnHnUT6YReDQmtOGcC8a
+        jV4E8ZGd+MqB68QNwASCUUAya1VRXgTY/IT307vrzSw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=34lTEU
+        kxXEEYOk9ylxSpTaMMgwCXAUNQHtvP3Fum2F4=; b=GThO5QCNeq/XNEnpHUQ7Sr
+        YsyeWqfjkQFN2KRmGVr7uDUHPm2aoFbQhJVopcJVmPQ7RPXDQ+qwnnxu4D1Nof/3
+        3IPjrulq5hzAN70peDvUkfIsm/iCzZIQPeg0cuLBmi6M9/+pMvyt+dZAW/sXIpTY
+        0Z9Eyg6utbFc6lmJrWryITh3YoZh01bw/FfFFQ0HOrSXuz15/Svl2v3uK6U1wjos
+        WhXuGFwa6OnCx9qk9TpDVgdRDEfAkMIPysqqjOb7LszQx+HCfQyWxLdlYv3GE7Ck
+        Bv5y00mRyXmqyuGvZ1AMtgE8ZaiVqAVh26VAE5cI5k0mWf+dDrAiA1XS06RWXuVg
+        ==
+X-ME-Sender: <xms:qmWNXw_9W9BvqnWLWJK8x0D3CeopReW7hjMIfvPGlVbGnFlPrX9bHA>
+    <xme:qmWNX4tVUPDYfjldAVPiUq0H8fsP6vUkC--N76R3D4zxTjqv5oyDkscoxt9NYUQYp
+    JfnMP9zQ4vusZX6w04>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrjedugddvhecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpedvfefftedvuddvkeekteeiudefhfettdetleefieefhefhieduudekueettefh
+    tdenucffohhmrghinhepohhrrghnghgvphhirdhorhhgpdgsohhothhlihhnrdgtohhmne
+    cukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghr
+    rghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:qmWNX2Cmk9yHW0AvEi9NS0EhpRvBqjmnFIrc22hSlXsujiQGiG-tiw>
+    <xmx:qmWNXweDu3eRZnRfU52WltTO9SiK3EJrppupqa28GmA7sXXpICLr1w>
+    <xmx:qmWNX1PYRovQ_U0-Mxs4h5yJywx13TPADcpOQoGpm9xY3h8Sjwu-1A>
+    <xmx:qmWNX2rbrVkyk9zHRZnR-o9Tw0OOrX34txKsI8oKEgdSGc2zVAY4Sg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id E6173328005D;
+        Mon, 19 Oct 2020 06:08:41 -0400 (EDT)
+Date:   Mon, 19 Oct 2020 12:08:40 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Michal =?utf-8?B?U3VjaMOhbmVr?= <msuchanek@suse.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i: h2+: Enable optional SPI flash on
+ Orange Pi Zero board
+Message-ID: <20201019100840.vntpu7d2eiun3zek@gilmour.lan>
+References: <20200929083025.2089-1-msuchanek@suse.de>
+ <20201008151315.v3geykbs6musl4wq@gilmour.lan>
+ <20201008160219.GM29778@kitsune.suse.cz>
+ <20201008171454.qixrcjmhzko766su@gilmour.lan>
+ <20201008174044.GN29778@kitsune.suse.cz>
+ <20201012153507.ft77jgaprpendpne@gilmour.lan>
+ <20201012170325.GS29778@kitsune.suse.cz>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pdudt7bfmn67gt2h"
+Content-Disposition: inline
+In-Reply-To: <20201012170325.GS29778@kitsune.suse.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jaehoon Chung <jh80.chung@samsung.com>
 
-Add the nodes relevant to PCIe PHY and PCIe support. PCIe is used for the
-WiFi interface (Broadcom Limited BCM4358 802.11ac Wireless LAN SoC).
+--pdudt7bfmn67gt2h
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jaehoon Chung <jh80.chung@samsung.com>
-[mszyprow: rewrote commit message, reworked board/generic dts/dtsi split]
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
- .../boot/dts/exynos/exynos5433-pinctrl.dtsi   |  2 +-
- .../dts/exynos/exynos5433-tm2-common.dtsi     | 24 ++++++++++++-
- arch/arm64/boot/dts/exynos/exynos5433.dtsi    | 36 +++++++++++++++++++
- 3 files changed, 60 insertions(+), 2 deletions(-)
+On Mon, Oct 12, 2020 at 07:03:25PM +0200, Michal Such=E1nek wrote:
+> > > >=20
+> > > > > Also the boards that do not have the flsh are either broken or
+> > > > > obsolete.
+> > > >=20
+> > > > Making general statements without arguments doesn't really make it =
+true
+> > > > though. Plenty of boards to have flash and are neither broken nor
+> > > > obsolete.
+> > >
+> > > Cannot parse this.
+> >=20
+> > "Plenty of boards do not have flash and are neither broken nor obsolete"
+> The product description of Orange Pi Zero clearly states there is a
+> flash memory: http://www.orangepi.org/orangepizero/
+>=20
+> When you order an Orange Pi Zero it comes with a flash memory. That is
+> not what the device tree describes. The device tree is supposed to
+> descrbe the hardware. If it does not it is broken.
+>=20
+> If you have a board without a flash memory I do not know what it is but
+> it is clearly not an Orange Pi Zero because it comes with one.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi
-index 9df7c65593a1..32a6518517e5 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi
-@@ -329,7 +329,7 @@
- 	};
- 
- 	pcie_bus: pcie_bus {
--		samsung,pins = "gpr3-4", "gpr3-5", "gpr3-6", "gpr3-7";
-+		samsung,pins = "gpr3-4", "gpr3-5", "gpr3-6";
- 		samsung,pin-function = <EXYNOS_PIN_FUNC_3>;
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
- 	};
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-index 829fea23d4ab..ef45ef86c48d 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-@@ -969,6 +969,25 @@
- 	bus-width = <4>;
- };
- 
-+&pcie {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_bus &pcie_wlanen>;
-+	vdd10-supply = <&ldo6_reg>;
-+	vdd18-supply = <&ldo7_reg>;
-+	assigned-clocks = <&cmu_fsys CLK_MOUT_SCLK_PCIE_100_USER>,
-+			<&cmu_top CLK_MOUT_SCLK_PCIE_100>;
-+	assigned-clock-parents = <&cmu_top CLK_SCLK_PCIE_100_FSYS>,
-+			<&cmu_top CLK_MOUT_BUS_PLL_USER>;
-+	assigned-clock-rates = <0>, <100000000>;
-+	interrupt-map-mask = <0 0 0 0>;
-+	interrupt-map = <0 0 0 0 &gic GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
- &ppmu_d0_general {
- 	status = "okay";
- 	events {
-@@ -1085,8 +1104,11 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&initial_ese>;
- 
-+	pcie_wlanen: pcie-wlanen {
-+		PIN(INPUT, gpj2-0, UP, FAST_SR4);
-+	};
-+
- 	initial_ese: initial-state {
--		PIN(INPUT, gpj2-0, DOWN, FAST_SR1);
- 		PIN(INPUT, gpj2-1, DOWN, FAST_SR1);
- 		PIN(INPUT, gpj2-2, DOWN, FAST_SR1);
- 	};
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-index 8eb4576da8f3..be2d1753d1d1 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-@@ -1029,6 +1029,11 @@
- 			reg = <0x145f0000 0x1038>;
- 		};
- 
-+		syscon_fsys: syscon@156f0000 {
-+			compatible = "syscon";
-+			reg = <0x156f0000 0x1044>;
-+		};
-+
- 		gsc_0: video-scaler@13c00000 {
- 			compatible = "samsung,exynos5433-gsc";
- 			reg = <0x13c00000 0x1000>;
-@@ -1830,6 +1835,37 @@
- 				status = "disabled";
- 			};
- 		};
-+
-+		pcie_phy: pcie-phy@15680000 {
-+			compatible = "samsung,exynos5433-pcie-phy";
-+			reg = <0x15680000 0x1000>;
-+			samsung,pmu-syscon = <&pmu_system_controller>;
-+			samsung,fsys-sysreg = <&syscon_fsys>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		pcie: pcie@15700000 {
-+			compatible = "samsung,exynos5433-pcie";
-+			reg = <0x156b0000 0x1000>, <0x15700000 0x1000>,
-+			      <0x0c000000 0x1000>;
-+			reg-names = "elbi", "dbi", "config";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			device_type = "pci";
-+			interrupts = <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cmu_fsys CLK_PCIE>,
-+			         <&cmu_fsys CLK_PCLK_PCIE_PHY>;
-+			clock-names = "pcie", "pcie_bus";
-+			num-lanes = <1>;
-+			bus-range = <0x00 0xff>;
-+			phys = <&pcie_phy>;
-+			phy-names = "pcie-phy";
-+			ranges = <0x81000000 0 0	  0x0c001000 0 0x00010000>,
-+				 <0x82000000 0 0x0c011000 0x0c011000 0 0x03feefff>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	timer: timer {
--- 
-2.17.1
+If you're buying it today, yes. If you take a random Orange Pi Zero that
+has been sold at any point in time, you cannot make that statement.
 
+> > > >=20
+> > > > > So most of the time enabling the flash chip is the right thing.
+> > > > >=20
+> > > > > Or do we need two DTBs like sun8i-h2-plus-orangepi-zero.dts and
+> > > > > sun8i-h2-plus-orangepi-zero-no-spi-nor.dts
+> > > >=20
+> > > > No, you need sun8i-h2-plus-orangepi-zero plus an overlay for the
+> > > > SPI-NOR.
+> > >
+> > > The flash is part of the board.
+> >=20
+> > Not always though.
+> No, it always comes with one. You must be speaking of a different board
+> then.
+> >=20
+> > > There is no need for an overlay.
+> >=20
+> > Overlays are here to deal with the "not always though" situation...
+>
+> There are no overlays in the kernel. Please show me tho code in the
+> kernel for handling overlays.
+
+You're the one that mentioned the kernel here, but here you are:
+https://elixir.bootlin.com/linux/v5.9.1/source/include/linux/of.h#L1455
+
+And a driver using it:
+https://elixir.bootlin.com/linux/v5.9.1/source/drivers/gpu/drm/rcar-du/rcar=
+_du_of.c#L44
+
+> > > And overlays don't exist.
+> >=20
+> > If you want to believe that, please go ahead.
+> >=20
+> > But there's support for it in libfdt, and you can either apply them
+> > directly through the U-Boot command line, or bundle them in a FIT image.
+>
+> And as you state the user ususally does not know which version of the Pi
+> they have. How are they supposed to know that they should apply an
+> overlay through u-boot commandline (if they even get to see one)
+
+Documentation?
+
+> bundle them in a FIT image (if they are even using a FIT image).
+
+That would be the distro's job, not the user's.
+
+> I am doing neither. I boot a standard distribution kernel from EFI
+> grub.
+>=20
+> I understand that it would be nice to support two almost identical
+> boards with a single device tree. However, if an error about missing
+> flash memory is not acceptable, and the kernel does not support
+> enabling the flash memory dynamically we need two device trees then.
+
+You keep moving the goalposts, but U-boot is perfectly able to apply an
+overlay automatically at boot without the user's intervention. We're
+already making it select various DTs for the pine64 and pine64+ to have
+a single image for both, or for the pinephone variants.
+
+Maxime
+
+--pdudt7bfmn67gt2h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX41lqAAKCRDj7w1vZxhR
+xejPAP0XzhVecdEKFAwu1TUIo43F0qYib6ce1Ozlu2eyGCuNpAEA+3RTWPJzgs3f
+3nRfBMDryEuhjb4QzXqcDzI60l+GoQU=
+=AOh6
+-----END PGP SIGNATURE-----
+
+--pdudt7bfmn67gt2h--
