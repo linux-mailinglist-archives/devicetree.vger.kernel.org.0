@@ -2,165 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DDA629283E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 15:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1731A29284B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 15:38:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727811AbgJSNfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 09:35:16 -0400
-Received: from foss.arm.com ([217.140.110.172]:57736 "EHLO foss.arm.com"
+        id S1727893AbgJSNiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 09:38:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53872 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727297AbgJSNfQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 09:35:16 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 212E6D6E;
-        Mon, 19 Oct 2020 06:35:15 -0700 (PDT)
-Received: from [10.57.14.99] (unknown [10.57.14.99])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ECC563F719;
-        Mon, 19 Oct 2020 06:35:12 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        Ionela Voinescu <ionela.voinescu@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        chris.redpath@arm.com, morten.rasmussen@arm.com,
-        linux-arm-kernel@lists.infradead.org
-References: <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
- <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7> <20201008150317.GB20268@arm.com>
- <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
- <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7> <20201012154915.GD16519@bogus>
- <20201012165219.GA3573@arm.com>
- <17819d4d-9e7e-9a38-4227-d0d10a0749f1@arm.com>
- <20201014042531.r7iykzygkvmpsqck@vireshk-i7>
- <503af305-77a4-964a-ed17-8df8b4e3a546@arm.com>
- <20201019094633.m3yvxurfm2xwsb6a@vireshk-i7>
-From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
-Message-ID: <e3b3a583-5e0f-f512-85e6-81c55a0e6db5@arm.com>
-Date:   Mon, 19 Oct 2020 14:36:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1728275AbgJSNiy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 09:38:54 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8CDF42223C;
+        Mon, 19 Oct 2020 13:38:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603114733;
+        bh=QLl//rSYnpjI4XjsLivmaRA2q702aMuao3NMwW0AZCU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZJ0UeatYQoCfuwjODgSFqcdGke2T/VzdRlInpmZ8BW5LGWfYNWT6Us7AD7LSvghAw
+         ovGl1TIHvNQ1Sik3JLTWfyDAndg1U+svVh3VWmUaKrDtjgiTDSyC7LZJHgri7Y4Lum
+         sBVeb1uXisrOJIxuAsOY6PKTBBO7RZkwfiv/NJgs=
+Received: by mail-ot1-f44.google.com with SMTP id e20so10432464otj.11;
+        Mon, 19 Oct 2020 06:38:53 -0700 (PDT)
+X-Gm-Message-State: AOAM530TEX2PGRION19xoUwOSsLg6yhtDxFyg4kuwTBINxxZoPXRgCbB
+        zw+jg7fyyOYnANSDZ8amaF+RjCOhH5R/jHvdug==
+X-Google-Smtp-Source: ABdhPJxPScoNZrlBxS9IlCTidVRXbPv6VWkKWABPQ2lSmgTF04BwvvKmDYpcVnycQB3EFkkwQ2mstx5y1VG7XAji/kU=
+X-Received: by 2002:a9d:7993:: with SMTP id h19mr10559otm.129.1603114732682;
+ Mon, 19 Oct 2020 06:38:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201019094633.m3yvxurfm2xwsb6a@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <CGME20201019094739eucas1p18cd4c7e5a0197393d2e7c5c6fcc2777d@eucas1p1.samsung.com>
+ <20201019094715.15343-1-m.szyprowski@samsung.com> <20201019094715.15343-3-m.szyprowski@samsung.com>
+In-Reply-To: <20201019094715.15343-3-m.szyprowski@samsung.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 19 Oct 2020 08:38:40 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+X3w=1-_SpXPTdO_UGg5er9vU-XETT-NbS96LSfNLUVQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+X3w=1-_SpXPTdO_UGg5er9vU-XETT-NbS96LSfNLUVQ@mail.gmail.com>
+Subject: Re: [PATCH 2/6] Documetation: dt-bindings: add the
+ samsung,exynos-pcie binding
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+On Mon, Oct 19, 2020 at 4:47 AM Marek Szyprowski
+<m.szyprowski@samsung.com> wrote:
+>
+> From: Jaehoon Chung <jh80.chung@samsung.com>
+>
+> Add dt-bindings for the Samsung Exynos PCIe controller (Exynos5433
+> variant).
+>
+> Signed-off-by: Jaehoon Chung <jh80.chung@samsung.com>
+> [mszyprow: updated the binding to latest driver changes, rewrote it in yaml,
+>            rewrote commit message]
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> ---
+>  .../bindings/pci/samsung,exynos-pcie.yaml     | 106 ++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+> new file mode 100644
+> index 000000000000..48fb569c238c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/samsung,exynos-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung SoC series PCIe Host Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Jaehoon Chung <jh80.chung@samsung.com>
+> +
+> +description: |+
+> +  Exynos5433 SoC PCIe host controller is based on the Synopsys DesignWare
+> +  PCIe IP and thus inherits all the common properties defined in
+> +  designware-pcie.txt.
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynos5433-pcie
+> +
+> +  reg:
+> +    items:
+> +      - description: External Local Bus interface (ELBI) registers.
+> +      - description: Data Bus Interface (DBI) registers.
+> +      - description: PCIe configuration space region.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: elbi
+> +      - const: bdi
 
+dbi
 
-On 10/19/20 10:46 AM, Viresh Kumar wrote:
-> On 19-10-20, 09:50, Nicola Mazzucato wrote:
->> Hi Viresh,
->>
->> thank you for your suggestion on using 'opp-shared'.
->> I think it could work for most of the cases we explained earlier.
->>
->> Summarising, there are two parts of this entire proposal:
->> 1) where/how to get the information: now we are focusing on taking advantage of
->> 'opp-shared' within an empty opp table
->> 2) and how/where this information will be consumed
->>
->> Further details below:
->>
->> 1) a CPUFreq driver that takes the OPPs from firmware, can call
->> dev_pm_opp_of_get_sharing_cpus like you suggested. When doing so, a provided
->> cpumaksk will be populated with the corresponding cpus that share the same
->> (empty) table opp in DT.
->> All good so far.
-> 
-> Great.
-> 
->> The current opp core is not expecting an empty table and therefore some errors
->> are thrown when this happens.
->> Since we are now allowing this corner-case, I am presenting below where I think
->> some minor corrections may be needed:
->>
->> --- a/drivers/opp/of.c
->> +++ b/drivers/opp/of.c
->> @@ static void _opp_table_alloc_required_tables(struct opp_table *opp_table,
->>         struct device_node *required_np, *np;
->>         int count, i;
->>
->>         /* Traversing the first OPP node is all we need */
->>         np = of_get_next_available_child(opp_np, NULL);
->>         if (!np) {
->> -               dev_err(dev, "Empty OPP table\n");
->> +               dev_warn(dev, "Empty OPP table\n");
->> +
->> +               /*
->> +                * With empty table we remove shared_opp. This is to leave the
->> +                * responsibility to decide which opp are shared to the opp users
->> +                */
->> +               opp_table->shared_opp = OPP_TABLE_ACCESS_EXCLUSIVE;
->> +
->>                 return;
->>         }
->>
->> @@ int dev_pm_opp_of_find_icc_paths(struct device *dev,
->>         int ret, i, count, num_paths;
->>         struct icc_path **paths;
->>
->>         ret = _bandwidth_supported(dev, opp_table);
->> -       if (ret <= 0)
->> +       if (ret == -EINVAL)
->> +               return 0; /* Empty OPP table is a valid corner-case, let's not
->> fail */
->> +       else if (ret <= 0)
->>                 return ret;
->>
->> The above are not 'strictly' necessary to achieve the intended goal, but they
->> make clearer that an empty table is now allowed and not an error anymore.
->> What it is your point of view on this?
-> 
-> Why is this stuff getting called in your case ? We shouldn't be trying
-> to create an OPP table here and it should still be an error in the
-> code if we are asked to parse an empty OPP table.
+> +      - const: config
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: PCIe bridge clock
+> +      - description: PCIe bus clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pcie
+> +      - const: pcie_bus
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  phy-names:
+> +    const: pcie-phy
 
-A driver that gets a set of opp-points from f/w needs to add them to each
-device. To do so, it will call dev_pm_opp_add(). If an opp_table struct for this
-device is not found, one will be created and the opp-point will be added to it.
-When allocation a new opp_table the opp will try to initialise it by parsing the
-values in DT. It will also try to find_icc_paths.
+Kind of a pointless name.
 
-Everything happens silently if we don't have a table in DT.
+> +
+> +  vdd10-supply:
+> +    description:
+> +      Phandle to a regulator that provides 1.0V power to the PCIe block.
+> +
+> +  vdd18-supply:
+> +    description:
+> +      Phandle to a regulator that provides 1.8V power to the PCIe block.
+> +
+> +required:
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - phys
+> +  - phy-names
+> +  - vdd10-supply
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/exynos5433.h>
+> +
+> +    pcie: pcie@15700000 {
+> +        compatible = "samsung,exynos5433-pcie";
+> +        reg = <0x156b0000 0x1000>, <0x15700000 0x1000>, <0x0c000000 0x1000>;
+> +        reg-names = "elbi", "dbi", "config";
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +        #interrupt-cells = <1>;
+> +        device_type = "pci";
+> +        interrupts = <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cmu_fsys CLK_PCIE>, <&cmu_fsys CLK_PCLK_PCIE_PHY>;
+> +        clock-names = "pcie", "pcie_bus";
+> +        phys = <&pcie_phy>;
+> +        phy-names = "pcie-phy";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pcie_bus &pcie_wlanen>;
+> +        num-lanes = <1>;
+> +        bus-range = <0x00 0xff>;
+> +        ranges = <0x81000000 0 0         0x0c001000 0 0x00010000>,
+> +                 <0x82000000 0 0x0c011000 0x0c011000 0 0x03feefff>;
+> +        vdd10-supply = <&ldo6_reg>;
+> +        vdd18-supply = <&ldo7_reg>;
+> +        iterrupt-map-mask = <0 0 0 0>;
 
-> 
->> In addition, I think it would also be appropriate to update the documentation
->> (Documentation/devicetree/bindings/opp/opp.txt) to reflect this new case
->> (required properties etc).
->> Any different thoughts?
-> 
-> Yes, this needs a small update in the required-opps section.
+typo
 
-Cool, I'll sketch something in the next version.
-
-> 
->> 2) Once the driver gets the 'performance dependencies' by
->> dev_pm_opp_of_get_sharing_cpus(), this information will have to be shared with
->> EAS, thermal, etc.. The natural way to do so would be to add a new cpumask like
->> I proposed in this RFC.
->> I see this as an improvement for the whole subsystem and a scalable choice since
->> we can unambiguously provide the correct information to whoever needs it, given
->> that we don't enforce "hw dependencies" for related_cpus.
->> The changes would be trivial (it's in the original RFC).
->> On the other hand, we can't unload this h/w detail into related_cpus IMO as we
->> are dealing with per-cpu systems in this context.
->> Hope it makes sense?
-> 
-> I will have another look at this stuff, honestly I haven't looked at
-> this in detail yet. But I do understand that we can't really use
-> related-cpu here without changing its earlier meaning.
-
-Sure. thanks
-> 
-
-Hope it helps
-
-Best regards
-Nicola
+> +        interrupt-map = <0 0 0 0 &gic GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> --
+> 2.17.1
+>
