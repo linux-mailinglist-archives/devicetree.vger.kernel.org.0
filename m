@@ -2,78 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D571292B3F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 18:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48BB9292B59
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 18:23:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730325AbgJSQNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 12:13:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47642 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730320AbgJSQNj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 12:13:39 -0400
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 40DD32225F;
-        Mon, 19 Oct 2020 16:13:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603124018;
-        bh=Xrci6+aiYQ+sMtZrSdB+hUvGFLT0OrXhk3iQny/zoqk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Iinhh9ErJ7aTDJIPbu/sJHpgnZ3In91sSV86R3N2aK5I7tkMFiqHmaZvLQEyQNPEa
-         gGjpQJsaEKVuEJcUZHHJJcs1SsRZBAJxea7kuMKz7GnZAnH9n4VR9HIJg+oTYZSabH
-         WrN62OYRn7ZFnz31xZR3wegYEZ0SiQaPEkdJsh3s=
-Received: by mail-ej1-f47.google.com with SMTP id qp15so14710589ejb.3;
-        Mon, 19 Oct 2020 09:13:38 -0700 (PDT)
-X-Gm-Message-State: AOAM533c88XcNAWo3s5S6wzWzdLtdigXowC28S3DNFD9fE8P5gWAoH58
-        FFmnDzcRvtuyyH15HU7g73ZW6uxOjFPDaddC2G0=
-X-Google-Smtp-Source: ABdhPJypXMaGS9Gg7VJ1UdDd/ekgmgHor/+gwcb4XtdBOSb0fwLU+G4oE9HlSVzQ8GFUd4BAzc9WCqE3v5c02F/qT80=
-X-Received: by 2002:a17:906:5247:: with SMTP id y7mr574082ejm.503.1603124016721;
- Mon, 19 Oct 2020 09:13:36 -0700 (PDT)
+        id S1730537AbgJSQXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 12:23:42 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:46598 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730525AbgJSQW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 12:22:57 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 060F18030865;
+        Mon, 19 Oct 2020 16:22:48 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 3fyZBKMOX3_k; Mon, 19 Oct 2020 19:22:47 +0300 (MSK)
+Date:   Mon, 19 Oct 2020 19:22:45 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 11/20] dt-bindings: usb: dwc3: Add synopsys,dwc3
+ compatible string
+Message-ID: <20201019162245.j5fsvv355wchuhza@mobilestation.baikal.int>
+References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
+ <20201014101402.18271-12-Sergey.Semin@baikalelectronics.ru>
+ <20201014201818.GA6926@kozik-lap>
+ <20201014213554.turskjyuntk35syj@mobilestation>
+ <20201016185340.GA1734346@bogus>
 MIME-Version: 1.0
-References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-2-daniel@0x0f.com>
- <CACRpkdZDyp83AiGkX9eFe2_w9eK1NXREFG896DZfPUaHboy+0g@mail.gmail.com>
-In-Reply-To: <CACRpkdZDyp83AiGkX9eFe2_w9eK1NXREFG896DZfPUaHboy+0g@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Mon, 19 Oct 2020 18:13:22 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPecUBTqbyiQQRdSPq_YuBAF+ut3RbM9AcW8nyciJyw8ig@mail.gmail.com>
-Message-ID: <CAJKOXPecUBTqbyiQQRdSPq_YuBAF+ut3RbM9AcW8nyciJyw8ig@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO controller
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201016185340.GA1734346@bogus>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Oct 2020 at 18:36, Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Sun, Oct 11, 2020 at 4:48 AM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> > Add a binding description for the MStar/SigmaStar GPIO controller
-> > found in the MSC313 and later ARMv7 SoCs.
-> >
-> > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
->
-> I think Krzysztof is working on some generic bindings that
-> will make it easier to write YAML GPIO controller bindings,
-> but I don't know the status of them. I would be happy to merge
-> them early for v5.11 though.
+On Fri, Oct 16, 2020 at 01:53:40PM -0500, Rob Herring wrote:
+> On Thu, Oct 15, 2020 at 12:35:54AM +0300, Serge Semin wrote:
+> > On Wed, Oct 14, 2020 at 10:18:18PM +0200, Krzysztof Kozlowski wrote:
+> > > On Wed, Oct 14, 2020 at 01:13:53PM +0300, Serge Semin wrote:
+> > > > The DWC USB3 driver and some DTS files like Exynos 5250, Keystone k2e, etc
+> > > > expects the DWC USB3 DT node to have the compatible string with the
+> > > > "synopsys" vendor prefix. Let's add the corresponding compatible string to
+> > > > the controller DT schema, but mark it as deprecated seeing the Synopsys,
+> > > > Inc. is presented with just "snps" vendor prefix.
+> > > 
+> > 
+> > > Instead of adding deprecated schema just correct the DTSes to use snps.
+> > > The "synopsys" is not even in vendor prefixes.
+> > 
+> > Yeah, it's not, but the driver and some dts'es use it this way. I am not sure
+> > that the solution suggested by you is much better than mine. So let's hear the
+> > Rob'es opinion out in this matter. @Rob, what do you think?
+> 
 
-Hi,
+> I think we should fix the dts files given there's only 5.
 
-The generic GPIO controller dtschema got dropped because Rob wants it
-to be part of dtschema (outside of kernel) and then
-relicensing/rewriting property descriptions plays a role. Only the
-GPIO hogs went to common dtschema package.
+Ok. I'll do that.
 
-Therefore as of now, one should include all generic properties
-directly in the GPIO controller bindings.
+-Sergey
 
-Best regards,
-Krzysztof
+> 
+> Rob
