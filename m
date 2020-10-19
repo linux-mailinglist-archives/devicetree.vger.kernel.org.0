@@ -2,271 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9453C292F0B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 22:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E838292F24
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 22:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726820AbgJSUBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 16:01:00 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39372 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726385AbgJSUBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 16:01:00 -0400
-Received: by mail-ot1-f68.google.com with SMTP id f10so881397otb.6;
-        Mon, 19 Oct 2020 13:00:57 -0700 (PDT)
+        id S1729130AbgJSUHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 16:07:55 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:35496 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728748AbgJSUHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 16:07:55 -0400
+Received: by mail-oi1-f193.google.com with SMTP id w141so1373836oia.2;
+        Mon, 19 Oct 2020 13:07:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Da7ya6emMHC4LYDLkt7SqxYDT2kSeTgqpP+oqA7M45A=;
-        b=iyXEPYjyFt01F2FuYiY7jVUF8/aDFtx4e3ZmxFOMRdcIW6L6F/qTn49fIWmdSpyqZ1
-         LnZiTl9+kxn+jdJo/wpZPPIb7DoSuNomUXibpDZVBxTUX//DcjRIW/IY9UP5ujoUba1N
-         /vHVnk1toFBq/eZcDTrvvWpe7FGCE29AscCxfd+ym6a5sKwesFDnd7Vba27accBLCGlq
-         KO6tvsScCeFrq+824Em/8vw/SNDvQRbP9uZxIf5/gvsVDN3l9+1L1DhEmMQM5zbmCPPX
-         ceD1vJzDJhjON5kwbv+e2aGelIRZ2l9Cys5shN7wCGDGVfBxyPCe7t9oxrInZUv0uWb/
-         q6XA==
-X-Gm-Message-State: AOAM530fiqI6XYwxLLYtboVQMoiyfrTCId6wBu4kxrubh4yNORSrb3P6
-        bbOcdDwqfYZxV/rg1xAF1Q==
-X-Google-Smtp-Source: ABdhPJxMsLhO7PPQQEdGXUqCu/yMiGgrMSZWxreCIQDpQYjXxCREoewKO2+zDxOeRV56rpipzN5OGg==
-X-Received: by 2002:a05:6830:1282:: with SMTP id z2mr1094401otp.301.1603137657384;
-        Mon, 19 Oct 2020 13:00:57 -0700 (PDT)
+        bh=22K4eTas0BJ7J9uGzGzaZteEURxGE4VcHw+8CKvhgqw=;
+        b=EolNcHy6xB3q5Iv0oQzOgxRdoWZVo+V1E2UgAmQ6UCUkCrtjrpA7yvyqcpGzItS8+W
+         0Raw3R7UdcAASklROPuTg6mpXor+O7dUgd2xy+YivW7mIcAFeq9iFTB92ICU2ElcucjM
+         Iu22JwHTrJWxm7IbKA2JdTWn7ttRysptmJalDZM8OEsCofZfjjeZQtSokLE5ipufln65
+         EBdvrEnAMwY7mIlZhcKn7q6gCBlwTH80CtUkRFEXPnDGJ63Pmn5/vNa31patCSFRecOG
+         4MqH/UhA9yWGPtQDdIOGXiesWeOur/MyGPAhQpOuuqFiDxWTSCdwume/D1Q3gVwJopcl
+         D+rQ==
+X-Gm-Message-State: AOAM530LgBYgDcSq+Mf8XtFCm6JT7U0cuF9jledK/TJVWp10BU97zBTz
+        X8t2NZLTieAXJBupgFQnYQ==
+X-Google-Smtp-Source: ABdhPJyqxqRlhym9OJfINJldAu5slGwuzgZv7U9BAMNz8EWFeNoX0yh9zCGJZGpHlqH5aIDUhJLHxw==
+X-Received: by 2002:aca:c410:: with SMTP id u16mr786432oif.65.1603138074506;
+        Mon, 19 Oct 2020 13:07:54 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e76sm216475oib.16.2020.10.19.13.00.56
+        by smtp.gmail.com with ESMTPSA id s21sm176722otr.77.2020.10.19.13.07.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Oct 2020 13:00:56 -0700 (PDT)
-Received: (nullmailer pid 3512358 invoked by uid 1000);
-        Mon, 19 Oct 2020 20:00:55 -0000
-Date:   Mon, 19 Oct 2020 15:00:55 -0500
+        Mon, 19 Oct 2020 13:07:53 -0700 (PDT)
+Received: (nullmailer pid 3521721 invoked by uid 1000);
+        Mon, 19 Oct 2020 20:07:52 -0000
+Date:   Mon, 19 Oct 2020 15:07:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 1/8] dt-bindings: mtd: Describe Rockchip RK3xxx NAND
- flash controller
-Message-ID: <20201019200055.GB3508930@bogus>
-References: <20201019083358.32621-1-yifeng.zhao@rock-chips.com>
- <20201019083358.32621-2-yifeng.zhao@rock-chips.com>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     linux-samsung-soc@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH 1/6] Documetation: dt-bindings: drop
+ samsung,exynos5440-pcie binding
+Message-ID: <20201019200752.GA3513040@bogus>
+References: <20201019094715.15343-1-m.szyprowski@samsung.com>
+ <CGME20201019094738eucas1p29b377b561089cfc3eba1755d475125b9@eucas1p2.samsung.com>
+ <20201019094715.15343-2-m.szyprowski@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201019083358.32621-2-yifeng.zhao@rock-chips.com>
+In-Reply-To: <20201019094715.15343-2-m.szyprowski@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 19, 2020 at 04:33:55PM +0800, Yifeng Zhao wrote:
-> Documentation support for Rockchip RK3xxx NAND flash controllers
+On Mon, Oct 19, 2020 at 11:47:10AM +0200, Marek Szyprowski wrote:
+> Exynos5440 SoC support has been dropped since commit 8c83315da1cf ("ARM:
+> dts: exynos: Remove Exynos5440"). Drop the obsolete bindings for
+> exynos5440-pcie.
 > 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > ---
-> 
-> (no changes since v8)
-> 
-> Changes in v8:
-> - Fix make dt_binding_check error
-> 
-> Changes in v7:
-> - Fix some wrong define
-> 
-> Changes in v6:
-> - Fix some wrong define
-> - Modified the definition of compatible
-> 
-> Changes in v5:
-> - Fix some wrong define.
-> - Add boot-medium define.
-> - Remove some compatible define.
-> 
-> Changes in v4:
-> - The compatible define with rkxx_nfc.
-> - Add assigned-clocks.
-> - Fix some wrong defineChanges in.
-> 
-> Changes in v3:
-> - Change the title for the dt-bindings.
-> 
->  .../mtd/rockchip,nand-controller.yaml         | 162 ++++++++++++++++++
->  1 file changed, 162 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml b/Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
-> new file mode 100644
-> index 000000000000..b9d7a8c79402
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
-> @@ -0,0 +1,162 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/rockchip,nand-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip SoCs NAND FLASH Controller (NFC)
-> +
-> +allOf:
-> +  - $ref: "nand-controller.yaml#"
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: rockchip,px30-nfc
-> +      - const: rockchip,rk2928-nfc
-> +      - const: rockchip,rv1108-nfc
-> +      - items:
-> +          - const: rockchip,rk3036-nfc
-> +          - const: rockchip,rk2928-nfc
-> +      - items:
-> +          - const: rockchip,rk3308-nfc
-> +          - const: rockchip,rv1108-nfc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: Bus Clock
-> +      - description: Module Clock
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: ahb
-> +      - const: nfc
-> +
-> +  assigned-clocks:
-> +    maxItems: 1
-> +
-> +  assigned-clock-rates:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^nand@[0-7]$":
-> +    type: object
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 7
-> +
-> +      nand-ecc-mode:
-> +        const: hw
-> +
-> +      nand-ecc-step-size:
-> +        const: 1024
-> +
-> +      nand-ecc-strength:
-> +        enum: [16, 24, 40, 60, 70]
-> +        description:
-> +          The ECC configurations that can be supported are as follows.
-> +            NFC v600 ECC 16, 24, 40, 60
-> +              RK2928, RK3066, RK3188
-> +
-> +            NFC v622 ECC 16, 24, 40, 60
-> +              RK3036, RK3128
-> +
-> +            NFC v800 ECC 16
-> +              RK3308, RV1108
-> +
-> +            NFC v900 ECC 16, 40, 60, 70
-> +              RK3326, PX30
+>  .../bindings/pci/samsung,exynos5440-pcie.txt  | 58 -------------------
+>  1 file changed, 58 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos5440-pcie.txt
 
-If you want this formatting preserved, you need a '|' after 
-'description: '.
-
-> +
-> +      nand-bus-width:
-> +        const: 8
-> +
-> +      rockchip,boot-blks:
-> +        minimum: 2
-> +        default: 16
-> +        allOf:
-> +        - $ref: /schemas/types.yaml#/definitions/uint32
-
-You can drop 'allOf' here now.
-
-> +        description:
-> +          The NFC driver need this information to select ECC
-> +          algorithms supported by the boot ROM.
-> +          Only used in combination with 'nand-is-boot-medium'.
-> +
-> +      rockchip,boot-ecc-strength:
-> +        enum: [16, 24, 40, 60, 70]
-> +        allOf:
-> +        - $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          If specified it indicates that a different BCH/ECC setting is
-> +          supported by the boot ROM.
-> +            NFC v600 ECC 16, 24
-> +              RK2928, RK3066, RK3188
-> +
-> +            NFC v622 ECC 16, 24, 40, 60
-> +              RK3036, RK3128
-> +
-> +            NFC v800 ECC 16
-> +              RK3308, RV1108
-> +
-> +            NFC v900 ECC 16, 70
-> +              RK3326, PX30
-> +
-> +          Only used in combination with 'nand-is-boot-medium'.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3308-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    nfc: nand-controller@ff4b0000 {
-> +      compatible = "rockchip,rk3308-nfc",
-> +                   "rockchip,rv1108-nfc";
-> +      reg = <0xff4b0000 0x4000>;
-> +      interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-> +      clocks = <&cru HCLK_NANDC>, <&cru SCLK_NANDC>;
-> +      clock-names = "ahb", "nfc";
-> +      assigned-clocks = <&clks SCLK_NANDC>;
-> +      assigned-clock-rates = <150000000>;
-> +
-> +      pinctrl-0 = <&flash_ale &flash_bus8 &flash_cle &flash_csn0
-> +                   &flash_rdn &flash_rdy &flash_wrn>;
-> +      pinctrl-names = "default";
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      nand@0 {
-> +        reg = <0>;
-> +        label = "rk-nand";
-> +        nand-bus-width = <8>;
-> +        nand-ecc-mode = "hw";
-> +        nand-ecc-step-size = <1024>;
-> +        nand-ecc-strength = <16>;
-> +        nand-is-boot-medium;
-> +        rockchip,boot-blks = <8>;
-> +        rockchip,boot-ecc-strength = <16>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.17.1
-> 
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
