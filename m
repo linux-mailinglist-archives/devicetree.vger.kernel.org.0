@@ -2,132 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F170292B26
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 18:08:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D571292B3F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 18:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730545AbgJSQI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 12:08:26 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:41260 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730447AbgJSQI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 12:08:26 -0400
-Received: by mail-wr1-f65.google.com with SMTP id s9so334628wro.8;
-        Mon, 19 Oct 2020 09:08:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zoO2hDHZETk3IyeB0Cl94Uv+82asuWViFYsWJmUXsmY=;
-        b=M7s0WnuEMEbRcoFCLXp83U7kuz5sPJ8bGq4/OJMIO0F/KsQryhDvXoZHktR8j8fUe3
-         MQ941POGhRvUJ2cyzgHJ+x6NZGw6dh/s6E4uRY6lybJHSa6MQIiuK3OguB6nC3mjvT+V
-         RBbvfr6GQTjCrNRpXJ3jGNNEayHtCc6jOh30CHQ4ZQFGwR9RXlajbVX7RifbUtxh9P/R
-         +zUqJD/I8/kzZxplHEXYsWoDmDKfsFZakdqlLjj4n/RhR1OSzhLBWNFob/pX3jTkLI5S
-         2eYaE4ziVnYj3IgU7Y91rqsNRin/1RWTzZgOqJbH1r92C8D3vzczosk/L4Y3MP4xa9uY
-         CX1A==
-X-Gm-Message-State: AOAM532fso6b/S7HG7GMNbv2bO/ELHlYIPiO+2oGotFR9bn+rLTgWTVZ
-        kUNODkI3EoKqRt/pUehmZ68=
-X-Google-Smtp-Source: ABdhPJzn9211CyF1TlFXeRqXKkFp4steoLCXGDe3zss3JH2vfd8GJc4eMWny+D3BIHIjIfO5L0ip7A==
-X-Received: by 2002:adf:d84e:: with SMTP id k14mr266926wrl.251.1603123703705;
-        Mon, 19 Oct 2020 09:08:23 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.171])
-        by smtp.googlemail.com with ESMTPSA id f8sm201290wrw.85.2020.10.19.09.08.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Oct 2020 09:08:22 -0700 (PDT)
-Date:   Mon, 19 Oct 2020 18:08:20 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     kholk11@gmail.com
-Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org, rydberg@bitmath.org,
-        priv.luk@gmail.com, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marijns95@gmail.com,
-        konradybcio@gmail.com, martin.botka1@gmail.com,
-        phone-devel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] dt-bindings: touchscreen: Add binding for Novatek
- NT36xxx series driver
-Message-ID: <20201019160820.GB34785@kozik-lap>
-References: <20201017190152.12780-1-kholk11@gmail.com>
- <20201017190152.12780-4-kholk11@gmail.com>
+        id S1730325AbgJSQNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 12:13:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47642 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730320AbgJSQNj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 12:13:39 -0400
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 40DD32225F;
+        Mon, 19 Oct 2020 16:13:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603124018;
+        bh=Xrci6+aiYQ+sMtZrSdB+hUvGFLT0OrXhk3iQny/zoqk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Iinhh9ErJ7aTDJIPbu/sJHpgnZ3In91sSV86R3N2aK5I7tkMFiqHmaZvLQEyQNPEa
+         gGjpQJsaEKVuEJcUZHHJJcs1SsRZBAJxea7kuMKz7GnZAnH9n4VR9HIJg+oTYZSabH
+         WrN62OYRn7ZFnz31xZR3wegYEZ0SiQaPEkdJsh3s=
+Received: by mail-ej1-f47.google.com with SMTP id qp15so14710589ejb.3;
+        Mon, 19 Oct 2020 09:13:38 -0700 (PDT)
+X-Gm-Message-State: AOAM533c88XcNAWo3s5S6wzWzdLtdigXowC28S3DNFD9fE8P5gWAoH58
+        FFmnDzcRvtuyyH15HU7g73ZW6uxOjFPDaddC2G0=
+X-Google-Smtp-Source: ABdhPJypXMaGS9Gg7VJ1UdDd/ekgmgHor/+gwcb4XtdBOSb0fwLU+G4oE9HlSVzQ8GFUd4BAzc9WCqE3v5c02F/qT80=
+X-Received: by 2002:a17:906:5247:: with SMTP id y7mr574082ejm.503.1603124016721;
+ Mon, 19 Oct 2020 09:13:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201017190152.12780-4-kholk11@gmail.com>
+References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-2-daniel@0x0f.com>
+ <CACRpkdZDyp83AiGkX9eFe2_w9eK1NXREFG896DZfPUaHboy+0g@mail.gmail.com>
+In-Reply-To: <CACRpkdZDyp83AiGkX9eFe2_w9eK1NXREFG896DZfPUaHboy+0g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Mon, 19 Oct 2020 18:13:22 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPecUBTqbyiQQRdSPq_YuBAF+ut3RbM9AcW8nyciJyw8ig@mail.gmail.com>
+Message-ID: <CAJKOXPecUBTqbyiQQRdSPq_YuBAF+ut3RbM9AcW8nyciJyw8ig@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO controller
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 17, 2020 at 09:01:52PM +0200, kholk11@gmail.com wrote:
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> 
-> Add binding for the Novatek NT36xxx series touchscreen driver.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> ---
->  .../bindings/input/touchscreen/nt36xxx.yaml   | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
-> new file mode 100644
-> index 000000000000..1486b20d6c49
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/nt36xxx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Novatek NT36xxx series touchscreen controller Bindings
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <kholk11@gmail.com>
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: novatek,nt36525
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: Power supply regulator for VDD pin
-> +
-> +  vio-supply:
-> +    description: Power supply regulator on VDD-IO pin
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      touchscreen@62 {
-> +        compatible = "novatek,nt36525";
-> +        reg = <0x62>;
-> +        interrupt-parent = <&tlmm>;
-> +        interrupts = <45 IRQ_TYPE_EDGE_RISING>;
-> +        reset-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
+On Fri, 16 Oct 2020 at 18:36, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Sun, Oct 11, 2020 at 4:48 AM Daniel Palmer <daniel@0x0f.com> wrote:
+>
+> > Add a binding description for the MStar/SigmaStar GPIO controller
+> > found in the MSC313 and later ARMv7 SoCs.
+> >
+> > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+>
+> I think Krzysztof is working on some generic bindings that
+> will make it easier to write YAML GPIO controller bindings,
+> but I don't know the status of them. I would be happy to merge
+> them early for v5.11 though.
 
-reset-gpios
+Hi,
+
+The generic GPIO controller dtschema got dropped because Rob wants it
+to be part of dtschema (outside of kernel) and then
+relicensing/rewriting property descriptions plays a role. Only the
+GPIO hogs went to common dtschema package.
+
+Therefore as of now, one should include all generic properties
+directly in the GPIO controller bindings.
 
 Best regards,
 Krzysztof
