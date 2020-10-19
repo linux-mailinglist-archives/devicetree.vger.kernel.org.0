@@ -2,96 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CBC82930E7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 00:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4A372930F4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 00:11:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387770AbgJSWEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 18:04:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58660 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387757AbgJSWEB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 18:04:01 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0EFC922384
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 22:04:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603145041;
-        bh=WBxPU3YohQAIr0UzV6DU7fWvPIhGAkcJTIC2AZUs7ng=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=zi43O5PT/3HY0fCp/F0EDq9ginX8uuiSFbSiN5JM0zWy6JRoQFm/jLnJWp53wW9Q6
-         cDhfYBam5LwqV/h/EU5dvxBvGRiwASM62QVOK5lQsmWf5wWpJhxirVOcXmBkO0ZHS2
-         OmC3+d+ucmHQYgb9wfXkTfq9oGlaIonYAR8ghEvE=
-Received: by mail-ot1-f43.google.com with SMTP id n11so1342541ota.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 15:04:01 -0700 (PDT)
-X-Gm-Message-State: AOAM531yu/ApCKUiW9KqqVzRFqQkLJz7utE6UXPJ7Fopbw0Es7ZkkzJQ
-        2/AQNmcck81zEKajBQfvAn02/V8+JxFeRWNo/A==
-X-Google-Smtp-Source: ABdhPJwBY+VRyaJuZ4UsEGF4SP2lyhc+KgtqKs/qxfHE9ZI7JsFpUvG8NIfLhWpTw3bmQfT81VG0vVoz24EIGylkQ84=
-X-Received: by 2002:a9d:7993:: with SMTP id h19mr1469970otm.129.1603145040317;
- Mon, 19 Oct 2020 15:04:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <878se1vsy6.wl-kuninori.morimoto.gx@renesas.com>
- <875z95vsx2.wl-kuninori.morimoto.gx@renesas.com> <20200908232225.GA1122966@bogus>
- <87eemrlx15.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87eemrlx15.wl-kuninori.morimoto.gx@renesas.com>
+        id S2387804AbgJSWLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 18:11:09 -0400
+Received: from mail-oo1-f68.google.com ([209.85.161.68]:46781 "EHLO
+        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387779AbgJSWLJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 18:11:09 -0400
+Received: by mail-oo1-f68.google.com with SMTP id c25so339054ooe.13;
+        Mon, 19 Oct 2020 15:11:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YAcxqz4gzIZRTswKLMgM+/6nLU+BPO60IaB6aMIKPFs=;
+        b=XbQIvIXdHc7Yv9SpPbbDUZatNrjXBbWr367bUvf0MyA4Ep57lki2LCQ8+8YxlatmyT
+         VaULmseVRE8/KmBmjYHvdv4dqIDfkimBmgCdPwkClxTFEP1bedsK+jHaItlADoOVaJJj
+         rRz0TxqtTa1Z/Y8oN8OeI5zLWR+IyOAwdolC717/fLCFynTwnmoZ0OVe8cEu8F4BrTaI
+         a4DNcE03+N1A6jvHclYCk+Z5lsduOpxt+zwi6zBHm2GYj55DzqS6UIzZa1+3W9GnesdD
+         MdpjSfATdbamq1cSCxiknTaNEv7dCAO8cOYRDuLrUEKU1xuGn+dMwUh2wXTYegP2XAUo
+         FwMA==
+X-Gm-Message-State: AOAM532jXLMo8P80fMLOcEDaGFh9syXEwJvgQahAuiKQBaOSPeXc/jYC
+        BhsM353DKBIuKScb3ZU7lg==
+X-Google-Smtp-Source: ABdhPJwRFkQroby+u4ICY2NJLUAU/9hZmS0o+Tf0mlbmQ+dO75MkbVoF+8Wwz8jdOtiUcjy2KT6FqA==
+X-Received: by 2002:a4a:c68d:: with SMTP id m13mr1485011ooq.64.1603145467832;
+        Mon, 19 Oct 2020 15:11:07 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 38sm269664ota.42.2020.10.19.15.11.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Oct 2020 15:11:06 -0700 (PDT)
+Received: (nullmailer pid 3688686 invoked by uid 1000);
+        Mon, 19 Oct 2020 22:11:05 -0000
+Date:   Mon, 19 Oct 2020 17:11:05 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 19 Oct 2020 17:03:49 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJDmw3929BxS2wroVoio6EP5QZ5bC3bJHEckLwfo6wP8g@mail.gmail.com>
-Message-ID: <CAL_JsqJDmw3929BxS2wroVoio6EP5QZ5bC3bJHEckLwfo6wP8g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: renesas,rsnd: switch to yaml
- base Documentation
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        kuninori.morimoto.gx@renesas.com,
+        pierre-louis.bossart@linux.intel.com, perex@perex.cz,
+        tiwai@suse.com, p.zabel@pengutronix.de, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
+        mkumard@nvidia.com, viswanathl@nvidia.com, rlokhande@nvidia.com,
+        dramesh@nvidia.com, atalambedu@nvidia.com, nwartikar@nvidia.com,
+        swarren@nvidia.com, nicoleotsuka@gmail.com
+Subject: Re: [PATCH v4 10/15] ASoC: dt-bindings: tegra: Add graph bindings
+Message-ID: <20201019221105.GA3679866@bogus>
+References: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
+ <1602859382-19505-11-git-send-email-spujar@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1602859382-19505-11-git-send-email-spujar@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 23, 2020 at 9:40 PM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
->
->
-> Hi Rob
->
-> > > From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > >
-> > > This patch switches from .txt base to .yaml base Document.
-> > > It is still keeping detail explanations at .txt
-> > >
-> > > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > > ---
-> (snip)
-> > > +  # For OF-graph
-> > > +  port:
-> > > +    description: OF-Graph subnode
-> > > +    $ref: "audio-graph-card.yaml#/definitions/port"
-> >
-> > Something like this should work (at the top-level):
-> >
-> > allOf:
-> >   - $ref: "audio-graph-card.yaml#
->
-> Hmm.. it will be error, see below (A).
-> How to solve it ??
+On Fri, Oct 16, 2020 at 08:12:57PM +0530, Sameer Pujar wrote:
+> Add device tree binding properties of generic graph to ASoC component
+> devices. This allows to define audio ports out of these components or
+> DAIs and audio graph based sound card can be realised with this.
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> ---
+>  Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml  | 7 +++++++
+>  .../devicetree/bindings/sound/nvidia,tegra210-admaif.yaml          | 7 +++++++
+>  Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml  | 7 +++++++
+>  Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml  | 7 +++++++
+>  Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml   | 7 +++++++
+>  5 files changed, 35 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> index ed2fb32..23875b1 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> @@ -55,6 +55,13 @@ properties:
+>        The name can be "DSPK1" or "DSPKx", where x depends on the maximum
+>        available instances on a Tegra SoC.
+>  
+> +  ports:
+> +    $ref: /schemas/sound/audio-graph-card.yaml#/definitions/ports
+> +
+> +patternProperties:
+> +  "^port(@[0-9a-f]+)?$":
+> +    $ref: /schemas/sound/audio-graph-card.yaml#/definitions/port
 
-All the 'allOf's have to be grouped.
-
-> (I will keep to use above style)
->
-> > > +# use patternProperties to avoid naming "xxx,yyy"
-> > > +patternProperties:
-> > > +  "^rcar_sound,dvc$":
-> >
-> > None of these are patterns.
->
-> As always happen, "xxx,yyy" style will be error for me without patternProperties.
-> What is wrong ??
-
-Node names shouldn't really have vendor prefixes, but since you
-already depend on this we shouldn't change that. We'll need to relax
-the meta-schema, but for now it's fine as-is.
-
-Rob
+You should have either 'ports' or a single 'port' (yes, the graph 
+binding allowed multiple port nodes without 'ports', but that should be 
+deprecated IMO)
