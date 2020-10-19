@@ -2,176 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9910292E6E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 21:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 635B2292E5F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 21:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730845AbgJST12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 15:27:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60284 "EHLO
+        id S1730820AbgJSTXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 15:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730021AbgJST12 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 15:27:28 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EABA3C0613CE
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 12:27:26 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id x16so1422617ljh.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 12:27:26 -0700 (PDT)
+        with ESMTP id S1731084AbgJSTXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 15:23:05 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7F8C0613D3
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 12:23:04 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id g12so949137wrp.10
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 12:23:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MbpPIoPzTpMpNm1nC5xfdtc0dU2BeKn/AYB4IBKnH4g=;
-        b=ayFfmURnpiUCCBhURRXNsWakezv/PyUrpMyAVQ4638TzOxFw8XxEhjedRoM+UanEEH
-         GL+mqAHg53prCECXVrHNs69s00f3k6eXPOLsfNBbpIPH2V/V7p5BoJVKInrUd0gf84mh
-         AudndqJCfYHFqVLkiOZ6FU0m3wQsVAZawLToQ=
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CqLz2GES8nS6ZiyqNo1k1fKZexjy+aj8oQk7nWn8E5s=;
+        b=LTHX5TvhwUCP+kBT+3IPrRVx0FpamCx+pK5VIQDhc2CHXNatdKgWdVgqoYzpWWxkfS
+         VtI8U5zTofukggSNrirkeJgBs+jxx6SBhzxITJ1Jca1Argu/gOaXOS+3N+1lMfKNaZHa
+         hmKfYhMgLQHIbWxstGXJKW9C1t+ix+3l1kKgpKzar9Yg3JpuNEaWwDXRMkNtEQwU+ewX
+         WP0QbjANR9lqiCF82sVUMrUfuGf0m9AOIE8eELcnYxFA5iIxH7KuutRBLmWfVONEHKvg
+         ClcK1UnJMo47tgmPHzJPYNE7J4+KdzNhY3hNx1GKahmepJd9wcvGzs0MByhmNvseAjFk
+         PAqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MbpPIoPzTpMpNm1nC5xfdtc0dU2BeKn/AYB4IBKnH4g=;
-        b=Z+KX3qolaw9+8Iwxpp/PRFwF4752CdmW2N/l+4o/BytMmAxGzeBsJxCuN4LAh/4ISm
-         kgrhIsEcg6MI3VsCpG826buE1vH667Sl6MyL/rbq27g/QGvN1+BXMNUn7dZUzKYd8PQI
-         GKPe22b6xB9UBblX4BJb4IyW+ohO8q+efe1FdOpcH/3deXteFAQceSlPQimSI7lo6O1Z
-         ew3ISR6Mo6XQf64aqLpf1RLkLVzdnTy9rV1j6Pg4Vmy6XqJXEAXyuHCAjhJgv/0qdVMZ
-         gk+r4HtT1XNbkfPJNU62HzBa4MhdGBYEQAika8c6JKlsuolAEEGLF1ZFV3VQwXifvqZW
-         U2eA==
-X-Gm-Message-State: AOAM533xPT6KrzxiFyjunKApKM1POsshmW4nMQDZPRw1be2eC4U2buVG
-        UeMiXO6LEA9doH3oJzcRpqlZVIukisx5UaSA
-X-Google-Smtp-Source: ABdhPJy4ViiNf10PhzXTr9k6IOjTK8m+MNY7JB/8wsEdqc5Nx/GmEy+usL0uWxzKoMhnZw9l/xdfvw==
-X-Received: by 2002:a05:651c:216:: with SMTP id y22mr570963ljn.350.1603135645065;
-        Mon, 19 Oct 2020 12:27:25 -0700 (PDT)
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
-        by smtp.gmail.com with ESMTPSA id c7sm148284ljk.59.2020.10.19.12.27.24
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CqLz2GES8nS6ZiyqNo1k1fKZexjy+aj8oQk7nWn8E5s=;
+        b=FBlTByNvEqC8B1XZGgekrSemiHmVJiAqu6v428S1gWPtJ4EzU42dMsKT2yxTl28TZ5
+         Aswf/lmA5VDVy4SluCFavcCVNJu3i0clm+Q5Ecgzk9E4yMeYg1yILGUgr95zHDCUNrlz
+         sJxX+U1jUy1tlTSRti5i/iJ4ZOnEtSMxHfanaUTPAQ7hGsqyTKn5cRZt1AsQ8WgWWPJA
+         rO49UyZgwnHSKxHBTC63QFJ2hVQpUogd0ogFcaaUqnQ1pir2wzZ1COnyAxL/4P5ABtCv
+         9dhw8i/Nn/7fJGqHMENdHsZRCXx6BfZWmysV12P6Na2oNkYxc7VaYqGd4bJH/RSf3kLs
+         RwoQ==
+X-Gm-Message-State: AOAM530IUEW1bUoL2dyNq/KhJm6bAu06Nd4nX+0yivrLZDEFwRtbSPrv
+        IBwfFesg+wh27tSsWz9aUbIW6Q==
+X-Google-Smtp-Source: ABdhPJwvDOb2U0x3L8Lupi6+YluOA0LVBNFpAxYZG+9+aEqeubTUjGjKi/MxpNQClQi+Djx91W/rLw==
+X-Received: by 2002:adf:f792:: with SMTP id q18mr744862wrp.333.1603135383177;
+        Mon, 19 Oct 2020 12:23:03 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:cd19:90dc:c92f:a1c1? ([2a01:e34:ed2f:f020:cd19:90dc:c92f:a1c1])
+        by smtp.googlemail.com with ESMTPSA id x15sm978219wrr.36.2020.10.19.12.23.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Oct 2020 12:27:24 -0700 (PDT)
-Received: by mail-lj1-f182.google.com with SMTP id c21so1349315ljn.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 12:27:24 -0700 (PDT)
-X-Received: by 2002:adf:ab05:: with SMTP id q5mr829770wrc.32.1603135226373;
- Mon, 19 Oct 2020 12:20:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
- <20201013130503.2412-2-dongchun.zhu@mediatek.com> <20201013161938.GE13341@paasikivi.fi.intel.com>
- <1602641418.4733.80.camel@mhfsdcap03> <20201014083139.GG13341@paasikivi.fi.intel.com>
- <CAAFQd5BVzN=49s4S98E9mGNuxzOt4633dAw9mbyu3Sr-rA61qw@mail.gmail.com> <20201019082759.GL13341@paasikivi.fi.intel.com>
-In-Reply-To: <20201019082759.GL13341@paasikivi.fi.intel.com>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Mon, 19 Oct 2020 21:20:15 +0200
-X-Gmail-Original-Message-ID: <CAAFQd5B9inO_-WJdJg_EMULw-e0EAAo8DXNgo5d+qrGvq6F8qQ@mail.gmail.com>
-Message-ID: <CAAFQd5B9inO_-WJdJg_EMULw-e0EAAo8DXNgo5d+qrGvq6F8qQ@mail.gmail.com>
-Subject: Re: [PATCH v15 1/2] media: dt-bindings: media: i2c: Document OV02A10 bindings
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Mon, 19 Oct 2020 12:23:02 -0700 (PDT)
+Subject: Re: [PATCH RFC 0/8] Introduce warming in thermal framework
+To:     Thara Gopinath <thara.gopinath@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
-        <shengnan.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        lukasz.luba@arm.com, amitk@kernel.org
+References: <20200917032226.820371-1-thara.gopinath@linaro.org>
+ <CALD-y_wQeuUq=0+_TGWYwOAcM4zdmGbtCMYZ+Oa587HtzHHqVQ@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <12160a98-bf04-939c-0149-018db8affe08@linaro.org>
+Date:   Mon, 19 Oct 2020 21:22:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <CALD-y_wQeuUq=0+_TGWYwOAcM4zdmGbtCMYZ+Oa587HtzHHqVQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 19, 2020 at 10:28 AM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> On Wed, Oct 14, 2020 at 01:48:00PM +0200, Tomasz Figa wrote:
-> > On Wed, Oct 14, 2020 at 10:31 AM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > >
-> > > On Wed, Oct 14, 2020 at 10:10:18AM +0800, Dongchun Zhu wrote:
-> > > > Hello Sakari,
-> > > >
-> > > > Thanks for your timely review.
-> > > >
-> > > > On Tue, 2020-10-13 at 19:19 +0300, Sakari Ailus wrote:
-> > > > > Hi Dongchun,
-> > > > >
-> > > > > On Tue, Oct 13, 2020 at 09:05:02PM +0800, Dongchun Zhu wrote:
-> > > > > > Add YAML device tree binding for OV02A10 CMOS image sensor, and the
-> > > > > > relevant MAINTAINERS entries.
-> > > > > >
-> > > > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > > > > ---
-> > > > > >  .../bindings/media/i2c/ovti,ov02a10.yaml           | 162 +++++++++++++++++++++
-> > > > > >  MAINTAINERS                                        |   7 +
-> > > > > >  2 files changed, 169 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> > > > > >
-> > > >
-> > > > [snip]...
-> > > >
-> > > > > > +  ovti,mipi-clock-voltage:
-> > > > > > +    description:
-> > > > > > +      An array of 2-tuples items, and each item consists of link frequency and
-> > > > > > +      MIPI clock voltage unit like <freq-kHz volt-unit>. Clock voltage unit is
-> > > > > > +      dependent upon link speed, indicating MIPI transmission speed select that
-> > > > > > +      controls D-PHY timing setting by adjusting MIPI clock voltage to improve
-> > > > > > +      the clock driver capability.
-> > > > > > +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-> > > > > > +    minItems: 2
-> > > > > > +    default: [390000, 4]
-> > > > >
-> > > > > Why do you have the link frequency here as well?
-> > > > >
-> > > > > In principle this does belong to the endpoint as link frequencies are
-> > > > > specific to that, but I don't mind; there's just a single port anyway.
-> > > > >
-> > > >
-> > > > This is an optional property which we model as an array of <link speed,
-> > > > clock voltage> pairs. An example to have all link speeds up to 390MHz
-> > > > use the value 4 for current driver. If one wants to select different
-> > > > voltage for different link, they could do so as well.
-> > >
-> > > If you think you'd need that, then you need to put this to the endpoint.
-> >
-> > The mipi-clock-voltage property is not a property of the endpoint. The
-> > link frequency there does not set the link frequency - it only
-> > specifies which link frequency the given voltage should be used for.
->
-> If it is not bound to the endpoint --- that specifies the properties of the
-> link --- then you could just put it to the driver, couldn't you?
->
-> But earlier on, we established that this is specific to a given board, or a
-> given link. Endpoints are used to describe connections that a device may
-> have to other devices. Therefore their properties are different.
->
-> The graph bindings allow for several endpoints on a single physical port,
-> some may be disabled in that case. This is admittedly mostly done with
-> CSI-2 receivers.
->
-> Either way, putting this property to the device may affect how DT source is
-> arranged for boards that have this device. Any similar configuration on
-> other devices with multiple transmitters or receivers would be in endpoints
-> anyway --- because they have to, so I don't see why bindings for this
-> device should be different.
->
-> If you put it to endpoint, the driver also doesn't need to match the link
-> frequencies in kHz and Hz between the two properties, but just use the same
-> index for both.
+On 19/10/2020 20:42, Thara Gopinath wrote:
+> On Wed, 16 Sep 2020 at 23:22, Thara Gopinath <thara.gopinath@linaro.org> wrote:
+>>
+>> Thermal framework today supports monitoring for rising temperatures and
+>> subsequently initiating cooling action in case of a thermal trip point
+>> being crossed. There are scenarios where a SoC need warming mitigating
+>> action to be activated if the temperature falls below a cetain permissible
+>> limit.  Since warming action can be considered mirror opposite of cooling
+>> action, most of the thermal framework can be re-used to achieve this. The
+>> key assumption in this patch series is that a device can act either as a
+>> warming device or a cooling device and not as both.
+>>
+>> In order to support warming three extensions are needed in the thermal
+>> framework.
+>>
+>> 1. Indication that a trip point is being monitored for falling temperature
+>> and not rising temperature. We discussed two different ways to achieve this
+>> during LPC. First option is to introduce a new trip type to indicate that a
+>> trip is a cold trip(THERMAL_TRIP_COLD). The second option is to introduce a
+>> new property for trip point that will indicate whether a trip point is
+>> being monitored for rising temperature or falling temperature. The patch
+>> series(patches 1-4) chooses the second approach since it allows trip points
+>> of any type to be monitored for rising or falling temperature.Also this was
+>> the preferred approach when discussed during LPC. The approach that
+>> introduces a new cold trip type was posted on the list earlier as a RFC and
+>> can be found at [1].
+>>
+>> 2. Extend the exisitng governors to handle monitoring of falling
+>> temperature. The patch series(patches 5 & 6) extends the step wise governor
+>> to monitor the falling temperature.Other governors return doing nothing if
+>> the trip point they are being called for is being monitored for falling
+>> temperature. The governors' mitigate function is called "throttle" in the
+>> thermal framework and with this patch series it is a misnomer as the
+>> function is called for both throttling and warming up. Ideally
+>> "throttle" should be renamed to "mitigate" to improve readability of code.
+>> The renaming is not part of this series.
+>>
+>> 3. Finally, the cooling device framework itself can be reused for a warming
+>> device. As stated before a device can act either as a warming device or a
+>> cooling device and not as both.  With this the cooling state in the
+>> framework can be considered as mitigating state with 0 as the state with no
+>> thermal mitigation and higher the number higher the thermal mitigation.
+>> Again what affects the code readability and comprehension is the term
+>> "cooling" which is a misnomer here. Ideally the term "cooling" should be
+>> renamed to "mitigating" and hence thermal_cooling_device will become
+>> thermal_mitgating_device. The renaming is not part of the patch series as
+>> even though the renaming is a simple search-replace, it will change a lot
+>> of files.  The patch series(patches 7 & 8) instead introduces a minimal set
+>> of _warming_device_ apis to register and unregister warming devices which
+>> internally is identical to the _cooling_device_ counterpart.
+> 
+> Gentle ping for review..
 
-I agree in general, but I think in this case this is a device-specific
-property and the sensor only has 1 CSI-2 interface, so maybe it
-doesn't really matter?
+Pong, review before the end of this week.
 
-Specifying frequency, voltage pairs is a common practice in other
-bindings, such as the OPP bindings, by the way.
 
-That said, if you insist, I'm fine with this being moved to the
-endpoint node too.
 
-Best regards,
-Tomasz
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
