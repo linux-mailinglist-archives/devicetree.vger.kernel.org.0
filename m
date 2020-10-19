@@ -2,115 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E4A2292193
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 06:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A85B22921F3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 06:31:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725942AbgJSEI5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 19 Oct 2020 00:08:57 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:33508 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725800AbgJSEI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 00:08:56 -0400
-Received: by mail-lf1-f67.google.com with SMTP id l2so12468460lfk.0;
-        Sun, 18 Oct 2020 21:08:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Opolm4cc3xkSXr8hVN2RdLWSRKL0yVq0IDyWQr6WV0k=;
-        b=GscUleyt2spXZDRGHkaKkYE81fdHOzks5R3Y23V8FiQ9zf+dhOeMKiqxuLVwLRIN/0
-         WQUp2mGmTwJt0BQkPQQnMfsR8pMHc3Xmn2avQrOUF1Xk4U44d0pl0WxYP/wKJCio14Ti
-         /IMUT+pJMBhjAx/R6NTBgDCa2j+g2S1Ei3p5O7dmNehW+KAewTZ4XINTsnuik42HKqk4
-         dBakYBuUd/XxefqnK1qiqcwU4fQnKZIGLtT79lCTxrBHkRRuScH8AMxZNrBhkoALackI
-         YRBJ4pBrR4j9+KvWbo3ilhhppLb/L4AxwENBhGkYwPhhFFIH4MNEYT0Z/dEMdkji0Ysk
-         4RVQ==
-X-Gm-Message-State: AOAM531NM1n4WRFNGI0So0rtUy4pkVnyY93Rihs6fbHHCm3GWg0p4Twc
-        KyQeW70W6r5QeMRv+6PcrKWhyEoXkYo4zg==
-X-Google-Smtp-Source: ABdhPJwEz6OkcPzlD7CycirQ8yIGV47azS5wBWf65LJMv7qx0sSRDaBJqnWt4C9IPEdxjpqf9s0Rwg==
-X-Received: by 2002:a05:6512:3b1:: with SMTP id v17mr4821004lfp.262.1603080533975;
-        Sun, 18 Oct 2020 21:08:53 -0700 (PDT)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com. [209.85.208.175])
-        by smtp.gmail.com with ESMTPSA id m132sm3082487lfa.34.2020.10.18.21.08.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Oct 2020 21:08:53 -0700 (PDT)
-Received: by mail-lj1-f175.google.com with SMTP id a28so5579022ljn.3;
-        Sun, 18 Oct 2020 21:08:53 -0700 (PDT)
-X-Received: by 2002:a2e:8116:: with SMTP id d22mr5301246ljg.331.1603080532846;
- Sun, 18 Oct 2020 21:08:52 -0700 (PDT)
+        id S1728180AbgJSEbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 00:31:10 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:15198 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726829AbgJSEbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 00:31:10 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f8d16600000>; Sun, 18 Oct 2020 21:30:24 -0700
+Received: from [10.25.98.225] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 19 Oct
+ 2020 04:30:58 +0000
+Subject: Re: [PATCH v4 09/15] ASoC: dt-bindings: audio-graph: Convert bindings
+ to json-schema
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <p.zabel@pengutronix.de>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>, <mkumard@nvidia.com>,
+        <viswanathl@nvidia.com>, <rlokhande@nvidia.com>,
+        <dramesh@nvidia.com>, <atalambedu@nvidia.com>,
+        <nwartikar@nvidia.com>, <swarren@nvidia.com>,
+        <nicoleotsuka@gmail.com>
+References: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
+ <1602859382-19505-10-git-send-email-spujar@nvidia.com>
+ <87o8kz9blh.wl-kuninori.morimoto.gx@renesas.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <2c9abfd5-f7eb-0b8d-f45f-9f56f37881b5@nvidia.com>
+Date:   Mon, 19 Oct 2020 10:00:55 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201018172409.1754775-1-peron.clem@gmail.com> <CAJiuCce+VHusdYPv7QutYvCcCByz=nRcBotPNL6E=jA4U4=YoA@mail.gmail.com>
-In-Reply-To: <CAJiuCce+VHusdYPv7QutYvCcCByz=nRcBotPNL6E=jA4U4=YoA@mail.gmail.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 19 Oct 2020 12:08:42 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65szCZyu+Gm0igGmyRGZRwvTr+0O-QYAMyTk8n_V7Ne-Q@mail.gmail.com>
-Message-ID: <CAGb2v65szCZyu+Gm0igGmyRGZRwvTr+0O-QYAMyTk8n_V7Ne-Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: beelink-gs1: Enable both RGMII
- RX/TX delay
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <87o8kz9blh.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1603081824; bh=JlVHUDKLpcK1i8rBNnQBiUlJRXSUCLWhMPCqRDHsvmI=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=rF7+S2/aZqYZK1QazdBEO1FX30HJnmmW1idk6J3T9yuuBVdxr/O2FodsXSOZY0d8Q
+         oDLeJosw9P2zcz7RL0J9S9imoz7FgiMPulBVhyvZGnBZpB99MJ1K3/vfGZ91m+JC27
+         7qUIdZCU0CKNOuOYhKCBSxPx25QCpz5g9+B6x0b1urfVtOhzN0i9LuWP+Nevk0Llau
+         BiHPIUCiltWH4p3WwOUP4KcawDHY4pZDusjMQCzHgE9TlN1b9Dwo5Lzw2YsR7xiqjV
+         G8eKfgm9lOME0mIpy7u+TO9KAdhslZkGTz20qIV8fohNH2nc/TiHAMUNa0NkDmJPEC
+         M1Zy97K3dr9WA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 19, 2020 at 1:57 AM Clément Péron <peron.clem@gmail.com> wrote:
->
-> Hi,
->
-> On Sun, 18 Oct 2020 at 19:24, Clément Péron <peron.clem@gmail.com> wrote:
-> >
-> > Before the commit:
-> > net: phy: realtek: fix rtl8211e rx/tx delay config
-> bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config")
->
-> With the hash for reference it's better :)
-> Clement
->
-> >
-> > The software overwrite for RX/TX delays of the RTL8211e were not
-> > working properly and the Beelink GS1 had both RX/TX delay of RGMII
-> > interface set using pull-up on the TXDLY and RXDLY pins.
-> >
-> > Now that these delays are working properly they overwrite the HW
-> > config and set this to 'rgmii' meaning no delay on both RX/TX.
-> > This makes the ethernet of this board not working anymore.
-> >
-> > Set the phy-mode to 'rgmii-id' meaning RGMII with RX/TX delays
-> > in the device-tree to keep the correct configuration.
-> >
-> > Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink GS1 board")
-> > Signed-off-by: Clément Péron <peron.clem@gmail.com>
+Hi Morimoto-san,
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+>> Convert device tree bindings of audio graph card to YAML format. Also
+>> expose some common definitions which can be used by similar graph based
+>> audio sound cards.
+>>
+>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>> ---
+> I'm posting this patch to Rob & DT ML.
+> Not yet accepted, though..
 
-For reference, the driver fix for dwmac enabling the other RGMII modes
+Thanks for letting me know. I guess below is your patch,
+http://patchwork.ozlabs.org/project/devicetree-bindings/patch/877dtlvsxk.wl-kuninori.morimoto.gx@renesas.com/
+Do you have plans to resend this or send next revision?
 
-    f1239d8aa84d ("net: stmmac: dwmac-sun8i: Allow all RGMII modes")
+I can drop my patch once yours is merged and refer the same for Tegra 
+audio graph card.
 
-was merged in v5.5 and was backported to relevant stable kernels.
+Thanks,
+Sameer.
 
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > index a364cb4e5b3f..6ab53860e447 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> > @@ -99,7 +99,7 @@ &ehci0 {
-> >  &emac {
-> >         pinctrl-names = "default";
-> >         pinctrl-0 = <&ext_rgmii_pins>;
-> > -       phy-mode = "rgmii";
-> > +       phy-mode = "rgmii-id";
-> >         phy-handle = <&ext_rgmii_phy>;
-> >         phy-supply = <&reg_aldo2>;
-> >         status = "okay";
-> > --
-> > 2.25.1
-> >
+
