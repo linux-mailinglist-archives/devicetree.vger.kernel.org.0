@@ -2,73 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 456F8292FA1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 22:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E11BC29300B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 22:48:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726217AbgJSUo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 16:44:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44242 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726120AbgJSUo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 16:44:59 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4D8C0613CE;
-        Mon, 19 Oct 2020 13:44:59 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id t21so709494eds.6;
-        Mon, 19 Oct 2020 13:44:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sRKQZM/u0KyuM0HK57jZaq4ro1c5W2LrViHCVfdTkUA=;
-        b=Ta1EUzyHX5+eIKSCjA1c6DssesWEAtxcwtK5/HyZ+9kxtC/Ro8Rma0Ash/CGWcmXWy
-         0b0Aka3dRAyQWFkHr7523c2N7VJMVYqOmgB/6qKIoCqLBMOMxMJXbj0Qqw7FCAS5P/vA
-         7sHzK2+fW4pCvfcmJwXlX+YQKRQdMpP7JRVbBgzES/MDY1aIexpTQaIzEpWDeZEPgic3
-         i1FGcCsh/COQwQAhpqfAsNpEBknZsvkPlIXQcETO7sDqgDsVEWgEAre9BhZ2PYUzV970
-         2jFxJMfFdNRP6VKTLIa4vqHJ85jS6VIRobVJRF3hR70deARXtODjLzN6x3MKwbdV6sBI
-         DvCQ==
+        id S1727082AbgJSUsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 16:48:25 -0400
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:39964 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727007AbgJSUsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 16:48:25 -0400
+Received: by mail-oo1-f67.google.com with SMTP id w7so267436oow.7;
+        Mon, 19 Oct 2020 13:48:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sRKQZM/u0KyuM0HK57jZaq4ro1c5W2LrViHCVfdTkUA=;
-        b=rQhwyKRbXEGUcVvg4H8qONI4sEUNpdpavsSqk+8CmK14jMdQiEpQjhkDvcbbraIvmY
-         Up+p/s8OevNjYzphvIPmWa6USXea6Nov6yp7Yukg0AuBl2xxOZIAlR5Hp06PrE9JNig2
-         CyVK9W7cwngWJBsqyiJmxGfOoMIfVzV3MMzGZulapAoKe4i2TxtF0hwaBkOIhIijIjz4
-         acsG+D8ktv5Rq0BZ9tOE1I9SIjB2ye6FjIYWFdm0vnWLTnSTuFxjv/DS2SjKw1/xoUcB
-         w7VVMB6C0hzbjrt5aspngLkWsEfB5O+qwcU7CwU7yWsjxe6/5Wl4Sk/35kvBsPMYQCqU
-         e83Q==
-X-Gm-Message-State: AOAM533X+uhzS4bgKpdjIMqtv9O5ym3ifxl9bUxA+REnzeT2my0q9ivs
-        jgUV7CQblXrDRUfQyEOT/dq1X10By3UCTRB83zs=
-X-Google-Smtp-Source: ABdhPJyromYhLQ7NIhPxuPFo2Tfup77z4dyWm34xZ7SgFwejpZnC4Ncxq2+3wUkC11C6x8mao7s+yoCsO22AXqUZrU4=
-X-Received: by 2002:a50:85c6:: with SMTP id q6mr1781028edh.126.1603140298100;
- Mon, 19 Oct 2020 13:44:58 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=fxa3uzHmULeVmNdtF5y01CM2QpDZ2ApdIjLlwOHG4sY=;
+        b=Va2X7wBuu+NBS4fj2JxIadcxzkqIo8mUISO+Oyy57HAI9+lxrvx2mgsdyiwlPrSw8s
+         nwEuNG8gFhb1wRtOBTg/Wv2shnk1OWm4xQ6nDykpYlxE/dfQlJxKxLTfG+OVePf6EOjc
+         JKqXwolpGT7Bj1ZZjhV+r1m021AdaycW7G4sEYtAeZoosnw0a3dCP7Xx2tLOQmDbqnox
+         P3vfxqms48sq0rrbnvcWb+hrGI6KAf8H8RfHzDJ5tpRhrsi+L5984atDO5tzNaU5T1mU
+         mdm+nvKwCj+y/EUmYeTT+SzWauwnOqVytnKs14cms1E0kIOLUP5u3pVbwYfRbN3PEOZd
+         ftzw==
+X-Gm-Message-State: AOAM532Gvt87raJf2QMrhNAlIUzPE3dX97mjhIWD57jJx/8IVSuaAgF3
+        lClEwTMhUVJXGAKcnZCsRdcDfVQ6Ew==
+X-Google-Smtp-Source: ABdhPJwl/iQfkO5suixU4PBWEHxz8p2fHudaNaiDXdTvQ5KBbgmlpr2GV9/HQXy//V7q3Emcotkdtw==
+X-Received: by 2002:a4a:dc0d:: with SMTP id p13mr1278563oov.2.1603140504163;
+        Mon, 19 Oct 2020 13:48:24 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id j191sm237505oib.52.2020.10.19.13.48.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Oct 2020 13:48:23 -0700 (PDT)
+Received: (nullmailer pid 3577895 invoked by uid 1000);
+        Mon, 19 Oct 2020 20:48:21 -0000
+Date:   Mon, 19 Oct 2020 15:48:21 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     Mark Brown <broonie@kernel.org>, nsaenzjulienne@suse.de,
+        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/7] Add dts for Rpi4 + Cirrus Lochnagar and codecs
+Message-ID: <20201019204821.GA3569507@bogus>
+References: <20201014145418.31838-1-rf@opensource.cirrus.com>
+ <20201014185632.GD4580@sirena.org.uk>
+ <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
 MIME-Version: 1.0
-References: <20201017133718.31327-1-kholk11@gmail.com> <20201017133718.31327-2-kholk11@gmail.com>
- <20201019195807.GA3508546@bogus>
-In-Reply-To: <20201019195807.GA3508546@bogus>
-From:   Martin Botka <martin.botka1@gmail.com>
-Date:   Mon, 19 Oct 2020 22:44:46 +0200
-Message-ID: <CADQ2G_HZ9nt88vW9MNiC-+Rdjzsu-hSHoqmqLC75vyiG2JKpQQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: interconnect: Add bindings for
- Qualcomm SDM660 NoC
-To:     Rob Herring <robh@kernel.org>
-Cc:     kholk11@gmail.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, marijns95@gmail.com,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        phone-devel@vger.kernel.org, linux-pm@vger.kernel.org,
-        georgi.djakov@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Documentation/devicetree/bindings/interconnect/qcom,sdm660.example.dts:20:18: fatal error: dt-bindings/clock/qcom,mmcc-sdm660.h: No such file or directory
->    20 |         #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+On Fri, Oct 16, 2020 at 02:30:08PM +0100, Richard Fitzgerald wrote:
+> On 14/10/2020 19:56, Mark Brown wrote:
+> > On Wed, Oct 14, 2020 at 03:54:11PM +0100, Richard Fitzgerald wrote:
+> > > This set of patches provides support for using the Cirrus Logic
+> > > Lochnagar audio development platform plus Cirrus Logic Madera/Arizona
+> > > codecs with the simple-card machine driver and a Raspberry Pi4. The
+> > > ultimate aim is to provide the dts file but some updates are needed to
+> > > the simple-card machine driver.
+> > 
+> > Why extend simple-card and not the more modern and flexible
+> > audio-graph-card?
+> > 
+> 
+> I'm struggling to understand how to use audio-graph-card where there are
+> multiple alternative codecs. The host I2S endpoint has to point back to
+> the codec endpoint, like this:
+> 
+> 	cpu_i2s_ep_cs47l15: endpoint {
+> 		remote-endpoint = <&cs47l15_aif1>;
+> 	};
+>
+> But obviously that depends on which codec node was enabled. Listing
+> multiple endpoints makes the whole port node disabled if any remote
+> endpoint is in a disabled node. I've tried adding status="disabled"
+> to endpoints or multiple port definitions with status="disabled" but
+> I haven't figured out a solution.
 
-This patch depends on my MMCC patch (sent by angelo).
+Multiple endpoints is what you should do. And 'status' goes in the 
+device nodes (not the graph nodes).
+
+Rob
+
