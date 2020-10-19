@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4992C2925A6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 12:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ACC32925B4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 12:24:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726528AbgJSKVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 06:21:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59496 "EHLO
+        id S1726630AbgJSKYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 06:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726325AbgJSKVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 06:21:39 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4184C0613CE;
-        Mon, 19 Oct 2020 03:21:38 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id i1so10772854wro.1;
-        Mon, 19 Oct 2020 03:21:38 -0700 (PDT)
+        with ESMTP id S1726242AbgJSKYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 06:24:43 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD23C0613CE;
+        Mon, 19 Oct 2020 03:24:43 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id d3so12217813wma.4;
+        Mon, 19 Oct 2020 03:24:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rDam2iBux83WmunYrPy6RIkxNQfpNh4uOchFEhMvXMw=;
-        b=ke1K2cvC3R38syswmV0bDDyDWj6nZESQqkQ323WDJxIoBqa6UgZ9LKqvtaVjj85nWa
-         CXLaF4bGei7QVNBj7RvSXhplu8Kk40RnFDoWo5NIAhZWCb4MOEPxtXvI8UXotFDRSCBo
-         WDih8AYIYqFM1NTDcjdy5+U//3N6Dm+pzWP8C8u4/ENPrx906kzLWt+6EySP1ZbS1/s2
-         GjQ/UIiQcxMCdL9rFUX6u/4R2wbmRQAnaIx15MHG0x1KaP7/SLmaP7Y3ZEGmts3RN+KY
-         50H7HeHAjnRgdyKB/mBXEpN3LRGfw1iCoO1r6Cc2PuibqKalct9NAWGN57R7c8GhtlZp
-         5xjw==
+        bh=DMW0yCt5PBQfW3WFVdC3B0AANBzYHJJxzkQs00mLzDU=;
+        b=LKKgD50zTmIM0cMSAE/AvUDkwu/kdSsZ0L95UgKa3KWLBAjnaSiWy1XHl+SdcRqEV3
+         IQE/moIhIeabtBKHMoROAOuKwuPkgmFo0f8fwML+IguoHnBOiuyuv+mQ2N28vq+7hO0z
+         1bA/5KGrtkXxRzGVQmzHYNj+YDoAnbUhDK5vTJDwEYvTfrucI1LrYns1/fES2K5VyN48
+         YTzw572i9QZEsNGaJMd0/NwKZqNde/TgGQ68LcbQEsJoJUs3bpaReIvTrIRsvloxsORF
+         o3Qa9GlsO0fooOT2rs6I6fPRmEpx/Ky7xtBbaa0CqwskxUSg0U2rwHmlbHfuFQNrPxT6
+         BwTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=rDam2iBux83WmunYrPy6RIkxNQfpNh4uOchFEhMvXMw=;
-        b=Usze/4ZcqVxbSbxxiUJ/if+kDIwaRp0ptFeQRrwWKya/hy8OkDZgGaiHTPSo49TSnp
-         DheZjwDdGB3nfLgXoSw/qazlaIDMdB1MJL+LHDdAU5ScDRT3ca4+EltsYg8NVQilvaGG
-         nQ8Uad78kS/yf6sROmE6eNga6yaIx49E9DDlmJPCjK07DEoEjVs2l8DcOtxMp0EfS2Kr
-         iffVW1TC6sPJv702xrCn3PQ9nefqFbr3asUDrjJqOvPs/A2cieEai1dzD5GE5oIVDHpX
-         uuX0DgXOXylf7MoGQ5Oo74qbTE1FroWONxjMpupmfj/L1kGRQ5zYdQjHMCb+Wr3EVe9e
-         Wbhg==
-X-Gm-Message-State: AOAM5335KfNFygAmMaIPUgjSq3OOzYC3h90eUB2tnRUMFtu8ui5DjbNR
-        GDrz3PQgPhQbNTxQ9UeZIzo=
-X-Google-Smtp-Source: ABdhPJymr1886oZmydcTM0lwn9ycX7wbCyMOY00WEhv3e+OOYP91KSDh0/hmDryGvGdfVtslZd4i/Q==
-X-Received: by 2002:a5d:5387:: with SMTP id d7mr18692169wrv.224.1603102897459;
-        Mon, 19 Oct 2020 03:21:37 -0700 (PDT)
+        bh=DMW0yCt5PBQfW3WFVdC3B0AANBzYHJJxzkQs00mLzDU=;
+        b=MKFVDSZckfZYGcxnZOk2j5RhuCFxXsZjAHaWe5oFFKap8RwBOjiJjL9lIFfzslYLut
+         /ezJmyega3F2I8lVsTtHv103UnsPf6YXbyG7EsGzA2cZPMMv7FydVEtT0olTHaalJnXA
+         0azJgrQuiFE1OzrjKKUO3MiKv/aopHpoiU2kZvZgwaNrwzrBSRFAC83MOFkxyZTY8XHg
+         AJZQFr5I1bc2UceHdVKfr4R7h6ZCL3fqWcFHYuTDZjPXF34NDNcFfA2oq/D6hzJ3X0zo
+         2RNJeHcI4B9fGgVAbuuJQsgGIrWU3S/NvxieJhDiujF4gqznbYlkRP8wX0hGC5TqJSA6
+         x77w==
+X-Gm-Message-State: AOAM531dY4yXBQJJAhwtKHw33ireCknPOHLy1ZviX23Gc6wub1MsqFE6
+        zEP0CQGCq9qP7I0GRJhAI7o=
+X-Google-Smtp-Source: ABdhPJxbSA06zBvEt/c3tORxcj/AmyLbEGYsK6l2y/z5MVdKIojHim9Mbimp5qDS8XKjW333ug8wiw==
+X-Received: by 2002:a7b:cc89:: with SMTP id p9mr17644734wma.4.1603103082028;
+        Mon, 19 Oct 2020 03:24:42 -0700 (PDT)
 Received: from ziggy.stardust ([213.195.119.110])
-        by smtp.gmail.com with ESMTPSA id 130sm12047799wmd.18.2020.10.19.03.21.36
+        by smtp.gmail.com with ESMTPSA id t13sm15863863wmj.15.2020.10.19.03.24.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Oct 2020 03:21:36 -0700 (PDT)
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8516: add auxadc node
+        Mon, 19 Oct 2020 03:24:41 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: dma: mtk-apdma: add bindings for MT8516
+ SOC
 To:     Fabien Parent <fparent@baylibre.com>, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Cc:     robh+dt@kernel.org, pmeerw@pmeerw.net, lars@metafoo.de,
-        knaack.h@gmx.de, jic23@kernel.org
-References: <20201012205218.3010868-1-fparent@baylibre.com>
- <20201012205218.3010868-2-fparent@baylibre.com>
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org
+Cc:     robh+dt@kernel.org, vkoul@kernel.org, sean.wang@mediatek.com
+References: <20201015123315.334919-1-fparent@baylibre.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <ba99554d-b0e9-58bf-110e-541bd9d0e521@gmail.com>
-Date:   Mon, 19 Oct 2020 12:21:35 +0200
+Message-ID: <9308a487-ed84-6112-d612-a8a777ee0dee@gmail.com>
+Date:   Mon, 19 Oct 2020 12:24:40 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20201012205218.3010868-2-fparent@baylibre.com>
+In-Reply-To: <20201015123315.334919-1-fparent@baylibre.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -73,38 +71,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12/10/2020 22:52, Fabien Parent wrote:
-> Add node for the auxadc IP. The IP is compatible with the one found
-> in MT8173 SoC.
+On 15/10/2020 14:33, Fabien Parent wrote:
+> Add bindings to APDMA for MT8516 SoC. MT8516 is compatible with MT6577.
 > 
 > Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-Applied to v5.10-tmp/dts64
-
-Thanks!
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
->   arch/arm64/boot/dts/mediatek/mt8516.dtsi | 10 ++++++++++
->   1 file changed, 10 insertions(+)
+>   Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> index 89af661e7f63..943c426e9aaf 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> @@ -470,5 +470,15 @@ usb0_port: usb-phy@11110800 {
->   				#phy-cells = <1>;
->   			};
->   		};
-> +
-> +		auxadc: adc@11003000 {
-> +			compatible = "mediatek,mt8516-auxadc",
-> +				     "mediatek,mt8173-auxadc";
-> +			reg = <0 0x11003000 0 0x1000>;
-> +			clocks = <&topckgen CLK_TOP_AUX_ADC>;
-> +			clock-names = "main";
-> +			#io-channel-cells = <1>;
-> +			status = "disabled";
-> +		};
->   	};
->   };
+> diff --git a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+> index 2117db0ce4f2..fef9c1eeb264 100644
+> --- a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+> +++ b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+> @@ -4,6 +4,7 @@ Required properties:
+>   - compatible should contain:
+>     * "mediatek,mt2712-uart-dma" for MT2712 compatible APDMA
+>     * "mediatek,mt6577-uart-dma" for MT6577 and all of the above
+> +  * "mediatek,mt8516-uart-dma", "mediatek,mt6577" for MT8516 SoC
+>   
+>   - reg: The base address of the APDMA register bank.
+>   
 > 
