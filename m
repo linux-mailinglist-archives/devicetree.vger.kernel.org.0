@@ -2,128 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0122C29244A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 11:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0080E2924D7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 11:46:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728124AbgJSJGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 05:06:21 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:30630 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728098AbgJSJGV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 05:06:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1603098381; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=CSSINleGh6w/76KIFdxve8Idpf2dccGeHvGZNRQeQPU=; b=pQgKzs0QQkVotxq1jJ44C2bK3ouL1ok0TaQrkk11Kpn1iM+vv6exF1dl0zYDjYP4xLE01VVu
- ynPOw0d34jJZ1Wwth8ayc/3h9YHDI4lKSn4E4orpE41HYoZg75c9w/f1z1uYVYsimvpjE/AI
- w+lfAEsJgZA3Wb6sFWp/0t4d1Do=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 5f8d570c3711fec7b1445054 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 19 Oct 2020 09:06:20
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 00D72C433FE; Mon, 19 Oct 2020 09:06:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 60CBEC433CB;
-        Mon, 19 Oct 2020 09:06:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 60CBEC433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v2] Asoc: qcom: lpass-cpu: Fix clock disable failure
-Date:   Mon, 19 Oct 2020 14:36:03 +0530
-Message-Id: <1603098363-9251-1-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S1728221AbgJSJqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 05:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727254AbgJSJqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 05:46:38 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E2BC0613D1
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 02:46:36 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id x13so5701415pgp.7
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 02:46:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ALbYyyA0vpv6/f61rJ6bmvtZlE3FbVb82jHAFZ5GC0I=;
+        b=gNmfIv1inQXz9rCn0kzNxaTJfeiqhPY344N9yQARhoFrspEFbTMOyD8Mo5+q2laVTJ
+         dljirSBQuIb1CJ16xkvkUsCLBj78B6xo1SpzN8eK1jE+s0R0H16YvGlqei3S0YjzB3HW
+         NDdyFFHsI7xQbUASKP01Lq/il8wFrj1oz5+efq0Z8Ek97jLxzyU9uloR6XPI4P4ckP7Q
+         6Ng8Eg7G4DwGn77Jzw3YLbqyv/aSe48taPsYmLP/FS0te1Q5/sFC262rrLjlx8TclVho
+         oHNzzVwsCfLCDt9WyeEKfWX0Lzmmj/ClvM7h55PLJ63qVYtWBtxYU9TZC5TPOWkIPxKL
+         2/vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ALbYyyA0vpv6/f61rJ6bmvtZlE3FbVb82jHAFZ5GC0I=;
+        b=dU5bf5zO2cN7pDqonnkFWBHFqGCnEr01STVcSAgEAuqLkTYlrXk8xIPBt6FDHtjbAe
+         aZ93b7GF4KD2ezPo8Qwqi1tC6QBGnEjB+t1CpUeqMR+SmyCfLlkYOScaY40RDSZieCP2
+         Bj91ePoAkSpoa3jerGwvGaWYyxcJJECp3A08NE0UAnjP78Dw+V7ui/nsx6tmh0BpyqgL
+         8IxcXHpWv6mQfh35rx1HLYayebRlWBl4lyUnJ6x/XdoCX+CwQrGtg2zprrDtRz9cadKh
+         LorTBjRKtP00/t6t89GxNrem8dmMDxRUIgCbbZYKKUp1sxsQWIR5FqDAa7NWqObNdVjZ
+         VzAg==
+X-Gm-Message-State: AOAM530YGs8VpTjVTbkhZ6d5KntxhI9k9b7T0UgjBGDRsLQGe3AJRawV
+        p0QpwqDoL4QHW+SHkxC6KV8uEA==
+X-Google-Smtp-Source: ABdhPJyaEAc/o30BN9mNATaHSTN/x9ARHeUEKpl/yCRpC2Ii3rE+ByZ0EptJ4B/QdXGCoslVP9l/+Q==
+X-Received: by 2002:a63:5005:: with SMTP id e5mr13885873pgb.236.1603100796064;
+        Mon, 19 Oct 2020 02:46:36 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id e23sm11252135pfi.191.2020.10.19.02.46.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 19 Oct 2020 02:46:35 -0700 (PDT)
+Date:   Mon, 19 Oct 2020 15:16:33 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
+Cc:     Lukasz Luba <lukasz.luba@arm.com>,
+        Ionela Voinescu <ionela.voinescu@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        vireshk@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        chris.redpath@arm.com, morten.rasmussen@arm.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+Message-ID: <20201019094633.m3yvxurfm2xwsb6a@vireshk-i7>
+References: <2417d7b5-bc58-fa30-192c-e5991ec22ce0@arm.com>
+ <20201008110241.dcyxdtqqj7slwmnc@vireshk-i7>
+ <20201008150317.GB20268@arm.com>
+ <56846759-e3a6-9471-827d-27af0c3d410d@arm.com>
+ <20201009053921.pkq4pcyrv4r7ylzu@vireshk-i7>
+ <20201012154915.GD16519@bogus>
+ <20201012165219.GA3573@arm.com>
+ <17819d4d-9e7e-9a38-4227-d0d10a0749f1@arm.com>
+ <20201014042531.r7iykzygkvmpsqck@vireshk-i7>
+ <503af305-77a4-964a-ed17-8df8b4e3a546@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <503af305-77a4-964a-ed17-8df8b4e3a546@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On 19-10-20, 09:50, Nicola Mazzucato wrote:
+> Hi Viresh,
+> 
+> thank you for your suggestion on using 'opp-shared'.
+> I think it could work for most of the cases we explained earlier.
+> 
+> Summarising, there are two parts of this entire proposal:
+> 1) where/how to get the information: now we are focusing on taking advantage of
+> 'opp-shared' within an empty opp table
+> 2) and how/where this information will be consumed
+> 
+> Further details below:
+> 
+> 1) a CPUFreq driver that takes the OPPs from firmware, can call
+> dev_pm_opp_of_get_sharing_cpus like you suggested. When doing so, a provided
+> cpumaksk will be populated with the corresponding cpus that share the same
+> (empty) table opp in DT.
+> All good so far.
 
-Disable MI2S bit clock from PAUSE/STOP/SUSPEND usecase instead of
-shutdown time. Acheive this by invoking clk_disable API from
-cpu daiops trigger instead of cpu daiops shutdown.
-Change non-atomic API "clk_prepare_enable" to atomic API
-"clk_enable" in trigger, as trigger is being called from atomic context.
+Great.
 
-Fixes: commit 7e6799d8f87d ("ASoC: qcom: lpass-cpu: Enable MI2S BCLK and LRCLK together")
+> The current opp core is not expecting an empty table and therefore some errors
+> are thrown when this happens.
+> Since we are now allowing this corner-case, I am presenting below where I think
+> some minor corrections may be needed:
+> 
+> --- a/drivers/opp/of.c
+> +++ b/drivers/opp/of.c
+> @@ static void _opp_table_alloc_required_tables(struct opp_table *opp_table,
+>         struct device_node *required_np, *np;
+>         int count, i;
+> 
+>         /* Traversing the first OPP node is all we need */
+>         np = of_get_next_available_child(opp_np, NULL);
+>         if (!np) {
+> -               dev_err(dev, "Empty OPP table\n");
+> +               dev_warn(dev, "Empty OPP table\n");
+> +
+> +               /*
+> +                * With empty table we remove shared_opp. This is to leave the
+> +                * responsibility to decide which opp are shared to the opp users
+> +                */
+> +               opp_table->shared_opp = OPP_TABLE_ACCESS_EXCLUSIVE;
+> +
+>                 return;
+>         }
+> 
+> @@ int dev_pm_opp_of_find_icc_paths(struct device *dev,
+>         int ret, i, count, num_paths;
+>         struct icc_path **paths;
+> 
+>         ret = _bandwidth_supported(dev, opp_table);
+> -       if (ret <= 0)
+> +       if (ret == -EINVAL)
+> +               return 0; /* Empty OPP table is a valid corner-case, let's not
+> fail */
+> +       else if (ret <= 0)
+>                 return ret;
+> 
+> The above are not 'strictly' necessary to achieve the intended goal, but they
+> make clearer that an empty table is now allowed and not an error anymore.
+> What it is your point of view on this?
 
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-cpu.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+Why is this stuff getting called in your case ? We shouldn't be trying
+to create an OPP table here and it should still be an error in the
+code if we are asked to parse an empty OPP table.
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index 78de888..6001049 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -80,6 +80,12 @@ static int lpass_cpu_daiops_startup(struct snd_pcm_substream *substream,
- 		dev_err(dai->dev, "error in enabling mi2s osr clk: %d\n", ret);
- 		return ret;
- 	}
-+	ret = clk_prepare(drvdata->mi2s_bit_clk[dai->driver->id]);
-+	if (ret) {
-+		dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
-+		clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
-+		return ret;
-+	}
- 	return 0;
- }
- 
-@@ -88,9 +94,8 @@ static void lpass_cpu_daiops_shutdown(struct snd_pcm_substream *substream,
- {
- 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
- 
--	clk_disable_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
--
- 	clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
-+	clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
- }
- 
- static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream *substream,
-@@ -303,10 +308,10 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
- 			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
- 				ret);
- 
--		ret = clk_prepare_enable(drvdata->mi2s_bit_clk[id]);
-+		ret = clk_enable(drvdata->mi2s_bit_clk[id]);
- 		if (ret) {
- 			dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
--			clk_disable_unprepare(drvdata->mi2s_osr_clk[id]);
-+			clk_disable(drvdata->mi2s_osr_clk[id]);
- 			return ret;
- 		}
- 
-@@ -324,6 +329,7 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
- 		if (ret)
- 			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
- 				ret);
-+		clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
- 		break;
- 	}
- 
+> In addition, I think it would also be appropriate to update the documentation
+> (Documentation/devicetree/bindings/opp/opp.txt) to reflect this new case
+> (required properties etc).
+> Any different thoughts?
+
+Yes, this needs a small update in the required-opps section.
+
+> 2) Once the driver gets the 'performance dependencies' by
+> dev_pm_opp_of_get_sharing_cpus(), this information will have to be shared with
+> EAS, thermal, etc.. The natural way to do so would be to add a new cpumask like
+> I proposed in this RFC.
+> I see this as an improvement for the whole subsystem and a scalable choice since
+> we can unambiguously provide the correct information to whoever needs it, given
+> that we don't enforce "hw dependencies" for related_cpus.
+> The changes would be trivial (it's in the original RFC).
+> On the other hand, we can't unload this h/w detail into related_cpus IMO as we
+> are dealing with per-cpu systems in this context.
+> Hope it makes sense?
+
+I will have another look at this stuff, honestly I haven't looked at
+this in detail yet. But I do understand that we can't really use
+related-cpu here without changing its earlier meaning.
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+viresh
