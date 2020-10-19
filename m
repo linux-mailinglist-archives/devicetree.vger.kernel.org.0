@@ -2,234 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F906292CB7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 19:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 179AE292CD1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 19:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731199AbgJSR0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 13:26:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41950 "EHLO mail.kernel.org"
+        id S1726768AbgJSRbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 13:31:24 -0400
+Received: from mga07.intel.com ([134.134.136.100]:39620 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731187AbgJSR0l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 13:26:41 -0400
-Received: from localhost.localdomain (unknown [194.230.155.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C599522314;
-        Mon, 19 Oct 2020 17:26:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603128400;
-        bh=9VekKCyuc32rUGeAXkmomZLwHOrivk4pY7Iug35yAUU=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=l0MdbRXi3Sk9vqBToW3jKl5mPLRUQjgfGtDe/X0LBiqInwgEFwjvarUJX0xCLCXT5
-         kU9Hp/mj4HfIdg9KWd4HRLhVxBjLxSYgNGdNi2dBUOc8p0gRAlayUaP1hdFVD1bE7G
-         MjH+otrr9k5ybae8xMVpcLX2xd26qy4VLvpBMD7c=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/4] media: i2c: imx258: get clock from device properties and enable it via runtime PM
-Date:   Mon, 19 Oct 2020 19:26:17 +0200
-Message-Id: <20201019172617.92815-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201019172617.92815-1-krzk@kernel.org>
-References: <20201019170247.92002-1-krzk@kernel.org>
- <20201019172617.92815-1-krzk@kernel.org>
+        id S1726534AbgJSRbX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 13:31:23 -0400
+IronPort-SDR: 7GYXpz5qBotwlyMa7YFqg3ZvKSc/cwnaMjTVRREj2UdSxUU6puSWjP0Q4kieHYO9zjMmqJcTt+
+ RGRpKgvy5Uvw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="231263387"
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; 
+   d="scan'208";a="231263387"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2020 10:31:22 -0700
+IronPort-SDR: EhFNLtbRqwd0AF3ge+XBSVzna9/k1UVB+phExytKiZZ6KejUj/O8atgTXyXXHudYcdSxai5Gvl
+ J0akgMi7t9pA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; 
+   d="scan'208";a="315737473"
+Received: from ubuntu18.png.intel.com ([10.88.229.38])
+  by orsmga003.jf.intel.com with ESMTP; 19 Oct 2020 10:31:19 -0700
+From:   vijayakannan.ayyathurai@intel.com
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        vijayakannan.ayyathurai@intel.com
+Subject: [PATCH v13 0/2] Add PWM support for Intel Keem Bay SoC
+Date:   Tue, 20 Oct 2020 01:28:45 +0800
+Message-Id: <cover.1603127898.git.vijayakannan.ayyathurai@intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IMX258 sensor driver checked in device properties for a
-clock-frequency property which actually does not mean that the clock is
-really running such frequency or is it even enabled.
+From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-Get the provided clock and check it frequency.  If none is provided,
-fall back to old property.
+Hi,
 
-Enable the clock when accessing the IMX258 registers and when streaming
-starts with runtime PM.
+This patch set enables the support for PWM in the Intel Keem Bay SoC.
+Keem Bay is an ARM based SoC, and the GPIO module allows
+configuration of 6 PWM outputs.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Patch 1 adds the PWM driver and Patch 2 is for the required
+Device Tree bindings documentation.
 
----
+This driver was tested on the Keem Bay evaluation module board.
+
+Thank you.
+
+Regards,
+Vijay
+
+Changes since v12:
+- Use devm_add_action_or_reset() as per Andy suggestion.
+- Do the clk_prepare_enable() after all devm_ stuff as per Uwe suggestion.
+- Optimize keembay_pwm_remove function.
+- Simplify the error handling for pwmchip_add.
+- In Kconfig, Use depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
+- Fix indentation error in dt-binding.
+- Add Uwe's Reviewed-by tag and Vijay's Co-developed-by tag.
+
+Changes since v11:
+- Minor variable name change to match the api needs.
+- Setup polarity as PWM_POLARITY_NORMAL.
+- Add comment for LEADIN register usage.
+
+Changes since v10:
+- Update low time calculation formula as per Uwe.
+- During distruct remove pwmchip first then disable the clock.
+
+Changes since v9:
+- Remove Reported-by tag from the commit log.
+
+Changes since v8:
+- Fix the compilation error reported by kernel test robot.
+- Add the tag Reported-by: kernel test robot <lkp@intel.com>
+- Minor correction in the pwm low time calculation formula.
+- Rebase with 5.9-rc7
+
+Changes since v7:
+- Change the dependency as ARCH_KEEMBAY instead of ARM64 in Kconfig.
+- Use DIV_ROUND_DOWN_ULL instead of DIV_ROUND_CLOSEST_ULL.
+- Update the right formula as per Uwe.
+- List the tags in chronological order.
+- Add clk_disable_unprepare in the error paths.
+
+Changes since v6:
+- Add reviewed-by tag
+
+Changes since v5:
+- Reorder symbols/Kconfig in drivers/pwm/Kconfig and drivers/pwm/Makefile
+- Use "Limitations" for consistency
+- Add clk_prepare_enable()
+- Reorder keembay_pwm_get_state() function call
+- Rework if conditional for channel disablement in .apply()
+- Remove channel disabling from .probe(), and clear LEADIN register bits
+  in .apply instead
+- Update commit message for Patch 1
 
 Changes since v4:
-1. Add missing imx258_power_off.
+- Add co-developed-by tag
+- Include mod_devicetable.h and remove of.h
+- Update comment with correct calulation for high/low time
+- Fix missing return from dev_err_probe
 
 Changes since v3:
-1. None
+- Removed variable for address and calculate in place instead
+- Utilized u32_replace_bits() when updating KMB_PWM_LEADIN_OFFSET
+- Utilized dev_err_probe() for error reporting
+- Updated comments to use physical units
+- Updated error check for pwmchip_add()
 
 Changes since v2:
-1. Do not try to set drvdata, wrap lines.
-2. Use dev_dbg.
+- Include documentation about HW limitation/behaviour
+- Use hex values for KMB_PWM_COUNT_MAX
+- Redefine register macros
+- Utilize FIELD_GET/FIELD_PREP for calculating pwm_l/h_count and
+  pwm_count
+- Round up duty cycle/period values
+- Get current hardware state in .apply instead of cached values
+- Do a polarity check before .enabled
+- Round high time/low time to closest value
+- Set enable bit in KMB_PWM_LEADIN_OFFSET to 0 in probe
+- Correct the naming for MODULE_ALIAS
+- Add additionalProperties: false in DT bindings
 
 Changes since v1:
-1. Use runtime PM for clock toggling
----
- drivers/media/i2c/imx258.c | 73 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 64 insertions(+), 9 deletions(-)
+- Updated licensing info, "clocks" property and example in DT bindings
+- Updated name of DT bindings document to match compatible string
+- Removed 1 patch for addition of new sysfs attribute "count"
+- Added support for COMPILE_TEST in Kconfig
+- Updated naming of defines and regmap attribute
+- Updated calculation of waveform high time and low time
+- Added range checking for waveform high/low time
+- Implemented .get_state
+- Removed register writes for lead-in and count values (left to default)
+- Updated register access to single-access
+- Folded keembay_pwm_enable/disable_channel,
+  keembay_pwm_config_period/duty_cycle,
+  and keembay_pwm_config into keembay_pwm_apply
+- Updated error messages/error codes
+- Removed pwm_disable from keembay_pwm_remove
+- Removed clk_prepare/clk_enable/clk_disable from driver
 
-diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-index ae183b0dbba9..038115471f17 100644
---- a/drivers/media/i2c/imx258.c
-+++ b/drivers/media/i2c/imx258.c
-@@ -2,6 +2,7 @@
- // Copyright (C) 2018 Intel Corporation
- 
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/i2c.h>
- #include <linux/module.h>
-@@ -68,6 +69,9 @@
- #define REG_CONFIG_MIRROR_FLIP		0x03
- #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
- 
-+/* Input clock frequency in Hz */
-+#define IMX258_INPUT_CLOCK_FREQ		19200000
-+
- struct imx258_reg {
- 	u16 address;
- 	u8 val;
-@@ -610,6 +614,8 @@ struct imx258 {
- 
- 	/* Streaming on/off */
- 	bool streaming;
-+
-+	struct clk *clk;
- };
- 
- static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
-@@ -972,6 +978,29 @@ static int imx258_stop_streaming(struct imx258 *imx258)
- 	return 0;
- }
- 
-+static int imx258_power_on(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct imx258 *imx258 = to_imx258(sd);
-+	int ret;
-+
-+	ret = clk_prepare_enable(imx258->clk);
-+	if (ret)
-+		dev_err(dev, "failed to enable clock\n");
-+
-+	return ret;
-+}
-+
-+static int imx258_power_off(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct imx258 *imx258 = to_imx258(sd);
-+
-+	clk_disable_unprepare(imx258->clk);
-+
-+	return 0;
-+}
-+
- static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
- {
- 	struct imx258 *imx258 = to_imx258(sd);
-@@ -1199,9 +1228,28 @@ static int imx258_probe(struct i2c_client *client)
- 	int ret;
- 	u32 val = 0;
- 
--	device_property_read_u32(&client->dev, "clock-frequency", &val);
--	if (val != 19200000)
--		return -EINVAL;
-+	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-+	if (!imx258)
-+		return -ENOMEM;
-+
-+	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
-+	if (!imx258->clk) {
-+		dev_dbg(&client->dev,
-+			"no clock provided, using clock-frequency property\n");
-+
-+		device_property_read_u32(&client->dev, "clock-frequency", &val);
-+		if (val != IMX258_INPUT_CLOCK_FREQ)
-+			return -EINVAL;
-+	} else if (IS_ERR(imx258->clk)) {
-+		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
-+				     "error getting clock\n");
-+	} else {
-+		if (clk_get_rate(imx258->clk) != IMX258_INPUT_CLOCK_FREQ) {
-+			dev_err(&client->dev,
-+				"input clock frequency not supported\n");
-+			return -EINVAL;
-+		}
-+	}
- 
- 	/*
- 	 * Check that the device is mounted upside down. The driver only
-@@ -1211,24 +1259,25 @@ static int imx258_probe(struct i2c_client *client)
- 	if (ret || val != 180)
- 		return -EINVAL;
- 
--	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
--	if (!imx258)
--		return -ENOMEM;
--
- 	/* Initialize subdev */
- 	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
- 
-+	/* Will be powered off via pm_runtime_idle */
-+	ret = imx258_power_on(&client->dev);
-+	if (ret)
-+		return ret;
-+
- 	/* Check module identity */
- 	ret = imx258_identify_module(imx258);
- 	if (ret)
--		return ret;
-+		goto error_identify;
- 
- 	/* Set default mode to max resolution */
- 	imx258->cur_mode = &supported_modes[0];
- 
- 	ret = imx258_init_controls(imx258);
- 	if (ret)
--		return ret;
-+		goto error_identify;
- 
- 	/* Initialize subdev */
- 	imx258->sd.internal_ops = &imx258_internal_ops;
-@@ -1258,6 +1307,9 @@ static int imx258_probe(struct i2c_client *client)
- error_handler_free:
- 	imx258_free_controls(imx258);
- 
-+error_identify:
-+	imx258_power_off(&client->dev);
-+
- 	return ret;
- }
- 
-@@ -1271,6 +1323,8 @@ static int imx258_remove(struct i2c_client *client)
- 	imx258_free_controls(imx258);
- 
- 	pm_runtime_disable(&client->dev);
-+	if (!pm_runtime_status_suspended(&client->dev))
-+		imx258_power_off(&client->dev);
- 	pm_runtime_set_suspended(&client->dev);
- 
- 	return 0;
-@@ -1278,6 +1332,7 @@ static int imx258_remove(struct i2c_client *client)
- 
- static const struct dev_pm_ops imx258_pm_ops = {
- 	SET_SYSTEM_SLEEP_PM_OPS(imx258_suspend, imx258_resume)
-+	SET_RUNTIME_PM_OPS(imx258_power_off, imx258_power_on, NULL)
- };
- 
- #ifdef CONFIG_ACPI
+Lai, Poey Seng (1):
+  pwm: Add PWM driver for Intel Keem Bay
+
+Vineetha G. Jaya Kumaran (1):
+  dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
+
+ .../bindings/pwm/intel,keembay-pwm.yaml       |  47 ++++
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-keembay.c                     | 240 ++++++++++++++++++
+ 4 files changed, 297 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-keembay.c
+
+
+base-commit: 549738f15da0e5a00275977623be199fbbf7df50
+prerequisite-patch-id: 0a348762b660d0d817b8e70cc71647e83173c78c
+prerequisite-patch-id: 0c6072cfe492b078c44ec864b8f9d1c76eada93b
+prerequisite-patch-id: 12b93428ee51a3d92ca973b928c0e0989f5d585e
 -- 
-2.25.1
+2.17.1
 
