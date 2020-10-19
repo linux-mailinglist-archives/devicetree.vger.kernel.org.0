@@ -2,99 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 484CF292961
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 16:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1B3292969
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 16:35:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729497AbgJSObc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 10:31:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41692 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729493AbgJSObb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 10:31:31 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D964C0613CE;
-        Mon, 19 Oct 2020 07:31:30 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id u8so14222334ejg.1;
-        Mon, 19 Oct 2020 07:31:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MepAw8QikH8iyL9uAquf5YG3tjzob/KKJdUH1sVOBVk=;
-        b=k9oWyitnMt++4zrFpLN8CCED218B+biNowtUEWQ/yHYYk6tbQmhfYUreCjx8Y/BDdg
-         mpadDWoTL5XY0u4obiWSO0GvJVGjC08Dp7QBm0WQGzcsu5r1LENTEt+91Ntw2X+BoCyG
-         8x0jERqmhwrFQatevK1DilPRa2WpDHEtDDMkjzDNMvdCmCtfHB+vLSxssGFFndGQTw/T
-         wIaUaIdl/X6xA9IzBGW7Y7lGOF7TBX/UljA/Ny/xri7uR7+SAuxZKCPApYVDyAtn1Dho
-         zEb7NZtvClyHS8maqi9pI+UAInbnhzzl53XTMN3Vj768HY4NQ//Rgt+/dXk8dO+5PgPA
-         zMyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MepAw8QikH8iyL9uAquf5YG3tjzob/KKJdUH1sVOBVk=;
-        b=hTlc92jIj8qGKvHuVLDz32z82Ku9Ug05LzVy4tteFbGBmEsb1zVpmNpi8GzEkTFHP7
-         qsNYiWL6cGHNkACmhGAfhErUskMC1kLCNIAnplr7BrYVS8GC5YVTNa+0StP8oUxcyWbo
-         Ufv6A/xTPe7YgKRjs36Lc7woqrcJ+RC/3zlHI1nMDdmMHwuy4B8vOKqAhj8A5NeGcTCQ
-         6Acr/o8Qxnd7wrywi91ZB3s0UuNSYWdoHESEku96g9i71NxLzjxBN/l1ifbCVue5/OGs
-         rDWYpYDquUpdPBjmLJF8lvtl7OoiYGI3rEcKXuWI4jcxH5G71tWgigPW6eDUbIDEsf8U
-         pbJQ==
-X-Gm-Message-State: AOAM533oJ5T/7/XvyOp++AYnpI4qf4zTo/3U3ae3kjA901SOkXhccd62
-        IEmLcjv0euF0v3bl5BmxIOc=
-X-Google-Smtp-Source: ABdhPJyEYwW4FFKts3BZU6uk4cE13TWT4ciblOSS+iLcXuP/eCaQaDXJIweK/eft7Cpo3P5KX3DWaQ==
-X-Received: by 2002:a17:906:1152:: with SMTP id i18mr159113eja.101.1603117888789;
-        Mon, 19 Oct 2020 07:31:28 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.119.110])
-        by smtp.gmail.com with ESMTPSA id k11sm234857eji.72.2020.10.19.07.31.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Oct 2020 07:31:28 -0700 (PDT)
-Subject: Re: [PATCH 1/5] dt-bindings: pwm: pwm-mediatek: Add documentation for
- MT8183 SoC
-To:     Fabien Parent <fparent@baylibre.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
-Cc:     robh+dt@kernel.org, lee.jones@linaro.org,
-        u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com
-References: <20201019140705.1518822-1-fparent@baylibre.com>
- <20201019140705.1518822-2-fparent@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <95cbfef2-ef5e-1743-58d4-545ce7d29227@gmail.com>
-Date:   Mon, 19 Oct 2020 16:31:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1728344AbgJSOfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 10:35:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60746 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728311AbgJSOfN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 10:35:13 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D8706222E9
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 14:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603118113;
+        bh=9Dhc27A9N96thdDVnNpG1S2IvWmrt5KUifl2vLSN1Hw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=zA1ofiLUT2RxPPqN8a6R3lZWM8IHBxxtwBi2p/k6WuV5otYn8l3vZg76++BGFcncT
+         bOZeXlpgyEXxBTT5QMfg+tPBGjeX8FSb+EDSU8SDHRH4KDJqZXzpirhbHPglIcH8Uv
+         kynA/Kvy1GNoCYFT0sQCDDq7FUBXqxGmM8FJ0A8s=
+Received: by mail-ot1-f44.google.com with SMTP id m11so10617603otk.13
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 07:35:12 -0700 (PDT)
+X-Gm-Message-State: AOAM533/yMmf3daxjq1SyAO0owtI/Cz8xdFknGyO4ygThma/zcUBb1PT
+        V9If+14slTLUZB4gaj5eSDGLcSm2HldjXZa8QQ==
+X-Google-Smtp-Source: ABdhPJw+QmptSfTQjKQQEOSHxLnQWOTspH5/pk7BhNxjXHIf+EkDrcpJuo9cnLbpLqwU/p57KK3DCwGbhQFEK7ldqIY=
+X-Received: by 2002:a9d:5e14:: with SMTP id d20mr191914oti.107.1603118112050;
+ Mon, 19 Oct 2020 07:35:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201019140705.1518822-2-fparent@baylibre.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200917094024.17215-1-u.kleine-koenig@pengutronix.de>
+ <20200919143922.22793-1-u.kleine-koenig@pengutronix.de> <CAK7LNAT5f6RxFjOTOm8RvzZ3N2-48fr5e7wVoiE9hVeMBLSKBA@mail.gmail.com>
+ <CAL_JsqJDPq-7V-JkeVEQh8J9dUd8uCqp0u5LnP6pYXmpzLRcwg@mail.gmail.com> <20201017212453.6ovoxoop74z5rmtn@pengutronix.de>
+In-Reply-To: <20201017212453.6ovoxoop74z5rmtn@pengutronix.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 19 Oct 2020 09:35:00 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLoBJxrPu5iMfs-KcHpkPWQihy_yDfEEtoiWB6Br3ES4A@mail.gmail.com>
+Message-ID: <CAL_JsqLoBJxrPu5iMfs-KcHpkPWQihy_yDfEEtoiWB6Br3ES4A@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc: only append to HOST_EXTRACFLAGS instead of overwriting
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Oct 17, 2020 at 4:25 PM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> On Fri, Oct 16, 2020 at 09:30:00AM -0500, Rob Herring wrote:
+> > On Fri, Oct 16, 2020 at 2:11 AM Masahiro Yamada <masahiroy@kernel.org> =
+wrote:
+> > >
+> > > On Sat, Sep 19, 2020 at 11:39 PM Uwe Kleine-K=C3=B6nig
+> > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > >
+> > > > When building with
+> > > >
+> > > >         $ HOST_EXTRACFLAGS=3D-g make
+> > >
+> > >
+> > > I do not think this is the intended usage
+> > > of HOST_EXTRACFLAGS.
+> >
+> > Okay, but I looked at all the other instances of HOST_EXTRACFLAGS and
+> > they do '+=3D'. Are they all wrong?
+>
+> Hmm, I just tested that and indeed
+>
+>         HOSTCFLAGS=3D-g make
+>
+> has the intended effect. Then the commit log is not optimal. I'd still
+> say the patch is good even though the reasoning is now only aligning the
+> assignment to others in the kernel tree.
+>
+> @Rob: Assuming you agree, do you throw out hte patch again and I resend
+> with an improved commit log?
 
+It's now in Linus's tree.
 
-On 19/10/2020 16:07, Fabien Parent wrote:
-> Add binding documentation for the MT8183 SoC.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->   Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> index 29adff59c479..25ed214473d7 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> @@ -7,6 +7,7 @@ Required properties:
->      - "mediatek,mt7623-pwm": found on mt7623 SoC.
->      - "mediatek,mt7628-pwm": found on mt7628 SoC.
->      - "mediatek,mt7629-pwm": found on mt7629 SoC.
-> +   - "mediatek,mt8183-pwm": found on mt8183 SoC.
->      - "mediatek,mt8516-pwm": found on mt8516 SoC.
->    - reg: physical base address and length of the controller's registers.
->    - #pwm-cells: must be 2. See pwm.yaml in this directory for a description of
-> 
+Rob
