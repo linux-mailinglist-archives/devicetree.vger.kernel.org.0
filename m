@@ -2,89 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E11BC29300B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 22:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DBC1293010
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 22:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727082AbgJSUsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 16:48:25 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:39964 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727007AbgJSUsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 16:48:25 -0400
-Received: by mail-oo1-f67.google.com with SMTP id w7so267436oow.7;
-        Mon, 19 Oct 2020 13:48:24 -0700 (PDT)
+        id S1727979AbgJSUtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 16:49:25 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:42987 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727723AbgJSUtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 16:49:25 -0400
+Received: by mail-ot1-f67.google.com with SMTP id h62so1052386oth.9;
+        Mon, 19 Oct 2020 13:49:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fxa3uzHmULeVmNdtF5y01CM2QpDZ2ApdIjLlwOHG4sY=;
-        b=Va2X7wBuu+NBS4fj2JxIadcxzkqIo8mUISO+Oyy57HAI9+lxrvx2mgsdyiwlPrSw8s
-         nwEuNG8gFhb1wRtOBTg/Wv2shnk1OWm4xQ6nDykpYlxE/dfQlJxKxLTfG+OVePf6EOjc
-         JKqXwolpGT7Bj1ZZjhV+r1m021AdaycW7G4sEYtAeZoosnw0a3dCP7Xx2tLOQmDbqnox
-         P3vfxqms48sq0rrbnvcWb+hrGI6KAf8H8RfHzDJ5tpRhrsi+L5984atDO5tzNaU5T1mU
-         mdm+nvKwCj+y/EUmYeTT+SzWauwnOqVytnKs14cms1E0kIOLUP5u3pVbwYfRbN3PEOZd
-         ftzw==
-X-Gm-Message-State: AOAM532Gvt87raJf2QMrhNAlIUzPE3dX97mjhIWD57jJx/8IVSuaAgF3
-        lClEwTMhUVJXGAKcnZCsRdcDfVQ6Ew==
-X-Google-Smtp-Source: ABdhPJwl/iQfkO5suixU4PBWEHxz8p2fHudaNaiDXdTvQ5KBbgmlpr2GV9/HQXy//V7q3Emcotkdtw==
-X-Received: by 2002:a4a:dc0d:: with SMTP id p13mr1278563oov.2.1603140504163;
-        Mon, 19 Oct 2020 13:48:24 -0700 (PDT)
+        bh=VF8WhyOYxc6TogxeINHMmYzt1J7GZgkJjEGtMkCxL0s=;
+        b=kFWwECKoOgax1l+C/pIqggrq5da9fo2HUVa4A8jyEqqmmivkkxF+hD/kfBxISfE7dT
+         qidv+T68p+tBM0ibX2WLiFHzN6wh1hZtUkRkKUjKsX3wMro0yhVFfGnFGQi6HIB5b0BP
+         ZH/xmNeoj19x8U+C3Z/516t7ZSi4Hfq5XSBNN9g9HPhAOEzoBeD4zLh747vDnrjCCiR4
+         If35UpWPJxcJjRm7TgkwYuNbFhBBgLIuuuwkC7ASmrjxfb4sdMumK6y0gSwkmHJwcjlt
+         p5u3WMA/b13ZodDyHGQ8XE+s1BsLqIS1/bN2STLVlmJfZwfiz9hSKQfbP3+xxFqLOGbq
+         uNVA==
+X-Gm-Message-State: AOAM531snPJglXGYbyV7L5xtyi5347Wd0WcVd9Uj+IqKnlesI2e1mbwI
+        CKlKPE432CN6XMoLow8zEQXF6bLtYg==
+X-Google-Smtp-Source: ABdhPJzZxIr6EV5zzMSKx7mzxwW0uKsXstbfyfnAtrTiSwNA3TVRZvQdOp3Gaeb64pihflei2otyPQ==
+X-Received: by 2002:a9d:6e17:: with SMTP id e23mr1207141otr.354.1603140564245;
+        Mon, 19 Oct 2020 13:49:24 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j191sm237505oib.52.2020.10.19.13.48.23
+        by smtp.gmail.com with ESMTPSA id l184sm300548ooc.10.2020.10.19.13.49.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Oct 2020 13:48:23 -0700 (PDT)
-Received: (nullmailer pid 3577895 invoked by uid 1000);
-        Mon, 19 Oct 2020 20:48:21 -0000
-Date:   Mon, 19 Oct 2020 15:48:21 -0500
+        Mon, 19 Oct 2020 13:49:23 -0700 (PDT)
+Received: (nullmailer pid 3579377 invoked by uid 1000);
+        Mon, 19 Oct 2020 20:49:22 -0000
+Date:   Mon, 19 Oct 2020 15:49:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     Mark Brown <broonie@kernel.org>, nsaenzjulienne@suse.de,
-        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/7] Add dts for Rpi4 + Cirrus Lochnagar and codecs
-Message-ID: <20201019204821.GA3569507@bogus>
-References: <20201014145418.31838-1-rf@opensource.cirrus.com>
- <20201014185632.GD4580@sirena.org.uk>
- <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 4/5] media: dt-bindings: media: renesas,drif: Add
+ r8a77965 support
+Message-ID: <20201019204922.GA3579303@bogus>
+References: <20201014155719.15120-1-fabrizio.castro.jz@renesas.com>
+ <20201014155719.15120-5-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b3376cd4-010f-cf72-8c81-1f5d22cb6454@opensource.cirrus.com>
+In-Reply-To: <20201014155719.15120-5-fabrizio.castro.jz@renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 16, 2020 at 02:30:08PM +0100, Richard Fitzgerald wrote:
-> On 14/10/2020 19:56, Mark Brown wrote:
-> > On Wed, Oct 14, 2020 at 03:54:11PM +0100, Richard Fitzgerald wrote:
-> > > This set of patches provides support for using the Cirrus Logic
-> > > Lochnagar audio development platform plus Cirrus Logic Madera/Arizona
-> > > codecs with the simple-card machine driver and a Raspberry Pi4. The
-> > > ultimate aim is to provide the dts file but some updates are needed to
-> > > the simple-card machine driver.
-> > 
-> > Why extend simple-card and not the more modern and flexible
-> > audio-graph-card?
-> > 
+On Wed, 14 Oct 2020 16:57:18 +0100, Fabrizio Castro wrote:
+> The r8a77965 (a.k.a. R-Car M3-N) device tree schema is
+> compatible with the already documented R-Car Gen3 devices.
 > 
-> I'm struggling to understand how to use audio-graph-card where there are
-> multiple alternative codecs. The host I2S endpoint has to point back to
-> the codec endpoint, like this:
+> Document r8a77965 support within renesas,drif.yaml.
 > 
-> 	cpu_i2s_ep_cs47l15: endpoint {
-> 		remote-endpoint = <&cs47l15_aif1>;
-> 	};
->
-> But obviously that depends on which codec node was enabled. Listing
-> multiple endpoints makes the whole port node disabled if any remote
-> endpoint is in a disabled node. I've tried adding status="disabled"
-> to endpoints or multiple port definitions with status="disabled" but
-> I haven't figured out a solution.
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v3->v4:
+> * No change
+> v2->v3:
+> * New patch
+> 
+>  Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Multiple endpoints is what you should do. And 'status' goes in the 
-device nodes (not the graph nodes).
-
-Rob
-
+Acked-by: Rob Herring <robh@kernel.org>
