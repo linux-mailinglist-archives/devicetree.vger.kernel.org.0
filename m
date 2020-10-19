@@ -2,91 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F7C292C4B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 19:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC325292D3C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Oct 2020 19:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730645AbgJSRGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 13:06:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37010 "EHLO mail.kernel.org"
+        id S1730274AbgJSR6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 13:58:43 -0400
+Received: from mailout08.rmx.de ([94.199.90.85]:36177 "EHLO mailout08.rmx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730552AbgJSRGS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Oct 2020 13:06:18 -0400
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1729556AbgJSR6n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Oct 2020 13:58:43 -0400
+Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 37E0222365;
-        Mon, 19 Oct 2020 17:06:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603127177;
-        bh=0O1fhJYNZelW5IlOs5LX842TXGsnkAfhUi+vSpLlLEU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=v7lhCyYxO2IAejY4XtXtiwc4whRS6uQV1lYeCuroS/EEctzWODXNTnUTtNguaI+mz
-         JbWhhXSNrFIo3ymIIop1a8UYKkIN80pu/AbUgoDfn0TrQEwAgJiZiMmZOVFv5uZV1e
-         3ecpgzkwkTa637cz4jGMWy+t9u9rBLM8U1xfHTkk=
-Received: by mail-ed1-f50.google.com with SMTP id p13so57291edi.7;
-        Mon, 19 Oct 2020 10:06:17 -0700 (PDT)
-X-Gm-Message-State: AOAM530duXQSfgZu3sgzjV/kYk0uzjAZz9cJZW2cZ2Dwol67qg6VIXCa
-        jgUkcvFYz2O7Sk7dUdcdxG3D9hvEIeb4fHJnoaM=
-X-Google-Smtp-Source: ABdhPJyxGPC/GKoJUw/Nkd9Pik+1J1JxIOUpJXCguSpUW1ESiyaEuX3B+znG3C6aqVitqC96v1zxV6VeCvuS9nQxPp8=
-X-Received: by 2002:aa7:cf17:: with SMTP id a23mr796273edy.298.1603127175197;
- Mon, 19 Oct 2020 10:06:15 -0700 (PDT)
+        by mailout08.rmx.de (Postfix) with ESMTPS id 4CFNvg4n4YzMvcq;
+        Mon, 19 Oct 2020 19:26:07 +0200 (CEST)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin01.retarus.com (Postfix) with ESMTPS id 4CFNvP0235z2xDN;
+        Mon, 19 Oct 2020 19:25:53 +0200 (CEST)
+Received: from N95HX1G2.wgnetz.xx (192.168.54.91) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 19 Oct
+ 2020 19:24:51 +0200
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        Christian Eggers <ceggers@arri.de>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [RFC PATCH 0/9] net: dsa: microchip: PTP support for KSZ956x
+Date:   Mon, 19 Oct 2020 19:24:26 +0200
+Message-ID: <20201019172435.4416-1-ceggers@arri.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20201008212706.870115-1-aford173@gmail.com> <20201008212706.870115-2-aford173@gmail.com>
- <20201012170016.GA5369@kozik-lap> <CAOMZO5DVxyR+h_jqDiJyx=UxYaWtYNG2iXso2CZ3EF3BRenuag@mail.gmail.com>
-In-Reply-To: <CAOMZO5DVxyR+h_jqDiJyx=UxYaWtYNG2iXso2CZ3EF3BRenuag@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Mon, 19 Oct 2020 19:06:03 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcyeKEQ=UevTsj0mVrGoHYYZvQ9UqeWKVbCkSnydTzwrw@mail.gmail.com>
-Message-ID: <CAJKOXPcyeKEQ=UevTsj0mVrGoHYYZvQ9UqeWKVbCkSnydTzwrw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: imx8mm: Add node for SPDIF
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Adam Ford <aford173@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.54.91]
+X-RMX-ID: 20201019-192601-4CFNvP0235z2xDN-0@kdin01
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Oct 2020 at 18:56, Fabio Estevam <festevam@gmail.com> wrote:
->
-> Hi Krzysztof,
->
-> On Mon, Oct 12, 2020 at 2:00 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> > > +                     spdif1: spdif@30090000 {
-> > > +                             compatible = "fsl,imx8mm-spdif", "fsl,imx35-spdif";
-> >
-> > This does not pass the dtschema validation, so only "fsl,imx35-spdif".
->
-> Shouldn't the dt schema validation be changed then to accept this format?
+This series adds support for PTP to the KSZ956x and KSZ9477 devices.
 
-Depends. If a given compatible is in the schema, then the answer is:
-rather not. The DTS conform to schema, not the otherwise. When
-dtschema is sent this is the ABI to which the kernel should conform.
-User-space or other SW (e.g. U-Boot) could depend on it. Of course
-there are exceptions...
+1/9: Convert device tree binding from .txt to .yaml
+2/9: Split ksz_common.h, so it can be included in tag_ksz.c
+3/9: ksz9477.c --> ksz9477_main.c (ksz9477_ptp.c will be added soon)
+4/9: Add dt-bindings for interrupts
+5/9: Infrastructure for interrupts
+6/9: Posix clock routines for chip PTP clock
+7/9: Support for hardware time stamping
+8/9: Support for PPS
+9/9: Support for perout
 
-If the compatible is not in the schema, then of course it could be
-added if there is a need. In this case, device is simply compatible
-with "fsl,imx35-spdif" so there is no real need to change the schema.
-Just use the existing compatible. Look at one funny example in iMX:
-drivers/pwm/pwm-imx27.c. Someone created multiple compatibles but does
-not use them at all, because the hardware looks exactly the same.
-Therefore driver implements only one compatible because entire HW is
-compatible with fsl,imx27-pwm. In such clear case, why adding many
-compatibles? It's just a churn.
+There is only little documentation for PTP available on the data sheet
+[1] (more or less only the register reference). Questions to the
+Microchip support were seldom answered comprehensively or in reasonable
+time. So this is more or less the result of reverse engineering.
 
-Best regards,
-Krzysztof
+[1]
+http://ww1.microchip.com/downloads/en/DeviceDoc/KSZ9563R-Data-Sheet-DS00002419D.pdf
+
+
+
