@@ -2,122 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD5432938FD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 12:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62DE029390C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 12:19:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733087AbgJTKPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 06:15:12 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:42815 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1733121AbgJTKPF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Oct 2020 06:15:05 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09KABwYN028101;
-        Tue, 20 Oct 2020 12:14:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=2owaOvNvhateHf+UNIaUTPpoUGANl3taLAS8bX1HmYA=;
- b=vkei+O0JeeZH9h5B2x/KRSVKk/WJMzzXtpj59BCQ/ayBtD6wd658aKiL37d/JUciP6bR
- 5+zjso03K4eIY8eJ594KtmXSYxTkg9xLfiydxfLwzjPnTZDP5hN1YR+bzM13FXJ7XJS0
- pereqf+QF5KtjqkZMgXKjWKj9RlMNIKYYd+JzCRGx48kms98ARtr2+kammGwR4IY0ey3
- jIuDsZ1PivrgXvB03pVlOJ5ZhEYUHV42jUXPgVPLwq2ZYqnzB8D76sAuKSzLvsiilXGM
- m8gXaPu1AE2TdfC3GHGtwrZeyhWzgdERGgBUJwTaCMlEmD/mjM2+VUVSWjRTWjSS4vK+ ww== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 347p30j15j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 20 Oct 2020 12:14:54 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CD8A110002A;
-        Tue, 20 Oct 2020 12:14:53 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag1node1.st.com [10.75.127.1])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BE5A92C4CC5;
-        Tue, 20 Oct 2020 12:14:53 +0200 (CEST)
-Received: from localhost (10.75.127.46) by SFHDAG1NODE1.st.com (10.75.127.1)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 20 Oct 2020 12:14:53
- +0200
-From:   Hugues Fruchet <hugues.fruchet@st.com>
-To:     Alexandre Torgue <alexandre.torgue@st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Hugues Fruchet <hugues.fruchet@st.com>,
-        Alain Volmat <alain.volmat@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe CORNU <philippe.cornu@st.com>
-Subject: [PATCH v4 2/2] media: dt-bindings: media: st,stm32-dcmi: Add support of BT656
-Date:   Tue, 20 Oct 2020 12:14:49 +0200
-Message-ID: <1603188889-23664-3-git-send-email-hugues.fruchet@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1603188889-23664-1-git-send-email-hugues.fruchet@st.com>
-References: <1603188889-23664-1-git-send-email-hugues.fruchet@st.com>
+        id S2393079AbgJTKTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 06:19:33 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:38836 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387513AbgJTKTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 06:19:32 -0400
+Received: by mail-wm1-f65.google.com with SMTP id b127so1247386wmb.3;
+        Tue, 20 Oct 2020 03:19:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6OOn5EWOY5szB2ysNgFeKSOMlttS53b9pywoXspcgls=;
+        b=FYfdsXzsdN2W6xK5+3h5Tmlr+3jON2mj5HxdMib7MJbkA3LQsELAwZOXNB9qgwlM2J
+         2Pm8fZ7WitVlMxj3fnsdhhAN2LwNTy71YkQK/gjyZ5qa0Efmh/CUQNsnCiqkmI0GNZIu
+         IOUzoYFVb4BODPtNvTRVyYqVnyYTl2A6dSj/OTezRaPHjIsm8aj9W5/biKfsd8bfVaIb
+         S3xNL2j8QpdjJRUI1w21n6/j/33w8EuvvqyuoRu3eK276Ihqoyt69cNPLsN4/4KkjJxz
+         MDRzNLwqaJ354rBZO2qNtQ+K0VxDbIZdphK7P7lbIPJksU2415GitOI8Kt/+PQYhOz1J
+         svQA==
+X-Gm-Message-State: AOAM531K/imYNGynl36WdV7iYsQPI21JahDwBoLCb83SkDB64Hcji7j7
+        PpOxrkzomltAGtwHD8vqL+w=
+X-Google-Smtp-Source: ABdhPJwZBgIw9mm2L/x+LNSfBZqIkshN8GqbfxWp4iZkM/WikfMeGdYmoWmLv5V1AwU6x4hsNdeQ1w==
+X-Received: by 2002:a1c:2cc2:: with SMTP id s185mr2194659wms.77.1603189170652;
+        Tue, 20 Oct 2020 03:19:30 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.171])
+        by smtp.googlemail.com with ESMTPSA id j7sm2221497wrn.81.2020.10.20.03.19.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 03:19:29 -0700 (PDT)
+Date:   Tue, 20 Oct 2020 12:19:25 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: fsl: add Van der Laan LANMCU
+ board
+Message-ID: <20201020101925.GA118941@kozik-lap>
+References: <20201015090924.6185-1-o.rempel@pengutronix.de>
+ <20201015090924.6185-3-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG1NODE1.st.com
- (10.75.127.1)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-20_04:2020-10-20,2020-10-20 signatures=0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201015090924.6185-3-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support of BT656 parallel bus mode in DCMI.
-This mode is enabled when hsync-active & vsync-active
-fields are not specified.
+On Thu, Oct 15, 2020 at 11:09:23AM +0200, Oleksij Rempel wrote:
+> Add Van der Laan LANMCU iMX6dl based board
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
----
- .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 30 ++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-index 3fe778c..1ee521a 100644
---- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-+++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-@@ -44,6 +44,36 @@ properties:
-       bindings defined in
-       Documentation/devicetree/bindings/media/video-interfaces.txt.
- 
-+    properties:
-+      endpoint:
-+        type: object
-+
-+        properties:
-+          bus-width: true
-+
-+          hsync-active:
-+            description:
-+              If both HSYNC and VSYNC polarities are not specified, BT656
-+              embedded synchronization is selected.
-+            default: 0
-+
-+          vsync-active:
-+            description:
-+              If both HSYNC and VSYNC polarities are not specified, BT656
-+              embedded synchronization is selected.
-+            default: 0
-+
-+          pclk-sample: true
-+
-+          remote-endpoint: true
-+
-+        required:
-+          - remote-endpoint
-+
-+        additionalProperties: false
-+
-+    additionalProperties: false
-+
- required:
-   - compatible
-   - reg
--- 
-2.7.4
-
+Best regards,
+Krzysztof
