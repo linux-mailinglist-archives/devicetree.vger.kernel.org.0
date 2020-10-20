@@ -2,162 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3069F293D4A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 15:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00573293D6D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 15:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407438AbgJTN0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 09:26:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58392 "EHLO
+        id S2407474AbgJTNhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 09:37:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407389AbgJTN0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 09:26:19 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1009C061755
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:26:17 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id e2so1883054wme.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:26:17 -0700 (PDT)
+        with ESMTP id S2407482AbgJTNhe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 09:37:34 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B0BDC0613D1
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:37:34 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id n15so2194651wrq.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:37:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jiEZwt1UVrshiu353nvFC1zKZwvPuTjPD9AQIUaHUPQ=;
-        b=YK2Jal9lJPuDGvNZgEhVpYxQR6C0JKOZhXubZAtjOGmvnFZUULMyZXNg1aDkkedl0N
-         fa106fGFd/uUlgBz50Ae0VGRitHCgNs7vqRFtFEPu81PCfWYZBefOnit0JiEki37WKKy
-         ZNIgHsL5bQyV4iQHk3Iz3TYlegkjKWreRKVL8=
+        bh=Dd/4tB1jhfJBU76uhWYvJK/M1Y4WZsbkyJFSG8k8QQo=;
+        b=TPK9GUXwppf2mM1kCN3ve/x60CKUztqZ+989Nh8aqFSLGa+l7mbzE/LqA70BHIvGZz
+         9t62mD+eV+mTcXERLQfsqGiscvH12E6jUFihaaN9G4Q/H5OP5vn/D7cAcdZLOAKnGAP4
+         3CcOZMOSIaLcag5ahYLat4UtdM8iVyx44UW/o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jiEZwt1UVrshiu353nvFC1zKZwvPuTjPD9AQIUaHUPQ=;
-        b=JJEZRSFLf5HXvDgimvm8tks0/rLmaov9MQtT0/fePecjwA2u98cjwnJhIkYd+Nn+y2
-         7J4CN3R/w7Gef44wBQJxeR9VeL57dFLNoQEjMuMNUsME8GwAyX0J3gqu5kzatpbtz3Re
-         C2vUzqGz3n0lQmfeIs/Vl9SXM/W5eIuK8wAbpjFk36MbjxZCUR3EUiW0tnk+Qg67IqpK
-         F4fQt+3AmIcaHkYGRN9S6qA/FqNeH5VOZy4u+TSMQqUR98cWOSkt/L91LvyVinC9hNyF
-         nqxFq66Jkq1IwI+ztDPrqZq/43vZd9WBrHzpHYT2d+0gZfJ1E0z+th8iG8ZFb7MO1kpQ
-         8LRQ==
-X-Gm-Message-State: AOAM530sFTYctMiGX79ZQSJ9SgCKKNtFwznaRxsDMCFwx4nOErE5Hye5
-        WXR6M0cB3d1D65AxsiUORG3v54AS4IpKabh4prB+lg==
-X-Google-Smtp-Source: ABdhPJxOSCaohNlotFC3fJ/SO8FGZ+IX/HeJ18+Z+rLPcpFl4yVk1/rmqgj7plCYZ+/rQ6+2hKvySr4nP9kWyidWceU=
-X-Received: by 2002:a1c:7518:: with SMTP id o24mr3045570wmc.137.1603200376398;
- Tue, 20 Oct 2020 06:26:16 -0700 (PDT)
+        bh=Dd/4tB1jhfJBU76uhWYvJK/M1Y4WZsbkyJFSG8k8QQo=;
+        b=jaAJcKnub8YLiBh1KdzvXyK2h/Od8Yp3RCV6PdFzbR4WQJf4rys/9t5L6v82cvUN2j
+         BnkudSQRHwwRfNbXqC8pN6meQAj1/VSqpN0dQ7m8nXO82Ofc1Gq6affz8Sxcfa3swdY2
+         tnVvdwl5V6nRmAQeQbEf7BoIsy9oOMzGj39olkzvUTgjAtDgNGWQTckqEI/GpaHtq6da
+         /5dOHk1KwhCh881EdOaVOAX7gXSCXRnM1z+s/Oq4ScgTRYnZkK2HKl9/SWta/fF/k8IV
+         PEmpCSRJ++CYYvk6c5b474nddluswERFwZQXq/5xtqcSzmwB2pINrC/8UycfbGtRw00L
+         hatw==
+X-Gm-Message-State: AOAM5318LKShLtbY8W9CjQRjaZWlDi6IIEXgqGHU8aHKZK5kOE/FdiNI
+        AB5iQwJYJvTf5ZyE6kKhHUjpC71ftp1n03s58A9Ilw==
+X-Google-Smtp-Source: ABdhPJxbiebIvIYWJ8VjSbDQyhf4y6aT7O3DnC5CYOzHre4Bqv+imNt5qgF8Ub9UZZ8/En/AxSVEIthwU9StfwKT0vc=
+X-Received: by 2002:adf:cc82:: with SMTP id p2mr3646265wrj.177.1603201052544;
+ Tue, 20 Oct 2020 06:37:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201019141008.871177-1-daniel@0x0f.com> <20201019141008.871177-4-daniel@0x0f.com>
- <CAHp75Vf5iUzKp32CqBbv_5MRo8q8CyBPsBcgzKsww6BFtGJwUA@mail.gmail.com>
-In-Reply-To: <CAHp75Vf5iUzKp32CqBbv_5MRo8q8CyBPsBcgzKsww6BFtGJwUA@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Tue, 20 Oct 2020 22:26:50 +0900
-Message-ID: <CAFr9PXnhqS+3nbt8ZG8PKpkp=tFraxFQUb5ym1a2FtzmRgF4VA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
+References: <20200914080619.4178587-1-cychiang@chromium.org>
+ <20200914080619.4178587-3-cychiang@chromium.org> <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
+ <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com> <20201015161251.GF4390@sirena.org.uk>
+In-Reply-To: <20201015161251.GF4390@sirena.org.uk>
+From:   Cheng-yi Chiang <cychiang@chromium.org>
+Date:   Tue, 20 Oct 2020 21:37:05 +0800
+Message-ID: <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
+Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Srinivasa Rao <srivasam@codeaurora.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
-
-On Tue, 20 Oct 2020 at 20:59, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > +config GPIO_MSC313
-> > +       bool "MStar MSC313 GPIO support"
+On Fri, Oct 16, 2020 at 12:13 AM Mark Brown <broonie@kernel.org> wrote:
 >
-> Why boolean?
-
-Because it's a built in driver. I could change it to tristate/a module
-but I didn't think it needed to be one.
-The machines this is used on generally only have 64 or 128MB of RAM so
-the kernel is usually built without modules and only the totally
-required stuff built in.
-
-> > +       default y if ARCH_MSTARV7
+> On Thu, Oct 15, 2020 at 03:59:26PM +0800, Cheng-yi Chiang wrote:
+> > On Tue, Oct 13, 2020 at 6:36 PM Srinivas Kandagatla
 >
-> Simply
->        default ARCH_MSTARV7
-> should work as well.
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: qcom,sc7180-sndcard-rt5682-m98357-1mic
 >
-> Are you planning to extend this to other boards?
-
-I think I copy/pasted the block above there. I'll fix this up.
-
-As for other boards. I think this GPIO controller is only present in
-MStar's SoCs and some MediaTek SoCs that inherited parts from MStar
-after MediaTek bought them. Like the MStar interrupt controller is
-present in some MediaTek TV chips.
-
+> > > This information can come from the dai link description itself, why
+> > > should compatible string have this information?
 >
-> > +       depends on ARCH_MSTARV7
-> > +       select GPIOLIB_IRQCHIP
-> > +       help
-> > +         Say Y here to support GPIO on MStar MSC313 and later SoCs.
+> > I think dailink description is not enough to specify everything
+> > machine driver needs to know.
+> > E.g. there is a variation where there are front mic and rear mic. We
+> > need to tell the machine driver about it so
+> > it can create proper widget, route, and controls.
 >
-> Please, be more specific. Also it's recommended to have a module name
-> to be included (but let's understand first why it's not a module)
-
-Ok. I'll rework that. As for it not being a module. I can make it
-possible to build it
-as a module. I just didn't really think it needed to be one.
-
-> > +#include <linux/of_device.h>
-> > +#include <linux/of_irq.h>
-> > +#include <linux/gpio/driver.h>
->
-> I believe this should be reworked.
-> For example, it misses mod_devicetable.h, bits.h, io.h, types.h, etc, but has
-
-I'll look at this again.
-
-> > +/* These bits need to be saved to correctly restore the
-> > + * gpio state when resuming from suspend to memory.
-> > + */
->
-> /*
->  * For this subsystem the comment style for multi-line
->  * like this.
->  */
-
-Sorry, I'll fix these up.
-
-> > +#ifdef CONFIG_MACH_INFINITY
->
-> Does it make any sense?
->
-> > +#endif
-
-It doesn't make a lot of sense right now but it makes a bit more sense
-when the support for the mercury chips is added. They have their own
-set of offsets
-for the used pins. I cut that out of this series because I haven't
-fully reverse engineered all of the pins for those chips yet so the
-support for them has a lot of guesses and notes in the code.
-
-Anyhow, with only 64MB of RAM I thought it made sense to not compile
-in the mercury tables when support for those machines isn't enabled.
-I'll drop the if/defs for the next version.
-
-> > +static struct irq_chip msc313_gpio_irqchip = {
-> > +       .name = "GPIO",
->
-> Is this name good enough?
+> That sounds like something that could be better described with
+> properties (including for example the existing bindings used for setting
+> up things like analogue outputs and DAPM routes)?
 >
 
-There is only one GPIO block in the chips this is for so I think it's
-unique at least.
+Hi Mark, thank you for the comments.
 
-> > +       gpiochip->label = DRIVER_NAME;
+May I know your suggestion on Ajye's patch "ASoC: qcom: sc7180: Modify
+machine driver for 2mic" ?
+
+https://lore.kernel.org/r/20200928063744.525700-3-ajye_huang@compal.corp-partner.google.com
+
+I think adding code in the machine driver makes the intent straightforward.
+If we want the machine driver to be fully configurable,
+we can always add more code to handle properties like gpio, route,
+widget (mux, text selection) passed in from the device tree.
+But I feel that we don't need a machine driver to be that configurable
+from the device tree.
+I think having the logic scattered in various dtsi files and relying
+on manual inspection to understand the usage would be less
+maintainable than only exposing needed property like gpio.
+Especially in the complicated case where we need to create a mux
+widget with callback toggling the gpio like this:
+
++static const char * const dmic_mux_text[] = {
++       "Front Mic",
++       "Rear Mic",
++};
++
++static SOC_ENUM_SINGLE_DECL(sc7180_dmic_enum,
++                           SND_SOC_NOPM, 0, dmic_mux_text);
++
++static const struct snd_kcontrol_new sc7180_dmic_mux_control =
++       SOC_DAPM_ENUM_EXT("DMIC Select Mux", sc7180_dmic_enum,
++                         dmic_get, dmic_set);
++
++SND_SOC_DAPM_MUX("Dmic Mux", SND_SOC_NOPM, 0, 0, &sc7180_dmic_mux_control),
+
+Passing all the logic along with the callback of dmic_get, dmic_set
+from the device tree would be too hard to maintain.
+
+> > The codec combination also matters. There will be a variation where
+> > rt5682 is replaced with adau7002 for dmic.
+> > Although machine driver can derive some information by looking at dailink,
+> > I think specifying it explicitly in the compatible string is easier to
+> > tell what machine driver should do, e.g.
+> > setting PLL related to rt5682 or not.
 >
-> Not good. When you use user space how do you distinguish if more than
-> one chip appears in the system?
+> These feel more like things that fit with compatible, though please take
+> a look at Morimoto-san's (CCed) work on generic sound cards for more
+> complex devices:
+>
+>    https://lore.kernel.org/alsa-devel/87imbeybq5.wl-kuninori.morimoto.gx@renesas.com/
+>
+> This is not yet implemented but it'd be good to make sure that the
+> Qualcomm systems can be handled too in future.
 
-So far there is only ever one of these GPIO controller for the whole system.
-There is another GPIO block in the system but it uses another driver
-as the register layout is totally different.
+Yes, that should work to describe the dailink we are using.
+But a more tricky issue is how to do calls like setting PLL in dai startup ops.
 
-Thank you for all of the comments. Sorry about the multiple style issues.
-I thought checkpatch had my back on that.
+                /* Configure PLL1 for codec */
+                ret = snd_soc_dai_set_pll(codec_dai, 0, RT5682_PLL1_S_MCLK,
+                                          DEFAULT_MCLK_RATE, RT5682_PLL1_FREQ);
 
-Thanks,
+I think that asking a generic machine driver to do configuration like
+this with only a limited interface of device property
+might be too much of an ask for the machine driver.
 
-Daniel
+>
+> > You can see widget, route, controls are used according to the configuration.
+> > The alternative approach is to check whether "dmic-gpio" property
+> > exists to decide adding these stuff or not.
+> > But it makes the intent less easier to understand.
+>
+> OTOH if you have lots of compatibles then it can get hard to work out
+> exactly which one corresponds to a given board.
+
+Totally agree. Glad we have only three variations up to now.
+
+Would you mind if I simplify the compatible string like Srinivas
+suggested, and send a v12?
+
+As for other two kinds of variations that I am aware of:
+
+1. front mic / rear mic
+2. replace alc5682 with adau7002
+
+We can set different board names and different compatible strings to
+achieve such variation.
+So that it would make sense to describe configuration in compatible
+strings like you suggested, and also provides UCM a way to distinguish
+different boards.
+What do you think ?
+
+Thanks!
