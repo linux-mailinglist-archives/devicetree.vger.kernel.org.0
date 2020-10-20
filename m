@@ -2,203 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7783293594
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 09:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E5B2935C8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 09:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404875AbgJTHQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 03:16:36 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:45590 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404810AbgJTHQf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 03:16:35 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 26D402002A;
-        Tue, 20 Oct 2020 09:16:30 +0200 (CEST)
-Date:   Tue, 20 Oct 2020 09:16:28 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     "Alex G." <mr.nuke.me@gmail.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Mark Brown <broonie@kernel.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        open list <linux-kernel@vger.kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v2 1/2] drm/bridge: sii902x: Enable I/O and core VCC
- supplies if present
-Message-ID: <20201020071628.GA1737816@ravnborg.org>
-References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
- <20200928173056.1674274-1-mr.nuke.me@gmail.com>
- <d74c7626-8f16-db85-c23f-79bf0cc400d0@gmail.com>
+        id S2405134AbgJTHcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 03:32:33 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47440 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405114AbgJTHcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 03:32:32 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09K7WG5D045155;
+        Tue, 20 Oct 2020 02:32:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603179136;
+        bh=w6KRfGRpZ8Qe5ljgTSyonGbPDQ0/NIWbexukOG/APXU=;
+        h=From:To:CC:Subject:Date;
+        b=HC8mbtVOEzLqRTglwanl05hMpC1Uayu1Yptd1e2LvS+b1eCF+W2A2HhX3yiZysVly
+         uVYpGyrUUHqewENPQNTSM8kk6Xoav7dQDkcW3T31PHcC9npSpCcCVVzZ+sfv8zlGA+
+         Ci6Q4jl6O2ao3jbPTXtVUbwp25+3VKqfX8UNPPjw=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09K7WGgg127773
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Oct 2020 02:32:16 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 20
+ Oct 2020 02:32:15 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 20 Oct 2020 02:32:15 -0500
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09K7WCib069455;
+        Tue, 20 Oct 2020 02:32:13 -0500
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <nm@ti.com>, <t-kristo@ti.com>, <ssantosh@kernel.org>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>, <maz@kernel.org>,
+        <robh+dt@kernel.org>, <lokeshvutla@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3 0/2] irqchip/ti-sci-inta: Support for unmapped events
+Date:   Tue, 20 Oct 2020 10:32:41 +0300
+Message-ID: <20201020073243.19255-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d74c7626-8f16-db85-c23f-79bf0cc400d0@gmail.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=S433PrkP c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
-        a=vrf_ZfXLQi0HMj2fYoAA:9 a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alex.
+Hi,
 
-On Mon, Oct 19, 2020 at 08:24:40PM -0500, Alex G. wrote:
-> On 9/28/20 12:30 PM, Alexandru Gagniuc wrote:
-> > On the SII9022, the IOVCC and CVCC12 supplies must reach the correct
-> > voltage before the reset sequence is initiated. On most boards, this
-> > assumption is true at boot-up, so initialization succeeds.
-> > 
-> > However, when we try to initialize the chip with incorrect supply
-> > voltages, it will not respond to I2C requests. sii902x_probe() fails
-> > with -ENXIO.
-> > 
-> > To resolve this, look for the "iovcc" and "cvcc12" regulators, and
-> > make sure they are enabled before starting the reset sequence. If
-> > these supplies are not available in devicetree, then they will default
-> > to dummy-regulator. In that case everything will work like before.
-> > 
-> > This was observed on a STM32MP157C-DK2 booting in u-boot falcon mode.
-> > On this board, the supplies would be set by the second stage
-> > bootloader, which does not run in falcon mode.
-> > 
-> > Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> > ---
-> > Changes since v1:
-> >    * Fix return code after regulator_enable(sii902x->iovcc) fails (Fabio Estevam)
-> >    * Use dev_err_probe() instead of dev_err() where appropriate (Sam Ravnborg)
-> > 
-> >   drivers/gpu/drm/bridge/sii902x.c | 54 ++++++++++++++++++++++++++++----
-> >   1 file changed, 48 insertions(+), 6 deletions(-)
-> 
-> This patch seems to have entered fall dormancy. Did I miss somebody in the
-> CC field?
+Changes since v2:
+- Extended the block diagram of INTA in the DT documentation
+- Use less creative variable names for unmapped events in the driver
+- Short comment section to describe the unmapped event handling in driver
+- Use u16 array to store the TI-SCI device identifiers instead of u32
+- Use printk format specifier instead of_node_full_name
 
-I have lost the original mail/patch.
-Can you resend with one fix - see below.
+Changes since v1:
+- Reviewed-by added to the first patch from Rob
+- return 0 if ti,unmapped-event-sources is not present in DT
 
-	Sam
+The version of INTA within DMSS (in AM64) changed how the events from the DMAs
+are handled and how sysfw is presenting these events to be used for interrupts.
 
-> 
-> Alex
-> 
-> 
-> > diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-> > index 33fd33f953ec..d15e9f2c0d8a 100644
-> > --- a/drivers/gpu/drm/bridge/sii902x.c
-> > +++ b/drivers/gpu/drm/bridge/sii902x.c
-> > @@ -17,6 +17,7 @@
-> >   #include <linux/i2c.h>
-> >   #include <linux/module.h>
-> >   #include <linux/regmap.h>
-> > +#include <linux/regulator/consumer.h>
-> >   #include <linux/clk.h>
-> >   #include <drm/drm_atomic_helper.h>
-> > @@ -168,6 +169,8 @@ struct sii902x {
-> >   	struct drm_connector connector;
-> >   	struct gpio_desc *reset_gpio;
-> >   	struct i2c_mux_core *i2cmux;
-> > +	struct regulator *iovcc;
-> > +	struct regulator *cvcc12;
-> >   	/*
-> >   	 * Mutex protects audio and video functions from interfering
-> >   	 * each other, by keeping their i2c command sequences atomic.
-> > @@ -954,13 +957,13 @@ static const struct drm_bridge_timings default_sii902x_timings = {
-> >   		 | DRM_BUS_FLAG_DE_HIGH,
-> >   };
-> > +static int sii902x_init(struct sii902x *sii902x);
-Please re-arrange the code so this prototype is not needed.
+The DMA related events are directly mapped within INTA as unmapped events in
+contrast to previous devices with NAVSS where the events were tied to their
+source devices (UDMAP, ringacc).
 
-> > +
-> >   static int sii902x_probe(struct i2c_client *client,
-> >   			 const struct i2c_device_id *id)
-> >   {
-> >   	struct device *dev = &client->dev;
-> > -	unsigned int status = 0;
-> >   	struct sii902x *sii902x;
-> > -	u8 chipid[4];
-> >   	int ret;
-> >   	ret = i2c_check_functionality(client->adapter,
-> > @@ -989,6 +992,43 @@ static int sii902x_probe(struct i2c_client *client,
-> >   	mutex_init(&sii902x->mutex);
-> > +	sii902x->iovcc = devm_regulator_get(dev, "iovcc");
-> > +	if (IS_ERR(sii902x->iovcc))
-> > +		return PTR_ERR(sii902x->iovcc);
-> > +
-> > +	sii902x->cvcc12 = devm_regulator_get(dev, "cvcc12");
-> > +	if (IS_ERR(sii902x->cvcc12))
-> > +		return PTR_ERR(sii902x->cvcc12);
-> > +
-> > +	ret = regulator_enable(sii902x->iovcc);
-> > +	if (ret < 0) {
-> > +		dev_err_probe(dev, ret, "Failed to enable iovcc supply");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = regulator_enable(sii902x->cvcc12);
-> > +	if (ret < 0) {
-> > +		dev_err_probe(dev, ret, "Failed to enable cvcc12 supply");
-> > +		regulator_disable(sii902x->iovcc);
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = sii902x_init(sii902x);
-> > +	if (ret < 0) {
-> > +		regulator_disable(sii902x->cvcc12);
-> > +		regulator_disable(sii902x->iovcc);
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int sii902x_init(struct sii902x *sii902x)
-> > +{
-> > +	struct device *dev = &sii902x->i2c->dev;
-> > +	unsigned int status = 0;
-> > +	u8 chipid[4];
-> > +	int ret;
-> > +
-> >   	sii902x_reset(sii902x);
-> >   	ret = regmap_write(sii902x->regmap, SII902X_REG_TPI_RQB, 0x0);
-> > @@ -1012,11 +1052,11 @@ static int sii902x_probe(struct i2c_client *client,
-> >   	regmap_read(sii902x->regmap, SII902X_INT_STATUS, &status);
-> >   	regmap_write(sii902x->regmap, SII902X_INT_STATUS, status);
-> > -	if (client->irq > 0) {
-> > +	if (sii902x->i2c->irq > 0) {
-> >   		regmap_write(sii902x->regmap, SII902X_INT_ENABLE,
-> >   			     SII902X_HOTPLUG_EVENT);
-> > -		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> > +		ret = devm_request_threaded_irq(dev, sii902x->i2c->irq, NULL,
-> >   						sii902x_interrupt,
-> >   						IRQF_ONESHOT, dev_name(dev),
-> >   						sii902x);
-> > @@ -1031,9 +1071,9 @@ static int sii902x_probe(struct i2c_client *client,
-> >   	sii902x_audio_codec_init(sii902x, dev);
-> > -	i2c_set_clientdata(client, sii902x);
-> > +	i2c_set_clientdata(sii902x->i2c, sii902x);
-> > -	sii902x->i2cmux = i2c_mux_alloc(client->adapter, dev,
-> > +	sii902x->i2cmux = i2c_mux_alloc(sii902x->i2c->adapter, dev,
-> >   					1, 0, I2C_MUX_GATE,
-> >   					sii902x_i2c_bypass_select,
-> >   					sii902x_i2c_bypass_deselect);
-> > @@ -1051,6 +1091,8 @@ static int sii902x_remove(struct i2c_client *client)
-> >   	i2c_mux_del_adapters(sii902x->i2cmux);
-> >   	drm_bridge_remove(&sii902x->bridge);
-> > +	regulator_disable(sii902x->cvcc12);
-> > +	regulator_disable(sii902x->iovcc);
-> >   	return 0;
-> >   }
-> > 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+This series adds support for handling the new version of INTA by introducing a
+new property: ti,unmapped-event-sources which should hold a list of phandles
+pointing to the sources of these unmapped events.
+
+Regards,
+Peter
+---
+Peter Ujfalusi (2):
+  dt-bindings: irqchip: ti,sci-inta: Update for unmapped event handling
+  irqchip/ti-sci-inta: Add support for unmapped event handling
+
+ .../interrupt-controller/ti,sci-inta.yaml     | 10 +++
+ drivers/irqchip/irq-ti-sci-inta.c             | 83 ++++++++++++++++++-
+ 2 files changed, 90 insertions(+), 3 deletions(-)
+
+-- 
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
