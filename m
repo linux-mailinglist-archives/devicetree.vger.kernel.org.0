@@ -2,129 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84AC9293423
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 06:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42C4129344C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 07:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391493AbgJTEm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 00:42:56 -0400
-Received: from mail-eopbgr1320129.outbound.protection.outlook.com ([40.107.132.129]:52973
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2391382AbgJTEm4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Oct 2020 00:42:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JdnJ+RO0geOLG/SCeQ/gvmcgOZe/J52HejfbTHQ/ArGItCU1uZzpe4EWYdOaUdP5HlXFKWqD4PtAu6+tzk4cVKHJVka3nKStJzuRBPHCDa15/1fYBswh4BbAERNPHroCszDjDCDu6/LMSX2VH7NGRzEm05QwXe1O2t9XKlPrdunWp0rmq99PyHYelf/r2c4dVmISzi9XPZt4DtLqLp7tYZTNsU4k01EN/xbOGo63G/cZwiYdqxOSmfj+z4wequjo38jG3kUMvrXiVRwxlhlJWCCJ1xoLfbj+1VVN64vro8IGyGQREXIdXJ5T4EbihrB1Jr+V9VhWQcdatYo5hz70BQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QWM4DXjhGfLABCefLHfcGyqVcy0duIDR+ZQO2IrjM2I=;
- b=Oa+d6XRAl9Q6H1gZdloQb6v2qQZzLPulWWTjlnErXWFGb6KWshN4u5h7YirsP2AP02YYfPhS8AQHxgCa7QcrVjVppx7RbzVRI6kB+JGkBPm0UcUzGVLXnX880eJEuWZpFzLdnOCq4qU3N8WyP2FUgVN1yAcNZhz5JmmC7eqiHjOj3/IbWVMQpQAV4fWydK4ZPdCcbrHp5VlYWadofmnzAwF0to90Tp2JAlt9V9EEdyRPTf0tMGvY/bLu4SHhb7zYf4aoySn+nHFHUfJGrnTnR4MBfc66mtzts33VnLRh7nUFG3h7VQydabOysPwVLFLYq/kF+QRgdKiYr7PJzBRIiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QWM4DXjhGfLABCefLHfcGyqVcy0duIDR+ZQO2IrjM2I=;
- b=Hx01r+Nuvk9kGeuQEKuC9E1FBjSa9IFWIFC/0nzhMrcgpwQdsNWe63JG08PvWsPQ16p6P3uVhaxKqGQHpZzcs+g9upGAFZSGaI4S5xIX1+wQEXFEOumgSM7RoPmI3TM3h0em6VtfG7W4bosJKoCVYZEA4b4AMzvdieJ7txjS6n8=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TY2PR01MB3545.jpnprd01.prod.outlook.com (2603:1096:404:d1::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20; Tue, 20 Oct
- 2020 04:42:50 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::bcba:dccf:7d4c:c883]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::bcba:dccf:7d4c:c883%4]) with mapi id 15.20.3477.028; Tue, 20 Oct 2020
- 04:42:50 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-snps-arc@lists.infradead.org" 
-        <linux-snps-arc@lists.infradead.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 08/20] dt-bindings: usb: renesas-xhci: Refer to the
- usb-xhci.yaml file
-Thread-Topic: [PATCH 08/20] dt-bindings: usb: renesas-xhci: Refer to the
- usb-xhci.yaml file
-Thread-Index: AQHWohLFbtOMYgZ0fEaKABdhF8ofKKmf8mkw
-Date:   Tue, 20 Oct 2020 04:42:50 +0000
-Message-ID: <TY2PR01MB36921A342B4374B5853E65ACD81F0@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru>
- <20201014101402.18271-9-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201014101402.18271-9-Sergey.Semin@baikalelectronics.ru>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: baikalelectronics.ru; dkim=none (message not signed)
- header.d=none;baikalelectronics.ru; dmarc=none action=none
- header.from=renesas.com;
-x-originating-ip: [240f:60:5f3e:1:65e1:c1da:e357:e253]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: e0cf67bd-d839-4138-7e5b-08d874b2999d
-x-ms-traffictypediagnostic: TY2PR01MB3545:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <TY2PR01MB3545068EE83E8730E96958E7D81F0@TY2PR01MB3545.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WK+A4gfG7J/J/BaMXioWzGIRdUVMHAIw7lUTC0zHI5w545+g2C8hRBQ1WxltcUfS/Umi5VT88Fzuw3GCdEHZCcWZGqcoExclXScuNpyRjjQsRZg4HYr8ju9PF9FmgcPt9OxvvXqv4IdRzDduciHb1NImXrVjn0b7jLD5GUTEhiC4DqmMlwm3ygRgPnqRHTEoEoL7n4FnCQ29fwfe9tzDNruYTRrPiCjyQcUx3xxKkbprLtAi7+GngKsAgXnJK4Ew/WMnEN9M/5Ix/IiSwSorjW8uIWTG78+QjZDy8yD5n0QgSlVKe7eVkiZnmH9cPvRA60Ni9Jc72TeF54d2pGBe9w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(39860400002)(136003)(366004)(5660300002)(33656002)(4744005)(66476007)(7696005)(64756008)(66446008)(66556008)(71200400001)(83380400001)(55016002)(478600001)(76116006)(52536014)(54906003)(6506007)(110136005)(66946007)(316002)(186003)(2906002)(7416002)(8676002)(8936002)(86362001)(4326008)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 63VNagmqy5xD2WZ2ibAAdmzeqZTyq86rB5d/TCL4GajNI+zgTti5RQbRNV+b/JQaeAiG4id8tUM2ZgNPRh3LllCgugKRDFOVPwOHgvbuoROXx9A9k4I5NkiHF3sOvNBeSDQJvH7SKvoDBV4j/zfdaV5v9qe4IhikpyzxzCE4ipI/FqI6VYPNP+VDqwcbGOCdMqoTJR6Khs0zs/BPBjLDf84B8oP2r2dw2afoV06vGt1RjkBJvuIwSx5oD3T8cVDbf/W4QfwxCL3AArOQuA9r+v3O80d8ilcQ+huyF7VJED11NGAmgiN/6C23jSgZHpkktGS8mgij8BU3IWd8jX4rvpmfQQU3eO72j8xBAVGBVRqkMlzJ4hSk7dA17MiCUwa2VqJIuZZKWMyX1M/R2y5zwU9L/M+F7eIH74vEt2uuJUsURgGXmXnaZFByUXXoiOG4OJOIQGnEdi3ZzBg41h1khKzhsxBsds4OGWZs46vjKuzZOXZ13CF4jXEaJNJG+7WlZf1eor/yD32Eu7VRnbN9UjOGsaso0/5oEe2CsNaLzZoOXlxqYVz2I9WH+1gmSJ9cinFH2uvc9bCrARk6QANQb1T4id0/kLnFFQDPGgZkYriz6IoTLOzBeg7YK33EhZO5rxTq/QiwCXpKzDPnfnp37NnpueatJItb2RQu5fSaPhdSKbSR/jEm3HzDPgO4xx35CfQjJPTib2+I/e+lX/KT9g==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1730182AbgJTFeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 01:34:31 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:16870 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730152AbgJTFeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 01:34:31 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f8e76da0004>; Mon, 19 Oct 2020 22:34:18 -0700
+Received: from [10.25.98.225] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 20 Oct
+ 2020 05:34:19 +0000
+Subject: Re: [PATCH v4 08/15] Documentation: of: Convert graph bindings to
+ json-schema
+To:     Rob Herring <robh@kernel.org>
+CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <kuninori.morimoto.gx@renesas.com>,
+        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <p.zabel@pengutronix.de>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>, <mkumard@nvidia.com>,
+        <viswanathl@nvidia.com>, <rlokhande@nvidia.com>,
+        <dramesh@nvidia.com>, <atalambedu@nvidia.com>,
+        <nwartikar@nvidia.com>, <swarren@nvidia.com>,
+        <nicoleotsuka@gmail.com>
+References: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
+ <1602859382-19505-9-git-send-email-spujar@nvidia.com>
+ <20201019215628.GA3650804@bogus>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <e7d87e41-c92f-9a22-f7ca-a80e080e7bf1@nvidia.com>
+Date:   Tue, 20 Oct 2020 11:04:16 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0cf67bd-d839-4138-7e5b-08d874b2999d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2020 04:42:50.0672
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nfoSYQ9pjI04ARJCJ3LLt8z6Ll4Dq26ZGNr5aZQaLKsR3ah9pXIQNg/t/+no8h8sDgWWdBP79DG78gQ28KGykaLF2cHTwzKzt+YoJcwD/87P18Uv+9Gc50S+fSJx7IF2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3545
+In-Reply-To: <20201019215628.GA3650804@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-GB
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1603172058; bh=71Qu84vQi0DIkoSmwEIX9OVoUxeXBtrR1oA2TDmZDGc=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=Ke38N5q/2H7vPjiE/VhE9zx9IZ2OBv9Mg9b6NgMOlpsFAKukiMRkkG3j1CV4ZZB+D
+         4uQ7PVFpA3F9P2jhQxaXm1FIRd4dPhaQjMP1Ki0ykpdD0s2HiSWBlDg3LZJp6SKjwx
+         OvcjkQM2LDMFZzE9kE51qcbXzHbi3rkK+OFoMuSkz5966RY196hlOn609UBDPPnFE/
+         TWBEutgjaygeghEraEKKtqJwvFoO2DBHzbcFj6bG2H0y7BIggoW/o/Clxvia80Vw3S
+         asAkjWZf+Gu7aenrrkz44nwvnKKc0xPf2DIRxFw9DBU3T2XMT3RLOq0vkzuE8Ndb6G
+         S9iErsqUnvIIg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-> From: Serge Semin, Sent: Wednesday, October 14, 2020 7:14 PM
->=20
-> With minor peculiarities (like uploading some vendor-specific firmware)
-> these are just Generic xHCI controllers fully compatible with its
-> properties. Make sure the Renesas USB xHCI DT nodes are also validated
-> against the Generic xHCI DT schema.
->=20
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
+>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+>> ---
+>>   Documentation/devicetree/bindings/graph.txt  | 128 -------------------=
+-
+>>   Documentation/devicetree/bindings/graph.yaml | 170 +++++++++++++++++++=
+++++++++
+>>   2 files changed, 170 insertions(+), 128 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/graph.txt
+>>   create mode 100644 Documentation/devicetree/bindings/graph.yaml
+> I'd like to move this to the dtschema repository instead.
 
-Thank you for the patch!
+Do you mean I need to separately submit this patch for dtschema repo?
 
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+...
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/graph.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Common bindings for device graphs
+>> +
+>> +description: |
+>> +  The hierarchical organisation of the device tree is well suited to de=
+scribe
+>> +  control flow to devices, but there can be more complex connections be=
+tween
+>> +  devices that work together to form a logical compound device, followi=
+ng an
+>> +  arbitrarily complex graph.
+>> +  There already is a simple directed graph between devices tree nodes u=
+sing
+>> +  phandle properties pointing to other nodes to describe connections th=
+at
+>> +  can not be inferred from device tree parent-child relationships. The =
+device
+>> +  tree graph bindings described herein abstract more complex devices th=
+at can
+>> +  have multiple specifiable ports, each of which can be linked to one o=
+r more
+>> +  ports of other devices.
+>> +
+>> +  These common bindings do not contain any information about the direct=
+ion or
+>> +  type of the connections, they just map their existence. Specific prop=
+erties
+>> +  may be described by specialized bindings depending on the type of con=
+nection.
+>> +
+>> +  To see how this binding applies to video pipelines, for example, see
+>> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
+>> +  Here the ports describe data interfaces, and the links between them a=
+re
+>> +  the connecting data buses. A single port with multiple connections ca=
+n
+>> +  correspond to multiple devices being connected to the same physical b=
+us.
+>> +
+>> +maintainers:
+>> +  - Philipp Zabel <p.zabel@pengutronix.de>
+>> +
+>> +definitions:
+>> +
+>> +  port:
+>> +    type: object
+>> +    description: |
+>> +      If there is more than one 'port' or more than one 'endpoint' node
+>> +      or 'reg' property present in the port and/or endpoint nodes then
+>> +      '#address-cells' and '#size-cells' properties are required in rel=
+evant
+>> +      parent node.
+> reg property.
 
-Best regards,
-Yoshihiro Shimoda
+done
 
+>
+>> +
+>> +    patternProperties:
+>> +      "^endpoint(@[0-9a-f]+)?$":
+>> +        type: object
+>> +        properties:
+> reg?
+
+done
+
+>> +          remote-endpoint:
+>> +            description: |
+>> +              phandle to an 'endpoint' subnode of a remote device node.
+>> +            $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>> +  ports:
+>> +    type: object
+>> +    patternProperties:
+>> +      "^port(@[0-9a-f]+)?$":
+>> +        $ref: "#/definitions/port"
+> No reason for this to be under 'definitions'. Just move down.
+
+Would definitions be needed if some schemas want to refer the base graph=20
+schema? Or is it like they can just directly include the base schema and=20
+definitions are not really required?
+
+But what if they want to extend few properties. For example:
+
+graph.yaml
+----------
+endpoint {
+ =C2=A0=C2=A0=C2=A0 remote-endpoint =3D <>;
+};
+
+*audio-graph-card.yaml
+----------------------
+endpoint {
+ =C2=A0=C2=A0=C2=A0 remote-endpoint =3D <>;
+
+ =C2=A0=C2=A0=C2=A0 property-x;
+ =C2=A0=C2=A0=C2=A0 node-x {
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
+ =C2=A0=C2=A0=C2=A0 };
+};
+
+>
+>> +
+>> +properties:
+>> +  ports:
+>> +    $ref: "#/definitions/ports"
+>> +
+>> +patternProperties:
+>> +  "^port(@[0-9a-f]+)?$":
+>> +    $ref: "#/definitions/port"
+>> +
+>> +additionalProperties: false
+> This needs to be true here. But you need this within 'ports' and 'port'.
+> (I think... I think we only have extra properties within endpoint
+> nodes.)
+
+I think currently audio-graph allows few properties at port/ports. I am=20
+not sure if Morimoto-san has plans to get rid of this.
