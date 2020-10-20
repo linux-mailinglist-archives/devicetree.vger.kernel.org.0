@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80417293FF8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F28AA294009
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436936AbgJTPxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 11:53:03 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:42639 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731282AbgJTPxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:53:03 -0400
-Received: by mail-oi1-f196.google.com with SMTP id 16so2627733oix.9;
-        Tue, 20 Oct 2020 08:53:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iSUnJ3zC+i96Tee9HE3Ma7rzjDtB6lhpcHKRFjv2ccE=;
-        b=QTI7twpdbwfwxd9wFaD/kxU5LlqiTv1PKGs2643exe1StTGOFf1NM54SmhADOVwyVI
-         2dXvl92hZz1w0MHI+dD7wpXqEiggF52LXG3S+K69JblHl4yuWfpzff/467pNG/kSdjI/
-         Cqot+KNCegQIuiVOuo/iolDv9hjCigCcbkSdsJ6kbHR/B2HdAC+t18FP9gFr8bB4Juo7
-         lA7wA6/iNxp1L++whlwcDE9lPIr1zDuiVxHMmQzdoi0Xb9stk0S+ltVtRhQiqWiZY0RW
-         InzrGMa/T1GFPwdh2EndRmaockmE9+tWzpJ/lZqg6pxDgNhoQ99BPPcBwWZlRFsP5mdo
-         UgpA==
-X-Gm-Message-State: AOAM533Cu61rA/T7qTZKTf6g/QiE6rM8VLj9xVWzNCfsy6A1W8/SMgYN
-        qhL7Wq+J/8MZneOD4bPLd6gi4xSOVA==
-X-Google-Smtp-Source: ABdhPJw7jKtcBX1HJmvImu3OtQLdkpQmW076DYW/d4yYauIv/uHxi67eNnw6fzLjEkrKebqPLx3YMg==
-X-Received: by 2002:aca:1105:: with SMTP id 5mr2380044oir.46.1603209182630;
-        Tue, 20 Oct 2020 08:53:02 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j84sm640090oia.25.2020.10.20.08.53.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 08:53:01 -0700 (PDT)
-Received: (nullmailer pid 907213 invoked by uid 1000);
-        Tue, 20 Oct 2020 15:53:00 -0000
-Date:   Tue, 20 Oct 2020 10:53:00 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Wilma.Wu@mediatek.com,
-        matthias.bgg@gmail.com, knaack.h@gmx.de, cy_huang@richtek.com,
-        lars@metafoo.de, jic23@kernel.org, gene_chen@richtek.com,
-        linux-iio@vger.kernel.org, benjamin.chao@mediatek.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        shufan_lee@richtek.com, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, pmeerw@pmeerw.net
-Subject: Re: [PATCH v7 1/3] dt-bindings: iio: adc: add bindings doc for
- MT6360 ADC
-Message-ID: <20201020155300.GB906028@bogus>
-References: <1603181267-15610-1-git-send-email-gene.chen.richtek@gmail.com>
- <1603181267-15610-2-git-send-email-gene.chen.richtek@gmail.com>
+        id S2436978AbgJTP5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 11:57:35 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:60390 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2436958AbgJTP5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Oct 2020 11:57:35 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09KFfsqH008231;
+        Tue, 20 Oct 2020 17:57:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=vxVcS0wL2dmaUGtZbYgULMDICAzdzq2c+2XOgarz2W8=;
+ b=tSwotTfTGzp0UfKKaB1HYz9zhyFIEMvXk0/ssAnHzRK+LOHI19fiimx69WyRWlMICUAy
+ Wo/P3c1f+2gcH1cH8RY4Q/DQXDqInf17gTxzmFToN4alTF2f9oVsf8NHy8EVb9f3apvz
+ rWEAn3mKh4y/ZWU2sGc4CRv4h/9xJkO58xI0wfaCRBhBvimJlhhY8B5KF0p+kE9ISYR9
+ IXIsI+hxUy1hX0QuNS7/dnnSJqYNz5LpoxAZoys1cKVQLHSPFO044Ol6n+Pk8tfK+2NC
+ x2ULDjdMqr5yEYnbJ2xw+KEATp0kc3Eq0cMKnu8yHxLVxWAGItQlU51t1T3pdBOakj0b YA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 347pcwuuw8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Oct 2020 17:57:14 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3188410002A;
+        Tue, 20 Oct 2020 17:57:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BD477206290;
+        Tue, 20 Oct 2020 17:57:13 +0200 (CEST)
+Received: from localhost (10.75.127.44) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 20 Oct 2020 17:57:13
+ +0200
+From:   Olivier Moysan <olivier.moysan@st.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <alexandre.torgue@st.com>, <robh@kernel.org>,
+        <mark.rutland@arm.com>, <olivier.moysan@st.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <arnaud.pouliquen@st.com>
+Subject: [PATCH v2 0/2] dt-bindings: stm32: convert audio dfsdm to json-schema
+Date:   Tue, 20 Oct 2020 17:57:07 +0200
+Message-ID: <20201020155709.2621-1-olivier.moysan@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1603181267-15610-2-git-send-email-gene.chen.richtek@gmail.com>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.737
+ definitions=2020-10-20_08:2020-10-20,2020-10-20 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 16:07:45 +0800, Gene Chen wrote:
-> From: Gene Chen <gene_chen@richtek.com>
-> 
-> This change adds the binding doc for the MT6360 ADC.
-> 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> ---
->  .../bindings/iio/adc/mediatek,mt6360-adc.yaml      | 34 ++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6360-adc.yaml
-> 
+Some audio properties documented in st,stm32-adfsdm.txt are already documented
+in Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml bindings.
+Move remaining properties from st,stm32-adfsdm.txt to st,stm32-dfsdm-adc.yaml,
+and remove st,stm32-adfsdm.txt.
 
+Changes in v2:
+- Complete st,stm32-dfsdm-adc.yaml rather than converting st,stm32-adfsdm.txt
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Olivier Moysan (2):
+  dt-bindings: stm32: dfsdm: update audio properties
+  dt-bindings: stm32: dfsdm: remove stm32-adfsdm.txt binding
 
-If a tag was not added on purpose, please state why and what changed.
+ .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  |  7 ++-
+ .../bindings/sound/st,stm32-adfsdm.txt        | 63 -------------------
+ 2 files changed, 5 insertions(+), 65 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/st,stm32-adfsdm.txt
+
+-- 
+2.17.1
 
