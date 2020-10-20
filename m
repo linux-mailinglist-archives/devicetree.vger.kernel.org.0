@@ -2,100 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DFE129455F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 01:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6C0294562
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 01:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439260AbgJTXM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 19:12:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54990 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2439257AbgJTXM5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Oct 2020 19:12:57 -0400
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.5])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E066D223BF;
-        Tue, 20 Oct 2020 23:12:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603235576;
-        bh=4WY9vVWlC0GnYoSQjpODQA9tTdU6zzoZCrFArJ7O1UQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ikYSPgLFgd1E7tmXIaZmWs2JRoaO7MaFfnrXsxtpDz0z4h/lMJKpybwVlfpl9ET8M
-         nOtORWpSuS6eKPK9cTEH7KWm4EKBssiDCJ4UEMH72hlmIAs3HZfko+L96PoV0+qcUD
-         7vxha8jZ1S4oQW4cXx9UfibZykJBeU6JldKx+dd8=
-Date:   Tue, 20 Oct 2020 16:12:53 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Ard Biesheuvel <ardb@kernel.org>, netdev@vger.kernel.org,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Willy Liu <willy.liu@realtek.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Masahisa Kojima <masahisa.kojima@linaro.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net] netsec: ignore 'phy-mode' device property on ACPI
- systems
-Message-ID: <20201020161253.72b99808@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201020125001.GX456889@lunn.ch>
-References: <20201018163625.2392-1-ardb@kernel.org>
-        <20201020125001.GX456889@lunn.ch>
+        id S2392392AbgJTXOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 19:14:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36744 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439271AbgJTXOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 19:14:05 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15305C0613CE
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 16:14:05 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id y14so301749pfp.13
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 16:14:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=KFfpH0InGRM8MvpZTbASmzGof5hPRvFFHjnrwDY+rdw=;
+        b=ZboeJElxDX6dLFmLilvQG7EbuCwQdu8U2oYHQ33WgX8II2smq0C57POZYN9BM4k/Ex
+         /XljvDv+J1fLMskvhoTWi1Vda9uo8cs9rVDE2pjGqmK5Np8cF8nXQ0bqx6hVAu8hUnRz
+         7zqiRPXcJ/i8vJPaQBgMLLek61DBOJlLHgImf9Yb23KBa4OJkqr/z9Hu8A7TlVIHIcxE
+         3F7UnecM6cYf3pdIzJfgsDIBSEgDSlDMx+o9R9Ko/5+EFzG6KVnqnz8ZU7SgcF8mi/AG
+         i9yq9BUeJZT2cYFpZbRThQz5Ynl6d6aDuKeTms/LopCA1pUze87kijb0a0jtMrnqgahl
+         0iCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=KFfpH0InGRM8MvpZTbASmzGof5hPRvFFHjnrwDY+rdw=;
+        b=rkIxcCGmzDxvNpw5Sls0MCaoSjUWlfEIyiRCKKN4i4bK3z+vwXFSfFUCCSa1lmK9vS
+         ZeB6KYKJIDtv2DtsH8u0J6B7ZzRnG8PVwg5lbVSvxVzS1XDyVYHLOcMi17AVFX3BYYpT
+         G1xrpWzDTCE9KRkgEesComZWV55172DUN8xPCzyjPH4V8fVxul+xcmN8lsuWeCo1x09U
+         LAmNKzAFalQlDplkMkx78eMGPPJssi7BiW97y4PuqVxDuktU0ZHERy50OeKjSxWvmxTO
+         ciER3uL2B8HRIVK9TgySmFK4eq/h8y1HQ+dT2CGbOZZGfbUKewAVfWKHaSxf20pseWcN
+         scNg==
+X-Gm-Message-State: AOAM532mH33FvvB6n1NIfSLDZEvmvSfAcyBugsJtJMzn0dgqJEoAnPuG
+        FybFohSeQRxj9jstNFGIGNfLyQ==
+X-Google-Smtp-Source: ABdhPJyqjnd3QXal7AHEsNxZ8SPBaMGxoLELYgl1NWJHEaMCtzJqhHsNEva2dpyBmedACi6FlHgi8Q==
+X-Received: by 2002:a62:3815:0:b029:152:80d4:2a6f with SMTP id f21-20020a6238150000b029015280d42a6fmr296770pfa.72.1603235644320;
+        Tue, 20 Oct 2020 16:14:04 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id z3sm195910pgl.73.2020.10.20.16.14.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 16:14:03 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: amlogic: add missing ethernet reset ID
+Date:   Tue, 20 Oct 2020 16:14:01 -0700
+Message-Id: <160323562909.7110.10553344711717844813.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201020120141.298240-1-jbrunet@baylibre.com>
+References: <20201020120141.298240-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 14:50:01 +0200 Andrew Lunn wrote:
-> On Sun, Oct 18, 2020 at 06:36:25PM +0200, Ard Biesheuvel wrote:
-> > Since commit bbc4d71d63549bc ("net: phy: realtek: fix rtl8211e rx/tx
-> > delay config"), the Realtek PHY driver will override any TX/RX delay
-> > set by hardware straps if the phy-mode device property does not match.
-> > 
-> > This is causing problems on SynQuacer based platforms (the only SoC
-> > that incorporates the netsec hardware), since many were built with
-> > this Realtek PHY, and shipped with firmware that defines the phy-mode
-> > as 'rgmii', even though the PHY is configured for TX and RX delay using
-> > pull-ups.
-> >   
-> > >From the driver's perspective, we should not make any assumptions in  
-> > the general case that the PHY hardware does not require any initial
-> > configuration. However, the situation is slightly different for ACPI
-> > boot, since it implies rich firmware with AML abstractions to handle
-> > hardware details that are not exposed to the OS. So in the ACPI case,
-> > it is reasonable to assume that the PHY comes up in the right mode,
-> > regardless of whether the mode is set by straps, by boot time firmware
-> > or by AML executed by the ACPI interpreter.
-> > 
-> > So let's ignore the 'phy-mode' device property when probing the netsec
-> > driver in ACPI mode, and hardcode the mode to PHY_INTERFACE_MODE_NA,
-> > which should work with any PHY provided that it is configured by the
-> > time the driver attaches to it. While at it, document that omitting
-> > the mode is permitted for DT probing as well, by setting the phy-mode
-> > DT property to the empty string.
-> > 
-> > Fixes: 533dd11a12f6 ("net: socionext: Add Synquacer NetSec driver")
-> > Signed-off-by: Ard Biesheuvel <ardb@kernel.org>  
-> 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Tue, 20 Oct 2020 14:01:41 +0200, Jerome Brunet wrote:
+> Add reset external reset of the ethernet mac controller
 
-Thanks, applied.
+Applied, thanks!
 
-Just to be on the safe side please make sure to CC Rob & DT list 
-if your patch touches anything device tree.
+[1/1] arm64: dts: amlogic: add missing ethernet reset ID
+      commit: f3362f0c18174a1f334a419ab7d567a36bd1b3f3
 
-> --- a/Documentation/devicetree/bindings/net/socionext-netsec.txt
-> +++ b/Documentation/devicetree/bindings/net/socionext-netsec.txt
-> @@ -30,7 +30,9 @@ Optional properties: (See ethernet.txt file in the same directory)
->  - max-frame-size: See ethernet.txt in the same directory.
->  
->  The MAC address will be determined using the optional properties
-> -defined in ethernet.txt.
-> +defined in ethernet.txt. The 'phy-mode' property is required, but may
-> +be set to the empty string if the PHY configuration is programmed by
-> +the firmware or set by hardware straps, and needs to be preserved.
->  
->  Example:
->  	eth0: ethernet@522d0000 {
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
