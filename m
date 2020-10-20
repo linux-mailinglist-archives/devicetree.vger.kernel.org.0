@@ -2,187 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A712C293236
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 02:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B24F293242
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 02:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726573AbgJTAKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 20:10:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48396 "EHLO
+        id S2389250AbgJTAPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 20:15:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726310AbgJTAKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 20:10:46 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9137BC0613CE;
-        Mon, 19 Oct 2020 17:10:44 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id i5so1115522edr.5;
-        Mon, 19 Oct 2020 17:10:44 -0700 (PDT)
+        with ESMTP id S2389239AbgJTAPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 20:15:48 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9924C0613CE
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 17:15:47 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id u7so57764vsq.11
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 17:15:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UaGR/k85ndlivJXlwq6kQBoqmuWnMtK/i/ntraNCDd4=;
-        b=GbaSrHMu1eDdv3ko21utX8CHvaFIEpnbqR99SQv2SBWMsNlQ0VQN9VsyoIPIRviS35
-         mrb1q1lJuDAcWLnjKlbkICfKhy5IaFfa9XPDPCLL3xmSUKf5EzDBcYW+zaHK4kGM8tIO
-         aNWtTJ0Z8+vWofckG/pWbKVBy6GQtpX+srXcW841YDSTiEadEo9BAF/34jlUWYhJdUgm
-         3qmBpzzaGDT9kqEuZZS2O71YgE5Tgfv2hzeDnkeWrvvKVe4O/RzjNVxBa93JxHkiQLBZ
-         rbu8Utkqq6TvqwR6rJU4u66B3gSsYURbKKvF/y2bMeXyTbErOl1L2QdK6MP84JQum/LO
-         VsYA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TvgIaHB+zCRTE3U91pAvk2x32he6j0EtU+nDKoz+k7U=;
+        b=PpeMbkQhz05ujwOQNQu3xw5hmxLoObi5SwbQFxn2FnIXekypEeK8pjmLw9OudD4EXa
+         5eZllPJpPpSxhGySXcyub3oaO7um3h4dAIbaPXjDjlwmERqWUEO/AQ6dx+iZHdtTZbMT
+         e/L/W3AV9PPYMqKqQbPRjAW0bmluBzyyEL6eA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UaGR/k85ndlivJXlwq6kQBoqmuWnMtK/i/ntraNCDd4=;
-        b=B0MJ0xDLBYY2vyty1Yf7qWNvKeqVjfBjk4QrLe8mndTqVd8xX4kIFyfaTT5UtvWl/N
-         GB8r5ji/UsYdyHgDsRbJaZoyQwcAr4H2r8WNkTLY7TZ/wmHSuDZVscazfQOTL6CjEwlK
-         GzsFoaYAUwGZMfU+36AjcPj/89gkyj4dfDyW3ZiwOApOeXtSs96g6pwuInxx+RcMNRO0
-         oJ82CzzVWsoZdTSPGDZ7wLKg5E6eUSCLYb1mYOTdKNBDyGAoUBF0RO2nsHd4f1kN7uJ0
-         Gom21V4iSQfw2oCPzgW2WXtuJ2sEfRPwnLXH9pvBaxLlQ/5PgBv+73uZ4Lsyx9ve3o5o
-         ScSQ==
-X-Gm-Message-State: AOAM531+d/0F/vou5S0qBmGU3fNYj70u9RedIdoBplRAXhf28bQl5p2A
-        Q+g2msbYBAzIW5FpxAvt88k=
-X-Google-Smtp-Source: ABdhPJyzNkfsLUGzZGiVNP/za5ispsG8OmDioLR59WhI7EdkUTtwXfHu+EEhTbLoGDxkEzbu9O3k0w==
-X-Received: by 2002:a50:d64c:: with SMTP id c12mr78514edj.44.1603152643206;
-        Mon, 19 Oct 2020 17:10:43 -0700 (PDT)
-Received: from skbuf ([188.26.174.215])
-        by smtp.gmail.com with ESMTPSA id u18sm151126ejn.122.2020.10.19.17.10.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Oct 2020 17:10:42 -0700 (PDT)
-Date:   Tue, 20 Oct 2020 03:10:40 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
- hardware time stamping support
-Message-ID: <20201020001040.avkzgltrijaz4ujb@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de>
- <20201019172435.4416-8-ceggers@arri.de>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TvgIaHB+zCRTE3U91pAvk2x32he6j0EtU+nDKoz+k7U=;
+        b=kM/B5Pnn1OqUdPa9/PwEhYR7Tf82jOQoNBtxW/wGF+KrBRiUnFoxiA23q9tOLahRuC
+         I3NUr20egrXytjt8T1zT3W16uY8LYyJZ59pkxi9E3ofkzMwJmyMFtCm/3D864xDrB7xf
+         AQHVHyLbaGn1Uz+lgnKgWFoTDXEcg0W/7t1O6wbCEpQlNZ6NO6+D49f/SK8jscDyh20t
+         QcUJWrGwLN5UkP/070xvinIWfH64xN3p9ptzsCp0HLJA0CSvjQ2Ur0hcCtG3oeXd2sVX
+         N0UzZE9heQ1vwi53s7kBfpSdQKVkTi/dazkdSx9UjxflJxAcXaaTjurAsdv8d9RZlr/h
+         g6gw==
+X-Gm-Message-State: AOAM530CWnDc2gUfL8sSNx6zXPgICaM3OTQfYAqZCTTLkt+AqLVLmZDK
+        XTG+qmD3L/O8ob69TrGCSbu1rkgGptWfpA==
+X-Google-Smtp-Source: ABdhPJxeDEfc3CFJMUmlq+4kmPhmGtLSGOXoiz9ZS532XI0pbay+Ctz27YiuUBsXMrZNqbvCEnUk7A==
+X-Received: by 2002:a67:f643:: with SMTP id u3mr170208vso.48.1603152946926;
+        Mon, 19 Oct 2020 17:15:46 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id 11sm38281vkz.42.2020.10.19.17.15.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Oct 2020 17:15:45 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id j21so70353uak.5
+        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 17:15:44 -0700 (PDT)
+X-Received: by 2002:a9f:31ce:: with SMTP id w14mr67335uad.104.1603152943957;
+ Mon, 19 Oct 2020 17:15:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201019172435.4416-8-ceggers@arri.de>
+References: <20201019140601.3047-1-lukasz.luba@arm.com>
+In-Reply-To: <20201019140601.3047-1-lukasz.luba@arm.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 19 Oct 2020 17:15:32 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UYeo_rWBDRu-53Aw2OeY1NCgCuUJkocRM8xL+OCbJDug@mail.gmail.com>
+Message-ID: <CAD=FV=UYeo_rWBDRu-53Aw2OeY1NCgCuUJkocRM8xL+OCbJDug@mail.gmail.com>
+Subject: Re: [PATCH v3 0/4] Clarify abstract scale usage for power values in
+ Energy Model, EAS and IPA
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
+        morten.rasmussen@arm.com, Quentin Perret <qperret@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 19, 2020 at 07:24:33PM +0200, Christian Eggers wrote:
-> Add routines required for TX hardware time stamping.
-> 
-> The KSZ9563 only supports one step time stamping
-> (HWTSTAMP_TX_ONESTEP_P2P), which requires linuxptp-2.0 or later. PTP
-> mode is permanently enabled (changes tail tag; depends on
-> CONFIG_NET_DSA_MICROCHIP_KSZ9477_PTP).TX time stamps are reported via an
-> interrupt / device registers whilst RX time stamps are reported via an
-> additional tail tag.
-> 
-> One step TX time stamping of PDelay_Resp requires the RX time stamp from
-> the associated PDelay_Req message. linuxptp assumes that the RX time
-> stamp has already been subtracted from the PDelay_Req correction field
-> (as done by the TI PHYTER). linuxptp will echo back the value of the
-> correction field in the PDelay_Resp message.
-> 
-> In order to be compatible to this already established interface, the
-> KSZ9563 code emulates this behavior. When processing the PDelay_Resp
-> message, the time stamp is moved back from the correction field to the
-> tail tag, as the hardware doesn't support negative values on this field.
-> Of course, the UDP checksums (if any) have to be corrected after this
-> (for both directions).
-> 
-> The PTP hardware performs internal detection of PTP frames (likely
-> similar as ptp_classify_raw() and ptp_parse_header()). As these filters
-> cannot be disabled, the current delay mode (E2E/P2P) and the clock mode
-> (master/slave) must be configured via sysfs attributes. Time stamping
-> will only be performed on PTP packets matching the current mode
-> settings.
-> 
-> Everything has been tested on a Microchip KSZ9563 switch.
+Hi,
 
-I looked a little bit at the KSZ9563 datasheet and I'm more confused
-than I was before opening it.
+On Mon, Oct 19, 2020 at 7:06 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+>
+> Hi all,
+>
+> The Energy Model supports power values expressed in an abstract scale.
+> This has an impact on Intelligent Power Allocation (IPA) and should be
+> documented properly. Kernel sub-systems like EAS, IPA and DTPM
+> (new comming PowerCap framework) would use the new flag to capture
+> potential miss-configuration where the devices have registered different
+> power scales, thus cannot operate together.
+>
+> There was a discussion below v2 of this patch series, which might help
+> you to get context of these changes [2].
+>
+> The agreed approach is to have the DT as a source of power values expressed
+> always in milli-Watts and the only way to submit with abstract scale values
+> is via the em_dev_register_perf_domain() API.
+>
+> Changes:
+> v3:
+> - added boolean flag to struct em_perf_domain and registration function
+>   indicating if EM holds real power values in milli-Watts (suggested by
+>   Daniel and aggreed with Quentin)
+> - updated documentation regarding this new flag
+> - dropped DT binding change for 'sustainable-power'
+> - added more maintainers on CC (due to patch 1/4 touching different things)
+> v2 [2]:
+> - updated sustainable power section in IPA documentation
+> - updated DT binding for the 'sustainable-power'
+> v1 [1]:
+> - simple documenation update with new 'abstract scale' in EAS, EM, IPA
+>
+> Regards,
+> Lukasz Luba
+>
+> [1] https://lore.kernel.org/linux-doc/20200929121610.16060-1-lukasz.luba@arm.com/
+> [2] https://lore.kernel.org/lkml/20201002114426.31277-1-lukasz.luba@arm.com/
+>
+> Lukasz Luba (4):
+>   PM / EM: Add a flag indicating units of power values in Energy Model
+>   docs: Clarify abstract scale usage for power values in Energy Model
+>   PM / EM: update the comments related to power scale
+>   docs: power: Update Energy Model with new flag indicating power scale
+>
+>  .../driver-api/thermal/power_allocator.rst    | 13 +++++++-
+>  Documentation/power/energy-model.rst          | 30 +++++++++++++++----
+>  Documentation/scheduler/sched-energy.rst      |  5 ++++
+>  drivers/cpufreq/scmi-cpufreq.c                |  3 +-
+>  drivers/opp/of.c                              |  2 +-
+>  include/linux/energy_model.h                  | 20 ++++++++-----
+>  kernel/power/energy_model.c                   | 26 ++++++++++++++--
+>  7 files changed, 81 insertions(+), 18 deletions(-)
 
------------------------------[cut here]-----------------------------
-The device supports V2 (2008) of the IEEE 1588 PTP specification and can
-be programmed as either an end-to-end (E2E) or peer-to-peer (P2P)
-transparent clock (TC) between ports. In addition, the host port can be
-programmed as either a slave or master ordinary clock (OC) port.
-Ingress timestamp capture, egress timestamp recording, correction field
-update with residence time and link delay, delay turn-around time
-insertion, egress timestamp insertion, and checksum update are
-supported.
------------------------------[cut here]-----------------------------
+While I don't feel like I have enough skin in the game to make any
+demands, I'm definitely not a huge fan of this series still.  I am a
+fan of documenting reality, but (to me) trying to mix stuff like this
+is just going to be adding needless complexity.  From where I'm
+standing, it's a lot more of a pain to specify these types of numbers
+in the firmware than it is to specify them in the device tree.  They
+are harder to customize per board, harder to spin, and harder to
+specify constraints for everything in the system (all heat generators,
+all cooling devices, etc).  ...and since we already have a way to
+specify this type of thing in the device tree and that's super easy
+for people to do, we're going to end up with weird mixes / matches of
+numbers coming from different locations and now we've got to figure
+out which numbers we can use when and which to ignore.  Ick.
 
-So it's a 1-step transparent clock, fair enough. That works autonomously
-without any sort of involvement from the operating system, you know
-that, right? This is stateless functionality.
+In my opinion the only way to allow for mixing and matching the
+bogoWatts and real Watts would be to actually have units and the
+ability to provide a conversion factor somewhere.  Presumably that
+might give you a chance of mixing and matching if someone wants to
+provide some stuff in device tree and get other stuff from the
+firmware.  Heck, I guess you could even magically figure out a
+conversion factor if someone provides device tree numbers for
+something that was already registered in SCMI, assuming all the SCMI
+numbers are consistent with each other...
 
-BUT, if that is the case, what do you need PTP support in the kernel
-for? What profiles are you using with linuxptp? What benefit does it
-bring you if you report timestamps to the operating system, for
-terminated 1588 traffic? Why would you even terminate 1588 traffic on
-the host CPU? I fail to understand many of the use cases that this
-switch is tailored for.
-
-Also, I know that Microchip support does a pretty bad job at giving
-useful answers, and the datasheet isn't quite clear either (looks like
-there's info that has been copied from other switches, like for 2-step
-timestamping, then removed, and too much was removed because now nothing
-is clear) so you'll have to give your best shot at explaining some
-things.
-
-
-Global PTP Message Config 1 Register
-------------------------------------
-
-Bit 2: Selection of P2P or E2E
-1 = Peer-to-peer (P2P) transparent clock mode
-0 = End-to-end (E2E) transparent clock mode
-
-What does this bit do exactly?
-Does it change the switch's behavior as an autonomous 1-step transparent
-clock? Or does it have anything to do with how/which timestamps are
-delivered to the CPU? The point is, why do you care to configure this?
-Sysfs is not going to fly without a solid explanation, which you did not
-provide here.
-
-My understanding of E2E vs P2P TC is that an E2E TC will correct the
-timestamps of Pdelay messages, while a P2P TC won't. The P2P TC must
-speak proper PDelay and not forward those packets sheepishly. Which
-starts to answer my question, I believe... So my comment above, that the
-1-step TC functionality doesn't require any involvement from the CPU, is
-only correct for E2E TC, am I right? For P2P TC, you would need the host
-CPU to speak peer delay. But you wouldn't need it for anything else (the
-SYNC messages would have no reason to go to the CPU, would they?). So,
-again, what profile are you using with linuxptp for this one?
-
-If my understanding is right, maybe you want to just leave the switch
-operate in E2E TC mode by default, and put it into P2P TC as soon as
-your .port_hwtstamp_set() method is called?
+-Doug
 
 
-Ok, on to my next question....
 
-Bit 1: Selection of Master or Slave
-1 = Host port is PTP master ordinary clock
-0 = Host port is PTP slave ordinary clock
-
-What does this _actually_ do? Here I really have no idea. I can only
-imagine that this has again to do with the 1-step TC operation, and that
-it's treating the host port as a switched endpoint, and this has to do
-with the port states of the P2P TC. I'm so confused by this one that I
-don't even know what to ask...
-Ok, let's put it differently. You bothered to add a sysfs for it, so you
-must be using it for something. What are you using it for?
+-Doug
