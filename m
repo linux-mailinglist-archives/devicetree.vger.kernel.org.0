@@ -2,148 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D76B29428C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 20:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 104FB29429F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 21:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437865AbgJTSzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 14:55:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53276 "EHLO
+        id S2390880AbgJTTBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 15:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437854AbgJTSzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 14:55:16 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30092C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:55:14 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id h7so3525103wre.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:55:14 -0700 (PDT)
+        with ESMTP id S2390864AbgJTTBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 15:01:30 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06B1BC0613CE;
+        Tue, 20 Oct 2020 12:01:29 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id n18so3568235wrs.5;
+        Tue, 20 Oct 2020 12:01:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mScZ8ah2UgtXD/hHaoKN6/WZjy3yp0sHiaOHV6wLFW8=;
-        b=kC1bm7nzh6+1h/Q0nN45KdnVbW/OI5uUooOLQ2Vs/LpFzRvJnYRUV+JwP0kcW7T4QR
-         41jNfWJ2Z9lO48O89PVVflQTzDH60CTncg14/nyfU9FIEeibQS8Vrf68eqVidtcHz3vp
-         3lByNPbOMsEb9+VEVy4e6EqFieABTbe7vnr3g=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hzwE3DMeVYcufvpW2YO0HT1T1YwdgLKYNBKj7iKs0iM=;
+        b=BDd1Vx6LVrnMGvhRT0Zwl/HGiPUmAfQDT/L6U1mzKuEKIBuNoowFabDwgqMiU672Ue
+         ltCZDKkDKigPnFAWSwS9Y2YstgjLjtuCMuSKi9mt8pSYZZe3h4wkemwksyg5cbGNIT6m
+         S+YBRcPDdzeVNpiG9YKEUIKXT2F3y/3QlFn70H1SzDGQx9a12FnAH93yXGNVjH8g8Jon
+         XSa/xA83aAXI3GLdumH++GGeGd8kej2haOZgC5rItDp0bhxMx6WcZgL80CHtMJh9xH7g
+         jF72k58ZKY831snaN1oG/0G0ZPSudL6ML5er0UpZOIVSCnK+z3drAgWDao/R2osFpBBp
+         wmwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mScZ8ah2UgtXD/hHaoKN6/WZjy3yp0sHiaOHV6wLFW8=;
-        b=pd8B+9dnD2gNmtxUiyNWR5UEVmBYSawk98/ao0LIjLpCc14EsmsDRXSYr+6f3VsiHu
-         71IU8pK8Jkvc1l07p7znTzD3m9ipYzyeTMgPuXurEOxtNpNVzV6gDbaQ2BnsWDVM408h
-         owP2pzhiQFGefqCZvtGF0A6GRMw/tEGXP+8rwKneexHSD4WXfPCtC0WweIHmStl2pGxZ
-         +eGMIRHg98CNkD3hPftAytbZ2wxBOlF0yuT+Y4/aZCkad/1RUoNS4wjSDqhT2WFiNGHW
-         5TddV1oPEENyMgiY+vzyY89O8ES8SvhxYsQsMUdGDzLc3xR0V3RVRPuzy65ycAragxC1
-         eVyQ==
-X-Gm-Message-State: AOAM53349FJpfyWIkFaIzKpDePQhmnrZ7KRx9AZhaDEqVgTSI7w+7WER
-        54Oqg85LjhgL20dMc8zc/wdIY5eeOfU4oVYhkfbxmg==
-X-Google-Smtp-Source: ABdhPJxsMtKaYZKishW1LFkqqTjFYaAFJFl/nN/EX/ADY7U9joK0FSO7QV5LU0tzsLkN7u78bKqbrTQK/Z5k/u4nUP8=
-X-Received: by 2002:a5d:49ca:: with SMTP id t10mr5023373wrs.404.1603220112425;
- Tue, 20 Oct 2020 11:55:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hzwE3DMeVYcufvpW2YO0HT1T1YwdgLKYNBKj7iKs0iM=;
+        b=NWzY2Kj+jsjXFLpnMHFVu0bVVAPGRuw7/ECwntU6ofqHWFRX+T9C9FLTFfeVnhpW4d
+         PUo8avBpduSGH5Q+ieYFSJSOWJ8DsnmnhGuT1KsFwbkEnuBIbRVedb2iZ9oSmBg1yrSP
+         WYt4ifFSsemb2Lvnrw58zlnQVUu87gOJPgcSXxsfLUwRYeBh0QaScc0ENSdWtF6NNWJP
+         V0gd6ZCM/+7NEOxo7+mS1tw6ohS6OWn4kROeds0cJFNA8GqnaXPFUG3FnralYkPRwPS0
+         laiCvU0TiUOK2n22ykafK/uUlDnDvOJ+6V3sgKgCJFpwZxCt3eVhfds4bbogWqmoHx7F
+         wfTQ==
+X-Gm-Message-State: AOAM533rKoSJmhEkb7tcRYs63gfiKJLGOV1rSCln1E/RthWAUkQOC/rE
+        FiUoGqEVeefyzw+wiRVqokY=
+X-Google-Smtp-Source: ABdhPJzntt4Q8H0CJkTpnSeKn+ljNJbsc6NqEz9BMVesgBw7OZBKjWOZC2W4KIWd/uRzDBDjjA5ihA==
+X-Received: by 2002:a1c:7d49:: with SMTP id y70mr4392513wmc.103.1603220488633;
+        Tue, 20 Oct 2020 12:01:28 -0700 (PDT)
+Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id c18sm4279289wrq.5.2020.10.20.12.01.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 12:01:27 -0700 (PDT)
+From:   Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Rui Miguel Silva <rmfrfs@gmail.com>
+Subject: [PATCH v5 0/3] dt-bindings: media: imx7 and ov2680 updates to yaml
+Date:   Tue, 20 Oct 2020 20:00:48 +0100
+Message-Id: <20201020190051.1852778-1-rmfrfs@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org> <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
- <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
- <20201015161251.GF4390@sirena.org.uk> <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
- <20201020143711.GC9448@sirena.org.uk> <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
-In-Reply-To: <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
-From:   Cheng-yi Chiang <cychiang@chromium.org>
-Date:   Wed, 21 Oct 2020 02:54:43 +0800
-Message-ID: <CAFv8NwJ-+f146Ss9Mk=nEXjm1B--ZwhAgnfx-cTi7DGEKqC1-Q@mail.gmail.com>
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 10:55 PM Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
->
->
->
-> On 20/10/2020 15:37, Mark Brown wrote:
-> > I don't understand what "logic scattered in various dtsi files" means,
-> > sorry.
-> >
-> >> Yes, that should work to describe the dailink we are using.
-> >> But a more tricky issue is how to do calls like setting PLL in dai startup ops.
-> > ...
-> >
-> >> I think that asking a generic machine driver to do configuration like
-> >> this with only a limited interface of device property
-> >> might be too much of an ask for the machine driver.
-> > Richard was looking at some basic configuration for PLLs.
-> >
-> >> Would you mind if I simplify the compatible string like Srinivas
-> >> suggested, and send a v12?
-> >> As for other two kinds of variations that I am aware of:
-> >> 1. front mic / rear mic
-> >> 2. replace alc5682 with adau7002
-> > The CODEC change is going to be described in the DT no matter what -
-> > you'll have a reference to the CODEC node but it may make sense if
-> > there's enough custom code around it.  For front vs rear mic the
-> > simplest thing would just be to not mention which if this is a hardware
-> > fixed thing, otherwise a control.
-> >
-> >> We can set different board names and different compatible strings to
-> >> achieve such variation.
-> >> So that it would make sense to describe configuration in compatible
-> >> strings like you suggested, and also provides UCM a way to distinguish
-> >> different boards.
-> > I don't recall having suggested distinguishing these things with a
-> > compatible string, especially not the microphones.  UCM can already use
-> > the display names for the boards to distinguish things.
->
->
-> Not with the compatible string!
->
-> Currently card name, and long name are exactly same in all Qualcomm
-> soundcards, which makes it very difficult to identify how those boards
-> re wired up at UCM2 level. So the plan is to properly populate card long
-> name with "model" property which can include details on how things are
-> wiredup on that board.
->
-> --srini
+Update bindings documentation to json-schema yaml in imx7 csi, mipi csi and
+ov2680 sensor media devices along the respective MAINTAINERS entry.
 
-Hi Srini,
-Thanks for taking a look.
-Let me try to clarify your comments in case there is any misunderstanding.
+Cheers,
+  Rui
 
-I understand your request on having different board variations using
-different sound card names through model property, and I totally agree
-with that.
-As for compatible strings, do you insist on having all the board
-variations using exactly the same compatible string ?
+v4 -> v5:
+  Rob Herring:
+  Patch 3/3:
+    https://lore.kernel.org/linux-media/20201020153044.GA875273@bogus/
+    - fix indentation of oneOf items const
 
-Thanks!
+v3 -> v4:
+  Rob Herring:
+  Patch 1/3:
+    https://lore.kernel.org/linux-media/20201019203910.GB3550266@bogus/
+    - remove clock-names description
+    - add maxItems to reset-gpios
+
+v2 -> v3:
+  Jacopo Mondi:
+  Patch 1/3:
+    https://lore.kernel.org/linux-media/20201015144905.4b23k5uy7ycuhvlo@uno.localdomain/
+    - add prefix ovti to yaml file
+    - remove double space
+    - adjust port properties
+    - fix additional properties
+    - fix end of file line and empty line before ...
+    - add Jacopo Reviewed-by tag
+
+  Patch 2/3:
+    https://lore.kernel.org/linux-media/20201015144905.4b23k5uy7ycuhvlo@uno.localdomain/
+    - fix dual license
+    - rearrange ports properties
+    - add Jacopo Reviewed-by tag
+
+  Patch 3/3:
+    https://lore.kernel.org/linux-media/20201015144905.4b23k5uy7ycuhvlo@uno.localdomain/
+    - fix dual license
+    - capital letters fix
+    - const instead of enum in compatible
+    - data lanes array setup
+    - add phy-supply to required
+    - additionalProperties replace
+
+v1 -> v2:
+  Sakari Ailus - Patch 1/3:
+  https://lore.kernel.org/linux-media/20201013160908.GC13341@paasikivi.fi.intel.com/
+  - omit remote-endpoint
+  - remove not needed clock-lanes and data-lanes
+
+Rui Miguel Silva (3):
+  dt-bindings: ov2680: convert bindings to yaml
+  dt-bindings: imx7-csi: convert bindings to yaml
+  dt-bindings: imx7-mipi-csi2: convert bindings to yaml
+
+ .../devicetree/bindings/media/i2c/ov2680.txt  |  46 -----
+ .../bindings/media/i2c/ovti,ov2680.yaml       |  99 ++++++++++
+ .../devicetree/bindings/media/imx7-csi.txt    |  42 -----
+ .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
+ .../bindings/media/nxp,imx7-csi.yaml          |  71 ++++++++
+ .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 172 ++++++++++++++++++
+ MAINTAINERS                                   |   6 +-
+ 7 files changed, 345 insertions(+), 181 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/imx7-csi.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+
+-- 
+2.28.0
+
