@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6962D293BB6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 14:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5DC293BC7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 14:36:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406199AbgJTMfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 08:35:13 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:38814 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406195AbgJTMfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 08:35:13 -0400
-Received: by mail-wr1-f65.google.com with SMTP id n18so1931443wrs.5;
-        Tue, 20 Oct 2020 05:35:11 -0700 (PDT)
+        id S2406263AbgJTMgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 08:36:23 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35300 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406260AbgJTMgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 08:36:23 -0400
+Received: by mail-wr1-f68.google.com with SMTP id n15so1944349wrq.2;
+        Tue, 20 Oct 2020 05:36:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=K0ziud5U7z2Be3d39hiZg1oazX3EmquJNPRbj25dtTg=;
-        b=g6V0cJ6Oua1g4u25i2olzRt1GoT3WjExQ38v0s3ae2JpNhP2nb0RkiGHeWryynVaOS
-         c/P3KG78/Y5KeUT0N3dnUm8+XMIjcHKboetTTQVVoOUISzoYx3Zvfm/QAtXsIxv+WvCj
-         aR4o5JL2ukofrAu9OU4n2nyoDHzVberr1LDjIiK+TrbONV+8OWWCeR6LqtoEokumddb2
-         rNZvC9wn2SIUXLeF5cxPJcu5oWrPE27R073meoB88Q4PWz+hYStdbjSb3ys8jBnhbClq
-         BEveEmt47wpFgCf9wNzyYQG7aVmVs8pNQj5SUVcEboi2yHm0k63IJPCK9QtviE1rdXh2
-         K8IQ==
-X-Gm-Message-State: AOAM533qVuF7DTsr8qhE74luGHStchdRzywqnQUI6Nh4e0MoKCztiYcL
-        vk1Qa7v5oGlriER5Yc+kziA=
-X-Google-Smtp-Source: ABdhPJzItdVZsGvx1zFnzZFr5qmOriiBF1A5jL8niYXLbDo1Jr3pvxQ9WttgwmR+Hj9OE0w00JY/Zw==
-X-Received: by 2002:adf:f246:: with SMTP id b6mr3280040wrp.111.1603197311141;
-        Tue, 20 Oct 2020 05:35:11 -0700 (PDT)
+        bh=9E0XaHJUUaHIVQQLhbSv3W1m5lGWB1Z81RRGTj8SQgM=;
+        b=rUH7C2NZ2uU2dtgX9YV4Eu6qyoooWj9keN9pWr2OT02052aPPOIHntjF4NVoUWHqeJ
+         X7je8G8Mbhjg10b6SjnlfR4JXCuU50KlirTODdh+kD6XhWHrJDrPmpLoORib4ntXDGVK
+         HwPETxAUzOV8M07ycewlRq0g094uRILioLS9ZOJ7thiSw2e5vSVarwGkp5qYHuLSnvm3
+         hdxvYbtcB4muh2ZzF09rmlYrLxS6lKRD0Qb9DhnjR60kL8i58rdSCOYGmrERzosWlvb4
+         taPlGeTDa+ST5ZgH8XrkUn+KJ2QrU/YPY/oMcfT867iKklrWYtJBWvLczHHxpaUcucir
+         mprg==
+X-Gm-Message-State: AOAM533UaNCyejI4/GRUYKQwc26/4nJgzJeP8Lc2XAWIlRn0Zm/H+Mbu
+        h93e8jUrRv8IK+DQXL7gP8Q=
+X-Google-Smtp-Source: ABdhPJySQ2bYIDKMxXNWGonvrg3VtWnutiZTJnpOXBv/JS//TqwJoxFk96jUN1VTZB5rWPOp0nDu/Q==
+X-Received: by 2002:adf:9282:: with SMTP id 2mr3198032wrn.43.1603197379879;
+        Tue, 20 Oct 2020 05:36:19 -0700 (PDT)
 Received: from kozik-lap ([194.230.155.171])
-        by smtp.googlemail.com with ESMTPSA id a17sm3212629wra.29.2020.10.20.05.35.08
+        by smtp.googlemail.com with ESMTPSA id u133sm1037094wmb.6.2020.10.20.05.36.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 05:35:09 -0700 (PDT)
-Date:   Tue, 20 Oct 2020 14:35:06 +0200
+        Tue, 20 Oct 2020 05:36:18 -0700 (PDT)
+Date:   Tue, 20 Oct 2020 14:36:16 +0200
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
 Cc:     Felipe Balbi <balbi@kernel.org>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alexey Brodkin <abrodkin@synopsys.com>,
-        Vineet Gupta <vgupta@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
         Serge Semin <fancer.lancer@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-snps-arc@lists.infradead.org
-Subject: Re: [PATCH 06/29] arc: dts: Harmonize EHCI/OHCI DT nodes name
-Message-ID: <20201020123506.GE127386@kozik-lap>
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 08/29] arm: dts: stm32: Harmonize EHCI/OHCI DT nodes name
+Message-ID: <20201020123616.GF127386@kozik-lap>
 References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-7-Sergey.Semin@baikalelectronics.ru>
+ <20201020115959.2658-9-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201020115959.2658-7-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201020115959.2658-9-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 02:59:36PM +0300, Serge Semin wrote:
+On Tue, Oct 20, 2020 at 02:59:38PM +0300, Serge Semin wrote:
 > In accordance with the Generic EHCI/OHCI bindings the corresponding node
 > name is suppose to comply with the Generic USB HCD DT schema, which
 > requires the USB nodes to have the name acceptable by the regexp:
@@ -66,14 +67,10 @@ On Tue, Oct 20, 2020 at 02:59:36PM +0300, Serge Semin wrote:
 > nodes are correctly named.
 > 
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Acked-by: Alexey Brodkin <abrodkin@synopsys.com>
+> Acked-by: Amelie Delaunay <amelie.delaunay@st.com>
 > ---
->  arch/arc/boot/dts/axc003.dtsi        | 4 ++--
->  arch/arc/boot/dts/axc003_idu.dtsi    | 4 ++--
->  arch/arc/boot/dts/axs10x_mb.dtsi     | 4 ++--
->  arch/arc/boot/dts/hsdk.dts           | 4 ++--
->  arch/arc/boot/dts/vdk_axs10x_mb.dtsi | 2 +-
->  5 files changed, 9 insertions(+), 9 deletions(-)
+>  arch/arm/boot/dts/stm32mp151.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
 Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
