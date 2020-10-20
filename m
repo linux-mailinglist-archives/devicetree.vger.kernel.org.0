@@ -2,132 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41FF22944B7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 23:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80BC42944FD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 00:15:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389907AbgJTVrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 17:47:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
+        id S2438959AbgJTWPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 18:15:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389617AbgJTVrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 17:47:02 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5B5C0613CE;
-        Tue, 20 Oct 2020 14:47:02 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id h24so4956305ejg.9;
-        Tue, 20 Oct 2020 14:47:02 -0700 (PDT)
+        with ESMTP id S2438925AbgJTWPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 18:15:10 -0400
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05277C0613CE;
+        Tue, 20 Oct 2020 15:15:10 -0700 (PDT)
+Received: by mail-oi1-x242.google.com with SMTP id u17so3829344oie.3;
+        Tue, 20 Oct 2020 15:15:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fT5KwI1u6PV8EmjtyHpKqwjn8VqaBxGqgtD+UYm6G/w=;
-        b=Gs/w6JM7zA6yL1ixdYo1xR++QcsTBl9aPPPmTi4LPCXqtcDSCsqlk25SUycBw5BAPq
-         lshXIwVAyQmQeHnMmNOE4CAcNnWfUuah3dultc6A7qA546Dis3N/2bSsJ3iLNk7GG4PQ
-         Kq93Z/YksnxpG+6FLS5CU3NfXpn/ogqMrYxkiDrpJoyPi6BmQCECe9wVFBdwoAbl0SMa
-         01zrWTokETo5D6DzICgTxTe3pr7X1PmIFDgQxYUV5/PPk3grP87lbA5a7CRpYguw72Hs
-         7Aa9lBvIOaZszZoF6bNXzNag+O+25IzLyZForF8uJ8pyrOXwU9gurtOPWxZzXXtcAwQ/
-         pe1w==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+CpEO8YhmbVOZXzaRTTlPwKKMh8ff8K9DvXivuST1qc=;
+        b=Wt1L2chonevKKt3UJIbVeNDb+bYA161TTXwmzFBs+lABdRQxknsdeHXkEp8yzzTZIo
+         7BNOKfubqjn+jNKiQKJRRunBp/upoEvvKVgJN1wKvQz4hhFOHGRlHWdac3u+feevyYO+
+         HBxKwu6edrm+woL8n6yvlIK3NlUYR8hxCZ1mipEe29n0GuBgNGbY3ozp63u0o/9Z368o
+         K+sKlL+1cVabaySLHgmx5o+KI8uQTqH+zjen16e2qtxpMGkv2bWkStEMytU7SjKe+rvM
+         O7ny6I8iCeSA+ppkNZEJYXMmYStnyQWUtdt4YpiGaetODkOHIBvVr4nysBkiilU0ALLQ
+         t28A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=fT5KwI1u6PV8EmjtyHpKqwjn8VqaBxGqgtD+UYm6G/w=;
-        b=KhYM+vYvzKYOIoqE2TNN3A7vtBpTS1itNBAZFZKfmglDRzos0zVBX/5ACLmerwbcF+
-         WjEm01RxsLg0T+ZduwgaZLSxgubZcpGNJ464A7Q9LXQS4HdSh1eH3KO3ivxjD4MBckbz
-         WQrI12N0hvIZB/jggYJ9Ls7W8yOI/j446mgRaL2DzeycsfiO37lwv6aNx2rauXZt/IFH
-         /zH7/2ybY/JvrNry/alc99zajWmPSHYL03vfY8P2ZcQMi5TTCqw5J5SXJyfbKExYGkBJ
-         Le1UANZAlXUP4cBeYecX0bEfHPrxzOvXuVe933G81KJuTPHsvbD+xJ/C5usrEcuOp8xO
-         4Hog==
-X-Gm-Message-State: AOAM533ixAtHcl53nSnvTxBMEcgILRrMD8/8piYc8jDubkKFUv5oCfSg
-        n0eRVOnHFLQFE3iMd6ahVkpNpFGn1ac=
-X-Google-Smtp-Source: ABdhPJzR95k+qiXGnZue7DquJHpX6z+X0kmVYYGtiPcjz51ZgZ/tz2/zilEua/Slair4hem1PZTnaA==
-X-Received: by 2002:a17:906:1e95:: with SMTP id e21mr190796ejj.355.1603230420970;
-        Tue, 20 Oct 2020 14:47:00 -0700 (PDT)
-Received: from ?IPv6:2a01:110f:b59:fd00:7dff:cc5e:4622:485f? ([2a01:110f:b59:fd00:7dff:cc5e:4622:485f])
-        by smtp.gmail.com with ESMTPSA id p2sm107051ejd.34.2020.10.20.14.46.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Oct 2020 14:47:00 -0700 (PDT)
-Subject: Re: [PATCH v5 2/2] leds: mt6360: Add LED driver for MT6360
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-References: <1602034966-3524-1-git-send-email-gene.chen.richtek@gmail.com>
- <1602034966-3524-3-git-send-email-gene.chen.richtek@gmail.com>
- <5a9b31c4-739c-06fc-2015-ed474993ad22@gmail.com>
- <CAE+NS35Y41mFKNhj+54BeeSYFu2J9BtvMWOxyMcf9a==39cbdA@mail.gmail.com>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <8925db23-5cc4-3c5f-932a-461fe6450dad@gmail.com>
-Date:   Tue, 20 Oct 2020 23:46:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+CpEO8YhmbVOZXzaRTTlPwKKMh8ff8K9DvXivuST1qc=;
+        b=bkVCT2WyK5hod5gYl5Tb/zKO3TzVZ70RFJVmX9pDQlnODM/mhLlnnC8LpXlioj2eXT
+         K9KcC5oKct06ZwHEfmjeT6YI94UojUxfz2+DQplB0Sh1I6ZU0o6uZ/qVaWC1jMuGUIFu
+         a3I6CHkiVkCvxyWmVDj1jgom08cAsY+saSAFGjyjtrmJGNTuivqe/cy4nBS+paS/ewSy
+         DKoBPaDY2ZkCTJTBUJc9APHMrdBx2mWDCOqwTa34NawPmsiJeBmkb9QLSw10aiVcs9HD
+         70bMAHDdxu62eCKsXM3YIBCahoqQcNh1fIoLVyT15jotitTzxCnoscbg4R1kvALLHBFw
+         1U+A==
+X-Gm-Message-State: AOAM533uIJAa+pH7U9K0kjE6lCDBZxZAIF31Yl32n4RYaFa66jKgK/+b
+        A3iKHJuqohJShJ1dDUsQMS4=
+X-Google-Smtp-Source: ABdhPJxfNRSrioVTPpQ0lhQURF8C6l5m0Fewl/pKBJDVDbUIqIKC5y3LfPoelGxitYrmKAMxp/NY4g==
+X-Received: by 2002:aca:1105:: with SMTP id 5mr156072oir.46.1603232109349;
+        Tue, 20 Oct 2020 15:15:09 -0700 (PDT)
+Received: from nuclearis2-1.lan (c-98-195-139-126.hsd1.tx.comcast.net. [98.195.139.126])
+        by smtp.gmail.com with ESMTPSA id 81sm57005oti.79.2020.10.20.15.15.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 15:15:08 -0700 (PDT)
+From:   Alexandru Gagniuc <mr.nuke.me@gmail.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     sam@ravnborg.org, Alexandru Gagniuc <mr.nuke.me@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Mark Brown <broonie@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 1/3] drm/bridge: sii902x: Refactor init code into separate function
+Date:   Tue, 20 Oct 2020 17:14:57 -0500
+Message-Id: <20201020221501.260025-1-mr.nuke.me@gmail.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200928173056.1674274-1-mr.nuke.me@gmail.com>
+References: <20200928173056.1674274-1-mr.nuke.me@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAE+NS35Y41mFKNhj+54BeeSYFu2J9BtvMWOxyMcf9a==39cbdA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/20/20 8:44 AM, Gene Chen wrote:
-> Jacek Anaszewski <jacek.anaszewski@gmail.com> 於 2020年10月9日 週五 上午5:51寫道：
->>
->> Hi Gene,
->>
->> On 10/7/20 3:42 AM, Gene Chen wrote:
->>> From: Gene Chen <gene_chen@richtek.com>
->>>
->>> Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mode,
->>> 3-channel RGB LED support Register/Flash/Breath Mode, and 1-channel for
->>> moonlight LED.
->>>
->>> Signed-off-by: Gene Chen <gene_chen@richtek.com>
->>> ---
->>>    drivers/leds/Kconfig       |  12 +
->>>    drivers/leds/Makefile      |   1 +
->>>    drivers/leds/leds-mt6360.c | 783 +++++++++++++++++++++++++++++++++++++++++++++
->>>    3 files changed, 796 insertions(+)
->>>    create mode 100644 drivers/leds/leds-mt6360.c
->>>
->>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
->>> index 1c181df..c7192dd 100644
->>> --- a/drivers/leds/Kconfig
->>> +++ b/drivers/leds/Kconfig
->>> @@ -271,6 +271,18 @@ config LEDS_MT6323
->>>          This option enables support for on-chip LED drivers found on
->>>          Mediatek MT6323 PMIC.
->>>
->>> +config LEDS_MT6360
->>> +     tristate "LED Support for Mediatek MT6360 PMIC"
->>> +     depends on LEDS_CLASS_FLASH && OF
->>> +     depends on LEDS_CLASS_MULTICOLOR
->>
->> Since CONFIG_LED_CLASS_MULTICOLOR can be turned off you need to have
->> below instead:
->>
->> depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
->>
->> Unless you want to prevent enabling the driver without RGB LED,
->> but that does not seem to be reasonable at first glance.
->>
-> 
-> May I change to "select LEDS_CLASS_MULTICOLOR"?
-> I suppose RGB always use multicolor mode.
+Separate the hardware initialization code from setting up the data
+structures and parsing the device tree. The purpose of this change is
+to provide a single exit point and avoid a waterfall of 'goto's in
+the subsequent patch.
 
-You will also have moonlight LED that will not need multicolor
-framework. Is it somehow troublesome to keep "depends on"?
+Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+---
+Changes since v1/and v2:
+  * Separated this from main patch to better show diff
 
+ drivers/gpu/drm/bridge/sii902x.c | 77 ++++++++++++++++++--------------
+ 1 file changed, 43 insertions(+), 34 deletions(-)
+
+diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+index 33fd33f953ec..f78c17f49887 100644
+--- a/drivers/gpu/drm/bridge/sii902x.c
++++ b/drivers/gpu/drm/bridge/sii902x.c
+@@ -954,41 +954,13 @@ static const struct drm_bridge_timings default_sii902x_timings = {
+ 		 | DRM_BUS_FLAG_DE_HIGH,
+ };
+ 
+-static int sii902x_probe(struct i2c_client *client,
+-			 const struct i2c_device_id *id)
++static int sii902x_init(struct sii902x *sii902x)
+ {
+-	struct device *dev = &client->dev;
++	struct device *dev = &sii902x->i2c->dev;
+ 	unsigned int status = 0;
+-	struct sii902x *sii902x;
+ 	u8 chipid[4];
+ 	int ret;
+ 
+-	ret = i2c_check_functionality(client->adapter,
+-				      I2C_FUNC_SMBUS_BYTE_DATA);
+-	if (!ret) {
+-		dev_err(dev, "I2C adapter not suitable\n");
+-		return -EIO;
+-	}
+-
+-	sii902x = devm_kzalloc(dev, sizeof(*sii902x), GFP_KERNEL);
+-	if (!sii902x)
+-		return -ENOMEM;
+-
+-	sii902x->i2c = client;
+-	sii902x->regmap = devm_regmap_init_i2c(client, &sii902x_regmap_config);
+-	if (IS_ERR(sii902x->regmap))
+-		return PTR_ERR(sii902x->regmap);
+-
+-	sii902x->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+-						      GPIOD_OUT_LOW);
+-	if (IS_ERR(sii902x->reset_gpio)) {
+-		dev_err(dev, "Failed to retrieve/request reset gpio: %ld\n",
+-			PTR_ERR(sii902x->reset_gpio));
+-		return PTR_ERR(sii902x->reset_gpio);
+-	}
+-
+-	mutex_init(&sii902x->mutex);
+-
+ 	sii902x_reset(sii902x);
+ 
+ 	ret = regmap_write(sii902x->regmap, SII902X_REG_TPI_RQB, 0x0);
+@@ -1012,11 +984,11 @@ static int sii902x_probe(struct i2c_client *client,
+ 	regmap_read(sii902x->regmap, SII902X_INT_STATUS, &status);
+ 	regmap_write(sii902x->regmap, SII902X_INT_STATUS, status);
+ 
+-	if (client->irq > 0) {
++	if (sii902x->i2c->irq > 0) {
+ 		regmap_write(sii902x->regmap, SII902X_INT_ENABLE,
+ 			     SII902X_HOTPLUG_EVENT);
+ 
+-		ret = devm_request_threaded_irq(dev, client->irq, NULL,
++		ret = devm_request_threaded_irq(dev, sii902x->i2c->irq, NULL,
+ 						sii902x_interrupt,
+ 						IRQF_ONESHOT, dev_name(dev),
+ 						sii902x);
+@@ -1031,9 +1003,9 @@ static int sii902x_probe(struct i2c_client *client,
+ 
+ 	sii902x_audio_codec_init(sii902x, dev);
+ 
+-	i2c_set_clientdata(client, sii902x);
++	i2c_set_clientdata(sii902x->i2c, sii902x);
+ 
+-	sii902x->i2cmux = i2c_mux_alloc(client->adapter, dev,
++	sii902x->i2cmux = i2c_mux_alloc(sii902x->i2c->adapter, dev,
+ 					1, 0, I2C_MUX_GATE,
+ 					sii902x_i2c_bypass_select,
+ 					sii902x_i2c_bypass_deselect);
+@@ -1044,6 +1016,43 @@ static int sii902x_probe(struct i2c_client *client,
+ 	return i2c_mux_add_adapter(sii902x->i2cmux, 0, 0, 0);
+ }
+ 
++static int sii902x_probe(struct i2c_client *client,
++			 const struct i2c_device_id *id)
++{
++	struct device *dev = &client->dev;
++	struct sii902x *sii902x;
++	int ret;
++
++	ret = i2c_check_functionality(client->adapter,
++				      I2C_FUNC_SMBUS_BYTE_DATA);
++	if (!ret) {
++		dev_err(dev, "I2C adapter not suitable\n");
++		return -EIO;
++	}
++
++	sii902x = devm_kzalloc(dev, sizeof(*sii902x), GFP_KERNEL);
++	if (!sii902x)
++		return -ENOMEM;
++
++	sii902x->i2c = client;
++	sii902x->regmap = devm_regmap_init_i2c(client, &sii902x_regmap_config);
++	if (IS_ERR(sii902x->regmap))
++		return PTR_ERR(sii902x->regmap);
++
++	sii902x->reset_gpio = devm_gpiod_get_optional(dev, "reset",
++						      GPIOD_OUT_LOW);
++	if (IS_ERR(sii902x->reset_gpio)) {
++		dev_err(dev, "Failed to retrieve/request reset gpio: %ld\n",
++			PTR_ERR(sii902x->reset_gpio));
++		return PTR_ERR(sii902x->reset_gpio);
++	}
++
++	mutex_init(&sii902x->mutex);
++
++	ret = sii902x_init(sii902x);
++	return ret;
++}
++
+ static int sii902x_remove(struct i2c_client *client)
+ 
+ {
 -- 
-Best regards,
-Jacek Anaszewski
+2.26.2
+
