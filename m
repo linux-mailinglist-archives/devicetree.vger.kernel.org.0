@@ -2,236 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DAB829324C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 02:17:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A332C2932A9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 03:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727220AbgJTARW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 20:17:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49428 "EHLO
+        id S2390011AbgJTBYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Oct 2020 21:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389318AbgJTARW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 20:17:22 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED16C0613D1
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 17:17:21 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id d4so54960vsk.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 17:17:21 -0700 (PDT)
+        with ESMTP id S2390009AbgJTBYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 21:24:43 -0400
+Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com [IPv6:2607:f8b0:4864:20::c42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D07C0613CE;
+        Mon, 19 Oct 2020 18:24:42 -0700 (PDT)
+Received: by mail-oo1-xc42.google.com with SMTP id w7so16525oow.7;
+        Mon, 19 Oct 2020 18:24:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mXGSyBwNaBjMrW2ERxIvilFJ1fWcA9bm1Ase8U4RnoM=;
-        b=BIplX+9oOilzheiFYjLxzo3YjWEXmrI1MjMABQjE7ctb6s08QF6kZjgen0t9fbJWIq
-         tv4E6cikhwb0C1hDeBHbJC/GGHoTnx7TM9dixTQk/JORHRWWpvDjhtVyp+RSrnXL0yJd
-         d3TrcsXmGMqp/Eh0b23VbcNRzpCpqUgsL0u4o=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=D564rZOfF3k0oVe3HCHAGp0/NJldYMB7oVirijE+i+I=;
+        b=Qn5BGl0fJYBFVJhISBYmMOaefLst5heIFuvb0zICODjXjQ/wrDFZvlhV8cCmcqPu+t
+         jYGFAKkFGU33f4FH9kppekKzxJ/tvVrJCuve/hG36gN8rJndS/w0fy4eLwHR7YEBllYq
+         LyZMshTvx9mYIyF4+2Tsiv661ZgtqLU2UrHtgR8/dhLXUcSSjhlQo1xAgWMPQ2eYxrBq
+         pLDN4KYunO0uI7GoeUOb6/RqQo0jX6TEVS6n/EEXoYiVsyvcWAEjxgqNKdPk299VRK4S
+         AXg9JD+0GQl80ICOfuZPPCVeOnBAzV6fPP7Avr7ryfRVwNqC+1Zz+RudDch9IB1h7rd1
+         EEBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mXGSyBwNaBjMrW2ERxIvilFJ1fWcA9bm1Ase8U4RnoM=;
-        b=Ko3jG4dkXiO6p8V7DqbAYfBnvPlqsPz9p+TJoAKcyRaic6FwrBHfRSsVhNDZYsuxHi
-         7WIoc32/blZN97a+1w1grcWhbrpPxrweNIicX1vq/Jg13Yf1ObPPiUS71N+oE7g+Dsng
-         kxZcPuPg7I3vuy6Jan6YJvKV7Q7LdtRXh9Sj924ET+1hgF7TTpRbgdKIUa0kxjVN+2Rg
-         8rkcSH5CtFvwRvFDyfDqtxpNPecJrv7z97olxva08le13hlsl4uyJ2l2jtoyHt9aJeH4
-         DMICMmGmHzD4+6Z0YhU7T2DXttg7jPrPyLlDOBRqPkgUTD44dc/NpTTL87CTk/SXOwmF
-         jNBA==
-X-Gm-Message-State: AOAM533aqF5cVhljfxCe55x3OwOLbP17kyj/Ma/jWd6n5yV/G1F8Ag0R
-        lLY8LlygvJh9S4MTAUKeRWGwUyKf9pbNsw==
-X-Google-Smtp-Source: ABdhPJzJaVyxV937A0PiP/jnAIVNCqYAq7aoJnHzPchGJDG86GKhlG+dg+mc7trK53mgXmkH6aVA7w==
-X-Received: by 2002:a67:d498:: with SMTP id g24mr136082vsj.57.1603153039930;
-        Mon, 19 Oct 2020 17:17:19 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id 36sm25728uam.16.2020.10.19.17.17.18
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=D564rZOfF3k0oVe3HCHAGp0/NJldYMB7oVirijE+i+I=;
+        b=VY3eHal6QK9VsqcW7xtwjB4N9gw5yUNZzdRxp+PhvQbmfxsBaCLY4aYRuHBtHwLHEv
+         tHN90ZLfQ3Xj8G0Ed2lywlwub2ENVLakA11QTjMH8zdxH6k7yC5rWPKpLT2WDVxdkgP0
+         nWhL/NzEviDnzA2BFDQXjFZVmDnh+5PdH90SHIpK5VaoUhXJStkO69/ac2poIdwKpGSj
+         kg+S9+530ZvAU2TEuOF3n5YJzc9OxiMsLxlmvutOOZLHUDs0XgEVNWhtlW0jhh6ymA3v
+         R4D/uJXDEAmJ2XAjw6RZkssPwukMTHPYeohw3/k+CUVsOUkVH7pQu6KKsccsAnzyBIMz
+         dctg==
+X-Gm-Message-State: AOAM533UH8LP9EU0DvtnkJdfoR9NBIoUwQgbAAw5k4Of08nV/4kB9A+Q
+        N6lVNK+caPdAKKas3raYPnxzJ5NHYewjPQ==
+X-Google-Smtp-Source: ABdhPJxMGxNhib1lTLCTo6dKakOyPTgK9aoKBakEA28oMI2Fb2EpiVVRQTTFzl4e8Jjjc8EQ+7CDeA==
+X-Received: by 2002:a4a:a844:: with SMTP id p4mr144097oom.59.1603157081962;
+        Mon, 19 Oct 2020 18:24:41 -0700 (PDT)
+Received: from nuclearis2-1.gtech (c-98-195-139-126.hsd1.tx.comcast.net. [98.195.139.126])
+        by smtp.gmail.com with ESMTPSA id 15sm32385ooy.36.2020.10.19.18.24.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Oct 2020 17:17:19 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id r24so65206vsp.8
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 17:17:18 -0700 (PDT)
-X-Received: by 2002:a67:b405:: with SMTP id x5mr143939vsl.4.1603153038232;
- Mon, 19 Oct 2020 17:17:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201019140601.3047-1-lukasz.luba@arm.com> <20201019140601.3047-2-lukasz.luba@arm.com>
-In-Reply-To: <20201019140601.3047-2-lukasz.luba@arm.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 19 Oct 2020 17:17:06 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Up1Qssb=Q2UfXTKmd1oLGrEpTCH50ejgFSPnRQP1d-iQ@mail.gmail.com>
-Message-ID: <CAD=FV=Up1Qssb=Q2UfXTKmd1oLGrEpTCH50ejgFSPnRQP1d-iQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] PM / EM: Add a flag indicating units of power
- values in Energy Model
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Mon, 19 Oct 2020 18:24:41 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] drm/bridge: sii902x: Enable I/O and core VCC
+ supplies if present
+To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        morten.rasmussen@arm.com, Quentin Perret <qperret@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Mark Brown <broonie@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
+ <20200928173056.1674274-1-mr.nuke.me@gmail.com>
+From:   "Alex G." <mr.nuke.me@gmail.com>
+Message-ID: <d74c7626-8f16-db85-c23f-79bf0cc400d0@gmail.com>
+Date:   Mon, 19 Oct 2020 20:24:40 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
+In-Reply-To: <20200928173056.1674274-1-mr.nuke.me@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Oct 19, 2020 at 7:06 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
->
-> There are different platforms and devices which might use different scale
-> for the power values. Kernel sub-systems might need to check if all
-> Energy Model (EM) devices are using the same scale. Address that issue and
-> store the information inside EM for each device. Thanks to that they can
-> be easily compared and proper action triggered.
->
-> Suggested-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+On 9/28/20 12:30 PM, Alexandru Gagniuc wrote:
+> On the SII9022, the IOVCC and CVCC12 supplies must reach the correct
+> voltage before the reset sequence is initiated. On most boards, this
+> assumption is true at boot-up, so initialization succeeds.
+> 
+> However, when we try to initialize the chip with incorrect supply
+> voltages, it will not respond to I2C requests. sii902x_probe() fails
+> with -ENXIO.
+> 
+> To resolve this, look for the "iovcc" and "cvcc12" regulators, and
+> make sure they are enabled before starting the reset sequence. If
+> these supplies are not available in devicetree, then they will default
+> to dummy-regulator. In that case everything will work like before.
+> 
+> This was observed on a STM32MP157C-DK2 booting in u-boot falcon mode.
+> On this board, the supplies would be set by the second stage
+> bootloader, which does not run in falcon mode.
+> 
+> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 > ---
->  drivers/cpufreq/scmi-cpufreq.c |  3 ++-
->  drivers/opp/of.c               |  2 +-
->  include/linux/energy_model.h   |  9 +++++++--
->  kernel/power/energy_model.c    | 24 +++++++++++++++++++++++-
->  4 files changed, 33 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/cpufreq/scmi-cpufreq.c b/drivers/cpufreq/scmi-cpufreq.c
-> index e855e8612a67..3714a4cd07fa 100644
-> --- a/drivers/cpufreq/scmi-cpufreq.c
-> +++ b/drivers/cpufreq/scmi-cpufreq.c
-> @@ -188,7 +188,8 @@ static int scmi_cpufreq_init(struct cpufreq_policy *policy)
->         policy->fast_switch_possible =
->                 handle->perf_ops->fast_switch_possible(handle, cpu_dev);
->
-> -       em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus);
-> +       em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus,
-> +                                   false);
->
->         return 0;
->
-> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-> index 874b58756220..9e1307061de5 100644
-> --- a/drivers/opp/of.c
-> +++ b/drivers/opp/of.c
-> @@ -1333,7 +1333,7 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
->                 goto failed;
->         }
->
-> -       ret = em_dev_register_perf_domain(dev, nr_opp, &em_cb, cpus);
-> +       ret = em_dev_register_perf_domain(dev, nr_opp, &em_cb, cpus, true);
->         if (ret)
->                 goto failed;
->
-> diff --git a/include/linux/energy_model.h b/include/linux/energy_model.h
-> index b67a51c574b9..2c31d79bb922 100644
-> --- a/include/linux/energy_model.h
-> +++ b/include/linux/energy_model.h
-> @@ -29,6 +29,8 @@ struct em_perf_state {
->   * em_perf_domain - Performance domain
->   * @table:             List of performance states, in ascending order
->   * @nr_perf_states:    Number of performance states
-> + * @milliwatts:                Flag indicating the power values are in milli-Watts
-> + *                     or some other scale.
->   * @cpus:              Cpumask covering the CPUs of the domain. It's here
->   *                     for performance reasons to avoid potential cache
->   *                     misses during energy calculations in the scheduler
-> @@ -43,6 +45,7 @@ struct em_perf_state {
->  struct em_perf_domain {
->         struct em_perf_state *table;
->         int nr_perf_states;
-> +       bool milliwatts;
->         unsigned long cpus[];
->  };
->
-> @@ -79,7 +82,8 @@ struct em_data_callback {
->  struct em_perf_domain *em_cpu_get(int cpu);
->  struct em_perf_domain *em_pd_get(struct device *dev);
->  int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
-> -                               struct em_data_callback *cb, cpumask_t *span);
-> +                               struct em_data_callback *cb, cpumask_t *spani,
-> +                               bool milliwatts);
->  void em_dev_unregister_perf_domain(struct device *dev);
->
->  /**
-> @@ -186,7 +190,8 @@ struct em_data_callback {};
->
->  static inline
->  int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
-> -                               struct em_data_callback *cb, cpumask_t *span)
-> +                               struct em_data_callback *cb, cpumask_t *span,
-> +                               bool milliwatts)
->  {
->         return -EINVAL;
->  }
-> diff --git a/kernel/power/energy_model.c b/kernel/power/energy_model.c
-> index c1ff7fa030ab..efe2a595988e 100644
-> --- a/kernel/power/energy_model.c
-> +++ b/kernel/power/energy_model.c
-> @@ -52,6 +52,17 @@ static int em_debug_cpus_show(struct seq_file *s, void *unused)
->  }
->  DEFINE_SHOW_ATTRIBUTE(em_debug_cpus);
->
-> +static int em_debug_units_show(struct seq_file *s, void *unused)
-> +{
-> +       struct em_perf_domain *pd = s->private;
-> +       char *units = pd->milliwatts ? "milliWatts" : "bogoWatts";
+> Changes since v1:
+>    * Fix return code after regulator_enable(sii902x->iovcc) fails (Fabio Estevam)
+>    * Use dev_err_probe() instead of dev_err() where appropriate (Sam Ravnborg)
+> 
+>   drivers/gpu/drm/bridge/sii902x.c | 54 ++++++++++++++++++++++++++++----
+>   1 file changed, 48 insertions(+), 6 deletions(-)
+
+This patch seems to have entered fall dormancy. Did I miss somebody in 
+the CC field?
+
+Alex
+
+
+> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+> index 33fd33f953ec..d15e9f2c0d8a 100644
+> --- a/drivers/gpu/drm/bridge/sii902x.c
+> +++ b/drivers/gpu/drm/bridge/sii902x.c
+> @@ -17,6 +17,7 @@
+>   #include <linux/i2c.h>
+>   #include <linux/module.h>
+>   #include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+>   #include <linux/clk.h>
+>   
+>   #include <drm/drm_atomic_helper.h>
+> @@ -168,6 +169,8 @@ struct sii902x {
+>   	struct drm_connector connector;
+>   	struct gpio_desc *reset_gpio;
+>   	struct i2c_mux_core *i2cmux;
+> +	struct regulator *iovcc;
+> +	struct regulator *cvcc12;
+>   	/*
+>   	 * Mutex protects audio and video functions from interfering
+>   	 * each other, by keeping their i2c command sequences atomic.
+> @@ -954,13 +957,13 @@ static const struct drm_bridge_timings default_sii902x_timings = {
+>   		 | DRM_BUS_FLAG_DE_HIGH,
+>   };
+>   
+> +static int sii902x_init(struct sii902x *sii902x);
 > +
-> +       seq_printf(s, "%s\n", units);
+>   static int sii902x_probe(struct i2c_client *client,
+>   			 const struct i2c_device_id *id)
+>   {
+>   	struct device *dev = &client->dev;
+> -	unsigned int status = 0;
+>   	struct sii902x *sii902x;
+> -	u8 chipid[4];
+>   	int ret;
+>   
+>   	ret = i2c_check_functionality(client->adapter,
+> @@ -989,6 +992,43 @@ static int sii902x_probe(struct i2c_client *client,
+>   
+>   	mutex_init(&sii902x->mutex);
+>   
+> +	sii902x->iovcc = devm_regulator_get(dev, "iovcc");
+> +	if (IS_ERR(sii902x->iovcc))
+> +		return PTR_ERR(sii902x->iovcc);
 > +
-> +       return 0;
+> +	sii902x->cvcc12 = devm_regulator_get(dev, "cvcc12");
+> +	if (IS_ERR(sii902x->cvcc12))
+> +		return PTR_ERR(sii902x->cvcc12);
+> +
+> +	ret = regulator_enable(sii902x->iovcc);
+> +	if (ret < 0) {
+> +		dev_err_probe(dev, ret, "Failed to enable iovcc supply");
+> +		return ret;
+> +	}
+> +
+> +	ret = regulator_enable(sii902x->cvcc12);
+> +	if (ret < 0) {
+> +		dev_err_probe(dev, ret, "Failed to enable cvcc12 supply");
+> +		regulator_disable(sii902x->iovcc);
+> +		return ret;
+> +	}
+> +
+> +	ret = sii902x_init(sii902x);
+> +	if (ret < 0) {
+> +		regulator_disable(sii902x->cvcc12);
+> +		regulator_disable(sii902x->iovcc);
+> +	}
+> +
+> +	return ret;
 > +}
-> +DEFINE_SHOW_ATTRIBUTE(em_debug_units);
 > +
->  static void em_debug_create_pd(struct device *dev)
->  {
->         struct dentry *d;
-> @@ -64,6 +75,8 @@ static void em_debug_create_pd(struct device *dev)
->                 debugfs_create_file("cpus", 0444, d, dev->em_pd->cpus,
->                                     &em_debug_cpus_fops);
->
-> +       debugfs_create_file("units", 0444, d, dev->em_pd, &em_debug_units_fops);
+> +static int sii902x_init(struct sii902x *sii902x)
+> +{
+> +	struct device *dev = &sii902x->i2c->dev;
+> +	unsigned int status = 0;
+> +	u8 chipid[4];
+> +	int ret;
 > +
->         /* Create a sub-directory for each performance state */
->         for (i = 0; i < dev->em_pd->nr_perf_states; i++)
->                 em_debug_create_ps(&dev->em_pd->table[i], d);
-> @@ -250,17 +263,24 @@ EXPORT_SYMBOL_GPL(em_cpu_get);
->   * @cpus       : Pointer to cpumask_t, which in case of a CPU device is
->   *             obligatory. It can be taken from i.e. 'policy->cpus'. For other
->   *             type of devices this should be set to NULL.
-> + * @milliwatts : Flag indicating that the power values are in milliWatts or
-> + *             in some other scale. It must be set properly.
->   *
->   * Create Energy Model tables for a performance domain using the callbacks
->   * defined in cb.
->   *
-> + * The @milliwatts is important to set with correct value. Some kernel
-> + * sub-systems might rely on this flag and check if all devices in the EM are
-> + * using the same scale.
-> + *
->   * If multiple clients register the same performance domain, all but the first
->   * registration will be ignored.
-
-Should the bullet point above be changed?
-
-I haven't dug through all the code so I may be being naive, but it
-seems like if someone registers with "milliWatts" set to true then it
-should ignore the old values where milliWatts were false?  Otherwise,
-I think, if SCMI registers some numbers first does that mean we can't
-later register updated numbers in the device tree?  Also, what happens
-when some devices register with milliWatts, some with bogoWatts, and
-some with both?  How do we decide what we should be using and what we
-should be throwing away?
-
-As per my response in the cover letter, I guess one option would be to
-try to figure out a bogoWatts to milliWatts conversion factor the
-first time someone tried to register once one way and once the other
-way?
-
-
--Doug
+>   	sii902x_reset(sii902x);
+>   
+>   	ret = regmap_write(sii902x->regmap, SII902X_REG_TPI_RQB, 0x0);
+> @@ -1012,11 +1052,11 @@ static int sii902x_probe(struct i2c_client *client,
+>   	regmap_read(sii902x->regmap, SII902X_INT_STATUS, &status);
+>   	regmap_write(sii902x->regmap, SII902X_INT_STATUS, status);
+>   
+> -	if (client->irq > 0) {
+> +	if (sii902x->i2c->irq > 0) {
+>   		regmap_write(sii902x->regmap, SII902X_INT_ENABLE,
+>   			     SII902X_HOTPLUG_EVENT);
+>   
+> -		ret = devm_request_threaded_irq(dev, client->irq, NULL,
+> +		ret = devm_request_threaded_irq(dev, sii902x->i2c->irq, NULL,
+>   						sii902x_interrupt,
+>   						IRQF_ONESHOT, dev_name(dev),
+>   						sii902x);
+> @@ -1031,9 +1071,9 @@ static int sii902x_probe(struct i2c_client *client,
+>   
+>   	sii902x_audio_codec_init(sii902x, dev);
+>   
+> -	i2c_set_clientdata(client, sii902x);
+> +	i2c_set_clientdata(sii902x->i2c, sii902x);
+>   
+> -	sii902x->i2cmux = i2c_mux_alloc(client->adapter, dev,
+> +	sii902x->i2cmux = i2c_mux_alloc(sii902x->i2c->adapter, dev,
+>   					1, 0, I2C_MUX_GATE,
+>   					sii902x_i2c_bypass_select,
+>   					sii902x_i2c_bypass_deselect);
+> @@ -1051,6 +1091,8 @@ static int sii902x_remove(struct i2c_client *client)
+>   
+>   	i2c_mux_del_adapters(sii902x->i2cmux);
+>   	drm_bridge_remove(&sii902x->bridge);
+> +	regulator_disable(sii902x->cvcc12);
+> +	regulator_disable(sii902x->iovcc);
+>   
+>   	return 0;
+>   }
+> 
