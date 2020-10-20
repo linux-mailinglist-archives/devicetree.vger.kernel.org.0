@@ -2,112 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 628A2293F40
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:08:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ADB2293F47
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408520AbgJTPID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 11:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46280 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407657AbgJTPIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:08:02 -0400
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BD6C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 08:08:01 -0700 (PDT)
-Received: by mail-ua1-x941.google.com with SMTP id f15so766637uaq.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 08:08:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=YpTMFQeEZb0rjpUuW6XXMOAXIdREE2jLBrSTZUeG4I8=;
-        b=U1XUF5DhInl+St5txZvE2N429K3nu9ruKXD64YmX2X9+frCh1aWremcUA85iF2PIx1
-         DLK9xaE52MkGJALcimxPhnvF3IBiGas67tyRMEO11rVkqq2lMq8YJzOqqG1pvEgcHaVM
-         QrU6NGgqq+aY7T8Bl7fUpiQM4tFebDK9yMrhenwM6yX58MjiEYyAMTQQ7YrFTE6lxtUi
-         OXaQRoagMEWU3zF0JrOSkFFMp+bcFDs4SvBOnhtj57cGNHe212D2YzYsy6WeE2rXyg0G
-         y0Hx3T05Dcv4O0QwgqD0NlzZ/TXN5kk8ycpPqPu7i3n5fTgYQGkWxShdlqxNh00mY5GT
-         nXkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=YpTMFQeEZb0rjpUuW6XXMOAXIdREE2jLBrSTZUeG4I8=;
-        b=RkhRxveoqZ8fk9Hb5LNeNv066pQlgbcJkT6bW8G5KFvxHypKk3Y+VU0GpL/mN5cNj1
-         kntxzztZY6W6XJMlHF+kSJSBz1oWa5LnSud7sshOIy9YX/q368yLo2GaFjGguLax3ojj
-         XNx3tGr6QEO8bteQokFiEjEsb5NYeaFY+bgKplX9h8gidsw4grYbPKl9lqPzIpsmKnNJ
-         fCTT7oosc2PnW2m/4g3SmS58vFZBYh2ocisRLHf/DocPyfXWfrZRMvbyYfBZXxyk2FGM
-         VrXn+ecMi0L8vWc76c18Enzv9TZwDUbCQF2SCqR5F+0Slo9rv7hd8NAIvL0QsS8slXn0
-         0BZA==
-X-Gm-Message-State: AOAM530fQN5ERFbXbyRV+ltdGZDY4/ufCfnjYp1s41jBqaXOqSWU6wA8
-        yI6KCDijBntvBfgoRcnSg+uhD5EY/OxgbTpy8yqv5g==
-X-Google-Smtp-Source: ABdhPJwm/KewgGT5Q4WyxYXhPhUG/Zzq9WDofYxTVkmfKUiHImFkm6avmj6ccvMkFsJ3lYGD58oCWd/inLtq/UlBoG4=
-X-Received: by 2002:ab0:6f11:: with SMTP id r17mr1324840uah.15.1603206476961;
- Tue, 20 Oct 2020 08:07:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201020125817.1632995-1-Jerome.Pouiller@silabs.com> <20201020125817.1632995-2-Jerome.Pouiller@silabs.com>
-In-Reply-To: <20201020125817.1632995-2-Jerome.Pouiller@silabs.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 20 Oct 2020 17:07:19 +0200
-Message-ID: <CAPDyKFp9pnK0T2xKaXcMUzpxO9OCD49Od=ML+gdQbNndrX0Bag@mail.gmail.com>
-Subject: Re: [PATCH v2 01/24] mmc: sdio: add SDIO IDs for Silabs WF200 chip
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
+        id S2408531AbgJTPIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 11:08:52 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:40452 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731500AbgJTPIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:08:51 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 34794200CF;
+        Tue, 20 Oct 2020 17:08:47 +0200 (CEST)
+Date:   Tue, 20 Oct 2020 17:08:45 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     "Alex G." <mr.nuke.me@gmail.com>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Brown <broonie@kernel.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        open list <linux-kernel@vger.kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Subject: Re: [PATCH v2 1/2] drm/bridge: sii902x: Enable I/O and core VCC
+ supplies if present
+Message-ID: <20201020150845.GA1913775@ravnborg.org>
+References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
+ <20200928173056.1674274-1-mr.nuke.me@gmail.com>
+ <d74c7626-8f16-db85-c23f-79bf0cc400d0@gmail.com>
+ <20201020071628.GA1737816@ravnborg.org>
+ <5c21a4a4-717c-9f8a-9764-6e3fb9554e46@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5c21a4a4-717c-9f8a-9764-6e3fb9554e46@gmail.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=S433PrkP c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=Q3oUw9V0dMcNOY3BEmcA:9 a=CjuIK1q_8ugA:10
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 at 14:58, Jerome Pouiller
-<Jerome.Pouiller@silabs.com> wrote:
->
-> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->
-> Add Silabs SDIO ID to sdio_ids.h.
->
-> Note that the values used by Silabs are uncommon. A driver cannot fully
-> rely on the SDIO PnP. It should also check if the device is declared in
-> the DT.
->
-> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+Hi Alex.
 
-Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
+On Tue, Oct 20, 2020 at 09:01:27AM -0500, Alex G. wrote:
+> 
+> 
+> On 10/20/20 2:16 AM, Sam Ravnborg wrote:
+> > Hi Alex.
+> 
+> [snip]
+> 
+> > > 
+> > > 
+> > > > diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+> > > > index 33fd33f953ec..d15e9f2c0d8a 100644
+> > > > --- a/drivers/gpu/drm/bridge/sii902x.c
+> > > > +++ b/drivers/gpu/drm/bridge/sii902x.c
+> > > > @@ -17,6 +17,7 @@
+> > > >    #include <linux/i2c.h>
+> > > >    #include <linux/module.h>
+> > > >    #include <linux/regmap.h>
+> > > > +#include <linux/regulator/consumer.h>
+> > > >    #include <linux/clk.h>
+> > > >    #include <drm/drm_atomic_helper.h>
+> > > > @@ -168,6 +169,8 @@ struct sii902x {
+> > > >    	struct drm_connector connector;
+> > > >    	struct gpio_desc *reset_gpio;
+> > > >    	struct i2c_mux_core *i2cmux;
+> > > > +	struct regulator *iovcc;
+> > > > +	struct regulator *cvcc12;
+> > > >    	/*
+> > > >    	 * Mutex protects audio and video functions from interfering
+> > > >    	 * each other, by keeping their i2c command sequences atomic.
+> > > > @@ -954,13 +957,13 @@ static const struct drm_bridge_timings default_sii902x_timings = {
+> > > >    		 | DRM_BUS_FLAG_DE_HIGH,
+> > > >    };
+> > > > +static int sii902x_init(struct sii902x *sii902x);
+> > Please re-arrange the code so this prototype is not needed.
+> 
+> I'd be happy to re-arrange things. It will make the diff look a lot bigger
+> than what it is. Is that okay?
 
-Kind regards
-Uffe
+The best way would be to split it in two patches.
+One that is pure code movement and one that does the actula changes.
 
-
-> ---
->  include/linux/mmc/sdio_ids.h | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/include/linux/mmc/sdio_ids.h b/include/linux/mmc/sdio_ids.h
-> index 12036619346c..20a48162f7fc 100644
-> --- a/include/linux/mmc/sdio_ids.h
-> +++ b/include/linux/mmc/sdio_ids.h
-> @@ -25,6 +25,11 @@
->   * Vendors and devices.  Sort key: vendor first, device next.
->   */
->
-> +// Silabs does not use a reliable vendor ID. To avoid conflicts, the dri=
-ver
-> +// won't probe the device if it is not also declared in the DT.
-> +#define SDIO_VENDOR_ID_SILABS                  0x0000
-> +#define SDIO_DEVICE_ID_SILABS_WF200            0x1000
-> +
->  #define SDIO_VENDOR_ID_STE                     0x0020
->  #define SDIO_DEVICE_ID_STE_CW1200              0x2280
->
-> --
-> 2.28.0
->
+	Sam
