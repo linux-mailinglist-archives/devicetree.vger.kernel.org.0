@@ -2,98 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7A612942FB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 21:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 862CD294301
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 21:34:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438104AbgJTT2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 15:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58338 "EHLO
+        id S2438118AbgJTTeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 15:34:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438098AbgJTT2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 15:28:09 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12AAFC0613CE
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 12:28:09 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id l28so3524863lfp.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 12:28:08 -0700 (PDT)
+        with ESMTP id S2438116AbgJTTeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 15:34:23 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B060CC0613CE;
+        Tue, 20 Oct 2020 12:34:21 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id l24so3055307edj.8;
+        Tue, 20 Oct 2020 12:34:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LMUQOiqtyBcG0QQURpNLPy6SwElFcomAqHXV+PixSGg=;
-        b=Ks1RdT0z4jB012yjLckwIgVk0uaAxYYquqq67wMCuJ706xQJVFYoxiyg/4eQ/cyYwT
-         Dp5fRXFSnY8jzzMGuCdLkcnc4Y9FzdMqauelMcaQTrS/xmhjW+tPP5MrkotlSczU29P7
-         /a2iO3QK4g38+LFvR/2NOrGp53vNBN/BcrCd0Xji2UADL6PtSMU+gmefD7KWxHWDyPiN
-         7u+Q9EGsBQ/uh4rGMPJqvantC+dh/ibYI840JFMDVGAiCg8sZmepoV6F/4DGetS+fRpn
-         D0qu3TOx9DyhvUODZSAbw8eeLgLEUtAIQFIMcQyXqQpQ14sb/q4eWenO1tyrFJ3qy3qx
-         oNtw==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SW+VSHIXtiXnaj2ApmMbMQMGmNjny+0l3tNBxFDXzPQ=;
+        b=GX3Yqx/LGzHLUIjGjsF1kKPysogDyG2vVY+8s+N8PTYhKPTyh4ACcyF24+wMsvDkWV
+         HoMpNTIC+E6bYuB8fDaKiYToCjnyJy6T5P8ksA6DbiLXI/qy2awow9Wiy4i+9ico7tmr
+         g6jxHMX3ONcndVRYk8KlG6vNoPIB1NwOrTcKrEG/xos8ZEWNISy0RXB0os+sLxmUtWNF
+         mgBSgcXSWHi7HK7kT9NbcjuAFZmSoLbt447t0YfPcndqwk592RUbYmWW1b5IBWZnDxKd
+         4tKQPDU3IsTlwgNvOBhPO3gCVZHDTNVuPZstd9pobY90Gnq6dtOLbL4656x9U1Qqpt1D
+         D3og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LMUQOiqtyBcG0QQURpNLPy6SwElFcomAqHXV+PixSGg=;
-        b=MA9l4ffFQVpUZd8CRDCbAij7xZawA7gjgvDamaTjtIeuVRiDCQ9/doaKjNz2PySISa
-         99xfNKAyZrJIwa23MlAA0CGClNM5TC9F75RUAVVnbDpN2e8SaBS8yDhxSmF/OIl+nVkU
-         8D3RkgUyClq47ozSBsiwl4h3BT0d2qBXcNTCftG2Duuue1WSDDciKN8j0VSNAET5m9AC
-         0NQOorUIyyW4XqXKEI6dZeGaonBLqFiWmtC4P/Ly0EwtAUnIPpXflWUJK0TPwijclqDh
-         3kgJYcWK3VeXoRR8+ib4dKreTH6+ZlWj3pnJRDpDKE8K5IREO85inyEmUFy/lE/4WUyL
-         ZE5A==
-X-Gm-Message-State: AOAM532Cj3+PCcZ7l+gL8FN0iCcRC200PbgVqB5MzoHEQcg19nBNEJkA
-        PwYMuQxD9V/7jafQPjGchvInoK3VHPs63w==
-X-Google-Smtp-Source: ABdhPJxOTPsmUU7303wemxaZ3ryQW2mnED88l7zd9QMuGfEDxR4kPtQbnEqNr00svZt3PGt+fqov+Q==
-X-Received: by 2002:a19:9d5:: with SMTP id 204mr1412213lfj.583.1603222086076;
-        Tue, 20 Oct 2020 12:28:06 -0700 (PDT)
-Received: from localhost.localdomain ([5.188.167.245])
-        by smtp.googlemail.com with ESMTPSA id o23sm542379lji.68.2020.10.20.12.28.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 12:28:05 -0700 (PDT)
-From:   Sergey Matyukevich <geomatsi@gmail.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sergey Matyukevich <geomatsi@gmail.com>
-Subject: [PATCH v2] arm: dts: imx6qdl-udoo: fix rgmii phy-mode for ksz9031 phy
-Date:   Tue, 20 Oct 2020 22:33:59 +0300
-Message-Id: <20201020193359.6075-1-geomatsi@gmail.com>
-X-Mailer: git-send-email 2.28.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SW+VSHIXtiXnaj2ApmMbMQMGmNjny+0l3tNBxFDXzPQ=;
+        b=n1phEfyIvTnbq23QfvnXOTnQ4aNVALg7dGGiFMTZpJgcEFnzuecmpEINLWSyo2FJ7h
+         oLcKMUU/rCwV78i77qrM8k8bDDBgufsYhMIEPDNFUMIXD/Oasimiejw1HmDB5FwyjzYd
+         IlGRSW5AJ52vhrHzFZFQ/+X3U+LNbduE87IJcIJ1GUzZ52hD2hlQIkCHZ2c64L9VPVjZ
+         k0cHK3oucKBwIzeGQpRXUAkyZNvsB6PFUtboFl5XyJyYAxHwU48mVihZ0Ss/aP94e5az
+         YV66+6cYwDGx5Mc/UaLj7wLxw3BTI4do+V06p4vfxrqgMpVHA1oIt4JHANP4K5CS/ydL
+         r72A==
+X-Gm-Message-State: AOAM5315eg5/pQ0gicBEnHvlAMSHWsPS+kuWSyBLI6/unru8b1AOyTCZ
+        1yzUs1nCbrCqno4U98bQOCera9WdPD5HJmkCG/k=
+X-Google-Smtp-Source: ABdhPJyz+B9K91a/msM+dSi3tWDZXEiIxtxc7t7+Nz5WVzNWfdgNtM43dsiSzf+FIStCK900mQNbeVT/50ZkdTQrSrg=
+X-Received: by 2002:aa7:c683:: with SMTP id n3mr4407224edq.146.1603222460451;
+ Tue, 20 Oct 2020 12:34:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201020112101.19077-1-Sergey.Semin@baikalelectronics.ru> <20201020112101.19077-6-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201020112101.19077-6-Sergey.Semin@baikalelectronics.ru>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 20 Oct 2020 21:34:09 +0200
+Message-ID: <CAFBinCA+4c6pjYFx3MW3-G=rCKon_jUXQ77pYSxXpRE9k0mpAA@mail.gmail.com>
+Subject: Re: [PATCH v3 05/16] dt-bindings: usb: usb-hcd: Add generic "usb-phy" property
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit bcf3440c6dd7 ("net: phy: micrel: add phy-mode support for the
-KSZ9031 PHY") fixed micrel phy driver adding proper support for phy
-modes. Adapt imx6q-udoo board phy settings accordingly: explicitly
-set required delay configuration using "rgmii-id".
-
-Fixes: bcf3440c6dd7 ("net: phy: micrel: add phy-mode support for the KSZ9031 PHY")
-
-Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
----
-
-v1 -> v2
-- add Fixes tag to commit message
-
-
- arch/arm/boot/dts/imx6qdl-udoo.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/imx6qdl-udoo.dtsi b/arch/arm/boot/dts/imx6qdl-udoo.dtsi
-index c9e122865312..050642d7c582 100644
---- a/arch/arm/boot/dts/imx6qdl-udoo.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-udoo.dtsi
-@@ -98,7 +98,7 @@ sound {
- &fec {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_enet>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
- 
--- 
-2.28.0
-
+On Tue, Oct 20, 2020 at 1:21 PM Serge Semin
+<Sergey.Semin@baikalelectronics.ru> wrote:
+>
+> Even though the Generic PHY framework is the more preferable way of
+> setting the USB PHY up, there are still many dts-files and DT bindings
+> which rely on having the legacy "usb-phy" specified to attach particular
+> USB PHYs to USB cores. Let's have the "usb-phy" property described in
+> the generic USB HCD binding file so it would be validated against the
+> nodes in which it's specified. Mark the property as deprecated to
+> discourage the developers from using it.
+>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
