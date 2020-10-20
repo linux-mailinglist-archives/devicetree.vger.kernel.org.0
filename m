@@ -2,160 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FE7B293ED5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 16:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1405293F03
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 16:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408236AbgJTOhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 10:37:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51362 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408135AbgJTOhX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Oct 2020 10:37:23 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9389B21534;
-        Tue, 20 Oct 2020 14:37:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603204642;
-        bh=f6kugA3U0QakUulP0txsV8BTYj/A5215gpbs4UZBY38=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dsqyybu2MKInKfeRhYrW8vkb0ymsQrvurWgo03nA1Q5MVwC/kOLvNMmZ9Ed/8aRiL
-         ya2rx+LZfiIkoLhgcYVnyIbRP1wd4AudxWlepqbUQDEjreJCGCBeJUqwlTALe6McPJ
-         SM5qeM1oDBEh6KMnBudKKbJJ6ENN4MFTbDhuc4iM=
-Date:   Tue, 20 Oct 2020 15:37:11 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Cheng-yi Chiang <cychiang@chromium.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine
- bindings
-Message-ID: <20201020143711.GC9448@sirena.org.uk>
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org>
- <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
- <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
- <20201015161251.GF4390@sirena.org.uk>
- <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
+        id S2408413AbgJTOt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 10:49:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730956AbgJTOtz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 10:49:55 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A2A1C0613CE
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 07:49:53 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id gv6so1083792pjb.4
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 07:49:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=Fg6pNbj6ALE21jJQou7VGOk/llHej9K+3C1jIB5kjaI=;
+        b=s5HEKF5YDQgHaPTun57X+Qrt1B3vtLMKSsqq+t3SWWhZ18Xiq1hyvXrUGb6YkModH2
+         bLg9eQViAONwRN/GttLbHK3reudUxphCoxnSjBdLJ0nSkNbfzeISraprjopY+7fgVld6
+         X6X7AdX7Y0ZdG3ECdBCboFnAA/XOXtvBMkSWtdNIK4EEQ+988LUer+A/dNQzB33Qbpzr
+         U06DX9SrMSi8jPGBZuQf9QYP0i65I1qUW+AL88fGzqwmvdByofbtEOp+QxL/eg+EUyM6
+         uGFag4kQTmY0N0v2j/6Ik0YfonjPH3gmkejGLie8L0B6mYhDm0G8ub10g5S8KyJN4yyL
+         WnhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=Fg6pNbj6ALE21jJQou7VGOk/llHej9K+3C1jIB5kjaI=;
+        b=YoClChlkRtvB2xJj0FkN+O+y1gPgtn7GcOQm3/J8NxqCcTi8BaeH5LKOZK4oUzOCPT
+         CokFxfcI39Yufc1RsCNTLELkUBlS50pMI7Iuzc+2nJ4CwF5q/tTGkha9luK2YfRE/iaU
+         aZVZBp10AQNwFRKv6KZHmXVeOtnU1SBBCo/l3c8i9sRBbewxBT0TD8XtqKWNhe/44jd0
+         Qa/M8OoZORBm+8YXF3dgO/PAhJ6/BrZ7Y0FsSjK0wDgPtS/9UFjANTrG9tJAEYYjcYRT
+         0+9aDWLEQA1SKGOTRUcaswpmjKz2GBiDA/BIKBQm3NCHYPH4vNd9rn5IfjqfKKTGi9hP
+         JGzw==
+X-Gm-Message-State: AOAM532JhS/PjY1Zee2U2Nea3z7VgMZLnS8HGJnELoCweiNM1De+m9BT
+        Pezy4OxlHDDKP+qoulk9lD1prg==
+X-Google-Smtp-Source: ABdhPJzxJ1bssrjG06M7ZqnzU+aSs+/Cyuw10gkAHVZv9CuVKhvM3uNw+Zbvn2KmqaYehwh3HQQRMg==
+X-Received: by 2002:a17:90a:e697:: with SMTP id s23mr2996501pjy.16.1603205393066;
+        Tue, 20 Oct 2020 07:49:53 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id y22sm2706794pfr.62.2020.10.20.07.49.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 07:49:52 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: amlogic: add missing ethernet reset ID
+In-Reply-To: <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
+References: <20201020120141.298240-1-jbrunet@baylibre.com> <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
+Date:   Tue, 20 Oct 2020 07:49:52 -0700
+Message-ID: <7hft69kl4f.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="WfZ7S8PLGjBY9Voh"
-Content-Disposition: inline
-In-Reply-To: <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
-X-Cookie: The people rule.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
---WfZ7S8PLGjBY9Voh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> On 20/10/2020 14:01, Jerome Brunet wrote:
+>> From: Anand Moon <linux.amoon@gmail.com>
+>> 
+>> Add reset external reset of the ethernet mac controller
+>> 
+>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-On Tue, Oct 20, 2020 at 09:37:05PM +0800, Cheng-yi Chiang wrote:
+[...]
 
-> May I know your suggestion on Ajye's patch "ASoC: qcom: sc7180: Modify
-> machine driver for 2mic" ?
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-> https://lore.kernel.org/r/20200928063744.525700-3-ajye_huang@compal.corp-partner.google.com
+Neil, do we need this in u-boot also?  I seem to have network issues in
+u-boot on board with external PHY running mainline u-boot.
 
-> I think adding code in the machine driver makes the intent straightforward.
-> If we want the machine driver to be fully configurable,
-> we can always add more code to handle properties like gpio, route,
-> widget (mux, text selection) passed in from the device tree.
+Kevin
 
-If the device has both front and rear mics and only one can be active at
-once that seems obvious and sensible.  If the devices only have one of
-these then this seems like a bad idea.
-
-> But I feel that we don't need a machine driver to be that configurable
-> from the device tree.
-> I think having the logic scattered in various dtsi files and relying
-> on manual inspection to understand the usage would be less
-> maintainable than only exposing needed property like gpio.
-> Especially in the complicated case where we need to create a mux
-> widget with callback toggling the gpio like this:
-
-I don't understand what "logic scattered in various dtsi files" means,
-sorry.
-
-> Yes, that should work to describe the dailink we are using.
-> But a more tricky issue is how to do calls like setting PLL in dai startup ops.
-
-...
-
-> I think that asking a generic machine driver to do configuration like
-> this with only a limited interface of device property
-> might be too much of an ask for the machine driver.
-
-Richard was looking at some basic configuration for PLLs.
-
-> Would you mind if I simplify the compatible string like Srinivas
-> suggested, and send a v12?
-
-> As for other two kinds of variations that I am aware of:
-
-> 1. front mic / rear mic
-> 2. replace alc5682 with adau7002
-
-The CODEC change is going to be described in the DT no matter what -
-you'll have a reference to the CODEC node but it may make sense if
-there's enough custom code around it.  For front vs rear mic the
-simplest thing would just be to not mention which if this is a hardware
-fixed thing, otherwise a control.
-
-> We can set different board names and different compatible strings to
-> achieve such variation.
-> So that it would make sense to describe configuration in compatible
-> strings like you suggested, and also provides UCM a way to distinguish
-> different boards.
-
-I don't recall having suggested distinguishing these things with a
-compatible string, especially not the microphones.  UCM can already use
-the display names for the boards to distinguish things.
-
---WfZ7S8PLGjBY9Voh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+O9hYACgkQJNaLcl1U
-h9CspAf/b7bFcvyQbodhwCE9GoK96aMXJ54K2Y9rG4bcavB0WJbLggXc4xYp/uUS
-oDymKZzLQr+vEzU9gO/inLAIXfMd2QTgLQWrrY4K/Z/q6+Wo702H2r0kwEXIpj3E
-nB2VjUldnpl0XYCmavYeVaZLep8+qTL6QixnsLQq6zrwirPeyNpfQ2iu/FLzSYX6
-EayieZWxAGuFfZkIoPg38GQqW6bZeuc8Nom0OY4Yqu/uoz29ekHKWOQm03DZyRK9
-bTCBvPjsigi/ABXue224l0WavpRxvvjRNeswkQasH9rM/OIhY4CKktbaNmUW/1mH
-FIkwdq2b8lvHefF3atCnALr5tCyx1Q==
-=1PAU
------END PGP SIGNATURE-----
-
---WfZ7S8PLGjBY9Voh--
