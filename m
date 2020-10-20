@@ -2,84 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1405293F03
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 16:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 394D3293F12
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 16:55:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408413AbgJTOt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 10:49:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43426 "EHLO
+        id S2392672AbgJTOzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 10:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730956AbgJTOtz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 10:49:55 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A2A1C0613CE
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 07:49:53 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id gv6so1083792pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 07:49:53 -0700 (PDT)
+        with ESMTP id S1728489AbgJTOzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 10:55:51 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FFDC0613CE
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 07:55:49 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id 13so2117033wmf.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 07:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=Fg6pNbj6ALE21jJQou7VGOk/llHej9K+3C1jIB5kjaI=;
-        b=s5HEKF5YDQgHaPTun57X+Qrt1B3vtLMKSsqq+t3SWWhZ18Xiq1hyvXrUGb6YkModH2
-         bLg9eQViAONwRN/GttLbHK3reudUxphCoxnSjBdLJ0nSkNbfzeISraprjopY+7fgVld6
-         X6X7AdX7Y0ZdG3ECdBCboFnAA/XOXtvBMkSWtdNIK4EEQ+988LUer+A/dNQzB33Qbpzr
-         U06DX9SrMSi8jPGBZuQf9QYP0i65I1qUW+AL88fGzqwmvdByofbtEOp+QxL/eg+EUyM6
-         uGFag4kQTmY0N0v2j/6Ik0YfonjPH3gmkejGLie8L0B6mYhDm0G8ub10g5S8KyJN4yyL
-         WnhQ==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uf/L+N0SXiT5GxWzSMpW76s8MjBMaRe3gnVIlCSIR5M=;
+        b=cK9G7+OH/TUQCyR8rfJv0QoQ3SjEQsnF9XCjVN6xqr/O8yU3IlDfbvmsbTfkhxQ06f
+         q4IpVZ8VlQ3fVXlWWHGSfLpylD2IH5P4NE25315km3BTplz4wROeM/cLeRnrZhnHb/v5
+         PyAaPitLsRWmdVTipbLqX4Out+F21VmQJ/X09y763klLznhk8Wjph5Dm6ltToTwu1GKi
+         6cF9SRXzSOe+CnDRgo2LkN4n5tkvfZ7EpQsA7EkHbGt3NkoE1mD/PmAfdxkXt8UbFE9X
+         RN1mqjge119zJMoJpTqXMa+rN2apg4iQxVK+dpL4RLHKRIlCnNkTt3EAvl5wmXLl4Uz1
+         eT1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=Fg6pNbj6ALE21jJQou7VGOk/llHej9K+3C1jIB5kjaI=;
-        b=YoClChlkRtvB2xJj0FkN+O+y1gPgtn7GcOQm3/J8NxqCcTi8BaeH5LKOZK4oUzOCPT
-         CokFxfcI39Yufc1RsCNTLELkUBlS50pMI7Iuzc+2nJ4CwF5q/tTGkha9luK2YfRE/iaU
-         aZVZBp10AQNwFRKv6KZHmXVeOtnU1SBBCo/l3c8i9sRBbewxBT0TD8XtqKWNhe/44jd0
-         Qa/M8OoZORBm+8YXF3dgO/PAhJ6/BrZ7Y0FsSjK0wDgPtS/9UFjANTrG9tJAEYYjcYRT
-         0+9aDWLEQA1SKGOTRUcaswpmjKz2GBiDA/BIKBQm3NCHYPH4vNd9rn5IfjqfKKTGi9hP
-         JGzw==
-X-Gm-Message-State: AOAM532JhS/PjY1Zee2U2Nea3z7VgMZLnS8HGJnELoCweiNM1De+m9BT
-        Pezy4OxlHDDKP+qoulk9lD1prg==
-X-Google-Smtp-Source: ABdhPJzxJ1bssrjG06M7ZqnzU+aSs+/Cyuw10gkAHVZv9CuVKhvM3uNw+Zbvn2KmqaYehwh3HQQRMg==
-X-Received: by 2002:a17:90a:e697:: with SMTP id s23mr2996501pjy.16.1603205393066;
-        Tue, 20 Oct 2020 07:49:53 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id y22sm2706794pfr.62.2020.10.20.07.49.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 07:49:52 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Anand Moon <linux.amoon@gmail.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: amlogic: add missing ethernet reset ID
-In-Reply-To: <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
-References: <20201020120141.298240-1-jbrunet@baylibre.com> <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
-Date:   Tue, 20 Oct 2020 07:49:52 -0700
-Message-ID: <7hft69kl4f.fsf@baylibre.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uf/L+N0SXiT5GxWzSMpW76s8MjBMaRe3gnVIlCSIR5M=;
+        b=n0SqJL5IH10XRhbpoZighN6e/YWbRTKeNRlRAFyRm8i7OJjd59bhfrz1nmdOYkaIwP
+         SBJL7UN/8XK9yxYFR3uEdXxpPKHCinktrY0XweXdVcF/h3cPwTZ5xoH+o4y1EEF72tAP
+         7dPZ26EX8uxk7j4h7z8cSG4to3Zq1P1LpPYehHBKz7dGZ6I/8k1Ac2rY1psV1+DKEwbu
+         rdFbsObSil9iH72GSW0gH6arFm/gdJNj11OdIcu5kD+LWHBDH+Fq9uH+xQIqLXHSNzUg
+         2I8EfGSeRCQpEB5vKpV+o4PfuoyaBAYXTjHigJMEJ0faoyENPZRhsIqyVCiM+TI4Eg70
+         VNfQ==
+X-Gm-Message-State: AOAM5312QZ8fZMkGmvYk0896ocJyW/9zFH14/FYj51A4WZt9e9kMS2Uu
+        Lkh8ha3HcYvuZQd4gEjAw68QSw==
+X-Google-Smtp-Source: ABdhPJwZTIfXIjPLWWjL97y1NfJTXN0Y2s/to/X10G0kOS41vqvGeaVeSXPhf5OZA0t9DHJLkiPgNg==
+X-Received: by 2002:a7b:ce8f:: with SMTP id q15mr3351776wmj.88.1603205747699;
+        Tue, 20 Oct 2020 07:55:47 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id 1sm3868599wre.61.2020.10.20.07.55.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 20 Oct 2020 07:55:46 -0700 (PDT)
+Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine
+ bindings
+To:     Mark Brown <broonie@kernel.org>,
+        Cheng-yi Chiang <cychiang@chromium.org>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Srinivasa Rao <srivasam@codeaurora.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+References: <20200914080619.4178587-1-cychiang@chromium.org>
+ <20200914080619.4178587-3-cychiang@chromium.org>
+ <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
+ <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
+ <20201015161251.GF4390@sirena.org.uk>
+ <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
+ <20201020143711.GC9448@sirena.org.uk>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
+Date:   Tue, 20 Oct 2020 15:55:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20201020143711.GC9448@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> On 20/10/2020 14:01, Jerome Brunet wrote:
->> From: Anand Moon <linux.amoon@gmail.com>
->> 
->> Add reset external reset of the ethernet mac controller
->> 
->> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-[...]
+On 20/10/2020 15:37, Mark Brown wrote:
+> I don't understand what "logic scattered in various dtsi files" means,
+> sorry.
+> 
+>> Yes, that should work to describe the dailink we are using.
+>> But a more tricky issue is how to do calls like setting PLL in dai startup ops.
+> ...
+> 
+>> I think that asking a generic machine driver to do configuration like
+>> this with only a limited interface of device property
+>> might be too much of an ask for the machine driver.
+> Richard was looking at some basic configuration for PLLs.
+> 
+>> Would you mind if I simplify the compatible string like Srinivas
+>> suggested, and send a v12?
+>> As for other two kinds of variations that I am aware of:
+>> 1. front mic / rear mic
+>> 2. replace alc5682 with adau7002
+> The CODEC change is going to be described in the DT no matter what -
+> you'll have a reference to the CODEC node but it may make sense if
+> there's enough custom code around it.  For front vs rear mic the
+> simplest thing would just be to not mention which if this is a hardware
+> fixed thing, otherwise a control.
+> 
+>> We can set different board names and different compatible strings to
+>> achieve such variation.
+>> So that it would make sense to describe configuration in compatible
+>> strings like you suggested, and also provides UCM a way to distinguish
+>> different boards.
+> I don't recall having suggested distinguishing these things with a
+> compatible string, especially not the microphones.  UCM can already use
+> the display names for the boards to distinguish things.
 
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Neil, do we need this in u-boot also?  I seem to have network issues in
-u-boot on board with external PHY running mainline u-boot.
+Not with the compatible string!
 
-Kevin
+Currently card name, and long name are exactly same in all Qualcomm 
+soundcards, which makes it very difficult to identify how those boards 
+re wired up at UCM2 level. So the plan is to properly populate card long 
+name with "model" property which can include details on how things are 
+wiredup on that board.
 
+--srini
