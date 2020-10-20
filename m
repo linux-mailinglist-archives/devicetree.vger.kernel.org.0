@@ -2,136 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF9CC293392
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 05:18:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 778202933C9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 06:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391132AbgJTDSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Oct 2020 23:18:37 -0400
-Received: from lucky1.263xmail.com ([211.157.147.135]:59662 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391113AbgJTDSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Oct 2020 23:18:34 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 04A39A5EE2;
-        Tue, 20 Oct 2020 11:18:29 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P2981T139638909118208S1603163896309471_;
-        Tue, 20 Oct 2020 11:18:28 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <c50aff8c58acf4b89b6b5baf6d6892de>
-X-RL-SENDER: yifeng.zhao@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: yifeng.zhao@rock-chips.com
-X-FST-TO: miquel.raynal@bootlin.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v12 8/8] arm: dts: rockchip: Add NFC node for RK3036 SoC
-Date:   Tue, 20 Oct 2020 11:18:14 +0800
-Message-Id: <20201020031814.17939-4-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201020031814.17939-1-yifeng.zhao@rock-chips.com>
-References: <20201020031733.17883-1-yifeng.zhao@rock-chips.com>
- <20201020031814.17939-1-yifeng.zhao@rock-chips.com>
+        id S1729578AbgJTEKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 00:10:47 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:52500 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728339AbgJTEKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 00:10:47 -0400
+X-UUID: 3e2d6fcab1294f4da06361514eed91eb-20201020
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=zp5jLGm63aQhYRoDx4NhNAPU064r5IJUGVEyCltzIJE=;
+        b=kBvbM70DagvRjbW3mi7d0FSxDlN41jckXJgaVjydMg/NC46nnZNb9WLl3zsddtr9APmd9TsLj1puwWXnkCOwCRwodsYpcgpFg7DiqgVM18Xw+3TVp8eMl644PKOxyjXLV+RjlipXHvv9BlA9FREJqujStiC9R3PoivXB8bFeoFs=;
+X-UUID: 3e2d6fcab1294f4da06361514eed91eb-20201020
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1822166561; Tue, 20 Oct 2020 12:00:22 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 20 Oct 2020 12:00:20 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 20 Oct 2020 12:00:21 +0800
+Message-ID: <1603166421.26597.1.camel@mtksdaap41>
+Subject: Re: [PATCH v4 1/2] dt-bindings: spmi: document binding for the
+ Mediatek SPMI controller
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Date:   Tue, 20 Oct 2020 12:00:21 +0800
+In-Reply-To: <20201019195207.GA3499610@bogus>
+References: <1602864634-23489-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <1602864634-23489-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <20201019195207.GA3499610@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add NAND FLASH Controller(NFC) node for RK3036 SoC.
-
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
----
-
-(no changes since v1)
-
- arch/arm/boot/dts/rk3036.dtsi | 52 +++++++++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
-
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index 093567022386..dda5a1f79aca 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -292,6 +292,21 @@
- 		status = "disabled";
- 	};
- 
-+	nfc: nand-controller@10500000 {
-+		compatible = "rockchip,rk3036-nfc",
-+			     "rockchip,rk2928-nfc";
-+		reg = <0x10500000 0x4000>;
-+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru HCLK_NANDC>, <&cru SCLK_NANDC>;
-+		clock-names = "ahb", "nfc";
-+		assigned-clocks = <&cru SCLK_NANDC>;
-+		assigned-clock-rates = <150000000>;
-+		pinctrl-0 = <&flash_ale &flash_bus8 &flash_cle &flash_csn0
-+			     &flash_rdn &flash_rdy &flash_wrn>;
-+		pinctrl-names = "default";
-+		status = "disabled";
-+	};
-+
- 	cru: clock-controller@20000000 {
- 		compatible = "rockchip,rk3036-cru";
- 		reg = <0x20000000 0x1000>;
-@@ -643,6 +658,43 @@
- 			};
- 		};
- 
-+		nfc {
-+			flash_ale: flash-ale {
-+				rockchip,pins = <2 RK_PA0 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_bus8: flash-bus8 {
-+				rockchip,pins = <1 RK_PD0 1 &pcfg_pull_default>,
-+						<1 RK_PD1 1 &pcfg_pull_default>,
-+						<1 RK_PD2 1 &pcfg_pull_default>,
-+						<1 RK_PD3 1 &pcfg_pull_default>,
-+						<1 RK_PD4 1 &pcfg_pull_default>,
-+						<1 RK_PD5 1 &pcfg_pull_default>,
-+						<1 RK_PD6 1 &pcfg_pull_default>,
-+						<1 RK_PD7 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_cle: flash-cle {
-+				rockchip,pins = <2 RK_PA1 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_csn0: flash-csn0 {
-+				rockchip,pins = <2 RK_PA6 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_rdn: flash-rdn {
-+				rockchip,pins = <2 RK_PA3 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_rdy: flash-rdy {
-+				rockchip,pins = <2 RK_PA4 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_wrn: flash-wrn {
-+				rockchip,pins = <2 RK_PA2 1 &pcfg_pull_default>;
-+			};
-+		};
-+
- 		emac {
- 			emac_xfer: emac-xfer {
- 				rockchip,pins = <2 RK_PB2 1 &pcfg_pull_default>, /* crs_dvalid */
--- 
-2.17.1
-
-
+SGksDQoNCk9uIE1vbiwgMjAyMC0xMC0xOSBhdCAxNDo1MiAtMDUwMCwgUm9iIEhlcnJpbmcgd3Jv
+dGU6DQo+IE9uIFNhdCwgMTcgT2N0IDIwMjAgMDA6MTA6MzMgKzA4MDAsIEhzaW4tSHNpdW5nIFdh
+bmcgd3JvdGU6DQo+ID4gVGhpcyBhZGRzIGRvY3VtZW50YXRpb24gZm9yIHRoZSBTUE1JIGNvbnRy
+b2xsZXIgZm91bmQgb24gTWVkaWF0ZWsgU29Dcy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBI
+c2luLUhzaXVuZyBXYW5nIDxoc2luLWhzaXVuZy53YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0N
+Cj4gPiAgLi4uL2JpbmRpbmdzL3NwbWkvbXRrLHNwbWktbXRrLXBtaWYueWFtbCAgICAgIHwgNzAg
+KysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNzAgaW5zZXJ0aW9ucygr
+KQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3NwbWkvbXRrLHNwbWktbXRrLXBtaWYueWFtbA0KPiA+IA0KPiANCj4gDQo+IE15IGJvdCBm
+b3VuZCBlcnJvcnMgcnVubmluZyAnbWFrZSBkdF9iaW5kaW5nX2NoZWNrJyBvbiB5b3VyIHBhdGNo
+Og0KPiANCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwbWkvbXRrLHNwbWkt
+bXRrLXBtaWYuZXhhbXBsZS5kdHM6MTk6MTg6IGZhdGFsIGVycm9yOiBkdC1iaW5kaW5ncy9jbG9j
+ay9tdDgxOTItY2xrLmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCj4gICAgMTkgfCAgICAg
+ICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay9tdDgxOTItY2xrLmg+DQo+ICAgICAgIHwg
+ICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fg0KPiBjb21w
+aWxhdGlvbiB0ZXJtaW5hdGVkLg0KPiBtYWtlWzFdOiAqKiogW3NjcmlwdHMvTWFrZWZpbGUubGli
+OjM0MjogRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwbWkvbXRrLHNwbWktbXRr
+LXBtaWYuZXhhbXBsZS5kdC55YW1sXSBFcnJvciAxDQo+IG1ha2VbMV06ICoqKiBXYWl0aW5nIGZv
+ciB1bmZpbmlzaGVkIGpvYnMuLi4uDQo+IG1ha2U6ICoqKiBbTWFrZWZpbGU6MTM2NjogZHRfYmlu
+ZGluZ19jaGVja10gRXJyb3IgMg0KPiANCj4gDQo+IFNlZSBodHRwczovL3BhdGNod29yay5vemxh
+YnMub3JnL3BhdGNoLzEzODM0NDENCj4gDQo+IElmIHlvdSBhbHJlYWR5IHJhbiAnbWFrZSBkdF9i
+aW5kaW5nX2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUNCj4gZXJyb3IocyksIHRoZW4g
+bWFrZSBzdXJlIGR0LXNjaGVtYSBpcyB1cCB0byBkYXRlOg0KPiANCj4gcGlwMyBpbnN0YWxsIGdp
+dCtodHRwczovL2dpdGh1Yi5jb20vZGV2aWNldHJlZS1vcmcvZHQtc2NoZW1hLmdpdEBtYXN0ZXIg
+LS11cGdyYWRlDQo+IA0KPiBQbGVhc2UgY2hlY2sgYW5kIHJlLXN1Ym1pdC4NCj4gDQoNClNvcnJ5
+LCBJIGRvbid0IGFkZCB0aGUgbmVjZXNzYXJ5IHNlcmllc1sxXSBpbnRvIHRoZSBjb21taXQgbWVz
+c2FnZS4NCkkgd2lsbCB1cGRhdGUgaXQgaW4gdGhlIG5leHQgcGF0Y2gsIHRoYW5rcyBmb3IgdGhl
+IHJldmlldy4NCg0KWzFdDQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGlu
+dXgtbWVkaWF0ZWsvbGlzdC8/c2VyaWVzPTM0MjU5Mw0K
 
