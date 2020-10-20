@@ -2,152 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 639AF29403E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 18:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9294294197
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 19:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394471AbgJTQLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 12:11:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56114 "EHLO
+        id S2437197AbgJTRnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 13:43:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730362AbgJTQLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 12:11:16 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014BAC0613CE
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 09:11:15 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id n15so2873156wrq.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 09:11:15 -0700 (PDT)
+        with ESMTP id S2391646AbgJTRm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 13:42:59 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B24C0613D1
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 10:42:58 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id c77so2705991wmd.4
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 10:42:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Jj25L1gQWKRXM7zU+DXisJyRnu6Otv0ZXY8L4OY+gv8=;
-        b=hGHBzToEYmixn/mjgL4keECzrrWu91M0r9rb+yuGJfIehZBtHSCj6LQqqhhUUFFi4f
-         rvuJbB7od6cZCExN46rKZiNERmSkuOrBLGwbCdOYogkai3zDwInkrMnc1CXWStHckXkw
-         ubBBXKdJe61wUda3uJHgiQReBgIiY3vboeEmUwz1qO9BNKW1N3yFRgj/4CjA7zkd8qZ1
-         6vq4JNYpMUc8/PzAz4kO8h0eiRtDlTS2Z+BVWa4iSqkADl6duw/wyCWJSUG7b2vEHNfT
-         EWvA2zDuCXqBDqD25224ge/I9VVVBjN1GK6mbj80o+z2MkZMAVI0pGcWCsT/ygMrH6Jy
-         lRrw==
+        bh=KolONEJ0/kBt/8YOlOvYo0QZLfG99esXIK0wMwF8lc4=;
+        b=mtc2L/eKqA8TBWtNj1lh1nggWXnyR45rPOaumTksxHaV/nb4d/T4zAlD2P9bjzpHyn
+         dfu3yTG/We2OKP1fQIc4+Lj1428T5LiozVeaflzq8AolVXTn21CFIl9ulS4Qau5gLq1J
+         IRHbGN2i8IDhOy8UUmMXccWL1xNSJqz4YbnSPOvPH89tfwD+a/yz7rEUFLjBBTPpgesM
+         3f1X0/IMnDRSGBqiQK5nS0hhXiexW/y6iLionKupQXckqGP06dQHWHoCjeLx0EIIgq6c
+         iwtxhRYwRLZBIK1XSuO9zqjgT7EPREzS1V+iRqvqhw1IW7EkCjA0J2023QN0mRwI4q+u
+         yZ1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Jj25L1gQWKRXM7zU+DXisJyRnu6Otv0ZXY8L4OY+gv8=;
-        b=F08GceMK86BvGuddfMRt0KfhX+xavfASG2ASST1H2Ijvjq7hIx4X8r+nbz/JyI774W
-         //Jt5JP1DHJ/vJidVaLKbrTCymr6FHoI0KeY5McW2XfibqjOhU8FadPx6wT7crB+ItBk
-         cvkGZAtVzFvh3PIR53/CcLFjvm1EtINQNAFeCtv4kvZrcUMReYwaw88L8LeixXdGtitq
-         Nm+Chxyg287Ow7oVK2pdwuuDkDoSTOkTg4BkkJnQWoNeDQzAuToPH52ff3rhz/AAxTcb
-         HHtSxTIF21TXZ3ZT0jl6Fjnl4R5dr3PTxlldBAOgrp5qlpAYAaLL1jyBuNz/ZkHOw7IM
-         iHCQ==
-X-Gm-Message-State: AOAM532Ma3SCkBfordNaLaADAdvBIsGTxpA3dAFI235UCE6TvcFqYxbr
-        NQIt0gSVD1xv6dSctlfLIuuL7eHHeHOtKr2F
-X-Google-Smtp-Source: ABdhPJyLzreKRuc9O8TZcdkHhc1XX+t9ChNyHgH/VbumTlthJ7p5WqltaBYKp6EVZ7DpnRcK5lB3iw==
-X-Received: by 2002:adf:ee4c:: with SMTP id w12mr4204599wro.22.1603210274085;
-        Tue, 20 Oct 2020 09:11:14 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:218e:7be8:b4e2:8030? ([2a01:e35:2ec0:82b0:218e:7be8:b4e2:8030])
-        by smtp.gmail.com with ESMTPSA id q7sm3588823wrr.39.2020.10.20.09.11.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Oct 2020 09:11:13 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: amlogic: add missing ethernet reset ID
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Anand Moon <linux.amoon@gmail.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20201020120141.298240-1-jbrunet@baylibre.com>
- <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
- <7hft69kl4f.fsf@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <6fb3199f-f5a6-fa00-94df-9c5a40f394b6@baylibre.com>
-Date:   Tue, 20 Oct 2020 18:11:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KolONEJ0/kBt/8YOlOvYo0QZLfG99esXIK0wMwF8lc4=;
+        b=TCFltXNxXjgLydGkkwHRuyYgjZ/V3Uijrfm4RIB0lrFyJjqtYpbSTncOrZHGZLTVV0
+         ot1ZW5pAnFsShlZ26m1ix4sE2ReoZaZrd8+DRB8Jm5HYpBMywvL9ES3iICaYdlbtrtPB
+         Td4KzXq7Oha1qh/KknVG3X8lnSkEDi8j6BW4TcKco3xxj4w8w06hvM6nysF9gTAhgTbi
+         WKCWtskgRnMioO5geW8JkfuMW6azq2vSj+OrrwCSlm0O/eIaKqnwPKZw6jROSWADDIRE
+         YV5E+Sy6Aes2NQDJQQGFKMlrjHE6XssY7a3q4WDBr3sBW9jwSyY5AGYw0iMnLlEV/S4q
+         CH/g==
+X-Gm-Message-State: AOAM530NJU/Lmv82Rep8CywbDUYIQCj/kqIT/hMw59tP8+VSyaap41B5
+        jvX94f8oiZtxi+yF/ATrut8JuA==
+X-Google-Smtp-Source: ABdhPJxdhFa4U3zvDL3nve6Smzr3olv0OJGGCpFVU2nQZJ2SRN4kwERM99KqsVG5ZE8vhs1527lNKg==
+X-Received: by 2002:a05:600c:cb:: with SMTP id u11mr3925064wmm.112.1603215777481;
+        Tue, 20 Oct 2020 10:42:57 -0700 (PDT)
+Received: from localhost.localdomain (199.170.185.81.rev.sfr.net. [81.185.170.199])
+        by smtp.gmail.com with ESMTPSA id v123sm3297756wme.7.2020.10.20.10.42.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 10:42:56 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, daniel@ffwll.ch,
+        airlied@linux.ie, p.zabel@pengutronix.de, chunkuang.hu@kernel.org,
+        Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH 0/8] Add DRM/DSI support for MT8167 SoC.
+Date:   Tue, 20 Oct 2020 19:42:45 +0200
+Message-Id: <20201020174253.3757771-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <7hft69kl4f.fsf@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2020 16:49, Kevin Hilman wrote:
-> Neil Armstrong <narmstrong@baylibre.com> writes:
-> 
->> On 20/10/2020 14:01, Jerome Brunet wrote:
->>> From: Anand Moon <linux.amoon@gmail.com>
->>>
->>> Add reset external reset of the ethernet mac controller
->>>
->>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
->>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
-> [...]
-> 
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> Neil, do we need this in u-boot also?  I seem to have network issues in
-> u-boot on board with external PHY running mainline u-boot.
+This series adds support for DSI on the MT8167 SoC. HDMI is not yet supported
+as secondary display path.
 
-Yes, U-boot supports it, but simply does "reset_deassert", so I don't think
-it would have any impact, the real issue is the PHY reset.
+mmsys is not supported by this series and will be sent in a seperate series
+based on [0].
 
-Without a proper reset line, no idea how to do that cleanly.
+[0] https://patchwork.kernel.org/project/linux-mediatek/list/?series=360447
 
-Neil
+Fabien Parent (8):
+  dt-bindings: display: mediatek: disp: add documentation for MT8167 SoC
+  dt-bindings: display: mediatek: dsi: add documentation for MT8167 SoC
+  drm/mediatek: add disp-color MT8167 support
+  drm/mediatek: dsi: add pdata variable to start clk in HS mode
+  drm/mediatek: dsi: add support for mipi26m clk
+  drm/mediatek: dsi: add support for MT8167 SoC
+  drm/mediatek: add DDP support for MT8167
+  drm/mediatek: Add support for main DDP path on MT8167
 
-> 
-> Kevin
-> 
+ .../display/mediatek/mediatek,disp.txt        |  4 +-
+ .../display/mediatek/mediatek,dsi.txt         |  7 +--
+ drivers/gpu/drm/mediatek/mtk_disp_color.c     |  7 +++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp.c        | 50 +++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 38 ++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_dsi.c            | 20 +++++++-
+ 6 files changed, 120 insertions(+), 6 deletions(-)
+
+-- 
+2.28.0
 
