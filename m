@@ -2,311 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D6E294530
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 00:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DFE129455F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 01:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439118AbgJTWeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 18:34:02 -0400
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:59963 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2439100AbgJTWd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Oct 2020 18:33:56 -0400
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 20 Oct 2020 15:33:53 -0700
-X-QCInternal: smtphost
-Received: from gurus-linux.qualcomm.com ([10.46.162.81])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP; 20 Oct 2020 15:33:53 -0700
-Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
-        id C4F26194C; Tue, 20 Oct 2020 15:33:53 -0700 (PDT)
-From:   Guru Das Srinagesh <gurus@codeaurora.org>
-To:     Mark Brown <broonie@kernel.org>,
-        Markus Elfring <Markus.Elfring@web.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Joe Perches <joe@perches.com>,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Anirudh Ghayal <aghayal@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Guru Das Srinagesh <gurus@codeaurora.org>
-Subject: [RFC PATCH RESEND v1 3/3] mfd: Add PM8008 driver
-Date:   Tue, 20 Oct 2020 15:33:43 -0700
-Message-Id: <d48a2c433ce3053fb4f3948d489f4c225b9b3567.1603232320.git.gurus@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1603232320.git.gurus@codeaurora.org>
-References: <cover.1603232320.git.gurus@codeaurora.org>
-In-Reply-To: <cover.1603232320.git.gurus@codeaurora.org>
-References: <cover.1603232320.git.gurus@codeaurora.org>
+        id S2439260AbgJTXM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 19:12:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54990 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2439257AbgJTXM5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Oct 2020 19:12:57 -0400
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.5])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E066D223BF;
+        Tue, 20 Oct 2020 23:12:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603235576;
+        bh=4WY9vVWlC0GnYoSQjpODQA9tTdU6zzoZCrFArJ7O1UQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ikYSPgLFgd1E7tmXIaZmWs2JRoaO7MaFfnrXsxtpDz0z4h/lMJKpybwVlfpl9ET8M
+         nOtORWpSuS6eKPK9cTEH7KWm4EKBssiDCJ4UEMH72hlmIAs3HZfko+L96PoV0+qcUD
+         7vxha8jZ1S4oQW4cXx9UfibZykJBeU6JldKx+dd8=
+Date:   Tue, 20 Oct 2020 16:12:53 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Ard Biesheuvel <ardb@kernel.org>, netdev@vger.kernel.org,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Willy Liu <willy.liu@realtek.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Masahisa Kojima <masahisa.kojima@linaro.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net] netsec: ignore 'phy-mode' device property on ACPI
+ systems
+Message-ID: <20201020161253.72b99808@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20201020125001.GX456889@lunn.ch>
+References: <20201018163625.2392-1-ardb@kernel.org>
+        <20201020125001.GX456889@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PM8008 is a PMIC that contains 7 LDOs, 2 GPIOs, temperature monitoring,
-and can be interfaced over I2C. This driver uses the regmap-irq
-framework to handle interrupts, creates a regmap and uses it to
-instantiate all the child nodes under it in the device tree.
+On Tue, 20 Oct 2020 14:50:01 +0200 Andrew Lunn wrote:
+> On Sun, Oct 18, 2020 at 06:36:25PM +0200, Ard Biesheuvel wrote:
+> > Since commit bbc4d71d63549bc ("net: phy: realtek: fix rtl8211e rx/tx
+> > delay config"), the Realtek PHY driver will override any TX/RX delay
+> > set by hardware straps if the phy-mode device property does not match.
+> > 
+> > This is causing problems on SynQuacer based platforms (the only SoC
+> > that incorporates the netsec hardware), since many were built with
+> > this Realtek PHY, and shipped with firmware that defines the phy-mode
+> > as 'rgmii', even though the PHY is configured for TX and RX delay using
+> > pull-ups.
+> >   
+> > >From the driver's perspective, we should not make any assumptions in  
+> > the general case that the PHY hardware does not require any initial
+> > configuration. However, the situation is slightly different for ACPI
+> > boot, since it implies rich firmware with AML abstractions to handle
+> > hardware details that are not exposed to the OS. So in the ACPI case,
+> > it is reasonable to assume that the PHY comes up in the right mode,
+> > regardless of whether the mode is set by straps, by boot time firmware
+> > or by AML executed by the ACPI interpreter.
+> > 
+> > So let's ignore the 'phy-mode' device property when probing the netsec
+> > driver in ACPI mode, and hardcode the mode to PHY_INTERFACE_MODE_NA,
+> > which should work with any PHY provided that it is configured by the
+> > time the driver attaches to it. While at it, document that omitting
+> > the mode is permitted for DT probing as well, by setting the phy-mode
+> > DT property to the empty string.
+> > 
+> > Fixes: 533dd11a12f6 ("net: socionext: Add Synquacer NetSec driver")
+> > Signed-off-by: Ard Biesheuvel <ardb@kernel.org>  
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Only four peripherals have been added at the moment.
+Thanks, applied.
 
-Every peripheral that has its TYPE register's hw default value as
-zero must have it set to an all-ones mask (to cover all interrupts it
-supports) in pm8008_init(). This is as per commit 84267d1b18ab ("regmap:
-regmap-irq: Remove default irq type setting from core").
+Just to be on the safe side please make sure to CC Rob & DT list 
+if your patch touches anything device tree.
 
-Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
----
- drivers/mfd/Kconfig       |  14 ++++
- drivers/mfd/Makefile      |   1 +
- drivers/mfd/qcom-pm8008.c | 197 ++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 212 insertions(+)
- create mode 100644 drivers/mfd/qcom-pm8008.c
-
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 33df083..3d4e989 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -1960,6 +1960,20 @@ config MFD_ROHM_BD70528
- 	  10 bits SAR ADC for battery temperature monitor and 1S battery
- 	  charger.
- 
-+config MFD_QCOM_PM8008
-+	tristate "QCOM PM8008 Power Management IC"
-+	depends on I2C && OF
-+	select REGMAP_I2C
-+	select REGMAP_IRQ
-+	help
-+	  Select this option to get support for the PM8008 PMIC chip. PM8008 is
-+	  a low-cost PMIC that contains 7 LDOs, 2 GPIOs, temperature
-+	  monitoring, and can be interfaced over I2C. This driver provides
-+	  common support for accessing the device by instantiating all the
-+	  child nodes under it in the device tree and, therefore, additional
-+	  drivers must be enabled in order to use the functionality of the
-+	  device.
-+
- config MFD_ROHM_BD71828
- 	tristate "ROHM BD71828 Power Management IC"
- 	depends on I2C=y
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index a60e5f8..e316064 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -260,6 +260,7 @@ obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
- obj-$(CONFIG_MFD_ROHM_BD70528)	+= rohm-bd70528.o
- obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
- obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
-+obj-$(CONFIG_MFD_QCOM_PM8008)	+= qcom-pm8008.o
- obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
- obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
- 
-diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
-new file mode 100644
-index 0000000..56a5951
---- /dev/null
-+++ b/drivers/mfd/qcom-pm8008.c
-@@ -0,0 +1,197 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/irq.h>
-+#include <linux/irqdomain.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/regmap.h>
-+
-+#define I2C_INTR_STATUS_BASE	0x0550
-+#define INT_RT_STS_OFFSET	0x10
-+#define INT_SET_TYPE_OFFSET	0x11
-+#define INT_POL_HIGH_OFFSET	0x12
-+#define INT_POL_LOW_OFFSET	0x13
-+#define INT_LATCHED_CLR_OFFSET	0x14
-+#define INT_EN_SET_OFFSET	0x15
-+#define INT_EN_CLR_OFFSET	0x16
-+#define INT_LATCHED_STS_OFFSET	0x18
-+
-+#define PM8008_NUM_PERIPHS	4
-+
-+#define PM8008_PERIPH_0_BASE	0x900
-+#define PM8008_PERIPH_1_BASE	0x2400
-+#define PM8008_PERIPH_2_BASE	0xC000
-+#define PM8008_PERIPH_3_BASE	0xC100
-+
-+#define PM8008_TEMP_ALARM_ADDR	PM8008_PERIPH_1_BASE
-+#define PM8008_TEMP_ALARM_EN	0x1
-+
-+#define PM8008_STATUS_BASE	(PM8008_PERIPH_0_BASE | INT_LATCHED_STS_OFFSET)
-+#define PM8008_MASK_BASE	(PM8008_PERIPH_0_BASE | INT_EN_SET_OFFSET)
-+#define PM8008_UNMASK_BASE	(PM8008_PERIPH_0_BASE | INT_EN_CLR_OFFSET)
-+#define PM8008_TYPE_BASE	(PM8008_PERIPH_0_BASE | INT_SET_TYPE_OFFSET)
-+#define PM8008_ACK_BASE		(PM8008_PERIPH_0_BASE | INT_LATCHED_CLR_OFFSET)
-+#define PM8008_POLARITY_HI_BASE	(PM8008_PERIPH_0_BASE | INT_POL_HIGH_OFFSET)
-+#define PM8008_POLARITY_LO_BASE	(PM8008_PERIPH_0_BASE | INT_POL_LOW_OFFSET)
-+
-+#define ADDRESS_OFFSET(paddr, base)	(paddr - base)
-+
-+#define PM8008_PERIPH_OFFSET(paddr)	\
-+	ADDRESS_OFFSET(paddr, PM8008_PERIPH_0_BASE)
-+
-+struct pm8008_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	int irq;
-+	struct regmap_irq_chip_data *irq_data;
-+};
-+
-+unsigned int pm8008_periph_offs[] = {
-+	PM8008_PERIPH_OFFSET(PM8008_PERIPH_0_BASE),
-+	PM8008_PERIPH_OFFSET(PM8008_PERIPH_1_BASE),
-+	PM8008_PERIPH_OFFSET(PM8008_PERIPH_2_BASE),
-+	PM8008_PERIPH_OFFSET(PM8008_PERIPH_3_BASE),
-+};
-+
-+/* Need to define enums for the interrupt numbers and masks */
-+static struct regmap_irq pm8008_irqs[] = {
-+	/* MISC IRQs */
-+	REGMAP_IRQ_REG(0,	0,	BIT(0)),
-+	REGMAP_IRQ_REG(1,	0,	BIT(1)),
-+	REGMAP_IRQ_REG(2,	0,	BIT(2)),
-+	REGMAP_IRQ_REG(3,	0,	BIT(3)),
-+	REGMAP_IRQ_REG(4,	0,	BIT(4)),
-+	/* TEMP ALARM IRQs */
-+	REGMAP_IRQ_REG(5,	1,	BIT(0)),
-+	/* GPIO1 IRQs */
-+	REGMAP_IRQ_REG(6,	2,	BIT(0)),
-+	/* GPIO2 IRQs */
-+	REGMAP_IRQ_REG(7,	3,	BIT(0)),
-+};
-+
-+static struct regmap_irq_chip pm8008_irq_chip = {
-+	.name			= "pm8008_irq",
-+	.main_status		= I2C_INTR_STATUS_BASE,
-+	.num_main_regs		= 1,
-+	.irqs			= pm8008_irqs,
-+	.num_irqs		= ARRAY_SIZE(pm8008_irqs),
-+	.num_regs		= PM8008_NUM_PERIPHS,
-+	.periph_offs		= pm8008_periph_offs,
-+	.status_base		= PM8008_STATUS_BASE,
-+	/*
-+	 * mask_base and unmask_base are swapped (SET and CLR) because
-+	 * "unmask_offset" in framework expects unmask_base to be larger than
-+	 * mask_base.
-+	 */
-+	.mask_base		= PM8008_MASK_BASE,
-+	.unmask_base		= PM8008_UNMASK_BASE,
-+	.type_base		= PM8008_TYPE_BASE,
-+	.ack_base		= PM8008_ACK_BASE,
-+	.polarity_hi_base	= PM8008_POLARITY_HI_BASE,
-+	.polarity_lo_base	= PM8008_POLARITY_LO_BASE,
-+	.num_type_reg		= PM8008_NUM_PERIPHS,
-+};
-+
-+static struct regmap_config i2c_pmic_regmap_config = {
-+	.reg_bits	= 16,
-+	.val_bits	= 8,
-+	.max_register	= 0xFFFF,
-+};
-+
-+static int pm8008_init(struct pm8008_data *chip)
-+{
-+	/*
-+	 * Set TEMP_ALARM peripheral's TYPE so that the regmap-irq framework
-+	 * reads this as the default value instead of zero, the HW default.
-+	 */
-+
-+	return regmap_write(chip->regmap,
-+			(PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET),
-+			PM8008_TEMP_ALARM_EN);
-+}
-+
-+static int pm8008_probe(struct i2c_client *client,
-+			     const struct i2c_device_id *id)
-+{
-+	int rc, i;
-+	struct regmap_irq_type *type;
-+	struct pm8008_data *chip;
-+	struct regmap_irq_chip_data *irq_data;
-+
-+	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->dev = &client->dev;
-+	chip->regmap = devm_regmap_init_i2c(client, &i2c_pmic_regmap_config);
-+	if (!chip->regmap)
-+		return -ENODEV;
-+
-+	i2c_set_clientdata(client, chip);
-+
-+	rc = pm8008_init(chip);
-+	if (rc) {
-+		dev_err(chip->dev, "Init failed: %d\n", rc);
-+		return rc;
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(pm8008_irqs); i++) {
-+		type = &pm8008_irqs[i].type;
-+
-+		/* All IRQs support both edge and level triggers */
-+		type->types_supported = (IRQ_TYPE_EDGE_BOTH |
-+				IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW);
-+
-+		type->type_reg_offset 	  = pm8008_irqs[i].reg_offset;
-+		type->type_rising_val 	  = pm8008_irqs[i].mask;
-+		type->type_falling_val 	  = pm8008_irqs[i].mask;
-+		type->type_level_high_val = pm8008_irqs[i].mask;
-+		type->type_level_low_val  = pm8008_irqs[i].mask;
-+	}
-+
-+	rc = devm_regmap_add_irq_chip(chip->dev, chip->regmap, client->irq,
-+			IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
-+	if (rc) {
-+		dev_err(chip->dev, "Failed to add IRQ chip: %d\n", rc);
-+		return rc;
-+	}
-+
-+	return devm_of_platform_populate(chip->dev);
-+}
-+
-+static int pm8008_remove(struct i2c_client *client)
-+{
-+	i2c_set_clientdata(client, NULL);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id pm8008_match[] = {
-+	{ .compatible = "qcom,pm8008-irqchip", },
-+	{ },
-+};
-+
-+static const struct i2c_device_id i2c_pmic_id[] = {
-+	{ "qcom-i2c-pmic", 0 },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(i2c, i2c_pmic_id);
-+
-+static struct i2c_driver pm8008_irq_driver = {
-+	.driver = {
-+		.name = "pm8008-irqchip",
-+		.of_match_table = pm8008_match,
-+	},
-+	.probe 		= pm8008_probe,
-+	.remove 	= pm8008_remove,
-+	.id_table	= i2c_pmic_id,
-+};
-+module_i2c_driver(pm8008_irq_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("i2c:qcom-pm8008");
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+> --- a/Documentation/devicetree/bindings/net/socionext-netsec.txt
+> +++ b/Documentation/devicetree/bindings/net/socionext-netsec.txt
+> @@ -30,7 +30,9 @@ Optional properties: (See ethernet.txt file in the same directory)
+>  - max-frame-size: See ethernet.txt in the same directory.
+>  
+>  The MAC address will be determined using the optional properties
+> -defined in ethernet.txt.
+> +defined in ethernet.txt. The 'phy-mode' property is required, but may
+> +be set to the empty string if the PHY configuration is programmed by
+> +the firmware or set by hardware straps, and needs to be preserved.
+>  
+>  Example:
+>  	eth0: ethernet@522d0000 {
