@@ -2,106 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCD32293F2C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 628A2293F40
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407149AbgJTPCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 11:02:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
+        id S2408520AbgJTPID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 11:08:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407232AbgJTPCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:02:25 -0400
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD7BC0613CE
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 08:02:25 -0700 (PDT)
-Received: by mail-ot1-x341.google.com with SMTP id k68so1948140otk.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 08:02:25 -0700 (PDT)
+        with ESMTP id S2407657AbgJTPIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:08:02 -0400
+Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BD6C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 08:08:01 -0700 (PDT)
+Received: by mail-ua1-x941.google.com with SMTP id f15so766637uaq.9
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 08:08:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wA7leJ3r329vjuShQjin2/YX33n4txaRPx7BAT6IFiY=;
-        b=Cvbf3WPCAnEloUeJQsig/ltKiMYzrByTjlTuRmzEZ8A9Na4Uy7ovbruvo1GF1zIv9T
-         Isjq2MtLW9tp4BD7jKyckOihW+fyZjiV48m1pXTjgB1wyKCA9zt2mNKXOGMfSTM2ImIz
-         FQxfgoRh64HaUn1KYR86rh9mXDC5T2S2kXNKkLVnC3MtXPl4P9QMnn2TX5MIUYawjlN/
-         7L6ATQSG6S1l/uq13hVIc56WChdD9mKonjNCmQGbbGpf34UKBs/2fvr1ZdnoNwmis8/l
-         7H/qXbmHCRyfhFwsFIuisLnV2B1GI6gblp2hi/4E0aAAOZ3A+V0oP1jiWTJb2XAac3CX
-         Kvsg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=YpTMFQeEZb0rjpUuW6XXMOAXIdREE2jLBrSTZUeG4I8=;
+        b=U1XUF5DhInl+St5txZvE2N429K3nu9ruKXD64YmX2X9+frCh1aWremcUA85iF2PIx1
+         DLK9xaE52MkGJALcimxPhnvF3IBiGas67tyRMEO11rVkqq2lMq8YJzOqqG1pvEgcHaVM
+         QrU6NGgqq+aY7T8Bl7fUpiQM4tFebDK9yMrhenwM6yX58MjiEYyAMTQQ7YrFTE6lxtUi
+         OXaQRoagMEWU3zF0JrOSkFFMp+bcFDs4SvBOnhtj57cGNHe212D2YzYsy6WeE2rXyg0G
+         y0Hx3T05Dcv4O0QwgqD0NlzZ/TXN5kk8ycpPqPu7i3n5fTgYQGkWxShdlqxNh00mY5GT
+         nXkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wA7leJ3r329vjuShQjin2/YX33n4txaRPx7BAT6IFiY=;
-        b=on7Q8Pgrd9v+tePQbrVwuKMRXg88trTiuGqB9uSyVbj57U2XU1bCEteJMtLUCIdjQm
-         P2F6ozJ9PFl8EAwMQEZJ+DRImHOj6xYoSSgV21MVjpFH4MZxrlyaOVlrIwOltXhSMD2v
-         jBBjwtGBk3IzoQzYniz9126e/a69UQoe7tJfx3unTRponudkKua3L9ISk7ImqF09Kvpg
-         DXzx4RxdFHtqvGprEI68gIBGnf3FfPZkA/AVMY9Ph6k2ZaF1qU1jQ2fbzORnZ+5aQxbT
-         Q6AmlR3WhCfHg2lzCOiLfn1XUSPhJl0G7sCtRbXZPgQaehGSmMqWZIbY9cD22E0BxrUF
-         Lxqg==
-X-Gm-Message-State: AOAM533DRQrfPxqoWqlsaPUm1eyL2ZWyr7+ZXG4FkJjiTK9XrSxN/HAl
-        u6WzJhtAHNWNPw2BsRDSXBBxng==
-X-Google-Smtp-Source: ABdhPJzxU5HWzcCVST4Xx2Iv1CHt6jDtD3iktDJRDA8bxSGq5XzqTloe5QDsJkJ/VB8zOm4PBxgokQ==
-X-Received: by 2002:a9d:6307:: with SMTP id q7mr2072814otk.218.1603206143816;
-        Tue, 20 Oct 2020 08:02:23 -0700 (PDT)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m10sm511658oon.27.2020.10.20.08.02.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 08:02:22 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFT PATCH] arm64: dts: sdm845: Add iommus property to qup
-Date:   Tue, 20 Oct 2020 08:03:01 -0700
-Message-Id: <20201020150301.3259814-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.28.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=YpTMFQeEZb0rjpUuW6XXMOAXIdREE2jLBrSTZUeG4I8=;
+        b=RkhRxveoqZ8fk9Hb5LNeNv066pQlgbcJkT6bW8G5KFvxHypKk3Y+VU0GpL/mN5cNj1
+         kntxzztZY6W6XJMlHF+kSJSBz1oWa5LnSud7sshOIy9YX/q368yLo2GaFjGguLax3ojj
+         XNx3tGr6QEO8bteQokFiEjEsb5NYeaFY+bgKplX9h8gidsw4grYbPKl9lqPzIpsmKnNJ
+         fCTT7oosc2PnW2m/4g3SmS58vFZBYh2ocisRLHf/DocPyfXWfrZRMvbyYfBZXxyk2FGM
+         VrXn+ecMi0L8vWc76c18Enzv9TZwDUbCQF2SCqR5F+0Slo9rv7hd8NAIvL0QsS8slXn0
+         0BZA==
+X-Gm-Message-State: AOAM530fQN5ERFbXbyRV+ltdGZDY4/ufCfnjYp1s41jBqaXOqSWU6wA8
+        yI6KCDijBntvBfgoRcnSg+uhD5EY/OxgbTpy8yqv5g==
+X-Google-Smtp-Source: ABdhPJwm/KewgGT5Q4WyxYXhPhUG/Zzq9WDofYxTVkmfKUiHImFkm6avmj6ccvMkFsJ3lYGD58oCWd/inLtq/UlBoG4=
+X-Received: by 2002:ab0:6f11:: with SMTP id r17mr1324840uah.15.1603206476961;
+ Tue, 20 Oct 2020 08:07:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201020125817.1632995-1-Jerome.Pouiller@silabs.com> <20201020125817.1632995-2-Jerome.Pouiller@silabs.com>
+In-Reply-To: <20201020125817.1632995-2-Jerome.Pouiller@silabs.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 20 Oct 2020 17:07:19 +0200
+Message-ID: <CAPDyKFp9pnK0T2xKaXcMUzpxO9OCD49Od=ML+gdQbNndrX0Bag@mail.gmail.com>
+Subject: Re: [PATCH v2 01/24] mmc: sdio: add SDIO IDs for Silabs WF200 chip
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stephen Boyd <swboyd@chromium.org>
+On Tue, 20 Oct 2020 at 14:58, Jerome Pouiller
+<Jerome.Pouiller@silabs.com> wrote:
+>
+> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+>
+> Add Silabs SDIO ID to sdio_ids.h.
+>
+> Note that the values used by Silabs are uncommon. A driver cannot fully
+> rely on the SDIO PnP. It should also check if the device is declared in
+> the DT.
+>
+> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
 
-The SMMU that sits in front of the QUP needs to be programmed properly
-so that the i2c geni driver can allocate DMA descriptors. Failure to do
-this leads to faults when using devices such as an i2c touchscreen where
-the transaction is larger than 32 bytes and we use a DMA buffer.
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-arm-smmu 15000000.iommu: Unexpected global fault, this could be serious
-arm-smmu 15000000.iommu:         GFSR 0x00000002, GFSYNR0 0x00000002, GFSYNR1 0x000006c0, GFSYNR2 0x00000000
+Kind regards
+Uffe
 
-Add the right SID and mask so this works.
 
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-[bjorn: Define for second QUP as well]
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 8eb5a31346d2..7d635bc919cb 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -811,6 +811,7 @@ qupv3_id_0: geniqup@8c0000 {
- 			clock-names = "m-ahb", "s-ahb";
- 			clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
- 				 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-+			iommus = <&apps_smmu 0x0 0x3>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -1119,6 +1120,7 @@ qupv3_id_1: geniqup@ac0000 {
- 			clock-names = "m-ahb", "s-ahb";
- 			clocks = <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
- 				 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
-+			iommus = <&apps_smmu 0x6c0 0x3>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
--- 
-2.28.0
-
+> ---
+>  include/linux/mmc/sdio_ids.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/include/linux/mmc/sdio_ids.h b/include/linux/mmc/sdio_ids.h
+> index 12036619346c..20a48162f7fc 100644
+> --- a/include/linux/mmc/sdio_ids.h
+> +++ b/include/linux/mmc/sdio_ids.h
+> @@ -25,6 +25,11 @@
+>   * Vendors and devices.  Sort key: vendor first, device next.
+>   */
+>
+> +// Silabs does not use a reliable vendor ID. To avoid conflicts, the dri=
+ver
+> +// won't probe the device if it is not also declared in the DT.
+> +#define SDIO_VENDOR_ID_SILABS                  0x0000
+> +#define SDIO_DEVICE_ID_SILABS_WF200            0x1000
+> +
+>  #define SDIO_VENDOR_ID_STE                     0x0020
+>  #define SDIO_DEVICE_ID_STE_CW1200              0x2280
+>
+> --
+> 2.28.0
+>
