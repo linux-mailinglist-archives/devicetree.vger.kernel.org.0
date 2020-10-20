@@ -2,229 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 695D1294518
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 00:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E68C7294532
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 00:34:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390994AbgJTWXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 18:23:42 -0400
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:4207 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2390360AbgJTWXm (ORCPT
+        id S2439084AbgJTWdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 18:33:54 -0400
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:55334 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2439082AbgJTWdy (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Oct 2020 18:23:42 -0400
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 20 Oct 2020 15:17:36 -0700
+        Tue, 20 Oct 2020 18:33:54 -0400
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 20 Oct 2020 15:33:53 -0700
 X-QCInternal: smtphost
 Received: from gurus-linux.qualcomm.com ([10.46.162.81])
-  by ironmsg04-sd.qualcomm.com with ESMTP; 20 Oct 2020 15:17:35 -0700
+  by ironmsg03-sd.qualcomm.com with ESMTP; 20 Oct 2020 15:33:53 -0700
 Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
-        id 42FA2194C; Tue, 20 Oct 2020 15:17:35 -0700 (PDT)
+        id 8D0301946; Tue, 20 Oct 2020 15:33:53 -0700 (PDT)
 From:   Guru Das Srinagesh <gurus@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+To:     Mark Brown <broonie@kernel.org>,
+        Markus Elfring <Markus.Elfring@web.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Joe Perches <joe@perches.com>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
         David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
         Anirudh Ghayal <aghayal@codeaurora.org>,
-        Kavya Nunna <knunna@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
         Guru Das Srinagesh <gurus@codeaurora.org>
-Subject: [RESEND PATCH v2 2/2] extcon: qcom-spmi: Add support for VBUS detection
-Date:   Tue, 20 Oct 2020 15:17:25 -0700
-Message-Id: <be397c0bad2ff981890e7585aff7d10d9c005d07.1603231949.git.gurus@codeaurora.org>
+Subject: [RFC PATCH RESEND v1 0/3] Add support for Qualcomm MFD PMIC register layout
+Date:   Tue, 20 Oct 2020 15:33:40 -0700
+Message-Id: <cover.1603232320.git.gurus@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1603231949.git.gurus@codeaurora.org>
-References: <cover.1603231949.git.gurus@codeaurora.org>
-In-Reply-To: <cover.1603231949.git.gurus@codeaurora.org>
-References: <cover.1603231949.git.gurus@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anirudh Ghayal <aghayal@codeaurora.org>
+(Re-sending to add devicetree mailing list)
 
-VBUS can be detected via a dedicated PMIC pin. Add support
-for reporting the VBUS status.
+This is a follow-up as promised [1] to the earlier attempts [2] [3] to upstream
+the driver that has been hitherto used to handle IRQs for Qualcomm's PMICs that
+have multiple on-board peripherals when they are interfaced over the I2C
+interface.
 
-Signed-off-by: Anirudh Ghayal <aghayal@codeaurora.org>
-Signed-off-by: Kavya Nunna <knunna@codeaurora.org>
-Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
----
- drivers/extcon/extcon-qcom-spmi-misc.c | 100 ++++++++++++++++++++++++++-------
- 1 file changed, 81 insertions(+), 19 deletions(-)
+This series is a rewrite of that driver while making use of the regmap-irq
+framework, which needs some modifications to handle the register layout of
+Qualcomm's PMICs. This is an RFC because I would like to get feedback on my
+general approach before submitting as a patch per se.
 
-diff --git a/drivers/extcon/extcon-qcom-spmi-misc.c b/drivers/extcon/extcon-qcom-spmi-misc.c
-index 6b836ae..6bd6746 100644
---- a/drivers/extcon/extcon-qcom-spmi-misc.c
-+++ b/drivers/extcon/extcon-qcom-spmi-misc.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /**
-  * extcon-qcom-spmi-misc.c - Qualcomm USB extcon driver to support USB ID
-- *				detection based on extcon-usb-gpio.c.
-+ *			and VBUS detection based on extcon-usb-gpio.c.
-  *
-  * Copyright (C) 2016 Linaro, Ltd.
-  * Stephen Boyd <stephen.boyd@linaro.org>
-@@ -21,30 +21,56 @@
- 
- struct qcom_usb_extcon_info {
- 	struct extcon_dev *edev;
--	int irq;
-+	int id_irq;
-+	int vbus_irq;
- 	struct delayed_work wq_detcable;
- 	unsigned long debounce_jiffies;
- };
- 
- static const unsigned int qcom_usb_extcon_cable[] = {
-+	EXTCON_USB,
- 	EXTCON_USB_HOST,
- 	EXTCON_NONE,
- };
- 
- static void qcom_usb_extcon_detect_cable(struct work_struct *work)
- {
--	bool id;
-+	bool state = false;
- 	int ret;
-+	union extcon_property_value val;
- 	struct qcom_usb_extcon_info *info = container_of(to_delayed_work(work),
- 						    struct qcom_usb_extcon_info,
- 						    wq_detcable);
- 
--	/* check ID and update cable state */
--	ret = irq_get_irqchip_state(info->irq, IRQCHIP_STATE_LINE_LEVEL, &id);
--	if (ret)
--		return;
-+	if (info->id_irq > 0) {
-+		/* check ID and update cable state */
-+		ret = irq_get_irqchip_state(info->id_irq,
-+				IRQCHIP_STATE_LINE_LEVEL, &state);
-+		if (ret)
-+			return;
-+
-+		if (!state) {
-+			val.intval = true;
-+			extcon_set_property(info->edev, EXTCON_USB_HOST,
-+						EXTCON_PROP_USB_SS, val);
-+		}
-+		extcon_set_state_sync(info->edev, EXTCON_USB_HOST, !state);
-+	}
- 
--	extcon_set_state_sync(info->edev, EXTCON_USB_HOST, !id);
-+	if (info->vbus_irq > 0) {
-+		/* check VBUS and update cable state */
-+		ret = irq_get_irqchip_state(info->vbus_irq,
-+				IRQCHIP_STATE_LINE_LEVEL, &state);
-+		if (ret)
-+			return;
-+
-+		if (state) {
-+			val.intval = true;
-+			extcon_set_property(info->edev, EXTCON_USB,
-+						EXTCON_PROP_USB_SS, val);
-+		}
-+		extcon_set_state_sync(info->edev, EXTCON_USB, state);
-+	}
- }
- 
- static irqreturn_t qcom_usb_irq_handler(int irq, void *dev_id)
-@@ -79,21 +105,48 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	ret = extcon_set_property_capability(info->edev,
-+			EXTCON_USB, EXTCON_PROP_USB_SS);
-+	ret |= extcon_set_property_capability(info->edev,
-+			EXTCON_USB_HOST, EXTCON_PROP_USB_SS);
-+	if (ret) {
-+		dev_err(dev, "failed to register extcon props rc=%d\n",
-+						ret);
-+		return ret;
-+	}
-+
- 	info->debounce_jiffies = msecs_to_jiffies(USB_ID_DEBOUNCE_MS);
- 	INIT_DELAYED_WORK(&info->wq_detcable, qcom_usb_extcon_detect_cable);
- 
--	info->irq = platform_get_irq_byname(pdev, "usb_id");
--	if (info->irq < 0)
--		return info->irq;
-+	info->id_irq = platform_get_irq_byname(pdev, "usb_id");
-+	if (info->id_irq > 0) {
-+		ret = devm_request_threaded_irq(dev, info->id_irq, NULL,
-+					qcom_usb_irq_handler,
-+					IRQF_TRIGGER_RISING |
-+					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+					pdev->name, info);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to request handler for ID IRQ\n");
-+			return ret;
-+		}
-+	}
- 
--	ret = devm_request_threaded_irq(dev, info->irq, NULL,
-+	info->vbus_irq = platform_get_irq_byname(pdev, "usb_vbus");
-+	if (info->vbus_irq > 0) {
-+		ret = devm_request_threaded_irq(dev, info->vbus_irq, NULL,
- 					qcom_usb_irq_handler,
- 					IRQF_TRIGGER_RISING |
- 					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
- 					pdev->name, info);
--	if (ret < 0) {
--		dev_err(dev, "failed to request handler for ID IRQ\n");
--		return ret;
-+		if (ret < 0) {
-+			dev_err(dev, "failed to request handler for VBUS IRQ\n");
-+			return ret;
-+		}
-+	}
-+
-+	if (info->id_irq < 0 && info->vbus_irq < 0) {
-+		dev_err(dev, "ID and VBUS IRQ not found\n");
-+		return -EINVAL;
- 	}
- 
- 	platform_set_drvdata(pdev, info);
-@@ -120,8 +173,12 @@ static int qcom_usb_extcon_suspend(struct device *dev)
- 	struct qcom_usb_extcon_info *info = dev_get_drvdata(dev);
- 	int ret = 0;
- 
--	if (device_may_wakeup(dev))
--		ret = enable_irq_wake(info->irq);
-+	if (device_may_wakeup(dev)) {
-+		if (info->id_irq > 0)
-+			ret = enable_irq_wake(info->id_irq);
-+		if (info->vbus_irq > 0)
-+			ret = enable_irq_wake(info->vbus_irq);
-+	}
- 
- 	return ret;
- }
-@@ -131,8 +188,12 @@ static int qcom_usb_extcon_resume(struct device *dev)
- 	struct qcom_usb_extcon_info *info = dev_get_drvdata(dev);
- 	int ret = 0;
- 
--	if (device_may_wakeup(dev))
--		ret = disable_irq_wake(info->irq);
-+	if (device_may_wakeup(dev)) {
-+		if (info->id_irq > 0)
-+			ret = disable_irq_wake(info->id_irq);
-+		if (info->vbus_irq > 0)
-+			ret = disable_irq_wake(info->vbus_irq);
-+	}
- 
- 	return ret;
- }
-@@ -143,6 +204,7 @@ static SIMPLE_DEV_PM_OPS(qcom_usb_extcon_pm_ops,
- 
- static const struct of_device_id qcom_usb_extcon_dt_match[] = {
- 	{ .compatible = "qcom,pm8941-misc", },
-+	{ .compatible = "qcom,pmd-vbus-det", },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_usb_extcon_dt_match);
+Upon inspection of the regmap-irq framework, it was observed that the
+downstream driver was essentially replicating the framework's IRQ handling
+logic (such as adding an IRQ domain, and the interrupt handler thread that
+reads sub-irqs from a main status register). It was also observed that the
+framework could not be used as-is because:
+- Qualcomm's PMIC peripheral register layout does not follow a fixed
+  irq_reg_stride, and
+- The "IRQ TYPE" configuration register takes one bit per interrupt, which when
+  set configures that interrupt as Edge triggered, and when cleared sets it to
+  Level triggered.
+- There are two IRQ configuration registers in addition to "IRQ TYPE" that
+  further configure the IRQ type as triggered by rising-edge/level high or
+  alternatively, falling-edge/level low that have no support in the regmap-irq
+  framework currently.
+
+This patch series has been tested on an internal platform using PM8008 as a
+test MFD PMIC chip. PM8008 is a PMIC that contains 7 LDOs, 2 GPIOs, temperature
+monitoring, and can be interfaced over I2C.
+
+Both the framework modifications as well as the chip driver
+have been submitted here for review. Some details about the specific
+differences between the framework and QCOM PMICs' register layout are provided
+below using PM8008 as an example.
+
+[PM8008 peripheral register layout]
+
+Of all the peripherals in PM8008, only a few need IRQ support. They are laid
+out at the following base addresses (only four are added at the moment for
+simplicity):
+
+	0x0900, 0x2400, 0xC000, 0xC100
+
+Each peripheral is allocated a uniform size of 0x100 bytes and its IRQs are
+configured through a set of registers that are located at fixed offsets from
+the above base addresses, uniformly:
+
+	Register name	       Addr	regmap-irq equivalent	Comment
+	-----------------------------------------------------------------------
+	INT_RT_STS_OFFSET      0x10	(no equivalent)		See #1 below
+	INT_SET_TYPE_OFFSET    0x11	type_base 		See #2 below
+	INT_POL_HIGH_OFFSET    0x12	(no equivalent)		See #3 below
+	INT_POL_LOW_OFFSET     0x13	(no equivalent)		See #3 below
+	INT_LATCHED_CLR_OFFSET 0x14	ack_base
+	INT_EN_SET_OFFSET      0x15	unmask_base		See #4 below
+	INT_EN_CLR_OFFSET      0x16	mask_base		See #4 below
+	INT_LATCHED_STS_OFFSET 0x18	status_base
+
+Comments (all registers are one bit per interrupt):
+1. INT_RT_STS_OFFSET is not used by the regmap-irq, so it may be ignored.
+2. INT_SET_TYPE_OFFSET: 1 for edge trigger, 0 for level trigger.
+3. Support needs to be added for writing to INT_POL_HIGH_OFFSET and
+   INT_POL_LOW_OFFSET correctly in the framework. Set to 1 or 0 to enable or
+   disable rising-edge/level high or falling-edge/level low.
+4. Even though INT_EN_SET_OFFSET and INT_EN_CLR_OFFSET map to unmask_base and
+   mask_base in the regmap-irq framework conceptually, they are swapped in the
+   chip driver because `unmask_offset` in the framework expects unmask_base to
+   be larger than mask_base numerically. This has to be kept in mind while
+   reviewing the "mfd: Add PM8008 driver" patch below.
+
+[Summary of framework changes]
+
+The main thrust of the changes is to introduce an array of peripheral offset
+values, which are to be added to the *_base addresses in order to arrive at the
+correct register addresses per peripheral. In order to get at the first
+peripheral's addresses, the first element of this array must be zero.
+
+Since there are two new registers (INT_POL_HIGH_OFFSET and INT_POL_LOW_OFFSET),
+add support for storing the per-peripheral values and also writing to them.
+These will be used only if peripheral offsets are specified.
+
+[1] https://lore.kernel.org/lkml/20200519185757.GA13992@codeaurora.org/
+[2] https://lore.kernel.org/lkml/cover.1588037638.git.gurus@codeaurora.org/
+[3] https://lore.kernel.org/lkml/cover.1588115326.git.gurus@codeaurora.org/
+
+Guru Das Srinagesh (3):
+  regmap-irq: Add support for peripheral offsets
+  dt-bindings: mfd: Add QCOM PM8008 MFD bindings
+  mfd: Add PM8008 driver
+
+ .../bindings/mfd/qcom,pm8008-irqchip.yaml          | 103 +++++++++++
+ drivers/base/regmap/regmap-irq.c                   | 191 ++++++++++++++++----
+ drivers/mfd/Kconfig                                |  14 ++
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/qcom-pm8008.c                          | 197 +++++++++++++++++++++
+ include/linux/regmap.h                             |   6 +
+ 6 files changed, 478 insertions(+), 34 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/qcom,pm8008-irqchip.yaml
+ create mode 100644 drivers/mfd/qcom-pm8008.c
+
 -- 
 The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
 a Linux Foundation Collaborative Project
