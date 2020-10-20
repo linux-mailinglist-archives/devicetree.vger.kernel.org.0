@@ -2,108 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE308293FBB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EBBA293FEB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436685AbgJTPk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 11:40:56 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42458 "EHLO
+        id S2436791AbgJTPv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 11:51:27 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:37455 "EHLO
         mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436684AbgJTPk4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:40:56 -0400
-Received: by mail-ot1-f65.google.com with SMTP id h62so2092368oth.9;
-        Tue, 20 Oct 2020 08:40:54 -0700 (PDT)
+        with ESMTP id S1731778AbgJTPv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:51:26 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m22so2157285ots.4;
+        Tue, 20 Oct 2020 08:51:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bPJ41BbXrVBpKagW0AFLuDG820FKrJowO4JL4r2A7Mg=;
-        b=m4MKVE45v8ptwLdXIBne6C7bj0k194iIGvR0uaWxLQdrmz2sXl73ncM8gnWD8D3T/7
-         Xipn/2TG3I+T7sRuOjOBLGhfXgYs4zJVxm/z9qmtcQ24QtsFAUeuq7y48tX/EzHXN4j9
-         1/AEtUth7a3owBen/kGHFWmNH/cxKfavmT/h6zo3KpnCAcpGtP3GQBBfIhPmNDAC5Aty
-         dzFCbHUkkNbLrEtQpr1raAoDRM9g5azcWIozLoV2LIUCCFiFrBqFAjGr48Aq95cqU1Kc
-         sTpew5Qv06Bmd3xXeSccNcTiQ+t8zrIejJmixgtdqPxurMZLkeZTp08p1+XIRX65IfU3
-         3GLA==
-X-Gm-Message-State: AOAM532gYW5KO+cAiSb6r8Jz+3fAhMTYGgeO7s3x5HWKYz/1Dggl+9Dx
-        UidkcgaHJAU+O1hpQMvGPA==
-X-Google-Smtp-Source: ABdhPJxaxCIP6Kd2pnNLtDOo2/dAgOtLCptI3qgvO+i9WOyGybYr0U/8yYzB9sCXkm1PHVRrZpc3zw==
-X-Received: by 2002:a9d:6:: with SMTP id 6mr1983535ota.235.1603208454213;
-        Tue, 20 Oct 2020 08:40:54 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=o1jr+LQI3neSRU9mhYCD09x59Rl+accC5fl8cYRl988=;
+        b=VMmnoJKZZxsGqnV7rkDxt9a38JBv4iYJmVDfUr4/AXgFVCnI5cyDH85I/cFK79zKtG
+         0A9SQ7tzMV2TJAI1+J2JPguESjB1r7p/pnNdEtCBbozdU5eVM9BV64AfnOmoqJeyrRM7
+         0LUVxk5TDUL6O+llZqAv0du4omImyyTdcc934fZZDZM5g4JATwy64KpHVu8fnvVqzgyH
+         sU5YKWe8bUdS3GXj5YzERu0s1CtF1EfLKPVLVpi/dsYaIvblkaJ3XUc+45c/EKv3qGsd
+         wtwX33uQzNQbBXnFpS4ILMleoGd6zE1jFo0fTmGSjKA6mg+pRHXWX3Fud2G4IvFLOIzD
+         endw==
+X-Gm-Message-State: AOAM532wDvQLPkTa3fxvxk94k3XXiEM0Ilwj9LbsDmlo3X9PBBY6sA74
+        1MwKeSnRXA5nRjYgySywrg==
+X-Google-Smtp-Source: ABdhPJwIPVQjNT4eoEaO6m8h+vP/uedjDFiu4iNmJ6LRBgqch0MXCCZDzVdfmG/vYdMynGceRFkrrA==
+X-Received: by 2002:a9d:65c7:: with SMTP id z7mr2227576oth.327.1603209086026;
+        Tue, 20 Oct 2020 08:51:26 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i14sm515801ota.59.2020.10.20.08.40.52
+        by smtp.gmail.com with ESMTPSA id u186sm621259oia.51.2020.10.20.08.51.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 08:40:53 -0700 (PDT)
-Received: (nullmailer pid 889399 invoked by uid 1000);
-        Tue, 20 Oct 2020 15:40:52 -0000
-Date:   Tue, 20 Oct 2020 10:40:52 -0500
+        Tue, 20 Oct 2020 08:51:25 -0700 (PDT)
+Received: (nullmailer pid 904828 invoked by uid 1000);
+        Tue, 20 Oct 2020 15:51:24 -0000
+Date:   Tue, 20 Oct 2020 10:51:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-mips@vger.kernel.org, linux-snps-arc@lists.infradead.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Roger Quadros <rogerq@ti.com>, devicetree@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-usb@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3 09/16] dt-bindings: usb: Convert DWC USB3 bindings to
- DT schema
-Message-ID: <20201020154052.GA889228@bogus>
-References: <20201020112101.19077-1-Sergey.Semin@baikalelectronics.ru>
- <20201020112101.19077-10-Sergey.Semin@baikalelectronics.ru>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     wan.ahmad.zainie.wan.mohamad@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com, robh+dt@kernel.org,
+        u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com
+Subject: Re: [PATCH v13 2/2] dt-bindings: pwm: keembay: Add bindings for
+ Intel Keem Bay PWM
+Message-ID: <20201020155124.GA904484@bogus>
+References: <cover.1603127898.git.vijayakannan.ayyathurai@intel.com>
+ <48f86a9a525701cfc61e3375d1d6f65ce38a9b26.1603127898.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20201020112101.19077-10-Sergey.Semin@baikalelectronics.ru>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <48f86a9a525701cfc61e3375d1d6f65ce38a9b26.1603127898.git.vijayakannan.ayyathurai@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 14:20:54 +0300, Serge Semin wrote:
-> DWC USB3 DT node is supposed to be compliant with the Generic xHCI
-> Controller schema, but with additional vendor-specific properties, the
-> controller-specific reference clocks and PHYs. So let's convert the
-> currently available legacy text-based DWC USB3 bindings to the DT schema
-> and make sure the DWC USB3 nodes are also validated against the
-> usb-xhci.yaml schema.
+On Tue, 20 Oct 2020 01:28:47 +0800, vijayakannan.ayyathurai@intel.com wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 > 
-> Note we have to discard the nodename restriction of being prefixed with
-> "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
-> are supposed to be named as "^usb(@.*)".
+> Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
+> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 > ---
-> 
-> Changelog v2:
-> - Discard '|' from the descriptions, since we don't need to preserve
->   the text formatting in any of them.
-> - Drop quotes from around the string constants.
-> - Fix the "clock-names" prop description to be referring the enumerated
->   clock-names instead of the ones from the Databook.
-> 
-> Changelog v3:
-> - Apply usb-xhci.yaml# schema only if the controller is supposed to work
->   as either host or otg.
-> ---
->  .../devicetree/bindings/usb/dwc3.txt          | 125 --------
->  .../devicetree/bindings/usb/snps,dwc3.yaml    | 302 ++++++++++++++++++
->  2 files changed, 302 insertions(+), 125 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>  .../bindings/pwm/intel,keembay-pwm.yaml       | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
