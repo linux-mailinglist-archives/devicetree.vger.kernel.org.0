@@ -2,160 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2892B2934B0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 08:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B528E29351E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 08:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392065AbgJTGRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 02:17:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
+        id S2404458AbgJTGoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 02:44:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392061AbgJTGRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 02:17:05 -0400
-Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com [IPv6:2607:f8b0:4864:20::943])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E349C0613CE
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 23:17:04 -0700 (PDT)
-Received: by mail-ua1-x943.google.com with SMTP id c1so351805uap.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Oct 2020 23:17:04 -0700 (PDT)
+        with ESMTP id S1731178AbgJTGoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 02:44:17 -0400
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B6E7C061755;
+        Mon, 19 Oct 2020 23:44:17 -0700 (PDT)
+Received: by mail-oi1-x244.google.com with SMTP id l85so1055085oih.10;
+        Mon, 19 Oct 2020 23:44:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/PMZL8djp6BBIIISqMw1ZBVOjv5yfHjbUvy/rFeeBRc=;
-        b=bxV0ZtEO2MH8NVX5uSyoFAHrBbQj0EXphUTf/KlhlEGrWa5HVyiCoOjNBomq7GX28Q
-         cJxAQiV6kBooan6p+afmfGKDZDdFCW8MJuZEDWgn4hM4LGfHcoFZ9conhev3u8zAqovu
-         bg96lp4ap7IY2ZhDqKsNIq7Ex7xhkxq8d5Q90e2T7a0Dc0bS9dwg+5dVGjuKD3xR3r8s
-         WuriK+KPMZM3In88jiy6GFSSu+n2rVOk8jWWJv1Np4BMg5sQIvAnLtbEoSRlnRnT1Mjg
-         hq2xXnTu9DEuUiRMc5uxRK5G2C1yjE4zIIW4xYSFGVlSq0zCwau/EOPlySuuN+HqzpmD
-         EZlw==
+         :cc:content-transfer-encoding;
+        bh=MFOC5MSfgXpVUcpJFvepm9LoCBUyxU58dQ3kENmA2dU=;
+        b=rE9NI/S/p9SvnsP2ThZmuLSQCes4KW77g+ZROKqi9zQ4BRyD7j8L3qAXRGY48tDEXB
+         DVCVdi+bIimBHadB2S37aNu3DzzFKphM/kG45PJO7l+kd734QFl9innU/HfWG6kCwDzw
+         l0HKuSwIx5NEiJnNS2n4U3+DwbVgAhSFfhZpu0uVBWFRBFhlyr7NqU1bbxKl1z/H4UE4
+         aTQrp+jajh0mCnsH8CIqNDg7aegBRdbhH6RCkCS4DxseTzhxvjECNzfp2VlQOgAJlpfi
+         +uQdkC8pS6xfGU5wiOJx6m5loPyY7Kod6LTMdP+wf3Li0aORhXNL3t+aIHmZBz+TNE7M
+         l/mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/PMZL8djp6BBIIISqMw1ZBVOjv5yfHjbUvy/rFeeBRc=;
-        b=CJQKJgfHXSdZeID3FGCix+lJfI0Ws1M5Jy45At9VCBU+G3oFUFSZ/cizgKRag8TO57
-         hdbt9YIrQd9JexmRWQCo8deN+aZ0q0RoK4IoZt1m9J/0RIYF6Dtri0MztwTKQPtuIIW3
-         Nlty+kMUh7OWrIQuGDQxXtAq3pniKNriwUu5km0n7j0QSXNsLmKK/xmNRxWAnT3TXHtU
-         z1iM234uxN15myVkPQBbYXacrW7LZzqQ9FB/+Elq7uCjCbKWYwdt/DjdZTZta7q1mDCm
-         6RnKiV+cm/y2+ONTzGWa37f+PsekegY8IXQij8pHWl4B8G0sresK2+QUP2Gs/lOoVWHc
-         LCtA==
-X-Gm-Message-State: AOAM5306F+FvFkrADVmgYesuIQsFVTMbidKC/AKJPGzkO4Oia/yKDGlT
-        KUDjQzNyI4wSYjx/OrNty5BxHOLdz6MyebR3Tf8yxUKCZfs=
-X-Google-Smtp-Source: ABdhPJyUkvyqyCT6r760zl8Vb4IKJCfnU8P6FAbX8PUXsUqwUbSl6iaWnMWihJgPvl8adkp6fCiORbXFoNtmOLmeKZA=
-X-Received: by 2002:ab0:2345:: with SMTP id h5mr491919uao.1.1603174623423;
- Mon, 19 Oct 2020 23:17:03 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=MFOC5MSfgXpVUcpJFvepm9LoCBUyxU58dQ3kENmA2dU=;
+        b=gzrUL3DU9akGnOGURI5LOulojmEGWYZ+wRQ+LrRReiDMwFV6UldrH1tTssugaPYxlo
+         pnMZ6rnPaV29VdQ2NKedqf3oiO2XRXLezZ3E3hfF3EObBWbqC8WtfhYRR1mzxC6a/Aui
+         5QcLfjXtULSaN4nMLndV9nwVmcx50alEiweqjx9n6SZ3ZHMZcNehthZdzODT/8QxMsmj
+         vKpS6fusJqSBIrdftakgTpIobTgxxztq3+EnqsO+T9Om4ypvYAp9YVW5MA3ghj8S49F3
+         fkDjoLyY8WNWIe7oiRydclNtRwwUnxw6cd559EA5++RBxE3JfGfARzVoqD4RqIbqvnff
+         hmdg==
+X-Gm-Message-State: AOAM530fvku6PPfer0rxD0JPhPJKDK3JmPOMIqu+gpmzW/9sj1f4ICV5
+        b0mc2uddmSx9p5ohPjFkDGFgBw4B0j6dseqTjBM=
+X-Google-Smtp-Source: ABdhPJzG7nn0LcryOMolANMp07rqbpB+dGxlfZixfoXAINNXhstjyOp90IJVHVwDvcF55dsz8L/CfOf3slRK9oAkKDo=
+X-Received: by 2002:aca:518b:: with SMTP id f133mr920277oib.23.1603176256498;
+ Mon, 19 Oct 2020 23:44:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200929024004.244992-1-badhri@google.com> <20200929024004.244992-4-badhri@google.com>
- <20201005144618.GA154206@bogus> <CAPTae5+e74k22Vcf-cnFLFGnR-mBdb9qvN6i-E-31VexhpUSeA@mail.gmail.com>
- <CAL_JsqLqs2qZqwmCOMgCeiGsw4Hj2xMAbRYqWCphH92+8T6qUg@mail.gmail.com> <CAL_Jsq+bhEKGXoObGWbWw=1KQAovyJgvvfJe+=n7829HhKmmSw@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+bhEKGXoObGWbWw=1KQAovyJgvvfJe+=n7829HhKmmSw@mail.gmail.com>
-From:   Badhri Jagan Sridharan <badhri@google.com>
-Date:   Mon, 19 Oct 2020 23:16:27 -0700
-Message-ID: <CAPTae5L9EkFEAgEbDY-MEvCRe1_ij5gKRXHtmVee-1VjcQsE+w@mail.gmail.com>
-Subject: Re: [PATCH v9 03/15] dt-bindings: usb: Maxim type-c controller device
- tree binding document
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Prashant Malani <pmalani@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>
+References: <1602034966-3524-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1602034966-3524-3-git-send-email-gene.chen.richtek@gmail.com> <5a9b31c4-739c-06fc-2015-ed474993ad22@gmail.com>
+In-Reply-To: <5a9b31c4-739c-06fc-2015-ed474993ad22@gmail.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Tue, 20 Oct 2020 14:44:04 +0800
+Message-ID: <CAE+NS35Y41mFKNhj+54BeeSYFu2J9BtvMWOxyMcf9a==39cbdA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] leds: mt6360: Add LED driver for MT6360
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Apologies for the delay. Was coordinating care for my parents who
-caught the COVID bug.
-
-Thanks,
-Badhri
-
-On Tue, Oct 13, 2020 at 6:50 AM Rob Herring <robh@kernel.org> wrote:
+Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B410=E6=
+=9C=889=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=885:51=E5=AF=AB=E9=81=
+=93=EF=BC=9A
 >
-> On Tue, Oct 13, 2020 at 8:43 AM Rob Herring <robh@kernel.org> wrote:
+> Hi Gene,
+>
+> On 10/7/20 3:42 AM, Gene Chen wrote:
+> > From: Gene Chen <gene_chen@richtek.com>
 > >
-> > On Wed, Oct 7, 2020 at 7:43 PM Badhri Jagan Sridharan <badhri@google.com> wrote:
-> > >
-> > > Hi Robb,
-> > >
-> > > Thanks for the reviews ! Responses inline.
-> > >
-> > > Regards,
-> > > Badhri
-> > >
-> > > On Mon, Oct 5, 2020 at 7:46 AM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Mon, Sep 28, 2020 at 07:39:52PM -0700, Badhri Jagan Sridharan wrote:
-> > > > > Add device tree binding document for Maxim TCPCI based Type-C chip driver
-> > > > >
-> > > > > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
-> > > > > ---
-> > > > > Changes since v1:
-> > > > > - Changing patch version to v6 to fix version number confusion.
-> > > > >
-> > > > > Changes since v6:
-> > > > > - Migrated to yaml format.
-> > > > >
-> > > > > Changes since v7:
-> > > > > - Rebase on usb-next
-> > > > >
-> > > > > Changes since v8:
-> > > > > - Fix errors from make dt_binding_check as suggested by
-> > > > >   Rob Herring.
-> > > > > ---
-> > > > >  .../devicetree/bindings/usb/maxim,tcpci.yaml  | 68 +++++++++++++++++++
-> > > > >  1 file changed, 68 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..f4b5f1a09b98
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
-> > > > > @@ -0,0 +1,68 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: "http://devicetree.org/schemas/usb/maxim,tcpci.yaml#"
-> > > > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > > > +
-> > > > > +title: Maxim TCPCI Type-C PD controller DT bindings
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Badhri Jagan Sridharan <badhri@google.com>
-> > > > > +
-> > > > > +description: Maxim TCPCI Type-C PD controller
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum:
-> > > > > +      - maxim,tcpci
-> > > >
-> > > > Is there a datasheet for this? Searching for 'tcpci' doesn't really come
-> > > > up with anything other than this patch. Only chip I found is MAX77958.
-> > > > Bindings are for specific h/w devices.
-> > >
-> > > Unfortunately the datasheet cannot be made public yet. Has the datasheet
-> > > have to be made public before sending the bindings ?
+> > Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mod=
+e,
+> > 3-channel RGB LED support Register/Flash/Breath Mode, and 1-channel for
+> > moonlight LED.
 > >
-> > No, but we need a part number or some assurance that 'tcpci' is a specific part.
-Sure. Added the part number to the binding and changed the compatible string.
-Sending this as part of v11
+> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> > ---
+> >   drivers/leds/Kconfig       |  12 +
+> >   drivers/leds/Makefile      |   1 +
+> >   drivers/leds/leds-mt6360.c | 783 ++++++++++++++++++++++++++++++++++++=
++++++++++
+> >   3 files changed, 796 insertions(+)
+> >   create mode 100644 drivers/leds/leds-mt6360.c
+> >
+> > diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> > index 1c181df..c7192dd 100644
+> > --- a/drivers/leds/Kconfig
+> > +++ b/drivers/leds/Kconfig
+> > @@ -271,6 +271,18 @@ config LEDS_MT6323
+> >         This option enables support for on-chip LED drivers found on
+> >         Mediatek MT6323 PMIC.
+> >
+> > +config LEDS_MT6360
+> > +     tristate "LED Support for Mediatek MT6360 PMIC"
+> > +     depends on LEDS_CLASS_FLASH && OF
+> > +     depends on LEDS_CLASS_MULTICOLOR
+>
+> Since CONFIG_LED_CLASS_MULTICOLOR can be turned off you need to have
+> below instead:
+>
+> depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
+>
+> Unless you want to prevent enabling the driver without RGB LED,
+> but that does not seem to be reasonable at first glance.
+>
 
+May I change to "select LEDS_CLASS_MULTICOLOR"?
+I suppose RGB always use multicolor mode.
 
+> > +     depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
+> > +     depends on MFD_MT6360
+> > +     help
+> > +       This option enables support for dual Flash LED drivers found on
+> > +       Mediatek MT6360 PMIC.
+> > +       Independent current sources supply for each flash LED support t=
+orch
+> > +       and strobe mode.
+> > +
 >
-> I guess TCPCI is USB Type-C Port Controller Interface Specification.
->
-> That's just a protocol definition, not a chip. DT describes h/w which
-> is more than just the protocol.
->
-> Rob
+> --
+> Best regards,
+> Jacek Anaszewski
