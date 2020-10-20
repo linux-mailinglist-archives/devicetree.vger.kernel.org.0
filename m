@@ -2,171 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E1C729377C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 11:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CAB12937AF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 11:10:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392357AbgJTJDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 05:03:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45798 "EHLO
+        id S2390859AbgJTJKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 05:10:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730029AbgJTJDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 05:03:11 -0400
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0004C061755;
-        Tue, 20 Oct 2020 02:03:11 -0700 (PDT)
-Received: by mail-oi1-x243.google.com with SMTP id q136so1394354oic.8;
-        Tue, 20 Oct 2020 02:03:11 -0700 (PDT)
+        with ESMTP id S2392542AbgJTJJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 05:09:47 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4DE6C061755;
+        Tue, 20 Oct 2020 02:09:46 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id f21so986196wml.3;
+        Tue, 20 Oct 2020 02:09:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Gxiv9N5I/0koEZElvdg9/A3+iy5K5rnbjK1iEcbGa6w=;
-        b=gTWnFQUcx4oDfYYGX7NhU5btKE6deZ7W4mcHkGsZIFyUVPZ7MXpEeIkXcqYCiVlHmt
-         1UhX0gZV/uvWhQelB0tNQVz+6ZcUi1ij4LqZDydl3tNT5a0gsL9h3DL87WaMs/PlEJjW
-         We8PdAIVl7tF+4vvN4f0PpjZ+V0zp84H7vY+k3BAH+eDyXN2AvL0OeO7539Mq9Upx9vj
-         duA2ztsx9s0nLU5a1120UnRJ7eg57/gbcVCQFJhmNxkKIW72obHeaqP66d9e4BxN/S87
-         +OA2YDPOxNQEelAr1Hq4KLj+SsyHVg6Fwdbi0sdbXonVsFbuZm3S2aUv81hUzz6jVdGh
-         KcHg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9+j1rGorH+sK+vTmh9IrzFABygAPTROIyRl4L4hR8/k=;
+        b=HiEJBgGuSB052FG9V+poOfiMrKpA2K44PTfvPnqj13DFZnS9hGV9hlRKVgCv24G3LT
+         tzoUdvzTW1F/ZwBBDOn6Qlml3R0v1+MbrePLHcrJmGXI2v90PLFxPfYL1CuilXqfS2Y/
+         7p0aPYRPk1dJ1P7aFfBvNBRgvk0wmbDBH+EweKzSbWKC723TxuRU1Ct6WbHDBq9qdnuS
+         n66mQLADqbXHjGrf/xADPWnJ49OYiYPfHcw85086a+4FmuumSWqDkac6xJpLUSccvLzx
+         wzEgc91dbWQFaH4CvOtx9RgwgEHUYGFeJVVhvTBpgkvhH/Ck3KUBAlMgeb7CTv77nz7l
+         7hxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Gxiv9N5I/0koEZElvdg9/A3+iy5K5rnbjK1iEcbGa6w=;
-        b=pI7lvuUXqMJ1crSXZlgI8IfVC+8QcmCFk9VTwOrVbDMnt7uuM2Nwehnqti4F5HGKnI
-         RcwNZLAmS1mLonoXguljxi/apO1sOGkmw9iSaimvMRVHE6bEsXljzFb8FVOn3QLznVOA
-         XDwXQM9uaMcLYzIod29MIcHaE2NSyryq2FT/TcjAXvUW8DHJY9ejFlgOZUaEhc0BLqDH
-         JNSsvOZZ0x9vTHyDYSReb+BDzhcdALJ+YuclXSS4eC742veY7/DHyTjlQ+Ha7r5HjmVd
-         4qDObvuUlKdxfNyHMqsLsxCm783bFgUTlg+0+J+5DqstsW4yAAmv29FT1nNuXQYBeUVW
-         G14A==
-X-Gm-Message-State: AOAM533qCTKp2vbCa0tjUi4/mBE27c+rbHeGcRHXr4SsCX2pFG/ZRIDC
-        X2Q5+joRaW+jA9HMpKUOeng3zjY6k/L/vPR61No=
-X-Google-Smtp-Source: ABdhPJyYU82Q33GbVTHqUDSRmku/z4g0TgkTPtIKZk+UhIWZK4qKLMOEI7kJfpP70jxfQ0fbewqrBHkXUx+/NmdItnw=
-X-Received: by 2002:aca:7541:: with SMTP id q62mr1078293oic.51.1603184591254;
- Tue, 20 Oct 2020 02:03:11 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9+j1rGorH+sK+vTmh9IrzFABygAPTROIyRl4L4hR8/k=;
+        b=n6WSpen0XqqZRKyh9B1IbmSF0O9hlIFOFMdxRmgib/K0SngZe+5Zc3sQ73KiV4uCOd
+         MkpXJohGcczwUPnUhc4UgMQdFDl/eecMDMErM1RUeUObe6JRfQ8c92Wv0tTmELF9tAD4
+         xhZxyh+QXvOdyzIPNhr8O84OfwPgPBvexmuCPkVmzJ0sju+n6fM2sxHb/OCY0WQ0TJX7
+         8vB15uxu8fx4f24TCy64Z858Urz9SpdB5010IXwbRnMVMVNPLDqb5DTYVc9NPND+8INb
+         s1ZoZX4uQoTzTlSbpXdKPgEy+KE41cvIJ7MQ0+pAcH5IwBDjlQerKJ8lZPuyHzoC6sVb
+         nxvg==
+X-Gm-Message-State: AOAM531Llp0jm+qHCvR7AzF01PEIQZowTr3Y37o0hUElZwW6e2Ll5x4G
+        fjga5A+mH0Ndw9Oj4+LlPUM=
+X-Google-Smtp-Source: ABdhPJybOwxS2lQqkxPRPqXE4PyJUZaZOVScQNuHfs3aiN4WV9auyusgBcW/Po2pN69lmkLGJVzQVg==
+X-Received: by 2002:a1c:6743:: with SMTP id b64mr1745956wmc.157.1603184985518;
+        Tue, 20 Oct 2020 02:09:45 -0700 (PDT)
+Received: from arch-thunder.localdomain (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id j13sm1932448wru.86.2020.10.20.02.09.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 02:09:44 -0700 (PDT)
+Date:   Tue, 20 Oct 2020 10:09:42 +0100
+From:   Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     sakari.ailus@linux.intel.com, Hans Verkuil <hverkuil@xs4all.nl>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: ov2680: convert bindings to yaml
+Message-ID: <20201020090942.rmtbx2lyogaadehc@arch-thunder.localdomain>
+References: <20201014142759.726823-1-rmfrfs@gmail.com>
+ <20201014142759.726823-2-rmfrfs@gmail.com>
+ <20201019203910.GB3550266@bogus>
 MIME-Version: 1.0
-References: <1600859910-15855-1-git-send-email-gene.chen.richtek@gmail.com> <20201016153823.GA9890@kozik-lap>
-In-Reply-To: <20201016153823.GA9890@kozik-lap>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Tue, 20 Oct 2020 17:03:00 +0800
-Message-ID: <CAE+NS35gb_KWq3s-M9apxgr7wnNRyn7iPto8J8ZwA-jsgT=paw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add bindings document for Charger
- support on MT6360 PMIC
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     sre@kernel.org, Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201019203910.GB3550266@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2020=E5=B9=B410=E6=9C=8816=
-=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8811:38=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> On Wed, Sep 23, 2020 at 07:18:29PM +0800, Gene Chen wrote:
-> > From: Gene Chen <gene_chen@richtek.com>
-> >
-> > Add bindings document for Charger support on MT6360 PMIC
-> >
-> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
+Hey Rob,
+On Mon, Oct 19, 2020 at 03:39:10PM -0500, Rob Herring wrote:
+> On Wed, Oct 14, 2020 at 03:27:57PM +0100, Rui Miguel Silva wrote:
+> > Convert ov2680 sensor bindings documentation to yaml schema, remove
+> > the textual bindings document and update MAINTAINERS entry.
+> > 
+> > Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
 > > ---
-> >  .../bindings/power/supply/mt6360_charger.yaml      | 44 ++++++++++++++=
-++++++++
-> >  1 file changed, 44 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/power/supply/mt63=
-60_charger.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/supply/mt6360_char=
-ger.yaml b/Documentation/devicetree/bindings/power/supply/mt6360_charger.ya=
-ml
+> >   
+> > v1 -> v2:
+> >   Sakari Ailus - Patch 1/3:
+> >   https://lore.kernel.org/linux-media/20201013160908.GC13341@paasikivi.fi.intel.com/
+> >   - omit remote-endpoint
+> >   - remove not needed clock-lanes and data-lanes
+
+There was already a V3 on the list when you reviewed this version,
+Jacopo had already made some of the same comments as you. So,
+some are already solved in that version.
+
+I will send a v4 please just jump to that version.
+Many thanks,
+
+------
+Cheers,
+     Rui
+> > 
+> >  .../devicetree/bindings/media/i2c/ov2680.txt  |  46 --------
+> >  .../devicetree/bindings/media/i2c/ov2680.yaml | 109 ++++++++++++++++++
+> >  MAINTAINERS                                   |   2 +-
+> >  3 files changed, 110 insertions(+), 47 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.txt b/Documentation/devicetree/bindings/media/i2c/ov2680.txt
+> > deleted file mode 100644
+> > index 11e925ed9dad..000000000000
+> > --- a/Documentation/devicetree/bindings/media/i2c/ov2680.txt
+> > +++ /dev/null
+> > @@ -1,46 +0,0 @@
+> > -* Omnivision OV2680 MIPI CSI-2 sensor
+> > -
+> > -Required Properties:
+> > -- compatible: should be "ovti,ov2680".
+> > -- clocks: reference to the xvclk input clock.
+> > -- clock-names: should be "xvclk".
+> > -- DOVDD-supply: Digital I/O voltage supply.
+> > -- DVDD-supply: Digital core voltage supply.
+> > -- AVDD-supply: Analog voltage supply.
+> > -
+> > -Optional Properties:
+> > -- reset-gpios: reference to the GPIO connected to the powerdown/reset pin,
+> > -               if any. This is an active low signal to the OV2680.
+> > -
+> > -The device node must contain one 'port' child node for its digital output
+> > -video port, and this port must have a single endpoint in accordance with
+> > - the video interface bindings defined in
+> > -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > -
+> > -Endpoint node required properties for CSI-2 connection are:
+> > -- remote-endpoint: a phandle to the bus receiver's endpoint node.
+> > -- clock-lanes: should be set to <0> (clock lane on hardware lane 0).
+> > -- data-lanes: should be set to <1> (one CSI-2 lane supported).
+> > -
+> > -Example:
+> > -
+> > -&i2c2 {
+> > -	ov2680: camera-sensor@36 {
+> > -		compatible = "ovti,ov2680";
+> > -		reg = <0x36>;
+> > -		clocks = <&osc>;
+> > -		clock-names = "xvclk";
+> > -		reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
+> > -		DOVDD-supply = <&sw2_reg>;
+> > -		DVDD-supply = <&sw2_reg>;
+> > -		AVDD-supply = <&reg_peri_3p15v>;
+> > -
+> > -		port {
+> > -			ov2680_to_mipi: endpoint {
+> > -				remote-endpoint = <&mipi_from_sensor>;
+> > -				clock-lanes = <0>;
+> > -				data-lanes = <1>;
+> > -			};
+> > -		};
+> > -	};
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
 > > new file mode 100644
-> > index 0000000..711fc19
+> > index 000000000000..ef2b45b03dcc
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/supply/mt6360_charger.yam=
-l
-> > @@ -0,0 +1,44 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+> > @@ -0,0 +1,109 @@
+> > +# SPDX-License-Identifier: GPL-2.0
 > > +%YAML 1.2
 > > +---
-> > +$id: http://devicetree.org/schemas/power/supply/mt6360_charger.yaml#
+> > +$id: http://devicetree.org/schemas/media/i2c/ov2680.yaml#
 > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +title: Battery charger driver for MT6360 PMIC from MediaTek Integrated=
-.
+> > +title: Omnivision OV2680 CMOS Sensor
 > > +
 > > +maintainers:
-> > +  - Gene Chen <gene_chen@richtek.com>
+> > +  - Rui Miguel Silva <rmfrfs@gmail.com>
 > > +
-> > +description: |
-> > +  This module is part of the MT6360 MFD device.
-> > +  Provides Battery Charger, Boost for OTG devices and BC1.2 detection.
+> > +description: |-
+> > +  The OV2680 color sensor is a low voltage, high performance 1/5 inch UXGA (2
+> > +  megapixel) CMOS image sensor that provides a single-chip UXGA (1600 x 1200)
+> > +  camera. It provides full-frame, sub-sampled, or windowed 10-bit images in
+> > +  various formats via the control of the Serial Camera Control Bus (SCCB)
+> > +  interface.  The OV2680 has an image array capable of operating at up to 30
+> > +  frames per second (fps) in UXGA resolution.
 > > +
 > > +properties:
 > > +  compatible:
-> > +    const: mediatek,mt6360-chg
+> > +    const: ovti,ov2680
 > > +
-> > +  vinovp:
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
 > > +    description:
-> > +      Maximum CHGIN regulation voltage.
->
-> 1. You need to describe the type.
-> 2. Use proper unit suffix (see property-units.txt).
-> 3. Is this a custom property? If yes, it misses vendor prefix. If not,
->    most likely there is already such property. Reuse.
->
-
-ACK
-
+> > +      Input clock for the sensor.
+> > +    items:
+> > +      - const: xvclk
 > > +
-> > +  usb-otg-vbus:
-> > +      $ref: /schemas/regulator/regulator.yaml#
->
-> 1. Wrong indentation.
-> 2. Name should be more or less generic, so maybe
->    "usb-otg-vbus-regulator".
->
-
-ACK
-
+> > +  reset-gpios:
+> 
+> How many? (maxItems: 1)
+> 
+> > +    description:
+> > +      The phandle and specifier for the GPIO that controls sensor reset.
+> > +      This corresponds to the hardware pin XSHUTDOWN which is physically
+> > +      active low.
+> > +
+> > +  dovdd-supply:
+> > +    description:
+> > +      Definition of the regulator used as interface power supply.
+> > +
+> > +  avdd-supply:
+> > +    description:
+> > +      Definition of the regulator used as analog power supply.
+> > +
+> > +  dvdd-supply:
+> > +    description:
+> > +      Definition of the regulator used as digital power supply.
+> > +
+> > +  port:
+> > +    type: object
+> > +    additionalProperties: false
+> > +    description:
+> > +      A node containing an output port node with an endpoint definition
+> > +      as documented in
+> > +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        type: object
+> > +
+> > +    required:
+> > +      - endpoint
+> 
+> Just need a description of the data/direction for 'port'. Drop the rest.
+> 
 > > +
 > > +required:
 > > +  - compatible
->
-> No address/reg? How does it bind?
->
-
-This module is part of the MT6360 MFD device.
-see Documentation/devicetree/bindings/mfd/mt6360.yaml, which is
-reviewing by MFD reviewer.
-
-Should I add this to description?
-
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - dovdd-supply
+> > +  - avdd-supply
+> > +  - dvdd-supply
+> > +  - reset-gpios
+> > +  - port
 > > +
-> > +additionalProperties: false
+> > +unevaluatedProperties: false
+> 
+> You can use 'additionalProperties: false' here instead.
+> 
 > > +
 > > +examples:
 > > +  - |
-> > +    mt6360_chg: chg {
->
-> s/chg/charger/
->
-
-ACK
-
-> > +      compatible =3D "mediatek,mt6360-chg";
-> > +      vinovp =3D <14500000>;
->
-> Empty line break
->
-
-ACK
-
-> Best regards,
-> Krzysztof
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        ov2680: camera-sensor@36 {
+> > +                compatible = "ovti,ov2680";
+> > +                reg = <0x36>;
+> > +                clocks = <&osc>;
+> > +                clock-names = "xvclk";
+> > +                reset-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
+> > +
+> > +                dovdd-supply = <&sw2_reg>;
+> > +                dvdd-supply = <&sw2_reg>;
+> > +                avdd-supply = <&reg_peri_3p15v>;
+> > +
+> > +                port {
+> > +                        ov2680_to_mipi: endpoint {
+> > +                                remote-endpoint = <&mipi_from_sensor>;
+> > +                        };
+> > +                };
+> > +        };
+> > +    };
+> > +...
+> > +
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 2e85e114c9c3..926dcdc4794c 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -12775,7 +12775,7 @@ M:	Rui Miguel Silva <rmfrfs@gmail.com>
+> >  L:	linux-media@vger.kernel.org
+> >  S:	Maintained
+> >  T:	git git://linuxtv.org/media_tree.git
+> > -F:	Documentation/devicetree/bindings/media/i2c/ov2680.txt
+> > +F:	Documentation/devicetree/bindings/media/i2c/ov2680.yaml
+> >  F:	drivers/media/i2c/ov2680.c
+> >  
+> >  OMNIVISION OV2685 SENSOR DRIVER
+> > -- 
+> > 2.28.0
+> > 
