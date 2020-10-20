@@ -2,96 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22713293FF1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80417293FF8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 17:53:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436905AbgJTPwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 11:52:30 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:43374 "EHLO
+        id S2436936AbgJTPxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 11:53:03 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:42639 "EHLO
         mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436904AbgJTPwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:52:30 -0400
-Received: by mail-oi1-f196.google.com with SMTP id l85so2613807oih.10;
-        Tue, 20 Oct 2020 08:52:29 -0700 (PDT)
+        with ESMTP id S1731282AbgJTPxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 11:53:03 -0400
+Received: by mail-oi1-f196.google.com with SMTP id 16so2627733oix.9;
+        Tue, 20 Oct 2020 08:53:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Cuj8FYcNkqUs6si3CJnFao+OyDVHBcl/RdsIhf6hpE8=;
-        b=GCPQ15x2iW/8Hh6RMAR1g4aaWTB7meUhsbwtahBy32MQ2ayIbpTcgQkkmbMJIWWgma
-         KW2D/438A8In66VctLfvBT++HLVIeN9bKm0g893bDREj6QMGSSlSiDAtUvURJTTHNYdj
-         AgtVX/bp7KCbb6ZjQCpLOq2Sv4zeAQBc3+0BGYAWvskYjNVlXNVNHRylOIsLuYkFewlz
-         BnC8DPiSkOfLcfsW9UNbCBH69usCoJGXhXtCpj3OH7wApLVBypiINo2HbSgYgpSdV/hN
-         U1+AobBlxagYJdOXvRr+jlm8VZR/CGw5NR5qORE9ABIJx6bxlsMcDQRXZjtxM3IHLGBF
-         mQHg==
-X-Gm-Message-State: AOAM532drfKgGGtZPqHnwtTPJckHXwdSFKYWhk9EDya+s1WcAAzzzb62
-        Rb+aIpR/EBi5CZwuuJ316Q==
-X-Google-Smtp-Source: ABdhPJwm+3bWHCRyFI+ShnwRrr9u7+alcmPQdLWqF0fyKmjdJS9/IpzApUmx78OQrOzZeNNnLnqxXA==
-X-Received: by 2002:a05:6808:3bc:: with SMTP id n28mr2127334oie.171.1603209149057;
-        Tue, 20 Oct 2020 08:52:29 -0700 (PDT)
+        bh=iSUnJ3zC+i96Tee9HE3Ma7rzjDtB6lhpcHKRFjv2ccE=;
+        b=QTI7twpdbwfwxd9wFaD/kxU5LlqiTv1PKGs2643exe1StTGOFf1NM54SmhADOVwyVI
+         2dXvl92hZz1w0MHI+dD7wpXqEiggF52LXG3S+K69JblHl4yuWfpzff/467pNG/kSdjI/
+         Cqot+KNCegQIuiVOuo/iolDv9hjCigCcbkSdsJ6kbHR/B2HdAC+t18FP9gFr8bB4Juo7
+         lA7wA6/iNxp1L++whlwcDE9lPIr1zDuiVxHMmQzdoi0Xb9stk0S+ltVtRhQiqWiZY0RW
+         InzrGMa/T1GFPwdh2EndRmaockmE9+tWzpJ/lZqg6pxDgNhoQ99BPPcBwWZlRFsP5mdo
+         UgpA==
+X-Gm-Message-State: AOAM533Cu61rA/T7qTZKTf6g/QiE6rM8VLj9xVWzNCfsy6A1W8/SMgYN
+        qhL7Wq+J/8MZneOD4bPLd6gi4xSOVA==
+X-Google-Smtp-Source: ABdhPJw7jKtcBX1HJmvImu3OtQLdkpQmW076DYW/d4yYauIv/uHxi67eNnw6fzLjEkrKebqPLx3YMg==
+X-Received: by 2002:aca:1105:: with SMTP id 5mr2380044oir.46.1603209182630;
+        Tue, 20 Oct 2020 08:53:02 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j8sm514782otn.53.2020.10.20.08.52.28
+        by smtp.gmail.com with ESMTPSA id j84sm640090oia.25.2020.10.20.08.53.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 08:52:28 -0700 (PDT)
-Received: (nullmailer pid 906474 invoked by uid 1000);
-        Tue, 20 Oct 2020 15:52:27 -0000
-Date:   Tue, 20 Oct 2020 10:52:27 -0500
+        Tue, 20 Oct 2020 08:53:01 -0700 (PDT)
+Received: (nullmailer pid 907213 invoked by uid 1000);
+        Tue, 20 Oct 2020 15:53:00 -0000
+Date:   Tue, 20 Oct 2020 10:53:00 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     miquel.raynal@bootlin.com, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        heiko@sntech.de, vigneshr@ti.com, robh+dt@kernel.org,
-        richard@nod.at, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v12 1/8] dt-bindings: mtd: Describe Rockchip RK3xxx NAND
- flash controller
-Message-ID: <20201020155227.GA906028@bogus>
-References: <20201020031733.17883-1-yifeng.zhao@rock-chips.com>
- <20201020031733.17883-2-yifeng.zhao@rock-chips.com>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Wilma.Wu@mediatek.com,
+        matthias.bgg@gmail.com, knaack.h@gmx.de, cy_huang@richtek.com,
+        lars@metafoo.de, jic23@kernel.org, gene_chen@richtek.com,
+        linux-iio@vger.kernel.org, benjamin.chao@mediatek.com,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        shufan_lee@richtek.com, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, pmeerw@pmeerw.net
+Subject: Re: [PATCH v7 1/3] dt-bindings: iio: adc: add bindings doc for
+ MT6360 ADC
+Message-ID: <20201020155300.GB906028@bogus>
+References: <1603181267-15610-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1603181267-15610-2-git-send-email-gene.chen.richtek@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201020031733.17883-2-yifeng.zhao@rock-chips.com>
+In-Reply-To: <1603181267-15610-2-git-send-email-gene.chen.richtek@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 11:17:30 +0800, Yifeng Zhao wrote:
-> Documentation support for Rockchip RK3xxx NAND flash controllers
+On Tue, 20 Oct 2020 16:07:45 +0800, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
 > 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> This change adds the binding doc for the MT6360 ADC.
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
 > ---
-> 
-> Changes in v12:
-> - Fix some warnings while make dt_binding_check
-> - Drop a allOf defined
-> 
-> Changes in v8:
-> - Fix a error while make dt_binding_check
-> 
-> Changes in v7:
-> - Fix some wrong define
-> 
-> Changes in v6:
-> - Fix some wrong define
-> - Modified the definition of compatible
-> 
-> Changes in v5:
-> - Fix some wrong define.
-> - Add boot-medium define.
-> - Remove some compatible define.
-> 
-> Changes in v4:
-> - The compatible define with rkxx_nfc.
-> - Add assigned-clocks.
-> - Fix some wrong defineChanges in.
-> 
-> Changes in v3:
-> - Change the title for the dt-bindings.
-> 
->  .../mtd/rockchip,nand-controller.yaml         | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
+>  .../bindings/iio/adc/mediatek,mt6360-adc.yaml      | 34 ++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6360-adc.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
