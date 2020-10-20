@@ -2,112 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8E9629427F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 20:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D76B29428C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 20:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437757AbgJTSwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 14:52:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
+        id S2437865AbgJTSzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 14:55:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437753AbgJTSwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 14:52:10 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72081C0613CE;
-        Tue, 20 Oct 2020 11:52:10 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id s9so3497015wro.8;
-        Tue, 20 Oct 2020 11:52:10 -0700 (PDT)
+        with ESMTP id S2437854AbgJTSzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 14:55:16 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30092C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:55:14 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id h7so3525103wre.4
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:55:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hj/5rM+jvw3L4um8epXIlyHrB+7DbJ2e5G0hRWEEu0A=;
-        b=CBNQesy7gDXxZgJM+wVoV5gsm3Arow6foIwAKaz+gB+8oC3LApDfqTn5rut9in5Ex6
-         fJmEYUj5IQq97LgmIJqBUmGInGCGM9aZvIsep3UFdfjCSYylB+dBLbx02rDyfcJamPlR
-         2DMhXy8EdCk4k9pj0zC8K9DVZjMn0YzuNZR/ULF76wGB/i1i9sOdM5ZG6XJe9lHG89BX
-         iZIiHNvZ05wGfvsFlf+CeL5Yl7bbxGgdGl+ijCul3u6OYWabluq4xxiGWZqYZhxeyNiZ
-         Rq/O+kwXTeBgWOGAJcVsmlzTDlpf8c2bEUjlkMU/5qa/h0S5E2ep53tvSxkeFTVSFPNC
-         51uA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mScZ8ah2UgtXD/hHaoKN6/WZjy3yp0sHiaOHV6wLFW8=;
+        b=kC1bm7nzh6+1h/Q0nN45KdnVbW/OI5uUooOLQ2Vs/LpFzRvJnYRUV+JwP0kcW7T4QR
+         41jNfWJ2Z9lO48O89PVVflQTzDH60CTncg14/nyfU9FIEeibQS8Vrf68eqVidtcHz3vp
+         3lByNPbOMsEb9+VEVy4e6EqFieABTbe7vnr3g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hj/5rM+jvw3L4um8epXIlyHrB+7DbJ2e5G0hRWEEu0A=;
-        b=rcgRzjA3eHLjpyxf0sjhG141/ek3H/X28wSK/iTfz0kFF17Xmgy+wqK0z2yzxfi1su
-         tQUUHyZlPZeNQT/qMmlciFCXhHHAsuGgg8t0zjDnEozUvscykPnsUPtaJP3xa2Xm7uaj
-         i2XF5kf0PNSz3mxDOknCPa3OBKF/AWktFfInuCtAUaMFeKC2lwFS99T4OADO5Bq2ztti
-         vVwyWcumhORcEXMubZzKLPxdsnyIAKmkOXrzpfol3NvoDgefVXgZg/aM026tIRQFcTeo
-         XDklY9yx0AVdBHxY6UPJ1tDkD9y8bOySirECikC7EGyQK2ICMVK9n4chcBr3TSMk4Oww
-         +kSQ==
-X-Gm-Message-State: AOAM532geZ4GwS/AVcPt+t0eccNwxDr54Yg3PUx5+72sf6yq5pLr5ZGG
-        zOukY0WROjlQ1kgz4i81yKy74HQj7x4=
-X-Google-Smtp-Source: ABdhPJw6ycjDTlgnXw8TqLHiKMGACU3mTpKDtd5WgINy1vG3V+zqXDvWD61WsX7sfQQcSJZiCnPdeg==
-X-Received: by 2002:adf:bbd2:: with SMTP id z18mr5409041wrg.166.1603219929109;
-        Tue, 20 Oct 2020 11:52:09 -0700 (PDT)
-Received: from arch-thunder.localdomain (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id x65sm4281514wmg.1.2020.10.20.11.52.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 11:52:08 -0700 (PDT)
-Date:   Tue, 20 Oct 2020 19:52:06 +0100
-From:   Rui Miguel Silva <rmfrfs@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>, sakari.ailus@linux.intel.com,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] dt-bindings: imx7-mipi-csi2: convert bindings to
- yaml
-Message-ID: <20201020185206.qst2uksgcy3axbnh@arch-thunder.localdomain>
-References: <20201020091921.1730003-1-rmfrfs@gmail.com>
- <20201020091921.1730003-4-rmfrfs@gmail.com>
- <20201020153044.GA875273@bogus>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mScZ8ah2UgtXD/hHaoKN6/WZjy3yp0sHiaOHV6wLFW8=;
+        b=pd8B+9dnD2gNmtxUiyNWR5UEVmBYSawk98/ao0LIjLpCc14EsmsDRXSYr+6f3VsiHu
+         71IU8pK8Jkvc1l07p7znTzD3m9ipYzyeTMgPuXurEOxtNpNVzV6gDbaQ2BnsWDVM408h
+         owP2pzhiQFGefqCZvtGF0A6GRMw/tEGXP+8rwKneexHSD4WXfPCtC0WweIHmStl2pGxZ
+         +eGMIRHg98CNkD3hPftAytbZ2wxBOlF0yuT+Y4/aZCkad/1RUoNS4wjSDqhT2WFiNGHW
+         5TddV1oPEENyMgiY+vzyY89O8ES8SvhxYsQsMUdGDzLc3xR0V3RVRPuzy65ycAragxC1
+         eVyQ==
+X-Gm-Message-State: AOAM53349FJpfyWIkFaIzKpDePQhmnrZ7KRx9AZhaDEqVgTSI7w+7WER
+        54Oqg85LjhgL20dMc8zc/wdIY5eeOfU4oVYhkfbxmg==
+X-Google-Smtp-Source: ABdhPJxsMtKaYZKishW1LFkqqTjFYaAFJFl/nN/EX/ADY7U9joK0FSO7QV5LU0tzsLkN7u78bKqbrTQK/Z5k/u4nUP8=
+X-Received: by 2002:a5d:49ca:: with SMTP id t10mr5023373wrs.404.1603220112425;
+ Tue, 20 Oct 2020 11:55:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201020153044.GA875273@bogus>
+References: <20200914080619.4178587-1-cychiang@chromium.org>
+ <20200914080619.4178587-3-cychiang@chromium.org> <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
+ <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
+ <20201015161251.GF4390@sirena.org.uk> <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
+ <20201020143711.GC9448@sirena.org.uk> <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
+In-Reply-To: <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
+From:   Cheng-yi Chiang <cychiang@chromium.org>
+Date:   Wed, 21 Oct 2020 02:54:43 +0800
+Message-ID: <CAFv8NwJ-+f146Ss9Mk=nEXjm1B--ZwhAgnfx-cTi7DGEKqC1-Q@mail.gmail.com>
+Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Srinivasa Rao <srivasam@codeaurora.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob Bot,
-On Tue, Oct 20, 2020 at 10:30:44AM -0500, Rob Herring wrote:
-> On Tue, 20 Oct 2020 10:19:21 +0100, Rui Miguel Silva wrote:
-> > Convert imx7 mipi csi2 bindings documentation to yaml schema, remove
-> > the textual document and update MAINTAINERS entry.
-> > 
-> > Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
-> > ---
-> >  .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
-> >  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 172 ++++++++++++++++++
-> >  MAINTAINERS                                   |   2 +-
-> >  3 files changed, 173 insertions(+), 91 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-> > 
-> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> ./Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml:91:21: [warning] wrong indentation: expected 22 but found 20 (indentation)
-> ./Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml:93:21: [warning] wrong indentation: expected 22 but found 20 (indentation)
+On Tue, Oct 20, 2020 at 10:55 PM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
+>
+>
+>
+> On 20/10/2020 15:37, Mark Brown wrote:
+> > I don't understand what "logic scattered in various dtsi files" means,
+> > sorry.
+> >
+> >> Yes, that should work to describe the dailink we are using.
+> >> But a more tricky issue is how to do calls like setting PLL in dai startup ops.
+> > ...
+> >
+> >> I think that asking a generic machine driver to do configuration like
+> >> this with only a limited interface of device property
+> >> might be too much of an ask for the machine driver.
+> > Richard was looking at some basic configuration for PLLs.
+> >
+> >> Would you mind if I simplify the compatible string like Srinivas
+> >> suggested, and send a v12?
+> >> As for other two kinds of variations that I am aware of:
+> >> 1. front mic / rear mic
+> >> 2. replace alc5682 with adau7002
+> > The CODEC change is going to be described in the DT no matter what -
+> > you'll have a reference to the CODEC node but it may make sense if
+> > there's enough custom code around it.  For front vs rear mic the
+> > simplest thing would just be to not mention which if this is a hardware
+> > fixed thing, otherwise a control.
+> >
+> >> We can set different board names and different compatible strings to
+> >> achieve such variation.
+> >> So that it would make sense to describe configuration in compatible
+> >> strings like you suggested, and also provides UCM a way to distinguish
+> >> different boards.
+> > I don't recall having suggested distinguishing these things with a
+> > compatible string, especially not the microphones.  UCM can already use
+> > the display names for the boards to distinguish things.
+>
+>
+> Not with the compatible string!
+>
+> Currently card name, and long name are exactly same in all Qualcomm
+> soundcards, which makes it very difficult to identify how those boards
+> re wired up at UCM2 level. So the plan is to properly populate card long
+> name with "model" property which can include details on how things are
+> wiredup on that board.
+>
+> --srini
 
-Strange not to complain on line 94 also.
+Hi Srini,
+Thanks for taking a look.
+Let me try to clarify your comments in case there is any misunderstanding.
 
-> 
-> 
-> See https://patchwork.ozlabs.org/patch/1384742
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure dt-schema is up to date:
-> 
-> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+I understand your request on having different board variations using
+different sound card names through model property, and I totally agree
+with that.
+As for compatible strings, do you insist on having all the board
+variations using exactly the same compatible string ?
 
-I have done this and I am at version:
-2020.8.2.dev4+g341f3e35180a
-
-and still do not get any warning on this file. Nevertheless I
-found the indentation issue and will:
-
-> Please check and re-submit.
-
-------
-Cheers,
-     Rui
+Thanks!
