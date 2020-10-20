@@ -2,255 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0949429374C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 10:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE8F293756
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 11:00:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390168AbgJTI7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 04:59:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45224 "EHLO
+        id S2392225AbgJTJAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 05:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390147AbgJTI7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 04:59:37 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA58C061755
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 01:59:37 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id n9so679676pgt.8
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 01:59:37 -0700 (PDT)
+        with ESMTP id S2390221AbgJTJAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 05:00:00 -0400
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF8BC061755;
+        Tue, 20 Oct 2020 01:59:58 -0700 (PDT)
+Received: by mail-pl1-x643.google.com with SMTP id 1so694014ple.2;
+        Tue, 20 Oct 2020 01:59:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=OzWls94jQ8pq52AMk7jKEXrTP1OQTMot6mH/T4YUYBA=;
-        b=nU9Mwl6o0Qd+Gr4ubPUva9x2DPCXpPfPZXu0ZKfRsCipgcVSs5nalL2v/dHyHN+PKK
-         NZg+H2I9awMs+f5Rz8gPCQOvehDicp01RidO74mOR6qDsvz2EVd7y4WYmvY13GJEBJat
-         /rRigmJ7MiPP9IpK8duYKlPHOrHF3lofxbO9fHOX8NBd3iozrP7N0apAxzF2umTw/KnZ
-         l1Sjhi1SkRedW+feXqXWc3JOTLkJbW0S+gvR5SUwsgh6Qb8L6Bvu3tj1u9EEbZ2bPUdo
-         F3llTjVCnOrX1gfukYFx1nXfLOSn0X+eOUSbqRbpvPKuT6h5TS28qt7DPNI0Ok4fefoq
-         2Tkw==
+        bh=32DXXPaYfvqxwZc+Ufdj/EMGZ4IWPmSRmpTewywNSVQ=;
+        b=DJsnW1P05d7r36kJe9UFhBkPyK47QtTUllE/9wSt6mFWlQrqhnXzAXpXrraJ63H2PI
+         t3QICPI4dBsZEBL0SC7WbjHfST3LNuN+CzDk3y+fI2J4ou0Uc2sFUD64bG+Zj2DONrDx
+         is6kd+2TSqwo0l3NQEbnGrgz4WOe9VfSh3Y5xNZ3zQ/2eCA5fVmUtl+Pb5pjkCS9B3AZ
+         +uTv2uXtx748Osd/DvW7NtpHtHFnEHce97KWof0xhKhbvDHq2dYys35j4YMar3l4gZ0O
+         eKEsXwE+NPyQt7U+QRTtkFoOLYRMr8TYKu/9fRcnC+S9BpU3uD8RBei3KpUPZSpq4yJ/
+         lGLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=OzWls94jQ8pq52AMk7jKEXrTP1OQTMot6mH/T4YUYBA=;
-        b=WFyNb92LDcsDBcm3l30sHyZmygEUUt4fL3RiVbHkESzXOYBNXxvT2T84rVq7F5HSkJ
-         YuprBx+zIBeSFbyw1fs04/NPoLqocnnPtDqG/10H0U+xOz61NKiZ+VUEHrCsf0gC3mYo
-         U6HfepHup/buTOhi6Knmpmsy4zm9ZXGS68TQPWaPAcc9KdCrG8ndNyeWNPp6rtMNIgbW
-         Y8ZPdYdp42iKLx83eo2CI/6OvTdsORgHSVN/pg1mrN0ta1Y546/ITfUgTZHrtj/Vzpb/
-         hahXJsA/IAcU6lEah+NU9dSxO9gGcV04n1ZQBRD0oAu+gasuNAq07eof3oioJ7siPPYb
-         ZtbA==
-X-Gm-Message-State: AOAM530VtUp2eVGZDnd2ClrV9waTflmb1aiCfMnQSTDu878BM9OblEW0
-        sV8D0c/kdH27+w1AqxL731fLEP8cqoa4fzzDf9ypIA==
-X-Google-Smtp-Source: ABdhPJx0U+unN/ZGAFVBtuf0U/TY7ARophCsIgh6K5hN4jgovZQJjCdR4A9cXgPZXOSSARJj1NKi7fUoPKkvU6+W2do=
-X-Received: by 2002:aa7:9245:0:b029:156:552a:1275 with SMTP id
- 5-20020aa792450000b0290156552a1275mr1838556pfp.12.1603184377105; Tue, 20 Oct
- 2020 01:59:37 -0700 (PDT)
+        bh=32DXXPaYfvqxwZc+Ufdj/EMGZ4IWPmSRmpTewywNSVQ=;
+        b=Ux5PUrUNWOekIDDo/cQrxv6/jp5FmfWiyL8/AO+WaNRpHAPUwbNKO41OFMVtje//7Y
+         SAXfxLbbzYtq0VbT6fXWMUui47HIwx1xhmqP7YdDAEXneyNuLAWYznchWdEI3ZZe8+1U
+         emcR7U6Je2M+dyRN9SUV8CfBG6M/Xtwx/2Ffgrk6dV5I0WRPZORgBGrhI/x+PqnRkdxb
+         90QQEtVUduY//MvbGM4Q4qjAd19L3Z1lV5nY+BtB5E6st+Rkt4GdDYMTgHyWlcWrol/S
+         Y5oRynxIMqhMDFKE5lvP0Pvq22PhszDx9o4XOo2T11RhPQ3rM7Eee8i1PtA1wvOzq/bY
+         3yig==
+X-Gm-Message-State: AOAM532ezBnZB5sWFtWB1H9lA/stSHLBgiBNm88mfBuNNcYWJDlGOvB+
+        XV6muCIezfRubneI5OeuP7/E9gi7b/W3/r66ohk=
+X-Google-Smtp-Source: ABdhPJy9hwkmHtqN6ASWpH6MTF2qZAFQwMqgbuqGxJNxCVnhfHfDYrm6umFgVnKv6i8wAf0+VfuWbMJvxUAq2uxoib0=
+X-Received: by 2002:a17:90b:305:: with SMTP id ay5mr1938344pjb.129.1603184398230;
+ Tue, 20 Oct 2020 01:59:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201018125237.16717-1-kholk11@gmail.com> <20201018125237.16717-3-kholk11@gmail.com>
-In-Reply-To: <20201018125237.16717-3-kholk11@gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 20 Oct 2020 10:59:24 +0200
-Message-ID: <CAG3jFysokz0+NCHLp9-nhxG3wGVzk1TAFBwZmhMgViUr-sk-BA@mail.gmail.com>
-Subject: Re: [PATCH 2/6] media: camss: ispif: Correctly reset based on the VFE ID
-To:     kholk11@gmail.com
-Cc:     Todor Tomov <todor.too@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, marijns95@gmail.com,
-        konradybcio@gmail.com, martin.botka1@gmail.com,
-        linux-arm-msm@vger.kernel.org,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20201019221859.56680-1-luka.kovacic@sartura.hr> <20201019221859.56680-4-luka.kovacic@sartura.hr>
+In-Reply-To: <20201019221859.56680-4-luka.kovacic@sartura.hr>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 20 Oct 2020 12:00:47 +0300
+Message-ID: <CAHp75VdnOJKwvZUOsj3bbT8tK9uZN=NufDrdhUvS886bNUpWhA@mail.gmail.com>
+Subject: Re: [PATCH v6 3/6] drivers: hwmon: Add the iEi WT61P803 PUZZLE HWMON driver
+To:     Luka Kovacic <luka.kovacic@sartura.hr>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>,
+        luka.perkov@sartura.hr, robert.marko@sartura.hr
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nice catch! This patch looks good to me.
+On Tue, Oct 20, 2020 at 1:19 AM Luka Kovacic <luka.kovacic@sartura.hr> wrote:
+>
+> Add the iEi WT61P803 PUZZLE HWMON driver, that handles the fan speed
+> control via PWM, reading fan speed and reading on-board temperature
+> sensors.
+>
+> The driver registers a HWMON device and a simple thermal cooling device to
+> enable in-kernel fan management.
+>
+> This driver depends on the iEi WT61P803 PUZZLE MFD driver.
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
+...
 
-On Sun, 18 Oct 2020 at 14:54, <kholk11@gmail.com> wrote:
->
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
->
-> Resetting the ISPIF VFE0 context is wrong if we are using the VFE1
-> for dual-camera or simply because a secondary camera is connected
-> to it: in this case the reset will always happen on the VFE0 ctx
-> of the ISPIF, which is .. useless.
->
-> Fix this usecase by adding the ISPIF_RST_CMD_1 address and choose
-> where to do the (or what to) reset based on the VFE line id.
->
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> ---
->  .../media/platform/qcom/camss/camss-ispif.c   | 87 ++++++++++++-------
->  .../media/platform/qcom/camss/camss-ispif.h   |  2 +-
->  2 files changed, 57 insertions(+), 32 deletions(-)
->
-> diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/media/platform/qcom/camss/camss-ispif.c
-> index db94cfd6c508..252db6b33dab 100644
-> --- a/drivers/media/platform/qcom/camss/camss-ispif.c
-> +++ b/drivers/media/platform/qcom/camss/camss-ispif.c
-> @@ -26,6 +26,7 @@
->  #define MSM_ISPIF_NAME "msm_ispif"
->
->  #define ISPIF_RST_CMD_0                        0x008
-> +#define ISPIF_RST_CMD_1                        0x00c
->  #define ISPIF_RST_CMD_0_STROBED_RST_EN         (1 << 0)
->  #define ISPIF_RST_CMD_0_MISC_LOGIC_RST         (1 << 1)
->  #define ISPIF_RST_CMD_0_SW_REG_RST             (1 << 2)
-> @@ -179,7 +180,10 @@ static irqreturn_t ispif_isr_8x96(int irq, void *dev)
->         writel(0x1, ispif->base + ISPIF_IRQ_GLOBAL_CLEAR_CMD);
->
->         if ((value0 >> 27) & 0x1)
-> -               complete(&ispif->reset_complete);
-> +               complete(&ispif->reset_complete[0]);
-> +
-> +       if ((value3 >> 27) & 0x1)
-> +               complete(&ispif->reset_complete[1]);
->
->         if (unlikely(value0 & ISPIF_VFE_m_IRQ_STATUS_0_PIX0_OVERFLOW))
->                 dev_err_ratelimited(to_device(ispif), "VFE0 pix0 overflow\n");
-> @@ -237,7 +241,7 @@ static irqreturn_t ispif_isr_8x16(int irq, void *dev)
->         writel(0x1, ispif->base + ISPIF_IRQ_GLOBAL_CLEAR_CMD);
->
->         if ((value0 >> 27) & 0x1)
-> -               complete(&ispif->reset_complete);
-> +               complete(&ispif->reset_complete[0]);
->
->         if (unlikely(value0 & ISPIF_VFE_m_IRQ_STATUS_0_PIX0_OVERFLOW))
->                 dev_err_ratelimited(to_device(ispif), "VFE0 pix0 overflow\n");
-> @@ -257,33 +261,17 @@ static irqreturn_t ispif_isr_8x16(int irq, void *dev)
->         return IRQ_HANDLED;
->  }
->
-> -/*
-> - * ispif_reset - Trigger reset on ISPIF module and wait to complete
-> - * @ispif: ISPIF device
-> - *
-> - * Return 0 on success or a negative error code otherwise
-> - */
-> -static int ispif_reset(struct ispif_device *ispif)
-> +static int ispif_vfe_reset(struct ispif_device *ispif, u8 vfe_id)
->  {
-> -       unsigned long time;
->         u32 val;
-> -       int ret;
-> -
-> -       ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE0);
-> -       if (ret < 0)
-> -               return ret;
->
-> -       ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE1);
-> -       if (ret < 0)
-> -               return ret;
-> -
-> -       ret = camss_enable_clocks(ispif->nclocks_for_reset,
-> -                                 ispif->clock_for_reset,
-> -                                 to_device(ispif));
-> -       if (ret < 0)
-> -               return ret;
-> +       if (vfe_id > (to_camss(ispif)->vfe_num - 1)) {
-> +               dev_err(to_device(ispif),
-> +                       "Error: asked reset for invalid VFE%d\n", vfe_id);
-> +               return -ENOENT;
-> +       }
->
-> -       reinit_completion(&ispif->reset_complete);
-> +       reinit_completion(&ispif->reset_complete[vfe_id]);
->
->         val = ISPIF_RST_CMD_0_STROBED_RST_EN |
->                 ISPIF_RST_CMD_0_MISC_LOGIC_RST |
-> @@ -303,15 +291,51 @@ static int ispif_reset(struct ispif_device *ispif)
->                 ISPIF_RST_CMD_0_RDI_OUTPUT_1_MISR_RST |
->                 ISPIF_RST_CMD_0_RDI_OUTPUT_2_MISR_RST;
->
-> -       writel_relaxed(val, ispif->base + ISPIF_RST_CMD_0);
-> +       if (vfe_id == 1)
-> +               writel_relaxed(val, ispif->base + ISPIF_RST_CMD_1);
-> +       else
-> +               writel_relaxed(val, ispif->base + ISPIF_RST_CMD_0);
->
-> -       time = wait_for_completion_timeout(&ispif->reset_complete,
-> +       time = wait_for_completion_timeout(&ispif->reset_complete[vfe_id],
->                 msecs_to_jiffies(ISPIF_RESET_TIMEOUT_MS));
->         if (!time) {
-> -               dev_err(to_device(ispif), "ISPIF reset timeout\n");
-> -               ret = -EIO;
-> +               dev_err(to_device(ispif),
-> +                       "ISPIF for VFE%d reset timeout\n", vfe_id);
-> +               return -EIO;
->         }
->
-> +       return 0;
-> +}
-> +
-> +/*
-> + * ispif_reset - Trigger reset on ISPIF module and wait to complete
-> + * @ispif: ISPIF device
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/* iEi WT61P803 PUZZLE MCU HWMON Driver
+
+Shouldn't be
+/*
+ * IEI ...
+
+?
+
+...
+
+> +/**
+> + * struct iei_wt61p803_puzzle_thermal_cooling_device - Thermal cooling device instance
+
 > + *
-> + * Return 0 on success or a negative error code otherwise
+
+Please, remove all these blank lines in kernel doc descriptions.
+
+> + * @mcu_hwmon:         MCU HWMON struct pointer
+> + * @tcdev:             Thermal cooling device pointer
+> + * @name:              Thermal cooling device name
+> + * @pwm_channel:       PWM channel (0 or 1)
+> + * @cooling_levels:    Thermal cooling device cooling levels
 > + */
-> +static int ispif_reset(struct ispif_device *ispif, u8 vfe_id)
-> +{
-> +       unsigned long time;
+
+...
+
+> +struct iei_wt61p803_puzzle_hwmon {
+> +       struct iei_wt61p803_puzzle *mcu;
+> +       unsigned char *response_buffer;
+> +       bool thermal_cooling_dev_present[IEI_WT61P803_PUZZLE_HWMON_MAX_PWM_NUM];
+> +       struct iei_wt61p803_puzzle_thermal_cooling_device
+> +               *cdev[IEI_WT61P803_PUZZLE_HWMON_MAX_PWM_NUM];
+
+Isn't this constant a bit too long? Perhaps drop NUM (MAX would
+suffice I think) for a starter.
+
+> +};
+
+...
+
+> +       static unsigned char temp_sensor_ntc_cmd[4] = {
+> +               IEI_WT61P803_PUZZLE_CMD_HEADER_START,
+> +               IEI_WT61P803_PUZZLE_CMD_TEMP,
+> +               IEI_WT61P803_PUZZLE_CMD_TEMP_ALL
+
++ comma.
+
+> +       };
+
+Why not to be consistent with the rest assignments, choose either
+above form, or like you have done in the below functions.
+Also, why 4?
+
+> +       size_t reply_size = 0;
+
+How is it used in all these functions?
+
 > +       int ret;
 > +
-> +       ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE0);
-> +       if (ret < 0)
-> +               return ret;
+> +       ret = iei_wt61p803_puzzle_write_command(mcu_hwmon->mcu, temp_sensor_ntc_cmd,
+> +                                               sizeof(temp_sensor_ntc_cmd), resp_buf,
+> +                                               &reply_size);
 > +
-> +       ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE1);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       ret = camss_enable_clocks(ispif->nclocks_for_reset,
-> +                                 ispif->clock_for_reset,
-> +                                 to_device(ispif));
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       ret = ispif_vfe_reset(ispif, vfe_id);
 > +       if (ret)
-> +               dev_dbg(to_device(ispif), "ISPIF Reset failed\n");
+> +               return ret;
 > +
->         camss_disable_clocks(ispif->nclocks_for_reset, ispif->clock_for_reset);
->
->         camss_pm_domain_off(to_camss(ispif), PM_DOMAIN_VFE0);
-> @@ -355,7 +379,7 @@ static int ispif_set_power(struct v4l2_subdev *sd, int on)
->                         goto exit;
->                 }
->
-> -               ret = ispif_reset(ispif);
-> +               ret = ispif_reset(ispif, line->vfe_id);
->                 if (ret < 0) {
->                         pm_runtime_put_sync(dev);
->                         camss_disable_clocks(ispif->nclocks, ispif->clock);
-> @@ -1192,7 +1216,8 @@ int msm_ispif_subdev_init(struct ispif_device *ispif,
->
->         mutex_init(&ispif->config_lock);
->
-> -       init_completion(&ispif->reset_complete);
-> +       for (i = 0; i < MSM_ISPIF_VFE_NUM; i++)
-> +               init_completion(&ispif->reset_complete[i]);
->
->         return 0;
->  }
-> diff --git a/drivers/media/platform/qcom/camss/camss-ispif.h b/drivers/media/platform/qcom/camss/camss-ispif.h
-> index 1a5ba2425a42..4132174f7ea1 100644
-> --- a/drivers/media/platform/qcom/camss/camss-ispif.h
-> +++ b/drivers/media/platform/qcom/camss/camss-ispif.h
-> @@ -56,7 +56,7 @@ struct ispif_device {
->         int nclocks;
->         struct camss_clock  *clock_for_reset;
->         int nclocks_for_reset;
-> -       struct completion reset_complete;
-> +       struct completion reset_complete[MSM_ISPIF_VFE_NUM];
->         int power_count;
->         struct mutex power_lock;
->         struct ispif_intf_cmd_reg intf_cmd[MSM_ISPIF_VFE_NUM];
-> --
-> 2.28.0
->
+> +       /* Check the number of NTC values (should be 0x32/'2') */
+
+> +       if (resp_buf[3] != 0x32)
+
+Instead of comment in the parentheses, just do it here
+" != '2')"
+
+> +               return -EIO;
+
+...
+
+> +static int iei_wt61p803_puzzle_read(struct device *dev, enum hwmon_sensor_types type,
+> +                                   u32 attr, int channel, long *val)
+> +{
+> +       struct iei_wt61p803_puzzle_hwmon *mcu_hwmon = dev_get_drvdata(dev->parent);
+> +       int ret;
+> +
+> +       switch (type) {
+> +       case hwmon_pwm:
+
+> +               ret = iei_wt61p803_puzzle_read_pwm_channel(mcu_hwmon, channel, val);
+> +               return ret;
+
+  return iei_...(...);
+in all such cases.
+
+> +       case hwmon_fan:
+> +               ret = iei_wt61p803_puzzle_read_fan_speed(mcu_hwmon, channel, val);
+> +               return ret;
+> +       case hwmon_temp:
+> +               ret = iei_wt61p803_puzzle_read_temp_sensor(mcu_hwmon, channel, val);
+> +               return ret;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+
+...
+
+> +static umode_t iei_wt61p803_puzzle_is_visible(const void *data, enum hwmon_sensor_types type,
+> +                                             u32 attr, int channel)
+> +{
+> +       switch (type) {
+> +       case hwmon_pwm:
+
+> +               switch (attr) {
+> +               case hwmon_pwm_input:
+> +                       return 0644;
+> +               default:
+> +                       return 0;
+> +               }
+
+Isn't too long for
+  if (attr == ...)
+    return 0644;
+  break;
+
+...see below...
+
+> +       case hwmon_fan:
+> +               switch (attr) {
+> +               case hwmon_fan_input:
+> +                       return 0444;
+> +               default:
+> +                       return 0;
+> +               }
+> +       case hwmon_temp:
+> +               switch (attr) {
+> +               case hwmon_temp_input:
+> +                       return 0444;
+> +               default:
+> +                       return 0;
+> +               }
+
+> +       default:
+> +               return 0;
+
+break;
+
+> +       }
+
+return 0;
+
+?
+
+> +}
+
+...
+
+> +       mcu_hwmon->thermal_cooling_dev_present[pwm_channel] = true;
+> +
+
+> +       num_levels = fwnode_property_read_u8_array(child, "cooling-levels", NULL, 0);
+
+fwnode_property_count_u8()
+
+> +       if (num_levels > 0) {
+
+You can improve readability by reducing indentation level via
+replacement to negative conditional.
+
+> +               cdev = devm_kzalloc(dev, sizeof(*cdev), GFP_KERNEL);
+> +               if (!cdev)
+> +                       return -ENOMEM;
+> +
+> +               cdev->cooling_levels = devm_kzalloc(dev, num_levels, GFP_KERNEL);
+
+For the sake of cleaness, shouldn't it be devm_kmalloc_array() ?
+(Note, zeroing is not needed if you read entire array)
+
+> +               if (!cdev->cooling_levels)
+> +                       return -ENOMEM;
+> +
+> +               ret = fwnode_property_read_u8_array(child, "cooling-levels",
+> +                                                   cdev->cooling_levels,
+> +                                                   num_levels);
+> +               if (ret) {
+> +                       dev_err(dev, "Couldn't read property 'cooling-levels'");
+> +                       return ret;
+> +               }
+> +
+> +               snprintf(cdev->name, THERMAL_NAME_LENGTH, "iei_wt61p803_puzzle_%d", pwm_channel);
+> +
+> +               cdev->tcdev = devm_thermal_of_cooling_device_register(dev, NULL,
+> +                               cdev->name, cdev, &iei_wt61p803_puzzle_cooling_ops);
+> +               if (IS_ERR(cdev->tcdev))
+> +                       return PTR_ERR(cdev->tcdev);
+> +
+> +               cdev->mcu_hwmon = mcu_hwmon;
+> +               cdev->pwm_channel = pwm_channel;
+> +
+> +               mcu_hwmon->cdev[pwm_channel] = cdev;
+> +       }
+> +       return 0;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
