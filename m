@@ -2,70 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7D0E293CEB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 15:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12F35293D03
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 15:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407248AbgJTNGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 09:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55320 "EHLO
+        id S2406995AbgJTNMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 09:12:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407247AbgJTNGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 09:06:31 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 311B2C0613CE
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:06:29 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id n15so2062805wrq.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:06:29 -0700 (PDT)
+        with ESMTP id S2406569AbgJTNMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 09:12:48 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA552C0613CE
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:12:47 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id a72so1725513wme.5
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 06:12:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:autocrypt:organization:message-id
          :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=3Ps5HK45BPGZGJ/M+wgzMLq7bb2uVamWI05cHaDQ/kk=;
-        b=qfrV2aKY5DRvtftw7/BbWJ6pAhNP/rUHwccCt+qasY0+RSLT2DLBmI/WixrkYOHBhr
-         yIB4qpjz7O4nBpDk/N+2SO0msdU4RzkBifoiqtzyCxy47sdfhVK0oA67yxFBadkE9NGR
-         p6R/Fjb5ceWc+oF65cKOT3bzvLJIvWSWcqEKBvGYIm8zYjMV6/3TFPAu5uUqnq7uo1ax
-         lf/a6njAwPfj67CuSA2PypYxBI0PohrORRFyJhDPNYhTvAC4cN0c+JvxJdKdeCuR9/DJ
-         0D2+OmNXwAEV8HRSlUzYTKAOWPmqKCwwZp9gBXiwJnUZA2ClxXfwGw7tmDCxQtzsL2Eg
-         vQFQ==
+        bh=6QGtUT5pKCXlcaUGePzDcFENyJMU8dFZvbygcAE8W+Y=;
+        b=P84m/P6ZFjlCJscybhA9LvUvEcZS0iVMkSOETtTB2pveXH3kDiMPvzen3CLOHkyt+L
+         GDeAbVVquevVOsehpxzFa29MpQVr/s+yv+lE88xZEW6iM++xed5vRAC/sabDulnqOyFs
+         wtC1YYao9nKBNdIz7IQ/wi+iuO8qxmsdRyGLaoFrQATR5H4mRIfQ//T/i5UpLR2SzPl7
+         dnZqCLgdyO4jIscjZ7uhpavrkAnaM5qQg0AtNYqgyKQrLHOBAR8erMusfX3Uqw3dxID5
+         XKlXYiJ791ydOWhw3VQ/ZH/QTROSeSU0dSIa8DoicZFL3dvQyVQvAlaGjar1c3QSKHaj
+         bQZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=3Ps5HK45BPGZGJ/M+wgzMLq7bb2uVamWI05cHaDQ/kk=;
-        b=PVw1U+rKpVQbGdhXMxTqrT/jjV91Hm7BVxg9lZcPeopWBR0ml4GfyH/B2vdkEflyT5
-         GOT4i0NBEpXS2xKiczmpZntLS9O565EwsfRKZbc2P6ho+P5pYd0inIWz3LF3pJeaHo99
-         AsAS6eoexGnmWdmJh4xa+/9PfGJyOPP4qbqfDTZ7Fh3iMMWBJdwg3qXXGsrL0xMVNxBY
-         WgZ8zCD2Q9ZGASdoDGGyyT0uKN8wkHtgtJ1E87CjPHZuqz0eEGclntM63MSnj6D8UToO
-         6QF/eS13SdRtDv423KXvKisGu+4A76p1mdQ6A7AfMxJM6N4CeQfTGkhVyiMtGG7UfqK3
-         dc1g==
-X-Gm-Message-State: AOAM530YJ48pxi1uYt8wYreePCIUJ85Gi1lFCHUxuKYJJKytTJavF0cF
-        dVCvCiPjOF2UwDXqEY6nRdhiqA==
-X-Google-Smtp-Source: ABdhPJxf+APnEUlI/YLqo9KrnMD6pJ+j2ld5PNZL45U6uoz72mx9kB3nf0gJ3qQGjlgA8Bjubj7ZrQ==
-X-Received: by 2002:adf:82ab:: with SMTP id 40mr3395303wrc.420.1603199187489;
-        Tue, 20 Oct 2020 06:06:27 -0700 (PDT)
+        bh=6QGtUT5pKCXlcaUGePzDcFENyJMU8dFZvbygcAE8W+Y=;
+        b=pK889wi5C3Fr2ENPuf8JjORdpcaAB4W1vGR1hivNykAWnD/glcj4jVyjgAmp58Cek9
+         zOueVOiYc3USnPeXYHPXneeGH1bGAHnYYbUacfmottKB6jVqy3xftjbGpnwaPZ6VYDy8
+         SfkQcQkxi+0QZVrfGlPpBK6csXnrA6wcIiqEr/k2+0hJMoZV5WwTXIINSi58wpEKE+AL
+         Pdmf4v4WRmYRkOvLFhSq9Ebfli00e3svkcyAxpgdd0PAp5E9C1ymtV4RbsnTgUPTwiPk
+         N/jr6hrN4k0UU49RRFlZoeFDf5o0GCDIy/fxHl4n5s1+CuahtU4v6SEpwkvW7OdNuX0o
+         JfHQ==
+X-Gm-Message-State: AOAM530iPRayxiWT01I1ZQyAj/D4wXlszY0zBdKZDjdSFbno0FkiIx0P
+        5mt6RLwulvSuLNfCY/VAKjHAoTQO9DL4U1tg
+X-Google-Smtp-Source: ABdhPJy4oy+/1QSFY06SZ2UFsPcYtbK/Lf8IyBfUlsVzP9SfNF+CxPtvNEFlRcO2mwAs5ghJGI79QA==
+X-Received: by 2002:a7b:ce14:: with SMTP id m20mr2828662wmc.20.1603199565716;
+        Tue, 20 Oct 2020 06:12:45 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:218e:7be8:b4e2:8030? ([2a01:e35:2ec0:82b0:218e:7be8:b4e2:8030])
-        by smtp.gmail.com with ESMTPSA id w7sm3439196wre.9.2020.10.20.06.06.25
+        by smtp.gmail.com with ESMTPSA id i33sm3175868wri.79.2020.10.20.06.12.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Oct 2020 06:06:26 -0700 (PDT)
-Subject: Re: [PATCH 05/29] arm64: dts: amlogic: meson-g12: Set FL-adj property
- value
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-6-Sergey.Semin@baikalelectronics.ru>
+        Tue, 20 Oct 2020 06:12:44 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: amlogic: add missing ethernet reset ID
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20201020120141.298240-1-jbrunet@baylibre.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -117,12 +107,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <cfae6b6a-ceda-f9ca-677d-46d2c25d584a@baylibre.com>
-Date:   Tue, 20 Oct 2020 15:06:25 +0200
+Message-ID: <68ee4022-df9b-c36e-b828-bc93d6507473@baylibre.com>
+Date:   Tue, 20 Oct 2020 15:12:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201020115959.2658-6-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201020120141.298240-1-jbrunet@baylibre.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -130,35 +120,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Serge,
-
-On 20/10/2020 13:59, Serge Semin wrote:
-> In accordance with the DWC USB3 bindings the property is supposed to have
-> uint32 type. It's erroneous from the DT schema and driver points of view
-> to declare it as boolean. As Neil suggested set it to 0x20 so not break
-> the platform and to make the dtbs checker happy.
+On 20/10/2020 14:01, Jerome Brunet wrote:
+> From: Anand Moon <linux.amoon@gmail.com>
 > 
-> Link: https://lore.kernel.org/linux-usb/20201010224121.12672-16-Sergey.Semin@baikalelectronics.ru/
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Add reset external reset of the ethernet mac controller
+> 
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 ++
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 ++
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 3 +++
+>  3 files changed, 7 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index fae48efae83e..724ee179b316 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -227,6 +227,8 @@ ethmac: ethernet@ff3f0000 {
+>  				      "timing-adjustment";
+>  			rx-fifo-depth = <4096>;
+>  			tx-fifo-depth = <2048>;
+> +			resets = <&reset RESET_ETHERNET>;
+> +			reset-names = "stmmaceth";
+>  			status = "disabled";
+>  		};
+>  
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 1e83ec5b8c91..3033ab2be1ff 100644
+> index c95ebe615176..8514fe6a275a 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
 > +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -2380,7 +2380,7 @@ dwc3: usb@ff500000 {
->  				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
->  				dr_mode = "host";
->  				snps,dis_u2_susphy_quirk;
-> -				snps,quirk-frame-length-adjustment;
-> +				snps,quirk-frame-length-adjustment = <0x20>;
->  				snps,parkmode-disable-ss-quirk;
->  			};
+> @@ -224,6 +224,8 @@ ethmac: ethernet@ff3f0000 {
+>  				      "timing-adjustment";
+>  			rx-fifo-depth = <4096>;
+>  			tx-fifo-depth = <2048>;
+> +			resets = <&reset RESET_ETHERNET>;
+> +			reset-names = "stmmaceth";
+>  			status = "disabled";
+>  
+>  			mdio0: mdio {
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 0edd137151f8..726b91d3a905 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -13,6 +13,7 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/power/meson-gxbb-power.h>
+> +#include <dt-bindings/reset/amlogic,meson-gxbb-reset.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>  
+>  / {
+> @@ -575,6 +576,8 @@ ethmac: ethernet@c9410000 {
+>  			interrupt-names = "macirq";
+>  			rx-fifo-depth = <4096>;
+>  			tx-fifo-depth = <2048>;
+> +			resets = <&reset RESET_ETHERNET>;
+> +			reset-names = "stmmaceth";
+>  			power-domains = <&pwrc PWRC_GXBB_ETHERNET_MEM_ID>;
+>  			status = "disabled";
 >  		};
 > 
-
-You were faster than me !
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
