@@ -2,217 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A6229427D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 20:52:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E9629427F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 20:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437750AbgJTSwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 14:52:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52782 "EHLO
+        id S2437757AbgJTSwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 14:52:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437746AbgJTSwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 14:52:04 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B9CBC0613D3
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:52:04 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id y12so3502544wrp.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:52:04 -0700 (PDT)
+        with ESMTP id S2437753AbgJTSwK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 14:52:10 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72081C0613CE;
+        Tue, 20 Oct 2020 11:52:10 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id s9so3497015wro.8;
+        Tue, 20 Oct 2020 11:52:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jYFdycc4cemOIaYFUQzd2hjpOFiC6YIkhXB4IeoEDOc=;
-        b=dbg1dsucJfSwBHh00T6Mc9TxIy2cA3D0xo1Vm098iBuTl3wM9obmhlk2Rgw+3Fe9DE
-         lhn/KcJI0CzGJ6oaNtkW3L2DYRWLDfMqxzbcRxS7Ipt1zizebN8Dh7Zxgafe7FBS9DOS
-         DhU2QoyTkvFT2KdsWGAohFct9ghNqDtSzxfoY=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=hj/5rM+jvw3L4um8epXIlyHrB+7DbJ2e5G0hRWEEu0A=;
+        b=CBNQesy7gDXxZgJM+wVoV5gsm3Arow6foIwAKaz+gB+8oC3LApDfqTn5rut9in5Ex6
+         fJmEYUj5IQq97LgmIJqBUmGInGCGM9aZvIsep3UFdfjCSYylB+dBLbx02rDyfcJamPlR
+         2DMhXy8EdCk4k9pj0zC8K9DVZjMn0YzuNZR/ULF76wGB/i1i9sOdM5ZG6XJe9lHG89BX
+         iZIiHNvZ05wGfvsFlf+CeL5Yl7bbxGgdGl+ijCul3u6OYWabluq4xxiGWZqYZhxeyNiZ
+         Rq/O+kwXTeBgWOGAJcVsmlzTDlpf8c2bEUjlkMU/5qa/h0S5E2ep53tvSxkeFTVSFPNC
+         51uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jYFdycc4cemOIaYFUQzd2hjpOFiC6YIkhXB4IeoEDOc=;
-        b=Gj79DS/dsSd92a7olDSS6bILtBognZ5E00uz4p/1+f4Pypn/GAaROdyIf7RzHaoph1
-         y7rDUwNiVUD2obTdfSgopr6EDoPx82n39kRIENHaeW4MtXz+YtyMPBSxJTg4f5Rv8m6e
-         mAxY7tPJ1tjqgzb3JwIm8Gq/oZCL2hcTO1bRnESvqyg2G9wn8W1JlJ/wIZ0Bb7ZlaZKt
-         WzJ/32sHI0TOmVq+85QzL/skGinXDkdJvO4/oMABhjHvlU+MQ7KhiVw5dz4KXdoLB8d0
-         NBvYznG/6DaYEkLdlQW/PRrJW4voDOx6fReMMHBxTsmlxiDlnfedHgxHq/Ic7LuW4LL4
-         pueQ==
-X-Gm-Message-State: AOAM532WmVf4a7qRTjt+uRASH+8oZvgw44q4lFzeO2tGvtRCn3goNWtu
-        A7vIvhWLgbp/+fLGaE3Es3ez6g6K0fpuoNxz/FI9CQ==
-X-Google-Smtp-Source: ABdhPJzwG1O5oS9ghCKoJUxg59+XPLW7h0AAeoCd9EgHF2nhb1cMfI/IvqKJePI2HX9vcvnVxX2frJft2ThKtBNDJrA=
-X-Received: by 2002:a5d:4001:: with SMTP id n1mr5162648wrp.426.1603219922351;
- Tue, 20 Oct 2020 11:52:02 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hj/5rM+jvw3L4um8epXIlyHrB+7DbJ2e5G0hRWEEu0A=;
+        b=rcgRzjA3eHLjpyxf0sjhG141/ek3H/X28wSK/iTfz0kFF17Xmgy+wqK0z2yzxfi1su
+         tQUUHyZlPZeNQT/qMmlciFCXhHHAsuGgg8t0zjDnEozUvscykPnsUPtaJP3xa2Xm7uaj
+         i2XF5kf0PNSz3mxDOknCPa3OBKF/AWktFfInuCtAUaMFeKC2lwFS99T4OADO5Bq2ztti
+         vVwyWcumhORcEXMubZzKLPxdsnyIAKmkOXrzpfol3NvoDgefVXgZg/aM026tIRQFcTeo
+         XDklY9yx0AVdBHxY6UPJ1tDkD9y8bOySirECikC7EGyQK2ICMVK9n4chcBr3TSMk4Oww
+         +kSQ==
+X-Gm-Message-State: AOAM532geZ4GwS/AVcPt+t0eccNwxDr54Yg3PUx5+72sf6yq5pLr5ZGG
+        zOukY0WROjlQ1kgz4i81yKy74HQj7x4=
+X-Google-Smtp-Source: ABdhPJw6ycjDTlgnXw8TqLHiKMGACU3mTpKDtd5WgINy1vG3V+zqXDvWD61WsX7sfQQcSJZiCnPdeg==
+X-Received: by 2002:adf:bbd2:: with SMTP id z18mr5409041wrg.166.1603219929109;
+        Tue, 20 Oct 2020 11:52:09 -0700 (PDT)
+Received: from arch-thunder.localdomain (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id x65sm4281514wmg.1.2020.10.20.11.52.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 11:52:08 -0700 (PDT)
+Date:   Tue, 20 Oct 2020 19:52:06 +0100
+From:   Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>, sakari.ailus@linux.intel.com,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: imx7-mipi-csi2: convert bindings to
+ yaml
+Message-ID: <20201020185206.qst2uksgcy3axbnh@arch-thunder.localdomain>
+References: <20201020091921.1730003-1-rmfrfs@gmail.com>
+ <20201020091921.1730003-4-rmfrfs@gmail.com>
+ <20201020153044.GA875273@bogus>
 MIME-Version: 1.0
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org> <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
- <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
- <20201015161251.GF4390@sirena.org.uk> <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
- <20201020143711.GC9448@sirena.org.uk>
-In-Reply-To: <20201020143711.GC9448@sirena.org.uk>
-From:   Cheng-yi Chiang <cychiang@chromium.org>
-Date:   Wed, 21 Oct 2020 02:51:33 +0800
-Message-ID: <CAFv8NwKuLjLeM1KLeV8Br2TZC8L7DO6KWHL=pXvhAUV5+wSBPg@mail.gmail.com>
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201020153044.GA875273@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 10:37 PM Mark Brown <broonie@kernel.org> wrote:
->
-> On Tue, Oct 20, 2020 at 09:37:05PM +0800, Cheng-yi Chiang wrote:
->
-> > May I know your suggestion on Ajye's patch "ASoC: qcom: sc7180: Modify
-> > machine driver for 2mic" ?
->
-> > https://lore.kernel.org/r/20200928063744.525700-3-ajye_huang@compal.corp-partner.google.com
->
-> > I think adding code in the machine driver makes the intent straightforward.
-> > If we want the machine driver to be fully configurable,
-> > we can always add more code to handle properties like gpio, route,
-> > widget (mux, text selection) passed in from the device tree.
->
-> If the device has both front and rear mics and only one can be active at
-> once that seems obvious and sensible.  If the devices only have one of
-> these then this seems like a bad idea.
->
+Hi Rob Bot,
+On Tue, Oct 20, 2020 at 10:30:44AM -0500, Rob Herring wrote:
+> On Tue, 20 Oct 2020 10:19:21 +0100, Rui Miguel Silva wrote:
+> > Convert imx7 mipi csi2 bindings documentation to yaml schema, remove
+> > the textual document and update MAINTAINERS entry.
+> > 
+> > Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
+> > ---
+> >  .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
+> >  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 172 ++++++++++++++++++
+> >  MAINTAINERS                                   |   2 +-
+> >  3 files changed, 173 insertions(+), 91 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+> > 
+> 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> ./Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml:91:21: [warning] wrong indentation: expected 22 but found 20 (indentation)
+> ./Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml:93:21: [warning] wrong indentation: expected 22 but found 20 (indentation)
 
-trogdor board: only front mic.
-pompom board: having both front mic and rear mic. Only one of them
-will be used at a time. It is toggled by mixer control backed by a
-gpio.
+Strange not to complain on line 94 also.
 
-My proposed solution: instead of using compatible strings, expose only
-dmic-gpio property.
-When the machine driver sees this property, it uses the dapm widgets
-and controls created in the machine driver.
+> 
+> 
+> See https://patchwork.ozlabs.org/patch/1384742
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure dt-schema is up to date:
+> 
+> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
 
-> > But I feel that we don't need a machine driver to be that configurable
-> > from the device tree.
-> > I think having the logic scattered in various dtsi files and relying
-> > on manual inspection to understand the usage would be less
-> > maintainable than only exposing needed property like gpio.
-> > Especially in the complicated case where we need to create a mux
-> > widget with callback toggling the gpio like this:
->
-> I don't understand what "logic scattered in various dtsi files" means,
-> sorry.
->
-I mean I don't want to use device property to pass in widget name,
-type, text and callbacks.
-Let me give an example:
+I have done this and I am at version:
+2020.8.2.dev4+g341f3e35180a
 
-- Board trogdor uses front mic, rt5682, and max98357a.
-- Board pompom is based on board trogdor, but it has front mic and rear mic.
-If we somehow managed to add the code to pass in widget, route, type,
-text, and callbacks needed for dmic control, we will need to put a
-bunch of properties in trogdor-pompom.dtsi file.
-- Board ABC is based on trogdor as well, and it has front mic and rear
-mic, but with a different speaker amp.
+and still do not get any warning on this file. Nevertheless I
+found the indentation issue and will:
 
-To use widget, route, type, text and callbacks for front mic and rear
-mic, in trogdor-ABC.dtsi file we would copy some properties used in
-trogdor-pompom.dtsi file. To support the different combination of
-codec, we would need some modification of the route and widget.
+> Please check and re-submit.
 
-Now the support of front mic and rear mic switch is scattered in
-trogdor-ABC.dtsi and trogdor-pompom.dtsi files.
-For example, when we change the code to parse or build the widget and
-route, we need to fix both trogdor-pompom.dtsi and trogdor-ABC.dtsi.
-
-Alternatively, if we only expose dmic-gpio property and put
-surrounding code in the machine driver, we can use this dmic-gpio
-property, plus the sound card name to identify the needed widget and
-route.
-
-> > Yes, that should work to describe the dailink we are using.
-> > But a more tricky issue is how to do calls like setting PLL in dai startup ops.
->
-> ...
->
-> > I think that asking a generic machine driver to do configuration like
-> > this with only a limited interface of device property
-> > might be too much of an ask for the machine driver.
->
-> Richard was looking at some basic configuration for PLLs.
-
-That sounds promising. If we don't need to include the codec driver
-header file explicitly, that can make machine drivers simpler.
-Maybe for most of the simple cases we don't even need a dedicated
-machine driver.
-
->
-> > Would you mind if I simplify the compatible string like Srinivas
-> > suggested, and send a v12?
->
-> > As for other two kinds of variations that I am aware of:
->
-> > 1. front mic / rear mic
-> > 2. replace alc5682 with adau7002
->
-> The CODEC change is going to be described in the DT no matter what -
-> you'll have a reference to the CODEC node but it may make sense if
-> there's enough custom code around it.  For front vs rear mic the
-> simplest thing would just be to not mention which if this is a hardware
-> fixed thing, otherwise a control.
->
-
-Would you suggest checking whether the codec node is a rt5682 node,
-and call required PLL calls accordingly ?
-
-"For front vs rear mic the simplest thing would just be to not mention
-which if this is a hardware fixed thing, otherwise a control."
-Sorry I am not sure if I understand this correctly. Please correct me
-if I am wrong.
-
-- For default case having 1 mic: not mention this at all
-- For front mic / rear mic case: see gpio property and use an
-additional control.
-
-> > We can set different board names and different compatible strings to
-> > achieve such variation.
-> > So that it would make sense to describe configuration in compatible
-> > strings like you suggested, and also provides UCM a way to distinguish
-> > different boards.
->
-> I don't recall having suggested distinguishing these things with a
-> compatible string, especially not the microphones.  UCM can already use
-> the display names for the boards to distinguish things.
-
-My apology that I made the wrong interpretation when I read your reply
-"These feel more like things that fit with compatible" regarding
-replacing alc5682 with adau7002. Please let me know which one solution
-you prefer:
--  deriving this information from codec node
--  deriving this information from different sound card name
-
-Thanks so much!
+------
+Cheers,
+     Rui
