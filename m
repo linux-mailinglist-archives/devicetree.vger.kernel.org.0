@@ -2,318 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 120162937C2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 11:14:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC4A2937D7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 11:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392627AbgJTJOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 05:14:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47606 "EHLO
+        id S2392664AbgJTJT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 05:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391094AbgJTJOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 05:14:46 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F9BC0613D3
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 02:14:46 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id hk7so655953pjb.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 02:14:46 -0700 (PDT)
+        with ESMTP id S2391238AbgJTJT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 05:19:26 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAB6C061755;
+        Tue, 20 Oct 2020 02:19:26 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id n6so1199691wrm.13;
+        Tue, 20 Oct 2020 02:19:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GgUTm7wJH0+BRi8dDrO/9JHL4EFO+jAdr22a/R5dUE4=;
-        b=eMtxHibWARRLqoeW4sCOa4QI9fV0tMk9huMSb4iZpL7QmvStdAiADhOCqPLKdjLYN9
-         0+dCfmlFFHela6luwDNMF/Tv6a/d+cjSdRTO13hSNiJ4oLu4/YT0xIM3+wQpvpxEE82X
-         M7kPWKXpaVeflEQhOiSq+BWx9up3X76B+okSsx1etsLl8F9F7MYSiyBBHf1Y3uNzMQJL
-         drp4qsvCfMTtpMIxL3BEfGjx/3ZMJKbPNYnsSttD95PBTdWblDkI0MHPy46N3eWsXgh8
-         rhiaBY1KBskWfyRQiXWDkkSvAG7lwXFWZLqWVR/T0/PfDF3jVlGFyU0nQSoQkZLmBoV4
-         6ZPA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G55jsoO41AdZ7cjprwBTVcg52NPKR1+58eYRGpqfSgc=;
+        b=H5pxUAMI8AUZf3bcCMhDwNh6szblzd+C6n2Ae9LaiXW2AGFOjsJudpUPR5GmDCnYJq
+         KctPbP9gDeI6RO5IELne1KXUUKQTB95r9uZ/sJnmrfskoeuOsPqx9qtxeLCa46VJYOSi
+         ct4KLXmSA/gQtE6lMG2jbMyWY1dyv0n65n99Nbf49GHR7TuveE2iHZkiiEp0bfm0SrNX
+         QCnOw3Agpysb/3g/QUS8I2d4e+QebYET1T1fBq2cfjSI5bKov+4ypCjAUpXsLVqCKzSZ
+         5zlPcYqp6s+7fqxjzNK4BlElP2JnV4S2FBmMa5ET5Zg04+FcFpf6CK/+EON26xXql8yK
+         vs0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GgUTm7wJH0+BRi8dDrO/9JHL4EFO+jAdr22a/R5dUE4=;
-        b=k86YtrDcpfK1CpNsg6EXXvsiqv0w95V2XrtXLqaJXBrNO8BVOJYnYeyJAG+TWanjvd
-         7FLyaZ29Fp97ZVN/slxZ6+i749GIdnDUkGNXvSEIm+7mfN03a24SVRBe7AkRnfFbfsLL
-         wZWQ6YVOVoSaC6uhL0hGPCeLd9E5MEKwA9+Jhi1lRDnaZ42WzNxzlikcH0RAySUKCgYx
-         AlkkTu3HL2qGbvYyRhZehV3SFfTu/eiMDX0yjb+bEHbWkuye4Czd+amW62oHjVvJdGQ5
-         df4Ksj1UQ43q/87hOP9l1bFAonq5YB9EfS+RVLkr6ZiFLdHhR5dTwwGFHVSdiSKMVbHw
-         DQ6g==
-X-Gm-Message-State: AOAM53274HcgFeqJor8Qv4ojIazFtVZUle2GKKWWlNEH517xbSp/notP
-        fXNsOMkBlrgQtRgy3p6aFvBMh9je6DtU9bxJIWundCktjk7uNg==
-X-Google-Smtp-Source: ABdhPJw35ny+DmJ64Kw4jWL/AzIFdAaUCgdu6gfPtMx7VHnN5OGS4XD7HvYfKSSjQd3rybheCX+98kTo9aEJoO8q5to=
-X-Received: by 2002:a17:90a:160f:: with SMTP id n15mr1940273pja.75.1603185285795;
- Tue, 20 Oct 2020 02:14:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G55jsoO41AdZ7cjprwBTVcg52NPKR1+58eYRGpqfSgc=;
+        b=OSgYOr86xOr9g8tnKTzMWxNmGjAnzMPTWIVUg80TZb4xWR4Rgrk/f//A64gem10MOT
+         WPyJowQdUwzBXchJ9z/r6DlYApsYWMewbI+3h/sCisBv6Bm2W5Cx24HOf7TTwUQahRMC
+         4AG4tbosC2EsEg6nlYARYaepFpSyf//+VjkR7cnJwwDnv9w16htZEk82zLBm94H6bTtj
+         D1/HHGYrxXAnE06y+kmV70bzQXRGlN/N98k/gmMlujUYWzZSW2LQyU42hsQCkRRn1KNA
+         BAhkTVTDQFlUz25zQ3Dj04ykovEjkXYmU+LgQJpKnZp3aU4Gk2k1zDyr4e6lXhUQCyUF
+         JoCw==
+X-Gm-Message-State: AOAM530r4X4xV8DGTMV6rvVluViE3FtdckcBQlnJx5KckAofSaOhtqj0
+        1QNa+eMBmKgWs+Ub5+FcrQjBkDdtP5QWkg==
+X-Google-Smtp-Source: ABdhPJw6xDviu+Aknk/OFvgM0nEyNiQpfBndDHeEZkcARpLTvHFI0N/EudeXQrGOqJcWtJ1tbidApA==
+X-Received: by 2002:a5d:62cf:: with SMTP id o15mr2310697wrv.49.1603185565225;
+        Tue, 20 Oct 2020 02:19:25 -0700 (PDT)
+Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id g5sm1773660wmi.4.2020.10.20.02.19.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2020 02:19:24 -0700 (PDT)
+From:   Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Rui Miguel Silva <rmfrfs@gmail.com>
+Subject: [PATCH v4 0/3] dt-bindings: media: imx7 and ov2680 updates to yaml
+Date:   Tue, 20 Oct 2020 10:19:18 +0100
+Message-Id: <20201020091921.1730003-1-rmfrfs@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20201018125237.16717-1-kholk11@gmail.com> <20201018125237.16717-4-kholk11@gmail.com>
-In-Reply-To: <20201018125237.16717-4-kholk11@gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 20 Oct 2020 11:14:34 +0200
-Message-ID: <CAG3jFysZbg_2XBjPryY1DN0xqu6VLzed6tLmoVeJ3NTb7dA22w@mail.gmail.com>
-Subject: Re: [PATCH 3/6] media: camss: vfe: Add support for VFE 4.8
-To:     kholk11@gmail.com
-Cc:     Todor Tomov <todor.too@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, marijns95@gmail.com,
-        konradybcio@gmail.com, martin.botka1@gmail.com,
-        linux-arm-msm@vger.kernel.org,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Angelo,
+Update bindings documentation to json-schema yaml in imx7 csi, mipi csi and
+ov2680 sensor media devices along the respective MAINTAINERS entry.
 
-The VFE abstraction layers are something I've been looking at too, and
-there's no neat solution that both eliminates code duplication,
-separates revisions into individual files, and still avoids creating
-even more abstraction layers. So while combining vfe47 and vfe48 looks
-and feels a bit cluttered, I think it is a necessary evil.
+Cheers,
+  Rui
 
-I've got some minor nits below.
+v3 -> v4:
+  Rob Herring:
+  Patch 1/3:
+    https://lore.kernel.org/linux-media/20201019203910.GB3550266@bogus/
+    - remove clock-names description
+    - add maxItems to reset-gpios
 
-On Sun, 18 Oct 2020 at 14:54, <kholk11@gmail.com> wrote:
->
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
->
-> Add the support for VFE 4.8 in the camss-vfe-4-7 driver, as this one
-> really is a minor revision, requiring the very same management and
-> basically having the same register layout as VFE 4.7, but needing
-> a different QoS and DS configuration, using a different register to
-> enable the wm and habing the same UB size for both instances (instead
-> of a different size between instance 0 and 1).
->
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> ---
->  .../media/platform/qcom/camss/camss-vfe-4-7.c | 129 ++++++++++++++++--
->  drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
->  2 files changed, 122 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-7.c b/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
-> index 0dca8bf9281e..e48d58a4a9d1 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
-> @@ -133,6 +133,11 @@
->  #define VFE_0_BUS_BDG_QOS_CFG_7                0x420
->  #define VFE_0_BUS_BDG_QOS_CFG_7_CFG    0x0001aaa9
->
-> +#define VFE48_0_BUS_BDG_QOS_CFG_0_CFG  0xaaa5aaa5
-> +#define VFE48_0_BUS_BDG_QOS_CFG_3_CFG  0xaa55aaa5
-> +#define VFE48_0_BUS_BDG_QOS_CFG_4_CFG  0xaa55aa55
-> +#define VFE48_0_BUS_BDG_QOS_CFG_7_CFG  0x0005aa55
-> +
->  #define VFE_0_BUS_BDG_DS_CFG_0         0x424
->  #define VFE_0_BUS_BDG_DS_CFG_0_CFG     0xcccc0011
->  #define VFE_0_BUS_BDG_DS_CFG_1         0x428
-> @@ -153,6 +158,9 @@
->  #define VFE_0_BUS_BDG_DS_CFG_16                0x464
->  #define VFE_0_BUS_BDG_DS_CFG_16_CFG    0x40000103
->
-> +#define VFE48_0_BUS_BDG_DS_CFG_0_CFG   0xcccc1111
-> +#define VFE48_0_BUS_BDG_DS_CFG_16_CFG  0x00000110
-> +
->  #define VFE_0_RDI_CFG_x(x)             (0x46c + (0x4 * (x)))
->  #define VFE_0_RDI_CFG_x_RDI_STREAM_SEL_SHIFT   28
->  #define VFE_0_RDI_CFG_x_RDI_STREAM_SEL_MASK    (0xf << 28)
-> @@ -231,6 +239,9 @@
->  #define VFE_0_REALIGN_BUF_CFG_CR_ODD_PIXEL     BIT(3)
->  #define VFE_0_REALIGN_BUF_CFG_HSUB_ENABLE      BIT(4)
->
-> +#define VFE48_0_BUS_IMAGE_MASTER_CMD           0xcec
-> +#define VFE48_0_BUS_IMAGE_MASTER_n_SHIFT(x)    (2 * (x))
-> +
->  #define CAMIF_TIMEOUT_SLEEP_US 1000
->  #define CAMIF_TIMEOUT_ALL_US 1000000
->
-> @@ -246,7 +257,7 @@ static void vfe_hw_version_read(struct vfe_device *vfe, struct device *dev)
->         dev_err(dev, "VFE HW Version = 0x%08x\n", hw_version);
->  }
->
-> -static u16 vfe_get_ub_size(u8 vfe_id)
-> +static u16 vfe47_get_ub_size(u8 vfe_id)
->  {
->         if (vfe_id == 0)
->                 return MSM_VFE_VFE0_UB_SIZE_RDI;
-> @@ -299,7 +310,7 @@ static void vfe_halt_clear(struct vfe_device *vfe)
->         writel_relaxed(0x0, vfe->base + VFE_0_BUS_BDG_CMD);
->  }
->
-> -static void vfe_wm_enable(struct vfe_device *vfe, u8 wm, u8 enable)
-> +static void vfe47_wm_enable(struct vfe_device *vfe, u8 wm, u8 enable)
->  {
->         if (enable)
->                 vfe_reg_set(vfe, VFE_0_BUS_IMAGE_MASTER_n_WR_CFG(wm),
-> @@ -883,7 +894,7 @@ static void vfe_set_clamp_cfg(struct vfe_device *vfe)
->         writel_relaxed(val, vfe->base + VFE_0_CLAMP_ENC_MIN_CFG);
->  }
->
-> -static void vfe_set_qos(struct vfe_device *vfe)
-> +static void vfe47_set_qos(struct vfe_device *vfe)
->  {
->         u32 val = VFE_0_BUS_BDG_QOS_CFG_0_CFG;
->         u32 val7 = VFE_0_BUS_BDG_QOS_CFG_7_CFG;
-> @@ -898,7 +909,7 @@ static void vfe_set_qos(struct vfe_device *vfe)
->         writel_relaxed(val7, vfe->base + VFE_0_BUS_BDG_QOS_CFG_7);
->  }
->
-> -static void vfe_set_ds(struct vfe_device *vfe)
-> +static void vfe47_set_ds(struct vfe_device *vfe)
->  {
->         u32 val = VFE_0_BUS_BDG_DS_CFG_0_CFG;
->         u32 val16 = VFE_0_BUS_BDG_DS_CFG_16_CFG;
-> @@ -1098,11 +1109,113 @@ static irqreturn_t vfe_isr(int irq, void *dev)
->
->  const struct vfe_hw_ops vfe_ops_4_7 = {
->         .hw_version_read = vfe_hw_version_read,
-> -       .get_ub_size = vfe_get_ub_size,
-> +       .get_ub_size = vfe47_get_ub_size,
-> +       .global_reset = vfe_global_reset,
-> +       .halt_request = vfe_halt_request,
-> +       .halt_clear = vfe_halt_clear,
-> +       .wm_enable = vfe47_wm_enable,
-> +       .wm_frame_based = vfe_wm_frame_based,
-> +       .wm_line_based = vfe_wm_line_based,
-> +       .wm_set_framedrop_period = vfe_wm_set_framedrop_period,
-> +       .wm_set_framedrop_pattern = vfe_wm_set_framedrop_pattern,
-> +       .wm_set_ub_cfg = vfe_wm_set_ub_cfg,
-> +       .bus_reload_wm = vfe_bus_reload_wm,
-> +       .wm_set_ping_addr = vfe_wm_set_ping_addr,
-> +       .wm_set_pong_addr = vfe_wm_set_pong_addr,
-> +       .wm_get_ping_pong_status = vfe_wm_get_ping_pong_status,
-> +       .bus_enable_wr_if = vfe_bus_enable_wr_if,
-> +       .bus_connect_wm_to_rdi = vfe_bus_connect_wm_to_rdi,
-> +       .wm_set_subsample = vfe_wm_set_subsample,
-> +       .bus_disconnect_wm_from_rdi = vfe_bus_disconnect_wm_from_rdi,
-> +       .set_xbar_cfg = vfe_set_xbar_cfg,
-> +       .set_realign_cfg = vfe_set_realign_cfg,
-> +       .set_rdi_cid = vfe_set_rdi_cid,
-> +       .reg_update = vfe_reg_update,
-> +       .reg_update_clear = vfe_reg_update_clear,
-> +       .enable_irq_wm_line = vfe_enable_irq_wm_line,
-> +       .enable_irq_pix_line = vfe_enable_irq_pix_line,
-> +       .enable_irq_common = vfe_enable_irq_common,
-> +       .set_demux_cfg = vfe_set_demux_cfg,
-> +       .set_scale_cfg = vfe_set_scale_cfg,
-> +       .set_crop_cfg = vfe_set_crop_cfg,
-> +       .set_clamp_cfg = vfe_set_clamp_cfg,
-> +       .set_qos = vfe47_set_qos,
-> +       .set_ds = vfe47_set_ds,
-> +       .set_cgc_override = vfe_set_cgc_override,
-> +       .set_camif_cfg = vfe_set_camif_cfg,
-> +       .set_camif_cmd = vfe_set_camif_cmd,
-> +       .set_module_cfg = vfe_set_module_cfg,
-> +       .camif_wait_for_stop = vfe_camif_wait_for_stop,
-> +       .isr_read = vfe_isr_read,
-> +       .violation_read = vfe_violation_read,
-> +       .isr = vfe_isr,
-> +};
+v2 -> v3:
+  Jacopo Mondi:
+  Patch 1/3:
+    https://lore.kernel.org/linux-media/20201015144905.4b23k5uy7ycuhvlo@uno.localdomain/
+    - add prefix ovti to yaml file
+    - remove double space
+    - adjust port properties
+    - fix additional properties
+    - fix end of file line and empty line before ...
+    - add Jacopo Reviewed-by tag
 
-I would consider splitting the assignments that aren't related to
-vfe48 support out into another commit. The ones that are vfe48 related
-can stay in this commit.
+  Patch 2/3:
+    https://lore.kernel.org/linux-media/20201015144905.4b23k5uy7ycuhvlo@uno.localdomain/
+    - fix dual license
+    - rearrange ports properties
+    - add Jacopo Reviewed-by tag
 
-> +
-> +static u16 vfe48_get_ub_size(u8 vfe_id)
-> +{
-> +       /* On VFE4.8 the ub-size is the same on both instances */
-> +       return MSM_VFE_VFE0_UB_SIZE_RDI;
-> +}
-> +
-> +static void vfe48_wm_enable(struct vfe_device *vfe, u8 wm, u8 enable)
-> +{
-> +       if (enable)
-> +               writel_relaxed(2 << VFE48_0_BUS_IMAGE_MASTER_n_SHIFT(wm),
-> +                              vfe->base + VFE48_0_BUS_IMAGE_MASTER_CMD);
-> +       else
-> +               writel_relaxed(1 << VFE48_0_BUS_IMAGE_MASTER_n_SHIFT(wm),
-> +                              vfe->base + VFE48_0_BUS_IMAGE_MASTER_CMD);
-> +       wmb();
+  Patch 3/3:
+    https://lore.kernel.org/linux-media/20201015144905.4b23k5uy7ycuhvlo@uno.localdomain/
+    - fix dual license
+    - capital letters fix
+    - const instead of enum in compatible
+    - data lanes array setup
+    - add phy-supply to required
+    - additionalProperties replace
 
-checkpatch rightly complains about this wmb() call being uncommented.
-None or nearly none of the other wmb() calls are documented, but I
-think it would be good practice to start documenting their purpose in
-order to increase long-term maintainability.
+v1 -> v2:
+  Sakari Ailus - Patch 1/3:
+  https://lore.kernel.org/linux-media/20201013160908.GC13341@paasikivi.fi.intel.com/
+  - omit remote-endpoint
+  - remove not needed clock-lanes and data-lanes
 
-> +}
-> +
-> +static void vfe48_set_qos(struct vfe_device *vfe)
-> +{
-> +       u32 val = VFE48_0_BUS_BDG_QOS_CFG_0_CFG;
-> +       u32 val3 = VFE48_0_BUS_BDG_QOS_CFG_3_CFG;
-> +       u32 val4 = VFE48_0_BUS_BDG_QOS_CFG_4_CFG;
-> +       u32 val7 = VFE48_0_BUS_BDG_QOS_CFG_7_CFG;
-> +
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_QOS_CFG_0);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_QOS_CFG_1);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_QOS_CFG_2);
-> +       writel_relaxed(val3, vfe->base + VFE_0_BUS_BDG_QOS_CFG_3);
-> +       writel_relaxed(val4, vfe->base + VFE_0_BUS_BDG_QOS_CFG_4);
-> +       writel_relaxed(val4, vfe->base + VFE_0_BUS_BDG_QOS_CFG_5);
-> +       writel_relaxed(val4, vfe->base + VFE_0_BUS_BDG_QOS_CFG_6);
-> +       writel_relaxed(val7, vfe->base + VFE_0_BUS_BDG_QOS_CFG_7);
-> +}
-> +
-> +static void vfe48_set_ds(struct vfe_device *vfe)
-> +{
-> +       u32 val = VFE48_0_BUS_BDG_DS_CFG_0_CFG;
-> +       u32 val16 = VFE48_0_BUS_BDG_DS_CFG_16_CFG;
-> +
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_0);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_1);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_2);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_3);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_4);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_5);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_6);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_7);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_8);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_9);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_10);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_11);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_12);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_13);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_14);
-> +       writel_relaxed(val, vfe->base + VFE_0_BUS_BDG_DS_CFG_15);
-> +       writel_relaxed(val16, vfe->base + VFE_0_BUS_BDG_DS_CFG_16);
-> +}
-> +
-> +const struct vfe_hw_ops vfe_ops_4_8 = {
-> +       .hw_version_read = vfe_hw_version_read,
-> +       .get_ub_size = vfe48_get_ub_size,
->         .global_reset = vfe_global_reset,
->         .halt_request = vfe_halt_request,
->         .halt_clear = vfe_halt_clear,
-> -       .wm_enable = vfe_wm_enable,
-> +       .wm_enable = vfe48_wm_enable,
->         .wm_frame_based = vfe_wm_frame_based,
->         .wm_line_based = vfe_wm_line_based,
->         .wm_set_framedrop_period = vfe_wm_set_framedrop_period,
-> @@ -1128,8 +1241,8 @@ const struct vfe_hw_ops vfe_ops_4_7 = {
->         .set_scale_cfg = vfe_set_scale_cfg,
->         .set_crop_cfg = vfe_set_crop_cfg,
->         .set_clamp_cfg = vfe_set_clamp_cfg,
-> -       .set_qos = vfe_set_qos,
-> -       .set_ds = vfe_set_ds,
-> +       .set_qos = vfe48_set_qos,
-> +       .set_ds = vfe48_set_ds,
->         .set_cgc_override = vfe_set_cgc_override,
->         .set_camif_cfg = vfe_set_camif_cfg,
->         .set_camif_cmd = vfe_set_camif_cmd,
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
-> index a90b0d2cc6de..5bce6736e4bb 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe.h
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe.h
-> @@ -180,5 +180,6 @@ void msm_vfe_get_vfe_line_id(struct media_entity *entity, enum vfe_line_id *id);
->
->  extern const struct vfe_hw_ops vfe_ops_4_1;
->  extern const struct vfe_hw_ops vfe_ops_4_7;
-> +extern const struct vfe_hw_ops vfe_ops_4_8;
->
->  #endif /* QC_MSM_CAMSS_VFE_H */
-> --
-> 2.28.0
->
+
+
+Rui Miguel Silva (3):
+  dt-bindings: ov2680: convert bindings to yaml
+  dt-bindings: imx7-csi: convert bindings to yaml
+  dt-bindings: imx7-mipi-csi2: convert bindings to yaml
+
+ .../devicetree/bindings/media/i2c/ov2680.txt  |  46 -----
+ .../bindings/media/i2c/ovti,ov2680.yaml       |  99 ++++++++++
+ .../devicetree/bindings/media/imx7-csi.txt    |  42 -----
+ .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
+ .../bindings/media/nxp,imx7-csi.yaml          |  71 ++++++++
+ .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 172 ++++++++++++++++++
+ MAINTAINERS                                   |   6 +-
+ 7 files changed, 345 insertions(+), 181 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov2680.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/imx7-csi.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+
+-- 
+2.28.0
+
