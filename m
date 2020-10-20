@@ -2,178 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2371C29419D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 19:43:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63C9A294239
+	for <lists+devicetree@lfdr.de>; Tue, 20 Oct 2020 20:38:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730606AbgJTRnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 13:43:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42198 "EHLO
+        id S2437542AbgJTSiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 14:38:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437243AbgJTRnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 13:43:12 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD2FC0613D6
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 10:43:11 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id h5so3213023wrv.7
-        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 10:43:11 -0700 (PDT)
+        with ESMTP id S2437527AbgJTSiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 14:38:12 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FAA1C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:38:12 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id h20so3107576lji.9
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:38:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1A8pfSek/oH+kI//UrZrfn2qlGAQqPoXd9JAju99Kjw=;
-        b=tKhGvZjHxPeNh1BqRsnqoK5mk8FKDP8GpA+8AwZOq42jOphNgYUY5iBbwL2iwYh643
-         ilMXNPIoy1ITQRVR9VfbAvrhU4rIEuJJv6yHikwMBo07KK3uX4n5WqR5zSJ6x41578iY
-         j3SAnl2D9opqS7C3H4iWZm1EV20bzt1Hh1n5APmPCznBedCN9vNxClJSDWtKygEqlGPk
-         mS7ppoerv0bTUSu8loyCAvdl+3czi3yUA/xCIcunIHapYtBDEpQ0SBwR2gWtEcCt/eoK
-         xk6W82bzd987JbfkGJrU8qZEb8urxe8+RejC+8Hilg247SVLbAEo5q566TEzSLAGlj1G
-         j4tg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VPHy2iOCVRnPTfeb/Xot34qh9SylFH4zQ2qtnuy+mZY=;
+        b=d489tptTRMiPFgd13GYy1drjFSbt2x0wlqQlFfkw0IrDKhcEd3aUB54X0/dX9PcAPP
+         UToVMTjQ5R4J2HlJ8Hb8j7unmMXTwGtWhVFrXYG5jHDQHZ8B7OM6OQFfsuZYd54lys83
+         STxBgKr8Rf9vB4HSlpaSETe0mtLtvJEedL89c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1A8pfSek/oH+kI//UrZrfn2qlGAQqPoXd9JAju99Kjw=;
-        b=cv2yZ7WL+9eSnszupE+CYWylxIvJMs+dZnOJ0lPLg36Sq/o0oYL4FqU6k493LqQZ3d
-         RkRehwosSNV42Hmb9N0g/Sgn2ECRY8MhMxjRkY512FD1i4SaBapzWuuBSz/D9me5Dl1k
-         FVIeod6fdu3H1UC2JrFlgZtvkl07BiVRl8PMyO77/CMIOT6C3mQJgZIlu2oWfz9aUO6H
-         HXboUpcZ0j7qwp9ecigXMwrIQHyJtdfTdBoWAygKnYLczTYUJj8wOg11DQJKBgI5p8y4
-         CdIj8K9iU5Plw6C8BJ/UmRhccGZHnSLSkH6PxKdT5c7M8zpioDBQn7v588YJwq5WgC2+
-         i8vQ==
-X-Gm-Message-State: AOAM533XwTgVXmIgH/KGBS2J8ZKfNuL5rkpIicAuGapqM1aTAt/SGI1G
-        p5cEHRDPxFHzG7CamhSvvr0VZg==
-X-Google-Smtp-Source: ABdhPJwqF5VYoBqPaVRJ2EDBqfvlSysBqq92CEHWViBWOriU59xWNrrDpDUp6DyvZcdF2kpfumUOMQ==
-X-Received: by 2002:adf:f104:: with SMTP id r4mr4824741wro.202.1603215790101;
-        Tue, 20 Oct 2020 10:43:10 -0700 (PDT)
-Received: from localhost.localdomain (199.170.185.81.rev.sfr.net. [81.185.170.199])
-        by smtp.gmail.com with ESMTPSA id v123sm3297756wme.7.2020.10.20.10.43.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Oct 2020 10:43:09 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, daniel@ffwll.ch,
-        airlied@linux.ie, p.zabel@pengutronix.de, chunkuang.hu@kernel.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH 8/8] drm/mediatek: Add support for main DDP path on MT8167
-Date:   Tue, 20 Oct 2020 19:42:53 +0200
-Message-Id: <20201020174253.3757771-9-fparent@baylibre.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201020174253.3757771-1-fparent@baylibre.com>
-References: <20201020174253.3757771-1-fparent@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VPHy2iOCVRnPTfeb/Xot34qh9SylFH4zQ2qtnuy+mZY=;
+        b=cAMqmGeqbPJKMo+PL055TGNkqbfW6GaQ/YiMDE5pfxzw7mlU/B9lm8yCGgHTImMrwX
+         F/SgX/4bJOrW40TD2gU5i/JzskN7nsbUcnlHSp2pHTEwEd1ELIHs+hJ7gKGpraRDTfu0
+         rJSE6+ki91C32okDKN4DZplioI1mSMcZaid3TQSo4s8dT+SSehvUsuK+p8xBQvlakZ40
+         TPpqVxQ+71C4hPLQFzhAinU0dTOmV/VwJdbGXLHR5jp4grIXHjKgBzjtrmhNFL9URNF2
+         Xk5Kh2+WKYOb/i7k+CZtqxKXsUhi2IgcC4npte6wCbQM/hmS9AMKvT3HksKn1wFjofvh
+         MtwQ==
+X-Gm-Message-State: AOAM533DrM7F385sdyhQ5a0jN8ORGNtl5r4O4DkDDkCF0yTHAGgG96tI
+        3RAr6fQqbZ2glPjn2qXR/LS5zM3Hze856w==
+X-Google-Smtp-Source: ABdhPJx63Y04j/WARtylopr0YXoMH6+ZbOb3U53II5XR4MhCZ/Eh5kxkDtNQMkmX2MJqEsrIB3XCMA==
+X-Received: by 2002:a05:651c:1119:: with SMTP id d25mr1783098ljo.357.1603219090239;
+        Tue, 20 Oct 2020 11:38:10 -0700 (PDT)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com. [209.85.167.41])
+        by smtp.gmail.com with ESMTPSA id f184sm429771lfd.253.2020.10.20.11.38.09
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Oct 2020 11:38:09 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 77so3377295lfl.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Oct 2020 11:38:09 -0700 (PDT)
+X-Received: by 2002:a19:c883:: with SMTP id y125mr1330347lff.485.1603219088467;
+ Tue, 20 Oct 2020 11:38:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1602786476-27833-1-git-send-email-sibis@codeaurora.org>
+In-Reply-To: <1602786476-27833-1-git-send-email-sibis@codeaurora.org>
+From:   Evan Green <evgreen@chromium.org>
+Date:   Tue, 20 Oct 2020 11:37:31 -0700
+X-Gmail-Original-Message-ID: <CAE=gft4FrAm_QHKm_dF6G0R8fkfJrYFYPMrRu0nPNrQtZ83skw@mail.gmail.com>
+Message-ID: <CAE=gft4FrAm_QHKm_dF6G0R8fkfJrYFYPMrRu0nPNrQtZ83skw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Fixup modem memory region
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the main (DSI) drm display path for MT8167.
+On Thu, Oct 15, 2020 at 11:28 AM Sibi Sankar <sibis@codeaurora.org> wrote:
+>
+> The modem firmware memory requirements vary between 32M/140M on
+> no-lte/lte skus respectively, so fixup the modem memory region
+> to reflect the requirements.
+>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 38 ++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 59c85c63b7cc..3952435093fe 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -112,6 +112,17 @@ static const enum mtk_ddp_comp_id mt2712_mtk_ddp_third[] = {
- 	DDP_COMPONENT_PWM2,
- };
- 
-+static enum mtk_ddp_comp_id mt8167_mtk_ddp_main[] = {
-+	DDP_COMPONENT_OVL0,
-+	DDP_COMPONENT_COLOR0,
-+	DDP_COMPONENT_CCORR,
-+	DDP_COMPONENT_AAL0,
-+	DDP_COMPONENT_GAMMA,
-+	DDP_COMPONENT_DITHER,
-+	DDP_COMPONENT_RDMA0,
-+	DDP_COMPONENT_DSI0,
-+};
-+
- static const enum mtk_ddp_comp_id mt8173_mtk_ddp_main[] = {
- 	DDP_COMPONENT_OVL0,
- 	DDP_COMPONENT_COLOR0,
-@@ -163,6 +174,11 @@ static const struct mtk_mmsys_driver_data mt8173_mmsys_driver_data = {
- 	.ext_len = ARRAY_SIZE(mt8173_mtk_ddp_ext),
- };
- 
-+static const struct mtk_mmsys_driver_data mt8167_mmsys_driver_data = {
-+	.main_path = mt8167_mtk_ddp_main,
-+	.main_len = ARRAY_SIZE(mt8167_mtk_ddp_main),
-+};
-+
- static int mtk_drm_kms_init(struct drm_device *drm)
- {
- 	struct mtk_drm_private *private = drm->dev_private;
-@@ -401,26 +417,42 @@ static const struct component_master_ops mtk_drm_ops = {
- static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	{ .compatible = "mediatek,mt2701-disp-ovl",
- 	  .data = (void *)MTK_DISP_OVL },
-+	{ .compatible = "mediatek,mt8167-disp-ovl",
-+	  .data = (void *)MTK_DISP_OVL },
- 	{ .compatible = "mediatek,mt8173-disp-ovl",
- 	  .data = (void *)MTK_DISP_OVL },
- 	{ .compatible = "mediatek,mt2701-disp-rdma",
- 	  .data = (void *)MTK_DISP_RDMA },
-+	{ .compatible = "mediatek,mt8167-disp-rdma",
-+	  .data = (void *)MTK_DISP_RDMA },
- 	{ .compatible = "mediatek,mt8173-disp-rdma",
- 	  .data = (void *)MTK_DISP_RDMA },
- 	{ .compatible = "mediatek,mt8173-disp-wdma",
- 	  .data = (void *)MTK_DISP_WDMA },
-+	{ .compatible = "mediatek,mt8167-disp-ccorr",
-+	  .data = (void *)MTK_DISP_CCORR },
- 	{ .compatible = "mediatek,mt2701-disp-color",
- 	  .data = (void *)MTK_DISP_COLOR },
-+	{ .compatible = "mediatek,mt8167-disp-color",
-+	  .data = (void *)MTK_DISP_COLOR },
- 	{ .compatible = "mediatek,mt8173-disp-color",
- 	  .data = (void *)MTK_DISP_COLOR },
-+	{ .compatible = "mediatek,mt8167-disp-aal",
-+	  .data = (void *)MTK_DISP_AAL},
- 	{ .compatible = "mediatek,mt8173-disp-aal",
- 	  .data = (void *)MTK_DISP_AAL},
-+	{ .compatible = "mediatek,mt8167-disp-gamma",
-+	  .data = (void *)MTK_DISP_GAMMA, },
- 	{ .compatible = "mediatek,mt8173-disp-gamma",
- 	  .data = (void *)MTK_DISP_GAMMA, },
-+	{ .compatible = "mediatek,mt8167-disp-dither",
-+	  .data = (void *)MTK_DISP_DITHER },
- 	{ .compatible = "mediatek,mt8173-disp-ufoe",
- 	  .data = (void *)MTK_DISP_UFOE },
- 	{ .compatible = "mediatek,mt2701-dsi",
- 	  .data = (void *)MTK_DSI },
-+	{ .compatible = "mediatek,mt8167-dsi",
-+	  .data = (void *)MTK_DSI },
- 	{ .compatible = "mediatek,mt8173-dsi",
- 	  .data = (void *)MTK_DSI },
- 	{ .compatible = "mediatek,mt2701-dpi",
-@@ -431,10 +463,14 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt2712-disp-mutex",
- 	  .data = (void *)MTK_DISP_MUTEX },
-+	{ .compatible = "mediatek,mt8167-disp-mutex",
-+	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8173-disp-mutex",
- 	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt2701-disp-pwm",
- 	  .data = (void *)MTK_DISP_BLS },
-+	{ .compatible = "mediatek,mt8167-disp-pwm",
-+	  .data = (void *)MTK_DISP_PWM },
- 	{ .compatible = "mediatek,mt8173-disp-pwm",
- 	  .data = (void *)MTK_DISP_PWM },
- 	{ .compatible = "mediatek,mt8173-disp-od",
-@@ -449,6 +485,8 @@ static const struct of_device_id mtk_drm_of_ids[] = {
- 	  .data = &mt7623_mmsys_driver_data},
- 	{ .compatible = "mediatek,mt2712-mmsys",
- 	  .data = &mt2712_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt8167-mmsys",
-+	  .data = &mt8167_mmsys_driver_data},
- 	{ .compatible = "mediatek,mt8173-mmsys",
- 	  .data = &mt8173_mmsys_driver_data},
- 	{ }
--- 
-2.28.0
-
+Reviewed-by: Evan Green <evgreen@chromium.org>
