@@ -2,77 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 773442946A0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 04:42:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F013229469D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 04:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406241AbgJUCmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 22:42:01 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:58216 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2406204AbgJUCmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 22:42:00 -0400
-X-UUID: a457063f822147cea73cedba0c250a5e-20201021
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=CSIWOHWW2k4Oo3UJnDOr2pHEoV0FdN/U4oXEDqdqb88=;
-        b=sxDFD1SU++hQNCnDprupw9n8xBuN8i3ZswaP6qXpBo9osNBcjqU79dG0HGWHQDf7YOMCoGm73xjsy3Xr8Y2nCKg5ZlxVZwQo4rtLM5UYxZyypjn45PNWv6FH4xuMK2LdV2IA7RjVaMC4HZyBnuYxzBRKuYu3P984ncUhAtR1Dio=;
-X-UUID: a457063f822147cea73cedba0c250a5e-20201021
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <hector.yuan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2143814347; Wed, 21 Oct 2020 10:36:44 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 21 Oct 2020 10:36:43 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by mtkcas08.mediatek.inc
- (172.21.101.126) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 21 Oct
- 2020 10:36:42 +0800
-Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 21 Oct 2020 10:36:42 +0800
-Message-ID: <1603247803.20224.5.camel@mtkswgap22>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: cpus: Document
- 'qcom,freq-domain' property
-From:   Hector Yuan <hector.yuan@mediatek.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC:     <rjw@rjwysocki.net>, <viresh.kumar@linaro.org>,
-        <robh+dt@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <bjorn.andersson@linaro.org>, <linux-arm-msm@vger.kernel.org>
-Date:   Wed, 21 Oct 2020 10:36:43 +0800
-In-Reply-To: <20201020153944.18047-1-manivannan.sadhasivam@linaro.org>
-References: <20201020153944.18047-1-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S2394235AbgJUCim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 22:38:42 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:49532 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394196AbgJUCil (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 22:38:41 -0400
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 3FC5520B36E7;
+        Tue, 20 Oct 2020 19:38:40 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 3FC5520B36E7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1603247920;
+        bh=CjVmnEH3txo4yzozqwIg1TT7Kgo+aOBchlh/FVngHr0=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=OtE48/SVzOZEySioPfdulHPnNhcABgYm4FeRhjbGggPledhSY7pbwp8AxITLZVhuK
+         FZy5vGqeOFhHg7r4xnCdXmwCEjjg54VAcMTFHSfZ0pIYCIdOVmyBKp0q+0IYoqW7PT
+         Wu/5a2MfXVNaEdBOykkgBm26ay7Q9IkzDJm4MjNI=
+Subject: Re: [PATCH v7 2/4] powerpc: Refactor kexec functions to move arch
+ independent code to ima
+To:     Mimi Zohar <zohar@linux.ibm.com>, bauerman@linux.ibm.com,
+        robh@kernel.org, gregkh@linuxfoundation.org, james.morse@arm.com,
+        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr
+Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, prsriva@linux.microsoft.com,
+        balajib@linux.microsoft.com
+References: <20200930205941.1576-1-nramas@linux.microsoft.com>
+ <20200930205941.1576-3-nramas@linux.microsoft.com>
+ <ecc13356983d5cff536c53c4da98a839ea9a0f19.camel@linux.ibm.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <9a44d8aa-515d-fc97-74bd-7ae976dea35b@linux.microsoft.com>
+Date:   Tue, 20 Oct 2020 19:38:39 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MTK:  N
-X-TM-SNTS-SMTP: 1B414A6A3F0B5D498705D291968F6E6255C1E00CDD4FB37AB222F7A638D801F62000:8
-Content-Transfer-Encoding: base64
+In-Reply-To: <ecc13356983d5cff536c53c4da98a839ea9a0f19.camel@linux.ibm.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIE1hbml2YW5uYW4NCg0KT24gVHVlLCAyMDIwLTEwLTIwIGF0IDIxOjA5ICswNTMwLCBNYW5p
-dmFubmFuIFNhZGhhc2l2YW0gd3JvdGU6DQo+IEFkZCBkZXZpY2V0cmVlIGRvY3VtZW50YXRpb24g
-Zm9yICdxY29tLGZyZXEtZG9tYWluJyBwcm9wZXJ0eSBzcGVjaWZpYw0KPiB0byBRdWFsY29tbSBD
-UFVzLiBUaGlzIHByb3BlcnR5IGlzIHVzZWQgdG8gcmVmZXJlbmNlIHRoZSBDUFVGUkVRIG5vZGUN
-Cj4gYWxvbmcgd2l0aCBEb21haW4gSUQgKDAvMSkuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBNYW5p
-dmFubmFuIFNhZGhhc2l2YW0gPG1hbml2YW5uYW4uc2FkaGFzaXZhbUBsaW5hcm8ub3JnPg0KPiAt
-LS0NCj4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vY3B1cy55YW1sIHwg
-NiArKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYg
-LS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2NwdXMueWFtbCBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vY3B1cy55YW1sDQo+IGluZGV4
-IDEyMjJiZjE4MzFmYS4uZjQwNTY0YmYwMDRmIDEwMDY0NA0KPiAtLS0gYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2NwdXMueWFtbA0KPiArKysgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2NwdXMueWFtbA0KPiBAQCAtMjkwLDYgKzI5MCwxMiBA
-QCBwcm9wZXJ0aWVzOg0KPiAgDQo+ICAgICAgICAqIGFybS9tc20vcWNvbSxrcHNzLWFjYy50eHQN
-Cj4gIA0KPiArICBxY29tLGZyZXEtZG9tYWluOg0KRG8geW91IG1pbmQgdG8gY2hhbmdlICJxY29t
-LCBmcmVxLWRvbWFpbiIgdG8gY29tbW9uIG5hbWluZz8gb3IgZHJvcCB0aGUNCnByZWZpeC4gU28g
-dGhhdCB3ZSBjYW4gdXNlIHRoaXMgQ1BVIG5vZGUgYW5kIG1hcCBpdCB0byBlYWNoIGZyZXEtZG9t
-YWluLg0KVGhhbmtzIGEgbG90LiANCg0KPiArICAgICRyZWY6ICcvc2NoZW1hcy90eXBlcy55YW1s
-Iy9kZWZpbml0aW9ucy9waGFuZGxlLWFycmF5Jw0KPiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ICsg
-ICAgICBDUFVzIHN1cHBvcnRpbmcgZnJlcS1kb21haW4gbXVzdCBzZXQgdGhlaXIgInFjb20sZnJl
-cS1kb21haW4iIHByb3BlcnR5DQo+ICsgICAgICB3aXRoIHBoYW5kbGUgdG8gYSBjcHVmcmVxX2h3
-IG5vZGUgZm9sbG93ZWQgYnkgdGhlIERvbWFpbiBJRCgwLzEpLg0KPiArDQo+ICAgIHJvY2tjaGlw
-LHBtdToNCj4gICAgICAkcmVmOiAnL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhh
-bmRsZScNCj4gICAgICBkZXNjcmlwdGlvbjogfA0KDQo=
+On 10/20/20 1:01 PM, Mimi Zohar wrote:
+> On Wed, 2020-09-30 at 13:59 -0700, Lakshmi Ramasubramanian wrote:
+>> The functions ima_get_kexec_buffer() and ima_free_kexec_buffer(),
+>> that handle carrying forward the IMA measurement logs on kexec for
+>> powerpc do not have architecture specific code, but they are currently
+>> defined for powerpc only.
+>>
+>> Move ima_get_kexec_buffer() and ima_free_kexec_buffer() to IMA
+>> subsystem. A later patch in this series will use these functions for
+>> carrying forward the IMA measurement log for ARM64.
+>>
+>> With the above refactoring arch/powerpc/kexec/ima.c contains only
+>> functions used when CONFIG_IMA_KEXEC is enabled. Update Makefile
+>> in arch/powerpc/kexec to include arch/powerpc/kexec/ima.c only
+>> when CONFIG_IMA_KEXEC is enabled.
+>>
+>> Move ima_dump_measurement_list() and ima_add_kexec_buffer() to
+>> a new file namely ima_kexec_fdt.c in IMA. Update
+>> security/integrity/ima/Makefile to include ima_kexec_fdt.c only
+>> when CONFIG_IMA_KEXEC is enabled.
+>>
+>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> 
+> The existing support for carrying the IMA measurement list across kexec
+> is limited to powerpc.  This patch set is adding similar support for
+> arm64, making as much of the existing code as generic as possible.
+> However ima_dump_measurement_list() is already generic, but for some
+> reason this patch moves it to ima_kexec_fdt.c.  ima_kexec_fdt.c should
+> be limited to device tree specific code.
+
+I wanted to split the functions defined under CONFIG_HAVE_IMA_KEXEC and 
+CONFIG_IMA_KEXEC to separate files so that we can get rid of #ifdef in C 
+file and instead conditionally compile the C files (using Makefile).
+
+ima_dump_measurement_list() need to be defined only when 
+CONFIG_IMA_KEXEC is defined. I moved it to ima_kexec_fdt.c
+
+Instead of ima_kexec_fdt.c, where ima_dump_measurement_list() and 
+ima_add_kexec_buffer() are defined, perhaps I can change the file name 
+to "ima_kexec_buffer.c". Would that be better?
+
+> 
+> This patch is probably doing the right thing, but the way the patch is
+> formatted it replaces parts of a function with a different function.
+> With the changes suggested above and in 1/4,  the next version should
+> be clearer.
+
+Like I'd stated above, I wanted to remove "#ifdef" from the C files and 
+hence had to move some functions. But the functionalities haven't been 
+changed.
+
+thanks,
+  -lakshmi
+
+
 
