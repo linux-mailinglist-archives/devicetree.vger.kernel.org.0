@@ -2,86 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D361295098
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 18:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFF8295089
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 18:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2444500AbgJUQU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 12:20:26 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:33660 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2444499AbgJUQU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 12:20:26 -0400
-Received: from relay11.mail.gandi.net (unknown [217.70.178.231])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 367093B5562
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 15:52:30 +0000 (UTC)
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 35F4C100006;
-        Wed, 21 Oct 2020 15:52:05 +0000 (UTC)
-Date:   Wed, 21 Oct 2020 17:52:04 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rui Miguel Silva <rmfrfs@gmail.com>, sakari.ailus@linux.intel.com,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: ov2680: convert bindings to yaml
-Message-ID: <20201021155204.off4fdyr2heuuhho@uno.localdomain>
-References: <20201014142759.726823-1-rmfrfs@gmail.com>
- <20201014142759.726823-2-rmfrfs@gmail.com>
- <20201015144905.4b23k5uy7ycuhvlo@uno.localdomain>
- <20201016144204.3viee7spmvwtms5i@arch-thunder.localdomain>
- <20201019203359.GA3550266@bogus>
+        id S2395219AbgJUQPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 12:15:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57718 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390714AbgJUQPa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 12:15:30 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0176E2087D;
+        Wed, 21 Oct 2020 16:15:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603296930;
+        bh=o+6Nw7JBFzp/tMxRinSwaVXytDlrUw6zFmFs5/eos3U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SQh6xOzUbIuPrXQc2Dan86HKfH70ANYmDDnPsTVKw/a4DpsmA2qzqvoDBLYjwmpXQ
+         +uoGMkTg5EQd1YC0SI/7rmYxARAKrTuOSHf1i8ZveyCYwiwAUHtnMbq2f5A2p6KnwM
+         2xY357+Mw8d0/BKx5JFFCzvPYg5Lv32ujHJjhc3M=
+Received: by pali.im (Postfix)
+        id 82BB7AF1; Wed, 21 Oct 2020 18:15:27 +0200 (CEST)
+Date:   Wed, 21 Oct 2020 18:15:27 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Andre Heider <a.heider@gmail.com>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?Q?G=C3=A9rald?= Kerma <gerald@gk2.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add support for LED2
+Message-ID: <20201021161527.nldudahg64lnfa42@pali>
+References: <20201006124455.16617-1-pali@kernel.org>
+ <20201019080408.iv7vmj63cgt2i6vg@pali>
+ <2b5b0648-eccb-e4b5-fba1-43f03f054a20@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201019203359.GA3550266@bogus>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2b5b0648-eccb-e4b5-fba1-43f03f054a20@gmail.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wednesday 21 October 2020 17:01:19 Andre Heider wrote:
+> On 19/10/2020 10:04, Pali Rohár wrote:
+> > Hello! Gregory, I would like to remind you following patch.
+> > 
+> > Andre, if you have a time, could you test it too?
+> 
+> I would, but I desoldered all LEDs a long time ago because they're way too
+> bright...
 
-On Mon, Oct 19, 2020 at 03:33:59PM -0500, Rob Herring wrote:
-> On Fri, Oct 16, 2020 at 03:42:04PM +0100, Rui Miguel Silva wrote:
-> > Hey Jacopo,
-> > Thanks for the review.
-> >
-> > On Thu, Oct 15, 2020 at 04:49:05PM +0200, Jacopo Mondi wrote:
-> > > Hi Rui,
-> > >
-> > > On Wed, Oct 14, 2020 at 03:27:57PM +0100, Rui Miguel Silva wrote:
-> > > > Convert ov2680 sensor bindings documentation to yaml schema, remove
-> > > > the textual bindings document and update MAINTAINERS entry.
-> > > >
-> > > > Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
->
-> > > > +  clock-names:
-> > > > +    description:
-> > >
-> > > I'll never get yaml right, doesn't breaking lines require '|' after
-> > > the semicolon ? The validator does not complain, so I guess not.
-> >
-> > I also had that idea, but looking also to other cases, and also in the
-> > examlpe-schema where you have both cases, looks like it is not needed.
->
-> '|' will preserve line breaks and formatting. For a single line like
-> this it doesn't really matter. Though ruamel's round trip will make it a
-> single line when writing back out.
-
-Thanks for the explanation.
-
-I'll take the occasion to ask the difference between '|', '|-' and
-'-|' as I haven't find it documented anywhere.
-
-Thanks
-  j
-
->
-> > >
-> > > > +      Input clock for the sensor.
->
-> Really, you can just drop the description. Doesn't really add anything
-> specific for this device.
->
-> > > > +    items:
-> > > > +      - const: xvclk
+No, problem, on V5 is needed just to check that led2 is not exported in sysfs.
