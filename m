@@ -2,309 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1EAA29501E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A3A29502D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:50:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502659AbgJUPqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 11:46:35 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:35092 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731484AbgJUPqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 11:46:34 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 17456803071B;
-        Wed, 21 Oct 2020 15:46:25 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id ZiKsyjYYXhBF; Wed, 21 Oct 2020 18:46:24 +0300 (MSK)
-Date:   Wed, 21 Oct 2020 18:46:21 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
-        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 01/16] dt-bindings: usb: usb-hcd: Convert generic USB
- properties to DT schema
-Message-ID: <20201021154621.a3vtoa4lriwkpnfo@mobilestation>
-References: <20201020112101.19077-1-Sergey.Semin@baikalelectronics.ru>
- <20201020112101.19077-2-Sergey.Semin@baikalelectronics.ru>
- <1603249236.31607.9.camel@mhfsdcap03>
+        id S2444125AbgJUPuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 11:50:23 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:54805 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731691AbgJUPuW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 11:50:22 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 55B0E1C000A;
+        Wed, 21 Oct 2020 15:50:18 +0000 (UTC)
+Date:   Wed, 21 Oct 2020 17:50:16 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Rui Miguel Silva <rmfrfs@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] dt-bindings: imx7-mipi-csi2: convert bindings to
+ yaml
+Message-ID: <20201021155016.bs2n5ixuhxwjzjy2@uno.localdomain>
+References: <20201020190051.1852778-1-rmfrfs@gmail.com>
+ <20201020190051.1852778-4-rmfrfs@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1603249236.31607.9.camel@mhfsdcap03>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <20201020190051.1852778-4-rmfrfs@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 11:00:36AM +0800, Chunfeng Yun wrote:
-> On Tue, 2020-10-20 at 14:20 +0300, Serge Semin wrote:
-> > The generic USB HCD properties have been described in the legacy bindings
-> > text file: Documentation/devicetree/bindings/usb/generic.txt . Let's
-> > convert it' content into the USB HCD DT schema properties so all USB DT
->           ^ its?
-> > nodes would be validated to have them properly utilized.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > 
-> > ---
-> > 
-> > Changelog v2:
-> > - Discard '|' in all the new properties, since we don't need to preserve
-> >   the text formatting.
-> > - Convert abbreviated form of the "maximum-speed" enum restriction into
-> >   the multi-lined version of the list.
-> > - Drop quotes from around the string constants.
-> > ---
-> >  .../devicetree/bindings/usb/generic.txt       | 57 ------------
-> >  .../devicetree/bindings/usb/usb-hcd.yaml      | 88 +++++++++++++++++++
+Hi Rui,
 
-> Do we need change the file name or modify it's title?
-> the title is "Generic USB Host Controller Device Tree Bindings", but
-> some generic properties, such as, dr_mode, usb-role-switch, otg related
-> ones, are usually used by DRD controller, this may cause some confusion.
+On Tue, Oct 20, 2020 at 08:00:51PM +0100, Rui Miguel Silva wrote:
+> Convert imx7 mipi csi2 bindings documentation to yaml schema, remove
+> the textual document and update MAINTAINERS entry.
+>
+> Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
+> ---
+>
+> v4 -> v5:
+>   Rob Herring:
+>     https://lore.kernel.org/linux-media/20201020153044.GA875273@bogus/
+>     - fix indentation of oneOf items const
+>
+>  .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
+>  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 172 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 173 insertions(+), 91 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt b/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+> deleted file mode 100644
+> index 71fd74ed3ec8..000000000000
+> --- a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+> +++ /dev/null
+> @@ -1,90 +0,0 @@
+> -Freescale i.MX7 Mipi CSI2
+> -=========================
+> -
+> -mipi_csi2 node
+> ---------------
+> -
+> -This is the device node for the MIPI CSI-2 receiver core in i.MX7 SoC. It is
+> -compatible with previous version of Samsung D-phy.
+> -
+> -Required properties:
+> -
+> -- compatible    : "fsl,imx7-mipi-csi2";
+> -- reg           : base address and length of the register set for the device;
+> -- interrupts    : should contain MIPI CSIS interrupt;
+> -- clocks        : list of clock specifiers, see
+> -        Documentation/devicetree/bindings/clock/clock-bindings.txt for details;
+> -- clock-names   : must contain "pclk", "wrap" and "phy" entries, matching
+> -                  entries in the clock property;
+> -- power-domains : a phandle to the power domain, see
+> -          Documentation/devicetree/bindings/power/power_domain.txt for details.
+> -- reset-names   : should include following entry "mrst";
+> -- resets        : a list of phandle, should contain reset entry of
+> -                  reset-names;
+> -- phy-supply    : from the generic phy bindings, a phandle to a regulator that
+> -	          provides power to MIPI CSIS core;
+> -
+> -Optional properties:
+> -
+> -- clock-frequency : The IP's main (system bus) clock frequency in Hz, default
+> -		    value when this property is not specified is 166 MHz;
+> -- fsl,csis-hs-settle : differential receiver (HS-RX) settle time;
+> -
+> -The device node should contain two 'port' child nodes with one child 'endpoint'
+> -node, according to the bindings defined in:
+> - Documentation/devicetree/bindings/ media/video-interfaces.txt.
+> - The following are properties specific to those nodes.
+> -
+> -port node
+> ----------
+> -
+> -- reg		  : (required) can take the values 0 or 1, where 0 shall be
+> -                     related to the sink port and port 1 shall be the source
+> -                     one;
+> -
+> -endpoint node
+> --------------
+> -
+> -- data-lanes    : (required) an array specifying active physical MIPI-CSI2
+> -		    data input lanes and their mapping to logical lanes; this
+> -                    shall only be applied to port 0 (sink port), the array's
+> -                    content is unused only its length is meaningful,
+> -                    in this case the maximum length supported is 2;
+> -
+> -example:
+> -
+> -        mipi_csi: mipi-csi@30750000 {
+> -                #address-cells = <1>;
+> -                #size-cells = <0>;
+> -
+> -                compatible = "fsl,imx7-mipi-csi2";
+> -                reg = <0x30750000 0x10000>;
+> -                interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> -                clocks = <&clks IMX7D_IPG_ROOT_CLK>,
+> -                                <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
+> -                                <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
+> -                clock-names = "pclk", "wrap", "phy";
+> -                clock-frequency = <166000000>;
+> -                power-domains = <&pgc_mipi_phy>;
+> -                phy-supply = <&reg_1p0d>;
+> -                resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
+> -                reset-names = "mrst";
+> -                fsl,csis-hs-settle = <3>;
+> -
+> -                port@0 {
+> -                        reg = <0>;
+> -
+> -                        mipi_from_sensor: endpoint {
+> -                                remote-endpoint = <&ov2680_to_mipi>;
+> -                                data-lanes = <1>;
+> -                        };
+> -                };
+> -
+> -                port@1 {
+> -                        reg = <1>;
+> -
+> -                        mipi_vc0_to_csi_mux: endpoint {
+> -                                remote-endpoint = <&csi_mux_from_mipi_vc0>;
+> -                        };
+> -                };
+> -        };
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+> new file mode 100644
+> index 000000000000..309af5805d74
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+> @@ -0,0 +1,172 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/nxp,imx7-mipi-csi2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX7 Mipi CSI2
+> +
+> +maintainers:
+> +  - Rui Miguel Silva <rmfrfs@gmail.com>
+> +
+> +description: |
+> +  This is the device node for the mipi csi-2 receiver core in i.mx7 soc. It is
+> +  compatible with previous version of samsung d-phy.
 
-Hm, good question. A problem of the naming and the properties inclusion do
-exist here. I haven't thought that through when moved all the generic
-properties into the usb-hcd.yaml bindings file. But I don't think it's a good
-idea to rename the file. Most likely the best solution would be to split the
-functionality up as follows:
+To be picky, mipi and csi-2 should be spelled with capital letters.
+Probably i.MX7 too.
 
-1) usb.yaml - common USB controller with generic properties for all USB modes (host, peripheral, otg):
-   + $nodename
-   + phys
-   + phy-names
-   + usb-phy
-   + maximum-speed
-   + phy_type
-2) usb-hcd.yaml - DT schema for USB host controllers (EHCI/OHCI/UHCI):
-   + allOf: [usb.yaml#]
-   + companion
-3) usb-xhci.yaml - DT schema for USB host controllers (xHCI):
-   + allOf: [usb-hcd.yaml#]
-   + usb2-lpm-disable
-   + usb3-lpm-capable
-   + quirk-broken-port-ped
-   + imod-interval-ns
-4) usb-drd.yaml - DT schema for USB OTG controllers:
-   + otg-rev
-   + hnp-disable
-   + srp-disable
-   + adp-disable
-   + usb-role-switch
-   + role-switch-default-mode
-   + tpl-support
-   + dr_mode: [host, peripheral, otg]
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx7-mipi-csi2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
 
-So in case if an USB controller is DRD with EHCI host, then it will need
-to pass evaluation of allOf: [usb-hcd.yaml#, usb-drd.yaml#]. If an USB
-controller is DRD with xHCI host, then the next schema can be applied:
-[usb-xhci.yaml#, usb-drd.yaml#]. A conditional schema is also applicable
-here, like this:
-allOf:
-  - $ref: usb-drd.yaml#
-  - if:
-      properties:
-        dr_mode:
-          const: host
-    then:
-      $ref: usb-hcd.yaml# (or usb-xhci.yaml#)
-    else:
-      #ref: usb.yaml#
+Do you need a maxItems too ?
 
-What do you think? @Rob, @Greg, we need your opinion here.
+nits apart
+Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 
--Sergey
+Thanks
+  j
 
-> 
-> >  2 files changed, 88 insertions(+), 57 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/usb/generic.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
-> > deleted file mode 100644
-> > index ba472e7aefc9..000000000000
-> > --- a/Documentation/devicetree/bindings/usb/generic.txt
-> > +++ /dev/null
-> > @@ -1,57 +0,0 @@
-> > -Generic USB Properties
-> > -
-> > -Optional properties:
-> > - - maximum-speed: tells USB controllers we want to work up to a certain
-> > -			speed. Valid arguments are "super-speed-plus",
-> > -			"super-speed", "high-speed", "full-speed" and
-> > -			"low-speed". In case this isn't passed via DT, USB
-> > -			controllers should default to their maximum HW
-> > -			capability.
-> > - - dr_mode: tells Dual-Role USB controllers that we want to work on a
-> > -			particular mode. Valid arguments are "host",
-> > -			"peripheral" and "otg". In case this attribute isn't
-> > -			passed via DT, USB DRD controllers should default to
-> > -			OTG.
-> > - - phy_type: tells USB controllers that we want to configure the core to support
-> > -			a UTMI+ PHY with an 8- or 16-bit interface if UTMI+ is
-> > -			selected. Valid arguments are "utmi" and "utmi_wide".
-> > -			In case this isn't passed via DT, USB controllers should
-> > -			default to HW capability.
-> > - - otg-rev: tells usb driver the release number of the OTG and EH supplement
-> > -			with which the device and its descriptors are compliant,
-> > -			in binary-coded decimal (i.e. 2.0 is 0200H). This
-> > -			property is used if any real OTG features(HNP/SRP/ADP)
-> > -			is enabled, if ADP is required, otg-rev should be
-> > -			0x0200 or above.
-> > - - companion: phandle of a companion
-> > - - hnp-disable: tells OTG controllers we want to disable OTG HNP, normally HNP
-> > -			is the basic function of real OTG except you want it
-> > -			to be a srp-capable only B device.
-> > - - srp-disable: tells OTG controllers we want to disable OTG SRP, SRP is
-> > -			optional for OTG device.
-> > - - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
-> > -			optional for OTG device.
-> > - - usb-role-switch: boolean, indicates that the device is capable of assigning
-> > -			the USB data role (USB host or USB device) for a given
-> > -			USB connector, such as Type-C, Type-B(micro).
-> > -			see connector/usb-connector.yaml.
-> > - - role-switch-default-mode: indicating if usb-role-switch is enabled, the
-> > -			device default operation mode of controller while usb
-> > -			role is USB_ROLE_NONE. Valid arguments are "host" and
-> > -			"peripheral". Defaults to "peripheral" if not
-> > -			specified.
-> > -
-> > -
-> > -This is an attribute to a USB controller such as:
-> > -
-> > -dwc3@4a030000 {
-> > -	compatible = "synopsys,dwc3";
-> > -	reg = <0x4a030000 0xcfff>;
-> > -	interrupts = <0 92 4>
-> > -	usb-phy = <&usb2_phy>, <&usb3,phy>;
-> > -	maximum-speed = "super-speed";
-> > -	dr_mode = "otg";
-> > -	phy_type = "utmi_wide";
-> > -	otg-rev = <0x0200>;
-> > -	adp-disable;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > index 7263b7f2b510..ee7ea205c71d 100644
-> > --- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-> > @@ -22,9 +22,97 @@ properties:
-> >      description:
-> >        Name specifier for the USB PHY
-> >  
-> > +  maximum-speed:
-> > +   description:
-> > +     Tells USB controllers we want to work up to a certain speed. In case this
-> > +     isn't passed via DT, USB controllers should default to their maximum HW
-> > +     capability.
-> > +   $ref: /schemas/types.yaml#/definitions/string
-> > +   enum:
-> > +     - low-speed
-> > +     - full-speed
-> > +     - high-speed
-> > +     - super-speed
-> > +     - super-speed-plus
-> > +
-> > +  dr_mode:
-> > +    description:
-> > +      Tells Dual-Role USB controllers that we want to work on a particular
-> > +      mode. In case this attribute isn't passed via DT, USB DRD controllers
-> > +      should default to OTG.
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [host, peripheral, otg]
-> > +
-> > +  phy_type:
-> > +    description:
-> > +      Tells USB controllers that we want to configure the core to support a
-> > +      UTMI+ PHY with an 8- or 16-bit interface if UTMI+ is selected. In case
-> > +      this isn't passed via DT, USB controllers should default to HW
-> > +      capability.
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [utmi, utmi_wide]
-> > +
-> > +  otg-rev:
-> > +    description:
-> > +      Tells usb driver the release number of the OTG and EH supplement with
-> > +      which the device and its descriptors are compliant, in binary-coded
-> > +      decimal (i.e. 2.0 is 0200H). This property is used if any real OTG
-> > +      features (HNP/SRP/ADP) is enabled. If ADP is required, otg-rev should be
-> > +      0x0200 or above.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  companion:
-> > +    description: Phandle of a companion device
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +
-> > +  hnp-disable:
-> > +    description:
-> > +      Tells OTG controllers we want to disable OTG HNP. Normally HNP is the
-> > +      basic function of real OTG except you want it to be a srp-capable only B
-> > +      device.
-> > +    type: boolean
-> > +
-> > +  srp-disable:
-> > +    description:
-> > +      Tells OTG controllers we want to disable OTG SRP. SRP is optional for OTG
-> > +      device.
-> > +    type: boolean
-> > +
-> > +  adp-disable:
-> > +    description:
-> > +      Tells OTG controllers we want to disable OTG ADP. ADP is optional for OTG
-> > +      device.
-> > +    type: boolean
-> > +
-> > +  usb-role-switch:
-> > +    description:
-> > +      Indicates that the device is capable of assigning the USB data role
-> > +      (USB host or USB device) for a given USB connector, such as Type-C,
-> > +      Type-B(micro). See connector/usb-connector.yaml.
-> > +
-> > +  role-switch-default-mode:
-> > +    description:
-> > +      Indicates if usb-role-switch is enabled, the device default operation
-> > +      mode of controller while usb role is USB_ROLE_NONE.
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [host, peripheral]
-> > +    default: peripheral
-> > +
-> >  examples:
-> >    - |
-> >      usb {
-> >          phys = <&usb2_phy1>, <&usb3_phy1>;
-> >          phy-names = "usb";
-> >      };
-> > +  - |
-> > +    usb@4a030000 {
-> > +        compatible = "snps,dwc3";
-> > +        reg = <0x4a030000 0xcfff>;
-> > +        interrupts = <0 92 4>;
-> > +        usb-phy = <&usb2_phy>, <&usb3_phy>;
-> > +        maximum-speed = "super-speed";
-> > +        dr_mode = "otg";
-> > +        phy_type = "utmi_wide";
-> > +        otg-rev = <0x0200>;
-> > +        adp-disable;
-> > +    };
-> 
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: wrap
+> +      - const: phy
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  phy-supply:
+> +    description:
+> +      Phandle to a regulator that provides power to the PHY. This
+> +      regulator will be managed during the PHY power on/off sequence.
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: mrst
+> +
+> +  clock-frequency:
+> +    description:
+> +      The IP main (system bus) clock frequency in Hertz
+> +    default: 166000000
+> +
+> +  fsl,csis-hs-settle:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Differential receiver (HS-RX) settle time
+> +
+> +  ports:
+> +    type: object
+> +    description:
+> +      A node containing input and output port nodes with endpoint definitions
+> +      as documented in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +      port@0:
+> +        type: object
+> +        description:
+> +          Input port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            type: object
+> +
+> +            properties:
+> +              data-lanes:
+> +                $ref: /schemas/types.yaml#/definitions/uint32-array
+> +                description: See ../video-interfaces.txt
+> +                oneOf:
+> +                  - items:
+> +                      - const: 1
+> +                  - items:
+> +                      - const: 1
+> +                      - const: 2
+> +
+> +              remote-endpoint: true
+> +
+> +            required:
+> +              - data-lanes
+> +              - remote-endpoint
+> +
+> +            additionalProperties: false
+> +
+> +        additionalProperties: false
+> +
+> +      port@1:
+> +        type: object
+> +        description:
+> +          Output port node
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - phy-supply
+> +  - resets
+> +  - reset-names
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx7d-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/reset/imx7-reset.h>
+> +
+> +    mipi_csi: mipi-csi@30750000 {
+> +            compatible = "fsl,imx7-mipi-csi2";
+> +            reg = <0x30750000 0x10000>;
+> +            interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +            clocks = <&clks IMX7D_IPG_ROOT_CLK>,
+> +                     <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
+> +                     <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
+> +            clock-names = "pclk", "wrap", "phy";
+> +            clock-frequency = <166000000>;
+> +
+> +            power-domains = <&pgc_mipi_phy>;
+> +            phy-supply = <&reg_1p0d>;
+> +            resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
+> +            reset-names = "mrst";
+> +            fsl,csis-hs-settle = <3>;
+> +
+> +            ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    port@0 {
+> +                            reg = <0>;
+> +
+> +                            mipi_from_sensor: endpoint {
+> +                                    remote-endpoint = <&ov2680_to_mipi>;
+> +                                    data-lanes = <1>;
+> +                            };
+> +                    };
+> +
+> +                    port@1 {
+> +                            reg = <1>;
+> +
+> +                            mipi_vc0_to_csi_mux: endpoint {
+> +                                    remote-endpoint = <&csi_mux_from_mipi_vc0>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 557713b3ee95..34e53a1570aa 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10779,8 +10779,8 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/admin-guide/media/imx7.rst
+> -F:	Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+>  F:	Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
+> +F:	Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+>  F:	drivers/staging/media/imx/imx7-media-csi.c
+>  F:	drivers/staging/media/imx/imx7-mipi-csis.c
+>
+> --
+> 2.28.0
+>
