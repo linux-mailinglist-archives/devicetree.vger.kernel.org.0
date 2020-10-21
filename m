@@ -2,101 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B79CC294B9E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 13:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDA1294BD5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 13:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439274AbgJULHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 07:07:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2410564AbgJULHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 07:07:50 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5170C0613CE
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 04:07:49 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id i1so2671102wro.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 04:07:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sgdeaNLeFEVMNHVsrJv3x64Nz+VLWwYYdWEYLLEMUbs=;
-        b=IhXAiczrLAmLzfqCcMtKKPHk3ybKQgdIvRyQ6PGaU2vUCiU4ByB7X2ZKVBDnfXc4yo
-         C7K1uGXUd4VsnHgdwrT4fJvbiujw76q/UssPT40uFnaT5qUdTVw8P49APGQ30C1E5pdU
-         pMU5JePGUTWu9GT/wP7q+aIsfJ9pTcio0W6EU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sgdeaNLeFEVMNHVsrJv3x64Nz+VLWwYYdWEYLLEMUbs=;
-        b=mdGG0e4QeEXpRP0/fKFi4hPtI9AiiCYLu4m5UugNeWdcDHMFALi2LlDRmxBeSwnjNs
-         dlpxzUfDjzkBK3yctKsHLdJE6tBhHeqMLALnLdbn9NqopYj3UWm+gVA3cYBJJ2+HB0A+
-         Fqwyo5b3Z7CsxpPDDoQJ8th52dOTHL21zmSatmMhoiEvyqx3GMwhQxm2v+ktIhOpfQhC
-         fS36RfZucLSFUnQBUhyOFPFzWgcrHG4xTnm/su/OXtfl27UR6pC2xXJbAgUk90k43FS2
-         q1PVsxczF+F8T+/o2HcVOzTYpsRbTOeMuxKZ+c3zX7llqDa0vrsKaBkrTTzwITMtWPdc
-         oo4g==
-X-Gm-Message-State: AOAM530JhkcS0ypFzp2m3PNW4AU8oAgAgoG1hIipEZoFrTMV49rqwUJm
-        JSwpKgGVN4BeMDy/AjV/40aKeZ/UmV5nZiaJxFCePQ==
-X-Google-Smtp-Source: ABdhPJw+HhaN1MBMrtUAxgBjuYJJ1eHTqVJ9uPe2N7F1GAMJZY5AKc7YNQzeJeS7Q54exwag/RUOdaF2fZsZyv8WoKU=
-X-Received: by 2002:a5d:4d8a:: with SMTP id b10mr4210682wru.5.1603278468446;
- Wed, 21 Oct 2020 04:07:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-4-daniel@0x0f.com>
- <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
-In-Reply-To: <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Wed, 21 Oct 2020 20:07:37 +0900
-Message-ID: <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
-Subject: Re: [PATCH 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        id S2410785AbgJULfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 07:35:46 -0400
+Received: from mx2.suse.de ([195.135.220.15]:52026 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2410774AbgJULfp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 07:35:45 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 2E17FABE3;
+        Wed, 21 Oct 2020 11:35:43 +0000 (UTC)
+Message-ID: <704546dadc3c1d39d260a29e850ae100fdf47fba.camel@suse.de>
+Subject: Re: [RFC] of/platform: Create device link between simple-mfd and
+ its children
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Saravana Kannan <saravanak@google.com>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Date:   Wed, 21 Oct 2020 13:35:41 +0200
+In-Reply-To: <20201019065208.x5k2zpuxjfhpmhdc@pengutronix.de>
+References: <20201015114346.15743-1-nsaenzjulienne@suse.de>
+         <CAL_JsqLvzsdAfx56jQqPSd1r=P20C8DURKKZ9kke-L2owqr0fg@mail.gmail.com>
+         <0f0b7021e85a832afd42c6f9016158d6d8b0b28b.camel@suse.de>
+         <20201019065208.x5k2zpuxjfhpmhdc@pengutronix.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-y+CDlaV1ZewhdsGwsFAA"
+User-Agent: Evolution 3.36.5 
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
 
-Sorry to pester you again...
+--=-y+CDlaV1ZewhdsGwsFAA
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 17 Oct 2020 at 01:56, Linus Walleij <linus.walleij@linaro.org> wrote:
+Hi Uwe,
+Sorry for the late reply, got distracted with other stuff.
 
-> > +       gpiochip->to_irq = msc313_gpio_to_irq;
-> > +       gpiochip->base = -1;
-> > +       gpiochip->ngpio = gpio->gpio_data->num;
-> > +       gpiochip->names = gpio->gpio_data->names;
-> > +
-> > +       for (i = 0; i < gpiochip->ngpio; i++)
-> > +               gpio->irqs[i] = of_irq_get_byname(pdev->dev.of_node, gpio->gpio_data->names[i]);
->
-> Use hierarchical generic GPIO IRQs for these.
->
-> Assign ->fwnode, ->parent_domain, ->child_to_parent_hwirq,
-> and probably also ->handler on the struct gpio_irq_chip *.
->
-> Skip assigning gpiochip->to_irq, the generic code will
-> handle that.
->
-> Again see gpio-ixp4xx.c for an example.
+On Mon, 2020-10-19 at 08:52 +0200, Uwe Kleine-K=C3=B6nig wrote:
+> On Fri, Oct 16, 2020 at 05:26:56PM +0200, Nicolas Saenz Julienne wrote:
+> > On Fri, 2020-10-16 at 09:38 -0500, Rob Herring wrote:
+> > > On Thu, Oct 15, 2020 at 6:43 AM Nicolas Saenz Julienne
+> > > <nsaenzjulienne@suse.de> wrote:
+> > > > 'simple-mfd' usage implies there might be some kind of resource sha=
+ring
+> > > > between the parent device and its children.
+> > >=20
+> > > It does? No! The reason behind simple-mfd was specifically because
+> > > there was no parent driver or dependency on the parent. No doubt
+> > > simple-mfd has been abused.
+> >=20
+> > Fair enough, so we're doing things wrong. Just for the record, I'm look=
+ing at
+> > RPi=C2=B4s firmware interface:
+> >=20
+> > 	firmware: firmware {
+> > 		compatible =3D "raspberrypi,bcm2835-firmware", "simple-mfd";
+> > 		#address-cells =3D <1>;
+> > 		#size-cells =3D <1>;
+> > 		mboxes =3D <&mailbox>;
+> >=20
+> > 		firmware_clocks: clocks {
+> > 			compatible =3D "raspberrypi,firmware-clocks";
+> > 			#clock-cells =3D <1>;
+> > 		};
+> >=20
+> > 		reset: reset {
+> > 			compatible =3D "raspberrypi,firmware-reset";
+> > 			#reset-cells =3D <1>;
+> > 		};
+> > 		[...]
+> > 	};
+> >=20
+> > Note that "raspberrypi,bcm2835-firmware" has a driver, it's not just a
+> > placeholder. Consumer drivers get a handle to RPi's firmware interface =
+through
+> > the supplier's API, rpi_firmware_get(). The handle to firmware becomes
+> > meaningless if it is unbinded, which I want to protect myself against.
+> >=20
+> > A simpler solution would be to manually create a device link between bo=
+th
+> > devices ("raspberrypi,bcm2835-firmware" and "raspberrypi,firmware-clock=
+s" for
+> > example) upon calling rpi_firmware_get(). But I wanted to try addressin=
+g the
+> > problem in a generic way first.
+>=20
+> IMHO rpi_firmware_get() should get a reference on the firmware device
+> (and call try_module_get()) which prevents unbinding it.
 
-I sent a v2 with this conversion already and it looks a lot better.
-Based on Andy Shevchenko's comments[0] I'll be sending a v3 that fixes
-up all style and other issues he found.
-Before I do that I have a question that maybe you could help me with:
-Andy noted a few times that I have this driver as a built in driver
-and not a module.
-The gpio-ixp4xx.c driver is also a built in driver. Is there a reason
-why it's ok there but not this driver?
-I've actually changed it to allow building as a module already but I
-don't want to push a v3 if something like the interrupt handling means
-it should actually be a built in and I'm just missing something.
+Yes, it seems the way to go. Just one last question WRT this, since
+'drv->remove(dev)' can't fail should I just block until the reference count
+hits zero?
 
-Thanks,
+Regards,
+Nicolas
 
-Daniel
 
-0 - https://lore.kernel.org/linux-gpio/CAHp75Vf5iUzKp32CqBbv_5MRo8q8CyBPsBcgzKsww6BFtGJwUA@mail.gmail.com/
+--=-y+CDlaV1ZewhdsGwsFAA
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+QHQ0ACgkQlfZmHno8
+x/7PvAf/YPL3B9XkRBQ4azT4+l5kztL5y0A2T8nT+JN7jHnDZm7XYQKh9QFVm9Wg
+8u8MpGUcAnv1W59qbbCznJDRtKIOQjM3YEB3b0g0uELCfOaAFk1WI4I9zsspRqPE
+DaSFl0Xbp5p3FwnCKyJQUMghMtXixC1zxvB9xkxBbupRIBtezLjl2okW2X2drNeg
+HLKbyTXZovJkF0EpY/44Z1haP8SryoxoALLvfmF6G8e3EE9qmcbY9nmxltKGqUfr
+YRmMH2Q8648cGNjV5vy9cT2i6dc85VOOuYZuESGHTcGTrPcJxugC5wydDpsOGEUG
+ZtHLJLGw50uiGJ8Tgb2kMwdNwFEf6A==
+=OwyT
+-----END PGP SIGNATURE-----
+
+--=-y+CDlaV1ZewhdsGwsFAA--
+
