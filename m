@@ -2,126 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59A9B295099
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 18:20:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28AA32950BD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 18:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2444503AbgJUQUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 12:20:37 -0400
-Received: from linux.microsoft.com ([13.77.154.182]:41046 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2444499AbgJUQUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 12:20:36 -0400
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id D988420B4905;
-        Wed, 21 Oct 2020 09:20:34 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D988420B4905
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1603297235;
-        bh=UNeDR+n68uDFmqC9SMWAFNgDgsQzAZUUOaqRegCPxtE=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=FRPhseunculQdArN+Aug2a3krX0YrS2zQzHf7wbx9uJ1Yv7jgIr8SRlp3gKX9Lqp6
-         Oc/p2ouvXetiqzIthBlua5PvwcunCtF+HIEZTJwqD3aTZ/FjTbc8puh1FmwDrH6MQZ
-         wZhk9vbgriemOz4zHE8Gu+PH/bu8HHdxIuVhB06I=
-Subject: Re: [PATCH v7 2/4] powerpc: Refactor kexec functions to move arch
- independent code to ima
-To:     Mimi Zohar <zohar@linux.ibm.com>, bauerman@linux.ibm.com,
-        robh@kernel.org, gregkh@linuxfoundation.org, james.morse@arm.com,
-        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
-        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
-        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
-        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
-        christophe.leroy@c-s.fr
-Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, prsriva@linux.microsoft.com,
-        balajib@linux.microsoft.com
-References: <20200930205941.1576-1-nramas@linux.microsoft.com>
- <20200930205941.1576-3-nramas@linux.microsoft.com>
- <ecc13356983d5cff536c53c4da98a839ea9a0f19.camel@linux.ibm.com>
- <9a44d8aa-515d-fc97-74bd-7ae976dea35b@linux.microsoft.com>
- <b8e04f61016b558ad62c4ac0aba183bab521664c.camel@linux.ibm.com>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <9712c6bd-b0f8-773f-0b54-828410c61f50@linux.microsoft.com>
-Date:   Wed, 21 Oct 2020 09:20:30 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2438068AbgJUQa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 12:30:27 -0400
+Received: from foss.arm.com ([217.140.110.172]:37442 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2438066AbgJUQa0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 12:30:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D6CDCD6E;
+        Wed, 21 Oct 2020 09:30:25 -0700 (PDT)
+Received: from bogus (unknown [10.57.22.167])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 445CE3F719;
+        Wed, 21 Oct 2020 09:30:24 -0700 (PDT)
+Date:   Wed, 21 Oct 2020 17:30:21 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm,scmi: Do not use clocks for SCMI
+ performance domains
+Message-ID: <20201021163021.lkqhum3xnyzt6pir@bogus>
+References: <20201020203710.10100-1-sudeep.holla@arm.com>
+ <CAL_JsqKH9pN7E7o+UY7YmOrOKCUigrMTxY3f3AH4PdpQUAaawg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <b8e04f61016b558ad62c4ac0aba183bab521664c.camel@linux.ibm.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKH9pN7E7o+UY7YmOrOKCUigrMTxY3f3AH4PdpQUAaawg@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/20/20 8:50 PM, Mimi Zohar wrote:
-> Hi Lakshmi,
-> 
-> On Tue, 2020-10-20 at 19:38 -0700, Lakshmi Ramasubramanian wrote:
->> On 10/20/20 1:01 PM, Mimi Zohar wrote:
->>> On Wed, 2020-09-30 at 13:59 -0700, Lakshmi Ramasubramanian wrote:
->>>> The functions ima_get_kexec_buffer() and ima_free_kexec_buffer(),
->>>> that handle carrying forward the IMA measurement logs on kexec for
->>>> powerpc do not have architecture specific code, but they are currently
->>>> defined for powerpc only.
->>>>
->>>> Move ima_get_kexec_buffer() and ima_free_kexec_buffer() to IMA
->>>> subsystem. A later patch in this series will use these functions for
->>>> carrying forward the IMA measurement log for ARM64.
->>>>
->>>> With the above refactoring arch/powerpc/kexec/ima.c contains only
->>>> functions used when CONFIG_IMA_KEXEC is enabled. Update Makefile
->>>> in arch/powerpc/kexec to include arch/powerpc/kexec/ima.c only
->>>> when CONFIG_IMA_KEXEC is enabled.
->>>>
->>>> Move ima_dump_measurement_list() and ima_add_kexec_buffer() to
->>>> a new file namely ima_kexec_fdt.c in IMA. Update
->>>> security/integrity/ima/Makefile to include ima_kexec_fdt.c only
->>>> when CONFIG_IMA_KEXEC is enabled.
->>>>
->>>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
->>>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
->>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->>>
->>> The existing support for carrying the IMA measurement list across kexec
->>> is limited to powerpc.  This patch set is adding similar support for
->>> arm64, making as much of the existing code as generic as possible.
->>> However ima_dump_measurement_list() is already generic, but for some
->>> reason this patch moves it to ima_kexec_fdt.c.  ima_kexec_fdt.c should
->>> be limited to device tree specific code.
->>
->> I wanted to split the functions defined under CONFIG_HAVE_IMA_KEXEC and
->> CONFIG_IMA_KEXEC to separate files so that we can get rid of #ifdef in C
->> file and instead conditionally compile the C files (using Makefile).
->>
->> ima_dump_measurement_list() need to be defined only when
->> CONFIG_IMA_KEXEC is defined. I moved it to ima_kexec_fdt.c
-> 
-> In this case, everything in ima_kexec.c relates to carrying or
-> restoring the measurement list.  It's a logical unit.  Separating them
-> doesn't make sense.
-> 
+On Wed, Oct 21, 2020 at 11:20:27AM -0500, Rob Herring wrote:
+> On Tue, Oct 20, 2020 at 3:37 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > Commit dd461cd9183f ("opp: Allow dev_pm_opp_get_opp_table() to return
+> > -EPROBE_DEFER") handles -EPROBE_DEFER for the clock/interconnects within
+> > _allocate_opp_table() which is called from dev_pm_opp_add and it
+> > now propagates the error back to the caller.
+> >
+> > SCMI performance domain re-used clock bindings to keep it simple. However
+> > with the above mentioned change, if clock property is present in a device
+> > node, opps can't be added until clk_get succeeds. So in order to fix the
+> > issue, we can register dummy clocks which is completely ugly.
+> >
+> > Since there are no upstream users for the SCMI performance domain clock
+> > bindings, let us introduce separate performance domain bindings for the
+> > same.
+> >
+> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> > ---
+> >  .../devicetree/bindings/arm/arm,scmi.txt      | 19 ++++++++++++++++---
+> >  1 file changed, 16 insertions(+), 3 deletions(-)
+> >
+> > Hi Rob/Viresh,
+> >
+> > This is actually a fix for the regression I reported here[1].
+> > I am not adding fixes tag as I am targeting in the same release and
+> > also because it is not directly related.
+> >
+> > Regards,
+> > Sudeep
+> >
+> > [1] https://lore.kernel.org/r/20201015180555.gacdzkofpibkdn2e@bogus
+> >
+> > P.S.:/me records that this binding needs to be moved to yaml in v5.11
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> > index 55deb68230eb..0a6c1b495403 100644
+> > --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> > +++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> > @@ -44,7 +44,7 @@ as described in the following sections. If the platform supports dedicated
+> >  mboxes, mbox-names and shmem shall be present in the sub-node corresponding
+> >  to that protocol.
+> >
+> > -Clock/Performance bindings for the clocks/OPPs based on SCMI Message Protocol
+> > +Clock bindings for the clocks based on SCMI Message Protocol
+> >  ------------------------------------------------------------
+> >
+> >  This binding uses the common clock binding[1].
+> > @@ -52,6 +52,19 @@ This binding uses the common clock binding[1].
+> >  Required properties:
+> >  - #clock-cells : Should be 1. Contains the Clock ID value used by SCMI commands.
+> >
+> > +Performance bindings for the OPPs based on SCMI Message Protocol
+> > +------------------------------------------------------------
+> > +
+> > +Required properties:
+> > +- #perf-domain-cells: Should be 1. Contains the performance domain ID value
+> > +                     used by SCMI commands.
+>
+> When is this not 1 (IOW, you only need this if variable)? How would it
+> be used outside SCMI (given it has a generic name)?
+>
 
-Sounds good - I'll keep ima_dump_measurement_list() and 
-ima_add_kexec_buffer() in ima_kexec.c as it was earlier.
+Ah, I thought we need this if phandle is followed by 1 or more arguments.
+If it is not compulsory I can drop this or make it scmi specific if we
+need it.
 
->>
->> Instead of ima_kexec_fdt.c, where ima_dump_measurement_list() and
->> ima_add_kexec_buffer() are defined, perhaps I can change the file name
->> to "ima_kexec_buffer.c". Would that be better?
-> 
-> I don't understand why adding support for carrying the IMA measurement
-> across kexec on ARM64, should require any changes in the IMA loading
-> and restoring the measurement list code itself.  Please minimize the
-> changes.
+> > +
+> > +* Property arm,scmi-perf-domain
+>
+> Yet this doesn't have a generic name. You mentioned on IRC this is
+> aligned with QCom, but why can't QCom use the same property here?
+>
 
-Agreed - will do.
+This is SCMI firmware driven while they have hardware driven perf/freq
+domains. So different drivers, need to distinguish between the two.
 
-thanks,
-  -lakshmi
+> Really though, why can't you give SCMI a CPUs MPIDR and get its domain?
 
+Not a bad idea, will check if we can add this to the future specification.
+Anyways we still need something with existing version of the spec.
 
+--
+Regards,
+Sudeep
