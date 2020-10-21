@@ -2,140 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF39E295443
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 23:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83CC829545B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 23:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506221AbgJUVdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 17:33:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46214 "EHLO
+        id S2506337AbgJUVlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 17:41:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2506218AbgJUVdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 17:33:53 -0400
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B87C0613CE
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 14:33:53 -0700 (PDT)
-Received: by mail-ot1-x342.google.com with SMTP id n11so3258022ota.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 14:33:53 -0700 (PDT)
+        with ESMTP id S2506320AbgJUVlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 17:41:10 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64ECAC0613CE
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 14:41:10 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id p25so2120129vsq.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 14:41:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=XCjYvUCIgbQ3TCtD4YfecFPhaqfiZUwN7ivTobgZQY0=;
-        b=lx4WkpT2GzaDerBpdUAWiK7Fk5vr7DQ65sS1KJ5w9QzgSXXyi1BcdYVoDIaXXrWft2
-         yC4htW78VmVnZz6BIcXn5NCdHwKSfCMa2P2uw8B6RVUVzzpTYLAkcOgy0f4LhDikDhh4
-         O+fIkWJPhWeQac0XW7kwgXkButPH3W8HhOQujJC2+2w+GIMEFkmYYHWeYHQFLeiO3iyZ
-         ED/m5VEzlWFv5k7F3+aVCm3m4XX9wEK0lxjyR/0+e9IXmZ56qWY3SP3CJw3s6T5PoRWf
-         1E0u6XOCinCRV31hLekEZJjzyNArUBgyoR0GBWhujH6Nl5x7JGF1zMbK/GCMHbte2Ei7
-         mb9A==
+        bh=fiI+ivAkRfzoArXOKg0GeDaxWAM5Ef0WBWauCl2e4lY=;
+        b=GU69OBpfiopIipOmEG3+SBUQ1TFsTZ8rOfH655pf1Au0FRsI5BvydXLkZZwCr/xC0U
+         uHuaDjnbmUV6JIic2c6K+dAm5Ef3ZoyV0ceaZIEbwQkKhjuDGwHTKAWhUs+YGVG3VR1R
+         s0ph1pA08bd6Fm/7mOHhwfOLs4GY2x57CH+nc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=XCjYvUCIgbQ3TCtD4YfecFPhaqfiZUwN7ivTobgZQY0=;
-        b=lA/kNzSvC45WE3u2tkhXfqf74QEvLTgJCOxt4w8FsjctzALLtaavxhGR6hlar8v159
-         i8AAA7HMLI0C4Bl/2ep/r2MONY/jxprEzGc/H38QcSKHVZMfEwDeafRAqcd6h1WAXOQb
-         P5FusGp6sBAu0JGDMR7gXzVpiCs+8o3y/y1//Fw4CYr03IX1OrhArz8LFSC6iqt6dIz8
-         4wGWdxi+ad3HU0I3E2Ini5wash8sYtT8ImUMUGv6QD26oJarWoNcGEuHJbJmBHAVRg6Y
-         VQkT327Y0zas6ex/7uNjbSLOc91efCShp5MNwqRjvTXpt3eaD0jQclrurOSjNpiTEoy2
-         LaFg==
-X-Gm-Message-State: AOAM530Oact5I4TRER9dsHJ0AUDlcJiCjCy+5LQyZlLCH36EsLjmOhHC
-        2EOhs1c+2Cg0pwfkaEfYo5c7nyBQP/tCtzYi59ZGeA==
-X-Google-Smtp-Source: ABdhPJxQft8N8pQfRzj0OP/DL2xjFlTkw1NWDG+V/uw4WSqVGubKlth/Yii+jjfy9m4PYJyes8XdUPNOygcqb5fQfrI=
-X-Received: by 2002:a05:6830:1558:: with SMTP id l24mr2909744otp.352.1603316032781;
- Wed, 21 Oct 2020 14:33:52 -0700 (PDT)
+        bh=fiI+ivAkRfzoArXOKg0GeDaxWAM5Ef0WBWauCl2e4lY=;
+        b=jxWBeiLvL1c+vpoiS1LH8ZcsAMX+TChcBZPqlmd2u2Lkki5oVwXVrrr0+Vu9ySnJ8Y
+         WqfnYqnvviUHe9NqPAqkSkjqZLtp2aSSQuAw8FROPg2qU2tL2lXRt5nEls9FcX1h5zk9
+         e900jx1jJEcqBSbWlJHwfLsxQPRz+n/2I2EYst0au5MqRq+ZAbxpF22S7/kz0bdIUOTt
+         27vvRNYZCnlvF3yRjhySKhaDWs8zx8yI2/I5irq8WQ5lyCtgN/q3UIrxFAw0MwXn+ove
+         j64gqBrdB05et8mTbRBjJQKMST75R7JsGH1p/rJyYj78qGhcejsQ0JpBzeQG1re0+OtI
+         77dw==
+X-Gm-Message-State: AOAM5336k+5CzhJona7wPXcZr7VzCybuM+3tqwrrj5cp7UDQaB2KCBnB
+        m3rViVubdDhpafyfprQ3ZTaytXhQaib8Ow==
+X-Google-Smtp-Source: ABdhPJw538BhVbQ1L/8APEPcSCCMIypywAK8/cI5K4ZdEhFGv1fSLeAg34c7dAUMI+4GQjf1uZGyRg==
+X-Received: by 2002:a67:fd47:: with SMTP id g7mr3746284vsr.32.1603316468730;
+        Wed, 21 Oct 2020 14:41:08 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id l19sm470927vke.33.2020.10.21.14.41.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Oct 2020 14:41:07 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id p25so2120079vsq.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 14:41:07 -0700 (PDT)
+X-Received: by 2002:a67:e3b9:: with SMTP id j25mr3757348vsm.37.1603316467072;
+ Wed, 21 Oct 2020 14:41:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201021181803.79650-1-john.stultz@linaro.org> <77de4aaa-14a5-6078-bd0b-c4942e97ab36@synopsys.com>
-In-Reply-To: <77de4aaa-14a5-6078-bd0b-c4942e97ab36@synopsys.com>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Wed, 21 Oct 2020 14:33:41 -0700
-Message-ID: <CALAqxLVyszFbOnWAOMekQuWbGgmMZpEfFiY6gyAPYmGXPz5sHA@mail.gmail.com>
-Subject: Re: [RFC][PATCH] usb: dwc3: Add quirk to trigger a GCTL soft reset
- for Hisilicon Kirin Soc Platform
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     lkml <linux-kernel@vger.kernel.org>, Yu Chen <chenyu56@huawei.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Tejas Joglekar <Tejas.Joglekar@synopsys.com>,
-        Yang Fei <fei.yang@intel.com>,
-        YongQin Liu <yongqin.liu@linaro.org>,
-        Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20201016192654.32610-1-evgreen@chromium.org> <20201016122559.v2.1.I8b447ca96abfbef5f298d77350e6c9d1d18d00f6@changeid>
+In-Reply-To: <20201016122559.v2.1.I8b447ca96abfbef5f298d77350e6c9d1d18d00f6@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 21 Oct 2020 14:40:55 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VyBxXFLGsPZFpX29xFL5p8ZZPQ0uJEku3Wo04VFOEZOg@mail.gmail.com>
+Message-ID: <CAD=FV=VyBxXFLGsPZFpX29xFL5p8ZZPQ0uJEku3Wo04VFOEZOg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: nvmem: Add soc qfprom compatible strings
+To:     Evan Green <evgreen@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 12:14 PM Thinh Nguyen <Thinh.Nguyen@synopsys.com> wrote:
+Hi,
+
+On Fri, Oct 16, 2020 at 12:27 PM Evan Green <evgreen@chromium.org> wrote:
 >
-> John Stultz wrote:
-> > From: Yu Chen <chenyu56@huawei.com>
-> >
-> > With the current dwc3 code on the HiKey960 we often see the
-> > COREIDLE flag get stuck off in __dwc3_gadget_start(), which
-> > seems to prevent the reset irq and causes the USB gadget to
-> > fail to initialize.
-> >
-> > We had seen occasional initialization failures with older
-> > kernels but with recent 5.x era kernels it seemed to be becoming
-> > much more common, so I dug back through some older trees and
-> > realized I dropped this quirk from Yu Chen during upstreaming
-> > as I couldn't provide a proper rational for it and it didn't
-> > seem to be necessary. I now realize I was wrong.
-> >
-> > On the upside, I can now understand more why such a quirk is
-> > needed.
+> Add SoC-specific compatible strings so that data can be attached
+> to it in the driver.
 >
-> This shouldn't be a quirk. It's part of the programming guide when
-> switching mode in DRD. I don't know how we missed this.
-
-Ah! That's great, as it should simplify the patch a bit and avoid
-introducing another dt bindings!
-
-
-> > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> > index bdf0925da6b6..b138c67e3892 100644
-> > --- a/drivers/usb/dwc3/core.c
-> > +++ b/drivers/usb/dwc3/core.c
-> > @@ -114,6 +114,19 @@ void dwc3_set_prtcap(struct dwc3 *dwc, u32 mode)
-> >       dwc->current_dr_role = mode;
-> >  }
-> >
-> > +static void dwc3_gctl_core_soft_reset(struct dwc3 *dwc)
-> > +{
-> > +     int reg;
-> > +
-> > +     reg = dwc3_readl(dwc->regs, DWC3_GCTL);
-> > +     reg |= (DWC3_GCTL_CORESOFTRESET);
-> > +     dwc3_writel(dwc->regs, DWC3_GCTL, reg);
-> > +
-> > +     reg = dwc3_readl(dwc->regs, DWC3_GCTL);
-> > +     reg &= ~(DWC3_GCTL_CORESOFTRESET);
-> > +     dwc3_writel(dwc->regs, DWC3_GCTL, reg);
-> > +}
-> > +
-> >  static void __dwc3_set_mode(struct work_struct *work)
-> >  {
-> >       struct dwc3 *dwc = work_to_dwc(work);
-> > @@ -178,6 +191,10 @@ static void __dwc3_set_mode(struct work_struct *work)
-> >               }
-> >               break;
-> >       case DWC3_GCTL_PRTCAP_DEVICE:
-> > +             /* Execute a GCTL Core Soft Reset when switch mode */
-> > +             if (dwc->gctl_reset_quirk)
-> > +                     dwc3_gctl_core_soft_reset(dwc);
-> > +
+> Signed-off-by: Evan Green <evgreen@chromium.org>
+> ---
 >
-> This should be done before dwc3_set_prtcap(), and this applies when
-> switching from device to host mode also. Make sure to check if the
-> controller is DRD before doing this.
+> Changes in v2:
+>  - Add other soc compatible strings (Doug)
+>  - Fix compatible string definition (Doug)
+>
+>  .../devicetree/bindings/nvmem/qcom,qfprom.yaml      | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> index 1a18b6bab35e7..eb1440045aff1 100644
+> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> @@ -14,7 +14,18 @@ allOf:
+>
+>  properties:
+>    compatible:
+> -    const: qcom,qfprom
+> +    items:
+> +      - enum:
+> +          - qcom,apq8064-qfprom
+> +          - qcom,apq8084-qfprom
+> +          - qcom,msm8974-qfprom
+> +          - qcom,msm8916-qfprom
+> +          - qcom,msm8996-qfprom
+> +          - qcom,msm8998-qfprom
+> +          - qcom,qcs404-qfprom
+> +          - qcom,sc7180-qfprom
+> +          - qcom,sdm845-qfprom
+> +      - const: qcom,qfprom
+>
+>    reg:
+>      # If the QFPROM is read-only OS image then only the corrected region
 
-Sorry, by checking that the controller is DRD, I'm not sure exactly
-what you mean.
-Checking DWC3_GHWPARAMS0_MODE_DRD?  Or something else?
+As Rob's bot found, your example no longer matches your requirements.
+It needs an SoC-specific string plus the "qcom,qfprom".  It's always
+good to try running "make dt_binding_check" to catch these sorts of
+things.
 
-Thanks so much for the review and feedback!
--john
+
+-Doug
