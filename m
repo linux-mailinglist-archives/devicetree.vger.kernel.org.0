@@ -2,97 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2BAF294D2D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 15:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA3D294D6B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 15:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441225AbgJUNGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 09:06:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52424 "EHLO mail.kernel.org"
+        id S2437427AbgJUNXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 09:23:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59182 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2441222AbgJUNGH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 09:06:07 -0400
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S2409392AbgJUNXv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 09:23:51 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 60723222C8;
-        Wed, 21 Oct 2020 13:06:06 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 783C2221FC;
+        Wed, 21 Oct 2020 13:23:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603285566;
-        bh=yThHWlWlCTYTIjGsLVR1OAyNrKAJhrn/n5hD0TCxUPw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rgB5wwOWuYehCtY/q9UGjTfVkSiv4Qtd80yGuii9sGSdCuAN2238FgIW4BGaFDjI6
-         lK1ZH34XuK5KqpuHbXMXxq9eMVzzwilXl5o/PeEv6QurOT+y8b0HSkczxQGxJvRCqj
-         97y+AKxUuYLMBkyibo04Gh0YDV9YHfkC2hiWbT4k=
-Received: by mail-ot1-f47.google.com with SMTP id e20so1711743otj.11;
-        Wed, 21 Oct 2020 06:06:06 -0700 (PDT)
-X-Gm-Message-State: AOAM532AeMKAr1YbIq06u7qUKXitaEsp/IIWf1+1hZgfqqtSQ3pRvfW3
-        3Xqut3yJQcrwGVvqliUvSgTwcjTJ78WVJqaBdg==
-X-Google-Smtp-Source: ABdhPJw2qd4ZlYkKtjveqNUdgNMhkFrq6kd0piooLqgxNSLxC236c/uAYXR2DhukmLURaD3MXZ2SuxXFMMcmbOOgKC8=
-X-Received: by 2002:a9d:1c90:: with SMTP id l16mr2567063ota.192.1603285565445;
- Wed, 21 Oct 2020 06:06:05 -0700 (PDT)
+        s=default; t=1603286631;
+        bh=b3cPCH2ChrkOo+0On+GCFaxbYKBDb2R2dmjWrh01th8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C8GMHKrLxbXtok127CPq0GuZB0QXEqO6wvjYff7dT8f+cwsco4b+i5UzG+DMV6/Hh
+         3LstP0uMgqsEhjIy5mJi53BTEJx9CMxb+d2XH2ni4s5Cj/AT/PKQvMtJaSnCHbXhRT
+         A8HZn3KJOuhf/QzBL6w+/Hllt4uEfx6lChajJMF0=
+Date:   Wed, 21 Oct 2020 14:23:39 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     tiwai@suse.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, tzungbi@google.com,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        shane.chien@mediatek.com, kuninori.morimoto.gx@renesas.com
+Subject: Re: [PATCH v2 2/5] ASoC: mediatek: mt8192: add platform driver
+Message-ID: <20201021132339.GF4497@sirena.org.uk>
+References: <1603270435-3548-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1603270435-3548-3-git-send-email-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-References: <20201020091921.1730003-1-rmfrfs@gmail.com> <20201020091921.1730003-4-rmfrfs@gmail.com>
- <20201020153044.GA875273@bogus> <20201020185206.qst2uksgcy3axbnh@arch-thunder.localdomain>
-In-Reply-To: <20201020185206.qst2uksgcy3axbnh@arch-thunder.localdomain>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 21 Oct 2020 08:05:53 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKzvMj4WZz3N8wf=H8p3bZGo_vohWE9pdaSWwjxB5tDgQ@mail.gmail.com>
-Message-ID: <CAL_JsqKzvMj4WZz3N8wf=H8p3bZGo_vohWE9pdaSWwjxB5tDgQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] dt-bindings: imx7-mipi-csi2: convert bindings to yaml
-To:     Rui Miguel Silva <rmfrfs@gmail.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xaMk4Io5JJdpkLEb"
+Content-Disposition: inline
+In-Reply-To: <1603270435-3548-3-git-send-email-jiaxin.yu@mediatek.com>
+X-Cookie: That does not compute.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 1:52 PM Rui Miguel Silva <rmfrfs@gmail.com> wrote:
->
-> Hi Rob Bot,
-> On Tue, Oct 20, 2020 at 10:30:44AM -0500, Rob Herring wrote:
-> > On Tue, 20 Oct 2020 10:19:21 +0100, Rui Miguel Silva wrote:
-> > > Convert imx7 mipi csi2 bindings documentation to yaml schema, remove
-> > > the textual document and update MAINTAINERS entry.
-> > >
-> > > Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
-> > > ---
-> > >  .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
-> > >  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 172 ++++++++++++++++++
-> > >  MAINTAINERS                                   |   2 +-
-> > >  3 files changed, 173 insertions(+), 91 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-> > >
-> >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > ./Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml:91:21: [warning] wrong indentation: expected 22 but found 20 (indentation)
-> > ./Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml:93:21: [warning] wrong indentation: expected 22 but found 20 (indentation)
->
-> Strange not to complain on line 94 also.
->
-> >
-> >
-> > See https://patchwork.ozlabs.org/patch/1384742
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure dt-schema is up to date:
-> >
-> > pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
->
-> I have done this and I am at version:
-> 2020.8.2.dev4+g341f3e35180a
->
-> and still do not get any warning on this file. Nevertheless I
-> found the indentation issue and will:
 
-It's coming from yamllint which is recently added (this merge window)
-and is optionally run if yamllint is present. Will clarify this in the
-email.
+--xaMk4Io5JJdpkLEb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Wed, Oct 21, 2020 at 04:53:52PM +0800, Jiaxin Yu wrote:
+> This patch adds mt8192 platform and affiliated drivers.
+>=20
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> ---
+>  sound/soc/mediatek/Kconfig                    |   10 +
+>  sound/soc/mediatek/Makefile                   |    1 +
+>  sound/soc/mediatek/common/mtk-afe-fe-dai.c    |   13 +-
+>  sound/soc/mediatek/common/mtk-base-afe.h      |    1 +
+>  sound/soc/mediatek/mt8192/Makefile            |   14 +
+>  sound/soc/mediatek/mt8192/mt8192-afe-clk.c    |  669 ++++
+>  sound/soc/mediatek/mt8192/mt8192-afe-clk.h    |  244 ++
+>  sound/soc/mediatek/mt8192/mt8192-afe-common.h |  170 +
+>  .../soc/mediatek/mt8192/mt8192-afe-control.c  |  163 +
+>  sound/soc/mediatek/mt8192/mt8192-afe-gpio.c   |  306 ++
+>  sound/soc/mediatek/mt8192/mt8192-afe-gpio.h   |   19 +
+>  sound/soc/mediatek/mt8192/mt8192-afe-pcm.c    | 2389 +++++++++++++
+>  sound/soc/mediatek/mt8192/mt8192-dai-adda.c   | 1489 ++++++++
+>  sound/soc/mediatek/mt8192/mt8192-dai-i2s.c    | 2139 +++++++++++
+>  sound/soc/mediatek/mt8192/mt8192-dai-pcm.c    |  409 +++
+>  sound/soc/mediatek/mt8192/mt8192-dai-tdm.c    |  778 ++++
+>  .../mediatek/mt8192/mt8192-interconnection.h  |   65 +
+>  sound/soc/mediatek/mt8192/mt8192-reg.h        | 3131 +++++++++++++++++
+>  18 files changed, 12006 insertions(+), 4 deletions(-)
+
+This is *way* too big to be a single patch, please split it up - it's
+over 600K.
+
+--xaMk4Io5JJdpkLEb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+QNlsACgkQJNaLcl1U
+h9AabAf/Q9TXeXUMIPn9NWo9v/L9LDjOuG3v6YsvGz0dOKzOGAaBjfvSbd9Wtxla
+FGAFsK52ABH7Au6Gm6lKAGgRYY1iP+bG0Pfy0Ow4XdHrPLv/WND+qgFgnaqOZ2Cd
+fb7IpP2f57dbOFvFttnhJW132G3wv50HM3TGcX3ZIMdL0x6becq28d3tg05RUJUn
+8I0581pbZ9NOiux3Z0qAYsI0j9I8GQLgYmOTXg2v+FivJ5mrRctnxPSy7fhsi9xQ
++k1rpv8+jY/NDbOVPenM/f/EoT2WAynU3KNQbW4oEgTX0z62TDV7A9SX6dO5ncBd
+t5HhufaFXlQn1FBV84GrEXTq9ObMsw==
+=JxKv
+-----END PGP SIGNATURE-----
+
+--xaMk4Io5JJdpkLEb--
