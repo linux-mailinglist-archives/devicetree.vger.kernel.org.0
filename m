@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF422954E6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 00:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34E822954EB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 00:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506925AbgJUWvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 18:51:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58090 "EHLO
+        id S2506930AbgJUWvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 18:51:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409389AbgJUWvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 18:51:09 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F26B2C0613CE
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 15:51:08 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id l28so5132583lfp.10
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 15:51:08 -0700 (PDT)
+        with ESMTP id S2506927AbgJUWvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 18:51:11 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6196FC0613CF
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 15:51:10 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id l28so5132646lfp.10
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 15:51:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XUajRf0deY0ybpth0h7755bmH20RWxud7qUm1cDBOWQ=;
-        b=BLdNHBsk0bzhSHFYSUqNi1hqTF5D1yLj5g6uVYypoHoC2rBPrcMAMMVX3ZMntqDPGn
-         vGRns97QNZBmNNeKykP88dy7j29AAjk6eTQ5jiUssnfd0uFJ8/bPSHCsS+uB9ZhmDX2b
-         x2B5pZhhC86fONyjq0O2QKsA4dKici88ERecMmsiTQonHoH2YS161kkDw6LGexMprWJM
-         ShOKMCLT3Clf5g9KCQqDNuQ0FgezMaKdnduSC1IRqy3AhVzRDVVQHANOulR7Hg4+UB30
-         4Wwu8yv/yrILWa77z4QBtEGI0qUXh31NjW69Fpy4WRuoDtEkkz7UVaqTBQNGlKWlsGUM
-         aFMw==
+        bh=zpjsljtV36eW22jKsBjcgvjXKE5SZZrozCSm2JOo928=;
+        b=psxdaokVACpNVNAhX4v+t51isYuTHK2+yjs70ohMFGLi0A/J6RuG4aQrBN2JEjUfuQ
+         jUccs4hXrG/Cf17Pl8QaoJVKTz9hK4i2D9sTWVQo4+QvwwCZULhCZyHFLXA/OaCZc6L/
+         SifjOGkRULm6oCCcKkGQZt6onbxz4ylRNgr1AiTcPGP5D36sKgS0JOUTA+vwWfV7x4sC
+         cuDFE6E1/+wETEoZQl1PvOPfHy8NfCkAtfb6QCWNiuE/OsdLDYt9uXKpwjIsOEeRSLZ8
+         V0HelwOprCGlE52v3Rv/cMBCBdpo+Du+ripzg+33RlAk7q/qFQV+AjeGE76F6vozJGVK
+         HW6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XUajRf0deY0ybpth0h7755bmH20RWxud7qUm1cDBOWQ=;
-        b=SpjCuu9bcGcbPoOVRMpzisPuPplUkADb1Cb7572mOMUotaaNaq6/DwtiA2VwrEEE6w
-         cIAKFp+ru0GdMAAKNN7FsxWX4dgcGJkcdo4b1Xj7qAeDyVUK9GCfEMqITOgDsOR0DDTj
-         VWl66uZu4vYiLNQntzQA2kIKleQ6zOhUthoMoy7MhIuReo1DuQXKYYoTHUHuDwmI4bl7
-         /hGiyQWLxNMdvds3IeMVXLteMaBqh+eE13KCCtauFyvgvRz3ZXWNAQnhfgEL2svzUOH2
-         ypI8rw3plpxpfO97kMMBHgqqFQfi7A3QUQaP2TKd1Y6HCs8YyRJT1R07y21x2qIW0ytd
-         rD+w==
-X-Gm-Message-State: AOAM530Xo5TKhQVRrUM2iN53WCMcOkrDTyBpajRkkMPwfQbMn+RsaFSP
-        UEVUHAZD8+XJhb9XdSrTluIf8A==
-X-Google-Smtp-Source: ABdhPJxs1tCTj5XUaiigb6DjBHmi3vWNWrbq3CTTangd9VkMvzNz4GlTkZXByPWJ0vvNjotdjWf3ng==
-X-Received: by 2002:a19:5e5c:: with SMTP id z28mr1931658lfi.528.1603320667465;
-        Wed, 21 Oct 2020 15:51:07 -0700 (PDT)
+        bh=zpjsljtV36eW22jKsBjcgvjXKE5SZZrozCSm2JOo928=;
+        b=YlK/sgXOJGu9khEJegXw5UXcAOSMNFSupBqyKq883Y51FvhxK0SNQvDC02+HLOorEc
+         EBGpIKxW2TsmsCK63EM/X9liH4/iFCL/2jmnptU7wzb0LTlcj/ChRzuUEy824saDCUuC
+         Tes7tPMatqocJRonubyrPKpIup21FaRK0PKn/Nh0/TZpsSDIHYM4nABMTg6mvJGYpC19
+         0tVi6qgYuvUYCNmW/jq7VKYfrrcO2f8yPAdv8CQCSGxa8Jc1Cx+v0Ee1W0WCSPvUuMic
+         +bzj/zvDQVoYozVoXadWUS0JBora5LuKmI4GAuYpo+nVCUtzd1UABtEjb56EqZhIVmY0
+         s1IA==
+X-Gm-Message-State: AOAM531izeRQHe//8wecU0OPjvcTPqb0PbbmZPNmUrgbKtO9AElr7wK6
+        TaMWfRO0Q5Ea3TOrJPP5tZIKJA==
+X-Google-Smtp-Source: ABdhPJxTqNZ/hzJwrwREs7O1h5n00wULbV3F6fZz2PcHNcdzyMzHzFibUkI/V1L+nt27wa3ZLgDliQ==
+X-Received: by 2002:a19:ee14:: with SMTP id g20mr2189420lfb.378.1603320668861;
+        Wed, 21 Oct 2020 15:51:08 -0700 (PDT)
 Received: from eriador.lan ([188.162.64.195])
-        by smtp.gmail.com with ESMTPSA id h11sm652062ljc.21.2020.10.21.15.51.06
+        by smtp.gmail.com with ESMTPSA id h11sm652062ljc.21.2020.10.21.15.51.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 15:51:06 -0700 (PDT)
+        Wed, 21 Oct 2020 15:51:08 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH 1/5] dt-bindings: leds: leds-qcom-lpg: add pm8150[bl] compatible strings
-Date:   Thu, 22 Oct 2020 01:50:56 +0300
-Message-Id: <20201021225100.162795-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 2/5] leds: qcom-lpg: add support for pm8150[bl] leds
+Date:   Thu, 22 Oct 2020 01:50:57 +0300
+Message-Id: <20201021225100.162795-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201021225100.162795-1-dmitry.baryshkov@linaro.org>
 References: <20201021225100.162795-1-dmitry.baryshkov@linaro.org>
@@ -64,27 +64,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add two more compatible strings for Light Pulse Generator blocks as
-found on PM8150B and PM8150A/L chips.
+Add support for the LPG/PWM block found on newer PMICs: PM8150B and
+PM8150A/L.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/leds/leds-qcom-lpg.c | 68 ++++++++++++++++++++++++++++++++----
+ 1 file changed, 61 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-index 5ccf0f3d8f1b..0474f1d998ff 100644
---- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-@@ -17,6 +17,8 @@ description: >
- properties:
-   compatible:
-     enum:
-+      - qcom,pm8150b-lpg
-+      - qcom,pm8150l-lpg
-       - qcom,pm8916-pwm
-       - qcom,pm8941-lpg
-       - qcom,pm8994-lpg
+diff --git a/drivers/leds/leds-qcom-lpg.c b/drivers/leds/leds-qcom-lpg.c
+index 86131a65d2c5..4d24e0c973d6 100644
+--- a/drivers/leds/leds-qcom-lpg.c
++++ b/drivers/leds/leds-qcom-lpg.c
+@@ -48,6 +48,8 @@ struct lpg_data;
+  * @lut_bitmap:	allocation bitmap for LUT entries
+  * @triled_base: base address of the TRILED block (optional)
+  * @triled_src:	power-source for the TRILED
++ * @triled_no_atc_ctl:	true if there is no TRI_LED_ATC_CTL register
++ * @triled_no_src_sel:	true if there is no TRI_LED_SRC_SEL register
+  * @channels:	list of PWM channels
+  * @num_channels: number of @channels
+  */
+@@ -65,6 +67,8 @@ struct lpg {
+ 
+ 	u32 triled_base;
+ 	u32 triled_src;
++	bool triled_no_atc_ctl;
++	bool triled_no_src_sel;
+ 
+ 	struct lpg_channel *channels;
+ 	unsigned int num_channels;
+@@ -165,6 +169,8 @@ struct lpg_channel_data {
+  * @lut_base:		base address of LUT block
+  * @lut_size:		number of entries in LUT
+  * @triled_base:	base address of TRILED
++ * @triled_no_atc_ctl:	true if there is no TRI_LED_ATC_CTL register
++ * @triled_no_src_sel:	true if there is no TRI_LED_SRC_SEL register
+  * @pwm_9bit_mask:	bitmask for switching from 6bit to 9bit pwm
+  * @num_channels:	number of channels in LPG
+  * @channels:		list of channel initialization data
+@@ -173,6 +179,8 @@ struct lpg_data {
+ 	unsigned int lut_base;
+ 	unsigned int lut_size;
+ 	unsigned int triled_base;
++	bool triled_no_atc_ctl;
++	bool triled_no_src_sel;
+ 	unsigned int pwm_9bit_mask;
+ 	int num_channels;
+ 	struct lpg_channel_data *channels;
+@@ -986,18 +994,24 @@ static int lpg_init_triled(struct lpg *lpg)
+ 		return 0;
+ 
+ 	lpg->triled_base = lpg->data->triled_base;
+-
+-	ret = of_property_read_u32(np, "qcom,power-source", &lpg->triled_src);
+-	if (ret || lpg->triled_src == 2 || lpg->triled_src > 3) {
+-		dev_err(lpg->dev, "invalid power source\n");
+-		return -EINVAL;
++	lpg->triled_no_atc_ctl = lpg->data->triled_no_atc_ctl;
++	lpg->triled_no_src_sel = lpg->data->triled_no_src_sel;
++
++	if (!lpg->triled_no_src_sel) {
++		ret = of_property_read_u32(np, "qcom,power-source", &lpg->triled_src);
++		if (ret || lpg->triled_src == 2 || lpg->triled_src > 3) {
++			dev_err(lpg->dev, "invalid power source\n");
++			return -EINVAL;
++		}
+ 	}
+ 
+ 	/* Disable automatic trickle charge LED */
+-	regmap_write(lpg->map, lpg->triled_base + TRI_LED_ATC_CTL, 0);
++	if (!lpg->triled_no_atc_ctl)
++		regmap_write(lpg->map, lpg->triled_base + TRI_LED_ATC_CTL, 0);
+ 
+ 	/* Configure power source */
+-	regmap_write(lpg->map, lpg->triled_base + TRI_LED_SRC_SEL, lpg->triled_src);
++	if (!lpg->triled_no_src_sel)
++		regmap_write(lpg->map, lpg->triled_base + TRI_LED_SRC_SEL, lpg->triled_src);
+ 
+ 	/* Default all outputs to off */
+ 	regmap_write(lpg->map, lpg->triled_base + TRI_LED_EN_CTL, 0);
+@@ -1166,12 +1180,52 @@ static const struct lpg_data pmi8998_lpg_data = {
+ 	},
+ };
+ 
++static const struct lpg_data pm8150b_lpg_data = {
++	.lut_base = 0xb000,
++	.lut_size = 49,
++
++	.triled_base = 0xd000,
++	.triled_no_atc_ctl = true,
++	.triled_no_src_sel = true,
++
++	.pwm_9bit_mask = BIT(4),
++
++	.num_channels = 2,
++	.channels = (struct lpg_channel_data[]) {
++		{ .base = 0xb100, .triled_mask = BIT(7) },
++		{ .base = 0xb200, .triled_mask = BIT(6) },
++	},
++};
++
++static const struct lpg_data pm8150l_lpg_data = {
++	.lut_base = 0xb000,
++	.lut_size = 49,
++
++	.triled_base = 0xd000,
++	.triled_no_atc_ctl = true,
++	.triled_no_src_sel = true,
++
++	.pwm_9bit_mask = BIT(4),
++
++	.num_channels = 5,
++	.channels = (struct lpg_channel_data[]) {
++		{ .base = 0xb100, .triled_mask = BIT(7) },
++		{ .base = 0xb200, .triled_mask = BIT(6) },
++		{ .base = 0xb300, .triled_mask = BIT(5) },
++		{ .base = 0xbc00 },
++		{ .base = 0xbd00 },
++
++	},
++};
++
+ static const struct of_device_id lpg_of_table[] = {
+ 	{ .compatible = "qcom,pm8916-pwm", .data = &pm8916_pwm_data },
+ 	{ .compatible = "qcom,pm8941-lpg", .data = &pm8941_lpg_data },
+ 	{ .compatible = "qcom,pm8994-lpg", .data = &pm8994_lpg_data },
+ 	{ .compatible = "qcom,pmi8994-lpg", .data = &pmi8994_lpg_data },
+ 	{ .compatible = "qcom,pmi8998-lpg", .data = &pmi8998_lpg_data },
++	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
++	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, lpg_of_table);
 -- 
 2.28.0
 
