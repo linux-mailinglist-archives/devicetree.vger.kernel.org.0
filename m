@@ -2,88 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0942954D6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 00:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E46482954E5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 00:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506729AbgJUWaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 18:30:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59430 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2506724AbgJUWaY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 18:30:24 -0400
-Received: from pali.im (pali.im [31.31.79.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4F2AD241A6;
-        Wed, 21 Oct 2020 22:30:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603319423;
-        bh=cBtXpIIfhVm6w9APhIRH4zZW2n9okENfsHWwVXqkh9E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uudD92JS8Rp5LZ+HGLEOwObocJh9sdHq6wjae/U14waD7vjJIC49BnBAMnaYgJ6C2
-         zvYE/ITJsmbOHcWerZyV8CQ9PkiQoedVGgkG3D3pSZ0Od90psxiTWL28Wa3FfX6pi6
-         AzhINpqA4vgAwHRChu3LrC31Tvq3yY5yeoah+WcY=
-Received: by pali.im (Postfix)
-        id 7537BA83; Thu, 22 Oct 2020 00:30:20 +0200 (CEST)
-Date:   Thu, 22 Oct 2020 00:30:20 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v2 01/24] mmc: sdio: add SDIO IDs for Silabs WF200 chip
-Message-ID: <20201021223020.btkgdo7cgzavxbpk@pali>
-References: <20201020125817.1632995-1-Jerome.Pouiller@silabs.com>
- <20201020125817.1632995-2-Jerome.Pouiller@silabs.com>
+        id S2438632AbgJUWvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 18:51:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405591AbgJUWvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 18:51:08 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931B1C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 15:51:07 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id b1so5114735lfp.11
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 15:51:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1J8b8r8e8arlKZ5qT0wUMf4rHqiHkmkucz0g8FFgzmU=;
+        b=DEisn8268yfibuO+1k6l+TtWzikWoWDb9harpWX+6+/rKtWWlZrOIYHHkUBf+0vFFV
+         G7jQNlDs7bS/eAEJuycB214Fh11bOHcDlt+HR+YS8uaOWLDE4hyXkV3+pvkVxqXuoy5M
+         q0wgdLmYGKg4VWIqE5ZfLY+HqUz5Rh8tjbFd8mWRU8Ty5XfvScBjsXjx9r3KF4wcFKJQ
+         ePJEpi9TNuz52qQWlp8qufLZD256uWHjaLr+Y1hwWdrdzKK/rXDHkKBTuswCO6aA4ca8
+         NXLoBscqyUxt20Ea9jbQHhDaOCG8kIkMQPzhlskBEDq6QGTZsVfQOJBzRsbFzOAGx03B
+         JwoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1J8b8r8e8arlKZ5qT0wUMf4rHqiHkmkucz0g8FFgzmU=;
+        b=uJZHQMIDSaElPCs0Q3igFHb/+be5wdPbFRaWYz8nyFWfDBCj6kVA1HC1sL25owTUlA
+         r0YRJxzV1mLnoaEQq/hN0XbHCLslV5N5oZdRt5GnocDds9smA0xHAQh1XJcRZeZcjC7j
+         C8FUh5TzrMJNe0OYfgd/neHXbjioSuyxkEMUs8Gmhm5q/K5Vurm6I/emlCl3428sSE9w
+         nlGsxZTOhq6TcbU4UNsoorc6pWFy+Ba0aZzHVTKEZZdHRJg13tYtcMWbgow7i63Tu7dW
+         04xkSBJmpDXoJcAbmHKRdMNUBME982v7SSVl1KliRS2PNFBAYRLctTkHYjfKLWwy38rF
+         AE5A==
+X-Gm-Message-State: AOAM533NsOE8DTZulFJvkvPknLABx2ThX6LjNEeNhHZOd+SMvAgBtqhH
+        8E2pCnBHd0FMj1WYziE3t2U9NQ==
+X-Google-Smtp-Source: ABdhPJw90v/6tELg9yh+3sysdMBaND2duQOnwUInK7lGNGIrYhv3mpEAsSzlxiSHC1BERctLsNqZrw==
+X-Received: by 2002:a19:820c:: with SMTP id e12mr1858585lfd.215.1603320666025;
+        Wed, 21 Oct 2020 15:51:06 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.195])
+        by smtp.gmail.com with ESMTPSA id h11sm652062ljc.21.2020.10.21.15.51.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Oct 2020 15:51:05 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/5] Qualcomm LPG support for PM8150b/l
+Date:   Thu, 22 Oct 2020 01:50:55 +0300
+Message-Id: <20201021225100.162795-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201020125817.1632995-2-Jerome.Pouiller@silabs.com>
-User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 20 October 2020 14:57:54 Jerome Pouiller wrote:
-> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> 
-> Add Silabs SDIO ID to sdio_ids.h.
-> 
-> Note that the values used by Silabs are uncommon. A driver cannot fully
-> rely on the SDIO PnP. It should also check if the device is declared in
-> the DT.
-> 
-> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+This patchset brings support for LPG blocks on Qualcomm's PM8150[BL]
+PMIC chips, see [1]. PM8150L support was tested on RB5 platform.
 
-Looks good!
+This patchset can be folded into the aforementioned series, if Bjorn
+would like to, or it can go as a separate instance.
 
-Acked-by: Pali Rohár <pali@kernel.org>
+[1] https://lore.kernel.org/linux-arm-msm/20201021201224.3430546-1-bjorn.andersson@linaro.org/
 
-> ---
->  include/linux/mmc/sdio_ids.h | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/include/linux/mmc/sdio_ids.h b/include/linux/mmc/sdio_ids.h
-> index 12036619346c..20a48162f7fc 100644
-> --- a/include/linux/mmc/sdio_ids.h
-> +++ b/include/linux/mmc/sdio_ids.h
-> @@ -25,6 +25,11 @@
->   * Vendors and devices.  Sort key: vendor first, device next.
->   */
->  
-> +// Silabs does not use a reliable vendor ID. To avoid conflicts, the driver
-> +// won't probe the device if it is not also declared in the DT.
-> +#define SDIO_VENDOR_ID_SILABS			0x0000
-> +#define SDIO_DEVICE_ID_SILABS_WF200		0x1000
-> +
->  #define SDIO_VENDOR_ID_STE			0x0020
->  #define SDIO_DEVICE_ID_STE_CW1200		0x2280
->  
-> -- 
-> 2.28.0
-> 
+
