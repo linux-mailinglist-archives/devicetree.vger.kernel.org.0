@@ -2,112 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D941294AF3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 11:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F284E294AFB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 12:00:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441560AbgJUJ7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 05:59:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51768 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2441541AbgJUJ7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 05:59:37 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C69EC0613D2
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 02:59:37 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id 144so1185390pfb.4
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 02:59:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6g5Wjf/Nb7mrOf2N+gasC/3n4iYiNKVe8hMPUVCsdXk=;
-        b=pl4L5uLrIG2AC2pOMAF9iYUtxRJeC0QvSwINA5kD4cRVPjkl8rzyz4Bw27kVKJWNdW
-         GUQ9YWiMl1kRjgcqsmt9EJJv09BuzyDGKjfTbHrt1v6iq2yx4HvnLf5+mF4cJXq/5NBI
-         8hGr/ZJT1FuuQaemP2XsVNkWUSidqwFasE6hHexJH+oKOL6TBdl71NNW/yRK3SJOIrMg
-         pj4kgs0BrV45Xep3q2jxNgmGSF9/2mpjl34aEJYM8hUavdbOGuQphR67Nx+cxY3p8Ufn
-         HTLtVkUQDiWq+PJSs8zDAN04r8lKId6xRlFdefu6LNA1knxqjmibq1Jzz47mScDYjuZy
-         lIgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6g5Wjf/Nb7mrOf2N+gasC/3n4iYiNKVe8hMPUVCsdXk=;
-        b=Rp0mSMN0YnKoleAl3BaeI9XJh6/2FQqDPw1OtXJyCWz/g0LUDIhTOFa2J2XLuBMv6Z
-         vptldOabLoLoUMOOVM0yZw284DM/JI3tjcUS0L5T4YK48JJSrBrkQ/RUn3PCQdLfFqHO
-         1p2CSrstjJPzFCMKyB+LlZcZBttsIlfnPJMF4n3d7JfJ7qun+DMmavNlgCAebxP9Ok30
-         j2kBhoMpJW2xZ03ksO4rThf+iwCB4WXi1LQp19RaakIm8ietTKG9N4r9JzriTgrKPirC
-         WJN5sIKc3cXWS06hspz4PwGduYdBKhFcFZvNjN5Cr/R/va0ElXFjXt7GIb2kNvTdu0JA
-         C0Mw==
-X-Gm-Message-State: AOAM533TtwylkRXXWCDmXinkDnWnw8eEc+FlNCRDNTXadCnRt3OvGp+n
-        QxhBY904QdmFjBcFv5Qndv29
-X-Google-Smtp-Source: ABdhPJxP2Kn+MEpvl705bs5Z93XJfav12KiJJnx4b8wd07fJsxZAqpSHT86pHcQuv/MG0pqtM3Oopg==
-X-Received: by 2002:a63:1357:: with SMTP id 23mr2628992pgt.13.1603274376376;
-        Wed, 21 Oct 2020 02:59:36 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:70e:2a27:314a:6d22:ec47:a603])
-        by smtp.gmail.com with ESMTPSA id 198sm1673121pfy.41.2020.10.21.02.59.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 21 Oct 2020 02:59:35 -0700 (PDT)
-Date:   Wed, 21 Oct 2020 15:29:16 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     rjw@rjwysocki.net, viresh.kumar@linaro.org, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: cpus: Document
- 'qcom,freq-domain' property
-Message-ID: <20201021095916.GA3334@Mani-XPS-13-9360>
-References: <20201020153944.18047-1-manivannan.sadhasivam@linaro.org>
- <1603247803.20224.5.camel@mtkswgap22>
+        id S2405676AbgJUKA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 06:00:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35768 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387394AbgJUKA0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 06:00:26 -0400
+Received: from coco.lan (ip5f5ad5a8.dynamic.kabel-deutschland.de [95.90.213.168])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4FAA821741;
+        Wed, 21 Oct 2020 10:00:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603274425;
+        bh=vMGHj7i4+owKzNMXhur9mOOxw32IG/TyxPr15+zBKSE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=azHwE7cTBtqVKOXdRr2ULr/HOJ9dCNEgcwvfx8Jl0QEwIFLO1mJ2Ati631voYBNDj
+         LL6+gLcGFjJHsVA9d8jnOD5nDZ9zLGCTzAgGBKuLcERa+KqMKdxsn5MEwYHabnE1Xo
+         0hUh3rw46NMa7Ly0FwbqrBFqne8ZSb8sbeSpPMiE=
+Date:   Wed, 21 Oct 2020 12:00:17 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        =?UTF-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] MAINTAINERS: fix broken doc refs due to yaml
+ conversion
+Message-ID: <20201021120017.3da0fe46@coco.lan>
+In-Reply-To: <20201013105239.348efc0c@coco.lan>
+References: <cover.1602245659.git.mchehab+huawei@kernel.org>
+        <ba7319ab47bc7e80a57667f700ab677ceaa3ca8c.1602245659.git.mchehab+huawei@kernel.org>
+        <20201012192114.GA1938842@bogus>
+        <20201013105239.348efc0c@coco.lan>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1603247803.20224.5.camel@mtkswgap22>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Em Tue, 13 Oct 2020 10:52:39 +0200
+Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
 
-On Wed, Oct 21, 2020 at 10:36:43AM +0800, Hector Yuan wrote:
-> Hi, Manivannan
+> Em Mon, 12 Oct 2020 14:21:14 -0500
+> Rob Herring <robh@kernel.org> escreveu:
 > 
-> On Tue, 2020-10-20 at 21:09 +0530, Manivannan Sadhasivam wrote:
-> > Add devicetree documentation for 'qcom,freq-domain' property specific
-> > to Qualcomm CPUs. This property is used to reference the CPUFREQ node
-> > along with Domain ID (0/1).
+> > On Fri, Oct 09, 2020 at 02:15:30PM +0200, Mauro Carvalho Chehab wrote:  
+> > > Several *.txt files got converted to yaml. Update their
+> > > references at MAINTAINERS file accordingly.
+> > > 
+> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/clock/hi6220-clock.txt | 2 +-
+> > >  MAINTAINERS                                              | 9 ++++-----
+> > >  .../devicetree/bindings/net/wireless/silabs,wfx.yaml     | 2 +-
+> > >  3 files changed, 6 insertions(+), 7 deletions(-)    
 > > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > index 1222bf1831fa..f40564bf004f 100644
-> > --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > @@ -290,6 +290,12 @@ properties:
-> >  
-> >        * arm/msm/qcom,kpss-acc.txt
-> >  
-> > +  qcom,freq-domain:
-> Do you mind to change "qcom, freq-domain" to common naming? or drop the
-> prefix. So that we can use this CPU node and map it to each freq-domain.
-> Thanks a lot. 
+> > Doesn't apply for me.  
+> 
+> It is based on the top of -next, so perhaps it depends on some other
+> changes that aren't upstream yet and comes from other trees. 
+> 
+> I could try to split it, but I guess the easiest way is
+> to just push this one by the end of the merge window, together
+> with the remaining patches I have left, fixing the other doc
+> build issues.
+> 
+> Would that work for you?
 
-I can do that but did the domain value match for other platforms as well?
+It now applies cleanly on the top of upstream.
+
+If it would be ok for you, I'll send this one together with the other
+pending doc warning fix patch series.
+
+Regards,
+Mauro
+
+
+[PATCH] MAINTAINERS: fix broken doc refs due to yaml conversion
+
+Several *.txt files got converted to yaml. Update their
+references at MAINTAINERS file accordingly.
+
+Acked-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+
+diff --git a/Documentation/devicetree/bindings/clock/hi6220-clock.txt b/Documentation/devicetree/bindings/clock/hi6220-clock.txt
+index ef3deb7b86ea..17ac4a3dd26a 100644
+--- a/Documentation/devicetree/bindings/clock/hi6220-clock.txt
++++ b/Documentation/devicetree/bindings/clock/hi6220-clock.txt
+@@ -4,7 +4,7 @@ Clock control registers reside in different Hi6220 system controllers,
+ please refer the following document to know more about the binding rules
+ for these system controllers:
+ 
+-Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
++Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+ 
+ Required Properties:
+ 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 17ca7c8490a9..2cfcfa010b06 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -978,7 +978,7 @@ M:	Michael Hennerich <Michael.Hennerich@analog.com>
+ L:	linux-iio@vger.kernel.org
+ S:	Supported
+ W:	http://ez.analog.com/community/linux-device-drivers
+-F:	Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.txt
++F:	Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+ F:	drivers/iio/adc/ad7768-1.c
+ 
+ ANALOG DEVICES INC AD7780 DRIVER
+@@ -3847,7 +3847,7 @@ M:	Roger Quadros <rogerq@ti.com>
+ L:	linux-usb@vger.kernel.org
+ S:	Maintained
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/peter.chen/usb.git
+-F:	Documentation/devicetree/bindings/usb/cdns-usb3.txt
++F:	Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+ F:	drivers/usb/cdns3/
+ 
+ CADET FM/AM RADIO RECEIVER DRIVER
+@@ -7898,7 +7898,7 @@ HISILICON LPC BUS DRIVER
+ M:	john.garry@huawei.com
+ S:	Maintained
+ W:	http://www.hisilicon.com
+-F:	Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
++F:	Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
+ F:	drivers/bus/hisi_lpc.c
+ 
+ HISILICON NETWORK SUBSYSTEM 3 DRIVER (HNS3)
+@@ -14872,7 +14872,6 @@ RENESAS ETHERNET DRIVERS
+ R:	Sergei Shtylyov <sergei.shtylyov@gmail.com>
+ L:	netdev@vger.kernel.org
+ L:	linux-renesas-soc@vger.kernel.org
+-F:	Documentation/devicetree/bindings/net/renesas,*.txt
+ F:	Documentation/devicetree/bindings/net/renesas,*.yaml
+ F:	drivers/net/ethernet/renesas/
+ F:	include/linux/sh_eth.h
+@@ -18060,7 +18059,7 @@ M:	Yu Chen <chenyu56@huawei.com>
+ M:	Binghui Wang <wangbinghui@hisilicon.com>
+ L:	linux-usb@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/phy/phy-hi3660-usb3.txt
++F:	Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
+ F:	drivers/phy/hisilicon/phy-hi3660-usb3.c
+ 
+ USB ISP116X DRIVER
+diff --git a/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+index 43b5630c0407..510edd12ed19 100644
+--- a/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
++++ b/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+@@ -24,7 +24,7 @@ description:
+     In addition, it is recommended to declare a mmc-pwrseq on SDIO host above
+     WFx. Without it, you may encounter issues with warm boot. The mmc-pwrseq
+     should be compatible with mmc-pwrseq-simple. Please consult
+-    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt for more
++    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml for more
+     information.
+ 
+   For SPI':'
+
+
+
 
 Thanks,
-Mani
-
-> 
-> > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> > +    description: |
-> > +      CPUs supporting freq-domain must set their "qcom,freq-domain" property
-> > +      with phandle to a cpufreq_hw node followed by the Domain ID(0/1).
-> > +
-> >    rockchip,pmu:
-> >      $ref: '/schemas/types.yaml#/definitions/phandle'
-> >      description: |
-> 
+Mauro
