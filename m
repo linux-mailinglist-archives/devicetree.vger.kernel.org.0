@@ -2,177 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F284E294AFB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 12:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BEDF294B4F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 12:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405676AbgJUKA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 06:00:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35768 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387394AbgJUKA0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 06:00:26 -0400
-Received: from coco.lan (ip5f5ad5a8.dynamic.kabel-deutschland.de [95.90.213.168])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4FAA821741;
-        Wed, 21 Oct 2020 10:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603274425;
-        bh=vMGHj7i4+owKzNMXhur9mOOxw32IG/TyxPr15+zBKSE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=azHwE7cTBtqVKOXdRr2ULr/HOJ9dCNEgcwvfx8Jl0QEwIFLO1mJ2Ati631voYBNDj
-         LL6+gLcGFjJHsVA9d8jnOD5nDZ9zLGCTzAgGBKuLcERa+KqMKdxsn5MEwYHabnE1Xo
-         0hUh3rw46NMa7Ly0FwbqrBFqne8ZSb8sbeSpPMiE=
-Date:   Wed, 21 Oct 2020 12:00:17 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        =?UTF-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] MAINTAINERS: fix broken doc refs due to yaml
- conversion
-Message-ID: <20201021120017.3da0fe46@coco.lan>
-In-Reply-To: <20201013105239.348efc0c@coco.lan>
-References: <cover.1602245659.git.mchehab+huawei@kernel.org>
-        <ba7319ab47bc7e80a57667f700ab677ceaa3ca8c.1602245659.git.mchehab+huawei@kernel.org>
-        <20201012192114.GA1938842@bogus>
-        <20201013105239.348efc0c@coco.lan>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S2441781AbgJUKe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 06:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2441780AbgJUKe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 06:34:59 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4BCC0613CE
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 03:34:59 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <afa@pengutronix.de>)
+        id 1kVBSG-0006i7-8U; Wed, 21 Oct 2020 12:34:52 +0200
+Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <afa@pengutronix.de>)
+        id 1kVBSE-00024Q-MQ; Wed, 21 Oct 2020 12:34:50 +0200
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Christophe Roullier <christophe.roullier@st.com>
+Cc:     kernel@pengutronix.de, Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: arm: stm32: add simple-mfd compatible for tamp node
+Date:   Wed, 21 Oct 2020 12:28:55 +0200
+Message-Id: <20201021102855.18026-1-a.fatoum@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: afa@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Tue, 13 Oct 2020 10:52:39 +0200
-Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
+The stm32mp1 TAMP (Tamper and backup registers) does tamper detection
+and features 32 backup registers that, being in the RTC domain, may
+survive even with Vdd switched off.
 
-> Em Mon, 12 Oct 2020 14:21:14 -0500
-> Rob Herring <robh@kernel.org> escreveu:
-> 
-> > On Fri, Oct 09, 2020 at 02:15:30PM +0200, Mauro Carvalho Chehab wrote:  
-> > > Several *.txt files got converted to yaml. Update their
-> > > references at MAINTAINERS file accordingly.
-> > > 
-> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/clock/hi6220-clock.txt | 2 +-
-> > >  MAINTAINERS                                              | 9 ++++-----
-> > >  .../devicetree/bindings/net/wireless/silabs,wfx.yaml     | 2 +-
-> > >  3 files changed, 6 insertions(+), 7 deletions(-)    
-> > 
-> > Doesn't apply for me.  
-> 
-> It is based on the top of -next, so perhaps it depends on some other
-> changes that aren't upstream yet and comes from other trees. 
-> 
-> I could try to split it, but I guess the easiest way is
-> to just push this one by the end of the merge window, together
-> with the remaining patches I have left, fixing the other doc
-> build issues.
-> 
-> Would that work for you?
+This makes it suitable for use to communicate a reboot mode from OS
+to bootloader via the syscon-reboot-mode binding. Add a "simple-mfd"
+to support probing such a child node. The actual reboot mode
+node could then be defined in a board.dts or fixed up by the bootloader.
 
-It now applies cleanly on the top of upstream.
+Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+---
+v1 available here:
+https://lore.kernel.org/linux-arm-kernel/20200916142216.25142-1-a.fatoum@pengutronix.de/
 
-If it would be ok for you, I'll send this one together with the other
-pending doc warning fix patch series.
+v1 -> v2:
+ - new patch, rebased on top of
+   https://lore.kernel.org/r/20201014125441.2457-1-arnaud.pouliquen@st.com
+---
+ .../devicetree/bindings/arm/stm32/st,stm32-syscon.yaml       | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Regards,
-Mauro
-
-
-[PATCH] MAINTAINERS: fix broken doc refs due to yaml conversion
-
-Several *.txt files got converted to yaml. Update their
-references at MAINTAINERS file accordingly.
-
-Acked-by: Stephen Boyd <sboyd@kernel.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-
-diff --git a/Documentation/devicetree/bindings/clock/hi6220-clock.txt b/Documentation/devicetree/bindings/clock/hi6220-clock.txt
-index ef3deb7b86ea..17ac4a3dd26a 100644
---- a/Documentation/devicetree/bindings/clock/hi6220-clock.txt
-+++ b/Documentation/devicetree/bindings/clock/hi6220-clock.txt
-@@ -4,7 +4,7 @@ Clock control registers reside in different Hi6220 system controllers,
- please refer the following document to know more about the binding rules
- for these system controllers:
+diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
+index 6634b3e0853e..4684017a42e4 100644
+--- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
++++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
+@@ -19,8 +19,11 @@ properties:
+               - st,stm32mp151-pwr-mcu
+               - st,stm32-syscfg
+               - st,stm32-power-config
+-              - st,stm32-tamp
+           - const: syscon
++      - items:
++          - const: st,stm32-tamp
++          - const: syscon
++          - const: simple-mfd
  
--Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
-+Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
- 
- Required Properties:
- 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 17ca7c8490a9..2cfcfa010b06 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -978,7 +978,7 @@ M:	Michael Hennerich <Michael.Hennerich@analog.com>
- L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	http://ez.analog.com/community/linux-device-drivers
--F:	Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.txt
-+F:	Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
- F:	drivers/iio/adc/ad7768-1.c
- 
- ANALOG DEVICES INC AD7780 DRIVER
-@@ -3847,7 +3847,7 @@ M:	Roger Quadros <rogerq@ti.com>
- L:	linux-usb@vger.kernel.org
- S:	Maintained
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/peter.chen/usb.git
--F:	Documentation/devicetree/bindings/usb/cdns-usb3.txt
-+F:	Documentation/devicetree/bindings/usb/cdns,usb3.yaml
- F:	drivers/usb/cdns3/
- 
- CADET FM/AM RADIO RECEIVER DRIVER
-@@ -7898,7 +7898,7 @@ HISILICON LPC BUS DRIVER
- M:	john.garry@huawei.com
- S:	Maintained
- W:	http://www.hisilicon.com
--F:	Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
-+F:	Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
- F:	drivers/bus/hisi_lpc.c
- 
- HISILICON NETWORK SUBSYSTEM 3 DRIVER (HNS3)
-@@ -14872,7 +14872,6 @@ RENESAS ETHERNET DRIVERS
- R:	Sergei Shtylyov <sergei.shtylyov@gmail.com>
- L:	netdev@vger.kernel.org
- L:	linux-renesas-soc@vger.kernel.org
--F:	Documentation/devicetree/bindings/net/renesas,*.txt
- F:	Documentation/devicetree/bindings/net/renesas,*.yaml
- F:	drivers/net/ethernet/renesas/
- F:	include/linux/sh_eth.h
-@@ -18060,7 +18059,7 @@ M:	Yu Chen <chenyu56@huawei.com>
- M:	Binghui Wang <wangbinghui@hisilicon.com>
- L:	linux-usb@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/phy/phy-hi3660-usb3.txt
-+F:	Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
- F:	drivers/phy/hisilicon/phy-hi3660-usb3.c
- 
- USB ISP116X DRIVER
-diff --git a/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-index 43b5630c0407..510edd12ed19 100644
---- a/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-+++ b/drivers/staging/wfx/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-@@ -24,7 +24,7 @@ description:
-     In addition, it is recommended to declare a mmc-pwrseq on SDIO host above
-     WFx. Without it, you may encounter issues with warm boot. The mmc-pwrseq
-     should be compatible with mmc-pwrseq-simple. Please consult
--    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt for more
-+    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml for more
-     information.
- 
-   For SPI':'
+   reg:
+     maxItems: 1
+-- 
+2.28.0
 
-
-
-
-Thanks,
-Mauro
