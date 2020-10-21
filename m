@@ -2,401 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 128C1294CFF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 14:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D6FA294D28
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 15:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440941AbgJUMse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 08:48:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2440940AbgJUMsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 08:48:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945A2C0613CE
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 05:48:33 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kVDXW-0005dn-Do; Wed, 21 Oct 2020 14:48:26 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kVDXV-0003QL-KW; Wed, 21 Oct 2020 14:48:25 +0200
-Date:   Wed, 21 Oct 2020 14:48:25 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        id S2441205AbgJUNBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 09:01:05 -0400
+Received: from mga05.intel.com ([192.55.52.43]:40832 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2442787AbgJUNBD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 09:01:03 -0400
+IronPort-SDR: G0ITZuDh7/4qMUtPPxX1v6WnUA1FZoOKyQ63+iBOdJbNZRgJVJ9zw0FLfFHgE9iRcuhyyI0k49
+ aoumwEy6z7Xg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9780"; a="252057577"
+X-IronPort-AV: E=Sophos;i="5.77,401,1596524400"; 
+   d="scan'208";a="252057577"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2020 06:00:58 -0700
+IronPort-SDR: lM5wSd6+wT4tggVCLwdGbIPibdst4g5SbujPDO31XcaiYsSmH6OSi9IHSmujusMtC9jZyu4c8a
+ HvaYv53wmvcQ==
+X-IronPort-AV: E=Sophos;i="5.77,401,1596524400"; 
+   d="scan'208";a="522735609"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2020 06:00:55 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 4CB9020815; Wed, 21 Oct 2020 16:00:33 +0300 (EEST)
+Date:   Wed, 21 Oct 2020 16:00:33 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Hugues Fruchet <hugues.fruchet@st.com>
+Cc:     Alexandre Torgue <alexandre.torgue@st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH v2 3/3] ARM: dts: add Van der Laan LANMCU board
-Message-ID: <20201021124825.yjbcdyy7dyuhvexl@pengutronix.de>
-References: <20201015090924.6185-1-o.rempel@pengutronix.de>
- <20201015090924.6185-4-o.rempel@pengutronix.de>
- <20201020102355.GB118941@kozik-lap>
+        linux-media@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alain Volmat <alain.volmat@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe CORNU <philippe.cornu@st.com>
+Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: st,stm32-dcmi: Add
+ support of BT656
+Message-ID: <20201021130033.GI2703@paasikivi.fi.intel.com>
+References: <1603188889-23664-1-git-send-email-hugues.fruchet@st.com>
+ <1603188889-23664-3-git-send-email-hugues.fruchet@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201020102355.GB118941@kozik-lap>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:45:19 up 341 days,  4:03, 382 users,  load average: 0.14, 0.11,
- 0.07
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1603188889-23664-3-git-send-email-hugues.fruchet@st.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Hi Hugues,
 
-On Tue, Oct 20, 2020 at 12:23:55PM +0200, Krzysztof Kozlowski wrote:
-> On Thu, Oct 15, 2020 at 11:09:24AM +0200, Oleksij Rempel wrote:
-> > Van der Laan LANMCU is a module for the food storage rooms to control
-> > proper gas composition.
-> > 
-> > Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
-> > Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > ---
-> >  arch/arm/boot/dts/Makefile          |   1 +
-> >  arch/arm/boot/dts/imx6dl-lanmcu.dts | 469 ++++++++++++++++++++++++++++
-> >  2 files changed, 470 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/imx6dl-lanmcu.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index 2289a28c0ff6..dc2543a7b7e9 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -447,6 +447,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
-> >  	imx6dl-icore.dtb \
-> >  	imx6dl-icore-mipi.dtb \
-> >  	imx6dl-icore-rqs.dtb \
-> > +	imx6dl-lanmcu.dtb \
-> >  	imx6dl-mamoj.dtb \
-> >  	imx6dl-nit6xlite.dtb \
-> >  	imx6dl-nitrogen6x.dtb \
-> > diff --git a/arch/arm/boot/dts/imx6dl-lanmcu.dts b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-> > new file mode 100644
-> > index 000000000000..36c029dcc832
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-> > @@ -0,0 +1,469 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Copyright (c) 2019 Protonic Holland
-> > + * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +#include "imx6dl.dtsi"
-> > +
-> > +/ {
-> > +	model = "Van der Laan LANMCU";
-> > +	compatible = "vdl,lanmcu", "fsl,imx6dl";
-> > +
-> > +	chosen {
-> > +		stdout-path = &uart4;
-> > +	};
-> > +
-> > +	clock_ksz8081: clock-ksz8081 {
-> > +		compatible = "fixed-clock";
-> > +		#clock-cells = <0>;
-> > +		clock-frequency = <50000000>;
-> > +	};
-> > +
-> > +	backlight: backlight {
-> > +		compatible = "pwm-backlight";
-> > +		pwms = <&pwm1 0 5000000 0>;
-> > +		brightness-levels = <0 1000>;
-> > +		num-interpolated-steps = <20>;
-> > +		default-brightness-level = <19>;
-> > +	};
-> > +
-> > +	display {
-> > +		compatible = "fsl,imx-parallel-display";
-> > +		pinctrl-0 = <&pinctrl_ipu1_disp>;
-> > +		pinctrl-names = "default";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		port@0 {
-> > +			reg = <0>;
-> > +
-> > +			display_in: endpoint {
-> > +				remote-endpoint = <&ipu1_di0_disp0>;
-> > +			};
-> > +		};
-> > +
-> > +		port@1 {
-> > +			reg = <1>;
-> > +
-> > +			display_out: endpoint {
-> > +				remote-endpoint = <&panel_in>;
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	leds {
-> > +		compatible = "gpio-leds";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_leds>;
-> > +
-> > +		led-debug {
+On Tue, Oct 20, 2020 at 12:14:49PM +0200, Hugues Fruchet wrote:
+> Add support of BT656 parallel bus mode in DCMI.
+> This mode is enabled when hsync-active & vsync-active
+> fields are not specified.
 > 
-> led-0 (dt spec naming requirement, upcomming dtschema as well) and add a
-> label if you want it to be nicely labeled for user-space.
-
-ok, done
-
-> > +			function = LED_FUNCTION_STATUS;
-> > +			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "heartbeat";
-> > +		};
-> > +	};
-> > +
-> > +	panel {
-> > +		compatible = "edt,etm0700g0bdh6";
-> > +		backlight = <&backlight>;
-> > +
-> > +		port {
-> > +			panel_in: endpoint {
-> > +				remote-endpoint = <&display_out>;
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	reg_otg_vbus: regulator-otg-vbus {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "otg-vbus";
-> > +		regulator-min-microvolt = <5000000>;
-> > +		regulator-max-microvolt = <5000000>;
-> > +		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-> > +		enable-active-high;
-> > +	};
-> > +
-> > +	usdhc2_wifi_pwrseq: usdhc2-wifi-pwrseq {
-> > +		compatible = "mmc-pwrseq-simple";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_wifi_npd>;
-> > +		reset-gpios = <&gpio6 10 GPIO_ACTIVE_LOW>;
-> > +	};
-> > +
-> > +};
-> > +
-> > +&can1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_can1>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&can2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_can2>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&fec {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_enet>;
-> > +	phy-mode = "rmii";
-> > +	clocks = <&clks IMX6QDL_CLK_ENET>,
-> > +		 <&clks IMX6QDL_CLK_ENET>,
-> > +		 <&clock_ksz8081>;
-> > +	clock-names = "ipg", "ahb", "ptp";
-> > +	phy-handle = <&rgmii_phy>;
-> > +	status = "okay";
-> > +
-> > +	mdio {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		/* Microchip KSZ8081RNA PHY */
-> > +		rgmii_phy: ethernet-phy@0 {
-> > +			reg = <0>;
-> > +			interrupts-extended = <&gpio5 23 IRQ_TYPE_LEVEL_LOW>;
-> > +			reset-gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
-> > +			reset-assert-us = <10000>;
-> > +			reset-deassert-us = <300>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&gpio1 {
-> > +	gpio-line-names =
-> > +		"", "SD1_CD", "", "", "", "", "", "",
-> > +		"DEBUG_0", "BL_PWM", "", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "", "ENET_LED_GREEN",
-> > +		"", "", "", "", "", "", "", "";
-> > +};
-> > +
-> > +&gpio3 {
-> > +	gpio-line-names =
-> > +		"", "", "", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "", "",
-> > +		"", "", "", "", "TS_INT", "USB_OTG1_OC", "USB_OTG1_PWR", "",
-> > +		"", "", "", "", "UART2_CTS", "", "UART3_CTS", "";
-> > +};
-> > +
-> > +&gpio5 {
-> > +	gpio-line-names =
-> > +		"", "", "", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "ENET_RST", "ENET_INT",
-> > +		"", "", "I2C1_SDA", "I2C1_SCL", "", "", "", "";
-> > +};
-> > +
-> > +&gpio6 {
-> > +	gpio-line-names =
-> > +		"", "", "", "", "", "", "", "",
-> > +		"", "", "WLAN_REG_ON", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "", "";
-> > +};
-> > +
-> > +&gpio7 {
-> > +	gpio-line-names =
-> > +		"", "", "", "", "", "", "", "",
-> > +		"EMMC_RST", "", "", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "", "",
-> > +		"", "", "", "", "", "", "", "";
-> > +};
-> > +
-> > +&i2c1 {
-> > +	clock-frequency = <100000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_i2c1>;
-> > +	status = "okay";
-> > +
-> > +	/* additional i2c devices are added automatically by the boot loader */
-> > +};
-> > +
-> > +&i2c3 {
-> > +	clock-frequency = <100000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_i2c3>;
-> > +	status = "okay";
-> > +
-> > +	touchscreen@38 {
-> > +		compatible = "edt,edt-ft5406";
-> > +		reg = <0x38>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_ts_edt>;
-> > +		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
-> > +
-> > +		touchscreen-size-x = <1792>;
-> > +		touchscreen-size-y = <1024>;
-> > +
-> > +		touchscreen-fuzz-x = <0>;
-> > +		touchscreen-fuzz-y = <0>;
-> > +
-> > +		/* Touch screen calibration */
-> > +		threshold = <50>;
-> > +		gain = <5>;
-> > +		offset = <10>;
-> > +	};
-> > +
-> > +	rtc@51 {
-> > +		compatible = "nxp,pcf8563";
-> > +		reg = <0x51>;
-> > +	};
-> > +};
-> > +
-> > +&ipu1_di0_disp0 {
-> > +	remote-endpoint = <&display_in>;
-> > +};
-> > +
-> > +&pwm1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_pwm1>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_uart2>;
-> > +	linux,rs485-enabled-at-boot-time;
-> > +	uart-has-rtscts;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart3 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_uart3>;
-> > +	linux,rs485-enabled-at-boot-time;
-> > +	uart-has-rtscts;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart4 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_uart4>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usbotg {
-> > +	vbus-supply = <&reg_otg_vbus>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_usbotg>;
-> > +	phy_type = "utmi";
-> > +	dr_mode = "host";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usdhc1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_usdhc1>;
-> > +	cd-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-> > +	no-1-8-v;
-> > +	disable-wp;
-> > +	cap-sd-highspeed;
-> > +	no-mmc;
-> > +	no-sdio;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usdhc2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_usdhc2>;
-> > +	no-1-8-v;
-> > +	non-removable;
-> > +	mmc-pwrseq = <&usdhc2_wifi_pwrseq>;
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
-> > +	status = "okay";
-> > +
-> > +	brcmf: bcrmf@1 {
+> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
+> ---
+>  .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 30 ++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
-> node name "wifi"? Or "wifi-bt"? DT spec requires nodes to have more or
-> less generic names.
+> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> index 3fe778c..1ee521a 100644
+> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> @@ -44,6 +44,36 @@ properties:
+>        bindings defined in
+>        Documentation/devicetree/bindings/media/video-interfaces.txt.
+>  
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +
+> +        properties:
+> +          bus-width: true
+> +
+> +          hsync-active:
+> +            description:
+> +              If both HSYNC and VSYNC polarities are not specified, BT656
+> +              embedded synchronization is selected.
+> +            default: 0
+> +
+> +          vsync-active:
+> +            description:
+> +              If both HSYNC and VSYNC polarities are not specified, BT656
+> +              embedded synchronization is selected.
+> +            default: 0
 
-I'll take wifi@ it is mostly used pattern.
+Should I understand this as if the polarities were not specified, BT.656
+will be used? The bindings previously documented BT.601 (parallel) only, so
+it was somewhat ambigious to begin with. Is there a risk of interpreting
+old BT.601 bindings as BT.656? With bus-type property, I believe you could
+avoid at least that risk.
 
-> Best regards,
-> Krzysztof
+Also not specifying at least one of the default values leads to BT.656
+without bus-type. That could be addressed by removing the defaults.
 
-Thx for review,
+> +
+> +          pclk-sample: true
+> +
+> +          remote-endpoint: true
+> +
+> +        required:
+> +          - remote-endpoint
+> +
+> +        additionalProperties: false
+> +
+> +    additionalProperties: false
+> +
+>  required:
+>    - compatible
+>    - reg
 
-should I add your Reviewed-by?
-
-Regards,
-Oleksij
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Regards,
+
+Sakari Ailus
