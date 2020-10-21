@@ -2,87 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9000A294F94
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D11D4294FA4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2444002AbgJUPJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 11:09:50 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:17117 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2444045AbgJUPJt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 11:09:49 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1603292988; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=yFmWiNHekQ4RHIngpO670iO7r5SStQl0dA1bVHiwHmY=;
- b=uNatgqBJS88umgsbJ96rrWNgvYmF1C8IjZeuDTSJjykXy616YkBPbx9t/lEINiyBgG1G8ryU
- AtpH625rJEzRTLqIzc8AWp1KhqN3sftKw6tPEVrDjcRc+smmeWx69EgVgis/v/dn57t+wMSy
- VjScmLn5DGX9ruV1wBcGx8LRex8=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5f904f28a03b63d673b685c7 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Oct 2020 15:09:28
- GMT
-Sender: kgunda=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1888DC433FF; Wed, 21 Oct 2020 15:09:28 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kgunda)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6775BC433CB;
-        Wed, 21 Oct 2020 15:09:27 +0000 (UTC)
+        id S2444105AbgJUPNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 11:13:53 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35062 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2443906AbgJUPNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 11:13:53 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09LFDVs8113882;
+        Wed, 21 Oct 2020 10:13:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603293211;
+        bh=3wSeAduo54FZJAeg21M6ZmUHKkp0796GqW6JPL5m2s8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=aIktxFzxQ69nNQVzokofgflbN7y2X1rCHTocosMVZmGXQgsfRkd4cOcJ24/KOHJpj
+         zvlJXJQHsNoXjh6lQC9XYiNmr/jVupeotNVmULAphUfG5dwV2uE6uLm0Bo4HVZ7Cuw
+         CjGOES18Me0eyqjy3cqPTxSkMr9TrFLokBT1RiZM=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09LFDVbV089314
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 21 Oct 2020 10:13:31 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 21
+ Oct 2020 10:13:31 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 21 Oct 2020 10:13:31 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09LFDU9o122395;
+        Wed, 21 Oct 2020 10:13:30 -0500
+Date:   Wed, 21 Oct 2020 20:43:29 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+CC:     <vigneshr@ti.com>, <tudor.ambarus@microchip.com>,
+        <broonie@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <miquel.raynal@bootlin.com>,
+        <simon.k.r.goldschmidt@gmail.com>, <dinguyen@kernel.org>,
+        <richard@nod.at>, <cheol.yong.kim@intel.com>,
+        <qi-ming.wu@intel.com>
+Subject: Re: [PATCH v2 3/6] spi: cadence-quadspi: Add multi-chipselect
+ support for Intel LGM SoC
+Message-ID: <20201021151329.t24cli4rnk6esttm@ti.com>
+References: <20201021025507.51001-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201021025507.51001-4-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 21 Oct 2020 20:39:27 +0530
-From:   kgunda@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rnayak@codeaurora.org, linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [PATCH V3 1/2] mfd: qcom-spmi-pmic: Convert bindings to .yaml
- format
-In-Reply-To: <160167515893.310579.11853207494346374403@swboyd.mtv.corp.google.com>
-References: <1580997328-16365-1-git-send-email-kgunda@codeaurora.org>
- <5e3c63d0.1c69fb81.c2bba.0957@mx.google.com>
- <b638e342aae1f6866cad33ff408f2894@codeaurora.org>
- <160167515893.310579.11853207494346374403@swboyd.mtv.corp.google.com>
-Message-ID: <e0ad4c3df21eb2dd2095adfa3f8ba37a@codeaurora.org>
-X-Sender: kgunda@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201021025507.51001-4-vadivel.muruganx.ramuthevar@linux.intel.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-10-03 03:15, Stephen Boyd wrote:
-> Quoting kgunda@codeaurora.org (2020-02-06 21:57:49)
->> On 2020-02-07 00:36, Stephen Boyd wrote:
->> > Quoting Kiran Gunda (2020-02-06 05:55:26)
->> >> Convert the bindings from .txt to .yaml format.
->> >>
->> >> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
->> >> ---
->> >
->> > Did something change? Is there a cover letter?
->> >
->> Other than converting the bindings to .yaml not much changed from the
->> previous post.
->> I will log the per patch changes in next post.
+Hi,
+
+On 21/10/20 10:55AM, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > 
-> What happened to this series? It never got resent.
-Couldn't get the chance to work on it. Will work on it and post the next 
-patch in couple weeks.
+> Add multiple chipselect support for Intel LGM SoCs,
+> currently QSPI-NOR and QSPI-NAND supported.
+> 
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> ---
+>  drivers/spi/spi-cadence-quadspi.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
+> index 3d017b484114..3bf6d3697631 100644
+> --- a/drivers/spi/spi-cadence-quadspi.c
+> +++ b/drivers/spi/spi-cadence-quadspi.c
+> @@ -38,6 +38,7 @@
+>  
+>  /* Capabilities */
+>  #define CQSPI_SUPPORTS_OCTAL		BIT(0)
+> +#define CQSPI_SUPPORTS_MULTI_CHIPSELECT BIT(1)
+>  
+>  struct cqspi_st;
+>  
+> @@ -75,6 +76,7 @@ struct cqspi_st {
+>  	bool			is_decoded_cs;
+>  	u32			fifo_depth;
+>  	u32			fifo_width;
+> +	u32			num_chipselect;
+>  	bool			rclk_en;
+>  	u32			trigger_address;
+>  	u32			wr_delay;
+> @@ -1070,6 +1072,14 @@ static int cqspi_of_get_pdata(struct cqspi_st *cqspi)
+>  		return -ENXIO;
+>  	}
+>  
+> +	if (!cqspi->use_direct_mode) {
+
+Shouldn't this be guarded by CQSPI_SUPPORTS_MULTI_CHIPSELECT instead of 
+cqspi->use_direct_mode?
+
+Also, cqspi->use_direct_mode would always be false here because 
+cqspi_of_get_pdata() is called before we set it...
+
+> +		if (of_property_read_u32(np, "num-chipselect",
+> +					 &cqspi->num_chipselect)) {
+> +			dev_err(dev, "couldn't determine number of cs\n");
+> +			return -ENXIO;
+
+... so even if someone doesn't want to use multiple chip selects they 
+would have to specify this property or the probe will fail, which is the 
+case on J721E EVM for example.
+
+> +		}
+> +	}
+> +
+>  	cqspi->rclk_en = of_property_read_bool(np, "cdns,rclk-en");
+>  
+>  	return 0;
+> @@ -1307,6 +1317,9 @@ static int cqspi_probe(struct platform_device *pdev)
+>  	cqspi->current_cs = -1;
+>  	cqspi->sclk = 0;
+>  
+> +	if (ddata->hwcaps_mask & CQSPI_SUPPORTS_MULTI_CHIPSELECT)
+> +		master->num_chipselect = cqspi->num_chipselect;
+> +
+>  	ret = cqspi_setup_flash(cqspi);
+>  	if (ret) {
+>  		dev_err(dev, "failed to setup flash parameters %d\n", ret);
+> @@ -1396,6 +1409,7 @@ static const struct cqspi_driver_platdata am654_ospi = {
+>  };
+>  
+>  static const struct cqspi_driver_platdata intel_lgm_qspi = {
+> +	.hwcaps_mask = CQSPI_SUPPORTS_MULTI_CHIPSELECT,
+>  	.quirks = CQSPI_DISABLE_DAC_MODE,
+>  };
+>  
+> -- 
+> 2.11.0
+> 
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments India
