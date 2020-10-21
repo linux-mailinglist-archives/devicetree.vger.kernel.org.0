@@ -2,39 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BEDF294B4F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 12:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C21F294B52
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 12:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441781AbgJUKe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 06:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
+        id S2441790AbgJUKfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 06:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2441780AbgJUKe7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 06:34:59 -0400
+        with ESMTP id S2441780AbgJUKfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 06:35:01 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4BCC0613CE
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 03:34:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E88C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 03:35:01 -0700 (PDT)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <afa@pengutronix.de>)
-        id 1kVBSG-0006i7-8U; Wed, 21 Oct 2020 12:34:52 +0200
+        id 1kVBSK-0006kK-Vy; Wed, 21 Oct 2020 12:34:56 +0200
 Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <afa@pengutronix.de>)
-        id 1kVBSE-00024Q-MQ; Wed, 21 Oct 2020 12:34:50 +0200
+        id 1kVBSK-00024m-Lr; Wed, 21 Oct 2020 12:34:56 +0200
 From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Christophe Roullier <christophe.roullier@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>
 Cc:     kernel@pengutronix.de, Arnaud Pouliquen <arnaud.pouliquen@st.com>,
         Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        devicetree@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: arm: stm32: add simple-mfd compatible for tamp node
-Date:   Wed, 21 Oct 2020 12:28:55 +0200
-Message-Id: <20201021102855.18026-1-a.fatoum@pengutronix.de>
+Subject: [PATCH v2 2/2] ARM: dts: stm32: support child mfd cells for the stm32mp1 TAMP syscon
+Date:   Wed, 21 Oct 2020 12:28:56 +0200
+Message-Id: <20201021102855.18026-2-a.fatoum@pengutronix.de>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201021102855.18026-1-a.fatoum@pengutronix.de>
+References: <20201021102855.18026-1-a.fatoum@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
@@ -45,44 +47,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The stm32mp1 TAMP (Tamper and backup registers) does tamper detection
-and features 32 backup registers that, being in the RTC domain, may
-survive even with Vdd switched off.
+The stm32mp1 TAMP peripheral has 32 backup registers that survive
+a warm reset. This makes them suitable for storing a reboot
+mode, which the vendor's kernel tree is already doing[0].
 
-This makes it suitable for use to communicate a reboot mode from OS
-to bootloader via the syscon-reboot-mode binding. Add a "simple-mfd"
-to support probing such a child node. The actual reboot mode
-node could then be defined in a board.dts or fixed up by the bootloader.
+The actual syscon-reboot-mode child node can be added by a board.dts or
+fixed up by the bootloader. For the child node to be probed, the
+compatible needs to include simple-mfd. The binding now specifies this,
+so have the SoC dtsi adhere to it.
+
+[0]: https://github.com/STMicroelectronics/linux/commit/2e9bfc29dd
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 ---
-v1 available here:
-https://lore.kernel.org/linux-arm-kernel/20200916142216.25142-1-a.fatoum@pengutronix.de/
-
 v1 -> v2:
- - new patch, rebased on top of
-   https://lore.kernel.org/r/20201014125441.2457-1-arnaud.pouliquen@st.com
+  - Dropped simple-bus. simple-mfd is all that's needed
+  - reworded commit message
 ---
- .../devicetree/bindings/arm/stm32/st,stm32-syscon.yaml       | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-index 6634b3e0853e..4684017a42e4 100644
---- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-+++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-@@ -19,8 +19,11 @@ properties:
-               - st,stm32mp151-pwr-mcu
-               - st,stm32-syscfg
-               - st,stm32-power-config
--              - st,stm32-tamp
-           - const: syscon
-+      - items:
-+          - const: st,stm32-tamp
-+          - const: syscon
-+          - const: simple-mfd
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index 842ecffae73a..662c2408d41b 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -1542,7 +1542,7 @@ i2c6: i2c@5c009000 {
+ 		};
  
-   reg:
-     maxItems: 1
+ 		tamp: tamp@5c00a000 {
+-			compatible = "st,stm32-tamp", "syscon";
++			compatible = "st,stm32-tamp", "syscon", "simple-mfd";
+ 			reg = <0x5c00a000 0x400>;
+ 		};
+ 
 -- 
 2.28.0
 
