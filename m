@@ -2,154 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58E60295286
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 20:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C6E529528E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 20:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407827AbgJUS4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 14:56:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
+        id S2504557AbgJUS6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 14:58:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2394718AbgJUS4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 14:56:44 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08592C0613CE
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 11:56:44 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id k21so4280151ioa.9
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 11:56:44 -0700 (PDT)
+        with ESMTP id S2395162AbgJUS6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 14:58:12 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68334C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 11:58:10 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id w27so854891ejb.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 11:58:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Cc/K/PIuG41/PR7b04TzfA68X44vY0DhA0nNvxK+odE=;
-        b=GrBOpz3B04eglI4Ou/H+aoMQQg7CO3n/sx11CnC2KFyl751f5YKbxaSJfAieTMWw+3
-         kUWQ215pQELE9Py74xWRSY0RUbNNU8vjRkpRQdw7F2GGU/dlVP7gC2Eu6WVVw+Hv6gmq
-         fT3Ik/FKSDcRA8IdinKj2EfiCJZ8PsY1Wpev4G37iKVKPC3gKiVcL75dRi5pCmlhLOnb
-         xw6VL88vbHWo41Wgo35mqxEQH5kQUEKl7XojseMCtNHeMNA9jtXbEr72jh9Sdcuc9GaW
-         bW/GP+M9fsP2tI1TpMf5ZvWbfEtZl4I+lpZjbzIxPbFgx9c8joumjuG2a2iPHZxVfnnB
-         pD2g==
+         :cc;
+        bh=RD6Pe7uFsqq6lLUnSY5SK+FGVJWIcdwyWReVf1JamtI=;
+        b=FPt5Dr2PZVxmcHgGu0EzzWnbd0bBvRHH6JgMV3HonwzIQVLkhj4B4muP3EYJzeuWZH
+         R1WTUDZv7Td6B59Tjr6IplLiSgIvMuPgUMzeQkhjuE+qJ/QNXPBSpn59Je+EjX1RXyU4
+         IRHj/pG29Ey6zFbGxa4sArGg1YWSAupQ3kKoQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Cc/K/PIuG41/PR7b04TzfA68X44vY0DhA0nNvxK+odE=;
-        b=J2JHZ5uoKR4H2SPhs+7MAdHzse+47+ArT+SYQ6qVKNx3OAH8XVvS9HLW9at/xszGN0
-         R2WN+KfSJRILHCo01U1VSipLLQzHLlbYxISPYMnS/spK69kexCScyN+GzsKIYRz2DzeP
-         T2nU8tw1bc0olrnt7+udrygGFUalaDn7sy2XgcV+bCNR7V9luxWcgTSysBA8/HkmM71m
-         ULDcYZE7nqR5NUcXeSdJgw7RrIOdIlLi7mJFzQM5rF3XuepJbOF1u4rCsfRuUstloQqN
-         tOhkqF6eCDhjK0m7bUAR4DgscELUbuJZLVLP0RjCT6JF5y+ADV7tsNRicSoyZXnHLI13
-         97Cg==
-X-Gm-Message-State: AOAM531A3ks+nfM1HDjnYVzMdm001OqSDFFmG9ZA/xlIGx/N/igP3Z68
-        vsHzfBk8HAdVhnjvjaJfCfCe93HKapuUgKq9Y1lyQw==
-X-Google-Smtp-Source: ABdhPJyLG0RAlvFN8Zp7U5m+RnWUUNGK8TOymUgePPUKY/An2N5DmxSuoTuNWfKoZwAH4W8THjAuI9EyHl7jMFAlVZ4=
-X-Received: by 2002:a05:6638:1243:: with SMTP id o3mr3993558jas.82.1603306603222;
- Wed, 21 Oct 2020 11:56:43 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=RD6Pe7uFsqq6lLUnSY5SK+FGVJWIcdwyWReVf1JamtI=;
+        b=OpfSGoVZzAdsaDVjUehVMgne/QOMo9eOzUmBsTzp2QQFIsSaOAJ0GhCZlLT85TJKjG
+         gduyB9vKnUI/X2ttwtPVxGUqgh8OAzZ1upQGGzg2UWW0ffICmLqy5FBvsXmtZR6rhKI3
+         CwB4WD2cq14TLejZEkfodhbH8geq/7+Sq+cG6dzCLVmttSm47RSHlgNQBYNlApHtwf8m
+         QgUWVzI2SF0PhfROr0pujIEWqdaGWqy0irQRCD0p8Um8D3fn4gLER3OPjN6UoB7tuNls
+         LlsrsGrTbcIlAQ9JboZgqWIHuwsEIKywXbhV9jG2nmzm9Ug0dDnxCVFE7dqhx7fgwYqL
+         k57Q==
+X-Gm-Message-State: AOAM532269rJT4GhAtm+2s0QxYlLc1HQmE7V51XmrgIeEfQdrSauTs3p
+        H21GEaILQAdRh+kKO+WF7Om/s1a0wZQKpTvERkOuEQ==
+X-Google-Smtp-Source: ABdhPJxxfUjj7Hta8BePOHoLY9p4KODnXrLobEgMBRj1B+m1IjCAXKJZnnKVfNnNHt3piiQTSKReHx4YebGVv6yUsHk=
+X-Received: by 2002:a17:907:a8d:: with SMTP id by13mr4710348ejc.295.1603306689022;
+ Wed, 21 Oct 2020 11:58:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201020174253.3757771-1-fparent@baylibre.com>
- <20201020174253.3757771-3-fparent@baylibre.com> <CAAOTY_9m-nqCe1HanPv5xa3mVLpyG6mC1pF1FRAFJdU1jqza_A@mail.gmail.com>
-In-Reply-To: <CAAOTY_9m-nqCe1HanPv5xa3mVLpyG6mC1pF1FRAFJdU1jqza_A@mail.gmail.com>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Wed, 21 Oct 2020 20:56:32 +0200
-Message-ID: <CAOwMV_wvf6v1acXjtuB3Sm83YNyf=A7ULJkEDz7RY7T7mijqHg@mail.gmail.com>
-Subject: Re: [PATCH 2/8] dt-bindings: display: mediatek: dsi: add
- documentation for MT8167 SoC
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+References: <20200929083217.25406-1-jagan@amarulasolutions.com>
+In-Reply-To: <20200929083217.25406-1-jagan@amarulasolutions.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 22 Oct 2020 00:27:57 +0530
+Message-ID: <CAMty3ZDHDC5TMF=8HJRmZd7HijOM6RP-k4y9JkdWVQGgPKyGvg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/7] arm64: dts: rockchip: Add Engicam PX30.Core
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
+Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Philipp Zabel <p.zabel@pengutronix.de>
+        linux-amarula <linux-amarula@amarulasolutions.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chun-Kuang,
+Hi Heiko,
 
-On Wed, Oct 21, 2020 at 7:01 PM Chun-Kuang Hu <chunkuang.hu@kernel.org> wro=
-te:
+On Tue, Sep 29, 2020 at 2:02 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
-> Hi, Fabien:
+> PX30.Core is an EDIMM SOM based on Rockchip PX30 from Engicam.
 >
-> Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8821=
-=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=881:43=E5=AF=AB=E9=81=93=EF=BC=
-=9A
-> >
-> > Add binding documentation for the MT8167 SoC. The SoC needs
-> > an additional clock compared to the already supported SoC: mipi26m.
-> >
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > ---
-> >  .../devicetree/bindings/display/mediatek/mediatek,dsi.txt  | 7 ++++---
-> >  1 file changed, 4 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediate=
-k,dsi.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi=
-.txt
-> > index f06f24d405a5..10ae6be7225e 100644
-> > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.t=
-xt
-> > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.t=
-xt
-> > @@ -7,12 +7,13 @@ channel output.
-> >
-> >  Required properties:
-> >  - compatible: "mediatek,<chip>-dsi"
-> > -- the supported chips are mt2701, mt7623, mt8173 and mt8183.
-> > +- the supported chips are mt2701, mt7623, mt8167, mt8173 and mt8183.
-> >  - reg: Physical base address and length of the controller's registers
-> >  - interrupts: The interrupt signal from the function block.
-> >  - clocks: device clocks
-> >    See Documentation/devicetree/bindings/clock/clock-bindings.txt for d=
-etails.
-> > -- clock-names: must contain "engine", "digital", and "hs"
-> > +- clock-names: must contain "engine", "digital", "hs"
-> > +  Can optionnally also contain "mipi26m"
+> PX30.Core needs to mount on top of Engicam baseboards for creating
+> complete platform boards.
 >
-> It seems that mipi26m is the clock of mipi-tx. In mt8173.dtsi [1],
-> mipi-tx's clock is 26m.
+> Possible baseboards are,
+> - EDIMM2.2 Starter Kit
+> - C.TOUCH 2.0 Carrier Board
 >
-> mipi_tx0: mipi-dphy@10215000 {
-> compatible =3D "mediatek,mt8173-mipi-tx";
-> reg =3D <0 0x10215000 0 0x1000>;
-> clocks =3D <&clk26m>;
-> clock-output-names =3D "mipi_tx0_pll";
-> #clock-cells =3D <0>;
-> #phy-cells =3D <0>;
-> status =3D "disabled";
-> };
+> Changes for v4:
+> - collect Rob A-b
+> Changes for v3:
+> - resolved Johan comments about sorting node properties
+> - add copyright to Amarula Solutions
+> - update px30 dtsi author
+> Changes for v2:
+> - include C.TOUCH 2.0 carrier board
+> - skip 10" OF LCD as it requires separate dts with panel support.
 >
-> If this is the clock of mipi-tx, it should be controlled by mipi-tx drive=
-r.
+> Note: These baseboards can be used for i.MX8 SOM's as well. So having
+> baseboard on respective SoC seems to be easy rather than making it
+> common across all.
+>
+> Any inputs?
+> Jagan.
+>
+> Jagan Teki (6):
+>   dt-bindings: arm: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+>   arm64: dts: rockchip: px30: Add Engicam EDIMM2.2 Starter Kit
+>   arm64: dts: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+>   dt-bindings: arm: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
+>   arm64: dts: rockchip: px30: Add Engicam C.TOUCH 2.0
+>   arm64: dts: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
+>
+> Michael Trimarchi (1):
+>   arm64: dts: rockchip: Add Engicam PX30.Core SOM
+>
+>  .../devicetree/bindings/arm/rockchip.yaml     |  12 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+>  .../dts/rockchip/px30-engicam-common.dtsi     |  39 +++
+>  .../dts/rockchip/px30-engicam-ctouch2.dtsi    |   8 +
+>  .../dts/rockchip/px30-engicam-edimm2.2.dtsi   |   7 +
+>  .../dts/rockchip/px30-px30-core-ctouch2.dts   |  22 ++
+>  .../dts/rockchip/px30-px30-core-edimm2.2.dts  |  21 ++
+>  .../boot/dts/rockchip/px30-px30-core.dtsi     | 232 ++++++++++++++++++
+>  8 files changed, 343 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-edimm2.2.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core.dtsi
 
-Thanks, I will fix that in v2.
+Any further comments?
 
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/arch/arm64/boot/dts/mediatek/mt8173.dtsi?h=3Dv5.9
->
-> Regards,
-> Chun-Kuang.
->
-> >  - phys: phandle link to the MIPI D-PHY controller.
-> >  - phy-names: must contain "dphy"
-> >  - port: Output port node with endpoint definitions as described in
-> > @@ -26,7 +27,7 @@ The MIPI TX configuration module controls the MIPI D-=
-PHY.
-> >
-> >  Required properties:
-> >  - compatible: "mediatek,<chip>-mipi-tx"
-> > -- the supported chips are mt2701, 7623, mt8173 and mt8183.
-> > +- the supported chips are mt2701, 7623, mt8167, mt8173 and mt8183.
-> >  - reg: Physical base address and length of the controller's registers
-> >  - clocks: PLL reference clock
-> >  - clock-output-names: name of the output clock line to the DSI encoder
-> > --
-> > 2.28.0
-> >
+Jagan.
