@@ -2,119 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D25C0294B77
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 12:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B79CC294B9E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 13:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439013AbgJUKul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 06:50:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59582 "EHLO
+        id S2439274AbgJULHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 07:07:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439015AbgJUKul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 06:50:41 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEEFBC0613D2
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 03:50:40 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id t4so1001936plq.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 03:50:40 -0700 (PDT)
+        with ESMTP id S2410564AbgJULHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 07:07:50 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5170C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 04:07:49 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id i1so2671102wro.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 04:07:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=z1ROSdysWAJRA35AhGES/43NRpXVq6YDaJOz7zl7nL8=;
-        b=w9jC/C5ogypGG2B4CHyrIKLiagWGjJugRQu6KmvufLSpIJmf6uviAuPsQimJcsygWy
-         aO2hQ/4vFZjPo/PXF0CCYPQ5lxPB6DlokTEK4DWWokxVd43Fak9M3m1kaEHOxNB5ID1U
-         017H9CQfaQ2gmp4maSOT/Rkq7peo9+QycbvGsmxkmrrRPmDgb3XJt/4NK0ub0lP4MwKk
-         rO+ZRJmZTKAEpDaIBJyNviGP7cxH/ZjFO5Xe2aoCjUAFWIxeZCXFzy40LTiXyFgpBuMj
-         fYs5i2W0ECR/j/Agl43miVh2mhxycJZkd6vTVyMk8VBxvFW4hVtulqK1KMJ5UJE+Xj2P
-         K5/w==
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sgdeaNLeFEVMNHVsrJv3x64Nz+VLWwYYdWEYLLEMUbs=;
+        b=IhXAiczrLAmLzfqCcMtKKPHk3ybKQgdIvRyQ6PGaU2vUCiU4ByB7X2ZKVBDnfXc4yo
+         C7K1uGXUd4VsnHgdwrT4fJvbiujw76q/UssPT40uFnaT5qUdTVw8P49APGQ30C1E5pdU
+         pMU5JePGUTWu9GT/wP7q+aIsfJ9pTcio0W6EU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=z1ROSdysWAJRA35AhGES/43NRpXVq6YDaJOz7zl7nL8=;
-        b=XlERHYuVkmBLJv3/LANg0JdjiupOHPNpam5UWty22xx8mmE8nn1H6YIiNcl6yTqTAb
-         j3KEW8UMDVJaQrDwXVC//MmAuvG3adH5Nqkh2T4Vk2IPSUABkWbYWKNPNaJJ4evYhuSJ
-         o/9+cLD35YMxEK6CbmSu9LJmtkzM1h/wzokNYec2m0aBB9/UsxloYbXLxHUCm3fggWmM
-         l0n/EzidQ6nEYaNbAaifwUHQHO1sHsQ54FpRCJPdyoFp/hu0AmW2s4VMSuLgS97F3u1q
-         r0QsSDe4iYNVt4s0Yf0y3aJmVrOiD9KnPfE+2yYDsiKzY0j0EfqWKveWYdY+hHVGZYpO
-         4fYw==
-X-Gm-Message-State: AOAM5325wpyVmgwTZlWRX6mdPB2iGqd/RMNSM5gwqGP7cCQ3k9cjmizX
-        8748Nt6xMU0ZPcTNSClSor4ozg==
-X-Google-Smtp-Source: ABdhPJxwgr3r5rDb2EwR7ApDlfOTIHsXkLRSCBwfkQlQC2nu8iBeNlICjuUksRIYaFtg91h3GN0GUA==
-X-Received: by 2002:a17:902:d896:b029:d2:288e:bafc with SMTP id b22-20020a170902d896b02900d2288ebafcmr3097921plz.43.1603277440281;
-        Wed, 21 Oct 2020 03:50:40 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id e21sm2018906pfl.22.2020.10.21.03.50.38
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Oct 2020 03:50:39 -0700 (PDT)
-Date:   Wed, 21 Oct 2020 16:20:37 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Hector Yuan <hector.yuan@mediatek.com>, rjw@rjwysocki.net,
-        robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: cpus: Document
- 'qcom,freq-domain' property
-Message-ID: <20201021105037.vrqgmvbxxhccch33@vireshk-i7>
-References: <20201020153944.18047-1-manivannan.sadhasivam@linaro.org>
- <1603247803.20224.5.camel@mtkswgap22>
- <20201021095916.GA3334@Mani-XPS-13-9360>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sgdeaNLeFEVMNHVsrJv3x64Nz+VLWwYYdWEYLLEMUbs=;
+        b=mdGG0e4QeEXpRP0/fKFi4hPtI9AiiCYLu4m5UugNeWdcDHMFALi2LlDRmxBeSwnjNs
+         dlpxzUfDjzkBK3yctKsHLdJE6tBhHeqMLALnLdbn9NqopYj3UWm+gVA3cYBJJ2+HB0A+
+         Fqwyo5b3Z7CsxpPDDoQJ8th52dOTHL21zmSatmMhoiEvyqx3GMwhQxm2v+ktIhOpfQhC
+         fS36RfZucLSFUnQBUhyOFPFzWgcrHG4xTnm/su/OXtfl27UR6pC2xXJbAgUk90k43FS2
+         q1PVsxczF+F8T+/o2HcVOzTYpsRbTOeMuxKZ+c3zX7llqDa0vrsKaBkrTTzwITMtWPdc
+         oo4g==
+X-Gm-Message-State: AOAM530JhkcS0ypFzp2m3PNW4AU8oAgAgoG1hIipEZoFrTMV49rqwUJm
+        JSwpKgGVN4BeMDy/AjV/40aKeZ/UmV5nZiaJxFCePQ==
+X-Google-Smtp-Source: ABdhPJw+HhaN1MBMrtUAxgBjuYJJ1eHTqVJ9uPe2N7F1GAMJZY5AKc7YNQzeJeS7Q54exwag/RUOdaF2fZsZyv8WoKU=
+X-Received: by 2002:a5d:4d8a:: with SMTP id b10mr4210682wru.5.1603278468446;
+ Wed, 21 Oct 2020 04:07:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201021095916.GA3334@Mani-XPS-13-9360>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-4-daniel@0x0f.com>
+ <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
+In-Reply-To: <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 21 Oct 2020 20:07:37 +0900
+Message-ID: <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
+Subject: Re: [PATCH 3/5] gpio: msc313: MStar MSC313 GPIO driver
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-10-20, 15:29, Manivannan Sadhasivam wrote:
-> Hi,
-> 
-> On Wed, Oct 21, 2020 at 10:36:43AM +0800, Hector Yuan wrote:
-> > Hi, Manivannan
-> > 
-> > On Tue, 2020-10-20 at 21:09 +0530, Manivannan Sadhasivam wrote:
-> > > Add devicetree documentation for 'qcom,freq-domain' property specific
-> > > to Qualcomm CPUs. This property is used to reference the CPUFREQ node
-> > > along with Domain ID (0/1).
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > index 1222bf1831fa..f40564bf004f 100644
-> > > --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > @@ -290,6 +290,12 @@ properties:
-> > >  
-> > >        * arm/msm/qcom,kpss-acc.txt
-> > >  
-> > > +  qcom,freq-domain:
-> > Do you mind to change "qcom, freq-domain" to common naming? or drop the
-> > prefix. So that we can use this CPU node and map it to each freq-domain.
-> > Thanks a lot. 
-> 
-> I can do that but did the domain value match for other platforms as well?
+Hi Linus,
 
-I am not sure if you can. The code needs to be backward compatible so it can
-support all devices shipped with older bootloaders and latest kernels. And so
-changing the bindings isn't a good idea normally.
+Sorry to pester you again...
 
-> 
-> > 
-> > > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> > > +    description: |
-> > > +      CPUs supporting freq-domain must set their "qcom,freq-domain" property
-> > > +      with phandle to a cpufreq_hw node followed by the Domain ID(0/1).
-> > > +
-> > >    rockchip,pmu:
-> > >      $ref: '/schemas/types.yaml#/definitions/phandle'
-> > >      description: |
-> > 
+On Sat, 17 Oct 2020 at 01:56, Linus Walleij <linus.walleij@linaro.org> wrote:
 
--- 
-viresh
+> > +       gpiochip->to_irq = msc313_gpio_to_irq;
+> > +       gpiochip->base = -1;
+> > +       gpiochip->ngpio = gpio->gpio_data->num;
+> > +       gpiochip->names = gpio->gpio_data->names;
+> > +
+> > +       for (i = 0; i < gpiochip->ngpio; i++)
+> > +               gpio->irqs[i] = of_irq_get_byname(pdev->dev.of_node, gpio->gpio_data->names[i]);
+>
+> Use hierarchical generic GPIO IRQs for these.
+>
+> Assign ->fwnode, ->parent_domain, ->child_to_parent_hwirq,
+> and probably also ->handler on the struct gpio_irq_chip *.
+>
+> Skip assigning gpiochip->to_irq, the generic code will
+> handle that.
+>
+> Again see gpio-ixp4xx.c for an example.
+
+I sent a v2 with this conversion already and it looks a lot better.
+Based on Andy Shevchenko's comments[0] I'll be sending a v3 that fixes
+up all style and other issues he found.
+Before I do that I have a question that maybe you could help me with:
+Andy noted a few times that I have this driver as a built in driver
+and not a module.
+The gpio-ixp4xx.c driver is also a built in driver. Is there a reason
+why it's ok there but not this driver?
+I've actually changed it to allow building as a module already but I
+don't want to push a v3 if something like the interrupt handling means
+it should actually be a built in and I'm just missing something.
+
+Thanks,
+
+Daniel
+
+0 - https://lore.kernel.org/linux-gpio/CAHp75Vf5iUzKp32CqBbv_5MRo8q8CyBPsBcgzKsww6BFtGJwUA@mail.gmail.com/
