@@ -2,82 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3494294986
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 10:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 996B1294AD3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 11:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441126AbgJUIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 04:54:07 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55917 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2441121AbgJUIyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 04:54:06 -0400
-X-UUID: 6a91c32a11ac49b99f9cc05386d0339a-20201021
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=FaSmmvd6vXti28k5Wg/iteLZ/fDKFZEVFrR628/Jxxw=;
-        b=TnzwL4dRxKZ0JRWMbUxf5Dujxd2QhTfNcSu0W3ydLa5lFMthT7DI0Sew61Itf3mFfd00rx6dlomu7TAksTjWkMnG0BuhMIkx+scwocQ0DyeOF64oDMpgZO6bZSLzYODCBm5wFY/mSuI/wtsg881C4vBO/p0D9wS+IFnA9xnhQuM=;
-X-UUID: 6a91c32a11ac49b99f9cc05386d0339a-20201021
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 343895785; Wed, 21 Oct 2020 16:54:04 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 21 Oct 2020 16:54:02 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 21 Oct 2020 16:54:01 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <tiwai@suse.com>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>, <p.zabel@pengutronix.de>,
-        <tzungbi@google.com>, <alsa-devel@alsa-project.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     <shane.chien@mediatek.com>, <kuninori.morimoto.gx@renesas.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-Subject: [PATCH v2 5/5] dt-bindings: mediatek: mt8192: add mt8192-mt6358-rt1015-rt5682 document
-Date:   Wed, 21 Oct 2020 16:53:55 +0800
-Message-ID: <1603270435-3548-6-git-send-email-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1603270435-3548-1-git-send-email-jiaxin.yu@mediatek.com>
-References: <1603270435-3548-1-git-send-email-jiaxin.yu@mediatek.com>
+        id S2441545AbgJUJyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 05:54:03 -0400
+Received: from smtp1.axis.com ([195.60.68.17]:6649 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2438305AbgJUJyD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 05:54:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=2143; q=dns/txt; s=axis-central1;
+  t=1603274042; x=1634810042;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=NSbevEXTgIx+UMlnZ8PIyoKqiQwTyuCv3R4hhUP++P8=;
+  b=nkmC+WSkozn0rOGbtBB7x9k68w5ID1RwAhdyAOT6yYxUVN+munfLHHY2
+   uR7o0EuL2FQfUi7+8LUyfIRI/slc/xlVg5NdzLi/WAQ5z83tpOhNvJDa6
+   oF9aOEad4CZ2LgpV8WuUz2MaTvLpJ3cG0Tw2z7FRYrLKBkge4XzS8SC2O
+   fdRzrSwtTDwyq5BnoEmhtrzsboNVDAuXV1Qsdd4LH89tj9LFxI/U+vUJQ
+   YoIY7vap9iFHNT5W+Lz/Z13Hm1CWqTJuiuVaPgSZS77T3IEYC1kUGUGRP
+   3de64mcDnue6+pWQrWMgMy58i89L2kdWI9T+nw6hehdkCU+shF94ooFDu
+   Q==;
+IronPort-SDR: W6IQyZIfg03bY8KZ5uBQP74nsU09xCAsI7+Kos4fsRcuqFadbXwA4vmCmPJ7jO7ncHJWli9GnZ
+ FuLAgZvU7/TLbninsMBHA0l5Ge2kLJBljNJ1dnJu5MVobuV5vRTFdi5i3IWsqv7m4TMcu2gW5R
+ DjylUgA8Xhni5tz7wKQqOMOPurZOtXdP3IIusIwhcnD6X8vnK+OdnJXE3/63Ukp4XKl9zJPdrU
+ pgaQnKlDj8FYGQrpoDwuwJDgY5CvHm4eYkwkKCnbIjC06xq61YTCzv3s98iQEpOE199Xr1SmOa
+ mKI=
+X-IronPort-AV: E=Sophos;i="5.77,401,1596492000"; 
+   d="scan'208";a="14246820"
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+CC:     <kernel@axis.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2] of: Fix reserved-memory overlap detection
+Date:   Wed, 21 Oct 2020 11:53:59 +0200
+Message-ID: <ded6fd6b47b58741aabdcc6967f73eca6a3f311e.1603273666.git-series.vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBwYXRjaCBhZGRzIGRvY3VtZW50IGZvciB0aGUgbWFjaGluZSBib2FyZCB3aXRoIG10NjM1
-OCwgcnQxMDE1DQphbmQgcnQ1NjgyLg0KDQpTaWduZWQtb2ZmLWJ5OiBKaWF4aW4gWXUgPGppYXhp
-bi55dUBtZWRpYXRlay5jb20+DQotLS0NCiAuLi4vc291bmQvbXQ4MTkyLW10NjM1OS1ydDEwMTUt
-cnQ1NjgyLnlhbWwgICAgfCA0MiArKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQs
-IDQyIGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3NvdW5kL210ODE5Mi1tdDYzNTktcnQxMDE1LXJ0NTY4Mi55YW1sDQoN
-CmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvbXQ4
-MTkyLW10NjM1OS1ydDEwMTUtcnQ1NjgyLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
-YmluZGluZ3Mvc291bmQvbXQ4MTkyLW10NjM1OS1ydDEwMTUtcnQ1NjgyLnlhbWwNCm5ldyBmaWxl
-IG1vZGUgMTAwNjQ0DQppbmRleCAwMDAwMDAwMDAwMDAwLi40YzM5ZTg4OTA2ZmMxDQotLS0gL2Rl
-di9udWxsDQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvbXQ4
-MTkyLW10NjM1OS1ydDEwMTUtcnQ1NjgyLnlhbWwNCkBAIC0wLDAgKzEsNDIgQEANCisjIFNQRFgt
-TGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgT1IgQlNELTItQ2xhdXNlKQ0KKyVZQU1MIDEu
-Mg0KKy0tLQ0KKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvc291bmQvbXQ4MTky
-LW10NjM1OS1ydDEwMTUtcnQ1NjgyLnlhbWwjDQorJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUu
-b3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQorDQordGl0bGU6IE1lZGlhdGVrIE1UODE5MiB3
-aXRoIE1UNjM1OSwgUlQxMDE1IGFuZCBSVDU2ODIgQVNvQyBzb3VuZCBjYXJkIGRyaXZlcg0KKw0K
-K21haW50YWluZXJzOg0KKyAgIC0gSmlheGluIFl1IDxqaWF4aW4ueXVAbWVkaWF0ZWsuY29tPg0K
-KyAgIC0gU2hhbmUgQ2hpZW4gPHNoYW5lLmNoaWVuQG1lZGlhdGVrLmNvbT4NCisNCitkZXNjcmlw
-dGlvbjoNCisgIFRoaXMgYmluZGluZyBkZXNjcmliZXMgdGhlIE1UODE5MiBzb3VuZCBjYXJkLg0K
-Kw0KK3Byb3BlcnRpZXM6DQorICBjb21wYXRpYmxlOg0KKyAgICAgIGNvbnN0OiBtZWRpYXRlayxt
-dDgxOTJfbXQ2MzU5X3J0MTAxNV9ydDU2ODINCisNCisgIG1lZGlhdGVrLHBsYXRmb3JtOg0KKyAg
-ICAkcmVmOiAiL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZSINCisgICAg
-ZGVzY3JpcHRpb246IFRoZSBwaGFuZGxlIG9mIE1UODE5MiBBU29DIHBsYXRmb3JtLg0KKw0KK2Fk
-ZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQ0KKw0KK3JlcXVpcmVkOg0KKyAgLSBjb21wYXRpYmxl
-DQorICAtIG1lZGlhdGVrLHBsYXRmb3JtDQorDQorZXhhbXBsZXM6DQorICAtIHwNCisNCisgICAg
-c291bmQ6IG10ODE5Mi1zb3VuZCB7DQorICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10
-ODE5Mi1tdDYzNTktcnQxMDE1LXJ0NTY4MiI7DQorICAgICAgICBtZWRpYXRlayxwbGF0Zm9ybSA9
-IDwmYWZlPjsNCisgICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiYXVkX2Nsa19tb3NpX29mZiIsDQor
-ICAgICAgICAgICAgICAgICAgICAgICAgImF1ZF9jbGtfbW9zaV9vbiI7DQorICAgICAgICBwaW5j
-dHJsLTAgPSA8JmF1ZF9jbGtfbW9zaV9vZmY+Ow0KKyAgICAgICAgcGluY3RybC0xID0gPCZhdWRf
-Y2xrX21vc2lfb24+Ow0KKyAgICB9Ow0KKw0KKy4uLg0KLS0gDQoyLjE4LjANCg==
+The reserved-memory overlap detection code fails to detect overlaps if
+either of the regions starts at address 0x0.  The code explicitly checks
+for and ignores such regions, apparently in order to ignore dynamically
+allocated regions which have an address of 0x0 at this point.  These
+dynamically allocated regions also have a size of 0x0 at this point, so
+fix this by removing the check and sorting the dynamically allocated
+regions ahead of any static regions at address 0x0.
 
+For example, there are two overlaps in this case but they are not
+currently reported:
+
+	foo@0 {
+	        reg = <0x0 0x2000>;
+	};
+
+	bar@0 {
+	        reg = <0x0 0x1000>;
+	};
+
+	baz@1000 {
+	        reg = <0x1000 0x1000>;
+	};
+
+	quux {
+	        size = <0x1000>;
+	};
+
+but they are after this patch:
+
+ OF: reserved mem: OVERLAP DETECTED!
+ bar@0 (0x00000000--0x00001000) overlaps with foo@0 (0x00000000--0x00002000)
+ OF: reserved mem: OVERLAP DETECTED!
+ foo@0 (0x00000000--0x00002000) overlaps with baz@1000 (0x00001000--0x00002000)
+
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+---
+v2: Fix handling of dynamically allocated regions.
+
+ drivers/of/of_reserved_mem.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 46b9371..6530b8b 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -200,6 +200,16 @@ static int __init __rmem_cmp(const void *a, const void *b)
+ 	if (ra->base > rb->base)
+ 		return 1;
+ 
++	/*
++	 * Put the dynamic allocations (address == 0, size == 0) before static
++	 * allocations at address 0x0 so that overlap detection works
++	 * correctly.
++	 */
++	if (ra->size < rb->size)
++		return -1;
++	if (ra->size > rb->size)
++		return 1;
++
+ 	return 0;
+ }
+ 
+@@ -217,8 +227,7 @@ static void __init __rmem_check_for_overlap(void)
+ 
+ 		this = &reserved_mem[i];
+ 		next = &reserved_mem[i + 1];
+-		if (!(this->base && next->base))
+-			continue;
++
+ 		if (this->base + this->size > next->base) {
+ 			phys_addr_t this_end, next_end;
+ 
+
+base-commit: 270315b8235e3d10c2e360cff56c2f9e0915a252
+-- 
+git-series 0.9.1
