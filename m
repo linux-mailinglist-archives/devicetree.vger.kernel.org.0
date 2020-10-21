@@ -2,209 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4621B2946C8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 05:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26BA22946E4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 05:18:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406559AbgJUDAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Oct 2020 23:00:52 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:32014 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2406510AbgJUDAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Oct 2020 23:00:52 -0400
-X-UUID: bfdcb39a477d4622842528e573a75b07-20201021
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/iKtVrC60W8Ht9PLV1xcIWqrBacl7AEML6GCLswWhVg=;
-        b=O5gyu5GO8o7RPPeVjRzKjyxJ3d+NlctHg+//xdF2fPsU2+SMY3lJwMXeeYeG1JiWU4LrByHSq3i6C88irBwEETdQnHDoipxT2bV6It25I1Tckr1C7Oj3IPbOD7XtVT4KzEoRr6vxKOTCoUD1/XD+BWvi7yqbKhVHDHEQIT5Atoc=;
-X-UUID: bfdcb39a477d4622842528e573a75b07-20201021
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1349775153; Wed, 21 Oct 2020 11:00:41 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 21 Oct
- 2020 11:00:37 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 21 Oct 2020 11:00:36 +0800
-Message-ID: <1603249236.31607.9.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 01/16] dt-bindings: usb: usb-hcd: Convert generic USB
- properties to DT schema
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-CC:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
-        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Date:   Wed, 21 Oct 2020 11:00:36 +0800
-In-Reply-To: <20201020112101.19077-2-Sergey.Semin@baikalelectronics.ru>
-References: <20201020112101.19077-1-Sergey.Semin@baikalelectronics.ru>
-         <20201020112101.19077-2-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-TM-SNTS-SMTP: 3C612C300D75B9D840779466513725D6819DC7FF11D1B86F2C1C754B59618B642000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S2411624AbgJUDSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Oct 2020 23:18:50 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:6696 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2411623AbgJUDSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Oct 2020 23:18:49 -0400
+Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09L33nfU045756;
+        Tue, 20 Oct 2020 23:18:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
+ from : to : cc : date : in-reply-to : references : content-type :
+ mime-version : content-transfer-encoding; s=pp1;
+ bh=gonw/JPabK1O5CBM/w49nAQDDIVuQ2fR2sFvrrqg9ps=;
+ b=qssSlyKfQvsdtRkV2Q3eCs447/UbyQfN7chlL7HO3wARQ8BR9lxDKaUDV7RsNfAm3akI
+ pL9W50AI8d4TRJvoLoQtudYdrfzYztZXaLAiq9ca5tm8Oq0AvFZX6CyM6oUz9OfQyTrd
+ gWAzDhXOsVqoCSvypvF/eIxX/ROK78EuNnhp+6qAyHqmCdJ6r9ztrhn+BWyhpk1iPbGN
+ siZQuV6sApIf+LkwGXVLOgd84wq0njyhUKJu8ynQzFJmzDWDlN6TMZF+tsUTz4FISw7G
+ rHYOW0Y1jIigQ+YMmXFjZZHHiEDVyf6MeC1Oy3YffNBvrygzmZ9khYlTzyvf3CQaX2Ef nw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 34ac1ahg8k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Oct 2020 23:18:12 -0400
+Received: from m0098396.ppops.net (m0098396.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 09L33jBc045218;
+        Tue, 20 Oct 2020 23:18:11 -0400
+Received: from ppma05fra.de.ibm.com (6c.4a.5195.ip4.static.sl-reverse.com [149.81.74.108])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 34ac1ahg7x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Oct 2020 23:18:11 -0400
+Received: from pps.filterd (ppma05fra.de.ibm.com [127.0.0.1])
+        by ppma05fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 09L3BkXV027261;
+        Wed, 21 Oct 2020 03:18:08 GMT
+Received: from b06cxnps4076.portsmouth.uk.ibm.com (d06relay13.portsmouth.uk.ibm.com [9.149.109.198])
+        by ppma05fra.de.ibm.com with ESMTP id 347r8820ap-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Oct 2020 03:18:08 +0000
+Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
+        by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 09L3I6mk31261036
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 21 Oct 2020 03:18:06 GMT
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 53AE34C059;
+        Wed, 21 Oct 2020 03:18:06 +0000 (GMT)
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 16A904C040;
+        Wed, 21 Oct 2020 03:18:00 +0000 (GMT)
+Received: from li-f45666cc-3089-11b2-a85c-c57d1a57929f.ibm.com (unknown [9.160.35.199])
+        by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+        Wed, 21 Oct 2020 03:17:59 +0000 (GMT)
+Message-ID: <a6c3e3ecb5c1c6f35b747f1ea4d8261667f9a376.camel@linux.ibm.com>
+Subject: Re: [PATCH v7 1/4] powerpc: Refactor kexec functions to move arch
+ independent code to kernel
+From:   Mimi Zohar <zohar@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        bauerman@linux.ibm.com, robh@kernel.org,
+        gregkh@linuxfoundation.org, james.morse@arm.com,
+        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr
+Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, prsriva@linux.microsoft.com,
+        balajib@linux.microsoft.com
+Date:   Tue, 20 Oct 2020 23:17:59 -0400
+In-Reply-To: <81c4a9ce-c363-a87a-06de-4a8729702b97@linux.microsoft.com>
+References: <20200930205941.1576-1-nramas@linux.microsoft.com>
+         <20200930205941.1576-2-nramas@linux.microsoft.com>
+         <bfaadaffafa3b8c12fce7e8491ea77e22a5821a8.camel@linux.ibm.com>
+         <81c4a9ce-c363-a87a-06de-4a8729702b97@linux.microsoft.com>
+Content-Type: text/plain; charset="ISO-8859-15"
+X-Mailer: Evolution 3.28.5 (3.28.5-12.el8) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.737
+ definitions=2020-10-21_02:2020-10-20,2020-10-21 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ bulkscore=0 phishscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ malwarescore=0 suspectscore=2 mlxlogscore=999 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010210025
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTEwLTIwIGF0IDE0OjIwICswMzAwLCBTZXJnZSBTZW1pbiB3cm90ZToNCj4g
-VGhlIGdlbmVyaWMgVVNCIEhDRCBwcm9wZXJ0aWVzIGhhdmUgYmVlbiBkZXNjcmliZWQgaW4gdGhl
-IGxlZ2FjeSBiaW5kaW5ncw0KPiB0ZXh0IGZpbGU6IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy91c2IvZ2VuZXJpYy50eHQgLiBMZXQncw0KPiBjb252ZXJ0IGl0JyBjb250ZW50IGlu
-dG8gdGhlIFVTQiBIQ0QgRFQgc2NoZW1hIHByb3BlcnRpZXMgc28gYWxsIFVTQiBEVA0KICAgICAg
-ICAgIF4gaXRzPw0KPiBub2RlcyB3b3VsZCBiZSB2YWxpZGF0ZWQgdG8gaGF2ZSB0aGVtIHByb3Bl
-cmx5IHV0aWxpemVkLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogU2VyZ2UgU2VtaW4gPFNlcmdleS5T
-ZW1pbkBiYWlrYWxlbGVjdHJvbmljcy5ydT4NCj4gUmV2aWV3ZWQtYnk6IFJvYiBIZXJyaW5nIDxy
-b2JoQGtlcm5lbC5vcmc+DQo+IA0KPiAtLS0NCj4gDQo+IENoYW5nZWxvZyB2MjoNCj4gLSBEaXNj
-YXJkICd8JyBpbiBhbGwgdGhlIG5ldyBwcm9wZXJ0aWVzLCBzaW5jZSB3ZSBkb24ndCBuZWVkIHRv
-IHByZXNlcnZlDQo+ICAgdGhlIHRleHQgZm9ybWF0dGluZy4NCj4gLSBDb252ZXJ0IGFiYnJldmlh
-dGVkIGZvcm0gb2YgdGhlICJtYXhpbXVtLXNwZWVkIiBlbnVtIHJlc3RyaWN0aW9uIGludG8NCj4g
-ICB0aGUgbXVsdGktbGluZWQgdmVyc2lvbiBvZiB0aGUgbGlzdC4NCj4gLSBEcm9wIHF1b3RlcyBm
-cm9tIGFyb3VuZCB0aGUgc3RyaW5nIGNvbnN0YW50cy4NCj4gLS0tDQo+ICAuLi4vZGV2aWNldHJl
-ZS9iaW5kaW5ncy91c2IvZ2VuZXJpYy50eHQgICAgICAgfCA1NyAtLS0tLS0tLS0tLS0NCj4gIC4u
-Li9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2ItaGNkLnlhbWwgICAgICB8IDg4ICsrKysrKysr
-KysrKysrKysrKysNCkRvIHdlIG5lZWQgY2hhbmdlIHRoZSBmaWxlIG5hbWUgb3IgbW9kaWZ5IGl0
-J3MgdGl0bGU/DQp0aGUgdGl0bGUgaXMgIkdlbmVyaWMgVVNCIEhvc3QgQ29udHJvbGxlciBEZXZp
-Y2UgVHJlZSBCaW5kaW5ncyIsIGJ1dA0Kc29tZSBnZW5lcmljIHByb3BlcnRpZXMsIHN1Y2ggYXMs
-IGRyX21vZGUsIHVzYi1yb2xlLXN3aXRjaCwgb3RnIHJlbGF0ZWQNCm9uZXMsIGFyZSB1c3VhbGx5
-IHVzZWQgYnkgRFJEIGNvbnRyb2xsZXIsIHRoaXMgbWF5IGNhdXNlIHNvbWUgY29uZnVzaW9uLg0K
-DQo+ICAyIGZpbGVzIGNoYW5nZWQsIDg4IGluc2VydGlvbnMoKyksIDU3IGRlbGV0aW9ucygtKQ0K
-PiAgZGVsZXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91
-c2IvZ2VuZXJpYy50eHQNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvdXNiL2dlbmVyaWMudHh0IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL3VzYi9nZW5lcmljLnR4dA0KPiBkZWxldGVkIGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5k
-ZXggYmE0NzJlN2FlZmM5Li4wMDAwMDAwMDAwMDANCj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3VzYi9nZW5lcmljLnR4dA0KPiArKysgL2Rldi9udWxsDQo+IEBAIC0x
-LDU3ICswLDAgQEANCj4gLUdlbmVyaWMgVVNCIFByb3BlcnRpZXMNCj4gLQ0KPiAtT3B0aW9uYWwg
-cHJvcGVydGllczoNCj4gLSAtIG1heGltdW0tc3BlZWQ6IHRlbGxzIFVTQiBjb250cm9sbGVycyB3
-ZSB3YW50IHRvIHdvcmsgdXAgdG8gYSBjZXJ0YWluDQo+IC0JCQlzcGVlZC4gVmFsaWQgYXJndW1l
-bnRzIGFyZSAic3VwZXItc3BlZWQtcGx1cyIsDQo+IC0JCQkic3VwZXItc3BlZWQiLCAiaGlnaC1z
-cGVlZCIsICJmdWxsLXNwZWVkIiBhbmQNCj4gLQkJCSJsb3ctc3BlZWQiLiBJbiBjYXNlIHRoaXMg
-aXNuJ3QgcGFzc2VkIHZpYSBEVCwgVVNCDQo+IC0JCQljb250cm9sbGVycyBzaG91bGQgZGVmYXVs
-dCB0byB0aGVpciBtYXhpbXVtIEhXDQo+IC0JCQljYXBhYmlsaXR5Lg0KPiAtIC0gZHJfbW9kZTog
-dGVsbHMgRHVhbC1Sb2xlIFVTQiBjb250cm9sbGVycyB0aGF0IHdlIHdhbnQgdG8gd29yayBvbiBh
-DQo+IC0JCQlwYXJ0aWN1bGFyIG1vZGUuIFZhbGlkIGFyZ3VtZW50cyBhcmUgImhvc3QiLA0KPiAt
-CQkJInBlcmlwaGVyYWwiIGFuZCAib3RnIi4gSW4gY2FzZSB0aGlzIGF0dHJpYnV0ZSBpc24ndA0K
-PiAtCQkJcGFzc2VkIHZpYSBEVCwgVVNCIERSRCBjb250cm9sbGVycyBzaG91bGQgZGVmYXVsdCB0
-bw0KPiAtCQkJT1RHLg0KPiAtIC0gcGh5X3R5cGU6IHRlbGxzIFVTQiBjb250cm9sbGVycyB0aGF0
-IHdlIHdhbnQgdG8gY29uZmlndXJlIHRoZSBjb3JlIHRvIHN1cHBvcnQNCj4gLQkJCWEgVVRNSSsg
-UEhZIHdpdGggYW4gOC0gb3IgMTYtYml0IGludGVyZmFjZSBpZiBVVE1JKyBpcw0KPiAtCQkJc2Vs
-ZWN0ZWQuIFZhbGlkIGFyZ3VtZW50cyBhcmUgInV0bWkiIGFuZCAidXRtaV93aWRlIi4NCj4gLQkJ
-CUluIGNhc2UgdGhpcyBpc24ndCBwYXNzZWQgdmlhIERULCBVU0IgY29udHJvbGxlcnMgc2hvdWxk
-DQo+IC0JCQlkZWZhdWx0IHRvIEhXIGNhcGFiaWxpdHkuDQo+IC0gLSBvdGctcmV2OiB0ZWxscyB1
-c2IgZHJpdmVyIHRoZSByZWxlYXNlIG51bWJlciBvZiB0aGUgT1RHIGFuZCBFSCBzdXBwbGVtZW50
-DQo+IC0JCQl3aXRoIHdoaWNoIHRoZSBkZXZpY2UgYW5kIGl0cyBkZXNjcmlwdG9ycyBhcmUgY29t
-cGxpYW50LA0KPiAtCQkJaW4gYmluYXJ5LWNvZGVkIGRlY2ltYWwgKGkuZS4gMi4wIGlzIDAyMDBI
-KS4gVGhpcw0KPiAtCQkJcHJvcGVydHkgaXMgdXNlZCBpZiBhbnkgcmVhbCBPVEcgZmVhdHVyZXMo
-SE5QL1NSUC9BRFApDQo+IC0JCQlpcyBlbmFibGVkLCBpZiBBRFAgaXMgcmVxdWlyZWQsIG90Zy1y
-ZXYgc2hvdWxkIGJlDQo+IC0JCQkweDAyMDAgb3IgYWJvdmUuDQo+IC0gLSBjb21wYW5pb246IHBo
-YW5kbGUgb2YgYSBjb21wYW5pb24NCj4gLSAtIGhucC1kaXNhYmxlOiB0ZWxscyBPVEcgY29udHJv
-bGxlcnMgd2Ugd2FudCB0byBkaXNhYmxlIE9URyBITlAsIG5vcm1hbGx5IEhOUA0KPiAtCQkJaXMg
-dGhlIGJhc2ljIGZ1bmN0aW9uIG9mIHJlYWwgT1RHIGV4Y2VwdCB5b3Ugd2FudCBpdA0KPiAtCQkJ
-dG8gYmUgYSBzcnAtY2FwYWJsZSBvbmx5IEIgZGV2aWNlLg0KPiAtIC0gc3JwLWRpc2FibGU6IHRl
-bGxzIE9URyBjb250cm9sbGVycyB3ZSB3YW50IHRvIGRpc2FibGUgT1RHIFNSUCwgU1JQIGlzDQo+
-IC0JCQlvcHRpb25hbCBmb3IgT1RHIGRldmljZS4NCj4gLSAtIGFkcC1kaXNhYmxlOiB0ZWxscyBP
-VEcgY29udHJvbGxlcnMgd2Ugd2FudCB0byBkaXNhYmxlIE9URyBBRFAsIEFEUCBpcw0KPiAtCQkJ
-b3B0aW9uYWwgZm9yIE9URyBkZXZpY2UuDQo+IC0gLSB1c2Itcm9sZS1zd2l0Y2g6IGJvb2xlYW4s
-IGluZGljYXRlcyB0aGF0IHRoZSBkZXZpY2UgaXMgY2FwYWJsZSBvZiBhc3NpZ25pbmcNCj4gLQkJ
-CXRoZSBVU0IgZGF0YSByb2xlIChVU0IgaG9zdCBvciBVU0IgZGV2aWNlKSBmb3IgYSBnaXZlbg0K
-PiAtCQkJVVNCIGNvbm5lY3Rvciwgc3VjaCBhcyBUeXBlLUMsIFR5cGUtQihtaWNybykuDQo+IC0J
-CQlzZWUgY29ubmVjdG9yL3VzYi1jb25uZWN0b3IueWFtbC4NCj4gLSAtIHJvbGUtc3dpdGNoLWRl
-ZmF1bHQtbW9kZTogaW5kaWNhdGluZyBpZiB1c2Itcm9sZS1zd2l0Y2ggaXMgZW5hYmxlZCwgdGhl
-DQo+IC0JCQlkZXZpY2UgZGVmYXVsdCBvcGVyYXRpb24gbW9kZSBvZiBjb250cm9sbGVyIHdoaWxl
-IHVzYg0KPiAtCQkJcm9sZSBpcyBVU0JfUk9MRV9OT05FLiBWYWxpZCBhcmd1bWVudHMgYXJlICJo
-b3N0IiBhbmQNCj4gLQkJCSJwZXJpcGhlcmFsIi4gRGVmYXVsdHMgdG8gInBlcmlwaGVyYWwiIGlm
-IG5vdA0KPiAtCQkJc3BlY2lmaWVkLg0KPiAtDQo+IC0NCj4gLVRoaXMgaXMgYW4gYXR0cmlidXRl
-IHRvIGEgVVNCIGNvbnRyb2xsZXIgc3VjaCBhczoNCj4gLQ0KPiAtZHdjM0A0YTAzMDAwMCB7DQo+
-IC0JY29tcGF0aWJsZSA9ICJzeW5vcHN5cyxkd2MzIjsNCj4gLQlyZWcgPSA8MHg0YTAzMDAwMCAw
-eGNmZmY+Ow0KPiAtCWludGVycnVwdHMgPSA8MCA5MiA0Pg0KPiAtCXVzYi1waHkgPSA8JnVzYjJf
-cGh5PiwgPCZ1c2IzLHBoeT47DQo+IC0JbWF4aW11bS1zcGVlZCA9ICJzdXBlci1zcGVlZCI7DQo+
-IC0JZHJfbW9kZSA9ICJvdGciOw0KPiAtCXBoeV90eXBlID0gInV0bWlfd2lkZSI7DQo+IC0Jb3Rn
-LXJldiA9IDwweDAyMDA+Ow0KPiAtCWFkcC1kaXNhYmxlOw0KPiAtfTsNCj4gZGlmZiAtLWdpdCBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvdXNiLWhjZC55YW1sIGIvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2ItaGNkLnlhbWwNCj4gaW5kZXgg
-NzI2M2I3ZjJiNTEwLi5lZTdlYTIwNWM3MWQgMTAwNjQ0DQo+IC0tLSBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvdXNiLWhjZC55YW1sDQo+ICsrKyBiL0RvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvdXNiLWhjZC55YW1sDQo+IEBAIC0yMiw5ICsyMiw5
-NyBAQCBwcm9wZXJ0aWVzOg0KPiAgICAgIGRlc2NyaXB0aW9uOg0KPiAgICAgICAgTmFtZSBzcGVj
-aWZpZXIgZm9yIHRoZSBVU0IgUEhZDQo+ICANCj4gKyAgbWF4aW11bS1zcGVlZDoNCj4gKyAgIGRl
-c2NyaXB0aW9uOg0KPiArICAgICBUZWxscyBVU0IgY29udHJvbGxlcnMgd2Ugd2FudCB0byB3b3Jr
-IHVwIHRvIGEgY2VydGFpbiBzcGVlZC4gSW4gY2FzZSB0aGlzDQo+ICsgICAgIGlzbid0IHBhc3Nl
-ZCB2aWEgRFQsIFVTQiBjb250cm9sbGVycyBzaG91bGQgZGVmYXVsdCB0byB0aGVpciBtYXhpbXVt
-IEhXDQo+ICsgICAgIGNhcGFiaWxpdHkuDQo+ICsgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1s
-Iy9kZWZpbml0aW9ucy9zdHJpbmcNCj4gKyAgIGVudW06DQo+ICsgICAgIC0gbG93LXNwZWVkDQo+
-ICsgICAgIC0gZnVsbC1zcGVlZA0KPiArICAgICAtIGhpZ2gtc3BlZWQNCj4gKyAgICAgLSBzdXBl
-ci1zcGVlZA0KPiArICAgICAtIHN1cGVyLXNwZWVkLXBsdXMNCj4gKw0KPiArICBkcl9tb2RlOg0K
-PiArICAgIGRlc2NyaXB0aW9uOg0KPiArICAgICAgVGVsbHMgRHVhbC1Sb2xlIFVTQiBjb250cm9s
-bGVycyB0aGF0IHdlIHdhbnQgdG8gd29yayBvbiBhIHBhcnRpY3VsYXINCj4gKyAgICAgIG1vZGUu
-IEluIGNhc2UgdGhpcyBhdHRyaWJ1dGUgaXNuJ3QgcGFzc2VkIHZpYSBEVCwgVVNCIERSRCBjb250
-cm9sbGVycw0KPiArICAgICAgc2hvdWxkIGRlZmF1bHQgdG8gT1RHLg0KPiArICAgICRyZWY6IC9z
-Y2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3N0cmluZw0KPiArICAgIGVudW06IFtob3N0
-LCBwZXJpcGhlcmFsLCBvdGddDQo+ICsNCj4gKyAgcGh5X3R5cGU6DQo+ICsgICAgZGVzY3JpcHRp
-b246DQo+ICsgICAgICBUZWxscyBVU0IgY29udHJvbGxlcnMgdGhhdCB3ZSB3YW50IHRvIGNvbmZp
-Z3VyZSB0aGUgY29yZSB0byBzdXBwb3J0IGENCj4gKyAgICAgIFVUTUkrIFBIWSB3aXRoIGFuIDgt
-IG9yIDE2LWJpdCBpbnRlcmZhY2UgaWYgVVRNSSsgaXMgc2VsZWN0ZWQuIEluIGNhc2UNCj4gKyAg
-ICAgIHRoaXMgaXNuJ3QgcGFzc2VkIHZpYSBEVCwgVVNCIGNvbnRyb2xsZXJzIHNob3VsZCBkZWZh
-dWx0IHRvIEhXDQo+ICsgICAgICBjYXBhYmlsaXR5Lg0KPiArICAgICRyZWY6IC9zY2hlbWFzL3R5
-cGVzLnlhbWwjL2RlZmluaXRpb25zL3N0cmluZw0KPiArICAgIGVudW06IFt1dG1pLCB1dG1pX3dp
-ZGVdDQo+ICsNCj4gKyAgb3RnLXJldjoNCj4gKyAgICBkZXNjcmlwdGlvbjoNCj4gKyAgICAgIFRl
-bGxzIHVzYiBkcml2ZXIgdGhlIHJlbGVhc2UgbnVtYmVyIG9mIHRoZSBPVEcgYW5kIEVIIHN1cHBs
-ZW1lbnQgd2l0aA0KPiArICAgICAgd2hpY2ggdGhlIGRldmljZSBhbmQgaXRzIGRlc2NyaXB0b3Jz
-IGFyZSBjb21wbGlhbnQsIGluIGJpbmFyeS1jb2RlZA0KPiArICAgICAgZGVjaW1hbCAoaS5lLiAy
-LjAgaXMgMDIwMEgpLiBUaGlzIHByb3BlcnR5IGlzIHVzZWQgaWYgYW55IHJlYWwgT1RHDQo+ICsg
-ICAgICBmZWF0dXJlcyAoSE5QL1NSUC9BRFApIGlzIGVuYWJsZWQuIElmIEFEUCBpcyByZXF1aXJl
-ZCwgb3RnLXJldiBzaG91bGQgYmUNCj4gKyAgICAgIDB4MDIwMCBvciBhYm92ZS4NCj4gKyAgICAk
-cmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCj4gKw0KPiArICBj
-b21wYW5pb246DQo+ICsgICAgZGVzY3JpcHRpb246IFBoYW5kbGUgb2YgYSBjb21wYW5pb24gZGV2
-aWNlDQo+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRs
-ZQ0KPiArDQo+ICsgIGhucC1kaXNhYmxlOg0KPiArICAgIGRlc2NyaXB0aW9uOg0KPiArICAgICAg
-VGVsbHMgT1RHIGNvbnRyb2xsZXJzIHdlIHdhbnQgdG8gZGlzYWJsZSBPVEcgSE5QLiBOb3JtYWxs
-eSBITlAgaXMgdGhlDQo+ICsgICAgICBiYXNpYyBmdW5jdGlvbiBvZiByZWFsIE9URyBleGNlcHQg
-eW91IHdhbnQgaXQgdG8gYmUgYSBzcnAtY2FwYWJsZSBvbmx5IEINCj4gKyAgICAgIGRldmljZS4N
-Cj4gKyAgICB0eXBlOiBib29sZWFuDQo+ICsNCj4gKyAgc3JwLWRpc2FibGU6DQo+ICsgICAgZGVz
-Y3JpcHRpb246DQo+ICsgICAgICBUZWxscyBPVEcgY29udHJvbGxlcnMgd2Ugd2FudCB0byBkaXNh
-YmxlIE9URyBTUlAuIFNSUCBpcyBvcHRpb25hbCBmb3IgT1RHDQo+ICsgICAgICBkZXZpY2UuDQo+
-ICsgICAgdHlwZTogYm9vbGVhbg0KPiArDQo+ICsgIGFkcC1kaXNhYmxlOg0KPiArICAgIGRlc2Ny
-aXB0aW9uOg0KPiArICAgICAgVGVsbHMgT1RHIGNvbnRyb2xsZXJzIHdlIHdhbnQgdG8gZGlzYWJs
-ZSBPVEcgQURQLiBBRFAgaXMgb3B0aW9uYWwgZm9yIE9URw0KPiArICAgICAgZGV2aWNlLg0KPiAr
-ICAgIHR5cGU6IGJvb2xlYW4NCj4gKw0KPiArICB1c2Itcm9sZS1zd2l0Y2g6DQo+ICsgICAgZGVz
-Y3JpcHRpb246DQo+ICsgICAgICBJbmRpY2F0ZXMgdGhhdCB0aGUgZGV2aWNlIGlzIGNhcGFibGUg
-b2YgYXNzaWduaW5nIHRoZSBVU0IgZGF0YSByb2xlDQo+ICsgICAgICAoVVNCIGhvc3Qgb3IgVVNC
-IGRldmljZSkgZm9yIGEgZ2l2ZW4gVVNCIGNvbm5lY3Rvciwgc3VjaCBhcyBUeXBlLUMsDQo+ICsg
-ICAgICBUeXBlLUIobWljcm8pLiBTZWUgY29ubmVjdG9yL3VzYi1jb25uZWN0b3IueWFtbC4NCj4g
-Kw0KPiArICByb2xlLXN3aXRjaC1kZWZhdWx0LW1vZGU6DQo+ICsgICAgZGVzY3JpcHRpb246DQo+
-ICsgICAgICBJbmRpY2F0ZXMgaWYgdXNiLXJvbGUtc3dpdGNoIGlzIGVuYWJsZWQsIHRoZSBkZXZp
-Y2UgZGVmYXVsdCBvcGVyYXRpb24NCj4gKyAgICAgIG1vZGUgb2YgY29udHJvbGxlciB3aGlsZSB1
-c2Igcm9sZSBpcyBVU0JfUk9MRV9OT05FLg0KPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlh
-bWwjL2RlZmluaXRpb25zL3N0cmluZw0KPiArICAgIGVudW06IFtob3N0LCBwZXJpcGhlcmFsXQ0K
-PiArICAgIGRlZmF1bHQ6IHBlcmlwaGVyYWwNCj4gKw0KPiAgZXhhbXBsZXM6DQo+ICAgIC0gfA0K
-PiAgICAgIHVzYiB7DQo+ICAgICAgICAgIHBoeXMgPSA8JnVzYjJfcGh5MT4sIDwmdXNiM19waHkx
-PjsNCj4gICAgICAgICAgcGh5LW5hbWVzID0gInVzYiI7DQo+ICAgICAgfTsNCj4gKyAgLSB8DQo+
-ICsgICAgdXNiQDRhMDMwMDAwIHsNCj4gKyAgICAgICAgY29tcGF0aWJsZSA9ICJzbnBzLGR3YzMi
-Ow0KPiArICAgICAgICByZWcgPSA8MHg0YTAzMDAwMCAweGNmZmY+Ow0KPiArICAgICAgICBpbnRl
-cnJ1cHRzID0gPDAgOTIgND47DQo+ICsgICAgICAgIHVzYi1waHkgPSA8JnVzYjJfcGh5PiwgPCZ1
-c2IzX3BoeT47DQo+ICsgICAgICAgIG1heGltdW0tc3BlZWQgPSAic3VwZXItc3BlZWQiOw0KPiAr
-ICAgICAgICBkcl9tb2RlID0gIm90ZyI7DQo+ICsgICAgICAgIHBoeV90eXBlID0gInV0bWlfd2lk
-ZSI7DQo+ICsgICAgICAgIG90Zy1yZXYgPSA8MHgwMjAwPjsNCj4gKyAgICAgICAgYWRwLWRpc2Fi
-bGU7DQo+ICsgICAgfTsNCg0K
+On Tue, 2020-10-20 at 19:25 -0700, Lakshmi Ramasubramanian wrote:
+> On 10/20/20 1:00 PM, Mimi Zohar wrote:
+> > Hi Lakshmi,
+> > 
+> > On Wed, 2020-09-30 at 13:59 -0700, Lakshmi Ramasubramanian wrote:
+> >> The functions remove_ima_buffer() and delete_fdt_mem_rsv() that handle
+> >> carrying forward the IMA measurement logs on kexec for powerpc do not
+> >> have architecture specific code, but they are currently defined for
+> >> powerpc only.
+> >>
+> >> remove_ima_buffer() and delete_fdt_mem_rsv() are used to remove
+> >> the IMA log entry from the device tree and free the memory reserved
+> >> for the log. These functions need to be defined even if the current
+> >> kernel does not support carrying forward IMA log across kexec since
+> >> the previous kernel could have supported that and therefore the current
+> >> kernel needs to free the allocation.
+> >>
+> >> Rename remove_ima_buffer() to remove_ima_kexec_buffer().
+> >> Define remove_ima_kexec_buffer() and delete_fdt_mem_rsv() in kernel.
+> >> A later patch in this series will use these functions to free
+> >> the allocation, if any, made by the previous kernel for ARM64.
+> >>
+> >> Define FDT_PROP_IMA_KEXEC_BUFFER for the chosen node, namely
+> >> "linux,ima-kexec-buffer", that is added to the DTB to hold
+> >> the address and the size of the memory reserved to carry
+> >> the IMA measurement log.
+> > 
+> >> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> >> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> >> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> >> Reported-by: kernel test robot <lkp@intel.com> error: implicit declaration of function 'delete_fdt_mem_rsv' [-Werror,-Wimplicit-function-declaration]
+> > 
+> > Much better!  This version limits unnecessarily changing the existing
+> > code to adding a couple of debugging statements, but that looks to be
+> > about it.
+> Yes Mimi - that's correct.
+> 
+> > 
+> > Based on Chester Lin's "ima_arch" support for arm64 discussion, the IMA generic
+> > EFI support will be defined in ima/ima-efi.c.  Similarly, I think it would make sense to put the generic device tree support in ima/ima_kexec_fdt.c or ima/ima_fdt.c, as opposed to kernel/.  (Refer to my comments on 2/4 about the new file named ima_kexec_fdt.c.)
+> 
+> The functions remove_ima_kexec_buffer() and delete_fdt_mem_rsv(), which 
+> are defined in kernel/ima_kexec.c and kernel/kexec_file_fdt.c 
+> respectively, are needed even when CONFIG_IMA is not defined. These 
+> functions need to be called by the current kernel to free the ima kexec 
+> buffer resources allocated by the previous kernel. This is the reason, 
+> these functions are defined under "kernel" instead of 
+> "security/integrity/ima".
+> 
+> If there is a better location to move the above C files, please let me 
+> know. I'll move them.
+
+Freeing the previous kernel measurement list is currently called from
+ima_load_kexec_buffer(), only after the measurement list has been
+restored.  The only other time the memory is freed is when the
+allocated memory size isn't sufficient to hold the measurement list,
+which could happen if there is a delay between loading and executing
+the kexec.
+
+thanks,
+
+Mimi
 
