@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C6722953FD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 23:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F08295415
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 23:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2505966AbgJUVQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 17:16:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43562 "EHLO
+        id S2506093AbgJUVYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 17:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2505965AbgJUVQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 17:16:52 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2676EC0613CE;
-        Wed, 21 Oct 2020 14:16:52 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id b26so2250340pff.3;
-        Wed, 21 Oct 2020 14:16:52 -0700 (PDT)
+        with ESMTP id S2506092AbgJUVYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 17:24:46 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D28C0613CE;
+        Wed, 21 Oct 2020 14:24:46 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id q5so4139964wmq.0;
+        Wed, 21 Oct 2020 14:24:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=LjEMR+RvxUAU+81ZngdDVY7KFUetPWRBhlcZRlrbWTM=;
-        b=OtbvTaTjOhxeRj3LLmn0KyRuvranTgvXawtEOjZbnyotpxY/yFBKBDbhU6sQm9W8uo
-         P24+/ASmVuB5gdow7ePMK6A9yX2X1qxSk2zISwUb8c95FEEaQqpLfmtUQ5TCzKJX2gsA
-         PypaNLGZuELOxxK+ZZPpopI/C0H0tIvoB3Io9tinImcbXlh2+Z6HEs3pUGMcLFQtnbRY
-         hdfsm5Ur3YVJRk6aOXt3lkChUWbsCKVb9h73Wy9s1sqm77daomwV2dIThXhggmtPCT7f
-         4rFuvUEYn+VejbcKX8h21n5LdGGdwOIGQ2li02jMh6y1Z24iMOf3SeOHX7PPQM1+2hhi
-         ZwBw==
+        bh=RipUy/GvdmVZsDWbVUr7SVSUmlKVDIq3UATwfD6vxX8=;
+        b=JjTXgBepKJProOvnSNen0yPW5ifumy3BqFeCaJ7L+UpcEbZoVgMbba8tpviragaXSu
+         jFkvkZ21U7+Pk7zBAgMn0NzVvCqF+ioxuC3swm4fWz70R8NKDjkE/ucwr90PeS/W8dGd
+         Z6JL5yjjZgPskA64LNNEqoeyTZUSEk6bbtQSeqLHZQMjGWH9nXwtRFsq5R3ikRgJrjEE
+         txRx3ULZpBZnKWPDw/v/ERClyNawQzTMk+jrymeVLsikAJaQAx2lAyZRC8QocKY+kXau
+         0OIePrvqLU1vTihzozjBSrS+6FHOMqzoFSoJ/QNOrQKwUtfF89pvBd3fuljkWQA3RTQZ
+         5ZuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LjEMR+RvxUAU+81ZngdDVY7KFUetPWRBhlcZRlrbWTM=;
-        b=sXmx1PhzLKzlpcm7WhyVyMgFV5M6R1mRaFhIy7V06fhICMZ7RX4MRoVmGVrvH4de4q
-         u5FqDZhXhqDg3aLdIut0hl7EZ/tUF7V9tw4xXVfCAM/YeZ7DYSC0BZzy/FhpntLlBErc
-         F2ex7KMJnpeYwn029DRic2ZYy+McM2hEI9cN511kJ1IDS4Jz9SzvhDm18Z1391XP0cZP
-         IJXShAyQiEUzbvaMkyblUkhagEnREQkEe2Wfk/W22Q+DSYn6y2bsWFOFbZ8SV3b7dtoS
-         hgxORje5/0+mhfcRps34N4BUVJv+3P52jnC6CAPX2Dw0GzkHMtimW6VjM1DdN0n51ZSJ
-         AXEQ==
-X-Gm-Message-State: AOAM530UkjrRNSq2hHChwuD1OMN467JYVsIkdMKEx/fzQVK/LpxfeOaX
-        brVyOBBrTR8wm1+TKSAiE+k=
-X-Google-Smtp-Source: ABdhPJz/NqKws5TvHKaVDM4XPLrDvxcZl5xFUdIaq1uNYBQ5nklC6g8p6qIR/7jawo+ZMj/hDJJM+w==
-X-Received: by 2002:a62:1b02:0:b029:154:fdbe:4d2a with SMTP id b2-20020a621b020000b0290154fdbe4d2amr5382913pfb.27.1603315011599;
-        Wed, 21 Oct 2020 14:16:51 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id s20sm3189870pfc.201.2020.10.21.14.16.50
+        bh=RipUy/GvdmVZsDWbVUr7SVSUmlKVDIq3UATwfD6vxX8=;
+        b=tK3boKUnVV5wx4Y3KBcV55GezqluNHCSqhb2Mmunq7hRZRSCCpQmMAbXSKJkTgwwU5
+         IXfCQ/FyUs0RaUU4DgqdLeNJnlry7OeqbU5eOWyZaz71fiYGtaRkmc2ivtwP9c5t13A6
+         Mqrb1K+S9exOgfGxhg+VdbT532qSoiMF8kGtfNQcDDwOM7mOIs/i1UbY+0np3aebu8Q6
+         TzYINNbDjlxAJUZ0HoqHoFqvaK6KrvjNHDTzqE0senqF5s3ZxII0K1L/joSPdW/8FIkg
+         91yWdVBhYdtL/rA2HJgTNWw+ekPGfAiajTGOFVEISryWHbQGEMi4yJZ5zhgizijuzkP0
+         OPgw==
+X-Gm-Message-State: AOAM532clo/0lNwoGe9Arb6eUZM2M1yBaz7pbgdPEFrJ01l//xzGfAbo
+        rO4i8EaTxuqzNfBl+QQRJIoUBC3iIS4=
+X-Google-Smtp-Source: ABdhPJxnmv+oU8rhq+9dow/MKcVah8gWvFQrXY07xDSI1cb06ZiU1DEQPonv4pwelzNzEozZFgpppQ==
+X-Received: by 2002:a7b:cbd1:: with SMTP id n17mr5264801wmi.29.1603315484765;
+        Wed, 21 Oct 2020 14:24:44 -0700 (PDT)
+Received: from arch-thunder.localdomain (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id t6sm6879858wre.30.2020.10.21.14.24.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 14:16:50 -0700 (PDT)
-Date:   Wed, 21 Oct 2020 14:16:48 -0700
-From:   dmitry.torokhov@gmail.com
-To:     kholk11@gmail.com
-Cc:     robh+dt@kernel.org, rydberg@bitmath.org, priv.luk@gmail.com,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org, krzk@kernel.org
-Subject: Re: [PATCH v5 2/3] Input: Add Novatek NT36xxx touchscreen driver
-Message-ID: <20201021211648.GE444962@dtor-ws>
-References: <20201017190152.12780-1-kholk11@gmail.com>
- <20201017190152.12780-3-kholk11@gmail.com>
+        Wed, 21 Oct 2020 14:24:44 -0700 (PDT)
+Date:   Wed, 21 Oct 2020 22:24:38 +0100
+From:   Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, sakari.ailus@linux.intel.com,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] dt-bindings: imx7-mipi-csi2: convert bindings to
+ yaml
+Message-ID: <20201021212438.xgnjpmxojfketgqg@arch-thunder.localdomain>
+References: <20201020190051.1852778-1-rmfrfs@gmail.com>
+ <20201020190051.1852778-4-rmfrfs@gmail.com>
+ <20201021155016.bs2n5ixuhxwjzjy2@uno.localdomain>
+ <20201021205844.xpk4fgcppahlyee7@arch-thunder.localdomain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201017190152.12780-3-kholk11@gmail.com>
+In-Reply-To: <20201021205844.xpk4fgcppahlyee7@arch-thunder.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+Hi Jacopo,
+On Wed, Oct 21, 2020 at 09:58:47PM +0100, Rui Miguel Silva wrote:
+> Hi Jacopo,
+> Thanks for the review.
+> 
+> On Wed, Oct 21, 2020 at 05:50:16PM +0200, Jacopo Mondi wrote:
+> > Hi Rui,
+> > 
+> > On Tue, Oct 20, 2020 at 08:00:51PM +0100, Rui Miguel Silva wrote:
+> > 
+> > Do you need a maxItems too ?
+> 
+> sure, thanks.
+> 
+> > 
+> > nits apart
+> > Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> 
+> Thanks, Should I use this tag with renesas mail or the other that you
+> already used in the other patches? I think the later makes more sense.
 
-[obviously not a complete review, but wanted to call out regmap concern]
+never mind, your tag is the normal, I was confused by your email in
+the header and the email on the tag. My bad.
 
-On Sat, Oct 17, 2020 at 09:01:51PM +0200, kholk11@gmail.com wrote:
-> +static int nt36xxx_read_pid(struct nt36xxx_i2c *ts)
-> +{
-> +	u8 buf[2] = { 0 };
-
-	__be16 pid;
-
-> +	int ret = 0;
-> +
-> +	ret = nt36xxx_set_page(ts, ts->mmap->evtbuf_addr);
-> +	if (unlikely(ret < 0))
-> +		return ret;
-
-regmap is supposed to help with the paged registers, that is why I
-recommended using it.
-
-> +
-> +	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_PROJECTID,
-> +				buf, sizeof(buf));
-> +	if (unlikely(ret < 0))
-> +		return ret;
-> +
-> +	ts->fw_info.nvt_pid = (buf[1] << 8) + buf[0];
-
-	ts->fw_info.nvt_pid = be16_to_cpu(pid);
-
-Thanks.
-
--- 
-Dmitry
+------
+Cheers,
+     Rui
