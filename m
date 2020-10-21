@@ -2,78 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19897294CD6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 14:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0546F294CE6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 14:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408074AbgJUMj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 08:39:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37990 "EHLO mail.kernel.org"
+        id S2442510AbgJUMk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 08:40:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39130 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394282AbgJUMjZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 08:39:25 -0400
+        id S2394405AbgJUMkZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 08:40:25 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2EE1422249;
-        Wed, 21 Oct 2020 12:39:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2BD3F22275;
+        Wed, 21 Oct 2020 12:40:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603283964;
-        bh=mWU0XX6TP23oXRtNhUtKZR9PQ/87umOD4p89GJOQWxo=;
+        s=default; t=1603284024;
+        bh=+CBaQPUx7XVyQiN7FAvvUJkjEx6kAbYTgy2PMnvM5FM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZkxgulnNF2NFH9jo07oDU4EUHcw6hfl48FCyYKMbN/fSIbwuhDeBZjNQiRP4WeJVn
-         B8QXAA2jbjmKiJc96KJ/3h4MnZ5r7rEFwrOTx6tdj9oAJl7UOSCPeJ3t17BykafjTz
-         Zzm1hizSASBgt/k0uj2D29o+8bUuTp2GI6pY/12Q=
-Date:   Wed, 21 Oct 2020 13:39:13 +0100
+        b=g8wMoLURdOKef+AtsPQ7CoPpez8dprtmRsVugQlwldMlQdx5TPz+Kfq8czpCONMZ4
+         iBpIBEiXSillx/F3z8d5scmYOwISdTLLg+xEmQD673nv0yjR5oZmFYH/+oVt3gUiaJ
+         Dbx4QByh88bnZZ9ZW/OfLCPedWIRNbRf4F0MTumI=
+Date:   Wed, 21 Oct 2020 13:40:13 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Cheng-yi Chiang <cychiang@chromium.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine
- bindings
-Message-ID: <20201021123913.GD4497@sirena.org.uk>
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org>
- <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
- <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
- <20201015161251.GF4390@sirena.org.uk>
- <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
- <20201020143711.GC9448@sirena.org.uk>
- <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
- <CAFv8NwJ-+f146Ss9Mk=nEXjm1B--ZwhAgnfx-cTi7DGEKqC1-Q@mail.gmail.com>
- <e876421c-dfeb-e853-1b65-53a786e9bcf9@linaro.org>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     vigneshr@ti.com, tudor.ambarus@microchip.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        miquel.raynal@bootlin.com, simon.k.r.goldschmidt@gmail.com,
+        dinguyen@kernel.org, richard@nod.at, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+Subject: Re: [PATCH v2 5/6] dt-bindings: spi: Convert cadence-quadspi.txt to
+ cadence-quadspi.yaml
+Message-ID: <20201021124013.GE4497@sirena.org.uk>
+References: <20201021025507.51001-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201021025507.51001-6-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/3yNEOqWowh/8j+e"
+        protocol="application/pgp-signature"; boundary="uCPdOCrL+PnN2Vxy"
 Content-Disposition: inline
-In-Reply-To: <e876421c-dfeb-e853-1b65-53a786e9bcf9@linaro.org>
+In-Reply-To: <20201021025507.51001-6-vadivel.muruganx.ramuthevar@linux.intel.com>
 X-Cookie: That does not compute.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -81,37 +50,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---/3yNEOqWowh/8j+e
+--uCPdOCrL+PnN2Vxy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 21, 2020 at 01:00:54PM +0100, Srinivas Kandagatla wrote:
+On Wed, Oct 21, 2020 at 10:55:06AM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel=
+=2Ecom>
+>=20
+> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
+> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
 
-> This is totally not very useful w.r.t UCM2 and makes it very difficult to
-> common up parts of the configs.
+This is patch 5/6, not patch 6/6 as I suggested :/
 
-> My suggestions are.
-> 1. set card->driver_name to something more sensible in your sound card
-> driver.
-
-> 2. set long name in model DT property and set it as card long name
-
-It's also worth taking a look at what Intel are doing here with their
-cards.
-
---/3yNEOqWowh/8j+e
+--uCPdOCrL+PnN2Vxy
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+QK/AACgkQJNaLcl1U
-h9BbUwf/eOnrTlDEbw+QGCrFiYUmnzBGx64NN4D6F6QHebJyBsYrT6PB95nEpzei
-/il7qT8KENMbMgMUSN4N3vMUVWAkrFYjtI5TXCjDvYy1h790B9UIPXyrq+1+hr3U
-+KuyJJ4+adkM1dYEH904ynqdFapjo8DfVcD0YNZ2DstV8UdOnegpQP06Fygn7Vm8
-7diV0uAnJrtMX74ezClTiKcTB6/Nl0B/ve5m9o8usTa9H1LL9v6HgGrqjrFhMS/p
-6h8MzEw2zJS6+kAU//U8MNVBYAmhR7Urw93XHEx7gisLq3STJgnW0580I4lLHd0i
-9/H/UCdqrnIcE7b8lByvQDy/V2Ydhw==
-=jQZx
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+QLCwACgkQJNaLcl1U
+h9BbAAf/YM0k2iVJQk3ZZTpt3a7VpEFh1nmu2nQljnukDeA+/Gnk4Z+7JGxrMALJ
+qJSvm+d9osWVrjn1a6gQHlGJJT2k/pQd/orYzmIi9pecL3FLj+Zl16pstQxjzpCS
+5F8yhLiwm8CuB2q7YNtBgejkeBZFpmUkHmzwqYV3VoBmfEHWj6V2peux1nQrk27X
+uw5BgnRFo+7yId3wCD+41ewPp3DO8/4FvfHMUn7cXy9ASM1EfWfjJDeIomxdA3GU
+TkGCvLjNqf1q7zNyvF0kayMofN44C2lYaMp9mceULPByJByN53roLfHlcQslbo85
+iKFs4JhaWtOjOZ7O7TbQiE9Q5qKapg==
+=NlDZ
 -----END PGP SIGNATURE-----
 
---/3yNEOqWowh/8j+e--
+--uCPdOCrL+PnN2Vxy--
