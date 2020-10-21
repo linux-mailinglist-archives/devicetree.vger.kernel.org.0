@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68C36295105
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 18:42:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37BBC295109
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 18:42:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438292AbgJUQmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 12:42:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57648 "EHLO
+        id S2438225AbgJUQml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 12:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409026AbgJUQmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 12:42:38 -0400
+        with ESMTP id S2438909AbgJUQmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 12:42:40 -0400
 Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC216C0613CF
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 09:42:36 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id n6so3747759wrm.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 09:42:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFF3C0613D2
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 09:42:38 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id i1so3929269wro.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 09:42:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ktOQBsIi43nG8a2/21JQPeKNNuRP5PqTvkBAgWAn5tg=;
-        b=i0gAa5X6lQdX9PQRLe+laWerY6VMaJl4dmiT6eFrLnTc2mxLVLmiMvAWGcvAnHcwx4
-         bRRsAi9yCpLOP6i5M1k46oXGtRSSFG50d2yRDnM3GpTKGjzsmZvi7RnjDvWU2vWQGe88
-         VzaMuPFNaxqlgjy5VXrpkhLGdYnX69HqlTMRgJg5VQF5t+OFCOFypTyytbfPIkrfxBFZ
-         vJaqstRk6Qz7v1TQbN5K9qy2e8WBPScm5gEmXD4E8l1cRPGg0z1g9OLSdD82DY5g2/aG
-         9OuQm9Oo2M2Ul/rHhjpM3jLh4xOq+/ZhBLk4gBZ+oG6iFNcRpdJzO3+nMhM1u3bR6dhA
-         GdAQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=oJ1aKiINz0LrDU7aEXlCXE8tQqMpnuCeNmVOG6Ww0Oo=;
+        b=ejJUXrzhfpQggo3vO73m1qC2ZK7LYm9EZfc6A/LtRy5ByuRubgYG+fwFBIu/0V1H/2
+         jTA5a9YkArTcVWbMcngRM0EWvr66+7EAn2ztGJMgE2LmPfRwRLKjZx8WdZyUwcaVPyqI
+         9yLQ45kLhXWMK1Ewzxsxh7thE//owACHFh7d/XjLVC1rFo6Fdc6vuappjtg05+7Zl+M1
+         lvlNIjnjClBhbepPGXcvJFciSUDz4kvHnJGltnpDGllNWmTKEv/dHFfb8dYOHohXlUdI
+         ihJ/JE2NIGn/uhQ6bNEChusM1zoVZja207abAl9HYHeFYeldjuCCj5mbY03a4VwSQUJG
+         yS2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ktOQBsIi43nG8a2/21JQPeKNNuRP5PqTvkBAgWAn5tg=;
-        b=OXtK6UP5w3rlw4V6nHP6bU9/+Xf9qNSaJP4y1++6ruwzKaYF0ZdmB6v3YX7zwSD33w
-         3Qgl43IhsbMBJNCprY4ZDYhdgU6Qc4x2TPHcJ1rglc7p+pS+Py6qJFPzddWYCki8BITH
-         8YR168eapCTv1gcWIg8m5UBVxY72xUMpj4zQhNWkJizXfHjzStcxCEpnTzV1FXSj5MFq
-         8fIzcdxbm9FXVSfBvG4ZiEfgsr8ysLWIaPQ2GRzjM8cX00crmvGQEtLXg/DPfnRXJfP3
-         tgBBCw9A21zabCxzRWaoYEV4GOReGFMUu7GZDUB20fU0y84kCkXmqAbXhXmkJnJzMqLj
-         DSSQ==
-X-Gm-Message-State: AOAM530+4Z6hN1fvda7OsYjO36Gj7thp4roCFYMeARlwzn3Qjde//YZv
-        vvYDAKmF5P3huqBBr9/U3kzGbA==
-X-Google-Smtp-Source: ABdhPJwSC4b6Zp3WR/gk387RdiJewfMgrjpTyShE4TGDBNY3p53Pb4FZAnNyTZ++ZiVCeZuokVyJVg==
-X-Received: by 2002:adf:de91:: with SMTP id w17mr5681928wrl.84.1603298555294;
-        Wed, 21 Oct 2020 09:42:35 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=oJ1aKiINz0LrDU7aEXlCXE8tQqMpnuCeNmVOG6Ww0Oo=;
+        b=asysb6RlHhZQFyRNbZCjWHkLn4rQcvDgnk22BtmW04CCL+2iWiaPmNdS3iyxL+rGTR
+         0Yks2iDXLXx/PWG5oOzJEcaGnqKinaZlY3aWJNdovE1DWC9niQdynQNPZ6ybtCHBlxhB
+         1pSmNsx4zY7qqvwyfPwKjJDczG1Xw0qJih/BPQ6w8Zuo+LeS09PGQWhIBp+aMmMBOVNg
+         pQJgLgVFM9rHPhrPXKSRiaaAB4J79GkQ2YQ+eNWa4LA7GhAKwHD078pi1wIFHnro+JCa
+         8248bBPTT7M66mf5NeUMsiTt5pYSHx4AJVTl9gxlkz1jWZ+yUnzC7oHKQi3Y9KsYzdED
+         5s1A==
+X-Gm-Message-State: AOAM531nFr+ERZzLIKnwdYldmL623QSm+9py+aWB9ejVZkNqXbYiIRj/
+        vnPz5MACditq4p9dwr90tycf82YwFnjIKQ==
+X-Google-Smtp-Source: ABdhPJx73zW9wIrp01tKrd0AfCe57dEOyLM7D7HDQ0Xn+ABvJXdf/J86jJpZPTzBTZV6B1/xQWM35g==
+X-Received: by 2002:a5d:4fc5:: with SMTP id h5mr5545357wrw.145.1603298556934;
+        Wed, 21 Oct 2020 09:42:36 -0700 (PDT)
 Received: from localhost.localdomain (58.164.185.81.rev.sfr.net. [81.185.164.58])
-        by smtp.gmail.com with ESMTPSA id a3sm5321724wrh.94.2020.10.21.09.42.33
+        by smtp.gmail.com with ESMTPSA id a3sm5321724wrh.94.2020.10.21.09.42.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 09:42:34 -0700 (PDT)
+        Wed, 21 Oct 2020 09:42:36 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
@@ -54,42 +54,38 @@ To:     linux-mediatek@lists.infradead.org,
 Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, amitk@kernel.org,
         daniel.lezcano@linaro.org, rui.zhang@intel.com,
         Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH 1/3] dt-bindings: thermal: mediatek: make resets property optional
-Date:   Wed, 21 Oct 2020 18:42:29 +0200
-Message-Id: <20201021164231.3029956-1-fparent@baylibre.com>
+Subject: [PATCH 2/3] dt-bindings: thermal: mediatek: add documentation for MT8516 SoC
+Date:   Wed, 21 Oct 2020 18:42:30 +0200
+Message-Id: <20201021164231.3029956-2-fparent@baylibre.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201021164231.3029956-1-fparent@baylibre.com>
+References: <20201021164231.3029956-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT8516 Thermal IP does not support reset. Make the resets property
-optional in order to be able to support MT8516 SoC.
+Add binding documentation for the MediaTek MT8516 SoC.
+The SoC thermal IP is similar to MT2701.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- Documentation/devicetree/bindings/thermal/mediatek-thermal.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/thermal/mediatek-thermal.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
-index 1e249c42fae0..2d20f6b0dca0 100644
+index 2d20f6b0dca0..5c7e7bdd029a 100644
 --- a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
 +++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
-@@ -20,12 +20,12 @@ Required properties:
-                        clocks are:
- 		       "therm":	 Main clock needed for register access
- 		       "auxadc": The AUXADC clock
--- resets: Reference to the reset controller controlling the thermal controller.
- - mediatek,auxadc: A phandle to the AUXADC which the thermal controller uses
- - mediatek,apmixedsys: A phandle to the APMIXEDSYS controller.
- - #thermal-sensor-cells : Should be 0. See Documentation/devicetree/bindings/thermal/thermal-sensor.yaml for a description.
- 
- Optional properties:
-+- resets: Reference to the reset controller controlling the thermal controller.
- - nvmem-cells: A phandle to the calibration data provided by a nvmem device. If
-                unspecified default values shall be used.
- - nvmem-cell-names: Should be "calibration-data"
+@@ -14,6 +14,7 @@ Required properties:
+   - "mediatek,mt2712-thermal" : For MT2712 family of SoCs
+   - "mediatek,mt7622-thermal" : For MT7622 SoC
+   - "mediatek,mt8183-thermal" : For MT8183 family of SoCs
++  - "mediatek,mt8516-thermal", "mediatek,mt2701-thermal : For MT8516 family of SoCs
+ - reg: Address range of the thermal controller
+ - interrupts: IRQ for the thermal controller
+ - clocks, clock-names: Clocks needed for the thermal controller. required
 -- 
 2.28.0
 
