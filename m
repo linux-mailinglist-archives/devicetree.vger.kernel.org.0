@@ -2,79 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74E2029546B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 23:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51B90295484
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 23:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395097AbgJUVoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 17:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47822 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2394979AbgJUVoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 17:44:09 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C4DC0613CE;
-        Wed, 21 Oct 2020 14:44:08 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3E694BB5;
-        Wed, 21 Oct 2020 23:44:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1603316645;
-        bh=r0/BVPZ5sYVVho5+0WlZ2bZmHakc+j3/4PoZO26YsPo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uwwGogVaXjwO/Qh/wuPtihQDvUYwbC7+tx6/DSUXBWLgk71RrMo2tmlI458TitAmr
-         VRdGUQkfHPNg8/n+1UidSvKnu3RY0Gc4wBsFzJaqx7dHDo4LqnmneSQmvhNG36m1gG
-         CairNRMVulN4Fx2XynWZOsZh3eRrmadKkPHqW/E4=
-Date:   Thu, 22 Oct 2020 00:43:19 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S2506502AbgJUVuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 17:50:21 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:57562 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2506493AbgJUVuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 17:50:19 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201021214948euoutp027b35916ffd593c71660807325a34ebd2~AIE5WrL5q2062820628euoutp02w
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 21:49:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201021214948euoutp027b35916ffd593c71660807325a34ebd2~AIE5WrL5q2062820628euoutp02w
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1603316988;
+        bh=gwwjrxfgxaNZsPGAiCkyHWUSc8RJJJ8snj/08cO1Z50=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=Sdnur8e6dTvVzluZCMXTGpTE4aP1FIud+eZFO19zm4I/IlKOW4qs7vntwizm1xn/j
+         g3nv+xEfVmV+H5mWmH3+Z/MQ3JXrVMQFmt86H/6miajWvtGM85yZ1d+KOWoLcQcuoJ
+         RI2U47B7VOAKG/B71GwXidjaFoecqSXrWHsbQGLA=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201021214930eucas1p2b04707283fdede67307472138e90bbea~AIEpPsHsR2056620566eucas1p29;
+        Wed, 21 Oct 2020 21:49:30 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id DE.8C.06318.AECA09F5; Wed, 21
+        Oct 2020 22:49:30 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201021214930eucas1p1cf406b35bbe4b643db287643e4a5b85b~AIEotzf4G2857528575eucas1p1j;
+        Wed, 21 Oct 2020 21:49:30 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201021214930eusmtrp296fba8512128bc2a40ca96c9d81700b6~AIEotDWwj0512505125eusmtrp2Z;
+        Wed, 21 Oct 2020 21:49:30 +0000 (GMT)
+X-AuditID: cbfec7f5-371ff700000018ae-c2-5f90aceafb82
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 34.69.06314.AECA09F5; Wed, 21
+        Oct 2020 22:49:30 +0100 (BST)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20201021214930eusmtip21f5d911bee91a8bab67933a9fa891fe5~AIEoj7gXE0505105051eusmtip2o;
+        Wed, 21 Oct 2020 21:49:30 +0000 (GMT)
+From:   =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+To:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 0/5] Add r8a77965 DRIF support
-Message-ID: <20201021214319.GO3942@pendragon.ideasonboard.com>
-References: <20201021135332.4928-1-fabrizio.castro.jz@renesas.com>
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     =?UTF-8?q?Bart=C5=82omiej=20=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+Subject: [PATCH v3 0/5] AX88796C SPI Ethernet Adapter
+Date:   Wed, 21 Oct 2020 23:49:05 +0200
+Message-Id: <20201021214910.20001-1-l.stelmach@samsung.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201021135332.4928-1-fabrizio.castro.jz@renesas.com>
+Organization: Samsung R&D Institute Poland
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SeUhUURTGu/PmLYlTz1HyYGE5VqDghhkXDCkTekVQFIgYpmM+l3JjxiUl
+        UNLUxNSsyGxIMU0Tl1IzFZ10MrUsxxb3NY2sCSsybbeceSP53++e8333OwcOQ0hHSSsmLDKG
+        V0TKw2WUibih80evg64y19+5+6Yr1o5rCHw3v4bEKm2qGBd29JK4+FM+iQfmxkicM/OBwFrt
+        HRr3NWSTeFhTjnDtzACJXzarKJyvVYuw5korwlUd4zTuLNqAz7V20LvNuJcDzwmu/vawiGsq
+        GKe52orzFFdXksQ1Nc6LuOz6CsTN11ofZnxNdgXx4WFxvMLJI8Ak9NZiQnSK9emMwQ4qGakt
+        M9FaBtgdkK4bpPUsZcsRfCtzFvgrgpHFvZnIZJnnEfxRz4tXDCMvSkmhUYYg9W+J0T2LIG/I
+        W88UuwdySrsNIgt2goCa9CmkfxCsGkHTxGVCrzJn3WC6ONngFrPboGu81RAhYd0h79ckJcRt
+        hvSy+5RQN4PH194YNOtZe6g8O2hgYlmTcu86oQ8A9gcNVUtLxlm9oDLtPS2wOei66o28Cf42
+        FYoyEbPMSXApb6fgzULQoPpu9LrDWO9PSq8hWDuoaXYSynvgQdkIIVjXwdCcmTDCOshruGos
+        SyAjTSqot0J1TovxQyu4oCtHAnNQ1TZH5yKbglWLFaxapuB/bhEiKpAlH6uMCOGVrpF8vKNS
+        HqGMjQxxPBEVUYuWT65nqWuhEal/B2oQyyCZqeTzwVx/KSmPUyZEaBAwhMxC4vms57hUEiRP
+        SOQVUf6K2HBeqUEbGbHMUuJa/N5PyobIY/hTPB/NK1a6ImatVTJSpLZken3pPPLoULu9xtb3
+        zfnSydxQyZbK6UPuFqFv7Ux9qh3WePq4Dets6mbpsKNBD7P7nZ7GZ/m8a/945phbYMCTNr+u
+        /bOy0ZgAxoeSebp7Jk68XkhOfBTc7b1vKt6jP7iPiz1w0sU2yWUuxeaT6mKdXyq3/VWzavHa
+        w4sZH27MysTKULmLPaFQyv8BPuhlfm4DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKIsWRmVeSWpSXmKPExsVy+t/xe7qv1kyIN5j1QsDi/N1DzBYbZ6xn
+        tZhzvoXFYv6Rc6wWi97PYLW49vYOq0X/49fMFufPb2C3uLCtj9Xi5qEVjBabHl9jtbi8aw6b
+        xYzz+5gsDk3dy2ix9shddotjC8QsWvceYXcQ9Lh87SKzx5aVN5k8ds66y+6xaVUnm8fmJfUe
+        O3d8ZvLo27KK0ePzJrkAjig9m6L80pJUhYz84hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07
+        m5TUnMyy1CJ9uwS9jGXfKgua5So6rh9ha2DcJ97FyMkhIWAicevSUlYQW0hgKaPE9XPpXYwc
+        QHEpiZVz0yFKhCX+XOti62LkAip5yiixZH8rI0iCTcBRon/pCVaQhIjAG2aJpntv2UEcZoF9
+        jBL7jy5mB6kSFjCVeLSoAcxmEVCVOH53LwuIzStgLTHp9302iBXyEu3Lt7NBxAUlTs58wgJy
+        BbOAusT6eUIgYX4BLYk1TdfBWpmBypu3zmaewCgwC0nHLISOWUiqFjAyr2IUSS0tzk3PLTbU
+        K07MLS7NS9dLzs/dxAiM0m3Hfm7ewXhpY/AhRgEORiUe3g8+E+KFWBPLiitzDzFKcDArifA6
+        nT0dJ8SbklhZlVqUH19UmpNafIjRFOidicxSosn5wASSVxJvaGpobmFpaG5sbmxmoSTO2yFw
+        MEZIID2xJDU7NbUgtQimj4mDU6qB0XjnZv0p9dcWH2fa6v7q7a3sEu3vmSwvN+fEyDz6/S9l
+        3iO70/fmWjBHuqya0fI680NHc72bTrFo+sZpPKFbc5xPv9H+k5dk1d1+5+55br05xhG9pb4m
+        1aVS+6XMpy7p3aI0jY9hdnf8zbWr1rT5FJY57XQJDV9kVrdhQyv3PROhoFubz504osRSnJFo
+        qMVcVJwIANX6vZPoAgAA
+X-CMS-MailID: 20201021214930eucas1p1cf406b35bbe4b643db287643e4a5b85b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201021214930eucas1p1cf406b35bbe4b643db287643e4a5b85b
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201021214930eucas1p1cf406b35bbe4b643db287643e4a5b85b
+References: <CGME20201021214930eucas1p1cf406b35bbe4b643db287643e4a5b85b@eucas1p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
+found on ARTIK5 evaluation board. The driver has been ported from a
+v3.10.9 vendor kernel for ARTIK5 board.
 
-On Wed, Oct 21, 2020 at 02:53:27PM +0100, Fabrizio Castro wrote:
-> Dear All,
-> 
-> this series is to add DRIF support for the r8a77965
-> (a.k.a. R-Car M3-N). Version 5 fixes a warning reported
-> by 'make dt_binding_check', as reported by Rob.
+Changes in v3:
+  - modify vendor-prefixes.yaml in a separate patch
+  - fix several problems in the dt binding
+    - removed unnecessary descriptions and properties
+    - changed the order of entries
+    - fixed problems with missing defines in the example
+  - change (1 << N) to BIT(N), left a few (0 << N)
+  - replace ax88796c_get_link(), ax88796c_get_link_ksettings(),
+    ax88796c_set_link_ksettings(), ax88796c_nway_reset(),
+    ax88796c_set_mac_address() with appropriate kernel functions.
+  - disable PHY auto-polling in MAC and use PHYLIB to track the state
+    of PHY and configure MAC
+  - propagate return values instead of returning constants in several
+    places
+  - add WARN_ON() for unlocked mutex
+  - remove local work queue and use the system_wq
+  - replace phy_connect_direct() with phy_connect() and move
+    devm_register_netdev() to the end of ax88796c_probe()
+    (Unlike phy_connect_direct() phy_connect() does not crash if the
+    network device isn't registered yet.)
+  - remove error messages on ENOMEM
+  - move free_irq() to the end of ax88796c_close() to avoid race
+    condition
+  - implement flow-control
 
-Patch 1/5 to 4/5 taken in my tree, I'll send a pull request to
-linux-media when the merge window closes. I expect Geert to handle 5/5.
+Changes in v2:
+  - use phylib
+  - added DT bindings
+  - moved #includes to *.c files
+  - used mutex instead of a semaphore for locking
+  - renamed some constants
+  - added error propagation for several functions
+  - used ethtool for dumping registers
+  - added control over checksum offloading
+  - remove vendor specific PM
+  - removed macaddr module parameter and added support for reading a MAC
+    address from platform data (e.g. DT)
+  - removed dependency on SPI from NET_VENDOR_ASIX
+  - added an entry in the MAINTAINERS file
+  - simplified logging with appropriate netif_* and netdev_* helpers
+  - lots of style fixes
 
-> Fabrizio Castro (5):
->   MAINTAINERS: Update MAINTAINERS for Renesas DRIF driver
->   media: dt-bindings: media: renesas,drif: Convert to json-schema
->   media: dt-bindings: media: renesas,drif: Add r8a77990 support
->   media: dt-bindings: media: renesas,drif: Add r8a77965 support
->   arm64: dts: r8a77965: Add DRIF support
-> 
->  .../bindings/media/renesas,drif.txt           | 177 -----------
->  .../bindings/media/renesas,drif.yaml          | 279 ++++++++++++++++++
->  MAINTAINERS                                   |   4 +-
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi     | 120 ++++++++
->  4 files changed, 401 insertions(+), 179 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/renesas,drif.txt
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,drif.yaml
+Łukasz Stelmach (5):
+  dt-bindings: vendor-prefixes: Add asix prefix
+  dt-bindings: net: Add bindings for AX88796C SPI Ethernet Adapter
+  net: ax88796c: ASIX AX88796C SPI Ethernet Adapter Driver
+  ARM: dts: exynos: Add Ethernet to Artik 5 board
+  ARM: defconfig: Enable ax88796c driver
+
+ .../bindings/net/asix,ax88796c.yaml           |   69 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    6 +
+ arch/arm/boot/dts/exynos3250-artik5-eval.dts  |   29 +
+ arch/arm/configs/exynos_defconfig             |    2 +
+ arch/arm/configs/multi_v7_defconfig           |    2 +
+ drivers/net/ethernet/Kconfig                  |    1 +
+ drivers/net/ethernet/Makefile                 |    1 +
+ drivers/net/ethernet/asix/Kconfig             |   22 +
+ drivers/net/ethernet/asix/Makefile            |    6 +
+ drivers/net/ethernet/asix/ax88796c_ioctl.c    |  197 +++
+ drivers/net/ethernet/asix/ax88796c_ioctl.h    |   27 +
+ drivers/net/ethernet/asix/ax88796c_main.c     | 1144 +++++++++++++++++
+ drivers/net/ethernet/asix/ax88796c_main.h     |  578 +++++++++
+ drivers/net/ethernet/asix/ax88796c_spi.c      |  111 ++
+ drivers/net/ethernet/asix/ax88796c_spi.h      |   69 +
+ 16 files changed, 2266 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c.yaml
+ create mode 100644 drivers/net/ethernet/asix/Kconfig
+ create mode 100644 drivers/net/ethernet/asix/Makefile
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_ioctl.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_ioctl.h
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_main.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_main.h
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_spi.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_spi.h
 
 -- 
-Regards,
-
-Laurent Pinchart
+2.26.2
