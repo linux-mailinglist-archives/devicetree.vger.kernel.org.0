@@ -2,173 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D0F7294FAE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19DFF294FBC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:18:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2501941AbgJUPOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 11:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43978 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2501892AbgJUPOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 11:14:38 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B763DC0613CE
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 08:14:38 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 1BCCA1F45603
-Subject: Re: [PATCH v3 3/3] mfd: google,cros-ec: add missing properties
-To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
-        robh@kernel.org
-Cc:     kernel@collabora.com, bleung@chromium.org, groeck@chromium.org,
-        sjg@chromium.org, dianders@chromium.org,
-        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        cychiang@chromium.org, tzungbi@google.com
-References: <20201021114308.25485-1-ricardo.canuelo@collabora.com>
- <20201021114308.25485-4-ricardo.canuelo@collabora.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <bdc4e20a-e767-5cb4-0d03-b0ecfcd96b4e@collabora.com>
-Date:   Wed, 21 Oct 2020 17:14:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S2502130AbgJUPSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 11:18:02 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35998 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2501934AbgJUPSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 11:18:02 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09LFHcw8115681;
+        Wed, 21 Oct 2020 10:17:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603293458;
+        bh=FIbHw4Dh5k6YKwhGIHiMGFdq5N3EVz29tjQGUrHK7QA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ASxhJRViw9M4pQ4dGLhrJ4xEpNJchfRqy6Y67crgwSl50Z1xc3vMkH7eWj287HgiI
+         ve5is4iI4r1/EbXwmuUPP0Bf3tW5efJAXOpdlhImXa4VJqfFugPK4TcjZQVMpU8VQl
+         gay8UX1RIf3owYK6Qd58+D2PqU/cHr+WbQrv5ZEE=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09LFHcb0097185
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 21 Oct 2020 10:17:38 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 21
+ Oct 2020 10:17:38 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 21 Oct 2020 10:17:38 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09LFHbuO010849;
+        Wed, 21 Oct 2020 10:17:37 -0500
+Date:   Wed, 21 Oct 2020 20:47:36 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+CC:     <vigneshr@ti.com>, <tudor.ambarus@microchip.com>,
+        <broonie@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <miquel.raynal@bootlin.com>,
+        <simon.k.r.goldschmidt@gmail.com>, <dinguyen@kernel.org>,
+        <richard@nod.at>, <cheol.yong.kim@intel.com>,
+        <qi-ming.wu@intel.com>
+Subject: Re: [PATCH v2 2/6] spi: cadence-quadspi: Disable the DAC for Intel
+ LGM SoC
+Message-ID: <20201021140015.3ldwk4az5nlzhnvr@ti.com>
+References: <20201021025507.51001-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201021025507.51001-3-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201021114308.25485-4-ricardo.canuelo@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201021025507.51001-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo,
+Hi,
 
-On 21/10/20 13:43, Ricardo Cañuelo wrote:
-> Add missing properties that are currently used in the examples of
-> subnode bindings and in many DTs.
+On 21/10/20 10:55AM, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > 
-> Also updates the example in sound/google,cros-ec-codec.yaml to comply
-> with the google,cros-ec binding.
+> On Intel Lightning Mountain(LGM) SoCs QSPI controller do not use
+> Direct Access Controller(DAC).
 > 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-
+> This patch adds a quirk to disable the Direct Access Controller
+> for data transfer instead it uses indirect data transfer.
+> 
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > ---
->  .../bindings/mfd/google,cros-ec.yaml          | 42 +++++++++++++++++++
->  .../bindings/sound/google,cros-ec-codec.yaml  | 26 +++++++-----
->  2 files changed, 58 insertions(+), 10 deletions(-)
+>  drivers/spi/spi-cadence-quadspi.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index 351bfb6d37ba..48929bb07d98 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -59,6 +59,14 @@ properties:
->        whether this nvram is present or not.
->      type: boolean
+> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
+> index d7b10c46fa70..3d017b484114 100644
+> --- a/drivers/spi/spi-cadence-quadspi.c
+> +++ b/drivers/spi/spi-cadence-quadspi.c
+> @@ -1106,6 +1106,13 @@ static void cqspi_controller_init(struct cqspi_st *cqspi)
+>  	reg |= CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
+>  	writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
 >  
-> +  mtk,rpmsg-name:
-> +    description:
-> +      Must be defined if the cros-ec is a rpmsg device for a Mediatek
-> +      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
-> +      device. Used to match the subnode to the rpmsg device announced by
-> +      the SCP.
-> +    $ref: "/schemas/types.yaml#/definitions/string"
+> +	/* Disable direct access controller */
+> +	if (!cqspi->use_direct_mode) {
+> +		reg = readl(cqspi->iobase + CQSPI_REG_CONFIG);
+> +		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
+> +		writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
+> +	}
 > +
->    spi-max-frequency:
->      description: Maximum SPI frequency of the device in Hz.
+
+Do you really need to disable the DAC controller? cqspi_read() and 
+cqspi_write() already check for cqspi->use_direct_mode and avoid using 
+direct mode if it is false. While I don't think it would do any harm I'm 
+curious what prompted you to do this instead of just setting the quirk 
+like cdns_qspi does.
+
+Anyway, if you do insist on doing it, it does not make any sense to set 
+a bit and then unset it immediately after. The datasheet I have says 
+this bit resets to 1 so the block above the code you added should be 
+removed.
+
+>  	cqspi_controller_enable(cqspi, 1);
+>  }
 >  
-> @@ -71,14 +79,48 @@ properties:
->    wakeup-source:
->      description: Button can wake-up the system.
+> @@ -1388,6 +1395,10 @@ static const struct cqspi_driver_platdata am654_ospi = {
+>  	.quirks = CQSPI_NEEDS_WR_DELAY,
+>  };
 >  
-> +  typec:
-> +    $ref: "/schemas/chrome/google,cros-ec-typec.yaml#"
+> +static const struct cqspi_driver_platdata intel_lgm_qspi = {
+> +	.quirks = CQSPI_DISABLE_DAC_MODE,
+> +};
 > +
-> +  ec-pwm:
-> +    $ref: "/schemas/pwm/google,cros-ec-pwm.yaml#"
-> +
->    keyboard-controller:
->      $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
->  
-> +  codecs:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 2
-> +
-> +      '#size-cells':
-> +        const: 1
-> +
-> +    patternProperties:
-> +      "^ec-codec@[a-f0-9]+$":
-> +        type: object
-> +        $ref: "/schemas/sound/google,cros-ec-codec.yaml#"
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +
->  patternProperties:
->    "^i2c-tunnel[0-9]*$":
->      type: object
->      $ref: "/schemas/i2c/google,cros-ec-i2c-tunnel.yaml#"
->  
-> +  "^regulator@[0-9]+$":
-> +    type: object
-> +    $ref: "/schemas/regulator/google,cros-ec-regulator.yaml#"
-> +
-> +  "^extcon[0-9]*$":
-> +    type: object
-> +    $ref: "/schemas/extcon/extcon-usbc-cros-ec.yaml#"
-> +
->  required:
->    - compatible
->  
-> diff --git a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-> index c84e656afb0a..acfb9db021dc 100644
-> --- a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-> +++ b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.yaml
-> @@ -11,9 +11,10 @@ maintainers:
->  
->  description: |
->    Google's ChromeOS EC codec is a digital mic codec provided by the
-> -  Embedded Controller (EC) and is controlled via a host-command interface.
-> -  An EC codec node should only be found as a sub-node of the EC node (see
-> -  Documentation/devicetree/bindings/mfd/cros-ec.txt).
-> +  Embedded Controller (EC) and is controlled via a host-command
-> +  interface.  An EC codec node should only be found inside the "codecs"
-> +  subnode of a cros-ec node.
-> +  (see Documentation/devicetree/bindings/mfd/google,cros-ec.yaml).
->  
->  properties:
->    compatible:
-> @@ -54,14 +55,19 @@ examples:
->          #size-cells = <0>;
->          cros-ec@0 {
->              compatible = "google,cros-ec-spi";
-> -            #address-cells = <2>;
-> -            #size-cells = <1>;
->              reg = <0>;
-> -            cros_ec_codec: ec-codec@10500000 {
-> -                compatible = "google,cros-ec-codec";
-> -                #sound-dai-cells = <1>;
-> -                reg = <0x0 0x10500000 0x80000>;
-> -                memory-region = <&reserved_mem>;
-> +
-> +            codecs {
-> +                #address-cells = <2>;
-> +                #size-cells = <1>;
-> +
-> +                cros_ec_codec: ec-codec@10500000 {
-> +                    compatible = "google,cros-ec-codec";
-> +                    #sound-dai-cells = <1>;
-> +                    reg = <0x0 0x10500000 0x80000>;
-> +                    memory-region = <&reserved_mem>;
-> +                };
-> +
->              };
->          };
->      };
-> 
+>  static const struct of_device_id cqspi_dt_ids[] = {
+>  	{
+>  		.compatible = "cdns,qspi-nor",
+> @@ -1403,6 +1414,7 @@ static const struct of_device_id cqspi_dt_ids[] = {
+>  	},
+>  	{
+>  		.compatible = "intel,lgm-qspi",
+> +		.data = &intel_lgm_qspi,
+>  	},
+>  	{ /* end of table */ }
+>  };
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments India
