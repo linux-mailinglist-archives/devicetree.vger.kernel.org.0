@@ -2,68 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4014294F7B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3DDD294F88
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 17:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2443842AbgJUPFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 11:05:24 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:34902 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2443639AbgJUPFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 11:05:24 -0400
-Received: by mail-ot1-f68.google.com with SMTP id n11so2120978ota.2;
-        Wed, 21 Oct 2020 08:05:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=j5vXzbajSvk2jPGnq190MC//0hHF/9k+3Xwub4lFqOk=;
-        b=KCPu7Vpm1XQ6W9zQ5Zjbq0gTjbk0DhTFPblpthq/jca9MhmYhjXLZ9PlwiesBEeayw
-         GTCMo/P/5o6sX58bhQqbT9k4o72wcRAaWv+IbRpAR0r3sVk3Hb41hlGlQBtm+1WVRX4N
-         1qdxs8niNG3ZYGAP/Tsh14idxvescjxCzWJXz5KKQJ6+Z9PpgJbRvR81i1STDK/AspL6
-         FOW6iMuDPS+m0khpMOnj3gjNTW9Bp2oKfcxd4OU45WPM474ezGyVOpEuGf4mEv+DHJZF
-         VB1aWhQWjPczQt6CgfquL8mV1k7+2nBG/ENlkqSlVfkPW8ijTWGLocW5J+SXbGr9ek2l
-         IR/Q==
-X-Gm-Message-State: AOAM533ejL4JDsyfJ1KAS32Y8JsIpWJlzkOvKhEqOI1sI5IJtDkiwjeC
-        0Q4wMIGNvv8cfDDZRa38XQ==
-X-Google-Smtp-Source: ABdhPJyBdffq8YFayXKBVbcSTDZtsjX1dHiZVOnDChBLmQ2MNXBFO87aO+PpqoH5j4nTyRzv+goqMA==
-X-Received: by 2002:a9d:7993:: with SMTP id h19mr2830613otm.289.1603292723983;
-        Wed, 21 Oct 2020 08:05:23 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u140sm727527oie.41.2020.10.21.08.05.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 08:05:23 -0700 (PDT)
-Received: (nullmailer pid 2798579 invoked by uid 1000);
-        Wed, 21 Oct 2020 15:05:22 -0000
-Date:   Wed, 21 Oct 2020 10:05:22 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Neal Liu <neal.liu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>, wsd_upstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 1/2] dt-bindings: devapc: add bindings for mtk-devapc
-Message-ID: <20201021150522.GA2798521@bogus>
-References: <1602732039-12179-1-git-send-email-neal.liu@mediatek.com>
- <1602732039-12179-2-git-send-email-neal.liu@mediatek.com>
+        id S2501890AbgJUPJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 11:09:22 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:56378 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2501885AbgJUPJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 11:09:22 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id E33E41F45A1A
+Subject: Re: [PATCH v3 2/3] dt-bindings: input: convert cros-ec-keyb to
+ json-schema
+To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
+        robh@kernel.org
+Cc:     kernel@collabora.com, bleung@chromium.org, groeck@chromium.org,
+        sjg@chromium.org, dianders@chromium.org,
+        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        cychiang@chromium.org, tzungbi@google.com
+References: <20201021114308.25485-1-ricardo.canuelo@collabora.com>
+ <20201021114308.25485-3-ricardo.canuelo@collabora.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <bd32a72a-15e1-030c-9344-69fedf641aac@collabora.com>
+Date:   Wed, 21 Oct 2020 17:09:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1602732039-12179-2-git-send-email-neal.liu@mediatek.com>
+In-Reply-To: <20201021114308.25485-3-ricardo.canuelo@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Oct 2020 11:20:38 +0800, Neal Liu wrote:
-> Add bindings for mtk-devapc.
-> 
-> Signed-off-by: Neal Liu <neal.liu@mediatek.com>
-> ---
->  .../devicetree/bindings/soc/mediatek/devapc.yaml   |   58 ++++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
-> 
+Hi Ricardo,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 21/10/20 13:43, Ricardo Cañuelo wrote:
+> Convert the google,cros-ec-keyb binding to YAML and add it as a property
+> of google,cros-ec.yaml
+> 
+> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+
+> ---
+>  .../bindings/input/cros-ec-keyb.txt           | 72 ---------------
+>  .../bindings/input/google,cros-ec-keyb.yaml   | 92 +++++++++++++++++++
+>  .../bindings/mfd/google,cros-ec.yaml          |  3 +
+>  3 files changed, 95 insertions(+), 72 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/cros-ec-keyb.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/cros-ec-keyb.txt b/Documentation/devicetree/bindings/input/cros-ec-keyb.txt
+> deleted file mode 100644
+> index 0f6355ce39b5..000000000000
+> --- a/Documentation/devicetree/bindings/input/cros-ec-keyb.txt
+> +++ /dev/null
+> @@ -1,72 +0,0 @@
+> -ChromeOS EC Keyboard
+> -
+> -Google's ChromeOS EC Keyboard is a simple matrix keyboard implemented on
+> -a separate EC (Embedded Controller) device. It provides a message for reading
+> -key scans from the EC. These are then converted into keycodes for processing
+> -by the kernel.
+> -
+> -This binding is based on matrix-keymap.txt and extends/modifies it as follows:
+> -
+> -Required properties:
+> -- compatible: "google,cros-ec-keyb"
+> -
+> -Optional properties:
+> -- google,needs-ghost-filter: True to enable a ghost filter for the matrix
+> -keyboard. This is recommended if the EC does not have its own logic or
+> -hardware for this.
+> -
+> -
+> -Example:
+> -
+> -cros-ec-keyb {
+> -	compatible = "google,cros-ec-keyb";
+> -	keypad,num-rows = <8>;
+> -	keypad,num-columns = <13>;
+> -	google,needs-ghost-filter;
+> -	/*
+> -	 * Keymap entries take the form of 0xRRCCKKKK where
+> -	 * RR=Row CC=Column KKKK=Key Code
+> -	 * The values below are for a US keyboard layout and
+> -	 * are taken from the Linux driver. Note that the
+> -	 * 102ND key is not used for US keyboards.
+> -	 */
+> -	linux,keymap = <
+> -		/* CAPSLCK F1         B          F10     */
+> -		0x0001003a 0x0002003b 0x00030030 0x00040044
+> -		/* N       =          R_ALT      ESC     */
+> -		0x00060031 0x0008000d 0x000a0064 0x01010001
+> -		/* F4      G          F7         H       */
+> -		0x0102003e 0x01030022 0x01040041 0x01060023
+> -		/* '       F9         BKSPACE    L_CTRL  */
+> -		0x01080028 0x01090043 0x010b000e 0x0200001d
+> -		/* TAB     F3         T          F6      */
+> -		0x0201000f 0x0202003d 0x02030014 0x02040040
+> -		/* ]       Y          102ND      [       */
+> -		0x0205001b 0x02060015 0x02070056 0x0208001a
+> -		/* F8      GRAVE      F2         5       */
+> -		0x02090042 0x03010029 0x0302003c 0x03030006
+> -		/* F5      6          -          \       */
+> -		0x0304003f 0x03060007 0x0308000c 0x030b002b
+> -		/* R_CTRL  A          D          F       */
+> -		0x04000061 0x0401001e 0x04020020 0x04030021
+> -		/* S       K          J          ;       */
+> -		0x0404001f 0x04050025 0x04060024 0x04080027
+> -		/* L       ENTER      Z          C       */
+> -		0x04090026 0x040b001c 0x0501002c 0x0502002e
+> -		/* V       X          ,          M       */
+> -		0x0503002f 0x0504002d 0x05050033 0x05060032
+> -		/* L_SHIFT /          .          SPACE   */
+> -		0x0507002a 0x05080035 0x05090034 0x050B0039
+> -		/* 1       3          4          2       */
+> -		0x06010002 0x06020004 0x06030005 0x06040003
+> -		/* 8       7          0          9       */
+> -		0x06050009 0x06060008 0x0608000b 0x0609000a
+> -		/* L_ALT   DOWN       RIGHT      Q       */
+> -		0x060a0038 0x060b006c 0x060c006a 0x07010010
+> -		/* E       R          W          I       */
+> -		0x07020012 0x07030013 0x07040011 0x07050017
+> -		/* U       R_SHIFT    P          O       */
+> -		0x07060016 0x07070036 0x07080019 0x07090018
+> -		/* UP      LEFT    */
+> -		0x070b0067 0x070c0069>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> new file mode 100644
+> index 000000000000..8e50c14a9d77
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/input/google,cros-ec-keyb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ChromeOS EC Keyboard
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +  - Benson Leung <bleung@chromium.org>
+> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> +
+> +description: |
+> +  Google's ChromeOS EC Keyboard is a simple matrix keyboard
+> +  implemented on a separate EC (Embedded Controller) device. It provides
+> +  a message for reading key scans from the EC. These are then converted
+> +  into keycodes for processing by the kernel.
+> +
+> +allOf:
+> +  - $ref: "/schemas/input/matrix-keymap.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: google,cros-ec-keyb
+> +
+> +  google,needs-ghost-filter:
+> +    description:
+> +      Enable a ghost filter for the matrix keyboard. This is recommended
+> +      if the EC does not have its own logic or hardware for this.
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    cros-ec-keyb {
+> +        compatible = "google,cros-ec-keyb";
+> +        keypad,num-rows = <8>;
+> +        keypad,num-columns = <13>;
+> +        google,needs-ghost-filter;
+> +        /*
+> +         * Keymap entries take the form of 0xRRCCKKKK where
+> +         * RR=Row CC=Column KKKK=Key Code
+> +         * The values below are for a US keyboard layout and
+> +         * are taken from the Linux driver. Note that the
+> +         * 102ND key is not used for US keyboards.
+> +         */
+> +        linux,keymap = <
+> +            /* CAPSLCK F1         B          F10     */
+> +            0x0001003a 0x0002003b 0x00030030 0x00040044
+> +            /* N       =          R_ALT      ESC     */
+> +            0x00060031 0x0008000d 0x000a0064 0x01010001
+> +            /* F4      G          F7         H       */
+> +            0x0102003e 0x01030022 0x01040041 0x01060023
+> +            /* '       F9         BKSPACE    L_CTRL  */
+> +            0x01080028 0x01090043 0x010b000e 0x0200001d
+> +            /* TAB     F3         T          F6      */
+> +            0x0201000f 0x0202003d 0x02030014 0x02040040
+> +            /* ]       Y          102ND      [       */
+> +            0x0205001b 0x02060015 0x02070056 0x0208001a
+> +            /* F8      GRAVE      F2         5       */
+> +            0x02090042 0x03010029 0x0302003c 0x03030006
+> +            /* F5      6          -          \       */
+> +            0x0304003f 0x03060007 0x0308000c 0x030b002b
+> +            /* R_CTRL  A          D          F       */
+> +            0x04000061 0x0401001e 0x04020020 0x04030021
+> +            /* S       K          J          ;       */
+> +            0x0404001f 0x04050025 0x04060024 0x04080027
+> +            /* L       ENTER      Z          C       */
+> +            0x04090026 0x040b001c 0x0501002c 0x0502002e
+> +            /* V       X          ,          M       */
+> +            0x0503002f 0x0504002d 0x05050033 0x05060032
+> +            /* L_SHIFT /          .          SPACE   */
+> +            0x0507002a 0x05080035 0x05090034 0x050B0039
+> +            /* 1       3          4          2       */
+> +            0x06010002 0x06020004 0x06030005 0x06040003
+> +            /* 8       7          0          9       */
+> +            0x06050009 0x06060008 0x0608000b 0x0609000a
+> +            /* L_ALT   DOWN       RIGHT      Q       */
+> +            0x060a0038 0x060b006c 0x060c006a 0x07010010
+> +            /* E       R          W          I       */
+> +            0x07020012 0x07030013 0x07040011 0x07050017
+> +            /* U       R_SHIFT    P          O       */
+> +            0x07060016 0x07070036 0x07080019 0x07090018
+> +            /* UP      LEFT    */
+> +            0x070b0067 0x070c0069>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index c45cf30ea3aa..351bfb6d37ba 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -71,6 +71,9 @@ properties:
+>    wakeup-source:
+>      description: Button can wake-up the system.
+>  
+> +  keyboard-controller:
+> +    $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
+> +
+>  patternProperties:
+>    "^i2c-tunnel[0-9]*$":
+>      type: object
+> 
