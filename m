@@ -2,91 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82680294C4A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 14:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E1D294CCB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 14:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2442225AbgJUMMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 08:12:12 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:44365 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2442217AbgJUMMK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 08:12:10 -0400
-Received: by mail-wr1-f66.google.com with SMTP id t9so2756214wrq.11;
-        Wed, 21 Oct 2020 05:12:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Geiy1luQDgrfk0QA0gnO6sNJwWrWgtM6sqCvbinnx6Q=;
-        b=Cn49ODJJldqRnkq/1Gr8s+PMe84Ug8R9/b6V2ql4RdVlvDfEVAeTrj+Ys/a71J5RIi
-         PCK2y8EZJuXslfMN7q03nkmzIM6bA61C4QbxLcwE7Zmq4dw165S+mtBa8lzNQuWXB3a6
-         CtRZyyiVpG9sviG6xl7GiP136/kg0cZKHmcd9ja/wSt6XFL+nBqzQTMYjztiEW8592QF
-         w9buINHtHK8Oh9HqKRppejMEnsL//ZPgql5a9UCJu+FqOh/yL86W4UZuuHu0fw262LI0
-         6FHKggSQq/vzEygRPBl8Niw2SEG9ho+AjwaiiDp90g/4NNnAIdkoF9YATTQiR4vLuEa7
-         ThGw==
-X-Gm-Message-State: AOAM532D/Cdjv3H8XAhs5ZK+NjGcj1XHgn4C8nTtWiXpm66QeFclF/XR
-        ye1mu0l8s9dDo/gg5W/Zrho=
-X-Google-Smtp-Source: ABdhPJwvRquWAPFs7VrnzvZyJL7W79RWO7ff1FG6dMYkQ4h8LuMyEN2mtueYmm6OIT7J/ADjIi9dkw==
-X-Received: by 2002:a5d:4987:: with SMTP id r7mr4140251wrq.327.1603282327552;
-        Wed, 21 Oct 2020 05:12:07 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.171])
-        by smtp.googlemail.com with ESMTPSA id h4sm3765965wrv.11.2020.10.21.05.12.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 05:12:05 -0700 (PDT)
-Date:   Wed, 21 Oct 2020 14:12:03 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/6] Documetation: dt-bindings: add the
- samsung,exynos-pcie binding
-Message-ID: <20201021121203.GA27418@kozik-lap>
-References: <20201019094715.15343-1-m.szyprowski@samsung.com>
- <CGME20201019094739eucas1p18cd4c7e5a0197393d2e7c5c6fcc2777d@eucas1p1.samsung.com>
- <20201019094715.15343-3-m.szyprowski@samsung.com>
- <20201019101233.GB51073@kozik-lap>
- <CAJKOXPcyruYQxcioPxGE8J8jS0Yey+09HpXxFgQm4f2w98s5cg@mail.gmail.com>
- <50b13de0-168b-3fad-1e84-cc86f1a376d8@samsung.com>
+        id S2440444AbgJUMf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 08:35:28 -0400
+Received: from mx2.suse.de ([195.135.220.15]:50728 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2440413AbgJUMf2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 08:35:28 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id AA83AAC82;
+        Wed, 21 Oct 2020 12:35:26 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        ardb@kernel.org, linux-kernel@vger.kernel.org
+Cc:     robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-acpi@vger.kernel.org, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v4 0/7] arm64: Default to 32-bit wide ZONE_DMA
+Date:   Wed, 21 Oct 2020 14:34:30 +0200
+Message-Id: <20201021123437.21538-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <50b13de0-168b-3fad-1e84-cc86f1a376d8@samsung.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 01:59:25PM +0200, Marek Szyprowski wrote:
- >>> +required:
-> >>> +  - reg
-> >>> +  - reg-names
-> >>> +  - interrupts
-> >>> +  - interrupt-names
-> >>> +  - clocks
-> >>> +  - clock-names
-> >>> +  - phys
-> >>> +  - phy-names
-> >>> +  - vdd10-supply
-> >> additionalProperties: false
-> > This can be unevaluatedProperties, since you include pci-bus schema.
-> > However still you should either include designware schema or include
-> > it's properties here.
-> 
-> Frankly, I would like to include designware-pci bindling/schema, but it 
-> has not been converted to yaml yet. I don't feel that I know PCI enough 
-> to do that conversion...
+Using two distinct DMA zones turned out to be problematic. Here's an
+attempt go back to a saner default.
 
-I think you need then include all properties in your dtschema. Otherwise
-DTS will not pass (neither the example here) the checks.
+I tested this on both a RPi4 and QEMU.
 
-Best regards,
-Krzysztof
+---
+
+Changes since v3:
+ - Drop patch adding define in dma-mapping
+ - Address small review changes
+ - Update Ard's patch
+ - Add new patch removing examples from mmzone.h
+
+Changes since v2:
+ - Introduce Ard's patch
+ - Improve OF dma-ranges parsing function
+ - Add unit test for OF function
+ - Address small changes
+ - Move crashkernel reservation later in boot process
+
+Changes since v1:
+ - Parse dma-ranges instead of using machine compatible string
+
+Ard Biesheuvel (1):
+  arm64: mm: Set ZONE_DMA size based on early IORT scan
+
+Nicolas Saenz Julienne (6):
+  arm64: mm: Move reserve_crashkernel() into mem_init()
+  arm64: mm: Move zone_dma_bits initialization into zone_sizes_init()
+  of/address: Introduce of_dma_get_max_cpu_address()
+  of: unittest: Add test for of_dma_get_max_cpu_address()
+  arm64: mm: Set ZONE_DMA size based on devicetree's dma-ranges
+  mm: Remove examples from enum zone_type comment
+
+ arch/arm64/mm/init.c      | 16 ++++++------
+ drivers/acpi/arm64/iort.c | 52 +++++++++++++++++++++++++++++++++++++++
+ drivers/of/address.c      | 42 +++++++++++++++++++++++++++++++
+ drivers/of/unittest.c     | 18 ++++++++++++++
+ include/linux/acpi_iort.h |  4 +++
+ include/linux/mmzone.h    | 20 ---------------
+ include/linux/of.h        |  7 ++++++
+ 7 files changed, 130 insertions(+), 29 deletions(-)
+
+-- 
+2.28.0
 
