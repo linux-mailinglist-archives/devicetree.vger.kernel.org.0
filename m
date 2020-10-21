@@ -2,127 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4CA2947E8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 07:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9992F29480E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 08:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408383AbgJUFnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 01:43:21 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:36201 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2408381AbgJUFnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 01:43:21 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id EDD745C0100;
-        Wed, 21 Oct 2020 01:43:19 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Wed, 21 Oct 2020 01:43:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=tIgDNnG5snpYSQp0kAt2AdCdiGSp2Gs
-        1VIoKFmFsA5M=; b=qkG/q41a7iniJkupVewamRCA0NtPXMrcdZp9KfF4ht5qLoq
-        s3t9ZrpD3kEWd4bkoe6Q9uBGfMRrsKzSq3+ejGpd9eTNnRcNWFaY+IGhACL9lvWD
-        KfNiW9MPeLhmNx43+55CZ3co4UA8hrC7kOvpmWSunBuSUQJZPUGoaJuiG07DwLgN
-        7e4Q+NaqhlcvNC0ZqkG+2PIgO4xAgXgW3JFerpm4ndxEGUiLpAQyvptrz66EKNl5
-        9YsALU8Yh6zY3mJHe8WFw4p9wGADoOEhxs+3iXRBlDcArz9SNJc5N61uvprBnj/7
-        bpiGNwqMk5J4/mJ0xhK1G5dYwtlbxd43WypQ9Eg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=tIgDNn
-        G5snpYSQp0kAt2AdCdiGSp2Gs1VIoKFmFsA5M=; b=ICBjoYSiqT3BZxu4o4XSSW
-        ZF0Iagj1x4vRzInlR3N77HPKlqIvG6wnlnjNgDr+E/VE//hMzdl+hZkV0UBHhnMM
-        LbE5FanF5PEcuScEHWW/+M7i6pW4qXXkki2l3tLZTDD6Ql7AamEFHgTIepMBJw8u
-        GgJmO1Ns2ucOuJOTk3fM0dN9nOc42vX+qUQcaLn9Ff4S1ZXxyvnO4WWUDuIxeMqv
-        pVg1d9EMbeDPQtclWk7rvBSJkLAnkYCZVoU+FboYqi8fcM9159e+RzVamQUDgTsW
-        4g34XM6ehpAyj5pgklHk8RQA9dvBn+xP/OalJgLqLIwoXTMqhRZ5eAa7K0iOhVhg
-        ==
-X-ME-Sender: <xms:dsqPXywn4L4MW3q8FD0bMLhosqeB4LvMYsIEq81R_fEjqxSNzfV-RQ>
-    <xme:dsqPX-RRKDU5puLhKT3MBYJhZCuVF1XwU4xlPmLT621wdP76ZyVv_Od9E0WLDMH-9
-    v5-4kdcDn7Oz6imnw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrjeeggdeljecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
-    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
-    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:dsqPX0UOTgnBSYFJeIlK7b1sAmgflf-DRuXoW-3GD-NtKb9Kvqdf4A>
-    <xmx:dsqPX4h9jVneVErTX32YRPtna0ZUs-hNPXWRT0c3qtrBw4ZOWwOe0A>
-    <xmx:dsqPX0BnqiWWXRtXm-xBv2oI0_P5hDuTN06Dnv5UBGNa2FNyVsTjVg>
-    <xmx:d8qPX3N4ha_KwCmDiDDmeI1m9lVPwY1PqCksn-vUHupVAvAc8PNXvw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id A58C9E011E; Wed, 21 Oct 2020 01:43:16 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-502-gfef6c88-fm-20201019.001-gfef6c888
-Mime-Version: 1.0
-Message-Id: <1a5c7370-164c-4a58-a08c-d81e4b6ce419@www.fastmail.com>
-In-Reply-To: <CACPK8XeiPBPyLu5pvjCgYquCKh+PynVKGyibUSAi+W_xw0Awfg@mail.gmail.com>
-References: <20201016043513.119841-1-andrew@aj.id.au>
- <20201016043513.119841-3-andrew@aj.id.au>
- <CACPK8XeiPBPyLu5pvjCgYquCKh+PynVKGyibUSAi+W_xw0Awfg@mail.gmail.com>
-Date:   Wed, 21 Oct 2020 16:12:49 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>
-Cc:     "Rob Herring" <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] ARM: dts: tacoma: Add reserved memory for ramoops
-Content-Type: text/plain
+        id S2408521AbgJUGNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 02:13:13 -0400
+Received: from mga14.intel.com ([192.55.52.115]:13201 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2408517AbgJUGNN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 02:13:13 -0400
+IronPort-SDR: EKXAWhK2pdpJPrsQwdcZfG82EAAFkEytN0pP9AqYqdGK4dtp/c+5OK3X3KH5n0tSIkpXxcAKIy
+ 9agtqg31a42g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9780"; a="166543325"
+X-IronPort-AV: E=Sophos;i="5.77,400,1596524400"; 
+   d="scan'208";a="166543325"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2020 23:13:13 -0700
+IronPort-SDR: i5+2yFc6R/5reZGxYnyH0o7cNiRRwQrhifDhrjyGPP7xgFijLQty06b7gJF11OMz46ciOEh3SJ
+ gyF8MdbmA2OQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,400,1596524400"; 
+   d="scan'208";a="316271408"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+  by orsmga003.jf.intel.com with ESMTP; 20 Oct 2020 23:13:12 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 20 Oct 2020 23:13:12 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 20 Oct 2020 23:13:12 -0700
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com (104.47.37.52) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Tue, 20 Oct 2020 23:13:08 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DhkaSLMmGVXPYRpEEZZj+W303WVE6eFA6bf6YMgFIdLuhEfcEUrTnmO6lDPHvipQplls2g8fpcRVwJ86WIMD19v2/BLTSyQXxRRLv+bw2Wuq04dblV2Yh5kRGnHMSZJXcD4aVBBclkdRMB9HYjFNVF1CnTKV/UfD1xgap77t4LgjvxhRXjWvVK6p1nhOZzy3zIeU2DkEjBwe5jQpQsmq/8Cf/k3Ka1JslnjdavsF+f2Gn1dBi9z6QCP/QMHmiuCyxJeze5JUdNBvA7VD77P9ZFyFSx/Gu+3miZV4RzaO/IlNqIztpUozbsgOIUh7pz/kLTGMGKYhaRr0hBdC13PrjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IWvENyPOB10ieoSEWxAIEnpm0FS4zLzsm6jf+1Rlby8=;
+ b=HBhJL2ran9hJ8N50hJcGJ/ZQTUeBL+45dxYKUQ/ZmLF5nwygGyY5/nMb2ApAsyqr4+DjWnkwQO9FyNWG2f85pxN60YiL/voqHZiVvY3WKzAFr7nqyQU9lHpR/8TW4gA+P3DVXKSmTxnalnlmlI+LmOWFPE+OypoQmABZpkcGAoVz6gq77nn11SiWBjX+murEiDNyLlNfuoGTmyKSiHGGs6v27lEAbFglCCVcffyXhzIhKDNse4AQa8sE8SrgoPldXwQsDycb0uTyHEXHCAAN87HuETbVju+c1YC+u5jorsvUyCU+4Rvi7J99Sy1GJJCWcYnI/4glVElN/MF06QwCAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IWvENyPOB10ieoSEWxAIEnpm0FS4zLzsm6jf+1Rlby8=;
+ b=RIBX7aw+4rH2lfrytqblaDKXps4CujwVrtczAHqWbwxcKXstncWfG1/t9tUkqGCrW6C4vKUR8j5UWzlzoJE5XOnk1rRP2+5YECNHXm+aqwImqSUhA36Wp192O5trmoyboNcM/lrL1cEbbnwNq0mouxetTOpQumPMUssDU+h4EyQ=
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
+ by DM6PR11MB3226.namprd11.prod.outlook.com (2603:10b6:5:59::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Wed, 21 Oct
+ 2020 06:13:08 +0000
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::7448:c067:e80d:3c09]) by DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::7448:c067:e80d:3c09%3]) with mapi id 15.20.3477.028; Wed, 21 Oct 2020
+ 06:13:07 +0000
+From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>
+Subject: RE: [PATCH v13 2/2] dt-bindings: pwm: keembay: Add bindings for Intel
+ Keem Bay PWM
+Thread-Topic: [PATCH v13 2/2] dt-bindings: pwm: keembay: Add bindings for
+ Intel Keem Bay PWM
+Thread-Index: AQHWpj3FMJeofmusy0SNTFw1Uv49Aamgna+AgADzZ5A=
+Date:   Wed, 21 Oct 2020 06:13:07 +0000
+Message-ID: <DM6PR11MB42501DE5DCFB16433F1E38ECFB1C0@DM6PR11MB4250.namprd11.prod.outlook.com>
+References: <cover.1603127898.git.vijayakannan.ayyathurai@intel.com>
+ <48f86a9a525701cfc61e3375d1d6f65ce38a9b26.1603127898.git.vijayakannan.ayyathurai@intel.com>
+ <20201020152421.GA866676@bogus>
+In-Reply-To: <20201020152421.GA866676@bogus>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [42.111.145.86]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2a506f70-351e-4344-268d-08d87588611e
+x-ms-traffictypediagnostic: DM6PR11MB3226:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB3226E8AFA86368C61A883BE6FB1C0@DM6PR11MB3226.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: aah3TMiWe8UF9FVZwkXP6GmWEFd3MczvQmjvZFOKhpK5vp+bRxywqlZ/y8V6qsO8VkUsMF9p7g1mfFY9VCWOclrPKUI7frUiAK+oYgjyfDNkoYxGPRAWCNqOO2bTQHq55gzjAEDOJdXGznvn2hYWd3bA2jMoYmY9kvRabdrDJsbLoYdFCSEK7YBEtVUBEzsMKmbAG8Z+VHRLAylA/NM/cflx8mG+LxGmdOkrKnjYHt9Lyv49KiIDjh219GfH20W2881dwBaBkwS+r5Bip88dyBrETLtnUJAXp271aAKT74lW/s8lkutsWVhxn7pbAHdZRchh3p1GUqNt+ed5XhhcVnCbyyk6YS1NrbxPMcenggHv3iFWBwTt2ECHF7bzEBXUuTdjbKMAk/v6ITa3/dbieA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(396003)(366004)(39860400002)(66556008)(66476007)(66946007)(64756008)(54906003)(76116006)(55016002)(5660300002)(86362001)(4326008)(316002)(52536014)(6916009)(478600001)(66446008)(83380400001)(9686003)(966005)(186003)(33656002)(8676002)(8936002)(53546011)(6506007)(7696005)(2906002)(71200400001)(26005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 7qsAjUFOxrwWrUyhmJEHP3YNBeTogxZB+JD3oVt1NVEzmvpaDyrdGjSVyFqx2o+cRxTh/dziQOcHWbfwH+xtXILZid9TUWgDNd5PKX2IVSLZkSGmzxESC58JOeXTbjzIA1s1dJmqE/AAjMC6atqHfFIYT8iHDQ8HXilAH/FT4JVKczYG5L+nTetXZOu1YU7ZqrwsAVZ8vxc57QQpvyhOh7zbAmfXLcXey8XLqtyXwNH34NR37INTZERXf+p1yviotoYk0BtS+7LiPJSuFfjcV6fA4gDsVRVVCVOYj/kFKL78K8HI+TD2nZljJfXHAqoqCkpd+nHgnwHC8JBBPIZdQDTiCSLnwvzZ+krsTSR+OzYvqWyz3HjJIklmr7lixE/F9oO97uYlSf5ZR88S+X/hA4jDyC8PlnL/U76WAAGNK8M8uIAF82Si53zo7H7pozpAMlhIZU54ZSP0NTUDCptrkknTYOsyePp8gMwityZZMjCdjWsHuOk4lGkH4gvblEnXtszxowEN5398pD/3vS9BijP5Uu0FD0aaR70qA1MTNE9Fvgxz5Y0p3cY1UJOgk+haVOV1+gM2vklLH5u6dY9KsHISLiZM7T6PESgFoZsg/Ha1tAgKM4ejCtTRSJvCfTRYL8r5KbZcWbAygJNYjtPEPQ==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a506f70-351e-4344-268d-08d87588611e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2020 06:13:07.5704
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ++QD0UdFSgAUCaixfADswO8TsmV4rm6+kktEyCYJYphB0PJF6qEIdDXeln0VDpFdD16+ri/AqA87Kt0mbPqbKC6OZEbOw9s8t85EXEhURGeRNvhGUiN1Rzy/dEGSogaA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3226
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
+> From: Rob Herring <robh@kernel.org>
+> Sent: Tuesday, 20 October, 2020 8:54 PM
+> Subject: Re: [PATCH v13 2/2] dt-bindings: pwm: keembay: Add bindings for
+> Intel Keem Bay PWM
 
-On Wed, 21 Oct 2020, at 15:35, Joel Stanley wrote:
-> On Fri, 16 Oct 2020 at 04:36, Andrew Jeffery <andrew@aj.id.au> wrote:
+> > Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
 > >
-> > Reserve a 1.5MiB region of memory to record kmsg dumps, console and
-> > userspace message state into 16kiB ring-buffer slots. The sizing allows
-> > for up to 32 dumps to be captured and read out.
-> >
-> > Set max-reason to KMSG_DUMP_EMERG to capture bad-path reboots.
-> >
-> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> > ---
-> >  arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-> > index 46f2f538baba..4f7e9b490e1a 100644
-> > --- a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-> > +++ b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-> > @@ -26,6 +26,15 @@ reserved-memory {
-> >                 #size-cells = <1>;
-> >                 ranges;
-> >
-> > +               ramoops@b9e80000 {
-> > +                       compatible = "ramoops";
-> > +                       reg = <0xb9e80000 0x180000>;
-> 
-> I take that r-b back. When booting, we see:
-> 
-> [    0.000000] region@ba000000 (0xb8000000--0xbc000000) overlaps with
-> ramoops@b9e80000 (0xb9e80000--0xba000000)
-> 
-> Which appears to be a true statement.
+>=20
+>=20
+> My bot found errors running 'make dt_binding_check' on your patch:
+>=20
+> ./Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml:31:2:
+> [warning] wrong indentation: expected 2 but found 1 (indentation)
+>=20
+>=20
+> See https://patchwork.ozlabs.org/patch/1384452
+>=20
+> If you already ran 'make dt_binding_check' and didn't see the above error=
+(s),
+> then make sure dt-schema is up to date:
+>=20
+> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master -=
+-
+> upgrade
+>=20
+> Please check and re-submit.
 
-Yep:
+I will fix this indentation problem in the next version. But I couldn't get=
+ this error when I try using the upgraded dt schema.
 
-> 
-> > +                       record-size = <0x4000>;
-> > +                       console-size = <0x4000>;
-> > +                       pmsg-size = <0x4000>;
-> > +                       max-reason = <3>; /* KMSG_DUMP_EMERG */
-> > +               };
-> > +
-> >                 flash_memory: region@ba000000 {
-> >                         no-map;
-> >                         reg = <0xb8000000 0x4000000>; /* 64M */
+Package Used:
+Successfully installed attrs-20.2.0 dtschema-2020.8.2.dev4+g341f3e3 importl=
+ib-metadata-2.0.0 jsonschema-3.2.0 pyrsistent-0.17.3 rfc3987-1.3.8 ruamel.y=
+aml-0.16.12 ruamel.yaml.clib-0.2.2 setuptools-50.3.2 six-1.15.0 zipp-3.3.1
 
-Looks like I derived the ramoops address from the flash_memory node label, but 
-that's mismatched with its reg value.
+Command Used:
+#make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/=
+pwm/intel,keembay-pwm.yaml
+
+Please let me know if I am missing any other option here.
+
+Thanks,
+Vijay
