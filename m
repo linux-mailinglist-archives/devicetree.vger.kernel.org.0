@@ -2,125 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 996B1294AD3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 11:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9AAB294AE6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 11:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441545AbgJUJyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 05:54:03 -0400
-Received: from smtp1.axis.com ([195.60.68.17]:6649 "EHLO smtp1.axis.com"
+        id S2438409AbgJUJ6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 05:58:23 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:2804 "EHLO smtp2.axis.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2438305AbgJUJyD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 05:54:03 -0400
+        id S2438399AbgJUJ6W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 05:58:22 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; l=2143; q=dns/txt; s=axis-central1;
-  t=1603274042; x=1634810042;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=NSbevEXTgIx+UMlnZ8PIyoKqiQwTyuCv3R4hhUP++P8=;
-  b=nkmC+WSkozn0rOGbtBB7x9k68w5ID1RwAhdyAOT6yYxUVN+munfLHHY2
-   uR7o0EuL2FQfUi7+8LUyfIRI/slc/xlVg5NdzLi/WAQ5z83tpOhNvJDa6
-   oF9aOEad4CZ2LgpV8WuUz2MaTvLpJ3cG0Tw2z7FRYrLKBkge4XzS8SC2O
-   fdRzrSwtTDwyq5BnoEmhtrzsboNVDAuXV1Qsdd4LH89tj9LFxI/U+vUJQ
-   YoIY7vap9iFHNT5W+Lz/Z13Hm1CWqTJuiuVaPgSZS77T3IEYC1kUGUGRP
-   3de64mcDnue6+pWQrWMgMy58i89L2kdWI9T+nw6hehdkCU+shF94ooFDu
-   Q==;
-IronPort-SDR: W6IQyZIfg03bY8KZ5uBQP74nsU09xCAsI7+Kos4fsRcuqFadbXwA4vmCmPJ7jO7ncHJWli9GnZ
- FuLAgZvU7/TLbninsMBHA0l5Ge2kLJBljNJ1dnJu5MVobuV5vRTFdi5i3IWsqv7m4TMcu2gW5R
- DjylUgA8Xhni5tz7wKQqOMOPurZOtXdP3IIusIwhcnD6X8vnK+OdnJXE3/63Ukp4XKl9zJPdrU
- pgaQnKlDj8FYGQrpoDwuwJDgY5CvHm4eYkwkKCnbIjC06xq61YTCzv3s98iQEpOE199Xr1SmOa
- mKI=
+  d=axis.com; l=1614; q=dns/txt; s=axis-central1;
+  t=1603274302; x=1634810302;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0uunYDarLOCJQZDPzFnBlNCfPwBebHlyjXfwWLNZ7OI=;
+  b=RW+g6QTHNS1SONtKPLNRev6bD/KX3Yh2Rld7xF59CtbjAYr9D2PHsIFR
+   6YtE8NrIwm9bHTy7tqAyUHoLnfdfIHdGo7UkuW15XLU/iTg5rFUve7+Pi
+   gXrQ4d+j4MirRqA7kJPx5jfm0/tyco8zHr5xptGYJvRo8+rVD5UoXrj4j
+   sTFXEx3O09wPYSBGnq99SaOL7f04TJDl5LBhGAnrkXQRIaQG2VasQSM9E
+   GWaycAbxjg2grzOE3RtWJwnFC1ozIgEH9l1XB29PazpipTYvMVPjAYgUR
+   e+X/8LwaMU8HB18w9p8CW6LvLGS1GlvbCSAFI50UapgqkwVUPKh9boKMa
+   A==;
+IronPort-SDR: nYtZPDdCJr/zt644280jfPTyAlH8CnViDMCXXT1IT8lWHG3AWvXTfddGXf0rVQLU3z3r7xsjQI
+ DNaOLhdKuW1NwONjVFoiv2OP817H6hij+lfZVsVDPYFr+koVodZtLvOwdQTTcdsmWFh3WQsWvi
+ q1BxWLFgXIdjIEjtE5v7ONYbEGUaT359iTVgZ6tgLAOp+7QcuvnVqGnb0A+Fvvqf39fy2Xl7xz
+ lRGa+efHe31sXwSZbrkCZEmuIqsEUi2wt15W9POCAjOppufLUI3QVLKeQm1n5XAI4pF2dV2p4b
+ M8A=
 X-IronPort-AV: E=Sophos;i="5.77,401,1596492000"; 
-   d="scan'208";a="14246820"
+   d="scan'208";a="13744378"
+Date:   Wed, 21 Oct 2020 11:58:20 +0200
 From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     <kernel@axis.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] of: Fix reserved-memory overlap detection
-Date:   Wed, 21 Oct 2020 11:53:59 +0200
-Message-ID: <ded6fd6b47b58741aabdcc6967f73eca6a3f311e.1603273666.git-series.vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.28.0
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Frank Rowand <frowand.list@gmail.com>, kernel <kernel@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] of: Fix reserved-memory overlap detection
+Message-ID: <20201021095820.fe2u5cecxtkupqko@axis.com>
+References: <20201020073558.3582-1-vincent.whitchurch@axis.com>
+ <CAL_JsqL=mpw9KxiYe_bMa+y4mU8ybrRnJ2LcO8jRco9C3N_n_w@mail.gmail.com>
+ <20201020134633.3vv7hyvodg4tbro2@axis.com>
+ <CAL_JsqJrM4mS+tRDjipEQ8HBGgoevWHzGBWCiioMAFLnBRb63Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJrM4mS+tRDjipEQ8HBGgoevWHzGBWCiioMAFLnBRb63Q@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reserved-memory overlap detection code fails to detect overlaps if
-either of the regions starts at address 0x0.  The code explicitly checks
-for and ignores such regions, apparently in order to ignore dynamically
-allocated regions which have an address of 0x0 at this point.  These
-dynamically allocated regions also have a size of 0x0 at this point, so
-fix this by removing the check and sorting the dynamically allocated
-regions ahead of any static regions at address 0x0.
+On Tue, Oct 20, 2020 at 04:17:27PM +0200, Rob Herring wrote:
+> On Tue, Oct 20, 2020 at 8:46 AM Vincent Whitchurch
+> <vincent.whitchurch@axis.com> wrote:
+> > On Tue, Oct 20, 2020 at 03:00:14PM +0200, Rob Herring wrote:
+> > > On Tue, Oct 20, 2020 at 2:36 AM Vincent Whitchurch
+> > > <vincent.whitchurch@axis.com> wrote:
+> > > >
+> > > > The reserved-memory overlap detection code fails to detect overlaps if
+> > > > either of the regions starts at address 0x0.  For some reason the code
+> > > > explicitly checks for and ignores such regions, but this check looks
+> > > > invalid.  Remove the check and fix this detection.
+> > >
+> > > Wouldn't 'base' be 0 for nodes that have a 'size' and no address? The
+> > > base in those cases isn't set until later when
+> > > __reserved_mem_alloc_size() is called.
+> >
+> > Ah, yes, I guess that's why the check was there.  I see that those
+> > entries have both a zero address and a zero size, so this seems to work:
+> 
+> Yes, I think it should work.
 
-For example, there are two overlaps in this case but they are not
-currently reported:
+Thanks, I've tested it a bit more and sent it out as a v2 now.
 
-	foo@0 {
-	        reg = <0x0 0x2000>;
-	};
+> > diff --git a/arch/arm/boot/dts/vexpress-v2p-ca9.dts b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+> > index 623246f37448..6627e71c7283 100644
+> > --- a/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+> > +++ b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+> > @@ -81,6 +81,18 @@ vram: vram@4c000000 {
+> >                         reg = <0x4c000000 0x00800000>;
+> >                         no-map;
+> >                 };
+> > +
+> > +               foo@0 {
+> > +                       reg = <0x0 0x2000>;
+> > +               };
+> > +
+> > +               bar@1000 {
+> > +                       reg = <0x0 0x1000>;
+> 
+> 0x1000 base?
 
-	bar@0 {
-	        reg = <0x0 0x1000>;
-	};
-
-	baz@1000 {
-	        reg = <0x1000 0x1000>;
-	};
-
-	quux {
-	        size = <0x1000>;
-	};
-
-but they are after this patch:
-
- OF: reserved mem: OVERLAP DETECTED!
- bar@0 (0x00000000--0x00001000) overlaps with foo@0 (0x00000000--0x00002000)
- OF: reserved mem: OVERLAP DETECTED!
- foo@0 (0x00000000--0x00002000) overlaps with baz@1000 (0x00001000--0x00002000)
-
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
-v2: Fix handling of dynamically allocated regions.
-
- drivers/of/of_reserved_mem.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 46b9371..6530b8b 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -200,6 +200,16 @@ static int __init __rmem_cmp(const void *a, const void *b)
- 	if (ra->base > rb->base)
- 		return 1;
- 
-+	/*
-+	 * Put the dynamic allocations (address == 0, size == 0) before static
-+	 * allocations at address 0x0 so that overlap detection works
-+	 * correctly.
-+	 */
-+	if (ra->size < rb->size)
-+		return -1;
-+	if (ra->size > rb->size)
-+		return 1;
-+
- 	return 0;
- }
- 
-@@ -217,8 +227,7 @@ static void __init __rmem_check_for_overlap(void)
- 
- 		this = &reserved_mem[i];
- 		next = &reserved_mem[i + 1];
--		if (!(this->base && next->base))
--			continue;
-+
- 		if (this->base + this->size > next->base) {
- 			phys_addr_t this_end, next_end;
- 
-
-base-commit: 270315b8235e3d10c2e360cff56c2f9e0915a252
--- 
-git-series 0.9.1
+I've corrected this in the example in the commit message for v2.
