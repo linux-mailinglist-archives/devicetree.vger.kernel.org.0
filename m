@@ -2,156 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2227295284
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 20:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58E60295286
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 20:56:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2504533AbgJUSzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 14:55:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50062 "EHLO
+        id S2407827AbgJUS4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 14:56:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502103AbgJUSzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 14:55:53 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DDC1C0613CE;
-        Wed, 21 Oct 2020 11:55:52 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id 19so2010959pge.12;
-        Wed, 21 Oct 2020 11:55:52 -0700 (PDT)
+        with ESMTP id S2394718AbgJUS4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 14:56:44 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08592C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 11:56:44 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id k21so4280151ioa.9
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 11:56:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WW7iWK1mlanA/nSOOT/laE4c8UqUVBDo2FGMaghCg/4=;
-        b=sTEZBt9tGIOG/Nuun3tgfo/KUlyS1kyoB1q3nuPxu5T8yXpqY1G7JVrOepVlxBDtyo
-         jovHngyGv27U7YjVzQMyxZ0E0DkN6uBI/i/3Pa5RtEZBKwXuUyNwXdhMGjfMtJT70rHZ
-         rjES27oogFMBpIS934QfLJx46legarVobWfiV4YmwLxmKjFZJu/lklEntASLcPSr6X+R
-         ZkW/k3gIDlq084Ue906EAZuga6z9O5VYpoYT1S14ecGa9guD9/758RYjeSJ3hrb7FQKm
-         GfdiqxzE1hUBQZRrclvMhdFzecDPJyGIFsTnICcjxuYAsJfGljzv+xtOA6QqqBwY0iPF
-         OW9g==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Cc/K/PIuG41/PR7b04TzfA68X44vY0DhA0nNvxK+odE=;
+        b=GrBOpz3B04eglI4Ou/H+aoMQQg7CO3n/sx11CnC2KFyl751f5YKbxaSJfAieTMWw+3
+         kUWQ215pQELE9Py74xWRSY0RUbNNU8vjRkpRQdw7F2GGU/dlVP7gC2Eu6WVVw+Hv6gmq
+         fT3Ik/FKSDcRA8IdinKj2EfiCJZ8PsY1Wpev4G37iKVKPC3gKiVcL75dRi5pCmlhLOnb
+         xw6VL88vbHWo41Wgo35mqxEQH5kQUEKl7XojseMCtNHeMNA9jtXbEr72jh9Sdcuc9GaW
+         bW/GP+M9fsP2tI1TpMf5ZvWbfEtZl4I+lpZjbzIxPbFgx9c8joumjuG2a2iPHZxVfnnB
+         pD2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WW7iWK1mlanA/nSOOT/laE4c8UqUVBDo2FGMaghCg/4=;
-        b=ondik1d737WZCQEgbSjOwUhZcbN8dt5dwbZY1kfi6csbPj+oyM2rMAMDbInucpBVan
-         462v2Na9IVDryyh27FlwMWBvrAbPlMGY3XYKswk/qcWiWz590N3MgSXRocbDXRiKAcFX
-         x6vnm5FSjMA+o99kL/1jAI4r5UtdYh1z4MxRC7tRBlLtRHoftBROZlM1Q7Qh4oM1kQAJ
-         J+5uU+ovhtgcxI4LtMsHOuNIbai0Zq1Q5KrQWEtFtz9bgc/OsyjlEvmGHylTs4ZtIcuS
-         4BNBH+prYVSCgA0bx9ZVLm7tMYUibA6kJ00BLrQPl+0WlRgDxIH7YRHDmDJ/nQeMFau0
-         +f7w==
-X-Gm-Message-State: AOAM531+fs6VyKyscrZ5B0I0UNdQSmV678baZQliiAVB0J0FkibdREEN
-        MNth6AtGxg/U09VOJHXVtdk=
-X-Google-Smtp-Source: ABdhPJwxhL70vJ8ULdsfPNdjemzacc1H0DV5sjzUmA3E4qYSeYxKBEh/jL7f3oDJzlkSdh88PNHjcQ==
-X-Received: by 2002:a05:6a00:22c8:b029:156:e7e:dcb3 with SMTP id f8-20020a056a0022c8b02901560e7edcb3mr4973953pfj.44.1603306551430;
-        Wed, 21 Oct 2020 11:55:51 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id f5sm3120187pgi.86.2020.10.21.11.55.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 11:55:50 -0700 (PDT)
-Date:   Wed, 21 Oct 2020 11:55:47 -0700
-From:   "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>
-To:     Jun Li <jun.li@nxp.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "hdegoede@redhat.com" <hdegoede@redhat.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "mika.westerberg@linux.intel.com" <mika.westerberg@linux.intel.com>,
-        "prabhakar.mahadev-lad.rj@bp.renesas.com" 
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 2/4] device property: Add fwnode_is_compatible() and
- device_is_compatible() helpers
-Message-ID: <20201021185547.GC444962@dtor-ws>
-References: <1603098195-9923-1-git-send-email-jun.li@nxp.com>
- <1603098195-9923-2-git-send-email-jun.li@nxp.com>
- <20201019122516.GN4077@smile.fi.intel.com>
- <VE1PR04MB652805416A0A85E45FFD106E891F0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Cc/K/PIuG41/PR7b04TzfA68X44vY0DhA0nNvxK+odE=;
+        b=J2JHZ5uoKR4H2SPhs+7MAdHzse+47+ArT+SYQ6qVKNx3OAH8XVvS9HLW9at/xszGN0
+         R2WN+KfSJRILHCo01U1VSipLLQzHLlbYxISPYMnS/spK69kexCScyN+GzsKIYRz2DzeP
+         T2nU8tw1bc0olrnt7+udrygGFUalaDn7sy2XgcV+bCNR7V9luxWcgTSysBA8/HkmM71m
+         ULDcYZE7nqR5NUcXeSdJgw7RrIOdIlLi7mJFzQM5rF3XuepJbOF1u4rCsfRuUstloQqN
+         tOhkqF6eCDhjK0m7bUAR4DgscELUbuJZLVLP0RjCT6JF5y+ADV7tsNRicSoyZXnHLI13
+         97Cg==
+X-Gm-Message-State: AOAM531A3ks+nfM1HDjnYVzMdm001OqSDFFmG9ZA/xlIGx/N/igP3Z68
+        vsHzfBk8HAdVhnjvjaJfCfCe93HKapuUgKq9Y1lyQw==
+X-Google-Smtp-Source: ABdhPJyLG0RAlvFN8Zp7U5m+RnWUUNGK8TOymUgePPUKY/An2N5DmxSuoTuNWfKoZwAH4W8THjAuI9EyHl7jMFAlVZ4=
+X-Received: by 2002:a05:6638:1243:: with SMTP id o3mr3993558jas.82.1603306603222;
+ Wed, 21 Oct 2020 11:56:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <VE1PR04MB652805416A0A85E45FFD106E891F0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+References: <20201020174253.3757771-1-fparent@baylibre.com>
+ <20201020174253.3757771-3-fparent@baylibre.com> <CAAOTY_9m-nqCe1HanPv5xa3mVLpyG6mC1pF1FRAFJdU1jqza_A@mail.gmail.com>
+In-Reply-To: <CAAOTY_9m-nqCe1HanPv5xa3mVLpyG6mC1pF1FRAFJdU1jqza_A@mail.gmail.com>
+From:   Fabien Parent <fparent@baylibre.com>
+Date:   Wed, 21 Oct 2020 20:56:32 +0200
+Message-ID: <CAOwMV_wvf6v1acXjtuB3Sm83YNyf=A7ULJkEDz7RY7T7mijqHg@mail.gmail.com>
+Subject: Re: [PATCH 2/8] dt-bindings: display: mediatek: dsi: add
+ documentation for MT8167 SoC
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 11:13:47AM +0000, Jun Li wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Sent: Monday, October 19, 2020 8:25 PM
-> > To: Jun Li <jun.li@nxp.com>
-> > Cc: heikki.krogerus@linux.intel.com; robh+dt@kernel.org;
-> > rafael@kernel.org; gregkh@linuxfoundation.org; hdegoede@redhat.com;
-> > lee.jones@linaro.org; mika.westerberg@linux.intel.com;
-> > dmitry.torokhov@gmail.com; prabhakar.mahadev-lad.rj@bp.renesas.com;
-> > laurent.pinchart+renesas@ideasonboard.com; linux-usb@vger.kernel.org;
-> > devicetree@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>; Peter Chen
-> > <peter.chen@nxp.com>
-> > Subject: Re: [PATCH v4 2/4] device property: Add fwnode_is_compatible() and
-> > device_is_compatible() helpers
-> > 
-> > On Mon, Oct 19, 2020 at 05:03:13PM +0800, Li Jun wrote:
-> > > From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > >
-> > > Since there are also some ACPI platforms where the "compatible"
-> > > property is used, introducing a generic helper function
-> > > fwnode_is_compatible() that can be used with DT, ACPI and swnodes, and
-> > > a wrapper function
-> > > device_is_compatible() with it.
-> > >
-> > > The function calls of_device_is_comaptible() with OF nodes, and with
-> > > ACPI and swnodes it matches the given string against the "compatible"
-> > > string property array.
-> > 
-> > ...
-> > 
-> > > + * Match the compatible strings of @fwnode against @compat. Returns
-> > > + positive
-> > > + * value on match, and 0 when no matching compatible string is found.
-> > 
-> > Please move Returns... to a separate paragraph.
-> 
-> OK, will change.
-> 
-> > 
-> > Btw, this is not true...
-> > 
-> > > +int fwnode_is_compatible(struct fwnode_handle *fwnode, const char
-> > > +*compat) {
-> > > +	int ret;
-> > > +
-> > > +	if (is_of_node(fwnode))
-> > > +		return of_device_is_compatible(to_of_node(fwnode), compat);
-> > > +
-> > > +	ret = fwnode_property_match_string(fwnode, "compatible", compat);
-> > > +
-> > 
-> > > +	return ret < 0 ? 0 : 1;
-> > 
-> > ...and this is at least strange after all.
-> 
-> of_device_is_compatible() will return positive value on match, and 0
-> when no matching,
-> fwnode_property_match_string() will return 0 if the property was found
-> (success); and negative error code on failure. so the return conversion
-> of fwnode_property_match_string () should work here.
+Hi Chun-Kuang,
 
-Yes, but please make the function return bool instead of int.
-of_device_is_compatible() returns "score", so it is int, but here we
-only want yes/no.
+On Wed, Oct 21, 2020 at 7:01 PM Chun-Kuang Hu <chunkuang.hu@kernel.org> wro=
+te:
+>
+> Hi, Fabien:
+>
+> Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8821=
+=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=881:43=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+> >
+> > Add binding documentation for the MT8167 SoC. The SoC needs
+> > an additional clock compared to the already supported SoC: mipi26m.
+> >
+> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> > ---
+> >  .../devicetree/bindings/display/mediatek/mediatek,dsi.txt  | 7 ++++---
+> >  1 file changed, 4 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediate=
+k,dsi.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi=
+.txt
+> > index f06f24d405a5..10ae6be7225e 100644
+> > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.t=
+xt
+> > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.t=
+xt
+> > @@ -7,12 +7,13 @@ channel output.
+> >
+> >  Required properties:
+> >  - compatible: "mediatek,<chip>-dsi"
+> > -- the supported chips are mt2701, mt7623, mt8173 and mt8183.
+> > +- the supported chips are mt2701, mt7623, mt8167, mt8173 and mt8183.
+> >  - reg: Physical base address and length of the controller's registers
+> >  - interrupts: The interrupt signal from the function block.
+> >  - clocks: device clocks
+> >    See Documentation/devicetree/bindings/clock/clock-bindings.txt for d=
+etails.
+> > -- clock-names: must contain "engine", "digital", and "hs"
+> > +- clock-names: must contain "engine", "digital", "hs"
+> > +  Can optionnally also contain "mipi26m"
+>
+> It seems that mipi26m is the clock of mipi-tx. In mt8173.dtsi [1],
+> mipi-tx's clock is 26m.
+>
+> mipi_tx0: mipi-dphy@10215000 {
+> compatible =3D "mediatek,mt8173-mipi-tx";
+> reg =3D <0 0x10215000 0 0x1000>;
+> clocks =3D <&clk26m>;
+> clock-output-names =3D "mipi_tx0_pll";
+> #clock-cells =3D <0>;
+> #phy-cells =3D <0>;
+> status =3D "disabled";
+> };
+>
+> If this is the clock of mipi-tx, it should be controlled by mipi-tx drive=
+r.
 
-So
+Thanks, I will fix that in v2.
 
-	return fwnode_property_match_string(...) == 0;
-
-Thanks.
-
--- 
-Dmitry
+>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
+ee/arch/arm64/boot/dts/mediatek/mt8173.dtsi?h=3Dv5.9
+>
+> Regards,
+> Chun-Kuang.
+>
+> >  - phys: phandle link to the MIPI D-PHY controller.
+> >  - phy-names: must contain "dphy"
+> >  - port: Output port node with endpoint definitions as described in
+> > @@ -26,7 +27,7 @@ The MIPI TX configuration module controls the MIPI D-=
+PHY.
+> >
+> >  Required properties:
+> >  - compatible: "mediatek,<chip>-mipi-tx"
+> > -- the supported chips are mt2701, 7623, mt8173 and mt8183.
+> > +- the supported chips are mt2701, 7623, mt8167, mt8173 and mt8183.
+> >  - reg: Physical base address and length of the controller's registers
+> >  - clocks: PLL reference clock
+> >  - clock-output-names: name of the output clock line to the DSI encoder
+> > --
+> > 2.28.0
+> >
