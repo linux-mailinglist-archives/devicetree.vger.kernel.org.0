@@ -2,400 +2,440 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81692294D6E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 15:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B26F294DE6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Oct 2020 15:48:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441441AbgJUNYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 09:24:46 -0400
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:46580 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2440861AbgJUNYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 09:24:45 -0400
-Received: by mail-ej1-f67.google.com with SMTP id t25so3164012ejd.13;
-        Wed, 21 Oct 2020 06:24:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sgvb0QermxEsfEaijdapUaWIAXlaPvAunzMG259XAK4=;
-        b=kA6kFu4fNmWjJnuOUHFjfiYTiEtZNmakJaki0zssGeXvfCPN7zhmO5wWuYsOd0DbH9
-         ScpJhcdHsmVO76wc4mdjVelOOfPciSQq/ZajYoBfkcti/+fFBKTQd//gCaschRlrXije
-         jDm1PCJj88k3cPS/4Da0l4a7bhIpGSxcNeh/+ZD1uvUHoC2r79BkmrRbyZNqiDDGrkG7
-         U5CX0wbLz9v/CcRLMGsym+hADAflaCON20zt6S3HXCTgKSSR4Ep6axi/0R6Vu1MyWp5e
-         dR921cXk0b13NFQqglyp5r1NgWVCjEoWCHUNYWtno3IzrQu+WTzjANJXZJ+NUSPzkqOy
-         VkQA==
-X-Gm-Message-State: AOAM5330es1JTVJKBEza1O4J7ivxgtQrhzlUsfsMHv54n8i4R8KrBAXN
-        /oJtKDqGe9jedq5s8KIEJFc=
-X-Google-Smtp-Source: ABdhPJzZ0VS+w0Io2P+whf5pAsfzwgyVyr3Ys/5PCfxFI7R+o6xgd8FZrEL10EVZyI4zajpMcZjVWw==
-X-Received: by 2002:a17:906:360b:: with SMTP id q11mr3635507ejb.259.1603286681576;
-        Wed, 21 Oct 2020 06:24:41 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.171])
-        by smtp.googlemail.com with ESMTPSA id y32sm2044311edy.4.2020.10.21.06.24.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 06:24:40 -0700 (PDT)
-Date:   Wed, 21 Oct 2020 15:24:31 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH v2 3/3] ARM: dts: add Van der Laan LANMCU board
-Message-ID: <20201021132431.GA31878@kozik-lap>
-References: <20201015090924.6185-1-o.rempel@pengutronix.de>
- <20201015090924.6185-4-o.rempel@pengutronix.de>
- <20201020102355.GB118941@kozik-lap>
- <20201021124825.yjbcdyy7dyuhvexl@pengutronix.de>
+        id S2439498AbgJUNsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 09:48:31 -0400
+Received: from mail-eopbgr1400131.outbound.protection.outlook.com ([40.107.140.131]:16944
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2441947AbgJUNsb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Oct 2020 09:48:31 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kqtot8XWF3jLF83kNm2b2PaL2JH1YaumCSXReIfbbKaHiXNyepDzMycm+0h84uva7UTHWfWyJpg8Lq8teevJEvrVxHGrfQ3SCa2NI32+vSfrGcr0Cd0mXzVxCfkDSwOab6eAkLsuVePSPv+5LOt3duAO774zrW0yH4ZwfqNFNCnG2+0jaSLN4yCkIWPQEAumc4JIlfxDzoCDkBO9zhe7AwXVSkrx2PkjDJCqPzRc367h5HDUc9BFTBdR7hXU1RsxXzzMxC0AERxWvBsqZropyDER/DD2/xwT/y7JhaK7543uuc6AA81nkpqeuRVMVnum/Jrb7fEZGf6192o10amQyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S1lF2ARTJqlzzUW87IGJihXfg4Lo+v0Cmwg7e20V92g=;
+ b=drd9FGyU83n5AcYnhmn+439vlfXiwKCDLtZcU1lGh8T3mEM6vYqoCTRWap1FsWyGjXhnx0z4fEN+/NwjDkH1cxfodczyFi6q+FQs+vBv29xmKYSi3iiXXnNFRSEW03dM2XHKNOICsKpBaksAwZKIMnx2AySOOMst3hdZR/qxotbk91KfAem9RCuiCm9TSaIPnxa/n7FkV4s4GWn7DZP3TF69y2sxfKHczj8BSr6bpfbixyK0Uo8/fuQ1RYRbuN/tUk7rj1hUWjaSV+abV+trdoUVxC/LfwQEo08Mi8p4j9eFN4/wnT/WgKRbm9SddhF8s5r9ocyTUuboTImGcxKejg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S1lF2ARTJqlzzUW87IGJihXfg4Lo+v0Cmwg7e20V92g=;
+ b=ghv80drehKmc074L0qp6Ju30klPFVYGzDy1TKRjH92uKyYF7JJ5szLd8B9uQEuD477MY1xmB9gAlCcHXXpFsrVqfFTRtq/+SDl7I9qUPpYFzd9dAFkRQpD/MpQ0lkbrnyT4ZGD5lVBr5En1ZGxcz/mOIM33BbwzJf7WD73+4eiM=
+Received: from OSAPR01MB2740.jpnprd01.prod.outlook.com (2603:1096:603:3a::20)
+ by OSBPR01MB2520.jpnprd01.prod.outlook.com (2603:1096:604:1f::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Wed, 21 Oct
+ 2020 13:48:24 +0000
+Received: from OSAPR01MB2740.jpnprd01.prod.outlook.com
+ ([fe80::8c77:606f:d812:ecd2]) by OSAPR01MB2740.jpnprd01.prod.outlook.com
+ ([fe80::8c77:606f:d812:ecd2%7]) with mapi id 15.20.3477.028; Wed, 21 Oct 2020
+ 13:48:24 +0000
+From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: RE: [PATCH v4 2/5] media: dt-bindings: media: renesas,drif: Convert
+ to json-schema
+Thread-Topic: [PATCH v4 2/5] media: dt-bindings: media: renesas,drif: Convert
+ to json-schema
+Thread-Index: AQHWokK6vjssIp7eK0+ltfL7vKiiqamaZRkAgAe11VA=
+Date:   Wed, 21 Oct 2020 13:48:24 +0000
+Message-ID: <OSAPR01MB27409519A86983F157EF4800C21C0@OSAPR01MB2740.jpnprd01.prod.outlook.com>
+References: <20201014155719.15120-1-fabrizio.castro.jz@renesas.com>
+ <20201014155719.15120-3-fabrizio.castro.jz@renesas.com>
+ <20201016155546.GB1474949@bogus>
+In-Reply-To: <20201016155546.GB1474949@bogus>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 627ad64d-72e9-459c-7ecf-08d875c7fb2c
+x-ms-traffictypediagnostic: OSBPR01MB2520:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSBPR01MB25203D79F4336265A60161C9C21C0@OSBPR01MB2520.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: LRnsAQOFCs8lf2fb5bIOaFIZhTSEK1ZRzxJDwwx+031J+53WwTyxpxVuHet862Y7As5YiP6NyLGSXjl5aLg3qR4m1wdvbQbznBJpgM0u5tOXsxvyYDglbn/Uyo/+xO97fJNDjUTNoRT2Y9VhR8cSBCTfvgpR/3l/YcXTIov/8UtAd6uDrIRl/+ocJsBFM7WSUH+uflpuvVmSJCl5ViNVJdUG3P2U+hyS3Nc/N8QwJxZThgyD5h9uNFvWPiYZXnC+UK8Svt3Ck4FtPanBbgIvVtI0rpPFegL9+BS1c8Dbu7w4kZDvFZgNZW8Ix4/2d1BkJ9Wfi/IcyjiRRzz+oqU7c2TdJeeiJDfiJ1ZoyfrmMIZzUrnyH5WMNIXCfzugk12fB1tXIiN/xkZ7mbLMzjqcmQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB2740.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(366004)(346002)(396003)(376002)(76116006)(966005)(186003)(9686003)(83380400001)(26005)(8676002)(7696005)(2906002)(33656002)(71200400001)(8936002)(6506007)(53546011)(66556008)(66946007)(64756008)(66476007)(54906003)(4326008)(316002)(6916009)(66446008)(478600001)(86362001)(5660300002)(55016002)(30864003)(52536014);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: l6qFGaQX2PDVgMBc+HPXqJYEey8tI1z3k2bIfWG5iBsmxiePwpHFA/gB7nZIDQEOgM9Gxs+/AKtrQtqZA3XnnbDoSNT66ffXzYQlYNd77RqU9dK4PnoA1tAA1U6w5yyq8vjycj2Oo2GXVe/G6/Ntso2RxTzMoG3+oO+6DX+IV/G6rCbOZo3yb34YLoqhLHirY51bAjzUylitYPWzrBE4u4WofBAGhF2xMaqBgCZvVZEBHv1m4Xfd0Dy+7q4TPhEdoZT+4nYusN3EZqSHUt8vlITsMAzXu8iP43wTQrC+MpkNAh5GjrNj7bz4mHQfdM7mn478TGIKnOU4IdhDalDLXKOCuxotdNGDjc553ATM7piHsK29MrnWObJEfHrdnFVTiFV7dlYbwU/E/mS9SxVA+qZ5RqNVKvcigvnYU0ToS6ZbZ9PmH6vyh97APdHk8mVo2QYEueuIEAP0i/SP2m7XB7rIKtNhSrM2/CM6wIOUWSp+zMCepxEMRY5cKtmB+VsmSZmCnyN5EafiU6HxTLVgyJZddwSdjThgngo3aZtIyrcO2ueJcGPX9U18o+OrGUAL8W/scxGSMXe/VklF3HSndvGCadsXuga0s8Bno/ysD5gvoURWGmsVv9aB7mAC5ZFgIQWUqPZfZWT7UL6WMB1QDA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201021124825.yjbcdyy7dyuhvexl@pengutronix.de>
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB2740.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 627ad64d-72e9-459c-7ecf-08d875c7fb2c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2020 13:48:24.1896
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: i25w+iE9Ot7tRovUam5g3xvnxA5HDQ06ahzVXxHEw+eQuajCOYyKMulZhqERBPhU0Rk6CvLgJCMSAht04XJIcD8oIkc0PnZ/v2BOwehXuYA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB2520
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 02:48:25PM +0200, Oleksij Rempel wrote:
-> Hello Krzysztof,
-> 
-> On Tue, Oct 20, 2020 at 12:23:55PM +0200, Krzysztof Kozlowski wrote:
-> > On Thu, Oct 15, 2020 at 11:09:24AM +0200, Oleksij Rempel wrote:
-> > > Van der Laan LANMCU is a module for the food storage rooms to control
-> > > proper gas composition.
-> > > 
-> > > Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
-> > > Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > > ---
-> > >  arch/arm/boot/dts/Makefile          |   1 +
-> > >  arch/arm/boot/dts/imx6dl-lanmcu.dts | 469 ++++++++++++++++++++++++++++
-> > >  2 files changed, 470 insertions(+)
-> > >  create mode 100644 arch/arm/boot/dts/imx6dl-lanmcu.dts
-> > > 
-> > > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > > index 2289a28c0ff6..dc2543a7b7e9 100644
-> > > --- a/arch/arm/boot/dts/Makefile
-> > > +++ b/arch/arm/boot/dts/Makefile
-> > > @@ -447,6 +447,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
-> > >  	imx6dl-icore.dtb \
-> > >  	imx6dl-icore-mipi.dtb \
-> > >  	imx6dl-icore-rqs.dtb \
-> > > +	imx6dl-lanmcu.dtb \
-> > >  	imx6dl-mamoj.dtb \
-> > >  	imx6dl-nit6xlite.dtb \
-> > >  	imx6dl-nitrogen6x.dtb \
-> > > diff --git a/arch/arm/boot/dts/imx6dl-lanmcu.dts b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-> > > new file mode 100644
-> > > index 000000000000..36c029dcc832
-> > > --- /dev/null
-> > > +++ b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-> > > @@ -0,0 +1,469 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > > +/*
-> > > + * Copyright (c) 2019 Protonic Holland
-> > > + * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +#include <dt-bindings/leds/common.h>
-> > > +#include "imx6dl.dtsi"
-> > > +
-> > > +/ {
-> > > +	model = "Van der Laan LANMCU";
-> > > +	compatible = "vdl,lanmcu", "fsl,imx6dl";
-> > > +
-> > > +	chosen {
-> > > +		stdout-path = &uart4;
-> > > +	};
-> > > +
-> > > +	clock_ksz8081: clock-ksz8081 {
-> > > +		compatible = "fixed-clock";
-> > > +		#clock-cells = <0>;
-> > > +		clock-frequency = <50000000>;
-> > > +	};
-> > > +
-> > > +	backlight: backlight {
-> > > +		compatible = "pwm-backlight";
-> > > +		pwms = <&pwm1 0 5000000 0>;
-> > > +		brightness-levels = <0 1000>;
-> > > +		num-interpolated-steps = <20>;
-> > > +		default-brightness-level = <19>;
-> > > +	};
-> > > +
-> > > +	display {
-> > > +		compatible = "fsl,imx-parallel-display";
-> > > +		pinctrl-0 = <&pinctrl_ipu1_disp>;
-> > > +		pinctrl-names = "default";
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <0>;
-> > > +
-> > > +		port@0 {
-> > > +			reg = <0>;
-> > > +
-> > > +			display_in: endpoint {
-> > > +				remote-endpoint = <&ipu1_di0_disp0>;
-> > > +			};
-> > > +		};
-> > > +
-> > > +		port@1 {
-> > > +			reg = <1>;
-> > > +
-> > > +			display_out: endpoint {
-> > > +				remote-endpoint = <&panel_in>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +
-> > > +	leds {
-> > > +		compatible = "gpio-leds";
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&pinctrl_leds>;
-> > > +
-> > > +		led-debug {
-> > 
-> > led-0 (dt spec naming requirement, upcomming dtschema as well) and add a
-> > label if you want it to be nicely labeled for user-space.
-> 
-> ok, done
-> 
-> > > +			function = LED_FUNCTION_STATUS;
-> > > +			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-> > > +			linux,default-trigger = "heartbeat";
-> > > +		};
-> > > +	};
-> > > +
-> > > +	panel {
-> > > +		compatible = "edt,etm0700g0bdh6";
-> > > +		backlight = <&backlight>;
-> > > +
-> > > +		port {
-> > > +			panel_in: endpoint {
-> > > +				remote-endpoint = <&display_out>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +
-> > > +	reg_otg_vbus: regulator-otg-vbus {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "otg-vbus";
-> > > +		regulator-min-microvolt = <5000000>;
-> > > +		regulator-max-microvolt = <5000000>;
-> > > +		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-> > > +		enable-active-high;
-> > > +	};
-> > > +
-> > > +	usdhc2_wifi_pwrseq: usdhc2-wifi-pwrseq {
-> > > +		compatible = "mmc-pwrseq-simple";
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&pinctrl_wifi_npd>;
-> > > +		reset-gpios = <&gpio6 10 GPIO_ACTIVE_LOW>;
-> > > +	};
-> > > +
-> > > +};
-> > > +
-> > > +&can1 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_can1>;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&can2 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_can2>;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&fec {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_enet>;
-> > > +	phy-mode = "rmii";
-> > > +	clocks = <&clks IMX6QDL_CLK_ENET>,
-> > > +		 <&clks IMX6QDL_CLK_ENET>,
-> > > +		 <&clock_ksz8081>;
-> > > +	clock-names = "ipg", "ahb", "ptp";
-> > > +	phy-handle = <&rgmii_phy>;
-> > > +	status = "okay";
-> > > +
-> > > +	mdio {
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <0>;
-> > > +
-> > > +		/* Microchip KSZ8081RNA PHY */
-> > > +		rgmii_phy: ethernet-phy@0 {
-> > > +			reg = <0>;
-> > > +			interrupts-extended = <&gpio5 23 IRQ_TYPE_LEVEL_LOW>;
-> > > +			reset-gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
-> > > +			reset-assert-us = <10000>;
-> > > +			reset-deassert-us = <300>;
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&gpio1 {
-> > > +	gpio-line-names =
-> > > +		"", "SD1_CD", "", "", "", "", "", "",
-> > > +		"DEBUG_0", "BL_PWM", "", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "", "ENET_LED_GREEN",
-> > > +		"", "", "", "", "", "", "", "";
-> > > +};
-> > > +
-> > > +&gpio3 {
-> > > +	gpio-line-names =
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"", "", "", "", "TS_INT", "USB_OTG1_OC", "USB_OTG1_PWR", "",
-> > > +		"", "", "", "", "UART2_CTS", "", "UART3_CTS", "";
-> > > +};
-> > > +
-> > > +&gpio5 {
-> > > +	gpio-line-names =
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "ENET_RST", "ENET_INT",
-> > > +		"", "", "I2C1_SDA", "I2C1_SCL", "", "", "", "";
-> > > +};
-> > > +
-> > > +&gpio6 {
-> > > +	gpio-line-names =
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"", "", "WLAN_REG_ON", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "", "";
-> > > +};
-> > > +
-> > > +&gpio7 {
-> > > +	gpio-line-names =
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"EMMC_RST", "", "", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "", "",
-> > > +		"", "", "", "", "", "", "", "";
-> > > +};
-> > > +
-> > > +&i2c1 {
-> > > +	clock-frequency = <100000>;
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_i2c1>;
-> > > +	status = "okay";
-> > > +
-> > > +	/* additional i2c devices are added automatically by the boot loader */
-> > > +};
-> > > +
-> > > +&i2c3 {
-> > > +	clock-frequency = <100000>;
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_i2c3>;
-> > > +	status = "okay";
-> > > +
-> > > +	touchscreen@38 {
-> > > +		compatible = "edt,edt-ft5406";
-> > > +		reg = <0x38>;
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&pinctrl_ts_edt>;
-> > > +		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
-> > > +
-> > > +		touchscreen-size-x = <1792>;
-> > > +		touchscreen-size-y = <1024>;
-> > > +
-> > > +		touchscreen-fuzz-x = <0>;
-> > > +		touchscreen-fuzz-y = <0>;
-> > > +
-> > > +		/* Touch screen calibration */
-> > > +		threshold = <50>;
-> > > +		gain = <5>;
-> > > +		offset = <10>;
-> > > +	};
-> > > +
-> > > +	rtc@51 {
-> > > +		compatible = "nxp,pcf8563";
-> > > +		reg = <0x51>;
-> > > +	};
-> > > +};
-> > > +
-> > > +&ipu1_di0_disp0 {
-> > > +	remote-endpoint = <&display_in>;
-> > > +};
-> > > +
-> > > +&pwm1 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_pwm1>;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&uart2 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_uart2>;
-> > > +	linux,rs485-enabled-at-boot-time;
-> > > +	uart-has-rtscts;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&uart3 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_uart3>;
-> > > +	linux,rs485-enabled-at-boot-time;
-> > > +	uart-has-rtscts;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&uart4 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_uart4>;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&usbotg {
-> > > +	vbus-supply = <&reg_otg_vbus>;
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_usbotg>;
-> > > +	phy_type = "utmi";
-> > > +	dr_mode = "host";
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&usdhc1 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_usdhc1>;
-> > > +	cd-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-> > > +	no-1-8-v;
-> > > +	disable-wp;
-> > > +	cap-sd-highspeed;
-> > > +	no-mmc;
-> > > +	no-sdio;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&usdhc2 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_usdhc2>;
-> > > +	no-1-8-v;
-> > > +	non-removable;
-> > > +	mmc-pwrseq = <&usdhc2_wifi_pwrseq>;
-> > > +	#address-cells = <1>;
-> > > +	#size-cells = <0>;
-> > > +	status = "okay";
-> > > +
-> > > +	brcmf: bcrmf@1 {
-> > 
-> > node name "wifi"? Or "wifi-bt"? DT spec requires nodes to have more or
-> > less generic names.
-> 
-> I'll take wifi@ it is mostly used pattern.
-> 
-> > Best regards,
-> > Krzysztof
-> 
-> Thx for review,
-> 
-> should I add your Reviewed-by?
+Hi Rob,
 
-With the changes, can be:
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Thank you for your feedback.
 
-Best regards,
-Krzysztof
+> From: Rob Herring <robh@kernel.org>
+> Sent: 16 October 2020 16:56
+> Subject: Re: [PATCH v4 2/5] media: dt-bindings: media: renesas,drif: Conv=
+ert to
+> json-schema
+>=20
+> On Wed, Oct 14, 2020 at 04:57:16PM +0100, Fabrizio Castro wrote:
+> > Convert the Renesas DRIF bindings to DT schema and update
+> > MAINTAINERS accordingly.
+> >
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v3->v4:
+> > * Replace "if" statement with "else" statement for the branch
+> >   rejecting pinctrl-0 and pinctrl-names properties, as suggested
+> >   by Geert
+> > v2->v3:
+> > * Removed the definition of pinctrl-0 and pinctrl-names, as
+> >   suggested by Geert
+> > * Added "power-domains" to the list of required properties,
+> >   as suggested by Geert
+> > v1->v2:
+> > * s/controller/Controller/ in the title of renesas,drif.yaml
+> >   as suggested by Laurent.
+> >
+> >  .../bindings/media/renesas,drif.txt           | 177 -----------
+> >  .../bindings/media/renesas,drif.yaml          | 277 ++++++++++++++++++
+> >  MAINTAINERS                                   |   2 +-
+> >  3 files changed, 278 insertions(+), 178 deletions(-)
+> >  delete mode 100644
+> Documentation/devicetree/bindings/media/renesas,drif.txt
+> >  create mode 100644
+> Documentation/devicetree/bindings/media/renesas,drif.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,drif.txt
+> b/Documentation/devicetree/bindings/media/renesas,drif.txt
+> > deleted file mode 100644
+> > index 0d8974aa8b38..000000000000
+> > --- a/Documentation/devicetree/bindings/media/renesas,drif.txt
+> > +++ /dev/null
+> > @@ -1,177 +0,0 @@
+> > -Renesas R-Car Gen3 Digital Radio Interface controller (DRIF)
+> > -------------------------------------------------------------
+> > -
+> > -R-Car Gen3 DRIF is a SPI like receive only slave device. A general
+> > -representation of DRIF interfacing with a master device is shown below=
+.
+> > -
+> > -+---------------------+                +---------------------+
+> > -|                     |-----SCK------->|CLK                  |
+> > -|       Master        |-----SS-------->|SYNC  DRIFn (slave)  |
+> > -|                     |-----SD0------->|D0                   |
+> > -|                     |-----SD1------->|D1                   |
+> > -+---------------------+                +---------------------+
+> > -
+> > -As per datasheet, each DRIF channel (drifn) is made up of two internal
+> > -channels (drifn0 & drifn1). These two internal channels share the comm=
+on
+> > -CLK & SYNC. Each internal channel has its own dedicated resources like
+> > -irq, dma channels, address space & clock. This internal split is not
+> > -visible to the external master device.
+> > -
+> > -The device tree model represents each internal channel as a separate n=
+ode.
+> > -The internal channels sharing the CLK & SYNC are tied together by thei=
+r
+> > -phandles using a property called "renesas,bonding". For the rest of
+> > -the documentation, unless explicitly stated, the word channel implies =
+an
+> > -internal channel.
+> > -
+> > -When both internal channels are enabled they need to be managed togeth=
+er
+> > -as one (i.e.) they cannot operate alone as independent devices. Out of=
+ the
+> > -two, one of them needs to act as a primary device that accepts common
+> > -properties of both the internal channels. This channel is identified b=
+y a
+> > -property called "renesas,primary-bond".
+> > -
+> > -To summarize,
+> > -   - When both the internal channels that are bonded together are enab=
+led,
+> > -     the zeroth channel is selected as primary-bond. This channels acc=
+epts
+> > -     properties common to all the members of the bond.
+> > -   - When only one of the bonded channels need to be enabled, the prop=
+erty
+> > -     "renesas,bonding" or "renesas,primary-bond" will have no effect. =
+That
+> > -     enabled channel can act alone as any other independent device.
+> > -
+> > -Required properties of an internal channel:
+> > --------------------------------------------
+> > -- compatible:	"renesas,r8a7795-drif" if DRIF controller is a part of R=
+8A7795
+> SoC.
+> > -		"renesas,r8a7796-drif" if DRIF controller is a part of R8A7796
+> SoC.
+> > -		"renesas,rcar-gen3-drif" for a generic R-Car Gen3 compatible
+> device.
+> > -
+> > -		When compatible with the generic version, nodes must list the
+> > -		SoC-specific version corresponding to the platform first
+> > -		followed by the generic version.
+> > -
+> > -- reg: offset and length of that channel.
+> > -- interrupts: associated with that channel.
+> > -- clocks: phandle and clock specifier of that channel.
+> > -- clock-names: clock input name string: "fck".
+> > -- dmas: phandles to the DMA channels.
+> > -- dma-names: names of the DMA channel: "rx".
+> > -- renesas,bonding: phandle to the other channel.
+> > -
+> > -Optional properties of an internal channel:
+> > --------------------------------------------
+> > -- power-domains: phandle to the respective power domain.
+> > -
+> > -Required properties of an internal channel when:
+> > -	- It is the only enabled channel of the bond (or)
+> > -	- If it acts as primary among enabled bonds
+> > ---------------------------------------------------------
+> > -- pinctrl-0: pin control group to be used for this channel.
+> > -- pinctrl-names: must be "default".
+> > -- renesas,primary-bond: empty property indicating the channel acts as
+> primary
+> > -			among the bonded channels.
+> > -- port: child port node corresponding to the data input, in accordance=
+ with
+> > -	the video interface bindings defined in
+> > -	Documentation/devicetree/bindings/media/video-interfaces.txt. The
+> port
+> > -	node must contain at least one endpoint.
+> > -
+> > -Optional endpoint property:
+> > ----------------------------
+> > -- sync-active: Indicates sync signal polarity, 0/1 for low/high respec=
+tively.
+> > -	       This property maps to SYNCAC bit in the hardware manual. The
+> > -	       default is 1 (active high).
+> > -
+> > -Example:
+> > ---------
+> > -
+> > -(1) Both internal channels enabled:
+> > ------------------------------------
+> > -
+> > -When interfacing with a third party tuner device with two data pins as=
+ shown
+> > -below.
+> > -
+> > -+---------------------+                +---------------------+
+> > -|                     |-----SCK------->|CLK                  |
+> > -|       Master        |-----SS-------->|SYNC  DRIFn (slave)  |
+> > -|                     |-----SD0------->|D0                   |
+> > -|                     |-----SD1------->|D1                   |
+> > -+---------------------+                +---------------------+
+> > -
+> > -	drif00: rif@e6f40000 {
+> > -		compatible =3D "renesas,r8a7795-drif",
+> > -			     "renesas,rcar-gen3-drif";
+> > -		reg =3D <0 0xe6f40000 0 0x64>;
+> > -		interrupts =3D <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> > -		clocks =3D <&cpg CPG_MOD 515>;
+> > -		clock-names =3D "fck";
+> > -		dmas =3D <&dmac1 0x20>, <&dmac2 0x20>;
+> > -		dma-names =3D "rx", "rx";
+> > -		power-domains =3D <&sysc R8A7795_PD_ALWAYS_ON>;
+> > -		renesas,bonding =3D <&drif01>;
+> > -		renesas,primary-bond;
+> > -		pinctrl-0 =3D <&drif0_pins>;
+> > -		pinctrl-names =3D "default";
+> > -		port {
+> > -			drif0_ep: endpoint {
+> > -			     remote-endpoint =3D <&tuner_ep>;
+> > -			};
+> > -		};
+> > -	};
+> > -
+> > -	drif01: rif@e6f50000 {
+> > -		compatible =3D "renesas,r8a7795-drif",
+> > -			     "renesas,rcar-gen3-drif";
+> > -		reg =3D <0 0xe6f50000 0 0x64>;
+> > -		interrupts =3D <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> > -		clocks =3D <&cpg CPG_MOD 514>;
+> > -		clock-names =3D "fck";
+> > -		dmas =3D <&dmac1 0x22>, <&dmac2 0x22>;
+> > -		dma-names =3D "rx", "rx";
+> > -		power-domains =3D <&sysc R8A7795_PD_ALWAYS_ON>;
+> > -		renesas,bonding =3D <&drif00>;
+> > -	};
+> > -
+> > -
+> > -(2) Internal channel 1 alone is enabled:
+> > -----------------------------------------
+> > -
+> > -When interfacing with a third party tuner device with one data pin as =
+shown
+> > -below.
+> > -
+> > -+---------------------+                +---------------------+
+> > -|                     |-----SCK------->|CLK                  |
+> > -|       Master        |-----SS-------->|SYNC  DRIFn (slave)  |
+> > -|                     |                |D0 (unused)          |
+> > -|                     |-----SD-------->|D1                   |
+> > -+---------------------+                +---------------------+
+> > -
+> > -	drif00: rif@e6f40000 {
+> > -		compatible =3D "renesas,r8a7795-drif",
+> > -			     "renesas,rcar-gen3-drif";
+> > -		reg =3D <0 0xe6f40000 0 0x64>;
+> > -		interrupts =3D <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> > -		clocks =3D <&cpg CPG_MOD 515>;
+> > -		clock-names =3D "fck";
+> > -		dmas =3D <&dmac1 0x20>, <&dmac2 0x20>;
+> > -		dma-names =3D "rx", "rx";
+> > -		power-domains =3D <&sysc R8A7795_PD_ALWAYS_ON>;
+> > -		renesas,bonding =3D <&drif01>;
+> > -	};
+> > -
+> > -	drif01: rif@e6f50000 {
+> > -		compatible =3D "renesas,r8a7795-drif",
+> > -			     "renesas,rcar-gen3-drif";
+> > -		reg =3D <0 0xe6f50000 0 0x64>;
+> > -		interrupts =3D <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> > -		clocks =3D <&cpg CPG_MOD 514>;
+> > -		clock-names =3D "fck";
+> > -		dmas =3D <&dmac1 0x22>, <&dmac2 0x22>;
+> > -		dma-names =3D "rx", "rx";
+> > -		power-domains =3D <&sysc R8A7795_PD_ALWAYS_ON>;
+> > -		renesas,bonding =3D <&drif00>;
+> > -		pinctrl-0 =3D <&drif0_pins>;
+> > -		pinctrl-names =3D "default";
+> > -		port {
+> > -			drif0_ep: endpoint {
+> > -			     remote-endpoint =3D <&tuner_ep>;
+> > -			     sync-active =3D <0>;
+> > -			};
+> > -		};
+> > -	};
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> > new file mode 100644
+> > index 000000000000..3832ce837553
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> > @@ -0,0 +1,277 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/renesas,drif.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas R-Car Gen3 Digital Radio Interface Controller (DRIF)
+> > +
+> > +maintainers:
+> > +  - Ramesh Shanmugasundaram <rashanmu@gmail.com>
+> > +  - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > +
+> > +description: |
+> > +  R-Car Gen3 DRIF is a SPI like receive only slave device. A general
+> > +  representation of DRIF interfacing with a master device is shown bel=
+ow.
+> > +
+> > +  +---------------------+                +---------------------+
+> > +  |                     |-----SCK------->|CLK                  |
+> > +  |       Master        |-----SS-------->|SYNC  DRIFn (slave)  |
+> > +  |                     |-----SD0------->|D0                   |
+> > +  |                     |-----SD1------->|D1                   |
+> > +  +---------------------+                +---------------------+
+> > +
+> > +  As per datasheet, each DRIF channel (drifn) is made up of two intern=
+al
+> > +  channels (drifn0 & drifn1). These two internal channels share the co=
+mmon
+> > +  CLK & SYNC. Each internal channel has its own dedicated resources li=
+ke
+> > +  irq, dma channels, address space & clock. This internal split is not
+> > +  visible to the external master device.
+> > +
+> > +  The device tree model represents each internal channel as a separate=
+ node.
+> > +  The internal channels sharing the CLK & SYNC are tied together by th=
+eir
+> > +  phandles using a property called "renesas,bonding". For the rest of
+> > +  the documentation, unless explicitly stated, the word channel implie=
+s an
+> > +  internal channel.
+> > +
+> > +  When both internal channels are enabled they need to be managed toge=
+ther
+> > +  as one (i.e.) they cannot operate alone as independent devices. Out =
+of the
+> > +  two, one of them needs to act as a primary device that accepts commo=
+n
+> > +  properties of both the internal channels. This channel is identified=
+ by a
+> > +  property called "renesas,primary-bond".
+> > +
+> > +  To summarize,
+> > +     * When both the internal channels that are bonded together are en=
+abled,
+> > +       the zeroth channel is selected as primary-bond. This channels a=
+ccepts
+> > +       properties common to all the members of the bond.
+> > +     * When only one of the bonded channels need to be enabled, the pr=
+operty
+> > +       "renesas,bonding" or "renesas,primary-bond" will have no effect=
+. That
+> > +       enabled channel can act alone as any other independent device.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +        - renesas,r8a7795-drif        # R-Car H3
+> > +        - renesas,r8a7796-drif        # R-Car M3-W
+>=20
+> Note the bot error is from yamllint which just got added to the checks.
+> Need 2 more spaces indent here.
+
+Thank you for reporting this. Unfortunately I wasn't personally able to rep=
+roduce this,
+but thankfully a colleague of mine (Prabhakar) was able to reproduce the wa=
+rning on
+his setup. I'll send a v5 to fix this.
+
+Thanks,
+Fab
+
+>=20
+> With that,
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
