@@ -2,145 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA6C296295
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 18:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D1E42962C7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 18:36:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2901638AbgJVQVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 12:21:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50700 "EHLO
+        id S2901864AbgJVQgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 12:36:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502583AbgJVQVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 12:21:08 -0400
-Received: from relay.felk.cvut.cz (relay.felk.cvut.cz [IPv6:2001:718:2:1611:0:1:0:70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F39C3C0613CE;
-        Thu, 22 Oct 2020 09:21:07 -0700 (PDT)
-Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
-        by relay.felk.cvut.cz (8.15.2/8.15.2) with ESMTP id 09MGJuHh083783;
-        Thu, 22 Oct 2020 18:19:56 +0200 (CEST)
-        (envelope-from pisa@cmp.felk.cvut.cz)
-Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
-        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 09MGJtlF005960;
-        Thu, 22 Oct 2020 18:19:55 +0200
-Received: (from pisa@localhost)
-        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 09MGJtY1005958;
-        Thu, 22 Oct 2020 18:19:55 +0200
-X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
-From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
-To:     Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v6 4/6] can: ctucanfd: CTU CAN FD open-source IP core - PCI bus support.
-Date:   Thu, 22 Oct 2020 18:19:55 +0200
-User-Agent: KMail/1.9.10
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        "Marc Kleine-Budde" <mkl@pengutronix.de>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-References: <cover.1603354744.git.pisa@cmp.felk.cvut.cz> <9783a6d0a3e79ca4106cf1794aa06c8436700137.1603354744.git.pisa@cmp.felk.cvut.cz> <20201022113952.GC30566@duo.ucw.cz>
-In-Reply-To: <20201022113952.GC30566@duo.ucw.cz>
-X-KMail-QuotePrefix: > 
+        with ESMTP id S2901863AbgJVQgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 12:36:25 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51D0C0613CE
+        for <devicetree@vger.kernel.org>; Thu, 22 Oct 2020 09:36:24 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id j30so3063990lfp.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Oct 2020 09:36:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SO5wvZ4fxYjooiqb/eYAQ8Wh/XEVxLeo6rSTbgv9hm0=;
+        b=f2N+8BkiEK9G8G7pzUdpvAN3N4w6fD/ngMy5SKE0I7sFw5Z2BjafveZmPN4c9U9tEz
+         LCpkFFyelbr989oHrwnR7B/k4Y3icQmVq8JD78jhtQWBMLk7jZ1eTHvav6faRAqkNyIA
+         WMobCyC/0eEUDL63n/Vv0SR5WDF88FwfrCJcmjToHKq8OZDO8rv63kMFsKJfVwuhzElK
+         /UboNTIcpGYj71MLAP6LyAZUMmydXAhd90jowUGaoEYEd0NPMCnwAeJhUhzFTeqHW0oK
+         EvkAkl1+C9R2BdIlu/qBftZvPHIVbAVUl8PKNcjxY9h7+zIFQt2bp/8Owhm0zgzZ+myY
+         1dgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SO5wvZ4fxYjooiqb/eYAQ8Wh/XEVxLeo6rSTbgv9hm0=;
+        b=VRwMf7FDQhUUa4hUXRYwbAOtjQdqbR5a/USGEvRBN9bICsBywWfVP+N+EspeXbKqz0
+         tPAjlTt1e2Shx4MUnMHiGXAPBNC0+uRbWhcSqWbH+CrSQY4b8VGU4k+7ThHO+ZVfq3JT
+         8wrKIbCOJU9hD0G78Cso5XnL5ZG4SQp/8qwjvxNQOrsGdQlGlqa7odAfrKJZ0HHwu03+
+         7zr9gUa5UZbYEPvE+WBp/5/XH/Wb9DkrfBLPd6PoA4TvUjIcqqAFkW7yhPkxcKyMYaJ7
+         q1zF9tw0op9/ZxYxKTN10EpbjN5E0KcsgGtdab5H+oudi0ldzAs/RWFbKo89UnEbIG+s
+         Xz2g==
+X-Gm-Message-State: AOAM530WgJUojaiiL0qaJuM33ZBXQf+93EiHnQIaxyoN7cvMuGZi1vin
+        AULkxeTcmG7+AKC2hUki8anA9rf6DDGSVO+z4n8=
+X-Google-Smtp-Source: ABdhPJwMIZV/S/JZe1Or3EEzVDQnIVdSHOtAJN+aamfWtgt/w1RfFI0f7Iw0BEMP4UxPv+tbpApqkKtYx4yYjjF6dTE=
+X-Received: by 2002:ac2:4e90:: with SMTP id o16mr1241464lfr.251.1603384583121;
+ Thu, 22 Oct 2020 09:36:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: Text/Plain;
-  charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-Message-Id: <202010221819.55087.pisa@cmp.felk.cvut.cz>
-X-FELK-MailScanner-Information: 
-X-MailScanner-ID: 09MGJuHh083783
-X-FELK-MailScanner: Found to be clean
-X-FELK-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
-        score=-0.099, required 6, BAYES_00 -0.50, KHOP_HELO_FCRDNS 0.40,
-        NICE_REPLY_A -0.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00,
-        URIBL_BLOCKED 0.00)
-X-FELK-MailScanner-From: pisa@cmp.felk.cvut.cz
-X-FELK-MailScanner-Watermark: 1603988397.44586@OFvO2wL68sLNnqNSsO0ziw
-X-Spam-Status: No
+References: <20200930155006.535712-1-l.stach@pengutronix.de>
+ <AM0PR04MB4915267F67FFEA311E9B79F087080@AM0PR04MB4915.eurprd04.prod.outlook.com>
+ <5287bbc0ede98dd3fc0022f2062148275dafa05c.camel@pengutronix.de>
+ <AM0PR04MB4915BC0D047EBD63D4E4366587090@AM0PR04MB4915.eurprd04.prod.outlook.com>
+ <18c98a86aaac86a5742d6f8c4c671ae522751dda.camel@pengutronix.de>
+ <DB6PR0402MB27604614CB067AB6594221ED88050@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+ <4985eb0d018d488d93e427db27be9418057d9440.camel@pengutronix.de>
+In-Reply-To: <4985eb0d018d488d93e427db27be9418057d9440.camel@pengutronix.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 22 Oct 2020 13:36:12 -0300
+Message-ID: <CAOMZO5ABaiAEEnkUZU9qDrkzsxOxfZgGiwGONGC_8y2z=DMeUg@mail.gmail.com>
+Subject: Re: [PATCH 00/11] i.MX8MM power domain support
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>,
+        Adam Ford <aford173@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel,
+On Thu, Oct 22, 2020 at 5:24 AM Lucas Stach <l.stach@pengutronix.de> wrote:
 
-thanks for review.
+> What I'm strongly opposed to is having a custom TF-A interface and all
+> the added complexity for little to no gain in actual system security.
 
-On Thursday 22 of October 2020 13:39:52 Pavel Machek wrote:
-> Hi!
->
-> > @@ -12,4 +12,13 @@ config CAN_CTUCANFD
-> >
-> >  if CAN_CTUCANFD
-> >
-> > +config CAN_CTUCANFD_PCI
-> > +	tristate "CTU CAN-FD IP core PCI/PCIe driver"
-> > +	depends on PCI
-> > +	help
-> > +	  This driver adds PCI/PCIe support for CTU CAN-FD IP core.
-> > +	  The project providing FPGA design for Intel EP4CGX15 based DB4CGX15
-> > +	  PCIe board with PiKRON.com designed transceiver riser shield is
-> > available +	  at https://gitlab.fel.cvut.cz/canbus/pcie-ctu_can_fd .
-> > +
-> >  endif
->
-> Ok, now the if in the first patch makes sense. It can stay.
->
-> And it is separate module, so EXPORT_SYMBOLs make sense. Ok.
+I agree with Lucas.
 
-Great.
+I would also prefer this series to be applied so that i.MX8MM upstream
+progress does not get stalled any longer.
 
-> > +#ifndef PCI_VENDOR_ID_TEDIA
-> > +#define PCI_VENDOR_ID_TEDIA 0x1760
-> > +#endif
-> >
-> > +#define PCI_DEVICE_ID_ALTERA_CTUCAN_TEST  0xCAFD
-> > +#define PCI_DEVICE_ID_TEDIA_CTUCAN_VER21 0xff00
->
-> These should go elsewhere.
-
-They should propagate somehow from
-
-https://pci-ids.ucw.cz/read/PC/1760/ff00
-
-We have registered them long time ago.
-I am not sure what is right mechanism.
-
-> > +#ifndef PCI_VENDOR_ID_TEDIA
-> > +#define PCI_VENDOR_ID_TEDIA 0x1760
-> > +#endif
-
-So this one should be known to kernel globally, but I would
-be happy if driver build even if global process to introduce
-define did not proceed end even backports would be required
-for long time until kernel including CTU CAN FD propagates
-into distributions, and industrial systems distributions
-lag often a lot
-
-> > +#define PCI_DEVICE_ID_ALTERA_CTUCAN_TEST  0xCAFD
-
-We drop this, I hope we have no system running old test
-version of the core integration before Tedia offered us
-to reserve some IDs (promissed that they would never use them
-in future) for us.
-
-> > +#define PCI_DEVICE_ID_TEDIA_CTUCAN_VER21 0xff00
-
-This should propagate into kernel from registry or at least
-match registry.
-
-> > +static bool use_msi = 1;
-> > +static bool pci_use_second = 1;
->
-> true?
-
-Done
-
-Best wishes,
-
-                Pavel
+Thanks
