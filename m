@@ -2,88 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FF85295DFB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 14:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 163F7295E49
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 14:23:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2897837AbgJVMGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 08:06:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48914 "EHLO mail.kernel.org"
+        id S2898062AbgJVMXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 08:23:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54724 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2503373AbgJVMGJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Oct 2020 08:06:09 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S2898061AbgJVMXu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 08:23:50 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A441C221FE;
-        Thu, 22 Oct 2020 12:06:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BD37F2245F;
+        Thu, 22 Oct 2020 12:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603368368;
-        bh=t+X/fz+JfWcR2EunKKVuaJPpOA4TjedvNGMrxIpej5U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E4Y4GTYOPdmpu+/ow4kGpO4WqSwMFJB/JM+AYpGMSMnsPEGbpwWkDYYEM3oY/NsRL
-         k2q6jz57MFl1cwOa86eGIVfCtsjMmUUvPe4Lx0k+JqiNEAkt2BgkRW68izrBXw/WR6
-         9I5yT2TWdP6XkATm8b/dS7Nw0BQUAzXZMWLH0zm0=
-Date:   Thu, 22 Oct 2020 13:05:56 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     tiwai@suse.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        p.zabel@pengutronix.de, tzungbi@google.com,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        shane.chien@mediatek.com, kuninori.morimoto.gx@renesas.com
-Subject: Re: [PATCH v2 2/5] ASoC: mediatek: mt8192: add platform driver
-Message-ID: <20201022120556.GA4826@sirena.org.uk>
-References: <1603270435-3548-1-git-send-email-jiaxin.yu@mediatek.com>
- <1603270435-3548-3-git-send-email-jiaxin.yu@mediatek.com>
- <20201021132339.GF4497@sirena.org.uk>
- <1603361084.8921.26.camel@mhfsdcap03>
+        s=default; t=1603369428;
+        bh=gFUO9/jr1NGmcSup6f9HJPZXgJ9BgTXZE7zsdNPQVi4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qojjYkQq8wwxNEyfqUP8JGvud2JfsDcJi5zR36v9o7gMAdlAGWQZO82j20Lc6U1vB
+         Eh3BRLTVoQht2Ac4xpSlY1mj/1iE+ijLKk25xArVkm5R1fWJfXJSjKiE3R10CAuQFS
+         LTuvM04QGXciadqYm9iswhMC638pc2oy1rUaLyzw=
+Received: by mail-ot1-f51.google.com with SMTP id k68so1273041otk.10;
+        Thu, 22 Oct 2020 05:23:48 -0700 (PDT)
+X-Gm-Message-State: AOAM531NjYp6UKnaeGDvl649UuatHfR2tgkmu8tMYVEOiJNxVPrk8LF3
+        BhcDxbhtoe0mbIS5CbRdABj2/uq/mUyGFm4YOZ4=
+X-Google-Smtp-Source: ABdhPJxt9LSXVEywyIzGmHFLorZcX5jGT+8e1UeINkXR1Ln9Mj13c0gwDJmF9PMI6zWnbKCdusuBtu5X8LYczt2JBns=
+X-Received: by 2002:a9d:6c92:: with SMTP id c18mr1604110otr.108.1603369427884;
+ Thu, 22 Oct 2020 05:23:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mP3DRpeJDSE+ciuQ"
-Content-Disposition: inline
-In-Reply-To: <1603361084.8921.26.camel@mhfsdcap03>
-X-Cookie: Some settling may occur.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20201021123437.21538-1-nsaenzjulienne@suse.de> <20201021123437.21538-4-nsaenzjulienne@suse.de>
+In-Reply-To: <20201021123437.21538-4-nsaenzjulienne@suse.de>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Thu, 22 Oct 2020 14:23:37 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXEV846XaZWGFmmq4-1UQBb3kw+E_xQf7tGZG7=wQp9xUQ@mail.gmail.com>
+Message-ID: <CAMj1kXEV846XaZWGFmmq4-1UQBb3kw+E_xQf7tGZG7=wQp9xUQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/7] of/address: Introduce of_dma_get_max_cpu_address()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Will Deacon <will@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Hanjun Guo <guohanjun@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 21 Oct 2020 at 14:35, Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
+>
+> Introduce of_dma_get_max_cpu_address(), which provides the highest CPU
+> physical address addressable by all DMA masters in the system. It's
+> specially useful for setting memory zones sizes at early boot time.
+>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+>
+> ---
+>
+> Changes since v3:
+>  - use u64 with cpu_end
+>
+> Changes since v2:
+>  - Use PHYS_ADDR_MAX
+>  - return phys_dma_t
+>  - Rename function
+>  - Correct subject
+>  - Add support to start parsing from an arbitrary device node in order
+>    for the function to work with unit tests
+>
+>  drivers/of/address.c | 42 ++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/of.h   |  7 +++++++
+>  2 files changed, 49 insertions(+)
+>
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index eb9ab4f1e80b..47dfe5881e18 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -1024,6 +1024,48 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
+>  }
+>  #endif /* CONFIG_HAS_DMA */
+>
+> +/**
+> + * of_dma_get_max_cpu_address - Gets highest CPU address suitable for DMA
+> + * @np: The node to start searching from or NULL to start from the root
+> + *
+> + * Gets the highest CPU physical address that is addressable by all DMA masters
+> + * in the sub-tree pointed by np, or the whole tree if NULL is passed. If no
+> + * DMA constrained device is found, it returns PHYS_ADDR_MAX.
+> + */
+> +phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
+> +{
+> +       phys_addr_t max_cpu_addr = PHYS_ADDR_MAX;
+> +       struct of_range_parser parser;
+> +       phys_addr_t subtree_max_addr;
+> +       struct device_node *child;
+> +       struct of_range range;
+> +       const __be32 *ranges;
+> +       u64 cpu_end = 0;
+> +       int len;
+> +
+> +       if (!np)
+> +               np = of_root;
+> +
+> +       ranges = of_get_property(np, "dma-ranges", &len);
+> +       if (ranges && len) {
+> +               of_dma_range_parser_init(&parser, np);
+> +               for_each_of_range(&parser, &range)
+> +                       if (range.cpu_addr + range.size > cpu_end)
+> +                               cpu_end = range.cpu_addr + range.size;
 
---mP3DRpeJDSE+ciuQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Shouldn't this be 'range.cpu_addr + range.size - 1' ?
 
-On Thu, Oct 22, 2020 at 06:04:44PM +0800, Jiaxin Yu wrote:
-> On Wed, 2020-10-21 at 14:23 +0100, Mark Brown wrote:
-
-> > This is *way* too big to be a single patch, please split it up - it's
-> > over 600K.
-
-> I will split the dai driver files as a seperate patches. Such as:
-> ASoC: mediatek: mt8192: support adda in platform driver
-> ASoC: mediatek: mt8192: support i2s in platform driver
-> ASoC: mediatek: mt8192: support pcm in platform driver
-> ASoC: mediatek: mt8192: support tdm in platform driver
-> They're still in series of "ASoC: mediatek: mt8192: add platform
-> driver".=20
-> Is this appropriate? Please correct me if there is any misunderstanding.
-
-That should help, yes.
-
---mP3DRpeJDSE+ciuQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+RdZ4ACgkQJNaLcl1U
-h9BFaQf+L3FRqaz4A2QbQxIofXh6aZaoYBnbTRNNHq9tK52ZNoBuo7c5Oq5jdDxU
-Vrp2Lrp2/5zPc3t2ejKzfghfdaExq0CI+3HhZyy2rpD7DorFI9hhUoMEEy0HeDD2
-OObHcIoDeTTQyTTGmTfQ4ii5+pgfNvxbmId1wYBUD4T/3oY2d1ZV9USUCxavMzRy
-IhMQabPIRTnOitpCtk8fpWUEzz/2t9vDWFJOTzuUA/wyzPjQ+6oMX1YS3op3n0Y8
-GS8Xh70JKZ/tJA4wpprIwovx6dwS8qxs17YvvZSIIopzxlZHbsbZzJpUFdbbF2E1
-s/vPkaVt6maR2dVRk2afz3FWPighSg==
-=jh/Z
------END PGP SIGNATURE-----
-
---mP3DRpeJDSE+ciuQ--
+> +
+> +               if (max_cpu_addr > cpu_end)
+> +                       max_cpu_addr = cpu_end;
+> +       }
+> +
+> +       for_each_available_child_of_node(np, child) {
+> +               subtree_max_addr = of_dma_get_max_cpu_address(child);
+> +               if (max_cpu_addr > subtree_max_addr)
+> +                       max_cpu_addr = subtree_max_addr;
+> +       }
+> +
+> +       return max_cpu_addr;
+> +}
+> +
+>  /**
+>   * of_dma_is_coherent - Check if device is coherent
+>   * @np:        device node
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 481ec0467285..db8db8f2c967 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -558,6 +558,8 @@ int of_map_id(struct device_node *np, u32 id,
+>                const char *map_name, const char *map_mask_name,
+>                struct device_node **target, u32 *id_out);
+>
+> +phys_addr_t of_dma_get_max_cpu_address(struct device_node *np);
+> +
+>  #else /* CONFIG_OF */
+>
+>  static inline void of_core_init(void)
+> @@ -995,6 +997,11 @@ static inline int of_map_id(struct device_node *np, u32 id,
+>         return -EINVAL;
+>  }
+>
+> +static inline phys_addr_t of_dma_get_max_cpu_address(struct device_node *np)
+> +{
+> +       return PHYS_ADDR_MAX;
+> +}
+> +
+>  #define of_match_ptr(_ptr)     NULL
+>  #define of_match_node(_matches, _node) NULL
+>  #endif /* CONFIG_OF */
+> --
+> 2.28.0
+>
