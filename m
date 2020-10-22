@@ -2,110 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C41D32964AF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 20:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 510852964C8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 20:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S369355AbgJVSbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 14:31:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42788 "EHLO
+        id S368974AbgJVSpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 14:45:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S369326AbgJVSbl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 14:31:41 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850A9C0613CE;
-        Thu, 22 Oct 2020 11:31:41 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id j8so2645617ilk.0;
-        Thu, 22 Oct 2020 11:31:41 -0700 (PDT)
+        with ESMTP id S368830AbgJVSpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 14:45:54 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 661EEC0613CE;
+        Thu, 22 Oct 2020 11:45:53 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id y14so1696170pfp.13;
+        Thu, 22 Oct 2020 11:45:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=tclO6iWsKMS0iQgtui86k6EcK3JiEJEq+CF6ReqqBP0=;
-        b=f0ed5Wsn6FuyNQPVhMCZAk+NxRiU/Dp+c+mjzUxc9yHQDfaFF0hOOzjsjrTtiCXA8V
-         lWvrTuBfnEjdC4QvAnQAeNfEjiIPijv1fTzIsfd+QOPUvZEGGJW78jvse8KbfEkbNcFi
-         Udn5os+30NfWu29ukdpqqJZA9oq3aLyKckQZukCrD9xDi5hH4fAhi3NjvrmEoQKShjpu
-         h4X6oLArPw4QA7XVBagUfiqD7JBJFOQ8nopuizjaaZeO467qM1yZeSoP3zwrq1VdpVH4
-         pDSJMagOCVGEZquKaETKXSF5Vm3xlwFZ39GF7WMRtFnXjLo9OfLVolM246Ixg7z92uQA
-         jGYw==
+        bh=PJ+uKLoDbt4Kdg8ImByLjA8Njsk3WlOLgUgCbpkC9zk=;
+        b=A8jUhEN65PHD6v/QKxHHZH30h3Bes875e+6+YJN1oRjC7MZxpv05pacosmi/+65EBk
+         Dx8XXnOnRTnBVHVQ5JmYEycve17jrdZVst0f6IsgoRtTyydrVVoQEhhVNi4cbk+tod5A
+         MNLeNR+TUQSkY5iFpk/xW8fcCvmfbFIEIsWzj8l/+MZ2GaZLFfk/oasxZ10SVZDdetqd
+         m7cKjO1GDgNygAgXbqYg3qwViz8gUMo2l9iN/xTV7hcM7OzUJgHiVxn2xn1Ix11Xn3Mj
+         w5xyxZzMqJdXhyvSL/CCT5pFyt+G/Ry3aTxphw+1BfRgwJ6o1PZGhL3mLbVF7NEE1HQo
+         stlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=tclO6iWsKMS0iQgtui86k6EcK3JiEJEq+CF6ReqqBP0=;
-        b=g8v6ehWe/NvZKrqtw0+cQ+CwJBlsbppfG3MPaz1PyA6kNWsLW0madxxNDFqyUv8Hsp
-         AMLnDwYBUlS6cPqBSiF+VFszhWoUK2olfTBNUTQfCQQWoGdkiPCfR2vgz6EbPO+U7uwe
-         dfhmOdZ2wXJd+fEcuC/TfUvYY1j0qFRRd+tkHzdCfx+K0OgC9SIDEtBfqlwoTLwFT5un
-         JAcddFva70IKYYj5GtaeCQeZotMyMu3qrUrHNyNpjRHuidCV474r7yonH7MqmWebL1Kc
-         2c5JNRxOs/FBLgTt5gdT1qz6uIHqvQfp/3/xhTdZ+bE5UpX+8mmwHO8DUkD6/YYQttQt
-         r7PQ==
-X-Gm-Message-State: AOAM5330Aghi8z1UG9q+nSybYb9htVUK3EfdS93YJZcwyS9tCKYbikQA
-        +wtRF0AGxE34mAa8fk7PdnBOJQ0tpE0iYDY+mfI=
-X-Google-Smtp-Source: ABdhPJzKNFfW+WWsjG+rfN4KqSYnV2UsIOV1hbgv5WbaPwUV1x3VYG7uISprBk2hKa+t11V47HWYVCPscWVboqS7e3I=
-X-Received: by 2002:a05:6e02:52c:: with SMTP id h12mr2817480ils.196.1603391500640;
- Thu, 22 Oct 2020 11:31:40 -0700 (PDT)
+        bh=PJ+uKLoDbt4Kdg8ImByLjA8Njsk3WlOLgUgCbpkC9zk=;
+        b=Lffidh1m26Tpvc0fK79Div1yEN/p+2gdVsvah6YqlDfyZhZRXsi+QpY1G+HVpOOppz
+         H56NwCbB/viPVmrdC+9JqCmF4mTzVdpdMz1y0eS5PNMAASEkejo4dhvnM7EDePCxjRfQ
+         Fx0moZo2qkGjTfSFuo25ZpPE2w8xzTBHLNEDmVqJhIlIRWzdJ7JO4OIqXxdDd8h4e0oL
+         2cXwch18dfnTSWK+ZIDklGy5wc1slWQm1Mw4SKPA82RMQFiawtLtL51IzCzqbDAdqm4h
+         SzW9FEN6fbyYSRIjq2xCZS9WoARgqGLKj1zbsZBO9HZRHL4O43E73SsHkWpjd8alueqQ
+         oRMw==
+X-Gm-Message-State: AOAM530yFVlBowcW0UkuuWa4lhLNX3dM35yizMP29Ui2FnMfAuN7HRy8
+        Opi1yF75+HS780vfSL2EOJbcKHuaiiQ/HFVN39Q=
+X-Google-Smtp-Source: ABdhPJwNbfbJKg7L/+F+lSBYE2PF207sJKCE67fjAwiCaIsXfyZycJr3U4/+t0LHsJes+amoJNW5cfEG1vmDYyxED/U=
+X-Received: by 2002:a05:6a00:22c2:b029:156:543:7c1d with SMTP id
+ f2-20020a056a0022c2b029015605437c1dmr3749000pfj.40.1603392352903; Thu, 22 Oct
+ 2020 11:45:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201022171639.773702-1-aford173@gmail.com> <5d17f3de-6864-c8fb-6413-24de943df1fd@denx.de>
-In-Reply-To: <5d17f3de-6864-c8fb-6413-24de943df1fd@denx.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 22 Oct 2020 13:31:29 -0500
-Message-ID: <CAHCN7x+66Ziza0G2Q6iho9z3RKsiw9=PyqoCayXCXyAONcDLow@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm: Add GPU node
-To:     Marek Vasut <marex@denx.de>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+References: <20201022155858.20867-1-nsaenzjulienne@suse.de> <20201022155858.20867-2-nsaenzjulienne@suse.de>
+In-Reply-To: <20201022155858.20867-2-nsaenzjulienne@suse.de>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 22 Oct 2020 21:46:41 +0300
+Message-ID: <CAHp75Vej4UfsySRB6qXL7fFN7SjnTjy=p4Xkn1xBO0YOFy-kcQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/10] firmware: raspberrypi: Introduce rpi_firmware_put()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        linux-pwm@vger.kernel.org,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Stefan Wahren <wahrenst@gmx.net>,
+        linux-input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 22, 2020 at 1:17 PM Marek Vasut <marex@denx.de> wrote:
+On Thu, Oct 22, 2020 at 9:06 PM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
 >
-> On 10/22/20 7:16 PM, Adam Ford wrote:
-> > According to the documentation from NXP, the i.MX8M Nano has a
-> > Vivante GC7000 Ultra Lite as its GPU core.
-> >
-> > With this patch, the Etnaviv driver presents the GPU as:
-> >    etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
-> >
-> > It uses the GPCV2 controller to enable the power domain for the GPU.
+> When unbinding the firmware device we need to make sure it has no
+> consumers left. Otherwise we'd leave them with a firmware handle
+> pointing at freed memory.
 >
-> Subject should say 8mn , not 8mm .
+> Keep a reference count of all consumers and make sure they all finished
+> unbinding before we do.
 
-ugh.. My mistake.  I'll submit a V2 once other have had a chance to
-give some feedback.
+Wait, if it's a device, why do we need all these?
+get_device() / put_device() along with module_get() / module_put()
+should be sufficient, no?
 
-Maybe NXP can comment on the dialog below.
-
->
-> Are the assigned-clock-rates correct ?
-
-I used the assigned clock rates from the vendor kernel, with the
-exception of running at 400MHz instead of 600MHz.  According to the
-datasheet, the GPU clock needs to be 400MHZ to run at 0.85V. The
-600MHz operating point for the GPU requires a 0.95V operating point.
-Since the default operating point for the Nano shows 0.85V, I left the
-GPU clock lower to match the normal operating speed.  This varies a
-bit from the vendor kernel, but their kernel is also showing a 0.95V
-operating point, so I think that's why they are specifying a 600MHz
-operating point.
-
-On the Beacon embedded board, we're driving the LPDDR to 800MHz which
-requires the ARM to run at .95V.   I was able to override the
-assigned-clock rates for my board to run at 600MHz, and change the ARM
-operating point to .95V to meet the spec.
-
-My intent was to use the defaults and let the board files override
-them.   If you want, I can try to look through the board files to see
-what operating point their using and propose updates to those
-respective device trees to address the clocks on those boards.
-
-adam
+-- 
+With Best Regards,
+Andy Shevchenko
