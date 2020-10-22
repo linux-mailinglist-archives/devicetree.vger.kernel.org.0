@@ -2,76 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B81295B01
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 10:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E139295B12
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 10:58:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2509818AbgJVIxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 04:53:44 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:34476 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2509816AbgJVIxn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Oct 2020 04:53:43 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id F24F21A0F01;
-        Thu, 22 Oct 2020 10:53:41 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 704DE1A0E9C;
-        Thu, 22 Oct 2020 10:53:36 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C4446402F7;
-        Thu, 22 Oct 2020 10:53:28 +0200 (CEST)
-From:   Biwen Li <biwen.li@oss.nxp.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        leoyang.li@nxp.com, zhiqiang.hou@nxp.com, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jiafei.pan@nxp.com, xiaobo.xie@nxp.com,
-        linux-arm-kernel@lists.infradead.org, Biwen Li <biwen.li@nxp.com>
-Subject: [PATCH 11/11] dt-bindings: interrupt-controller: update bindings for supporting more SoCs
-Date:   Thu, 22 Oct 2020 16:44:10 +0800
-Message-Id: <20201022084410.28249-11-biwen.li@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201022084410.28249-1-biwen.li@oss.nxp.com>
-References: <20201022084410.28249-1-biwen.li@oss.nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2507413AbgJVI6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 04:58:33 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:57852 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2442698AbgJVI6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 04:58:32 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 476341C0B78; Thu, 22 Oct 2020 10:58:29 +0200 (CEST)
+Date:   Thu, 22 Oct 2020 10:58:28 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
+Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marin Jerabek <martin.jerabek01@gmail.com>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Jiri Novak <jnovak@fel.cvut.cz>,
+        Jaroslav Beran <jara.beran@gmail.com>,
+        Petr Porazil <porazil@pikron.com>,
+        Drew Fustini <pdp7pdp7@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 2/6] dt-bindings: net: can: binding for CTU CAN FD
+ open-source IP core.
+Message-ID: <20201022085828.GA23695@amd>
+References: <cover.1603354744.git.pisa@cmp.felk.cvut.cz>
+ <8c2c52067354e9ccb76d7923a0e8b7765902e4a1.1603354744.git.pisa@cmp.felk.cvut.cz>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="azLHFNyN32YCQGCU"
+Content-Disposition: inline
+In-Reply-To: <8c2c52067354e9ccb76d7923a0e8b7765902e4a1.1603354744.git.pisa@cmp.felk.cvut.cz>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Biwen Li <biwen.li@nxp.com>
 
-Update bindings for Layerscape external irqs,
-support more SoCs(LS1043A, LS1046A, LS1088A,
-LS208xA, LX216xA)
+--azLHFNyN32YCQGCU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
- .../bindings/interrupt-controller/fsl,ls-extirq.txt         | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+On Thu 2020-10-22 10:36:17, Pavel Pisa wrote:
+> The device-tree bindings for open-source/open-hardware CAN FD IP core
+> designed at the Czech Technical University in Prague.
+>=20
+> CTU CAN FD IP core and other CTU CAN bus related projects
+> listing and documentation page
+>=20
+>    http://canbus.pages.fel.cvut.cz/
+>=20
+> Signed-off-by: Pavel Pisa <pisa@cmp.felk.cvut.cz>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-index f0ad7801e8cf..6c55eb25cf93 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-@@ -1,6 +1,7 @@
- * Freescale Layerscape external IRQs
- 
--Some Layerscape SOCs (LS1021A, LS1043A, LS1046A) support inverting
-+Some Layerscape SOCs (LS1021A, LS1043A, LS1046A
-+LS1088A, LS208xA, LX216xA) support inverting
- the polarity of certain external interrupt lines.
- 
- The device node must be a child of the node representing the
-@@ -8,6 +9,9 @@ Supplemental Configuration Unit (SCFG).
- 
- Required properties:
- - compatible: should be "fsl,<soc-name>-extirq", e.g. "fsl,ls1021a-extirq".
-+  "fsl,ls1043a-extirq": for LS1043A, LS1046A.
-+  "fsl,ls1088a-extirq": for LS1088A, LS208xA, LX216xA.
-+
- - #interrupt-cells: Must be 2. The first element is the index of the
-   external interrupt line. The second element is the trigger type.
- - #address-cells: Must be 0.
--- 
-2.17.1
+1,2: Acked-by: Pavel Machek <pavel@ucw.cz>
 
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--azLHFNyN32YCQGCU
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl+RSbQACgkQMOfwapXb+vJxNgCff14TzbCILlD8HKHyf0HnX0IO
+h3UAoKzEY2B9pSeuWYOLeCnUhXhpOcr0
+=KJcN
+-----END PGP SIGNATURE-----
+
+--azLHFNyN32YCQGCU--
