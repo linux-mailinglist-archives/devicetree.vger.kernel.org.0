@@ -2,94 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B471F296548
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 21:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B0C2965E0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 22:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S370190AbgJVTZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 15:25:38 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:56162 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S370187AbgJVTZh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Oct 2020 15:25:37 -0400
-Received: by mail.z3ntu.xyz (Postfix, from userid 182)
-        id 7DD85C7218; Thu, 22 Oct 2020 19:25:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1603394734; bh=AFNcYWN73jXXlPkynUL1liT45MKc2/cfgOevOqrJe2E=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=jFyZz9aLvJfIjb3HAGm7dQFw6S49OGVQwJGZm2EVINeXUKCAZXRXs3Ps79kPq8TWZ
-         kqwjhpOlg2fWiWJBDcQ1jkpskQHOCLv2d9b5p+fklGrR/uEjMYpyh1QEXbaqvPOF1x
-         vBDolVSKGVoKZtGSR8kD0xd2mfffLeLM3P62pldY=
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on arch-vps
-X-Spam-Level: 
-X-Spam-Status: No, score=0.9 required=5.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.4
-Received: from g550jk.localnet (80-110-125-173.cgn.dynamic.surfer.at [80.110.125.173])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 45380C669B;
-        Thu, 22 Oct 2020 19:25:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1603394732; bh=AFNcYWN73jXXlPkynUL1liT45MKc2/cfgOevOqrJe2E=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=qOGdj963fPa7D28jT90vH01qDZdMKfXkWrKzTnfvFQKODGxLTncuwHeX0wintU3yz
-         5jbmpTgkEQJhtbJyiCYyQZ0L4sAWnena+v+J4EhSyQE124ZoItW4fBiPPu/AOgCRXD
-         6JvaCLuQ/lFecpHws0Bvk1g1cZ1toEy/N9A51lME=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        id S371404AbgJVURA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 16:17:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59074 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S367981AbgJVUQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 16:16:59 -0400
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93381C0613CE;
+        Thu, 22 Oct 2020 13:16:59 -0700 (PDT)
+Received: by mail-qt1-x844.google.com with SMTP id c15so2304966qtc.2;
+        Thu, 22 Oct 2020 13:16:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EQsWz3VPU1vMWM27JV3KasG3iRuntrc+EW0ua4woOM8=;
+        b=GvfykBIR+fXX0CgLL1YLF0O6IJh6RlO0usHaiJtl4ge1gVnYQqhyXZt4iAh7izQ+sC
+         dEYE8yYAYsaDpqcxIHZXCvmflx09vM9r5ieKDoNOM4CT2f39Y3+qBPKF1tVinAHauPVU
+         98W8l6nmWuCx5aXvUzNbx2ttPXg7/qXrh1APJcyIpGydifUJW6A/2xVM1zpNLzSJ5hrN
+         7YuoTnU6sdLIWliQo8N7O89zakJgcPLpBmrweDuKBbdvuwYp/Swf29uDk2rpX4mZWdv2
+         +SmynaeKwjFxWVeBkVHeVf2aKgPRbKsV40CgfnA4P4pVsOKVhbusGNB9lQr9mcnhM6Be
+         tn8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EQsWz3VPU1vMWM27JV3KasG3iRuntrc+EW0ua4woOM8=;
+        b=ocwbYhwMzj9hW9AE46gDp20hvDhpre7enlIMkvGIYiGEBgA8SVUduslMz5XWJ6hfGQ
+         MjcEEqH30gkWpXO39LvJEyedWL6OEsCj6/v6+ET9b66ATDydQleAGPEumvbvBT80XQNA
+         iU6ikBpX5wpxlCGF17JIUNgrUOMIEWBmrO/RZyft9EBmHQRVHSxxHM8Od9Wdlph91qaL
+         bGLdW+vsSRwbpUtIemmGkOE1ydmaSQUzmeIXb2LoK+ysgItfjSYjm1bYkgjhQLuUjcGn
+         luZJTydaS5L0PL/F42+UFSdyL6Jjpng3G8+weXNV1DQdFkYSaWo5dSY/Rxty47koxaoH
+         Xmvw==
+X-Gm-Message-State: AOAM5339Pjg4qnK3aZ1ZJsPN+6Tb89t0eCbl2YsAQv+Mrx/D3Eu/J505
+        XXaeFLx7lEVMTzvJeS1NNCs=
+X-Google-Smtp-Source: ABdhPJxxGfqRkFgwWgKLd/TE9bcmEfGkWWIHyB5ci3QoXiEWYYGulYlyUgpIZywfpcqI2wsz3LGesw==
+X-Received: by 2002:ac8:588d:: with SMTP id t13mr3818913qta.380.1603397818818;
+        Thu, 22 Oct 2020 13:16:58 -0700 (PDT)
+Received: from ubuntu (ool-45785633.dyn.optonline.net. [69.120.86.51])
+        by smtp.gmail.com with ESMTPSA id v204sm1847486qka.4.2020.10.22.13.16.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Oct 2020 13:16:58 -0700 (PDT)
+Date:   Thu, 22 Oct 2020 16:16:56 -0400
+From:   Vivek Unune <npcomplete13@gmail.com>
+To:     florian.fainelli@broadcom.com, Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Martin Botka <martin.botka1@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v6 2/4] leds: Add driver for Qualcomm LPG
-Date:   Thu, 22 Oct 2020 21:25:31 +0200
-Message-ID: <7499087.fvuViRk2k7@g550jk>
-In-Reply-To: <20201021201224.3430546-3-bjorn.andersson@linaro.org>
-References: <20201021201224.3430546-1-bjorn.andersson@linaro.org> <20201021201224.3430546-3-bjorn.andersson@linaro.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Linksys EA9500 add port 5 and port 7
+Message-ID: <20201022201656.GA240761@ubuntu>
+References: <cover.1602701516.git.npcomplete13@gmail.com>
+ <c51b1d53c9411a4321ddcb1dbcdb0a42945b23c4.1602701516.git.npcomplete13@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c51b1d53c9411a4321ddcb1dbcdb0a42945b23c4.1602701516.git.npcomplete13@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On Mittwoch, 21. Oktober 2020 22:12:22 CEST Bjorn Andersson wrote:
-> The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> PMICs from Qualcomm. It can operate on fixed parameters or based on a
-> lookup-table, altering the duty cycle over time - which provides the
-> means for e.g. hardware assisted transitions of LED brightness.
+On Wed, Oct 14, 2020 at 03:27:27PM -0400, Vivek Unune wrote:
+> Add ports 5 and 7 which are connected to gmac cores 1 & 2.
+> These will be disabled for now.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
 > ---
+>  .../boot/dts/bcm47094-linksys-panamera.dts    | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-> Changes since v5:
-> - Make sure to not used the state of the last channel in a group to
-> determine if the current sink should be active for all channels in the
-> group. - Replacement of unsigned -1 with UINT_MAX
-> - Work around potential overflow by using larger data types, instead of
-> separate code paths - Use cpu_to_l16() rather than hand rolling them
-> - Minor style cleanups
-> 
->  drivers/leds/Kconfig         |    9 +
->  drivers/leds/Makefile        |    1 +
->  drivers/leds/leds-qcom-lpg.c | 1190 ++++++++++++++++++++++++++++++++++
->  3 files changed, 1200 insertions(+)
->  create mode 100644 drivers/leds/leds-qcom-lpg.c
+> diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+> index 9fcd215177d7..0ff502d5aa0c 100644
+> --- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+> +++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+> @@ -242,6 +242,30 @@ port@4 {
+>  			label = "wan";
+>  		};
+>  
+> +		port@5 {
+> +			reg = <5>;
+> +			ethernet = <&gmac0>;
+> +			label = "cpu";
+> +			status = "disabled";
+> +
+> +			fixed-link {
+> +				speed = <1000>;
+> +				full-duplex;
+> +			};
+> +		};
+> +
+> +		port@7 {
+> +			reg = <7>;
+> +			ethernet = <&gmac1>;
+> +			label = "cpu";
+> +			status = "disabled";
+> +
+> +			fixed-link {
+> +				speed = <1000>;
+> +				full-duplex;
+> +			};
+> +		};
+> +
+>  		port@8 {
+>  			reg = <8>;
+>  			ethernet = <&gmac2>;
+> -- 
+> 2.25.1
+>
 
-Tested on msm8974 (pm8941) on the Fairphone 2, works great there!
+Any feedback? 
 
-Tested-by: Luca Weiss <luca@z3ntu.xyz>
+Thanks!
 
-Regards
-Luca
-
-
+Vivek
