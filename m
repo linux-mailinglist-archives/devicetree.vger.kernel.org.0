@@ -2,123 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95538296234
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 17:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6F2F296259
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 18:08:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S368878AbgJVP7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 11:59:55 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:59630 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S369043AbgJVP7y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Oct 2020 11:59:54 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09MFg0v0023899;
-        Thu, 22 Oct 2020 17:59:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=+540XUhYrrYVMFG6d2P41z+dQDAtAwvWzMbZT4dmoXI=;
- b=GEAtKF1FEOvdzWRWYA8lC77dfa5tP+QJFixNLDxhOh2GgpIyfaQFzJj2XtZKpdBJNc/x
- RUtgTWWDPplRQmw5UklKRxNnyB2xJYscfJQBwBTr9S91IlEwLdW3nSu8rNXujgVHTc+u
- 6kQ099StVYZzScUAneY+4wGTO/pTkTh6lIH9U/qzOxdXyCAWy/17faVOaxccYmAR4/65
- ohUYKgqW0NmgK53fTJj+UUhK3qXFTI8tQAexRJdU9GYJk4E0w9vfAJ0CJGnFHZSQBvEz
- HRqWCLpzzM6Ht0Vdh+2zyftjoQ9RTzYva9scTG4nAphBLHUVd/KwigtrPmlWG69sTLqA 8g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34apedfrnn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 22 Oct 2020 17:59:35 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E5FB310002A;
-        Thu, 22 Oct 2020 17:59:34 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D09582C7133;
-        Thu, 22 Oct 2020 17:59:34 +0200 (CEST)
-Received: from SFHDAG2NODE1.st.com (10.75.127.4) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 22 Oct
- 2020 17:59:34 +0200
-Received: from SFHDAG2NODE1.st.com ([fe80::4413:c8c:992b:bb90]) by
- SFHDAG2NODE1.st.com ([fe80::4413:c8c:992b:bb90%20]) with mapi id
- 15.00.1473.003; Thu, 22 Oct 2020 17:59:34 +0200
-From:   Yann GAUTIER <yann.gautier@st.com>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>
-CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        Ludovic BARRE <ludovic.barre@st.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: stm32: update sdmmc IP version for STM32MP157
- SOC
-Thread-Topic: [PATCH] ARM: dts: stm32: update sdmmc IP version for STM32MP157
- SOC
-Thread-Index: AQHWpuoj4CwDOfZXe066JGuHRV4x1KmjqU6A
-Date:   Thu, 22 Oct 2020 15:59:34 +0000
-Message-ID: <493a8b1b-02e5-f7f4-4cdf-a091ce1d1387@st.com>
-References: <20201020140450.29158-1-a.fatoum@pengutronix.de>
-In-Reply-To: <20201020140450.29158-1-a.fatoum@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.44]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4F314D055A26BB41B82427788603D068@st.com>
-Content-Transfer-Encoding: base64
+        id S2509983AbgJVQHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 12:07:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2509545AbgJVQHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 12:07:54 -0400
+Received: from relay.felk.cvut.cz (relay.felk.cvut.cz [IPv6:2001:718:2:1611:0:1:0:70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5A33DC0613CE;
+        Thu, 22 Oct 2020 09:07:54 -0700 (PDT)
+Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
+        by relay.felk.cvut.cz (8.15.2/8.15.2) with ESMTP id 09MG6Kbr083350;
+        Thu, 22 Oct 2020 18:06:20 +0200 (CEST)
+        (envelope-from pisa@cmp.felk.cvut.cz)
+Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
+        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 09MG6Kbh004044;
+        Thu, 22 Oct 2020 18:06:20 +0200
+Received: (from pisa@localhost)
+        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 09MG6K7J004041;
+        Thu, 22 Oct 2020 18:06:20 +0200
+X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH v6 5/6] can: ctucanfd: CTU CAN FD open-source IP core - platform/SoC support.
+Date:   Thu, 22 Oct 2020 18:06:19 +0200
+User-Agent: KMail/1.9.10
+Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        "Marc Kleine-Budde" <mkl@pengutronix.de>,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marin Jerabek <martin.jerabek01@gmail.com>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Jiri Novak <jnovak@fel.cvut.cz>,
+        Jaroslav Beran <jara.beran@gmail.com>,
+        Petr Porazil <porazil@pikron.com>,
+        Drew Fustini <pdp7pdp7@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>
+References: <cover.1603354744.git.pisa@cmp.felk.cvut.cz> <2a90e1a7d57f0fec42604cd399acf25af5689148.1603354744.git.pisa@cmp.felk.cvut.cz> <20201022114306.GA31933@duo.ucw.cz>
+In-Reply-To: <20201022114306.GA31933@duo.ucw.cz>
+X-KMail-QuotePrefix: > 
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.737
- definitions=2020-10-22_11:2020-10-20,2020-10-22 signatures=0
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Message-Id: <202010221806.19253.pisa@cmp.felk.cvut.cz>
+X-FELK-MailScanner-Information: 
+X-MailScanner-ID: 09MG6Kbr083350
+X-FELK-MailScanner: Found to be clean
+X-FELK-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+        score=-0.099, required 6, BAYES_00 -0.50, KHOP_HELO_FCRDNS 0.40,
+        NICE_REPLY_A -0.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00,
+        URIBL_BLOCKED 0.00)
+X-FELK-MailScanner-From: pisa@cmp.felk.cvut.cz
+X-FELK-MailScanner-Watermark: 1603987585.63094@DauQioNUM05pHvR5CIXLhA
+X-Spam-Status: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTAvMjAvMjAgNDowNCBQTSwgQWhtYWQgRmF0b3VtIHdyb3RlOg0KPiBGcm9tOiBZYW5uIEdh
-dXRpZXIgPHlhbm4uZ2F1dGllckBzdC5jb20+DQo+IA0KPiBVcGRhdGUgdGhlIElQIHZlcnNpb24g
-dG8gdjIuMCwgd2hpY2ggc3VwcG9ydHMgbGlua2VkIGxpc3RzIGluIGludGVybmFsIERNQSwNCj4g
-YW5kIGlzIHByZXNlbnQgaW4gU1RNMzJNUDEgU29Dcy4NCj4gDQo+IFRoZSBtbWNpIGRyaXZlciBz
-dXBwb3J0cyB0aGUgdjIuMCBwZXJpcGggaWQgc2luY2UgN2EyYTk4YmU2NzJiICgibW1jOiBtbWNp
-Og0KPiBBZGQgc3VwcG9ydCBmb3Igc2RtbWMgdmFyaWFudCByZXZpc2lvbiAyLjAiKSwgc28gaXQn
-cyBub3cgT2sgdG8gYWRkIGl0IGludG8NCj4gdGhlIFNvQyBkZXZpY2UgdHJlZSB0byBiZW5lZml0
-IGZyb20gdGhlIGltcHJvdmVkIERNQSBzdXBwb3J0Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogTHVk
-b3ZpYyBCYXJyZSA8bHVkb3ZpYy5iYXJyZUBzdC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFlhbm4g
-R2F1dGllciA8eWFubi5nYXV0aWVyQHN0LmNvbT4NCj4gW2FmYTogY2hlcnJ5LXBpY2tlZCBmcm9t
-IGh0dHBzOi8vZ2l0aHViLmNvbS9TVE1pY3JvZWxlY3Ryb25pY3MvbGludXgvY29tbWl0LzMxZTJh
-NmJjOF0NCj4gW2FmYTogZXh0ZW5kZWQgY29tbWl0IG1lc3NhZ2Ugd2l0aCByZWZlcmVuY2UgdG8g
-ZHJpdmVyIHBhdGNoXQ0KPiBTaWduZWQtb2ZmLWJ5OiBBaG1hZCBGYXRvdW0gPGEuZmF0b3VtQHBl
-bmd1dHJvbml4LmRlPg0KDQpIaSBBaG1hZCwNCg0KQWNrZWQtYnk6IFlhbm4gR2F1dGllciA8eWFu
-bi5nYXV0aWVyQHN0LmNvbT4NCg0KDQpSZWdhcmRzLA0KWWFubg0KDQo+IC0tLQ0KPiBDYzogTHVk
-b3ZpYyBCYXJyZSA8bHVkb3ZpYy5iYXJyZUBzdC5jb20+DQo+IC0tLQ0KPiAgIGFyY2gvYXJtL2Jv
-b3QvZHRzL3N0bTMybXAxNTEuZHRzaSB8IDYgKysrLS0tDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDMg
-aW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2Fy
-bS9ib290L2R0cy9zdG0zMm1wMTUxLmR0c2kgYi9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTUx
-LmR0c2kNCj4gaW5kZXggYmZlMjkwMjNmYmQ1Li5iOGQ5OTZkMzJkYzAgMTAwNjQ0DQo+IC0tLSBh
-L2FyY2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTEuZHRzaQ0KPiArKysgYi9hcmNoL2FybS9ib290
-L2R0cy9zdG0zMm1wMTUxLmR0c2kNCj4gQEAgLTEwNDAsNyArMTA0MCw3IEBAIGFkYzI6IGFkY0Ax
-MDAgew0KPiAgIA0KPiAgIAkJc2RtbWMzOiBzZG1tY0A0ODAwNDAwMCB7DQo+ICAgCQkJY29tcGF0
-aWJsZSA9ICJhcm0scGwxOHgiLCAiYXJtLHByaW1lY2VsbCI7DQo+IC0JCQlhcm0scHJpbWVjZWxs
-LXBlcmlwaGlkID0gPDB4MTAxNTMxODA+Ow0KPiArCQkJYXJtLHByaW1lY2VsbC1wZXJpcGhpZCA9
-IDwweDAwMjUzMTgwPjsNCj4gICAJCQlyZWcgPSA8MHg0ODAwNDAwMCAweDQwMD47DQo+ICAgCQkJ
-aW50ZXJydXB0cyA9IDxHSUNfU1BJIDEzNyBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4gICAJCQlp
-bnRlcnJ1cHQtbmFtZXMgPSAiY21kX2lycSI7DQo+IEBAIC0xMzM4LDcgKzEzMzgsNyBAQCBxc3Bp
-OiBzcGlANTgwMDMwMDAgew0KPiAgIA0KPiAgIAkJc2RtbWMxOiBzZG1tY0A1ODAwNTAwMCB7DQo+
-ICAgCQkJY29tcGF0aWJsZSA9ICJhcm0scGwxOHgiLCAiYXJtLHByaW1lY2VsbCI7DQo+IC0JCQlh
-cm0scHJpbWVjZWxsLXBlcmlwaGlkID0gPDB4MTAxNTMxODA+Ow0KPiArCQkJYXJtLHByaW1lY2Vs
-bC1wZXJpcGhpZCA9IDwweDAwMjUzMTgwPjsNCj4gICAJCQlyZWcgPSA8MHg1ODAwNTAwMCAweDEw
-MDA+Ow0KPiAgIAkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA0OSBJUlFfVFlQRV9MRVZFTF9ISUdI
-PjsNCj4gICAJCQlpbnRlcnJ1cHQtbmFtZXMgPSAiY21kX2lycSI7DQo+IEBAIC0xMzUzLDcgKzEz
-NTMsNyBAQCBzZG1tYzE6IHNkbW1jQDU4MDA1MDAwIHsNCj4gICANCj4gICAJCXNkbW1jMjogc2Rt
-bWNANTgwMDcwMDAgew0KPiAgIAkJCWNvbXBhdGlibGUgPSAiYXJtLHBsMTh4IiwgImFybSxwcmlt
-ZWNlbGwiOw0KPiAtCQkJYXJtLHByaW1lY2VsbC1wZXJpcGhpZCA9IDwweDEwMTUzMTgwPjsNCj4g
-KwkJCWFybSxwcmltZWNlbGwtcGVyaXBoaWQgPSA8MHgwMDI1MzE4MD47DQo+ICAgCQkJcmVnID0g
-PDB4NTgwMDcwMDAgMHgxMDAwPjsNCj4gICAJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTI0IElS
-UV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiAgIAkJCWludGVycnVwdC1uYW1lcyA9ICJjbWRfaXJxIjsN
-Cj4g
+Hello Pavel,
+
+thanks for review.
+
+On Thursday 22 of October 2020 13:43:06 Pavel Machek wrote:
+> Hi!
+>
+> > +++ b/drivers/net/can/ctucanfd/Kconfig
+> > @@ -21,4 +21,15 @@ config CAN_CTUCANFD_PCI
+> >  	  PCIe board with PiKRON.com designed transceiver riser shield is
+> > available at https://gitlab.fel.cvut.cz/canbus/pcie-ctu_can_fd .
+> >
+> > +config CAN_CTUCANFD_PLATFORM
+> > +	tristate "CTU CAN-FD IP core platform (FPGA, SoC) driver"
+> > +	depends on OF || COMPILE_TEST
+> > +	help
+>
+> This is likely wrong, as it can enable config of CAN_CTUCANFD=M,
+> CAN_CTUCANFD_PLATFORM=y, right?
+
+My original code has not || COMPILE_TEST alternative.
+
+But I have been asked to add it
+
+On Sunday 16 of August 2020 01:28:13 Randy Dunlap wrote:
+> Can this be
+>         depends on OF || COMPILE_TEST
+> ?
+
+I have send discussion later that I am not sure if it is right
+but followed suggestion. If there is no other reply now,
+I would drop || COMPILE_TEST. I believe that then it is correct
+for regular use. I ma not sure about all consequences of COMPILE_TEST
+missing.
+
+> > @@ -8,3 +8,6 @@ ctucanfd-y := ctu_can_fd.o ctu_can_fd_hw.o
+> >
+> >  obj-$(CONFIG_CAN_CTUCANFD_PCI) += ctucanfd_pci.o
+> >  ctucanfd_pci-y := ctu_can_fd_pci.o
+> > +
+> > +obj-$(CONFIG_CAN_CTUCANFD_PLATFORM) += ctucanfd_platform.o
+> > +ctucanfd_platform-y += ctu_can_fd_platform.o
+>
+> Can you simply add right object files directly?
+
+This is more tough question. We have kept sources
+as ctu_can_fd.c, ctu_can_fd_hw.c etc. to produce
+final ctucanfd.ko which matches device tree entry etc.
+after name simplification now...
+So we move from underscores to ctucanfd on more places.
+So yes, we can rename ctu_can_fd.c to ctucanfd_drv.c + others
+keep final ctucanfd.ko and change to single file based objects
+ctucanfd_platform.c and ctucanfd_pci.c
+
+If you think that it worth to be redone, I would do that.
+It would disrupt sources history, may it be blames, merging
+etc... but I would invest effort into it if asked for. 
+
+Best wishes,
+
+                Pavel
