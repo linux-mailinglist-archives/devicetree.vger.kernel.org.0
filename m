@@ -2,150 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B3572963ED
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 19:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E3BE29646C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 20:06:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S369300AbgJVRr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 13:47:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35958 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S369293AbgJVRrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 13:47:25 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71934C0613CE;
-        Thu, 22 Oct 2020 10:47:25 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id g12so3558795wrp.10;
-        Thu, 22 Oct 2020 10:47:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=7YjewDVNXnLPS6j3JMUZb2TiI2kCa5vslud7X2TBnuk=;
-        b=FxDIzdm2Q50U+/lMxsxQR7HR+B6zIS5Vw8t85zJUIrHldByK+AU9JA4kTi1u/uuAuq
-         pINCjvKGw60tF4r+sYyiEDIMx1mX2RbBWNxkbwuGd3H4JLuvzCvxmRRMDRaQmM2rV2i7
-         xpdkXrViPK7TQxuDXs1zaQ2qFrHUgM+DeHAbW9xWfixCmwPH3QGy3cgloUPdN8elPrHj
-         QwMmlm4ZsJS17fHxBDJpmXwV1sPZ4y/9d4+0jCCQJ2gIYFnP3bVA9NLGIyPpl+9hrC5+
-         yJZONOfFzvXBnvplL+I8SAJAqS0eRaXTh53QiepPP0a7AdmWA5L2pkhwUB2WtB5pFqKb
-         ml0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7YjewDVNXnLPS6j3JMUZb2TiI2kCa5vslud7X2TBnuk=;
-        b=Ez0zYzDbAuiYudwyf4pzEdhy2pj7LzobF1vPlUFSZhA66ww09G1UQFcPM/mxRh+im8
-         4FNAWaMBK+DNobPYaaUeqmCDrjX5XWB3tB2zFWH9r8UFh0GAC7DOky+CwCdKfY6IypYq
-         2vZcwQriA2nK1ShM0wAfk87kBZ/rG31jdoDFg9gX2xoJ7gpZlpCV9x5wZeFrQJDP0AGC
-         wwYnax9wH4JEV1SlTju7jT4TONRhxYH9yBQZey6c4qd7H6uQtMM/jlRZBfLl5Ockx8hP
-         5gRsMZ1/khMN/deglcRK+FoV0gKNryrv9D2DpKabOBUjLsp9uTEpcPF/4pAv94UjMM1c
-         5Y3A==
-X-Gm-Message-State: AOAM532de2dCMPr/v44Eq8fCwZPJApFhMCY4csuM1RzGd5olBhANUGZm
-        XOMj7FKn4FZAF8Q9DdNdXIk=
-X-Google-Smtp-Source: ABdhPJwSYXFRWSTNYKqurzQ0Sd5ugX7LE8hYit5NxhtsR8Q8bVYdHQa4BKgKh1Xzvwrd591v9BIcJg==
-X-Received: by 2002:adf:9793:: with SMTP id s19mr4045177wrb.139.1603388844131;
-        Thu, 22 Oct 2020 10:47:24 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
-        by smtp.gmail.com with ESMTPSA id u202sm5368355wmu.23.2020.10.22.10.47.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2020 10:47:23 -0700 (PDT)
-From:   kholk11@gmail.com
-To:     todor.too@gmail.com
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robert.foss@linaro.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>
-Subject: [PATCH v2 7/7] media: camss: csiphy: Set rate on csiX_phy clock on SDM630/660
-Date:   Thu, 22 Oct 2020 19:47:06 +0200
-Message-Id: <20201022174706.8813-8-kholk11@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201022174706.8813-1-kholk11@gmail.com>
-References: <20201022174706.8813-1-kholk11@gmail.com>
+        id S368849AbgJVSGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 14:06:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38848 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2508588AbgJVSGj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 14:06:39 -0400
+Received: from gaia (unknown [95.145.162.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7BDE32225F;
+        Thu, 22 Oct 2020 18:06:36 +0000 (UTC)
+Date:   Thu, 22 Oct 2020 19:06:33 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
+        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com
+Subject: Re: [PATCH v4 5/7] arm64: mm: Set ZONE_DMA size based on
+ devicetree's dma-ranges
+Message-ID: <20201022180632.GI1229@gaia>
+References: <20201021123437.21538-1-nsaenzjulienne@suse.de>
+ <20201021123437.21538-6-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201021123437.21538-6-nsaenzjulienne@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+On Wed, Oct 21, 2020 at 02:34:35PM +0200, Nicolas Saenz Julienne wrote:
+> @@ -188,9 +186,11 @@ static phys_addr_t __init max_zone_phys(unsigned int zone_bits)
+>  static void __init zone_sizes_init(unsigned long min, unsigned long max)
+>  {
+>  	unsigned long max_zone_pfns[MAX_NR_ZONES]  = {0};
+> +	unsigned int __maybe_unused dt_zone_dma_bits;
+>  
+>  #ifdef CONFIG_ZONE_DMA
+> -	zone_dma_bits = ARM64_ZONE_DMA_BITS;
+> +	dt_zone_dma_bits = ilog2(of_dma_get_max_cpu_address(NULL));
+> +	zone_dma_bits = min(32U, dt_zone_dma_bits);
 
-The SDM630/660 SoCs (and variants) have another clock source
-for the PHY, which must be set to a rate that's equal or
-greater than the CSI PHY timer clock: failing to do this
-will produce PHY overflows when trying to get a stream from
-a very high bandwidth camera sensor and outputting no frame
-or a partial one.
+A thought: can we remove the min here and expand ZONE_DMA to whatever
+dt_zone_dma_bits says? More on this below.
 
-Since I haven't found any usecase in which the csiX_phy
-clock needs to be higher than the csiXphy_timer, let's just
-set the same rate on both, which seems to work just perfect.
+>  	arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
+>  	max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
+>  #endif
 
-Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
----
- .../media/platform/qcom/camss/camss-csiphy.c  | 22 ++++++++++++++++---
- .../media/platform/qcom/camss/camss-csiphy.h  |  1 +
- 2 files changed, 20 insertions(+), 3 deletions(-)
+I was talking earlier to Ard and Robin on the ZONE_DMA32 history and the
+need for max_zone_phys(). This was rather theoretical, the Seattle
+platform has all RAM starting above 4GB and that led to an empty
+ZONE_DMA32 originally. The max_zone_phys() hack was meant to lift
+ZONE_DMA32 into the bottom of the RAM, on the assumption that such
+32-bit devices would have a DMA offset hardwired. We are not aware of
+any such case on arm64 systems and even on Seattle, IIUC 32-bit devices
+only work if they are behind an SMMU (so no hardwired offset).
 
-diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.c b/drivers/media/platform/qcom/camss/camss-csiphy.c
-index c00f25aac21b..a5d717d022a5 100644
---- a/drivers/media/platform/qcom/camss/camss-csiphy.c
-+++ b/drivers/media/platform/qcom/camss/camss-csiphy.c
-@@ -113,9 +113,7 @@ static int csiphy_set_clock_rates(struct csiphy_device *csiphy)
- 	for (i = 0; i < csiphy->nclocks; i++) {
- 		struct camss_clock *clock = &csiphy->clock[i];
- 
--		if (!strcmp(clock->name, "csiphy0_timer") ||
--		    !strcmp(clock->name, "csiphy1_timer") ||
--		    !strcmp(clock->name, "csiphy2_timer")) {
-+		if (csiphy->rate_set[i]) {
- 			u8 bpp = csiphy_get_bpp(csiphy->formats,
- 					csiphy->nformats,
- 					csiphy->fmt[MSM_CSIPHY_PAD_SINK].code);
-@@ -611,6 +609,13 @@ int msm_csiphy_subdev_init(struct camss *camss,
- 	if (!csiphy->clock)
- 		return -ENOMEM;
- 
-+	csiphy->rate_set = devm_kcalloc(dev,
-+					csiphy->nclocks,
-+					sizeof(*csiphy->rate_set),
-+					GFP_KERNEL);
-+	if (!csiphy->rate_set)
-+		return -ENOMEM;
+In hindsight, it would have made more sense on platforms with RAM above
+4GB to expand ZONE_DMA32 to cover the whole memory (so empty
+ZONE_NORMAL). Something like:
+
+diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+index a53c1e0fb017..7d5e3dd85617 100644
+--- a/arch/arm64/mm/init.c
++++ b/arch/arm64/mm/init.c
+@@ -187,8 +187,12 @@ static void __init reserve_elfcorehdr(void)
+  */
+ static phys_addr_t __init max_zone_phys(unsigned int zone_bits)
+ {
+-	phys_addr_t offset = memblock_start_of_DRAM() & GENMASK_ULL(63, zone_bits);
+-	return min(offset + (1ULL << zone_bits), memblock_end_of_DRAM());
++	phys_addr_t zone_mask = 1ULL << zone_bits;
 +
- 	for (i = 0; i < csiphy->nclocks; i++) {
- 		struct camss_clock *clock = &csiphy->clock[i];
- 
-@@ -638,6 +643,17 @@ int msm_csiphy_subdev_init(struct camss *camss,
- 
- 		for (j = 0; j < clock->nfreqs; j++)
- 			clock->freq[j] = res->clock_rate[i][j];
++	if (!(memblock_start_of_DRAM() & zone_mask))
++		zone_mask = PHYS_ADDR_MAX;
 +
-+		if (!strcmp(clock->name, "csiphy0_timer") ||
-+		    !strcmp(clock->name, "csiphy1_timer") ||
-+		    !strcmp(clock->name, "csiphy2_timer"))
-+			csiphy->rate_set[i] = true;
-+
-+		if (camss->version == CAMSS_660 &&
-+		    (!strcmp(clock->name, "csi0_phy") ||
-+		     !strcmp(clock->name, "csi1_phy") ||
-+		     !strcmp(clock->name, "csi2_phy")))
-+			csiphy->rate_set[i] = true;
- 	}
++	return min(zone_mask, memblock_end_of_DRAM());
+ }
  
- 	return 0;
-diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.h b/drivers/media/platform/qcom/camss/camss-csiphy.h
-index 376f865ad383..f7967ef836dc 100644
---- a/drivers/media/platform/qcom/camss/camss-csiphy.h
-+++ b/drivers/media/platform/qcom/camss/camss-csiphy.h
-@@ -66,6 +66,7 @@ struct csiphy_device {
- 	u32 irq;
- 	char irq_name[30];
- 	struct camss_clock *clock;
-+	bool *rate_set;
- 	int nclocks;
- 	u32 timer_clk_rate;
- 	struct csiphy_config cfg;
+ static void __init zone_sizes_init(unsigned long min, unsigned long max)
+
+I don't think this makes any difference for ZONE_DMA unless a
+broken DT or IORT reports the max CPU address below the start of DRAM.
+
+There's a minor issue if of_dma_get_max_cpu_address() matches
+memblock_end_of_DRAM() but they are not a power of 2. We'd be left with
+a bit of RAM at the end in ZONE_NORMAL due to ilog2 truncation.
+
 -- 
-2.28.0
-
+Catalin
