@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 866F729625C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 18:10:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3591329626B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 18:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2895508AbgJVQKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 12:10:04 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:45999 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2895440AbgJVQKE (ORCPT
+        id S2896330AbgJVQNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 12:13:53 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:43135 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2896298AbgJVQNw (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Oct 2020 12:10:04 -0400
+        Thu, 22 Oct 2020 12:13:52 -0400
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 20FF75C0144;
-        Thu, 22 Oct 2020 12:10:03 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Thu, 22 Oct 2020 12:10:03 -0400
+        by mailnew.nyi.internal (Postfix) with ESMTP id 53E3C5802A0;
+        Thu, 22 Oct 2020 12:13:51 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 22 Oct 2020 12:13:51 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=Dxs+IJPaOZW5RpEI46Ejy/9a5zm
-        xksy9228WToYAQKA=; b=pgGLOl7KmDKV6PWClPPromj3LoWpQRvj53mn2YuBcaP
-        oKH6pFfNkFv/DekcmuPGYOTQz6J7Z43H083Oorha3zo+rT4TtSbNHdScMAOVsVdM
-        xo+UHlB9eQY/d1I1VMYImZr6eyPDIfCqMhm2aPJw8ypb1ZVvBqqpaUmSDnmMqSWF
-        AG5HHNh0e2VBjdbyn/lHUnftLYJ+l4SsUXlQMFIf4zhZFS0dqYAEqzBCpfOa7l5C
-        0WQgJ4xtIxf8Ax9F2Mei+cl1AuGJAbLbEnSpeOh2xLiAkLjQySrZ5R4OCmeLVHQo
-        y4M8LJZhqc1XhdtEI9ps6C+aVJQ5jWx7RsTguDbp9aA==
+        :content-type:in-reply-to; s=fm1; bh=ixh/510Haf/p9X2/V7HbKAJjNIS
+        VDdGLgM5TvEAXzfU=; b=UxvDlTqozmSDWjwT9SYPVhrvwNNbuW4FWhkZ6u7+eVE
+        0DhToDftB2Bxb4N7txF383B/xDhANSlpGnhjqtr1eKo6jL8JFBrT7qurwLCNpy4i
+        MYxrAokTa/8Yzo8NPugTM59OCCMH71FdMlloEHwphYs6p7i0KsBpmFLaA1At1Mob
+        plAVwHzDqGNTvJtor7m0KwECw8wzwU8G9DeoI8Y0kQHAFzfnPH8srXP+yaqxjY6a
+        P9W1de80tyLiuakn65a1+08JEvr9eBjqW8/Ua66sqdAegW2eeYEOEGytjTJrsz7y
+        SUPGyn2Q115M0Og8uHZUuWazn4W0YfxNfGgvkmKSybw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Dxs+IJ
-        PaOZW5RpEI46Ejy/9a5zmxksy9228WToYAQKA=; b=gPYkfCaqMytcupmz+CvyXI
-        8/nYjm9LWb6d+vpMnXmlM5Z559E9PmmrKI9M4OBCwPGL6KPPwIGcpCb7vakoEOtg
-        c9dq0KkCOWyXmKmnzgpnpUE7HG5sq6Et/xS9NWgZslk3TWxTsCj7c+gonDOITMLk
-        /TJCC9PMuMKJWb39cp5fUKntA/Vz3aAdeszv+5oqyakFcGeNAIYQsHD+hR+XWpfw
-        Ttk5P+B4L/xnvp9VP8A5k/OMDG7pWOhvwgzTavZPlH+VaZaJBV/Pe15MUZja/DG7
-        cPzuCpO8lpEhc+ncfzgVkOCQ4rtWWZwMT1kGcxXeYM0THAGEqe0qN5CTUFbOwZTg
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ixh/51
+        0Haf/p9X2/V7HbKAJjNISVDdGLgM5TvEAXzfU=; b=I3QzhkwzE/3XjJUFFv+EQo
+        LIezOs9zPrppuzGFAfBrL36sD+yMhqVd6zRfTbNzR5cVqdTjGvLvY5G1O0LCCS0M
+        QkaJbMVpv+akQAHzItPlMTnBkllngZuriZd4xLlGkRQHYiJdpKN2W6YykfeJlfmv
+        LW4fHhXtKDytknBzHgKgsHntvOevALB2QOF8m+CY0Te7OwGeY6zzMlpRAm65tqDs
+        l1ca96/GFbCsGMyOWOE+r4YA0hAgaK45AinwJLz9W8AaLV1y0aNKDHLoxhUthF/Z
+        qYWpm15izz3yVj+bcuGdcA6a0Q2NbMrFWAlynIP6EW5+tqUfwlLbLjRI1GsKGywg
         ==
-X-ME-Sender: <xms:2a6RX8S7VTKwqPH9dA-fhSJ7gqabKOArl5BYo8kNLbYKq-aXcm3NSw>
-    <xme:2a6RX5wm2c3ce4lCh4wMTd35qTFV3LKRSymcs0j2_K9u6ZfMsjTpg4Lx1ZEyzyaS6
-    ilqzwNAFXPJhyoQRdk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrjeekgdduhecutefuodetggdotefrodftvf
+X-ME-Sender: <xms:va-RX6mtffWuYcQeRxTHY0HBEWNM3bP_4FVBQd_1gOpG2qoejcxoeg>
+    <xme:va-RXx3jSl4dqsWtS5Mw5S0ULq3H5SG2sPBq_JAKK6KY2XLqEkXcGu1olOcM_Tvts
+    fGbWI9QcioZVsaBreM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrjeekgdduiecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
@@ -48,60 +48,66 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrjeekgdduhecutefuodetggdote
     gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
     udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:2a6RX53wVZUZziVu3FEqEAabOh5OgAlAsvw7AmoAxjR4oYL_LEOoew>
-    <xmx:2a6RXwDtYwd4B0TBxX80lcSaNyNt4n42Wp7HIJRW3bp9Z9Yoe3-7pg>
-    <xmx:2a6RX1itvaSgxn7f0ysUoxHwIwcuKEYjkPPRqQ5fMgI6TwKxbxskpA>
-    <xmx:266RX4sNoH1myJYJcp7nB8yC8dPAf1d_PLLLCAWHfRk5Tc1pXvmnUQ>
+X-ME-Proxy: <xmx:va-RX4oZC-oxkr8LO-2O5SQYq8o8-xGoS0O3_6pl6WV3ldSjkux5vA>
+    <xmx:va-RX-lHxxvyhyqD_-4Q0cH33nZpVACyMcaPGfgOBvhZQ-RmKYXWLQ>
+    <xmx:va-RX424hHNG_l7CpMI8DD-9opEucSd-upLtS9InEohHZTrOjK0Ubg>
+    <xmx:v6-RX-w00q5Nsjs3Avwi45i0qL1Dx2l6lJx3b6Sr9Q-GjCRnQxJk3A>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D509D3280069;
-        Thu, 22 Oct 2020 12:10:00 -0400 (EDT)
-Date:   Thu, 22 Oct 2020 18:09:59 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id EBB053064682;
+        Thu, 22 Oct 2020 12:13:48 -0400 (EDT)
+Date:   Thu, 22 Oct 2020 18:13:47 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: Pine H64: Enable both RGMII RX/TX
- delay
-Message-ID: <20201022160959.4gmu3r3pjwh7xtlq@gilmour.lan>
-References: <20201019063449.33316-1-clabbe@baylibre.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 24/29] arm64: dts: allwinner: h6: Harmonize DWC USB3 DT
+ nodes name
+Message-ID: <20201022161347.llvnqaof7fy4i2rp@gilmour.lan>
+References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
+ <20201020115959.2658-25-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="n5nq2p7sw4cdfly3"
+        protocol="application/pgp-signature"; boundary="tp4zfrkdauye4fpq"
 Content-Disposition: inline
-In-Reply-To: <20201019063449.33316-1-clabbe@baylibre.com>
+In-Reply-To: <20201020115959.2658-25-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---n5nq2p7sw4cdfly3
+--tp4zfrkdauye4fpq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 19, 2020 at 06:34:49AM +0000, Corentin Labbe wrote:
-> Since commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay c=
-onfig"),
-> the network is unusable on PineH64 model A.
+On Tue, Oct 20, 2020 at 02:59:54PM +0300, Serge Semin wrote:
+> In accordance with the DWC USB3 bindings the corresponding node
+> name is suppose to comply with the Generic USB HCD DT schema, which
+> requires the USB nodes to have the name acceptable by the regexp:
+> "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
+> named.
 >=20
-> This is due to phy-mode incorrectly set to rgmii instead of rgmii-id.
->=20
-> Fixes: 729e1ffcf47e ("arm64: allwinner: h6: add support for the Ethernet =
-on Pine H64")
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 
-Queued as a fix for 5.10, thanks!
+Queued for 5.11, thanks!
 Maxime
 
---n5nq2p7sw4cdfly3
+--tp4zfrkdauye4fpq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5Gu1wAKCRDj7w1vZxhR
-xZt4AQDpFTAOXmtkaBeFHDpMOZDvKZ83CBZBd1e5o8C8TbwLwwEAnA/YB8xKDp3n
-etOOzcaknTJmgBIMBFTM8y4N9Sl2lAM=
-=3juI
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5GvuwAKCRDj7w1vZxhR
+xe4eAQCm6UBIAoNdAQl4UOCa+VvbwdUDqEEuCOJTtKU3dz6xTgEA79+0F9ioRVTo
+DjGx5094pbmIuS4Cp5UvZ8Du/3q7ewo=
+=Ffyq
 -----END PGP SIGNATURE-----
 
---n5nq2p7sw4cdfly3--
+--tp4zfrkdauye4fpq--
