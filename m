@@ -2,192 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30B6B295C5A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 12:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67276295C60
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 12:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2896241AbgJVKBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 06:01:53 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:40363 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2896238AbgJVKBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 06:01:53 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201022100134euoutp025be691abde8c6062155d9a70b3f11a3a~ASD0upesq0814608146euoutp02Y;
-        Thu, 22 Oct 2020 10:01:34 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201022100134euoutp025be691abde8c6062155d9a70b3f11a3a~ASD0upesq0814608146euoutp02Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1603360895;
-        bh=YU1Fv/ttpEpVPZU+XlwguPCLHB55EOv3PdTxNJ0j1/M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MGViQhYppwuf0e36nOvToOgb0MHOWDkHDaPqTiw7/LObW7QBjRSciSfO8gRYDE7Zr
-         HsYAcSHVyJGH3CxyBZu7zhNpACD4O77aeR3GixNnUHpBx08hSwvfaJuKVOeeYiSyML
-         1m5f/O04soUCLRVFQKgPw9OV7excKVJHvLgoFCSY=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201022100134eucas1p133bcc1bdb7f80ad94a1a5b9208ad8b2b~ASD0TOYA71643516435eucas1p1r;
-        Thu, 22 Oct 2020 10:01:34 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id A6.B4.05997.E78519F5; Thu, 22
-        Oct 2020 11:01:34 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201022100133eucas1p132ef97a9ac767bd357f50034c47d6d1a~ASDzv7eeb2303823038eucas1p1H;
-        Thu, 22 Oct 2020 10:01:33 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201022100133eusmtrp116fa2defb18d1eff8c31c4f48b5578e9~ASDzu3t9-2212222122eusmtrp1r;
-        Thu, 22 Oct 2020 10:01:33 +0000 (GMT)
-X-AuditID: cbfec7f4-65dff7000000176d-48-5f91587e4396
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 40.78.06017.D78519F5; Thu, 22
-        Oct 2020 11:01:33 +0100 (BST)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201022100133eusmtip2717fc66de10490e36b86b7891c78e5a6~ASDzifFn71262512625eusmtip2h;
-        Thu, 22 Oct 2020 10:01:33 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
-        <b.zolnierkie@samsung.com>
-Subject: Re: [PATCH v3 3/5] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Date:   Thu, 22 Oct 2020 12:01:23 +0200
-In-Reply-To: <633bbf18-1aec-4b2a-7967-898cde1930aa@samsung.com> (Marek
-        Szyprowski's message of "Thu, 22 Oct 2020 09:15:50 +0200")
-Message-ID: <dleftjzh4ezij0.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S2896299AbgJVKEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 06:04:54 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:54796 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2896298AbgJVKEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 06:04:54 -0400
+X-UUID: 4bcf5a71af7a4d519d267a17187997da-20201022
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/pWlKbK+2FYWyyCxb4qgVtC6XtrPsrK8S8hX+HS2blI=;
+        b=DRNz6zE2WX6m1Uwwb9De5VQLqYfxkCYBVc6186fgeGBHZGIEP1Yd+GHq/nzqe2z25KcbVUaRwwcZL7cHEj1YVqCn6yR+J6ac2ElRaBHc+uksUmhB9dDv0t6Iiw4QyAcZsfsFQmfHwX3LqAu+1xPyCa8iPKk4sXUjdW1KTc50fRM=;
+X-UUID: 4bcf5a71af7a4d519d267a17187997da-20201022
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 117150928; Thu, 22 Oct 2020 18:04:47 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs07n2.mediatek.inc
+ (172.21.101.141) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 22 Oct
+ 2020 18:04:45 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 22 Oct 2020 18:04:45 +0800
+Message-ID: <1603361084.8921.26.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 2/5] ASoC: mediatek: mt8192: add platform driver
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     <tiwai@suse.com>, <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <tzungbi@google.com>,
+        <alsa-devel@alsa-project.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <shane.chien@mediatek.com>, <kuninori.morimoto.gx@renesas.com>
+Date:   Thu, 22 Oct 2020 18:04:44 +0800
+In-Reply-To: <20201021132339.GF4497@sirena.org.uk>
+References: <1603270435-3548-1-git-send-email-jiaxin.yu@mediatek.com>
+         <1603270435-3548-3-git-send-email-jiaxin.yu@mediatek.com>
+         <20201021132339.GF4497@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTURzHO7v3btfR6jin/VqiMQxSSXtI3Z6kGFxIoghEDbNlF125KZvL
-        B5Q9dFQutZmoY6iJmVk+srnSMm1JYpYzFFNRelhU2gu0yNRKdw3673t+v8/3+/udw6EJ6Qwl
-        p1WaZE6rUSYohGLS9niqe83JiEsxa5/XyRnHiJ1gbhXVUYzFkUkype3dFFP+tYhi+j8PU0zu
-        6DjBOBz1IqbHlkMxDaP9FNPbbBEyRY4HAsZe0IKYmvYREfO4zIPJamkX7cRsb/9zgrVeHxSw
-        TeYREdtQfV7I3q7IYJvuTgjYHGs1YicavPbSUeJtR7gE1XFOG7jjkDi+c3qKSGqHVFtb2inU
-        5H4BudCAg6DnfC9xAYlpKa5C8P1pCeIPkwjut3aQ85QUTyAoqdT/c8xOzwp46BqCn8aaBcd7
-        BD8qz851aFqIA6CmJmLeIMOBkG3oczIEvkPC4BOzM9UNh0NzcQsxr0m8CgYM35x7uOCzCCzd
-        X5yQBG8C44tywbx2x5vB+uGliK+7QmfxWydDYDUUOz45JwC+SkOpaci5BeBQuJyZzK/tBmMd
-        VhGvPaEr30jySAbkmzbyViMCm+UnyTNbYbj7l5DXwVD2xybi+SUw8NmVH7sETLZCgi9L4JxB
-        ytM+UJt7fyFFDhfHqhCvWbjX+HDhrUwIXhusgjy00vzfbcz/3cY8F0tgX6hrDuTL/lB5ZZzg
-        9Xaorf1KliGqGi3j9Dp1HKdbr+FSAnRKtU6viQuITVQ3oLl/2PW7Y/Iuap45bEeYRorFkm9h
-        eTFSSnlcl6a2I5+5pDf1N3qQnNQkajiFTBLyrOugVHJEmZbOaRNjtPoETmdHK2hSsUyyofxj
-        tBTHKZO5YxyXxGn/dQW0i/wU8q7llgb5rsBDsptcrNdE6XhxaKssN/JkeWrfoxAUlVa4qGBf
-        xrC1/uMhyeSDMO8SVUrF7jBDtD9q06vGxauP5s+oOrYEh8hls9aNo95+axo3x54+8MojuH66
-        bUwQG7mt8wSEx0eEJe16JwlYnn7Gc7Yx2/3ElNG0v3VPV1Yom6cgdfHKdX6EVqf8C723AH+P
-        AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrKIsWRmVeSWpSXmKPExsVy+t/xe7q1ERPjDTatNLQ4f/cQs8XGGetZ
-        Leacb2GxmH/kHKvFovczWC2uvb3DatH/+DWzxfnzG9gtLmzrY7XY9Pgaq8XlXXPYLGac38dk
-        cWjqXkaLtUfuslscWyBm0br3CLuDgMflaxeZPbasvMnksXPWXXaPTas62Tw2L6n32LnjM5NH
-        35ZVjB6fN8kFcETp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSW
-        pRbp2yXoZZz8/ZO54IhExbYDlQ2MO0W7GDk5JARMJP7+/svUxcjFISSwlFHi3ucVjF2MHEAJ
-        KYmVc9MhaoQl/lzrYoOoecoosfTbNGaQGjYBPYm1ayNAakQE9CW6264wgtQwC+xikdj0cQE7
-        SEJYIETiTNtGVhBbSMBO4viUGSwgNouAqsSNtg/MIA2cAs2MEnPOvQNL8AqYS/RcX8QEYosK
-        WEpseXGfHSIuKHFy5hOwGmaBbImvq58zT2AUmIUkNQtJahbQfcwCmhLrd+lDhLUlli18zQxh
-        20qsW/eeZQEj6ypGkdTS4tz03GIjveLE3OLSvHS95PzcTYzAaN527OeWHYxd74IPMQpwMCrx
-        8H7wmRAvxJpYVlyZe4hRBWjMow2rLzBKseTl56UqifA6nT0dJ8SbklhZlVqUH19UmpNafIjR
-        FOjRicxSosn5wASUVxJvaGpobmFpaG5sbmxmoSTO2yFwMEZIID2xJDU7NbUgtQimj4mDU6qB
-        cf5Ff6OUgpdGh3NWRmvUb16myVJqu0RrDrMQg9FGsY3fC9un+6Sl3t2SvJA7XEF1gv8mAXGe
-        KU9djih7FGS3tHhKJt6YmWAQyZPSufOZ3c1XVl844i6/eWc8V/7DpYC+veuNl4p/+TJjx8E9
-        b2zjS1bLavGwKU3MPvPdpjBi3/zXtWkz5uZNVmIpzkg01GIuKk4EAHc7BjoIAwAA
-X-CMS-MailID: 20201022100133eucas1p132ef97a9ac767bd357f50034c47d6d1a
-X-Msg-Generator: CA
-X-RootMTR: 20201022100133eucas1p132ef97a9ac767bd357f50034c47d6d1a
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201022100133eucas1p132ef97a9ac767bd357f50034c47d6d1a
-References: <633bbf18-1aec-4b2a-7967-898cde1930aa@samsung.com>
-        <CGME20201022100133eucas1p132ef97a9ac767bd357f50034c47d6d1a@eucas1p1.samsung.com>
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+T24gV2VkLCAyMDIwLTEwLTIxIGF0IDE0OjIzICswMTAwLCBNYXJrIEJyb3duIHdyb3RlOg0KPiBP
+biBXZWQsIE9jdCAyMSwgMjAyMCBhdCAwNDo1Mzo1MlBNICswODAwLCBKaWF4aW4gWXUgd3JvdGU6
+DQo+ID4gVGhpcyBwYXRjaCBhZGRzIG10ODE5MiBwbGF0Zm9ybSBhbmQgYWZmaWxpYXRlZCBkcml2
+ZXJzLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEppYXhpbiBZdSA8amlheGluLnl1QG1lZGlh
+dGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgc291bmQvc29jL21lZGlhdGVrL0tjb25maWcgICAgICAg
+ICAgICAgICAgICAgIHwgICAxMCArDQo+ID4gIHNvdW5kL3NvYy9tZWRpYXRlay9NYWtlZmlsZSAg
+ICAgICAgICAgICAgICAgICB8ICAgIDEgKw0KPiA+ICBzb3VuZC9zb2MvbWVkaWF0ZWsvY29tbW9u
+L210ay1hZmUtZmUtZGFpLmMgICAgfCAgIDEzICstDQo+ID4gIHNvdW5kL3NvYy9tZWRpYXRlay9j
+b21tb24vbXRrLWJhc2UtYWZlLmggICAgICB8ICAgIDEgKw0KPiA+ICBzb3VuZC9zb2MvbWVkaWF0
+ZWsvbXQ4MTkyL01ha2VmaWxlICAgICAgICAgICAgfCAgIDE0ICsNCj4gPiAgc291bmQvc29jL21l
+ZGlhdGVrL210ODE5Mi9tdDgxOTItYWZlLWNsay5jICAgIHwgIDY2OSArKysrDQo+ID4gIHNvdW5k
+L3NvYy9tZWRpYXRlay9tdDgxOTIvbXQ4MTkyLWFmZS1jbGsuaCAgICB8ICAyNDQgKysNCj4gPiAg
+c291bmQvc29jL21lZGlhdGVrL210ODE5Mi9tdDgxOTItYWZlLWNvbW1vbi5oIHwgIDE3MCArDQo+
+ID4gIC4uLi9zb2MvbWVkaWF0ZWsvbXQ4MTkyL210ODE5Mi1hZmUtY29udHJvbC5jICB8ICAxNjMg
+Kw0KPiA+ICBzb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTkyL210ODE5Mi1hZmUtZ3Bpby5jICAgfCAg
+MzA2ICsrDQo+ID4gIHNvdW5kL3NvYy9tZWRpYXRlay9tdDgxOTIvbXQ4MTkyLWFmZS1ncGlvLmgg
+ICB8ICAgMTkgKw0KPiA+ICBzb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTkyL210ODE5Mi1hZmUtcGNt
+LmMgICAgfCAyMzg5ICsrKysrKysrKysrKysNCj4gPiAgc291bmQvc29jL21lZGlhdGVrL210ODE5
+Mi9tdDgxOTItZGFpLWFkZGEuYyAgIHwgMTQ4OSArKysrKysrKw0KPiA+ICBzb3VuZC9zb2MvbWVk
+aWF0ZWsvbXQ4MTkyL210ODE5Mi1kYWktaTJzLmMgICAgfCAyMTM5ICsrKysrKysrKysrDQo+ID4g
+IHNvdW5kL3NvYy9tZWRpYXRlay9tdDgxOTIvbXQ4MTkyLWRhaS1wY20uYyAgICB8ICA0MDkgKysr
+DQo+ID4gIHNvdW5kL3NvYy9tZWRpYXRlay9tdDgxOTIvbXQ4MTkyLWRhaS10ZG0uYyAgICB8ICA3
+NzggKysrKw0KPiA+ICAuLi4vbWVkaWF0ZWsvbXQ4MTkyL210ODE5Mi1pbnRlcmNvbm5lY3Rpb24u
+aCAgfCAgIDY1ICsNCj4gPiAgc291bmQvc29jL21lZGlhdGVrL210ODE5Mi9tdDgxOTItcmVnLmgg
+ICAgICAgIHwgMzEzMSArKysrKysrKysrKysrKysrKw0KPiA+ICAxOCBmaWxlcyBjaGFuZ2VkLCAx
+MjAwNiBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0KPiANCj4gVGhpcyBpcyAqd2F5KiB0
+b28gYmlnIHRvIGJlIGEgc2luZ2xlIHBhdGNoLCBwbGVhc2Ugc3BsaXQgaXQgdXAgLSBpdCdzDQo+
+IG92ZXIgNjAwSy4NCg0KSSB3aWxsIHNwbGl0IHRoZSBkYWkgZHJpdmVyIGZpbGVzIGFzIGEgc2Vw
+ZXJhdGUgcGF0Y2hlcy4gU3VjaCBhczoNCkFTb0M6IG1lZGlhdGVrOiBtdDgxOTI6IHN1cHBvcnQg
+YWRkYSBpbiBwbGF0Zm9ybSBkcml2ZXINCkFTb0M6IG1lZGlhdGVrOiBtdDgxOTI6IHN1cHBvcnQg
+aTJzIGluIHBsYXRmb3JtIGRyaXZlcg0KQVNvQzogbWVkaWF0ZWs6IG10ODE5Mjogc3VwcG9ydCBw
+Y20gaW4gcGxhdGZvcm0gZHJpdmVyDQpBU29DOiBtZWRpYXRlazogbXQ4MTkyOiBzdXBwb3J0IHRk
+bSBpbiBwbGF0Zm9ybSBkcml2ZXINClRoZXkncmUgc3RpbGwgaW4gc2VyaWVzIG9mICJBU29DOiBt
+ZWRpYXRlazogbXQ4MTkyOiBhZGQgcGxhdGZvcm0NCmRyaXZlciIuIA0KSXMgdGhpcyBhcHByb3By
+aWF0ZT8gUGxlYXNlIGNvcnJlY3QgbWUgaWYgdGhlcmUgaXMgYW55IG1pc3VuZGVyc3RhbmRpbmcu
+DQo=
 
-It was <2020-10-22 czw 09:15>, when Marek Szyprowski wrote:
-> On 21.10.2020 23:49, =C5=81ukasz Stelmach wrote:
->> ASIX AX88796[1] is a versatile ethernet adapter chip, that can be
->> connected to a CPU with a 8/16-bit bus or with an SPI. This driver
->> supports SPI connection.
->>
->> The driver has been ported from the vendor kernel for ARTIK5[2]
->> boards. Several changes were made to adapt it to the current kernel
->> which include:
->>
->> + updated DT configuration,
->> + clock configuration moved to DT,
->> + new timer, ethtool and gpio APIs,
->> + dev_* instead of pr_* and custom printk() wrappers,
->> + removed awkward vendor power managemtn.
->>
->> [1] https://www.asix.com.tw/products.php?op=3DpItemdetail&PItemID=3D104;=
-65;86&PLine=3D65
->> [2] https://git.tizen.org/cgit/profile/common/platform/kernel/linux-3.10=
--artik/
->>
->> The other ax88796 driver is for NE2000 compatible AX88796L chip. These
->> chips are not compatible. Hence, two separate drivers are required.
->>
->> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
->
-> co=C5=9B zaszala=C5=82e=C5=9B, jak dobry korea=C5=84ski kod - push bez ko=
-mpilacji ;)
->
-> drivers/net/ethernet/asix/ax88796c_main.c:758:13: error: static=20
-> declaration of =E2=80=98ax88796c_set_csums=E2=80=99 follows non-static de=
-claration
->  =C2=A0static void ax88796c_set_csums(struct ax88796c_device *ax_local)
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- ^
-> In file included from drivers/net/ethernet/asix/ax88796c_main.c:12:0:
-> drivers/net/ethernet/asix/ax88796c_ioctl.h:24:6: note: previous=20
-> declaration of =E2=80=98ax88796c_set_csums=E2=80=99 was here
->  =C2=A0void ax88796c_set_csums(struct ax88796c_device *ax_local);
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
-> scripts/Makefile.build:283: recipe for target=20
-> 'drivers/net/ethernet/asix/ax88796c_main.o' failed
-> make[4]: *** [drivers/net/ethernet/asix/ax88796c_main.o] Error 1
-> scripts/Makefile.build:500: recipe for target=20
-> 'drivers/net/ethernet/asix' failed
-> make[3]: *** [drivers/net/ethernet/asix] Error 2
-> scripts/Makefile.build:500: recipe for target 'drivers/net/ethernet' fail=
-ed
-> make[2]: *** [drivers/net/ethernet] Error 2
-> scripts/Makefile.build:500: recipe for target 'drivers/net' failed
-> make[1]: *** [drivers/net] Error 2
-
-
-Fixed. Thanks.
-
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl+RWHMACgkQsK4enJil
-gBCTOAf8DDhl24aKJ6K/V2rIeZIbp78TQD8mv/HjBV8moWhi9TfOYwif3micRUfp
-qdKzM4+yIP6B5edSQtu6+/ErHkwXQpDzy7ik2qp28WF2F0HLofn7SyfJGR8JaGEv
-/fizTdjtNV7/zmWlyjZuTuHkhADGdiKJ+NLrfFLMmVWKdzttQDGkzBTs5khK2R9O
-5yXISyU68eIb3dcANLKlKpjRI31ICQq0IjsHwsaWt9VWxFJ0tDGM4BONc5hcNPsS
-aZR+hpm2ytGN8VYYcRd6MlV7WI5hm7X2rE43Hgzh/uwAbM8zrqY62bowtq2TZKM7
-mdjObq3VWQK+ZzA0uqmSkX0pW7bLWQ==
-=OwYK
------END PGP SIGNATURE-----
---=-=-=--
