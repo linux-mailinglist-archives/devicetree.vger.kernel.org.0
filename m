@@ -2,131 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E8929639F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 19:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E9E2963DA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 19:40:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2899085AbgJVRRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 13:17:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59436 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2899081AbgJVRRE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 13:17:04 -0400
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23FD7C0613CE;
-        Thu, 22 Oct 2020 10:17:03 -0700 (PDT)
-Received: by mail-il1-x143.google.com with SMTP id j8so2433919ilk.0;
-        Thu, 22 Oct 2020 10:17:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LxH0WW4eyFGtlK7B0mhAHSxy5284D+Fh4ydA0CHiSrs=;
-        b=SwKfMo+3aCiKGJpe/ik55uXuzdhMQsDmXUsqy8J+1mcFtiAWqdryRmeq1NW3lYPWFY
-         odjDZxsxMdL8wKxh6fDgIgadnx5SYV6K+HlDl5Xer0lwcSaW/8TlljvfoBZjqz1/1Ima
-         7ZtAwRiyazx6FwDnwa+M8KLlBIycLZ8DxBOSOfdGDyPdFCQkzD5r/EbI/wTlAaGJs1i7
-         5cN/q4Vpof3y5/ZQYj+AaSMSwXrDBCkBDEDFlt/rjV3LDehfICorrhPsMpJdt8PeV0JJ
-         zvwgmN5yBIA68kfKr5ckMshsZ/mwbJPJSIB1E6migDZ7b4PSqF9rw3bXvQJ9s5pqiyf2
-         phzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LxH0WW4eyFGtlK7B0mhAHSxy5284D+Fh4ydA0CHiSrs=;
-        b=UD4BZ55nKclccjj0eIbl7pxBuUfI0yI+WIwl8CGq6hOy+treoHfyFJ6rkrIR92fmP/
-         VrXp1r5kMkMn3N2R5vQxkffLjSZT8yV6m+nrn34sQWoqytLtwUekklnNQjI8AaEc9kKh
-         wz1uxcdGWmU6qjz+uTWUd9K3BKmRm8yPYSjVj0Q04ngx0iStJxmhiG5r1fsWem7av95z
-         7GKTQg5YpgIPr6O5JJsiTw/Bk+odz0h+rQsCSoeF5MIOq3WF/XOOOH7EHyB74tUHgwzl
-         86NpbDbUjoivvLQ6TKODW5Xs5AnFIaHFUUjhnebMDVAZsKlBOihgfLIGSa4aLXN2l78U
-         pcRw==
-X-Gm-Message-State: AOAM532VC6hI3lCofzEdaj/LcmMqbvdAggiGvLiIVZWBRgAcD9N+9Eq/
-        iqzIy0bFzCkdM4+aVhg641k=
-X-Google-Smtp-Source: ABdhPJx21wl1klJ0oPPI02CyzLp67JbB4DNt5zAmZ4miMdBQYL+Jf5xVnwQkNAR4URG4bW1L+EohiQ==
-X-Received: by 2002:a92:d84a:: with SMTP id h10mr2812597ilq.39.1603387022310;
-        Thu, 22 Oct 2020 10:17:02 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:527:767:b750:2d3c])
-        by smtp.gmail.com with ESMTPSA id v1sm1287636ioe.0.2020.10.22.10.17.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2020 10:17:01 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     marex@denx.de, aford@beaconembedded.com, l.stach@pengutronix.de,
-        Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mm: Add GPU node
-Date:   Thu, 22 Oct 2020 12:16:39 -0500
-Message-Id: <20201022171639.773702-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S368047AbgJVRkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 13:40:14 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:33022 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2900809AbgJVRkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 13:40:14 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09MHcRlQ032683;
+        Thu, 22 Oct 2020 19:40:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=Xw2dy81ycIuPHgArY2fy2sR4NSk39ZIqh0+V1r9E/1g=;
+ b=Ee5NYNnVjcoDL5X8c9yTGtXrZ09WHlB7MZzMNDboKy/S/Wn74O/3UATiNAnv27HLIrql
+ 1PSyoAhG43w6F9r5vFSmvscZMkJP9qZZirRtpdmR4wXGRAOL+NJV9y3V4ufa7XPUWj2Y
+ 0VD5mFxGkbx/I1gmqFaLSZHGD+X4opTzhXX/IdxyUIVVNsnwO5ik0CfMn5uU2GESu9yq
+ FZFjp2FG8uGrV7/fHB5tKO1kzLEETeOgNfTa0tyhvqmfHTrLHJpxqxjyKo2wI4PM9RrJ
+ Kyspkp+h/GWtfnnZFm5BedVNXGmqz0U3LY0JN9/4DdIdc5XYPDmd1TUk/WWIb2W2ua35 Yw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34apedr4ch-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Oct 2020 19:40:02 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8FEE310002A;
+        Thu, 22 Oct 2020 19:40:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 79B892B415C;
+        Thu, 22 Oct 2020 19:40:01 +0200 (CEST)
+Received: from localhost (10.75.127.44) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 22 Oct 2020 19:40:00
+ +0200
+From:   Patrick Delaunay <patrick.delaunay@st.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     Patrick Delaunay <patrick.delaunay@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH] ARM: dts: stm32: reorder spi4 within stm32mp15-pinctrl
+Date:   Thu, 22 Oct 2020 19:38:51 +0200
+Message-ID: <20201022173851.20114-1-patrick.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.737
+ definitions=2020-10-22_12:2020-10-20,2020-10-22 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the documentation from NXP, the i.MX8M Nano has a
-Vivante GC7000 Ultra Lite as its GPU core.
+Move spi4 at the right alphabetical place within stm32mp15-pinctrl
 
-With this patch, the Etnaviv driver presents the GPU as:
-   etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
-
-It uses the GPCV2 controller to enable the power domain for the GPU.
-
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Fixes: 4fe663890ac5 ("ARM: dts: stm32: Fix spi4 pins in stm32mp15-pinctrl")
+Signed-off-by: Patrick Delaunay <patrick.delaunay@st.com>
 ---
-This patch depends on a series located:
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=368903
-and
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 605e6dbd2c6f..62c8cd3dea7c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -4,6 +4,8 @@
-  */
- 
- #include <dt-bindings/clock/imx8mn-clock.h>
-+#include <dt-bindings/power/imx8mn-power.h>
-+#include <dt-bindings/reset/imx8mq-reset.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -1019,6 +1021,31 @@ gpmi: nand-controller@33002000 {
- 			status = "disabled";
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 28 ++++++++++++------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+index d84686e00370..c9e514165672 100644
+--- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+@@ -1591,6 +1591,20 @@
  		};
+ 	};
  
-+		gpu: gpu@38000000 {
-+			compatible = "vivante,gc";
-+			reg = <0x38000000 0x8000>;
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MN_CLK_GPU_AHB>,
-+				<&clk IMX8MN_CLK_GPU_BUS_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_CORE_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-+			clock-names = "reg", "bus", "core", "shader";
-+			assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE_SRC>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER_SRC>,
-+					  <&clk IMX8MN_CLK_GPU_AXI>,
-+					  <&clk IMX8MN_CLK_GPU_AHB>,
-+					  <&clk IMX8MN_GPU_PLL>,
-+					  <&clk IMX8MN_CLK_GPU_CORE_DIV>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-+			assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>;
-+			assigned-clock-rates = <0>, <0>, <800000000>, <400000000>, <1200000000>,
-+				<400000000>, <400000000>;
-+			power-domains = <&pgc_gpumix>;
++	spi4_pins_a: spi4-0 {
++		pins {
++			pinmux = <STM32_PINMUX('E', 12, AF5)>, /* SPI4_SCK */
++				 <STM32_PINMUX('E', 6, AF5)>;  /* SPI4_MOSI */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <1>;
 +		};
++		pins2 {
++			pinmux = <STM32_PINMUX('E', 13, AF5)>; /* SPI4_MISO */
++			bias-disable;
++		};
++	};
 +
- 		gic: interrupt-controller@38800000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x38800000 0x10000>,
+ 	uart4_pins_a: uart4-0 {
+ 		pins1 {
+ 			pinmux = <STM32_PINMUX('G', 11, AF6)>; /* UART4_TX */
+@@ -1726,20 +1740,6 @@
+ 		};
+ 	};
+ 
+-	spi4_pins_a: spi4-0 {
+-		pins {
+-			pinmux = <STM32_PINMUX('E', 12, AF5)>, /* SPI4_SCK */
+-				 <STM32_PINMUX('E', 6, AF5)>;  /* SPI4_MOSI */
+-			bias-disable;
+-			drive-push-pull;
+-			slew-rate = <1>;
+-		};
+-		pins2 {
+-			pinmux = <STM32_PINMUX('E', 13, AF5)>; /* SPI4_MISO */
+-			bias-disable;
+-		};
+-	};
+-
+ 	usart2_pins_a: usart2-0 {
+ 		pins1 {
+ 			pinmux = <STM32_PINMUX('F', 5, AF7)>, /* USART2_TX */
 -- 
-2.25.1
+2.17.1
 
