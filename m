@@ -2,183 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B931229652A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 21:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B471F296548
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 21:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2508785AbgJVTRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 15:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2508694AbgJVTRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 15:17:30 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DB2C0613CE;
-        Thu, 22 Oct 2020 12:17:30 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id j7so1535485pgk.5;
-        Thu, 22 Oct 2020 12:17:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=NDPM7NZ6MV4kcALtEwBlsiFfbljBTJgcXOF1wjhIdoU=;
-        b=elhu2Ozt0d+4q8KMV5Z4WLf2GNipXNorkOjJ9y7/jmjkBeXM8k1DSHeLdMILPe474t
-         X2658LbxakIyKCFH8X6bPjyyy2EBx83g82kMTkGR+FqPg8IuUk2aAGJIWB9UV1PKqgH0
-         eDx6eyt8brp2iDBtaL0QNeRMmQWZFeAl9pv8W0rktcbwIt9Yk/HX6iEPRY55sMAy+gXn
-         QtxO4PSL4MbzdCCQkJ6J8hLOSbmaTeGD7xKFf/aTVWCidNNd3e3RMPp338TWuvrk4SnR
-         B70tS1bE5mgeTofeCisL9rUUnttzTjC1S6OvuMttV9ixOyTvGDjjy7mzg5Td8D+pwsvy
-         0VuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=NDPM7NZ6MV4kcALtEwBlsiFfbljBTJgcXOF1wjhIdoU=;
-        b=a9wkp9GlejvtIKlnXBpRMNyfrDt4C00rSy6aLzYc7BLWDIshMpqfHzuVTjs+fKkr5N
-         SA2Q6yZhQk+RH5yYOiNzjCbnXzb71ISqyfesFruucZENlKB5Npl1iOFSfphmAqDAD7Xx
-         vMG6a2JkPefgcsc5tSsu40Tt2n/Zy+K6RqrchRP1HMH4e0dBnvKzvU0V58V1l6Z+/YXi
-         Ogk8ukJdxeIyDwSci3nHw2q8IKiyq5UzEDR32Sq1k4Dt1TBndjSWbPw8CqlFR3Xsggz4
-         pTJhc/ug2QmAbT2S3/e2JRL9428vvR/f/5f4fibOumGn+KZfA075ihobSUYUQaX7pU8u
-         WZgQ==
-X-Gm-Message-State: AOAM533+QJb7mvUZcK4d2D6japtFVulQjtNTuyTxfw2DNf5BfdN/PQfq
-        lvM1NMwocbHYZt0RiYwBxYLbR4khLwk=
-X-Google-Smtp-Source: ABdhPJyQ9xxErCXLiEJyPJ4HNbj0HFMx+GbRb189V68MFbnYH9RGr21LdqsjRC9UNXRsPATOuLhdfg==
-X-Received: by 2002:a65:5a0d:: with SMTP id y13mr3449640pgs.436.1603394249151;
-        Thu, 22 Oct 2020 12:17:29 -0700 (PDT)
-Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id g14sm3014290pfo.17.2020.10.22.12.17.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Oct 2020 12:17:28 -0700 (PDT)
-Subject: Re: [RFC PATCH net-next 1/9] dt-bindings: net: dsa: convert ksz
- bindings document to yaml
-To:     Vladimir Oltean <olteanv@gmail.com>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>
-Cc:     Christian Eggers <ceggers@arri.de>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S370190AbgJVTZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 15:25:38 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:56162 "EHLO mail.z3ntu.xyz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S370187AbgJVTZh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 15:25:37 -0400
+Received: by mail.z3ntu.xyz (Postfix, from userid 182)
+        id 7DD85C7218; Thu, 22 Oct 2020 19:25:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1603394734; bh=AFNcYWN73jXXlPkynUL1liT45MKc2/cfgOevOqrJe2E=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=jFyZz9aLvJfIjb3HAGm7dQFw6S49OGVQwJGZm2EVINeXUKCAZXRXs3Ps79kPq8TWZ
+         kqwjhpOlg2fWiWJBDcQ1jkpskQHOCLv2d9b5p+fklGrR/uEjMYpyh1QEXbaqvPOF1x
+         vBDolVSKGVoKZtGSR8kD0xd2mfffLeLM3P62pldY=
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on arch-vps
+X-Spam-Level: 
+X-Spam-Status: No, score=0.9 required=5.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.4
+Received: from g550jk.localnet (80-110-125-173.cgn.dynamic.surfer.at [80.110.125.173])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 45380C669B;
+        Thu, 22 Oct 2020 19:25:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1603394732; bh=AFNcYWN73jXXlPkynUL1liT45MKc2/cfgOevOqrJe2E=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=qOGdj963fPa7D28jT90vH01qDZdMKfXkWrKzTnfvFQKODGxLTncuwHeX0wintU3yz
+         5jbmpTgkEQJhtbJyiCYyQZ0L4sAWnena+v+J4EhSyQE124ZoItW4fBiPPu/AOgCRXD
+         6JvaCLuQ/lFecpHws0Bvk1g1cZ1toEy/N9A51lME=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201019172435.4416-1-ceggers@arri.de>
- <20201019172435.4416-2-ceggers@arri.de> <87lfg0rrzi.fsf@kurt>
- <20201022001639.ozbfnyc4j2zlysff@skbuf>
- <3cf2e7f8-7dc8-323f-0cee-5a025f748426@gmail.com> <87h7qmil8j.fsf@kurt>
- <20201022123735.3mnlzkfmqqrho6n5@skbuf>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <63bc70fe-30b3-43f1-a54c-b8c82bbdc048@gmail.com>
-Date:   Thu, 22 Oct 2020 12:17:26 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Martin Botka <martin.botka1@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: Re: [PATCH v6 2/4] leds: Add driver for Qualcomm LPG
+Date:   Thu, 22 Oct 2020 21:25:31 +0200
+Message-ID: <7499087.fvuViRk2k7@g550jk>
+In-Reply-To: <20201021201224.3430546-3-bjorn.andersson@linaro.org>
+References: <20201021201224.3430546-1-bjorn.andersson@linaro.org> <20201021201224.3430546-3-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20201022123735.3mnlzkfmqqrho6n5@skbuf>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/22/20 5:37 AM, Vladimir Oltean wrote:
-> On Thu, Oct 22, 2020 at 12:54:52PM +0200, Kurt Kanzenbach wrote:
->> On Wed Oct 21 2020, Florian Fainelli wrote:
->>> On 10/21/2020 5:16 PM, Vladimir Oltean wrote:
->>>> On Wed, Oct 21, 2020 at 08:52:01AM +0200, Kurt Kanzenbach wrote:
->>>>> On Mon Oct 19 2020, Christian Eggers wrote:
->>>>> The node names should be switch. See dsa.yaml.
->>>>>
->>>>>> +            compatible = "microchip,ksz9477";
->>>>>> +            reg = <0>;
->>>>>> +            reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
->>>>>> +
->>>>>> +            spi-max-frequency = <44000000>;
->>>>>> +            spi-cpha;
->>>>>> +            spi-cpol;
->>>>>> +
->>>>>> +            ports {
->>>>>
->>>>> ethernet-ports are preferred.
->>>>
->>>> This is backwards to me, instead of an 'ethernet-switch' with 'ports',
->>>> we have a 'switch' with 'ethernet-ports'. Whatever.
->>>
->>> The rationale AFAIR was that dual Ethernet port controllers like TI's 
->>> CPSW needed to describe each port as a pseudo Ethernet MAC and using 
->>> 'ethernet-ports' as a contained allowed to disambiguate with the 'ports' 
->>> container used in display subsystem descriptions.
->>
->> Yes, that was the outcome of previous discussions.
-> 
-> And why would that disambiguation be necessary in the first place? My
-> understanding is that the whole node path provides the necessary
-> namespacing to avoid the confusion. For example, the 'reg' property
-> means 100 things to 100 buses, and no one has an issue with that. I am
-> not expecting an Ethernet switch to have an HDMI port, I might be wrong
-> though.
+Hi Bjorn,
 
-The disambiguation is more of a hint given to DT analysis tools to
-validate a given node with little to no knowledge of the containing
-node. I don't really have a dog in the fight here.
--- 
-Florian
+On Mittwoch, 21. Oktober 2020 22:12:22 CEST Bjorn Andersson wrote:
+> The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
+> PMICs from Qualcomm. It can operate on fixed parameters or based on a
+> lookup-table, altering the duty cycle over time - which provides the
+> means for e.g. hardware assisted transitions of LED brightness.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Changes since v5:
+> - Make sure to not used the state of the last channel in a group to
+> determine if the current sink should be active for all channels in the
+> group. - Replacement of unsigned -1 with UINT_MAX
+> - Work around potential overflow by using larger data types, instead of
+> separate code paths - Use cpu_to_l16() rather than hand rolling them
+> - Minor style cleanups
+> 
+>  drivers/leds/Kconfig         |    9 +
+>  drivers/leds/Makefile        |    1 +
+>  drivers/leds/leds-qcom-lpg.c | 1190 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 1200 insertions(+)
+>  create mode 100644 drivers/leds/leds-qcom-lpg.c
+
+Tested on msm8974 (pm8941) on the Fairphone 2, works great there!
+
+Tested-by: Luca Weiss <luca@z3ntu.xyz>
+
+Regards
+Luca
+
+
