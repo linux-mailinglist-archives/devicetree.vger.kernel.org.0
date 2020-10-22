@@ -2,143 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46FEC2956C6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 05:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BDD629576E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 06:59:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2895406AbgJVD3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 23:29:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2895402AbgJVD3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 23:29:35 -0400
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 864DCC0613D2
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 20:29:35 -0700 (PDT)
-Received: by mail-io1-xd43.google.com with SMTP id b15so49655iod.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 20:29:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IMFKi57vTn4WORdntFjLONbVhz/S8EeuoMU/ru37Fjk=;
-        b=QmKzFiaHxS37kWhYqOevmJSha395OemOg2KLsjigL/6YgPyC0cWSkaDr+ffKa61vPU
-         GXX3dfuhinc3Qluqg/LcYmWn/uxtlNOgkwHIV8z5wVdWNaIK/qBYmvkfpKFr6uIPXDuS
-         AfhJpRPcSFHBisu+853OTgVeFr30qYIhwo146On5XcIrt6UvkDzAOUc8b9oPP4LHY+aP
-         mcF96p2cmiAaoW59NhLHswwH2t/U88kQXPZ09XztB41AQUXax5V0J3N4+8uTmW9J5nLp
-         gvtykGqSZeSnzrM85+VdZrTtv1zRS7Q7rVERJrrNJBtv0PRbYLmliKduECch9kebV8vo
-         8yGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IMFKi57vTn4WORdntFjLONbVhz/S8EeuoMU/ru37Fjk=;
-        b=Ulzj/2DgjlnqZMMSPFMEa3khdIYFq8VDDaHCio8ag+A14BUQVjIBbZ1XoQuGitnpVE
-         XxUgFLzMGrW6W4I/55aPt7+mnBSVwMTb4G6VWJJXc0tAOjKxJt5OuqPBUpBE7qVQQ7Jr
-         FJ1oqkjGpmxlRcWSW62NhJ+4QIcfjs+d8hvcTsQB58DGyDij67kILOtmpeq0h+N1ZJkl
-         mRIOHJp3TmpLU7XqdhzX1T/bcaurNuSIfC+6vDGbvvxwfhE4GPwDZvrUyQc3Svkbr488
-         4zdxcCyBNdvDYSOJB3M4B9B5Igubawd10+frz7sm3RneossBTczIB8mvQxRMZ5smXX9X
-         HZ1g==
-X-Gm-Message-State: AOAM530Zlz4gTnSZDlQPaZSDFBO1onpLQKd6mmQkVnQpB9DlOSyo1LjZ
-        Z3JPJx8hyyQSBIRN8dyP+TPRX56lChI6IRS/1uaC/A==
-X-Google-Smtp-Source: ABdhPJxMauPqYM6FB9F47HpfghenbvywgGSYzCRS3yrWm7U0RrqNphhFJ8ty4CuavT4aU+0YJFuGRFcGD/Y9+5aVe7A=
-X-Received: by 2002:a5d:9f0e:: with SMTP id q14mr438269iot.185.1603337374464;
- Wed, 21 Oct 2020 20:29:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org> <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
- <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
- <20201015161251.GF4390@sirena.org.uk> <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
- <20201020143711.GC9448@sirena.org.uk> <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
- <CAFv8NwJ-+f146Ss9Mk=nEXjm1B--ZwhAgnfx-cTi7DGEKqC1-Q@mail.gmail.com>
- <e876421c-dfeb-e853-1b65-53a786e9bcf9@linaro.org> <20201021123913.GD4497@sirena.org.uk>
-In-Reply-To: <20201021123913.GD4497@sirena.org.uk>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Thu, 22 Oct 2020 11:29:23 +0800
-Message-ID: <CA+Px+wV-uoODRQTZqv7RuyOUoGBoh5GnT2h4iW9mJGRL=UFfgQ@mail.gmail.com>
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Cheng-yi Chiang <cychiang@chromium.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S2507672AbgJVE7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 00:59:35 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:51402 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2507671AbgJVE7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 00:59:34 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id E906A80659;
+        Thu, 22 Oct 2020 06:59:30 +0200 (CEST)
+Date:   Thu, 22 Oct 2020 06:59:29 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Content-Type: text/plain; charset="UTF-8"
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] drm/panel: mantix panel reset fixes
+Message-ID: <20201022045929.GA2775675@ravnborg.org>
+References: <cover.1602584953.git.agx@sigxcpu.org>
+ <20201016142916.GA1184974@ravnborg.org>
+ <20201017091307.GA2885@bogon.m.sigxcpu.org>
+ <20201017104736.GA2822081@ravnborg.org>
+ <20201019154437.GE401619@phenom.ffwll.local>
+ <20201020115711.GA102703@bogon.m.sigxcpu.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201020115711.GA102703@bogon.m.sigxcpu.org>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=fu7ymmwf c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=8nJEP1OIZ-IA:10 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
+        a=ze386MxoAAAA:8 a=7gkXJVJtAAAA:8 a=rBIqfxwrrtgd4LGA3nsA:9
+        a=wPNLvfGTeEIA:10 a=vwX7oiHrwKcA:10 a=AjGcO6oz07-iQ99wixmX:22
+        a=Vxmtnl_E_bksehYqCbjh:22 a=iBZjaW-pnkserzjvUTHh:22
+        a=E9Po1WZjFZOl8hwRPBS3:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, sorry for jumping into your discussion but I am trying to
-summarize them to make sure we are on the same page.  Pardon me to
-manually copy-and-paste partial sentences to quote.
+Hi Guido.
 
-ACK:
-- Don't expose DAI connections in compatible strings.
-- Use "model" DT property to make the card more UCM2-friendly.
-- Expose new DT properties to distinguish different DMIC models.
+On Tue, Oct 20, 2020 at 01:57:11PM +0200, Guido Günther wrote:
+> Hi Daniel, Sam,
+> On Mon, Oct 19, 2020 at 05:44:37PM +0200, Daniel Vetter wrote:
+> > On Sat, Oct 17, 2020 at 12:47:36PM +0200, Sam Ravnborg wrote:
+> > > Hi Guido.
+> > > 
+> > > On Sat, Oct 17, 2020 at 11:13:07AM +0200, Guido Günther wrote:
+> > > > Hi Sam,
+> > > > On Fri, Oct 16, 2020 at 04:29:16PM +0200, Sam Ravnborg wrote:
+> > > > > Hi Guido.
+> > > > > On Tue, Oct 13, 2020 at 12:32:45PM +0200, Guido Günther wrote:
+> > > > [..snip..]
+> > > > > > 
+> > > > > > Changes from v1:
+> > > > > >  - As per review comments by Fabio Estevam
+> > > > > >    https://lore.kernel.org/dri-devel/CAOMZO5B5ECcConvKej=RcaF8wvOxgq7nUzKJ-ad0aSAOzUqtbQ@mail.gmail.com/
+> > > > > >    - Fix typo in commit messages
+> > > > > >  - As per review comments by Rob Herring
+> > > > > >    https://lore.kernel.org/dri-devel/20200929174624.GA832332@bogus/
+> > > > > >    - Don't use an array of reset lines
+> > > > > > 
+> > > > > > Guido Günther (3):
+> > > > > >   drm/panel: mantix: Don't dereference NULL mode
+> > > > > >   drm/panel: mantix: Fix panel reset
+> > > > > >   dt-binding: display: Require two resets on mantix panel
+> > > > > 
+> > > > > All applied to drm-misc-next and pushed out.
+> > > > > And then I remembered you had commit right - sigh.
+> > > > 
+> > > > Thanks! Is there any special care needed to get that into 5.10? The
+> > > > driver landed there in 72967d5616d3f0c714f8eb6c4e258179a9031c45.
+> > > 
+> > > As the patches was applied to drm-misc-next the easiet path would
+> > > be to cherry-pick them and apply to drm-misc-fixes.
+> > > dim has cherry-pick support - try to use it rahter than doing it by
+> > > hand.
+> > 
+> > drm-misc-next-fixes while we're between freeze and merge window end:
+> > 
+> > https://drm.pages.freedesktop.org/maintainer-tools/committer-drm-misc.html#where-do-i-apply-my-patch
+> 
+> Great. Thanks for the pointer, that works. Now i get:
+> 
+>   $ ../maintainer-tools/dim push --dry-run
+>   dim: 3532f0117258 ("dt-binding: display: Require two resets on mantix panel"): mandatory review missing.
+>   dim: c90f95ad6d05 ("drm/panel: mantix: Fix panel reset"): mandatory review missing.
+>   dim: 8b557f793e69 ("drm/panel: mantix: Don't dereference NULL mode"): mandatory review missing.
+>   dim: ERROR: issues in commits detected, aborting
+> 
+> and in fact there's only Signed-off-by's on it:
+> 
+>   Fixes: 72967d5616d3 ("drm/panel: Add panel driver for the Mantix MLAF057WE51-X DSI panel")
+>   Signed-off-by: Guido Günther <agx@sigxcpu.org>
+>   Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+>   Link: https://patchwork.freedesktop.org/patch/msgid/ba71a8ab010d263a8058dd4f711e3bcd95877bf2.1602584953.git.agx@sigxcpu.org
+> 
+> Sam, I assume your Signed-off-by's should have been Reviewed-by ?
+> O.k. to fix that up in the commit message before pushing to
+> drm-misc-next?
+Fine to add my r-b.
 
-NACK:
-- All the board variations using exactly the same compatible string.
-=> This is less realistic.  Although the CODECS information can be
-retrieved from DT, it is inevitable to have some custom code for each
-CODEC.
+For patches I push I always read the patch - but seldom claim that I
+review them. It seems a bit implicit I think - but maybe this is just
+bad practice on my side.
 
-Per Mark's words:
-> a different CODEC is something that often justifies a separate compatible
-I think we should use different compatible strings for new CODECS
-combinations.  And we should try to reuse the machine driver if they
-share the most code.  In the worst case, introduce a new machine
-driver for the new CODECS combinations.
+Then I also avoid the endless discussion with myself it what I did
+warrant an a-b or r-b.
 
-- Srinivas's suggestion to set driver_name.
-e.g. card->driver_name = "SM8250";
-=> This sounds like a new DT property should be parsed in
-sound/soc/qcom/common.c.  For example: "qcom,family"?  But as we do
-less care about UCM2 for now, I would prefer to just leave it as is.
-
-
-I would expect the following variants in DTS (just for example):
-
-sound {
-  compatible = "qcom,sc7180-trogdor";
-  model = "sc7180-rt5682-max98357a-1mic";
-}
-
-sound {
-  compatible = "qcom,sc7180-trogdor";
-  model = "sc7180-rt5682-max98357a-2mic";
-  dmic-gpio = ...
-}
-
-sound {
-  compatible = "qcom,sc7180-pompom";
-  model = "sc7180-adau7002-max98357a";
-}
-
-
-Please correct me if there is any misunderstanding.
+	Sam
