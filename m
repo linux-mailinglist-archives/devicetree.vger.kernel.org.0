@@ -2,119 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E9E2963DA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 19:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2D32963DF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 19:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S368047AbgJVRkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 13:40:14 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:33022 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2900809AbgJVRkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Oct 2020 13:40:14 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09MHcRlQ032683;
-        Thu, 22 Oct 2020 19:40:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=Xw2dy81ycIuPHgArY2fy2sR4NSk39ZIqh0+V1r9E/1g=;
- b=Ee5NYNnVjcoDL5X8c9yTGtXrZ09WHlB7MZzMNDboKy/S/Wn74O/3UATiNAnv27HLIrql
- 1PSyoAhG43w6F9r5vFSmvscZMkJP9qZZirRtpdmR4wXGRAOL+NJV9y3V4ufa7XPUWj2Y
- 0VD5mFxGkbx/I1gmqFaLSZHGD+X4opTzhXX/IdxyUIVVNsnwO5ik0CfMn5uU2GESu9yq
- FZFjp2FG8uGrV7/fHB5tKO1kzLEETeOgNfTa0tyhvqmfHTrLHJpxqxjyKo2wI4PM9RrJ
- Kyspkp+h/GWtfnnZFm5BedVNXGmqz0U3LY0JN9/4DdIdc5XYPDmd1TUk/WWIb2W2ua35 Yw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34apedr4ch-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 22 Oct 2020 19:40:02 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8FEE310002A;
-        Thu, 22 Oct 2020 19:40:01 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 79B892B415C;
-        Thu, 22 Oct 2020 19:40:01 +0200 (CEST)
-Received: from localhost (10.75.127.44) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 22 Oct 2020 19:40:00
- +0200
-From:   Patrick Delaunay <patrick.delaunay@st.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     Patrick Delaunay <patrick.delaunay@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH] ARM: dts: stm32: reorder spi4 within stm32mp15-pinctrl
-Date:   Thu, 22 Oct 2020 19:38:51 +0200
-Message-ID: <20201022173851.20114-1-patrick.delaunay@st.com>
-X-Mailer: git-send-email 2.17.1
+        id S2900939AbgJVRrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 13:47:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35920 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2900872AbgJVRrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 13:47:17 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7FE0C0613CE;
+        Thu, 22 Oct 2020 10:47:16 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id v5so3153418wmh.1;
+        Thu, 22 Oct 2020 10:47:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tAe/c4lv0jSFQot49eTb89lfP3XfzHZrNzwi+ru8Sus=;
+        b=O2g/aRUqm8Lxwh5bRK0ljwiv0KNwqOSa+e3GijCJ54wcSqdRp8zmd5DjQd7h7jh+9+
+         el3cE51Z+GepmITkOZGBGqAdiotK/StFECdR/1PxfE8du8D9JpHD8FAt+hkf7zAsUARi
+         3NwPIvzElyRA6lhgELCBKRht7Xst3n1asXJKLR1Oc6dC/d3bJrYz2nkgWZ4Kwm2e20a4
+         G1vtAr6qWRWGjEkLJte1IbRhv6e/vOykuzid8q7XZLffg6odB8buPzSjFH05eDD3jtch
+         JvFnds/2B6YoZUGjqrtnG8qdSMJu0Xsyv2Pkh3nrYDv4Scstm1Biy90X4fLLVjHUfiMK
+         E3LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tAe/c4lv0jSFQot49eTb89lfP3XfzHZrNzwi+ru8Sus=;
+        b=VVqKMnI/PlO6Ba6iBhWS7Atq43VmZ578Y7NtlumalCqF3FTe9t9Rpo2VVJ13TdH0U8
+         E3cUYVWMXPgJuHigUsjv7PGnSuk2Mq5lPahUp2kNiMrlrb/CwGsx7dW7yLGZr3ZP0PPV
+         2k4uG5xQ3bjxS5PUm2Y37v8vlR7jLdnZsa/iD2pNBLmgsw1BWDWd3vvVQDOozsO7pw+4
+         KBLGl64oToGbP0gZBfHzICPNSUF236dG1ibjh6Tqslh+kNPqoe3zFaYdaOvA0EghKoLO
+         TmuzbofiUhit9Qha6+bWjhQZmK2jM1T1G6gfGTt4xYjVNXCQGgw/UBi3Aklj8SrzScKj
+         TlmQ==
+X-Gm-Message-State: AOAM532Z1pjoQBBQ57FdcyLfxe2nVL8ogaV5r64Lyu3MOfJZdySLwUcb
+        XtE3sA//VO2IuVdqB/xZHyw=
+X-Google-Smtp-Source: ABdhPJxjn7Maa2RmRGmOqdy0w/W1wYxIzSUqavLSybOokBapTltr8+npfJijwXWbWOIpnG3hxzNYfw==
+X-Received: by 2002:a05:600c:2115:: with SMTP id u21mr3524372wml.2.1603388835364;
+        Thu, 22 Oct 2020 10:47:15 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
+        by smtp.gmail.com with ESMTPSA id u202sm5368355wmu.23.2020.10.22.10.47.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Oct 2020 10:47:14 -0700 (PDT)
+From:   kholk11@gmail.com
+To:     todor.too@gmail.com
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
+        robh+dt@kernel.org, marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robert.foss@linaro.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>
+Subject: [PATCH v2 0/7] Add support for SDM630/660 Camera Subsystem
+Date:   Thu, 22 Oct 2020 19:46:59 +0200
+Message-Id: <20201022174706.8813-1-kholk11@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.737
- definitions=2020-10-22_12:2020-10-20,2020-10-22 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move spi4 at the right alphabetical place within stm32mp15-pinctrl
+From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 
-Fixes: 4fe663890ac5 ("ARM: dts: stm32: Fix spi4 pins in stm32mp15-pinctrl")
-Signed-off-by: Patrick Delaunay <patrick.delaunay@st.com>
----
+This patch series implements support for the entire camera subsystem
+found in SDM630/636/660 and SDA variants, including CSIPHY 3-Phase,
+CSID v5.0, ISPIF 3.0 (though it didn't need any adaptation) and
+VFE 4.8.
 
- arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 28 ++++++++++++------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+One small note about VFE4.8, even if I wrote it in the commit that
+adds support for it: I know, the VFE support here is split in
+multiple files having the name of the actual VFE version that it is
+targeting... but it didn't feel right to commonize the VFE 4.7 file
+and make another one only for VFE4.8, when it's just about something
+like 3 small differences.
+That VFE 4.8 seems to be just a minor revision of VFE 4.7.
 
-diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-index d84686e00370..c9e514165672 100644
---- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-@@ -1591,6 +1591,20 @@
- 		};
- 	};
- 
-+	spi4_pins_a: spi4-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('E', 12, AF5)>, /* SPI4_SCK */
-+				 <STM32_PINMUX('E', 6, AF5)>;  /* SPI4_MOSI */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <1>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('E', 13, AF5)>; /* SPI4_MISO */
-+			bias-disable;
-+		};
-+	};
-+
- 	uart4_pins_a: uart4-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('G', 11, AF6)>; /* UART4_TX */
-@@ -1726,20 +1740,6 @@
- 		};
- 	};
- 
--	spi4_pins_a: spi4-0 {
--		pins {
--			pinmux = <STM32_PINMUX('E', 12, AF5)>, /* SPI4_SCK */
--				 <STM32_PINMUX('E', 6, AF5)>;  /* SPI4_MOSI */
--			bias-disable;
--			drive-push-pull;
--			slew-rate = <1>;
--		};
--		pins2 {
--			pinmux = <STM32_PINMUX('E', 13, AF5)>; /* SPI4_MISO */
--			bias-disable;
--		};
--	};
--
- 	usart2_pins_a: usart2-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('F', 5, AF7)>, /* USART2_TX */
+While at it, also fix a small issue when using two VFEs: only one
+of them was being resetted (always VFE0) so, after the first usage
+of VFE1, in case we leave it in a bad state, it would not properly
+start again. Now... it's fine :)))
+
+P.S.: SDM630/660's camss seems to be *very* similar to MSM8998, so
+      likely 90% of this series should be reusable on that one, too!
+
+Tested on:
+ - Sony Xperia XA2 (IMX300 on CSI0/PHY0/VFE0, IMX219 on CSI2,PHY2,VFE1)
+   * VFE0/1 RDI only, as the VIDEO one does not work with SRGGB Bayer
+     formats yet. As far as I can see, that color format hasn't been
+     implemented yet in the video interface.
+
+Changes in v2:
+ - Splitted out VFE 4.7 functions rename from the VFE 4.8 support commit
+ - Moved a commit so that sequentially picking patches from this series
+   still results in buildable code (heh, oops! sorry!)
+ - Fixed ispif reset commit (moved the fix for itfrom the wrong commit
+   to the right one: that was a "funny" overlook).
+
+AngeloGioacchino Del Regno (7):
+  media: camss: ispif: Correctly reset based on the VFE ID
+  media: camss: vfe-4-7: Rename get_ub_size, set_qos, set_ds, wm_enable
+  media: camss: vfe: Add support for VFE 4.8
+  media: camss: Add support for SDM630/636/660 camera subsystem
+  media: camss: csiphy-3ph: Add support for SDM630/660
+  media: dt-bindings: media: qcom,camss: Add bindings for SDM660 camss
+  media: camss: csiphy: Set rate on csiX_phy clock on SDM630/660
+
+ .../devicetree/bindings/media/qcom,camss.txt  |   7 +
+ .../media/platform/qcom/camss/camss-csid.c    |   9 +-
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         |   7 +-
+ .../media/platform/qcom/camss/camss-csiphy.c  |  25 ++-
+ .../media/platform/qcom/camss/camss-csiphy.h  |   1 +
+ .../media/platform/qcom/camss/camss-ispif.c   | 100 ++++++---
+ .../media/platform/qcom/camss/camss-ispif.h   |   2 +-
+ .../media/platform/qcom/camss/camss-vfe-4-7.c | 131 ++++++++++-
+ drivers/media/platform/qcom/camss/camss-vfe.c |  19 +-
+ drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
+ .../media/platform/qcom/camss/camss-video.c   |   3 +-
+ drivers/media/platform/qcom/camss/camss.c     | 206 +++++++++++++++++-
+ drivers/media/platform/qcom/camss/camss.h     |   1 +
+ 13 files changed, 450 insertions(+), 62 deletions(-)
+
 -- 
-2.17.1
+2.28.0
 
