@@ -2,212 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A5E32961A3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 17:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4584296244
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 18:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2901435AbgJVPZl convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Oct 2020 11:25:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2901434AbgJVPZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 11:25:40 -0400
-Received: from relay.felk.cvut.cz (relay.felk.cvut.cz [IPv6:2001:718:2:1611:0:1:0:70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 90DDFC0613CE;
-        Thu, 22 Oct 2020 08:25:40 -0700 (PDT)
-Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
-        by relay.felk.cvut.cz (8.15.2/8.15.2) with ESMTP id 09MFOI5F081938;
-        Thu, 22 Oct 2020 17:24:18 +0200 (CEST)
-        (envelope-from pisa@cmp.felk.cvut.cz)
-Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
-        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 09MFOIP2032233;
-        Thu, 22 Oct 2020 17:24:18 +0200
-Received: (from pisa@localhost)
-        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 09MFOHmV032232;
-        Thu, 22 Oct 2020 17:24:17 +0200
-X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
-From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
-To:     Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v6 6/6] docs: ctucanfd: CTU CAN FD open-source IP core documentation.
-Date:   Thu, 22 Oct 2020 17:24:16 +0200
-User-Agent: KMail/1.9.10
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        "Marc Kleine-Budde" <mkl@pengutronix.de>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-References: <cover.1603354744.git.pisa@cmp.felk.cvut.cz> <213155c64da5a97c574cd15de1cb06f8d0acef6a.1603354744.git.pisa@cmp.felk.cvut.cz> <20201022112540.GB30566@duo.ucw.cz>
-In-Reply-To: <20201022112540.GB30566@duo.ucw.cz>
-X-KMail-QuotePrefix: > 
+        id S368859AbgJVP7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 11:59:08 -0400
+Received: from mx2.suse.de ([195.135.220.15]:48442 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S368827AbgJVP7I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 11:59:08 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 89B97ADF5;
+        Thu, 22 Oct 2020 15:59:05 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org
+Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>
+Subject: [PATCH v2 00/10] Raspberry Pi PoE HAT fan support
+Date:   Thu, 22 Oct 2020 17:58:47 +0200
+Message-Id: <20201022155858.20867-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: Text/Plain;
-  charset="utf-8"
-Content-Transfer-Encoding: 8BIT
-Content-Disposition: inline
-Message-Id: <202010221724.17063.pisa@cmp.felk.cvut.cz>
-X-FELK-MailScanner-Information: 
-X-MailScanner-ID: 09MFOI5F081938
-X-FELK-MailScanner: Found to be clean
-X-FELK-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
-        score=-0.099, required 6, BAYES_00 -0.50, KHOP_HELO_FCRDNS 0.40,
-        NICE_REPLY_A -0.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00,
-        URIBL_BLOCKED 0.00)
-X-FELK-MailScanner-From: pisa@cmp.felk.cvut.cz
-X-FELK-MailScanner-Watermark: 1603985061.91739@0qJRKdcuMkLIiFhIWHpJqw
-X-Spam-Status: No
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel,
+The aim of this series is to add support to the fan found on RPi's PoE
+HAT. Some commentary on the design can be found below. But the imporant
+part to the people CC'd here not involved with PWM is that, in order to
+achieve this properly, we also have to fix the firmware interface the
+driver uses to communicate with the PWM bus (and many other low level
+functions). Specifically, we have to make sure the firmware interface
+isn't unbound while consumers are still up. So, patch #1 introduces
+reference counting in the firwmware interface driver and patches #2 to
+#7 update all firmware users. Patches #8 to #10 introduce the new PWM
+driver.
 
-thanks for review.
+I sent everything as a single series as the final version of the PWM
+drivers depends on the firwmare fixes, but I'll be happy to split this
+into two separate series if you think it's better.
 
-As for the documentation, my current intention is to keep/maintain
-the common driver documentation for CTU CAN FD site
-and kernel source. The standalone driver documentation
+--- Original cover letter below ---
 
-  http://canbus.pages.fel.cvut.cz/ctucanfd_ip_core/driver_doc/ctucanfd-driver.html
+This series aims at adding support to RPi's official PoE HAT fan[1].
 
-when the driver documentation moves to
+The HW setup is the following:
 
-  https://www.kernel.org/doc/html/latest/
+| Raspberry Pi                               | PoE HAT                    |
+ arm core -> Mailbox -> RPi co-processor -> I2C -> Atmel MCU -> PWM -> FAN
 
-we may consider to drop standalone. But resource are limited
-and keeping and maintaining sync between slightly different
-files is error prone. I run manual kdiff3 updates
-of both RST files because references to sources are different.
+The arm cores have only access to the mailbox interface, as i2c0, even if
+physically accessible, is to be used solely by the co-processor
+(VideoCore 4/6).
 
-On Thursday 22 of October 2020 13:25:40 Pavel Machek wrote:
-> On Thu 2020-10-22 10:36:21, Pavel Pisa wrote:
-> > CTU CAN FD IP core documentation based on Martin Jeřábek's diploma theses
-> > Open-source and Open-hardware CAN FD Protocol Support
-> > https://dspace.cvut.cz/handle/10467/80366
-> > .
-> >
-> > ---
-> >  .../ctu/FSM_TXT_Buffer_user.png               | Bin 0 -> 174807 bytes
->
-> Maybe picture should stay on website, somewhere. It is rather big for
-> kernel sources.
+This series implements a PWM bus, and has pwm-fan sitting on top of it as per
+this discussion: https://lkml.org/lkml/2018/9/2/486. Although this design has a
+series of shortcomings:
 
-My sense is that it is proffered that documentation is self-contained
-without embedded references to "untrusted" third party sites.
-But we try to do something with it. I try reduce size or switch
-to SVG, our actual source is PDF prepared by Ondrej Ille
-as part of CTU CAN FD IP core architecture. I probably redraw
-image in inscape with little worse graphics style, fonts,
-smoothness etc. but in smaller and simpler SVG file size format.
-I expect that use of original PDF in vector form would not help much.
+- It depends on a DT binding: it's not flexible if a new hat shows up with new
+  functionality, we're not 100% sure we'll be able to expand it without
+  breaking backwards compatibility. But without it we can't make use of DT
+  thermal-zones, which IMO is overkill.
 
-> > +About SocketCAN
-> > +---------------
-> > +
-> > +SocketCAN is a standard common interface for CAN devices in the Linux
-> > +kernel. As the name suggests, the bus is accessed via sockets, similarly
-> > +to common network devices. The reasoning behind this is in depth
-> > +described in `Linux SocketCAN
-> > <https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Doc
-> >umentation/networking/can.rst>`_. +In short, it offers a
-> > +natural way to implement and work with higher layer protocols over CAN,
-> > +in the same way as, e.g., UDP/IP over Ethernet.
->
-> Drop? Or at least link directly to the file in kernel tree?
+- We're using pwm-fan, writing a hwmon driver would, again, give us more
+  flexibility, but it's not really needed at the moment.
 
-Yes, this is another place where we need other diversion
-between standalone and kernel. I try to learn what is the right
-way to cross-reference Linux kernel manuals writtent n RST? 
-If you can speedup it by hint/right done example I would be happy.
+I personally think that it's not worth the effort, it's unlikely we'll get
+things right in advance. And ultimately, if the RPi people come up with
+something new, we can always write a new driver/bindings from scratch (as in
+not reusing previous code).
 
-> > +Device probe
-> > +~~~~~~~~~~~~
-> > +
-> > +Before going into detail about the structure of a CAN bus device driver,
-> > +let's reiterate how the kernel gets to know about the device at all.
-> > +Some buses, like PCI or PCIe, support device enumeration. That is, when
-> > +the system boots, it discovers all the devices on the bus and reads
-> > +their configuration. The kernel identifies the device via its vendor ID
-> > +and device ID, and if there is a driver registered for this identifier
-> > +combination, its probe method is invoked to populate the driver's
-> > +instance for the given hardware. A similar situation goes with USB, only
-> > +it allows for device hot-plug.
-> > +
-> > +The situation is different for peripherals which are directly embedded
-> > +in the SoC and connected to an internal system bus (AXI, APB, Avalon,
-> > +and others). These buses do not support enumeration, and thus the kernel
-> > +has to learn about the devices from elsewhere. This is exactly what the
-> > +Device Tree was made for.
->
-> Dunno. Is it suitable? This is supposed to be ctu-can documentation,
-> not "how hardware works" docs.
+That said, I'm more than happy to change things if there is a consensus that
+another design will do the trick.
 
-I think that this text is fully valid for standalone driver documentation,
-I understand that in the kernel tree this can be replaced by references
-to right places if we locate them.
+[1] https://www.raspberrypi.org/blog/introducing-power-over-ethernet-poe-hat/
 
-> > +Platform device driver
-> > +^^^^^^^^^^^^^^^^^^^^^^
-> > +
-> > +In the case of Zynq, the core is connected via the AXI system bus, which
-> > +does not have enumeration support, and the device must be specified in
-> > +Device Tree. This kind of devices is called *platform device* in the
-> > +kernel and is handled by a *platform device driver*\  [1]_.
-> > +
-> > +A platform device driver provides the following things:
-> > +
-> > +-  A *probe* function
-> > +
-> > +-  A *remove* function
-> > +
-> > +-  A table of *compatible* devices that the driver can handle
-> > +
-> > +The *probe* function is called exactly once when the device appears (or
-> > +the driver is loaded, whichever happens later). If there are more
-> > +devices handled by the same driver, the *probe* function is called for
-> > +each one of them. Its role is to allocate and initialize resources
-> > +required for handling the device, as well as set up low-level functions
-> > +for the platform-independent layer, e.g., *read_reg* and *write_reg*.
-> > +After that, the driver registers the device to a higher layer, in our
-> > +case as a *network device*.
-> > +
-> > +The *remove* function is called when the device disappears, or the
-> > +driver is about to be unloaded. It serves to free the resources
-> > +allocated in *probe* and to unregister the device from higher layers.
-> > +
-> > +Finally, the table of *compatible* devices states which devices the
-> > +driver can handle. The Device Tree entry ``compatible`` is matched
-> > +against the tables of all *platform drivers*.
->
-> And this is "how to write a kernel driver" documentation. Like, why
-> not, but maybe it does not need to be in kernel tree, and certainly
-> should be separate from real "what is ctucan and how to use it" docs.
+---
 
-I agree, we try to find way how to separate the things and reference
-pieces already found in the kernel. But it probably means massive
-diversion of documentation sources which is yet another additional
-load during preparation for mainlining. So I probably drop updates
-of standalone documentation. Which can be problem for another university
-group which builds applications based on the core and needs
-to maintain and patch kernels now.
+Changes since v1:
+ - Address PWM driver changes
+ - Fix binding, now with 2 cells
+ - Add reference count to rpi_firmware_get()
 
-Best wishes,
+Nicolas Saenz Julienne (10):
+  firmware: raspberrypi: Introduce rpi_firmware_put()
+  clk: bcm: rpi: Release firmware handle on unbind
+  gpio: raspberrypi-exp: Release firmware handle on unbind
+  reset: raspberrypi: Release firmware handle on unbind
+  soc: bcm: raspberrypi-power: Release firmware handle on unbind
+  staging: vchiq: Release firmware handle on unbind
+  input: raspberrypi-ts: Release firmware handle when not needed
+  dt-bindings: pwm: Add binding for RPi firmware PWM bus
+  DO NOT MERGE: ARM: dts: Add RPi's official PoE hat support
+  pwm: Add Raspberry Pi Firmware based PWM bus
 
-                Pavel
---
-                Pavel Pisa
-    phone:      +420 603531357
-    e-mail:     pisa@cmp.felk.cvut.cz
-    Department of Control Engineering FEE CVUT
-    Karlovo namesti 13, 121 35, Prague 2
-    university: http://dce.fel.cvut.cz/
-    personal:   http://cmp.felk.cvut.cz/~pisa
-    projects:   https://www.openhub.net/accounts/ppisa
-    CAN related:http://canbus.pages.fel.cvut.cz/
+ .../arm/bcm/raspberrypi,bcm2835-firmware.yaml |  20 ++
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  54 +++++
+ drivers/clk/bcm/clk-raspberrypi.c             |   1 +
+ drivers/firmware/raspberrypi.c                |  30 ++-
+ drivers/gpio/gpio-raspberrypi-exp.c           |  14 +-
+ drivers/input/touchscreen/raspberrypi-ts.c    |   1 +
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-raspberrypi.c                 | 221 ++++++++++++++++++
+ drivers/reset/reset-raspberrypi.c             |  13 +-
+ drivers/soc/bcm/raspberrypi-power.c           |  15 ++
+ .../interface/vchiq_arm/vchiq_arm.c           |   3 +
+ .../pwm/raspberrypi,firmware-pwm.h            |  13 ++
+ include/soc/bcm2835/raspberrypi-firmware.h    |   3 +
+ 14 files changed, 395 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/pwm/pwm-raspberrypi.c
+ create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-pwm.h
+
+-- 
+2.28.0
+
