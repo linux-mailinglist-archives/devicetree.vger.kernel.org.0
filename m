@@ -2,100 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA5429568F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 05:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46FEC2956C6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 05:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2895259AbgJVDCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 23:02:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40234 "EHLO
+        id S2895406AbgJVD3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 23:29:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2895253AbgJVDCW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 23:02:22 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C60C0613CE;
-        Wed, 21 Oct 2020 20:02:21 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id a200so235624pfa.10;
-        Wed, 21 Oct 2020 20:02:21 -0700 (PDT)
+        with ESMTP id S2895402AbgJVD3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 23:29:35 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 864DCC0613D2
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 20:29:35 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id b15so49655iod.13
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 20:29:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ts8pOOblpYnY0bOhm+5e9A57wwcNdyc/jhqQYESpses=;
-        b=h4Vbm4QxQ76pizoWaBUzmuBGyJo8Roa9+IxGJpoKaoZMINgwBo4asgXbMdzxvrm/Y9
-         GULFAxAjAj6qzWsl0hTfMmI4K2eAgZLZHyzhUVLdTSTdlEm09fJ1l3il+q0qO/YCmq8L
-         qY5DyK4kogWcy7MkdKJJ5CiyHjbY5Zoom0uCCG2MnvSNv74ToqNyGaeHzX8ilC52Knp1
-         FE2lnvNru9cl96f3i0Oc7RynH+I6ZJapQrxKnbl4yeAn8T+ypL1sN/bYx5UWYa3sBU0s
-         rUXk5w/XcTHZYQIVvsw9AXPNv/jE7HoNQvpNZ/HLaKlB+aA4wiKxmE6pCKARE/t5/zTg
-         ACNQ==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IMFKi57vTn4WORdntFjLONbVhz/S8EeuoMU/ru37Fjk=;
+        b=QmKzFiaHxS37kWhYqOevmJSha395OemOg2KLsjigL/6YgPyC0cWSkaDr+ffKa61vPU
+         GXX3dfuhinc3Qluqg/LcYmWn/uxtlNOgkwHIV8z5wVdWNaIK/qBYmvkfpKFr6uIPXDuS
+         AfhJpRPcSFHBisu+853OTgVeFr30qYIhwo146On5XcIrt6UvkDzAOUc8b9oPP4LHY+aP
+         mcF96p2cmiAaoW59NhLHswwH2t/U88kQXPZ09XztB41AQUXax5V0J3N4+8uTmW9J5nLp
+         gvtykGqSZeSnzrM85+VdZrTtv1zRS7Q7rVERJrrNJBtv0PRbYLmliKduECch9kebV8vo
+         8yGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ts8pOOblpYnY0bOhm+5e9A57wwcNdyc/jhqQYESpses=;
-        b=Frj5qj9FIqKpqRbHriJ3Fn2cT/qAjWFPGE4skpVueuhdP7o3ncm+XDjqMHHUvWxoUx
-         YyjaURt8zurfvd1atKxawfWSOW1CyuhdwRJ6GTJRzVq/TwnNknsRXPY+33zzKNfAb3Se
-         ms/leywyTRR9xvMpKl0PvNVL639a+fw9QxHTf3ycjU/ymZdffEt1TApYcn0MwIk4at7a
-         /Fn+yBNmyM1Yh8m15Y7jgYmeg2jRRNL0N3XJ/6cl3/g774eLrcOoaiPwHpmIYv4a15jV
-         ibWJxPl29DrDjILS0n8WCM9OHLpMS211jO//zI0Vb+IbrTKWY+/ivwSq6ZOue3hcyUC0
-         /Dwg==
-X-Gm-Message-State: AOAM532TGFUYCbI4928OhBiGJNs7rDKbxES7pwal48JfMH2isowPR+Oc
-        u7sKEpWVW3lkjKo1VYl0Pg8=
-X-Google-Smtp-Source: ABdhPJztk6MH9/EJ3t+rws0K8jsWAzPEIgqDVH/kuW/U8w7R6xI9z5kkhR9bO2/bVNvi75UNztBnrA==
-X-Received: by 2002:a05:6a00:150a:b029:159:53cd:86db with SMTP id q10-20020a056a00150ab029015953cd86dbmr435588pfu.11.1603335740973;
-        Wed, 21 Oct 2020 20:02:20 -0700 (PDT)
-Received: from hoboy.vegasvil.org (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
-        by smtp.gmail.com with ESMTPSA id j37sm242414pgi.20.2020.10.21.20.02.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 20:02:20 -0700 (PDT)
-Date:   Wed, 21 Oct 2020 20:02:17 -0700
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Christian Eggers <ceggers@arri.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
- hardware time stamping support
-Message-ID: <20201022030217.GA2105@hoboy.vegasvil.org>
-References: <20201019172435.4416-1-ceggers@arri.de>
- <20201019172435.4416-8-ceggers@arri.de>
- <20201021233935.ocj5dnbdz7t7hleu@skbuf>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IMFKi57vTn4WORdntFjLONbVhz/S8EeuoMU/ru37Fjk=;
+        b=Ulzj/2DgjlnqZMMSPFMEa3khdIYFq8VDDaHCio8ag+A14BUQVjIBbZ1XoQuGitnpVE
+         XxUgFLzMGrW6W4I/55aPt7+mnBSVwMTb4G6VWJJXc0tAOjKxJt5OuqPBUpBE7qVQQ7Jr
+         FJ1oqkjGpmxlRcWSW62NhJ+4QIcfjs+d8hvcTsQB58DGyDij67kILOtmpeq0h+N1ZJkl
+         mRIOHJp3TmpLU7XqdhzX1T/bcaurNuSIfC+6vDGbvvxwfhE4GPwDZvrUyQc3Svkbr488
+         4zdxcCyBNdvDYSOJB3M4B9B5Igubawd10+frz7sm3RneossBTczIB8mvQxRMZ5smXX9X
+         HZ1g==
+X-Gm-Message-State: AOAM530Zlz4gTnSZDlQPaZSDFBO1onpLQKd6mmQkVnQpB9DlOSyo1LjZ
+        Z3JPJx8hyyQSBIRN8dyP+TPRX56lChI6IRS/1uaC/A==
+X-Google-Smtp-Source: ABdhPJxMauPqYM6FB9F47HpfghenbvywgGSYzCRS3yrWm7U0RrqNphhFJ8ty4CuavT4aU+0YJFuGRFcGD/Y9+5aVe7A=
+X-Received: by 2002:a5d:9f0e:: with SMTP id q14mr438269iot.185.1603337374464;
+ Wed, 21 Oct 2020 20:29:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201021233935.ocj5dnbdz7t7hleu@skbuf>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20200914080619.4178587-1-cychiang@chromium.org>
+ <20200914080619.4178587-3-cychiang@chromium.org> <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
+ <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
+ <20201015161251.GF4390@sirena.org.uk> <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
+ <20201020143711.GC9448@sirena.org.uk> <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
+ <CAFv8NwJ-+f146Ss9Mk=nEXjm1B--ZwhAgnfx-cTi7DGEKqC1-Q@mail.gmail.com>
+ <e876421c-dfeb-e853-1b65-53a786e9bcf9@linaro.org> <20201021123913.GD4497@sirena.org.uk>
+In-Reply-To: <20201021123913.GD4497@sirena.org.uk>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Thu, 22 Oct 2020 11:29:23 +0800
+Message-ID: <CA+Px+wV-uoODRQTZqv7RuyOUoGBoh5GnT2h4iW9mJGRL=UFfgQ@mail.gmail.com>
+Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Cheng-yi Chiang <cychiang@chromium.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Srinivasa Rao <srivasam@codeaurora.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 22, 2020 at 02:39:35AM +0300, Vladimir Oltean wrote:
-> So how _does_ that work for TI PHYTER?
-> 
-> As far as we understand, the PHYTER appears to autonomously mangle PTP packets
-> in the following way:
-> - subtracting t2 on RX from the correctionField of the Pdelay_Req
-> - adding t3 on TX to the correctionField of the Pdelay_Resp
+Hi, sorry for jumping into your discussion but I am trying to
+summarize them to make sure we are on the same page.  Pardon me to
+manually copy-and-paste partial sentences to quote.
 
-The Phyter does not support peer-to-peer one step.
+ACK:
+- Don't expose DAI connections in compatible strings.
+- Use "model" DT property to make the card more UCM2-friendly.
+- Expose new DT properties to distinguish different DMIC models.
 
-The only driver that implements it is ptp_ines.c.
+NACK:
+- All the board variations using exactly the same compatible string.
+=> This is less realistic.  Although the CODECS information can be
+retrieved from DT, it is inevitable to have some custom code for each
+CODEC.
 
-And *that* driver/HW implements it correctly.
+Per Mark's words:
+> a different CODEC is something that often justifies a separate compatible
+I think we should use different compatible strings for new CODECS
+combinations.  And we should try to reuse the machine driver if they
+share the most code.  In the worst case, introduce a new machine
+driver for the new CODECS combinations.
 
-Thanks,
-Richard
+- Srinivas's suggestion to set driver_name.
+e.g. card->driver_name = "SM8250";
+=> This sounds like a new DT property should be parsed in
+sound/soc/qcom/common.c.  For example: "qcom,family"?  But as we do
+less care about UCM2 for now, I would prefer to just leave it as is.
 
+
+I would expect the following variants in DTS (just for example):
+
+sound {
+  compatible = "qcom,sc7180-trogdor";
+  model = "sc7180-rt5682-max98357a-1mic";
+}
+
+sound {
+  compatible = "qcom,sc7180-trogdor";
+  model = "sc7180-rt5682-max98357a-2mic";
+  dmic-gpio = ...
+}
+
+sound {
+  compatible = "qcom,sc7180-pompom";
+  model = "sc7180-adau7002-max98357a";
+}
+
+
+Please correct me if there is any misunderstanding.
