@@ -2,556 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDD6295CA6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 12:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE198295CB8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 12:32:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2896503AbgJVK1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 06:27:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2896450AbgJVK1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 06:27:43 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316D9C0613CE
-        for <devicetree@vger.kernel.org>; Thu, 22 Oct 2020 03:27:43 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kVXol-0003av-DM; Thu, 22 Oct 2020 12:27:35 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kVXok-0000sF-IX; Thu, 22 Oct 2020 12:27:34 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: [PATCH v4 3/3] ARM: dts: add Van der Laan LANMCU board
-Date:   Thu, 22 Oct 2020 12:27:33 +0200
-Message-Id: <20201022102733.3277-4-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201022102733.3277-1-o.rempel@pengutronix.de>
-References: <20201022102733.3277-1-o.rempel@pengutronix.de>
+        id S2896535AbgJVKcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 06:32:11 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:42985 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2896533AbgJVKcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 06:32:10 -0400
+X-UUID: 868ba0ebf25f43d0950ad40bb4dcde45-20201022
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=mKI//o1Lk40Yi815nVYXanqjQKt/9UrGV5fgSoCAeH4=;
+        b=ha60ki7wcIGTs1bJnKkZE/nT8iqEUCUQvZPSayyFFNSw+Sit8wZIHvGXQ6MKVUHaO81aVxrQAHNWcFk5S0uCd9z29rRxt6k9nrAqeej6t12hv0+gge05ANLiQPvB4Y1X5OcE+4YHd/UEmcbFf+6YwWEF7BAwmDvypg6GEGBkDzA=;
+X-UUID: 868ba0ebf25f43d0950ad40bb4dcde45-20201022
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 13254462; Thu, 22 Oct 2020 18:32:06 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs07n1.mediatek.inc
+ (172.21.101.16) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 22 Oct
+ 2020 18:32:04 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 22 Oct 2020 18:32:03 +0800
+Message-ID: <1603362723.8921.37.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 5/5] dt-bindings: mediatek: mt8192: add
+ mt8192-mt6358-rt1015-rt5682 document
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <broonie@kernel.org>, <tiwai@suse.com>, <matthias.bgg@gmail.com>,
+        <p.zabel@pengutronix.de>, <tzungbi@google.com>,
+        <alsa-devel@alsa-project.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <shane.chien@mediatek.com>, <kuninori.morimoto.gx@renesas.com>
+Date:   Thu, 22 Oct 2020 18:32:03 +0800
+In-Reply-To: <20201021145605.GA2775711@bogus>
+References: <1603270435-3548-1-git-send-email-jiaxin.yu@mediatek.com>
+         <1603270435-3548-6-git-send-email-jiaxin.yu@mediatek.com>
+         <20201021145605.GA2775711@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Van der Laan LANMCU is a module for the food storage rooms to control
-proper gas composition.
-
-Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
-Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/Makefile          |   1 +
- arch/arm/boot/dts/imx6dl-lanmcu.dts | 470 ++++++++++++++++++++++++++++
- 2 files changed, 471 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-lanmcu.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 2289a28c0ff6..dc2543a7b7e9 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -447,6 +447,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-icore.dtb \
- 	imx6dl-icore-mipi.dtb \
- 	imx6dl-icore-rqs.dtb \
-+	imx6dl-lanmcu.dtb \
- 	imx6dl-mamoj.dtb \
- 	imx6dl-nit6xlite.dtb \
- 	imx6dl-nitrogen6x.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-lanmcu.dts b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-new file mode 100644
-index 000000000000..6b6e6fcdea9c
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-lanmcu.dts
-@@ -0,0 +1,470 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2019 Protonic Holland
-+ * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "imx6dl.dtsi"
-+
-+/ {
-+	model = "Van der Laan LANMCU";
-+	compatible = "vdl,lanmcu", "fsl,imx6dl";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	clock_ksz8081: clock-ksz8081 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 5000000 0>;
-+		brightness-levels = <0 1000>;
-+		num-interpolated-steps = <20>;
-+		default-brightness-level = <19>;
-+	};
-+
-+	display {
-+		compatible = "fsl,imx-parallel-display";
-+		pinctrl-0 = <&pinctrl_ipu1_disp>;
-+		pinctrl-names = "default";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			display_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			display_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		led-0 {
-+			label = "debug0";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	panel {
-+		compatible = "edt,etm0700g0bdh6";
-+		backlight = <&backlight>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+
-+	reg_otg_vbus: regulator-otg-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "otg-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usdhc2_wifi_pwrseq: usdhc2-wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wifi_npd>;
-+		reset-gpios = <&gpio6 10 GPIO_ACTIVE_LOW>;
-+	};
-+
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1>;
-+	status = "okay";
-+};
-+
-+&can2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can2>;
-+	status = "okay";
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rmii";
-+	clocks = <&clks IMX6QDL_CLK_ENET>,
-+		 <&clks IMX6QDL_CLK_ENET>,
-+		 <&clock_ksz8081>;
-+	clock-names = "ipg", "ahb", "ptp";
-+	phy-handle = <&rgmii_phy>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Microchip KSZ8081RNA PHY */
-+		rgmii_phy: ethernet-phy@0 {
-+			reg = <0>;
-+			interrupts-extended = <&gpio5 23 IRQ_TYPE_LEVEL_LOW>;
-+			reset-gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+		};
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+		"", "SD1_CD", "", "", "", "", "", "",
-+		"DEBUG_0", "BL_PWM", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "ENET_LED_GREEN",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "TS_INT", "USB_OTG1_OC", "USB_OTG1_PWR", "",
-+		"", "", "", "", "UART2_CTS", "", "UART3_CTS", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "ENET_RST", "ENET_INT",
-+		"", "", "I2C1_SDA", "I2C1_SCL", "", "", "", "";
-+};
-+
-+&gpio6 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "WLAN_REG_ON", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio7 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"EMMC_RST", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	/* additional i2c devices are added automatically by the boot loader */
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5406";
-+		reg = <0x38>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ts_edt>;
-+		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
-+
-+		touchscreen-size-x = <1792>;
-+		touchscreen-size-y = <1024>;
-+
-+		touchscreen-fuzz-x = <0>;
-+		touchscreen-fuzz-y = <0>;
-+
-+		/* Touch screen calibration */
-+		threshold = <50>;
-+		gain = <5>;
-+		offset = <10>;
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&display_in>;
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	linux,rs485-enabled-at-boot-time;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	linux,rs485-enabled-at-boot-time;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	vbus-supply = <&reg_otg_vbus>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	phy_type = "utmi";
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	cd-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	no-1-8-v;
-+	non-removable;
-+	mmc-pwrseq = <&usdhc2_wifi_pwrseq>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	bus-width = <8>;
-+	no-1-8-v;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_can1: can1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX		0x3008
-+		>;
-+	};
-+
-+	pinctrl_can2: can2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX		0x3008
-+		>;
-+	};
-+
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			/* MX6QDL_ENET_PINGRP4 */
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC			0x1b0b0
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO			0x1b0b0
-+			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER		0x1b0b0
-+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN		0x1b0b0
-+
-+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK		0x1b0b0
-+			/* Phy reset */
-+			MX6QDL_PAD_CSI0_DAT4__GPIO5_IO22		0x1b0b0
-+			/* nINTRP */
-+			MX6QDL_PAD_CSI0_DAT5__GPIO5_IO23		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA			0x4001f8b1
-+			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL			0x4001f8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_5__I2C3_SCL			0x4001b8b1
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA			0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_ipu1_disp: ipudisp1grp {
-+		fsl,pins = <
-+			/* DSE 0x30 => 25 Ohm, 0x20 => 37 Ohm, 0x10 => 75 Ohm */
-+			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x30
-+			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x30
-+			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x30
-+			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x30
-+			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x30
-+			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x30
-+			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x30
-+			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x30
-+			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x30
-+			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x30
-+			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x30
-+			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x30
-+			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x30
-+			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x30
-+			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x30
-+			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x30
-+			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x30
-+			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x30
-+			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x30
-+			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x30
-+			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x30
-+			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x30
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_8__GPIO1_IO08			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_9__PWM1_OUT			0x8
-+		>;
-+	};
-+
-+	pinctrl_ts_edt: ts1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D20__GPIO3_IO20			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D26__UART2_RX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D27__UART2_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D28__UART2_CTS_B			0x130b1
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D24__UART3_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D25__UART3_RX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D30__UART3_CTS_B			0x130b1
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usbotg: usbotggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D21__USB_OTG_OC			0x1b0b0
-+			/* power enable, high active */
-+			MX6QDL_PAD_EIM_D22__GPIO3_IO22			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_CMD__SD1_CMD			0x170f9
-+			MX6QDL_PAD_SD1_CLK__SD1_CLK			0x100f9
-+			MX6QDL_PAD_SD1_DAT0__SD1_DATA0			0x170f9
-+			MX6QDL_PAD_SD1_DAT1__SD1_DATA1			0x170f9
-+			MX6QDL_PAD_SD1_DAT2__SD1_DATA2			0x170f9
-+			MX6QDL_PAD_SD1_DAT3__SD1_DATA3			0x170f9
-+			MX6QDL_PAD_GPIO_1__SD1_CD_B			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD2_CMD__SD2_CMD			0x170b9
-+			MX6QDL_PAD_SD2_CLK__SD2_CLK			0x100b9
-+			MX6QDL_PAD_SD2_DAT0__SD2_DATA0			0x170b9
-+			MX6QDL_PAD_SD2_DAT1__SD2_DATA1			0x170b9
-+			MX6QDL_PAD_SD2_DAT2__SD2_DATA2			0x170b9
-+			MX6QDL_PAD_SD2_DAT3__SD2_DATA3			0x170b9
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD			0x17099
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK			0x10099
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0			0x17099
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1			0x17099
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2			0x17099
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3			0x17099
-+			MX6QDL_PAD_SD3_DAT4__SD3_DATA4			0x17099
-+			MX6QDL_PAD_SD3_DAT5__SD3_DATA5			0x17099
-+			MX6QDL_PAD_SD3_DAT6__SD3_DATA6			0x17099
-+			MX6QDL_PAD_SD3_DAT7__SD3_DATA7			0x17099
-+			MX6QDL_PAD_SD3_RST__SD3_RESET			0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_wifi_npd: wifigrp {
-+		fsl,pins = <
-+			/* WL_REG_ON */
-+			MX6QDL_PAD_NANDF_RB0__GPIO6_IO10		0x13069
-+		>;
-+	};
-+};
--- 
-2.28.0
+T24gV2VkLCAyMDIwLTEwLTIxIGF0IDA5OjU2IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gV2VkLCBPY3QgMjEsIDIwMjAgYXQgMDQ6NTM6NTVQTSArMDgwMCwgSmlheGluIFl1IHdyb3Rl
+Og0KPiA+IFRoaXMgcGF0Y2ggYWRkcyBkb2N1bWVudCBmb3IgdGhlIG1hY2hpbmUgYm9hcmQgd2l0
+aCBtdDYzNTgsIHJ0MTAxNQ0KPiA+IGFuZCBydDU2ODIuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1i
+eTogSmlheGluIFl1IDxqaWF4aW4ueXVAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4v
+c291bmQvbXQ4MTkyLW10NjM1OS1ydDEwMTUtcnQ1NjgyLnlhbWwgICAgfCA0MiArKysrKysrKysr
+KysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0MiBpbnNlcnRpb25zKCspDQo+ID4gIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQv
+bXQ4MTkyLW10NjM1OS1ydDEwMTUtcnQ1NjgyLnlhbWwNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL210ODE5Mi1tdDYzNTktcnQx
+MDE1LXJ0NTY4Mi55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5k
+L210ODE5Mi1tdDYzNTktcnQxMDE1LXJ0NTY4Mi55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2
+NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAwLi40YzM5ZTg4OTA2ZmMxDQo+ID4gLS0tIC9kZXYv
+bnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9t
+dDgxOTItbXQ2MzU5LXJ0MTAxNS1ydDU2ODIueWFtbA0KPiA+IEBAIC0wLDAgKzEsNDIgQEANCj4g
+PiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjArIE9SIEJTRC0yLUNsYXVzZSkN
+Cj4gDQo+IEdQTC0yLjAtb25seQ0KPiANCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICsk
+aWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3NvdW5kL210ODE5Mi1tdDYzNTktcnQx
+MDE1LXJ0NTY4Mi55YW1sIw0KPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0
+YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiArDQo+ID4gK3RpdGxlOiBNZWRpYXRlayBNVDgxOTIg
+d2l0aCBNVDYzNTksIFJUMTAxNSBhbmQgUlQ1NjgyIEFTb0Mgc291bmQgY2FyZCBkcml2ZXINCj4g
+PiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgICAtIEppYXhpbiBZdSA8amlheGluLnl1QG1l
+ZGlhdGVrLmNvbT4NCj4gPiArICAgLSBTaGFuZSBDaGllbiA8c2hhbmUuY2hpZW5AbWVkaWF0ZWsu
+Y29tPg0KPiA+ICsNCj4gPiArZGVzY3JpcHRpb246DQo+ID4gKyAgVGhpcyBiaW5kaW5nIGRlc2Ny
+aWJlcyB0aGUgTVQ4MTkyIHNvdW5kIGNhcmQuDQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+
+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICAgIGNvbnN0OiBtZWRpYXRlayxtdDgxOTJfbXQ2MzU5
+X3J0MTAxNV9ydDU2ODINCj4gDQo+IEkgc3RpbGwgZG9uJ3QgdGhpbmsgdGhpcyBpcyB0aGUgcmln
+aHQgd2F5IHRvIGRvIHRoaXMuDQo+IA0KRGVhciBSb2IsDQpUaGlzIG5vbWVuY2FsdHVyZSBpcyBl
+eHRlbmRlZCB0byB0aGUgTVRLIG10ODE4My9tdDgxNzMuDQpBbmQgd2UgdGhpbmsgaXQncyBiZXR0
+ZXIgdG8gbWFpbnRhaW4gbXVsdGlwbGUgYm9hcmRzLCBidXQNCnRoZSBkaXNhZHZhbnRhZ2UgaXMg
+bmVlZCB0byB3cml0ZSBvbmUgbW9yZSBtYWNoaW5lIGRyaXZlcnMuDQoNCj4gPiArDQo+ID4gKyAg
+bWVkaWF0ZWsscGxhdGZvcm06DQo+ID4gKyAgICAkcmVmOiAiL3NjaGVtYXMvdHlwZXMueWFtbCMv
+ZGVmaW5pdGlvbnMvcGhhbmRsZSINCj4gPiArICAgIGRlc2NyaXB0aW9uOiBUaGUgcGhhbmRsZSBv
+ZiBNVDgxOTIgQVNvQyBwbGF0Zm9ybS4NCj4gDQo+IEkgc3RpbGwgZG9uJ3QgdW5kZXJzdGFuZCB3
+aGF0IHRoaXMgaXMuDQo+IA0KDQpUaGlzIHByb3BlcnR5IHdpbGwgYXNzaWduIHRvICdzbmRfc29j
+X2RhaV9saW5rLT5wbGF0Zm9ybXMtPm9mX25vZGUnLg0KVGhlIHZhbHVlIG9mICdtZWRpYXRlayxw
+bGF0Zm9ybScgaGVyZSBpcyAmYWZlIHRoYXQgaXMgbXQ4MTkyIHBsYXRmb3JtDQpkcml2ZXIuDQpJ
+dCB3aWxsIGJlIHJlc29sdmVkIGZyb20gYSBwaGFuZGxlIHByb3BlcnR5IHRvIGEgZGV2aWNlX25v
+ZGUgcG9pbnRlci4NCg0KPiA+ICsNCj4gPiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+
+ID4gKw0KPiA+ICtyZXF1aXJlZDoNCj4gPiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIG1lZGlh
+dGVrLHBsYXRmb3JtDQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArDQo+
+ID4gKyAgICBzb3VuZDogbXQ4MTkyLXNvdW5kIHsNCj4gPiArICAgICAgICBjb21wYXRpYmxlID0g
+Im1lZGlhdGVrLG10ODE5Mi1tdDYzNTktcnQxMDE1LXJ0NTY4MiI7DQo+ID4gKyAgICAgICAgbWVk
+aWF0ZWsscGxhdGZvcm0gPSA8JmFmZT47DQo+ID4gKyAgICAgICAgcGluY3RybC1uYW1lcyA9ICJh
+dWRfY2xrX21vc2lfb2ZmIiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgImF1ZF9jbGtf
+bW9zaV9vbiI7DQo+ID4gKyAgICAgICAgcGluY3RybC0wID0gPCZhdWRfY2xrX21vc2lfb2ZmPjsN
+Cj4gPiArICAgICAgICBwaW5jdHJsLTEgPSA8JmF1ZF9jbGtfbW9zaV9vbj47DQo+ID4gKyAgICB9
+Ow0KPiA+ICsNCj4gPiArLi4uDQo+ID4gLS0gDQo+ID4gMi4xOC4wDQoNCg==
 
