@@ -2,134 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02BF529564F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 04:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D1729567A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 04:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2894951AbgJVCRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Oct 2020 22:17:54 -0400
-Received: from mga07.intel.com ([134.134.136.100]:19105 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2442800AbgJVCRy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Oct 2020 22:17:54 -0400
-IronPort-SDR: 2nh844w4xAPv0UGpuE/QtdD5jJGa75IVU/FS7RgrWvg/oNpMAOOBlH8GfCQkHlQO1i21Q+SHYk
- fUCQMbT3+c8g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="231651826"
-X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; 
-   d="scan'208";a="231651826"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2020 19:17:51 -0700
-IronPort-SDR: K+dzbx3ct3rrSAH7iPiqTS2LpzfE5HCLFq/NOrDOBJOlf5XZsaO2nQLbzF2mgf/48Vl1hNG5+9
- BYz368NaWP/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; 
-   d="scan'208";a="316570789"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga003.jf.intel.com with ESMTP; 21 Oct 2020 19:17:51 -0700
-Received: from [10.226.38.26] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.26])
-        by linux.intel.com (Postfix) with ESMTP id 4A01F5804BB;
-        Wed, 21 Oct 2020 19:17:48 -0700 (PDT)
-Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
-Subject: Re: [PATCH v2 2/6] spi: cadence-quadspi: Disable the DAC for Intel
- LGM SoC
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     vigneshr@ti.com, tudor.ambarus@microchip.com, broonie@kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        miquel.raynal@bootlin.com, simon.k.r.goldschmidt@gmail.com,
-        dinguyen@kernel.org, richard@nod.at, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-References: <20201021025507.51001-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201021025507.51001-3-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201021140015.3ldwk4az5nlzhnvr@ti.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <a36fbe94-0cf2-eb42-3000-be4c055802b6@linux.intel.com>
-Date:   Thu, 22 Oct 2020 10:17:47 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+        id S2895166AbgJVCmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Oct 2020 22:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2443489AbgJVCmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Oct 2020 22:42:07 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B857C0613CE;
+        Wed, 21 Oct 2020 19:42:05 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id n16so38895pgv.13;
+        Wed, 21 Oct 2020 19:42:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=kNdl5iodQjvM/F33JIUS3BxgGv7Zif9Z++QvccWd7nA=;
+        b=GcZY1XCayghLGNFMu5xJ6PWnRjwFYDoW5qej1Ijg+WSFxEuAmhOBzxiZV5o9lMXUgW
+         sMcI2t8Q5oyr6fyWkyapL3tqsujWmfogO/RDawbE5yLW7zH+EzrCflp/KkUsdCvysQbn
+         TKKe0WBuqlNfEZoDVwNrOkepLpNXwwXHmECvGozow4MomVZMlrARzsoMR/jCnM3TrP02
+         wACo4wntFodCTRbw/XAfkz6nRJj5NSnADKA7quzPyN4E8nwtTzH5uTvlhmiHEywvYtZB
+         p/+Po3Kuo1l2VscijeXF9971T2PVJWUsBMojVa6nk2uN0Ql2t8dCb/dk4owx2l0PjPzT
+         ffiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=kNdl5iodQjvM/F33JIUS3BxgGv7Zif9Z++QvccWd7nA=;
+        b=YcE3rkLrA3B27p6XyOUG6KDeQA+kc/GfX6CwKVpJ0shZZHlWjlR46Ik3+s/sohyOUv
+         lPdwO5by++yWpSc1oEB+cQaE/sojObVwNyOi5sayNw2DN/yETA9yEToH3KoeeLZGPrgb
+         FTBtXKrQHA1UlbSiGg8QvNLwo2QFT1Sw9WamxJopTuDrjoWQNCuFZ5vz34K01WHI6/P4
+         XSGCUJHPPShQlckZHGAesM83tIA06xK2NmWB7CXVfK7ZWSBBq/WW7BFrMQaMZTIa0a5u
+         Hsru9qnbeGwNnk+qcHWoGmdWPvR3meHEtW0rQHITRkiB7zRQHOwQYphaMtIXW+y1bs4i
+         l/hA==
+X-Gm-Message-State: AOAM532aUO0CpFUHhLnL7FDfcpaSGNSTndgTdLGFdt6LCAm7uCLSOEzr
+        X2sJW+Rv0JHupFiSWhxOkTY=
+X-Google-Smtp-Source: ABdhPJyEHAvSq+ESP/zNLJMXM9x1CikjSQMvhD7tzNLREKLtEYOcGVD7oGRU2O1ZN4k6lTyBCf8Cjw==
+X-Received: by 2002:aa7:9dcd:0:b029:152:421f:23eb with SMTP id g13-20020aa79dcd0000b0290152421f23ebmr366136pfq.58.1603334525088;
+        Wed, 21 Oct 2020 19:42:05 -0700 (PDT)
+Received: from hoboy.vegasvil.org (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
+        by smtp.gmail.com with ESMTPSA id y16sm217167pgh.8.2020.10.21.19.42.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Oct 2020 19:42:04 -0700 (PDT)
+Date:   Wed, 21 Oct 2020 19:42:01 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Christian Eggers <ceggers@arri.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
+ hardware time stamping support
+Message-ID: <20201022023233.GA904@hoboy.vegasvil.org>
+References: <20201019172435.4416-1-ceggers@arri.de>
+ <20201019172435.4416-8-ceggers@arri.de>
+ <20201021233935.ocj5dnbdz7t7hleu@skbuf>
 MIME-Version: 1.0
-In-Reply-To: <20201021140015.3ldwk4az5nlzhnvr@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201021233935.ocj5dnbdz7t7hleu@skbuf>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pratyush,
+I'm just catching up with this.
 
-On 21/10/2020 11:17 pm, Pratyush Yadav wrote:
-> Hi,
-> 
-> On 21/10/20 10:55AM, Ramuthevar,Vadivel MuruganX wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> On Intel Lightning Mountain(LGM) SoCs QSPI controller do not use
->> Direct Access Controller(DAC).
->>
->> This patch adds a quirk to disable the Direct Access Controller
->> for data transfer instead it uses indirect data transfer.
->>
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> ---
->>   drivers/spi/spi-cadence-quadspi.c | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
->>
->> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
->> index d7b10c46fa70..3d017b484114 100644
->> --- a/drivers/spi/spi-cadence-quadspi.c
->> +++ b/drivers/spi/spi-cadence-quadspi.c
->> @@ -1106,6 +1106,13 @@ static void cqspi_controller_init(struct cqspi_st *cqspi)
->>   	reg |= CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
->>   	writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
->>   
->> +	/* Disable direct access controller */
->> +	if (!cqspi->use_direct_mode) {
->> +		reg = readl(cqspi->iobase + CQSPI_REG_CONFIG);
->> +		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
->> +		writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
->> +	}
->> +
-> 
-> Do you really need to disable the DAC controller? cqspi_read() and
-> cqspi_write() already check for cqspi->use_direct_mode and avoid using
-> direct mode if it is false. While I don't think it would do any harm I'm
-> curious what prompted you to do this instead of just setting the quirk
-> like cdns_qspi does.
-> 
-> Anyway, if you do insist on doing it, it does not make any sense to set
-> a bit and then unset it immediately after. The datasheet I have says
-> this bit resets to 1 so the block above the code you added should be
-> removed.
-Thank you for your review comments..
-yes, we need this patch to disable DAC for our SoC to avoid any 
-conflicts in future as well since Intel LGM SoC doesn't support DAC at all.
+Really. Truly. Please -- Include the maintainer on CC for such patches!
 
-Regards
-Vadivel
-> 
->>   	cqspi_controller_enable(cqspi, 1);
->>   }
->>   
->> @@ -1388,6 +1395,10 @@ static const struct cqspi_driver_platdata am654_ospi = {
->>   	.quirks = CQSPI_NEEDS_WR_DELAY,
->>   };
->>   
->> +static const struct cqspi_driver_platdata intel_lgm_qspi = {
->> +	.quirks = CQSPI_DISABLE_DAC_MODE,
->> +};
->> +
->>   static const struct of_device_id cqspi_dt_ids[] = {
->>   	{
->>   		.compatible = "cdns,qspi-nor",
->> @@ -1403,6 +1414,7 @@ static const struct of_device_id cqspi_dt_ids[] = {
->>   	},
->>   	{
->>   		.compatible = "intel,lgm-qspi",
->> +		.data = &intel_lgm_qspi,
->>   	},
->>   	{ /* end of table */ }
->>   };
-> 
+In case you don't know who that is, you can always consult the MAINTAINERS file.
+
+There you will find the following entry.
+
+    PTP HARDWARE CLOCK SUPPORT
+    M:      Richard Cochran <richardcochran@gmail.com>
+    L:      netdev@vger.kernel.org
+    S:      Maintained
+    W:      http://linuxptp.sourceforge.net/
+
+On Thu, Oct 22, 2020 at 02:39:35AM +0300, Vladimir Oltean wrote:
+> On Mon, Oct 19, 2020 at 07:24:33PM +0200, Christian Eggers wrote:
+> > The PTP hardware performs internal detection of PTP frames (likely
+> > similar as ptp_classify_raw() and ptp_parse_header()). As these filters
+> > cannot be disabled, the current delay mode (E2E/P2P) and the clock mode
+> > (master/slave) must be configured via sysfs attributes.
+
+This is a complete no-go.  NAK.
+
+Richard
+
