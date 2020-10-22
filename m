@@ -2,167 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C4202958E2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 09:16:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7373829590D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 09:26:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2505822AbgJVHQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 03:16:19 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:40443 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2505816AbgJVHQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 03:16:17 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201022071559euoutp022d6be8a1efb338a6f0a9b4b1cfb64ed2~APzP4coMJ0459704597euoutp02M
-        for <devicetree@vger.kernel.org>; Thu, 22 Oct 2020 07:15:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201022071559euoutp022d6be8a1efb338a6f0a9b4b1cfb64ed2~APzP4coMJ0459704597euoutp02M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1603350959;
-        bh=IsiwbCNVHp4hQUbN8T60nlFVyvfjwqsAD5hMA9e7xvE=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=B2MCDDGIpBLq2z8eh/+pyhwY470lMDwLS7cT2OnVbcJ4NDoNRjhB3vrui1i2xBYap
-         uuH4bn05VCaODZv3kvyabvyL8C3q4MG5MV18BYUG9KY8/lk9xEev/BY4VrPwM5x8+N
-         tIVyUCTa44L5WspuSGDfDNRHMy5y4+RyN3b46yTE=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201022071551eucas1p1f7e4b9d92075722100e61201b49e1fed~APzIHmFet1113211132eucas1p1r;
-        Thu, 22 Oct 2020 07:15:51 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id A8.A4.05997.7A1319F5; Thu, 22
-        Oct 2020 08:15:51 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201022071551eucas1p142dca6ac4cf010110f8f2684f8b96c78~APzHtgJsR0168601686eucas1p1q;
-        Thu, 22 Oct 2020 07:15:51 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201022071550eusmtrp20e218991ef4b2e28813275e4decef0ff~APzHslbPn2580825808eusmtrp2V;
-        Thu, 22 Oct 2020 07:15:50 +0000 (GMT)
-X-AuditID: cbfec7f4-677ff7000000176d-2d-5f9131a7e62a
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 98.F6.06017.6A1319F5; Thu, 22
-        Oct 2020 08:15:50 +0100 (BST)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201022071550eusmtip2ad8d94470ca9e7d3ec5291905255c710~APzG6UQAv2718927189eusmtip2d;
-        Thu, 22 Oct 2020 07:15:50 +0000 (GMT)
-Subject: Re: [PATCH v3 3/5] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-To:     =?UTF-8?Q?=c5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
-        Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     =?UTF-8?Q?Bart=c5=82omiej_=c5=bbolnierkiewicz?= 
-        <b.zolnierkie@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <633bbf18-1aec-4b2a-7967-898cde1930aa@samsung.com>
-Date:   Thu, 22 Oct 2020 09:15:50 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.3.3
+        id S2506450AbgJVH0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 03:26:42 -0400
+Received: from mail-eopbgr70075.outbound.protection.outlook.com ([40.107.7.75]:8942
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2440718AbgJVH0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 03:26:42 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nQARjHFKYUBJoOUGt8N2BgEiM9VyBLfciMSpL9JIrsH/BBOCgMDneU+w5DmCEqSZcgLqn0Y3Cj3a5J9qQFRebB5ciKiclq/sGaQtHqQQM1mhohqgdlaQOtr6dYwppTJlnk2sqdKgnJrpActv2dJfrW5Rrtw07+mBpfTSnc8BxU21+wVXX2g7/9teqnGMvLurQuP9Rr7jeV5bOA/DlBIOfk/4BJqFArIISiivGDindjtiVEWii/B5FKTxejon5KjAliWUjF2JS/AkQNVxPdboAlVIqJwJRSG0YYMWFRM1o3/gYCsL+FfIbMjTQiFusW4HMvuq36NEwjDsXq3PUEHtZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uDADGvNFDY9YbL/CsO/Hbgsaa13hkyPu1S2ieHQ9TSc=;
+ b=YOAGHONmibgfvPu+Stw7Z1VbkSpzy0KCUBFXB6alhiZsKPO0pA6E2DWXcrv7eH8xaM0vmAeqXkL0hgeKbAAKeFibXUnh8FOvMy+4h5vekPOAedaabaxRW/WfFj195S4jkAbreMmNC59u2UiekudzjCaInTFciUYp7VelpoRUJQ1BNDZvBiz2UrPVba/Q/vQXQfx980r5pMbhtMpzysY/Dvdl/xSAv/62TMNNK0e8MkxgGrb6LlkjqQj1Wwfx0kdPspMs8l6895NiG9IWdZWWCfx44pV2GRVaMti++LidZIhJBTW8RBWvtL0m0UV3d/sUiGY5XubCawEdfiHYgzkOzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uDADGvNFDY9YbL/CsO/Hbgsaa13hkyPu1S2ieHQ9TSc=;
+ b=LR6er9U34f984OoMOloHZVEmugdW7M4KpLjIpOrt+S8nlxfviFNrjfqqER6VsiifHyed5kWDkZ55KUSr8BsBKqexQ9euBf+Ag5bBPX+K3FpIrjc2VFTmG06QlwhyiB9YiP/oZSI0y0mCYLLj8l+CsG7S24n07zjA0d6qX75/btU=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB7177.eurprd04.prod.outlook.com (2603:10a6:10:127::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Thu, 22 Oct
+ 2020 07:26:36 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::ec42:b6d0:7666:19ef]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::ec42:b6d0:7666:19ef%8]) with mapi id 15.20.3477.028; Thu, 22 Oct 2020
+ 07:26:36 +0000
+From:   peng.fan@nxp.com
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        robh+dt@kernel.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, marex@denx.de,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH] arm64: dts: imx8m: use generic name for tmu
+Date:   Thu, 22 Oct 2020 15:21:18 +0800
+Message-Id: <1603351278-8198-1-git-send-email-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR02CA0062.apcprd02.prod.outlook.com
+ (2603:1096:4:54::26) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-In-Reply-To: <20201021214910.20001-4-l.stelmach@samsung.com>
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRju2zln5ziaHDfLFwuDRUlBK7Pgi9LKFNYN/BFFQtnSg13cjE27
-        gWiaYcNbhjmnpGilLXK21toErYYpZW3qSrK0Ea4kw5QU7Wq5nSz/Pbf3e58XPoaQDFGhzFF1
-        OqdRK1NlQhFpbf/mWlUfcSlxzbdOKXYNOAh8R2+icJXrPImr25wUrh3VU7h3pJ/CxYOfCOxy
-        NdG4y1pE4T5HA8LmwV4Ku5urhFjvahVgR1kLwu01C3FeSxu9hVW4e7sJheVmn0BhNwzQCrPx
-        olBx91qWwm4bFyiKLEakGDeHxTMJok3JXOrRk5xmdfQh0ZG3jTbBiU/s6bwbD8lsdC9QhwIY
-        YNdBX6Gb1CERI2EbELz4XSjgyQSCNqflLxlH0GP3UrMj1u5qIW/UI/heMf2XjCIYHisX+lJS
-        di80V7QQPiOYrSRBP3TdbxBsPBRcniR9WMhGgG5E59fFbDR8flNL+zDJLoPpCw3Ihxewh6HH
-        k0PzmSB4UuH1zwawm+DW08c0/+YSyL1XSfA4BF57q/29gc1jID//moDvHQuTrVcJHkthuMNC
-        83gx/LbPDuQieOe8TfOkAIE7R4/41Ebod36fqcrMrFgBpubVvLwVnhXW+WVgA+HVSBBfIhBK
-        reUEL4sh/4KETy8HQ0fjv7WPunqIEiQzzDnNMOccw5xzDP/31iDSiEK4DK0qhdOuVXOn5Fql
-        SpuhTpEnpanMaOb7dU53TNhQ88/DDsQySDZfPLarJFFCKU9qz6gcCBhCFiyOed55UCJOVp45
-        y2nSEjUZqZzWgRYxpCxEHFn78YCETVGmc8c57gSnmXUFTEBoNprX/b6obJdtfaN5RUWcp3Ed
-        Nu7ecefc9SGpJkdm/DCauD8pt5TI2Fz+w92/8b7pSlv9toGpl7+y3iepPeejyvo83dWH5FOG
-        rxuOhfRmfqhzP5VHPtrcZPXQSyen9kwkmIRx5dunY3d/MRWH1yxK2+n0KsNLYp8PR0kz22PC
-        Hkztk8tI7RFlxEpCo1X+AX+YRzJ6AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrJIsWRmVeSWpSXmKPExsVy+t/xe7rLDCfGG5z+ZWlx/u4hZouNM9az
-        Wsw538JiMf/IOVaLRe9nsFpce3uH1aL/8Wtmi/PnN7BbXNjWx2px89AKRotNj6+xWlzeNYfN
-        Ysb5fUwWh6buZbQ4tkDMonXvEXYHAY/L1y4ye2xZeZPJY+esu+wem1Z1snlsXlLvsXPHZyaP
-        vi2rGD0+b5IL4IjSsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcks
-        Sy3St0vQy7i3bgdTwWuBitZlB1gaGLfydTFyckgImEhsuzifrYuRi0NIYCmjxJtrn1ggEjIS
-        J6c1sELYwhJ/rnVBFb1llFj+9zYjSEJYIEzi74r9zCAJEYG5LBJtV36ygSSYBfwkOle+ZoLo
-        OMgosWTxfbAEm4ChRNfbLjCbV8BO4t3tRewgNouAqsS/thVgU0UFkiT2n7jJAlEjKHFy5hMw
-        m1PARmL1qaPsEAvMJOZtfsgMYctLNG+dDWWLS9x6Mp9pAqPQLCTts5C0zELSMgtJywJGllWM
-        IqmlxbnpucVGesWJucWleel6yfm5mxiB0b7t2M8tOxi73gUfYhTgYFTi4f3gMyFeiDWxrLgy
-        9xCjBAezkgiv09nTcUK8KYmVValF+fFFpTmpxYcYTYGem8gsJZqcD0xEeSXxhqaG5haWhubG
-        5sZmFkrivB0CB2OEBNITS1KzU1MLUotg+pg4OKUaGLurGXQshZW0xDjEeXcvqN/39aoPO/O+
-        6avZ5ra1xr0pXpPLLLsormuhfoX38cDEFyYnGOT7Hi+9zWJ48Myl6K4vzi18K+pWynnYBPDu
-        2L7ugWL+kgOP50xKWaNh/2+/v+H0fDHeSRuPPZGccM7ovEbf6oXP4jrV/Rlmf4uVnZHTHb9u
-        0RWxRiWW4oxEQy3mouJEAL34yv4MAwAA
-X-CMS-MailID: 20201022071551eucas1p142dca6ac4cf010110f8f2684f8b96c78
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201021214933eucas1p2fd4e5ccc172f3e22fe0d7009d8b2742d
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201021214933eucas1p2fd4e5ccc172f3e22fe0d7009d8b2742d
-References: <20201021214910.20001-1-l.stelmach@samsung.com>
-        <CGME20201021214933eucas1p2fd4e5ccc172f3e22fe0d7009d8b2742d@eucas1p2.samsung.com>
-        <20201021214910.20001-4-l.stelmach@samsung.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0062.apcprd02.prod.outlook.com (2603:1096:4:54::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3499.18 via Frontend Transport; Thu, 22 Oct 2020 07:26:32 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: b2eb0d56-a073-4650-29e4-08d8765bcf32
+X-MS-TrafficTypeDiagnostic: DB8PR04MB7177:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB71777E4D9C65895BF41F9EBE881D0@DB8PR04MB7177.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:374;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +VafNKcKX+w4FBUGQu+EXvZhfFikkWeS2rEC+VX7mX5Q7AULgqcPXszrdfMulot5w787mC559e8FdMnPZ3s6EaNqmKoIjNX3iVyss68gt9kNyl9BcqeODKNG0dGi2jSSQVtvb9hlMIRorg2MEzF4x0UDChRhQv3SeMi+JcXar5wy4JfN7zSFGanqePV90QVn4xU0D7I/CL4YJjTZvPCufoXeteiheHIhpRHC39hjjTd1bDQtqUAFCnaPGXGVyIdsGtV+NOfi0MKwV8nJN6mJspoDpWKg5jy3xlNeRZKPNkUjhJpzIpsfgMgetpfcSwAaQLQ2ZbmgsNuebenMI10XWVh7NjgaZ3EsC+m5qBpv5DmrOLgWAfLgBgjvRpziVXXSmbznU6ibOD+MBno/wSfSExXz54WPwcmQ8LQHSUDBtA8eQ6e34NDRi0QQP8EnN2Lo
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(136003)(376002)(396003)(346002)(478600001)(4326008)(36756003)(83380400001)(8936002)(8676002)(69590400008)(86362001)(186003)(26005)(52116002)(9686003)(6506007)(316002)(5660300002)(16526019)(6666004)(6512007)(66946007)(2616005)(6486002)(956004)(66476007)(66556008)(2906002)(41533002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: lTSOqsEGu5VyU/irRyLOzlMjyBVG9ne1Oiel2AcAgWdlT+HxC3rWG1xXkb8QWD+0hsF6n547gt7427W6RDH14WoAUDKrku672fnqE0g3zXRr1QWBRv3uMnjc780cbf5KARZZCEwnIMANPTDKmOsy2wbP9oKZaumR9MLhMqhaWsKzAGua3gMAs41Yd0Moj+9RzbHwaMW881vlMqhjDFik5fFJgFJP4BZdblJksiwMrCRUcneWbXqTMedD7WTrzUEoMypAW+OhwaaUkN1hEiNIcNJLDbFqeFl99EgC00iTD6ltDIvXBD8on/ohIZLEcPVT0sYB1bdF2KMYq878QPLVjCy24kVOF8oAhKfjixtvXRNnFXayVysrsVmC1/1/EyHS6VujeARVq4897pe4ROhfjtWD5gaWmbN6oSD2RQ1r88okI371FLbCEOh9VClEfa6jJL/reJVHWLJ2TbutN9j+23kFVHdhSzQ6+p4N2gFiwN7XDF0IWzAiGF4uZaud3h7UsvY+b9bKCtZgexVwFDRezau+iuN45AsgRRfrC4JNG+bH4lzFJhPt9qyN10BaUcgFtNE2DmCNTH2pvIwNCycPsEeiIX7RxcmcxTAqzr2RJcqyEpq8Y7TDO0LjpNWTZ+af0W5X9L6CySTsO64DYW096A==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2eb0d56-a073-4650-29e4-08d8765bcf32
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2020 07:26:36.6166
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BdzycdRCt9cu1SoNRLQmMgVAw+ZdCurhHNBUnVvyrVc0KD6M1hWCWw9JmexHtEB3F6PJ18pIkkfmLGDuVnSHWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7177
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Peng Fan <peng.fan@nxp.com>
 
-On 21.10.2020 23:49, Łukasz Stelmach wrote:
-> ASIX AX88796[1] is a versatile ethernet adapter chip, that can be
-> connected to a CPU with a 8/16-bit bus or with an SPI. This driver
-> supports SPI connection.
->
-> The driver has been ported from the vendor kernel for ARTIK5[2]
-> boards. Several changes were made to adapt it to the current kernel
-> which include:
->
-> + updated DT configuration,
-> + clock configuration moved to DT,
-> + new timer, ethtool and gpio APIs,
-> + dev_* instead of pr_* and custom printk() wrappers,
-> + removed awkward vendor power managemtn.
->
-> [1] https://www.asix.com.tw/products.php?op=pItemdetail&PItemID=104;65;86&PLine=65
-> [2] https://git.tizen.org/cgit/profile/common/platform/kernel/linux-3.10-artik/
->
-> The other ax88796 driver is for NE2000 compatible AX88796L chip. These
-> chips are not compatible. Hence, two separate drivers are required.
->
-> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+Per devicetree specification, generic names are recommended
+to be used, such as temperature-sensor.
 
-coś zaszalałeś, jak dobry koreański kod - push bez kompilacji ;)
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-drivers/net/ethernet/asix/ax88796c_main.c:758:13: error: static 
-declaration of ‘ax88796c_set_csums’ follows non-static declaration
-  static void ax88796c_set_csums(struct ax88796c_device *ax_local)
-              ^
-In file included from drivers/net/ethernet/asix/ax88796c_main.c:12:0:
-drivers/net/ethernet/asix/ax88796c_ioctl.h:24:6: note: previous 
-declaration of ‘ax88796c_set_csums’ was here
-  void ax88796c_set_csums(struct ax88796c_device *ax_local);
-       ^
-scripts/Makefile.build:283: recipe for target 
-'drivers/net/ethernet/asix/ax88796c_main.o' failed
-make[4]: *** [drivers/net/ethernet/asix/ax88796c_main.o] Error 1
-scripts/Makefile.build:500: recipe for target 
-'drivers/net/ethernet/asix' failed
-make[3]: *** [drivers/net/ethernet/asix] Error 2
-scripts/Makefile.build:500: recipe for target 'drivers/net/ethernet' failed
-make[2]: *** [drivers/net/ethernet] Error 2
-scripts/Makefile.build:500: recipe for target 'drivers/net' failed
-make[1]: *** [drivers/net] Error 2
-
- > ...
-
-Best regards
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index b83f400def8b..327f1d44ced9 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -404,7 +404,7 @@ gpio5: gpio@30240000 {
+ 				gpio-ranges = <&iomuxc 0 119 30>;
+ 			};
+ 
+-			tmu: tmu@30260000 {
++			tmu: temperature-sensor@30260000 {
+ 				compatible = "fsl,imx8mm-tmu";
+ 				reg = <0x30260000 0x10000>;
+ 				clocks = <&clk IMX8MM_CLK_TMU_ROOT>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index 746faf1cf2fb..994fcb021b8f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -311,7 +311,7 @@ gpio5: gpio@30240000 {
+ 				gpio-ranges = <&iomuxc 0 119 30>;
+ 			};
+ 
+-			tmu: tmu@30260000 {
++			tmu: temperature-sensor@30260000 {
+ 				compatible = "fsl,imx8mn-tmu", "fsl,imx8mm-tmu";
+ 				reg = <0x30260000 0x10000>;
+ 				clocks = <&clk IMX8MN_CLK_TMU_ROOT>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 6038f66aefc1..2a16016b1cf4 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -288,7 +288,7 @@ gpio5: gpio@30240000 {
+ 				gpio-ranges = <&iomuxc 0 114 30>;
+ 			};
+ 
+-			tmu: tmu@30260000 {
++			tmu: temperature-sensor@30260000 {
+ 				compatible = "fsl,imx8mp-tmu";
+ 				reg = <0x30260000 0x10000>;
+ 				clocks = <&clk IMX8MP_CLK_TSENSOR_ROOT>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 5e0e7d0f1bc4..ab57839a3de1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -420,7 +420,7 @@ gpio5: gpio@30240000 {
+ 				gpio-ranges = <&iomuxc 0 119 30>;
+ 			};
+ 
+-			tmu: tmu@30260000 {
++			tmu: temperature-sensor@30260000 {
+ 				compatible = "fsl,imx8mq-tmu";
+ 				reg = <0x30260000 0x10000>;
+ 				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+2.28.0
 
