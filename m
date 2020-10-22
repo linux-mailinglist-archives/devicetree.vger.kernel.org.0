@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6576C295D3C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 13:16:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31454295D50
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 13:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502460AbgJVLQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 07:16:37 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:37679 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436687AbgJVLQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 07:16:36 -0400
-Received: by mail-ed1-f67.google.com with SMTP id o18so1364137edq.4;
-        Thu, 22 Oct 2020 04:16:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M6LjlAqnltcowuKPFP7AlL+hzUKZELzInqRy8HOQGng=;
-        b=PmGQZKY+aRxdgnH+la8Wwr0pnRYjPaTe4xMow9rru+ej14uKOazdLGip0VC723YyZK
-         a4bttBWQxFz4h2TOmrGSXV1xspx5ncvZaqvZh2f1kX0H6WgODMrmDyBsJvzcGGqc8WZd
-         biapV5wLZjak3QEmJYcZcKYQ0tdzAiORgsKBJQrd1CA76yHJtRyJHnMf+QlHdf86ihNC
-         DpK2dw6qwxs7Fm3Rmslr0KsIo/K1biRSb/wuxeMsl3Ye395oLhFUz2qi3IVR/Pp6VtK0
-         GrBI1l92AqPJtmOBELw3nK7YDx54HTjxMSEiw39r3rD1u74OG6msFnZOjv4HwIpUGKae
-         oRlQ==
-X-Gm-Message-State: AOAM531r141JMtUPpwVk3JfoqEJo217GqPfaJxVjwOXND9sMlzwWkRUb
-        Km93A3n5477BthhrMPx5SHU=
-X-Google-Smtp-Source: ABdhPJxsyCEWvreTBWM+MyO41TZtpnZlLYxdisLH4mkQW2lEvOqS0aNZBg1ii6oGaUdR7I5pbVZDuQ==
-X-Received: by 2002:aa7:d384:: with SMTP id x4mr1748243edq.105.1603365395007;
-        Thu, 22 Oct 2020 04:16:35 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.171])
-        by smtp.googlemail.com with ESMTPSA id z2sm586109edr.64.2020.10.22.04.16.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2020 04:16:33 -0700 (PDT)
-Date:   Thu, 22 Oct 2020 13:16:31 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+        id S2502105AbgJVLZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 07:25:42 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:39968 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2444295AbgJVLZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 07:25:42 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 02F19803073F;
+        Thu, 22 Oct 2020 11:25:39 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id oelBG4RXhy7b; Thu, 22 Oct 2020 14:25:38 +0300 (MSK)
+Date:   Thu, 22 Oct 2020 14:25:37 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH v4 3/3] ARM: dts: add Van der Laan LANMCU board
-Message-ID: <20201022111631.GA120389@kozik-lap>
-References: <20201022102733.3277-1-o.rempel@pengutronix.de>
- <20201022102733.3277-4-o.rempel@pengutronix.de>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
+Subject: Re: [PATCH 26/29] arm64: dts: exynos: Harmonize DWC USB3 DT nodes
+ name
+Message-ID: <20201022112537.lvwjjxymp36sez5i@mobilestation.baikal.int>
+References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
+ <20201020115959.2658-27-Sergey.Semin@baikalelectronics.ru>
+ <20201020124328.GU127386@kozik-lap>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20201022102733.3277-4-o.rempel@pengutronix.de>
+In-Reply-To: <20201020124328.GU127386@kozik-lap>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 22, 2020 at 12:27:33PM +0200, Oleksij Rempel wrote:
-> Van der Laan LANMCU is a module for the food storage rooms to control
-> proper gas composition.
+On Tue, Oct 20, 2020 at 02:43:28PM +0200, Krzysztof Kozlowski wrote:
+> On Tue, Oct 20, 2020 at 02:59:56PM +0300, Serge Semin wrote:
+> > In accordance with the DWC USB3 bindings the corresponding node
+> > name is suppose to comply with the Generic USB HCD DT schema, which
+> > requires the USB nodes to have the name acceptable by the regexp:
+> > "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
+> > named.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > ---
+> >  arch/arm64/boot/dts/exynos/exynos5433.dtsi | 4 ++--
+> >  arch/arm64/boot/dts/exynos/exynos7.dtsi    | 2 +-
+> >  2 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
-> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Looks good, thanks.
+> Thanks for the changes to DTSes. I'll take Exynos bits after the mege
+> window.
 
-Best regards,
-Krzysztof
+Ok. Thanks.
+
+-Sergey
+
+> 
+> Best regards,
+> Krzysztof
+> 
