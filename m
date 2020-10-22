@@ -2,176 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FE8C295C7C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 12:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD9DC295C92
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 12:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2896393AbgJVKM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 06:12:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2896388AbgJVKMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 06:12:55 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79138C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 22 Oct 2020 03:12:55 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id e17so1500606wru.12
-        for <devicetree@vger.kernel.org>; Thu, 22 Oct 2020 03:12:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AVYqBwFNeS8pknHZcG1tJcoDoQAS4sJ1OEwl1v423e8=;
-        b=FHx9aWm9FktJEtNY/lWrc3MGLVVQTVRPkaKpE/BrIvI65HE1/l83fZFIYH41tRBW5/
-         HKpKCopsEU3q8T3e3RTCblClXa64BkmrSnDKUmEoPNCVOcIgrYGplAj9LWAKZ+88ul3F
-         lShjw/BQ54t6I7EfHNGaZ+p78XcoqGFpJD0s1hDHX1X/G8PgJdwsSPIC6OZyB6i5yCqL
-         gdjFYC4gh/xNnO8/pYQEZW78XHILWr7IPoR8M97YTNxfst2lz5YZ+orcSJCZTZA7XUgH
-         eyA+LqsmkQUZMZWg3e26x9FmT7iYAi3exYSCwVAw2BYim7sgprHx7allxCYqNPMTgCdF
-         vp5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=AVYqBwFNeS8pknHZcG1tJcoDoQAS4sJ1OEwl1v423e8=;
-        b=Kf35QQmC+ztaeZYNtWNojcE96RiQGKNt8BQwHyyqZMBNzPJhu7rfswB+YfdJSPFR6j
-         dnxTRMlksPOYukIoF3Ffg1w+Hz4/i1VFHbu2Gk+g9QGWM6pL1DKXsFCNL/fQe2oV8K15
-         DnYqbI0m4k6epclo9G5fQsVSFjZ/wiggpDvPDO9nDxB5kuT2BS44vC/BMrUFtJ8a6MMP
-         CcRbYZPnbXfw+qWNvw1fxsJHLqYPACnx/O2i+7eqn86Bwo97HUvDZ0aOE4pbxso4W23j
-         uvAbFZatj5iaFQ7ZDXXci+FkWA1Fm9M7g0C/wCX02ikPv6cJjcQ5l/sbIgXwJsYHvTOz
-         twpw==
-X-Gm-Message-State: AOAM53270Uw2GXxvQ8RuIN/VeOYQ8OnYa+apAAiESm78SZAsc+cHCasH
-        K/nOyK82ZyVpHFH3cNAh52Z8LA==
-X-Google-Smtp-Source: ABdhPJynoIRUVGmbBNtiBqCFMZFtDduY5X7CJApEBX+q08WHFZubdBFJCCYOFMWx5UVgG0TeQNEdlA==
-X-Received: by 2002:adf:ef02:: with SMTP id e2mr1777892wro.381.1603361574107;
-        Thu, 22 Oct 2020 03:12:54 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id j13sm2935385wru.86.2020.10.22.03.12.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 22 Oct 2020 03:12:53 -0700 (PDT)
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine
- bindings
-To:     Tzung-Bi Shih <tzungbi@google.com>, Mark Brown <broonie@kernel.org>
-Cc:     Cheng-yi Chiang <cychiang@chromium.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S2896408AbgJVKTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 06:19:08 -0400
+Received: from mailout08.rmx.de ([94.199.90.85]:55927 "EHLO mailout08.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2896433AbgJVKTH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 06:19:07 -0400
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout08.rmx.de (Postfix) with ESMTPS id 4CH3HW1WpQzMsy6;
+        Thu, 22 Oct 2020 12:19:03 +0200 (CEST)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4CH3HG3XSJz2TTM3;
+        Thu, 22 Oct 2020 12:18:50 +0200 (CEST)
+Received: from n95hx1g2.localnet (192.168.54.85) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.408.0; Thu, 22 Oct
+ 2020 12:17:49 +0200
+From:   Christian Eggers <ceggers@arri.de>
+To:     Richard Cochran <richardcochran@gmail.com>
+CC:     Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org>
- <7bdc0d63-27b1-f99e-c5f8-65f880733d16@linaro.org>
- <CAFv8NwLkvxX2avoLY+4NY5gBv0dQ863hFFiqy7iQOJxH4WenmQ@mail.gmail.com>
- <20201015161251.GF4390@sirena.org.uk>
- <CAFv8NwL1xX=yPGFqQL_mOzAnPTfH0Z0J6ibG1+D32W46Nx0KYQ@mail.gmail.com>
- <20201020143711.GC9448@sirena.org.uk>
- <63f1a29c-0758-97b8-ce80-fe43d91630fa@linaro.org>
- <CAFv8NwJ-+f146Ss9Mk=nEXjm1B--ZwhAgnfx-cTi7DGEKqC1-Q@mail.gmail.com>
- <e876421c-dfeb-e853-1b65-53a786e9bcf9@linaro.org>
- <20201021123913.GD4497@sirena.org.uk>
- <CA+Px+wV-uoODRQTZqv7RuyOUoGBoh5GnT2h4iW9mJGRL=UFfgQ@mail.gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <14e7db29-4825-6e9d-22a0-5121bb7006e2@linaro.org>
-Date:   Thu, 22 Oct 2020 11:12:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add hardware time stamping support
+Date:   Thu, 22 Oct 2020 12:17:48 +0200
+Message-ID: <1680734.pGj3N1mgWS@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <2975985.V79r5fVmzq@n95hx1g2>
+References: <20201019172435.4416-1-ceggers@arri.de> <20201022023233.GA904@hoboy.vegasvil.org> <2975985.V79r5fVmzq@n95hx1g2>
 MIME-Version: 1.0
-In-Reply-To: <CA+Px+wV-uoODRQTZqv7RuyOUoGBoh5GnT2h4iW9mJGRL=UFfgQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [192.168.54.85]
+X-RMX-ID: 20201022-121850-4CH3HG3XSJz2TTM3-0@kdin02
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thursday, 22 October 2020, 09:30:57 CEST, Christian Eggers wrote:
+> On Thursday, 22 October 2020, 04:42:01 CEST, Richard Cochran wrote:
+> > On Thu, Oct 22, 2020 at 02:39:35AM +0300, Vladimir Oltean wrote:
+> > > On Mon, Oct 19, 2020 at 07:24:33PM +0200, Christian Eggers wrote:
+> > > > The PTP hardware performs internal detection of PTP frames (likely
+> > > > similar as ptp_classify_raw() and ptp_parse_header()). As these
+> > > > filters
+> > > > cannot be disabled, the current delay mode (E2E/P2P) and the clock
+> > > > mode
+> > > > (master/slave) must be configured via sysfs attributes.
+> > 
+> > This is a complete no-go.  NAK.
+> 
+> I didn't design the hardware nor do I have access to adequate documentation.
+> I will try to figure out what functionality is concretely affected by these
+> two settings.
+I tried to study the effect of setting the ocmode bit on the KSZ either to
+master or to slave. The main visible change is, that some PTP message types
+are be filtered out on RX:
+- in "master" mode, "Sync" messages from other nodes will not be received
+(but everything else like "Announce" seem to work)
+- in "slave" mode, "Delay_Req" messages from other nodes will not be received
+
+I am not an expert for PTP, so the following is only the idea of a beginner how
+this could probably be handled:
+
+As PTP announce messages are received all the time, the BMCA should always
+be able to work. The KSZ hardware needs to be set to "master" when a node
+is becoming master (in order to be able to receive (and answer) Delay_Req
+messages). The setting "slave" is equired when the BCMA decides not being
+master anymore (in order to receive Sync messages).
+
+Handling the transition to "master" mode could probably be done easily in the 
+driver (when a Sync message is seen in TX direction by the time stamping code).
+But transition to slave seems to be difficult, because the tagging driver cannot
+see when the node stops being master. For user space (ptp4l), the decision for
+master/slave mode could probably be done easier.
+
+If Richard (or somebody else) decides that "mode switching" of the KSZ device
+would not be appropriate, I suspect the functionality of the KSZ has to be
+limited to "Slave Only Clock".
+
+regards
+Christian
 
 
-On 22/10/2020 04:29, Tzung-Bi Shih wrote:
-> Hi, sorry for jumping into your discussion but I am trying to
-> summarize them to make sure we are on the same page.  Pardon me to
-> manually copy-and-paste partial sentences to quote.
-> 
-> ACK:
-> - Don't expose DAI connections in compatible strings.
-> - Use "model" DT property to make the card more UCM2-friendly.
-> - Expose new DT properties to distinguish different DMIC models.
-> 
-> NACK:
-> - All the board variations using exactly the same compatible string.
-> => This is less realistic.  Although the CODECS information can be
-> retrieved from DT, it is inevitable to have some custom code for each
-> CODEC.
-> 
-> Per Mark's words:
->> a different CODEC is something that often justifies a separate compatible
-> I think we should use different compatible strings for new CODECS
-> combinations.  And we should try to reuse the machine driver if they
-> share the most code.  In the worst case, introduce a new machine
-> driver for the new CODECS combinations.
-> 
-> - Srinivas's suggestion to set driver_name.
-> e.g. card->driver_name = "SM8250";
-> => This sounds like a new DT property should be parsed in
-> sound/soc/qcom/common.c.  For example: "qcom,family"?  But as we do
-> less care about UCM2 for now, I would prefer to just leave it as is.
-> 
-No, you can just hardcode this driver_name in your machine driver rather 
-than getting it from DT, this is how everyone does!.
-So need of adding anything to common.c
 
-The thing that I suggested to add to common.c is setting card->long_name 
-from "model" property.
-
-> 
-> I would expect the following variants in DTS (just for example):
-> 
-> sound {
->    compatible = "qcom,sc7180-trogdor";
-Make sure that vendor name is correct here, am not sure if trogdor is 
-qcom board or Google own board!
-
->    model = "sc7180-rt5682-max98357a-1mic";
-> }
-> 
-> sound {
->    compatible = "qcom,sc7180-trogdor";
->    model = "sc7180-rt5682-max98357a-2mic";
->    dmic-gpio = ...
-> }
-> 
-> sound {
->    compatible = "qcom,sc7180-pompom";
->    model = "sc7180-adau7002-max98357a";
-> }
-> 
-> 
-> Please correct me if there is any misunderstanding.
-
-Looks good to me!
-thanks for doing this!
-
---srini
-> 
