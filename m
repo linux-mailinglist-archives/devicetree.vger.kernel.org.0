@@ -2,89 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F40E42957BF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 07:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE0622957D4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 07:19:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2507853AbgJVFPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 01:15:46 -0400
-Received: from smtprelay-out1.synopsys.com ([149.117.87.133]:42630 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2444222AbgJVFPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Oct 2020 01:15:46 -0400
-Received: from mailhost.synopsys.com (sv1-mailhost2.synopsys.com [10.205.2.132])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 78B3AC026E;
-        Thu, 22 Oct 2020 05:15:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1603343745; bh=nTPdEZ2enkeB1WuU/L+M60LEJY7TTeAXK4W7ufmjOgI=;
-        h=Date:From:Subject:To:Cc:From;
-        b=abmLuYPdh2xTN0ceQG+1+/FrpFxN6HCcHaHX3q7+RdQ+n9s5Pjr9XlVWA84UbqvFY
-         KAI2iKB/I/ekU3K0hOv5alPoSXEKYbn3dXJtqqY0+b9YY7/sTukYF0N/cUUz30xCcl
-         5XtO1OXYc93m1nq52Siz/YTmIQ6cJl3q8TUSX4HyudNHVgqR81IJkVGSNvqkHnUgAs
-         BLvcgXSuBNAUWqb8bgbQOJsvRAILMshVG9+3BjwUZ47cvr+hGyQYLnTEEawfXvMy2j
-         Hzi0bHCfHEmybbU9alPtH4hKAyOf0/rFJ9DEH+j5cREcsFfY0x2m9aRNX9bioueljy
-         nvrkJgpKtxtuw==
-Received: from te-lab16 (nanobot.internal.synopsys.com [10.10.186.99])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mailhost.synopsys.com (Postfix) with ESMTPSA id 07B55A0072;
-        Thu, 22 Oct 2020 05:15:43 +0000 (UTC)
-Received: by te-lab16 (sSMTP sendmail emulation); Wed, 21 Oct 2020 22:15:43 -0700
-Date:   Wed, 21 Oct 2020 22:15:43 -0700
-Message-Id: <770d7a50caad241f07d656e29e89e282f727f5da.1603343705.git.Thinh.Nguyen@synopsys.com>
-X-SNPS-Relay: synopsys.com
-From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Subject: [RFC PATCH 1/3] dt-bindings: usb: Add undetected disconnection quirk
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     John Youn <John.Youn@synopsys.com>
+        id S2507883AbgJVFTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 01:19:53 -0400
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:7954 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2444362AbgJVFTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 01:19:53 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f91161b0000>; Wed, 21 Oct 2020 22:18:19 -0700
+Received: from [10.25.102.106] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 22 Oct
+ 2020 05:19:48 +0000
+Subject: Re: [PATCH v3 1/3] ASoC: dt-bindings: audio-graph-card: switch to
+ yaml base Documentation
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>
+References: <87a6wfay7t.wl-kuninori.morimoto.gx@renesas.com>
+ <878sbzay6u.wl-kuninori.morimoto.gx@renesas.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <75ca7528-3177-46cb-73c5-46e32e63ad44@nvidia.com>
+Date:   Thu, 22 Oct 2020 10:49:43 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <878sbzay6u.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1603343899; bh=4ga9u9EaTXgZqZYV9Tg6o4laYNM9aVw6ALQdX3oH9TM=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=UXbIIDNC6MgtL/Ip2uBR5+o9PLCTRcTd9dQE9ABEA6eKGefH+7Z1aFh66kUntwatf
+         2KeMs4oBjtmW+yvHkgj5YF/SQWnyh0haCkBFzIt9Wal9NKK2VtLvtVu2dOU0Mu/0IW
+         cKalLe7UPbwPwneJTPLPc1piSiqc8aoAkwZ3EoF/7Asj5WhBVOmtMI65PikdvzmhTx
+         9IEdt/uw/OYCdyalqZX64qXSDKtAUTXEaCXQNsBduRswzPCJTv2tCR7AGQ47EMbhoZ
+         5UczD0CMjUkAfp6T63f2ezfUOOIqD/nJs8b7ag0tvLMm+x7DgZKDgWsECFURzbMyWN
+         gNCzU5sV0gxRQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Synopsys DWC_usb3x host controllers will not detect enhanced super-speed
-(eSS) device disconnection if it has active isochronous IN endpoint(s)
-behind one or more eSS hubs. Introduce a quirk to workaround this for
-xhci and dwc3 device tree.
+Hi Morimoto-san,
 
-Signed-off-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
----
- Documentation/devicetree/bindings/usb/dwc3.txt     | 3 +++
- Documentation/devicetree/bindings/usb/usb-xhci.txt | 2 ++
- 2 files changed, 5 insertions(+)
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>
+> This patch switches from .txt base to .yaml base Document.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>   .../bindings/sound/audio-graph-card.txt       | 337 ------------------
+>   .../bindings/sound/audio-graph-card.yaml      | 165 +++++++++
+>   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +-
+>   3 files changed, 166 insertions(+), 338 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card.txt
+>   create mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card.txt b/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+> deleted file mode 100644
+> index d5f6919a2d69..000000000000
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+> +++ /dev/null
+> @@ -1,337 +0,0 @@
+...
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+> new file mode 100644
+> index 000000000000..9ccffbda86a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+> @@ -0,0 +1,165 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/audio-graph-card.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Audio Graph Card Driver Device Tree Bindings
+> +
+> +maintainers:
+> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> +
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
-index 1aae2b6160c1..b23b52f5842a 100644
---- a/Documentation/devicetree/bindings/usb/dwc3.txt
-+++ b/Documentation/devicetree/bindings/usb/dwc3.txt
-@@ -105,6 +105,9 @@ Optional properties:
- 			this and tx-thr-num-pkt-prd to a valid, non-zero value
- 			1-16 (DWC_usb31 programming guide section 1.2.3) to
- 			enable periodic ESS TX threshold.
-+ - snps,blocked-disconnection: enable workaround to undetected disconnection
-+			while isoc endpoint(s) are active for DWC_usb3x
-+			controllers operating as host
- 
-  - <DEPRECATED> tx-fifo-resize: determines if the FIFO *has* to be reallocated.
-  - snps,incr-burst-type-adjustment: Value for INCR burst type of GSBUSCFG0
-diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-index 0c5cff84a969..60812ae74d46 100644
---- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-@@ -28,6 +28,8 @@ Optional properties:
-   - quirk-broken-port-ped: set if the controller has broken port disable mechanism
-   - imod-interval-ns: default interrupt moderation interval is 5000ns
-   - phys : see usb-hcd.yaml in the current directory
-+  - blocked-disconnection: workaround undetected disconnection while isoc
-+		endpoint(s) are active
- 
- additionally the properties from usb-hcd.yaml (in the current directory) are
- supported.
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - audio-graph-card
+> +      - audio-graph-scu-card
 
-base-commit: 270315b8235e3d10c2e360cff56c2f9e0915a252
--- 
-2.28.0
+Since I am trying to re-use most of audio-graph for Tegra, can 
+'compatible' be moved to a separate schema?
+For example,
+audio-graph.yaml -> defines all the common stuff
+audio-graph-card.yaml -> audio-graph.yaml + 'compatible' property
+Similarly, tegra-audio-graph-card.yaml -> audio-graph.yaml + Tegra 
+'compatible' property
+
+> +
+> +  dais:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +  label:
+> +    maxItems: 1
+> +  prefix:
+> +    description: "device name prefix"
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +  "audio-graph-card,prefix":
+> +    description: "device name prefix"
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +  routing:
+> +    description: |
+> +      A list of the connections between audio components.
+> +      Each entry is a pair of strings, the first being the
+> +      connection's sink, the second being the connection's source.
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +  widgets:
+> +    description: User specified audio sound widgets.
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +  convert-rate:
+> +    description: CPU to Codec rate convert.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  "audio-graph-card,convert-rate":
+> +    description: CPU to Codec rate convert.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  convert-channels:
+> +    description: CPU to Codec rate channels.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  "audio-graph-card,convert-channels":
+> +    description: CPU to Codec rate channels.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  pa-gpios:
+> +    maxItems: 1
+> +  hp-det-gpio:
+> +    maxItems: 1
+> +  mic-det-gpio:
+> +    maxItems: 1
+> +
+
+> +  endpoint:
+> +    type: object
+> +    properties:
+> +      remote-endpoint:
+> +        maxItems: 1
+> +      mclk-fs:
+> +        description: |
+> +          Multiplication factor between stream rate and codec mclk.
+> +          When defined, mclk-fs property defined in dai-link sub nodes are ignored.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +      frame-inversion:
+> +        description: dai-link uses frame clock inversion
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +      bitclock-inversion:
+> +        description: dai-link uses bit clock inversion
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +      frame-master:
+> +        description: Indicates dai-link frame master.
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        maxItems: 1
+> +      bitclock-master:
+> +        description: Indicates dai-link bit clock master
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        maxItems: 1
+> +      dai-format:
+> +        description: audio format.
+> +        items:
+> +          enum:
+> +            - i2s
+> +            - right_j
+> +            - left_j
+> +            - dsp_a
+> +            - dsp_b
+> +            - ac97
+> +            - pdm
+> +            - msb
+> +            - lsb
+> +      convert-rate:
+> +        description: CPU to Codec rate convert.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +      convert-channels:
+> +        description: CPU to Codec rate channels.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +    required:
+> +      - remote-endpoint
+
+Is it possible to have endpoint without port nodes?
+
+> +
+> +  port:
+> +    description: single OF-Graph subnode
+> +    type: object
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +      prefix:
+> +        description: "device name prefix"
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +      convert-rate:
+> +        description: CPU to Codec rate convert.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +      convert-channels:
+> +        description: CPU to Codec rate channels.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +    patternProperties:
+> +      "^endpoint(@[0-9a-f]+)?":
+> +        $ref: "#/properties/endpoint"
+> +
+> +  ports:
+> +    description: multi OF-Graph subnode
+> +    type: object
+> +    patternProperties:
+> +      "^port(@[0-9a-f]+)?":
+> +        $ref: "#/properties/port"
+> +
+> +required:
+> +  - compatible
+> +  - dais
+> +
+
+> +additionalProperties: false
+> +
+
+This needs to be true when other files want to reference this schema 
+and/or define some additional properties.
+
+> +examples:
+> +  - |
+> +    sound {
+> +        compatible = "audio-graph-card";
+> +
+> +        dais = <&cpu_port_a>;
+> +    };
+> +
+> +    cpu {
+> +        /*
+> +         * dai-controller own settings
+> +         */
+> +
+> +        port {
+> +            cpu_endpoint: endpoint {
+> +                remote-endpoint = <&codec_endpoint>;
+> +                dai-format = "left_j";
+> +            };
+> +        };
+> +    };
+> +
+> +    codec {
+> +        /*
+> +         * codec own settings
+> +         */
+> +
+> +        port {
+> +            codec_endpoint: endpoint {
+> +                remote-endpoint = <&cpu_endpoint>;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 63996ab03521..5ada35ddac7e 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -20,7 +20,7 @@ patternProperties:
+>     "^(keypad|m25p|max8952|max8997|max8998|mpmc),.*": true
+>     "^(pinctrl-single|#pinctrl-single|PowerPC),.*": true
+>     "^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*": true
+> -  "^(simple-audio-card|st-plgpio|st-spics|ts),.*": true
+> +  "^(simple-audio-card|audio-graph-card|st-plgpio|st-spics|ts),.*": true
+>
+>     # Keep list in alphabetical order.
+>     "^70mai,.*":
+> --
+> 2.25.1
+>
 
