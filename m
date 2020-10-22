@@ -2,99 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3A752960F5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 16:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA43E296114
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 16:44:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2443930AbgJVOee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 10:34:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34126 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390764AbgJVOee (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 10:34:34 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E892BC0613CE;
-        Thu, 22 Oct 2020 07:34:33 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id o9so1047987plx.10;
-        Thu, 22 Oct 2020 07:34:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Sosi2JPyi8kkDE2zAI3zuo0tpS/CAdUgJvIdNLZZJD4=;
-        b=nPkATG0i9oqy7I6qI49vX3iIOwJ9rokwX8Vc5trOi5MqOuzQwiLV/WKWfP24TqUpIZ
-         KHiL9OyTrTdNAt0aLQj7k+iWQ0Af2W6xFhuxvtEhDBS35t1LeNEIvJD1y/YJqPi80hxi
-         Z18C0rbJcApQf/elUSham3vE8MveihB0WxvWijBBDDITR+52TuPobJF4wEiYYkzhmE3S
-         zH8kYOr/u1jAIMw+ASZlPfLS22eatJ4bK0zrHsM/iSG8Iff+/MnkvLSnAOXU2kDHzIxj
-         /mut4ZSrDVrXwGtVOUCQJBl6Bqy7SPR9ViPtirlZw9nqQ9COE/QI0JsMXxzBEBHDJ3s6
-         YDlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Sosi2JPyi8kkDE2zAI3zuo0tpS/CAdUgJvIdNLZZJD4=;
-        b=pXYLxbJca79shSwQIiBElumsPykel8GcFrhcjl2xq6drn0KPKeGYDkUETw+tOa+wsm
-         YDNPE9vy39f9TBBZMq+2dSZFK7UvQ2SnyV6uw/uNgHuZNmCQ0srMZza4nDd5avjlciKX
-         TXlynZNKR3VC7EKuNgORmp6nECOT6KCIQUL1QnWTDCXVEXdF/AlKwbGhfbRiTbQjOFcy
-         jKMkzp4v4NrPoQLicYZbtX5M2bbEKrXRTcMetZDuymkuQGbEKEYyWXLLiVPtOZGC78aD
-         0grvlzIL5XvGCDVYITcsNYr2MsF+JqaMbKq2Rb/0G+E+SroegAY+e8eUfBiI/aRSFsS8
-         XPrw==
-X-Gm-Message-State: AOAM533wsa1yK0l3LZI8OD2v81Kw/eCKu+lk4+dYC/T/9bbOwy01g/Gi
-        zCZ81BrM1JrPMCWRb78ITGk=
-X-Google-Smtp-Source: ABdhPJwuJk0G398FX/FO0OTxt/Uia8/PlH9Rmf2+TzNfBl2LEUYnfO92o2YyW1sJy7wKlCzUSC+Yaw==
-X-Received: by 2002:a17:90a:4b84:: with SMTP id i4mr2441433pjh.132.1603377273489;
-        Thu, 22 Oct 2020 07:34:33 -0700 (PDT)
-Received: from hoboy.vegasvil.org (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
-        by smtp.gmail.com with ESMTPSA id ca5sm2540864pjb.27.2020.10.22.07.34.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2020 07:34:32 -0700 (PDT)
-Date:   Thu, 22 Oct 2020 07:34:29 -0700
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Christian Eggers <ceggers@arri.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        id S2507931AbgJVOol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 10:44:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49868 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2507757AbgJVOol (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 10:44:41 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B77DE24171;
+        Thu, 22 Oct 2020 14:44:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603377880;
+        bh=eLWR5wVhG0u6XZ1oBjauTolKfqHlzUUNVOYEjVUg57M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h+mWLKBeFVPBRt6YHCW5BBfpgWNSpp5H+oYSPGLZSd/VSyRVlbPpd0pt3H9l6I2Zf
+         xK/r0d+cZyJqtChRwVg+8bU6O4VFkztZttHymgCpXN3nyxwgBUpwpDNmKIEX/ZHWDh
+         nXhkDUOAn5u5OLVAOJSRJsncaA3Ue6KQBtgfffBM=
+Received: by pali.im (Postfix)
+        id 2E2D7BFC; Thu, 22 Oct 2020 16:44:38 +0200 (CEST)
+Date:   Thu, 22 Oct 2020 16:44:38 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Andre Heider <a.heider@gmail.com>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
- hardware time stamping support
-Message-ID: <20201022143429.GA9743@hoboy.vegasvil.org>
-References: <20201019172435.4416-1-ceggers@arri.de>
- <20201022090126.h64hfnlajqelveku@skbuf>
- <20201022105014.gflswfpie4qvbw3h@skbuf>
- <2541271.Km786uMvHt@n95hx1g2>
- <20201022113243.4shddtywgvpcqq6c@skbuf>
+Subject: Re: Reducing number of Espressobin DTS files
+Message-ID: <20201022144438.gxsd4mtt6lktnhi2@pali>
+References: <20201022140007.hppmeyt34lubotbc@pali>
+ <20201022142900.GX139700@lunn.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201022113243.4shddtywgvpcqq6c@skbuf>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201022142900.GX139700@lunn.ch>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 22, 2020 at 02:32:43PM +0300, Vladimir Oltean wrote:
-> On Thu, Oct 22, 2020 at 01:11:40PM +0200, Christian Eggers wrote:
+On Thursday 22 October 2020 16:29:00 Andrew Lunn wrote:
+> > For example, Turris MOX board which is also A3720 based has optional
+> > SDIO module which can be plugged / unplugged, standard variant is sold
+> > without it and in DTS file is this node always enabled:
 > 
-> > it seems that "moving" the timestamp back to the tail tag on TX is not
-> > required anymore. Keeping the RX timestamp simply in the correction
-> > field (negative value), works fine now. So this halves the effort in
-> > the tag_ksz driver.
-> 
-> Ok, this makes sense.
-> Depending on what Richard responds, it now looks like the cleanest
-> approach would be to move your implementation that is currently in
-> ksz9477_update_ptp_correction_field() into a generic function called
+> I think the Turris has quite a sophisticated bootloader which
+> manipulates the DT to fit the hardware. I've no idea if eMMC is part
+> of this...
 
-+1
+Turris MOX has uSD card and SDIO module, not eMMC. But sdhci0 and sdhci1
+DT nodes are not disabled in U-Boot.
