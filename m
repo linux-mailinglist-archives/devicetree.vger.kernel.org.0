@@ -2,517 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E0C295D1D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 13:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A78295D24
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 13:03:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2896835AbgJVLCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 07:02:33 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:41976 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502976AbgJVLCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 07:02:32 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 5B1F41C0B78; Thu, 22 Oct 2020 13:02:29 +0200 (CEST)
-Date:   Thu, 22 Oct 2020 13:02:13 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-Subject: Re: [PATCH v6 3/6] can: ctucanfd: add support for CTU CAN FD
- open-source IP core - bus independent part.
-Message-ID: <20201022110213.GC26350@duo.ucw.cz>
-References: <cover.1603354744.git.pisa@cmp.felk.cvut.cz>
- <886a8e0749e0521bf83a88313008a3f38031590b.1603354744.git.pisa@cmp.felk.cvut.cz>
+        id S2437304AbgJVLDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 07:03:49 -0400
+Received: from mail-eopbgr60085.outbound.protection.outlook.com ([40.107.6.85]:13063
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2896935AbgJVLDt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 07:03:49 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=H6/mH9RgPXoYAKLbBElHgGFVZp8LLg4VF2iCMk0Ny5vPJIErQX25YNfsp/lsy2qQh+dNPwHovBQ4sL57u+YWGC0C51tzd2NjqNgToyFl6iBY20WIHlf2NuEMp1AWKWRcKr8vDPszKp7RM8DF7BBUA6DKxtc4nlKH/AvWBE21o/ARjPkwVIEGkhkVmGIsu+JkVb5K3I8FAoMwLus4qBulimhmJEKITll5fQfZJzTBgdUj+9s3tE3G4/Rt1SCxub/0obP/kn7XkizOrqw5Zt/j3gRc6qDxo3y0b+LGU1cj6fSxQtEWzUsnYAdmjFTsudohwdDEpJ/rG4gPmjjCWpT0kw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9Cq0tGOx/aPUBp6Gy3ra4X8TnBNyfuKm5Zq+zVzX2iE=;
+ b=bGgwKdj1LY7tadofzE1j6g6DRHCd9qo4KmL09ogExWo/RIwDiBtkuVGDE+EIn0ZbGCvFus4um/gZmZ1Oo4Kj0rKv/kX5iPJm4YN1OcWZ6ZBOTdFCqndGM4OnXD4rIUaE3gXbGZmXTup3tPdiuXH0jpW5XQWKSwIoRxh1L/aj56mpr8HvUYQvFsGkj1xj2M6fPMyEo8GXIJxIALpQ19M5WsRoZz4+UW/g+7K7SoJa+g0f+afNwJaYt52q4EoUutbKqL8QChvpoVsxCHOVEKZ7TVkbPeU5rbNTNe/IwhcQReSmVDRnzgcYyO8BkXcChtg3tacVqcNUgW6CT/WlR+QbNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9Cq0tGOx/aPUBp6Gy3ra4X8TnBNyfuKm5Zq+zVzX2iE=;
+ b=TX16wJY3OoLdZzs5DnsgbKYDev5tUbo0wjgJ82B30NKXRFkv1w32wzxOdu8y9L5JYmm9QVjP8pRv/SnySFP/5LfW201iWTeEj3dEZ51EuQEBX/XscD5XMEJ2nWJ000qtG5GJb1VTbmPAk5GMwQLCrQSI7sWbEtWt07j1TZEjgrU=
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
+ by VI1PR04MB3102.eurprd04.prod.outlook.com (2603:10a6:802:9::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.25; Thu, 22 Oct
+ 2020 11:03:44 +0000
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::d9da:5c3:c978:43f8]) by VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::d9da:5c3:c978:43f8%7]) with mapi id 15.20.3477.028; Thu, 22 Oct 2020
+ 11:03:44 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>
+CC:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "mika.westerberg@linux.intel.com" <mika.westerberg@linux.intel.com>,
+        "prabhakar.mahadev-lad.rj@bp.renesas.com" 
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>, Peter Chen <peter.chen@nxp.com>
+Subject: RE: [PATCH v4 2/4] device property: Add fwnode_is_compatible() and
+ device_is_compatible() helpers
+Thread-Topic: [PATCH v4 2/4] device property: Add fwnode_is_compatible() and
+ device_is_compatible() helpers
+Thread-Index: AQHWpfenpObIkrsbWE2m9D0IeMq/2qme2d0AgAF5EWCAAhi1gIAAzRjA
+Date:   Thu, 22 Oct 2020 11:03:44 +0000
+Message-ID: <VE1PR04MB652857B592C4CDBEB2D1EFAC891D0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+References: <1603098195-9923-1-git-send-email-jun.li@nxp.com>
+ <1603098195-9923-2-git-send-email-jun.li@nxp.com>
+ <20201019122516.GN4077@smile.fi.intel.com>
+ <VE1PR04MB652805416A0A85E45FFD106E891F0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+ <20201021185547.GC444962@dtor-ws>
+In-Reply-To: <20201021185547.GC444962@dtor-ws>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 98aac4b3-2437-4c56-ed3d-08d8767a2499
+x-ms-traffictypediagnostic: VI1PR04MB3102:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB31029EDD017B1EA1FF20B26A891D0@VI1PR04MB3102.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rR+e9CU37CwuGaUhMNK5kEkJDrkw+HTXFQ2PJFVp8YTkT/oWE9DAW889vCOnzJm0+fj2VAYVs/NcgABSNXWYq4jomRQM21E/RM0BqTGVbxOP3cMZm6Vgh3VTetC9/Yjlm28f268PYhiOakuuG05vPM16I+11LaFGfph+WvfvAU8z7N/PVS15J/yibABdYmXJW1bH9l06C8mictCGNlTsprpL8mkSYKvdNu4Xo6IhZo+UiLr8aHRCuQEiUEq3Xp4iHswiFZYtMNIj5WuFQNt+ahwkowef/d9/1XxqnwMMNlgc7L60qIDBRWr+1CU9LSoU
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(39860400002)(366004)(346002)(376002)(26005)(33656002)(2906002)(66446008)(86362001)(8936002)(64756008)(8676002)(66946007)(71200400001)(55016002)(316002)(6506007)(4326008)(66556008)(83380400001)(53546011)(76116006)(66476007)(7416002)(9686003)(52536014)(6916009)(7696005)(54906003)(478600001)(5660300002)(186003)(44832011);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: ozE30r4R+x1gjL5QE7xkzMll0H5lHTs67+N/F4X5W6cVFhqXJXK1ysQFYO+EHGkuyp05Zh+mR+42EXKuv54VSaL/ehZi3IWwVBT4KxENhFtvWfK5/rjg6TeBNntUbsuyU0wmVZ8AZ0yDBjTnBJJ5x3TPclolWbVuRuNBEVCZhk7F+io7qmCvGpGIUmBUxYUpfop1fONJb9g9On7w2lOg3A0ly3mgT38pZR5SOfLBEAsJtAzpEHpPUJEm2Q7Aal/BK2z2DbSyDfAntMyihB2Wh2UZNSEc48qZR2cki8YAVz/DD3ykg0XoSXKBSNtlmusQ8P3Yg+hiXdqlj4vT1JiWmPAaSJA7YBUMcFPTlsED2y3/cGzMXOB3JpS9qoUsT542f+LdXFGZX7CeR2M2YrencKyd8wCQjKInUgCEYLVyW3dplM+Qthp8xmHdQYrnmrXQqoa3HN11uE0nX0wuCjxMzOvMYB0jOXzvaqt3qIR+Oet8qE6jUXK5jual2RABl3fmAeYr5gN28GeF8Mab6iYiMC+V0EJHGCDot2/sIaCXDi9QDvuEpqqiqDIplbX5XfrHO/vxQWFQwx0qTflhQ6zoMpqSW3I6BJN5DMSvRSmU1btBLY9n94MTB5n6FqmGqw45dhU1J3dYL2vrSZCi0uDbag==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="WplhKdTI2c8ulnbP"
-Content-Disposition: inline
-In-Reply-To: <886a8e0749e0521bf83a88313008a3f38031590b.1603354744.git.pisa@cmp.felk.cvut.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98aac4b3-2437-4c56-ed3d-08d8767a2499
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2020 11:03:44.4190
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1q9eHwxEbQUvVbil5xOCkNB1ubCDjqCTNHJee/il1TlO1lgs4iFVWRa4uF4EyUg3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3102
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---WplhKdTI2c8ulnbP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi!
-
-> From: Martin Jerabek <martin.jerabek01@gmail.com>
+> -----Original Message-----
+> From: dmitry.torokhov@gmail.com <dmitry.torokhov@gmail.com>
+> Sent: Thursday, October 22, 2020 2:56 AM
+> To: Jun Li <jun.li@nxp.com>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>;
+> heikki.krogerus@linux.intel.com; robh+dt@kernel.org; rafael@kernel.org;
+> gregkh@linuxfoundation.org; hdegoede@redhat.com; lee.jones@linaro.org;
+> mika.westerberg@linux.intel.com;
+> prabhakar.mahadev-lad.rj@bp.renesas.com;
+> laurent.pinchart+renesas@ideasonboard.com; linux-usb@vger.kernel.org;
+> devicetree@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>; Peter Chen
+> <peter.chen@nxp.com>
+> Subject: Re: [PATCH v4 2/4] device property: Add fwnode_is_compatible() a=
+nd
+> device_is_compatible() helpers
 >=20
-> This driver adds support for the CTU CAN FD open-source IP core.
-> More documentation and core sources at project page
-> (https://gitlab.fel.cvut.cz/canbus/ctucanfd_ip_core).
-> The core integration to Xilinx Zynq system as platform driver
-> is available (https://gitlab.fel.cvut.cz/canbus/zynq/zynq-can-sja1000-top=
-).
-> Implementation on Intel FGA based PCI Express board is available
-> from project (https://gitlab.fel.cvut.cz/canbus/pcie-ctu_can_fd).
-
-Is "FGA" a typo? Yes, it is.
-
-Anyway, following link tells me:
-
-Project 'canbus/pcie-ctu_can_fd' was moved to
-'canbus/pcie-ctucanfd'. Please update any links and bookmarks that may
-still have the old path. Fixing it in Kconfig is more important.
-
-> +++ b/drivers/net/can/ctucanfd/Kconfig
-> @@ -0,0 +1,15 @@
-
-> +if CAN_CTUCANFD
-> +
-> +endif
-
-Empty -> drop?
-
-> +++ b/drivers/net/can/ctucanfd/Makefile
-> @@ -0,0 +1,7 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-
-> +++ b/drivers/net/can/ctucanfd/ctu_can_fd.c
-> @@ -0,0 +1,1105 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-
-Having Makefile and sources with different licenses is rather unusual.
-
-> +static const char * const ctucan_state_strings[] =3D {
-> +	"CAN_STATE_ERROR_ACTIVE",
-> +	"CAN_STATE_ERROR_WARNING",
-> +	"CAN_STATE_ERROR_PASSIVE",
-> +	"CAN_STATE_BUS_OFF",
-> +	"CAN_STATE_STOPPED",
-> +	"CAN_STATE_SLEEPING"
-> +};
-
-Put this near function that uses this?
-
-> +/**
-> + * ctucan_set_bittiming - CAN set bit timing routine
-> + * @ndev:	Pointer to net_device structure
-> + *
-> + * This is the driver set bittiming routine.
-> + * Return: 0 on success and failure value on error
-> + */
-
-> +/**
-> + * ctucan_chip_start - This routine starts the driver
-> + * @ndev:	Pointer to net_device structure
-> + *
-> + * This is the drivers start routine.
-> + *
-> + * Return: 0 on success and failure value on error
-> + */
-
-Good documentation is nice, but repeating "This routine starts the
-driver" in "This is the drivers start routine." is not too helpful.
-
-> +/**
-> + * ctucan_start_xmit - Starts the transmission
-> + * @skb:	sk_buff pointer that contains data to be Txed
-> + * @ndev:	Pointer to net_device structure
-> + *
-> + * This function is invoked from upper layers to initiate transmission. =
-This
-> + * function uses the next available free txbuf and populates their field=
-s to
-> + * start the transmission.
-> + *
-> + * Return: %NETDEV_TX_OK on success and failure value on error
-> + */
-
-Based on other documentation, I'd expect this to return -ESOMETHING on
-error, but it returns NETDEV_TX_BUSY.
-
-> +	/* Check if the TX buffer is full */
-> +	if (unlikely(!CTU_CAN_FD_TXTNF(ctu_can_get_status(&priv->p)))) {
-> +		netif_stop_queue(ndev);
-> +		netdev_err(ndev, "BUG!, no TXB free when queue awake!\n");
-> +		return NETDEV_TX_BUSY;
-> +	}
-
-You call stop_queue() without spinlock...
-
-> +	spin_lock_irqsave(&priv->tx_lock, flags);
-> +
-> +	ctucan_hw_txt_set_rdy(&priv->p, txb_id);
-> +
-> +	priv->txb_head++;
-> +
-> +	/* Check if all TX buffers are full */
-> +	if (!CTU_CAN_FD_TXTNF(ctu_can_get_status(&priv->p)))
-> +		netif_stop_queue(ndev);
-> +
-> +	spin_unlock_irqrestore(&priv->tx_lock, flags);
-
-=2E..and then with spinlock held. One of them is buggy.
-
-> +/**
-> + * xcan_rx -  Is called from CAN isr to complete the received
-> + *		frame processing
-> + * @ndev:	Pointer to net_device structure
-> + *
-> + * This function is invoked from the CAN isr(poll) to process the Rx fra=
-mes. It
-> + * does minimal processing and invokes "netif_receive_skb" to complete f=
-urther
-> + * processing.
-> + * Return: 1 on success and 0 on failure.
-> + */
-
-Adapt to usual 0 / -EFOO?
-
-> +	/* Check for Arbitration Lost interrupt */
-> +	if (isr.s.ali) {
-> +		if (dologerr)
-> +			netdev_info(ndev, "  arbitration lost");
-> +		priv->can.can_stats.arbitration_lost++;
-> +		if (skb) {
-> +			cf->can_id |=3D CAN_ERR_LOSTARB;
-> +			cf->data[0] =3D CAN_ERR_LOSTARB_UNSPEC;
-> +		}
-> +	}
-> +
-> +	/* Check for Bus Error interrupt */
-> +	if (isr.s.bei) {
-> +		netdev_info(ndev, "  bus error");
-
-Missing "if (dologerr)" here?
-
-> +static int ctucan_rx_poll(struct napi_struct *napi, int quota)
-> +{
-> +	struct net_device *ndev =3D napi->dev;
-> +	struct ctucan_priv *priv =3D netdev_priv(ndev);
-> +	int work_done =3D 0;
-> +	union ctu_can_fd_status status;
-> +	u32 framecnt;
-> +
-> +	framecnt =3D ctucan_hw_get_rx_frame_count(&priv->p);
-> +	netdev_dbg(ndev, "rx_poll: %d frames in RX FIFO", framecnt);
-
-This will be rather noisy, right?
-
-> +	/* Check for RX FIFO Overflow */
-> +	status =3D ctu_can_get_status(&priv->p);
-> +	if (status.s.dor) {
-> +		struct net_device_stats *stats =3D &ndev->stats;
-> +		struct can_frame *cf;
-> +		struct sk_buff *skb;
-> +
-> +		netdev_info(ndev, "  rx fifo overflow");
-
-And this goes at different loglevel, which will be confusing?
-
-> +/**
-> + * xcan_tx_interrupt - Tx Done Isr
-> + * @ndev:	net_device pointer
-> + */
-> +static void ctucan_tx_interrupt(struct net_device *ndev)
-
-Mismatch between code and docs.
-
-> +	netdev_dbg(ndev, "%s", __func__);
-
-This is inconsistent with other debugging.... and perhaps it is time
-to remove this kind of debugging for merge.
-
-> +/**
-> + * xcan_interrupt - CAN Isr
-> + */
-> +static irqreturn_t ctucan_interrupt(int irq, void *dev_id)
-
-Inconsistent.
-
-> +		/* Error interrupts */
-> +		if (isr.s.ewli || isr.s.fcsi || isr.s.ali) {
-> +			union ctu_can_fd_int_stat ierrmask =3D { .s =3D {
-> +				  .ewli =3D 1, .fcsi =3D 1, .ali =3D 1, .bei =3D 1 } };
-> +			icr.u32 =3D isr.u32 & ierrmask.u32;
-
-We normally do bit arithmetics instead of this.=20
-
-> +	{
-> +		union ctu_can_fd_int_stat imask;
-> +
-> +		imask.u32 =3D 0xffffffff;
-> +		ctucan_hw_int_ena_clr(&priv->p, imask);
-> +		ctucan_hw_int_mask_set(&priv->p, imask);
-> +	}
-
-More like this. Plus avoid block here...?
-
-> +/**
-> + * ctucan_close - Driver close routine
-> + * @ndev:	Pointer to net_device structure
-> + *
-> + * Return: 0 always
-> + */
-
-You see, this is better. No need to say "Driver close routine"
-twice. Now, make the rest consistent :-).
-
-
-> +EXPORT_SYMBOL(ctucan_suspend);
-> +EXPORT_SYMBOL(ctucan_resume);
-
-_GPL?
-
-And what kind of multi-module stuff are you doing that you need
-symbols exported?
-
-> +int ctucan_probe_common(struct device *dev, void __iomem *addr, int irq,=
- unsigned int ntxbufs,
-> +			unsigned long can_clk_rate, int pm_enable_call,
-> +			void (*set_drvdata_fnc)(struct device *dev, struct net_device *ndev))
-> +{
-
-Splitting/simplifying this somehow would be good.
-
-> +/* Register descriptions: */
-> +union ctu_can_fd_frame_form_w {
-> +	uint32_t u32;
-
-u32, as you write elsewhere.
-
-> +	struct ctu_can_fd_frame_form_w_s {
-> +#ifdef __LITTLE_ENDIAN_BITFIELD
-> +  /* FRAME_FORM_W */
-> +		uint32_t dlc                     : 4;
-> +		uint32_t reserved_4              : 1;
-> +		uint32_t rtr                     : 1;
-> +		uint32_t ide                     : 1;
-> +		uint32_t fdf                     : 1;
-> +		uint32_t reserved_8              : 1;
-> +		uint32_t brs                     : 1;
-> +		uint32_t esi_rsv                 : 1;
-> +		uint32_t rwcnt                   : 5;
-> +		uint32_t reserved_31_16         : 16;
-> +#else
-
-I believe you should simply avoid using bitfields.
-
-> +union ctu_can_fd_timestamp_l_w {
-> +	uint32_t u32;
-> +	struct ctu_can_fd_timestamp_l_w_s {
-> +  /* TIMESTAMP_L_W */
-> +		uint32_t time_stamp_31_0        : 32;
-> +	} s;
-> +};
-
-This is crazy.
-
-> +union ctu_can_fd_data_5_8_w {
-> +	uint32_t u32;
-> +	struct ctu_can_fd_data_5_8_w_s {
-> +#ifdef __LITTLE_ENDIAN_BITFIELD
-> +  /* DATA_5_8_W */
-> +		uint32_t data_5                  : 8;
-> +		uint32_t data_6                  : 8;
-> +		uint32_t data_7                  : 8;
-> +		uint32_t data_8                  : 8;
-> +#else
-> +		uint32_t data_8                  : 8;
-> +		uint32_t data_7                  : 8;
-> +		uint32_t data_6                  : 8;
-> +		uint32_t data_5                  : 8;
-> +#endif
-> +	} s;
-> +};
-
-even more crazy.
-
-> +#ifdef __KERNEL__
-> +# include <linux/can/dev.h>
-> +#else
-> +/* The hardware registers mapping and low level layer should build
-> + * in userspace to allow development and verification of CTU CAN IP
-> + * core VHDL design when loaded into hardware. Debugging hardware
-> + * from kernel driver is really difficult, leads to system stucks
-> + * by error reporting etc. Testing of exactly the same code
-> + * in userspace together with headers generated automatically
-> + * generated from from IP-XACT/cactus helps to driver to hardware
-> + * and QEMU emulation model consistency keeping.
-> + */
-> +# include "ctu_can_fd_linux_defs.h"
-> +#endif
-
-Please remove non-kernel code for merge.
-
-> +void ctucan_hw_write32(struct ctucan_hw_priv *priv,
-> +		       enum ctu_can_fd_can_registers reg, u32 val)
-> +{
-> +	iowrite32(val, priv->mem_base + reg);
-> +}
-
-And get rid of this kind of abstraction layer.
-
-> +// TODO: rename or do not depend on previous value of id
-
-TODO: grep for TODO and C++ comments before attempting merge.
-
-> +static bool ctucan_hw_len_to_dlc(u8 len, u8 *dlc)
-> +{
-> +	*dlc =3D can_len2dlc(len);
-> +	return true;
-> +}
-
-Compared to how well other code is documented... This one is voodoo.
-
-> +bool ctucan_hw_set_ret_limit(struct ctucan_hw_priv *priv, bool enable, u=
-8 limit)
-> +{
-> +	union ctu_can_fd_mode_settings reg;
-> +
-> +	if (limit > CTU_CAN_FD_RETR_MAX)
-> +		return false;
-> +
-> +	reg.u32 =3D priv->read_reg(priv, CTU_CAN_FD_MODE);
-> +	reg.s.rtrle =3D enable ? RTRLE_ENABLED : RTRLE_DISABLED;
-> +	reg.s.rtrth =3D limit & 0xF;
-> +	priv->write_reg(priv, CTU_CAN_FD_MODE, reg.u32);
-> +	return true;
-> +}
-
-As elsewhere, I'd suggest 0/-ERRNO.
-
-> +void ctucan_hw_set_mode_reg(struct ctucan_hw_priv *priv,
-> +			    const struct can_ctrlmode *mode)
-> +{
-> +	u32 flags =3D mode->flags;
-> +	union ctu_can_fd_mode_settings reg;
-> +
-> +	reg.u32 =3D priv->read_reg(priv, CTU_CAN_FD_MODE);
-
-> +	if (mode->mask & CAN_CTRLMODE_LOOPBACK)
-> +		reg.s.ilbp =3D flags & CAN_CTRLMODE_LOOPBACK ?
-> +					INT_LOOP_ENABLED : INT_LOOP_DISABLED;
-
-Not sure what is going on here, but having mode->flags in same format
-as hardware register would help...?
-
-> +	switch (fnum) {
-> +	case CTU_CAN_FD_FILTER_A:
-> +		if (reg.s.sfa)
-> +			return true;
-> +	break;
-> +	case CTU_CAN_FD_FILTER_B:
-> +		if (reg.s.sfb)
-> +			return true;
-> +	break;
-> +	case CTU_CAN_FD_FILTER_C:
-> +		if (reg.s.sfc)
-> +			return true;
-> +	break;
-> +	}
-
-Check indentation of break statemnts, also elsewhere in this file
-
-> +bool ctucan_hw_get_range_filter_support(struct ctucan_hw_priv *priv)
-> +{
-> +	union ctu_can_fd_filter_control_filter_status reg;
-> +
-> +	reg.u32 =3D priv->read_reg(priv, CTU_CAN_FD_FILTER_CONTROL);
-> +
-> +	if (reg.s.sfr)
-> +		return true;
-
-return !!reg.s.sfr; ?
-
-> +enum ctu_can_fd_tx_status_tx1s ctucan_hw_get_tx_status(struct ctucan_hw_=
-priv
-> +							*priv, u8 buf)
-=2E..
-> +	default:
-> +		status =3D ~0;
-> +	}
-> +	return (enum ctu_can_fd_tx_status_tx1s)status;
-> +}
-
-Is ~0 in the enum?
-
-> +	// TODO: use named constants for the command
-
-TODO...
-
-> +// TODO: AL_CAPTURE and ERROR_CAPTURE
-
-=2E..
-
-> +#if defined(__LITTLE_ENDIAN_BITFIELD) =3D=3D defined(__BIG_ENDIAN_BITFIE=
-LD)
-> +# error __BIG_ENDIAN_BITFIELD or __LITTLE_ENDIAN_BITFIELD must be define=
-d.
-> +#endif
-
-:-).
-> +// True if Core is transceiver of current frame
-> +#define CTU_CAN_FD_IS_TRANSMITTER(stat) (!!(stat).ts)
-> +
-> +// True if Core is receiver of current frame
-> +#define CTU_CAN_FD_IS_RECEIVER(stat) (!!(stat).s.rxs)
-
-Why not, documentation is nice. But it is in big contrast to other
-parts of code where there's no docs at all.
-
-> +struct ctucan_hw_priv;
-> +#ifndef ctucan_hw_priv
-> +struct ctucan_hw_priv {
-> +	void __iomem *mem_base;
-> +	u32 (*read_reg)(struct ctucan_hw_priv *priv,
-> +			enum ctu_can_fd_can_registers reg);
-> +	void (*write_reg)(struct ctucan_hw_priv *priv,
-> +			  enum ctu_can_fd_can_registers reg, u32 val);
-> +};
-> +#endif
-
-Should not be needed in kernel.
-
-> +/**
-> + * ctucan_hw_read_rx_word - Reads one word of CAN Frame from RX FIFO Buf=
-fer.
-> + *
-> + * @priv: Private info
-> + *
-> + * Return: One wword of received frame
-
-Typo 'word'.
-
-> +++ b/drivers/net/can/ctucanfd/ctu_can_fd_regs.h
-> @@ -0,0 +1,971 @@
-> +
-> +/* This file is autogenerated, DO NOT EDIT! */
-> +
-
-Yay. How is that supposed to work after merge?
-
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
-
---WplhKdTI2c8ulnbP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX5FmtQAKCRAw5/Bqldv6
-8vGvAJ9uJYXCbakJMeRM74nm7C5yS5WNjgCfedqWhCgGitgON8XcH8L7t1FjLYU=
-=malX
------END PGP SIGNATURE-----
-
---WplhKdTI2c8ulnbP--
+> On Tue, Oct 20, 2020 at 11:13:47AM +0000, Jun Li wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > Sent: Monday, October 19, 2020 8:25 PM
+> > > To: Jun Li <jun.li@nxp.com>
+> > > Cc: heikki.krogerus@linux.intel.com; robh+dt@kernel.org;
+> > > rafael@kernel.org; gregkh@linuxfoundation.org; hdegoede@redhat.com;
+> > > lee.jones@linaro.org; mika.westerberg@linux.intel.com;
+> > > dmitry.torokhov@gmail.com; prabhakar.mahadev-lad.rj@bp.renesas.com;
+> > > laurent.pinchart+renesas@ideasonboard.com;
+> > > linux-usb@vger.kernel.org; devicetree@vger.kernel.org; dl-linux-imx
+> > > <linux-imx@nxp.com>; Peter Chen <peter.chen@nxp.com>
+> > > Subject: Re: [PATCH v4 2/4] device property: Add
+> > > fwnode_is_compatible() and
+> > > device_is_compatible() helpers
+> > >
+> > > On Mon, Oct 19, 2020 at 05:03:13PM +0800, Li Jun wrote:
+> > > > From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > > >
+> > > > Since there are also some ACPI platforms where the "compatible"
+> > > > property is used, introducing a generic helper function
+> > > > fwnode_is_compatible() that can be used with DT, ACPI and swnodes,
+> > > > and a wrapper function
+> > > > device_is_compatible() with it.
+> > > >
+> > > > The function calls of_device_is_comaptible() with OF nodes, and
+> > > > with ACPI and swnodes it matches the given string against the "comp=
+atible"
+> > > > string property array.
+> > >
+> > > ...
+> > >
+> > > > + * Match the compatible strings of @fwnode against @compat.
+> > > > + Returns positive
+> > > > + * value on match, and 0 when no matching compatible string is fou=
+nd.
+> > >
+> > > Please move Returns... to a separate paragraph.
+> >
+> > OK, will change.
+> >
+> > >
+> > > Btw, this is not true...
+> > >
+> > > > +int fwnode_is_compatible(struct fwnode_handle *fwnode, const char
+> > > > +*compat) {
+> > > > +	int ret;
+> > > > +
+> > > > +	if (is_of_node(fwnode))
+> > > > +		return of_device_is_compatible(to_of_node(fwnode),
+> compat);
+> > > > +
+> > > > +	ret =3D fwnode_property_match_string(fwnode, "compatible",
+> > > > +compat);
+> > > > +
+> > >
+> > > > +	return ret < 0 ? 0 : 1;
+> > >
+> > > ...and this is at least strange after all.
+> >
+> > of_device_is_compatible() will return positive value on match, and 0
+> > when no matching,
+> > fwnode_property_match_string() will return 0 if the property was found
+> > (success); and negative error code on failure. so the return
+> > conversion of fwnode_property_match_string () should work here.
+>=20
+> Yes, but please make the function return bool instead of int.
+> of_device_is_compatible() returns "score", so it is int, but here we only
+> want yes/no.
+>=20
+> So
+>=20
+> 	return fwnode_property_match_string(...) =3D=3D 0;
+
+My understanding this is to keep this new API fwnode_is_compatible() consis=
+tent
+with of_device_is_compatible(). I would wait patch author Heikki to comment=
+ this.
+
+thanks
+Li Jun=20
+>=20
+> Thanks.
+>=20
+> --
+> Dmitry
