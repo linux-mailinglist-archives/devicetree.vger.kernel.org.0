@@ -2,120 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BDD629576E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 06:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A3CF295790
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 07:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2507672AbgJVE7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 00:59:35 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:51402 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2507671AbgJVE7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 00:59:34 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id E906A80659;
-        Thu, 22 Oct 2020 06:59:30 +0200 (CEST)
-Date:   Thu, 22 Oct 2020 06:59:29 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] drm/panel: mantix panel reset fixes
-Message-ID: <20201022045929.GA2775675@ravnborg.org>
-References: <cover.1602584953.git.agx@sigxcpu.org>
- <20201016142916.GA1184974@ravnborg.org>
- <20201017091307.GA2885@bogon.m.sigxcpu.org>
- <20201017104736.GA2822081@ravnborg.org>
- <20201019154437.GE401619@phenom.ffwll.local>
- <20201020115711.GA102703@bogon.m.sigxcpu.org>
+        id S2444106AbgJVFFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 01:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59160 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2443906AbgJVFFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 01:05:14 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06AACC0613D4
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 22:05:14 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id c17so358408pjo.5
+        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 22:05:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=br1VG/AftR5rvhAmwlJkFmu6wT77im0wqYMY63lXCPc=;
+        b=f48hBtEYiQ9cumyN91pZln9WRYzYGIagC8IaqGZt02+O2MHl6eQhg0BtJ9+cg1Lz5h
+         o78FtZXmTE3jBKH3YGJw6UO0d0jZFwtKCoYPkexfnY1SZ/dfXt7VslCJZM/bN6IMdzvi
+         1GjVCtofogBD1D5SMd8g0By60jOJ/X9Pviva4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=br1VG/AftR5rvhAmwlJkFmu6wT77im0wqYMY63lXCPc=;
+        b=t+/u/na5iw30YSNj9ZufTgZtaUlRS2mbqaGSF5+BwahAsDv0TReGpqX2KKwSeJnJ/h
+         gt3ser7znXfH1W4udI42wVb8JecBfn3HQDqKfVQAXxljSnKW5zmhG/hHmzZdE5XRkGmF
+         WsIjMTz/QvUHj0xMG3P6wbKjtNuOrt55QiSqzMyIs7tXAuCCGdpKB1Jwy9xghAnU1sHm
+         CqKmQhNYm+Vl1Jdmzba8mMtPOKhD6R0DwakLXlE57Z9YQSzZRePEUoCCrtevzCeQyXQd
+         /09/eB22kHYOgmaPQTBbXAWZ4Dt98HIeSaaTlVM7X/DcppVpQ/CC4OJ7MReKlhdhqP9L
+         5mJQ==
+X-Gm-Message-State: AOAM5331vpbIZo84faOTfrB3o3dUf6vb7sQZ9fvNXaGsdZZ5yBOlKTMn
+        pB+uDqVNgrxFwg6A/AvPPcIUBQ==
+X-Google-Smtp-Source: ABdhPJymcPyyQm+Vwkk6bRyWkhQZdrrKBm+8kHDpsoJwQTQghvs0I0e+UpqN3Vxv1JCNbjDoQlFwsw==
+X-Received: by 2002:a17:902:ab89:b029:d5:b297:2cc1 with SMTP id f9-20020a170902ab89b02900d5b2972cc1mr765458plr.7.1603343113453;
+        Wed, 21 Oct 2020 22:05:13 -0700 (PDT)
+Received: from alex-desktop.lan (c-73-63-253-164.hsd1.ca.comcast.net. [73.63.253.164])
+        by smtp.gmail.com with ESMTPSA id q16sm394954pfu.206.2020.10.21.22.05.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Oct 2020 22:05:12 -0700 (PDT)
+From:   Alexandru Stan <amstan@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Alexandru Stan <amstan@chromium.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH v3 0/3] PWM backlight interpolation adjustments
+Date:   Wed, 21 Oct 2020 22:04:42 -0700
+Message-Id: <20201022050445.930403-1-amstan@chromium.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201020115711.GA102703@bogon.m.sigxcpu.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=fu7ymmwf c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=8nJEP1OIZ-IA:10 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
-        a=ze386MxoAAAA:8 a=7gkXJVJtAAAA:8 a=rBIqfxwrrtgd4LGA3nsA:9
-        a=wPNLvfGTeEIA:10 a=vwX7oiHrwKcA:10 a=AjGcO6oz07-iQ99wixmX:22
-        a=Vxmtnl_E_bksehYqCbjh:22 a=iBZjaW-pnkserzjvUTHh:22
-        a=E9Po1WZjFZOl8hwRPBS3:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido.
+I was trying to adjust the brightness-levels for the trogdor boards:
+https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/2291209
+Like on a lot of panels, trogdor's low end needs to be cropped,
+and now that we have the interpolation stuff I wanted to make use of it
+and bake in even the curve that's customary to have on chromebooks.
 
-On Tue, Oct 20, 2020 at 01:57:11PM +0200, Guido Günther wrote:
-> Hi Daniel, Sam,
-> On Mon, Oct 19, 2020 at 05:44:37PM +0200, Daniel Vetter wrote:
-> > On Sat, Oct 17, 2020 at 12:47:36PM +0200, Sam Ravnborg wrote:
-> > > Hi Guido.
-> > > 
-> > > On Sat, Oct 17, 2020 at 11:13:07AM +0200, Guido Günther wrote:
-> > > > Hi Sam,
-> > > > On Fri, Oct 16, 2020 at 04:29:16PM +0200, Sam Ravnborg wrote:
-> > > > > Hi Guido.
-> > > > > On Tue, Oct 13, 2020 at 12:32:45PM +0200, Guido Günther wrote:
-> > > > [..snip..]
-> > > > > > 
-> > > > > > Changes from v1:
-> > > > > >  - As per review comments by Fabio Estevam
-> > > > > >    https://lore.kernel.org/dri-devel/CAOMZO5B5ECcConvKej=RcaF8wvOxgq7nUzKJ-ad0aSAOzUqtbQ@mail.gmail.com/
-> > > > > >    - Fix typo in commit messages
-> > > > > >  - As per review comments by Rob Herring
-> > > > > >    https://lore.kernel.org/dri-devel/20200929174624.GA832332@bogus/
-> > > > > >    - Don't use an array of reset lines
-> > > > > > 
-> > > > > > Guido Günther (3):
-> > > > > >   drm/panel: mantix: Don't dereference NULL mode
-> > > > > >   drm/panel: mantix: Fix panel reset
-> > > > > >   dt-binding: display: Require two resets on mantix panel
-> > > > > 
-> > > > > All applied to drm-misc-next and pushed out.
-> > > > > And then I remembered you had commit right - sigh.
-> > > > 
-> > > > Thanks! Is there any special care needed to get that into 5.10? The
-> > > > driver landed there in 72967d5616d3f0c714f8eb6c4e258179a9031c45.
-> > > 
-> > > As the patches was applied to drm-misc-next the easiet path would
-> > > be to cherry-pick them and apply to drm-misc-fixes.
-> > > dim has cherry-pick support - try to use it rahter than doing it by
-> > > hand.
-> > 
-> > drm-misc-next-fixes while we're between freeze and merge window end:
-> > 
-> > https://drm.pages.freedesktop.org/maintainer-tools/committer-drm-misc.html#where-do-i-apply-my-patch
-> 
-> Great. Thanks for the pointer, that works. Now i get:
-> 
->   $ ../maintainer-tools/dim push --dry-run
->   dim: 3532f0117258 ("dt-binding: display: Require two resets on mantix panel"): mandatory review missing.
->   dim: c90f95ad6d05 ("drm/panel: mantix: Fix panel reset"): mandatory review missing.
->   dim: 8b557f793e69 ("drm/panel: mantix: Don't dereference NULL mode"): mandatory review missing.
->   dim: ERROR: issues in commits detected, aborting
-> 
-> and in fact there's only Signed-off-by's on it:
-> 
->   Fixes: 72967d5616d3 ("drm/panel: Add panel driver for the Mantix MLAF057WE51-X DSI panel")
->   Signed-off-by: Guido Günther <agx@sigxcpu.org>
->   Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
->   Link: https://patchwork.freedesktop.org/patch/msgid/ba71a8ab010d263a8058dd4f711e3bcd95877bf2.1602584953.git.agx@sigxcpu.org
-> 
-> Sam, I assume your Signed-off-by's should have been Reviewed-by ?
-> O.k. to fix that up in the commit message before pushing to
-> drm-misc-next?
-Fine to add my r-b.
+I found the current behavior of the pwm_bl driver a little unintuitive
+and non-linear. See patch 1 for a suggested fix for this.
 
-For patches I push I always read the patch - but seldom claim that I
-review them. It seems a bit implicit I think - but maybe this is just
-bad practice on my side.
+A few veyron dts files were relying on this (perhaps weird) behavior.
+Those devices also want a minimum brightness like trogdor, so changed
+them to use the new way.
 
-Then I also avoid the endless discussion with myself it what I did
-warrant an a-b or r-b.
+Finally, given that trogdor's dts is part of linux-next now, add the
+brightness-levels to it, since that's the original reason I was looking at
+this.
 
-	Sam
+Changes in v3:
+- Reordered patches, since both dts changes will work just fine
+  even before the driver change.
+- Rewrote a bit of the commit message to describe the new policy,
+  as Daniel suggested.
+- Removed redundant s64 for something that's always positive
+
+Changes in v2:
+- Fixed type promotion in the driver
+- Removed "backlight: pwm_bl: Artificially add 0% during interpolation",
+  userspace works just fine without it because it already knows how to use
+  bl_power for turning off the display.
+- Added brightness-levels to trogdor as well, now the dts is upstream.
+
+
+Alexandru Stan (3):
+  ARM: dts: rockchip: veyron: Remove 0 point from brightness-levels
+  arm64: dts: qcom: trogdor: Add brightness-levels
+  backlight: pwm_bl: Fix interpolation
+
+ arch/arm/boot/dts/rk3288-veyron-jaq.dts      |  2 +-
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts   |  2 +-
+ arch/arm/boot/dts/rk3288-veyron-tiger.dts    |  2 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 +++
+ drivers/video/backlight/pwm_bl.c             | 70 +++++++++-----------
+ 5 files changed, 43 insertions(+), 42 deletions(-)
+
+-- 
+2.28.0
+
