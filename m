@@ -2,80 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17A902958A5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 08:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 130DA2958EF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 09:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438854AbgJVGzs convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Oct 2020 02:55:48 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:33012 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2411545AbgJVGzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 02:55:47 -0400
-Received: by mail-ed1-f67.google.com with SMTP id w23so673889edl.0;
-        Wed, 21 Oct 2020 23:55:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=wMeB1zJzZMK8x7XA1QSAy+WdSIpZ6mUMkpBppzeyvnw=;
-        b=YUB39IHhYcaI2qkgIOOKfF/XmPoHGFfS0TeVQ5CYM8KIr46Hlm6BYTmEPtnTVBBOrf
-         469ysRGQNWLHxg8rIUW1IeGJqTlAjNz2HvPvi2IR5C3t9/YhO9/h5Hx/1ylKO159eTCr
-         4b4fBYw8GzF8SZdauEty6jU6JheOV7S910v2N/jowVaI98dguhBd1Ash0Abm6wMhgQ4P
-         SHmy01vlio0jOOpGVpmsS1JNZki5Nwdp2YJDo335mquEmwCe2XmAwaQ+B04yMylEJdo2
-         ujecThgzXFV2/GJWkDRou9vq6DBDohQwgz+KF6whTYG7lvNpdBT3GegKCCRFhRbJCxEd
-         N4eg==
-X-Gm-Message-State: AOAM530Y8/lwqUkAA/eOTLhjrtNVz5a8k8EG5d8szMXRFyChO+5z/4OE
-        8FtrIPF1v22yHJQaH1YQBvM=
-X-Google-Smtp-Source: ABdhPJygfj7Hlq2E4HbV0n7CfCdPnc4i/J7eKS1StJBSG5I6GXjoEvLuS0tOu+gGxnqqzYGmz4+Zqg==
-X-Received: by 2002:aa7:c98f:: with SMTP id c15mr973061edt.200.1603349746176;
-        Wed, 21 Oct 2020 23:55:46 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.171])
-        by smtp.googlemail.com with ESMTPSA id e7sm303568ejm.4.2020.10.21.23.55.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 23:55:45 -0700 (PDT)
-Date:   Thu, 22 Oct 2020 08:55:42 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: net: Add bindings for AX88796C SPI
- Ethernet Adapter
-Message-ID: <20201022065542.GB3829@kozik-lap>
-References: <20201021214910.20001-1-l.stelmach@samsung.com>
- <CGME20201021214933eucas1p152c8fc594793aca56a1cbf008f8415a4@eucas1p1.samsung.com>
- <20201021214910.20001-3-l.stelmach@samsung.com>
+        id S2508375AbgJVHR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 03:17:28 -0400
+Received: from mga05.intel.com ([192.55.52.43]:64980 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2505929AbgJVHR1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 03:17:27 -0400
+IronPort-SDR: SoJ2RhkCYwX5ejPO8vgVHq6fYNE+mzipCF/VkcdzEsqd/eInyIua1cNdV+RTBVM3bgOeegXZqs
+ 0kZ5g1sjrt7Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="252184737"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; 
+   d="scan'208";a="252184737"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Oct 2020 00:17:27 -0700
+IronPort-SDR: vE7lSd/HnUNj4uuHa7y2UyFJuvMoxjJxw0kJKH7eukvgJ7BMfxY42JzimvzMytIZ7qpgD66KVQ
+ VL04DYnAm+QA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; 
+   d="scan'208";a="321286159"
+Received: from ubuntu18.png.intel.com ([10.88.229.38])
+  by orsmga006.jf.intel.com with ESMTP; 22 Oct 2020 00:17:24 -0700
+From:   vijayakannan.ayyathurai@intel.com
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        vijayakannan.ayyathurai@intel.com
+Subject: [PATCH v14 0/2] Add PWM support for Intel Keem Bay SoC
+Date:   Thu, 22 Oct 2020 15:14:45 +0800
+Message-Id: <cover.1603350036.git.vijayakannan.ayyathurai@intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201021214910.20001-3-l.stelmach@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 11:49:07PM +0200, Łukasz Stelmach wrote:
-> Add bindings for AX88796C SPI Ethernet Adapter.
-> 
-> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
-> ---
->  .../bindings/net/asix,ax88796c.yaml           | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c.yaml
-> 
+From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Hi,
 
-Best regards,
-Krzysztof
+This patch set enables the support for PWM in the Intel Keem Bay SoC.
+Keem Bay is an ARM based SoC, and the GPIO module allows
+configuration of 6 PWM outputs.
+
+Patch 1 adds the PWM driver and Patch 2 is for the required
+Device Tree bindings documentation.
+
+This driver was tested on the Keem Bay evaluation module board.
+
+Thank you.
+
+Regards,
+Vijay
+
+Changes since v13:
+- Fix indentation error in dt-binding.
+- Add maintainer name in dt-binding.
+
+Changes since v12:
+- Use devm_add_action_or_reset() as per Andy suggestion.
+- Do the clk_prepare_enable() after all devm_ stuff as per Uwe suggestion.
+- Optimize keembay_pwm_remove function.
+- Simplify the error handling for pwmchip_add.
+- In Kconfig, Use depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
+- Fix indentation error in dt-binding.
+- Add Uwe's Reviewed-by tag and Vijay's Co-developed-by tag.
+
+Changes since v11:
+- Minor variable name change to match the api needs.
+- Setup polarity as PWM_POLARITY_NORMAL.
+- Add comment for LEADIN register usage.
+
+Changes since v10:
+- Update low time calculation formula as per Uwe.
+- During distruct remove pwmchip first then disable the clock.
+
+Changes since v9:
+- Remove Reported-by tag from the commit log.
+
+Changes since v8:
+- Fix the compilation error reported by kernel test robot.
+- Add the tag Reported-by: kernel test robot <lkp@intel.com>
+- Minor correction in the pwm low time calculation formula.
+- Rebase with 5.9-rc7
+
+Changes since v7:
+- Change the dependency as ARCH_KEEMBAY instead of ARM64 in Kconfig.
+- Use DIV_ROUND_DOWN_ULL instead of DIV_ROUND_CLOSEST_ULL.
+- Update the right formula as per Uwe.
+- List the tags in chronological order.
+- Add clk_disable_unprepare in the error paths.
+
+Changes since v6:
+- Add reviewed-by tag
+
+Changes since v5:
+- Reorder symbols/Kconfig in drivers/pwm/Kconfig and drivers/pwm/Makefile
+- Use "Limitations" for consistency
+- Add clk_prepare_enable()
+- Reorder keembay_pwm_get_state() function call
+- Rework if conditional for channel disablement in .apply()
+- Remove channel disabling from .probe(), and clear LEADIN register bits
+  in .apply instead
+- Update commit message for Patch 1
+
+Changes since v4:
+- Add co-developed-by tag
+- Include mod_devicetable.h and remove of.h
+- Update comment with correct calulation for high/low time
+- Fix missing return from dev_err_probe
+
+Changes since v3:
+- Removed variable for address and calculate in place instead
+- Utilized u32_replace_bits() when updating KMB_PWM_LEADIN_OFFSET
+- Utilized dev_err_probe() for error reporting
+- Updated comments to use physical units
+- Updated error check for pwmchip_add()
+
+Changes since v2:
+- Include documentation about HW limitation/behaviour
+- Use hex values for KMB_PWM_COUNT_MAX
+- Redefine register macros
+- Utilize FIELD_GET/FIELD_PREP for calculating pwm_l/h_count and
+  pwm_count
+- Round up duty cycle/period values
+- Get current hardware state in .apply instead of cached values
+- Do a polarity check before .enabled
+- Round high time/low time to closest value
+- Set enable bit in KMB_PWM_LEADIN_OFFSET to 0 in probe
+- Correct the naming for MODULE_ALIAS
+- Add additionalProperties: false in DT bindings
+
+Changes since v1:
+- Updated licensing info, "clocks" property and example in DT bindings
+- Updated name of DT bindings document to match compatible string
+- Removed 1 patch for addition of new sysfs attribute "count"
+- Added support for COMPILE_TEST in Kconfig
+- Updated naming of defines and regmap attribute
+- Updated calculation of waveform high time and low time
+- Added range checking for waveform high/low time
+- Implemented .get_state
+- Removed register writes for lead-in and count values (left to default)
+- Updated register access to single-access
+- Folded keembay_pwm_enable/disable_channel,
+  keembay_pwm_config_period/duty_cycle,
+  and keembay_pwm_config into keembay_pwm_apply
+- Updated error messages/error codes
+- Removed pwm_disable from keembay_pwm_remove
+- Removed clk_prepare/clk_enable/clk_disable from driver
+
+Lai, Poey Seng (1):
+  pwm: Add PWM driver for Intel Keem Bay
+
+Vineetha G. Jaya Kumaran (1):
+  dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
+
+ .../bindings/pwm/intel,keembay-pwm.yaml       |  47 ++++
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-keembay.c                     | 240 ++++++++++++++++++
+ 4 files changed, 297 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-keembay.c
+
+
+base-commit: 549738f15da0e5a00275977623be199fbbf7df50
+prerequisite-patch-id: 0a348762b660d0d817b8e70cc71647e83173c78c
+prerequisite-patch-id: 0c6072cfe492b078c44ec864b8f9d1c76eada93b
+prerequisite-patch-id: 12b93428ee51a3d92ca973b928c0e0989f5d585e
+--
+2.17.1
+
