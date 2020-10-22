@@ -2,114 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86750295797
-	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 07:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40E42957BF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Oct 2020 07:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2507750AbgJVFFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Oct 2020 01:05:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2507745AbgJVFFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Oct 2020 01:05:22 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41AF3C0613D2
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 22:05:21 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id o1so365233pjt.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Oct 2020 22:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wpLYvGhuKyxRXzfVKDpynuN2d2Rj3ki47jaONctjv2M=;
-        b=RBhmk4Yoxh9jge/imYHKNgrjYeOVihPb1YzvKBi30BYoocMGuVr03u2v8Yh5x9HBY+
-         9x+ZgOAWZy+tADrZRVw85qC71V6vjSqpprPTk7GaRbCkW9+/42aAwkMrHLTfeneklWye
-         ZtEXbdQU53ltimT+Ktri5sDHtWTTQNfASUZ58=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wpLYvGhuKyxRXzfVKDpynuN2d2Rj3ki47jaONctjv2M=;
-        b=TF0hLlt8+Jty6zFRv46cmfHJjg9/l0bSEgYXD7iGaZAP2184LpJXWNl76A/YYgNMVJ
-         hGGdZ/YjVOVqRbzDkPVi8px1hZDfiuqBEqIAskfDV1aQkC0MBD2RxchFXkmW8wn2sTRW
-         rcT/+57c1BpxNgqBPjSuszCbIWvIwx6H9uvpWq58Bs1a7x7zpUGzwtm2tt7WcDGP5JYK
-         tHzHkfBQ4ERtqK2TXKwvxsTt6tYSW3FmErs8AKj98cjoRGL2m3veCF7S9x2fmMCDyr0c
-         NH7x3fYMVk5PLzaKdE9FKREmGZZIXok36V7TKN60lbzSuqb6gz7N0hoL3ifp8s0HrRJA
-         DnvQ==
-X-Gm-Message-State: AOAM533+Z31WC2hmJUYHFZYtjmaOEZ7rhY5aLwSq00IA4yt4iz2NRtYN
-        9ho7mWFdR+XfdDgyd1LjILomzQ==
-X-Google-Smtp-Source: ABdhPJwE6Djg9sy5FUg+MODQPTa7yCYtbMqMJOwWukFS48qoFn6DL7xRd79dt+BffZ+JvAe/dWMiIg==
-X-Received: by 2002:a17:90a:788a:: with SMTP id x10mr86917pjk.236.1603343120839;
-        Wed, 21 Oct 2020 22:05:20 -0700 (PDT)
-Received: from alex-desktop.lan (c-73-63-253-164.hsd1.ca.comcast.net. [73.63.253.164])
-        by smtp.gmail.com with ESMTPSA id q16sm394954pfu.206.2020.10.21.22.05.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Oct 2020 22:05:20 -0700 (PDT)
-From:   Alexandru Stan <amstan@chromium.org>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Alexandru Stan <amstan@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/3] arm64: dts: qcom: trogdor: Add brightness-levels
-Date:   Wed, 21 Oct 2020 22:04:44 -0700
-Message-Id: <20201021220404.v3.2.Ie4d84af5a85e8dcb8f575845518fa39f324a827d@changeid>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201022050445.930403-1-amstan@chromium.org>
-References: <20201022050445.930403-1-amstan@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2507853AbgJVFPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Oct 2020 01:15:46 -0400
+Received: from smtprelay-out1.synopsys.com ([149.117.87.133]:42630 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2444222AbgJVFPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Oct 2020 01:15:46 -0400
+Received: from mailhost.synopsys.com (sv1-mailhost2.synopsys.com [10.205.2.132])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 78B3AC026E;
+        Thu, 22 Oct 2020 05:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1603343745; bh=nTPdEZ2enkeB1WuU/L+M60LEJY7TTeAXK4W7ufmjOgI=;
+        h=Date:From:Subject:To:Cc:From;
+        b=abmLuYPdh2xTN0ceQG+1+/FrpFxN6HCcHaHX3q7+RdQ+n9s5Pjr9XlVWA84UbqvFY
+         KAI2iKB/I/ekU3K0hOv5alPoSXEKYbn3dXJtqqY0+b9YY7/sTukYF0N/cUUz30xCcl
+         5XtO1OXYc93m1nq52Siz/YTmIQ6cJl3q8TUSX4HyudNHVgqR81IJkVGSNvqkHnUgAs
+         BLvcgXSuBNAUWqb8bgbQOJsvRAILMshVG9+3BjwUZ47cvr+hGyQYLnTEEawfXvMy2j
+         Hzi0bHCfHEmybbU9alPtH4hKAyOf0/rFJ9DEH+j5cREcsFfY0x2m9aRNX9bioueljy
+         nvrkJgpKtxtuw==
+Received: from te-lab16 (nanobot.internal.synopsys.com [10.10.186.99])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPSA id 07B55A0072;
+        Thu, 22 Oct 2020 05:15:43 +0000 (UTC)
+Received: by te-lab16 (sSMTP sendmail emulation); Wed, 21 Oct 2020 22:15:43 -0700
+Date:   Wed, 21 Oct 2020 22:15:43 -0700
+Message-Id: <770d7a50caad241f07d656e29e89e282f727f5da.1603343705.git.Thinh.Nguyen@synopsys.com>
+X-SNPS-Relay: synopsys.com
+From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Subject: [RFC PATCH 1/3] dt-bindings: usb: Add undetected disconnection quirk
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     John Youn <John.Youn@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want userspace to represent the human perceived brightness.
-Since the led drivers and the leds themselves don't have a
-linear response to the value we give them in terms of perceived
-brightness, we'll bake the curve into the dts.
+Synopsys DWC_usb3x host controllers will not detect enhanced super-speed
+(eSS) device disconnection if it has active isochronous IN endpoint(s)
+behind one or more eSS hubs. Introduce a quirk to workaround this for
+xhci and dwc3 device tree.
 
-The panel also doesn't have a good response under 5%, so we'll avoid
-sending it anything lower than that.
-
-Note: Ideally this patch should be coupled with the driver change from
-"backlight: pwm_bl: Fix interpolation", but it can work without it,
-without looking too ugly.
-
-Signed-off-by: Alexandru Stan <amstan@chromium.org>
+Signed-off-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
 ---
+ Documentation/devicetree/bindings/usb/dwc3.txt     | 3 +++
+ Documentation/devicetree/bindings/usb/usb-xhci.txt | 2 ++
+ 2 files changed, 5 insertions(+)
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index bf875589d364..ccdabc6c4994 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -179,6 +179,15 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 1aae2b6160c1..b23b52f5842a 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -105,6 +105,9 @@ Optional properties:
+ 			this and tx-thr-num-pkt-prd to a valid, non-zero value
+ 			1-16 (DWC_usb31 programming guide section 1.2.3) to
+ 			enable periodic ESS TX threshold.
++ - snps,blocked-disconnection: enable workaround to undetected disconnection
++			while isoc endpoint(s) are active for DWC_usb3x
++			controllers operating as host
  
-+		/* The panels don't seem to like anything below ~ 5% */
-+		brightness-levels = <
-+			196 256 324 400 484 576 676 784 900 1024 1156 1296
-+			1444 1600 1764 1936 2116 2304 2500 2704 2916 3136
-+			3364 3600 3844 4096
-+		>;
-+		num-interpolated-steps = <64>;
-+		default-brightness-level = <951>;
-+
- 		pwms = <&cros_ec_pwm 1>;
- 		enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
+  - <DEPRECATED> tx-fifo-resize: determines if the FIFO *has* to be reallocated.
+  - snps,incr-burst-type-adjustment: Value for INCR burst type of GSBUSCFG0
+diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+index 0c5cff84a969..60812ae74d46 100644
+--- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
++++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+@@ -28,6 +28,8 @@ Optional properties:
+   - quirk-broken-port-ped: set if the controller has broken port disable mechanism
+   - imod-interval-ns: default interrupt moderation interval is 5000ns
+   - phys : see usb-hcd.yaml in the current directory
++  - blocked-disconnection: workaround undetected disconnection while isoc
++		endpoint(s) are active
+ 
+ additionally the properties from usb-hcd.yaml (in the current directory) are
+ supported.
+
+base-commit: 270315b8235e3d10c2e360cff56c2f9e0915a252
 -- 
 2.28.0
 
