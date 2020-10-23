@@ -2,97 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32745297549
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C864E297551
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S461456AbgJWQwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 12:52:07 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42719 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1751724AbgJWQud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:50:33 -0400
-Received: by mail-ot1-f65.google.com with SMTP id h62so1934026oth.9;
-        Fri, 23 Oct 2020 09:50:32 -0700 (PDT)
+        id S461671AbgJWQwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 12:52:30 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:40512 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S461636AbgJWQwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:52:30 -0400
+Received: by mail-oi1-f194.google.com with SMTP id m128so2538584oig.7
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 09:52:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=exvsUIy/BUrDh5uX3pI+E6Ssx+/qdOWW1J3aRnGH1Dk=;
-        b=D3mbYZeByapyx/WToUzG9umJw2/72IFDWxDk40wrjldfz6fOreeA5FmdC4h8Gfekd3
-         60poRmmeHvj/YksuWjWBBmeXkr8hDiPr6XkFqkHLghNJ9JKMC7bhtppg0lCFVfo6uXk9
-         RjBlALI5kxB9MH88L2cmGobjtJAyr+rwICT7HQfiD4nCs5BJXbLAkreFo2q95X9zBtg6
-         Q0/pMtISCcqMwEjQjA1bpGAoEAprvWDI0WyMmHAty4bbv9w6r5YZw8qfMDEcXX3t1evt
-         PkY9/cbzZlaE8PZF6MnDArA3UA8ALOFzIMYBBnA34WOuFxwcT0xM1E9p0HC2gsNFSaLq
-         nDxg==
-X-Gm-Message-State: AOAM5302LrUwda+pxHQ5jCdpHp2QSu1biI1eq5GLacr0AL4ShXS9eC7K
-        LYsJtrJYcavGdS8t+fpHJA==
-X-Google-Smtp-Source: ABdhPJxQb1CUVZ5Eolv6jLUFAORmCw/Iu0BCm2Nj1dbmD+VoabCQ5NFrMcYHW4aDTNxvrMS6Blp30w==
-X-Received: by 2002:a05:6830:1282:: with SMTP id z2mr2312045otp.301.1603471832152;
-        Fri, 23 Oct 2020 09:50:32 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ajmwUCKNJJMiamcPEJuj5RXS9FPhhjQ7/fWweoM6wYs=;
+        b=aQFIoRg1Wvbp1ysqHmzAsTyPAPUpozHwMVkmqDeSd8/AUpPzadj+papeyKXE7olK9R
+         2WCT46cki9MI0Sx4IYd1fhmYavx7NbdGxuOtrUPf/oI8zSzSJeY/o5a0qhQQZXaF3CJf
+         CycNuT87zB++0UVS2i10fTSv4gnsCYDlVRXRsfYsWpDfxndhIUMXs4GFuNTzIlysrm14
+         GIBBoG/QsmkpdI6pHmfh3rOR8zoldZCq4mKjPCnWkW9Nz7c3zz75Reamx8ZZxiU7NCs8
+         Q63MqaggXwWRcq0SmVUc/czV8cKiUeByZya0Jfy4bFzvER8pyfLY0h1kxKfRW+qNqCfj
+         sMUw==
+X-Gm-Message-State: AOAM53364jwbzFVmD6PmoRxLimCVZ7nG1AjpseCO18MFZxx8x+W25kOl
+        ObE3AmZ9FhmafarV+ophIw==
+X-Google-Smtp-Source: ABdhPJzaEM5hr/uGomb+3/eFuQEIYlSfPFftZJnP3nb/A9Ndds8QU/f44B6MHfMeqGeVNqM+n5Y7Gg==
+X-Received: by 2002:a05:6808:1c4:: with SMTP id x4mr2481941oic.91.1603471949051;
+        Fri, 23 Oct 2020 09:52:29 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r8sm508510otq.43.2020.10.23.09.50.31
+        by smtp.gmail.com with ESMTPSA id m10sm494916oon.27.2020.10.23.09.52.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2020 09:50:31 -0700 (PDT)
-Received: (nullmailer pid 2852997 invoked by uid 1000);
-        Fri, 23 Oct 2020 16:50:30 -0000
-Date:   Fri, 23 Oct 2020 11:50:30 -0500
+        Fri, 23 Oct 2020 09:52:28 -0700 (PDT)
+Received: (nullmailer pid 2855729 invoked by uid 1000);
+        Fri, 23 Oct 2020 16:52:27 -0000
+Date:   Fri, 23 Oct 2020 11:52:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     kernel@axis.com, Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] of: Fix reserved-memory overlap detection
-Message-ID: <20201023165030.GA2852897@bogus>
-References: <ded6fd6b47b58741aabdcc6967f73eca6a3f311e.1603273666.git-series.vincent.whitchurch@axis.com>
+To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
+Cc:     bleung@chromium.org, devicetree@vger.kernel.org,
+        groeck@chromium.org, sjg@chromium.org, dmitry.torokhov@gmail.com,
+        cychiang@chromium.org, enric.balletbo@collabora.com,
+        tzungbi@google.com, dianders@chromium.org, kernel@collabora.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: convert i2c-cros-ec-tunnel to
+ json-schema
+Message-ID: <20201023165227.GA2853339@bogus>
+References: <20201021114308.25485-1-ricardo.canuelo@collabora.com>
+ <20201021114308.25485-2-ricardo.canuelo@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ded6fd6b47b58741aabdcc6967f73eca6a3f311e.1603273666.git-series.vincent.whitchurch@axis.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201021114308.25485-2-ricardo.canuelo@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Oct 2020 11:53:59 +0200, Vincent Whitchurch wrote:
-> The reserved-memory overlap detection code fails to detect overlaps if
-> either of the regions starts at address 0x0.  The code explicitly checks
-> for and ignores such regions, apparently in order to ignore dynamically
-> allocated regions which have an address of 0x0 at this point.  These
-> dynamically allocated regions also have a size of 0x0 at this point, so
-> fix this by removing the check and sorting the dynamically allocated
-> regions ahead of any static regions at address 0x0.
+On Wed, 21 Oct 2020 13:43:06 +0200, Ricardo Cañuelo wrote:
+> Convert the google,cros-ec-i2c-tunnel binding to YAML and add it as a
+> property of google,cros-ec.yaml.
 > 
-> For example, there are two overlaps in this case but they are not
-> currently reported:
-> 
-> 	foo@0 {
-> 	        reg = <0x0 0x2000>;
-> 	};
-> 
-> 	bar@0 {
-> 	        reg = <0x0 0x1000>;
-> 	};
-> 
-> 	baz@1000 {
-> 	        reg = <0x1000 0x1000>;
-> 	};
-> 
-> 	quux {
-> 	        size = <0x1000>;
-> 	};
-> 
-> but they are after this patch:
-> 
->  OF: reserved mem: OVERLAP DETECTED!
->  bar@0 (0x00000000--0x00001000) overlaps with foo@0 (0x00000000--0x00002000)
->  OF: reserved mem: OVERLAP DETECTED!
->  foo@0 (0x00000000--0x00002000) overlaps with baz@1000 (0x00001000--0x00002000)
-> 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 > ---
-> v2: Fix handling of dynamically allocated regions.
-> 
->  drivers/of/of_reserved_mem.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+>  .../i2c/google,cros-ec-i2c-tunnel.yaml        | 63 +++++++++++++++++++
+>  .../bindings/i2c/i2c-cros-ec-tunnel.txt       | 39 ------------
+>  .../bindings/mfd/google,cros-ec.yaml          |  5 ++
+>  3 files changed, 68 insertions(+), 39 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
 > 
 
 Applied, thanks!
