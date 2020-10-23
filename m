@@ -2,187 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63788296B7E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 10:52:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A332D296BB9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 11:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S460885AbgJWIwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 04:52:05 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:41188 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S460810AbgJWIwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Oct 2020 04:52:04 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09N8iw7n025653;
-        Fri, 23 Oct 2020 04:51:50 -0400
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2176.outbound.protection.outlook.com [104.47.58.176])
-        by mx0a-00128a01.pphosted.com with ESMTP id 34aq7pq9b4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 23 Oct 2020 04:51:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PDQAWsnod5V6/JMrc1R+i87lTUTBB7ZjpsU6m9kkebMqkQVx3WzUVJFh7hj2QSLTApzRpzFsz9zlMiVcEBpp1M5x5phffwFt8Hfi35VuEEw30H6xIEL1VSivn79wTCiAUPQ0HGOCN3JncOt+mVHq2fVBhPKD4ErC7RK1B1VzkL2FbvEIPQ3Zj2BdqvZuUifL0DQmA8X75xN5x74mrfW3mSRdRn7e+OoHvCw3djPQmsh7MrKZfKtuTwaG/C+O2NuJWuX8Fla/lP70Gzs01+rLJlKdwtC1Kfl0PAXuXfjVEb8Vw7doXoHclTfH6nXyALcj0bgQpob99eMAlEViBCHJig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oESS6NGqnINhwfsSi0spfEs8A5pB72JGaoOuhaydN+I=;
- b=oNeyZXqKHftv71/jLdDAUbQ3RrEoKnWCFTnKbGyoCPd/0D9iyolghAq2zInAAESf1Ok0S4+3gD88DkLvflDlJzFLWbeCDRPvehgapEM3l0iHpl8mV/O/KFVS5bOatzC0/u3Fgu89cJ73mcs9M09KqBXoEpS/aRC/1DcDhjqZhqvvoQ7y3VDVMTMgWQj7O8jVgCmoNgdOLtX/eHW5xnpO1hxef0LVTEz3ne7uNmm3Z0vQVRVFglsVwnMR9bydeV+nNi1igYif/EBvyqtc4lGAHmkEgge5qKXllS950B8O5ZuJIEK7y1kquaJbyI2bwbd5dfiqvRYbSQWXLNPVSN/OHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
+        id S461085AbgJWJFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 05:05:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35620 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S460856AbgJWJFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 05:05:00 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70EDAC0613CE;
+        Fri, 23 Oct 2020 02:05:00 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id l18so738609pgg.0;
+        Fri, 23 Oct 2020 02:05:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oESS6NGqnINhwfsSi0spfEs8A5pB72JGaoOuhaydN+I=;
- b=g8gfet04B6eD1uxy1/Vh3qtmfQ1aearjxaNqMUzpw92fZvSKPDhDNJOlgS6V7IuFj5hVQ2X1xRJ4BvDqSEYq6YiH0rEWlHZLGW9IfYTv+1iIbdsar7YGC76tJ4GhlYm5DlqC+JWEsUWWrxWo6BrTneZA4rarMju+c/m1dbrd9iU=
-Received: from DM6PR03MB5274.namprd03.prod.outlook.com (2603:10b6:5:24b::14)
- by DM5PR03MB2601.namprd03.prod.outlook.com (2603:10b6:3:3e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.28; Fri, 23 Oct
- 2020 08:51:48 +0000
-Received: from DM6PR03MB5274.namprd03.prod.outlook.com
- ([fe80::a009:4abe:2aee:b0dd]) by DM6PR03MB5274.namprd03.prod.outlook.com
- ([fe80::a009:4abe:2aee:b0dd%4]) with mapi id 15.20.3477.029; Fri, 23 Oct 2020
- 08:51:48 +0000
-From:   "Togorean, Bogdan" <Bogdan.Togorean@analog.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-Subject: RE: [PATCH 1/2] drm/adi: axi-hdmi-tx: Add support for AXI HDMI TX IP
- core
-Thread-Topic: [PATCH 1/2] drm/adi: axi-hdmi-tx: Add support for AXI HDMI TX IP
- core
-Thread-Index: AQHWmwh5xmwgGy1BWUuP733ye4eTYKmaYpMAgAqabZA=
-Date:   Fri, 23 Oct 2020 08:51:48 +0000
-Message-ID: <DM6PR03MB52748E16A02E8AE049379D569B1A0@DM6PR03MB5274.namprd03.prod.outlook.com>
-References: <20201005141226.180655-1-bogdan.togorean@analog.com>
- <20201016145500.GA1325536@ravnborg.org>
-In-Reply-To: <20201016145500.GA1325536@ravnborg.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcYnRvZ29yZWFc?=
- =?us-ascii?Q?YXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRi?=
- =?us-ascii?Q?YTI5ZTM1Ylxtc2dzXG1zZy1mYTU1YzIwYy0xNTBjLTExZWItODZjNi0xODFk?=
- =?us-ascii?Q?ZWE1NDZlZDJcYW1lLXRlc3RcZmE1NWMyMGUtMTUwYy0xMWViLTg2YzYtMTgx?=
- =?us-ascii?Q?ZGVhNTQ2ZWQyYm9keS50eHQiIHN6PSIyMDU3IiB0PSIxMzI0NzkxNjcwNTg3?=
- =?us-ascii?Q?NDYyMjQiIGg9Ik5iNjBWVTRycDZmVFR5VUNjbk5CM1dzNjZFbz0iIGlkPSIi?=
- =?us-ascii?Q?IGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk5DZ1VBQUVvQ0FB?=
- =?us-ascii?Q?QndHNjI4R2FuV0FjTk55Y2gzMjBHWHcwM0p5SGZiUVpjREFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFFQUFRQUJBQUFBWS9HcUp3QUFBQUFBQUFBQUFBQUFBSjRBQUFCaEFHUUFh?=
- =?us-ascii?Q?UUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QUc4QWFnQmxBR01BZEFCekFG?=
- =?us-ascii?Q?OEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFhUUIwQUdrQWRnQmxBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBR0VBWkFCcEFGOEFjd0JsQUdNQWRR?=
- =?us-ascii?Q?QnlBR1VBWHdCd0FISUFid0JxQUdVQVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURF?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FB?=
- =?us-ascii?Q?QUFBQUNlQUFBQVlRQmtBR2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dC?=
- =?us-ascii?Q?dkFHb0FaUUJqQUhRQWN3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21l?=
- =?us-ascii?Q?dGE+?=
-x-dg-rorf: true
-authentication-results: ravnborg.org; dkim=none (message not signed)
- header.d=none;ravnborg.org; dmarc=none action=none header.from=analog.com;
-x-originating-ip: [188.27.128.215]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 0cef92a6-9ee1-4443-adae-08d87730e0b4
-x-ms-traffictypediagnostic: DM5PR03MB2601:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR03MB260159E7EC86984E911EBAFE9B1A0@DM5PR03MB2601.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 7uJKmzkMLQnUR2so3wKmDPwRoa4kA5530NMu3SoK1se0KG83i9uF1F2hEuJ9pltKwntn88dV+zzD6/kmzgAOGMmDcybRZNPu8dkxJg32jufs78xNn9JEX3eXLIHaYl25dSwja4Nw2yAuWr7pNBZhX/pQsCIcmJrmyay2n2xnWf1DCqyd45JsIKlasO28GlaKhgUoXAFdY7f1D3z9UPgMAEt38JY6FjTsS4ny1NE2MtB7+5oggFT6eVy5z2BJ5NyzJV/0RQEB8GyTJfKwbTCz2059fHNVsS1j4Nn4/tk32novL4T63/RG9e05WpUHEWe8Qylb5gSbRfEeoilmcXZDIj9IHrGkg1HP/Yg9+LqUHf5auyN9mVPte7IpxsiqP4F+TWI1pw5t27eL6g1zcoKqQQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR03MB5274.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(376002)(366004)(136003)(396003)(64756008)(316002)(55016002)(8676002)(52536014)(6916009)(8936002)(71200400001)(478600001)(33656002)(76116006)(966005)(2906002)(9686003)(186003)(86362001)(66946007)(54906003)(4326008)(107886003)(5660300002)(7696005)(6506007)(66446008)(26005)(66476007)(66556008)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: rcoK06Z83rkr+WGCmabgVxuS0NbLYTifumdvt2txivHa+SYJzVXa+WKypz2g6OtqN3E9mE5zrB9ZWDPp7RJMFP7Zyo0Y9UPB7VEJ8aMJXfLRypd92p8dkVQZDeQiZIfa1qO2gWQZMRWXkipKx7ZfMi0RL0/NoX7CN85fMWP296xqpRWkxFbQ8q+0EkAyxz5LCR99akJg1l0oqAhORcQbQLfChXOYBFYS+QAqY4IVVPSHTkIX15Ll0v9ElteaYaNVleVe3B106PQaiw89xBDcL5xuCdUhBit5B26oCbpUh3CsP8NN+vz6/skBgJ3/oiJNbSeFiWGe1bqs/BoLp5IAJLSZGcCHwf1oPJXC6FYoYPDG6cvju0pxTAkETUf0m68SKecdmvX4jP/6yFqvLYlgXDPQCwl6X8WYOaAHT7ZRs75FwWSoPQCsBql35/EwrsjurJcTiJDMbqRX21Dnl/KYwmfyCQNnzmU/OF2hWc8RQnAKN+lT35jOHVPRcmMCW2L3qb7tCd7hxGn0Wg6Oq4KnB4vxDTfAm/inYMas627aXtmFQW9EegZTKYV637BKtWQ4xEtXyP+h7TTNz1mnlWiINH2xKVuzbwb1qByBXi81kHsLoFOWA0A5mI/VF9cKVG7pd+b7PiwVeU97Skp/7TyqKg==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DQ/CVKCNragvB1O7ANGOionjdGWwalxvzO9nuCzggIA=;
+        b=lZPzSKMpBaufNwfzgJ3zRO/Rfr0J01u0IxvQuMJV1PNUPQQTjP1dx8Xc3u9nAr1rUC
+         HN6C3m87DNZfYZAeARKz5j8X31EZ06MjAjQ73RcspsClUi+CrUPSjFAa/K1/vgkWao8w
+         mgChmaTMWB8Sf4y5Brqka5lVG1TI8U/b+abs/x+KhwN4pewFuF+9v/JbotrUVPt0aYcK
+         E5oLNxlfQ7XfxewIXE5SklFawuGURi+6adgJF2WqVZltVVt6+eT0xRM3kgS789zDdQJZ
+         /9FlKc6wHfe3MPr6QDHY9aI06bIvmJDl7WvZlxC1OMRl5t+6FjcOv64ZOnlBWDQwu6wd
+         p8ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DQ/CVKCNragvB1O7ANGOionjdGWwalxvzO9nuCzggIA=;
+        b=kNXbH0sv3U6kr1hEztpg8BGyXso8QRAkHZ6iZVJGZykjj63kipT3pcBkOhHpkrryvN
+         3Dle3PFv1RxmKrgY6KaxZVvV/HjOPVtTQQATOUU5wSQQLxAWJF6GTQBe0waqdIRQA+R8
+         q1DjWNsTeELL0QDEcqTg6S1rTRDF8xHhKOsNRsBZKRBQqaq2E5yNbBn+m0kfXwS+6hTz
+         Zz5vRCpn/73UTiGa8a0TXoMDMUaA3J227iiBlGZrQAi1JP+hG8TfGsSU2P8POcmJkpmG
+         6Mi8TrEElKQ80ozu0OyOOK1ulxhVtSOEj95wIGw7O1p8ai02Yi6kmVvGsgc6M9gSKlD1
+         ul5g==
+X-Gm-Message-State: AOAM532ueO7T8x6svZqbo22kcxgyhrQ0QolhOdJDvBFfSDVZLbYJX5qY
+        PHW4YfN74gUhBNXRb6AsQ6OQ/eETscJ/qpZc
+X-Google-Smtp-Source: ABdhPJyCo9y+h78hQs56Kwo+EEu42JwV5Q0/e+JHwjNWuHWTft9FmFBjJkn6S4tP7fGOa7Ubji1SYg==
+X-Received: by 2002:a17:90a:8684:: with SMTP id p4mr1372581pjn.232.1603443900074;
+        Fri, 23 Oct 2020 02:05:00 -0700 (PDT)
+Received: from ruantu-3.localdomain ([103.230.142.242])
+        by smtp.gmail.com with ESMTPSA id n5sm1057296pgm.82.2020.10.23.02.04.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Oct 2020 02:04:59 -0700 (PDT)
+From:   Yu-Tung Chang <mtwget@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yu-Tung Chang <mtwget@gmail.com>
+Subject: [PATCH] ARM: dts: sun8i: add FriendlyArm ZeroPi support
+Date:   Fri, 23 Oct 2020 17:04:52 +0800
+Message-Id: <20201023090452.10409-1-mtwget@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR03MB5274.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0cef92a6-9ee1-4443-adae-08d87730e0b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2020 08:51:48.4201
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ttvosz1ZIjlzQ5vGfu7Wp/MB6g2YB8yBjg8bQwspN9TyYraR6ETjbhXa6Uz5B1NP2RMkDFn50z40JN3Vmbf1AeDjgv08eHYTISwdJPH+f78=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR03MB2601
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.737
- definitions=2020-10-23_04:2020-10-23,2020-10-23 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0
- clxscore=1011 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2010230061
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you Sam for your review,
-I'll send now V2 implementing all your remarks.
+  The ZeroPi is another fun board developed
+  by FriendlyELEC for makers,
+  hobbyists and fans.
 
-Best regards,
-Bogdan
+  ZeroPi key features
+  - Allwinner H3, Quad-core Cortex-A7@1.2GHz
+  - 256MB/512MB DDR3 RAM
+  - microsd slot
+  - 10/100/1000Mbps Ethernet
+  - Debug Serial Port
+  - DC 5V/2A power-supply
 
->=20
-> Hi Bogdan
->=20
-> On Mon, Oct 05, 2020 at 05:12:08PM +0300, Bogdan Togorean wrote:
-> > From: Lars-Peter Clausen <lars@metafoo.de>
-> >
-> > The AXI HDMI HDL driver is the driver for the HDL graphics core which i=
-s
-> > used on various FPGA designs. It's mostly used to interface with the
-> > ADV7511 driver on some Zynq boards (e.g. ZC702 & ZedBoard).
-> >
-> > Link: https://wiki.analog.com/resources/tools-software/linux-drivers/dr=
-m/hdl-
-> axi-hdmi
-> > Link: https://wiki.analog.com/resources/fpga/docs/axi_hdmi_tx
->=20
-> Thanks for submitting the driver - a few high level comments after
-> browsing the driver:
->=20
-> - Use drmm_mode_config_init() to utilize new cleanup
-> - Look at other uses of drm_driver - there is macros that makes this
->   much simpler / smaller
-> - Use devm_drm_dev_alloc() to allocate axi_hdmi_tx_private
->   To do so embed drm_device in axi_hdmi_tx_private - which is the way to
->   do it today
-> - Do not use ddev->dev_private, it is deprecated
-> - Use dev_err_probe() when you risk to see a PROBE_DEFER
-> - In all include blocks sort the include alphabetically
-> - Use the new interface to drm_bridge_attach() - where display driver
->   creates the connector
-> - See if the Kconfig selects can be trimmed - the framebuffer releated
->   selects looks wrong (others get it wrong too)
-> - Check if you can use the simple encoder - see
->   drm_simple_encoder_init()
->=20
-> If this is a simple one plane, one crtc display driver then it should
-> use the drm_simple_* support. Or the changelog should explain why not.
->=20
-> We want the drivers as simple as we can - and they shall use as much of
-> the helper infrastructure as they can.
->=20
-> We continue to develop the helper infrastructure so it is expected that
-> there is some lacking behind as is the case here.
->=20
->         Sam
->=20
+Signed-off-by: Yu-Tung Chang <mtwget@gmail.com>
+---
+ .../devicetree/bindings/arm/sunxi.yaml        |  5 ++
+ arch/arm/boot/dts/Makefile                    |  1 +
+ arch/arm/boot/dts/sun8i-h3-zeropi.dts         | 69 +++++++++++++++++++
+ 3 files changed, 75 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-h3-zeropi.dts
+
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index efc9118233b4..9392a9a3f7e7 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -246,6 +246,11 @@ properties:
+           - const: friendlyarm,nanopi-neo-plus2
+           - const: allwinner,sun50i-h5
+ 
++      - description: FriendlyARM ZeroPi
++        items:
++          - const: friendlyarm,zeropi
++          - const: allwinner,sun50i-h3
++
+       - description: Gemei G9 Tablet
+         items:
+           - const: gemei,g9
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 4572db3fa5ae..f05e54257947 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1187,6 +1187,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+ 	sun8i-h3-orangepi-plus2e.dtb \
+ 	sun8i-h3-orangepi-zero-plus2.dtb \
+ 	sun8i-h3-rervision-dvk.dtb \
++	sun8i-h3-zeropi.dtb \
+ 	sun8i-h3-emlid-neutis-n5h3-devboard.dtb \
+ 	sun8i-r16-bananapi-m2m.dtb \
+ 	sun8i-r16-nintendo-nes-classic.dtb \
+diff --git a/arch/arm/boot/dts/sun8i-h3-zeropi.dts b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
+new file mode 100644
+index 000000000000..388ad6b6da2b
+--- /dev/null
++++ b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
+@@ -0,0 +1,69 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2020 Yu-Tung Chang <mtwget@gmail.com>
++ */
++
++#include "sun8i-h3-nanopi.dtsi"
++
++/ {
++	model = "FriendlyARM ZeroPi";
++	compatible = "friendlyarm,zeropi", "allwinner,sun8i-h3";
++
++	aliases {
++		ethernet0 = &emac;
++	};
++
++	reg_gmac_3v3: gmac-3v3 {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&gmac_power_pin_nanopi>;
++		regulator-name = "gmac-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		startup-delay-us = <100000>;
++		enable-active-high;
++		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++&ehci0 {
++	status = "okay";
++};
++
++&ohci0 {
++	status = "okay";
++};
++
++&pio {
++	gmac_power_pin_nanopi: gmac_power_pin@0 {
++		pins = "PD6";
++		function = "gpio_out";
++	};
++};
++
++&external_mdio {
++	ext_rgmii_phy: ethernet-phy@1 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <7>;
++	};
++};
++
++&emac {
++	pinctrl-names = "default";
++	pinctrl-0 = <&emac_rgmii_pins>;
++	phy-supply = <&reg_gmac_3v3>;
++	phy-handle = <&ext_rgmii_phy>;
++	phy-mode = "rgmii";
++
++	allwinner,leds-active-low;
++	status = "okay";
++};
++
++&usb_otg {
++	status = "okay";
++	dr_mode = "peripheral";
++};
++
++&usbphy {
++	usb0_id_det-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
++};
+-- 
+2.29.0
 
