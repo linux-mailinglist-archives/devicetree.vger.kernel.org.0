@@ -2,108 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D22F029736D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17AD0297341
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1750310AbgJWQUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 12:20:07 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:34495 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1750290AbgJWQUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:20:07 -0400
-Received: by mail-ot1-f66.google.com with SMTP id k3so1300793otp.1;
-        Fri, 23 Oct 2020 09:20:05 -0700 (PDT)
+        id S1751380AbgJWQKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 12:10:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45368 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S465150AbgJWQKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:10:51 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11E5C0613CE
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 09:10:50 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id t25so3088354ejd.13
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 09:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0VrFCmtOJEoxunIpFeIHExWUdQU/hcpWXszyYHPDZ+Q=;
+        b=NXos4019Tyduk907dFAxl8EYEWZdEI2fU3hGlMBv2Ptejfen5boRkquv9we1Q0KTMU
+         6vI3uPDlSSeb38Xe2g9CLWYzZILi0sBh5ARnCRouQiVw+mMYCL/OWXPVzxwddhZPjgfX
+         c4kUcRWG4rlkuV74PxYM9zlQ5um0/3GJxwTzaN6mqBCDYSDR3MxkBh47PMNLaLce4D6X
+         etg9H5eEywPi81NOFmIqcNEsc3bzqiXorC6UrZsCHeYjKpxAdypv0mgzRhuuIxxTLcsG
+         p7vkBLnuFBcYiorz6GYlmxsbbNf/cRKEaorxVUcJ9v0tHSiE4iE0tWRHAz3ugq6HwuP8
+         2gBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eV+szdSSexm2eZbasYH32iY3/QUzNUO+3O5Yc7X4Akc=;
-        b=AKoWu5e+LZKIEJ9VSb4mvqENcD+oUq664/yz3KtUtwD+MQYgsA1vZsML3mNKquEDoy
-         7NWws8zd4C7oAHY0zTZn5FlZqhhB7OGK67aO8DulUhhaFxexM3XMHC0V/sqjyhqlUZfX
-         LmA3t7NmIPa+FZ6uIuHLZ3X/ZIuqfjPK88XxDn3FCdPgOed8hkfqA6dH3w+ckdh27Dsy
-         B/5YWjKQ91RRFOPtw1Iu4jUHuA1upYVT8jq3J+A0XWkfQIwGEoBAJW6+9lT6SOWrOP1Z
-         MPpl+qm801GqESZO1hKn8D86JdPcLA7Otv8/bNbIcwCOs7ZMpFHDaBSdO8tZRCoSkUoC
-         KYGQ==
-X-Gm-Message-State: AOAM533pV5Osf7bioGpl841WVt5Vw9v2K0/JWCRfnA0uT/wRofLiicsU
-        8+eTp6mjEsT8glG5lVcNXA==
-X-Google-Smtp-Source: ABdhPJy1uBpGC0Bl+8Rf9Nn2fxYXV5qIOleK+DNCPRip+n9QSQym8g8RThYOf3GIUtvEalTx/FJTXg==
-X-Received: by 2002:a9d:2487:: with SMTP id z7mr2086163ota.133.1603470004848;
-        Fri, 23 Oct 2020 09:20:04 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f18sm489648otp.10.2020.10.23.09.20.03
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0VrFCmtOJEoxunIpFeIHExWUdQU/hcpWXszyYHPDZ+Q=;
+        b=AgKOt6O7awQY8YwvOO6WH7QgQspIOYpq2isOL9TdQ1ZICBjEMyfUA7fd4aj144yeey
+         SPudN49h9j27FlAtL3wBwfWZI/WqFcfD5U3XUDS5Pt1l7Y1Vic7rcGukn7s135A+5uQk
+         x7gdEvA9LJPD2YhbVMulnCzZ4oLq0cxgUC4JABNE4bJxMhPSdTAwSUy5tWW2z0apI5gF
+         Sg4GejuRYIwO1G9JGyX+kKNC2X6yUR3d4VprxDMK3pmVg3oOheuZnWElrEbcbsPSpZFm
+         syu/NjRKlfAbEdXpK27x+a1WDLZr/UP5rDjpUsnh2PniSZ2QuH63o0GIIzXMpOX+XkE5
+         OUPA==
+X-Gm-Message-State: AOAM533q2qWzINa1jBxq2ZtF1pv0wN+8fglB+hmSzv50upUmUITs/ahG
+        05VJLh1btfIMP3X00LVkchRYq56Cf4vEZC4DN0wPReFmTgcmmc2XF5J8xPXZ+8rhFDVFGgaNZ2+
+        v4cY8ie4fKTgeRnjSVimaaGvHPxB2MN9kB0vmaLDM3yOiPe3CeV4+mPWuJD6kGT38/1ePmgA231
+        bUh0Q=
+X-Google-Smtp-Source: ABdhPJxyEiQ7xe4BfDP+TMSbXYbICo7V6nicWeWnmB+GGd01OzaJVB9+MwasSOVz4vZhwodgEgO5mQ==
+X-Received: by 2002:a17:906:1189:: with SMTP id n9mr2845257eja.190.1603469447964;
+        Fri, 23 Oct 2020 09:10:47 -0700 (PDT)
+Received: from localhost.localdomain ([213.149.61.126])
+        by smtp.gmail.com with ESMTPSA id r24sm989420edm.95.2020.10.23.09.10.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2020 09:20:04 -0700 (PDT)
-Received: (nullmailer pid 2807869 invoked by uid 1000);
-        Fri, 23 Oct 2020 16:20:03 -0000
-Date:   Fri, 23 Oct 2020 11:20:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wsd_upstream@mediatek.com, Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v1 2/6] dt-bindings: arm: cpus: Document
- 'mtk,freq-domain' property
-Message-ID: <20201023162003.GB2800310@bogus>
-References: <1603441493-18554-1-git-send-email-hector.yuan@mediatek.com>
- <1603441493-18554-3-git-send-email-hector.yuan@mediatek.com>
+        Fri, 23 Oct 2020 09:10:47 -0700 (PDT)
+From:   Vladimir Vid <vladimir.vid@sartura.hr>
+To:     devicetree@vger.kernel.org
+Cc:     pali@kernel.org, a.heider@gmail.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, tmn505@gmail.com,
+        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
+        andrew@lunn.ch, jason@lakedaemon.net, robh+dt@kernel.org,
+        Vladimir Vid <vladimir.vid@sartura.hr>
+Subject: [PATCH v2] arm64: dts: marvell: add DT for ESPRESSObin-Ultra
+Date:   Fri, 23 Oct 2020 18:21:11 +0200
+Message-Id: <20201023162110.265857-1-vladimir.vid@sartura.hr>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1603441493-18554-3-git-send-email-hector.yuan@mediatek.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Sudeep
+This adds support for ESPRESSObin-Ultra from Globalscale.
 
-On Fri, Oct 23, 2020 at 04:24:49PM +0800, Hector Yuan wrote:
-> From: "Hector.Yuan" <hector.yuan@mediatek.com>
-> 
-> Add devicetree documentation for 'mtk,freq-domain' property specific
-> to Mediatek CPUs. This property is used to reference the CPUFREQ node
-> along with the domain id.
+Specifications are similar to the base ESPRESSObin board, with main
+difference being being WAN port with PoE capability and 2 additional ethernet ports.
 
-Okay, now we've got the same thing being done for Mediatek, QCom, and 
-SCMI. This needs to be a common binding.
+Full specifications:
 
-> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/arm/cpus.yaml |    6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> index 1222bf1..06a6f5b 100644
-> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> @@ -255,6 +255,12 @@ properties:
->  
->        where voltage is in V, frequency is in MHz.
->  
-> +  mtk-freq-domain:
+1x Marvell 64 bit Dual Core ARM A53 Armada 3700 SOC clocked up to 1.2Ghz
+1x Topaz 6341 Networking Switch
+1GB DDR4
+8GB eMMC
+1x WAN with 30W POE
+4x Gb LAN
+1x RTC Clock and battery
+1x DC Jack
+1x USB 3.0 Type A
+1x USB 2.0 Type A
+1x SIM NanoSIM card Slot
+1x Power Button
+4x LED
+1x Reset button
+1x microUSB for UART
+1x M.2 2280 slot for memory
+1x 2x2 802.11ac Wi-Fi
+1x MiniPCIE slot for Wi-Fi (PCIe interface)
 
-I expect this to change, but still not right form: <vendor>,<prop name>
+Signed-off-by: Vladimir Vid <vladimir.vid@sartura.hr>
+---
 
-mtk is not the registered vendor.
+v2 changes:
 
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    description:
-> +      CPUs supporting freq-domain must set their "mtk-freq-domain" property
-> +      with phandle to a cpufreq_hw node followed by the domain id.
-> +
->    power-domains:
->      $ref: '/schemas/types.yaml#/definitions/phandle-array'
->      description:
-> -- 
-> 1.7.9.5
+- added armada-3720-espressobin.dtsi include and updated dts
+- updated model name
+- renamed first partition from 'u-boot' to 'firmware' 
+- disabled usb3 node for the moment as it include usb2 references
+
+---
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../marvell/armada-3720-espressobin-ultra.dts | 161 ++++++++++++++++++
+ 2 files changed, 162 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+
+diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+index 3e5f2e7a040c..094f451fdd1d 100644
+--- a/arch/arm64/boot/dts/marvell/Makefile
++++ b/arch/arm64/boot/dts/marvell/Makefile
+@@ -3,6 +3,7 @@
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
++dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+new file mode 100644
+index 000000000000..87aaf620a171
+--- /dev/null
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+@@ -0,0 +1,161 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Device Tree file for ESPRESSObin-Ultra board.
++ * Copyright (C) 2019 Globalscale technologies, Inc.
++ *
++ * Jason Hung <jhung@globalscaletechnologies.com>
++ */
++
++/dts-v1/;
++
++#include "armada-3720-espressobin.dtsi"
++
++/ {
++	model = "Globalscale Marvell ESPRESSOBin Ultra Board";
++	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
++		     "marvell,armada3710";
++
++	reg_usb3_vbus: usb3-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "usb3-vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		enable-active-high;
++		gpio = <&gpionb 19 GPIO_ACTIVE_HIGH>;
++	};
++
++	usb3_phy: usb3-phy {
++		compatible = "usb-nop-xceiv";
++		vcc-supply = <&reg_usb3_vbus>;
++	};
++
++	gpio-leds {
++		pinctrl-names = "default";
++		compatible = "gpio-leds";
++		/* No assigned functions to the LEDs by default */
++		led1 {
++			label = "ebin-ultra:blue:led1";
++			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
++		};
++		led2 {
++			label = "ebin-ultra:green:led2";
++			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
++		};
++		led3 {
++			label = "ebin-ultra:red:led3";
++			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
++		};
++		led4 {
++			label = "ebin-ultra:yellow:led4";
++			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
++		};
++	};
++};
++
++&sdhci0 {
++	status = "okay";
++	non-removable;
++	bus-width = <8>;
++	mmc-ddr-1_8v;
++	mmc-hs400-1_8v;
++	marvell,pad-type = "fixed-1-8v";
++};
++
++&sdhci1 {
++	status = "disabled";
++};
++
++&spi0 {
++	flash@0 {
++		spi-max-frequency = <108000000>;
++		spi-rx-bus-width = <4>;
++		spi-tx-bus-width = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "firmware";
++				reg = <0x0 0x3e0000>;
++			};
++			partition@3e0000 {
++				label = "hw-info";
++				reg = <0x3e0000 0x10000>;
++				read-only;
++			};
++			partition@3f0000 {
++				label = "u-boot-env";
++				reg = <0x3f0000 0x10000>;
++			};
++		};
++	};
++};
++
++&i2c0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c1_pins>;
++
++	clock-frequency = <100000>;
++
++	rtc@51 {
++		compatible = "nxp,pcf8563";
++		reg = <0x51>;
++	};
++};
++
++&usb3 {
++	usb-phy = <&usb3_phy>;
++	status = "disabled";
++};
++
++&mdio {
++	extphy: ethernet-phy@0 {
++		reg = <1>;
++	};
++};
++
++&switch0 {
++	reg = <3>;
++
++	ports {
++		port@1	{
++			reg = <1>;
++			label = "lan0";
++			phy-handle = <&switch0phy0>;
++		};
++
++		port@2 {
++			reg = <2>;
++			label = "lan1";
++			phy-handle = <&switch0phy1>;
++		};
++
++		port@3 {
++			reg = <3>;
++			label = "lan2";
++			phy-handle = <&switch0phy2>;
++		};
++
++		port@4 {
++			reg = <4>;
++			label = "lan3";
++			phy-handle = <&switch0phy3>;
++		};
++
++		port@5 {
++			reg = <5>;
++			label = "wan";
++			phy-handle = <&extphy>;
++			phy-mode = "sgmii";
++		};
++	};
++
++	mdio {
++		switch0phy3: switch0phy3@14 {
++			reg = <0x14>;
++		};
++	};
++};
+-- 
+2.27.0
+
