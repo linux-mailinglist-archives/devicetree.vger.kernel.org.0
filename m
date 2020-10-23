@@ -2,100 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70EFC297332
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B532929738A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:24:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1751300AbgJWQG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 12:06:59 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:33303 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1751283AbgJWQG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:06:59 -0400
-Received: by mail-ot1-f66.google.com with SMTP id t15so1844873otk.0;
-        Fri, 23 Oct 2020 09:06:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4HRG/fiwKVOv7lkdiw46j9ctBU4B/I6T+hZZTK6pAwI=;
-        b=npuNOFQ6HEZ9KQXkooOtAFl8KxlLB34VmNHxNX7Hgz7BSZ2virRoUDoKquUudpXe8p
-         AZ/VGxCpgcrJaOEFN206xPkvLsvYPtJgBYqnkhHII2ovNePbrRcQW42IMByP3d9RvpvR
-         7M3Gth+meIG3mZLz4p7gtNptEpvsbg6ebMvrBGFfa/qyGWfEWaJz+Hg+ZHGw0XhR3oQ0
-         3Q1FQvXSaTkwUXBhAUKpy9IFmkBYRD7tZpU4Lpw1yqTpnkLMLF4vS87kac2pvP2ydJxq
-         7kY/BpYg7BPVIR2GY60H+PKoIHOvBdcsDYjf4KLjwMRfZ/l/CgmIo3XDjGwIpwkD75wW
-         kD2w==
-X-Gm-Message-State: AOAM5332xhxn+1BEGJQTxSBSuJoPtcj+MBQ/lgPb6rPpP+miXjQmaFIM
-        bDWgeApGqPKuih/yCOofpg==
-X-Google-Smtp-Source: ABdhPJyiwn6jUyaTEfJ+h0slnBcr89VBk/H+1Sv4iZ0xWaHNY+vUEZwiyZOipA1c5NqgMex5YKj6GA==
-X-Received: by 2002:a9d:7586:: with SMTP id s6mr2206833otk.46.1603469218269;
-        Fri, 23 Oct 2020 09:06:58 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c12sm480785ots.48.2020.10.23.09.06.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2020 09:06:57 -0700 (PDT)
-Received: (nullmailer pid 2790681 invoked by uid 1000);
-        Fri, 23 Oct 2020 16:06:56 -0000
-Date:   Fri, 23 Oct 2020 11:06:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Guru Das Srinagesh <gurus@codeaurora.org>
-Cc:     linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
-        Anirudh Ghayal <aghayal@codeaurora.org>
-Subject: Re: [PATCH v3 1/2] bindings: pm8941-misc: Convert to YAML and add
- support for VBUS detection
-Message-ID: <20201023160656.GA2790207@bogus>
-References: <cover.1603403020.git.gurus@codeaurora.org>
- <b63ffcc19639f69aaba1072c059ca79e4081e6ef.1603403020.git.gurus@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b63ffcc19639f69aaba1072c059ca79e4081e6ef.1603403020.git.gurus@codeaurora.org>
+        id S1750438AbgJWQYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 12:24:22 -0400
+Received: from sender11-of-o52.zoho.eu ([31.186.226.238]:21391 "EHLO
+        sender11-of-o52.zoho.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1750423AbgJWQYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:24:22 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1603469348; cv=none; 
+        d=zohomail.eu; s=zohoarc; 
+        b=XW3oMG56rQi8zaf4xHGKBwXQWFJfs6ZsqgSNwHiLGedSaGsNpMvJVBag2LCWOTDtaYpAvdW6f5fxG6cVbEvPz6QzOgtWiuEDtiSlUcg0ob7xyf2hlqCmF4syv1B9aMimoG7mGR2noJGi/M0QsECAs3YFS5t6Xje+Xgw0T4k0hZY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+        t=1603469348; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=NDowHwUvFqB0GPlCwCGRwhegZU8IPUBPHwsJXkE+Wzo=; 
+        b=V1op7Vi+FXWzoV+Z7QgOjlwrz31Bt77qO6S66TrXs6X69oAio/LkbDF9MiAGBOBAHUYorJxfBcxz7WlN9Evqnk5KXpFR2/qiEpIib1FQnTi6UEd6NnWCpf6fyYLYjo3W9xSqgRBiBzVcSJfB/plr1ngIR14GLWyS/0IzL715OC4=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+        spf=pass  smtp.mailfrom=philipp@uvos.xyz;
+        dmarc=pass header.from=<philipp@uvos.xyz> header.from=<philipp@uvos.xyz>
+Received: from localhost.localdomain (ip-95-222-212-41.hsi15.unitymediagroup.de [95.222.212.41]) by mx.zoho.eu
+        with SMTPS id 1603469345892865.4597929017848; Fri, 23 Oct 2020 18:09:05 +0200 (CEST)
+Date:   Fri, 23 Oct 2020 18:09:02 +0200
+From:   Carl Philipp Klemm <philipp@uvos.xyz>
+To:     robh+dt@kernel.org
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 2/2]  ARM: dts: xt875: Improve dts support for Motorola
+ XT875
+Message-Id: <20201023180902.45afa3cad97a11e563ff8110@uvos.xyz>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Oct 2020 14:47:43 -0700, Guru Das Srinagesh wrote:
-> From: Anirudh Ghayal <aghayal@codeaurora.org>
-> 
-> Convert bindings to YAML. Also add compatible string that adds support
-> for reporting the VBUS status that can be detected via a dedicated PMIC
-> pin.
-> 
-> Signed-off-by: Anirudh Ghayal <aghayal@codeaurora.org>
-> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
-> ---
->  .../bindings/extcon/qcom,pm8941-misc.txt           | 41 --------------
->  .../bindings/extcon/qcom,pm8941-misc.yaml          | 65 ++++++++++++++++++++++
->  2 files changed, 65 insertions(+), 41 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.txt
->  create mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> 
+Add section and support for kionix kxtf9 on XT875
 
+Signed-off-by: Carl Philipp Klemm <carl@uvos.xyz>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+---
+ arch/arm/boot/dts/omap4-droid-bionic-xt875.dts | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-yamllint warnings/errors:
+diff --git a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
+index 49b2a8d55356..271a43827cbf 100644
+--- a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
++++ b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
+@@ -37,3 +37,19 @@ backlight_led: led@0 {
+ 		};
+ 	};
+ };
++
++&i2c4 {
++	lis3dh: accelerometer@18 {
++		compatible = "kionix,kxtf9";
++		reg = <0x0f>;
++
++		vdd-supply = <&vhvio>;
++
++		interrupt-parent = <&gpio2>;
++		interrupts = <2 IRQ_TYPE_EDGE_RISING>;
++
++		rotation-matrix = "0", "-1", "0",
++				  "1", "0", "0",
++				  "0", "0", "1";
++	};
++};
+-- 
+2.28.0
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.example.dt.yaml: misc@900: interrupts: [[0, 9, 0, 3]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1386438
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Carl Philipp Klemm <philipp@uvos.xyz> <carl@uvos.xyz>
