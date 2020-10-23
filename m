@@ -2,71 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C652977CD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 21:43:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E980F2977F9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 22:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1754525AbgJWTnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 15:43:39 -0400
-Received: from mailoutvs27.siol.net ([185.57.226.218]:45136 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1754479AbgJWTni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 15:43:38 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 126DA528120;
-        Fri, 23 Oct 2020 21:43:36 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id rEXZf2IX2IaY; Fri, 23 Oct 2020 21:43:35 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id C4F7052818E;
-        Fri, 23 Oct 2020 21:43:35 +0200 (CEST)
-Received: from kista.localdomain (cpe1-5-97.cable.triera.net [213.161.5.97])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id 52CA9528176;
-        Fri, 23 Oct 2020 21:43:35 +0200 (CEST)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH] arm64: dts: allwinner: h6: Pine H64: Fix ethernet node
-Date:   Fri, 23 Oct 2020 21:49:02 +0200
-Message-Id: <20201023194902.368239-1-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.29.0
+        id S1755074AbgJWUCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 16:02:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1750752AbgJWUCk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Oct 2020 16:02:40 -0400
+Received: from localhost (p5b35db11.dip0.t-ipconnect.de [91.53.219.17])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5C6F920FC3;
+        Fri, 23 Oct 2020 20:02:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603483359;
+        bh=hDOEzAxi95sem2PmS9KZVDmchKA6xtzm/88DXdUooiw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FwezQFVQVyDr5A2On7/Xianed48bAS8BClnsEKjQEF5rFTdB9bUDAX6dKigGf5+nf
+         O1HXQYVc63Ei0vCbEEJLiEdAjto/zryJzDpjbX3j/y/gi9DjHDpww6Ffgd4jFETEaq
+         WlepcR46MPw5EswUs8/ag1N8myRCHuScU/nqODuM=
+Date:   Fri, 23 Oct 2020 22:02:35 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, linux-gpio@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: More whitespace clean-ups in schema files
+Message-ID: <20201023200235.GA4473@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, linux-gpio@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20201023192258.3126047-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3V7upXqbjpZ4EhLz"
+Content-Disposition: inline
+In-Reply-To: <20201023192258.3126047-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ethernet PHY provides RX and TX delay on both models, A and B. Although
-schematic for model A suggests only TX delay, network never worked with
-such configuration.
 
-Fix ethernet node to reflect PHY delays.
+--3V7upXqbjpZ4EhLz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 729e1ffcf47e ("arm64: allwinner: h6: add support for the Ethernet =
-on Pine H64")
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, Oct 23, 2020 at 02:22:58PM -0500, Rob Herring wrote:
+> Clean-up incorrect indentation, extra spaces, and missing EOF newline in
+> schema files. Most of the clean-ups are for list indentation which
+> should always be 2 spaces more than the preceding keyword.
+>=20
+> Found with yamllint (now integrated into the checks).
+>=20
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-mmc@vger.kernel.org
+> Cc: linux-mtd@lists.infradead.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/=
-arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-index af85b2074867..961732c52aa0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-@@ -100,7 +100,7 @@ &ehci3 {
- &emac {
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&ext_rgmii_pins>;
--	phy-mode =3D "rgmii";
-+	phy-mode =3D "rgmii-id";
- 	phy-handle =3D <&ext_rgmii_phy>;
- 	phy-supply =3D <&reg_gmac_3v3>;
- 	allwinner,rx-delay-ps =3D <200>;
---=20
-2.29.0
+Acked-by: Wolfram Sang <wsa@kernel.org> # for I2C
 
+
+--3V7upXqbjpZ4EhLz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl+TNtcACgkQFA3kzBSg
+KbZOdBAAkqpJEFfYvRRb1SGSzO/gUrubqUMa8fIlI3uJkjT7IeUC5fnw0hLY1MxJ
+Cbfd4NNRvkk6E9yKwFo8kApquTQGdGpwcO9r0CiBa7hkbQgUbDKVvtBmjGSslFWs
+0j0Vo+YnXMNHy5/Wm1f9ZJLUUiE+VZgFJcq4A4Vu4caF03uI0DUINEIYkllpitlB
+2df2t4pMA5Hzy9BXd2LvhDIDp1CkyWqQ8gXiQ39xE3IzqU6PHe5g9nb0d2HH41Jf
+qdI7CqNt+W1d20gSUA6xr2LesbmR0ZxdJ2Vhl99IiUR3VLXWvq4nuF3Y+12pYZoW
+DJNroSrxWH8330Lhgqz/KWtZ/6XThDblaU0vXoP5svYMsCfaobu+g6mgRFCzVBRB
+YFhUS0I8Vl5IxMWXjodFn2QtX8Ojc4Ip3DchF4Q2fYqkU8JGm1viFZb7OyCzMCok
+1eBcR34Ba2ssrW98znmk7am1PSWWp8/X4odPTQBGamLSeq3iYKSZCCUPnTvR4RJu
+4C19OWsUy3ILh65y/6CquGIbEVQP+HtACQlEU3JWsBSPfT+wfdazF8sZkTo1keoZ
+tQxJw0DPlBMo5id9L9vahqoV8J7pncnzOonWyFr0AgHQ3V9DJV1ggVC/qD0rXEyx
+jrzs0Ye/zKGIorZ8jxV6ggh/XpRNjEgM1g/5l+LT1mb7cY593Ao=
+=P6je
+-----END PGP SIGNATURE-----
+
+--3V7upXqbjpZ4EhLz--
