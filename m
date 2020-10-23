@@ -2,259 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F8F296BBB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 11:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EAFA296BC9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 11:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S461044AbgJWJF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 05:05:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S461037AbgJWJF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 05:05:28 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21486C0613CE
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 02:05:28 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id a9so1190816lfc.7
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 02:05:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=11FP7yalsP50Ez/WueamNfeyE2agUkdlErUqg/OXuMw=;
-        b=W/sERpTP4lxb2ggRoioWFZlxUIepyCZ97ubq2C5VUOng+ES1C6TQBSBc0id96c9gzh
-         G7VwvHRMNYYQ7+r9jaR9TWrxOIMagAiqZJePOcazaVo1ewFNE6d/2tL7xx6p1O0pikfH
-         nO5o1nEMnDizIqoZeCwfBRTguc7tJcJcBWHszOkeisHj/oVesrIX7dxYeNVxG2OWyYag
-         KwZsTiFzBu/c7UHJ9i5eIDBt/hyQFfBjxS1kg1JgbNEOKINRU5BUKht5Gd+6Qlsy8Pw1
-         xI46qw2UFX2qOLP1xe0ykKc6vrd/JscbXLkU2Hzfqy3lTmCcE026YhTNz0/j9rbzxNS5
-         zARA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=11FP7yalsP50Ez/WueamNfeyE2agUkdlErUqg/OXuMw=;
-        b=dYcnfGxHJI2gX1feAYYHfW+wtMpDctrtSoi6x5wcxW7yGsopTCiIilqrSEka9bmoWe
-         /68G7N81yWj4lWR1Zu7FDdZzxvTV2LT28Plsj43vsUXN9Ano9KBHoxhjeLXch/t+ubvm
-         NoKOZm7wQYX2Q4jTkFLEZBDqlbpeOxLuB5P7dT4xlT4GsOEI0N9ld5AqK9w3Kbc8EhWv
-         SvygT8ScaVROtJYpfcE8eHVcxWm17jam3O/s7KHwV0aZ48iDihNDG07xkNxgSj//fj54
-         NanIO7nzisJZmPur+BsMwuyGQnyy0XcdfI4MzDOd6y1PPzV9byMWs6hbNX89WcqW6ZAt
-         jWWg==
-X-Gm-Message-State: AOAM532PtnNO5Hq7TSDMAWpoEsp2PThG5oe608ZzdmsZt/MuCTUSOwYg
-        cMObanfWJD7CBUcVi+itF4zLOQ==
-X-Google-Smtp-Source: ABdhPJwPYhQ0wJjoyfbQl/e5iUtqMSAHb3mWoLpwYBweHjq/SMbEM2HSHb+NBsdypLcOig6o6+NPlg==
-X-Received: by 2002:a19:24c2:: with SMTP id k185mr476316lfk.46.1603443926584;
-        Fri, 23 Oct 2020 02:05:26 -0700 (PDT)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id m29sm78448lfj.144.2020.10.23.02.05.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2020 02:05:25 -0700 (PDT)
-Date:   Fri, 23 Oct 2020 11:05:24 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 2/4] arm64: dts: renesas: Add support for MIPI Adapter
- V2.1 connected to HiHope RZ/G2H
-Message-ID: <20201023090524.GD2158081@oden.dyn.berto.se>
-References: <20201020125134.22625-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20201020125134.22625-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S461128AbgJWJJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 05:09:09 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:60690 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S461115AbgJWJJJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 05:09:09 -0400
+X-UUID: a1011b1453ba4d83ae8b7df3dcf87bfb-20201023
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=3WEtnopcYNnyU+ht9FURWd9kEIt+fKwHVmbbqq2fROE=;
+        b=SNh8NghRDD4dZy3Pf5pYL3djNfNuXM5M04TxUc3z6YPZ2JRGTSKqD6iogAZutUIZQg0P6a9QbQdDRU9DbXBQb46RVL45qK1b3scDyZz1fnpQe3XNmDgEc06wim56yWzP8fvdFG5AhmNFLViBBirNuKBso/d7NPaXWIXEXWpEr4s=;
+X-UUID: a1011b1453ba4d83ae8b7df3dcf87bfb-20201023
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1431867585; Fri, 23 Oct 2020 17:09:02 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 23 Oct 2020 17:09:00 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 23 Oct 2020 17:09:00 +0800
+Message-ID: <1603444138.20224.19.camel@mtkswgap22>
+Subject: Re: [PATCH v1] cpufreq: mediatek-hw: Add support for Mediatek
+ cpufreq HW driver
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>
+Date:   Fri, 23 Oct 2020 17:08:58 +0800
+In-Reply-To: <20201023082817.5vp4cvi2lmpaozcn@vireshk-i7>
+References: <1603441493-18554-1-git-send-email-hector.yuan@mediatek.com>
+         <20201023082817.5vp4cvi2lmpaozcn@vireshk-i7>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201020125134.22625-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-TM-SNTS-SMTP: BFAEE2C64C5F4F78B9D894AC69314D171E959363740E77E7C149C17B814AB9BB2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lad,
+T24gRnJpLCAyMDIwLTEwLTIzIGF0IDEzOjU4ICswNTMwLCBWaXJlc2ggS3VtYXIgd3JvdGU6DQo+
+IE9uIDIzLTEwLTIwLCAxNjoyNCwgSGVjdG9yIFl1YW4gd3JvdGU6DQo+ID4gVGhpcyBwYXRjaHNl
+dCBpbmNsdWRlcyA2IHBhdGNoZXMgYW5kIGRlcGVuZHMgb24gdGhlIE1UNjc3OSBEVFMgcGF0Y2hb
+MV0gc3VibWl0dGVkIGJ5IEhhbmtzIENoZW4uDQo+ID4gVGhlIGZpcnN0IDMgcGF0Y2hlcyBhcmUg
+Zm9yIENQVUZSRVEgSFcgZHJpdmVyIGFuZCBkZXZpY2UgdHJlZSBiaW5kaW5nLCB3aGljaCBhcmUg
+YWxyZWFkeSBzZW50IGJlZm9yZSBzZXBhcmF0ZWx5IFsyXVszXS4gRm9yIGJpbmRpbmcgcGFydCwg
+SSBhZGQgYSBuZXcgcGF0Y2ggdG8gYWRkIHByb3BlcnR5IGluIGNwdSBzY2hlbWEuDQo+ID4gQmVz
+aWRlcywgd2UgYWRkIHRocmVlIG1vcmUgcGF0Y2hlcyBpbmNsdWRpbmcgRU0gcG93ZXIgdGFibGUs
+IFNWUyBDUFUgaW5pdGlhbGl6ZSwgYW5kIGNvb2xpbmcgZGV2aWNlLg0KPiANCj4gQW5kIGV2ZW4g
+YWZ0ZXIgc28gbWFueSB2ZXJzaW9ucyBvZiB0aGVzZSB5b3UgY2hvc2UgdG8gbmFtZSB0aGlzIFYx
+LiBJdA0KPiBpcyB2ZXJ5IGRpZmZpY3VsdCBmb3IgcmV2aWV3ZXJzIHRvIGZpbmQgdGltZSB0byBy
+ZXZpZXcgeW91ciBzdHVmZiwgYW5kDQo+IHRoZXkgZXhwZWN0IHNvbWUgc29ydCBvZiBzdW1tYXJ5
+IGZyb20geW91IG9uIHdoYXQgZXhhY3RseSBjaGFuZ2VkIGZyb20NCj4gbGFzdCB2ZXJzaW9uIGFu
+ZCB5b3UgYWxzbyBuZWVkIHRvIG5hbWUgdGhlIGN1cnJlbnQgdmVyc2lvbiBjdXJyZW50bHkuDQo+
+IA0KPiBUaGlzIHNob3VsZCBoYXZlIGJlZW4gVjggYW5kIHlvdSBzaG91bGQgaGF2ZSBhZGRlZCBh
+ICJWNy0+VjggZGlmZjoiDQo+IHNlY3Rpb24gaGVyZSwgbmFtaW5nIGFsbCB0aGUgY2hhbmdlcyB5
+b3UgZGlkLiBQbGVhc2Ugc2VuZCB0aGF0IGFzDQo+IHJlcGx5IHRvIHRoaXMgZW1haWwsIHNvIEkg
+Y2FuIHNlZSB3aGF0IHJlYWxseSBjaGFuZ2VkLg0KPiANCkhpLCBWaXJlc2gNCg0KU29ycnkgZm9y
+IHlvdXIgaW5jb252ZW5pZW5jZS4NCiMxfiMzIGlzIGZvciBjcHVmcmVxIGRyaXZlciB3ZSBoYXZl
+IHJldmlld2VkIGFuZCB0aGUgYmluZGluZ3Mgd2hpY2gNCnNlcGFyYXRlIGZyZXEgZG9tYWluIHRv
+IENQVSBzY2hlbWEuVGhlcmUgaXMgbm8gY2hhbmdlIGZvciB0aGUgZHJpdmVyDQppdHNlbGYuDQog
+IDEuIGNwdWZyZXE6IG1lZGlhdGVrLWh3OiBBZGQgc3VwcG9ydCBmb3IgQ1BVRlJFUSBIVw0KICAy
+LiBkdC1iaW5kaW5nczogYXJtOiBjcHVzOiBEb2N1bWVudCAnbXRrLGZyZXEtZG9tYWluJyBwcm9w
+ZXJ0eQ0KICAzLiBkdC1iaW5kaW5nczogY3B1ZnJlcTogYWRkIGJpbmRpbmdzIGZvciBNZWRpYVRl
+ayBjcHVmcmVxIEhXDQoNCiM0fiM2IGlzIGZvciBvdGhlciBDUFUgZmVhdHVyZXMsIGkuZS4gU1ZT
+IFsxXQ0KICA0LiBjcHVmcmVxOiBtZWRpYXRlay1odzogcmVnaXN0ZXIgRU0gcG93ZXIgdGFibGUN
+CiAgNS4gY3B1ZnJlcTogbWVkaWF0ZWstaHc6IEFkZCBTVlMgQ1BVIGluaXRpYWxpemF0aW9uDQog
+IDYuIGNwdWZyZXE6IG1lZGlhdGVrLWh3OiBBZGQgY29vbGluZyBkZXYgZmxhZw0KDQpJIHN1cHBv
+c2VkIHRoYXQgaXQgY291bGQgYmUgbW9yZSBjbGVhbiB0byBzZXBhcmF0ZSAjNH4jNiBpbiBhbm90
+aGVyDQpwYXRjaHNldC5NYXkgSSBrbm93IGlzIGl0IG9rYXkgdG8geW91PyBPciBJIHNob3VsZCBt
+ZXJnZSBhbGwgb2YgY2hhbmdlcw0KaW50byB2OCBsaWtlIHlvdSBtZW50aW9uZWQ/IFRoYW5rIHlv
+dS4NCg0KWzFdDQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVk
+aWF0ZWsvcGF0Y2gvMjAxOTA5MDYxMDA1MTQuMzA4MDMtNC1yb2dlci5sdSU0MG1lZGlhdGVrLmNv
+bS8NCg==
 
-Thanks for your work.
-
-On 2020-10-20 13:51:32 +0100, Lad Prabhakar wrote:
-> Add support for AISTARVISION MIPI Adapter V2.1 board connected to HiHope
-> RZ/G2H board.
-> 
-> Common file hihope-rzg2-ex-aistarvision-mipi-adapter-2.1.dtsi is created
-> which will be used by RZ/G2{HMN}, by default the CSI20 node is tied to
-> ov5645 camera endpoint and the imx219 camera endpoint is tied to CSI40.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-I have not reviewed the schematics but the patch in itself looks good,
-
-Acked-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> ---
-> v1->v2 - No change
-> ---
->  arch/arm64/boot/dts/renesas/Makefile          |   1 +
->  ...rzg2-ex-aistarvision-mipi-adapter-2.1.dtsi | 109 ++++++++++++++++++
->  .../r8a774e1-hihope-rzg2h-ex-mipi-2.1.dts     |  16 +++
->  3 files changed, 126 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/hihope-rzg2-ex-aistarvision-mipi-adapter-2.1.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h-ex-mipi-2.1.dts
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-> index dffefe030a76..f98e9e2e520d 100644
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -22,6 +22,7 @@ dtb-$(CONFIG_ARCH_R8A774C0) += r8a774c0-ek874-mipi-2.1.dtb
->  dtb-$(CONFIG_ARCH_R8A774E1) += r8a774e1-hihope-rzg2h.dtb
->  dtb-$(CONFIG_ARCH_R8A774E1) += r8a774e1-hihope-rzg2h-ex.dtb
->  dtb-$(CONFIG_ARCH_R8A774E1) += r8a774e1-hihope-rzg2h-ex-idk-1110wr.dtb
-> +dtb-$(CONFIG_ARCH_R8A774E1) += r8a774e1-hihope-rzg2h-ex-mipi-2.1.dtb
->  
->  dtb-$(CONFIG_ARCH_R8A77950) += r8a77950-salvator-x.dtb
->  dtb-$(CONFIG_ARCH_R8A77950) += r8a77950-ulcb.dtb
-> diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-aistarvision-mipi-adapter-2.1.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-aistarvision-mipi-adapter-2.1.dtsi
-> new file mode 100644
-> index 000000000000..c62ddb9b2ba5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-aistarvision-mipi-adapter-2.1.dtsi
-> @@ -0,0 +1,109 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the HiHope RZ/G2[HMN] MIPI common parts
-> + *
-> + * Copyright (C) 2020 Renesas Electronics Corp.
-> + */
-> +
-> +#define MIPI_OV5645_PARENT_I2C i2c2
-> +#define MIPI_IMX219_PARENT_I2C i2c3
-> +#include "aistarvision-mipi-adapter-2.1.dtsi"
-> +
-> +&csi20 {
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@0 {
-> +			reg = <0>;
-> +			csi20_in: endpoint {
-> +				clock-lanes = <0>;
-> +				data-lanes = <1 2>;
-> +				remote-endpoint = <&ov5645_ep>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&csi40 {
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@0 {
-> +			reg = <0>;
-> +			csi40_in: endpoint {
-> +				clock-lanes = <0>;
-> +				data-lanes = <1 2>;
-> +				remote-endpoint = <&imx219_ep>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	pinctrl-0 = <&i2c3_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&imx219 {
-> +	port {
-> +		imx219_ep: endpoint {
-> +			clock-lanes = <0>;
-> +			data-lanes = <1 2>;
-> +			link-frequencies = /bits/ 64 <456000000>;
-> +			remote-endpoint = <&csi40_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&ov5645 {
-> +	enable-gpios = <&gpio6 4 GPIO_ACTIVE_HIGH>;
-> +	reset-gpios = <&gpio6 8 GPIO_ACTIVE_LOW>;
-> +
-> +	port {
-> +		ov5645_ep: endpoint {
-> +			clock-lanes = <0>;
-> +			data-lanes = <1 2>;
-> +			remote-endpoint = <&csi20_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&pfc {
-> +	i2c3_pins: i2c3 {
-> +		groups = "i2c3";
-> +		function = "i2c3";
-> +	};
-> +};
-> +
-> +&vin0 {
-> +	status = "okay";
-> +};
-> +
-> +&vin1 {
-> +	status = "okay";
-> +};
-> +
-> +&vin2 {
-> +	status = "okay";
-> +};
-> +
-> +&vin3 {
-> +	status = "okay";
-> +};
-> +
-> +&vin4 {
-> +	status = "okay";
-> +};
-> +
-> +&vin5 {
-> +	status = "okay";
-> +};
-> +
-> +&vin6 {
-> +	status = "okay";
-> +};
-> +
-> +&vin7 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h-ex-mipi-2.1.dts b/arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h-ex-mipi-2.1.dts
-> new file mode 100644
-> index 000000000000..46adb6efb5e6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h-ex-mipi-2.1.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the HiHope RZ/G2H board
-> + * connected with aistarvision-mipi-v2-adapter board
-> + *
-> + * Copyright (C) 2020 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +#include "r8a774e1-hihope-rzg2h-ex.dts"
-> +#include "hihope-rzg2-ex-aistarvision-mipi-adapter-2.1.dtsi"
-> +
-> +/ {
-> +	model = "HopeRun HiHope RZ/G2H with sub board connected with aistarvision-mipi-v2-adapter board";
-> +	compatible = "hoperun,hihope-rzg2h", "renesas,r8a774e1";
-> +};
-> -- 
-> 2.17.1
-> 
-
--- 
-Regards,
-Niklas Söderlund
