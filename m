@@ -2,128 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37453297119
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 16:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1877529714C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 16:27:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S373946AbgJWOK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 10:10:29 -0400
-Received: from foss.arm.com ([217.140.110.172]:53570 "EHLO foss.arm.com"
+        id S1750585AbgJWO1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 10:27:35 -0400
+Received: from foss.arm.com ([217.140.110.172]:53910 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S368882AbgJWOK2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Oct 2020 10:10:28 -0400
+        id S1750553AbgJWO1f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Oct 2020 10:27:35 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 46258113E;
-        Fri, 23 Oct 2020 07:10:27 -0700 (PDT)
-Received: from [10.57.50.191] (unknown [10.57.50.191])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EDCFE3F66B;
-        Fri, 23 Oct 2020 07:10:23 -0700 (PDT)
-Subject: Re: [PATCH v3 11/24] iommu/io-pgtable-arm-v7s: Quad lvl1 pgtable for
- MediaTek
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Will Deacon <will@kernel.org>
-Cc:     Evan Green <evgreen@chromium.org>, Tomasz Figa <tfiga@google.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
-        Greg Kroah-Hartman <gregkh@google.com>, kernel-team@android.com
-References: <20200930070647.10188-1-yong.wu@mediatek.com>
- <20200930070647.10188-12-yong.wu@mediatek.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <a5713949-1d95-40f1-d35d-d99735b48294@arm.com>
-Date:   Fri, 23 Oct 2020 15:10:22 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.3.3
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A6F1113E;
+        Fri, 23 Oct 2020 07:27:34 -0700 (PDT)
+Received: from bogus (unknown [10.57.15.80])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D1E9C3F66B;
+        Fri, 23 Oct 2020 07:27:32 -0700 (PDT)
+Date:   Fri, 23 Oct 2020 15:27:30 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm,scmi: Do not use clocks for SCMI
+ performance domains
+Message-ID: <20201023142730.ru4rfoj3atxyinww@bogus>
+References: <20201020203710.10100-1-sudeep.holla@arm.com>
+ <CAL_JsqKH9pN7E7o+UY7YmOrOKCUigrMTxY3f3AH4PdpQUAaawg@mail.gmail.com>
+ <20201021181951.xu2igea2qbca3alf@bogus>
+ <CAL_JsqJ0OO68AbML7osOU3fNzJk3NhXYrWVmNwn8mwtNzSuf8g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200930070647.10188-12-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJ0OO68AbML7osOU3fNzJk3NhXYrWVmNwn8mwtNzSuf8g@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-30 08:06, Yong Wu wrote:
-> The standard input iova bits is 32. MediaTek quad the lvl1 pagetable
-> (4 * lvl1). No change for lvl2 pagetable. Then the iova bits can reach
-> 34bit.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->   drivers/iommu/io-pgtable-arm-v7s.c | 13 ++++++++++---
->   drivers/iommu/mtk_iommu.c          |  2 +-
->   2 files changed, 11 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/iommu/io-pgtable-arm-v7s.c b/drivers/iommu/io-pgtable-arm-v7s.c
-> index 8362fdf76657..306bae2755ed 100644
-> --- a/drivers/iommu/io-pgtable-arm-v7s.c
-> +++ b/drivers/iommu/io-pgtable-arm-v7s.c
-> @@ -50,10 +50,17 @@
->    */
->   #define ARM_V7S_ADDR_BITS		32
->   #define _ARM_V7S_LVL_BITS(lvl)		(16 - (lvl) * 4)
-> +/* MediaTek: totally 34bits, 14bits at lvl1 and 8bits at lvl2. */
-> +#define _ARM_V7S_LVL_BITS_MTK(lvl)	(20 - (lvl) * 6)
+On Fri, Oct 23, 2020 at 08:34:05AM -0500, Rob Herring wrote:
+> On Wed, Oct 21, 2020 at 1:19 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > On Wed, Oct 21, 2020 at 11:20:27AM -0500, Rob Herring wrote:
+> > > On Tue, Oct 20, 2020 at 3:37 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > > >
+> >
+> > [...]
+> >
+> > >
+> > > When is this not 1 (IOW, you only need this if variable)? How would it
+> > > be used outside SCMI (given it has a generic name)?
+> > >
+> > > > +
+> > > > +* Property arm,scmi-perf-domain
+> > >
+> > [...]
+> >
+> > > Really though, why can't you give SCMI a CPUs MPIDR and get its domain?
+> > >
+> >
+> > Now I remembered why we can't use MPIDR. The spec talks about perf domains
+> > for devices in generic. CPU is just a special device. We will still need
+> > a mechanism to get device performance domain. So MPIDR idea was dropped to
+> > keep it uniform across all the devices.
+>
+> What implications to the binding are there for non-CPU devices? Do
+> they need more cells? How does this integrate our plethora of other PM
+> related bindings?
+>
 
-This should defined in terms of both lvl and cfg->ias. The formula here 
-is nothing more than a disgusting trick I made up since a linear 
-interpolation happened to fit the required numbers. That said, all of 
-these bits pretending that short-descriptor is a well-defined recursive 
-format only served to allow the rest of the code to look more like the 
-LPAE code - IIRC they've already diverged a fair bit since then, so 
-frankly a lot of this could stand to be unpicked and made considerably 
-clearer by simply accepting that level 1 and level 2 are different from 
-each other.
+Ideally it is just a device perf domain ID. SCMI f/w will just assign
+perf domain IDs for both CPUs and other devices like GPUs sequentially
+without any distinction.
 
-Robin.
+However, I can't speak about other aspects of PM especially on wild
+variety of platforms we have on Arm.
 
->   #define ARM_V7S_LVL_SHIFT(lvl)		(ARM_V7S_ADDR_BITS - (4 + 8 * (lvl)))
->   #define ARM_V7S_TABLE_SHIFT		10
->   
-> -#define ARM_V7S_PTES_PER_LVL(lvl, cfg)	(1 << _ARM_V7S_LVL_BITS(lvl))
-> +#define ARM_V7S_PTES_PER_LVL(lvl, cfg)	({				\
-> +	int _lvl = lvl;							\
-> +	!arm_v7s_is_mtk_enabled(cfg) ?					\
-> +	 (1 << _ARM_V7S_LVL_BITS(_lvl)) : (1 << _ARM_V7S_LVL_BITS_MTK(_lvl));\
-> +})
-> +
->   #define ARM_V7S_TABLE_SIZE(lvl, cfg)					\
->   	(ARM_V7S_PTES_PER_LVL(lvl, cfg) * sizeof(arm_v7s_iopte))
->   
-> @@ -63,7 +70,7 @@
->   #define _ARM_V7S_IDX_MASK(lvl, cfg)	(ARM_V7S_PTES_PER_LVL(lvl, cfg) - 1)
->   #define ARM_V7S_LVL_IDX(addr, lvl, cfg)	({			\
->   	int _l = lvl;							\
-> -	((u32)(addr) >> ARM_V7S_LVL_SHIFT(_l)) & _ARM_V7S_IDX_MASK(_l, cfg); \
-> +	((addr) >> ARM_V7S_LVL_SHIFT(_l)) & _ARM_V7S_IDX_MASK(_l, cfg); \
->   })
->   
->   /*
-> @@ -755,7 +762,7 @@ static struct io_pgtable *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
->   {
->   	struct arm_v7s_io_pgtable *data;
->   
-> -	if (cfg->ias > ARM_V7S_ADDR_BITS)
-> +	if (cfg->ias > (arm_v7s_is_mtk_enabled(cfg) ? 34 : ARM_V7S_ADDR_BITS))
->   		return NULL;
->   
->   	if (cfg->oas > (arm_v7s_is_mtk_enabled(cfg) ? 35 : ARM_V7S_ADDR_BITS))
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index f6a2e3eb59d2..6e85c9976a33 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -316,7 +316,7 @@ static int mtk_iommu_domain_finalise(struct mtk_iommu_domain *dom)
->   			IO_PGTABLE_QUIRK_TLBI_ON_MAP |
->   			IO_PGTABLE_QUIRK_ARM_MTK_EXT,
->   		.pgsize_bitmap = mtk_iommu_ops.pgsize_bitmap,
-> -		.ias = 32,
-> +		.ias = 34,
->   		.oas = 35,
->   		.tlb = &mtk_iommu_flush_ops,
->   		.iommu_dev = data->dev,
-> 
+Today even with SCMI each device/cpu needs to track clock or performance,
+reset, power, voltage, ...etc domains and their IDs needs to be passed
+via DT.
+
+We are thinking of making all these device ID centric in future. It means
+if the device tree had scmi device ID for each of them, we must be able to
+perform any power management or configuration management on that device.
+SCMI f/w must then abstract everything at device level. Just a thought
+as of now and it aligns with some of the ACPI concepts.
+
+> So somewhere in the firmware we're defining device X is domain 0,
+> device Y is domain 1, etc. Then we do this again in DT. Seems fragile
+> to define this information twice. I guess that's true for any number
+> space SCMI defines.
+>
+
+Correct and agreed on your point. Any ideas to make this discoverable ?
+Atleast with SCMI, we have been able to reduce the amount of information
+just to that ID(though there are multiple ID space today for each aspects
+of PM and config management). As I mentioned we would like to make it
+device centric. Any thoughts on making IDs discoverable is appreciated.
+
+We thought about names and other things during initial days of the
+spec evolution, but we circled back to how does OS provide that info and
+we go back to DT/ACPI which was not too bad at that time. We can see if
+we can improve anything there.
+
+--
+Regards,
+Sudeep
