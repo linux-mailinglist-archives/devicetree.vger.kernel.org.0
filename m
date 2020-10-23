@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03794297089
+	by mail.lfdr.de (Postfix) with ESMTP id 33F5729708A
 	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 15:31:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S464812AbgJWNbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 09:31:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48800 "EHLO
+        id S464840AbgJWNbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 09:31:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S374502AbgJWNbh (ORCPT
+        with ESMTP id S374545AbgJWNbh (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 09:31:37 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C3CC0613CE
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 06:31:35 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id q5so1578969wmq.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 06:31:35 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97EEBC0613D4
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 06:31:37 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id n6so1820759wrm.13
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 06:31:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=x0g5y25aamnJmaPgpvLpUPjcowdDVx0DC7LsyytrI5g=;
-        b=MlR6wK4kuxU+Ax9dRf4/DR9QDEr/ma6S6Y2sM20AWbwA7RfrDwTOOLYdZaax7G0v1y
-         zsFqOdkKJfXeOi3Yyhs6Zhol6iJX6NsnuMRaRnAoCfQxi4JEXtn5GNKWELkTTWb8WdHn
-         ajtN6cIlBo/KjFgAgqvJLHPTaCSxPtg6NuFnBiti0+aY7y+Wnahua1t8VjnSDG5TyTLx
-         L1xGw/h7u5Qp+D2SR2Y9/0TmbwOwUPdOkLI6ydPX2T/GrZA/QQDjLoEen9L6CFXZVUxy
-         /N8Bwq19JrKxMCxvNX6YwY8+cSYhFxAnjWHLzaBIJHX31b0Ppkepn0BNjIrPH6qfGGsh
-         CqsQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ZZZhZb2rEz5fHuVG55QJOamqxxRM5CUTX2itYU5vANI=;
+        b=GS5fOfQIIw3GAMYSybwFZT5Uml1Gn5gqpzXW88Ram1s3RNRCBylCYem2I1Wg7k5rL0
+         EXZ8Npi3dbjRFjfNP3pY5jMVq2AVTQMvmFmz4rQn0+cWxvIgA7HI62U+yAX19Gzoz1xi
+         EVIvDLb0VwGihRMVDBYY2DvsDkFRbmi0oqqFNuHl83mxxz94pi6TOu82iJIKSJA+Nb8C
+         16s7BFs1f/gOM3djshd+VuHkUmMe2vffHtBmY+e8+73QJ2tnVsDgvl/8LawF+g7nxiC+
+         5PW872nYyg7HAzjeGNHgwzWZlaNaAmi8xWu46qcK3GB90sluZ5kwmfaJqEkgtdN2lzvO
+         0Dbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=x0g5y25aamnJmaPgpvLpUPjcowdDVx0DC7LsyytrI5g=;
-        b=rAyXIpoe1ZHjqh062fz0KXdAeC9K+hjqXoO6uQfOtWJiBuc1m0q5a3VNhKj7P/rY/I
-         2UnsJC9lhfd7GQYGzMfGh9b7ne8K5VzKdx7Nl+kQBOUduvBxJKJbrV5vqL0j2QA5OGz0
-         1zLel8z12V6wDe/pT4L9QYOT9p6AqDrwHoiY9n5lYXB1Nkz3Xsbp/ZVXW9om6jx48s1B
-         5KmbnyC5KmAlmH921BsYORMPDi7RGTe78pWJT1nyVXmV6Q9/UKP6eaH8BXn003gpEQRO
-         wKWQ55U5iG9dUfUv/prNw1fTaPVJO4Jb4jy5Hf2GQQZGLuLvId33OObCD/+FnTfrOKEc
-         imKQ==
-X-Gm-Message-State: AOAM531mbgK77fZN8coHUjNeJVidXBTlyoCeknbRLCTX9/1VMTwZUFle
-        SHdgzwOHyzQK+BynZAooa54Nvg==
-X-Google-Smtp-Source: ABdhPJx3KXkKjPhuP5F8RgAsbrby6ayVAwe3PQJpsJ7APdCh/zspU8uMjMlSQ4RwHHypPHprj6j/XA==
-X-Received: by 2002:a1c:bb84:: with SMTP id l126mr2267365wmf.141.1603459894574;
-        Fri, 23 Oct 2020 06:31:34 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ZZZhZb2rEz5fHuVG55QJOamqxxRM5CUTX2itYU5vANI=;
+        b=i9jy8M/qfrA1Zfsh+9X0c4sXMBoysTFcqO49MiNmk1H03/WOCMNQvrnynb/aT2q48C
+         1ONmUc2jV0jkho8UICYSdAHUAWS9V60tsSNFzf/nzmCP2Xp+0tI5f2JiG0u+x+z3Li91
+         208CuzSmtYRNfNIxnWqh6SUmtUUVDsYsPicpjlp9c5MmIaNMHEB6YSzdXopihluumLmK
+         HHSI+Ik3WyAZUhthplOBFKqYAbm38s0n9GGt85w3Z0BdX2R/h7bE/ZjOnU0deqagfGp2
+         wuDlAFk/urabdRm+huYFWXtMAfN7y0NPrGqVbEdKMSDEmnMtZmz8NPtecZUCS0MQ5spu
+         MOhQ==
+X-Gm-Message-State: AOAM530F5zZIHiIM5ejX7N02QqR2ulNYU5i1UsDNG3I7r8Vba2JXuRW0
+        5h8+gifOb0LLfXJSqmJZKP1AaQ==
+X-Google-Smtp-Source: ABdhPJzqrOGaTf+kRDwUvFhLf41amL9nkhiLntJO+SJUCOhPk4RcEpRuGLBe5yMpJi6sbEOlMwjURA==
+X-Received: by 2002:a5d:448b:: with SMTP id j11mr2574289wrq.129.1603459896327;
+        Fri, 23 Oct 2020 06:31:36 -0700 (PDT)
 Received: from localhost.localdomain (211.160.185.81.rev.sfr.net. [81.185.160.211])
-        by smtp.gmail.com with ESMTPSA id f6sm3146107wru.50.2020.10.23.06.31.32
+        by smtp.gmail.com with ESMTPSA id f6sm3146107wru.50.2020.10.23.06.31.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2020 06:31:33 -0700 (PDT)
+        Fri, 23 Oct 2020 06:31:35 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
@@ -54,41 +54,53 @@ To:     linux-mediatek@lists.infradead.org,
 Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, daniel@ffwll.ch,
         airlied@linux.ie, p.zabel@pengutronix.de, chunkuang.hu@kernel.org,
         Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH v2 0/5] Add DRM/DSI support for MT8167 SoC
-Date:   Fri, 23 Oct 2020 15:31:25 +0200
-Message-Id: <20201023133130.194140-1-fparent@baylibre.com>
+Subject: [PATCH v2 1/5] dt-bindings: display: mediatek: disp: add documentation for MT8167 SoC
+Date:   Fri, 23 Oct 2020 15:31:26 +0200
+Message-Id: <20201023133130.194140-2-fparent@baylibre.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201023133130.194140-1-fparent@baylibre.com>
+References: <20201023133130.194140-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds support for DSI on the MT8167 SoC. HDMI is not yet supported
-as secondary display path.
+Add binding documentation for the MT8167 SoC
 
-mmsys is not supported by this series and will be sent in a seperate series
-based on [0].
-
-[0] https://patchwork.kernel.org/project/linux-mediatek/list/?series=360447
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+---
 
 Changelog:
-	V2: removed 3 patches
 
-Fabien Parent (5):
-  dt-bindings: display: mediatek: disp: add documentation for MT8167 SoC
-  dt-bindings: display: mediatek: dsi: add documentation for MT8167 SoC
-  drm/mediatek: add disp-color MT8167 support
-  drm/mediatek: add DDP support for MT8167
-  drm/mediatek: Add support for main DDP path on MT8167
+V2: No change
 
- .../display/mediatek/mediatek,disp.txt        |  4 +-
- .../display/mediatek/mediatek,dsi.txt         |  4 +-
- drivers/gpu/drm/mediatek/mtk_disp_color.c     |  7 +++
- drivers/gpu/drm/mediatek/mtk_drm_ddp.c        | 47 +++++++++++++++++++
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 38 +++++++++++++++
- 5 files changed, 96 insertions(+), 4 deletions(-)
+ .../devicetree/bindings/display/mediatek/mediatek,disp.txt    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
+index 121220745d46..33977e15bebd 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
+@@ -43,7 +43,7 @@ Required properties (all function blocks):
+ 	"mediatek,<chip>-dpi"        		- DPI controller, see mediatek,dpi.txt
+ 	"mediatek,<chip>-disp-mutex" 		- display mutex
+ 	"mediatek,<chip>-disp-od"    		- overdrive
+-  the supported chips are mt2701, mt7623, mt2712 and mt8173.
++  the supported chips are mt2701, mt7623, mt2712, mt8167 and mt8173.
+ - reg: Physical base address and length of the function block register space
+ - interrupts: The interrupt signal from the function block (required, except for
+   merge and split function blocks).
+@@ -59,7 +59,7 @@ Required properties (DMA function blocks):
+ 	"mediatek,<chip>-disp-ovl"
+ 	"mediatek,<chip>-disp-rdma"
+ 	"mediatek,<chip>-disp-wdma"
+-  the supported chips are mt2701 and mt8173.
++  the supported chips are mt2701, mt8167 and mt8173.
+ - larb: Should contain a phandle pointing to the local arbiter device as defined
+   in Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+ - iommus: Should point to the respective IOMMU block with master port as
 -- 
 2.28.0
 
