@@ -2,291 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17AD0297341
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CAEF2973AF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:27:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1751380AbgJWQKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 12:10:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45368 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S465150AbgJWQKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:10:51 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11E5C0613CE
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 09:10:50 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id t25so3088354ejd.13
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 09:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0VrFCmtOJEoxunIpFeIHExWUdQU/hcpWXszyYHPDZ+Q=;
-        b=NXos4019Tyduk907dFAxl8EYEWZdEI2fU3hGlMBv2Ptejfen5boRkquv9we1Q0KTMU
-         6vI3uPDlSSeb38Xe2g9CLWYzZILi0sBh5ARnCRouQiVw+mMYCL/OWXPVzxwddhZPjgfX
-         c4kUcRWG4rlkuV74PxYM9zlQ5um0/3GJxwTzaN6mqBCDYSDR3MxkBh47PMNLaLce4D6X
-         etg9H5eEywPi81NOFmIqcNEsc3bzqiXorC6UrZsCHeYjKpxAdypv0mgzRhuuIxxTLcsG
-         p7vkBLnuFBcYiorz6GYlmxsbbNf/cRKEaorxVUcJ9v0tHSiE4iE0tWRHAz3ugq6HwuP8
-         2gBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0VrFCmtOJEoxunIpFeIHExWUdQU/hcpWXszyYHPDZ+Q=;
-        b=AgKOt6O7awQY8YwvOO6WH7QgQspIOYpq2isOL9TdQ1ZICBjEMyfUA7fd4aj144yeey
-         SPudN49h9j27FlAtL3wBwfWZI/WqFcfD5U3XUDS5Pt1l7Y1Vic7rcGukn7s135A+5uQk
-         x7gdEvA9LJPD2YhbVMulnCzZ4oLq0cxgUC4JABNE4bJxMhPSdTAwSUy5tWW2z0apI5gF
-         Sg4GejuRYIwO1G9JGyX+kKNC2X6yUR3d4VprxDMK3pmVg3oOheuZnWElrEbcbsPSpZFm
-         syu/NjRKlfAbEdXpK27x+a1WDLZr/UP5rDjpUsnh2PniSZ2QuH63o0GIIzXMpOX+XkE5
-         OUPA==
-X-Gm-Message-State: AOAM533q2qWzINa1jBxq2ZtF1pv0wN+8fglB+hmSzv50upUmUITs/ahG
-        05VJLh1btfIMP3X00LVkchRYq56Cf4vEZC4DN0wPReFmTgcmmc2XF5J8xPXZ+8rhFDVFGgaNZ2+
-        v4cY8ie4fKTgeRnjSVimaaGvHPxB2MN9kB0vmaLDM3yOiPe3CeV4+mPWuJD6kGT38/1ePmgA231
-        bUh0Q=
-X-Google-Smtp-Source: ABdhPJxyEiQ7xe4BfDP+TMSbXYbICo7V6nicWeWnmB+GGd01OzaJVB9+MwasSOVz4vZhwodgEgO5mQ==
-X-Received: by 2002:a17:906:1189:: with SMTP id n9mr2845257eja.190.1603469447964;
-        Fri, 23 Oct 2020 09:10:47 -0700 (PDT)
-Received: from localhost.localdomain ([213.149.61.126])
-        by smtp.gmail.com with ESMTPSA id r24sm989420edm.95.2020.10.23.09.10.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2020 09:10:47 -0700 (PDT)
-From:   Vladimir Vid <vladimir.vid@sartura.hr>
-To:     devicetree@vger.kernel.org
-Cc:     pali@kernel.org, a.heider@gmail.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, tmn505@gmail.com,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        andrew@lunn.ch, jason@lakedaemon.net, robh+dt@kernel.org,
-        Vladimir Vid <vladimir.vid@sartura.hr>
-Subject: [PATCH v2] arm64: dts: marvell: add DT for ESPRESSObin-Ultra
-Date:   Fri, 23 Oct 2020 18:21:11 +0200
-Message-Id: <20201023162110.265857-1-vladimir.vid@sartura.hr>
-X-Mailer: git-send-email 2.27.0
+        id S1750565AbgJWQ1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 12:27:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57522 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1750560AbgJWQ1d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Oct 2020 12:27:33 -0400
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9F5852245A;
+        Fri, 23 Oct 2020 16:27:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603470452;
+        bh=iCHkIQPJ9n5EWAybizUiQrLv56EkwfuRfXJFQDdLbf8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sOAdbMxX7Z0ofhR6ZaWxCxigrQTz6XBbi5Vsh7C1TRB0ZJ2LwtU7q7gAqE7FUpuww
+         PPe3kRve/CHZ9vb0YrIczrro2tsTPsF090jYWiAQeAWlntO9NmsGbMFSUrbSV5BV2f
+         y0TBC39FCF6vO+/4XdTzjKfgvXiw3OtRb7oy8rjo=
+Received: by mail-ej1-f43.google.com with SMTP id z5so3191989ejw.7;
+        Fri, 23 Oct 2020 09:27:32 -0700 (PDT)
+X-Gm-Message-State: AOAM5310syJ5Bg+sA/vTjptaWt3DzLeD2W1es+7/WXxffdSI8oxaw0nF
+        v3dRJb2xJlQ5i/DzUeJzFfOVp7YnXMnrWAepnaM=
+X-Google-Smtp-Source: ABdhPJzu+YDikCuMcAnUApzZlJV6sL/IS32lCeHPts0kyQkHSfjRrliCpF8fPOOJK4vCW1eILVUdMAK34rIBeJ7ZUOA=
+X-Received: by 2002:a17:906:6a07:: with SMTP id o7mr2717056ejr.454.1603470451015;
+ Fri, 23 Oct 2020 09:27:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201021214910.20001-1-l.stelmach@samsung.com>
+ <CGME20201021214933eucas1p152c8fc594793aca56a1cbf008f8415a4@eucas1p1.samsung.com>
+ <20201021214910.20001-3-l.stelmach@samsung.com> <20201023160521.GA2787938@bogus>
+In-Reply-To: <20201023160521.GA2787938@bogus>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 23 Oct 2020 18:27:18 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPeNhXrBa0ZK-k37uhs5izukrhHN-rkxgsjiQBHCMmZs7g@mail.gmail.com>
+Message-ID: <CAJKOXPeNhXrBa0ZK-k37uhs5izukrhHN-rkxgsjiQBHCMmZs7g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] dt-bindings: net: Add bindings for AX88796C SPI
+ Ethernet Adapter
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
+        devicetree@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?UTF-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, jim.cromie@gmail.com,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for ESPRESSObin-Ultra from Globalscale.
+On Fri, 23 Oct 2020 at 18:05, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, 21 Oct 2020 23:49:07 +0200, =C5=81ukasz Stelmach wrote:
+> > Add bindings for AX88796C SPI Ethernet Adapter.
+> >
+> > Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
+> > ---
+> >  .../bindings/net/asix,ax88796c.yaml           | 69 +++++++++++++++++++
+> >  1 file changed, 69 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c=
+.yaml
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/net/asix,ax88796c.yaml: $id: relative=
+ path/filename doesn't match actual path or filename
+>         expected: http://devicetree.org/schemas/net/asix,ax88796c.yaml#
+> Documentation/devicetree/bindings/net/asix,ax88796c.example.dts:20:18: fa=
+tal error: dt-bindings/interrupt-controller/gpio.h: No such file or directo=
+ry
 
-Specifications are similar to the base ESPRESSObin board, with main
-difference being being WAN port with PoE capability and 2 additional ethernet ports.
+=C5=81ukasz,
 
-Full specifications:
+So you really did not compile/test these patches... It's the second
+build failure in the patchset. All sent patches should at least be
+compiled on the latest kernel, if you cannot test them. However this
+patchset should be testable - Artik5 should boot on mainline kernel
 
-1x Marvell 64 bit Dual Core ARM A53 Armada 3700 SOC clocked up to 1.2Ghz
-1x Topaz 6341 Networking Switch
-1GB DDR4
-8GB eMMC
-1x WAN with 30W POE
-4x Gb LAN
-1x RTC Clock and battery
-1x DC Jack
-1x USB 3.0 Type A
-1x USB 2.0 Type A
-1x SIM NanoSIM card Slot
-1x Power Button
-4x LED
-1x Reset button
-1x microUSB for UART
-1x M.2 2280 slot for memory
-1x 2x2 802.11ac Wi-Fi
-1x MiniPCIE slot for Wi-Fi (PCIe interface)
-
-Signed-off-by: Vladimir Vid <vladimir.vid@sartura.hr>
----
-
-v2 changes:
-
-- added armada-3720-espressobin.dtsi include and updated dts
-- updated model name
-- renamed first partition from 'u-boot' to 'firmware' 
-- disabled usb3 node for the moment as it include usb2 references
-
----
- arch/arm64/boot/dts/marvell/Makefile          |   1 +
- .../marvell/armada-3720-espressobin-ultra.dts | 161 ++++++++++++++++++
- 2 files changed, 162 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 3e5f2e7a040c..094f451fdd1d 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -3,6 +3,7 @@
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-new file mode 100644
-index 000000000000..87aaf620a171
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-@@ -0,0 +1,161 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device Tree file for ESPRESSObin-Ultra board.
-+ * Copyright (C) 2019 Globalscale technologies, Inc.
-+ *
-+ * Jason Hung <jhung@globalscaletechnologies.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "armada-3720-espressobin.dtsi"
-+
-+/ {
-+	model = "Globalscale Marvell ESPRESSOBin Ultra Board";
-+	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
-+		     "marvell,armada3710";
-+
-+	reg_usb3_vbus: usb3-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb3-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&gpionb 19 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	usb3_phy: usb3-phy {
-+		compatible = "usb-nop-xceiv";
-+		vcc-supply = <&reg_usb3_vbus>;
-+	};
-+
-+	gpio-leds {
-+		pinctrl-names = "default";
-+		compatible = "gpio-leds";
-+		/* No assigned functions to the LEDs by default */
-+		led1 {
-+			label = "ebin-ultra:blue:led1";
-+			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
-+		};
-+		led2 {
-+			label = "ebin-ultra:green:led2";
-+			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
-+		};
-+		led3 {
-+			label = "ebin-ultra:red:led3";
-+			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
-+		};
-+		led4 {
-+			label = "ebin-ultra:yellow:led4";
-+			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&sdhci0 {
-+	status = "okay";
-+	non-removable;
-+	bus-width = <8>;
-+	mmc-ddr-1_8v;
-+	mmc-hs400-1_8v;
-+	marvell,pad-type = "fixed-1-8v";
-+};
-+
-+&sdhci1 {
-+	status = "disabled";
-+};
-+
-+&spi0 {
-+	flash@0 {
-+		spi-max-frequency = <108000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <4>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "firmware";
-+				reg = <0x0 0x3e0000>;
-+			};
-+			partition@3e0000 {
-+				label = "hw-info";
-+				reg = <0x3e0000 0x10000>;
-+				read-only;
-+			};
-+			partition@3f0000 {
-+				label = "u-boot-env";
-+				reg = <0x3f0000 0x10000>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pins>;
-+
-+	clock-frequency = <100000>;
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&usb3 {
-+	usb-phy = <&usb3_phy>;
-+	status = "disabled";
-+};
-+
-+&mdio {
-+	extphy: ethernet-phy@0 {
-+		reg = <1>;
-+	};
-+};
-+
-+&switch0 {
-+	reg = <3>;
-+
-+	ports {
-+		port@1	{
-+			reg = <1>;
-+			label = "lan0";
-+			phy-handle = <&switch0phy0>;
-+		};
-+
-+		port@2 {
-+			reg = <2>;
-+			label = "lan1";
-+			phy-handle = <&switch0phy1>;
-+		};
-+
-+		port@3 {
-+			reg = <3>;
-+			label = "lan2";
-+			phy-handle = <&switch0phy2>;
-+		};
-+
-+		port@4 {
-+			reg = <4>;
-+			label = "lan3";
-+			phy-handle = <&switch0phy3>;
-+		};
-+
-+		port@5 {
-+			reg = <5>;
-+			label = "wan";
-+			phy-handle = <&extphy>;
-+			phy-mode = "sgmii";
-+		};
-+	};
-+
-+	mdio {
-+		switch0phy3: switch0phy3@14 {
-+			reg = <0x14>;
-+		};
-+	};
-+};
--- 
-2.27.0
-
+Best regards,
+Krzysztof
