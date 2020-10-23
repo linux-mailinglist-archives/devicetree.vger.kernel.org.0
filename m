@@ -2,154 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30575296F2B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 14:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC6D296F45
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 14:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S372602AbgJWM2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 08:28:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S372436AbgJWM2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 08:28:34 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64D80C0613CE
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 05:28:34 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id l15so1318438wmi.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 05:28:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3uSckI+lbava8os593cWItFr0sz4xH3c8LAg7n/KznY=;
-        b=YwNpohiRi4geEFtkg+5A+0ckqajpwMQUnplFHStvXQ6cd4YyRBEfQpuaAuL/LZ/Evf
-         771E5z3M3RzMhbGTUFbo/reIkoqeXUGRo8AMNZajrB45GfTG186HvZJJMYpbTGfGPT2N
-         3EEC5JBdcbkXw+pM2omenlw9w1baRHy9G6pecIOn4p9kIcpCrVLX34IzivdZdTuDhIpi
-         LoS5ZOUntfCE/23DO1q1UOl/Gnlrkp6aB/6KrH3pvWkNTNEkg/e09FDVLd8LQjlxNW92
-         G66JaQtzotsYM7JX+GOCyYNoVoieULfqCJyhB/SKgd+nRs2vwst9aBXB6B5nK1RSne6G
-         1szw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=3uSckI+lbava8os593cWItFr0sz4xH3c8LAg7n/KznY=;
-        b=Ym090tHIti2H6Xk9ZIcPqrVha3P3Ktt1EO2E8Ioqxsq1O2Qj7ZamIdPIId/MzFhJzE
-         Lv09fbzSI2uuCXpR3GSnB0TIOp17qc5X48VIP5y5/s17IF57RH7M7bJlX9Jf4mVthtLZ
-         /M0nFVMvIeGsh6Am5xrXG5UEOnWub2B/TsW6ypiyjAy367Am0Hb05nx/OlefW8UJBTb7
-         41707lcSgrodJphQRDS2khEUtKnkSDfluw751tIScYzSeA3Gu2a1YQAXHGGZgyfbgab8
-         +PWQDk9NJ6hYBhwQdijAPaJdv4NQm+oW/FLlYEU0YIH1MmjtiMsbm8GbGrDsNND+rb27
-         NDaw==
-X-Gm-Message-State: AOAM530qXxzdrRYI7iCFTNo3M0mzAHTVPp+0ygpU+PxY5p9MHDC3NewX
-        dfJ6MjMvPEQPkr6NwQUO1n6uPfz9RbkIGnWJ
-X-Google-Smtp-Source: ABdhPJzayypfVQlHiubXDUF3TUnYqUZd/yQ4zd1Mi5t3UiWMf1J2MBTX+jm+b15f+GnDIh3w9X8oeQ==
-X-Received: by 2002:a7b:c20a:: with SMTP id x10mr1498959wmi.29.1603456112947;
-        Fri, 23 Oct 2020 05:28:32 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:c079:8e13:bc2b:9142? ([2a01:e35:2ec0:82b0:c079:8e13:bc2b:9142])
-        by smtp.gmail.com with ESMTPSA id y10sm3077748wrq.73.2020.10.23.05.28.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Oct 2020 05:28:32 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson: odroid-n2 plus: fix vddcpu_a pwm
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201023094139.809379-1-jbrunet@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <ed07842d-c773-6094-66f1-278bf9212ba5@baylibre.com>
-Date:   Fri, 23 Oct 2020 14:28:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S463834AbgJWMdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 08:33:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:51438 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S463791AbgJWMdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Oct 2020 08:33:42 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6682101E;
+        Fri, 23 Oct 2020 05:33:40 -0700 (PDT)
+Received: from [10.57.50.191] (unknown [10.57.50.191])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CAEC53F66B;
+        Fri, 23 Oct 2020 05:33:38 -0700 (PDT)
+Subject: Re: [PATCH v4 0/4] Add system mmu support for Armada-806
+To:     Tomasz Nowicki <tn@semihalf.com>,
+        Denis Odintsov <d.odintsov@traviangames.com>
+Cc:     "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "hannah@marvell.com" <hannah@marvell.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "nadavh@marvell.com" <nadavh@marvell.com>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "mw@semihalf.com" <mw@semihalf.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200715070649.18733-1-tn@semihalf.com>
+ <517BB937-1F18-4CCF-81BF-11777BB99779@traviangames.com>
+ <9ff9682f-c165-2ad4-6edd-9e56d7ec7424@semihalf.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <88409606-6672-8955-2681-ece34dda24b8@arm.com>
+Date:   Fri, 23 Oct 2020 13:33:37 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.3
 MIME-Version: 1.0
-In-Reply-To: <20201023094139.809379-1-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <9ff9682f-c165-2ad4-6edd-9e56d7ec7424@semihalf.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/10/2020 11:41, Jerome Brunet wrote:
-> On the odroid N2 plus, cpufreq is not available due to an error on the cpu
-> regulators. vddcpu a and b get the same PWM. The one provided to vddcpu A
-> is incorrect. Because vddcpu B PWM is busy the regulator cannot register:
+On 2020-10-23 13:19, Tomasz Nowicki wrote:
+> Hi Denis,
 > 
->> pwm-regulator regulator-vddcpu-b: Failed to get PWM: -16
+> Sorry for late response, we had to check few things. Please see comments 
+> inline.
 > 
-> Like on the odroid n2, use PWM A out of GPIOE_2 for vddcpu A to fix the
-> problem
+> On 10/6/20 3:16 PM, Denis Odintsov wrote:
+>> Hi,
+>>
+>>> Am 15.07.2020 um 09:06 schrieb Tomasz Nowicki <tn@semihalf.com>:
+>>>
+>>> The series is meant to support SMMU for AP806 and a workaround
+>>> for accessing ARM SMMU 64bit registers is the gist of it.
+>>>
+>>> For the record, AP-806 can't access SMMU registers with 64bit width.
+>>> This patches split the readq/writeq into two 32bit accesses instead
+>>> and update DT bindings.
+>>>
+>>> The series was successfully tested on a vanilla v5.8-rc3 kernel and
+>>> Intel e1000e PCIe NIC. The same for platform devices like SATA and USB.
+>>>
+>>> For reference, previous versions are listed below:
+>>> V1: https://lkml.org/lkml/2018/10/15/373
+>>> V2: https://lkml.org/lkml/2019/7/11/426
+>>> V3: https://lkml.org/lkml/2020/7/2/1114
+>>>
+>>
+>> 1) After enabling SMMU on Armada 8040, and 
+>> ARM_SMMU_DISABLE_BYPASS_BY_DEFAUL=y by default in kernel since 
+>> 954a03be033c7cef80ddc232e7cbdb17df735663,
+>> internal eMMC is prevented from being initialised (as there is no 
+>> iommus property for ap_sdhci0)
+>> Disabling "Disable bypass by default" make it work, but the patch 
+>> highly suggest doing it properly.
+>> I wasn't able to find correct path for ap_sdhci for iommus in any 
+>> publicly available documentation,
+>> would be highly appreciated addressed properly, thank you!
+>>
+>> 2) Second issue I got (btw I have ClearFog GT 8k armada-8040 based 
+>> board) is mpci ath10k card.
+>> It is found, it is enumerated, it is visible in lspci, but it fails to 
+>> be initialised. Here is the log:
 > 
-> Fixes: 98d24896ee11 ("arm64: dts: meson: add support for the ODROID-N2+")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Firmware has to configure and assign device StreamIDs. Most of the 
+> devices are configured properly and supported in public FW. However, for 
+> both these cases (ap_sdhci0 and PCIe) some extra (u-boot/UEFI/ATF) 
+> patches are required which are not available yet. Sorry we let that happen.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
-> index 5de2815ba99d..ce1198ad34e4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
-> @@ -19,7 +19,7 @@ &vddcpu_a {
->  	regulator-min-microvolt = <680000>;
->  	regulator-max-microvolt = <1040000>;
->  
-> -	pwms = <&pwm_AO_cd 1 1500 0>;
-> +	pwms = <&pwm_ab 0 1500 0>;
->  };
->  
->  &vddcpu_b {
-> 
+> Since we have dependency on custom FW and we cannot enforce people to 
+> patch their FW we will send the follow up fix patch (v5.9+) and revert 
+> respective DTS changes.
 
-Nice catch, thanks
+Note that it should be sufficient to simply keep the SMMU node disabled, 
+rather than fully revert everything. For example, the PCIe SMMU for Arm 
+Juno boards has been in that state for a long time - there are reasons 
+why it isn't (yet) 100% usable for everyone, but it can easily be 
+enabled locally for development (as I do).
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Robin.
+
+> The most important Armada-806 SMMU driver enhancements were merged so 
+> people who still willing to use SMMU need to provide proper DTB and use 
+> ARM_SMMU_DISABLE_BYPASS_BY_DEFAUL=n (or via kernel command line) with 
+> extra cautious.
+> 
+> Thanks,
+> Tomasz
+> 
+>>
+>> [    1.743754] armada8k-pcie f2600000.pcie: host bridge 
+>> /cp0/pcie@f2600000 ranges:
+>> [    1.751116] armada8k-pcie f2600000.pcie:      MEM 
+>> 0x00f6000000..0x00f6efffff -> 0x00f6000000
+>> [    1.964690] armada8k-pcie f2600000.pcie: Link up
+>> [    1.969379] armada8k-pcie f2600000.pcie: PCI host bridge to bus 
+>> 0000:00
+>> [    1.976026] pci_bus 0000:00: root bus resource [bus 00-ff]
+>> [    1.981537] pci_bus 0000:00: root bus resource [mem 
+>> 0xf6000000-0xf6efffff]
+>> [    1.988462] pci 0000:00:00.0: [11ab:0110] type 01 class 0x060400
+>> [    1.994504] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x000fffff]
+>> [    2.000843] pci 0000:00:00.0: supports D1 D2
+>> [    2.005132] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
+>> [    2.011853] pci 0000:01:00.0: [168c:003c] type 00 class 0x028000
+>> [    2.018001] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x001fffff 
+>> 64bit]
+>> [    2.025002] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0000ffff 
+>> pref]
+>> [    2.032111] pci 0000:01:00.0: supports D1 D2
+>> [    2.049409] pci 0000:00:00.0: BAR 14: assigned [mem 
+>> 0xf6000000-0xf61fffff]
+>> [    2.056322] pci 0000:00:00.0: BAR 0: assigned [mem 
+>> 0xf6200000-0xf62fffff]
+>> [    2.063142] pci 0000:00:00.0: BAR 15: assigned [mem 
+>> 0xf6300000-0xf63fffff pref]
+>> [    2.070484] pci 0000:01:00.0: BAR 0: assigned [mem 
+>> 0xf6000000-0xf61fffff 64bit]
+>> [    2.077880] pci 0000:01:00.0: BAR 6: assigned [mem 
+>> 0xf6300000-0xf630ffff pref]
+>> [    2.085135] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+>> [    2.090384] pci 0000:00:00.0:   bridge window [mem 
+>> 0xf6000000-0xf61fffff]
+>> [    2.097202] pci 0000:00:00.0:   bridge window [mem 
+>> 0xf6300000-0xf63fffff pref]
+>> [    2.104539] pcieport 0000:00:00.0: Adding to iommu group 4
+>> [    2.110232] pcieport 0000:00:00.0: PME: Signaling with IRQ 38
+>> [    2.116141] pcieport 0000:00:00.0: AER: enabled with IRQ 38
+>> [    8.131135] ath10k_pci 0000:01:00.0: Adding to iommu group 4
+>> [    8.131874] ath10k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+>> [    8.132203] ath10k_pci 0000:01:00.0: pci irq msi oper_irq_mode 2 
+>> irq_mode 0 reset_mode 0
+>>
+>> up to that point the log is the same as without SMMU enabled, except 
+>> "Adding to iommu group N" lines, and IRQ being 37
+>>
+>> [    8.221328] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+>> [    8.313362] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+>> [    8.409373] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+>> [    8.553433] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+>> [    8.641370] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+>> [    8.737979] ath10k_pci 0000:01:00.0: failed to poke copy engine: -16
+>> [    8.807356] ath10k_pci 0000:01:00.0: Failed to get pcie state addr: 
+>> -16
+>> [    8.814032] ath10k_pci 0000:01:00.0: failed to setup init config: -16
+>> [    8.820605] ath10k_pci 0000:01:00.0: could not power on hif bus (-16)
+>> [    8.827111] ath10k_pci 0000:01:00.0: could not probe fw (-16)
+>>
+>> Thank you!
+>>
+>>> v3 -> v4
+>>> - call cfg_probe() impl hook a bit earlier which simplifies errata 
+>>> handling
+>>> - use hi_lo_readq_relaxed() and hi_lo_writeq_relaxed() for register 
+>>> accessors
+>>> - keep SMMU status disabled by default and enable where possible (DTS 
+>>> changes)
+>>> - commit logs improvements and other minor fixes
+>>>
+>>> Hanna Hawa (1):
+>>>   iommu/arm-smmu: Workaround for Marvell Armada-AP806 SoC erratum
+>>>     #582743
+>>>
+>>> Marcin Wojtas (1):
+>>>   arm64: dts: marvell: add SMMU support
+>>>
+>>> Tomasz Nowicki (2):
+>>>   iommu/arm-smmu: Call configuration impl hook before consuming features
+>>>   dt-bindings: arm-smmu: add compatible string for Marvell Armada-AP806
+>>>     SMMU-500
+>>>
+>>> Documentation/arm64/silicon-errata.rst        |  3 ++
+>>> .../devicetree/bindings/iommu/arm,smmu.yaml   |  4 ++
+>>> arch/arm64/boot/dts/marvell/armada-7040.dtsi  | 28 ++++++++++++
+>>> arch/arm64/boot/dts/marvell/armada-8040.dtsi  | 40 +++++++++++++++++
+>>> arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 18 ++++++++
+>>> drivers/iommu/arm-smmu-impl.c                 | 45 +++++++++++++++++++
+>>> drivers/iommu/arm-smmu.c                      | 11 +++--
+>>> 7 files changed, 145 insertions(+), 4 deletions(-)
+>>>
+>>> -- 
+>>> 2.17.1
+>>>
+>>> _______________________________________________
+>>> iommu mailing list
+>>> iommu@lists.linux-foundation.org
+>>> https://lists.linuxfoundation.org/mailman/listinfo/iommu
+>>>
+>>
