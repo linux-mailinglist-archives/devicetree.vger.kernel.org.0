@@ -2,43 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 940B72969F2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 08:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3F43296A91
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 09:48:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S375449AbgJWGuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 02:50:02 -0400
-Received: from verein.lst.de ([213.95.11.211]:54938 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S373209AbgJWGuC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Oct 2020 02:50:02 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id B09E267373; Fri, 23 Oct 2020 08:49:58 +0200 (CEST)
-Date:   Fri, 23 Oct 2020 08:49:58 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
-        ardb@kernel.org, linux-kernel@vger.kernel.org,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, robin.murphy@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        linux-mm@kvack.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 7/7] mm: Remove examples from enum zone_type comment
-Message-ID: <20201023064958.GA30209@lst.de>
-References: <20201021123437.21538-1-nsaenzjulienne@suse.de> <20201021123437.21538-8-nsaenzjulienne@suse.de>
+        id S375848AbgJWHse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 03:48:34 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:33146 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S375847AbgJWHse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 03:48:34 -0400
+Received: by mail-ot1-f66.google.com with SMTP id t15so563148otk.0;
+        Fri, 23 Oct 2020 00:48:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rIe/mHeTa+ilTJbmDCcM8LeOw8q5C9qXcM6+qzg3FWc=;
+        b=TzsM03azT1PXaA8gVH1NSz39R0qMKWgCpTmuTmOKtPodl9T3aLU4K9vpoD6E5BNqPY
+         o/D1yn/KfGpgePY199PPOEASgzSoIlmVQD187yF8dxHiIRWqO0en2TkOIMB3OLUvlZjR
+         F0YTNJ6ddbJCLwKKGYlbZCe+A2dkgOvaY5FwUwGm/aX9AEMUhQJGOsRbY/lFmZaHA4re
+         IEJflH5xkvK92UFClZbU7dP01lHIcnPfnB2sRraxjp0jS31cnloWcB+XZYZxf8IHR+XG
+         gmUobek5FJBvFuIs9Pb1KBV5H5aUTSoUHSnKL9z31oioRxdVeUygPsB/LOu578C8hrMf
+         KNSw==
+X-Gm-Message-State: AOAM53107/9maN3SN/DbnSt9Y/gm4KaCXXqq1fw2hKHl/fsRRUciYtPn
+        nkY2Z5QlvpKwAsNgLNh77zNfXHSvexKXzjbFFKCv8S0b
+X-Google-Smtp-Source: ABdhPJxvy3cdokwnQ4uNcADGgpFKWcwTt7eB9hV5VJmTHIo0C4JRXc6LOt/WzUNc8QVH6u1SR3VoNV2ZfAxYDS/5iWA=
+X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr662539otc.145.1603439313221;
+ Fri, 23 Oct 2020 00:48:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201021123437.21538-8-nsaenzjulienne@suse.de>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+References: <20201020125134.22625-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20201020125134.22625-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20201020125134.22625-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 23 Oct 2020 09:48:21 +0200
+Message-ID: <CAMuHMdWnmrcdRXFcGa_w016EAO2NC51f=oyPx28KbkvnKW0-QA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] arm64: dts: renesas: aistarvision-mipi-adapter-2.1:
+ Add parent macro for each sensor
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Looks good,
+On Tue, Oct 20, 2020 at 2:52 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> For HiHope RZ/G2H the OV5645 sensor is populated on i2c2 whereas the imx219
+> sensor is populated on i2c3 so add support for handling such cases by
+> adding a parent macro for each sensor.
+>
+> Also update r8a774c0-ek874-mipi-2.1.dts to incorporate the changes.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.11.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
