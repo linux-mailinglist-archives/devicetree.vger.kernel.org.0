@@ -2,98 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CAEF2973AF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A15182973B4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 18:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1750565AbgJWQ1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 12:27:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57522 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1750560AbgJWQ1d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Oct 2020 12:27:33 -0400
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9F5852245A;
-        Fri, 23 Oct 2020 16:27:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603470452;
-        bh=iCHkIQPJ9n5EWAybizUiQrLv56EkwfuRfXJFQDdLbf8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sOAdbMxX7Z0ofhR6ZaWxCxigrQTz6XBbi5Vsh7C1TRB0ZJ2LwtU7q7gAqE7FUpuww
-         PPe3kRve/CHZ9vb0YrIczrro2tsTPsF090jYWiAQeAWlntO9NmsGbMFSUrbSV5BV2f
-         y0TBC39FCF6vO+/4XdTzjKfgvXiw3OtRb7oy8rjo=
-Received: by mail-ej1-f43.google.com with SMTP id z5so3191989ejw.7;
-        Fri, 23 Oct 2020 09:27:32 -0700 (PDT)
-X-Gm-Message-State: AOAM5310syJ5Bg+sA/vTjptaWt3DzLeD2W1es+7/WXxffdSI8oxaw0nF
-        v3dRJb2xJlQ5i/DzUeJzFfOVp7YnXMnrWAepnaM=
-X-Google-Smtp-Source: ABdhPJzu+YDikCuMcAnUApzZlJV6sL/IS32lCeHPts0kyQkHSfjRrliCpF8fPOOJK4vCW1eILVUdMAK34rIBeJ7ZUOA=
-X-Received: by 2002:a17:906:6a07:: with SMTP id o7mr2717056ejr.454.1603470451015;
- Fri, 23 Oct 2020 09:27:31 -0700 (PDT)
+        id S1750564AbgJWQ21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 12:28:27 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:42272 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S371933AbgJWQ20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 12:28:26 -0400
+Received: by mail-oi1-f194.google.com with SMTP id 16so2458579oix.9;
+        Fri, 23 Oct 2020 09:28:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2/F4gcPmqW9k3gfZUEuVT5UA/z/NAFC4iSRG11LIn+c=;
+        b=Uqz+rcI5WVlo49bCzJieO7mRqmcOWlCa8GyfLmjVjJyuT8JpDeGwVM2tpPJo6leKpt
+         JxRJ3W7zT5sAYndFLM7y46R0dITEVu7pnasoUs1uAszPHOIsUyCgZ9KdzB+lkx6iOMfx
+         fG49TPK3Ndj+bwdFCVVTJ170kkP/5pQDneXRSOArofjwonS3xNvr/S617Jfm/YXyMmdh
+         PLYfdgg3tkvH0+7WEzuP8INtbD96GePjgF4v4QuEe859gIyL7wwc3GeI2RJk5+gKV+hc
+         TN2tJtwNxk2CKeJzSoQBEF6Hf1U3gZnVr0CVabnGXtUKsFXtdM5v8ESerZn2htVcPXIx
+         5D6g==
+X-Gm-Message-State: AOAM5327mpeOqm/R8S4MI1WamDTSScaLGGfna2fS99VSHYwhXGXS2zRj
+        GOZTWbG0mfVkg9wUGeS47A==
+X-Google-Smtp-Source: ABdhPJwe2qFcFHOCLXfp3Qrfl3ZtYE+6ZoVPO+xoTzzWaoe7uJCZB+rDCGHpJkSp9Bs/iJoaQtD+yA==
+X-Received: by 2002:aca:f084:: with SMTP id o126mr2397685oih.104.1603470506162;
+        Fri, 23 Oct 2020 09:28:26 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e76sm601380oib.16.2020.10.23.09.28.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Oct 2020 09:28:25 -0700 (PDT)
+Received: (nullmailer pid 2820622 invoked by uid 1000);
+        Fri, 23 Oct 2020 16:28:24 -0000
+Date:   Fri, 23 Oct 2020 11:28:24 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dan Murphy <dmurphy@ti.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: leds: leds-qcom-lpg: add pm8150[bl]
+ compatible strings
+Message-ID: <20201023162824.GA2820586@bogus>
+References: <20201021225100.162795-1-dmitry.baryshkov@linaro.org>
+ <20201021225100.162795-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-References: <20201021214910.20001-1-l.stelmach@samsung.com>
- <CGME20201021214933eucas1p152c8fc594793aca56a1cbf008f8415a4@eucas1p1.samsung.com>
- <20201021214910.20001-3-l.stelmach@samsung.com> <20201023160521.GA2787938@bogus>
-In-Reply-To: <20201023160521.GA2787938@bogus>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 23 Oct 2020 18:27:18 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPeNhXrBa0ZK-k37uhs5izukrhHN-rkxgsjiQBHCMmZs7g@mail.gmail.com>
-Message-ID: <CAJKOXPeNhXrBa0ZK-k37uhs5izukrhHN-rkxgsjiQBHCMmZs7g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: net: Add bindings for AX88796C SPI
- Ethernet Adapter
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
-        devicetree@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        =?UTF-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, jim.cromie@gmail.com,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201021225100.162795-2-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Oct 2020 at 18:05, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 21 Oct 2020 23:49:07 +0200, =C5=81ukasz Stelmach wrote:
-> > Add bindings for AX88796C SPI Ethernet Adapter.
-> >
-> > Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
-> > ---
-> >  .../bindings/net/asix,ax88796c.yaml           | 69 +++++++++++++++++++
-> >  1 file changed, 69 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c=
-.yaml
-> >
->
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> ./Documentation/devicetree/bindings/net/asix,ax88796c.yaml: $id: relative=
- path/filename doesn't match actual path or filename
->         expected: http://devicetree.org/schemas/net/asix,ax88796c.yaml#
-> Documentation/devicetree/bindings/net/asix,ax88796c.example.dts:20:18: fa=
-tal error: dt-bindings/interrupt-controller/gpio.h: No such file or directo=
-ry
+On Thu, 22 Oct 2020 01:50:56 +0300, Dmitry Baryshkov wrote:
+> Add two more compatible strings for Light Pulse Generator blocks as
+> found on PM8150B and PM8150A/L chips.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-=C5=81ukasz,
-
-So you really did not compile/test these patches... It's the second
-build failure in the patchset. All sent patches should at least be
-compiled on the latest kernel, if you cannot test them. However this
-patchset should be testable - Artik5 should boot on mainline kernel
-
-Best regards,
-Krzysztof
+Acked-by: Rob Herring <robh@kernel.org>
