@@ -2,110 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1877529714C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 16:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9645297151
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 16:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1750585AbgJWO1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 10:27:35 -0400
-Received: from foss.arm.com ([217.140.110.172]:53910 "EHLO foss.arm.com"
+        id S1750602AbgJWObC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 10:31:02 -0400
+Received: from mga06.intel.com ([134.134.136.31]:45521 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1750553AbgJWO1f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Oct 2020 10:27:35 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A6F1113E;
-        Fri, 23 Oct 2020 07:27:34 -0700 (PDT)
-Received: from bogus (unknown [10.57.15.80])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D1E9C3F66B;
-        Fri, 23 Oct 2020 07:27:32 -0700 (PDT)
-Date:   Fri, 23 Oct 2020 15:27:30 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm,scmi: Do not use clocks for SCMI
- performance domains
-Message-ID: <20201023142730.ru4rfoj3atxyinww@bogus>
-References: <20201020203710.10100-1-sudeep.holla@arm.com>
- <CAL_JsqKH9pN7E7o+UY7YmOrOKCUigrMTxY3f3AH4PdpQUAaawg@mail.gmail.com>
- <20201021181951.xu2igea2qbca3alf@bogus>
- <CAL_JsqJ0OO68AbML7osOU3fNzJk3NhXYrWVmNwn8mwtNzSuf8g@mail.gmail.com>
+        id S374727AbgJWObC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Oct 2020 10:31:02 -0400
+IronPort-SDR: oC6mmcDSb5lpsvuHSgkCHh//v4fpVjPSeMb1Vd2Td35SfjswTrK1ns8FB118noLf2CqkKjAcgK
+ 0pNdFCtALYUQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="229317322"
+X-IronPort-AV: E=Sophos;i="5.77,408,1596524400"; 
+   d="scan'208";a="229317322"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2020 07:30:58 -0700
+IronPort-SDR: strZ7qZQpzKzpW+H9q1kQAGAQ2o4KKVxcx2BObcjmBmCxf0w5J4zy48ak1cHbj/rIJ9J49uzSh
+ S2ndozz2CtvA==
+X-IronPort-AV: E=Sophos;i="5.77,408,1596524400"; 
+   d="scan'208";a="523514927"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2020 07:30:54 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kVy6m-00E8jW-Fi; Fri, 23 Oct 2020 17:31:56 +0300
+Date:   Fri, 23 Oct 2020 17:31:56 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [PATCH v15 2/2] media: i2c: Add OV02A10 image sensor driver
+Message-ID: <20201023143156.GX4077@smile.fi.intel.com>
+References: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
+ <20201013130503.2412-3-dongchun.zhu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqJ0OO68AbML7osOU3fNzJk3NhXYrWVmNwn8mwtNzSuf8g@mail.gmail.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20201013130503.2412-3-dongchun.zhu@mediatek.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 23, 2020 at 08:34:05AM -0500, Rob Herring wrote:
-> On Wed, Oct 21, 2020 at 1:19 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > On Wed, Oct 21, 2020 at 11:20:27AM -0500, Rob Herring wrote:
-> > > On Tue, Oct 20, 2020 at 3:37 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > > >
-> >
-> > [...]
-> >
-> > >
-> > > When is this not 1 (IOW, you only need this if variable)? How would it
-> > > be used outside SCMI (given it has a generic name)?
-> > >
-> > > > +
-> > > > +* Property arm,scmi-perf-domain
-> > >
-> > [...]
-> >
-> > > Really though, why can't you give SCMI a CPUs MPIDR and get its domain?
-> > >
-> >
-> > Now I remembered why we can't use MPIDR. The spec talks about perf domains
-> > for devices in generic. CPU is just a special device. We will still need
-> > a mechanism to get device performance domain. So MPIDR idea was dropped to
-> > keep it uniform across all the devices.
->
-> What implications to the binding are there for non-CPU devices? Do
-> they need more cells? How does this integrate our plethora of other PM
-> related bindings?
->
+On Tue, Oct 13, 2020 at 09:05:03PM +0800, Dongchun Zhu wrote:
+> Add a V4L2 sub-device driver for OmniVision OV02A10 image sensor.
 
-Ideally it is just a device perf domain ID. SCMI f/w will just assign
-perf domain IDs for both CPUs and other devices like GPUs sequentially
-without any distinction.
+...
 
-However, I can't speak about other aspects of PM especially on wild
-variety of platforms we have on Arm.
+> +#define OV02A10_ID_MASK					0xffff
 
-Today even with SCMI each device/cpu needs to track clock or performance,
-reset, power, voltage, ...etc domains and their IDs needs to be passed
-via DT.
+GENMASK()
 
-We are thinking of making all these device ID centric in future. It means
-if the device tree had scmi device ID for each of them, we must be able to
-perform any power management or configuration management on that device.
-SCMI f/w must then abstract everything at device level. Just a thought
-as of now and it aligns with some of the ACPI concepts.
+(And include bits.h for that)
 
-> So somewhere in the firmware we're defining device X is domain 0,
-> device Y is domain 1, etc. Then we do this again in DT. Seems fragile
-> to define this information twice. I guess that's true for any number
-> space SCMI defines.
->
+...
 
-Correct and agreed on your point. Any ideas to make this discoverable ?
-Atleast with SCMI, we have been able to reduce the amount of information
-just to that ID(though there are multiple ID space today for each aspects
-of PM and config management). As I mentioned we would like to make it
-device centric. Any thoughts on making IDs discoverable is appreciated.
+> +static int __ov02a10_start_stream(struct ov02a10 *ov02a10)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&ov02a10->subdev);
+> +	const struct ov02a10_reg_list *reg_list;
+> +	int ret;
+> +
+> +	/* Apply default values of current mode */
+> +	reg_list = &ov02a10->cur_mode->reg_list;
+> +	ret = ov02a10_write_array(ov02a10, reg_list);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Apply customized values from user */
+> +	ret = __v4l2_ctrl_handler_setup(ov02a10->subdev.ctrl_handler);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Set orientation to 180 degree */
+> +	if (ov02a10->upside_down) {
+> +		ret = i2c_smbus_write_byte_data(client, REG_MIRROR_FLIP_CONTROL,
+> +						REG_MIRROR_FLIP_ENABLE);
+> +		if (ret) {
 
-We thought about names and other things during initial days of the
-spec evolution, but we circled back to how does OS provide that info and
-we go back to DT/ACPI which was not too bad at that time. We can see if
-we can improve anything there.
+Shouldn't you use 'ret < 0' here as well?
 
---
-Regards,
-Sudeep
+> +			dev_err(&client->dev, "failed to set orientation\n");
+> +			return ret;
+> +		}
+> +		ret = i2c_smbus_write_byte_data(client, REG_GLOBAL_EFFECTIVE,
+> +						REG_ENABLE);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	/* Set MIPI TX speed according to DT property */
+> +	if (ov02a10->mipi_clock_voltage != OV02A10_MIPI_TX_SPEED_DEFAULT) {
+> +		ret = i2c_smbus_write_byte_data(client, TX_SPEED_AREA_SEL,
+> +						ov02a10->mipi_clock_voltage);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	/* Set stream on register */
+> +	return i2c_smbus_write_byte_data(client, REG_SC_CTRL_MODE,
+> +					 SC_CTRL_MODE_STREAMING);
+> +}
+
+...
+
+> +/*
+
+Was your intention to declare it as a kernel doc?
+
+> + * ov02a10_set_exposure - Function called when setting exposure time
+> + * @priv: Pointer to device structure
+> + * @val: Variable for exposure time, in the unit of micro-second
+> + *
+> + * Set exposure time based on input value.
+> + *
+> + * Return: 0 on success
+> + */
+> +static int ov02a10_set_exposure(struct ov02a10 *ov02a10, int val)
+
+...
+
+> +static int ov02a10_check_hwcfg(struct device *dev, struct ov02a10 *ov02a10)
+> +{
+> +	struct fwnode_handle *ep;
+> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
+> +	struct v4l2_fwnode_endpoint bus_cfg = {
+> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
+> +	};
+> +	unsigned int i, j;
+> +	int ret;
+
+> +	if (!fwnode)
+> +		return -EINVAL;
+
+Basically you can avoid this check, but it's up to you.
+
+> +	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
+> +	if (!ep)
+> +		return -ENXIO;
+> +
+> +	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
+> +	fwnode_handle_put(ep);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(link_freq_menu_items); i++) {
+> +		for (j = 0; j < bus_cfg.nr_of_link_frequencies; j++) {
+> +			if (link_freq_menu_items[i] ==
+> +				bus_cfg.link_frequencies[j]) {
+> +				ov02a10->freq_index = i;
+> +				break;
+> +			}
+> +		}
+> +
+> +		if (j == bus_cfg.nr_of_link_frequencies) {
+> +			dev_err(dev, "no link frequency %lld supported\n",
+> +				link_freq_menu_items[i]);
+> +			ret = -EINVAL;
+> +			break;
+> +		}
+> +	}
+> +
+> +	v4l2_fwnode_endpoint_free(&bus_cfg);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +	fwnode_property_read_u32(dev_fwnode(dev), "rotation", &rotation);
+
+Same Q as per previous reviews. Why device property API can't be used here?
+
+And everywhere else when you have
+	 fwnode_property_read_*(dev_fwnode(dev), ...)
+calls.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
