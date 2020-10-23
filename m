@@ -2,161 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 907802976AE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 20:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 790232976D4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 20:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S463224AbgJWSNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 14:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S371522AbgJWSNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 14:13:36 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F173C0613CE;
-        Fri, 23 Oct 2020 11:13:36 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id ce10so3606576ejc.5;
-        Fri, 23 Oct 2020 11:13:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=J4Eh2qaJksTCTY1k45teLXaWXNH/ycvD9ltpm944k0Q=;
-        b=lFi+TwD2vaAsrYHdJUzkp6N61fIOnh9+vKHJEudtGhn9CdTxA44JxC28ilTy4/53iD
-         ZVNwMOqKf0jPH8k5codeD54T6uVec8mcd9Bk4K5U4bma2IoUpueoyD9uSEy78ml8VzRO
-         LNcsCN+TUIF596XouiRcRboHJoyDTnt8yBoYr3qu92wlW8KRgB+TzWYlVReuER3Y9eT2
-         jBaT+9DrkKSorVSnG5g4Zfn+XCrfUPJ/o91TjhXX9BrbjUxSp4dT1zTe6EkvYKk2TaPf
-         aS6qcZz5zum5mdHIKGuv52mVvYKDP6G+CICO+eYC4YmEc1rzn+QCRmmtN+LFmBJpr+C0
-         zX+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=J4Eh2qaJksTCTY1k45teLXaWXNH/ycvD9ltpm944k0Q=;
-        b=knBbwYtSYwd0LSk7WLikukwbQiYOrhDlw4uQPcTrYtujXE3lLVQFr15dpoS6rYOb+U
-         dwwF4ECWn7AKPVIYP9HoMySLRVDOEkFKl/Dd2yfP92Zs51jFMyCQAK/o9IAPb2+wTbGN
-         7PCkGbkn15y9aXidN77eDFxZs9pHtrhtoayk4D1r1gneuy96i2BZAlx/Kqs5woaQ/liX
-         jghI7txD8oxUtJHNjt7LkhuJ4MoYZxYFagisZfgYyfzOQvHB5QadHe05XnnSC6RcXriP
-         YJDXcZ94Xr+A0qxGqWlr0wHnWt6NkqzbExgYlra3X0lYZ20Whb9UnBVFgx2oF/Uxqctx
-         /XPg==
-X-Gm-Message-State: AOAM531xyWfB4yg8rnp+RaxjhlyCsRGESwltdZhmMa0P8H/fy50zAMnM
-        4lE23ZULbmmHjiMVvIj4ZCxg7Bz/Pw0m3w==
-X-Google-Smtp-Source: ABdhPJw4MiBcK6lhwt3Mpbwm8hf16I6Hw1+0s7bS8R/2YorDzTQE48+QOyklgXhBBgNG0ZQGdqDUyg==
-X-Received: by 2002:a17:906:12cf:: with SMTP id l15mr3434340ejb.540.1603476814307;
-        Fri, 23 Oct 2020 11:13:34 -0700 (PDT)
-Received: from kista.localnet (cpe1-5-97.cable.triera.net. [213.161.5.97])
-        by smtp.gmail.com with ESMTPSA id k23sm1231498ejk.0.2020.10.23.11.13.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2020 11:13:32 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com,
-        paul.kocialkowski@bootlin.com
-Subject: Re: [linux-sunxi] [PATCH 01/14] phy: Distinguish between Rx and Tx for MIPI D-PHY with submodes
-Date:   Fri, 23 Oct 2020 20:18:58 +0200
-Message-ID: <7673189.jqQXtdQLJ6@kista>
-In-Reply-To: <20201023174546.504028-2-paul.kocialkowski@bootlin.com>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com> <20201023174546.504028-2-paul.kocialkowski@bootlin.com>
+        id S1754608AbgJWSWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 14:22:06 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:37260 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1754606AbgJWSWF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 14:22:05 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201023182147euoutp016c6be17a9c294223d32c3b489b261f6d~Ash2Hu-Yf1136811368euoutp01F;
+        Fri, 23 Oct 2020 18:21:47 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201023182147euoutp016c6be17a9c294223d32c3b489b261f6d~Ash2Hu-Yf1136811368euoutp01F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1603477307;
+        bh=oMLuD5Wlc163X55ToCaD9F6Rp3haPPYODKde631RbUI=;
+        h=From:To:Cc:Subject:In-Reply-To:Date:References:From;
+        b=bjbw8tCFLdVKpMayoigm7twPIpeW5fYTSD4DQkQgLhu0iyvbxjBWWXItkSrsOGzha
+         EfaXJPvC/U0EQxVZEN5EetGp9g8Q6sx1qBYOA8WfJCMtzMpn75/OaEoDwe3n3l3TjD
+         XZ4LHsGOVJObovuObBW8gpjKP9oUdiPgEQ7XemfM=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201023182138eucas1p2547f9bb105780c316eff28635ce69a31~AshthqH502955929559eucas1p25;
+        Fri, 23 Oct 2020 18:21:38 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 46.44.06318.13F139F5; Fri, 23
+        Oct 2020 19:21:37 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201023182136eucas1p28518b30e23ae4204840c3d5526bd3400~Ashsh8Fq72954729547eucas1p2r;
+        Fri, 23 Oct 2020 18:21:36 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201023182136eusmtrp1957cbd06d4b18261c94cfea214e22975~AshshN-b71506915069eusmtrp1q;
+        Fri, 23 Oct 2020 18:21:36 +0000 (GMT)
+X-AuditID: cbfec7f5-38bff700000018ae-29-5f931f31f0f9
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 4B.2D.06314.03F139F5; Fri, 23
+        Oct 2020 19:21:36 +0100 (BST)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20201023182136eusmtip1e9e6409348152c60d21f3b329a094456~AshsXFfXY0446104461eusmtip1j;
+        Fri, 23 Oct 2020 18:21:36 +0000 (GMT)
+From:   Lukasz Stelmach <l.stelmach@samsung.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+        "linux-kernel\@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewic?= =?utf-8?Q?z?= 
+        <b.zolnierkie@samsung.com>,
+        "linux-samsung-soc\@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, jim.cromie@gmail.com,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 2/5] dt-bindings: net: Add bindings for AX88796C SPI
+ Ethernet Adapter
+In-Reply-To: <CAJKOXPeNhXrBa0ZK-k37uhs5izukrhHN-rkxgsjiQBHCMmZs7g@mail.gmail.com>
+        (Krzysztof Kozlowski's message of "Fri, 23 Oct 2020 18:27:18 +0200")
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+Date:   Fri, 23 Oct 2020 20:21:25 +0200
+Message-ID: <dleftjwnzgyfa2.fsf%l.stelmach@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
+        protocol="application/pgp-signature"
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUxTQRSGM70r1erQop6AWxo1rixujFGJ28ONTz6YaDSCVW5woa32CirG
+        gImgVqDKZimooLiAgdLaYDFiTEXQVKmKqYKiibghAho0LjEg14uJb9858/9n/jMZntIeYsP5
+        7aY9osVkSNazarqu6WfLnJhJ+QnRWWWxJNDho4jL7mRIaeAwTc42tjDkXJ+dIcGeFwyxdXZT
+        JBCo5cjDulyGuDuDDGm9XsoSe+CmivgKGxCpbuzgSFPZWJLZ0MiRwRteblmo0Bp8RAmeyjaV
+        UO/o4AR31TFWuFqRLtR7+1VCrqcKCf3uiWv4DeoliWLy9lTREhW3Wb3te/AeteuWbl+BY18G
+        6sVWFMIDng+Xmjs5K1LzWnwZwZliJ6MUXxGcrK9AStGPoKi1S/XP4uyzIpm1+BKCvMEwRfQe
+        wfny55QV8TyLI6G6er2sCcMC3C9ro2QNhYsYsL0rUckaHY4H/9OVcj8E2xFkt1tZ2TAGLwLP
+        h1eczDSeOsQ5f1mDY6HH2jXMoXCv+A0tM4WNUBz49Dcp4As82I6cRkrSVeDxBodT6+Bjs4dT
+        eDz487NpOQTgdMjPW6h4sxHUlf6gFc1ieNHyi1V4OfgLvnCKfhQ86wlV7h0FeXWnKKWtgaNZ
+        WkU9BWpsN4anhEPOx8vDaQQYeOJnlbeqQOCydVAn0GTHf+s4/lvHMTSWwjPAeT1Kac+Ci+Xd
+        lMJLoaamjy5DTBUaJ6ZIxiRRmmcS90ZKBqOUYkqK3Go2utHQZ/QPNH/zopu/t/gQ5pF+pCbj
+        WV6CljGkSvuNPjRlaNLr2isPUThtMptEfZhmxQN/vFaTaNifJlrMCZaUZFHyoQie1o/TzDvX
+        tUmLkwx7xJ2iuEu0/DtV8SHhGYibfrzXuLYTLWjSXTS70Oj4Qlfl27jbntg3pyOf3LUEdxRc
+        /exKLWyP5mYnR1Wpc67ZX5dMWxcqbXDuLH/nXs2OOBYzd+D34UmJI/iIruiaTG/mgqgE5uXB
+        C0fNG72lEw60rrnTMLtSeFrbJsbo2lNn7i4u0n/rH3lnVlvaY2jKOqGnpW2GmJmURTL8ARBq
+        cw6UAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrJIsWRmVeSWpSXmKPExsVy+t/xu7oG8pPjDa4cM7M4f/cQs8XGGetZ
+        Leacb2GxmH/kHKvFovczWC2uvb3DatH/+DWzxfnzG9gtLmzrY7XY9Pgaq8XlXXPYLGac38dk
+        cWjqXkaLtUfuslscWyBm0br3CLvF/z072B0EPS5fu8jssWXlTSaPnbPusntsWtXJ5rF5Sb3H
+        zh2fmTz6tqxi9Pi8SS6AI0rPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/O
+        JiU1J7MstUjfLkEv4/u1k8wFB4QrpsyqaGB8J9DFyMkhIWAisf59F2MXIxeHkMBSRok1L78y
+        dTFyACWkJFbOTYeoEZb4c62LDcQWEnjKKNG0rAakhE1AT2Lt2giQsIiAh8SZBTeZQcYwC8xi
+        lbgz7QM7SEJYIEbi/b6nYPM5BWYwSvTcghkUIDH3yCFmEFtUwFJiy4v7YA0sAqpAdi+YzStg
+        LvG26yWULShxcuYTFhCbWSBb4uvq58wTGAVmIUnNQpKaBXQfs4CmxPpd+hBhbYllC18zQ9i2
+        EuvWvWdZwMi6ilEktbQ4Nz232FCvODG3uDQvXS85P3cTIzCqtx37uXkH46WNwYcYBTgYlXh4
+        da5NihdiTSwrrsw9xKgCNObRhtUXGKVY8vLzUpVEeJ3Ono4T4k1JrKxKLcqPLyrNSS0+xGgK
+        9M9EZinR5HxgIsoriTc0NTS3sDQ0NzY3NrNQEuftEDgYIySQnliSmp2aWpBaBNPHxMEp1cBY
+        sGsr28/pT/mbWC7UPj/8iddt842/dbduNtddKpZlnqPZG9JYGdAaZPBpwekfT0J5CxssGeWl
+        DX49ZuTm9lpmsPpDinhh3BFmlowmj9nbGH8vfSNeYyvYdXxjo3zjSu09TTNd7gid0GFndclV
+        OHOWvfv8q2W2Fk+f/k8W2n1a5/CkCR90M+SVWIozEg21mIuKEwE6zHgqDAMAAA==
+X-CMS-MailID: 20201023182136eucas1p28518b30e23ae4204840c3d5526bd3400
+X-Msg-Generator: CA
+X-RootMTR: 20201023182136eucas1p28518b30e23ae4204840c3d5526bd3400
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201023182136eucas1p28518b30e23ae4204840c3d5526bd3400
+References: <CAJKOXPeNhXrBa0ZK-k37uhs5izukrhHN-rkxgsjiQBHCMmZs7g@mail.gmail.com>
+        <CGME20201023182136eucas1p28518b30e23ae4204840c3d5526bd3400@eucas1p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+--=-=-=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dne petek, 23. oktober 2020 ob 19:45:33 CEST je Paul Kocialkowski napisal(a):
-> As some D-PHY controllers support both Rx and Tx mode, we need a way for
-> users to explicitly request one or the other. For instance, Rx mode can
-> be used along with MIPI CSI-2 while Tx mode can be used with MIPI DSI.
-> 
-> Introduce new MIPI D-PHY PHY submodes to use with PHY_MODE_MIPI_DPHY.
-> The default (zero value) is kept to Tx so only the rkisp1 driver, which
-> uses D-PHY in Rx mode, needs to be adapted.
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  drivers/staging/media/rkisp1/rkisp1-isp.c |  3 ++-
->  include/linux/phy/phy-mipi-dphy.h         | 13 +++++++++++++
+It was <2020-10-23 pi=C4=85 18:27>, when Krzysztof Kozlowski wrote:
+> On Fri, 23 Oct 2020 at 18:05, Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Wed, 21 Oct 2020 23:49:07 +0200, =C5=81ukasz Stelmach wrote:
+>> > Add bindings for AX88796C SPI Ethernet Adapter.
+>> >
+>> > Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
+>> > ---
+>> >  .../bindings/net/asix,ax88796c.yaml           | 69 +++++++++++++++++++
+>> >  1 file changed, 69 insertions(+)
+>> >  create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796=
+c.yaml
+>> >
+>>
+>>
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> ./Documentation/devicetree/bindings/net/asix,ax88796c.yaml: $id:
+>> relative path/filename doesn't match actual path or filename
+>>         expected:
+>> https://protect2.fireeye.com/v1/url?k=3Db676d09f-eb1194b9-b6775bd0-0cc47=
+a31384a-e1cc7da4db18c501&q=3D1&e=3Dea7ae062-8c39-4ee3-82fa-37d28062f086&u=
+=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Fnet%2Fasix%2Cax88796c.yaml%23
+>> Documentation/devicetree/bindings/net/asix,ax88796c.example.dts:20:18:
+>> fatal error: dt-bindings/interrupt-controller/gpio.h: No such file
+>> or directory
 
-I think some changes are missing in this patch. For example, 
-phy_set_mode_ext() must be modified to take another argument, otherwise change 
-of rkisp1-isp driver doesn't make much sense.
+Fixed.
 
-Best regards,
-Jernej
+> =C5=81ukasz,
+>
+> So you really did not compile/test these patches... It's the second
+> build failure in the patchset. All sent patches should at least be
+> compiled on the latest kernel, if you cannot test them. However this
+> patchset should be testable - Artik5 should boot on mainline kernel
 
->  2 files changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/staging/media/rkisp1/rkisp1-isp.c b/drivers/staging/
-media/rkisp1/rkisp1-isp.c
-> index 6ec1e9816e9f..0afbce00121e 100644
-> --- a/drivers/staging/media/rkisp1/rkisp1-isp.c
-> +++ b/drivers/staging/media/rkisp1/rkisp1-isp.c
-> @@ -902,7 +902,8 @@ static int rkisp1_mipi_csi2_start(struct rkisp1_isp 
-*isp,
->  
->  	phy_mipi_dphy_get_default_config(pixel_clock, isp->sink_fmt-
->bus_width,
->  					 sensor->lanes, cfg);
-> -	phy_set_mode(sensor->dphy, PHY_MODE_MIPI_DPHY);
-> +	phy_set_mode_ext(cdev->dphy, PHY_MODE_MIPI_DPHY,
-> +			 PHY_MIPI_DPHY_SUBMODE_RX);
->  	phy_configure(sensor->dphy, &opts);
->  	phy_power_on(sensor->dphy);
->  
-> diff --git a/include/linux/phy/phy-mipi-dphy.h b/include/linux/phy/phy-mipi-
-dphy.h
-> index a877ffee845d..0f57ef46a8b5 100644
-> --- a/include/linux/phy/phy-mipi-dphy.h
-> +++ b/include/linux/phy/phy-mipi-dphy.h
-> @@ -6,6 +6,19 @@
->  #ifndef __PHY_MIPI_DPHY_H_
->  #define __PHY_MIPI_DPHY_H_
->  
-> +/**
-> + * enum phy_mipi_dphy_submode - MIPI D-PHY sub-mode
-> + *
-> + * A MIPI D-PHY can be used to transmit or receive data.
-> + * Since some controllers can support both, the direction to enable is 
-specified
-> + * with the PHY sub-mode. Transmit is assumed by default with phy_set_mode.
-> + */
-> +
-> +enum phy_mipi_dphy_submode {
-> +	PHY_MIPI_DPHY_SUBMODE_TX = 0,
-> +	PHY_MIPI_DPHY_SUBMODE_RX,
-> +};
-> +
->  /**
->   * struct phy_configure_opts_mipi_dphy - MIPI D-PHY configuration set
->   *
-> -- 
-> 2.28.0
-> 
-> -- 
-> You received this message because you are subscribed to the Google Groups 
-"linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an 
-email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/
-linux-sunxi/20201023174546.504028-2-paul.kocialkowski%40bootlin.com.
-> 
+Yes, I messed up a bit. I made moved some code around without changing
+it just before sending and I didn't run dt_binding_check. My fault, I am
+sorry.
 
+=2D-=20
+=C5=81ukasz Stelmach
+Samsung R&D Institute Poland
+Samsung Electronics
 
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl+THyUACgkQsK4enJil
+gBDA3AgAgLMuK0JPBXpBA5PWakifRLC3bGtiJbKxSRzfNrHcVL0xFTwB5A0rs1Dl
+b61fHAO945x8XDB7j1Gp0Z2GycAuZVL0fuE63ia4H8gPBqwpEGIQ/1k1ZiDRVLTc
+5cGyy9zYazeJkX1+wNZAgnqZ9FgXxrn2vhgF6WzYwiUPnRILxbca82Tidezc88V0
+x64WkKpSwFXr4jE2g+aKpDhfI9UZjJ2sB6lzF1rlhg/ZcOg4Iq5WHj6IXIdJVrv2
+5NbmVY6JgQgHwCsVxanCWquhbi/DRLZnLuh+oD+VHFntVGKUwe2iYX5/rt8zbGBi
+yil22ZMJWOUfvOW/K+uBS7GDgIp+qg==
+=xBy1
+-----END PGP SIGNATURE-----
+--=-=-=--
