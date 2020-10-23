@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34E3B296B3A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 10:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64D29296B44
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 10:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S460623AbgJWI3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 04:29:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58404 "EHLO
+        id S460671AbgJWIfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 04:35:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S460620AbgJWI3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 04:29:44 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28771C0613CE
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 01:29:44 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id r10so478947plx.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 01:29:44 -0700 (PDT)
+        with ESMTP id S460668AbgJWIfn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 04:35:43 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55772C0613CE
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 01:35:42 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id b23so671312pgb.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 01:35:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=MMav+PtnWA8e0lc96loqiE6mTzZH6xG4l/t4zMITsAk=;
-        b=YQ2AKoRwpkty0tvJPPA8WCCIKDOr9TT0bTWA5t2FhKzhb8Ss+jzt3G3AS/k5guH6wq
-         tI72tb/I4pZzAHl9BKirKz2Yage3lUKgCDS8DdgzH7cpUBIh3Ad1oYsmvnT7tobdj7VG
-         dkhy0/7q1cL2Fzl3+y6xUeWAGbtcUgE4nPH+nKbpSj2OE05m9gWZn/K1ObetheeZob0x
-         yafIFMf9P8AYz8MCi8WnOob24dMArObcFn1ZIZ41wCSgzyGdtfo8iuFPNkNM2ciLFX15
-         B8iaKwOQQJUJMCdm9o7EHXdgn7Gp8jbdSGwwFZMuWuXWDIbPes52ML1nZVpUMvOGfiTz
-         pV6w==
+        bh=f+1AbkQy0A87BtmUgjwi9U43PkE6jzonKJ0Vu1is7Vo=;
+        b=h4icBj/TmDHkcs+rhSs8XB2RNfjMBq5yYqyS0YSnDGSwFXPCqoDP/lxPP8V+vXHR8r
+         oRQI1RxYVegeWAVl0m0H7iKa99OsNGct9JAcqom9WRHZ6ul4RvUUnui+KvrWXnWS/pHN
+         /Kk2lGLpT63GC0MunDRXmZVti00Fi73wxul5FY/lrR1bqB46daudyNUZbVACVIszm9ic
+         cG0wKRKoIEMLtDl/MX4kFyJqIdwWsUmLtsYy7B+8ROEp8UImTx/y5NkFgdGWkoZt1nwB
+         4WosCkRK9/JTL638s0CA4Vs6eONP0Ynr4um/xvHySi6roD8V01T+/rXTJXOyNiRgEVSs
+         eF0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=MMav+PtnWA8e0lc96loqiE6mTzZH6xG4l/t4zMITsAk=;
-        b=aSULHkMQ2A+LyRYP/1Yl+8beOR8UBew/nJ/Oyn5Lbm43nx22S48IFBCcPkrBBBKcEg
-         dHWUdklAvu55gBOUmXbNM+hUrhc0OXs5eYmjQhjlFE5LqneObDrJnqLh3JKgXX3gNJIm
-         gLxtppoBPTQQKSL1vD3rauzdWZY3qmM1LB5Gun+IGVcz8MxoU3IS7pBQ5F8jUPsYRghr
-         0YL9GrzANQVhN3699DQ27lwI3bbGltxul4kIaQtq9SnKWEkxSqSazYrQJ92THABFWdrQ
-         MH3Db4zsa6fdMyfVghBuUbMy+yYZkXXoUjgG+H08k5Xdh4YjGUR5u4nM11gUCuPdazQJ
-         yT4A==
-X-Gm-Message-State: AOAM532kk9v96I/dunwnR64YhExM5yxiJuZaWGhtILY0CIxnrIBpN1t8
-        d5yYVX+btcF/nQ+VUDShp9DhJA==
-X-Google-Smtp-Source: ABdhPJzWK1/wuqJtRsFK0GxzZn3Rmp3+fNzvootOjfC35/ce5xHXdauekDAiOnFpGysDl/EFqjHNZw==
-X-Received: by 2002:a17:902:6bc5:b029:d3:f10c:9449 with SMTP id m5-20020a1709026bc5b02900d3f10c9449mr1154917plt.54.1603441783714;
-        Fri, 23 Oct 2020 01:29:43 -0700 (PDT)
+        bh=f+1AbkQy0A87BtmUgjwi9U43PkE6jzonKJ0Vu1is7Vo=;
+        b=Ys5BcuCWevFktPYzgMCbzuwi3cHinuX2xNDAPTr0V2RMr8PXI8slERWqJrrIjCmjpg
+         FbOIadyu8qsHfaoIHSToysCnsENFpY7T/K43lpGVEkYUTMScTw7h5UmaG8O+A6rFr6T0
+         cpl4965kOepD4HkMPfiyduQtROyU0mCQdGh7caV4pwcHxlRq617Wizm/ihsPUA5Cl25X
+         jc1TYdjOEZCfqJ7SMuWNPRXegbX2cUMym+MkHrB5iaJm79ADhwWZ52RhLogk446eRsrr
+         60aEHWUaZ1pTbOIZ24LyTJT0pxVmht7n71nPQab2QD75sXrHAJv3SQWDnFGDN43xqR/c
+         pjzA==
+X-Gm-Message-State: AOAM533O7T0W9C8e5EZufZO08SM/6FK/IwAH96UxasN6NKA158w26u2e
+        G6suXNNd2vFgQWy2EyhbHV4eVw==
+X-Google-Smtp-Source: ABdhPJxCa+aIUzR7XJtvhWGZdJtyvpTOifCyidYzBuGnz3Csh06sevyXOFdA7OARjrkuXKzbqORTaQ==
+X-Received: by 2002:a65:6243:: with SMTP id q3mr1227075pgv.154.1603442141794;
+        Fri, 23 Oct 2020 01:35:41 -0700 (PDT)
 Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id e2sm1021057pgd.27.2020.10.23.01.29.42
+        by smtp.gmail.com with ESMTPSA id w19sm1267173pff.6.2020.10.23.01.35.40
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 23 Oct 2020 01:29:43 -0700 (PDT)
-Date:   Fri, 23 Oct 2020 13:59:41 +0530
+        Fri, 23 Oct 2020 01:35:40 -0700 (PDT)
+Date:   Fri, 23 Oct 2020 14:05:38 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Hector Yuan <hector.yuan@mediatek.com>
 Cc:     linux-mediatek@lists.infradead.org,
@@ -65,15 +65,15 @@ Cc:     linux-mediatek@lists.infradead.org,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         wsd_upstream@mediatek.com
-Subject: Re: [PATCH v1 2/6] dt-bindings: arm: cpus: Document
- 'mtk,freq-domain' property
-Message-ID: <20201023082941.yfjewzdsnspug7by@vireshk-i7>
+Subject: Re: [PATCH v1 3/6] dt-bindings: cpufreq: add bindings for MediaTek
+ cpufreq HW
+Message-ID: <20201023083538.f6hhcyizvlf2ufjr@vireshk-i7>
 References: <1603441493-18554-1-git-send-email-hector.yuan@mediatek.com>
- <1603441493-18554-3-git-send-email-hector.yuan@mediatek.com>
+ <1603441493-18554-4-git-send-email-hector.yuan@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1603441493-18554-3-git-send-email-hector.yuan@mediatek.com>
+In-Reply-To: <1603441493-18554-4-git-send-email-hector.yuan@mediatek.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -82,38 +82,65 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 23-10-20, 16:24, Hector Yuan wrote:
 > From: "Hector.Yuan" <hector.yuan@mediatek.com>
 > 
-> Add devicetree documentation for 'mtk,freq-domain' property specific
-> to Mediatek CPUs. This property is used to reference the CPUFREQ node
-> along with the domain id.
+> Add devicetree bindings for MediaTek HW driver.
 > 
 > Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/arm/cpus.yaml |    6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |   46 ++++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> index 1222bf1..06a6f5b 100644
-> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> @@ -255,6 +255,12 @@ properties:
->  
->        where voltage is in V, frequency is in MHz.
->  
-> +  mtk-freq-domain:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    description:
-> +      CPUs supporting freq-domain must set their "mtk-freq-domain" property
-> +      with phandle to a cpufreq_hw node followed by the domain id.
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> new file mode 100644
+> index 0000000..a99f44f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
+> +title: MediaTek's CPUFREQ Bindings
+> +
+> +maintainers:
+> +  - Hector Yuan <hector.yuan@mediatek.com>
+> +
+> +description:
+> +  CPUFREQ HW is a hardware engine used by MediaTek
+> +  SoCs to manage frequency in hardware. It is capable of controlling frequency
+> +  for multiple clusters.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,cpufreq-hw
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description: |
+> +      Addresses and sizes for the memory of the HW bases in each frequency domain.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        cpufreq_hw: cpufreq@11bc00 {
+> +            compatible = "mediatek,cpufreq-hw";
+> +            reg = <0 0x11bc10 0 0x8c>,
+> +               <0 0x11bca0 0 0x8c>;
+> +        };
+> +    };
 
-Name should have been mtk,freq-domain I believe. Rob will confirm the
-rest.
-
->    power-domains:
->      $ref: '/schemas/types.yaml#/definitions/phandle-array'
->      description:
-> -- 
-> 1.7.9.5
+You still need to keep the CPU specific part here and explain how this
+block is going to get used using the other binding you added.
 
 -- 
 viresh
