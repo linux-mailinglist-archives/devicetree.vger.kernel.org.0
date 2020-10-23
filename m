@@ -2,192 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9645297151
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 16:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4762A29717E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 16:40:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1750602AbgJWObC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 10:31:02 -0400
-Received: from mga06.intel.com ([134.134.136.31]:45521 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S374727AbgJWObC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Oct 2020 10:31:02 -0400
-IronPort-SDR: oC6mmcDSb5lpsvuHSgkCHh//v4fpVjPSeMb1Vd2Td35SfjswTrK1ns8FB118noLf2CqkKjAcgK
- 0pNdFCtALYUQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="229317322"
-X-IronPort-AV: E=Sophos;i="5.77,408,1596524400"; 
-   d="scan'208";a="229317322"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2020 07:30:58 -0700
-IronPort-SDR: strZ7qZQpzKzpW+H9q1kQAGAQ2o4KKVxcx2BObcjmBmCxf0w5J4zy48ak1cHbj/rIJ9J49uzSh
- S2ndozz2CtvA==
-X-IronPort-AV: E=Sophos;i="5.77,408,1596524400"; 
-   d="scan'208";a="523514927"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2020 07:30:54 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kVy6m-00E8jW-Fi; Fri, 23 Oct 2020 17:31:56 +0300
-Date:   Fri, 23 Oct 2020 17:31:56 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [PATCH v15 2/2] media: i2c: Add OV02A10 image sensor driver
-Message-ID: <20201023143156.GX4077@smile.fi.intel.com>
-References: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
- <20201013130503.2412-3-dongchun.zhu@mediatek.com>
+        id S1750713AbgJWOkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 10:40:04 -0400
+Received: from mail-eopbgr80082.outbound.protection.outlook.com ([40.107.8.82]:55325
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1750695AbgJWOkD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Oct 2020 10:40:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TcsD1K9hRNTQg4aMVJFmuNlbX2kNUFd/PmMJGSdim4mrfx/dgIS+uyDLJccRtT5Rqh3/RqZHVRLwFOoq8PXeP7b8ITgZQkSDzfBULCfvCv4vyLtXAqp+gRsgkEvRe63YN98e7dv0tmzqC26aHKRWuwWIAlk63vIjA6hyoZ87xzme2vEkz64TGxcTVEtBDDxcDBrXLXwKa1EjgPOjROJTznkK5inpUeG47auNHfKoExMRaHr4AeEjOIyK0IO3MGbvEHghxsKcMZR6SHZZENXMMCDOHtYeKLhc/W8YoG9qXK/Jd4J7YDSoSCm89Xp6LclbN8uibIi5AVGl3xVqYm2Ciw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eL9Z2UeFea0doEGu8Bps2lE07goPmejQOYWt0sop2jM=;
+ b=OQKMl+JEZefTSvRcYT02fB98lEjUIOEwkB/MbePgQZB+qOcNqsokEYXziMPo/j8SzxrAVdYx9BGms4uFbDPiOdGc3HjJZadntE53b6LONCnlKi5LVtH3N2l/Ysw2sI4Udr4RiygcW65umI9klKnufrr3B6omO55vr3m1OniUouzRFjJaNFLuBB1CyeJYRHcXk3qXyh/HXzKVuUhzNwl9FgvpxtDaFXT3ZtvNBrhkti1MO/XwohuoZFoyuJmluMCvv560SmTLAIMOu/zpn4KSCYn+Qvqw7dIVW3MzMpokrED3+0JQddVpUzTskKWpGVtNvuoGMt8mKuCkHLzaVw+Hcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eL9Z2UeFea0doEGu8Bps2lE07goPmejQOYWt0sop2jM=;
+ b=DiLgkWrqgQsCbTUvjKN4MpmNA8EQqjM9OwSOF6oS+1kUcoeCMWBxn/u3WZ+7y87l9S3QwByYlPBP4IoTwarCU1mzl5cjIWJA8ydeWl1ORjEYvyq/QlcmJf0UL4oQdpRQsVnuv0UONEHdfcBn17BDgHXk2lWERe/jx357Dcb/e0A=
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
+ by DB6PR04MB3015.eurprd04.prod.outlook.com (2603:10a6:6:11::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21; Fri, 23 Oct
+ 2020 14:39:57 +0000
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::681b:7b29:32bf:d4f]) by DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::681b:7b29:32bf:d4f%7]) with mapi id 15.20.3477.029; Fri, 23 Oct 2020
+ 14:39:57 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     Adam Ford <aford173@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+CC:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 10/11] arm64: dts: imx8mm: add GPC node and power domains
+Thread-Topic: [PATCH 10/11] arm64: dts: imx8mm: add GPC node and power domains
+Thread-Index: AQHWl0FrJ7EQf5Dtf0W/rGuS8jp2f6mlUIcAgAAU8YA=
+Date:   Fri, 23 Oct 2020 14:39:57 +0000
+Message-ID: <DBBPR04MB793050BF28E0603037B39E9F871A0@DBBPR04MB7930.eurprd04.prod.outlook.com>
+References: <20200930155006.535712-1-l.stach@pengutronix.de>
+ <20200930155006.535712-11-l.stach@pengutronix.de>
+ <CAHCN7xLN6tJ5G_GscP3biR+XxFb-pA7fN1CbNqXMUF4KbyaRzQ@mail.gmail.com>
+In-Reply-To: <CAHCN7xLN6tJ5G_GscP3biR+XxFb-pA7fN1CbNqXMUF4KbyaRzQ@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [49.73.134.2]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 21ec6013-a932-46dc-a823-08d877618365
+x-ms-traffictypediagnostic: DB6PR04MB3015:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6PR04MB30158DFFA4D7F1EA4F450C79871A0@DB6PR04MB3015.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wZPpwf4HxiLpPIxrVXpKbO8AtRPsz2K9cJ9SbFZTcsYUe7XqgBegBFNcXpqTy5uzlAhcrqE3XF4GnO1zZFxfs+kQOPqMJCkaJr+7U6mujI1Z3nxgIMSL2LCrpuyUh5ljzxUf5/NFFMtgRJ4A1+aAv5kjbhshJZ6z9P6UTMKvPR+Z31bO8a7a7jNqhI0Vy8SYwakDQIUCmxsh23sp5+//vDGbkldn/Y38VVYYD6OBDl7QawhUT68k3FZYJcc8VMHtZvXK/oq6zu1fMPhlzsBqkYPET3sMJ2cnRJ8yMMSPEZ16jpgbTHiRYzDHtA9rasuZui+Bh+OUdoQOMvaS82G+oVOjCxG1Y+T/jZInlx+8HuLccmo1XfCgn3JFW6IBZYGfc88jH8ypW5QymbTqPAIgjc+nCrQ2zAoGgUtEcezYvnJxg0wuuhLOtVsE5VWHfQbaZwuF/SQ+6tWMtNNWKSSKVg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(376002)(366004)(396003)(39860400002)(64756008)(66446008)(66476007)(83380400001)(76116006)(45080400002)(53546011)(7416002)(6506007)(33656002)(966005)(71200400001)(478600001)(186003)(4326008)(26005)(2906002)(8676002)(7696005)(54906003)(316002)(55016002)(86362001)(66946007)(66556008)(52536014)(5660300002)(8936002)(110136005)(9686003)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: Om3Lk7Ue0fN3NkVSvbXwsqcI0Q9ZUG1YxWt8lliPd+dp3+cqpCBlESkzQNHw9APHGwjRp6hZ+7p1d988ukOS8efQ5FILmiPCw+ALbX3wDY+fNtQVLvSg1JR0z/ZKB+n3GTfACzpP/79olFtzpdApkQjKGW2TeajaawwWhPhuF9hm9apECPSLhy5eG0U+zYnnsZBMPVHCg4aDcqctFqzYUXwF2sOV2CyIXd2biKGg4iOnY2ks/ny/sQm+7PwFpro2fWC5ZTXhWseFjP3UkQiqEsVy7nH29x5XBwHtkKSTHATdeaY8Sn9eCfVMoq4xv/p/BO3nv4B/ApjwqFJiW0PuSep6YWkoTBBQsslyGxPXyBe9Y7tpfp0/P2KSETGnyGbrgH7IMDO2i19c1I36fNh48FjRL4MJMsq81wU1hcF60DI0p3IOMyphz1XFBjSfweO3vRyYRs/+IU9kqNYtr0ywEyPn9ujk9eMpKiPkGvTVc8SRvm6x+yqzEIhuElJy0wjfJ+9ep9T4aV/zx5mYSx5/uVBRljU4nLKPQY0PA3q54vCFH79HT7V2MrR2LOe7crg0KrJLYcsVB04VvRl7BbNOZIv0jubCxS0SxNL0r0S9T1rgjTMFXpxqfk4l8zKRVGVh1gdrcTF/Bei7GiiJqUzAoA==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201013130503.2412-3-dongchun.zhu@mediatek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21ec6013-a932-46dc-a823-08d877618365
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2020 14:39:57.2129
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PYiaDfPl2zJnYZAYhivdINuIEkk3/g6tVIots0Itq7pS4HR0oUoKQjguUlYyNi2KtG2ix1vHsQYA9zYWSF70rA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3015
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 09:05:03PM +0800, Dongchun Zhu wrote:
-> Add a V4L2 sub-device driver for OmniVision OV02A10 image sensor.
-
-...
-
-> +#define OV02A10_ID_MASK					0xffff
-
-GENMASK()
-
-(And include bits.h for that)
-
-...
-
-> +static int __ov02a10_start_stream(struct ov02a10 *ov02a10)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&ov02a10->subdev);
-> +	const struct ov02a10_reg_list *reg_list;
-> +	int ret;
-> +
-> +	/* Apply default values of current mode */
-> +	reg_list = &ov02a10->cur_mode->reg_list;
-> +	ret = ov02a10_write_array(ov02a10, reg_list);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Apply customized values from user */
-> +	ret = __v4l2_ctrl_handler_setup(ov02a10->subdev.ctrl_handler);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Set orientation to 180 degree */
-> +	if (ov02a10->upside_down) {
-> +		ret = i2c_smbus_write_byte_data(client, REG_MIRROR_FLIP_CONTROL,
-> +						REG_MIRROR_FLIP_ENABLE);
-> +		if (ret) {
-
-Shouldn't you use 'ret < 0' here as well?
-
-> +			dev_err(&client->dev, "failed to set orientation\n");
-> +			return ret;
-> +		}
-> +		ret = i2c_smbus_write_byte_data(client, REG_GLOBAL_EFFECTIVE,
-> +						REG_ENABLE);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	/* Set MIPI TX speed according to DT property */
-> +	if (ov02a10->mipi_clock_voltage != OV02A10_MIPI_TX_SPEED_DEFAULT) {
-> +		ret = i2c_smbus_write_byte_data(client, TX_SPEED_AREA_SEL,
-> +						ov02a10->mipi_clock_voltage);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	/* Set stream on register */
-> +	return i2c_smbus_write_byte_data(client, REG_SC_CTRL_MODE,
-> +					 SC_CTRL_MODE_STREAMING);
-> +}
-
-...
-
-> +/*
-
-Was your intention to declare it as a kernel doc?
-
-> + * ov02a10_set_exposure - Function called when setting exposure time
-> + * @priv: Pointer to device structure
-> + * @val: Variable for exposure time, in the unit of micro-second
-> + *
-> + * Set exposure time based on input value.
-> + *
-> + * Return: 0 on success
-> + */
-> +static int ov02a10_set_exposure(struct ov02a10 *ov02a10, int val)
-
-...
-
-> +static int ov02a10_check_hwcfg(struct device *dev, struct ov02a10 *ov02a10)
-> +{
-> +	struct fwnode_handle *ep;
-> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
-> +	struct v4l2_fwnode_endpoint bus_cfg = {
-> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
-> +	};
-> +	unsigned int i, j;
-> +	int ret;
-
-> +	if (!fwnode)
-> +		return -EINVAL;
-
-Basically you can avoid this check, but it's up to you.
-
-> +	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
-> +	if (!ep)
-> +		return -ENXIO;
-> +
-> +	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
-> +	fwnode_handle_put(ep);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(link_freq_menu_items); i++) {
-> +		for (j = 0; j < bus_cfg.nr_of_link_frequencies; j++) {
-> +			if (link_freq_menu_items[i] ==
-> +				bus_cfg.link_frequencies[j]) {
-> +				ov02a10->freq_index = i;
-> +				break;
-> +			}
-> +		}
-> +
-> +		if (j == bus_cfg.nr_of_link_frequencies) {
-> +			dev_err(dev, "no link frequency %lld supported\n",
-> +				link_freq_menu_items[i]);
-> +			ret = -EINVAL;
-> +			break;
-> +		}
-> +	}
-> +
-> +	v4l2_fwnode_endpoint_free(&bus_cfg);
-> +
-> +	return ret;
-> +}
-
-...
-
-> +	fwnode_property_read_u32(dev_fwnode(dev), "rotation", &rotation);
-
-Same Q as per previous reviews. Why device property API can't be used here?
-
-And everywhere else when you have
-	 fwnode_property_read_*(dev_fwnode(dev), ...)
-calls.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBBZGFtIEZvcmQgW21haWx0bzph
+Zm9yZDE3M0BnbWFpbC5jb21dDQo+IFNlbnQ6IEZyaWRheSwgT2N0b2JlciAyMywgMjAyMCA5OjIy
+IFBNDQo+IFRvOiBMdWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25peC5kZT4NCj4gQ2M6IFNo
+YXduIEd1byA8c2hhd25ndW9Aa2VybmVsLm9yZz47IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5l
+bC5vcmc+Ow0KPiBNYXJlayBWYXN1dCA8bWFyZXhAZGVueC5kZT47IGRldmljZXRyZWUgPGRldmlj
+ZXRyZWVAdmdlci5rZXJuZWwub3JnPjsNCj4gRnJpZWRlciBTY2hyZW1wZiA8ZnJpZWRlci5zY2hy
+ZW1wZkBrb250cm9uLmRlPjsNCj4gcGF0Y2h3b3JrLWxzdEBwZW5ndXRyb25peC5kZTsgZGwtbGlu
+dXgtaW14IDxsaW51eC1pbXhAbnhwLmNvbT47IFNhc2NoYQ0KPiBIYXVlciA8a2VybmVsQHBlbmd1
+dHJvbml4LmRlPjsgRmFiaW8gRXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPjsNCj4gYXJtLXNv
+YyA8bGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnPg0KPiBTdWJqZWN0OiBSZTog
+W1BBVENIIDEwLzExXSBhcm02NDogZHRzOiBpbXg4bW06IGFkZCBHUEMgbm9kZSBhbmQgcG93ZXIN
+Cj4gZG9tYWlucw0KPiANCj4gT24gV2VkLCBTZXAgMzAsIDIwMjAgYXQgMTA6NTUgQU0gTHVjYXMg
+U3RhY2ggPGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU+DQo+IHdyb3RlOg0KPiA+DQo+ID4gVGhpcyBh
+ZGRzIHRoZSBEVCBub2RlcyB0byBkZXNjcmliZSB0aGUgcG93ZXIgZG9tYWlucyBhdmFpbGFibGUg
+b24gdGhlDQo+ID4gaS5NWDhNTS4gVGhpbmdzIGFyZSBhIGJpdCBtb3JlIGNvbXBsZXggY29tcGFy
+ZWQgdG8gb3RoZXIgR1BDdjIgcG93ZXINCj4gPiBkb21haW4gc2V0dXBzLCBhcyB0aGVyZSBpcyBu
+b3cgYSBoaWVyYXJjaHkgb2YgZG9tYWlucyB3aGVyZSBjb21wbGV0ZQ0KPiA+IHN1YnN5c3RlbXMg
+KEhTSU8sIEdQVSwgRElTUExBWSkgY2FuIGJlIGdhdGVkIGFzIGEgd2hvbGUsIGJ1dCBhbHNvIGZp
+bmUNCj4gPiBncmFudWxhciBnYXRpbmcgd2l0aGluIHRob3NlIHN1YnN5c3RlbXMgaXMgcG9zc2li
+bGUuDQo+ID4NCj4gPiBOb3RlIHRoYXQgdGhpcyBpcyBzdGlsbCBpbmNvbXBsZXRlLCBhcyBib3Ro
+IFZQVSBhbmQgRElTUCBkb21haW5zIGFyZQ0KPiA+IG1pc3NpbmcgdGhlaXIgcmVzZXQgY2xvY2tz
+LiBUaG9zZSBhcmVuJ3QgZGlyZWN0bHkgc291cmNlZCBmcm9tIHRoZQ0KPiA+IENDTSwgYnV0IGhh
+dmUgYW5vdGhlciBsZXZlbCBvZiBjbG9jayBnYXRpbmcgaW4gdGhlIEJMS0NUTCBvZiB0aG9zZQ0K
+PiA+IGRvbWFpbnMsIHdoaWNoIG5lZWRzIGEgc2VwYXJhdGUgZHJpdmVyLg0KPiA+DQo+ID4gU2ln
+bmVkLW9mZi1ieTogTHVjYXMgU3RhY2ggPGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU+DQo+ID4gLS0t
+DQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpIHwgNTcNCj4g
+PiArKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNTcgaW5zZXJ0
+aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2lteDhtbS5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+bW0uZHRzaQ0KPiA+IGluZGV4IDc2ZjA0MGU0YmU1ZS4uYTg0MWZiMmQwNDU4IDEwMDY0NA0KPiA+
+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpDQo+ID4gKysr
+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4gPiBAQCAtNCw2
+ICs0LDggQEANCj4gPiAgICovDQo+ID4NCj4gPiAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2Nr
+L2lteDhtbS1jbG9jay5oPg0KPiA+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcG93ZXIvaW14OG1t
+LXBvd2VyLmg+DQo+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9yZXNldC9pbXg4bXEtcmVzZXQu
+aD4NCj4gPiAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2dwaW8vZ3Bpby5oPg0KPiA+ICAjaW5jbHVk
+ZSA8ZHQtYmluZGluZ3MvaW5wdXQvaW5wdXQuaD4NCj4gPiAgI2luY2x1ZGUgPGR0LWJpbmRpbmdz
+L2ludGVycnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4NCj4gPiBAQCAtNTQ3LDYgKzU0OSw2MSBA
+QA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaW50ZXJydXB0cyA9IDxHSUNf
+U1BJIDg5DQo+IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgI3Jlc2V0LWNlbGxzID0gPDE+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAg
+ICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGdwYzogZ3BjQDMwM2Ew
+MDAwIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAi
+ZnNsLGlteDhtbS1ncGMiOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVn
+ID0gPDB4MzAzYTAwMDAgMHgxMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBpbnRlcnJ1cHQtcGFyZW50ID0gPCZnaWM+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgaW50ZXJydXB0LWNvbnRyb2xsZXI7DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAjaW50ZXJydXB0LWNlbGxzID0gPDM+Ow0KPiANCj4gRG9lcyB0aGlzIG5l
+ZWQgYW4gaW50ZXJydXB0IGluZGV4IHdpdGhpbiB0aGUgR0lDPw0KPiBwb3NzaWJseSBzb21ldGhp
+bmcgbGlrZTogICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgODcNCj4gSVJRX1RZUEVfTEVWRUxfSElH
+SD47DQoNCkZvciBpbXg4bSwgZXhjZXB0IGlteDhtcSwgd2UgZG9u4oCZdCB1c2UgZ3BjIGFzIGlu
+dGVycnVwdCBjb250cm9sbGVyIGFueW1vcmUsIHRoZSBwcm9wdGVydHkgZm9yIGdpYyBjb250cm9s
+bGVyIGV0YyBhcmUgcmVkdW5kYW50LCBJIHRoaW5rDQoNCkJSDQpKYWNreSBCYWkNCj4gDQo+IA0K
+PiA+ICsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBnYyB7DQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+
+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjc2l6ZS1jZWxs
+cyA9IDwwPjsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHBnY19oc2lvbWl4Og0KPiBwb3dlci1kb21haW5AMCB7DQo+ID4gKw0KPiAjcG93ZXItZG9t
+YWluLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIHJlZyA9DQo+IDxJTVg4TU1fUE9XRVJfRE9NQUlOX0hTSU9NSVg+Ow0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9
+IDwmY2xrDQo+IElNWDhNTV9DTEtfVVNCX0JVUz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBwZ2NfcGNpZToNCj4gcG93ZXItZG9tYWluQDEgew0KPiA+ICsNCj4g
+I3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICByZWcgPQ0KPiA8SU1YOE1NX1BPV0VSX0RPTUFJTl9QQ0lF
+PjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBw
+b3dlci1kb21haW5zDQo+ID0gPCZwZ2NfaHNpb21peD47DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBwZ2Nfb3RnMToNCj4gcG93ZXItZG9tYWluQDIgew0KPiA+ICsN
+Cj4gI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICByZWcgPQ0KPiA8SU1YOE1NX1BPV0VSX0RPTUFJTl9P
+VEcxPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBwb3dlci1kb21haW5zDQo+ID0gPCZwZ2NfaHNpb21peD47DQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBwZ2Nfb3RnMjoNCj4gcG93ZXItZG9tYWluQDMgew0KPiA+
+ICsNCj4gI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWcgPQ0KPiA8SU1YOE1NX1BPV0VSX0RPTUFJ
+Tl9PVEcyPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBwb3dlci1kb21haW5zDQo+ID0gPCZwZ2NfaHNpb21peD47DQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBwZ2NfZ3B1bWl4Og0KPiBwb3dlci1kb21haW5ANCB7
+DQo+ID4gKw0KPiAjcG93ZXItZG9tYWluLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9DQo+IDxJTVg4TU1fUE9XRVJf
+RE9NQUlOX0dQVU1JWD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgY2xvY2tzID0gPCZjbGsNCj4gSU1YOE1NX0NMS19HUFVfQlVTX1JPT1Q+LA0K
+PiA+ICsNCj4gPCZjbGsgSU1YOE1NX0NMS19HUFVfQUhCPjsNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHBnY19ncHU6DQo+IHBvd2VyLWRvbWFpbkA1IHsNCj4gPiAr
+DQo+ICNwb3dlci1kb21haW4tY2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0NCj4gPElNWDhNTV9QT1dFUl9ET01BSU5f
+R1BVPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBjbG9ja3MgPSA8JmNsaw0KPiBJTVg4TU1fQ0xLX0dQVV9BSEI+LA0KPiA+ICsNCj4gPCZjbGsg
+SU1YOE1NX0NMS19HUFVfQlVTX1JPT1Q+LA0KPiA+ICsNCj4gPCZjbGsgSU1YOE1NX0NMS19HUFUy
+RF9ST09UPiwNCj4gPiArDQo+IDwmY2xrIElNWDhNTV9DTEtfR1BVM0RfUk9PVD47DQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVzZXRzID0gPCZz
+cmMNCj4gSU1YOE1RX1JFU0VUX0dQVV9SRVNFVD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgcG93ZXItZG9tYWlucw0KPiA9IDwmcGdjX2dwdW1p
+eD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICAgIH07DQo+ID4gICAgICAgICAgICAgICAgIH07DQo+ID4NCj4gPiAgICAgICAgICAgICAg
+ICAgYWlwczI6IGJ1c0AzMDQwMDAwMCB7DQo+ID4gLS0NCj4gPiAyLjIwLjENCj4gPg0KPiA+DQo+
+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiBs
+aW51eC1hcm0ta2VybmVsIG1haWxpbmcgbGlzdA0KPiA+IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMu
+aW5mcmFkZWFkLm9yZw0KPiA+IGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0
+bG9vay5jb20vP3VybD1odHRwJTNBJTJGJTJGbGlzdHMNCj4gPiAuaW5mcmFkZWFkLm9yZyUyRm1h
+aWxtYW4lMkZsaXN0aW5mbyUyRmxpbnV4LWFybS1rZXJuZWwmYW1wO2RhdGE9MDQlDQo+IDdDMA0K
+PiA+DQo+IDElN0NwaW5nLmJhaSU0MG54cC5jb20lN0M0MTJmMjk2MTBjNzk0NzBkMTJjNDA4ZDg3
+NzU2YjA3MiU3QzY4DQo+IDZlYTFkM2JjDQo+ID4NCj4gMmI0YzZmYTkyY2Q5OWM1YzMwMTYzNSU3
+QzAlN0MwJTdDNjM3MzkwNTYxNTAxNjIyMzI3JTdDVW5rbm93DQo+IG4lN0NUV0ZwYkcNCj4gPg0K
+PiBac2IzZDhleUpXSWpvaU1DNHdMakF3TURBaUxDSlFJam9pVjJsdU16SWlMQ0pCVGlJNklrMWhh
+V3dpTENKWFZDSTYNCj4gTW4wJQ0KPiA+DQo+IDNEJTdDMTAwMCZhbXA7c2RhdGE9QWF6S3prMVRs
+NkxJMWhMWUdXMXhRJTJGRVljOEFkNnZrMGFCZGtKeHd1DQo+IHczQSUzRCZhDQo+ID4gbXA7cmVz
+ZXJ2ZWQ9MA0K
