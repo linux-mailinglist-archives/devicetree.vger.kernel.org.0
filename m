@@ -2,140 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5AA529704B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 15:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23145297052
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 15:22:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S372610AbgJWNVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 09:21:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42528 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S372480AbgJWNVe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Oct 2020 09:21:34 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CE6D520878;
-        Fri, 23 Oct 2020 13:21:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603459293;
-        bh=tcIf+YLtp09S6ktv2lmr+RmiL/UpMdZ1xUk88JleAx4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=V7YP8pcGUA997rXsYpwdd2ACAVF9hRXJJWKeBUjnAfzK7u6alSW8fET5E7J7zgwWR
-         EEAEjv4CtK8m6Y/sFVTX9pK5jpP0i3Ooo7/D48Y2W0CcCoj4QuuG3z8hSyDpHEkH/s
-         P4F6KIFWfFMnK0l2ZgMy8HndS02MQKbJMeZRAPkc=
-Received: by mail-oi1-f175.google.com with SMTP id l4so1794237oii.13;
-        Fri, 23 Oct 2020 06:21:33 -0700 (PDT)
-X-Gm-Message-State: AOAM532mhopd9331kv57uRIZhzSC6Vt2/FUsOGYIqCHxG43JM0xdff5c
-        h+Ij1zfZdeX1leL0L9wakeQBHdCxS5koQfTUQg==
-X-Google-Smtp-Source: ABdhPJxvPfyz6rm5n/WXwNeFZtY47gjlfmj9ctFWS6FN1er0aQ5AFtUPdDWxy3CB/VaS1ZHKpcDLnBRCQJ+QjvkFc0Q=
-X-Received: by 2002:aca:5dc2:: with SMTP id r185mr1712876oib.106.1603459292939;
- Fri, 23 Oct 2020 06:21:32 -0700 (PDT)
+        id S373082AbgJWNW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 09:22:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47354 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S372993AbgJWNW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 09:22:26 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4654AC0613CE
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 06:22:26 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id h21so1721043iob.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 06:22:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dEfyHhDfb1J29xg/MU/EbZi3PKtT0a0IQvdwghsKDtI=;
+        b=Vc/aFalK0DvJiQJ6eLeXvAn2o0DkQ8Qxaxf/zkJ5i2Bd96A0iYtOr7kB/0ZxTICBTM
+         bBbkf0g+hg2FsFBqDOJn2surMyMRVdGvI8SlpsxBqLHPB0bTBXQCYAADAMe8AY+sPfPV
+         UG4foWoJHsMcJKLtlJanUv/iidgqfXPw3srC0Ky1+jCl44RoSu96dBj9cpf8fR38C/VT
+         llJp+YOmTpvqzaGWxhxG7SaO28a03BR094hhhCBqw4gRwIn8qqXsuyNkuc4NHWntm1y4
+         o+k85ReMGp0MbwIiH+rvgW4rRHUPI5RKVwXyHIUx1M0Ar7DIh/HICBBU8NxvXYFlsLuc
+         7lRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dEfyHhDfb1J29xg/MU/EbZi3PKtT0a0IQvdwghsKDtI=;
+        b=rRAAprGVx+CJtvp58TDlNDnDSiuaU7q4TR3VIk/AiAthZL6u7NYxC+Rky2WwSKEcNE
+         rgPenjS4KgQEFqEHWfgadhLr//mmSjle7McJgLxr5i4Y2p6hQrObLNdc2KfKyotITT+0
+         UFe4U6I5a5FieWPpqpL0dxns70H0f8lbrsk7F665lV06b7tYDxRH7L8LFOMcYUkS6hiD
+         +ITVO7StvAQJj8qilTGsbXbydS4DyH5L7ts4MdOmPrFa8aYVP25Z1dKpUD8NHfb9tLo6
+         Jl4BmiQZdtmtSkmxxNa0jCzr8tnAZneF7hN9SdTPX1yot8amu/GXYUJRXPI+PHV7XYoS
+         NiYA==
+X-Gm-Message-State: AOAM532gKc7Yv9uJMbNHHWoKMBbGg9tCY03gdrTz/MgtP2KvH1Md1591
+        Qzu5/jNOQxGTVW+64R0erve6eS15mSYHY/Yb680=
+X-Google-Smtp-Source: ABdhPJy2fko2aHVOryqMcDa9xZgBaE00yQwIZgXNGqGaE5aGhoB8VmbGSoN37geh18VjLVStPLxefNtpzzHRHjtmGyU=
+X-Received: by 2002:a5e:de0b:: with SMTP id e11mr1501416iok.92.1603459345364;
+ Fri, 23 Oct 2020 06:22:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201020203710.10100-1-sudeep.holla@arm.com> <CAL_JsqKH9pN7E7o+UY7YmOrOKCUigrMTxY3f3AH4PdpQUAaawg@mail.gmail.com>
- <20201021163021.lkqhum3xnyzt6pir@bogus>
-In-Reply-To: <20201021163021.lkqhum3xnyzt6pir@bogus>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 23 Oct 2020 08:21:21 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJFu-kn8uY9Jv0B-i2uNkx9wXg86N-aVTTH+zYz2MrxDA@mail.gmail.com>
-Message-ID: <CAL_JsqJFu-kn8uY9Jv0B-i2uNkx9wXg86N-aVTTH+zYz2MrxDA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm,scmi: Do not use clocks for SCMI
- performance domains
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
+References: <20200930155006.535712-1-l.stach@pengutronix.de> <20200930155006.535712-11-l.stach@pengutronix.de>
+In-Reply-To: <20200930155006.535712-11-l.stach@pengutronix.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 23 Oct 2020 08:22:14 -0500
+Message-ID: <CAHCN7xLN6tJ5G_GscP3biR+XxFb-pA7fN1CbNqXMUF4KbyaRzQ@mail.gmail.com>
+Subject: Re: [PATCH 10/11] arm64: dts: imx8mm: add GPC node and power domains
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 11:30 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+On Wed, Sep 30, 2020 at 10:55 AM Lucas Stach <l.stach@pengutronix.de> wrote:
 >
-> On Wed, Oct 21, 2020 at 11:20:27AM -0500, Rob Herring wrote:
-> > On Tue, Oct 20, 2020 at 3:37 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > Commit dd461cd9183f ("opp: Allow dev_pm_opp_get_opp_table() to return
-> > > -EPROBE_DEFER") handles -EPROBE_DEFER for the clock/interconnects within
-> > > _allocate_opp_table() which is called from dev_pm_opp_add and it
-> > > now propagates the error back to the caller.
-> > >
-> > > SCMI performance domain re-used clock bindings to keep it simple. However
-> > > with the above mentioned change, if clock property is present in a device
-> > > node, opps can't be added until clk_get succeeds. So in order to fix the
-> > > issue, we can register dummy clocks which is completely ugly.
-> > >
-> > > Since there are no upstream users for the SCMI performance domain clock
-> > > bindings, let us introduce separate performance domain bindings for the
-> > > same.
-> > >
-> > > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > > ---
-> > >  .../devicetree/bindings/arm/arm,scmi.txt      | 19 ++++++++++++++++---
-> > >  1 file changed, 16 insertions(+), 3 deletions(-)
-> > >
-> > > Hi Rob/Viresh,
-> > >
-> > > This is actually a fix for the regression I reported here[1].
-> > > I am not adding fixes tag as I am targeting in the same release and
-> > > also because it is not directly related.
-> > >
-> > > Regards,
-> > > Sudeep
-> > >
-> > > [1] https://lore.kernel.org/r/20201015180555.gacdzkofpibkdn2e@bogus
-> > >
-> > > P.S.:/me records that this binding needs to be moved to yaml in v5.11
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> > > index 55deb68230eb..0a6c1b495403 100644
-> > > --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> > > +++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> > > @@ -44,7 +44,7 @@ as described in the following sections. If the platform supports dedicated
-> > >  mboxes, mbox-names and shmem shall be present in the sub-node corresponding
-> > >  to that protocol.
-> > >
-> > > -Clock/Performance bindings for the clocks/OPPs based on SCMI Message Protocol
-> > > +Clock bindings for the clocks based on SCMI Message Protocol
-> > >  ------------------------------------------------------------
-> > >
-> > >  This binding uses the common clock binding[1].
-> > > @@ -52,6 +52,19 @@ This binding uses the common clock binding[1].
-> > >  Required properties:
-> > >  - #clock-cells : Should be 1. Contains the Clock ID value used by SCMI commands.
-> > >
-> > > +Performance bindings for the OPPs based on SCMI Message Protocol
-> > > +------------------------------------------------------------
-> > > +
-> > > +Required properties:
-> > > +- #perf-domain-cells: Should be 1. Contains the performance domain ID value
-> > > +                     used by SCMI commands.
-> >
-> > When is this not 1 (IOW, you only need this if variable)? How would it
-> > be used outside SCMI (given it has a generic name)?
-> >
+> This adds the DT nodes to describe the power domains available on the
+> i.MX8MM. Things are a bit more complex compared to other GPCv2 power
+> domain setups, as there is now a hierarchy of domains where complete
+> subsystems (HSIO, GPU, DISPLAY) can be gated as a whole, but also
+> fine granular gating within those subsystems is possible.
 >
-> Ah, I thought we need this if phandle is followed by 1 or more arguments.
-> If it is not compulsory I can drop this or make it scmi specific if we
-> need it.
-
-No, your options are fixed or variable number of cells. If this is
-generic, then maybe it needs to be variable. If it's SCMI specific
-then it can likely be fixed unless you can think of other information
-you may need in the cells.
-
-> > > +
-> > > +* Property arm,scmi-perf-domain
-> >
-> > Yet this doesn't have a generic name. You mentioned on IRC this is
-> > aligned with QCom, but why can't QCom use the same property here?
-> >
+> Note that this is still incomplete, as both VPU and DISP domains are
+> missing their reset clocks. Those aren't directly sourced from the CCM,
+> but have another level of clock gating in the BLKCTL of those domains,
+> which needs a separate driver.
 >
-> This is SCMI firmware driven while they have hardware driven perf/freq
-> domains. So different drivers, need to distinguish between the two.
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 57 +++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index 76f040e4be5e..a841fb2d0458 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -4,6 +4,8 @@
+>   */
+>
+>  #include <dt-bindings/clock/imx8mm-clock.h>
+> +#include <dt-bindings/power/imx8mm-power.h>
+> +#include <dt-bindings/reset/imx8mq-reset.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -547,6 +549,61 @@
+>                                 interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+>                                 #reset-cells = <1>;
+>                         };
+> +
+> +                       gpc: gpc@303a0000 {
+> +                               compatible = "fsl,imx8mm-gpc";
+> +                               reg = <0x303a0000 0x10000>;
+> +                               interrupt-parent = <&gic>;
+> +                               interrupt-controller;
+> +                               #interrupt-cells = <3>;
 
-So what if they are different drivers. That's *always* the case. The
-clock provider(s) for 'clocks' is different for every SoC? I doesn't
-matter who is the provider, it's the same information being described.
+Does this need an interrupt index within the GIC?
+possibly something like:   interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
 
-Rob
+
+> +
+> +                               pgc {
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +
+> +                                       pgc_hsiomix: power-domain@0 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_HSIOMIX>;
+> +                                               clocks = <&clk IMX8MM_CLK_USB_BUS>;
+> +                                       };
+> +
+> +                                       pgc_pcie: power-domain@1 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_PCIE>;
+> +                                               power-domains = <&pgc_hsiomix>;
+> +                                       };
+> +
+> +                                       pgc_otg1: power-domain@2 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_OTG1>;
+> +                                               power-domains = <&pgc_hsiomix>;
+> +                                       };
+> +
+> +                                       pgc_otg2: power-domain@3 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_OTG2>;
+> +                                               power-domains = <&pgc_hsiomix>;
+> +                                       };
+> +
+> +                                       pgc_gpumix: power-domain@4 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_GPUMIX>;
+> +                                               clocks = <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +                                                        <&clk IMX8MM_CLK_GPU_AHB>;
+> +                                       };
+> +
+> +                                       pgc_gpu: power-domain@5 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_GPU>;
+> +                                               clocks = <&clk IMX8MM_CLK_GPU_AHB>,
+> +                                                        <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +                                                        <&clk IMX8MM_CLK_GPU2D_ROOT>,
+> +                                                        <&clk IMX8MM_CLK_GPU3D_ROOT>;
+> +                                               resets = <&src IMX8MQ_RESET_GPU_RESET>;
+> +                                               power-domains = <&pgc_gpumix>;
+> +                                       };
+> +                               };
+> +                       };
+>                 };
+>
+>                 aips2: bus@30400000 {
+> --
+> 2.20.1
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
