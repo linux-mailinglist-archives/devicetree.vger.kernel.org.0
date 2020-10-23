@@ -2,40 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AE6F297631
-	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 19:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C6F72976AB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Oct 2020 20:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1753909AbgJWRyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 13:54:21 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:33007 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1753885AbgJWRyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 13:54:20 -0400
+        id S1754318AbgJWSLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 14:11:14 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:51824 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1754310AbgJWSLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 14:11:13 -0400
+Received: from relay8-d.mail.gandi.net (unknown [217.70.183.201])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 337043B051E;
+        Fri, 23 Oct 2020 17:46:35 +0000 (UTC)
 X-Originating-IP: 93.29.109.196
-Received: from localhost.localdomain (unknown [93.29.109.196])
+Received: from localhost.localdomain (196.109.29.93.rev.sfr.net [93.29.109.196])
         (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id CE6692000B;
-        Fri, 23 Oct 2020 17:54:15 +0000 (UTC)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id A96221BF209;
+        Fri, 23 Oct 2020 17:46:09 +0000 (UTC)
 From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com
 Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>, kevin.lhopital@hotmail.com,
-        =?UTF-8?q?K=C3=A9vin=20L=27h=C3=B4pital?= 
-        <kevin.lhopital@bootlin.com>
-Subject: [PATCH NOT FOR MERGE 3/3] ARM: dts: sun8i: a83t: bananapi-m3: Enable MIPI CSI-2 with OV8865
-Date:   Fri, 23 Oct 2020 19:54:06 +0200
-Message-Id: <20201023175406.504527-4-paul.kocialkowski@bootlin.com>
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
+Subject: [PATCH 00/14] Allwinner MIPI CSI-2 support for A31/V3s/A83T
+Date:   Fri, 23 Oct 2020 19:45:32 +0200
+Message-Id: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
-References: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -43,163 +49,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+This series introduces support for MIPI CSI-2, with the A31 controller that is
+found on most SoCs (A31, V3s and probably V5) as well as the A83T-specific
+controller. While the former uses the same MIPI D-PHY that is already supported
+for DSI, the latter embeds its own D-PHY.
 
-The Bananapi M3 supports a camera module which includes an OV8865 sensor
-connected via the parallel CSI interface and an OV8865 sensor connected
-via MIPI CSI-2.
+In order to distinguish the use of the D-PHY between Rx mode (for MIPI CSI-2)
+and Tx mode (for MIPI DSI), a submode is introduced for D-PHY in the PHY API.
+This allows adding Rx support in the A31 D-PHY driver.
 
-The I2C2 bus is shared by the two sensors as well as the (active-low)
-reset signal, but each sensor has it own shutdown line.
+A few changes and fixes are applied to the A31 CSI controller driver, in order
+to support the MIPI CSI-2 use-case.
 
-Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
----
- arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts | 98 ++++++++++++++++++++
- 1 file changed, 98 insertions(+)
+Follows is the V4L2 device topology representing the interactions between
+the MIPI CSI-2 sensor, the MIPI CSI-2 controller (which controls the D-PHY)
+and the CSI controller:
+- entity 1: sun6i-csi (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video0
+	pad0: Sink
+		<- "sun6i-mipi-csi2":1 [ENABLED,IMMUTABLE]
 
-diff --git a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-index 9d34eabba121..70d305d47d6d 100644
---- a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-+++ b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-@@ -85,6 +85,30 @@ green {
- 		};
- 	};
- 
-+	reg_ov8865_avdd: ov8865-avdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ov8865-avdd";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&reg_dldo4>;
-+	};
-+
-+	reg_ov8865_dovdd: ov8865-dovdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ov8865-dovdd";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&reg_dldo4>;
-+	};
-+
-+	reg_ov8865_dvdd: ov8865-dvdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ov8865-dvdd";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&reg_eldo1>;
-+	};
-+
- 	reg_usb1_vbus: reg-usb1-vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "usb1-vbus";
-@@ -115,6 +139,17 @@ &cpu100 {
- 	cpu-supply = <&reg_dcdc3>;
- };
- 
-+&csi {
-+	status = "okay";
-+};
-+
-+&csi_in {
-+	csi_in_mipi_csi2: endpoint {
-+		bus-type = <4>; /* CSI2_DPHY */
-+		remote-endpoint = <&mipi_csi2_out_csi>;
-+	};
-+};
-+
- &de {
- 	status = "okay";
- };
-@@ -147,6 +182,36 @@ hdmi_out_con: endpoint {
- 	};
- };
- 
-+&i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pe_pins>;
-+	status = "okay";
-+
-+	ov8865: camera@36 {
-+		compatible = "ovti,ov8865";
-+		reg = <0x36>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&csi_mclk_pin>;
-+		clocks = <&ccu CLK_CSI_MCLK>;
-+		clock-names = "extclk";
-+		avdd-supply = <&reg_ov8865_avdd>;
-+		dovdd-supply = <&reg_ov8865_dovdd>;
-+		dvdd-supply = <&reg_ov8865_dvdd>;
-+		powerdown-gpios = <&pio 4 17 GPIO_ACTIVE_LOW>; /* PE17 */
-+		reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
-+
-+		port {
-+			ov8865_out_mipi_csi2: endpoint {
-+				bus-type = <4>; /* MIPI CSI-2 D-PHY */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2 3 4>;
-+
-+				remote-endpoint = <&mipi_csi2_in_ov8865>;
-+			};
-+		};
-+	};
-+};
-+
- &mdio {
- 	rgmii_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
-@@ -154,6 +219,26 @@ rgmii_phy: ethernet-phy@1 {
- 	};
- };
- 
-+&mipi_csi2 {
-+	status = "okay";
-+};
-+
-+&mipi_csi2_in {
-+	mipi_csi2_in_ov8865: endpoint {
-+		bus-type = <4>; /* MIPI CSI-2 D-PHY */
-+		clock-lanes = <0>;
-+		data-lanes = <1 2 3 4>;
-+
-+		remote-endpoint = <&ov8865_out_mipi_csi2>;
-+	};
-+};
-+
-+&mipi_csi2_out {
-+	mipi_csi2_out_csi: endpoint {
-+		remote-endpoint = <&csi_in_mipi_csi2>;
-+	};
-+};
-+
- &mmc0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc0_pins>;
-@@ -327,11 +412,24 @@ &reg_dldo3 {
- 	regulator-name = "vcc-pd";
- };
- 
-+&reg_dldo4 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "avdd-csi";
-+};
-+
- &reg_drivevbus {
- 	regulator-name = "usb0-vbus";
- 	status = "okay";
- };
- 
-+&reg_eldo1 {
-+	regulator-min-microvolt = <1200000>;
-+	regulator-max-microvolt = <1200000>;
-+	regulator-name = "dvdd-csi-r";
-+};
-+
- &reg_fldo1 {
- 	regulator-min-microvolt = <1080000>;
- 	regulator-max-microvolt = <1320000>;
+- entity 5: sun6i-mipi-csi2 (2 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+	pad0: Sink
+		<- "ov5648 0-0036":0 [ENABLED,IMMUTABLE]
+	pad1: Source
+		-> "sun6i-csi":0 [ENABLED,IMMUTABLE]
+
+- entity 8: ov5648 0-0036 (1 pad, 1 link)
+            type V4L2 subdev subtype Sensor flags 0
+            device node name /dev/v4l-subdev0
+	pad0: Source
+		[fmt:SBGGR8_1X8/640x480@1/30 field:none colorspace:raw xfer:none ycbcr:601 quantization:full-range]
+		-> "sun6i-mipi-csi2":0 [ENABLED,IMMUTABLE]
+
+Happy reviewing!
+
+Paul Kocialkowski (14):
+  phy: Distinguish between Rx and Tx for MIPI D-PHY with submodes
+  phy: allwinner: phy-sun6i-mipi-dphy: Support D-PHY Rx mode for MIPI
+    CSI-2
+  media: sun6i-csi: Support an optional dedicated memory pool
+  media: sun6i-csi: Fix the image storage bpp for 10/12-bit Bayer
+    formats
+  media: sun6i-csi: Only configure the interface data width for parallel
+  media: sun6i-csi: Support feeding from the MIPI CSI-2 controller
+  dt-bindings: media: i2c: Add A31 MIPI CSI-2 bindings documentation
+  media: sunxi: Add support for the A31 MIPI CSI-2 controller
+  ARM: dts: sun8i: v3s: Add CSI0 camera interface node
+  ARM: dts: sun8i: v3s: Add MIPI D-PHY and MIPI CSI-2 interface nodes
+  dt-bindings: media: i2c: Add A83T MIPI CSI-2 bindings documentation
+  media: sunxi: Add support for the A83T MIPI CSI-2 controller
+  ARM: dts: sun8i: a83t: Add MIPI CSI-2 controller node
+  media: sunxi: sun8i-a83t-mipi-csi2: Avoid using the (unsolicited)
+    interrupt
+
+ .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 168 +++++
+ .../media/allwinner,sun8i-a83t-mipi-csi2.yaml | 158 +++++
+ arch/arm/boot/dts/sun8i-a83t.dtsi             |  26 +
+ arch/arm/boot/dts/sun8i-v3s.dtsi              |  62 ++
+ drivers/media/platform/sunxi/Kconfig          |   2 +
+ drivers/media/platform/sunxi/Makefile         |   2 +
+ .../platform/sunxi/sun6i-csi/sun6i_csi.c      |  54 +-
+ .../platform/sunxi/sun6i-csi/sun6i_csi.h      |  20 +-
+ .../platform/sunxi/sun6i-mipi-csi2/Kconfig    |  11 +
+ .../platform/sunxi/sun6i-mipi-csi2/Makefile   |   4 +
+ .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c   | 635 +++++++++++++++++
+ .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.h   | 116 +++
+ .../sunxi/sun8i-a83t-mipi-csi2/Kconfig        |  11 +
+ .../sunxi/sun8i-a83t-mipi-csi2/Makefile       |   4 +
+ .../sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.c    |  92 +++
+ .../sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.h    |  39 ++
+ .../sun8i_a83t_mipi_csi2.c                    | 660 ++++++++++++++++++
+ .../sun8i_a83t_mipi_csi2.h                    | 196 ++++++
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 164 ++++-
+ drivers/staging/media/rkisp1/rkisp1-isp.c     |   3 +-
+ include/linux/phy/phy-mipi-dphy.h             |  13 +
+ 21 files changed, 2408 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.h
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/Kconfig
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/Makefile
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.c
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.h
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_mipi_csi2.c
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_mipi_csi2.h
+
 -- 
 2.28.0
 
