@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE4E2979AD
-	for <lists+devicetree@lfdr.de>; Sat, 24 Oct 2020 01:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BA3D297A69
+	for <lists+devicetree@lfdr.de>; Sat, 24 Oct 2020 04:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1758748AbgJWXaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Oct 2020 19:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57686 "EHLO
+        id S1759210AbgJXC7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Oct 2020 22:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1758747AbgJWXaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 19:30:24 -0400
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1CBAC0613D2
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 16:30:23 -0700 (PDT)
-Received: by mail-vs1-xe43.google.com with SMTP id b3so1782685vsc.5
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 16:30:23 -0700 (PDT)
+        with ESMTP id S1759179AbgJXC7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Oct 2020 22:59:44 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE0BC0613CE;
+        Fri, 23 Oct 2020 19:59:44 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id c17so239448pjo.5;
+        Fri, 23 Oct 2020 19:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=f7t13KJFtLK85C1FR2S26/HGUVh7XtE1EASNOKN5/Sw=;
-        b=eTA546ceA0tx2anudpIlj8hWS6Zr4dDiqNUsxg0ECeHE9b4FVXomMA3NzZBODGaiS3
-         LcRcY0rThWckcVc3pVsVSSYkP+0iSM38PoEX4WaGWdU22yIadhkdDtKqzpxjq747+NC+
-         Jgu+VwsckF9NJTyrsyMYJ/N/2U7CQU1RHfh/8=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:thread-topic:thread-index:date:message-id
+         :references:in-reply-to:accept-language:content-language
+         :content-transfer-encoding:mime-version;
+        bh=2vJO8R3lZs4KpedqI0G36Uf0dGNihvDZe+9D8dSAvUk=;
+        b=I7VG7qH7hear8+HL3g53OvCclOzwH7gXPbvPT/WUxwHwMD3X+GbmkqCTFRPzNAyVeQ
+         DX0RvRndxBeA9YhBydG8ozgPuPVuUKQjPEa/8x+lI5ZQMc1elYRH21P5PQIoIK1kCUMi
+         iQij/7A+rcEHPG6wWogvWQkzUVN8deObkgP08Q0i1t6Fz963lv+VTe0+V/DHNVkkEr3a
+         ZAyE0egbZiRss14Dhku387/VjTf3LLErXBTwc6Gcl1WFMQmnOGbBe7zfkj3UNkb24JiZ
+         w+D0E49oRVVLHQo1nlHGp6B38uwGfx4VfwS/nFxrpNmYy7rA3rG+lyaRgjsNyeY5Yqvw
+         r2nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f7t13KJFtLK85C1FR2S26/HGUVh7XtE1EASNOKN5/Sw=;
-        b=BkJJ1MimVymCGQVMD4uGwjI1uQoW3SzKkdOUrAkWkWbDczxyn2MEB7aB6cd/KG4LvK
-         TGkqdNu5vBDXqwBrI2NVhcOJcvlj1MCgEi8E6N/TPtoCturUycAsOoxq57Tl677T0SZf
-         D/lgOUi8YJJcC7P/eW59Ev4ipfpNJFB4xt27ZGGSlT5ac0dveI9m1IjBrMIEa5uOY5zs
-         gSnIvxDgnHlujZs9xZplEKOcO6TOh68Pg6bxpcTPEsBEkaYnC1TlYUGV0WEVGaoZdA9X
-         rAJoLj+BEZAiG6GydqSgfMIkreMz+V9biGcwnvk17eiq2XF2684Vw8RtBy0RJjLm48r5
-         UtGw==
-X-Gm-Message-State: AOAM5319PMfhHgf6ToJLxKCKPsir+m2+1JSYLT2OHzuatVMxtw5luQQQ
-        gfZV+ssjQq/CNvzeNRmIBgkJCkFzTbCOqg==
-X-Google-Smtp-Source: ABdhPJwnSgNhZxLmmjNwHmZYCoBeYFZZVqQjwU/E2FErEeYKon2WtdPWHCZbOSF6E8f/q+Xi4XSmAQ==
-X-Received: by 2002:a67:68ce:: with SMTP id d197mr2224817vsc.25.1603495822462;
-        Fri, 23 Oct 2020 16:30:22 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id l123sm390849vsl.4.2020.10.23.16.30.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Oct 2020 16:30:21 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id k12so961320uad.11
-        for <devicetree@vger.kernel.org>; Fri, 23 Oct 2020 16:30:21 -0700 (PDT)
-X-Received: by 2002:ab0:4923:: with SMTP id z32mr4192469uac.121.1603495820984;
- Fri, 23 Oct 2020 16:30:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201023162220.v2.1.I45b53fe84e2215946f900f5b28bab1aa9d029ac7@changeid>
- <20201023162220.v2.2.Ibb28033c81d87fcc13a6ba28c6ea7ac154d65f93@changeid>
-In-Reply-To: <20201023162220.v2.2.Ibb28033c81d87fcc13a6ba28c6ea7ac154d65f93@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 23 Oct 2020 16:30:09 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XnXCL0xrDoxpdaeQv5rut7Vpryor20KR4sHR_344_LcA@mail.gmail.com>
-Message-ID: <CAD=FV=XnXCL0xrDoxpdaeQv5rut7Vpryor20KR4sHR_344_LcA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: HID: i2c-hid: Introduce bindings for
- the Goodix GT7375P
-To:     Jiri Kosina <jkosina@suse.cz>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Andrea Borgia <andrea@borgia.bo.it>,
-        Kai-Heng Feng <kai.heng.feng@canonical.com>,
-        linux-input@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        h=x-gm-message-state:from:to:cc:subject:thread-topic:thread-index
+         :date:message-id:references:in-reply-to:accept-language
+         :content-language:content-transfer-encoding:mime-version;
+        bh=2vJO8R3lZs4KpedqI0G36Uf0dGNihvDZe+9D8dSAvUk=;
+        b=YWCU7IAXu3K1i6PeTxiqEHf/0jsCKplBL7X81Ch/ilkAzOGXV/cXRzMqs04lBaqOMC
+         JlE+C7viuv5cLGIt67dn+j+bPpkbz9qqbjcCYEib/8IqiWMtCvFtgW2W7z03AyFPjSZS
+         JwR+eJpiUDSQwaOTFAtOsjS/EqAaPo8lb4ygOvo6RBcd3k4x/3V+tvUz6HH/XI6hZhTg
+         3A5/xrb3+EIcfl+YVGA4vcY+WtfZsqOPPAjgPw6C8n1o8wsG1HFXfEOpt0ixntNkx6qy
+         F4tixDh8Aa/QmfB9IyhttamzE4mqAu8bEaDy90dl/h3qgrIlr7oygRHFkrJuNyPgidVg
+         zJ0g==
+X-Gm-Message-State: AOAM532dUOKo20IPj2lSstab/3+QM9fKl+gGs1Pg3tjMwDOItmDW9Rjd
+        nzZ+HFN8jf/GsKgkxp1Aruo=
+X-Google-Smtp-Source: ABdhPJwkxgR2TVQfNecLbsAXUk8T3HUXZTbebd82ieEDo/zraOq9nJnpjvY8yYOk1gNK39/xE9ZxuQ==
+X-Received: by 2002:a17:902:6bc7:b029:d5:f149:f2e0 with SMTP id m7-20020a1709026bc7b02900d5f149f2e0mr2306673plt.34.1603508384266;
+        Fri, 23 Oct 2020 19:59:44 -0700 (PDT)
+Received: from SLXP216MB0477.KORP216.PROD.OUTLOOK.COM ([2603:1046:100:9::5])
+        by smtp.gmail.com with ESMTPSA id 10sm4650998pjt.50.2020.10.23.19.59.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 23 Oct 2020 19:59:43 -0700 (PDT)
+From:   Jingoo Han <jingoohan1@gmail.com>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Han Jingoo <jingoohan1@gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: pci: drop samsung,exynos5440-pcie
+ binding
+Thread-Topic: [PATCH v2 1/6] dt-bindings: pci: drop samsung,exynos5440-pcie
+ binding
+Thread-Index: AWI0ZnA3zn//KNIhGksYxL11Iw2wX2l5LTQyaXktNDLiUwO1RQ==
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date:   Sat, 24 Oct 2020 02:59:38 +0000
+Message-ID: <SLXP216MB0477DC8CC4B46200B69BDE86AA1B0@SLXP216MB0477.KORP216.PROD.OUTLOOK.COM>
+References: <20201023075744.26200-1-m.szyprowski@samsung.com>
+ <CGME20201023075754eucas1p2a4c9c5467f25a575bec34984fe6bb43b@eucas1p2.samsung.com>
+ <20201023075744.26200-2-m.szyprowski@samsung.com>
+In-Reply-To: <20201023075744.26200-2-m.szyprowski@samsung.com>
+Accept-Language: ko-KR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator: 
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, Oct 23, 2020 at 4:23 PM Douglas Anderson <dianders@chromium.org> wrote:
+On 10/23/20, 3:58 AM, Marek Szyprowski wrote:
+>=20
+> Exynos5440 SoC support has been dropped since commit 8c83315da1cf ("ARM:
+> dts: exynos: Remove Exynos5440"). Drop the obsolete bindings for
+> exynos5440-pcie.
 >
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      ap_ts: touchscreen@5d {
-> +        compatible = "hid-over-i2c";
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-You always find one more problem right after you hit send, don't you?
-Or is that just me?
+Reviewed-by: Jingoo Han <jingoohan1@gmail.com>
 
-Obviously the above should say
+Best regards,
+Jingoo Han
 
-compatible = "goodix,gt7375p";
-
-Luckily when I change that "dt_binding_check" still passes.  Whew!
-
-I won't send a v3 yet and I'll wait for feedback.  On the off chance
-that there are no other problems with this binding and the maintainer
-wants to land this, I don't have any objections to the maintainer
-fixing this when the patch lands.
-
--Doug
+> ---
+>  .../bindings/pci/samsung,exynos5440-pcie.txt  | 58 -------------------
+>  1 file changed, 58 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos5=
+440-pcie.txt
+[.....]
