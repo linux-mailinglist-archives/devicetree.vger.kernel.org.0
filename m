@@ -2,68 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1937A2980C0
-	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 09:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5337E2980C6
+	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 09:29:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1768211AbgJYIOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Oct 2020 04:14:32 -0400
-Received: from mailoutvs31.siol.net ([185.57.226.222]:46806 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1732232AbgJYIO1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Oct 2020 04:14:27 -0400
+        id S1765997AbgJYI26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Oct 2020 04:28:58 -0400
+Received: from mailoutvs9.siol.net ([185.57.226.200]:54241 "EHLO mail.siol.net"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1765994AbgJYI26 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Oct 2020 04:28:58 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 3296D529E39;
-        Sun, 25 Oct 2020 09:14:22 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+        by mail.siol.net (Zimbra) with ESMTP id 811C852A64E;
+        Sun, 25 Oct 2020 09:28:55 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
 Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id aIRB7Go1sYw4; Sun, 25 Oct 2020 09:14:22 +0100 (CET)
+        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id zjUPgiDvtWlK; Sun, 25 Oct 2020 09:28:55 +0100 (CET)
 Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id E682152A0BE;
-        Sun, 25 Oct 2020 09:14:21 +0100 (CET)
-Received: from kista.localdomain (cpe1-5-97.cable.triera.net [213.161.5.97])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id A68F0529E39;
-        Sun, 25 Oct 2020 09:14:21 +0100 (CET)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH] ARM: dts: sun8i: r40: bananapi-m2-ultra: Fix ethernet node
-Date:   Sun, 25 Oct 2020 09:19:49 +0100
-Message-Id: <20201025081949.783443-1-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.29.1
+        by mail.siol.net (Zimbra) with ESMTPS id 3227952A6BF;
+        Sun, 25 Oct 2020 09:28:55 +0100 (CET)
+Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Zimbra) with ESMTPA id DFAA752A6BE;
+        Sun, 25 Oct 2020 09:28:54 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Chen-Yu Tsai <wens@kernel.org>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, linux-sunxi@googlegroups.com,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: Re: [linux-sunxi] [PATCH 10/10] arm64: dts: allwinner: a64: bananapi-m64: Enable RGMII RX/TX delay on PHY
+Date:   Sun, 25 Oct 2020 09:34:24 +0100
+Message-ID: <10346945.z8tZaDcLle@kista>
+In-Reply-To: <20201024195803.GA30672@Red>
+References: <20201024162515.30032-1-wens@kernel.org> <20201024162515.30032-10-wens@kernel.org> <20201024195803.GA30672@Red>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ethernet PHY on BananaPi M2 Ultra provides RX and TX delays. Fix
-ethernet node to reflect that fact.
+Dne sobota, 24. oktober 2020 ob 21:58:03 CET je Corentin Labbe napisal(a):
+> On Sun, Oct 25, 2020 at 12:25:15AM +0800, Chen-Yu Tsai wrote:
+> > From: Chen-Yu Tsai <wens@csie.org>
+> > 
+> > The Ethernet PHY on the Bananapi M64 has the RX and TX delays
+> > enabled on the PHY, using pull-ups on the RXDLY and TXDLY pins.
+> > 
+> > Fix the phy-mode description to correct reflect this so that the
+> > implementation doesn't reconfigure the delays incorrectly. This
+> > happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
+> > rx/tx delay config").
+> > 
+> > Fixes: e7295499903d ("arm64: allwinner: bananapi-m64: Enable dwmac-sun8i")
+> > Fixes: 94f442886711 ("arm64: dts: allwinner: A64: Restore EMAC changes")
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts b/
+arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+> > index 3ea5182ca489..e5e840b9fbb4 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+> > @@ -105,7 +105,7 @@ &ehci1 {
+> >  &emac {
+> >  	pinctrl-names = "default";
+> >  	pinctrl-0 = <&rgmii_pins>;
+> > -	phy-mode = "rgmii";
+> > +	phy-mode = "rgmii-id";
+> >  	phy-handle = <&ext_rgmii_phy>;
+> >  	phy-supply = <&reg_dc1sw>;
+> >  	status = "okay";
+> > -- 
+> > 2.28.0
+> 
+> Tested-by: Corentin Labbe <clabbe.montjoie@gmail.com>
 
-Fixes: c36fd5a48bd2 ("ARM: dts: sun8i: r40: bananapi-m2-ultra: Enable GMA=
-C ethernet controller")
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Acked-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm=
-/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-index 2fc62ef0cb3e..a6a1087a0c9b 100644
---- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-+++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-@@ -129,7 +129,7 @@ &gmac {
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&gmac_rgmii_pins>;
- 	phy-handle =3D <&phy1>;
--	phy-mode =3D "rgmii";
-+	phy-mode =3D "rgmii-id";
- 	phy-supply =3D <&reg_dc1sw>;
- 	status =3D "okay";
- };
---=20
-2.29.1
+Best regards,
+Jernej
+
 
