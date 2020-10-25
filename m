@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4590A2980D4
-	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 09:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDC8D2980D7
+	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 09:45:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1414560AbgJYIna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Oct 2020 04:43:30 -0400
-Received: from mailoutvs44.siol.net ([185.57.226.235]:60932 "EHLO
+        id S1414573AbgJYIpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Oct 2020 04:45:46 -0400
+Received: from mailoutvs23.siol.net ([185.57.226.214]:33609 "EHLO
         mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730760AbgJYIna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Oct 2020 04:43:30 -0400
+        with ESMTP id S1728175AbgJYIpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Oct 2020 04:45:46 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 68315529C22;
-        Sun, 25 Oct 2020 09:43:27 +0100 (CET)
+        by mail.siol.net (Postfix) with ESMTP id 4AB37529FC8;
+        Sun, 25 Oct 2020 09:45:44 +0100 (CET)
 X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
 Received: from mail.siol.net ([127.0.0.1])
         by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id OjagYDs5MP9s; Sun, 25 Oct 2020 09:43:27 +0100 (CET)
+        with ESMTP id uiyDCbwIkO1t; Sun, 25 Oct 2020 09:45:44 +0100 (CET)
 Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 24A37529C56;
-        Sun, 25 Oct 2020 09:43:27 +0100 (CET)
+        by mail.siol.net (Postfix) with ESMTPS id 0994D52A1E6;
+        Sun, 25 Oct 2020 09:45:44 +0100 (CET)
 Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
         (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id D57CF529C22;
-        Sun, 25 Oct 2020 09:43:26 +0100 (CET)
+        by mail.siol.net (Postfix) with ESMTPA id BBEF7529FC8;
+        Sun, 25 Oct 2020 09:45:43 +0100 (CET)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
 Cc:     linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 06/10] ARM: dts: sun8i: a83t: Enable both RGMII RX/TX delay on Ethernet PHY
-Date:   Sun, 25 Oct 2020 09:48:56 +0100
-Message-ID: <12058304.OfRq56rs3M@kista>
-In-Reply-To: <20201024162515.30032-6-wens@kernel.org>
-References: <20201024162515.30032-1-wens@kernel.org> <20201024162515.30032-6-wens@kernel.org>
+Subject: Re: [PATCH 04/10] ARM: dts: sun7i: bananapi-m1-plus: Enable RGMII RX/TX delay on Ethernet PHY
+Date:   Sun, 25 Oct 2020 09:51:13 +0100
+Message-ID: <3427572.J72vT7VOHa@kista>
+In-Reply-To: <20201024162515.30032-4-wens@kernel.org>
+References: <20201024162515.30032-1-wens@kernel.org> <20201024162515.30032-4-wens@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -42,19 +42,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 24. oktober 2020 ob 18:25:11 CET je Chen-Yu Tsai napisal(a):
+Dne sobota, 24. oktober 2020 ob 18:25:09 CET je Chen-Yu Tsai napisal(a):
 > From: Chen-Yu Tsai <wens@csie.org>
 > 
-> The Ethernet PHY on the Bananapi M3 and Cubietruck Plus have the RX
-> and TX delays enabled on the PHY, using pull-ups on the RXDLY and
-> TXDLY pins.
+> The Ethernet PHY on the Bananapi M1+ has the RX and TX delays
+> enabled on the PHY, using pull-ups on the RXDLY and TXDLY pins.
 > 
 > Fix the phy-mode description to correct reflect this so that the
 > implementation doesn't reconfigure the delays incorrectly. This
 > happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
 > rx/tx delay config").
 > 
-> Fixes: 039359948a4b ("ARM: dts: sun8i: a83t: Enable Ethernet on two boards")
+> Fixes: 04c85ecad32a ("ARM: dts: sun7i: Add dts file for Bananapi M1 Plus 
+board")
 > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
 Acked-by: Jernej Skrabec <jernej.skrabec@siol.net>
