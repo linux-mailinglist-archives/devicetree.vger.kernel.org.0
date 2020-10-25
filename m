@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A48A2980A4
-	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 08:29:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13F3B2980B7
+	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 08:48:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1767780AbgJYH3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Oct 2020 03:29:55 -0400
-Received: from mailoutvs2.siol.net ([185.57.226.193]:48966 "EHLO mail.siol.net"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1737437AbgJYH3y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Oct 2020 03:29:54 -0400
+        id S1765983AbgJYHsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Oct 2020 03:48:13 -0400
+Received: from mailoutvs39.siol.net ([185.57.226.230]:34196 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1765977AbgJYHsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Oct 2020 03:48:13 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id E50DB524901;
-        Sun, 25 Oct 2020 08:29:51 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
+        by mail.siol.net (Zimbra) with ESMTP id 24D3652ABB8;
+        Sun, 25 Oct 2020 08:48:11 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
 Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id UNIJcn0pZV9N; Sun, 25 Oct 2020 08:29:51 +0100 (CET)
+        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id JnqKbIAQjfG6; Sun, 25 Oct 2020 08:48:10 +0100 (CET)
 Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id A174752352F;
-        Sun, 25 Oct 2020 08:29:51 +0100 (CET)
+        by mail.siol.net (Zimbra) with ESMTPS id D5BA352ABC8;
+        Sun, 25 Oct 2020 08:48:10 +0100 (CET)
 Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
         (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 11403524901;
-        Sun, 25 Oct 2020 08:29:50 +0100 (CET)
+        by mail.siol.net (Zimbra) with ESMTPA id 7E43E52ABB8;
+        Sun, 25 Oct 2020 08:48:09 +0100 (CET)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
 Cc:     linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/10] Revert "arm: sun8i: orangepi-pc-plus: Set EMAC activity LEDs to active high"
-Date:   Sun, 25 Oct 2020 08:35:20 +0100
-Message-ID: <2494995.jnrXR15XKO@kista>
-In-Reply-To: <20201024162515.30032-1-wens@kernel.org>
-References: <20201024162515.30032-1-wens@kernel.org>
+Subject: Re: [PATCH 05/10] ARM: dts: sun8i: h3: orangepi-plus2e: Enable RGMII RX/TX delay on Ethernet PHY
+Date:   Sun, 25 Oct 2020 08:53:39 +0100
+Message-ID: <30257881.11H8UbXcPh@kista>
+In-Reply-To: <20201024162515.30032-5-wens@kernel.org>
+References: <20201024162515.30032-1-wens@kernel.org> <20201024162515.30032-5-wens@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -42,25 +42,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 24. oktober 2020 ob 18:25:06 CET je Chen-Yu Tsai napisal(a):
+Dne sobota, 24. oktober 2020 ob 18:25:10 CET je Chen-Yu Tsai napisal(a):
 > From: Chen-Yu Tsai <wens@csie.org>
 > 
-> This reverts commit 75ee680cbd2e4d0156b94f9fec50076361ab12f2.
+> The Ethernet PHY on the Orange Pi Plus 2E has the RX and TX delays
+> enabled on the PHY, using pull-ups on the RXDLY and TXDLY pins.
 > 
-> Turns out the activity and link LEDs on the RJ45 port are active low,
-> just like on the Orange Pi PC.
+> Fix the phy-mode description to correct reflect this so that the
+> implementation doesn't reconfigure the delays incorrectly. This
+> happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
+> rx/tx delay config").
 > 
-> Revert the commit that says otherwise.
-> 
-> Fixes: 75ee680cbd2e ("arm: sun8i: orangepi-pc-plus: Set EMAC activity LEDs 
-to active high")
 > Fixes: 4904337fe34f ("ARM: dts: sunxi: Restore EMAC changes (boards)")
+> Fixes: 7a78ef92cdc5 ("ARM: sun8i: h3: Enable EMAC with external PHY on 
+Orange Pi Plus 2E")
 > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
-> If you have this board, please help test it.
-> 
-> For me, the correct lighting of the LEDs is both LEDs should be lit
-> when connected at 100 Mbps.
 
 Tested-by: Jernej Skrabec <jernej.skrabec@siol.net>
 Acked-by: Jernej Skrabec <jernej.skrabec@siol.net>
