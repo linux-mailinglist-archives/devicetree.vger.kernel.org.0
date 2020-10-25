@@ -2,75 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D14298191
-	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 13:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E502298199
+	for <lists+devicetree@lfdr.de>; Sun, 25 Oct 2020 13:19:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1415606AbgJYMHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Oct 2020 08:07:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55648 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1415604AbgJYMG3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Oct 2020 08:06:29 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        id S1415649AbgJYMTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Oct 2020 08:19:21 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:54072 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1415647AbgJYMTV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Oct 2020 08:19:21 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4CJxpt32Pjz1qs1B;
+        Sun, 25 Oct 2020 13:19:18 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4CJxpt1TVbz1r0m3;
+        Sun, 25 Oct 2020 13:19:18 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id A2gxUHxS7zm1; Sun, 25 Oct 2020 13:19:15 +0100 (CET)
+X-Auth-Info: Oy5A8u/kFGTBqcA/O1cCc3OeJHETH+IazF66OtuW++w=
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ACF3F22202;
-        Sun, 25 Oct 2020 12:06:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603627588;
-        bh=nUS2kYGYuhzsne/r04hu9MAGBT2diuzU21HdRmbbVqg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PYj+khaNLYyL3OTVke9xc2SyeZgh8R0qQFdpGJRvgnqu1fKnl4aXO9GIFN9MbC72H
-         4czmgTFqOpn36EB/108Kg4Eikqx9YJpBiIebtuNE2m9usdO9Y+clR9SsmwA5nPZLtE
-         OVG/DTfU9xGYDbZJOAKLwsU5yaEPC07WVOOZikbw=
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=wait-a-minute.lan)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1kWen4-0043Ku-Sg; Sun, 25 Oct 2020 12:06:26 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     tglx@linutronix.de, alexandre.torgue@st.com,
-        Fabrice Gasnier <fabrice.gasnier@st.com>, jason@lakedaemon.net
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 0/3] Add STM32 LP timer EXTI interrupts
-Date:   Sun, 25 Oct 2020 12:06:23 +0000
-Message-Id: <160362752949.263598.6286411876181120842.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <1602859219-15684-1-git-send-email-fabrice.gasnier@st.com>
-References: <1602859219-15684-1-git-send-email-fabrice.gasnier@st.com>
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Sun, 25 Oct 2020 13:19:15 +0100 (CET)
+Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
+To:     Abel Vesa <abel.vesa@nxp.com>, Adam Ford <aford173@gmail.com>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20201024162016.1003041-1-aford173@gmail.com>
+ <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
+ <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
+ <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
+Date:   Sun, 25 Oct 2020 13:18:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: tglx@linutronix.de, alexandre.torgue@st.com, fabrice.gasnier@st.com, jason@lakedaemon.net, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org, linux-stm32@st-md-mailman.stormreply.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+In-Reply-To: <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Oct 2020 16:40:16 +0200, Fabrice Gasnier wrote:
-> STM32 LP timer that's available on STM32MP15x can wakeup the platform
-> using EXTI interrupts.
+On 10/25/20 1:05 PM, Abel Vesa wrote:
+
+[...]
+
+>> Together, both the GPC and the clk-blk driver should be able to pull
+>> the multimedia block out of reset.  Currently, the GPC can handle the
+>> USB OTG and the GPU, but the LCDIF and MIPI DSI appear to be gated by
+>> the clock block
+>>
+>> My original patch RFC didn't include the imx8mn node, because it
+>> hangs, but the node I added looks like:
+>>
+>> media_blk_ctl: clock-controller@32e28000 {
+>>      compatible = "fsl,imx8mn-media-blk-ctl", "syscon";
+>>      reg = <0x32e28000 0x1000>;
+>>      #clock-cells = <1>;
+>>      #reset-cells = <1>;
+>> };
+>>
+>> I was hoping you might have some feedback on the 8mn clk-blk driver
+>> since you did the 8mp clk-blk drive and they appear to be very
+>> similar.
+>>
 > 
-> This series add:
-> - LP timer EXTI - GIC interrupt events to EXTI driver and device-tree
-> - LP timer wakeup-source to device-tree
-> 
-> [...]
+> I'll do you one better still. I'll apply the patch in my tree and give it
+> a test tomorrow morning.
 
-Applied to irq/irqchip-next, thanks!
-
-[1/3] irqchip/stm32-exti: Add all LP timer exti direct events support
-      commit: a00e85b581fd5ee47e770b6b8d2038dbebbe81f9
-
-Please route the last two patches via arm-soc.
-
-Cheers,
-
-	M.
--- 
-Without deviation from the norm, progress is not possible.
-
-
+You can also apply the one for 8MM:
+https://lore.kernel.org/linux-arm-kernel/20201003224555.163780-5-marex@denx.de/
