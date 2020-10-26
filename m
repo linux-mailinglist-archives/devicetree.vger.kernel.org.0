@@ -2,178 +2,425 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B4529999B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 23:25:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1415B2999F0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 23:54:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394079AbgJZWZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 18:25:18 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:38681 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393385AbgJZWZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 18:25:17 -0400
-Received: by mail-ed1-f66.google.com with SMTP id bc23so11344654edb.5
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 15:25:15 -0700 (PDT)
+        id S2394874AbgJZWyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 18:54:47 -0400
+Received: from mail-pj1-f65.google.com ([209.85.216.65]:52274 "EHLO
+        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394871AbgJZWyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 18:54:47 -0400
+Received: by mail-pj1-f65.google.com with SMTP id o1so4012166pjt.2;
+        Mon, 26 Oct 2020 15:54:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=wOSWawwOJaxKHaS8ENCZeWsIF1Iow1iXBJnU2sPUuKA=;
-        b=GNTlaoulxKvajwFKjQzgBtOx7geAKdRmk8+ftlJM7fcuRgNYtSqxavBhjjP21I8z6p
-         x864K2nIRT+Jon9erEs+Vn0HN+H4z0q61xOQXxAVnwgalHKRnLBhKZdbb7I2J7pxCvUD
-         fsZK6dl7ul54n6Fww3Aj1C/89hDruWv6yXMeQ=
+        bh=ybg1/5U+SLFSAFY4Gzm8yOXjUCgQtBZ81JyKW3EFc9I=;
+        b=eGoz52hw8AawscTN5v3UBvzesNH/5L/Tc1FpHCjPcVjN/YuUCnO0EUAPnEEhlhPN0I
+         +Ot2awnOY5KsNgSXHUOF1egfjF/10xj0/c+mt+xR7h+Wu4Gn0HJHP9xDD3oB0AOSTPD2
+         2o6VaolUi/6P1Qiyrk9ZkGtAS1nLdErI+uf9oSEJdZ/TiMheWnc9poIq8hFO2lxga4Bz
+         KCPjtoEMl/jJU9BwsNUhoUGWuEvAKg/1ogDJVdrEqL2GsET3dF4LBLGHQBhJC7TiogQl
+         ItzhELPypGh1ubkLhMQK8enFLj0uSxQzYmDG98fzVL/9fcLjZcSlPzTn/H+qkSMp06Yn
+         28Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=wOSWawwOJaxKHaS8ENCZeWsIF1Iow1iXBJnU2sPUuKA=;
-        b=TZ+LT6iA5a/hJmweDfeG9oNENXH/gPmSizzfzAp2V82sAdvdNx9grcD3uTHlqRFFO2
-         Bb+r/wYv7h2Zg0aMWz2Z7F4UzIkVPdlgV80/Q9CqPC4imdyg4GeHMijHQDXtHBoPxYRS
-         LKBnd5TlGHGfYyXsOkQUnn3A1zeDZOBAX8dynVe6wyEY05Tl/7LiZJe8Cwa6IynDUeDU
-         vEF1RJR7rJwiWKttTSHl99lhHBm3jEqsGEQKayD2w+KfnHbfitBuGlX9kFrSJe9Rm3bI
-         iUVawY+tI4AJACD1s6M43GyUU4tsnKTcCUmC4lm8DZe6QHXZDZwNNdvQl9a3iRQc6iuD
-         L1OQ==
-X-Gm-Message-State: AOAM530g54FrXrCevix6UgyD9XMamHar3snODezGlNzGjXwdTO0CPoOV
-        MpEvqeuJ4w2UWxpEEzW27O2ptPpFyyLlyQ==
-X-Google-Smtp-Source: ABdhPJz7SxSsz6/VDrBlSjkORRUhjxYhZYtml6a+3Y/wWb+UqwLq5UGJFkfwsqnwDHeAndYF82uk1A==
-X-Received: by 2002:aa7:d28c:: with SMTP id w12mr2384014edq.248.1603751114146;
-        Mon, 26 Oct 2020 15:25:14 -0700 (PDT)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com. [209.85.221.52])
-        by smtp.gmail.com with ESMTPSA id j4sm3573770ejs.8.2020.10.26.15.25.12
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Oct 2020 15:25:13 -0700 (PDT)
-Received: by mail-wr1-f52.google.com with SMTP id y12so14697645wrp.6
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 15:25:12 -0700 (PDT)
-X-Received: by 2002:adf:ab05:: with SMTP id q5mr19528918wrc.32.1603751112403;
- Mon, 26 Oct 2020 15:25:12 -0700 (PDT)
+        bh=ybg1/5U+SLFSAFY4Gzm8yOXjUCgQtBZ81JyKW3EFc9I=;
+        b=qES6Kw99nwfbkb81rEQwtluNy1yPJlZqJqvohdBWXIEW+dnXuo57WPwOonAHhHOw64
+         fggjI7PdubXaPHJffUir1gvjgpALUNlMzF0B21h9zHmWxfwvb9Wr/OF/H8lgMk+zsQP2
+         z37ifubITeKbQqKD6EQYOLDWFgaQUMdMV2BiYGJTFLi1kkoPzSyx/Hxy/12uw0Q+GTmI
+         Ty676sEtM8hdoSNRDpY17iSkJbr8Nl8lS8ZJftFZ3nSS0GCpBRL5sCLBQIetiQZQ6LQe
+         cnZuE0saRZxK/nClSBw+aw7Adq7TilgJsvIwYZwTcn/IRQ2evNyTEPbtH5XTWFL6DAPH
+         R2ag==
+X-Gm-Message-State: AOAM532eArAT52Fswam8BeBml/d5innVcqmb6rloMi8JVi3C31wLE+yp
+        urTrru8mrsW6ZqHKO05MVqBzBSRDnSk3OwPwXa5b2gn7/Pw=
+X-Google-Smtp-Source: ABdhPJzpsC3hXY2gqf3UEt9wN3AkGr3wW5/cC++uOFANRubiY/zHt+F9RuRVokc6IOV8W9U3wLbjeXN7Kigp+CCj3Vk=
+X-Received: by 2002:a17:90a:fb92:: with SMTP id cp18mr23227348pjb.228.1603752886070;
+ Mon, 26 Oct 2020 15:54:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
- <20201013130503.2412-2-dongchun.zhu@mediatek.com> <20201013161938.GE13341@paasikivi.fi.intel.com>
- <1602641418.4733.80.camel@mhfsdcap03> <20201014083139.GG13341@paasikivi.fi.intel.com>
- <CAAFQd5BVzN=49s4S98E9mGNuxzOt4633dAw9mbyu3Sr-rA61qw@mail.gmail.com>
- <20201019082759.GL13341@paasikivi.fi.intel.com> <CAAFQd5B9inO_-WJdJg_EMULw-e0EAAo8DXNgo5d+qrGvq6F8qQ@mail.gmail.com>
-In-Reply-To: <CAAFQd5B9inO_-WJdJg_EMULw-e0EAAo8DXNgo5d+qrGvq6F8qQ@mail.gmail.com>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Mon, 26 Oct 2020 23:25:00 +0100
-X-Gmail-Original-Message-ID: <CAAFQd5Cq5tY22vmX1xBJF_aUtR3KAzRaKFObEskd8qtWAJXGog@mail.gmail.com>
-Message-ID: <CAAFQd5Cq5tY22vmX1xBJF_aUtR3KAzRaKFObEskd8qtWAJXGog@mail.gmail.com>
-Subject: Re: [PATCH v15 1/2] media: dt-bindings: media: i2c: Document OV02A10 bindings
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Cao Bing Bu <bingbu.cao@intel.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Louis Kuo <louis.kuo@mediatek.com>,
-        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
-        <shengnan.wang@mediatek.com>
+References: <20201025005916.64747-1-luka.kovacic@sartura.hr> <20201025005916.64747-3-luka.kovacic@sartura.hr>
+In-Reply-To: <20201025005916.64747-3-luka.kovacic@sartura.hr>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 27 Oct 2020 00:54:29 +0200
+Message-ID: <CAHp75Vd81cK+nhJ1fxgRC6cEKnBELVA9UtT8VPvq7nbHEdhecQ@mail.gmail.com>
+Subject: Re: [PATCH v7 2/6] drivers: mfd: Add a driver for IEI WT61P803 PUZZLE MCU
+To:     Luka Kovacic <luka.kovacic@sartura.hr>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>,
+        luka.perkov@sartura.hr, robert.marko@sartura.hr
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 19, 2020 at 9:20 PM Tomasz Figa <tfiga@chromium.org> wrote:
+On Sun, Oct 25, 2020 at 3:59 AM Luka Kovacic <luka.kovacic@sartura.hr> wrote:
 >
-> On Mon, Oct 19, 2020 at 10:28 AM Sakari Ailus
-> <sakari.ailus@linux.intel.com> wrote:
-> >
-> > On Wed, Oct 14, 2020 at 01:48:00PM +0200, Tomasz Figa wrote:
-> > > On Wed, Oct 14, 2020 at 10:31 AM Sakari Ailus
-> > > <sakari.ailus@linux.intel.com> wrote:
-> > > >
-> > > > On Wed, Oct 14, 2020 at 10:10:18AM +0800, Dongchun Zhu wrote:
-> > > > > Hello Sakari,
-> > > > >
-> > > > > Thanks for your timely review.
-> > > > >
-> > > > > On Tue, 2020-10-13 at 19:19 +0300, Sakari Ailus wrote:
-> > > > > > Hi Dongchun,
-> > > > > >
-> > > > > > On Tue, Oct 13, 2020 at 09:05:02PM +0800, Dongchun Zhu wrote:
-> > > > > > > Add YAML device tree binding for OV02A10 CMOS image sensor, and the
-> > > > > > > relevant MAINTAINERS entries.
-> > > > > > >
-> > > > > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > > > > > ---
-> > > > > > >  .../bindings/media/i2c/ovti,ov02a10.yaml           | 162 +++++++++++++++++++++
-> > > > > > >  MAINTAINERS                                        |   7 +
-> > > > > > >  2 files changed, 169 insertions(+)
-> > > > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
-> > > > > > >
-> > > > >
-> > > > > [snip]...
-> > > > >
-> > > > > > > +  ovti,mipi-clock-voltage:
-> > > > > > > +    description:
-> > > > > > > +      An array of 2-tuples items, and each item consists of link frequency and
-> > > > > > > +      MIPI clock voltage unit like <freq-kHz volt-unit>. Clock voltage unit is
-> > > > > > > +      dependent upon link speed, indicating MIPI transmission speed select that
-> > > > > > > +      controls D-PHY timing setting by adjusting MIPI clock voltage to improve
-> > > > > > > +      the clock driver capability.
-> > > > > > > +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-> > > > > > > +    minItems: 2
-> > > > > > > +    default: [390000, 4]
-> > > > > >
-> > > > > > Why do you have the link frequency here as well?
-> > > > > >
-> > > > > > In principle this does belong to the endpoint as link frequencies are
-> > > > > > specific to that, but I don't mind; there's just a single port anyway.
-> > > > > >
-> > > > >
-> > > > > This is an optional property which we model as an array of <link speed,
-> > > > > clock voltage> pairs. An example to have all link speeds up to 390MHz
-> > > > > use the value 4 for current driver. If one wants to select different
-> > > > > voltage for different link, they could do so as well.
-> > > >
-> > > > If you think you'd need that, then you need to put this to the endpoint.
-> > >
-> > > The mipi-clock-voltage property is not a property of the endpoint. The
-> > > link frequency there does not set the link frequency - it only
-> > > specifies which link frequency the given voltage should be used for.
-> >
-> > If it is not bound to the endpoint --- that specifies the properties of the
-> > link --- then you could just put it to the driver, couldn't you?
-> >
-> > But earlier on, we established that this is specific to a given board, or a
-> > given link. Endpoints are used to describe connections that a device may
-> > have to other devices. Therefore their properties are different.
-> >
-> > The graph bindings allow for several endpoints on a single physical port,
-> > some may be disabled in that case. This is admittedly mostly done with
-> > CSI-2 receivers.
-> >
-> > Either way, putting this property to the device may affect how DT source is
-> > arranged for boards that have this device. Any similar configuration on
-> > other devices with multiple transmitters or receivers would be in endpoints
-> > anyway --- because they have to, so I don't see why bindings for this
-> > device should be different.
-> >
-> > If you put it to endpoint, the driver also doesn't need to match the link
-> > frequencies in kHz and Hz between the two properties, but just use the same
-> > index for both.
+> Add a driver for the IEI WT61P803 PUZZLE microcontroller, used in some
+> IEI Puzzle series devices. The microcontroller controls system power,
+> temperature sensors, fans and LEDs.
 >
-> I agree in general, but I think in this case this is a device-specific
-> property and the sensor only has 1 CSI-2 interface, so maybe it
-> doesn't really matter?
->
-> Specifying frequency, voltage pairs is a common practice in other
-> bindings, such as the OPP bindings, by the way.
->
-> That said, if you insist, I'm fine with this being moved to the
-> endpoint node too.
+> This driver implements the core functionality for device communication
+> over the system serial (serdev bus). It handles MCU messages and the
+> internal MCU properties. Some properties can be managed over sysfs.
 
-Is the conclusion that it needs to be moved?
+...
 
-Best regards,
-Tomasz
+> +#include <asm/unaligned.h>
+
+asm/* usually go after linux/*.
+If you get a comment against one place in your series it implies to
+check the other potential places to address.
+
+> +#include <linux/atomic.h>
+
+> +#include <linux/delay.h>
+> +#include <linux/delay.h>
+
+Delay should delay :-)
+
+> +#include <linux/export.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/iei-wt61p803-puzzle.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+
+> +#include <linux/of_device.h>
+
+Don't see a user of this, but of_platform.h seems to be missed.
+
+> +#include <linux/property.h>
+> +#include <linux/sched.h>
+> +#include <linux/serdev.h>
+> +#include <linux/slab.h>
+> +#include <linux/sysfs.h>
+
+...
+
+> +#define IEI_WT61P803_PUZZLE_MAX_COMMAND_LENGTH (20 + 2)
+
+Since it uses formula, can you add a comment explaining what is the
+meaning of each argument?
+
+...
+
+> +enum iei_wt61p803_puzzle_reply_state {
+> +       FRAME_OK = 0x00,
+> +       FRAME_PROCESSING = 0x01,
+> +       FRAME_STRUCT_EMPTY = 0xFF,
+> +       FRAME_TIMEOUT = 0xFE
+
+Hmm, why not ordered?
+
+> +};
+
+...
+
+> +struct iei_wt61p803_puzzle_mcu_version {
+> +       char version[IEI_WT61P803_PUZZLE_VERSION_VERSION_LENGTH + 1];
+> +       char build_info[IEI_WT61P803_PUZZLE_VERSION_BUILD_INFO_LENGTH + 1];
+> +       bool bootloader_mode;
+> +       char protocol_version[IEI_WT61P803_PUZZLE_VERSION_PROTOCOL_VERSION_LENGTH + 1];
+> +       char serial_number[IEI_WT61P803_PUZZLE_VERSION_SN_LENGTH + 1];
+> +       char mac_address[8][IEI_WT61P803_PUZZLE_VERSION_MAC_LENGTH + 1];
+
+Perhaps additional constant to include (presumably) NUL ?
+
+Also, what about 8?
+
+> +};
+
+...
+
+> +struct iei_wt61p803_puzzle {
+> +       struct serdev_device *serdev;
+
+> +       struct kobject *kobj;
+
+It's quite strange you need this,
+
+> +       struct mutex reply_lock;
+> +       struct mutex bus_lock;
+> +       struct iei_wt61p803_puzzle_reply *reply;
+> +       struct iei_wt61p803_puzzle_mcu_version version;
+> +       struct iei_wt61p803_puzzle_mcu_status status;
+> +       unsigned char *response_buffer;
+> +       struct mutex lock;
+> +};
+
+...
+
+> +static int iei_wt61p803_puzzle_recv_buf(struct serdev_device *serdev,
+> +                                       const unsigned char *data, size_t size)
+> +{
+> +       struct iei_wt61p803_puzzle *mcu = serdev_device_get_drvdata(serdev);
+> +       int ret;
+> +
+> +       ret = iei_wt61p803_puzzle_process_resp(mcu, (unsigned char *)data, size);
+
+Dropping const, why?
+
+> +       /* Return the number of processed bytes if function returns error */
+> +       if (ret < 0)
+
+> +               return (int)size;
+
+Will be interesting result, maybe you wanted other way around?
+
+> +       return ret;
+> +}
+
+...
+
+> +       dev_err(dev, "%s: Command response timed out. Retries: %d", __func__, retry_count);
+
+Drop __func__, it should not be critical for properly formulated
+messages (for debug Dynamic Debug may take care of this at run time).
+
+
+> +       return -ETIMEDOUT;
+
+...
+
+> +       struct device *dev = &mcu->serdev->dev;
+> +       int ret;
+
+> +       int len = (int)size;
+
+Why len can't be size_t?
+
+Can it be also organized in reversed xmas tree order?
+
+...
+
+> +       ret = serdev_device_write(mcu->serdev, cmd, len, IEI_WT61P803_PUZZLE_GENERAL_TIMEOUT);
+
+> +
+
+Not a competition for LOCs, please drop unneeded blank lines here and there.
+
+> +       if (ret < 0) {
+> +               mutex_unlock(&mcu->bus_lock);
+> +               return ret;
+> +       }
+
+> +       if (!mcu->reply) {
+> +               ret = -EFAULT;
+
+Why this error code?
+
+> +               goto exit;
+> +       }
+
+...
+
+> +exit:
+
+Perhaps
+exit_unlock:
+?
+
+> +       mutex_unlock(&mcu->lock);
+> +       return ret;
+
+...
+
+> +       sprintf(mcu->version.version, "v%c.%c%c%c", rb[2], rb[3], rb[4], rb[5]);
+
+Can be '%.3s' for the second part, but it's up to you.
+
+...
+
+> +       sprintf(mcu->version.build_info, "%c%c/%c%c/%c%c%c%c %c%c:%c%c",
+> +               rb[8], rb[9], rb[6], rb[7], rb[2],
+> +               rb[3], rb[4], rb[5], rb[10], rb[11],
+> +               rb[12], rb[13]);
+
+Ditto.
+
+...
+
+> +       sprintf(mcu->version.protocol_version, "v%c.%c%c%c%c%c",
+> +               rb[7], rb[6], rb[5], rb[4], rb[3], rb[2]);
+
+Ditto.
+
+...
+
+> +err:
+
+err_unlock: ?
+
+> +       mutex_unlock(&mcu->lock);
+> +       return ret;
+
+...
+
+> +       /* Response format:
+> +        * (IDX RESPONSE)
+> +        * 0    @
+> +        * 1    O
+> +        * 2    S
+> +        * 3    S
+> +        * ...
+> +        * 5    AC Recovery Status Flag
+> +        * ...
+> +        * 10   Power Loss Recovery
+> +        * ...
+> +        * 19   Power Status (system power on method)
+> +        * 20   XOR checksum
+> +        */
+
+Shouldn't be rather defined data structure for response?
+
+...
+
+> +       size_t reply_size = 0;
+
+Dummy?
+
+...
+
+> +       sprintf(mcu->version.serial_number, "%.*s",
+> +               IEI_WT61P803_PUZZLE_VERSION_SN_LENGTH, resp_buf + 4);
+
+Shouldn't you check for reply_size to be big enough?
+
+...
+
+> +               serial_number_header[2] = 0x0 + (0xC) * sn_counter;
+
+Why capital, why in parentheses?
+
+...
+
+> +               memcpy(serial_number_cmd + 4, serial_number + (0xC) * sn_counter, 0xC);
+
+Ditto.
+
+...
+
+> +               serial_number_cmd[sizeof(serial_number_cmd) - 1] = 0;
+
+You defined X+1 to then use sizeof() -1? Hmm...
+
+...
+
+> +               if (!(resp_buf[0] == IEI_WT61P803_PUZZLE_CMD_HEADER_START &&
+> +                     resp_buf[1] == IEI_WT61P803_PUZZLE_CMD_RESPONSE_OK &&
+> +                     resp_buf[2] == IEI_WT61P803_PUZZLE_CHECKSUM_RESPONSE_OK)) {
+> +                       ret = -EPROTO;
+> +                       goto err;
+> +               }
+
+I think it would be better to define data structure for replies and
+then check would be as simple as memcmp().
+
+...
+
+> +               if (reply_size < 22) {
+
+Looking at the code organisation it seems to me like if (reply_size <
+sizeof(struct_of_this_type_of_reply)).
+
+> +                       ret = -EIO;
+> +                       goto err;
+> +               }
+
+...
+
+> +       mac_address_header[2] = 0x24 + (0x11) * mac_address_idx;
+
+Why in parentheses?
+
+...
+
+> +       /* Concat mac_address_header, mac_address to mac_address_cmd */
+> +       memcpy(mac_address_cmd, mac_address_header, 4);
+> +       memcpy(mac_address_cmd + 4, mac_address, 17);
+
+Yeah, much easier to use specific field names instead of this 4 / + 4, 17, ...
+
+...
+
+> +       ret = snprintf(cmd_buf, sizeof(cmd_buf), "%d", power_loss_recovery_action);
+> +       if (ret < 0)
+> +               return ret;
+
+...
+
+> +       power_loss_recovery_cmd[3] = cmd_buf[0];
+
+One decimal (most significant) digit?! Isn't it a bit ambiguous?
+
+...
+
+> +#define sysfs_container(dev) \
+> +       (container_of((dev)->kobj.parent, struct device, kobj))
+> +
+> +static ssize_t version_show(struct device *dev, struct device_attribute *attr,
+> +                           char *buf)
+> +{
+> +       struct device *dev_container = sysfs_container(dev);
+> +       struct iei_wt61p803_puzzle *mcu = dev_get_drvdata(dev_container);
+> +
+> +       return sprintf(buf, "%s\n", mcu->version.version);
+> +}
+> +static DEVICE_ATTR_RO(version);
+
+I believe we have better approach than this. dev_groups, for example.
+
+...
+
+> +       if ((int)count != IEI_WT61P803_PUZZLE_VERSION_SN_LENGTH + 1)
+> +               return -EINVAL;
+
+You need to revisit all of these strange castings here and there. It
+should be really rear to have explicit castings in C.
+
+...
+
+> +       memcpy(serial_number, (unsigned char *)buf, IEI_WT61P803_PUZZLE_VERSION_SN_LENGTH);
+
+This casting is not need. Basically any casting from or to void * is not needed.
+
+...
+
+> +       dev_info(dev, "Driver baud rate: %d", baud);
+
+Why being so noisy, how does it help user? Doesn't serdev has a
+facility to show this rather basic stuff?
+
+...
+
+> +       dev_info(dev, "MCU version: %s", mcu->version.version);
+> +       dev_info(dev, "MCU firmware build info: %s", mcu->version.build_info);
+> +       dev_info(dev, "MCU in bootloader mode: %s",
+> +                mcu->version.bootloader_mode ? "true" : "false");
+> +       dev_info(dev, "MCU protocol version: %s", mcu->version.protocol_version);
+
+How all of this can be useful for *working* case?
+
+...
+
+> +       ret = iei_wt61p803_puzzle_sysfs_create(dev, mcu);
+
+No check?
+
+...
+
+Have I missed ABI documentation?
+
+-- 
+With Best Regards,
+Andy Shevchenko
