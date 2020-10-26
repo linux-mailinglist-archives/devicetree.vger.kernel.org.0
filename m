@@ -2,103 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3E929916B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:49:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 961E22991BA
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 17:02:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1773121AbgJZPtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:49:40 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42949 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1773108AbgJZPtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:49:40 -0400
-Received: by mail-oi1-f194.google.com with SMTP id c72so1531122oig.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 08:49:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pZLcxZ2MnUfE2owgeO5H9FxVAp5GYsqgLY4ZhY+S9R8=;
-        b=jtSGr9LazkMCJoDk/IxFFP4G5Qs+Y/9svdQos1NCXU8w7ehGZ1EUP/P/1qM5Zn8/Jo
-         sdeFpgprcu3SWr7TpeAQolSe02ABLWQf+Pty2W6nb4JyLbLaeZn+PQi2twz5+iUeR+WL
-         03CZsOTG45+8p7ykLyG/f2YL6cOKxOwa1DleYjm/yOQyV9F1o5xu8twZBHPHM6TMPbfi
-         HZdDc6zw/913iaREkqY3fNRuLIv5jELnWoD25g/3dDPPvbzNVn/oVekUMoMNW7G+/Sjw
-         kZ9nnGIUmmxoDjTd8cwh/QyFuWIVpvY47VBot6ALPeaPToOWxzeTVrSlIsJbWkdayyo5
-         om6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pZLcxZ2MnUfE2owgeO5H9FxVAp5GYsqgLY4ZhY+S9R8=;
-        b=gBdaJxBVcurrGnIdx/kADAf6DTFUwjsi/shDpl53fa6JDwUV/lXchlwYmkDLJyEjFc
-         zPNCT157for/L0hwHvknfIlYJcHSP6Aj7rz0+mgpTQ2ar/cm4fRtAPvUOTff/M4FkWzq
-         oSazZpS3GHEK7ld/oUAz3wlDOqujXD6s72KFgtz4yJ3ua8OjAchmWjrnyMHrwZ6MVtyk
-         SvIwN48ojPXD4wFqTEvbOzA0bolSlenfOlJLz+h+lHmr8UF0+mbpySyPpnLV7/E0TVj7
-         +IOQ6PPvj7rU1+573jvFhEff1ou614T7BJOwqcOot5+T8M1NFF805auFiHIfMGBTEr98
-         5dyQ==
-X-Gm-Message-State: AOAM532/vuieZishZn7VeIo2po9EUXgIs59ZjdGmpiXvZg9v63ud6Qnf
-        88Iee3UFlQuC9MvKPcZDaK01kg==
-X-Google-Smtp-Source: ABdhPJy5vzb4gSulEItGq7NAbNpQx1Rk+qmcaxsk1uEPTY3pthSMzWWPWLeRubLs4nUV8lHjyEbN1w==
-X-Received: by 2002:aca:4d06:: with SMTP id a6mr14494885oib.166.1603727379027;
-        Mon, 26 Oct 2020 08:49:39 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a16sm3807833otk.39.2020.10.26.08.49.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 08:49:38 -0700 (PDT)
-Date:   Mon, 26 Oct 2020 10:49:36 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Arnaud Pouliquen <arnaud.pouliquen@st.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v2 0/4] ARM: stm32: add DT properties for remote proc
- synchronisation
-Message-ID: <20201026154936.GA178863@builder.lan>
-References: <20201014125441.2457-1-arnaud.pouliquen@st.com>
+        id S1784652AbgJZQA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 12:00:27 -0400
+Received: from out28-194.mail.aliyun.com ([115.124.28.194]:54653 "EHLO
+        out28-194.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1784632AbgJZP7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:59:16 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1646108|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00466636-0.000126187-0.995207;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047205;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.IohI8W7_1603727944;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.IohI8W7_1603727944)
+          by smtp.aliyun-inc.com(10.147.40.2);
+          Mon, 26 Oct 2020 23:59:11 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        daniel.lezcano@linaro.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Subject: [PATCH v3 0/1] Add macro definition for the upcoming new OST driver.
+Date:   Mon, 26 Oct 2020 23:58:41 +0800
+Message-Id: <20201026155842.10196-1-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201014125441.2457-1-arnaud.pouliquen@st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 14 Oct 07:54 CDT 2020, Arnaud Pouliquen wrote:
+Add new macro definition to "ingenic,sysost.h", exchange the original
+ABI values of OST_CLK_PERCPU_TIMER and OST_CLK_GLOBAL_TIMER, prepare
+for the upcoming new OST driver.
 
-> This series implements the DT part associated to the commit 9276536f455b3
-> ("remoteproc: stm32: Parse syscon that will manage M4 synchronisation")
-> 
-> Delta vs V1 [1]
-> - add Rob acked-by on patch 1/4
-> - simplify yaml descriptions and align other syscon descriptions
-> 
-> [1]https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=339339
-> 
-> Arnaud Pouliquen (4):
->   dt-bindings: arm: stm32: Add compatible for syscon tamp node
->   dt-bindings: remoteproc: stm32_rproc: update for firmware
->     synchronization
->   dt-bindings: remoteproc: stm32_rproc: update syscon descriptions
+I'm sure that exchanging the ABI values of OST_CLK_PERCPU_TIMER and
+OST_CLK_GLOBAL_TIMER will not affect the existing related drivers and
+the SoCs whitch using these drivers, so we should be able to exchange
+them safely.
 
-Applied the dt-bindings updates, expecting the dts change to go throught
-he ST soc tree.
+v1->v2:
+Rewrite the commit message so that each line is less than 80 characters.
 
-Thank you,
-Bjorn
+v2->v3:
+Add the description of why the exchange of ABI values will not affect
+the existing driver into the commit message.
 
->   ARM: dts: stm32: update stm32mp151 for remote proc synchronization
->     support
-> 
->  .../bindings/arm/stm32/st,stm32-syscon.yaml   |  1 +
->  .../bindings/remoteproc/st,stm32-rproc.yaml   | 21 +++++++++++++------
->  arch/arm/boot/dts/stm32mp151.dtsi             |  7 +++++++
->  3 files changed, 23 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.17.1
-> 
+周琰杰 (Zhou Yanjie) (1):
+  dt-bindings: timer: Add new OST support for the upcoming new driver.
+
+ include/dt-bindings/clock/ingenic,sysost.h | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+-- 
+2.11.0
+
