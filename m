@@ -2,38 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 802D8299C94
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 01:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D7EF299C85
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 01:00:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437157AbgJ0AAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 20:00:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37024 "EHLO mail.kernel.org"
+        id S2436604AbgJZX4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 19:56:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36660 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2436576AbgJZX4o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 19:56:44 -0400
+        id S2436596AbgJZX4q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 19:56:46 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D61AB22242;
-        Mon, 26 Oct 2020 23:56:42 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 540372224A;
+        Mon, 26 Oct 2020 23:56:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603756603;
-        bh=dgdOQo4/FKBPs4Z1dHGcO8315xhWMXUua4dpPXCH2uE=;
+        s=default; t=1603756606;
+        bh=pfdCMf3dQRuQhjmddesIWCZ6ggZcadzL9bVLe4KCI7A=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Mw6XWS/RnrqStG7q5742HuYJaJXoqp6OB2+vlnrh1htdnygAbtmZHDkRaPBGa/qQG
-         WoSVO20gFht7lGSV6w/4gYdiYi6cK3vwaBTsF7NIm8PuW0PZKdT24oEd7EN5kq5Qxa
-         BgHTakt1skiRQpxCsDOZFRAonLiOoQRsQ2Nx3q0s=
+        b=wHFH7afFMF1mTGfn0ZFLzoetaz9CJpZM/H5E7SJIPuMg+TOHk41nz4i1JdRe1e2jS
+         o2qM7uOtt+Y6cnW1oMPbYKGSzpPaC6lq9zucOwvWKFA8QjFWloparsyChA+4F3qn/p
+         98sCD3ykPMqSZ7PJwGYSlak8Bq6drvmLQC1BmYDA=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Tony Lindgren <tony@atomide.com>,
-        Arthur Demchenkov <spinal.by@gmail.com>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 72/80] ARM: dts: omap4: Fix sgx clock rate for 4430
-Date:   Mon, 26 Oct 2020 19:55:08 -0400
-Message-Id: <20201026235516.1025100-72-sashal@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 74/80] ARM: dts: s5pv210: remove DMA controller bus node name to fix dtschema warnings
+Date:   Mon, 26 Oct 2020 19:55:10 -0400
+Message-Id: <20201026235516.1025100-74-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201026235516.1025100-1-sashal@kernel.org>
 References: <20201026235516.1025100-1-sashal@kernel.org>
@@ -45,68 +44,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tony Lindgren <tony@atomide.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 
-[ Upstream commit 19d3e9a0bdd57b90175f30390edeb06851f5f9f3 ]
+[ Upstream commit ea4e792f3c8931fffec4d700cf6197d84e9f35a6 ]
 
-We currently have a different clock rate for droid4 compared to the
-stock v3.0.8 based Android Linux kernel:
+There is no need to keep DMA controller nodes under AMBA bus node.
+Remove the "amba" node to fix dtschema warnings like:
 
-# cat /sys/kernel/debug/clk/dpll_*_m7x2_ck/clk_rate
-266666667
-307200000
-# cat /sys/kernel/debug/clk/l3_gfx_cm:clk:0000:0/clk_rate
-307200000
+  amba: $nodename:0: 'amba' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
 
-Let's fix this by configuring sgx to use 153.6 MHz instead of 307.2 MHz.
-Looks like also at least duover needs this change to avoid hangs, so
-let's apply it for all 4430.
-
-This helps a bit with thermal issues that seem to be related to memory
-corruption when using sgx. It seems that other driver related issues
-still remain though.
-
-Cc: Arthur Demchenkov <spinal.by@gmail.com>
-Cc: Merlijn Wajer <merlijn@wizzup.org>
-Cc: Sebastian Reichel <sre@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Tested-by: Jonathan Bakker <xc-racer2@live.ca>
+Link: https://lore.kernel.org/r/20200907161141.31034-6-krzk@kernel.org
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/omap4.dtsi    |  2 +-
- arch/arm/boot/dts/omap443x.dtsi | 10 ++++++++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/s5pv210.dtsi | 49 +++++++++++++++-------------------
+ 1 file changed, 21 insertions(+), 28 deletions(-)
 
-diff --git a/arch/arm/boot/dts/omap4.dtsi b/arch/arm/boot/dts/omap4.dtsi
-index e5506ab669fc6..904852006b9b1 100644
---- a/arch/arm/boot/dts/omap4.dtsi
-+++ b/arch/arm/boot/dts/omap4.dtsi
-@@ -328,7 +328,7 @@ abb_iva: regulator-abb-iva {
- 			status = "disabled";
+diff --git a/arch/arm/boot/dts/s5pv210.dtsi b/arch/arm/boot/dts/s5pv210.dtsi
+index 2ad642f51fd92..8b194da334a5c 100644
+--- a/arch/arm/boot/dts/s5pv210.dtsi
++++ b/arch/arm/boot/dts/s5pv210.dtsi
+@@ -128,35 +128,28 @@ wakeup-interrupt-controller {
+ 			};
  		};
  
--		target-module@56000000 {
-+		sgx_module: target-module@56000000 {
- 			compatible = "ti,sysc-omap4", "ti,sysc";
- 			reg = <0x5600fe00 0x4>,
- 			      <0x5600fe10 0x4>;
-diff --git a/arch/arm/boot/dts/omap443x.dtsi b/arch/arm/boot/dts/omap443x.dtsi
-index cbcdcb4e7d1c2..86b9caf461dfa 100644
---- a/arch/arm/boot/dts/omap443x.dtsi
-+++ b/arch/arm/boot/dts/omap443x.dtsi
-@@ -74,3 +74,13 @@ &cpu_thermal {
- };
+-		amba {
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-			compatible = "simple-bus";
+-			ranges;
+-
+-			pdma0: dma@e0900000 {
+-				compatible = "arm,pl330", "arm,primecell";
+-				reg = <0xe0900000 0x1000>;
+-				interrupt-parent = <&vic0>;
+-				interrupts = <19>;
+-				clocks = <&clocks CLK_PDMA0>;
+-				clock-names = "apb_pclk";
+-				#dma-cells = <1>;
+-				#dma-channels = <8>;
+-				#dma-requests = <32>;
+-			};
++		pdma0: dma@e0900000 {
++			compatible = "arm,pl330", "arm,primecell";
++			reg = <0xe0900000 0x1000>;
++			interrupt-parent = <&vic0>;
++			interrupts = <19>;
++			clocks = <&clocks CLK_PDMA0>;
++			clock-names = "apb_pclk";
++			#dma-cells = <1>;
++			#dma-channels = <8>;
++			#dma-requests = <32>;
++		};
  
- /include/ "omap443x-clocks.dtsi"
-+
-+/*
-+ * Use dpll_per for sgx at 153.6MHz like droid4 stock v3.0.8 Android kernel
-+ */
-+&sgx_module {
-+	assigned-clocks = <&l3_gfx_clkctrl OMAP4_GPU_CLKCTRL 24>,
-+			  <&dpll_per_m7x2_ck>;
-+	assigned-clock-rates = <0>, <153600000>;
-+	assigned-clock-parents = <&dpll_per_m7x2_ck>;
-+};
+-			pdma1: dma@e0a00000 {
+-				compatible = "arm,pl330", "arm,primecell";
+-				reg = <0xe0a00000 0x1000>;
+-				interrupt-parent = <&vic0>;
+-				interrupts = <20>;
+-				clocks = <&clocks CLK_PDMA1>;
+-				clock-names = "apb_pclk";
+-				#dma-cells = <1>;
+-				#dma-channels = <8>;
+-				#dma-requests = <32>;
+-			};
++		pdma1: dma@e0a00000 {
++			compatible = "arm,pl330", "arm,primecell";
++			reg = <0xe0a00000 0x1000>;
++			interrupt-parent = <&vic0>;
++			interrupts = <20>;
++			clocks = <&clocks CLK_PDMA1>;
++			clock-names = "apb_pclk";
++			#dma-cells = <1>;
++			#dma-channels = <8>;
++			#dma-requests = <32>;
+ 		};
+ 
+ 		spi0: spi@e1300000 {
 -- 
 2.25.1
 
