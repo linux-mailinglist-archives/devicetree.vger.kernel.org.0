@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75219299587
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 19:38:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F8B29959E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 19:45:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1790093AbgJZSib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 14:38:31 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:43401 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1785149AbgJZSib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 14:38:31 -0400
-Received: by mail-io1-f68.google.com with SMTP id h21so11168876iob.10
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 11:38:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1XLqJl5vO2wWqmgb9LT+ITrNAM4FaYnH32PMkyjUkwU=;
-        b=U6rgcLPopeY+yLxDRznBLJXxFLKGgrzqcjfFpNlkRuTjUZU3L6L4X9PU1ee3RvMa7+
-         tCNGjsczrHyLeuJpp1FJgIusoZAD2HQRw/b0XMwu3MjheCJPPp5miFBqKhQ2awQB5ARS
-         Quh6VF2ccXhCSoc422X2K9Iw5F7vGpvUkXKgZhR2yBiTYrLcv6qBpFW6o+pyFKIvFLdi
-         IH0K6HDRCn6/4tc3gyOB5Sju904nMvGLHbtkK83c+fIFJE5RKwlKJpWXosyPofqszADl
-         RkjngwAtJtRSWaxQVC5doRFFBX+p+JxbGtgkaher5nXaaL7lLDWPrzrTVor88nQkjsKu
-         ILHg==
+        id S1790251AbgJZSpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 14:45:35 -0400
+Received: from mail-ej1-f67.google.com ([209.85.218.67]:35356 "EHLO
+        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2443743AbgJZSpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 14:45:35 -0400
+Received: by mail-ej1-f67.google.com with SMTP id p5so15159792ejj.2;
+        Mon, 26 Oct 2020 11:45:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1XLqJl5vO2wWqmgb9LT+ITrNAM4FaYnH32PMkyjUkwU=;
-        b=KPUarhbNtIvk5KieqkEwFgTo56OxJLowZTsKGgXqZLAOc6daVb/FcD/+2gRyJzp05f
-         aXLF/L69wUnVhlOCrFI/MJOK9xMuYwoJU9KM98xJx2J4o5IGpoa9m8LjT4EKpbsJedIT
-         4A/h+H3a2WBkl5DPjLS9rfYeaTjtXHUooAjbkLNH+wARFA+I/m22REvKi8Fbgd+KQJ9V
-         zhN8q2XpBbvISIol2aTFBkyI8lzZYwX3Liv+6/78qBi/f0VLMoDMv5ZtVpQuf+HGiSo4
-         me7J1LWOijsO6mwKuBetqH05nrW7m7oCXfUyhxe1K7mwW9HlM0/Bj7Cjwup22mhuKa5D
-         hEjQ==
-X-Gm-Message-State: AOAM5325nC+gIZ7VzfxkLck4koSrwMgaamzP+V5kQ03eMyEJQ2H25zcP
-        rJEPOFgYNjW+p3tYsMXWMcPT6aTI/x8/1/7NMLOgCw==
-X-Google-Smtp-Source: ABdhPJwf56+lb7bD44CUrLWq/bsLRBUFkrCwKEnxLO52La3PA3TL1ljkGdJ1n02YMO6sRL1kgcUE4qOIFcgHOMQErFw=
-X-Received: by 2002:a05:6602:2d8c:: with SMTP id k12mr5570349iow.46.1603737510347;
- Mon, 26 Oct 2020 11:38:30 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gz0y0Kg1cNPHrgAtv63xzsEjT/xY3FlDGvII1tKwfUQ=;
+        b=PbdjV1CJtx3TSD04ncdklvDN55aF/mjlpKZQBWu68n6ti+srP5yeznvkkFSkHWWJUm
+         QkWMdYBZAR/NAiMerX3RAiIGQddHAjFZu9c//HOymD33CA3yjeTudXeFbzLE8/NBCwuw
+         +GRHMswbB+yYAPUH4bv2Cn0WPKjuef8v91/TVYdaKLP6CXGwBd8KJqsYc21QoroOzddO
+         cbJsL+Oqnds6mzXtUr9t2A4j5uaYxt7rg5O1fZEgEnPzYJrLcXYlicTkdsZxqP7yQMwO
+         mJEbLtZ+sJLpCMNPMTgH0FwtmpClUpPJId1t/0DwGfzXZhcyC1CYf/SgriyYSRjvhGZY
+         5WNg==
+X-Gm-Message-State: AOAM531+6PWVC7h4JZVNzfxOkb4HeSel+XYcPdEsJCdt2HsEL9wP9EYt
+        uNnoDi1EeFsPa/7MrAb3qXY=
+X-Google-Smtp-Source: ABdhPJwbHdC4xSeWIGeRgEm2uDYFTmmY8iCHzyomd4336nfeex1zjqBAeuLflDpHoOwgQbTXL2PdDQ==
+X-Received: by 2002:a17:906:4803:: with SMTP id w3mr11735021ejq.406.1603737931324;
+        Mon, 26 Oct 2020 11:45:31 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.184])
+        by smtp.googlemail.com with ESMTPSA id p14sm5615176eds.35.2020.10.26.11.45.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 11:45:29 -0700 (PDT)
+Date:   Mon, 26 Oct 2020 19:45:27 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Alexander Dahl <post@lespocky.de>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexander Dahl <ada@thorsis.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        Kukjin Kim <kgene@kernel.org>
+Subject: Re: [PATCH v7 07/12] ARM: dts: exynos: Fix schema warnings for
+ pwm-leds
+Message-ID: <20201026184527.GA165725@kozik-lap>
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-8-post@lespocky.de>
 MIME-Version: 1.0
-References: <20201024200304.1427864-1-fparent@baylibre.com>
- <20201026121316.GB7402@sirena.org.uk> <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
- <20201026172431.GI7402@sirena.org.uk>
-In-Reply-To: <20201026172431.GI7402@sirena.org.uk>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Mon, 26 Oct 2020 19:38:14 +0100
-Message-ID: <CAOwMV_xt=OV6cKqQTZUUSAvYKxUUQZAUywAHtFFHL=E5xVu-Zg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
-To:     Mark Brown <broonie@kernel.org>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201005203451.9985-8-post@lespocky.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+On Mon, Oct 05, 2020 at 10:34:46PM +0200, Alexander Dahl wrote:
+> The node names for devices using the pwm-leds driver follow a certain
+> naming scheme (now).  Parent node name is not enforced, but recommended
+> by DT project.
+> 
+>   DTC     arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml
+>   CHECK   arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml
+> /home/alex/build/linux/arch/arm/boot/dts/exynos5410-odroidxu.dt.yaml: pwmleds: 'blueled', 'greenled' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+>         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
 
-On Mon, Oct 26, 2020 at 6:24 PM Mark Brown <broonie@kernel.org> wrote:
->
-> On Mon, Oct 26, 2020 at 06:18:35PM +0100, Fabien Parent wrote:
-> > On Mon, Oct 26, 2020 at 1:13 PM Mark Brown <broonie@kernel.org> wrote:
->
-> > > On Sat, Oct 24, 2020 at 10:03:03PM +0200, Fabien Parent wrote:
->
-> > > > +Required properties:
-> > > > +- compatible: "mediatek,mt6392-regulator"
->
-> > > This is no longer used by the driver, should be unneeded and therefore
-> > > should be removed.
->
-> > It is not used by the driver but it will be used by the MFD driver [0]
-> > like this:
-> > static const struct mfd_cell mt6392_devs[] = {
-> >     {
-> >         [snip]
-> >     }, {
-> >         [snip]
-> >     }, {
-> >         .name = "mt6392-regulator",
-> >         .of_compatible = "mediatek,mt6392-regulator"
->
-> This is still unneeded, it's just a reflection of Linux implementation
-> details and should be removed.   The MFD can just register the child
-> without supplying a compatible and things will continue to work just as
-> well.
+Please trim the error logs in the future. No need to paste all warnings,
+just one or two from the same type of error.  Also your local path
+leading to Linux repo should be removed.
 
-I'm not exactly sure how it is supposed to work. mfd_add_devices seems
-to register devices based on of_compatible or acpi_match from the
-mfd_cell. This platform does not have ACPI so I don't understand how
-the regulator driver would probe without this line. Anyway I tried to
-remove the lines below in the MFD driver and the device tree and the
-boot of the board failed because the regulator driver didn't probe.
-Any help to get me understand how it should work without this line
-would be helpful, thanks.
+Thanks, applied.
 
+Best regards,
+Krzysztof
 
-                regulators {
--                       compatible = "mediatek,mt6392-regulator";
--
-                        mt6392_vproc_reg: buck-vproc {
-
-
-@@ -135,7 +135,6 @@ static const struct mfd_cell mt6392_devs[] = {
-                .of_compatible = "mediatek,mt6392-keys"
-        }, {
-                .name = "mt6392-regulator",
--               .of_compatible = "mediatek,mt6392-regulator"
-        }, {
