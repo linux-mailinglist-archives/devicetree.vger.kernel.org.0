@@ -2,151 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D5129913A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 222D429914A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:41:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1773312AbgJZPjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:39:41 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:43806 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1772929AbgJZPjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:39:41 -0400
-Received: by mail-qt1-f193.google.com with SMTP id e6so6985630qtw.10;
-        Mon, 26 Oct 2020 08:39:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vLQei8ZmgmFcSxn2MPuUAP5brChetukYTYeEtCq2OjI=;
-        b=WZClcdFYON5jGkBEUsXDjjrC5+/8ykP+W6jK5+YeWAfaGlZD+93YguQywa1UlSp48E
-         uuGYiMGQ/K04Dg/M2ZDj65g6NI2HxWyDWw75mA2OiPTlu4gvZmkKphql2hKrPxoQ6XkI
-         KQDwxR3oSWF8+kE2PPMlU6jR7hvZSRY4CG0DkqzG5g1NmsiQ1zBanpyNT1bit/dYeJv+
-         fa8TvdDcGh3m0EpxlNz1RjSkouEZjkL+LvrvKe8ilMfCbxc0hKKrGjgEho1DM3INinLX
-         Z6gEQCXl+0JUCW9mEfYAx1I7W8SYlFzMt5uW3ji+qSjJskmQHCmirSbKgLG5odMoqpxW
-         jDbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vLQei8ZmgmFcSxn2MPuUAP5brChetukYTYeEtCq2OjI=;
-        b=E00KcnsOh2BTaC/FqoiezxHRoTKA8w+mstyWzW3n+jX2ROYHqs7OjDulfZyKSdeW0d
-         6rCsQq/B0rF2Uyz/X0qtZ7KxJWYpFT9gIgIpn1aA+0xLa+sRxlCh/QHL5YWthiLGgAXQ
-         RbEMo5T0nHDiUlMIMHHBCo2A3N4Cu4mHh8lBZHbeScJpfH8E4BzFptyzgwmNbWoYX3Fq
-         CVLypePnW6tuHy2fcRUAuFQPeGst7XoSpPSuDDYOPigT6m4gBw5T6ou0WHnSy9QIwMiH
-         8Rm3vWErfDUa5B2tYPPTifUZAmaSoa9UxxfQbeh3Oz5OLUdB3yQvveellpOeaBT04QwS
-         GopQ==
-X-Gm-Message-State: AOAM531A8UPU72qiHttqr82iadoNwJCqkhVYsrX3NNAYDuiT8aKzlk1v
-        zk8atZqJ2r+rS6zP+WpZGxq1N1YPQbOM/g==
-X-Google-Smtp-Source: ABdhPJxwbjJpM7BXgATHrFMn/Ypqvv2ofYPBMDwSwLCNpEqKIsLxrJd136lnOkueYbC0g12unZabRA==
-X-Received: by 2002:ac8:4b4b:: with SMTP id e11mr3668273qts.29.1603726779530;
-        Mon, 26 Oct 2020 08:39:39 -0700 (PDT)
-Received: from ubuntu (ool-45785633.dyn.optonline.net. [69.120.86.51])
-        by smtp.gmail.com with ESMTPSA id 22sm4586589qtw.61.2020.10.26.08.39.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 08:39:38 -0700 (PDT)
-Date:   Mon, 26 Oct 2020 11:39:36 -0400
-From:   Vivek Unune <npcomplete13@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Linksys EA9500 add fixed partitions
-Message-ID: <20201026153936.GA258640@ubuntu>
-References: <20201026131351.258296-1-npcomplete13@gmail.com>
- <e64d76cc-90bb-5b54-04de-fde21542e4fe@gmail.com>
+        id S1784296AbgJZPlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 11:41:10 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:32831 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1784294AbgJZPlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 11:41:09 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 301E258017D;
+        Mon, 26 Oct 2020 11:41:08 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 26 Oct 2020 11:41:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=hIJ+XvEyejnh6CcFJ2Y0M5v0wXA
+        yARTMLQfqwCwAJ8k=; b=RcFMe1aH5q8/fJXsvjpLKMa9KOBoLJiresNyiSKMloi
+        ELN3mlL7d+d1EpSWdgAQOoLA0zCjacGwUmEZGdSgENtyEGPdJ7fyD1+6b6K8X1V8
+        JzSuhoZvTaUMLt/C2LlkV4k9aaIduEbRzUHWNZ/ptCIMmX7jCrBQW8Ryo8BTlekk
+        0apDrR75xzX254S8yqoHimqtEo2ci2F/lEwLz4xnZJAKJ2AWqtJF46jupAEJo2PM
+        RQumH7Ma1IXg0F4N5OM7rnrRilcU5sdzIjHpqX5fvh59T+8Vc2w++bGc+yz3bwzW
+        DClX/qLTFSGrEMprW9ls6JdiyrGy/KY7CYg3s9zuMeg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=hIJ+Xv
+        Eyejnh6CcFJ2Y0M5v0wXAyARTMLQfqwCwAJ8k=; b=MN+9PY6uokYY/5td/O2d4V
+        aGzccbEjW3FwAUYrBxSjCTIpNKx1jiXUWYU3K1yLhpOQBwLs2BLh/LUDAMTk1gg9
+        0XU4nJwqxi75ZMNSSgTnOoE6D2T3+ofXJSxqE32maVuYsbxAhVxT4g4xXQEoH64C
+        VD/5odok3mzTQlTMnpFeYHspi7X/ymBNLEhxdKdllQrovnwDOCCB+t1GyGzg7IMb
+        A1VS6fF/h8JHq9OpqHS7S3ddbKNkWFd/jQMHsox4vFrldfnEPFRnkou/GdZLbB8d
+        arfmTK46z/DG3dljJHut13vqPGfKlHR2TpTxGqX/27pwPSX5qZjaHWYD9lQPloMQ
+        ==
+X-ME-Sender: <xms:Eu6WX52uSZ6DQTpukfuUVIFbRj1FXjltNtKBjdvI3qTlWMfjbqsKjQ>
+    <xme:Eu6WXwGD8v7UsR8Ry3IkBVtzFpzbMKfVd7jYZlFTdKFy3HQR2vc1VCfnLrJfXLy37
+    8r7b1IQPYATGSdetGE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrkeejgdegfecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:Eu6WX54FQQmcuJZWyOgOLgApuWDr0oGc96D8mML83yIBB7uEmswvfA>
+    <xmx:Eu6WX23ERtKS3RChKng7mv8RMSdHNehS1uNQdTvHXJFGEwFy3YhwDw>
+    <xmx:Eu6WX8FUW_NWT-wr64s_7IdAprNsZDdAzeW_L0gVXLhuNVqMVBDK5Q>
+    <xmx:FO6WX6_Fr7TaZ1kKJVa2lUx8epieL1SrP2ZG9cKP-n3cZVe_-RZe8Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id EB966306467D;
+        Mon, 26 Oct 2020 11:41:05 -0400 (EDT)
+Date:   Mon, 26 Oct 2020 16:41:04 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
+Subject: Re: [PATCH 03/14] media: sun6i-csi: Support an optional dedicated
+ memory pool
+Message-ID: <20201026154104.v32up7uh6oryqxaf@gilmour.lan>
+References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
+ <20201023174546.504028-4-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ftdwovwtsifdduwo"
 Content-Disposition: inline
-In-Reply-To: <e64d76cc-90bb-5b54-04de-fde21542e4fe@gmail.com>
+In-Reply-To: <20201023174546.504028-4-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 26, 2020 at 06:30:53AM -0700, Florian Fainelli wrote:
-> 
-> 
-> On 10/26/2020 6:13 AM, Vivek Unune wrote:
-> > This router has dual paritions to store trx firmware image and
-> > dual partitions for nvram. The second one in each of these cases acts
-> > as a backup store.
-> > 
-> > When tested with OpenWrt, the default partition parser causes two issues:
-> > 
-> > 1. It labels both nvram partitions as nvram. In factory, second one is
-> > labeled devinfo.
-> > 2. It parses second trx image and tries to create second 'linux' partition
-> > and fails with - cannot create duplicate 'linux' partition. I've set this
-> > partition to read-only for now
-> > 
-> > The following patch works around both of these issues.
-> > 
-> > Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
-> > ---
-> >   .../boot/dts/bcm47094-linksys-panamera.dts    | 41 +++++++++++++++++++
-> >   1 file changed, 41 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-> > index 5d5930edfb9d..13da16c5de68 100644
-> > --- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-> > +++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-> > @@ -292,3 +292,44 @@ fixed-link {
-> >   &usb3_phy {
-> >   	status = "okay";
-> >   };
-> > +
-> > +&nandcs {
-> > +	partitions {
-> > +		compatible = "fixed-partitions";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +
-> > +		partition@0 {
-> > +			label = "boot";
-> > +			reg = <0x0000000 0x0080000>;
-> > +			read-only;
-> > +		};
-> > +
-> > +		partition@80000 {
-> > +			label = "nvram";
-> > +			reg = <0x080000 0x0100000>;
-> > +		};
-> > +
-> > +		partition@180000{
-> > +			label = "devinfo";
-> > +			reg = <0x0180000 0x080000>;
-> > +		};
-> > +
-> > +		partition@200000 {
-> > +			label = "firmware";
-> > +			reg = <0x0200000 0x01D00000>;
-> > +			compatible = "brcm,trx";
-> > +		};
-> > +
-> > +		partition@1F00000 {
-> > +			label = "failsafe";
-> > +			reg = <0x01F00000 0x01D00000>;
-> > +			read-only;
-> > +		};
-> > +
-> > +		partition@0x5200000 {
-> 
-> You would need to remove the 0x from the hex number here.
 
-Sure, I'll fix this in next version
+--ftdwovwtsifdduwo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> > +			label = "brcmnand";
-> 
-> Not sure how useful naming this partition brcmnand is, can we find a better
-> name for it?
+On Fri, Oct 23, 2020 at 07:45:35PM +0200, Paul Kocialkowski wrote:
+> This allows selecting a dedicated CMA memory pool (specified via
+> device-tree) instead of the default one.
+>=20
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 
-I'll be more than happy to rename this that makes sense. Factory uses this
-name as well. This is used as a general persistent storage for system cofigs.
-Could we name it System?
+Why would that be needed?
 
-Thanks,
+> ---
+>  drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c b/drivers=
+/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> index 28e89340fed9..5d2389a5cd17 100644
+> --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_reserved_mem.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/regmap.h>
+> @@ -849,6 +850,12 @@ static int sun6i_csi_resource_request(struct sun6i_c=
+si_dev *sdev,
+>  		return PTR_ERR(sdev->regmap);
+>  	}
+> =20
+> +	ret =3D of_reserved_mem_device_init(&pdev->dev);
+> +	if (ret && ret !=3D -ENODEV) {
+> +		dev_err(&pdev->dev, "Unable to init reserved memory\n");
+> +		return ret;
+> +	}
+> +
+>  	sdev->clk_mod =3D devm_clk_get(&pdev->dev, "mod");
 
-Vivek
+If that clk_get or any subsequent function fail you'll end up leaking
+whatever the initialization of the reserved memory has allocated
 
+Maxime
+
+--ftdwovwtsifdduwo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5buEAAKCRDj7w1vZxhR
+xbklAP9BmQpfRZjvnhSiQAttauRB1rDZXJo4lmDdUgbccMXk7gEAyHtNPq/k1qSJ
+hGynIa7hp7ldH2sMhWh5Is3l5nC52Q0=
+=Mnvp
+-----END PGP SIGNATURE-----
+
+--ftdwovwtsifdduwo--
