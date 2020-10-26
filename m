@@ -2,134 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5839299152
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:42:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67F32299159
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1784331AbgJZPmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:42:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36922 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1784330AbgJZPmh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 11:42:37 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5B30F223EA;
-        Mon, 26 Oct 2020 15:42:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603726956;
-        bh=8zxNZBAeRbUdw6Afzgm/VslFGniJ39IqtKKdnPltv/A=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=CsCfBfJjNMero4wtZLh6oI46/Jc0PUbWnF/HcxV5pcrP1dP8VsKgzMI4o5HcgH/DP
-         UP0FRM6mAE7gI9JOAUtz7nSKfzdnndOK7boEpRwW6jrGf0YYKu/1r7+GoOFKHZJJNC
-         owX4x4uFggFk6V4e48es5zT9uoBhFGyvO20/4sb8=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kX4dm-004N9T-8b; Mon, 26 Oct 2020 15:42:34 +0000
+        id S1784356AbgJZPoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 11:44:20 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:34721 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1784354AbgJZPoU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:44:20 -0400
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kX4fO-00011v-QX; Mon, 26 Oct 2020 16:44:14 +0100
+Message-ID: <6274ab26d1fea5e00cea576d1e00028a4c4633af.camel@pengutronix.de>
+Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>, Abel Vesa <abel.vesa@nxp.com>
+Cc:     Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 26 Oct 2020 16:44:13 +0100
+In-Reply-To: <CAHCN7xJOczT1B03Am4A645Xrk6-VF_7VDgAq13F-81=oCkixjw@mail.gmail.com>
+References: <20201024162016.1003041-1-aford173@gmail.com>
+         <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
+         <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
+         <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
+         <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
+         <CAHCN7xLC-gKquDNS3ToQCff=g610PscQE+T4zfO=_05GpLyK4w@mail.gmail.com>
+         <20201026145516.shmb55gaeh6u7oru@fsr-ub1664-175>
+         <CAHCN7xJOczT1B03Am4A645Xrk6-VF_7VDgAq13F-81=oCkixjw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Mon, 26 Oct 2020 15:42:34 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Leo Li <leoyang.li@nxp.com>
-Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        "Biwen Li (OSS)" <biwen.li@oss.nxp.com>, shawnguo@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>, tglx@linutronix.de,
-        jason@lakedaemon.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jiafei Pan <jiafei.pan@nxp.com>,
-        Xiaobo Xie <xiaobo.xie@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, Biwen Li <biwen.li@nxp.com>
-Subject: Re: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
- interrupt
-In-Reply-To: <VE1PR04MB668737DF1DDA6E1007BCA24C8F190@VE1PR04MB6687.eurprd04.prod.outlook.com>
-References: <20201026080127.40499-1-biwen.li@oss.nxp.com>
- <31d8971374c261003aee9f4807c8ac8c@kernel.org>
- <3448c822-31b1-7f9d-fedf-49912418fc3f@rasmusvillemoes.dk>
- <b65acafab54b62a2a22aa942089b8033@kernel.org>
- <VE1PR04MB668737DF1DDA6E1007BCA24C8F190@VE1PR04MB6687.eurprd04.prod.outlook.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <19b5f5e7bd5e7a41621ecad2239e4bd6@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: leoyang.li@nxp.com, linux@rasmusvillemoes.dk, biwen.li@oss.nxp.com, shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com, zhiqiang.hou@nxp.com, tglx@linutronix.de, jason@lakedaemon.net, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jiafei.pan@nxp.com, xiaobo.xie@nxp.com, linux-arm-kernel@lists.infradead.org, biwen.li@nxp.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-10-26 15:06, Leo Li wrote:
->> -----Original Message-----
->> From: Marc Zyngier <maz@kernel.org>
->> Sent: Monday, October 26, 2020 4:23 AM
->> To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
->> Cc: Biwen Li (OSS) <biwen.li@oss.nxp.com>; shawnguo@kernel.org;
->> robh+dt@kernel.org; mark.rutland@arm.com; Leo Li <leoyang.li@nxp.com>;
->> Z.q. Hou <zhiqiang.hou@nxp.com>; tglx@linutronix.de;
->> jason@lakedaemon.net; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; Jiafei Pan <jiafei.pan@nxp.com>; Xiaobo Xie
->> <xiaobo.xie@nxp.com>; linux-arm-kernel@lists.infradead.org; Biwen Li
->> <biwen.li@nxp.com>
->> Subject: Re: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A 
->> external
->> interrupt
->> 
->> On 2020-10-26 09:06, Rasmus Villemoes wrote:
->> > On 26/10/2020 09.44, Marc Zyngier wrote:
->> >> On 2020-10-26 08:01, Biwen Li wrote:
->> >>> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
->> >>>
->> >>> Add an new IRQ chip declaration for LS1043A and LS1088A
->> >>> - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A
->> >>> - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
->> >>
->> >> Three things:
->> >> - This commit message doesn't describe the bit_reverse change
->> >
->> > Yeah, please elaborate on that, as the RM for 1043 or 1046 doesn't
->> > mention anything about bit reversal for the scfg registers - they
->> > don't seem to have the utter nonsense that is SCFG_SCFGREVCR, but
->> > perhaps, instead of removing it, that has just become a hard-coded
->> > part of the IP.
->> >
->> > Also, IANAL etc., but
->> >
->> >>> +// Copyright 2019-2020 NXP
->> >
->> > really? Seems to be a bit of a stretch.
->> >
->> > At the very least, cc'ing the original author and only person to ever
->> > touch that file would have been appreciated.
->> 
->> Huh. Well spotted. That's definitely not on.
->> NXP people, please talk to your legal department.
+Am Montag, den 26.10.2020, 10:12 -0500 schrieb Adam Ford:
+> On Mon, Oct 26, 2020 at 9:55 AM Abel Vesa <abel.vesa@nxp.com> wrote:
+> > On 20-10-25 11:05:32, Adam Ford wrote:
+> > > On Sun, Oct 25, 2020 at 7:19 AM Marek Vasut <marex@denx.de> wrote:
+> > > > On 10/25/20 1:05 PM, Abel Vesa wrote:
+> > > > 
+> > > > [...]
+> > > > 
+> > > > > > Together, both the GPC and the clk-blk driver should be able to pull
+> > > > > > the multimedia block out of reset.  Currently, the GPC can handle the
+> > > > > > USB OTG and the GPU, but the LCDIF and MIPI DSI appear to be gated by
+> > > > > > the clock block
+> > > > > > 
+> > > > > > My original patch RFC didn't include the imx8mn node, because it
+> > > > > > hangs, but the node I added looks like:
+> > > > > > 
+> > > > > > media_blk_ctl: clock-controller@32e28000 {
+> > > > > >      compatible = "fsl,imx8mn-media-blk-ctl", "syscon";
+> > > > > >      reg = <0x32e28000 0x1000>;
+> > > > > >      #clock-cells = <1>;
+> > > > > >      #reset-cells = <1>;
+> > > > > > };
+> > > > > > 
+> > > > > > I was hoping you might have some feedback on the 8mn clk-blk driver
+> > > > > > since you did the 8mp clk-blk drive and they appear to be very
+> > > > > > similar.
+> > > > > > 
+> > > > > 
+> > > > > I'll do you one better still. I'll apply the patch in my tree and give it
+> > > > > a test tomorrow morning.
+> > > 
+> > > I do have some more updates on how to get the system to not hang, and
+> > > to enumerate more clocks.
+> > > Looking at Marek's work on enabling clocks in the 8MM, he added a
+> > > power-domain in dispmix_blk_ctl pointing to the dispmix in the GPC.
+> > > By forcing the GPC driver to write 0x1fff  to 32e28004, 0x7f to
+> > > 32e28000 and 0x30000 to 32e28008, the i.MX8MM can bring the display
+> > > clocks out of reset.
+> > > 
+> > 
+> > Yeah, that makes sense. Basically, it was trying to disable unused clocks
+> > (see clk_disable_unused) but in order to disable the clocks from the
+> > media BLK_CTL (which I think should be renamed in display BLK_CTL) the
+> > PD need to be on. Since you initially didn't give it any PD, it was trying
+> > to blindly write/read the gate bit and therefore freeze.
+> > 
+> > > Unfortunately, the i.MX8MN needs to have 0x100 written to both
+> > > 32e28000 and 32e28004, and the values written for the 8MM are not
+> > > compatible.
+> > > By forcing the GPC to write those values, I can get  lcdif_pixel_clk
+> > > and the mipi_dsi_clkref  appearing on the Nano.
+> > 
+> > I'm trying to make a branch with all the patches for all i.MX8M so I
+> > can keep track of it all. On this branch I've also applied the
+> > following patchset from Lucas Stach:
+> > https://www.spinics.net/lists/arm-kernel/msg843007.html
+> > but I'm getting the folowing errors:
+> > 
+> > [   16.690885] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > [   16.716839] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > [   16.730500] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > 
+> > Lucas, any thoughts?
+> > 
+> > Maybe it's something related to 8MN.
+> > 
+> I will go back and double check this now that we have both the
+> blt_crl->power-domain and the power-domain->blk_ctl.
 > 
-> We do have an internal policy to require developer adding/updating NXP
-> copyright on non-trivial changes.  I'm not sure if this change should
-> be considered trivial, but adding copyright claim on a file without
-> prior copyright claims could causing confusion like in this case.
+> > Will dig further, see what pops out.
+> 
+> I wasn't sure which direction to go with the name.  I can rename the
+> media_blk_ctl  driver to display_blk_ctl.  I used Media based on the
+> imx8mp naming convention and the fact that it's controlling both the
+> display and the camera interface, however it's depending on the
+> dispmix GPC.
+> 
+> I'll submit a RFC V2 with the cross referencing to the GPC based on
+> Marek's Mini patch set, but we'll still have an issue where the Mini
+> and Nano have different syscon values to enable the clocks, and
+> Marek's branch has it card-coded, so my patch would effectively break
+> the Mini in order to make the Nano operate until we find a better
+> solution.
 
-The copyright exists implicitly, and doesn't require a copyright claim
-in the file itself. Please talk to your legal department.
+The GPC should not write into the BLK_CTL region via syscon, but
+instead use the clocks and resets as exposed by the BLK_CTL driver.
+Doing it via syscon is a hack to get things going. The clocks and
+resets should properly be hooked up to the GPC domains via the clocks
+and resets DT properties.
 
-> One
-> potential solution is to add a more specific description on the NXP
-> change together with the copyright claim.  But maybe an easier
-> solution is to add Rasmus your Copyright claim first if you are ok
-> with it.
+For the clocks there is one complication: if the clocks are controlled
+via BLK_CTL we can only enable them once the domain is powered up,
+however the earlier designs using the GPCv2 assert resets as part of
+the power up sequence, which needs the clocks to be running for the
+reset to propagate. So depending on whether we have a power domain with
+a BLK_CTL or not we need to enable the clocks before or after powering
+up the domain. I guess we need a new DT property to specify which way
+the domain needs to handled.
 
-That's for Rasmus to decide whether he wants to add such a claim,
-given that it exists implicitly. Adding copyright claims for any
-odd change you make isn't acceptable either (your changes are already
-unambiguously identified in git).
+Regards,
+Lucas
 
-For the time being, I'm not taking any NXP patch carrying additional
-copyright update until this is clarified.
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
