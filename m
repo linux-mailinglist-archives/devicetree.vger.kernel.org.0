@@ -2,99 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94FAD2993B5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 18:24:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7AE02993D0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 18:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1768416AbgJZRYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 13:24:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34000 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392010AbgJZRYh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 13:24:37 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1E99421D7B;
-        Mon, 26 Oct 2020 17:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603733076;
-        bh=r/Go5g+ydHtLSDBV/2d++cEZQyCVyOlKmRWTE3d43fs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=zwf/0tJl1quToYepFt/MPzsgGsdO5FaYPLfzE+8gEOZfjiUfR9dZzBgh9BURNBWpu
-         Slw6cxiIesxUFz9QC4IegdrLQMV4MVMAxR1d0vymwb2GBBvhcNjXZjcvQGekX/IXNK
-         ySzjSlRToGvxUmo97SbK+l9nPBlHKhN7UN/Ac2hc=
-Date:   Mon, 26 Oct 2020 17:24:31 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
-Message-ID: <20201026172431.GI7402@sirena.org.uk>
-References: <20201024200304.1427864-1-fparent@baylibre.com>
- <20201026121316.GB7402@sirena.org.uk>
- <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
+        id S1774034AbgJZRax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 13:30:53 -0400
+Received: from mail-wm1-f50.google.com ([209.85.128.50]:32799 "EHLO
+        mail-wm1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393463AbgJZRaw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 13:30:52 -0400
+Received: by mail-wm1-f50.google.com with SMTP id l20so5655311wme.0;
+        Mon, 26 Oct 2020 10:30:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=M7Vqgqp5RCTym5rMfv9j6RqUwYhfreT6N/fOFNGIusQ=;
+        b=q/rB2RywKggVlQCSJsk637rsN8lr2OE8iewhWnMIiWUcwNNPYMzPIB0UZEtI5YcRKU
+         wi2Ufc7vOlhql6MNicbhfh1HKU7Wz8Mrs3kNV7HtzKhOthOqL9oogyiVPKI7wtS9YQQ8
+         pj46qgpDydiRuSVunhGjHh5oTUEoMPTRCY5js+CxAqVdBshEuI32uPYyfAHVF6lnWHwh
+         OMP5BvJG8I3t8lxKNFv4AvUxNCqdlwu+xi2ONQEAdjDakXB/e65R/gTswZMnEhxzVMnV
+         filfXNuox1lPrF9b1nMpXqesREpe2wgnrcn/cwOI6HLyVFU9qTwkCCKl8WpGf96tMN9o
+         dw8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=M7Vqgqp5RCTym5rMfv9j6RqUwYhfreT6N/fOFNGIusQ=;
+        b=XR8M2jlyQUb/+sGk6jWoRP/UjXxLCoWO7W2sa9M3sRrlpHYGjxhASz8grKQUql6qT1
+         gUbTRMXbwp6bX2vSq3L0uGfSdNjfYrRES6YAo9LkIezAD1uM71NOa//TmQLoD9A4uTla
+         U/9WTqB17+orNH/bQr3VFNtonRxk+NQIXcJUsfqS3KW+moAc+rpyKaDL+6QxMD2K2GGo
+         HLjdDMWCItQmH+y+EpJvpOY2HPwaEtqt/jiVmCd+f1Wyo8ILmrdXX4YmHT63K5T5ptUR
+         bbQJG3od0fy2G3GKwQI5IzrtbXiP+wDLWgjl6cyFmet6nW3Nl3GZoiHk0Rkm5qsepGNq
+         O0OA==
+X-Gm-Message-State: AOAM5335jGSU5luRWBiHcNQHUd484RP42+sVfYYIm5GEFk8w1tGEveh5
+        91rccxaow9X0AolZYfUBbXM=
+X-Google-Smtp-Source: ABdhPJxEsIQeiLxNtqR1jh8jCWo56KmV0OQyJYidcdeThJ131tFq9OJAKcBhwqONu0ibEny30UsjJA==
+X-Received: by 2002:a1c:2402:: with SMTP id k2mr16937198wmk.158.1603733449948;
+        Mon, 26 Oct 2020 10:30:49 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
+        by smtp.gmail.com with ESMTPSA id b18sm1996808wmj.41.2020.10.26.10.30.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 10:30:49 -0700 (PDT)
+From:   kholk11@gmail.com
+To:     dmitry.torokhov@gmail.com
+Cc:     robh+dt@kernel.org, rydberg@bitmath.org, priv.luk@gmail.com,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kholk11@gmail.com, marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, phone-devel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzk@kernel.org,
+        andy.shevchenko@gmail.com, Rob Herring <robh@kernel.org>
+Subject: [PATCH v8 1/3] dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
+Date:   Mon, 26 Oct 2020 18:30:43 +0100
+Message-Id: <20201026173045.165236-2-kholk11@gmail.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201026173045.165236-1-kholk11@gmail.com>
+References: <20201026173045.165236-1-kholk11@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="JIpyCmsTxyPLrmrM"
-Content-Disposition: inline
-In-Reply-To: <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
-X-Cookie: Safety Third.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 
---JIpyCmsTxyPLrmrM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Add prefix for Novatek Microelectronics Corp.
 
-On Mon, Oct 26, 2020 at 06:18:35PM +0100, Fabien Parent wrote:
-> On Mon, Oct 26, 2020 at 1:13 PM Mark Brown <broonie@kernel.org> wrote:
+Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> > On Sat, Oct 24, 2020 at 10:03:03PM +0200, Fabien Parent wrote:
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 66e45112a8d7..f98ea0af487d 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -740,6 +740,8 @@ patternProperties:
+     description: Nokia
+   "^nordic,.*":
+     description: Nordic Semiconductor
++  "^novatek,.*":
++    description: Novatek Microelectronics Corp.
+   "^novtech,.*":
+     description: NovTech, Inc.
+   "^nutsboard,.*":
+-- 
+2.28.0
 
-> > > +Required properties:
-> > > +- compatible: "mediatek,mt6392-regulator"
-
-> > This is no longer used by the driver, should be unneeded and therefore
-> > should be removed.
-
-> It is not used by the driver but it will be used by the MFD driver [0]
-> like this:
-> static const struct mfd_cell mt6392_devs[] = {
->     {
->         [snip]
->     }, {
->         [snip]
->     }, {
->         .name = "mt6392-regulator",
->         .of_compatible = "mediatek,mt6392-regulator"
-
-This is still unneeded, it's just a reflection of Linux implementation
-details and should be removed.   The MFD can just register the child
-without supplying a compatible and things will continue to work just as
-well.
-
---JIpyCmsTxyPLrmrM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+XBk4ACgkQJNaLcl1U
-h9Dn3Af/Va1AtyHzsa7Z0W0FedjMRq9j7LCJX+Kg8oMfDfIwuzNAYDW21SnhicJR
-JkaVl7kRqXWcx4LtXAIQp2hpiNBLr2SmVhvUxnHmsVqk/THfKWUXRAGMEfAIyl6x
-tkwzYaqeYSPGV8kYpy9oNnA3R27BhsqReot+ImqdmTIcDvUAIkPSsTEl/W6Ixr91
-M4LG0s8lzMiTN69LPhKokDUI5fKiulX+/WdXwRuuKBS7augVcN5YJJI0bdAOlelL
-twQ4mb7hkrCLwg/ag2cZZagfuvPTGqol8WTuBs+6NmKkvzwBvrCiH97eu3bwO4i7
-DawzoJr9YUM7MMdssy04Ui9GaICqgg==
-=BCjn
------END PGP SIGNATURE-----
-
---JIpyCmsTxyPLrmrM--
