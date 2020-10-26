@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D51B299F8D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 01:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B22299CCC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 01:02:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2410292AbgJZXyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 19:54:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59238 "EHLO mail.kernel.org"
+        id S2437347AbgJ0ABn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 20:01:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35344 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2410285AbgJZXyC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 19:54:02 -0400
+        id S2411049AbgJZX4X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 19:56:23 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9A96120882;
-        Mon, 26 Oct 2020 23:54:00 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 18B2A20B1F;
+        Mon, 26 Oct 2020 23:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603756441;
-        bh=B9H6nK9D552MIy0BT6AhHHXsPhBe/o6i0H01te9IGSM=;
+        s=default; t=1603756582;
+        bh=cWeSsh3qN4L40RKXSAhIjwG++878JP/Vd+vcjn7wHko=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GVq8Y4G73y1agEzyhWXkd2leo7v9iZJUEXY2Z5iWLiWczc0MOgCr3LL2Y1VNeeYAO
-         6b35YiDdUqrASwDMy/EyfVz83dp7Uf1HdudJKpddeZ6+pK4DxnugeE+U09wWElXaFU
-         Paj/UpFgL0nxcx0MMw5LPbhCoXvBsHO7xTTEtLAU=
+        b=n/IDBpwB3AcnAcRS/53emNsurWkvwHxZDSjhGTyJUcYZZjckQVaB7zOjnSvYZDtHH
+         fc48a5nu2IHKlxkMKsWEL4c5+cW9A5p2mCsn4HKUAHJXWOtpVBP+QEhUIgn1+Ca4c1
+         tkixf0Uo+ylTs1Wewc2PDj1ga0cznqnN3m4PSwGY=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
         Vineet Gupta <vgupta@synopsys.com>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
         linux-snps-arc@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.8 094/132] ARC: [dts] fix the errors detected by dtbs_check
-Date:   Mon, 26 Oct 2020 19:51:26 -0400
-Message-Id: <20201026235205.1023962-94-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 55/80] ARC: [dts] fix the errors detected by dtbs_check
+Date:   Mon, 26 Oct 2020 19:54:51 -0400
+Message-Id: <20201026235516.1025100-55-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201026235205.1023962-1-sashal@kernel.org>
-References: <20201026235205.1023962-1-sashal@kernel.org>
+In-Reply-To: <20201026235516.1025100-1-sashal@kernel.org>
+References: <20201026235516.1025100-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -66,10 +66,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  5 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/arch/arc/boot/dts/axc001.dtsi b/arch/arc/boot/dts/axc001.dtsi
-index 79ec27c043c1d..2a151607b0805 100644
+index 6ec1fcdfc0d7f..92247288d0562 100644
 --- a/arch/arc/boot/dts/axc001.dtsi
 +++ b/arch/arc/boot/dts/axc001.dtsi
-@@ -91,7 +91,7 @@ arcpct0: pct {
+@@ -85,7 +85,7 @@ arcpct0: pct {
  	 * avoid duplicating the MB dtsi file given that IRQ from
  	 * this intc to cpu intc are different for axs101 and axs103
  	 */
