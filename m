@@ -2,92 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4E5299B09
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:49:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D04F2299B7F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:51:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408403AbgJZXrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 19:47:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44376 "EHLO mail.kernel.org"
+        id S2409513AbgJZXvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 19:51:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52814 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408400AbgJZXrY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 19:47:24 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S2409509AbgJZXvo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 19:51:44 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 34F4B20872;
-        Mon, 26 Oct 2020 23:47:23 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 405B7217A0;
+        Mon, 26 Oct 2020 23:51:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603756043;
-        bh=CCd/1eClEmV4GdkYGGj4s8i+deHWYDJGw3SoCtNf2O8=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=HEJKt+S9wdzTfdcyniRnE8GEYdxxMBjI4RH+tQDmKl+RC2dU/9SdSyui3E7dsz6Z0
-         mUBHYtTOGfwRwTWGDVW7XbDz2ng6Ck+gBlEW6x+HbAjKjoO5BvwnmitmzHiefY1Dvq
-         hM2QD+afILHXb5BCNVUFGshMpVbGIWJb5WqnBvVk=
-Date:   Mon, 26 Oct 2020 23:47:19 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20201023131925.334864-1-dmitry.baryshkov@linaro.org>
-References: <20201023131925.334864-1-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 0/5]
-Message-Id: <160375603445.32304.15800152990447798405.b4-ty@kernel.org>
+        s=default; t=1603756304;
+        bh=DgsLJmdwDm+iZqr9b4sB4qpBpPNmURVNQ9bdUajr2T0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=iYERH+L0wcK01x997I9EgeqJbTAwdiPrpnBbHwZhsyn76b+AkPlFy7Res3AU7fYs3
+         g3kdLNDvwn4Ao77plr5FguafQBmjC98RN04amhCE/D8xb2OuoaT0NX3dLDNGRSLpnD
+         OHs/uuXUKlq4+f4/81y+/wLAZzL746ijRvIYo3j4=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.9 129/147] arm64: dts: renesas: ulcb: add full-pwr-cycle-in-suspend into eMMC nodes
+Date:   Mon, 26 Oct 2020 19:48:47 -0400
+Message-Id: <20201026234905.1022767-129-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201026234905.1022767-1-sashal@kernel.org>
+References: <20201026234905.1022767-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Oct 2020 16:19:20 +0300, Dmitry Baryshkov wrote:
-> On SM8250 MDSS_GDSC (and the rest of display clock controller) is
-> supplied power by MMCX power domain. Handle this link in GDSC code by
-> binding the power domain in dts file.
-> 
-> This patchset depends on [1]
-> 
-> Changes since v1:
->  - Define fixed-regulator-domain regulator using power domain
->    performance state for enabling/disabling.
->  - Rework to use new fixed regulator type (fixed-regulator-domain)
->    instead of controlling power domain directly from gdsc code.
-> 
-> [...]
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Applied to
+[ Upstream commit 992d7a8b88c83c05664b649fc54501ce58e19132 ]
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Add full-pwr-cycle-in-suspend property to do a graceful shutdown of
+the eMMC device in system suspend.
 
-Thanks!
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Link: https://lore.kernel.org/r/1594989201-24228-1-git-send-email-yoshihiro.shimoda.uh@renesas.com
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/renesas/ulcb.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-[1/2] regulator: fixed: provide bindings using power domain
-      commit: d4189bc55d5c40251abaa1f341796aac84ddfb10
-[2/2] regulator: fixed: support using power domain for enable/disable
-      commit: bf3a28cf42412c0a85631da94f198048bb37a8e5
+diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/renesas/ulcb.dtsi
+index ff88af8e39d3f..a2e085db87c53 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
+@@ -469,6 +469,7 @@ &sdhi2 {
+ 	mmc-hs200-1_8v;
+ 	mmc-hs400-1_8v;
+ 	non-removable;
++	full-pwr-cycle-in-suspend;
+ 	status = "okay";
+ };
+ 
+-- 
+2.25.1
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
