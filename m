@@ -2,84 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB8D229880A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 09:11:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E19298825
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 09:19:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1771288AbgJZILB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 04:11:01 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:42442 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1771280AbgJZILB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 04:11:01 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1E7821A0C07;
-        Mon, 26 Oct 2020 09:10:59 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A02841A1168;
-        Mon, 26 Oct 2020 09:10:53 +0100 (CET)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E88A2402BB;
-        Mon, 26 Oct 2020 09:10:46 +0100 (CET)
-From:   Biwen Li <biwen.li@oss.nxp.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        leoyang.li@nxp.com, zhiqiang.hou@nxp.com, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jiafei.pan@nxp.com, xiaobo.xie@nxp.com,
-        linux-arm-kernel@lists.infradead.org, Biwen Li <biwen.li@nxp.com>
-Subject: [RESEND 11/11] dt-bindings: interrupt-controller: update bindings for supporting more SoCs
-Date:   Mon, 26 Oct 2020 16:01:27 +0800
-Message-Id: <20201026080127.40499-11-biwen.li@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201026080127.40499-1-biwen.li@oss.nxp.com>
-References: <20201026080127.40499-1-biwen.li@oss.nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1770262AbgJZITT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 04:19:19 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:54768 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1736794AbgJZITS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 04:19:18 -0400
+X-UUID: 60e9d9da9cf54e4a9f945e5131eb7f5f-20201026
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=VsODDh3KIxQlll6BhtrmRw5xCTw49FcPfdwVLthSeUg=;
+        b=GcUYS6mmux9upFUuZMK36F2S5/mXm7cNAhYyhIfzjBkape/wnJ47wLBn80F4q9YDrLU972ELtjr+hzB2z2LDWPgN1nCGrkprkmfYofvyyQr0uD+IR2O530F15JS9g4dT9BTE0/QYLukzUdJkVCc8gb1PmAV1h6c6oLzuPpG4HKQ=;
+X-UUID: 60e9d9da9cf54e4a9f945e5131eb7f5f-20201026
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 504100724; Mon, 26 Oct 2020 16:19:15 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 26 Oct 2020 16:19:13 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 26 Oct 2020 16:19:13 +0800
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        <devicetree@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        <hector.yuan@mediatek.com>
+Subject: [PATCH v8] cpufreq: mediatek-hw: Add support for Mediatek cpufreq HW driver
+Date:   Mon, 26 Oct 2020 16:19:06 +0800
+Message-ID: <1603700349-5922-1-git-send-email-hector.yuan@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Biwen Li <biwen.li@nxp.com>
-
-Update bindings for Layerscape external irqs,
-support more SoCs(LS1043A, LS1046A, LS1088A,
-LS208xA, LX216xA)
-
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
- .../bindings/interrupt-controller/fsl,ls-extirq.txt      | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-index f0ad7801e8cf..90ef8917ac02 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-@@ -1,6 +1,7 @@
- * Freescale Layerscape external IRQs
- 
--Some Layerscape SOCs (LS1021A, LS1043A, LS1046A) support inverting
-+Some Layerscape SOCs (LS1021A, LS1043A, LS1046A
-+LS1088A, LS208xA, LX216xA) support inverting
- the polarity of certain external interrupt lines.
- 
- The device node must be a child of the node representing the
-@@ -8,12 +9,16 @@ Supplemental Configuration Unit (SCFG).
- 
- Required properties:
- - compatible: should be "fsl,<soc-name>-extirq", e.g. "fsl,ls1021a-extirq".
-+  "fsl,ls1043a-extirq": for LS1043A, LS1046A.
-+  "fsl,ls1088a-extirq": for LS1088A, LS208xA, LX216xA.
-+
- - #interrupt-cells: Must be 2. The first element is the index of the
-   external interrupt line. The second element is the trigger type.
- - #address-cells: Must be 0.
- - interrupt-controller: Identifies the node as an interrupt controller
- - reg: Specifies the Interrupt Polarity Control Register (INTPCR) in
--  the SCFG.
-+  the SCFG or the External Interrupt Control Register (IRQCR) in
-+  the ISC.
- - interrupt-map: Specifies the mapping from external interrupts to GIC
-   interrupts.
- - interrupt-map-mask: Must be <0xffffffff 0>.
--- 
-2.17.1
+VGhlIENQVWZyZXEgSFcgcHJlc2VudCBpbiBzb21lIE1lZGlhdGVrIGNoaXBzZXRzIG9mZmxvYWRz
+IHRoZSBzdGVwcyBuZWNlc3NhcnkgZm9yIGNoYW5naW5nIHRoZSBmcmVxdWVuY3kgb2YgQ1BVcy4g
+DQpUaGUgZHJpdmVyIGltcGxlbWVudHMgdGhlIGNwdWZyZXEgZHJpdmVyIGludGVyZmFjZSBmb3Ig
+dGhpcyBoYXJkd2FyZSBlbmdpbmUuIA0KVGhpcyBwYXRjaCBkZXBlbmRzIG9uIE1UNjc3OSBEVFMg
+cGF0Y2hbMV0gc3VibWl0dGVkIGJ5IEhhbmtzIENoZW4uDQoNCkZyb20gdjcgdG8gdjgsIHRoZXJl
+IGFyZSB0aHJlZSBtb3JlIHBhdGNoZXMgYmFzZWQgb24gcGF0Y2hzZXRbMl0uDQpUaGlzIHBhdGNo
+c2V0IGlzIGFib3V0IHRvIHJlZ2lzdGVyIHBvd2VyIHRhYmxlIHRvIEVuZXJneSBtb2RlbCBmb3Ig
+RUFTIGFuZCB0aGVybWFsIHVzYWdlLg0KMS4gRU0gQ1BVIHBvd2VyIHRhYmxlDQotIFJlZ2lzdGVy
+IGVuZXJneSBtb2RlbCB0YWJsZSBmb3IgRUFTIGFuZCB0aGVybWFsIGNvb2xpbmcgZGV2aWNlIHVz
+YWdlLg0KLSBSZWFkIHRoZSBjb3Jlc3BvbmRpbmcgTFVUIGZvciBwb3dlciB0YWJsZS4NCjIuIFNW
+UyBpbml0aWFsaXphdGlvbg0KLSBUaGUgU1ZTKFNtYXJ0IFZvbHRhZ2UgU2NhbGluZykgZW5naW5l
+IGlzIGEgaGFyZHdhcmUgd2hpY2ggaXMNCiAgdXNlZCB0byBjYWxjdWxhdGUgb3B0aW1pemVkIHZv
+bHRhZ2UgdmFsdWVzIGZvciBDUFUgcG93ZXIgZG9tYWluLg0KICBEVkZTIGRyaXZlciBjb3VsZCBh
+cHBseSB0aG9zZSBvcHRpbWl6ZWQgdm9sdGFnZSB2YWx1ZXMgdG8gcmVkdWNlIHBvd2VyIGNvbnN1
+bXB0aW9uLg0KLSBEcml2ZXIgd2lsbCBwb2xsaW5nIGlmIEhXIGVuZ2luZSBpcyBkb25lIGZvciBT
+VlMgaW5pdGlhbGl6YXRpb24uDQogIEFmdGVyIHRoYXQsIGRyaXZlciB3aWxsIHJlYWQgcG93ZXIg
+dGFibGUgYW5kIHJlZ2lzdGVyIGl0IHRvIEVBUy4NCi0gQ1BVcyBtdXN0IGJlIGluIHBvd2VyIG9u
+IHN0YXRlIHdoZW4gZG9pbmcgU1ZTLiBVc2UgcG1fcW9zIHRvIGJsb2NrIGNwdS1pZGxlIHN0YXRl
+IGZvciBTVlMgaW5pdGlhbGl6aW5nLg0KMy4gQ29vbGluZyBkZXZpY2UgZmxhZw0KLSBBZGQgY29v
+bGluZyBkZXZpY2UgZmxhZyBmb3IgdGhlcm1hbA0KDQpbMV0gaHR0cHM6Ly9sa21sLm9yZy9sa21s
+LzIwMjAvOC80LzEwOTQNClsyXSBodHRwczovL2xrbWwub3JnL2xrbWwvMjAyMC85LzIzLzM4NA0K
+DQoNCkhlY3Rvci5ZdWFuICgzKToNCiAgY3B1ZnJlcTogbWVkaWF0ZWstaHc6IEFkZCBzdXBwb3J0
+IGZvciBDUFVGUkVRIEhXDQogIGR0LWJpbmRpbmdzOiBhcm06IGNwdXM6IERvY3VtZW50ICdtZWRp
+YXRlayxmcmVxLWRvbWFpbicgcHJvcGVydHkNCiAgZHQtYmluZGluZ3M6IGNwdWZyZXE6IGFkZCBi
+aW5kaW5ncyBmb3IgTWVkaWFUZWsgY3B1ZnJlcSBIVw0KDQogRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2FybS9jcHVzLnlhbWwgICAgfCAgICA2ICsNCiAuLi4vYmluZGluZ3MvY3B1
+ZnJlcS9jcHVmcmVxLW1lZGlhdGVrLWh3LnlhbWwgICAgICB8ICAxMTMgKysrKysrKw0KIGRyaXZl
+cnMvY3B1ZnJlcS9LY29uZmlnLmFybSAgICAgICAgICAgICAgICAgICAgICAgIHwgICAxMiArDQog
+ZHJpdmVycy9jcHVmcmVxL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAx
+ICsNCiBkcml2ZXJzL2NwdWZyZXEvbWVkaWF0ZWstY3B1ZnJlcS1ody5jICAgICAgICAgICAgICB8
+ICAzNDMgKysrKysrKysrKysrKysrKysrKysNCiA1IGZpbGVzIGNoYW5nZWQsIDQ3NSBpbnNlcnRp
+b25zKCspDQogY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9jcHVmcmVxL2NwdWZyZXEtbWVkaWF0ZWstaHcueWFtbA0KIGNyZWF0ZSBtb2RlIDEwMDY0
+NCBkcml2ZXJzL2NwdWZyZXEvbWVkaWF0ZWstY3B1ZnJlcS1ody5j
 
