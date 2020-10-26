@@ -2,135 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54154298D9E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B22F7298D9B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:14:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393497AbgJZNOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 09:14:46 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:37070 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407341AbgJZNOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:14:17 -0400
-Received: by mail-qt1-f193.google.com with SMTP id h19so6597242qtq.4;
-        Mon, 26 Oct 2020 06:14:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ArQe57gzFPxxZh8Z/D5KuSTLp6YyDg0xaQwMBg7tO24=;
-        b=SMnxD2B1iAKOIt7VRf0VogijjHB3So1ZOaAIt8Q2b0Jqf+9bbrqc2CjG6hkqaHlX8l
-         unP0y4vDjAazyP5ufrrRbmZUQPIpbzltcFXpSQzvQ0GWKEC8SH5cEBBlIT1a6qjqhsGl
-         HMTI0l/0yw0Ah8MPmfekwILnv/2uRTeCOhZWs8/Mp5ioYrDDMiPN66HCN1h8KxAVyKn/
-         /AvIFd9rSVs/yRKoqXCP0B36SOScqre6UHLJ4rD3fURAKVXxvfJh/1K76mCZKbuvMf+v
-         LEg2z6XbNFCOV4rPbXzgHyTrPwPs70SXSzzqyxPIgQTzDqf0h9WdcUCNmUPrTCdjqXdR
-         3VVg==
+        id S1731637AbgJZNOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 09:14:44 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:39878 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1776597AbgJZNN5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:13:57 -0400
+Received: by mail-oi1-f196.google.com with SMTP id u127so10406504oib.6;
+        Mon, 26 Oct 2020 06:13:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ArQe57gzFPxxZh8Z/D5KuSTLp6YyDg0xaQwMBg7tO24=;
-        b=AcO/gqa7JPHI/aaXIWY/FgPh/B3Ol8Yi/7oToRKiTVkdJkLRWZ0/K2mosEQq98U3do
-         FIiI0SV0IwlIWmbt5euVcMtTAU1ESsdOs0qyAJuuW83c0D451dZxbu3kqMhwt2e5sVFx
-         5yjOfuwt/eD7oZsqXLygFiEojLULyGMHnb8khRFZ6HOvBoKXSAsxD0rST30ph4Si34S/
-         ZcQu63U9FOF3s+GRLlZA91RZymzuF7UHcAp8NbmTz7FW0CmoPz9CEjjHuADTiTanMBIH
-         5lu4YmbURLJPwUtoAOr1sfMydrY0kiNsGJPafH6E2aCASTzwJL+s3slBYkx3NJgR0qpa
-         FXzA==
-X-Gm-Message-State: AOAM533kMSP3OrBDKMyCXkY8ltb0WQ7LydCNQyFxB0oml/9LbgYdoPZn
-        MwovHN0C/YhVGqdWUMfqhCI=
-X-Google-Smtp-Source: ABdhPJwtj3nMNwHnoXTaw2Z8Wc4jWNqOGAI23KTp4ou5n8tA+t1AyeXS/WyPKgLG54dj8J2gE4Dfmw==
-X-Received: by 2002:ac8:1095:: with SMTP id a21mr16664144qtj.260.1603718054715;
-        Mon, 26 Oct 2020 06:14:14 -0700 (PDT)
-Received: from ubuntu.localdomain (ool-45785633.dyn.optonline.net. [69.120.86.51])
-        by smtp.googlemail.com with ESMTPSA id 61sm6598605qta.19.2020.10.26.06.14.13
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rmJekMJIbGl07zxWeiosPnkjYnZ4WMaPaye8OH8Xnfg=;
+        b=GCbzwOp0n0zAlvmzAZjU6pBy9vuqhJolO/QhYEW8hyr0LRcGS4p1GQzrvhMCE0PhRT
+         1nln8b+Ca7GLKdEIeSPf0z4kPv8DLBgCnmaDaW3wy2vkU/Qr4wBXdWVhnnYzeW4Cf60t
+         Dx/4C6zUKbS+0pEhN7HJhBs28Jtn2MWNs7f1bcv+u0jyNAYeQ3eY4MMKX+rOYng37sqG
+         WoNvdzKBERuC8fVAo7mtGcwQxStzCmEkJbq6NFp6R/+DhERDhEW4QdtEw3ex5pFRL3ML
+         j0ol+Wf93R9ngB8H+mPcrl3fPwzN/fexloH4MVdt7+F91O5WsDtllcjZA4aCCV0tY+Wq
+         r51w==
+X-Gm-Message-State: AOAM530PqL3rhmtp8m6ikiVNBFQDVA51dctw54ke40YrqfvY0866Ufc5
+        qsyilv1tR+ukFUnrmFUcJw==
+X-Google-Smtp-Source: ABdhPJxZnw5CrxzzGKl682KAZOV7/6vCSY0bZk6f1XdhhjV5uYq2BaP8QK0LgRi1cGEe7IOnR23wMg==
+X-Received: by 2002:aca:d487:: with SMTP id l129mr10305529oig.123.1603718036793;
+        Mon, 26 Oct 2020 06:13:56 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id k13sm3841301ooi.41.2020.10.26.06.13.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 06:14:13 -0700 (PDT)
-From:   Vivek Unune <npcomplete13@gmail.com>
-Cc:     Vivek Unune <npcomplete13@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: BCM5301X: Linksys EA9500 add fixed partitions
-Date:   Mon, 26 Oct 2020 09:13:51 -0400
-Message-Id: <20201026131351.258296-1-npcomplete13@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Mon, 26 Oct 2020 06:13:55 -0700 (PDT)
+Received: (nullmailer pid 10906 invoked by uid 1000);
+        Mon, 26 Oct 2020 13:13:55 -0000
+Date:   Mon, 26 Oct 2020 08:13:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        matthias.bgg@gmail.com, srinivas.kandagatla@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: mtk-efuse: add documentation for
+ MT8516 SoC
+Message-ID: <20201026131355.GA10697@bogus>
+References: <20201016171837.3261310-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201016171837.3261310-1-fparent@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This router has dual paritions to store trx firmware image and
-dual partitions for nvram. The second one in each of these cases acts
-as a backup store.
+On Fri, 16 Oct 2020 19:18:36 +0200, Fabien Parent wrote:
+> Add binding documentation for MT8516 SoCs.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/nvmem/mtk-efuse.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-When tested with OpenWrt, the default partition parser causes two issues:
-
-1. It labels both nvram partitions as nvram. In factory, second one is
-labeled devinfo.
-2. It parses second trx image and tries to create second 'linux' partition
-and fails with - cannot create duplicate 'linux' partition. I've set this
-partition to read-only for now
-
-The following patch works around both of these issues.
-
-Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
----
- .../boot/dts/bcm47094-linksys-panamera.dts    | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
-
-diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-index 5d5930edfb9d..13da16c5de68 100644
---- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-+++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-@@ -292,3 +292,44 @@ fixed-link {
- &usb3_phy {
- 	status = "okay";
- };
-+
-+&nandcs {
-+	partitions {
-+		compatible = "fixed-partitions";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		partition@0 {
-+			label = "boot";
-+			reg = <0x0000000 0x0080000>;
-+			read-only;
-+		};
-+
-+		partition@80000 {
-+			label = "nvram";
-+			reg = <0x080000 0x0100000>;
-+		};
-+
-+		partition@180000{
-+			label = "devinfo";
-+			reg = <0x0180000 0x080000>;
-+		};
-+
-+		partition@200000 {
-+			label = "firmware";
-+			reg = <0x0200000 0x01D00000>;
-+			compatible = "brcm,trx";
-+		};
-+
-+		partition@1F00000 {
-+			label = "failsafe";
-+			reg = <0x01F00000 0x01D00000>;
-+			read-only;
-+		};
-+
-+		partition@0x5200000 {
-+			label = "brcmnand";
-+			reg = <0x05200000 0x02E00000>;
-+		};
-+	};
-+};
--- 
-2.25.1
-
+Acked-by: Rob Herring <robh@kernel.org>
