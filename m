@@ -2,103 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EA322997D0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 21:18:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1088C2997F3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 21:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730579AbgJZUSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 16:18:04 -0400
-Received: from mail-ej1-f65.google.com ([209.85.218.65]:34916 "EHLO
-        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730569AbgJZUSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 16:18:04 -0400
-Received: by mail-ej1-f65.google.com with SMTP id p5so15589418ejj.2;
-        Mon, 26 Oct 2020 13:18:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LrCLUWIWHIw+S5igFH+N8YiZTZ/ZbsmQrGtIQcWXbAk=;
-        b=JupbH+YM05xuhp2cS0+jUy0CDI6kBXAnXNOLwM0kinu7G+Dw4EiwhhrK7iGxqm4+in
-         9bcl2YZZkHm1RiMixwfr8O1R9UjhR5eA8ktvALrDbTSeXWGYf5SJQUU9LLTJBLXDc0dw
-         nO1rQ3/Om+AHLJO5jVfXrQdxFAqOcB7Ce1tQGo238j5GJT0LwFtmrxES8Cr/34p6enuJ
-         0zKn3vT5T8JRk8IgTbiQdJY4GM19+TutpJiQivt/XRGbX5fZepgrLRNSm0mhWcMzZ9Qx
-         TYicEDLYp/+/h1j+/Nn4AViVw+9HuHdDwmGHduvURuA1k/loa6hMzNG70mIidLzFP/ev
-         S4cw==
-X-Gm-Message-State: AOAM532IRya3Al/DQbYKR3c4CfgUVoEAkhvV6JNySTw5WTyPfaaVpRzQ
-        I4SmbH6W/6ygCjfxW6NiSUU=
-X-Google-Smtp-Source: ABdhPJyx5uVn0978xfVN+j+OEHahtaYTOPdm6KpJy7YwMHiReKr2QktPIrLcqkyr3qExkAoVImpYnQ==
-X-Received: by 2002:a17:906:fa99:: with SMTP id lt25mr16805249ejb.511.1603743481821;
-        Mon, 26 Oct 2020 13:18:01 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
-        by smtp.googlemail.com with ESMTPSA id gq13sm6448856ejb.21.2020.10.26.13.18.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 13:18:00 -0700 (PDT)
-Date:   Mon, 26 Oct 2020 21:17:58 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>, robh+dt@kernel.org,
-        jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: memory: tegra: Add missing swgroups
-Message-ID: <20201026201758.GD248919@kozik-lap>
-References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
- <20201008003746.25659-5-nicoleotsuka@gmail.com>
- <20201009122110.GD458338@ulmo>
- <20201009155218.GA4469@Asurada-Nvidia>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201009155218.GA4469@Asurada-Nvidia>
+        id S1731180AbgJZUcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 16:32:18 -0400
+Received: from foss.arm.com ([217.140.110.172]:51576 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725903AbgJZUcS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 16:32:18 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7DB4F1FB;
+        Mon, 26 Oct 2020 13:32:17 -0700 (PDT)
+Received: from e120937-lin.home (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 170413F68F;
+        Mon, 26 Oct 2020 13:32:14 -0700 (PDT)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     sudeep.holla@arm.com, lukasz.luba@arm.com,
+        james.quinlan@broadcom.com, Jonathan.Cameron@Huawei.com,
+        broonie@kernel.org, robh@kernel.org, satyakim@qti.qualcomm.com,
+        etienne.carriere@linaro.org, f.fainelli@gmail.com,
+        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
+        cristian.marussi@arm.com
+Subject: [PATCH v3 0/4] Add support for SCMIv3.0 Voltage Domain Protocol and SCMI-Regulator
+Date:   Mon, 26 Oct 2020 20:31:44 +0000
+Message-Id: <20201026203148.47416-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 09, 2020 at 08:52:18AM -0700, Nicolin Chen wrote:
-> On Fri, Oct 09, 2020 at 02:21:10PM +0200, Thierry Reding wrote:
-> > On Wed, Oct 07, 2020 at 05:37:45PM -0700, Nicolin Chen wrote:
-> > > According to Tegra X1 TRM, there are missing swgroups in the
-> > > tegra210_swgroups list. So this patch adds them in bindings.
-> > > 
-> > > Note that the TEGRA_SWGROUP_GPU (in list) should be actually
-> > > TEGRA_SWGROUP_GPUB (in TRM), yet TEGRA_SWGROUP_GPU (in TRM)
-> > > is not being used -- only TEGRA_SWGROUP_GPUB (in TRM) is. So
-> > > this patch does not add TEGRA_SWGROUP_GPU (in TRM) and keeps
-> > > TEGRA_SWGROUP_GPU (in list) as it is.
-> > > 
-> > > Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
-> > > ---
-> > >  include/dt-bindings/memory/tegra210-mc.h | 10 ++++++++++
-> > >  1 file changed, 10 insertions(+)
-> > > 
-> > > diff --git a/include/dt-bindings/memory/tegra210-mc.h b/include/dt-bindings/memory/tegra210-mc.h
-> > > index c226cba9e077..f9fcb18a6d9b 100644
-> > > --- a/include/dt-bindings/memory/tegra210-mc.h
-> > > +++ b/include/dt-bindings/memory/tegra210-mc.h
-> > > @@ -33,6 +33,16 @@
-> > >  #define TEGRA_SWGROUP_AXIAP	28
-> > >  #define TEGRA_SWGROUP_ETR	29
-> > >  #define TEGRA_SWGROUP_TSECB	30
-> > > +#define TEGRA_SWGROUP_NV	31
-> > > +#define TEGRA_SWGROUP_NV2	32
-> > > +#define TEGRA_SWGROUP_PPCS1	33
-> > > +#define TEGRA_SWGROUP_DC1	34
-> > > +#define TEGRA_SWGROUP_PPCS2	35
-> > > +#define TEGRA_SWGROUP_HC1	36
-> > > +#define TEGRA_SWGROUP_SE1	37
-> > > +#define TEGRA_SWGROUP_TSEC1	38
-> > > +#define TEGRA_SWGROUP_TSECB1	39
-> > > +#define TEGRA_SWGROUP_NVDEC1	40
-> > 
-> > I'm not sure this is right. The existing list is based on "Table 4:
-> > Client to Software Name Mapping" from page 28 of the Tegra X1 TRM, and
-> > none of these new swgroups seem to be present in that table.
-> 
-> I went through all the MC_SMMU_XX_ASID_0 registers. All of
-> them have their own ASID registers that I added in PATCH-5.
+Hi,
 
-Thierry,
+this series introduces the support for the new SCMI Voltage Domain Protocol
+defined by the upcoming SCMIv3.0 specification, whose BETA release is
+available at [1].
 
-Any follow ups on this topic? Does it require a fix or looks correct?
+Afterwards, a new generic SCMI Regulator driver is developed on top of the
+new SCMI VD Protocol.
 
-Best regards,
-Krzysztof
+The series is currently based on for-next/scmi [2] on top of:
+
+commit b9ceca6be432 ("firmware: arm_scmi: Fix duplicate workqueue name")
+
+Any feedback welcome,
+
+Thanks,
+
+Cristian
+
+---
+
+v2 --> v3
+- DT bindings
+  - avoid awkard examples based on _cpu/_gpu regulators
+- SCMI Regulator
+  - remove multiple linear mappings support
+  - removed duplicated voltage name printout
+  - added a few comments
+  - simplified return path in scmi_reg_set_voltage_sel()
+- VD Protocol
+  - restrict segmented voltage domain descriptors to one triplet
+  - removed unneeded inline
+  - free allocated resources for invalid voltage domain
+  - added __must_check to info_get voltage operations
+  - added a few comments
+  - removed fixed size typing from struct voltage_info
+    
+v1 --> v2
+- rebased on for-next/scmi v5.10
+- DT bindings
+  - removed any reference to negative voltages
+- SCMI Regulator
+  - removed duplicate regulator naming
+  - removed redundant .get/set_voltage ops: only _sel variants implemented
+  - removed condexpr on fail path to increase readability
+- VD Protocol
+  - fix voltage levels query loop to reload full cmd description
+    between iterations as reported by Etienne Carriere
+  - ensure transport rx buffer is properly sized calli scmi_reset_rx_to_maxsz
+    between transfers
+
+[1]:https://developer.arm.com/documentation/den0056/c/
+[2]:https://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git/log/?h=for-next/scmi
+
+
+Cristian Marussi (4):
+  firmware: arm_scmi: Add Voltage Domain Support
+  firmware: arm_scmi: add SCMI Voltage Domain devname
+  regulator: add SCMI driver
+  dt-bindings: arm: add support for SCMI Regulators
+
+ .../devicetree/bindings/arm/arm,scmi.txt      |  42 ++
+ drivers/firmware/arm_scmi/Makefile            |   2 +-
+ drivers/firmware/arm_scmi/common.h            |   1 +
+ drivers/firmware/arm_scmi/driver.c            |   3 +
+ drivers/firmware/arm_scmi/voltage.c           | 398 +++++++++++++++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/scmi-regulator.c            | 403 ++++++++++++++++++
+ include/linux/scmi_protocol.h                 |  64 +++
+ 9 files changed, 922 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/firmware/arm_scmi/voltage.c
+ create mode 100644 drivers/regulator/scmi-regulator.c
+
+-- 
+2.17.1
+
