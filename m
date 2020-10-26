@@ -2,103 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFC02991BB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 17:02:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDFDD2991B7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 17:02:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1773880AbgJZQA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 12:00:27 -0400
-Received: from out28-1.mail.aliyun.com ([115.124.28.1]:46712 "EHLO
-        out28-1.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1784633AbgJZP7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:59:17 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07809633|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00465019-0.000271564-0.995078;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047201;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.IohI8W7_1603727944;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.IohI8W7_1603727944)
-          by smtp.aliyun-inc.com(10.147.40.2);
-          Mon, 26 Oct 2020 23:59:11 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        daniel.lezcano@linaro.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Subject: [PATCH v3 1/1] dt-bindings: timer: Add new OST support for the upcoming new driver.
-Date:   Mon, 26 Oct 2020 23:58:42 +0800
-Message-Id: <20201026155842.10196-2-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20201026155842.10196-1-zhouyanjie@wanyeetech.com>
-References: <20201026155842.10196-1-zhouyanjie@wanyeetech.com>
+        id S1784720AbgJZQCc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 26 Oct 2020 12:02:32 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:42598 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1784665AbgJZQAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 12:00:30 -0400
+Received: by mail-ej1-f68.google.com with SMTP id h24so14339982ejg.9;
+        Mon, 26 Oct 2020 09:00:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=+2ilN7ald/i8qFIcZftd6gynJe1RkBbgFa1OiazdUr4=;
+        b=Wg5FqLgtCI51HsL827Hcld+cps/3dGS8gNO10OVJ49WBiXXX/skIgTnUAJKl/jQGcm
+         PjzOvgo6Ifx+pD7pCi7X0QmWxlNtV3pAYbUH6F6eoSoPLcvNV4QzcTZT5yVEA2AgYeNe
+         LSom/EQ2kk1Pdh19aXcxoJPlIGwFtAsEjlzmpibcJYZ7aED1E/gEp+D69tu3H9i6o4zE
+         7jTMiZbs9iYrmFSLo/sBBTcMOMZQ3NyI/VMhMcjv+p/oETR0qykO2NnSTiSerOR7hsPD
+         FadEZAObqHps6xkZHlb9KBRLTODafHxzZrdOHkjUE6jm0xhngWk/1pwF+vpnlvD+EUu2
+         qsXg==
+X-Gm-Message-State: AOAM532vIsclK026pzOt1bcxIpXn/Zwh7hIiNp7H7DtS+sqN95QILX9X
+        Drxoiq1glpA1FkYte0fmqxQ=
+X-Google-Smtp-Source: ABdhPJyvg6eEEIyV+jHpkCOg8YGyuyblnT8jUrG0+702LCySTgaupP8Ox2g50lJMwLg4I27bMT45RQ==
+X-Received: by 2002:a17:906:892:: with SMTP id n18mr3457787eje.1.1603728028166;
+        Mon, 26 Oct 2020 09:00:28 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.184])
+        by smtp.googlemail.com with ESMTPSA id n10sm5419248edo.55.2020.10.26.09.00.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 09:00:26 -0700 (PDT)
+Date:   Mon, 26 Oct 2020 17:00:23 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
+Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/5] ARM: dts: add Samsung's exynos4412-based p4note
+ boards
+Message-ID: <20201026160023.GA120575@kozik-lap>
+References: <20201024144421.34435-1-martin.juecker@gmail.com>
+ <20201024144421.34435-3-martin.juecker@gmail.com>
+ <20201026144830.GA76312@kozik-lap>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201026144830.GA76312@kozik-lap>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The new OST has one global timer and two or four percpu timers, so there
-will be three combinations in the upcoming new OST driver: the original
-GLOBAL_TIMER + PERCPU_TIMER, the new GLOBAL_TIMER + PERCPU_TIMER0/1 and
-GLOBAL_TIMER + PERCPU_TIMER0/1/2/3, For this, add the macro definition
-about OST_CLK_PERCPU_TIMER0/1/2/3. And in order to ensure that all the
-combinations work normally, the original ABI values of OST_CLK_PERCPU_TIMER
-and OST_CLK_GLOBAL_TIMER need to be exchanged to ensure that in any
-combinations, the clock can be registered (by calling clk_hw_register())
-from index 0.
+On Mon, Oct 26, 2020 at 03:48:30PM +0100, Krzysztof Kozlowski wrote:
+> On Sat, Oct 24, 2020 at 04:44:18PM +0200, Martin Jücker wrote:
 
-Before this patch, OST_CLK_PERCPU_TIMER and OST_CLK_GLOBAL_TIMER are only
-used in two places, one is when using "assigned-clocks" to configure the
-clocks in the DTS file; the other is when registering the clocks in the
-sysost driver. When the values of these two ABIs are exchanged, the ABI
-value used by sysost driver when registering the clock, and the ABI value
-used by DTS when configuring the clock using "assigned-clocks" will also
-change accordingly. Therefore, there is no situation that causes the wrong
-clock to the configured. Therefore, exchanging ABI values will not cause
-errors in the existing codes when registering and configuring the clocks.
+(...)
 
-Currently, in the mainline, only X1000 and X1830 are using sysost driver,
-and the upcoming X2000 will also use sysost driver. This patch has been
-tested on all three SoCs and all works fine.
+> > +&i2c_7 {
+> > +	samsung,i2c-sda-delay = <100>;
+> > +	samsung,i2c-slave-addr = <0x10>;
+> > +	samsung,i2c-max-bus-freq = <400000>;
+> > +	pinctrl-0 = <&i2c7_bus>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +
+> > +	max77686: max77686_pmic@9 {
+> > +		compatible = "maxim,max77686";
+> > +		interrupt-parent = <&gpx0>;
+> > +		interrupts = <7 IRQ_TYPE_NONE>;
+> > +		pinctrl-0 = <&max77686_irq>;
+> > +		pinctrl-names = "default";
+> > +		reg = <0x09>;
+> > +		#clock-cells = <1>;
+> > +
+> > +		voltage-regulators {
+> 
+> Just "regulators" and no empty line after this.
 
-Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
+Skip this comment, it's obviously wrong, as the regulator driver and
+bindings require the exact name "voltage-regulator".
 
-Notes:
-    v1->v2:
-    Rewrite the commit message so that each line is less than 80 characters.
-    
-    v2->v3:
-    Add the description of why the exchange of ABI values will not affect
-    the existing driver into the commit message.
-
- include/dt-bindings/clock/ingenic,sysost.h | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
-
-diff --git a/include/dt-bindings/clock/ingenic,sysost.h b/include/dt-bindings/clock/ingenic,sysost.h
-index 9ac88e90babf..063791b01ab3 100644
---- a/include/dt-bindings/clock/ingenic,sysost.h
-+++ b/include/dt-bindings/clock/ingenic,sysost.h
-@@ -1,12 +1,16 @@
- /* SPDX-License-Identifier: GPL-2.0 */
- /*
-- * This header provides clock numbers for the ingenic,tcu DT binding.
-+ * This header provides clock numbers for the Ingenic OST DT binding.
-  */
- 
- #ifndef __DT_BINDINGS_CLOCK_INGENIC_OST_H__
- #define __DT_BINDINGS_CLOCK_INGENIC_OST_H__
- 
--#define OST_CLK_PERCPU_TIMER	0
--#define OST_CLK_GLOBAL_TIMER	1
-+#define OST_CLK_PERCPU_TIMER	1
-+#define OST_CLK_GLOBAL_TIMER	0
-+#define OST_CLK_PERCPU_TIMER0	1
-+#define OST_CLK_PERCPU_TIMER1	2
-+#define OST_CLK_PERCPU_TIMER2	3
-+#define OST_CLK_PERCPU_TIMER3	4
- 
- #endif /* __DT_BINDINGS_CLOCK_INGENIC_OST_H__ */
--- 
-2.11.0
-
+Best regards,
+Krzysztof
