@@ -2,229 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C07C298F4D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:30:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89652298F56
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:32:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1781490AbgJZOa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 10:30:29 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:43465 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1781493AbgJZOa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:30:28 -0400
-Received: by mail-oo1-f67.google.com with SMTP id z14so2134564oom.10;
-        Mon, 26 Oct 2020 07:30:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=EvODWLSlZb9Skc/iTD6aHWqmQrjOtvrwcbltSN0DUow=;
-        b=rWzr6iN68zpk98U3JGzl0S53BZqRTg7pSa0i2uxs6Yqn9nUnGdkqJk1DCfIdOKZYpQ
-         mEFQ7uKSFeaAywz6a6JoydTsZ/h9C17vxrdctJZUBR5xkOTzowlVwYo4PvTj4l25N/Da
-         cLh/3S0//dFZ0bEyUlkycYrCGoDIz1SZmjo25ZmCoz5NdjdHfo8oNV2w+4uR8f4mhlgZ
-         mYk5rnQnMN7oZedOuc06AdV67Xv0KapKiAvQ6XDxWGkYtHsWblTONaJI7A5kDkBYcCx9
-         gEsEfoeyJY6d1rHretYVfJ4eubV2qc59blS0ixf3t+bdT9V1VPNNRj0xotCJ5Q+lBWLZ
-         mIUw==
-X-Gm-Message-State: AOAM530mGykwy1ahxiUTg5SxoWeqOEcpZC+s9+60kDbtEgo6n4ftxNpb
-        DOOO8DGlZ72Oh4bBECCjMg==
-X-Google-Smtp-Source: ABdhPJy5jo0OcqXys+08F5mv4GOWXCDsbF7iHCxIexI76vlCOrGJygolE/VWzKBmZPl/afqlzltoDg==
-X-Received: by 2002:a4a:c98f:: with SMTP id u15mr14230219ooq.78.1603722625676;
-        Mon, 26 Oct 2020 07:30:25 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b125sm2162575oii.19.2020.10.26.07.30.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 07:30:25 -0700 (PDT)
-Received: (nullmailer pid 112408 invoked by uid 1000);
-        Mon, 26 Oct 2020 14:30:24 -0000
-Date:   Mon, 26 Oct 2020 09:30:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v2 02/24] dt-bindings: introduce silabs,wfx.yaml
-Message-ID: <20201026143024.GA95610@bogus>
-References: <20201020125817.1632995-1-Jerome.Pouiller@silabs.com>
- <20201020125817.1632995-3-Jerome.Pouiller@silabs.com>
+        id S1781532AbgJZOcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 10:32:24 -0400
+Received: from mx2.suse.de ([195.135.220.15]:51442 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1781420AbgJZObw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 10:31:52 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 3D1FAAD07;
+        Mon, 26 Oct 2020 14:31:50 +0000 (UTC)
+Message-ID: <2ca7430db77ca2924cb6f4b99e858f155d261a18.camel@suse.de>
+Subject: Re: [PATCH v2 05/10] soc: bcm: raspberrypi-power: Release firmware
+ handle on unbind
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org
+Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org
+Date:   Mon, 26 Oct 2020 15:31:47 +0100
+In-Reply-To: <20201022155858.20867-6-nsaenzjulienne@suse.de>
+References: <20201022155858.20867-1-nsaenzjulienne@suse.de>
+         <20201022155858.20867-6-nsaenzjulienne@suse.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-iro0+jQoAZrbRkqhy4O6"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201020125817.1632995-3-Jerome.Pouiller@silabs.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 02:57:55PM +0200, Jerome Pouiller wrote:
-> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> 
-> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+
+--=-iro0+jQoAZrbRkqhy4O6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, 2020-10-22 at 17:58 +0200, Nicolas Saenz Julienne wrote:
+> Upon unbinding the device make sure we release RPi's firmware interface.
+>=20
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 > ---
->  .../bindings/net/wireless/silabs,wfx.yaml     | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> new file mode 100644
-> index 000000000000..2605e9fed185
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2020, Silicon Laboratories, Inc.
-> +%YAML 1.2
-> +---
+>  drivers/soc/bcm/raspberrypi-power.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>=20
+> diff --git a/drivers/soc/bcm/raspberrypi-power.c b/drivers/soc/bcm/raspbe=
+rrypi-power.c
+> index 5d1aacdd84ef..a0b38db5886c 100644
+> --- a/drivers/soc/bcm/raspberrypi-power.c
+> +++ b/drivers/soc/bcm/raspberrypi-power.c
+> @@ -225,6 +225,20 @@ static int rpi_power_probe(struct platform_device *p=
+dev)
+>  	return 0;
+>  }
+> =20
+> +static int rpi_power_remove(struct platform_device *pdev)
+> +{
+> +	struct rpi_power_domains *rpi_domains =3D platform_get_drvdata(pdev);
 > +
-> +$id: http://devicetree.org/schemas/net/wireless/silabs,wfx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +	of_genpd_del_provider(dev->of_node);
 > +
-> +title: Silicon Labs WFxxx devicetree bindings
+> +	for (i =3D 0; i < RPI_POWER_DOMAIN_COUNT; i++)
+> +		pm_genpd_remove(&rpi_domains->domains[i].base);
 > +
-> +maintainers:
-> +  - Jérôme Pouiller <jerome.pouiller@silabs.com>
-> +
-> +description: >
-> +  Support for the Wifi chip WFxxx from Silicon Labs. Currently, the only device
-> +  from the WFxxx series is the WF200 described here:
-> +     https://www.silabs.com/documents/public/data-sheets/wf200-datasheet.pdf
-> +  
-> +  The WF200 can be connected via SPI or via SDIO.
-> +  
-> +  For SDIO:
-> +  
-> +    Declaring the WFxxx chip in device tree is mandatory (usually, the VID/PID is
-> +    sufficient for the SDIO devices).
-> +  
-> +    It is recommended to declare a mmc-pwrseq on SDIO host above WFx. Without
-> +    it, you may encounter issues during reboot. The mmc-pwrseq should be
-> +    compatible with mmc-pwrseq-simple. Please consult
-> +    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt for more
-> +    information.
-> +  
-> +  For SPI:
-> +  
-> +    In add of the properties below, please consult
-> +    Documentation/devicetree/bindings/spi/spi-controller.yaml for optional SPI
-> +    related properties.
-> +
-> +properties:
-> +  compatible:
-> +    const: silabs,wf200
-> +
-> +  reg:
-> +    description:
-> +      When used on SDIO bus, <reg> must be set to 1. When used on SPI bus, it is
-> +      the chip select address of the device as defined in the SPI devices
-> +      bindings.
-> +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-> +
-> +  interrupts:
-> +    description: The interrupt line. Triggers IRQ_TYPE_LEVEL_HIGH and
-> +      IRQ_TYPE_EDGE_RISING are both supported by the chip and the driver. When
-> +      SPI is used, this property is required. When SDIO is used, the "in-band"
-> +      interrupt provided by the SDIO bus is used unless an interrupt is defined
-> +      in the Device Tree.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: (SPI only) Phandle of gpio that will be used to reset chip
-> +      during probe. Without this property, you may encounter issues with warm
-> +      boot. (For legacy purpose, the gpio in inverted when compatible ==
-> +      "silabs,wfx-spi")
-> +
-> +      For SDIO, the reset gpio should declared using a mmc-pwrseq.
-> +    maxItems: 1
-> +
-> +  wakeup-gpios:
-> +    description: Phandle of gpio that will be used to wake-up chip. Without this
-> +      property, driver will disable most of power saving features.
-> +    maxItems: 1
-> +
-> +  config-file:
+> +	rpi_firmware_put(rpi_domaina->fw);
 
-If this is antenna data/config, then make the property name more 
-specific. And it needs a vendor prefix as it is vendor specific.
+I Just realised I failed to squash a fix for this patch, so this will not
+build. Sorry for that.
 
-> +    description: Use an alternative file as PDS. Default is `wf200.pds`.
-> +
-> +  local-mac-address:
-> +    $ref: /net/ethernet-controller.yaml#/properties/local-mac-address
-> +
-> +  mac-address:
-> +    $ref: /net/ethernet-controller.yaml#/properties/mac-address
-
-I'd rather see these properties refactored out to their own file. We 
-should probably have a wifi-controller.yaml that has these as well as 
-enforcing the node name 'wifi'.
+Regards,
+Nicolas
 
 > +
-> +additionalProperties: true
+> +	return 0;
+> +}
+> +
+>  static const struct of_device_id rpi_power_of_match[] =3D {
+>  	{ .compatible =3D "raspberrypi,bcm2835-power", },
+>  	{},
+> @@ -237,6 +251,7 @@ static struct platform_driver rpi_power_driver =3D {
+>  		.of_match_table =3D rpi_power_of_match,
+>  	},
+>  	.probe		=3D rpi_power_probe,
+> +	.remove		=3D rpi_power_remove,
+>  };
+>  builtin_platform_driver(rpi_power_driver);
+> =20
 
-What properties? This shouldn't be true. If you need spi-cpol or 
-spi-cpha, then you should list those. Really, if the SPI mode of the 
-device is fixed, then you should never use those. 
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        wfx@0 {
-> +            compatible = "silabs,wf200";
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&wfx_irq &wfx_gpios>;
-> +            reg = <0>;
-> +            interrupts-extended = <&gpio 16 IRQ_TYPE_EDGE_RISING>;
-> +            wakeup-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
-> +            reset-gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
-> +            spi-max-frequency = <42000000>;
-> +        };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    wfx_pwrseq: wfx_pwrseq {
-> +        compatible = "mmc-pwrseq-simple";
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&wfx_reset>;
-> +        reset-gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
-> +    };
-> +
-> +    mmc0 {
-> +        mmc-pwrseq = <&wfx_pwrseq>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mmc@1 {
+--=-iro0+jQoAZrbRkqhy4O6
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-wifi@1
+-----BEGIN PGP SIGNATURE-----
 
-> +            compatible = "silabs,wf200";
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&wfx_wakeup>;
-> +            reg = <1>;
-> +            wakeup-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.28.0
-> 
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+W3dMACgkQlfZmHno8
+x/7DPAf/W6V8Brdbgq2QtE27YW5fEMV34Zg8X73FdarZ4ek3YR4/DxGnBXwz6/o3
+Uf4CVOLfSOnlwf+nO26rHfvMl8WBwo14AR37nVAiHBFUOSiTvExBO+aHFDvHfHRP
+LMcZeVRWNrH1XiVuYsXMlQ5BgeTba6ii+awS2itDOeR61xraPONJHgc0sVSbnjh+
+AqDo4TxRZHP7CifFfwTZFC/yYt5RXYGyVYvvi4rWu9FZbwjy06rlmMcGZyguGpgj
+grC4TlIs1actEIgrFa8cSS+zLNpcYCBgFe5HzVjqkyrhGu5lJZbFqmgbACV27+Jr
+nBhLMJ/JZSnUSDFMhDuAJtC0/132LA==
+=AyH+
+-----END PGP SIGNATURE-----
+
+--=-iro0+jQoAZrbRkqhy4O6--
+
