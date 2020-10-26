@@ -2,157 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DD0B298E6F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD31298E8B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:54:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1780639AbgJZNs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 09:48:57 -0400
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:43221 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1780638AbgJZNs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:48:57 -0400
-Received: by mail-oo1-f66.google.com with SMTP id z14so2101815oom.10;
-        Mon, 26 Oct 2020 06:48:56 -0700 (PDT)
+        id S1780741AbgJZNyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 09:54:55 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:40076 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1780737AbgJZNyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:54:54 -0400
+Received: by mail-ot1-f66.google.com with SMTP id f97so8051861otb.7;
+        Mon, 26 Oct 2020 06:54:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/W3rXMOeU4UW4iv7U7wh96qR+8ca/6ZnYv5sDQ2FeyY=;
-        b=dXGYoRA9IRQJI4yEkK4EsaPcA2mHpbU/yLy444JyKmHPkEaCsZrGn8LpykGcWEbfmG
-         G/MQ2qJdb/0zDxaR3hbQOAaFj9c3ZepxqdHqeQXr5McYE+wFeBi23Lwfrawi8Atyh4nr
-         JFK7o5MuE51YhM80S6V6IsqTF7ryQGvQsdnxVfjAyQT38s1df7Op8ANQArabEaW3f9Vi
-         VPvsHr9AiLbTXO4e+1xdQkm2cJh99TVVc5wOGbi4v1y6aYuoK5IGW5Ov8v2pbMaeN6Oa
-         aKK5hhWBQ/DJ+E4fsEzGhRlqXvIZ1QavWE/Y2IPuQNt0gsUIKCGiZ/j0gvvh+QXz7yh0
-         fViQ==
-X-Gm-Message-State: AOAM533CA7foCiZVE3HuvRUdm9IopAvTxYVoValNTfMJlHqehHfhLYED
-        lOqkYmd/ko3ns+tQpZyjew==
-X-Google-Smtp-Source: ABdhPJwDqkBUrTzPmtu85Tlq/UdpQobzvMsc1i0t7ux0poD1zKv5XdGkpQhLohJO9HaBgZ/KeaiFkA==
-X-Received: by 2002:a4a:d815:: with SMTP id f21mr14009344oov.44.1603720134465;
-        Mon, 26 Oct 2020 06:48:54 -0700 (PDT)
+        bh=b7baIeex9tBAg+HC/pCtQM4CcA9Yu/P2Kiz6rbkWWFQ=;
+        b=MtYW6Ad6rR+kaOc5JUFmVJKy7bNon8ZWrlNEuTOe1QIEPgFd4JIQCS7cGdbPSJEPGL
+         NC3/pf2WeY/quN4BSScvztd9/1/XroHjGgbg6/7pmTmYpl/W2bAZPcPllzdlmw0wovlN
+         7GL8sdPo0tdPERTb4ZO2x/T0fSA200sxicK15PBnFJQPIx1ph6IGRcgxYafimvT0y5B2
+         azMqZrKQ++Cc8t+n95kYTF8b//nTRogJ0+cwsND3lTZSCwUNdHtq+WFXmjm88U96Pw3n
+         L3FFVUjqvm5EGEktMyQY090KD1qO0XgN20xc+POCuPK2dD/NfWTnmDlqjTsEHjSVj4ky
+         hiDQ==
+X-Gm-Message-State: AOAM530xEmhrt1xGqMFE7ajQfxo/PNo7OnlhIqt4T0bDokO9F1QqBfE3
+        RVsbTDbHYkFJwQvIrvthbQ==
+X-Google-Smtp-Source: ABdhPJy+AVVJtyh1P388ilZ7a32F26K4IYL2djBrl+syNcAqhG7//EwYrauP3uzH8LOgA6YbEu+okg==
+X-Received: by 2002:a9d:2389:: with SMTP id t9mr10836030otb.329.1603720493673;
+        Mon, 26 Oct 2020 06:54:53 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 19sm1747519oin.54.2020.10.26.06.48.53
+        by smtp.gmail.com with ESMTPSA id f9sm3903361ooq.9.2020.10.26.06.54.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 06:48:53 -0700 (PDT)
-Received: (nullmailer pid 57625 invoked by uid 1000);
-        Mon, 26 Oct 2020 13:48:52 -0000
-Date:   Mon, 26 Oct 2020 08:48:52 -0500
+        Mon, 26 Oct 2020 06:54:52 -0700 (PDT)
+Received: (nullmailer pid 65566 invoked by uid 1000);
+        Mon, 26 Oct 2020 13:54:51 -0000
+Date:   Mon, 26 Oct 2020 08:54:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO
- controller
-Message-ID: <20201026134852.GA54362@bogus>
-References: <20201019141008.871177-1-daniel@0x0f.com>
- <20201019141008.871177-3-daniel@0x0f.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        Christian Eggers <ceggers@arri.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH net-next 1/9] dt-bindings: net: dsa: convert ksz
+ bindings document to yaml
+Message-ID: <20201026135451.GA57974@bogus>
+References: <20201019172435.4416-1-ceggers@arri.de>
+ <20201019172435.4416-2-ceggers@arri.de>
+ <87lfg0rrzi.fsf@kurt>
+ <20201022001639.ozbfnyc4j2zlysff@skbuf>
+ <3cf2e7f8-7dc8-323f-0cee-5a025f748426@gmail.com>
+ <87h7qmil8j.fsf@kurt>
+ <20201022123735.3mnlzkfmqqrho6n5@skbuf>
+ <63bc70fe-30b3-43f1-a54c-b8c82bbdc048@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201019141008.871177-3-daniel@0x0f.com>
+In-Reply-To: <63bc70fe-30b3-43f1-a54c-b8c82bbdc048@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 19, 2020 at 11:10:05PM +0900, Daniel Palmer wrote:
-> Add a binding description for the MStar/SigmaStar GPIO controller
-> found in the MSC313 and later ARMv7 SoCs.
+On Thu, Oct 22, 2020 at 12:17:26PM -0700, Florian Fainelli wrote:
+> On 10/22/20 5:37 AM, Vladimir Oltean wrote:
+> > On Thu, Oct 22, 2020 at 12:54:52PM +0200, Kurt Kanzenbach wrote:
+> >> On Wed Oct 21 2020, Florian Fainelli wrote:
+> >>> On 10/21/2020 5:16 PM, Vladimir Oltean wrote:
+> >>>> On Wed, Oct 21, 2020 at 08:52:01AM +0200, Kurt Kanzenbach wrote:
+> >>>>> On Mon Oct 19 2020, Christian Eggers wrote:
+> >>>>> The node names should be switch. See dsa.yaml.
+> >>>>>
+> >>>>>> +            compatible = "microchip,ksz9477";
+> >>>>>> +            reg = <0>;
+> >>>>>> +            reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+> >>>>>> +
+> >>>>>> +            spi-max-frequency = <44000000>;
+> >>>>>> +            spi-cpha;
+> >>>>>> +            spi-cpol;
+> >>>>>> +
+> >>>>>> +            ports {
+> >>>>>
+> >>>>> ethernet-ports are preferred.
+> >>>>
+> >>>> This is backwards to me, instead of an 'ethernet-switch' with 'ports',
+> >>>> we have a 'switch' with 'ethernet-ports'. Whatever.
+> >>>
+> >>> The rationale AFAIR was that dual Ethernet port controllers like TI's 
+> >>> CPSW needed to describe each port as a pseudo Ethernet MAC and using 
+> >>> 'ethernet-ports' as a contained allowed to disambiguate with the 'ports' 
+> >>> container used in display subsystem descriptions.
+> >>
+> >> Yes, that was the outcome of previous discussions.
+> > 
+> > And why would that disambiguation be necessary in the first place? My
+> > understanding is that the whole node path provides the necessary
+> > namespacing to avoid the confusion. For example, the 'reg' property
+> > means 100 things to 100 buses, and no one has an issue with that. I am
+> > not expecting an Ethernet switch to have an HDMI port, I might be wrong
+> > though.
 > 
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> ---
->  .../bindings/gpio/mstar,msc313-gpio.yaml      | 61 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-> new file mode 100644
-> index 000000000000..8c69153ac27e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/mstar,msc313-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MStar/SigmaStar GPIO controller
-> +
-> +maintainers:
-> +  - Daniel Palmer <daniel@thingy.jp>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^gpio@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    const: mstar,msc313-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-ranges: true
-> +
-> +  gpio-ranges-group-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
+> The disambiguation is more of a hint given to DT analysis tools to
+> validate a given node with little to no knowledge of the containing
+> node. I don't really have a dog in the fight here.
 
-The strings in your header should be defined here.
+A node name should mean 1 and only 1 type/class of node. 'ports' (and 
+'port') is for the graph binding.
 
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-
-additionalProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/msc313-gpio.h>
-> +
-> +    gpio: gpio@207800 {
-> +      compatible = "mstar,msc313e-gpio";
-> +      #gpio-cells = <2>;
-> +      reg = <0x207800 0x200>;
-> +      gpio-controller;
-> +      gpio-ranges = <&pinctrl 0 36 22>,
-> +                    <&pinctrl 22 63 4>,
-> +                    <&pinctrl 26 68 6>;
-> +      #interrupt-cells = <2>;
-> +      interrupt-controller;
-> +      interrupt-parent = <&intc_fiq>;
-> +      status = "okay";
-
-Don't show status in examples.
-
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a188fae8c04e..102aedca81dc 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2130,6 +2130,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->  S:	Maintained
->  W:	http://linux-chenxing.org/
->  F:	Documentation/devicetree/bindings/arm/mstar/*
-> +F:	Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
->  F:	arch/arm/boot/dts/mstar-*
->  F:	arch/arm/mach-mstar/
->  F:	include/dt-bindings/gpio/msc313-gpio.h
-> -- 
-> 2.28.0
-> 
+Rob
