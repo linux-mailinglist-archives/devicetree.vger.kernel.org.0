@@ -2,108 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C977F298D92
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54154298D9E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:15:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1738651AbgJZNNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 09:13:38 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37964 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392224AbgJZNN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:13:28 -0400
-Received: by mail-ot1-f67.google.com with SMTP id b2so7352485ots.5;
-        Mon, 26 Oct 2020 06:13:25 -0700 (PDT)
+        id S2393497AbgJZNOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 09:14:46 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:37070 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407341AbgJZNOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:14:17 -0400
+Received: by mail-qt1-f193.google.com with SMTP id h19so6597242qtq.4;
+        Mon, 26 Oct 2020 06:14:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ArQe57gzFPxxZh8Z/D5KuSTLp6YyDg0xaQwMBg7tO24=;
+        b=SMnxD2B1iAKOIt7VRf0VogijjHB3So1ZOaAIt8Q2b0Jqf+9bbrqc2CjG6hkqaHlX8l
+         unP0y4vDjAazyP5ufrrRbmZUQPIpbzltcFXpSQzvQ0GWKEC8SH5cEBBlIT1a6qjqhsGl
+         HMTI0l/0yw0Ah8MPmfekwILnv/2uRTeCOhZWs8/Mp5ioYrDDMiPN66HCN1h8KxAVyKn/
+         /AvIFd9rSVs/yRKoqXCP0B36SOScqre6UHLJ4rD3fURAKVXxvfJh/1K76mCZKbuvMf+v
+         LEg2z6XbNFCOV4rPbXzgHyTrPwPs70SXSzzqyxPIgQTzDqf0h9WdcUCNmUPrTCdjqXdR
+         3VVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=s1UuzHdFCfjwHcFLrPZqlXZZN81zkyKRH1qvGeQd3K0=;
-        b=dmXyrLoY8CKTcKAfHRT1NiyzkE5JA/tJYFL06lVEDH+zGX/n+YW1zvZcvHOKsiG59M
-         DHUyhmBo02Hj8at99WoBwwDkDFZ1MyiIA3Z//a8kKYoMZmUuze8tk9r5GJ0n3oouCDXd
-         fHCMogeVnV7Cw2JS1kEpc1IxMqBPJAEbPsV7l6bLRJ6Hp+jnH8f/I3IaJH1qja3gKCy1
-         dCtnxUdzkGsOkBXFQaZEB/xjSWlaIsWwGdlkZ74C7jGC9VGu+tslvZdboeY8K0R0bS6K
-         VY1EFEQSO2llG+fsM97lbrYH6WLbkSKbRk5KJYfkCT11lHvlquzXRNhE+4xMSi5Nnyvr
-         PxQQ==
-X-Gm-Message-State: AOAM533ZXsLf+L0CJWyqjsRYdperbwFSoueLiPt02oCFrMikuL3hlOQC
-        UC/uuZ/qH9Cu15uxZsbNLnoVRNmobQ==
-X-Google-Smtp-Source: ABdhPJzDpmgA2mhOfO1BNzZj8/v9x24IC+8aikYlkWINJUfOORj/86QtUOFnqWJeHk3CwnwnTi+aag==
-X-Received: by 2002:a05:6830:1e96:: with SMTP id n22mr13369727otr.66.1603718005215;
-        Mon, 26 Oct 2020 06:13:25 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x13sm2413929otq.75.2020.10.26.06.13.24
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ArQe57gzFPxxZh8Z/D5KuSTLp6YyDg0xaQwMBg7tO24=;
+        b=AcO/gqa7JPHI/aaXIWY/FgPh/B3Ol8Yi/7oToRKiTVkdJkLRWZ0/K2mosEQq98U3do
+         FIiI0SV0IwlIWmbt5euVcMtTAU1ESsdOs0qyAJuuW83c0D451dZxbu3kqMhwt2e5sVFx
+         5yjOfuwt/eD7oZsqXLygFiEojLULyGMHnb8khRFZ6HOvBoKXSAsxD0rST30ph4Si34S/
+         ZcQu63U9FOF3s+GRLlZA91RZymzuF7UHcAp8NbmTz7FW0CmoPz9CEjjHuADTiTanMBIH
+         5lu4YmbURLJPwUtoAOr1sfMydrY0kiNsGJPafH6E2aCASTzwJL+s3slBYkx3NJgR0qpa
+         FXzA==
+X-Gm-Message-State: AOAM533kMSP3OrBDKMyCXkY8ltb0WQ7LydCNQyFxB0oml/9LbgYdoPZn
+        MwovHN0C/YhVGqdWUMfqhCI=
+X-Google-Smtp-Source: ABdhPJwtj3nMNwHnoXTaw2Z8Wc4jWNqOGAI23KTp4ou5n8tA+t1AyeXS/WyPKgLG54dj8J2gE4Dfmw==
+X-Received: by 2002:ac8:1095:: with SMTP id a21mr16664144qtj.260.1603718054715;
+        Mon, 26 Oct 2020 06:14:14 -0700 (PDT)
+Received: from ubuntu.localdomain (ool-45785633.dyn.optonline.net. [69.120.86.51])
+        by smtp.googlemail.com with ESMTPSA id 61sm6598605qta.19.2020.10.26.06.14.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 06:13:24 -0700 (PDT)
-Received: (nullmailer pid 10098 invoked by uid 1000);
-        Mon, 26 Oct 2020 13:13:24 -0000
-Date:   Mon, 26 Oct 2020 08:13:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: timer: Add new OST support for the
- upcoming new driver.
-Message-ID: <20201026131324.GA7627@bogus>
-References: <20201016165602.55720-1-zhouyanjie@wanyeetech.com>
- <20201016165602.55720-2-zhouyanjie@wanyeetech.com>
+        Mon, 26 Oct 2020 06:14:13 -0700 (PDT)
+From:   Vivek Unune <npcomplete13@gmail.com>
+Cc:     Vivek Unune <npcomplete13@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: BCM5301X: Linksys EA9500 add fixed partitions
+Date:   Mon, 26 Oct 2020 09:13:51 -0400
+Message-Id: <20201026131351.258296-1-npcomplete13@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201016165602.55720-2-zhouyanjie@wanyeetech.com>
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 17, 2020 at 12:56:02AM +0800, 周琰杰 (Zhou Yanjie) wrote:
-> The new OST has one global timer and two or four percpu timers, so there
-> will be three combinations in the upcoming new OST driver: the original
-> GLOBAL_TIMER + PERCPU_TIMER, the new GLOBAL_TIMER + PERCPU_TIMER0/1 and
-> GLOBAL_TIMER + PERCPU_TIMER0/1/2/3, For this, add the macro definition
-> about OST_CLK_PERCPU_TIMER0/1/2/3. And in order to ensure that all the
-> combinations work normally, the original ABI values of OST_CLK_PERCPU_TIMER
-> and OST_CLK_GLOBAL_TIMER need to be exchanged to ensure that in any
-> combinations, the clock can be registered (by calling clk_hw_register())
-> from index 0.
+This router has dual paritions to store trx firmware image and
+dual partitions for nvram. The second one in each of these cases acts
+as a backup store.
 
-You need to state why breaking the ABI is okay.
+When tested with OpenWrt, the default partition parser causes two issues:
 
-> 
-> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
-> 
-> Notes:
->     v1->v2:
->     Rewrite the commit message so that each line is less than 80 characters.
-> 
->  include/dt-bindings/clock/ingenic,sysost.h | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/include/dt-bindings/clock/ingenic,sysost.h b/include/dt-bindings/clock/ingenic,sysost.h
-> index 9ac88e90babf..063791b01ab3 100644
-> --- a/include/dt-bindings/clock/ingenic,sysost.h
-> +++ b/include/dt-bindings/clock/ingenic,sysost.h
-> @@ -1,12 +1,16 @@
->  /* SPDX-License-Identifier: GPL-2.0 */
->  /*
-> - * This header provides clock numbers for the ingenic,tcu DT binding.
-> + * This header provides clock numbers for the Ingenic OST DT binding.
->   */
->  
->  #ifndef __DT_BINDINGS_CLOCK_INGENIC_OST_H__
->  #define __DT_BINDINGS_CLOCK_INGENIC_OST_H__
->  
-> -#define OST_CLK_PERCPU_TIMER	0
-> -#define OST_CLK_GLOBAL_TIMER	1
-> +#define OST_CLK_PERCPU_TIMER	1
-> +#define OST_CLK_GLOBAL_TIMER	0
-> +#define OST_CLK_PERCPU_TIMER0	1
-> +#define OST_CLK_PERCPU_TIMER1	2
-> +#define OST_CLK_PERCPU_TIMER2	3
-> +#define OST_CLK_PERCPU_TIMER3	4
->  
->  #endif /* __DT_BINDINGS_CLOCK_INGENIC_OST_H__ */
-> -- 
-> 2.11.0
-> 
+1. It labels both nvram partitions as nvram. In factory, second one is
+labeled devinfo.
+2. It parses second trx image and tries to create second 'linux' partition
+and fails with - cannot create duplicate 'linux' partition. I've set this
+partition to read-only for now
+
+The following patch works around both of these issues.
+
+Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
+---
+ .../boot/dts/bcm47094-linksys-panamera.dts    | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+index 5d5930edfb9d..13da16c5de68 100644
+--- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
++++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+@@ -292,3 +292,44 @@ fixed-link {
+ &usb3_phy {
+ 	status = "okay";
+ };
++
++&nandcs {
++	partitions {
++		compatible = "fixed-partitions";
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		partition@0 {
++			label = "boot";
++			reg = <0x0000000 0x0080000>;
++			read-only;
++		};
++
++		partition@80000 {
++			label = "nvram";
++			reg = <0x080000 0x0100000>;
++		};
++
++		partition@180000{
++			label = "devinfo";
++			reg = <0x0180000 0x080000>;
++		};
++
++		partition@200000 {
++			label = "firmware";
++			reg = <0x0200000 0x01D00000>;
++			compatible = "brcm,trx";
++		};
++
++		partition@1F00000 {
++			label = "failsafe";
++			reg = <0x01F00000 0x01D00000>;
++			read-only;
++		};
++
++		partition@0x5200000 {
++			label = "brcmnand";
++			reg = <0x05200000 0x02E00000>;
++		};
++	};
++};
+-- 
+2.25.1
+
