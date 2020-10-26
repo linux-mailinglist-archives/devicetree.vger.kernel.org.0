@@ -2,121 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF402991CC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 17:05:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F7A72991EC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 17:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1774582AbgJZQFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 12:05:10 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:55829 "EHLO z5.mailgun.us"
+        id S1739597AbgJZQLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 12:11:37 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:55818 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1784900AbgJZQFJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 12:05:09 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1603728309; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=gENqlM/pPw1+/3BMakG5icMgcmU6s9phV5kM80xNKFU=; b=aZcYCJDWRxe+d5rbtGZqvkeI5oWkjXZdmfsOwd7cYFKGhRs3wM+Ondg4kkzuhHoacbrPNCMw
- S2qube/L2CVmd0jKpGo6wciLcVPZrUyJPrwmvfdefvSCJnSQaCwQvSXBVO6SnQO0/WoLYCem
- zVfCOZ5qSUjWZ0+WVbqy1JxtwHs=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f96f3993ecd8ffc948de9dd (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 26 Oct 2020 16:04:41
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8F812C433B6; Mon, 26 Oct 2020 16:04:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-5.1 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.0
-Received: from [192.168.29.24] (unknown [49.37.139.237])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E802BC433FF;
-        Mon, 26 Oct 2020 16:04:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E802BC433FF
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH] Asoc: qcom: lpass-sc7180: Fix MI2S bitwidth field bit
- positions
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1603373219-19374-1-git-send-email-srivasam@codeaurora.org>
- <335f1d55-8a85-8501-fd69-0397f44e21af@linaro.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <242284b2-ca3f-fbe0-af97-c0e8e5fe640d@codeaurora.org>
-Date:   Mon, 26 Oct 2020 21:34:32 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
-MIME-Version: 1.0
-In-Reply-To: <335f1d55-8a85-8501-fd69-0397f44e21af@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        id S2442285AbgJZQKp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 12:10:45 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 81E19200763;
+        Mon, 26 Oct 2020 17:10:43 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6638C2002F6;
+        Mon, 26 Oct 2020 17:10:43 +0100 (CET)
+Received: from fsr-ub1864-126.ea.freescale.net (fsr-ub1864-126.ea.freescale.net [10.171.82.212])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1BF3A20308;
+        Mon, 26 Oct 2020 17:10:43 +0100 (CET)
+From:   Ioana Ciornei <ioana.ciornei@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, leoyang.li@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: [PATCH v4 00/11] arm64: dts: layerscape: update MAC nodes with PHY information
+Date:   Mon, 26 Oct 2020 18:09:54 +0200
+Message-Id: <20201026161005.5421-1-ioana.ciornei@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your time srinivas!!!
+This patch set aims to add the necessary DTS nodes to complete the
+MAC/PCS/PHY representation on DPAA2 devices. The external MDIO bus nodes
+and the PHYs found on them are added, along with the PCS MDIO internal
+buses and their PCS PHYs. Also, links to these PHYs are added from the
+DPMAC node.
 
-On 10/26/2020 8:31 PM, Srinivas Kandagatla wrote:
->
->
-> On 22/10/2020 14:26, Srinivasa Rao Mandadapu wrote:
->> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->>
->> Update SC7180 lpass_variant structure with proper I2S bitwidth
->> field bit positions, as bitwidth denotes 0 to 1 bits,
->> but previously used only 0 bit.
->>
->> Fixes: commit cba62c8b49bead ("Merge series "ASoC: qcom: Add support 
->> for SC7180 lpass variant" from Rohit kumar <rohitkr@codeaurora.org>:")
-> this should be 12 chars long, for this particular fix it should be!
->
-> Fixes: 24caf8d9eb108 ("ASoC: qcom: lpass-sc7180: Add platform driver 
-> for lpass audio")
->>
->
-> No empty line after Fixes tag!
->
-> Will coorect it in next patch.
+Changes in v2:
+ - documented the dpmac node into a new yaml entry
+ - dropped the '0x' from some unit addresses
 
->> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> ---
->>   sound/soc/qcom/lpass-sc7180.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/sound/soc/qcom/lpass-sc7180.c 
->> b/sound/soc/qcom/lpass-sc7180.c
->> index c6292f9e..bc998d5 100644
->> --- a/sound/soc/qcom/lpass-sc7180.c
->> +++ b/sound/soc/qcom/lpass-sc7180.c
->> @@ -188,7 +188,7 @@ static struct lpass_variant sc7180_data = {
->>       .micmode        = REG_FIELD_ID(0x1000, 4, 8, 3, 0x1000),
->>       .micmono        = REG_FIELD_ID(0x1000, 3, 3, 3, 0x1000),
->>       .wssrc            = REG_FIELD_ID(0x1000, 2, 2, 3, 0x1000),
->> -    .bitwidth        = REG_FIELD_ID(0x1000, 0, 0, 3, 0x1000),
->> +    .bitwidth        = REG_FIELD_ID(0x1000, 0, 1, 3, 0x1000),
->>         .rdma_dyncclk        = REG_FIELD_ID(0xC000, 21, 21, 5, 0x1000),
->>       .rdma_bursten        = REG_FIELD_ID(0xC000, 20, 20, 5, 0x1000),
->>
-> --srini
+Changes in v3:
+ - renamed dpmac@x into ethernet@x
+ - renamed the new documentation file to use the same name as the
+   compatible
+ - marked additionalProperties as false
+ - added a reference to ethernet-controller.yaml
+ - added a new patch to document 10gbase-r - 2/11
+
+Changes in v4:
+ - move the phy-connection-type attribute to the ethernet node in 7,8/11
+ - remove the interrupts description from 8/11 since I plan to properly
+   add all interrupt lines for all platforms
+
+Ioana Ciornei (11):
+  dt-bindings: net: add the DPAA2 MAC DTS definition
+  dt-bindings: net: add the 10gbase-r connection type
+  arm64: dts: ls1088a: add external MDIO device nodes
+  arm64: dts: ls1088ardb: add QSGMII PHY nodes
+  arm64: dts: ls1088ardb: add necessary DTS nodes for DPMAC2
+  arm64: dts: ls208xa: add the external MDIO nodes
+  arm64: dts: ls2088ardb: add PHY nodes for the CS4340 PHYs
+  arm64: dts: ls2088ardb: add PHY nodes for the AQR405 PHYs
+  arm64: dts: ls208xa: add PCS MDIO and PCS PHY nodes
+  arm64: dts: lx2160a: add PCS MDIO and PCS PHY nodes
+  arm64: dts: lx2160ardb: add nodes for the AQR107 PHYs
+
+ .../bindings/net/ethernet-controller.yaml     |   1 +
+ .../bindings/net/fsl,qoriq-mc-dpmac.yaml      |  60 ++++
+ .../boot/dts/freescale/fsl-ls1088a-rdb.dts    | 119 ++++++++
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 101 +++++-
+ .../boot/dts/freescale/fsl-ls2088a-rdb.dts    | 114 +++++++
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 274 ++++++++++++++++-
+ .../boot/dts/freescale/fsl-lx2160a-rdb.dts    |  32 ++
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 288 ++++++++++++++++--
+ 8 files changed, 945 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
 
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.28.0
 
