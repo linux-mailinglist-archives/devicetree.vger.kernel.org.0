@@ -2,139 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C5B29878D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 08:42:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 787DE298790
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 08:45:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1770949AbgJZHmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 03:42:19 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:63675 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1770191AbgJZHmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 03:42:19 -0400
-X-UUID: b451202fb9eb4ca7b6d1941c66e6ee5b-20201026
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=KDA+LpW6FDBz49qbTaYvO3XwD3JWyDQOAMzmFaf86MU=;
-        b=JrwCHtZFB/nCXCepC9MG9nKlZ7OeettQ0mHd0/YgOk0O572rD+nH+Se1SZ1G/4XcO0bvGGqndoBO4Rqpz75j4g13cWW3bjBtkeeIWngGaRcU8aWFocPcp8Af67Bc2gPfhP6+Mrw/UKtLGYT7Axex7f0/rjJ8lgzUs1iuKnMyxqs=;
-X-UUID: b451202fb9eb4ca7b6d1941c66e6ee5b-20201026
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 166890295; Mon, 26 Oct 2020 15:42:01 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 26 Oct
- 2020 15:41:23 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 26 Oct 2020 15:41:22 +0800
-Message-ID: <1603698083.26323.87.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 11/24] iommu/io-pgtable-arm-v7s: Quad lvl1 pgtable
- for MediaTek
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-CC:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
-        <ming-fan.chen@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@google.com>,
-        <kernel-team@android.com>
-Date:   Mon, 26 Oct 2020 15:41:23 +0800
-In-Reply-To: <a5713949-1d95-40f1-d35d-d99735b48294@arm.com>
-References: <20200930070647.10188-1-yong.wu@mediatek.com>
-         <20200930070647.10188-12-yong.wu@mediatek.com>
-         <a5713949-1d95-40f1-d35d-d99735b48294@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1770970AbgJZHpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 03:45:00 -0400
+Received: from relay5.mymailcheap.com ([159.100.241.64]:43995 "EHLO
+        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729210AbgJZHo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 03:44:59 -0400
+X-Greylist: delayed 136414 seconds by postgrey-1.27 at vger.kernel.org; Mon, 26 Oct 2020 03:44:56 EDT
+Received: from relay3.mymailcheap.com (relay3.mymailcheap.com [217.182.119.157])
+        by relay5.mymailcheap.com (Postfix) with ESMTPS id 34BAD20100;
+        Mon, 26 Oct 2020 07:44:55 +0000 (UTC)
+Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
+        by relay3.mymailcheap.com (Postfix) with ESMTPS id E33853F1CC;
+        Mon, 26 Oct 2020 08:44:51 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by filter2.mymailcheap.com (Postfix) with ESMTP id BFF522A7CC;
+        Mon, 26 Oct 2020 08:44:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
+        s=default; t=1603698291;
+        bh=9G0M+2nSGv2z1NrQJhhMOgoHf+bWPz85zNS3hVz/5Kc=;
+        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
+        b=X+6mvvIX33ljLmuPwtA95f8rDt8EM8vFvNRVlU5LD5eTPW6drB1kudLsK2JIUyLck
+         lO3sTNXa/8G1ZcchIfK5APQkA0/Znevu/YOL3AAThGzXvCAL0FcDFKtgarQc2liMNz
+         SZIB2p8QUsgyOCLWJq1wuW+sOHYT5+paenv2Wmnc=
+X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
+Received: from filter2.mymailcheap.com ([127.0.0.1])
+        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id hIxQ6y1u_tFv; Mon, 26 Oct 2020 08:44:50 +0100 (CET)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by filter2.mymailcheap.com (Postfix) with ESMTPS;
+        Mon, 26 Oct 2020 08:44:50 +0100 (CET)
+Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
+        by mail20.mymailcheap.com (Postfix) with ESMTP id 058B641A19;
+        Mon, 26 Oct 2020 07:44:49 +0000 (UTC)
+Authentication-Results: mail20.mymailcheap.com;
+        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="j71/CdA/";
+        dkim-atps=neutral
+AI-Spam-Status: Not processed
+Received: from [172.19.0.1] (unknown [64.225.114.122])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 0E02841A19;
+        Mon, 26 Oct 2020 07:44:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+        t=1603698281; bh=9G0M+2nSGv2z1NrQJhhMOgoHf+bWPz85zNS3hVz/5Kc=;
+        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
+        b=j71/CdA/NxjFbGa2DA2JZrKUJvH38/tX4GzrOFUo0JOyIpiUncF6VqaMDRREJ2Fh1
+         kSFgXA/kA6/ghU0516vj9sGyV7KFbgE4CIyQlztaYwDvT/t7LqqQH5YIwbRIHxuKrp
+         RPlhfTM0LRYajovbs0iZUDkuPc+A1SEgR7Gn7zNw=
+Date:   Mon, 26 Oct 2020 15:44:32 +0800
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20201025172848.GI792004@lunn.ch>
+References: <20201025085556.2861021-1-icenowy@aosc.io> <20201025141825.GB792004@lunn.ch> <77AAA8B8-2918-4646-BE47-910DDDE38371@aosc.io> <20201025143608.GD792004@lunn.ch> <F5D81295-B4CD-4B80-846A-39503B70E765@aosc.io> <20201025172848.GI792004@lunn.ch>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 020A65BDCF4EA27467567D031B54810B516A69E7C2B6BB71FC4C0F5EDD0582DF2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [linux-sunxi] Re: [PATCH] net: phy: realtek: omit setting PHY-side delay when "rgmii" specified
+To:     andrew@lunn.ch, Andrew Lunn <andrew@lunn.ch>
+CC:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Willy Liu <willy.liu@realtek.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com
+From:   Icenowy Zheng <icenowy@aosc.io>
+Message-ID: <C3279C11-EE7F-49FA-9BB3-ACA797B7B690@aosc.io>
+X-Rspamd-Queue-Id: 058B641A19
+X-Spamd-Result: default: False [1.40 / 10.00];
+         RCVD_VIA_SMTP_AUTH(0.00)[];
+         ARC_NA(0.00)[];
+         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
+         MID_RHS_MATCH_FROM(0.00)[];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         FREEMAIL_ENVRCPT(0.00)[gmail.com];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DMARC_NA(0.00)[aosc.io];
+         R_SPF_SOFTFAIL(0.00)[~all];
+         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1];
+         ML_SERVERS(-3.10)[213.133.102.83];
+         DKIM_TRACE(0.00)[aosc.io:+];
+         RCPT_COUNT_TWELVE(0.00)[12];
+         RCVD_NO_TLS_LAST(0.10)[];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
+         FREEMAIL_CC(0.00)[gmail.com,armlinux.org.uk,davemloft.net,kernel.org,realtek.com,siol.net,vger.kernel.org,googlegroups.com];
+         SUSPICIOUS_RECIPS(1.50)[];
+         RCVD_COUNT_TWO(0.00)[2]
+X-Rspamd-Server: mail20.mymailcheap.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTEwLTIzIGF0IDE1OjEwICswMTAwLCBSb2JpbiBNdXJwaHkgd3JvdGU6DQo+
-IE9uIDIwMjAtMDktMzAgMDg6MDYsIFlvbmcgV3Ugd3JvdGU6DQo+ID4gVGhlIHN0YW5kYXJkIGlu
-cHV0IGlvdmEgYml0cyBpcyAzMi4gTWVkaWFUZWsgcXVhZCB0aGUgbHZsMSBwYWdldGFibGUNCj4g
-PiAoNCAqIGx2bDEpLiBObyBjaGFuZ2UgZm9yIGx2bDIgcGFnZXRhYmxlLiBUaGVuIHRoZSBpb3Zh
-IGJpdHMgY2FuIHJlYWNoDQo+ID4gMzRiaXQuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogWW9u
-ZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gICBkcml2ZXJzL2lvbW11
-L2lvLXBndGFibGUtYXJtLXY3cy5jIHwgMTMgKysrKysrKysrKy0tLQ0KPiA+ICAgZHJpdmVycy9p
-b21tdS9tdGtfaW9tbXUuYyAgICAgICAgICB8ICAyICstDQo+ID4gICAyIGZpbGVzIGNoYW5nZWQs
-IDExIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvaW9tbXUvaW8tcGd0YWJsZS1hcm0tdjdzLmMgYi9kcml2ZXJzL2lvbW11L2lvLXBn
-dGFibGUtYXJtLXY3cy5jDQo+ID4gaW5kZXggODM2MmZkZjc2NjU3Li4zMDZiYWUyNzU1ZWQgMTAw
-NjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9pb21tdS9pby1wZ3RhYmxlLWFybS12N3MuYw0KPiA+ICsr
-KyBiL2RyaXZlcnMvaW9tbXUvaW8tcGd0YWJsZS1hcm0tdjdzLmMNCj4gPiBAQCAtNTAsMTAgKzUw
-LDE3IEBADQo+ID4gICAgKi8NCj4gPiAgICNkZWZpbmUgQVJNX1Y3U19BRERSX0JJVFMJCTMyDQo+
-ID4gICAjZGVmaW5lIF9BUk1fVjdTX0xWTF9CSVRTKGx2bCkJCSgxNiAtIChsdmwpICogNCkNCj4g
-PiArLyogTWVkaWFUZWs6IHRvdGFsbHkgMzRiaXRzLCAxNGJpdHMgYXQgbHZsMSBhbmQgOGJpdHMg
-YXQgbHZsMi4gKi8NCj4gPiArI2RlZmluZSBfQVJNX1Y3U19MVkxfQklUU19NVEsobHZsKQkoMjAg
-LSAobHZsKSAqIDYpDQo+IA0KPiBUaGlzIHNob3VsZCBkZWZpbmVkIGluIHRlcm1zIG9mIGJvdGgg
-bHZsIGFuZCBjZmctPmlhcy4gVGhlIGZvcm11bGEgaGVyZSANCj4gaXMgbm90aGluZyBtb3JlIHRo
-YW4gYSBkaXNndXN0aW5nIHRyaWNrIEkgbWFkZSB1cCBzaW5jZSBhIGxpbmVhciANCj4gaW50ZXJw
-b2xhdGlvbiBoYXBwZW5lZCB0byBmaXQgdGhlIHJlcXVpcmVkIG51bWJlcnMuIFRoYXQgc2FpZCwg
-YWxsIG9mIA0KPiB0aGVzZSBiaXRzIHByZXRlbmRpbmcgdGhhdCBzaG9ydC1kZXNjcmlwdG9yIGlz
-IGEgd2VsbC1kZWZpbmVkIHJlY3Vyc2l2ZSANCj4gZm9ybWF0IG9ubHkgc2VydmVkIHRvIGFsbG93
-IHRoZSByZXN0IG9mIHRoZSBjb2RlIHRvIGxvb2sgbW9yZSBsaWtlIHRoZSANCj4gTFBBRSBjb2Rl
-IC0gSUlSQyB0aGV5J3ZlIGFscmVhZHkgZGl2ZXJnZWQgYSBmYWlyIGJpdCBzaW5jZSB0aGVuLCBz
-byANCj4gZnJhbmtseSBhIGxvdCBvZiB0aGlzIGNvdWxkIHN0YW5kIHRvIGJlIHVucGlja2VkIGFu
-ZCBtYWRlIGNvbnNpZGVyYWJseSANCj4gY2xlYXJlciBieSBzaW1wbHkgYWNjZXB0aW5nIHRoYXQg
-bGV2ZWwgMSBhbmQgbGV2ZWwgMiBhcmUgZGlmZmVyZW50IGZyb20gDQo+IGVhY2ggb3RoZXIuDQoN
-CklmIHRoZSBmb3JtdWxhIGlzIG5vdCBnb29kIGFuZCBtYWtlIGl0IGNsZWFyZXIsIEhvdyBhYm91
-dCB0aGlzPw0KDQoNCi8qDQogKiBXZSBoYXZlIDMyIGJpdHMgdG90YWw7IDEyIGJpdHMgcmVzb2x2
-ZWQgYXQgbGV2ZWwgMSwgOCBiaXRzIGF0IGxldmVsDQoyLA0KLSogYW5kIDEyIGJpdHMgaW4gYSBw
-YWdlLiBXaXRoIHNvbWUgY2FyZWZ1bGx5LWNob3NlbiBjb2VmZmljaWVudHMgd2UgY2FuDQotKiBo
-aWRlIHRoZSB1Z2x5IGluY29uc2lzdGVuY2llcyBiZWhpbmQgdGhlc2UgbWFjcm9zIGFuZCBhdCBs
-ZWFzdCBsZXQNCnRoZQ0KLSogcmVzdCBvZiB0aGUgY29kZSBwcmV0ZW5kIHRvIGJlIHNvbWV3aGF0
-IHNhbmUuDQorKiBhbmQgMTIgYml0cyBpbiBhIHBhZ2UuDQorKg0KKyogTWVkaWFUZWsgZXh0ZW5k
-IDIgYml0cyB0byByZWFjaCAzNCBiaXRzLCAxNCBiaXRzIGF0IGx2bDEgYW5kIDggYml0cw0KYXQg
-bHZsMi4NCiAqLw0KDQotI2RlZmluZSBfQVJNX1Y3U19MVkxfQklUUyhsdmwpCQkoMTYgLSAobHZs
-KSAqIDQpDQorI2RlZmluZSBfQVJNX1Y3U19MVkwxX0JJVFNfTlIoY2ZnKSAgICAgKCgoY2ZnKS0+
-aWFzID09IDMyKSA/IDEyIDogMTQpDQorI2RlZmluZSBfQVJNX1Y3U19MVkwyX0JJVFNfTlIJCTgN
-CisNCisjZGVmaW5lIF9BUk1fVjdTX0xWTF9CSVRTKGx2bCwgY2ZnKSAgICBcDQorICAgICAgKCgo
-bHZsKSA9PSAxKSA/IF9BUk1fVjdTX0xWTDFfQklUU19OUihjZmcpOl9BUk1fVjdTX0xWTDJfQklU
-U19OUikNCg0KPiBSb2Jpbi4NCj4gDQo+ID4gICAjZGVmaW5lIEFSTV9WN1NfTFZMX1NISUZUKGx2
-bCkJCShBUk1fVjdTX0FERFJfQklUUyAtICg0ICsgOCAqIChsdmwpKSkNCj4gPiAgICNkZWZpbmUg
-QVJNX1Y3U19UQUJMRV9TSElGVAkJMTANCj4gPiAgIA0KPiA+IC0jZGVmaW5lIEFSTV9WN1NfUFRF
-U19QRVJfTFZMKGx2bCwgY2ZnKQkoMSA8PCBfQVJNX1Y3U19MVkxfQklUUyhsdmwpKQ0KPiA+ICsj
-ZGVmaW5lIEFSTV9WN1NfUFRFU19QRVJfTFZMKGx2bCwgY2ZnKQkoewkJCQlcDQo+ID4gKwlpbnQg
-X2x2bCA9IGx2bDsJCQkJCQkJXA0KPiA+ICsJIWFybV92N3NfaXNfbXRrX2VuYWJsZWQoY2ZnKSA/
-CQkJCQlcDQo+ID4gKwkgKDEgPDwgX0FSTV9WN1NfTFZMX0JJVFMoX2x2bCkpIDogKDEgPDwgX0FS
-TV9WN1NfTFZMX0JJVFNfTVRLKF9sdmwpKTtcDQo+ID4gK30pDQo+ID4gKw0KPiA+ICAgI2RlZmlu
-ZSBBUk1fVjdTX1RBQkxFX1NJWkUobHZsLCBjZmcpCQkJCQlcDQo+ID4gICAJKEFSTV9WN1NfUFRF
-U19QRVJfTFZMKGx2bCwgY2ZnKSAqIHNpemVvZihhcm1fdjdzX2lvcHRlKSkNCj4gPiAgIA0KPiA+
-IEBAIC02Myw3ICs3MCw3IEBADQo+ID4gICAjZGVmaW5lIF9BUk1fVjdTX0lEWF9NQVNLKGx2bCwg
-Y2ZnKQkoQVJNX1Y3U19QVEVTX1BFUl9MVkwobHZsLCBjZmcpIC0gMSkNCj4gPiAgICNkZWZpbmUg
-QVJNX1Y3U19MVkxfSURYKGFkZHIsIGx2bCwgY2ZnKQkoewkJCVwNCj4gPiAgIAlpbnQgX2wgPSBs
-dmw7CQkJCQkJCVwNCj4gPiAtCSgodTMyKShhZGRyKSA+PiBBUk1fVjdTX0xWTF9TSElGVChfbCkp
-ICYgX0FSTV9WN1NfSURYX01BU0soX2wsIGNmZyk7IFwNCj4gPiArCSgoYWRkcikgPj4gQVJNX1Y3
-U19MVkxfU0hJRlQoX2wpKSAmIF9BUk1fVjdTX0lEWF9NQVNLKF9sLCBjZmcpOyBcDQo+ID4gICB9
-KQ0KPiA+ICAgDQo+ID4gICAvKg0KPiA+IEBAIC03NTUsNyArNzYyLDcgQEAgc3RhdGljIHN0cnVj
-dCBpb19wZ3RhYmxlICphcm1fdjdzX2FsbG9jX3BndGFibGUoc3RydWN0IGlvX3BndGFibGVfY2Zn
-ICpjZmcsDQo+ID4gICB7DQo+ID4gICAJc3RydWN0IGFybV92N3NfaW9fcGd0YWJsZSAqZGF0YTsN
-Cj4gPiAgIA0KPiA+IC0JaWYgKGNmZy0+aWFzID4gQVJNX1Y3U19BRERSX0JJVFMpDQo+ID4gKwlp
-ZiAoY2ZnLT5pYXMgPiAoYXJtX3Y3c19pc19tdGtfZW5hYmxlZChjZmcpID8gMzQgOiBBUk1fVjdT
-X0FERFJfQklUUykpDQo+ID4gICAJCXJldHVybiBOVUxMOw0KPiA+ICAgDQo+ID4gICAJaWYgKGNm
-Zy0+b2FzID4gKGFybV92N3NfaXNfbXRrX2VuYWJsZWQoY2ZnKSA/IDM1IDogQVJNX1Y3U19BRERS
-X0JJVFMpKQ0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2lvbW11L210a19pb21tdS5jIGIvZHJp
-dmVycy9pb21tdS9tdGtfaW9tbXUuYw0KPiA+IGluZGV4IGY2YTJlM2ViNTlkMi4uNmU4NWM5OTc2
-YTMzIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmMNCj4gPiArKysg
-Yi9kcml2ZXJzL2lvbW11L210a19pb21tdS5jDQo+ID4gQEAgLTMxNiw3ICszMTYsNyBAQCBzdGF0
-aWMgaW50IG10a19pb21tdV9kb21haW5fZmluYWxpc2Uoc3RydWN0IG10a19pb21tdV9kb21haW4g
-KmRvbSkNCj4gPiAgIAkJCUlPX1BHVEFCTEVfUVVJUktfVExCSV9PTl9NQVAgfA0KPiA+ICAgCQkJ
-SU9fUEdUQUJMRV9RVUlSS19BUk1fTVRLX0VYVCwNCj4gPiAgIAkJLnBnc2l6ZV9iaXRtYXAgPSBt
-dGtfaW9tbXVfb3BzLnBnc2l6ZV9iaXRtYXAsDQo+ID4gLQkJLmlhcyA9IDMyLA0KPiA+ICsJCS5p
-YXMgPSAzNCwNCj4gPiAgIAkJLm9hcyA9IDM1LA0KPiA+ICAgCQkudGxiID0gJm10a19pb21tdV9m
-bHVzaF9vcHMsDQo+ID4gICAJCS5pb21tdV9kZXYgPSBkYXRhLT5kZXYsDQo+ID4gDQoNCg==
 
+
+=E4=BA=8E 2020=E5=B9=B410=E6=9C=8826=E6=97=A5 GMT+08:00 =E4=B8=8A=E5=8D=88=
+1:28:48, Andrew Lunn <andrew@lunn=2Ech> =E5=86=99=E5=88=B0:
+>> >> 1=2E As the PHY chip has hardware configuration for configuring
+>delays,
+>> >> we should at least have a mode that respects what's set on the
+>> >hardware=2E
+>> >
+>> >Yes, that is PHY_INTERFACE_MODE_NA=2E In DT, set the phy-mode to ""=2E
+>Or
+>> >for most MAC drivers, don't list a phy-mode at all=2E
+
+By referring to linux/phy=2Eh, NA means not applicable=2E This surely
+do not apply when RGMII is really in use=2E
+
+>>=20
+>> However, we still need to tell the MAC it's RGMII mode that is in
+>use, not
+>> MII/RMII/*MII=2E So the phy-mode still needs to be something that
+>> contains rgmii=2E
+>
+>So for this MAC driver, you are going to have to fix the device tree=2E
+>And for the short turn, maybe implement the workaround discussed in
+>the other thread=2E
+
+I think no document declares RGMII must have all internal delays
+of the PHY explicitly disabled=2E It just says RGMII=2E
+
+I think the situation that RGMII is in use and PHY has the right to
+decide whether to add delay or not surely matches "rgmii", and
+to explicitly disable internal delays we need some other thing
+like "rgmii-noid"=2E
+
+>
+>    Andrew
