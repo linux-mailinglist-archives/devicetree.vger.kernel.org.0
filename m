@@ -2,58 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98303298CC7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 13:14:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D80298CBF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 13:13:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1774849AbgJZMNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 08:13:52 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:44404 "EHLO vps0.lunn.ch"
+        id S1774834AbgJZMNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 08:13:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48916 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1774787AbgJZMNP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 08:13:15 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kX1Mv-003bHn-3T; Mon, 26 Oct 2020 13:12:57 +0100
-Date:   Mon, 26 Oct 2020 13:12:57 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Willy Liu <willy.liu@realtek.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [linux-sunxi] Re: [PATCH] net: phy: realtek: omit setting
- PHY-side delay when "rgmii" specified
-Message-ID: <20201026121257.GB836546@lunn.ch>
-References: <20201025085556.2861021-1-icenowy@aosc.io>
- <20201025141825.GB792004@lunn.ch>
- <77AAA8B8-2918-4646-BE47-910DDDE38371@aosc.io>
- <20201025143608.GD792004@lunn.ch>
- <F5D81295-B4CD-4B80-846A-39503B70E765@aosc.io>
- <20201025172848.GI792004@lunn.ch>
- <C3279C11-EE7F-49FA-9BB3-ACA797B7B690@aosc.io>
+        id S1774805AbgJZMNV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 08:13:21 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4596320874;
+        Mon, 26 Oct 2020 12:13:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603714400;
+        bh=KbAfpS5AGRw5GfH3m/mCuY+N0Ih33X21Px2gXTmbOKw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BrT63QoEtM/OdfjjrX6o5GPSeccdFPpsBnbBzIPFgAAREFTx7HUK8cSq8W9qXB8CM
+         4cK90m4mOUJM/yXNseO/y+8zH+eieL0kRdBjvzXQXxnEIcZ667D1WedHxzJZrcYm4j
+         iTrOTygDy3S0CaBJWIXoSA0r6W+aki5znY5h55ts=
+Date:   Mon, 26 Oct 2020 12:13:16 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, lgirdwood@gmail.com,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
+Message-ID: <20201026121316.GB7402@sirena.org.uk>
+References: <20201024200304.1427864-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="SkvwRMAIpAhPCcCJ"
 Content-Disposition: inline
-In-Reply-To: <C3279C11-EE7F-49FA-9BB3-ACA797B7B690@aosc.io>
+In-Reply-To: <20201024200304.1427864-1-fparent@baylibre.com>
+X-Cookie: Safety Third.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> By referring to linux/phy.h, NA means not applicable. This surely
-> do not apply when RGMII is really in use.
 
-It means the PHY driver should not touch the mode, something else has
-set it up. That could be strapping, the bootloader, ACPI firmware,
-whatever.
+--SkvwRMAIpAhPCcCJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> I think no document declares RGMII must have all internal delays
-> of the PHY explicitly disabled. It just says RGMII.
+On Sat, Oct 24, 2020 at 10:03:03PM +0200, Fabien Parent wrote:
 
-Please take a look at all the other PHY drivers. They should all
-disable delays when passed PHY_INTERFACE_MODE_RGMII.
+> +Required properties:
+> +- compatible: "mediatek,mt6392-regulator"
 
-	Andrew
+This is no longer used by the driver, should be unneeded and therefore
+should be removed.
+
+> +- mt6392regulator: List of regulators provided by this controller. It is named
+
+This property doesn't seem to appear anywhere - there's regulators, the
+collection of subnodes for each individual regulator which I think is
+what is referenced here, but nothing called mt6392regulator.
+
+--SkvwRMAIpAhPCcCJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+WvVsACgkQJNaLcl1U
+h9COeAf9G6DwjRqvGX5pwncOY8E6kwgs2U7scP5J99ohq9wz9+kF8shwvsGPt2fj
+SBfCd0U2GnI653lSXhxJntBFX5NeEyeLayYK/lUr3Xt35POLywsFM+kz08YvYDDL
+WC+1pLt3CHQOSZF7FAOYATGzQi3Fah2VdJyNiA/FJxBbomJIomfpSo5PxVW15jlI
+gFnUDzCWCtC4XjW8pA0el03F9PzKevC8lnYu51OxzaztC+qiPTYX/l1Kk5yA3ose
+jHVRKfU9xIM0k3C/kr1O0Om7z6aRBVQTxpKwQxZURvDGcRoSQm1V43ksgKkfAVtJ
+xdKXp5fIp3hAHFlXRxo3B+cARA9OWw==
+=XYZl
+-----END PGP SIGNATURE-----
+
+--SkvwRMAIpAhPCcCJ--
