@@ -2,89 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 327F22990C6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:16:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B4522990C9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:16:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1783521AbgJZPP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:15:57 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:41573 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1783519AbgJZPP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:15:57 -0400
-Received: by mail-qk1-f194.google.com with SMTP id b69so8608045qkg.8
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 08:15:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=buOSgYj8nesBJduFGburfbQ47xwt4bpG9JY6+8gKov4=;
-        b=iYn35eWa/XewaG2MxDAW6amkL78yH6RaWqiOQTAYYuFqpJstL0IazZysjd93a39Y60
-         BCv/crpm3lNlkyYlvFrts8btSTlJCkJQ1n2hiZ9ZPp7p4sxQG9cSQ8hOfKH3QHPYsJrm
-         2tEB1TEGjR2Zlgdl5lNZbjMCenXSZGLfcnoFc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=buOSgYj8nesBJduFGburfbQ47xwt4bpG9JY6+8gKov4=;
-        b=eb/5bKHRFoBhKlXsmf+a6kseHRKe5d78d8tHVnZ1eTwOZLZr9EMC0vZF03WJaCMIUu
-         S+pRUYMDoI5u023fJJoQheZblGEfFBSbO+aJ8PBDyxUQ8/fvl9kllNBLnML9MQug5WTk
-         DIgLbZFzRcIithRIpzril6v4HtPwrUVCMEFwaBqn85AmbDIoakrUQyHBkQaorS5T//cC
-         tHhYV4GiqWpr1jgNBQ4EMHCOpZ+drsBSG+uXH5jitO46TfS9Vs7IhqKsFh6mU5D0JA1n
-         IiOFHMtB2cqPdm2PncKWw6/WAvsGXR8v5VY/EPzimwEcwdWMXVHVKiurs2Fgl1z5DY91
-         3JqA==
-X-Gm-Message-State: AOAM530u1SECQdQi0stf7R7ghHTsfEDDHNM3L8SYqphI5z54stU94D9m
-        Gzt0AjFOzQZg5aZSaN8pjDTZB034woHN03VR8dd6yA==
-X-Google-Smtp-Source: ABdhPJzKvXMXDrmyVSP4kBSPjVcLXMaCfUmvAVBzFodzU54xWpGYxUXTnQVPmdZl2pZjxna3DgRbeae53Vc3ti/oSoY=
-X-Received: by 2002:ae9:e807:: with SMTP id a7mr1269594qkg.443.1603725355881;
- Mon, 26 Oct 2020 08:15:55 -0700 (PDT)
+        id S1783509AbgJZPQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 11:16:08 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:44938 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1783532AbgJZPQI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 11:16:08 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kX4E9-003cyJ-SC; Mon, 26 Oct 2020 16:16:05 +0100
+Date:   Mon, 26 Oct 2020 16:16:05 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Vid <vladimir.vid@sartura.hr>
+Cc:     devicetree@vger.kernel.org, pali@kernel.org, a.heider@gmail.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        tmn505@gmail.com, sebastian.hesselbarth@gmail.com,
+        gregory.clement@bootlin.com, jason@lakedaemon.net,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v4] arm64: dts: marvell: add DT for ESPRESSObin-Ultra
+Message-ID: <20201026151605.GM752111@lunn.ch>
+References: <20201026124131.84086-1-vladimir.vid@sartura.hr>
 MIME-Version: 1.0
-References: <20201019141008.871177-1-daniel@0x0f.com> <20201019141008.871177-2-daniel@0x0f.com>
- <20201026134604.GA43947@bogus>
-In-Reply-To: <20201026134604.GA43947@bogus>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Tue, 27 Oct 2020 00:15:45 +0900
-Message-ID: <CAFr9PXmuOCRoUiqNAdMi=xX142U46=Vnk-EHp9H02L8nut0esQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: gpio: Add a binding header for the
- MSC313 GPIO driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201026124131.84086-1-vladimir.vid@sartura.hr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+> +&mdio {
+> +	extphy: ethernet-phy@0 {
+> +		reg = <1>;
 
-On Mon, 26 Oct 2020 at 22:46, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Oct 19, 2020 at 11:10:04PM +0900, Daniel Palmer wrote:
-> > Header adds defines for the gpio number of each pin
-> > from the driver view. The gpio block seems to support 128 lines
-> > but what line is mapped to a physical pin depends on the chip.
-> > The driver itself uses the index of a pin's offset in an array
-> > of the possible offsets for a chip as the gpio number.
-> >
-> > The defines remove the need to work out that index to consume
-> > a pin in the device tree.
->
-> I'd expect the DT to have 0-127 numbering... If you need to map that to
-> another number, then an array property in DT could handle that.
->
+If reg = 1, then this should be ethernet-phy@1
 
-Thank you for the comments on this header and the binding description.
-
-Thinking about this again I'm thinking about having the GPIO numbers
-be 0-127 like you say but supplying the valid offsets for that
-specific chip and the pad/pin names to make visible to the user via an
-array/arrays that contains the pin register offsets and the pin names.
-Basically my per-chip table moves out of the driver and into the DT.
-Does that sound acceptable? The main thing I want to avoid is
-presenting the user with 128 gpios when the actually chip only has <10
-of them wired up.
-
-Thanks,
-
-Daniel
+   Andrew
