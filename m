@@ -2,96 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85DA0299811
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 21:36:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF6B229982C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 21:48:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388315AbgJZUgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 16:36:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35280 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388247AbgJZUgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 16:36:14 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D9722207E8;
-        Mon, 26 Oct 2020 20:36:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603744573;
-        bh=O52isSyK67wz7u/WK6c8oDPAtmNSuqkBMdDiqRurhQM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TyNgwzHMG3kipk9sEO1r3JgY4RC0iydlCvAz/zgXCSQluq1TXqAWBbaZfBH4HcV1u
-         YIyh/VB5f3XoCUDAmciA5GwXT0MUE5LfAy7+nS5e1pYUw5wm3diqPBWLKKovncNyU7
-         eoJN/DpPloMredPYPKTO+z24scAZ0scFA3/VggB0=
-Date:   Mon, 26 Oct 2020 20:36:08 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
-Message-ID: <20201026203608.GJ7402@sirena.org.uk>
-References: <20201024200304.1427864-1-fparent@baylibre.com>
- <20201026121316.GB7402@sirena.org.uk>
- <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
- <20201026172431.GI7402@sirena.org.uk>
- <CAOwMV_xt=OV6cKqQTZUUSAvYKxUUQZAUywAHtFFHL=E5xVu-Zg@mail.gmail.com>
+        id S1725837AbgJZUsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 16:48:16 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:42565 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725771AbgJZUsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 16:48:15 -0400
+X-Originating-IP: 90.65.88.165
+Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 32BDCFF808;
+        Mon, 26 Oct 2020 20:48:12 +0000 (UTC)
+Date:   Mon, 26 Oct 2020 21:48:11 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Qiang Zhao <qiang.zhao@nxp.com>
+Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Bruno Thomsen <bruno.thomsen@gmail.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 0/2] rtc: pcf2127: only use watchdog when explicitly
+ available
+Message-ID: <20201026204811.GD75353@piout.net>
+References: <20200924074715.GT9675@piout.net>
+ <20200924105256.18162-1-u.kleine-koenig@pengutronix.de>
+ <VE1PR04MB676864E851C6371F97877FA291190@VE1PR04MB6768.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="j+MD90OnwjQyWNYt"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAOwMV_xt=OV6cKqQTZUUSAvYKxUUQZAUywAHtFFHL=E5xVu-Zg@mail.gmail.com>
-X-Cookie: Safety Third.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <VE1PR04MB676864E851C6371F97877FA291190@VE1PR04MB6768.eurprd04.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/10/2020 07:23:26+0000, Qiang Zhao wrote:
+> Any update for this patchset?
+> 
 
---j+MD90OnwjQyWNYt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The whole point would be to get the DT and the watchdog maintainers
+agree on the property name. Once done, the driver implementation is
+trivial and will get applied.
 
-On Mon, Oct 26, 2020 at 07:38:14PM +0100, Fabien Parent wrote:
-> On Mon, Oct 26, 2020 at 6:24 PM Mark Brown <broonie@kernel.org> wrote:
+> Best Regards
+> Qiang Zhao
+> 
+> > -----Original Message-----
+> > From: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> > Sent: 2020年9月24日 18:53
+> > To: Alexandre Belloni <alexandre.belloni@bootlin.com>; Qiang Zhao
+> > <qiang.zhao@nxp.com>; Bruno Thomsen <bruno.thomsen@gmail.com>
+> > Cc: linux-rtc@vger.kernel.org; a.zummo@towertech.it;
+> > linux-watchdog@vger.kernel.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; robh+dt@kernel.org; kernel@pengutronix.de;
+> > Wim Van Sebroeck <wim@linux-watchdog.org>; Guenter Roeck
+> > <linux@roeck-us.net>
+> > Subject: [PATCH 0/2] rtc: pcf2127: only use watchdog when explicitly available
+> > 
+> > Hello,
+> > 
+> > now that there are two people stumbling over the pcf2127 driver providing a
+> > non-functional watchdog device, here comes an RFC patch to address this.
+> > 
+> > Note this is only compile tested and dt-documentation is still missing.
+> > Still send this series because the cleanup is nice independent of this discussion
+> > and to have something to argue about.
+> > 
+> > Does someone can offer a better name than "has-watchdog", is there a scheme
+> > that could be used already that I'm not aware of?
+> > 
+> > Best regards
+> > Uwe
+> > 
+> > Uwe Kleine-König (2):
+> >   rtc: pcf2127: move watchdog initialisation to a separate function
+> >   [RFC] rtc: pcf2127: only use watchdog when explicitly available
+> > 
+> >  drivers/rtc/rtc-pcf2127.c | 57 ++++++++++++++++++++++-----------------
+> >  1 file changed, 32 insertions(+), 25 deletions(-)
+> > 
+> > --
+> > 2.28.0
+> 
 
-> > >         .name = "mt6392-regulator",
-> > >         .of_compatible = "mediatek,mt6392-regulator"
-
-> > This is still unneeded, it's just a reflection of Linux implementation
-> > details and should be removed.   The MFD can just register the child
-> > without supplying a compatible and things will continue to work just as
-> > well.
-
-> I'm not exactly sure how it is supposed to work. mfd_add_devices seems
-> to register devices based on of_compatible or acpi_match from the
-> mfd_cell. This platform does not have ACPI so I don't understand how
-
-It should also support unconditionally registering devices, if it no
-longer does so that's a regression in the framework which should be
-fixed.  Looking at mfd_add_devices() I can't see an issue though, both
-ACPI and DT information is optional - the entire DT section in
-mfd_add_device() will be skipped if no of_compatible is specified in the
-cell.  Are you *sure* that the regulator driver isn't running?
-
---j+MD90OnwjQyWNYt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+XMzcACgkQJNaLcl1U
-h9D8Fgf/aY41lzA2GffEUL92jRQgpryeIR0UjVjAKQ15Q+FNzHhDQDjS62uceDK7
-wH/NxVxXJwmheYwxvKDRglhGW0BSlYd2T/ALNzTDrb1HlHaaYmkYftCf3Ijj4EDI
-sX7lN0rcEG95Z8uSVgKxOw98sX4tvqItnM+sNrHbkq1aE6Vz8cX7jaxkn7DvC+G7
-sayBo3bg1cUj+yWVFzkGhmlm9ihb38yX3UI3dTOKQlh+rjCxw0o+R34whmJPtZe8
-BRhcrr+/Zw5slffrzVmjSeklyFaqem839diSUzj7UoG6CuFyP4n9XbCpiaNz01aJ
-9jzOgf4SPNSSyceZfdZLoxQgGvAHqg==
-=tD5M
------END PGP SIGNATURE-----
-
---j+MD90OnwjQyWNYt--
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
