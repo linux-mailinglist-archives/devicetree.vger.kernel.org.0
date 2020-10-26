@@ -2,276 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C72F4299063
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:02:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B937E299081
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:06:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1782916AbgJZPCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:02:41 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:44772 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1782749AbgJZPCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:02:41 -0400
-Received: by mail-ot1-f65.google.com with SMTP id e20so8222409otj.11;
-        Mon, 26 Oct 2020 08:02:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2aiLRf1lQzD4dmA+9Qc8/8CVqPN/upZ+zNSr1+Xbbnk=;
-        b=jEihGHWA9JCNgqDH4vbBRr1h5JIKXLEiu0zTH/LPUrsH493KGpRFgTUekR91JUl4ZF
-         LmMvWhdthlQRVFTHnJFHgmCk8HRbysnfqFWnjNkLGrgvBQXgMai8eFVi2an95ACkwh3u
-         3s4o62T91kwrlCLiGMJhgAS5pjLap8JSmA3Se2EB93z1Kqdvq9vjh4z5lEbj+MGN8EeJ
-         5mcpBzTJ9HHBdD5K1r1AT72zT4+uLIdcb7v2nt4gMNOq2S8uoRDoaFSEL5R/NCFln3fk
-         h2cld9zAhzp9XH0r/3R671yoy8ik1kdqB4+uTUtXvucRoAiOiKsETSVMYUIZ9pX6bJwE
-         j6ug==
-X-Gm-Message-State: AOAM532Se/Tcq8S7/EHpkYwsfnEzitfwUs/w7VWaHilKMmZpxX3SDpVJ
-        rQmUW7aBAeiCU2uOD7WKHw==
-X-Google-Smtp-Source: ABdhPJwZIO7eFvyYC6iIW/01eosuWEdyWYpFD9Md2hkD3Kl2sB29RW5rARlUyAQvIWydhS7rQT12Jg==
-X-Received: by 2002:a9d:172f:: with SMTP id i47mr10180077ota.74.1603724557602;
-        Mon, 26 Oct 2020 08:02:37 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h6sm4126286oia.51.2020.10.26.08.02.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 08:02:36 -0700 (PDT)
-Received: (nullmailer pid 156045 invoked by uid 1000);
-        Mon, 26 Oct 2020 15:02:35 -0000
-Date:   Mon, 26 Oct 2020 10:02:35 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Martin Botka <martin.botka1@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: leds: Add Qualcomm Light Pulse
- Generator binding
-Message-ID: <20201026150235.GA140013@bogus>
-References: <20201021201224.3430546-1-bjorn.andersson@linaro.org>
- <20201021201224.3430546-2-bjorn.andersson@linaro.org>
+        id S1783118AbgJZPGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 11:06:24 -0400
+Received: from mail-eopbgr40064.outbound.protection.outlook.com ([40.107.4.64]:10254
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1783102AbgJZPGX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 11:06:23 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BcMdB30MMo1U9Jwv7ei6yn78xnaDd1pS5UHl+pIp7+Z4Ct6qXyDHEN9GQeorAPJjFv9/H7ehJGcNzetlS+V119zKJO11+0q5njzpZVWjPyjo/tueT0SVWWe2Fg0KkSxeWZue8mUegj7O28b+3IpGiHvtO5qzXT2eCNbCVRK8DJM3nAylW+4jiWuyIRmi0/OHQSaJUBkB4sEMu4ftFECayrxrI/hN26NlzjkToZPhj6Un7OjxjjXeaamkxYiPo8Yb3r7EouODZYlPn0hE5u6MjuUceJoJpiVkCtY5Qa2vdwqjFToOuKVGHPX4j1R8BXf1Dr/VzpjcakxnubXlkMD7oA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AFM6H8nJ/hzKj2ENuIqfnOu96VVRIFJFFvIpqag1HX0=;
+ b=g0F8hGYW7gQs6ysBDGZFZP8qZpELPeFhq6N0NIDg9/uSHLugUPiJW2B3RbHQ9NJfSLL9/BqI9bbzEEajp+gePPrfJAUXAaqLYQG4DsP91EJXmi8D2jeEGWcMwaJ1Z/YKr0sYkGMruOBC6THUT7l4AQPc/LYPHTPCzK3I5TbAHVywwMP5XEMBeNrE9EkSOtD6OpxHD0wYP356TmT5PCN4BLJ0/co6dGfjpeBk5MedAbv4z+QHtFs9OS+x68mprKUYtb1qC/5cB+SCVdyvRu6mq2D/hDGVss7P8Nm4XTGMJvYmDZDjniRst4k++5eYLuE1LN69QikpbNKv46+npnPDew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AFM6H8nJ/hzKj2ENuIqfnOu96VVRIFJFFvIpqag1HX0=;
+ b=cbC084ppyzRYbVI6pnuuWGIof5ywd6OrGeTxVWuN61vRiY/4pMOIcC3sMB1H7Zx9G7zPVhwvV3ly/Km9EG6LJtq1rBtnJYXEoa3uwu8u3BcahpWaojwaT1v/hvUa75iSEqzatOJedELxxkTrPk8l7qQtBOgognHXLNXHDactDCk=
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (2603:10a6:803:121::30)
+ by VI1PR0401MB2495.eurprd04.prod.outlook.com (2603:10a6:800:52::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.24; Mon, 26 Oct
+ 2020 15:06:19 +0000
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::b106:ac49:e3c7:6dc8]) by VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::b106:ac49:e3c7:6dc8%7]) with mapi id 15.20.3477.028; Mon, 26 Oct 2020
+ 15:06:19 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Marc Zyngier <maz@kernel.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+CC:     "Biwen Li (OSS)" <biwen.li@oss.nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Z.q. Hou" <zhiqiang.hou@nxp.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "jason@lakedaemon.net" <jason@lakedaemon.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jiafei Pan <jiafei.pan@nxp.com>,
+        Xiaobo Xie <xiaobo.xie@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, Biwen Li <biwen.li@nxp.com>
+Subject: RE: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+Thread-Topic: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+Thread-Index: AQHWq2+CLg8O51zq50exYYqsZaIXIKmpkXkAgAAGWgCAAARoAIAAW4Tg
+Date:   Mon, 26 Oct 2020 15:06:19 +0000
+Message-ID: <VE1PR04MB668737DF1DDA6E1007BCA24C8F190@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20201026080127.40499-1-biwen.li@oss.nxp.com>
+ <31d8971374c261003aee9f4807c8ac8c@kernel.org>
+ <3448c822-31b1-7f9d-fedf-49912418fc3f@rasmusvillemoes.dk>
+ <b65acafab54b62a2a22aa942089b8033@kernel.org>
+In-Reply-To: <b65acafab54b62a2a22aa942089b8033@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [136.49.1.200]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: d49ba7c7-2108-41e8-276a-08d879c0b197
+x-ms-traffictypediagnostic: VI1PR0401MB2495:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0401MB2495CDFE880982746E40189D8F190@VI1PR0401MB2495.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Cvkd+eF+ZJQTW2q6nHerTWVBspP7ldSOeWtwVVc9jOGV4kofP9HXlEmMSX2l4XcfPpQobRDIQ4VcqB1EGMKC6Pk2YhSh/OLnWsvGTprG13H5bZ917OHkfpCzXZNz+Fi7iSaHaQziJm0zBv7IVMdkKShP4McLTAhhEUz9OVUDjTkZUxTIeEofalnGoxi7ZpKjyou7PbjPhvSEt94peGJH4blEiJEaDSBNdeFV8IQfJmn9kHlEcbGfL5ceDp4sDZOmh2MJpCiWXySTc3XdnVaq0tYmpu8Y4+OK/ZuEO0ouVVLjJ9GoUx6YlHZYkjzbtEjeoaZBZz8G+eC6d1/4/H6qkA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6687.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(396003)(346002)(39860400002)(376002)(7696005)(8936002)(66946007)(2906002)(6506007)(71200400001)(7416002)(5660300002)(66476007)(54906003)(110136005)(33656002)(76116006)(55016002)(53546011)(86362001)(66556008)(8676002)(66446008)(52536014)(26005)(4001150100001)(316002)(83380400001)(9686003)(4326008)(478600001)(64756008)(186003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 2TBpK8CIrpefELnJrQKmmqJJ2Ppj9P12PhN4fJ/2+xiGyoGwc93wTZyj+Cj/74GSQxi5Id0oAfxcfoQDPm+quGWJSnxm1F9fJWmW6cF3Ya88eHNmq7hU7ynRMSHEbCro4zFJipqBGCLSFwncIC0JEM+pEvVZIaDQr+M7H4wyOhEgTJnm4Pnk9mWFy4Rk4BblR0MGSe7txzPMQu+x3labE+DEw9QjmbIicuLpL1G5IScOJaH7Ng6Z9BboKXv8W3X0XV03NhWfCAr1pmIi5gIX/NwRiUZRULZrJ7ggWrivMLBj0GmhqlinGsyl68IzXj736eRk7t+D5PJnwnWlvaWsTfcr3g4mxcgvaFYZ4oa5hDQ7hUbpstDOcb+jtP/Z6RXtNfuNDPiX5SNiphCIieO3uACKWbCdT98TQ8eMkhQIHYAOmE0BV2nxJgu0dJWpPjK6Srumglh9iWhSq80vLwD3thMkppms6NJr9n5z06m3PWJ+0j3Kpt7grmfc1Wah5oMxy4CxNjDS9ElIPhnN9oWtmo8S0Y3/z2dFB6SKQQLPjs5eUJKobe/W+/TcvyNXQAzDeYGVgDB7ksyqUwrc+NkxAMoYt1MeHHvkic1tIxpPzyJl3Mt5VithDnk6z6soff6j9fZiUIwMDp5XdyHSM4zLMA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201021201224.3430546-2-bjorn.andersson@linaro.org>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6687.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d49ba7c7-2108-41e8-276a-08d879c0b197
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2020 15:06:19.2200
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pO3sNqIA1a0FenjWcGu0WlGd9VKiwl6hRidB/n+pUkI2DbGR3Eeqt4+d+R72rGwa1Vx9YmB5lDMLeKnhTUIjPQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2495
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 01:12:21PM -0700, Bjorn Andersson wrote:
-> This adds the binding document describing the three hardware blocks
-> related to the Light Pulse Generator found in a wide range of Qualcomm
-> PMICs.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> Changes since v5:
-> - None
-> 
->  .../bindings/leds/leds-qcom-lpg.yaml          | 170 ++++++++++++++++++
->  1 file changed, 170 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> new file mode 100644
-> index 000000000000..5ccf0f3d8f1b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> @@ -0,0 +1,170 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Light Pulse Generator
-> +
-> +maintainers:
-> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> +
-> +description: >
-> +  The Qualcomm Light Pulse Generator consists of three different hardware blocks;
-> +  a ramp generator with lookup table, the light pulse generator and a three
-> +  channel current sink. These blocks are found in a wide range of Qualcomm PMICs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,pm8916-pwm
 
-Are the LED properties valid when PWM is used/enabled? The schema 
-suggests yes, the example suggests no. If not, I think this should be 2 
-schema docs.
 
-> +      - qcom,pm8941-lpg
-> +      - qcom,pm8994-lpg
-> +      - qcom,pmi8994-lpg
-> +      - qcom,pmi8998-lpg
-> +
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  qcom,power-source:
-> +    $ref: /schemas/types.yaml#definitions/uint32
+> -----Original Message-----
+> From: Marc Zyngier <maz@kernel.org>
+> Sent: Monday, October 26, 2020 4:23 AM
+> To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> Cc: Biwen Li (OSS) <biwen.li@oss.nxp.com>; shawnguo@kernel.org;
+> robh+dt@kernel.org; mark.rutland@arm.com; Leo Li <leoyang.li@nxp.com>;
+> Z.q. Hou <zhiqiang.hou@nxp.com>; tglx@linutronix.de;
+> jason@lakedaemon.net; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; Jiafei Pan <jiafei.pan@nxp.com>; Xiaobo Xie
+> <xiaobo.xie@nxp.com>; linux-arm-kernel@lists.infradead.org; Biwen Li
+> <biwen.li@nxp.com>
+> Subject: Re: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A exte=
+rnal
+> interrupt
+>=20
+> On 2020-10-26 09:06, Rasmus Villemoes wrote:
+> > On 26/10/2020 09.44, Marc Zyngier wrote:
+> >> On 2020-10-26 08:01, Biwen Li wrote:
+> >>> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> >>>
+> >>> Add an new IRQ chip declaration for LS1043A and LS1088A
+> >>> - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A
+> >>> - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
+> >>
+> >> Three things:
+> >> - This commit message doesn't describe the bit_reverse change
+> >
+> > Yeah, please elaborate on that, as the RM for 1043 or 1046 doesn't
+> > mention anything about bit reversal for the scfg registers - they
+> > don't seem to have the utter nonsense that is SCFG_SCFGREVCR, but
+> > perhaps, instead of removing it, that has just become a hard-coded
+> > part of the IP.
+> >
+> > Also, IANAL etc., but
+> >
+> >>> +// Copyright 2019-2020 NXP
+> >
+> > really? Seems to be a bit of a stretch.
+> >
+> > At the very least, cc'ing the original author and only person to ever
+> > touch that file would have been appreciated.
+>=20
+> Huh. Well spotted. That's definitely not on.
+> NXP people, please talk to your legal department.
 
-led-sources can't be made to work for this?
+We do have an internal policy to require developer adding/updating NXP copy=
+right on non-trivial changes.  I'm not sure if this change should be consid=
+ered trivial, but adding copyright claim on a file without prior copyright =
+claims could causing confusion like in this case.  One potential solution i=
+s to add a more specific description on the NXP change together with the co=
+pyright claim.  But maybe an easier solution is to add Rasmus your Copyrigh=
+t claim first if you are ok with it.
 
-> +    description: >
-> +      power-source used to drive the output, as defined in the datasheet.
-> +      Should be specified if the TRILED block is present
-> +    enum:
-> +      - 0
-> +      - 1
-> +      - 3
-> +
-> +  multi-led:
-> +    type: object
-> +    $ref: leds-class-multicolor.yaml#
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +      "^led@[0-9a-f]$":
-> +        type: object
-> +        $ref: common.yaml#
-> +
-> +        properties:
-> +          "qcom,dtest":
-
-Don't need quotes.
-
-> +            $ref: /schemas/types.yaml#definitions/uint32-array
-
-The description sounds like a matrix rather than an array.
-
-> +            description: >
-> +              configures the output into an internal test line of the pmic. Specified
-> +              by a list of u32 pairs, one pair per channel, where each pair denotes the
-> +              test line to drive and the second configures how the value should be
-> +              outputed, as defined in the datasheet
-> +            minItems: 2
-> +            maxItems: 2
-
-If so, then you'd want:
-
-items:
-  minItems: 2
-  maxItems: 2
-
-> +
-> +        required:
-> +          - reg
-> +
-> +patternProperties:
-> +  "^led@[0-9a-f]$":
-> +    type: object
-> +    $ref: common.yaml#
-> +    properties:
-> +      "qcom,dtest":
-> +        $ref: /schemas/types.yaml#definitions/uint32-array
-> +        description: >
-> +          configures the output into an internal test line of the pmic. Specified
-> +          by a list of u32 pairs, one pair per channel, where each pair denotes the
-> +          test line to drive and the second configures how the value should be
-> +          outputed, as defined in the datasheet
-> +        minItems: 2
-> +        maxItems: 2
-> +
-> +    required:
-> +      - reg
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    lpg {
-> +      compatible = "qcom,pmi8994-lpg";
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      qcom,power-source = <1>;
-> +
-> +      led@1 {
-> +        reg = <1>;
-> +        label = "green:user1";
-> +      };
-> +
-> +      led@2 {
-> +        reg = <2>;
-> +        label = "green:user0";
-> +        default-state = "on";
-> +      };
-> +
-> +      led@3 {
-> +        reg = <3>;
-> +        label = "green:user2";
-> +      };
-> +
-> +      led@4 {
-> +        reg = <4>;
-> +        label = "green:user3";
-> +
-> +        qcom,dtest = <4 1>;
-> +      };
-> +    };
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    lpg {
-> +      compatible = "qcom,pmi8994-lpg";
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      qcom,power-source = <1>;
-> +
-> +      multi-led {
-> +        color = <LED_COLOR_ID_MULTI>;
-> +        label = "rgb:notification";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        led@1 {
-> +          reg = <1>;
-> +          color = <LED_COLOR_ID_RED>;
-> +        };
-> +
-> +        led@2 {
-> +          reg = <2>;
-> +          color = <LED_COLOR_ID_GREEN>;
-> +        };
-> +
-> +        led@3 {
-> +          reg = <3>;
-> +          color = <LED_COLOR_ID_BLUE>;
-> +        };
-> +      };
-> +    };
-> +  - |
-> +    lpg {
-> +      compatible = "qcom,pm8916-pwm";
-> +      #pwm-cells = <2>;
-> +    };
-> +...
-> -- 
-> 2.28.0
-> 
+Regards,
+Leo
