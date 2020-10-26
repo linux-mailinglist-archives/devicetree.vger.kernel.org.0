@@ -2,75 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64E1A298F7C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:38:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1D3B298F94
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:41:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1781659AbgJZOiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 10:38:04 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37853 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1781581AbgJZOiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:38:04 -0400
-Received: by mail-ot1-f67.google.com with SMTP id m22so8178436ots.4;
-        Mon, 26 Oct 2020 07:38:03 -0700 (PDT)
+        id S1781771AbgJZOlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 10:41:08 -0400
+Received: from mail-ej1-f67.google.com ([209.85.218.67]:40435 "EHLO
+        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1781644AbgJZOlI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:41:08 -0400
+Received: by mail-ej1-f67.google.com with SMTP id z5so13905892ejw.7
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 07:41:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lDYrLy8MUIe7IoCpuFE7hK+pFTNu/TtbAvwKtQzdYkQ=;
+        b=sLh9lD/aEhUvcqIQXEWD7t5aDKLUDdR+uqzwDNqjQgdKANR+b3CYvFxcSZbZoia/vr
+         4pV66OyowpCbPkWGTKaHkNzEXXDXDLVs/2Au+libKtUB44Y6qk/gYUIc1eebF4oFDt79
+         tTk8TkWc5arOSKs7iOkVrAE4WBBMtrp5xmxj63/dFYZRAqMhUvGZwfvkRD1JUaLztwtP
+         fySCKqaIs4Gnn3iOsEGE1OUB2KaEzABTkDBjuG/jvsvUkYTH2qRjZb0Fsk2Hc5H1w8Xh
+         zWDPI2Bf93CUBZCgaf7WwQXZOvxC0mzLBEEwrf0fS1WQ4fobts9ef4tCi6yBGIBGpTF9
+         InFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Dmc6xs39pOcvaguHHkLHxd4UeG9+n4WiLiCISEFRVvE=;
-        b=QNzSufadAIFPypbUPh8FSEdeb3L7uSEbpVO02bmHaeRNdvSfxjxiDZKXs0oEpgWclm
-         czcpS6ltZnGaVVXr0Og5OolpG3A/cRV+r5zijcJSb0dNSUvo0HUS5XkUpEFKvC/zcm5+
-         GWhNhXmzQCpyznzQ24WlgJrC70CVSDBYO69ImN85+oO1kI6eRZ4J+Bzi5Yr6loGvG2xc
-         wmKmfvVN21pyzFOmw45t0/FQXkZZkaGzb+wCjjDJt4PtybHlFKgXv3TRx4gYJIJv1x0/
-         UcWJutViWrz3YfzPPD3FGTAjjoyJVUlZv5K/Akt4ulrNXL9OTufvMNKKANYItJoSDOWP
-         QaHg==
-X-Gm-Message-State: AOAM533WDlPuFWFUn2jhGSDKrL/+89mQ+8GlCLED4cRzRAHpdidlKqaf
-        npu8Tm848xWqkNl24qbTwQ==
-X-Google-Smtp-Source: ABdhPJxI/8VTP5i/7wxqiKj0bWHUYN05SkqR0BiJs/0nllrZpJVEWuPVO0ce25saT4lDP9QNHLdr9Q==
-X-Received: by 2002:a9d:411:: with SMTP id 17mr14374161otc.191.1603723083071;
-        Mon, 26 Oct 2020 07:38:03 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u22sm4032299oor.13.2020.10.26.07.38.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 07:38:01 -0700 (PDT)
-Received: (nullmailer pid 123037 invoked by uid 1000);
-        Mon, 26 Oct 2020 14:38:01 -0000
-Date:   Mon, 26 Oct 2020 09:38:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     linux-rpi-kernel@lists.infradead.org, catalin.marinas@arm.com,
-        jeremy.linton@arm.com, iommu@lists.linux-foundation.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        hch@lst.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, ardb@kernel.org, will@kernel.org,
-        guohanjun@huawei.com, robin.murphy@arm.com,
-        Frank Rowand <frowand.list@gmail.com>,
-        lorenzo.pieralisi@arm.com
-Subject: Re: [PATCH v4 4/7] of: unittest: Add test for
- of_dma_get_max_cpu_address()
-Message-ID: <20201026143801.GA122988@bogus>
-References: <20201021123437.21538-1-nsaenzjulienne@suse.de>
- <20201021123437.21538-5-nsaenzjulienne@suse.de>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lDYrLy8MUIe7IoCpuFE7hK+pFTNu/TtbAvwKtQzdYkQ=;
+        b=QNRPzMTkF2bRyV7Kr+GoSQG/KUneD0Etc6bLOduDUg5q03kDfc/zyF7nTTPjSjxMO+
+         AaHnzkwxXxa/wYzFUSQ5DsM39jd8YY8tyGhKQXEm5HfxPc1mpLCxoj4Cx8T+X00lkuRN
+         +l0v+mDRBt1Ude+5qJKrV6lts8S4LW4RcY0mpSHvfcTtnERzpPvCoM0JUtzLbdqoo9BC
+         Z/9yzrC53SwUjT1CyywjguUcWrsA+lD4k2v7ZxCXlteR0EpWDa/+lV6PU87CBFMdmRWF
+         RuqGQpO/Jz4/zGE3W2zDchAaCTiqHqfKFhiBBoe3ZM8b/HXaVwqMmHnbGso5J4HrOg6+
+         2AgQ==
+X-Gm-Message-State: AOAM532jyKqG1MzpTW/a1Qv++a9939qvsj0BzGi80r/ZsbqCSOFY2AFL
+        6xqddvc9Nvl62RTiIukObqRgS3+h9FpLYHNvAP9Pvw==
+X-Google-Smtp-Source: ABdhPJxQDYouxITNJmwaaThzvVD1XAnzZMqtFtlNEJHpFQRcHDR6KLCgV7rHNgQP+OYdjgQSxIklzpD34tDNLPLfNDQ=
+X-Received: by 2002:a17:906:3146:: with SMTP id e6mr15297794eje.363.1603723266555;
+ Mon, 26 Oct 2020 07:41:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201021123437.21538-5-nsaenzjulienne@suse.de>
+References: <20201022155858.20867-1-nsaenzjulienne@suse.de> <20201022155858.20867-4-nsaenzjulienne@suse.de>
+In-Reply-To: <20201022155858.20867-4-nsaenzjulienne@suse.de>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 26 Oct 2020 15:40:55 +0100
+Message-ID: <CAMpxmJXw12hKYCuMDjG-Ns6n=mXmr4B2x3HJaAJ19wH_xDUMag@mail.gmail.com>
+Subject: Re: [PATCH v2 03/10] gpio: raspberrypi-exp: Release firmware handle
+ on unbind
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>, wahrenst@gmx.net,
+        Linux Input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        devel@driverdev.osuosl.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Oct 2020 14:34:34 +0200, Nicolas Saenz Julienne wrote:
-> Introduce a test for of_dma_get_max_cup_address(), it uses the same DT
-> data as the rest of dma-ranges unit tests.
-> 
+On Thu, Oct 22, 2020 at 5:59 PM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
+>
+> Upon unbinding the device make sure we release RPi's firmware interface.
+>
 > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> 
 > ---
-> Changes since v3:
->  - Remove HAS_DMA guards
-> 
->  drivers/of/unittest.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
+>  drivers/gpio/gpio-raspberrypi-exp.c | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpio/gpio-raspberrypi-exp.c b/drivers/gpio/gpio-raspberrypi-exp.c
+> index bb100e0124e6..c008336e1131 100644
+> --- a/drivers/gpio/gpio-raspberrypi-exp.c
+> +++ b/drivers/gpio/gpio-raspberrypi-exp.c
+> @@ -231,8 +231,19 @@ static int rpi_exp_gpio_probe(struct platform_device *pdev)
+>         rpi_gpio->gc.get = rpi_exp_gpio_get;
+>         rpi_gpio->gc.set = rpi_exp_gpio_set;
+>         rpi_gpio->gc.can_sleep = true;
+> +       platform_set_drvdata(pdev, rpi_gpio);
+>
+> -       return devm_gpiochip_add_data(dev, &rpi_gpio->gc, rpi_gpio);
+> +       return gpiochip_add_data(&rpi_gpio->gc, rpi_gpio);
+> +}
+> +
+> +static int rpi_exp_gpio_remove(struct platform_device *pdev)
+> +{
+> +       struct rpi_exp_gpio *rpi_gpio = platform_get_drvdata(pdev);
+> +
+> +       gpiochip_remove(&rpi_gpio->gc);
+> +       rpi_firmware_put(rpi_gpio->fw);
+> +
+> +       return 0;
+>  }
+>
+>  static const struct of_device_id rpi_exp_gpio_ids[] = {
+> @@ -247,6 +258,7 @@ static struct platform_driver rpi_exp_gpio_driver = {
+>                 .of_match_table = of_match_ptr(rpi_exp_gpio_ids),
+>         },
+>         .probe  = rpi_exp_gpio_probe,
+> +       .remove = rpi_exp_gpio_remove,
+>  };
+>  module_platform_driver(rpi_exp_gpio_driver);
+>
+> --
+> 2.28.0
+>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Why not introduce devm_rpi_firmware_get()? That would allow you to
+keep the driver elegant without re-adding remove().
+
+Bartosz
