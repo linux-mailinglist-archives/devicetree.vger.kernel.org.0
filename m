@@ -2,88 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDD0298AA5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 11:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 864FC298AD0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 11:56:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1769751AbgJZKq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 06:46:28 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:34053 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1770077AbgJZKq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 06:46:27 -0400
-Received: by mail-wm1-f67.google.com with SMTP id k21so5412200wmi.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 03:46:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AnbodJ8Py+s5i8s5RWeAFbLBwIF9+tfkt0vsM4R/3mM=;
-        b=b7qZHc+tkVHcMem8r0QXs+94W9fJ5vhorjlb2iPUwsNraOH9yshbHkafhRSImN8Hjz
-         j8Mg5MCWQXFQGOPFMJ7dL0a8llFJYA7CUbK6fJgAWyYxvrpEm/8/kvQE5Uex6yQ59fnG
-         0hbH4z7zwWVrvEuOIhD1EscIibmtvbboqZdbQ5stoOJLburVbSzGkC9EP5CEkU9QPDDQ
-         RV/skH2nJqaxZt9iAPCGDg0T4KAcCjXPk2B94GrpUtpz7CLJ6tw0pZfHtT28W9XXZB9U
-         qlXGogGjIMgrbX4KAllQIxqsxnUP3+d84JtZE45U05L17+Ft3pGf0jFEnlkcXg7Q89Ke
-         gjPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AnbodJ8Py+s5i8s5RWeAFbLBwIF9+tfkt0vsM4R/3mM=;
-        b=AXxjnpfetZx3Oxn2SZgyI5TwG9c0mg7a/YQZ4b63FrEreXy9QqXYHOGzE1WTmOC8DP
-         YzNBScJq9FCDcYCIqYFfwA8wk41GHHm0tfP5kAne48cAqPuSu/84+33LAGfIXm6kCbMf
-         T10ky5MMmxe9wsjUwRl1rhcPjxzhYkEVvKr2fC8FsIIkMdmaRJMqAuCb+U4JhXcry2jJ
-         Fgq86VmUF6pD9+/LBfNM+SIw9tFCESrT80OmJduFMBUuVRIkS+n5ejq5EKIetwleIvKI
-         vLiCmdqPCUrO0MV46L1ZqaxPu0NE1L7NbEjuyQ1XgQ61YLTTmCCrcn1SY/M5bnluc6zV
-         vFpA==
-X-Gm-Message-State: AOAM532fpTim9vUSovUony1jKz6BnQgenEvVwisy3C+zG0zSBbJjte2y
-        +o9DKIgcpN1JSwac+A9lfrju4g==
-X-Google-Smtp-Source: ABdhPJwVRivlaVjdlHMuhC0KN5EXLVQIi7/47UpIe1Sn17iopr3PPxN+sNMgaMrXLz/3YGg8mb8ckA==
-X-Received: by 2002:a7b:c00a:: with SMTP id c10mr6411043wmb.119.1603709184442;
-        Mon, 26 Oct 2020 03:46:24 -0700 (PDT)
-Received: from localhost.localdomain (lfbn-nic-1-190-206.w2-15.abo.wanadoo.fr. [2.15.39.206])
-        by smtp.gmail.com with ESMTPSA id b190sm20625354wmd.35.2020.10.26.03.46.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 03:46:23 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH] ARM: dts: at91: at91-sama5d27_som1: fix EEPROM compatible
-Date:   Mon, 26 Oct 2020 11:46:18 +0100
-Message-Id: <20201026104618.23415-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.29.1
+        id S1771867AbgJZK4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 06:56:24 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:40126 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1771859AbgJZK4Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 06:56:24 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8A9551A0A73;
+        Mon, 26 Oct 2020 11:56:22 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7D1B61A0A0F;
+        Mon, 26 Oct 2020 11:56:22 +0100 (CET)
+Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 68BB920308;
+        Mon, 26 Oct 2020 11:56:22 +0100 (CET)
+Date:   Mon, 26 Oct 2020 12:56:22 +0200
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+Subject: Re: [PATCH 10/11] arm64: dts: imx8mm: add GPC node and power domains
+Message-ID: <20201026105622.iqt6cej3iqog57jd@fsr-ub1664-175>
+References: <20200930155006.535712-1-l.stach@pengutronix.de>
+ <20200930155006.535712-11-l.stach@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200930155006.535712-11-l.stach@pengutronix.de>
+User-Agent: NeoMutt/20180622
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+On 20-09-30 17:50:05, Lucas Stach wrote:
+> This adds the DT nodes to describe the power domains available on the
+> i.MX8MM. Things are a bit more complex compared to other GPCv2 power
+> domain setups, as there is now a hierarchy of domains where complete
+> subsystems (HSIO, GPU, DISPLAY) can be gated as a whole, but also
+> fine granular gating within those subsystems is possible.
+> 
+> Note that this is still incomplete, as both VPU and DISP domains are
+> missing their reset clocks. Those aren't directly sourced from the CCM,
+> but have another level of clock gating in the BLKCTL of those domains,
+> which needs a separate driver.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 57 +++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index 76f040e4be5e..a841fb2d0458 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -4,6 +4,8 @@
+>   */
+>  
+>  #include <dt-bindings/clock/imx8mm-clock.h>
+> +#include <dt-bindings/power/imx8mm-power.h>
+> +#include <dt-bindings/reset/imx8mq-reset.h>
 
-AT24 compatibles require a vendor prefix. Use the default "atmel".
+Needs to be imx8mm-reset.h, as in 8MM, not 8MQ.
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- arch/arm/boot/dts/at91-sama5d27_som1.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-index b1f994c0ae79..1b1163858b1d 100644
---- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-+++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-@@ -100,7 +100,7 @@ i2c0: i2c@f8028000 {
- 				status = "okay";
- 
- 				at24@50 {
--					compatible = "24c02";
-+					compatible = "atmel,24c02";
- 					reg = <0x50>;
- 					pagesize = <8>;
- 				};
--- 
-2.29.1
-
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -547,6 +549,61 @@
+>  				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+>  				#reset-cells = <1>;
+>  			};
+> +
+> +			gpc: gpc@303a0000 {
+> +				compatible = "fsl,imx8mm-gpc";
+> +				reg = <0x303a0000 0x10000>;
+> +				interrupt-parent = <&gic>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <3>;
+> +
+> +				pgc {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					pgc_hsiomix: power-domain@0 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_HSIOMIX>;
+> +						clocks = <&clk IMX8MM_CLK_USB_BUS>;
+> +					};
+> +
+> +					pgc_pcie: power-domain@1 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_PCIE>;
+> +						power-domains = <&pgc_hsiomix>;
+> +					};
+> +
+> +					pgc_otg1: power-domain@2 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_OTG1>;
+> +						power-domains = <&pgc_hsiomix>;
+> +					};
+> +
+> +					pgc_otg2: power-domain@3 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_OTG2>;
+> +						power-domains = <&pgc_hsiomix>;
+> +					};
+> +
+> +					pgc_gpumix: power-domain@4 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_GPUMIX>;
+> +						clocks = <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +						         <&clk IMX8MM_CLK_GPU_AHB>;
+> +					};
+> +
+> +					pgc_gpu: power-domain@5 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_GPU>;
+> +						clocks = <&clk IMX8MM_CLK_GPU_AHB>,
+> +						         <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +						         <&clk IMX8MM_CLK_GPU2D_ROOT>,
+> +						         <&clk IMX8MM_CLK_GPU3D_ROOT>;
+> +						resets = <&src IMX8MQ_RESET_GPU_RESET>;
+> +						power-domains = <&pgc_gpumix>;
+> +					};
+> +				};
+> +			};
+>  		};
+>  
+>  		aips2: bus@30400000 {
+> -- 
+> 2.20.1
+> 
