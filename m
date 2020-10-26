@@ -2,126 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB9F62994D9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 19:08:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2FB02994EF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 19:15:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1789209AbgJZSIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 14:08:34 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:38905 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1783374AbgJZSId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 14:08:33 -0400
-Received: by mail-il1-f193.google.com with SMTP id p16so9213186ilq.5
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 11:08:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FHudRtp7yzYdmsxvUUGKxH7K88Fn6l9DBuMQ5iU2qAI=;
-        b=EgVUQ50Kuv45cI5ojv4WXe4qC3H1y/RPR4naCQph6DTzVdU4YcS6zm1VL0nyTRaKSz
-         7Xa4pbYYWS5GJ5MRiqBFginYq2aewpye2Sj6DcyQ/5XmHeefO1RRueF0X71qlv8LY8pL
-         y6/n5OYAur+1WCRQF1PU3ncXDYj+5m6P6AZsIbb7iF7Xg+v3A+nP8+H6N3ItNqIoFTCr
-         fFcM/KVRTY0oYIWL2G0qc9bRNDdFVYwGbBVQva0vconViKNWw2N4dJkRgzXlAHNWy7M5
-         Hfaaag7nn9dW9hgSSGR3OMQQMzyLY4D+/mQ6ke8F53hYZUoQ4JdkqX8iImaHPe760Mrh
-         saJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FHudRtp7yzYdmsxvUUGKxH7K88Fn6l9DBuMQ5iU2qAI=;
-        b=gQGky23o+h7aIxWXnzCJn/JCMyKwn5R2sQ6J5sAPXhLBM90K6VdLOO7DpoQAHHlaFd
-         laGPNX5bUFpz6JGCnEaprDgx7FkA/YCijYkBa4t3B+4BlVR7daHfCcJN+g69Gs2ftEGo
-         RlOfhIjRWWNuht5mwx8De0HWJISMTQzO5RI1wWz46kCPit+R5eQ/POCIb8DOnds/0Pgt
-         fDAWFZULVYc1KYfe6cFkMKxjU4nP9AM9LMpdVY0i6wWuRdTI/5OhcFGMcBIqom65L4iO
-         /PuEOw0hWB7+1o7rTMa/+O0aBeh2JWEhyWil1HKnUntwcrG6KkIqLALqioo4jhgXn0BZ
-         aUZA==
-X-Gm-Message-State: AOAM53115sYBlsT8ewghpCHvpUhtQg9F9VuxmR8ZEuTTVbDcUccH5ecZ
-        krM0Wxq9G2uuG8KJxXv0mu/z/7+eLb1U2EKLs9PT6A==
-X-Google-Smtp-Source: ABdhPJyAnrUXnX8HS6B0CYvBbgrW7BhkwL2lF6G9o1ylXON0aM6cIo/qvmxrBM044uvfh8/xKjMwDMo7m8/xFU1nr98=
-X-Received: by 2002:a92:7f10:: with SMTP id a16mr12479315ild.134.1603735710869;
- Mon, 26 Oct 2020 11:08:30 -0700 (PDT)
+        id S1789321AbgJZSPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 14:15:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59034 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1789318AbgJZSPi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 14:15:38 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.184])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 352052087C;
+        Mon, 26 Oct 2020 18:15:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603736137;
+        bh=XNkTurHxcTSdlJysblP2MMoMZiIHUkTVmgg0ibKLaq0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SKaDfHKO6sHcYaKcllCDJt+l8POWAF21/mPD0TP20vC7Kf4uKwu3JZTh83RLanWGo
+         QzF+NrUG4dM2sRRlNpSuRqp/IN1u2BBH4zYfO8MmzrEzaXMCzVVt1Kkf+5rn7nt9r/
+         TUz0WAIXtoA6uKwf1bUlAgD64Zot59UHrp+60SrM=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Subject: [PATCH 00/12] ARM: dts: samsung: minor node name cleanups
+Date:   Mon, 26 Oct 2020 19:15:16 +0100
+Message-Id: <20201026181528.163143-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201017153857.2494845-1-fparent@baylibre.com>
- <20201017153857.2494845-2-fparent@baylibre.com> <20201026133006.GA29275@bogus>
-In-Reply-To: <20201026133006.GA29275@bogus>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Mon, 26 Oct 2020 19:08:20 +0100
-Message-ID: <CAOwMV_z9QzAOO09ZUVyn61Fv4+pRUNA0H22tnP-PrXUOLRjXeg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] clocksource: mediatek: add clk13m and bus clock support
-To:     Rob Herring <robh@kernel.org>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>, tglx@linutronix.de,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi All,
 
-On Mon, Oct 26, 2020 at 2:30 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Sat, Oct 17, 2020 at 05:38:57PM +0200, Fabien Parent wrote:
-> > Some MediaTek SoC like MT8516 need to enable additional clocks
-> > for the GPT timer. Enable them if present.
-> >
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > ---
-> >  drivers/clocksource/timer-mediatek.c | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/drivers/clocksource/timer-mediatek.c b/drivers/clocksource/timer-mediatek.c
-> > index 9318edcd8963..42e2d2090484 100644
-> > --- a/drivers/clocksource/timer-mediatek.c
-> > +++ b/drivers/clocksource/timer-mediatek.c
-> > @@ -9,6 +9,7 @@
-> >
-> >  #define pr_fmt(fmt)  KBUILD_MODNAME ": " fmt
-> >
-> > +#include <linux/clk.h>
-> >  #include <linux/clockchips.h>
-> >  #include <linux/clocksource.h>
-> >  #include <linux/interrupt.h>
-> > @@ -278,8 +279,19 @@ static int __init mtk_syst_init(struct device_node *node)
-> >
-> >  static int __init mtk_gpt_init(struct device_node *node)
-> >  {
-> > +     struct clk *clk_13m, *clk_bus;
-> >       int ret;
-> >
-> > +     /* Optional clock*/
->
-> Then use the optional api variant.
+A new Exynos4412 board was recently submitted and it (as expected)
+copied all not-the-best patterns from existing DTSes.  Let's fix few of
+them so any new boards will not copy old choices.
 
-I looked for optional API variant but could only find these:
-* struct clk *devm_clk_get_optional(struct device *dev, const char *id);
-* struct clk *devm_clk_get_optional(struct device *dev, const char *id);
+I plan to follow up on this and fix few of such naming and style issues.
 
-These two require a "struct device" parameter but in the function
-mtk_gpt_init, we only have a "struct device_node" I didn't see any way
-to get a "struct device" from a "struct device_node".
+Best regards,
+Krzysztof
 
->
-> > +     clk_13m = of_clk_get_by_name(node, "clk13m");
-> > +     if (!IS_ERR(clk_13m))
->
-> And then you can drop this check (or handle it for any error other than
-> clock is not present).
->
-> > +             clk_prepare_enable(clk_13m);
-> > +
-> > +     /* Optional clock*/
-> > +     clk_bus = of_clk_get_by_name(node, "bus");
-> > +     if (!IS_ERR(clk_bus))
-> > +             clk_prepare_enable(clk_bus);
-> > +
-> >       to.clkevt.features = CLOCK_EVT_FEAT_PERIODIC | CLOCK_EVT_FEAT_ONESHOT;
-> >       to.clkevt.set_state_shutdown = mtk_gpt_clkevt_shutdown;
-> >       to.clkevt.set_state_periodic = mtk_gpt_clkevt_set_periodic;
-> > --
-> > 2.28.0
-> >
+Krzysztof Kozlowski (12):
+  ARM: dts: exynos: adjust node names to DT spec in Exynos3250 boards
+  ARM: dts: exynos: adjust node names to DT spec in Exynos4210 boards
+  ARM: dts: exynos: override GPIO keys node by label in Exynos4412
+    Odroid family
+  ARM: dts: exynos: adjust node names to DT spec in Exynos4412 boards
+  ARM: dts: exynos: remove redundant status=okay in Exynos4412 boards
+  ARM: dts: exynos: adjust node names to DT spec in Exynos5250 boards
+  ARM: dts: exynos: adjust node names to DT spec in Odroid XU
+  ARM: dts: exynos: adjust node names to DT spec in Exynos542x boards
+  ARM: dts: s5pv210: adjust node names to DT spec
+  arm64: dts: exynos: adjust node names to DT spec in Exynos5433 TM2
+  arm64: dts: exynos: adjust node names to DT spec in Exynos7 Espresso
+  arm64: dts: exynos: remove redundant status=okay in Exynos5433 TM2
+
+ arch/arm/boot/dts/exynos3250-artik5.dtsi      |  2 +-
+ arch/arm/boot/dts/exynos3250-monk.dts         |  8 +++---
+ arch/arm/boot/dts/exynos3250-rinato.dts       |  8 +++---
+ arch/arm/boot/dts/exynos4210-i9100.dts        |  6 ++--
+ arch/arm/boot/dts/exynos4210-origen.dts       |  4 +--
+ arch/arm/boot/dts/exynos4210-smdkv310.dts     | 22 +++++++--------
+ arch/arm/boot/dts/exynos4210-trats.dts        |  4 +--
+ arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi   |  9 +++---
+ arch/arm/boot/dts/exynos4412-itop-elite.dts   |  2 +-
+ .../boot/dts/exynos4412-itop-scp-core.dtsi    |  2 +-
+ arch/arm/boot/dts/exynos4412-midas.dtsi       | 15 ++++------
+ arch/arm/boot/dts/exynos4412-n710x.dts        |  2 +-
+ .../boot/dts/exynos4412-odroid-common.dtsi    | 10 +++----
+ arch/arm/boot/dts/exynos4412-odroidx.dts      | 28 +++++++++----------
+ arch/arm/boot/dts/exynos4412-origen.dts       | 14 +++++-----
+ arch/arm/boot/dts/exynos4412-smdk4412.dts     | 20 ++++++-------
+ arch/arm/boot/dts/exynos5250-arndale.dts      |  4 +--
+ arch/arm/boot/dts/exynos5250-smdk5250.dts     |  4 +--
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi |  4 +--
+ arch/arm/boot/dts/exynos5250-spring.dts       |  2 +-
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  2 +-
+ arch/arm/boot/dts/exynos5420-arndale-octa.dts |  4 +--
+ arch/arm/boot/dts/exynos5420-peach-pit.dts    |  4 +--
+ arch/arm/boot/dts/exynos5420-smdk5420.dts     |  2 +-
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi |  2 +-
+ .../boot/dts/exynos5422-odroidxu3-audio.dtsi  |  2 +-
+ .../boot/dts/exynos5422-odroidxu3-common.dtsi |  4 +--
+ arch/arm/boot/dts/exynos5422-odroidxu3.dts    |  8 +++---
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |  4 +--
+ arch/arm/boot/dts/s5pv210-aquila.dts          | 12 ++++----
+ arch/arm/boot/dts/s5pv210-aries.dtsi          |  4 +--
+ arch/arm/boot/dts/s5pv210-goni.dts            | 14 +++++-----
+ arch/arm/boot/dts/s5pv210-smdkv210.dts        | 20 ++++++-------
+ .../dts/exynos/exynos5433-tm2-common.dtsi     | 11 ++++----
+ .../boot/dts/exynos/exynos7-espresso.dts      |  2 +-
+ 35 files changed, 130 insertions(+), 135 deletions(-)
+
+-- 
+2.25.1
+
