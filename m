@@ -2,120 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B82DA2997FB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 21:32:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85DA0299811
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 21:36:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731788AbgJZUcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 16:32:33 -0400
-Received: from foss.arm.com ([217.140.110.172]:51632 "EHLO foss.arm.com"
+        id S2388315AbgJZUgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 16:36:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35280 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731776AbgJZUc1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 16:32:27 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD7E31424;
-        Mon, 26 Oct 2020 13:32:26 -0700 (PDT)
-Received: from e120937-lin.home (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED1BC3F7BB;
-        Mon, 26 Oct 2020 13:32:24 -0700 (PDT)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     sudeep.holla@arm.com, lukasz.luba@arm.com,
-        james.quinlan@broadcom.com, Jonathan.Cameron@Huawei.com,
-        broonie@kernel.org, robh@kernel.org, satyakim@qti.qualcomm.com,
-        etienne.carriere@linaro.org, f.fainelli@gmail.com,
-        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
-        cristian.marussi@arm.com
-Subject: [PATCH v3 4/4] dt-bindings: arm: add support for SCMI Regulators
-Date:   Mon, 26 Oct 2020 20:31:48 +0000
-Message-Id: <20201026203148.47416-5-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201026203148.47416-1-cristian.marussi@arm.com>
-References: <20201026203148.47416-1-cristian.marussi@arm.com>
+        id S2388247AbgJZUgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 16:36:14 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D9722207E8;
+        Mon, 26 Oct 2020 20:36:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603744573;
+        bh=O52isSyK67wz7u/WK6c8oDPAtmNSuqkBMdDiqRurhQM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TyNgwzHMG3kipk9sEO1r3JgY4RC0iydlCvAz/zgXCSQluq1TXqAWBbaZfBH4HcV1u
+         YIyh/VB5f3XoCUDAmciA5GwXT0MUE5LfAy7+nS5e1pYUw5wm3diqPBWLKKovncNyU7
+         eoJN/DpPloMredPYPKTO+z24scAZ0scFA3/VggB0=
+Date:   Mon, 26 Oct 2020 20:36:08 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
+Message-ID: <20201026203608.GJ7402@sirena.org.uk>
+References: <20201024200304.1427864-1-fparent@baylibre.com>
+ <20201026121316.GB7402@sirena.org.uk>
+ <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
+ <20201026172431.GI7402@sirena.org.uk>
+ <CAOwMV_xt=OV6cKqQTZUUSAvYKxUUQZAUywAHtFFHL=E5xVu-Zg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="j+MD90OnwjQyWNYt"
+Content-Disposition: inline
+In-Reply-To: <CAOwMV_xt=OV6cKqQTZUUSAvYKxUUQZAUywAHtFFHL=E5xVu-Zg@mail.gmail.com>
+X-Cookie: Safety Third.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings to support regulators based on SCMI Voltage
-Domain Protocol.
 
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
-v2 --> v3
-- avoid awkard examples based on _cpu/_gpu regulators
-v1 --> v2
-- removed any reference to negative voltages
----
- .../devicetree/bindings/arm/arm,scmi.txt      | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+--j+MD90OnwjQyWNYt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-index 55deb68230eb..0cef83a60f03 100644
---- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-+++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-@@ -62,6 +62,28 @@ Required properties:
-  - #power-domain-cells : Should be 1. Contains the device or the power
- 			 domain ID value used by SCMI commands.
- 
-+Regulator bindings for the SCMI Regulator based on SCMI Message Protocol
-+------------------------------------------------------------
-+
-+An SCMI Regulator is permanently bound to a well defined SCMI Voltage Domain,
-+and should be always positioned as a root regulator.
-+It does not support any current operation.
-+
-+This binding uses the common regulator binding[6].
-+
-+SCMI Regulators are grouped under a 'regulators' node which in turn is a child
-+of the SCMI Voltage protocol node inside the desired SCMI instance node.
-+
-+Required properties:
-+ - reg : shall identify an existent SCMI Voltage Domain.
-+
-+Optional properties:
-+ - all of the other standard regulator bindings as in [6]: note that, since
-+   the SCMI Protocol itself aims in fact to hide away many of the operational
-+   capabilities usually exposed by the properties of a standard regulator,
-+   most of the usual regulator bindings could have just no effect in the
-+   context of this SCMI regulator.
-+
- Sensor bindings for the sensors based on SCMI Message Protocol
- --------------------------------------------------------------
- SCMI provides an API to access the various sensors on the SoC.
-@@ -105,6 +127,7 @@ Required sub-node properties:
- [3] Documentation/devicetree/bindings/thermal/thermal*.yaml
- [4] Documentation/devicetree/bindings/sram/sram.yaml
- [5] Documentation/devicetree/bindings/reset/reset.txt
-+[6] Documentation/devicetree/bindings/regulator/regulator.yaml
- 
- Example:
- 
-@@ -169,6 +192,25 @@ firmware {
- 			reg = <0x16>;
- 			#reset-cells = <1>;
- 		};
-+
-+		scmi_voltage: protocol@17 {
-+			reg = <0x17>;
-+
-+			regulators {
-+				regulator_devX: regulator_scmi_devX@0 {
-+					reg = <0x0>;
-+					regulator-max-microvolt = <3300000>;
-+				};
-+
-+				regulator_devY: regulator_scmi_devY@9 {
-+					reg = <0x9>;
-+					regulator-min-microvolt = <500000>;
-+					regulator-max-microvolt = <4200000>;
-+				};
-+
-+				...
-+			};
-+		};
- 	};
- };
- 
--- 
-2.17.1
+On Mon, Oct 26, 2020 at 07:38:14PM +0100, Fabien Parent wrote:
+> On Mon, Oct 26, 2020 at 6:24 PM Mark Brown <broonie@kernel.org> wrote:
 
+> > >         .name = "mt6392-regulator",
+> > >         .of_compatible = "mediatek,mt6392-regulator"
+
+> > This is still unneeded, it's just a reflection of Linux implementation
+> > details and should be removed.   The MFD can just register the child
+> > without supplying a compatible and things will continue to work just as
+> > well.
+
+> I'm not exactly sure how it is supposed to work. mfd_add_devices seems
+> to register devices based on of_compatible or acpi_match from the
+> mfd_cell. This platform does not have ACPI so I don't understand how
+
+It should also support unconditionally registering devices, if it no
+longer does so that's a regression in the framework which should be
+fixed.  Looking at mfd_add_devices() I can't see an issue though, both
+ACPI and DT information is optional - the entire DT section in
+mfd_add_device() will be skipped if no of_compatible is specified in the
+cell.  Are you *sure* that the regulator driver isn't running?
+
+--j+MD90OnwjQyWNYt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+XMzcACgkQJNaLcl1U
+h9D8Fgf/aY41lzA2GffEUL92jRQgpryeIR0UjVjAKQ15Q+FNzHhDQDjS62uceDK7
+wH/NxVxXJwmheYwxvKDRglhGW0BSlYd2T/ALNzTDrb1HlHaaYmkYftCf3Ijj4EDI
+sX7lN0rcEG95Z8uSVgKxOw98sX4tvqItnM+sNrHbkq1aE6Vz8cX7jaxkn7DvC+G7
+sayBo3bg1cUj+yWVFzkGhmlm9ihb38yX3UI3dTOKQlh+rjCxw0o+R34whmJPtZe8
+BRhcrr+/Zw5slffrzVmjSeklyFaqem839diSUzj7UoG6CuFyP4n9XbCpiaNz01aJ
+9jzOgf4SPNSSyceZfdZLoxQgGvAHqg==
+=tD5M
+-----END PGP SIGNATURE-----
+
+--j+MD90OnwjQyWNYt--
