@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BA6D2990A5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:10:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B7E32990AB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:11:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1783337AbgJZPKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:10:08 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:37843 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1783320AbgJZPKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:10:08 -0400
-Received: by mail-oo1-f67.google.com with SMTP id f25so144257oou.4;
-        Mon, 26 Oct 2020 08:10:06 -0700 (PDT)
+        id S1783356AbgJZPK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 11:10:58 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:44345 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1783253AbgJZPK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:10:58 -0400
+Received: by mail-oi1-f194.google.com with SMTP id k27so10773220oij.11;
+        Mon, 26 Oct 2020 08:10:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=R6ueP1HO8JqUsL70C3bBNVjuPSpEsQMvHNQvx7gaX2c=;
-        b=g0ZytXDrZWBQZCH+ESWl4YnDLdRMPMd2nYS4Yr3Pt1XqPgBk6Gv09skyXy06HKXx25
-         WEF6rEiCEhL/pSJr0WaGeivigyyXMYpr3E61Cfvru6F85KCirgRlvgKmVCeipbd/0f3p
-         wmU/0LQgcov+XSFuXfc97KMhmdKM/EqfGRr+ipgquX5RCSkJHwE9R0VuIjZhBxDjosAs
-         8CtsdEzdYxTjV2MAjqAtp5DoAdUIEX5INwJQdHbNmMGvyWV07PKND5LFDXFBy8XXr+2o
-         mh7fW/T+1uVmnhdeDWq182WUsjn1hseUPQJcqqG/BEe2WnxqgsILWt4T3nJAQMh7NHW6
-         mXxw==
-X-Gm-Message-State: AOAM532Xvq3fPVUlqErDxv0MAUOUCkfeC3QeRuLNBicVtKdy8S7IGGec
-        l7uQLCnVnkf7BN/13hdIVA==
-X-Google-Smtp-Source: ABdhPJwOao0i1aYUgzOXxNaz3urRathZzBUqu7c76rfe8Qr9S7poEniKetfix+mcJYzja757X3t2og==
-X-Received: by 2002:a4a:af03:: with SMTP id w3mr12603860oon.93.1603725005757;
-        Mon, 26 Oct 2020 08:10:05 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=3HbYXNrV89e842a6MV9RdUrR65g9NlVHZqi5zKDo5U8=;
+        b=QEV+3S137E0rOgbOCh6PNRFLocHrzU/PbObUvxgPRwCPzUvAbZB4oI4lZ3sqt6a7lH
+         8sRn9R/hQjQoc6Iws1CTH9fvTIq4seEIj1HSZT5050KeBknKliR1Koy/q2SKFb7gtMk7
+         oH+ZnewxT19WH2IQIBQMaGhdEDEoBR9pXVZisKnqmeZgbqtLEJs/u2JnivwXDMHJdnyk
+         eOkSiIxqPsTcu1Xn+tkKYek9s3iX8Fm4nOq8RdP7Frq8llcmwU3ej0BVsdMrE049sd2Y
+         Ol5lcPcuVnohkMPJ7N5OCOrCUod6FTS6rdmXEh3tGbleShXwi+2lIbsuOYfFMU56ZhWv
+         a9xw==
+X-Gm-Message-State: AOAM533v/a+aSdV9Guw+5xv5rmQfsxwmKY2EW0FUorgyGSAWGHOKT3uS
+        Do/8mCBqrd4UO2s1L4cqpw==
+X-Google-Smtp-Source: ABdhPJyWP3XeVGgGn153qgWhB22dCYTxeCn9J85Go+pr8k0vTyH+0Y10upM7t1rL5cpFBdoymPBcbQ==
+X-Received: by 2002:aca:db05:: with SMTP id s5mr14038412oig.133.1603725057317;
+        Mon, 26 Oct 2020 08:10:57 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e20sm3569197otj.57.2020.10.26.08.10.04
+        by smtp.gmail.com with ESMTPSA id f18sm3795142otf.55.2020.10.26.08.10.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 08:10:05 -0700 (PDT)
-Received: (nullmailer pid 166281 invoked by uid 1000);
-        Mon, 26 Oct 2020 15:10:04 -0000
-Date:   Mon, 26 Oct 2020 10:10:04 -0500
+        Mon, 26 Oct 2020 08:10:56 -0700 (PDT)
+Received: (nullmailer pid 167521 invoked by uid 1000);
+        Mon, 26 Oct 2020 15:10:55 -0000
+Date:   Mon, 26 Oct 2020 10:10:55 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Rui Miguel Silva <rmfrfs@gmail.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, sakari.ailus@linux.intel.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v6 3/3] dt-bindings: imx7-mipi-csi2: convert bindings to
- yaml
-Message-ID: <20201026151004.GA166226@bogus>
-References: <20201021212543.1920793-1-rmfrfs@gmail.com>
- <20201021212543.1920793-4-rmfrfs@gmail.com>
+To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>, devicetree@vger.kernel.org,
+        Kukjin Kim <kgene@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, jim.cromie@gmail.com,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 1/5] dt-bindings: vendor-prefixes: Add asix prefix
+Message-ID: <20201026151055.GA167469@bogus>
+References: <20201021214910.20001-1-l.stelmach@samsung.com>
+ <CGME20201021214933eucas1p26e8ee82f237e977e8b3324145a929a1a@eucas1p2.samsung.com>
+ <20201021214910.20001-2-l.stelmach@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201021212543.1920793-4-rmfrfs@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201021214910.20001-2-l.stelmach@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Oct 2020 22:25:43 +0100, Rui Miguel Silva wrote:
-> Convert imx7 mipi csi2 bindings documentation to yaml schema, remove
-> the textual document and update MAINTAINERS entry.
+On Wed, 21 Oct 2020 23:49:06 +0200, Łukasz Stelmach wrote:
+> Add the prefix for ASIX Electronics Corporation
 > 
-> Signed-off-by: Rui Miguel Silva <rmfrfs@gmail.com>
-> Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
 > ---
-> 
-> v5 -> v6:
->   Jacopo Mondi:
->   Patch 3/3:
->     https://lore.kernel.org/linux-media/20201021155016.bs2n5ixuhxwjzjy2@uno.localdomain/
->     - fix capital MIPI CSI-2 and i.MX in description
->     - add maxItems in clocks
->     - add Jacopo Reviewed-by tag
-> 
->  .../bindings/media/imx7-mipi-csi2.txt         |  90 ---------
->  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 173 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 174 insertions(+), 91 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
