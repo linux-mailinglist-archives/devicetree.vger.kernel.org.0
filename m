@@ -2,80 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F122996F9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 20:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEFDA299755
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 20:50:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1793266AbgJZTdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 15:33:25 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:32838 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1793208AbgJZTdG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 15:33:06 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C7EEA20089E;
-        Mon, 26 Oct 2020 20:33:04 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BBE46201712;
-        Mon, 26 Oct 2020 20:33:04 +0100 (CET)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id F2EBC20308;
-        Mon, 26 Oct 2020 20:33:03 +0100 (CET)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Abel Vesa <abel.vesa@nxp.com>
-Subject: [PATCH v4 14/14] arm64: dts: imx8mp: Add hdmi_blk_ctl node
-Date:   Mon, 26 Oct 2020 21:32:30 +0200
-Message-Id: <1603740750-10385-15-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1603740750-10385-1-git-send-email-abel.vesa@nxp.com>
-References: <1603740750-10385-1-git-send-email-abel.vesa@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1728750AbgJZTub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 15:50:31 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:34302 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728742AbgJZTua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 15:50:30 -0400
+Received: by mail-pl1-f194.google.com with SMTP id r3so5191030plo.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 12:50:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dlpTSDPfA0UrBOKMG6J79aMdLO6WWnbzuFkDbchHp4c=;
+        b=b5LA8oRftaz6Vkp7FSDYjIdNtYZup3hkcqo74rSDdXpfCVE/1t5tFU2/kX5foF4QSM
+         Ci629Gr/wY//Cp7rtHlzuOm4b/QoxC5Lmpbb34b7UsqKdT4G9WCig9ezpomztxykxdbm
+         ROx07IWYKt8LSokAhrEUsjR06qeunt397stKbNaGEdd/FICK9iqT0UJt7KXp/+Fm7Atz
+         KF130+q84KImCUlZLudjKJZuXpg/dIQnkTkkJkQpf0CuSU4A/Qiqow8VUit8oEMroNCx
+         3nCYLqbclfeVGls496Bf+FB/Vnq1nQAn1U3aD0hx9WrKl3Xy2eU5YQvjJIs1fntLbDEa
+         ZLag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dlpTSDPfA0UrBOKMG6J79aMdLO6WWnbzuFkDbchHp4c=;
+        b=lsX2B7GmnPPCIrePvta7TheeeQ/pdbqjGX2vOZh753HunmxL1GeUVXI9z3ixiDviRN
+         ZuUMXzxYjGMz5yMhaTAbz5XZB4oLScu9R7Aq4AHmip44A9PIJYiIsiwwn8hxt3fTorVL
+         hSNdqB3IlXqMavv0QzxQ0FNGoXzDZkhwUCGmwdiOlMfkvyxT9l0zi5ENb4s9Kb2dHEV5
+         5kafpJg2rESNXPLu6gdrvYe3nl/TjiDsR8F9HffXqWfESC+rYDfKALi8l2amVK4je2rX
+         l0yYrxZ4Ig/QyV4OumPCPF0P0efpNJJzY3KFG1yHoeFmaoTxY35KMylmW/TIHYgrRjiO
+         nROw==
+X-Gm-Message-State: AOAM532QUcSFbIz6Nwp1D4Jzv+giC17NkfQ474h0hGJCTqkFvh2jDTjv
+        QfBVnHGA/+Pt13rglw2gZIeJTwOPSxzOzUEsI0MBBw==
+X-Google-Smtp-Source: ABdhPJwIiThTbhw+igCvl9C27O7ZcOpplD58EFuW1KI6p+s7uLzuPmvh5EXboo7kHLxLMIgbUZU0/EZ/lH2yKhGnEZU=
+X-Received: by 2002:a17:90a:160f:: with SMTP id n15mr17980256pja.75.1603741829917;
+ Mon, 26 Oct 2020 12:50:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20201022174706.8813-1-kholk11@gmail.com>
+In-Reply-To: <20201022174706.8813-1-kholk11@gmail.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 26 Oct 2020 20:50:19 +0100
+Message-ID: <CAG3jFyvePZ8OZ+0_8pK7t=-UECd5q8tZ4a=c-dbMcNm6pgfnrQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/7] Add support for SDM630/660 Camera Subsystem
+To:     kholk11@gmail.com
+Cc:     Todor Tomov <todor.too@gmail.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, marijns95@gmail.com,
+        konradybcio@gmail.com, martin.botka1@gmail.com,
+        linux-arm-msm@vger.kernel.org,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the features of the hdmi_ctl will be used by some
-different drivers in a way those drivers will know best, so adding the
-syscon compatible we allow those to do just that. Only the resets
-and the clocks are registered bit the clk-blk-ctl driver.
+Hey Angelo,
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+I can't functionally test the code myself, but the series looks good to me now.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 291e135..378f31b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -749,6 +749,13 @@
- 				#clock-cells = <1>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hdmi_blk_ctl: clock-controller@32fc0000 {
-+				compatible = "fsl,imx8mp-hdmi-blk-ctl", "syscon";
-+				reg = <0x32fc0000 0x1000>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 
- 		aips5: bus@30c00000 {
--- 
-2.7.4
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
+On Thu, 22 Oct 2020 at 19:47, <kholk11@gmail.com> wrote:
+>
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+>
+> This patch series implements support for the entire camera subsystem
+> found in SDM630/636/660 and SDA variants, including CSIPHY 3-Phase,
+> CSID v5.0, ISPIF 3.0 (though it didn't need any adaptation) and
+> VFE 4.8.
+>
+> One small note about VFE4.8, even if I wrote it in the commit that
+> adds support for it: I know, the VFE support here is split in
+> multiple files having the name of the actual VFE version that it is
+> targeting... but it didn't feel right to commonize the VFE 4.7 file
+> and make another one only for VFE4.8, when it's just about something
+> like 3 small differences.
+> That VFE 4.8 seems to be just a minor revision of VFE 4.7.
+>
+> While at it, also fix a small issue when using two VFEs: only one
+> of them was being resetted (always VFE0) so, after the first usage
+> of VFE1, in case we leave it in a bad state, it would not properly
+> start again. Now... it's fine :)))
+>
+> P.S.: SDM630/660's camss seems to be *very* similar to MSM8998, so
+>       likely 90% of this series should be reusable on that one, too!
+>
+> Tested on:
+>  - Sony Xperia XA2 (IMX300 on CSI0/PHY0/VFE0, IMX219 on CSI2,PHY2,VFE1)
+>    * VFE0/1 RDI only, as the VIDEO one does not work with SRGGB Bayer
+>      formats yet. As far as I can see, that color format hasn't been
+>      implemented yet in the video interface.
+>
+> Changes in v2:
+>  - Splitted out VFE 4.7 functions rename from the VFE 4.8 support commit
+>  - Moved a commit so that sequentially picking patches from this series
+>    still results in buildable code (heh, oops! sorry!)
+>  - Fixed ispif reset commit (moved the fix for itfrom the wrong commit
+>    to the right one: that was a "funny" overlook).
+>
+> AngeloGioacchino Del Regno (7):
+>   media: camss: ispif: Correctly reset based on the VFE ID
+>   media: camss: vfe-4-7: Rename get_ub_size, set_qos, set_ds, wm_enable
+>   media: camss: vfe: Add support for VFE 4.8
+>   media: camss: Add support for SDM630/636/660 camera subsystem
+>   media: camss: csiphy-3ph: Add support for SDM630/660
+>   media: dt-bindings: media: qcom,camss: Add bindings for SDM660 camss
+>   media: camss: csiphy: Set rate on csiX_phy clock on SDM630/660
+>
+>  .../devicetree/bindings/media/qcom,camss.txt  |   7 +
+>  .../media/platform/qcom/camss/camss-csid.c    |   9 +-
+>  .../qcom/camss/camss-csiphy-3ph-1-0.c         |   7 +-
+>  .../media/platform/qcom/camss/camss-csiphy.c  |  25 ++-
+>  .../media/platform/qcom/camss/camss-csiphy.h  |   1 +
+>  .../media/platform/qcom/camss/camss-ispif.c   | 100 ++++++---
+>  .../media/platform/qcom/camss/camss-ispif.h   |   2 +-
+>  .../media/platform/qcom/camss/camss-vfe-4-7.c | 131 ++++++++++-
+>  drivers/media/platform/qcom/camss/camss-vfe.c |  19 +-
+>  drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
+>  .../media/platform/qcom/camss/camss-video.c   |   3 +-
+>  drivers/media/platform/qcom/camss/camss.c     | 206 +++++++++++++++++-
+>  drivers/media/platform/qcom/camss/camss.h     |   1 +
+>  13 files changed, 450 insertions(+), 62 deletions(-)
+>
+> --
+> 2.28.0
+>
