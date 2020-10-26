@@ -2,85 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3B0299344
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 18:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38AFE299391
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 18:18:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1787094AbgJZRCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 13:02:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50896 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1787091AbgJZRCy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 13:02:54 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7878622450;
-        Mon, 26 Oct 2020 17:02:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603731774;
-        bh=Vx3kwhUrgAstRm7ol0WS1C7y+i6SeJQpZ/usDeWwXjw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1HGmyQZdomU/Kcotc6fonPISgftZKhHwL7gHb6VeyrwzgMJltpq9pWE80mmu1RFE3
-         x3zRvpo2a5VLA1Ht1UohZDgVrhKlBQxFrV83VyfrPOV6ZDzbxhiwhmStcsZeqO4uPA
-         e4IRJW31qs8XutTP77u+GSEVcLP9WBLbvvFEWSX8=
-Date:   Mon, 26 Oct 2020 17:02:49 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: regulator: fixed: provide bindings
- using power domain
-Message-ID: <20201026170249.GH7402@sirena.org.uk>
-References: <20201023131925.334864-1-dmitry.baryshkov@linaro.org>
- <20201023131925.334864-2-dmitry.baryshkov@linaro.org>
+        id S1787490AbgJZRSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 13:18:48 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:43262 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1787489AbgJZRSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 13:18:47 -0400
+Received: by mail-il1-f193.google.com with SMTP id k1so9041549ilc.10
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 10:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kf2slL13S23kIiTkgcu/XH/I01QmvP7nzqRqwTpjchE=;
+        b=ErGh25PWSgrRKBR+lrdUtyDZ/6bplQJCyolB3cw/latSi/0fcmf4wuOGOcPlXU3ARd
+         /BgN9xUjvux1jSiDAvEtTq7bVbWcd502M4QRu0g8KwHhPLAk5u8QlLTvk7fr69OYtUOD
+         pd7oSx2wggH/oh3Fhowo3o1M5CfK5T2ENGfX02C0YLUCqo/haiER/qnns9IbZRSd9GXa
+         l/AwzDHEWS9sH0duGobt9yg6Eid7CwK7TmniMjUgN1JQQeSXRSjRo46iathsVBUiCb/8
+         Z+dT6jgYR/hcukkj/MUqfA3LFpDBk2/ifZRuAw700nFqfpzGjilxVzVI255cE6fOubN8
+         oyvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kf2slL13S23kIiTkgcu/XH/I01QmvP7nzqRqwTpjchE=;
+        b=EKjrLV3d1Bk5INs8QQxkWJS8wECI0Sa7h3biGJxJX5c65M5AD2KocVNzos/j/wOVMC
+         Uw+vkeKetXGNk0tYFYKVV5hU3hOm6WHDk7S7pMVrANBBPBxMrTYMWX4e7Ea0Qm4E7xmW
+         imq733Dria8uPZkMaZxpT4ar7tRhs8pjLoNk/welN+JuZCwwmt4hFVwO0VUUWapb13rn
+         e//93BXJxOGXLeOBiVuozWDAx6UIPZQOXIp3XZ+OlW7WmakvtIhvk9NatwQv9SwjCQby
+         d29HRydg2+o3hsUMD+XXLw/0eFGwYbjTi8PjJVxuv1E0DWBrIdEHPyBtjl3vcu7ssftQ
+         vOdQ==
+X-Gm-Message-State: AOAM530iYPDtXrw64jUa49rRIcebu1cAJVCQuRAai7d370QX7iVlVvmi
+        GTODpxuzQWTbh8Qy3vp0bZRR0N8YBfQRAVxCnMcJAA==
+X-Google-Smtp-Source: ABdhPJxaAiZJ2N/5BbUTyaLVKpzqQmGKuG6ERNt1o/WUN1lABApvRd853FwGYPcM3XwTnI0qUj9PzWNbrjk9LiIH7+k=
+X-Received: by 2002:a92:7f10:: with SMTP id a16mr12296656ild.134.1603732726663;
+ Mon, 26 Oct 2020 10:18:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ewQ5hdP4CtoTt3oD"
-Content-Disposition: inline
-In-Reply-To: <20201023131925.334864-2-dmitry.baryshkov@linaro.org>
-X-Cookie: Safety Third.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20201024200304.1427864-1-fparent@baylibre.com> <20201026121316.GB7402@sirena.org.uk>
+In-Reply-To: <20201026121316.GB7402@sirena.org.uk>
+From:   Fabien Parent <fparent@baylibre.com>
+Date:   Mon, 26 Oct 2020 18:18:35 +0100
+Message-ID: <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
+To:     Mark Brown <broonie@kernel.org>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mark,
 
---ewQ5hdP4CtoTt3oD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, Oct 26, 2020 at 1:13 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Sat, Oct 24, 2020 at 10:03:03PM +0200, Fabien Parent wrote:
+>
+> > +Required properties:
+> > +- compatible: "mediatek,mt6392-regulator"
+>
+> This is no longer used by the driver, should be unneeded and therefore
+> should be removed.
 
-On Fri, Oct 23, 2020 at 04:19:21PM +0300, Dmitry Baryshkov wrote:
-> Define bindings for fixed regulator using power domain performance state
-> to enable/disable corresponding regulator.
+It is not used by the driver but it will be used by the MFD driver [0]
+like this:
+static const struct mfd_cell mt6392_devs[] = {
+    {
+        [snip]
+    }, {
+        [snip]
+    }, {
+        .name = "mt6392-regulator",
+        .of_compatible = "mediatek,mt6392-regulator"
+    }, {
+        [snip]
+    },
+};
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+[0] drivers/mfd/mt6397-core.c
 
---ewQ5hdP4CtoTt3oD
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+> > +- mt6392regulator: List of regulators provided by this controller. It is named
+>
+> This property doesn't seem to appear anywhere - there's regulators, the
+> collection of subnodes for each individual regulator which I think is
+> what is referenced here, but nothing called mt6392regulator.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+XATgACgkQJNaLcl1U
-h9B3ZQf/b7wpRLW/WpVwlv/42X+6gg4wtsqgDCgaVyn4HGeEN0DFdW6WdAmKTygm
-eQwftDetW7iOVVMC9hOjWcqjqsv9mOEerwPyEwv9PN8GKtf6RKpBl2+6q0Bazv/Y
-45WSBguDbosl/Km4cHIviwAgfiTNFvPLKsm7I+OJGSkQgjeO9sIAel7NbcHoOH7p
-qBimFcit4Ztw2p7MNGzsg2G73ddnYQAWHosVs6fdClGIOJ0y3jfCG0FKrvrvBpdz
-fUqrlurarkaR+C/2mnI5S2wGMXsd6HGLV+YkThN71hYjUKovn76o0e+LTPaXltIL
-aj1yZK1NiGho3IJDqRjeudSZa5R20A==
-=6lYt
------END PGP SIGNATURE-----
-
---ewQ5hdP4CtoTt3oD--
+Indeed, I will fix it in the next rev.
