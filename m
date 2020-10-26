@@ -2,104 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC5C0298F81
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:38:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64E1A298F7C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1781654AbgJZOiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 10:38:14 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:38259 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1781566AbgJZOg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:36:58 -0400
-Received: by mail-oi1-f193.google.com with SMTP id h10so10699182oie.5;
-        Mon, 26 Oct 2020 07:36:58 -0700 (PDT)
+        id S1781659AbgJZOiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 10:38:04 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:37853 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1781581AbgJZOiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:38:04 -0400
+Received: by mail-ot1-f67.google.com with SMTP id m22so8178436ots.4;
+        Mon, 26 Oct 2020 07:38:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3tEkDqcCTG0IzQXPAwhJWmsvNZknIocrF7E2OMjuhE0=;
-        b=A+kHQRSDWX7dOx7IB19LYwONX3yffrJVd04zjCJ1dWpd7CapLrL/oDtntLf3ZDLSYb
-         PTgFHQNSj3TEh4LC+2GDsV5Tjt6AOWEAYXcCrtOW/kMTO9WQeg8R/t1G0JUObPTwlAQ9
-         gyTBGY3Fc2p8PhGJ/KBy0vvsyHQ21rRQ+3PUKQ+40ShsuQ0v0rvSEsk10+KLeafRdzOr
-         Apr7AciFrCbrs5CCtnUYyggGSQDKnidIy5rDHXMpDlvVR2JKGuVUA0F8ShW+7ni7q+tm
-         DDy/KJbWmFzZqEw5VAJ5RXryuBZbkmIAXqDSIUi7gSkXs9cnBaV9buSHb1g5opYoD5VI
-         eDeQ==
-X-Gm-Message-State: AOAM532lU7N/qjLXlUdtLU9rwGofsq7wgo52snXGwBpuRsf9gG/t1PtL
-        aQKa1vqVZ3OgvEYOKa4ewA==
-X-Google-Smtp-Source: ABdhPJzBqpRozB+mA8uEtko0jSmowYbYh7fKvDh0onqyFGNDBAaBRoW4U6MOniEhL45Ri9gx/NcHRQ==
-X-Received: by 2002:aca:a893:: with SMTP id r141mr10621763oie.50.1603723017545;
-        Mon, 26 Oct 2020 07:36:57 -0700 (PDT)
+        bh=Dmc6xs39pOcvaguHHkLHxd4UeG9+n4WiLiCISEFRVvE=;
+        b=QNzSufadAIFPypbUPh8FSEdeb3L7uSEbpVO02bmHaeRNdvSfxjxiDZKXs0oEpgWclm
+         czcpS6ltZnGaVVXr0Og5OolpG3A/cRV+r5zijcJSb0dNSUvo0HUS5XkUpEFKvC/zcm5+
+         GWhNhXmzQCpyznzQ24WlgJrC70CVSDBYO69ImN85+oO1kI6eRZ4J+Bzi5Yr6loGvG2xc
+         wmKmfvVN21pyzFOmw45t0/FQXkZZkaGzb+wCjjDJt4PtybHlFKgXv3TRx4gYJIJv1x0/
+         UcWJutViWrz3YfzPPD3FGTAjjoyJVUlZv5K/Akt4ulrNXL9OTufvMNKKANYItJoSDOWP
+         QaHg==
+X-Gm-Message-State: AOAM533WDlPuFWFUn2jhGSDKrL/+89mQ+8GlCLED4cRzRAHpdidlKqaf
+        npu8Tm848xWqkNl24qbTwQ==
+X-Google-Smtp-Source: ABdhPJxI/8VTP5i/7wxqiKj0bWHUYN05SkqR0BiJs/0nllrZpJVEWuPVO0ce25saT4lDP9QNHLdr9Q==
+X-Received: by 2002:a9d:411:: with SMTP id 17mr14374161otc.191.1603723083071;
+        Mon, 26 Oct 2020 07:38:03 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s27sm2574459otg.80.2020.10.26.07.36.56
+        by smtp.gmail.com with ESMTPSA id u22sm4032299oor.13.2020.10.26.07.38.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 07:36:56 -0700 (PDT)
-Received: (nullmailer pid 121443 invoked by uid 1000);
-        Mon, 26 Oct 2020 14:36:56 -0000
-Date:   Mon, 26 Oct 2020 09:36:56 -0500
+        Mon, 26 Oct 2020 07:38:01 -0700 (PDT)
+Received: (nullmailer pid 123037 invoked by uid 1000);
+        Mon, 26 Oct 2020 14:38:01 -0000
+Date:   Mon, 26 Oct 2020 09:38:01 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Christophe Roullier <christophe.roullier@st.com>,
-        kernel@pengutronix.de, Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: stm32: add simple-mfd
- compatible for tamp node
-Message-ID: <20201026143656.GA118160@bogus>
-References: <20201021102855.18026-1-a.fatoum@pengutronix.de>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     linux-rpi-kernel@lists.infradead.org, catalin.marinas@arm.com,
+        jeremy.linton@arm.com, iommu@lists.linux-foundation.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        hch@lst.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, ardb@kernel.org, will@kernel.org,
+        guohanjun@huawei.com, robin.murphy@arm.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        lorenzo.pieralisi@arm.com
+Subject: Re: [PATCH v4 4/7] of: unittest: Add test for
+ of_dma_get_max_cpu_address()
+Message-ID: <20201026143801.GA122988@bogus>
+References: <20201021123437.21538-1-nsaenzjulienne@suse.de>
+ <20201021123437.21538-5-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201021102855.18026-1-a.fatoum@pengutronix.de>
+In-Reply-To: <20201021123437.21538-5-nsaenzjulienne@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 12:28:55PM +0200, Ahmad Fatoum wrote:
-> The stm32mp1 TAMP (Tamper and backup registers) does tamper detection
-> and features 32 backup registers that, being in the RTC domain, may
-> survive even with Vdd switched off.
+On Wed, 21 Oct 2020 14:34:34 +0200, Nicolas Saenz Julienne wrote:
+> Introduce a test for of_dma_get_max_cup_address(), it uses the same DT
+> data as the rest of dma-ranges unit tests.
 > 
-> This makes it suitable for use to communicate a reboot mode from OS
-> to bootloader via the syscon-reboot-mode binding. Add a "simple-mfd"
-> to support probing such a child node. The actual reboot mode
-> node could then be defined in a board.dts or fixed up by the bootloader.
-
-'simple-mfd' implies there is no dependency on the parent node for the 
-child (such as the regmap perhaps). Is that the case here?
-
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 > 
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 > ---
-> v1 available here:
-> https://lore.kernel.org/linux-arm-kernel/20200916142216.25142-1-a.fatoum@pengutronix.de/
+> Changes since v3:
+>  - Remove HAS_DMA guards
 > 
-> v1 -> v2:
->  - new patch, rebased on top of
->    https://lore.kernel.org/r/20201014125441.2457-1-arnaud.pouliquen@st.com
-> ---
->  .../devicetree/bindings/arm/stm32/st,stm32-syscon.yaml       | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  drivers/of/unittest.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> index 6634b3e0853e..4684017a42e4 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> @@ -19,8 +19,11 @@ properties:
->                - st,stm32mp151-pwr-mcu
->                - st,stm32-syscfg
->                - st,stm32-power-config
-> -              - st,stm32-tamp
->            - const: syscon
-> +      - items:
-> +          - const: st,stm32-tamp
-> +          - const: syscon
-> +          - const: simple-mfd
->  
->    reg:
->      maxItems: 1
-> -- 
-> 2.28.0
-> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
