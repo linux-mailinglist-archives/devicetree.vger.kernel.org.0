@@ -2,143 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD48298DEE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:30:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2A8D298DF6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:33:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1780086AbgJZNa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 09:30:58 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:38267 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1780085AbgJZNa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:30:58 -0400
-Received: by mail-pf1-f196.google.com with SMTP id 10so6200203pfp.5;
-        Mon, 26 Oct 2020 06:30:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=YkjKo9oWrVaFN0yahiPkCAqHwIJlt1SlrfiQtPqwIuE=;
-        b=IAy8cAXRo8R//R/3N+NMT9HM8GuS/OhPQu6ueiMLsiqZvvS8cNXti+S7QKGIKP4Hcq
-         VSH4Bu6aWbyC56Dmb3pufmK5BzFK5UlUlmKpB7mHLDMs3kjweFSw6+A+y1RJcNP9/bCw
-         hjyEve3XuJeXZNu0coqghGoMxX79+5wA8VWRtA61qCz2/1tGkY8oQyOmwrFc049qQofn
-         93Y1XgAre3cRf4t31ARbXpooxca4ovykZsYkawQXpXzj7v8Mt/tXVs1BvwPwadt4fwob
-         NKvDkpdcVZbgI67ruXNYLHX7K8qKKez9tvM7bPuhKDWQXTryesz99CUi7pCeQAykPZjl
-         wZyQ==
+        id S1775339AbgJZNdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 09:33:47 -0400
+Received: from mail-oo1-f68.google.com ([209.85.161.68]:35450 "EHLO
+        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1775337AbgJZNdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:33:47 -0400
+Received: by mail-oo1-f68.google.com with SMTP id n16so1175864ooj.2;
+        Mon, 26 Oct 2020 06:33:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=YkjKo9oWrVaFN0yahiPkCAqHwIJlt1SlrfiQtPqwIuE=;
-        b=oMmV5f7TFI+6YaXp4eiSwwXhQ9KcIwzeS3/k933S/rRQ3oIEwx+P6WDAi9Rjx50d05
-         BjMeoYZsxIHPsjwTSRmQSGRpyxt+Bm2v2p6Lp1RKVylwQur0/GHl82iBU6E+xdlHGhA4
-         BxiWFx16+wPZrtsXyRR5y+CyuGnwojFsQ8/aa60aCEUi+K+1S8/AQIVgpUOPxbnuAkRK
-         FC1ZE9vbfcJFtjAEYWS1IGV2pvWrWWfwthztuxT6iJTLxd+T7+Ag6ctRpSfvJO8/ieLG
-         seRD1XPdJ1ab60MCicaBqJ5wnGu6okM9i/vjJf9GIbzp3ddn4Qro/HhlwZzTDh+gn8/Z
-         ZqTw==
-X-Gm-Message-State: AOAM533RshCYoDBMbsTDlOG4sH6XD7hFj5XXPx0ePh7RX/EP4C8As9Qf
-        eacxljyfOBGfKcFZxY1KnN0=
-X-Google-Smtp-Source: ABdhPJxTVU1i9uGCV0MlnhnHnsyPv9NXhhENISU8hnmVtuSERf9XzhxFZ5Hzxl/6qSoFxKkZ1xTFvQ==
-X-Received: by 2002:a63:e34a:: with SMTP id o10mr7165647pgj.129.1603719056200;
-        Mon, 26 Oct 2020 06:30:56 -0700 (PDT)
-Received: from [10.230.28.230] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 204sm11978526pfz.74.2020.10.26.06.30.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Oct 2020 06:30:55 -0700 (PDT)
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Linksys EA9500 add fixed partitions
-To:     Vivek Unune <npcomplete13@gmail.com>
-Cc:     devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20201026131351.258296-1-npcomplete13@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <e64d76cc-90bb-5b54-04de-fde21542e4fe@gmail.com>
-Date:   Mon, 26 Oct 2020 06:30:53 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.4.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IP4iyQJswqAok5YqCaA2i0INTs3TLOZl4gZPXVizm4k=;
+        b=BAbD/XnQyx0qwyRrYeb5dxOZGE39hPTnb/wQm53m6c5SYip1lNf1mjHtJJHYfal5tl
+         6kV8PtUB9dLbTnj9mamsLUg5p5n2yv9YNYQO8NBGJJHrg9TYzjqHyj6TO6wCVVNiRJEb
+         7UoBFIyq7Kyv3wPE0pCgbdkWkP+s6arlFNytgceXmpih6/ypNy7HEvKXlsoBmgANm5BE
+         bAkOytfoyCoSa5lFYGjv2LZkCr1Y16OftIgs2K3sAUBa/QrJTph9Htc6XjlXlylyJb2A
+         osKVUhwNfCLm+fdaW5O44AqVE9i+babVwO1WqFarQCO6uLj1NW/odJ+k1WfPf1e5IN9K
+         fFHQ==
+X-Gm-Message-State: AOAM532LpIS8n1QhiGAX9aZA9TprtzvTgWiUZreXXImNhxRj/5dI/3vb
+        SHCcVP5DZ6ZRG+kRioLLRg==
+X-Google-Smtp-Source: ABdhPJwwG8ar0qV0qkYQrQi3UOmSi48GDAQAgsW9zYDOfxpN1Y1iuY9C8rW1hpp7KJUy3YYIhmbxsA==
+X-Received: by 2002:a4a:e1bc:: with SMTP id 28mr14244535ooy.53.1603719225403;
+        Mon, 26 Oct 2020 06:33:45 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g11sm3496989otl.12.2020.10.26.06.33.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 06:33:44 -0700 (PDT)
+Received: (nullmailer pid 37444 invoked by uid 1000);
+        Mon, 26 Oct 2020 13:33:44 -0000
+Date:   Mon, 26 Oct 2020 08:33:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     kholk11@gmail.com
+Cc:     mchehab@kernel.org, marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS
+ sensor binding
+Message-ID: <20201026133344.GA33253@bogus>
+References: <20201018123106.14917-1-kholk11@gmail.com>
+ <20201018123106.14917-3-kholk11@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201026131351.258296-1-npcomplete13@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201018123106.14917-3-kholk11@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/26/2020 6:13 AM, Vivek Unune wrote:
-> This router has dual paritions to store trx firmware image and
-> dual partitions for nvram. The second one in each of these cases acts
-> as a backup store.
+On Sun, Oct 18, 2020 at 02:31:06PM +0200, kholk11@gmail.com wrote:
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > 
-> When tested with OpenWrt, the default partition parser causes two issues:
+> Add YAML device tree binding for IMX300 CMOS image sensor, and
+> the relevant MAINTAINERS entries.
 > 
-> 1. It labels both nvram partitions as nvram. In factory, second one is
-> labeled devinfo.
-> 2. It parses second trx image and tries to create second 'linux' partition
-> and fails with - cannot create duplicate 'linux' partition. I've set this
-> partition to read-only for now
-> 
-> The following patch works around both of these issues.
-> 
-> Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > ---
->   .../boot/dts/bcm47094-linksys-panamera.dts    | 41 +++++++++++++++++++
->   1 file changed, 41 insertions(+)
+>  .../devicetree/bindings/media/i2c/imx300.yaml | 115 ++++++++++++++++++
+
+sony,imx300.yaml
+
+>  MAINTAINERS                                   |   8 ++
+>  2 files changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx300.yaml
 > 
-> diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-> index 5d5930edfb9d..13da16c5de68 100644
-> --- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-> +++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-> @@ -292,3 +292,44 @@ fixed-link {
->   &usb3_phy {
->   	status = "okay";
->   };
+> diff --git a/Documentation/devicetree/bindings/media/i2c/imx300.yaml b/Documentation/devicetree/bindings/media/i2c/imx300.yaml
+> new file mode 100644
+> index 000000000000..82fb19c5018c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/imx300.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/imx300.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +&nandcs {
-> +	partitions {
-> +		compatible = "fixed-partitions";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
+> +title: Sony 1/2.3-Inch 8Mpixel Stacked CMOS Digital Image Sensor
 > +
-> +		partition@0 {
-> +			label = "boot";
-> +			reg = <0x0000000 0x0080000>;
-> +			read-only;
-> +		};
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <kholk11@gmail.com>
 > +
-> +		partition@80000 {
-> +			label = "nvram";
-> +			reg = <0x080000 0x0100000>;
-> +		};
+> +description: |-
+> +  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
+> +  sensor with a pixel size of 1.08um and an active array size of
+> +  5948H x 4140V. It is programmable through I2C interface at address 0x10.
+> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
+> +  4 data lanes.
 > +
-> +		partition@180000{
-> +			label = "devinfo";
-> +			reg = <0x0180000 0x080000>;
-> +		};
+> +properties:
+> +  compatible:
+> +    const: sony,imx300
 > +
-> +		partition@200000 {
-> +			label = "firmware";
-> +			reg = <0x0200000 0x01D00000>;
-> +			compatible = "brcm,trx";
-> +		};
+> +  reg:
+> +    description: I2C device address
+> +    maxItems: 1
 > +
-> +		partition@1F00000 {
-> +			label = "failsafe";
-> +			reg = <0x01F00000 0x01D00000>;
-> +			read-only;
-> +		};
+> +  clocks:
+> +    maxItems: 1
 > +
-> +		partition@0x5200000 {
+> +  VDIG-supply:
+> +    description:
+> +      Digital I/O voltage supply, 1.15-1.20 volts
+> +
+> +  VANA-supply:
+> +    description:
+> +      Analog voltage supply, 2.2 volts
+> +
+> +  VDDL-supply:
+> +    description:
+> +      Digital core voltage supply, 1.8 volts
+> +
+> +  reset-gpios:
+> +    description: |-
+> +      Reference to the GPIO connected to the xclr pin, if any.
+> +      Must be released (set high) after all supplies are applied.
+> +
+> +  # See ../video-interfaces.txt for more details
+> +  port:
+> +    type: object
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +        properties:
+> +          data-lanes:
+> +            description: |-
+> +              The sensor supports either two-lane, or four-lane operation.
+> +              If this property is omitted four-lane operation is assumed.
+> +              For four-lane operation the property must be set to <0 1 2 3>.
+> +            items:
+> +              - const: 0
+> +              - const: 1
+> +              - const: 2
+> +              - const: 3
+> +
+> +          clock-noncontinuous:
+> +            type: boolean
+> +            description: |-
+> +              MIPI CSI-2 clock is non-continuous if this property is present,
+> +              otherwise it's continuous.
 
-You would need to remove the 0x from the hex number here.
+No need to redefine a common property. Just 'clock-noncontinuous: true' 
+to indicate using it.
 
-> +			label = "brcmnand";
+> +
+> +          link-frequencies:
+> +            $ref: /schemas/types.yaml#/definitions/uint64-array
+> +            description:
+> +              Allowed data bus frequencies.
 
-Not sure how useful naming this partition brcmnand is, can we find a 
-better name for it?
--- 
-Florian
+Any constraints on frequencies?
+
+> +
+> +        required:
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - VANA-supply
+> +  - VDIG-supply
+> +  - VDDL-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        imx300: sensor@10 {
+> +            compatible = "sony,imx300";
+> +            reg = <0x10>;
+> +            clocks = <&imx300_xclk>;
+> +            VANA-supply = <&imx300_vana>;   /* 2.2v */
+> +            VDIG-supply = <&imx300_vdig>;   /* 1.2v */
+> +            VDDL-supply = <&imx300_vddl>;   /* 1.8v */
+> +
+> +            port {
+> +                imx300_0: endpoint {
+> +                    remote-endpoint = <&csi1_ep>;
+> +                    data-lanes = <0 1 2 3>;
+> +                    clock-noncontinuous;
+> +                    link-frequencies = /bits/ 64 <780000000 480000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c66710dd7e0a..231937d9d16a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16279,6 +16279,14 @@ T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
+>  F:	drivers/media/i2c/imx290.c
+>  
+> +SONY IMX300 SENSOR DRIVER
+> +M:	AngeloGioacchino Del Regno <kholk11@gmail.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://linuxtv.org/media_tree.git
+> +F:	Documentation/devicetree/bindings/media/i2c/imx300.yaml
+> +F:	drivers/media/i2c/imx300.c
+> +
+>  SONY IMX319 SENSOR DRIVER
+>  M:	Bingbu Cao <bingbu.cao@intel.com>
+>  L:	linux-media@vger.kernel.org
+> -- 
+> 2.28.0
+> 
