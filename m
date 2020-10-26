@@ -2,73 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7609298901
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 10:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBAED298913
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 10:07:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1772483AbgJZJCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 05:02:38 -0400
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:45751 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1772468AbgJZJCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 05:02:38 -0400
-Received: by mail-ej1-f67.google.com with SMTP id dt13so12235599ejb.12;
-        Mon, 26 Oct 2020 02:02:35 -0700 (PDT)
+        id S2391070AbgJZJHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 05:07:01 -0400
+Received: from mail-wm1-f54.google.com ([209.85.128.54]:37443 "EHLO
+        mail-wm1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1772559AbgJZJG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 05:06:59 -0400
+Received: by mail-wm1-f54.google.com with SMTP id c16so11627306wmd.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 02:06:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VzPLDonQyAo9U+lyuctB2TaEgIfVbsLYU560QT60WkI=;
-        b=Q8vCXKlGk2QyDILH1Knc0fuOnTp5Lqvftby+PpEsHgz8NQEC5sfNko0PWuq+vHj/YW
-         yrCAxFtPSt03R2pdj8docmGVEsKkD+Z4c0lczBSPPBSkE5cM7fado3AgDtwaHNI4hAUc
-         61rPHgNXehwyoP29bI0xhoY/sPU4pV8Rlrq9tRzOhN8OEpla95L4t3vya6bMF4NEEEdD
-         dHDSFaFiJe6jTFkANPsWGicAOriYtUwfPpDXwX+evI14wsFUdUomVGbjf0gPjgPp735C
-         oZu7EV60YEVBQUzzPF3zu+1sfb/Ht9Qew0jH+J/aIxLx6DYpc2Qc8ZO0D57WMxkVBRuu
-         vvgQ==
+        d=rasmusvillemoes.dk; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2H9Y4JmiHcK3j+qZ0aFUfBDG3AKu1KtGzluos1f8AIA=;
+        b=MZcJ0J/fr058lVbFMWmXM92OuD9yOOuBGnXm3mH9s+Q+qvXuLJ1AMk++0cJYjL8/8O
+         O3IJehgooJ4RrhhzQO+E0kIuBzm4OwHBdxA8UbvcYVkZ7U2D4ZBSnEu9yGWalJ0k4cnx
+         UvsrfG5qIj0S9cjO324WDWRqyW/EdovKxkL9o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VzPLDonQyAo9U+lyuctB2TaEgIfVbsLYU560QT60WkI=;
-        b=BU8Swd0Pgvujj2BtbRpj2VX/ReuY86BY7TFx5SqE2eY1AlDaeAyo7EhvjIPDZ9WGiN
-         kz+h+x+B899K3/jRYaAPyT9+vFeUGehwpkOzQse87sS0hcSmrsSrecZ2/PmXPeQ3CMbe
-         uUeUDU7HIrq7qgBGCJ2zyZCiRsGDUK81xyC92dncMXxEZ3VY8ga0sUcQaoJvNe/kBI4I
-         zG/BAtCdNEgTvtHrti4Jz/Jr4CLg8rUT8DeAqJd3NXoD1J9oLpLYKBs8z8lCe6jXvcem
-         wSthSvh9jmBdJUfDGtcx3IrONOmmdMs7lLRCSUZHCWpVydO2DTlT/kY8MLqUEvcnDgA8
-         R5Ew==
-X-Gm-Message-State: AOAM530mGr2bJDRmhn8tPrpFzyiC2x5E76GNZjDZg+X82nDNWqnV+H1e
-        y979NxmUkR26dZYWLG8KD38XygZ3914KcudRXXs=
-X-Google-Smtp-Source: ABdhPJw8MAIw3Y8WUOIEtj9GR44OTgWuMdGEEAMA6kcT6Q/ozil5aLKdvx1SN5RhQo/ttdxZm/awjh50AxhLfRnK1FU=
-X-Received: by 2002:a17:906:4b0f:: with SMTP id y15mr14244145eju.198.1603702954582;
- Mon, 26 Oct 2020 02:02:34 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2H9Y4JmiHcK3j+qZ0aFUfBDG3AKu1KtGzluos1f8AIA=;
+        b=lU1Tl8BkQaRTIeteGPcXxzaJQ8BXrV/CKmT/fZuvORmCNwr4sohg/vwKsbdBfIr9CO
+         VCRwPkUi8PRJ+HuK4wxCZ9sjLh94J7uHlUI1X2WRyN6WyiKpgXBvkW3ynx8PMjM1YZ1Q
+         f6wMaz9Wzaw35b8/gL1YpfBR3m612oDbJhJG5NPsh6ejtHbCgDreCJMC064DBZZynB/b
+         l0ssfzIIqikg5yOSGuzqlgzccLYgbQGOvL9Wx8pyyIIB/2kAZJzQP8W++cTjNIcWcTZf
+         FqMMQTT8jEMlu0IKh/hN62dhTALsYfA2ylydRhtTW8f4eDukEKez0xWZqhA/+c9dTFU4
+         MOfA==
+X-Gm-Message-State: AOAM530xA/LQJzPjTJ1q8Erv7kMJEIyz0kAo9DpxVQ8tLLnYHK7O15cc
+        5W3wX3M8zADJC1qDojf4S6KozA==
+X-Google-Smtp-Source: ABdhPJz/dSh4WYOhOiSM/B+RWa4o7p1CXRC3GSQeuPYc6Si2kr9wemYErENZN/vvuGa/ZdX08vCt1g==
+X-Received: by 2002:a1c:417:: with SMTP id 23mr14851965wme.1.1603703216102;
+        Mon, 26 Oct 2020 02:06:56 -0700 (PDT)
+Received: from [172.16.11.132] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id f5sm19077441wmh.16.2020.10.26.02.06.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Oct 2020 02:06:55 -0700 (PDT)
+Subject: Re: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+To:     Marc Zyngier <maz@kernel.org>, Biwen Li <biwen.li@oss.nxp.com>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        leoyang.li@nxp.com, zhiqiang.hou@nxp.com, tglx@linutronix.de,
+        jason@lakedaemon.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jiafei.pan@nxp.com,
+        xiaobo.xie@nxp.com, linux-arm-kernel@lists.infradead.org,
+        Biwen Li <biwen.li@nxp.com>
+References: <20201026080127.40499-1-biwen.li@oss.nxp.com>
+ <31d8971374c261003aee9f4807c8ac8c@kernel.org>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Message-ID: <3448c822-31b1-7f9d-fedf-49912418fc3f@rasmusvillemoes.dk>
+Date:   Mon, 26 Oct 2020 10:06:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201017052057.2698588-1-bjorn.andersson@linaro.org>
- <20201017052057.2698588-3-bjorn.andersson@linaro.org> <CADQ2G_Exk7+uXMcoyFu-VOcSf48Qjvg9KUCm0P6yXdQn8K_3wQ@mail.gmail.com>
- <20201026082732.GB8884@duo.ucw.cz>
-In-Reply-To: <20201026082732.GB8884@duo.ucw.cz>
-From:   Martin Botka <martin.botka1@gmail.com>
-Date:   Mon, 26 Oct 2020 10:02:22 +0100
-Message-ID: <CADQ2G_FeBFVa+ep5N8QGMLWrMKEwQf6J2Gu0FmQYf+n942hGew@mail.gmail.com>
-Subject: Re: [PATCH v5 2/4] leds: Add driver for Qualcomm LPG
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <31d8971374c261003aee9f4807c8ac8c@kernel.org>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Good way to say that is "Patches 7 and 28, Reviewed-by:"...
+On 26/10/2020 09.44, Marc Zyngier wrote:
+> On 2020-10-26 08:01, Biwen Li wrote:
+>> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+>>
+>> Add an new IRQ chip declaration for LS1043A and LS1088A
+>> - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A
+>> - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
+> 
+> Three things:
+> - This commit message doesn't describe the bit_reverse change
 
-7 and 28 ? I dont see any patches 7 and 28 (I assume thats a typo for 8)
+Yeah, please elaborate on that, as the RM for 1043 or 1046 doesn't
+mention anything about bit reversal for the scfg registers - they don't
+seem to have the utter nonsense that is SCFG_SCFGREVCR, but perhaps,
+instead of removing it, that has just become a hard-coded part of the IP.
 
-Either way.
+Also, IANAL etc., but
 
-Reviewed-by: Martin Botka <martin.botka1@gmail.com>
+>> +// Copyright 2019-2020 NXP
+
+really? Seems to be a bit of a stretch.
+
+At the very least, cc'ing the original author and only person to ever
+touch that file would have been appreciated.
+
+Rasmus
