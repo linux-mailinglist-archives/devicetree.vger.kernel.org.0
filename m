@@ -2,76 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E7B82990E6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DBE3299131
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:36:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1783706AbgJZPTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:19:51 -0400
-Received: from mail-ej1-f66.google.com ([209.85.218.66]:33082 "EHLO
-        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1783347AbgJZPTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:19:51 -0400
-Received: by mail-ej1-f66.google.com with SMTP id c15so14178640ejs.0;
-        Mon, 26 Oct 2020 08:19:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UVCULFh/HSUomtNcBIFR0JMZ7sMmUjhTNpFI+1qIyFQ=;
-        b=srN5VM0TT2gcHKYehOQsyh/wiLk/7rh6a6UAwl5rYNz8T8i8iTsJSMH8RqWN8nWfFA
-         pHMbR459cGMtc5NXZRW4v62BZl7zEr8a1x8fJOpUZS1akonSzaHuXxjxn9+kYIg4wu7h
-         hABUGo3EjYYCNCdVvjjrtRFxua3vuxnYC2D0Q6rwXOEkR6+6+uBpqaZJuKFBcTpXjGdR
-         nQn+tFA4C1+lmsO8UhVWrPzoNwAGqSBQj3fQJHkKR1sNKowYbASKv9RI85Zqx5lHj0jk
-         yJGS5B9PEXAIRWef5cU8dsX6DSzmrknvAsD0AnS12r6tJKAzGfv4RCtoogDG0lZWMLLX
-         kQXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UVCULFh/HSUomtNcBIFR0JMZ7sMmUjhTNpFI+1qIyFQ=;
-        b=IA7tiKShsQ0wFQ6P4P3KsHfoPQzKvRr9+wAXXczrWFOwXtgYlyj9DZ6bWRpbgyduC2
-         ueMu9dePt23aMTFKD1TIkSAzKQU0bmWT4XTg9HJ5K7miHmRgsikTSJSOIBocLUoOSoaT
-         cxx97KF8e4PmTgi/rYOrxSLLf0HsnChFdImgMgU3CYpKI/YXVWkdUDAApWQzU+/ZclZK
-         qNnOHXQDAi5xPy9xWL6sUFhEN9TrnPyfKBkQaUB6MEtt35RqyMgLU89DrngjLX/VkGg3
-         KObiwnmndCgQ2Wzsj0e0etoNbnwVHafMsenz+NW6cbHYsGrfVjrJfDfE4ZkjEk3WCbtV
-         dymw==
-X-Gm-Message-State: AOAM530btNtGLRb3B8uXCThCaUcxXD5doUSXCAd6pj0YFk+dAYcTISbY
-        Y5r2jO5HnOITFbgWI7Kr+bOKA3shxSKOkhrPx4Y=
-X-Google-Smtp-Source: ABdhPJxz32SJlXbJzg1AvE3KciOuVRJCIGRb970HxJSINrxzNG5+n4Glj6b28kxu4+056TYmISLJNAvPhkH16cUVLTg=
-X-Received: by 2002:a17:906:564d:: with SMTP id v13mr16878992ejr.217.1603725587392;
- Mon, 26 Oct 2020 08:19:47 -0700 (PDT)
+        id S1784036AbgJZPg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 11:36:56 -0400
+Received: from leibniz.telenet-ops.be ([195.130.137.77]:49384 "EHLO
+        leibniz.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1784055AbgJZPgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:36:55 -0400
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by leibniz.telenet-ops.be (Postfix) with ESMTPS id 4CKdy608V6zMrkry
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 16:27:58 +0100 (CET)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by andre.telenet-ops.be with bizsmtp
+        id kfTx2300b4C55Sk01fTxgR; Mon, 26 Oct 2020 16:27:57 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kX4Pd-000MHX-6d; Mon, 26 Oct 2020 16:27:57 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kX4Pc-00FgVo-P7; Mon, 26 Oct 2020 16:27:56 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Jim Quinlan <james.quinlan@broadcom.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dma-mapping: Fix 32-bit overflow with CONFIG_ARM_LPAE=n
+Date:   Mon, 26 Oct 2020 16:27:55 +0100
+Message-Id: <20201026152755.3738293-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201017052057.2698588-1-bjorn.andersson@linaro.org>
- <20201017052057.2698588-3-bjorn.andersson@linaro.org> <CADQ2G_Exk7+uXMcoyFu-VOcSf48Qjvg9KUCm0P6yXdQn8K_3wQ@mail.gmail.com>
- <20201026082732.GB8884@duo.ucw.cz> <CADQ2G_FeBFVa+ep5N8QGMLWrMKEwQf6J2Gu0FmQYf+n942hGew@mail.gmail.com>
- <20201026151105.GB10480@duo.ucw.cz>
-In-Reply-To: <20201026151105.GB10480@duo.ucw.cz>
-From:   Martin Botka <martin.botka1@gmail.com>
-Date:   Mon, 26 Oct 2020 16:19:36 +0100
-Message-ID: <CADQ2G_EX700e2OzZ3s14cd_RiChbOU_MwiF+uR7HmSxzfQ4Yuw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/4] leds: Add driver for Qualcomm LPG
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On r8a7791/koelsch and shmobile_defconfig, PCIe probing fails with:
 
-> I was trying to use obviously bogus numbers to make you to specify
-> which patches you reviewed :-).
+    rcar-pcie fe000000.pcie: Adjusted size 0x0 invalid
+    rcar-pcie: probe of fe000000.pcie failed with error -22
 
-Ahhhh now that makes much more sense.
+of_dma_get_range() returns the following map:
 
-I reviewed patch 2.
-Tho from the quick look i dont see anything wrong with the DTS changes either.
+    cpu_start 0x40000000 dma_start 0x40000000 size 0x080000000 offset 0
+    cpu_start 0x00000000 dma_start 0x00000000 size 0x100000000 offset 0
+
+If CONFIG_ARM_LPAE=n, dma_addr_t is 32-bit.  Hence when assigning
+r->dma_start + r->size to dma_end, this value will be truncated to
+32-bit, yielding zero when processing the second table entry.
+Consequently, both dma_start and dma_end will be zero, leading to a zero
+size.
+
+Fix this by changing the dma_start and dma_end variables from dma_addr_t
+to u64.
+
+Fixes: e0d072782c734d27 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ drivers/of/device.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index 655dee422563f05f..3a469c79e6b05de4 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -93,7 +93,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+ {
+ 	const struct iommu_ops *iommu;
+ 	const struct bus_dma_region *map = NULL;
+-	dma_addr_t dma_start = 0;
++	u64 dma_start = 0;
+ 	u64 mask, end, size = 0;
+ 	bool coherent;
+ 	int ret;
+@@ -109,10 +109,10 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+ 			return ret == -ENODEV ? 0 : ret;
+ 	} else {
+ 		const struct bus_dma_region *r = map;
+-		dma_addr_t dma_end = 0;
++		u64 dma_end = 0;
+ 
+ 		/* Determine the overall bounds of all DMA regions */
+-		for (dma_start = ~(dma_addr_t)0; r->size; r++) {
++		for (dma_start = ~0ULL; r->size; r++) {
+ 			/* Take lower and upper limits */
+ 			if (r->dma_start < dma_start)
+ 				dma_start = r->dma_start;
+-- 
+2.25.1
+
