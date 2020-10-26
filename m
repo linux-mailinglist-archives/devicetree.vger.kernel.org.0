@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 608CC299A66
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A064299A68
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:27:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406097AbgJZX1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 19:27:30 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59142 "EHLO
+        id S2406099AbgJZX1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 19:27:32 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59146 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406096AbgJZX1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 19:27:30 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09QNRNqT022077;
-        Mon, 26 Oct 2020 18:27:23 -0500
+        with ESMTP id S2406096AbgJZX1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 19:27:32 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09QNRTtJ022093;
+        Mon, 26 Oct 2020 18:27:29 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603754843;
-        bh=uVLq17z+MBkIBIOWl788EWyNZxtZCFNSCpgwdudlhPQ=;
+        s=ti-com-17Q1; t=1603754849;
+        bh=Vi0YB/ugHfTelYXlNIrEq1MZOg5UnkAtLs9vmVTLB30=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=qegkEEo5TIX2jomUinYzKx4f7LifcEludHlUOyukhPIQg+6604UsAVqpxCAYtkysZ
-         d6UJfYK1si7czA1e5htNbEMVAHnRyb4EZFTz/RfymXpW9abkYbhy7UXsDYw6rbGXUJ
-         RjGUbn7ywd9WAT44+DCu0w2OMD6C1NPyRpLNMEek=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09QNRNK5043046
+        b=tRvVtLcoiVBUCScVt/5nhaNf7nI+a/whFGqO1iXXTHxc7l43Z7rTGJPIB77FmvITj
+         SJ4FN2t91r8eTPI0mMTRff50JGBZDe/6AV4+zKPBLQ8CKFgK9fM+BybvvwX8TFeXkM
+         /F7KsOCLAw3SMgwag+PTo61EzS//ca7p58QIySec=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09QNRTjE009428
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 26 Oct 2020 18:27:23 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 26 Oct 2020 18:27:29 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 26
- Oct 2020 18:27:23 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2020 18:27:28 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 26 Oct 2020 18:27:23 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09QNRNTP118934;
-        Mon, 26 Oct 2020 18:27:23 -0500
+ Frontend Transport; Mon, 26 Oct 2020 18:27:28 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09QNRS2g066801;
+        Mon, 26 Oct 2020 18:27:28 -0500
 Received: from localhost ([10.250.39.72])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 09QNRNQc032566;
-        Mon, 26 Oct 2020 18:27:23 -0500
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 09QNRSFA096372;
+        Mon, 26 Oct 2020 18:27:28 -0500
 From:   Suman Anna <s-anna@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>
 CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 1/3] arm64: dts: ti: k3-j7200-main: Add hwspinlock node
-Date:   Mon, 26 Oct 2020 18:26:35 -0500
-Message-ID: <20201026232637.15681-2-s-anna@ti.com>
+Subject: [PATCH 2/3] arm64: dts: ti: k3-j7200-main: Add mailbox cluster nodes
+Date:   Mon, 26 Oct 2020 18:26:36 -0500
+Message-ID: <20201026232637.15681-3-s-anna@ti.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201026232637.15681-1-s-anna@ti.com>
 References: <20201026232637.15681-1-s-anna@ti.com>
@@ -57,28 +57,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Main NavSS block on J7200 SoCs contains a HwSpinlock IP instance that
-is same as the IP on AM65x and J721E SoCs. Add the DT node for this on
-J7200 SoCs. The node is present within the Main NavSS block, and is added
-as a child node under the main_navss interconnect node.
+The J7200 Main NavSS block contains a Mailbox IP instance with
+multiple clusters, and follows the same integration style as on
+J721E SoCs.
+
+Add all the Mailbox clusters as their own nodes under the MAIN
+NavSS interconnect node instead of creating an almost empty parent
+node for the new K3 mailbox IP and the clusters as its child nodes.
+All these nodes are enabled by default in the base dtsi file, but
+any cluster that does not define any child sub-mailbox nodes
+should be disabled in the corresponding board dts files.
+
+NOTE:
+The NavSS only has a limited number of interrupts, so none of the
+interrupts generated by a Mailbox IP are added by default. Only
+the needed interrupts that are targeted towards the A72 GIC will
+have to be added later on in the board dts files alongside the
+corresponding sub-mailbox child nodes.
 
 Signed-off-by: Suman Anna <s-anna@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 108 ++++++++++++++++++++++
+ 1 file changed, 108 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 72d6496e88dd..4c53a3036066 100644
+index 4c53a3036066..b0094212aa82 100644
 --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -115,6 +115,12 @@ secure_proxy_main: mailbox@32c00000 {
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+@@ -121,6 +121,114 @@ hwspinlock: spinlock@30e00000 {
+ 			#hwlock-cells = <1>;
  		};
  
-+		hwspinlock: spinlock@30e00000 {
-+			compatible = "ti,am654-hwspinlock";
-+			reg = <0x00 0x30e00000 0x00 0x1000>;
-+			#hwlock-cells = <1>;
++		mailbox0_cluster0: mailbox@31f80000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f80000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster1: mailbox@31f81000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f81000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster2: mailbox@31f82000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f82000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster3: mailbox@31f83000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f83000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster4: mailbox@31f84000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f84000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster5: mailbox@31f85000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f85000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster6: mailbox@31f86000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f86000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster7: mailbox@31f87000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f87000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster8: mailbox@31f88000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f88000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster9: mailbox@31f89000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f89000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster10: mailbox@31f8a000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f8a000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
++		};
++
++		mailbox0_cluster11: mailbox@31f8b000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f8b000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			interrupt-parent = <&main_navss_intr>;
 +		};
 +
  		main_ringacc: ringacc@3c000000 {
