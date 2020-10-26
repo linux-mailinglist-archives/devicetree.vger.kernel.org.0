@@ -2,50 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57DA4298B47
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 12:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD60B298BA4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 12:19:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1773043AbgJZLBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 07:01:42 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:48050 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1772894AbgJZLBl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 07:01:41 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A0DEE1A0C41;
-        Mon, 26 Oct 2020 12:01:40 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 934611A0C33;
-        Mon, 26 Oct 2020 12:01:40 +0100 (CET)
-Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 7DF2720308;
-        Mon, 26 Oct 2020 12:01:40 +0100 (CET)
-Date:   Mon, 26 Oct 2020 13:01:40 +0200
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+        id S1773318AbgJZLTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 07:19:08 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:40209 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1773012AbgJZLTH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 07:19:07 -0400
+X-Greylist: delayed 973 seconds by postgrey-1.27 at vger.kernel.org; Mon, 26 Oct 2020 07:19:07 EDT
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kX0H5-0006Iy-PE; Mon, 26 Oct 2020 12:02:51 +0100
+Message-ID: <6edfd44f6283a919cb1b3f190b0475833f3c3a92.camel@pengutronix.de>
 Subject: Re: [PATCH 10/11] arm64: dts: imx8mm: add GPC node and power domains
-Message-ID: <20201026110140.2m7it3atlgrp5qrt@fsr-ub1664-175>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
- <20200930155006.535712-11-l.stach@pengutronix.de>
- <20201026105622.iqt6cej3iqog57jd@fsr-ub1664-175>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        patchwork-lst@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Date:   Mon, 26 Oct 2020 12:02:50 +0100
 In-Reply-To: <20201026105622.iqt6cej3iqog57jd@fsr-ub1664-175>
-User-Agent: NeoMutt/20180622
-X-Virus-Scanned: ClamAV using ClamSMTP
+References: <20200930155006.535712-1-l.stach@pengutronix.de>
+         <20200930155006.535712-11-l.stach@pengutronix.de>
+         <20201026105622.iqt6cej3iqog57jd@fsr-ub1664-175>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-10-26 12:56:22, Abel Vesa wrote:
+Hi Abel,
+
+Am Montag, den 26.10.2020, 12:56 +0200 schrieb Abel Vesa:
 > On 20-09-30 17:50:05, Lucas Stach wrote:
 > > This adds the DT nodes to describe the power domains available on the
 > > i.MX8MM. Things are a bit more complex compared to other GPCv2 power
@@ -75,13 +77,13 @@ On 20-10-26 12:56:22, Abel Vesa wrote:
 > > +#include <dt-bindings/reset/imx8mq-reset.h>
 > 
 > Needs to be imx8mm-reset.h, as in 8MM, not 8MQ.
-> 
 
-Actually, now I see what you've done here. You want to use the IMX8MQ_RESET_GPU_RESET.
+It's confusing, but the reset driver uses the same defines for i.MX8MM.
+Comments in the imx8mq-reset.h file even specify which resets aren't
+supported on i.MX8MM.
 
-But I think we should avoid having reset IDs shared between i.MX8M platforms.
-
-I'll try to find another way around this myself.
+Regards,
+Lucas
 
 > >  #include <dt-bindings/gpio/gpio.h>
 > >  #include <dt-bindings/input/input.h>
@@ -151,3 +153,4 @@ I'll try to find another way around this myself.
 > > -- 
 > > 2.20.1
 > > 
+
