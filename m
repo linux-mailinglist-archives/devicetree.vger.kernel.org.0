@@ -2,79 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB3C2988A0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 09:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4AA02988B6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 09:44:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1769606AbgJZIki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 04:40:38 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:42736 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1746866AbgJZIki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 04:40:38 -0400
-Received: by mail-ed1-f68.google.com with SMTP id v19so8382237edx.9;
-        Mon, 26 Oct 2020 01:40:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fPY3YUMaHx0SYLGgmZyNAyMNlSCq8nr0Au+mUxZwASo=;
-        b=V35cQF6bQXl6Tjm1KvJ2BH2QIJJxZWHCJcbPlvTlqsVrHGibEDS5Ay+8/qd7CSXMxX
-         aDa8Sfs7s96wBPMYgUCF6ZtuAYnxOIIMPjGIP7BtNKp0L6l74y6VLN3gC+IJozh3XZLb
-         L+UEnv8rJDdp05l5y2GwT6XxWCYDBnpsl1l1FherPwWGAa9IJqqVxkjbYNDBlXn/OgXR
-         e9VoF7dFba3gfToAdc4BO2gtmRUZ7rLZGd1nupaHDmFEYYgGPjzZwIp5ywwYHh0donDj
-         5mvWFgr8SZl8h7aA0xtHhwbglLdh/yxeU3OInwpMCjXgpZ5N5YukfbtSJlfikvt3ijhZ
-         QbAw==
-X-Gm-Message-State: AOAM531bWDXia5tRD3uKOL8jPeHe/fXvnI3vswP8NpdSYRETlGFvFatf
-        GTbT5w1z2GDRmsunG+u+dC4zVayPe3w=
-X-Google-Smtp-Source: ABdhPJzMNFAPm/G/FPe2T5GfoWx+hZWCWuIsNulsXqm9QWpIwDSzI0aXCpKKCmaS2zzfu6KxDgxn0A==
-X-Received: by 2002:a50:8f61:: with SMTP id 88mr14969192edy.175.1603701634845;
-        Mon, 26 Oct 2020 01:40:34 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
-        by smtp.googlemail.com with ESMTPSA id u10sm5306057ejh.54.2020.10.26.01.40.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 01:40:33 -0700 (PDT)
-Date:   Mon, 26 Oct 2020 09:40:31 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, linux-gpio@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: More whitespace clean-ups in schema files
-Message-ID: <20201026084031.GA7466@kozik-lap>
-References: <20201023192258.3126047-1-robh@kernel.org>
+        id S1771092AbgJZIoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 04:44:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51180 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1771047AbgJZIoO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 04:44:14 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 322C9223B0;
+        Mon, 26 Oct 2020 08:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603701853;
+        bh=yl4Jr0apm2y5t/1h4vG0U+9RG0/DEtSNGs1mZ7dsnrw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ykfuwBzfYzwDxngBERNMABnYWx9PZ0Wt3f61944YqpUGcWrDtnSnHqzuhfbRIhU/o
+         dIB56qXPfukNKFctZTx4Z9U7iJm7xIrZXMxkgeFQZDAM4qLYCoaWPj59gikFDMyRlg
+         JDw750Ok1Udzgac7NXkmkHJOcm1TI2nU60E85yvg=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kWy6s-004Gna-UZ; Mon, 26 Oct 2020 08:44:11 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201023192258.3126047-1-robh@kernel.org>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 26 Oct 2020 08:44:10 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Biwen Li <biwen.li@oss.nxp.com>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        leoyang.li@nxp.com, zhiqiang.hou@nxp.com, tglx@linutronix.de,
+        jason@lakedaemon.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jiafei.pan@nxp.com,
+        xiaobo.xie@nxp.com, linux-arm-kernel@lists.infradead.org,
+        Biwen Li <biwen.li@nxp.com>
+Subject: Re: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+In-Reply-To: <20201026080127.40499-1-biwen.li@oss.nxp.com>
+References: <20201026080127.40499-1-biwen.li@oss.nxp.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <31d8971374c261003aee9f4807c8ac8c@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: biwen.li@oss.nxp.com, shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com, zhiqiang.hou@nxp.com, tglx@linutronix.de, jason@lakedaemon.net, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jiafei.pan@nxp.com, xiaobo.xie@nxp.com, linux-arm-kernel@lists.infradead.org, biwen.li@nxp.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 23, 2020 at 02:22:58PM -0500, Rob Herring wrote:
-> Clean-up incorrect indentation, extra spaces, and missing EOF newline in
-> schema files. Most of the clean-ups are for list indentation which
-> should always be 2 spaces more than the preceding keyword.
+On 2020-10-26 08:01, Biwen Li wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 > 
-> Found with yamllint (now integrated into the checks).
+> Add an new IRQ chip declaration for LS1043A and LS1088A
+> - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A
+> - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
+
+Three things:
+- This commit message doesn't describe the bit_reverse change
+- Please add a cover letter
+- Sending the same series again after 4 days is not OK, specially when
+   the initial one was during the merge window.
+
+Thanks,
+
+         M.
+
 > 
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-i2c@vger.kernel.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: linux-mtd@lists.infradead.org
-> Cc: linux-serial@vger.kernel.org
-> Cc: linux-usb@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> ---
+>  drivers/irqchip/irq-ls-extirq.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/irqchip/irq-ls-extirq.c 
+> b/drivers/irqchip/irq-ls-extirq.c
+> index 4d1179fed77c..564e6de0bd8e 100644
+> --- a/drivers/irqchip/irq-ls-extirq.c
+> +++ b/drivers/irqchip/irq-ls-extirq.c
+> @@ -1,4 +1,5 @@
+>  // SPDX-License-Identifier: GPL-2.0
+> +// Copyright 2019-2020 NXP
+> 
+>  #define pr_fmt(fmt) "irq-ls-extirq: " fmt
+> 
+> @@ -183,6 +184,9 @@ ls_extirq_of_init(struct device_node *node, struct
+> device_node *parent)
+>  		priv->bit_reverse = (revcr != 0);
+>  	}
+> 
+> +	if (of_device_is_compatible(node, "fsl,ls1043a-extirq"))
+> +		priv->bit_reverse = true;
+> +
+>  	domain = irq_domain_add_hierarchy(parent_domain, 0, priv->nirq, node,
+>  					  &extirq_domain_ops, priv);
+>  	if (!domain)
+> @@ -195,3 +199,5 @@ ls_extirq_of_init(struct device_node *node, struct
+> device_node *parent)
+>  }
+> 
+>  IRQCHIP_DECLARE(ls1021a_extirq, "fsl,ls1021a-extirq", 
+> ls_extirq_of_init);
+> +IRQCHIP_DECLARE(ls1043a_extirq, "fsl,ls1043a-extirq", 
+> ls_extirq_of_init);
+> +IRQCHIP_DECLARE(ls1088a_extirq, "fsl,ls1088a-extirq", 
+> ls_extirq_of_init);
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
+-- 
+Jazz is not dead. It just smells funny...
