@@ -2,358 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9327C299137
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25D5129913A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 16:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1772440AbgJZPjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 11:39:09 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:44581 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2442032AbgJZPjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 11:39:08 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id C001E58050A;
-        Mon, 26 Oct 2020 11:39:06 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 26 Oct 2020 11:39:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=T3QTLn2mB7EXSOCvp51wp2tsbsv
-        7df3RtrrozDyp/kE=; b=u9MTbBUHC0wqSxiad7fcHOM2OENhPLZiLSpURW9d7pR
-        38h8zkZBjcI/Zhwj13D77Chkfavtqyq5rL+Lyn6nam9+lUoqi8BM63nIUnBbi4Mq
-        eIzFgk+Qcn7BRdOqhwRjh2XOme3GWmuba4GaLChfw9MfStO0VITv13NXm+qXndHl
-        MSDEyXW0OlVHke5W1O2VG1K3W/YbTtYUdKg1ylsQ00xDk4A9kDA9apEKlHDHIKWG
-        IoU7K4mv/wrk/jUkymjm7MjhUJQmgXzuHXWcuRLQMpPejw4unea6GRnU+/QY4Pyk
-        B2Pwgk3iRWPFr9TCxh4tw9tue6IiSB4uGQoE2fT5T0w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=T3QTLn
-        2mB7EXSOCvp51wp2tsbsv7df3RtrrozDyp/kE=; b=NO1rDqBn04f+S6O1itifDt
-        lrmSChP0lFhQMDUz1sZdadgEqcLTImqGIU5c+WYPJ5LwPBdQy12duX9Ji2FMnLD+
-        TajntyIAv0PZ9tU0jdrvH92sbY54HCmSqHuM8OZ36/mg28vorZJAv/Dt2pwUgmqC
-        YQwZoviHMChki2R/WF+iYwKMBroZKd4Fsz05Q0CxclpTQsfI4WcWJGFCuOD1CFGp
-        CwZbQ2XrKNdUwe1f+fSCT1w3rtb0aLZzPPFu98tWYjJ2gMhk2MNRYPGfpy/H1h3j
-        v7RU05YEuTVCYDBu8OlOvK+9MH41pspAAvIxqoF2EEMrH5/A6U2pnmgH3uVzIa2g
-        ==
-X-ME-Sender: <xms:k-2WX0zkvn2RR0kZY-CXB1r2asZf3lfPwOT7rE6wB4DBaF7MxD2RjQ>
-    <xme:k-2WX4SYabG2keu10b7T8jtR1s7OhTOf7yPYVSqveq4UsTQfsVtx_ond57nz9Sx8f
-    P8Z3LV-ShSBrl7eooU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrkeejgdegvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:k-2WX2XgDHIMQ6NQVz3EUt1y9q7P9Vcw6YkXe_DKByo4jOcNepkAcw>
-    <xmx:k-2WXyi1FdlzUm-QiWl11rZwsdFHSyUkOJv6UQtPkSGuUfsahlpGnQ>
-    <xmx:k-2WX2DWI9wPIen8SDxE12HWrI8_2H-j9YTIfF-DG5x38cifFnikcQ>
-    <xmx:mu2WX-7Z242Flp5nEIGeOgkMsnKxpJ3rNS61tPZIPsw5BoLAMyfcZQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 154463280059;
-        Mon, 26 Oct 2020 11:38:58 -0400 (EDT)
-Date:   Mon, 26 Oct 2020 16:38:57 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
-Subject: Re: [PATCH 02/14] phy: allwinner: phy-sun6i-mipi-dphy: Support D-PHY
- Rx mode for MIPI CSI-2
-Message-ID: <20201026153857.iwkn4iusi2jy2yf4@gilmour.lan>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-3-paul.kocialkowski@bootlin.com>
+        id S1773312AbgJZPjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 11:39:41 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:43806 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1772929AbgJZPjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 11:39:41 -0400
+Received: by mail-qt1-f193.google.com with SMTP id e6so6985630qtw.10;
+        Mon, 26 Oct 2020 08:39:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vLQei8ZmgmFcSxn2MPuUAP5brChetukYTYeEtCq2OjI=;
+        b=WZClcdFYON5jGkBEUsXDjjrC5+/8ykP+W6jK5+YeWAfaGlZD+93YguQywa1UlSp48E
+         uuGYiMGQ/K04Dg/M2ZDj65g6NI2HxWyDWw75mA2OiPTlu4gvZmkKphql2hKrPxoQ6XkI
+         KQDwxR3oSWF8+kE2PPMlU6jR7hvZSRY4CG0DkqzG5g1NmsiQ1zBanpyNT1bit/dYeJv+
+         fa8TvdDcGh3m0EpxlNz1RjSkouEZjkL+LvrvKe8ilMfCbxc0hKKrGjgEho1DM3INinLX
+         Z6gEQCXl+0JUCW9mEfYAx1I7W8SYlFzMt5uW3ji+qSjJskmQHCmirSbKgLG5odMoqpxW
+         jDbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vLQei8ZmgmFcSxn2MPuUAP5brChetukYTYeEtCq2OjI=;
+        b=E00KcnsOh2BTaC/FqoiezxHRoTKA8w+mstyWzW3n+jX2ROYHqs7OjDulfZyKSdeW0d
+         6rCsQq/B0rF2Uyz/X0qtZ7KxJWYpFT9gIgIpn1aA+0xLa+sRxlCh/QHL5YWthiLGgAXQ
+         RbEMo5T0nHDiUlMIMHHBCo2A3N4Cu4mHh8lBZHbeScJpfH8E4BzFptyzgwmNbWoYX3Fq
+         CVLypePnW6tuHy2fcRUAuFQPeGst7XoSpPSuDDYOPigT6m4gBw5T6ou0WHnSy9QIwMiH
+         8Rm3vWErfDUa5B2tYPPTifUZAmaSoa9UxxfQbeh3Oz5OLUdB3yQvveellpOeaBT04QwS
+         GopQ==
+X-Gm-Message-State: AOAM531A8UPU72qiHttqr82iadoNwJCqkhVYsrX3NNAYDuiT8aKzlk1v
+        zk8atZqJ2r+rS6zP+WpZGxq1N1YPQbOM/g==
+X-Google-Smtp-Source: ABdhPJxwbjJpM7BXgATHrFMn/Ypqvv2ofYPBMDwSwLCNpEqKIsLxrJd136lnOkueYbC0g12unZabRA==
+X-Received: by 2002:ac8:4b4b:: with SMTP id e11mr3668273qts.29.1603726779530;
+        Mon, 26 Oct 2020 08:39:39 -0700 (PDT)
+Received: from ubuntu (ool-45785633.dyn.optonline.net. [69.120.86.51])
+        by smtp.gmail.com with ESMTPSA id 22sm4586589qtw.61.2020.10.26.08.39.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 08:39:38 -0700 (PDT)
+Date:   Mon, 26 Oct 2020 11:39:36 -0400
+From:   Vivek Unune <npcomplete13@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Linksys EA9500 add fixed partitions
+Message-ID: <20201026153936.GA258640@ubuntu>
+References: <20201026131351.258296-1-npcomplete13@gmail.com>
+ <e64d76cc-90bb-5b54-04de-fde21542e4fe@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5cvkpdcapo7wtm7b"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201023174546.504028-3-paul.kocialkowski@bootlin.com>
+In-Reply-To: <e64d76cc-90bb-5b54-04de-fde21542e4fe@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Oct 26, 2020 at 06:30:53AM -0700, Florian Fainelli wrote:
+> 
+> 
+> On 10/26/2020 6:13 AM, Vivek Unune wrote:
+> > This router has dual paritions to store trx firmware image and
+> > dual partitions for nvram. The second one in each of these cases acts
+> > as a backup store.
+> > 
+> > When tested with OpenWrt, the default partition parser causes two issues:
+> > 
+> > 1. It labels both nvram partitions as nvram. In factory, second one is
+> > labeled devinfo.
+> > 2. It parses second trx image and tries to create second 'linux' partition
+> > and fails with - cannot create duplicate 'linux' partition. I've set this
+> > partition to read-only for now
+> > 
+> > The following patch works around both of these issues.
+> > 
+> > Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
+> > ---
+> >   .../boot/dts/bcm47094-linksys-panamera.dts    | 41 +++++++++++++++++++
+> >   1 file changed, 41 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+> > index 5d5930edfb9d..13da16c5de68 100644
+> > --- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+> > +++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+> > @@ -292,3 +292,44 @@ fixed-link {
+> >   &usb3_phy {
+> >   	status = "okay";
+> >   };
+> > +
+> > +&nandcs {
+> > +	partitions {
+> > +		compatible = "fixed-partitions";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +
+> > +		partition@0 {
+> > +			label = "boot";
+> > +			reg = <0x0000000 0x0080000>;
+> > +			read-only;
+> > +		};
+> > +
+> > +		partition@80000 {
+> > +			label = "nvram";
+> > +			reg = <0x080000 0x0100000>;
+> > +		};
+> > +
+> > +		partition@180000{
+> > +			label = "devinfo";
+> > +			reg = <0x0180000 0x080000>;
+> > +		};
+> > +
+> > +		partition@200000 {
+> > +			label = "firmware";
+> > +			reg = <0x0200000 0x01D00000>;
+> > +			compatible = "brcm,trx";
+> > +		};
+> > +
+> > +		partition@1F00000 {
+> > +			label = "failsafe";
+> > +			reg = <0x01F00000 0x01D00000>;
+> > +			read-only;
+> > +		};
+> > +
+> > +		partition@0x5200000 {
+> 
+> You would need to remove the 0x from the hex number here.
 
---5cvkpdcapo7wtm7b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sure, I'll fix this in next version
 
-On Fri, Oct 23, 2020 at 07:45:34PM +0200, Paul Kocialkowski wrote:
-> The Allwinner A31 D-PHY supports both Rx and Tx modes. While the latter
-> is already supported and used for MIPI DSI this adds support for the
-> former, to be used with MIPI CSI-2.
->=20
-> This implementation is inspired by the Allwinner BSP implementation.
+> 
+> > +			label = "brcmnand";
+> 
+> Not sure how useful naming this partition brcmnand is, can we find a better
+> name for it?
 
-Mentionning which BSP you took this from would be helpful
+I'll be more than happy to rename this that makes sense. Factory uses this
+name as well. This is used as a general persistent storage for system cofigs.
+Could we name it System?
 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  drivers/phy/allwinner/phy-sun6i-mipi-dphy.c | 164 +++++++++++++++++++-
->  1 file changed, 160 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c b/drivers/phy/al=
-lwinner/phy-sun6i-mipi-dphy.c
-> index 1fa761ba6cbb..8bcd4bb79f60 100644
-> --- a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
-> +++ b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
-> @@ -24,6 +24,14 @@
->  #define SUN6I_DPHY_TX_CTL_REG		0x04
->  #define SUN6I_DPHY_TX_CTL_HS_TX_CLK_CONT	BIT(28)
-> =20
-> +#define SUN6I_DPHY_RX_CTL_REG		0x08
-> +#define SUN6I_DPHY_RX_CTL_EN_DBC	BIT(31)
-> +#define SUN6I_DPHY_RX_CTL_RX_CLK_FORCE	BIT(24)
-> +#define SUN6I_DPHY_RX_CTL_RX_D3_FORCE	BIT(23)
-> +#define SUN6I_DPHY_RX_CTL_RX_D2_FORCE	BIT(22)
-> +#define SUN6I_DPHY_RX_CTL_RX_D1_FORCE	BIT(21)
-> +#define SUN6I_DPHY_RX_CTL_RX_D0_FORCE	BIT(20)
-> +
+Thanks,
 
-It's hard to tell from the diff, but it looks like you aligned the
-BIT(..) with the register?
+Vivek
 
-If so, you should follow the what the rest of this driver (ie, one more
-indentation for register values).
-
->  #define SUN6I_DPHY_TX_TIME0_REG		0x10
->  #define SUN6I_DPHY_TX_TIME0_HS_TRAIL(n)		(((n) & 0xff) << 24)
->  #define SUN6I_DPHY_TX_TIME0_HS_PREPARE(n)	(((n) & 0xff) << 16)
-> @@ -44,12 +52,29 @@
->  #define SUN6I_DPHY_TX_TIME4_HS_TX_ANA1(n)	(((n) & 0xff) << 8)
->  #define SUN6I_DPHY_TX_TIME4_HS_TX_ANA0(n)	((n) & 0xff)
-> =20
-> +#define SUN6I_DPHY_RX_TIME0_REG		0x30
-> +#define SUN6I_DPHY_RX_TIME0_HS_RX_SYNC(n)	(((n) & 0xff) << 24)
-> +#define SUN6I_DPHY_RX_TIME0_HS_RX_CLK_MISS(n)	(((n) & 0xff) << 16)
-> +#define SUN6I_DPHY_RX_TIME0_LP_RX(n)		(((n) & 0xff) << 8)
-> +
-> +#define SUN6I_DPHY_RX_TIME1_REG		0x34
-> +#define SUN6I_DPHY_RX_TIME1_RX_DLY(n)		(((n) & 0xfff) << 20)
-> +#define SUN6I_DPHY_RX_TIME1_LP_RX_ULPS_WP(n)	((n) & 0xfffff)
-> +
-> +#define SUN6I_DPHY_RX_TIME2_REG		0x38
-> +#define SUN6I_DPHY_RX_TIME2_HS_RX_ANA1(n)	(((n) & 0xff) << 8)
-> +#define SUN6I_DPHY_RX_TIME2_HS_RX_ANA0(n)	((n) & 0xff)
-> +
-> +#define SUN6I_DPHY_RX_TIME3_REG		0x40
-> +#define SUN6I_DPHY_RX_TIME3_LPRST_DLY(n)	(((n) & 0xffff) << 16)
-> +
->  #define SUN6I_DPHY_ANA0_REG		0x4c
->  #define SUN6I_DPHY_ANA0_REG_PWS			BIT(31)
->  #define SUN6I_DPHY_ANA0_REG_DMPC		BIT(28)
->  #define SUN6I_DPHY_ANA0_REG_DMPD(n)		(((n) & 0xf) << 24)
->  #define SUN6I_DPHY_ANA0_REG_SLV(n)		(((n) & 7) << 12)
->  #define SUN6I_DPHY_ANA0_REG_DEN(n)		(((n) & 0xf) << 8)
-> +#define SUN6I_DPHY_ANA0_REG_SFB(n)		(((n) & 3) << 2)
-> =20
->  #define SUN6I_DPHY_ANA1_REG		0x50
->  #define SUN6I_DPHY_ANA1_REG_VTTMODE		BIT(31)
-> @@ -92,6 +117,8 @@ struct sun6i_dphy {
-> =20
->  	struct phy				*phy;
->  	struct phy_configure_opts_mipi_dphy	config;
-> +
-> +	int					submode;
->  };
-> =20
->  static int sun6i_dphy_init(struct phy *phy)
-> @@ -105,6 +132,18 @@ static int sun6i_dphy_init(struct phy *phy)
->  	return 0;
->  }
-> =20
-> +static int sun6i_dphy_set_mode(struct phy *phy, enum phy_mode mode, int =
-submode)
-> +{
-> +	struct sun6i_dphy *dphy =3D phy_get_drvdata(phy);
-> +
-> +	if (mode !=3D PHY_MODE_MIPI_DPHY)
-> +		return -EINVAL;
-> +
-> +	dphy->submode =3D submode;
-> +
-> +	return 0;
-> +}
-> +
->  static int sun6i_dphy_configure(struct phy *phy, union phy_configure_opt=
-s *opts)
->  {
->  	struct sun6i_dphy *dphy =3D phy_get_drvdata(phy);
-> @@ -119,9 +158,8 @@ static int sun6i_dphy_configure(struct phy *phy, unio=
-n phy_configure_opts *opts)
->  	return 0;
->  }
-> =20
-> -static int sun6i_dphy_power_on(struct phy *phy)
-> +static int sun6i_dphy_tx_power_on(struct sun6i_dphy *dphy)
->  {
-> -	struct sun6i_dphy *dphy =3D phy_get_drvdata(phy);
->  	u8 lanes_mask =3D GENMASK(dphy->config.lanes - 1, 0);
-> =20
->  	regmap_write(dphy->regs, SUN6I_DPHY_TX_CTL_REG,
-> @@ -211,12 +249,129 @@ static int sun6i_dphy_power_on(struct phy *phy)
->  	return 0;
->  }
-> =20
-> +static int sun6i_dphy_rx_power_on(struct sun6i_dphy *dphy)
-> +{
-> +	/* Physical clock rate is actually half of symbol rate with DDR. */
-> +	unsigned long mipi_symbol_rate =3D dphy->config.hs_clk_rate;
-> +	unsigned long dphy_clk_rate;
-> +	unsigned int rx_dly;
-> +	unsigned int lprst_dly;
-> +	u32 value;
-> +
-> +	dphy_clk_rate =3D clk_get_rate(dphy->mod_clk);
-> +	if (!dphy_clk_rate)
-> +		return -1;
-
-Returning -1 is weird here?
-
-> +
-> +	/* Hardcoded timing parameters from the Allwinner BSP. */
-> +	regmap_write(dphy->regs, SUN6I_DPHY_RX_TIME0_REG,
-> +		     SUN6I_DPHY_RX_TIME0_HS_RX_SYNC(255) |
-> +		     SUN6I_DPHY_RX_TIME0_HS_RX_CLK_MISS(255) |
-> +		     SUN6I_DPHY_RX_TIME0_LP_RX(255));
-> +
-> +	/*
-> +	 * Formula from the Allwinner BSP, with hardcoded coefficients
-> +	 * (probably internal divider/multiplier).
-> +	 */
-> +	rx_dly =3D 8 * (unsigned int)(dphy_clk_rate / (mipi_symbol_rate / 8));
-> +
-> +	/*
-> +	 * The Allwinner BSP has an alternative formula for LP_RX_ULPS_WP:
-> +	 * lp_ulps_wp_cnt =3D lp_ulps_wp_ms * lp_clk / 1000
-> +	 * but does not use it and hardcodes 255 instead.
-> +	 */
-> +	regmap_write(dphy->regs, SUN6I_DPHY_RX_TIME1_REG,
-> +		     SUN6I_DPHY_RX_TIME1_RX_DLY(rx_dly) |
-> +		     SUN6I_DPHY_RX_TIME1_LP_RX_ULPS_WP(255));
-> +
-> +	/* HS_RX_ANA0 value is hardcoded in the Allwinner BSP. */
-> +	regmap_write(dphy->regs, SUN6I_DPHY_RX_TIME2_REG,
-> +		     SUN6I_DPHY_RX_TIME2_HS_RX_ANA0(4));
-> +
-> +	/*
-> +	 * Formula from the Allwinner BSP, with hardcoded coefficients
-> +	 * (probably internal divider/multiplier).
-> +	 */
-> +	lprst_dly =3D 4 * (unsigned int)(dphy_clk_rate / (mipi_symbol_rate / 2)=
-);
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_RX_TIME3_REG,
-> +		     SUN6I_DPHY_RX_TIME3_LPRST_DLY(lprst_dly));
-> +
-> +	/* Analog parameters are hardcoded in the Allwinner BSP. */
-> +	regmap_write(dphy->regs, SUN6I_DPHY_ANA0_REG,
-> +		     SUN6I_DPHY_ANA0_REG_PWS |
-> +		     SUN6I_DPHY_ANA0_REG_SLV(7) |
-> +		     SUN6I_DPHY_ANA0_REG_SFB(2));
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_ANA1_REG,
-> +		     SUN6I_DPHY_ANA1_REG_SVTT(4));
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_ANA4_REG,
-> +		     SUN6I_DPHY_ANA4_REG_DMPLVC |
-> +		     SUN6I_DPHY_ANA4_REG_DMPLVD(1));
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_ANA2_REG,
-> +		     SUN6I_DPHY_ANA2_REG_ENIB);
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_ANA3_REG,
-> +		     SUN6I_DPHY_ANA3_EN_LDOR |
-> +		     SUN6I_DPHY_ANA3_EN_LDOC |
-> +		     SUN6I_DPHY_ANA3_EN_LDOD);
-> +
-> +	/*
-> +	 * Delay comes from the Allwinner BSP, likely for internal regulator
-> +	 * ramp-up.
-> +	 */
-> +	udelay(3);
-> +
-> +	value =3D SUN6I_DPHY_RX_CTL_EN_DBC | SUN6I_DPHY_RX_CTL_RX_CLK_FORCE;
-> +
-> +	/*
-> +	 * Rx data lane force-enable bits are used as regular RX enable by the
-> +	 * Allwinner BSP.
-> +	 */
-> +	if (dphy->config.lanes >=3D 1)
-> +		value |=3D SUN6I_DPHY_RX_CTL_RX_D0_FORCE;
-> +	if (dphy->config.lanes >=3D 2)
-> +		value |=3D SUN6I_DPHY_RX_CTL_RX_D1_FORCE;
-> +	if (dphy->config.lanes >=3D 3)
-> +		value |=3D SUN6I_DPHY_RX_CTL_RX_D2_FORCE;
-> +	if (dphy->config.lanes =3D=3D 4)
-> +		value |=3D SUN6I_DPHY_RX_CTL_RX_D3_FORCE;
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_RX_CTL_REG, value);
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_GCTL_REG,
-> +		     SUN6I_DPHY_GCTL_LANE_NUM(dphy->config.lanes) |
-> +		     SUN6I_DPHY_GCTL_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sun6i_dphy_power_on(struct phy *phy)
-> +{
-> +	struct sun6i_dphy *dphy =3D phy_get_drvdata(phy);
-> +
-> +	switch (dphy->submode) {
-> +	case PHY_MIPI_DPHY_SUBMODE_TX:
-> +		return sun6i_dphy_tx_power_on(dphy);
-> +	case PHY_MIPI_DPHY_SUBMODE_RX:
-> +		return sun6i_dphy_rx_power_on(dphy);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-
-Can one call power_on before set_mode?
-
->  static int sun6i_dphy_power_off(struct phy *phy)
->  {
->  	struct sun6i_dphy *dphy =3D phy_get_drvdata(phy);
-> =20
-> -	regmap_update_bits(dphy->regs, SUN6I_DPHY_ANA1_REG,
-> -			   SUN6I_DPHY_ANA1_REG_VTTMODE, 0);
-> +	regmap_write(dphy->regs, SUN6I_DPHY_GCTL_REG, 0);
-> +
-> +	regmap_write(dphy->regs, SUN6I_DPHY_ANA0_REG, 0);
-> +	regmap_write(dphy->regs, SUN6I_DPHY_ANA1_REG, 0);
-
-This looks like a change that should be mentioned (or in a separate
-patch).
-
-Maxime
-
---5cvkpdcapo7wtm7b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5btkQAKCRDj7w1vZxhR
-xUBHAQChkEAS41mkyzjme9DrIAAnuGBkUb1ivp9fGoZl+ff1nAEAglHnjwBwlYQA
-KOlYq7HcCAtaryTr7AUZPBR1RIqxuwc=
-=vZ2X
------END PGP SIGNATURE-----
-
---5cvkpdcapo7wtm7b--
