@@ -2,109 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A23298FEF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A110329901D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:54:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1782090AbgJZOvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 10:51:13 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:42067 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1782088AbgJZOvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:51:12 -0400
-Received: by mail-oi1-f193.google.com with SMTP id c72so1332471oig.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 07:51:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=mWob+tzedQRU+r/coolBGzfAZbJH7LoTHZ6SLSxbMY4=;
-        b=twUIGiwfWIRMWBeJSy6dgI4GpWSLHpg3THcr1YyNW+Z5jLeHYls96uEMFambf5NboL
-         Z5hPI5udjL7TykBpTYqfdhQiGroQJSBHYxqUbkD+eSy4RgOf+drJCHUsQb0gQY4LrXr8
-         zxUS2JEuPLIrJ7Rjs4D9kagvqVywc4Or4SsmfPQNB9BuGVo+irPKERbLXXwdnSGeSZ8C
-         GUzRL77BG9+zozZciuwVmMcuIRqpwv9txfdbhpMYi1SAd3JYUHNCASvj+GyPJOOb8wYS
-         VUxpCtJS0Im6wWHp6hUpXp1Opoiubk0MwV62lp8vhCwZ8edpucuhSo+mwuCQJuPDpLtI
-         20ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mWob+tzedQRU+r/coolBGzfAZbJH7LoTHZ6SLSxbMY4=;
-        b=T6sKNEXsNYCM4nJpdGPEMbuLD9Ph/jcWZ0NHPDyeqk7E66yHNIrC+rpwuXcO9YEYJg
-         yLQbaEoZk1DWZ9QE+78QW5EyK54niK7q1MwxXM0ewFlHegYqj3Rs+wihAoNgebouFzNZ
-         rEbabxZESEOmLBKdaZl1I8/Ne/zG01k7oYPEaJDA0G+Gzotfr49Z6zlOdwp8mLLOlJdm
-         NtwpIBYDfEH56Zm5uDeEVwSIuTOZVQRBujAKnlA6UuLedKM0A6YF+LJELoc2Fz4wzytX
-         eHvphxoPiS9U3qi2A8hul7tPnD7kNAsw4lFdroRBRKRwU3WgNvX5oFc8Vyg2hnCPsUrz
-         BXwA==
-X-Gm-Message-State: AOAM533T56iEDav0dSN0EU3PW0ZKSZVYxnGYu2JR4R/O4ttJjvP1dlP5
-        Mgb4h41a+H3T74alQk4L+OYQOw==
-X-Google-Smtp-Source: ABdhPJwo9kp3RaDSpiGBhV+80QW/beHexUe7tsTU0QJgn+iPVr7AP7TlvSJY20fmG/Nkh72BBqi5Bw==
-X-Received: by 2002:aca:4e4b:: with SMTP id c72mr1415245oib.96.1603723871230;
-        Mon, 26 Oct 2020 07:51:11 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w3sm4006512oov.48.2020.10.26.07.51.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 07:51:10 -0700 (PDT)
-Date:   Mon, 26 Oct 2020 09:51:08 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        rjw@rjwysocki.net, viresh.kumar@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: cpus: Document
- 'qcom,freq-domain' property
-Message-ID: <20201026145108.GG12646@builder.lan>
-References: <20201020153944.18047-1-manivannan.sadhasivam@linaro.org>
- <20201026143203.GA112606@bogus>
+        id S1782311AbgJZOyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 10:54:36 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:38204 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1782104AbgJZOyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:54:36 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09QEsUG3099082;
+        Mon, 26 Oct 2020 09:54:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603724070;
+        bh=eIMDLutzHXDdPJRJy2BUrl7HwvXRnEcH9ezRHbXZSaA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=mo850xtOd6Zpj2b3y/B079CRZCbs/6qUdzppx2/5PR4HwM3oqPQIhwWJ0sZ4eT8Ot
+         B03kll4B69CKRx4rwxMbzDFYgKb0REZBiENFBbXFLY1wlQJQ/uOwATR1OuYRQbRwhY
+         Pqmbha//TSfURb36PChMEo4i/MjZHfad/D9koyqM=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09QEsU9v071764
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 26 Oct 2020 09:54:30 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 26
+ Oct 2020 09:54:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 26 Oct 2020 09:54:30 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09QEsTPY120633;
+        Mon, 26 Oct 2020 09:54:30 -0500
+Date:   Mon, 26 Oct 2020 09:54:29 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j7200-mcu-wakeup: Enable ADC support
+Message-ID: <20201026145429.gvhe7ijauycdtwjc@daybreak>
+References: <20201013081650.26090-1-vigneshr@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20201026143203.GA112606@bogus>
+In-Reply-To: <20201013081650.26090-1-vigneshr@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 26 Oct 09:32 CDT 2020, Rob Herring wrote:
-
-> On Tue, Oct 20, 2020 at 09:09:43PM +0530, Manivannan Sadhasivam wrote:
-> > Add devicetree documentation for 'qcom,freq-domain' property specific
-> > to Qualcomm CPUs. This property is used to reference the CPUFREQ node
-> > along with Domain ID (0/1).
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > index 1222bf1831fa..f40564bf004f 100644
-> > --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > @@ -290,6 +290,12 @@ properties:
-> >  
-> >        * arm/msm/qcom,kpss-acc.txt
-> >  
-> > +  qcom,freq-domain:
-> > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> > +    description: |
-> > +      CPUs supporting freq-domain must set their "qcom,freq-domain" property
-> > +      with phandle to a cpufreq_hw node followed by the Domain ID(0/1).
+On 13:46-20201013, Vignesh Raghavendra wrote:
+> J7200 has a single instance of 8 channel ADC in MCU domain. Add DT node
+> for the same.
 > 
-> There's no 3 patches doing the same thing. Mediatek and SCMI are the 
-> others. This will need to be common. 
-> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 
-This property is used by existing dtbs for Qualcomm sdm845, sm8150,
-sm8250 and sc7180 based devices, so I expect that the support for the
-existing property will stay.
+Please reverify with v5.10-rc1 and repost.
 
+I'd appreciate an additional review if possible.
+
+-- 
 Regards,
-Bjorn
-
-> > +
-> >    rockchip,pmu:
-> >      $ref: '/schemas/types.yaml#/definitions/phandle'
-> >      description: |
-> > -- 
-> > 2.17.1
-> > 
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
