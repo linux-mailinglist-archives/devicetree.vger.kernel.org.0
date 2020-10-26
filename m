@@ -2,302 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1501298EF4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:17:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C07C298F4D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 15:30:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1780398AbgJZORS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 10:17:18 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:36399 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1776173AbgJZORS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:17:18 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 32so8129123otm.3;
-        Mon, 26 Oct 2020 07:17:17 -0700 (PDT)
+        id S1781490AbgJZOa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 10:30:29 -0400
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:43465 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1781493AbgJZOa2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 10:30:28 -0400
+Received: by mail-oo1-f67.google.com with SMTP id z14so2134564oom.10;
+        Mon, 26 Oct 2020 07:30:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Dc1ciPuMA7ubdROI7zF7CaERUaIteiAuLeWwB2ABFhk=;
-        b=TPTpx5HsTSIz5tDK9k9/3P2VGzqB62pRyB0C22PWYOB0ZS5jRnET0n8d+YeuzCMHcc
-         rVzvHjW6NcmV1jsO3KEXrIvvxsmboupVaRqIValI3Hq4pj9MoMN2RtOs5sspDR8quXkn
-         CmQPa6gRcV0cgmKyXfCb6CRqSeHM7JWlVZLH5lbJNlY7q335z0HQMYAPmGjTGZEbo1IV
-         /OIfe868dLeg/8Um7mkxXBEeTx/DrsLHAmLtsHnJnM1mIGKpfKDROk34ygv208o2WPbc
-         P+/R89IZ4sOHqokusAPjlpEzbnZY5ijO7eWyZYwdvDJz4taElRSQ9tPLwtWCyWrFEzek
-         3Xhw==
-X-Gm-Message-State: AOAM531b4SWVIO+du/3LRNUK+gkeWrw2pviJWrdk5zzGLzVqrmElsaKb
-        55tDAbgVxV/rTwH5/BmoEA==
-X-Google-Smtp-Source: ABdhPJxeX9H8Aa3GCK1uZXLbFTHOGdVKHTEc5BetlCh0FzS1zdLK28AWaEUXI4q9MeI/bigvCpyeWw==
-X-Received: by 2002:a9d:645:: with SMTP id 63mr11055273otn.182.1603721836759;
-        Mon, 26 Oct 2020 07:17:16 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=EvODWLSlZb9Skc/iTD6aHWqmQrjOtvrwcbltSN0DUow=;
+        b=rWzr6iN68zpk98U3JGzl0S53BZqRTg7pSa0i2uxs6Yqn9nUnGdkqJk1DCfIdOKZYpQ
+         mEFQ7uKSFeaAywz6a6JoydTsZ/h9C17vxrdctJZUBR5xkOTzowlVwYo4PvTj4l25N/Da
+         cLh/3S0//dFZ0bEyUlkycYrCGoDIz1SZmjo25ZmCoz5NdjdHfo8oNV2w+4uR8f4mhlgZ
+         mYk5rnQnMN7oZedOuc06AdV67Xv0KapKiAvQ6XDxWGkYtHsWblTONaJI7A5kDkBYcCx9
+         gEsEfoeyJY6d1rHretYVfJ4eubV2qc59blS0ixf3t+bdT9V1VPNNRj0xotCJ5Q+lBWLZ
+         mIUw==
+X-Gm-Message-State: AOAM530mGykwy1ahxiUTg5SxoWeqOEcpZC+s9+60kDbtEgo6n4ftxNpb
+        DOOO8DGlZ72Oh4bBECCjMg==
+X-Google-Smtp-Source: ABdhPJy5jo0OcqXys+08F5mv4GOWXCDsbF7iHCxIexI76vlCOrGJygolE/VWzKBmZPl/afqlzltoDg==
+X-Received: by 2002:a4a:c98f:: with SMTP id u15mr14230219ooq.78.1603722625676;
+        Mon, 26 Oct 2020 07:30:25 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y8sm3963281oon.16.2020.10.26.07.17.15
+        by smtp.gmail.com with ESMTPSA id b125sm2162575oii.19.2020.10.26.07.30.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 07:17:15 -0700 (PDT)
-Received: (nullmailer pid 94983 invoked by uid 1000);
-        Mon, 26 Oct 2020 14:17:14 -0000
-Date:   Mon, 26 Oct 2020 09:17:14 -0500
+        Mon, 26 Oct 2020 07:30:25 -0700 (PDT)
+Received: (nullmailer pid 112408 invoked by uid 1000);
+        Mon, 26 Oct 2020 14:30:24 -0000
+Date:   Mon, 26 Oct 2020 09:30:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Hugues FRUCHET <hugues.fruchet@st.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alain VOLMAT <alain.volmat@st.com>,
-        Yannick FERTRE <yannick.fertre@st.com>,
-        Philippe CORNU <philippe.cornu@st.com>
-Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: st,stm32-dcmi: Add
- support of BT656
-Message-ID: <20201026141714.GA83693@bogus>
-References: <1603188889-23664-1-git-send-email-hugues.fruchet@st.com>
- <1603188889-23664-3-git-send-email-hugues.fruchet@st.com>
- <20201021130033.GI2703@paasikivi.fi.intel.com>
- <657634eb-690a-53a6-2ac1-de3c06a1cec4@st.com>
- <20201021214058.GJ2703@paasikivi.fi.intel.com>
- <327ae9d5-8683-488f-7970-4983e2fec51d@st.com>
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v2 02/24] dt-bindings: introduce silabs,wfx.yaml
+Message-ID: <20201026143024.GA95610@bogus>
+References: <20201020125817.1632995-1-Jerome.Pouiller@silabs.com>
+ <20201020125817.1632995-3-Jerome.Pouiller@silabs.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <327ae9d5-8683-488f-7970-4983e2fec51d@st.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201020125817.1632995-3-Jerome.Pouiller@silabs.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 22, 2020 at 02:56:17PM +0000, Hugues FRUCHET wrote:
-> Hi Sakari,
+On Tue, Oct 20, 2020 at 02:57:55PM +0200, Jerome Pouiller wrote:
+> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
 > 
-> + Jacopo for his work on ov772x binding related to BT656
+> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> ---
+>  .../bindings/net/wireless/silabs,wfx.yaml     | 133 ++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
 > 
-> On 10/21/20 11:40 PM, Sakari Ailus wrote:
-> > Hi Hugues,
-> > 
-> > On Wed, Oct 21, 2020 at 02:24:08PM +0000, Hugues FRUCHET wrote:
-> >> Hi Sakari,
-> >>
-> >> On 10/21/20 3:00 PM, Sakari Ailus wrote:
-> >>> Hi Hugues,
-> >>>
-> >>> On Tue, Oct 20, 2020 at 12:14:49PM +0200, Hugues Fruchet wrote:
-> >>>> Add support of BT656 parallel bus mode in DCMI.
-> >>>> This mode is enabled when hsync-active & vsync-active
-> >>>> fields are not specified.
-> >>>>
-> >>>> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
-> >>>> ---
-> >>>>    .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 30 ++++++++++++++++++++++
-> >>>>    1 file changed, 30 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> >>>> index 3fe778c..1ee521a 100644
-> >>>> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> >>>> @@ -44,6 +44,36 @@ properties:
-> >>>>          bindings defined in
-> >>>>          Documentation/devicetree/bindings/media/video-interfaces.txt.
-> >>>>    
-> >>>> +    properties:
-> >>>> +      endpoint:
-> >>>> +        type: object
-> >>>> +
-> >>>> +        properties:
-> >>>> +          bus-width: true
-> >>>> +
-> >>>> +          hsync-active:
-> >>>> +            description:
-> >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
-> >>>> +              embedded synchronization is selected.
-> >>>> +            default: 0
-> >>>> +
-> >>>> +          vsync-active:
-> >>>> +            description:
-> >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
-> >>>> +              embedded synchronization is selected.
-> >>>> +            default: 0
-> >>>
-> >>> Should I understand this as if the polarities were not specified, BT.656
-> >>> will be used?
-> >>
-> >> Yes, this is what is documented in video-interfaces.txt:
-> >> "
-> >>     Note, that if HSYNC and VSYNC polarities are not specified, embedded
-> >>     synchronization may be required, where supported.
-> >> "
-> >> and
-> >> "
-> >> 				/* If hsync-active/vsync-active are missing,
-> >> 				   embedded BT.656 sync is used */
-> >> 				hsync-active = <0>;	/* Active low */
-> >> 				vsync-active = <0>;	/* Active low */
-> >> "
-> >> and I found also this in
-> >> Documentation/devicetree/bindings/media/renesas,vin.yaml
-> >> "
-> >>             hsync-active:
-> >>               description:
-> >>                 If both HSYNC and VSYNC polarities are not specified,
-> >> embedded
-> >>                 synchronization is selected.
-> >>               default: 1
-> >>
-> >>             vsync-active:
-> >>               description:
-> >>                 If both HSYNC and VSYNC polarities are not specified,
-> >> embedded
-> >>                 synchronization is selected.
-> >>               default: 1
-> > 
-> > Having the defaults leads to somewhat weird behaviour: specifying the
-> > default value on either property changes the bus type.
-> > 
-> >> "
-> >>
-> >> In the other hand I've found few occurences of "bus-type"
-> >> (marvell,mmp2-ccic.yaml), it is why I asked you if "bus-type" is the new
-> >> way to go versus previous way to signal BT656 (without hsync/vsync) ?
-> >> As explained previously, I prefer this last way for backward compatibility.
-> > 
-> > If you have a default for bus-type (BT.601), this won't be a problem.
-> > 
-> > The old DT bindings were somewhat, well, opportunistic. The v4l2-of
-> > framework-let did its best and sometimes it worked. The behaviour is still
-> > supported but not encouraged in new bindings.
-> > 
-> 
-> OK, so let's go for the new way.
-> I've found an interesting patch from Jacopo that is of great help:
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20200910162055.614089-4-jacopo+renesas@jmondi.org/
-> 
-> Here is a draft proposal before I push a new version, please comment:
-> 
->          properties:
->            bus-type:
->              enum: [5, 6]
->              default: 5
-> 
->            bus-width:
->              enum: [8, 10, 12, 14]
->              default: 8
-> 
->            hsync-active:
->              enum: [0, 1]
+> diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+> new file mode 100644
+> index 000000000000..2605e9fed185
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2020, Silicon Laboratories, Inc.
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/net/wireless/silabs,wfx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Silicon Labs WFxxx devicetree bindings
+> +
+> +maintainers:
+> +  - Jérôme Pouiller <jerome.pouiller@silabs.com>
+> +
+> +description: >
+> +  Support for the Wifi chip WFxxx from Silicon Labs. Currently, the only device
+> +  from the WFxxx series is the WF200 described here:
+> +     https://www.silabs.com/documents/public/data-sheets/wf200-datasheet.pdf
+> +  
+> +  The WF200 can be connected via SPI or via SDIO.
+> +  
+> +  For SDIO:
+> +  
+> +    Declaring the WFxxx chip in device tree is mandatory (usually, the VID/PID is
+> +    sufficient for the SDIO devices).
+> +  
+> +    It is recommended to declare a mmc-pwrseq on SDIO host above WFx. Without
+> +    it, you may encounter issues during reboot. The mmc-pwrseq should be
+> +    compatible with mmc-pwrseq-simple. Please consult
+> +    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt for more
+> +    information.
+> +  
+> +  For SPI:
+> +  
+> +    In add of the properties below, please consult
+> +    Documentation/devicetree/bindings/spi/spi-controller.yaml for optional SPI
+> +    related properties.
+> +
+> +properties:
+> +  compatible:
+> +    const: silabs,wf200
+> +
+> +  reg:
+> +    description:
+> +      When used on SDIO bus, <reg> must be set to 1. When used on SPI bus, it is
+> +      the chip select address of the device as defined in the SPI devices
+> +      bindings.
+> +    maxItems: 1
+> +
+> +  spi-max-frequency: true
+> +
+> +  interrupts:
+> +    description: The interrupt line. Triggers IRQ_TYPE_LEVEL_HIGH and
+> +      IRQ_TYPE_EDGE_RISING are both supported by the chip and the driver. When
+> +      SPI is used, this property is required. When SDIO is used, the "in-band"
+> +      interrupt provided by the SDIO bus is used unless an interrupt is defined
+> +      in the Device Tree.
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: (SPI only) Phandle of gpio that will be used to reset chip
+> +      during probe. Without this property, you may encounter issues with warm
+> +      boot. (For legacy purpose, the gpio in inverted when compatible ==
+> +      "silabs,wfx-spi")
+> +
+> +      For SDIO, the reset gpio should declared using a mmc-pwrseq.
+> +    maxItems: 1
+> +
+> +  wakeup-gpios:
+> +    description: Phandle of gpio that will be used to wake-up chip. Without this
+> +      property, driver will disable most of power saving features.
+> +    maxItems: 1
+> +
+> +  config-file:
 
-For common properties, you can assume there's a common schema. As 0 and 
-1 are the only possible values, you don't need to define them here 
-unless only a subset is valid for this device.
+If this is antenna data/config, then make the property name more 
+specific. And it needs a vendor prefix as it is vendor specific.
 
->              default: 0
-> 
->            vsync-active:
->              enum: [0, 1]
->              default: 0
-> 
->            pclk-sample:
->              enum: [0, 1]
->              default: 0
-> 
->            remote-endpoint: true
-> 
->          allOf:
->            - if:
->                properties:
->                  bus-type:
->                    const: 6
+> +    description: Use an alternative file as PDS. Default is `wf200.pds`.
+> +
+> +  local-mac-address:
+> +    $ref: /net/ethernet-controller.yaml#/properties/local-mac-address
+> +
+> +  mac-address:
+> +    $ref: /net/ethernet-controller.yaml#/properties/mac-address
 
-To fix the error, you need:
+I'd rather see these properties refactored out to their own file. We 
+should probably have a wifi-controller.yaml that has these as well as 
+enforcing the node name 'wifi'.
 
-required:
-  - bus-type
+> +
+> +additionalProperties: true
 
-The problem is the above schema is also true if the property 
-is not present. 
+What properties? This shouldn't be true. If you need spi-cpol or 
+spi-cpha, then you should list those. Really, if the SPI mode of the 
+device is fixed, then you should never use those. 
 
->              then:
->                properties:
->                  hsync-active: false
->                  vsync-active: false
->                  bus-width:
->                    enum: [8]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        wfx@0 {
+> +            compatible = "silabs,wf200";
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&wfx_irq &wfx_gpios>;
+> +            reg = <0>;
+> +            interrupts-extended = <&gpio 16 IRQ_TYPE_EDGE_RISING>;
+> +            wakeup-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+> +            reset-gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
+> +            spi-max-frequency = <42000000>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    wfx_pwrseq: wfx_pwrseq {
+> +        compatible = "mmc-pwrseq-simple";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&wfx_reset>;
+> +        reset-gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
+> +    };
+> +
+> +    mmc0 {
+> +        mmc-pwrseq = <&wfx_pwrseq>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mmc@1 {
+
+wifi@1
+
+> +            compatible = "silabs,wf200";
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&wfx_wakeup>;
+> +            reg = <1>;
+> +            wakeup-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> +...
+> -- 
+> 2.28.0
 > 
->          required:
->            - remote-endpoint
-> 
->          unevaluatedProperties: false
-> 
-> 
-> Unfortunately, the "default: 5" for bus-type is not working !!
-> If we don't specify "bus-type" in example, dt_binding_check is failing 
-> as if default was 6, it's hardly understandable (see below) !
->          port {
->               dcmi_0: endpoint {
->                     remote-endpoint = <&ov5640_0>;
->                     bus-width = <10>;
->                     hsync-active = <0>;
->                     vsync-active = <0>;
->                     pclk-sample = <1>;
->               };
-> => this should be OK but error claimed:
->    DTC 
-> Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
->    CHECK 
-> Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
-> Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml: 
-> dcmi@4c006000: port:endpoint:vsync-active: False schema does not allow [[0]]
-> dcmi@4c006000: port:endpoint:hsync-active: False schema does not allow [[0]]
-> dcmi@4c006000: port:endpoint:bus-width:0:0: 10 is not one of [8]
-> 	From schema: Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> 
-> => if "bus-type" is explicitly set to 5, all is fine (see below) !
->          port {
->               dcmi_0: endpoint {
->                     remote-endpoint = <&ov5640_0>;
->                     bus-type = <5>;
->                     bus-width = <10>;
->                     hsync-active = <0>;
->                     vsync-active = <0>;
->                     pclk-sample = <1>;
->               };
->          };
-> 
->   DTC 
-> Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
->    CHECK 
-> Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
-> ~/.../media_tree$
-> 
-> 
-> >>
-> >>
-> >> The bindings previously documented BT.601 (parallel) only, so
-> >>> it was somewhat ambigious to begin with. Is there a risk of interpreting
-> >>> old BT.601 bindings as BT.656?
-> >> I don't think so.
-> >>
-> >> With bus-type property, I believe you could
-> >>> avoid at least that risk.
-> >> yes but as explained, I'll prefer not to amend current boards device
-> >> tree files.
-> > 
-> > I don't think it matters from this point of view --- you can have a
-> > default bus-type.
-> > 
-> >>
-> >>>
-> >>> Also not specifying at least one of the default values leads to BT.656
-> >>> without bus-type. That could be addressed by removing the defaults.
-> >>>
-> >> I'm new to yaml, I've taken that from renesas,vin.yaml. Should I just
-> >> drop the "default: 1" lines ?
-> > 
-> > That's one option, yes. Then you have to have those for BT.601 and it's no
-> > longer ambiguous.
-> > 
-> 
-> BR,
-> Hugues.
