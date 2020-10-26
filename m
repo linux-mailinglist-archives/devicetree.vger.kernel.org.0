@@ -2,48 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9F5A299AF4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39DA4299AF9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:46:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408110AbgJZXp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 19:45:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42084 "EHLO mail.kernel.org"
+        id S2408225AbgJZXqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 19:46:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42926 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408108AbgJZXpz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 19:45:55 -0400
+        id S2408220AbgJZXqV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 19:46:21 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 74BDD20874;
-        Mon, 26 Oct 2020 23:45:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E0B5020714;
+        Mon, 26 Oct 2020 23:46:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603755955;
-        bh=5T4AL1BqRu1ARMLqlPYicJ4G84AujjuS4vWXEtGsgds=;
+        s=default; t=1603755981;
+        bh=9AbYxVaOs4JLDjH4TqJYrI1yDoSHClRW3bLhQND9QQc=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=k0yy62xyK6pARRGeQH/8tZh7EQvK+Pk4WiCSWb1+LFc5QFneQ0G327u4wby7WIl3D
-         Yf6pruWjkRFbttJ/itSDa5AXhtf/n//zacPvMvI0H4IggveE4OYc/TlSMWuFcFFV6J
-         bIyT+yGjcFDcaBVkg9p6wOPf1CabCQbD6f5jj9Jc=
-Date:   Mon, 26 Oct 2020 23:45:50 +0000
+        b=ff0ltz1/baOuGcau/EHKSBsbDpjYtpS/+w4a196NqNZbOV09MvIQbqSe3lcPBS6v/
+         VTjjxO6kXUm/95xoLikQuzTjXoRawaDc60RDg5oUspU/JAIqBLRLmVeHabJMKciP+B
+         D53DOs3yz8C+/pHISFUY5D9sY3k5UtBmUomQduW4=
+Date:   Mon, 26 Oct 2020 23:46:16 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     linuxppc-dev@lists.ozlabs.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
-        linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Jaroslav Kysela <perex@perex.cz>, devicetree@vger.kernel.org,
-        Takashi Iwai <tiwai@suse.com>,
-        "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
-        alsa-devel@alsa-project.org
-In-Reply-To: <20201013121733.83684-1-viorel.suman@oss.nxp.com>
-References: <20201013121733.83684-1-viorel.suman@oss.nxp.com>
-Subject: Re: [PATCH v4 0/2] DAI driver for new XCVR IP
-Message-Id: <160375592347.31132.18055383544502605577.b4-ty@kernel.org>
+To:     Xiubo.Lee@gmail.com, timur@kernel.org, lgirdwood@gmail.com,
+        Shengjiu Wang <shengjiu.wang@nxp.com>, perex@perex.cz,
+        devicetree@vger.kernel.org, tiwai@suse.com, festevam@gmail.com,
+        robh+dt@kernel.org, alsa-devel@alsa-project.org,
+        nicoleotsuka@gmail.com
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+In-Reply-To: <1602739728-4433-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1602739728-4433-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl_spdif: Add new compatible string for i.MX8QM
+Message-Id: <160375592348.31132.8709437914280376392.b4-ty@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -51,22 +42,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Oct 2020 15:17:31 +0300, Viorel Suman (OSS) wrote:
-> DAI driver for new XCVR IP found in i.MX8MP.
-> 
-> Viorel Suman (2):
->   ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
->   ASoC: dt-bindings: fsl_xcvr: Add document for XCVR
-> 
-> Changes since v1:
->  - improved 6- and 12-ch layout comment
->  - used regmap polling function, improved
->    clocks handling in runtime_resume
->  - added FW size check in FW load function,
->    improved IRQ handler, removed dummy IRQ handlers
->  - fixed yaml file
-> 
-> [...]
+On Thu, 15 Oct 2020 13:28:47 +0800, Shengjiu Wang wrote:
+> Add new compatible string "fsl,imx8qm-spdif" for supporting spdif
+> module on i.MX8QM.
 
 Applied to
 
@@ -74,10 +52,10 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-      commit: 28564486866fa889b78264360022c94836fa8072
-[2/2] ASoC: dt-bindings: fsl_xcvr: Add document for XCVR
-      commit: 0afb88d5a602488f877380ad1ec37cc20c927c68
+[1/2] ASoC: dt-bindings: fsl_spdif: Add new compatible string for i.MX8QM
+      commit: 87b2fc1139a13cf81d0a95fb2cbaba7daeee8908
+[2/2] ASoC: fsl_spdif: Add support for i.MX8QM platform
+      commit: 516232e3609f485be04445b03723fbaed64a5321
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
