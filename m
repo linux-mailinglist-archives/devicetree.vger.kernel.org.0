@@ -2,160 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D93512995BB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 19:50:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94E652995C6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 19:52:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1790432AbgJZSu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 14:50:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42362 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1790428AbgJZSu0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 14:50:26 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0994E21D7B;
-        Mon, 26 Oct 2020 18:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603738225;
-        bh=JEfVtUKlInYQ0fbZNP15BzK/44fyha6rG+E01FErsoI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GyCJH3GnwmV0wipG6wOYC3nVU3PlrHTgpXU3b1JWRJp1l0FOE90L9xOBL8S61nXxZ
-         iC4n7KkeAbHn/P+OGGWGwPkHWtmnJhSXbcknOrj2NQ4R//G+jzlOhvILBcSqkgRNsw
-         rx+5USq7aLTZvH667Fw5CP+JEf564NYUn0kSAHLc=
-Received: by mail-ot1-f50.google.com with SMTP id m22so8955228ots.4;
-        Mon, 26 Oct 2020 11:50:25 -0700 (PDT)
-X-Gm-Message-State: AOAM531tPk2RAsgXaavrS92v5QaO7bcJnV7MzwG5gYNyUVia1tWHBI1W
-        7Mi+f2zJHqjtxfKESIdOd3ev/+rcRw+dlBGHkQ==
-X-Google-Smtp-Source: ABdhPJyfr6yceNd2s4etvOsL23XkDwfTp8P2FO2SzBaZUDnJYThZWlzTsHVErNne3YqAOFIv7OY2MdlaqZZm6+aOALY=
-X-Received: by 2002:a9d:62d1:: with SMTP id z17mr15766887otk.192.1603738224263;
- Mon, 26 Oct 2020 11:50:24 -0700 (PDT)
+        id S1790486AbgJZSwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 14:52:45 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:40653 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1790484AbgJZSwp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 14:52:45 -0400
+Received: by mail-wr1-f68.google.com with SMTP id h5so13883765wrv.7;
+        Mon, 26 Oct 2020 11:52:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cQUhXvV9ngizC4642GzTTm7/Hlvt6fgB3K3UUaUSFT8=;
+        b=PgQ4zBHoGONM0EuDC+MSQZsCD9loQzQ/78CLuJDg4QV+2Go3bxkFWh9IyXcuIHBroL
+         rbIUa+IRjeisxRCJpYXzD8hUNyeJEy13yexO7FQG9+VKCziLjOxCJkYvV0uNeHvVnxMm
+         ufM/sUnjs1kE9IZFM3gKlAzTESp7DfjYbofyZ7CBGQX0e3sjDSPbzIWVkqjQV4spTsuP
+         4PXu/623TZ+FKcLB03A+TsGN7W6bkZ3qVfpT/yuuchwgFM4TaFHY4C3dTdhz8qvAMuXF
+         MNmtzUOWHuYANxu+HF6BtbLrSEdHDFZg/5Ck488Rnww18A7Y/CLeTc7fGEAr1wlAeSwx
+         WUDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cQUhXvV9ngizC4642GzTTm7/Hlvt6fgB3K3UUaUSFT8=;
+        b=ukYJfZISmCwzJR1TCaWlkOP4x2NNCIr6CD2pmJiYMwdj60ZPl82k24GRMlI7g1U0D6
+         cyaoLXjnypGFovQPrBIXb8hvrJfVy/+FkfJH2RcLvgXJcKgJYK1xViGX5oD1yhB7iMb6
+         3KBj5Hv8HT1KC62Vpw2Tzr2kaQcmDeWshrfDrGI1+OFNJ2hYKk6P/IhUngftqsMbGDuf
+         bn+FPWrUIKGiWVsR1dIWtUPhIZvMm80EREBsm19PL9ygl4TJuJw7bM780+wqz6UZpZK+
+         WWGOnu2+TSOIZ0w+fgtiYIu7nTi64+OzohzkVQNBIx7HXqZbvdtuu3PgO/tObUdR9osH
+         iqYA==
+X-Gm-Message-State: AOAM533uCJ9Qns0QAbhNHnTROW+cAZsKjWyq71AyVzTUFahfu2BLpp5N
+        pEvo7OHN268jrpS0oM0CaRU=
+X-Google-Smtp-Source: ABdhPJywDncUnB846jl9ZKKaIOxZYjnQy76ipa3mbrDKAR3UpGtLZXtIwqM4R8XMtakeYjC0yhYG8A==
+X-Received: by 2002:adf:b787:: with SMTP id s7mr20509135wre.390.1603738362970;
+        Mon, 26 Oct 2020 11:52:42 -0700 (PDT)
+Received: from localhost.localdomain (lputeaux-656-1-11-33.w82-127.abo.wanadoo.fr. [82.127.142.33])
+        by smtp.gmail.com with ESMTPSA id f7sm24885193wrx.64.2020.10.26.11.52.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 11:52:42 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v8 00/14] Add Allwinner H3/H5/H6/A64 HDMI audio
+Date:   Mon, 26 Oct 2020 19:52:25 +0100
+Message-Id: <20201026185239.379417-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CGME20201023075756eucas1p2c27cc3e6372127d107e5b84c810ba98f@eucas1p2.samsung.com>
- <20201023075744.26200-1-m.szyprowski@samsung.com> <20201023075744.26200-5-m.szyprowski@samsung.com>
-In-Reply-To: <20201023075744.26200-5-m.szyprowski@samsung.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 26 Oct 2020 13:50:12 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLUT7aLnQsLvcCOHCaoVAao9VSmEhoscBxu3ARXX33zrA@mail.gmail.com>
-Message-ID: <CAL_JsqLUT7aLnQsLvcCOHCaoVAao9VSmEhoscBxu3ARXX33zrA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] phy: samsung: phy-exynos-pcie: rework driver to
- support Exynos5433 PCIe PHY
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 23, 2020 at 2:58 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> From: Jaehoon Chung <jh80.chung@samsung.com>
->
-> Exynos5440 SoC support has been dropped since commit 8c83315da1cf ("ARM:
-> dts: exynos: Remove Exynos5440"). Rework this driver to support PCIe PHY
-> variant found in the Exynos5433 SoCs.
->
-> Signed-off-by: Jaehoon Chung <jh80.chung@samsung.com>
-> [mszyprow: reworked the driver to support only Exynos5433 variant, rebased
->            onto current kernel code, rewrote commit message]
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  drivers/phy/samsung/phy-exynos-pcie.c | 304 ++++++++++----------------
->  1 file changed, 112 insertions(+), 192 deletions(-)
->
-> diff --git a/drivers/phy/samsung/phy-exynos-pcie.c b/drivers/phy/samsung/phy-exynos-pcie.c
-> index 7e28b1aea0d1..d91de323dd0e 100644
-> --- a/drivers/phy/samsung/phy-exynos-pcie.c
-> +++ b/drivers/phy/samsung/phy-exynos-pcie.c
-> @@ -4,70 +4,41 @@
->   *
->   * Phy provider for PCIe controller on Exynos SoC series
->   *
-> - * Copyright (C) 2017 Samsung Electronics Co., Ltd.
-> + * Copyright (C) 2017-2020 Samsung Electronics Co., Ltd.
->   * Jaehoon Chung <jh80.chung@samsung.com>
->   */
->
-> -#include <linux/delay.h>
->  #include <linux/io.h>
-> -#include <linux/iopoll.h>
-> -#include <linux/init.h>
->  #include <linux/mfd/syscon.h>
-> -#include <linux/of.h>
-> -#include <linux/of_address.h>
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/phy.h>
->  #include <linux/regmap.h>
->
-> -/* PCIe Purple registers */
-> -#define PCIE_PHY_GLOBAL_RESET          0x000
-> -#define PCIE_PHY_COMMON_RESET          0x004
-> -#define PCIE_PHY_CMN_REG               0x008
-> -#define PCIE_PHY_MAC_RESET             0x00c
-> -#define PCIE_PHY_PLL_LOCKED            0x010
-> -#define PCIE_PHY_TRSVREG_RESET         0x020
-> -#define PCIE_PHY_TRSV_RESET            0x024
-> -
-> -/* PCIe PHY registers */
-> -#define PCIE_PHY_IMPEDANCE             0x004
-> -#define PCIE_PHY_PLL_DIV_0             0x008
-> -#define PCIE_PHY_PLL_BIAS              0x00c
-> -#define PCIE_PHY_DCC_FEEDBACK          0x014
-> -#define PCIE_PHY_PLL_DIV_1             0x05c
-> -#define PCIE_PHY_COMMON_POWER          0x064
-> -#define PCIE_PHY_COMMON_PD_CMN         BIT(3)
-> -#define PCIE_PHY_TRSV0_EMP_LVL         0x084
-> -#define PCIE_PHY_TRSV0_DRV_LVL         0x088
-> -#define PCIE_PHY_TRSV0_RXCDR           0x0ac
-> -#define PCIE_PHY_TRSV0_POWER           0x0c4
-> -#define PCIE_PHY_TRSV0_PD_TSV          BIT(7)
-> -#define PCIE_PHY_TRSV0_LVCC            0x0dc
-> -#define PCIE_PHY_TRSV1_EMP_LVL         0x144
-> -#define PCIE_PHY_TRSV1_RXCDR           0x16c
-> -#define PCIE_PHY_TRSV1_POWER           0x184
-> -#define PCIE_PHY_TRSV1_PD_TSV          BIT(7)
-> -#define PCIE_PHY_TRSV1_LVCC            0x19c
-> -#define PCIE_PHY_TRSV2_EMP_LVL         0x204
-> -#define PCIE_PHY_TRSV2_RXCDR           0x22c
-> -#define PCIE_PHY_TRSV2_POWER           0x244
-> -#define PCIE_PHY_TRSV2_PD_TSV          BIT(7)
-> -#define PCIE_PHY_TRSV2_LVCC            0x25c
-> -#define PCIE_PHY_TRSV3_EMP_LVL         0x2c4
-> -#define PCIE_PHY_TRSV3_RXCDR           0x2ec
-> -#define PCIE_PHY_TRSV3_POWER           0x304
-> -#define PCIE_PHY_TRSV3_PD_TSV          BIT(7)
-> -#define PCIE_PHY_TRSV3_LVCC            0x31c
-> -
-> -struct exynos_pcie_phy_data {
-> -       const struct phy_ops    *ops;
-> -};
-> +#define PCIE_PHY_OFFSET(x)             ((x) * 0x4)
-> +
-> +/* Sysreg FSYS register offsets and bits for Exynos5433 */
-> +#define PCIE_EXYNOS5433_PHY_MAC_RESET          0x0208
-> +#define PCIE_MAC_RESET_MASK                    0xFF
-> +#define PCIE_MAC_RESET                         BIT(4)
-> +#define PCIE_EXYNOS5433_PHY_L1SUB_CM_CON       0x1010
-> +#define PCIE_REFCLK_GATING_EN                  BIT(0)
-> +#define PCIE_EXYNOS5433_PHY_COMMON_RESET       0x1020
-> +#define PCIE_PHY_RESET                         BIT(0)
-> +#define PCIE_EXYNOS5433_PHY_GLOBAL_RESET       0x1040
-> +#define PCIE_GLOBAL_RESET                      BIT(0)
+Hi,
 
-Resets, why is this block not a reset provider?
+This is the same as v7 but rebased on next-20201026 and added a comment
+about slots and slot_width.
 
-> +#define PCIE_REFCLK                            BIT(1)
-> +#define PCIE_REFCLK_MASK                       0x16
-> +#define PCIE_APP_REQ_EXIT_L1_MODE              BIT(5)
+A proper sound card will be introduced later.
+
+This was tested on H6 only.
+
+Regards,
+Clement
+
+Change since v7:
+- rebase on next-20201026
+- comment about slots and slot_width
+
+Change since v6:
+- move set_channel_cfg() in first position
+- convert return value to decimal
+
+Change since v5:
+- Drop HDMI simple soundcard
+- Collect Chen-Yu Tsai tags
+- Configure channels from 9 to 15.
+- Remove DMA RX for H3/H5
+- Fix Documentation for H3/H5
+
+Change since v4:
+- add more comment on get_wss() and set_channel_cfg() patch
+- merge soundcard and DAI HDMI patches
+
+Change since v3:
+- add Samuel Holland patch to reconfigure FIFO_TX_REG when suspend is enabled
+- readd inversion to H6 LRCK sun50i_h6_i2s_set_soc_fmt()
+- Fix get_wss() for sun4i
+- Add a commit to fix checkpatch warning
+
+Change since v2:
+- rebase on next-20200918
+- drop revert LRCK polarity patch
+- readd simple-audio-card,frame-inversion in dts
+- Add patch for changing set_chan_cfg params
+
+Change since v1:
+- rebase on next-20200828
+- add revert LRCK polarity
+- remove all simple-audio-card,frame-inversion in dts
+- add Ondrej patches for Orange Pi board
+- Add arm64 defconfig patch
+
+Clément Péron (6):
+  ASoC: sun4i-i2s: Change set_chan_cfg() params
+  ASoC: sun4i-i2s: Change get_sr() and get_wss() to be more explicit
+  ASoC: sun4i-i2s: Fix sun8i volatile regs
+  ASoC: sun4i-i2s: fix coding-style for callback definition
+  arm64: defconfig: Enable Allwinner i2s driver
+  dt-bindings: sound: sun4i-i2s: Document H3 with missing RX channel
+    possibility
+
+Jernej Skrabec (3):
+  ASoC: sun4i-i2s: Add support for H6 I2S
+  dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+  arm64: dts: allwinner: h6: Add I2S1 node
+
+Marcus Cooper (4):
+  ASoC: sun4i-i2s: Set sign extend sample
+  ASoc: sun4i-i2s: Add 20 and 24 bit support
+  arm64: dts: allwinner: a64: Add I2S2 node
+  arm: dts: sunxi: h3/h5: Add I2S2 node
+
+Samuel Holland (1):
+  ASoC: sun4i-i2s: Fix setting of FIFO modes
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |   6 +-
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  13 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  14 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  13 +
+ arch/arm64/configs/defconfig                  |   1 +
+ sound/soc/sunxi/sun4i-i2s.c                   | 385 +++++++++++++++---
+ 6 files changed, 376 insertions(+), 56 deletions(-)
+
+-- 
+2.25.1
+
