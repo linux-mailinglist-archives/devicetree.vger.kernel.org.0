@@ -2,296 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17CC6299904
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 22:48:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6B4529999B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 23:25:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390284AbgJZVsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 17:48:11 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:52507 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390194AbgJZVsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 17:48:10 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201026214759euoutp01738514825e72be99abeabe9df19d268e~BqRvJ9AU81990719907euoutp01o
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 21:47:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201026214759euoutp01738514825e72be99abeabe9df19d268e~BqRvJ9AU81990719907euoutp01o
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1603748879;
-        bh=U/Hht8e4he4QLVwftITH602ZO3nodR7cU1xCfqlvRIs=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=FnQXyFSg/Rksn5wCW4U03jDGUX3UP9T2ohSx5DSG4vMZiXh3dGkH9yLZMtgFKk6Ua
-         4N7Ky7VhMxSjpdDd4Kt0UqXuKBZAWtPJPTiwT8M+vSBN3bChe/zv3LKbCLaqJTsRpw
-         UrNbGdIfVgw4fudXkbD7+wNE8f7QUHguqCssWLfA=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201026214748eucas1p1a974b52567b5d03bdef134797df86ee8~BqRlGHURj0697506975eucas1p1N;
-        Mon, 26 Oct 2020 21:47:48 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 90.5E.05997.404479F5; Mon, 26
-        Oct 2020 21:47:48 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201026214747eucas1p2791f92b9b7d82f337d1c8eb4546b8a76~BqRkt3-Mf2964029640eucas1p2S;
-        Mon, 26 Oct 2020 21:47:47 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201026214747eusmtrp130f93434fefae38bf3740f9dc92f7dd1~BqRktMPk91673716737eusmtrp1O;
-        Mon, 26 Oct 2020 21:47:47 +0000 (GMT)
-X-AuditID: cbfec7f4-677ff7000000176d-be-5f9744049a3a
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 6D.8D.06314.304479F5; Mon, 26
-        Oct 2020 21:47:47 +0000 (GMT)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201026214747eusmtip25a916e23ca5c3d8be10d9ab8fb08f5db~BqRkIDFal3242432424eusmtip2Y;
-        Mon, 26 Oct 2020 21:47:47 +0000 (GMT)
-Subject: Re: [PATCH 08/12] ARM: dts: exynos: adjust node names to DT spec in
- Exynos542x boards
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <f14a69bc-bd8f-b0d7-2967-1e7582562d5e@samsung.com>
-Date:   Mon, 26 Oct 2020 22:47:47 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.4.0
+        id S2394079AbgJZWZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 18:25:18 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:38681 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393385AbgJZWZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 18:25:17 -0400
+Received: by mail-ed1-f66.google.com with SMTP id bc23so11344654edb.5
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 15:25:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wOSWawwOJaxKHaS8ENCZeWsIF1Iow1iXBJnU2sPUuKA=;
+        b=GNTlaoulxKvajwFKjQzgBtOx7geAKdRmk8+ftlJM7fcuRgNYtSqxavBhjjP21I8z6p
+         x864K2nIRT+Jon9erEs+Vn0HN+H4z0q61xOQXxAVnwgalHKRnLBhKZdbb7I2J7pxCvUD
+         fsZK6dl7ul54n6Fww3Aj1C/89hDruWv6yXMeQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wOSWawwOJaxKHaS8ENCZeWsIF1Iow1iXBJnU2sPUuKA=;
+        b=TZ+LT6iA5a/hJmweDfeG9oNENXH/gPmSizzfzAp2V82sAdvdNx9grcD3uTHlqRFFO2
+         Bb+r/wYv7h2Zg0aMWz2Z7F4UzIkVPdlgV80/Q9CqPC4imdyg4GeHMijHQDXtHBoPxYRS
+         LKBnd5TlGHGfYyXsOkQUnn3A1zeDZOBAX8dynVe6wyEY05Tl/7LiZJe8Cwa6IynDUeDU
+         vEF1RJR7rJwiWKttTSHl99lhHBm3jEqsGEQKayD2w+KfnHbfitBuGlX9kFrSJe9Rm3bI
+         iUVawY+tI4AJACD1s6M43GyUU4tsnKTcCUmC4lm8DZe6QHXZDZwNNdvQl9a3iRQc6iuD
+         L1OQ==
+X-Gm-Message-State: AOAM530g54FrXrCevix6UgyD9XMamHar3snODezGlNzGjXwdTO0CPoOV
+        MpEvqeuJ4w2UWxpEEzW27O2ptPpFyyLlyQ==
+X-Google-Smtp-Source: ABdhPJz7SxSsz6/VDrBlSjkORRUhjxYhZYtml6a+3Y/wWb+UqwLq5UGJFkfwsqnwDHeAndYF82uk1A==
+X-Received: by 2002:aa7:d28c:: with SMTP id w12mr2384014edq.248.1603751114146;
+        Mon, 26 Oct 2020 15:25:14 -0700 (PDT)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com. [209.85.221.52])
+        by smtp.gmail.com with ESMTPSA id j4sm3573770ejs.8.2020.10.26.15.25.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Oct 2020 15:25:13 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id y12so14697645wrp.6
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 15:25:12 -0700 (PDT)
+X-Received: by 2002:adf:ab05:: with SMTP id q5mr19528918wrc.32.1603751112403;
+ Mon, 26 Oct 2020 15:25:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201026181528.163143-9-krzk@kernel.org>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJKsWRmVeSWpSXmKPExsWy7djPc7osLtPjDQ428Vs8mLeNzWLjjPWs
-        Fte/PGe1mH/kHKtF/+PXzBbnz29gt9j0+BqrxeVdc9gsZpzfx2TRuvcIu0X705fMDtwem1Z1
-        snlsXlLv0bdlFaPH501yASxRXDYpqTmZZalF+nYJXBkXjr9gK/hqUHHw1V22BsZral2MHBwS
-        AiYS9645djFycQgJrGCUuL/iMBOE84VRYtKHpewQzmdGiYbtzWxdjJxgHS82zICqWs4ocffj
-        WRYI5z2jxKlbl9hB5goLJEhMXSsDEhcB6b48+RoziMMssIVRYuKXaWCj2AQMJbredoHZvAJ2
-        Eu/nHmQFsVkEVCVez7wAZosKJEn8/fyHGaJGUOLkzCcsIDangJnE7ottYDazgLzE9rdzmCFs
-        cYlbT+YzQZx6il1ix4pECNtFYuORo4wQtrDEq+Nb2CFsGYnTk3vAPpAQaGaUeHhuLTuE0wN0
-        dtMMqA5riTvnfrGBvMYsoCmxfpc+RNhR4tjc3eyQkOSTuPFWEOIGPolJ26YzQ4R5JTrahCCq
-        1SRmHV8Ht/bghUvMExiVZiH5bBaSb2Yh+WYWwt4FjCyrGMVTS4tz01OLjfJSy/WKE3OLS/PS
-        9ZLzczcxAhPU6X/Hv+xg3PUn6RCjAAejEg/vhbfT4oVYE8uKK3MPMUpwMCuJ8DqdPR0nxJuS
-        WFmVWpQfX1Sak1p8iFGag0VJnNd40ctYIYH0xJLU7NTUgtQimCwTB6dUA6P/pOTD9ww7hbfk
-        yAvOZ22quH/W7t/7H3cZftkevrR1eohCme3MsLiptWu2bF4qaKG/WzTxoful6Ybb9ojahnP/
-        fvnGeMvRdofwZsHfyVtnr1f3yKq6t01u/4+NcsvsnP74VBz6oG16XPFMv4xg5bTZz8MlUyat
-        CjyyPGXqkX8OUrKFh1plpjoosRRnJBpqMRcVJwIAhr0qOUwDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDIsWRmVeSWpSXmKPExsVy+t/xe7rMLtPjDfoeGVs8mLeNzWLjjPWs
-        Fte/PGe1mH/kHKtF/+PXzBbnz29gt9j0+BqrxeVdc9gsZpzfx2TRuvcIu0X705fMDtwem1Z1
-        snlsXlLv0bdlFaPH501yASxRejZF+aUlqQoZ+cUltkrRhhZGeoaWFnpGJpZ6hsbmsVZGpkr6
-        djYpqTmZZalF+nYJehkXjr9gK/hqUHHw1V22BsZral2MnBwSAiYSLzbMYAKxhQSWMkr8P80I
-        EZeRODmtgRXCFpb4c62LrYuRC6jmLaPE7RPrgBIcHMICCRJT18qAxEUEPjNKPGvcxAziMAts
-        YZS4M2kbC0THVkaJNStWs4CMYhMwlOh6CzKKk4NXwE7i/dyDYCtYBFQlXs+8AGaLCiRJvLww
-        lQmiRlDi5MwnYL2cAmYSuy+2gdnMQPa8zQ+ZIWx5ie1v50DZ4hK3nsxnmsAoNAtJ+ywkLbOQ
-        tMxC0rKAkWUVo0hqaXFuem6xoV5xYm5xaV66XnJ+7iZGYExuO/Zz8w7GSxuDDzEKcDAq8fBe
-        eDstXog1say4MvcQowQHs5IIr9PZ03FCvCmJlVWpRfnxRaU5qcWHGE2BnpvILCWanA9MF3kl
-        8YamhuYWlobmxubGZhZK4rwdAgdjhATSE0tSs1NTC1KLYPqYODilGhgVnI13PP7Ctf1T8boP
-        dqICui90L25TrJrtKrJ3ypenGpbfCk453rk37cyy6DrditywXZbFbsd39Rnuqs7Z3TenqVlR
-        McV8SvC0y2uTH7y8O21D93xxfrcOazHpmMsqcVO33g9h/2ThNKlveXFMmOfhG2tnnw1JrDXX
-        s3r/XvI3n6114Dt3XSYlluKMREMt5qLiRABhbzIn3wIAAA==
-X-CMS-MailID: 20201026214747eucas1p2791f92b9b7d82f337d1c8eb4546b8a76
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201026181608eucas1p17927126482dc9ed2aefa2ff4c64491cd
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201026181608eucas1p17927126482dc9ed2aefa2ff4c64491cd
-References: <20201026181528.163143-1-krzk@kernel.org>
-        <CGME20201026181608eucas1p17927126482dc9ed2aefa2ff4c64491cd@eucas1p1.samsung.com>
-        <20201026181528.163143-9-krzk@kernel.org>
+References: <20201013130503.2412-1-dongchun.zhu@mediatek.com>
+ <20201013130503.2412-2-dongchun.zhu@mediatek.com> <20201013161938.GE13341@paasikivi.fi.intel.com>
+ <1602641418.4733.80.camel@mhfsdcap03> <20201014083139.GG13341@paasikivi.fi.intel.com>
+ <CAAFQd5BVzN=49s4S98E9mGNuxzOt4633dAw9mbyu3Sr-rA61qw@mail.gmail.com>
+ <20201019082759.GL13341@paasikivi.fi.intel.com> <CAAFQd5B9inO_-WJdJg_EMULw-e0EAAo8DXNgo5d+qrGvq6F8qQ@mail.gmail.com>
+In-Reply-To: <CAAFQd5B9inO_-WJdJg_EMULw-e0EAAo8DXNgo5d+qrGvq6F8qQ@mail.gmail.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Mon, 26 Oct 2020 23:25:00 +0100
+X-Gmail-Original-Message-ID: <CAAFQd5Cq5tY22vmX1xBJF_aUtR3KAzRaKFObEskd8qtWAJXGog@mail.gmail.com>
+Message-ID: <CAAFQd5Cq5tY22vmX1xBJF_aUtR3KAzRaKFObEskd8qtWAJXGog@mail.gmail.com>
+Subject: Re: [PATCH v15 1/2] media: dt-bindings: media: i2c: Document OV02A10 bindings
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= 
+        <shengnan.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 26.10.2020 19:15, Krzysztof Kozlowski wrote:
-> The Devicetree specification expects device node names to have a generic
-> name, representing the class of a device.  Also the convention for node
-> names is to use hyphens, not underscores.
+On Mon, Oct 19, 2020 at 9:20 PM Tomasz Figa <tfiga@chromium.org> wrote:
 >
-> No functional changes.
+> On Mon, Oct 19, 2020 at 10:28 AM Sakari Ailus
+> <sakari.ailus@linux.intel.com> wrote:
+> >
+> > On Wed, Oct 14, 2020 at 01:48:00PM +0200, Tomasz Figa wrote:
+> > > On Wed, Oct 14, 2020 at 10:31 AM Sakari Ailus
+> > > <sakari.ailus@linux.intel.com> wrote:
+> > > >
+> > > > On Wed, Oct 14, 2020 at 10:10:18AM +0800, Dongchun Zhu wrote:
+> > > > > Hello Sakari,
+> > > > >
+> > > > > Thanks for your timely review.
+> > > > >
+> > > > > On Tue, 2020-10-13 at 19:19 +0300, Sakari Ailus wrote:
+> > > > > > Hi Dongchun,
+> > > > > >
+> > > > > > On Tue, Oct 13, 2020 at 09:05:02PM +0800, Dongchun Zhu wrote:
+> > > > > > > Add YAML device tree binding for OV02A10 CMOS image sensor, and the
+> > > > > > > relevant MAINTAINERS entries.
+> > > > > > >
+> > > > > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > > > > > > ---
+> > > > > > >  .../bindings/media/i2c/ovti,ov02a10.yaml           | 162 +++++++++++++++++++++
+> > > > > > >  MAINTAINERS                                        |   7 +
+> > > > > > >  2 files changed, 169 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> > > > > > >
+> > > > >
+> > > > > [snip]...
+> > > > >
+> > > > > > > +  ovti,mipi-clock-voltage:
+> > > > > > > +    description:
+> > > > > > > +      An array of 2-tuples items, and each item consists of link frequency and
+> > > > > > > +      MIPI clock voltage unit like <freq-kHz volt-unit>. Clock voltage unit is
+> > > > > > > +      dependent upon link speed, indicating MIPI transmission speed select that
+> > > > > > > +      controls D-PHY timing setting by adjusting MIPI clock voltage to improve
+> > > > > > > +      the clock driver capability.
+> > > > > > > +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
+> > > > > > > +    minItems: 2
+> > > > > > > +    default: [390000, 4]
+> > > > > >
+> > > > > > Why do you have the link frequency here as well?
+> > > > > >
+> > > > > > In principle this does belong to the endpoint as link frequencies are
+> > > > > > specific to that, but I don't mind; there's just a single port anyway.
+> > > > > >
+> > > > >
+> > > > > This is an optional property which we model as an array of <link speed,
+> > > > > clock voltage> pairs. An example to have all link speeds up to 390MHz
+> > > > > use the value 4 for current driver. If one wants to select different
+> > > > > voltage for different link, they could do so as well.
+> > > >
+> > > > If you think you'd need that, then you need to put this to the endpoint.
+> > >
+> > > The mipi-clock-voltage property is not a property of the endpoint. The
+> > > link frequency there does not set the link frequency - it only
+> > > specifies which link frequency the given voltage should be used for.
+> >
+> > If it is not bound to the endpoint --- that specifies the properties of the
+> > link --- then you could just put it to the driver, couldn't you?
+> >
+> > But earlier on, we established that this is specific to a given board, or a
+> > given link. Endpoints are used to describe connections that a device may
+> > have to other devices. Therefore their properties are different.
+> >
+> > The graph bindings allow for several endpoints on a single physical port,
+> > some may be disabled in that case. This is admittedly mostly done with
+> > CSI-2 receivers.
+> >
+> > Either way, putting this property to the device may affect how DT source is
+> > arranged for boards that have this device. Any similar configuration on
+> > other devices with multiple transmitters or receivers would be in endpoints
+> > anyway --- because they have to, so I don't see why bindings for this
+> > device should be different.
+> >
+> > If you put it to endpoint, the driver also doesn't need to match the link
+> > frequencies in kHz and Hz between the two properties, but just use the same
+> > index for both.
 >
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->   arch/arm/boot/dts/exynos5420-arndale-octa.dts      | 4 ++--
->   arch/arm/boot/dts/exynos5420-peach-pit.dts         | 4 ++--
->   arch/arm/boot/dts/exynos5420-smdk5420.dts          | 2 +-
->   arch/arm/boot/dts/exynos5422-odroid-core.dtsi      | 2 +-
->   arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi  | 2 +-
->   arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi | 4 ++--
->   arch/arm/boot/dts/exynos5422-odroidxu3.dts         | 8 ++++----
->   arch/arm/boot/dts/exynos5800-peach-pi.dts          | 4 ++--
->   8 files changed, 15 insertions(+), 15 deletions(-)
+> I agree in general, but I think in this case this is a device-specific
+> property and the sensor only has 1 CSI-2 interface, so maybe it
+> doesn't really matter?
 >
-> diff --git a/arch/arm/boot/dts/exynos5420-arndale-octa.dts b/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-> index dd7f8385d81e..bf457d0c02eb 100644
-> --- a/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-> +++ b/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-> @@ -39,7 +39,7 @@ oscclk {
->   		};
->   	};
->   
-> -	gpio_keys {
-> +	gpio-keys {
->   		compatible = "gpio-keys";
->   
->   		wakeup {
-> @@ -344,7 +344,7 @@ &hdmi {
->   &hsi2c_4 {
->   	status = "okay";
->   
-> -	s2mps11_pmic@66 {
-> +	pmic@66 {
->   		compatible = "samsung,s2mps11-pmic";
->   		reg = <0x66>;
->   
-> diff --git a/arch/arm/boot/dts/exynos5420-peach-pit.dts b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-> index 2bcbdf8a39bf..d54392fe6260 100644
-> --- a/arch/arm/boot/dts/exynos5420-peach-pit.dts
-> +++ b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-> @@ -138,7 +138,7 @@ panel_in: endpoint {
->   		};
->   	};
->   
-> -	mmc1_pwrseq: mmc1_pwrseq {
-> +	mmc1_pwrseq: mmc1-pwrseq {
->   		compatible = "mmc-pwrseq-simple";
->   		reset-gpios = <&gpx0 0 GPIO_ACTIVE_LOW>; /* WIFI_EN */
->   		clocks = <&max77802 MAX77802_CLK_32K_CP>;
-> @@ -205,7 +205,7 @@ &hsi2c_4 {
->   	status = "okay";
->   	clock-frequency = <400000>;
->   
-> -	max77802: max77802-pmic@9 {
-> +	max77802: pmic@9 {
->   		compatible = "maxim,max77802";
->   		interrupt-parent = <&gpx3>;
->   		interrupts = <1 IRQ_TYPE_NONE>;
-> diff --git a/arch/arm/boot/dts/exynos5420-smdk5420.dts b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-> index 4e49d8095b29..d506da9fa661 100644
-> --- a/arch/arm/boot/dts/exynos5420-smdk5420.dts
-> +++ b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-> @@ -129,7 +129,7 @@ &hdmi {
->   &hsi2c_4 {
->   	status = "okay";
->   
-> -	s2mps11_pmic@66 {
-> +	pmic@66 {
->   		compatible = "samsung,s2mps11-pmic";
->   		reg = <0x66>;
->   
-> diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-> index b1cf9414ce17..25fb6331c75e 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-> +++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-> @@ -503,7 +503,7 @@ &dmc {
->   &hsi2c_4 {
->   	status = "okay";
->   
-> -	s2mps11_pmic@66 {
-> +	pmic@66 {
->   		compatible = "samsung,s2mps11-pmic";
->   		reg = <0x66>;
->   		samsung,s2mps11-acokb-ground;
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi
-> index b5ec4f47eb3a..f5f9c077df74 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-audio.dtsi
-> @@ -40,7 +40,7 @@ codec {
->   
->   &hsi2c_5 {
->   	status = "okay";
-> -	max98090: max98090@10 {
-> +	max98090: codec@10 {
->   		compatible = "maxim,max98090";
->   		reg = <0x10>;
->   		interrupt-parent = <&gpx3>;
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> index 5da2d81e3be2..e35af40a55cb 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> @@ -13,12 +13,12 @@
->   #include "exynos5422-odroid-core.dtsi"
->   
->   / {
-> -	gpio_keys {
-> +	gpio-keys {
->   		compatible = "gpio-keys";
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&power_key>;
->   
-> -		power_key {
-> +		power-key {
->   			/*
->   			 * The power button (SW2) is connected to the PWRON
->   			 * pin (active high) of the S2MPS11 PMIC, which acts
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> index d0f6ac5fa79d..5ff493ecb6ff 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> @@ -21,28 +21,28 @@ &i2c_0 {
->   	status = "okay";
->   
->   	/* A15 cluster: VDD_ARM */
-> -	ina231@40 {
-> +	sensor@40 {
-power-sensor?
->   		compatible = "ti,ina231";
->   		reg = <0x40>;
->   		shunt-resistor = <10000>;
->   	};
->   
->   	/* memory: VDD_MEM */
-> -	ina231@41 {
-> +	sensor@41 {
->   		compatible = "ti,ina231";
->   		reg = <0x41>;
->   		shunt-resistor = <10000>;
->   	};
->   
->   	/* GPU: VDD_G3D */
-> -	ina231@44 {
-> +	sensor@44 {
->   		compatible = "ti,ina231";
->   		reg = <0x44>;
->   		shunt-resistor = <10000>;
->   	};
->   
->   	/* A7 cluster: VDD_KFC */
-> -	ina231@45 {
-> +	sensor@45 {
->   		compatible = "ti,ina231";
->   		reg = <0x45>;
->   		shunt-resistor = <10000>;
-> diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-> index 60ab0effe474..0ce3443d39a8 100644
-> --- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
-> +++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-> @@ -138,7 +138,7 @@ panel_in: endpoint {
->   		};
->   	};
->   
-> -	mmc1_pwrseq: mmc1_pwrseq {
-> +	mmc1_pwrseq: mmc1-pwrseq {
->   		compatible = "mmc-pwrseq-simple";
->   		reset-gpios = <&gpx0 0 GPIO_ACTIVE_LOW>; /* WIFI_EN */
->   		clocks = <&max77802 MAX77802_CLK_32K_CP>;
-> @@ -214,7 +214,7 @@ &hsi2c_4 {
->   	status = "okay";
->   	clock-frequency = <400000>;
->   
-> -	max77802: max77802-pmic@9 {
-> +	max77802: pmic@9 {
->   		compatible = "maxim,max77802";
->   		interrupt-parent = <&gpx3>;
->   		interrupts = <1 IRQ_TYPE_NONE>;
+> Specifying frequency, voltage pairs is a common practice in other
+> bindings, such as the OPP bindings, by the way.
+>
+> That said, if you insist, I'm fine with this being moved to the
+> endpoint node too.
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Is the conclusion that it needs to be moved?
 
+Best regards,
+Tomasz
