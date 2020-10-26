@@ -2,144 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8034298DA7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:17:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF24298DB1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:22:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1774662AbgJZNR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 09:17:28 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:41168 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1774652AbgJZNR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:17:27 -0400
-Received: by mail-ot1-f65.google.com with SMTP id n15so7907494otl.8;
-        Mon, 26 Oct 2020 06:17:25 -0700 (PDT)
+        id S1420310AbgJZNWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 09:22:46 -0400
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:42442 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1776988AbgJZNUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:20:00 -0400
+Received: by mail-oo1-f66.google.com with SMTP id l26so1175521oop.9;
+        Mon, 26 Oct 2020 06:19:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=q7bno1h46Vp/ABrcszACFHvC0m971ZjamxzKz5T7W8w=;
-        b=n1HwqRp+vo35bGxx7a6HVxYu3d+6zD13jEB3J5xjI7nZFgC4X5n1iMLTHXb0gtdvNb
-         /qTmEvVNm9AduScWTEcle1BzxI3lxAX1VLKOxa8/wm4Ov/H+B3D77geDHWliknAP2SL9
-         dJV0nDwwA4qNbHRmHJScH/KoMN4orKtH+hWyLfGxJhoVFNQSvkrrzl3FzvC6mJHJkqzK
-         yhwJSfZe2oYlQzb9QMhZwf+49CCcL6W3ohOTeyOwuJXWeQOl5Fv+OpT0Ca+fp57KSY6l
-         I2dWUls3IHRQaRDa1UAqN8hcQaaIYFPZb7gyxVkD1nsot6vKAHUdyxmoWE8vblugqmhY
-         SCQw==
-X-Gm-Message-State: AOAM530OYSliE18n3DyzbTvFcfliy6fq0XR6Q8FU6ZCJEEjVwgeqnsGd
-        J3BWoO1QoGVH0CxfNK54+w==
-X-Google-Smtp-Source: ABdhPJy4sN2qYbTXX3u6wZrTXdNWO1mBD6AqzSOtNDudrry5jbCo/+zVNTMEV3bESDuJ2TmoBvLPvQ==
-X-Received: by 2002:a05:6830:1347:: with SMTP id r7mr15232920otq.203.1603718245058;
-        Mon, 26 Oct 2020 06:17:25 -0700 (PDT)
+        bh=b5V74H5JuHP7LZrTQlerYiUXU3pYxv+LpdxUgjv8arc=;
+        b=TAjUvkj/jfVlgzAD1GtsaQ2NkbLttDx+Seb1ccrvMKjXrT1sHhsoWPGBjgX9hqnHlp
+         aMCxU4L2rn/mWZqI86KYEaByJ0bsKf90L0Ezu7fnV635yj2dma6gSWfqLKsnoAI7zy4m
+         8MB00qeur2FffwjKyGueO8nuY6fR8zRAwmqra4pFFxrin6ebQne91c7TjvOua9bPs+HX
+         PAeyBGaAkdVBtRdE7S3XIvaiofjJpL7b4Ty7kOl9oouxlSFkUvSr0+dvEOckcj/NVozb
+         GP8trpfi6phAnzjCsfYc1srxBqcuscFipUkkmx7uwAKRu4vh0oAyG9HNO3VAOXeD64p/
+         3uZQ==
+X-Gm-Message-State: AOAM530svh2my2ii11OVzKH/6inxrk/sYB4r6JR60Ek6VIuwFSDajNrs
+        DEj0YyvQXYBcqAm8KojuuA==
+X-Google-Smtp-Source: ABdhPJxlxZGzNp5Qy7jehOdA9r8xkKsLvjdTXkUpwwVK9y+I569/IzmokE39lu12/73EPOV+AphQQQ==
+X-Received: by 2002:a4a:d083:: with SMTP id i3mr13483342oor.74.1603718399379;
+        Mon, 26 Oct 2020 06:19:59 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v17sm3486344ote.40.2020.10.26.06.17.24
+        by smtp.gmail.com with ESMTPSA id f18sm3514302otp.10.2020.10.26.06.19.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 06:17:24 -0700 (PDT)
-Received: (nullmailer pid 15580 invoked by uid 1000);
-        Mon, 26 Oct 2020 13:17:23 -0000
-Date:   Mon, 26 Oct 2020 08:17:23 -0500
+        Mon, 26 Oct 2020 06:19:58 -0700 (PDT)
+Received: (nullmailer pid 19048 invoked by uid 1000);
+        Mon, 26 Oct 2020 13:19:57 -0000
+Date:   Mon, 26 Oct 2020 08:19:57 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        Mark Gross <mgross@linux.intel.com>,
-        Declan Murphy <declan.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Subject: Re: [PATCH 1/3] dt-bindings: crypto: Add Keem Bay OCS HCU bindings
-Message-ID: <20201026131723.GA11033@bogus>
-References: <20201016172759.1260407-1-daniele.alessandrelli@linux.intel.com>
- <20201016172759.1260407-2-daniele.alessandrelli@linux.intel.com>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     linux-rpi-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        nsaenzjulienne@suse.de, alsa-devel@alsa-project.org,
+        broonie@kernel.org, patches@opensource.cirrus.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/7] of: base: Add of_count_phandle_with_fixed_args()
+Message-ID: <20201026131957.GA19011@bogus>
+References: <20201016173541.21180-1-rf@opensource.cirrus.com>
+ <20201016173541.21180-2-rf@opensource.cirrus.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201016172759.1260407-2-daniele.alessandrelli@linux.intel.com>
+In-Reply-To: <20201016173541.21180-2-rf@opensource.cirrus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 16, 2020 at 06:27:57PM +0100, Daniele Alessandrelli wrote:
-> From: Declan Murphy <declan.murphy@intel.com>
+On Fri, 16 Oct 2020 18:35:35 +0100, Richard Fitzgerald wrote:
+> Add an equivalent of of_count_phandle_with_args() for fixed argument
+> sets, to pair with of_parse_phandle_with_fixed_args().
 > 
-> Add device-tree bindings for the Intel Keem Bay Offload Crypto Subsystem
-> (OCS) Hashing Control Unit (HCU) crypto driver.
+> The existing of_count_phandle_with_args() is modified to be a
+> private function that handles both cases and the public functions
+> are trivial wrappers round that.
 > 
-> Signed-off-by: Declan Murphy <declan.murphy@intel.com>
-> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Acked-by: Mark Gross <mgross@linux.intel.com>
+> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
 > ---
->  .../crypto/intel,keembay-ocs-hcu.yaml         | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+>  drivers/of/base.c  | 73 +++++++++++++++++++++++++++++++---------------
+>  include/linux/of.h |  9 ++++++
+>  2 files changed, 59 insertions(+), 23 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml b/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
-> new file mode 100644
-> index 000000000000..dd4b82ee872b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/intel,keembay-ocs-hcu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel Keem Bay OCS HCU Device Tree Bindings
-> +
-> +maintainers:
-> +  - Declan Murphy <declan.murphy@intel.com>
-> +  - Daniele Alessandrelli <deniele.alessandrelli@intel.com>
 
-typo:                          ^?
-
-> +
-> +description: |
-
-Can drop '|' if there's no formatting to preserve.
-
-> +  The Intel Keem Bay Offload and Crypto Subsystem (OCS) Hash Control Unit (HCU)
-> +  crypto driver enables use of the hardware accelerated hashing module embedded
-> +  in the Intel Movidius SoC code name Keem Bay, via the kernel crypto API.
-
-Don't put Linux details in bindings. Describe the h/w, not a driver.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,keembay-ocs-hcu
-> +
-> +  reg:
-> +    items:
-> +      - description: The OCS HCU base register address
-> +
-> +  interrupts:
-> +    items:
-> +      - description: OCS HCU interrupt
-> +
-> +  clocks:
-> +    items:
-> +      - description: OCS clock
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    hcu@3000b000 {
-
-crypto@...
-
-> +      compatible = "intel,keembay-ocs-hcu";
-> +      reg = <0x3000b000 0x1000>;
-> +      interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-> +      clocks = <&scmi_clk 94>;
-> +    };
-> +
-> +...
-> -- 
-> 2.26.2
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
