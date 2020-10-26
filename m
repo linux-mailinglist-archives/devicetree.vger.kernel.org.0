@@ -2,72 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF24298DB1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:22:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42695298DCD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 14:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1420310AbgJZNWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 09:22:46 -0400
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:42442 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1776988AbgJZNUA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:20:00 -0400
-Received: by mail-oo1-f66.google.com with SMTP id l26so1175521oop.9;
-        Mon, 26 Oct 2020 06:19:59 -0700 (PDT)
+        id S1769503AbgJZN1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 09:27:13 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:40744 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437450AbgJZN1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 09:27:08 -0400
+Received: by mail-oi1-f193.google.com with SMTP id m128so10453674oig.7;
+        Mon, 26 Oct 2020 06:27:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=b5V74H5JuHP7LZrTQlerYiUXU3pYxv+LpdxUgjv8arc=;
-        b=TAjUvkj/jfVlgzAD1GtsaQ2NkbLttDx+Seb1ccrvMKjXrT1sHhsoWPGBjgX9hqnHlp
-         aMCxU4L2rn/mWZqI86KYEaByJ0bsKf90L0Ezu7fnV635yj2dma6gSWfqLKsnoAI7zy4m
-         8MB00qeur2FffwjKyGueO8nuY6fR8zRAwmqra4pFFxrin6ebQne91c7TjvOua9bPs+HX
-         PAeyBGaAkdVBtRdE7S3XIvaiofjJpL7b4Ty7kOl9oouxlSFkUvSr0+dvEOckcj/NVozb
-         GP8trpfi6phAnzjCsfYc1srxBqcuscFipUkkmx7uwAKRu4vh0oAyG9HNO3VAOXeD64p/
-         3uZQ==
-X-Gm-Message-State: AOAM530svh2my2ii11OVzKH/6inxrk/sYB4r6JR60Ek6VIuwFSDajNrs
-        DEj0YyvQXYBcqAm8KojuuA==
-X-Google-Smtp-Source: ABdhPJxlxZGzNp5Qy7jehOdA9r8xkKsLvjdTXkUpwwVK9y+I569/IzmokE39lu12/73EPOV+AphQQQ==
-X-Received: by 2002:a4a:d083:: with SMTP id i3mr13483342oor.74.1603718399379;
-        Mon, 26 Oct 2020 06:19:59 -0700 (PDT)
+        bh=I00XBAnJ7WylgkzAn5TxWF3njmn5zBWWNtxL/K5mgoc=;
+        b=TVXiAs5ykgWsOsfHe1HrFs4nzi2/UmGHV1oZ5M+wvIORfMaG0ulMiJBgWEzDEWLm3A
+         LuU5aOToRncoiAbxGTiD24H/4SFdwOU72T2lORFsAzLDdD9TQ3DNJTrij8P62R3VEs93
+         1PT4BwhBkdqomH2wgjlxM7fv/bqgXAZMEYMCxBPN79J9CUgCsmqxNFFiJ57Vi4X+EbNZ
+         GZ4i9t0JWdAM1rt8yYA2fcu1nKSBoSHLzeH2wWoIJ9ty+KHRoVtlmQPJcVA7IwTrlh36
+         fj+M33oflleliW9gqgkBqRxgi/skXy0MxH+ts7xr3GR69WE3oQ+IRw5PqdSeU6tByaH0
+         zfyA==
+X-Gm-Message-State: AOAM532p4cuN6YwcK06kIaB8c8UCUT4davKBE0KzZU+vqbZDXkX91H7j
+        NqYrD/8YT1CBvOI237/lrA==
+X-Google-Smtp-Source: ABdhPJw/URyM2Olc0l0cnR5M+IOaA7dfiOz7xYxgvGes09V25+mkFzvABkINEQh/Wu5rg0R4pOiViw==
+X-Received: by 2002:aca:6206:: with SMTP id w6mr14216985oib.121.1603718826869;
+        Mon, 26 Oct 2020 06:27:06 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f18sm3514302otp.10.2020.10.26.06.19.57
+        by smtp.gmail.com with ESMTPSA id d22sm3855955oij.53.2020.10.26.06.27.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2020 06:19:58 -0700 (PDT)
-Received: (nullmailer pid 19048 invoked by uid 1000);
-        Mon, 26 Oct 2020 13:19:57 -0000
-Date:   Mon, 26 Oct 2020 08:19:57 -0500
+        Mon, 26 Oct 2020 06:27:05 -0700 (PDT)
+Received: (nullmailer pid 28455 invoked by uid 1000);
+        Mon, 26 Oct 2020 13:27:04 -0000
+Date:   Mon, 26 Oct 2020 08:27:04 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     linux-rpi-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        nsaenzjulienne@suse.de, alsa-devel@alsa-project.org,
-        broonie@kernel.org, patches@opensource.cirrus.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/7] of: base: Add of_count_phandle_with_fixed_args()
-Message-ID: <20201026131957.GA19011@bogus>
+Cc:     broonie@kernel.org, nsaenzjulienne@suse.de,
+        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/7] ASoC: audio-graph-card: Add plls and sysclks DT
+ bindings
+Message-ID: <20201026132704.GA19204@bogus>
 References: <20201016173541.21180-1-rf@opensource.cirrus.com>
- <20201016173541.21180-2-rf@opensource.cirrus.com>
+ <20201016173541.21180-3-rf@opensource.cirrus.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201016173541.21180-2-rf@opensource.cirrus.com>
+In-Reply-To: <20201016173541.21180-3-rf@opensource.cirrus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Oct 2020 18:35:35 +0100, Richard Fitzgerald wrote:
-> Add an equivalent of of_count_phandle_with_args() for fixed argument
-> sets, to pair with of_parse_phandle_with_fixed_args().
-> 
-> The existing of_count_phandle_with_args() is modified to be a
-> private function that handles both cases and the public functions
-> are trivial wrappers round that.
+On Fri, Oct 16, 2020 at 06:35:36PM +0100, Richard Fitzgerald wrote:
+> This adds the two new properties 'plls' and 'sysclks' to the dt bindings.
+> These add the ability to set values that will be
+> passed to snd_soc_component_set_sysclk() and snd_soc_component_set_pll().
+
+I worry this looks like Linux implementation details leaking into the 
+binding.
+
 > 
 > Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
 > ---
->  drivers/of/base.c  | 73 +++++++++++++++++++++++++++++++---------------
->  include/linux/of.h |  9 ++++++
->  2 files changed, 59 insertions(+), 23 deletions(-)
+>  .../bindings/sound/audio-graph-card.txt       | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card.txt b/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+> index d5f6919a2d69..59bbd5b55b59 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card.txt
+> @@ -32,6 +32,19 @@ Required properties:
+>  Optional properties:
+>  - pa-gpios: GPIO used to control external amplifier.
+>  
+> +- plls: A list of component pll settings that will be applied with
+> +      snd_soc_component_set_pll. Each entry is a phandle to the node of the
+> +      codec or cpu component, followed by the four arguments id, source,
+> +      frequency_in, frequency_out. Multiple entries can have the same phandle
+> +      so that several plls can be set in the same component.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Where do the values of id and source come from?
+
+> +
+> +- sysclks: A list of component sysclk settings that will be applied with
+> +      snd_soc_component_set_sysclk. Each entry is a phandle to the node of
+> +      the codec or cpu component, followed by the four arguments id, source,
+> +      frequency, direction. Direction is 0 if the clock is an input, 1 if it
+> +      is an output. Multiple entries can have the same phandle so that several
+> +      clocks can be set in the same component.
+
+Are these really common properties? They seem kind of Cirrus specific 
+and perhaps should be located in the codec node(s).
+
+> +
+>  -----------------------
+>  Example: Single DAI case
+>  -----------------------
+> @@ -335,3 +348,34 @@ Example: Multi DAI with DPCM
+>  			};
+>  		};
+>  	};
+> +
+> +-----------------------
+> +Example: Set component sysclks and PLLs
+> +-----------------------
+> +
+> +	sound {
+> +		compatible = "audio-graph-card";
+> +
+> +		sysclks = <
+> +			&cs47l15 1 4 98304000 0
+> +			&cs47l15 8 4 147456000 0
+> +		>;
+> +		plls = <
+> +			&cs47l15 1 0 24576000 98304000
+> +		>;
+> +
+> +		dais = <&cpu_i2s_port>;
+> +	};
+> +
+> +	cs47l15: codec@0 {
+> +		...
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			cs47l15_aif1_port: port@0 {
+> +				reg = <0>;
+> +				cs47l15_aif1: endpoint {
+> +					remote-endpoint = <&cpu_i2s_endpoint>;
+> +				};
+> +			};
+> +	};
+> -- 
+> 2.20.1
+> 
