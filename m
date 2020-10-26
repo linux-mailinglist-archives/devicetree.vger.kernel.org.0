@@ -2,204 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8072985E0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 04:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D7E129860C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 05:08:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1421857AbgJZDTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Oct 2020 23:19:31 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:41879 "EHLO
+        id S1726192AbgJZEIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 00:08:25 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:46484 "EHLO
         mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389792AbgJZDTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Oct 2020 23:19:31 -0400
-Received: by mail-pl1-f194.google.com with SMTP id w11so4048466pll.8;
-        Sun, 25 Oct 2020 20:19:30 -0700 (PDT)
+        with ESMTP id S1725988AbgJZEIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 00:08:25 -0400
+Received: by mail-pl1-f194.google.com with SMTP id x10so1850759plm.13;
+        Sun, 25 Oct 2020 21:08:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QsMOJAAASmnBLciPsNTk5wBgO9ycp9uLTKdOg45VzbA=;
-        b=i6XNf7/psS6DfAyer4ZSjR/IclOovr7CeQfgqjlYHDU+kjvOOOflLxX5lw06L3Q0cp
-         NhPyI8ocfUhh446hbQ0FojFItq9MiKypG0/ztZEmK4fDSkqOdFZPA1r5Zd6sIa26A4Ye
-         JCcBzuBX7h3eCAnqPMevDG8wEjGghpaIxB3tnIMeXbJNcYy1F+rhwfq013OzFV+nthvD
-         XGgAnW9EUNqdB4DokMezq4S5zvQwESKLA0Jp+SBS7sNy4bVgbdL/3M+1kJ6P0BCIvX83
-         VrEUksjG0O/P9pJvP2mG6Omb2O1YHYqQfnftWpmEii6F4sYTPcuSh0IWBzYdzKO46Doq
-         VYwg==
+        h=from:to:cc:subject:thread-topic:thread-index:date:message-id
+         :references:in-reply-to:accept-language:content-language
+         :content-transfer-encoding:mime-version;
+        bh=WGPCTWXGaFEQAPnwBl3aSCOFQLjbIQTV4mrYNZQcNU4=;
+        b=cO30POYX/sxN9MDmzXtb087me5okMwPuXuVbzkxYNtKc/rLmzcOCszVtrj6+smGPJe
+         LEEfnZT1eNX4jNO9D7D3qkbJzkaPXPXFOokoRCKyBGZFHGNDwtsO3d34rFjOfyOg+vaW
+         /brioPH9sS7g24qKl+S37+iC5Tlz4v1M4KSq8MGOh+GlFTePvDvDSzYbh6/fh2IS2aRc
+         nVYLkH/xn+4EsLbzrwcuyEJmF0gQv2vBCfbbGsfYBkCdHs3qRsXThuAUpclayXRhio7n
+         grY/fVWYR6MDPvzbhj08LCZG1EejT8zL20mQTBu8qpe6UidX0fQevzouc9WTAfpZw34N
+         z9bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QsMOJAAASmnBLciPsNTk5wBgO9ycp9uLTKdOg45VzbA=;
-        b=WlDatSOPZ1KzsC/Z4T7E0FHF8wZmlzXj3Z8Dz+/g1BU9H92e/B+1mln7CSLZwTAJoZ
-         CGd1RWuoVHZSOoIBiSMLmTrrob2b02JEbVmnde4Rm8YVs5NKd4sB0xBvuS2YiSCyEaej
-         iBkvMk+ryUO0xgusnAOY+ggZZm629UeKMVEMAKXJLnxI8/eJhPjQHyKpsz2xgyePY3DK
-         9eE5jaVo2fidyAw/LeJSSK9rO2p2d+okZaRzERZR/M9c5fJob9sVQgHR11g++VvFfOVN
-         /ff4SL/uuru0+NkeLgSLQwS77tNSyWn1zbCD35dMdi9lGhXdjbfBVF4b3/MzOAGBnCbR
-         fF9w==
-X-Gm-Message-State: AOAM5316jntvSciBEiMoSwrDxPXfdT5ZnWVkj7YGTqqxQTGuRX2qD1LG
-        RHSKA7MLLGxe9gn21xG3wmKDbMOf6DmF9Idz
-X-Google-Smtp-Source: ABdhPJybZb2hyA3CDBvO+N8OsbwFu/xFa9rDsbAq51JV5T4j61FmgkCXaFgOFPiyV3WI/xv+id4ssQ==
-X-Received: by 2002:a17:902:a3c2:b029:d6:3951:5bdc with SMTP id q2-20020a170902a3c2b02900d639515bdcmr7753644plb.71.1603682370255;
-        Sun, 25 Oct 2020 20:19:30 -0700 (PDT)
-Received: from ruantu-3.localdomain ([103.230.142.242])
-        by smtp.gmail.com with ESMTPSA id e1sm10512103pfd.198.2020.10.25.20.19.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Oct 2020 20:19:29 -0700 (PDT)
-From:   Yu-Tung Chang <mtwget@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yu-Tung Chang <mtwget@gmail.com>
-Subject: [PATCH v2] ARM: dts: sun8i: add FriendlyArm ZeroPi support
-Date:   Mon, 26 Oct 2020 11:19:22 +0800
-Message-Id: <20201026031922.12473-1-mtwget@gmail.com>
-X-Mailer: git-send-email 2.29.0
+        h=x-gm-message-state:from:to:cc:subject:thread-topic:thread-index
+         :date:message-id:references:in-reply-to:accept-language
+         :content-language:content-transfer-encoding:mime-version;
+        bh=WGPCTWXGaFEQAPnwBl3aSCOFQLjbIQTV4mrYNZQcNU4=;
+        b=JgherFLoUuH4AObvFUzT0IoZsocecWijmmnpdEmM6lvSxulNPLE4EzLnmibNo1QPiB
+         psVCg1DQln/yPC2LjyhB2yw86CJkIu8WporAXGxiIY1qNgBdJDmNDK3yz6G879MuYQnw
+         wq1YnrlVlL9GwzX5PIXlyoWvGguvz8bZiVNDCPJrwQDVsu5BxLaKWuBwuQVFpSGe7GRZ
+         Jw8Rh+7noiP4omd4NKkfEYp+Y16rEdFFNwaA8gc2Z+dT2RJD/dZaP5uWNx8mK3A5jtV4
+         vus5ayB0AYlbb5E6RdZ870I3Ztqt+CfEgNfQl1NZarcgRs3vJkXJwj7E0TsBznbKUUcN
+         7NRQ==
+X-Gm-Message-State: AOAM531VQtmYn2cXBxWxFCZFRJ0ocFy91u13Soc+3UFT4UYHPFzwq4SI
+        H0oiQkExQYlxAOHN6USPri4=
+X-Google-Smtp-Source: ABdhPJz4uoBcH8iQ3Jq7+hDNgHgEbVxJbHXvBh/D0NROP9jvA/n4NB2ojDnEdStx1jGXM3bhlMGCTQ==
+X-Received: by 2002:a17:90a:c388:: with SMTP id h8mr14628176pjt.100.1603685304291;
+        Sun, 25 Oct 2020 21:08:24 -0700 (PDT)
+Received: from SLXP216MB0477.KORP216.PROD.OUTLOOK.COM ([2603:1046:100:9::5])
+        by smtp.gmail.com with ESMTPSA id x19sm10918981pjk.25.2020.10.25.21.08.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 25 Oct 2020 21:08:23 -0700 (PDT)
+From:   Jingoo Han <jingoohan1@gmail.com>
+To:     Jaehoon Chung <jh80.chung@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Han Jingoo <jingoohan1@gmail.com>
+Subject: Re: [PATCH v2 5/6] pci: dwc: pci-exynos: rework the driver to support
+ Exynos5433 variant
+Thread-Topic: [PATCH v2 5/6] pci: dwc: pci-exynos: rework the driver to
+ support Exynos5433 variant
+Thread-Index: ATYzNHA3LqEW/SeHeSezfbTZ8+mXqGl5LTQyaXktNDK6VWtTUoADHkoAgAAV8aw=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date:   Mon, 26 Oct 2020 04:08:18 +0000
+Message-ID: <SLXP216MB0477275C0A8FFAE14274165FAA190@SLXP216MB0477.KORP216.PROD.OUTLOOK.COM>
+References: <20201023075744.26200-1-m.szyprowski@samsung.com>
+ <CGME20201023075756eucas1p18765653e747842eef4b438aff32ef136@eucas1p1.samsung.com>
+ <20201023075744.26200-6-m.szyprowski@samsung.com>
+ <SLXP216MB047790A7FD4D1E7304493343AA1B0@SLXP216MB0477.KORP216.PROD.OUTLOOK.COM>
+ <29fa2071-dd4e-4528-d2db-dcd86e443794@samsung.com>
+In-Reply-To: <29fa2071-dd4e-4528-d2db-dcd86e443794@samsung.com>
+Accept-Language: ko-KR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator: 
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ZeroPi is another fun board developed
-by FriendlyELEC for makers,
-hobbyists and fans.
+On 10/25/20, 10:49 PM, Jaehoon Chung wrote:
+>=20
+> Dear Jingoo,
 
-ZeroPi key features
-- Allwinner H3, Quad-core Cortex-A7@1.2GHz
-- 256MB/512MB DDR3 RAM
-- microsd slot
-- 10/100/1000Mbps Ethernet
-- Debug Serial Port
-- DC 5V/2A power-supply
+Hi Jaehoon,
 
-Signed-off-by: Yu-Tung Chang <mtwget@gmail.com>
----
- .../devicetree/bindings/arm/sunxi.yaml        |  5 ++
- arch/arm/boot/dts/Makefile                    |  1 +
- arch/arm/boot/dts/sun8i-h3-zeropi.dts         | 87 +++++++++++++++++++
- 3 files changed, 93 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-h3-zeropi.dts
+> On 10/24/20 12:12 PM, Jingoo Han wrote:
+> > On 10/23/20, 3:58 AM, Marek Szyprowski wrote:
+> >>
+> >> From: Jaehoon Chung <jh80.chung@samsung.com>
+> >>
+> >> Exynos5440 SoC support has been dropped since commit 8c83315da1cf ("AR=
+M:
+> >> dts: exynos: Remove Exynos5440"). Rework this driver to support DWC PC=
+Ie
+> >> variant found in the Exynos5433 SoCs.
+> >>
+> >> The main difference in Exynos5433 variant is lack of the MSI support
+> >> (the MSI interrupt is not even routed to the CPU).
+> >>
+> >> Signed-off-by: Jaehoon Chung <jh80.chung@samsung.com>
+> >> [mszyprow: reworked the driver to support only Exynos5433 variant,
+> >> 	   simplified code, rebased onto current kernel code, added
+> >> 	   regulator support, converted to the regular platform driver,
+> >> 	   removed MSI related code, rewrote commit message]
+> >> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> >> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >> ---
+> >>  drivers/pci/controller/dwc/Kconfig      |   3 +-
+> >>  drivers/pci/controller/dwc/pci-exynos.c | 358 ++++++++++-------------=
+-
+> >>  drivers/pci/quirks.c                    |   1 +
+> >>  3 files changed, 145 insertions(+), 217 deletions(-)
+> >=20
+> > [....]
+> >=20
+> >> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/con=
+troller/dwc/pci-exynos.c
+> >> index 242683cde04a..58056fbdc2fa 100644
+> >> --- a/drivers/pci/controller/dwc/pci-exynos.c
+> >> +++ b/drivers/pci/controller/dwc/pci-exynos.c
+> >> @@ -2,26 +2,23 @@
+> >>  /*
+> >>   * PCIe host controller driver for Samsung Exynos SoCs
+> >>   *
+> >> - * Copyright (C) 2013 Samsung Electronics Co., Ltd.
+> >> + * Copyright (C) 2013-2020 Samsung Electronics Co., Ltd.
+> >>   *		https://www.samsung.com
+> >>   *
+> >>   * Author: Jingoo Han <jg1.han@samsung.com>
+> >> + *	   Jaehoon Chung <jh80.chung@samsung.com>
+> >=20
+> > Would you explain the reason why you add him as an author?
+> > If reasonable, I will accept it. Also, I want gentle discussion, not ag=
+gressive one.
+> > Thank you.
+>
+> It's not important to add me as author. :)
+> If you don't want to accept it, i think it can be removed it.
+> I think that pci-exynos was supported on only exynos5440.
+> As you know, exynos5440 was not common as compared with other exynos SoC.
+> After this patch, pci-exynos is re-newed.
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index efc9118233b4..9392a9a3f7e7 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -246,6 +246,11 @@ properties:
-           - const: friendlyarm,nanopi-neo-plus2
-           - const: allwinner,sun50i-h5
- 
-+      - description: FriendlyARM ZeroPi
-+        items:
-+          - const: friendlyarm,zeropi
-+          - const: allwinner,sun50i-h3
-+
-       - description: Gemei G9 Tablet
-         items:
-           - const: gemei,g9
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4572db3fa5ae..f05e54257947 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1187,6 +1187,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-h3-orangepi-plus2e.dtb \
- 	sun8i-h3-orangepi-zero-plus2.dtb \
- 	sun8i-h3-rervision-dvk.dtb \
-+	sun8i-h3-zeropi.dtb \
- 	sun8i-h3-emlid-neutis-n5h3-devboard.dtb \
- 	sun8i-r16-bananapi-m2m.dtb \
- 	sun8i-r16-nintendo-nes-classic.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-h3-zeropi.dts b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
-new file mode 100644
-index 000000000000..00cdd35222c5
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
-@@ -0,0 +1,87 @@
-+/*
-+ * Copyright (C) 2020 Yu-Tung Chang <mtwget@gmail.com>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This file is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License as
-+ *     published by the Free Software Foundation; either version 2 of the
-+ *     License, or (at your option) any later version.
-+ *
-+ *     This file is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+#include "sun8i-h3-nanopi.dtsi"
-+
-+/ {
-+	model = "FriendlyARM ZeroPi";
-+	compatible = "friendlyarm,zeropi", "allwinner,sun8i-h3";
-+
-+	aliases {
-+		ethernet0 = &emac;
-+	};
-+
-+	reg_gmac_3v3: gmac-3v3 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&gmac_power_pin_nanopi>;
-+		regulator-name = "gmac-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <100000>;
-+		enable-active-high;
-+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-+	};
-+};
-+
-+&external_mdio {
-+	ext_rgmii_phy: ethernet-phy@7 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <7>;
-+	};
-+};
-+
-+&emac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emac_rgmii_pins>;
-+	phy-supply = <&reg_gmac_3v3>;
-+	phy-handle = <&ext_rgmii_phy>;
-+	phy-mode = "rgmii";
-+
-+	allwinner,leds-active-low;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	status = "okay";
-+	dr_mode = "host";
-+};
--- 
-2.29.0
+Ah, I just  thought that you are not interested in Exynos PCIe anymore. How=
+ever, if you want
+to submit other patches for supporting other Exynos PCIe, adding you as an =
+author is ok.
+There are many Exynos SoCs that support PCIe IP. So, if someone like you wh=
+o have good
+experience on Exynos, helps submitting patches for Exynos PCIe, it would be=
+ very helpful. :-)
+Thank you.
+
+Best regards,
+Jingoo Han
+
+>
+> Best Regards,
+> Jaehoon Chung
+>
+> >=20
+> > Best regards,
+> > Jingoo Han
+> >=20
+> >>   */
+> >=20
+> > [....]
+> >=20
 
