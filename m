@@ -2,39 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39DA4299AF9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:46:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF4E5299B09
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 00:49:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408225AbgJZXqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 19:46:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42926 "EHLO mail.kernel.org"
+        id S2408403AbgJZXrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 19:47:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44376 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408220AbgJZXqV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 19:46:21 -0400
+        id S2408400AbgJZXrY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 19:47:24 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E0B5020714;
-        Mon, 26 Oct 2020 23:46:20 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 34F4B20872;
+        Mon, 26 Oct 2020 23:47:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603755981;
-        bh=9AbYxVaOs4JLDjH4TqJYrI1yDoSHClRW3bLhQND9QQc=;
+        s=default; t=1603756043;
+        bh=CCd/1eClEmV4GdkYGGj4s8i+deHWYDJGw3SoCtNf2O8=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=ff0ltz1/baOuGcau/EHKSBsbDpjYtpS/+w4a196NqNZbOV09MvIQbqSe3lcPBS6v/
-         VTjjxO6kXUm/95xoLikQuzTjXoRawaDc60RDg5oUspU/JAIqBLRLmVeHabJMKciP+B
-         D53DOs3yz8C+/pHISFUY5D9sY3k5UtBmUomQduW4=
-Date:   Mon, 26 Oct 2020 23:46:16 +0000
+        b=HEJKt+S9wdzTfdcyniRnE8GEYdxxMBjI4RH+tQDmKl+RC2dU/9SdSyui3E7dsz6Z0
+         mUBHYtTOGfwRwTWGDVW7XbDz2ng6Ck+gBlEW6x+HbAjKjoO5BvwnmitmzHiefY1Dvq
+         hM2QD+afILHXb5BCNVUFGshMpVbGIWJb5WqnBvVk=
+Date:   Mon, 26 Oct 2020 23:47:19 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Xiubo.Lee@gmail.com, timur@kernel.org, lgirdwood@gmail.com,
-        Shengjiu Wang <shengjiu.wang@nxp.com>, perex@perex.cz,
-        devicetree@vger.kernel.org, tiwai@suse.com, festevam@gmail.com,
-        robh+dt@kernel.org, alsa-devel@alsa-project.org,
-        nicoleotsuka@gmail.com
-Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-In-Reply-To: <1602739728-4433-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1602739728-4433-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl_spdif: Add new compatible string for i.MX8QM
-Message-Id: <160375592348.31132.8709437914280376392.b4-ty@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20201023131925.334864-1-dmitry.baryshkov@linaro.org>
+References: <20201023131925.334864-1-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 0/5]
+Message-Id: <160375603445.32304.15800152990447798405.b4-ty@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -42,20 +47,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Oct 2020 13:28:47 +0800, Shengjiu Wang wrote:
-> Add new compatible string "fsl,imx8qm-spdif" for supporting spdif
-> module on i.MX8QM.
+On Fri, 23 Oct 2020 16:19:20 +0300, Dmitry Baryshkov wrote:
+> On SM8250 MDSS_GDSC (and the rest of display clock controller) is
+> supplied power by MMCX power domain. Handle this link in GDSC code by
+> binding the power domain in dts file.
+> 
+> This patchset depends on [1]
+> 
+> Changes since v1:
+>  - Define fixed-regulator-domain regulator using power domain
+>    performance state for enabling/disabling.
+>  - Rework to use new fixed regulator type (fixed-regulator-domain)
+>    instead of controlling power domain directly from gdsc code.
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: fsl_spdif: Add new compatible string for i.MX8QM
-      commit: 87b2fc1139a13cf81d0a95fb2cbaba7daeee8908
-[2/2] ASoC: fsl_spdif: Add support for i.MX8QM platform
-      commit: 516232e3609f485be04445b03723fbaed64a5321
+[1/2] regulator: fixed: provide bindings using power domain
+      commit: d4189bc55d5c40251abaa1f341796aac84ddfb10
+[2/2] regulator: fixed: support using power domain for enable/disable
+      commit: bf3a28cf42412c0a85631da94f198048bb37a8e5
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
