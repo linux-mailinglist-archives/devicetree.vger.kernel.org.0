@@ -2,62 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16DDB298923
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 10:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C91382988F7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 10:01:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1772613AbgJZJIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 05:08:44 -0400
-Received: from mail.fullbizgoal.com ([80.211.27.207]:44210 "EHLO
-        server1.mail.fullbizgoal.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2502310AbgJZJIn (ORCPT
+        id S1771108AbgJZJBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 05:01:07 -0400
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:59295 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1770950AbgJZJBH (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 05:08:43 -0400
-X-Greylist: delayed 1204 seconds by postgrey-1.27 at vger.kernel.org; Mon, 26 Oct 2020 05:08:43 EDT
-Received: by server1.mail.fullbizgoal.com (Postfix, from userid 1001)
-        id 2E1E6A43CC; Mon, 26 Oct 2020 08:40:16 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fullbizgoal.com;
-        s=mail; t=1603701767;
-        bh=1A+RQztZunBjkjQlXgr2uQY18vlGaIq8j7jGOmWqiI0=;
-        h=Date:From:To:Subject:From;
-        b=acL/C3xfFaqnTnd4PwpThkBbj2EsJqHvL44RMpP9cJQMY4ZOC4+hDyXH+bsASrTd2
-         sIJWarbwtYOrOPc3cpAQAe8GTy7lH1UrLRQLg2BeYE69ExhqzBV7x419cuVWwQytYP
-         oXH15nmp2fxTyJyt5fMhdG8lnk9c+6QKXxLqZpol9R1ng5SAoyLTfApjxanXsF7Kh2
-         5AmF0dLDeR0ibRfHxU6JsQ3yxbgdveJheHOcN/1Mzs93N2Ri1i0kbTVWF8mh5kq9A5
-         x/MVNc5ptsETR3fNPRG9u/pLzGDtZG67YupjRcudHqu+7FpqmXgD/p29C9P6KpwQkv
-         sYscWJcYf3J5Q==
-Received: by mail.fullbizgoal.com for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 08:39:22 GMT
-Message-ID: <20201026074502-0.1.20.9s1s.0.qe38hn528n@fullbizgoal.com>
-Date:   Mon, 26 Oct 2020 08:39:22 GMT
-From:   "Ethan Smith" <ethan.smith@fullbizgoal.com>
-To:     <devicetree@vger.kernel.org>
-Subject: Disinfectant
-X-Mailer: mail.fullbizgoal.com
+        Mon, 26 Oct 2020 05:01:07 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 993202C3;
+        Mon, 26 Oct 2020 05:01:05 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 26 Oct 2020 05:01:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=ZVhHc08kr8nC7KZ5EUcxT1LIt24
+        PpsTE58kIRlGmRW4=; b=bQzXef1tXDRnCa/26+53msw8Xg91eXl9QWlymg0lZln
+        5S4frg+zJraqih8PKZKpH/HPLNFYaxxSultsU6la/DvqlINC2xeFxPzxZnSWUmKs
+        VjKsOMjjoMkxeEkzx2sl4iMxIZ4zhgtdWq9xbrB0L5VzzfMBhLnke8NXDEdONhwS
+        yGo1EBbA088V030MatRUS4vd8+HF2PxuPah18BKHqEjJJOcxYIDpz3PqnRi5AXNJ
+        taCyeQSVvDdb8LxbnaRhhmjUbyLGL+P32N9/yTuJpbG4MlXsk1Amj70QCLLbHgpp
+        ml5MPbrVcpRNYxDdB968yEWZcxaP7Idq2vEpffqaE1A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ZVhHc0
+        8kr8nC7KZ5EUcxT1LIt24PpsTE58kIRlGmRW4=; b=dF1MKdU5kKLuIAC9rfeqy2
+        TzsKYbaNy8rgDiddB4Bg2AlhoFgcxZKX3w/SFSnmsENh7K1t4tB+dlKUZ8F5BO7Z
+        X9qz30MLxyC1hzKP5NVMF6Kr1cXNGkfpMcLDvgsIydvB2VBNlNIwdotdWDr9EYib
+        tIJaTXr92+mHuKrmzCvfnBz6fsBZJDwTCd5tlXbc20wTb0DjvO4S+RAdJtiZlUP/
+        dzxWMjAVbntjhb/8oOTjhoH2KmXOVtfFZgDPZnt9uqYS0EU6bPDCPF+T8wvSBaZ0
+        57sJe6LE9LZ1d8ABJv3GYtumQRsd2vKa8cQiSTQAkEZyNaQqwwnHKt3b1z6JEM5Q
+        ==
+X-ME-Sender: <xms:T5CWX_dIn3s1P0D0qF1uQp965GJvZUflpNcjul-YHiTWLPHSRy_S4A>
+    <xme:T5CWX1MXCnwrPChC3GQQ680OF5znlR_78k93YaIDFrv4971q5w_fXinke3uOVMTWq
+    iv9qmxbuNz32gT-7T8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrkeehgdduvdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:T5CWX4jYJFNuc3Pqf7kuuYN2W0ioDXxvtuebR8KTsTQZr44_tbvi2w>
+    <xmx:T5CWXw_OfVMgF-OeYptAzRXE6VD2go4ZPv3LMWMyfBNEvAk6KY0Luw>
+    <xmx:T5CWX7v6yceZNQQGtVjyasP9T-1e-FMRpB_aVjTOE6Ms-ZA347Zr4A>
+    <xmx:UZCWX1Jhvs8jLTy_vW2H5RexT5KLX0Qe595Bbzx7SDAnsXvlTd63Sw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 74028328005A;
+        Mon, 26 Oct 2020 05:01:03 -0400 (EDT)
+Date:   Mon, 26 Oct 2020 10:01:01 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] arm64: dts: allwinner: h5: OrangePi PC2: Fix ethernet
+ node
+Message-ID: <20201026090101.v573ultstlrp3npa@gilmour.lan>
+References: <20201023184858.3272918-1-jernej.skrabec@siol.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="mliymakqdhxd5k4d"
+Content-Disposition: inline
+In-Reply-To: <20201023184858.3272918-1-jernej.skrabec@siol.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good morning,
 
-looking for companies interested in raising additional capital by diversi=
-fying their offer in soaps, liquids and gels for hand disinfection and co=
-smetics for body and hair care.
+--mliymakqdhxd5k4d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The distribution of innovative products corresponding to the current pref=
-erences of customers in the field of hygiene and preventive healthcare al=
-lows our partners to gain new markets and achieve better economic results=
-=2E
+On Fri, Oct 23, 2020 at 08:48:58PM +0200, Jernej Skrabec wrote:
+> RX and TX delay are provided by ethernet PHY. Reflect that in ethernet
+> node.
+>=20
+> Fixes: 44a94c7ef989 ("arm64: dts: allwinner: H5: Restore EMAC changes")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-In addition to products with bactericidal action, our range includes show=
-er gels, shampoos and hair conditioners, as well as efficient, concentrat=
-ed detergents.
+Applied, thanks
 
-The versatility (suitable for all skin types) combined with an affordable=
- price means that customers make an informed choice of a product among ot=
-hers available on the market.
+Maxime
 
-Are you interested in cooperation?
+--mliymakqdhxd5k4d
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Ethan Smith
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5aQTQAKCRDj7w1vZxhR
+xWIWAP0QsbzMvoQtRlXCw4aCHUYm0HC6H0vL70IZepvHn78/3wD/eWGNRJm6/b4y
+OZ+LCDx9GHvvv5QMQjSlLHoz9Ff+wgs=
+=+DVr
+-----END PGP SIGNATURE-----
+
+--mliymakqdhxd5k4d--
