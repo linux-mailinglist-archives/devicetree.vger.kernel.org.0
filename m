@@ -2,82 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AB69298CEC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 13:33:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A362298D1B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 13:49:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1775183AbgJZMda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 08:33:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58788 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1775182AbgJZMda (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 08:33:30 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3801E223AB;
-        Mon, 26 Oct 2020 12:33:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603715609;
-        bh=4SFrOofkbOuHq20J4eNmo7bqNQONigwBpTqFe+QuLaU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MSTvQ9JgDU4E266eDtnpE8fF00rqLD5a/zR06pFR74pkcYrVT49BHkMKe6c3hBZ/Y
-         pl1wiSQKrZux5zzJ8W8cjqWoWJQ4RPXGOqeM+tlMindjzcY/6jLJm+zfLlf9D+RdsU
-         z+hJjyvLO00Pf9ZfTwtTiuUnnzWjC1QQgY/+0THY=
-Date:   Mon, 26 Oct 2020 12:33:25 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, tiwai@suse.com,
-        tzungbi@google.com, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        shane.chien@mediatek.com
-Subject: Re: [PATCH 1/2] ASoC: mt6359: skip first time data at the beginning
- of DMIC recording
-Message-ID: <20201026123325.GC7402@sirena.org.uk>
-References: <1603521686-13036-1-git-send-email-jiaxin.yu@mediatek.com>
- <1603521686-13036-2-git-send-email-jiaxin.yu@mediatek.com>
+        id S1775548AbgJZMt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 08:49:57 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:35440 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1775402AbgJZMtz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 08:49:55 -0400
+Received: by mail-oi1-f196.google.com with SMTP id w191so10363204oif.2;
+        Mon, 26 Oct 2020 05:49:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oAb942PkprtooTAkcphjHuX+nYeTcTWj5DRWfq1D+/8=;
+        b=Fx6+ilX6zNcVEWQN8GzHs7PNSN/U6Ek3Mx9Rf6K5EDSvm+vRCY9B8JSNm0Qtw3l1GK
+         eAtasA91pHu53a7Gia4e250hXe7fNk7b6kSb2iHnPyMk1Ic6N4cmFLqyyGloKYtH9B5A
+         4tLCTTcjSrQLXpxuIz/ZXiSCAKiiN9OpYHnE0GVkCKTVJH7XBkUWXxhmyghJ/ejN8/qK
+         1CqelbDtDymm5nXUV7z41rFYeGsCK6N1SZ71JsdDIA3KFYGc6B4tjrvZ7wrgmC975vMB
+         aPtIn9yt0pBTur3XMFiTgWp4H5CIqxDvfLctkqfGjtHVhQ31XfITOdjrIWXeTt9Z/HJ+
+         TPcA==
+X-Gm-Message-State: AOAM532NG6N60Q2vakqk/pRk6yGguszYbzLzWMn8QnxUv3Pft7YiZxh/
+        dlB4fGVR5NXPgl7/yn+LKQ==
+X-Google-Smtp-Source: ABdhPJyw8X8wHgRmnVOj73HYL5Yt/7SSSmhyblzN5O3WGOsS2MFEvEEq1YMx197Ky6/S+smUlunNeA==
+X-Received: by 2002:aca:4e4b:: with SMTP id c72mr969519oib.96.1603716594205;
+        Mon, 26 Oct 2020 05:49:54 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id b8sm3824400oov.29.2020.10.26.05.49.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 05:49:53 -0700 (PDT)
+Received: (nullmailer pid 4167734 invoked by uid 1000);
+        Mon, 26 Oct 2020 12:49:52 -0000
+Date:   Mon, 26 Oct 2020 07:49:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        dri-devel@lists.freedesktop.org, Mikko Perttunen <cyndis@kapsi.fi>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-tegra@vger.kernel.org,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>
+Subject: Re: [PATCH v6 12/52] dt-bindings: memory: tegra124: mc: Document new
+ interconnect property
+Message-ID: <20201026124952.GA4166359@bogus>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201025221735.3062-13-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="KDt/GgjP6HVcx58l"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1603521686-13036-2-git-send-email-jiaxin.yu@mediatek.com>
-X-Cookie: Safety Third.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201025221735.3062-13-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 26 Oct 2020 01:16:55 +0300, Dmitry Osipenko wrote:
+> Memory controller is interconnected with memory clients and with the
+> External Memory Controller. Document new interconnect property which
+> turns memory controller into interconnect provider.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../bindings/memory-controllers/nvidia,tegra124-mc.yaml      | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
---KDt/GgjP6HVcx58l
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Sat, Oct 24, 2020 at 02:41:25PM +0800, Jiaxin Yu wrote:
-> We can choose to drop away any length of data from the beginning according
-> to project needs. Some projects don't want to throw away any data, because
-> they want to use recorded data to do echo cancellation, so they have to
-> make sure that they are aligned with the reference data as much as
-> possible. Or there are other algorithms in the upper layer to eliminate
-> this noise. Or some projects want to eliminate this noise form the kernel
-> layer. However, the minimum recommended value is 50ms to skip pop noise.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-This seems like something that would apply equally to all DMICs so
-should be done at a more general level rather than in this specific
-driver, for example it could be done in the DMIC driver.
+yamllint warnings/errors:
 
---KDt/GgjP6HVcx58l
-Content-Type: application/pgp-signature; name="signature.asc"
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-emc.example.dt.yaml: memory-controller@70019000: '#interconnect-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+WwhQACgkQJNaLcl1U
-h9AEVQf+KDjMkz85oAAg0VSQQiu0FRenOToPtwGoQnRHHFP4/5pWNlo/BFTRsPwW
-Ws/YQ+VVaEd4tRYjkiwwyl6wTG4YHhuYotHDt8ytKVlsmOAiiL7t4FD0OXbW4LFc
-zhJT6TTQ8hLXystWPFnD0ls22uWoH8PvKIMZhLO61kb39D6zMYUiHZBCBeeUzpdE
-KlcnnCYNa5KQ/NLKDQJyRDLbQdTkkA+B+Tg2K6NF/iuV3AX8wd6FJjEdsjRhJHHW
-gUAnKtK9vcPNNfY388XcSXJwhllb6DvWRQf0RvF4+IYVO9Hb/2Tjpuk4DcKCN/xV
-+ODyoEfWbZqBWEjcTOePJ969+sAiyA==
-=a14I
------END PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/patch/1387321
 
---KDt/GgjP6HVcx58l--
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
