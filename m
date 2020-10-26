@@ -2,171 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90AD3299312
-	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 17:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFA91299326
+	for <lists+devicetree@lfdr.de>; Mon, 26 Oct 2020 17:58:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1786695AbgJZQ44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 12:56:56 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:44053 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1786610AbgJZQ4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 12:56:55 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id B6E705805D4;
-        Mon, 26 Oct 2020 12:56:54 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 26 Oct 2020 12:56:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=faYAJTfSctlHM7ABJz6moYFCpWA
-        /waoqzYu5Nvlv+4U=; b=JdZVuvaVqf34Umv5FYsqDKtQdoElrwkrZNA+wQNLm7B
-        3dQhE0NCRSIY16BIzfYiD7pKDJvP+mv/I9/MQpro7W27b6oR/o0pvO8Cx7RMs5bk
-        uNXpA8hJUqj6ygbbHZVGD5yv/BkbxFDFWeKducgwiNo+yG3/i1mi0wPFiyx5XjgH
-        Zxsxj684oVzrysWHvgcGFpuOK6KebJOl2yWPbOAvmrz1nUWsjb6N7eUse6l1TfNs
-        q6l/dXvMGho4MhNo4M+J8bCHSLUR3YEg1C//XVpazg4Eux1aDz0alKXlbWRfMucT
-        k9iexVVKshlAva5G2YgTYRynumYp6jWK11UbgemltsA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=faYAJT
-        fSctlHM7ABJz6moYFCpWA/waoqzYu5Nvlv+4U=; b=N9aGMUbWXFygf3Vv8R4BQs
-        XyqcKVMMOMcDerpQs3g4tns8353Hx7HUWLiPXddddrFmt+hjRoRmKpWwWZDCBwx8
-        gkzBziA0zGNYLnw2YTVm8wcakzE/YuuQkhyox7MgKIUhPYLk0DR6a2sZtAvjvOwi
-        lpmG4M1NnETtbRxjG9g5IRrKARK3l56BN/ZnLiNmGLUyNLiuwG5FbvhSP0+M3A8u
-        b279+MxiVfLTu49mMeyFbKGftCNX4cL+YgOjdAZhZxYs7kc2qn7MBXab7CoBlpvH
-        P5K4mKTXt1KIi9LnhiU+/Iod9SbyjUCNZ6H3TW5qRuBY1+b+9akSPP1Ox4yv6Zmg
-        ==
-X-ME-Sender: <xms:1v-WX15H6yufn1RkLEn7ov3-9nkpD0FQyRQLJZv_1wCVZX6kjTUl7Q>
-    <xme:1v-WXy7z6auCdkjJJbHQdSIeZi-NMR0E6jKl2li4aaMmYQHL3u_ol5xjmhU8S6kR7
-    CZv9IxkO6iEcc2tOVc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrkeejgdehlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeffteetveeijeetuefhffegkeetgffhieelheehtdduudethffhjedtvddtudel
-    vdenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppeeltddrkeelrd
-    eikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
-    mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:1v-WX8c24GxEXI311O4UO8Eoi17n8ByHP10HefptpYL_w21nscYx0w>
-    <xmx:1v-WX-KIBSMFILfDY86nDlD4CwYKFe9eli9AWGeh7keS5wrR2nXisQ>
-    <xmx:1v-WX5IY8kpNmabaJORbYAb1U4oxskEOgJhtDn49o83brkeR1OI0nw>
-    <xmx:1v-WX-DwAxMhQAQfn6hCoa63GUxBobN0AvAnAG3rlZGCRZ4KoRVr8g>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 36ED7328005A;
-        Mon, 26 Oct 2020 12:56:54 -0400 (EDT)
-Date:   Mon, 26 Oct 2020 17:56:53 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
-Subject: Re: [PATCH 11/14] dt-bindings: media: i2c: Add A83T MIPI CSI-2
- bindings documentation
-Message-ID: <20201026165653.7tzo2hlagee633ra@gilmour.lan>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-12-paul.kocialkowski@bootlin.com>
+        id S1786725AbgJZQ52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 12:57:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48116 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1786707AbgJZQ5Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 12:57:25 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 546452068D;
+        Mon, 26 Oct 2020 16:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603731444;
+        bh=XmX6A5dOrT7WqJQna3rzilmb9nV0XqwdxyjS4DZdXEU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=spfUEF175Trz/DmMSvKaULQDVGy2BQTVfG/DiGwdAtV5LCKPP6cO5FUWcwAnwMZ4w
+         9+fDwhbMOi3MRBrLCcAMAkH7s7FMjgHWv/oky0Oq2VVsX5FZdOiJ5ier7qwPh+2/td
+         BbtxTnJ7dYJCCmEFvg0xITwAZpziohyiWEA1qBck=
+Date:   Mon, 26 Oct 2020 16:57:20 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Olivier Moysan <olivier.moysan@st.com>
+Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        alexandre.torgue@st.com, robh@kernel.org, mark.rutland@arm.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, arnaud.pouliquen@st.com
+Subject: Re: [PATCH v2 2/2] dt-bindings: stm32: dfsdm: remove
+ stm32-adfsdm.txt binding
+Message-ID: <20201026165720.GG7402@sirena.org.uk>
+References: <20201020155709.2621-3-olivier.moysan@st.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7ovabmptobm3zx7w"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cyV/sMl4KAhiehtf"
 Content-Disposition: inline
-In-Reply-To: <20201023174546.504028-12-paul.kocialkowski@bootlin.com>
+In-Reply-To: <20201020155709.2621-3-olivier.moysan@st.com>
+X-Cookie: Safety Third.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---7ovabmptobm3zx7w
+--cyV/sMl4KAhiehtf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 23, 2020 at 07:45:43PM +0200, Paul Kocialkowski wrote:
-> This introduces YAML bindings documentation for the A83T MIPI CSI-2
-> controller.
->=20
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+On Tue, Oct 20, 2020 at 05:57:09PM +0200, Olivier Moysan wrote:
+> Device tree audio configuration for STM32 DFSDM is already
+> covered in the following binding:
+> Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> Remove stm32-adfsdm.txt obsolete binding.
 
-What is the difference with the a31/v3s one?
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-> ---
->  .../media/allwinner,sun8i-a83t-mipi-csi2.yaml | 158 ++++++++++++++++++
->  1 file changed, 158 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun=
-8i-a83t-mipi-csi2.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun8i-a83t=
--mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun8i-a=
-83t-mipi-csi2.yaml
-> new file mode 100644
-> index 000000000000..2384ae4e7be0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-c=
-si2.yaml
-> @@ -0,0 +1,158 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/allwinner,sun8i-a83t-mipi-csi2.=
-yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Allwinner A83T MIPI CSI-2 Device Tree Bindings
-> +
-> +maintainers:
-> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: allwinner,sun8i-a83t-mipi-csi2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Bus Clock
-> +      - description: Module Clock
-> +      - description: MIPI-specific Clock
-> +      - description: Misc CSI Clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: mod
-> +      - const: mipi
-> +      - const: misc
-
-If it's only due to the clock, it's soemething you can deal with in the
-first schema, there's no need to duplicate them.
-
-Maxime
-
---7ovabmptobm3zx7w
+--cyV/sMl4KAhiehtf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5b/1QAKCRDj7w1vZxhR
-xakfAP4kStUeYLhitiX6TMzIOuSCGkToCSiTRV+OOxZG6u/ebwD+O9sQfYacFXnD
-437JGBI8Re7cmk9kw508jaZyC2EA6gI=
-=ZOtr
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+W/+8ACgkQJNaLcl1U
+h9CPMgf+KTRCiGSyBxhUE1u/M2akejBvVr7Dx8sFslGtFFE8Iwr2D84zpI3/N+bF
+0PYNahj9ur9gfNaKOLzQ+vH43Em59mjbdM5tL+ws97s5KvHDTQHtv4sWwceNG635
+eTffbX/qd3MYwtRENfvGG+rMunPntaLfmCA/98Dm/c9NmyIwWL9VB8/HnYfEI/a6
+YVTSsn+N6K9mLXTUD4N0CyhcQRxZDCvpgcbwsh2wtQO4xdx4vx174EDfyTT8HZF9
+01x2ATDmoFoxsyEe75UQ2umKQ97hTgf0UDT17abwAZGFHTcH3DmvYRnenLxIyVmX
+lmfhsylfvgLNnkypJT9lirXhrY7YZw==
+=L9DH
 -----END PGP SIGNATURE-----
 
---7ovabmptobm3zx7w--
+--cyV/sMl4KAhiehtf--
