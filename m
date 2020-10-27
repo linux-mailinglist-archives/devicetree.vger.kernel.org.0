@@ -2,112 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4949429ACC4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B967829ACE3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:11:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441400AbgJ0NHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 09:07:06 -0400
-Received: from muru.com ([72.249.23.125]:46866 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2441395AbgJ0NHG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 09:07:06 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 17D1F807E;
-        Tue, 27 Oct 2020 13:07:09 +0000 (UTC)
-Date:   Tue, 27 Oct 2020 15:07:01 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>, t-kristo@ti.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7200-main: Add McASP nodes
-Message-ID: <20201027130701.GE5639@atomide.com>
-References: <20201005074850.11247-1-peter.ujfalusi@ti.com>
- <20201005115805.d6yhykn7oc6x2tbu@charm>
- <5a9ed7d3-fcfd-edbf-fc34-112a7e55aa1c@ti.com>
- <20201005120837.75cwdmcpvzbvayq7@kinfolk>
- <d0e05389-9bd1-92a9-9624-4e9ac02a6a52@ti.com>
- <20201026145031.ggfugctq65zvgwp2@dismiss>
+        id S2900492AbgJ0NLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 09:11:49 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:37078 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2900487AbgJ0NLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 09:11:49 -0400
+Received: by mail-wr1-f65.google.com with SMTP id w1so1864167wrm.4
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 06:11:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kdzVNUmBorGOvHJ+kuujXmASC0q55W9RUZ1wT5ddYb4=;
+        b=XL3n8URZ9/nfLX3xpUTkreqFiTCvhLbd3edP321U7deumP3SwL+CNrBhKQBC7WVEEj
+         rl0EJqEa/2M3UvYBKdt4UGbtA6+okNwPigKuI0n2CrbVBsQ4MohEol1ehgw1/SIwLcHa
+         eUC0pa+IvSOHijYIYXL7kZwNv7s2kk31YjG+zMwteNgJM7W8JBOAy1IShG1Wzw9ByK0C
+         cXccgKR/2cBh2DnATn2IqnozPPM/LZ0mPBvWnoIPckintDaQaqoaZcFqeh/drfWsktFQ
+         XPbckvfEaJnvn+eVZBJ+A6uX57uQa3LUQ04EQBEnNLRlRdLODxccpg4agk8WZJq27vaU
+         QACQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kdzVNUmBorGOvHJ+kuujXmASC0q55W9RUZ1wT5ddYb4=;
+        b=FDRKjkniE6r0R8EPOSfa19m56a37IA3jvAQJuqIv+jL483Wk5hGlZqUu6WxT44z22C
+         MEyZqoLbyLL8w0sL0pHmG6tqoznj0gENfsK998gJXzHBiQCLBEGvMmULyoG1wC69CNNt
+         z5+UP3G8GNcDZs5wamyYj04SS0BV9L7BtCqU6PS3gttqghIpCU9fy7GJaElq4AjnG2M0
+         DvY22t5bcn20i/CYg9A4Spt5r12YWbRqG31n4OxksowBkpKFbznJAWqLW85v/x+XzXeB
+         rcvMKDhGLgcyoDOE8O52f+UgS5cWqbAMljdupn0xIRGcK1w/HXc/Mo0QwNOCR4oH1iZn
+         zBMg==
+X-Gm-Message-State: AOAM5325IGrhArBrE2onKbsBEcJAfTd8fSSl0lN4BZllL9I1asdOon4V
+        fyE9fUoSZJkD03gJSTYDX1HENw==
+X-Google-Smtp-Source: ABdhPJxoBc58msQkjTQ20On5cTV8fuD0bFRNORO6EcSQUdHPh39ckWgocQL7IVi4sOz4bXLDzKG48w==
+X-Received: by 2002:adf:ea0b:: with SMTP id q11mr1396904wrm.80.1603804306588;
+        Tue, 27 Oct 2020 06:11:46 -0700 (PDT)
+Received: from localhost.localdomain (54.169.185.81.rev.sfr.net. [81.185.169.54])
+        by smtp.gmail.com with ESMTPSA id v6sm1780117wmj.6.2020.10.27.06.11.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 06:11:45 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     enric.balletbo@collabora.com, Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 1/2] dt-bindings: power: Add MT8167 power domains
+Date:   Tue, 27 Oct 2020 14:11:20 +0100
+Message-Id: <20201027131122.374046-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201026145031.ggfugctq65zvgwp2@dismiss>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Nishanth Menon <nm@ti.com> [201026 14:58]:
-> On 13:38-20201007, Peter Ujfalusi wrote:
-> [...]
-> > >>>> +		status = "disabled";
-> > >>>
-> > >>> I see that there is inconsistent usage of "disabled" in our SoC.dts
-> > >>>
-> > >>> Our generic rule has been set them to disabled in board.dtsi
-> > >>> McASP and DSS for existing SoC dts do not follow this.. which is a tad
-> > >>> confusing.. (considering that not even all uarts come out on every board
-> > >>> and every uart needs pinmux to function..)
-> > >>
-> > >> "keep them disabled because several required properties are not present
-> > >> as they are board specific."
-> > >>
-> > >> In board file the enabled mcasp must be updated with options that is
-> > >> required for operation. Without those option the McASP can not be
-> > >> initialized.
-> > >>
-> > >> I think we have been revisiting the very same discussion every time we
-> > >> have a new SoC with McASP...
-> > >>
-> > > 
-> > > Yep.. This doe'snt really follow the rest of the SoC definition. [1]
-> > > came to mind. The McASP discussion is a variation in the debate of the
-> > > same.
-> > 
-> > Right, saying status = "okay" to a node which is missing required
-> > properties (which can only be added by boards when the McASP is
-> > connected up) does not sound a good solution.
-> > How should the SW handle that? Fail the device probe and return with
-> > -EINVAL or eat up the error and just probe with broken configuration.
-> > Since the peripheral is not used, the broken configuration will not
-> > cause much runtime errors as there will be no runtime use of the peripheral.
-> > 
-> > status of fail or fail-sss is not a good one either, their definition is:
-> > "Indicates that the device is not operational. A serious error was
-> > detected in the device, and it is unlikely to become operational without
-> > repair."
-> > 
-> > The peripheral is fine, we are just trying to enable it without
-> > providing the needed properties.
-> > 
-> > > I'd argue Serdes, or for that matter any IP that has a link to
-> > > outside-the-SoC world has the same discussion point.
-> > 
-> > status = "disabled" is still the closest thing for everything which have
-> > external dependencies. There is not much point to enable an i2c bus
-> > without making sure that the signals are actually routed to the pins
-> > where they supposed to go.
+Add power domains dt-bindings for MT8167.
 
-There is one reason to keep using the default status = "okay", for
-i2c Linux can properly idle the device on boot without dependencies
-to a certain boot loader version.
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
 
-> > Or from other pow: a board design is not based on what is _not_
-> > connected to outside world, but you actually _connect_ or _enable_
-> > certain peripherals to external components, connectors.
-> 
-> OK, I will buy the argument that the current status thingy is a bit
-> overloaded and does'nt imply the correct state we need it to imply with
-> "fail-sss" either - I remember an argument for "fail-incomplete", but
-> that never happened anyways.
-> 
-> Lets add this argument to the commit message and repost after testing
-> on 5.10-rc1 please?
+This patch depends on the SCPSYS PM domains driver [0].
 
-We should use status = "disabled" when the hardware is not accessible
-to the SoC. That goes for things like secure world devices, and hardware
-that relies on a missing external clock for example. For other things
-we should just stick to the default which "okay" :)
+v2:
+	* Implement on top of new SCPSYS PM domains driver [0]
 
-Regards,
+[0] https://patchwork.kernel.org/project/linux-mediatek/list/?series=370737
 
-Tony
+ .../power/mediatek,power-controller.yaml       |  2 ++
+ include/dt-bindings/power/mt8167-power.h       | 18 ++++++++++++++++++
+ 2 files changed, 20 insertions(+)
+ create mode 100644 include/dt-bindings/power/mt8167-power.h
+
+diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+index 0318ffb1133c..73e5452c3a5d 100644
+--- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
++++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+@@ -23,6 +23,7 @@ properties:
+ 
+   compatible:
+     enum:
++      - mediatek,mt8167-power-controller
+       - mediatek,mt8173-power-controller
+       - mediatek,mt8183-power-controller
+       - mediatek,mt8192-power-controller
+@@ -59,6 +60,7 @@ patternProperties:
+       reg:
+         description: |
+           Power domain index. Valid values are defined in:
++              "include/dt-bindings/power/mt8167-power.h" - for MT8167 type power domain.
+               "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
+               "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
+               "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
+diff --git a/include/dt-bindings/power/mt8167-power.h b/include/dt-bindings/power/mt8167-power.h
+new file mode 100644
+index 000000000000..7e3babfc2eef
+--- /dev/null
++++ b/include/dt-bindings/power/mt8167-power.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: GPL-2.0
++ *
++ * Copyright (c) 2020 MediaTek Inc.
++ */
++
++#ifndef _DT_BINDINGS_POWER_MT8167_POWER_H
++#define _DT_BINDINGS_POWER_MT8167_POWER_H
++
++#define MT8167_POWER_DOMAIN_MM		0
++#define MT8167_POWER_DOMAIN_DISP	0
++#define MT8167_POWER_DOMAIN_VDEC	1
++#define MT8167_POWER_DOMAIN_ISP		2
++#define MT8167_POWER_DOMAIN_CONN	3
++#define MT8167_POWER_DOMAIN_MFG_ASYNC	4
++#define MT8167_POWER_DOMAIN_MFG_2D	5
++#define MT8167_POWER_DOMAIN_MFG		6
++
++#endif /* _DT_BINDINGS_POWER_MT8167_POWER_H */
+-- 
+2.28.0
+
