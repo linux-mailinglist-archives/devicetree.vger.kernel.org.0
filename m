@@ -2,320 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DF2229A36C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 04:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7463F29A398
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 05:15:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437747AbgJ0DqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 23:46:00 -0400
-Received: from mga07.intel.com ([134.134.136.100]:39249 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390384AbgJ0Dp7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 23:45:59 -0400
-IronPort-SDR: 4CI7y5vlQ0FabzC5a55ytBpcNAa7cqEA0RhkBIu2e7Ux4Z3T7j32oW2RH5JTKk8g+4Al1DNXZk
- 3Csia1n/xYZA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="232210383"
-X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; 
-   d="scan'208";a="232210383"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2020 20:45:58 -0700
-IronPort-SDR: +JQ0nHjEtx7L2UnwMMF08Zmf2TNF3m9fsXc3BtF8yAqaZ8ehZ9r73k4gmmec2j4qjDWUZKA5Pz
- fLhcg4Fjjwpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; 
-   d="scan'208";a="303619920"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga008.fm.intel.com with ESMTP; 26 Oct 2020 20:45:57 -0700
-Received: from [10.226.38.22] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.22])
-        by linux.intel.com (Postfix) with ESMTP id A7C42580100;
-        Mon, 26 Oct 2020 20:45:54 -0700 (PDT)
-Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
-Subject: Re: [PATCH v3 5/6] dt-bindings: spi: Convert cadence-quadspi.txt to
- cadence-quadspi.yaml
-To:     Rob Herring <robh@kernel.org>
-Cc:     broonie@kernel.org, vigneshr@ti.com, tudor.ambarus@microchip.com,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, miquel.raynal@bootlin.com,
-        simon.k.r.goldschmidt@gmail.com, dinguyen@kernel.org,
-        richard@nod.at, cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-References: <20201026094519.56083-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201026094519.56083-6-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201026130851.GA4188139@bogus>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <a71ec5b8-3169-4968-d3ab-d0280441a722@linux.intel.com>
-Date:   Tue, 27 Oct 2020 11:45:53 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
-MIME-Version: 1.0
-In-Reply-To: <20201026130851.GA4188139@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S2505379AbgJ0EPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 00:15:48 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:16410 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2442657AbgJ0EPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 00:15:41 -0400
+Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20201027041538epoutp032d179484a60a9958c519681b928982f1~BvkM0Pums1434314343epoutp03y
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 04:15:38 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20201027041538epoutp032d179484a60a9958c519681b928982f1~BvkM0Pums1434314343epoutp03y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1603772138;
+        bh=QmsAGZ914pVlhHj0JHteeAL0P0zGoJ524XNBMQDKb8Y=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=MUoZsjxhxWwzlGSTuqbrbHxZspX8fATWzvDdidscqKYhCifl4DBp1EeBtZ7WI15mb
+         nwK+xAQIOH7wfahUTnxXc2D7qKLjwTKYEDynVM/fHddXeMQOGemQEKdvY2HccoKu3U
+         6EM0b7PMGqtCnq4ijY3RCQ90mcWdLRIU5+jv5tw4=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+        20201027041537epcas1p30f7ea22517894f410c44df158889104d~BvkMZDT7r2989729897epcas1p3M;
+        Tue, 27 Oct 2020 04:15:37 +0000 (GMT)
+Received: from epsmges1p2.samsung.com (unknown [182.195.40.156]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4CKyzq3K73zMqYkl; Tue, 27 Oct
+        2020 04:15:35 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        49.FE.09918.7EE979F5; Tue, 27 Oct 2020 13:15:35 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201027041534epcas1p22f6b232a4d6be92dcc807f28baedab44~BvkJwmHd61218612186epcas1p2r;
+        Tue, 27 Oct 2020 04:15:34 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201027041534epsmtrp19af9fc5465560dd1a1a189dd624fbd57~BvkJvs7WX0073800738epsmtrp1X;
+        Tue, 27 Oct 2020 04:15:34 +0000 (GMT)
+X-AuditID: b6c32a36-713ff700000026be-34-5f979ee7ca32
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        EC.69.08745.6EE979F5; Tue, 27 Oct 2020 13:15:34 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.113.111.64]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201027041534epsmtip143f2b95ee50675314e32c1f7f2d92141~BvkJeuwhv2895528955epsmtip1f;
+        Tue, 27 Oct 2020 04:15:34 +0000 (GMT)
+From:   Hoegeun Kwon <hoegeun.kwon@samsung.com>
+To:     maxime@cerno.tech, eric@anholt.net, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        dave.stevenson@raspberrypi.com, sungguk.na@samsung.com,
+        hoegeun.kwon@samsung.com
+Subject: [PATCH 0/1] drm/vc4: drv: Add error handding for bind
+Date:   Tue, 27 Oct 2020 13:14:41 +0900
+Message-Id: <20201027041442.30352-1-hoegeun.kwon@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAJsWRmVeSWpSXmKPExsWy7bCmge7zedPjDRbeE7boPXeSyWJt71EW
+        i//bJjJbvJ27mMVi/pFzrBZXvr5nszjQeJnR4v3yLjaLTY+vsVpc3jWHzWLi7Q3sFjN+/GO0
+        aN17hN1ix7yDjA58Hk3vj7F5zLp/ls3jzrnzbB57vy1g8di0qpPNY/u3B6we97uPM3lsXlLv
+        0Xr0F4tH35ZVjB6fN8kFcEdl22SkJqakFimk5iXnp2TmpdsqeQfHO8ebmhkY6hpaWpgrKeQl
+        5qbaKrn4BOi6ZeYAvaGkUJaYUwoUCkgsLlbSt7Mpyi8tSVXIyC8usVVKLUjJKbAs0CtOzC0u
+        zUvXS87PtTI0MDAyBSpMyM74P/UeW8EmnoobN9+wNjAu5epi5OSQEDCRmPLtETuILSSwg1Fi
+        4muBLkYuIPsTo8TyFzeZIJzPjBLH97xjh+noeHKcDSKxi1FixpH37HBVTw/MYAGpYhPQlfja
+        c50JxBYRiJe41tvGClLELLCKSeLcjiVgRcICdhKdbw4A2RwcLAKqEu+fu4CEeQVsJTafXssG
+        sU1eYvWGA8wgvRICUzkknk34wAyRcJF42X8WqkhY4tXxLVDnSQHF26DsYokrM1+xQDQ3MEr0
+        T5wNlTCW2L90MhPIYmYBTYn1u/QhwooSO3/PZQSxmQX4JN597WEFKZEQ4JXoaBOCKFGTeNZw
+        gBXClpE41bucCcL2kFgy/RYrJBxjJW7cn8k6gVF2FsKCBYyMqxjFUguKc9NTiw0LjJBjaRMj
+        OGlqme1gnPT2g94hRiYOxkOMEhzMSiK8c2SmxgvxpiRWVqUW5ccXleakFh9iNAWG10RmKdHk
+        fGDaziuJNzQ1MjY2tjAxNDM1NFQS5/2j3REvJJCeWJKanZpakFoE08fEwSnVwOT9qM/ibln/
+        y7uXltu5TZ3SyRXjLvLehkVI+cvaHFe5y53zps1Wu+W/mud51147papelXXzzB7ZfVs7Kza7
+        rO/1j7qnlbpP/d4x2z34vemZyqWb23nnRVv32E3eK7qwdeFbWRlOr8svnP6JmnNLb7B+yZIQ
+        Njlrxu7fjVPTpAxFpTYFLU/eLqnJG3tGZuuaU5f3WNjJdO1v1rPv0b077dQ6xU9VTUFby+2d
+        dH6qekVd4/+pnfPRx0vIZmHNZzuTc34M/2MKHJYzRa/aMPFlzi4JadZ3E6cekDqdt/ixmHSW
+        VI7nfMGFJU+yc7mreialyEx+y127L3FPS+CU+IkKL8JD2NmmJT0TYer0UQwOU2Ipzkg01GIu
+        Kk4EAAH6wbQjBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHLMWRmVeSWpSXmKPExsWy7bCSnO6zedPjDU4/1rXoPXeSyWJt71EW
+        i//bJjJbvJ27mMVi/pFzrBZXvr5nszjQeJnR4v3yLjaLTY+vsVpc3jWHzWLi7Q3sFjN+/GO0
+        aN17hN1ix7yDjA58Hk3vj7F5zLp/ls3jzrnzbB57vy1g8di0qpPNY/u3B6we97uPM3lsXlLv
+        0Xr0F4tH35ZVjB6fN8kFcEdx2aSk5mSWpRbp2yVwZfyfeo+tYBNPxY2bb1gbGJdydTFyckgI
+        mEh0PDnO1sXIxSEksINRYs2sfUwQCRmJVf1bWLsYOYBsYYnDh4shaj4ySjycsIcZpIZNQFfi
+        a891sHoRgVSJtvdHWECKmAU2MUn0nexhBEkIC9hJdL45wAIyiEVAVeL9cxeQMK+ArcTm02vZ
+        IHbJS6zecIB5AiPPAkaGVYySqQXFuem5xYYFRnmp5XrFibnFpXnpesn5uZsYwUGspbWDcc+q
+        D3qHGJk4GA8xSnAwK4nwzpGZGi/Em5JYWZValB9fVJqTWnyIUZqDRUmc9+ushXFCAumJJanZ
+        qakFqUUwWSYOTqkGpoiuhujHNQGfM49liP9dxeDgzzmZV3rDXbM53Mqr9j6KnRtc/l7sOcOt
+        vbmr/zs8Slhq/nHd92lTFq9ev1XSuaQq8kf4tmdFK/8bHxG1P7p9y9Oa2YsNtih2nW/L2j1v
+        pVh16vSGA5f+Wzl/yZdffvuht0nR9+XNc71Weh5waPnrMfea7Up2Rpkwrz/tPmUP5Y6tOa3y
+        dwHHuoX7rtert/QrFW8XEVtzs2TxPu3HT2ex6MjPe+Ps2Fp7o6ed5bMq871PZmqOT/da6937
+        wjFrSwkrz4S/W8+uu84QdvPa0rmtm1OFpuz3EPjCUXrhUYDFX/FF0294rOp88/SWrnXFY7Uu
+        o0fz5gm7HBZ+sC9TiGuuEktxRqKhFnNRcSIAkUSQbtECAAA=
+X-CMS-MailID: 20201027041534epcas1p22f6b232a4d6be92dcc807f28baedab44
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20201027041534epcas1p22f6b232a4d6be92dcc807f28baedab44
+References: <CGME20201027041534epcas1p22f6b232a4d6be92dcc807f28baedab44@epcas1p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hello all,
 
-Thank you very much for the review comments...
+There is a problem that if vc4_drm bind fails, a memory leak occurs on
+the drm_property_create side as shown below. Add error handding for
+drm_mode_config.
 
-On 26/10/2020 9:08 pm, Rob Herring wrote:
-> On Mon, Oct 26, 2020 at 05:45:18PM +0800, Ramuthevar,Vadivel MuruganX wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
->> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
->>
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> ---
->>   .../devicetree/bindings/spi/cadence-quadspi.txt    |  67 ----------
->>   .../devicetree/bindings/spi/cadence-quadspi.yaml   | 148 +++++++++++++++++++++
->>   2 files changed, 148 insertions(+), 67 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.txt
->>   create mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt b/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
->> deleted file mode 100644
->> index 945be7d5b236..000000000000
->> --- a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
->> +++ /dev/null
->> @@ -1,67 +0,0 @@
->> -* Cadence Quad SPI controller
->> -
->> -Required properties:
->> -- compatible : should be one of the following:
->> -	Generic default - "cdns,qspi-nor".
->> -	For TI 66AK2G SoC - "ti,k2g-qspi", "cdns,qspi-nor".
->> -	For TI AM654 SoC  - "ti,am654-ospi", "cdns,qspi-nor".
->> -- reg : Contains two entries, each of which is a tuple consisting of a
->> -	physical address and length. The first entry is the address and
->> -	length of the controller register set. The second entry is the
->> -	address and length of the QSPI Controller data area.
->> -- interrupts : Unit interrupt specifier for the controller interrupt.
->> -- clocks : phandle to the Quad SPI clock.
->> -- cdns,fifo-depth : Size of the data FIFO in words.
->> -- cdns,fifo-width : Bus width of the data FIFO in bytes.
->> -- cdns,trigger-address : 32-bit indirect AHB trigger address.
->> -
->> -Optional properties:
->> -- cdns,is-decoded-cs : Flag to indicate whether decoder is used or not.
->> -- cdns,rclk-en : Flag to indicate that QSPI return clock is used to latch
->> -  the read data rather than the QSPI clock. Make sure that QSPI return
->> -  clock is populated on the board before using this property.
->> -
->> -Optional subnodes:
->> -Subnodes of the Cadence Quad SPI controller are spi slave nodes with additional
->> -custom properties:
->> -- cdns,read-delay : Delay for read capture logic, in clock cycles
->> -- cdns,tshsl-ns : Delay in nanoseconds for the length that the master
->> -                  mode chip select outputs are de-asserted between
->> -		  transactions.
->> -- cdns,tsd2d-ns : Delay in nanoseconds between one chip select being
->> -                  de-activated and the activation of another.
->> -- cdns,tchsh-ns : Delay in nanoseconds between last bit of current
->> -                  transaction and deasserting the device chip select
->> -		  (qspi_n_ss_out).
->> -- cdns,tslch-ns : Delay in nanoseconds between setting qspi_n_ss_out low
->> -                  and first bit transfer.
->> -- resets	: Must contain an entry for each entry in reset-names.
->> -		  See ../reset/reset.txt for details.
->> -- reset-names	: Must include either "qspi" and/or "qspi-ocp".
->> -
->> -Example:
->> -
->> -	qspi: spi@ff705000 {
->> -		compatible = "cdns,qspi-nor";
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->> -		reg = <0xff705000 0x1000>,
->> -		      <0xffa00000 0x1000>;
->> -		interrupts = <0 151 4>;
->> -		clocks = <&qspi_clk>;
->> -		cdns,is-decoded-cs;
->> -		cdns,fifo-depth = <128>;
->> -		cdns,fifo-width = <4>;
->> -		cdns,trigger-address = <0x00000000>;
->> -		resets = <&rst QSPI_RESET>, <&rst QSPI_OCP_RESET>;
->> -		reset-names = "qspi", "qspi-ocp";
->> -
->> -		flash0: n25q00@0 {
->> -			...
->> -			cdns,read-delay = <4>;
->> -			cdns,tshsl-ns = <50>;
->> -			cdns,tsd2d-ns = <50>;
->> -			cdns,tchsh-ns = <4>;
->> -			cdns,tslch-ns = <4>;
->> -		};
->> -	};
->> diff --git a/Documentation/devicetree/bindings/spi/cadence-quadspi.yaml b/Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
->> new file mode 100644
->> index 000000000000..b1b3d3ce0cc2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
->> @@ -0,0 +1,148 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/spi/cadence-quadspi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Cadence Quad SPI controller
->> +
->> +maintainers:
->> +  - Vadivel Murugan <vadivel.muruganx.ramuthevar@intel.com>
->> +
->> +allOf:
->> +  - $ref: "spi-controller.yaml#"
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +         - const: cdns,qspi-nor
->> +         - const: ti,k2g-qspi, cdns,qspi-nor
->> +         - const: ti,am654-ospi, cdns,qspi-nor
->> +
->> +  reg:
->> +    items:
->> +      - description: the controller register set
->> +      - description: the controller data area
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  cdns,fifo-depth:
->> +    description:
->> +      Size of the data FIFO in words.
->> +    $ref: "/schemas/types.yaml#/definitions/uint32"
->> +    enum: [ 128, 256 ]
->> +    default: 128
->> +
->> +  cdns,fifo-width:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Bus width of the data FIFO in bytes.
->> +    default: 4
->> +
->> +  cdns,trigger-address:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      32-bit indirect AHB trigger address.
->> +
->> +  cdns,is-decoded-cs:
->> +    type: boolean
->> +    description:
->> +      Flag to indicate whether decoder is used or not.
->> +
->> +  cdns,rclk-en:
->> +    type: boolean
->> +    description:
->> +      Flag to indicate that QSPI return clock is used to latch the read
->> +      data rather than the QSPI clock. Make sure that QSPI return clock
->> +      is populated on the board before using this property.
->> +
->> +  resets:
->> +    maxItems : 2
->> +
->> +  reset-names:
->> +    minItems: 1
->> +    maxItems: 2
->> +    items:
->> +      enum: [ qspi, qspi-ocp ]
->> +
->> +# subnode's properties
->> +patternProperties:
->> +  "@[0-9a-f]+$":
->> +    type: object
->> +    description:
->> +      flash device uses the subnodes below defined properties.
->> +
->> +  cdns,read-delay:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Delay for read capture logic, in clock cycles.
-> 
-> As-is, these apply to the parent (controller) node. If these apply to
-> the child nodes, then they need to be under 'properties' under
-> '@[0-9a-f]+$'.
-Ok, Noted.
-> 
->> +
->> +  cdns,tshsl-ns:
->> +    description: |
-> 
-> Don't need '|' if there's no formatting to preserve.
-Noted, will update.
+unreferenced object 0xffffff80f5a7a6c8 (size 576):
+  comm "swapper/0", pid 1, jiffies 4294892559 (age 181.448s)
+  hex dump (first 32 bytes):
+    00 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    f8 f1 0e f5 80 ff ff ff e0 a6 a7 f5 80 ff ff ff  ................
+  backtrace:
+    [<00000000fd3656dc>] kmem_cache_alloc+0x1a4/0x328
+    [<000000009dfa1aab>] radix_tree_node_alloc.constprop.19+0x50/0x108
+    [<00000000a9f1657b>] idr_get_free+0x21c/0x2b8
+    [<0000000099f2eea6>] idr_alloc_u32+0x68/0xf0
+    [<00000000525beb52>] idr_alloc+0x44/0x80
+    [<00000000dbfbaa4b>] __drm_mode_object_add+0x64/0xc0
+    [<000000002c24dfc8>] drm_mode_object_add+0x3c/0x50
+    [<00000000f45b491f>] drm_property_create+0xf0/0x1a0
+    [<000000002e1a296b>] drm_connector_create_standard_properties+0x30/0x130
+    [<000000007c53e4bd>] drm_mode_config_init+0x138/0x498
+    [<00000000cc1b0767>] vc4_drm_bind+0x168/0x1f8
+    [<0000000041d69f98>] try_to_bring_up_master+0x180/0x1e8
+    [<00000000d1e1caae>] component_master_add_with_match+0xbc/0x108
+    [<0000000085cea46d>] vc4_platform_drm_probe+0xd8/0x108
+    [<00000000eacabf20>] platform_drv_probe+0x58/0xa8
+    [<000000003822d094>] really_probe+0x10c/0x350
 
-Regards
-Vadivel
-> 
->> +      Delay in nanoseconds for the length that the master mode chip select
->> +      outputs are de-asserted between transactions.
->> +
->> +  cdns,tsd2d-ns:
->> +    description: |
->> +      Delay in nanoseconds between one chip select being de-activated
->> +      and the activation of another.
->> +
->> +  cdns,tchsh-ns:
->> +    description: |
->> +      Delay in nanoseconds between last bit of current transaction and
->> +      deasserting the device chip select (qspi_n_ss_out).
->> +
->> +  cdns,tslch-ns:
->> +    description: |
->> +      Delay in nanoseconds between setting qspi_n_ss_out low and
->> +      first bit transfer.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - cdns,fifo-depth
->> +  - cdns,fifo-width
->> +  - cdns,trigger-address
->> +  - cdns,is-decoded-cs
->> +  - cdns,rclk-en
->> +  - resets
->> +  - reset-names
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    qspi: spi@ff705000 {
->> +      compatible = "cadence,qspi","cdns,qpsi-nor";
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +      reg = <0xff705000 0x1000>,
->> +            <0xffa00000 0x1000>;
->> +      interrupts = <0 151 4>;
->> +      clocks = <&qspi_clk>;
->> +      cdns,fifo-depth = <128>;
->> +      cdns,fifo-width = <4>;
->> +      cdns,trigger-address = <0x00000000>;
->> +      resets = <&rst 0x1>, <&rst 0x2>;
->> +      reset-names = "qspi", "qspi-ocp";
->> +
->> +      flash@0 {
->> +              compatible = "jedec,spi-nor";
->> +              reg = <0x0>;
->> +              cdns,read-delay = <4>;
->> +              cdns,tshsl-ns = <50>;
->> +              cdns,tsd2d-ns = <50>;
->> +              cdns,tchsh-ns = <4>;
->> +              cdns,tslch-ns = <4>;
->> +     };
->> +
->> +    };
->> +
->> +...
->> -- 
->> 2.11.0
->>
+Best regards,
+Hoegeun
+
+Hoegeun Kwon (1):
+  drm/vc4: drv: Add error handding for bind
+
+ drivers/gpu/drm/vc4/vc4_drv.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+-- 
+2.17.1
+
