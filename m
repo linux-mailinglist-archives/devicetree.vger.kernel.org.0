@@ -2,121 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F19A229C611
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:26:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9739429C60D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:26:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1825696AbgJ0SMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 14:12:41 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:44125 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1825633AbgJ0SMK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 14:12:10 -0400
-Received: by mail-wr1-f65.google.com with SMTP id t9so2943909wrq.11
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 11:12:08 -0700 (PDT)
+        id S1825690AbgJ0SMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 14:12:36 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:37362 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1825663AbgJ0SMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 14:12:25 -0400
+Received: by mail-il1-f193.google.com with SMTP id y17so2368375ilg.4
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 11:12:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AizmEGLJWCh5e+BIl/5tzrCIJ5dIEIgB9BBqx3BLDyw=;
-        b=P2UTQj+r1SEKRJedJWTFLKzP8So657DIQN2igB9WKpnJ856BOvDDfhLzT9DqoAdWF2
-         kGplRYYu2HTJ/KE+eIhW6lNcI0+4I03RUL690XQRmlOGVhnMfC9z7AgiiKr43rrcu7Ck
-         48qsUdqDxpTL6c0x/WWSVXeMrpZ1T44svS/CO1rtcP6PIONfvEZ6w9Dm16JaqQQW+Fa5
-         N7dq/PTYCc6okwxpphEDjOj1VsK0sCgDoiH7qemoPGPyYaZ2o7NSEH1RSbUjqWVQuavW
-         4PQH5Tva2lt4aKmDZS5K36KPM79gR3Kz4coyHN2BcqYhepP+5Xb2e6QUlw9MpJjnOBun
-         vpnw==
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NGv1Y/0reu20DBr8S7i4JOZE8sfHN0Ia0VoWgcxjJq4=;
+        b=JMe8vNVo3R2gGH6hqxz3WmFJwUEBTwiTGu9xMdWnrNLe6fle4LBhd0K6gTtvTEgwJi
+         UT+WjdmnSDBiGYlBvo8Fqx+84H/9xfgl6SK66y9qVHZRbWhju7cbHYUSUQXedmbpyrTK
+         lTX7UbBpUzrw6nJifz6eEbpfGkpUAZfQGLnRxUwualNard49/hO7P6SMgCVwjMT6w7Qq
+         ffscM32esnRHZbhvvuuy8VWZigLp/h/EtXan4UXYPuBzamZsN7cl+Kpja0dO9kkesqph
+         jkEbhP7HgweP/CXzPxUwyWNF7wK2uItsT4e7H2E+tyczvQkHg6hIy+0gunBliPDMJHCA
+         d/MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AizmEGLJWCh5e+BIl/5tzrCIJ5dIEIgB9BBqx3BLDyw=;
-        b=jML6el+5yBx78L0q5RAZN2LTiWKMr9MlS140wIQFNbUtPSiGYtJUrMJO4eN4zDecGB
-         nE2snjd9w8Btmy+k/4xFNkxFNoj0Ez2bRC7abL41SP5NyKUx4BE3LBdD/4jnjvAGQYWt
-         zNKMPVUSr1/J3DHuy15MQZrvNZU88HPMSyzMs5lGeWo41ZuOdOo5PBWXd2TwRhA5s9Bs
-         /l3PtnMtUwqZhPMF/4KAvNKVzeA04EdMsuO9RiUHQlWQzp1SPW6ISTVbs59A68yUSMEK
-         HIo4Va3ToCJnC1bEy8zybAr0pS9UeN6b77qQ7IfYYN88xS15qMKaEjZU5sfATnAdTQFe
-         6p4w==
-X-Gm-Message-State: AOAM530v8jTG+hpa/gyfPyZN55H7se1R0BnTbrK4Rdx1moK7y8r9CpQA
-        8zjW22cnsV1VLdXUwlm6UstFpw==
-X-Google-Smtp-Source: ABdhPJzW9nq4LkblMc0w9V7lubC2UdibGY38QsWzOP+oXqTs8LAZbRDjEIXechCCEn18xtlwRn4ufw==
-X-Received: by 2002:a5d:6052:: with SMTP id j18mr4408374wrt.306.1603822328165;
-        Tue, 27 Oct 2020 11:12:08 -0700 (PDT)
-Received: from localhost.localdomain (159.174.185.81.rev.sfr.net. [81.185.174.159])
-        by smtp.gmail.com with ESMTPSA id h206sm2801224wmf.47.2020.10.27.11.12.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 11:12:07 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 RESEND 2/3] dt-bindings: input: mtk-pmic-keys: add MT6392 binding definition
-Date:   Tue, 27 Oct 2020 19:11:55 +0100
-Message-Id: <20201027181157.862927-2-fparent@baylibre.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201027181157.862927-1-fparent@baylibre.com>
-References: <20201027181157.862927-1-fparent@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NGv1Y/0reu20DBr8S7i4JOZE8sfHN0Ia0VoWgcxjJq4=;
+        b=Ni9RTo+lVntTLkW77S2CTtsTnigK9YALDUDBd5TZ4BxydNvjWpc76R913YKf706XAp
+         hmmZhqT/Bic+T2+OS2cmDacwRJxwn1cNXre9DJ8YChfs2qQKLFJuzRIzXrvgjLCaGegx
+         q2UCpv5ipGqUABu88qIax1FG1f9h6dPxS92kTEJsPqssWHs3W8QuBP0iAk3icdAcN76W
+         Piy3CDkq14ZC+HLEzn+SMk+8tCRDJdpeTTVHCNj5l66lSunqkLn8TCWlYu6DI1A5NcOu
+         ukIXhtZyatPo021WymuD1QpW5MBfD9Gz7KjkKsITvCuye6R4VmhF2Wv/AK8j1qdztxRs
+         +7uw==
+X-Gm-Message-State: AOAM533re+uT9ciaxEmz8fxEOVB0GO9xJblwVxWaUsYBhPtXFwFyeJ8R
+        IS/TcmZF0ihSd41SnLsO8Xb2mwzzE/kRpim5N+bjp9vfypA=
+X-Google-Smtp-Source: ABdhPJyTnQSKpb7ULx8ypqe5smcRjLTr9OXB2hTEElGXWXi2nGDOvd47JBO3gG3Scd0S9SvSSanP4ZAwgFMa+fh1jF4=
+X-Received: by 2002:a92:c5ce:: with SMTP id s14mr3130329ilt.40.1603822344388;
+ Tue, 27 Oct 2020 11:12:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201027135325.22235-1-vincent.whitchurch@axis.com>
+In-Reply-To: <20201027135325.22235-1-vincent.whitchurch@axis.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 27 Oct 2020 19:12:13 +0100
+Message-ID: <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com>
+Subject: Re: [PATCH v2] gpio: mockup: Allow probing from device tree
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     Bamvor Jian Zhang <bamv2005@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        kernel@axis.com, devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the binding documentation of the mtk-pmic-keys for the MT6392 PMICs.
+On Tue, Oct 27, 2020 at 2:54 PM Vincent Whitchurch
+<vincent.whitchurch@axis.com> wrote:
+>
+> Allow the mockup driver to be probed via the device tree without any
+> module parameters, allowing it to be used to configure and test higher
+> level drivers like the leds-gpio driver and corresponding userspace
+> before actual hardware is available.
+>
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> ---
+> v2: Remove most of the added code, since the latest driver doesn't need it.
+>     Drop DT binding document, since Rob Herring was OK with not documenting
+>     this:
+>     https://lore.kernel.org/linux-devicetree/5baa1ae6.1c69fb81.847f2.3ab1@mx.google.com/
+>
+>  drivers/gpio/gpio-mockup.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-mockup.c b/drivers/gpio/gpio-mockup.c
+> index 67ed4f238d43..c93892a6936a 100644
+> --- a/drivers/gpio/gpio-mockup.c
+> +++ b/drivers/gpio/gpio-mockup.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/gpio/driver.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/irq.h>
+> +#include <linux/of.h>
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+Please keep the includes ordered alphabetically.
 
-v6:
-	* No changes
+>  #include <linux/irq_sim.h>
+>  #include <linux/irqdomain.h>
+>  #include <linux/module.h>
+> @@ -460,9 +461,18 @@ static int gpio_mockup_probe(struct platform_device *pdev)
+>         return 0;
+>  }
+>
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id gpio_mockup_of_match[] = {
+> +       { .compatible = "gpio-mockup", },
+> +       {},
+> +};
+> +MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
+> +#endif
 
-v5:
-	* rebased
-	* Rename MT6397/MT6392/MT6323 into MT63XX to make it more readable when
-	the list of support PMIC increase
-	* Removed Reviewed-by from Rob Herring because of the new extra changes
-	made to this patch
-	* change the compatible for MT6392 to also contains MT6397 since MT6392 PMIC
-	key driver is compatible with mt6397.
+You don't need this ifdef - of_match_ptr() will evaluate to NULL if
+CONFIG_OF is disabled and the compiler will optimize this struct out.
 
-v4:
-	* Patch was previously sent separately but merge to this patch series
-	since there is a hard dependency on the MFD patch.
+Bartosz
 
- .../devicetree/bindings/input/mtk-pmic-keys.txt     | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-index 535d92885372..71c82687ab92 100644
---- a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-+++ b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-@@ -1,15 +1,18 @@
--MediaTek MT6397/MT6323 PMIC Keys Device Driver
-+MediaTek MT63xx PMIC Keys Device Driver
- 
--There are two key functions provided by MT6397/MT6323 PMIC, pwrkey
-+There are two key functions provided by MT63xx PMIC, pwrkey
- and homekey. The key functions are defined as the subnode of the function
--node provided by MT6397/MT6323 PMIC that is being defined as one kind
-+node provided by MT63xx PMIC that is being defined as one kind
- of Muti-Function Device (MFD)
- 
--For MT6397/MT6323 MFD bindings see:
-+For MT63xx MFD bindings see:
- Documentation/devicetree/bindings/mfd/mt6397.txt
- 
- Required properties:
--- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
-+- compatible: Should be one of:
-+	- "mediatek,mt6323-keys" for MT6323 PMIC
-+	- "mediatek,mt6392-keys", "mediatek,mt6397-keys" for MT6392 PMIC
-+	- "mediatek,mt6397-keys" for MT6397 PMIC
- - linux,keycodes: See Documentation/devicetree/bindings/input/input.yaml
- 
- Optional Properties:
--- 
-2.28.0
-
+> +
+>  static struct platform_driver gpio_mockup_driver = {
+>         .driver = {
+>                 .name = "gpio-mockup",
+> +               .of_match_table = of_match_ptr(gpio_mockup_of_match),
+>         },
+>         .probe = gpio_mockup_probe,
+>  };
+> @@ -556,8 +566,7 @@ static int __init gpio_mockup_init(void)
+>  {
+>         int i, num_chips, err;
+>
+> -       if ((gpio_mockup_num_ranges < 2) ||
+> -           (gpio_mockup_num_ranges % 2) ||
+> +       if ((gpio_mockup_num_ranges % 2) ||
+>             (gpio_mockup_num_ranges > GPIO_MOCKUP_MAX_RANGES))
+>                 return -EINVAL;
+>
+> --
+> 2.28.0
+>
