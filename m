@@ -2,159 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD1E229B3D2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 15:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 549FB29B68D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 16:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1781507AbgJ0Ozq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 10:55:46 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:33998 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1781489AbgJ0Ozo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 10:55:44 -0400
-Received: by mail-lf1-f65.google.com with SMTP id z2so2753874lfr.1;
-        Tue, 27 Oct 2020 07:55:42 -0700 (PDT)
+        id S1797053AbgJ0PVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 11:21:18 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:44626 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1797046AbgJ0PVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 11:21:17 -0400
+Received: by mail-vs1-f67.google.com with SMTP id u7so1061869vsq.11
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 08:21:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=IwrRvxTVDMC8QlGW8JTiTNlxMPmiVJGKtCzOj9qt2Dw=;
-        b=A4DJHZlCnLCOsybSPXVcUXn3rnNb+2IJV6BI/YaxEtGSjjQn0n/K6BLIxOB64D8jaP
-         2Hr/Y1a2VA3oEkaXl6svW4UKFOGqriV0bviBuRrYEjZINKOPJYI+3AnFfLrYGFXbQGIz
-         NS2hFaUXr4k9IyEeYuY7thznSyUnibnDTmRIiWsddufW2pGydmAQIFEnPTihd/PrhApB
-         W6rYqaK2RvXUCfXKht17hC1nw8YgF/W8pjXcZRAs4YDYoHwAp+1MiFlNVOHxUEbDOffw
-         cfuwQ9MMmBI02Sz6+8om2s4ii1q0v97a7x9Ka8AXQbpRcY7BJVNncLAqJpoCWI7aKz+G
-         61kg==
+         :cc;
+        bh=93FZSzeYLp0GkgDW04dL9ynth1HGAfCT0Yz4DoBYrD0=;
+        b=PSlK6ny7ElM3EyImwqlVaQE1kO4Tr41wMTV7T6l166LF0R8Qx8tFXXDF83uOYRFefo
+         Kp6Reid8J7durM64HOP9V0aXtPFvoypGthTJTFzXhhoKqw9aXjwGR0SCWsaHmydmPrIH
+         0+6/OMoz4dD2r+nfYnBTEMlxP+a5HqfCydXA4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=IwrRvxTVDMC8QlGW8JTiTNlxMPmiVJGKtCzOj9qt2Dw=;
-        b=ZlCKEZRIhCvkEyugGycnO0fzU31K0RxpHXGzrnfBcwJ3+Opd6HXGYOJ4SN1GPvsM5G
-         +RhQV+IbZfb+GDxUH/B4U4irm0jySHhCNpCCqeWwpK/OKLIxOfrpj0j7xnU+u16hcI2Q
-         Is/BHHCsbqrD8cbMg58EHl+evckxpMpK99krTPuywLt5Yu7cGH+IxsptqxE6R0pAU8lx
-         wOwlF0hZMb/8MVkE7u65IOQldddC0hzIrORnRydixncMUOYNE8+ZcVE73UKnjd2ECFw/
-         Eo2L+YZeR1FjMQfND5W1IZ+U4kl1mrVeD0n6k/F3eolXzRN6icBNA56C2poWUBfxp4Kz
-         ZD1g==
-X-Gm-Message-State: AOAM5314goiTJz8SjrF0QGxRKcWdYCAfdpJQD07zZzA/dVHAv++WFAdv
-        gAzWCbiTJJ98T+HM63LZJTQMdoXBVQP55GLcRiw=
-X-Google-Smtp-Source: ABdhPJzBKVcF8PZjXetLA1qBmomAVFcyH9xIvRxKh4CUiKa/UUzXhy21atamTBRSe/BhrurcYj2c9/y4d45dkolOcTo=
-X-Received: by 2002:a05:6512:612:: with SMTP id b18mr96603lfe.209.1603810540913;
- Tue, 27 Oct 2020 07:55:40 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=93FZSzeYLp0GkgDW04dL9ynth1HGAfCT0Yz4DoBYrD0=;
+        b=ZDFLoVnew5VNLItLnWBqAgY/Eu3bLimjXHYtIDYsLrosYlRt+0fX7qgK+LjK14wRH8
+         wma2OaNv+c0mcCBtiHVH97w57U4wzghh664N5Ltzc6eglBWu10XfV0S7BQ1Ap6RyKNCu
+         b09xP+dHdYq6nNhq4qQYrixtOTIDzb+Bglr55Bu/2lQAPcmwDB9CBydoDP+T3/O7VrJw
+         yZJp1vZH0g/MgGXS0O2FSU/Ep+KufOrWIcDGI6SquLAg+69xi63A8nTtTJ5LJJKQqcjv
+         TtRVbG8RufcK4dZM5IbMff6NXheZGQKOi5H2ZYRnHwcxGOFq4lzSlQQLSTHq50sKePI3
+         SoTQ==
+X-Gm-Message-State: AOAM532B0M1v4KQYU/WM13NH7k1UlTwuPQ6ebUYm3/nf4rgNAtn1dTjV
+        mm+kxScXHiFsCkP/opITK8MvGckG6Zp21w==
+X-Google-Smtp-Source: ABdhPJyWKBQM74W4IVWv/Dm0+2zC2Y9Fb26knNbFohn+uSFsh9N8LETQkJMQN4VMYmAmSaxA5H1jCw==
+X-Received: by 2002:a67:2e55:: with SMTP id u82mr1719670vsu.52.1603812076186;
+        Tue, 27 Oct 2020 08:21:16 -0700 (PDT)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
+        by smtp.gmail.com with ESMTPSA id t71sm183880vkb.7.2020.10.27.08.21.15
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Oct 2020 08:21:15 -0700 (PDT)
+Received: by mail-vs1-f45.google.com with SMTP id h5so1072310vsp.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 08:21:15 -0700 (PDT)
+X-Received: by 2002:a67:b405:: with SMTP id x5mr1942252vsl.4.1603812074737;
+ Tue, 27 Oct 2020 08:21:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
- <20201027082900.GA21354@amd> <CADiBU3915nyB2OE_bqPy8kVqPhKbdTpBe8ay_ZAoFwuJoL-BfQ@mail.gmail.com>
- <20201027101535.GB13900@duo.ucw.cz> <CADiBU39rQ=5vk31caa1rv32eyzFrYB78p8GubpSi21DS5JYQkA@mail.gmail.com>
-In-Reply-To: <CADiBU39rQ=5vk31caa1rv32eyzFrYB78p8GubpSi21DS5JYQkA@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 27 Oct 2020 22:55:29 +0800
-Message-ID: <CADiBU38QUhc5bH8NoiDrxYBr9FYnC2Hmi5XQRn5Ww+wxEvBnJA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505 flash
- led controller
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>, devicetree@vger.kernel.org
+References: <20200921142655.v3.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
+In-Reply-To: <20200921142655.v3.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 27 Oct 2020 08:21:02 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VVzOpRcpf1y_Lp-etrYhXuAQZYyjiVYkFggqxOvaU2JA@mail.gmail.com>
+Message-ID: <CAD=FV=VVzOpRcpf1y_Lp-etrYhXuAQZYyjiVYkFggqxOvaU2JA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sc7180: Provide pinconf for SPI
+ to use GPIO for CS
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8827=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:46=E5=AF=AB=E9=81=93=EF=BC=9A
+Hi,
+
+On Mon, Sep 21, 2020 at 2:27 PM Douglas Anderson <dianders@chromium.org> wrote:
 >
-> Pavel Machek <pavel@ucw.cz> =E6=96=BC 2020=E5=B9=B410=E6=9C=8827=E6=97=A5=
- =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:15=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > Hi!
-> >
-> > > > Please use upper-case "LED" everywhere.
-> > > >
-> > > > This should be 2nd in the series, after DT changes.
-> > > Sure, will ack in next series patch.
-> >
-> > Feel free to wait for dt ACKs before resending.
-> >
-> Yes, sure.
-> > > > > +     help
-> > > > > +       This option enables support for the RT4505 flash led cont=
-roller.
-> > > >
-> > > > Information where it is used would be welcome here.
-> > > How about to add the below line for the extra information?
-> > > Usually used to company with the camera device on smartphone/tablet
-> > > products
-> >
-> > Yes, that would help.
-> >
-> > "It is commonly used in smartphones, such as Bell Packard T899" would
-> > be even better.
+> When the chip select line is controlled by the QUP, changing CS is a
+> time consuming operation.  We have to send a command over to the geni
+> and wait for it to Ack us every time we want to change (both making it
+> high and low).  To send this command we have to make a choice in
+> software when we want to control the chip select, we have to either:
+> A) Wait for the Ack via interrupt which slows down all SPI transfers
+>    (and incurrs extra processing associated with interrupts).
+> B) Sit in a loop and poll, waiting for the Ack.
 >
-> Sorry, We don't focus on specific products. It's a general part flash
-> led controller.
-> I'll change it like as below
-> "It's commonly used in smartphones and tablets to assist the builtin came=
-ra."
-> >
-> > > > > +     ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ENABLE,=
- RT4505_ENABLE_MASK, val);
-> > > > > +
-> > > > > +unlock:
-> > > > > +     mutex_unlock(&priv->lock);
-> > > > > +     return ret;
-> > > > > +}
-> > > >
-> > > > Why is the locking needed? What will the /sys/class/leds interface
-> > > > look like on system with your flash?
-> > >
-> > > The original thought is because there's still another way to control
-> > > flash like as v4l2.
-> > > But after reviewing the source code, led sysfs node will be protected
-> > > by led_cdev->led_access.
-> > > And V4L2 flash will also be protected by v4l2_fh_is_singular API.
-> > > I think the whole locking in the source code code may be removed. Rig=
-ht?
-> >
-> > Well, maybe you need it, I did not check..
-I found all led class is guaranteed by led_cdev->led_access lock.
-And v4l2 ctrl handleris guaranteed by ctrl->handler->lock that defined
-in v4l2-ctrl.c.
-When entering v4l2 control mode, all led sysfs will be disabled.
-To remove all lock operation is correct. Due to all operations are guarante=
-ed.
-In next series patch, I'll remove it.
-How do you think?
-> >
-> > What will the /sys/class/leds interface look like on system with your f=
-lash?
-> >
-> > > > > +     *state =3D ((val & RT4505_FLASH_GET) =3D=3D RT4505_FLASH_GE=
-T) ? true : false;
-> > > >
-> > > > No need for ? ... part.
-> > > Do you mean this function is not needed? If yes, it can be removed.
-> > > But if it removed, led sysfs flash_strobe show will be not supported.
-> >
-> > I meant "replace line with: *state =3D (val & RT4505_FLASH_GET) =3D=3D =
-RT4505_FLASH_GET;"
-> Oh, I got it. redundant judgement.
-> >
-> > > > > +static bool rt4505_is_accessible_reg(struct device *dev, unsigne=
-d int reg)
-> > > > > +{
-> > > > > +     if (reg =3D=3D RT4505_REG_RESET || (reg >=3D RT4505_REG_CON=
-FIG  && reg <=3D RT4505_REG_FLAGS))
-> > > > > +             return true;
-> > > >
-> > > > Make this two stagements.
-> > > Like as the below one?? Or separate it into two if case.
-> > > if (reg =3D=3D RT4505_REG_RESET ||
-> > >        reg >=3D RT4505_REG_CONFIG  && reg <=3D RT4505_REG_FLAGS))
-> >
-> > That would be fine, too... if you use just one space before "&&" :-).
-> Thx.
-> >
-> > Best regards,
-> >                                                         Pavel
-> > --
-> > http://www.livejournal.com/~pavelmachek
+> Neither A) nor B) is a great option.
+>
+> We can avoid all of this by realizing that, at least on some boards,
+> there is no advantage of considering this line to be a geni line.
+> While it's true that geni _can_ control the line, it's also true that
+> the line can be a GPIO and there is no downside of viewing it that
+> way.  Setting a GPIO is a simple MMIO operation.
+>
+> This patch provides definitions so a board can easily select the GPIO
+> mode.
+>
+> NOTE: apparently, it's possible to run the geni in "GSI" mode.  In GSI
+> the SPI port is allowed to be controlled by more than one user (like
+> firmware and Linux) and also the port can operate sequences of
+> operations in one go.  In GSI mode it _would_ be invalid to look at
+> the chip select as a GPIO because that would prevent other users from
+> using it.  In theory GSI mode would also avoid some overhead by
+> allowing us to sequence the chip select better.  However, I'll argue
+> GSI is not relevant for all boards (and certainly not any boards
+> supported by mainline today).  Why?
+> - Apparently to run a SPI chip in GSI mode you need to initialize it
+>   (in the bootloader) with a different firmware and then it will
+>   always run in GSI mode.  Since there is no support for GSI mode in
+>   the current Linux driver, it must be that existing boards don't have
+>   firmware that's doing that.  Note that the kernel device tree
+>   describes hardware but also firmware, so it is legitimate to make
+>   the assumption that we don't have GSI firmware in a given dts file.
+> - Some boards with sc7180 have SPI connected to the Chrome OS EC or
+>   security chip (Cr50).  The protocols for talking to cros_ec and cr50
+>   are extremely complex.  Both drivers in Linux fully lock the bus
+>   across several distinct SPI transfers.  While I am not an expert on
+>   GSI mode it feels highly unlikely to me that we'd ever be able to
+>   enable GSI mode for these devices.
+>
+> From a testing perspective, running "flashrom -p ec -r /tmp/foo.bin"
+> in a loop after this patch shows almost no reduction in time, but the
+> number of interrupts per command goes from 32357 down to 30611 (about
+> a 5% reduction).
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>
+> Changes in v3:
+> - Add a blank line between pinmux and pinconf.
+>
+> Changes in v2:
+> - Now just add the pinctrl; let a board use it.
+>
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 104 +++++++++++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+
+Friendly ping that this patch and the next one in the series are
+reviewed and ready to land now that -rc1 is out.  ;-)
+
+-Doug
