@@ -2,115 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6651829A9DB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70FFC29A9E8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:42:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2898617AbgJ0Kj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 06:39:58 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:42772 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2898506AbgJ0Kie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:38:34 -0400
-Received: by mail-ed1-f68.google.com with SMTP id v19so876090edx.9;
-        Tue, 27 Oct 2020 03:38:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zzbL0qgnxvkylMPxUyokTgdHZhJ6dzP68QozQ0NsjAw=;
-        b=doGNypTCBA3XXQDO6tIPgBOfUO3MPIY+b0QPg83n+bJRvSu727HLqadyYdBEQ4CnRo
-         l8zqGTGgKqHqC9Qm4DQicB17KamfikNAyLyOIIeLBHWytKTrvcfophnaeQBwKfGtRijn
-         e5qNHKEALfS1OnHgVzzUyZVvGVBZ42quevD5qOwrK4AoujYniKknYeSQyx6SdFhaWgni
-         kNkhYaF/Uj/1l5JiH+h7fQn2MDFpu9P8Gw0tLNlAh0egBPQSx+ajamTSindj4vz5uk4R
-         ynAe/LPO2rptuw3yzjYAr11A2du1jEwr+AFuJ5ayFxBZzLzykppvcQpAXBUCaFM3uH90
-         jL5Q==
-X-Gm-Message-State: AOAM532KgsNaBL7HIuXSCjAYHqs0ccLHkOG3KlT/hFdg0nqN0SNiGLCF
-        ncIzpPF8X8a+hUKyMdZB0Kc=
-X-Google-Smtp-Source: ABdhPJw8TfiuptrRMy++P7RN563EXW35+UsWPBp0Gi2hS6qF+KTgHU3flJBSCR32Gaq9Jj/Gvb75gA==
-X-Received: by 2002:a50:e447:: with SMTP id e7mr1510315edm.263.1603795111248;
-        Tue, 27 Oct 2020 03:38:31 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
-        by smtp.googlemail.com with ESMTPSA id op24sm775374ejb.56.2020.10.27.03.38.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 03:38:29 -0700 (PDT)
-Date:   Tue, 27 Oct 2020 11:38:27 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Subject: Re: [PATCH 04/12] ARM: dts: exynos: adjust node names to DT spec in
- Exynos4412 boards
-Message-ID: <20201027103827.GB20429@kozik-lap>
-References: <20201026181528.163143-1-krzk@kernel.org>
- <CGME20201026181555eucas1p265c52e647f7cd28d410135ccbd236b70@eucas1p2.samsung.com>
- <20201026181528.163143-5-krzk@kernel.org>
- <7832e031-81b0-c77e-57fa-cf122cd989d4@samsung.com>
+        id S1414528AbgJ0Kls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:41:48 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59612 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2898508AbgJ0Kls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:41:48 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09RAfgVh010850;
+        Tue, 27 Oct 2020 05:41:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603795302;
+        bh=eCghNEkC8J49W1FR/glILbUgjCUFiKQI/EhZeMOZVyE=;
+        h=From:To:CC:Subject:Date;
+        b=U6UYSxTiPDbe8gA+1RWG/azq3bApk7wm82gk5MZXT7y8Q59xPwcNHznK9j5XWcwF6
+         RTuhT/N5mOGSpflrC+/JSf90Aafgg2NW+XZDZ8bwVO2UJvjCb7bjZ0nJCRHE+NHt/5
+         2DcFEA8L8RAvJHDxbenu5VIQslmU8W2in6qXiG44=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09RAffNv026294
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 27 Oct 2020 05:41:41 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 27
+ Oct 2020 05:41:41 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 27 Oct 2020 05:41:41 -0500
+Received: from deskari.lan (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09RAfd69110982;
+        Tue, 27 Oct 2020 05:41:39 -0500
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: [PATCH 0/4] arm64: dts: ti: AM6 and J721e display dts changes
+Date:   Tue, 27 Oct 2020 12:41:28 +0200
+Message-ID: <20201027104132.105485-1-tomi.valkeinen@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <7832e031-81b0-c77e-57fa-cf122cd989d4@samsung.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 26, 2020 at 10:02:10PM +0100, Marek Szyprowski wrote:
-> 
-> On 26.10.2020 19:15, Krzysztof Kozlowski wrote:
-> > The Devicetree specification expects device node names to have a generic
-> > name, representing the class of a device.  Also the convention for node
-> > names is to use hyphens, not underscores.
-> >
-> > No functional changes.
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > ---
-> >   arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi   |  8 ++++----
-> >   arch/arm/boot/dts/exynos4412-itop-elite.dts   |  2 +-
-> >   .../boot/dts/exynos4412-itop-scp-core.dtsi    |  2 +-
-> >   arch/arm/boot/dts/exynos4412-midas.dtsi       | 12 +++++------
-> >   arch/arm/boot/dts/exynos4412-n710x.dts        |  2 +-
-> >   .../boot/dts/exynos4412-odroid-common.dtsi    |  8 ++++----
-> >   arch/arm/boot/dts/exynos4412-odroidx.dts      |  4 ++--
-> >   arch/arm/boot/dts/exynos4412-origen.dts       | 14 ++++++-------
-> >   arch/arm/boot/dts/exynos4412-smdk4412.dts     | 20 +++++++++----------
-> >   9 files changed, 36 insertions(+), 36 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
-> > index 89ed81fb348d..db91678f5648 100644
-> > --- a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
-> > +++ b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
-> > @@ -15,7 +15,7 @@ aliases {
-> >   		i2c10 = &i2c_cm36651;
-> >   	};
-> >   
-> > -	aat1290 {
-> > +	led-controller {
-> >   		compatible = "skyworks,aat1290";
-> >   		flen-gpios = <&gpj1 1 GPIO_ACTIVE_HIGH>;
-> >   		enset-gpios = <&gpj1 2 GPIO_ACTIVE_HIGH>;
-> > @@ -60,7 +60,7 @@ i2c_ak8975: i2c-gpio-0 {
-> >   		#size-cells = <0>;
-> >   		status = "okay";
-> >   
-> > -		ak8975@c {
-> > +		magnetometer@c {
-> >   			compatible = "asahi-kasei,ak8975";
-> >   			reg = <0x0c>;
-> >   			gpios = <&gpj0 7 GPIO_ACTIVE_HIGH>;
-> > @@ -75,7 +75,7 @@ i2c_cm36651: i2c-gpio-2 {
-> >   		#address-cells = <1>;
-> >   		#size-cells = <0>;
-> >   
-> > -		cm36651@18 {
-> > +		sensor@18 {
-> light-sensor?
+Hi,
 
-Ack, to this and all following. Thanks.
+linux-next now contains binding changes for "k3-am65: mark dss as
+dma-coherent".
 
-Best regards,
-Krzysztof
+Also everything to get DP working is included in -rc1, except the two
+dts patches in this series. Note that DisplayPort connector binding is
+still in discussion [1]. I don't expect changes there, but if you want
+to wait until those patches get merged, you could just pick the two am6
+patches.
+
+ Tomi
+
+[1] https://www.spinics.net/lists/dri-devel/msg275245.html
+
+Tomi Valkeinen (4):
+  arm64: dts: ti: k3-j721e-main: add DP & DP PHY
+  arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
+  arm64: dts: ti: k3-am65: mark dss as dma-coherent
+  arm64: dts: ti: am654-base-board: fix clock node name
+
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |   2 +
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |   2 +-
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  72 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 104 ++++++++++++++++++
+ 4 files changed, 179 insertions(+), 1 deletion(-)
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
