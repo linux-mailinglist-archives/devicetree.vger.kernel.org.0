@@ -2,93 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D73829AC52
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 13:41:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E931E29AC8D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 13:55:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2900158AbgJ0Mla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 08:41:30 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60072 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2900153AbgJ0MlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 08:41:22 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09RCfGPQ052965;
-        Tue, 27 Oct 2020 07:41:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603802476;
-        bh=TjbEhpZHElrY65Cxck+e45+jNNikQlke86LvzScrg6M=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=AbFMw2Yy3B4YgyDTmVKcefUlTgP917nmZJTsaSZPVKSgrM9Lp7i1edhyI/xxhJta0
-         I6H9Dzhbv2ph6W0/FXg735UbgodlH5PIeg25W91CB8G7/1gn0iF4Zdu5ozwXN5YRO6
-         361hZvnkQaA6rC7ucw6tuDk9MK4tbUAbnNltb2Ww=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09RCfGIB072026
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 27 Oct 2020 07:41:16 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 27
- Oct 2020 07:41:16 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 27 Oct 2020 07:41:16 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09RCfGcT120240;
-        Tue, 27 Oct 2020 07:41:16 -0500
-Date:   Tue, 27 Oct 2020 07:41:16 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 0/3] Add HwSpinlock & Mailbox nodes on J7200 SoCs
-Message-ID: <20201027124116.2k5jit7nsgz6mvza@gainfully>
-References: <20201026232637.15681-1-s-anna@ti.com>
+        id S2900328AbgJ0MzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 08:55:13 -0400
+Received: from mail-ej1-f67.google.com ([209.85.218.67]:37659 "EHLO
+        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439375AbgJ0MzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 08:55:13 -0400
+Received: by mail-ej1-f67.google.com with SMTP id p9so2079801eji.4;
+        Tue, 27 Oct 2020 05:55:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=NmWbBGj0lkHe0t79tv/Jf0SQbBWE8aedRom+eTRmfzc=;
+        b=XKbecVq1Ik0kDILHFzzL8d8bpttLxS6dESkXXO8J4CXuqnb9t6t5hdiFWWhOtsrxGl
+         FfT1Z2nHdRwX41X1K88ruflhzopy8zrF//t+SD242mAlwU+zZ9jiY7vu0rP4YkGGKB2e
+         6UkVAxr/JgGrZxP0YOzvgLTgyb+sFMkpmvl2M2R2FgzHNYkKMCPMZE/No2X6vSYkJsha
+         +3U6G/kklfJ/3i/JzCoTfYQVHfV1rIvs2dycsXJOezsm+jiqnde/tx8G18la6hTkNBDt
+         Ap1jpfkVhgYGFJCnlWTZfPjYdScWsMu8NR5463W1kf2sulLsq7HreIJQA4vfTLU32jvc
+         Gwuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=NmWbBGj0lkHe0t79tv/Jf0SQbBWE8aedRom+eTRmfzc=;
+        b=WyvSObybhQCAQt4P4AIcM7nDwlLyP4c+o/QlNGKt7bO7/iyf9dPG0e99T4mX+sqUXt
+         jfb1Q6bbzn6DwOH7odZ2N/irT51M6bJrntuAZ9JCkvRel+7cvF1xeVfWDtlkr5dxOvsU
+         yH4TyIYKvb4mgMHEyYIRJVEHwJiDgdIgtHWBEANQMde+zV+3Ies9nPvkJPsaYuqq5vhs
+         02/OqmL39ETv23fxi5yV/iO0uAKHFXQ81qQeD78+5C7bBhbYytS+jOQB+Ubfi1VQmlAS
+         8FyOQ6iZZZHXxSQucZUroi3O4OR6C5262gSiABb5fbz1bLMStN5Nbd4L3LxMat6HKYoE
+         bSCQ==
+X-Gm-Message-State: AOAM5324XTimUFpQdatySTOEG63F9GNVXQB9eZQnrbE5YsVcqCsvADNK
+        D2mSjCS+M6fLiMlbX5w2A+g=
+X-Google-Smtp-Source: ABdhPJz3kwQEXps0U4CXrM9GDXdaXs2o9NBv9jhp3Vmq5iDuCFu/Vxe55NWvsrFgADjy8eqP8FsubQ==
+X-Received: by 2002:a17:907:b19:: with SMTP id h25mr2372404ejl.368.1603803309253;
+        Tue, 27 Oct 2020 05:55:09 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id sb29sm1013080ejb.76.2020.10.27.05.55.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 05:55:07 -0700 (PDT)
+Date:   Tue, 27 Oct 2020 13:55:06 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Nicolin Chen <nicoleotsuka@gmail.com>, robh+dt@kernel.org,
+        jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: memory: tegra: Add missing swgroups
+Message-ID: <20201027125506.GA1822510@ulmo>
+References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+ <20201008003746.25659-5-nicoleotsuka@gmail.com>
+ <20201009122110.GD458338@ulmo>
+ <20201009155218.GA4469@Asurada-Nvidia>
+ <20201026201758.GD248919@kozik-lap>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
 Content-Disposition: inline
-In-Reply-To: <20201026232637.15681-1-s-anna@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20201026201758.GD248919@kozik-lap>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:26-20201026, Suman Anna wrote:
-> Hi Nishanth,
-> 
-> The following series adds the HwSpinlock and Mailbox nodes for the J7200
-> series. The sub-mailbox nodes that will be used by the K3 R5F remoteproc
-> nodes are also added to the k3-j7200-som-p0.dtsi file in sync with the
-> convention used on J721E SoCs.
-> 
-> Patches are based on 5.10-rc1 and your current staged branch commit 
-> 9dcd17be61e4 ("arm64: dts: ti: k3-am65: ringacc: drop 
-> ti,dma-ring-reset-quirk")
-> 
-> FYI, the HwSpinlock binding has been converted to YAML in 5.10-rc1, but
-> the Mailbox bindings are still in text format.
-> 
-> regards
-> Suman
-> 
-> Suman Anna (3):
->   arm64: dts: ti: k3-j7200-main: Add hwspinlock node
->   arm64: dts: ti: k3-j7200-main: Add mailbox cluster nodes
->   arm64: dts: ti: k3-j7200-som-p0: Add IPC sub-mailbox nodes
-> 
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi   | 114 ++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi |  68 ++++++++++++
->  2 files changed, 182 insertions(+)
-> 
-> -- 
-> 2.28.0
-> 
 
-I dont personally see a specific issue in this series, but will
-appreciate additional reviewed-by before I pick this series up.
+--cNdxnHkX5QqsyA0e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+On Mon, Oct 26, 2020 at 09:17:58PM +0100, Krzysztof Kozlowski wrote:
+> On Fri, Oct 09, 2020 at 08:52:18AM -0700, Nicolin Chen wrote:
+> > On Fri, Oct 09, 2020 at 02:21:10PM +0200, Thierry Reding wrote:
+> > > On Wed, Oct 07, 2020 at 05:37:45PM -0700, Nicolin Chen wrote:
+> > > > According to Tegra X1 TRM, there are missing swgroups in the
+> > > > tegra210_swgroups list. So this patch adds them in bindings.
+> > > >=20
+> > > > Note that the TEGRA_SWGROUP_GPU (in list) should be actually
+> > > > TEGRA_SWGROUP_GPUB (in TRM), yet TEGRA_SWGROUP_GPU (in TRM)
+> > > > is not being used -- only TEGRA_SWGROUP_GPUB (in TRM) is. So
+> > > > this patch does not add TEGRA_SWGROUP_GPU (in TRM) and keeps
+> > > > TEGRA_SWGROUP_GPU (in list) as it is.
+> > > >=20
+> > > > Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+> > > > ---
+> > > >  include/dt-bindings/memory/tegra210-mc.h | 10 ++++++++++
+> > > >  1 file changed, 10 insertions(+)
+> > > >=20
+> > > > diff --git a/include/dt-bindings/memory/tegra210-mc.h b/include/dt-=
+bindings/memory/tegra210-mc.h
+> > > > index c226cba9e077..f9fcb18a6d9b 100644
+> > > > --- a/include/dt-bindings/memory/tegra210-mc.h
+> > > > +++ b/include/dt-bindings/memory/tegra210-mc.h
+> > > > @@ -33,6 +33,16 @@
+> > > >  #define TEGRA_SWGROUP_AXIAP	28
+> > > >  #define TEGRA_SWGROUP_ETR	29
+> > > >  #define TEGRA_SWGROUP_TSECB	30
+> > > > +#define TEGRA_SWGROUP_NV	31
+> > > > +#define TEGRA_SWGROUP_NV2	32
+> > > > +#define TEGRA_SWGROUP_PPCS1	33
+> > > > +#define TEGRA_SWGROUP_DC1	34
+> > > > +#define TEGRA_SWGROUP_PPCS2	35
+> > > > +#define TEGRA_SWGROUP_HC1	36
+> > > > +#define TEGRA_SWGROUP_SE1	37
+> > > > +#define TEGRA_SWGROUP_TSEC1	38
+> > > > +#define TEGRA_SWGROUP_TSECB1	39
+> > > > +#define TEGRA_SWGROUP_NVDEC1	40
+> > >=20
+> > > I'm not sure this is right. The existing list is based on "Table 4:
+> > > Client to Software Name Mapping" from page 28 of the Tegra X1 TRM, and
+> > > none of these new swgroups seem to be present in that table.
+> >=20
+> > I went through all the MC_SMMU_XX_ASID_0 registers. All of
+> > them have their own ASID registers that I added in PATCH-5.
+>=20
+> Thierry,
+>=20
+> Any follow ups on this topic? Does it require a fix or looks correct?
+
+This does indeed look correct, based on what registers exist for these.
+It'd be good to know how Nicolin expects these to be used, since these
+are currently not listed in device tree. There's certainly some like
+TSEC or NVDEC that we don't support (yet) upstream, but things like DC1
+and HC1 already have equivalents that we use, so I'm not sure how we'll
+integrate these new ones.
+
+I suppose it doesn't really matter if any of these end up being unused,
+so:
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--cNdxnHkX5QqsyA0e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+YGKUACgkQ3SOs138+
+s6HdXQ/9GY5+CG+UleVCHEphwtCAPS/kk6cf5OqVlP0/1Txw2gaC5IA0IlgZBcrI
+TB2IxEFKsQQV4yIeGqWfrBpHw3vq3NN0T281dzvp7Qt4L0ZW0ZukGerMJu+OrDEt
+d5nkbkqblillWQtd3Gh42GOxIF5E/ZTFuW+jrSOJZX5Q4Fd6c0nkU9+sUxj+SsD2
+lUX7u+fCYP3U11kx6dxbhTm6cXGDzVNwXUu789DSIq97vL8IpvjlkfM3BGb5P30/
+m0Nxv2YtnxaggYR7jFtxFkZz6mXDlTMsMv4h6EmKGVXPchj8kj8Te7u8IKblX3wC
+yx88smlCqCLhFYhJY/v8kL4oYve6e4FIL1Fl/VbU+1Vy+dOwcx+LMM/gfCIOg6Un
+VMjtNqAa9TOIZxtPTOsRZa6CgY6UzjRzhWPzjhOGFq4ndsvRMNl9al0l9Qu6tFEJ
+BH2uHj8rcAhv8bebLwPhTBYmHciBJL2Rl711LCPY8wubPOwQwAAnf9hwfRAzui+/
+11V3EFh/8LEebyQGzuVc57E5xVKcW9o6IIayZRvI+LZ0eNAJ0E1TGzXePyUv8izY
+QVPUp/bPG0OUCmPM7P2A2c9uDeMO2qI6yGFz1lkG3yvUy+05hTNvuL0oZICNPesz
+LlhxnJ5I8TvPiTTGXn5e7aEGhFSRc0CjAiXFm9rCkiJtMuPbzas=
+=H//q
+-----END PGP SIGNATURE-----
+
+--cNdxnHkX5QqsyA0e--
