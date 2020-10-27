@@ -2,83 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3FAD29BA8D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 17:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4B4A29BA9A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 17:13:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1802112AbgJ0QGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 12:06:46 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:46348 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1797452AbgJ0QGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 12:06:39 -0400
-Received: by mail-wr1-f65.google.com with SMTP id n6so2492971wrm.13
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 09:06:36 -0700 (PDT)
+        id S1806820AbgJ0QIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 12:08:38 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:37938 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1806807AbgJ0QIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 12:08:34 -0400
+Received: by mail-il1-f196.google.com with SMTP id x7so557239ili.5
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 09:08:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2o0NP0S9IKMIYtZh0rK85wpdZyLqH3CjfIzafWh3T1M=;
-        b=gc3wETkfZTjfdkDofvqk/rEFWOyZf/bsJh0lBSp4vQHy7Xmup3eUSnw0ckfNsMTlKc
-         7qI0BUBC6g9BKYJP2QxOnBQY0WwTJ4qFmAIS7pnW7erJjxnqwbjpUyhU65bOG69ASDtX
-         32MSBAfRRU1msgTl3ycWW1oIG07Nz7Z06ppDOy0s8jsIe9ajHSEQTZRHMiyjhfE5G/kV
-         wSx83YYM4BUtB/Til+Psdi8mMYz470jReTlXEilugMS+GkbYA5dvWuiWoY/1v17vkE5E
-         2Mf3vPTWa6G70bMLabvnxNa5WNbXhaXG5DXvElQz57gEIeMF38qvGRks8mpca4L30rgr
-         JI5g==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=6rAfY3NSqXlT1WPhNg+wGdttjuTFu01uQvx6roKDSO0=;
+        b=oTPIk2RzGWVc0YchN2QbHHL1XteP2IXxgpmMpZquQvHvczuYqGOsZrCgpJ22tf88xB
+         1/hxl9IubMODeS95YYwaSxGDtch6FIdKjE/89+a76oWGMYkYbZj1viSeT/VkiIIR/FSI
+         jwPP7xGFGjEPGjH2vaNDnlloENr6lse4BmeuXNuyRAFFjRqT0l2CUXWOwhvxy6v/74+4
+         nnHamh0JLMz9LiYmYfNQwZgXcFDzb8bRhddwzHlfOSizKFP3WmhjE82VqCb2kaz1MKVc
+         2BI19EevEy1hXzNsD4mMmHFqLQkkFdRc3Kpca5C41NJyG51RcOARrRa+rdH7tPLxjNyb
+         m0Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2o0NP0S9IKMIYtZh0rK85wpdZyLqH3CjfIzafWh3T1M=;
-        b=TAJeZLecn+j/Vd7G/PU/rJ3ZxY2TK7Rd1xB3H7wZFl+tGSbADHvy0x0jBAlx0ls0yY
-         POxOKVrsrrHbGJknskJccCsyKlnLXyXM9sKzDyBFkXktDycn2NoVCdvpw1IS++KzwL0j
-         WxQvCInfQ61ZNlqUtssF30ps051S5IM/oRmmdHzmS8xtJ4hIw7bLav8ZLY91kBkWocRD
-         sDjShfAq3lRA/MB3o3YUWVKBrjyJ3g/hTMEvQ9/nRDR0trKUlqlFhjAZ2hztZBab6Veu
-         srNuu8nn39HJCjufEUmj/9F++upjXwqMgHEQUZQzTv68IGepgrAnvwOxDeGkNlb6WAJT
-         eEcA==
-X-Gm-Message-State: AOAM533AVkz0IlrmNag96fqGlyjo4kpkjqankDj6ufIvp4mlei3JvYFk
-        lQp/fvnVTeKBMUC8DMUQa48s0Q==
-X-Google-Smtp-Source: ABdhPJx7aos5PzrahnnOd9RdHxUgT77NM16RV43TCCat0bwz+NKJkLk+zqi21kJ4IXAXwFVHn5MHog==
-X-Received: by 2002:adf:e885:: with SMTP id d5mr3732878wrm.100.1603814795825;
-        Tue, 27 Oct 2020 09:06:35 -0700 (PDT)
-Received: from localhost.localdomain (159.174.185.81.rev.sfr.net. [81.185.174.159])
-        by smtp.gmail.com with ESMTPSA id u15sm2656988wrm.77.2020.10.27.09.06.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 09:06:35 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH 1/2] dt-bindings: mediatek: mmsys: add mt1867 binding
-Date:   Tue, 27 Oct 2020 17:06:29 +0100
-Message-Id: <20201027160631.608503-1-fparent@baylibre.com>
-X-Mailer: git-send-email 2.28.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6rAfY3NSqXlT1WPhNg+wGdttjuTFu01uQvx6roKDSO0=;
+        b=kbWws8iegmhYj7QIRZOBTPV8p5F4Pkag4EmusiHR4tsu0+ADLWAIAZdCkigq7BGjCA
+         DHLiDYiOQJOagc1HjiMhMrx0jWv03fppYI36AvaH7YRUOvTTcD0UsUYjteKSCz0fs/+9
+         pY8xZJ3x7ZVpRihuLvhGmnhOxOW4L/eDvhxyJxRROp3jr6shjZKYg/SaFGA0ctIeQ4Rm
+         s44/1ObMYOL3KJw5nKnNZC6Nra6sfmDGRU3RkxTjX6tD2xtRGCZjWUhEPAWq0rXMBIQr
+         FgBqlOb8UpK/JISxGV97OIBd/WM/OrYlTK23VxME/pKZRuWBFlMVn05WuwvWbwY52h8H
+         aG4g==
+X-Gm-Message-State: AOAM531QuuDbnPSRpWy1EJn9TQReJQnHQ2CCqEUARrctmHXutgJ2UFZ7
+        mwIFHQ+3Uvp42tZA04G+bUADN5C6OfCPPTfyLKbdWg==
+X-Google-Smtp-Source: ABdhPJxxoCNaawsy16iagkTtkcpbO1hw7slzU7A2BngEf7XFnJH07yerrqnn5NlbErjreG6y7YKFIW10fq3gdxZRrzk=
+X-Received: by 2002:a92:aa01:: with SMTP id j1mr2679564ili.301.1603814913221;
+ Tue, 27 Oct 2020 09:08:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201023133130.194140-1-fparent@baylibre.com> <20201023133130.194140-6-fparent@baylibre.com>
+ <CAAOTY_8ZgoQJFnEDDZ=JCy-3zLwn7yjk1EHVYgeSG2ufLxK04g@mail.gmail.com>
+In-Reply-To: <CAAOTY_8ZgoQJFnEDDZ=JCy-3zLwn7yjk1EHVYgeSG2ufLxK04g@mail.gmail.com>
+From:   Fabien Parent <fparent@baylibre.com>
+Date:   Tue, 27 Oct 2020 17:08:22 +0100
+Message-ID: <CAOwMV_wzp67zeiSvXP59OLMwd_8srfSTSqV9BwXagq5gFu6B3g@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] drm/mediatek: Add support for main DDP path on MT8167
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for MT8167 SoC.
+Hi Chun-Kuang,
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt          | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, Oct 23, 2020 at 5:52 PM Chun-Kuang Hu <chunkuang.hu@kernel.org> wro=
+te:
+>
+> Hi, Fabien:
+>
+> Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8823=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=889:31=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+> >
+> > Add the main (DSI) drm display path for MT8167.
+> >
+> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> > ---
+> >
+> > Changelog:
+> >
+> > V2: No change
+> >
+> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 38 ++++++++++++++++++++++++++
+> >  1 file changed, 38 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/m=
+ediatek/mtk_drm_drv.c
+> > index 59c85c63b7cc..3952435093fe 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > @@ -112,6 +112,17 @@ static const enum mtk_ddp_comp_id mt2712_mtk_ddp_t=
+hird[] =3D {
+> >         DDP_COMPONENT_PWM2,
+> >  };
+> >
+> > +static enum mtk_ddp_comp_id mt8167_mtk_ddp_main[] =3D {
+> > +       DDP_COMPONENT_OVL0,
+> > +       DDP_COMPONENT_COLOR0,
+> > +       DDP_COMPONENT_CCORR,
+> > +       DDP_COMPONENT_AAL0,
+> > +       DDP_COMPONENT_GAMMA,
+> > +       DDP_COMPONENT_DITHER,
+> > +       DDP_COMPONENT_RDMA0,
+> > +       DDP_COMPONENT_DSI0,
+> > +};
+> > +
+> >  static const enum mtk_ddp_comp_id mt8173_mtk_ddp_main[] =3D {
+> >         DDP_COMPONENT_OVL0,
+> >         DDP_COMPONENT_COLOR0,
+> > @@ -163,6 +174,11 @@ static const struct mtk_mmsys_driver_data mt8173_m=
+msys_driver_data =3D {
+> >         .ext_len =3D ARRAY_SIZE(mt8173_mtk_ddp_ext),
+> >  };
+> >
+> > +static const struct mtk_mmsys_driver_data mt8167_mmsys_driver_data =3D=
+ {
+> > +       .main_path =3D mt8167_mtk_ddp_main,
+> > +       .main_len =3D ARRAY_SIZE(mt8167_mtk_ddp_main),
+> > +};
+> > +
+> >  static int mtk_drm_kms_init(struct drm_device *drm)
+> >  {
+> >         struct mtk_drm_private *private =3D drm->dev_private;
+> > @@ -401,26 +417,42 @@ static const struct component_master_ops mtk_drm_=
+ops =3D {
+> >  static const struct of_device_id mtk_ddp_comp_dt_ids[] =3D {
+> >         { .compatible =3D "mediatek,mt2701-disp-ovl",
+> >           .data =3D (void *)MTK_DISP_OVL },
+> > +       { .compatible =3D "mediatek,mt8167-disp-ovl",
+> > +         .data =3D (void *)MTK_DISP_OVL },
+> >         { .compatible =3D "mediatek,mt8173-disp-ovl",
+> >           .data =3D (void *)MTK_DISP_OVL },
+> >         { .compatible =3D "mediatek,mt2701-disp-rdma",
+> >           .data =3D (void *)MTK_DISP_RDMA },
+> > +       { .compatible =3D "mediatek,mt8167-disp-rdma",
+> > +         .data =3D (void *)MTK_DISP_RDMA },
+> >         { .compatible =3D "mediatek,mt8173-disp-rdma",
+> >           .data =3D (void *)MTK_DISP_RDMA },
+> >         { .compatible =3D "mediatek,mt8173-disp-wdma",
+> >           .data =3D (void *)MTK_DISP_WDMA },
+> > +       { .compatible =3D "mediatek,mt8167-disp-ccorr",
+> > +         .data =3D (void *)MTK_DISP_CCORR },
+> >         { .compatible =3D "mediatek,mt2701-disp-color",
+> >           .data =3D (void *)MTK_DISP_COLOR },
+> > +       { .compatible =3D "mediatek,mt8167-disp-color",
+> > +         .data =3D (void *)MTK_DISP_COLOR },
+> >         { .compatible =3D "mediatek,mt8173-disp-color",
+> >           .data =3D (void *)MTK_DISP_COLOR },
+> > +       { .compatible =3D "mediatek,mt8167-disp-aal",
+> > +         .data =3D (void *)MTK_DISP_AAL},
+> >         { .compatible =3D "mediatek,mt8173-disp-aal",
+> >           .data =3D (void *)MTK_DISP_AAL},
+> > +       { .compatible =3D "mediatek,mt8167-disp-gamma",
+> > +         .data =3D (void *)MTK_DISP_GAMMA, },
+> >         { .compatible =3D "mediatek,mt8173-disp-gamma",
+> >           .data =3D (void *)MTK_DISP_GAMMA, },
+> > +       { .compatible =3D "mediatek,mt8167-disp-dither",
+> > +         .data =3D (void *)MTK_DISP_DITHER },
+> >         { .compatible =3D "mediatek,mt8173-disp-ufoe",
+> >           .data =3D (void *)MTK_DISP_UFOE },
+> >         { .compatible =3D "mediatek,mt2701-dsi",
+> >           .data =3D (void *)MTK_DSI },
+> > +       { .compatible =3D "mediatek,mt8167-dsi",
+> > +         .data =3D (void *)MTK_DSI },
+> >         { .compatible =3D "mediatek,mt8173-dsi",
+> >           .data =3D (void *)MTK_DSI },
+> >         { .compatible =3D "mediatek,mt2701-dpi",
+> > @@ -431,10 +463,14 @@ static const struct of_device_id mtk_ddp_comp_dt_=
+ids[] =3D {
+> >           .data =3D (void *)MTK_DISP_MUTEX },
+> >         { .compatible =3D "mediatek,mt2712-disp-mutex",
+> >           .data =3D (void *)MTK_DISP_MUTEX },
+> > +       { .compatible =3D "mediatek,mt8167-disp-mutex",
+> > +         .data =3D (void *)MTK_DISP_MUTEX },
+> >         { .compatible =3D "mediatek,mt8173-disp-mutex",
+> >           .data =3D (void *)MTK_DISP_MUTEX },
+> >         { .compatible =3D "mediatek,mt2701-disp-pwm",
+> >           .data =3D (void *)MTK_DISP_BLS },
+> > +       { .compatible =3D "mediatek,mt8167-disp-pwm",
+> > +         .data =3D (void *)MTK_DISP_PWM },
+> >         { .compatible =3D "mediatek,mt8173-disp-pwm",
+> >           .data =3D (void *)MTK_DISP_PWM },
+> >         { .compatible =3D "mediatek,mt8173-disp-od",
+> > @@ -449,6 +485,8 @@ static const struct of_device_id mtk_drm_of_ids[] =
+=3D {
+> >           .data =3D &mt7623_mmsys_driver_data},
+> >         { .compatible =3D "mediatek,mt2712-mmsys",
+> >           .data =3D &mt2712_mmsys_driver_data},
+> > +       { .compatible =3D "mediatek,mt8167-mmsys",
+>
+> This patch looks good to me, but it depend on another patch which
+> define the compatible "mediatek,mt8167-mmsys". Where is that patch?
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-index d8c9108c3b4a..78c50733985c 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-@@ -13,6 +13,7 @@ Required Properties:
- 	- "mediatek,mt6779-mmsys", "syscon"
- 	- "mediatek,mt6797-mmsys", "syscon"
- 	- "mediatek,mt7623-mmsys", "mediatek,mt2701-mmsys", "syscon"
-+	- "mediatek,mt8167-mmsys", "syscon"
- 	- "mediatek,mt8173-mmsys", "syscon"
- 	- "mediatek,mt8183-mmsys", "syscon"
- - #clock-cells: Must be 1
--- 
-2.28.0
+You can find the patch there:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20201027160631.60=
+8503-2-fparent@baylibre.com/
 
+>
+> Regards,
+> Chun-Kuang.
+>
+> > +         .data =3D &mt8167_mmsys_driver_data},
+> >         { .compatible =3D "mediatek,mt8173-mmsys",
+> >           .data =3D &mt8173_mmsys_driver_data},
+> >         { }
+> > --
+> > 2.28.0
+> >
