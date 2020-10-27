@@ -2,284 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7215D29A86A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 10:54:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7B629A908
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409945AbgJ0Jwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 05:52:32 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:51921 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409569AbgJ0Jwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 05:52:31 -0400
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 34CAC20010;
-        Tue, 27 Oct 2020 09:52:22 +0000 (UTC)
-Date:   Tue, 27 Oct 2020 10:52:21 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
-Subject: Re: [PATCH 07/14] dt-bindings: media: i2c: Add A31 MIPI CSI-2
- bindings documentation
-Message-ID: <20201027095221.GE168350@aptenodytes>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-8-paul.kocialkowski@bootlin.com>
- <20201026161450.gr3dqpltxw2ccc3s@gilmour.lan>
+        id S2897321AbgJ0KGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:06:21 -0400
+Received: from mout.kundenserver.de ([212.227.126.187]:49419 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2897315AbgJ0KGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:06:21 -0400
+Received: from methusalix.internal.home.lespocky.de ([92.117.33.129]) by
+ mrelayeu.kundenserver.de (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MAwPZ-1ki3E72ZmD-00BOoU; Tue, 27 Oct 2020 11:05:50 +0100
+Received: from falbala.internal.home.lespocky.de ([192.168.243.94])
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <post@lespocky.de>)
+        id 1kXLrL-0000bl-4B; Tue, 27 Oct 2020 11:05:45 +0100
+Date:   Tue, 27 Oct 2020 11:05:38 +0100
+From:   Alexander Dahl <post@lespocky.de>
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     Alexander Dahl <post@lespocky.de>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-leds@vger.kernel.org
+Subject: Re: [Linux-stm32] [PATCH v7 10/12] ARM: dts: stm32: Fix schema
+ warnings for pwm-leds
+Message-ID: <20201027100536.cpfizc67gwrolp2z@falbala.internal.home.lespocky.de>
+Mail-Followup-To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, Alexander Dahl <ada@thorsis.com>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-leds@vger.kernel.org
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-11-post@lespocky.de>
+ <b387bda8-3643-1d27-4996-2aa4dc94d69f@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ILuaRSyQpoVaJ1HG"
+        protocol="application/pgp-signature"; boundary="2ljgzjfbsktyrri5"
 Content-Disposition: inline
-In-Reply-To: <20201026161450.gr3dqpltxw2ccc3s@gilmour.lan>
+In-Reply-To: <b387bda8-3643-1d27-4996-2aa4dc94d69f@pengutronix.de>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Scan-Signature: 1f50ff0161e86bf11bda3e1dba359304
+X-Spam-Score: -2.9 (--)
+X-Provags-ID: V03:K1:Vw9aMrR0R/XXJTGOFUzp7IBcBAkiGMqAM1t7QjnnPJIB4tAv3Tf
+ biGI/Y9Kx4IzMWVs8CTnpIVo6Rx8pNhfQMBsFdqSdhRF3/ZkK4UIpr2Ngy1dTMTNx3cIW49
+ FPtefmmaTSx7dv/2+ImPa+ZELp4S8PH7JuTvgQeGjXJtT3vYwvawOACjeVAiyGTIDHvYR80
+ Iy9TSDhI+aVB4SK0TjAoQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:HqZLSuoekkY=:SvZzN96a5ayfkn3Sd0dhcn
+ 94L8r93QyLGiiU1GbFug9GWtryfQG4Q5JFULv8JY+KQRvrAO6pMaFuLes5ey2thR/0ibB9pCk
+ MmOeFekZdHfjuQfFYnY+jtfEnE6qPQLzb+H9MHX62FYxDngNh4Na1R8nT3G6ZHbsr8ABNrpl6
+ SP42oLbI2A0bQbWEhKgk2/MjAp85oA9yra4rK5i+VAv49w74vyEjdUHqLPmGHmawvRBT6/3nl
+ qPRHT8Lr/BpYRQfu9WUEwf5v/Em76yuBL3JXS3MwcIahHa/2oYNYIGHt1qdyPrPIvr58+UimT
+ IgPycdIeZabfgzg191w7d6yiM7Us3efJ6YzVAKl06d302L6jA2QoNLVEF5sCi6p9w/ITOosGD
+ T77Ve7HB8kwsxhliXDSAUJRW/PpFGrR7mtQsWRg1T5TvKPgtvYU6iv44MgZ+3
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ILuaRSyQpoVaJ1HG
-Content-Type: text/plain; charset=utf-8
+--2ljgzjfbsktyrri5
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hello Ahmad,
 
-On Mon 26 Oct 20, 17:14, Maxime Ripard wrote:
-> i2c? :)
+thanks for your feedback, comments below.
 
-Oops, good catch!
-=20
-> On Fri, Oct 23, 2020 at 07:45:39PM +0200, Paul Kocialkowski wrote:
-> > This introduces YAML bindings documentation for the A31 MIPI CSI-2
-> > controller.
+On Tue, Oct 27, 2020 at 08:03:40AM +0100, Ahmad Fatoum wrote:
+> Hello Alexander,
+>=20
+> On 10/5/20 10:34 PM, Alexander Dahl wrote:
+> > The node names for devices using the pwm-leds driver follow a certain
+> > naming scheme (now).  Parent node name is not enforced, but recommended
+> > by DT project.
 > >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> >   DTC     arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+> >   CHECK   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+> > /home/alex/build/linux/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml: l=
+ed-rgb: 'led-blue', 'led-green', 'led-red' do not match any of the regexes:=
+ '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> >         From schema: /home/alex/src/linux/leds/Documentation/devicetree=
+/bindings/leds/leds-pwm.yaml
+> >=20
+> > Signed-off-by: Alexander Dahl <post@lespocky.de>
+>=20
+> Acked-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>=20
+> But got two questions below:
+>=20
 > > ---
-> >  .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 168 ++++++++++++++++++
-> >  1 file changed, 168 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,s=
-un6i-a31-mipi-csi2.yaml
 > >=20
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a3=
-1-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-=
-a31-mipi-csi2.yaml
-> > new file mode 100644
-> > index 000000000000..9adc0bc27033
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-=
-csi2.yaml
-> > @@ -0,0 +1,168 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-mipi-csi2=
-=2Eyaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A31 MIPI CSI-2 Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: allwinner,sun6i-a31-mipi-csi2
-> > +      - items:
-> > +          - const: allwinner,sun8i-v3s-mipi-csi2
-> > +          - const: allwinner,sun6i-a31-mipi-csi2
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus Clock
-> > +      - description: Module Clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: mod
-> > +
-> > +  phys:
-> > +    items:
-> > +      - description: MIPI D-PHY
-> > +
-> > +  phy-names:
-> > +    items:
-> > +      - const: dphy
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  # See ./video-interfaces.txt for details
-> > +  ports:
-> > +    type: object
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        type: object
-> > +        description: Input port, connect to a MIPI CSI-2 sensor
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 0
-> > +
-> > +          endpoint:
-> > +            type: object
-> > +
-> > +            properties:
-> > +              remote-endpoint: true
-> > +
-> > +              bus-type:
-> > +                const: 4
-> > +
-> > +              clock-lanes:
-> > +                maxItems: 1
-> > +
-> > +              data-lanes:
-> > +                minItems: 1
-> > +                maxItems: 4
-> > +
-> > +            required:
-> > +              - bus-type
-> > +              - data-lanes
-> > +              - remote-endpoint
-> > +
-> > +            additionalProperties: false
-> > +
-> > +        required:
-> > +          - endpoint
-> > +
-> > +        additionalProperties: false
-> > +
-> > +      port@1:
-> > +        type: object
-> > +        description: Output port, connect to a CSI controller
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 1
-> > +
-> > +          endpoint:
-> > +            type: object
-> > +
-> > +            properties:
-> > +              remote-endpoint: true
-> > +
-> > +              bus-type:
-> > +                const: 4
+> > Notes:
+> >     v6 -> v7:
+> >       * split up patch (one per sub arch)
+> >       * added actual warnings to commit message
+> >=20
+> >  arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> >=20
+> > diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/=
+dts/stm32mp157c-lxa-mc1.dts
+> > index 5700e6b700d3..25d548cb975b 100644
+> > --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> > +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> > @@ -36,34 +36,34 @@
+> >  		stdout-path =3D &uart4;
+> >  	};
+> > =20
+> > -	led-act {
+> > +	led-controller-1 {
+> >  		compatible =3D "gpio-leds";
+> > =20
+> > -		led-green {
+> > +		led-1 {
+> >  			label =3D "mc1:green:act";
+> >  			gpios =3D <&gpioa 13 GPIO_ACTIVE_LOW>;
+> >  			linux,default-trigger =3D "heartbeat";
+> >  		};
+> >  	};
+> > =20
+> > -	led-rgb {
+> > +	led-controller-2 {
 >=20
-> That one seems a bit weird. If the input and output ports are using the
-> same format, what is that "bridge" supposed to be doing?
+> Is a single RGB LED really a controller?
 
-Fair enough. What this represents is the internal link (likely a FIFO) betw=
-een
-the two controllers. It is definitely not a MIPI CSI-2 bus but there's no
-mbus type for an internal link (probably because it's not a bus after all).
+I just followed the recommendations by Rob here.=20
 
-Note that on the CSI controller side, we need the bus-type to be set to 4 f=
-or it
-to properly select the MIPI CSI-2 input. So it just felt more logical to ha=
-ve
-the same on the other side of the endpoint. On the other hand, we can just
-remove it on the MIPI CSI-2 controller side since it won't check it and hav=
-e it
-fallback to the unknown mbus type.
-
-But that would make the types inconsistent on the two sides of the link.
-I don't think V4L2 will complain about it at the moment, but it would also =
-make
-sense that it does eventually.
-
-What do you think?
-
-> > +            additionalProperties: false
-> > +
-> > +        required:
-> > +          - endpoint
-> > +
-> > +        additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
-> > +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
-> > +
-> > +    mipi_csi2: mipi-csi2@1cb1000 {
+> >  		compatible =3D "pwm-leds";
+> > =20
+> > -		led-red {
+> > +		led-2 {
 >=20
-> The unit name should be pretty standard, with the list here:
+> Shouldn't this have been led-1 as well or is the numbering "global" ?
+
+Also good question. This numbering is for dts only, it usually does
+not correspond with LEDs on the board, so it could be numbered per
+led-controller as well?
+
+Greets
+Alex
+
 >=20
-> https://github.com/devicetree-org/devicetree-specification/blob/master/so=
-urce/chapter2-devicetree-basics.rst#generic-names-recommendation
+> >  			label =3D "mc1:red:rgb";
+> >  			pwms =3D <&leds_pwm 1 1000000 0>;
+> >  			max-brightness =3D <255>;
+> >  			active-low;
+> >  		};
+> > =20
+> > -		led-green {
+> > +		led-3 {
+> >  			label =3D "mc1:green:rgb";
+> >  			pwms =3D <&leds_pwm 2 1000000 0>;
+> >  			max-brightness =3D <255>;
+> >  			active-low;
+> >  		};
+> > =20
+> > -		led-blue {
+> > +		led-4 {
+> >  			label =3D "mc1:blue:rgb";
+> >  			pwms =3D <&leds_pwm 3 1000000 0>;
+> >  			max-brightness =3D <255>;
+> >=20
 >=20
-> there's nothing really standing out for us in that list, but given that
-> there's dsi, we should stick with csi
-
-Then what really surprises me is that the CSI controllers are called "camer=
-a",
-not "csi". If "camera" is supposed to cover both image sensor and camera se=
-nsor
-interfaces, it would probably fit MIPI CSI-2 as well.
-
-I see lots of names with -controller for controllers with specific devices
-attached, like "nand-controller" or "lcd-controller". Maybe using
-"camera-controller" for the CSI and MIPI CSI-2 controllers would make the m=
-ost
-sense, while keeping "camera" for the actual image sensors.
-
-What do you think?
-
-Cheers,
-
-Paul
+> --=20
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
 --=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+/"\ ASCII RIBBON | =BBWith the first link, the chain is forged. The first
+\ / CAMPAIGN     | speech censured, the first thought forbidden, the
+ X  AGAINST      | first freedom denied, chains us all irrevocably.=AB
+/ \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
 
---ILuaRSyQpoVaJ1HG
+--2ljgzjfbsktyrri5
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl+X7dUACgkQ3cLmz3+f
-v9HIzgf/VU3frpGzprIvTeXBh32se5uXZB/3cj0cUb++7oXeTXSc/db0LOwDu7jo
-/UyfvdYNUhuUMMOPT/ltm0ObonZzOv4GkAl0rjQYccWmwqAhi9/m/ac++ub7WjUk
-yv159tAbN+dorR6X2Q548Y8JKAYXBM/of0RVIs0ms/J8rnBkozXBv89gxTiIxrnH
-3swwmgsFAYEklUApRcIUcgSdsbxyRu10JTQ7vlmimb5/4Z3mEmOXGe7SkxKREFym
-fGumuTIXAWceJ0NLAXkUw3XxHku1Xczzmj78crBFvE0L8fUDKAoMFOG96oQqbI5t
-GlF0jyE3FZO/rbmGafQtSqE/B9JOFw==
-=CWwJ
+iQIzBAABCAAdFiEEwo7muQJjlc+Prwj6NK3NAHIhXMYFAl+X8OwACgkQNK3NAHIh
+XMZUCBAAppmo4xZ1dQjN/xRLRcEKPicklMKgdZM2Y7qXbj8/g/pLNccy0Bm8Te42
++YhzNYJYedg+l+0zp9woMXHJXDHQhPR50Jb7e2guhZ8vw1kTGw4CUy7vbYDB4PN/
+dy4779zWgpc5623/kuRWUdMg/xY5vKbFXjlYbGxeg9WvjIkSgs4k99tofZS/S279
+0ehKX0l0T4RRge+RZBjj1wgrBFdSJEfgMqygeHNWIWgXBbZdlRe9Vp05wkKlfmZd
+llZiDT0CedpeUffQz3Bm4nSYS6awb874rAOukG3sdfIBs8BI7r42c3A2uUsNgtCT
+SFdaBoNc1XlUJgNfj6oH/KR0CUnJ65B0D+B64ZFU4WwhVXdcdjNOCgAUwOaGaWCA
+VFeoHJns9um5ObsiFS6BfW6lZxidSecOzI4NIMLuAnxD91PqwrQ3cmZYFrU2Cl41
+2kkqyV4OqbVmsYzNnASqeITTgJZ/v3QzYrNcpw1ORjR+gjkWS9qs7+97QYDEzgBD
+EpyXEAQIf3OMCaw3tLZX4hnYrZmlVEKxiqWoGcMN9QNg/ykB3CDMDi5CCwWN94xl
+sEi7LxQ6Boxl5p0xxkdhgbyzbDFp7ya+x3fbFnmQ09vGAfniT9/9QoMOl5aFJi79
+Tg6ONSx9fTN9zgbeXibeyB/+6e6Sqpu5vLMTnn+4KJ2ypZ8vQUs=
+=tczc
 -----END PGP SIGNATURE-----
 
---ILuaRSyQpoVaJ1HG--
+--2ljgzjfbsktyrri5--
