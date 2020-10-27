@@ -2,99 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2F5029A5F4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5D7429A60F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 09:03:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728434AbgJ0H57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 03:57:59 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:38141 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728073AbgJ0H56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 03:57:58 -0400
-Received: by mail-ed1-f66.google.com with SMTP id bc23so436309edb.5
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 00:57:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=akbJuP+GF8gOaddO9UFDGSpWaVjjaeolUWSvpBz1eqE=;
-        b=2AvwaibhAarm+Y7IL90PDn6CJ29wk35f3zQw8A+i+QseMi7iaDMXyPHsfiwtMIh8OS
-         oTwm5Crz0DkYU5J9zDVRB+Mo51SeSKHplfy3u7rB52IBvJ4rB5RdGCIGFowWELKyINo0
-         VzEr8SydEYEWj0JlxxvvuSJHKwEJHfOwyvKTjKpCsYrULpRX4eef9TB2RXQztN0lnEtU
-         TMMAEa/bjCuxiAyPBA0YEYncNBTMwkbylEcKEDwVhaQSMbQUqC/4TZS3BzZXakcMDGzA
-         SgeFh0+2Ohxo+zvqT35cJtabdaFpbsLzyd4L57ey9n35r6qJmyTxyzLYHhTyOhw9KaSA
-         Aniw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=akbJuP+GF8gOaddO9UFDGSpWaVjjaeolUWSvpBz1eqE=;
-        b=dRQFIhGsj/qW8xEgExcnt7oT/P13Yfz4cYoAS/+mcGaDxV38NGn3BMAnB0E0FmvaGG
-         kspAn/TGg7Jw9K0ivqqrLYreXogfaeI85AZI462p58DI9ETqYLjUQN7OJo4Kjw2ulxeO
-         uMNLrAK1ot7C799ilTblQec7PnyCCaownLAoOx3kKFiLhZQ85B1djn7ZJYFfil7Gsgpz
-         gshRMlVZDmf4CGHIPpKvEnjx40P3QscL1ZXj77iAkJ2LT0WOttk64nW/41epDvsh9AWs
-         0scQotERsFV2I/CxE5a338S+Ehq/TvmFQY05DB97wTZ6S0oJi19oIDhm8o6Gih8QkyKx
-         9wXQ==
-X-Gm-Message-State: AOAM533RCdkwSVFxNq1hTVHQmTji9ktM/SZSxDdfhIGox62Gv6+6bdlr
-        FGDBxakqDcXldBawfLBW6IMvotqSTHiTjHDZTFFn+A==
-X-Google-Smtp-Source: ABdhPJzvnqihjwnCRjoMYDuTW8p5OmD7OF2pq7wOXE2FbFaXScWrkN7ZllvL4BD1Ym1nn8T8pMItorsbhEmfX3oR6nE=
-X-Received: by 2002:a50:9e0b:: with SMTP id z11mr952728ede.341.1603785475673;
- Tue, 27 Oct 2020 00:57:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201026163244.21610-1-mike.looijmans@topic.nl>
-In-Reply-To: <20201026163244.21610-1-mike.looijmans@topic.nl>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Tue, 27 Oct 2020 08:57:44 +0100
-Message-ID: <CAMpxmJXWJ+XLTfnLeN-jnsq3g_17Rn5+HD6PdoobjKM=G_VeRA@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: gpio: pca953x: Add support for the NXP PCAL9554B/C
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     linux-devicetree <devicetree@vger.kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S2508657AbgJ0ID2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 04:03:28 -0400
+Received: from mga12.intel.com ([192.55.52.136]:17255 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2508650AbgJ0IDZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 04:03:25 -0400
+IronPort-SDR: y8us5Kr0AMyKmw/hO8MSKyNSCJdwy6HSOLRED0ZfQ7NLd3Jz5UWq+unliSjRDbn3/T8pntL9WX
+ Kk1hKN97MMvg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="147326439"
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; 
+   d="scan'208";a="147326439"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2020 01:03:14 -0700
+IronPort-SDR: UeI2iedu7Fd5nuOVyuRMymVdn/z3xtknrkFAfN28wuqWiF51G7EQO9WKYbUXGtvvxei+gIgvIY
+ ySc+njmMFMVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; 
+   d="scan'208";a="360665036"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by FMSMGA003.fm.intel.com with ESMTP; 27 Oct 2020 01:03:11 -0700
+From:   Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+To:     dmaengine@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        chuanhua.lei@linux.intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, mallikarjunax.reddy@linux.intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+Subject: [PATCH v7 0/2] Add Intel LGM soc DMA support
+Date:   Tue, 27 Oct 2020 16:03:05 +0800
+Message-Id: <cover.1600827061.git.mallikarjunax.reddy@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 26, 2020 at 5:32 PM Mike Looijmans <mike.looijmans@topic.nl> wrote:
->
-> The NXP PCAL9554B is a variant of the PCA953x GPIO expander,
-> with 8 GPIOs, latched interrupts and some advanced configuration
-> options. The "C" version only differs in I2C address.
->
-> This adds the entry to the devicetree bindings.
->
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> ---
-> v2: Split devicetree and code into separate patches
-> v3: Devicetree bindings in yaml format
-> v4: Rebase on v5.10-rc1
->
->  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> index 183ec23eda39..f5ee23c2df60 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> @@ -48,6 +48,7 @@ properties:
->        - nxp,pcal6416
->        - nxp,pcal6524
->        - nxp,pcal9535
-> +      - nxp,pcal9554b
->        - nxp,pcal9555a
->        - onnn,cat9554
->        - onnn,pca9654
-> --
-> 2.17.1
->
+Add DMA controller driver for Lightning Mountain(LGM) family of SoCs.
 
-Patch applied, thanks!
+The main function of the DMA controller is the transfer of data from/to any
+DPlus compliant peripheral to/from the memory. A memory to memory copy
+capability can also be configured.
+This ldma driver is used for configure the device and channnels for data
+and control paths.
 
-Bartosz
+These controllers provide DMA capabilities for a variety of on-chip
+devices such as SSC, HSNAND and GSWIP.
+
+-------------
+Future Plans:
+-------------
+LGM SOC also supports Hardware Memory Copy engine.
+The role of the HW Memory copy engine is to offload memory copy operations
+from the CPU.
+
+Amireddy Mallikarjuna reddy (2):
+  dt-bindings: dma: Add bindings for intel LGM SOC
+  Add Intel LGM soc DMA support.
+
+ .../devicetree/bindings/dma/intel,ldma.yaml        |  135 ++
+ drivers/dma/Kconfig                                |    2 +
+ drivers/dma/Makefile                               |    1 +
+ drivers/dma/lgm/Kconfig                            |    9 +
+ drivers/dma/lgm/Makefile                           |    2 +
+ drivers/dma/lgm/lgm-dma.c                          | 1765 ++++++++++++++++++++
+ include/linux/dma/lgm_dma.h                        |   27 +
+ 7 files changed, 1941 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
+ create mode 100644 drivers/dma/lgm/Kconfig
+ create mode 100644 drivers/dma/lgm/Makefile
+ create mode 100644 drivers/dma/lgm/lgm-dma.c
+ create mode 100644 include/linux/dma/lgm_dma.h
+
+-- 
+2.11.0
+
