@@ -2,138 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 549FB29B68D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 16:31:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1276529B6CD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 16:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1797053AbgJ0PVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 11:21:18 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:44626 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1797046AbgJ0PVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 11:21:17 -0400
-Received: by mail-vs1-f67.google.com with SMTP id u7so1061869vsq.11
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 08:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=93FZSzeYLp0GkgDW04dL9ynth1HGAfCT0Yz4DoBYrD0=;
-        b=PSlK6ny7ElM3EyImwqlVaQE1kO4Tr41wMTV7T6l166LF0R8Qx8tFXXDF83uOYRFefo
-         Kp6Reid8J7durM64HOP9V0aXtPFvoypGthTJTFzXhhoKqw9aXjwGR0SCWsaHmydmPrIH
-         0+6/OMoz4dD2r+nfYnBTEMlxP+a5HqfCydXA4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=93FZSzeYLp0GkgDW04dL9ynth1HGAfCT0Yz4DoBYrD0=;
-        b=ZDFLoVnew5VNLItLnWBqAgY/Eu3bLimjXHYtIDYsLrosYlRt+0fX7qgK+LjK14wRH8
-         wma2OaNv+c0mcCBtiHVH97w57U4wzghh664N5Ltzc6eglBWu10XfV0S7BQ1Ap6RyKNCu
-         b09xP+dHdYq6nNhq4qQYrixtOTIDzb+Bglr55Bu/2lQAPcmwDB9CBydoDP+T3/O7VrJw
-         yZJp1vZH0g/MgGXS0O2FSU/Ep+KufOrWIcDGI6SquLAg+69xi63A8nTtTJ5LJJKQqcjv
-         TtRVbG8RufcK4dZM5IbMff6NXheZGQKOi5H2ZYRnHwcxGOFq4lzSlQQLSTHq50sKePI3
-         SoTQ==
-X-Gm-Message-State: AOAM532B0M1v4KQYU/WM13NH7k1UlTwuPQ6ebUYm3/nf4rgNAtn1dTjV
-        mm+kxScXHiFsCkP/opITK8MvGckG6Zp21w==
-X-Google-Smtp-Source: ABdhPJyWKBQM74W4IVWv/Dm0+2zC2Y9Fb26knNbFohn+uSFsh9N8LETQkJMQN4VMYmAmSaxA5H1jCw==
-X-Received: by 2002:a67:2e55:: with SMTP id u82mr1719670vsu.52.1603812076186;
-        Tue, 27 Oct 2020 08:21:16 -0700 (PDT)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id t71sm183880vkb.7.2020.10.27.08.21.15
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Oct 2020 08:21:15 -0700 (PDT)
-Received: by mail-vs1-f45.google.com with SMTP id h5so1072310vsp.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 08:21:15 -0700 (PDT)
-X-Received: by 2002:a67:b405:: with SMTP id x5mr1942252vsl.4.1603812074737;
- Tue, 27 Oct 2020 08:21:14 -0700 (PDT)
+        id S1798430AbgJ0P0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 11:26:49 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33966 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1797646AbgJ0PYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 11:24:46 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09RFOeZ9115604;
+        Tue, 27 Oct 2020 10:24:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603812280;
+        bh=gYIc7L9zr2Xitt2QXvxO1kWxMznTiqyHpDHcqOOL424=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=lf9ya1kxoUh94vFdD+1o9iRoOf4ige83KuyO9xopM97B7HKIUwN77b4qhcOPbi+Pz
+         xm9zZ7tJsZIfq4hER1oZu3SfO4Oa5Ukm+SSr0DHJAF4RlhIuMe+9pOS8V2u6aEEKsa
+         L05S6J2SEOWmRZlCc7yHbwPhd1H4f6N/VAgT7LUA=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09RFOdNa064168
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 27 Oct 2020 10:24:39 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 27
+ Oct 2020 10:24:39 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 27 Oct 2020 10:24:39 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09RFOdj4016732;
+        Tue, 27 Oct 2020 10:24:39 -0500
+Date:   Tue, 27 Oct 2020 10:24:39 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 4/4] arm64: dts: ti: am654-base-board: fix clock node name
+Message-ID: <20201027152439.l44e4ugrxy7kilce@prelaw>
+References: <20201027104132.105485-1-tomi.valkeinen@ti.com>
+ <20201027104132.105485-5-tomi.valkeinen@ti.com>
+ <20201027123941.tgkqxx4rk56sl5tf@crafty>
+ <ffcaa8a3-539d-62ed-2d46-560f2173dd83@ti.com>
 MIME-Version: 1.0
-References: <20200921142655.v3.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
-In-Reply-To: <20200921142655.v3.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 27 Oct 2020 08:21:02 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VVzOpRcpf1y_Lp-etrYhXuAQZYyjiVYkFggqxOvaU2JA@mail.gmail.com>
-Message-ID: <CAD=FV=VVzOpRcpf1y_Lp-etrYhXuAQZYyjiVYkFggqxOvaU2JA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sc7180: Provide pinconf for SPI
- to use GPIO for CS
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Akash Asthana <akashast@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ffcaa8a3-539d-62ed-2d46-560f2173dd83@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 16:55-20201027, Tomi Valkeinen wrote:
+> On 27/10/2020 14:39, Nishanth Menon wrote:
+> > On 12:41-20201027, Tomi Valkeinen wrote:
+> >> The fixed clock for OV5640 is named 'clock' which is a very generic name
+> >> and easily leads to conflicts. I encountered this with a similarly named
+> >> fixed-clock node in k3-am654-evm-tc358876.dtso, which then overrode the
+> >> OV5640 fixed clock, causing OV5640 not to work when tc358876 overlay had
+> >> been loaded.
+> >>
+> >> Rename the node to 'fixed-clock-ov5640'.
+> >>
+> >> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> >> ---
+> >>  arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> >> index d12dd89f3405..6801dbddeac5 100644
+> >> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> >> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> >> @@ -55,7 +55,7 @@ sw6 {
+> >>  		};
+> >>  	};
+> >>  
+> >> -	clk_ov5640_fixed: clock {
+> >> +	clk_ov5640_fixed: fixed-clock-ov5640 {
+> >>  		compatible = "fixed-clock";
+> >>  		#clock-cells = <0>;
+> >>  		clock-frequency = <24000000>;
+> > 
+> > I think you could post this independently as well.
+> > 
+> > https://github.com/devicetree-org/devicetree-specification/blob/v0.3/source/devicetree-basics.rst#generic-names-recommendation
+> > 
+> > There is a strong desire to use standard node names and
+> > clock is recommended. even though there are tons of fixed-clock
+> > compatible clocks in the kernel today, as of v5.10-rc1:
+> > 
+> > $ git grep fixed-clock- arch/arm64/boot/dts/
+> > $ git grep fixed-clock- arch/arm/boot/dts/
+> > 
+> > As a node name is not used. Do you want to see how other
+> > platforms are trying to resolve similar issues?
+> 
+> There doesn't seem to be a standard:
+> 
+> $ git grep -B2 fixed-clock arch/arm/boot/dts/
+> 
+> The node names are just about everything.
 
-On Mon, Sep 21, 2020 at 2:27 PM Douglas Anderson <dianders@chromium.org> wrote:
->
-> When the chip select line is controlled by the QUP, changing CS is a
-> time consuming operation.  We have to send a command over to the geni
-> and wait for it to Ack us every time we want to change (both making it
-> high and low).  To send this command we have to make a choice in
-> software when we want to control the chip select, we have to either:
-> A) Wait for the Ack via interrupt which slows down all SPI transfers
->    (and incurrs extra processing associated with interrupts).
-> B) Sit in a loop and poll, waiting for the Ack.
->
-> Neither A) nor B) is a great option.
->
-> We can avoid all of this by realizing that, at least on some boards,
-> there is no advantage of considering this line to be a geni line.
-> While it's true that geni _can_ control the line, it's also true that
-> the line can be a GPIO and there is no downside of viewing it that
-> way.  Setting a GPIO is a simple MMIO operation.
->
-> This patch provides definitions so a board can easily select the GPIO
-> mode.
->
-> NOTE: apparently, it's possible to run the geni in "GSI" mode.  In GSI
-> the SPI port is allowed to be controlled by more than one user (like
-> firmware and Linux) and also the port can operate sequences of
-> operations in one go.  In GSI mode it _would_ be invalid to look at
-> the chip select as a GPIO because that would prevent other users from
-> using it.  In theory GSI mode would also avoid some overhead by
-> allowing us to sequence the chip select better.  However, I'll argue
-> GSI is not relevant for all boards (and certainly not any boards
-> supported by mainline today).  Why?
-> - Apparently to run a SPI chip in GSI mode you need to initialize it
->   (in the bootloader) with a different firmware and then it will
->   always run in GSI mode.  Since there is no support for GSI mode in
->   the current Linux driver, it must be that existing boards don't have
->   firmware that's doing that.  Note that the kernel device tree
->   describes hardware but also firmware, so it is legitimate to make
->   the assumption that we don't have GSI firmware in a given dts file.
-> - Some boards with sc7180 have SPI connected to the Chrome OS EC or
->   security chip (Cr50).  The protocols for talking to cros_ec and cr50
->   are extremely complex.  Both drivers in Linux fully lock the bus
->   across several distinct SPI transfers.  While I am not an expert on
->   GSI mode it feels highly unlikely to me that we'd ever be able to
->   enable GSI mode for these devices.
->
-> From a testing perspective, running "flashrom -p ec -r /tmp/foo.bin"
-> in a loop after this patch shows almost no reduction in time, but the
-> number of interrupts per command goes from 32357 down to 30611 (about
-> a 5% reduction).
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->
-> Changes in v3:
-> - Add a blank line between pinmux and pinconf.
->
-> Changes in v2:
-> - Now just add the pinctrl; let a board use it.
->
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 104 +++++++++++++++++++++++++++
->  1 file changed, 104 insertions(+)
+Yeah - I just dont want us top be the one to go create yet another
+variant.
 
-Friendly ping that this patch and the next one in the series are
-reviewed and ready to land now that -rc1 is out.  ;-)
+You could make the node name stricter by adding something like the
+following to the yaml:
+Documentation/devicetree/bindings/clock/fixed-clock.yaml
 
--Doug
+I dont see anything explicit here:
+https://github.com/devicetree-org/dt-schema/blob/master/schemas/clock/clock.yaml
+
+properties:
+  nodename:
+    pattern: "^(clock)(@[0-9a-f]+|-[0-9a-f]+)?$"
+
+Adding Mike and Stephen for thoughts..
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
