@@ -2,92 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA21629AAFB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 12:35:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D84D129AB27
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 12:50:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2411843AbgJ0Lfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 07:35:48 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:32272 "EHLO z5.mailgun.us"
+        id S1750209AbgJ0LuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 07:50:16 -0400
+Received: from foss.arm.com ([217.140.110.172]:39088 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2411734AbgJ0Lfr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 07:35:47 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1603798547; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=80VjFtcHJmmKKdKN4NkUpi73cDwAskFrHfK10HG4QSk=; b=mK/1/iMdVdDKcVUJDBwT+K4mEhgW9bO4f1yXAaUYOo+uxi1as5oQi1jVti8TDFZ8Swps7OUA
- ay+ZDMD6za0/Srop4WeSIcPu8OeOTHrLqGBu/UNU6cX3Mhl3vs1QNauzPa1ohlvOitcOnB55
- TtFVC0N5k366Cm8fm52Oi01kPlo=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5f9805da856acb9b0926bcbc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 27 Oct 2020 11:34:50
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 61C05C433FE; Tue, 27 Oct 2020 11:34:50 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id EC47AC433CB;
-        Tue, 27 Oct 2020 11:34:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org EC47AC433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v2] Asoc: qcom: lpass-sc7180: Fix MI2S bitwidth field bit positions
-Date:   Tue, 27 Oct 2020 17:04:34 +0530
-Message-Id: <1603798474-4897-1-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S2899599AbgJ0LuQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 07:50:16 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E802F1FB;
+        Tue, 27 Oct 2020 04:50:14 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 984063F66E;
+        Tue, 27 Oct 2020 04:50:12 -0700 (PDT)
+Date:   Tue, 27 Oct 2020 11:50:10 +0000
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        ardb@kernel.org, linux-kernel@vger.kernel.org,
+        Hanjun Guo <guohanjun@huawei.com>,
+        Sudeep Holla <sudeep.holla@arm.com>, robin.murphy@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        will@kernel.org, Anshuman Khandual <anshuman.khandual@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v4 6/7] arm64: mm: Set ZONE_DMA size based on early IORT
+ scan
+Message-ID: <20201027115010.GB32062@e121166-lin.cambridge.arm.com>
+References: <20201021123437.21538-1-nsaenzjulienne@suse.de>
+ <20201021123437.21538-7-nsaenzjulienne@suse.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201021123437.21538-7-nsaenzjulienne@suse.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On Wed, Oct 21, 2020 at 02:34:36PM +0200, Nicolas Saenz Julienne wrote:
+> From: Ard Biesheuvel <ardb@kernel.org>
+> 
+> We recently introduced a 1 GB sized ZONE_DMA to cater for platforms
+> incorporating masters that can address less than 32 bits of DMA, in
+> particular the Raspberry Pi 4, which has 4 or 8 GB of DRAM, but has
+> peripherals that can only address up to 1 GB (and its PCIe host
+> bridge can only access the bottom 3 GB)
+> 
+> Instructing the DMA layer about these limitations is straight-forward,
+> even though we had to fix some issues regarding memory limits set in
+> the IORT for named components, and regarding the handling of ACPI _DMA
+> methods. However, the DMA layer also needs to be able to allocate
+> memory that is guaranteed to meet those DMA constraints, for bounce
+> buffering as well as allocating the backing for consistent mappings.
+> 
+> This is why the 1 GB ZONE_DMA was introduced recently. Unfortunately,
+> it turns out the having a 1 GB ZONE_DMA as well as a ZONE_DMA32 causes
+> problems with kdump, and potentially in other places where allocations
+> cannot cross zone boundaries. Therefore, we should avoid having two
+> separate DMA zones when possible.
+> 
+> So let's do an early scan of the IORT, and only create the ZONE_DMA
+> if we encounter any devices that need it. This puts the burden on
+> the firmware to describe such limitations in the IORT, which may be
+> redundant (and less precise) if _DMA methods are also being provided.
+> However, it should be noted that this situation is highly unusual for
+> arm64 ACPI machines. Also, the DMA subsystem still gives precedence to
+> the _DMA method if implemented, and so we will not lose the ability to
+> perform streaming DMA outside the ZONE_DMA if the _DMA method permits
+> it.
+> 
+> Cc: Jeremy Linton <jeremy.linton@arm.com>
+> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Christoph Hellwig <hch@lst.de>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Hanjun Guo <guohanjun@huawei.com>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Anshuman Khandual <anshuman.khandual@arm.com>
+> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+> [nsaenz: Rebased, removed documentation change and add declaration in acpi_iort.h]
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> 
+> ---
+> 
+> Changes since v3:
+>  - Use min_not_zero()
+>  - Check ACPI revision
+>  - Remove unnecessary #ifdef in zone_sizes_init()
+> 
+>  arch/arm64/mm/init.c      |  3 ++-
+>  drivers/acpi/arm64/iort.c | 52 +++++++++++++++++++++++++++++++++++++++
+>  include/linux/acpi_iort.h |  4 +++
+>  3 files changed, 58 insertions(+), 1 deletion(-)
 
-Update SC7180 lpass_variant structure with proper I2S bitwidth
-field bit positions, as bitwidth denotes 0 to 1 bits,
-but previously used only 0 bit.
+Acked-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 
-Fixes: cba62c8b49be ("ASoC: qcom: Add support for SC7180 lpass variant")
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
-Changes Since v1:
-    -- Commit message is changed
-
- sound/soc/qcom/lpass-sc7180.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index c6292f9e..bc998d5 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -188,7 +188,7 @@ static struct lpass_variant sc7180_data = {
- 	.micmode		= REG_FIELD_ID(0x1000, 4, 8, 3, 0x1000),
- 	.micmono		= REG_FIELD_ID(0x1000, 3, 3, 3, 0x1000),
- 	.wssrc			= REG_FIELD_ID(0x1000, 2, 2, 3, 0x1000),
--	.bitwidth		= REG_FIELD_ID(0x1000, 0, 0, 3, 0x1000),
-+	.bitwidth		= REG_FIELD_ID(0x1000, 0, 1, 3, 0x1000),
- 
- 	.rdma_dyncclk		= REG_FIELD_ID(0xC000, 21, 21, 5, 0x1000),
- 	.rdma_bursten		= REG_FIELD_ID(0xC000, 20, 20, 5, 0x1000),
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 94e38f99748b..f5d4f85506e4 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -29,6 +29,7 @@
+>  #include <linux/kexec.h>
+>  #include <linux/crash_dump.h>
+>  #include <linux/hugetlb.h>
+> +#include <linux/acpi_iort.h>
+>  
+>  #include <asm/boot.h>
+>  #include <asm/fixmap.h>
+> @@ -190,7 +191,7 @@ static void __init zone_sizes_init(unsigned long min, unsigned long max)
+>  
+>  #ifdef CONFIG_ZONE_DMA
+>  	dt_zone_dma_bits = ilog2(of_dma_get_max_cpu_address(NULL));
+> -	zone_dma_bits = min(32U, dt_zone_dma_bits);
+> +	zone_dma_bits = min3(32U, dt_zone_dma_bits, acpi_iort_get_zone_dma_size());
+>  	arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
+>  	max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
+>  #endif
+> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+> index 9929ff50c0c0..05fe4a076bab 100644
+> --- a/drivers/acpi/arm64/iort.c
+> +++ b/drivers/acpi/arm64/iort.c
+> @@ -1718,3 +1718,55 @@ void __init acpi_iort_init(void)
+>  
+>  	iort_init_platform_devices();
+>  }
+> +
+> +#ifdef CONFIG_ZONE_DMA
+> +/*
+> + * Check the IORT whether any devices exist whose DMA mask is < 32 bits.
+> + * If so, return the smallest value encountered, or 32 otherwise.
+> + */
+> +unsigned int __init acpi_iort_get_zone_dma_size(void)
+> +{
+> +	struct acpi_table_iort *iort;
+> +	struct acpi_iort_node *node, *end;
+> +	acpi_status status;
+> +	u8 limit = 32;
+> +	int i;
+> +
+> +	if (acpi_disabled)
+> +		return limit;
+> +
+> +	status = acpi_get_table(ACPI_SIG_IORT, 0,
+> +				(struct acpi_table_header **)&iort);
+> +	if (ACPI_FAILURE(status))
+> +		return limit;
+> +
+> +	node = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->node_offset);
+> +	end = ACPI_ADD_PTR(struct acpi_iort_node, iort, iort->header.length);
+> +
+> +	for (i = 0; i < iort->node_count; i++) {
+> +		if (node >= end)
+> +			break;
+> +
+> +		switch (node->type) {
+> +			struct acpi_iort_named_component *ncomp;
+> +			struct acpi_iort_root_complex *rc;
+> +
+> +		case ACPI_IORT_NODE_NAMED_COMPONENT:
+> +			ncomp = (struct acpi_iort_named_component *)node->node_data;
+> +			limit = min_not_zero(limit, ncomp->memory_address_limit);
+> +			break;
+> +
+> +		case ACPI_IORT_NODE_PCI_ROOT_COMPLEX:
+> +			if (node->revision < 1)
+> +				break;
+> +
+> +			rc = (struct acpi_iort_root_complex *)node->node_data;
+> +			limit = min_not_zero(limit, rc->memory_address_limit);
+> +			break;
+> +		}
+> +		node = ACPI_ADD_PTR(struct acpi_iort_node, node, node->length);
+> +	}
+> +	acpi_put_table(&iort->header);
+> +	return limit;
+> +}
+> +#endif
+> diff --git a/include/linux/acpi_iort.h b/include/linux/acpi_iort.h
+> index 20a32120bb88..7d2e184f0d4d 100644
+> --- a/include/linux/acpi_iort.h
+> +++ b/include/linux/acpi_iort.h
+> @@ -38,6 +38,7 @@ void iort_dma_setup(struct device *dev, u64 *dma_addr, u64 *size);
+>  const struct iommu_ops *iort_iommu_configure_id(struct device *dev,
+>  						const u32 *id_in);
+>  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head);
+> +unsigned int acpi_iort_get_zone_dma_size(void);
+>  #else
+>  static inline void acpi_iort_init(void) { }
+>  static inline u32 iort_msi_map_id(struct device *dev, u32 id)
+> @@ -55,6 +56,9 @@ static inline const struct iommu_ops *iort_iommu_configure_id(
+>  static inline
+>  int iort_iommu_msi_get_resv_regions(struct device *dev, struct list_head *head)
+>  { return 0; }
+> +
+> +static inline unsigned int acpi_iort_get_zone_dma_size(void)
+> +{ return 32; }
+>  #endif
+>  
+>  #endif /* __ACPI_IORT_H__ */
+> -- 
+> 2.28.0
+> 
