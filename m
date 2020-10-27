@@ -2,166 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 816AA29AD3E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:26:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E8029AD4F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:30:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440890AbgJ0N0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 09:26:21 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40598 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2410280AbgJ0N0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 09:26:21 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09RDQD7f069029;
-        Tue, 27 Oct 2020 08:26:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603805173;
-        bh=jFlTmK7DiJVnBpGbWIY3UaPdeNtf7KfJypLsXmoxVco=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=kedXen2lWi1q0+03mV18wcUxtBhcmTtIK7NXBYPe5VK1P46dNlu/m2EuKMHlProp+
-         BNrOD+8RzRBUk/otp5jiZ49PC8wlGOWZxY5KZapy+HRu+KEHrbphzAKnOIy9GWoKfC
-         BsFbUg7GEhV/EupPN7Ku/X+nZEXBNGDeQ6zv7o9U=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09RDQDAH015839
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 27 Oct 2020 08:26:13 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 27
- Oct 2020 08:26:12 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 27 Oct 2020 08:26:12 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09RDQ7Cv080837;
-        Tue, 27 Oct 2020 08:26:09 -0500
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7200-main: Add McASP nodes
-To:     Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
-CC:     <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20201005074850.11247-1-peter.ujfalusi@ti.com>
- <20201005115805.d6yhykn7oc6x2tbu@charm>
- <5a9ed7d3-fcfd-edbf-fc34-112a7e55aa1c@ti.com>
- <20201005120837.75cwdmcpvzbvayq7@kinfolk>
- <d0e05389-9bd1-92a9-9624-4e9ac02a6a52@ti.com>
- <20201026145031.ggfugctq65zvgwp2@dismiss> <20201027130701.GE5639@atomide.com>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <8cd2b8fa-366f-804f-5b10-d9100c96cf49@ti.com>
-Date:   Tue, 27 Oct 2020 15:26:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S2900709AbgJ0NaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 09:30:17 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:40244 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2900708AbgJ0NaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 09:30:17 -0400
+Received: by mail-ed1-f67.google.com with SMTP id p93so1430841edd.7;
+        Tue, 27 Oct 2020 06:30:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=wudM5QwSA7l9nftYeilMZoiCCrd5fiqvQMUjjhFgGSI=;
+        b=PYVULImcz4Gnw1D04xpjc7uvWArCoNx6vXY4XNxSB1csz3VRtD5dmEaYz8rBijDZrV
+         Lnx6KlbQB5TfWQMwSmg1VSKDph3GRaYI8gCg2s1VXSyZp8AVZAt5VDEv5V2HA3xFtCWH
+         FMAlOkuUl+Jah3vd4YXsfW1CpfJdxHwAfSZx7HM1aai17vpMwEgAjOqtu6YDKp73YO0s
+         9ZTWzN7l04bvlMX9VZThvwmO0UbES/E82rcU/aGpH+3Xt7NF2jKZCz9HuBfZYvZu8EqS
+         cdKznbSFIPbsVZpjMeTFDdHqCcpxmfyiqWlHYBvTROodcB1FYiF6XXEnd5Z3tlyD2AX6
+         2qzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wudM5QwSA7l9nftYeilMZoiCCrd5fiqvQMUjjhFgGSI=;
+        b=US2CR5Rz0JbhYKqFS7uVY5DTbT5qAPnab6uxzV8Y7rwdhVTZlSSlDxL65FYgLuCG2r
+         oaoTgfLw099cKg3kCnh8q6WWrD4K2sq984pe6sInD5U0gQZcaEhoP3N7+vUXKn7mZICj
+         tGaNnmLWBjK5rwXVBbUSbNHmjhda00PD3Sf0O9lhgaWfOuee4GKH0dLclGEqdn8aaCkx
+         k0yUYIobguFzvOE4JZbHnPTMMxISW5UQ8vOoTWBRL1XFAX4O9kk0j5tjjwd/GZHR5DD1
+         VJ1G4hTgtTih3DotbHGDItwtmeKNklFlk9N2/0SmP6sxB3TZ6uUHVsIkElPl4j+syDbv
+         7igw==
+X-Gm-Message-State: AOAM533VFGgYXEihXsnb/hLVnmnNZG7qyF69FKKGsqix8DpbIxebH09N
+        eEv663JKsLGDdA42nM4PZCw=
+X-Google-Smtp-Source: ABdhPJyKqvL1G68+mtN3mL7LT5Bd5npDhA+ZcNbEOm7IUY11Z/Hx999HcvRW/1K0hoGytjj30+zKTA==
+X-Received: by 2002:a50:fb13:: with SMTP id d19mr2265371edq.215.1603805411492;
+        Tue, 27 Oct 2020 06:30:11 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id s12sm990258edu.28.2020.10.27.06.30.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 06:30:10 -0700 (PDT)
+Date:   Tue, 27 Oct 2020 14:30:08 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 21/52] ARM: tegra: Add interconnect properties to
+ Tegra20 device-tree
+Message-ID: <20201027133008.GH1822510@ulmo>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201025221735.3062-22-digetx@gmail.com>
+ <20201027091247.GK4244@kozik-lap>
 MIME-Version: 1.0
-In-Reply-To: <20201027130701.GE5639@atomide.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="e5bfZ/T2xnjpUIbw"
+Content-Disposition: inline
+In-Reply-To: <20201027091247.GK4244@kozik-lap>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--e5bfZ/T2xnjpUIbw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 27/10/2020 15.07, Tony Lindgren wrote:
-> * Nishanth Menon <nm@ti.com> [201026 14:58]:
->> On 13:38-20201007, Peter Ujfalusi wrote:
->> [...]
->>>>>>> +		status = "disabled";
->>>>>>
->>>>>> I see that there is inconsistent usage of "disabled" in our SoC.dts
->>>>>>
->>>>>> Our generic rule has been set them to disabled in board.dtsi
->>>>>> McASP and DSS for existing SoC dts do not follow this.. which is a tad
->>>>>> confusing.. (considering that not even all uarts come out on every board
->>>>>> and every uart needs pinmux to function..)
->>>>>
->>>>> "keep them disabled because several required properties are not present
->>>>> as they are board specific."
->>>>>
->>>>> In board file the enabled mcasp must be updated with options that is
->>>>> required for operation. Without those option the McASP can not be
->>>>> initialized.
->>>>>
->>>>> I think we have been revisiting the very same discussion every time we
->>>>> have a new SoC with McASP...
->>>>>
->>>>
->>>> Yep.. This doe'snt really follow the rest of the SoC definition. [1]
->>>> came to mind. The McASP discussion is a variation in the debate of the
->>>> same.
->>>
->>> Right, saying status = "okay" to a node which is missing required
->>> properties (which can only be added by boards when the McASP is
->>> connected up) does not sound a good solution.
->>> How should the SW handle that? Fail the device probe and return with
->>> -EINVAL or eat up the error and just probe with broken configuration.
->>> Since the peripheral is not used, the broken configuration will not
->>> cause much runtime errors as there will be no runtime use of the peripheral.
->>>
->>> status of fail or fail-sss is not a good one either, their definition is:
->>> "Indicates that the device is not operational. A serious error was
->>> detected in the device, and it is unlikely to become operational without
->>> repair."
->>>
->>> The peripheral is fine, we are just trying to enable it without
->>> providing the needed properties.
->>>
->>>> I'd argue Serdes, or for that matter any IP that has a link to
->>>> outside-the-SoC world has the same discussion point.
->>>
->>> status = "disabled" is still the closest thing for everything which have
->>> external dependencies. There is not much point to enable an i2c bus
->>> without making sure that the signals are actually routed to the pins
->>> where they supposed to go.
-> 
-> There is one reason to keep using the default status = "okay", for
-> i2c Linux can properly idle the device on boot without dependencies
-> to a certain boot loader version.
+On Tue, Oct 27, 2020 at 10:12:47AM +0100, Krzysztof Kozlowski wrote:
+> On Mon, Oct 26, 2020 at 01:17:04AM +0300, Dmitry Osipenko wrote:
+> > Add interconnect properties to the Memory Controller, External Memory
+> > Controller and the Display Controller nodes in order to describe hardwa=
+re
+> > interconnection.
+> >=20
+> > Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/tegra20.dtsi | 26 +++++++++++++++++++++++++-
+> >  1 file changed, 25 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/arch/arm/boot/dts/tegra20.dtsi b/arch/arm/boot/dts/tegra20=
+=2Edtsi
+> > index 9347f7789245..2e1304493f7d 100644
+> > --- a/arch/arm/boot/dts/tegra20.dtsi
+> > +++ b/arch/arm/boot/dts/tegra20.dtsi
+> > @@ -111,6 +111,17 @@ dc@54200000 {
+> > =20
+> >  			nvidia,head =3D <0>;
+> > =20
+> > +			interconnects =3D <&mc TEGRA20_MC_DISPLAY0A &emc>,
+>=20
+> I think you just added the defines and did not include them here, so
+> this should not even build. Did you test it?
 
-Right, but I would expect board files to disable not used peripherals,
-peripherals which is not connected up in the board. Including i2c buses.
+The dt-bindings/memory/tegra20-mc.h header is already included in
+existing DTS files for MC hot flush resets, so this should be fine.
 
->>> Or from other pow: a board design is not based on what is _not_
->>> connected to outside world, but you actually _connect_ or _enable_
->>> certain peripherals to external components, connectors.
->>
->> OK, I will buy the argument that the current status thingy is a bit
->> overloaded and does'nt imply the correct state we need it to imply with
->> "fail-sss" either - I remember an argument for "fail-incomplete", but
->> that never happened anyways.
->>
->> Lets add this argument to the commit message and repost after testing
->> on 5.10-rc1 please?
-> 
-> We should use status = "disabled" when the hardware is not accessible
-> to the SoC. That goes for things like secure world devices, and hardware
-> that relies on a missing external clock for example. For other things
-> we should just stick to the default which "okay" :)
+Thierry
 
-Even for peripherals which needs board specific properties and those
-properties are mandatory for the IP to be operational and usable?
+--e5bfZ/T2xnjpUIbw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The McASP bindings demands several must be present properties
-(tdm-slots, slot direction for example) and they are coming from the
-board design.
-Board files will disable all unused McASPs, they should. Imho the board
-dts file represents the board design and the board design is to
-_connect_ peripherals and not _disconnect_ them.
-Why would a board file should be in charge to disable what is not
-connected/used?
+-----BEGIN PGP SIGNATURE-----
 
-iow: what is the difference of a peripheral disabled in dtsi over a
-peripheral disabled in board dts file?
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+YIOAACgkQ3SOs138+
+s6GYyg/9G9pB/bwzgqQzz+wOHyuNUCHPbkIx9CUIUnXDndybQYoKI/moPxY1ulfd
+AygGLzhvDB/jOVPQbwykmE08zxduCfUaJrN0gSRpK1UjaUJ8DTW5Et4cvYegiH0C
+nq1edcOtncfzxoeOCR4FdBMML1WxzfU5io5SEhaVcVgvyj6Av4MEfjLUSZX6aNzQ
+vtmdx6GE5/ppkA47N/45K/p4ltdUo79NaFFocOoTM2LIAyR5b1wCpxzdQHivcsNI
+6pqTq6jcXI2OMPl6/RGb0adksk7r4xJ5X/om6TxMSm9rds6TZWJujmhs4QH/WLFp
+CBUQRWDFFic15MG6gaamN/bvUPE7w6Ue90b/c53CT0mYI6KhxpNoAUsJKWhgxWWx
+iBOmUo1g1Wh50meliaNrvMdwyEJfi1ZDGEecz8LTXwX8jXMTiW8B9Nq/I1nGSy+T
+iwkzs4cqWkQKjd9JsHKxWNAvHx/MNr6ilMssX8EPoG14xb+5bkwtPA94Dm5IbC3l
+JMng8h98+LVsBd6JiJQnuyDv5AmaE3Tr5qHVA3NWXMatKKhOWzmqjyPrDQcCuvKJ
+VGYb6t8ZpyedxjJjBUpkKp4yBD7bkuNBMaQ/QTsd5rNSF2PVoSLn5REgnFl9jSfB
+gK5H5gs9J5ihRLtZQ7Lw2JyoTZ2vCMnAAW65LoFJp/oqp8A3O4c=
+=uebE
+-----END PGP SIGNATURE-----
 
-> 
-> Regards,
-> 
-> Tony
-> 
-
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+--e5bfZ/T2xnjpUIbw--
