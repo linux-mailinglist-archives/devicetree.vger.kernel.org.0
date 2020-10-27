@@ -2,161 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C8D929A30D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 04:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 094DD29A339
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 04:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502328AbgJ0DOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 23:14:14 -0400
-Received: from mail-am6eur05on2051.outbound.protection.outlook.com ([40.107.22.51]:63942
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2409229AbgJ0DOO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 23:14:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VIjP+SVQhfYw4Sgnuef4tsK3mN+W53axWPpkQVapHkftcjVvF417G7/eV4XgQ4HJ1agJIZ9NxU/CcFCB+gsBxGrhrQpqAt6JRdQ5Rxm731Yf1QIfnnxH3C9hXu+CJESDOOfKB0boZghczmNHxD5yG7+8xdufLoIxCVYJbxR7C1SySMp1rY4WFQ6SlgAwSc6OP1R9sIJZStMcmlvbqwl6vc0xatQts8YjLv5k2tF9/41FoHpyUA+SbhZLP70k++h8IRNlLW8CV/PTc7uyPd8WaT8EgQ0qfnqQPJo/WZLMw122TbaUK7mUfImw3DYnoNZXtLe+Q28WGgvOY/DUB+2myg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HKi2HMqfmNOmz0tn0d04bFFbjloRXz7aq4/Fj24zPAA=;
- b=XxMPWef3bdZFtdgyVgBFmbRPiuUjTAf7ftOcMVIuyR3DvgigTidjXeNncCzEoq2WPa6vvxSzTECfaqv8Jv28RCKgHIjSGE68J5RL35N31kBCd8HKKOdsQ088JHBM36xD5/oIzUccFcdoMhYO3xN7iV8hVayDNA3QJDvJbxV8RPNmcLo8rUwhlNh3H3vsCWUthOve0aGq7dmo4IsiZaRHhAqdma9mTySSadO6rTFbWaEMxUkAhHsFIt3ecJBp94rIKN5StRHEW1Zp6snpjQg+bMr871zXcfULV7afJsqei367MJ0ArUEZy2mNP7/nFy8csSU5BPoCDoox6liyLvZhmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HKi2HMqfmNOmz0tn0d04bFFbjloRXz7aq4/Fj24zPAA=;
- b=k3B695qAfroQm3hde7hELyCbw/d/DGbILv2h94onjQm6rMexeArJIGm1XvFHZ1niU8jtQ3Eo1zoyGO+qR708fvIF5LbFMohWBD1ltIPq6Q5uo/pGpLvbChRBpeGW9QVVGRjf6LKBX6DJziBq8CVj9APKuIki3kFEVCm5km//N90=
-Received: from DB6PR0401MB2438.eurprd04.prod.outlook.com (2603:10a6:4:33::14)
- by DB7PR04MB4058.eurprd04.prod.outlook.com (2603:10a6:5:1b::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.25; Tue, 27 Oct
- 2020 03:14:10 +0000
-Received: from DB6PR0401MB2438.eurprd04.prod.outlook.com
- ([fe80::c8a:a759:d4ba:181e]) by DB6PR0401MB2438.eurprd04.prod.outlook.com
- ([fe80::c8a:a759:d4ba:181e%7]) with mapi id 15.20.3477.029; Tue, 27 Oct 2020
- 03:14:09 +0000
-From:   Biwen Li <biwen.li@nxp.com>
-To:     Leo Li <leoyang.li@nxp.com>, Marc Zyngier <maz@kernel.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-CC:     "Biwen Li (OSS)" <biwen.li@oss.nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "jason@lakedaemon.net" <jason@lakedaemon.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jiafei Pan <jiafei.pan@nxp.com>,
-        Xiaobo Xie <xiaobo.xie@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
- interrupt
-Thread-Topic: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
- interrupt
-Thread-Index: AQHWq6mP+ALMp9rpPEmvsss83oVh0Kmqxp/Q
-Date:   Tue, 27 Oct 2020 03:14:09 +0000
-Message-ID: <DB6PR0401MB2438DEFC7410BB75B1F89E528F160@DB6PR0401MB2438.eurprd04.prod.outlook.com>
-References: <20201026080127.40499-1-biwen.li@oss.nxp.com>
- <31d8971374c261003aee9f4807c8ac8c@kernel.org>
- <3448c822-31b1-7f9d-fedf-49912418fc3f@rasmusvillemoes.dk>
- <b65acafab54b62a2a22aa942089b8033@kernel.org>
- <VE1PR04MB668737DF1DDA6E1007BCA24C8F190@VE1PR04MB6687.eurprd04.prod.outlook.com>
-In-Reply-To: <VE1PR04MB668737DF1DDA6E1007BCA24C8F190@VE1PR04MB6687.eurprd04.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: nxp.com; dkim=none (message not signed)
- header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 5aafe518-a6bf-48fd-ac5a-08d87a265f51
-x-ms-traffictypediagnostic: DB7PR04MB4058:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB7PR04MB405863FAAC1EDA2910DD95098F160@DB7PR04MB4058.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1HX5VTjgkNW3FfRNaSSBb5aGZXgURQX2bVndsIKF9SBsiVV7lfItE0NfkuA6n3v4Lvp9cndu2EC5wyxG1pAuVCckOIv/H3Qgl/JtRumqRpf/RbqbzgXTgFzSvrOLdT2sBDtiRFrsL1VBK2Mf3G8JV7WXGhrUEDnvtj4hYuIxp+KKe1G59prn32YaXgjb7m2o0GXwLaZ2HKHUyDLf0pfl5VUZ5q3B4dFbqpnxBnWJ8urRXcfbKfBP+irwpaMLWW00oFHox+1qKdvN7oy9Wtxq9Y0diFj3LpuCPuhfs5Ci4KtcGxJ8bfiusq4DflZ7vojs4tJfrgoHhJxikvQr+F2J0g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0401MB2438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(396003)(136003)(376002)(39860400002)(44832011)(64756008)(71200400001)(8676002)(55016002)(54906003)(7416002)(316002)(478600001)(186003)(8936002)(66946007)(52536014)(110136005)(26005)(6506007)(66476007)(66556008)(53546011)(86362001)(7696005)(83380400001)(5660300002)(9686003)(76116006)(4001150100001)(66446008)(33656002)(4326008)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: qeKIfy4AcNNP+GYd5pZ1D4pmnNBLG+5kFysesogFJxsgKPC4k354dQwdFlz5jZ6HG2XeXf0U5FvpFRFBCBYB7VIh3Z04/ea5My1fSZ+/kIMzQ5YZfmfivS3xKvQcV+vL+c8LBGlpqDYQ1MzKprLOVjADAciOutOhfwuNnX/qS2Lu1gxAAbWZwuS2KFp4gOTRU3yVCM5iwzBGpwWW7JEWcp27awDU5nopUXqU3ZPyWG3aC2Qztaued3WDXUu0uTMLf6TY2AF6BZY+CwOOh6g+X4NFX1wEHwU0QljeBJjtgKhoocmCyzi0edihAPmsLXIMEUruN0HpY4oV/k5ESEBEuYWXvz8bm8R+YQSLHi16S8NJSZHC3BtCfZzQ7anQGxIJteVlNOUsezvUQyZVCgrfOZ8/4L71DCsXG+/+DWehqX2uQjVuJg2rCpT4nCDWaiFAg1xcTL2HDtNM9/z5TXAiJfN1WcCj/AlOxtGrpZecbUdcjNVBN6wiPmwFLb6O/ajClZt2E2X/kvLv/s5oraQAyRzBukirnU8OwgHVD0uBf//eJE0RDdAfu9hWkrF+N3Hdqno+ntKgF3bwsHxdiiFZvzo3tbFIKbuMZDxS6aCwuCJHzn2kvaEneEMT4YqEeGq0Po6X2LAYSGIxf+jXN6qY7Q==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2504566AbgJ0DWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 23:22:43 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:47058 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2504538AbgJ0DWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 23:22:43 -0400
+Received: by mail-pl1-f193.google.com with SMTP id x10so16035plm.13
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 20:22:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mzwmsuVM9xAQyK7nWxmsn3GokXE1FRx/WdryCE+KZmo=;
+        b=THv4SgwUuhJFRyThc/WRtCLzzk7pvaG53zJeOnN6noAobD3Bdk+nqTPWA6hK3KpM84
+         gXuRXli8VERWYhobeaOFqnXX7A6KSn5LZnopPPxl+/EylKbwaE7IWLwGcvbxrLjtzLbp
+         Xlzr6L6ggxuHBu8GrRNBWDRM7v3SB4/eVQVc8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mzwmsuVM9xAQyK7nWxmsn3GokXE1FRx/WdryCE+KZmo=;
+        b=fQWnZyV48tQevN9v1VenM+LiEVyXjTLvQiQd0OS3BsAUOZKf/vMdhvB2olYMJ14Rxi
+         XMgLVjk7b5xBIX4Y70k0IphG6qCay7H6iP/v2BR/l73iZCFahHtgZm3K4DZmwMn0f7DX
+         1UvUw0n8NrRpC7sB5qXHyGgZotoHgEtsPT5hYI6or6dyLhTa4/zwo1G3fmfXS76/LF7x
+         Dm3JTKiRyuvCLgsZ5cxwfXnVXH4/TcFr4IiHG+mvWgTbQRaiCSnUIrxhrKdwpp1+2hPc
+         cs3zA6UnvP4DaUOkwalPq5eaM714i0KeeZ1CGH+8X2H8Z7L4l82XBmLt0SYfqpEPF/GE
+         CA+w==
+X-Gm-Message-State: AOAM531aDlo7nt5yY0MpJvfSRaSL+N+8MQdYjgzh5f6KgtoBS1PHHOaB
+        sI2Q9m4Wk5oo0KXAL1h/RfVQeg==
+X-Google-Smtp-Source: ABdhPJw60lunYrbSac9zYPpjYuj0d1PNHTWP/m5LnyFqoAaSyUqfiZAK2Yke/rBQgfJgSUlKi0EihQ==
+X-Received: by 2002:a17:90a:4684:: with SMTP id z4mr98449pjf.97.1603768962510;
+        Mon, 26 Oct 2020 20:22:42 -0700 (PDT)
+Received: from localhost ([2401:fa00:1:10:de4a:3eff:fe7d:d39c])
+        by smtp.gmail.com with ESMTPSA id n16sm202246pfo.150.2020.10.26.20.22.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Oct 2020 20:22:41 -0700 (PDT)
+From:   Cheng-Yi Chiang <cychiang@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Srinivasa Rao <srivasam@codeaurora.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
+        xuyuqing@huaqin.corp-partner.google.com, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+Subject: [PATCH v12 0/2] Add documentation and machine driver for SC7180 sound card
+Date:   Tue, 27 Oct 2020 11:22:32 +0800
+Message-Id: <20201027032234.1705835-1-cychiang@chromium.org>
+X-Mailer: git-send-email 2.29.0.rc2.309.g374f81d7ae-goog
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0401MB2438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5aafe518-a6bf-48fd-ac5a-08d87a265f51
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2020 03:14:09.7329
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TadxpEu7fy2pD4VBtBVPZtyWq0ksLzKS/vaPD5xYKd0ufGdcgPNi3tiZWNYkIIQjnjRT9qOVcvhBHaz84WPI7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4058
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > -----Original Message-----
-> > From: Marc Zyngier <maz@kernel.org>
-> > Sent: Monday, October 26, 2020 4:23 AM
-> > To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-> > Cc: Biwen Li (OSS) <biwen.li@oss.nxp.com>; shawnguo@kernel.org;
-> > robh+dt@kernel.org; mark.rutland@arm.com; Leo Li <leoyang.li@nxp.com>;
-> > Z.q. Hou <zhiqiang.hou@nxp.com>; tglx@linutronix.de;
-> > jason@lakedaemon.net; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; Jiafei Pan <jiafei.pan@nxp.com>; Xiaobo Xie
-> > <xiaobo.xie@nxp.com>; linux-arm-kernel@lists.infradead.org; Biwen Li
-> > <biwen.li@nxp.com>
-> > Subject: Re: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A
-> > external interrupt
-> >
-> > On 2020-10-26 09:06, Rasmus Villemoes wrote:
-> > > On 26/10/2020 09.44, Marc Zyngier wrote:
-> > >> On 2020-10-26 08:01, Biwen Li wrote:
-> > >>> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > >>>
-> > >>> Add an new IRQ chip declaration for LS1043A and LS1088A
-> > >>> - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A
-> > >>> - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
-> > >>
-> > >> Three things:
-> > >> - This commit message doesn't describe the bit_reverse change
-> > >
-> > > Yeah, please elaborate on that, as the RM for 1043 or 1046 doesn't
-> > > mention anything about bit reversal for the scfg registers - they
-> > > don't seem to have the utter nonsense that is SCFG_SCFGREVCR, but
-> > > perhaps, instead of removing it, that has just become a hard-coded
-> > > part of the IP.
-> > >
-> > > Also, IANAL etc., but
-> > >
-> > >>> +// Copyright 2019-2020 NXP
-> > >
-> > > really? Seems to be a bit of a stretch.
-> > >
-> > > At the very least, cc'ing the original author and only person to
-> > > ever touch that file would have been appreciated.
-> >
-> > Huh. Well spotted. That's definitely not on.
-> > NXP people, please talk to your legal department.
->=20
-> We do have an internal policy to require developer adding/updating NXP
-> copyright on non-trivial changes.  I'm not sure if this change should be
-> considered trivial, but adding copyright claim on a file without prior co=
-pyright
-> claims could causing confusion like in this case.  One potential solution=
- is to
-> add a more specific description on the NXP change together with the copyr=
-ight
-> claim.  But maybe an easier solution is to add Rasmus your Copyright clai=
-m
-> first if you are ok with it.
-Yes, added a wrong Copyright.
->=20
-> Regards,
-> Leo
+Note:
+- The machine driver patch is made by the collaboration of
+  Cheng-Yi Chiang <cychiang@chromium.org>
+  Rohit kumar <rohitkr@codeaurora.org>
+  Ajit Pandey <ajitp@codeaurora.org>
+  But Ajit has left codeaurora.
+
+Changes from v1 to v2:
+- Ducumentation: Addressed all suggestions from Doug.
+- Machine driver:
+  - Fix comment style for license.
+  - Sort includes.
+  - Remove sc7180_snd_hw_params.
+  - Remove sc7180_dai_init and use aux device instead for headset jack registration.
+  - Statically define format for Primary MI2S.
+  - Atomic is not a concern because there is mutex in card to make sure
+    startup and shutdown happen sequentially.
+  - Fix missing return -EINVAL in startup.
+  - Use static sound card.
+  - Use devm_kzalloc to avoid kfree.
+
+Changes from v2 to v3:
+- Ducumentation: Addressed suggestions from Srini.
+- Machine driver:
+  - Reuse qcom_snd_parse_of to parse properties.
+  - Remove playback-only and capture-only.
+  - Misc fixes to address comments.
+
+Changes from v3 to v4:
+- Ducumentation: Addressed suggestions from Rob.
+ - Remove definition of dai.
+ - Use 'sound-dai: true' for sound-dai schema.
+ - Add reg property to pass 'make dt_binding_check' check although reg is not used in the driver.
+- Machine driver:
+ - Add Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+
+Changes from v4 to v5:
+- Documentation: Addressed suggestions from Rob.
+ - Add definition for "#address-cells" and "#size-cells".
+ - Add additionalProperties: false
+ - Add required properties.
+
+Changes from v5 to v6:
+- Documentation: Addressed suggestions from Rob.
+ - Drop contains in compatible strings.
+ - Only allow dai-link@[0-9]
+ - Remove reg ref since it has a type definition already.
+
+Changes from v6 to v7
+- Documentation:
+  - Add headset-jack and hdmi-jack to specify the codec
+    responsible for jack detection.
+- HDMI codec driver:
+  - Use component set_jack ops instead of exporting hdmi_codec_set_jack_detect.
+- Machine driver:
+  - Removed aux device following Stephan's suggestion.
+  - Use headset-jack and hdmi-jack to specify the codec
+    responsible for jack detection.
+  - Add support for HDMI(actually DP) playback.
+
+Changes from v7 to v8
+- Documentation:
+  - Remove headset-jack and hdmi-jack.
+- Machine driver:
+  - Let machine driver decide whether there is a jack on the DAI.
+
+Changes from v8 to v9
+- hdmi-codec driver:
+  - Fixed the naming.
+- Machine driver:
+  - Fixed unused fields.
+  - Moved snd_soc_card_set_drvdata
+  - Keep the naming of HDMI as dai name until v5 of lpass-hdmi patches.
+
+Changes from v9 to v10
+- Documentation:
+  - Let compatible string be more specific for board configuration to allow
+    for future changes.
+- Machine driver:
+  - Fixed unused include and macro.
+  - Add temporary macro SC7180_LPASS_DP for future change in sc7180-lpass.h.
+  - Let sound card be dynamically allocated.
+  - Change compatible string accordingly.
+
+Changes from v10 to v11
+- Machine driver:
+  - Use temporary macro LPASS_DP_RX for future change in sc7180-lpass.h.
+
+Changes from v11 to v12
+- Documentation:
+ - Change the file and title name for new compatible string google,sc7180-trogdor.
+ - Change the example of model name.
+- Machine driver:
+ - Use the definitaion of index LPASS_DP_RX in sc7180-lpass.h.
+ - Fix for compatible string.
+ - Replace a comma with semicolon.
+
+Ajit Pandey (1):
+  ASoC: qcom: sc7180: Add machine driver for sound card registration
+
+Cheng-Yi Chiang (1):
+  ASoC: google: dt-bindings: Add sc7180-trogdor machine bindings
+
+ .../bindings/sound/google,sc7180-trogdor.yaml | 130 +++++++++
+ sound/soc/qcom/Kconfig                        |  12 +
+ sound/soc/qcom/Makefile                       |   2 +
+ sound/soc/qcom/sc7180.c                       | 266 ++++++++++++++++++
+ 4 files changed, 410 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+ create mode 100644 sound/soc/qcom/sc7180.c
+
+-- 
+2.29.0.rc2.309.g374f81d7ae-goog
+
