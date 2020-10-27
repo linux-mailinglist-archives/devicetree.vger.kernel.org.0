@@ -2,83 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 320A429AB2F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 12:51:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B656629AB45
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 12:55:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394553AbgJ0LvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 07:51:04 -0400
-Received: from mx2.suse.de ([195.135.220.15]:46018 "EHLO mx2.suse.de"
+        id S2439165AbgJ0Lz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 07:55:28 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:56386 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2393622AbgJ0LvD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 07:51:03 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 21D65AAB2;
-        Tue, 27 Oct 2020 11:51:02 +0000 (UTC)
-Message-ID: <d2b6693aefe6d2cad03432366c48e05cb5c8d3a3.camel@suse.de>
-Subject: Re: [PATCH v4 0/7] arm64: Default to 32-bit wide ZONE_DMA
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Jeremy Linton <jeremy.linton@arm.com>, robh+dt@kernel.org,
-        catalin.marinas@arm.com, hch@lst.de, ardb@kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        linux-acpi@vger.kernel.org, linux-mm@kvack.org,
-        linux-riscv@lists.infradead.org
-Date:   Tue, 27 Oct 2020 12:50:53 +0100
-In-Reply-To: <9bccc5ef-9457-044b-7193-d002a395e461@arm.com>
-References: <20201021123437.21538-1-nsaenzjulienne@suse.de>
-         <9bccc5ef-9457-044b-7193-d002a395e461@arm.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-7KtHL8JmijrZUDdO/9dK"
-User-Agent: Evolution 3.36.5 
+        id S2439111AbgJ0Lz2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 07:55:28 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A730D200C98;
+        Tue, 27 Oct 2020 12:55:25 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9947F200C60;
+        Tue, 27 Oct 2020 12:55:25 +0100 (CET)
+Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 84851202AE;
+        Tue, 27 Oct 2020 12:55:25 +0100 (CET)
+Date:   Tue, 27 Oct 2020 13:55:25 +0200
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Adam Ford <aford173@gmail.com>, Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
+Message-ID: <20201027115525.gxt2oqavqulsqolo@fsr-ub1664-175>
+References: <20201024162016.1003041-1-aford173@gmail.com>
+ <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
+ <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
+ <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
+ <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
+ <CAHCN7xLC-gKquDNS3ToQCff=g610PscQE+T4zfO=_05GpLyK4w@mail.gmail.com>
+ <20201026145516.shmb55gaeh6u7oru@fsr-ub1664-175>
+ <c976125e45e2fe46afbee1735004668677383805.camel@pengutronix.de>
+ <20201027093110.jaslelqecwudn22k@fsr-ub1664-175>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201027093110.jaslelqecwudn22k@fsr-ub1664-175>
+User-Agent: NeoMutt/20180622
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20-10-27 11:31:10, Abel Vesa wrote:
+> On 20-10-26 16:37:51, Lucas Stach wrote:
+> > Am Montag, den 26.10.2020, 16:55 +0200 schrieb Abel Vesa:
+> > > On 20-10-25 11:05:32, Adam Ford wrote:
+> > > > On Sun, Oct 25, 2020 at 7:19 AM Marek Vasut <marex@denx.de> wrote:
+> > > > > On 10/25/20 1:05 PM, Abel Vesa wrote:
+> > > > > 
+> > > > > [...]
+> > > > > 
+> > > > > > > Together, both the GPC and the clk-blk driver should be able to pull
+> > > > > > > the multimedia block out of reset.  Currently, the GPC can handle the
+> > > > > > > USB OTG and the GPU, but the LCDIF and MIPI DSI appear to be gated by
+> > > > > > > the clock block
+> > > > > > > 
+> > > > > > > My original patch RFC didn't include the imx8mn node, because it
+> > > > > > > hangs, but the node I added looks like:
+> > > > > > > 
+> > > > > > > media_blk_ctl: clock-controller@32e28000 {
+> > > > > > >      compatible = "fsl,imx8mn-media-blk-ctl", "syscon";
+> > > > > > >      reg = <0x32e28000 0x1000>;
+> > > > > > >      #clock-cells = <1>;
+> > > > > > >      #reset-cells = <1>;
+> > > > > > > };
+> > > > > > > 
+> > > > > > > I was hoping you might have some feedback on the 8mn clk-blk driver
+> > > > > > > since you did the 8mp clk-blk drive and they appear to be very
+> > > > > > > similar.
+> > > > > > > 
+> > > > > > 
+> > > > > > I'll do you one better still. I'll apply the patch in my tree and give it
+> > > > > > a test tomorrow morning.
+> > > > 
+> > > > I do have some more updates on how to get the system to not hang, and
+> > > > to enumerate more clocks.
+> > > > Looking at Marek's work on enabling clocks in the 8MM, he added a
+> > > > power-domain in dispmix_blk_ctl pointing to the dispmix in the GPC.
+> > > > By forcing the GPC driver to write 0x1fff  to 32e28004, 0x7f to
+> > > > 32e28000 and 0x30000 to 32e28008, the i.MX8MM can bring the display
+> > > > clocks out of reset.
+> > > > 
+> > > 
+> > > Yeah, that makes sense. Basically, it was trying to disable unused clocks
+> > > (see clk_disable_unused) but in order to disable the clocks from the
+> > > media BLK_CTL (which I think should be renamed in display BLK_CTL) the
+> > > PD need to be on. Since you initially didn't give it any PD, it was trying
+> > > to blindly write/read the gate bit and therefore freeze.
+> > > 
+> > > > Unfortunately, the i.MX8MN needs to have 0x100 written to both
+> > > > 32e28000 and 32e28004, and the values written for the 8MM are not
+> > > > compatible.
+> > > > By forcing the GPC to write those values, I can get  lcdif_pixel_clk
+> > > > and the mipi_dsi_clkref  appearing on the Nano.
+> > > 
+> > > I'm trying to make a branch with all the patches for all i.MX8M so I
+> > > can keep track of it all. On this branch I've also applied the 
+> > > following patchset from Lucas Stach:
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.spinics.net%2Flists%2Farm-kernel%2Fmsg843007.html&amp;data=04%7C01%7Cabel.vesa%40nxp.com%7C5ff46189143747fce45908d87a5b4281%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637393879674506099%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=ELDCbfLvxrB6FLwnsA6VyGlU5V3qpA2ImfPAbZnWyzI%3D&amp;reserved=0
+> > > but I'm getting the folowing errors:
+> > > 
+> > > [   16.690885] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > > [   16.716839] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > > [   16.730500] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > > 
+> > > Lucas, any thoughts?
+> > > 
+> > > Maybe it's something related to 8MN.
+> > 
+> > The ADB is apparently clocked by one of the BLK_CTL clocks, so the ADB
+> > handshake ack will only work when the BLK_CTL clocks are enabled. So I
+> > guess the GPC driver should enable those clocks and assert the resets
+> > at the right time in the power-up sequencing. Unfortunately this means
+> > we can't properly put the BLK_CTL driver in the power-domain without
+> > having a cyclic dependency in the DT. I'm still thinking about how to
+> > solve this properly.
+> > 
+> 
+> I remember we had something similar in our internal tree with the
+> bus_blk_clk on 8MP, which was added by the media BLK_CTL. What I did was to
+> just drop the registration of that clock entirely. My rationale was that if
+> the clock is part of the BLK_CTL but also needed by the BLK_CTL to work,
+> I can leave it alone (that is, enabled by default) since when the PD will be
+> powered off the clock will gated too. I guess another option would be to 
+> mark it as critical, that way, it will never be disabled (will be left alone
+> by the clk_disable_unused too) but at the same time will be visible in the
+> clock hierarchy.
+> 
 
---=-7KtHL8JmijrZUDdO/9dK
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Do ignore evrything I said about the bus_blk_ctl, that did work on our tree since
+the whole PD power on/off "magic" is done in TF-A.
 
-On Fri, 2020-10-23 at 14:05 -0500, Jeremy Linton wrote:
-> Hi,
->=20
-> On 10/21/20 7:34 AM, Nicolas Saenz Julienne wrote:
-> > Using two distinct DMA zones turned out to be problematic. Here's an
-> > attempt go back to a saner default.
-> >=20
-> > I tested this on both a RPi4 and QEMU.
->=20
-> I've tested this in ACPI mode on the rpi4 (4+8G with/without the 3G=20
-> limiter) as well, with Ard's IORT patch. Nothing seems to have regressed.
->=20
-> Thanks,
->=20
-> Tested-by: Jeremy Linton <jeremy.linton@arm.com>
+So the problem, as I understand it now, is the fact that the blk_ctl driver won't
+probe because it needs its PD, but the PD is not registered because the ADB400
+can't power up since it needs the bus_blk_ctl clock enabled, clock which is registered
+by the blk_ctl. 
 
-Thanks!
-
-
---=-7KtHL8JmijrZUDdO/9dK
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+YCZ0ACgkQlfZmHno8
-x/7nHAf+NsPBIeE87IsQQDXb+Yj9HG4BT9qoFjLz6YOJ82f2k6RHxorkNMBGv/Kn
-mh1U2wjHbKJvDKSHIM/qsvcbSI8ZKQyqQBLYXintA5koBEw88a1UA3OXCqbs35Eu
-5s4sHfoPVAAM8OE9b7+sKTNBFXBLngmBotO0Tt9dAXrTEPNLfPu9pXt22zGb2gCy
-34Sv2032HmUGXMX3Dd1eEKPsfqYqHDsBMXmYsh1GrV5/xIJ2ClpD3yM7xjQ/PNtI
-c2VffRjFikj/PUTf8I1HPDOeSwX101QkV3Uq9TatMWsLwQYv9Y5EM8Gz8XPPCDF3
-CDY5pxiYqZdowQMQ53hVr9yjOjogdQ==
-=XjDo
------END PGP SIGNATURE-----
-
---=-7KtHL8JmijrZUDdO/9dK--
-
+> > Regards,
+> > Lucas
+> > 
