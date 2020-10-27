@@ -2,148 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6AF29A9FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:48:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03BC729AA1B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:56:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1418609AbgJ0Kqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 06:46:55 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:46296 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1418295AbgJ0Kqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:46:53 -0400
-Received: by mail-lf1-f67.google.com with SMTP id v6so1637415lfa.13;
-        Tue, 27 Oct 2020 03:46:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=n+R+IbGIJxakdbmAkfda0p2uyxFEg7csUXtIV29lJrk=;
-        b=SVfiFQtOYFa8vQUvYDmz3+JP27jTH3Is0VwBMhA6brpEQX6aqVVE7v8XoIXC2B/T9i
-         /UUxqtpgP8QO3Lz0YUWWU9MDmV1vJOLSFZMOysi8BLFxWrHc5VPheqvm98i9KTmFnUFr
-         QwLI7RApDDvh+pUFnpt7EfC8Nku9Bg4kLh5UKrH+hJ9giAWHOpBu3lgpQ8uZtQ9pRB9F
-         L2V92yUWWTyMa2+ZzPWJGShHBSbJogVxfj+9recRWgOTjg2lm2LmwV1MVGqWZhA56P6n
-         fEeHYGhjGnB1RJLuT6vCfwt+zfqcSizQCF1l+GZVM8ew92ojJ9hqFkEkNRQxB6Y44PQq
-         F0oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=n+R+IbGIJxakdbmAkfda0p2uyxFEg7csUXtIV29lJrk=;
-        b=MUBE4czwxNJ5K0+gsyD/7pHha6ughkwfRAzZAoqeiP+8mamBs2xYNPlB4kyp7XRDHg
-         xT4eujr2+SwCzWjGqWlealRLexD1M4KOxKov5ZpoHLS1AtqGf9GRrPrCNUz/eqBTaxjU
-         Vh45L4YYS4jWbPR2QwZdJ66rArJ/ez0LCv2seR9Z0R6W5qv/cAoYgMUhuv/9lR5HeHbw
-         mu0Dl+/XH/Hbp4a7p9m8dqK8+KX5VDnwVo7wchZShi7/vEvXrTQIWb6sIoOB/QZPLRwa
-         +w6WSVcADsdNJR3TExnqg6Se0lHYgQ/JRZnZxGPa8xnO2VjPgAdB3IlgnBms5N4y0xuN
-         +JlQ==
-X-Gm-Message-State: AOAM5315ZJRmc8I5eQZeQuoQY0Nk+dEwMQBZea92pPwEzWl4rkcAZ1oE
-        ZNsRn1cSi1tCU9w3ebDvdzXUETDr4xgUzh5Q/34=
-X-Google-Smtp-Source: ABdhPJzSxXRdGlZlEI7MXIMrUWEtGzO5f0hDcafc4ky8LbiK1uaq02psrtbhIjdejT+lZH8d5Mxsu4uDoIOyzBPaSLE=
-X-Received: by 2002:ac2:5f95:: with SMTP id r21mr690659lfe.209.1603795610496;
- Tue, 27 Oct 2020 03:46:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
- <20201027082900.GA21354@amd> <CADiBU3915nyB2OE_bqPy8kVqPhKbdTpBe8ay_ZAoFwuJoL-BfQ@mail.gmail.com>
- <20201027101535.GB13900@duo.ucw.cz>
-In-Reply-To: <20201027101535.GB13900@duo.ucw.cz>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 27 Oct 2020 18:46:39 +0800
-Message-ID: <CADiBU39rQ=5vk31caa1rv32eyzFrYB78p8GubpSi21DS5JYQkA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505 flash
- led controller
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S2898749AbgJ0Kzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:55:55 -0400
+Received: from mail-eopbgr10082.outbound.protection.outlook.com ([40.107.1.82]:40325
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2898758AbgJ0Kzy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 06:55:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JwMJ7115Hb1Nk+LX5axTcAi86cttwmAtK3hXuIXFSMh/DgULHpiTCGAkLkqD2v5oOO85eWqih9jMZHPclA3HMcKZ0pn+MgmJg3EcfQbXv8ONEg662X14Z+mgspa5BAlMfAOP1ZTttDjioSdcDkSxLo59OXqSmaHE6LspSZsCsL9csKUoLUqrrMZ6oIbHiI3vHzhMCsYgqnP13K9l1GE/Ib7idERWPGUkZ9/MhJ9DOvlqEPy9bg7nG25gmnjSoH9HTkRd6abiBSBpuVr5rttg89VU0z5R9AYSnpzbDL0RrhiYp9Fk6i40btkQMdKAsvsskiouaZUHcAcZh3Mk7lQzKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+KydwbrFObfZP7UZypCcdQNj2jxedfW6pd8Bhr8jMhs=;
+ b=od6PFULMhukF/ZXY3HX5fTg3jY0rrFjalGAUa9RX8lfTfNzxszeuPzQdbgfQ941zm33ewHYxH5yIXhzObw2b2ZqAIP6zMN+7WkwWebYOlvH8wzIbtOIzn5ibaAxog1YFb34cvGFqjsbMDhhFJDrzbbhfpcB22StzhC7KOymGQDjxfYneVXshmxZTMez2ZDSDpnt2MyuYi6s97P2m301AYAN6FP9gNZXKh143xNAQIph+jcFINF1fzFL2T/2Arbn+RFlSONh7eHIELYLYLl5WG+si8yEN8NGm6ZFBBHW7S4yJRpeF1DZpFPxk4BnM0iOysrIH7RRgFhTIKYNkaTaTrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+KydwbrFObfZP7UZypCcdQNj2jxedfW6pd8Bhr8jMhs=;
+ b=f8DV7XaQSBCPQbeal4uSOCbMVOSmQX4jkjU+zfy9/qWyTYHBPAFmIQU1yLMn2jKThboNPJvBjuFAZhgKu4J2n/zX1pbD3ucy4y8XtMDfvB3t7+PT53Yx45xIKVox8i2WWNM7dJWifkLOufG2oDPdZykLE0wKlFKQYspc/RxPi2o=
+Received: from HE1PR0401MB2444.eurprd04.prod.outlook.com (2603:10a6:3:83::15)
+ by HE1PR0401MB2634.eurprd04.prod.outlook.com (2603:10a6:3:87::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Tue, 27 Oct
+ 2020 10:55:48 +0000
+Received: from HE1PR0401MB2444.eurprd04.prod.outlook.com
+ ([fe80::2465:b69a:bcd7:75d9]) by HE1PR0401MB2444.eurprd04.prod.outlook.com
+ ([fe80::2465:b69a:bcd7:75d9%5]) with mapi id 15.20.3477.028; Tue, 27 Oct 2020
+ 10:55:48 +0000
+From:   "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
+To:     Marc Zyngier <maz@kernel.org>,
+        "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
+CC:     "linux@rasmusvillemoes.dk" <linux@rasmusvillemoes.dk>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Leo Li <leoyang.li@nxp.com>, "Z.q. Hou" <zhiqiang.hou@nxp.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "jason@lakedaemon.net" <jason@lakedaemon.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jiafei Pan <jiafei.pan@nxp.com>,
+        Xiaobo Xie <xiaobo.xie@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [v2 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+Thread-Topic: [v2 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+Thread-Index: AQHWrEzzsEWsQcWWFESnNpVhpDbBsamrQV8AgAACDACAAANj8A==
+Date:   Tue, 27 Oct 2020 10:55:48 +0000
+Message-ID: <HE1PR0401MB2444133CEF5CD207C36DC81E8F160@HE1PR0401MB2444.eurprd04.prod.outlook.com>
+References: <20201027044619.41879-1-biwen.li@oss.nxp.com>
+ <d5d6deb90b4b3d086024fcf01b737da9@kernel.org>
+ <HE1PR0401MB2444AA759104F4A34F91B61F8F160@HE1PR0401MB2444.eurprd04.prod.outlook.com>
+ <e6cd6eecb0221742548e657faf211733@kernel.org>
+In-Reply-To: <e6cd6eecb0221742548e657faf211733@kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: f9d354ae-ee4d-4eb7-85b5-08d87a66dcf2
+x-ms-traffictypediagnostic: HE1PR0401MB2634:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HE1PR0401MB2634AE35B55CDCA27D20EC98CE160@HE1PR0401MB2634.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:590;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: i8lHOQMUZMN/LUny6PVTiLbSAM6bl9Y8OCQkPCE2v+U0HV2Ni1gDf2FLxedYhZAo1hMCkxn1WOHCRSN/vYPk7HTJE/RReiQrSSSUUuU6d7hhFFOamWBN8xl4HmPU3cu6HOQ8VquSF7vAdo8ncT9n7Sk0ibk03zFsNG0ngu/2a9g0ZKpRGRVhM+xo+TF4nGvMwHhssV5UIuRFidnYW9oqfryNMdI0tA4t3AIlkxVGNA/2JFYZdsiURBjfvUHcR6NjHytumAEQhRkjig0O+5WB2bw+Uno7+gGV6Y05rwaiIsx31nGalpx6zbjzePUMzhpvbh0aeovGESvrQhCtd4qZpw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0401MB2444.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(346002)(376002)(366004)(136003)(66556008)(66476007)(9686003)(52536014)(186003)(478600001)(2906002)(7416002)(66446008)(8936002)(53546011)(4001150100001)(55016002)(71200400001)(83380400001)(4326008)(6506007)(76116006)(110136005)(8676002)(26005)(5660300002)(64756008)(7696005)(66946007)(33656002)(86362001)(54906003)(316002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: Yhm758XkXalnW5g02yirdvTMIF37fYmX1HOT1TVTkTMJy2pKlh7kw4kW4XDU3JVLK6s/ti+uLy9N5Ph5g1KpbI2kwDIZLhl2urfAzb694hj/fRSwicupU5gdkXdqFOlDxOviIE4zv4fkPgfmYE62UkeCQbZf79vk9qWe6JkHxh/X2dwajpBLlYFJc7Rz/SFHyKvVOpMwsDKevGlImfE9gz+aodxtNTtd7UkoreJf0tb45hc5JCHLVhqwMmIwoIzqSf0/AGBZVYQamC2LGbCgBk8TEKinaYx9jCjWIS25zd3+0oCFt/22wbSRnrQXaehmgmBDqku0zImX/Un7LJuX1VJNXdMQraCxXrkxcyfSos90D+axOJQFdNq9UoKKtQqOfS62yZfzsgZ/iWkN2HzjTmkrJcuaDvtD0HubnPkYbfFB35jrTsAjX0YYweoSogTHzH2MEfCXwWmWNAbdhGpaDPgvf1kNVu8o5OrmiIVkYh3tnI4DGeUNvKG2hVeAf3aP1GpuFci87giUloc8mr5gksAZtcKJjvsBOr6s0/pJGylHLO1rvToGGgN7gyghcQJk7RiPKy8LzOSw6nlKz+697su8KlzHjmbT+oWXkE/FLAXBBTRnn4R1uN+9TFzEFDYqcYyB4qx4nMxRZ8/UuQ/EKQ==
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0401MB2444.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9d354ae-ee4d-4eb7-85b5-08d87a66dcf2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2020 10:55:48.3550
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TTSnMfwaHWK/ssyR99XRiQBshOKCKrmN/5TgVeIBMjqcUdT5bsAtivpoXDlHdThE46+bAp0T8k1e5HJXDpFVlw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB2634
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pavel Machek <pavel@ucw.cz> =E6=96=BC 2020=E5=B9=B410=E6=9C=8827=E6=97=A5 =
-=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:15=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Hi!
->
-> > > Please use upper-case "LED" everywhere.
-> > >
-> > > This should be 2nd in the series, after DT changes.
-> > Sure, will ack in next series patch.
->
-> Feel free to wait for dt ACKs before resending.
->
-Yes, sure.
-> > > > +     help
-> > > > +       This option enables support for the RT4505 flash led contro=
-ller.
-> > >
-> > > Information where it is used would be welcome here.
-> > How about to add the below line for the extra information?
-> > Usually used to company with the camera device on smartphone/tablet
-> > products
->
-> Yes, that would help.
->
-> "It is commonly used in smartphones, such as Bell Packard T899" would
-> be even better.
 
-Sorry, We don't focus on specific products. It's a general part flash
-led controller.
-I'll change it like as below
-"It's commonly used in smartphones and tablets to assist the builtin camera=
-."
->
-> > > > +     ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ENABLE, R=
-T4505_ENABLE_MASK, val);
-> > > > +
-> > > > +unlock:
-> > > > +     mutex_unlock(&priv->lock);
-> > > > +     return ret;
-> > > > +}
-> > >
-> > > Why is the locking needed? What will the /sys/class/leds interface
-> > > look like on system with your flash?
-> >
-> > The original thought is because there's still another way to control
-> > flash like as v4l2.
-> > But after reviewing the source code, led sysfs node will be protected
-> > by led_cdev->led_access.
-> > And V4L2 flash will also be protected by v4l2_fh_is_singular API.
-> > I think the whole locking in the source code code may be removed. Right=
-?
->
-> Well, maybe you need it, I did not check..
->
-> What will the /sys/class/leds interface look like on system with your fla=
-sh?
->
-> > > > +     *state =3D ((val & RT4505_FLASH_GET) =3D=3D RT4505_FLASH_GET)=
- ? true : false;
-> > >
-> > > No need for ? ... part.
-> > Do you mean this function is not needed? If yes, it can be removed.
-> > But if it removed, led sysfs flash_strobe show will be not supported.
->
-> I meant "replace line with: *state =3D (val & RT4505_FLASH_GET) =3D=3D RT=
-4505_FLASH_GET;"
-Oh, I got it. redundant judgement.
->
-> > > > +static bool rt4505_is_accessible_reg(struct device *dev, unsigned =
-int reg)
-> > > > +{
-> > > > +     if (reg =3D=3D RT4505_REG_RESET || (reg >=3D RT4505_REG_CONFI=
-G  && reg <=3D RT4505_REG_FLAGS))
-> > > > +             return true;
-> > >
-> > > Make this two stagements.
-> > Like as the below one?? Or separate it into two if case.
-> > if (reg =3D=3D RT4505_REG_RESET ||
-> >        reg >=3D RT4505_REG_CONFIG  && reg <=3D RT4505_REG_FLAGS))
->
-> That would be fine, too... if you use just one space before "&&" :-).
-Thx.
->
-> Best regards,
->                                                         Pavel
+> >> On 2020-10-27 04:46, Biwen Li wrote:
+> >> > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> >> >
+> >> > Add an new IRQ chip declaration for LS1043A and LS1088A
+> >> > - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A.
+> >> > SCFG_INTPCR[31:0]
+> >> >   of these SoCs is stored/read as SCFG_INTPCR[0:31] defaultly(bit
+> >> >   reverse)
+> >> > - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
+> >> >
+> >> > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> >> > Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> >>
+> >> You clearly couldn't be bothered to read what I wrote in my earlier
+> >> replies. I'm thus ignoring this series...
+> > Okay, got it.
+> >>
+> >> > ---
+> >> > Change in v2:
+> >> > 	- add despcription of bit reverse
+> >> > 	- update copyright
+> >> >
+> >> >  drivers/irqchip/irq-ls-extirq.c | 10 +++++++++-
+> >> >  1 file changed, 9 insertions(+), 1 deletion(-)
+> >> >
+> >> > diff --git a/drivers/irqchip/irq-ls-extirq.c
+> >> > b/drivers/irqchip/irq-ls-extirq.c index 4d1179fed77c..9587bc2607fc
+> >> > 100644
+> >> > --- a/drivers/irqchip/irq-ls-extirq.c
+> >> > +++ b/drivers/irqchip/irq-ls-extirq.c
+> >> > @@ -1,5 +1,8 @@
+> >> >  // SPDX-License-Identifier: GPL-2.0
+> >> > -
+> >> > +/*
+> >> > + * Author: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> >> > + * Copyright 2020 NXP
+> >>
+> >> ... specially when you keep attributing someone else's copyright to
+> >> NXP.
+> > Then I don't know how to add the copyright, any suggestions?
+>=20
+> Simple. You don't add anything. NXP's copyright doesn't apply to this fil=
+e
+> before this patch, and your changes are so trivial that they don't really=
+ warrant
+> a mention. Furthermore, the git history already keeps track of who did wh=
+at.
+Okay, got it. Thanks.
+>=20
+>          M.
 > --
-> http://www.livejournal.com/~pavelmachek
+> Jazz is not dead. It just smells funny...
