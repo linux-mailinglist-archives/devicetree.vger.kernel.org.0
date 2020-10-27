@@ -2,109 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0331029AE00
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:54:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA1B29AE03
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:54:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409278AbgJ0NyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 09:54:16 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:13595 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2409294AbgJ0NyQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 09:54:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; l=1841; q=dns/txt; s=axis-central1;
-  t=1603806855; x=1635342855;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=uAN2e5G3WcdT+cTOp4JBtFE0vznyZLRyeShhV3oIqGM=;
-  b=WMOkygJmoeoU1f4qsJ/LdcbypQR+Y0FFFsAcZgZ9d064tB7vsbvfBrdZ
-   /1sRd3wrPnx5LPR0dDktQ8OE8uFpiIJcR0vQrlVKOkRs3rXXw5j5jSXpy
-   cfMCO0nFcqaKH8aRpul00YosFBk0uvijxzhWncd7hJ2YIsqPxWwkuV0E2
-   LgIqZUjCfEwVgHE46WFc2laef1kuv0FJW0wqSyOfgbXFP1Rha092IBJ+h
-   YcLUAudTw6gu57nx54iPOAsWgYgru5JvHpSYTjdhrmsQXhQQdz8+fcYB+
-   VWvsH6A82hs1Am3GeaBpk2tJy/kSwY1qf3N9y/GVQz+ZRYEC3EdstSUyF
-   A==;
-IronPort-SDR: DP5SbzFMLwpxHViDs5672DnOGm8eyiW076asrV0u1HrOdGhEEEMRbgkt7x9oRSHvcFdy304U5Z
- OjR4Py+c/8JVxKZnB3mOD3c9dWpUSTESWXPiyCboT+fBme8oJTHv9XP0gLI+kW/BkugQJe+uAe
- ChElU+jL2wPfu5DrO0IdiEkTxk+uztJoJkh9k8yNHkQIHLRpjHU/Ba5Z6g74COAGk40nToM8WN
- etWljz/RjGR4hA/VMwFYQVR0qVvKsvQI7S10e7UzfipJQi/xkGPGCEU1q2PUA4rykCDzsGxDQo
- pS0=
-X-IronPort-AV: E=Sophos;i="5.77,424,1596492000"; 
-   d="scan'208";a="13956774"
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Bamvor Jian Zhang <bamv2005@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] gpio: mockup: Allow probing from device tree
-Date:   Tue, 27 Oct 2020 14:53:25 +0100
-Message-ID: <20201027135325.22235-1-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.28.0
+        id S2503725AbgJ0Nyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 09:54:44 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:36158 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2409506AbgJ0Nyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 09:54:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1603806882;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Xq9zJB+jTHF1Ao/Vk53ndQQTAJYernihVo37z7lC1Gc=;
+        b=cGBvuAW19bwG9SNOF4U2W31771DjzMGp4h0PqXmm7fvc9ufGgwUY0pml2j+xBKccVWjNdV
+        N64+KGFmiP1mp9is9l3SUCuePcQF4zn6Edqq1ltxLgzpKBzsYNxSmZh8P8S1tvMQeN8BMv
+        rAeCu5IgskBf1EBHTlrY2iuHg7q4Slo=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-167-6eXgb_SIOcWIqONb9UOs-A-1; Tue, 27 Oct 2020 09:54:40 -0400
+X-MC-Unique: 6eXgb_SIOcWIqONb9UOs-A-1
+Received: by mail-ej1-f72.google.com with SMTP id ha4so914784ejb.9
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 06:54:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Xq9zJB+jTHF1Ao/Vk53ndQQTAJYernihVo37z7lC1Gc=;
+        b=D7RlFwDZkjrMB7CsNl8moNwBV7MKqihsQ9Licx0b+FheYB48J8uHiHuVUm1BhI4qtS
+         ljxDopfSDMmHd8DHKRG5nr6IBTvd9LeUzX9Lw5EKB8XvbP5INeaoQGmtTB0krkKbU/Jy
+         kzWnpez6VvpvikpHp95f/86XxdZQCOHhPc7SR4/JufXd5POE0Dpa6VYItBqsRq6IQ1B8
+         AbJcqnm1KxJw5czPPcm7/0eYbyQ4md6mNmLxGakmjZE7vomfpKOu0o12szQVpS0hlBec
+         77sVoQO6QWvFZfmDR3T+dHpoxQTYzhVbKI/fOgcC6UIEEp0gjkLSp/H1sRtTLI/ROt/7
+         UG4w==
+X-Gm-Message-State: AOAM531BsnQPVcujD8sJzfpGg9RCHJzS8bMc7HYosN2mFcUICJet8pK6
+        cfvrt9O5eBY7YNTtovUpxqUrod6DwCBMlpG8kxqi7tvxDsnw4Yftakh/2rJl5HLfyqUpukNp7dw
+        m6JxlzENHMPDj3s1TMKEViw==
+X-Received: by 2002:a05:6402:6d0:: with SMTP id n16mr2376717edy.133.1603806879288;
+        Tue, 27 Oct 2020 06:54:39 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJweW4U75R8C6XbhnmHVWmHcpssVe3Ijevw/dLSMoYLh3pGHHtF7QoIJhS0WzbWQfLDmTafXMg==
+X-Received: by 2002:a05:6402:6d0:: with SMTP id n16mr2376687edy.133.1603806879095;
+        Tue, 27 Oct 2020 06:54:39 -0700 (PDT)
+Received: from x1.localdomain (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+        by smtp.gmail.com with ESMTPSA id c3sm1025907edl.60.2020.10.27.06.54.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Oct 2020 06:54:38 -0700 (PDT)
+Subject: Re: [PATCH 1/7] ata: ahci: mvebu: Rename a platform data flag
+To:     sven.auhagen@voleatech.de, axboe@kernel.dk, robh+dt@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, gregory.clement@bootlin.com
+Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
+        rjw@rjwysocki.net, viresh.kumar@linaro.org,
+        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
+        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
+References: <20201007154554.66650-1-sven.auhagen@voleatech.de>
+ <20201007154554.66650-2-sven.auhagen@voleatech.de>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <6974d0f5-e600-d495-e132-9d3efbd4fd82@redhat.com>
+Date:   Tue, 27 Oct 2020 14:54:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20201007154554.66650-2-sven.auhagen@voleatech.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow the mockup driver to be probed via the device tree without any
-module parameters, allowing it to be used to configure and test higher
-level drivers like the leds-gpio driver and corresponding userspace
-before actual hardware is available.
+Hi,
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
-v2: Remove most of the added code, since the latest driver doesn't need it.
-    Drop DT binding document, since Rob Herring was OK with not documenting
-    this:
-    https://lore.kernel.org/linux-devicetree/5baa1ae6.1c69fb81.847f2.3ab1@mx.google.com/
+On 10/7/20 5:45 PM, sven.auhagen@voleatech.de wrote:
+> From: Miquel Raynal <miquel.raynal@bootlin.com>
+> 
+> Before adding more entries in the platform data structure, rename the
+> flags entry to be more precise and name it host_flags.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
- drivers/gpio/gpio-mockup.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+Patch looks good to me:
 
-diff --git a/drivers/gpio/gpio-mockup.c b/drivers/gpio/gpio-mockup.c
-index 67ed4f238d43..c93892a6936a 100644
---- a/drivers/gpio/gpio-mockup.c
-+++ b/drivers/gpio/gpio-mockup.c
-@@ -13,6 +13,7 @@
- #include <linux/gpio/driver.h>
- #include <linux/interrupt.h>
- #include <linux/irq.h>
-+#include <linux/of.h>
- #include <linux/irq_sim.h>
- #include <linux/irqdomain.h>
- #include <linux/module.h>
-@@ -460,9 +461,18 @@ static int gpio_mockup_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+#ifdef CONFIG_OF
-+static const struct of_device_id gpio_mockup_of_match[] = {
-+	{ .compatible = "gpio-mockup", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
-+#endif
-+
- static struct platform_driver gpio_mockup_driver = {
- 	.driver = {
- 		.name = "gpio-mockup",
-+		.of_match_table = of_match_ptr(gpio_mockup_of_match),
- 	},
- 	.probe = gpio_mockup_probe,
- };
-@@ -556,8 +566,7 @@ static int __init gpio_mockup_init(void)
- {
- 	int i, num_chips, err;
- 
--	if ((gpio_mockup_num_ranges < 2) ||
--	    (gpio_mockup_num_ranges % 2) ||
-+	if ((gpio_mockup_num_ranges % 2) ||
- 	    (gpio_mockup_num_ranges > GPIO_MOCKUP_MAX_RANGES))
- 		return -EINVAL;
- 
--- 
-2.28.0
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+
+Regards,
+
+Hans
+
+
+> ---
+>  drivers/ata/ahci_mvebu.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/ata/ahci_mvebu.c b/drivers/ata/ahci_mvebu.c
+> index d4bba3ace45d..43bb2db59698 100644
+> --- a/drivers/ata/ahci_mvebu.c
+> +++ b/drivers/ata/ahci_mvebu.c
+> @@ -30,7 +30,7 @@
+>  
+>  struct ahci_mvebu_plat_data {
+>  	int (*plat_config)(struct ahci_host_priv *hpriv);
+> -	unsigned int flags;
+> +	unsigned int host_flags;
+>  };
+>  
+>  static void ahci_mvebu_mbus_config(struct ahci_host_priv *hpriv,
+> @@ -196,7 +196,7 @@ static int ahci_mvebu_probe(struct platform_device *pdev)
+>  	if (IS_ERR(hpriv))
+>  		return PTR_ERR(hpriv);
+>  
+> -	hpriv->flags |= pdata->flags;
+> +	hpriv->flags |= pdata->host_flags;
+>  	hpriv->plat_data = (void *)pdata;
+>  
+>  	rc = ahci_platform_enable_resources(hpriv);
+> @@ -227,7 +227,7 @@ static const struct ahci_mvebu_plat_data ahci_mvebu_armada_380_plat_data = {
+>  
+>  static const struct ahci_mvebu_plat_data ahci_mvebu_armada_3700_plat_data = {
+>  	.plat_config = ahci_mvebu_armada_3700_config,
+> -	.flags = AHCI_HFLAG_SUSPEND_PHYS,
+> +	.host_flags = AHCI_HFLAG_SUSPEND_PHYS,
+>  };
+>  
+>  static const struct of_device_id ahci_mvebu_of_match[] = {
+> 
 
