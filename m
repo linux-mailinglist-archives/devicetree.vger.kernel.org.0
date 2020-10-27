@@ -2,127 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF53129A94D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:15:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C352529A965
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:20:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2897651AbgJ0KPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 06:15:48 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:52354 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2897644AbgJ0KPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:15:38 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 704DC1C0B8B; Tue, 27 Oct 2020 11:15:35 +0100 (CET)
-Date:   Tue, 27 Oct 2020 11:15:35 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505
- flash led controller
-Message-ID: <20201027101535.GB13900@duo.ucw.cz>
-References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
- <20201027082900.GA21354@amd>
- <CADiBU3915nyB2OE_bqPy8kVqPhKbdTpBe8ay_ZAoFwuJoL-BfQ@mail.gmail.com>
+        id S2896097AbgJ0KUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:20:00 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:50280 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2897797AbgJ0KTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:19:49 -0400
+Received: by mail-wm1-f66.google.com with SMTP id 13so816834wmf.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 03:19:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pZ4tF9Q35IB/PKnNsjsCcJxf1aDEpdznaVzDYuv50v0=;
+        b=C/n8t7qiHHIkKH6qBlW/WOBQPU58wfsvqwRg3TcTxZVnfjMweZXACSUeQ2Yr0SJona
+         bdgxQpS37set3XzGvi8D9HYTSw1RmWWModldxM0e+cGehXYXRU3K1mTjOK4kL6y6nXo5
+         /axUIi8EVPPR1jt57T2cmyeoVG/atnjZdaO6/010kCwExM5C4qTg8Gv2OwtoRDRI/Wxn
+         BmXfJXcLVV6OgliOWyqFM9J+HmGm+kg7QrCtLylTtWhX7bp2PpYVCEtkQbYr2pOTj/vX
+         hOgbmlhiz1rrdO/0zg6f1qwltCzISSTi3Q6IV68wglD4tuMZOCdDa7vWfcS9uy2c4oGG
+         wz9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pZ4tF9Q35IB/PKnNsjsCcJxf1aDEpdznaVzDYuv50v0=;
+        b=N4VTjtNc3Vi93vHvjJVcO7lMhXQZKYFq6NaLG+NcBG9GwJeTa4GkOK/oe75Pzovql4
+         GWO+gX3A6no4sqLpU1kBs6Xn8v30qF5L7+Q/FmOy7YeemJ7YMPdz6oX86OGbjQJtgM33
+         Slj5lqPMPtQUPN7Ztpu8WNYUbYzUHXeRx9kSh3oCMUTY7BZoLVwvupgHGfI6AaTzmxKQ
+         s1oOv41e49/VgsxBDfDlvq/UAn5TLaKhPsZp3k+D1bW42ssiv/EqlYd8Ze5xzuUbTRsN
+         o6sgu+mcsmcZtHn80DUbKTISjj6uNkofNsMovJ2/BFyaMpvzXp0BheB/p5hjprs42waF
+         wTUA==
+X-Gm-Message-State: AOAM533pUjELOtUlb674xhIV2e/WEDN1xzqHlLRkCTj/5z0miD3T6SGc
+        XzuAHlKrCePxzgr6MWp3LA3iBNFjLTAcbA==
+X-Google-Smtp-Source: ABdhPJzce/1cq7vO5et/wMCpGxoUY58Gq/wHtjsAUhmiTgM1W35aRGvgZYGxLwfJWRUAVClAG3qCoA==
+X-Received: by 2002:a7b:c8da:: with SMTP id f26mr1911316wml.178.1603793987905;
+        Tue, 27 Oct 2020 03:19:47 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:6cbc:1a3:aabd:d451? ([2a01:e34:ed2f:f020:6cbc:1a3:aabd:d451])
+        by smtp.googlemail.com with ESMTPSA id l16sm1472264wrx.5.2020.10.27.03.19.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Oct 2020 03:19:47 -0700 (PDT)
+Subject: Re: [PATCH 1/3] dt-bindings: thermal: mediatek: make resets property
+ optional
+To:     Fabien Parent <fparent@baylibre.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org, amitk@kernel.org,
+        rui.zhang@intel.com
+References: <20201021164231.3029956-1-fparent@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <d8a5ce64-04da-7a4a-bcb9-1cc25cea42db@linaro.org>
+Date:   Tue, 27 Oct 2020 11:19:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="s/l3CgOIzMHHjg/5"
-Content-Disposition: inline
-In-Reply-To: <CADiBU3915nyB2OE_bqPy8kVqPhKbdTpBe8ay_ZAoFwuJoL-BfQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201021164231.3029956-1-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 21/10/2020 18:42, Fabien Parent wrote:
+> MT8516 Thermal IP does not support reset. Make the resets property
+> optional in order to be able to support MT8516 SoC.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
 
---s/l3CgOIzMHHjg/5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks
 
-Hi!
 
-> > Please use upper-case "LED" everywhere.
-> >
-> > This should be 2nd in the series, after DT changes.
-> Sure, will ack in next series patch.
 
-Feel free to wait for dt ACKs before resending.
 
-> > > +     help
-> > > +       This option enables support for the RT4505 flash led controll=
-er.
-> >
-> > Information where it is used would be welcome here.
-> How about to add the below line for the extra information?
-> Usually used to company with the camera device on smartphone/tablet
-> products
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Yes, that would help.
-
-"It is commonly used in smartphones, such as Bell Packard T899" would
-be even better.
-
-> > > +     ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ENABLE, RT4=
-505_ENABLE_MASK, val);
-> > > +
-> > > +unlock:
-> > > +     mutex_unlock(&priv->lock);
-> > > +     return ret;
-> > > +}
-> >
-> > Why is the locking needed? What will the /sys/class/leds interface
-> > look like on system with your flash?
->=20
-> The original thought is because there's still another way to control
-> flash like as v4l2.
-> But after reviewing the source code, led sysfs node will be protected
-> by led_cdev->led_access.
-> And V4L2 flash will also be protected by v4l2_fh_is_singular API.
-> I think the whole locking in the source code code may be removed. Right?
-
-Well, maybe you need it, I did not check..
-
-What will the /sys/class/leds interface look like on system with your flash?
-
-> > > +     *state =3D ((val & RT4505_FLASH_GET) =3D=3D RT4505_FLASH_GET) ?=
- true : false;
-> >
-> > No need for ? ... part.
-> Do you mean this function is not needed? If yes, it can be removed.
-> But if it removed, led sysfs flash_strobe show will be not supported.
-
-I meant "replace line with: *state =3D (val & RT4505_FLASH_GET) =3D=3D RT45=
-05_FLASH_GET;"
-
-> > > +static bool rt4505_is_accessible_reg(struct device *dev, unsigned in=
-t reg)
-> > > +{
-> > > +     if (reg =3D=3D RT4505_REG_RESET || (reg >=3D RT4505_REG_CONFIG =
- && reg <=3D RT4505_REG_FLAGS))
-> > > +             return true;
-> >
-> > Make this two stagements.
-> Like as the below one?? Or separate it into two if case.
-> if (reg =3D=3D RT4505_REG_RESET ||
->        reg >=3D RT4505_REG_CONFIG  && reg <=3D RT4505_REG_FLAGS))
-
-That would be fine, too... if you use just one space before "&&" :-).
-
-Best regards,
-							Pavel
---=20
-http://www.livejournal.com/~pavelmachek
-
---s/l3CgOIzMHHjg/5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX5fzRwAKCRAw5/Bqldv6
-8k9iAJ0dDvz58HeSc0sCZNkyktZd9hdtUwCdETJwZxtAXjPYTStw/T/M6cOkQr8=
-=uA/u
------END PGP SIGNATURE-----
-
---s/l3CgOIzMHHjg/5--
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
