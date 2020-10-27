@@ -2,71 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7EE29A481
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 07:16:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB6E29A52D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:03:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2506348AbgJ0GPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 02:15:51 -0400
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:11864 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2506333AbgJ0GPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 02:15:16 -0400
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5f97bafa0001>; Mon, 26 Oct 2020 23:15:22 -0700
-Received: from [10.25.99.37] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 27 Oct
- 2020 06:15:12 +0000
-Subject: Re: [PATCH v3 1/3] ASoC: dt-bindings: audio-graph-card: switch to
- yaml base Documentation
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>
-References: <87a6wfay7t.wl-kuninori.morimoto.gx@renesas.com>
- <878sbzay6u.wl-kuninori.morimoto.gx@renesas.com>
- <75ca7528-3177-46cb-73c5-46e32e63ad44@nvidia.com>
- <87k0vcw9zd.wl-kuninori.morimoto.gx@renesas.com>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <b4beff3d-2109-7c86-67ad-01071e023f79@nvidia.com>
-Date:   Tue, 27 Oct 2020 11:45:09 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2507080AbgJ0HDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 03:03:52 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:49037 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387606AbgJ0HDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 03:03:52 -0400
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kXJ1C-00019L-Kr; Tue, 27 Oct 2020 08:03:42 +0100
+Subject: Re: [Linux-stm32] [PATCH v7 10/12] ARM: dts: stm32: Fix schema
+ warnings for pwm-leds
+To:     Alexander Dahl <post@lespocky.de>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-leds@vger.kernel.org
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-11-post@lespocky.de>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <b387bda8-3643-1d27-4996-2aa4dc94d69f@pengutronix.de>
+Date:   Tue, 27 Oct 2020 08:03:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <87k0vcw9zd.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20201005203451.9985-11-post@lespocky.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1603779322; bh=m8eIVXpohAhKwVK7bdPj1gb28+PpYlPtv35EBNssb2o=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=Bb/IMcgXP7YwciqUeFXmYtZAvmHezu3WC2LSWvhz5fK8r6hY/1noRevxG/bBsQyLg
-         Ynizs1N1iTcwPcpNnLNo1nX3RFIRrMYK0Fw/ASAflTayJiX3fUnzC+zYF9gBAj+zbv
-         6I8syh1u70wFVcnV4mMCCRyTrFi2vSVbLGEBQI8sjS+fQAA8OHVaOHvjPDYzmebmGI
-         iGhL0EOySCNE5yf7DWl10eUwHJmESz/pC+8FNBZMC4NptQY/aIjayIEGyoTJZ5IVvA
-         u1099Y2Ym49hcJ5KeHRtAzg9Dve87Ns7bTdGcJGnyQFWPUGcMCRczpNtdUelkaj2p6
-         nFFxEgkGQwQ1g==
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
+Hello Alexander,
 
->>> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->>>
->>> This patch switches from .txt base to .yaml base Document.
->>>
->>> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->>> ---
-> (snip)
->>> +additionalProperties: false
->>> +
->> This needs to be true when other files want to reference this schema
->> and/or define some additional properties.
-> *Current* audio-graph-card doesn't assume such case.
-> I think you need to update it when you support tegra-audio-graph
-This would be applicable when we want to split audio graph documentation 
-into two schemas now itself. May be I will do this in my series.
+On 10/5/20 10:34 PM, Alexander Dahl wrote:
+> The node names for devices using the pwm-leds driver follow a certain
+> naming scheme (now).  Parent node name is not enforced, but recommended
+> by DT project.
+> 
+>   DTC     arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+>   CHECK   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
+> /home/alex/build/linux/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml: led-rgb: 'led-blue', 'led-green', 'led-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+>         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> 
+> Signed-off-by: Alexander Dahl <post@lespocky.de>
+
+Acked-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+
+But got two questions below:
+
+> ---
+> 
+> Notes:
+>     v6 -> v7:
+>       * split up patch (one per sub arch)
+>       * added actual warnings to commit message
+> 
+>  arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> index 5700e6b700d3..25d548cb975b 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> @@ -36,34 +36,34 @@
+>  		stdout-path = &uart4;
+>  	};
+>  
+> -	led-act {
+> +	led-controller-1 {
+>  		compatible = "gpio-leds";
+>  
+> -		led-green {
+> +		led-1 {
+>  			label = "mc1:green:act";
+>  			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+>  	};
+>  
+> -	led-rgb {
+> +	led-controller-2 {
+
+Is a single RGB LED really a controller?
+
+>  		compatible = "pwm-leds";
+>  
+> -		led-red {
+> +		led-2 {
+
+Shouldn't this have been led-1 as well or is the numbering "global" ?
+
+>  			label = "mc1:red:rgb";
+>  			pwms = <&leds_pwm 1 1000000 0>;
+>  			max-brightness = <255>;
+>  			active-low;
+>  		};
+>  
+> -		led-green {
+> +		led-3 {
+>  			label = "mc1:green:rgb";
+>  			pwms = <&leds_pwm 2 1000000 0>;
+>  			max-brightness = <255>;
+>  			active-low;
+>  		};
+>  
+> -		led-blue {
+> +		led-4 {
+>  			label = "mc1:blue:rgb";
+>  			pwms = <&leds_pwm 3 1000000 0>;
+>  			max-brightness = <255>;
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
