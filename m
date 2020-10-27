@@ -2,218 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7105229C75D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C86C529C762
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:38:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1828371AbgJ0SbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 14:31:13 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:36245 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1824900AbgJ0SbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 14:31:13 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 06047580124;
-        Tue, 27 Oct 2020 14:31:12 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Tue, 27 Oct 2020 14:31:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=cqEApD9bNAy57QPWXCIsEAVmHi2
-        EXCNHlS0Cgqo2X94=; b=rGRlQhRMZctKbHoVVx7plOw8460fHGVy1rIkJERfJ68
-        m0cXpO/1m8ioFGbSZ7Mmn00NDt1zy90g8BP1UAK5Ka5vr/YjsxFRSK+ZVW5V17/t
-        DWf/Fp4dCIQS75RyU2y5acJKC5m5XJnh8b6mf+AqeKljwaKYjy1kDYpkdPSIgDAL
-        LpGug3ba/FFM50oDljluDoOxpQtfXOZbWqd4zz/8rfWdVkFU9NsGJ1h2sxekf5Af
-        WFGKueFomjp7kv/PtPee8B/YPGHsD1rcQ4YP3OvoFrTJGt7dqxaK3mng0ijZST+c
-        GVOXnQkR39yy0nJZAVciAAEkXRMCSCaw1A2RqAKNDOQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=cqEApD
-        9bNAy57QPWXCIsEAVmHi2EXCNHlS0Cgqo2X94=; b=Mf1sZYH1Q4Y47ymBY8cIAm
-        sklnWxwyr0GmYNvLkDvmBIcQjXalpF5Aae12XQ23sAhMZxOV1YjQfTSmomZMVBSq
-        Jrz5yrnEvhzG4hleuOElgzcWL7orU+QpbWa6bNMnB2sgplx3BfWAdS3KUBFLqo7V
-        dGb5sylsqJlMSAKZ6GcNEfHkSlKtbDozGEoGi7pkVaNkVDymIvrmuIU4c8qQ/iyT
-        IcgbtapixtbbUSdN4AYFMWYVNcOjgHNVHtLoba2RTR08BiEzJNYPmC5NacgGxYra
-        nLvZoI6U6vh88Tf8yeoTpxCFmVIOt+sxpbSWtoccHo41nXmEE4PGCribreRdhkOg
-        ==
-X-ME-Sender: <xms:bWeYXyEvWHkoH8N7oxrKcKrrUwz2zIslRKm9l42PBgutsRUoAiCZsg>
-    <xme:bWeYXzXTRT3oQLN1LBb69LBOB-DHHIQib2IDyUq7LI0-7Fu6pC9VcY_n5ZL-Toh5S
-    5ezrsUiOFuXo4sqiPs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrkeelgdduudegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
-    gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:bWeYX8LjuHT6zzcPG3QYfU6NXVKvSyy_o-KTQJLejLG7I39Th13Fsw>
-    <xmx:bWeYX8GxFEfznQP79ChKgKymqtY9_GOrgcomWC1tAiCO0Oj9CDCgbg>
-    <xmx:bWeYX4XZslNOPLdBYlD66gatRCrP1K4szL9126ZdXJpp6WM-DxSSeQ>
-    <xmx:b2eYXzaabuwTpmdV64CRNDea6aQtU9pSxhpjfq6n6Lh0O-XYZpEEtQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E385B3064683;
-        Tue, 27 Oct 2020 14:31:08 -0400 (EDT)
-Date:   Tue, 27 Oct 2020 19:31:07 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        id S1828394AbgJ0Sbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 14:31:55 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:40837 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1828382AbgJ0Sbz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 14:31:55 -0400
+Received: by mail-wr1-f67.google.com with SMTP id h5so3035586wrv.7;
+        Tue, 27 Oct 2020 11:31:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7u9KlF+y0OyiuKU/hfbRmYFsG2pmwDPw+7/oznvGoCI=;
+        b=m0U8E4Wp1elMN898vGRbZYUMLzVIvaqipR8nK3gm1Rhe0PoQYdzIdFKES2aKPmfomS
+         g1mQok3PsCL3QHSxuRwKpkT0FMcH2a8HZ1N+DPa3HSi6uVLfDJHTKPB53xgIUPcsONep
+         iTzqk3VldAw85kFIAt8iVoees6SdZJ13xVwerq87YuQzjYRs/4vSQ77M6yLBKeLoiAOm
+         T7foIBbIpnyG8kyud3+wyK23iK1GE7CmdvcKUOtO2bYNxiu7klW0tpkDNHj12HUCP1rh
+         sopLKCf2vcZ9CGYegRdvT+8QQwfAYVy54vk/TMZ581Q/1nOufN13nkh6wHriNx8lVQ2P
+         cKHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7u9KlF+y0OyiuKU/hfbRmYFsG2pmwDPw+7/oznvGoCI=;
+        b=AR6pXeDQsCxNXRUGysV5XktY3EDOC92BbD/iPoFkEHOhz5WUJjdVCNt0PYaHUMKIZ8
+         Q4pifXHJFia8vJyCMpo6V0DSyiXAIFk4bKVM0Mlgs4JJNGosaGuKk9ysaZPmUMLqWahu
+         AaLfEduB07PWbWYZGWSacXaf0HaVRbGIXByVSbwmbhqwgbJc/KLsS54CZV8K5YpoglBa
+         MTqCC7/bwOsqpzZewBiTOFZOxMi933S9++jsAkyU3PELVswGMPZCVTu0OYeqQHNOMGOn
+         CHWg5Kq7SZucC+LqEzhxHZXq/5WTxZoEJw2nXgNY0CO8gqOIZEbHnUX5zNlomRjnHAaV
+         6ndA==
+X-Gm-Message-State: AOAM531smM5BeK0rje+ggDOSI1z3TNFCYm2/lxCO1LwAITwlhSsd+m93
+        QQxAERoKLGDPFUmkgQtFArMZrELnKSIzQg==
+X-Google-Smtp-Source: ABdhPJxxBZ5wxOSwsnJUso/K1iFZaRYt3LJplJOMEmFBsSSBdqL+CoSH3Oj8ijg4eFnWClC5F5RUcg==
+X-Received: by 2002:a5d:46cf:: with SMTP id g15mr4630755wrs.342.1603823512576;
+        Tue, 27 Oct 2020 11:31:52 -0700 (PDT)
+Received: from localhost.localdomain (lputeaux-656-1-11-33.w82-127.abo.wanadoo.fr. [82.127.142.33])
+        by smtp.gmail.com with ESMTPSA id m9sm2864148wmc.31.2020.10.27.11.31.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 11:31:51 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com,
-        =?utf-8?B?S8OpdmluIEwnaMO0cGl0YWw=?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH 05/14] media: sun6i-csi: Only configure the interface
- data width for parallel
-Message-ID: <20201027183107.sofqfbmgg5aancmr@gilmour.lan>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-6-paul.kocialkowski@bootlin.com>
- <20201026160035.sr6kifrpkev773o6@gilmour.lan>
- <20201027093119.GD168350@aptenodytes>
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v9 00/14] Add Allwinner H3/H5/H6/A64 HDMI audio
+Date:   Tue, 27 Oct 2020 19:31:35 +0100
+Message-Id: <20201027183149.145165-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xds6nfzydlmcpk4h"
-Content-Disposition: inline
-In-Reply-To: <20201027093119.GD168350@aptenodytes>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---xds6nfzydlmcpk4h
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series add H6 I2S support and the I2S node missing to support
+HDMI audio in different Allwinner SoC.
 
-On Tue, Oct 27, 2020 at 10:31:19AM +0100, Paul Kocialkowski wrote:
-> Hi,
->=20
-> On Mon 26 Oct 20, 17:00, Maxime Ripard wrote:
-> > On Fri, Oct 23, 2020 at 07:45:37PM +0200, Paul Kocialkowski wrote:
-> > > Bits related to the interface data width do not have any effect when
-> > > the CSI controller is taking input from the MIPI CSI-2 controller.
-> >=20
-> > I guess it would be clearer to mention that the data width is only
-> > applicable for parallel here.
->=20
-> Understood, will change the wording in the next version.
->=20
-> > > In prevision of adding support for this case, set these bits
-> > > conditionally so there is no ambiguity.
-> > >=20
-> > > Co-developed-by: K=E9vin L'h=F4pital <kevin.lhopital@bootlin.com>
-> > > Signed-off-by: K=E9vin L'h=F4pital <kevin.lhopital@bootlin.com>
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > ---
-> > >  .../platform/sunxi/sun6i-csi/sun6i_csi.c      | 42 +++++++++++------=
---
-> > >  1 file changed, 25 insertions(+), 17 deletions(-)
-> > >=20
-> > > diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c b/dri=
-vers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-> > > index 5d2389a5cd17..a876a05ea3c7 100644
-> > > --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-> > > +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-> > > @@ -378,8 +378,13 @@ static void sun6i_csi_setup_bus(struct sun6i_csi=
-_dev *sdev)
-> > >  	unsigned char bus_width;
-> > >  	u32 flags;
-> > >  	u32 cfg;
-> > > +	bool input_parallel =3D false;
-> > >  	bool input_interlaced =3D false;
-> > > =20
-> > > +	if (endpoint->bus_type =3D=3D V4L2_MBUS_PARALLEL ||
-> > > +	    endpoint->bus_type =3D=3D V4L2_MBUS_BT656)
-> > > +		input_parallel =3D true;
-> > > +
-> > >  	if (csi->config.field =3D=3D V4L2_FIELD_INTERLACED
-> > >  	    || csi->config.field =3D=3D V4L2_FIELD_INTERLACED_TB
-> > >  	    || csi->config.field =3D=3D V4L2_FIELD_INTERLACED_BT)
-> > > @@ -395,6 +400,26 @@ static void sun6i_csi_setup_bus(struct sun6i_csi=
-_dev *sdev)
-> > >  		 CSI_IF_CFG_HREF_POL_MASK | CSI_IF_CFG_FIELD_MASK |
-> > >  		 CSI_IF_CFG_SRC_TYPE_MASK);
-> > > =20
-> > > +	if (input_parallel) {
-> > > +		switch (bus_width) {
-> > > +		case 8:
-> > > +			cfg |=3D CSI_IF_CFG_IF_DATA_WIDTH_8BIT;
-> > > +			break;
-> > > +		case 10:
-> > > +			cfg |=3D CSI_IF_CFG_IF_DATA_WIDTH_10BIT;
-> > > +			break;
-> > > +		case 12:
-> > > +			cfg |=3D CSI_IF_CFG_IF_DATA_WIDTH_12BIT;
-> > > +			break;
-> > > +		case 16: /* No need to configure DATA_WIDTH for 16bit */
-> > > +			break;
-> > > +		default:
-> > > +			dev_warn(sdev->dev, "Unsupported bus width: %u\n",
-> > > +				 bus_width);
-> > > +			break;
-> > > +		}
-> > > +	}
-> > > +
-> > >  	if (input_interlaced)
-> > >  		cfg |=3D CSI_IF_CFG_SRC_TYPE_INTERLACED;
-> > >  	else
-> > > @@ -440,23 +465,6 @@ static void sun6i_csi_setup_bus(struct sun6i_csi=
-_dev *sdev)
-> > >  		break;
-> > >  	}
-> > > =20
-> > > -	switch (bus_width) {
-> > > -	case 8:
-> > > -		cfg |=3D CSI_IF_CFG_IF_DATA_WIDTH_8BIT;
-> > > -		break;
-> > > -	case 10:
-> > > -		cfg |=3D CSI_IF_CFG_IF_DATA_WIDTH_10BIT;
-> > > -		break;
-> > > -	case 12:
-> > > -		cfg |=3D CSI_IF_CFG_IF_DATA_WIDTH_12BIT;
-> > > -		break;
-> > > -	case 16: /* No need to configure DATA_WIDTH for 16bit */
-> > > -		break;
-> > > -	default:
-> > > -		dev_warn(sdev->dev, "Unsupported bus width: %u\n", bus_width);
-> > > -		break;
-> > > -	}
-> > > -
-> >=20
-> > Is there any reason to move it around?
->=20
-> The main reason is cosmetics: input_parallel is introduced to match the a=
-lready
-> existing input_interlaced variable, so it made sense to me to have both o=
-f these
-> conditionals one after the other instead of spreading them randomly.
->=20
-> I can mention this in the commit log if you prefer.
+As we first use some TDM property to make the I2S working we the
+simple soundcard. We have now drop this simple sound card and a
+proper dedicated soundcard will be introduce later.
 
-Yeah, that would great
+This make the title of this series wrong now :/.
 
-Maxime
+Regards,
+Clement
 
---xds6nfzydlmcpk4h
-Content-Type: application/pgp-signature; name="signature.asc"
+Change since v8:
+- move the comment near the function prototype
+- collect Maxime Ripard tags
 
------BEGIN PGP SIGNATURE-----
+Change since v7:
+- rebase on next-20201026
+- comment about slots and slot_width
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5hnawAKCRDj7w1vZxhR
-xeemAPwI5/422bQUijrQXWpjRvLHcHc8Q+YVMP+kEvDRE9063QEAzaVJVId2nV7e
-pZYcb1nc2gvw1YyI1tTwdOxrxLcuhAM=
-=lTGY
------END PGP SIGNATURE-----
+Change since v6:
+- move set_channel_cfg() in first position
+- convert return value to decimal
 
---xds6nfzydlmcpk4h--
+Change since v5:
+- Drop HDMI simple soundcard
+- Collect Chen-Yu Tsai tags
+- Configure channels from 9 to 15.
+- Remove DMA RX for H3/H5
+- Fix Documentation for H3/H5
+
+Change since v4:
+- add more comment on get_wss() and set_channel_cfg() patch
+- merge soundcard and DAI HDMI patches
+
+Change since v3:
+- add Samuel Holland patch to reconfigure FIFO_TX_REG when suspend is enabled
+- readd inversion to H6 LRCK sun50i_h6_i2s_set_soc_fmt()
+- Fix get_wss() for sun4i
+- Add a commit to fix checkpatch warning
+
+Change since v2:
+- rebase on next-20200918
+- drop revert LRCK polarity patch
+- readd simple-audio-card,frame-inversion in dts
+- Add patch for changing set_chan_cfg params
+
+Change since v1:
+- rebase on next-20200828
+- add revert LRCK polarity
+- remove all simple-audio-card,frame-inversion in dts
+- add Ondrej patches for Orange Pi board
+- Add arm64 defconfig patch
+
+Clément Péron (6):
+  ASoC: sun4i-i2s: Change set_chan_cfg() params
+  ASoC: sun4i-i2s: Change get_sr() and get_wss() to be more explicit
+  ASoC: sun4i-i2s: Fix sun8i volatile regs
+  ASoC: sun4i-i2s: fix coding-style for callback definition
+  arm64: defconfig: Enable Allwinner i2s driver
+  dt-bindings: sound: sun4i-i2s: Document H3 with missing RX channel
+    possibility
+
+Jernej Skrabec (3):
+  ASoC: sun4i-i2s: Add support for H6 I2S
+  dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+  arm64: dts: allwinner: h6: Add I2S1 node
+
+Marcus Cooper (4):
+  ASoC: sun4i-i2s: Set sign extend sample
+  ASoc: sun4i-i2s: Add 20 and 24 bit support
+  arm64: dts: allwinner: a64: Add I2S2 node
+  arm: dts: sunxi: h3/h5: Add I2S2 node
+
+Samuel Holland (1):
+  ASoC: sun4i-i2s: Fix setting of FIFO modes
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |   6 +-
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  13 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  14 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  13 +
+ arch/arm64/configs/defconfig                  |   1 +
+ sound/soc/sunxi/sun4i-i2s.c                   | 384 +++++++++++++++---
+ 6 files changed, 376 insertions(+), 55 deletions(-)
+
+-- 
+2.25.1
+
