@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DFA429A99C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0462D29A9AE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:32:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2898092AbgJ0K1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 06:27:14 -0400
-Received: from mail-ej1-f66.google.com ([209.85.218.66]:37915 "EHLO
-        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2898088AbgJ0K1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:27:13 -0400
-Received: by mail-ej1-f66.google.com with SMTP id ce10so1452429ejc.5;
-        Tue, 27 Oct 2020 03:27:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GA4OG+9SkS1dLHEsjc3Yoh5BLzXMpIvERF6qvUQNUY4=;
-        b=YAAHhQsyCGuwceyID1pvebu0hBqjx9cqJdplZSmf1a54PjabEYmiPCoVqUHlk8AGjn
-         LyGPJzXzIFZzLfz+UhQRRV4fsuqrIbx9cz+K+Ufn2MUNKoOTL7HWLeF+6z2gHi1rgqKX
-         hBOSPVPPYkbgEU3OEzxEmzSEaJ0wh2FY68d9cWKFA9TrWu/AUtRP9GJ/TRgwgAbRvoCe
-         SMr9VML3FaOil9SExdLJcAmCBljc9sG2Yjpgh3lhewmOuvzTEVbTSO1mhUMsVisONR5k
-         9nSZZ8GPQ5LbCvNG1HzGf+Eiz5/eJu8Nkd2kotLskUd2/ohOS8D88a+rR13MQIN7V3/d
-         9rmg==
-X-Gm-Message-State: AOAM530UDQHtRqCQAPkkZrjkT2p80p1K6KxEwA0Y0MrPe/6998JPN6YM
-        1A5HuqWUmVNszmrcbpijMuo=
-X-Google-Smtp-Source: ABdhPJwIxxoNhNQ2HMjdRGaVcneAee1se1I+5gUMBtanj7k+CUK0Tcdt0/GUf0w3biz06LUetV9mlw==
-X-Received: by 2002:a17:906:1e45:: with SMTP id i5mr1606932ejj.203.1603794431491;
-        Tue, 27 Oct 2020 03:27:11 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
-        by smtp.googlemail.com with ESMTPSA id u8sm752822ejt.46.2020.10.27.03.27.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 03:27:10 -0700 (PDT)
-Date:   Tue, 27 Oct 2020 11:27:07 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
+        id S2898303AbgJ0KcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:32:25 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:34186 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2898302AbgJ0KcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:32:17 -0400
+X-UUID: 9692bcac71244448b8c31aff43f29a78-20201027
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:To:From; bh=/b/gCQSV6Qz2dGVgfETzaXVIvurYItjdyLbamEocLz8=;
+        b=li0Ufj2brudnK36zI5WlhbbbQ5AwOFZw9rqwKKm4G+ks9nx6jcob7I95/9YmsNJSxtscev43kJ3bewjcZ/mlYqYyCaHC493HJnJkRTAfZK5iIToDJc+JjryOUse+orTQUbWNnz90aLtgaT0SWusS8gJY51RqHLHv6NlKU343iOM=;
+X-UUID: 9692bcac71244448b8c31aff43f29a78-20201027
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <seiya.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1883957800; Tue, 27 Oct 2020 18:27:01 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 27 Oct 2020 18:26:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 27 Oct 2020 18:26:59 +0800
+From:   Seiya Wang <seiya.wang@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 41/52] memory: tegra124-emc: Use
- devm_platform_ioremap_resource()
-Message-ID: <20201027102707.GC17089@kozik-lap>
-References: <20201025221735.3062-1-digetx@gmail.com>
- <20201025221735.3062-42-digetx@gmail.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>
+Subject: [PATCH v5 0/1] Add basic node support for Mediatek MT8192 SoC 
+Date:   Tue, 27 Oct 2020 18:26:51 +0800
+Message-ID: <20201027102652.12806-1-seiya.wang@mediatek.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201025221735.3062-42-digetx@gmail.com>
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 26, 2020 at 01:17:24AM +0300, Dmitry Osipenko wrote:
-> Use devm_platform_ioremap_resource() helper which makes code a bit
-> cleaner.
-
-Such cleanups (and few other in this patchset) should be at beginning of
-patchset or even as part of a separate one.  I think there is not much
-stopping anyone from applying these... except that you put them in the
-middle of big dependency.
-
-Best regards,
-Krzysztof
+DQpNVDgxOTIgaXMgYSBTb0MgYmFzZWQgb24gNjRiaXQgQVJNdjggYXJjaGl0ZWN0dXJlLg0KSXQg
+Y29udGFpbnMgNCBDQTU1IGFuZCA0IENBNzYgY29yZXMuDQpNVDgxOTIgc2hhcmUgbWFueSBIVyBJ
+UCB3aXRoIE1UNjV4eCBzZXJpZXMuDQpUaGlzIHBhdGNoc2V0IHdhcyB0ZXN0ZWQgb24gTVQ4MTky
+IGV2YWx1YXRpb24gYm9hcmQgdG8gc2hlbGwuDQoNCkJhc2VkIG9uIHY1LjEwLXJjMQ0KDQpDaGFu
+Z2UgaW4gdjU6DQoxLiBSZW1vdmUgd2F0Y2hkb2cgYW5kIGFsbCBzeXNjb24gbm9kZXMNCjIuIFVz
+ZSBjbGsyNm0gYXMgdWFydCBjbG9jayBzb3VyY2UNCjMuIFJlbW92ZSBhbGwgZGVwZW5kZW5jeSBs
+aXN0cw0KDQpDaGFuZ2UgaW4gdjQ6DQoxLiBSZW1vdmUgc2Nwc3lzLCBzcG1pIGFuZCBhcHUgbm9k
+ZXMNCjIuIEFkZCBpMmMgbm9kZXMNCjMuIFVwZGF0ZSB3YXRjaGRvZyBiaW5kaW5nDQo0LiBVcGRh
+dGUgZGVwZW5kZW5jeSBsaXN0DQoNCkNoYW5nZSBpbiB2MzoNCkZpeCB0eXBvIGluIGJpbmRpbmcg
+ZG9jdW1lbnQgb2YgdGltZXINCg0KQ2hhbmdlIGluIHYyOg0KMS4gUmVtb3ZlIG10ODE5Mi1wb3dl
+ci5oIGZyb20gbXQ4MTkyLmR0c2kgd2hpY2ggaXMgbm90IHVzZWQgeWV0DQoyLiBBZGQgdGltZXIg
+YmluZGluZyBkb2N1bWVudCBhbmQgZGV2aWNlIHRyZWUgbm9kZSBpbiBtdDgxOTIuZHRzaQ0KMy4g
+UmVtb3ZlIHdhdGNoZG9nIGRyaXZlciBtb2RpZmljYXRpb24NCg0KU2VpeWEgV2FuZyAoMSk6DQog
+IGFybTY0OiBkdHM6IEFkZCBNZWRpYXRlayBTb0MgTVQ4MTkyIGFuZCBldmFsdWF0aW9uIGJvYXJk
+IGR0cyBhbmQNCiAgICBNYWtlZmlsZQ0KDQogYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9N
+YWtlZmlsZSAgICAgICB8ICAgMSArDQogYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgx
+OTItZXZiLmR0cyB8ICAyOSArKw0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTky
+LmR0c2kgICAgfCA1MTMgKysrKysrKysrKysrKysrKysrKysrKysrKysrKw0KIDMgZmlsZXMgY2hh
+bmdlZCwgNTQzIGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9i
+b290L2R0cy9tZWRpYXRlay9tdDgxOTItZXZiLmR0cw0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNo
+L2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpDQoNCi0tDQoyLjE0LjENCg==
 
