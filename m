@@ -2,99 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E6B29BD49
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 17:49:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67D8D29BD12
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 17:42:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1794977AbgJ0POl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 11:14:41 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37732 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1794971AbgJ0POk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 11:14:40 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09RFEZia114957;
-        Tue, 27 Oct 2020 10:14:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603811675;
-        bh=Myixi6KvwFLmjWY8p0yJ8RgrDA/N1FetVi34pbNVvMU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=oKLM8LSG7biGUbxCOfROPNbnn/hkneHyQw0o4qkvsH6yHWL+p7TFHwXgbidvNGOjM
-         qGrzc7sp2yXHuWCxVreMxOypA5xlELcf1DzUiQYzh/Vx3N5e3r+kiHw2l7aPTWZYls
-         gPAj7qhtP7YkIxZXPx9s6j6lKlzOzdT+lpTSZ49g=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09RFEZKD054302
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 27 Oct 2020 10:14:35 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 27
- Oct 2020 10:14:35 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 27 Oct 2020 10:14:35 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09RFEYHt020641;
-        Tue, 27 Oct 2020 10:14:35 -0500
-Date:   Tue, 27 Oct 2020 10:14:34 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-am65: mark dss as dma-coherent
-Message-ID: <20201027151434.getywrdbjidcggth@marshy>
-References: <20201027104132.105485-1-tomi.valkeinen@ti.com>
- <20201027104132.105485-4-tomi.valkeinen@ti.com>
- <20201027123412.ghwb5p3ruzm7lpqo@repent>
- <25f63a9b-7473-949b-2310-5c00440fb830@ti.com>
+        id S1811716AbgJ0Qkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 12:40:52 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:43616 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1811706AbgJ0Qkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 12:40:51 -0400
+Received: by mail-ej1-f68.google.com with SMTP id k3so3134302ejj.10;
+        Tue, 27 Oct 2020 09:40:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=whgiE5mkniKGwNlADQ4aF2iRZstl2eVAqQyrroOhp7I=;
+        b=ouxnTOZqdyiymOCtooGaHR1k5LkYLpUX/UawsmhwKB8H1inu1JvjXQH7JCFxzfAJ8b
+         uxSwd/kxhxFSHOUAKKrooIjxaBUhXMlc7Zx77067JCZcdk1P13Z+b3ctWxZJShJqyFQz
+         gEFjuLEO1+2iqNZHcQrUF85/yQBTLpPEf8eEem16ie+4TU0VZ8Sh4zM8ssRTDNsg4yu6
+         HS5vvvI3l/GkRhvewvzew5lBtH3IkL4drrYzU+zleLr5KgCyMHGDcbaYl7rHTtbln0tm
+         sBLZXG7hga+QEXKnPIG9QUFWYd6r5qPmPkvNrZA19LwZdkyBznZvt/GDyVIGwoGhbLTC
+         oSgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=whgiE5mkniKGwNlADQ4aF2iRZstl2eVAqQyrroOhp7I=;
+        b=SinYjZ8VatrNEggUJzOcGYz3tmRVlHBvG/pplXyuzhvYaA66I2vjUcxhB8UPd/Wo7z
+         dVm370eaNiPNac0cQtsFMJO+c+6Ht2yMqlqKw7pYJjjGb1iCxyEqMiBhD45iJ5cweo0N
+         kdnSLSkOnyAXbMiaMAo5sj8XkfIU3QCWiOhy5qUBOSKhViF/6nqpoEp+iT7J8chy0nvC
+         LYYuCM25b2ghucIeupiR8KU2tbmnvgAB9DomLyGhG+WyHkI6pnp3v/CB0Pj2UfgSOpxH
+         5iFAm3C6ZfC0HC5lfX9MtH6oxK8zH/kTubOoegMFn82+p18sOp8LD5BiOBUcs2C+vh6X
+         MGUA==
+X-Gm-Message-State: AOAM532KtQ+iSPrSaQEpRn6JOhMLIfNMm4p3v9V507uBjjJ6kU7YktWo
+        EYWfcEl9saqeaavyzXaPOj4jCOeIS/8=
+X-Google-Smtp-Source: ABdhPJziJBh4R8Lb8wVZR6jDy/SW8hlkuj/6Q45kiU19NRiXBgFuGFkfYROxwksv9OquKfS2d/h/tQ==
+X-Received: by 2002:a17:906:7e43:: with SMTP id z3mr3380288ejr.143.1603816848730;
+        Tue, 27 Oct 2020 09:40:48 -0700 (PDT)
+Received: from ?IPv6:2a01:110f:b59:fd00:659b:3847:24e3:b881? ([2a01:110f:b59:fd00:659b:3847:24e3:b881])
+        by smtp.gmail.com with ESMTPSA id ss7sm1372379ejb.28.2020.10.27.09.40.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Oct 2020 09:40:47 -0700 (PDT)
+Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505 flash
+ led controller
+To:     Pavel Machek <pavel@ucw.cz>, cy_huang <u0084500@gmail.com>
+Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org, cy_huang@richtek.com,
+        devicetree@vger.kernel.org
+References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
+ <20201027082900.GA21354@amd>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <b0f5b3c8-bebd-eeb6-20b2-15529816720c@gmail.com>
+Date:   Tue, 27 Oct 2020 17:40:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <25f63a9b-7473-949b-2310-5c00440fb830@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20201027082900.GA21354@amd>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:45-20201027, Tomi Valkeinen wrote:
-> On 27/10/2020 14:34, Nishanth Menon wrote:
-> > On 12:41-20201027, Tomi Valkeinen wrote:
-> >> DSS is IO coherent on AM65, so we can mark it as such with
-> >> 'dma-coherent' property in the DT file.
-> >>
-> >> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> >> ---
-> >>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
-> >>  1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> >> index 533525229a8d..a0b4a421026f 100644
-> >> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> >> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> >> @@ -867,6 +867,8 @@ dss: dss@04a00000 {
-> >>  
-> >>  		status = "disabled";
-> >>  
-> >> +		dma-coherent;
-> >> +
-> >>  		dss_ports: ports {
-> >>  			#address-cells = <1>;
-> >>  			#size-cells = <0>;
-> >> -- 
-> >> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> >> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-> >>
-> > 
-> > Does it need to be part of this series?
+Hi Pavel, ChiYuan,
+
+On 10/27/20 9:29 AM, Pavel Machek wrote:
+> Hi!
 > 
-> No. The two DP patches should go together, but the am6 ones can be applied independently.
+>> From: ChiYuan Huang <cy_huang@richtek.com>
+>>
+>> Add support for RT4505 flash led controller. It can support up to 1.5A
+>> flash current with hardware timeout and low input voltage
+>> protection.
+> 
+> Please use upper-case "LED" everywhere.
+> 
+> This should be 2nd in the series, after DT changes.
+> 
+>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+>> ---
+>>   drivers/leds/Kconfig       |  11 ++
+>>   drivers/leds/Makefile      |   1 +
+>>   drivers/leds/leds-rt4505.c | 397 +++++++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 409 insertions(+)
+>>   create mode 100644 drivers/leds/leds-rt4505.c
+[...]
+>> +static int rt4505_torch_brightness_set(struct led_classdev *lcdev, enum led_brightness level)
+>> +{
+> 
+> 80 columns, where easy.
+> 
+>> +	struct rt4505_priv *priv = container_of(lcdev, struct rt4505_priv, flash.led_cdev);
+>> +	u32 val = 0;
+>> +	int ret;
+>> +
+>> +	mutex_lock(&priv->lock);
+>> +
+>> +	if (level != LED_OFF) {
+>> +		ret = regmap_update_bits(priv->regmap, RT4505_REG_ILED, RT4505_ITORCH_MASK,
+>> +					 (level - 1) << RT4505_ITORCH_SHIFT);
+>> +		if (ret)
+>> +			goto unlock;
+>> +
+>> +		val = RT4505_TORCH_SET;
+>> +	}
+>> +
+>> +	ret = regmap_update_bits(priv->regmap, RT4505_REG_ENABLE, RT4505_ENABLE_MASK, val);
+>> +
+>> +unlock:
+>> +	mutex_unlock(&priv->lock);
+>> +	return ret;
+>> +}
+> 
+> Why is the locking needed? What will the /sys/class/leds interface
+> look like on system with your flash?
 
+The locking is needed since this can be called via led_set_brightness()
+from any place in the kernel, and especially from triggers.
 
-Please split accordingly.
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Best regards,
+Jacek Anaszewski
