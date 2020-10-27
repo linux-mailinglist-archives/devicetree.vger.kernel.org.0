@@ -2,127 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67D8D29BD12
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 17:42:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B79929BE5B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 17:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1811716AbgJ0Qkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 12:40:52 -0400
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:43616 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1811706AbgJ0Qkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 12:40:51 -0400
-Received: by mail-ej1-f68.google.com with SMTP id k3so3134302ejj.10;
-        Tue, 27 Oct 2020 09:40:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=whgiE5mkniKGwNlADQ4aF2iRZstl2eVAqQyrroOhp7I=;
-        b=ouxnTOZqdyiymOCtooGaHR1k5LkYLpUX/UawsmhwKB8H1inu1JvjXQH7JCFxzfAJ8b
-         uxSwd/kxhxFSHOUAKKrooIjxaBUhXMlc7Zx77067JCZcdk1P13Z+b3ctWxZJShJqyFQz
-         gEFjuLEO1+2iqNZHcQrUF85/yQBTLpPEf8eEem16ie+4TU0VZ8Sh4zM8ssRTDNsg4yu6
-         HS5vvvI3l/GkRhvewvzew5lBtH3IkL4drrYzU+zleLr5KgCyMHGDcbaYl7rHTtbln0tm
-         sBLZXG7hga+QEXKnPIG9QUFWYd6r5qPmPkvNrZA19LwZdkyBznZvt/GDyVIGwoGhbLTC
-         oSgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=whgiE5mkniKGwNlADQ4aF2iRZstl2eVAqQyrroOhp7I=;
-        b=SinYjZ8VatrNEggUJzOcGYz3tmRVlHBvG/pplXyuzhvYaA66I2vjUcxhB8UPd/Wo7z
-         dVm370eaNiPNac0cQtsFMJO+c+6Ht2yMqlqKw7pYJjjGb1iCxyEqMiBhD45iJ5cweo0N
-         kdnSLSkOnyAXbMiaMAo5sj8XkfIU3QCWiOhy5qUBOSKhViF/6nqpoEp+iT7J8chy0nvC
-         LYYuCM25b2ghucIeupiR8KU2tbmnvgAB9DomLyGhG+WyHkI6pnp3v/CB0Pj2UfgSOpxH
-         5iFAm3C6ZfC0HC5lfX9MtH6oxK8zH/kTubOoegMFn82+p18sOp8LD5BiOBUcs2C+vh6X
-         MGUA==
-X-Gm-Message-State: AOAM532KtQ+iSPrSaQEpRn6JOhMLIfNMm4p3v9V507uBjjJ6kU7YktWo
-        EYWfcEl9saqeaavyzXaPOj4jCOeIS/8=
-X-Google-Smtp-Source: ABdhPJziJBh4R8Lb8wVZR6jDy/SW8hlkuj/6Q45kiU19NRiXBgFuGFkfYROxwksv9OquKfS2d/h/tQ==
-X-Received: by 2002:a17:906:7e43:: with SMTP id z3mr3380288ejr.143.1603816848730;
-        Tue, 27 Oct 2020 09:40:48 -0700 (PDT)
-Received: from ?IPv6:2a01:110f:b59:fd00:659b:3847:24e3:b881? ([2a01:110f:b59:fd00:659b:3847:24e3:b881])
-        by smtp.gmail.com with ESMTPSA id ss7sm1372379ejb.28.2020.10.27.09.40.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Oct 2020 09:40:47 -0700 (PDT)
-Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505 flash
- led controller
-To:     Pavel Machek <pavel@ucw.cz>, cy_huang <u0084500@gmail.com>
-Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org, cy_huang@richtek.com,
-        devicetree@vger.kernel.org
-References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
- <20201027082900.GA21354@amd>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <b0f5b3c8-bebd-eeb6-20b2-15529816720c@gmail.com>
-Date:   Tue, 27 Oct 2020 17:40:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1812876AbgJ0Qqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 12:46:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43420 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1812029AbgJ0QpX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 12:45:23 -0400
+Received: from localhost.localdomain (unknown [122.171.48.86])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D766F218AC;
+        Tue, 27 Oct 2020 16:45:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603817123;
+        bh=QZC1USfwCxJ9/ICw29u4XH4aoQXVpItqZuOlHVOGM1w=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TjGH+XCDv2fVExjTYJwrOuDCRhMVHIpfskM+X0vKdZEvaDsC+sg6p/fsjM7GSfEWA
+         5TFvUqSAsnusAnO1WxcLdnQRfA7AOzVP4LwzbzXU7VuRePLqqttcprNLwl28hPOXab
+         bfQcVwcwqgwDzbfB2GZqWmQXU2jyNwXzMTQWT+fM=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/9] arm64: dts: qcom: Fix dma node name
+Date:   Tue, 27 Oct 2020 22:15:02 +0530
+Message-Id: <20201027164511.476312-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20201027082900.GA21354@amd>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel, ChiYuan,
+DMA controller binding describes the node name should be dma-controller
+and not dma, so fix the node name in the qcom dts files
 
-On 10/27/20 9:29 AM, Pavel Machek wrote:
-> Hi!
-> 
->> From: ChiYuan Huang <cy_huang@richtek.com>
->>
->> Add support for RT4505 flash led controller. It can support up to 1.5A
->> flash current with hardware timeout and low input voltage
->> protection.
-> 
-> Please use upper-case "LED" everywhere.
-> 
-> This should be 2nd in the series, after DT changes.
-> 
->> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
->> ---
->>   drivers/leds/Kconfig       |  11 ++
->>   drivers/leds/Makefile      |   1 +
->>   drivers/leds/leds-rt4505.c | 397 +++++++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 409 insertions(+)
->>   create mode 100644 drivers/leds/leds-rt4505.c
-[...]
->> +static int rt4505_torch_brightness_set(struct led_classdev *lcdev, enum led_brightness level)
->> +{
-> 
-> 80 columns, where easy.
-> 
->> +	struct rt4505_priv *priv = container_of(lcdev, struct rt4505_priv, flash.led_cdev);
->> +	u32 val = 0;
->> +	int ret;
->> +
->> +	mutex_lock(&priv->lock);
->> +
->> +	if (level != LED_OFF) {
->> +		ret = regmap_update_bits(priv->regmap, RT4505_REG_ILED, RT4505_ITORCH_MASK,
->> +					 (level - 1) << RT4505_ITORCH_SHIFT);
->> +		if (ret)
->> +			goto unlock;
->> +
->> +		val = RT4505_TORCH_SET;
->> +	}
->> +
->> +	ret = regmap_update_bits(priv->regmap, RT4505_REG_ENABLE, RT4505_ENABLE_MASK, val);
->> +
->> +unlock:
->> +	mutex_unlock(&priv->lock);
->> +	return ret;
->> +}
-> 
-> Why is the locking needed? What will the /sys/class/leds interface
-> look like on system with your flash?
+Vinod Koul (9):
+  arm64: dts: sdm845: Fix dma node name
+  arm64: dts: sdm630: Fix dma node name
+  arm64: dts: qcs404: Fix dma node name
+  arm64: dts: msm8916: Fix dma node name
+  arm64: dts: msm8994: Fix dma node name
+  arm64: dts: msm8996: Fix dma node name
+  arm64: dts: msm8998: Fix dma node name
+  arm64: dts: ipq6018: Fix dma node name
+  arm64: dts: ipq8074: Fix dma node name
 
-The locking is needed since this can be called via led_set_brightness()
-from any place in the kernel, and especially from triggers.
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi  | 4 ++--
+ arch/arm64/boot/dts/qcom/sdm630.dtsi  | 4 ++--
+ arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
+ 9 files changed, 14 insertions(+), 14 deletions(-)
 
 -- 
-Best regards,
-Jacek Anaszewski
+2.26.2
+
