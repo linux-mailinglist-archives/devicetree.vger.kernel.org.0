@@ -2,111 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD5E29C613
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F19A229C611
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:26:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1825633AbgJ0SMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 14:12:42 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:38070 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1825624AbgJ0SMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 14:12:08 -0400
-Received: by mail-wm1-f68.google.com with SMTP id l8so740719wmg.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 11:12:07 -0700 (PDT)
+        id S1825696AbgJ0SMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 14:12:41 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:44125 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1825633AbgJ0SMK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 14:12:10 -0400
+Received: by mail-wr1-f65.google.com with SMTP id t9so2943909wrq.11
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 11:12:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=er1O3yHYE2dfZAtg9MYR2G3dWLGNVrruH1edHcefbnw=;
-        b=bsloMzFYU+sjn0EHCNX05u0v3HMhR+DRCYOINuw9yP83GdKxOWN/pwJB6ENsBqk+BP
-         XcKN7YCcvKAcNJ/Eym826aUQFudPqSpHk/rSkprBQ/WThjLkTBak4eUvLD55f3xB7DmG
-         yQRmXNFymQbfm+s2BJaWBQAsv20oLjMmdbvRj/yMpZLz6icRS39vvtotJZV1jU6fFm3c
-         wbsV+vgtPg903HKuTKoA0HiLK9Je16Irz5+2MdRP+bGmGVHuz7gWvcQFkyH7OXyA4yLC
-         HNsipqvMDqVKgfW4vQ6XBnl/8k8xvpwDK9ikVyglSIWlGg6M2NZTj+opD30VLYOzXA/6
-         mjSg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=AizmEGLJWCh5e+BIl/5tzrCIJ5dIEIgB9BBqx3BLDyw=;
+        b=P2UTQj+r1SEKRJedJWTFLKzP8So657DIQN2igB9WKpnJ856BOvDDfhLzT9DqoAdWF2
+         kGplRYYu2HTJ/KE+eIhW6lNcI0+4I03RUL690XQRmlOGVhnMfC9z7AgiiKr43rrcu7Ck
+         48qsUdqDxpTL6c0x/WWSVXeMrpZ1T44svS/CO1rtcP6PIONfvEZ6w9Dm16JaqQQW+Fa5
+         N7dq/PTYCc6okwxpphEDjOj1VsK0sCgDoiH7qemoPGPyYaZ2o7NSEH1RSbUjqWVQuavW
+         4PQH5Tva2lt4aKmDZS5K36KPM79gR3Kz4coyHN2BcqYhepP+5Xb2e6QUlw9MpJjnOBun
+         vpnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=er1O3yHYE2dfZAtg9MYR2G3dWLGNVrruH1edHcefbnw=;
-        b=dDuTRmed3EZIgBG1ReUBsZdbrwHWxtOc7wA2jEtEXM02e/AKFLDvlVpSQRVHTyhXPu
-         Jpm+TkTzzmCLBf73GktoYI+iQC0W2oh2BnY3AAlD1z7kchJCtDhmTHWuYUNuQVXHl7rm
-         VEUdc5oA6lOh59Ebjc20A8sIyJYibh7/pGFwtV8zPFXALOh9PrfQNtFSSMvOyrqlcqSg
-         Ga8wbMS+T7fpZGOOyKqOSXWwlzZl5zNef6YmnU8RsPVeyQ0ooCPF/0JvSDgBDXUpBxOU
-         FSiyYSvMU1jpZkeBUuVEuEE1bo7DflUlo2r0lk5bBSgcXnMsZhv24rh2a3oMaQN+sMyu
-         JhdQ==
-X-Gm-Message-State: AOAM533FNqOoIA5aRDK5bXJu3Cy9i2ac2PUGfGWd7FIz9522YmKHdScD
-        EuZNUu6bl5wJfgU47bqA8hyGVA==
-X-Google-Smtp-Source: ABdhPJzOJI8JYV3oC0Xp3xAlpwU1KLwVOsla33zNeb7gIVy1xaeHbaIkQWpOBckqDBLzb/eLYApw9Q==
-X-Received: by 2002:a1c:98d2:: with SMTP id a201mr3882929wme.166.1603822326283;
-        Tue, 27 Oct 2020 11:12:06 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=AizmEGLJWCh5e+BIl/5tzrCIJ5dIEIgB9BBqx3BLDyw=;
+        b=jML6el+5yBx78L0q5RAZN2LTiWKMr9MlS140wIQFNbUtPSiGYtJUrMJO4eN4zDecGB
+         nE2snjd9w8Btmy+k/4xFNkxFNoj0Ez2bRC7abL41SP5NyKUx4BE3LBdD/4jnjvAGQYWt
+         zNKMPVUSr1/J3DHuy15MQZrvNZU88HPMSyzMs5lGeWo41ZuOdOo5PBWXd2TwRhA5s9Bs
+         /l3PtnMtUwqZhPMF/4KAvNKVzeA04EdMsuO9RiUHQlWQzp1SPW6ISTVbs59A68yUSMEK
+         HIo4Va3ToCJnC1bEy8zybAr0pS9UeN6b77qQ7IfYYN88xS15qMKaEjZU5sfATnAdTQFe
+         6p4w==
+X-Gm-Message-State: AOAM530v8jTG+hpa/gyfPyZN55H7se1R0BnTbrK4Rdx1moK7y8r9CpQA
+        8zjW22cnsV1VLdXUwlm6UstFpw==
+X-Google-Smtp-Source: ABdhPJzW9nq4LkblMc0w9V7lubC2UdibGY38QsWzOP+oXqTs8LAZbRDjEIXechCCEn18xtlwRn4ufw==
+X-Received: by 2002:a5d:6052:: with SMTP id j18mr4408374wrt.306.1603822328165;
+        Tue, 27 Oct 2020 11:12:08 -0700 (PDT)
 Received: from localhost.localdomain (159.174.185.81.rev.sfr.net. [81.185.174.159])
-        by smtp.gmail.com with ESMTPSA id h206sm2801224wmf.47.2020.10.27.11.12.04
+        by smtp.gmail.com with ESMTPSA id h206sm2801224wmf.47.2020.10.27.11.12.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 11:12:05 -0700 (PDT)
+        Tue, 27 Oct 2020 11:12:07 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 RESEND 1/3] dt-bindings: mfd: mt6397: Add bindings for MT6392 PMIC
-Date:   Tue, 27 Oct 2020 19:11:54 +0100
-Message-Id: <20201027181157.862927-1-fparent@baylibre.com>
+Subject: [PATCH v6 RESEND 2/3] dt-bindings: input: mtk-pmic-keys: add MT6392 binding definition
+Date:   Tue, 27 Oct 2020 19:11:55 +0100
+Message-Id: <20201027181157.862927-2-fparent@baylibre.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201027181157.862927-1-fparent@baylibre.com>
+References: <20201027181157.862927-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the currently supported bindings for the MT6392 PMIC.
+Add the binding documentation of the mtk-pmic-keys for the MT6392 PMICs.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 ---
 
-V6:
+v6:
 	* No changes
-V5:
-	* Rebased, removed regulator documentation because it will be send later
-	on in another patch series
-V4:
-	* No change
-V3:
-	* No change
-V2:
-	* New patch
 
- Documentation/devicetree/bindings/mfd/mt6397.txt | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+v5:
+	* rebased
+	* Rename MT6397/MT6392/MT6323 into MT63XX to make it more readable when
+	the list of support PMIC increase
+	* Removed Reviewed-by from Rob Herring because of the new extra changes
+	made to this patch
+	* change the compatible for MT6392 to also contains MT6397 since MT6392 PMIC
+	key driver is compatible with mt6397.
 
-diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-index 2661775a3825..f051a951ba72 100644
---- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-+++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-@@ -21,6 +21,7 @@ Required properties:
- compatible:
- 	"mediatek,mt6323" for PMIC MT6323
- 	"mediatek,mt6358" for PMIC MT6358
-+	"mediatek,mt6392" for PMIC MT6392
- 	"mediatek,mt6397" for PMIC MT6397
+v4:
+	* Patch was previously sent separately but merge to this patch series
+	since there is a hard dependency on the MFD patch.
+
+ .../devicetree/bindings/input/mtk-pmic-keys.txt     | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
+index 535d92885372..71c82687ab92 100644
+--- a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
++++ b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
+@@ -1,15 +1,18 @@
+-MediaTek MT6397/MT6323 PMIC Keys Device Driver
++MediaTek MT63xx PMIC Keys Device Driver
  
- Optional subnodes:
-@@ -52,7 +53,10 @@ Optional subnodes:
+-There are two key functions provided by MT6397/MT6323 PMIC, pwrkey
++There are two key functions provided by MT63xx PMIC, pwrkey
+ and homekey. The key functions are defined as the subnode of the function
+-node provided by MT6397/MT6323 PMIC that is being defined as one kind
++node provided by MT63xx PMIC that is being defined as one kind
+ of Muti-Function Device (MFD)
  
- - keys
- 	Required properties:
--		- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
-+		- compatible:
-+			- "mediatek,mt6323-keys"
-+			- "mediatek,mt6392-keys", "mediatek,mt6397-keys"
-+			- "mediatek,mt6397-keys"
- 	see ../input/mtk-pmic-keys.txt
+-For MT6397/MT6323 MFD bindings see:
++For MT63xx MFD bindings see:
+ Documentation/devicetree/bindings/mfd/mt6397.txt
  
- - power-controller
+ Required properties:
+-- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
++- compatible: Should be one of:
++	- "mediatek,mt6323-keys" for MT6323 PMIC
++	- "mediatek,mt6392-keys", "mediatek,mt6397-keys" for MT6392 PMIC
++	- "mediatek,mt6397-keys" for MT6397 PMIC
+ - linux,keycodes: See Documentation/devicetree/bindings/input/input.yaml
+ 
+ Optional Properties:
 -- 
 2.28.0
 
