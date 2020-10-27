@@ -2,40 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF46299F12
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 01:20:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4E2299E67
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 01:16:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438789AbgJ0AGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 20:06:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54310 "EHLO mail.kernel.org"
+        id S2411554AbgJ0AKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 20:10:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59518 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2438241AbgJ0AFX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 20:05:23 -0400
+        id S2411550AbgJ0AKd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 20:10:33 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4080320754;
-        Tue, 27 Oct 2020 00:05:22 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9CF7E20791;
+        Tue, 27 Oct 2020 00:10:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603757123;
-        bh=Lp2xwrseE5WnFsU0jHEpe0ZRwzQFgONFTc+5WiDidNE=;
+        s=default; t=1603757433;
+        bh=96qkF3OVvKbNjSRVzcNNdUCeRvK4nfDw20DQkavEE5o=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=THQZOJxLkdbDm/xSvy5bPaRmcM8g539z5FFjK3mFru4oFCVXscOEzxO648bSplfz8
-         SG0Sn6yHRwi6jOcBCIQNfQstILn2eAvgU3WcDwGjxFYqBVgksloG6/vPfVKZQNu34V
-         0LBewymO2ZmsLuRSshPmKnqSOwBuvLqw/YeZMugM=
+        b=P4c4+KbgnxmVHyBx19MVElPEp+JccEtjpEqQSp8l5XwWdrCCf3FbJV3efhSSsy5Wu
+         5+yx/HTIXyZ3xm9ADvXu39uCz4Qhati2bjeU6KMb7tE21Py6Z8agSFh67GWP66eFHQ
+         cQQhcQ+LSekrFm/7oVO/cLp3bOxY0cy+SkGXWPLc=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 57/60] ARM: dts: s5pv210: remove dedicated 'audio-subsystem' node
-Date:   Mon, 26 Oct 2020 20:04:12 -0400
-Message-Id: <20201027000415.1026364-57-sashal@kernel.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 39/46] arm64: dts: renesas: ulcb: add full-pwr-cycle-in-suspend into eMMC nodes
+Date:   Mon, 26 Oct 2020 20:09:38 -0400
+Message-Id: <20201027000946.1026923-39-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201027000415.1026364-1-sashal@kernel.org>
-References: <20201027000415.1026364-1-sashal@kernel.org>
+In-Reply-To: <20201027000946.1026923-1-sashal@kernel.org>
+References: <20201027000946.1026923-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,104 +43,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzk@kernel.org>
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-[ Upstream commit 6c17a2974abf68a58517f75741b15c4aba42b4b8 ]
+[ Upstream commit 992d7a8b88c83c05664b649fc54501ce58e19132 ]
 
-The 'audio-subsystem' node is an artificial creation, not representing
-real hardware.  The hardware is described by its nodes - AUDSS clock
-controller and I2S0.
+Add full-pwr-cycle-in-suspend property to do a graceful shutdown of
+the eMMC device in system suspend.
 
-Remove the 'audio-subsystem' node along with its undocumented compatible
-to fix dtbs_check warnings like:
-
-  audio-subsystem: $nodename:0: 'audio-subsystem' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Tested-by: Jonathan Bakker <xc-racer2@live.ca>
-Link: https://lore.kernel.org/r/20200907161141.31034-9-krzk@kernel.org
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Link: https://lore.kernel.org/r/1594989201-24228-1-git-send-email-yoshihiro.shimoda.uh@renesas.com
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/s5pv210.dtsi | 65 +++++++++++++++-------------------
- 1 file changed, 29 insertions(+), 36 deletions(-)
+ arch/arm64/boot/dts/renesas/ulcb.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/s5pv210.dtsi b/arch/arm/boot/dts/s5pv210.dtsi
-index 37d251b1f74a7..020a864623ff4 100644
---- a/arch/arm/boot/dts/s5pv210.dtsi
-+++ b/arch/arm/boot/dts/s5pv210.dtsi
-@@ -217,43 +217,36 @@ i2c2: i2c@e1a00000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/renesas/ulcb.dtsi
+index e95d99265af9d..38f846530fcde 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
+@@ -397,6 +397,7 @@ &sdhi2 {
+ 	bus-width = <8>;
+ 	mmc-hs200-1_8v;
+ 	non-removable;
++	full-pwr-cycle-in-suspend;
+ 	status = "okay";
+ };
  
--		audio-subsystem {
--			compatible = "samsung,s5pv210-audss", "simple-bus";
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges;
--
--			clk_audss: clock-controller@eee10000 {
--				compatible = "samsung,s5pv210-audss-clock";
--				reg = <0xeee10000 0x1000>;
--				clock-names = "hclk", "xxti",
--						"fout_epll",
--						"sclk_audio0";
--				clocks = <&clocks DOUT_HCLKP>, <&xxti>,
--						<&clocks FOUT_EPLL>,
--						<&clocks SCLK_AUDIO0>;
--				#clock-cells = <1>;
--			};
-+		clk_audss: clock-controller@eee10000 {
-+			compatible = "samsung,s5pv210-audss-clock";
-+			reg = <0xeee10000 0x1000>;
-+			clock-names = "hclk", "xxti",
-+				      "fout_epll",
-+				      "sclk_audio0";
-+			clocks = <&clocks DOUT_HCLKP>, <&xxti>,
-+				 <&clocks FOUT_EPLL>,
-+				 <&clocks SCLK_AUDIO0>;
-+			#clock-cells = <1>;
-+		};
- 
--			i2s0: i2s@eee30000 {
--				compatible = "samsung,s5pv210-i2s";
--				reg = <0xeee30000 0x1000>;
--				interrupt-parent = <&vic2>;
--				interrupts = <16>;
--				dma-names = "rx", "tx", "tx-sec";
--				dmas = <&pdma1 9>, <&pdma1 10>, <&pdma1 11>;
--				clock-names = "iis",
--						"i2s_opclk0",
--						"i2s_opclk1";
--				clocks = <&clk_audss CLK_I2S>,
--						<&clk_audss CLK_I2S>,
--						<&clk_audss CLK_DOUT_AUD_BUS>;
--				samsung,idma-addr = <0xc0010000>;
--				pinctrl-names = "default";
--				pinctrl-0 = <&i2s0_bus>;
--				#sound-dai-cells = <0>;
--				status = "disabled";
--			};
-+		i2s0: i2s@eee30000 {
-+			compatible = "samsung,s5pv210-i2s";
-+			reg = <0xeee30000 0x1000>;
-+			interrupt-parent = <&vic2>;
-+			interrupts = <16>;
-+			dma-names = "rx", "tx", "tx-sec";
-+			dmas = <&pdma1 9>, <&pdma1 10>, <&pdma1 11>;
-+			clock-names = "iis",
-+				      "i2s_opclk0",
-+				      "i2s_opclk1";
-+			clocks = <&clk_audss CLK_I2S>,
-+				 <&clk_audss CLK_I2S>,
-+				 <&clk_audss CLK_DOUT_AUD_BUS>;
-+			samsung,idma-addr = <0xc0010000>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&i2s0_bus>;
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
- 		};
- 
- 		i2s1: i2s@e2100000 {
 -- 
 2.25.1
 
