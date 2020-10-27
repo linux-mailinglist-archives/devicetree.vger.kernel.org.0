@@ -2,212 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E247229A355
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 04:30:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DF2229A36C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 04:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441180AbgJ0Daf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 23:30:35 -0400
-Received: from mail-yb1-f196.google.com ([209.85.219.196]:41162 "EHLO
-        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2411152AbgJ0Dae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 23:30:34 -0400
-Received: by mail-yb1-f196.google.com with SMTP id c129so34654yba.8
-        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 20:30:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NgpV19NIPOwsC536pNKEm7qeTuOSm4UvN7w5snlJtXA=;
-        b=KRWsB60LNFRJT1Lrs5d58UfoikPtp5nt/O/InxTKpzH5jpwzF7y9esv+tT2zjN62yR
-         Z+6O2gkFwcROcilrjgMove1ClAR6malt82NyWDod+D8JzkGSsk/yyn9K+hgQj5JtkxQJ
-         5+jDDdZEfedg4n82m4IZgfdudoOYMyzEAhwU7H3VfPH/mLCLDr8uqzt5Y/5ElnZkB9tP
-         OSxe4AugpujEFHkDtOW/wWycFH/o32gnuDon9GsYbsB++apBdI9jT79sklvBilmcG4bJ
-         FYc5fVEXDXVCzA4f7qNif3NvvsvnbLIpk5+J91adQXh2WGO9GKaiXcXWsm1MaYXhZKg8
-         EkYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NgpV19NIPOwsC536pNKEm7qeTuOSm4UvN7w5snlJtXA=;
-        b=dCyw8GKqZhCizAHZb+7eES9++qrYMRFn0Y3xHSX8BOKtmFC9EAz2z/nvKA0g9ZhxRf
-         0cySx85VpSU+DHHGD1qr0GUzS1jB1ne6JfpTNP6zGD6Wl3U45cvoNe0HqpeJAmeh9p/s
-         GaunRaOR+ECJI4HrIb4Y2RL2hcCCCAt5KsxknKygeHzj9Q6vC6WDDAQW4DxI2FJM9x8L
-         sjZpiUpQcyMY9tCQKb1hrYP/dcAavhP+SfXuJ5C7hb8r/Dd6Uh7VwqJZYtThR6JwBRPq
-         Wo0+G7seJjN+FzywJpyaBCntdCPLwFzu8D1HozGK76qFQEACHGvyA4QhBFylRJk/+prV
-         gIRQ==
-X-Gm-Message-State: AOAM530kPxGg72HDzmlhJ5A4WIsgp0KHKHD0J5sHC0EEuQk9tGEKl8Rs
-        jdzRB73DOQRO/mRPLQcGIJ6iq5xGL6xs+Gz7S97LLQ==
-X-Google-Smtp-Source: ABdhPJw73jUszV9tqbPYtoH3T3cC0JPWJb13BMkaU+CnEmRIClEot2S71JQhsrz9YU9G9FRKu9hq9XEcY4UbNyxMotg=
-X-Received: by 2002:a25:7452:: with SMTP id p79mr344716ybc.346.1603769432917;
- Mon, 26 Oct 2020 20:30:32 -0700 (PDT)
+        id S2437747AbgJ0DqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 23:46:00 -0400
+Received: from mga07.intel.com ([134.134.136.100]:39249 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390384AbgJ0Dp7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Oct 2020 23:45:59 -0400
+IronPort-SDR: 4CI7y5vlQ0FabzC5a55ytBpcNAa7cqEA0RhkBIu2e7Ux4Z3T7j32oW2RH5JTKk8g+4Al1DNXZk
+ 3Csia1n/xYZA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="232210383"
+X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; 
+   d="scan'208";a="232210383"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2020 20:45:58 -0700
+IronPort-SDR: +JQ0nHjEtx7L2UnwMMF08Zmf2TNF3m9fsXc3BtF8yAqaZ8ehZ9r73k4gmmec2j4qjDWUZKA5Pz
+ fLhcg4Fjjwpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; 
+   d="scan'208";a="303619920"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga008.fm.intel.com with ESMTP; 26 Oct 2020 20:45:57 -0700
+Received: from [10.226.38.22] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.22])
+        by linux.intel.com (Postfix) with ESMTP id A7C42580100;
+        Mon, 26 Oct 2020 20:45:54 -0700 (PDT)
+Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: Re: [PATCH v3 5/6] dt-bindings: spi: Convert cadence-quadspi.txt to
+ cadence-quadspi.yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, vigneshr@ti.com, tudor.ambarus@microchip.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, miquel.raynal@bootlin.com,
+        simon.k.r.goldschmidt@gmail.com, dinguyen@kernel.org,
+        richard@nod.at, cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+References: <20201026094519.56083-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201026094519.56083-6-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201026130851.GA4188139@bogus>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <a71ec5b8-3169-4968-d3ab-d0280441a722@linux.intel.com>
+Date:   Tue, 27 Oct 2020 11:45:53 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-References: <CAGETcx8owDP_Bu4oNCyHEsME8XpKygxghm8+yNc2RyMA4wyjCA@mail.gmail.com>
- <20201001225952.3676755-1-saravanak@google.com> <CAL_JsqKOUkKBKyxPtZ+BFXPiOfm2uPXhgJPxKP=WS-qX6kSB0w@mail.gmail.com>
- <CAGETcx-tq446JQN0RpKhtyCXB+Y_PUePN_tBZsUmtpO7othm4g@mail.gmail.com>
- <20201002175423.GE3933@pendragon.ideasonboard.com> <CAGETcx-7nJaU6pDo_KL-nKmCaxv57C5aaXq-pvo4XiN=N0K5Jg@mail.gmail.com>
- <20201002182712.GF3933@pendragon.ideasonboard.com> <11018e7e-a6a1-2df6-5639-821a7c0cb68b@ti.com>
- <CAGETcx8DCiEJy-1PiHheyuuw3YBYfFh67MBcOwv4JEviXmsp3Q@mail.gmail.com> <20201003001342.GA1730@pendragon.ideasonboard.com>
-In-Reply-To: <20201003001342.GA1730@pendragon.ideasonboard.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 26 Oct 2020 20:29:56 -0700
-Message-ID: <CAGETcx8Vy2k8igc9QmktFohJSQXvdPTFYu8i_8tgeYvBLk6QfA@mail.gmail.com>
-Subject: Re: [PATCH v1] of: platform: Batch fwnode parsing in the
- init_machine() path
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201026130851.GA4188139@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 2, 2020 at 5:14 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Saravana,
->
-> On Fri, Oct 02, 2020 at 12:56:30PM -0700, Saravana Kannan wrote:
-> > On Fri, Oct 2, 2020 at 11:35 AM 'Grygorii Strashko' via kernel-team wrote:
-> > > On 02/10/2020 21:27, Laurent Pinchart wrote:
-> > > > On Fri, Oct 02, 2020 at 10:58:55AM -0700, Saravana Kannan wrote:
-> > > >> On Fri, Oct 2, 2020 at 10:55 AM Laurent Pinchart wrote:
-> > > >>> On Fri, Oct 02, 2020 at 10:51:51AM -0700, Saravana Kannan wrote:
-> > > >>>> On Fri, Oct 2, 2020 at 7:08 AM Rob Herring <robh+dt@kernel.org> wrote:
-> > > >>>>> On Thu, Oct 1, 2020 at 5:59 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > >>>>>>
-> > > >>>>>> When commit 93d2e4322aa7 ("of: platform: Batch fwnode parsing when
-> > > >>>>>> adding all top level devices") optimized the fwnode parsing when all top
-> > > >>>>>> level devices are added, it missed out optimizing this for platform
-> > > >>>>>> where the top level devices are added through the init_machine() path.
-> > > >>>>>>
-> > > >>>>>> This commit does the optimization for all paths by simply moving the
-> > > >>>>>> fw_devlink_pause/resume() inside of_platform_default_populate().
-> > > >>>>>>
-> > > >>>>>> Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> > > >>>>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > >>>>>> ---
-> > > >>>>>>   drivers/of/platform.c | 19 +++++++++++++++----
-> > > >>>>>>   1 file changed, 15 insertions(+), 4 deletions(-)
-> > > >>>>>>
-> > > >>>>>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > > >>>>>> index 071f04da32c8..79972e49b539 100644
-> > > >>>>>> --- a/drivers/of/platform.c
-> > > >>>>>> +++ b/drivers/of/platform.c
-> > > >>>>>> @@ -501,8 +501,21 @@ int of_platform_default_populate(struct device_node *root,
-> > > >>>>>>                                   const struct of_dev_auxdata *lookup,
-> > > >>>>>>                                   struct device *parent)
-> > > >>>>>>   {
-> > > >>>>>> -       return of_platform_populate(root, of_default_bus_match_table, lookup,
-> > > >>>>>> -                                   parent);
-> > > >>>>>> +       int ret;
-> > > >>>>>> +
-> > > >>>>>> +       /*
-> > > >>>>>> +        * fw_devlink_pause/resume() are only safe to be called around top
-> > > >>>>>> +        * level device addition due to locking constraints.
-> > > >>>>>> +        */
-> > > >>>>>> +       if (!root)
-> > > >>>>>> +               fw_devlink_pause();
-> > > >>>>>> +
-> > > >>>>>> +       ret = of_platform_populate(root, of_default_bus_match_table, lookup,
-> > > >>>>>> +                                  parent);
-> > > >>>>>
-> > > >>>>> of_platform_default_populate() vs. of_platform_populate() is just a
-> > > >>>>> different match table. I don't think the behavior should otherwise be
-> > > >>>>> different.
-> > > >>>>>
-> > > >>>>> There's also of_platform_probe() which has slightly different matching
-> > > >>>>> behavior. It should not behave differently either with respect to
-> > > >>>>> devlinks.
-> > > >>>>
-> > > >>>> So I'm trying to do this only when the top level devices are added for
-> > > >>>> the first time. of_platform_default_populate() seems to be the most
-> > > >>>> common path. For other cases, I think we just need to call
-> > > >>>> fw_devlink_pause/resume() wherever the top level devices are added for
-> > > >>>> the first time. As I said in the other email, we can't add
-> > > >>>> fw_devlink_pause/resume() by default to of_platform_populate().
-> > > >>>>
-> > > >>>> Do you have other ideas for achieving "call fw_devlink_pause/resume()
-> > > >>>> only when top level devices are added for the first time"?
-> > > >>>
-> > > >>> I'm not an expert in this domain, but before investigating it, would you
-> > > >>> be able to share a hack patch that implements this (in the most simple
-> > > >>> way) to check if it actually fixes the delays I experience on my system
-> > > >>> ?
-> > > >>
-> > > >> So I take it the patch I sent out didn't work for you? Can you tell me
-> > > >> what machine/DT you are using?
-> > > >
-> > > > I've replied to the patch:
-> > > >
-> > > > Based on v5.9-rc5, before the patch:
-> > > >
-> > > > [    0.652887] cpuidle: using governor menu
-> > > > [   12.349476] No ATAGs?
-> > > >
-> > > > After the patch:
-> > > >
-> > > > [    0.650460] cpuidle: using governor menu
-> > > > [   12.262101] No ATAGs?
-> > > >
-> > > > I'm using an AM57xx EVM, whose DT is not upstream, but it's essentially
-> > > > a am57xx-beagle-x15-revb1.dts (it includes that DTS) with a few
-> > > > additional nodes for GPIO keys, LCD panel, backlight and touchscreen.
-> > > >
-> > >
-> > > hope you are receiving my mails as I've provided you with all required information already [1]
-> >
-> > Laurent/Grygorii,
-> >
-> > Looks like I'm definitely missing emails. Sorry about the confusion.
-> >
-> > I have some other urgent things on my plate right now. Is it okay if I
-> > get to this in a day or two? In the end, we'll find a solution that
-> > addresses most/all of the delay.
->
-> No issue on my side.
+Hi Rob,
 
-Hi Laurent,
+Thank you very much for the review comments...
 
-Sorry it took awhile for me to get back to this.
+On 26/10/2020 9:08 pm, Rob Herring wrote:
+> On Mon, Oct 26, 2020 at 05:45:18PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>
+>> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
+>> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
+>>
+>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> ---
+>>   .../devicetree/bindings/spi/cadence-quadspi.txt    |  67 ----------
+>>   .../devicetree/bindings/spi/cadence-quadspi.yaml   | 148 +++++++++++++++++++++
+>>   2 files changed, 148 insertions(+), 67 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+>>   create mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt b/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+>> deleted file mode 100644
+>> index 945be7d5b236..000000000000
+>> --- a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+>> +++ /dev/null
+>> @@ -1,67 +0,0 @@
+>> -* Cadence Quad SPI controller
+>> -
+>> -Required properties:
+>> -- compatible : should be one of the following:
+>> -	Generic default - "cdns,qspi-nor".
+>> -	For TI 66AK2G SoC - "ti,k2g-qspi", "cdns,qspi-nor".
+>> -	For TI AM654 SoC  - "ti,am654-ospi", "cdns,qspi-nor".
+>> -- reg : Contains two entries, each of which is a tuple consisting of a
+>> -	physical address and length. The first entry is the address and
+>> -	length of the controller register set. The second entry is the
+>> -	address and length of the QSPI Controller data area.
+>> -- interrupts : Unit interrupt specifier for the controller interrupt.
+>> -- clocks : phandle to the Quad SPI clock.
+>> -- cdns,fifo-depth : Size of the data FIFO in words.
+>> -- cdns,fifo-width : Bus width of the data FIFO in bytes.
+>> -- cdns,trigger-address : 32-bit indirect AHB trigger address.
+>> -
+>> -Optional properties:
+>> -- cdns,is-decoded-cs : Flag to indicate whether decoder is used or not.
+>> -- cdns,rclk-en : Flag to indicate that QSPI return clock is used to latch
+>> -  the read data rather than the QSPI clock. Make sure that QSPI return
+>> -  clock is populated on the board before using this property.
+>> -
+>> -Optional subnodes:
+>> -Subnodes of the Cadence Quad SPI controller are spi slave nodes with additional
+>> -custom properties:
+>> -- cdns,read-delay : Delay for read capture logic, in clock cycles
+>> -- cdns,tshsl-ns : Delay in nanoseconds for the length that the master
+>> -                  mode chip select outputs are de-asserted between
+>> -		  transactions.
+>> -- cdns,tsd2d-ns : Delay in nanoseconds between one chip select being
+>> -                  de-activated and the activation of another.
+>> -- cdns,tchsh-ns : Delay in nanoseconds between last bit of current
+>> -                  transaction and deasserting the device chip select
+>> -		  (qspi_n_ss_out).
+>> -- cdns,tslch-ns : Delay in nanoseconds between setting qspi_n_ss_out low
+>> -                  and first bit transfer.
+>> -- resets	: Must contain an entry for each entry in reset-names.
+>> -		  See ../reset/reset.txt for details.
+>> -- reset-names	: Must include either "qspi" and/or "qspi-ocp".
+>> -
+>> -Example:
+>> -
+>> -	qspi: spi@ff705000 {
+>> -		compatible = "cdns,qspi-nor";
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -		reg = <0xff705000 0x1000>,
+>> -		      <0xffa00000 0x1000>;
+>> -		interrupts = <0 151 4>;
+>> -		clocks = <&qspi_clk>;
+>> -		cdns,is-decoded-cs;
+>> -		cdns,fifo-depth = <128>;
+>> -		cdns,fifo-width = <4>;
+>> -		cdns,trigger-address = <0x00000000>;
+>> -		resets = <&rst QSPI_RESET>, <&rst QSPI_OCP_RESET>;
+>> -		reset-names = "qspi", "qspi-ocp";
+>> -
+>> -		flash0: n25q00@0 {
+>> -			...
+>> -			cdns,read-delay = <4>;
+>> -			cdns,tshsl-ns = <50>;
+>> -			cdns,tsd2d-ns = <50>;
+>> -			cdns,tchsh-ns = <4>;
+>> -			cdns,tslch-ns = <4>;
+>> -		};
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/spi/cadence-quadspi.yaml b/Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
+>> new file mode 100644
+>> index 000000000000..b1b3d3ce0cc2
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
+>> @@ -0,0 +1,148 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spi/cadence-quadspi.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Cadence Quad SPI controller
+>> +
+>> +maintainers:
+>> +  - Vadivel Murugan <vadivel.muruganx.ramuthevar@intel.com>
+>> +
+>> +allOf:
+>> +  - $ref: "spi-controller.yaml#"
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +         - const: cdns,qspi-nor
+>> +         - const: ti,k2g-qspi, cdns,qspi-nor
+>> +         - const: ti,am654-ospi, cdns,qspi-nor
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: the controller register set
+>> +      - description: the controller data area
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  cdns,fifo-depth:
+>> +    description:
+>> +      Size of the data FIFO in words.
+>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>> +    enum: [ 128, 256 ]
+>> +    default: 128
+>> +
+>> +  cdns,fifo-width:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      Bus width of the data FIFO in bytes.
+>> +    default: 4
+>> +
+>> +  cdns,trigger-address:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      32-bit indirect AHB trigger address.
+>> +
+>> +  cdns,is-decoded-cs:
+>> +    type: boolean
+>> +    description:
+>> +      Flag to indicate whether decoder is used or not.
+>> +
+>> +  cdns,rclk-en:
+>> +    type: boolean
+>> +    description:
+>> +      Flag to indicate that QSPI return clock is used to latch the read
+>> +      data rather than the QSPI clock. Make sure that QSPI return clock
+>> +      is populated on the board before using this property.
+>> +
+>> +  resets:
+>> +    maxItems : 2
+>> +
+>> +  reset-names:
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +    items:
+>> +      enum: [ qspi, qspi-ocp ]
+>> +
+>> +# subnode's properties
+>> +patternProperties:
+>> +  "@[0-9a-f]+$":
+>> +    type: object
+>> +    description:
+>> +      flash device uses the subnodes below defined properties.
+>> +
+>> +  cdns,read-delay:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      Delay for read capture logic, in clock cycles.
+> 
+> As-is, these apply to the parent (controller) node. If these apply to
+> the child nodes, then they need to be under 'properties' under
+> '@[0-9a-f]+$'.
+Ok, Noted.
+> 
+>> +
+>> +  cdns,tshsl-ns:
+>> +    description: |
+> 
+> Don't need '|' if there's no formatting to preserve.
+Noted, will update.
 
-Can you try throwing around fw_devlink_pause/resume() around the
-of_platform_populate() call in arch/arm/mach-omap2/pdata-quirks.c?
-Just trying to verify the cause/fix.
-
-If it fixes the issue, then considering Rob's comments [1], a good
-short term solution might be to have the suggestion above and some way
-to do pause/resume only when the top level devices are added.
-
-> By the way, during initial investigations, I've traced code paths to
-> figure out if there was a particular step that would consume a large
-> amount of time, and found out that of_platform_populate() ends up
-> executing devlink-related code that seems to have an O(n^3) complexity
-> on the number of devices, with a few dozens of milliseconds for each
-> iteration. That's a very bad complexity.
-
-As you said, the complexity of fw_devlink parsing can be O(N^2). There
-are other ways to improve it to make it O(N) but it has a bunch of
-additional complexity and memory increase. When I tried to do it that
-way the first time, I was question whether O(N^2) actually translated
-to measurable difference. Looks like we do now :) I have something in
-mind for how to do it with O(N) complexity, but I expect it to take a
-while to get in. So in the meantime, I'm thinking of using
-fw_devlink_pause/resume() as a short term optimization.
-
--Saravana
-
-[1] - https://lore.kernel.org/linux-omap/CAL_Jsq+6mxtFei3+1ic4c5XCftJ8nZK6_S5_d15yEXQ02BTNKw@mail.gmail.com/
+Regards
+Vadivel
+> 
+>> +      Delay in nanoseconds for the length that the master mode chip select
+>> +      outputs are de-asserted between transactions.
+>> +
+>> +  cdns,tsd2d-ns:
+>> +    description: |
+>> +      Delay in nanoseconds between one chip select being de-activated
+>> +      and the activation of another.
+>> +
+>> +  cdns,tchsh-ns:
+>> +    description: |
+>> +      Delay in nanoseconds between last bit of current transaction and
+>> +      deasserting the device chip select (qspi_n_ss_out).
+>> +
+>> +  cdns,tslch-ns:
+>> +    description: |
+>> +      Delay in nanoseconds between setting qspi_n_ss_out low and
+>> +      first bit transfer.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - cdns,fifo-depth
+>> +  - cdns,fifo-width
+>> +  - cdns,trigger-address
+>> +  - cdns,is-decoded-cs
+>> +  - cdns,rclk-en
+>> +  - resets
+>> +  - reset-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    qspi: spi@ff705000 {
+>> +      compatible = "cadence,qspi","cdns,qpsi-nor";
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +      reg = <0xff705000 0x1000>,
+>> +            <0xffa00000 0x1000>;
+>> +      interrupts = <0 151 4>;
+>> +      clocks = <&qspi_clk>;
+>> +      cdns,fifo-depth = <128>;
+>> +      cdns,fifo-width = <4>;
+>> +      cdns,trigger-address = <0x00000000>;
+>> +      resets = <&rst 0x1>, <&rst 0x2>;
+>> +      reset-names = "qspi", "qspi-ocp";
+>> +
+>> +      flash@0 {
+>> +              compatible = "jedec,spi-nor";
+>> +              reg = <0x0>;
+>> +              cdns,read-delay = <4>;
+>> +              cdns,tshsl-ns = <50>;
+>> +              cdns,tsd2d-ns = <50>;
+>> +              cdns,tchsh-ns = <4>;
+>> +              cdns,tslch-ns = <4>;
+>> +     };
+>> +
+>> +    };
+>> +
+>> +...
+>> -- 
+>> 2.11.0
+>>
