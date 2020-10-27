@@ -2,78 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFBA529A065
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 01:31:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30CDE29A26C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 02:57:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409587AbgJZXv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 19:51:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53532 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2409581AbgJZXv5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 19:51:57 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E2D7E21655;
-        Mon, 26 Oct 2020 23:51:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603756316;
-        bh=xqDwpo2dA//CpS9TXgscxwx4pAuGxQncwa0ySR7ftn0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=m0QSQCwuLdVVkeqsPmRzfO58eGiBi1nca5tjfy5jN2ocV+XkneQa1rB78pCHKazpF
-         qerfamiH6FjI2IsAsAY7h2229/vSO9B/YaNpmsii8G0Cwt8MJEH1uZhZ2+IWSMow3E
-         kJvO7Bjz3SDldr3967E7D1evJkfcwi7GQv1hVpSQ=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.9 139/147] ARM: dts: s5pv210: align SPI GPIO node name with dtschema in Aries
-Date:   Mon, 26 Oct 2020 19:48:57 -0400
-Message-Id: <20201026234905.1022767-139-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201026234905.1022767-1-sashal@kernel.org>
-References: <20201026234905.1022767-1-sashal@kernel.org>
+        id S2504201AbgJ0By1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 21:54:27 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:39698 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2504202AbgJ0By1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 21:54:27 -0400
+Received: by mail-lj1-f196.google.com with SMTP id m16so12994851ljo.6
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 18:54:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LLnZq0fw5BkskFKbMKLE/UEUqWEDM6IwXjFAFUfkNXc=;
+        b=s+4T7WNwafEKsaZTJAqZ3ZXZjvsMNvQSvh3sliD1ErIwBmKLUEQuoWTZmohDXucNSP
+         7HL54TOrnk4/opKU4jtoZpllD2hpdbugyABT+hEw4Nnal6iEMrMoBKv4QoVRoseDCOUr
+         aqH8g1k/l+A1krfPVNTxBd4VAPrVwWx9F53J/wNTr1btUUY+MV7vXn5DC+2vm7qmh3JT
+         gzAsm31yPr1T1PHnL/W7Zrzh568dL2CRzKUxr/4BpqILcx51h7AzGKT3XvuGsn+ophlv
+         VqY9tK6D6kKj4mTe36yRt++7rxLcKt1mBLMqvSvjI21Srxa9xMmt8MqSDQVmZqUm+pwK
+         VCjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LLnZq0fw5BkskFKbMKLE/UEUqWEDM6IwXjFAFUfkNXc=;
+        b=WkPKvJxNvbS5qv6KDZoyfKF8ly0AIpQ+X9dV9V2+n89rEj4+7dtmkJt2LDXkKSg3mS
+         yQF1IY6+5BllifjKMQPsOXLZ6V/ORK/GpyxfX+i4wqbAd7OBxgQjpmAL9pF9MDA3Gloi
+         0CB0HMYLgeYpBk+kaSI3eV4NRFaVNSOWwVtTsAm5L6tdJJ8T0skTCwXsCkqLd0KnRs/m
+         W82/tmUyXMQAPvk0JCQn5UzO2QBWKpImPQPMD3knemrRmOrDHT5XPKPdrEZjdypSKlPn
+         OWhrQsGz0VUxoplSFNQc3LbdjQJG8E/2WWF7NnpcGCAJa5OTdlg5NxbBXEVYyLWH3Wjg
+         m2Ow==
+X-Gm-Message-State: AOAM531gnMlrnBvqDCviBctHd7Tdj27elKdc30oq3MDh/1CVPGR7DwIj
+        42d1U6KhGC0nGG/DiQ6otlh9aQ==
+X-Google-Smtp-Source: ABdhPJxUVYVcN5kBsztFguH3Pmpi0hgJSeuM94hRMSkFKovpAwN2bz0uYE7Bwzghy6qIKMzyMyvxpQ==
+X-Received: by 2002:a2e:81cf:: with SMTP id s15mr18256ljg.147.1603763663627;
+        Mon, 26 Oct 2020 18:54:23 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.195])
+        by smtp.gmail.com with ESMTPSA id p145sm1219721lfa.256.2020.10.26.18.54.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2020 18:54:23 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8250: remove wakeup-parent for TLMM node
+Date:   Tue, 27 Oct 2020 04:54:20 +0300
+Message-Id: <20201027015420.908945-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzk@kernel.org>
+On SM8250 TLMM doesn't use PDC interrupt controller for wakeup events.
+Instead it handles them on their own (not implemented yet). In addition
+setting wakeup-parent property to &pdc will result in parent hwirq being
+set to ~0UL, which interact badly with the irqdomains trimming code. So
+remove the wakeup-parent property.
 
-[ Upstream commit 1ed7f6d0bab2f1794f1eb4ed032e90575552fd21 ]
-
-The device tree schema expects SPI controller to be named "spi",
-otherwise dtbs_check complain with a warning like:
-
-  spi-gpio-0: $nodename:0: 'spi-gpio-0' does not match '^spi(@.*|-[0-9a-f])*$'
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Tested-by: Jonathan Bakker <xc-racer2@live.ca>
-Link: https://lore.kernel.org/r/20200907161141.31034-25-krzk@kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Fixes: 16951b490b20 ("arm64: dts: qcom: sm8250: Add TLMM pinctrl node")
 ---
- arch/arm/boot/dts/s5pv210-aries.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/s5pv210-aries.dtsi b/arch/arm/boot/dts/s5pv210-aries.dtsi
-index 8a98b35b9b0de..3762098233c0c 100644
---- a/arch/arm/boot/dts/s5pv210-aries.dtsi
-+++ b/arch/arm/boot/dts/s5pv210-aries.dtsi
-@@ -545,7 +545,7 @@ poweroff: syscon-poweroff {
- 		value = <0x5200>;
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index ccbdb47d6119..77ea20421752 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -2418,7 +2418,6 @@ tlmm: pinctrl@f100000 {
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+ 			gpio-ranges = <&tlmm 0 0 180>;
+-			wakeup-parent = <&pdc>;
  
--	spi_lcd: spi-gpio-0 {
-+	spi_lcd: spi-2 {
- 		compatible = "spi-gpio";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+ 			pri_mi2s_sck_active: pri-mi2s-sck-active {
+ 				mux {
 -- 
-2.25.1
+2.28.0
 
