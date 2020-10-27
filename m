@@ -2,207 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D715A29A55D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5A3A29A5A0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:41:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394290AbgJ0HR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 03:17:29 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:45322 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391259AbgJ0HR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 03:17:29 -0400
-Received: by mail-pl1-f195.google.com with SMTP id v22so274470ply.12;
-        Tue, 27 Oct 2020 00:17:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vljv2zTcnusdnoE2Ebtr4B8YFnOFsaAH4GsaHCQRfeg=;
-        b=LlSOfcFsayjSdsPRwX3bwJmgY95xyHeIWWOtlnkmhbuDgKr29Cget1JJ1BYHivEaaJ
-         9yVkE0TVoNFP79zajEbBU3CNbx3oNqzXiv9LKQ/CVw0VZAIdxd7ElS14qxXE4Y2VB1Z1
-         RfqBTXY0zcdgTsLhiE8as8M0CG9wUyhVHb5KTm3nIGmBzpEwyi8k2UoCTFpbYltVUZ4O
-         VtUzmia5kg50jSi50FR0H+MKz1l9AixwoYeXwUbYfubNToK+eT6qTPYo/qP3fX5pKVvu
-         UatsWBCm9bcPJqiByaZ9VdguT/MXlemCNmVGIYIyQgIa+PZ/z9DcML9cV0mGbf4spBQ4
-         zBtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vljv2zTcnusdnoE2Ebtr4B8YFnOFsaAH4GsaHCQRfeg=;
-        b=KYItFKwbJ+ycoMhqGR8Q63SgW26OtizhPw19Wsplu7t1KHT5Xa8Qby9b8yPP/Pxj+0
-         S++u4SuVZVkK4ROJZJQWY4ofSrtDVLb9DgCxlBmfo2+hdMTqPXhDeLeyX2bccqzYmgZW
-         nOssCLYT1U6XigyKiw0lCRhsBIQ5eA569ttmyLCI5+Tk2CTnn94kR1vtRVbALV071ztX
-         W7HeFlCOQoW461kZgSUHz9G73RcURucCDIhntG9JWEg7lweXYKct0fj64PV+M6I23xnt
-         5T73MY8Z1qqIA4yv2cHo3IfjJhB34Kr2nWNaxrkP/prinHdWgVOJKSa64y/rxCtrmTWW
-         y1FA==
-X-Gm-Message-State: AOAM533NX5jl5s1JsOoPJuvPaN0CV9WE0OItVCg4uOpbor16ZIHlk08m
-        /OAFBEpjYre1AIeqQanUjWjs15LTVWqwUwAg
-X-Google-Smtp-Source: ABdhPJyd83PuMNnaBAvQ+OhFngbOvXPax9LrFj1ABpiAfcpRjlmNHN7JGT7UjoTV9cOqzCuiJpRtHg==
-X-Received: by 2002:a17:902:9a84:b029:d2:9390:5e6 with SMTP id w4-20020a1709029a84b02900d2939005e6mr1220968plp.37.1603783048413;
-        Tue, 27 Oct 2020 00:17:28 -0700 (PDT)
-Received: from ruantu-3.localdomain ([103.230.142.242])
-        by smtp.gmail.com with ESMTPSA id u7sm1036634pfn.37.2020.10.27.00.17.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 00:17:27 -0700 (PDT)
-From:   Yu-Tung Chang <mtwget@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yu-Tung Chang <mtwget@gmail.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH v4 1/1] ARM: dts: sun8i: add FriendlyArm ZeroPi support
-Date:   Tue, 27 Oct 2020 15:16:48 +0800
-Message-Id: <20201027071648.15988-2-mtwget@gmail.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201027071648.15988-1-mtwget@gmail.com>
-References: <20201027071648.15988-1-mtwget@gmail.com>
+        id S2507902AbgJ0Hkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 03:40:35 -0400
+Received: from mail-vi1eur05on2086.outbound.protection.outlook.com ([40.107.21.86]:13728
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2507899AbgJ0Hkf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 03:40:35 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F73n1QZ2FO1UCMk8925y2AmCcrHYcMADVaYxRINyP/BgFBEan0Scee8CO/fjj7uT8J20bruyIQntHnMngTEaJ4LkQlWTuOIkTcol88Ilygtmzu1he7LIMkrYJ1WKx7Si4IGfSE/NqZc6BiRxPyrpkwV6/6xw4EDlZ0wR4TqcB7d13HTcLcsZsGIGvC9OWmf2QNPkGlRximWUx0Os0vNOvF1670o7kIvOEx3azp/Ty4VsrMvWpfw29hcUn5u43Piq/hrpHOaonugrxLZC0+CXc9dMGtya4Kkb6u5nqEcBae5ompltFVnOx5V3glyifr56XLtr1zB4P40mL507BC/HGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nUB+9OuLCsnBgZUia66ih8NR0hfvkDzhENEJNUsxKGc=;
+ b=fVvfQ2+8VqaLGf4AYHrUYT/M2AGpytzvz72rN/UsEQFl+Waiw6acTb+uQsRGKrZio5lZe1DzcbsmHg0HF74Hve38fdW0xGY4fvGE3X9WlLzaTaXm1nhtK/cUTbQfpRtmsLiqX/eofR54w9FtVML42a5TPD9icinmC4gvhfxiEplZRAhFAvGVokBucF6xTjdVnw5z58nHaoMU0YMu7uVMqKC80wUsi/mJgrHW7FCphkn4Jzicn47UuO4dgb04+2V2jjCmXFsUIL2JtFYYMDpW6Ccoob8L52B0Hn2D7IyvQ0Cav0les0hf+N3nCY0XFC1NWbuSx1evtlvvwnDmUrfiAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nUB+9OuLCsnBgZUia66ih8NR0hfvkDzhENEJNUsxKGc=;
+ b=KothzSq5xPBlkOz4cJQmis+VS0HcPfDomYGGSvcqkpmLEf/rK8mLkdWfojfRichdW6AZPw0ov2kq3gNxmAmz9DbsfIf0OV5z3u/9bzL46u9iaJJrYmZTsnlt7A6ufAHU+lH4Ut1k9/bNGqgM8onfjVVxH2M71oXXx0F3fNg8jgM=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27)
+ by HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.27; Tue, 27 Oct
+ 2020 07:39:33 +0000
+Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com
+ ([fe80::f882:7106:de07:1e1e]) by HE1PR0402MB3371.eurprd04.prod.outlook.com
+ ([fe80::f882:7106:de07:1e1e%4]) with mapi id 15.20.3477.028; Tue, 27 Oct 2020
+ 07:39:30 +0000
+From:   Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
+To:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org, bhelgaas@google.com,
+        shawnguo@kernel.org, leoyang.li@nxp.com,
+        gustavo.pimentel@synopsys.com
+Cc:     minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: [PATCHv2 0/7] PCI: layerscape: Add power management support
+Date:   Tue, 27 Oct 2020 15:29:54 +0800
+Message-Id: <20201027073001.41808-1-Zhiqiang.Hou@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.73]
+X-ClientProxiedBy: SGAP274CA0002.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::14)
+ To HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.73) by SGAP274CA0002.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend Transport; Tue, 27 Oct 2020 07:39:25 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 5e08a333-f5e2-4301-35e0-08d87a4b7025
+X-MS-TrafficTypeDiagnostic: HE1PR0402MB3371:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1PR0402MB33715DAF93F890518ABDA60684160@HE1PR0402MB3371.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: togN5Q44q686fWgz+uWJlmRXvZ3JVrLNdzhbSx68rQyEJpLsEW81fxiyYCDn7QJFOa9FHOEQecfFFQRM6V+hfXywdI3YdAC0B4PU5y30MEs/FIdLFqIKdsfLC7qvcGjQdqyWBs6SBoLHP2+wqF4CykjQp9nwmSHiwKLi70ESY3+tcqcALOh29rRl6W62O0rt6mHrIKdcgCyjfwte7RcHut0/mLhIEsHZDDIt3aqV4l7E6QktYIesr96ktBIsmRGiuvHVAk11QSdkaolDalF5Haqs89BOD3e/Aaf1IhzvSXbphJHzkSL7n4Gn+LwiK0v1igT7iLpySbByQ4V+4KfUW/hJcEeV7RjDCoDmvncT04D485zXh0juzw7nCGI4b+70SIcdWfcoWmv+s97kKtyRRQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0402MB3371.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(396003)(136003)(376002)(346002)(1076003)(8676002)(5660300002)(86362001)(2906002)(186003)(8936002)(6666004)(4326008)(16526019)(6506007)(26005)(316002)(52116002)(2616005)(36756003)(956004)(69590400008)(6486002)(6512007)(478600001)(83380400001)(66556008)(66476007)(66946007)(921003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 7GP3Fe/S30ORDLgRzMnVcKiXoe0aBA5FUPMKTqbA03rYcxQ9VbpqRwVR34jcVnnMMqxRbTlMWimBnraGd6xZKaAXFCh8yZKqNOVrUo86Zdw4OXs5aUEgN1VWz5U0/FMJW7IDvqHXJQ9LTHaQZAr4xYBru0+O57YnefKkAwZdw7kqAEHSbCqz62NdnitPccFMNiVdf6VGqLVUktPz33k13tyg45weSKAepPkVYDvi1himLQk801O7H68fnOCfMQNm7VX0mexVCYcP2Jpo8AOkQxAD8gA0hzfsi78lNxG5On6cM+udcumn+yK0O4+09BWIx7TQhOovVLzwJKCFjDgJEkYFuRP/L6IN6pOZnUG/6WcInlvxnaJqF37hlUuFEi1Rd8smhx9EKWnRmF+C80caVHQlZnXZj6xUA7aiJbnTFOMn/4b7jOyEcpKwAwokdVZsNEsJOKznvIMIgTjynSLByZe3GtWnxcDDuavTmMtzLXK88bTbGChEHDhUSi0ERTM1Lc4fQNUTYGdLuXYWNShMW6miJ3ZlHKmKI+p7+rT0c4vNEjAjEHbTedzqqCdpuf3dDIg099Iwu1LUU6I5lrQ2UTVfZ3byAcQsRrvxNK3ftWXYfRaLbNZGQ8TyF0pNhVMeT2Ag0PvXEW4fLPnjDOGhGQ==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e08a333-f5e2-4301-35e0-08d87a4b7025
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0402MB3371.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2020 07:39:29.9835
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: u7mLmjlSQ41/lcmgb1NSrY+WeL31b5qqTcg8vllfH+eDefzTfhwrFnn1OE8wWsyjwuzMdoKe3PKmM9Dgx0bIXA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB3371
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ZeroPi is another fun board developed
-by FriendlyELEC for makers,
-hobbyists and fans.
+From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 
-ZeroPi key features
-- Allwinner H3, Quad-core Cortex-A7@1.2GHz
-- 256MB/512MB DDR3 RAM
-- microsd slot
-- 10/100/1000Mbps Ethernet
-- Debug Serial Port
-- DC 5V/2A power-supply
+This patch series is to add PCIe power management support for NXP
+Layerscape platfroms.
 
-Signed-off-by: Yu-Tung Chang <mtwget@gmail.com>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-Link: https://lore.kernel.org/r/20201026073536.13617-2-mtwget@gmail.com
----
- .../devicetree/bindings/arm/sunxi.yaml        |  5 ++
- arch/arm/boot/dts/Makefile                    |  1 +
- arch/arm/boot/dts/sun8i-h3-zeropi.dts         | 85 +++++++++++++++++++
- 3 files changed, 91 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-h3-zeropi.dts
+Hou Zhiqiang (7):
+  PCI: dwc: Fix a bug of the case dw_pci->ops is NULL
+  PCI: layerscape: Change to use the DWC common link-up check function
+  dt-bindings: pci: layerscape-pci: Add a optional property big-endian
+  arm64: dts: layerscape: Add big-endian property for PCIe nodes
+  dt-bindings: pci: layerscape-pci: Update the description of SCFG
+    property
+  dts: arm64: ls1043a: Add SCFG phandle for PCIe nodes
+  PCI: layerscape: Add power management support
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index afa00268c7db..0f23133672a3 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -251,6 +251,11 @@ properties:
-           - const: friendlyarm,nanopi-neo-plus2
-           - const: allwinner,sun50i-h5
- 
-+      - description: FriendlyARM ZeroPi
-+        items:
-+          - const: friendlyarm,zeropi
-+          - const: allwinner,sun8i-h3
-+
-       - description: Gemei G9 Tablet
-         items:
-           - const: gemei,g9
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index ce66ffd5a1bb..4f0adfead547 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1201,6 +1201,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-h3-orangepi-plus2e.dtb \
- 	sun8i-h3-orangepi-zero-plus2.dtb \
- 	sun8i-h3-rervision-dvk.dtb \
-+	sun8i-h3-zeropi.dtb \
- 	sun8i-h3-emlid-neutis-n5h3-devboard.dtb \
- 	sun8i-r16-bananapi-m2m.dtb \
- 	sun8i-r16-nintendo-nes-classic.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-h3-zeropi.dts b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
-new file mode 100644
-index 000000000000..7d3e7323b661
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
-@@ -0,0 +1,85 @@
-+/*
-+ * Copyright (C) 2020 Yu-Tung Chang <mtwget@gmail.com>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This file is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License as
-+ *     published by the Free Software Foundation; either version 2 of the
-+ *     License, or (at your option) any later version.
-+ *
-+ *     This file is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+#include "sun8i-h3-nanopi.dtsi"
-+
-+/ {
-+	model = "FriendlyARM ZeroPi";
-+	compatible = "friendlyarm,zeropi", "allwinner,sun8i-h3";
-+
-+	aliases {
-+		ethernet0 = &emac;
-+	};
-+
-+	reg_gmac_3v3: gmac-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "gmac-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <100000>;
-+		enable-active-high;
-+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-+	};
-+};
-+
-+&external_mdio {
-+	ext_rgmii_phy: ethernet-phy@7 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <7>;
-+	};
-+};
-+
-+&emac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emac_rgmii_pins>;
-+	phy-supply = <&reg_gmac_3v3>;
-+	phy-handle = <&ext_rgmii_phy>;
-+	phy-mode = "rgmii-id";
-+
-+	allwinner,leds-active-low;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	status = "okay";
-+	dr_mode = "host";
-+};
+ .../bindings/pci/layerscape-pci.txt           |   6 +-
+ .../arm64/boot/dts/freescale/fsl-ls1012a.dtsi |   1 +
+ .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi |   6 +
+ .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |   3 +
+ drivers/pci/controller/dwc/pci-layerscape.c   | 469 ++++++++++++++----
+ drivers/pci/controller/dwc/pcie-designware.c  |  14 +-
+ drivers/pci/controller/dwc/pcie-designware.h  |   1 +
+ 7 files changed, 385 insertions(+), 115 deletions(-)
+
 -- 
-2.29.0
+2.17.1
 
