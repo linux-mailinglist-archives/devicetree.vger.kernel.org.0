@@ -2,72 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 057F829A9B7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:34:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3848D29A9C9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2898280AbgJ0Kal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 06:30:41 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:59963 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2898136AbgJ0K3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:29:04 -0400
-X-UUID: b1ba04f039b94df293fae011de86c2a1-20201027
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=lI1rHYpY+CiSC3fg2g3y3KjP/CT7FHrSA+j5s8OF8S8=;
-        b=JIAb8qRmlXdWorFqndwiH1RPBJD69+AONjtAqE/eICvQ5pWXgIfaWzbVGqwio7LWLUy7LGYxVqMmzyImN9kfqOa48tUygEJc20Uh5kdCsnIn/SzwF2g9HkEf/zFXAQWBJG8UxWuXZawKYiIQDpD5R1/CdUjm+bE1yXD1UO2+Ix8=;
-X-UUID: b1ba04f039b94df293fae011de86c2a1-20201027
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1089795499; Tue, 27 Oct 2020 18:29:00 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs07n1.mediatek.inc
- (172.21.101.16) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 27 Oct
- 2020 18:28:58 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 27 Oct 2020 18:28:57 +0800
-Message-ID: <1603794538.26523.6.camel@mhfsdcap03>
-Subject: Re: [PATCH 1/2] ASoC: mt6359: skip first time data at the beginning
- of DMIC recording
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     <robh+dt@kernel.org>, <matthias.bgg@gmail.com>, <tiwai@suse.com>,
-        <tzungbi@google.com>, <alsa-devel@alsa-project.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <shane.chien@mediatek.com>
-Date:   Tue, 27 Oct 2020 18:28:58 +0800
-In-Reply-To: <20201026123325.GC7402@sirena.org.uk>
-References: <1603521686-13036-1-git-send-email-jiaxin.yu@mediatek.com>
-         <1603521686-13036-2-git-send-email-jiaxin.yu@mediatek.com>
-         <20201026123325.GC7402@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S2898466AbgJ0KgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:36:02 -0400
+Received: from mail-eopbgr80085.outbound.protection.outlook.com ([40.107.8.85]:55712
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2898449AbgJ0KgA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 06:36:00 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Tvh3nzWqJktN2PiaA0fBnC5jMVMJJhzn/m3kBa5aWZkasnSsp/CtFdyIytM57BAG5jIDCfCwkhjcS3DGQeaUQjgvGIPG2xRXw4rzHHAhsB6xYkPQniX3jPT4HfC53oESnjSlzZ+fjfS+53pOM1rwzkj+Y6MP+RtmldMhrNfm1cGXZHEiSD5MHPXb1pOrcphLzkVVfNidg80ZR/yjlVCn8PCtfbhWXckrYuDM2j3f3PUEqsfDRgHFofozBzJuxEU13JlAdTCWAMGPof7I/horb58lYMsq0F+5aP2fGoIY4jK0ExaI/o4r1AZ86I8vL2Hg1qyaXsFDNyM2B0CK64qGoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JN5bdLi0+FL0ViYdZGssLKaqfR5ZvbJ9jT+ueiPN57A=;
+ b=CEw1gLB4B8Dsc6HRYL6R7yNRwLuFusFT3qrjhHdYxJmaR9U5wtMGU1kIkpVIqs/FWxuEblpvRPeASqTCuKLy2yM9PSLYTq83AIQEOAsTNkeiSTbyNB4kTiaEFGR4KnZrtjTe8rgx+WeCVZIoIO4uaZtlsJ8lTFML6/vs/gNzwSQPrc7vLUtrHs20vprWit3wVqdjpmBEiEiDZdrrJkwrv0s/Vx2w9v2w+d9TVIMC4+UF38skb/M3LqU0vsXuQFRrTrRg1De4clOGfKczNA/nO50br+gHVmUrt31ewhk3nyFsiRKJFxHpdF2C7UQW5yRo3Wo9HUqS6/XC+Z0zj4QcBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JN5bdLi0+FL0ViYdZGssLKaqfR5ZvbJ9jT+ueiPN57A=;
+ b=NfTrT7H7rqGvXFK7OCaOqXiCwyOwkIEzMu7CeLlRjIXJ0BiLKi5DP2Xdke+Z9JHknIkoY5rqk+N3p7awMZZHLEF7VZ0eZK8prwf63oFc6FwyCQMjxIuQHHMs8qk1LMcgS+nYZiZW3Cm2as+LMlLf/BhU82i6c8mFbwsTWjVyQ/M=
+Received: from HE1PR0401MB2444.eurprd04.prod.outlook.com (2603:10a6:3:83::15)
+ by HE1PR0402MB2698.eurprd04.prod.outlook.com (2603:10a6:3:dc::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Tue, 27 Oct
+ 2020 10:35:56 +0000
+Received: from HE1PR0401MB2444.eurprd04.prod.outlook.com
+ ([fe80::2465:b69a:bcd7:75d9]) by HE1PR0401MB2444.eurprd04.prod.outlook.com
+ ([fe80::2465:b69a:bcd7:75d9%5]) with mapi id 15.20.3477.028; Tue, 27 Oct 2020
+ 10:35:56 +0000
+From:   "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
+To:     Marc Zyngier <maz@kernel.org>,
+        "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
+CC:     "linux@rasmusvillemoes.dk" <linux@rasmusvillemoes.dk>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Leo Li <leoyang.li@nxp.com>, "Z.q. Hou" <zhiqiang.hou@nxp.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "jason@lakedaemon.net" <jason@lakedaemon.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jiafei Pan <jiafei.pan@nxp.com>,
+        Xiaobo Xie <xiaobo.xie@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [v2 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+Thread-Topic: [v2 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
+ interrupt
+Thread-Index: AQHWrEzzsEWsQcWWFESnNpVhpDbBsQ==
+Date:   Tue, 27 Oct 2020 10:35:56 +0000
+Message-ID: <HE1PR0401MB2444AA759104F4A34F91B61F8F160@HE1PR0401MB2444.eurprd04.prod.outlook.com>
+References: <20201027044619.41879-1-biwen.li@oss.nxp.com>
+ <d5d6deb90b4b3d086024fcf01b737da9@kernel.org>
+In-Reply-To: <d5d6deb90b4b3d086024fcf01b737da9@kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 53cee19a-d5b9-4076-d1ce-08d87a64166b
+x-ms-traffictypediagnostic: HE1PR0402MB2698:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HE1PR0402MB26987F4A23911B194F5CEA2ACE160@HE1PR0402MB2698.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:390;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 66/DZXm0D9HjxeHgrtMJewrPpZI0H+0J00uQtN2C4dRL+hiUUKotmjYYHoEGOAWuYlIiCp7Kg1AS99qTLwJTA1t/FKB9hervjNi/kUwGTLN10gqs21r1zmz+kVTZuwmznPCajnuxUnm94lQZTiHbn+hOIsUVs/h+7EnlZJQIwZ7JTqCuAuT6N0+OZ+XHwzKTUFANUSXUHxX+uFmi+A7bVEOBPzQPMeuPQjiULKP6+2tNXOfjZ34bgnYJE4Wb7Sx9Vj+Sg71B57iaYmQigS+f4kZOpylPd8KCEoLYxXqjhIWvtlzDvdXXx5aNnAXeMvFWrP4V8vzwTGDjLt+OIYdwPQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0401MB2444.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(396003)(366004)(346002)(376002)(71200400001)(6506007)(76116006)(2906002)(52536014)(66946007)(66556008)(83380400001)(5660300002)(66476007)(64756008)(66446008)(9686003)(110136005)(86362001)(316002)(26005)(478600001)(8676002)(7416002)(7696005)(54906003)(4001150100001)(8936002)(53546011)(55016002)(186003)(33656002)(4326008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: cLYMT0kdGS9M5XkzCAe3/pHY9A6Np/X5pMlnDgjhwd3PCsS2P8zSWvf5EdqhcE4XZ6ZFiSvwQd4YsFW3ZwlaM/WBzxnclUq4TeUc0IozBcpj2B3oiufQGugVVtUj1a3lhc/epA+14qk8zTEZS2kaC9gm77pMmzWhpNuBnR7ylxnHY8fd2jp9IBnbyWGonUdOupWpeD3+wH0PEniPAKAisYT+DbXYhrLh91GPSFzVOppGoP22b7GlBZM0nWdxV+kIWNy1TKN6HptgDZ1Tk18qXYI8+PioyznRmlztcWXNKdrLG5HFg3RRQcqVoG+50KdIpBp3VZPmRxNBHyNsd4zlbjhLtKWq4nokFbHGbgY44mAycsSnnYHewfDpWNxesCHiHxUbpIfYrkEyItB4/DWW+MASpFiWuPcM0dMb2Qs+GP1nFz2QT1rmCn1ASWwFHq0T1uANLR63VaxR1Xq36mj02OdKO821rWe834MMRTkyiGfPsR8MgA4xU9vCvudVNLBUcR2QGRA9In62idlHYPoNCCbRYtHL8KFDZj7JORZ58oO+iqg98YZ8IKaoBPKOVWf9eGxBYFTHOaeegkr8YTyT07Cdff+g5X6v5IjGHIdhB2AoWnBgrbWSXEjB0nV3Gk1zjnloOFL0kprskSa2cJIg2A==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0401MB2444.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53cee19a-d5b9-4076-d1ce-08d87a64166b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2020 10:35:56.3088
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oU+QNPoZ83eNlBOI72Oikpfp1RGOrsT+HYLRiX19QRiqWIYOiySroHSs3OhnJj9esu1vmaYm6UJLb3btgAOCew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB2698
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTEwLTI2IGF0IDEyOjMzICswMDAwLCBNYXJrIEJyb3duIHdyb3RlOg0KPiBP
-biBTYXQsIE9jdCAyNCwgMjAyMCBhdCAwMjo0MToyNVBNICswODAwLCBKaWF4aW4gWXUgd3JvdGU6
-DQo+ID4gV2UgY2FuIGNob29zZSB0byBkcm9wIGF3YXkgYW55IGxlbmd0aCBvZiBkYXRhIGZyb20g
-dGhlIGJlZ2lubmluZyBhY2NvcmRpbmcNCj4gPiB0byBwcm9qZWN0IG5lZWRzLiBTb21lIHByb2pl
-Y3RzIGRvbid0IHdhbnQgdG8gdGhyb3cgYXdheSBhbnkgZGF0YSwgYmVjYXVzZQ0KPiA+IHRoZXkg
-d2FudCB0byB1c2UgcmVjb3JkZWQgZGF0YSB0byBkbyBlY2hvIGNhbmNlbGxhdGlvbiwgc28gdGhl
-eSBoYXZlIHRvDQo+ID4gbWFrZSBzdXJlIHRoYXQgdGhleSBhcmUgYWxpZ25lZCB3aXRoIHRoZSBy
-ZWZlcmVuY2UgZGF0YSBhcyBtdWNoIGFzDQo+ID4gcG9zc2libGUuIE9yIHRoZXJlIGFyZSBvdGhl
-ciBhbGdvcml0aG1zIGluIHRoZSB1cHBlciBsYXllciB0byBlbGltaW5hdGUNCj4gPiB0aGlzIG5v
-aXNlLiBPciBzb21lIHByb2plY3RzIHdhbnQgdG8gZWxpbWluYXRlIHRoaXMgbm9pc2UgZm9ybSB0
-aGUga2VybmVsDQo+ID4gbGF5ZXIuIEhvd2V2ZXIsIHRoZSBtaW5pbXVtIHJlY29tbWVuZGVkIHZh
-bHVlIGlzIDUwbXMgdG8gc2tpcCBwb3Agbm9pc2UuDQo+IA0KPiBUaGlzIHNlZW1zIGxpa2Ugc29t
-ZXRoaW5nIHRoYXQgd291bGQgYXBwbHkgZXF1YWxseSB0byBhbGwgRE1JQ3Mgc28NCj4gc2hvdWxk
-IGJlIGRvbmUgYXQgYSBtb3JlIGdlbmVyYWwgbGV2ZWwgcmF0aGVyIHRoYW4gaW4gdGhpcyBzcGVj
-aWZpYw0KPiBkcml2ZXIsIGZvciBleGFtcGxlIGl0IGNvdWxkIGJlIGRvbmUgaW4gdGhlIERNSUMg
-ZHJpdmVyLg0KDQpIaSBCcm93biwNCg0KU28geW91IHN1Z2dlc3QgdGhhdCB3ZSB1c2Ugc291bmQv
-c29jL2NvZGVjcy9kbWljLmMgdG8gY29udHJvbCB0aGUgZGVsYXkNCmFmdGVyIHJlY29yZGluZz8N
-CklmIHNvLCBzaG91bGQgd2UgYWRkIG9uZSBtb3JlIENPREVDKCdkbWljLWNvZGVjJyBhbmQgJ2Rt
-aWMtaGlmaScpIHRvDQpkbWljJ3MgZGFpLWxpbms/IEl0IGxvb2tzIGxpbmsgZG1pYy5jIGhhcyBo
-ZWxwZWQgdXMgZG8gc29tZXRoaW5nIHRvDQpjb250cm9sIGRtaWNzLg0K
 
+>=20
+> On 2020-10-27 04:46, Biwen Li wrote:
+> > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> >
+> > Add an new IRQ chip declaration for LS1043A and LS1088A
+> > - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A.
+> > SCFG_INTPCR[31:0]
+> >   of these SoCs is stored/read as SCFG_INTPCR[0:31] defaultly(bit
+> >   reverse)
+> > - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
+> >
+> > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > Signed-off-by: Biwen Li <biwen.li@nxp.com>
+>=20
+> You clearly couldn't be bothered to read what I wrote in my earlier repli=
+es. I'm
+> thus ignoring this series...
+Okay, got it.
+>=20
+> > ---
+> > Change in v2:
+> > 	- add despcription of bit reverse
+> > 	- update copyright
+> >
+> >  drivers/irqchip/irq-ls-extirq.c | 10 +++++++++-
+> >  1 file changed, 9 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/irqchip/irq-ls-extirq.c
+> > b/drivers/irqchip/irq-ls-extirq.c index 4d1179fed77c..9587bc2607fc
+> > 100644
+> > --- a/drivers/irqchip/irq-ls-extirq.c
+> > +++ b/drivers/irqchip/irq-ls-extirq.c
+> > @@ -1,5 +1,8 @@
+> >  // SPDX-License-Identifier: GPL-2.0
+> > -
+> > +/*
+> > + * Author: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> > + * Copyright 2020 NXP
+>=20
+> ... specially when you keep attributing someone else's copyright to NXP.
+Then I don't know how to add the copyright, any suggestions?
+>=20
+>          M.
+> --
+> Jazz is not dead. It just smells funny...
