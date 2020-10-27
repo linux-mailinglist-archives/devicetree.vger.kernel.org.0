@@ -2,135 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCB6E29A52D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:03:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 210D029A543
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:09:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2507080AbgJ0HDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 03:03:52 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:49037 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387606AbgJ0HDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 03:03:52 -0400
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1kXJ1C-00019L-Kr; Tue, 27 Oct 2020 08:03:42 +0100
-Subject: Re: [Linux-stm32] [PATCH v7 10/12] ARM: dts: stm32: Fix schema
- warnings for pwm-leds
-To:     Alexander Dahl <post@lespocky.de>, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-leds@vger.kernel.org
-References: <20201005203451.9985-1-post@lespocky.de>
- <20201005203451.9985-11-post@lespocky.de>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <b387bda8-3643-1d27-4996-2aa4dc94d69f@pengutronix.de>
-Date:   Tue, 27 Oct 2020 08:03:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        id S2507341AbgJ0HJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 03:09:46 -0400
+Received: from jax4mhob15.registeredsite.com ([64.69.218.103]:55816 "EHLO
+        jax4mhob15.registeredsite.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2507340AbgJ0HJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 03:09:45 -0400
+X-Greylist: delayed 52614 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Oct 2020 03:09:45 EDT
+Received: from mailpod.hostingplatform.com ([10.30.71.206])
+        by jax4mhob15.registeredsite.com (8.14.4/8.14.4) with ESMTP id 09R79hd4022608
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 03:09:43 -0400
+Received: (qmail 7355 invoked by uid 0); 27 Oct 2020 07:09:43 -0000
+X-TCPREMOTEIP: 83.128.90.119
+X-Authenticated-UID: mike@milosoftware.com
+Received: from unknown (HELO phenom.domain?not?set.invalid) (mike@milosoftware.com@83.128.90.119)
+  by 0 with ESMTPA; 27 Oct 2020 07:09:42 -0000
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+To:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, sre@kernel.org, robh+dt@kernel.org,
+        Mike Looijmans <mike.looijmans@topic.nl>
+Subject: [PATCH v2] dt-bindings: power/supply: Add ltc4162-l-charger
+Date:   Tue, 27 Oct 2020 08:09:38 +0100
+Message-Id: <20201027070938.10157-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20201005203451.9985-11-post@lespocky.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Alexander,
+Add support for the LTC4162-L Li-Ion battery charger. The driver allows
+reading back telemetry and to set some charging options like the input
+current limit.
 
-On 10/5/20 10:34 PM, Alexander Dahl wrote:
-> The node names for devices using the pwm-leds driver follow a certain
-> naming scheme (now).  Parent node name is not enforced, but recommended
-> by DT project.
-> 
->   DTC     arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
->   CHECK   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml: led-rgb: 'led-blue', 'led-green', 'led-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> 
-> Signed-off-by: Alexander Dahl <post@lespocky.de>
+This adds the devicetree bindings.
 
-Acked-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+---
+v2: Use microohms, add lltc,cell-count
 
-But got two questions below:
+ .../bindings/power/supply/ltc4162-l.yaml      | 68 +++++++++++++++++++
+ 1 file changed, 68 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
 
-> ---
-> 
-> Notes:
->     v6 -> v7:
->       * split up patch (one per sub arch)
->       * added actual warnings to commit message
-> 
->  arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> index 5700e6b700d3..25d548cb975b 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> @@ -36,34 +36,34 @@
->  		stdout-path = &uart4;
->  	};
->  
-> -	led-act {
-> +	led-controller-1 {
->  		compatible = "gpio-leds";
->  
-> -		led-green {
-> +		led-1 {
->  			label = "mc1:green:act";
->  			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  	};
->  
-> -	led-rgb {
-> +	led-controller-2 {
-
-Is a single RGB LED really a controller?
-
->  		compatible = "pwm-leds";
->  
-> -		led-red {
-> +		led-2 {
-
-Shouldn't this have been led-1 as well or is the numbering "global" ?
-
->  			label = "mc1:red:rgb";
->  			pwms = <&leds_pwm 1 1000000 0>;
->  			max-brightness = <255>;
->  			active-low;
->  		};
->  
-> -		led-green {
-> +		led-3 {
->  			label = "mc1:green:rgb";
->  			pwms = <&leds_pwm 2 1000000 0>;
->  			max-brightness = <255>;
->  			active-low;
->  		};
->  
-> -		led-blue {
-> +		led-4 {
->  			label = "mc1:blue:rgb";
->  			pwms = <&leds_pwm 3 1000000 0>;
->  			max-brightness = <255>;
-> 
-
+diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+new file mode 100644
+index 000000000000..42622ac54e28
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (C) 2020 Topic Embedded Products
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/supply/ltc4162-l.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Linear Technology (Analog Devices) LTC4162-L Charger
++
++maintainers:
++  - Mike Looijmans <mike.looijmans@topic.nl>
++
++description: |
++  The LTC ® 4162-L is an advanced monolithic synchronous step-down switching
++  battery charger and PowerPath (TM) manager that seamlessly manages power
++  distribution between input sources such as wall adapters, backplanes, solar
++  panels, etc., and a rechargeable Lithium-Ion/Polymer battery.
++
++  Specifications about the charger can be found at:
++    https://www.analog.com/en/products/ltc4162-s.html
++
++properties:
++  compatible:
++    enum:
++      - lltc,ltc4162-l
++
++  reg:
++    maxItems: 1
++    description: I2C address of the charger.
++
++  lltc,rsnsb-micro-ohms:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Battery sense resistor in microohm.
++    minimum: 1000
++
++  lltc,rsnsi-micro-ohms:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Input current sense resistor in microohm.
++    minimum: 1000
++
++  lltc,cell-count:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Number of battery cells. If not provided, will be obtained from the chip
++      once the external power is applied. Omit this when the number of cells
++      is somewhat dynamic. Without it, several measurements will return 0 until
++      the charger is connected to an external supply.
++
++required:
++  - compatible
++  - reg
++  - lltc,rsnsb
++  - lltc,rsnsi
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      charger: battery-charger@68 {
++              compatible = "lltc,ltc4162-l";
++              reg =  <0x68>;
++              lltc,rsnsb = <10>;
++              lltc,rsnsi = <16>;
++      };
++    };
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
+
