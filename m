@@ -2,429 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A917529A91D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 613B229A935
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2897361AbgJ0KIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 06:08:09 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:35201 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2897358AbgJ0KII (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:08:08 -0400
-Received: by mail-wr1-f65.google.com with SMTP id n15so1205300wrq.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 03:08:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0EHvgCNrgvcXDm16RwWLmpbp6fZVh/2gRxXz60HJJfw=;
-        b=AXtJi7wOUmEWuxK0Guadm/npFj7ioygK+aVqN1F1zn2b1HcT3cI/Amy5yDp0rr5K1A
-         w57IQGfGD/jEdN7VCMrHhwBU4qtV4q4pMVJ4IkdFeBuz2ZpQAnbEWH1XEOh6m2XquuvE
-         j4aKfN84yUQSDC0HIZmAmwV7DriVBLJwnAGJngwSCTKFdCXxVcosJc2USxTfw2gxJ7Av
-         PtB4snzbSEqVXy5oIGFJJq4+9IYyymfEJfqQ6bq348iK9cmqkBh9xrIn78Lm0LYSFYFT
-         MTYUN0PXIcvi2mkhvdyOZPIIaRFjP2poewN87s28xUXvxULQREwQ+1lSRAA+RNpfhLCe
-         W4PA==
+        id S2897496AbgJ0KKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:10:00 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:41872 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2897493AbgJ0KJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:09:58 -0400
+Received: by mail-ed1-f65.google.com with SMTP id l24so797851edj.8;
+        Tue, 27 Oct 2020 03:09:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=0EHvgCNrgvcXDm16RwWLmpbp6fZVh/2gRxXz60HJJfw=;
-        b=cuR6aBsRpu1vG2crfwsvWF7Grgqjs7zPtQEAyCouplgqoCNYVv2rZx8/jKsgD9sQSn
-         a2WaCPFuYUtnDIS4HXBImS9VdUPDdAM+wz2fEVa9b0N0+pwrUJedXaFLXK1o/IjsH4sK
-         JmwTkEUt/+S95ysFQVqUCrCqa+ZdAeC4ZoMC/uzQKsBPEeYpyIhoh1BBKRXFRoj3ooQv
-         iiM6VMfYPRd0jCgszyTy3geeb279dknaVKakLVclrRbF+RpJ9L2z3VM/gar9drimQl79
-         wcbiojkQu00FNz9xomOAShNlIQyhsDJVZf8hQe8ZN/YfaU2UVbfexft7wAw8PY4V6aDQ
-         K/GQ==
-X-Gm-Message-State: AOAM533y3yyhVoETEmZrYz3osumMsvThpP594LI8uXBzS+x5SXBF1fJm
-        QvmkJrVsCsPBdYi4m8H9vbdAXQ==
-X-Google-Smtp-Source: ABdhPJwpT/flkol7foxjtt5TuSdDvj4hG5XYuxH4oMMiopLlnd2lZTrk+9sX2Vb7TM/CRcs0pRcdhw==
-X-Received: by 2002:a5d:5387:: with SMTP id d7mr1865897wrv.224.1603793285943;
-        Tue, 27 Oct 2020 03:08:05 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id u195sm1532952wmu.18.2020.10.27.03.08.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 27 Oct 2020 03:08:05 -0700 (PDT)
-Subject: Re: [PATCH v12 2/2] ASoC: qcom: sc7180: Add machine driver for sound
- card registration
-To:     Cheng-Yi Chiang <cychiang@chromium.org>,
-        linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bLSxqWlRWeWmLdqmeHTbNCMyQV0CNePnET7TnJ4RmSM=;
+        b=WKuP+s/TPKmPW9DRPKS216h0yqOiHUTncjhy3f0tDt2YcuTLRbHrh1xtIIjLVaqYui
+         HSGb175HwVOVDi8Q0QS69OzCTDQIKujqP9WzgmgERQJHQvno8xv1pUbSZxu6NGLyIQum
+         bIxIAr0D/gnL65dR23bUiUB4dnATQyv0+kAr7YZJRwzSeEh/cr6nF48QGGBlQTeQa4CM
+         BFG+U5kOXK0u6qlkUHDZgMqeIZDBGsQt8IXg4ZFRryjNRxsbTNlGePfy/LjIIII9ECT5
+         TimUjGn4z24l1Fs0JOPeLZKs80nUn57DYT6t6MXP+mvJgLT6ZUKgTs4Z7K1KO7TaMPc+
+         /J0A==
+X-Gm-Message-State: AOAM533K/Ezse6D2GK4rBL3KvA1XVW0jvIUJs6y6T94BeCLs/cwe4jnv
+        vZesehaymoP4DwhhbcepZ/Y=
+X-Google-Smtp-Source: ABdhPJydgamypsr6hBaDut2KCeh7NMWQzr0HQ9Xs5NCEX26/MJBL1bCkARqcSZWGa7SESvWc6DpjJg==
+X-Received: by 2002:a50:f785:: with SMTP id h5mr1327577edn.249.1603793395015;
+        Tue, 27 Oct 2020 03:09:55 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.184])
+        by smtp.googlemail.com with ESMTPSA id dp1sm739361ejc.74.2020.10.27.03.09.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 03:09:53 -0700 (PDT)
+Date:   Tue, 27 Oct 2020 11:09:51 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
-        xuyuqing@huaqin.corp-partner.google.com, dianders@chromium.org,
-        dgreid@chromium.org, tzungbi@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, Ajit Pandey <ajitp@codeaurora.org>
-References: <20201027032234.1705835-1-cychiang@chromium.org>
- <20201027032234.1705835-3-cychiang@chromium.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <ee4b5e84-cb1e-b2d5-a309-0f03a4e643e2@linaro.org>
-Date:   Tue, 27 Oct 2020 10:08:03 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 33/52] memory: tegra20: Support interconnect framework
+Message-ID: <20201027100951.GA17089@kozik-lap>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201025221735.3062-34-digetx@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201027032234.1705835-3-cychiang@chromium.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201025221735.3062-34-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 27/10/2020 03:22, Cheng-Yi Chiang wrote:
-> From: Ajit Pandey <ajitp@codeaurora.org>
+On Mon, Oct 26, 2020 at 01:17:16AM +0300, Dmitry Osipenko wrote:
+> Now Internal and External Memory Controllers are memory interconnection
+> providers. This allows us to use interconnect API for tuning of memory
+> configuration. EMC driver now supports OPPs and DVFS.
 > 
-> Add new driver to register sound card on sc7180 trogdor board and
-> do the required configuration for lpass cpu dai and external codecs
-> connected over MI2S interfaces.
-> 
-> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
-> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
-
-Looks good to me,
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
-> Changes from v11 to v12
-> - Machine driver:
->   - Use the definitaion of index LPASS_DP_RX in sc7180-lpass.h.
->   - Fix compatible string.
->   - Replace a comma with semicolon.
+>  drivers/memory/tegra/Kconfig       |   3 +-
+>  drivers/memory/tegra/mc.h          |  12 ++
+>  drivers/memory/tegra/tegra20-emc.c | 176 +++++++++++++++++++++++++++++
+>  drivers/memory/tegra/tegra20.c     |  34 ++++++
+>  4 files changed, 224 insertions(+), 1 deletion(-)
 > 
->   sound/soc/qcom/Kconfig  |  12 ++
->   sound/soc/qcom/Makefile |   2 +
->   sound/soc/qcom/sc7180.c | 266 ++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 280 insertions(+)
->   create mode 100644 sound/soc/qcom/sc7180.c
-> 
-> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-> index 484cad31da25..41cb08bd5588 100644
-> --- a/sound/soc/qcom/Kconfig
-> +++ b/sound/soc/qcom/Kconfig
-> @@ -138,4 +138,16 @@ config SND_SOC_SM8250
->   	  SM8250 SoC-based systems.
->   	  Say Y if you want to use audio device on this SoCs.
->   
-> +config SND_SOC_SC7180
-> +	tristate "SoC Machine driver for SC7180 boards"
-> +	depends on I2C
-> +	select SND_SOC_QCOM_COMMON
-> +	select SND_SOC_LPASS_SC7180
-> +	select SND_SOC_MAX98357A
-> +	select SND_SOC_RT5682_I2C
-> +	help
-> +	  To add support for audio on Qualcomm Technologies Inc.
-> +	  SC7180 SoC-based systems.
-> +	  Say Y if you want to use audio device on this SoCs.
-> +
->   endif #SND_SOC_QCOM
-> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-> index effa4b3f58fa..1600ae55bd34 100644
-> --- a/sound/soc/qcom/Makefile
-> +++ b/sound/soc/qcom/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_SND_SOC_LPASS_SC7180) += snd-soc-lpass-sc7180.o
->   snd-soc-storm-objs := storm.o
->   snd-soc-apq8016-sbc-objs := apq8016_sbc.o
->   snd-soc-apq8096-objs := apq8096.o
-> +snd-soc-sc7180-objs := sc7180.o
->   snd-soc-sdm845-objs := sdm845.o
->   snd-soc-sm8250-objs := sm8250.o
->   snd-soc-qcom-common-objs := common.o
-> @@ -25,6 +26,7 @@ snd-soc-qcom-common-objs := common.o
->   obj-$(CONFIG_SND_SOC_STORM) += snd-soc-storm.o
->   obj-$(CONFIG_SND_SOC_APQ8016_SBC) += snd-soc-apq8016-sbc.o
->   obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
-> +obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
->   obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
->   obj-$(CONFIG_SND_SOC_SM8250) += snd-soc-sm8250.o
->   obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
-> diff --git a/sound/soc/qcom/sc7180.c b/sound/soc/qcom/sc7180.c
-> new file mode 100644
-> index 000000000000..b391f64c3a80
-> --- /dev/null
-> +++ b/sound/soc/qcom/sc7180.c
-> @@ -0,0 +1,266 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +//
-> +// Copyright (c) 2020, The Linux Foundation. All rights reserved.
-> +//
-> +// sc7180.c -- ALSA SoC Machine driver for SC7180
-> +
-> +#include <dt-bindings/sound/sc7180-lpass.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <sound/core.h>
-> +#include <sound/jack.h>
-> +#include <sound/pcm.h>
-> +#include <sound/soc.h>
-> +#include <uapi/linux/input-event-codes.h>
-> +
-> +#include "../codecs/rt5682.h"
-> +#include "common.h"
-> +#include "lpass.h"
-> +
-> +#define DEFAULT_MCLK_RATE		19200000
-> +#define RT5682_PLL1_FREQ (48000 * 512)
-> +
-> +#define DRIVER_NAME "SC7180"
-> +
-> +struct sc7180_snd_data {
-> +	struct snd_soc_card card;
-> +	u32 pri_mi2s_clk_count;
-> +	struct snd_soc_jack hs_jack;
-> +	struct snd_soc_jack hdmi_jack;
-> +};
-> +
-> +static void sc7180_jack_free(struct snd_jack *jack)
+> diff --git a/drivers/memory/tegra/Kconfig b/drivers/memory/tegra/Kconfig
+> index ff426747cd7d..ac3dfe155505 100644
+> --- a/drivers/memory/tegra/Kconfig
+> +++ b/drivers/memory/tegra/Kconfig
+> @@ -11,7 +11,8 @@ config TEGRA_MC
+>  config TEGRA20_EMC
+>  	tristate "NVIDIA Tegra20 External Memory Controller driver"
+>  	default y
+> -	depends on ARCH_TEGRA_2x_SOC
+> +	depends on TEGRA_MC && ARCH_TEGRA_2x_SOC
+> +	select PM_OPP
+>  	help
+>  	  This driver is for the External Memory Controller (EMC) found on
+>  	  Tegra20 chips. The EMC controls the external DRAM on the board.
+> diff --git a/drivers/memory/tegra/mc.h b/drivers/memory/tegra/mc.h
+> index abeb6a2cc36a..531fb4fb7b17 100644
+> --- a/drivers/memory/tegra/mc.h
+> +++ b/drivers/memory/tegra/mc.h
+> @@ -78,6 +78,18 @@
+>  
+>  #define MC_TIMING_UPDATE				BIT(0)
+>  
+> +static inline u32 tegra_mc_scale_percents(u64 val, unsigned int percents)
 > +{
-> +	struct snd_soc_component *component = jack->private_data;
+> +	val = val * percents;
+> +	do_div(val, 100);
 > +
-> +	snd_soc_component_set_jack(component, NULL, NULL);
+> +	/*
+> +	 * High freq + high boosting percent + large polling interval are
+> +	 * resulting in integer overflow when watermarks are calculated.
+> +	 */
+> +	return min_t(u64, val, U32_MAX);
 > +}
 > +
-> +static int sc7180_headset_init(struct snd_soc_pcm_runtime *rtd)
+>  static inline u32 mc_readl(struct tegra_mc *mc, unsigned long offset)
+>  {
+>  	return readl_relaxed(mc->regs + offset);
+> diff --git a/drivers/memory/tegra/tegra20-emc.c b/drivers/memory/tegra/tegra20-emc.c
+> index 34085e26dced..69ccb3fe5b0b 100644
+> --- a/drivers/memory/tegra/tegra20-emc.c
+> +++ b/drivers/memory/tegra/tegra20-emc.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/clk/tegra.h>
+>  #include <linux/debugfs.h>
+>  #include <linux/err.h>
+> +#include <linux/interconnect-provider.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+> @@ -16,11 +17,15 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_opp.h>
+> +#include <linux/slab.h>
+>  #include <linux/sort.h>
+>  #include <linux/types.h>
+>  
+>  #include <soc/tegra/fuse.h>
+>  
+> +#include "mc.h"
+> +
+>  #define EMC_INTSTATUS				0x000
+>  #define EMC_INTMASK				0x004
+>  #define EMC_DBG					0x008
+> @@ -144,6 +149,9 @@ struct emc_timing {
+>  
+>  struct tegra_emc {
+>  	struct device *dev;
+> +	struct tegra_mc *mc;
+> +	struct opp_table *opp_table;
+> +	struct icc_provider provider;
+>  	struct notifier_block clk_nb;
+>  	struct clk *clk;
+>  	void __iomem *regs;
+> @@ -658,6 +666,166 @@ static void tegra_emc_debugfs_init(struct tegra_emc *emc)
+>  			    emc, &tegra_emc_debug_max_rate_fops);
+>  }
+>  
+> +static inline struct tegra_emc *
+> +to_tegra_emc_provider(struct icc_provider *provider)
 > +{
-> +	struct snd_soc_card *card = rtd->card;
-> +	struct sc7180_snd_data *pdata = snd_soc_card_get_drvdata(card);
-> +	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-> +	struct snd_soc_component *component = codec_dai->component;
-> +	struct snd_jack *jack;
-> +	int rval;
-> +
-> +	rval = snd_soc_card_jack_new(
-> +			card, "Headset Jack",
-> +			SND_JACK_HEADSET |
-> +			SND_JACK_HEADPHONE |
-> +			SND_JACK_BTN_0 | SND_JACK_BTN_1 |
-> +			SND_JACK_BTN_2 | SND_JACK_BTN_3,
-> +			&pdata->hs_jack, NULL, 0);
-> +
-> +	if (rval < 0) {
-> +		dev_err(card->dev, "Unable to add Headset Jack\n");
-> +		return rval;
-> +	}
-> +
-> +	jack = pdata->hs_jack.jack;
-> +
-> +	snd_jack_set_key(jack, SND_JACK_BTN_0, KEY_PLAYPAUSE);
-> +	snd_jack_set_key(jack, SND_JACK_BTN_1, KEY_VOICECOMMAND);
-> +	snd_jack_set_key(jack, SND_JACK_BTN_2, KEY_VOLUMEUP);
-> +	snd_jack_set_key(jack, SND_JACK_BTN_3, KEY_VOLUMEDOWN);
-> +
-> +	jack->private_data = component;
-> +	jack->private_free = sc7180_jack_free;
-> +
-> +	return snd_soc_component_set_jack(component, &pdata->hs_jack, NULL);
+> +	return container_of(provider, struct tegra_emc, provider);
 > +}
 > +
-> +static int sc7180_hdmi_init(struct snd_soc_pcm_runtime *rtd)
+> +static struct icc_node_data *
+> +emc_of_icc_xlate_extended(struct of_phandle_args *spec, void *data)
 > +{
-> +	struct snd_soc_card *card = rtd->card;
-> +	struct sc7180_snd_data *pdata = snd_soc_card_get_drvdata(card);
-> +	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-> +	struct snd_soc_component *component = codec_dai->component;
-> +	struct snd_jack *jack;
-> +	int rval;
+> +	struct icc_provider *provider = data;
+> +	struct icc_node_data *ndata;
+> +	struct icc_node *node;
 > +
-> +	rval = snd_soc_card_jack_new(
-> +			card, "HDMI Jack",
-> +			SND_JACK_LINEOUT,
-> +			&pdata->hdmi_jack, NULL, 0);
+> +	/* External Memory is the only possible ICC route */
+> +	list_for_each_entry(node, &provider->nodes, node_list) {
+> +		if (node->id != TEGRA_ICC_EMEM)
+> +			continue;
 > +
-> +	if (rval < 0) {
-> +		dev_err(card->dev, "Unable to add HDMI Jack\n");
-> +		return rval;
+> +		ndata = kzalloc(sizeof(*ndata), GFP_KERNEL);
+> +		if (!ndata)
+> +			return ERR_PTR(-ENOMEM);
+> +
+> +		/*
+> +		 * SRC and DST nodes should have matching TAG in order to have
+> +		 * it set by default for a requested path.
+> +		 */
+> +		ndata->tag = TEGRA_MC_ICC_TAG_ISO;
+> +		ndata->node = node;
+> +
+> +		return ndata;
 > +	}
 > +
-> +	jack = pdata->hdmi_jack.jack;
-> +	jack->private_data = component;
-> +	jack->private_free = sc7180_jack_free;
-> +
-> +	return snd_soc_component_set_jack(component, &pdata->hdmi_jack, NULL);
+> +	return ERR_PTR(-EINVAL);
 > +}
 > +
-> +static int sc7180_init(struct snd_soc_pcm_runtime *rtd)
+> +static int emc_icc_set(struct icc_node *src, struct icc_node *dst)
 > +{
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
+> +	struct tegra_emc *emc = to_tegra_emc_provider(dst->provider);
+> +	unsigned long long peak_bw = icc_units_to_bps(dst->peak_bw);
+> +	unsigned long long avg_bw = icc_units_to_bps(dst->avg_bw);
+> +	unsigned long long rate = max(avg_bw, peak_bw);
+> +	unsigned int dram_data_bus_width_bytes = 4;
+> +	long rounded_rate;
+> +	int err;
 > +
-> +	switch (cpu_dai->id) {
-> +	case MI2S_PRIMARY:
-> +		return sc7180_headset_init(rtd);
-> +	case MI2S_SECONDARY:
-> +		return 0;
-> +	case LPASS_DP_RX:
-> +		return sc7180_hdmi_init(rtd);
-> +	default:
-> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
-> +			cpu_dai->id);
-> +		return -EINVAL;
-> +	}
+> +	/*
+> +	 * Tegra20 EMC runs on x2 clock rate of SDRAM bus because DDR data
+> +	 * is sampled on both clock edges. This means that EMC clock rate
+> +	 * equals to the peak data rate.
+> +	 */
+> +	do_div(rate, dram_data_bus_width_bytes);
+> +	rate = min_t(u64, rate, U32_MAX);
+> +
+> +	rounded_rate = emc_round_rate(rate, 0, U32_MAX, emc);
+> +	if (rounded_rate < 0)
+> +		return rounded_rate;
+> +
+> +	err = dev_pm_opp_set_rate(emc->dev, rounded_rate);
+> +	if (err)
+> +		return err;
+> +
 > +	return 0;
 > +}
 > +
-> +static int sc7180_snd_startup(struct snd_pcm_substream *substream)
+> +static int tegra_emc_interconnect_init(struct tegra_emc *emc)
 > +{
-> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> +	struct snd_soc_card *card = rtd->card;
-> +	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(card);
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-> +	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-> +	int ret;
+> +	const struct tegra_mc_soc *soc;
+> +	struct icc_node *node;
+> +	int err;
 > +
-> +	switch (cpu_dai->id) {
-> +	case MI2S_PRIMARY:
-> +		if (++data->pri_mi2s_clk_count == 1) {
-> +			snd_soc_dai_set_sysclk(cpu_dai,
-> +					       LPASS_MCLK0,
-> +					       DEFAULT_MCLK_RATE,
-> +					       SNDRV_PCM_STREAM_PLAYBACK);
-> +		}
+> +	emc->mc = devm_tegra_get_memory_controller(emc->dev);
+> +	if (IS_ERR(emc->mc))
+> +		return PTR_ERR(emc->mc);
 > +
-> +		snd_soc_dai_set_fmt(codec_dai,
-> +				    SND_SOC_DAIFMT_CBS_CFS |
-> +				    SND_SOC_DAIFMT_NB_NF |
-> +				    SND_SOC_DAIFMT_I2S);
+> +	soc = emc->mc->soc;
 > +
-> +		/* Configure PLL1 for codec */
-> +		ret = snd_soc_dai_set_pll(codec_dai, 0, RT5682_PLL1_S_MCLK,
-> +					  DEFAULT_MCLK_RATE, RT5682_PLL1_FREQ);
-> +		if (ret) {
-> +			dev_err(rtd->dev, "can't set codec pll: %d\n", ret);
-> +			return ret;
-> +		}
+> +	emc->provider.dev = emc->dev;
+> +	emc->provider.set = emc_icc_set;
+> +	emc->provider.data = &emc->provider;
+> +	emc->provider.aggregate = soc->icc_ops->aggregate;
+> +	emc->provider.xlate_extended = emc_of_icc_xlate_extended;
 > +
-> +		/* Configure sysclk for codec */
-> +		ret = snd_soc_dai_set_sysclk(codec_dai, RT5682_SCLK_S_PLL1,
-> +					     RT5682_PLL1_FREQ,
-> +					     SND_SOC_CLOCK_IN);
-> +		if (ret)
-> +			dev_err(rtd->dev, "snd_soc_dai_set_sysclk err = %d\n",
-> +				ret);
+> +	err = icc_provider_add(&emc->provider);
+> +	if (err)
+> +		goto err_msg;
 > +
-> +		break;
-> +	case MI2S_SECONDARY:
-> +		break;
-> +	case LPASS_DP_RX:
-> +		break;
-> +	default:
-> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
-> +			cpu_dai->id);
-> +		return -EINVAL;
-> +	}
+> +	/* create External Memory Controller node */
+> +	node = icc_node_create(TEGRA_ICC_EMC);
+> +	err = PTR_ERR_OR_ZERO(node);
+> +	if (err)
+> +		goto del_provider;
+> +
+> +	node->name = "External Memory Controller";
+> +	icc_node_add(node, &emc->provider);
+> +
+> +	/* link External Memory Controller to External Memory (DRAM) */
+> +	err = icc_link_create(node, TEGRA_ICC_EMEM);
+> +	if (err)
+> +		goto remove_nodes;
+> +
+> +	/* create External Memory node */
+> +	node = icc_node_create(TEGRA_ICC_EMEM);
+> +	err = PTR_ERR_OR_ZERO(node);
+> +	if (err)
+> +		goto remove_nodes;
+> +
+> +	node->name = "External Memory (DRAM)";
+> +	icc_node_add(node, &emc->provider);
+> +
 > +	return 0;
+> +
+> +remove_nodes:
+> +	icc_nodes_remove(&emc->provider);
+> +del_provider:
+> +	icc_provider_del(&emc->provider);
+> +err_msg:
+> +	dev_err(emc->dev, "failed to initialize ICC: %d\n", err);
+
+You will print such errors on all existing DTBs. Since it is not a
+failure of probe (it is actually quite expected, normal situation when
+booting with older DTB), let's change it to warning (here and in all
+other places and drivers).
+
+> +
+> +	return err;
 > +}
 > +
-> +static void sc7180_snd_shutdown(struct snd_pcm_substream *substream)
+> +static int tegra_emc_opp_table_init(struct tegra_emc *emc)
 > +{
-> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> +	struct snd_soc_card *card = rtd->card;
-> +	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(card);
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
+> +	const char *rname = "core";
+> +	int err;
 > +
-> +	switch (cpu_dai->id) {
-> +	case MI2S_PRIMARY:
-> +		if (--data->pri_mi2s_clk_count == 0) {
-> +			snd_soc_dai_set_sysclk(cpu_dai,
-> +					       LPASS_MCLK0,
-> +					       0,
-> +					       SNDRV_PCM_STREAM_PLAYBACK);
-> +		}
-> +		break;
-> +	case MI2S_SECONDARY:
-> +		break;
-> +	case LPASS_DP_RX:
-> +		break;
-> +	default:
-> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
-> +			cpu_dai->id);
-> +		break;
+> +	/*
+> +	 * Legacy device-trees don't have OPP table and EMC driver isn't
+> +	 * useful in this case.
+> +	 */
+> +	if (!device_property_present(emc->dev, "operating-points-v2")) {
+> +		dev_err(emc->dev, "OPP table not found\n");
+> +		dev_err(emc->dev, "please update your device tree\n");
+> +		return -ENODEV;
 > +	}
-> +}
 > +
-> +static const struct snd_soc_ops sc7180_ops = {
-> +	.startup = sc7180_snd_startup,
-> +	.shutdown = sc7180_snd_shutdown,
-> +};
+> +	/* voltage scaling is optional */
+> +	if (device_property_present(emc->dev, "core-supply"))
+> +		emc->opp_table = dev_pm_opp_set_regulators(emc->dev, &rname, 1);
+> +	else
+> +		emc->opp_table = dev_pm_opp_get_opp_table(emc->dev);
 > +
-> +static const struct snd_soc_dapm_widget sc7180_snd_widgets[] = {
-> +	SND_SOC_DAPM_HP("Headphone Jack", NULL),
-> +	SND_SOC_DAPM_MIC("Headset Mic", NULL),
-> +};
+> +	if (IS_ERR(emc->opp_table))
+> +		return dev_err_probe(emc->dev, PTR_ERR(emc->opp_table),
+> +				     "failed to prepare OPP table\n");
 > +
-> +static void sc7180_add_ops(struct snd_soc_card *card)
-> +{
-> +	struct snd_soc_dai_link *link;
-> +	int i;
-> +
-> +	for_each_card_prelinks(card, i, link) {
-> +		link->ops = &sc7180_ops;
-> +		link->init = sc7180_init;
+> +	err = dev_pm_opp_of_add_table(emc->dev);
+> +	if (err) {
+> +		dev_err(emc->dev, "failed to add OPP table: %d\n", err);
+> +		goto put_table;
 > +	}
+> +
+> +	return 0;
+> +
+> +put_table:
+> +	dev_pm_opp_put_opp_table(emc->opp_table);
+> +
+> +	return err;
 > +}
 > +
-> +static int sc7180_snd_platform_probe(struct platform_device *pdev)
-> +{
-> +	struct snd_soc_card *card;
-> +	struct sc7180_snd_data *data;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	/* Allocate the private data */
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	card = &data->card;
-> +	snd_soc_card_set_drvdata(card, data);
-> +
-> +	card->owner = THIS_MODULE;
-> +	card->driver_name = DRIVER_NAME;
-> +	card->dev = dev;
-> +	card->dapm_widgets = sc7180_snd_widgets;
-> +	card->num_dapm_widgets = ARRAY_SIZE(sc7180_snd_widgets);
-> +
-> +	ret = qcom_snd_parse_of(card);
-> +	if (ret)
-> +		return ret;
-> +
-> +	sc7180_add_ops(card);
-> +
-> +	return devm_snd_soc_register_card(dev, card);
-> +}
-> +
-> +static const struct of_device_id sc7180_snd_device_id[]  = {
-> +	{ .compatible = "google,sc7180-trogdor"},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, sc7180_snd_device_id);
-> +
-> +static struct platform_driver sc7180_snd_driver = {
-> +	.probe = sc7180_snd_platform_probe,
-> +	.driver = {
-> +		.name = "msm-snd-sc7180",
-> +		.of_match_table = sc7180_snd_device_id,
-> +	},
-> +};
-> +module_platform_driver(sc7180_snd_driver);
-> +
-> +MODULE_DESCRIPTION("sc7180 ASoC Machine Driver");
-> +MODULE_LICENSE("GPL v2");
-> 
+>  static int tegra_emc_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *np;
+> @@ -717,8 +885,13 @@ static int tegra_emc_probe(struct platform_device *pdev)
+>  		goto unset_cb;
+>  	}
+>  
+> +	err = tegra_emc_opp_table_init(emc);
+> +	if (err)
+> +		goto unreg_notifier;
+
+This looks like the ABI break I mentioned around DT bindings. Are the
+bindings marked as unstable?
+
+Best regards,
+Krzysztof
