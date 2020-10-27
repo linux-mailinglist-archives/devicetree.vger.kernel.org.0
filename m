@@ -2,128 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B967829ACE3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1424729ACF3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:15:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2900492AbgJ0NLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 09:11:49 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:37078 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2900487AbgJ0NLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 09:11:49 -0400
-Received: by mail-wr1-f65.google.com with SMTP id w1so1864167wrm.4
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 06:11:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=kdzVNUmBorGOvHJ+kuujXmASC0q55W9RUZ1wT5ddYb4=;
-        b=XL3n8URZ9/nfLX3xpUTkreqFiTCvhLbd3edP321U7deumP3SwL+CNrBhKQBC7WVEEj
-         rl0EJqEa/2M3UvYBKdt4UGbtA6+okNwPigKuI0n2CrbVBsQ4MohEol1ehgw1/SIwLcHa
-         eUC0pa+IvSOHijYIYXL7kZwNv7s2kk31YjG+zMwteNgJM7W8JBOAy1IShG1Wzw9ByK0C
-         cXccgKR/2cBh2DnATn2IqnozPPM/LZ0mPBvWnoIPckintDaQaqoaZcFqeh/drfWsktFQ
-         XPbckvfEaJnvn+eVZBJ+A6uX57uQa3LUQ04EQBEnNLRlRdLODxccpg4agk8WZJq27vaU
-         QACQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=kdzVNUmBorGOvHJ+kuujXmASC0q55W9RUZ1wT5ddYb4=;
-        b=FDRKjkniE6r0R8EPOSfa19m56a37IA3jvAQJuqIv+jL483Wk5hGlZqUu6WxT44z22C
-         MEyZqoLbyLL8w0sL0pHmG6tqoznj0gENfsK998gJXzHBiQCLBEGvMmULyoG1wC69CNNt
-         z5+UP3G8GNcDZs5wamyYj04SS0BV9L7BtCqU6PS3gttqghIpCU9fy7GJaElq4AjnG2M0
-         DvY22t5bcn20i/CYg9A4Spt5r12YWbRqG31n4OxksowBkpKFbznJAWqLW85v/x+XzXeB
-         rcvMKDhGLgcyoDOE8O52f+UgS5cWqbAMljdupn0xIRGcK1w/HXc/Mo0QwNOCR4oH1iZn
-         zBMg==
-X-Gm-Message-State: AOAM5325IGrhArBrE2onKbsBEcJAfTd8fSSl0lN4BZllL9I1asdOon4V
-        fyE9fUoSZJkD03gJSTYDX1HENw==
-X-Google-Smtp-Source: ABdhPJxoBc58msQkjTQ20On5cTV8fuD0bFRNORO6EcSQUdHPh39ckWgocQL7IVi4sOz4bXLDzKG48w==
-X-Received: by 2002:adf:ea0b:: with SMTP id q11mr1396904wrm.80.1603804306588;
-        Tue, 27 Oct 2020 06:11:46 -0700 (PDT)
-Received: from localhost.localdomain (54.169.185.81.rev.sfr.net. [81.185.169.54])
-        by smtp.gmail.com with ESMTPSA id v6sm1780117wmj.6.2020.10.27.06.11.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 06:11:45 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     enric.balletbo@collabora.com, Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S2900595AbgJ0NPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 09:15:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59808 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2900594AbgJ0NPY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 09:15:24 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DC2FF20754;
+        Tue, 27 Oct 2020 13:15:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603804524;
+        bh=CKo8KOUMplKS1VrSLuvL8FxdF3DDU1PHkPmmeQygRn0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qpaowbDKPCL8ZKLZ1CYaRphl4mwuEjsn3wuN+aR2nQeUruLgKyg7rAyYNG87W2d9N
+         qNkTdA7YHzoPo0U7Uqmo5A7PtTwlgeMwVNcIT+HWZ/62sOStwIJmvzo7JTfahx2MA9
+         TnOSpkOqUYG9TenOaH0QKJ2Yn/HutoXiIeEjf0+o=
+Date:   Tue, 27 Oct 2020 13:15:19 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, tiwai@suse.com,
+        tzungbi@google.com, alsa-devel@alsa-project.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 1/2] dt-bindings: power: Add MT8167 power domains
-Date:   Tue, 27 Oct 2020 14:11:20 +0100
-Message-Id: <20201027131122.374046-1-fparent@baylibre.com>
-X-Mailer: git-send-email 2.28.0
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        shane.chien@mediatek.com
+Subject: Re: [PATCH 1/2] ASoC: mt6359: skip first time data at the beginning
+ of DMIC recording
+Message-ID: <20201027131519.GA4895@sirena.org.uk>
+References: <1603521686-13036-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1603521686-13036-2-git-send-email-jiaxin.yu@mediatek.com>
+ <20201026123325.GC7402@sirena.org.uk>
+ <1603794538.26523.6.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="FCuugMFkClbJLl1L"
+Content-Disposition: inline
+In-Reply-To: <1603794538.26523.6.camel@mhfsdcap03>
+X-Cookie: That's no moon...
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power domains dt-bindings for MT8167.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
+--FCuugMFkClbJLl1L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This patch depends on the SCPSYS PM domains driver [0].
+On Tue, Oct 27, 2020 at 06:28:58PM +0800, Jiaxin Yu wrote:
+> On Mon, 2020-10-26 at 12:33 +0000, Mark Brown wrote:
 
-v2:
-	* Implement on top of new SCPSYS PM domains driver [0]
+> > This seems like something that would apply equally to all DMICs so
+> > should be done at a more general level rather than in this specific
+> > driver, for example it could be done in the DMIC driver.
 
-[0] https://patchwork.kernel.org/project/linux-mediatek/list/?series=370737
+> So you suggest that we use sound/soc/codecs/dmic.c to control the delay
+> after recording?
+> If so, should we add one more CODEC('dmic-codec' and 'dmic-hifi') to
+> dmic's dai-link? It looks link dmic.c has helped us do something to
+> control dmics.
 
- .../power/mediatek,power-controller.yaml       |  2 ++
- include/dt-bindings/power/mt8167-power.h       | 18 ++++++++++++++++++
- 2 files changed, 20 insertions(+)
- create mode 100644 include/dt-bindings/power/mt8167-power.h
+Yes, exactly.
 
-diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-index 0318ffb1133c..73e5452c3a5d 100644
---- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-+++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-@@ -23,6 +23,7 @@ properties:
- 
-   compatible:
-     enum:
-+      - mediatek,mt8167-power-controller
-       - mediatek,mt8173-power-controller
-       - mediatek,mt8183-power-controller
-       - mediatek,mt8192-power-controller
-@@ -59,6 +60,7 @@ patternProperties:
-       reg:
-         description: |
-           Power domain index. Valid values are defined in:
-+              "include/dt-bindings/power/mt8167-power.h" - for MT8167 type power domain.
-               "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
-               "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
-               "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
-diff --git a/include/dt-bindings/power/mt8167-power.h b/include/dt-bindings/power/mt8167-power.h
-new file mode 100644
-index 000000000000..7e3babfc2eef
---- /dev/null
-+++ b/include/dt-bindings/power/mt8167-power.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0
-+ *
-+ * Copyright (c) 2020 MediaTek Inc.
-+ */
-+
-+#ifndef _DT_BINDINGS_POWER_MT8167_POWER_H
-+#define _DT_BINDINGS_POWER_MT8167_POWER_H
-+
-+#define MT8167_POWER_DOMAIN_MM		0
-+#define MT8167_POWER_DOMAIN_DISP	0
-+#define MT8167_POWER_DOMAIN_VDEC	1
-+#define MT8167_POWER_DOMAIN_ISP		2
-+#define MT8167_POWER_DOMAIN_CONN	3
-+#define MT8167_POWER_DOMAIN_MFG_ASYNC	4
-+#define MT8167_POWER_DOMAIN_MFG_2D	5
-+#define MT8167_POWER_DOMAIN_MFG		6
-+
-+#endif /* _DT_BINDINGS_POWER_MT8167_POWER_H */
--- 
-2.28.0
+--FCuugMFkClbJLl1L
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+YHWYACgkQJNaLcl1U
+h9A9lgf+PN31doFGHC7Emm3X2bk/3W8+ZvprGxuARbGdn20d4mbHrGrDUmP90wIU
+dhB4VL04Mr+t2/7qLon3PfOWlzlCAyZ58pelvYwdx8Uqj5w9dBhGTobHXnadx53w
+0cMC+BuJWDhr+J+7ct0y92v1V6hI23e4PCOk7QA2pLuE4iH6TQ6btK/olmXW9aDr
+SJZxGryZCzriC19M7pxkULmHrk1A6DlDDpumT1dJ8/EUWw6SZVlzgt+cQykC0xhe
+ZgE1HacS2EDS4CaUXj2mbUzaC+xDcfv5puAZoLDGKeVqxyX7/iTr9jCOidoZueJu
+HhB1EDSlvibPjviYgtFncqKRdEcN/A==
+=5+cB
+-----END PGP SIGNATURE-----
+
+--FCuugMFkClbJLl1L--
