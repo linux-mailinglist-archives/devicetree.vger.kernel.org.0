@@ -2,274 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A74E729A69D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 09:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B7729A6E3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 09:48:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2894927AbgJ0Icv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 04:32:51 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:33748 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2894922AbgJ0Icv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 04:32:51 -0400
-Received: by mail-lj1-f194.google.com with SMTP id c21so810963ljj.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 01:32:46 -0700 (PDT)
+        id S2509313AbgJ0IsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 04:48:13 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:46013 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2509311AbgJ0IsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 04:48:12 -0400
+Received: by mail-pf1-f194.google.com with SMTP id e7so495315pfn.12;
+        Tue, 27 Oct 2020 01:48:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=X82VobCub5wdmETS8bjf+vsdYdzdCr0PUmctvSLcEXs=;
-        b=KhZ5AD7Jw9jBSL5FbMoztfPKGbPuygHGVL/xEfq2XjOAML/HDO8WCDbzSkhKyibuAU
-         EdS7G74Z4xdzPbTaGFJM60aGA7elIq0mM1xpSG+76kNXuXg6Zy8JHG5XHUqOGhpK34S2
-         GBXe4XxWKlqFmjAjWTSutGi7pdAEaHPAGR/I6Ugdxfahk/n85pfH7WdokpQ4nweP/5aU
-         vnGoTK/26xRIqlW1NPVseaIbS5jZF3f1FigFuawXl+oSZfctnBZn0uvRAMMYelFfoK8V
-         oRGzJyg+Yn7kqncPCe2KU5YcVp2fuIKuT5nFQCCis7SYNgPo0hG5Xb9SkGKPfW0vnSPc
-         d6Qg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J9TLfBrV8KVh23L/Op4SjOv1GP4gPCDdsTo4qQcDWpA=;
+        b=M8jUjs7gzNU2l2qVUoCGysqaatA/6NOzhGxtdbdVUUWy9tdei6Nbyiimdli+KWw6wT
+         a4ilVPjpJJkW9hLP3qPtQ8VKjt1q/IqOfrvt6ySS4ZUhwbNXjgdz7n/g9IV0a44dFdHb
+         HGO6/7ldKaNrJxtLogb+E2eoW8TKOAzL65FcYlEuW/VnC/Z7yROxzEFGKRIVRw8cT2BF
+         6GMMYjD44OgvwRh+6BmZdOMk/yDwDb5qXnwCpcgPGpwP4OFMYvkU/dqlpNp/XuR07N9k
+         PWrXk323g11fTNGNORkklKcRQ7u75ebcNajPbG85I9SAzZEpF+4YurylbziYtKyGRCt5
+         Awgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=X82VobCub5wdmETS8bjf+vsdYdzdCr0PUmctvSLcEXs=;
-        b=OMulUvTPh95nkHTuHCG1h1KK03UKBTBiHaJ9Z6oyaxFv3lJ1BPF/7YgKhTDJ1ZXIKA
-         6QItsFY4Hb2YfXjiHpLI0hrHRfCfappbWNBxFLMeWye2RmWt5dhlRSrMTpxK3t5w/e43
-         NJe2QgY4w9cnxuScOpPh80fQl1HG6aO4JG8jimeAIQ4bkG8S3Cpln+0jAhUqoq+6kEx5
-         1cXk78EOICu7/WjXH6fSPeiU+NTvZEkPH4oHw9YI3cpIMK/WzssBWbOGNNzfeXASM8Hr
-         ScpkV5qusSmOFwAegyhxn1YENaP760casjldSQMSEkMeoljwJeRzz8Q/oEVzS+a/9vv8
-         6F8A==
-X-Gm-Message-State: AOAM531+Nae9WqnrxSBJPG1t23S14v/5Fs8WsNn/xXITqwbqOu3usI5U
-        32KDsOUYE/wVgNEzUEMwzdLcBQ==
-X-Google-Smtp-Source: ABdhPJz1bsKo5yTgSnDzbbvP5V2jQw+5aQqoUkmOwX1eV8OBkkpGpm8QyCzEOzVMO02QIpg+mOjbYQ==
-X-Received: by 2002:a2e:874c:: with SMTP id q12mr579587ljj.148.1603787565936;
-        Tue, 27 Oct 2020 01:32:45 -0700 (PDT)
-Received: from [192.168.1.211] ([188.162.64.248])
-        by smtp.gmail.com with ESMTPSA id c4sm67675lfr.14.2020.10.27.01.32.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Oct 2020 01:32:45 -0700 (PDT)
-Subject: Re: [PATCH 3/3] drm/msm/dpu: add support for clk and bw scaling for
- display
-To:     Rob Clark <robdclark@gmail.com>,
-        Kalyan Thota <kalyan_t@codeaurora.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Raviteja Tamatam <travitej@codeaurora.org>,
-        nganji@codeaurora.org
-References: <1594899334-19772-1-git-send-email-kalyan_t@codeaurora.org>
- <1594899334-19772-3-git-send-email-kalyan_t@codeaurora.org>
- <CAF6AEGsYmxwmG2OWdX3Q-5tio+kU-AwhiL_0EyLTVb0=gWgwgw@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <1faa4d88-7acf-1895-f93b-59fd20d6de06@linaro.org>
-Date:   Tue, 27 Oct 2020 11:32:36 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+        bh=J9TLfBrV8KVh23L/Op4SjOv1GP4gPCDdsTo4qQcDWpA=;
+        b=N34AaZLUeFXttmYcF9rCOShHMmqT+UH1BkfU3Fa5ffxv4KeH52ux5wg//RciKskTiE
+         gAK4ek7HWeX8wGUr3ULC8pvdah+XWliCbdfeI/fG1lADGuKigVBVcB1FyT76mKS3zwtZ
+         Qt3ZGkYVEgsk5Ih9lnVP6N+NwlMUcV94NDRt8IrkGLlEDT9OZ1x0RVcgP9IF/zXAcX3N
+         I/zHNlchz0ViNzmdpe3yS3JDPf2Y/Bvf4sNPJEfZndr0Q7NQDJTHHKOkRWw15AX2OjLe
+         0YKdK1UMfb+jUjgBkVec2d++F9GifYIl4AS4jgSFpnHOsuF+pGOT4jtdi4Wd9LBDXSiI
+         Y3HA==
+X-Gm-Message-State: AOAM530etnY8wV7uuh3Zy9xF6kZGlaQAol+OvRNHs2HNZvHotLsm3B0T
+        upNux6j5ScwL6FchzXXI7e0=
+X-Google-Smtp-Source: ABdhPJwAGRiB4Q38wB9HnWPNumWqsfuNe6Q7apetu59MEWhOfD71OuJWw5rpXcwkcX1gsaloHB91Cg==
+X-Received: by 2002:a62:1ace:0:b029:163:9dce:5496 with SMTP id a197-20020a621ace0000b02901639dce5496mr1199205pfa.72.1603788491958;
+        Tue, 27 Oct 2020 01:48:11 -0700 (PDT)
+Received: from ruantu-3.localdomain ([103.230.142.242])
+        by smtp.gmail.com with ESMTPSA id n7sm1291988pgk.70.2020.10.27.01.48.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 01:48:11 -0700 (PDT)
+From:   Yu-Tung Chang <mtwget@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yu-Tung Chang <mtwget@gmail.com>
+Subject: [PATCH 0/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
+Date:   Tue, 27 Oct 2020 16:48:02 +0800
+Message-Id: <20201027084803.17368-1-mtwget@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-In-Reply-To: <CAF6AEGsYmxwmG2OWdX3Q-5tio+kU-AwhiL_0EyLTVb0=gWgwgw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+This patch add FriendlyArm NanoPi R1 support.
 
-On 04/08/2020 18:40, Rob Clark wrote:
-> On Thu, Jul 16, 2020 at 4:36 AM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
->>
->> This change adds support to scale src clk and bandwidth as
->> per composition requirements.
->>
->> Interconnect registration for bw has been moved to mdp
->> device node from mdss to facilitate the scaling.
->>
->> Changes in v1:
->>   - Address armv7 compilation issues with the patch (Rob)
->>
->> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+Wiki:
+http://wiki.friendlyarm.com/wiki/index.php/NanoPi_R1
 
-Kalyan, back in July you promised to provide a followup patchset, 
-removing code duplication. It's close to November now. Are there any 
-plans for the followup or is a forgotten topic?
+Schematic:
+http://wiki.friendlyarm.com/wiki/images/a/ab/NanoPi_R1_V1.0_1809-Schematic.pdf
 
-> 
-> Reviewed-by: Rob Clark <robdclark@chromium.org>
-> 
->> ---
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c  | 109 +++++++++++++++++++++----
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c |   5 +-
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |   4 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        |  37 ++++++++-
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h        |   4 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c       |   9 +-
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c      |  84 +++++++++++++++++++
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h      |   4 +
->>   8 files changed, 233 insertions(+), 23 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
->> index 7c230f7..e52bc44 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
->> @@ -29,6 +29,74 @@ enum dpu_perf_mode {
->>          DPU_PERF_MODE_MAX
->>   };
->>
->> +/**
->> + * @_dpu_core_perf_calc_bw() - to calculate BW per crtc
->> + * @kms -  pointer to the dpu_kms
->> + * @crtc - pointer to a crtc
->> + * Return: returns aggregated BW for all planes in crtc.
->> + */
->> +static u64 _dpu_core_perf_calc_bw(struct dpu_kms *kms,
->> +               struct drm_crtc *crtc)
->> +{
->> +       struct drm_plane *plane;
->> +       struct dpu_plane_state *pstate;
->> +       u64 crtc_plane_bw = 0;
->> +       u32 bw_factor;
->> +
->> +       drm_atomic_crtc_for_each_plane(plane, crtc) {
->> +               pstate = to_dpu_plane_state(plane->state);
->> +               if (!pstate)
->> +                       continue;
->> +
->> +               crtc_plane_bw += pstate->plane_fetch_bw;
->> +       }
->> +
->> +       bw_factor = kms->catalog->perf.bw_inefficiency_factor;
->> +       if (bw_factor) {
->> +               crtc_plane_bw *= bw_factor;
->> +               do_div(crtc_plane_bw, 100);
->> +       }
->> +
->> +       return crtc_plane_bw;
->> +}
->> +
->> +/**
->> + * _dpu_core_perf_calc_clk() - to calculate clock per crtc
->> + * @kms -  pointer to the dpu_kms
->> + * @crtc - pointer to a crtc
->> + * @state - pointer to a crtc state
->> + * Return: returns max clk for all planes in crtc.
->> + */
->> +static u64 _dpu_core_perf_calc_clk(struct dpu_kms *kms,
->> +               struct drm_crtc *crtc, struct drm_crtc_state *state)
->> +{
->> +       struct drm_plane *plane;
->> +       struct dpu_plane_state *pstate;
->> +       struct drm_display_mode *mode;
->> +       u64 crtc_clk;
->> +       u32 clk_factor;
->> +
->> +       mode = &state->adjusted_mode;
->> +
->> +       crtc_clk = mode->vtotal * mode->hdisplay * drm_mode_vrefresh(mode);
->> +
->> +       drm_atomic_crtc_for_each_plane(plane, crtc) {
->> +               pstate = to_dpu_plane_state(plane->state);
->> +               if (!pstate)
->> +                       continue;
->> +
->> +               crtc_clk = max(pstate->plane_clk, crtc_clk);
->> +       }
->> +
->> +       clk_factor = kms->catalog->perf.clk_inefficiency_factor;
->> +       if (clk_factor) {
->> +               crtc_clk *= clk_factor;
->> +               do_div(crtc_clk, 100);
->> +       }
->> +
->> +       return crtc_clk;
->> +}
->> +
->>   static struct dpu_kms *_dpu_crtc_get_kms(struct drm_crtc *crtc)
->>   {
->>          struct msm_drm_private *priv;
->> @@ -51,12 +119,7 @@ static void _dpu_core_perf_calc_crtc(struct dpu_kms *kms,
->>          dpu_cstate = to_dpu_crtc_state(state);
->>          memset(perf, 0, sizeof(struct dpu_core_perf_params));
->>
->> -       if (!dpu_cstate->bw_control) {
->> -               perf->bw_ctl = kms->catalog->perf.max_bw_high *
->> -                                       1000ULL;
->> -               perf->max_per_pipe_ib = perf->bw_ctl;
->> -               perf->core_clk_rate = kms->perf.max_core_clk_rate;
->> -       } else if (kms->perf.perf_tune.mode == DPU_PERF_MODE_MINIMUM) {
->> +       if (kms->perf.perf_tune.mode == DPU_PERF_MODE_MINIMUM) {
->>                  perf->bw_ctl = 0;
->>                  perf->max_per_pipe_ib = 0;
->>                  perf->core_clk_rate = 0;
+Yu-Tung Chang (1):
+  ARM: dts: sun8i: h3: Add initial NanoPi R1 support
 
-Now bw_control is unused and can be removed alltogether.
-
->> @@ -64,6 +127,10 @@ static void _dpu_core_perf_calc_crtc(struct dpu_kms *kms,
->>                  perf->bw_ctl = kms->perf.fix_core_ab_vote;
->>                  perf->max_per_pipe_ib = kms->perf.fix_core_ib_vote;
->>                  perf->core_clk_rate = kms->perf.fix_core_clk_rate;
->> +       } else {
->> +               perf->bw_ctl = _dpu_core_perf_calc_bw(kms, crtc);
->> +               perf->max_per_pipe_ib = kms->catalog->perf.min_dram_ib;
->> +               perf->core_clk_rate = _dpu_core_perf_calc_clk(kms, crtc, state);
->>          }
->>
->>          DPU_DEBUG(
->> @@ -115,11 +182,7 @@ int dpu_core_perf_crtc_check(struct drm_crtc *crtc,
->>                          DPU_DEBUG("crtc:%d bw:%llu ctrl:%d\n",
->>                                  tmp_crtc->base.id, tmp_cstate->new_perf.bw_ctl,
->>                                  tmp_cstate->bw_control);
->> -                       /*
->> -                        * For bw check only use the bw if the
->> -                        * atomic property has been already set
->> -                        */
->> -                       if (tmp_cstate->bw_control)
->> +
->>                                  bw_sum_of_intfs += tmp_cstate->new_perf.bw_ctl;
-
-Just a nitpick: indent is wrong.
-
->>                  }
->>
->> @@ -131,9 +194,7 @@ int dpu_core_perf_crtc_check(struct drm_crtc *crtc,
->>
->>                  DPU_DEBUG("final threshold bw limit = %d\n", threshold);
->>
->> -               if (!dpu_cstate->bw_control) {
->> -                       DPU_DEBUG("bypass bandwidth check\n");
->> -               } else if (!threshold) {
->> +               if (!threshold) {
->>                          DPU_ERROR("no bandwidth limits specified\n");
->>                          return -E2BIG;
->>                  } else if (bw > threshold) {
->> @@ -154,7 +215,11 @@ static int _dpu_core_perf_crtc_update_bus(struct dpu_kms *kms,
->>                                          = dpu_crtc_get_client_type(crtc);
->>          struct drm_crtc *tmp_crtc;
->>          struct dpu_crtc_state *dpu_cstate;
->> -       int ret = 0;
->> +       int i, ret = 0;
->> +       u64 avg_bw;
->> +
->> +       if (!kms->num_paths)
->> +               return -EINVAL;
-
-This broke bandwidth setting for everybody except sc7180, since 
-_dpu_core_perf_crtc_update_bus will be still called for them, and 
-returning -EINVAL here prevents dpu_core_perf_crtc_update() from setting 
-clock rate. Returning 0 here fixes the issue.
-
-
->>
->>          drm_for_each_crtc(tmp_crtc, crtc->dev) {
->>                  if (tmp_crtc->enabled &&
->> @@ -165,10 +230,20 @@ static int _dpu_core_perf_crtc_update_bus(struct dpu_kms *kms,
-
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts      | 199 ++++++++++++++++++
+ 3 files changed, 205 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
 
 -- 
-With best wishes
-Dmitry
+2.29.0
+
