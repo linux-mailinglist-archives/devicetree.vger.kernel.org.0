@@ -2,226 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAEE229ACF6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3D3229ACFF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2900600AbgJ0NPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 09:15:55 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:45911 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2900599AbgJ0NPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 09:15:55 -0400
-Received: by mail-oi1-f174.google.com with SMTP id j7so1199983oie.12;
-        Tue, 27 Oct 2020 06:15:53 -0700 (PDT)
+        id S1751873AbgJ0NRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 09:17:30 -0400
+Received: from mail-qv1-f68.google.com ([209.85.219.68]:42458 "EHLO
+        mail-qv1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2440805AbgJ0NR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 09:17:29 -0400
+Received: by mail-qv1-f68.google.com with SMTP id b11so592582qvr.9;
+        Tue, 27 Oct 2020 06:17:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sv4MSsdbMGxld4Lj23VTm9RmQoViIo/kKrPn4dkU/IY=;
+        b=vNh8er+jimshlHNWTbr4gxIBpMpES1VfHM5fklA4+DGxjGBfFZMTBNrnWvRMDNzEfr
+         aQrfRcyA0YRlMkbE4iRd8LQFdeArBZ9l5u2mKk4ecgqvSfxudOFqI5447qbLTrmxWVxu
+         MZUs1sCVwjcKM77K7xR3A3fPqScf/wNvsOraon9HEj4uf5+0pOLLY0avW/tdBmuAFGze
+         2wXlIiRzczDBzOQoZN6yxBFuW/tl1JJMxJ0b5qMqVRTQISZPadZgZF7ZJVsxohgOlICP
+         hviF2mSA6Kpe8+FB0P5K1y+aiD2cqurYZzRe5yMm+ivlwi3k21Y19tDzHoSm1qOlOYil
+         eUHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition:content-transfer-encoding;
-        bh=DhOxPerUXGp7wH7dTSBqcOhiwYiHrfDhbrgLrVfJ6BY=;
-        b=tmHrn0qpovFZPwjSD4CqayTTxnHVUYN8MLAHiBmjqA7Srx3gSjBWdNMIcaCOxLPoxU
-         xYpOIJZPsYQUHy6SVRq8KNQawP0ygNNPoom6FJKY5VmfUnpVMeMd2bEpokFS6VvjArLV
-         ePxMBrw94Tw8BT4OpKTtwpVNQEYulQ0IUI4wj/yP/CaK7UlJO/pt6WdV8PDhRCFyFonu
-         bt+ngcXRJ4+8ofcS9QlgdPGXyzuVSrkvo4mffhTUpUx8DyUj9NlJ47ZbRRbYrEchsiDZ
-         3FVPj6jAU58iWfK3OJLcq/q9ZT06ngUQ4pXbd/guj7yEQnq5ALI7huBtYwa/3d4JHblw
-         G8AQ==
-X-Gm-Message-State: AOAM532nHtpEmyDZ4CCVWppcv/htoAXoll/SIGez9nPluQCX4OoLc/4Z
-        vcjPxCkh3jqL2XNrJgUc6JeCRpkpsw==
-X-Google-Smtp-Source: ABdhPJwsOH25Fr17BSqL4eF3S/Pl3k46Q2oxLXGtR/2z7ukyp30wIjMknidUxttOLeCOXC4Wc35SAw==
-X-Received: by 2002:a05:6808:17:: with SMTP id u23mr1355915oic.31.1603804553266;
-        Tue, 27 Oct 2020 06:15:53 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i18sm939415oik.7.2020.10.27.06.15.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 06:15:52 -0700 (PDT)
-Received: (nullmailer pid 1970142 invoked by uid 1000);
-        Tue, 27 Oct 2020 13:15:51 -0000
-Date:   Tue, 27 Oct 2020 08:15:51 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for 5.10
-Message-ID: <20201027131551.GA1959093@bogus>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sv4MSsdbMGxld4Lj23VTm9RmQoViIo/kKrPn4dkU/IY=;
+        b=ipcpG7bQQ1lcpA5bFeaRfLPLfgm2jI/GcCbm/2izxq0r4t7vHnGCF+GLIFfknOL74R
+         RabN5V25OPsQMkMrGpNNkCClgwggY4I/D/6Zh7HwmMsahF58kG0Ob/yc2hDChfLoizdD
+         SBeQygE+jEB4HaF5WWo/6nG+VcnqibWwCGgVlD5SnhixSUPN+QCb2Sg8HNIizIZIekYc
+         1kUglpajXZGN9vb++63gwcyvYyJ9eNXlNseJ94LtUhSgdsfhUqHimtHe2MEDh+vqvEQj
+         M1WCvGsUOrMDXWP4zntz1Vzk9ZC8FAl3YLE0QUBaXGN47WsIFbwnfAareKAVuIS9m9I4
+         I45A==
+X-Gm-Message-State: AOAM530Noy8+4mvUVz4uKtIoC+O5erhiEQesvo3MAXB75jynvlGVvFe7
+        ORu8My7o1TdLDV0pm9hVAC6EyKRy8G2us5BPcw4=
+X-Google-Smtp-Source: ABdhPJw7WHxGGt0QI/QBYgwttvjYmNUbf+/rEv7bpW+TknJBJlrymRHrxafQb7NUmoIIP3EJGVRRlgEZT+IDAOuSO8A=
+X-Received: by 2002:a0c:82c4:: with SMTP id i62mr2409110qva.28.1603804648818;
+ Tue, 27 Oct 2020 06:17:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+References: <1603708855-2663-1-git-send-email-shengjiu.wang@nxp.com>
+ <1603708855-2663-2-git-send-email-shengjiu.wang@nxp.com> <20201026133003.GD7402@sirena.org.uk>
+In-Reply-To: <20201026133003.GD7402@sirena.org.uk>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Tue, 27 Oct 2020 21:17:17 +0800
+Message-ID: <CAA+D8AMtFh_ZCPrxNDcMmLx2Uqxh9cRX=dX8=tJXt=O72baY5Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ASoC: fsl_aud2htx: Add aud2htx module driver
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
+        Timur Tabi <timur@kernel.org>, Xiubo Li <Xiubo.Lee@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org, Takashi Iwai <tiwai@suse.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+On Mon, Oct 26, 2020 at 9:31 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Mon, Oct 26, 2020 at 06:40:55PM +0800, Shengjiu Wang wrote:
+>
+> > +static int fsl_aud2htx_hw_params(struct snd_pcm_substream *substream,
+> > +                              struct snd_pcm_hw_params *params,
+> > +                              struct snd_soc_dai *cpu_dai)
+> > +{
+> > +     struct fsl_aud2htx *aud2htx = snd_soc_dai_get_drvdata(cpu_dai);
+> > +
+> > +     /* DMA request when number of entries < WTMK_LOW */
+> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
+> > +                        AUD2HTX_CTRE_DT_MASK, 0);
+> > +
+> > +     /* Disable interrupts*/
+> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_IRQ_MASK,
+> > +                        AUD2HTX_WM_HIGH_IRQ_MASK |
+> > +                        AUD2HTX_WM_LOW_IRQ_MASK |
+> > +                        AUD2HTX_OVF_MASK,
+> > +                        AUD2HTX_WM_HIGH_IRQ_MASK |
+> > +                        AUD2HTX_WM_LOW_IRQ_MASK |
+> > +                        AUD2HTX_OVF_MASK);
+> > +
+> > +     /* Configur watermark */
+> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
+> > +                        AUD2HTX_CTRE_WL_MASK,
+> > +                        AUD2HTX_WTMK_LOW << AUD2HTX_CTRE_WL_SHIFT);
+> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
+> > +                        AUD2HTX_CTRE_WH_MASK,
+> > +                        AUD2HTX_WTMK_HIGH << AUD2HTX_CTRE_WH_SHIFT);
+> > +     return 0;
+> > +}
+>
+> This doesn't look like a hw_params operation - it doesn't appear to
+> reference the params at all, or even containt any conditional
+> statements.  Shouldn't this be configured just once at driver load?
 
-Please pull DT fixes for 5.10.
+Ok, I will update it.
 
-Rob
-
-
-The following changes since commit 3650b228f83adda7e5ee532e2b90429c03f7b9ec:
-
-  Linux 5.10-rc1 (2020-10-25 15:14:11 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.10-1
-
-for you to fetch changes up to f84e2c5c528d937564e4a9e3411418e4c914b1fb:
-
-  dt-bindings: Another round of adding missing 'additionalProperties/unevalutatedProperties' (2020-10-26 16:13:56 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.10:
-
-- More binding additionalProperties/unevaluatedProperties additions
-
-- More yamllint fixes on additions in the merge window
-
-- CrOS embedded controller schema updates to fix warnings
-
-- LEDs schema update adding ID_RGB
-
-- A reserved-memory fix for regions starting at address 0x0
-
-----------------------------------------------------------------
-Dan Murphy (1):
-      dt-bindings: leds: Update devicetree documents for ID_RGB
-
-Fabien Parent (1):
-      dt-bindings: mailbox: mtk-gce: fix incorrect mbox-cells value
-
-Ricardo Cañuelo (3):
-      dt-bindings: i2c: convert i2c-cros-ec-tunnel to json-schema
-      dt-bindings: input: convert cros-ec-keyb to json-schema
-      mfd: google,cros-ec: add missing properties
-
-Rob Herring (3):
-      dt-bindings: More whitespace clean-ups in schema files
-      dt-bindings: Explicitly allow additional properties in board/SoC schemas
-      dt-bindings: Another round of adding missing 'additionalProperties/unevalutatedProperties'
-
-Vincent Whitchurch (1):
-      of: Fix reserved-memory overlap detection
-
- Documentation/devicetree/bindings/arm/actions.yaml |   2 +
- Documentation/devicetree/bindings/arm/altera.yaml  |   3 +
- .../devicetree/bindings/arm/amazon,al.yaml         |   2 +
- Documentation/devicetree/bindings/arm/amlogic.yaml |   3 +
- .../devicetree/bindings/arm/arm,integrator.yaml    |   2 +
- .../devicetree/bindings/arm/arm,realview.yaml      |   2 +
- .../devicetree/bindings/arm/arm,versatile.yaml     |   2 +
- .../devicetree/bindings/arm/arm,vexpress-juno.yaml |   2 +
- .../devicetree/bindings/arm/atmel-at91.yaml        |   2 +
- Documentation/devicetree/bindings/arm/axxia.yaml   |   2 +
- .../devicetree/bindings/arm/bcm/bcm2835.yaml       |   2 +
- .../devicetree/bindings/arm/bcm/brcm,bcm11351.yaml |   2 +
- .../devicetree/bindings/arm/bcm/brcm,bcm21664.yaml |   2 +
- .../devicetree/bindings/arm/bcm/brcm,bcm23550.yaml |   2 +
- .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml  |   3 +
- .../devicetree/bindings/arm/bcm/brcm,cygnus.yaml   |   2 +
- .../devicetree/bindings/arm/bcm/brcm,hr2.yaml      |   2 +
- .../devicetree/bindings/arm/bcm/brcm,ns2.yaml      |   2 +
- .../devicetree/bindings/arm/bcm/brcm,nsp.yaml      |   2 +
- .../devicetree/bindings/arm/bcm/brcm,stingray.yaml |   2 +
- .../bindings/arm/bcm/brcm,vulcan-soc.yaml          |   2 +
- Documentation/devicetree/bindings/arm/bitmain.yaml |   3 +
- Documentation/devicetree/bindings/arm/calxeda.yaml |   2 +
- .../devicetree/bindings/arm/digicolor.yaml         |   2 +
- Documentation/devicetree/bindings/arm/fsl.yaml     |   2 +
- .../bindings/arm/hisilicon/hisilicon.yaml          |   3 +
- .../devicetree/bindings/arm/intel,keembay.yaml     |   3 +
- .../devicetree/bindings/arm/intel-ixp4xx.yaml      |   2 +
- .../bindings/arm/keystone/ti,k3-sci-common.yaml    |   2 +
- .../bindings/arm/marvell/armada-7k-8k.yaml         |   2 +
- .../devicetree/bindings/arm/mediatek.yaml          |   3 +
- .../devicetree/bindings/arm/microchip,sparx5.yaml  |   2 +
- Documentation/devicetree/bindings/arm/moxart.yaml  |   1 +
- .../devicetree/bindings/arm/mrvl/mrvl.yaml         |   3 +
- .../devicetree/bindings/arm/mstar/mstar.yaml       |   2 +
- .../devicetree/bindings/arm/nxp/lpc32xx.yaml       |   2 +
- Documentation/devicetree/bindings/arm/qcom.yaml    |   2 +
- Documentation/devicetree/bindings/arm/rda.yaml     |   2 +
- Documentation/devicetree/bindings/arm/realtek.yaml |   3 +
- Documentation/devicetree/bindings/arm/renesas.yaml |   2 +
- .../devicetree/bindings/arm/rockchip.yaml          |   3 +
- .../bindings/arm/samsung/samsung-boards.yaml       |   2 +
- Documentation/devicetree/bindings/arm/sirf.yaml    |   3 +
- .../bindings/arm/socionext/milbeaut.yaml           |   3 +
- .../bindings/arm/socionext/uniphier.yaml           |   2 +
- Documentation/devicetree/bindings/arm/spear.yaml   |   3 +
- .../devicetree/bindings/arm/sprd/sprd.yaml         |   2 +
- Documentation/devicetree/bindings/arm/sti.yaml     |   3 +
- .../devicetree/bindings/arm/stm32/stm32.yaml       |  11 ++-
- Documentation/devicetree/bindings/arm/sunxi.yaml   |   2 +
- Documentation/devicetree/bindings/arm/tegra.yaml   |   2 +
- Documentation/devicetree/bindings/arm/ti/k3.yaml   |   3 +
- .../devicetree/bindings/arm/ti/nspire.yaml         |   3 +
- .../devicetree/bindings/arm/ti/ti,davinci.yaml     |   3 +
- Documentation/devicetree/bindings/arm/toshiba.yaml |   3 +
- Documentation/devicetree/bindings/arm/ux500.yaml   |   2 +
- Documentation/devicetree/bindings/arm/vt8500.yaml  |   3 +
- Documentation/devicetree/bindings/arm/xilinx.yaml  |   2 +
- Documentation/devicetree/bindings/arm/zte.yaml     |   2 +
- .../bindings/display/bridge/toshiba,tc358775.yaml  |  38 ++++----
- .../bindings/display/panel/ilitek,ili9881c.yaml    |   5 +-
- .../bindings/edac/amazon,al-mc-edac.yaml           |   1 +
- Documentation/devicetree/bindings/eeprom/at25.yaml |   6 +-
- .../bindings/gpio/kontron,sl28cpld-gpio.yaml       |   4 +-
- .../bindings/i2c/google,cros-ec-i2c-tunnel.yaml    |  66 +++++++++++++
- .../devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt |  39 --------
- .../devicetree/bindings/i2c/ingenic,i2c.yaml       |   8 +-
- .../devicetree/bindings/iio/adc/adi,ad7291.yaml    |   3 +-
- .../devicetree/bindings/iio/adc/adi,ad7768-1.yaml  |   3 +-
- .../bindings/iio/adc/cosmic,10001-adc.yaml         |   4 +-
- .../devicetree/bindings/iio/adc/holt,hi8435.yaml   |   2 +-
- .../devicetree/bindings/iio/adc/lltc,ltc2497.yaml  |   2 +
- .../bindings/iio/humidity/ti,hdc2010.yaml          |   2 +
- .../devicetree/bindings/input/cros-ec-keyb.txt     |  72 ---------------
- .../bindings/input/google,cros-ec-keyb.yaml        |  92 +++++++++++++++++++
- .../interrupt-controller/ti,pruss-intc.yaml        |  12 +--
- .../bindings/interrupt-controller/ti,sci-inta.yaml |   2 +
- .../bindings/interrupt-controller/ti,sci-intr.yaml |   2 +
- .../devicetree/bindings/leds/backlight/common.yaml |   2 +
- Documentation/devicetree/bindings/leds/common.yaml |   2 +-
- .../bindings/leds/leds-class-multicolor.yaml       |   9 +-
- .../devicetree/bindings/leds/leds-lp50xx.yaml      |   8 ++
- .../devicetree/bindings/mailbox/mtk-gce.txt        |   2 +-
- .../devicetree/bindings/mfd/ene-kb3930.yaml        |   2 +-
- .../devicetree/bindings/mfd/google,cros-ec.yaml    |  56 +++++++++++
- .../devicetree/bindings/mips/ingenic/devices.yaml  |   3 +
- .../devicetree/bindings/mips/loongson/devices.yaml |   3 +
- .../devicetree/bindings/mmc/arasan,sdhci.yaml      |   8 +-
- .../bindings/mmc/microchip,dw-sparx5-sdhci.yaml    |   2 +
- .../devicetree/bindings/mmc/sdhci-am654.yaml       |  17 ++--
- .../devicetree/bindings/net/intel,dwmac-plat.yaml  |   2 +
- .../devicetree/bindings/net/ti,dp83822.yaml        |   2 +
- .../bindings/pci/socionext,uniphier-pcie-ep.yaml   |  18 ++--
- .../bindings/phy/socionext,uniphier-ahci-phy.yaml  |   6 +-
- .../devicetree/bindings/phy/ti,omap-usb2.yaml      |  22 +++--
- .../bindings/pinctrl/actions,s500-pinctrl.yaml     | 102 ++++++++++-----------
- .../bindings/pinctrl/pinctrl-mt8192.yaml           |   2 +-
- .../bindings/pinctrl/qcom,msm8226-pinctrl.yaml     |   6 +-
- .../bindings/pinctrl/toshiba,visconti-pinctrl.yaml |  24 ++---
- .../bindings/power/reset/reboot-mode.yaml          |   8 +-
- .../bindings/power/supply/ingenic,battery.yaml     |   8 +-
- .../power/supply/summit,smb347-charger.yaml        |  16 ++--
- .../devicetree/bindings/regulator/mps,mp886x.yaml  |   2 +
- .../devicetree/bindings/regulator/pfuze100.yaml    |   2 +
- .../devicetree/bindings/riscv/sifive-l2-cache.yaml |   4 +-
- .../devicetree/bindings/riscv/sifive.yaml          |   3 +
- Documentation/devicetree/bindings/rng/imx-rng.yaml |   6 +-
- .../devicetree/bindings/serial/fsl-imx-uart.yaml   |  34 +++----
- .../bindings/sound/google,cros-ec-codec.yaml       |  26 ++++--
- .../devicetree/bindings/sound/mchp,spdifrx.yaml    |   4 +-
- .../devicetree/bindings/sound/mchp,spdiftx.yaml    |   4 +-
- .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  40 ++++----
- .../devicetree/bindings/sound/realtek,rt1015p.yaml |   2 +
- .../devicetree/bindings/timer/arm,sp804.yaml       |  12 +--
- .../devicetree/bindings/usb/cdns,usb3.yaml         |   4 +-
- .../devicetree/bindings/usb/ti,hd3ss3220.yaml      |   2 +-
- .../devicetree/bindings/w1/fsl-imx-owire.yaml      |   8 +-
- drivers/of/of_reserved_mem.c                       |  13 ++-
- 118 files changed, 656 insertions(+), 348 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
- delete mode 100644 Documentation/devicetree/bindings/input/cros-ec-keyb.txt
- create mode 100644 Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+best regards
+wang shengjiu
