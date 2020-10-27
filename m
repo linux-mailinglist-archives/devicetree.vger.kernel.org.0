@@ -2,113 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC29E29A9EF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:43:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6AF29A9FD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 11:48:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1416477AbgJ0KnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 06:43:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35204 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1416459AbgJ0KnT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 06:43:19 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AFF3920878;
-        Tue, 27 Oct 2020 10:43:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603795398;
-        bh=9xct4VMCLTysA5w62/oZl+mDE0ef0nCaSzhqCDmXkq8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=FIwpp9hh8WoXKbWxP3ISKbkoJJlp285sqgNnjAyr2LsNSMyWU/B/9/aycCet7fvlv
-         ujUJ9BSc9PyXPMdLOedWByabA01gdgt476UqAM+b7pChaVxkT7jwKghYKO8clhhVpz
-         Hzvm2edI+BgRgEpJkS1RXgcWjGGp38TJ/qSixT1k=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kXMRg-004ejb-Qd; Tue, 27 Oct 2020 10:43:16 +0000
+        id S1418609AbgJ0Kqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 06:46:55 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:46296 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1418295AbgJ0Kqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 06:46:53 -0400
+Received: by mail-lf1-f67.google.com with SMTP id v6so1637415lfa.13;
+        Tue, 27 Oct 2020 03:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=n+R+IbGIJxakdbmAkfda0p2uyxFEg7csUXtIV29lJrk=;
+        b=SVfiFQtOYFa8vQUvYDmz3+JP27jTH3Is0VwBMhA6brpEQX6aqVVE7v8XoIXC2B/T9i
+         /UUxqtpgP8QO3Lz0YUWWU9MDmV1vJOLSFZMOysi8BLFxWrHc5VPheqvm98i9KTmFnUFr
+         QwLI7RApDDvh+pUFnpt7EfC8Nku9Bg4kLh5UKrH+hJ9giAWHOpBu3lgpQ8uZtQ9pRB9F
+         L2V92yUWWTyMa2+ZzPWJGShHBSbJogVxfj+9recRWgOTjg2lm2LmwV1MVGqWZhA56P6n
+         fEeHYGhjGnB1RJLuT6vCfwt+zfqcSizQCF1l+GZVM8ew92ojJ9hqFkEkNRQxB6Y44PQq
+         F0oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=n+R+IbGIJxakdbmAkfda0p2uyxFEg7csUXtIV29lJrk=;
+        b=MUBE4czwxNJ5K0+gsyD/7pHha6ughkwfRAzZAoqeiP+8mamBs2xYNPlB4kyp7XRDHg
+         xT4eujr2+SwCzWjGqWlealRLexD1M4KOxKov5ZpoHLS1AtqGf9GRrPrCNUz/eqBTaxjU
+         Vh45L4YYS4jWbPR2QwZdJ66rArJ/ez0LCv2seR9Z0R6W5qv/cAoYgMUhuv/9lR5HeHbw
+         mu0Dl+/XH/Hbp4a7p9m8dqK8+KX5VDnwVo7wchZShi7/vEvXrTQIWb6sIoOB/QZPLRwa
+         +w6WSVcADsdNJR3TExnqg6Se0lHYgQ/JRZnZxGPa8xnO2VjPgAdB3IlgnBms5N4y0xuN
+         +JlQ==
+X-Gm-Message-State: AOAM5315ZJRmc8I5eQZeQuoQY0Nk+dEwMQBZea92pPwEzWl4rkcAZ1oE
+        ZNsRn1cSi1tCU9w3ebDvdzXUETDr4xgUzh5Q/34=
+X-Google-Smtp-Source: ABdhPJzSxXRdGlZlEI7MXIMrUWEtGzO5f0hDcafc4ky8LbiK1uaq02psrtbhIjdejT+lZH8d5Mxsu4uDoIOyzBPaSLE=
+X-Received: by 2002:ac2:5f95:: with SMTP id r21mr690659lfe.209.1603795610496;
+ Tue, 27 Oct 2020 03:46:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 27 Oct 2020 10:43:16 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
-Cc:     linux@rasmusvillemoes.dk, shawnguo@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, Leo Li <leoyang.li@nxp.com>,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>, tglx@linutronix.de,
-        jason@lakedaemon.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jiafei Pan <jiafei.pan@nxp.com>,
-        Xiaobo Xie <xiaobo.xie@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [v2 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
- interrupt
-In-Reply-To: <HE1PR0401MB2444AA759104F4A34F91B61F8F160@HE1PR0401MB2444.eurprd04.prod.outlook.com>
-References: <20201027044619.41879-1-biwen.li@oss.nxp.com>
- <d5d6deb90b4b3d086024fcf01b737da9@kernel.org>
- <HE1PR0401MB2444AA759104F4A34F91B61F8F160@HE1PR0401MB2444.eurprd04.prod.outlook.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <e6cd6eecb0221742548e657faf211733@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: biwen.li@oss.nxp.com, linux@rasmusvillemoes.dk, shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com, zhiqiang.hou@nxp.com, tglx@linutronix.de, jason@lakedaemon.net, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jiafei.pan@nxp.com, xiaobo.xie@nxp.com, linux-arm-kernel@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
+ <20201027082900.GA21354@amd> <CADiBU3915nyB2OE_bqPy8kVqPhKbdTpBe8ay_ZAoFwuJoL-BfQ@mail.gmail.com>
+ <20201027101535.GB13900@duo.ucw.cz>
+In-Reply-To: <20201027101535.GB13900@duo.ucw.cz>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Tue, 27 Oct 2020 18:46:39 +0800
+Message-ID: <CADiBU39rQ=5vk31caa1rv32eyzFrYB78p8GubpSi21DS5JYQkA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505 flash
+ led controller
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     dmurphy@ti.com, robh+dt@kernel.org, linux-leds@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-10-27 10:35, Biwen Li (OSS) wrote:
->> 
->> On 2020-10-27 04:46, Biwen Li wrote:
->> > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
->> >
->> > Add an new IRQ chip declaration for LS1043A and LS1088A
->> > - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A.
->> > SCFG_INTPCR[31:0]
->> >   of these SoCs is stored/read as SCFG_INTPCR[0:31] defaultly(bit
->> >   reverse)
->> > - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
->> >
->> > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
->> > Signed-off-by: Biwen Li <biwen.li@nxp.com>
->> 
->> You clearly couldn't be bothered to read what I wrote in my earlier 
->> replies. I'm
->> thus ignoring this series...
-> Okay, got it.
->> 
->> > ---
->> > Change in v2:
->> > 	- add despcription of bit reverse
->> > 	- update copyright
->> >
->> >  drivers/irqchip/irq-ls-extirq.c | 10 +++++++++-
->> >  1 file changed, 9 insertions(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/irqchip/irq-ls-extirq.c
->> > b/drivers/irqchip/irq-ls-extirq.c index 4d1179fed77c..9587bc2607fc
->> > 100644
->> > --- a/drivers/irqchip/irq-ls-extirq.c
->> > +++ b/drivers/irqchip/irq-ls-extirq.c
->> > @@ -1,5 +1,8 @@
->> >  // SPDX-License-Identifier: GPL-2.0
->> > -
->> > +/*
->> > + * Author: Rasmus Villemoes <linux@rasmusvillemoes.dk>
->> > + * Copyright 2020 NXP
->> 
->> ... specially when you keep attributing someone else's copyright to 
->> NXP.
-> Then I don't know how to add the copyright, any suggestions?
+Pavel Machek <pavel@ucw.cz> =E6=96=BC 2020=E5=B9=B410=E6=9C=8827=E6=97=A5 =
+=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:15=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Hi!
+>
+> > > Please use upper-case "LED" everywhere.
+> > >
+> > > This should be 2nd in the series, after DT changes.
+> > Sure, will ack in next series patch.
+>
+> Feel free to wait for dt ACKs before resending.
+>
+Yes, sure.
+> > > > +     help
+> > > > +       This option enables support for the RT4505 flash led contro=
+ller.
+> > >
+> > > Information where it is used would be welcome here.
+> > How about to add the below line for the extra information?
+> > Usually used to company with the camera device on smartphone/tablet
+> > products
+>
+> Yes, that would help.
+>
+> "It is commonly used in smartphones, such as Bell Packard T899" would
+> be even better.
 
-Simple. You don't add anything. NXP's copyright doesn't apply to this
-file before this patch, and your changes are so trivial that they don't
-really warrant a mention. Furthermore, the git history already keeps 
-track
-of who did what.
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+Sorry, We don't focus on specific products. It's a general part flash
+led controller.
+I'll change it like as below
+"It's commonly used in smartphones and tablets to assist the builtin camera=
+."
+>
+> > > > +     ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ENABLE, R=
+T4505_ENABLE_MASK, val);
+> > > > +
+> > > > +unlock:
+> > > > +     mutex_unlock(&priv->lock);
+> > > > +     return ret;
+> > > > +}
+> > >
+> > > Why is the locking needed? What will the /sys/class/leds interface
+> > > look like on system with your flash?
+> >
+> > The original thought is because there's still another way to control
+> > flash like as v4l2.
+> > But after reviewing the source code, led sysfs node will be protected
+> > by led_cdev->led_access.
+> > And V4L2 flash will also be protected by v4l2_fh_is_singular API.
+> > I think the whole locking in the source code code may be removed. Right=
+?
+>
+> Well, maybe you need it, I did not check..
+>
+> What will the /sys/class/leds interface look like on system with your fla=
+sh?
+>
+> > > > +     *state =3D ((val & RT4505_FLASH_GET) =3D=3D RT4505_FLASH_GET)=
+ ? true : false;
+> > >
+> > > No need for ? ... part.
+> > Do you mean this function is not needed? If yes, it can be removed.
+> > But if it removed, led sysfs flash_strobe show will be not supported.
+>
+> I meant "replace line with: *state =3D (val & RT4505_FLASH_GET) =3D=3D RT=
+4505_FLASH_GET;"
+Oh, I got it. redundant judgement.
+>
+> > > > +static bool rt4505_is_accessible_reg(struct device *dev, unsigned =
+int reg)
+> > > > +{
+> > > > +     if (reg =3D=3D RT4505_REG_RESET || (reg >=3D RT4505_REG_CONFI=
+G  && reg <=3D RT4505_REG_FLAGS))
+> > > > +             return true;
+> > >
+> > > Make this two stagements.
+> > Like as the below one?? Or separate it into two if case.
+> > if (reg =3D=3D RT4505_REG_RESET ||
+> >        reg >=3D RT4505_REG_CONFIG  && reg <=3D RT4505_REG_FLAGS))
+>
+> That would be fine, too... if you use just one space before "&&" :-).
+Thx.
+>
+> Best regards,
+>                                                         Pavel
+> --
+> http://www.livejournal.com/~pavelmachek
