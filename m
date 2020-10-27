@@ -2,86 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C1E29BE97
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 17:57:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 341D529C13C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 18:24:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1813632AbgJ0Qwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 12:52:46 -0400
-Received: from mail-pj1-f65.google.com ([209.85.216.65]:35906 "EHLO
-        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1812877AbgJ0Qqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 12:46:33 -0400
-Received: by mail-pj1-f65.google.com with SMTP id d22so1032913pjz.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 09:46:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=W1454WDznDDB4HVIvN+ksGK2VxFOSrCXsfMI/gG/Yms=;
-        b=oQJPpPIG4EaovjrBVzzsMnpryDFa6cLQiDvG730jBV7G1T19BJIabWlTnnwm6tnxlf
-         wxaGcCC/RFSUQWdAUld+hhWK4M4QScQiVorHIHDJvNVBOvfO5Jn2adPf7wHc1Wksr0rC
-         c/AFy6YdyjqctKqUGRTUlcZZhfLYWs8p5SQn4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=W1454WDznDDB4HVIvN+ksGK2VxFOSrCXsfMI/gG/Yms=;
-        b=arlu8W4rp9iiJPjhTIruPvnl3kL5SsuxmJMtjNE+cDhPzKkIeBtRbw8DMyRHL6Iqiw
-         H9nLcckcjZMFaIQBCiECkxYkJ96gdxqfA8vfJ8R/UbSbC3D/esOUPUhNQxXhTFsw8SZR
-         80GYdc2inTd1vjcyPYmo96w/h0JIMgoZK7JEJvTSEdp2HkKeuEHANyNZRqdlv3xeHNwv
-         qeEHytHDPcvF4XHzikXoVHcKAv8OEEu5DHHvIwCCDrQghcj5lgWpaH7CI7byMWKL+MVA
-         +FXB7mRGMX1x1NqjsCONpaCiBelhybx3p0gUYCWMH/Ys9/m4NFOJZuzQ2RBEiZUZfgno
-         rk/Q==
-X-Gm-Message-State: AOAM532SlHOiuvZ6nnaWCZ24ZKCeRAPDJSbk0nKgmjyzdCcl/znvB7Nw
-        iNQYpWCu9YASs16UZITsCKV/Kw==
-X-Google-Smtp-Source: ABdhPJyTpzBwPzGSyUpO+81xeAo7gZN3jmfx8jUfWWRehiMcepTWOtraQ9wfdIcT5SHgrA95ky7pUA==
-X-Received: by 2002:a17:902:8545:b029:d5:dbd4:4ab5 with SMTP id d5-20020a1709028545b02900d5dbd44ab5mr3459355plo.31.1603817191235;
-        Tue, 27 Oct 2020 09:46:31 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id c12sm3002688pgi.14.2020.10.27.09.46.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 09:46:30 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, robdclark@chromium.org,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: dt-bindings: display: simple: Add BOE NV110WTM-N61
-Date:   Tue, 27 Oct 2020 09:45:56 -0700
-Message-Id: <20201027094553.3.I28d9e32b3cc0aae980ecc39d364263a3f9871298@changeid>
-X-Mailer: git-send-email 2.29.0.rc2.309.g374f81d7ae-goog
-In-Reply-To: <20201027094553.1.I31c4f8b111dbef1ab658f206764655ae983bc560@changeid>
-References: <20201027094553.1.I31c4f8b111dbef1ab658f206764655ae983bc560@changeid>
+        id S1818783AbgJ0RXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 13:23:31 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:39931 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2900640AbgJ0Oyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 10:54:39 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5E702580391;
+        Tue, 27 Oct 2020 10:54:37 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 27 Oct 2020 10:54:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=UW+E2zW4VZ3UJMxESpcdsxmlJiw
+        oieqYRzoHTXgnbW0=; b=XgvLsbAxk4Z7pmp8Nxz1jtzRQm//UA5mEDYBA8X/FbL
+        KKjsM2NIkNWCQIywwzKkqDBLL4uMAIoWk1pKM9y17X6JiSRqtJsfSitEj/HV9Quf
+        MAe+CDcMepUznuryAtfiWzi0fDkGJ1XTnp8xM15qydp3FELZFf79voTpYHx3jGKa
+        3hJGEX4sx7cy1XPczlJe8QJXMpHymfrnzlr362tubaoxFkaQFLz+wzRHtr9D6py5
+        oTjfT4dmTI5lJE1zkIMHix5UGm5Lrg9taEa9Hs8n7xAEAIE3nt9sBJJpy19JN/hp
+        YxZOHvO3Td5NHJEXsSBfgdZrtZHgKOT12pmmtSu+crg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=UW+E2z
+        W4VZ3UJMxESpcdsxmlJiwoieqYRzoHTXgnbW0=; b=P2CJnQ8uuy9FH7czKoH61q
+        LLSW5lizedJjUKo0MQj3NUG4aRK7G2jyg4qkhYzYWMVKjQGiGs1BJRr0BHt3Ek8I
+        1tFPS/+I/aEcoR6bvuHm3vA3bCjnS64Wo8nWokF6zPMkUWAX/LCMxuBu/LaLxdzN
+        RVNvp+FcXx18qYf+/M+nWlBNxL47z30KvBnc6E3dzECo5zBLo8frjm+dpQZNTQCb
+        xdiytaAPPBDkR7D3AopbdxRZrgQn8iCExVgz43QZ0mkshLy06ffmmfpVvyVoA9Xt
+        nJ7/xaRvvOGNUZuKlpmo5kBoT2rXcA1W6KRhfMtVcbvT/gSeEyXDnydyPj7xGn8g
+        ==
+X-ME-Sender: <xms:qjSYX8pFfMlV8R1cAmDDHtINi4OWwiVTBfOYDEtjx3-KSD7Gzdz1mQ>
+    <xme:qjSYXypPyzowgHmZi0IIJaIMaICyrNw8B5gyuH3RhCUBohvmQ1btXCyzYAQNbKx_M
+    2032qMHIKcEWGq-7UM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrkeelgdeilecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:qjSYXxPJyA-scb1IKYFP_IJ58uvSuC6cHLlrC6yj6vtrgaA3_2KQlA>
+    <xmx:qjSYXz4bjDnp-ZxtumAIPjnsYuO_dzJ3KzO9rQDBmxXp-uYPtj6tLA>
+    <xmx:qjSYX74RjX5yu3Xb5jgR6iO3skzUOYFx78Ic5vqBDOXDZmu4xCmuKA>
+    <xmx:rTSYX4yPcxa1l_Dz1l_yRAm44oatfrLZ8YmYXWV_rk9iPjpKXLOeCw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 13C12328005D;
+        Tue, 27 Oct 2020 10:54:33 -0400 (EDT)
+Date:   Tue, 27 Oct 2020 15:54:31 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Cc:     eric@anholt.net, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        dave.stevenson@raspberrypi.com, sungguk.na@samsung.com
+Subject: Re: [PATCH 1/1] drm/vc4: drv: Add error handding for bind
+Message-ID: <20201027145431.zasv2oiydglz3n63@gilmour.lan>
+References: <20201027041442.30352-1-hoegeun.kwon@samsung.com>
+ <CGME20201027041535epcas1p489bbfe80b461f1e5c5deca1a571f1f35@epcas1p4.samsung.com>
+ <20201027041442.30352-2-hoegeun.kwon@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wxa2nq6hnmca3hde"
+Content-Disposition: inline
+In-Reply-To: <20201027041442.30352-2-hoegeun.kwon@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add yet another eDP panel.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+--wxa2nq6hnmca3hde
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index edb53ab0d9eb..93e244c67e8a 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -76,6 +76,8 @@ properties:
-         # BOE OPTOELECTRONICS TECHNOLOGY 10.1" WXGA TFT LCD panel
-       - boe,nv101wxmn51
-         # BOE NV133FHM-N61 13.3" FHD (1920x1080) TFT LCD Panel
-+      - boe,nv110wtm-n61
-+        # BOE NV110WTM-N61 11.0" 2160x1440 TFT LCD Panel
-       - boe,nv133fhm-n61
-         # BOE NV133FHM-N62 13.3" FHD (1920x1080) TFT LCD Panel
-       - boe,nv133fhm-n62
--- 
-2.29.0.rc2.309.g374f81d7ae-goog
+On Tue, Oct 27, 2020 at 01:14:42PM +0900, Hoegeun Kwon wrote:
+> There is a problem that if vc4_drm bind fails, a memory leak occurs on
+> the drm_property_create side. Add error handding for drm_mode_config.
+>=20
+> Signed-off-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
 
+Applied, thanks!
+Maxime
+
+--wxa2nq6hnmca3hde
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5g0pwAKCRDj7w1vZxhR
+xVOGAP97fk3mnbTRj0i/hLPPsFBfQ4SlfOkkqL3lZO6PXlFQdQEA+sZ/6u7b+J7p
+esNNHHdopvh+MLAwJW47eC/lLIZScAQ=
+=oZCt
+-----END PGP SIGNATURE-----
+
+--wxa2nq6hnmca3hde--
