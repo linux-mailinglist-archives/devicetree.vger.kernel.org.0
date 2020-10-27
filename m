@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADA1B29AE03
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:54:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47AA129AE05
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 14:55:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503725AbgJ0Nyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 09:54:44 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:36158 "EHLO
+        id S2408700AbgJ0NzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 09:55:03 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:25458 "EHLO
         us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2409506AbgJ0Nyo (ORCPT
+        by vger.kernel.org with ESMTP id S2438386AbgJ0Ny7 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 09:54:44 -0400
+        Tue, 27 Oct 2020 09:54:59 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1603806882;
+        s=mimecast20190719; t=1603806897;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=Xq9zJB+jTHF1Ao/Vk53ndQQTAJYernihVo37z7lC1Gc=;
-        b=cGBvuAW19bwG9SNOF4U2W31771DjzMGp4h0PqXmm7fvc9ufGgwUY0pml2j+xBKccVWjNdV
-        N64+KGFmiP1mp9is9l3SUCuePcQF4zn6Edqq1ltxLgzpKBzsYNxSmZh8P8S1tvMQeN8BMv
-        rAeCu5IgskBf1EBHTlrY2iuHg7q4Slo=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-167-6eXgb_SIOcWIqONb9UOs-A-1; Tue, 27 Oct 2020 09:54:40 -0400
-X-MC-Unique: 6eXgb_SIOcWIqONb9UOs-A-1
-Received: by mail-ej1-f72.google.com with SMTP id ha4so914784ejb.9
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 06:54:40 -0700 (PDT)
+        bh=ngy9t9+mZDVeXCahPtqT6RsIxpk8fj+GjpvS3FzPgDo=;
+        b=Jh9Wpd5aXWDPlS6dbOwkazEaFN2eKFKt4LX97dueVp7Hi7YXIM37n8fLwdgRPV0Qhr8zYP
+        uVr8lWd9Ov8kzqWb+iCzltfNPBbKH6+xz0bIred3x0YX28TeL3ScqMe0MOP0rT8rlRloWq
+        jr+ZGqn1DIrkGQNswceu7kv+oZGwriA=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-204-W2IfEiYNNEOzMzXhRaFhHw-1; Tue, 27 Oct 2020 09:54:56 -0400
+X-MC-Unique: W2IfEiYNNEOzMzXhRaFhHw-1
+Received: by mail-ed1-f71.google.com with SMTP id dm20so734075edb.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 06:54:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Xq9zJB+jTHF1Ao/Vk53ndQQTAJYernihVo37z7lC1Gc=;
-        b=D7RlFwDZkjrMB7CsNl8moNwBV7MKqihsQ9Licx0b+FheYB48J8uHiHuVUm1BhI4qtS
-         ljxDopfSDMmHd8DHKRG5nr6IBTvd9LeUzX9Lw5EKB8XvbP5INeaoQGmtTB0krkKbU/Jy
-         kzWnpez6VvpvikpHp95f/86XxdZQCOHhPc7SR4/JufXd5POE0Dpa6VYItBqsRq6IQ1B8
-         AbJcqnm1KxJw5czPPcm7/0eYbyQ4md6mNmLxGakmjZE7vomfpKOu0o12szQVpS0hlBec
-         77sVoQO6QWvFZfmDR3T+dHpoxQTYzhVbKI/fOgcC6UIEEp0gjkLSp/H1sRtTLI/ROt/7
-         UG4w==
-X-Gm-Message-State: AOAM531BsnQPVcujD8sJzfpGg9RCHJzS8bMc7HYosN2mFcUICJet8pK6
-        cfvrt9O5eBY7YNTtovUpxqUrod6DwCBMlpG8kxqi7tvxDsnw4Yftakh/2rJl5HLfyqUpukNp7dw
-        m6JxlzENHMPDj3s1TMKEViw==
-X-Received: by 2002:a05:6402:6d0:: with SMTP id n16mr2376717edy.133.1603806879288;
-        Tue, 27 Oct 2020 06:54:39 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJweW4U75R8C6XbhnmHVWmHcpssVe3Ijevw/dLSMoYLh3pGHHtF7QoIJhS0WzbWQfLDmTafXMg==
-X-Received: by 2002:a05:6402:6d0:: with SMTP id n16mr2376687edy.133.1603806879095;
-        Tue, 27 Oct 2020 06:54:39 -0700 (PDT)
+        bh=ngy9t9+mZDVeXCahPtqT6RsIxpk8fj+GjpvS3FzPgDo=;
+        b=Lw/qWnpnSHLj0uFD1WG/6Y0LMtFSC2exKt3F8p9BkCRBqwXeHkMi78gd54KRHLx/7v
+         X3IuU2RYeJHsrZJ9gwUr6wk8qG0ksxzclNkbQdai6FnykR6Hi/Pv2iDFXeGFtBTRRjK+
+         /MMqDeqUE8KJgmsOH1Jo1Fw2RnUt+RXWMs408Iz31iO9OKIvbxGNHDOQITc9buEkuCTb
+         DoDKLARAcy7PKW1kT7bJ89Duhyirx6qNY+RqpmPUaPib/NFKVryacgcPhLRqVtYGApcL
+         yiOOpSCm/Qd1D4efpqRWauUE+GjC9geSmhH3KZL7+MboEIVwtieVpgyN62CHsuCDzkz7
+         4UbA==
+X-Gm-Message-State: AOAM532YoTbwJ1nW0yM1vzHVIEtNh2J1GlvL075tJkA9oz8FMh/Kvz9p
+        FHeN8U52svIUfN/3/Tw0Q7PPfOMQkYE31tkYW+5JmQ3dgQDdNsAf7qfQLe5PzcWtdBC2rytGT3O
+        gkG3epH92+dvpFx/JEPqrJA==
+X-Received: by 2002:aa7:db07:: with SMTP id t7mr2433216eds.161.1603806894610;
+        Tue, 27 Oct 2020 06:54:54 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxOWMHIOJb9ZQeE/rAhdam2sVdYl3IBDyDW1OMzfCBuJWAVzpMjkn8z+c+E6aL/ohN3DVq4Ew==
+X-Received: by 2002:aa7:db07:: with SMTP id t7mr2433197eds.161.1603806894417;
+        Tue, 27 Oct 2020 06:54:54 -0700 (PDT)
 Received: from x1.localdomain (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
-        by smtp.gmail.com with ESMTPSA id c3sm1025907edl.60.2020.10.27.06.54.37
+        by smtp.gmail.com with ESMTPSA id v14sm1082691ejh.6.2020.10.27.06.54.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Oct 2020 06:54:38 -0700 (PDT)
-Subject: Re: [PATCH 1/7] ata: ahci: mvebu: Rename a platform data flag
+        Tue, 27 Oct 2020 06:54:53 -0700 (PDT)
+Subject: Re: [PATCH 2/7] ata: ahci: mvebu: Support A8k compatible
 To:     sven.auhagen@voleatech.de, axboe@kernel.dk, robh+dt@kernel.org,
         tglx@linutronix.de, maz@kernel.org, gregory.clement@bootlin.com
 Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -61,14 +61,14 @@ Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
         thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
 References: <20201007154554.66650-1-sven.auhagen@voleatech.de>
- <20201007154554.66650-2-sven.auhagen@voleatech.de>
+ <20201007154554.66650-3-sven.auhagen@voleatech.de>
 From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <6974d0f5-e600-d495-e132-9d3efbd4fd82@redhat.com>
-Date:   Tue, 27 Oct 2020 14:54:37 +0100
+Message-ID: <fe603fd8-80e4-ac76-ae16-a00c2c9494e0@redhat.com>
+Date:   Tue, 27 Oct 2020 14:54:53 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <20201007154554.66650-2-sven.auhagen@voleatech.de>
+In-Reply-To: <20201007154554.66650-3-sven.auhagen@voleatech.de>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -81,8 +81,10 @@ Hi,
 On 10/7/20 5:45 PM, sven.auhagen@voleatech.de wrote:
 > From: Miquel Raynal <miquel.raynal@bootlin.com>
 > 
-> Before adding more entries in the platform data structure, rename the
-> flags entry to be more precise and name it host_flags.
+> The ahci_platform.c driver was historically the one bound to the A8k
+> AHCI compatible string, but before adding a quirk for this compatible,
+> it is probably cleaner to put all Marvell EBU code in one place: the
+> ahci_mvebu.c driver.
 > 
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
@@ -94,41 +96,47 @@ Regards,
 
 Hans
 
-
 > ---
->  drivers/ata/ahci_mvebu.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  drivers/ata/ahci_mvebu.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
 > diff --git a/drivers/ata/ahci_mvebu.c b/drivers/ata/ahci_mvebu.c
-> index d4bba3ace45d..43bb2db59698 100644
+> index 43bb2db59698..1cdc126882eb 100644
 > --- a/drivers/ata/ahci_mvebu.c
 > +++ b/drivers/ata/ahci_mvebu.c
-> @@ -30,7 +30,7 @@
+> @@ -96,6 +96,11 @@ static int ahci_mvebu_armada_3700_config(struct ahci_host_priv *hpriv)
+>  	return 0;
+>  }
 >  
->  struct ahci_mvebu_plat_data {
->  	int (*plat_config)(struct ahci_host_priv *hpriv);
-> -	unsigned int flags;
-> +	unsigned int host_flags;
+> +static int ahci_mvebu_armada_8k_config(struct ahci_host_priv *hpriv)
+> +{
+> +	return 0;
+> +}
+> +
+>  /**
+>   * ahci_mvebu_stop_engine
+>   *
+> @@ -230,6 +235,10 @@ static const struct ahci_mvebu_plat_data ahci_mvebu_armada_3700_plat_data = {
+>  	.host_flags = AHCI_HFLAG_SUSPEND_PHYS,
 >  };
 >  
->  static void ahci_mvebu_mbus_config(struct ahci_host_priv *hpriv,
-> @@ -196,7 +196,7 @@ static int ahci_mvebu_probe(struct platform_device *pdev)
->  	if (IS_ERR(hpriv))
->  		return PTR_ERR(hpriv);
->  
-> -	hpriv->flags |= pdata->flags;
-> +	hpriv->flags |= pdata->host_flags;
->  	hpriv->plat_data = (void *)pdata;
->  
->  	rc = ahci_platform_enable_resources(hpriv);
-> @@ -227,7 +227,7 @@ static const struct ahci_mvebu_plat_data ahci_mvebu_armada_380_plat_data = {
->  
->  static const struct ahci_mvebu_plat_data ahci_mvebu_armada_3700_plat_data = {
->  	.plat_config = ahci_mvebu_armada_3700_config,
-> -	.flags = AHCI_HFLAG_SUSPEND_PHYS,
-> +	.host_flags = AHCI_HFLAG_SUSPEND_PHYS,
->  };
->  
+> +static const struct ahci_mvebu_plat_data ahci_mvebu_armada_8k_plat_data = {
+> +	.plat_config = ahci_mvebu_armada_8k_config,
+> +};
+> +
 >  static const struct of_device_id ahci_mvebu_of_match[] = {
+>  	{
+>  		.compatible = "marvell,armada-380-ahci",
+> @@ -239,6 +248,10 @@ static const struct of_device_id ahci_mvebu_of_match[] = {
+>  		.compatible = "marvell,armada-3700-ahci",
+>  		.data = &ahci_mvebu_armada_3700_plat_data,
+>  	},
+> +	{
+> +		.compatible = "marvell,armada-8k-ahci",
+> +		.data = &ahci_mvebu_armada_8k_plat_data,
+> +	},
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, ahci_mvebu_of_match);
 > 
 
