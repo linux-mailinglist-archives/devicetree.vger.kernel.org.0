@@ -2,97 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5629B29C526
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AD5E29C613
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:26:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1824268AbgJ0SFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 14:05:39 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:47758 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1757292AbgJ0ORn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 10:17:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1603808261; x=1606400261;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=aIYAvcJhXPUTWDuXYb59oyyCiWFFxBEKDxOFfzOVfr0=;
-        b=SJXcYRvQWVk7CrZQUWhNHF7UYHq4LvJ+jK7SbsWLoHEG9eSh2uatnIqJPS3vXRNS
-        oBCSLWEvN88tpsQ4esW2sO3qiwGI+Lf2sfMcVm5o0guUnZrXLI/ycaoNSc+1/9MC
-        NXlQ4to1qUgl7fu9EiJx7fNQyjsHiNjNR1Fln4x8NY8=;
-X-AuditID: c39127d2-253ff70000001c25-64-5f982c054d16
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 51.D2.07205.50C289F5; Tue, 27 Oct 2020 15:17:41 +0100 (CET)
-Received: from [172.16.23.108] ([172.16.23.108])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2020102715174135-677588 ;
-          Tue, 27 Oct 2020 15:17:41 +0100 
-Subject: Re: [PATCH 1/6] ARM: dts: imx6ul: segin: Fix stmpe touchscreen
- subnode name
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        id S1825633AbgJ0SMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 14:12:42 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38070 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1825624AbgJ0SMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 14:12:08 -0400
+Received: by mail-wm1-f68.google.com with SMTP id l8so740719wmg.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 11:12:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=er1O3yHYE2dfZAtg9MYR2G3dWLGNVrruH1edHcefbnw=;
+        b=bsloMzFYU+sjn0EHCNX05u0v3HMhR+DRCYOINuw9yP83GdKxOWN/pwJB6ENsBqk+BP
+         XcKN7YCcvKAcNJ/Eym826aUQFudPqSpHk/rSkprBQ/WThjLkTBak4eUvLD55f3xB7DmG
+         yQRmXNFymQbfm+s2BJaWBQAsv20oLjMmdbvRj/yMpZLz6icRS39vvtotJZV1jU6fFm3c
+         wbsV+vgtPg903HKuTKoA0HiLK9Je16Irz5+2MdRP+bGmGVHuz7gWvcQFkyH7OXyA4yLC
+         HNsipqvMDqVKgfW4vQ6XBnl/8k8xvpwDK9ikVyglSIWlGg6M2NZTj+opD30VLYOzXA/6
+         mjSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=er1O3yHYE2dfZAtg9MYR2G3dWLGNVrruH1edHcefbnw=;
+        b=dDuTRmed3EZIgBG1ReUBsZdbrwHWxtOc7wA2jEtEXM02e/AKFLDvlVpSQRVHTyhXPu
+         Jpm+TkTzzmCLBf73GktoYI+iQC0W2oh2BnY3AAlD1z7kchJCtDhmTHWuYUNuQVXHl7rm
+         VEUdc5oA6lOh59Ebjc20A8sIyJYibh7/pGFwtV8zPFXALOh9PrfQNtFSSMvOyrqlcqSg
+         Ga8wbMS+T7fpZGOOyKqOSXWwlzZl5zNef6YmnU8RsPVeyQ0ooCPF/0JvSDgBDXUpBxOU
+         FSiyYSvMU1jpZkeBUuVEuEE1bo7DflUlo2r0lk5bBSgcXnMsZhv24rh2a3oMaQN+sMyu
+         JhdQ==
+X-Gm-Message-State: AOAM533FNqOoIA5aRDK5bXJu3Cy9i2ac2PUGfGWd7FIz9522YmKHdScD
+        EuZNUu6bl5wJfgU47bqA8hyGVA==
+X-Google-Smtp-Source: ABdhPJzOJI8JYV3oC0Xp3xAlpwU1KLwVOsla33zNeb7gIVy1xaeHbaIkQWpOBckqDBLzb/eLYApw9Q==
+X-Received: by 2002:a1c:98d2:: with SMTP id a201mr3882929wme.166.1603822326283;
+        Tue, 27 Oct 2020 11:12:06 -0700 (PDT)
+Received: from localhost.localdomain (159.174.185.81.rev.sfr.net. [81.185.174.159])
+        by smtp.gmail.com with ESMTPSA id h206sm2801224wmf.47.2020.10.27.11.12.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 11:12:05 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-References: <20200922092313.151293-1-s.riedmueller@phytec.de>
-From:   =?UTF-8?Q?Stefan_Riedm=c3=bcller?= <s.riedmueller@phytec.de>
-Message-ID: <96387712-d5b6-f040-6286-c928acce576b@phytec.de>
-Date:   Tue, 27 Oct 2020 15:17:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 RESEND 1/3] dt-bindings: mfd: mt6397: Add bindings for MT6392 PMIC
+Date:   Tue, 27 Oct 2020 19:11:54 +0100
+Message-Id: <20201027181157.862927-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20200922092313.151293-1-s.riedmueller@phytec.de>
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 27.10.2020 15:17:41,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 27.10.2020 15:17:41,
-        Serialize complete at 27.10.2020 15:17:41
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrKLMWRmVeSWpSXmKPExsWyRoCBS5dVZ0a8wfE30hbzj5xjtXh41d9i
-        0+NrrBb/9+xgt/i7fROLxYst4g5sHjtn3WX32LSqk81j85J6j/6/Bh6fN8kFsEZx2aSk5mSW
-        pRbp2yVwZTT9ecVY8J+t4sDx/SwNjJdZuxg5OSQETCR+Nf1iB7GFBLYySuzfpdDFyAVkn2GU
-        mDX/BhNIQlggTOL3nGNgtoiAssSpjX3sIEXMAusYJXZ+3soI0W0rsfbKFDYQm03ASWLx+Q4w
-        m1fARuL+nT1ADRwcLAKqElc7Y0FMUYFIiZ07LCEqBCVOznzCAmJzCthJLDs/kRFkvIRAI5PE
-        inlboA4Vkji9+CwziM0sIC+x/e0cKNtMYt7mh1C2uMStJ/OZJjAKzUIydxaSlllIWmYhaVnA
-        yLKKUSg3Mzk7tSgzW68go7IkNVkvJXUTIzAqDk9Uv7SDsW+OxyFGJg7GQ4wSHMxKIrxzZKbG
-        C/GmJFZWpRblxxeV5qQWH2KU5mBREufdwFsSJiSQnliSmp2aWpBaBJNl4uCUamBce13pyZ6T
-        gZGT38nvW7bWVYund5+NwTGZgGn6VzZX6z58k/ZK+1zqar/9549YanVMSDi0QvvflGTDNJnp
-        rbzijcl+mTuDJmgnLuqvuGh06LuYX2LV2a2F580Yvu9Y0nElsG3vb8P3zP0bzjy8OO+hrMt5
-        O2fRR8tSVFKLlyvaPgg/s0Cs6BiTEktxRqKhFnNRcSIAA+5+gngCAAA=
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add the currently supported bindings for the MT6392 PMIC.
 
-just a gentle ping for this series.
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+---
 
-Stefan
+V6:
+	* No changes
+V5:
+	* Rebased, removed regulator documentation because it will be send later
+	on in another patch series
+V4:
+	* No change
+V3:
+	* No change
+V2:
+	* New patch
 
-On 22.09.20 11:23, Stefan Riedmueller wrote:
-> The touchscreen subnode name needs to be stmpe_touchscreen as mentioned
-> in the dt-bindings.
-> 
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
-> ---
->   arch/arm/boot/dts/imx6ul-phytec-segin.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi b/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi
-> index f1412df89173..2a3801e349b6 100644
-> --- a/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi
-> +++ b/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi
-> @@ -139,7 +139,7 @@ stmpe: touchscreen@44 {
->   		pinctrl-0 = <&pinctrl_stmpe>;
->   		status = "disabled";
->   
-> -		touchscreen {
-> +		stmpe_touchscreen {
->   			compatible = "st,stmpe-ts";
->   			st,sample-time = <4>;
->   			st,mod-12b = <1>;
-> 
+ Documentation/devicetree/bindings/mfd/mt6397.txt | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
+index 2661775a3825..f051a951ba72 100644
+--- a/Documentation/devicetree/bindings/mfd/mt6397.txt
++++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
+@@ -21,6 +21,7 @@ Required properties:
+ compatible:
+ 	"mediatek,mt6323" for PMIC MT6323
+ 	"mediatek,mt6358" for PMIC MT6358
++	"mediatek,mt6392" for PMIC MT6392
+ 	"mediatek,mt6397" for PMIC MT6397
+ 
+ Optional subnodes:
+@@ -52,7 +53,10 @@ Optional subnodes:
+ 
+ - keys
+ 	Required properties:
+-		- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
++		- compatible:
++			- "mediatek,mt6323-keys"
++			- "mediatek,mt6392-keys", "mediatek,mt6397-keys"
++			- "mediatek,mt6397-keys"
+ 	see ../input/mtk-pmic-keys.txt
+ 
+ - power-controller
+-- 
+2.28.0
+
