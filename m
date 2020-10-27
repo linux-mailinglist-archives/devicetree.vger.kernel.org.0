@@ -2,137 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C7C29AA4C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 12:08:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA21629AAFB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 12:35:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2899000AbgJ0LIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 07:08:46 -0400
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:46208 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2898999AbgJ0LIq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 07:08:46 -0400
-Received: by mail-ej1-f67.google.com with SMTP id t25so1576607ejd.13;
-        Tue, 27 Oct 2020 04:08:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vkB99++sVe3+tJ+75rrN7FpuFdKJPJ67yYVUAZtO1SM=;
-        b=KTgKTF0uQoBs13jprnqzdBSC20GLW1pe5sPPCTZz3K9ePc10K5AqVBuiRbGqvBCNec
-         jHrv+dusqkeMWGf56Vn2D6Dz52EnJeMoOfcPnerH8k9vb8k+OzWpItIJJKCsBYLjVnC3
-         Y88kf1c0YmrXt/dHqtQDmEHNBnVz6VTUFjr8BGH2YyXVgggZ4dJsNtp5RVkyLX2t+Aqn
-         hFGT3FrE+nt0FedVzTxvB1wzW7lpx0bTqjrRpkSgXo2VA5HpZZkLTfMHMmvsQ5ARFDAO
-         cToFSoPdnqcT70IRQqk/skr+gF60yNksEyIbB2blJKdw0XDGrjWpVXwrkALnKp/zDv7u
-         gL8w==
-X-Gm-Message-State: AOAM531xvOwPa/uSrpzQUvf4/SOtyyIYySr9Aog0B19Bw7v4k2iWb3QU
-        fiy7OwQ81hPzUIQRoVG7z9o=
-X-Google-Smtp-Source: ABdhPJytrKpdjS5v/Ce2FRPg9aihFnc0X6Ds/w6A+BnKzkrLi9eW/adZBK1qCEgBBJ9aE/G7Cactyg==
-X-Received: by 2002:a17:906:3acd:: with SMTP id z13mr1900626ejd.118.1603796923984;
-        Tue, 27 Oct 2020 04:08:43 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
-        by smtp.googlemail.com with ESMTPSA id j22sm737816edp.77.2020.10.27.04.08.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 04:08:42 -0700 (PDT)
-Date:   Tue, 27 Oct 2020 12:08:40 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl_aud2htx: Add binding doc for
- aud2htx module
-Message-ID: <20201027110840.GA23076@kozik-lap>
-References: <1603708855-2663-1-git-send-email-shengjiu.wang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1603708855-2663-1-git-send-email-shengjiu.wang@nxp.com>
+        id S2411843AbgJ0Lfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 07:35:48 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:32272 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2411734AbgJ0Lfr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 07:35:47 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1603798547; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=80VjFtcHJmmKKdKN4NkUpi73cDwAskFrHfK10HG4QSk=; b=mK/1/iMdVdDKcVUJDBwT+K4mEhgW9bO4f1yXAaUYOo+uxi1as5oQi1jVti8TDFZ8Swps7OUA
+ ay+ZDMD6za0/Srop4WeSIcPu8OeOTHrLqGBu/UNU6cX3Mhl3vs1QNauzPa1ohlvOitcOnB55
+ TtFVC0N5k366Cm8fm52Oi01kPlo=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 5f9805da856acb9b0926bcbc (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 27 Oct 2020 11:34:50
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 61C05C433FE; Tue, 27 Oct 2020 11:34:50 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id EC47AC433CB;
+        Tue, 27 Oct 2020 11:34:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org EC47AC433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2] Asoc: qcom: lpass-sc7180: Fix MI2S bitwidth field bit positions
+Date:   Tue, 27 Oct 2020 17:04:34 +0530
+Message-Id: <1603798474-4897-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 26, 2020 at 06:40:54PM +0800, Shengjiu Wang wrote:
-> AUD2HTX (Audio Subsystem TO HDMI TX Subsystem) is a new
-> IP module found on i.MX8MP.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../bindings/sound/fsl,aud2htx.yaml           | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml b/Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml
-> new file mode 100644
-> index 000000000000..18548d0889a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/fsl,aud2htx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Audio Subsystem to HDMI RTX Subsystem Controller
-> +
-> +maintainers:
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^aud2htx@.*"
+From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-aud2htx is not a generic class of a device so it should not be enforced.
+Update SC7180 lpass_variant structure with proper I2S bitwidth
+field bit positions, as bitwidth denotes 0 to 1 bits,
+but previously used only 0 bit.
 
-> +
-> +  compatible:
-> +    const: fsl,imx8mp-aud2htx
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Peripheral clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +
-> +  dmas:
-> +    items:
-> +      - description: DMA controller phandle and request line for TX
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - dmas
-> +  - dma-names
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +    aud2htx: aud2htx@30cb0000 {
-> +             compatible = "fsl,imx8mp-aud2htx";
+Fixes: cba62c8b49be ("ASoC: qcom: Add support for SC7180 lpass variant")
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+Changes Since v1:
+    -- Commit message is changed
 
-Wrong indentation. Most of examples are indented with 4 spaces.
+ sound/soc/qcom/lpass-sc7180.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+index c6292f9e..bc998d5 100644
+--- a/sound/soc/qcom/lpass-sc7180.c
++++ b/sound/soc/qcom/lpass-sc7180.c
+@@ -188,7 +188,7 @@ static struct lpass_variant sc7180_data = {
+ 	.micmode		= REG_FIELD_ID(0x1000, 4, 8, 3, 0x1000),
+ 	.micmono		= REG_FIELD_ID(0x1000, 3, 3, 3, 0x1000),
+ 	.wssrc			= REG_FIELD_ID(0x1000, 2, 2, 3, 0x1000),
+-	.bitwidth		= REG_FIELD_ID(0x1000, 0, 0, 3, 0x1000),
++	.bitwidth		= REG_FIELD_ID(0x1000, 0, 1, 3, 0x1000),
+ 
+ 	.rdma_dyncclk		= REG_FIELD_ID(0xC000, 21, 21, 5, 0x1000),
+ 	.rdma_bursten		= REG_FIELD_ID(0xC000, 20, 20, 5, 0x1000),
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
