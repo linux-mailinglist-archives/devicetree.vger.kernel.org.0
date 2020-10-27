@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1502729CD34
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 02:47:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 498F129CD30
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 02:47:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726208AbgJ1Bin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 21:38:43 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:40441 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1833055AbgJ0Xrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 19:47:37 -0400
-Received: by mail-pl1-f193.google.com with SMTP id j5so1591254plk.7;
-        Tue, 27 Oct 2020 16:47:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/6ryBAjhYQWjKYyZ6Le172OJUQcIiSdBP4BaH3Rlg64=;
-        b=Q5gMs+eOrcdJ0AbdplqdNB3rhSB/lSY5Y1go23d0pWx+kotcrMMZ2eH0eHgM7NQmzQ
-         2z8lGgrFJP1jZ2hPRNzMF2LYKufDydPcmIMcGtlS5rRUb5lQ8batLXTaqeBbKPBYcyuj
-         B9f4eXjn3Yy+MdtRDDgp1EczG9DOIaDVz0+BDjjIF+NG3abqAEM6Y70H+4+TqTMek7RV
-         9NxP+zGtRVhC5Yv/R54iQIQ4KTbzoAko39W2fCG8RzodJyEVMeS8Dcjwzqxch6cOqo8Z
-         RJDVHeUEIVxP7KmDuDr1EgKH3LwYSWX5lqiuQX4O4iejXYWBFj+pgMzUvkOWS3gzUlvP
-         dzag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/6ryBAjhYQWjKYyZ6Le172OJUQcIiSdBP4BaH3Rlg64=;
-        b=GkOAMQeCTwx7e32ECW/lRnlFinH5ZdimUIskp+jMjYCzkX3wGVx5VCTYB4VYunyGdL
-         UhqzYWSaOam5QOEK9WnIjZQFaOlHYmtXmHEb7YkLpiP0Zr2/fWYySBh7CB6U+OtXKrKp
-         fgI+gSZaOlfrm8xpK22dne2E8h3YQSqgTZSkVQHVs/jVHW999iEobCL0FjagCShjgLNt
-         M7db+zPi3wrYaToDMHyejqPUMaBrSBUr6aCYG5ErVNlEJ6S3ZWZduwEO4ub/gpvpRbqW
-         jikIsVBa7lOdP3z7nF0MKOArxuakwycXcqI12Wq1GOt7JUN8T9AqJPtSkuZtobGWsNWt
-         xFYQ==
-X-Gm-Message-State: AOAM532a4pvRC36MEQUDqBoJNu++WJJVvHBWZpE9t6jX2TE37GeOcCZS
-        gjec6pkda2RQMi40zyI5x4g=
-X-Google-Smtp-Source: ABdhPJz/lQbram89lQGpaIKmmR0hCnzx0BFgcEU0n7e10YYJ0CbPFhHKKcYO48buaN6RbQgEtmMO5g==
-X-Received: by 2002:a17:902:bc43:b029:d6:711c:1a77 with SMTP id t3-20020a170902bc43b02900d6711c1a77mr620272plz.43.1603842456452;
-        Tue, 27 Oct 2020 16:47:36 -0700 (PDT)
-Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id b17sm3271543pgb.94.2020.10.27.16.47.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 27 Oct 2020 16:47:36 -0700 (PDT)
-Date:   Tue, 27 Oct 2020 16:37:12 -0700
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     krzk@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] memory: tegra: Complete tegra210_swgroups
-Message-ID: <20201027233711.GB11164@Asurada-Nvidia>
-References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
- <20201008003746.25659-6-nicoleotsuka@gmail.com>
- <20201027130111.GB1822510@ulmo>
+        id S1726195AbgJ1Bik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 21:38:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56208 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1833046AbgJ0Xit (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 19:38:49 -0400
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 248EC22275;
+        Tue, 27 Oct 2020 23:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603841928;
+        bh=DSTkC5KLEySxuOgJIXhx4r8CGCV8SZykJdCrHvPLS3w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=kVq2WnrlZADRQR5lW2fEQA21p3jZ4zfdjjAewDx6TaV11LG1oJ1UBLd6ycgO9v/Y7
+         GmvgcWm1gVVG1cvRVNvA9ytm/DHZZ+gssbXRPpgN/a91D144X8OIzC6BBivcYgW7QY
+         gaAxCZyBMIPPo0IZ6HTclLnL9Pid/dFsSg1o9vF8=
+Received: by mail-ej1-f44.google.com with SMTP id h24so4632641ejg.9;
+        Tue, 27 Oct 2020 16:38:48 -0700 (PDT)
+X-Gm-Message-State: AOAM533UxMwT+NhvoXcPRGLLY4JJz1U+F0I3K3Sb6oJObg1++rIY3BJe
+        +IFYrVFswI95Krh5QQ8bHmhOqHCO210h93xTSw==
+X-Google-Smtp-Source: ABdhPJzQlEglkYa6D7ubjNdMCkkeNzxjD0WQcilxpNfNSAd06/sNj6pyDK/JItntgOHe0L6l5haqvTeZePZHZvUPb9w=
+X-Received: by 2002:a17:906:3b8e:: with SMTP id u14mr4751527ejf.127.1603841926757;
+ Tue, 27 Oct 2020 16:38:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201027130111.GB1822510@ulmo>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20201027160631.608503-1-fparent@baylibre.com>
+In-Reply-To: <20201027160631.608503-1-fparent@baylibre.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 28 Oct 2020 07:38:35 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9eBU06WGKcB61OzXYOgOOQY+45MQba9ELAZAi7rDGj6A@mail.gmail.com>
+Message-ID: <CAAOTY_9eBU06WGKcB61OzXYOgOOQY+45MQba9ELAZAi7rDGj6A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mediatek: mmsys: add mt1867 binding
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 27, 2020 at 02:01:11PM +0100, Thierry Reding wrote:
-> On Wed, Oct 07, 2020 at 05:37:46PM -0700, Nicolin Chen wrote:
-> > According to Tegra X1 TRM, there are missing swgroups in the
-> > tegra210_swgroups list. So this patch adds them to the list.
-> > 
-> > Note that the TEGRA_SWGROUP_GPU (in list) should be actually
-> > TEGRA_SWGROUP_GPUB (in TRM), yet TEGRA_SWGROUP_GPU (in TRM)
-> > is not being used -- only TEGRA_SWGROUP_GPUB (in TRM) is. So
-> > this patch does not add TEGRA_SWGROUP_GPU (in TRM) and keeps
-> > TEGRA_SWGROUP_GPU (in list) as it is.
-> > 
-> > Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
-> > ---
-> >  drivers/memory/tegra/tegra210.c | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/drivers/memory/tegra/tegra210.c b/drivers/memory/tegra/tegra210.c
-> > index b400802c9f14..b3bbc5a05ba1 100644
-> > --- a/drivers/memory/tegra/tegra210.c
-> > +++ b/drivers/memory/tegra/tegra210.c
-> > @@ -1028,6 +1028,8 @@ static const struct tegra_smmu_swgroup tegra210_swgroups[] = {
-> >  	{ .name = "hda",       .swgroup = TEGRA_SWGROUP_HDA,       .reg = 0x254 },
-> >  	{ .name = "isp2",      .swgroup = TEGRA_SWGROUP_ISP2,      .reg = 0x258 },
-> >  	{ .name = "nvenc",     .swgroup = TEGRA_SWGROUP_NVENC,     .reg = 0x264 },
-> > +	{ .name = "nv",        .swgroup = TEGRA_SWGROUP_NV,        .reg = 0x268 },
-> > +	{ .name = "nv2",       .swgroup = TEGRA_SWGROUP_NV2,       .reg = 0x26c },
-> 
-> Oddly enough I can see these in the TRM, but they are not in the
-> internal reference manuals that are supposed to be the canonical
-> reference for the TRM. Perhaps the TRM is out of date?
+Hi, Fabien:
 
-Hmm..I actually have been using the TRM from official site all
-the time. These two aren't being used downstream either; I put
-them in the patch merely because they exist in the TRM. So we
-may drop them if you feel that's better.
+Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8828=
+=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=8812:07=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Add binding documentation for MT8167 SoC.
+>
+
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
+
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt          | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsy=
+s.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+> index d8c9108c3b4a..78c50733985c 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+> @@ -13,6 +13,7 @@ Required Properties:
+>         - "mediatek,mt6779-mmsys", "syscon"
+>         - "mediatek,mt6797-mmsys", "syscon"
+>         - "mediatek,mt7623-mmsys", "mediatek,mt2701-mmsys", "syscon"
+> +       - "mediatek,mt8167-mmsys", "syscon"
+>         - "mediatek,mt8173-mmsys", "syscon"
+>         - "mediatek,mt8183-mmsys", "syscon"
+>  - #clock-cells: Must be 1
+> --
+> 2.28.0
+>
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
