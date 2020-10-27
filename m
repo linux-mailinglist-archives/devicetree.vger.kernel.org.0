@@ -2,129 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 210D029A543
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C5F629A55A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 08:16:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2507341AbgJ0HJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 03:09:46 -0400
-Received: from jax4mhob15.registeredsite.com ([64.69.218.103]:55816 "EHLO
-        jax4mhob15.registeredsite.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2507340AbgJ0HJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 03:09:45 -0400
-X-Greylist: delayed 52614 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Oct 2020 03:09:45 EDT
-Received: from mailpod.hostingplatform.com ([10.30.71.206])
-        by jax4mhob15.registeredsite.com (8.14.4/8.14.4) with ESMTP id 09R79hd4022608
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
-        for <devicetree@vger.kernel.org>; Tue, 27 Oct 2020 03:09:43 -0400
-Received: (qmail 7355 invoked by uid 0); 27 Oct 2020 07:09:43 -0000
-X-TCPREMOTEIP: 83.128.90.119
-X-Authenticated-UID: mike@milosoftware.com
-Received: from unknown (HELO phenom.domain?not?set.invalid) (mike@milosoftware.com@83.128.90.119)
-  by 0 with ESMTPA; 27 Oct 2020 07:09:42 -0000
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-To:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, sre@kernel.org, robh+dt@kernel.org,
-        Mike Looijmans <mike.looijmans@topic.nl>
-Subject: [PATCH v2] dt-bindings: power/supply: Add ltc4162-l-charger
-Date:   Tue, 27 Oct 2020 08:09:38 +0100
-Message-Id: <20201027070938.10157-1-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.17.1
+        id S2409309AbgJ0HQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 03:16:57 -0400
+Received: from mail-pj1-f45.google.com ([209.85.216.45]:50182 "EHLO
+        mail-pj1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2409241AbgJ0HQ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 03:16:57 -0400
+Received: by mail-pj1-f45.google.com with SMTP id p21so314109pju.0;
+        Tue, 27 Oct 2020 00:16:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7yrqtj2m6vzvqinB8kQD2iAzM1ouVrPGjHgo6sSlb6s=;
+        b=SCB+7dKs96wiioRl3bVZR4r2adVcmLrf+9AybuUVG+00nBaKGaTu96J6Rd99vBhXfD
+         Sm9NgdEVO82Xs4AtDvwI/y1hSgKaK2Aj6/AFp+2cG7fBnGdY1frNnSKAPlqLXrRg+1AN
+         mCVqAe37FvnbMtsg1GbmXeNfbUvP7nchti3F2Wtne060uF+5TR6vrBPKNkvEFgfednrU
+         2tbTSVlkKWp3r4NiELLtV+7HCY8QxmAN0+HS6PKAFZYtBYIyYF83FIi9kfBPctcVJin0
+         /QO/dtC+VN2tpAJvh9abN4Fw0iDI4qx4mNEQK86EauzwX8A9g7LbQWuFzBZ65nxe+2dD
+         /ijg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7yrqtj2m6vzvqinB8kQD2iAzM1ouVrPGjHgo6sSlb6s=;
+        b=XQebAXhDJjsJZ+AQ3eDlb45bEIZ2pIXfkbvIHwQCRNt64aWHwq+CVK6WQmW8I6xGbr
+         APAyTF+Ov7CtCHFQ+vSK2dk3W++/BAodbtKNYnYB+HkwaW/wDWcLcSYAIxgb1RMaXpfd
+         wpBg7TmDtki8b0yLct7kxANBVEljTQsOX91jmjqOB8hcy010QYl/9O/qXJLuE647eQeP
+         P7M/lhh/PUyf2yN+uSBOEC6wT6IyvyoZgE7g298v/vYUZaiCXwQWbiC+tc+8sVSWUblB
+         Gpor6C2qHaxQ212R70EVz138kIUAgb/d8cpXlG9NV3fdbo8vQCwXnArIqDIowH/HqJR8
+         4pOw==
+X-Gm-Message-State: AOAM530P+iH5ePrkgB2LAcFeaQfCoKDvN1PXzQNx0/+8Ua9RB617ZGU2
+        HipNb7dQli0a8vJpKEtYJPNfFmKmNm/4gVtK
+X-Google-Smtp-Source: ABdhPJzzQrPr5oMabX/0pS+moIp8eL/57vABKuW8jfm2EkcoltLpwwQq0mI4HX2r7ZOg/9R96FJJhg==
+X-Received: by 2002:a17:902:d706:b029:d5:dde6:f56 with SMTP id w6-20020a170902d706b02900d5dde60f56mr1212684ply.26.1603783016856;
+        Tue, 27 Oct 2020 00:16:56 -0700 (PDT)
+Received: from ruantu-3.localdomain ([103.230.142.242])
+        by smtp.gmail.com with ESMTPSA id u7sm1036634pfn.37.2020.10.27.00.16.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 00:16:56 -0700 (PDT)
+From:   Yu-Tung Chang <mtwget@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yu-Tung Chang <mtwget@gmail.com>
+Subject: [PATCH v4 0/1] ARM: dts: sun8i: add FriendlyArm ZeroPi support
+Date:   Tue, 27 Oct 2020 15:16:47 +0800
+Message-Id: <20201027071648.15988-1-mtwget@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the LTC4162-L Li-Ion battery charger. The driver allows
-reading back telemetry and to set some charging options like the input
-current limit.
+This patch add FriendlyArm ZeroPi support.
 
-This adds the devicetree bindings.
+Wiki:
+http://wiki.friendlyarm.com/wiki/index.php/ZeroPi
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
----
-v2: Use microohms, add lltc,cell-count
+Schematic:
+http://wiki.friendlyarm.com/wiki/images/7/71/ZeroPi_20190731_Schematic.pdf
 
- .../bindings/power/supply/ltc4162-l.yaml      | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+v1:
+- Remove the extra spaces in description text.
 
-diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
-new file mode 100644
-index 000000000000..42622ac54e28
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2020 Topic Embedded Products
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/power/supply/ltc4162-l.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Linear Technology (Analog Devices) LTC4162-L Charger
-+
-+maintainers:
-+  - Mike Looijmans <mike.looijmans@topic.nl>
-+
-+description: |
-+  The LTC ® 4162-L is an advanced monolithic synchronous step-down switching
-+  battery charger and PowerPath (TM) manager that seamlessly manages power
-+  distribution between input sources such as wall adapters, backplanes, solar
-+  panels, etc., and a rechargeable Lithium-Ion/Polymer battery.
-+
-+  Specifications about the charger can be found at:
-+    https://www.analog.com/en/products/ltc4162-s.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lltc,ltc4162-l
-+
-+  reg:
-+    maxItems: 1
-+    description: I2C address of the charger.
-+
-+  lltc,rsnsb-micro-ohms:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Battery sense resistor in microohm.
-+    minimum: 1000
-+
-+  lltc,rsnsi-micro-ohms:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Input current sense resistor in microohm.
-+    minimum: 1000
-+
-+  lltc,cell-count:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Number of battery cells. If not provided, will be obtained from the chip
-+      once the external power is applied. Omit this when the number of cells
-+      is somewhat dynamic. Without it, several measurements will return 0 until
-+      the charger is connected to an external supply.
-+
-+required:
-+  - compatible
-+  - reg
-+  - lltc,rsnsb
-+  - lltc,rsnsi
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      charger: battery-charger@68 {
-+              compatible = "lltc,ltc4162-l";
-+              reg =  <0x68>;
-+              lltc,rsnsb = <10>;
-+              lltc,rsnsi = <16>;
-+      };
-+    };
+v2:
+- Remove the ehci0 and ohci0 device nodes.
+- Remove the usbphy->usb0_id_det-gpios property.
+
+v3:
+- Enable RGMII RX/TX delay on PHY.
+
+v4:
+- Fix build error, remove useless pinctrl property.
+
+Yu-Tung Chang (1):
+  ARM: dts: sun8i: add FriendlyArm ZeroPi support
+
+ .../devicetree/bindings/arm/sunxi.yaml        |  5 ++
+ arch/arm/boot/dts/Makefile                    |  1 +
+ arch/arm/boot/dts/sun8i-h3-zeropi.dts         | 85 +++++++++++++++++++
+ 3 files changed, 91 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-h3-zeropi.dts
+
 -- 
-2.17.1
+2.29.0
 
