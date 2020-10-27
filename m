@@ -2,72 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 787A029C011
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 18:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7B4E29C07A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 18:16:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1816931AbgJ0RKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 13:10:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38802 "EHLO mail.kernel.org"
+        id S1781419AbgJ0RQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 13:16:39 -0400
+Received: from mga09.intel.com ([134.134.136.24]:40076 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1809591AbgJ0RKd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 13:10:33 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.184])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 27C8621D24;
-        Tue, 27 Oct 2020 17:10:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603818633;
-        bh=ZL6dS0ZIL5MIus3mLIuBj007hhplP2qwa/EX69zIdAg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jm9MLqdnprMEmlnAsYdxPbK0HC9S6Q/f6Qqr+Nm4fpfrLhYf4hrP1jRN+PMcIWc3R
-         3bE9/9dcvx7G+4/j80FeAOPSBOWXcYsJ7QQuvHSnveRoZwzAEkNsBnrI+fs9dmS30O
-         FccNM1/yzEdeXcCuxVm5r2JI5i3xqJg4ypdRTUMY=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Subject: [PATCH v2 12/12] arm64: dts: exynos: remove redundant status=okay in Exynos5433 TM2
-Date:   Tue, 27 Oct 2020 18:09:47 +0100
-Message-Id: <20201027170947.132725-13-krzk@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201027170947.132725-1-krzk@kernel.org>
-References: <20201027170947.132725-1-krzk@kernel.org>
+        id S1817247AbgJ0RPD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 13:15:03 -0400
+IronPort-SDR: IhiYhhQ10uS9WstVwYP7/uh855un7g8SddWGjeM86hVesgpZbk3OH2ozbUHhbQcdB8u2xL3rwc
+ 36HDlPrmEbVg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="168253594"
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; 
+   d="scan'208";a="168253594"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2020 10:14:57 -0700
+IronPort-SDR: 0OZa4gjRtP6tQyPd26QTkZcDuXzoDUeLn3w1ZtNV20ycCdYCynV+zmfyBxN9JX3fi1NXN6oGn7
+ a7ZKjvyUrYxg==
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; 
+   d="scan'208";a="535879022"
+Received: from malgor1x-mobl.ger.corp.intel.com ([10.252.4.211])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2020 10:14:55 -0700
+Message-ID: <05c9018e2ded63dce52663c2e7103583b39b461d.camel@linux.intel.com>
+Subject: Re: [PATCH 1/3] dt-bindings: crypto: Add Keem Bay OCS HCU bindings
+From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Mark Gross <mgross@linux.intel.com>,
+        Declan Murphy <declan.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Date:   Tue, 27 Oct 2020 17:14:43 +0000
+In-Reply-To: <20201026131723.GA11033@bogus>
+References: <20201016172759.1260407-1-daniele.alessandrelli@linux.intel.com>
+         <20201016172759.1260407-2-daniele.alessandrelli@linux.intel.com>
+         <20201026131723.GA11033@bogus>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-New nodes are enabled by default, so status=okay is not needed for them.
+Hi Rob,
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Thanks for reviewing the patch.
 
----
+On Mon, 2020-10-26 at 08:17 -0500, Rob Herring wrote:
+> On Fri, Oct 16, 2020 at 06:27:57PM +0100, Daniele Alessandrelli
+> wrote:
+> > From: Declan Murphy <declan.murphy@intel.com>
+> > 
+> > Add device-tree bindings for the Intel Keem Bay Offload Crypto
+> > Subsystem
+> > (OCS) Hashing Control Unit (HCU) crypto driver.
+> > 
+> > Signed-off-by: Declan Murphy <declan.murphy@intel.com>
+> > Signed-off-by: Daniele Alessandrelli <
+> > daniele.alessandrelli@intel.com>
+> > Acked-by: Mark Gross <mgross@linux.intel.com>
+> > ---
+> >  .../crypto/intel,keembay-ocs-hcu.yaml         | 52
+> > +++++++++++++++++++
+> >  1 file changed, 52 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-
+> > hcu.yaml b/Documentation/devicetree/bindings/crypto/intel,keembay-
+> > ocs-hcu.yaml
+> > new file mode 100644
+> > index 000000000000..dd4b82ee872b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-
+> > hcu.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > http://devicetree.org/schemas/crypto/intel,keembay-ocs-hcu.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Intel Keem Bay OCS HCU Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Declan Murphy <declan.murphy@intel.com>
+> > +  - Daniele Alessandrelli <deniele.alessandrelli@intel.com>
+> 
+> typo:                          ^?
 
-Not actually tested on the HW, just checked the output DTB.
----
- arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+How embarrassing :/
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-index 01ab886fd3e9..97a2f0c7c0cf 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-@@ -92,7 +92,6 @@ i2c_max98504: i2c-gpio-0 {
- 		i2c-gpio,delay-us = <2>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		status = "okay";
- 
- 		max98504: amplifier@31 {
- 			compatible = "maxim,max98504";
--- 
-2.25.1
+> 
+> > +
+> > +description: |
+> 
+> Can drop '|' if there's no formatting to preserve.
+
+Thanks, I'll fix that.
+
+> 
+> > +  The Intel Keem Bay Offload and Crypto Subsystem (OCS) Hash
+> > Control Unit (HCU)
+> > +  crypto driver enables use of the hardware accelerated hashing
+> > module embedded
+> > +  in the Intel Movidius SoC code name Keem Bay, via the kernel
+> > crypto API.
+> 
+> Don't put Linux details in bindings. Describe the h/w, not a driver.
+
+I'll fix that.
+
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: intel,keembay-ocs-hcu
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: The OCS HCU base register address
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: OCS HCU interrupt
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: OCS clock
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    hcu@3000b000 {
+> 
+> crypto@...
+
+I'll change it to crypto@3000b000, but I wonder: we are going to
+upstream other Keem Bay crypto drivers (an AES driver and an ECC one,
+in addition to this hash one), so, would it make sense to use something
+like crypto-hash@ (and then in future crypto-aes@ and crypto-ecc@)? Or
+should I use crypto@<reg> (with different reg vals) for all of them?
+
+> 
+> > +      compatible = "intel,keembay-ocs-hcu";
+> > +      reg = <0x3000b000 0x1000>;
+> > +      interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> > +      clocks = <&scmi_clk 94>;
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.26.2
+> > 
 
