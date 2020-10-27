@@ -2,136 +2,474 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93ADC29C5AA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB1AA29C65E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 19:27:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731092AbgJ0OLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 10:11:04 -0400
-Received: from mail-eopbgr680042.outbound.protection.outlook.com ([40.107.68.42]:35173
-        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1755466AbgJ0OKB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 10:10:01 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SAWhAVE77d26XguLdbjXm0FAhqpPF7n+8iR6PbTHyIC935L33oWMz2AzrtzidGYCcDbn1RsUjjXQ1uDnsxcJU/tUatlUq170kUBxSuJ8UJNC0ony2dQKrUTYCpLxzZhvGMtB6Dx8v5XnV4W9q85qE2rPdQgLCxRSrbpp7Ld2tHHIl7Z8AFzsREOAVWHlD088foQNcLedW8O6Uvyo/mIUpXApYblB46hucGv8wVZX8N7pt3a5NaGyV7IgVlpGEL1kyQsax1dFp4kAn+dMwH3FAbjsFgE1tQnEHRXXKxa3tR6Oj/e47T3h+cpgLPVitqkttoYQqYjEST0PwTio9CUxkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oNKtsFqY/kGZDF3fi6aPIZms81VhWbfvQLjUluwc5mA=;
- b=dw3Na2ak7nB7wP5GJBmFBImsJMjcKbrsCwFUOL8rhSaMR/wIu+UW/HP6DRviu8ehFt6hwN1vXSnJ2v6PAFgnfUwqJIXnD2f6njCXULwGnb+fdhrSuOBiSK5MSIZDTnGTNlmXr4Aapg7JZJ2Y9p93alnvSXwNU7jP6WI4YrGZmn3MBzhKKUXlzamQLl4qba7itg0uWa6Ysubw730JHv6d+WJxcgrYHlWolTpfYms0BZ//mlZ7gdf2nClAXukmUNdtc7YR2c6QYUl1wTXIxLkwZciILu4DYgI3a22Slr9a1HggulPAsmdGuVHlnXLR0zVZIMDXkSzT4S3z0xXGe+q0Gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+        id S1826113AbgJ0SQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 14:16:21 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:39552 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1756203AbgJ0OMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 10:12:01 -0400
+Received: by mail-ed1-f65.google.com with SMTP id a6so1592198edx.6;
+        Tue, 27 Oct 2020 07:11:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oNKtsFqY/kGZDF3fi6aPIZms81VhWbfvQLjUluwc5mA=;
- b=eyLXCRlrV6WlpMx79Pt9jzGPRE6akZ7ncu2yEKtwAPgNsdc0ZcTOv1Wgyuae56WP8aMazirsmaLGYbMPqUm0OsfZrpta2OeDXFMTlHChWS54xAHaT3WrV1JZ9y5lD+rz3oGIazcKHvBwDegYt/dmctKRnkyK/wj+7imZsdYygL4=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB2535.namprd12.prod.outlook.com (2603:10b6:4:b5::26) by
- DM6PR12MB4249.namprd12.prod.outlook.com (2603:10b6:5:223::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.18; Tue, 27 Oct 2020 14:09:59 +0000
-Received: from DM5PR12MB2535.namprd12.prod.outlook.com
- ([fe80::2cba:4988:f662:ad60]) by DM5PR12MB2535.namprd12.prod.outlook.com
- ([fe80::2cba:4988:f662:ad60%7]) with mapi id 15.20.3455.029; Tue, 27 Oct 2020
- 14:09:59 +0000
-Subject: Re: [PATCH 1/3] ARM: dts: aspeed: amd-ethanolx: Update KCS nodes to
- use v2 binding
-To:     Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20201027123722.2935-1-aladyshev22@gmail.com>
-From:   Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-Message-ID: <f35152af-34ad-178b-61db-0e57c8d19f3f@amd.com>
-Date:   Tue, 27 Oct 2020 09:09:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20201027123722.2935-1-aladyshev22@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [165.204.77.1]
-X-ClientProxiedBy: DM5PR06CA0038.namprd06.prod.outlook.com
- (2603:10b6:3:5d::24) To DM5PR12MB2535.namprd12.prod.outlook.com
- (2603:10b6:4:b5::26)
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=orRVVCF+rMM6CLEejDnAwA+y2RO0n8KvYKy9sf+Illo=;
+        b=ZFUyAmdcSuaTryuw+AMgJUSZ9ng9P5+QWJF7nDK+zmeM8HEG2WPF1WdLdzff9cKvX9
+         A8CCkdoGOLH7RwzNeFVE2DyHPFOmquwouV6QrCjTGO5eOInfvJULQ6d0RNCFFRxtjuws
+         DsXpSKMctrmqF2PXc9TDDpp2PcwmNpfldGb5yBZ+98PJApX231yTtQB9u8tI8vj5Vs9S
+         gdU0/8MS6wMBIYa7P7aoTU7lbetu760nlsA3bXOPkspD2YVcbEE5tlRQtDK3i3iyRIpV
+         o//lLuB7e4aG2HLVv2Uekuj9BrrJAm2kg/8AFyiOzKgfwi2h29KMZQbhFZZ85296ieXt
+         mIIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=orRVVCF+rMM6CLEejDnAwA+y2RO0n8KvYKy9sf+Illo=;
+        b=kxNISkyWXsLhEGRWeUHjETOj3laiqMWoXOMgN9d+rjK6vyd0Fc3pcy1d+usFONS021
+         Y4G5i2LLnmXGxgz463lHLvtu+9YZU9xZxvR8r7w2UVqclI0wVxPn9yOmrljhDMfD8lmj
+         +3rGpWyyzhG7wWEx/p+LdnkVLJLiXza7IhgXR82S1t8vF5lYq1NoGvHC90BMX4be9hl+
+         w/yMQMw3GSRx8J+eez4tMfvCb6JKGpMOT4WIb4Mlo418jvuJbbs7H8exirs/GVBonCez
+         bLGw/3hhRvXf6fz5t4JHosPdQITVakNg+spyxe4deq2R3YqxyO8p58/gvLgji3lx+UR6
+         2YHQ==
+X-Gm-Message-State: AOAM532HcZyYW/V/HzcvWxC4ePvOsqgo2McJX2JSQXOSy6DmRmmBYF/k
+        HMPPD+kUCCgfF0QpZ04X6r0=
+X-Google-Smtp-Source: ABdhPJygNBt2zIcdsiaIRtak0ehcne4aFcCD22CIMiesT5KQJbgOk/sJyK6XnUNqiVUAfhTFmli2Jw==
+X-Received: by 2002:a50:8426:: with SMTP id 35mr2464381edp.156.1603807915238;
+        Tue, 27 Oct 2020 07:11:55 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id lj18sm1114839ejb.71.2020.10.27.07.11.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Oct 2020 07:11:53 -0700 (PDT)
+Date:   Tue, 27 Oct 2020 15:11:52 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 33/52] memory: tegra20: Support interconnect framework
+Message-ID: <20201027141152.GN1822510@ulmo>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201025221735.3062-34-digetx@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.236.21.55] (165.204.77.1) by DM5PR06CA0038.namprd06.prod.outlook.com (2603:10b6:3:5d::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend Transport; Tue, 27 Oct 2020 14:09:58 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 5c934792-d1c3-4db9-8e2c-08d87a81fd16
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4249:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB42491072629321ED82DCEABF96160@DM6PR12MB4249.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:398;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IqFQy9iucgFTLpqljPwM/7zgjP2M/8KRzLsRa2A/DFD5RZw7f5kbGbkXK3DyLgXpCQIDSDZHpA601uxJCpvHLuyxhMlHjyQkhQxfUX4HR9ZXE7UzWH90vPXVCruve7c1mqNlXYH/cGlqWZLiUWVMlGxKZdWPUquCxKbJEKgtSRarn8K46SiWx/5WBSjoGXiKBehunrH7ZrKxSbhLElUPFpYffmczyptXYIaEfDvBSxxfpRhXGVYKU0U9dHmYKcsvifsbJJTuKt6A5pR6yz14doy/Op8KG6v+VSzpHLW31xL4AsV7SZJq2Fyj3ys3OmEltW3IR8eQuCvrRejWCycCl+CkBMD786GQVFFvz8UAAipq8prRr4NjzKLrmFnwwYmWjTF0dB1lguN88/XpO2oqAR//eBYifbdOAuR/nJ8eZS9hOmeLMg6AKN0cTfuzBo8MSsKELDQrbDEybdWaiW7XcQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR12MB2535.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(366004)(39860400002)(136003)(54906003)(44832011)(86362001)(26005)(478600001)(966005)(186003)(52116002)(16576012)(31686004)(16526019)(53546011)(31696002)(4326008)(316002)(8936002)(6486002)(2616005)(2906002)(956004)(6916009)(8676002)(5660300002)(66476007)(66946007)(66556008)(36756003)(83380400001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: bBtap+7qZCktWg16YBINVAPB3p1+j4mm9NfYKBsEe+OmXeJiMz9eXew2PkcAtldzHMsA4s0vSyJGrn5NVocl//+GFCaZOETxB3ezh5vRG0vs3UUgSgA+3URN1N0wBmUDSUylGpqprg2lqQ7pa9mrbpOmg8T5jemIhT9gC88Twp4gdbEhcScSx4Jk4kwR3vC7y2yG2uZXslnF04O39XNxhMhlxuoLfGFCedoOlT1lQVD69Urv61IkrixfTr2Aw4Mxf5XqIrTx0qn5TOGuHOVov45FQMGm21UJmeCvHblmjh93bo05cntU9r727UHjrkuznLgeWVm50WStXkm4hqO4FqTi3CAli71mfOTH/PrezkkCUWCDYaTiB2ow3qhAHq4cC0MXgjAd0iejOd+d23KiQFnsIXH1TsSjHkEsgKwzzcVYKcUwxV0JSkDVUPVluyFvFVphLN3jpPuG+p3kU/aIsx7sDRwFV6njgVcUED8i7KAWR/4E0sv/cPvXs0O88Mf+Bf7FsKaHXbXX/EzIg2M2YvQ5tNQJGHhjswM4k/0Gr7KSV+hwKF1VifgaQ2EtbaXRn6jDyTLhVMYUVliPW9wL5/vuxQMnHxD10Ba8uf8smAQpW6XliPx9Jpfb7VBT3eeJlpJnqb/kq5krL/PM2/40nA==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c934792-d1c3-4db9-8e2c-08d87a81fd16
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2535.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2020 14:09:58.9798
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Uui0SDVLAPlrAOlJjj06RGmuWL0hJsvUOVXmJXoqzV6UPTwz71PniHAkgvPE/dXFug8yu494ALrx709lxc69Iw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4249
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="GOzekVbrLdOLv44p"
+Content-Disposition: inline
+In-Reply-To: <20201025221735.3062-34-digetx@gmail.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These changes are already merged in https://github.com/openbmc/linux/blob/dev-5.8/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts by Joel.
-Please abandon these changes.
 
-Thanks,
-Supreeth
+--GOzekVbrLdOLv44p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/27/20 7:37 AM, Konstantin Aladyshev wrote:
-> [CAUTION: External Email]
-> 
-> KCS nodes compatible property in the 'aspeed-g5.dtsi' file was
-> changed to use v2 binding in the commit fa4c8ec6feaa
-> ("ARM: dts: aspeed: Change KCS nodes to v2 binding").
-> For the proper initialization of /dev/ipmi-kcs* devices
-> KCS node variables also need to be changed to use v2 binding.
-> 
-> Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+On Mon, Oct 26, 2020 at 01:17:16AM +0300, Dmitry Osipenko wrote:
+> Now Internal and External Memory Controllers are memory interconnection
+> providers. This allows us to use interconnect API for tuning of memory
+> configuration. EMC driver now supports OPPs and DVFS.
+>=20
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> index 60ba86f3e5bc..89ddc3847222 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> @@ -139,17 +139,17 @@
-> 
->  &kcs1 {
->         status = "okay";
-> -       kcs_addr = <0x60>;
-> +       aspeed,lpc-io-reg = <0x60>;
+>  drivers/memory/tegra/Kconfig       |   3 +-
+>  drivers/memory/tegra/mc.h          |  12 ++
+>  drivers/memory/tegra/tegra20-emc.c | 176 +++++++++++++++++++++++++++++
+>  drivers/memory/tegra/tegra20.c     |  34 ++++++
+>  4 files changed, 224 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/memory/tegra/Kconfig b/drivers/memory/tegra/Kconfig
+> index ff426747cd7d..ac3dfe155505 100644
+> --- a/drivers/memory/tegra/Kconfig
+> +++ b/drivers/memory/tegra/Kconfig
+> @@ -11,7 +11,8 @@ config TEGRA_MC
+>  config TEGRA20_EMC
+>  	tristate "NVIDIA Tegra20 External Memory Controller driver"
+>  	default y
+> -	depends on ARCH_TEGRA_2x_SOC
+> +	depends on TEGRA_MC && ARCH_TEGRA_2x_SOC
+> +	select PM_OPP
+>  	help
+>  	  This driver is for the External Memory Controller (EMC) found on
+>  	  Tegra20 chips. The EMC controls the external DRAM on the board.
+> diff --git a/drivers/memory/tegra/mc.h b/drivers/memory/tegra/mc.h
+> index abeb6a2cc36a..531fb4fb7b17 100644
+> --- a/drivers/memory/tegra/mc.h
+> +++ b/drivers/memory/tegra/mc.h
+> @@ -78,6 +78,18 @@
+> =20
+>  #define MC_TIMING_UPDATE				BIT(0)
+> =20
+> +static inline u32 tegra_mc_scale_percents(u64 val, unsigned int percents)
+> +{
+> +	val =3D val * percents;
+> +	do_div(val, 100);
+> +
+> +	/*
+> +	 * High freq + high boosting percent + large polling interval are
+> +	 * resulting in integer overflow when watermarks are calculated.
+> +	 */
+> +	return min_t(u64, val, U32_MAX);
+> +}
+> +
+>  static inline u32 mc_readl(struct tegra_mc *mc, unsigned long offset)
+>  {
+>  	return readl_relaxed(mc->regs + offset);
+> diff --git a/drivers/memory/tegra/tegra20-emc.c b/drivers/memory/tegra/te=
+gra20-emc.c
+> index 34085e26dced..69ccb3fe5b0b 100644
+> --- a/drivers/memory/tegra/tegra20-emc.c
+> +++ b/drivers/memory/tegra/tegra20-emc.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/clk/tegra.h>
+>  #include <linux/debugfs.h>
+>  #include <linux/err.h>
+> +#include <linux/interconnect-provider.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+> @@ -16,11 +17,15 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_opp.h>
+> +#include <linux/slab.h>
+>  #include <linux/sort.h>
+>  #include <linux/types.h>
+> =20
+>  #include <soc/tegra/fuse.h>
+> =20
+> +#include "mc.h"
+> +
+>  #define EMC_INTSTATUS				0x000
+>  #define EMC_INTMASK				0x004
+>  #define EMC_DBG					0x008
+> @@ -144,6 +149,9 @@ struct emc_timing {
+> =20
+>  struct tegra_emc {
+>  	struct device *dev;
+> +	struct tegra_mc *mc;
+> +	struct opp_table *opp_table;
+> +	struct icc_provider provider;
+>  	struct notifier_block clk_nb;
+>  	struct clk *clk;
+>  	void __iomem *regs;
+> @@ -658,6 +666,166 @@ static void tegra_emc_debugfs_init(struct tegra_emc=
+ *emc)
+>  			    emc, &tegra_emc_debug_max_rate_fops);
+>  }
+> =20
+> +static inline struct tegra_emc *
+> +to_tegra_emc_provider(struct icc_provider *provider)
+> +{
+> +	return container_of(provider, struct tegra_emc, provider);
+> +}
+> +
+> +static struct icc_node_data *
+> +emc_of_icc_xlate_extended(struct of_phandle_args *spec, void *data)
+> +{
+> +	struct icc_provider *provider =3D data;
+> +	struct icc_node_data *ndata;
+> +	struct icc_node *node;
+> +
+> +	/* External Memory is the only possible ICC route */
+> +	list_for_each_entry(node, &provider->nodes, node_list) {
+> +		if (node->id !=3D TEGRA_ICC_EMEM)
+> +			continue;
+> +
+> +		ndata =3D kzalloc(sizeof(*ndata), GFP_KERNEL);
+> +		if (!ndata)
+> +			return ERR_PTR(-ENOMEM);
+> +
+> +		/*
+> +		 * SRC and DST nodes should have matching TAG in order to have
+> +		 * it set by default for a requested path.
+> +		 */
+> +		ndata->tag =3D TEGRA_MC_ICC_TAG_ISO;
+> +		ndata->node =3D node;
+> +
+> +		return ndata;
+> +	}
+> +
+> +	return ERR_PTR(-EINVAL);
+> +}
+> +
+> +static int emc_icc_set(struct icc_node *src, struct icc_node *dst)
+> +{
+> +	struct tegra_emc *emc =3D to_tegra_emc_provider(dst->provider);
+> +	unsigned long long peak_bw =3D icc_units_to_bps(dst->peak_bw);
+> +	unsigned long long avg_bw =3D icc_units_to_bps(dst->avg_bw);
+> +	unsigned long long rate =3D max(avg_bw, peak_bw);
+> +	unsigned int dram_data_bus_width_bytes =3D 4;
+
+Perhaps use something shorter for this variable (like dram_bus_width)? Also,
+since it's never modified, perhaps make it const? Or a #define?
+
+> +	long rounded_rate;
+> +	int err;
+> +
+> +	/*
+> +	 * Tegra20 EMC runs on x2 clock rate of SDRAM bus because DDR data
+> +	 * is sampled on both clock edges. This means that EMC clock rate
+> +	 * equals to the peak data rate.
+> +	 */
+> +	do_div(rate, dram_data_bus_width_bytes);
+> +	rate =3D min_t(u64, rate, U32_MAX);
+> +
+> +	rounded_rate =3D emc_round_rate(rate, 0, U32_MAX, emc);
+> +	if (rounded_rate < 0)
+> +		return rounded_rate;
+> +
+> +	err =3D dev_pm_opp_set_rate(emc->dev, rounded_rate);
+> +	if (err)
+> +		return err;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tegra_emc_interconnect_init(struct tegra_emc *emc)
+> +{
+> +	const struct tegra_mc_soc *soc;
+> +	struct icc_node *node;
+> +	int err;
+> +
+> +	emc->mc =3D devm_tegra_get_memory_controller(emc->dev);
+> +	if (IS_ERR(emc->mc))
+> +		return PTR_ERR(emc->mc);
+> +
+> +	soc =3D emc->mc->soc;
+> +
+> +	emc->provider.dev =3D emc->dev;
+> +	emc->provider.set =3D emc_icc_set;
+> +	emc->provider.data =3D &emc->provider;
+> +	emc->provider.aggregate =3D soc->icc_ops->aggregate;
+> +	emc->provider.xlate_extended =3D emc_of_icc_xlate_extended;
+> +
+> +	err =3D icc_provider_add(&emc->provider);
+> +	if (err)
+> +		goto err_msg;
+> +
+> +	/* create External Memory Controller node */
+> +	node =3D icc_node_create(TEGRA_ICC_EMC);
+> +	err =3D PTR_ERR_OR_ZERO(node);
+> +	if (err)
+> +		goto del_provider;
+
+As far as I can tell, icc_node_create() always returns either a valid
+pointer or an ERR_PTR-encoded negative error-code. So I think the more
+idiomatic way to write this would be:
+
+	node =3D icc_node_create(TEGRA_ICC_EMC);
+	if (IS_ERR(node)) {
+		err =3D PTR_ERR(node);
+		goto del_provider;
+	}
+
+> +
+> +	node->name =3D "External Memory Controller";
+> +	icc_node_add(node, &emc->provider);
+> +
+> +	/* link External Memory Controller to External Memory (DRAM) */
+> +	err =3D icc_link_create(node, TEGRA_ICC_EMEM);
+> +	if (err)
+> +		goto remove_nodes;
+> +
+> +	/* create External Memory node */
+> +	node =3D icc_node_create(TEGRA_ICC_EMEM);
+> +	err =3D PTR_ERR_OR_ZERO(node);
+> +	if (err)
+> +		goto remove_nodes;
+
+Same here.
+
+> +
+> +	node->name =3D "External Memory (DRAM)";
+> +	icc_node_add(node, &emc->provider);
+> +
+> +	return 0;
+> +
+> +remove_nodes:
+> +	icc_nodes_remove(&emc->provider);
+> +del_provider:
+> +	icc_provider_del(&emc->provider);
+> +err_msg:
+> +	dev_err(emc->dev, "failed to initialize ICC: %d\n", err);
+
+It might be worth duplicating this error message to the failure
+locations so that the exact failure can be identified.
+
+> +
+> +	return err;
+> +}
+> +
+> +static int tegra_emc_opp_table_init(struct tegra_emc *emc)
+> +{
+> +	const char *rname =3D "core";
+> +	int err;
+> +
+> +	/*
+> +	 * Legacy device-trees don't have OPP table and EMC driver isn't
+> +	 * useful in this case.
+> +	 */
+> +	if (!device_property_present(emc->dev, "operating-points-v2")) {
+> +		dev_err(emc->dev, "OPP table not found\n");
+> +		dev_err(emc->dev, "please update your device tree\n");
+
+This should be a single error message. These messages end up in kmsg
+records and having this split into two dev_err() calls makes them into
+two separate records and that in turn makes it more difficult to
+determine whether they belong together or not.
+
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* voltage scaling is optional */
+> +	if (device_property_present(emc->dev, "core-supply"))
+> +		emc->opp_table =3D dev_pm_opp_set_regulators(emc->dev, &rname, 1);
+> +	else
+> +		emc->opp_table =3D dev_pm_opp_get_opp_table(emc->dev);
+> +
+> +	if (IS_ERR(emc->opp_table))
+> +		return dev_err_probe(emc->dev, PTR_ERR(emc->opp_table),
+> +				     "failed to prepare OPP table\n");
+> +
+> +	err =3D dev_pm_opp_of_add_table(emc->dev);
+> +	if (err) {
+> +		dev_err(emc->dev, "failed to add OPP table: %d\n", err);
+> +		goto put_table;
+> +	}
+> +
+> +	return 0;
+> +
+> +put_table:
+> +	dev_pm_opp_put_opp_table(emc->opp_table);
+> +
+> +	return err;
+> +}
+> +
+>  static int tegra_emc_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *np;
+> @@ -717,8 +885,13 @@ static int tegra_emc_probe(struct platform_device *p=
+dev)
+>  		goto unset_cb;
+>  	}
+> =20
+> +	err =3D tegra_emc_opp_table_init(emc);
+> +	if (err)
+> +		goto unreg_notifier;
+> +
+>  	platform_set_drvdata(pdev, emc);
+>  	tegra_emc_debugfs_init(emc);
+> +	tegra_emc_interconnect_init(emc);
+> =20
+>  	/*
+>  	 * Don't allow the kernel module to be unloaded. Unloading adds some
+> @@ -729,6 +902,8 @@ static int tegra_emc_probe(struct platform_device *pd=
+ev)
+> =20
+>  	return 0;
+> =20
+> +unreg_notifier:
+> +	clk_notifier_unregister(emc->clk, &emc->clk_nb);
+>  unset_cb:
+>  	tegra20_clk_set_emc_round_callback(NULL, NULL);
+> =20
+> @@ -747,6 +922,7 @@ static struct platform_driver tegra_emc_driver =3D {
+>  		.name =3D "tegra20-emc",
+>  		.of_match_table =3D tegra_emc_of_match,
+>  		.suppress_bind_attrs =3D true,
+> +		.sync_state =3D icc_sync_state,
+>  	},
 >  };
-> 
->  &kcs2 {
->         status = "okay";
-> -       kcs_addr = <0x62>;
-> +       aspeed,lpc-io-reg = <0x62>;
+>  module_platform_driver(tegra_emc_driver);
+> diff --git a/drivers/memory/tegra/tegra20.c b/drivers/memory/tegra/tegra2=
+0.c
+> index a8098bff91d9..5127e8e8250f 100644
+> --- a/drivers/memory/tegra/tegra20.c
+> +++ b/drivers/memory/tegra/tegra20.c
+> @@ -280,6 +280,39 @@ static const struct tegra_mc_reset_ops tegra20_mc_re=
+set_ops =3D {
+>  	.reset_status =3D tegra20_mc_reset_status,
 >  };
-> 
->  &kcs4 {
->         status = "okay";
-> -       kcs_addr = <0x97DE>;
-> +       aspeed,lpc-io-reg = <0x97DE>;
->  };
-> 
->  &lpc_snoop {
-> --
-> 2.17.1
-> 
+> =20
+> +static int tegra20_mc_icc_set(struct icc_node *src, struct icc_node *dst)
+> +{
+> +	/*
+> +	 * Technically, it should be possible to tune arbitration knobs here,
+> +	 * but the default values are known to work well on all devices.
+> +	 * Hence nothing to do here so far.
+> +	 */
+> +	return 0;
+> +}
+> +
+> +static int tegra20_mc_icc_aggreate(struct icc_node *node, u32 tag, u32 a=
+vg_bw,
+> +				   u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
+> +{
+> +	/*
+> +	 * ISO clients need to reserve extra bandwidth up-front because
+> +	 * there could high bandwidth pressure during initial fulling-up
+
+"filling of the client's FIFO buffers"
+
+> +	 * of the client's FIFO buffers. Secondly, we need to take into
+> +	 * account impurities of the memory subsystem.
+> +	 */
+> +	if (tag =3D=3D TEGRA_MC_ICC_TAG_ISO)
+> +		peak_bw =3D tegra_mc_scale_percents(peak_bw, 300);
+
+300% sounds a bit excessive. Do we really need that much?
+
+> +
+> +	*agg_avg +=3D avg_bw;
+> +	*agg_peak =3D max(*agg_peak, peak_bw);
+
+I'm not very familiar with ICC, but shouldn't the aggregated peak value
+be the sum of the current aggregated peak and the new peak bandwidth?
+Currently you're selecting the maximum peak bandwidth across all
+clients, so isn't that going to be too small if for whatever reason
+multiple clients need peak bandwidth at the same time?
+
+Thierry
+
+--GOzekVbrLdOLv44p
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+YKqUACgkQ3SOs138+
+s6HRMxAAkFiUAoB+sUnNejlj9cJmOhxaHFBELR+B8z/8a7mlQNwMrnDNnUgSXX0q
+SS9Ji65B+uY/hFQmRcL+D5tW/NL9HHlu7EHTMURjltzx31mU5h2ln5bMZywwIrTm
+pwApnnQzLN1Snr8YkuAjZMM/MOukDc9Mvyvrhno0w+5AE1Ba0QpnumABJUoY4w8N
+qEb9TDyspYiKA4rG/824jDUymMC4nfPGinHkN6zcK/6x9eLDFcvAUI4eWw70pPBe
+xs+qEaZN5tdGxvMKWQzp45hFsogCn8OPx3DujWpmnxI7ADxxdgkocImr51sD3lqV
+z25vvWBeC0AQ8rDOGSnCOJj/oHKTz4lzF5xLCsZY8bVFQcpNppmAfql+zK9IGOHy
+8k/U26EWrg/vA9YtkvRwvMF+kMejSg7HjLREiLKyUIKJcXbgACDUA00C/H3OvtWv
+VASDNK8mxjdACeX9QVSF+/hmzPB480Z0qHfDw4TpQU5S7Y9c9fVIKwqXL1veZTPR
+TZVsQp4fy92957r0rSLMWtLe/8tn/Kl3Xt9h5kkAQKmBaaRdL4q4n/chcpe5Wn62
+2JYpTwdTekI+gyvy56wdhMBgyqbMT9/NuUkbumvZkQUyL0dPrcmO6IHMNQ7p44Qc
+FDNgfmD1gM9e1mwbT7BPCN9p5O+48BkolaEx+ItvZ/b9wW+NzZk=
+=GwaY
+-----END PGP SIGNATURE-----
+
+--GOzekVbrLdOLv44p--
