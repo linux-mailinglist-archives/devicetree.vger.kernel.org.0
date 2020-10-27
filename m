@@ -2,140 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C49029A347
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 04:26:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E247229A355
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 04:30:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729588AbgJ0DZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Oct 2020 23:25:59 -0400
-Received: from mail-eopbgr50056.outbound.protection.outlook.com ([40.107.5.56]:14310
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726186AbgJ0DZ6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Oct 2020 23:25:58 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KxHWvd+x7I2Me7OTcNkeisb/zOmrKvzLdZCdLrKFI3jXY5ZUqZiTWUVkY+Fl463SIqQX+4QRtqt5Qp1S3+QopE0zPNaDdhYToHzsqcns+6oIf4oFT3iitV44un2ohXI/FSFZNh9PehKYMjDt2CLZ0FDP/R8q5qCl3qrCmznsItdfC51UmyPWuOvzkQfO6Zk9Ds9Uj2eXwszUiX3SeFWGMUZCOQqrqJCjHrT9lb5AFjLS8HcZdbFAu3tmf03JU5sbkKhN0GxJmf9exx9gxiUkIDBaHAVX8GxMUMm78+YQsZwd9PXd/8tMdkats8QYFlt/5t/Tx0gH0ZumF10JQcLVjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cIvFKeSxsE7TvpPEkqlNeCJ2wY3uoUl6Mt5bxkP91f8=;
- b=MLR8kmLmTRrLme1xPl0IXFdux//O1b4vzCVv+JPhV8zIfs8b45VYx+Y4rUPY2IHxiuemqvKZF4ZHAzoEHapBEZjyJfpblFlWJhzAMpthIA3VHJj8S+9NL2izjmW3ECjETZVYVHiAbj49wmM5Be5AkOATXrEb7nYQNsf7iXVJGsfDGtpiR9l9eG9ZozCYsI6HTxDnEC/8Srjnn+3ZDmWaCyVnSOKEQYoqbMm8Aj5Zkn6+y72Z0PeHe4vaR40w2RYVSgR9iWClz1AeWP/AnJ8Wv/FilhIdvjwf/L33rk4QyRFxnYz6DZe9b8G/lfyJQGVYQTaKJ+wIic7ZInxxCz3Gvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cIvFKeSxsE7TvpPEkqlNeCJ2wY3uoUl6Mt5bxkP91f8=;
- b=UtacdgHwU/gN7mmctx8r6nv/HiTHRG+R1SiiozgKlsHhaEcfN2Q+chugKey20pk0iXLNRMRgWKf2Brog+j8iStLQT/KBroycivQxztlCK/d7RCXC1FiI6YpR77nWfjYKlY9vTsXedDdlipdpE8IzCZhLiM8EwhaGl+LUSBjapQI=
-Received: from DB6PR0401MB2438.eurprd04.prod.outlook.com (2603:10a6:4:33::14)
- by DB7PR04MB4729.eurprd04.prod.outlook.com (2603:10a6:10:21::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Tue, 27 Oct
- 2020 03:25:53 +0000
-Received: from DB6PR0401MB2438.eurprd04.prod.outlook.com
- ([fe80::c8a:a759:d4ba:181e]) by DB6PR0401MB2438.eurprd04.prod.outlook.com
- ([fe80::c8a:a759:d4ba:181e%7]) with mapi id 15.20.3477.029; Tue, 27 Oct 2020
- 03:25:53 +0000
-From:   "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Marc Zyngier <maz@kernel.org>,
-        "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Leo Li <leoyang.li@nxp.com>, "Z.q. Hou" <zhiqiang.hou@nxp.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "jason@lakedaemon.net" <jason@lakedaemon.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jiafei Pan <jiafei.pan@nxp.com>,
-        Xiaobo Xie <xiaobo.xie@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
- interrupt
-Thread-Topic: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external
- interrupt
-Thread-Index: AQHWrBDg23J7/+yWj0uXRQhWZKYN/w==
-Date:   Tue, 27 Oct 2020 03:25:53 +0000
-Message-ID: <DB6PR0401MB243864E0183E3754D8DF5C368F160@DB6PR0401MB2438.eurprd04.prod.outlook.com>
-References: <20201026080127.40499-1-biwen.li@oss.nxp.com>
- <31d8971374c261003aee9f4807c8ac8c@kernel.org>
- <3448c822-31b1-7f9d-fedf-49912418fc3f@rasmusvillemoes.dk>
-In-Reply-To: <3448c822-31b1-7f9d-fedf-49912418fc3f@rasmusvillemoes.dk>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: rasmusvillemoes.dk; dkim=none (message not signed)
- header.d=none;rasmusvillemoes.dk; dmarc=none action=none
- header.from=oss.nxp.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: bd8d203c-9956-4498-ff8c-08d87a2802eb
-x-ms-traffictypediagnostic: DB7PR04MB4729:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB7PR04MB4729E5647274D0FC0616D56ECE160@DB7PR04MB4729.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LIUBnn64ReZYHQk7IrFYV2WcZZ1RGMngvqndtmrWq5fGDdxj+x1sUOBsdl0SGMIXRO7q19OSvh7csahYYGRj6vY72Lx4RFV3yhG72XYvC3bt0ZdhlTF1d6nW2Er/FB3ukF75x71ytCp7Cf1lYrTzLMLk6pUuWst7exJobwMG0T0q8H/DkplFp8ioTY3nXMIDris4LouT9O0NOVbaIULkEFeztkqklTwef7E/+/Qu9pP+AFmNlZMujuyjmmtNUGhlcxF/zLX6oG9NsSYUz58Yix3IRGp7s5sm4KsjI1rsWTXg5p/g5GMO7E+1etCxQSMhMUJ2X/6gXFmaGqj5toTK5A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0401MB2438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(136003)(39860400002)(366004)(8936002)(8676002)(186003)(71200400001)(66476007)(52536014)(66946007)(7416002)(86362001)(66446008)(66556008)(76116006)(64756008)(4326008)(5660300002)(7696005)(33656002)(6506007)(4001150100001)(478600001)(26005)(55016002)(9686003)(83380400001)(54906003)(316002)(110136005)(2906002)(53546011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 4BRrLiF/xkzP7MQxnyMMzmMj4qAMFx8jKwwOYhgRv1dCxmXfUVVuCe3tT1fOjxM04CFhLu+HkKW5o2ujsyXGwrcbVMNYUJJnavwWHBo67uqp/tH0cqh18Bbh3UTi30TxEj9O+ARNuX0ntKjKduzxthmkx48qVb46lx8Mx8zBcE8bnkmLvFJ0AxtyBqXyhi3s/NydX38GddMeVWrN2q56d+HlDb3jugVWcOvpOqtdSW9zp0m2IOMy1vZjlcMp3bqoPLXhel1Wm5hdNiDFZpn758iqeGIQnNTWbamVn8aPdgthmsxBX58CFV8rXpaRYJJ0FvBme8jAxoXClFXt9zMfhsKXOoNQw7PPVaX8HpgRDDQHfsd6jQhYO9LGUztA9dWAMq3S0NPiA5dnnZd0SkdXj5yFU8JYgCSF68sZi7S+xBTj5wR0/LlT8U3Bk9SMxpH+z3L8cKjeyC2YA0MzfW4I7nuoUfXSsbu+yJjTlIW57wZTo9xVfAShLpNH+Tt0/kpe6njB1zhHCxns/TMV7uBc0WlLRjshV/dl2BR6CB+BAZpDCpbnfRSplCpCPiZxMQvtwM34lB+GbgIFcGIGyV500jKzIa49dHkpzvRZfFDmZuOzv/LeCZEVj1UMQrLh5yGT8Il+yRGyBF5wmZEv3xwHkw==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2441180AbgJ0Daf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Oct 2020 23:30:35 -0400
+Received: from mail-yb1-f196.google.com ([209.85.219.196]:41162 "EHLO
+        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2411152AbgJ0Dae (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Oct 2020 23:30:34 -0400
+Received: by mail-yb1-f196.google.com with SMTP id c129so34654yba.8
+        for <devicetree@vger.kernel.org>; Mon, 26 Oct 2020 20:30:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NgpV19NIPOwsC536pNKEm7qeTuOSm4UvN7w5snlJtXA=;
+        b=KRWsB60LNFRJT1Lrs5d58UfoikPtp5nt/O/InxTKpzH5jpwzF7y9esv+tT2zjN62yR
+         Z+6O2gkFwcROcilrjgMove1ClAR6malt82NyWDod+D8JzkGSsk/yyn9K+hgQj5JtkxQJ
+         5+jDDdZEfedg4n82m4IZgfdudoOYMyzEAhwU7H3VfPH/mLCLDr8uqzt5Y/5ElnZkB9tP
+         OSxe4AugpujEFHkDtOW/wWycFH/o32gnuDon9GsYbsB++apBdI9jT79sklvBilmcG4bJ
+         FYc5fVEXDXVCzA4f7qNif3NvvsvnbLIpk5+J91adQXh2WGO9GKaiXcXWsm1MaYXhZKg8
+         EkYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NgpV19NIPOwsC536pNKEm7qeTuOSm4UvN7w5snlJtXA=;
+        b=dCyw8GKqZhCizAHZb+7eES9++qrYMRFn0Y3xHSX8BOKtmFC9EAz2z/nvKA0g9ZhxRf
+         0cySx85VpSU+DHHGD1qr0GUzS1jB1ne6JfpTNP6zGD6Wl3U45cvoNe0HqpeJAmeh9p/s
+         GaunRaOR+ECJI4HrIb4Y2RL2hcCCCAt5KsxknKygeHzj9Q6vC6WDDAQW4DxI2FJM9x8L
+         sjZpiUpQcyMY9tCQKb1hrYP/dcAavhP+SfXuJ5C7hb8r/Dd6Uh7VwqJZYtThR6JwBRPq
+         Wo0+G7seJjN+FzywJpyaBCntdCPLwFzu8D1HozGK76qFQEACHGvyA4QhBFylRJk/+prV
+         gIRQ==
+X-Gm-Message-State: AOAM530kPxGg72HDzmlhJ5A4WIsgp0KHKHD0J5sHC0EEuQk9tGEKl8Rs
+        jdzRB73DOQRO/mRPLQcGIJ6iq5xGL6xs+Gz7S97LLQ==
+X-Google-Smtp-Source: ABdhPJw73jUszV9tqbPYtoH3T3cC0JPWJb13BMkaU+CnEmRIClEot2S71JQhsrz9YU9G9FRKu9hq9XEcY4UbNyxMotg=
+X-Received: by 2002:a25:7452:: with SMTP id p79mr344716ybc.346.1603769432917;
+ Mon, 26 Oct 2020 20:30:32 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0401MB2438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd8d203c-9956-4498-ff8c-08d87a2802eb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2020 03:25:53.7027
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tAahwTeS0lqMDvzh2V7LgKCqfa8K2Xi45Y5FVHfhXEXuDxM9CkazjZQqJJs7usQvwRC8Cp29s8qsgxdb1qVtLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4729
+References: <CAGETcx8owDP_Bu4oNCyHEsME8XpKygxghm8+yNc2RyMA4wyjCA@mail.gmail.com>
+ <20201001225952.3676755-1-saravanak@google.com> <CAL_JsqKOUkKBKyxPtZ+BFXPiOfm2uPXhgJPxKP=WS-qX6kSB0w@mail.gmail.com>
+ <CAGETcx-tq446JQN0RpKhtyCXB+Y_PUePN_tBZsUmtpO7othm4g@mail.gmail.com>
+ <20201002175423.GE3933@pendragon.ideasonboard.com> <CAGETcx-7nJaU6pDo_KL-nKmCaxv57C5aaXq-pvo4XiN=N0K5Jg@mail.gmail.com>
+ <20201002182712.GF3933@pendragon.ideasonboard.com> <11018e7e-a6a1-2df6-5639-821a7c0cb68b@ti.com>
+ <CAGETcx8DCiEJy-1PiHheyuuw3YBYfFh67MBcOwv4JEviXmsp3Q@mail.gmail.com> <20201003001342.GA1730@pendragon.ideasonboard.com>
+In-Reply-To: <20201003001342.GA1730@pendragon.ideasonboard.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 26 Oct 2020 20:29:56 -0700
+Message-ID: <CAGETcx8Vy2k8igc9QmktFohJSQXvdPTFYu8i_8tgeYvBLk6QfA@mail.gmail.com>
+Subject: Re: [PATCH v1] of: platform: Batch fwnode parsing in the
+ init_machine() path
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: Re: [RESEND 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A exte=
-rnal
-> interrupt
->=20
-> On 26/10/2020 09.44, Marc Zyngier wrote:
-> > On 2020-10-26 08:01, Biwen Li wrote:
-> >> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> >>
-> >> Add an new IRQ chip declaration for LS1043A and LS1088A
-> >> - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A
-> >> - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA
+On Fri, Oct 2, 2020 at 5:14 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Saravana,
+>
+> On Fri, Oct 02, 2020 at 12:56:30PM -0700, Saravana Kannan wrote:
+> > On Fri, Oct 2, 2020 at 11:35 AM 'Grygorii Strashko' via kernel-team wrote:
+> > > On 02/10/2020 21:27, Laurent Pinchart wrote:
+> > > > On Fri, Oct 02, 2020 at 10:58:55AM -0700, Saravana Kannan wrote:
+> > > >> On Fri, Oct 2, 2020 at 10:55 AM Laurent Pinchart wrote:
+> > > >>> On Fri, Oct 02, 2020 at 10:51:51AM -0700, Saravana Kannan wrote:
+> > > >>>> On Fri, Oct 2, 2020 at 7:08 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > > >>>>> On Thu, Oct 1, 2020 at 5:59 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > >>>>>>
+> > > >>>>>> When commit 93d2e4322aa7 ("of: platform: Batch fwnode parsing when
+> > > >>>>>> adding all top level devices") optimized the fwnode parsing when all top
+> > > >>>>>> level devices are added, it missed out optimizing this for platform
+> > > >>>>>> where the top level devices are added through the init_machine() path.
+> > > >>>>>>
+> > > >>>>>> This commit does the optimization for all paths by simply moving the
+> > > >>>>>> fw_devlink_pause/resume() inside of_platform_default_populate().
+> > > >>>>>>
+> > > >>>>>> Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > > >>>>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > >>>>>> ---
+> > > >>>>>>   drivers/of/platform.c | 19 +++++++++++++++----
+> > > >>>>>>   1 file changed, 15 insertions(+), 4 deletions(-)
+> > > >>>>>>
+> > > >>>>>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > > >>>>>> index 071f04da32c8..79972e49b539 100644
+> > > >>>>>> --- a/drivers/of/platform.c
+> > > >>>>>> +++ b/drivers/of/platform.c
+> > > >>>>>> @@ -501,8 +501,21 @@ int of_platform_default_populate(struct device_node *root,
+> > > >>>>>>                                   const struct of_dev_auxdata *lookup,
+> > > >>>>>>                                   struct device *parent)
+> > > >>>>>>   {
+> > > >>>>>> -       return of_platform_populate(root, of_default_bus_match_table, lookup,
+> > > >>>>>> -                                   parent);
+> > > >>>>>> +       int ret;
+> > > >>>>>> +
+> > > >>>>>> +       /*
+> > > >>>>>> +        * fw_devlink_pause/resume() are only safe to be called around top
+> > > >>>>>> +        * level device addition due to locking constraints.
+> > > >>>>>> +        */
+> > > >>>>>> +       if (!root)
+> > > >>>>>> +               fw_devlink_pause();
+> > > >>>>>> +
+> > > >>>>>> +       ret = of_platform_populate(root, of_default_bus_match_table, lookup,
+> > > >>>>>> +                                  parent);
+> > > >>>>>
+> > > >>>>> of_platform_default_populate() vs. of_platform_populate() is just a
+> > > >>>>> different match table. I don't think the behavior should otherwise be
+> > > >>>>> different.
+> > > >>>>>
+> > > >>>>> There's also of_platform_probe() which has slightly different matching
+> > > >>>>> behavior. It should not behave differently either with respect to
+> > > >>>>> devlinks.
+> > > >>>>
+> > > >>>> So I'm trying to do this only when the top level devices are added for
+> > > >>>> the first time. of_platform_default_populate() seems to be the most
+> > > >>>> common path. For other cases, I think we just need to call
+> > > >>>> fw_devlink_pause/resume() wherever the top level devices are added for
+> > > >>>> the first time. As I said in the other email, we can't add
+> > > >>>> fw_devlink_pause/resume() by default to of_platform_populate().
+> > > >>>>
+> > > >>>> Do you have other ideas for achieving "call fw_devlink_pause/resume()
+> > > >>>> only when top level devices are added for the first time"?
+> > > >>>
+> > > >>> I'm not an expert in this domain, but before investigating it, would you
+> > > >>> be able to share a hack patch that implements this (in the most simple
+> > > >>> way) to check if it actually fixes the delays I experience on my system
+> > > >>> ?
+> > > >>
+> > > >> So I take it the patch I sent out didn't work for you? Can you tell me
+> > > >> what machine/DT you are using?
+> > > >
+> > > > I've replied to the patch:
+> > > >
+> > > > Based on v5.9-rc5, before the patch:
+> > > >
+> > > > [    0.652887] cpuidle: using governor menu
+> > > > [   12.349476] No ATAGs?
+> > > >
+> > > > After the patch:
+> > > >
+> > > > [    0.650460] cpuidle: using governor menu
+> > > > [   12.262101] No ATAGs?
+> > > >
+> > > > I'm using an AM57xx EVM, whose DT is not upstream, but it's essentially
+> > > > a am57xx-beagle-x15-revb1.dts (it includes that DTS) with a few
+> > > > additional nodes for GPIO keys, LCD panel, backlight and touchscreen.
+> > > >
+> > >
+> > > hope you are receiving my mails as I've provided you with all required information already [1]
 > >
-> > Three things:
-> > - This commit message doesn't describe the bit_reverse change
->=20
-> Yeah, please elaborate on that, as the RM for 1043 or 1046 doesn't mentio=
-n
-> anything about bit reversal for the scfg registers - they don't seem to h=
-ave the
-> utter nonsense that is SCFG_SCFGREVCR, but perhaps, instead of removing i=
-t,
-> that has just become a hard-coded part of the IP.
-Yeah, you are right, I will update it in v2.
->=20
-> Also, IANAL etc., but
->=20
-> >> +// Copyright 2019-2020 NXP
->=20
-> really? Seems to be a bit of a stretch.
->=20
-> At the very least, cc'ing the original author and only person to ever tou=
-ch that
-> file would have been appreciated.
-Okay, it's my fault, I will update it, thanks.
->=20
-> Rasmus
+> > Laurent/Grygorii,
+> >
+> > Looks like I'm definitely missing emails. Sorry about the confusion.
+> >
+> > I have some other urgent things on my plate right now. Is it okay if I
+> > get to this in a day or two? In the end, we'll find a solution that
+> > addresses most/all of the delay.
+>
+> No issue on my side.
+
+Hi Laurent,
+
+Sorry it took awhile for me to get back to this.
+
+Can you try throwing around fw_devlink_pause/resume() around the
+of_platform_populate() call in arch/arm/mach-omap2/pdata-quirks.c?
+Just trying to verify the cause/fix.
+
+If it fixes the issue, then considering Rob's comments [1], a good
+short term solution might be to have the suggestion above and some way
+to do pause/resume only when the top level devices are added.
+
+> By the way, during initial investigations, I've traced code paths to
+> figure out if there was a particular step that would consume a large
+> amount of time, and found out that of_platform_populate() ends up
+> executing devlink-related code that seems to have an O(n^3) complexity
+> on the number of devices, with a few dozens of milliseconds for each
+> iteration. That's a very bad complexity.
+
+As you said, the complexity of fw_devlink parsing can be O(N^2). There
+are other ways to improve it to make it O(N) but it has a bunch of
+additional complexity and memory increase. When I tried to do it that
+way the first time, I was question whether O(N^2) actually translated
+to measurable difference. Looks like we do now :) I have something in
+mind for how to do it with O(N) complexity, but I expect it to take a
+while to get in. So in the meantime, I'm thinking of using
+fw_devlink_pause/resume() as a short term optimization.
+
+-Saravana
+
+[1] - https://lore.kernel.org/linux-omap/CAL_Jsq+6mxtFei3+1ic4c5XCftJ8nZK6_S5_d15yEXQ02BTNKw@mail.gmail.com/
