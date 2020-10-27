@@ -2,109 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 341D529C13C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 18:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6374E29C0F0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 18:22:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1818783AbgJ0RXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 13:23:31 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:39931 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2900640AbgJ0Oyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 10:54:39 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 5E702580391;
-        Tue, 27 Oct 2020 10:54:37 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 27 Oct 2020 10:54:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=UW+E2zW4VZ3UJMxESpcdsxmlJiw
-        oieqYRzoHTXgnbW0=; b=XgvLsbAxk4Z7pmp8Nxz1jtzRQm//UA5mEDYBA8X/FbL
-        KKjsM2NIkNWCQIywwzKkqDBLL4uMAIoWk1pKM9y17X6JiSRqtJsfSitEj/HV9Quf
-        MAe+CDcMepUznuryAtfiWzi0fDkGJ1XTnp8xM15qydp3FELZFf79voTpYHx3jGKa
-        3hJGEX4sx7cy1XPczlJe8QJXMpHymfrnzlr362tubaoxFkaQFLz+wzRHtr9D6py5
-        oTjfT4dmTI5lJE1zkIMHix5UGm5Lrg9taEa9Hs8n7xAEAIE3nt9sBJJpy19JN/hp
-        YxZOHvO3Td5NHJEXsSBfgdZrtZHgKOT12pmmtSu+crg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=UW+E2z
-        W4VZ3UJMxESpcdsxmlJiwoieqYRzoHTXgnbW0=; b=P2CJnQ8uuy9FH7czKoH61q
-        LLSW5lizedJjUKo0MQj3NUG4aRK7G2jyg4qkhYzYWMVKjQGiGs1BJRr0BHt3Ek8I
-        1tFPS/+I/aEcoR6bvuHm3vA3bCjnS64Wo8nWokF6zPMkUWAX/LCMxuBu/LaLxdzN
-        RVNvp+FcXx18qYf+/M+nWlBNxL47z30KvBnc6E3dzECo5zBLo8frjm+dpQZNTQCb
-        xdiytaAPPBDkR7D3AopbdxRZrgQn8iCExVgz43QZ0mkshLy06ffmmfpVvyVoA9Xt
-        nJ7/xaRvvOGNUZuKlpmo5kBoT2rXcA1W6KRhfMtVcbvT/gSeEyXDnydyPj7xGn8g
-        ==
-X-ME-Sender: <xms:qjSYX8pFfMlV8R1cAmDDHtINi4OWwiVTBfOYDEtjx3-KSD7Gzdz1mQ>
-    <xme:qjSYXypPyzowgHmZi0IIJaIMaICyrNw8B5gyuH3RhCUBohvmQ1btXCyzYAQNbKx_M
-    2032qMHIKcEWGq-7UM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrkeelgdeilecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:qjSYXxPJyA-scb1IKYFP_IJ58uvSuC6cHLlrC6yj6vtrgaA3_2KQlA>
-    <xmx:qjSYXz4bjDnp-ZxtumAIPjnsYuO_dzJ3KzO9rQDBmxXp-uYPtj6tLA>
-    <xmx:qjSYX74RjX5yu3Xb5jgR6iO3skzUOYFx78Ic5vqBDOXDZmu4xCmuKA>
-    <xmx:rTSYX4yPcxa1l_Dz1l_yRAm44oatfrLZ8YmYXWV_rk9iPjpKXLOeCw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 13C12328005D;
-        Tue, 27 Oct 2020 10:54:33 -0400 (EDT)
-Date:   Tue, 27 Oct 2020 15:54:31 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Hoegeun Kwon <hoegeun.kwon@samsung.com>
-Cc:     eric@anholt.net, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        dave.stevenson@raspberrypi.com, sungguk.na@samsung.com
-Subject: Re: [PATCH 1/1] drm/vc4: drv: Add error handding for bind
-Message-ID: <20201027145431.zasv2oiydglz3n63@gilmour.lan>
-References: <20201027041442.30352-1-hoegeun.kwon@samsung.com>
- <CGME20201027041535epcas1p489bbfe80b461f1e5c5deca1a571f1f35@epcas1p4.samsung.com>
- <20201027041442.30352-2-hoegeun.kwon@samsung.com>
+        id S1752842AbgJ0RQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 13:16:36 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55034 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1781419AbgJ0Ozi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 10:55:38 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09REtY8K103316;
+        Tue, 27 Oct 2020 09:55:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603810534;
+        bh=GETjUaNBxIQa48fzWEmCGlAA4gPzYeNK+MzMSCrBzcc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=y/8MoCDm4Ky7HOFZa7NpHpgwdk7+6e/U3IhyG/AwfevNABzLfm+8RGXTws6Ji3eZW
+         5F2T2QRBH5/uB22Mc2q5C9jktJUwl3lYBqkvcJa3MukgwXoJCftkhfpIY9XCJw1uus
+         hb75HRF1bXkcznFJ7rO/yGSSrWWtZq1bAqFfMHDM=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09REtY38024543
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 27 Oct 2020 09:55:34 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 27
+ Oct 2020 09:55:34 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 27 Oct 2020 09:55:34 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09REtWjj119312;
+        Tue, 27 Oct 2020 09:55:32 -0500
+Subject: Re: [PATCH 4/4] arm64: dts: ti: am654-base-board: fix clock node name
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20201027104132.105485-1-tomi.valkeinen@ti.com>
+ <20201027104132.105485-5-tomi.valkeinen@ti.com>
+ <20201027123941.tgkqxx4rk56sl5tf@crafty>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <ffcaa8a3-539d-62ed-2d46-560f2173dd83@ti.com>
+Date:   Tue, 27 Oct 2020 16:55:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wxa2nq6hnmca3hde"
-Content-Disposition: inline
-In-Reply-To: <20201027041442.30352-2-hoegeun.kwon@samsung.com>
+In-Reply-To: <20201027123941.tgkqxx4rk56sl5tf@crafty>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27/10/2020 14:39, Nishanth Menon wrote:
+> On 12:41-20201027, Tomi Valkeinen wrote:
+>> The fixed clock for OV5640 is named 'clock' which is a very generic name
+>> and easily leads to conflicts. I encountered this with a similarly named
+>> fixed-clock node in k3-am654-evm-tc358876.dtso, which then overrode the
+>> OV5640 fixed clock, causing OV5640 not to work when tc358876 overlay had
+>> been loaded.
+>>
+>> Rename the node to 'fixed-clock-ov5640'.
+>>
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+>> index d12dd89f3405..6801dbddeac5 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+>> @@ -55,7 +55,7 @@ sw6 {
+>>  		};
+>>  	};
+>>  
+>> -	clk_ov5640_fixed: clock {
+>> +	clk_ov5640_fixed: fixed-clock-ov5640 {
+>>  		compatible = "fixed-clock";
+>>  		#clock-cells = <0>;
+>>  		clock-frequency = <24000000>;
+>> -- 
+>> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+>> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>>
+> 
+> I think you could post this independently as well.
+> 
+> https://github.com/devicetree-org/devicetree-specification/blob/v0.3/source/devicetree-basics.rst#generic-names-recommendation
+> 
+> There is a strong desire to use standard node names and
+> clock is recommended. even though there are tons of fixed-clock
+> compatible clocks in the kernel today, as of v5.10-rc1:
+> 
+> $ git grep fixed-clock- arch/arm64/boot/dts/
+> $ git grep fixed-clock- arch/arm/boot/dts/
+> 
+> As a node name is not used. Do you want to see how other
+> platforms are trying to resolve similar issues?
 
---wxa2nq6hnmca3hde
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+There doesn't seem to be a standard:
 
-Hi,
+$ git grep -B2 fixed-clock arch/arm/boot/dts/
 
-On Tue, Oct 27, 2020 at 01:14:42PM +0900, Hoegeun Kwon wrote:
-> There is a problem that if vc4_drm bind fails, a memory leak occurs on
-> the drm_property_create side. Add error handding for drm_mode_config.
->=20
-> Signed-off-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+The node names are just about everything.
 
-Applied, thanks!
-Maxime
+ Tomi
 
---wxa2nq6hnmca3hde
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5g0pwAKCRDj7w1vZxhR
-xVOGAP97fk3mnbTRj0i/hLPPsFBfQ4SlfOkkqL3lZO6PXlFQdQEA+sZ/6u7b+J7p
-esNNHHdopvh+MLAwJW47eC/lLIZScAQ=
-=oZCt
------END PGP SIGNATURE-----
-
---wxa2nq6hnmca3hde--
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
