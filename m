@@ -2,321 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EAD129A6E6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 09:48:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C89429A700
+	for <lists+devicetree@lfdr.de>; Tue, 27 Oct 2020 09:53:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2509324AbgJ0IsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 04:48:18 -0400
-Received: from mail-pj1-f67.google.com ([209.85.216.67]:37661 "EHLO
-        mail-pj1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2509321AbgJ0IsR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 04:48:17 -0400
-Received: by mail-pj1-f67.google.com with SMTP id lt2so400663pjb.2;
-        Tue, 27 Oct 2020 01:48:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0Q0JEJhglCVtWUnNAN4lkbbkMeDcQNxkk529TN6uDLs=;
-        b=PetRbD8cz25PvrGChqG3EUc/bivxihJ8ceuFOJaVH4EH+vmwH7aPyr+gGX4H4kNj7p
-         /3x5mFecGKsMx7YyfOG16wOVD2noi93NwXy78w+YdItkaV59xARTn6+CdB/0qUXb+Jjp
-         6O06IH26Plf3jp3k+nwDTGhT1cT2t+cNXGp3bOx7rx4QzLItVnvcjmsmGx4E/LSF102p
-         CAcO4c3nkJkU2AgnMdwVOzLW7shdmi46Lh+aEHyLOaNIuW7z6+9J0lPr2EHd5Y1wUUZt
-         pQfjO8bTXnlsE+c9esDAHytukbakBeDmSPBgEZwjhTThSScLryC0wk8oH2+cnX/L5sG1
-         nBMg==
+        id S2895117AbgJ0Iw7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Oct 2020 04:52:59 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:40599 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2895116AbgJ0Iw7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Oct 2020 04:52:59 -0400
+Received: by mail-ed1-f68.google.com with SMTP id p93so576841edd.7;
+        Tue, 27 Oct 2020 01:52:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0Q0JEJhglCVtWUnNAN4lkbbkMeDcQNxkk529TN6uDLs=;
-        b=kvcf6yUP0HJxfSUf/2PadfT+Ctmdu7Q7cFiqkH4Qy9fNMr67/XmYZhzabQ0SdJga1C
-         YdRP45GAVMSq4ZD9ZiZ38VQ7RxIHxOdzFwrO03tYKQxoFdA/WMpdgqLkbfb7UJGlEMTc
-         e4fP/NEMYg1FfjBXobWphRL6dpffxJvq4xw+5giSSXNTbM44XEswFmOmvOJ1pgZV2+c2
-         xBAKeKFLcT8tIxz2VHM+LhyL1UdCc3U3y1JW7Qr6EbGrcpwzxPSSgzOQ92u8bL8l8dSV
-         gkN3TAgLzBHaE7SLLKCgJBhqzX41T0/t2ljECF5/TL0k+zuayQ363dk/+Zbn8c2vtv3T
-         EV9A==
-X-Gm-Message-State: AOAM531gQ7yc/W2ZVG429DEFM++ODeKhf5Go6sOBWNtEk4TlbyWeCM7R
-        NnM/iysXytgIw7YlcT4Rw6w=
-X-Google-Smtp-Source: ABdhPJyuh8PFTGYQO5h/4A+7PRKkftZFYY8KBRehDheCyt8FJG933zCJdw/ZoGQY0AKI2cDUiWlp1A==
-X-Received: by 2002:a17:902:b7c9:b029:d5:f570:d573 with SMTP id v9-20020a170902b7c9b02900d5f570d573mr1264452plz.15.1603788496267;
-        Tue, 27 Oct 2020 01:48:16 -0700 (PDT)
-Received: from ruantu-3.localdomain ([103.230.142.242])
-        by smtp.gmail.com with ESMTPSA id n7sm1291988pgk.70.2020.10.27.01.48.13
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=miK2E28wkgKpBF1Fb19w02StT2/a3W+EFB25jg9SneM=;
+        b=Hb8Uuy7WFlcCsoIAS0qHGUuWg/TSfyWokYWQWRHBg0No6zSu+t3giURfdXdtiD+8KP
+         VM6BrJBUrAqFpa9AdN9CH4QPSOHNNCtZx/uu2pJ5Q8mcpTAdUmPRRzhtmvJM1GdhPKKK
+         VdAHIaxuF+oxOy5OTuv1E/kpwt6U7bEHKUmxfjnHrhJNgDp1n3EtTHvLX2VsFPwMxcfF
+         Jp84pvpmKwfG8pzUYcY+9Q/BxwARdmYk+4qRZpBn3K5dRPyknujn4aB2JtZRwnQFDKgj
+         0pzppMv1bkGeKNdbpph1FGIROF0Z2p5VWbSFOJK+nDU2RZw7S4mLDCbPyR2NJr8Q19b2
+         20zA==
+X-Gm-Message-State: AOAM530Z7RhqsvzAjmBYEjZLy65is8zY4j8pqvMc4K4weZFfdJ0F0MtY
+        HAotwad2mJQhFP3mvAgaNzY=
+X-Google-Smtp-Source: ABdhPJx3r/Ivqz3bC6fK7Dk3U50yBK7Yqy4j7oDemcQ7xJqnXXJr2+AP4pt/yaUfzlPS/UM2jTnfbg==
+X-Received: by 2002:a05:6402:135a:: with SMTP id y26mr1113530edw.114.1603788776652;
+        Tue, 27 Oct 2020 01:52:56 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.184])
+        by smtp.googlemail.com with ESMTPSA id m25sm503543edp.36.2020.10.27.01.52.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Oct 2020 01:48:15 -0700 (PDT)
-From:   Yu-Tung Chang <mtwget@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yu-Tung Chang <mtwget@gmail.com>
-Subject: [PATCH 1/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
-Date:   Tue, 27 Oct 2020 16:48:03 +0800
-Message-Id: <20201027084803.17368-2-mtwget@gmail.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201027084803.17368-1-mtwget@gmail.com>
-References: <20201027084803.17368-1-mtwget@gmail.com>
+        Tue, 27 Oct 2020 01:52:55 -0700 (PDT)
+Date:   Tue, 27 Oct 2020 09:52:53 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 00/52] Introduce memory interconnect for NVIDIA Tegra
+ SoCs
+Message-ID: <20201027085253.GC4244@kozik-lap>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201026150845.GA87050@kozik-lap>
+ <48a5cfdd-c170-f6d3-001a-2d343ecb2c5e@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <48a5cfdd-c170-f6d3-001a-2d343ecb2c5e@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The NanoPi R1 is a complete open source board developed
-by FriendlyElec for makers, hobbyists, fans and etc.
+On Mon, Oct 26, 2020 at 10:14:10PM +0300, Dmitry Osipenko wrote:
+> 26.10.2020 18:08, Krzysztof Kozlowski пишет:
+> > On Mon, Oct 26, 2020 at 01:16:43AM +0300, Dmitry Osipenko wrote:
+> >> Hello,
+> >>
+> >> This series brings initial support for memory interconnect to Tegra20,
+> >> Tegra30 and Tegra124 SoCs.
+> >>
+> >> For the starter only display controllers and devfreq devices are getting
+> >> interconnect API support, others could be supported later on. The display
+> >> controllers have the biggest demand for interconnect API right now because
+> >> dynamic memory frequency scaling can't be done safely without taking into
+> >> account bandwidth requirement from the displays. In particular this series
+> >> fixes distorted display output on T30 Ouya and T124 TK1 devices.
+> > 
+> > Hi,
+> > 
+> > You introduced in v6 multiple new patches. Could you describe the
+> > dependencies, if any?
+> 
+> Hello,
+> 
+> The v6 dropped some older patches and replaced them with the new
+> patches. Previously I wanted to postpone the more complex changes for
+> later times, like supporting OPP tables and DVFS, but then the review
+> started to take more time than was expected and there was enough time to
+> complete those features.
+> 
+> There are five basic sets of patches:
+> 
+> 	1. DT bindings
+> 	2. DT changes
+> 	3. SoC, clk and memory
+> 	4. devfreq
+> 	5. DRM
+> 
+> Each set could be applied separately.
+> 
+> Memory patches have a build dependency on the SoC and clk patches.
+> 
+> The "tegra-mc: Add interconnect framework" and "Add and use
+> devm_tegra_get_memory_controller()" are the root build dependencies for
+> all memory/ patches. Other patches are grouped per SoC generation
+> (Tegra20/30/124), patches within a SoC-gen group are interdependent.
+> 
+> I suppose the best variant would be to merge the whole series via
+> tegra-tree in order to preserve logical order of the patches. Although,
+> merging each set of patches separately also should be okay to do.
 
-NanoPi R1 key features
-- Allwinner H3, Quad-core Cortex-A7@1.2GHz
-- 512MB/1GB DDR3 RAM
-- 8GB eMMC
-- microSD slot
-- 10/100/1000M Ethernet x 1
-- 10/100 Ethernet x 1
-- Wifi 802.11b/g/n
-- Bluetooth 4.0
-- Serial Debug Port
-- 5V 2A DC power-supply
+Thanks for explanation. I already have three patches for Tegra MC (and
+probably two more will be respun) so this might be conflict-prone. The
+easiest in such case is to provide me soc and clk patches on the branch,
+so I could keep all Tegra MC together.
 
-Signed-off-by: Yu-Tung Chang <mtwget@gmail.com>
----
- .../devicetree/bindings/arm/sunxi.yaml        |   5 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts      | 199 ++++++++++++++++++
- 3 files changed, 205 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
-
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index 0f23133672a3..54a1aaee7e22 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -251,6 +251,11 @@ properties:
-           - const: friendlyarm,nanopi-neo-plus2
-           - const: allwinner,sun50i-h5
- 
-+      - description: FriendlyARM NanoPi R1
-+        items:
-+          - const: friendlyarm,nanopi-r1
-+          - const: allwinner,sun8i-h3
-+
-       - description: FriendlyARM ZeroPi
-         items:
-           - const: friendlyarm,zeropi
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4f0adfead547..aabaf67f86ed 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1192,6 +1192,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-h3-nanopi-m1-plus.dtb \
- 	sun8i-h3-nanopi-neo.dtb \
- 	sun8i-h3-nanopi-neo-air.dtb \
-+	sun8i-h3-nanopi-r1.dtb \
- 	sun8i-h3-orangepi-2.dtb \
- 	sun8i-h3-orangepi-lite.dtb \
- 	sun8i-h3-orangepi-one.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
-new file mode 100644
-index 000000000000..d4b90892a4d8
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
-@@ -0,0 +1,199 @@
-+/*
-+ * Copyright (C) 2019 Igor Pecovnik <igor@armbian.com>
-+ * Copyright (C) 2020 Jayantajit Gogoi <jayanta.gogoi525@gmail.com>
-+ * Copyright (C) 2020 Yu-Tung Chang <mtwget@gmail.com>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This file is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License as
-+ *     published by the Free Software Foundation; either version 2 of the
-+ *     License, or (at your option) any later version.
-+ *
-+ *     This file is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+#include "sun8i-h3-nanopi.dtsi"
-+
-+/ {
-+	model = "FriendlyARM NanoPi R1";
-+	compatible = "friendlyarm,nanopi-r1", "allwinner,sun8i-h3";
-+
-+	reg_gmac_3v3: gmac-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "gmac-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <100000>;
-+		enable-active-high;
-+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-+	};
-+
-+	reg_vdd_cpux: gpio-regulator {
-+		compatible = "regulator-gpio";
-+		regulator-name = "vdd-cpux";
-+		regulator-type = "voltage";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1300000>;
-+		regulator-ramp-delay = <50>;
-+		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+		gpios-states = <0x1>;
-+		states = <1100000 0x0
-+			  1300000 0x1>;
-+	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
-+		clocks = <&rtc 1>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	leds {
-+
-+		wan {
-+			label = "nanopi:green:wan";
-+			gpios = <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
-+		};
-+
-+		lan {
-+			label = "nanopi:green:lan";
-+			gpios = <&pio 0 9 GPIO_ACTIVE_HIGH>; /* PA9 */
-+		};
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_vdd_cpux>;
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
-+&emac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emac_rgmii_pins>;
-+	phy-supply = <&reg_gmac_3v3>;
-+	phy-handle = <&ext_rgmii_phy>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+};
-+
-+&external_mdio {
-+	ext_rgmii_phy: ethernet-phy@7 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <7>;
-+	};
-+};
-+
-+&mmc1 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	vqmmc-supply = <&reg_vcc3v3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+
-+	sdio_wifi: sdio_wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupt-parent = <&pio>;
-+		interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 / EINT10 */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&mmc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc2_8bit_pins>;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	vqmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
-+&reg_usb0_vbus {
-+	gpio = <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* PL2 */
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart3_pins>, <&uart3_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		clocks = <&rtc 1>;
-+		clock-names = "lpo";
-+		vbat-supply = <&reg_vcc3v3>;
-+		vddio-supply = <&reg_vcc3v3>;
-+		device-wakeup-gpios = <&pio 0 8 GPIO_ACTIVE_HIGH>; /* PA8 */
-+		host-wakeup-gpios = <&pio 0 7 GPIO_ACTIVE_HIGH>; /* PA7 */
-+		shutdown-gpios = <&pio 6 13 GPIO_ACTIVE_HIGH>; /* PG13 */
-+	};
-+};
-+
-+&usb_otg {
-+	status = "okay";
-+	dr_mode = "peripheral";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
-+	usb0_vbus-supply = <&reg_usb0_vbus>;
-+	status = "okay";
-+};
-+
--- 
-2.29.0
+Best regards,
+Krzysztof
 
