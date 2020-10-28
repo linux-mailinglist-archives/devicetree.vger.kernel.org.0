@@ -2,148 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E1729D645
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3226329D986
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:55:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731031AbgJ1WNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:13:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52744 "EHLO
+        id S2389784AbgJ1Wz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:55:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731022AbgJ1WNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:13:12 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B9AEC0613D3;
-        Wed, 28 Oct 2020 15:13:11 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id t3so696048wmi.3;
-        Wed, 28 Oct 2020 15:13:11 -0700 (PDT)
+        with ESMTP id S1732667AbgJ1Wxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:53:50 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E451C0613CF;
+        Wed, 28 Oct 2020 15:53:49 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id y16so1058605ljk.1;
+        Wed, 28 Oct 2020 15:53:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UQeIb9S6fRyX5SRt2bDKlf1jyr9GKEnfhYagOSnTM3M=;
-        b=DlatPnFtHJrfJ07LWvkl9+nsvhNwx+orArQF7h6O2RJSm7XI44ONw8VlqpEbhEMT0M
-         6Wq+lpKTWAVNnf7Bj6QMm1J/33sTXoUaLeLhmbMqoNRmXrXlGS8iS62Zhr8V0yGDz2lQ
-         w5VsN4sMlVmScHmpj1XKy7YYFiOT3e34th+9xIPx6uCF0PnG8p1xHTmebu8w7m/KJ4CV
-         2O9N57kTqJSw4K8GnZWP9cl42YR+TfjNF9TBsKK/FUdBMcRZr6dm4yKRE+kDUTnTryHI
-         9odrtv/iBcPWIsh3jxWrbNifLAJaS7QnsvFjNkQ1bC2vGLjTbmyiWlQCBlG30xLIe/Ym
-         Ti6w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=rC3edYnrhzYXvFCRGJWXwN8vFaoNf3fqgIxQT06XjcQ=;
+        b=CsflZFC1EVOpFXsLvx03rEdAi0iyhCRvqTZ7CHxBsqWiMSZwrojs6yXI6ipBE30H6k
+         OZWhlJEJ4h+j0Aq1+hsmRQDOLVsbkJh/jxvedR7aG0SeM6rCHa9mNa4nSDe4Od5tbpPT
+         5gagk1hV08PbY2tmSdCOeA1AOe+kWy3VcYOoWslYV8xVJBq2td1xCKbmbJw/7r1z1l7n
+         PjJypUkg+oC8mKi+0mnQSuCnBXWfMVqWO7uv6Dty2LpIA/shjFjy/anAxywKyl3WxdOi
+         3fR4+StH6xMkK6gBAtIGa8rRbJpK8tFoQRODf+YLIB1xHfnfOfuc69l+NB8sGKpxxwyt
+         3IaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UQeIb9S6fRyX5SRt2bDKlf1jyr9GKEnfhYagOSnTM3M=;
-        b=F6pmHbrM6IpkHC2rMjuecC+Iw8R1+s/Eg/y74iNIhgYxM6PADIvrus+ABecjiQxUvo
-         RrtfmhoMCuAJ+dbemEgf3DiSl4wc9+QqZF4vRoP1i+PGtjv5y+OTnS4M/rx6ppnRppje
-         J0Ei+DA0ZGl2/zigQ9PiPuR1JPymQ3pY/KKm+bLtjPYw+FF4B0zRNb2A2coQxU3wqPON
-         1Nj0H/KvqA5trTk4i3qzIa6lS5LfVoNLot3kJ9HTVDJEQW0w+p4lc7VlTQENw9n/1UiH
-         YoDnb8Fe3PAFWqj7P3tO4QAAXNPpuV2g+9/hF2iqzW/7VnqQvXOqqVuohtoyOe1Y0nQQ
-         DpVQ==
-X-Gm-Message-State: AOAM533Y1WwtY+VENDz66MrlvUt5uxQ4QG5piKvtnI6nrap7OCKfRVWA
-        KKlzgTC8OW0eSDtwyt1R2Pqt3HzM63OiR6s/
-X-Google-Smtp-Source: ABdhPJxdhm6P6d9+9M90lpfBiEoEfY8zosAdgCLm46HLBQ5WD9A+r5LCSE+7/tfvSXPlOzLo2ml11g==
-X-Received: by 2002:a1c:740e:: with SMTP id p14mr1044002wmc.34.1603923190036;
-        Wed, 28 Oct 2020 15:13:10 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
-        by smtp.gmail.com with ESMTPSA id x1sm1318928wrl.41.2020.10.28.15.13.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 15:13:09 -0700 (PDT)
-From:   kholk11@gmail.com
-To:     dmitry.torokhov@gmail.com
-Cc:     robh+dt@kernel.org, rydberg@bitmath.org, priv.luk@gmail.com,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kholk11@gmail.com, marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org, krzk@kernel.org,
-        andy.shevchenko@gmail.com, Rob Herring <robh@kernel.org>
-Subject: [PATCH v9 3/3] dt-bindings: touchscreen: Add binding for Novatek NT36xxx series driver
-Date:   Wed, 28 Oct 2020 23:13:02 +0100
-Message-Id: <20201028221302.66583-4-kholk11@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201028221302.66583-1-kholk11@gmail.com>
-References: <20201028221302.66583-1-kholk11@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=rC3edYnrhzYXvFCRGJWXwN8vFaoNf3fqgIxQT06XjcQ=;
+        b=rUzr7ov0JH0QCvBObWbHknIP1XdYF4FZSQO5PrOYMh57/iBtCyQnGtFcU5XUOJ2/6H
+         epFrj7x2QEB5aZE7mzFwlec/6yhjAXhTFWVGXkQYiTNEDXO4Hjn4MDRJshqQ43gcwn+y
+         yW3CrZxW4zcW66jbnEolv1gmoQqTQcrI/EOp/1yww4WZsDVIAFvmUqXQDrUiZIvscvOy
+         t9NHtqNbc6YAsgHt+wPmsjJpxwHafNnc9P0YmU/OSBDih8tOdCVZaGVNFcLRIoK3mErU
+         BzDftsqDzLtslhtAC9Iq5s8QU811FnrsG1HSCPyQ2Uubb722eQqJcQ8dKpSkDsETZdxY
+         Gn9Q==
+X-Gm-Message-State: AOAM531OJIUTmp6qnBkWW/UNiFw7dtwIXWAwqbOxC8SEbmk6su4Gc0mK
+        P4Krxaw0XBvhQ3cKrRpt8Tq7CHX687H/OpMYJWZbTlmdeiydxw==
+X-Google-Smtp-Source: ABdhPJxAsroU0VHqaY55EGB7GG0qb1U75bFxdIuKXL6hovDSKNC0EmGz3z+m282ND9pzHs03g7U2AVxSVlh1yXKUDH4=
+X-Received: by 2002:ac2:57c7:: with SMTP id k7mr2096036lfo.20.1603861074212;
+ Tue, 27 Oct 2020 21:57:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
+ <20201027082900.GA21354@amd> <b0f5b3c8-bebd-eeb6-20b2-15529816720c@gmail.com>
+In-Reply-To: <b0f5b3c8-bebd-eeb6-20b2-15529816720c@gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 28 Oct 2020 12:57:42 +0800
+Message-ID: <CADiBU3_x=9wvPv4_YxWx4H_ecV7Kbt5ur91SDv+unH4z2hzS_Q@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505 flash
+ led controller
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, dmurphy@ti.com, robh+dt@kernel.org,
+        linux-leds@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+Hi,
 
-Add binding for the Novatek NT36xxx series touchscreen driver.
-
-Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/input/touchscreen/nt36xxx.yaml   | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
-new file mode 100644
-index 000000000000..a360a9f5d43b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/nt36xxx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Novatek NT36xxx series touchscreen controller Bindings
-+
-+maintainers:
-+  - AngeloGioacchino Del Regno <kholk11@gmail.com>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    const: novatek,nt36525
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: Power supply regulator for VDD pin
-+
-+  vio-supply:
-+    description: Power supply regulator on VDD-IO pin
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      touchscreen@62 {
-+        compatible = "novatek,nt36525";
-+        reg = <0x62>;
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <45 IRQ_TYPE_EDGE_RISING>;
-+        reset-gpios = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-+      };
-+    };
-+
-+...
--- 
-2.28.0
-
+Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B410=E6=
+=9C=8828=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=8812:40=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+>
+> Hi Pavel, ChiYuan,
+>
+> On 10/27/20 9:29 AM, Pavel Machek wrote:
+> > Hi!
+> >
+> >> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>
+> >> Add support for RT4505 flash led controller. It can support up to 1.5A
+> >> flash current with hardware timeout and low input voltage
+> >> protection.
+> >
+> > Please use upper-case "LED" everywhere.
+> >
+> > This should be 2nd in the series, after DT changes.
+> >
+> >> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> >> ---
+> >>   drivers/leds/Kconfig       |  11 ++
+> >>   drivers/leds/Makefile      |   1 +
+> >>   drivers/leds/leds-rt4505.c | 397 +++++++++++++++++++++++++++++++++++=
+++++++++++
+> >>   3 files changed, 409 insertions(+)
+> >>   create mode 100644 drivers/leds/leds-rt4505.c
+> [...]
+> >> +static int rt4505_torch_brightness_set(struct led_classdev *lcdev, en=
+um led_brightness level)
+> >> +{
+> >
+> > 80 columns, where easy.
+> >
+> >> +    struct rt4505_priv *priv =3D container_of(lcdev, struct rt4505_pr=
+iv, flash.led_cdev);
+> >> +    u32 val =3D 0;
+> >> +    int ret;
+> >> +
+> >> +    mutex_lock(&priv->lock);
+> >> +
+> >> +    if (level !=3D LED_OFF) {
+> >> +            ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ILED,=
+ RT4505_ITORCH_MASK,
+> >> +                                     (level - 1) << RT4505_ITORCH_SHI=
+FT);
+> >> +            if (ret)
+> >> +                    goto unlock;
+> >> +
+> >> +            val =3D RT4505_TORCH_SET;
+> >> +    }
+> >> +
+> >> +    ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ENABLE, RT450=
+5_ENABLE_MASK, val);
+> >> +
+> >> +unlock:
+> >> +    mutex_unlock(&priv->lock);
+> >> +    return ret;
+> >> +}
+> >
+> > Why is the locking needed? What will the /sys/class/leds interface
+> > look like on system with your flash?
+>
+> The locking is needed since this can be called via led_set_brightness()
+> from any place in the kernel, and especially from triggers.
+From this case, It means only led classdev
+brihtness_get/brightness_set need to be protected.
+I search led_flash_classdev, it only can be controlled via sysfs or V4l2.
+Like as described in last mail, flash related operation is protected
+by led access_lock and v4l2 framework.
+I'll keep the locking only in led classdev brightness_get/brightness_set AP=
+I.
+If I misunderstand something, please help to point out.
+Thx.
+>
+> --
+> Best regards,
+> Jacek Anaszewski
