@@ -2,206 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E797129D420
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE34129D29E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:33:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727821AbgJ1Vt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:49:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48576 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727805AbgJ1Vt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:49:27 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEFB0C0613D1;
-        Wed, 28 Oct 2020 14:49:26 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1603870987;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=YNE4DtInEVz+eTC8gtzzhL3BBIJHErgeCIjhWBm8RNo=;
-        b=plwVGi/OtGLFtAH2pvCHVOe1WYYWb2b2EKtR7T39tque+xvDsV/IdvgGBdO5t3cfEv88i4
-        NAX+76gJMJuE0ghahwQT/p/UgIBRnYw49ftF5haolqrxyrbDSFfBPfaG9L0hOlTv6BS/zA
-        MN0OIue5cWNPNpmpkJf25d4n6fbOS94mRAPSehuYWKgmqzCx4VeYNPhAt1tiTFFVlfaZ4L
-        bWgeWFoWuJIPmD2UrcYNyVREPkZIvHAFu5TiKBiyrR4lD3kY3COn1Si/XD41vkz2+YuYWn
-        2j13A+qw5kZJPr+qxN64x8DXx3m4R7MxsFzefaZ1T8kIeGeGfWAHN3gSR1gttw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1603870987;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=YNE4DtInEVz+eTC8gtzzhL3BBIJHErgeCIjhWBm8RNo=;
-        b=+rBSpyAPOjIVLPuVwH9zv93LeNSwIcgWBL++wYe4FY3ZHBiIDTD8TBH/U14XvoeW0Na5tA
-        CKNjY8uuYRDxqlCQ==
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        ilias.apalodimas@linaro.org, Kurt Kanzenbach <kurt@linutronix.de>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH net-next v7 8/8] dt-bindings: net: dsa: Add documentation for Hellcreek switches
-Date:   Wed, 28 Oct 2020 08:42:21 +0100
-Message-Id: <20201028074221.29326-9-kurt@linutronix.de>
-In-Reply-To: <20201028074221.29326-1-kurt@linutronix.de>
-References: <20201028074221.29326-1-kurt@linutronix.de>
+        id S1726207AbgJ1Vdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:33:41 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:29487 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726176AbgJ1Vdk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 17:33:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=1582; q=dns/txt; s=axis-central1;
+  t=1603920821; x=1635456821;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wShs6Il8676fEisJ9OqkRk7Glv/K0kWtHAFo/leZB64=;
+  b=XueiRrt/TAHzdubbGmnVUpFvbr7WJRhWdQUAfkDeXQv2mFheCSUAtmhB
+   WPtKT9/R3VHqoyNLd7bYb6oGMVqRFk1AfQoAyK80LdGVIxNGkWpsP4Hv+
+   pz35u3QkxKWCdIPgylYwKzXunm2DI702z76LGKlnkN2Rrh2iu6onywlUX
+   eiEXSL00y8j2gSfMKScnxC0M77j9WbUXjyhPJwn4U456Ozx9zB8bXCBD1
+   evTL/IkKz2gfm1F4Yh+u7kjiMcTs7Y7hZvGnFyGHusWWddnz2hTyHtNRC
+   zzRUUg4lINfteKhB7EIfJdEqKhxafHvr9JAG1yEtnVR6RLQUs6FQbSg+n
+   A==;
+IronPort-SDR: U8zltDoScmoPmC4fPkt4No97bd/rwXnqaOG5X7a0JcHti08Il8LC8DtC222YcI/kIB6HgvWfwt
+ J/+H8AGXxQE/W2fpGK68aV/w+DL+bhkqgv8ZEqqoOf4EuyFJp7vUDOaI7ntfwxhFqFf5opGXoz
+ 7AM11J2KHztE6qRm628hbygd7ayww1h2buIKls+eNCank0Tl1VE92QLqmH0a4JS/oC5LabwAlC
+ slCRd1L83rroA2diWK8sYxBEz1gB2QvUU67wzHmoeKXcM9DyYQLhBPQy1LrCU5xy+74tC8qHFo
+ pCs=
+X-IronPort-AV: E=Sophos;i="5.77,425,1596492000"; 
+   d="scan'208";a="13984860"
+Date:   Wed, 28 Oct 2020 09:57:46 +0100
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+CC:     Bamvor Jian Zhang <bamv2005@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        kernel <kernel@axis.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] gpio: mockup: Allow probing from device tree
+Message-ID: <20201028085746.bmyb4y6ypburdy5s@axis.com>
+References: <20201027135325.22235-1-vincent.whitchurch@axis.com>
+ <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic documentation and example.
+On Tue, Oct 27, 2020 at 07:12:13PM +0100, Bartosz Golaszewski wrote:
+> On Tue, Oct 27, 2020 at 2:54 PM Vincent Whitchurch
+> <vincent.whitchurch@axis.com> wrote:
+> > diff --git a/drivers/gpio/gpio-mockup.c b/drivers/gpio/gpio-mockup.c
+> > index 67ed4f238d43..c93892a6936a 100644
+> > --- a/drivers/gpio/gpio-mockup.c
+> > +++ b/drivers/gpio/gpio-mockup.c
+> > @@ -13,6 +13,7 @@
+> >  #include <linux/gpio/driver.h>
+> >  #include <linux/interrupt.h>
+> >  #include <linux/irq.h>
+> > +#include <linux/of.h>
+> 
+> Please keep the includes ordered alphabetically.
 
-Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
----
- .../net/dsa/hirschmann,hellcreek.yaml         | 127 ++++++++++++++++++
- 1 file changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
+Thanks, fixed in v3.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-new file mode 100644
-index 000000000000..3ae922aefd53
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-@@ -0,0 +1,127 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/hirschmann,hellcreek.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hirschmann Hellcreek TSN Switch Device Tree Bindings
-+
-+allOf:
-+  - $ref: dsa.yaml#
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+  - Vivien Didelot <vivien.didelot@gmail.com>
-+  - Kurt Kanzenbach <kurt@linutronix.de>
-+
-+description:
-+  The Hellcreek TSN Switch IP is a 802.1Q Ethernet compliant switch. It supports
-+  the Precision Time Protocol, Hardware Timestamping as well the Time Aware
-+  Shaper.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: hirschmann,hellcreek-de1soc-r1
-+
-+  reg:
-+    description:
-+      The physical base address and size of TSN and PTP memory base
-+    minItems: 2
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: tsn
-+      - const: ptp
-+
-+  leds:
-+    type: object
-+    properties:
-+      '#address-cells':
-+        const: 1
-+      '#size-cells':
-+        const: 0
-+
-+    patternProperties:
-+      "^led@[01]$":
-+          type: object
-+          description: Hellcreek leds
-+          $ref: ../../leds/common.yaml#
-+
-+          properties:
-+            reg:
-+              items:
-+                - enum: [0, 1]
-+              description: Led number
-+
-+            label: true
-+
-+            default-state: true
-+
-+          required:
-+            - reg
-+
-+          additionalProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - ethernet-ports
-+  - leds
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+        switch0: switch@ff240000 {
-+            compatible = "hirschmann,hellcreek-de1soc-r1";
-+            reg = <0xff240000 0x1000>,
-+                  <0xff250000 0x1000>;
-+            reg-names = "tsn", "ptp";
-+            dsa,member = <0 0>;
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    label = "cpu";
-+                    ethernet = <&gmac0>;
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+                    label = "lan0";
-+                    phy-handle = <&phy1>;
-+                };
-+
-+                port@3 {
-+                    reg = <3>;
-+                    label = "lan1";
-+                    phy-handle = <&phy2>;
-+                };
-+            };
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    label = "sync_good";
-+                    default-state = "on";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    label = "is_gm";
-+                    default-state = "off";
-+                };
-+            };
-+        };
--- 
-2.20.1
+> >  #include <linux/irq_sim.h>
+> >  #include <linux/irqdomain.h>
+> >  #include <linux/module.h>
+> > @@ -460,9 +461,18 @@ static int gpio_mockup_probe(struct platform_device *pdev)
+> >         return 0;
+> >  }
+> >
+> > +#ifdef CONFIG_OF
+> > +static const struct of_device_id gpio_mockup_of_match[] = {
+> > +       { .compatible = "gpio-mockup", },
+> > +       {},
+> > +};
+> > +MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
+> > +#endif
+> 
+> You don't need this ifdef - of_match_ptr() will evaluate to NULL if
+> CONFIG_OF is disabled and the compiler will optimize this struct out.
 
+The compiler can't optimise out the struct in the case of a module build
+since there is a reference from the MODULE_DEVICE_TABLE:
+
+ $ grep CONFIG_OF .config
+ # CONFIG_OF is not set
+ $ nm drivers/gpio/gpio-mockup.ko  | grep of_
+ 00000000 r gpio_mockup_of_match
+ 00000000 R __mod_of__gpio_mockup_of_match_device_table
+
+But these few wasted bytes don't matter so I removed the CONFIG_OF
+anyway as you suggested.
