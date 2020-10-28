@@ -2,196 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8E529DA3D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE8029DA5D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:21:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387471AbgJ1XRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:17:22 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46883 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728511AbgJ1XRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:17:21 -0400
-Received: by mail-wr1-f67.google.com with SMTP id n6so775616wrm.13;
-        Wed, 28 Oct 2020 16:17:19 -0700 (PDT)
+        id S1730170AbgJ1XVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:21:02 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:46919 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728764AbgJ1XU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:20:59 -0400
+Received: by mail-lf1-f67.google.com with SMTP id v6so899415lfa.13;
+        Wed, 28 Oct 2020 16:20:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0DnG4LJjdv6mAxFeMJR8DGf+NctXJFLBf9GwLy+AxJQ=;
-        b=o8dt85FiopWcGhXhpt25kIrlJBkT7xuHrqLVBo2fDOCuGnm7LJbaKxbp04x0/TQKC4
-         8JWvvjn3IUu4FSy/iWT85nQz4dMXhSOPL8187t64GzS9u0HARKocB4kGRZg5iokCfPPn
-         XQCCYmL0jZDdTNlWO23UEQM6ORn2hvyP66lc68+t5S9djlRhfphA2VHhCvDmCXvzoOmC
-         ZYMcNDVw0ZJw5A9B874xObT0KoE1tmf/YRaXl/6jRJrPMxcCaiPKaQzAyg4LJNOi6lNB
-         5ObO+rPjJqsZzC1BfcgXNsszs9e/w1f3lpepPjpmLbt6CjfEOC01A+JvQEredxLI3EHl
-         ctGw==
-X-Gm-Message-State: AOAM533RFgqbzdCd0F79yN4y6YolCk/UKzf8IDS2E9Mn/ntUkax3KcOe
-        43033a5xQlyAeF2N/IWaair532W+wEtnzWWE
-X-Google-Smtp-Source: ABdhPJzfpLMuUvtJrSFwIFWjAp/ycvj6HKNRVF8qRIcs0RQFe6tX1Ju0ziEFEpJPgFr+LJbS453aoA==
-X-Received: by 2002:a17:907:204c:: with SMTP id pg12mr6158094ejb.464.1603874307610;
-        Wed, 28 Oct 2020 01:38:27 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
-        by smtp.googlemail.com with ESMTPSA id v6sm2525073ejj.112.2020.10.28.01.38.25
+        bh=8i7Bc7KFVLsx0fKOAsAyF3DaujVKz4hLo6VsJaJEHnI=;
+        b=QC3O304ntgYI8wryc6DBpkjC3ETjLpVcaC3iV7v8SzmgXuDdIgfgECZLHSS3Q/4gG2
+         5fWGsGLY182scjRN0vpT9cFvH8ScG7SnFXm4UBS7do0IDhKuLqxk0aoOgClhKb5o7AQ+
+         XqgXBUvSOJrYCkqZDTpsiqKHvuPDKluJvvtKI7b0LsDAWGq1zIZF6tckOP7BTd3OzWkU
+         EOh2pWg4oKg8ieysPj+0PUpoweTt3CyW3jO+7FBwf2eO6d5Ir+ADrytJ0whsS/SE3eRe
+         6NUmHgdPfftODmW1caU1yfHHtCaBN4p+eRJfMJyOfr9ES2fFT30LoFR35bIsKqfAV6Q5
+         Y0ng==
+X-Gm-Message-State: AOAM530SKMd//u710Q/bC7Qt0YOlmlbnLXbLX4sw81tcLJUGaAwgza9d
+        Ip18a29MZsYC5UwwhKlVYvZhF1nB4GEPnw==
+X-Google-Smtp-Source: ABdhPJw+/DJDETZf+qXtendnQg83lCMOsmSDDv7cxqwiBLCl/XtNa8Q3AO4mET1xfaqT/piCf5pOtg==
+X-Received: by 2002:ac2:592c:: with SMTP id v12mr2231006lfi.400.1603878407819;
+        Wed, 28 Oct 2020 02:46:47 -0700 (PDT)
+Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id q27sm470092lfd.261.2020.10.28.02.46.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 01:38:26 -0700 (PDT)
-Date:   Wed, 28 Oct 2020 09:38:24 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: media: imx258: add bindings for
- IMX258 sensor
-Message-ID: <20201028083824.GA32155@kozik-lap>
-References: <20201019170247.92002-1-krzk@kernel.org>
- <20201020103833.GT13341@paasikivi.fi.intel.com>
- <CAJKOXPdKHCQikYDLKDS2Y3NVyCjMYYH1pcxgaMoYgOK19vQCrQ@mail.gmail.com>
- <20201020120058.GU13341@paasikivi.fi.intel.com>
- <20201020122621.GA126891@kozik-lap>
- <20201020124654.GX13341@paasikivi.fi.intel.com>
- <20201020125852.GA128323@kozik-lap>
+        Wed, 28 Oct 2020 02:46:47 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 11:46:37 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     mazziesaccount@gmail.com, matti.vaittinen@fi.rohmeurope.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
+        linux-watchdog@vger.kernel.org
+Subject: [PATCH v4 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
+Message-ID: <c7a838830b7d5ea1c281e419cf0eff0cc50363e0.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201020125852.GA128323@kozik-lap>
+In-Reply-To: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 02:58:52PM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Oct 20, 2020 at 03:46:54PM +0300, Sakari Ailus wrote:
-> > On Tue, Oct 20, 2020 at 02:26:21PM +0200, Krzysztof Kozlowski wrote:
-> > > On Tue, Oct 20, 2020 at 03:00:58PM +0300, Sakari Ailus wrote:
-> > > > Hi Krzysztof,
-> > > > 
-> > > > On Tue, Oct 20, 2020 at 12:54:09PM +0200, Krzysztof Kozlowski wrote:
-> > > > > On Tue, 20 Oct 2020 at 12:38, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> > > > > >
-> > > > > > Hi Krzysztof,
-> > > > > >
-> > > > > > On Mon, Oct 19, 2020 at 07:02:44PM +0200, Krzysztof Kozlowski wrote:
-> > > > > > > Add bindings for the IMX258 camera sensor.  The bindings, just like the
-> > > > > > > driver, are quite limited, e.g. do not support regulator supplies.
-> > > > > > >
-> > > > > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > > >
-> > > > > > > ---
-> > > > > > >
-> > > > > > > Changes since v4:
-> > > > > > > 1. Add clock-lanes,
-> > > > > > > 2. Add Rob's review,
-> > > > > > > 3. Add one more example and extend existing one,
-> > > > > > > 4. Add common clock properties (assigned-*).
-> > > > > >
-> > > > > > Using the assigned-* clock properties may be workable for this driver at
-> > > > > > the moment. But using these properties does not guarantee the external
-> > > > > > clock frequency intended to be used on the hardware.
-> > > > > 
-> > > > > It guarantees it. The clock frequency will be as expected (except if
-> > > > > someone misconfigures the DTS).
-> > > > 
-> > > > Is that guaranteed?
-> > > > 
-> > > > I'm not saying no to the approach, but if we change how camera sensor DT
-> > > > bindings are defined, I'd prefer an informed decision is made on the
-> > > > matter.
-> > > > 
-> > > > > 
-> > > > > > Using other
-> > > > > > frequencies *is not* expected to work. That applies to this driver as well.
-> > > > > 
-> > > > > This is the binding which is HW description. According to HW datasheet
-> > > > > other frequencies from described range are accepted and expected to
-> > > > > work.
-> > > > 
-> > > > As per datasheet, yes, different external clock frequencies can be used.
-> > > > But the link frequency is still not independent of the external clock
-> > > > frequency.
-> > > > 
-> > > > The properties of the sensor's PLL tree determines what can be achieved
-> > > > given a certain external clock frequency. So picking a wrong external clock
-> > > > frequency quite possibly means that none of the designated link frequencies
-> > > > are available, rendering the sensor inoperable.
-> > > 
-> > > The driver then controls the HW and knows exactly what is needed. If
-> > > link frequency (which has its own DT property) requires some clock
-> > > frequency, the driver will configure the clock to that value. The same
-> > 
-> > Well it doesn't if it doesn't get that information from DT.
-> 
-> It will get it - via clk_get_rate(). You do not need DT for this.
-> 
-> > The frequency is usually a range, and looking at these bindings, it's from
-> > 6 MHz to 27 MHz. That'd be a lot of frequencies for a driver to try.
-> 
-> It does not have to try all of them. Assuming link frequency is fixed,
-> just use any matching (or hard-coded) input clock frequency. Since the
-> input clock frequency most likely will be set with assigned-clock-rates,
-> there will be no job to do for the driver at all. Unless the driver
-> wants to do something more, of course.
-> 
-> > 
-> > > going other direction. Driver has the knowledge about both its input
-> > > clock and link frequency, therefore it can make the best decision.
-> > 
-> > Again you're assuming a particular driver implementation.
-> 
-> Actually not, I am talking about bindings as far away from the driver
-> implementation as possible.  This is why some specific frequency *is
-> not* part of the bindings.
-> 
-> > 
-> > Typically only a few frequencies are really available on platforms, so a in
-> > practice a driver would not be able to get any requested frequency. I
-> > wouldn't start hard-coding every possible frequency to camera sensor
-> > drivers
-> 
-> If the driver cannot get requested frequency which it apparently
-> requires, there is nothing more to do. It's broken HW implementation.
-> The input clock must be matching requirements, regardless of what
-> property you put in DT.  You can add "clock-frequency" property, you can
-> even add "really-i-require-clock-frequency" but if the real HW input
-> clock does not have, it won't work.
-> 
-> IOW, adding "clock-frequency" property does not change the reality - the
-> board (HW) must provide given frequency so the entire system works.
-> 
-> > 
-> > > > > > This, instead of the clock-frequency property, effectively removes the
-> > > > > > ability to set the correct frequency from the driver, at least with current
-> > > > > > set of the used APIs.
-> > > > > 
-> > > > > It seems you confuse DT bindings with some specific driver
-> > > > > implementation. Bindings do not describe the driver behavior but the
-> > > > > HW. The ability to set the correct frequency from the driver is not
-> > > > > removed. It was never part of the bindings and never should. It is
-> > > > > part of the driver.
-> > > > > 
-> > > > > >
-> > > > > > I suppose you could add a function to set the assigned clock frequency and
-> > > > > > keep it, just as clk_set_rate_exclusive does?
-> > > 
-> > > I did not reply to this comment, so let me know. Of course, one could
-> > > add such functions. It's not a job for DT bindings, though.
-> > 
-> > I'm not suggesting to add it to DT binding patch. What I'm saying that with
-> > this approach is looks like it may well be needed.
-> 
-> New properties can always be added to DT. However existing properties
-> cannot be removed. Their meaning or values cannot be changed.
+Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
+mainly used to power the R-Car series processors.
 
-Any more comments on the bindings or the patchset?
+Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+---
+ drivers/mfd/Kconfig              |  11 +++
+ drivers/mfd/Makefile             |   1 +
+ drivers/mfd/rohm-bd9576.c        | 130 +++++++++++++++++++++++++++++++
+ include/linux/mfd/rohm-bd957x.h  |  59 ++++++++++++++
+ include/linux/mfd/rohm-generic.h |   2 +
+ 5 files changed, 203 insertions(+)
+ create mode 100644 drivers/mfd/rohm-bd9576.c
+ create mode 100644 include/linux/mfd/rohm-bd957x.h
 
-Best regards,
-Krzysztof
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 8b99a13669bf..dcb2b14a570e 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -2010,6 +2010,17 @@ config MFD_ROHM_BD71828
+ 	  Also included is a Coulomb counter, a real-time clock (RTC), and
+ 	  a 32.768 kHz clock gate.
+ 
++config MFD_ROHM_BD957XMUF
++	tristate "ROHM BD9576MUF and BD9573MUF Power Management ICs"
++	depends on I2C=y
++	depends on OF
++	select REGMAP_I2C
++	select MFD_CORE
++	help
++	  Select this option to get support for the ROHM BD9576MUF and
++	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
++	  designed to be used to power R-Car series processors.
++
+ config MFD_STM32_LPTIMER
+ 	tristate "Support for STM32 Low-Power Timer"
+ 	depends on (ARCH_STM32 && OF) || COMPILE_TEST
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index 1780019d2474..837f68c9f336 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -261,6 +261,7 @@ obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
+ obj-$(CONFIG_MFD_ROHM_BD70528)	+= rohm-bd70528.o
+ obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
+ obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
++obj-$(CONFIG_MFD_ROHM_BD957XMUF)	+= rohm-bd9576.o
+ obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
+ obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+ 
+diff --git a/drivers/mfd/rohm-bd9576.c b/drivers/mfd/rohm-bd9576.c
+new file mode 100644
+index 000000000000..a23ded510209
+--- /dev/null
++++ b/drivers/mfd/rohm-bd9576.c
+@@ -0,0 +1,130 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++//
++// Copyright (C) 2020 ROHM Semiconductors
++//
++// ROHM BD9576MUF and BD9573MUF PMIC driver
++
++#include <linux/i2c.h>
++#include <linux/interrupt.h>
++#include <linux/ioport.h>
++#include <linux/irq.h>
++#include <linux/mfd/core.h>
++#include <linux/mfd/rohm-bd957x.h>
++#include <linux/mfd/rohm-generic.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/regmap.h>
++#include <linux/types.h>
++
++static struct mfd_cell bd9573_mfd_cells[] = {
++	{ .name = "bd9573-pmic", },
++	{ .name = "bd9576-wdt", },
++};
++
++
++static struct mfd_cell bd9576_mfd_cells[] = {
++	{ .name = "bd9576-pmic", },
++	{ .name = "bd9576-wdt", },
++};
++
++static const struct regmap_range volatile_ranges[] = {
++	{
++		.range_min = BD957X_REG_SMRB_ASSERT,
++		.range_max = BD957X_REG_SMRB_ASSERT,
++	},
++	{
++		.range_min = BD957X_REG_PMIC_INTERNAL_STAT,
++		.range_max = BD957X_REG_PMIC_INTERNAL_STAT,
++	},
++	{
++		.range_min = BD957X_REG_INT_THERM_STAT,
++		.range_max = BD957X_REG_INT_THERM_STAT,
++	},
++	{
++		.range_min = BD957X_REG_INT_OVP_STAT,
++		.range_max = BD957X_REG_INT_SYS_STAT,
++	}, {
++		.range_min = BD957X_REG_INT_MAIN_STAT,
++		.range_max = BD957X_REG_INT_MAIN_STAT,
++	},
++};
++
++static const struct regmap_access_table volatile_regs = {
++	.yes_ranges = &volatile_ranges[0],
++	.n_yes_ranges = ARRAY_SIZE(volatile_ranges),
++};
++
++static struct regmap_config bd957x_regmap = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.volatile_table = &volatile_regs,
++	.max_register = BD957X_MAX_REGISTER,
++	.cache_type = REGCACHE_RBTREE,
++};
++
++static int bd957x_i2c_probe(struct i2c_client *i2c,
++			     const struct i2c_device_id *id)
++{
++	int ret;
++	struct regmap *regmap;
++	struct mfd_cell *mfd;
++	int cells;
++	unsigned int chip_type;
++
++	chip_type = (unsigned int)(uintptr_t)
++		    of_device_get_match_data(&i2c->dev);
++
++	switch (chip_type) {
++	case ROHM_CHIP_TYPE_BD9576:
++		mfd = bd9576_mfd_cells;
++		cells = ARRAY_SIZE(bd9576_mfd_cells);
++		break;
++	case ROHM_CHIP_TYPE_BD9573:
++		mfd = bd9573_mfd_cells;
++		cells = ARRAY_SIZE(bd9573_mfd_cells);
++		break;
++	default:
++		dev_err(&i2c->dev, "Unknown device type");
++		return -EINVAL;
++	}
++
++	regmap = devm_regmap_init_i2c(i2c, &bd957x_regmap);
++	if (IS_ERR(regmap)) {
++		dev_err(&i2c->dev, "Failed to initialize Regmap\n");
++		return PTR_ERR(regmap);
++	}
++
++	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, mfd, cells,
++				   NULL, 0, NULL);
++	if (ret)
++		dev_err(&i2c->dev, "Failed to create subdevices\n");
++
++	return ret;
++}
++
++static const struct of_device_id bd957x_of_match[] = {
++	{
++		.compatible = "rohm,bd9576",
++		.data = (void *)ROHM_CHIP_TYPE_BD9576,
++	},
++	{
++		.compatible = "rohm,bd9573",
++		.data = (void *)ROHM_CHIP_TYPE_BD9573,
++	},
++	{ },
++};
++MODULE_DEVICE_TABLE(of, bd957x_of_match);
++
++static struct i2c_driver bd957x_drv = {
++	.driver = {
++		.name = "rohm-bd957x",
++		.of_match_table = bd957x_of_match,
++	},
++	.probe = &bd957x_i2c_probe,
++};
++
++module_i2c_driver(bd957x_drv);
++
++MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
++MODULE_DESCRIPTION("ROHM BD9576MUF and BD9573MUF Power Management IC driver");
++MODULE_LICENSE("GPL");
+diff --git a/include/linux/mfd/rohm-bd957x.h b/include/linux/mfd/rohm-bd957x.h
+new file mode 100644
+index 000000000000..3e7ca6fe5d4f
+--- /dev/null
++++ b/include/linux/mfd/rohm-bd957x.h
+@@ -0,0 +1,59 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/* Copyright (C) 2020 ROHM Semiconductors */
++
++#ifndef __LINUX_MFD_BD957X_H__
++#define __LINUX_MFD_BD957X_H__
++
++enum {
++	BD957X_VD50,
++	BD957X_VD18,
++	BD957X_VDDDR,
++	BD957X_VD10,
++	BD957X_VOUTL1,
++	BD957X_VOUTS1,
++};
++
++#define BD957X_REG_SMRB_ASSERT		0x15
++#define BD957X_REG_PMIC_INTERNAL_STAT	0x20
++#define BD957X_REG_INT_THERM_STAT	0x23
++#define BD957X_REG_INT_THERM_MASK 0x24
++#define BD957X_REG_INT_OVP_STAT 0x25
++#define BD957X_REG_INT_SCP_STAT 0x26
++#define BD957X_REG_INT_OCP_STAT 0x27
++#define BD957X_REG_INT_OVD_STAT 0x28
++#define BD957X_REG_INT_UVD_STAT 0x29
++#define BD957X_REG_INT_UVP_STAT 0x2a
++#define BD957X_REG_INT_SYS_STAT 0x2b
++#define BD957X_REG_INT_SYS_MASK 0x2c
++#define BD957X_REG_INT_MAIN_STAT 0x30
++#define BD957X_REG_INT_MAIN_MASK 0x31
++
++#define BD957X_REG_WDT_CONF 0x16
++
++#define BD957X_REG_POW_TRIGGER1 0x41
++#define BD957X_REG_POW_TRIGGER2 0x42
++#define BD957X_REG_POW_TRIGGER3 0x43
++#define BD957X_REG_POW_TRIGGER4 0x44
++#define BD957X_REG_POW_TRIGGERL1 0x45
++#define BD957X_REG_POW_TRIGGERS1 0x46
++
++#define BD957X_REGULATOR_EN_MASK 0xff
++#define BD957X_REGULATOR_DIS_VAL 0xff
++
++#define BD957X_VSEL_REG_MASK	0xff
++
++#define BD957X_MASK_VOUT1_TUNE	0x87
++#define BD957X_MASK_VOUT2_TUNE	0x87
++#define BD957X_MASK_VOUT3_TUNE	0x1f
++#define BD957X_MASK_VOUT4_TUNE	0x1f
++#define BD957X_MASK_VOUTL1_TUNE	0x87
++
++#define BD957X_REG_VOUT1_TUNE	0x50
++#define BD957X_REG_VOUT2_TUNE	0x53
++#define BD957X_REG_VOUT3_TUNE	0x56
++#define BD957X_REG_VOUT4_TUNE	0x59
++#define BD957X_REG_VOUTL1_TUNE	0x5c
++
++#define BD957X_MAX_REGISTER 0x61
++
++#endif
+diff --git a/include/linux/mfd/rohm-generic.h b/include/linux/mfd/rohm-generic.h
+index 4283b5b33e04..58b4f1a0f4af 100644
+--- a/include/linux/mfd/rohm-generic.h
++++ b/include/linux/mfd/rohm-generic.h
+@@ -12,6 +12,8 @@ enum rohm_chip_type {
+ 	ROHM_CHIP_TYPE_BD71847,
+ 	ROHM_CHIP_TYPE_BD70528,
+ 	ROHM_CHIP_TYPE_BD71828,
++	ROHM_CHIP_TYPE_BD9576,
++	ROHM_CHIP_TYPE_BD9573,
+ 	ROHM_CHIP_TYPE_AMOUNT
+ };
+ 
+-- 
+2.21.3
 
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
