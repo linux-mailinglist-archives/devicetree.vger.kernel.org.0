@@ -2,76 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D4E29E173
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E401929E23B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:11:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727866AbgJ2CBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 22:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727888AbgJ1Vti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:49:38 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AC5C0613CF
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 14:49:39 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id x13so604062pgp.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 14:49:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0YQo4kVcnhVHmUOB0gTZ0jk2nK+H5MUUNH6DtMNqxEA=;
-        b=JVgFxESfJtdCSlw1tMDAm4fkeVE2n486thk2/41Xj3ue5Q3tdnbMLvbttltwKPt66W
-         hkFPl/7sl2B5R5K+aFEZiKq95heCrpdKTWRoVacDyeXDHcxrGs9o6C9I1THEcW0fBV1W
-         9MT+2pvIAlfvbYfGI3kw7iqR5r3CiceCDsvyWHaXsK6uBNYL8cqMGN+ld/R/2pv85Jkl
-         Qxtyx4SdEllw8nqvSjb/43gC2gmKX3Ci7s96VwIdqc1cneiyoHFCYtKAku7WLbdMGbqA
-         bziy1gfJJYLxn+KOcaslKCTr/u0drlG6kMH8SBy00aVj5QyuFtBtMrMK7mOpdzVk2HnC
-         +u+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0YQo4kVcnhVHmUOB0gTZ0jk2nK+H5MUUNH6DtMNqxEA=;
-        b=CHN/5/UH+w5WJxz8TnhXSk2q+ewg2dBi/g6VP4SM4jPeeYpGnQk4X6D8Sp2Ud21+oe
-         /jrV+IsW1uP56IjpIAfXsY1er9hus2KgRCK79pxgKgBaaTYd9pjolk1QFF4toggJTW1v
-         XeqMF3rzKmEAJkFn8kUjuOk1qFBDIlg6eejEnH3DFFlTbs6fYGp2dTF6x2+TVffIdk2R
-         NX8W67h4xW3fGxMzOJEDbyFYfduKerPC+Vir6NgBDyIkJmsJ3cA5WXua7HsyqsgBQz73
-         nmPOQ123p3RHSNhWMYGIVuJHJI8jN9HZ355wTP3I5cYfNy8xBvqFkk4aluRMxE4dfSYa
-         VBDA==
-X-Gm-Message-State: AOAM533mhDSpjWKj93j2F6rrfuRduWIGlP7wHmd61yhJsyD/8rfgp947
-        dX6MhufjEErCCbzbUozE0dBT2g2wI4cifwWzwAlggGCqNbaqvQ==
-X-Google-Smtp-Source: ABdhPJxhEwUa7d09wLvFmG9A0EaYBwneg9ZuZ/qW/4QMveY6Xe5CKT/5zGwnQYB0pYHfmC+OWNdZAv9l9GA7rS18hLk=
-X-Received: by 2002:a6b:8ec7:: with SMTP id q190mr6044595iod.42.1603890852501;
- Wed, 28 Oct 2020 06:14:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201024200304.1427864-1-fparent@baylibre.com>
- <20201026121316.GB7402@sirena.org.uk> <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
- <20201026172431.GI7402@sirena.org.uk> <CAOwMV_xt=OV6cKqQTZUUSAvYKxUUQZAUywAHtFFHL=E5xVu-Zg@mail.gmail.com>
- <20201026203608.GJ7402@sirena.org.uk> <CAOwMV_xUWea81rKFE=zD4xWL3rZ5G8cpWm5xJHT_AX=_frLDRQ@mail.gmail.com>
- <20201028123258.GA6302@sirena.org.uk>
-In-Reply-To: <20201028123258.GA6302@sirena.org.uk>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Wed, 28 Oct 2020 14:14:01 +0100
-Message-ID: <CAOwMV_xsjp4on0W79c6-zweY4dON0+gC=Vxao28=WirSZKsX-A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
-To:     Mark Brown <broonie@kernel.org>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726837AbgJ2CLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 22:11:46 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:42529 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726689AbgJ1Vgi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 17:36:38 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1603920998; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=sBoFYXBRNRnfc1p/HZHYw4mb1ypcZrZ4ev80XM6oef4=; b=aQiuMAp+nlTKsOZizPT8RBJnHOxlmpWM9kQqSGB9Rx4/O4qMJ8RfxwiWIMBgFRqligEEKYgd
+ fucnfTFw3f6/VJcXVxENHYjN7qWBJmuTEFEY8oryvPAoe5W/wdmFiDJl/5hQdksejCEv+VdU
+ HCTGjM4cN/RYL9n7W83IqDx0pVM=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 5f9974b61fc42e8c0303eb93 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 28 Oct 2020 13:40:06
+ GMT
+Sender: akhilpo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 13E84C43395; Wed, 28 Oct 2020 13:40:06 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from akhilpo-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1BA3CC433F0;
+        Wed, 28 Oct 2020 13:40:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1BA3CC433F0
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
+From:   Akhil P Oommen <akhilpo@codeaurora.org>
+To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     robh@kernel.org, dri-devel@freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jcrouse@codeaurora.org, mka@chromium.org, robdclark@gmail.com,
+        dianders@chromium.org
+Subject: [PATCH v3 1/3] drm/msm: Add support for GPU cooling
+Date:   Wed, 28 Oct 2020 19:09:52 +0530
+Message-Id: <1603892395-3570-1-git-send-email-akhilpo@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 1:33 PM Mark Brown <broonie@kernel.org> wrote:
->
-> You should be using the of_node from the parent device to find the
-> regulators set, look at how other drivers do this.
+Register GPU as a devfreq cooling device so that it can be passively
+cooled by the thermal framework.
 
-Thanks for the help. I got it to work. I will send a new revision of
-the patches.
+Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
+---
+Changes in v3:
+	1. Minor fix in binding documentation (RobH)
+Changes in v2:
+	1. Update the dt bindings documentation
+ drivers/gpu/drm/msm/msm_gpu.c | 12 ++++++++++++
+ drivers/gpu/drm/msm/msm_gpu.h |  2 ++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/drivers/gpu/drm/msm/msm_gpu.c b/drivers/gpu/drm/msm/msm_gpu.c
+index 55d1648..9f9db46 100644
+--- a/drivers/gpu/drm/msm/msm_gpu.c
++++ b/drivers/gpu/drm/msm/msm_gpu.c
+@@ -14,6 +14,7 @@
+ #include <generated/utsrelease.h>
+ #include <linux/string_helpers.h>
+ #include <linux/devfreq.h>
++#include <linux/devfreq_cooling.h>
+ #include <linux/devcoredump.h>
+ #include <linux/sched/task.h>
+ 
+@@ -107,9 +108,18 @@ static void msm_devfreq_init(struct msm_gpu *gpu)
+ 	if (IS_ERR(gpu->devfreq.devfreq)) {
+ 		DRM_DEV_ERROR(&gpu->pdev->dev, "Couldn't initialize GPU devfreq\n");
+ 		gpu->devfreq.devfreq = NULL;
++		return;
+ 	}
+ 
+ 	devfreq_suspend_device(gpu->devfreq.devfreq);
++
++	gpu->cooling = of_devfreq_cooling_register(gpu->pdev->dev.of_node,
++			gpu->devfreq.devfreq);
++	if (IS_ERR(gpu->cooling)) {
++		DRM_DEV_ERROR(&gpu->pdev->dev,
++				"Couldn't register GPU cooling device\n");
++		gpu->cooling = NULL;
++	}
+ }
+ 
+ static int enable_pwrrail(struct msm_gpu *gpu)
+@@ -1005,4 +1015,6 @@ void msm_gpu_cleanup(struct msm_gpu *gpu)
+ 		gpu->aspace->mmu->funcs->detach(gpu->aspace->mmu);
+ 		msm_gem_address_space_put(gpu->aspace);
+ 	}
++
++	devfreq_cooling_unregister(gpu->cooling);
+ }
+diff --git a/drivers/gpu/drm/msm/msm_gpu.h b/drivers/gpu/drm/msm/msm_gpu.h
+index 6c9e1fd..9a8f20d 100644
+--- a/drivers/gpu/drm/msm/msm_gpu.h
++++ b/drivers/gpu/drm/msm/msm_gpu.h
+@@ -147,6 +147,8 @@ struct msm_gpu {
+ 	struct msm_gpu_state *crashstate;
+ 	/* True if the hardware supports expanded apriv (a650 and newer) */
+ 	bool hw_apriv;
++
++	struct thermal_cooling_device *cooling;
+ };
+ 
+ static inline struct msm_gpu *dev_to_gpu(struct device *dev)
+-- 
+2.7.4
+
