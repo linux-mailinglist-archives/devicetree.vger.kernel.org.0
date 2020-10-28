@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA8D29DF5B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38FFE29DF70
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730458AbgJ2BA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 21:00:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60548 "EHLO mail.kernel.org"
+        id S2404052AbgJ2BBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 21:01:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60524 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731550AbgJ1WR2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 18:17:28 -0400
+        id S1731523AbgJ1WR1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 18:17:27 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 259FE24672;
-        Wed, 28 Oct 2020 08:48:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1694824688;
+        Wed, 28 Oct 2020 09:06:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603874888;
-        bh=sLaLhnbPsf3EhhiQ2UgXXv5yVj4P+LuPey4JP1IUC+Y=;
+        s=default; t=1603876011;
+        bh=Y7763jLRt17lwaz4nUanJFjbl1LXV6RdroINVp//PO0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S18f+l7O06BdF6F/1d27Z2jNey5RyB+8yHOc4T30wyVAL1sjVr94aONyQPw4DGG2b
-         huXNw2R1yJDRFryuv0g/v3tjvRhAUyrSposiAxYO0Bpjz6moD3up6HHuXoPkV94Izq
-         lbMJEdW1PAwZqZbsJkbH5NtWQ2j8ydPJxX9YjhS8=
-Date:   Wed, 28 Oct 2020 16:48:01 +0800
+        b=wcc+/hv9pLtXqFy1C9F2NgW0AxkUGNL6uKCQGsTW7svtZnTx9AapokqVgKILNRYdP
+         63hwvVODKjhpn3vq2a+xqcbZycbqtSQpUoAL59c984SmioX0BtZ0bPznfCp/L7ACOS
+         u+J7wh8WKYP/djWWciLxZXJ4zSXIWRgMI7Ti+mao=
+Date:   Wed, 28 Oct 2020 17:06:45 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Stefan Riedmueller <s.riedmueller@phytec.de>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 1/6] ARM: dts: imx6ul: segin: Fix stmpe touchscreen
- subnode name
-Message-ID: <20201028084800.GF28755@dragon>
-References: <20200922092313.151293-1-s.riedmueller@phytec.de>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Subject: Re: [PATCH v2 3/3] arm64: dts: freescale: sl28: add CAN node
+Message-ID: <20201028090645.GK28755@dragon>
+References: <20201001091131.30514-1-michael@walle.cc>
+ <20201001091131.30514-4-michael@walle.cc>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200922092313.151293-1-s.riedmueller@phytec.de>
+In-Reply-To: <20201001091131.30514-4-michael@walle.cc>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 22, 2020 at 11:23:08AM +0200, Stefan Riedmueller wrote:
-> The touchscreen subnode name needs to be stmpe_touchscreen as mentioned
-> in the dt-bindings.
+On Thu, Oct 01, 2020 at 11:11:31AM +0200, Michael Walle wrote:
+> The module supports one CAN controller. Enable it.
 > 
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
 Applied, thanks.
