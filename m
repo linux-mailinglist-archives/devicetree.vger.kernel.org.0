@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A751329D446
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:51:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7073F29D457
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728091AbgJ1Vuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:50:52 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:52243 "EHLO
+        id S1728096AbgJ1Vux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:50:53 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:52205 "EHLO
         new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728083AbgJ1Vuv (ORCPT
+        by vger.kernel.org with ESMTP id S1728081AbgJ1Vuv (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
         Wed, 28 Oct 2020 17:50:51 -0400
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E6100580143;
-        Wed, 28 Oct 2020 08:41:11 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Wed, 28 Oct 2020 08:41:11 -0400
+        by mailnew.nyi.internal (Postfix) with ESMTP id CF2E8580165;
+        Wed, 28 Oct 2020 08:41:15 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Wed, 28 Oct 2020 08:41:15 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=zHv8g/0wGKqhI
-        RffMNPMMWCiBMbhGrdlj6tIrzrXJ6E=; b=FJ8cSKxDlNFUI6KpsIX76jHZezgM6
-        IyQdNK1ncTM7Sf8w/HafpsgNyNv+Sl8kwkvtLX/2JBe66W8AG0rdVXdt58vEFcxX
-        6USUTm6sLirWvpfRpvsXSkAyte3DAl3X8qlYM2jXlrdPow00m4UlgvzAn4EbSlTX
-        xZkJSafC9arWXKHuYdyD+aRkVDYxDCUaj8cJc+rQ7VMUrqfWXTL245WCquCDiVJf
-        ivMAcAN58d8PeaPgeuTfk3+vFbq1nr2eTLru6jOaTMC0tbYP8UeZzcUqUfL4RXW6
-        XjLXWvS3zDJGiOYfVmtUxvoXm6M1RcrI9A4Vw1KXaRDQ9GbaWH4buvYGg==
+        :mime-version:content-transfer-encoding; s=fm1; bh=PkuVMKGg+e6Ws
+        gwn539mmTehhFrcUsy9ymqe7k7WIbU=; b=DZZQ8Z5BWf3bskv97k4rmtVhazdls
+        8sVYeMpku0HnDM3I3gKFqjColgf2sq2fCNYLVLIfztWfF/VySTtIJRV4rbVAUGSq
+        fyEb/Edm5frThw26Gv+JGBB1qFqLC67UX/ILl0p4ucrTh87AqP6/nJ66G+EtM6aV
+        zfEGaYY35KEyIwcxLB5LNFZomltLGUy8mvdciIFq+OTbrUWbaDs0GuAsVT2YOYKd
+        PQVp2in5BWs8qjY8TI+MA5GzBUgRcMrnPwC2sGoE7h59Jwcu6YNFpiADNnHafNMU
+        k0JNHBHV6hMExPjERPJeSWFnYc6kbqpPvxua6VCuAtXipUmsOnKJ4rm5w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=zHv8g/0wGKqhIRffMNPMMWCiBMbhGrdlj6tIrzrXJ6E=; b=NJ04lXZo
-        PDQ01HRaEgy1tKgDzwVm265HS6wXTfE/YUyGE7VlwlxXFy6BfriJwO2kfUYa51VA
-        8WYC3XYb3oE2Sscl3cDw3F4ryTi6fRjAxJ+mlIpGE4apJM5s2fzxyYL/sjTsfg5g
-        JgsNOQ9z9wfhMUFNsGb9epmReVdziJeMj4m+dCaoQgpoRmzMIkqQgWEKabzYLZRJ
-        RgyGJwQTImJDEan6WWNbvIPZCuAkXpDmQadBUwEAEHC+4eMmCnr7d1uOJrIUw8bW
-        PikQ9omRjqrbKiarPayfq5e+ATHnh3STVhhdF0ua4BP3cAKQLFpmzzMevgJrm1Uq
-        1bfvL/XPEd7a7g==
-X-ME-Sender: <xms:52aZX7oyr59RjpSNeW7zG6_vCvCgO3jZQB5bPk80g7PjguYbUBbvdA>
-    <xme:52aZX1rRmbxGrMETep--poHWDqp5V3N7t0amPF-fftIq_6tma0_CmtEDTXuhpUWou
-    Z1DT6E-Cbd66ls7D40>
+        fm1; bh=PkuVMKGg+e6Wsgwn539mmTehhFrcUsy9ymqe7k7WIbU=; b=pequQgtM
+        94QpMi+hiXWYFrRgUgaFyAd83kLT+Pyq75bYcocJYuEVyWUE9RD3ZXoNNcfFVCWg
+        hxrfZcjpsfFl9Vt9W6E5XQ63/sfbV/iZOPIxw4uYy08ZbPaHqYNYwzSNtmewx6e0
+        XKqStDO+wg0qV9Rfr2ourP//zjst0oaLL+fNvNgcYE6b/x3OgdEMDC4daYf6Qq4O
+        kJULnZQC/etULCrhN/342/MK4HhxIDce/fWAXxK1pECvi4rYFrh3UkIymM8ujzYP
+        XPm1lc1ntqhvMX6a4fnNjsNRIk/C2qcQFmwwIRfS+JPDMnr6zgKSMsEesfT0b/Mb
+        nGX7VwClEVWpTA==
+X-ME-Sender: <xms:62aZXwTtVAqVXiIV3oJ0n6PAOXN1NoUjnmjdtUozdawGSsF1cURGgA>
+    <xme:62aZX9yewPIkQheFWRH4Dm4vEtadaUet7pawa6HFQoBDWdUj2iT1hCg8LNb6Mh9ps
+    2O7Xqb2tnmVLzkD9q8>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrledugdegvdcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -48,13 +48,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrledugdegvdcutefuodetggdote
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
     vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpeefnecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:52aZX4NX7YGmaC03wnOV3raLv6e2RrwwDcgg0HERA3K9m0-HNFROAQ>
-    <xmx:52aZX-5gVRr5notOEkQ2jY0fGYsag2H5wZdNGeQL31GtApGtd15QeA>
-    <xmx:52aZX67dG-eu27ku4oM8TN_g5sa3hHynPGxvY6-vhpzDpF7vb1zQKA>
-    <xmx:52aZX9reonLGWujmVuinncvs7jDd9qaT2usmrV0CDXMm_tZ8B70t0Q>
+X-ME-Proxy: <xmx:62aZX92j7ZwUVb8tqbIFYxDcm2cOtLVPwnqKINYUjWN7RBMcxdbE4g>
+    <xmx:62aZX0C_Bk352oOAPDculnm0UXjH8ZMCe4QOl4jTlSxAOZDFQyiV9A>
+    <xmx:62aZX5iy9uYONGNDNGdIFEuak-owcnIeUgUVtfhZT5soEU2NgcxHhA>
+    <xmx:62aZXxyP_0RfLwD6oQQKfgSnYnrRM1JCk1tka2IOEIJtgUXtz7jbxg>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 568003064686;
-        Wed, 28 Oct 2020 08:41:11 -0400 (EDT)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 561CE3280063;
+        Wed, 28 Oct 2020 08:41:15 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -73,9 +73,9 @@ Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Tim Gover <tim.gover@raspberrypi.com>,
         Phil Elwell <phil@raspberrypi.com>,
         Hoegeun Kwon <hoegeun.kwon@samsung.com>
-Subject: [PATCH v2 4/7] drm/vc4: kms: Document the muxing corner cases
-Date:   Wed, 28 Oct 2020 13:41:01 +0100
-Message-Id: <aa88b754887b0a53b33e6a2447a09ff50281fd54.1603888799.git-series.maxime@cerno.tech>
+Subject: [PATCH v2 7/7] drm/vc4: kms: Don't disable the muxing of an active CRTC
+Date:   Wed, 28 Oct 2020 13:41:04 +0100
+Message-Id: <469ead5de989938fcf079505cbc232a620e713bc.1603888799.git-series.maxime@cerno.tech>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
 References: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
@@ -85,47 +85,171 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We've had a number of muxing corner-cases with specific ways to reproduce
-them, so let's document them to make sure they aren't lost and introduce
-regressions later on.
+The current HVS muxing code will consider the CRTCs in a given state to
+setup their muxing in the HVS, and disable the other CRTCs muxes.
 
+However, it's valid to only update a single CRTC with a state, and in this
+situation we would mux out a CRTC that was enabled but left untouched by
+the new state.
+
+Fix this by setting a flag on the CRTC state when the muxing has been
+changed, and only change the muxing configuration when that flag is there.
+
+Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automatically")
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- drivers/gpu/drm/vc4/vc4_kms.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/vc4/vc4_drv.h |  1 +-
+ drivers/gpu/drm/vc4/vc4_kms.c | 84 +++++++++++++++++++++---------------
+ 2 files changed, 50 insertions(+), 35 deletions(-)
 
+diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
+index c6208b040f77..c074c0538e57 100644
+--- a/drivers/gpu/drm/vc4/vc4_drv.h
++++ b/drivers/gpu/drm/vc4/vc4_drv.h
+@@ -523,6 +523,7 @@ struct vc4_crtc_state {
+ 	struct drm_mm_node mm;
+ 	bool feed_txp;
+ 	bool txp_armed;
++	bool needs_muxing;
+ 	unsigned int assigned_channel;
+ 
+ 	struct {
 diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-index 4aa0577bd055..b0043abec16d 100644
+index 2aa726b7422c..409aeb19d210 100644
 --- a/drivers/gpu/drm/vc4/vc4_kms.c
 +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-@@ -612,6 +612,28 @@ static const struct drm_private_state_funcs vc4_load_tracker_state_funcs = {
- };
- 
- 
-+/*
-+ * The BCM2711 HVS has up to 7 output connected to the pixelvalves and
-+ * the TXP (and therefore all the CRTCs found on that platform).
-+ *
-+ * The naive (and our initial) implementation would just iterate over
-+ * all the active CRTCs, try to find a suitable FIFO, and then remove it
-+ * from the available FIFOs pool. However, there's a few corner cases
-+ * that need to be considered:
-+ *
-+ * - When running in a dual-display setup (so with two CRTCs involved),
-+ *   we can update the state of a single CRTC (for example by changing
-+ *   its mode using xrandr under X11) without affecting the other. In
-+ *   this case, the other CRTC wouldn't be in the state at all, so we
-+ *   need to consider all the running CRTCs in the DRM device to assign
-+ *   a FIFO, not just the one in the state.
-+ *
-+ * - Since we need the pixelvalve to be disabled and enabled back when
-+ *   the FIFO is changed, we should keep the FIFO assigned for as long
-+ *   as the CRTC is enabled, only considering it free again once that
-+ *   CRTC has been disabled. This can be tested by booting X11 on a
-+ *   single display, and changing the resolution down and then back up.
-+ */
- static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
- 				      struct drm_atomic_state *state)
+@@ -224,10 +224,7 @@ static void vc5_hvs_pv_muxing_commit(struct vc4_dev *vc4,
  {
+ 	struct drm_crtc_state *crtc_state;
+ 	struct drm_crtc *crtc;
+-	unsigned char dsp2_mux = 0;
+-	unsigned char dsp3_mux = 3;
+-	unsigned char dsp4_mux = 3;
+-	unsigned char dsp5_mux = 3;
++	unsigned char mux;
+ 	unsigned int i;
+ 	u32 reg;
+ 
+@@ -235,50 +232,59 @@ static void vc5_hvs_pv_muxing_commit(struct vc4_dev *vc4,
+ 		struct vc4_crtc_state *vc4_state = to_vc4_crtc_state(crtc_state);
+ 		struct vc4_crtc *vc4_crtc = to_vc4_crtc(crtc);
+ 
+-		if (!crtc_state->active)
++		if (!vc4_state->needs_muxing)
+ 			continue;
+ 
+ 		switch (vc4_crtc->data->hvs_output) {
+ 		case 2:
+-			dsp2_mux = (vc4_state->assigned_channel == 2) ? 0 : 1;
++			mux = (vc4_state->assigned_channel == 2) ? 0 : 1;
++			reg = HVS_READ(SCALER_DISPECTRL);
++			HVS_WRITE(SCALER_DISPECTRL,
++				  (reg & ~SCALER_DISPECTRL_DSP2_MUX_MASK) |
++				  VC4_SET_FIELD(mux, SCALER_DISPECTRL_DSP2_MUX));
+ 			break;
+ 
+ 		case 3:
+-			dsp3_mux = vc4_state->assigned_channel;
++			if (vc4_state->assigned_channel == VC4_HVS_CHANNEL_DISABLED)
++				mux = 3;
++			else
++				mux = vc4_state->assigned_channel;
++
++			reg = HVS_READ(SCALER_DISPCTRL);
++			HVS_WRITE(SCALER_DISPCTRL,
++				  (reg & ~SCALER_DISPCTRL_DSP3_MUX_MASK) |
++				  VC4_SET_FIELD(mux, SCALER_DISPCTRL_DSP3_MUX));
+ 			break;
+ 
+ 		case 4:
+-			dsp4_mux = vc4_state->assigned_channel;
++			if (vc4_state->assigned_channel == VC4_HVS_CHANNEL_DISABLED)
++				mux = 3;
++			else
++				mux = vc4_state->assigned_channel;
++
++			reg = HVS_READ(SCALER_DISPEOLN);
++			HVS_WRITE(SCALER_DISPEOLN,
++				  (reg & ~SCALER_DISPEOLN_DSP4_MUX_MASK) |
++				  VC4_SET_FIELD(mux, SCALER_DISPEOLN_DSP4_MUX));
++
+ 			break;
+ 
+ 		case 5:
+-			dsp5_mux = vc4_state->assigned_channel;
++			if (vc4_state->assigned_channel == VC4_HVS_CHANNEL_DISABLED)
++				mux = 3;
++			else
++				mux = vc4_state->assigned_channel;
++
++			reg = HVS_READ(SCALER_DISPDITHER);
++			HVS_WRITE(SCALER_DISPDITHER,
++				  (reg & ~SCALER_DISPDITHER_DSP5_MUX_MASK) |
++				  VC4_SET_FIELD(mux, SCALER_DISPDITHER_DSP5_MUX));
+ 			break;
+ 
+ 		default:
+ 			break;
+ 		}
+ 	}
+-
+-	reg = HVS_READ(SCALER_DISPECTRL);
+-	HVS_WRITE(SCALER_DISPECTRL,
+-		  (reg & ~SCALER_DISPECTRL_DSP2_MUX_MASK) |
+-		  VC4_SET_FIELD(dsp2_mux, SCALER_DISPECTRL_DSP2_MUX));
+-
+-	reg = HVS_READ(SCALER_DISPCTRL);
+-	HVS_WRITE(SCALER_DISPCTRL,
+-		  (reg & ~SCALER_DISPCTRL_DSP3_MUX_MASK) |
+-		  VC4_SET_FIELD(dsp3_mux, SCALER_DISPCTRL_DSP3_MUX));
+-
+-	reg = HVS_READ(SCALER_DISPEOLN);
+-	HVS_WRITE(SCALER_DISPEOLN,
+-		  (reg & ~SCALER_DISPEOLN_DSP4_MUX_MASK) |
+-		  VC4_SET_FIELD(dsp4_mux, SCALER_DISPEOLN_DSP4_MUX));
+-
+-	reg = HVS_READ(SCALER_DISPDITHER);
+-	HVS_WRITE(SCALER_DISPDITHER,
+-		  (reg & ~SCALER_DISPDITHER_DSP5_MUX_MASK) |
+-		  VC4_SET_FIELD(dsp5_mux, SCALER_DISPDITHER_DSP5_MUX));
+ }
+ 
+ static void
+@@ -769,21 +775,29 @@ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
+ 		return -EINVAL;
+ 
+ 	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
++		struct vc4_crtc_state *old_vc4_crtc_state =
++			to_vc4_crtc_state(old_crtc_state);
+ 		struct vc4_crtc_state *new_vc4_crtc_state =
+ 			to_vc4_crtc_state(new_crtc_state);
+ 		struct vc4_crtc *vc4_crtc = to_vc4_crtc(crtc);
+ 		unsigned int matching_channels;
+ 
+-		if (old_crtc_state->enable && !new_crtc_state->enable) {
+-			hvs_state->unassigned_channels |= BIT(old_vc4_crtc_state->assigned_channel);
+-			new_vc4_crtc_state->assigned_channel = VC4_HVS_CHANNEL_DISABLED;
++		/* Nothing to do here, let's skip it */
++		if ((old_crtc_state->enable && new_crtc_state->enable) ||
++		    (!old_crtc_state->enable && !new_crtc_state->enable)) {
++			new_vc4_crtc_state->needs_muxing = false;
++			continue;
+ 		}
+ 
+-		if (!new_crtc_state->enable)
+-			continue;
++		/* Muxing will need to be modified, mark it as such */
++		new_vc4_crtc_state->needs_muxing = true;
+ 
+-		if (new_vc4_crtc_state->assigned_channel != VC4_HVS_CHANNEL_DISABLED)
++		/* If we're disabling our CRTC, we put back our channel */
++		if (old_crtc_state->enable && !new_crtc_state->enable) {
++			hvs_state->unassigned_channels |= BIT(old_vc4_crtc_state->assigned_channel);
++			new_vc4_crtc_state->assigned_channel = VC4_HVS_CHANNEL_DISABLED;
+ 			continue;
++		}
+ 
+ 		/*
+ 		 * The problem we have to solve here is that we have
 -- 
 git-series 0.9.1
