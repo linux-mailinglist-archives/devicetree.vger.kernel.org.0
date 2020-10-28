@@ -2,120 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B64329DAF5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C071329DB75
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:58:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726145AbgJ1XmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:42:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39400 "EHLO
+        id S2389727AbgJ1X6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:58:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726094AbgJ1XmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:42:08 -0400
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80296C0613CF;
-        Wed, 28 Oct 2020 16:42:08 -0700 (PDT)
-Received: by mail-qt1-x842.google.com with SMTP id h12so791397qtc.9;
-        Wed, 28 Oct 2020 16:42:08 -0700 (PDT)
+        with ESMTP id S2389354AbgJ1X46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:56:58 -0400
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53398C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:56:58 -0700 (PDT)
+Received: by mail-oi1-x244.google.com with SMTP id w191so1470757oif.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:56:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=04ThpYsSViFhWqOQvQSGIlYZRGcXGFtIhUlX8pfHTD8=;
-        b=OC6Zm4U5t2xQjcut4yBwkeEk5KarEkjfCrPdUlu381Nv4vJI895Svp7x8sDb3IBxS3
-         fPfhT1B7HGC5UpOKgQPbPKJ8OQ+Wh5ei1AjIXfyGnvpaGsc8RYdCba4m2e8dSOSNKG0r
-         6IaEkkFLl4zzAivCnLsMl8DdDeZ7xDzu5G81g=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=CgWxSUbYLOGZZyY2g+rM9bDDaFkZNULbUUBKlJxmBF4=;
+        b=BWA0y3lxxjF6XwFU8l7c72d9ThTde95ktr6lT8LYhOc94tqjJLwqfz43M9aH1U0C0p
+         5HzThdNoxcQKe3xgTLi+bzvsG6ZPDQXXh5DGv+Q3I8xT/XrTkD6PwljP9jf23mRl+pST
+         YwLAes/LUTDbfIEBEUB4lZA99cbcGm1rgcdhA1cWnpPs3/wxvEGSG1WRpPhQsBFLoioc
+         JN1UgdJEUnH7y1ufQ/34bkjxsBegnvby8mgvuXIZBXlzS5zkchVkXhQG8bqYVPy7vfuh
+         Qwdfe1qbfo6gldSYpOIdZP9TkceK2C6oHLZBlzaga6h5cspqhnd3X2g08en9eeoAfbli
+         mgxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=04ThpYsSViFhWqOQvQSGIlYZRGcXGFtIhUlX8pfHTD8=;
-        b=DLMle3rBT5FB64Jk9Cu8f3eYwMY/3daZc7z+O2hNNbwt5pFquzv7nLowGJY4uNv0mj
-         uKcBG+PN5LFZZs7P+mUs34LQg5zJWR/oLVa9t2vrARLE2fjdrzL3Ij8qUs3dhSU0QO6y
-         +4w0I6BQOW7CInLVoEzrzDyL3oC4xg++q/Hg6QWSU5LYfQLRCIGNX6gAYmuIY2JeHpOh
-         hbi1xa1vMnyNz6L5bCUzZ3k1+tz/QQOXXZGGsaym8W56q7asN+U8fjaU9T3OiC238qr5
-         B+P/3RgZAVkkfiwH9M2aLqz8O/+3nScpD31x78+BKGDUOi9BddixEVME8i1VrIOBFgYl
-         nJtQ==
-X-Gm-Message-State: AOAM5300wHRy/OUwaVJZqGthLvjrALd7PddJlhopgrvW/ozb65VqlMum
-        I6R+hxE++nacojzzX1wzL4GZ5uBfyI2GR19WswbUdjtlX2xVCg==
-X-Google-Smtp-Source: ABdhPJyi2tYbl11+8oD/pTg7MqvJo0FJxH9J/m9YOi24yaf3RoUaPY8LWOMrUDpfxRRNH1Z9ZM9QvQ/K9quBWlRWBR8=
-X-Received: by 2002:a05:620a:1303:: with SMTP id o3mr5853719qkj.66.1603861861220;
- Tue, 27 Oct 2020 22:11:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201012033150.21056-1-billy_tsai@aspeedtech.com>
- <20201012033150.21056-3-billy_tsai@aspeedtech.com> <CACPK8XdYvSmwdAkBzAO3kC8_PYa3CtPkNb0VxcOhmb2UYz5zDA@mail.gmail.com>
- <E0B8BD13-86F6-486E-95DF-1038D7F59A8B@aspeedtech.com>
-In-Reply-To: <E0B8BD13-86F6-486E-95DF-1038D7F59A8B@aspeedtech.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 28 Oct 2020 05:10:49 +0000
-Message-ID: <CACPK8Xeg_LRGv1EEm7cdDWK2xST0mBP=iG7=43UE5qmEMMDsHQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] Arm: dts: aspeed-g6: Add sgpio node
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=CgWxSUbYLOGZZyY2g+rM9bDDaFkZNULbUUBKlJxmBF4=;
+        b=QnWRtg2hGke9BojpeGRsED21QQOcQXPyx9W348W8ALqW7xAnHNKBHKy3CM87HS99a6
+         r91n2sOLDpUjG6cogU6sEpY/zO5Blo680/ehkYN8wZJ5Way1FACfAeQB5MBaMCzmK9lg
+         cUMnN4jVZjLUK12NEMkNVJeTK0WeFs8grr2ojxygT3nrgUQCxs7dx5KzOS+jnawAG6PK
+         H8pNefZ9UT8weu2miR2JQWoJZw/jo0YiCULltZhn9GkH6NFFwVTrDIHgspDNucO/A2Ns
+         r6rkaLQRwYzJY6q9eoTDE0z95zAYLl1c+f0p2Fp2RCM189ql95gvX5FjkIn0O9H446Fn
+         L43Q==
+X-Gm-Message-State: AOAM533V9/QudEztWx8fKCXOttTCxwLdsrAPAs+3U3SwYkCWHZ1a7hHd
+        s6k9LviPzdMypLer6sNdDByX6Q6rRZUb5xM=
+X-Google-Smtp-Source: ABdhPJyJvwOrj6+Bei13dr1n3rIXvqqyum8tzbnrcvtqSWpkM1AC5gxQkx3Q5HG+U8owvfpMK7cXHQ==
+X-Received: by 2002:a17:90b:997:: with SMTP id bl23mr5650241pjb.140.1603870984211;
+        Wed, 28 Oct 2020 00:43:04 -0700 (PDT)
+Received: from localhost.localdomain ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id e7sm4289579pgj.19.2020.10.28.00.43.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 00:43:03 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
+Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] dt-bindings: clock: Add SDX55 GCC clock bindings
+Date:   Wed, 28 Oct 2020 13:12:29 +0530
+Message-Id: <20201028074232.22922-2-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
+References: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Oct 2020 at 04:56, Billy Tsai <billy_tsai@aspeedtech.com> wrote:
->
-> Hi Joel,
->
-> Thanks for the review.
->
-> On 2020/10/12, 12:35 PM, Joel Stanley wrote:
->
->     > On Mon, 12 Oct 2020 at 03:32, Billy Tsai <billy_tsai@aspeedtech.com> wrote:
->     > >
->     > > This patch is used to add sgpiom and sgpios nodes and add compatible
->     > > string for sgpiom.
->     >
->     > You also need to add sgpios documentation to the bindings docs.
->     >
->     > Whenever you add new device tree bindings to the kernel tree you
->     > should add documentation for them.
->     >
->     > When preparing patches for submission, use scripts/checkpatch.pl to
->     > check for common issues. It will warn you if you are adding strings
->     > that are not documented.
->     >
->     > Cheers,
->     >
->     > Joel
->     >
->    Because the driver of sgpios doesn't be implemented, so I don't know how to describe it at sgpio-aspeed.txt.
->    Can I just add  compatible string " aspeed,ast2600-sgpios " to the document for bypassing the warning of checkpatch?
+From: Vinod Koul <vkoul@kernel.org>
 
-Ignore the sgpios issue for now; we don't have a driver for it so
-there's no need to add strings. Drop that part from your dts patch.
+Add device tree bindings for global clock controller on SDX55 SoCs.
 
->     > >
->     > >  - compatible : Should be one of
->     > > -  "aspeed,ast2400-sgpio", "aspeed,ast2500-sgpio"
->     > > +  "aspeed,ast2400-sgpio", "aspeed,ast2500-sgpio", "aspeed,ast2600-sgpiom"
->     >
->     > I think we should add sgpiom strings for the ast2500 (and ast2400?)
->     > too, as this is how they should have been named in the first place:
->     >
->    If I change the document whether I also need to send the patch for sgpio driver and g5/g4.dtsi?
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ .../bindings/clock/qcom,gcc-sdx55.yaml        |  71 +++++++++++
+ include/dt-bindings/clock/qcom,gcc-sdx55.h    | 112 ++++++++++++++++++
+ 2 files changed, 183 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx55.h
 
-For the sgpiom? We already have a driver for that.
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+new file mode 100644
+index 000000000000..c24c9d9fb7dc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-sdx55.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Global Clock & Reset Controller Binding for SDX55
++
++maintainers:
++  - Vinod Koul <vkoul@kernel.org>
++  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on SDX55
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-sdx55.h
++
++properties:
++  compatible:
++    const: qcom,gcc-sdx55
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Sleep clock source
++
++  clock-names:
++    items:
++      - const: bi_tcxo
++      - const: sleep_clk
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    clock-controller@100000 {
++      compatible = "qcom,gcc-sdx55";
++      reg = <0x00100000 0x1f0000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>,
++               <&sleep_clk>;
++      clock-names = "bi_tcxo", "sleep_clk";
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++
++...
+diff --git a/include/dt-bindings/clock/qcom,gcc-sdx55.h b/include/dt-bindings/clock/qcom,gcc-sdx55.h
+new file mode 100644
+index 000000000000..09ca45c6de73
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,gcc-sdx55.h
+@@ -0,0 +1,112 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2018, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2020, Linaro Ltd.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SDX55_H
++#define _DT_BINDINGS_CLK_QCOM_GCC_SDX55_H
++
++#define GPLL0							3
++#define GPLL0_OUT_EVEN						4
++#define GPLL4							5
++#define GPLL4_OUT_EVEN						6
++#define GPLL5							7
++#define GCC_AHB_PCIE_LINK_CLK					8
++#define GCC_BLSP1_AHB_CLK					9
++#define GCC_BLSP1_QUP1_I2C_APPS_CLK				10
++#define GCC_BLSP1_QUP1_I2C_APPS_CLK_SRC				11
++#define GCC_BLSP1_QUP1_SPI_APPS_CLK				12
++#define GCC_BLSP1_QUP1_SPI_APPS_CLK_SRC				13
++#define GCC_BLSP1_QUP2_I2C_APPS_CLK				14
++#define GCC_BLSP1_QUP2_I2C_APPS_CLK_SRC				15
++#define GCC_BLSP1_QUP2_SPI_APPS_CLK				16
++#define GCC_BLSP1_QUP2_SPI_APPS_CLK_SRC				17
++#define GCC_BLSP1_QUP3_I2C_APPS_CLK				18
++#define GCC_BLSP1_QUP3_I2C_APPS_CLK_SRC				19
++#define GCC_BLSP1_QUP3_SPI_APPS_CLK				20
++#define GCC_BLSP1_QUP3_SPI_APPS_CLK_SRC				21
++#define GCC_BLSP1_QUP4_I2C_APPS_CLK				22
++#define GCC_BLSP1_QUP4_I2C_APPS_CLK_SRC				23
++#define GCC_BLSP1_QUP4_SPI_APPS_CLK				24
++#define GCC_BLSP1_QUP4_SPI_APPS_CLK_SRC				25
++#define GCC_BLSP1_UART1_APPS_CLK				26
++#define GCC_BLSP1_UART1_APPS_CLK_SRC				27
++#define GCC_BLSP1_UART2_APPS_CLK				28
++#define GCC_BLSP1_UART2_APPS_CLK_SRC				29
++#define GCC_BLSP1_UART3_APPS_CLK				30
++#define GCC_BLSP1_UART3_APPS_CLK_SRC				31
++#define GCC_BLSP1_UART4_APPS_CLK				32
++#define GCC_BLSP1_UART4_APPS_CLK_SRC				33
++#define GCC_BOOT_ROM_AHB_CLK					34
++#define GCC_CE1_AHB_CLK						35
++#define GCC_CE1_AXI_CLK						36
++#define GCC_CE1_CLK						37
++#define GCC_CPUSS_AHB_CLK					38
++#define GCC_CPUSS_AHB_CLK_SRC					39
++#define GCC_CPUSS_GNOC_CLK					40
++#define GCC_CPUSS_RBCPR_CLK					41
++#define GCC_CPUSS_RBCPR_CLK_SRC					42
++#define GCC_EMAC_CLK_SRC					43
++#define GCC_EMAC_PTP_CLK_SRC					44
++#define GCC_ETH_AXI_CLK						45
++#define GCC_ETH_PTP_CLK						46
++#define GCC_ETH_RGMII_CLK					47
++#define GCC_ETH_SLAVE_AHB_CLK					48
++#define GCC_GP1_CLK						49
++#define GCC_GP1_CLK_SRC						50
++#define GCC_GP2_CLK						51
++#define GCC_GP2_CLK_SRC						52
++#define GCC_GP3_CLK						53
++#define GCC_GP3_CLK_SRC						54
++#define GCC_PCIE_0_CLKREF_CLK					55
++#define GCC_PCIE_AUX_CLK					56
++#define GCC_PCIE_AUX_PHY_CLK_SRC				57
++#define GCC_PCIE_CFG_AHB_CLK					58
++#define GCC_PCIE_MSTR_AXI_CLK					59
++#define GCC_PCIE_PIPE_CLK					60
++#define GCC_PCIE_RCHNG_PHY_CLK					61
++#define GCC_PCIE_RCHNG_PHY_CLK_SRC				62
++#define GCC_PCIE_SLEEP_CLK					63
++#define GCC_PCIE_SLV_AXI_CLK					64
++#define GCC_PCIE_SLV_Q2A_AXI_CLK				65
++#define GCC_PDM2_CLK						66
++#define GCC_PDM2_CLK_SRC					67
++#define GCC_PDM_AHB_CLK						68
++#define GCC_PDM_XO4_CLK						69
++#define GCC_SDCC1_AHB_CLK					70
++#define GCC_SDCC1_APPS_CLK					71
++#define GCC_SDCC1_APPS_CLK_SRC					72
++#define GCC_SYS_NOC_CPUSS_AHB_CLK				73
++#define GCC_USB30_MASTER_CLK					74
++#define GCC_USB30_MASTER_CLK_SRC				75
++#define GCC_USB30_MOCK_UTMI_CLK					76
++#define GCC_USB30_MOCK_UTMI_CLK_SRC				77
++#define GCC_USB30_MSTR_AXI_CLK					78
++#define GCC_USB30_SLEEP_CLK					79
++#define GCC_USB30_SLV_AHB_CLK					80
++#define GCC_USB3_PHY_AUX_CLK					81
++#define GCC_USB3_PHY_AUX_CLK_SRC				82
++#define GCC_USB3_PHY_PIPE_CLK					83
++#define GCC_USB3_PRIM_CLKREF_CLK				84
++#define GCC_USB_PHY_CFG_AHB2PHY_CLK				85
++#define GCC_XO_DIV4_CLK						86
++#define GCC_XO_PCIE_LINK_CLK					87
++
++#define GCC_EMAC_BCR						0
++#define GCC_PCIE_BCR						1
++#define GCC_PCIE_LINK_DOWN_BCR					2
++#define GCC_PCIE_NOCSR_COM_PHY_BCR				3
++#define GCC_PCIE_PHY_BCR					4
++#define GCC_PCIE_PHY_CFG_AHB_BCR				5
++#define GCC_PCIE_PHY_COM_BCR					6
++#define GCC_PCIE_PHY_NOCSR_COM_PHY_BCR				7
++#define GCC_PDM_BCR						8
++#define GCC_QUSB2PHY_BCR					9
++#define GCC_TCSR_PCIE_BCR					10
++#define GCC_USB30_BCR						11
++#define GCC_USB3_PHY_BCR					12
++#define GCC_USB3PHY_PHY_BCR					13
++#define GCC_USB_PHY_CFG_AHB2PHY_BCR				14
++
++#endif
+-- 
+2.17.1
 
-As I said above, make this about fixing the sgpio master and put aside
-the sgpio slave issue for now.
-
-Cheers,
-
-Joel
-
->     > >  - compatible : Should be one of
->     > >    "aspeed,ast2400-sgpio", "aspeed,ast2500-sgpio"
->     > >   "aspeed,ast2400-sgpiom", "aspeed,ast2500-sgpiom", "aspeed,ast2600-sgpiom"
