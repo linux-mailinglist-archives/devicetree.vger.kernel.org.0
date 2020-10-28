@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 325C929DF94
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A279429DF7C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730500AbgJ1WKV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 28 Oct 2020 18:10:21 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:40174 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730489AbgJ1WKT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:10:19 -0400
-Received: from relay4-d.mail.gandi.net (unknown [217.70.183.196])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 0E2B13AC1A2;
-        Wed, 28 Oct 2020 09:49:00 +0000 (UTC)
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 2CE3FE0005;
-        Wed, 28 Oct 2020 09:48:36 +0000 (UTC)
-Date:   Wed, 28 Oct 2020 10:48:35 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Md Sadre Alam <mdalam@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, richard@nod.at,
-        vigneshr@ti.com, robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sricharan@codeaurora.org
-Subject: Re: [PATCH 0/5] mtd: rawnand: qcom: Add support for QSPI nand
-Message-ID: <20201028104835.3dc31745@xps13>
-In-Reply-To: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
-References: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2404088AbgJ2BBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 21:01:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60472 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731504AbgJ1WRX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 18:17:23 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9C49B24729;
+        Wed, 28 Oct 2020 12:33:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603888384;
+        bh=JjosDQUQWy+igGYJmi0WKgC37EooXcht+4cENWAQ6Ak=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TbLyeh/f2x+UbRkun//FS7B6sqSJ49mZj3OjgR6PH4K3KimUfhQFLFQ6BQPpDkCrd
+         xi6fy+k5S0DCdxxqLMWbdRDThoe5KIcN/Br4V+NWhUhQd3f5FlHfQqGnMXr4lOYcJO
+         tMDfNOqREnHBUA/He70ECmiVEDgoqoC5rZiPVyWs=
+Date:   Wed, 28 Oct 2020 12:32:58 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: regulator: add support for MT6392
+Message-ID: <20201028123258.GA6302@sirena.org.uk>
+References: <20201024200304.1427864-1-fparent@baylibre.com>
+ <20201026121316.GB7402@sirena.org.uk>
+ <CAOwMV_w5N0_Qgg3MFph1147cbvFP1Y=mUtNjGbcr-Tca4ZJ3yA@mail.gmail.com>
+ <20201026172431.GI7402@sirena.org.uk>
+ <CAOwMV_xt=OV6cKqQTZUUSAvYKxUUQZAUywAHtFFHL=E5xVu-Zg@mail.gmail.com>
+ <20201026203608.GJ7402@sirena.org.uk>
+ <CAOwMV_xUWea81rKFE=zD4xWL3rZ5G8cpWm5xJHT_AX=_frLDRQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="qMm9M+Fa2AknHoGS"
+Content-Disposition: inline
+In-Reply-To: <CAOwMV_xUWea81rKFE=zD4xWL3rZ5G8cpWm5xJHT_AX=_frLDRQ@mail.gmail.com>
+X-Cookie: Allow 6 to 8 weeks for delivery.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
 
-Md Sadre Alam <mdalam@codeaurora.org> wrote on Sat, 10 Oct 2020
-11:01:37 +0530:
+--qMm9M+Fa2AknHoGS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> QPIC 2.0 supports Serial NAND support in addition to all features and
-> commands in QPIC 1.0 for parallel NAND. Parallel and Serial NAND cannot
-> operate simultaneously. QSPI nand devices will connect to QPIC IO_MACRO
-> block of QPIC controller. There is a separate IO_MACRO clock for IO_MACRO
-> block. Default IO_MACRO block divide the input clock by 4. so if IO_MACRO
-> input clock is 320MHz then on bus it will be 80MHz, so QSPI nand device
-> should also support this frequency.
-> 
-> QPIC provides 4 data pins to QSPI nand. In standard SPI mode (x1 mode) data
-> transfer will occur on only 2 pins one pin for Serial data in and one for
-> serial data out. In QUAD SPI mode (x4 mode) data transfer will occur at all
-> the four data lines. QPIC controller supports command for x1 mode and x4 mode.
-> 
-> Md Sadre Alam (5):
->   dt-bindings: qcom_nandc: IPQ5018 QPIC NAND documentation
->   mtd: rawnand: qcom: Add initial support for qspi nand
->   mtd: rawnand: qcom: Read QPIC version
->   mtd: rawnand: qcom: Enable support for erase,read & write for serial
->     nand.
->   mtd: rawnand: qcom: Add support for serial training.
-> 
->  .../devicetree/bindings/mtd/qcom_nandc.txt         |   3 +
->  drivers/mtd/nand/raw/nand_ids.c                    |  13 +
->  drivers/mtd/nand/raw/qcom_nandc.c                  | 502 ++++++++++++++++++++-
->  3 files changed, 494 insertions(+), 24 deletions(-)
-> 
+On Tue, Oct 27, 2020 at 10:16:22PM +0100, Fabien Parent wrote:
 
-I'm sorry but this series clearly breaks the current layering. I cannot
-authorize SPI-NAND code to fall into the raw NAND subsystem.
+> You are correct, the regulator driver is running and probes
+> successfully. From my investigation it seems the failure when removing
+> the compatible string from the MFD and the DTS is because the
+> regulator driver does not have a of_node matched since the compatible
+> is gone. Because of that all the regulators registered by the driver
+> are not linked to the regulator definitions in the device tree. And
+> all the drivers that tries to acquire a regulator get -EPROBE_DEFER
+> because of it.
 
-As both typologies cannot be used at the same time, I guess you should
-have another driver handling this feature under the spi/ subsystem +
-a few declarations in the SPI-NAND devices list.
+You should be using the of_node from the parent device to find the
+regulators set, look at how other drivers do this.
 
-Thanks,
-Miquèl
+--qMm9M+Fa2AknHoGS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+ZZPkACgkQJNaLcl1U
+h9DLuwf8DzKutRHbnWwgtdxlm8DfM8hWMooeqasKequJUEAmXWGYbeSU5pTqxSXk
+b0EkuVYWkUZn8gQI7baerDzLXYRr2pJ64DMrFazHGKBOKzcWza4s93rt7B7O2ORg
+5Y4BqFFcD3qAH6ESQ+fGxT7bGLxtWX9CdZBUK8boENVDTn7Q/ZF833nj6jrgFaq6
+w3ZzA7Vh4xp9HU16R3bpQEtAvVZgj1QR0yD4T7aXooPAWsYhkm1sRwUyntmoiPse
+Qt0z6RRjCFjMuiVk06KlVFvSQ3irJ4YCDEw/o0jyr+97cIvXuAqB4DuRBN+kYScs
+s97xCQiyWLaspaWtWP3UyF3CS1IO8w==
+=epRM
+-----END PGP SIGNATURE-----
+
+--qMm9M+Fa2AknHoGS--
