@@ -2,101 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3261A29D337
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E8A229D32D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725781AbgJ1Vly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:41:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47238 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725779AbgJ1Vlx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:41:53 -0400
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1837C0613D1;
-        Wed, 28 Oct 2020 14:41:52 -0700 (PDT)
-Received: by mail-io1-xd43.google.com with SMTP id u62so1064165iod.8;
-        Wed, 28 Oct 2020 14:41:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1KYUIsk757yjfOxOTjonub4YNOxpUYnyLgvt2WlwCKA=;
-        b=CAj6eWB0sS+KsIEA8xhTCYPe5pKspk9Ybsrx10g+8JQkR4ESP2zrbUkymyWAqsq/xs
-         yp0cbkj/HY3yu/hbdX4Sbi7hBUS3W+lUF2jmV7VixEZ4x8skpPJoCA3dbKLvdbUHvdM7
-         GZiHCfEh+1ocFVmHvVqBqL37mcGEqztbBVIG0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1KYUIsk757yjfOxOTjonub4YNOxpUYnyLgvt2WlwCKA=;
-        b=MXTICkLPfqFjkb8yuGoQGug3wVNzBnA39BfluSHDMGKB7r48MEW5fHKK0q1O/xrtHS
-         LuZj82Ph61QmZkYHQamobpztEGNNnEHb+FmXeZuboEd4BI+CTos2gekZpViNygBsx1Yn
-         NyM1OW7p9K44j5/lXG5WFdYtwifXFn7b6IwmgIEGjWnUpp6pXcEhnJH6YjQzWG8Y2PDU
-         xWxC+msRwSrct8fyCmj+AOIklZP+XwGSzwsZz0uBaq1gLMlCEpDQv/3qu0u5JH57XLv/
-         IFTTNqRkpaQCTeNcR7iefaZvXxp89TSZQZCrnM0bprgpZxDjenA1lhV35X8SNDnMNmYa
-         sskA==
-X-Gm-Message-State: AOAM533Hy2AeOeSV8L8hwcnITlagSfs/Fl8Kuh1EHsC6+r2jUprdfKdX
-        TseDO6I7vCmAk7ggr+4UbDXKxsM8aB0zZwZkiuCxVcm5H/abrw==
-X-Google-Smtp-Source: ABdhPJxjYiVx/jlqIHQCiS7hEo1CokIeLOSw3uzWA56UCJv3gAepbfgYpwPTPl37ADtRKOhjzlpQ7YzLLsQdjIMDdXw=
-X-Received: by 2002:a05:622a:d5:: with SMTP id p21mr67362qtw.363.1603862906529;
- Tue, 27 Oct 2020 22:28:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201027123722.2935-1-aladyshev22@gmail.com> <20201027123722.2935-2-aladyshev22@gmail.com>
-In-Reply-To: <20201027123722.2935-2-aladyshev22@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 28 Oct 2020 05:28:13 +0000
-Message-ID: <CACPK8XeaWbrWBKonxqW0Gu2AnB3mXBNXsEDmsEP_hzT1e8gX1w@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ARM: dts: aspeed: amd-ethanolx: Enable KCS channel 3
-To:     Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
+        id S1727335AbgJ1VlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:41:21 -0400
+Received: from mail.thorsis.com ([92.198.35.195]:57588 "EHLO mail.thorsis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725601AbgJ1VlT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 17:41:19 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.thorsis.com (Postfix) with ESMTP id E87BE1DAB;
+        Wed, 28 Oct 2020 08:34:49 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
+Received: from mail.thorsis.com ([127.0.0.1])
+        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id GP4IZOfp6VRq; Wed, 28 Oct 2020 08:34:49 +0100 (CET)
+Received: by mail.thorsis.com (Postfix, from userid 109)
+        id C2C943F0C; Wed, 28 Oct 2020 08:34:48 +0100 (CET)
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
+        NO_RELAYS autolearn=unavailable autolearn_force=no version=3.4.2
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-leds@vger.kernel.org
+Subject: Re: [Linux-stm32] [PATCH v7 10/12] ARM: dts: stm32: Fix schema warnings for pwm-leds
+Date:   Wed, 28 Oct 2020 08:34:38 +0100
+Message-ID: <5231529.NqohY00Rok@ada>
+In-Reply-To: <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
+References: <20201005203451.9985-1-post@lespocky.de> <20201027100536.cpfizc67gwrolp2z@falbala.internal.home.lespocky.de> <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Oct 2020 at 12:41, Konstantin Aladyshev
-<aladyshev22@gmail.com> wrote:
->
-> The KCS interface on the LPC channel 3 in the controller
-> is used for the in-band BMC<->BIOS IPMI communication.
-> 0xCA2 is a default host CPU LPC IO address for this
-> interface.
->
-> Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+Hello Ahmad,
 
-I don't have any docs on the platform so I'll wait for a review from
-Supreeth before applying this one.
+Am Dienstag, 27. Oktober 2020, 11:58:10 CET schrieb Ahmad Fatoum:
+> Hello,
+>=20
+> On 10/27/20 11:05 AM, Alexander Dahl wrote:
+> > Hello Ahmad,
+> >=20
+> > thanks for your feedback, comments below.
+> >=20
+> >>> -	led-rgb {
+> >>> +	led-controller-2 {
+> >>=20
+> >> Is a single RGB LED really a controller?
+> >=20
+> > I just followed the recommendations by Rob here.
+>=20
+> Do you happen to know if the new multicolor LED support could be used her=
+e?
 
-It's a correct use of the bindings:
+AFAIK not yet. The multicolor class should be ready and it is used by some=
+=20
+drivers for I=B2C connected LED controllers, but if I understood Pavel=20
+correctly, additional work has to be done for a gpio and/or pwm multicolor=
+=20
+driver. See this thread from August for example:
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+https://lore.kernel.org/linux-leds/2530787.iFCFyWWcSu@g550jk/
 
-> ---
->  arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> index 89ddc3847222..2a86bda8afd8 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> @@ -147,6 +147,11 @@
->         aspeed,lpc-io-reg = <0x62>;
->  };
->
-> +&kcs3 {
-> +       status = "okay";
-> +       aspeed,lpc-io-reg = <0xCA2>;
-> +};
-> +
->  &kcs4 {
->         status = "okay";
->         aspeed,lpc-io-reg = <0x97DE>;
-> --
-> 2.17.1
->
+>=20
+> I find it unfortunate that the device tree loses information relevant to
+> humans to adhere to a fixed nomenclature. Apparently led-controller isn't
+> even codified in the YAML binding (It's just in the examples). If you
+> respin, please add a comment that this is a single RGB led. I'd prefer to
+> keep the information in the DTB as well though.
+
+The "new" attributes 'function' and 'color' attributes should cover this=20
+information. IIRC those were introduced sometime before v5.4 and documentat=
+ion=20
+is in the leds/common.yaml binding. I don't see it in the scope of this pat=
+ch=20
+series, but if we would merge this warning fix first, the information is lo=
+st,=20
+so maybe those attributes should be added before?=20
+
+My heuristics on that would be looking at the label and if there's a distin=
+ct=20
+color in it, add the color property. I could do that for all pwm LEDs known=
+ to=20
+the tree currently. That would be a bigger task for GPIO leds though. ;-)
+
+>=20
+> >>>  		compatible =3D "pwm-leds";
+> >>>=20
+> >>> -		led-red {
+> >>> +		led-2 {
+> >>=20
+> >> Shouldn't this have been led-1 as well or is the numbering "global" ?
+> >=20
+> > Also good question. This numbering is for dts only, it usually does
+> > not correspond with LEDs on the board, so it could be numbered per
+> > led-controller as well?
+>=20
+> I'd prefer that it starts by 1. That way it's aligned with PWM channel
+> ID.
+
+Ack.
+
+>=20
+> Thanks for fixing the dtschema warnings by the way!
+
+Well, I "introduced" them by converting the leds-pwm binding to yaml (not=20
+merged yet), so I could as well fix the warnings then? ;-)
+
+Greets
+Alex
+
+>=20
+> Cheers,
+> Ahmad
+>=20
+> > Greets
+> > Alex
+> >=20
+> >>>  			label =3D "mc1:red:rgb";
+> >>>  			pwms =3D <&leds_pwm 1 1000000 0>;
+> >>>  			max-brightness =3D <255>;
+> >>>  			active-low;
+> >>>  	=09
+> >>>  		};
+> >>>=20
+> >>> -		led-green {
+> >>> +		led-3 {
+> >>>=20
+> >>>  			label =3D "mc1:green:rgb";
+> >>>  			pwms =3D <&leds_pwm 2 1000000 0>;
+> >>>  			max-brightness =3D <255>;
+> >>>  			active-low;
+> >>>  	=09
+> >>>  		};
+> >>>=20
+> >>> -		led-blue {
+> >>> +		led-4 {
+> >>>=20
+> >>>  			label =3D "mc1:blue:rgb";
+> >>>  			pwms =3D <&leds_pwm 3 1000000 0>;
+> >>>  			max-brightness =3D <255>;
+
+
+=2D-=20
+
+
+
