@@ -2,331 +2,374 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE8029DA5D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:21:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 038DD29DA56
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:21:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730170AbgJ1XVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:21:02 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:46919 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728764AbgJ1XU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:20:59 -0400
-Received: by mail-lf1-f67.google.com with SMTP id v6so899415lfa.13;
-        Wed, 28 Oct 2020 16:20:56 -0700 (PDT)
+        id S2388110AbgJ1XU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:20:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35826 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728724AbgJ1XUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:20:01 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DF9C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:20:01 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id b1so913262lfp.11
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:20:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=q3zYs/WtFnewpmjmrbnB8eAsl40pThua2WUxfEmYh9E=;
+        b=tPBZHF3srGHWlh07Ke8pc9v1gmbYnbu0NWoxvBeKyGU8E/9zAkS9slF58fw506vygA
+         gLlWMQ1e1XHUpf2MsWGuGdDS6Af2dXjnRePDGkRh025wBPovtOB9LpnGtMWsr+CP1yq3
+         jPLAipOsw5FjKyIqn27LXdTe/fhlxa5w5bwZE5DuKKPrt8b8bSFLQZE4VMQ5uDEKNLLe
+         vRJyIy0uPVbIS683xlWrjfcA6bf7ccNcJdeKjbPRSIAsH2PcEEP9nKO0yOhO2/6h0Vzm
+         VWLCNUvuaiE2oUI8DTByLIzW6YKXdF4yjL+H4WHUd5vHFe9589qombFsmLgZfzTWCWBf
+         x+2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8i7Bc7KFVLsx0fKOAsAyF3DaujVKz4hLo6VsJaJEHnI=;
-        b=QC3O304ntgYI8wryc6DBpkjC3ETjLpVcaC3iV7v8SzmgXuDdIgfgECZLHSS3Q/4gG2
-         5fWGsGLY182scjRN0vpT9cFvH8ScG7SnFXm4UBS7do0IDhKuLqxk0aoOgClhKb5o7AQ+
-         XqgXBUvSOJrYCkqZDTpsiqKHvuPDKluJvvtKI7b0LsDAWGq1zIZF6tckOP7BTd3OzWkU
-         EOh2pWg4oKg8ieysPj+0PUpoweTt3CyW3jO+7FBwf2eO6d5Ir+ADrytJ0whsS/SE3eRe
-         6NUmHgdPfftODmW1caU1yfHHtCaBN4p+eRJfMJyOfr9ES2fFT30LoFR35bIsKqfAV6Q5
-         Y0ng==
-X-Gm-Message-State: AOAM530SKMd//u710Q/bC7Qt0YOlmlbnLXbLX4sw81tcLJUGaAwgza9d
-        Ip18a29MZsYC5UwwhKlVYvZhF1nB4GEPnw==
-X-Google-Smtp-Source: ABdhPJw+/DJDETZf+qXtendnQg83lCMOsmSDDv7cxqwiBLCl/XtNa8Q3AO4mET1xfaqT/piCf5pOtg==
-X-Received: by 2002:ac2:592c:: with SMTP id v12mr2231006lfi.400.1603878407819;
-        Wed, 28 Oct 2020 02:46:47 -0700 (PDT)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id q27sm470092lfd.261.2020.10.28.02.46.46
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=q3zYs/WtFnewpmjmrbnB8eAsl40pThua2WUxfEmYh9E=;
+        b=e0vY2kMFxOCw0GPELHimaNuNjPJt9bqAfr5HZHc1w6xk6XHwDbWJ4KljGNt9FO0XN4
+         5xx+jCEd50SrDPvin+nuO1BD6sKTxLc8z4WF75QSyMkJpQxENiVwnwurA7hEJDCC/bhc
+         McfLXy6eS81UEI7c8us1KQwq5mGRxCIYcE8xe3wzIMRaFyI2RxcnO2KF8Tm8DfOo3CP+
+         0y4F3MkrI9u7re1OVgjDvQD1L2WnB1l9maqDOT0pY4yDaCQdXTcrNm4kO31tc/ZrovZ6
+         uvz2l7N7mvI1DW+FKv/drjmvkiRQql/aQjNP7bepBkLCYqiXqjm3UtCITYGpD21CUdYw
+         IqzA==
+X-Gm-Message-State: AOAM531u70mTcNwnEPr7eBu0vcsSGvDNpi9Vp8ZWg4d7Fj4pD8EfkZJY
+        7wan7/y8u5822UwmJIXrBRKxbwyg2gU=
+X-Google-Smtp-Source: ABdhPJwQkGtWCn0vgcdqASbApOcOXQoAglvCDcvNiYpB+UgvyWthfp5Hk+/Y0I4n29+eyky6g8G+lQ==
+X-Received: by 2002:a19:810:: with SMTP id 16mr2359106lfi.460.1603879914558;
+        Wed, 28 Oct 2020 03:11:54 -0700 (PDT)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id m10sm479084lfo.237.2020.10.28.03.11.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 02:46:47 -0700 (PDT)
-Date:   Wed, 28 Oct 2020 11:46:37 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     mazziesaccount@gmail.com, matti.vaittinen@fi.rohmeurope.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
-        linux-watchdog@vger.kernel.org
-Subject: [PATCH v4 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
-Message-ID: <c7a838830b7d5ea1c281e419cf0eff0cc50363e0.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+        Wed, 28 Oct 2020 03:11:54 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 2/2] arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300 early DTS files
+Date:   Wed, 28 Oct 2020 11:11:23 +0100
+Message-Id: <20201028101123.6293-2-zajec5@gmail.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20201028101123.6293-1-zajec5@gmail.com>
+References: <20201028101123.6293-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
-mainly used to power the R-Car series processors.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+They don't descibe hardware fully yet but it's enough to boot a system.
+
+Some missing blocks:
+1. PMC (Power Management Controller?)
+2. Crypto
+3. Thermal
+
+Asus misses defining full NAND partitions layout and buttons.
+
+Further changes will fill those gaps as soon as required bindings will
+be found / tested / added.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- drivers/mfd/Kconfig              |  11 +++
- drivers/mfd/Makefile             |   1 +
- drivers/mfd/rohm-bd9576.c        | 130 +++++++++++++++++++++++++++++++
- include/linux/mfd/rohm-bd957x.h  |  59 ++++++++++++++
- include/linux/mfd/rohm-generic.h |   2 +
- 5 files changed, 203 insertions(+)
- create mode 100644 drivers/mfd/rohm-bd9576.c
- create mode 100644 include/linux/mfd/rohm-bd957x.h
+ arch/arm64/boot/dts/broadcom/Makefile         |   1 +
+ arch/arm64/boot/dts/broadcom/bcm4908/Makefile |   2 +
+ .../bcm4908/bcm4908-asus-gt-ac5300.dts        |  64 ++++++
+ .../boot/dts/broadcom/bcm4908/bcm4908.dtsi    | 182 ++++++++++++++++++
+ 4 files changed, 249 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm4908/Makefile
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
 
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 8b99a13669bf..dcb2b14a570e 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -2010,6 +2010,17 @@ config MFD_ROHM_BD71828
- 	  Also included is a Coulomb counter, a real-time clock (RTC), and
- 	  a 32.768 kHz clock gate.
+diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
+index cb7de8d99223..998e240aa698 100644
+--- a/arch/arm64/boot/dts/broadcom/Makefile
++++ b/arch/arm64/boot/dts/broadcom/Makefile
+@@ -5,5 +5,6 @@ dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-4-b.dtb \
+ 			      bcm2837-rpi-3-b-plus.dtb \
+ 			      bcm2837-rpi-cm3-io3.dtb
  
-+config MFD_ROHM_BD957XMUF
-+	tristate "ROHM BD9576MUF and BD9573MUF Power Management ICs"
-+	depends on I2C=y
-+	depends on OF
-+	select REGMAP_I2C
-+	select MFD_CORE
-+	help
-+	  Select this option to get support for the ROHM BD9576MUF and
-+	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
-+	  designed to be used to power R-Car series processors.
-+
- config MFD_STM32_LPTIMER
- 	tristate "Support for STM32 Low-Power Timer"
- 	depends on (ARCH_STM32 && OF) || COMPILE_TEST
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 1780019d2474..837f68c9f336 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -261,6 +261,7 @@ obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
- obj-$(CONFIG_MFD_ROHM_BD70528)	+= rohm-bd70528.o
- obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
- obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
-+obj-$(CONFIG_MFD_ROHM_BD957XMUF)	+= rohm-bd9576.o
- obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
- obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
- 
-diff --git a/drivers/mfd/rohm-bd9576.c b/drivers/mfd/rohm-bd9576.c
++subdir-y	+= bcm4908
+ subdir-y	+= northstar2
+ subdir-y	+= stingray
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/Makefile b/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
 new file mode 100644
-index 000000000000..a23ded510209
+index 000000000000..ef26c23603ce
 --- /dev/null
-+++ b/drivers/mfd/rohm-bd9576.c
-@@ -0,0 +1,130 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+//
-+// Copyright (C) 2020 ROHM Semiconductors
-+//
-+// ROHM BD9576MUF and BD9573MUF PMIC driver
-+
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/ioport.h>
-+#include <linux/irq.h>
-+#include <linux/mfd/core.h>
-+#include <linux/mfd/rohm-bd957x.h>
-+#include <linux/mfd/rohm-generic.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+#include <linux/types.h>
-+
-+static struct mfd_cell bd9573_mfd_cells[] = {
-+	{ .name = "bd9573-pmic", },
-+	{ .name = "bd9576-wdt", },
-+};
-+
-+
-+static struct mfd_cell bd9576_mfd_cells[] = {
-+	{ .name = "bd9576-pmic", },
-+	{ .name = "bd9576-wdt", },
-+};
-+
-+static const struct regmap_range volatile_ranges[] = {
-+	{
-+		.range_min = BD957X_REG_SMRB_ASSERT,
-+		.range_max = BD957X_REG_SMRB_ASSERT,
-+	},
-+	{
-+		.range_min = BD957X_REG_PMIC_INTERNAL_STAT,
-+		.range_max = BD957X_REG_PMIC_INTERNAL_STAT,
-+	},
-+	{
-+		.range_min = BD957X_REG_INT_THERM_STAT,
-+		.range_max = BD957X_REG_INT_THERM_STAT,
-+	},
-+	{
-+		.range_min = BD957X_REG_INT_OVP_STAT,
-+		.range_max = BD957X_REG_INT_SYS_STAT,
-+	}, {
-+		.range_min = BD957X_REG_INT_MAIN_STAT,
-+		.range_max = BD957X_REG_INT_MAIN_STAT,
-+	},
-+};
-+
-+static const struct regmap_access_table volatile_regs = {
-+	.yes_ranges = &volatile_ranges[0],
-+	.n_yes_ranges = ARRAY_SIZE(volatile_ranges),
-+};
-+
-+static struct regmap_config bd957x_regmap = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.volatile_table = &volatile_regs,
-+	.max_register = BD957X_MAX_REGISTER,
-+	.cache_type = REGCACHE_RBTREE,
-+};
-+
-+static int bd957x_i2c_probe(struct i2c_client *i2c,
-+			     const struct i2c_device_id *id)
-+{
-+	int ret;
-+	struct regmap *regmap;
-+	struct mfd_cell *mfd;
-+	int cells;
-+	unsigned int chip_type;
-+
-+	chip_type = (unsigned int)(uintptr_t)
-+		    of_device_get_match_data(&i2c->dev);
-+
-+	switch (chip_type) {
-+	case ROHM_CHIP_TYPE_BD9576:
-+		mfd = bd9576_mfd_cells;
-+		cells = ARRAY_SIZE(bd9576_mfd_cells);
-+		break;
-+	case ROHM_CHIP_TYPE_BD9573:
-+		mfd = bd9573_mfd_cells;
-+		cells = ARRAY_SIZE(bd9573_mfd_cells);
-+		break;
-+	default:
-+		dev_err(&i2c->dev, "Unknown device type");
-+		return -EINVAL;
-+	}
-+
-+	regmap = devm_regmap_init_i2c(i2c, &bd957x_regmap);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&i2c->dev, "Failed to initialize Regmap\n");
-+		return PTR_ERR(regmap);
-+	}
-+
-+	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, mfd, cells,
-+				   NULL, 0, NULL);
-+	if (ret)
-+		dev_err(&i2c->dev, "Failed to create subdevices\n");
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id bd957x_of_match[] = {
-+	{
-+		.compatible = "rohm,bd9576",
-+		.data = (void *)ROHM_CHIP_TYPE_BD9576,
-+	},
-+	{
-+		.compatible = "rohm,bd9573",
-+		.data = (void *)ROHM_CHIP_TYPE_BD9573,
-+	},
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, bd957x_of_match);
-+
-+static struct i2c_driver bd957x_drv = {
-+	.driver = {
-+		.name = "rohm-bd957x",
-+		.of_match_table = bd957x_of_match,
-+	},
-+	.probe = &bd957x_i2c_probe,
-+};
-+
-+module_i2c_driver(bd957x_drv);
-+
-+MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
-+MODULE_DESCRIPTION("ROHM BD9576MUF and BD9573MUF Power Management IC driver");
-+MODULE_LICENSE("GPL");
-diff --git a/include/linux/mfd/rohm-bd957x.h b/include/linux/mfd/rohm-bd957x.h
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
+@@ -0,0 +1,2 @@
++# SPDX-License-Identifier: GPL-2.0
++dtb-$(CONFIG_ARCH_BCM4908) += bcm4908-asus-gt-ac5300.dtb
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
 new file mode 100644
-index 000000000000..3e7ca6fe5d4f
+index 000000000000..9b87aab5f8b2
 --- /dev/null
-+++ b/include/linux/mfd/rohm-bd957x.h
-@@ -0,0 +1,59 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/* Copyright (C) 2020 ROHM Semiconductors */
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+@@ -0,0 +1,64 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +
-+#ifndef __LINUX_MFD_BD957X_H__
-+#define __LINUX_MFD_BD957X_H__
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
 +
-+enum {
-+	BD957X_VD50,
-+	BD957X_VD18,
-+	BD957X_VDDDR,
-+	BD957X_VD10,
-+	BD957X_VOUTL1,
-+	BD957X_VOUTS1,
++#include "bcm4908.dtsi"
++
++/ {
++	compatible = "asus,gt-ac5300", "brcm,bcm4908";
++	model = "Asus GT-AC5300";
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x00 0x00 0x00 0x40000000>;
++	};
++
++	gpio-keys-polled {
++		compatible = "gpio-keys-polled";
++		poll-interval = <100>;
++
++		wifi {
++			label = "WiFi";
++			linux,code = <KEY_RFKILL>;
++			gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
++		};
++
++		wps {
++			label = "WPS";
++			linux,code = <KEY_WPS_BUTTON>;
++			gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
++		};
++
++		restart {
++			label = "Reset";
++			linux,code = <KEY_RESTART>;
++			gpios = <&gpio0 30 GPIO_ACTIVE_LOW>;
++		};
++
++		brightness {
++			label = "LEDs";
++			linux,code = <KEY_BRIGHTNESS_ZERO>;
++			gpios = <&gpio0 31 GPIO_ACTIVE_LOW>;
++		};
++	};
 +};
 +
-+#define BD957X_REG_SMRB_ASSERT		0x15
-+#define BD957X_REG_PMIC_INTERNAL_STAT	0x20
-+#define BD957X_REG_INT_THERM_STAT	0x23
-+#define BD957X_REG_INT_THERM_MASK 0x24
-+#define BD957X_REG_INT_OVP_STAT 0x25
-+#define BD957X_REG_INT_SCP_STAT 0x26
-+#define BD957X_REG_INT_OCP_STAT 0x27
-+#define BD957X_REG_INT_OVD_STAT 0x28
-+#define BD957X_REG_INT_UVD_STAT 0x29
-+#define BD957X_REG_INT_UVP_STAT 0x2a
-+#define BD957X_REG_INT_SYS_STAT 0x2b
-+#define BD957X_REG_INT_SYS_MASK 0x2c
-+#define BD957X_REG_INT_MAIN_STAT 0x30
-+#define BD957X_REG_INT_MAIN_MASK 0x31
++&nandcs {
++	nand-ecc-strength = <4>;
++	nand-ecc-step-size = <512>;
 +
-+#define BD957X_REG_WDT_CONF 0x16
++	#address-cells = <1>;
++	#size-cells = <0>;
 +
-+#define BD957X_REG_POW_TRIGGER1 0x41
-+#define BD957X_REG_POW_TRIGGER2 0x42
-+#define BD957X_REG_POW_TRIGGER3 0x43
-+#define BD957X_REG_POW_TRIGGER4 0x44
-+#define BD957X_REG_POW_TRIGGERL1 0x45
-+#define BD957X_REG_POW_TRIGGERS1 0x46
++	partitions {
++		compatible = "fixed-partitions";
++		#address-cells = <1>;
++		#size-cells = <1>;
 +
-+#define BD957X_REGULATOR_EN_MASK 0xff
-+#define BD957X_REGULATOR_DIS_VAL 0xff
++		partition@0 {
++			label = "cferom";
++			reg = <0x000000000000 0x000000100000>;
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+new file mode 100644
+index 000000000000..af87a844ad82
+--- /dev/null
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -0,0 +1,182 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +
-+#define BD957X_VSEL_REG_MASK	0xff
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+#define BD957X_MASK_VOUT1_TUNE	0x87
-+#define BD957X_MASK_VOUT2_TUNE	0x87
-+#define BD957X_MASK_VOUT3_TUNE	0x1f
-+#define BD957X_MASK_VOUT4_TUNE	0x1f
-+#define BD957X_MASK_VOUTL1_TUNE	0x87
++/dts-v1/;
 +
-+#define BD957X_REG_VOUT1_TUNE	0x50
-+#define BD957X_REG_VOUT2_TUNE	0x53
-+#define BD957X_REG_VOUT3_TUNE	0x56
-+#define BD957X_REG_VOUT4_TUNE	0x59
-+#define BD957X_REG_VOUTL1_TUNE	0x5c
++/ {
++	interrupt-parent = <&gic>;
 +
-+#define BD957X_MAX_REGISTER 0x61
++	#address-cells = <2>;
++	#size-cells = <2>;
 +
-+#endif
-diff --git a/include/linux/mfd/rohm-generic.h b/include/linux/mfd/rohm-generic.h
-index 4283b5b33e04..58b4f1a0f4af 100644
---- a/include/linux/mfd/rohm-generic.h
-+++ b/include/linux/mfd/rohm-generic.h
-@@ -12,6 +12,8 @@ enum rohm_chip_type {
- 	ROHM_CHIP_TYPE_BD71847,
- 	ROHM_CHIP_TYPE_BD70528,
- 	ROHM_CHIP_TYPE_BD71828,
-+	ROHM_CHIP_TYPE_BD9576,
-+	ROHM_CHIP_TYPE_BD9573,
- 	ROHM_CHIP_TYPE_AMOUNT
- };
- 
++	aliases {
++		serial0 = &uart0;
++	};
++
++	chosen {
++		bootargs = "earlycon=bcm63xx_uart,0xff800640";
++		stdout-path = "serial0:115200n8";
++	};
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "brcm,cortex-b53", "arm,cortex-a53";
++			reg = <0x0>;
++			next-level-cache = <&l2>;
++		};
++
++		cpu1: cpu@1 {
++			device_type = "cpu";
++			compatible = "brcm,cortex-b53", "arm,cortex-a53";
++			reg = <0x1>;
++			enable-method = "spin-table";
++			cpu-release-addr = <0x0 0xfff8>;
++			next-level-cache = <&l2>;
++		};
++
++		cpu2: cpu@2 {
++			device_type = "cpu";
++			compatible = "brcm,cortex-b53", "arm,cortex-a53";
++			reg = <0x2>;
++			enable-method = "spin-table";
++			cpu-release-addr = <0x0 0xfff8>;
++			next-level-cache = <&l2>;
++		};
++
++		cpu3: cpu@3 {
++			device_type = "cpu";
++			compatible = "brcm,cortex-b53", "arm,cortex-a53";
++			reg = <0x3>;
++			enable-method = "spin-table";
++			cpu-release-addr = <0x0 0xfff8>;
++			next-level-cache = <&l2>;
++		};
++
++		l2: l2-cache0 {
++			compatible = "cache";
++		};
++	};
++
++	gic: interrupt-controller@81000000 {
++		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
++		#interrupt-cells = <3>;
++		#address-cells = <0>;
++		interrupt-controller;
++		reg = <0x00 0x81001000 0x00 0x1000>, <0x00 0x81002000 0x00 0x2000>;
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	pmu {
++		compatible = "arm,armv8-pmuv3";
++		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
++	};
++
++	clocks {
++		periph_clk: periph_clk {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clock-frequency = <50000000>;
++			clock-output-names = "periph";
++		};
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x00 0x00 0x80000000 0x10000>;
++
++		ehci@c300 {
++			compatible = "generic-ehci";
++			reg = <0xc300 0x100>;
++			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
++			status = "disabled";
++		};
++
++		ohci@c400 {
++			compatible = "generic-ohci";
++			reg = <0xc400 0x100>;
++			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
++			status = "disabled";
++		};
++
++		xhci@d000 {
++			compatible = "generic-xhci";
++			reg = <0xd000 0x8c8>;
++			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
++			status = "disabled";
++		};
++	};
++
++	ubus@ff800000 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x00 0x00 0xff800000 0x3000>;
++
++		timer: timer@400 {
++			compatible = "brcm,bcm6328-timer", "syscon";
++			reg = <0x400 0x3c>;
++		};
++
++		gpio0: gpio-controller@500 {
++			compatible = "brcm,bcm6345-gpio";
++			reg-names = "dirout", "dat";
++			reg = <0x500 0x28>, <0x528 0x28>;
++
++			#gpio-cells = <2>;
++			gpio-controller;
++		};
++
++		uart0: serial@640 {
++			compatible = "brcm,bcm6345-uart";
++			reg = <0x640 0x18>;
++			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&periph_clk>;
++			clock-names = "periph";
++			status = "okay";
++		};
++
++		nand@1800 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x1800 0x600>, <0x2000 0x10>;
++			reg-names = "nand", "nand-int-base";
++			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "nand";
++			status = "okay";
++
++			nandcs: nandcs@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-has-wp;
++			};
++		};
++
++		reboot {
++			compatible = "syscon-reboot";
++			regmap = <&timer>;
++			offset = <0x34>;
++			mask = <1>;
++		};
++	};
++};
 -- 
-2.21.3
+2.27.0
 
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
