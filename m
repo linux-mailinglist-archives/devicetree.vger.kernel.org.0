@@ -2,91 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 498F129CD30
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 02:47:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F2229CD7D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 03:06:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726195AbgJ1Bik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Oct 2020 21:38:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56208 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1833046AbgJ0Xit (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Oct 2020 19:38:49 -0400
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 248EC22275;
-        Tue, 27 Oct 2020 23:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603841928;
-        bh=DSTkC5KLEySxuOgJIXhx4r8CGCV8SZykJdCrHvPLS3w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kVq2WnrlZADRQR5lW2fEQA21p3jZ4zfdjjAewDx6TaV11LG1oJ1UBLd6ycgO9v/Y7
-         GmvgcWm1gVVG1cvRVNvA9ytm/DHZZ+gssbXRPpgN/a91D144X8OIzC6BBivcYgW7QY
-         gaAxCZyBMIPPo0IZ6HTclLnL9Pid/dFsSg1o9vF8=
-Received: by mail-ej1-f44.google.com with SMTP id h24so4632641ejg.9;
-        Tue, 27 Oct 2020 16:38:48 -0700 (PDT)
-X-Gm-Message-State: AOAM533UxMwT+NhvoXcPRGLLY4JJz1U+F0I3K3Sb6oJObg1++rIY3BJe
-        +IFYrVFswI95Krh5QQ8bHmhOqHCO210h93xTSw==
-X-Google-Smtp-Source: ABdhPJzQlEglkYa6D7ubjNdMCkkeNzxjD0WQcilxpNfNSAd06/sNj6pyDK/JItntgOHe0L6l5haqvTeZePZHZvUPb9w=
-X-Received: by 2002:a17:906:3b8e:: with SMTP id u14mr4751527ejf.127.1603841926757;
- Tue, 27 Oct 2020 16:38:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201027160631.608503-1-fparent@baylibre.com>
-In-Reply-To: <20201027160631.608503-1-fparent@baylibre.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 28 Oct 2020 07:38:35 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9eBU06WGKcB61OzXYOgOOQY+45MQba9ELAZAi7rDGj6A@mail.gmail.com>
-Message-ID: <CAAOTY_9eBU06WGKcB61OzXYOgOOQY+45MQba9ELAZAi7rDGj6A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mediatek: mmsys: add mt1867 binding
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S1725796AbgJ1CGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Oct 2020 22:06:01 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:3619 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725730AbgJ1CGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Oct 2020 22:06:01 -0400
+X-IronPort-AV: E=Sophos;i="5.77,425,1596466800"; 
+   d="scan'208";a="60779609"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 28 Oct 2020 11:06:00 +0900
+Received: from localhost.localdomain (unknown [10.166.252.89])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4F954417A2E8;
+        Wed, 28 Oct 2020 11:06:00 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     bhelgaas@google.com, marek.vasut+renesas@gmail.com,
+        robh+dt@kernel.org
+Cc:     prabhakar.mahadev-lad.rj@bp.renesas.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH 0/3] dt-bindings: pci: rcar-pci-host: convert bindings to json-schema
+Date:   Wed, 28 Oct 2020 11:05:48 +0900
+Message-Id: <1603850751-32762-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Fabien:
+Convert bindings of rcar-pci.txt to json-schema. And, I realized
+r8a77965 [1] and r8a774e1 [2] are not documented on rcar-pci.txt.
+So, I made incremental patches to document them.
 
-Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8828=
-=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=8812:07=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Add binding documentation for MT8167 SoC.
->
+[1]
+https://patchwork.kernel.org/project/linux-renesas-soc/patch/1528373494-18503-2-git-send-email-ykaneko0929@gmail.com/
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+This patch was old, so I didn't reuse this patch.
+
+[2]
+https://patchwork.kernel.org/project/linux-renesas-soc/patch/20200927124257.29612-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+I reused this patch.
 
 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt          | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsy=
-s.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-> index d8c9108c3b4a..78c50733985c 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-> @@ -13,6 +13,7 @@ Required Properties:
->         - "mediatek,mt6779-mmsys", "syscon"
->         - "mediatek,mt6797-mmsys", "syscon"
->         - "mediatek,mt7623-mmsys", "mediatek,mt2701-mmsys", "syscon"
-> +       - "mediatek,mt8167-mmsys", "syscon"
->         - "mediatek,mt8173-mmsys", "syscon"
->         - "mediatek,mt8183-mmsys", "syscon"
->  - #clock-cells: Must be 1
-> --
-> 2.28.0
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Lad Prabhakar (1):
+  dt-bindings: pci: rcar-pci: Add device tree support for r8a774e1
+
+Yoshihiro Shimoda (2):
+  dt-bindings: pci: rcar-pci-host: convert bindings to json-schema
+  dt-bindings: pci: rcar-pci-host: document r8a77965 bindings
+
+ .../devicetree/bindings/pci/rcar-pci-host.yaml     | 148 +++++++++++++++++++++
+ Documentation/devicetree/bindings/pci/rcar-pci.txt |  72 ----------
+ 2 files changed, 148 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/rcar-pci.txt
+
+-- 
+2.7.4
+
