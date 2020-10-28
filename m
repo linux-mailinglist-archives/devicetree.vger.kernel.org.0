@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 088F529D919
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B149829D9B5
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:00:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731914AbgJ1Wno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:43:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57934 "EHLO
+        id S2389138AbgJ1XAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:00:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389471AbgJ1WnK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:43:10 -0400
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE403C0613CF;
-        Wed, 28 Oct 2020 15:43:09 -0700 (PDT)
-Received: by mail-qt1-x843.google.com with SMTP id i7so730627qti.6;
-        Wed, 28 Oct 2020 15:43:09 -0700 (PDT)
+        with ESMTP id S2389911AbgJ1XAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:00:19 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515C0C0613CF;
+        Wed, 28 Oct 2020 16:00:19 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id k6so1329965ior.2;
+        Wed, 28 Oct 2020 16:00:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=NjGFPMz23GeVlRYE79yV94NhJ+KQ8xemp1yemHfgYCA=;
-        b=f9aolMCoETy+r8HT4s3ma4ObPD5sntGlOcNjtkyBnJfoWL4TIHpS47ar38wzs+Unn5
-         lmXlw3dDHAzsoGSvuqJ1e/1JEtBZ5dbzUSJc2w8ujNW4LnXiwLy1Ri9R0tHUuTFPX6j0
-         i5noJ3zdd8nHt82DrHtCzFdUW4GlYBJJs0LEA=
+        bh=9VlqcSxbD+zLpLTx76uBLItIwcrcc3ZCFs1WdNdmfa0=;
+        b=LQDMMEApne+8MoHy34kvudx2LbXKqf9+rPl1U6HMLUgdj3hVYJa6ZZqfOdt18khqtF
+         Y8qR3e4tV6JpGfmTU5EVUT+0b3mtPH46XQJ2WnU4MexLWydQVDN7A11ZihckrdLm8yZR
+         glpYN4J4/+dIxP1AsmxqbDfq7kD8m/FewNEl8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NjGFPMz23GeVlRYE79yV94NhJ+KQ8xemp1yemHfgYCA=;
-        b=DAh8zS+yRAhTaeIEF7yp3W+yD0dm7YrOO7BBVCmY8fXp/Tk7w2KOPAfNp4xgK9Xzd6
-         nRecNmbao5IPnqaTiiF2SkWSXuQ3r4yfbr58OFC+hYKxehCgWo+yq1c5AFHFy4l7kfab
-         dlpmTTW4j7rJwk4rbOuYLE7b+wuWs6t6hmoZxzFhEcvmwCEBYqgi77+quS7Jib7BK++4
-         CNb8FEOHPlI8MRWE8NPJITYOUncSZsRFTvVSiQANveUxtlxjThks7QyhoCCCvTPGqI+e
-         3b/Ih+Vwvi+9OvU3ONIK9/m8EVVFQ38xEKPfKrMb4fAEZmS1/NSr+decLK0YfaW+JcJq
-         eP1Q==
-X-Gm-Message-State: AOAM5307is6P9gipmvDqMcpwN7eJ6AgnAfixm5LnslXyX4j4S9l+dF1i
-        ena53E6VTr5JBVm++gMkLx3lXYqmut90+kuFTP33Qrh0k3ZT4Q==
-X-Google-Smtp-Source: ABdhPJzh4xRpIRTmAWBzbR+sxgmkiQthr+b6gtWBimSB7/2L7ZAZVIQHzhpOjgAFO4+k9KA9abyW8Ww0SFRootb7al4=
-X-Received: by 2002:ac8:5854:: with SMTP id h20mr5549863qth.176.1603862939691;
- Tue, 27 Oct 2020 22:28:59 -0700 (PDT)
+        bh=9VlqcSxbD+zLpLTx76uBLItIwcrcc3ZCFs1WdNdmfa0=;
+        b=QFGG0BZt/oImzu2mqnta+UHPQTp1u2GvzvwZ2sqIvZXlakfUAG6qvSoHbAm8I8RWC0
+         vu7ti0ZY+9Idev4n44df3wwfvlXaz8XkEnnsGuGkXVsybGzn5nvr5VktIoXwS12Rfdve
+         gN2osaKQPRncKqcDBUXPggPV5fPB0f2W7Ok938fvtQb8EmY7ndbcPyy2TGtDt45bbc5L
+         /yBYc8UZXPGuwKOWn92tLTACQW2Kwz+u3Jd4Fi44eNUvFNm4LyGnnqUl7Ot493m/fnKg
+         70Q4NzvdE+aid2WCxPY4gir1rSvdfGnZPxjZo8vMIRERrE0Hk5Ywow07yQ6HH5vfeAje
+         gMBA==
+X-Gm-Message-State: AOAM530CmK+kgTyKNOBkK1tRYKjilyzcsT7xwCmDSJLb2d3L6pyIDp2v
+        RFJMZJikeAW/yIpHCIHx+DObEkfpuYeW6Hbj6VoZ/+cGVjecxg==
+X-Google-Smtp-Source: ABdhPJxGTvfUKiXdm0GufiMR7Kg/9Pu15EnXOZNLVhMaVAa/tdwnYilJ2+nd98SbbcNfTjVhm+hyCdE0889DRu1/mfE=
+X-Received: by 2002:a05:620a:1e7:: with SMTP id x7mr6190070qkn.465.1603878641900;
+ Wed, 28 Oct 2020 02:50:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201027123722.2935-1-aladyshev22@gmail.com> <20201027123722.2935-3-aladyshev22@gmail.com>
-In-Reply-To: <20201027123722.2935-3-aladyshev22@gmail.com>
+References: <20201027123722.2935-1-aladyshev22@gmail.com> <f35152af-34ad-178b-61db-0e57c8d19f3f@amd.com>
+In-Reply-To: <f35152af-34ad-178b-61db-0e57c8d19f3f@amd.com>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 28 Oct 2020 05:28:47 +0000
-Message-ID: <CACPK8XdDZTYuOb-0QvpStAO0iZH+Si4t2f3sNjPjmPwLrGMc5g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: aspeed: amd-ethanolx: Enable devices for
- the iKVM functionality
-To:     Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
+Date:   Wed, 28 Oct 2020 09:50:26 +0000
+Message-ID: <CACPK8Xfr=Gd+oowhzZrLfAyVA7_J9=WhZGXUvfqXeu2XtP2A7Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: aspeed: amd-ethanolx: Update KCS nodes to
+ use v2 binding
+To:     Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+Cc:     Konstantin Aladyshev <aladyshev22@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Andrew Jeffery <andrew@aj.id.au>,
         devicetree <devicetree@vger.kernel.org>,
@@ -61,60 +61,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Oct 2020 at 12:41, Konstantin Aladyshev
-<aladyshev22@gmail.com> wrote:
+On Wed, 28 Oct 2020 at 09:00, Supreeth Venkatesh
+<supreeth.venkatesh@amd.com> wrote:
 >
-> Enable the USB 2.0 Virtual Hub Controller and
-> the Video Engine with it's reserved memory region for the implementation
-> of the iKVM functionality in the BMC.
->
-> Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+> These changes are already merged in https://github.com/openbmc/linux/blob/dev-5.8/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts by Joel.
+> Please abandon these changes.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+That is the openbmc kernel tree, where we stage patches on their way
+to mainline. This submission is for mainline, where this patch has not
+been merged.
 
-> ---
->  arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
+Cheers,
+
+Joel
+
 >
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> index 2a86bda8afd8..b93ed44eba0c 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-> @@ -13,6 +13,21 @@
->         memory@80000000 {
->                 reg = <0x80000000 0x20000000>;
->         };
-> +
-> +       reserved-memory {
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               ranges;
-> +
-> +               video_engine_memory: jpegbuffer {
-> +                       size = <0x02000000>;    /* 32M */
-> +                       alignment = <0x01000000>;
-> +                       compatible = "shared-dma-pool";
-> +                       reusable;
-> +               };
-> +       };
-> +
-> +
->         aliases {
->                 serial0 = &uart1;
->                 serial4 = &uart5;
-> @@ -220,5 +235,12 @@
->         };
->  };
+> Thanks,
+> Supreeth
 >
-> +&video {
-> +       status = "okay";
-> +       memory-region = <&video_engine_memory>;
-> +};
->
-> +&vhub {
-> +       status = "okay";
-> +};
->
-> --
-> 2.17.1
->
+> On 10/27/20 7:37 AM, Konstantin Aladyshev wrote:
+> > [CAUTION: External Email]
+> >
+> > KCS nodes compatible property in the 'aspeed-g5.dtsi' file was
+> > changed to use v2 binding in the commit fa4c8ec6feaa
+> > ("ARM: dts: aspeed: Change KCS nodes to v2 binding").
+> > For the proper initialization of /dev/ipmi-kcs* devices
+> > KCS node variables also need to be changed to use v2 binding.
+> >
+> > Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+> > index 60ba86f3e5bc..89ddc3847222 100644
+> > --- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+> > +++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+> > @@ -139,17 +139,17 @@
+> >
+> >  &kcs1 {
+> >         status = "okay";
+> > -       kcs_addr = <0x60>;
+> > +       aspeed,lpc-io-reg = <0x60>;
+> >  };
+> >
+> >  &kcs2 {
+> >         status = "okay";
+> > -       kcs_addr = <0x62>;
+> > +       aspeed,lpc-io-reg = <0x62>;
+> >  };
+> >
+> >  &kcs4 {
+> >         status = "okay";
+> > -       kcs_addr = <0x97DE>;
+> > +       aspeed,lpc-io-reg = <0x97DE>;
+> >  };
+> >
+> >  &lpc_snoop {
+> > --
+> > 2.17.1
+> >
