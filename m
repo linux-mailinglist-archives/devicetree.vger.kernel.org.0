@@ -2,114 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D0629DA05
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D7729DAB0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:28:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726487AbgJ1XKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:10:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44242 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727197AbgJ1XKJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 19:10:09 -0400
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.6])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4E39E20790;
-        Wed, 28 Oct 2020 23:10:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603926608;
-        bh=r9Zy2d7qonECfYn+ukG4XqOXK6cjfQvsTZGTxsOyDY8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=o7lTD/lW88bXfc5c5Hg5/vzYWVNlGk+4AfMZ0JyF25ERnV6bthVoeqIu+fFXQ9tZx
-         pIjJXFW3o1s5Jbq5wpgHzatK9YOwkfS2J97YAJuwJMhNeFG7QVtdpVk0UeTLU0Of7k
-         4jKflrPtlcGR3IkF/Po1y7tVVykV3E8yT9JfCyKw=
-Date:   Wed, 28 Oct 2020 16:10:06 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     "Badel, Laurent" <LaurentBadel@eaton.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-        "fugang.duan@nxp.com" <fugang.duan@nxp.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "richard.leitner@skidata.com" <richard.leitner@skidata.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "Quette, Arnaud" <ArnaudQuette@Eaton.com>
-Subject: Re: [PATCH net 0/4] Restore and fix PHY reset for SMSC LAN8720
-Message-ID: <20201028161006.2dcd2a62@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <CY4PR1701MB1878B85B9E1C5B4FDCBA2860DF160@CY4PR1701MB1878.namprd17.prod.outlook.com>
-References: <CY4PR1701MB1878B85B9E1C5B4FDCBA2860DF160@CY4PR1701MB1878.namprd17.prod.outlook.com>
+        id S2390601AbgJ1X2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:28:41 -0400
+Received: from esa3.hgst.iphmx.com ([216.71.153.141]:20041 "EHLO
+        esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726398AbgJ1X2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:28:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1603927686; x=1635463686;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=cbfVGaWnMu+8pgVF8g9CD+iaCR7rsYJqW/fz2SXidbQ=;
+  b=Mn3sDuQScwyjtmKbPlOHBmyouzgGVJ/WTyDwEMUbuL+t7S2HzKilMZnw
+   38SJStGReIgseYw7ql37FVKYNsXALHzpOrFCaADlMIVkXEX5R0LvZVCen
+   AktJRXgxnnkw8Xl9yLy6tjl5LVGy6rgp8eJF2W+YZs2J0U78aFWkBvfWM
+   ARVsTQ0iu0p5ZQPdXrVQEpQYOghm1/nbL78twEfKp2eJLglyjtwMCq9ys
+   a2OJp0mi1DJzEThG+PMmtYU77wYYpM72wOHarGF9hcwYaaOAlKm7GiS2/
+   zhJ/h7h9oqt9SDrMcKgEHdTRq3JkS/bs6Mv5Jwig16H+fm/SQsfn+R8xa
+   w==;
+IronPort-SDR: KJ6wjcLoiXERxdvDeXajzUeWMliQmDTCJdxvDFN09bjQJemXkNYaYOZv36YbSk5T22a9/oNjsL
+ cQnhWblP4pPA6RdKYbdLz2pagF1yeF3D3H6si/AVvxhntGyw2H7dXJT0xmvrlnKrf9ulKaPtXY
+ kKs4Mng9VmFgBlmKVBdqRjIKRIQXl+GENWPMfOPqsQLJ5hKoA7Bt9NSdMCU0Vr1l72j+jtYW1M
+ sWGukp1Vn/g5etmuqcGz744gbgIgBHu7ZHHjyBpOxiczbyhqRWDQ9T41k22B4mOJXXGGk9gSxZ
+ 10E=
+X-IronPort-AV: E=Sophos;i="5.77,428,1596470400"; 
+   d="scan'208";a="155611417"
+Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 29 Oct 2020 07:28:06 +0800
+IronPort-SDR: VzlkUCNeuiucAlbc+gyL0aodpnzYM5fLzwxytRyoGYduZ3X3C+oLdxxmocaNnVJ5czRBuUOy/v
+ ljlJSKGVnwhwiSWB2F2rmSUcYBmywtTkd+ugr5nakFcxV6ZTUPEPzJnwNFOSlFMV89eTvYlvH5
+ iD7FyGvf1IiT/hgfg/ct+k3kuq0HwuzB53xYl2KBV9BIjIY5mmr7446OFdBPYYDWnlPEdUfw8s
+ 90dcxZTP4znap9l5Tu8SyIw3K6/DrAP0IbTkws+YM/ag8QIkgHGOoSuSuagzg2inf8vXSyVK2j
+ IGBNmppPuORVzBxevAfHma72
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2020 16:14:22 -0700
+IronPort-SDR: buavO+3n128wXApNGIFfrqEjjKBm1I1PnymmXX6X25/PUwDn5yG4TfLzSC3aE2blO728jSGeng
+ ZYeuijWei4Rk96OnUtunZLZLpZ8I8ZF8kBAwFll7TWFGOFYd+USFDHf28rNgHOg1kK6CBbOvEg
+ 2ne1I12LnBypDbBQB2RIMi+VZJRwgjVqnm/MHzx9HfJMpfW9eN7HbjCtMB8+TA8F7C6Ab31MPf
+ ygcujc57MY7V/gNCT4VLsSKPv0htxzY3Vi3usUONWUKMZJTk01Q2pOZ1r1bYLYPudWSqa4oxUc
+ U2k=
+WDCIronportException: Internal
+Received: from myd002180.ad.shared (HELO jedi-01.hgst.com) ([10.86.60.107])
+  by uls-op-cesaip01.wdc.com with ESMTP; 28 Oct 2020 16:28:07 -0700
+From:   Atish Patra <atish.patra@wdc.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <anup.patel@wdc.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        padmarao.begari@microchip.com,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Cyril.Jean@microchip.com
+Subject: [RFC PATCH 0/3] Add Microchip PolarFire Soc Support 
+Date:   Wed, 28 Oct 2020 16:27:56 -0700
+Message-Id: <20201028232759.1928479-1-atish.patra@wdc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Oct 2020 23:25:01 +0000 Badel, Laurent wrote:
-> =EF=BB=BFSubject: [PATCH net 0/4] Restore and fix PHY reset for SMSC LAN8=
-720
->=20
-> Description:
-> A recent patchset [1] added support in the SMSC PHY driver for managing
-> the ref clock and therefore removed the PHY_RST_AFTER_CLK_EN flag for the
-> LAN8720 chip. The ref clock is passed to the SMSC driver through a new
-> property "clocks" in the device tree.
->=20
-> There appears to be two potential caveats:
-> (i) Building kernel 5.9 without updating the DT with the "clocks"
-> property for SMSC PHY, would break systems previously relying on the PHY
-> reset workaround (SMSC driver cannot grab the ref clock, so it is still
-> managed by FEC, but the PHY is not reset because PHY_RST_AFTER_CLK_EN is
-> not set). This may lead to occasional loss of ethernet connectivity in
-> these systems, that is difficult to debug.
->=20
-> (ii) This defeats the purpose of a previous commit [2] that disabled the
-> ref clock for power saving reasons. If a ref clock for the PHY is
-> specified in DT, the SMSC driver will keep it always on (confirmed with=20
-> scope). While this removes the need for additional PHY resets (only a=20
-> single reset is needed after power up), this prevents the FEC from saving
-> power by disabling the refclk. Since there may be use cases where one is
-> interested in saving power, keep this option available when no ref clock
-> is specified for the PHY, by fixing issues with the PHY reset.
->=20
-> Main changes proposed to address this:
-> (a) Restore PHY_RST_AFTER_CLK_EN for LAN8720, but explicitly clear it if
-> the SMSC driver succeeds in retrieving the ref clock.
-> (b) Fix phy_reset_after_clk_enable() to work in interrupt mode, by
-> re-configuring the PHY registers after reset.
->=20
-> Tests: against net tree 5.9, including allyes/no/modconfig. 10 pieces of
-> an iMX28-EVK-based board were tested, 3 of which were found to exhibit
-> issues when the "clocks" property was left unset. Issues were fixed by
-> the present patchset.
->=20
-> References:
-> [1] commit d65af21842f8 ("net: phy: smsc: LAN8710/20: remove
->     PHY_RST_AFTER_CLK_EN flag")
->     commit bedd8d78aba3 ("net: phy: smsc: LAN8710/20: add phy refclk in
->     support")
-> [2] commit e8fcfcd5684a ("net: fec: optimize the clock management to save
->     power")
+This series adds minimal support for Microchip Polar Fire Soc Icicle kit.
+It is rebased on v5.10-rc1 and depends on clock support. 
+Only MMC and ethernet drivers are enabled via this series.
+The idea here is to add the foundational patches so that other drivers
+can be added to on top of this.
 
-Please resend with git send-email, if you can.
+This series has been tested on Qemu and Polar Fire Soc Icicle kit.
+The following qemu series is necessary to test it on Qemu.
 
-All the patches have a "Subject: [PATCH" line in the message body,
-and Fixes tags are line-wrapped (they should be one line even if they
-are long).
+The series can also be found at the following github repo.
 
-> Laurent Badel (5):
->   net:phy:smsc: enable PHY_RST_AFTER_CLK_EN if ref clock is not set
->   net:phy:smsc: expand documentation of clocks property
->   net:phy: add phy_device_reset_status() support
->   net:phy: fix phy_reset_after_clk_enable()
->   net:phy: add SMSC PHY reset on PM restore
+I noticed the latest version of mmc driver[2] hangs on the board with
+the latest clock driver. That's why, I have tested with the old clock
+driver available in the above github repo.
 
-There are only 4 patches in the series.
+[1] https://lists.nongnu.org/archive/html/qemu-devel/2020-10/msg08582.html
+[2] https://www.spinics.net/lists/devicetree/msg383626.html
+
+Atish Patra (3):
+RISC-V: Add Microchip PolarFire SoC kconfig option
+RISC-V: Initial DTS for Microchip ICICLE board
+RISC-V: Enable Microchip PolarFire ICICLE SoC
+
+arch/riscv/Kconfig.socs                       |   7 +
+arch/riscv/boot/dts/Makefile                  |   1 +
+arch/riscv/boot/dts/microchip/Makefile        |   2 +
+.../microchip/microchip-icicle-kit-a000.dts   | 313 ++++++++++++++++++
+arch/riscv/configs/defconfig                  |   4 +
+5 files changed, 327 insertions(+)
+create mode 100644 arch/riscv/boot/dts/microchip/Makefile
+create mode 100644 arch/riscv/boot/dts/microchip/microchip-icicle-kit-a000.dts
+
+--
+2.25.1
 
