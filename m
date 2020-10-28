@@ -2,88 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19D3A29D495
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DDF29D441
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:50:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728149AbgJ1VxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:53:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725379AbgJ1VxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:53:18 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70CCC0613CF;
-        Wed, 28 Oct 2020 14:53:18 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id r10so605584pgb.10;
-        Wed, 28 Oct 2020 14:53:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6ik2GKgZ+Q4Z7qsn1+Na4NKxNj7mlIQNoHCJBRIVKMc=;
-        b=EwliCZb71i5/DbjlKhXNpify6cUiqeYAdqYKm/YBUk5m+2qb9E5VgFsFqRAMBVszAt
-         Xhx5gX792ZGJ6u7bLL2gRf/q/tEmTedWDSgFszCsUuXLDtW6Y39hDC05JnCcxfW/Bp5f
-         4AsrnPXyWURSrrDtYxSDlvYSpaDeqi5yhAL+ljYdXgWYZFPb719/7Fkxg4ILYDxJuDzk
-         RJYxJYS97ZgIDcSSJsQ5LEe/co57odSQfnlREKrCs7Fj+nw0DC16WUp0GxjN/LUx41JW
-         cZn+dNI3DgTZzvST177ZcIW7MoSsDeoPQy2NELW2k3Wiwb7+dSo43/bl8yMq/N8dR/Hi
-         Xh5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6ik2GKgZ+Q4Z7qsn1+Na4NKxNj7mlIQNoHCJBRIVKMc=;
-        b=QNwVIEao/lhb+nA0UsgfpV/P7MVDkHwDRxcft4Jj7cWjq7bzOUhzp2UtV6RxjdHH6f
-         lbrWYHR+QQgDYL9CEsu0h4espU1a9U8OxJkPlO148SEzL7B1+JAdOLNCMS5ljye/WzuB
-         z4bx7DSp+VNWdkirtHyjhNCrQJijDWey0oq9UB4GNgieLNjUe9r2PJR4NL7QWJlaLber
-         HlP7reD3CJyeMWOfLhryG9/GWvg/2D0aJbXYmV/YFKtN+jj41pGSC7sw6zalycOwbHQr
-         VYh+7giPkfn/272dw/ahCCOLq7v4y7PyGwXx3tovQXvIo2PfKpyGz/7D3HOFaddYJ7ua
-         X5Pw==
-X-Gm-Message-State: AOAM530vVzKi+HmAg7Ezt8JkXcNhtMw19me9k3WELhO6dVcqJpPQMLUT
-        BCoLovyu3+559RCw1R/SHKO5+GBv37w=
-X-Google-Smtp-Source: ABdhPJwuUsSMZsTNLKlVcxiwhvE1+NkOW2B8Md3IDEP3n+SbAJ5rlVM+lk+b9jS7kSFGyY7VbSxuww==
-X-Received: by 2002:a63:5819:: with SMTP id m25mr491910pgb.398.1603908062998;
-        Wed, 28 Oct 2020 11:01:02 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id i123sm266934pfc.13.2020.10.28.11.01.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 11:01:02 -0700 (PDT)
-Date:   Wed, 28 Oct 2020 11:00:59 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-input@vger.kernel.org, Nick Dyer <nick@shmanahar.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] Input: atmel_mxt_ts: Convert bindings to YAML and
- extend
-Message-ID: <20201028180059.GA2547185@dtor-ws>
-References: <20201028101711.696423-1-linus.walleij@linaro.org>
+        id S1727313AbgJ1Vua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:50:30 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:36222 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728003AbgJ1Vu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:50:29 -0400
+Received: from relay5-d.mail.gandi.net (unknown [217.70.183.197])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id BE50E3A7812;
+        Wed, 28 Oct 2020 18:57:03 +0000 (UTC)
+X-Originating-IP: 86.194.74.19
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 5D5E81C0003;
+        Wed, 28 Oct 2020 18:56:37 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Pavel Machek <pavel@ucw.cz>, Alexander Dahl <post@lespocky.de>,
+        Rob Herring <robh+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-leds@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        Alexander Dahl <ada@thorsis.com>
+Subject: Re: [PATCH v7 00/12] leds: pwm: Make automatic labels work
+Date:   Wed, 28 Oct 2020 19:56:14 +0100
+Message-Id: <160391135997.385141.5554228268638639718.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201005203451.9985-1-post@lespocky.de>
+References: <20201005203451.9985-1-post@lespocky.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201028101711.696423-1-linus.walleij@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-On Wed, Oct 28, 2020 at 11:17:10AM +0100, Linus Walleij wrote:
-> This converts the Armel MXT touchscreen bindings to YAML
-> format and extends them with the following two properties:
+On Mon, 5 Oct 2020 22:34:39 +0200, Alexander Dahl wrote:
+> Hei hei,
 > 
-> - vdda-supply: the optional analog supply voltage
-> - vdd-supply: the optional digital supply voltage
+> for leds-gpio you can use the properties 'function' and 'color' in the
+> devicetree node and omit 'label', the label is constructed
+> automatically.  This is a common feature supposed to be working for all
+> LED drivers.  However it did not work until recently for the 'leds-pwm'
+> driver.
 > 
-> I also explained about the reset-gpios property that this
-> better be flagged as active high (0) despite actually
-> being active low, because all current device trees and
-> drivers assume that this is the case and will actively
-> drive the line low to assert RESET.
+> [...]
 
-I wonder if we should fix that in driver and in DTs instead of doing
-this cludge...
+Applied, thanks!
 
-Thanks.
+[1/2] ARM: dts: at91: smartkiz: Reference led node directly
+      commit: 02e46262af5db410da5a27783833d68e2bdfb352
+[2/2] ARM: dts: at91: Fix schema warnings for pwm-leds
+      commit: 997ebd64df39f3916c37ca67a6eff58e79a13c73
 
+Best regards,
 -- 
-Dmitry
+Alexandre Belloni <alexandre.belloni@bootlin.com>
