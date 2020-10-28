@@ -2,55 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB10529DE6F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:54:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9436429DE6C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:54:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732280AbgJ1WTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:19:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60508 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731704AbgJ1WRm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 18:17:42 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 833E72417A;
-        Wed, 28 Oct 2020 07:41:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603870914;
-        bh=gcEyFEA/aeXgGSny0EanGvYE1Rv2kIe87PKCk9x+Qfs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=os3yReAsKv/h8UKot97Aq+LTnqG3mmOj6xtfO9L6m5VvBRKgeDH0C68AY5mZEzVnP
-         12B9DsixMbEkdI3Uq6DRRXBqwMIguZ4OLWUsqOQOcKAuhfUQrxF/s1uEldkwVHKX93
-         zAmM0cp/b6RD1BtITbQjCDSk7W709G61xPUqWrhU=
-Date:   Wed, 28 Oct 2020 15:41:48 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        id S1732293AbgJ1WTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732281AbgJ1WSq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:18:46 -0400
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B7DC0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:18:45 -0700 (PDT)
+Received: by mail-qv1-xf41.google.com with SMTP id f5so573660qvx.6
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:18:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=aD/m2VgCYiafD5XJrexC8xG2hc+36DzQpHElqK1SRuE=;
+        b=v23DjL4BqoRVxPR9GiRf0kU1JhgymDI0xiYjXnCz4Q785C1+xKWhpKU6Km8WPOp58w
+         xGur69N7GeI8fwXXwA+kVV+RcFy4HsedaSVvKdI47qTsXih/LGVM3DGC0btx4VoxTYxJ
+         cLSx2YmlYZW9A8eUFhVGuOquAzmHZ8jND6vyejb2sKUqdSR/CFagLZUEYBVJKs/2kDc6
+         JGC5vPGT+PpvhNxJJFT4rYUlvHhjTjPn8MOkZc/uu565J5yhEcMDFCxPX6kKim6nGVzT
+         NCdS4ntm1tBymmjYUg6XJ53cjrMCeKuIT63npvN/BqgJ9tqRhjtf3+wNAzJBxOxVCa+y
+         0RXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=aD/m2VgCYiafD5XJrexC8xG2hc+36DzQpHElqK1SRuE=;
+        b=GaoyTsSGW5JXbQcQj6rA6x0cwApyue/ht6XFQ2Fz/IMjZLwNj1NdPBXDe9S4Tvsq/G
+         JLLMwgbhHjd0UcZFTNaTmMrruQSzU6dOPoC0cRFX3hyjujZiyyncucCqlJ3YINwUo5zz
+         RvI6fhuhfIs5dQ4pUs1yod+ccfk/OpBxANASmn6z2DBHII+zhuNR0Iq8DsxPBga8Z++e
+         FswpfER9pO7tOgNR7nPjc7mPyaPEwfThYKEhjmv7/ZTIlrFJ2kqxSMV7dQsv/gmczpGT
+         hNDuvOueTROyKjJWvI5elF2smI6ptfGziXftyGcsLmS/7mkA616K9oIH4e4+wxARc/gZ
+         VYVA==
+X-Gm-Message-State: AOAM530RjEzQCVl9uAw5WUWnN2Dx4+mBWWJZodJVsuKAJfcnmqBfMSb4
+        mLcQIpDNTzUZcUBLfSqm7us9smMftWbt
+X-Google-Smtp-Source: ABdhPJz8bqfzm3rNPe2a2hytHwPw1HH8gsns4sap2sQtA7nMk9rNUILQwS2zVPM5K3yckVKsL3p6JQ==
+X-Received: by 2002:aa7:911a:0:b029:155:8521:ba6c with SMTP id 26-20020aa7911a0000b02901558521ba6cmr5161777pfh.8.1603870995286;
+        Wed, 28 Oct 2020 00:43:15 -0700 (PDT)
+Received: from localhost.localdomain ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id e7sm4289579pgj.19.2020.10.28.00.43.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 00:43:14 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
+Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 06/13] ARM: dts: imx7-mba7: disable ethernet PHY clock
- outputs
-Message-ID: <20201028074147.GQ9880@dragon>
-References: <20200918112942.1367-1-matthias.schiffer@ew.tq-group.com>
- <20200918112942.1367-6-matthias.schiffer@ew.tq-group.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200918112942.1367-6-matthias.schiffer@ew.tq-group.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 4/4] clk: qcom: Add support for SDX55 RPMh clocks
+Date:   Wed, 28 Oct 2020 13:12:32 +0530
+Message-Id: <20201028074232.22922-5-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
+References: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 01:29:35PM +0200, Matthias Schiffer wrote:
-> The clock outputs are not connected. Disable them to improve EMI
-> behaviour.
-> 
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Add support for clocks maintained by RPMh in SDX55 SoCs.
 
-Applied, thanks.
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ drivers/clk/qcom/clk-rpmh.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+index e2c669b08aff..88d010178b59 100644
+--- a/drivers/clk/qcom/clk-rpmh.c
++++ b/drivers/clk/qcom/clk-rpmh.c
+@@ -432,6 +432,25 @@ static const struct clk_rpmh_desc clk_rpmh_sm8250 = {
+ 	.num_clks = ARRAY_SIZE(sm8250_rpmh_clocks),
+ };
+ 
++DEFINE_CLK_RPMH_VRM(sdx55, rf_clk1, rf_clk1_ao, "rfclkd1", 1);
++DEFINE_CLK_RPMH_VRM(sdx55, rf_clk2, rf_clk2_ao, "rfclkd2", 1);
++DEFINE_CLK_RPMH_BCM(sdx55, qpic_clk, "QP0");
++
++static struct clk_hw *sdx55_rpmh_clocks[] = {
++	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
++	[RPMH_CXO_CLK_A]	= &sdm845_bi_tcxo_ao.hw,
++	[RPMH_RF_CLK1]		= &sdx55_rf_clk1.hw,
++	[RPMH_RF_CLK1_A]	= &sdx55_rf_clk1_ao.hw,
++	[RPMH_RF_CLK2]		= &sdx55_rf_clk2.hw,
++	[RPMH_RF_CLK2_A]	= &sdx55_rf_clk2_ao.hw,
++	[RPMH_QPIC_CLK]		= &sdx55_qpic_clk.hw,
++};
++
++static const struct clk_rpmh_desc clk_rpmh_sdx55 = {
++	.clks = sdx55_rpmh_clocks,
++	.num_clks = ARRAY_SIZE(sdx55_rpmh_clocks),
++};
++
+ static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
+ 					 void *data)
+ {
+@@ -519,6 +538,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
+ 	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
+ 	{ .compatible = "qcom,sm8150-rpmh-clk", .data = &clk_rpmh_sm8150},
+ 	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
++	{ .compatible = "qcom,sdx55-rpmh-clk", .data = &clk_rpmh_sdx55},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, clk_rpmh_match_table);
+-- 
+2.17.1
+
