@@ -2,104 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BBA529DB14
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E5F29DB49
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:48:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731661AbgJ1XnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:43:06 -0400
-Received: from mail-ej1-f66.google.com ([209.85.218.66]:43961 "EHLO
-        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733098AbgJ1Xdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:33:36 -0400
-Received: by mail-ej1-f66.google.com with SMTP id k3so1290160ejj.10;
-        Wed, 28 Oct 2020 16:33:34 -0700 (PDT)
+        id S1732537AbgJ1Xsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:48:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389254AbgJ1Xsi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:48:38 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 354D6C0613CF;
+        Wed, 28 Oct 2020 16:48:37 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id p5so1390956ejj.2;
+        Wed, 28 Oct 2020 16:48:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eNUOh/tk4ijb64RycOo+wN+pUm2kkFJSm3fn+Ar/eiE=;
+        b=GWu5oT8xsv2dIUj9gddZ+6C6wavLn2bWvCITsO/7cOtJn3Fajw8AlR2JzCxQKfrzDh
+         /rpIcRBCf5V8Ra6WMYLoGHGoylRh1W54ul1PAMtfvFOF3CBMtKLlcC1ztKofe849CpjI
+         d460zzSBObsBbct42puLPy3dZHnSL7TzXTrKb2+hLuP6sKCVPdGBCzJgTKPLcyIKmfTR
+         qvkj/6l6S+sO4+CQnYcIZ762QgQdxrbMVuw2yOAgXDwEGHuLmHdsyfraBdXRIaajbOpN
+         KgSVSyDBiPkYgMLlXpYJrtH4v6DaYGpgrkVNGbQhUpUwr3yUG/dy+O8M3Nx2IgfEUXvn
+         T8kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hlw+558qpBpj8ZAjXi3IcNQaKJ2jxrNS3pQGBSKAH4Q=;
-        b=in7/3f82JcmPcF2kz5eRc5IuO0OFbcD1NK1aRtypbLnXIz0yZ0ThJbAvXP6NAkpsNV
-         Y9pLYiw0kwxXB9S/fKd+tmwdUHiQb5ZgkaUUC6fzuCIaKNNHamvc45nuAV+VCzmWPz9P
-         lvemf7ICYWw3BXhHrPIKJAKM8vydO96fqwumcmr/vwrotsd0DEfvNKQITkuIsq3eBrMb
-         bG2g/dljeItxxpC5xtTyEKkW1iSmOJCyCPHOj1SXHZeV1/JO79VaVHx8vQoWMmlbtW4X
-         RWimOjAHUFy5ySDnvbEb+51whs21d3wrrOrnO3T2jnD2h5loam1KcitpwLnfTBeNlHw2
-         Qa4w==
-X-Gm-Message-State: AOAM532rt7RUsVyAoURhZrafMOMDVmsM0Vqk0WxbFU/frfPcP2+KMe3h
-        Xd65W+nr9ghWRIIvXfLluZt+kyHepGd2iQ==
-X-Google-Smtp-Source: ABdhPJxMNCE3kCRTItkoNG4C9NwL3LOP9z3ou/SBDT2ukapwr1VcXkiqplejyiF9C3g85Vo3sr8jIw==
-X-Received: by 2002:a19:bed7:: with SMTP id o206mr2171759lff.360.1603878552431;
-        Wed, 28 Oct 2020 02:49:12 -0700 (PDT)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id m19sm473500lfl.38.2020.10.28.02.49.11
+        bh=eNUOh/tk4ijb64RycOo+wN+pUm2kkFJSm3fn+Ar/eiE=;
+        b=ctlknFJXqFXMWo/wi2ZpMGXNxWrpIuIrTMXwM9kw4U1pAeDEohOtLEaKN/Hlnh7btO
+         /6Ix9RTZMWXr4GS7mAjSbsIpTshNc3FeiWjQuEse8YFjvkXJLY0WJR5Y+lH11IJ/pQ+U
+         ATpJuiEdok6C9hJfk7D/bdf+WlEMYP8U/wUwG2d4BbQVRQIwhVz9TxkqBL5YZC6kASm7
+         55h72R9tPGUtQ8jFbwJwZVKmD9F/Q1hzble8MbHiWf7nMdveWLz/h2ZivtC+r5t/qzG9
+         YOmFn885NvW3HG50WpKKrmz2Sfs/nNbOGy09Ue1KTxjzao7tfFzVP6kOK2ZE8fAVUlJb
+         yMyA==
+X-Gm-Message-State: AOAM530rLcMgwniyUTfa4JHsRy3icu1ZF/ecDwbZLRkjxF2a8knjtO36
+        xmbuMnWgeGvehB8ReY4cy+bGSC7VtUM=
+X-Google-Smtp-Source: ABdhPJwlw/fZewpfuiieeSgyxtrVgWiKIx/8QW6ubZurrVv+p4GbvTdqpGm2IQFDZPRQfnFtfEUg5g==
+X-Received: by 2002:a50:e185:: with SMTP id k5mr6815654edl.48.1603881826478;
+        Wed, 28 Oct 2020 03:43:46 -0700 (PDT)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id y2sm2690102ejf.85.2020.10.28.03.43.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 02:49:11 -0700 (PDT)
-Date:   Wed, 28 Oct 2020 11:49:05 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     mazziesaccount@gmail.com, matti.vaittinen@fi.rohmeurope.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
-        linux-watchdog@vger.kernel.org
-Subject: [PATCH v4 4/4] MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
-Message-ID: <e94af0a5c71f4b38af81d7cc5e0d46b844dbbe5b.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+        Wed, 28 Oct 2020 03:43:45 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 12:43:44 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Kurt Kanzenbach <kurt@linutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH net-next v7 2/8] net: dsa: Give drivers the chance to
+ veto certain upper devices
+Message-ID: <20201028104344.56exyeh5tbwefyw5@skbuf>
+References: <20201028074221.29326-1-kurt@linutronix.de>
+ <20201028074221.29326-3-kurt@linutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <20201028074221.29326-3-kurt@linutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer entries for ROHM BD9576MUF and ROHM BD9573MUF drivers.
-MFD, regulator and watchdog drivers were introduced for these PMICs.
+On Wed, Oct 28, 2020 at 08:42:15AM +0100, Kurt Kanzenbach wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> Some switches rely on unique pvids to ensure port separation in
+> standalone mode, because they don't have a port forwarding matrix
+> configurable in hardware. So, setups like a group of 2 uppers with the
+> same VLAN, swp0.100 and swp1.100, will cause traffic tagged with VLAN
+> 100 to be autonomously forwarded between these switch ports, in spite
+> of there being no bridge between swp0 and swp1.
+> 
+> These drivers need to prevent this from happening. They need to have
+> VLAN filtering enabled in standalone mode (so they'll drop frames tagged
+> with unknown VLANs) and they can only accept an 8021q upper on a port as
+> long as it isn't installed on any other port too. So give them the
+> chance to veto bad user requests.
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+> ---
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..2940fd439a39 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15108,16 +15108,20 @@ F:	drivers/gpio/gpio-bd71828.c
- F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
-+F:	drivers/mfd/rohm-bd9576.c
- F:	drivers/power/supply/bd70528-charger.c
- F:	drivers/regulator/bd70528-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
-+F:	drivers/regulator/bd9576-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
- F:	drivers/watchdog/bd70528_wdt.c
-+F:	drivers/watchdog/bd9576_wdt.c
- F:	include/linux/mfd/rohm-bd70528.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
-+F:	include/linux/mfd/rohm-bd957x.h
- F:	include/linux/mfd/rohm-generic.h
- F:	include/linux/mfd/rohm-shared.h
- 
--- 
-2.21.3
-
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
+In case reviewers have doubts about this new DSA operation in general.
+I would expect that when LAG support is merged, some drivers will
+support it, but not any tx_type, but e.g. just NETDEV_LAG_TX_TYPE_HASH.
+So it would also be helpful in that case, so they could veto other types
+of bond interfaces cleanly. So I do see the need for a generic
+"prechangeupper" operation given to drivers.
