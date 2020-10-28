@@ -2,91 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91EAB29D9B1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:00:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D12629DA7F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:24:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389837AbgJ1XAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:00:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60494 "EHLO
+        id S1729411AbgJ1XM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:12:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389910AbgJ1W6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:58:31 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD0E7C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:58:30 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id b19so379406pld.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:58:30 -0700 (PDT)
+        with ESMTP id S1727308AbgJ1XMA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:12:00 -0400
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0423C0613CF;
+        Wed, 28 Oct 2020 16:11:59 -0700 (PDT)
+Received: by mail-qk1-x742.google.com with SMTP id x20so639081qkn.1;
+        Wed, 28 Oct 2020 16:11:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VHzSigbV/JOyfbEwYkWBCndr5m2zp1xIjqS7IrkBvzA=;
-        b=GpTrl91L3KD7Gr90gj8a7l0rvJe1X2jHQtuCFQLfsw22xq4Agzn7dK/J9hXGR/5w3v
-         I/MSIETrvTEM/q209qUCvzj7mNK+4XlEqHQBnZoEmyZKnC2RP9toT2wCw7Z6jT11tYy1
-         chNcVb3UKPF4au50BKJ7FiElgJuSMzrSaG6vg=
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ELimXLIjFFEyZU/ch1CMaoy2YuMN5MJVjff2er+s7NQ=;
+        b=HM99HBk83YvD2YeS+eQsdX3b8HsDJPHH2RUbI86H++j7WB8wVMh0dqhupICJ4TmMd+
+         JHaTXnKkRz33Mz2ZhTVPwiICOg0FYj7XW93kWewABTZf9Fp5rOlUwYQ2/tV+lQGFTRtk
+         v6z4LQ92auwCat4tQ5JI+JVoxqgPR9uiC5nbA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VHzSigbV/JOyfbEwYkWBCndr5m2zp1xIjqS7IrkBvzA=;
-        b=KnPoy6aMFaSQRZr4rZfxagTgbK90OSRUONNqj8UhhUK8Zr5vJOpeaf96fCJn5t1Q94
-         A9StNe5m7oMeHYv1dFLZxNnYojeTnv6EgDTwnGeumjfxynttvJ0YIIEgykWWDBvF9L2t
-         WZb6C9CQNR6M46Qav4WJ2e5RKJOw3dbM9j8MjxfbNUnSG/tEucpbaw+WRHXtK45OLvnh
-         960diS4Yk0Z0EpAUx+q0ecwzsHHw91nYvVucoB8C/20jOqupTBm/9Eh3RNxcyxhShjUY
-         D9nTXzHkuZnAHmtLDC30+B+9Sh01K1ZtVVcpNJmXJaYTm2TQpRXDX5Oaz5HhPz4f/IrL
-         8bNA==
-X-Gm-Message-State: AOAM5319ILxecbXPz3brNHrj3+H5FcymC6hA8+DVcmz6NC4aO8rs3UpM
-        nDFZD5BxwDUT4sDmWl+KFL78bw==
-X-Google-Smtp-Source: ABdhPJxbrjrClcGm6KxlSxyjy6eM4uVyOkacCXkN7gEI6nLyjMmuprf+Mw+5/soBo1oXHAou/yYg2Q==
-X-Received: by 2002:a17:902:8a97:b029:d4:d3f4:d209 with SMTP id p23-20020a1709028a97b02900d4d3f4d209mr1227225plo.35.1603925910429;
-        Wed, 28 Oct 2020 15:58:30 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id b185sm394364pgc.68.2020.10.28.15.58.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 15:58:30 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
-        robdclark@chromium.org, dri-devel@lists.freedesktop.org,
-        David Airlie <airlied@linux.ie>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: dt-bindings: display: simple: Add BOE NV110WTM-N61
-Date:   Wed, 28 Oct 2020 15:58:03 -0700
-Message-Id: <20201028155617.v2.3.I28d9e32b3cc0aae980ecc39d364263a3f9871298@changeid>
-X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
-In-Reply-To: <20201028155617.v2.1.I31c4f8b111dbef1ab658f206764655ae983bc560@changeid>
-References: <20201028155617.v2.1.I31c4f8b111dbef1ab658f206764655ae983bc560@changeid>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ELimXLIjFFEyZU/ch1CMaoy2YuMN5MJVjff2er+s7NQ=;
+        b=U77akUT5S+Ok8qtefUwpMPBXbS/bs6UqVqLWrcbEh939n7ZiDisJj9eTaFQLbtQzBL
+         1SYOTRygFQsQegx9acCi+vo5lUG8wChwRq4oEUTJ3hc1vTHC0eXicOqqcvBIWQ39JbuS
+         Ms0zyVQ6Bk157eFocZWYIASIyLpIZPrLp+jBtPJPzyPl+L5lafBpRQqlmDSDi6ncgBMS
+         aMT+dzsjpohU5z6c1R/D8gt5MCBFK+jMl6s2PGsQcRONGC1CN3tctNOotQ4eRA9iAn7R
+         DSBurzV3znI50C7ZSJXU5zbXS4uUhEdfexRF3KEqCW2C0Uk7hrWK7+ikfjNQKbTqcHLE
+         U8HQ==
+X-Gm-Message-State: AOAM5309WgVIW23np2xSm1D+P9QkKlFJRli8qyaIjDgQnYZuv4aTGPI2
+        Km6gMxdkMk/PZ3bc32HSKhaNGaUwJ3+fuoczHavmYK052Qs=
+X-Google-Smtp-Source: ABdhPJw4sL0/a9JoSrIwywzd8l+q04n/V4qcoRQ1usL9+UKdAACMkTARtNb9rBqxdCnSCJBOQ/U2QBCJqcZJxGf9rjM=
+X-Received: by 2002:ac8:794f:: with SMTP id r15mr409042qtt.385.1603859268783;
+ Tue, 27 Oct 2020 21:27:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201008015106.3198-1-billy_tsai@aspeedtech.com>
+ <20201008015106.3198-3-billy_tsai@aspeedtech.com> <CACPK8XeKdmvVB_CTND7mSRvtTRz8i+Zw1=E06OP-=r3=pnh9gw@mail.gmail.com>
+ <D35132A5-2676-4806-AF35-9110DF0CC88B@aspeedtech.com>
+In-Reply-To: <D35132A5-2676-4806-AF35-9110DF0CC88B@aspeedtech.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 28 Oct 2020 04:27:36 +0000
+Message-ID: <CACPK8XccGJgd4eNiRyE8D2VphpuONZC4CmiC4tDk0pFYmaTdJA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] Arm: dts: aspeed-g6: Add sgpio node and pinctrl setting
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     Jeremy Kerr <jk@ozlabs.org>, Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add yet another eDP panel.
+On Mon, 12 Oct 2020 at 05:25, Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+>
+> Hi Joel,
+>
+> On 2020/10/8, 11:49 AM, Joel Stanley wrote:
+>
+>     On Thu, 8 Oct 2020 at 01:51, Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+>     > >
+>     > > This patch is used to add sgpiom and sgpios nodes and add pinctrl setting
+>     > > for sgpiom1
+>     >
+>     > The code looks good Billy.
+>     >
+>     > Please split the change in two: device tree changes (arch/arm/dts) in
+>     > one, and pinctrl in the second, as they go through different
+>     > maintainers.
+>     >
+>
+>     If I split the change in two, the patch of dts will have a compiler error.
+>     Because that the sgpiom1 node needs the pinctrl symbol "&pinctrl_sgpm2_default".
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+The drivers/pinctrl/ changes should be split from the
+arch/arm/boot/dts/ changes.
 
-(no changes since v1)
+You should keep the arch/arm/boot/dts/ changes in the same patch.
 
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+Cheers,
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index edb53ab0d9eb..93e244c67e8a 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -76,6 +76,8 @@ properties:
-         # BOE OPTOELECTRONICS TECHNOLOGY 10.1" WXGA TFT LCD panel
-       - boe,nv101wxmn51
-         # BOE NV133FHM-N61 13.3" FHD (1920x1080) TFT LCD Panel
-+      - boe,nv110wtm-n61
-+        # BOE NV110WTM-N61 11.0" 2160x1440 TFT LCD Panel
-       - boe,nv133fhm-n61
-         # BOE NV133FHM-N62 13.3" FHD (1920x1080) TFT LCD Panel
-       - boe,nv133fhm-n62
--- 
-2.29.1.341.ge80a0c044ae-goog
-
+Joel
