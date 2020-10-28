@@ -2,106 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 248C229D3B0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A751329D446
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:51:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726344AbgJ1VqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:46:08 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:6919 "EHLO
-        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727379AbgJ1VqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:46:08 -0400
-Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4CLm6P095sz6yKv;
-        Wed, 28 Oct 2020 19:09:01 +0800 (CST)
-Received: from [10.174.179.182] (10.174.179.182) by
- DGGEMS413-HUB.china.huawei.com (10.3.19.213) with Microsoft SMTP Server id
- 14.3.487.0; Wed, 28 Oct 2020 19:08:54 +0800
-Subject: Re: [PATCH v4 6/7] arm64: mm: Set ZONE_DMA size based on early IORT
- scan
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        <robh+dt@kernel.org>, <catalin.marinas@arm.com>, <hch@lst.de>,
-        <ardb@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-CC:     <robin.murphy@arm.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-rpi-kernel@lists.infradead.org>, <jeremy.linton@arm.com>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <will@kernel.org>, Anshuman Khandual <anshuman.khandual@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <lenb@kernel.org>, <linux-acpi@vger.kernel.org>
-References: <20201021123437.21538-1-nsaenzjulienne@suse.de>
- <20201021123437.21538-7-nsaenzjulienne@suse.de>
-From:   Hanjun Guo <guohanjun@huawei.com>
-Message-ID: <3a1480f7-7fd6-247c-73a2-f761f9ce3362@huawei.com>
-Date:   Wed, 28 Oct 2020 19:08:53 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1728091AbgJ1Vuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:50:52 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:52243 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728083AbgJ1Vuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 17:50:51 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E6100580143;
+        Wed, 28 Oct 2020 08:41:11 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Wed, 28 Oct 2020 08:41:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-transfer-encoding; s=fm1; bh=zHv8g/0wGKqhI
+        RffMNPMMWCiBMbhGrdlj6tIrzrXJ6E=; b=FJ8cSKxDlNFUI6KpsIX76jHZezgM6
+        IyQdNK1ncTM7Sf8w/HafpsgNyNv+Sl8kwkvtLX/2JBe66W8AG0rdVXdt58vEFcxX
+        6USUTm6sLirWvpfRpvsXSkAyte3DAl3X8qlYM2jXlrdPow00m4UlgvzAn4EbSlTX
+        xZkJSafC9arWXKHuYdyD+aRkVDYxDCUaj8cJc+rQ7VMUrqfWXTL245WCquCDiVJf
+        ivMAcAN58d8PeaPgeuTfk3+vFbq1nr2eTLru6jOaTMC0tbYP8UeZzcUqUfL4RXW6
+        XjLXWvS3zDJGiOYfVmtUxvoXm6M1RcrI9A4Vw1KXaRDQ9GbaWH4buvYGg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :in-reply-to:message-id:mime-version:references:subject:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; bh=zHv8g/0wGKqhIRffMNPMMWCiBMbhGrdlj6tIrzrXJ6E=; b=NJ04lXZo
+        PDQ01HRaEgy1tKgDzwVm265HS6wXTfE/YUyGE7VlwlxXFy6BfriJwO2kfUYa51VA
+        8WYC3XYb3oE2Sscl3cDw3F4ryTi6fRjAxJ+mlIpGE4apJM5s2fzxyYL/sjTsfg5g
+        JgsNOQ9z9wfhMUFNsGb9epmReVdziJeMj4m+dCaoQgpoRmzMIkqQgWEKabzYLZRJ
+        RgyGJwQTImJDEan6WWNbvIPZCuAkXpDmQadBUwEAEHC+4eMmCnr7d1uOJrIUw8bW
+        PikQ9omRjqrbKiarPayfq5e+ATHnh3STVhhdF0ua4BP3cAKQLFpmzzMevgJrm1Uq
+        1bfvL/XPEd7a7g==
+X-ME-Sender: <xms:52aZX7oyr59RjpSNeW7zG6_vCvCgO3jZQB5bPk80g7PjguYbUBbvdA>
+    <xme:52aZX1rRmbxGrMETep--poHWDqp5V3N7t0amPF-fftIq_6tma0_CmtEDTXuhpUWou
+    Z1DT6E-Cbd66ls7D40>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrledugdegvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
+    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpeefnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:52aZX4NX7YGmaC03wnOV3raLv6e2RrwwDcgg0HERA3K9m0-HNFROAQ>
+    <xmx:52aZX-5gVRr5notOEkQ2jY0fGYsag2H5wZdNGeQL31GtApGtd15QeA>
+    <xmx:52aZX67dG-eu27ku4oM8TN_g5sa3hHynPGxvY6-vhpzDpF7vb1zQKA>
+    <xmx:52aZX9reonLGWujmVuinncvs7jDd9qaT2usmrV0CDXMm_tZ8B70t0Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 568003064686;
+        Wed, 28 Oct 2020 08:41:11 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Eric Anholt <eric@anholt.net>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Subject: [PATCH v2 4/7] drm/vc4: kms: Document the muxing corner cases
+Date:   Wed, 28 Oct 2020 13:41:01 +0100
+Message-Id: <aa88b754887b0a53b33e6a2447a09ff50281fd54.1603888799.git-series.maxime@cerno.tech>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
+References: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
 MIME-Version: 1.0
-In-Reply-To: <20201021123437.21538-7-nsaenzjulienne@suse.de>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.179.182]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/10/21 20:34, Nicolas Saenz Julienne wrote:
-> From: Ard Biesheuvel <ardb@kernel.org>
-> 
-> We recently introduced a 1 GB sized ZONE_DMA to cater for platforms
-> incorporating masters that can address less than 32 bits of DMA, in
-> particular the Raspberry Pi 4, which has 4 or 8 GB of DRAM, but has
-> peripherals that can only address up to 1 GB (and its PCIe host
-> bridge can only access the bottom 3 GB)
-> 
-> Instructing the DMA layer about these limitations is straight-forward,
-> even though we had to fix some issues regarding memory limits set in
-> the IORT for named components, and regarding the handling of ACPI _DMA
-> methods. However, the DMA layer also needs to be able to allocate
-> memory that is guaranteed to meet those DMA constraints, for bounce
-> buffering as well as allocating the backing for consistent mappings.
-> 
-> This is why the 1 GB ZONE_DMA was introduced recently. Unfortunately,
-> it turns out the having a 1 GB ZONE_DMA as well as a ZONE_DMA32 causes
-> problems with kdump, and potentially in other places where allocations
-> cannot cross zone boundaries. Therefore, we should avoid having two
-> separate DMA zones when possible.
-> 
-> So let's do an early scan of the IORT, and only create the ZONE_DMA
-> if we encounter any devices that need it. This puts the burden on
-> the firmware to describe such limitations in the IORT, which may be
-> redundant (and less precise) if _DMA methods are also being provided.
-> However, it should be noted that this situation is highly unusual for
-> arm64 ACPI machines. Also, the DMA subsystem still gives precedence to
-> the _DMA method if implemented, and so we will not lose the ability to
-> perform streaming DMA outside the ZONE_DMA if the _DMA method permits
-> it.
-> 
-> Cc: Jeremy Linton <jeremy.linton@arm.com>
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Christoph Hellwig <hch@lst.de>
-> Cc: Robin Murphy <robin.murphy@arm.com>
-> Cc: Hanjun Guo <guohanjun@huawei.com>
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: Anshuman Khandual <anshuman.khandual@arm.com>
-> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> [nsaenz: Rebased, removed documentation change and add declaration in acpi_iort.h]
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> 
-> ---
-> 
-> Changes since v3:
->   - Use min_not_zero()
->   - Check ACPI revision
->   - Remove unnecessary #ifdef in zone_sizes_init()
-> 
->   arch/arm64/mm/init.c      |  3 ++-
->   drivers/acpi/arm64/iort.c | 52 +++++++++++++++++++++++++++++++++++++++
->   include/linux/acpi_iort.h |  4 +++
+We've had a number of muxing corner-cases with specific ways to reproduce
+them, so let's document them to make sure they aren't lost and introduce
+regressions later on.
 
-Acked-by: Hanjun Guo <guohanjun@huawei.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ drivers/gpu/drm/vc4/vc4_kms.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
+index 4aa0577bd055..b0043abec16d 100644
+--- a/drivers/gpu/drm/vc4/vc4_kms.c
++++ b/drivers/gpu/drm/vc4/vc4_kms.c
+@@ -612,6 +612,28 @@ static const struct drm_private_state_funcs vc4_load_tracker_state_funcs = {
+ };
+ 
+ 
++/*
++ * The BCM2711 HVS has up to 7 output connected to the pixelvalves and
++ * the TXP (and therefore all the CRTCs found on that platform).
++ *
++ * The naive (and our initial) implementation would just iterate over
++ * all the active CRTCs, try to find a suitable FIFO, and then remove it
++ * from the available FIFOs pool. However, there's a few corner cases
++ * that need to be considered:
++ *
++ * - When running in a dual-display setup (so with two CRTCs involved),
++ *   we can update the state of a single CRTC (for example by changing
++ *   its mode using xrandr under X11) without affecting the other. In
++ *   this case, the other CRTC wouldn't be in the state at all, so we
++ *   need to consider all the running CRTCs in the DRM device to assign
++ *   a FIFO, not just the one in the state.
++ *
++ * - Since we need the pixelvalve to be disabled and enabled back when
++ *   the FIFO is changed, we should keep the FIFO assigned for as long
++ *   as the CRTC is enabled, only considering it free again once that
++ *   CRTC has been disabled. This can be tested by booting X11 on a
++ *   single display, and changing the resolution down and then back up.
++ */
+ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
+ 				      struct drm_atomic_state *state)
+ {
+-- 
+git-series 0.9.1
