@@ -2,93 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31D3129DF86
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:02:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC1529E0D3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:38:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731027AbgJ2BCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 21:02:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52732 "EHLO
+        id S1729888AbgJ1WDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:03:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730534AbgJ1WNJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:13:09 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F37EAC0613CF;
-        Wed, 28 Oct 2020 15:13:08 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id g12so669792wrp.10;
-        Wed, 28 Oct 2020 15:13:08 -0700 (PDT)
+        with ESMTP id S1729302AbgJ1WB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:01:27 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 033C0C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:01:27 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id l2so790012lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:01:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cGK0y4DdjN+ht1VXSEDsJItbDCIWKoPEWxNpiJk8/U4=;
-        b=A2QmttkI2fe6dA/2YZGL64pX8xVnqR6evtzrPGT+ldsFPQcVmv1JwRorV+t51DAGQk
-         gGOhIou6GLz7/wQpic/qi0h/5wxwyYmluu2JJQ5DOsbSMm8oTfmOg4Qb8vcZsUFlE7H1
-         y3Yf26m+/4UUHX2zheGb6YiHC+km8BUKiPxcct3iK04Q5OPp8TJVTcTk+jZyo9e6zdHB
-         MVcMVjkkSRulUgoNbPIU8+pQN7bxJjifv3L5K+DinD0VbLGa45KtADz0NTsaNUKjON2R
-         iMJ3m35zbIyNJL7Rvmuf5G9vM6QPoj4qVCIGM2FkFyYnlD0zVwAJq7qsNbT13hRuFKlM
-         Zr1A==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CM30BQGyp7IWvRqsSROldJ9vkQO94NEkbC4h78ONa3o=;
+        b=Cn303OOLI96wpFvv7YHWPuEFI45qhj48lmXTT30XQYRBMg+hOkkMTFFBCvYv/WSGHI
+         84Ea929+F+y/Lxa3XbkVBQHX8bmpn+gPXO0XJGApW0JePEYUOR1Y6jpzERi+XhP70BL4
+         l9xOA8X4/UX9Mw9fy9xaHVW9WLUY+vTpcGhkN9BIoEDYW2lh9JbP9hg88HadTBRMc6cp
+         2HNjro2+15xtds8Qf8FsCajO62rSJizv0A/j/kOLYjDp32oVmbGD8qhVhucDYx8BErDP
+         BYfh8caKIoQ979lq5wYH/1fksxZ3sG3WgKUnRFuW1QDx9+VElbIfPS/8OeVTO9j8oZDK
+         T7Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cGK0y4DdjN+ht1VXSEDsJItbDCIWKoPEWxNpiJk8/U4=;
-        b=oMn6d5UfWQ1dJTxaaE4ACTXTj5YYglJdfX/ryLSd8W946rnKFlqND1d75mOnV47fpc
-         psS8t991pSOMdQYeWIlR8YGecH28sop5RyuP9OhraoHAyiMonK81Kp+XRLwQyLLtIlvx
-         1n3GAlJbchsVgygG6sCCBgcnbHILptBqg/BHYLwOk+DF4ueojgG3J2ZRPpLcDBbOVon0
-         rl6gqSejd6VFsgSbNgPJ+Cna0UnqaW1ya5Rnmu393QNzuhKkvtF1VdQTVpOQVSRsof0w
-         EKEfkXImnzBBa67dOkaJ5/4zOVJ30TeDP3flwK30v50kdyIfGbMfdjSrZ/Xt/mm19P2e
-         78jg==
-X-Gm-Message-State: AOAM531TAzAYqC3Rgw8f/P4HtAb0tcoA2Hi08pZtjqFLJsMtNU4yRuED
-        Tte+72mIVZkx/kZrl2j0jn06RINN4sATMyem
-X-Google-Smtp-Source: ABdhPJxm6cfbG6QjUkuAqgjbUqmYmPAAy0t2sdXju04r3h0/YH3Fuj3gbcmR6HtqNnJfop1leFoS2g==
-X-Received: by 2002:adf:bd86:: with SMTP id l6mr1665232wrh.205.1603923187610;
-        Wed, 28 Oct 2020 15:13:07 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
-        by smtp.gmail.com with ESMTPSA id x1sm1318928wrl.41.2020.10.28.15.13.06
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CM30BQGyp7IWvRqsSROldJ9vkQO94NEkbC4h78ONa3o=;
+        b=YLqNJQhXUigXNfvaXTXjMHq3J19Qtgm32XUkaRSPvsodO4UbKzhrhlpSYN47PlxUiK
+         9KX33gOu7ng7skTa/VxmXuQjMhIS/ubcmXUcEbA3NIHX4GhkB5E21q3uqdl1vAcDjb6L
+         qujwXe5C7MUkfHUe+jQFEO3eD9rnPKV+hMzpT5UOOemYr4cf7GFKAR97rvDk7+UffGLm
+         pGhwFFvMVxT8X1EvqudvZpUhD0fUdGPmzqVDWKguJxFoleiwC5voUDs2MyRkqej1DT++
+         +gGscFziHmi7ZxelcgQrJdZXylnvm4oQnTZCgABdj/h7mUs50+BKQtQuL4fdEuIS6swf
+         4Vrw==
+X-Gm-Message-State: AOAM532SqnS8mjz3rTV3mi18vsf9mU3lkS95P01m+F+z4F9auerDkGZT
+        ZtjBRmDeVaopROzfDeWMT9Ar/3iD72Q=
+X-Google-Smtp-Source: ABdhPJxGJp8AwP8Hd89efQojeQqaeDgUzTRnnkfHWDcZ7oOEpJVRrKD1Rj5hUlDEum1iI63g5cMQhQ==
+X-Received: by 2002:a19:6514:: with SMTP id z20mr2318360lfb.456.1603879912468;
+        Wed, 28 Oct 2020 03:11:52 -0700 (PDT)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id m10sm479084lfo.237.2020.10.28.03.11.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 15:13:07 -0700 (PDT)
-From:   kholk11@gmail.com
-To:     dmitry.torokhov@gmail.com
-Cc:     robh+dt@kernel.org, rydberg@bitmath.org, priv.luk@gmail.com,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kholk11@gmail.com, marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org, krzk@kernel.org,
-        andy.shevchenko@gmail.com
-Subject: [PATCH v9 1/3] dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
-Date:   Wed, 28 Oct 2020 23:13:00 +0100
-Message-Id: <20201028221302.66583-2-kholk11@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201028221302.66583-1-kholk11@gmail.com>
-References: <20201028221302.66583-1-kholk11@gmail.com>
+        Wed, 28 Oct 2020 03:11:51 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] arm64: add config for Broadcom BCM4908 SoCs
+Date:   Wed, 28 Oct 2020 11:11:22 +0100
+Message-Id: <20201028101123.6293-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Add prefix for Novatek Microelectronics Corp.
+Add ARCH_BCM4908 config that can be used for compiling DTS files.
 
-Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/Kconfig.platforms | 8 ++++++++
+ arch/arm64/configs/defconfig | 1 +
+ 2 files changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 66e45112a8d7..f98ea0af487d 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -740,6 +740,8 @@ patternProperties:
-     description: Nokia
-   "^nordic,.*":
-     description: Nordic Semiconductor
-+  "^novatek,.*":
-+    description: Novatek Microelectronics Corp.
-   "^novtech,.*":
-     description: NovTech, Inc.
-   "^nutsboard,.*":
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index cd58f8495c45..52434264a2af 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -43,6 +43,14 @@ config ARCH_BCM2835
+ 	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
+ 	  These SoCs are used in the Raspberry Pi 3 and 4 devices.
+ 
++config ARCH_BCM4908
++	bool "Broadcom BCM4908 family"
++	select GPIOLIB
++	help
++	  This enables support for the Broadcom BCM4906, BCM4908 and
++	  BCM49408 SoCs. These SoCs use Cortex-B53 cores and can be
++	  found in home routers.
++
+ config ARCH_BCM_IPROC
+ 	bool "Broadcom iProc SoC Family"
+ 	select COMMON_CLK_IPROC
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index e0f33826819f..d2717bf2afe1 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -32,6 +32,7 @@ CONFIG_ARCH_AGILEX=y
+ CONFIG_ARCH_SUNXI=y
+ CONFIG_ARCH_ALPINE=y
+ CONFIG_ARCH_BCM2835=y
++CONFIG_ARCH_BCM4908=y
+ CONFIG_ARCH_BCM_IPROC=y
+ CONFIG_ARCH_BERLIN=y
+ CONFIG_ARCH_BRCMSTB=y
 -- 
-2.28.0
+2.27.0
 
