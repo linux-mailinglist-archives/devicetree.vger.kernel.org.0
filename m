@@ -2,98 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E06029D470
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:52:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0787529D40E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:48:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728250AbgJ1VwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:52:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727786AbgJ1VwG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:52:06 -0400
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 921B1C0613CF;
-        Wed, 28 Oct 2020 14:52:06 -0700 (PDT)
-Received: by mail-oi1-x243.google.com with SMTP id f7so1156402oib.4;
-        Wed, 28 Oct 2020 14:52:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hsiBaHtytHat8/EztZJPMms+wc+gkK9fFhRbXpui7XQ=;
-        b=MQEVLxlQBAUE8Edv0UruJBsGHTS6407b6J0mWXgnZtxQWJVTgvfoZAswU7xJkgQYQ0
-         Ddm8sQ76zjJVRKtkQlFy90/AG4a+nCqMy6zwee3lZeSF58nUjzSCyR6e5ipuATwKeQFx
-         +dpfnl3557iDt1HkVOdgqrc/F0u3oSsHc41Nw5dv21WL9SpIUx4hRzE3USyBCuRi6Rfd
-         7tuyWySJ5FCOs5D5P4BwoT+Kdd7sZpT5YW6+QKiL8YaQN3JGb90e1j3XsaGJDBGK6uGY
-         fiWnh8PoMxckM3nrVT395A+mMs9GIBD/ul5M6+fZHqzzmTg6GJIP3AVVGMnWB1PRla0t
-         k7+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hsiBaHtytHat8/EztZJPMms+wc+gkK9fFhRbXpui7XQ=;
-        b=WNtPKcbP2JxSkulBXowV3IIiDZ12QDrGoILu5h7gcZLNJHspPhsy0Aw/4dGUdPAo5n
-         RAcb43Ez5gNj7vP4/zgXLTslWZFu765q8/QGKeOAz0gq6PzAbW4Ok0Q03Ri2gSdsWxVp
-         23St3rWcISojR3OHwYYtFU/4XEN7cuGATiROBb8cUjFXtXv2GqSAClF09zBmh1tvxJEb
-         55wTB2UHEXD3gYK8S7kzm6uOanYrNCojSEjfX2me9U/0U3XEUA3VoIgaSBbKLNp3N6KK
-         ilITnByRqdQpxhfzLWIoND3bzUyUQdPf6rjRxxQTTfeHsSkhgW53njsQyiYJFuNaZE8r
-         7K1w==
-X-Gm-Message-State: AOAM530mdRXOqrOzS84LUHvH7eXL5ZKLCRkSA1dVUHfJ7kAp/jZnUjPi
-        xrOePGq92UixBYb5LsabStWzDP/37xDPWnM+PJJ30Yt/MgA=
-X-Google-Smtp-Source: ABdhPJy8JQRH34yo0LYH7fgqv7KNi4P+zNVt6GyrQjGrjJOIklaLoU3uoLRGVJm039L01MwTAaSTVYc9qlINuCALcKg=
-X-Received: by 2002:a17:90a:fb92:: with SMTP id cp18mr651136pjb.228.1603916683534;
- Wed, 28 Oct 2020 13:24:43 -0700 (PDT)
+        id S1726405AbgJ1Vst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:48:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38134 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725790AbgJ1VmX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 17:42:23 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9B73A2483C;
+        Wed, 28 Oct 2020 21:25:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603920312;
+        bh=GJYr0kQ5tQclKFUAWNHS/HPkX2rE4VXTuAgt6K8K3sU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NrHWrlJZKlc5ihemz0VmfxNgxWCyJN5iXcB5ZTjHBIWIo+VoffwEF90ALfUJtbmFt
+         9kfSYka9iSSe8f2tj+hDXjWCo+UHps1QG6MmhLdZy7MMy30tjcKoCgWePeL06uPz21
+         cHvSw+v9Wch4ogLxrKprt3tVCVIFBzdYeOxZNgnM=
+Date:   Wed, 28 Oct 2020 21:25:06 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: Re: [PATCH v2] Asoc: qcom: lpass-sc7180: Fix MI2S bitwidth field bit
+ positions
+Message-ID: <20201028212506.GB6302@sirena.org.uk>
+References: <1603798474-4897-1-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-References: <20201027135325.22235-1-vincent.whitchurch@axis.com> <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com>
-In-Reply-To: <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 28 Oct 2020 22:25:32 +0200
-Message-ID: <CAHp75Vff1AyKDb=JiocsAefnft+tcm+BnuWDrxViQqZAQZjuVg@mail.gmail.com>
-Subject: Re: [PATCH v2] gpio: mockup: Allow probing from device tree
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        Bamvor Jian Zhang <bamv2005@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        kernel@axis.com, devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/NkBOFFp2J2Af1nK"
+Content-Disposition: inline
+In-Reply-To: <1603798474-4897-1-git-send-email-srivasam@codeaurora.org>
+X-Cookie: Allow 6 to 8 weeks for delivery.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 8:41 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-> On Tue, Oct 27, 2020 at 2:54 PM Vincent Whitchurch
-> <vincent.whitchurch@axis.com> wrote:
 
-...
+--/NkBOFFp2J2Af1nK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > +#include <linux/of.h>
->
-> Please keep the includes ordered alphabetically.
+On Tue, Oct 27, 2020 at 05:04:34PM +0530, Srinivasa Rao Mandadapu wrote:
 
-Besides the fact that that is a wrong header to be included.
-mod_devicetable.h is the correct one.
-(See also below)
+> Update SC7180 lpass_variant structure with proper I2S bitwidth
+> field bit positions, as bitwidth denotes 0 to 1 bits,
+> but previously used only 0 bit.
 
-...
+To repeat my previous feedback:
 
-> > +#ifdef CONFIG_OF
-> > +static const struct of_device_id gpio_mockup_of_match[] = {
-> > +       { .compatible = "gpio-mockup", },
-> > +       {},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
-> > +#endif
->
-> You don't need this ifdef - of_match_ptr() will evaluate to NULL if
-> CONFIG_OF is disabled and the compiler will optimize this struct out.
+| Please submit patches using subject lines reflecting the style for the
+| subsystem, this makes it easier for people to identify relevant patches.
+| Look at what existing commits in the area you're changing are doing and
+| make sure your subject lines visually resemble what they're doing.
 
-It's not so. If you drop ugly ifdeffery (and I vote for that, see also
-above) the of_match_ptr() must be dropped as well.
-Otherwise the compiler will issue the warning. So it is either all or none.
+--/NkBOFFp2J2Af1nK
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-With Best Regards,
-Andy Shevchenko
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+Z4bEACgkQJNaLcl1U
+h9AvIQf8DyFuw//44sZKS76tGkYUI5e63r0TFIgniukPLkySfUIpx+onvitdbnoF
+d5kB+XFMTSPLebTNF3+bdb3fzWLYlhWL0zr5UPL/P9+is6DwLji3NOT2Qlh9oMLQ
+WGcBl/NaliM2uxVnPB7eByEOpZAuPd61K+lhM6Mg8nlKroMZqJFUpN/D0asYhS4z
+r4Grz87b4Ncgtwq0EZ9pOA9Y1AVPN7w2YUh9qLEAf10i99Z0gXDwBZusY76Ffn3g
+ExRlnD73EUQPf4YX97Ey7B9vWjmGxZL6a3HnHHwU4YItA7Dio7CX7NDak0mQYWBs
+C10XnhMfKVhxDsy5nhtTnYQI81Y60A==
+=mqF7
+-----END PGP SIGNATURE-----
+
+--/NkBOFFp2J2Af1nK--
