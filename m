@@ -2,90 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFF1C29D8B6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A6E29D8DE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:40:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388275AbgJ1Wf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:35:57 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:39403 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387867AbgJ1WeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:34:20 -0400
-Received: by mail-oi1-f194.google.com with SMTP id u127so1247633oib.6;
-        Wed, 28 Oct 2020 15:34:19 -0700 (PDT)
+        id S2388022AbgJ1WkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:40:25 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:37475 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388994AbgJ1Wjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:39:47 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m22so659757ots.4;
+        Wed, 28 Oct 2020 15:39:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KK4JHKpclhDqWo+zj70zoLFW0u9q4vhE3OiG/X4mqyw=;
-        b=FA1hUj/a6P7xQ1g0T60Dw+BDaIw5Ogrrl1ywmQCoSTYHVapFqPIT4mOfysx+/KqXII
-         5aIImtaub6CHceES64QgRT11XedmY4Wynr3Eh9uIyfo32085ceI4FMUkWPopReClzHpV
-         fUm37XEcfKQkmTIt+Dx1CRoSyZB8dgz1Dvwlwp6yTKFECPeMVuzc0IoRtEYXjtcp3FPA
-         54wngS5pCcqGDOBbV4CFS4PbzkmKVW6QLxZSYjYb+GLbkvW7K/a8SX3CQufg19gDXmf/
-         dfu3Vs/EnhB775F2ZIoflzO3R1Mpu2N0XF3kP5KyLu5DD97YQikzzQOomes6tZh3C6MP
-         oVqA==
-X-Gm-Message-State: AOAM530dbrksL1FJS6MLb3csYzwHZ8vqZAW/ov/vrobRMdeViI5C59K/
-        HAlWyICs9BKxPB07l+OwHgfwtJr5jA==
-X-Google-Smtp-Source: ABdhPJz3w1G6jnu8D3fmDgi9f1FaYU2/JqUmSa9HRXvIFMUox0/a7KLQiyto+W4ckcjbTmjHzRDwAA==
-X-Received: by 2002:aca:ec92:: with SMTP id k140mr5466546oih.173.1603893443946;
-        Wed, 28 Oct 2020 06:57:23 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=o6EwXQBfcMS/8hppO1O8Dg2kVJUq26B2UJyAmaDjbzk=;
+        b=sRd22aRNw6zB6w/gluvROBwovTKpgYdsfCTCx/XJI8t+aLYXKHUchELoq+O5iqicEx
+         B3lmmug5j/oQmHOgyR+4/EAJjkhmfhdIMsHp/6Qi3oLmGBh0ojWzA3YKviFFAP1a04v/
+         7rcLJC8RsnISJzeCghZWLhB6iAzqprh88lNEBiTyxQ2chWIZJgVP/zpT1eeDuZ70wxVQ
+         PtqDbYH8RcPaka8eqeLXYF2b5q6k6q/KDgAlJa7nG5dZClgq8jO33lxe7JJmwdRG3wnr
+         A+t4Rfe1J9ufjzfYulrUN6Af1R28k+a4OKB8df/QWV20Bgjgov+LG6Y7+nZGdt9cPqOU
+         P5+g==
+X-Gm-Message-State: AOAM533DGIIz9S5G7j0mqgcBQf66m5C+K1SShYVUAgq+UgoRMcEWrQj8
+        1GVLhzFl7nEc44X3mom8m36PEMobvw==
+X-Google-Smtp-Source: ABdhPJwj/TyDdKmqYTN4xYvs7B9zlCOZD1OUjrbHekbCo/ATjXWibtj5dLIGJwVVW7gCH9am8fXsDQ==
+X-Received: by 2002:a4a:ea4b:: with SMTP id j11mr6145795ooe.56.1603898585153;
+        Wed, 28 Oct 2020 08:23:05 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d11sm2174179oti.69.2020.10.28.06.57.22
+        by smtp.gmail.com with ESMTPSA id c20sm2076568otm.49.2020.10.28.08.23.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 06:57:23 -0700 (PDT)
-Received: (nullmailer pid 3932870 invoked by uid 1000);
-        Wed, 28 Oct 2020 13:57:22 -0000
-Date:   Wed, 28 Oct 2020 08:57:22 -0500
+        Wed, 28 Oct 2020 08:23:04 -0700 (PDT)
+Received: (nullmailer pid 4050074 invoked by uid 1000);
+        Wed, 28 Oct 2020 15:23:03 -0000
+Date:   Wed, 28 Oct 2020 10:23:03 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Cc:     robh+dt@kernel.org, bhelgaas@google.com,
-        devicetree@vger.kernel.org, andriy.shevchenko@linux.intel.com,
-        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        lorenzo.pieralisi@arm.com, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: Add Intel Keem Bay PCIe controller
-Message-ID: <20201028135722.GB3932108@bogus>
-References: <20201027060011.25893-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201027060011.25893-2-wan.ahmad.zainie.wan.mohamad@intel.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 04/52] dt-bindings: memory: tegra20: emc: Document
+ nvidia,memory-controller property
+Message-ID: <20201028152303.GA4041470@bogus>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201025221735.3062-5-digetx@gmail.com>
+ <20201027085417.GD4244@kozik-lap>
+ <54191034-dcb9-7cab-333b-5bb2553f0ed1@gmail.com>
+ <20201027193039.GA140636@kozik-lap>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201027060011.25893-2-wan.ahmad.zainie.wan.mohamad@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201027193039.GA140636@kozik-lap>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Oct 2020 14:00:10 +0800, Wan Ahmad Zainie wrote:
-> Document DT bindings for PCIe controller found on Intel Keem Bay SoC.
+On Tue, Oct 27, 2020 at 08:30:39PM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Oct 27, 2020 at 10:17:19PM +0300, Dmitry Osipenko wrote:
+> > 27.10.2020 11:54, Krzysztof Kozlowski пишет:
+> > > On Mon, Oct 26, 2020 at 01:16:47AM +0300, Dmitry Osipenko wrote:
+> > >> Tegra20 External Memory Controller talks to DRAM chips and it needs to be
+> > >> reprogrammed when memory frequency changes. Tegra Memory Controller sits
+> > >> behind EMC and these controllers are tightly coupled. This patch adds the
+> > >> new phandle property which allows to properly express connection of EMC
+> > >> and MC hardware in a device-tree, it also put the Tegra20 EMC binding on
+> > >> par with Tegra30+ EMC bindings, which is handy to have.
+> > >>
+> > >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> > >> ---
+> > >>  .../bindings/memory-controllers/nvidia,tegra20-emc.txt          | 2 ++
+> > >>  1 file changed, 2 insertions(+)
+> > >>
+> > >> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+> > >> index 567cffd37f3f..1b0d4417aad8 100644
+> > >> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+> > >> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+> > >> @@ -12,6 +12,7 @@ Properties:
+> > >>    irrespective of ram-code configuration.
+> > >>  - interrupts : Should contain EMC General interrupt.
+> > >>  - clocks : Should contain EMC clock.
+> > >> +- nvidia,memory-controller : Phandle of the Memory Controller node.
+> > > 
+> > > It looks like you adding a required property which is an ABI break.
+> > The T20 EMC driver is unused so far in upstream and it will become used
+> > only once this series is applied. Hence it's fine to change the ABI.
 > 
-> Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-> ---
->  .../bindings/pci/intel,keembay-pcie-ep.yaml   |  86 +++++++++++++
->  .../bindings/pci/intel,keembay-pcie.yaml      | 120 ++++++++++++++++++
->  2 files changed, 206 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/intel,keembay-pcie-ep.yaml
->  create mode 100644 Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml
-> 
+> The ABI is not about upstream, but downstream. 
 
+"If it's not upstream, it doesn't exist."
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Though we do have to account for out of tree users where the DT is not 
+in tree, but upstream drivers are used. Downstream as in vendor kernels 
+typically has loads of other crap.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pci/intel,keembay-pcie-ep.yaml:14:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml:17:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
+> There are no other
+> upstreams using this ABI. Unless you have in mind that existing T20 EMC
+> driver was a noop, doing absolutely nothing, therefore there is no
+> breakage of any other users?
 
-dtschema/dtc warnings/errors:
+ABI breaks are ultimately up to the platform maintainers to decide.
 
-
-See https://patchwork.ozlabs.org/patch/1388284
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
