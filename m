@@ -2,244 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4379929DAAB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:28:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA9529D9F7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390581AbgJ1X21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37162 "EHLO
+        id S1727329AbgJ1XId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390360AbgJ1X2L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:28:11 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47C2C0613CF
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:28:09 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id 2so1040281ljj.13
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:28:09 -0700 (PDT)
+        with ESMTP id S1725797AbgJ1XIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:08:32 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F183BC0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:08:31 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id h22so816639wmb.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:08:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6uS0r7y6biXYa9U4d4/PAE9n89ZvBxgMX312oRTh6lg=;
-        b=CCVxFxGmfy05Q68akXSjQsCJFHYqa+w34YILpnkF6uWLOR1JVX3zVzQAJ09p/D0SNU
-         yaRazFZb/HzW5pt2hhCSd9T9zrUglfJqPd/3iMBDS9/FTaCAp7pAAOZzE1wbX8irW3Bl
-         iHWBdBqdyMV/GAnLlNrq/8iIcWCTcRSpc1w6C/XPODtf0BkG48hyVb5ICDUEJPK5ZHY0
-         VD09tvGnmncQdfN4AJOFm5ll5Fl3tc5HIw8yZ18CpR+BLVSrjmldEids37qAg1Mjb3DV
-         N6clHFsGF0VuqcKva8oB+E2XWD6uEwdLcDAFDkt96dzJYWc9DhyeedHFlsZokT+NnilL
-         +7AQ==
+        d=ffwll.ch; s=google;
+        h=date:from:to:cc:subject:message-id:mail-followup-to:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WLWDWfUn62HuyKL78MLrBuM1P4gEN0IVPMugnmjyIpc=;
+        b=Oj55s1u+HirbuDDCtgGf2TCwNQs1t7Hb/dfEAbtoX4rp6Vi9YOyYi0ZR6vyFEJnv46
+         srMzjKdpNzPMuK/b/uwsPoV8xLsInM+031sEoA5Uns+jUhqfFFLnA1zctrfKyId7XHGc
+         IbDB6x5ghe+8hsKenVf6Dwci2fYo3m0yskyWc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6uS0r7y6biXYa9U4d4/PAE9n89ZvBxgMX312oRTh6lg=;
-        b=GkVnhV7ojU0dYLmNCFleSUwEwjebl3877l1DZN2Vd4BrdPrN2dah+iVJSXxFAkjhn8
-         i/TMzYkjj8UhOTxSCBPPZLpmwomPSc11stSUUYSalFNUKXxyO0ooBHio386nXFNLIaD8
-         CQkKZL79BryZjCKzt/QApyvBQaqWLO8YYst6Sgi5JzYPzVkxQJaD7Olw2Pk1X3WEWoLq
-         7md4ibWEB7wZ1bslgBHn2wTX7/6qJ49jjyhcMoZelyr2LrlbddI8Z/YR9ALmi337T8cu
-         ftCOeHyUH4dh3JTRicvKW11u5RHiktXR5ql4p6PlEP11ojTLT/C0LR8l/8dUDJRxhrGV
-         iOgw==
-X-Gm-Message-State: AOAM531YUxC50f9vdGZqa8PZHtmDxwBodHt0eMVl2bSWOnOCObmdcOJi
-        PQcnJj+XRhTJZ4FRsiBRi7bVDbHX34CA8EgT
-X-Google-Smtp-Source: ABdhPJwX9hHG1DBF/vrwPA04qfIX4Usd1mJ95bLF2KJvyhKPLYcFMFc73JombKwmPQcjeBlKxSuh6g==
-X-Received: by 2002:a2e:3c10:: with SMTP id j16mr558726lja.236.1603880237980;
-        Wed, 28 Oct 2020 03:17:17 -0700 (PDT)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id b12sm478741lfo.177.2020.10.28.03.17.16
+        h=x-gm-message-state:date:from:to:cc:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :in-reply-to;
+        bh=WLWDWfUn62HuyKL78MLrBuM1P4gEN0IVPMugnmjyIpc=;
+        b=lJkOdOaS8Q0h/zqcMvfIfDMJL1wOky2ifJJT6afYr+LjZYR6j3tPbJmysjjJiHq4CO
+         VZpK0JJEV7OwB95GEJs8VpbOiBSzy1kN2iwiojj4yuGA6uVOPOl9uqdX/AyN9ANwXQPV
+         onqQoshIOKSNeJ6ZrvqkrbhwD1KVogeVCQHFogR2Cs07JXwccruTYY/ZmoKgePgHPpfG
+         xtd1PkgwrMQK3uKk0n0dF0B9bQAoxT7MrMyotJ9dySzdlWNFVaM4+D551SuTxb5kg3TC
+         GufqX69loy1bGTbCUs0e7tjWnPio1nabdkRgk3NK14JJPAKdT0iu9WGTFGcrsOQ5aoZA
+         QmtA==
+X-Gm-Message-State: AOAM530tWzitRATf+azeKXV1WgVCOVzxkELHjAzJT73F1y4tCzjD5TuP
+        yuOC1o5Y9OeiNaL8P2bKYl0XboyAeMYeEZT2
+X-Google-Smtp-Source: ABdhPJz+EU8YlisomHF2zSjkLF+2zPf9qTQiMauCyQazYiNEgL02k8jKGZP/kZkcr+tV3wxSwpQU7g==
+X-Received: by 2002:a7b:cbc8:: with SMTP id n8mr7567498wmi.186.1603884560710;
+        Wed, 28 Oct 2020 04:29:20 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id g5sm5698229wmi.4.2020.10.28.04.29.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 03:17:17 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Nick Dyer <nick@shmanahar.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2] Input: atmel_mxt_ts: Convert bindings to YAML and extend
-Date:   Wed, 28 Oct 2020 11:17:10 +0100
-Message-Id: <20201028101711.696423-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        Wed, 28 Oct 2020 04:29:19 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 12:29:17 +0100
+From:   Daniel Vetter <daniel@ffwll.ch>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Hoegeun Kwon <hoegeun.kwon@samsung.com>, eric@anholt.net,
+        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        dave.stevenson@raspberrypi.com, sungguk.na@samsung.com
+Subject: Re: [PATCH 1/1] drm/vc4: drv: Add error handding for bind
+Message-ID: <20201028112917.GW401619@phenom.ffwll.local>
+Mail-Followup-To: Maxime Ripard <maxime@cerno.tech>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>, eric@anholt.net,
+        airlied@linux.ie, robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        dave.stevenson@raspberrypi.com, sungguk.na@samsung.com
+References: <20201027041442.30352-1-hoegeun.kwon@samsung.com>
+ <CGME20201027041535epcas1p489bbfe80b461f1e5c5deca1a571f1f35@epcas1p4.samsung.com>
+ <20201027041442.30352-2-hoegeun.kwon@samsung.com>
+ <20201027145431.zasv2oiydglz3n63@gilmour.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201027145431.zasv2oiydglz3n63@gilmour.lan>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the Armel MXT touchscreen bindings to YAML
-format and extends them with the following two properties:
+On Tue, Oct 27, 2020 at 03:54:31PM +0100, Maxime Ripard wrote:
+> Hi,
+> 
+> On Tue, Oct 27, 2020 at 01:14:42PM +0900, Hoegeun Kwon wrote:
+> > There is a problem that if vc4_drm bind fails, a memory leak occurs on
+> > the drm_property_create side. Add error handding for drm_mode_config.
+> > 
+> > Signed-off-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+> 
+> Applied, thanks!
 
-- vdda-supply: the optional analog supply voltage
-- vdd-supply: the optional digital supply voltage
-
-I also explained about the reset-gpios property that this
-better be flagged as active high (0) despite actually
-being active low, because all current device trees and
-drivers assume that this is the case and will actively
-drive the line low to assert RESET.
-
-Tested the schema with all in-tree users and they verify
-fine.
-
-Cc: Nick Dyer <nick@shmanahar.org>
-Cc: Stephan Gerhold <stephan@gerhold.net>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/input/atmel,maxtouch.txt         | 41 ---------
- .../bindings/input/atmel,maxtouch.yaml        | 83 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 84 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.txt
- create mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.txt b/Documentation/devicetree/bindings/input/atmel,maxtouch.txt
-deleted file mode 100644
-index c88919480d37..000000000000
---- a/Documentation/devicetree/bindings/input/atmel,maxtouch.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Atmel maXTouch touchscreen/touchpad
--
--Required properties:
--- compatible:
--    atmel,maxtouch
--
--    The following compatibles have been used in various products but are
--    deprecated:
--	atmel,qt602240_ts
--	atmel,atmel_mxt_ts
--	atmel,atmel_mxt_tp
--	atmel,mXT224
--
--- reg: The I2C address of the device
--
--- interrupts: The sink for the touchpad's IRQ output
--    See ../interrupt-controller/interrupts.txt
--
--Optional properties for main touchpad device:
--
--- linux,gpio-keymap: When enabled, the SPT_GPIOPWN_T19 object sends messages
--    on GPIO bit changes. An array of up to 8 entries can be provided
--    indicating the Linux keycode mapped to each bit of the status byte,
--    starting at the LSB. Linux keycodes are defined in
--    <dt-bindings/input/input.h>.
--
--    Note: the numbering of the GPIOs and the bit they start at varies between
--    maXTouch devices. You must either refer to the documentation, or
--    experiment to determine which bit corresponds to which input. Use
--    KEY_RESERVED for unused padding values.
--
--- reset-gpios: GPIO specifier for the touchscreen's reset pin (active low)
--
--Example:
--
--	touch@4b {
--		compatible = "atmel,maxtouch";
--		reg = <0x4b>;
--		interrupt-parent = <&gpio>;
--		interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_LOW>;
--	};
-diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-new file mode 100644
-index 000000000000..6173562f328a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/atmel,maxtouch.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel maXTouch touchscreen/touchpad
-+
-+maintainers:
-+  - Nick Dyer <nick@shmanahar.org>
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  Atmel maXTouch touchscreen or touchpads such as the mXT244
-+  and similar devices.
-+
-+properties:
-+  compatible:
-+    const: atmel,maxtouch
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdda-supply:
-+    description:
-+      Optional regulator for the AVDD analog voltage.
-+
-+  vdd-supply:
-+    description:
-+      Optional regulator for the VDD digital voltage.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      Optional GPIO specifier for the touchscreen's reset pin
-+      (active low). The operating system should actively drive
-+      the line low to assert reset, so the line must NOT be
-+      flagged with GPIO_ACTIVE_LOW, it should (counterintuitively)
-+      be set to GPIO_ACTIVE_HIGH.
-+
-+  linux,gpio-keymap:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      When enabled, the SPT_GPIOPWN_T19 object sends messages
-+      on GPIO bit changes. An array of up to 8 entries can be provided
-+      indicating the Linux keycode mapped to each bit of the status byte,
-+      starting at the LSB. Linux keycodes are defined in
-+      <dt-bindings/input/input.h>.
-+
-+      Note: the numbering of the GPIOs and the bit they start at varies
-+      between maXTouch devices. You must either refer to the documentation,
-+      or experiment to determine which bit corresponds to which input. Use
-+      KEY_RESERVED for unused padding values.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      touchscreen@4a {
-+        compatible = "atmel,maxtouch";
-+        reg = <0x4a>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+        reset-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
-+        vdda-supply = <&ab8500_ldo_aux2_reg>;
-+        vdd-supply = <&ab8500_ldo_aux5_reg>;
-+      };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..b4b46fcb82db 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2966,7 +2966,7 @@ ATMEL MAXTOUCH DRIVER
- M:	Nick Dyer <nick@shmanahar.org>
- S:	Maintained
- T:	git git://github.com/ndyer/linux.git
--F:	Documentation/devicetree/bindings/input/atmel,maxtouch.txt
-+F:	Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
- F:	drivers/input/touchscreen/atmel_mxt_ts.c
- 
- ATMEL WIRELESS DRIVER
+Switching over to drmm_ version of this would also be good I think.
+Together with the devm_ version for allocating the drm_device you could
+delete a pile of that fragile cleanup code.
+-Daniel
 -- 
-2.26.2
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
