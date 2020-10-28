@@ -2,126 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5471C29DC60
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:29:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2325029DE1E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:53:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731416AbgJ2A3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 20:29:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47026 "EHLO
+        id S1731599AbgJ2Av3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 20:51:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730438AbgJ2A3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 20:29:47 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9733AC0613D2
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 17:29:45 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id r127so1064874lff.12
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 17:29:45 -0700 (PDT)
+        with ESMTP id S1727023AbgJ2Aub (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 20:50:31 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530DCC0613CF;
+        Wed, 28 Oct 2020 17:50:30 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id p15so1615163ioh.0;
+        Wed, 28 Oct 2020 17:50:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7jNAEm6Hi0csIlAhJak64h6CkXzGG/PjJ55O7rc69w0=;
-        b=dVbiFvDr5hJzG53SMPD8precPJBr4LhbfNdzfOWJKKosCPkE3U8Ech812UHrucQHfv
-         E6ottCjFlpuwTsu3cvPVUcLBNhLxknUL9qAC1EQEH5lFYv0YOqmeBBkai/fZm68Y1uGJ
-         OHmPM76qoxHM+OiAeFY4lENZ6ebZWLhWm47PA=
+        bh=8aw7ZHemSnajVRzYuFXmFbn4jbpV13Mk0VVFGbHWHtU=;
+        b=CxDPTAZ9xoPOR2VRvQw+9E6WAmu71/qgxN+KqueOILrboadBMT+Rx/uQNdpPyOUu9V
+         iO34P3hQt18DkXp66fjfvxorZWtTxqxCP89VrX5gUml/QAwfPuQqtzRFXuOepjiMmprs
+         dex2ZNj7564llD2bUpw3+Bxtf/z950FiPX+Jg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7jNAEm6Hi0csIlAhJak64h6CkXzGG/PjJ55O7rc69w0=;
-        b=SFV2oUmlwHykj423novVEj1atYCg22DuNDWgrWHogFGuByvcTGdTFTGNt10eBbkalR
-         JTBimImfURv2uSlPYdiWZoExbkhOes+cglz0cYPU7vqxUzQmmIJTBu0tQjNmYBno5hsh
-         N/JYTgxpq48kDCtbea1By+Eb1AaeST5kzPCFRt/GPtX2Roped2jwYBs2UjiYGct5O3Nj
-         5rlTn4KEXCC+wJmviJVBrRS+4z9mVyT9+J3aZnei3lfbQaPqI0YwOHEyUJppRn8Rn5S9
-         Za3g1j4Xli4YHbO7WbKl0ytUIfgBAMo9EuAzdrkOaW/e83GPcQQcuHEj7pPb8iYyXEAj
-         oZrQ==
-X-Gm-Message-State: AOAM531tUVG9L6GVuY++9yozDVRu9wWBysrIjOuWnovRzQRMK1KyBNdC
-        VxEVTbSHugqUpU0Q7LsIGwTCSPPJ1oH5Gg==
-X-Google-Smtp-Source: ABdhPJyCZ15/MMNzH+8+GjtqbXBTGveGkVKHjUKUe7/9aq0KNL+fJ0uHmEGuGb9zkqAgokgKXIrYmA==
-X-Received: by 2002:ac2:4f03:: with SMTP id k3mr619482lfr.271.1603931383844;
-        Wed, 28 Oct 2020 17:29:43 -0700 (PDT)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com. [209.85.167.43])
-        by smtp.gmail.com with ESMTPSA id l6sm105323lfk.267.2020.10.28.17.29.42
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Oct 2020 17:29:43 -0700 (PDT)
-Received: by mail-lf1-f43.google.com with SMTP id a9so1101397lfc.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 17:29:42 -0700 (PDT)
-X-Received: by 2002:a19:6b0d:: with SMTP id d13mr519613lfa.485.1603931382411;
- Wed, 28 Oct 2020 17:29:42 -0700 (PDT)
+        bh=8aw7ZHemSnajVRzYuFXmFbn4jbpV13Mk0VVFGbHWHtU=;
+        b=gWIP6Ogp50IBCTR9nPRfK7LFoZj0S1RPleSYNykIPUXaKmJmLNelPlE2CtlXyKNNi/
+         lSYI7wuYRVSW5rweXFKLRc8AytV+a7rwNUwcCUiMQ9iSz6FfdN9GN9swLCn/oNABXJbM
+         OJusBsvrmC8TIqPSKHqgptZZcLImV6d/SwMGev33u2nCEVvsLNYZmvVmK9OFGpfZ6na7
+         eKGlftO5k4oG23d+akppL7UylkAuhQ9Cnh9WExBvgSZ4lwvRlQiXxfATGVHtiARAgjuR
+         OMrzLdnUaYjcW2nBZ3gspkuHJ+KvS1tX3BhDmZzpn76NkorjXxKWhCNLqebzqqLY7DI1
+         djGQ==
+X-Gm-Message-State: AOAM530kKQ9+TdAU1EEEMr4aoAvanQQKACHqX3sxVHrUWlHq9fV7tOVh
+        /XAj9kI4VOZwyaPP2MC6sQcUtWcHMgpfI6jtKd+leQNsoTOy2KK7
+X-Google-Smtp-Source: ABdhPJwF26Jo+xfWPeZxUj30ahnn83k3ZAaKnMVTIkLm3zp3Zrdcuodf+uatXmR7Lray56YF9TVXu3DHmuQqMxbe2jc=
+X-Received: by 2002:a37:a81:: with SMTP id 123mr5647706qkk.487.1603863175882;
+ Tue, 27 Oct 2020 22:32:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201016192654.32610-1-evgreen@chromium.org> <20201016122559.v2.1.I8b447ca96abfbef5f298d77350e6c9d1d18d00f6@changeid>
- <CAD=FV=VyBxXFLGsPZFpX29xFL5p8ZZPQ0uJEku3Wo04VFOEZOg@mail.gmail.com>
-In-Reply-To: <CAD=FV=VyBxXFLGsPZFpX29xFL5p8ZZPQ0uJEku3Wo04VFOEZOg@mail.gmail.com>
-From:   Evan Green <evgreen@chromium.org>
-Date:   Wed, 28 Oct 2020 17:29:05 -0700
-X-Gmail-Original-Message-ID: <CAE=gft5H5oq7pBg7JqRmrLybqmqOnk3T42orFNyY_vGEbXHTTg@mail.gmail.com>
-Message-ID: <CAE=gft5H5oq7pBg7JqRmrLybqmqOnk3T42orFNyY_vGEbXHTTg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: nvmem: Add soc qfprom compatible strings
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
+References: <20201027123722.2935-1-aladyshev22@gmail.com> <CACPK8XcgKTEEfPL54Spd_AQTdJVm=xt+rqbteaYygLQw-GKRcQ@mail.gmail.com>
+In-Reply-To: <CACPK8XcgKTEEfPL54Spd_AQTdJVm=xt+rqbteaYygLQw-GKRcQ@mail.gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 28 Oct 2020 05:32:43 +0000
+Message-ID: <CACPK8XeO2Cin2bNkjoHz-oK22mRb0LBHSYRTtd56r5trmihP-g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: aspeed: amd-ethanolx: Update KCS nodes to
+ use v2 binding
+To:     Konstantin Aladyshev <aladyshev22@gmail.com>
+Cc:     Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 2:41 PM Doug Anderson <dianders@chromium.org> wrote:
+On Wed, 28 Oct 2020 at 05:25, Joel Stanley <joel@jms.id.au> wrote:
 >
-> Hi,
+> On Tue, 27 Oct 2020 at 12:38, Konstantin Aladyshev
+> <aladyshev22@gmail.com> wrote:
+> >
+> > KCS nodes compatible property in the 'aspeed-g5.dtsi' file was
+> > changed to use v2 binding in the commit fa4c8ec6feaa
+> > ("ARM: dts: aspeed: Change KCS nodes to v2 binding").
+> > For the proper initialization of /dev/ipmi-kcs* devices
+> > KCS node variables also need to be changed to use v2 binding.
+> >
+> > Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
 >
-> On Fri, Oct 16, 2020 at 12:27 PM Evan Green <evgreen@chromium.org> wrote:
-> >
-> > Add SoC-specific compatible strings so that data can be attached
-> > to it in the driver.
-> >
-> > Signed-off-by: Evan Green <evgreen@chromium.org>
+> Fixes: 09f5f680707e ("ipmi: kcs: aspeed: Implement v2 bindings")
+
+Actually, this is probably better:
+
+Fixes: fa4c8ec6feaa ("ARM: dts: aspeed: Change KCS nodes to v2 binding")
+
+I slightly reworked your commit message when applying.
+
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+>
 > > ---
+> >  arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
 > >
-> > Changes in v2:
-> >  - Add other soc compatible strings (Doug)
-> >  - Fix compatible string definition (Doug)
+> > diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+> > index 60ba86f3e5bc..89ddc3847222 100644
+> > --- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+> > +++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+> > @@ -139,17 +139,17 @@
 > >
-> >  .../devicetree/bindings/nvmem/qcom,qfprom.yaml      | 13 ++++++++++++-
-> >  1 file changed, 12 insertions(+), 1 deletion(-)
+> >  &kcs1 {
+> >         status = "okay";
+> > -       kcs_addr = <0x60>;
+> > +       aspeed,lpc-io-reg = <0x60>;
+> >  };
 > >
-> > diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> > index 1a18b6bab35e7..eb1440045aff1 100644
-> > --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> > +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> > @@ -14,7 +14,18 @@ allOf:
+> >  &kcs2 {
+> >         status = "okay";
+> > -       kcs_addr = <0x62>;
+> > +       aspeed,lpc-io-reg = <0x62>;
+> >  };
 > >
-> >  properties:
-> >    compatible:
-> > -    const: qcom,qfprom
-> > +    items:
-> > +      - enum:
-> > +          - qcom,apq8064-qfprom
-> > +          - qcom,apq8084-qfprom
-> > +          - qcom,msm8974-qfprom
-> > +          - qcom,msm8916-qfprom
-> > +          - qcom,msm8996-qfprom
-> > +          - qcom,msm8998-qfprom
-> > +          - qcom,qcs404-qfprom
-> > +          - qcom,sc7180-qfprom
-> > +          - qcom,sdm845-qfprom
-> > +      - const: qcom,qfprom
+> >  &kcs4 {
+> >         status = "okay";
+> > -       kcs_addr = <0x97DE>;
+> > +       aspeed,lpc-io-reg = <0x97DE>;
+> >  };
 > >
-> >    reg:
-> >      # If the QFPROM is read-only OS image then only the corrected region
->
-> As Rob's bot found, your example no longer matches your requirements.
-> It needs an SoC-specific string plus the "qcom,qfprom".  It's always
-> good to try running "make dt_binding_check" to catch these sorts of
-> things.
-
-Thanks Doug, will do for the next spin!
-
--Evan
+> >  &lpc_snoop {
+> > --
+> > 2.17.1
+> >
