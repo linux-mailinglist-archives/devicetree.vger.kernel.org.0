@@ -2,55 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD4029DE93
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:55:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91DC329DE87
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:55:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727181AbgJ2AzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 20:55:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60532 "EHLO mail.kernel.org"
+        id S1731769AbgJ1WSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:18:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60504 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731666AbgJ1WRk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 18:17:40 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        id S1731741AbgJ1WRo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 18:17:44 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 590CC24684;
-        Wed, 28 Oct 2020 09:06:29 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id AE90B246E4;
+        Wed, 28 Oct 2020 12:09:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603875991;
-        bh=rph1tfwjeUfkNdv+Xay3vP8t7dS/JiIJ7qk/l+QZ+Dw=;
+        s=default; t=1603886954;
+        bh=8kOmEjZiFrehUn8/7MpuG001uMFWbRfFMOEgl1ikA18=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IE92TK+RrVXe5Rvk7gXVLRlzcD1FcnKRqIql8GwA/dQP+2KYkbXAq/6TBWTu8t6KE
-         /wx/6IgBPBgfuityI29Nwfo35dGkz5n7IDr3tGJfPnXoBmYMgiR4GR1BkX6L6sEdYx
-         gOKEaQbQvNl0yL3AekYPGqg53XZibDhHvbqpx+/g=
-Date:   Wed, 28 Oct 2020 17:06:25 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [PATCH v2 2/3] arm64: dts: ls1028a: add missing CAN nodes
-Message-ID: <20201028090624.GJ28755@dragon>
-References: <20201001091131.30514-1-michael@walle.cc>
- <20201001091131.30514-3-michael@walle.cc>
+        b=H02cNAg8Te9ZBGshSHUpRXiVbKDk655VVD7ojc1ge4zDSuksLXmykW88XWUgtLlGp
+         MMn8uKc3ZbpDY5LAFD1pJ2ZfP1CE3TgBraXUmT23bHMCZ5/A1v/2WzRY60TFsuFfHw
+         jcsSg5rZ2fEmjdbCRgkA1subcbh76AYfMnfvbJLU=
+Date:   Wed, 28 Oct 2020 13:10:06 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v11 00/10] *** TCPM support for FRS and AutoDischarge
+ Disconnect ***
+Message-ID: <20201028121006.GA2044275@kroah.com>
+References: <20201020093627.256885-1-badhri@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201001091131.30514-3-michael@walle.cc>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201020093627.256885-1-badhri@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 01, 2020 at 11:11:30AM +0200, Michael Walle wrote:
-> The LS1028A has two FlexCAN controller. These are compatible with
-> the ones from the LX2160A. Add the nodes.
+On Tue, Oct 20, 2020 at 02:36:17AM -0700, Badhri Jagan Sridharan wrote:
+> Hi all,
 > 
-> The first controller was tested on the Kontron sl28 board.
+> Addressed comments from Rob Herring for dt-bindings patches:
+> - Added part number for the maxim chip to dt-binding and renamed the
+>   file. Fixed it on the driver side as well with
+>   usb: typec: tcpci_maxim: Fix the compatible string
+> - new-source-frs-typec-current now uses u32.
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> Added Reviewed by tags from Heikki.
 
-Applied, thanks.
+Patch 1 applied, I think you need to fix up 02 and resend the rest as
+well.
+
+thanks,
+
+greg k-h
