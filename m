@@ -2,88 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 141C129DAE9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:38:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1B4629DAE7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:38:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390607AbgJ1Xim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:38:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38594 "EHLO
+        id S1726035AbgJ1Xil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390547AbgJ1XhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:37:07 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0821CC0613CF;
-        Wed, 28 Oct 2020 16:37:07 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id d24so1072987ljg.10;
-        Wed, 28 Oct 2020 16:37:06 -0700 (PDT)
+        with ESMTP id S2389019AbgJ1Xha (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:37:30 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8844C0613CF;
+        Wed, 28 Oct 2020 16:37:30 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id r9so1392712ioo.7;
+        Wed, 28 Oct 2020 16:37:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=blRKpHWKYllsC3fZsoBdHMYqC0YSHlFEixMlCc4fF1w=;
-        b=uWoqSVv7/sXCFBs4uRVc7ZJnrRrLnXRL/+OZi80QKKTgvbfwumMUj5KjiHEfCDwRTT
-         4l77Y7QqHNGwxkvw+86NlgbOJIbEGK4exb73CcG7bxXiIhUe0N903Cdh3FQo3A0tl3q2
-         VVSy51o6KCEFVvO6WPGI4jxOMAYccyYb5zEX6DU9nVjW78QVsyJC3woh3PIjNjhr0gi7
-         zA6Fm+EE9Jqof6qEe3uaZElg1mUFZEfpLNHtDSERMYtGr66mYG8lcT8onl0aY8Ew4dz/
-         2ChThQ8iNbHXpa+VJlmskDf+WUndSWm2VHt4ifMPz4XZVW8mfQK3LdkpOO3eHP+1+v9D
-         bUgw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/A3CEwa9ZFQ6exulGwUCkA+aZ+1mPx+5qugmy/RoAHc=;
+        b=VoD311MDfxBIgRqk43Hi8k7w5dsWdemKv5g5D01kst8I7lYMqYEw7EHrLuiMDMhnMJ
+         Nfkd2V53e45RjYqUKzFzAGwjpydQ0M/Ediw6eN6lwRxkof2o3jbc2nRiScnfdbDG6zcR
+         b2l++CcrXH555WrlbATUIsuEyuCx4z8q1XT7V7RDHDSjCFkKQ/ZymlJwTdgCSjH7PwJl
+         V4zXyG583t1Xx3JzxAr/QIdV2u0QCgoeoAb8Nhgzcy9dXlhv+ky5+hBFmT7MoefWFWu1
+         vNoTrcOl9VmI4XJeHv3IsmTomuUdjw4oiORf/KUFOerYOIddmvfsxrNsQ/QQDPf65kSr
+         qMsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=blRKpHWKYllsC3fZsoBdHMYqC0YSHlFEixMlCc4fF1w=;
-        b=SZ0x/bm17vHlQtN2fssnI9hEoh4hOqixAxx0DbC2U8Mpdda6gpvXO8A8XFjRdpf4Gb
-         Wp6Yj4rO5mJWJbr56LrXtJeNH355+7kXeDea1QsQZeIe3GcFyBb1BawTYkyKbSdkwC1n
-         U/3FL3XFoKb0LYRpM7+MBJVYOQLgm6dBWsR+puGw0KvHLveVAhdVxTllu0a2jvi9vqSP
-         fjyJoC55DN88bLJGiDvUPNuE5/AJmu/DTbosX0hjduTkiSEITMuf7fOlfJrPFnrJ/Zav
-         7Tn4utHqJhNx2CyxQmqAwvZbedIiGBJpXRNoPnshYvyIdZ/d4qA9eKfwZq4psDLDmxbP
-         ZuWw==
-X-Gm-Message-State: AOAM5313D9L/q4BSBvAq2pelBmRiQ7MDFb6za6okSd6Bn+Jl4uvkHxLm
-        q2lifxehCXBZN1aVOAbLx0kzysp9MFXb7EW/
-X-Google-Smtp-Source: ABdhPJz86BOoINx8fEi+KX53QXqf+HoCczR0skh70fOJrBPW6LQi7RmJY8byNi8zXcJRJpwKsL5dUw==
-X-Received: by 2002:a17:906:3689:: with SMTP id a9mr7090398ejc.403.1603886320892;
-        Wed, 28 Oct 2020 04:58:40 -0700 (PDT)
-Received: from localhost.localdomain ([87.116.178.171])
-        by smtp.googlemail.com with ESMTPSA id f13sm2817210ejf.42.2020.10.28.04.58.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 04:58:40 -0700 (PDT)
-From:   Nenad Peric <nperic@gmail.com>
-To:     mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net
-Cc:     Nenad Peric <nperic@gmail.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: [PATCH] arm64: dts: allwinner: h5: OrangePi Prime: Fix ethernet node
-Date:   Wed, 28 Oct 2020 12:58:17 +0100
-Message-Id: <20201028115817.68113-1-nperic@gmail.com>
-X-Mailer: git-send-email 2.29.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/A3CEwa9ZFQ6exulGwUCkA+aZ+1mPx+5qugmy/RoAHc=;
+        b=t41vYzgOomOF1OQJS37exK6E7PO8A9ZKRpeoP6XSN6R7VmCslHDWL+2W/47OUVDxK2
+         mIABJQRRwyxiU1N/6d8m7xZpG5fdhdAXN5ZXVyrq6f7LGd5O0WYe2QmxkV7yFXCFupN/
+         kmcqk3qAUvjcrsvNf1qKWRv1Pu1UXeXVE3SwVBQou+8HdvUCrDBGVrMLdf11HJogC9Tk
+         nnjTYIw8rx7F3Errqj1+r4jBXaVwfoXhiIySVTEVyfg/cPpm9DLGKFST+3c61sy6I1Ay
+         EcDzIPPsLDGN5Qt1I4EtK8kBhdNQloJ5E87c0JrAPGllT9mKPGPr+G9Nr6BoVm1KPMTy
+         bxTw==
+X-Gm-Message-State: AOAM531v5y90HCKPX32IkT9wZ1KHs5kB1GmbWQEVgPWkoY+EJNL0iayf
+        zBynFQkhBfXacVZ3sHtPzRwkOr+tspGsW+hgs7lzx1fwXm8=
+X-Google-Smtp-Source: ABdhPJxB39cK4LoLPV+rayymmlN4yuGJL6W04dfmN5biZiNchT7DQioArPW9ZWexdAhR2Swk3KQ5KSCHwBGQEvqE+sA=
+X-Received: by 2002:a5d:8487:: with SMTP id t7mr5793859iom.35.1603887047936;
+ Wed, 28 Oct 2020 05:10:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200502125949.194032-1-aford173@gmail.com> <20200502125949.194032-2-aford173@gmail.com>
+ <20200520010348.GE11739@dragon>
+In-Reply-To: <20200520010348.GE11739@dragon>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 28 Oct 2020 07:10:37 -0500
+Message-ID: <CAHCN7xKBx_YXCGSUJWO3YCaGfx4oc7iuv6S4qi500_NjV9pW=w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm: Add support for micfil
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
+        aford@beaconemedded.com, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RX and TX delay are provided by ethernet PHY. Reflect that in ethernet
-node.
+On Tue, May 19, 2020 at 8:03 PM Shawn Guo <shawnguo@kernel.org> wrote:
+>
+> On Sat, May 02, 2020 at 07:59:48AM -0500, Adam Ford wrote:
+> > The i.MX8M Mini has supports the MICFIL digital interface.
+> > It's a 16-bit audio signal from a PDM microphone bitstream.
+> > The driver is already in the kernel, but the node is missing.
+> >
+> > This patch adds the micfil node.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > index c63685ae80ee..d46e727fc362 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > @@ -339,6 +339,25 @@ sai6: sai@30060000 {
+> >                               status = "disabled";
+> >                       };
+> >
+> > +                     micfil: micfil@30080000 {
+>
+> Find a generic node name, audio-controller maybe?
 
-Fixes: 44a94c7ef989 ("arm64: dts: allwinner: H5: Restore EMAC changes")
-Signed-off-by: Nenad Peric <nperic@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The SAI's nodes are called SAI@xxxx
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-index cb44bfa5981f..33ab44072e6d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-@@ -124,7 +124,7 @@ &emac {
- 	pinctrl-0 = <&emac_rgmii_pins>;
- 	phy-supply = <&reg_gmac_3v3>;
- 	phy-handle = <&ext_rgmii_phy>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
- 
--- 
-2.29.1
+If that's a deal-breaker, I can push a V3.
 
+I didn't see anyone from the device tree side comment, and the device
+tree binding doc states 'micfil@xxxxxx' so I used what was documented
+in the fsl,micfil.txt
+
+adam
+>
+> Shawn
+>
+> > +                             compatible = "fsl,imx8mm-micfil";
+> > +                             reg = <0x30080000 0x10000>;
+> > +                             interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                          <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                          <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                          <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> > +                             clocks = <&clk IMX8MM_CLK_PDM_IPG>,
+> > +                                      <&clk IMX8MM_CLK_PDM_ROOT>,
+> > +                                      <&clk IMX8MM_AUDIO_PLL1_OUT>,
+> > +                                      <&clk IMX8MM_AUDIO_PLL2_OUT>,
+> > +                                      <&clk IMX8MM_CLK_EXT3>;
+> > +                             clock-names = "ipg_clk", "ipg_clk_app",
+> > +                                           "pll8k", "pll11k", "clkext3";
+> > +                             dmas = <&sdma2 24 25 0x80000000>;
+> > +                             dma-names = "rx";
+> > +                             status = "disabled";
+> > +                     };
+> > +
+> >                       gpio1: gpio@30200000 {
+> >                               compatible = "fsl,imx8mm-gpio", "fsl,imx35-gpio";
+> >                               reg = <0x30200000 0x10000>;
+> > --
+> > 2.25.1
+> >
