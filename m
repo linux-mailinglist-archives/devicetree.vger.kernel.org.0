@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AF9E29E16A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADE4329E16D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:01:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726432AbgJ2CA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 22:00:57 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:49927 "EHLO
+        id S1727420AbgJ2CBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 22:01:02 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:41097 "EHLO
         new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728087AbgJ1Vux (ORCPT
+        by vger.kernel.org with ESMTP id S1728082AbgJ1Vuv (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 17:50:53 -0400
+        Wed, 28 Oct 2020 17:50:51 -0400
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 7CA9658012D;
-        Wed, 28 Oct 2020 08:41:10 -0400 (EDT)
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3A22A58014D;
+        Wed, 28 Oct 2020 08:41:13 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 28 Oct 2020 08:41:10 -0400
+  by compute6.internal (MEProxy); Wed, 28 Oct 2020 08:41:13 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=IkmeIQpmF+jfh
-        U/2m4u3cBU/jAxQu6NxvXUChDBnViU=; b=MnG6587tUm95xoi+Rgmokp/3mZ59A
-        EPa79QE8rW3gbh75nmKwXXCbD97HrBaQMyoq/PT3UcJEPO0Ebpl35laBrqaRv94q
-        ipqo4jhXDy5r8CWJIb+3a448o1dCljNw1p/gOD29udsrynP5OjzGPKY6/GH8Wn5A
-        ae0561NGPLCgBj/FadzVBxI77mpL4PDzN12t1DY7yuD14IBCktM90avl/JcIzosK
-        vvFLHoizCCZwgXu+8insFgU6uiXXflrvDi2/tyXG3dgE8St1/1nH5V5/XByd7EvM
-        ryprLl0ygbaV8YtbJVfOc68gNRMWiuFnzTlHHthQMEYRWlLVJ9YptSZxQ==
+        :mime-version:content-transfer-encoding; s=fm1; bh=63HENL6hLTTGl
+        PuMj9W1F2N99G0lJ9X4hlOMFTXOO1k=; b=RcBwpDbwiJI/auP1E/ZDjTYS3juKL
+        PvxHG4dG9eDw83zSJKc8M4AoXnErMMfAU7kLIH2ySQX9E1BV4Kz3f3NxuokaUAQO
+        Ro1W/0gHwbd5X5vMj+TYyv3FFJUzjW/QYmPf6Zbm8+oqKiXYpQT+oNu5EI+BT9bM
+        NvcYi0MbtpTzlsYRwEanJQigpmsQ8NQ0Y3gcHSFoUaEll9EnLjgq1wdjWUs2s45i
+        g+G9UDUrQQmNwgcXACR9/PRgvhlw2BELbMAIM5I4sqJl0jJP4GH6d04eqqkg47JA
+        p251k9dnqIVk61F43gtI2J5dGNthNi4HFO47iZkkmw0Jh/IwlkCN5E/BQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=IkmeIQpmF+jfhU/2m4u3cBU/jAxQu6NxvXUChDBnViU=; b=ZdVXbQgs
-        4ItRi9FR/Qbv6dbRBhuXnRSDEHNzYf9qeKW7/i9wbXyC94/4kbsUxQzZJIimQ7Y1
-        f6pZykqR+P08u8vvkF9t6H1jpE26cSPULsZTnxftfBUnYRyblVfpgkgoeLbpkV11
-        nHNB+HnAClH2nXXfruVEHaC/VLuXtm+zkB335jHUcD36zwXnZWi2c5E7U23YGHvE
-        DNkV0gEYKaIENY7AqN8QlL5emk3QJdCk5mPaGKHLSEjXzjpNIOGqiWrrFlYsboyb
-        hzcp+r7EFj6X+9pYm3NFOLQt+qdlzylDgTZsN7I6naic1MaHQo6MYr+tsmZodZi/
-        EgXIPNg5ODEuMQ==
-X-ME-Sender: <xms:5maZXwJ-IEMtNBumHxiughYhhX3TPCvQMpIODNV8sqx6cRgnLr117w>
-    <xme:5maZXwKP2fO_O9K1Q8QJHiaRnq8KceIXohoT2yYurT_o5Tn4XUUhczFaj_4zZoHE8
-    DsujBUfgzaHA8qSyk0>
+        fm1; bh=63HENL6hLTTGlPuMj9W1F2N99G0lJ9X4hlOMFTXOO1k=; b=nx725qkI
+        +dp9RNDUTCUXn006C5GcDrgfqCPb8/8nX6qdtH1jWsPALOjWIyNsBcnF7JE2ZeDO
+        NVwzcATreNTTr4epEfOxdyRfsH2VYJs/CHoWLNvJ5M5tB5WHdxwbInDOJFFJuZkd
+        x2EIER8FnEEiG1jJj5Vc9oSwRjixAHtWScJu7n9/WOAy8+caIFr1glVc/9CghXNX
+        Vg3aFfFTOMrSo+9TLblKD7dV8dD0QCehBunGQOA36wlzdmcTpySCyN+hczaP1UfN
+        W0EC+U3w/Q1zhAzFVz5qzexfaEJ5Bu9QfvG13aQs/GMg4HVzFSiv7HD6mIZxYkZ3
+        PJdMW+htIdTu/w==
+X-ME-Sender: <xms:6GaZX1LDj2Gtu4zi22LQTbx2iAu9GIixzMqypvo6KIgMvqrLs0Nf_g>
+    <xme:6GaZXxLyPye84hCp-S8QaVeI-qfA0yc1g1xtel2SyaLmomXfq6IPGJ-QnAUz37t5_
+    oNCqufS9TSo_-mYSRM>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrledugdegvdcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
     ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
-    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpeefnecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:5maZXwsIVtOvLhh99iJkBDM1FF6vuO0URfOi4qAGS-TpB2vnDRHkCw>
-    <xmx:5maZX9a64n_GdRynKn_t7fquVPI4E6Rgp1ReJXeXk7APhO6U-OqVzA>
-    <xmx:5maZX3aV8TQ4rgPIpS7yNddajq56bCHIz6C-mMUCHBC8Pal9z-fa9A>
-    <xmx:5maZX4KjVSbyK9ucJaVdsUrIYhGcfCMCO72KKZyuxERwTeqt7Bns2g>
+X-ME-Proxy: <xmx:6GaZX9uVruUIX0NbVB992NCd7BO2b3Fw8gY-kR98sSTNUk1q-jrtXw>
+    <xmx:6GaZX2b8v_okKqgTBtWMDIlS1JnbiVPT8w6YmM6szg5ekyhRfmywFQ>
+    <xmx:6GaZX8bfzZ5jlbILgtg2-CEJYqETXAxw3hAEl1SubLnCeGYHuVjyOw>
+    <xmx:6WaZX5K8dgCcOFOSgLUpzwP-4ZjWmIN0qdm71jiBrdMMHyNarJqUtg>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id EDBCD3280059;
-        Wed, 28 Oct 2020 08:41:09 -0400 (EDT)
+        by mail.messagingengine.com (Postfix) with ESMTPA id A29003280059;
+        Wed, 28 Oct 2020 08:41:12 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -73,9 +73,9 @@ Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Tim Gover <tim.gover@raspberrypi.com>,
         Phil Elwell <phil@raspberrypi.com>,
         Hoegeun Kwon <hoegeun.kwon@samsung.com>
-Subject: [PATCH v2 3/7] drm/vc4: kms: Split the HVS muxing check in a separate function
-Date:   Wed, 28 Oct 2020 13:41:00 +0100
-Message-Id: <1f97f4d1dbe6801d6bbdff2667f6a2f0068c21c7.1603888799.git-series.maxime@cerno.tech>
+Subject: [PATCH v2 5/7] drm/vc4: kms: Add functions to create the state objects
+Date:   Wed, 28 Oct 2020 13:41:02 +0100
+Message-Id: <4554645c4f884252c4f0b3a45ed457aa9bbb3d13.1603888799.git-series.maxime@cerno.tech>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
 References: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
@@ -85,53 +85,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The code that assigns HVS channels during atomic_check is starting to grow
-a bit big, let's move it into a separate function.
+We're going to add a new private state, so let's move the previous state
+function creation to some functions to make further additions easier.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- drivers/gpu/drm/vc4/vc4_kms.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/vc4/vc4_kms.c | 70 +++++++++++++++++++++++++-----------
+ 1 file changed, 49 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-index 80378c74fcd6..4aa0577bd055 100644
+index b0043abec16d..2cac556f7799 100644
 --- a/drivers/gpu/drm/vc4/vc4_kms.c
 +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-@@ -612,13 +612,13 @@ static const struct drm_private_state_funcs vc4_load_tracker_state_funcs = {
+@@ -95,6 +95,27 @@ static const struct drm_private_state_funcs vc4_ctm_state_funcs = {
+ 	.atomic_destroy_state = vc4_ctm_destroy_state,
  };
  
- 
--static int
--vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
-+static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
-+				      struct drm_atomic_state *state)
- {
- 	unsigned long unassigned_channels = GENMASK(HVS_NUM_CHANNELS - 1, 0);
- 	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
- 	struct drm_crtc *crtc;
--	int i, ret;
-+	unsigned int i;
- 
- 	/*
- 	 * Since the HVS FIFOs are shared across all the pixelvalves and
-@@ -691,6 +691,18 @@ vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
- 		}
- 	}
- 
++static int vc4_ctm_obj_init(struct vc4_dev *vc4)
++{
++	struct vc4_ctm_state *ctm_state;
++
++	drm_modeset_lock_init(&vc4->ctm_state_lock);
++
++	ctm_state = kzalloc(sizeof(*ctm_state), GFP_KERNEL);
++	if (!ctm_state)
++		return -ENOMEM;
++
++	drm_atomic_private_obj_init(vc4->dev, &vc4->ctm_manager, &ctm_state->base,
++				    &vc4_ctm_state_funcs);
++
 +	return 0;
 +}
 +
-+static int
-+vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
++static void vc4_ctm_obj_fini(struct vc4_dev *vc4)
 +{
-+	int ret;
++	drm_atomic_private_obj_fini(&vc4->ctm_manager);
++}
 +
-+	ret = vc4_pv_muxing_atomic_check(dev, state);
+ /* Converts a DRM S31.32 value to the HW S0.9 format. */
+ static u16 vc4_ctm_s31_32_to_s0_9(u64 in)
+ {
+@@ -611,6 +632,23 @@ static const struct drm_private_state_funcs vc4_load_tracker_state_funcs = {
+ 	.atomic_destroy_state = vc4_load_tracker_destroy_state,
+ };
+ 
++static int vc4_load_tracker_obj_init(struct vc4_dev *vc4)
++{
++	struct vc4_load_tracker_state *load_state;
++
++	if (!vc4->load_tracker_available)
++		return 0;
++
++	load_state = kzalloc(sizeof(*load_state), GFP_KERNEL);
++	if (!load_state)
++		return -ENOMEM;
++
++	drm_atomic_private_obj_init(vc4->dev, &vc4->load_tracker,
++				    &load_state->base,
++				    &vc4_load_tracker_state_funcs);
++
++	return 0;
++}
+ 
+ /*
+  * The BCM2711 HVS has up to 7 output connected to the pixelvalves and
+@@ -745,8 +783,6 @@ static const struct drm_mode_config_funcs vc4_mode_funcs = {
+ int vc4_kms_load(struct drm_device *dev)
+ {
+ 	struct vc4_dev *vc4 = to_vc4_dev(dev);
+-	struct vc4_ctm_state *ctm_state;
+-	struct vc4_load_tracker_state *load_state;
+ 	bool is_vc5 = of_device_is_compatible(dev->dev->of_node,
+ 					      "brcm,bcm2711-vc5");
+ 	int ret;
+@@ -785,30 +821,22 @@ int vc4_kms_load(struct drm_device *dev)
+ 	dev->mode_config.async_page_flip = true;
+ 	dev->mode_config.allow_fb_modifiers = true;
+ 
+-	drm_modeset_lock_init(&vc4->ctm_state_lock);
+-
+-	ctm_state = kzalloc(sizeof(*ctm_state), GFP_KERNEL);
+-	if (!ctm_state)
+-		return -ENOMEM;
+-
+-	drm_atomic_private_obj_init(dev, &vc4->ctm_manager, &ctm_state->base,
+-				    &vc4_ctm_state_funcs);
+-
+-	if (vc4->load_tracker_available) {
+-		load_state = kzalloc(sizeof(*load_state), GFP_KERNEL);
+-		if (!load_state) {
+-			drm_atomic_private_obj_fini(&vc4->ctm_manager);
+-			return -ENOMEM;
+-		}
++	ret = vc4_ctm_obj_init(vc4);
 +	if (ret)
 +		return ret;
+ 
+-		drm_atomic_private_obj_init(dev, &vc4->load_tracker,
+-					    &load_state->base,
+-					    &vc4_load_tracker_state_funcs);
+-	}
++	ret = vc4_load_tracker_obj_init(vc4);
++	if (ret)
++		goto ctm_fini;
+ 
+ 	drm_mode_config_reset(dev);
+ 
+ 	drm_kms_helper_poll_init(dev);
+ 
+ 	return 0;
 +
- 	ret = vc4_ctm_atomic_check(dev, state);
- 	if (ret < 0)
- 		return ret;
++ctm_fini:
++	vc4_ctm_obj_fini(vc4);
++
++	return ret;
+ }
 -- 
 git-series 0.9.1
