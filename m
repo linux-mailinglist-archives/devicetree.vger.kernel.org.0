@@ -2,93 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1571129E1F3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50FDF29E31F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:46:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727370AbgJ2CEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 22:04:48 -0400
-Received: from mail-ej1-f65.google.com ([209.85.218.65]:42917 "EHLO
-        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727910AbgJ1Vsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:48:47 -0400
-Received: by mail-ej1-f65.google.com with SMTP id h24so990104ejg.9;
-        Wed, 28 Oct 2020 14:48:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=83VZz+pORqDca+ZojpaQmhO3avCC0XnIll6kPzbfGaM=;
-        b=YgGLHCJ1Dr2HPl5xg1KBfOZVuqnbLyPLnypDV3aluhLnkw7rXdqsdjlK6IcCpTzaF1
-         Ab3eLda0/Mmvc67a05sloKukffbxl/TGvCTKQq3yRwbAau0XcAbwSGxOBmI6X2UawwNZ
-         4p06km/952HVuXTLdBryh7PerR4iJyKY9EOOXml7WgUzorvAvvtnD0gILja+lHVwd4PO
-         Z6AjydSMs3OlfgT8hqt2kxcsY23/v59pz51thJl3TyruxpSDr34Jkm7RBbQxQD2b4HB2
-         aYcMTfjql9CWSzeepz4uQ++js6lcZC6Cq9bClBZdLg/da8tcEL8IMWwBOKAUKTX1ykX1
-         qe8w==
-X-Gm-Message-State: AOAM533pr3+9ccurnXmSNA151FDoTJ+1D87UE0aBoDrgcU7B+JwvTzVe
-        egI60h64D7JtKC9VjotiecE=
-X-Google-Smtp-Source: ABdhPJzB8cUta6V7xPwL4y/FEh44Tmmhk4LV/F40m2/CCzzkySz/YgZearhnQDl/zEf+L4LstELAvQ==
-X-Received: by 2002:a17:906:95d1:: with SMTP id n17mr1155400ejy.75.1603921725004;
-        Wed, 28 Oct 2020 14:48:45 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.184])
-        by smtp.googlemail.com with ESMTPSA id u13sm409317ejj.4.2020.10.28.14.48.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 14:48:44 -0700 (PDT)
-Date:   Wed, 28 Oct 2020 22:48:41 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Subject: Re: [PATCH v2 00/12] ARM: dts: samsung: minor node name cleanups
-Message-ID: <20201028214841.GA266845@kozik-lap>
-References: <20201027170947.132725-1-krzk@kernel.org>
+        id S1726752AbgJ2Cp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 22:45:29 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:29487 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726199AbgJ1Vdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 17:33:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=1903; q=dns/txt; s=axis-central1;
+  t=1603920823; x=1635456823;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=8WighlFxUCPG64E8rsKp51mjFDumWu/9Js1XeZaqNfY=;
+  b=hWTC//3AXQl4vaj8Ub2OfTMByzTPkg8QlLoaJXRnBy9EWaRSnBVSQNBY
+   ROMkSZcGUTT6p0+8ednqJZf4iT0Mi/0vo4u2ea/W2feTOFTL7ZYdIUjCA
+   KFboJmuKUstnT8NGyfUUBFwaN9RIX38WuD9uV3xYvW93exJ/PMKOuwfJQ
+   3iItUnHJM/OuY+j1QS+vL8mMFPl2L5xjBea8h84+1TS5H4zgYAl5WfVUm
+   AsmdT4EHFc8VrIUtBaO5Qg2fsmlkARZvjkOnh61awP6dKYp4XLHr5KoH6
+   D4oT9SKviNxnvcXfPAJ7Mqqff5ydEj668CRF9Ot2j09h5swLevNiRBe71
+   g==;
+IronPort-SDR: 9zQLRP0OGoRnoLBhjIuJp4l2jQDybWCBoKOjYwOSfnl3EMs1BA8SKp2nUvG+7u4f4TuoyXe4H1
+ mOU2i9QicPYfCXj9ZrG1jC/E+f5wg4rLNDTNRZfYLbj4zdGjhYmZJFu41i/19SfvcAETkigbQD
+ 5gzyICUvb/TfZwlRPKgucXIuzf91M3UdHzhXQ7RRw+wWci7JPguXiZN9ldODeEuyIWGog18yIg
+ 8NhArZgXNFNMnTw2dcE/92y7KhdzQJmLJ37m1VHd0Mr2RPTWpoMP70nGMQhQ14BtqlzPtZ5oER
+ mWM=
+X-IronPort-AV: E=Sophos;i="5.77,425,1596492000"; 
+   d="scan'208";a="13984864"
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Bamvor Jian Zhang <bamv2005@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3] gpio: mockup: Allow probing from device tree
+Date:   Wed, 28 Oct 2020 09:57:48 +0100
+Message-ID: <20201028085748.17388-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201027170947.132725-1-krzk@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 27, 2020 at 06:09:35PM +0100, Krzysztof Kozlowski wrote:
-> Hi All,
-> 
-> Changes since v1
-> ================
-> 1. Use names proposed by Marek (light-sensor, audio-codec, image-sensor,
->    power-sensor),
-> 2. Use amplifier in max98504 node name.
-> 
+Allow the mockup driver to be probed via the device tree without any
+module parameters, allowing it to be used to configure and test higher
+level drivers like the leds-gpio driver and corresponding userspace
+before actual hardware is available.
 
-Applied all twelve.
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+---
 
-Best regards,
-Krzysztof
+Notes:
+    v3:
+    - Keep includes sorted alphabetically
+    - Drop CONFIG_OF ifdefs
+    
+    v2:
+    - Remove most of the added code, since the latest driver doesn't need it.
+    - Drop DT binding document, since Rob Herring was OK with not documenting this:
+      https://lore.kernel.org/linux-devicetree/5baa1ae6.1c69fb81.847f2.3ab1@mx.google.com/
 
-> Description
-> ===========
-> A new Exynos4412 board was recently submitted and it (as expected)
-> copied all not-the-best patterns from existing DTSes.  Let's fix few of
-> them so any new boards will not copy old choices.
-> 
-> Best regards,
-> Krzysztof
-> 
-> Krzysztof Kozlowski (12):
->   ARM: dts: exynos: adjust node names to DT spec in Exynos3250 boards
->   ARM: dts: exynos: adjust node names to DT spec in Exynos4210 boards
->   ARM: dts: exynos: override GPIO keys node by label in Exynos4412
->     Odroid family
->   ARM: dts: exynos: adjust node names to DT spec in Exynos4412 boards
->   ARM: dts: exynos: remove redundant status=okay in Exynos4412 boards
->   ARM: dts: exynos: adjust node names to DT spec in Exynos5250 boards
->   ARM: dts: exynos: adjust node names to DT spec in Odroid XU
->   ARM: dts: exynos: adjust node names to DT spec in Exynos542x boards
->   ARM: dts: s5pv210: adjust node names to DT spec
->   arm64: dts: exynos: adjust node names to DT spec in Exynos5433 TM2
->   arm64: dts: exynos: adjust node names to DT spec in Exynos7 Espresso
->   arm64: dts: exynos: remove redundant status=okay in Exynos5433 TM2
+ drivers/gpio/gpio-mockup.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpio/gpio-mockup.c b/drivers/gpio/gpio-mockup.c
+index 67ed4f238d43..ca87c590ef3f 100644
+--- a/drivers/gpio/gpio-mockup.c
++++ b/drivers/gpio/gpio-mockup.c
+@@ -16,6 +16,7 @@
+ #include <linux/irq_sim.h>
+ #include <linux/irqdomain.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/platform_device.h>
+ #include <linux/property.h>
+ #include <linux/slab.h>
+@@ -460,9 +461,16 @@ static int gpio_mockup_probe(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
++static const struct of_device_id gpio_mockup_of_match[] = {
++	{ .compatible = "gpio-mockup", },
++	{},
++};
++MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
++
+ static struct platform_driver gpio_mockup_driver = {
+ 	.driver = {
+ 		.name = "gpio-mockup",
++		.of_match_table = of_match_ptr(gpio_mockup_of_match),
+ 	},
+ 	.probe = gpio_mockup_probe,
+ };
+@@ -556,8 +564,7 @@ static int __init gpio_mockup_init(void)
+ {
+ 	int i, num_chips, err;
+ 
+-	if ((gpio_mockup_num_ranges < 2) ||
+-	    (gpio_mockup_num_ranges % 2) ||
++	if ((gpio_mockup_num_ranges % 2) ||
+ 	    (gpio_mockup_num_ranges > GPIO_MOCKUP_MAX_RANGES))
+ 		return -EINVAL;
+ 
+-- 
+2.28.0
+
