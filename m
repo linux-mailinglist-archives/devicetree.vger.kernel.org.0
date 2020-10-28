@@ -2,132 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82D7D29D3D6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:47:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD4A29D4CF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:54:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726736AbgJ1VrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:47:10 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:32967 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726062AbgJ1VrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:47:06 -0400
-Received: by mail-ua1-f66.google.com with SMTP id x26so155321uau.0;
-        Wed, 28 Oct 2020 14:47:05 -0700 (PDT)
+        id S1728771AbgJ1Vyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:54:39 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:36250 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728764AbgJ1Vyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:54:38 -0400
+Received: by mail-oi1-f195.google.com with SMTP id y186so1166822oia.3;
+        Wed, 28 Oct 2020 14:54:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3s41M7Z72fcMkRDw2yDndUowlojinGmdtRTwp5CyZB8=;
-        b=o/ALox162e6y48vAeVYnNHRbbAJcz3CbM499XO2eFK3mWp7Oga60iEv6bduhOoOwh8
-         JaIbFMqGPBOSzd5so5TbNLSkClydL/6N9+23wU74f8AblxTnSu4MX6rERPyt5Um75y9G
-         dV5j5UZTR1hZDmxeZTs3iAN7yTYwR/2M9LB/oJ4TJ3EUkxycOj/LNAcXvbuTw1PTRku8
-         Y2ZvhcN3cWbyTFDJjgEun+ayeFu4X/t3RLAefmA9qYd9vSNJ+Krd0NAioALsu0Obsfvc
-         mys30E42DD8mIICxi4VSNIUotnE/wq/UuxOHu5s1pIUe26bJPcdfaqpmd7BckVftcKiI
-         sBpA==
-X-Gm-Message-State: AOAM533s3ehqTgekIPGlJfXvugj6Sr7FjYUY2N/UX6rKSlCU0Y88Hujf
-        XFuVuAJ65Z8CmTZyCt5pOksk2hGzJQ==
-X-Google-Smtp-Source: ABdhPJz4x4atsHhf7/cg2rc9KcKS2aCuYGJ1v/d9sMbHOXkRqMIjahEQXle3dQvvZLWlBjDyR0m67A==
-X-Received: by 2002:a4a:b503:: with SMTP id r3mr5955627ooo.28.1603896221095;
-        Wed, 28 Oct 2020 07:43:41 -0700 (PDT)
+        bh=Uc78x8CmwZLzrKJ78c98Bv6j8H6O42mQH8+34OvgxWs=;
+        b=CfLad6XA+URAMmONLs7b5YFk1mHUAf4qjcUe8DI/9oDAlz54boCzbDAKkTmf/CCWsl
+         gHEVo6hlLzXiKHvmhPx6HluQBtx1UON4ioMgTG6jkfmfK+qG8sMzT2xPizgejuQxgO5y
+         1FAxWzIrn2YxMYnkg/a7NSQHEEiaG/5CuxPkkl7upE8iTB3p0uNuG4HfhMFsiiW/l1ln
+         K4C5yrvAhMrf0bH7AF0TNuoYpk8vMVyAKy2rXR7SEOfjs7N2zJhDEPiBKl88T5lbBgLb
+         RA1nAgNC6E9BgEMX0Eu/ySQXhY09yq5dHrjyQlr+jognx+uhdUNuuK9C8oyXaI5QJsZy
+         v5MA==
+X-Gm-Message-State: AOAM533I7KlG0uCOBss75cPbYyMhld80JTisozrAP/XNAb+NSAhfMhju
+        TSuXCssD3XRn5t+xXW6ehNVlPxBZmQ==
+X-Google-Smtp-Source: ABdhPJzBeWZH6SAY7afIgY1/3BfjtQmztEeFkp69qvQ5J2PDJhbpSiCR8mcjBJXcwrLL2OvDMKpx/g==
+X-Received: by 2002:aca:4ac6:: with SMTP id x189mr4914954oia.58.1603896288433;
+        Wed, 28 Oct 2020 07:44:48 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b125sm2683484oii.19.2020.10.28.07.43.39
+        by smtp.gmail.com with ESMTPSA id v123sm2710068oif.29.2020.10.28.07.44.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 07:43:40 -0700 (PDT)
-Received: (nullmailer pid 3993648 invoked by uid 1000);
-        Wed, 28 Oct 2020 14:43:39 -0000
-Date:   Wed, 28 Oct 2020 09:43:39 -0500
+        Wed, 28 Oct 2020 07:44:47 -0700 (PDT)
+Received: (nullmailer pid 3995233 invoked by uid 1000);
+        Wed, 28 Oct 2020 14:44:47 -0000
+Date:   Wed, 28 Oct 2020 09:44:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, peter.ujfalusi@ti.com,
-        dmaengine@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, malliamireddy009@gmail.com,
-        vkoul@kernel.org, qi-ming.wu@intel.com,
-        chuanhua.lei@linux.intel.com
-Subject: Re: [PATCH v7 1/2] dt-bindings: dma: Add bindings for intel LGM SOC
-Message-ID: <20201028144339.GA3992990@bogus>
-References: <cover.1600827061.git.mallikarjunax.reddy@linux.intel.com>
- <f298715ab197ae72ab9b33caee2a19cc3e8be3f5.1600827061.git.mallikarjunax.reddy@linux.intel.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     prabhakar.mahadev-lad.rj@bp.renesas.com,
+        marek.vasut+renesas@gmail.com, linux-renesas-soc@vger.kernel.org,
+        linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: pci: rcar-pci-host: convert bindings to
+ json-schema
+Message-ID: <20201028144447.GA3994930@bogus>
+References: <1603850751-32762-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1603850751-32762-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f298715ab197ae72ab9b33caee2a19cc3e8be3f5.1600827061.git.mallikarjunax.reddy@linux.intel.com>
+In-Reply-To: <1603850751-32762-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Oct 2020 16:03:06 +0800, Amireddy Mallikarjuna reddy wrote:
-> Add DT bindings YAML schema for DMA controller driver
-> of Lightning Mountain(LGM) SoC.
+On Wed, 28 Oct 2020 11:05:49 +0900, Yoshihiro Shimoda wrote:
+> Convert Renesas PCIe Host controller bindings documentation to
+> json-schema. Note that some compatible doesn't contain on
+> the original documantation so that incremental patches are required
+> for it.
 > 
-> Signed-off-by: Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
-> v1:
-> - Initial version.
-> 
-> v2:
-> - Fix bot errors.
-> 
-> v3:
-> - No change.
-> 
-> v4:
-> - Address Thomas langer comments
->   - use node name pattern as dma-controller as in common binding.
->   - Remove "_" (underscore) in instance name.
->   - Remove "port-" and "chan-" in attribute name for both 'dma-ports' & 'dma-channels' child nodes.
-> 
-> v5:
-> - Moved some of the attributes in 'dma-ports' & 'dma-channels' child nodes to dma client/consumer side as cells in 'dmas' properties.
-> 
-> v6:
-> - Add additionalProperties: false
-> - completely removed 'dma-ports' and 'dma-channels' child nodes.
-> - Moved channel dt properties to client side dmas.
-> - Use standard dma-channels and dma-channel-mask properties.
-> - Documented reset-names
-> - Add description for dma-cells
-> 
-> v7:
-> - modified compatible to oneof
-> - Reduced number of dma-cells to 3
-> - Fine tune the description of some properties.
-> ---
->  .../devicetree/bindings/dma/intel,ldma.yaml        | 135 +++++++++++++++++++++
->  1 file changed, 135 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
+>  .../devicetree/bindings/pci/rcar-pci-host.yaml     | 146 +++++++++++++++++++++
+>  Documentation/devicetree/bindings/pci/rcar-pci.txt |  72 ----------
+>  2 files changed, 146 insertions(+), 72 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/rcar-pci.txt
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:17:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:21:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:22:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:32:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:35:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:37:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:42:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:46:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:50:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:53:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:56:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:60:3: [warning] wrong indentation: expected 3 but found 2 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:76:5: [warning] wrong indentation: expected 3 but found 4 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:81:5: [warning] wrong indentation: expected 3 but found 4 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:83:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:87:5: [warning] wrong indentation: expected 3 but found 4 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:89:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:93:5: [warning] wrong indentation: expected 3 but found 4 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:95:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:100:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
-./Documentation/devicetree/bindings/dma/intel,ldma.yaml:107:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+./Documentation/devicetree/bindings/pci/rcar-pci-host.yaml:18:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/pci/rcar-pci-host.yaml:27:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
 
 
-See https://patchwork.ozlabs.org/patch/1388332
+See https://patchwork.ozlabs.org/patch/1389094
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
