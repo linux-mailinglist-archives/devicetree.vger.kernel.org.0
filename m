@@ -2,101 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE34129D29E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7409929D49A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:53:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726207AbgJ1Vdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:33:41 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:29487 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726176AbgJ1Vdk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 17:33:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; l=1582; q=dns/txt; s=axis-central1;
-  t=1603920821; x=1635456821;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wShs6Il8676fEisJ9OqkRk7Glv/K0kWtHAFo/leZB64=;
-  b=XueiRrt/TAHzdubbGmnVUpFvbr7WJRhWdQUAfkDeXQv2mFheCSUAtmhB
-   WPtKT9/R3VHqoyNLd7bYb6oGMVqRFk1AfQoAyK80LdGVIxNGkWpsP4Hv+
-   pz35u3QkxKWCdIPgylYwKzXunm2DI702z76LGKlnkN2Rrh2iu6onywlUX
-   eiEXSL00y8j2gSfMKScnxC0M77j9WbUXjyhPJwn4U456Ozx9zB8bXCBD1
-   evTL/IkKz2gfm1F4Yh+u7kjiMcTs7Y7hZvGnFyGHusWWddnz2hTyHtNRC
-   zzRUUg4lINfteKhB7EIfJdEqKhxafHvr9JAG1yEtnVR6RLQUs6FQbSg+n
-   A==;
-IronPort-SDR: U8zltDoScmoPmC4fPkt4No97bd/rwXnqaOG5X7a0JcHti08Il8LC8DtC222YcI/kIB6HgvWfwt
- J/+H8AGXxQE/W2fpGK68aV/w+DL+bhkqgv8ZEqqoOf4EuyFJp7vUDOaI7ntfwxhFqFf5opGXoz
- 7AM11J2KHztE6qRm628hbygd7ayww1h2buIKls+eNCank0Tl1VE92QLqmH0a4JS/oC5LabwAlC
- slCRd1L83rroA2diWK8sYxBEz1gB2QvUU67wzHmoeKXcM9DyYQLhBPQy1LrCU5xy+74tC8qHFo
- pCs=
-X-IronPort-AV: E=Sophos;i="5.77,425,1596492000"; 
-   d="scan'208";a="13984860"
-Date:   Wed, 28 Oct 2020 09:57:46 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-CC:     Bamvor Jian Zhang <bamv2005@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        kernel <kernel@axis.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] gpio: mockup: Allow probing from device tree
-Message-ID: <20201028085746.bmyb4y6ypburdy5s@axis.com>
-References: <20201027135325.22235-1-vincent.whitchurch@axis.com>
- <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com>
+        id S1728475AbgJ1Vx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:53:28 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:33517 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728433AbgJ1Vx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:53:27 -0400
+Received: by mail-lf1-f68.google.com with SMTP id l2so766209lfk.0;
+        Wed, 28 Oct 2020 14:53:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=B/Uh8Mjxj70GqN4e6bC2jcGCEwyOED4qRiTj7eOFPOc=;
+        b=q8Hqkjenyae+adKAHtM6BqLkyv2DDY31SclVL/PUxc4/9Wrk3LaaJd72RHw/SKEA/B
+         DHlvKGg2b8+1BH6S+8mJdiNeyNzVHLM0wSuDqS2eZCdmmmvEr2Aeo8jL7IZUBnexnvaW
+         sn4nYAN3ykPncxcyfreSGyUA7fOsxZMm+StvI979keBtFm4pgGbktNTIXRVIfMQeFRpn
+         +uBetW3hMFSUwo3M6oP6Zf6vvBAaFcX2x5vs/wqaOCPr7kwWTXdQwiaFtFk5caUxgFHJ
+         QyHnX4T85Pcj3dA5RGsyYUxDkxcMmcGTwZT8JxZVIKwowzDzcqezdlzkNzA1w/W/qPG0
+         yX9g==
+X-Gm-Message-State: AOAM533acrA9AgEAZj6WOHJ4mEQK9LN2zHydxRvn1UA6mID53E3l+Zc1
+        XlYYAnKI8eZe2y9K5QG5Z1XAqt6riRO0sg==
+X-Google-Smtp-Source: ABdhPJz0Sa7eG4YThApVZWur5qzm6uMCWvxrV014/0GVslKKoUWqx9NmSYiEY6KbNcBZzcEr8d8OCA==
+X-Received: by 2002:a2e:8750:: with SMTP id q16mr2653847ljj.53.1603878334962;
+        Wed, 28 Oct 2020 02:45:34 -0700 (PDT)
+Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id u11sm525138ljl.38.2020.10.28.02.45.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 02:45:34 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 11:45:27 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     mazziesaccount@gmail.com, matti.vaittinen@fi.rohmeurope.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
+        linux-watchdog@vger.kernel.org
+Subject: [PATCH v4 0/4] Support ROHM BD9576MUF and BD9573MUF PMICs
+Message-ID: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 27, 2020 at 07:12:13PM +0100, Bartosz Golaszewski wrote:
-> On Tue, Oct 27, 2020 at 2:54 PM Vincent Whitchurch
-> <vincent.whitchurch@axis.com> wrote:
-> > diff --git a/drivers/gpio/gpio-mockup.c b/drivers/gpio/gpio-mockup.c
-> > index 67ed4f238d43..c93892a6936a 100644
-> > --- a/drivers/gpio/gpio-mockup.c
-> > +++ b/drivers/gpio/gpio-mockup.c
-> > @@ -13,6 +13,7 @@
-> >  #include <linux/gpio/driver.h>
-> >  #include <linux/interrupt.h>
-> >  #include <linux/irq.h>
-> > +#include <linux/of.h>
-> 
-> Please keep the includes ordered alphabetically.
+Initial support for ROHM BD9576MUF and BD9573MUF PMICs.
 
-Thanks, fixed in v3.
+These PMICs are primarily intended to be used to power the R-Car family
+processors. BD9576MUF includes some additional safety features the
+BD9573MUF does not have. This initial version of drivers does not
+utilize these features and for now the SW behaviour is identical.
 
-> >  #include <linux/irq_sim.h>
-> >  #include <linux/irqdomain.h>
-> >  #include <linux/module.h>
-> > @@ -460,9 +461,18 @@ static int gpio_mockup_probe(struct platform_device *pdev)
-> >         return 0;
-> >  }
-> >
-> > +#ifdef CONFIG_OF
-> > +static const struct of_device_id gpio_mockup_of_match[] = {
-> > +       { .compatible = "gpio-mockup", },
-> > +       {},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
-> > +#endif
-> 
-> You don't need this ifdef - of_match_ptr() will evaluate to NULL if
-> CONFIG_OF is disabled and the compiler will optimize this struct out.
+This patch series includes MFD and watchdog drivers. Regulator part was
+already applied.
 
-The compiler can't optimise out the struct in the case of a module build
-since there is a reference from the MODULE_DEVICE_TABLE:
+- Enabling and pinging the watchdog
+- configuring watchog timeout / window from device-tree
 
- $ grep CONFIG_OF .config
- # CONFIG_OF is not set
- $ nm drivers/gpio/gpio-mockup.ko  | grep of_
- 00000000 r gpio_mockup_of_match
- 00000000 R __mod_of__gpio_mockup_of_match_device_table
+This patch series does not bring interrupt support. BD9576MUF and BD9573MUF
+are designed to keep the IRQ line low for whole duration of error
+condition. IRQ can't be 'acked'. So proper IRQ support would require
+some IRQ limiter implementation (delayed unmask?) in order to not hog
+the CPU.
 
-But these few wasted bytes don't matter so I removed the CONFIG_OF
-anyway as you suggested.
+Changelog v3:
+  - rebased on top of 5.10-rc1
+  - Fix typo (repeated word maximum) from the DT binding doc
+
+Changelog v3:
+  - use only one binding to specify watchdog time-out window.
+
+Changelog v2:
+  - dropped already applied regulator part
+  - dt_bindings: Fix case for regulator-names in the example
+  - watchdod: unify probe error check and revise includes
+
+---
+
+Matti Vaittinen (4):
+  dt_bindings: mfd: Add ROHM BD9576MUF and BD9573MUF PMICs
+  mfd: Support ROHM BD9576MUF and BD9573MUF
+  wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
+  MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
+
+ .../bindings/mfd/rohm,bd9576-pmic.yaml        | 123 ++++++++
+ MAINTAINERS                                   |   4 +
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/rohm-bd9576.c                     | 130 ++++++++
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/bd9576_wdt.c                 | 290 ++++++++++++++++++
+ include/linux/mfd/rohm-bd957x.h               |  59 ++++
+ include/linux/mfd/rohm-generic.h              |   2 +
+ 10 files changed, 634 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml
+ create mode 100644 drivers/mfd/rohm-bd9576.c
+ create mode 100644 drivers/watchdog/bd9576_wdt.c
+ create mode 100644 include/linux/mfd/rohm-bd957x.h
+
+
+base-commit: 3650b228f83adda7e5ee532e2b90429c03f7b9ec
+-- 
+2.21.3
+
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
