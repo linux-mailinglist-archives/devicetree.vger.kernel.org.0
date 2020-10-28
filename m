@@ -2,244 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF70029E084
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:22:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E76229DF87
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:02:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729614AbgJ1WEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:04:54 -0400
-Received: from foss.arm.com ([217.140.110.172]:38780 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729499AbgJ1WCP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 18:02:15 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 013FD1C00;
-        Wed, 28 Oct 2020 13:44:21 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 25A343F66E;
-        Wed, 28 Oct 2020 13:44:19 -0700 (PDT)
-Date:   Wed, 28 Oct 2020 20:44:17 +0000
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Sudeep Holla <sudeep.holla@arm.com>, lukasz.luba@arm.com,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Jonathan.Cameron@huawei.com, broonie@kernel.org,
-        Rob Herring <robh@kernel.org>, satyakim@qti.qualcomm.com,
-        f.fainelli@gmail.com, Vincent Guittot <vincent.guittot@linaro.org>,
-        Souvik Chakravarty <souvik.chakravarty@arm.com>
-Subject: Re: [PATCH v3 1/4] firmware: arm_scmi: Add Voltage Domain Support
-Message-ID: <20201028204416.GF20482@e120937-lin>
-References: <20201026203148.47416-1-cristian.marussi@arm.com>
- <20201026203148.47416-2-cristian.marussi@arm.com>
- <CAN5uoS8gOwA4-fttH1=XdKWZWFzX3HXpHAqgHW=jKxAxEq6C1Q@mail.gmail.com>
+        id S1730664AbgJ2BCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 21:02:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730946AbgJ1WNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:13:08 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3625C0613CF;
+        Wed, 28 Oct 2020 15:13:07 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id g12so669762wrp.10;
+        Wed, 28 Oct 2020 15:13:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DT6U3Rrpw03NL9wb6+e07l8WiQkrdkKgWOSxMXogg6U=;
+        b=VSb7dfpw4irGstLagBSk6VtAJq3e8StKJ/EKo44Q0eHd+TYB/LWh2yU2pqTlCBmf3A
+         9iGN+2Be/Snri6YY9ZRj+/4xosGc6ESHVDf56SnrAPg+fEna/A01URaYdIY471NOKDO8
+         bTxfi4jRdF6iFIDvlPmi0dgN9JlutgOxM90nQ9oaATWal1ucddnI+R3q78QDATBjEF61
+         wj3NSovgfL4vrSl01Z8TE4SG8ro+6tUteKl6xqDKZNhW2qH+/ldEpeHePm74RXEldwSZ
+         1CsxzzxMle5WHlz29QZMfb3ShjSppnXrCFrAYMebdZJhur0ASoJ5FYg4VO0gDl085K3z
+         sA4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DT6U3Rrpw03NL9wb6+e07l8WiQkrdkKgWOSxMXogg6U=;
+        b=dFqVSFA8B9GEjbvyzewO4QlJQXGa4W5Z/wKJPN+R22tZzvBhHyD+zi7ko9Qu2NsOqM
+         MQrVhJ7eRvWPTdafcSLc0W6UUVSiwbgnmtbVON2oLFFFpYHqrDBc+7DSMgWptYMWkuo8
+         7lsBlGmtebktdvASq9pckOwMJ2OVHZ+067xDzKTbVKWfMYy8MfjvqNoD1B9cD0hgsfMK
+         /SKPHU+xr0dKkgAiGyposEavyGGaOrTiki2T9A/I/KyFsbMN2yATFPchw3fQ62Li2H/f
+         U/sXtf7t+nspz7X0YDznPQxO3jRTylyCBKxYq5LvW4kZKl6wMj0Ztyk44nMzzSGmIa0q
+         orJw==
+X-Gm-Message-State: AOAM531QgxUI9Fbr6MSY84ZsV1aXfgOEeylgp0QKQ4u4CtT8E0qY/vm6
+        GDijsAPR90xC++TMNv5ynCw=
+X-Google-Smtp-Source: ABdhPJw2ck6qSNW3Dpk0b4qFpYtA9DOZDGAtqNDpTEFwJbNrpXE8Hb/+Cv07B6lJk8KqL6F4H7IByw==
+X-Received: by 2002:a5d:6652:: with SMTP id f18mr592183wrw.186.1603923186483;
+        Wed, 28 Oct 2020 15:13:06 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
+        by smtp.gmail.com with ESMTPSA id x1sm1318928wrl.41.2020.10.28.15.13.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 15:13:05 -0700 (PDT)
+From:   kholk11@gmail.com
+To:     dmitry.torokhov@gmail.com
+Cc:     robh+dt@kernel.org, rydberg@bitmath.org, priv.luk@gmail.com,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kholk11@gmail.com, marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, phone-devel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzk@kernel.org,
+        andy.shevchenko@gmail.com
+Subject: [PATCH v9 0/3] Add Novatek NT36xxx touchscreen driver
+Date:   Wed, 28 Oct 2020 23:12:59 +0100
+Message-Id: <20201028221302.66583-1-kholk11@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAN5uoS8gOwA4-fttH1=XdKWZWFzX3HXpHAqgHW=jKxAxEq6C1Q@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 03:29:57PM +0100, Etienne Carriere wrote:
-> Hi Cristian,
-> 
-> Some remaining minor comments see below.
-> FYI I've successfully tested this series (the 4 patches).
-> 
+From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 
-Hi
+This patch series adds support for the Novatek NT36xxx Series' In-Cell
+touchscreen (integrated into the DriverIC).
 
-Thanks a lot !
+This patch series has been tested against the following devices:
+ - Sony Xperia 10        (SDM630 Ganges Kirin)
+ - Sony Xperia 10 Plus   (SDM636 Ganges Mermaid)
 
-Replies inline down below.
+Changes in v2:
+- Fixed sparse warnings from lkp kernel test robot
 
-[snip]
-> > +struct scmi_msg_cmd_config_set {
-> > +       __le32 domain_id;
-> > +       __le32 config;
-> > +};
-> > +
-> > +struct scmi_msg_cmd_level_set {
-> > +       __le32 domain_id;
-> > +       __le32 flags;
-> > +       __le32 voltage_level;
-> > +};
-> > +
-> > +struct voltage_info {
-> > +       u32 version;
-> > +       u16 num_domains;
-> 
-> Could be an unsigned int.
-> 
+Changes in v3 (as requested by Dmitry Torokhov):
+- Using shorthand u16/u32 (sorry for the overlook!)
+- Now using more input and touchscreen APIs
+- Fixed useless workqueue involvements
+- Removed useless locking
+- Switched reads and writes to use regmap
+- Moved header contents to nt36xxx.c
+- Fixed reset gpio handling
+- Other cleanups
+- P.S.: Thanks, Dmitry!
 
-I tend to use fixed size types matching the protocols messages sizing on
-the internal while exposing non-fixed size types in scmi_protocol.h like
-in scmi_voltage_info, but these indeed are values exposed directly to
-the user afterwards. Any other reason to prefer non-fixed size here ?
+Changes in v4:
+- Fixed regmap read length for CRC_ERR_FLAG final check
+- Fixed YAML binding, as requested by Krzysztof Kozlowski
 
-> > +       struct scmi_voltage_info **domains;
-> > +};
-> > +
-> > +static int scmi_protocol_attributes_get(const struct scmi_handle *handle,
-> > +                                       struct voltage_info *vinfo)
-> > +{
-> > +       int ret;
-> > +       struct scmi_xfer *t;
-> > +       struct scmi_msg_resp_protocol_attributes *resp;
-> > +
-> > +       ret = scmi_xfer_get_init(handle, PROTOCOL_ATTRIBUTES,
-> > +                                SCMI_PROTOCOL_VOLTAGE, 0, sizeof(*resp), &t);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       resp = t->rx.buf;
-> > +       ret = scmi_do_xfer(handle, t);
-> > +       if (!ret)
-> > +               vinfo->num_domains =
-> > +                       NUM_VOLTAGE_DOMAINS(le32_to_cpu(resp->attr));
-> > +
-> > +       scmi_xfer_put(handle, t);
-> > +       return ret;
-> > +}
-> > +
-> > +static inline int scmi_init_voltage_levels(struct device *dev,
-> 
-> Should remove this inline attribute.
-> 
+Changes in v5:
+- Replaced subsystem maintainer's name with .. mine,
+  usage of additionalProperties to unevaluatedProperties
+  and a typo fix for reset-gpios as per Rob Herring's review
+- Changed compatible string as per Krzysztof K. request
+- Renamed the novatek,nt36xxx.yaml file to just nt36xxx.yaml
+  in order to now reflect the driver name instead of the DT
+  compatible
+- Fixed blank line at EOF
 
-Ah right, I removed one and left this. I'll do.
+Changes in v6:
+- Removed include of_gpio.h, added mod_devicetable.h and
+  gpio/consumer.h
+- Added kerneldoc to relevant functions/enum
+- Used traditional patterns for error checking where possible
+- Documented calls to usleep/msleep
+- Using be16_to_cpu / get_unaligned_be16 where possible
+- Added helper for CRC error check on retrieved buffer
+- Decreased indentation in the CRC reboot recovery function
+- Removed instances of error code sum
+- Dropped all likely/unlikely optimization as per request
+- Removed redundant reset_gpio checks
+- Dropped of_match_ptr and ifdefs for CONFIG_OF
 
-> > +                                          struct scmi_voltage_info *v,
-> > +                                          u32 flags, u32 num_returned,
-> > +                                          u32 num_remaining)
+Changes in v7:
+- Fixed typo in nt36xxx.c
 
-[snip]
+Changes in v8:
+- Fixed typo reset-gpio -> reset-gpios in dt-bindings
 
-> > +DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER(SCMI_PROTOCOL_VOLTAGE, voltage)
-> > diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
-> > index 9cd312a1ff92..181fdebc2793 100644
-> > --- a/include/linux/scmi_protocol.h
-> > +++ b/include/linux/scmi_protocol.h
-> > @@ -209,6 +209,64 @@ struct scmi_reset_ops {
-> >         int (*deassert)(const struct scmi_handle *handle, u32 domain);
-> >  };
-> >
-> > +/**
-> > + * struct scmi_voltage_info - describe one available SCMI Voltage Domain
-> > + *
-> > + * @id: the domain ID as advertised by the platform
-> > + * @segmented: defines the layout of the entries of array @levels_uv.
-> > + *            - when True the entries are to be interpreted as triplets,
-> > + *              each defining a segment representing a range of equally
-> > + *              space voltages: <lowest_volts>, <highest_volt>, <step_uV>
-> > + *            - when False the entries simply represent a single discrete
-> > + *              supported voltage level
-> > + * @negative_volts_allowed: True if any of the entries of @levels_uv represent
-> > + *                         a negative voltage.
-> > + * @attributes: represents Voltage Domain advertised attributes
-> > + * @name: name assigned to the Voltage Domain by platform
-> > + * @num_levels: number of total entries in @levels_uv.
-> > + * @levels_uv: array of entries describing the available voltage levels for
-> > + *            this domain.
-> > + */
-> > +struct scmi_voltage_info {
-> > +       unsigned int id;
-> > +       bool segmented;
-> > +#define SCMI_VOLTAGE_SEGMENT_LOW       0
-> > +#define SCMI_VOLTAGE_SEGMENT_HIGH      1
-> > +#define SCMI_VOLTAGE_SEGMENT_STEP      2
-> 
-> Maybe move these macros before 'int *level_us;' as these are indices
-> in that array.
-> 
+Changes in v9:
+- Includes are now sorted
+- Used proposed sizeof variable instead of sizeof type
+- Fixed a return value check for common pattern
+- Added NULL check to devm_kasprintf call
+- Returning ret on probe function to be consistent
 
-Right, I'll do.
+AngeloGioacchino Del Regno (3):
+  dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
+  Input: Add Novatek NT36xxx touchscreen driver
+  dt-bindings: touchscreen: Add binding for Novatek NT36xxx series
+    driver
 
-Thanks
+ .../bindings/input/touchscreen/nt36xxx.yaml   |  59 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/nt36xxx.c           | 894 ++++++++++++++++++
+ drivers/input/touchscreen/nt36xxx.h           | 122 +++
+ 6 files changed, 1090 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
+ create mode 100644 drivers/input/touchscreen/nt36xxx.c
+ create mode 100644 drivers/input/touchscreen/nt36xxx.h
 
-Cristian
+-- 
+2.28.0
 
-> > +       bool negative_volts_allowed;
-> > +       unsigned int attributes;
-> > +       char name[SCMI_MAX_STR_SIZE];
-> > +       unsigned int num_levels;
-> > +       int *levels_uv;
-> > +};
-> > +
-> > +/**
-> > + * struct scmi_voltage_ops - represents the various operations provided
-> > + * by SCMI Voltage Protocol
-> > + *
-> > + * @num_domains_get: get the count of voltage domains provided by SCMI
-> > + * @info_get: get the information of the specified domain
-> > + * @config_set: set the config for the specified domain
-> > + * @config_get: get the config of the specified domain
-> > + * @level_set: set the voltage level for the specified domain
-> > + * @level_get: get the voltage level of the specified domain
-> > + */
-> > +struct scmi_voltage_ops {
-> > +       int (*num_domains_get)(const struct scmi_handle *handle);
-> > +       const struct scmi_voltage_info __must_check *(*info_get)
-> > +               (const struct scmi_handle *handle, u32 domain_id);
-> > +       int (*config_set)(const struct scmi_handle *handle, u32 domain_id,
-> > +                         u32 config);
-> > +#define        SCMI_VOLTAGE_ARCH_STATE_OFF             0x0
-> > +#define        SCMI_VOLTAGE_ARCH_STATE_ON              0x7
-> > +       int (*config_get)(const struct scmi_handle *handle, u32 domain_id,
-> > +                         u32 *config);
-> > +       int (*level_set)(const struct scmi_handle *handle, u32 domain_id,
-> > +                        u32 flags, s32 volt_uV);
-> > +       int (*level_get)(const struct scmi_handle *handle, u32 domain_id,
-> > +                        s32 *volt_uV);
-> > +};
-> > +
-> >  /**
-> >   * struct scmi_notify_ops  - represents notifications' operations provided by
-> >   * SCMI core
-> > @@ -262,6 +320,7 @@ struct scmi_notify_ops {
-> >   * @clk_ops: pointer to set of clock protocol operations
-> >   * @sensor_ops: pointer to set of sensor protocol operations
-> >   * @reset_ops: pointer to set of reset protocol operations
-> > + * @voltage_ops: pointer to set of voltage protocol operations
-> >   * @notify_ops: pointer to set of notifications related operations
-> >   * @perf_priv: pointer to private data structure specific to performance
-> >   *     protocol(for internal use only)
-> > @@ -273,6 +332,8 @@ struct scmi_notify_ops {
-> >   *     protocol(for internal use only)
-> >   * @reset_priv: pointer to private data structure specific to reset
-> >   *     protocol(for internal use only)
-> > + * @voltage_priv: pointer to private data structure specific to voltage
-> > + *     protocol(for internal use only)
-> >   * @notify_priv: pointer to private data structure specific to notifications
-> >   *     (for internal use only)
-> >   */
-> > @@ -284,6 +345,7 @@ struct scmi_handle {
-> >         const struct scmi_power_ops *power_ops;
-> >         const struct scmi_sensor_ops *sensor_ops;
-> >         const struct scmi_reset_ops *reset_ops;
-> > +       const struct scmi_voltage_ops *voltage_ops;
-> >         const struct scmi_notify_ops *notify_ops;
-> >         /* for protocol internal use */
-> >         void *perf_priv;
-> > @@ -291,6 +353,7 @@ struct scmi_handle {
-> >         void *power_priv;
-> >         void *sensor_priv;
-> >         void *reset_priv;
-> > +       void *voltage_priv;
-> >         void *notify_priv;
-> >         void *system_priv;
-> >  };
-> > @@ -303,6 +366,7 @@ enum scmi_std_protocol {
-> >         SCMI_PROTOCOL_CLOCK = 0x14,
-> >         SCMI_PROTOCOL_SENSOR = 0x15,
-> >         SCMI_PROTOCOL_RESET = 0x16,
-> > +       SCMI_PROTOCOL_VOLTAGE = 0x17,
-> >  };
-> >
-> >  enum scmi_system_events {
-> > --
-> > 2.17.1
-> >
