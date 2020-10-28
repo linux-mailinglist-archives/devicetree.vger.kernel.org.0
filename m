@@ -2,206 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D3A329E150
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D474329E163
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:01:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728643AbgJ1V4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:56:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49852 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726108AbgJ1V4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:56:41 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F4D0C0613D2
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 14:56:41 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id 32so575831otm.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 14:56:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Jj/NNe3UVzEy2jGAguobuMFm7v5qWBY40TXQH0WuQC0=;
-        b=WSrBjSSbR/WyX+UuNUeflwK1gBK9n/BbMDIDvhv4WkdJ3ahjqhTwdHddMRv3kWoIDW
-         o/DvaZ8X65fn+oDmWpuLNlvbalAg2/5MDJzuqWvqVN9GwXjIJfZtNa8gRM5C2+yk2cJs
-         rHpM08mpbPSujPJoARC2bpXDZEw7EQTJIEc5RNy2UksKBsm1HLiouRUSPIasPn6M79vw
-         y/t6gBbDo3F7O5oMifDsaf73PulSnLplPfBa/NNC7HtMUyiWUnPTW4IIbQ1QpHWHp1wY
-         GV5ENZI0YFY3EAUnvTXl/af3lJVzSvt9mU2RAEPqmiBi9lhyLO4PXbDD311JHkkhNyzZ
-         vj4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Jj/NNe3UVzEy2jGAguobuMFm7v5qWBY40TXQH0WuQC0=;
-        b=GAlgmxSjfOQkmj9eIlz1GEQIo38QU1ulWoE3pasHFCQlh4oCSuIkKoQGjfQCj4H6Ux
-         jJRsI3YBkylyNicJS2QUCsA9vr7bY79N8o6VNkOmgE77b7dnOGnYJ+M+VWBB402nYSFD
-         CIR+POzbo7VUr/CkHFTvGaUwv8r21fHlLVQqXSnPu3C+V3S6ypemdwVkfKMmsn9Av8FT
-         YbH6K0659WAjFxVwAmhhtGUpJtGaFayWwM4X1XvxAmSrjFJpfXRMLFb4c0TQm5zyhGN1
-         +mcdfoZHQzLgax/S7Rv2uBOAbBcXx3aqfSu9f8isYgq+qB9KdKTCQduyCaGEVGrLxgH3
-         juuA==
-X-Gm-Message-State: AOAM532JamQyvI2wqJQ0q8AN0Z+O8QdT7lNDLwoBoHbOjf8OkZs7DdSi
-        KPcMB7vtAlX+T4fFPPMzv2pFNtxL0yEdtmamIaS7pfHWPhqHZYgS
-X-Google-Smtp-Source: ABdhPJwTpslLa81vYLA/guL+TmbBqEYtzZIOx4JtoHABlv4NkrVXmx9l0jdNjhXgu1HP2JBC9gM1MOlx015Wg2SJU4w=
-X-Received: by 2002:a25:244c:: with SMTP id k73mr647304ybk.96.1603908259765;
- Wed, 28 Oct 2020 11:04:19 -0700 (PDT)
+        id S1728167AbgJ2CAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 22:00:45 -0400
+Received: from mout.kundenserver.de ([212.227.126.130]:48369 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728006AbgJ1Vvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:51:35 -0400
+Received: from methusalix.internal.home.lespocky.de ([92.117.45.118]) by
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MT7ip-1kxPjS40Ip-00UcI8; Wed, 28 Oct 2020 21:40:02 +0100
+Received: from falbala.internal.home.lespocky.de ([192.168.243.94])
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <post@lespocky.de>)
+        id 1kXsEd-0002jR-O2; Wed, 28 Oct 2020 21:39:57 +0100
+Date:   Wed, 28 Oct 2020 21:39:54 +0100
+From:   Alexander Dahl <post@lespocky.de>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     Alexander Dahl <ada@thorsis.com>,
+        Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v7 02/12] dt-bindings: leds: Convert pwm to yaml
+Message-ID: <20201028203953.eafmzeqba76qjlf2@falbala.internal.home.lespocky.de>
+Mail-Followup-To: Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-3-post@lespocky.de>
 MIME-Version: 1.0
-References: <20201014193615.1045792-1-michael.auchter@ni.com>
- <d5f8a417-8db9-9385-dfea-9512b4680124@gmail.com> <CAGETcx_869kxKbgRO68Wp9Qq8vAp8fqpAe_Lkjx8vZdW9RNTsQ@mail.gmail.com>
- <20201028162540.GA2310713@xaphan>
-In-Reply-To: <20201028162540.GA2310713@xaphan>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 28 Oct 2020 11:03:43 -0700
-Message-ID: <CAGETcx8mD2rg92Lk6bM4HUT0yiVa3RbMARJTLjYrhyqOwZc=4Q@mail.gmail.com>
-Subject: Re: Re: [RFC PATCH 0/3] Fix errors on DT overlay removal with devlinks
-To:     Michael Auchter <michael.auchter@ni.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nwkumzirho5iba4d"
+Content-Disposition: inline
+In-Reply-To: <20201005203451.9985-3-post@lespocky.de>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Scan-Signature: e8e5211badca7b3e4c3721992337a85e
+X-Spam-Score: -2.9 (--)
+X-Provags-ID: V03:K1:dFwaWUg7Hs1+6BjOpddvhs45I+5MLeawNEbLKR27jHnbgCj5ifc
+ gYT8HigTxAZrbMDX6/JPdfbDaFolzE8kEuGksu+jJMbNPJOki4vC4J8UisS9GY0wG28NRRz
+ NcInnsvPQVTBr/DWp2r63TtWmZWlMAONcdpEQLgqv5Ki0n2Oa80UXdCA4ZDNLFt5URfJug4
+ cxtSV54v9p6WgHStsK5mQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:gzz3n95gjfs=:hHvez/4McHVrzL3OX0D32f
+ /mYm8rTxXToff+h1rKtHcZmgoklySxxk+XBCOUTtiY6mf9KZs6CPkdPtjCzBTHXEACewZfU8t
+ ZX92A/cg34hfSH/qLP6uHmyl3sm8rZgjhfmODNhtVRqSL1yBUt7VoFp4O+xMEAK5mz+yCu2Rm
+ iGklg0sn8jVVieyJf4ohBj0jpC00XckF2oSRO4FK0fFLDDT6iG356sR5IHySLVV8isMSMswNs
+ 7/QhXZyqSx8aKiVqtFSET6XbhPL/qNwVQ4M6SnKNnCOYcjQwin2ARag9znS70Gxf1KUX8wCoT
+ 3D22ySm/UzuqNW93z4dQGoKUTbs56eQ0t6QwGbzfLbL34QjGeMWvlLDxO4CsLndZij4zIiENB
+ BfPV7R5t+K4iT+G1wnWExjfTh3WI8pemTfpcwHbrxpE71hZybyIbsYFhIysPL
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 9:25 AM Michael Auchter <michael.auchter@ni.com> wrote:
->
-> Hey Saravana,
->
-> Thanks for taking the time to look into this!
->
-> On Mon, Oct 26, 2020 at 12:10:33PM -0700, Saravana Kannan wrote:
-> > On Wed, Oct 21, 2020 at 2:02 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> > >
-> > > Hi Saravana,
-> > >
-> > > Michael found an issue related to the removal of a devicetree node
-> > > which involves devlinks:
-> > >
-> > > On 10/14/20 2:36 PM, Michael Auchter wrote:
-> > > > After updating to v5.9, I've started seeing errors in the kernel log
-> > > > when using device tree overlays. Specifically, the problem seems to
-> > > > happen when removing a device tree overlay that contains two devices
-> > > > with some dependency between them (e.g., a device that provides a clock
-> > > > and a device that consumes that clock). Removing such an overlay results
-> > > > in:
-> > > >
-> > > >   OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy
-> > > >   OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy
-> > > >
-> > > > followed by hitting some REFCOUNT_WARNs in refcount.c
-> > > >
-> > > > In the first patch, I've included a unittest that can be used to
-> > > > reproduce this when built with CONFIG_OF_UNITTEST [1].
-> > > >
-> > > > I believe the issue is caused by the cleanup performed when releasing
-> > > > the devlink device that's created to represent the dependency between
-> > > > devices. The devlink device has references to the consumer and supplier
-> > > > devices, which it drops in device_link_free; the devlink device's
-> > > > release callback calls device_link_free via call_srcu.
-> > > >
-> > > > When the overlay is being removed, all devices are removed, and
-> > > > eventually the release callback for the devlink device run, and
-> > > > schedules cleanup using call_srcu. Before device_link_free can and call
-> > > > put_device on the consumer/supplier, the rest of the overlay removal
-> > > > process runs, resulting in the error traces above.
-> > >
-> > > When a devicetree node in an overlay is removed, the remove code expects
-> > > all previous users of the related device to have done the appropriate put
-> > > of the device and to have no later references.
-> > >
-> > > As Michael described above, the devlink release callback defers the
-> > > put_device().  The cleanup via srcu was implemented in commit
-> > > 843e600b8a2b01463c4d873a90b2c2ea8033f1f6 "driver core: Fix sleeping
-> > > in invalid context during device link deletion" to solve yet another
-> > > issue.
-> > >
-> > >
-> > > >
-> > > > Patches 2 and 3 are an attempt at fixing this: call srcu_barrier to wait
-> > > > for any pending device_link_free's to execute before continuing on with
-> > > > the removal process.
-> > > >
-> > > > These patches resolve the issue, but probably not in the best way. In
-> > > > particular, it seems strange to need to leak details of devlinks into
-> > > > the device tree overlay code. So, I'd be curious to get some feedback or
-> > > > hear any other ideas for how to resolve this issue.
-> > >
-> > > I agree with Michael that adding an indirect call of srcu_barrier(&device_links_srcu)
-> > > into the devicetree overlay code is not an appropriate solution.
-> >
-> > I kind of see your point too. I wonder if the srcu_barrier() should
-> > happen inside like so:
-> > device_del() -> device_links_purge()->srcu_barrier()
-> >
-> > I don't know what contention the use of SRCUs in device links was
-> > trying to avoid, but I think the srcu_barrier() call path I suggested
-> > above shouldn't be a problem. If that fixes the issue, the best way to
-> > know if it's an issue is to send out a patch and see if Rafael has any
-> > problem with it :)
->
-> I was able to test this by adding the srcu_barrier() at the end of
-> device_links_purge(), and that does seem to have fixed the issue.
 
-Thanks for testing my suggestion. If you send out a patch for that,
-I'd appreciated a Suggested-by: tag.
+--nwkumzirho5iba4d
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > > Is there some other way to fix the problem that 843e600b8a2b solves without
-> > > deferring the put_device() done by the devlink release callback?
-> >
-> > Ok I finally got some time to look into this closely.
-> >
-> > Even if you revert 843e600b8a2b, you'll see that device_link_free()
-> > (which drops the reference to the consumer and supplier devices) was
-> > scheduled to run when the SRCU clean up occurs. So I think this issue
-> > was present even before 843e600b8a2b, but commit 843e600b8a2b just
-> > made it more likely to hit this scenario because it introduces some
-> > delay in dropping the ref count of the supplier and consumer by going
-> > through the device link device's release path. So, I think this issue
-> > isn't related to 843e600b8a2b.
-> >
-> > As to why 843e600b8a2b had to be written to call call_srcu() from the
-> > device link device's release path, it's a mess of dependencies/delays:
-> > 1. The device link device is part of the struct device_link. So we
-> > can't free device_link before the device_link.link_dev refcount goes
-> > to 0.
-> > 2. But I can't assume device_link.link_dev's refcount will go to 0 as
-> > soon as I call put_device() on it because of
-> > CONFIG_DEBUG_KOBJECT_RELEASE which frees up the kobject after a random
-> > delay.
-> > 3. The use of SRCU also means I can't free device_link until the SRCU
-> > is cleaned up.
-> >
-> > Because of (1), (2) and (3), when the device_link_del() (or any of the
-> > other device link deletion APIs are called) I first have to do a
-> > put_device(device_link.link_dev) to make sure the device memory is no
-> > longer referenced, then trigger an SRCU clean up and then in the
-> > scheduled SRCU cleanup I can free struct device_link. And obviously,
-> > until struct device_link is ready to be freed up, I can't drop the
-> > reference to the supplier and consumer devices (as that old copy of
-> > device_link could be used by some code to refer to the supplier and
-> > consumer devices).
-> >
-> > Hope that helps explain the SRCU and device link device release dependencies.
-> >
-> > Also, even if this patch series is applied as is, I wonder if the
-> > current overlay code has a bug related to CONFIG_DEBUG_KOBJECT_RELEASE
-> > delaying the actual freeing of the device. Something to look into?
->
-> I also tried enabling CONFIG_DEBUG_KOBJECT_RELEASE... with or without
-> the addition of srcu_barrier() to device_links_purge(), I can't boot
-> successfully when CONFIG_OF_UNITTEST=y &&
-> CONFIG_DEBUG_KOBJECT_RELEASE=y: there are a ton of errors that result
-> from this combo.
->
-> Disabling the unittests and booting with CONFIG_DEBUG_KOBJECT_RELEASE=y,
-> I _do_ still see the errors mentioned in my original message when
-> removing an overlay. So yeah, it does seem like there are some latent
-> issues here...
+Hello,
 
-Thanks for confirming my suspicion. I assume you see these errors even
-with the srcu_barrier() call?
+Peter, Russel, could you please give your Acked-by or Signed-off-by on
+this patch?  Your ack is needed, because the license is now explicitly
+set (it was not explicit before), and you were the contributors to
+this binding before the conversion to yaml.
 
-I'll leave this to Frank then :)
+Thanks and Greets
+Alex
 
--Saravana
+On Mon, Oct 05, 2020 at 10:34:41PM +0200, Alexander Dahl wrote:
+> The example was adapted in the following ways:
+>=20
+> - make use of the now supported 'function' and 'color' properties
+> - remove pwm nodes, those are documented elsewhere
+> - align node names to new dt schema rules and dt recommendations
+>=20
+> License was not explicitly set before.  The license set now is
+> recommended by DT project.
+>=20
+> Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Signed-off-by: Alexander Dahl <post@lespocky.de>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Cc: Russell King <linux@armlinux.org.uk>
+> ---
+>=20
+> Notes:
+>     NOTE: Due to license set/change this needs Acked-by or Signed-off-by =
+=66rom:
+>       * Peter Ujfalusi
+>       * Russell King
+>    =20
+>     That was discussed already with Peter (original author), still waiting
+>     for Acked-by though =E2=80=A6
+>    =20
+>     Changelog
+>     ---------
+>     v6 -> v7:
+>       * added Reviewed-by (Krzysztof Kozlowski)
+>       * reworded commit message (suggested by Krzysztof)
+>       * added Reviewed-by (Rob Herring)
+>    =20
+>     v5 -> v6:
+>       * removed pwm nodes from example (Rob)
+>       * renamed led-controller node in example (Rob)
+>    =20
+>     v4 -> v5:
+>       * updated based on feedback by Rob Herring
+>       * removed Acked-by
+>    =20
+>     v3 -> v4:
+>       * added Cc to original author of the binding
+>    =20
+>     v2 -> v3:
+>       * changed license identifier to recommended one
+>       * added Acked-by
+>    =20
+>     v2:
+>       * added this patch to series (Suggested-by: Jacek Anaszewski)
+>=20
+>  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -------------
+>  .../devicetree/bindings/leds/leds-pwm.yaml    | 70 +++++++++++++++++++
+>  2 files changed, 70 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.txt b/Docume=
+ntation/devicetree/bindings/leds/leds-pwm.txt
+> deleted file mode 100644
+> index 6c6583c35f2f..000000000000
+> --- a/Documentation/devicetree/bindings/leds/leds-pwm.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -LED connected to PWM
+> -
+> -Required properties:
+> -- compatible : should be "pwm-leds".
+> -
+> -Each LED is represented as a sub-node of the pwm-leds device.  Each
+> -node's name represents the name of the corresponding LED.
+> -
+> -LED sub-node properties:
+> -- pwms : PWM property to point to the PWM device (phandle)/port (id) and=
+ to
+> -  specify the period time to be used: <&phandle id period_ns>;
+> -- pwm-names : (optional) Name to be used by the PWM subsystem for the PW=
+M device
+> -  For the pwms and pwm-names property please refer to:
+> -  Documentation/devicetree/bindings/pwm/pwm.txt
+> -- max-brightness : Maximum brightness possible for the LED
+> -- active-low : (optional) For PWMs where the LED is wired to supply
+> -  rather than ground.
+> -- label :  (optional)
+> -  see Documentation/devicetree/bindings/leds/common.txt
+> -- linux,default-trigger :  (optional)
+> -  see Documentation/devicetree/bindings/leds/common.txt
+> -
+> -Example:
+> -
+> -twl_pwm: pwm {
+> -	/* provides two PWMs (id 0, 1 for PWM1 and PWM2) */
+> -	compatible =3D "ti,twl6030-pwm";
+> -	#pwm-cells =3D <2>;
+> -};
+> -
+> -twl_pwmled: pwmled {
+> -	/* provides one PWM (id 0 for Charing indicator LED) */
+> -	compatible =3D "ti,twl6030-pwmled";
+> -	#pwm-cells =3D <2>;
+> -};
+> -
+> -pwmleds {
+> -	compatible =3D "pwm-leds";
+> -	kpad {
+> -		label =3D "omap4::keypad";
+> -		pwms =3D <&twl_pwm 0 7812500>;
+> -		max-brightness =3D <127>;
+> -	};
+> -
+> -	charging {
+> -		label =3D "omap4:green:chrg";
+> -		pwms =3D <&twl_pwmled 0 7812500>;
+> -		max-brightness =3D <255>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.yaml b/Docum=
+entation/devicetree/bindings/leds/leds-pwm.yaml
+> new file mode 100644
+> index 000000000000..fe4d5fd25913
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LEDs connected to PWM
+> +
+> +maintainers:
+> +  - Pavel Machek <pavel@ucw.cz>
+> +
+> +description:
+> +  Each LED is represented as a sub-node of the pwm-leds device.  Each
+> +  node's name represents the name of the corresponding LED.
+> +
+> +properties:
+> +  compatible:
+> +    const: pwm-leds
+> +
+> +patternProperties:
+> +  "^led(-[0-9a-f]+)?$":
+> +    type: object
+> +
+> +    $ref: common.yaml#
+> +
+> +    properties:
+> +      pwms:
+> +        maxItems: 1
+> +
+> +      pwm-names: true
+> +
+> +      max-brightness:
+> +        description:
+> +          Maximum brightness possible for the LED
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +      active-low:
+> +        description:
+> +          For PWMs where the LED is wired to supply rather than ground.
+> +        type: boolean
+> +
+> +    required:
+> +      - pwms
+> +      - max-brightness
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    led-controller {
+> +        compatible =3D "pwm-leds";
+> +
+> +        led-1 {
+> +            label =3D "omap4::keypad";
+> +            pwms =3D <&twl_pwm 0 7812500>;
+> +            max-brightness =3D <127>;
+> +        };
+> +
+> +        led-2 {
+> +            color =3D <LED_COLOR_ID_GREEN>;
+> +            function =3D LED_FUNCTION_CHARGING;
+> +            pwms =3D <&twl_pwmled 0 7812500>;
+> +            max-brightness =3D <255>;
+> +        };
+> +    };
+> +
+> +...
+> --=20
+> 2.20.1
+
+--=20
+/"\ ASCII RIBBON | =C2=BBWith the first link, the chain is forged. The first
+\ / CAMPAIGN     | speech censured, the first thought forbidden, the
+ X  AGAINST      | first freedom denied, chains us all irrevocably.=C2=AB
+/ \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
+
+--nwkumzirho5iba4d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEwo7muQJjlc+Prwj6NK3NAHIhXMYFAl+Z1xYACgkQNK3NAHIh
+XMa4dRAAwz5aGmTaCMVYq3Auo34qtLb+NsNbE0uPtTAJKafHT/YnSzgNgbf5urRz
+zKAeeoaiKjVICVDWeDrLdN607wylNBGn024FRat0tjDkZIOu08iMuyBvR9dOA8zd
+bp3xsK0f44DnZl+g0E/gIuuWe31PK/nY8h+etVAzcTqBsWVVDsT1zGBpXdYLpl6S
+DDjTaO+zUyK7gRBQt/qDUbmQAO1IIttfSy6qHUxxPgZliWI+/DpQgsFRdoZPV+QH
+bamaugY6vEaIkB5kr5O2QzHNmciUt/Jn7122YMMmVl7AE7ZPbGyVGtd/MXzQLXpQ
+IHz0CJKdh0SraLoDeeIOgWRdDD4qUgy4WuaxxIQB2VjnICRE3FHHZHM6BIOrNUjF
+sg+wsPXMnqRzAIa/ExjQCZBuhMrMLMNKRHLDwLTVgDz+qXb673vpHc0RyxrWC7YZ
+hhQpQkgaeSmCs23IgsI2jm0cKXMMq9yoDLGfVX+naP413sx/RiQPyKZNQnkXHOV/
+O48sd7eTz0BH6ZEBY6fSShd6SzQVUlYQGr2Ol4TXP1/Xa4LGlRzAvGvZOTiPukuX
+2kxyUpBKNHjR7+z9jJ0kAO6mIPiLgI0Ac698iEDWsLkKekuFyd1pYwAZLeMoFR8l
+J+PJ8ZiMqFxRQGr9QSHNwENi+KBFE4PweWPJ92XczoNxLhWyvBc=
+=tXqH
+-----END PGP SIGNATURE-----
+
+--nwkumzirho5iba4d--
