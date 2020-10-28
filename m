@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0787529D40E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29AB729D2E5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:37:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726405AbgJ1Vst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:48:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38134 "EHLO mail.kernel.org"
+        id S1726960AbgJ1Vh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:37:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35470 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725790AbgJ1VmX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Oct 2020 17:42:23 -0400
+        id S1726948AbgJ1VhZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 17:37:25 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9B73A2483C;
-        Wed, 28 Oct 2020 21:25:11 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 34CE2247C7;
+        Wed, 28 Oct 2020 21:31:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603920312;
-        bh=GJYr0kQ5tQclKFUAWNHS/HPkX2rE4VXTuAgt6K8K3sU=;
+        s=default; t=1603920698;
+        bh=LB7IIgnXLRPsvFSUKfcokjOHLKCLUEJ1lH4XLR7MgK0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NrHWrlJZKlc5ihemz0VmfxNgxWCyJN5iXcB5ZTjHBIWIo+VoffwEF90ALfUJtbmFt
-         9kfSYka9iSSe8f2tj+hDXjWCo+UHps1QG6MmhLdZy7MMy30tjcKoCgWePeL06uPz21
-         cHvSw+v9Wch4ogLxrKprt3tVCVIFBzdYeOxZNgnM=
-Date:   Wed, 28 Oct 2020 21:25:06 +0000
+        b=k+A7w0xItkNypDfSE7bzwrJqNiCTMGib6IX7NpCgnWnSUwFpafXnO36QAYiJdnpnf
+         EOvurTDYgXlZqJIYCL1avYRyhlWXUbxuL74ZdIigPGd9Xcx4lyLEQ17m6Jmf3f4zF8
+         PQ1E4zSN9hqRZ3SMZF3Mf+sqJgazYPWF4Pvzo0OA=
+Date:   Wed, 28 Oct 2020 21:31:32 +0000
 From:   Mark Brown <broonie@kernel.org>
 To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
@@ -35,11 +35,11 @@ Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
         V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 Subject: Re: [PATCH v2] Asoc: qcom: lpass-sc7180: Fix MI2S bitwidth field bit
  positions
-Message-ID: <20201028212506.GB6302@sirena.org.uk>
+Message-ID: <20201028213132.GC6302@sirena.org.uk>
 References: <1603798474-4897-1-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/NkBOFFp2J2Af1nK"
+        protocol="application/pgp-signature"; boundary="3siQDZowHQqNOShm"
 Content-Disposition: inline
 In-Reply-To: <1603798474-4897-1-git-send-email-srivasam@codeaurora.org>
 X-Cookie: Allow 6 to 8 weeks for delivery.
@@ -49,36 +49,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---/NkBOFFp2J2Af1nK
+--3siQDZowHQqNOShm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 On Tue, Oct 27, 2020 at 05:04:34PM +0530, Srinivasa Rao Mandadapu wrote:
 
-> Update SC7180 lpass_variant structure with proper I2S bitwidth
-> field bit positions, as bitwidth denotes 0 to 1 bits,
-> but previously used only 0 bit.
+> Fixes: cba62c8b49be ("ASoC: qcom: Add support for SC7180 lpass variant")
 
-To repeat my previous feedback:
+This commit is actually
 
-| Please submit patches using subject lines reflecting the style for the
-| subsystem, this makes it easier for people to identify relevant patches.
-| Look at what existing commits in the area you're changing are doing and
-| make sure your subject lines visually resemble what they're doing.
+    Merge series "ASoC: qcom: Add support for SC7180 lpass variant" from Rohit kumar <rohitkr@codeaurora.org>:
 
---/NkBOFFp2J2Af1nK
+which is not the commit that should be pointed at here.
+
+--3siQDZowHQqNOShm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+Z4bEACgkQJNaLcl1U
-h9AvIQf8DyFuw//44sZKS76tGkYUI5e63r0TFIgniukPLkySfUIpx+onvitdbnoF
-d5kB+XFMTSPLebTNF3+bdb3fzWLYlhWL0zr5UPL/P9+is6DwLji3NOT2Qlh9oMLQ
-WGcBl/NaliM2uxVnPB7eByEOpZAuPd61K+lhM6Mg8nlKroMZqJFUpN/D0asYhS4z
-r4Grz87b4Ncgtwq0EZ9pOA9Y1AVPN7w2YUh9qLEAf10i99Z0gXDwBZusY76Ffn3g
-ExRlnD73EUQPf4YX97Ey7B9vWjmGxZL6a3HnHHwU4YItA7Dio7CX7NDak0mQYWBs
-C10XnhMfKVhxDsy5nhtTnYQI81Y60A==
-=mqF7
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+Z4zMACgkQJNaLcl1U
+h9BhgAf/REPtAdUvxZvoB6gjMUFKH76y/rzERDgx0/fE+V/YDYb4P7Y45oXgGgwX
+qHVXKLHq5BO4CsRGk1pozAgu4JsLRmTe/nmOkhSKl03VOUxAOrdJ5aYbQJotmEJD
+oJEo4v4slQWlq1e4zfR7KF6f/eX/kF1r7GSErZBZ+RjGJETpfqsIbfL7wOZs4u9q
+xsA7JJzVfzObYngoBJTZ7gHvuGYrbNXowOWkGrR/CiYFlDLMtPgWkZgtWSIjpbzc
+mQCm+OOXp8ImuP3fc8Y02yzDlnus5yiPwareUbYjLPRKwOZQW88FfbfzyAA5AJDK
+Uzo/iywf8dc8Nr9VGZGyXr1Zrj5k1w==
+=ANOe
 -----END PGP SIGNATURE-----
 
---/NkBOFFp2J2Af1nK--
+--3siQDZowHQqNOShm--
