@@ -2,77 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E08229DF91
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:02:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13DDA29E07C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 02:22:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730196AbgJ2BCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 21:02:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52670 "EHLO
+        id S1729600AbgJ1WEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:04:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730932AbgJ1WMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:12:47 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4249C0613CF
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:12:46 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id t11so1040299edj.13
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:12:46 -0700 (PDT)
+        with ESMTP id S1728338AbgJ1WBN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:01:13 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A764C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:01:13 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id p5so1089118ejj.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:01:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Pg1Awte/AcCE0VTpWWjF/X+y57TY14JHAwwH73vbeZk=;
-        b=N+BWrrYZvcw1eAZEn4Rkvla5ZhdaCVyBOuc8pxi/ev9ojf4qiOCEoNyr4LednIWYHi
-         MlXTPk/ebU2w9VwNP9NDCEXpqBs9v3FJgjkxG5NkxgbF4ypLsbxhhNuRAamoeBEYIvDZ
-         4WwqwTLFO8/Lg/hMFBrzaUDOLEPyp9MUoNlhitc45ZZUizXRNqtkXgZ86NHnq9Ox7wUs
-         dkNnJgm9/GOpasXFOpdXPHuXt6fXcFMpOXN8xuP9tq7xeZg+bMd15zN4cJV9n+e/3v4Z
-         3vN4N0knYEjOqDqfAjOkS4tpkW+PpRu1mF7YEtuGLqGpOxgwXsifpbnuGEGmswuatJBI
-         LW2A==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=X+9CMR89RIjvhaJgbEWulHsiFiBj9DskJPmBidEwcdM=;
+        b=vuCk5p61JvFkHGOOsrLLSTDQjp28EFuXH0Yuw8HCH43YEi24rlqU8xOTf7OLZmMugj
+         3LNYAwbQFQBPJ55akO5XMIlgfFmUQ9MHS71A9uPk9ZSz21vX2P4HOEkb/prZ1hDc1OKV
+         1n2RAMAccaVCh+Ksp6VQpAWzqtSeYMGkX75SOCb9erH6hu3n3rzZSxvvbU9rb/CrawkQ
+         vUR4J/DrAMIammIy4sz/Cp5+Q5WY/o4aZBBVSpBZyFwlaKO4sk+hUcI+19wuf2mdCKJW
+         0iqeOQ9Titv6LNeDjHVazmAHhBYO9rDs4cBify151VurI5K0Jq9V2sDGH6jJo3v5xTqZ
+         5Pcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Pg1Awte/AcCE0VTpWWjF/X+y57TY14JHAwwH73vbeZk=;
-        b=peAwwXsnid7TQG3T731vT3GNFrl3C0UHpg52ax2bUTFfOx1I6CDt/yOcbc0OvxYKeu
-         DLNdGmaMQR2HR5NnPoe3Bsu2x7kcQOu/JISkLjA2n47Z62JaOo0eddjaxfpcQaVz/VcL
-         VePddTWxbCt0MZrdrcHHyZtlz09pJsZXcgIiLv3zo8R+X8K9Q492A5iNQ83hDpXMswtc
-         NJDPyN46Nr79uwhRGbFclqs9Gb/1sc87+8lecO8AUMN5LKaUpUDazbtQihv4PEQUcJNy
-         e4UsuWDtQzuTMZsE6MZ48NXmt6InqNo68fYaxJsqW01Ujq9kNQPasQ8paFirbHaXHeuv
-         311A==
-X-Gm-Message-State: AOAM530bLsJcFRgHgLqvKQASTUVkA7nk3RbAXQ8Mcoi95ENrqJabXiIl
-        10uXdXK6TuaXWOnfBA8mZ1bAw0lXCmZczDkkwANrKLYavhc=
-X-Google-Smtp-Source: ABdhPJx66MvROMytz8Io7gwu5YHeqpdaA/k/cNh1NDS0LzJp5+8ZB4Dy8g7ogYGcrYnupMYog5+IQGiY3y/cw5WxoM0=
-X-Received: by 2002:a17:906:3146:: with SMTP id e6mr7958530eje.363.1603903015706;
- Wed, 28 Oct 2020 09:36:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=X+9CMR89RIjvhaJgbEWulHsiFiBj9DskJPmBidEwcdM=;
+        b=ToHt4SqBjYRENrFiBoznMzKmomxa6w+0pI11+NuGdom3XTU8YauQ9VutRUdNqDnXqx
+         wDkhPg7ezHIeweikKusp475TyvGAT3UvqL/HaQgyC7VZuRU+hIMtf+kFHS5ddwvvzy3I
+         +pvlpA5Uc7n+I4Ch/7hp6hy77INLHVDhQ+XG2exTztRU63nBSLnor6lwguwLN/v/jvMj
+         q3IPpMPivsx68Zw8+khXhqKz7NMiEPtZdXVmKcoY3r1IzeMiWr1YMk7cAHwECcS+14Sd
+         Te0p9Ox24GVtoaulwczCqK41IQJs9UUbqHqlcd+Xl0Pysejn2hVsOsA5oPB94/RQzRu/
+         rAIQ==
+X-Gm-Message-State: AOAM530k1Z4s0grujnPT+6uoGfYVp3bJ8HtutBSxX+pnGLjDpKwPKiY6
+        dTmIuYuu8gRsB941CcY/3qSVyYwWkuBs4AfM
+X-Google-Smtp-Source: ABdhPJx0P/i7X2q9h33qW+hh3xPqphMcYmpKicQgm75nTUdHpbY+h+XSQ+MRSmUCBIkAfiTvPWNsEA==
+X-Received: by 2002:a19:2294:: with SMTP id i142mr195623lfi.579.1603912199902;
+        Wed, 28 Oct 2020 12:09:59 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.219])
+        by smtp.gmail.com with ESMTPSA id c7sm52595ljk.59.2020.10.28.12.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 12:09:59 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: rb5: Add support for uSD card
+Date:   Wed, 28 Oct 2020 22:09:55 +0300
+Message-Id: <20201028190955.1264526-2-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201028190955.1264526-1-dmitry.baryshkov@linaro.org>
+References: <20201028190955.1264526-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-References: <20201028085748.17388-1-vincent.whitchurch@axis.com>
-In-Reply-To: <20201028085748.17388-1-vincent.whitchurch@axis.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Wed, 28 Oct 2020 17:36:44 +0100
-Message-ID: <CAMpxmJV5sorE8xPAynmc8mtw8aNP_3wm8DNSgx-Wc_fV61jCaQ@mail.gmail.com>
-Subject: Re: [PATCH v3] gpio: mockup: Allow probing from device tree
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     Bamvor Jian Zhang <bamv2005@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>, kernel@axis.com,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 9:57 AM Vincent Whitchurch
-<vincent.whitchurch@axis.com> wrote:
->
-> Allow the mockup driver to be probed via the device tree without any
-> module parameters, allowing it to be used to configure and test higher
-> level drivers like the leds-gpio driver and corresponding userspace
-> before actual hardware is available.
->
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> ---
->
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Applied, thanks!
+Add support for uSD card on RB5 using the SDHC2 interface.
 
-Bartosz
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+[DB: disabled 1.8V support to get SDHC to work]
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 41 ++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index 1528a865f1f8..aed00f707f1d 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -18,6 +18,7 @@ / {
+ 
+ 	aliases {
+ 		serial0 = &uart12;
++		sdhc2 = &sdhc_2;
+ 	};
+ 
+ 	chosen {
+@@ -471,6 +472,20 @@ &qupv3_id_2 {
+ 	status = "okay";
+ };
+ 
++&sdhc_2 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdc2_default_state &sdc2_card_det_n>;
++	vmmc-supply = <&vreg_l9c_2p96>;
++	vqmmc-supply = <&vreg_l6c_2p96>;
++	cd-gpios = <&tlmm 77 GPIO_ACTIVE_LOW>;
++	bus-width = <4>;
++	/* there seem to be issues with HS400-1.8V mode, so disable it */
++	no-1-8-v;
++	no-sdio;
++	no-emmc;
++};
++
+ /* CAN */
+ &spi0 {
+ 	status = "okay";
+@@ -659,6 +674,32 @@ &tlmm {
+ 		"HST_BLE_SNS_UART_RX",
+ 		"HST_WLAN_UART_TX",
+ 		"HST_WLAN_UART_RX";
++
++	sdc2_default_state: sdc2-default {
++		clk {
++			pins = "sdc2_clk";
++			bias-disable;
++			drive-strength = <16>;
++		};
++
++		cmd {
++			pins = "sdc2_cmd";
++			bias-pull-up;
++			drive-strength = <16>;
++		};
++
++		data {
++			pins = "sdc2_data";
++			bias-pull-up;
++			drive-strength = <16>;
++		};
++	};
++
++	sdc2_card_det_n: sd-card-det-n {
++		pins = "gpio77";
++		function = "gpio";
++		bias-pull-up;
++	};
+ };
+ 
+ &uart12 {
+-- 
+2.28.0
+
