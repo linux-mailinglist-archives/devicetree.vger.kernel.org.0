@@ -2,94 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BD4A29D4CF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCA8129D4A9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 22:53:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728771AbgJ1Vyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 17:54:39 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:36250 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728764AbgJ1Vyi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:54:38 -0400
-Received: by mail-oi1-f195.google.com with SMTP id y186so1166822oia.3;
-        Wed, 28 Oct 2020 14:54:37 -0700 (PDT)
+        id S1728612AbgJ1Vxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 17:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49354 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728594AbgJ1Vxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:53:51 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 573CCC0613D1
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 14:53:51 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id x7so672916wrl.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 14:53:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Kgs7oOpZiYMl5H9WjnHmd1QkROQmWLTfKSTmyAsUaIY=;
+        b=QT3KbY0cn1J1iTy+1fLJ5oZJ8uOp5dPKiT042ECYgACs1DaqqiFE004N4MiEUzm/sp
+         FAGwauvRmcA2zwmtAvP5tm66nl0F5bmxowyhvdvHkCwxaSCMv3YtQfyWj7hKqMK99pi0
+         rq5bjRVVgPgc8xm1MiAb8eBS1PmEGqTAsetdy2p0Dee1QAfrvbj6JSLyEingLRR76jaN
+         0enE9H0GyhN8UXfmQu0BaAx7y41A+P7mvBrHXBv9gRPzR/lLI4LyA8ZopOafNnfGonG7
+         vKpodtSSQw5wZDx52aJEDswkFk29D6mftf+sufUo7K/tHY1PwOpGvSjyEaw5MZwjcwCR
+         Ef2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Uc78x8CmwZLzrKJ78c98Bv6j8H6O42mQH8+34OvgxWs=;
-        b=CfLad6XA+URAMmONLs7b5YFk1mHUAf4qjcUe8DI/9oDAlz54boCzbDAKkTmf/CCWsl
-         gHEVo6hlLzXiKHvmhPx6HluQBtx1UON4ioMgTG6jkfmfK+qG8sMzT2xPizgejuQxgO5y
-         1FAxWzIrn2YxMYnkg/a7NSQHEEiaG/5CuxPkkl7upE8iTB3p0uNuG4HfhMFsiiW/l1ln
-         K4C5yrvAhMrf0bH7AF0TNuoYpk8vMVyAKy2rXR7SEOfjs7N2zJhDEPiBKl88T5lbBgLb
-         RA1nAgNC6E9BgEMX0Eu/ySQXhY09yq5dHrjyQlr+jognx+uhdUNuuK9C8oyXaI5QJsZy
-         v5MA==
-X-Gm-Message-State: AOAM533I7KlG0uCOBss75cPbYyMhld80JTisozrAP/XNAb+NSAhfMhju
-        TSuXCssD3XRn5t+xXW6ehNVlPxBZmQ==
-X-Google-Smtp-Source: ABdhPJzBeWZH6SAY7afIgY1/3BfjtQmztEeFkp69qvQ5J2PDJhbpSiCR8mcjBJXcwrLL2OvDMKpx/g==
-X-Received: by 2002:aca:4ac6:: with SMTP id x189mr4914954oia.58.1603896288433;
-        Wed, 28 Oct 2020 07:44:48 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v123sm2710068oif.29.2020.10.28.07.44.47
+        bh=Kgs7oOpZiYMl5H9WjnHmd1QkROQmWLTfKSTmyAsUaIY=;
+        b=uXz83qU7se54EPSuxINdGTCGFQKC4uL5GKiMkJ8F5WfyrO6fh8Yd06GOJc+IvthE1e
+         ReMS+CGu2F7cbuirBDarqpV55SxExqOk3EA6hP4TIpHQNSlwVN93MHsq5jZb/einyAjw
+         TgsWIdUDYOO/oRe1l15u8FruyAdUUSeJZAEbcAUQNsRyrfC9Rmui5Hx5r1vmrhZpHx+T
+         ixQEfxD6L8YtUYowzCN29J45G/xLtqgFE0MfO7FLkZFqeMryci8gALwRrkXjKzGbyT9m
+         yImoJLwu+AqR50ARmFQsMZIHZGliViRmkT+ekDKqH+guXs/AnTdlu0GS5yzni4HCH/9t
+         zyjA==
+X-Gm-Message-State: AOAM531LXZk/eE21gb6XBOdAAeKC8UL2OgwHCl6LFHz6sRHtmQ2D3Af9
+        tqPqQFAhaUbA4E5XFuHQ9EYKofpgI6pEsg==
+X-Google-Smtp-Source: ABdhPJxaoMdHf9VjBHJiaJux8MOBb5IV8da8WyQ7NwAcHNA6kfKRLpioHRTMxrceTg2Ior50e3Xf5Q==
+X-Received: by 2002:a5d:420b:: with SMTP id n11mr5541659wrq.218.1603896953907;
+        Wed, 28 Oct 2020 07:55:53 -0700 (PDT)
+Received: from holly.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id l5sm7110494wrq.14.2020.10.28.07.55.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 07:44:47 -0700 (PDT)
-Received: (nullmailer pid 3995233 invoked by uid 1000);
-        Wed, 28 Oct 2020 14:44:47 -0000
-Date:   Wed, 28 Oct 2020 09:44:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     prabhakar.mahadev-lad.rj@bp.renesas.com,
-        marek.vasut+renesas@gmail.com, linux-renesas-soc@vger.kernel.org,
-        linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: pci: rcar-pci-host: convert bindings to
- json-schema
-Message-ID: <20201028144447.GA3994930@bogus>
-References: <1603850751-32762-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1603850751-32762-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+        Wed, 28 Oct 2020 07:55:53 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 14:55:51 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Alexandru Stan <amstan@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] ARM: dts: rockchip: veyron: Remove 0 point from
+ brightness-levels
+Message-ID: <20201028145551.pn6nxi6skcfbqori@holly.lan>
+References: <20201022050445.930403-1-amstan@chromium.org>
+ <20201021220404.v3.1.I96b8d872ec51171f19274e43e96cadc092881271@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1603850751-32762-2-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20201021220404.v3.1.I96b8d872ec51171f19274e43e96cadc092881271@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Oct 2020 11:05:49 +0900, Yoshihiro Shimoda wrote:
-> Convert Renesas PCIe Host controller bindings documentation to
-> json-schema. Note that some compatible doesn't contain on
-> the original documantation so that incremental patches are required
-> for it.
+On Wed, Oct 21, 2020 at 10:04:43PM -0700, Alexandru Stan wrote:
+> The extra 0 only adds one point in the userspace visible range,
+> so this change is almost a noop with the current driver behavior.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> We don't need the 0% point, userspace seems to handle this just fine
+> because it uses the bl_power property to turn off the display.
+> 
+> Furthermore after adding "backlight: pwm_bl: Fix interpolation" patch,
+> the backlight interpolation will work a little differently. So we need
+> to preemptively remove the 0-3 segment since otherwise we would have a
+> 252 long interpolation that would slowly go between 0 and 3, looking
+> really bad in userspace. So it's almost a noop/cleanup now, but it will
+> be required in the future.
+> 
+> Signed-off-by: Alexandru Stan <amstan@chromium.org>
+
+Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+
+
 > ---
->  .../devicetree/bindings/pci/rcar-pci-host.yaml     | 146 +++++++++++++++++++++
->  Documentation/devicetree/bindings/pci/rcar-pci.txt |  72 ----------
->  2 files changed, 146 insertions(+), 72 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pci/rcar-pci.txt
 > 
-
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pci/rcar-pci-host.yaml:18:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/pci/rcar-pci-host.yaml:27:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-
-dtschema/dtc warnings/errors:
-
-
-See https://patchwork.ozlabs.org/patch/1389094
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 2 +-
+>  arch/arm/boot/dts/rk3288-veyron-minnie.dts | 2 +-
+>  arch/arm/boot/dts/rk3288-veyron-tiger.dts  | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/rk3288-veyron-jaq.dts b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+> index af77ab20586d..4a148cf1defc 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+> +++ b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+> @@ -20,7 +20,7 @@ / {
+>  
+>  &backlight {
+>  	/* Jaq panel PWM must be >= 3%, so start non-zero brightness at 8 */
+> -	brightness-levels = <0 8 255>;
+> +	brightness-levels = <8 255>;
+>  	num-interpolated-steps = <247>;
+>  };
+>  
+> diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+> index f8b69e0a16a0..82fc6fba9999 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+> +++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+> @@ -39,7 +39,7 @@ volum_up {
+>  
+>  &backlight {
+>  	/* Minnie panel PWM must be >= 1%, so start non-zero brightness at 3 */
+> -	brightness-levels = <0 3 255>;
+> +	brightness-levels = <3 255>;
+>  	num-interpolated-steps = <252>;
+>  };
+>  
+> diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+> index 069f0c2c1fdf..52a84cbe7a90 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+> +++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+> @@ -23,7 +23,7 @@ / {
+>  
+>  &backlight {
+>  	/* Tiger panel PWM must be >= 1%, so start non-zero brightness at 3 */
+> -	brightness-levels = <0 3 255>;
+> +	brightness-levels = <3 255>;
+>  	num-interpolated-steps = <252>;
+>  };
+>  
+> -- 
+> 2.28.0
