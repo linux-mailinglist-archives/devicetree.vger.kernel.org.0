@@ -2,161 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A347B29D753
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43CC429D763
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:24:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732345AbgJ1WXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:23:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54420 "EHLO
+        id S1732730AbgJ1WXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:23:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732707AbgJ1WWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:22:45 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06E02C0613D1;
-        Wed, 28 Oct 2020 15:22:45 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id v6so752666lfa.13;
-        Wed, 28 Oct 2020 15:22:44 -0700 (PDT)
+        with ESMTP id S1732720AbgJ1WXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:23:43 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1EAC0613CF;
+        Wed, 28 Oct 2020 15:23:42 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id l2so853169lfk.0;
+        Wed, 28 Oct 2020 15:23:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Y4rpBP1ZPK1NF+eOD5UawQX3qZnudBwJVDTqXuwDYuI=;
-        b=Lk09YH0K7QSeRT59OEL7O/tpVQW9qQIQA6PqEjePyJ8pyIlRrn0VTpvwd/2xBMu4+i
-         KLXGBA1bFJ5PG3PpkvvikY4209uKnSw4gtDWZqWjE7QLYtq1zChbdcKAFCw5sLjESct3
-         //q5NKoK11rdVejEdDqHRJpp/t04rLTbYPpOwtBShE+A+uwW5/9rTKLAE/wlTpCRW51m
-         xa/8rvrPAYccTBIF9uijdOQD5EcpdUW0ahGX2HQSeama5fbFV29x/qmiPX7GdX8jRZdw
-         J3VMjqkz+lI3iYJZkqwEjqeE1ggFw19sh7CYbrqh3y3DNXu7RuE5PrCor2cUnZbZZPOs
-         5GXw==
+         :cc;
+        bh=+KjbxQEkg9QA1o/E7c1m2TX9Jq7W/b3iFj6FdzJ/ZjE=;
+        b=sUpOJDTkNaLBJDvzrFEZJJCarTzrhwOlreub6zH/9tnWfnyQSS/WP+Nd+2EoOPMQVY
+         7CsLQzbFwTY1TuzY1mTTwFwWYQxgG8r3Z/p/e/Rd4igrbPiWGhHlYGX+aPYPPfpf+vlf
+         SoLgMCIgGgfh5GXcHmMH9syaGrbUcvkXHFZSl4c6C74nfmnQi00VGxxzi5ujC0GfhOXu
+         +SVs3AnKWam/d+h5SsClRY0EH9q6UA1LvwRNQGUtA/QnuAOmb2YeMOz5/pFIQbiN4yJC
+         t5Ie78mGtT2Z1mbnTm88YOoHubHAVoPIh1CjC637tcJ9rDHiBYNQmuJ4KnVKlDTw96o0
+         zjfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Y4rpBP1ZPK1NF+eOD5UawQX3qZnudBwJVDTqXuwDYuI=;
-        b=J/e6ZCyfXPnU9eYuMWYCL7H7HSZWQeCaHAjzeEEkFChp9pXRzlTvj7RrM7tcfSH1ZM
-         5wtnb9ULhFejY7SW6WGxedrZH3wdPyk2RcMM5H8ucPvW/gsBX3o+k47Me+0ZSUoTz9VD
-         oUV9Csk2hz7G+Ncm/R4h+6/TVoVIP4SyArWeE4+Wzis/qYib7tMV6Qo+qrn9ccmDH1Tf
-         9HZH5Q42plUBQxReY129236i2GUweJopkpVPMmBtBiIj/WHfEqXfL/6bCCihkW3zOzHA
-         G814hdz8wmkKV2lekXJEn+kUDmQJd5di8rIgg/RrjAlnwGXuK3+7LxuQ3pmCOwT2Y6NJ
-         IqVw==
-X-Gm-Message-State: AOAM530YYrETouGYKbX7NCVIoC7h5qm2ZsF990Y7/YeEiMb2fmH3zUDG
-        bVmlpq77wfbH6ia767IbLF8t+rkvs8MOAgotQ4iLtywGvsMZAA==
-X-Google-Smtp-Source: ABdhPJwdFGTiXplqLoOuussnpBWtDMVIJVe3olbx+/4H+yRTt7pXt4u0mQjspK/IrGb3onaZ1pgCSji5V9oXxGITpOM=
-X-Received: by 2002:a2e:b0e4:: with SMTP id h4mr2809532ljl.119.1603883687259;
- Wed, 28 Oct 2020 04:14:47 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=+KjbxQEkg9QA1o/E7c1m2TX9Jq7W/b3iFj6FdzJ/ZjE=;
+        b=MdSO1EcMWWLXjzgT3jTXLt+muMnrhGUD3wS3aMsOMp/T9rj8XEmWC+n5EAubZpdyS0
+         HxStwQdt0Yd0ptmYpazpx+eJG5L8RdgVHBKYY8tFsqNj4bjte/v073JmGkGp9fgEQ0Yp
+         26P+572oGw+DbMihqnljbMnckSHTOP6eyAZHA6p2dsYQzFk5FTHGBhh9Ayz3mGmWSdMA
+         281nObNZpKk9sU1RnOG3SUkPBpyzXNch/HbPx0/+xaoaycVL/hmEDOIBtVQ80dVd7HkG
+         CbS7jR/rcUz+xXv0RD5J1BsSMoa8gwpe1yKX3YlzrVBIz5iFGnB9CN5ZbDJ8wnhRnrDX
+         MUdw==
+X-Gm-Message-State: AOAM532D8AfHhiJRYM4oPYyXGUPUfo5mXBpQrKbkXV4bcT2xUjZfs1gQ
+        3x2uoHJ6SkbNDrtQCkN0i1ELVU4JCudjIHiWSLApUx0/fklTvQ==
+X-Google-Smtp-Source: ABdhPJwTpcx2ILDMoOSAHFWBR7y5FILG4WAR9ukBLbcCRJsVi7I/4AwRORXJ+EqcACwWZ40LD+UhTUnPzmDqfgD9oyk=
+X-Received: by 2002:a17:906:53d7:: with SMTP id p23mr7135255ejo.232.1603887356260;
+ Wed, 28 Oct 2020 05:15:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <1603784069-24114-1-git-send-email-u0084500@gmail.com>
- <20201027082900.GA21354@amd> <b0f5b3c8-bebd-eeb6-20b2-15529816720c@gmail.com>
- <CADiBU3_x=9wvPv4_YxWx4H_ecV7Kbt5ur91SDv+unH4z2hzS_Q@mail.gmail.com> <e49d4119-48da-9dba-bbbe-b688cf28bfb8@gmail.com>
-In-Reply-To: <e49d4119-48da-9dba-bbbe-b688cf28bfb8@gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Wed, 28 Oct 2020 19:14:35 +0800
-Message-ID: <CADiBU3-y4PMtedP7fe22LW_x6bnsbyUYUHb+tNTZctJ=1wTYbA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] leds: rt4505: Add support for Richtek RT4505 flash
- led controller
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, dmurphy@ti.com, robh+dt@kernel.org,
-        linux-leds@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>, devicetree@vger.kernel.org
+References: <20200715115412.2544-1-frank@allwinnertech.com>
+ <20200717160727.e6y5htg4sjd7bezi@gilmour.lan> <db1908ae-817c-f30d-7b88-f4afa593b258@sholland.org>
+ <20200729130637.5md3tr6zg7s4wrmh@gilmour.lan>
+In-Reply-To: <20200729130637.5md3tr6zg7s4wrmh@gilmour.lan>
+From:   Frank Lee <tiny.windzz@gmail.com>
+Date:   Wed, 28 Oct 2020 20:15:45 +0800
+Message-ID: <CAEExFWstKV_uMbh5iQ9ULX7=24aj0_6Ge+4uFe07WmwiyDDRMA@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_=5BPATCH_1=2F3=5D_dt=2Dbindings=3A_gpio=3A_sunxi=EF=BC=9Acreate_a_?=
+        =?UTF-8?Q?DT_header_for_Allwinner_pin_controller?=
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Frank Lee <frank@allwinnertech.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B410=E6=
-=9C=8828=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=887:07=E5=AF=AB=E9=81=
-=93=EF=BC=9A
+On Wed, Jul 29, 2020 at 9:06 PM Maxime Ripard <maxime@cerno.tech> wrote:
 >
-> On 10/28/20 5:57 AM, ChiYuan Huang wrote:
-> > Hi,
+> Hi,
+>
+> On Sat, Jul 25, 2020 at 02:18:39PM -0500, Samuel Holland wrote:
+> > On 7/17/20 11:07 AM, Maxime Ripard wrote:
+> > > Hi!
+> > >
+> > > On Wed, Jul 15, 2020 at 07:54:12PM +0800, Frank Lee wrote:
+> > >> From: Yangtao Li <frank@allwinnertech.com>
+> > >>
+> > >> The sunxi gpio binding defines a few custom cells for its gpio specifier.
+> > >> Provide bank name for those.
+> > >>
+> > >> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+> > >
+> > > Thanks for working on this, I wanted to do it at some point but it kept
+> > > getting pushed further into my todo list.
+> > >
+> > >> ---
+> > >>  include/dt-bindings/gpio/sunxi-gpio.h | 29 +++++++++++++++++++++++++++
+> > >>  1 file changed, 29 insertions(+)
+> > >>  create mode 100644 include/dt-bindings/gpio/sunxi-gpio.h
+> > >>
+> > >> diff --git a/include/dt-bindings/gpio/sunxi-gpio.h b/include/dt-bindings/gpio/sunxi-gpio.h
+> > >> new file mode 100644
+> > >> index 000000000000..c692b4360da6
+> > >> --- /dev/null
+> > >> +++ b/include/dt-bindings/gpio/sunxi-gpio.h
+> > >
+> > > So generally we've been using the compatible name as the file name. You
+> > > should follow that convention too, and since it was added with the A10,
+> > > using the A10 compatible.
+> > >
+> > >> @@ -0,0 +1,29 @@
+> > >> +/* SPDX-License-Identifier: GPL-2.0 */
+> > >> +/*
+> > >> + * GPIO definitions for Allwinner SoCs
+> > >> + *
+> > >> + * Copyright (C) 2020 Yangtao Li <frank@allwinnertech.com>
+> > >> + */
+> > >> +
+> > >> +#ifndef _DT_BINDINGS_SUNXI_GPIO_H
+> > >> +#define _DT_BINDINGS_SUNXI_GPIO_H
+> > >> +
+> > >> +#include <dt-bindings/gpio/gpio.h>
+> > >> +
+> > >> +/* pio */
+> > >> +#define PA        0
+> > >> +#define PB        1
+> > >> +#define PC        2
+> > >> +#define PD        3
+> > >> +#define PE        4
+> > >> +#define PF        5
+> > >> +#define PG        6
+> > >> +#define PH        7
+> > >> +#define PI        8
+> > >> +
+> > >> +/* r-pio */
+> > >> +#define PL        0
+> > >> +#define PM        1
+> > >> +#define PN        2
+> > >> +
+> > >> +#endif /* _DT_BINDINGS_SUNXI_GPIO_H */
+> > >
+> > > Maybe we can go one step further and use a macro to have something like
+> > > PIN(A, 12) ?
 > >
-> > Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B410=
-=E6=9C=8828=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=8812:40=E5=AF=AB=E9=
-=81=93=EF=BC=9A
-> >>
-> >> Hi Pavel, ChiYuan,
-> >>
-> >> On 10/27/20 9:29 AM, Pavel Machek wrote:
-> >>> Hi!
-> >>>
-> >>>> From: ChiYuan Huang <cy_huang@richtek.com>
-> >>>>
-> >>>> Add support for RT4505 flash led controller. It can support up to 1.=
-5A
-> >>>> flash current with hardware timeout and low input voltage
-> >>>> protection.
-> >>>
-> >>> Please use upper-case "LED" everywhere.
-> >>>
-> >>> This should be 2nd in the series, after DT changes.
-> >>>
-> >>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> >>>> ---
-> >>>>    drivers/leds/Kconfig       |  11 ++
-> >>>>    drivers/leds/Makefile      |   1 +
-> >>>>    drivers/leds/leds-rt4505.c | 397 ++++++++++++++++++++++++++++++++=
-+++++++++++++
-> >>>>    3 files changed, 409 insertions(+)
-> >>>>    create mode 100644 drivers/leds/leds-rt4505.c
-> >> [...]
-> >>>> +static int rt4505_torch_brightness_set(struct led_classdev *lcdev, =
-enum led_brightness level)
-> >>>> +{
-> >>>
-> >>> 80 columns, where easy.
-> >>>
-> >>>> +    struct rt4505_priv *priv =3D container_of(lcdev, struct rt4505_=
-priv, flash.led_cdev);
-> >>>> +    u32 val =3D 0;
-> >>>> +    int ret;
-> >>>> +
-> >>>> +    mutex_lock(&priv->lock);
-> >>>> +
-> >>>> +    if (level !=3D LED_OFF) {
-> >>>> +            ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ILE=
-D, RT4505_ITORCH_MASK,
-> >>>> +                                     (level - 1) << RT4505_ITORCH_S=
-HIFT);
-> >>>> +            if (ret)
-> >>>> +                    goto unlock;
-> >>>> +
-> >>>> +            val =3D RT4505_TORCH_SET;
-> >>>> +    }
-> >>>> +
-> >>>> +    ret =3D regmap_update_bits(priv->regmap, RT4505_REG_ENABLE, RT4=
-505_ENABLE_MASK, val);
-> >>>> +
-> >>>> +unlock:
-> >>>> +    mutex_unlock(&priv->lock);
-> >>>> +    return ret;
-> >>>> +}
-> >>>
-> >>> Why is the locking needed? What will the /sys/class/leds interface
-> >>> look like on system with your flash?
-> >>
-> >> The locking is needed since this can be called via led_set_brightness(=
-)
-> >> from any place in the kernel, and especially from triggers.
-> >>From this case, It means only led classdev
-> > brihtness_get/brightness_set need to be protected.
-> > I search led_flash_classdev, it only can be controlled via sysfs or V4l=
-2.
-> > Like as described in last mail, flash related operation is protected
-> > by led access_lock and v4l2 framework.
-> > I'll keep the locking only in led classdev brightness_get/brightness_se=
-t API.
-> > If I misunderstand something, please help to point out.
+> > Since we have separate cells for the bank and pin, I don't think it would be
+> > appropriate to have a single macro generating both.
 >
-> Locking have to be used consistently for each access to the resource
-> being protected with the lock. Otherwise you can end up in a situation
-> when rt4505_torch_brightness_set and rt4505_flash_brightness_set will
-> try concurrently alter hardware state. Regardless of how harmful could
-> it be in case of this particular device it is certainly against
-> programming rules.
+> Yeah, but it's "just" an encoding issue though, it's not a major concern
+> if it makes our life easier.
 >
-Sure, any resource access must be protected.
-I'll keep the locking like as the original patch.
-Thx.
-> --
-> Best regards,
-> Jacek Anaszewski
+> > And I'm not sure what the benefit of the macro would be, if all it
+> > does is forward its arguments. Are you concerned that P[A-M] could
+> > conflict with something else in the device tree?
+>
+> There's indeed a bunch of names that are fairly generic and could be
+> conflicting with others (PD for power domain is the first one that comes
+> to my mind). Using a prefix would make the GPIO descriptors pretty long,
+> so it wasn't ideal either. A macro makes it readable without increasing
+> too much the risks of conflicts
+
+I tried to use macros, but failed.
+
+I have a look at some other GPIO macros, which have a prefix in front of them.
+Maybe we can do the same? It's all numbers. It's not intuitive.
+
+Yangtao
