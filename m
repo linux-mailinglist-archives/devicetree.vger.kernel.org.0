@@ -2,106 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1060B29D903
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:42:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EAD729D98B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389134AbgJ1Wlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:41:40 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:41525 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731064AbgJ1Wlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:41:40 -0400
-Received: by mail-ua1-f67.google.com with SMTP id b34so181406uab.8;
-        Wed, 28 Oct 2020 15:41:39 -0700 (PDT)
+        id S2389858AbgJ1W4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:56:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389855AbgJ1W4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:56:00 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDC98C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:55:59 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id w65so704970pfd.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 15:55:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=gyZXe4UlIiJyEgA29yuKS3oeW8M7zKVy8IBiRsmYAmc=;
+        b=onAmLV9juNbP7wo91heam4H8gAMYtfy0venQZrmZZMNDJ8HiSHuuZ+CS/6A/yrwoSy
+         ZZNOgWqUW4BH3NZGYK6+7vUXkGUv/DTH/Bfzi6Ln8fRJBp8+Cyb29Ra3Jy4YdefTcDo/
+         zGGjvWhGYKGbs1ClJV+Ye7VjWBEJ3XORqgnVA4dlgEbukbSJ7Bcx9oRwo+L6XeApeMcx
+         FdZha+HtwNipI11KsEjqoYfnLUDq5xnY3NObfd4sQySAytfwzKMntQM/bYaoqkpDl/Z5
+         UzZfGapIufvzWiB4QEkzOuPpfvs+I8KiQ4YFpJ73sM1046oIlPRkgLy7DXNTV7u7ufqC
+         jxJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ifdl6rm0gNvcSFKZ5I/tiV7YK1rwdOd+QhoFYwULzTg=;
-        b=psODguIavg8esBbE+vLlNOr8dliLd38X24ndBpKLiM3QEJE0NHdLaXXhaMvI5eGX3T
-         /vt7yEPoOPrsUeUEVr4/Ow1odoXmlAmV35jWUlND3QXArD7rO15yRQUuyk7G+sC8Z+LJ
-         okm+wAo7l2dInQGCktB03YEDmcJHl9o70T2ds6RWPFsXdtajx863Q3pEYNmUEr1P+NX+
-         od8+Kqpsi3Xu6vmd0/Tz+7aX1kTAaVF2lAZPe5JHVcfDPHIJvIZjv4yoJQHJBgwADaOA
-         9js/QOO7UWPrLA+osrOM2ZwtWL70pU2xBRkf00xiiSTcsF5gdw0xojUY5dhhbGjHGCh6
-         OzNg==
-X-Gm-Message-State: AOAM533GthAXfcMpvzqO8UJjrP6mHZ8diBaslAFG0DtgIKWOrUwKMZ2w
-        pm1wZJfnybDfqToA2zrOADxhpLlevQ==
-X-Google-Smtp-Source: ABdhPJziwrjiHTpXAkJ8pP/F82V8cE+tb5yLZhtJRaSIq9hNGSvT/Lg+akyRINC2pPgUjGmP9rs+Lw==
-X-Received: by 2002:a9d:a0d:: with SMTP id 13mr5267372otg.348.1603899998892;
-        Wed, 28 Oct 2020 08:46:38 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d17sm2146587ote.47.2020.10.28.08.46.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 08:46:38 -0700 (PDT)
-Received: (nullmailer pid 4082138 invoked by uid 1000);
-        Wed, 28 Oct 2020 15:46:37 -0000
-Date:   Wed, 28 Oct 2020 10:46:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>, rjw@rjwysocki.net,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: cpus: Document
- 'qcom,freq-domain' property
-Message-ID: <20201028154637.GB4065833@bogus>
-References: <20201020153944.18047-1-manivannan.sadhasivam@linaro.org>
- <1603247803.20224.5.camel@mtkswgap22>
- <20201021095916.GA3334@Mani-XPS-13-9360>
- <20201021105037.vrqgmvbxxhccch33@vireshk-i7>
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gyZXe4UlIiJyEgA29yuKS3oeW8M7zKVy8IBiRsmYAmc=;
+        b=PenldrJSQ7zNNQ9Uqq+hQJW+4WtT4CzuQ32hJKEGZdN7uE4T1q6m5ssr7eV1efnNEo
+         UhGfcfqURDHOCsK+fNd2tUbF3yfSSVhxY8Ljyp5WyqX5yt7oIODgyqfIGDaDeWEtaVU6
+         i1lhx8tDm3OtQ3KREM6E1v8UTVJ5T+/dyQ6aqHZ87cGsmVapAH6VO+8qLiXOdOrEF2PJ
+         1TYEq9gvcyfiVpbMANCD1Fuknr3dIkbHAmL2jm+4CarU2AW3jKKlKvu4hhkAoTU3GJMn
+         5z4djP3FpT8NnR//UqE/xeQKnrEwHuzRNVSR6Uzj327qV67f75CkPm0FLTMi7wa3j12J
+         q7kQ==
+X-Gm-Message-State: AOAM531gIES3D3Ca7fTzzziyv84Wkn/hhm94ovSx4Pw38o53uFfc6bZr
+        k1PwDLH5t1sTzeSBO+oXwenWkMbxYtbv
+X-Google-Smtp-Source: ABdhPJy4wp8FcMTLG82s6NTTpGozSLiiRiD9djXMWJMN+OzFd+L2lYlZ4UuNtdVzO4TBLhilRIP1pA==
+X-Received: by 2002:a62:be04:0:b029:15d:7423:e320 with SMTP id l4-20020a62be040000b029015d7423e320mr8247134pff.42.1603904943114;
+        Wed, 28 Oct 2020 10:09:03 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:6e05:4ccd:292c:2726:5b8f:786d])
+        by smtp.gmail.com with ESMTPSA id h13sm187608pfk.23.2020.10.28.10.08.56
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 28 Oct 2020 10:09:02 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 22:38:53 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
+        vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] Add GCC and RPMh clock support for SDX55
+Message-ID: <20201028170853.GA3191@Mani-XPS-13-9360>
+References: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201021105037.vrqgmvbxxhccch33@vireshk-i7>
+In-Reply-To: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 04:20:37PM +0530, Viresh Kumar wrote:
-> On 21-10-20, 15:29, Manivannan Sadhasivam wrote:
-> > Hi,
-> > 
-> > On Wed, Oct 21, 2020 at 10:36:43AM +0800, Hector Yuan wrote:
-> > > Hi, Manivannan
-> > > 
-> > > On Tue, 2020-10-20 at 21:09 +0530, Manivannan Sadhasivam wrote:
-> > > > Add devicetree documentation for 'qcom,freq-domain' property specific
-> > > > to Qualcomm CPUs. This property is used to reference the CPUFREQ node
-> > > > along with Domain ID (0/1).
-> > > > 
-> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
-> > > >  1 file changed, 6 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > > index 1222bf1831fa..f40564bf004f 100644
-> > > > --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > > +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > > @@ -290,6 +290,12 @@ properties:
-> > > >  
-> > > >        * arm/msm/qcom,kpss-acc.txt
-> > > >  
-> > > > +  qcom,freq-domain:
-> > > Do you mind to change "qcom, freq-domain" to common naming? or drop the
-> > > prefix. So that we can use this CPU node and map it to each freq-domain.
-> > > Thanks a lot. 
-> > 
-> > I can do that but did the domain value match for other platforms as well?
+On Wed, Oct 28, 2020 at 01:12:28PM +0530, Manivannan Sadhasivam wrote:
+> Hello,
 > 
-> I am not sure if you can. The code needs to be backward compatible so it can
-> support all devices shipped with older bootloaders and latest kernels. And so
-> changing the bindings isn't a good idea normally.
+> This series adds Global Clock Controller (GCC) and RPMh clock support
+> for SDX55 SoC from Qualcomm with relevant DT bindings.
+> 
+> This series has been tested on SDX55 MTP board. The dts patches for this
+> SoC/board will be posted later.
+> 
+> Thanks,
+> Mani
+> 
+> Manivannan Sadhasivam (1):
+>   clk: qcom: Add support for SDX55 RPMh clocks
+> 
+> Naveen Yadav (1):
+>   clk: qcom: Add SDX55 GCC support
 
-It can be done. We'd need to do the following:
+Bjorn, I've inherited the gcc driver from downstream and did some modification.
+But I'm not sure if I can take the authorship of this patch hence kept it to the
+downstream author.
 
-- schema defines the common property/binding.
-- The kernel supports both names and that is backported to stable.
-- Update all the Qcom dts files to the new binding
+In my point of view, the downstream author wrote the driver so I should keep
+the copyright and even list them as MODULE_AUTHOR. But I don't think I should
+give the patch authorship to them because I haven't received the patch anyhow.
+I usually keep the authorship if I take the patch from a source like LKML and
+repost it. But in this case, I authored the patch using someone's code!
 
-Whether we actually do that or not, I'd like to keep the option open. 
-Aligning the current proposals should be possible. My concern is more 
-about what's the next addition and non-cpu device support.
+What is your view on this?
 
-Rob
+Thanks,
+Mani
+
+> 
+> Vinod Koul (2):
+>   dt-bindings: clock: Add SDX55 GCC clock bindings
+>   dt-bindings: clock: Introduce RPMHCC bindings for SDX55
+> 
+>  .../bindings/clock/qcom,gcc-sdx55.yaml        |   71 +
+>  .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+>  drivers/clk/qcom/Kconfig                      |    8 +
+>  drivers/clk/qcom/Makefile                     |    1 +
+>  drivers/clk/qcom/clk-rpmh.c                   |   20 +
+>  drivers/clk/qcom/gcc-sdx55.c                  | 1667 +++++++++++++++++
+>  include/dt-bindings/clock/qcom,gcc-sdx55.h    |  112 ++
+>  include/dt-bindings/clock/qcom,rpmh.h         |    1 +
+>  8 files changed, 1881 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+>  create mode 100644 drivers/clk/qcom/gcc-sdx55.c
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx55.h
+> 
+> -- 
+> 2.17.1
+> 
