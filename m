@@ -2,77 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F3429D935
-	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:50:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D8929D8B1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Oct 2020 23:36:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726641AbgJ1WuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:50:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58998 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733178AbgJ1Wth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:49:37 -0400
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803EFC0613CF;
-        Wed, 28 Oct 2020 15:49:37 -0700 (PDT)
-Received: by mail-oi1-x241.google.com with SMTP id x203so1260944oia.10;
-        Wed, 28 Oct 2020 15:49:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZyqI9WOFaFFLuncAlq6I3YmM/P3bEkVE3YcPg4W+494=;
-        b=E+Wika7ptI5ifQPb2cHteAT5F6W79VkngYR1MAtRRAeojvQ/E/ieLEb9q6W3VVdoD/
-         hTm9vLdXc+D4dSwielSw1QZeo9libI7ddPayszguUD1VQNCkjnCGvuxEjWEoKW77dC57
-         mUwguKgypXHjLxa1bE8kl61XDQEIPDlKtNou2R/pd+2N/UXShkmya91i5KwXSUh/83nI
-         cAwYbbme9gB/cPdpUbQB8T3K7I5cWZVz79oW/yOl9sNP7F7SWaDMHpuuIQ359rFbwRBL
-         EnXMuNp7tC+DMJdmMc9c0pnfOQ8Dy9h2+9ieORza2v0IpbpqmhNmIiPW4ns3Onu4WuCZ
-         rffQ==
+        id S2388118AbgJ1Wft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 18:35:49 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:40470 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732560AbgJ1Wfr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:35:47 -0400
+Received: by mail-oi1-f195.google.com with SMTP id m128so1246919oig.7;
+        Wed, 28 Oct 2020 15:35:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZyqI9WOFaFFLuncAlq6I3YmM/P3bEkVE3YcPg4W+494=;
-        b=hFKKPiYgV7OVcmZ+tfVmg1+PjeGZKFDHZNEV08dZKAPQVfJpIB1EgalSBSeWDXurL0
-         WsuO+HdXkh2xHWLKajF1AD6+uZCNzQGYjqVO3OE7PlLQx+8g467oFeE1AuYEUpX+MBQV
-         l7h4GTGX7B+FkLjClZ+8ZJ+Zpjr4TRhwqfeW2dQxlcYEyJHqNGFE7TMcLPSd+qbqcj9F
-         ZUF00m2EnH2Qxj55aWVnK4JZO1LvChlXdlG3owvZUo0mbWLzOCTL/H1m8IpD15yDYpZa
-         8JypNvZU+tWj9LkpK5MQTgIxAzU4wuX0j44ow+4GJokiynkS4XVCzDU4ZavodGlspJPM
-         XtgA==
-X-Gm-Message-State: AOAM530mwK/L+E4cmy2ezDe8N102VuqvLmwqNYFXEFjzpAKuUDFYfL0o
-        VMXgVzGkvW9P6LwjbMbv9Eloog4wdcjv+uAropoMTq1tWfg=
-X-Google-Smtp-Source: ABdhPJxhOiKXDSjpjWn5c5s0E1t3ewEDz3qZiFvrZXffc8HZHIKZefVK5Ht5LUdgjI4/0wJDumOU5PqE/2AlVBZPvRs=
-X-Received: by 2002:a17:90b:305:: with SMTP id ay5mr6599112pjb.129.1603885353672;
- Wed, 28 Oct 2020 04:42:33 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=j40fXvYMK2w1uYoqbRN/p/K2nSLc7QBgd4j2HeymL48=;
+        b=rZxK11zR99v0qURJQX/GHzTQbEUlOkWtuiBfwl1SBRgwr7B11SPJiMCbDIeyFlosdt
+         P538eehxjTY+dtWzgXLGm/BsC+zxxj23tWAulV4goETwIHMzddLmby6pAuO9qCJDotM/
+         rZnvllcO/z1RvCbCFWvpshW+KfAdtbov9EgRCkDlb8T1rkArypoAHH7Xlz/mmKFwJVDO
+         MVZA6oLIOGd5Pgc+2wNtv6/nhqV36Hr31ehIPbZXwYWLkOZMNipj+huWgzkvDvRTAopR
+         ufLRRvBJ2lEXWiJLI5SxxVfPP1kRTec35wrpsJ2CQxFy2nY0H5MihgoZ36ecwkxk2Iva
+         Dvlw==
+X-Gm-Message-State: AOAM532Ak0cMegW5QRAq/PBQ/Gea6vZZLV8z4Tp4DfRrHUKxbrrr320Y
+        Yg4YAWo8ZEE3Wr4/sSgX0BFKdM/4qA==
+X-Google-Smtp-Source: ABdhPJwoDP3ZNhOt8k6d3nBfKIYb6o3ezWXIw7ASHIquqjVuovgMd+jq/KjXaIEjhCPeoDgQTQdHFw==
+X-Received: by 2002:aca:38c6:: with SMTP id f189mr5415873oia.27.1603893201354;
+        Wed, 28 Oct 2020 06:53:21 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t5sm2145145oth.16.2020.10.28.06.53.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 06:53:20 -0700 (PDT)
+Received: (nullmailer pid 3927164 invoked by uid 1000);
+        Wed, 28 Oct 2020 13:53:19 -0000
+Date:   Wed, 28 Oct 2020 08:53:19 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, sboyd@kernel.org,
+        robh+dt@kernel.org, mturquette@baylibre.com,
+        devicetree@vger.kernel.org, bjorn.andersson@linaro.org
+Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: clock: Add support for LPASS
+ Audio Clock Controller
+Message-ID: <20201028135319.GA3926524@bogus>
+References: <20201026120221.18984-1-srinivas.kandagatla@linaro.org>
+ <20201026120221.18984-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-References: <20201027135325.22235-1-vincent.whitchurch@axis.com>
-In-Reply-To: <20201027135325.22235-1-vincent.whitchurch@axis.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 28 Oct 2020 13:43:22 +0200
-Message-ID: <CAHp75Vcy-m6tT3ChPYQ8vvsAOwV4CUM3feewb5bpk8h7mqa+AA@mail.gmail.com>
-Subject: Re: [PATCH v2] gpio: mockup: Allow probing from device tree
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     Bamvor Jian Zhang <bamv2005@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        kernel@axis.com, devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201026120221.18984-2-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 10:00 AM Vincent Whitchurch
-<vincent.whitchurch@axis.com> wrote:
->
-> Allow the mockup driver to be probed via the device tree without any
-> module parameters, allowing it to be used to configure and test higher
-> level drivers like the leds-gpio driver and corresponding userspace
-> before actual hardware is available.
+On Mon, 26 Oct 2020 12:02:18 +0000, Srinivas Kandagatla wrote:
+> Audio Clock controller is a block inside LPASS which controls
+> 2 Glitch free muxes to LPASS codec Macros.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../bindings/clock/qcom,audiocc-sm8250.yaml   | 58 +++++++++++++++++++
+>  .../clock/qcom,sm8250-lpass-audiocc.h         | 13 +++++
+>  2 files changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
+> 
 
-You have to officially announce a DT binding for that.
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.example.dts:25.30-31 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1366: dt_binding_check] Error 2
 
 
--- 
-With Best Regards,
-Andy Shevchenko
+See https://patchwork.ozlabs.org/patch/1387714
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
