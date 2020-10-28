@@ -2,78 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C503829D9CC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C769929DA4E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390183AbgJ1XCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:02:51 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:34806 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730802AbgJ1XCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:02:41 -0400
-Received: by mail-ua1-f67.google.com with SMTP id x11so205457uav.1;
-        Wed, 28 Oct 2020 16:02:39 -0700 (PDT)
+        id S1730150AbgJ1XS6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 28 Oct 2020 19:18:58 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:34090 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728198AbgJ1XRk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:17:40 -0400
+Received: by mail-lj1-f193.google.com with SMTP id y16so1110040ljk.1;
+        Wed, 28 Oct 2020 16:17:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0G4ddUyBDAmFIJZfLdJeZ5DORv/CzVKctJJjdwMQ2hA=;
-        b=oz+h/9W+vKiikyttr3MXE6n+al9sEwMYTXDWlFY7XMk5RchM/TbVPM4aj6wR9DmKJm
-         Vf9IsFYIRJyXHOOW1hzEUSgzn2vQFIXtXpDltuN1HxA1Dw/T/9Q/oAEQ/U1Ckw2kMb7P
-         jm7ISi1ZusltCQhKECpunGF00fS3hzWoCKa9iVuBF03EbIIM3JsDwBpoivb1bTT2tD96
-         exVxUpNct4ew8+p7F9T1EaJ4kC9dk3Z3eYdB91wf89KL1cZX7t2fNT1Qhj3QD8NI5BCQ
-         0XHkLy6O88W8egEK2ieyAMxUTe1YFMLx/Jxm/FCmJBJlet3vNiIBFKHziOv5hupjD1vQ
-         CQeg==
-X-Gm-Message-State: AOAM532VNSrf0ULp6L8Edy5vqVeNuHT9s59n4H8suuYNR1if3NryFrZv
-        6bI8Jw+OfQRkXAWlwQsdN+LBjasn3A==
-X-Google-Smtp-Source: ABdhPJzjsODVzwEavFHnP2SeXAsiY9C71CRqgTEGh2Z6Q40K80z+BHN5EwtDNrj8BkTr0cnmJRhWGw==
-X-Received: by 2002:a9d:5b3:: with SMTP id 48mr5823698otd.110.1603899170988;
-        Wed, 28 Oct 2020 08:32:50 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y8sm2733386oon.16.2020.10.28.08.32.49
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=tOzGuUmz353raLqizP2rvx4LkjDP5IM9PyiPt5zQsck=;
+        b=jJtONSraL9jOMQSXwzrVOBF8qBnjdokxiP0xkykvx0UoBzDRKwhb5PZqWjHWdDVB9C
+         YuS00hM/NBYa8WzAtn5OmO97bw0/3sFsEbDxz5/QGPv3wLuq3iURn1cNiVxpELI3VZAP
+         YJI1EU4LjrnssbayFL/hxOJ+NVDcjw2xHqE+AoH4CTMD4DjdSuzqyg4D2Ism4/FNzOb1
+         Ysauw1RtbTsqvGr3A2WMa/RM8Zmjysq5rVe8PkZuwJBAbirBZ7OFTqA90gnd3v+PAQBe
+         xsw9XdSsX2ldssGidVfijOHBhKlCvW6Um/lAJVrnPtzro6bfxFb0BTEbBMWnemBA1VUx
+         LejA==
+X-Gm-Message-State: AOAM531j2wsgBjkMEHbaK601HeE2rQSGG2m6PHbxm6D1SGdzcMFoOvoV
+        Ag4t4w6bV2DyA6UbXxZExyW/PPOxq+Crdg==
+X-Google-Smtp-Source: ABdhPJx7uTojdx8c4uChsolOHCfdvqUlE8lbp5QLK2dcQNvxdYAlOS/eER5VjqNvSaVQADiGzYDahA==
+X-Received: by 2002:a17:906:52d5:: with SMTP id w21mr8600918ejn.501.1603899329605;
+        Wed, 28 Oct 2020 08:35:29 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.184])
+        by smtp.googlemail.com with ESMTPSA id e2sm3163675edn.30.2020.10.28.08.35.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 08:32:50 -0700 (PDT)
-Received: (nullmailer pid 4063907 invoked by uid 1000);
-        Wed, 28 Oct 2020 15:32:49 -0000
-Date:   Wed, 28 Oct 2020 10:32:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Wed, 28 Oct 2020 08:35:27 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 16:35:25 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Marek Vasut <marek.vasut@gmail.com>, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 09/14] Documentation: bindings: clk: Add bindings for
- i.MX BLK_CTL
-Message-ID: <20201028153249.GA4063845@bogus>
-References: <1603740750-10385-1-git-send-email-abel.vesa@nxp.com>
- <1603740750-10385-10-git-send-email-abel.vesa@nxp.com>
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 04/52] dt-bindings: memory: tegra20: emc: Document
+ nvidia,memory-controller property
+Message-ID: <20201028153525.GA133954@kozik-lap>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201025221735.3062-5-digetx@gmail.com>
+ <20201027085417.GD4244@kozik-lap>
+ <54191034-dcb9-7cab-333b-5bb2553f0ed1@gmail.com>
+ <20201027193039.GA140636@kozik-lap>
+ <20201028152303.GA4041470@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1603740750-10385-10-git-send-email-abel.vesa@nxp.com>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201028152303.GA4041470@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Oct 2020 21:32:25 +0200, Abel Vesa wrote:
-> Document the i.MX BLK_CTL with its devicetree properties.
+On Wed, Oct 28, 2020 at 10:23:03AM -0500, Rob Herring wrote:
+> On Tue, Oct 27, 2020 at 08:30:39PM +0100, Krzysztof Kozlowski wrote:
+> > On Tue, Oct 27, 2020 at 10:17:19PM +0300, Dmitry Osipenko wrote:
+> > > 27.10.2020 11:54, Krzysztof Kozlowski пишет:
+> > > > On Mon, Oct 26, 2020 at 01:16:47AM +0300, Dmitry Osipenko wrote:
+> > > >> Tegra20 External Memory Controller talks to DRAM chips and it needs to be
+> > > >> reprogrammed when memory frequency changes. Tegra Memory Controller sits
+> > > >> behind EMC and these controllers are tightly coupled. This patch adds the
+> > > >> new phandle property which allows to properly express connection of EMC
+> > > >> and MC hardware in a device-tree, it also put the Tegra20 EMC binding on
+> > > >> par with Tegra30+ EMC bindings, which is handy to have.
+> > > >>
+> > > >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> > > >> ---
+> > > >>  .../bindings/memory-controllers/nvidia,tegra20-emc.txt          | 2 ++
+> > > >>  1 file changed, 2 insertions(+)
+> > > >>
+> > > >> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+> > > >> index 567cffd37f3f..1b0d4417aad8 100644
+> > > >> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+> > > >> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+> > > >> @@ -12,6 +12,7 @@ Properties:
+> > > >>    irrespective of ram-code configuration.
+> > > >>  - interrupts : Should contain EMC General interrupt.
+> > > >>  - clocks : Should contain EMC clock.
+> > > >> +- nvidia,memory-controller : Phandle of the Memory Controller node.
+> > > > 
+> > > > It looks like you adding a required property which is an ABI break.
+> > > The T20 EMC driver is unused so far in upstream and it will become used
+> > > only once this series is applied. Hence it's fine to change the ABI.
+> > 
+> > The ABI is not about upstream, but downstream. 
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
->  .../devicetree/bindings/clock/fsl,imx-blk-ctl.yaml | 60 ++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml
+> "If it's not upstream, it doesn't exist."
 > 
+> Though we do have to account for out of tree users where the DT is not 
+> in tree, but upstream drivers are used. Downstream as in vendor kernels 
+> typically has loads of other crap.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+That's the case I am referring to. Maybe not in case of Tegra, but
+multiple other designs are quite popular in industrial uses and their
+DTSes were not upstreamed.
+
+This is anyway different case, as Dmitry explained - nothing got broken
+because not much was working before around this.
+
+> 
+> > There are no other
+> > upstreams using this ABI. Unless you have in mind that existing T20 EMC
+> > driver was a noop, doing absolutely nothing, therefore there is no
+> > breakage of any other users?
+> 
+> ABI breaks are ultimately up to the platform maintainers to decide.
+
+Cool! That reshapes significantly my existing point of view, especially
+about discussions on Exynos bindings (long time ago). Thanks for
+clarification.
+
+Best regards,
+Krzysztof
+
