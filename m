@@ -2,79 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2602629DA10
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD78C29DA47
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:18:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731312AbgJ1XOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:14:17 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35746 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726073AbgJ1XN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:13:27 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09SE89eI116218;
-        Wed, 28 Oct 2020 09:08:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603894089;
-        bh=k1wN7ycABGUP65qW97FmWtyKesusJdIU4zorx0cHG7U=;
-        h=From:To:Subject:Date;
-        b=iqcOhD6M840Fr+8z3vSFte4kJnHdAsuwX3VvK5Kn/3qGDJLyvPy+66uSgUu9482oA
-         MIbOnRw7UsmNGkIyWkYpFOko6feLTAZu5NMk8T4Wx8MuIEk72BqIbYXrnecYIJVAEP
-         pm7Z8Zycw8z5jMV7oGZoZl3PDgH01t6GCN0Zt7ec=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09SE89bQ071960
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 28 Oct 2020 09:08:09 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 28
- Oct 2020 09:08:08 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 28 Oct 2020 09:08:08 -0500
-Received: from sokoban.bb.dnainternet.fi (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09SE87e8069211;
-        Wed, 28 Oct 2020 09:08:07 -0500
-From:   Tero Kristo <t-kristo@ti.com>
-To:     <ssantosh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ARM: dts: keystone-k2g: Add stdout-path property
-Date:   Wed, 28 Oct 2020 16:08:06 +0200
-Message-ID: <20201028140806.10130-1-t-kristo@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S2387588AbgJ1XSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:18:44 -0400
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:34364 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728362AbgJ1XSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:18:43 -0400
+Received: by mail-ua1-f66.google.com with SMTP id x11so216531uav.1;
+        Wed, 28 Oct 2020 16:18:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=E8aK3zfWur9jk28M6chy5APBvWt4imEJ55/EsVWjxPg=;
+        b=qXLBLRbi344foPy2ySiSVyudmAR5GYlp0LR4KmbVJRGzUTBOie2hpH/JAnUdvg3WDl
+         kuxmbTNRbnv4LiPE7cU1mJFMFzMZMfSutuV0z+Ps9mnkaz9OOdMuSsSMZr7zq5F/RI1J
+         APSGXwDlD+8gNdOSgHM7In1TQ05R4gvOkoBayHKBD+CUbwk7E/AJtPjyyMhvTWNM1e2L
+         DGU41ski70ODCFNTYqEHueHDVuxLFBAjGojlJlL8aEAZviMCba0W+yAtFvBd/DCdUMfw
+         RJuNx4wILWSMIXIQu7hnhjBr8wvsCcIv8XLlZHXO+UgepXvGPYQ1lygP60Dcn0C+SR59
+         LcoA==
+X-Gm-Message-State: AOAM533m3oFIS0IlBI7bYdmnybElDchd8hjtj9dqT8ROuDnyGjHyB432
+        2b4aF92EqL2jZ8i7Bert5qmKh7eJJw==
+X-Google-Smtp-Source: ABdhPJwJgBDeYYeiE9Q91o3SzmsnBqNzVegZCI2fuha9DmO2xtCh9eQS2ICWSykd5H4yZ1UWmxziHg==
+X-Received: by 2002:a9d:2c29:: with SMTP id f38mr3357464otb.245.1603896140778;
+        Wed, 28 Oct 2020 07:42:20 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n18sm2061385otk.33.2020.10.28.07.42.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 07:42:20 -0700 (PDT)
+Received: (nullmailer pid 3991748 invoked by uid 1000);
+        Wed, 28 Oct 2020 14:42:19 -0000
+Date:   Wed, 28 Oct 2020 09:42:19 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     bhelgaas@google.com, lorenzo.pieralisi@arm.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: Add Intel Keem Bay PCIe controller
+Message-ID: <20201028144219.GA3966314@bogus>
+References: <20201027060011.25893-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20201027060011.25893-2-wan.ahmad.zainie.wan.mohamad@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201027060011.25893-2-wan.ahmad.zainie.wan.mohamad@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add stdout-path property in /chosen node so that earlycon can be
-used by just adding earlycon in bootargs.
+On Tue, Oct 27, 2020 at 02:00:10PM +0800, Wan Ahmad Zainie wrote:
+> Document DT bindings for PCIe controller found on Intel Keem Bay SoC.
+> 
+> Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+> ---
+>  .../bindings/pci/intel,keembay-pcie-ep.yaml   |  86 +++++++++++++
+>  .../bindings/pci/intel,keembay-pcie.yaml      | 120 ++++++++++++++++++
+>  2 files changed, 206 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/intel,keembay-pcie-ep.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/intel,keembay-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/intel,keembay-pcie-ep.yaml
+> new file mode 100644
+> index 000000000000..11962c205744
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/intel,keembay-pcie-ep.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/pci/intel,keembay-pcie-ep.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Intel Keem Bay PCIe EP controller
+> +
+> +maintainers:
+> +  - Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+> +
+> +properties:
+> +  compatible:
+> +      const: intel,keembay-pcie-ep
+> +
+> +  reg:
+> +    items:
+> +      - description: DesignWare PCIe registers
+> +      - description: PCIe configuration space
+> +      - description: Keem Bay specific registers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dbi
+> +      - const: addr_space
+> +      - const: apb
+> +
+> +  interrupts:
+> +    items:
+> +      - description: PCIe interrupt
+> +      - description: PCIe event interrupt
+> +      - description: PCIe error interrupt
+> +      - description: PCIe memory access interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: intr
+> +      - const: ev_intr
+> +      - const: err_intr
+> +      - const: mem_access_intr
 
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
----
- arch/arm/boot/dts/keystone-k2g.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+'_intr' is redundant. Drop it. You'll need a better name for the first 
+one though.
 
-diff --git a/arch/arm/boot/dts/keystone-k2g.dtsi b/arch/arm/boot/dts/keystone-k2g.dtsi
-index 05a75019275e..1105b5d1f886 100644
---- a/arch/arm/boot/dts/keystone-k2g.dtsi
-+++ b/arch/arm/boot/dts/keystone-k2g.dtsi
-@@ -16,7 +16,9 @@
- 	#size-cells = <2>;
- 	interrupt-parent = <&gic>;
- 
--	chosen { };
-+	chosen {
-+		stdout-path = &uart0;
-+	};
- 
- 	aliases {
- 		serial0 = &uart0;
--- 
-2.17.1
+> +
+> +  num-ib-windows:
+> +    description: Number of inbound address translation windows
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  num-ob-windows:
+> +    description: Number of outbound address translation windows
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  num-lanes:
+> +    description: Number of lanes to use.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 1, 2, 4, 8 ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - num-ib-windows
+> +  - num-ob-windows
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +  - |
+> +    pcie-ep@37000000 {
+> +          compatible = "intel,keembay-pcie-ep";
+> +          reg = <0x37000000 0x00800000>,
+> +                <0x36000000 0x01000000>,
+> +                <0x37800000 0x00000200>;
+> +          reg-names = "dbi", "addr_space", "apb";
+> +          interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
+> +                       <GIC_SPI 108 IRQ_TYPE_EDGE_RISING>,
+> +                       <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+> +                       <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+> +          interrupt-names = "intr", "ev_intr", "err_intr",
+> +                       "mem_access_intr";
+> +          num-ib-windows = <4>;
+> +          num-ob-windows = <4>;
+> +          num-lanes = <2>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml b/Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml
+> new file mode 100644
+> index 000000000000..49e5d3d35bd4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml
+> @@ -0,0 +1,120 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/pci/intel,keembay-pcie.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Intel Keem Bay PCIe RC controller
+> +
+> +maintainers:
+> +  - Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +
+> +properties:
+> +  compatible:
+> +      const: intel,keembay-pcie
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> +
+> +  device_type:
+> +    const: pci
+> +
+> +  "#address-cells":
+> +    const: 3
+> +
+> +  "#size-cells":
+> +    const: 2
+
+Can drop these 3 as pci-bus.yaml defines them.
+
+> +
+> +  ranges:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    items:
+> +      - description: DesignWare PCIe registers
+> +      - description: PCIe configuration space
+> +      - description: Keem Bay specific registers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dbi
+> +      - const: config
+> +      - const: apb
+> +
+> +  clocks:
+> +    items:
+> +      - description: bus clock
+> +      - description: auxiliary clock
+
+The EP doesn't have clocks? You should have roughly the same resources 
+for RC and EP modes.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: master
+> +      - const: aux
+> +
+> +  interrupts:
+> +    items:
+> +      - description: PCIe interrupt
+> +      - description: PCIe event interrupt
+> +      - description: PCIe error interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: intr
+> +      - const: ev_intr
+> +      - const: err_intr
+> +
+> +  num-lanes:
+> +    description: Number of lanes to use.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 1, 2, 4, 8 ]
+> +
+> +  num-viewport:
+> +    description: Number of view ports configured in hardware.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 2
+
+Pretty sure it's not 2 if num-ib-windows and num-ob-windows are 4.
+
+> +
+> +required:
+> +  - compatible
+
+> +  - device_type
+> +  - "#address-cells"
+> +  - "#size-cells"
+
+Can drop these too.
+
+> +  - reg
+> +  - reg-names
+> +  - ranges
+> +  - clocks
+> +  - interrupts
+> +  - interrupt-names
+> +  - reset-gpios
+> +
+> +additionalProperties: false
+
+Use 'unevaluatedProperties: false' instead.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #define KEEM_BAY_A53_PCIE
+> +    #define KEEM_BAY_A53_AUX_PCIE
+> +    pcie@37000000 {
+> +          compatible = "intel,keembay-pcie";
+> +          reg = <0x37000000 0x00800000>,
+> +                <0x36e00000 0x00200000>,
+> +                <0x37800000 0x00000200>;
+> +          reg-names = "dbi", "config", "apb";
+> +          #address-cells = <3>;
+> +          #size-cells = <2>;
+> +          device_type = "pci";
+> +          ranges = <0x02000000 0 0x36000000 0x36000000 0 0x00e00000>;
+> +          interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
+> +                       <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
+> +                       <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
+> +          interrupt-names = "intr", "ev_intr", "err_intr";
+> +          clocks = <&scmi_clk KEEM_BAY_A53_PCIE>,
+> +                   <&scmi_clk KEEM_BAY_A53_AUX_PCIE>;
+> +          clock-names = "master", "aux";
+> +          reset-gpios = <&pca2 9 GPIO_ACTIVE_LOW>;
+> +          num-viewport = <4>;
+> +          num-lanes = <2>;
+> +    };
+> -- 
+> 2.17.1
+> 
