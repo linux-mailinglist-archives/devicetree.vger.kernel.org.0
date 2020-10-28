@@ -2,127 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1B4629DAE7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:38:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4915229DB3B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 00:46:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726035AbgJ1Xil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 19:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38656 "EHLO
+        id S1725890AbgJ1XqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 19:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389019AbgJ1Xha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:37:30 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8844C0613CF;
-        Wed, 28 Oct 2020 16:37:30 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id r9so1392712ioo.7;
-        Wed, 28 Oct 2020 16:37:30 -0700 (PDT)
+        with ESMTP id S1728764AbgJ1Xpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 19:45:46 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C53B1C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:45:45 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id a72so820112wme.5
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 16:45:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/A3CEwa9ZFQ6exulGwUCkA+aZ+1mPx+5qugmy/RoAHc=;
-        b=VoD311MDfxBIgRqk43Hi8k7w5dsWdemKv5g5D01kst8I7lYMqYEw7EHrLuiMDMhnMJ
-         Nfkd2V53e45RjYqUKzFzAGwjpydQ0M/Ediw6eN6lwRxkof2o3jbc2nRiScnfdbDG6zcR
-         b2l++CcrXH555WrlbATUIsuEyuCx4z8q1XT7V7RDHDSjCFkKQ/ZymlJwTdgCSjH7PwJl
-         V4zXyG583t1Xx3JzxAr/QIdV2u0QCgoeoAb8Nhgzcy9dXlhv+ky5+hBFmT7MoefWFWu1
-         vNoTrcOl9VmI4XJeHv3IsmTomuUdjw4oiORf/KUFOerYOIddmvfsxrNsQ/QQDPf65kSr
-         qMsg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=zrUkUnQWdd+Y/Q8i7IOb2KIFyQ5NaKYRP/IYCUM5/+o=;
+        b=JrISsXlyRVaK23OpNAQoKp7miwW6GWni2F4aktn0FHoa2pYYDJAM5bgevk5mGCAmcb
+         TxNkGiJk4LVTwLSfB22U8RzOJNxBQZkmKoWBOrgdwirKo0yFwscx2cJIPvLJS1oucsti
+         46RuIPA96cI6uuIVXOz/aiul4/A3EnykMCPB97d46zs4npDhHui51LvugX8PsXisuYAc
+         JcZMdH0a/PDKq4Hu1afYXYadQIlBr4UhKGY/e7gM8D/jM/juHmTav/9SmEskI/h374PL
+         9zdmk0MDpmtovVF4oOJrMbT//x1fqnDH2WwGdgf6xC8Hrlr0ciOiMvLk5DK2YsYPiq8g
+         c5aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/A3CEwa9ZFQ6exulGwUCkA+aZ+1mPx+5qugmy/RoAHc=;
-        b=t41vYzgOomOF1OQJS37exK6E7PO8A9ZKRpeoP6XSN6R7VmCslHDWL+2W/47OUVDxK2
-         mIABJQRRwyxiU1N/6d8m7xZpG5fdhdAXN5ZXVyrq6f7LGd5O0WYe2QmxkV7yFXCFupN/
-         kmcqk3qAUvjcrsvNf1qKWRv1Pu1UXeXVE3SwVBQou+8HdvUCrDBGVrMLdf11HJogC9Tk
-         nnjTYIw8rx7F3Errqj1+r4jBXaVwfoXhiIySVTEVyfg/cPpm9DLGKFST+3c61sy6I1Ay
-         EcDzIPPsLDGN5Qt1I4EtK8kBhdNQloJ5E87c0JrAPGllT9mKPGPr+G9Nr6BoVm1KPMTy
-         bxTw==
-X-Gm-Message-State: AOAM531v5y90HCKPX32IkT9wZ1KHs5kB1GmbWQEVgPWkoY+EJNL0iayf
-        zBynFQkhBfXacVZ3sHtPzRwkOr+tspGsW+hgs7lzx1fwXm8=
-X-Google-Smtp-Source: ABdhPJxB39cK4LoLPV+rayymmlN4yuGJL6W04dfmN5biZiNchT7DQioArPW9ZWexdAhR2Swk3KQ5KSCHwBGQEvqE+sA=
-X-Received: by 2002:a5d:8487:: with SMTP id t7mr5793859iom.35.1603887047936;
- Wed, 28 Oct 2020 05:10:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=zrUkUnQWdd+Y/Q8i7IOb2KIFyQ5NaKYRP/IYCUM5/+o=;
+        b=iEroudiseFelpBjW7IEEch0/Wmd7azoC3/jyUYSOVJPPTNItBPBSFDlXvNfEwLmWXg
+         Q2tbQrydb2WryzQRNjyQQOQ9rhnCfaQ+wzBNy0l14DaMqsULNpwaQYsM8q4U5l7iWvAl
+         +SjTskKaUcs/KJLYu9Vm2d/JzkMOTTLT2gSta0ZliQFNQk6VAwzKxlMpolxN1FZ/tGr1
+         E/1TFTBUgm72qF4jvLeymLB/Nch6rWvwgHKZQTn2F09vFTOUrblbvt9wGkPmBwLS7sdN
+         2/GqHs5VxHBgVZLrA3I02kWhh03j3mSaZ7NYmYOFAvbR4tXbUbGLftIC1vshwuqwE3um
+         XUSA==
+X-Gm-Message-State: AOAM5319yypBRn6J6lqBbgXtKs+8/FikOoC72VR6Cym9FgeIqS6+b04c
+        rJzCjb2JADwtCFUIWaQlGAdD9JhtcZtXTQ==
+X-Google-Smtp-Source: ABdhPJz6KFPLqOpMtLn/WZ00OwZap4cgejbdYYKNUcMROfqSYDKD75hda1r765JOz5gvn1Lj7mQU3A==
+X-Received: by 2002:a7b:c1d5:: with SMTP id a21mr5110912wmj.38.1603896980631;
+        Wed, 28 Oct 2020 07:56:20 -0700 (PDT)
+Received: from holly.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id s2sm7540795wmh.9.2020.10.28.07.56.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2020 07:56:19 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 14:56:17 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Alexandru Stan <amstan@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: trogdor: Add brightness-levels
+Message-ID: <20201028145617.ermdpqomthxxj7qe@holly.lan>
+References: <20201022050445.930403-1-amstan@chromium.org>
+ <20201021220404.v3.2.Ie4d84af5a85e8dcb8f575845518fa39f324a827d@changeid>
 MIME-Version: 1.0
-References: <20200502125949.194032-1-aford173@gmail.com> <20200502125949.194032-2-aford173@gmail.com>
- <20200520010348.GE11739@dragon>
-In-Reply-To: <20200520010348.GE11739@dragon>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 28 Oct 2020 07:10:37 -0500
-Message-ID: <CAHCN7xKBx_YXCGSUJWO3YCaGfx4oc7iuv6S4qi500_NjV9pW=w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm: Add support for micfil
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        aford@beaconemedded.com, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201021220404.v3.2.Ie4d84af5a85e8dcb8f575845518fa39f324a827d@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 19, 2020 at 8:03 PM Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Sat, May 02, 2020 at 07:59:48AM -0500, Adam Ford wrote:
-> > The i.MX8M Mini has supports the MICFIL digital interface.
-> > It's a 16-bit audio signal from a PDM microphone bitstream.
-> > The driver is already in the kernel, but the node is missing.
-> >
-> > This patch adds the micfil node.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > index c63685ae80ee..d46e727fc362 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > @@ -339,6 +339,25 @@ sai6: sai@30060000 {
-> >                               status = "disabled";
-> >                       };
-> >
-> > +                     micfil: micfil@30080000 {
->
-> Find a generic node name, audio-controller maybe?
+On Wed, Oct 21, 2020 at 10:04:44PM -0700, Alexandru Stan wrote:
+> We want userspace to represent the human perceived brightness.
+> Since the led drivers and the leds themselves don't have a
+> linear response to the value we give them in terms of perceived
+> brightness, we'll bake the curve into the dts.
+> 
+> The panel also doesn't have a good response under 5%, so we'll avoid
+> sending it anything lower than that.
+> 
+> Note: Ideally this patch should be coupled with the driver change from
+> "backlight: pwm_bl: Fix interpolation", but it can work without it,
+> without looking too ugly.
+> 
+> Signed-off-by: Alexandru Stan <amstan@chromium.org>
 
-The SAI's nodes are called SAI@xxxx
+Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
 
-If that's a deal-breaker, I can push a V3.
 
-I didn't see anyone from the device tree side comment, and the device
-tree binding doc states 'micfil@xxxxxx' so I used what was documented
-in the fsl,micfil.txt
 
-adam
->
-> Shawn
->
-> > +                             compatible = "fsl,imx8mm-micfil";
-> > +                             reg = <0x30080000 0x10000>;
-> > +                             interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                          <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                          <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                          <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             clocks = <&clk IMX8MM_CLK_PDM_IPG>,
-> > +                                      <&clk IMX8MM_CLK_PDM_ROOT>,
-> > +                                      <&clk IMX8MM_AUDIO_PLL1_OUT>,
-> > +                                      <&clk IMX8MM_AUDIO_PLL2_OUT>,
-> > +                                      <&clk IMX8MM_CLK_EXT3>;
-> > +                             clock-names = "ipg_clk", "ipg_clk_app",
-> > +                                           "pll8k", "pll11k", "clkext3";
-> > +                             dmas = <&sdma2 24 25 0x80000000>;
-> > +                             dma-names = "rx";
-> > +                             status = "disabled";
-> > +                     };
-> > +
-> >                       gpio1: gpio@30200000 {
-> >                               compatible = "fsl,imx8mm-gpio", "fsl,imx35-gpio";
-> >                               reg = <0x30200000 0x10000>;
-> > --
-> > 2.25.1
-> >
+> ---
+> 
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index bf875589d364..ccdabc6c4994 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -179,6 +179,15 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
+>  	backlight: backlight {
+>  		compatible = "pwm-backlight";
+>  
+> +		/* The panels don't seem to like anything below ~ 5% */
+> +		brightness-levels = <
+> +			196 256 324 400 484 576 676 784 900 1024 1156 1296
+> +			1444 1600 1764 1936 2116 2304 2500 2704 2916 3136
+> +			3364 3600 3844 4096
+> +		>;
+> +		num-interpolated-steps = <64>;
+> +		default-brightness-level = <951>;
+> +
+>  		pwms = <&cros_ec_pwm 1>;
+>  		enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+>  		power-supply = <&ppvar_sys>;
+> -- 
+> 2.28.0
