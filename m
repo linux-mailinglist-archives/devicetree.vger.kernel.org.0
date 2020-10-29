@@ -2,93 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B77AE29E808
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 10:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE4E629E82B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 11:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727231AbgJ2J6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 05:58:36 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:1347 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727200AbgJ2J6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 05:58:34 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09T9v7YD009828;
-        Thu, 29 Oct 2020 10:58:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=sYYTvityoCYrsSoKNe2qZDhh1lZpuC1PZ84KcUj9xUY=;
- b=B7K4zex4tKQKuc68r+D5m0ezftRYHf17UTo6dLNdC2ZNgEcHsXLnFpcfqbnqDv8UBYC3
- OO28vpGNtrk3p1XdEA/ysvapUz+hdSgpsXOKytrQoHzhVKZYfOzRpUwh65oS/Obrw2V4
- gNuHPWL28mOJad3Cndc7YLpYGBceXuaynBX445O1iLV7jyFDiXsUB9MQah7SmQWmE7I/
- YOXvJmvIeDmcit1cjOpOuLdG/um0AYOIgTi4HWLV8zx8CIr8l3eqjpaQxIstv0hm6Soh
- sY22mcxbwoKO689zEwW+No7CTiSHm4UvGC5r1wZlaLBhHFcMv55f53RYywgWDK3Sct1H Cw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34ccj278du-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Oct 2020 10:58:17 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B7947100034;
-        Thu, 29 Oct 2020 10:58:16 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A6CE8221F97;
-        Thu, 29 Oct 2020 10:58:16 +0100 (CET)
-Received: from localhost (10.75.127.44) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 29 Oct 2020 10:58:16
- +0100
-From:   Amelie Delaunay <amelie.delaunay@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Amelie Delaunay <amelie.delaunay@st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Subject: [RESEND PATCH v3 4/4] ARM: multi_v7_defconfig: enable STUSB160X Type-C port controller support
-Date:   Thu, 29 Oct 2020 10:58:06 +0100
-Message-ID: <20201029095806.10648-5-amelie.delaunay@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201029095806.10648-1-amelie.delaunay@st.com>
-References: <20201029095806.10648-1-amelie.delaunay@st.com>
+        id S1725840AbgJ2KCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 06:02:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51892 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725833AbgJ2KCJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 06:02:09 -0400
+Received: from smtp2-2.goneo.de (smtp2.goneo.de [IPv6:2001:1640:5::8:33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A177C0613CF;
+        Thu, 29 Oct 2020 03:02:09 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by smtp2.goneo.de (Postfix) with ESMTP id EBACC23FAD6;
+        Thu, 29 Oct 2020 11:02:07 +0100 (CET)
+X-Virus-Scanned: by goneo
+X-Spam-Flag: NO
+X-Spam-Score: -2.971
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.971 tagged_above=-999 tests=[ALL_TRUSTED=-1,
+        AWL=-0.071, BAYES_00=-1.9] autolearn=ham
+Received: from smtp2.goneo.de ([127.0.0.1])
+        by localhost (smtp2.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id cXRXHlHf3Bm9; Thu, 29 Oct 2020 11:02:06 +0100 (CET)
+Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
+        by smtp2.goneo.de (Postfix) with ESMTPA id A765D23F4B8;
+        Thu, 29 Oct 2020 11:02:04 +0100 (CET)
+From:   poeschel@lemonage.de
+To:     Rob Herring <robh+dt@kernel.org>, Willy Tarreau <w@1wt.eu>,
+        Lars Poeschel <poeschel@lemonage.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        allen <allen.chen@ite.com.tw>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Cc:     Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 24/25] auxdisplay: lcd2s DT binding doc
+Date:   Thu, 29 Oct 2020 11:01:31 +0100
+Message-Id: <20201029100139.311853-1-poeschel@lemonage.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201029095231.311083-1-poeschel@lemonage.de>
+References: <20201029095231.311083-1-poeschel@lemonage.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-10-29_03:2020-10-29,2020-10-29 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable support for the STMicroelectronics STUSB160X USB Type-C port
-controller driver by turning on CONFIG_TYPEC and CONFIG_TYPEC_STUSB160X as
-modules.
+From: Lars Poeschel <poeschel@lemonage.de>
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+Add a binding doc for the modtronix lcd2s auxdisplay driver. It also
+adds modtronix to the list of known vendor-prefixes.
+
+Reviewed-by: Willy Tarreau <w@1wt.eu>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
 ---
- arch/arm/configs/multi_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v5:
+- Picked up Robs Reviewed-by
+Changes in v3:
+- Fixed make dt_binding_doc errors
+Changes in v2:
+- Adopted yaml based file format
+---
+ .../bindings/auxdisplay/modtronix,lcd2s.yaml  | 58 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ 2 files changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index e731cdf7c88c..41d0def64ce6 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -828,6 +828,8 @@ CONFIG_USB_CONFIGFS_F_HID=y
- CONFIG_USB_CONFIGFS_F_UVC=y
- CONFIG_USB_CONFIGFS_F_PRINTER=y
- CONFIG_USB_ETH=m
-+CONFIG_TYPEC=m
-+CONFIG_TYPEC_STUSB160X=m
- CONFIG_MMC=y
- CONFIG_MMC_BLOCK_MINORS=16
- CONFIG_MMC_ARMMMCI=y
+diff --git a/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+new file mode 100644
+index 000000000000..a1d55a2634a5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/auxdisplay/modtronix,lcd2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Modtronix engineering LCD2S Character LCD Display
++
++maintainers:
++  - Lars Poeschel <poeschel@lemonage.de>
++
++description:
++  The LCD2S is a Character LCD Display manufactured by Modtronix Engineering.
++  The display supports a serial I2C and SPI interface. The driver currently
++  only supports the I2C interface.
++
++properties:
++  compatible:
++    const: modtronix,lcd2s
++
++  reg:
++    maxItems: 1
++    description:
++      I2C bus address of the display.
++
++  display-height-chars:
++    description: Height of the display, in character cells.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 1
++    maximum: 4
++
++  display-width-chars:
++    description: Width of the display, in character cells.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 16
++    maximum: 20
++
++required:
++  - compatible
++  - reg
++  - display-height-chars
++  - display-width-chars
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      lcd2s: auxdisplay@28 {
++        compatible = "modtronix,lcd2s";
++        reg = <0x28>;
++        display-height-chars = <4>;
++        display-width-chars = <20>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 2735be1a8470..65f40ab5a87f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -681,6 +681,8 @@ patternProperties:
+     description: MiraMEMS Sensing Technology Co., Ltd.
+   "^mitsubishi,.*":
+     description: Mitsubishi Electric Corporation
++  "^modtronix,.*":
++    description: Modtronix Engineering
+   "^mosaixtech,.*":
+     description: Mosaix Technologies, Inc.
+   "^motorola,.*":
 -- 
-2.17.1
+2.28.0
 
