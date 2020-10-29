@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D97529ED21
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A11FA29ED1F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:40:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725973AbgJ2Nk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:40:29 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:41995 "EHLO
+        id S1726725AbgJ2Nk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:40:28 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:39275 "EHLO
         new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727304AbgJ2NkY (ORCPT
+        by vger.kernel.org with ESMTP id S1725787AbgJ2Nk0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 09:40:24 -0400
+        Thu, 29 Oct 2020 09:40:26 -0400
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 15A1958077C;
-        Thu, 29 Oct 2020 09:40:23 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 29 Oct 2020 09:40:23 -0400
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5359C5807A6;
+        Thu, 29 Oct 2020 09:40:24 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 29 Oct 2020 09:40:24 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=Eo5VrRb9YJZ27
-        T8UrdYJM9gQo/XzFIVZjIot4ZBpts8=; b=s+OEnwHdqVz/Tl0LPtR77Y2hloCFn
-        zwX7TKo1Xe1YXEj/oBZqtI4S4MlqmhVI15Qy/cjtLay92/FXWWlpFzH0OC6HAZMT
-        v67XA6MABs3kXDT8WPq32gGBR/sBad2dQSJDaBadxPgdURif44a2xXn5kgQu1wy3
-        jdFNUm3bL+3lBfpfyBYYZJ/1wA92nROJXZe7PxqBDht/uSRZoeeuGJLjh3ck0who
-        uqeeX6okoLPF71ByS04q4JpVuhtv7okUsmxhTQp4aXoAnm92D97aXsoAEGJp+nqo
-        aBiLmvgPa3WwlyYf7NXunSCvDvLxtqGrf44QrqzOIDP998LGbxocbZFlg==
+        :mime-version:content-transfer-encoding; s=fm1; bh=AlPaKbObCf1UP
+        OhToR/2CHjxPwe8x1lxL13BLb8N0m8=; b=O1sy2dccVDRs+OelKQXpo0+TMXiO0
+        ubUg58/Tk+0KqS5Y4bbE4W2dyaGuaSOYzqBFvzXqTE2Wbue56QffxFonqAEPHqQI
+        LF5TFTywdaFERfWskqMQUxv/2tcNwdPeNZ4AEyXV/dXdEUcizpg2f4DN0eshOAN+
+        ISRiwrgX506iGO6ffZCWlDneK3qJMsxrZsyRZaUifnkBZE15/qwuo/JEx6eBWoox
+        fmjZrRhStO8bLWCilqzzXRkYSpdEpRIUfmo14DK47IYBVE7bOpoAdl7lLAgmOmQM
+        Ppz4FRPWObelTvT5NG8yLPqQZ7oF2iEb8hRlmioV1hnm+XNmWMGCR5rbQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=Eo5VrRb9YJZ27T8UrdYJM9gQo/XzFIVZjIot4ZBpts8=; b=qC99dvwn
-        u/te1M9yzXR48Bvg3zZTQFwiOgH9Z/VAV2cDRgNwsZSFjBg9lAUXkdKaKNY+M8Re
-        LWwcM8AT7CXPSPuQehO/f8meD2IVuKovSOXvV+jIN5nUbujcrt9OoEami1MW88ax
-        EZIgpQfaPoHOwDXX2H92w6NA0aQSO128jNjw8EAGfi2lGI0bCz9GVz8ZPZ7xZQdx
-        6IS5PS+9LB/oeXpnPmXNibMQ8wTxPefDOG8jZhnWQKjYi6xFx/2BrqtwDMcQYgzd
-        Od60l+jn/BCUIfoZRCxdz7K4CIzWwLrH/e7z2QCFnVlB0X/ALxPYc4MFOiC0p0qF
-        h7/ny9Yco4kmDA==
-X-ME-Sender: <xms:RsaaX11dfEpFdT1mBWWm7B1ucNVao7P1eqwu2AeS8CP8CPHG5WF79g>
-    <xme:RsaaX8Fqh3KuEcTLrY72rODxTntNJKWSxXLy04ySizVefEgPuYc509qayvNJmKzj_
-    bJ86LqI_fqsRm6Bd-s>
+        fm1; bh=AlPaKbObCf1UPOhToR/2CHjxPwe8x1lxL13BLb8N0m8=; b=PvwbvD56
+        MBmXbtIOi4oIJrnzx1EvZOZoaizj67vpI86QpZxwj5qJiBqu2PquJGUfWjuu68UR
+        19mICNQeCUhlUypdh+FS5JUzq5UfjZaHurQixcDuI6kY9FELdLjKDCYTpssnoI9o
+        85Wk8Pzo9EIzrCHYuvqIZGEZc49ofB9fp/s4hZtxdMvM8WCLc78t4lN34S36W9g8
+        URLBy2ua9lwUEjxh2KMKMJdcGsPTSFJ0fW8Nmlws7Ox87ImUMQYVbG4LnzcyoMPy
+        5msx/YD++7i0AWEgtUcw5AlfIEqzb+nqsWg0FRcbxBI9YUQn5AJGnHEAGe4iJPr4
+        dPO0/GuTVYJPGQ==
+X-ME-Sender: <xms:SMaaX1HqUgSOELFphaGf1_sxtBQ8PNiXNL3Z2wMn7HDZbq_gJHkLbQ>
+    <xme:SMaaX6WmdN6KveWEAPEf53G2FZO6FRLwq25QzQi4hPn7gt64Pz9A9JdGgCXStTzaq
+    gogYgr4Wg4ipmxqPlU>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleefgdehgecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
     ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
-    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:RsaaX14y3izlA9nfiMnWYjhCqPjHTqdZ9bOGCKEbJMjlskKqbkjTsg>
-    <xmx:RsaaXy1SZ_Osr9IAhBZakA_N5TXwYmtQhWay_1CEL-WcdhfRZzqMuQ>
-    <xmx:RsaaX4Evkno4qywCEy8YUBnONaCA9uk15QGTGcBVUcqTQZjkt1f54g>
-    <xmx:R8aaX-H9xzFnifTRJxLyXd9w3lV_z7qAVOl6w638m8l1JVzaeb1q2Q>
+X-ME-Proxy: <xmx:SMaaX3KK3zI0Lef-R3Dn9wkOTNLSRbFsIz7y4-SFUELwdukQ9lw0zA>
+    <xmx:SMaaX7HKi0H8ozszhG7t1EnqEfg8St9s1yTe9JeTJ5EIbW_ctJhOng>
+    <xmx:SMaaX7UXEBap3_Y--k1qaaaYbRDgAzAgUxq8OE-6mwVSTDo5ocr3CA>
+    <xmx:SMaaX0UzUVrwwZ-TgKvYc4zkBm0yLiz4Z6GiuIpJJyIPiR_2LsN3DQ>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 75ECD3064683;
-        Thu, 29 Oct 2020 09:40:22 -0400 (EDT)
+        by mail.messagingengine.com (Postfix) with ESMTPA id C524B3280060;
+        Thu, 29 Oct 2020 09:40:23 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -73,9 +73,9 @@ Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Tim Gover <tim.gover@raspberrypi.com>,
         Phil Elwell <phil@raspberrypi.com>,
         Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: [PATCH v2 2/3] drm/vc4: hdmi: Disable Wifi Frequencies
-Date:   Thu, 29 Oct 2020 14:40:17 +0100
-Message-Id: <20201029134018.1948636-2-maxime@cerno.tech>
+Subject: [PATCH v2 3/3] ARM: dts: rpi-4: disable wifi frequencies
+Date:   Thu, 29 Oct 2020 14:40:18 +0100
+Message-Id: <20201029134018.1948636-3-maxime@cerno.tech>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201029134018.1948636-1-maxime@cerno.tech>
 References: <20201029134018.1948636-1-maxime@cerno.tech>
@@ -85,95 +85,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There's cross-talk on the RPi4 between the 2.4GHz channels used by the WiFi
-chip and some resolutions, most notably 1440p at 60Hz.
-
-In such a case, we can either reject entirely the mode, or lower slightly
-the pixel frequency to remove the overlap. Let's go for the latter.
+The RPi4 WiFi chip and HDMI outputs have some frequency overlap with
+crosstalk around 2.4GHz. Let's mark it as such so we can use some evasive
+maneuvers.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 ---
 
 Changes from v1:
-  - Change the name of the property
-  - Test for a range instead of an exact frequency
+  - Changed the property name
 ---
- drivers/gpu/drm/vc4/vc4_hdmi.c | 21 +++++++++++++++++++++
- drivers/gpu/drm/vc4/vc4_hdmi.h |  8 ++++++++
- 2 files changed, 29 insertions(+)
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-index 506c12454086..0d72e519aec4 100644
---- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-+++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -760,6 +760,9 @@ static void vc4_hdmi_encoder_enable(struct drm_encoder *encoder)
- {
- }
+diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+index 09a1182c2936..403bacf986eb 100644
+--- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
++++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+@@ -181,12 +181,14 @@ &gpio {
+ &hdmi0 {
+ 	clocks = <&firmware_clocks 13>, <&firmware_clocks 14>, <&dvp 0>, <&clk_27MHz>;
+ 	clock-names = "hdmi", "bvb", "audio", "cec";
++	wifi-2.4ghz-coexistence;
+ 	status = "okay";
+ };
  
-+#define WIFI_2_4GHz_CH1_MIN_FREQ	2400000000ULL
-+#define WIFI_2_4GHz_CH1_MAX_FREQ	2422000000ULL
-+
- static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
- 					 struct drm_crtc_state *crtc_state,
- 					 struct drm_connector_state *conn_state)
-@@ -767,12 +770,27 @@ static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
- 	struct drm_display_mode *mode = &crtc_state->adjusted_mode;
- 	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
- 	unsigned long long pixel_rate = mode->clock * 1000;
-+	unsigned long long tmds_rate;
+ &hdmi1 {
+ 	clocks = <&firmware_clocks 13>, <&firmware_clocks 14>, <&dvp 1>, <&clk_27MHz>;
+ 	clock-names = "hdmi", "bvb", "audio", "cec";
++	wifi-2.4ghz-coexistence;
+ 	status = "okay";
+ };
  
- 	if (vc4_hdmi->variant->unsupported_odd_h_timings &&
- 	    ((mode->hdisplay % 2) || (mode->hsync_start % 2) ||
- 	     (mode->hsync_end % 2) || (mode->htotal % 2)))
- 		return -EINVAL;
- 
-+	/*
-+	 * The 1440p@60 pixel rate is in the same range than the first
-+	 * WiFi channel (between 2.4GHz and 2.422GHz with 22MHz
-+	 * bandwidth). Slightly lower the frequency to bring it out of
-+	 * the WiFi range.
-+	 */
-+	tmds_rate = pixel_rate * 10;
-+	if (vc4_hdmi->disable_wifi_frequencies &&
-+	    (tmds_rate >= WIFI_2_4GHz_CH1_MIN_FREQ &&
-+	     tmds_rate <= WIFI_2_4GHz_CH1_MAX_FREQ)) {
-+		mode->clock = 238560;
-+		pixel_rate = mode->clock * 1000;
-+	}
-+
- 	if (pixel_rate > vc4_hdmi->variant->max_pixel_clock)
- 		return -EINVAL;
- 
-@@ -1717,6 +1735,9 @@ static int vc4_hdmi_bind(struct device *dev, struct device *master, void *data)
- 		vc4_hdmi->hpd_active_low = hpd_gpio_flags & OF_GPIO_ACTIVE_LOW;
- 	}
- 
-+	vc4_hdmi->disable_wifi_frequencies =
-+		of_property_read_bool(dev->of_node, "wifi-2.4ghz-coexistence");
-+
- 	pm_runtime_enable(dev);
- 
- 	drm_simple_encoder_init(drm, encoder, DRM_MODE_ENCODER_TMDS);
-diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.h b/drivers/gpu/drm/vc4/vc4_hdmi.h
-index 6815e93b1a48..3843be830601 100644
---- a/drivers/gpu/drm/vc4/vc4_hdmi.h
-+++ b/drivers/gpu/drm/vc4/vc4_hdmi.h
-@@ -142,6 +142,14 @@ struct vc4_hdmi {
- 	int hpd_gpio;
- 	bool hpd_active_low;
- 
-+	/*
-+	 * On some systems (like the RPi4), some modes are in the same
-+	 * frequency range than the WiFi channels (1440p@60Hz for
-+	 * example). Should we take evasive actions because that system
-+	 * has a wifi adapter.
-+	 */
-+	bool disable_wifi_frequencies;
-+
- 	struct cec_adapter *cec_adap;
- 	struct cec_msg cec_rx_msg;
- 	bool cec_tx_ok;
 -- 
 2.26.2
 
