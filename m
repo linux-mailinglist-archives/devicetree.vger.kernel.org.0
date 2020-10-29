@@ -2,86 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 199E029E43A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:36:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 836B129E487
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:41:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729400AbgJ2Hga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 03:36:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57218 "EHLO
+        id S1730712AbgJ2HlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 03:41:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729410AbgJ2HgG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:36:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38CD8C0613D2
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 00:36:06 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kY2TT-0005fG-Ug; Thu, 29 Oct 2020 08:35:55 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kY2TT-000181-7y; Thu, 29 Oct 2020 08:35:55 +0100
-Date:   Thu, 29 Oct 2020 08:35:55 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/5] Fix the gate2 and make it more flexible
-Message-ID: <20201029073555.GD26805@pengutronix.de>
-References: <1603889942-27026-1-git-send-email-abel.vesa@nxp.com>
+        with ESMTP id S1730690AbgJ2HlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:41:01 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E81DC0613D3
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 00:41:01 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id g12so1639544pgm.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 00:41:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=G/Fj0rzWB+sqlfRj/YBfoEOdRONw0r61Ifv9ljQtwuU=;
+        b=vlDZGVKbqL686XmVVpjmMh+nebm9WJ9fY1dYIhJSzr7xCAGUoM2qB4kmbpGIaAmAd9
+         1yQZ8liH5h9i3cjBF+ZuNeShNXAmIamu0VwanukMyC+Xv75V6CUhhWxJo6wwj+bxW12L
+         eedrVWRWZDjDzNy7RC4XQhfGkVG6hA9bsSPErgGQ4QoAwrebVp1dpWq4h3IY86ER6wb/
+         ZKOh0pFCjHy2uoEDc6uV97Xjy2MMyEN6w44B/iOk7b1esn9GcrFsD2WJ6ahr/y0Qnztp
+         11uPL3n8azhEyRYbAXwxLhKp+SZ38rrSyOp0J/2jkPGMgW9RhMVleEoeK0vseISyv+Ij
+         rG6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=G/Fj0rzWB+sqlfRj/YBfoEOdRONw0r61Ifv9ljQtwuU=;
+        b=N8h9BzSdZDL+FMGWjIjp4EXlhM7uM0n76hLjP7csEnL2jezuVM/W2xqM7QtXbbZa3I
+         raksefHUw7sIqegiH+Pt6YXKX5K1XOdlaq0ZhBaVseB4pB0A2VA7z2GJYAKmmZopniGg
+         8rvNT/IhgaiAwxeBBLpTKxx6wDTFOg+sjK3PaLLlsNTZJYJVFXaWCoLzqCvwkTKSlSxl
+         HgZvziKRlKaVtp0rt1Vb7Ky/ui/0G3VN1QUwqm+OnE3dOkGdzM1wT/insuRVApE/12Ev
+         DN9oCdOWxSqAh/f/RbnSQX3sJrBPL7pIWN7vSA1DJgi/Ift1+RO3sWzsz/kxueFR1Ns9
+         Rp7Q==
+X-Gm-Message-State: AOAM532Di802eS4+SqUgcrLP2CckTpPJZgf7Wi4rHBTqVGqrHEOkKmyn
+        A8Q9qn/Idlss9nbe1tFu4av2Bw==
+X-Google-Smtp-Source: ABdhPJxhWdliByW+8xApT8qq0Sxjwc02qK0z8V7QEJ8bXUq2Az8Xn/BV2BSjMwskTfrklclB5fv7VQ==
+X-Received: by 2002:a17:90a:4596:: with SMTP id v22mr2957412pjg.73.1603957261006;
+        Thu, 29 Oct 2020 00:41:01 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id r17sm1912630pfc.157.2020.10.29.00.40.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 29 Oct 2020 00:41:00 -0700 (PDT)
+Date:   Thu, 29 Oct 2020 13:10:57 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>, vincent.guittot@linaro.org
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        vireshk@kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
+        nm@ti.com, rafael@kernel.org, sudeep.holla@arm.com,
+        daniel.lezcano@linaro.org, Dietmar.Eggemann@arm.com
+Subject: Re: [PATCH 0/4] Add sustainable OPP concept
+Message-ID: <20201029074057.6ugmwyzna52x3oli@vireshk-i7>
+References: <20201028140847.1018-1-lukasz.luba@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1603889942-27026-1-git-send-email-abel.vesa@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:35:24 up 252 days, 15:05, 142 users,  load average: 0.46, 0.22,
- 0.18
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201028140847.1018-1-lukasz.luba@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 02:58:57PM +0200, Abel Vesa wrote:
-> First version here: https://lkml.org/lkml/2020/10/26/988
+On 28-10-20, 14:08, Lukasz Luba wrote:
+> Hi all,
 > 
-> Changes since v1:
->  * split the work in multiple iterative patches
+> This patch set introduces a concept of sustainable OPP, which then can be used
+> by kernel frameworks or governors for estimating system sustainable system
+> state. This kind of estimation is done e.g. in thermal governor Intelligent
+> Power Allocation (IPA), which calculates sustainable power of the whole system
+> and then derives some coefficients for internal algorithm.
 > 
-> Abel Vesa (5):
->   clk: imx: gate2: Remove the IMX_CLK_GATE2_SINGLE_BIT special case
->   clk: imx: gate2: Keep the register writing in on place
->   clk: imx: gate2: Check if clock is enabled against cgr_val
->   clk: imx: gate2: Add cgr_mask for more flexible number of control bits
->   clk: imx: gate2: Add locking in is_enabled op
+> The patch set introduces a new DT bindings 'opp-sustainable', with parsing
+> code. It also adds a function (in patch 3/4) which allows device drivers to set
+> directly the sustainable OPP. This is helpful when the device drivers populate
+> the OPP table by themself (example in patch 4/4).
+> 
 
-For the series:
-
-Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
-
-Sascha
+Can we please have some more information about this ? What does the
+sustainable OPP mean ? How will platform guys know or learn about this
+? How we are going to use it finally ? What does it have to do with
+temperature of the SoC or the thermal affects, etc.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+viresh
