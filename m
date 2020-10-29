@@ -2,74 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC28C29E6F1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 10:08:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B345A29E757
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 10:31:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725894AbgJ2JH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 05:07:56 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:43464 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725497AbgJ2JH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 05:07:56 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 35D211F458B8;
-        Thu, 29 Oct 2020 09:07:54 +0000 (GMT)
-Date:   Thu, 29 Oct 2020 10:07:51 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Md Sadre Alam <mdalam@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sricharan@codeaurora.org
-Subject: Re: [PATCH 2/5] mtd: rawnand: qcom: Add initial support for qspi
- nand
-Message-ID: <20201029100751.713e27df@collabora.com>
-In-Reply-To: <1602307902-16761-3-git-send-email-mdalam@codeaurora.org>
-References: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
-        <1602307902-16761-3-git-send-email-mdalam@codeaurora.org>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726731AbgJ2JaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 05:30:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46802 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726714AbgJ2JaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 05:30:16 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3C3C0613D3
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 02:30:15 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id y20so2614167iod.5
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 02:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oOIWI+y7UB+B7mKQ1XejmuEN+uCbdLuLnJkhG+XAUXg=;
+        b=sSIrfy0iaFuSgIj5W2Cpey08c3xXHJL+wgY9p1P8vfqd2gEaovPS0nJhbZD/6XTNVx
+         uXDhJURp8i399ABaJlBVBOsP3csQDvT/Ud10UohRe7jgBCP3MDCMTngCozrvbefR3P5c
+         PJWVVMA3cQhAFn8lt/TsuM/rVLXvWMHuWlW8zJP7yTHH/piCjlgrZycJ2HUGZZWTafQB
+         GvkAsjld3/Azyo39WmXhShydky6hx+1CyG5+tSmkg0LC8vN3dW3Z/iJXHzIUSLIHdxOR
+         qlsuyGfHXyf2VReQqm/gaDqL2lq7GpZ2ATcGSH/EQ495JpqDmJw2mnVtMgON0VjAZMHz
+         FBlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oOIWI+y7UB+B7mKQ1XejmuEN+uCbdLuLnJkhG+XAUXg=;
+        b=jmGGzWu74kVOmXKSliPJU5789Ofs6ZfJN5GbvBaYvZcswfiq1ybMhTIFkmxqFiM8yN
+         JUpES2RJ3+E5Lhyrq6TJyC/FrWe2NfILSkvvuaYeQDaBj+gYD5OBD8+TjPrpDktWbWG2
+         /YgE4rTbqMxCUL3vANgSkpXCeSMD8w+HQxC0wXFlasIvTb7A+K8PmoFuv1c8p3dLgt8a
+         uX3hU5A8aUjzu8wxq4NMz1HpAIh4NolVg/GWYclmG2kwsW0JC54WQLTuInknupv6Ax4o
+         wGBqJRjjE9cst10dC3PTtP28V84mJ8hO0byRwg8cL18xcx4fOyQNIiUdAjhlYSvKrXYh
+         s4YA==
+X-Gm-Message-State: AOAM533yEeyiyrk9irqvozbZSDd393PyXXBOuQrjo66UY2JyDtKXoo1+
+        qJ1H3Uk89KpuinkcTJhO9K8tQ0AS3HpU5CVeDRshlw==
+X-Google-Smtp-Source: ABdhPJx9zMBHaZw19qpVm06IdHzHPzlUWhcss2G91tMQHwc7bPynPZC7+Obdv2CzznTo5KJeZSt+E0qI4ZiM1o9j8tU=
+X-Received: by 2002:a02:8348:: with SMTP id w8mr2775533jag.136.1603963815210;
+ Thu, 29 Oct 2020 02:30:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20201027135325.22235-1-vincent.whitchurch@axis.com>
+ <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com> <CAHp75Vff1AyKDb=JiocsAefnft+tcm+BnuWDrxViQqZAQZjuVg@mail.gmail.com>
+In-Reply-To: <CAHp75Vff1AyKDb=JiocsAefnft+tcm+BnuWDrxViQqZAQZjuVg@mail.gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 29 Oct 2020 10:30:04 +0100
+Message-ID: <CAMRc=McfToqJOy6AFGVqUup5b8ED-Ld3e=ZRyW5BG1JtD54M+A@mail.gmail.com>
+Subject: Re: [PATCH v2] gpio: mockup: Allow probing from device tree
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Bamvor Jian Zhang <bamv2005@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        kernel@axis.com, devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Wed, Oct 28, 2020 at 9:24 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Wed, Oct 28, 2020 at 8:41 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> > On Tue, Oct 27, 2020 at 2:54 PM Vincent Whitchurch
+> > <vincent.whitchurch@axis.com> wrote:
+>
+> ...
+>
+> > > +#include <linux/of.h>
+> >
+> > Please keep the includes ordered alphabetically.
+>
+> Besides the fact that that is a wrong header to be included.
+> mod_devicetable.h is the correct one.
+> (See also below)
+>
+> ...
+>
+> > > +#ifdef CONFIG_OF
+> > > +static const struct of_device_id gpio_mockup_of_match[] = {
+> > > +       { .compatible = "gpio-mockup", },
+> > > +       {},
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
+> > > +#endif
+> >
+> > You don't need this ifdef - of_match_ptr() will evaluate to NULL if
+> > CONFIG_OF is disabled and the compiler will optimize this struct out.
+>
+> It's not so. If you drop ugly ifdeffery (and I vote for that, see also
+> above) the of_match_ptr() must be dropped as well.
+> Otherwise the compiler will issue the warning. So it is either all or none.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
 
-On Sat, 10 Oct 2020 11:01:39 +0530
-Md Sadre Alam <mdalam@codeaurora.org> wrote:
+Makes sense, I'll remove this from my tree for now then. Vincent:
+please send another iteration.
 
-> This change will add initial support for qspi (serial nand).
-> 
-> QPIC Version v.2.0 onwards supports serial nand as well so this
-> change will initialize all required register to enable qspi (serial
-> nand).
-> 
-> This change is supporting very basic functionality of qspi nand flash.
-> 
-> 1. Reset device (Reset QSPI NAND device).
-> 
-> 2. Device detection (Read id QSPI NAND device).
-
-Unfortunately, that's not going to work in the long term. You're
-basically hacking the raw NAND framework to make SPI NANDs fit. I do
-understand the rationale behind this decision (re-using the code for
-ECC and probably other things), but that's not going to work. So I'd
-recommend doing the following instead:
-
-1/ implement a SPI-mem controller driver
-2/ implement an ECC engine driver so the ECC logic can be shared
-   between the SPI controller and raw NAND controller drivers
-3/ convert the raw NAND driver to the exec_op() interface (none of
-   this hack would have been possible if the driver was using the new
-   API)
-
-Regards,
-
-Boris
+Bartosz
