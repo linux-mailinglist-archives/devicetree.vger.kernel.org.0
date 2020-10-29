@@ -2,99 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DCD29E7E9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 10:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A0029E80A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 10:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726132AbgJ2J4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 05:56:13 -0400
-Received: from foss.arm.com ([217.140.110.172]:58096 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725779AbgJ2J4N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 05:56:13 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3BD84139F;
-        Thu, 29 Oct 2020 02:56:12 -0700 (PDT)
-Received: from [10.57.13.20] (unknown [10.57.13.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3AEB43F66E;
-        Thu, 29 Oct 2020 02:56:08 -0700 (PDT)
-Subject: Re: [PATCH 0/4] Add sustainable OPP concept
-To:     Viresh Kumar <viresh.kumar@linaro.org>, vincent.guittot@linaro.org
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vireshk@kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
-        nm@ti.com, rafael@kernel.org, sudeep.holla@arm.com,
-        daniel.lezcano@linaro.org, Dietmar.Eggemann@arm.com
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201029074057.6ugmwyzna52x3oli@vireshk-i7>
- <20201029075356.rruej6jlerhfa4oy@vireshk-i7>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <228fa1b3-bbd3-6941-fd4b-06581016d839@arm.com>
-Date:   Thu, 29 Oct 2020 09:56:07 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727266AbgJ2J6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 05:58:38 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:1299 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727239AbgJ2J6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 05:58:37 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 09T9v7YB009828;
+        Thu, 29 Oct 2020 10:58:12 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=sQUt5xRn/ACUiNnmpIUAUToMA3q58Ral13tfa4euS/w=;
+ b=yYWqt/pqHCF6VIi88V5MdDfSi9/GPooFvFe9TrKK5YyK8Gql61BhEQZAg2nXbGXekJjL
+ /Ss03WZD3C3hAJjOLTDK7N5hJj6AYf9NF7B9QdOoTgGD/KCWZc1s2nvKyDHaM2Iaq3hC
+ GsY5qKIl6P8qcaFp+b7vo/HIwhgO0LoEpPtYw25cElIN9FgTQph7qUNpyy5+Lm1qAacs
+ uvyPBpzz69XY0CEyEKhgNoaKx8PWERZZvR6tADv3ELXv8fqcRxqiLkSaBip1oaCKzFax
+ JKm/4TWioHwPNDluyUjcPqT/6g/QEwEh2mEVpQGq5r/HQEQnJnCdFlrjtEhNExQYcDSK ww== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34ccj278d7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Oct 2020 10:58:12 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3B79F10002A;
+        Thu, 29 Oct 2020 10:58:12 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 12FAA221F97;
+        Thu, 29 Oct 2020 10:58:12 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 29 Oct 2020 10:58:11
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [RESEND PATCH v3 0/4] STUSB1600 support on STM32MP15xx-DKx
+Date:   Thu, 29 Oct 2020 10:58:02 +0100
+Message-ID: <20201029095806.10648-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20201029075356.rruej6jlerhfa4oy@vireshk-i7>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-10-29_03:2020-10-29,2020-10-29 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+I resend a part of my series [1] as the driver patches are already
+merged. Bindings are missing and also device tree and config updates.
 
+This series adds missing bindings for Type-C power-opmode property and
+STUSB160x Type-C port controllers [2].
+STUSB160x driver requires to get power operation mode via device tree,
+that's why this series also adds the optional DT property power-opmode
+for usb-c-connector to select the power operation mode capability and
+a function to convert the power operation mode string into power
+operation mode value.
+Tested on stm32mp157c-dk2 [3], which has a Type-C connector managed by
+STUSB1600, and connected to USB OTG controller. 
 
-On 10/29/20 7:53 AM, Viresh Kumar wrote:
-> On 29-10-20, 13:10, Viresh Kumar wrote:
->> On 28-10-20, 14:08, Lukasz Luba wrote:
->>> Hi all,
->>>
->>> This patch set introduces a concept of sustainable OPP, which then can be used
->>> by kernel frameworks or governors for estimating system sustainable system
->>> state. This kind of estimation is done e.g. in thermal governor Intelligent
->>> Power Allocation (IPA), which calculates sustainable power of the whole system
->>> and then derives some coefficients for internal algorithm.
->>>
->>> The patch set introduces a new DT bindings 'opp-sustainable', with parsing
->>> code. It also adds a function (in patch 3/4) which allows device drivers to set
->>> directly the sustainable OPP. This is helpful when the device drivers populate
->>> the OPP table by themself (example in patch 4/4).
->>>
->>
->> Can we please have some more information about this ? What does the
->> sustainable OPP mean ? How will platform guys know or learn about this
->> ? How we are going to use it finally ? What does it have to do with
->> temperature of the SoC or the thermal affects, etc.
+[1] https://patchwork.kernel.org/project/linux-usb/list/?series=354733
+[2] https://www.st.com/en/interfaces-and-transceivers/usb-type-c-and-power-delivery-controllers.html
+[3] https://www.st.com/en/evaluation-tools/stm32mp157c-dk2.html
 
-There were discussions about Energy Model (EM), scale of values (mW or
-abstract scale) and relation to EAS and IPA. You can find quite long
-discussion below v2 [1] (there is also v3 send after agreement [2]).
-We have in thermal DT binding: 'sustainable-power' expressed in mW,
-which is used by IPA, but it would not support bogoWatts.
-The sustainable power is used for estimation of internal coefficients
-(also for power budget), which I am trying to change to work with
-'abstract scale' [3][4].
+Amelie Delaunay (4):
+  dt-bindings: connector: add power-opmode optional property to
+    usb-connector
+  dt-bindings: usb: Add DT bindings for STUSB160x Type-C controller
+  ARM: dts: stm32: add STUSB1600 Type-C using I2C4 on stm32mp15xx-dkx
+  ARM: multi_v7_defconfig: enable STUSB160X Type-C port controller
+    support
 
-This would allow to estimate sustainable power of the system based on
-CPUs, GPU opp-sustainable points, where we don't have
-'sustainable-power' or devices using bogoWatts.
+ .../bindings/connector/usb-connector.yaml     | 18 ++++
+ .../devicetree/bindings/usb/st,stusb160x.yaml | 85 +++++++++++++++++++
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |  7 ++
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        | 30 +++++++
+ arch/arm/configs/multi_v7_defconfig           |  2 +
+ 5 files changed, 142 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/st,stusb160x.yaml
 
-> 
-> And that we need a real user of this first if it is ever going to be
-> merged.
-> 
+-- 
+2.17.1
 
-IPA would be the first user of this in combination with scmi-cpufreq.c,
-which can feed 'abstract scale' in to EM.
-Currently IPA takes lowest allowed OPPs into account for this estimation
-which is not optimal. This marked OPPs would make estimation a lot
-better.
-
-Regards,
-Lukasz
-
-
-[1] https://lore.kernel.org/lkml/20201002114426.31277-1-lukasz.luba@arm.com/
-[2] https://lore.kernel.org/lkml/20201019140601.3047-1-lukasz.luba@arm.com/
-[3] 
-https://lore.kernel.org/linux-pm/5f682bbb-b250-49e6-dbb7-aea522a58595@arm.com/
-[4] https://lore.kernel.org/lkml/20201009135850.14727-1-lukasz.luba@arm.com/
