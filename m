@@ -2,60 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8608D29EE90
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 15:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F30129EECD
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 15:52:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727009AbgJ2Omv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 10:42:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56388 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726521AbgJ2Omh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 10:42:37 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0EBA20838;
-        Thu, 29 Oct 2020 14:42:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603982539;
-        bh=6RBN8Kg5rl5f9b8QXPgb4uFFk5IdGTlv2YKs82xXJB4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gVv6frS6pXab5N6ek2X6ub8Sz5HurZdzN3UxRw4jeMjnUwoDfwpI/RmR6rxSvC9Hj
-         SdJyAb5hIDHAzdvUzKUkOnVbFBlmt/6qpDHQ7mn+SwUyRjlVmFFNUY9P9Qc85BT663
-         meKeKtCX/PCSBFKM04IJgXOD9v6mbSrS03QSyTs0=
-Date:   Thu, 29 Oct 2020 22:42:12 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 06/14] dt-bindings: arm: fsl: document i.MX25 and i.MX27
- boards
-Message-ID: <20201029144211.GR28755@dragon>
-References: <20200926162811.5335-1-krzk@kernel.org>
- <20200926162811.5335-6-krzk@kernel.org>
+        id S1726375AbgJ2OwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 10:52:21 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34310 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726166AbgJ2OwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 10:52:21 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TEqHhW114340;
+        Thu, 29 Oct 2020 09:52:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603983137;
+        bh=/WvllRH0/XY+Kb1gFVaJ6ZferN/0XkjqDenoxz14W3c=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=BoV7Ntvq4Qr+ybNF3r/DiHmWEcz5Xmg998ac6EZvzUrDfbNakp+mknP1sw9bdBvh9
+         s0o9Pd2agabZiJmRJcdrK0Oe+HnKdOwIWy9i3CS2IVjctT9TsbnnBAdMECsp/RG5DR
+         goljBjdedb237dlO/HKYIGxclYs1KJEOr5LajC0Y=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TEqHGD114981
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 29 Oct 2020 09:52:17 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 29
+ Oct 2020 09:52:17 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 29 Oct 2020 09:52:17 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TEqHQE084645;
+        Thu, 29 Oct 2020 09:52:17 -0500
+Date:   Thu, 29 Oct 2020 09:52:17 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Nikhil Devshatwar <nikhil.nd@ti.com>
+CC:     Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: mark dss as dma-coherent
+Message-ID: <20201029145217.zjazhjvylgwez4do@husked>
+References: <20201029141159.190621-1-tomi.valkeinen@ti.com>
+ <20201029144100.bf35vierhfignips@NiksLab>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20200926162811.5335-6-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201029144100.bf35vierhfignips@NiksLab>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 26, 2020 at 06:28:03PM +0200, Krzysztof Kozlowski wrote:
-> Document and adjust the compatibles for i.MX25 and i.MX27 based boards
-> to fix dtbs_check warnings like:
+On 20:11-20201029, Nikhil Devshatwar wrote:
+> On 16:11-20201029, Tomi Valkeinen wrote:
+> > DSS is IO coherent on AM65, so we can mark it as such with
+> > 'dma-coherent' property in the DT file.
+> > 
+> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Acked-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 > 
->   arch/arm/boot/dts/imx27-apf27dev.dt.yaml: /: compatible:
->     ['armadeus,imx27-apf27dev', 'armadeus,imx27-apf27', 'fsl,imx27'] is not valid under any of the given schemas
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Applied, thanks.
+Tomi: Do you need to add Fixes: tag to percolate this to stable? if
+yes, please comment, makes it easier for me to queue for 5.10 if
+possible
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
