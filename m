@@ -2,96 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED59229E61F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 09:15:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E964229E634
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 09:17:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727043AbgJ2IPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 04:15:54 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:53579 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728513AbgJ2IPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 04:15:50 -0400
-X-UUID: c559ab8950ab4ae0a56d513c5d28fb74-20201029
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=jRHkZTdg8apssmBzz5oFqjyf+DQFKqK4eJkHYPOIPPE=;
-        b=VFOykh2+IZrXDbWlGtr0/1F9ECMLxyx+8D72UwndgKVOXuW8sCubaOOC+5WDMtMEY/8SUpDgD/Jl1/H6vWQYCiBmGc3rRWtIcFXn862b5Sr0j+EMqFBzbEiE6i8jxuJjPXjRk0nN87keEjAmMyU0bV9q+W2X4N7USfkhKI3AR9c=;
-X-UUID: c559ab8950ab4ae0a56d513c5d28fb74-20201029
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 165975230; Thu, 29 Oct 2020 16:15:47 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 29 Oct 2020 16:15:43 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 29 Oct 2020 16:15:43 +0800
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <yong.wu@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ryder Lee <ryder.lee@mediatek.com>, <chuanjia.liu@mediatek.com>
-Subject: [PATCH v7 4/4] ARM: dts: mediatek: Modified MT7629 PCIe node
-Date:   Thu, 29 Oct 2020 16:15:13 +0800
-Message-ID: <20201029081513.10562-5-chuanjia.liu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201029081513.10562-1-chuanjia.liu@mediatek.com>
-References: <20201029081513.10562-1-chuanjia.liu@mediatek.com>
+        id S1725956AbgJ2IRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 04:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35460 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729150AbgJ2IQt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 04:16:49 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9372FC0613D3
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 01:16:49 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kY36o-0003lj-An; Thu, 29 Oct 2020 09:16:34 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kY36h-0006HS-01; Thu, 29 Oct 2020 09:16:27 +0100
+Date:   Thu, 29 Oct 2020 09:16:26 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     "Badel, Laurent" <LaurentBadel@eaton.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "fugang.duan@nxp.com" <fugang.duan@nxp.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "richard.leitner@skidata.com" <richard.leitner@skidata.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "Quette, Arnaud" <ArnaudQuette@Eaton.com>
+Subject: Re: [PATCH net 0/4] Restore and fix PHY reset for SMSC LAN8720
+Message-ID: <20201029081626.wtnhctobwvlhmfan@pengutronix.de>
+References: <CY4PR1701MB1878B85B9E1C5B4FDCBA2860DF160@CY4PR1701MB1878.namprd17.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 885291DBBB7B536A8EA9EC48C496567E09C22C21B6BAB1A250B99CE39C0A0D7C2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CY4PR1701MB1878B85B9E1C5B4FDCBA2860DF160@CY4PR1701MB1878.namprd17.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:57:28 up 348 days, 23:16, 377 users,  load average: 0.05, 0.05,
+ 0.03
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UmVtb3ZlIHVudXNlZCBwcm9wZXJ0eSBhbmQgYWRkIHBjaWVjZmcgbm9kZS4NCg0KU2lnbmVkLW9m
-Zi1ieTogQ2h1YW5qaWEgTGl1IDxjaHVhbmppYS5saXVAbWVkaWF0ZWsuY29tPg0KQWNrZWQtYnk6
-IFJ5ZGVyIExlZSA8cnlkZXIubGVlQG1lZGlhdGVrLmNvbT4NCi0tLQ0KIGFyY2gvYXJtL2Jvb3Qv
-ZHRzL210NzYyOS1yZmIuZHRzIHwgIDMgKystDQogYXJjaC9hcm0vYm9vdC9kdHMvbXQ3NjI5LmR0
-c2kgICAgfCAyMiArKysrKysrKysrKystLS0tLS0tLS0tDQogMiBmaWxlcyBjaGFuZ2VkLCAxNCBp
-bnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jv
-b3QvZHRzL210NzYyOS1yZmIuZHRzIGIvYXJjaC9hcm0vYm9vdC9kdHMvbXQ3NjI5LXJmYi5kdHMN
-CmluZGV4IDk5ODBjMTBjNmUyOS4uZWI1MzZjYmViZDliIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm0v
-Ym9vdC9kdHMvbXQ3NjI5LXJmYi5kdHMNCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL210NzYyOS1y
-ZmIuZHRzDQpAQCAtMTQwLDkgKzE0MCwxMCBAQA0KIAl9Ow0KIH07DQogDQotJnBjaWUgew0KKyZw
-Y2llMSB7DQogCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQogCXBpbmN0cmwtMCA9IDwmcGNp
-ZV9waW5zPjsNCisJc3RhdHVzID0gIm9rYXkiOw0KIH07DQogDQogJnBjaWVwaHkxIHsNCmRpZmYg
-LS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9tdDc2MjkuZHRzaSBiL2FyY2gvYXJtL2Jvb3QvZHRz
-L210NzYyOS5kdHNpDQppbmRleCA1Y2JiM2QyNDRjNzUuLjZkNjM5N2YwYzJmYyAxMDA2NDQNCi0t
-LSBhL2FyY2gvYXJtL2Jvb3QvZHRzL210NzYyOS5kdHNpDQorKysgYi9hcmNoL2FybS9ib290L2R0
-cy9tdDc2MjkuZHRzaQ0KQEAgLTM2MCwxNiArMzYwLDIwIEBADQogCQkJI3Jlc2V0LWNlbGxzID0g
-PDE+Ow0KIAkJfTsNCiANCi0JCXBjaWU6IHBjaWVAMWExNDAwMDAgew0KKwkJcGNpZWNmZzogcGNp
-ZWNmZ0AxYTE0MDAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxnZW5lcmljLXBjaWVj
-ZmciLCAic3lzY29uIjsNCisJCQlyZWcgPSA8MHgxYTE0MDAwMCAweDEwMDA+Ow0KKwkJfTsNCisN
-CisJCXBjaWUxOiBwY2llQDFhMTQ1MDAwIHsNCiAJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10
-NzYyOS1wY2llIjsNCiAJCQlkZXZpY2VfdHlwZSA9ICJwY2kiOw0KLQkJCXJlZyA9IDwweDFhMTQw
-MDAwIDB4MTAwMD4sDQotCQkJICAgICAgPDB4MWExNDUwMDAgMHgxMDAwPjsNCi0JCQlyZWctbmFt
-ZXMgPSAic3Vic3lzIiwicG9ydDEiOw0KKwkJCXJlZyA9IDwweDFhMTQ1MDAwIDB4MTAwMD47DQor
-CQkJcmVnLW5hbWVzID0gInBvcnQxIjsNCiAJCQkjYWRkcmVzcy1jZWxscyA9IDwzPjsNCiAJCQkj
-c2l6ZS1jZWxscyA9IDwyPjsNCi0JCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTc2IElSUV9UWVBF
-X0xFVkVMX0xPVz4sDQotCQkJCSAgICAgPEdJQ19TUEkgMjI5IElSUV9UWVBFX0xFVkVMX0xPVz47
-DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyOSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KKwkJ
-CWludGVycnVwdC1uYW1lcyA9ICJwY2llX2lycSI7DQogCQkJY2xvY2tzID0gPCZwY2llc3lzIENM
-S19QQ0lFX1AxX01BQ19FTj4sDQogCQkJCSA8JnBjaWVzeXMgQ0xLX1BDSUVfUDBfQUhCX0VOPiwN
-CiAJCQkJIDwmcGNpZXN5cyBDTEtfUENJRV9QMV9BVVhfRU4+LA0KQEAgLTM5MCwyMSArMzk0LDE5
-IEBADQogCQkJcG93ZXItZG9tYWlucyA9IDwmc2Nwc3lzIE1UNzYyMl9QT1dFUl9ET01BSU5fSElG
-MD47DQogCQkJYnVzLXJhbmdlID0gPDB4MDAgMHhmZj47DQogCQkJcmFuZ2VzID0gPDB4ODIwMDAw
-MDAgMCAweDIwMDAwMDAwIDB4MjAwMDAwMDAgMCAweDEwMDAwMDAwPjsNCisJCQlzdGF0dXMgPSAi
-ZGlzYWJsZWQiOw0KIA0KLQkJCXBjaWUxOiBwY2llQDEsMCB7DQotCQkJCWRldmljZV90eXBlID0g
-InBjaSI7DQorCQkJc2xvdDE6IHBjaWVAMSwwIHsNCiAJCQkJcmVnID0gPDB4MDgwMCAwIDAgMCAw
-PjsNCiAJCQkJI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQogCQkJCSNzaXplLWNlbGxzID0gPDI+Ow0K
-IAkJCQkjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KIAkJCQlyYW5nZXM7DQotCQkJCW51bS1sYW5l
-cyA9IDwxPjsNCiAJCQkJaW50ZXJydXB0LW1hcC1tYXNrID0gPDAgMCAwIDc+Ow0KIAkJCQlpbnRl
-cnJ1cHQtbWFwID0gPDAgMCAwIDEgJnBjaWVfaW50YzEgMD4sDQogCQkJCQkJPDAgMCAwIDIgJnBj
-aWVfaW50YzEgMT4sDQogCQkJCQkJPDAgMCAwIDMgJnBjaWVfaW50YzEgMj4sDQogCQkJCQkJPDAg
-MCAwIDQgJnBjaWVfaW50YzEgMz47DQotDQogCQkJCXBjaWVfaW50YzE6IGludGVycnVwdC1jb250
-cm9sbGVyIHsNCiAJCQkJCWludGVycnVwdC1jb250cm9sbGVyOw0KIAkJCQkJI2FkZHJlc3MtY2Vs
-bHMgPSA8MD47DQotLSANCjIuMTguMA0K
+Hi,
 
+thanks for your patches :)
+
+On 20-10-27 23:25, Badel, Laurent wrote:
+> ﻿Subject: [PATCH net 0/4] Restore and fix PHY reset for SMSC LAN8720
+> 
+> Description:
+> A recent patchset [1] added support in the SMSC PHY driver for managing
+> the ref clock and therefore removed the PHY_RST_AFTER_CLK_EN flag for the
+> LAN8720 chip. The ref clock is passed to the SMSC driver through a new
+> property "clocks" in the device tree.
+> 
+> There appears to be two potential caveats:
+> (i) Building kernel 5.9 without updating the DT with the "clocks"
+> property for SMSC PHY, would break systems previously relying on the PHY
+> reset workaround (SMSC driver cannot grab the ref clock, so it is still
+> managed by FEC, but the PHY is not reset because PHY_RST_AFTER_CLK_EN is
+> not set). This may lead to occasional loss of ethernet connectivity in
+> these systems, that is difficult to debug.
+
+IMHO reyling on PHY_RST_AFTER_CLK_EN was broken since the day of adding
+this feature because:
+
+1st) Each host driver needs to call the phy-reset logic. So this isn't a
+     fix for all hosts using a LAN8720 phy.
+2st) It interacts realy bad with the phy state machine. Only the state
+     machine should be able to do this.
+
+Why can't you add the clock?
+
+> (ii) This defeats the purpose of a previous commit [2] that disabled the
+> ref clock for power saving reasons. If a ref clock for the PHY is
+> specified in DT, the SMSC driver will keep it always on (confirmed with 
+> scope).
+
+NACK, the clock provider can be any clock. This has nothing to do with
+the FEC clocks. The FEC _can_ be used as clock provider.
+
+> While this removes the need for additional PHY resets (only a 
+> single reset is needed after power up), this prevents the FEC from saving
+> power by disabling the refclk. Since there may be use cases where one is
+> interested in saving power,
+
+You can't just turn off the clock for the LAN8720 because of the phy
+internal state machine. The state machine gets confused if the clock is
+turned off/on randomly.
+
+> keep this option available when no ref clock
+> is specified for the PHY, by fixing issues with the PHY reset.
+
+IMHO pulling the reset line everytime has a few disadvantages:
+ - You need to ensure that the strapping pins are correct and
+ - You need to ensure that the reset logic including the reset delays
+   are keeped.
+
+> Main changes proposed to address this:
+> (a) Restore PHY_RST_AFTER_CLK_EN for LAN8720, but explicitly clear it if
+> the SMSC driver succeeds in retrieving the ref clock.
+
+IMHO NACK since this was the wrong approach.
+
+> (b) Fix phy_reset_after_clk_enable() to work in interrupt mode, by
+> re-configuring the PHY registers after reset.
+> 
+> Tests: against net tree 5.9, including allyes/no/modconfig. 10 pieces of
+> an iMX28-EVK-based board were tested, 3 of which were found to exhibit
+> issues when the "clocks" property was left unset. Issues were fixed by
+> the present patchset.
+
+All iMX machines are now DT-based why can't you just add the correct
+clock provider?
+
+Regards,
+  Marco
