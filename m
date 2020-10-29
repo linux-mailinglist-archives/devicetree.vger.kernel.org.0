@@ -2,88 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D4DC29EFA0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:23:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 491E229EF7D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:16:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727905AbgJ2PXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 11:23:05 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:42260 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725909AbgJ2PXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:23:04 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TEf3m2108021;
-        Thu, 29 Oct 2020 09:41:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603982463;
-        bh=2rHaRKAN8kaefGnljxOphLFhEtuWfvShQLMhYd/G4h0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=eZh1669B1fWZthJmojWRjG1znboTcOjD4PovZmXAiXzU8eMbxM2XZi9nsSBjkLSm7
-         rEpfwFXbPzhBtkHMeeiTTODAFviZ4+EqyakYXCZRO7/g+PKRTT/R0OKhCYo6D3NNJi
-         Xls551jBO0uHyYi6xg/3SP1oUJgkXrsMGHv6hEFo=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TEf2pt109645
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 29 Oct 2020 09:41:03 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 29
- Oct 2020 09:41:01 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 29 Oct 2020 09:41:01 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TEf0do070396;
-        Thu, 29 Oct 2020 09:41:01 -0500
-Date:   Thu, 29 Oct 2020 20:11:00 +0530
-From:   Nikhil Devshatwar <nikhil.nd@ti.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am65: mark dss as dma-coherent
-Message-ID: <20201029144100.bf35vierhfignips@NiksLab>
-References: <20201029141159.190621-1-tomi.valkeinen@ti.com>
+        id S1728076AbgJ2PP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 11:15:59 -0400
+Received: from smtp1.axis.com ([195.60.68.17]:5868 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727864AbgJ2PPz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 11:15:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=719; q=dns/txt; s=axis-central1;
+  t=1603984555; x=1635520555;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ku9R/lK0l51HGyu3c3HcwmGlQ0lAO44O+a5Ia8y4tVw=;
+  b=Jge6FA3CGdHeUW/IEWQNFh5ADxx8Yx6ZxYSmyBdcMHdhlEh2FLwwYx1I
+   MxeX1z1B3p02xky1X0eP8D+Rv8BP9LJhPkKFAjS+M9aNNFjAPdpTQexgX
+   hbqTK4NPRHYL4HzWgNvN0qf0AgTSCddMsLaa3ybUe4noADcdqTBOHzlt7
+   aU7mogtDc1+F7GFo/LV1JCfoFZf3o2eZDt5S4Q9GBXUgO6jPlfH029mrB
+   sXNpFw/d6paaTLXC/ms0sPVQ6LrAp+QRBKu70MlUQYclYponZwT809Zqd
+   BKWs4+wRzcAcnaEFhgbyYmcsQGXMjp8uozITjn9wNESd9XlBa40emB1sz
+   g==;
+IronPort-SDR: eTu/JPLUQWgwvRlfa77ibzS0ODeiXeCRABXElhYRlK6xhX2c+zF6so36H7IFFnNTSYx+pxjDZQ
+ rQmA7DKuJ6kGY6NPEQRtYb4zuNI89M4JoiVelnPSDISdJIBWkaMLKV04mraMOlpxgbzMLKmCxP
+ NPzfdRLfE6IWVkhJxnXkFEZg9FVAU5//Uygh3mBFhCJI36BMcvOGwtP9236z2xsCggFd78d/Sl
+ 0+HmqKdyzZq/nayXEWQCKwonCNnuLgjt4PLmuXd5S2xYGy8fyEZQ0Q5aclG/H/TUVSU5DsLVog
+ fY4=
+X-IronPort-AV: E=Sophos;i="5.77,430,1596492000"; 
+   d="scan'208";a="14562031"
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <support.opensource@diasemi.com>
+CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>
+Subject: [PATCH 0/2] DA9121 regulator support
+Date:   Thu, 29 Oct 2020 16:15:36 +0100
+Message-ID: <20201029151538.23463-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201029141159.190621-1-tomi.valkeinen@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:11-20201029, Tomi Valkeinen wrote:
-> DSS is IO coherent on AM65, so we can mark it as such with
-> 'dma-coherent' property in the DT file.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-Acked-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+This series adds support for the DA9121, a "High-Performance, 10 A, Dual-Phase
+DC-DC Converter".  The datasheet is currently available here:
 
-Nikhil D
-> ---
-> 
-> Sending separately as requested.
-> 
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index 533525229a8d..a0b4a421026f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -867,6 +867,8 @@ dss: dss@04a00000 {
->  
->  		status = "disabled";
->  
-> +		dma-coherent;
-> +
->  		dss_ports: ports {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-> 
+ https://www.dialog-semiconductor.com/sites/default/files/da9121_datasheet_2v3.pdf
+
+Vincent Whitchurch (2):
+  dt-bindings: regulator: Add DA9121
+  regulator: Add support for DA9121 regulator
+
+ .../bindings/regulator/dlg,da9121.yaml        |  42 +++++++
+ drivers/regulator/Kconfig                     |  12 ++
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/da9121-regulator.c          | 111 ++++++++++++++++++
+ 4 files changed, 166 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
+ create mode 100644 drivers/regulator/da9121-regulator.c
+
+-- 
+2.28.0
+
