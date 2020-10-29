@@ -2,80 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B2EB29F3F3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 19:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 183EC29F3F6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 19:17:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725841AbgJ2SQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 14:16:26 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:36698 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725840AbgJ2SQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 14:16:25 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 450341C0B7C; Thu, 29 Oct 2020 19:16:24 +0100 (CET)
-Date:   Thu, 29 Oct 2020 19:16:23 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/5] leds: qcom-lpg: add support for pm8150[bl] leds
-Message-ID: <20201029181623.GF26053@duo.ucw.cz>
-References: <20201021225100.162795-1-dmitry.baryshkov@linaro.org>
- <20201021225100.162795-3-dmitry.baryshkov@linaro.org>
+        id S1725910AbgJ2SRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 14:17:00 -0400
+Received: from mx2.suse.de ([195.135.220.15]:43400 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725820AbgJ2SRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 14:17:00 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 75F78AD1E;
+        Thu, 29 Oct 2020 18:16:58 +0000 (UTC)
+Message-ID: <30d4a73b02957c18460d7f4535b1baa98ccda013.camel@suse.de>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: Add a property to deal
+ with WiFi coexistence
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Date:   Thu, 29 Oct 2020 19:16:56 +0100
+In-Reply-To: <20201029180721.lsucxnl7kavlvibd@gilmour.lan>
+References: <20201029134018.1948636-1-maxime@cerno.tech>
+         <4d0028fdf797abd99f95d627e60e9322caa52596.camel@suse.de>
+         <20201029180721.lsucxnl7kavlvibd@gilmour.lan>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-Si3FC5Rwn4sE3tHN32Hz"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="Wb5NtZlyOqqy58h0"
-Content-Disposition: inline
-In-Reply-To: <20201021225100.162795-3-dmitry.baryshkov@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Wb5NtZlyOqqy58h0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--=-Si3FC5Rwn4sE3tHN32Hz
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
-
-> Add support for the LPG/PWM block found on newer PMICs: PM8150B and
-> PM8150A/L.
+On Thu, 2020-10-29 at 19:07 +0100, Maxime Ripard wrote:
+> Hi Nicolas,
 >=20
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/leds/leds-qcom-lpg.c | 68 ++++++++++++++++++++++++++++++++----
->  1 file changed, 61 insertions(+), 7 deletions(-)
+> On Thu, Oct 29, 2020 at 06:43:27PM +0100, Nicolas Saenz Julienne wrote:
+> > Hi maxime,
+> >=20
+> > On Thu, 2020-10-29 at 14:40 +0100, Maxime Ripard wrote:
+> > > The RaspberryPi4 has both a WiFi chip and HDMI outputs capable of doi=
+ng
+> > > 4k. Unfortunately, the 1440p resolution at 60Hz has a TMDS rate on th=
+e
+> > > HDMI cable right in the middle of the first Wifi channel.
+> > >=20
+> > > Add a property to our HDMI controller, that could be reused by other
+> > > similar HDMI controllers, to allow the OS to take whatever measure is
+> > > necessary to avoid that crosstalk.
+> > >=20
+> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > >=20
+> > > ---
+> > >=20
+> > > Changes from v1:
+> > >   - Renamed the property
+> > >   - Split it into a separate patch
+> > > ---
+> > >  .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml      | 6 ++++=
+++
+> > >  1 file changed, 6 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-h=
+dmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+> > > index 03a76729d26c..7ce06f9f9f8e 100644
+> > > --- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yam=
+l
+> > > +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yam=
+l
+> > > @@ -76,6 +76,12 @@ properties:
+> > >    resets:
+> > >      maxItems: 1
+> > > =20
+> > > +  wifi-2.4ghz-coexistence:
+> >=20
+> > I see you already renamed the property, but I can't seem to find v1 of =
+the
+> > series online.
 >=20
-> diff --git a/drivers/leds/leds-qcom-lpg.c b/drivers/leds/leds-qcom-lpg.c
-> index 86131a65d2c5..4d24e0c973d6 100644
-> --- a/drivers/leds/leds-qcom-lpg.c
-> +++ b/drivers/leds/leds-qcom-lpg.c
-> @@ -48,6 +48,8 @@ struct lpg_data;
->   * @lut_bitmap:	allocation bitmap for LUT entries
->   * @triled_base: base address of the TRILED block (optional)
->   * @triled_src:	power-source for the TRILED
-> + * @triled_no_atc_ctl:	true if there is no TRI_LED_ATC_CTL register
-> + * @triled_no_src_sel:	true if there is no TRI_LED_SRC_SEL register
+> I realized I didn't put you in Cc for the first version, sorry, you'll fi=
+nd it here:
+> https://lore.kernel.org/dri-devel/20200925130744.575725-1-maxime@cerno.te=
+ch/
+>=20
+> > Sorry if this is redundant:
+> >=20
+> > I wonder if it'd make sense to prefix the property like this:
+> > "raspberrypi,wifi-2.4ghz-coexistence." I tend to associate the lack of =
+prefix
+> > with generic properties, and also thought it was a rule. Although I may=
+ have as
+> > well imagined it.
+>=20
+> Rob in the first iteration asked for the opposite :)
 
-Please make logic the other way around. ... triled_has_atc_ctl.
+Fair enough, then:
 
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
+Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
---Wb5NtZlyOqqy58h0
+Regards,
+Nicolas
+
+
+--=-Si3FC5Rwn4sE3tHN32Hz
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX5sG9wAKCRAw5/Bqldv6
-8sEiAJ9K2UA9erz7P3IYw9npZ2MKUROJ/wCcDk3HHP6eTsKa1rg8qOEmRM8UpM8=
-=WCEj
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+bBxgACgkQlfZmHno8
+x/7MIQf8CumOgp9BNlym7/DOS46fLZCDh9XuUv2MduUAdyrSsnvucoiKqoXYvw1g
+8xULNi/G7D/faPC6ckWb0AvxNoSy1ipJ0ckp46bvzOaFivHFBCfAWK428T/2Y6EF
+qH/r0g8VaygPzvo6J2GOKXR/VitlmDVhnlIWcz/x8RqX0KQR4doPcjasU4eDomg7
+F87j4m31WIkp4husWqbnX6PSNq7z+RGwhrr3/rznlqpCDGrpap+8BfXU7FWwU1aL
+DOjmqHU1w65Vy4nGXUNbKDaBvA/RaKwkdi/1Sa7UlZfHWYq4kTrLbsXBFcvdI2XA
+wquVgDq1ISPdQJd5+ijRB3q3UhD61g==
+=yX7+
 -----END PGP SIGNATURE-----
 
---Wb5NtZlyOqqy58h0--
+--=-Si3FC5Rwn4sE3tHN32Hz--
+
