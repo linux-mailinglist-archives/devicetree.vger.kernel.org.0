@@ -2,123 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53B1B29E3F4
+	by mail.lfdr.de (Postfix) with ESMTP id C293B29E3F5
 	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:24:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726707AbgJ2HYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 03:24:43 -0400
-Received: from mga01.intel.com ([192.55.52.88]:38435 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726691AbgJ2HYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 03:24:30 -0400
-IronPort-SDR: yy/pO3bjNC0xugZK4VtG1V+eY/DNFQgPy2Nws8dElmmLAXkSf1dWuZnY3svAXesdlsfnSjs0dr
- upVDMzAJ53Mg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9788"; a="186163408"
-X-IronPort-AV: E=Sophos;i="5.77,429,1596524400"; 
-   d="scan'208";a="186163408"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2020 23:20:20 -0700
-IronPort-SDR: beKd6omMK9893Skk8wkVWlk+DSR7GtZDBzyEYRZQqwjlW6ROLAE+AB7JENGXY6BssiHqUYJ5sa
- eE3e6wTRqPoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,429,1596524400"; 
-   d="scan'208";a="536541043"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by orsmga005.jf.intel.com with ESMTP; 28 Oct 2020 23:20:16 -0700
-From:   "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     broonie@kernel.org, vigneshr@ti.com, tudor.ambarus@microchip.com,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, miquel.raynal@bootlin.com,
-        simon.k.r.goldschmidt@gmail.com, dinguyen@kernel.org,
-        richard@nod.at, cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Subject: [PATCH v5 0/6] spi: cadence-quadspi: Add QSPI controller support for Intel LGM SoC
-Date:   Thu, 29 Oct 2020 14:20:08 +0800
-Message-Id: <20201029062014.27620-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
+        id S1727186AbgJ2HYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 03:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726868AbgJ2HYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:24:35 -0400
+Received: from mail-pg1-x549.google.com (mail-pg1-x549.google.com [IPv6:2607:f8b0:4864:20::549])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8553BC05BD1C
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:48 -0700 (PDT)
+Received: by mail-pg1-x549.google.com with SMTP id j5so1372309pgt.4
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:in-reply-to:message-id:mime-version:references:subject
+         :from:to:cc;
+        bh=NlA2Q1plJiXwee/bURImWwW/NspPrk3H/x9qNMDU45U=;
+        b=IXq8Lkth1DgtGhxxU++wRNHNtTarSAIhhkxHYxbzunphsM38u/04C5L6HuMTqKCRib
+         KrnD5sA3YR6eQCk/xvfa0ENEjAuZHtL13ib2Kp45EJJlij9Tb+iBnlzg+6kim8uzaag5
+         36HkTacBASFUPVXdhdcb4FiA99mLJoSZzJBmbYylzMA0bVFw+QgVL712zNKHcriuENDR
+         7yBeIx9Xyn0thPYexVaNDZTPmvBRyeefzeODnjyxXn54NBxk8WjkPsM0uEEQXtGuos+m
+         A0mcjQJN5qUOx4k+vT/xVYv+3uDAafmzp45jYOmdenmVN389cBWQPY2FDfj9y9piqBA2
+         GAtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=NlA2Q1plJiXwee/bURImWwW/NspPrk3H/x9qNMDU45U=;
+        b=RMCjBk7mrgbOTE5eywFAdzkk/0Ml7QHofSVhkiU8gaBAmXfmwc3nSAPUmJg25RuPRC
+         UG0imjpX9hgULPjA9AtbOP7CWxrvRvO0I2olUyOGfRpXycpR1RMInb3yvRC+LhiFMtPd
+         ywfJg+pk7Go0IuAarYdR22p3OhYUFT9TMWkihQptpr2YedifFXcCf4k6GQXKzmldCedR
+         +G15FPwNDzof1Y1XsaYSUQaHAgfom7u3L8xg9Qw4OnJZDa88HPneIEd4HdAWjCfz10bA
+         iBGZFUKl7AXLBEpAcy+56ZdeeP2yZvxLBa/RiRvwHjErIYW2B/JD7XMpKTj/5nIT/rdE
+         9y2w==
+X-Gm-Message-State: AOAM531U/3KPLsYEx0Ub5or2dPMQtTJjnu8v6zBQYJS45AmOQDuEnEq+
+        dA/3tnPJJ+HCKGdGssACjrKwVf8EoP8=
+X-Google-Smtp-Source: ABdhPJyDg7/xASjhCuThx+DjiDF6mhdbWThW7djCT8831GwkNZwkEVnqwdncJO2LoLf03eZ5mI8SDUX0Ho4=
+Sender: "badhri via sendgmr" <badhri@badhri.mtv.corp.google.com>
+X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:201:f292:1cff:fee0:66cf])
+ (user=badhri job=sendgmr) by 2002:a17:90b:1081:: with SMTP id
+ gj1mr2013442pjb.15.1603953108066; Wed, 28 Oct 2020 23:31:48 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 23:31:30 -0700
+In-Reply-To: <20201029063138.1429760-1-badhri@google.com>
+Message-Id: <20201029063138.1429760-3-badhri@google.com>
+Mime-Version: 1.0
+References: <20201029063138.1429760-1-badhri@google.com>
+X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
+Subject: [PATCH v12 02/10] usb: typec: tcpci_maxim: Fix the compatible string
+From:   Badhri Jagan Sridharan <badhri@google.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add QSPI controller support for Intel LGM SoC.
+Changing compatible string to include the part number.
 
-Note from Vignesh(mtd subsystem maintainer):
-This series is a subset of "[PATCH v12 0/4] spi: cadence-quadspi: Add
-support for the Cadence QSPI controller" by Ramuthevar,Vadivel MuruganX
-<vadivel.muruganx.ramuthevar@linux.intel.com> that intended to move
-cadence-quadspi driver to spi-mem framework
-
-Those patches were trying to accomplish too many things in a single set
-of patches and need to split into smaller patches. This is reduced
-version of above series.
-
-Changes that are intended to make migration easy are split into separate
-patches. Patches 1 to 3 drop features that cannot be supported under
-spi-mem at the moment (backward compatibility is maintained).
-Patch 4-5 are trivial cleanups. Patch 6 does the actual conversion to
-spi-mem and patch 7 moves the driver to drivers/spi folder.
-
-I have tested both INDAC mode (used by non TI platforms like Altera
-SoCFPGA) and DAC mode (used by TI platforms) on TI EVMs.
-
-Patches to move move bindings over to
-"Documentation/devicetree/bindings/spi/" directory and also conversion
-of bindig doc to YAML will be posted separately.  Support for Intel
-platform would follow that.
-
-Reference:
-        https://lkml.org/lkml/2020/6/1/50
-
+Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
 ---
-v5:
-  - Rob's review comments update
-  - const with single compatible string kept
-v4:
-  - Rob's review comments update
-  - remove '|' no formatting to preserve
-  - child node attributes follows under 'properties' under '@[0-9a-f]+$'.
-v3:
-  - Pratyush review comments update
-  - CQSPI_SUPPORTS_MULTI_CHIPSELECT macro used instead of cqspi->use_direct_mode
-  - disable DAC support placed in end of controller_init
-v2:
-  - Rob's review comments update for dt-bindings
-  - add 'oneOf' for compatible selection
-  - drop un-neccessary descriptions
-  - add the cdns,is-decoded-cs and cdns,rclk-en properties as schema
-  - remove 'allOf' in not required place
-  - add AdditionalProperties false
-  - add minItems/maxItems for qspi reset attributes
+V11 is the first version of the patch.
+Introduced to add chip number to the compatible property to address
+Rob Herring's comment on dt-binding patch.
 
-resend-v1:
-  - As per Mark's suggestion , reorder the patch series 1-3 driver
-    support patches, series 4-6 dt-bindings patches.
-v1:
-  - initial version
+Change since v11:
+Changed compatible property from maxim,33359 to maxim,max33359
+to address Rob Herring's comment
+---
+ drivers/usb/typec/tcpm/tcpci_maxim.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-
-Ramuthevar Vadivel Murugan (6):
-  spi: cadence-quadspi: Add QSPI support for Intel LGM SoC
-  spi: cadence-quadspi: Disable the DAC for Intel LGM SoC
-  spi: cadence-quadspi: Add multi-chipselect support for Intel LGM SoC
-  spi: Move cadence-quadspi.txt to Documentation/devicetree/bindings/spi
-  dt-bindings: spi: Convert cadence-quadspi.txt to cadence-quadspi.yaml
-  dt-bindings: spi: Add compatible for Intel LGM SoC
-
- .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 ---------
- .../devicetree/bindings/spi/cadence-quadspi.yaml   | 151 +++++++++++++++++++++
- drivers/spi/Kconfig                                |   2 +-
- drivers/spi/spi-cadence-quadspi.c                  |  31 +++++
- 4 files changed, 183 insertions(+), 68 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
-
+diff --git a/drivers/usb/typec/tcpm/tcpci_maxim.c b/drivers/usb/typec/tcpm/tcpci_maxim.c
+index 723d7dd38f75..a5014c3b51d5 100644
+--- a/drivers/usb/typec/tcpm/tcpci_maxim.c
++++ b/drivers/usb/typec/tcpm/tcpci_maxim.c
+@@ -481,7 +481,7 @@ MODULE_DEVICE_TABLE(i2c, max_tcpci_id);
+ 
+ #ifdef CONFIG_OF
+ static const struct of_device_id max_tcpci_of_match[] = {
+-	{ .compatible = "maxim,tcpc", },
++	{ .compatible = "maxim,max33359", },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, max_tcpci_of_match);
 -- 
-2.11.0
+2.29.1.341.ge80a0c044ae-goog
 
