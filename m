@@ -2,114 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C3AF29F5CD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:04:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E771929F5D9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:07:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726320AbgJ2UEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 16:04:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33896 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725780AbgJ2UE3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 16:04:29 -0400
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 63E1520809;
-        Thu, 29 Oct 2020 20:04:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604001868;
-        bh=AOvWudq0ZqsWRnN/qXnDh5LtmEQC83i+z8hhzYFp75c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=E9pSr6O/G6YE5XFNmqJqljbHx3wSzq6bVnhYgluqrf/H7wEGt4aAL9MLa6Ef2g5bE
-         4w5Ruk1xZvDR0sd7whf/fLVhUkTVh6Yvbg+wvF3ZK42Y28B6ivLMgvYklEgjEcZcBs
-         SnRh+ePJ2S1j6tL012nn1pFY9GPKgLLRWuNt5q28=
-Received: by mail-oo1-f52.google.com with SMTP id o129so1018129ooo.11;
-        Thu, 29 Oct 2020 13:04:28 -0700 (PDT)
-X-Gm-Message-State: AOAM533ddLpQ0DP4oum4dl1uU0tdMPjrBnHgvTBuW+dfRdx3iGpHsSNY
-        WfFOajgru19sxhicxDtFJFKG2yxOpL2rK7CgeA==
-X-Google-Smtp-Source: ABdhPJzY69332/TXD/GEbGo1Phdkm8uP9368uPwVctCb5SZBvuiMltO4sKY7UEYa7BklecuGbw5fafj/oTXoXLnSFpE=
-X-Received: by 2002:a4a:dcc8:: with SMTP id h8mr4529803oou.81.1604001867553;
- Thu, 29 Oct 2020 13:04:27 -0700 (PDT)
+        id S1726254AbgJ2UHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 16:07:22 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:36161 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725780AbgJ2UHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 16:07:21 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201029200709euoutp014fdc5f215d799a6a598eb5850daa5344~Cj1jyXyMa2772627726euoutp01f;
+        Thu, 29 Oct 2020 20:07:09 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201029200709euoutp014fdc5f215d799a6a598eb5850daa5344~Cj1jyXyMa2772627726euoutp01f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604002029;
+        bh=YuwLhAIFw/2V3cH63KEC8GpC0kRBCETejdjnWHvaNbg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=GqoXbywluP7mPxNkcFqMYNzvflMgD1SdEjrxq76mkcmtKZPon1mR+TLVktYO5V63c
+         lK/zj8ySjxRjrxctG2Abca1qRDdVtkC4ppRaktuFuo19e3idux8fLWWFJVVbSWmLpQ
+         2A5igdNQ/8UqN6gdK2fnZVmQFoPWPbdHui8GvWgw=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201029200708eucas1p216c9faabaac5ca74c134b948f6ac974c~Cj1jBw_mj0694306943eucas1p26;
+        Thu, 29 Oct 2020 20:07:08 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id AF.B5.06318.CE02B9F5; Thu, 29
+        Oct 2020 20:07:08 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201029200708eucas1p1f00cdaf2c217056427dcd08f9d0d8bc9~Cj1irTHzI1525415254eucas1p1K;
+        Thu, 29 Oct 2020 20:07:08 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201029200708eusmtrp23d745a85010d803ecc9e1bf98848da9c~Cj1iqgaMV1271312713eusmtrp2n;
+        Thu, 29 Oct 2020 20:07:08 +0000 (GMT)
+X-AuditID: cbfec7f5-371ff700000018ae-d1-5f9b20ece31b
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id F7.11.06314.CE02B9F5; Thu, 29
+        Oct 2020 20:07:08 +0000 (GMT)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20201029200708eusmtip16a3a16dbc2e04b09113e25742b1325e5~Cj1ihDX9F0198001980eusmtip1Q;
+        Thu, 29 Oct 2020 20:07:08 +0000 (GMT)
+From:   Lukasz Stelmach <l.stelmach@samsung.com>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?utf-8?Q?Bart=C5=82omiej?= =?utf-8?Q?_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>
+Subject: Re: [PATCH v4 2/5] dt-bindings: net: Add bindings for AX88796C SPI
+ Ethernet Adapter
+Date:   Thu, 29 Oct 2020 21:06:57 +0100
+In-Reply-To: <41ffa67f-54af-4a21-fedc-d9008be00e89@pengutronix.de> (Marc
+        Kleine-Budde's message of "Thu, 29 Oct 2020 18:06:42 +0100")
+Message-ID: <dleftjpn50vlsu.fsf%l.stelmach@samsung.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-References: <20201020193850.1460644-1-helen.koike@collabora.com> <20201020193850.1460644-6-helen.koike@collabora.com>
-In-Reply-To: <20201020193850.1460644-6-helen.koike@collabora.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 29 Oct 2020 15:04:16 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK3xhPHscbB+waDqEjKeRoeZ0MNu88fp70g9CSC02Qopw@mail.gmail.com>
-Message-ID: <CAL_JsqK3xhPHscbB+waDqEjKeRoeZ0MNu88fp70g9CSC02Qopw@mail.gmail.com>
-Subject: Re: [PATCH v6 5/9] media: staging: rkisp1: remove unecessary clocks
-To:     Helen Koike <helen.koike@collabora.com>
-Cc:     Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Mark Rutland <mark.rutland@arm.com>, karthik.poduval@gmail.com,
-        Eddie Cai <eddie.cai.linux@gmail.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Robin Murphy <robin.murphy@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
+        protocol="application/pgp-signature"
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRjm2zln57iaHJfly4qypYKKlzLq62YmQod+9asiKp15MMlN2dSy
+        fliZWmJqdtGmoWmUGrqcY2roiCWuXDovIIsaYUaZaZpWaBdr80zo3/Nenud9no+PIWQFYjmT
+        os7gNWplqkIsIU09C/awSf/K+Mj53CBsd1oI3FKhp3CV/TKJq7v7KVw7XUHhkak3FC4Z+0xg
+        u/0xjQdMxRQ2jI1QePhJlRhX2M0ibLnVhXBTt5PG+tqbJO6pWYPzurrpGB9ueGSQ4IwNr0Rc
+        h85Jc4bGq2Ku9X4O19E+J+JK/kRyxcZGxM0Z1h/0OirZncSnpmTxmojoBMmpRkMDlV658uxs
+        +Sx5AfVICpEXA+xWsF1vExciCSNj6xE4ul+QQvENwZBtjBKKOQSzr4bEy5Rfiy1IGDxEsJB7
+        08P/iGC6V0cUIoYRs+HQ1HTETfBlQ+D117YlMsF+IyGvIcGNV7EnYG50nHZjkg2E3z/aabeO
+        F1uAoPVLL+EeSNnt4HhtXSKvZneAcfwtLfR94MWd96QgqoI79sklR8C2M9A31okEq3EwM2ET
+        CXgVTFiNtIDXwd+OapHbKLA5cKNsm8AtQmCqmieFnV3wpv+nJ/I+GC/I8+x7g2PKR7jrDWWm
+        ckJoS+FKvkzYDoDmkk6PihyuTdR73HAwq9d5XvSWK2PdPboU+ev+i6P7L47OJUuwwaB/EiG0
+        Q+HBvc+EgPdAc/M0WYOoRuTHZ2pVybw2Ss2fCdcqVdpMdXL4yTSVAbm+pG3R+r0dmX8nWhDL
+        IMVKacyGyngZpczSZqssKMCl9O7xowEkJ9Vpal7hK43ts52QSZOU2ed4TVq8JjOV11rQWoZU
+        +Emjaj8dl7HJygz+NM+n85rlqYjxkl9AoYMHfu25DFW5zBY5U5sXWHB9zdOyQ0XGheQ/85fK
+        o0OOOoqj91uDXrYVxe4t+j6scppLP1rL6s7n9FfWHQ7221sa4Lw4Exd4dRTbPujDKNvBwylZ
+        225nPH+maM1fseuvg44mj203UWeDgnck+i7Wvzcnju+8K8rSZVY33O3K37hJQWpPKTeHEBqt
+        8h8VP5aAmgMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrLIsWRmVeSWpSXmKPExsVy+t/xu7pvFGbHG7TP4Lc4f/cQs8XGGetZ
+        Leacb2GxmH/kHKvFovczWC2uvb3DatH/+DWzxfnzG9gtLmzrY7XY9Pgaq8XlXXPYLGac38dk
+        cWjqXkaLtUfuslusXzSFxeLYAjGL1r1H2B0EPS5fu8jssWXlTSaPnbPusntsWtXJ5rF5Sb3H
+        zh2fmTz6/xp49G1ZxejxeZNcAGeUnk1RfmlJqkJGfnGJrVK0oYWRnqGlhZ6RiaWeobF5rJWR
+        qZK+nU1Kak5mWWqRvl2CXsaqTStZC2bzVHya/omlgfEYVxcjJ4eEgInE738bGbsYuTiEBJYy
+        Sly7OYeti5EDKCElsXJuOkSNsMSfa11sILaQwFNGiRMLlUBK2AT0JNaujQAJiwhoSdz+uJ0N
+        ZAyzwHcWiQsnL7GAJIQFYiTuzF/NClIvJOAo0TudHyTMIqAq8efbDnaQek6BdkaJze9OMYMk
+        eAXMJW7cPg62S1TAUmLLi/vsEHFBiZMzn4DNZBbIlvi6+jnzBEaBWUhSs5CkZgGtYxbQlFi/
+        Sx8irC2xbOFrZgjbVmLduvcsCxhZVzGKpJYW56bnFhvqFSfmFpfmpesl5+duYgRG97ZjPzfv
+        YLy0MfgQowAHoxIPr4P87Hgh1sSy4srcQ4wqQGMebVh9gVGKJS8/L1VJhNfp7Ok4Id6UxMqq
+        1KL8+KLSnNTiQ4ymQI9OZJYSTc4HJqS8knhDU0NzC0tDc2NzYzMLJXHeDoGDMUIC6Yklqdmp
+        qQWpRTB9TBycUg2MCcw5rBMf37dm2r0ypfqWKJ+K7Z6Wx/apXHcdS9o0DrYvc3sVXX48P3Sy
+        3KuzW7boL+zQZEswdXjgyZnlqfzd7+kr3SvLTp2+pMcuq7dnm4i42ZNOtYnOLar3Hl1gvthx
+        JEe2YDfn2l7/eRF+U7mr9yy5zHex1uia5t13rS3rS/i8MpyY1LYosRRnJBpqMRcVJwIA79tf
+        qRADAAA=
+X-CMS-MailID: 20201029200708eucas1p1f00cdaf2c217056427dcd08f9d0d8bc9
+X-Msg-Generator: CA
+X-RootMTR: 20201029200708eucas1p1f00cdaf2c217056427dcd08f9d0d8bc9
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201029200708eucas1p1f00cdaf2c217056427dcd08f9d0d8bc9
+References: <41ffa67f-54af-4a21-fedc-d9008be00e89@pengutronix.de>
+        <CGME20201029200708eucas1p1f00cdaf2c217056427dcd08f9d0d8bc9@eucas1p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 20, 2020 at 2:39 PM Helen Koike <helen.koike@collabora.com> wrote:
->
-> aclk_isp_wrap is a child of aclk_isp, and hclk_isp_wrap is a child of
-> hclk_isp, thus we can remove parents from the list.
->
-> Also, for the isp0, we only need the ISP clock, ACLK and HCLK.
-> In the future we'll need a pixel clock for RK3288 and RK3399, and a JPEG
-> clock for RK3288.
->
-> So with the goal to cleanup the dt-bindings and remove it from staging,
-> simplify clock names to isp, aclk and hclk.
->
-> Assigned clocks are meant to refer to the full path in the clock tree,
-> i.e. the leaf in the tree.
-> For instance, in RK3399, the clock responsible for ACLK (ISP AXI CLOCK)
-> is aclk_isp0_wrapper.
->
-> For reference, this is the isp clock topology on RK3399:
->
->  xin24m
->     pll_npll
->        npll
->           clk_isp1
->           clk_isp0
->     pll_cpll
->        cpll
->           aclk_isp1
->              aclk_isp1_noc
->              hclk_isp1
->                 aclk_isp1_wrapper
->                 hclk_isp1_noc
->           aclk_isp0
->              hclk_isp1_wrapper
->              aclk_isp0_wrapper
->              aclk_isp0_noc
->              hclk_isp0
->                 hclk_isp0_wrapper
->                 hclk_isp0_noc
->  pclkin_isp1_wrapper
->
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> Reviewed-by: Tomasz Figa <tfiga@chromium.org>
->
-> ---
->
-> Changes in V6:
-> - Define clocks in the top level, and use if/else schema to define how
->   many for each compatible as sugested by Rob Herring on
->   https://patchwork.linuxtv.org/project/linux-media/patch/20200722155533.252844-6-helen.koike@collabora.com/#122626
-> ---
->  .../bindings/media/rockchip-isp1.yaml         | 44 +++++++++++++------
->  drivers/staging/media/rkisp1/rkisp1-dev.c     |  8 ++--
->  2 files changed, 33 insertions(+), 19 deletions(-)
+--=-=-=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+It was <2020-10-29 czw 18:06>, when Marc Kleine-Budde wrote:
+> On 10/28/20 10:40 PM, =C5=81ukasz Stelmach wrote:
+>> Add bindings for AX88796C SPI Ethernet Adapter.
+>>=20
+>> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
+>> ---
+>>  .../bindings/net/asix,ax88796c.yaml           | 69 +++++++++++++++++++
+>>  1 file changed, 69 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c.=
+yaml
+>>=20
+>> diff --git
+>> a/Documentation/devicetree/bindings/net/asix,ax88796c.yaml
+>> b/Documentation/devicetree/bindings/net/asix,ax88796c.yaml
+>> new file mode 100644
+>> index 000000000000..05093c1ec509
+
+[...]
+
+>> +  - interrupts
+>> +  - interrupt-parrent
+>                    ^^
+>
+> typo?
+
+Indeed, removing this but thanks anyway.
+
+=2D-=20
+=C5=81ukasz Stelmach
+Samsung R&D Institute Poland
+Samsung Electronics
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl+bIOEACgkQsK4enJil
+gBBYNgf/R/+BlHWdeKNjGdUGq9u9ScuX49zOkp4bP9gI70YuAry4sNcAPqnuFzx7
+/oiUp7xecHvU7z+KWfuU15oi5y0waMBjEmpYMTpuN070bv5s5EpEMH/zpp3Bo5zF
+6UjZZFbCfsxGclkstiRrHw42e5Kw5i+Z3fp/i67cMit1pgr0bplQ+HQi+uuC5lCE
+SCBMqYF7oJTb9ZM9382+vgJ5b+DwWm3DIiahPHg0JhI3U1UOwRlh/q/f/WoZ5MQA
+zavEyLZSgGnexzp6zTIC4J4bLOArWs+Ckzy9lneEG2f509bbgrTRyWuXcVc0Xpc2
+Wyp/HMbG1PRoVAfUQNrv28E6GMae7w==
+=egla
+-----END PGP SIGNATURE-----
+--=-=-=--
