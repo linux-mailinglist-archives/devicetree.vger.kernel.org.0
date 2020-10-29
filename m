@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9099D29E56A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8636129E418
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727160AbgJ2HYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 03:24:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55368 "EHLO
+        id S1726046AbgJ2HeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 03:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726735AbgJ2HYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:24:34 -0400
-Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA400C05BD24
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:52 -0700 (PDT)
-Received: by mail-qv1-xf49.google.com with SMTP id a1so953311qvt.9
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:52 -0700 (PDT)
+        with ESMTP id S1728251AbgJ2HY7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:24:59 -0400
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF2FEC05BD25
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:54 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id j10so1631105ybl.19
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=mtMGAzSIXhq9aXQBscSgtdribEudRLJd8ZDm7F7aN+Q=;
-        b=MzDz/8lGegKD7cOyFrpzaM6DS87nvvbx5nC+Fu1+89L7xSDv67Prs/sKVZt5GCSseH
-         NtoZBcYdnR+lrr01rf3YhjeOs1odtXOzobZqSqdojFLuba94QnPnOYxFRsq2qNaMmP7e
-         3crBZMTfYUDkhn04AfNxUMfhXtiYdByypHs2uPKJ3wzO1NO9vgr8+zw15siaHE4XEoGo
-         tTcKCWkNPO8Roev3aSjwapCDZ3VTN2jSbvKvttzgaOcSYufQSEM4DAOowNW3g7hFfdJm
-         cvxC2nHc1bF1irZl83dmbzzi9mrGzuunXppIE6H8n1SUQYkBQM5zQcaKKLO5Sj1foV+2
-         x02Q==
+        bh=HobQdiija1UHAC8Z9UnHwQZPe4I5ZvWSajBtFoTjVfA=;
+        b=b5wr5dYFmLvtUzF+1op0Ac3LpMV70844MHD3To2qSF+2q4QlW/F+pUAl4SB+qxHhWS
+         4Goba80/RBBpZxnh06qX9krXYmDKZK3tgR0akk2s9gLsf84z9T143K9wM7OlvnkphynD
+         Q3Lpx2UOeE/uxh90q7yMBD3UwAlc1FpgYZFjVT2XPHhrNq2S2VmxLlufViVzyKgHkRpo
+         O/RHYAefCepVm9gQAE9ztPsFgOzZnSwha1zn2bVGp7S9v3DbRCZ0gvHo7H0Uc49lCNNq
+         euWlcmKhmYDnZvhbqW5xhUSaM58LvwRISA0ehk0jo8wg21pNSd0rSEbbMqmlmloLGGzW
+         1iPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=mtMGAzSIXhq9aXQBscSgtdribEudRLJd8ZDm7F7aN+Q=;
-        b=rw3cZkgWJhuESVQDH0ZhNSWorFHZIiwvBEgLG7OLVwn5lAjCULrgURmngnvNmBWESs
-         HVa1ICFxyFEAuHeagPLW8Yiz4T7YUUaBDYqRz8K8ISg8+LMnC9CQN8Us5tp5wGb/RC+4
-         ZxYWnQX66pw2aTMvOCVv03MlfCGamODJTrrIi58zEFLOsUUt3UjGmRMnmzOvQBTDVU1+
-         UpOhNUhEdW9V+Eda9SKIt7NmJKIG9i3TNJ9u2CzHaI0tVbjQlsbNBF3sGtLTscrtzGZG
-         AOmjk+8C7cMOZzgJlQcN22C+/46LwESGxOuXZdY0wonJPPENVLy98Hsn7L4b3NTb28nw
-         o1ZA==
-X-Gm-Message-State: AOAM5307H3xNIKn21Pb6Dgy/vw3LeR8B5Le/J/FEsPMXjUryxaalvzS4
-        KddsCqY0ekjOCME+IcRA632mdQDJUgE=
-X-Google-Smtp-Source: ABdhPJzK8m+EfSDYe+BcMtQGqbsI1KxK0DzV6zOtcf9ICiFjzJN/9zR2s+8fA5Ek1aEOXA7qry1QhZV+TjE=
+        bh=HobQdiija1UHAC8Z9UnHwQZPe4I5ZvWSajBtFoTjVfA=;
+        b=TCchG/7mfQk29In9cLfGaQQTXQQCVmIzbntJBeEcgt89fAgTaTish/q7xdEM0eONjE
+         za8XGawbBGlyUh/jmryhTNF7Jho67jUJ6Sugel/bMc+P/gnjbyPCweO8BW+O2viaNcYC
+         63rKt21FPyd3srETnRtT7r7f5CSaq0h+4HQcjRFba/CfFIVWN2CDbbabZdMAYOPzyQNe
+         kM89RvRztU4wOdJm3cvfmo+8dnTyED/cFDZIbFJiU4g0/azIPkGcpjo9X/RXu7UjKlFK
+         1F7BJDhfD4C7X0g6WRqvBX8RzAqTgRXGq4yCm5C7L9nRtD2d4BuyvJHMTYaXho8uY9Qr
+         tTzQ==
+X-Gm-Message-State: AOAM531sHX+xZ3iEuWiiCr9qiumYmbpVgIu+tfhPV9WzmwCl5nYk4pLh
+        BVgn5yJcN87pAFFTzfuZTlmhAjI/+5E=
+X-Google-Smtp-Source: ABdhPJxAzjdNqR48IylJ3jiZ9ZeMVn2FilIRpaRHxu0nTTVydquetyPiESvLlySU6o6PSXnmQVFYKeRmA98=
 Sender: "badhri via sendgmr" <badhri@badhri.mtv.corp.google.com>
 X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:201:f292:1cff:fee0:66cf])
- (user=badhri job=sendgmr) by 2002:a05:6214:951:: with SMTP id
- dn17mr3023019qvb.9.1603953112037; Wed, 28 Oct 2020 23:31:52 -0700 (PDT)
-Date:   Wed, 28 Oct 2020 23:31:32 -0700
+ (user=badhri job=sendgmr) by 2002:a25:6ec3:: with SMTP id j186mr3849299ybc.165.1603953113997;
+ Wed, 28 Oct 2020 23:31:53 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 23:31:33 -0700
 In-Reply-To: <20201029063138.1429760-1-badhri@google.com>
-Message-Id: <20201029063138.1429760-5-badhri@google.com>
+Message-Id: <20201029063138.1429760-6-badhri@google.com>
 Mime-Version: 1.0
 References: <20201029063138.1429760-1-badhri@google.com>
 X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
-Subject: [PATCH v12 04/10] usb: typec: tcpm: frs sourcing vbus callback
+Subject: [PATCH v12 05/10] usb: typec: tcpci: frs sourcing vbus callback
 From:   Badhri Jagan Sridharan <badhri@google.com>
 To:     Guenter Roeck <linux@roeck-us.net>,
         Heikki Krogerus <heikki.krogerus@linux.intel.com>,
@@ -78,7 +78,9 @@ callback to perform chip specific operations.
 Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
 Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 ---
-Introduced in v9.
+v9 is the first version of this patch in the series. Added to fix
+occasional bug of vbus turning back on when disconnecting the FRS accessory
+after disconnect. No changes since v9.
 
 Changes since v10:
 Added Reviewed-by: Heikki Krogerus
@@ -86,53 +88,59 @@ Added Reviewed-by: Heikki Krogerus
 Changes since v11:
 none
 ---
- drivers/usb/typec/tcpm/tcpm.c | 9 +++++++++
- include/linux/usb/tcpm.h      | 4 ++++
+ drivers/usb/typec/tcpm/tcpci.c | 9 +++++++++
+ drivers/usb/typec/tcpm/tcpci.h | 4 ++++
  2 files changed, 13 insertions(+)
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 561480b67bce..0123d2f14c96 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -4091,7 +4091,16 @@ static void _tcpm_pd_vbus_on(struct tcpm_port *port)
- 	case SRC_TRY_DEBOUNCE:
- 		/* Do nothing, waiting for sink detection */
- 		break;
-+	case FR_SWAP_SEND:
-+	case FR_SWAP_SEND_TIMEOUT:
-+	case FR_SWAP_SNK_SRC_TRANSITION_TO_OFF:
-+	case FR_SWAP_SNK_SRC_SOURCE_VBUS_APPLIED:
-+		if (port->tcpc->frs_sourcing_vbus)
-+			port->tcpc->frs_sourcing_vbus(port->tcpc);
-+		break;
- 	case FR_SWAP_SNK_SRC_NEW_SINK_READY:
-+		if (port->tcpc->frs_sourcing_vbus)
-+			port->tcpc->frs_sourcing_vbus(port->tcpc);
- 		tcpm_set_state(port, FR_SWAP_SNK_SRC_SOURCE_VBUS_APPLIED, 0);
- 		break;
+diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
+index f9f0af64da5f..f91688e43991 100644
+--- a/drivers/usb/typec/tcpm/tcpci.c
++++ b/drivers/usb/typec/tcpm/tcpci.c
+@@ -284,6 +284,14 @@ static int tcpci_enable_frs(struct tcpc_dev *dev, bool enable)
+ 	return ret;
+ }
  
-diff --git a/include/linux/usb/tcpm.h b/include/linux/usb/tcpm.h
-index 09762d26fa0c..7303f518ba49 100644
---- a/include/linux/usb/tcpm.h
-+++ b/include/linux/usb/tcpm.h
-@@ -83,6 +83,9 @@ enum tcpm_transmit_type {
-  *		Optional; Called to enable/disable PD 3.0 fast role swap.
-  *		Enabling frs is accessory dependent as not all PD3.0
-  *		accessories support fast role swap.
++static void tcpci_frs_sourcing_vbus(struct tcpc_dev *dev)
++{
++	struct tcpci *tcpci = tcpc_to_tcpci(dev);
++
++	if (tcpci->data->frs_sourcing_vbus)
++		tcpci->data->frs_sourcing_vbus(tcpci, tcpci->data);
++}
++
+ static int tcpci_set_bist_data(struct tcpc_dev *tcpc, bool enable)
+ {
+ 	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
+@@ -628,6 +636,7 @@ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data)
+ 	tcpci->tcpc.pd_transmit = tcpci_pd_transmit;
+ 	tcpci->tcpc.set_bist_data = tcpci_set_bist_data;
+ 	tcpci->tcpc.enable_frs = tcpci_enable_frs;
++	tcpci->tcpc.frs_sourcing_vbus = tcpci_frs_sourcing_vbus;
+ 
+ 	err = tcpci_parse_config(tcpci);
+ 	if (err < 0)
+diff --git a/drivers/usb/typec/tcpm/tcpci.h b/drivers/usb/typec/tcpm/tcpci.h
+index 5ef07a56d67a..b418fe11b527 100644
+--- a/drivers/usb/typec/tcpm/tcpci.h
++++ b/drivers/usb/typec/tcpm/tcpci.h
+@@ -143,6 +143,9 @@
+ /*
+  * @TX_BUF_BYTE_x_hidden
+  *		optional; Set when TX_BUF_BYTE_x can only be accessed through I2C_WRITE_BYTE_COUNT.
 + * @frs_sourcing_vbus:
-+ *		Optional; Called to notify that vbus is now being sourced.
-+ *		Low level drivers can perform chip specific operations, if any.
++ *		Optional; Callback to perform chip specific operations when FRS
++ *		is sourcing vbus.
   */
- struct tcpc_dev {
- 	struct fwnode_handle *fwnode;
-@@ -109,6 +112,7 @@ struct tcpc_dev {
- 			   const struct pd_message *msg);
- 	int (*set_bist_data)(struct tcpc_dev *dev, bool on);
- 	int (*enable_frs)(struct tcpc_dev *dev, bool enable);
-+	void (*frs_sourcing_vbus)(struct tcpc_dev *dev);
+ struct tcpci;
+ struct tcpci_data {
+@@ -154,6 +157,7 @@ struct tcpci_data {
+ 	int (*start_drp_toggling)(struct tcpci *tcpci, struct tcpci_data *data,
+ 				  enum typec_cc_status cc);
+ 	int (*set_vbus)(struct tcpci *tcpci, struct tcpci_data *data, bool source, bool sink);
++	void (*frs_sourcing_vbus)(struct tcpci *tcpci, struct tcpci_data *data);
  };
  
- struct tcpm_port;
+ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data);
 -- 
 2.29.1.341.ge80a0c044ae-goog
 
