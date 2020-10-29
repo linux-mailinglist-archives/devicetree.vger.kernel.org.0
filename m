@@ -2,88 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F067F29EFE2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 783AE29EFDB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:29:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728238AbgJ2P3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 11:29:08 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36755 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728189AbgJ2P05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:26:57 -0400
-Received: by mail-oi1-f194.google.com with SMTP id y186so3584520oia.3;
-        Thu, 29 Oct 2020 08:26:57 -0700 (PDT)
+        id S1728229AbgJ2P2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 11:28:48 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38688 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728217AbgJ2P1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:27:23 -0400
+Received: by mail-ot1-f68.google.com with SMTP id b2so2594900ots.5;
+        Thu, 29 Oct 2020 08:27:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4OFBgFX8nLewiGm0jPfaiHisoQ+37/JFIGxKrAiCiQ0=;
-        b=LXfpRCb82FBJtaOftXsJGLwN3cs0ooQ6JJzWyaWWZA70CAPZF6hJ+IY94Dzv08dTp5
-         B/o363Lu3CqggkUwN5z48VBxCuDz57dEUQ7fRCr+F/54vkH6lRuHe1NCTuzVAQDYPs1f
-         nSSwnRznZwadZSYcHbg0NUHLlpeZ4RzPLmnj9t+lDvC0K3uCVswL/BKKsTbtst3beRDB
-         l8Q4I8AcKHWCMq8PK6iw9uVd7cV0KngdF4ZTS+tyEuRxMQL5KcQP3AtDoTY9lQSkFN5B
-         TmSnN/oBw83vYo3EAwzgkj4C+Y3XD7G0Ki/LVwMYQgs1nYmvbkjOuihYv/ZMn116Jlgo
-         Djmw==
-X-Gm-Message-State: AOAM532WQVQWBwjss1zVW87xWYVvXLQ19hu1dVAFu9Luw00zv7DRtn33
-        iCf+Ulyxw5NINCgPWtxCAA==
-X-Google-Smtp-Source: ABdhPJw8CuiTPteZx2cGCfAEj/1GKhtCCfbr2/hiuI3d+cIboYSSNq6Ss3yQni+9Jc/GGf1rHNK0zQ==
-X-Received: by 2002:aca:b854:: with SMTP id i81mr316628oif.6.1603985217102;
-        Thu, 29 Oct 2020 08:26:57 -0700 (PDT)
+        bh=YqBVpZJyYpJyhp8SRHdLNd51IEGUo51ZrRSOs/0b7TU=;
+        b=QWRS33aWIBAXFK6Vj5yz97EhVQtKAsx1jUdXMgfX42NkXE1Pm5A4gnhjEVCgI3j8rZ
+         fSft4XqjCcs4JMyWFpYJ+G2aORIOgRtz0IdFWK5nk152jkgvHs9Q1AEzeqXWr2uTjLhj
+         M2jOUXy72ZQs9e/N15mQWhVssAmyNoCHOOLMKxrncaSCZ59EHWf6Sp3BD3hg8mXxEX9D
+         jQf8YX62BInMbbFsTkGIMzpsy+8yKTSUrGvW/vrGgacQ51q0lQjwpfsMMaW46P8IBoJN
+         T+1wETM5E4p4YrPFg/Noq59j+/DevNlZXSwWfoum7UAZ6J2N597oDroMFTUhjkHax0D6
+         9r/Q==
+X-Gm-Message-State: AOAM533UCsH1O/+R2VCzeSXld2SyGImmWjZCW5zd9tbNsptEKU9hYabw
+        w2lQjbsxN8u2+D1Lhmu41Q==
+X-Google-Smtp-Source: ABdhPJxBNf9vh1Y0QDtx0o5GqcNwyUkqQh3ylRhfQbv8CGPulkDRTiGrhi5y/dY64xZLdbWygxh2mw==
+X-Received: by 2002:a05:6830:155a:: with SMTP id l26mr3438506otp.88.1603985242687;
+        Thu, 29 Oct 2020 08:27:22 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c14sm667260otp.1.2020.10.29.08.26.55
+        by smtp.gmail.com with ESMTPSA id f142sm688509oib.10.2020.10.29.08.27.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 08:26:55 -0700 (PDT)
-Received: (nullmailer pid 1902350 invoked by uid 1000);
-        Thu, 29 Oct 2020 15:26:54 -0000
-Date:   Thu, 29 Oct 2020 10:26:54 -0500
+        Thu, 29 Oct 2020 08:27:21 -0700 (PDT)
+Received: (nullmailer pid 1902942 invoked by uid 1000);
+        Thu, 29 Oct 2020 15:27:21 -0000
+Date:   Thu, 29 Oct 2020 10:27:21 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        ilias.apalodimas@linaro.org, netdev@vger.kernel.org,
-        Richard Cochran <richardcochran@gmail.com>,
-        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH net-next v7 8/8] dt-bindings: net: dsa: Add documentation
- for Hellcreek switches
-Message-ID: <20201029152654.GA1901783@bogus>
-References: <20201028074221.29326-1-kurt@linutronix.de>
- <20201028074221.29326-9-kurt@linutronix.de>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        festevam@gmail.com, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
+        timur@kernel.org, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: fsl_aud2htx: Add binding doc
+ for aud2htx module
+Message-ID: <20201029152721.GB1901783@bogus>
+References: <1603877930-10553-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201028074221.29326-9-kurt@linutronix.de>
+In-Reply-To: <1603877930-10553-1-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Oct 2020 08:42:21 +0100, Kurt Kanzenbach wrote:
-> Add basic documentation and example.
+On Wed, 28 Oct 2020 17:38:49 +0800, Shengjiu Wang wrote:
+> AUD2HTX (Audio Subsystem TO HDMI TX Subsystem) is a new
+> IP module found on i.MX8MP.
 > 
-> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > ---
->  .../net/dsa/hirschmann,hellcreek.yaml         | 127 ++++++++++++++++++
->  1 file changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
+> changes in v2:
+> - fix indentation issue
+> - remove nodename
+> 
+>  .../bindings/sound/fsl,aud2htx.yaml           | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml:49:11: [warning] wrong indentation: expected 8 but found 10 (indentation)
 
 dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/sound/fsl,aud2htx.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1389458
+See https://patchwork.ozlabs.org/patch/1389813
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
