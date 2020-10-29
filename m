@@ -2,94 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5B229F2FA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 18:22:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47C0729F30D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 18:26:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726069AbgJ2RWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 13:22:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbgJ2RWt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 13:22:49 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8EDC0613CF;
-        Thu, 29 Oct 2020 10:22:49 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id a9so3614766wrg.12;
-        Thu, 29 Oct 2020 10:22:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FgiZbK6pWCFNNx9QFeZngzu7fh5OqvaG7wkwgkOFjSU=;
-        b=cpKWHh/noLvJenv/13DypTzJLrHma44Acp5C9pOHg6D3H7IFNvJnp0zTiuqvH9C2QF
-         mz8XA29iaaASTJ2RMZR7Uy8GZ+Za9cW65iG7rVFQOl4n+jJ5oZTIyhCvYjttlx4YdtNF
-         mbVNpDTFS7Qy9/JQM2MaY5Mx1Cai/NXG2z1Ssg1kITEdnHUIYuN/9UXZa9rJHRwNKQpo
-         L7aIVN0lBeXhSaAww99pKrbIsEZxwmNT8+wUZ4mGiVj/7lXzKBv41/XMvRStA1Ts4IOT
-         1R59FKz1O9s+lrPtw3Od2T1sBWxxN5RVQAdsSpsOuABB+3M0+lkV6zekSTUkzp0/FsHM
-         JAAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FgiZbK6pWCFNNx9QFeZngzu7fh5OqvaG7wkwgkOFjSU=;
-        b=gwTzWkPNh9+XxEmNyrK3/eMkE+weUQZYI4cWM1XOlarSPNvEFST2G3lERcV/qlAtQ5
-         Wbf5Yjz3QzHO9G58LTxDv45XbPYECtqOvpx7o6fHSdNQ2WXT9x+g0XW57wfu/pKQLqJh
-         dyn0lNk2jmQ1mBu6LjrUFMussk+/5U15oXKDSS7//t6y030bdbYIeAcFBdMGrKS53zcZ
-         62WmO22ze1RV6av4udJ5QM84H4Sxoq/TM1nODdGfL6fmOyAJChkV5+l1TkvFNWqSCF8E
-         zj7cuMqs3n1y928pmhp4giQgskkf6xDHwynbMTTqU5WeKfwi6I/yCAtwBXQ4xPYb5WvT
-         qNfA==
-X-Gm-Message-State: AOAM532mIiMIAoA+dDvDcVgtlX5iieeqsSI0ulk0Ea1F6zsmZnBVgJsh
-        K8QaLWanjcHcI4a4YXZDb4MLZK5N5MEqkScy1Mfeoo7Rq6gqlg==
-X-Google-Smtp-Source: ABdhPJzQqF47WuTZrrAWUm6UKRHFxSNxk2UxPVzZmh961NjEWLxLE1pT8IuMdscuOyDzwnx3gGWJapGFwC0H5g6Eni8=
-X-Received: by 2002:adf:81e5:: with SMTP id 92mr6842917wra.411.1603992168004;
- Thu, 29 Oct 2020 10:22:48 -0700 (PDT)
+        id S1725777AbgJ2RZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 13:25:57 -0400
+Received: from mx2.suse.de ([195.135.220.15]:55930 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726037AbgJ2RZ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 13:25:57 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 2788DAC9A;
+        Thu, 29 Oct 2020 17:25:56 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        ardb@kernel.org, linux-kernel@vger.kernel.org
+Cc:     robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-acpi@vger.kernel.org, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v5 0/7] arm64: Default to 32-bit wide ZONE_DMA
+Date:   Thu, 29 Oct 2020 18:25:43 +0100
+Message-Id: <20201029172550.3523-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-References: <20201028221302.66583-1-kholk11@gmail.com> <20201028221302.66583-2-kholk11@gmail.com>
- <20201029155053.GA1936493@bogus>
-In-Reply-To: <20201029155053.GA1936493@bogus>
-From:   AngeloGioacchino Del Regno <kholk11@gmail.com>
-Date:   Thu, 29 Oct 2020 18:22:36 +0100
-Message-ID: <CAK7fi1aRTKkA2ouidjB4tyPoCyfTa2-POhUM_9Y2DNphL7=W2A@mail.gmail.com>
-Subject: Re: [PATCH v9 1/3] dt-bindings: Add vendor prefix for Novatek
- Microelectronics Corp.
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, konradybcio@gmail.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dmitry.torokhov@gmail.com, priv.luk@gmail.com, marijns95@gmail.com,
-        phone-devel@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, andy.shevchenko@gmail.com,
-        rydberg@bitmath.org, martin.botka1@gmail.com,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il giorno gio 29 ott 2020 alle ore 16:50 Rob Herring <robh@kernel.org>
-ha scritto:
->
-> On Wed, 28 Oct 2020 23:13:00 +0100, kholk11@gmail.com wrote:
-> > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> >
-> > Add prefix for Novatek Microelectronics Corp.
-> >
-> > Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
->
->
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
->
-> If a tag was not added on purpose, please state why and what changed.
->
-The intention was to add the tag and I even recall adding it... probably
-my finger slipped and the changes didn't get saved, my bad disattention.
-I should probably stop developing when I'm overtired.
+Using two distinct DMA zones turned out to be problematic. Here's an
+attempt go back to a saner default.
 
-I'm sorry for that.
+I tested this on both a RPi4 and QEMU.
+
+---
+
+Changes since v4:
+ - Fix of_dma_get_max_cpu_address() so it returns the last addressable
+   addres, not the limit
+
+Changes since v3:
+ - Drop patch adding define in dma-mapping
+ - Address small review changes
+ - Update Ard's patch
+ - Add new patch removing examples from mmzone.h
+
+Changes since v2:
+ - Introduce Ard's patch
+ - Improve OF dma-ranges parsing function
+ - Add unit test for OF function
+ - Address small changes
+ - Move crashkernel reservation later in boot process
+
+Changes since v1:
+ - Parse dma-ranges instead of using machine compatible string
+
+Ard Biesheuvel (1):
+  arm64: mm: Set ZONE_DMA size based on early IORT scan
+
+Nicolas Saenz Julienne (6):
+  arm64: mm: Move reserve_crashkernel() into mem_init()
+  arm64: mm: Move zone_dma_bits initialization into zone_sizes_init()
+  of/address: Introduce of_dma_get_max_cpu_address()
+  of: unittest: Add test for of_dma_get_max_cpu_address()
+  arm64: mm: Set ZONE_DMA size based on devicetree's dma-ranges
+  mm: Remove examples from enum zone_type comment
+
+ arch/arm64/mm/init.c      | 16 ++++++------
+ drivers/acpi/arm64/iort.c | 52 +++++++++++++++++++++++++++++++++++++++
+ drivers/of/address.c      | 42 +++++++++++++++++++++++++++++++
+ drivers/of/unittest.c     | 18 ++++++++++++++
+ include/linux/acpi_iort.h |  4 +++
+ include/linux/mmzone.h    | 20 ---------------
+ include/linux/of.h        |  7 ++++++
+ 7 files changed, 130 insertions(+), 29 deletions(-)
+
+-- 
+2.29.0
+
