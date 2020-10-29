@@ -2,145 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0047629ECF5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:33:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D56129ED67
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:46:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725791AbgJ2Ndt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:33:49 -0400
-Received: from foss.arm.com ([217.140.110.172]:37132 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725300AbgJ2Nds (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 09:33:48 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BDEE9139F;
-        Thu, 29 Oct 2020 06:33:47 -0700 (PDT)
-Received: from [10.57.13.20] (unknown [10.57.13.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A0F23F719;
-        Thu, 29 Oct 2020 06:33:44 -0700 (PDT)
-Subject: Re: [PATCH 1/4] dt-bindings: opp: Introduce opp-sustainable bindings
-To:     Nishanth Menon <nm@ti.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vireshk@kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
-        rafael@kernel.org, sudeep.holla@arm.com, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201028140847.1018-2-lukasz.luba@arm.com>
- <20201028214713.zttk47qtua5jhieo@pureness>
- <5b3a99a8-6972-5c60-6cc5-00ec84387b97@arm.com>
- <20201029125932.fvhaj6fsgt3qvmoc@gloomily>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <792cce7c-a316-fee4-fbf6-3cfc688b7088@arm.com>
-Date:   Thu, 29 Oct 2020 13:33:42 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726578AbgJ2Nqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:46:46 -0400
+Received: from smtp1.de.adit-jv.com ([93.241.18.167]:43977 "EHLO
+        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727513AbgJ2Nqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:46:46 -0400
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+        by smtp1.de.adit-jv.com (Postfix) with ESMTP id D2C3A3C009C;
+        Thu, 29 Oct 2020 14:38:13 +0100 (CET)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ESvXkGf_EOH8; Thu, 29 Oct 2020 14:38:08 +0100 (CET)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 7D51F3C057F;
+        Thu, 29 Oct 2020 14:38:03 +0100 (CET)
+Received: from lxhi-065.adit-jv.com (10.72.94.34) by HI2EXCH01.adit-jv.com
+ (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 29 Oct
+ 2020 14:38:02 +0100
+From:   Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        <linux-renesas-soc@vger.kernel.org>
+CC:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Steffen Pengel <spengel@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>
+Subject: [PATCH 1/2] arm64: dts: renesas: r8a77961: Add CAN{0,1} placeholder nodes
+Date:   Thu, 29 Oct 2020 14:37:40 +0100
+Message-ID: <20201029133741.25721-1-erosca@de.adit-jv.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-In-Reply-To: <20201029125932.fvhaj6fsgt3qvmoc@gloomily>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.72.94.34]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+With the same background and purpose as described in v4.20-rc1
+commit 92bc66bfce99cd ("arm64: dts: renesas: r8a77965: Add CAN{0,1}
+placeholder nodes"), add can0 and can1 placeholder nodes.
 
+Signed-off-by: Eugeniu Rosca <erosca@de.adit-jv.com>
+---
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-On 10/29/20 12:59 PM, Nishanth Menon wrote:
-> On 10:04-20201029, Lukasz Luba wrote:
->>
->>
->> On 10/28/20 9:47 PM, Nishanth Menon wrote:
->>> On 14:08-20201028, Lukasz Luba wrote:
->>>> Add opp-sustainable as an additional property in the OPP node to describe
->>>> the sustainable performance level of the device. This will help to
->>>> estimate the sustainable performance of the whole system.
->>>>
->>>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
->>>> ---
->>>>    Documentation/devicetree/bindings/opp/opp.txt | 4 ++++
->>>>    1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
->>>> index 9847dfeeffcb..cd01028de305 100644
->>>> --- a/Documentation/devicetree/bindings/opp/opp.txt
->>>> +++ b/Documentation/devicetree/bindings/opp/opp.txt
->>>> @@ -154,6 +154,10 @@ Optional properties:
->>>>    - opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
->>>>      in the table have this, the OPP with highest opp-hz will be used.
->>>> +- opp-sustainable: Marks the OPP as sustainable. This property can be used for
->>>> +  estimating sustainable performance of the whole system. If multiple OPPs in
->>>> +  the table have this, the OPP with highest opp-hz will be used.
->>>
->>>
->>> By "sustainable", do you mean sustainable across Process, Voltage and
->>> Temperature corners upto the max rated operational Power-ON hours
->>> without IDLE state being achieved on the processor?
->>
->> Yes, in case of CPU: running 100% without idle at that particular OPP.
->> Running above that OPP would lead to cross control temperature.
-> 
-> We need to tighten the definitions a lot more here and add that to the
-> binding. What we are stating, if I am not misunderstanding is an OPP
-> that is guaranteed by SoC vendor that across Process Voltage and
-> Temperature corners - aka across the entire production spectrum
-> for the part number, *all* devices will operate at this OPP for the
-> mandated power-on-hours rating without hitting IDLE.
-> 
-> Example: So -40C to 125C, across the process (hot/cold/nominal), 100s of
-> thousands/millions of units can operate upto 125,0000 power-on-hours
-> while running a tight deadloop OR maybe high processing function or even
-> cpuburn[1]?
+diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+index 1ba30313c8b8..d2a5ea20378f 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+@@ -1017,6 +1017,16 @@ avb: ethernet@e6800000 {
+ 			status = "disabled";
+ 		};
+ 
++		can0: can@e6c30000 {
++			reg = <0 0xe6c30000 0 0x1000>;
++			/* placeholder */
++		};
++
++		can1: can@e6c38000 {
++			reg = <0 0xe6c38000 0 0x1000>;
++			/* placeholder */
++		};
++
+ 		pwm0: pwm@e6e30000 {
+ 			compatible = "renesas,pwm-r8a77961", "renesas,pwm-rcar";
+ 			reg = <0 0xe6e30000 0 8>;
+-- 
+2.29.0
 
-I think I know what you mean. But this would lead to redefining a lot
-more that just this optional field. This wide range -40C to 125C is for
-automotive chips, then what about opp-suspend, when the device cannot
-even reach that OPP under some stress test e.g. outside temp
-~100-110C...
-Or opp-turbo, shell all the OPPs have multidimensional table to reflect
-the temperature dependency for all affected optional fields?
-
-> 
-> 
-> Can you give me one SoC vendor and part that guarantees this? I am
-> wondering if this is all theoretical... There are tons of parameters
-> that come into play for "reliability" "sustainability" etc. Those are
-> tricky terminology that typically makes legal folks pretty happy to
-> debate for decades..
-
-Yes, but the outside temperature is probably most important for this use
-case.
-
-> 
-> just my 2 cents.
->>
->>>
->>> OR do you mean to leave it up to interpretation?
->>
->> I can tell how I would use them. There is thermal governor IPA, which
->> needs sustainable power either form DT or uses internal algorithm to
->> estimate it based on lowest allowed freq OPPs. Then it estimated
->> internal coefficients based on that value, which is not optimal
->> for lowest OPPs. When some higher OPP could be marked as sustainable,
->> it would lead to better estimation and better power budget split.
-> 
-> Seeing your series, I got an idea about how you plan on using it, I
-> just think we need to be more precise in our definition..
-
-Thank you for having a look on that and understanding the motivation
-behind this series.
-
-How about adding a description that this sustainable OPP is considered
-for normal room temp (20-25C)?
-
-BTW, in the Arm SCMI spec definition of that value (used in patch 4/4),
-there is no specific temperature for it, just:
-'This is the maximum performance level that the platform can
-sustain under normal conditions. In exceptional circumstances,
-such as thermal runaway, the platform might not be be able to
-guarantee this level.'
-
-I can put this whole description into the DT binding, if you like.
-
-> 
-> [1] https://patrickmn.com/projects/cpuburn/
-> 
