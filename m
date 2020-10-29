@@ -2,77 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E534929F07D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:51:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 106F429F08E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728352AbgJ2Pu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 11:50:56 -0400
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:35305 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728225AbgJ2Pu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:50:56 -0400
-Received: by mail-oo1-f68.google.com with SMTP id n16so822810ooj.2;
-        Thu, 29 Oct 2020 08:50:55 -0700 (PDT)
+        id S1728426AbgJ2Pwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 11:52:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728239AbgJ2Pwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:52:39 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BD2C0613CF;
+        Thu, 29 Oct 2020 08:52:37 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id s9so3300604wro.8;
+        Thu, 29 Oct 2020 08:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=5rqiFVQb3qlfcy/RMXrG6KMOgOP9hKGgbNSh4Mn0ao4=;
+        b=C+asKu+9N2YOq2S3u6F4eJLJJqqtq56odjCV97nyjvlKnRPgmAYDEPtrq3n2EX25Fj
+         T15RMMjC1gvouhGPaBm18G4dlY+Xf12qMrcR6k/ck+RmwFVWv5MSYV0kH75lv0SuKJvZ
+         CgB0lzAA3WfmHp+wIfkQ5lb73wPt8b0ZvxaoFflOgfekOd7ZZ+jDWuyQr/j6XGBcGGiN
+         LySimvGqX0haxEc1kdU4LsPOm5X0KFBG9i5n6txDKbJcXV1R1nPnJ4dJjGgqqwD8hUJr
+         za/8ImFkISW7hONm6WdSFgzu4Oy/+75WbQzD7fExc22wr/CbLc7dQKkt58mm1pCG1gpj
+         lWXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iNrItceSx1kMGmkUqnj6iHlC9+yjJU/megR871MH1s4=;
-        b=mCQ/VPJSZmlk+GktZFGxZGnhRM42IVSV/lBJEavqslAbikCQ6RvOaqtct7sUcJdl4/
-         CXknJi2+ZlyiTpF60mzmrgyI4vE/q/vODWDxa2iukxZZF7lz5g0rdQINF3OMd7AiYnqS
-         wuirLazlhAiP48Y0h2yPh9o0Oj0hlT5jt+ggptBGIm7fSAbRQdKuOjvbHTZ+xevSbRzV
-         a8CqQ1lkNIj9lnzsp+zL8xAw5fcoy9VH3pvyspKnCwNoBBADKVmaU72zZrYfNi8H3FFM
-         Vr7cts2GEGtiCauLweBUM3a0zTcQV5ifi+eLsIaDZGzAsdgul6/BY4WlBpKMo46bLuJC
-         RRhg==
-X-Gm-Message-State: AOAM531EhCHPLER39hYPS3qZ3o09XCsce34DC5gRu3mWEow201XTwCVO
-        EZe67CaGySTHYYDqjoR/nQ==
-X-Google-Smtp-Source: ABdhPJyTP+mCicpc5AnG/HZYKCTQJtVyQOPkORFZReqYr/zd44XZQERaPinW/ElNg0S3NKukxqwgHA==
-X-Received: by 2002:a4a:c302:: with SMTP id c2mr3725486ooq.26.1603986655094;
-        Thu, 29 Oct 2020 08:50:55 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r21sm157018otc.0.2020.10.29.08.50.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 08:50:54 -0700 (PDT)
-Received: (nullmailer pid 1937485 invoked by uid 1000);
-        Thu, 29 Oct 2020 15:50:53 -0000
-Date:   Thu, 29 Oct 2020 10:50:53 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     kholk11@gmail.com
-Cc:     robh+dt@kernel.org, konradybcio@gmail.com,
-        linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com,
-        priv.luk@gmail.com, marijns95@gmail.com,
-        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
-        andy.shevchenko@gmail.com, rydberg@bitmath.org,
-        martin.botka1@gmail.com, krzk@kernel.org,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH v9 1/3] dt-bindings: Add vendor prefix for Novatek
- Microelectronics Corp.
-Message-ID: <20201029155053.GA1936493@bogus>
-References: <20201028221302.66583-1-kholk11@gmail.com>
- <20201028221302.66583-2-kholk11@gmail.com>
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5rqiFVQb3qlfcy/RMXrG6KMOgOP9hKGgbNSh4Mn0ao4=;
+        b=OD7/NFnbXkV/AUFlr8ewkgUIRwaBdy6G2m0FPQppB37X3x3Ag/rhkyYZZ63GGCzzal
+         qp7TFSKz6aXtYSwsJjoiIqLlfequ7niyk8PFzsY7fW7b1D7IERLzMlMib6MF84EYclIm
+         nYPuwo5gpuBHaSyhpfIaCM4f1+SYCyARatZYJtC2BJAY3OMyfyHl++FzdyewBlgB/Bst
+         U47QfLgLgX7bSgEcW0lQLCTnu/kwjSEJyL0XZl5hSZogLUsLdW1zXXAaR59tdKpt97kI
+         bgk+A8/J8Z9JyrayTDbyIfIR9sZOkTn7IzFxsI3YAJrs+JvyErskoi52C+HzIIP61vld
+         wNBA==
+X-Gm-Message-State: AOAM5301UwJFZRv5qQsHMRfySW7y98ssyTgiZy/nAWQANnB/ceLcpeMo
+        Gh3bvlQ9bDU2i7o42FqVfpPs9zGlL8wOHA==
+X-Google-Smtp-Source: ABdhPJwZ4rmQGi43QL94t5ZBRH464nJAgvWHhIXxVa5hO5m8A980n7g2tcfbVRAaGyma9qlQPXQoKQ==
+X-Received: by 2002:adf:f286:: with SMTP id k6mr6541511wro.34.1603986756011;
+        Thu, 29 Oct 2020 08:52:36 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.117.206])
+        by smtp.gmail.com with ESMTPSA id g4sm415538wmh.13.2020.10.29.08.52.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Oct 2020 08:52:35 -0700 (PDT)
+Subject: Re: [RESEND PATCH v3] arm64: dts: mediatek: align GPIO hog names with
+ dtschema
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20201002163940.7837-1-krzk@kernel.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <8f3369aa-ebb2-0e4e-fc1f-109e54d63b7d@gmail.com>
+Date:   Thu, 29 Oct 2020 16:52:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201028221302.66583-2-kholk11@gmail.com>
+In-Reply-To: <20201002163940.7837-1-krzk@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Oct 2020 23:13:00 +0100, kholk11@gmail.com wrote:
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+
+
+On 02/10/2020 18:39, Krzysztof Kozlowski wrote:
+> The convention for node names is to use hyphens, not underscores.
+> dtschema for pca95xx expects GPIO hogs to end with 'hog' suffix.
 > 
-> Add prefix for Novatek Microelectronics Corp.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+Pushed to v5.10-next/dts64
+
+Thanks!
+
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>   .../boot/dts/mediatek/pumpkin-common.dtsi     | 26 +++++++++----------
+>   1 file changed, 13 insertions(+), 13 deletions(-)
 > 
-
-
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+> The dt-schema changes were applied.
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> index 29d8cf6df46b..351a1905a074 100644
+> --- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> @@ -63,91 +63,91 @@
+>   		gpio-controller;
+>   		#gpio-cells = <2>;
+>   
+> -		eint20_mux_sel0 {
+> +		eint20-mux-sel0-hog {
+>   			gpio-hog;
+>   			gpios = <0 0>;
+>   			input;
+>   			line-name = "eint20_mux_sel0";
+>   		};
+>   
+> -		expcon_mux_sel1 {
+> +		expcon-mux-sel1-hog {
+>   			gpio-hog;
+>   			gpios = <1 0>;
+>   			input;
+>   			line-name = "expcon_mux_sel1";
+>   		};
+>   
+> -		mrg_di_mux_sel2 {
+> +		mrg-di-mux-sel2-hog {
+>   			gpio-hog;
+>   			gpios = <2 0>;
+>   			input;
+>   			line-name = "mrg_di_mux_sel2";
+>   		};
+>   
+> -		sd_sdio_mux_sel3 {
+> +		sd-sdio-mux-sel3-hog {
+>   			gpio-hog;
+>   			gpios = <3 0>;
+>   			input;
+>   			line-name = "sd_sdio_mux_sel3";
+>   		};
+>   
+> -		sd_sdio_mux_ctrl7 {
+> +		sd-sdio-mux-ctrl7-hog {
+>   			gpio-hog;
+>   			gpios = <7 0>;
+>   			output-low;
+>   			line-name = "sd_sdio_mux_ctrl7";
+>   		};
+>   
+> -		hw_id0 {
+> +		hw-id0-hog {
+>   			gpio-hog;
+>   			gpios = <8 0>;
+>   			input;
+>   			line-name = "hw_id0";
+>   		};
+>   
+> -		hw_id1 {
+> +		hw-id1-hog {
+>   			gpio-hog;
+>   			gpios = <9 0>;
+>   			input;
+>   			line-name = "hw_id1";
+>   		};
+>   
+> -		hw_id2 {
+> +		hw-id2-hog {
+>   			gpio-hog;
+>   			gpios = <10 0>;
+>   			input;
+>   			line-name = "hw_id2";
+>   		};
+>   
+> -		fg_int_n {
+> +		fg-int-n-hog {
+>   			gpio-hog;
+>   			gpios = <11 0>;
+>   			input;
+>   			line-name = "fg_int_n";
+>   		};
+>   
+> -		usba_pwr_en {
+> +		usba-pwr-en-hog {
+>   			gpio-hog;
+>   			gpios = <12 0>;
+>   			output-high;
+>   			line-name = "usba_pwr_en";
+>   		};
+>   
+> -		wifi_3v3_pg {
+> +		wifi-3v3-pg-hog {
+>   			gpio-hog;
+>   			gpios = <13 0>;
+>   			input;
+>   			line-name = "wifi_3v3_pg";
+>   		};
+>   
+> -		cam_rst {
+> +		cam-rst-hog {
+>   			gpio-hog;
+>   			gpios = <14 0>;
+>   			output-low;
+>   			line-name = "cam_rst";
+>   		};
+>   
+> -		cam_pwdn {
+> +		cam-pwdn-hog {
+>   			gpio-hog;
+>   			gpios = <15 0>;
+>   			output-low;
+> 
