@@ -2,150 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5288B29EB4A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:09:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B2229EB63
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:13:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725949AbgJ2MJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 08:09:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43464 "EHLO
+        id S1725987AbgJ2MNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 08:13:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725385AbgJ2MJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 08:09:07 -0400
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1757BC0613D3
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 05:09:07 -0700 (PDT)
-Received: by mail-vs1-xe43.google.com with SMTP id r1so1337946vsi.12
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 05:09:07 -0700 (PDT)
+        with ESMTP id S1725950AbgJ2MNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 08:13:39 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC409C0613CF;
+        Thu, 29 Oct 2020 05:13:37 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id j5so1202383plk.7;
+        Thu, 29 Oct 2020 05:13:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=XOPDCJxGnjWbK/1ZDXPLwtwqPWavp4ha998oEkxsn8Q=;
-        b=flwJaH75+OYPqFvGJJOTCOx1TZi8IkdOeBuVeZ6SvXSpLNyp9g4K0i2zUPy8ZpviIZ
-         FXyorcgcn82PvQNIjdD8/qBH6bdqD7hVT1Yh1PeaKDstjGkUg4413rA6i5+2/J9Hozsj
-         XVZCH+AhVY9J4KolXVf3c9ZHtCXIN8FxYc7c0VrIwzuCJ0Xu8krbL3Bcd8Nk4qGdp/Vu
-         yuCc1wHdv6sPHUDSaO0/XKxsZ7AcOyXZUaFxHg8VF2p0pieU+79NaJ9CtD7ybcNsmchJ
-         jE7NNTaQcZmyho4l9WKNWBAPtIORLfwANGO0BXp5CZXGHA1Gr8qQImK3EbS2Nku/dNGV
-         ZgcA==
+        bh=g7ZEDn15eyX1XeDKP5z4w+qUietYP3YvKn3vn65Qc0E=;
+        b=O2pvzOa6S8Ybvb5XjV0uWYBlsA0GFMm/Fk4bNuSnxqvWH2klL3473TfX0MZyOgcePE
+         jg3q9vIfonz4peRj1NOB1YUc4W71MW3LdI/NQwdBbbmd4XqRcXUV1S4ljy8JQOl6mAEG
+         Xf5JS3240Uryy+dhpli9H8oOWCNO7m2sdR/hVKtjr7PCEBJvi6ubTKvP9lYJn1fa9hZr
+         cPvHaF8m2rq9GVetErmhoh32E8orcecbnAcEyru+Jc3qaW94VZwcTZilRjG5PWSQ4/sj
+         ojkw20qNPhYXrxCU3ykudE17BfgKwyFicVr4BzDVio5FjeUfx1NA1FKHZJiOeFl9kiqU
+         QYEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=XOPDCJxGnjWbK/1ZDXPLwtwqPWavp4ha998oEkxsn8Q=;
-        b=OKSmnSo8qualDbA3Du8Ek75N+3DqyTJhhireLutO+mGWBFcVg6yvwCuhBWPZTX63I/
-         JRfGJ66/n6Vev4W3vcvHag8qnh+c6BcMeb1t90IFc1Jql+0wwQhcFrW0PDedgwo23QiY
-         +PYQe3E+wMZFhxk5QjrubUY7G5V0sivGQBTQy9V/iv5T9hcIJB5voOxcjG1n0ZNaijcX
-         lkAK4CWpaVzSdQT4Uajrwutxb0I7fYBoXn/Ny7JBETwysxq/d65M6N9ozsbH7HrLxDSe
-         gKF941k4S+4drtCaY5z/f02MAu9NRNBhL4GzAd0mj8wWv/sk+q92ZuKi6lg07y7fY/me
-         r+/A==
-X-Gm-Message-State: AOAM532V0q+ph/uCRhnCVCfGuOOyLNGrz/GAhlt2h9ZQuzrBzuKZIPDb
-        xsP8CgFbOBZRFhsHJLh+Sx0CM2SbENfeW4dQz+7+4g==
-X-Google-Smtp-Source: ABdhPJx6Q9DF7vcO6aVmXdxaszAIPS70N4/DVXoQj6nfMycE8SxJR1X9NIaonbsZ7yKYflfVuVmupOxqyzRK8kMeNLY=
-X-Received: by 2002:a67:ec9a:: with SMTP id h26mr2466385vsp.34.1603973346162;
- Thu, 29 Oct 2020 05:09:06 -0700 (PDT)
+        bh=g7ZEDn15eyX1XeDKP5z4w+qUietYP3YvKn3vn65Qc0E=;
+        b=tA7RT1osyr3AFlvqHouZMp5ZqgifwVbhnE8IBd9rKmW5SCx+BNg9kquLB8S8S+knN1
+         b7audU6/MCJZ+yRos760PhTdclnbMcRrFzqRo/jjagSMhA8mHV27MWcXa0iXw5eKoGP/
+         oqIrJHVxFDJHK70TF6+5y9hk0Ga8odI8r/NFcJwk9Gkz44lbe8/SjqxlowLxXKvtW5Z8
+         ouTHZOhSbloUC9UWF9lpwTPgm2qloL3zuZ4mb4sKpJfA6wxTFBQgsui4FIrPWIbZh2pB
+         JhrBYQEpeKfGRKgz6RKk9jUoi9o3fk105eehYrfGxZEocmM6LRIuhO2F9KruVu7A1n1y
+         l3OA==
+X-Gm-Message-State: AOAM530PpxNpj0oUh2cwVaC7ew9aAPaPssEOlJiHMWWrcpXTxyGzy3wH
+        sWI0Opv8sl6Fezs8kr8U6Lr+374+nG+YykaLD8g=
+X-Google-Smtp-Source: ABdhPJzQQtn9Lo5eT93NIA8y7EekBZVWR4mP9HtmRZxaja3G5tyjp2t60dDkJGJjK/oCSRSJHS6rB5KPpuR6HNPNgvY=
+X-Received: by 2002:a17:902:bc4a:b029:d6:7ef9:689c with SMTP id
+ t10-20020a170902bc4ab02900d67ef9689cmr3858929plz.21.1603973617254; Thu, 29
+ Oct 2020 05:13:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201014030846.12428-1-wenbin.mei@mediatek.com>
-In-Reply-To: <20201014030846.12428-1-wenbin.mei@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 29 Oct 2020 13:08:29 +0100
-Message-ID: <CAPDyKFo+sLQEWdDGkgDKp56a0Cua9nSGTqMUvdtEzUQx9RQt6Q@mail.gmail.com>
-Subject: Re: [PATCH v7 0/4] Add mmc support for MT8192 SoC
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+References: <20201017052057.2698588-1-bjorn.andersson@linaro.org>
+ <20201017052057.2698588-3-bjorn.andersson@linaro.org> <CAHp75VeVbK1Wx2BEPghtEbEghqDAF2jFFN9=ARLEw-rvTUZ3yw@mail.gmail.com>
+ <20201020042403.GE6705@builder.lan>
+In-Reply-To: <20201020042403.GE6705@builder.lan>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 29 Oct 2020 14:14:26 +0200
+Message-ID: <CAHp75Vde5Qfe-Ycn69J_-8=GPpxChkp+L4WgrUsp+uK=NMdHug@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] leds: Add driver for Qualcomm LPG
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "Uwe Kleine-K?nig" <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Martin Botka <martin.botka1@gmail.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Oct 2020 at 05:08, Wenbin Mei <wenbin.mei@mediatek.com> wrote:
->
-> Change in v7:
-> 1)add "unevaluatedProperties" in mtk-sd.yaml
-> 2)add Reviewed-by tag
->
-> Change in v6:
-> 1)use devm_clk_get function for required clocks
->
-> Change in v5:
-> 1)remove Reviewed-by tag
-> 2)use devm_clk_bulk_get_optional instead of devm_clk_get_optional
->   for bulk clks
->
-> Change in v4:
-> 1)drop "vmmc" and "vqmmc" desciption in mtk-sd.yaml
-> 2)add vmmq/vqmmc supplies and the pinctrls to required properties
-> 3)change dbg level and exit this function
-> 4)use devm_clk_get_optional instead of devm_clk_get function
-> 5)remove else branch for sys_clk_cg
->
-> Change in v3:
-> 1)change maintainers name in mtk-sd.yaml
-> 2)change "compatible" properties to enum type and sort it
-> 3)drop these properties: "reg" and "interrupts"
-> 4)add "maxItems" constraints on these properties: "vmmc-supply", "vqmmc-supply",
->   "assigned-clocks", "assigned-clock-parents"
-> 5)add "minimum" and "maximum" constraints on these properties: "mediatek,hs400-cmd-int-delay",
->   "mediatek,latch-ck", "hs400-ds-delay", "mediatek,hs200-cmd-int-delay"
->
-> Change in v2:
-> Convert mtk-sd to json-schema
->
-> Wenbin Mei (4):
->   dt-bindings: mmc: Convert mtk-sd to json-schema
->   mmc: dt-bindings: add support for MT8192 SoC
->   arm64: dts: mt8192: add mmc device node
->   mmc: mediatek: Add subsys clock control for MT8192 msdc
-> ---
-> This patch depends on
-> [v4,1/3] arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile
-> [v3,1/9] dt-bindings: ARM: Mediatek: Document bindings for MT8192 BSP
-> [v3,6/9] clk: mediatek: Add dt-bindings for MT8192 clocks
-> [v3,9/9] clk: mediatek: Add MT8192 clock support
-> [v3,1/3] dt-bindings: pinctrl: mt8192: add pinctrl file
-> [v3,2/3] dt-bindings: pinctrl: mt8192: add binding document
-> [v3,3/3] pinctrl: add pinctrl driver on mt8192
-> [v2,1/4] soc: mediatek: pwrap: use BIT() macro
-> [v2,2/4] soc: mediatek: pwrap: add arbiter capability
-> [v2,3/4] dt-bindings: mediatek: add compatible for MT6873/8192 pwrap
-> [v2,4/4] soc: mediatek: pwrap: add pwrap driver for MT6873/8192 SoCs
-> [2/8] dt-bindings: mfd: Add compatible for the MediaTek MT6359 PMIC
-> [3/8] dt-bindings: regulator: Add document for MT6359 regulator
-> [4/8] mfd: Add support for the MediaTek MT6359 PMIC
-> [5/8] regulator: mt6359: Add support for MT6359 regulator
-> [7/8] regulator: mt6359: Add support for MT6359P regulator
-> [8/8] arm64: dts: mt6359: add PMIC MT6359 related nodes
->
-> Please also accept this patch together with [1][2][3][4][5]
-> to avoid build and dt binding check error.
-> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=332621
-> [2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=342593
-> [3] https://patchwork.kernel.org/project/linux-mediatek/list/?series=330017
-> [4] https://patchwork.kernel.org/project/linux-mediatek/list/?series=322937
-> [5] https://patchwork.kernel.org/project/linux-mediatek/list/?series=323171
-> ---
->  .../devicetree/bindings/mmc/mtk-sd.txt        |  75 --------
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 176 ++++++++++++++++++
->  arch/arm64/boot/dts/mediatek/mt8192-evb.dts   |  89 +++++++++
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  34 ++++
->  drivers/mmc/host/mtk-sd.c                     |  74 ++++++--
->  5 files changed, 355 insertions(+), 93 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/mtk-sd.txt
->  create mode 100644 Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->
-> --
-> 2.18.0
->
+On Tue, Oct 20, 2020 at 7:29 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+> On Sun 18 Oct 15:12 CDT 2020, Andy Shevchenko wrote:
+> > On Sat, Oct 17, 2020 at 8:41 AM Bjorn Andersson
+> > <bjorn.andersson@linaro.org> wrote:
 
-Applied for next, except patch 3 as needs to go via arm-soc, thanks!
+...
 
-Kind regards
-Uffe
+> > > +static int lpg_lut_store(struct lpg *lpg, struct led_pattern *pattern,
+> > > +                        size_t len, unsigned int *lo_idx, unsigned int *hi_idx)
+> > > +{
+> > > +       unsigned int idx;
+> > > +       u8 val[2];
+> >
+> > __be16 val;
+> >
+> > > +       int i;
+> > > +
+> > > +       /* Hardware does not behave when LO_IDX == HI_IDX */
+> > > +       if (len == 1)
+> > > +               return -EINVAL;
+> > > +
+> > > +       idx = bitmap_find_next_zero_area(lpg->lut_bitmap, lpg->lut_size,
+> > > +                                        0, len, 0);
+> > > +       if (idx >= lpg->lut_size)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       for (i = 0; i < len; i++) {
+> > > +               val[0] = pattern[i].brightness & 0xff;
+> > > +               val[1] = pattern[i].brightness >> 8;
+> >
+> > cpu_to_be16();
+> >
+>
+> I like it, but isn't that a le16?
+
+Oh, yes.
+
+> > > +               regmap_bulk_write(lpg->map,
+> > > +                                 lpg->lut_base + LPG_LUT_REG(idx + i), val, 2);
+> > > +       }
+> > > +
+> > > +       bitmap_set(lpg->lut_bitmap, idx, len);
+> > > +
+> > > +       *lo_idx = idx;
+> > > +       *hi_idx = idx + len - 1;
+> > > +
+> > > +       return 0;
+> > > +}
+
+...
+
+> > > +               period_n = (period_us * NSEC_PER_USEC) >> 6;
+> > > +               n = 6;
+> > > +       } else {
+> > > +               period_n = (period_us >> 9) * NSEC_PER_USEC;
+> > > +               n = 9;
+
+> > Why inconsistency in branches? Can you rather derive n and calculate
+> > only once like
+> >
+> >            period_n = (period_us >> n) * NSEC_PER_USEC;
+> >
+> > ?
+>
+> I inherited this piece from the downstream driver and I assume that the
+> purpose was to avoid loss of precision. I will review this and if
+> nothing else it seems like I would be able to cast period_us to more
+> bits, do the multiply and then shift - in both cases.
+
+Understood. Yes, please check if precision doesn't suffer and update
+accordingly.
+
+...
+
+> > > +static void lpg_calc_duty(struct lpg_channel *chan, unsigned int duty_us)
+> > > +{
+> > > +       unsigned long max = (1 << chan->pwm_size) - 1;
+> >
+> > BIT() ?
+
+Actually if you don't use BIT() here (or U suffix) it is UB for pwm_size == 31.
+
+> >
+> > > +       unsigned long val;
+> > > +
+> > > +       /* Figure out pwm_value with overflow handling */
+> >
+> > > +       if (duty_us < 1 << (sizeof(val) * 8 - chan->pwm_size))
+> >
+> > BITS_PER_TYPE, but actually BITS_PER_LONG here.
+> >
+> > BIT(BITS_PER_LONG - ...)
+> >
+>
+> Again, this seems to just be a question of avoiding overflow of the 32
+> bit duty_us. I'll double check the math here as well.
+
+Can pwm_size be equal to 0?
+
+> > > +               val = (duty_us << chan->pwm_size) / chan->period_us;
+> > > +       else
+> > > +               val = duty_us / (chan->period_us >> chan->pwm_size);
+> > > +
+> > > +       if (val > max)
+> > > +               val = max;
+> > > +
+> > > +       chan->pwm_value = val;
+> > > +}
+
+...
+
+> > > +static int lpg_blink_set(struct lpg_led *led,
+> > > +                        unsigned long delay_on, unsigned long delay_off)
+> > > +{
+> > > +       struct lpg_channel *chan;
+> > > +       unsigned int period_us;
+> > > +       unsigned int duty_us;
+> > > +       int i;
+> > > +
+> > > +       if (!delay_on && !delay_off) {
+> > > +               delay_on = 500;
+> > > +               delay_off = 500;
+> > > +       }
+> >
+> > Homegrown duty cycle?
+> > I mean, why simply not to pass the duty cycle in percentage in the first place?
+>
+> Can you explain what you're saying here.
+
+Why not to use duty cycle (in %) and period (in us) as a parameter to
+the function directly?
+
+> > > +       duty_us = delay_on * USEC_PER_MSEC;
+> > > +       period_us = (delay_on + delay_off) * USEC_PER_MSEC;
+> > > +
+> > > +       for (i = 0; i < led->num_channels; i++) {
+> > > +               chan = led->channels[i];
+> > > +
+> > > +               lpg_calc_freq(chan, period_us);
+> > > +               lpg_calc_duty(chan, duty_us);
+> > > +
+> > > +               chan->enabled = true;
+> > > +               chan->ramp_enabled = false;
+> > > +
+> > > +               lpg_apply(chan);
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +}
+
+...
+
+> > Can you rather create a generic one under lib/ or start include/linux/math.h ?
+
+> Forgot about this, but I've seen one on LKML, will find it and work on
+> getting that accepted.
+
+Note, I have submitted the patch that splits out math.h from kernel.h
+(it's in Andrew's quilt and in Linux Next as of today), you may send a
+follow up patch that adds this functionality.
+
+...
+
+> > > +       ret = of_property_read_u32(np, "color", &color);
+> > > +       if (ret < 0 && ret != -EINVAL)
+> >
+> > This check is fishy. Either you have optional property or not, in the
+> > latter case return any error code.
+> >
+>
+> There's three possible outcomes here:
+> 1) We found _one_ integer in the property, color is assigned and 0 is
+> returned.
+
+I didn't get this. Doesn't your YAML schema say that it must be a
+single integer?
+
+> 2) We found no property named "color", -EINVAL is returned without color
+> being modified.
+> 3) We found a property but it wasn't a single u32 value so a negative
+> error (not EINVAL) is returned.
+>
+> > > +               return ret;
+> > > +
+> > > +       chan->color = color;
+> >
+> > So, it may be -EINVAL?!
+> >
+>
+> So color will either be the value or the property color, or if omitted
+> LED_COLOR_ID_GREEN.
+
+If property is optional, we do simple
+
+ret = of_read_property_...(&x);
+if (ret)
+ x = default_value;
+
+Otherwise simple
+ret = ...
+if (ret)
+  return ret;
+
+is sufficient.
+
+What you have done is a little bit unusual.
+
+...
+
+> > > +       ret = of_property_read_u32_array(np, "qcom,dtest", dtest, 2);
+> > > +       if (ret < 0 && ret != -EINVAL) {
+> > > +               dev_err(lpg->dev, "malformed qcom,dtest of %pOFn\n", np);
+> > > +               return ret;
+> > > +       } else if (!ret) {
+> > > +               chan->dtest_line = dtest[0];
+> > > +               chan->dtest_value = dtest[1];
+> > > +       }
+> >
+> > Ditto.
+> >
+>
+> We're in !ret and as such dtest is initialized.
+
+As above.
+
+...
+
+> > > +       ret = of_property_read_u32(np, "color", &color);
+> > > +       if (ret < 0 && ret != -EINVAL)
+> > > +               return ret;
+> >
+> > Ditto.
+> >
+>
+> As above, if no property color is specified, color remains 0 here which
+> is not LED_COLOR_ID_MULTI and this is a single channel LED without its
+> color specified.
+
+As above.
+
+-- 
+With Best Regards,
+Andy Shevchenko
