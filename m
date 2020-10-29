@@ -2,143 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 183EC29F3F6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 19:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E701B29F40B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 19:24:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725910AbgJ2SRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 14:17:00 -0400
-Received: from mx2.suse.de ([195.135.220.15]:43400 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725820AbgJ2SRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 14:17:00 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 75F78AD1E;
-        Thu, 29 Oct 2020 18:16:58 +0000 (UTC)
-Message-ID: <30d4a73b02957c18460d7f4535b1baa98ccda013.camel@suse.de>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: Add a property to deal
- with WiFi coexistence
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-rpi-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>
-Date:   Thu, 29 Oct 2020 19:16:56 +0100
-In-Reply-To: <20201029180721.lsucxnl7kavlvibd@gilmour.lan>
-References: <20201029134018.1948636-1-maxime@cerno.tech>
-         <4d0028fdf797abd99f95d627e60e9322caa52596.camel@suse.de>
-         <20201029180721.lsucxnl7kavlvibd@gilmour.lan>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-Si3FC5Rwn4sE3tHN32Hz"
-User-Agent: Evolution 3.36.5 
+        id S1725768AbgJ2SYH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Oct 2020 14:24:07 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:39798 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725747AbgJ2SYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 14:24:06 -0400
+Received: by mail-ot1-f68.google.com with SMTP id o14so3207751otj.6;
+        Thu, 29 Oct 2020 11:24:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=4IEYVtSqduzhGKS9TyBWfCcxOVUYCwSEwdK+Y1cmD9g=;
+        b=QdMx1xV7BZ61iQAQ0kpE65veH9yeMKRjW1dgKYmc6COpJZq9+8m9llRJeoiVEXgPsm
+         ifOaiuBeXdRNRs25xUTIT8R3zGZUS9JHr+Ab0Yft3Ca8jAnw7EYn3eE9FdUkoCOCJ8W2
+         vGO4Dijsr0bwpDoVGrtmFYXnUiQwSS3J6H9fornWYODFiRwKqhwSzFZEvffRnds4UNSS
+         VkRwETbiKD+w3XJn0YByCN2mpmDTbWkOTPnULZwQXGUjN5xZlSR3CFyX/BjVieBDou9R
+         PMGRsUlROni9MJdQSjjQS0gIXI3L/J54PFFcTeQGgVEZoMg6spgCF6eyLPWmeiegmoqH
+         7suQ==
+X-Gm-Message-State: AOAM532JplyHMm5N2KU+nH89FITNwsDYWFw1R2WDOGt74mWglF1Vrm06
+        3Gmcr732TlA8pt64Jzv2jLtgs60NYg7OfTYSUPA=
+X-Google-Smtp-Source: ABdhPJzdcG3i35C8JpSQjiJAt0AYBSzBfVI22Cmxbvt5f6BbGMnt3YyMb5pTRGJoLY7Dz/YMWPRgYGqb4ryIfkaf0K0=
+X-Received: by 2002:a9d:5e14:: with SMTP id d20mr3962567oti.107.1603995845494;
+ Thu, 29 Oct 2020 11:24:05 -0700 (PDT)
 MIME-Version: 1.0
+References: <20201029133741.25721-1-erosca@de.adit-jv.com> <20201029133741.25721-2-erosca@de.adit-jv.com>
+ <CAMuHMdX5pCtR-LMbuSJQvDNyVOwcipt7zZOF3c3J-d-Bq98NQg@mail.gmail.com> <20201029163213.GA12422@lxhi-065.adit-jv.com>
+In-Reply-To: <20201029163213.GA12422@lxhi-065.adit-jv.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 29 Oct 2020 19:23:53 +0100
+Message-ID: <CAMuHMdXbwfPk5_dZEzjLuUZx6ysxdmu6hKbd54Ev6jTQUObTCA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77961: ulcb-kf: Initial
+ device tree
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Steffen Pengel <spengel@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Eugeniu,
 
---=-Si3FC5Rwn4sE3tHN32Hz
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, Oct 29, 2020 at 5:34 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+> On Thu, Oct 29, 2020 at 03:09:10PM +0100, Geert Uytterhoeven wrote:
+> > On Thu, Oct 29, 2020 at 2:38 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+> > > Create a dedicated DTB for M3-ES3.0 + ULCB + Kingfisher combo.
+> > > Inspire from the pre-existing ULCB-KF device trees:
+> > >
+> > > $ ls -1 arch/arm64/boot/dts/renesas/*ulcb-kf.dts
+> > > arch/arm64/boot/dts/renesas/r8a77950-ulcb-kf.dts
+> > > arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dts
+> > > arch/arm64/boot/dts/renesas/r8a77960-ulcb-kf.dts
+> > > arch/arm64/boot/dts/renesas/r8a77965-ulcb-kf.dts
+> > >
+> > > Signed-off-by: Eugeniu Rosca <erosca@de.adit-jv.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > i.e. will queue in renesas-devel for v5.11.
+>
+> Thank you for the prompt review!
+>
+> > > +       compatible = "shimafuji,kingfisher", "renesas,m3ulcb",
+> > > +                    "renesas,r8a77961";
+> >
+> > Can you please send a patch to add this combo to
+> > Documentation/devicetree/bindings/arm/renesas.yaml?
+>
+> I would happily do so if you resolve below concerns.
+>
+> Since the inception of the Kingfisher extension board description in
+> v4.15-rc1 commit 5418a900412699 ("arm: shmobile: Document Kingfisher
+> board DT bindings"), nobody attempted describing the SoC+ULCB+KF
+> combinations in spite of four of such DT configurations being actively
+> used and maintained, i.e. r8a779{50,51,60,65}-ulcb-kf.
 
-On Thu, 2020-10-29 at 19:07 +0100, Maxime Ripard wrote:
-> Hi Nicolas,
->=20
-> On Thu, Oct 29, 2020 at 06:43:27PM +0100, Nicolas Saenz Julienne wrote:
-> > Hi maxime,
-> >=20
-> > On Thu, 2020-10-29 at 14:40 +0100, Maxime Ripard wrote:
-> > > The RaspberryPi4 has both a WiFi chip and HDMI outputs capable of doi=
-ng
-> > > 4k. Unfortunately, the 1440p resolution at 60Hz has a TMDS rate on th=
-e
-> > > HDMI cable right in the middle of the first Wifi channel.
-> > >=20
-> > > Add a property to our HDMI controller, that could be reused by other
-> > > similar HDMI controllers, to allow the OS to take whatever measure is
-> > > necessary to avoid that crosstalk.
-> > >=20
-> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > >=20
-> > > ---
-> > >=20
-> > > Changes from v1:
-> > >   - Renamed the property
-> > >   - Split it into a separate patch
-> > > ---
-> > >  .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml      | 6 ++++=
-++
-> > >  1 file changed, 6 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-h=
-dmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > > index 03a76729d26c..7ce06f9f9f8e 100644
-> > > --- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yam=
-l
-> > > +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yam=
-l
-> > > @@ -76,6 +76,12 @@ properties:
-> > >    resets:
-> > >      maxItems: 1
-> > > =20
-> > > +  wifi-2.4ghz-coexistence:
-> >=20
-> > I see you already renamed the property, but I can't seem to find v1 of =
-the
-> > series online.
->=20
-> I realized I didn't put you in Cc for the first version, sorry, you'll fi=
-nd it here:
-> https://lore.kernel.org/dri-devel/20200925130744.575725-1-maxime@cerno.te=
-ch/
->=20
-> > Sorry if this is redundant:
-> >=20
-> > I wonder if it'd make sense to prefix the property like this:
-> > "raspberrypi,wifi-2.4ghz-coexistence." I tend to associate the lack of =
-prefix
-> > with generic properties, and also thought it was a rule. Although I may=
- have as
-> > well imagined it.
->=20
-> Rob in the first iteration asked for the opposite :)
+I'm a bit confused. We do have:
 
-Fair enough, then:
+      - description: Kingfisher (SBEV-RCAR-KF-M03)
+        items:
+          - const: shimafuji,kingfisher
+          - enum:
+              - renesas,h3ulcb
+              - renesas,m3ulcb
+              - renesas,m3nulcb
+          - enum:
+              - renesas,r8a7795
+              - renesas,r8a7796
+              - renesas,r8a77965
 
-Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> So, if we start documenting the r8a77961-ulcb-kf combo as a board, this
+> raises below questions:
+>
+>   => should the missing 4 SoC+ULCB+KF instances be documented as well?
+>   => should a new compatible string be created for each such HW combo,
+>      e.g. "renesas,<soc>-ulcb-kf"?
+>
+> I feel none of the above is really needed, based on the patterns
+> established in Documentation/devicetree/bindings/arm/renesas.yaml,
+> but I might be wrong. Thoughts/suggestions appreciated.
 
-Regards,
-Nicolas
+I don't think we want to add new compatible string to describe each
+combo. Just add "renesas,r8a77961" to the last enum?
 
+> IMHO one thing which is certainly worth clarifying and fixing is the
+> KF revision currently documented in renesas.yaml, i.e. M03.
+>
+> Shimafuji released at least M04, M05 and M06 revisions of KF (nicely
+> compared at https://elinux.org/R-Car/Boards/Kingfisher#Change_point).
+>
+> The question is, does the community intend to support M03 through M06
+> (in which case all of them might need an entry in the documentation) or
+> anything which is earlier than M06 has to be considered deprecated (in
+> which case renesas.yaml would need a simple s/M03/M06/ update)?
 
---=-Si3FC5Rwn4sE3tHN32Hz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+I'm not that familiar with KingFisher and the various revisions.
+Do these differences have an impact on the software side?
+The diodes and filters probably don't.
+The I2C repeaters are PCA9548ADB on M03, hence they use a Linux
+driver. By what have they been replaced?
+What's the nature of the MOST ↔ GPS Function select register change?
 
------BEGIN PGP SIGNATURE-----
+Thanks!
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+bBxgACgkQlfZmHno8
-x/7MIQf8CumOgp9BNlym7/DOS46fLZCDh9XuUv2MduUAdyrSsnvucoiKqoXYvw1g
-8xULNi/G7D/faPC6ckWb0AvxNoSy1ipJ0ckp46bvzOaFivHFBCfAWK428T/2Y6EF
-qH/r0g8VaygPzvo6J2GOKXR/VitlmDVhnlIWcz/x8RqX0KQR4doPcjasU4eDomg7
-F87j4m31WIkp4husWqbnX6PSNq7z+RGwhrr3/rznlqpCDGrpap+8BfXU7FWwU1aL
-DOjmqHU1w65Vy4nGXUNbKDaBvA/RaKwkdi/1Sa7UlZfHWYq4kTrLbsXBFcvdI2XA
-wquVgDq1ISPdQJd5+ijRB3q3UhD61g==
-=yX7+
------END PGP SIGNATURE-----
+Gr{oetje,eeting}s,
 
---=-Si3FC5Rwn4sE3tHN32Hz--
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
