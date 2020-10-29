@@ -2,103 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 126E829E75C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 10:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 191B629E785
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 10:39:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726757AbgJ2JaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 05:30:24 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:55405 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726572AbgJ2JaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 05:30:10 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id BE5785C01AA;
-        Thu, 29 Oct 2020 05:30:08 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 29 Oct 2020 05:30:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=B9HVFfK78gWzwjefFFkxjqk9NIL
-        7X7Ncx/gsFLgBXrs=; b=lX1yvNfn6/X43VERQVtbuIfoVYcYiPdSmzuBn8b6LPg
-        mZEJ+mpf4/NFIzx/p1zjV6KeUHqJsLrmLggV0dZIQNS0Wh9sABO2XIz2cKMhV3ON
-        Aiy8Jcqdz9tjijxT9B6CLEfRlw5r/kQt/+6MQmU2wXFPrhKt8jO0BWl75T9rqgMj
-        1D36T/wzlv/9i9N2k7xUVMXdmo+fK/g/5KDSBeIMfNohe9F2su0RHjC4rEnk+f4b
-        K/kAIaoskzmFuySB+bUvZNe1dyaAEl1E9VPGux9FPLlChAuPWUi7YwbwTXcwmbxo
-        7oCut7+BapZoaUCghOyj2TQaT/X2Rcm+mNybSqldFIw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=B9HVFf
-        K78gWzwjefFFkxjqk9NIL7X7Ncx/gsFLgBXrs=; b=EW1g13J1FgOJhtZvKe+8IG
-        TgVaJB46uZiO5J/d2EoE9gzz2Jm0IU7kutkSjkXIlN8B4IiXCgBJr3kT53lX0jOF
-        9FdTZw0xBo1OyIUoeLGV3osOW/RMV/2f2fyh0zgSIdg6zVPqlGVfplDSAWbY4CU0
-        d5EaQ0ByPtlKl12nwt+3E0/y2cgOG8pVc2EOX3XWldwrRW4xb+CiCsrQOZKnbzc1
-        7H2c23ip4ObioWdbh1byivCG8pFfEO4F5CcBjFUWHZArbH55aL77bwOfKAjhWKnm
-        Q+GdoBI7Y2DyVsLwrnhuQMRCbSrokCAV+d4TIA/IF1EBd5f7qqtYbfMtsa9o01iw
-        ==
-X-ME-Sender: <xms:n4uaX5ZrQTKn-POXjiBfvH9R3BwHCd-SYD_0wzaV0e9BwbvXdOjQ3w>
-    <xme:n4uaXwavwbZ3FPcNieb0YnTMOOMLeGe6HeXjJ-0CHRAiqWgezlB-wLOlQMI-iumdy
-    Z7ilmpzRbgQNpo1s2k>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleefgddthecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedvnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:n4uaX79Bn1geFrssuVgB-mGE0PIniIPTp7PB-s5DSn984PmWJUV_jQ>
-    <xmx:n4uaX3oE2FNS9a-s1w-XEVoiYi3bYJISQ2ssMvNZzoxaY3YQTdh70w>
-    <xmx:n4uaX0pIu-98cobmZStLxxguUFTJCcOO24b87HwNhnGOEVM-CQxf2A>
-    <xmx:oIuaX5BsQzTRRsXno9W6K_ebFmhETy9_Qi-mhpNZ9fN9-Vxloz2Szw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D2A3B306467D;
-        Thu, 29 Oct 2020 05:30:06 -0400 (EDT)
-Date:   Thu, 29 Oct 2020 10:30:05 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Nenad Peric <nperic@gmail.com>
-Cc:     wens@csie.org, jernej.skrabec@siol.net, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] arm64: dts: allwinner: h5: OrangePi Prime: Fix ethernet
- node
-Message-ID: <20201029093005.zqqfm4hrnd47ubtw@gilmour.lan>
-References: <20201028115817.68113-1-nperic@gmail.com>
+        id S1726050AbgJ2JjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 05:39:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48270 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726212AbgJ2JjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 05:39:18 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF47C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 02:39:18 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id h24so2863051ejg.9
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 02:39:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Yq/HD2p2UXGt7TQ9bcMnJo/aX/+JkANs44100D8poYQ=;
+        b=A+JUmcBH2PhQSHni38Yxh3pG6TqbFemyrIAYCY1MG5RLVEr+yA0yzKBmUu8qhq1TFy
+         cS7CZR95snp+Ha7KBoP0aBh7jgLpf0WjJHX/nUvAntNcKoV09MLSVF5DDqzVM4OeCP1y
+         LTlOMAnrGkv7y2R6lCVPu/cKvvi9Gjn/55l+SRAvFrg3BuHClNQ19vEnskRJ1VThh91f
+         MQM82F6GxMsBPOvv7Lk/IKl4mJ6CB9MvbK80jq1cOyPBfVleVqjIu9ZZvTmzwqFP/N11
+         j1Qsp37eK0fQcJ9sNN2khgzxkBA5D2CchIJFJj2BCECDKNuNoGdeV93Uc5SxEhEsxlKa
+         kszg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Yq/HD2p2UXGt7TQ9bcMnJo/aX/+JkANs44100D8poYQ=;
+        b=QBSNWRJ/9a98U4Tz+6QSTPBGOPvanRBmJ4B2AHel7XNy3iFmlSJ5ZiwTuFQP5tKTJM
+         2zYLcvyeaXXyhyu4DFCabjHCu5CfPowWhGRLPlbZCC6j5fCDQp0k0mb6TElo2tzcSFHY
+         o93APxv7dHCXlM6VLFEj6Y2zqjF8RVL+Mm4A6OMg9c6gv4BYeXDQw9d/VnCgVbF571xD
+         3Ytv95Zl8uOhosN6+SRfFyG21YDiRHmRmOn6L2CGHfCaTEutRbk3qDLW10whkb2XZUNC
+         kVLMkCZn0CSC638UAbXTM2Xz22yICQ8iIepqJoNWfdvpi+5mZ932hA9tNMzNU5bbG6Er
+         pvjw==
+X-Gm-Message-State: AOAM532scha0Dqt5ar/i02XszuPurSTe7KF3o3fYYfGF2q605dzaX+f4
+        11UE9SrFkjtTRK1r2Z/y1JcZqghPB8bbDHqHGzntTg==
+X-Google-Smtp-Source: ABdhPJwWymxfR0/4rAZDytp49JcdctiVba5N4hxgUi1rToKg1gydZNn27K2SWrNNvvcrcQZdWmXe+2PnuprHEKSpTQ4=
+X-Received: by 2002:a17:906:14d:: with SMTP id 13mr3119677ejh.516.1603964356832;
+ Thu, 29 Oct 2020 02:39:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gt3y7bhi7puxtroq"
-Content-Disposition: inline
-In-Reply-To: <20201028115817.68113-1-nperic@gmail.com>
+References: <20201029081721.9593-1-vincent.whitchurch@axis.com>
+In-Reply-To: <20201029081721.9593-1-vincent.whitchurch@axis.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Thu, 29 Oct 2020 10:39:06 +0100
+Message-ID: <CAMpxmJVen+7NM8dfjiwSjRLxV6XpE9GtrfJdq_GnEJQ3cZ70Lg@mail.gmail.com>
+Subject: Re: [PATCH v4] gpio: mockup: Allow probing from device tree
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     Bamvor Jian Zhang <bamv2005@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>, kernel@axis.com,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Oct 29, 2020 at 9:17 AM Vincent Whitchurch
+<vincent.whitchurch@axis.com> wrote:
+>
+> Allow the mockup driver to be probed via the device tree without any
+> module parameters, allowing it to be used to configure and test higher
+> level drivers like the leds-gpio driver and corresponding userspace
+> before actual hardware is available.
+>
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> ---
+>
+> Notes:
+>     v4:
+>     - Remove of_match_ptr() to fix unused variable warning with W=1
+>     - Include linux/mod_devicetable.h instead of linux/of.h
+>
+>     v3:
+>     - Keep includes sorted alphabetically
+>     - Drop CONFIG_OF ifdefs
+>
+>     v2:
+>     - Remove most of the added code, since the latest driver doesn't need it.
+>     - Drop DT binding document, since Rob Herring was OK with not documenting this:
+>       https://lore.kernel.org/linux-devicetree/5baa1ae6.1c69fb81.847f2.3ab1@mx.google.com/
+>
+> Range-diff against v3:
+> 1:  1e9b8f36676d ! 1:  4e8fdcfe1a47 gpio: mockup: Allow probing from device tree
+>     @@ Commit message
+>
+>
+>       ## Notes ##
+>     +    v4:
+>     +    - Remove of_match_ptr() to fix unused variable warning with W=1
+>     +    - Include linux/mod_devicetable.h instead of linux/of.h
+>     +
+>          v3:
+>          - Keep includes sorted alphabetically
+>          - Drop CONFIG_OF ifdefs
+>     @@ Notes
+>
+>       ## drivers/gpio/gpio-mockup.c ##
+>      @@
+>     + #include <linux/irq.h>
+>       #include <linux/irq_sim.h>
+>       #include <linux/irqdomain.h>
+>     ++#include <linux/mod_devicetable.h>
+>       #include <linux/module.h>
+>     -+#include <linux/of.h>
+>       #include <linux/platform_device.h>
+>       #include <linux/property.h>
+>     - #include <linux/slab.h>
+>      @@ drivers/gpio/gpio-mockup.c: static int gpio_mockup_probe(struct platform_device *pdev)
+>         return 0;
+>       }
+>     @@ drivers/gpio/gpio-mockup.c: static int gpio_mockup_probe(struct platform_device
+>       static struct platform_driver gpio_mockup_driver = {
+>         .driver = {
+>                 .name = "gpio-mockup",
+>     -+          .of_match_table = of_match_ptr(gpio_mockup_of_match),
+>     ++          .of_match_table = gpio_mockup_of_match,
+>         },
+>         .probe = gpio_mockup_probe,
+>       };
+>
 
---gt3y7bhi7puxtroq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please don't do the above.
 
-On Wed, Oct 28, 2020 at 12:58:17PM +0100, Nenad Peric wrote:
-> RX and TX delay are provided by ethernet PHY. Reflect that in ethernet
-> node.
->=20
-> Fixes: 44a94c7ef989 ("arm64: dts: allwinner: H5: Restore EMAC changes")
-> Signed-off-by: Nenad Peric <nperic@gmail.com>
+>  drivers/gpio/gpio-mockup.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-mockup.c b/drivers/gpio/gpio-mockup.c
+> index 67ed4f238d43..28b757d34046 100644
+> --- a/drivers/gpio/gpio-mockup.c
+> +++ b/drivers/gpio/gpio-mockup.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/irq.h>
+>  #include <linux/irq_sim.h>
+>  #include <linux/irqdomain.h>
+> +#include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+> @@ -460,9 +461,16 @@ static int gpio_mockup_probe(struct platform_device *pdev)
+>         return 0;
+>  }
+>
+> +static const struct of_device_id gpio_mockup_of_match[] = {
+> +       { .compatible = "gpio-mockup", },
+> +       {},
+> +};
+> +MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
+> +
+>  static struct platform_driver gpio_mockup_driver = {
+>         .driver = {
+>                 .name = "gpio-mockup",
+> +               .of_match_table = gpio_mockup_of_match,
+>         },
+>         .probe = gpio_mockup_probe,
+>  };
+> @@ -556,8 +564,7 @@ static int __init gpio_mockup_init(void)
+>  {
+>         int i, num_chips, err;
+>
+> -       if ((gpio_mockup_num_ranges < 2) ||
+> -           (gpio_mockup_num_ranges % 2) ||
+> +       if ((gpio_mockup_num_ranges % 2) ||
+>             (gpio_mockup_num_ranges > GPIO_MOCKUP_MAX_RANGES))
+>                 return -EINVAL;
+>
+> --
+> 2.28.0
+>
 
-Applied, thanks!
-Maxime
+Applied now, thanks!
 
---gt3y7bhi7puxtroq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5qLnQAKCRDj7w1vZxhR
-xeMkAP9Z82bSfh19Xtopub9pjCVyWGepSHh1HM18hFw22LzTCwEAyxUkz9etcfKL
-SltyWoS2O4WrB1Gtw/apb3ab61TULwg=
-=Ajj/
------END PGP SIGNATURE-----
-
---gt3y7bhi7puxtroq--
+Bartosz
