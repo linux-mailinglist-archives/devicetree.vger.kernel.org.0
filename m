@@ -2,264 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 553D129EAE9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 12:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 694F529EB0C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 12:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725771AbgJ2Loc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 07:44:32 -0400
-Received: from foss.arm.com ([217.140.110.172]:33662 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725300AbgJ2Loc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 07:44:32 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B5E4313A1;
-        Thu, 29 Oct 2020 04:44:30 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E2A873F66E;
-        Thu, 29 Oct 2020 04:44:28 -0700 (PDT)
-Date:   Thu, 29 Oct 2020 11:44:18 +0000
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Sudeep Holla <sudeep.holla@arm.com>, lukasz.luba@arm.com,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Jonathan.Cameron@huawei.com, broonie@kernel.org,
-        Rob Herring <robh@kernel.org>, satyakim@qti.qualcomm.com,
-        f.fainelli@gmail.com, Vincent Guittot <vincent.guittot@linaro.org>,
-        Souvik Chakravarty <souvik.chakravarty@arm.com>
-Subject: Re: [PATCH v3 1/4] firmware: arm_scmi: Add Voltage Domain Support
-Message-ID: <20201029114418.GI20482@e120937-lin>
-References: <20201026203148.47416-1-cristian.marussi@arm.com>
- <20201026203148.47416-2-cristian.marussi@arm.com>
- <CAN5uoS8gOwA4-fttH1=XdKWZWFzX3HXpHAqgHW=jKxAxEq6C1Q@mail.gmail.com>
- <20201028204416.GF20482@e120937-lin>
- <CAN5uoS9LdH1M-sYEcgh-x+N1B_3Dj9g8FGX2nQGaPXH0tP6igA@mail.gmail.com>
+        id S1725536AbgJ2LzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 07:55:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41288 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725300AbgJ2LzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 07:55:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97B3C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 04:55:04 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kY6WC-0004Ac-I9; Thu, 29 Oct 2020 12:55:00 +0100
+Message-ID: <55a33659d6faeb5677f4f3e4809bc426c1a4fc88.camel@pengutronix.de>
+Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Abel Vesa <abel.vesa@nxp.com>, Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 29 Oct 2020 12:54:58 +0100
+In-Reply-To: <CAHCN7xK1Stx=dzbDE6dKtRHuWGgca54bwQf=JSGNFVmHJ_fSig@mail.gmail.com>
+References: <20201024162016.1003041-1-aford173@gmail.com>
+         <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
+         <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
+         <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
+         <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
+         <CAHCN7xLC-gKquDNS3ToQCff=g610PscQE+T4zfO=_05GpLyK4w@mail.gmail.com>
+         <20201026145516.shmb55gaeh6u7oru@fsr-ub1664-175>
+         <CAHCN7xJOczT1B03Am4A645Xrk6-VF_7VDgAq13F-81=oCkixjw@mail.gmail.com>
+         <6274ab26d1fea5e00cea576d1e00028a4c4633af.camel@pengutronix.de>
+         <CAHCN7xK1Stx=dzbDE6dKtRHuWGgca54bwQf=JSGNFVmHJ_fSig@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAN5uoS9LdH1M-sYEcgh-x+N1B_3Dj9g8FGX2nQGaPXH0tP6igA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 12:21:56PM +0100, Etienne Carriere wrote:
-> On Wed, 28 Oct 2020 at 21:44, Cristian Marussi <cristian.marussi@arm.com> wrote:
-> >
-> > On Wed, Oct 28, 2020 at 03:29:57PM +0100, Etienne Carriere wrote:
-> > > Hi Cristian,
-> > >
-> > > Some remaining minor comments see below.
-> > > FYI I've successfully tested this series (the 4 patches).
-> > >
-> >
-> > Hi
-> >
-> > Thanks a lot !
-> >
-> > Replies inline down below.
-> >
-> > [snip]
-> > > > +struct scmi_msg_cmd_config_set {
-> > > > +       __le32 domain_id;
-> > > > +       __le32 config;
-> > > > +};
-> > > > +
-> > > > +struct scmi_msg_cmd_level_set {
-> > > > +       __le32 domain_id;
-> > > > +       __le32 flags;
-> > > > +       __le32 voltage_level;
-> > > > +};
-> > > > +
-> > > > +struct voltage_info {
-> > > > +       u32 version;
-> > > > +       u16 num_domains;
-> > >
-> > > Could be an unsigned int.
-> > >
-> >
-> > I tend to use fixed size types matching the protocols messages sizing on
-> > the internal while exposing non-fixed size types in scmi_protocol.h like
-> > in scmi_voltage_info, but these indeed are values exposed directly to
-> > the user afterwards. Any other reason to prefer non-fixed size here ?
+Am Montag, den 26.10.2020, 11:23 -0500 schrieb Adam Ford:
+> On Mon, Oct 26, 2020 at 10:44 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > Am Montag, den 26.10.2020, 10:12 -0500 schrieb Adam Ford:
+> > > On Mon, Oct 26, 2020 at 9:55 AM Abel Vesa <abel.vesa@nxp.com> wrote:
+> > > > On 20-10-25 11:05:32, Adam Ford wrote:
+> > > > > On Sun, Oct 25, 2020 at 7:19 AM Marek Vasut <marex@denx.de> wrote:
+> > > > > > On 10/25/20 1:05 PM, Abel Vesa wrote:
+> > > > > > 
+> > > > > > [...]
+> > > > > > 
+> > > > > > > > Together, both the GPC and the clk-blk driver should be able to pull
+> > > > > > > > the multimedia block out of reset.  Currently, the GPC can handle the
+> > > > > > > > USB OTG and the GPU, but the LCDIF and MIPI DSI appear to be gated by
+> > > > > > > > the clock block
+> > > > > > > > 
+> > > > > > > > My original patch RFC didn't include the imx8mn node, because it
+> > > > > > > > hangs, but the node I added looks like:
+> > > > > > > > 
+> > > > > > > > media_blk_ctl: clock-controller@32e28000 {
+> > > > > > > >      compatible = "fsl,imx8mn-media-blk-ctl", "syscon";
+> > > > > > > >      reg = <0x32e28000 0x1000>;
+> > > > > > > >      #clock-cells = <1>;
+> > > > > > > >      #reset-cells = <1>;
+> > > > > > > > };
+> > > > > > > > 
+> > > > > > > > I was hoping you might have some feedback on the 8mn clk-blk driver
+> > > > > > > > since you did the 8mp clk-blk drive and they appear to be very
+> > > > > > > > similar.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > I'll do you one better still. I'll apply the patch in my tree and give it
+> > > > > > > a test tomorrow morning.
+> > > > > 
+> > > > > I do have some more updates on how to get the system to not hang, and
+> > > > > to enumerate more clocks.
+> > > > > Looking at Marek's work on enabling clocks in the 8MM, he added a
+> > > > > power-domain in dispmix_blk_ctl pointing to the dispmix in the GPC.
+> > > > > By forcing the GPC driver to write 0x1fff  to 32e28004, 0x7f to
+> > > > > 32e28000 and 0x30000 to 32e28008, the i.MX8MM can bring the display
+> > > > > clocks out of reset.
+> > > > > 
+> > > > 
+> > > > Yeah, that makes sense. Basically, it was trying to disable unused clocks
+> > > > (see clk_disable_unused) but in order to disable the clocks from the
+> > > > media BLK_CTL (which I think should be renamed in display BLK_CTL) the
+> > > > PD need to be on. Since you initially didn't give it any PD, it was trying
+> > > > to blindly write/read the gate bit and therefore freeze.
+> > > > 
+> > > > > Unfortunately, the i.MX8MN needs to have 0x100 written to both
+> > > > > 32e28000 and 32e28004, and the values written for the 8MM are not
+> > > > > compatible.
+> > > > > By forcing the GPC to write those values, I can get  lcdif_pixel_clk
+> > > > > and the mipi_dsi_clkref  appearing on the Nano.
+> > > > 
+> > > > I'm trying to make a branch with all the patches for all i.MX8M so I
+> > > > can keep track of it all. On this branch I've also applied the
+> > > > following patchset from Lucas Stach:
+> > > > https://www.spinics.net/lists/arm-kernel/msg843007.html
+> > > > but I'm getting the folowing errors:
+> > > > 
+> > > > [   16.690885] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > > > [   16.716839] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > > > [   16.730500] imx-pgc imx-pgc-domain.3: failed to power up ADB400
+> > > > 
+> > > > Lucas, any thoughts?
+> > > > 
+> > > > Maybe it's something related to 8MN.
+> > > > 
+> > > I will go back and double check this now that we have both the
+> > > blt_crl->power-domain and the power-domain->blk_ctl.
+> > > 
+> > > > Will dig further, see what pops out.
+> > > 
+> > > I wasn't sure which direction to go with the name.  I can rename the
+> > > media_blk_ctl  driver to display_blk_ctl.  I used Media based on the
+> > > imx8mp naming convention and the fact that it's controlling both the
+> > > display and the camera interface, however it's depending on the
+> > > dispmix GPC.
+> > > 
+> > > I'll submit a RFC V2 with the cross referencing to the GPC based on
+> > > Marek's Mini patch set, but we'll still have an issue where the Mini
+> > > and Nano have different syscon values to enable the clocks, and
+> > > Marek's branch has it card-coded, so my patch would effectively break
+> > > the Mini in order to make the Nano operate until we find a better
+> > > solution.
+> > 
+> > The GPC should not write into the BLK_CTL region via syscon, but
+> > instead use the clocks and resets as exposed by the BLK_CTL driver.
+> > Doing it via syscon is a hack to get things going. The clocks and
+> > resets should properly be hooked up to the GPC domains via the clocks
+> > and resets DT properties.
+> > 
+> > For the clocks there is one complication: if the clocks are controlled
+> > via BLK_CTL we can only enable them once the domain is powered up,
+> > however the earlier designs using the GPCv2 assert resets as part of
+> > the power up sequence, which needs the clocks to be running for the
+> > reset to propagate. So depending on whether we have a power domain with
+> > a BLK_CTL or not we need to enable the clocks before or after powering
+> > up the domain. I guess we need a new DT property to specify which way
+> > the domain needs to handled.
 > 
-> I think fixed size should be used where really needed.
-> Since in this structure you're quite abstracted from the protocol, a generic
-> type is preferred I think.
+> So in the case of Nano, could we create two blocks instead of one?
+> The first block would enable the bus clock and reset that correspond
+> to writing 0x100 to avoid writing to syscon.  From there, we reference
+> that reset and clock from the GPC displaymix_pd to enable the access.
+> Once that's done, we point the 2nd block power-domain to the
+> dispmix_pd to unlock the remaining clocks.
 > 
+> Would that work?  I can try it later today, but I'm not near the hardware now.
 
-Ok, I'll fix in V4.
+Splitting the PD into 2 staged domains might actually work well to get
+around the cyclic dependency between GPC and BLK_CTL. It's not totally
+to my liking, as the DT description doesn't map 1:1 to hardware
+anymore, but it seems to be the most elegant solution to get around the
+dependency.
 
-Thanks
+I'll try to implement this on the i.MX8MM today or tomorrow to see if
+it holds up in reality or if there are some hidden warts.
 
-Cristian
+Regards,
+Lucas
 
-> Regards,
-> Etienne
-> 
-> >
-> > > > +       struct scmi_voltage_info **domains;
-> > > > +};
-> > > > +
-> > > > +static int scmi_protocol_attributes_get(const struct scmi_handle *handle,
-> > > > +                                       struct voltage_info *vinfo)
-> > > > +{
-> > > > +       int ret;
-> > > > +       struct scmi_xfer *t;
-> > > > +       struct scmi_msg_resp_protocol_attributes *resp;
-> > > > +
-> > > > +       ret = scmi_xfer_get_init(handle, PROTOCOL_ATTRIBUTES,
-> > > > +                                SCMI_PROTOCOL_VOLTAGE, 0, sizeof(*resp), &t);
-> > > > +       if (ret)
-> > > > +               return ret;
-> > > > +
-> > > > +       resp = t->rx.buf;
-> > > > +       ret = scmi_do_xfer(handle, t);
-> > > > +       if (!ret)
-> > > > +               vinfo->num_domains =
-> > > > +                       NUM_VOLTAGE_DOMAINS(le32_to_cpu(resp->attr));
-> > > > +
-> > > > +       scmi_xfer_put(handle, t);
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static inline int scmi_init_voltage_levels(struct device *dev,
-> > >
-> > > Should remove this inline attribute.
-> > >
-> >
-> > Ah right, I removed one and left this. I'll do.
-> >
-> > > > +                                          struct scmi_voltage_info *v,
-> > > > +                                          u32 flags, u32 num_returned,
-> > > > +                                          u32 num_remaining)
-> >
-> > [snip]
-> >
-> > > > +DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER(SCMI_PROTOCOL_VOLTAGE, voltage)
-> > > > diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
-> > > > index 9cd312a1ff92..181fdebc2793 100644
-> > > > --- a/include/linux/scmi_protocol.h
-> > > > +++ b/include/linux/scmi_protocol.h
-> > > > @@ -209,6 +209,64 @@ struct scmi_reset_ops {
-> > > >         int (*deassert)(const struct scmi_handle *handle, u32 domain);
-> > > >  };
-> > > >
-> > > > +/**
-> > > > + * struct scmi_voltage_info - describe one available SCMI Voltage Domain
-> > > > + *
-> > > > + * @id: the domain ID as advertised by the platform
-> > > > + * @segmented: defines the layout of the entries of array @levels_uv.
-> > > > + *            - when True the entries are to be interpreted as triplets,
-> > > > + *              each defining a segment representing a range of equally
-> > > > + *              space voltages: <lowest_volts>, <highest_volt>, <step_uV>
-> > > > + *            - when False the entries simply represent a single discrete
-> > > > + *              supported voltage level
-> > > > + * @negative_volts_allowed: True if any of the entries of @levels_uv represent
-> > > > + *                         a negative voltage.
-> > > > + * @attributes: represents Voltage Domain advertised attributes
-> > > > + * @name: name assigned to the Voltage Domain by platform
-> > > > + * @num_levels: number of total entries in @levels_uv.
-> > > > + * @levels_uv: array of entries describing the available voltage levels for
-> > > > + *            this domain.
-> > > > + */
-> > > > +struct scmi_voltage_info {
-> > > > +       unsigned int id;
-> > > > +       bool segmented;
-> > > > +#define SCMI_VOLTAGE_SEGMENT_LOW       0
-> > > > +#define SCMI_VOLTAGE_SEGMENT_HIGH      1
-> > > > +#define SCMI_VOLTAGE_SEGMENT_STEP      2
-> > >
-> > > Maybe move these macros before 'int *level_us;' as these are indices
-> > > in that array.
-> > >
-> >
-> > Right, I'll do.
-> >
-> > Thanks
-> >
-> > Cristian
-> >
-> > > > +       bool negative_volts_allowed;
-> > > > +       unsigned int attributes;
-> > > > +       char name[SCMI_MAX_STR_SIZE];
-> > > > +       unsigned int num_levels;
-> > > > +       int *levels_uv;
-> > > > +};
-> > > > +
-> > > > +/**
-> > > > + * struct scmi_voltage_ops - represents the various operations provided
-> > > > + * by SCMI Voltage Protocol
-> > > > + *
-> > > > + * @num_domains_get: get the count of voltage domains provided by SCMI
-> > > > + * @info_get: get the information of the specified domain
-> > > > + * @config_set: set the config for the specified domain
-> > > > + * @config_get: get the config of the specified domain
-> > > > + * @level_set: set the voltage level for the specified domain
-> > > > + * @level_get: get the voltage level of the specified domain
-> > > > + */
-> > > > +struct scmi_voltage_ops {
-> > > > +       int (*num_domains_get)(const struct scmi_handle *handle);
-> > > > +       const struct scmi_voltage_info __must_check *(*info_get)
-> > > > +               (const struct scmi_handle *handle, u32 domain_id);
-> > > > +       int (*config_set)(const struct scmi_handle *handle, u32 domain_id,
-> > > > +                         u32 config);
-> > > > +#define        SCMI_VOLTAGE_ARCH_STATE_OFF             0x0
-> > > > +#define        SCMI_VOLTAGE_ARCH_STATE_ON              0x7
-> > > > +       int (*config_get)(const struct scmi_handle *handle, u32 domain_id,
-> > > > +                         u32 *config);
-> > > > +       int (*level_set)(const struct scmi_handle *handle, u32 domain_id,
-> > > > +                        u32 flags, s32 volt_uV);
-> > > > +       int (*level_get)(const struct scmi_handle *handle, u32 domain_id,
-> > > > +                        s32 *volt_uV);
-> > > > +};
-> > > > +
-> > > >  /**
-> > > >   * struct scmi_notify_ops  - represents notifications' operations provided by
-> > > >   * SCMI core
-> > > > @@ -262,6 +320,7 @@ struct scmi_notify_ops {
-> > > >   * @clk_ops: pointer to set of clock protocol operations
-> > > >   * @sensor_ops: pointer to set of sensor protocol operations
-> > > >   * @reset_ops: pointer to set of reset protocol operations
-> > > > + * @voltage_ops: pointer to set of voltage protocol operations
-> > > >   * @notify_ops: pointer to set of notifications related operations
-> > > >   * @perf_priv: pointer to private data structure specific to performance
-> > > >   *     protocol(for internal use only)
-> > > > @@ -273,6 +332,8 @@ struct scmi_notify_ops {
-> > > >   *     protocol(for internal use only)
-> > > >   * @reset_priv: pointer to private data structure specific to reset
-> > > >   *     protocol(for internal use only)
-> > > > + * @voltage_priv: pointer to private data structure specific to voltage
-> > > > + *     protocol(for internal use only)
-> > > >   * @notify_priv: pointer to private data structure specific to notifications
-> > > >   *     (for internal use only)
-> > > >   */
-> > > > @@ -284,6 +345,7 @@ struct scmi_handle {
-> > > >         const struct scmi_power_ops *power_ops;
-> > > >         const struct scmi_sensor_ops *sensor_ops;
-> > > >         const struct scmi_reset_ops *reset_ops;
-> > > > +       const struct scmi_voltage_ops *voltage_ops;
-> > > >         const struct scmi_notify_ops *notify_ops;
-> > > >         /* for protocol internal use */
-> > > >         void *perf_priv;
-> > > > @@ -291,6 +353,7 @@ struct scmi_handle {
-> > > >         void *power_priv;
-> > > >         void *sensor_priv;
-> > > >         void *reset_priv;
-> > > > +       void *voltage_priv;
-> > > >         void *notify_priv;
-> > > >         void *system_priv;
-> > > >  };
-> > > > @@ -303,6 +366,7 @@ enum scmi_std_protocol {
-> > > >         SCMI_PROTOCOL_CLOCK = 0x14,
-> > > >         SCMI_PROTOCOL_SENSOR = 0x15,
-> > > >         SCMI_PROTOCOL_RESET = 0x16,
-> > > > +       SCMI_PROTOCOL_VOLTAGE = 0x17,
-> > > >  };
-> > > >
-> > > >  enum scmi_system_events {
-> > > > --
-> > > > 2.17.1
-> > > >
