@@ -2,208 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5307B29EBBC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:19:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6CD429EBCF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:25:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726478AbgJ2MS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 08:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726351AbgJ2MS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 08:18:29 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE4E3C0613CF;
-        Thu, 29 Oct 2020 05:18:28 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id s7so3056022iol.12;
-        Thu, 29 Oct 2020 05:18:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UEdx0/gFMV9MSih/pMTckGsiWjURuAnf86+S8FAwTOs=;
-        b=GtzDMTOpODoe6BPk7FDNlT2Bgtm+Sm3PYJuTZoB7gpMuadqLItTajf5gOdZBjAu3NX
-         DdR5YCwjPqZUEiWPThYuWac3fTnEh+W9R1JzSlW+SdTH0mSs8hvfLgcS9NRCBvA8b1tS
-         GNRzRj/84EQcnAXxoqucF9VMFq8Gy3kcBPk9QTlWc+vidylzfBzVCtSfJestG+F1rRhx
-         tS+EsYQlV1u08O1w1g+L8qkO5/xf2UtLdrEqY8QxAxlozrwrf7L5n3axThtrE3I3yENk
-         ANkAHVxCrSKESeJOQ5VCYAqYyQPVX2F9VHFkNJ9SXWJQi//9/7iwAm/ae08/I5XfcoGi
-         1bDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UEdx0/gFMV9MSih/pMTckGsiWjURuAnf86+S8FAwTOs=;
-        b=G30mVigNELE8BP/4ZUCcKUXigDpcNF1BsDcQ+k1IsqHoAbe+VM+kWTUAQ8esmWHmjT
-         BV6zOqyEnlbjEjO61SsgerbPkbU6TVy6Atau5LvwKRERJ68qLdwyMpgIfBA+pYryqXGz
-         QMPCl2+c4wa/p/PVpSEDa8H5y0wue3MHTlYLa+Bn224JKaiWCSLCXmxjWz8PMh8Sm49u
-         2GIgR6qkM68ywJYU40luqBIFm9LqWgMn3AwDDktb4iSAG8gJOGvmYQW+jTkpL+QpW7Qm
-         IiZsyWOUYmC2EzL3hn9ZqT7FbZFYpC5U8luzXZb4XB811smz6HzP1elVvSqPPqgi2DD1
-         z62A==
-X-Gm-Message-State: AOAM532WYtQV5XWFD3v8Z1DilxizdeOIJwKMOYa0wFWBCVXGBw7nv9Qa
-        +TTTuCYGayo3eKwKdfBiZKE+vi6aeMpG9WFkw5A=
-X-Google-Smtp-Source: ABdhPJx2qR9Zi9USV/iKh6KGwxW2rcnSahHK9BosU1iR9qkWD5nf0fDQVrfgh17tZd6lbkvcbLBT6mhTyRy1/11OVug=
-X-Received: by 2002:a5d:8487:: with SMTP id t7mr3182719iom.35.1603973907895;
- Thu, 29 Oct 2020 05:18:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201024162016.1003041-1-aford173@gmail.com> <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
- <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
- <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175> <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
- <CAHCN7xLC-gKquDNS3ToQCff=g610PscQE+T4zfO=_05GpLyK4w@mail.gmail.com>
- <20201026145516.shmb55gaeh6u7oru@fsr-ub1664-175> <CAHCN7xJOczT1B03Am4A645Xrk6-VF_7VDgAq13F-81=oCkixjw@mail.gmail.com>
- <6274ab26d1fea5e00cea576d1e00028a4c4633af.camel@pengutronix.de>
- <CAHCN7xK1Stx=dzbDE6dKtRHuWGgca54bwQf=JSGNFVmHJ_fSig@mail.gmail.com> <55a33659d6faeb5677f4f3e4809bc426c1a4fc88.camel@pengutronix.de>
-In-Reply-To: <55a33659d6faeb5677f4f3e4809bc426c1a4fc88.camel@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 29 Oct 2020 07:18:16 -0500
-Message-ID: <CAHCN7xKSs9z1_ryXX3xOcJn7FfWXBE+zTzDYJT3pA1LCbHyOBw@mail.gmail.com>
-Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Abel Vesa <abel.vesa@nxp.com>, Marek Vasut <marex@denx.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S1726044AbgJ2MZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 08:25:28 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:39413 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725767AbgJ2MZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 08:25:28 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C10F7580518;
+        Thu, 29 Oct 2020 08:25:26 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 29 Oct 2020 08:25:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=6EQlP+QGHRkogkEJOSa/mjPMd/
+        dcifzWBOtZuULOoew=; b=UkmwfPRyP8wXV2xeVvohOpniZ95gaqCrurNEPPLw+E
+        koKnJsuFeAVfeJ+GpaBFJozyY7Zli/ezaUB5vb9KLgonu7tDZQ2C6LqRHIq9VMY1
+        Ge63FSHU8AJ71HfUxzSvVZmyUUzbEbwNjSBjMzNTmqjE85owGuQwHoXn+iVlR/6A
+        Dhxp+Y3oQDnYVhY5peU8G2q/oVeLIJPQFllDmvpTfFGtgJsfLc3gVCL7YRi8O8YM
+        Toyb3ukJ1uQoEAgmij5yNKqe5KbbWX4+J5nbxwyAxN7lVjcpCQYGnsDC8Rp7dZ5d
+        9Enkp6HD2vDhv8Z8LyRBs/Rbwy2HjU4l63jDLvazl1hA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=6EQlP+QGHRkogkEJO
+        Sa/mjPMd/dcifzWBOtZuULOoew=; b=nwURPV8QTUv/E8jF+ae5gOSFy5eDhC3Tl
+        X6C5Np4UXdsx0s6clCEtpzamipMnUoJCZq+4va3swRHHsCVSf4K+fdx7nFDn/s34
+        FW2xp5W53GMpYMj/IwVaYZeluvVphMDIaQwjRwmy8QMJ5BBOfxgbs0u4qPEMmsRw
+        p7JLfkceN5PSr6VPT8c5CSaHsl0ZtAMHQ87+r3eWebNNye9Ukdp57OzVQ4Q2so0z
+        nOQxNJ9zYz2dljfHmV/8FsSg14XQRGKZ1Mn0K6BqY8+GwElOFRINqhakpbrBvRnX
+        H5EEq1yBG7H5ujO39QTy9eGOBDc9UrlH4oU7oYCwR+kwQ9V4fzE1g==
+X-ME-Sender: <xms:tbSaX5AHrL3ePlihy7bCznzEWOg_YWdrTKhauET-8XNYMmBZW_JKmg>
+    <xme:tbSaX3i0wHHYIhQwHzIV39cPCska5K6nRdxAiUpdwhYQm7nMNg6FcyIZh3uDAun7h
+    9G_X68LxLDFVFBW90o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleefgdegtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucft
+    ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
+    hnpeejffehuddvvddvlefhgeelleffgfeijedvhefgieejtdeiueetjeetfeeukeejgeen
+    ucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:tbSaX0n_MPcNwlDyeXMEZLx9byYbizlFUhOY7tRKLMwncVM9iPrlzA>
+    <xmx:tbSaXzy0Zy-s5uvCtkSZrPq_KICu9Y4FlLDIAAEmfyqnz1GF9fbAyA>
+    <xmx:tbSaX-RpqcaLPwHXdMrOrwC1alGbOa8BKO6UjktxoZVgoGQd_H-flA>
+    <xmx:trSaX6pB8i1BPVeqJ7vup9EC0P-WlFgcYM1MDPOswMaLrAi3kRhcxw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 6201B3280059;
+        Thu, 29 Oct 2020 08:25:25 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Eric Anholt <eric@anholt.net>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Subject: [PATCH v2 1/2] drm/vc4: hdmi: Make sure our clock rate is within limits
+Date:   Thu, 29 Oct 2020 13:25:21 +0100
+Message-Id: <20201029122522.1917579-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 6:55 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Am Montag, den 26.10.2020, 11:23 -0500 schrieb Adam Ford:
-> > On Mon, Oct 26, 2020 at 10:44 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > > Am Montag, den 26.10.2020, 10:12 -0500 schrieb Adam Ford:
-> > > > On Mon, Oct 26, 2020 at 9:55 AM Abel Vesa <abel.vesa@nxp.com> wrote:
-> > > > > On 20-10-25 11:05:32, Adam Ford wrote:
-> > > > > > On Sun, Oct 25, 2020 at 7:19 AM Marek Vasut <marex@denx.de> wrote:
-> > > > > > > On 10/25/20 1:05 PM, Abel Vesa wrote:
-> > > > > > >
-> > > > > > > [...]
-> > > > > > >
-> > > > > > > > > Together, both the GPC and the clk-blk driver should be able to pull
-> > > > > > > > > the multimedia block out of reset.  Currently, the GPC can handle the
-> > > > > > > > > USB OTG and the GPU, but the LCDIF and MIPI DSI appear to be gated by
-> > > > > > > > > the clock block
-> > > > > > > > >
-> > > > > > > > > My original patch RFC didn't include the imx8mn node, because it
-> > > > > > > > > hangs, but the node I added looks like:
-> > > > > > > > >
-> > > > > > > > > media_blk_ctl: clock-controller@32e28000 {
-> > > > > > > > >      compatible = "fsl,imx8mn-media-blk-ctl", "syscon";
-> > > > > > > > >      reg = <0x32e28000 0x1000>;
-> > > > > > > > >      #clock-cells = <1>;
-> > > > > > > > >      #reset-cells = <1>;
-> > > > > > > > > };
-> > > > > > > > >
-> > > > > > > > > I was hoping you might have some feedback on the 8mn clk-blk driver
-> > > > > > > > > since you did the 8mp clk-blk drive and they appear to be very
-> > > > > > > > > similar.
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > I'll do you one better still. I'll apply the patch in my tree and give it
-> > > > > > > > a test tomorrow morning.
-> > > > > >
-> > > > > > I do have some more updates on how to get the system to not hang, and
-> > > > > > to enumerate more clocks.
-> > > > > > Looking at Marek's work on enabling clocks in the 8MM, he added a
-> > > > > > power-domain in dispmix_blk_ctl pointing to the dispmix in the GPC.
-> > > > > > By forcing the GPC driver to write 0x1fff  to 32e28004, 0x7f to
-> > > > > > 32e28000 and 0x30000 to 32e28008, the i.MX8MM can bring the display
-> > > > > > clocks out of reset.
-> > > > > >
-> > > > >
-> > > > > Yeah, that makes sense. Basically, it was trying to disable unused clocks
-> > > > > (see clk_disable_unused) but in order to disable the clocks from the
-> > > > > media BLK_CTL (which I think should be renamed in display BLK_CTL) the
-> > > > > PD need to be on. Since you initially didn't give it any PD, it was trying
-> > > > > to blindly write/read the gate bit and therefore freeze.
-> > > > >
-> > > > > > Unfortunately, the i.MX8MN needs to have 0x100 written to both
-> > > > > > 32e28000 and 32e28004, and the values written for the 8MM are not
-> > > > > > compatible.
-> > > > > > By forcing the GPC to write those values, I can get  lcdif_pixel_clk
-> > > > > > and the mipi_dsi_clkref  appearing on the Nano.
-> > > > >
-> > > > > I'm trying to make a branch with all the patches for all i.MX8M so I
-> > > > > can keep track of it all. On this branch I've also applied the
-> > > > > following patchset from Lucas Stach:
-> > > > > https://www.spinics.net/lists/arm-kernel/msg843007.html
-> > > > > but I'm getting the folowing errors:
-> > > > >
-> > > > > [   16.690885] imx-pgc imx-pgc-domain.3: failed to power up ADB400
-> > > > > [   16.716839] imx-pgc imx-pgc-domain.3: failed to power up ADB400
-> > > > > [   16.730500] imx-pgc imx-pgc-domain.3: failed to power up ADB400
-> > > > >
-> > > > > Lucas, any thoughts?
-> > > > >
-> > > > > Maybe it's something related to 8MN.
-> > > > >
-> > > > I will go back and double check this now that we have both the
-> > > > blt_crl->power-domain and the power-domain->blk_ctl.
-> > > >
-> > > > > Will dig further, see what pops out.
-> > > >
-> > > > I wasn't sure which direction to go with the name.  I can rename the
-> > > > media_blk_ctl  driver to display_blk_ctl.  I used Media based on the
-> > > > imx8mp naming convention and the fact that it's controlling both the
-> > > > display and the camera interface, however it's depending on the
-> > > > dispmix GPC.
-> > > >
-> > > > I'll submit a RFC V2 with the cross referencing to the GPC based on
-> > > > Marek's Mini patch set, but we'll still have an issue where the Mini
-> > > > and Nano have different syscon values to enable the clocks, and
-> > > > Marek's branch has it card-coded, so my patch would effectively break
-> > > > the Mini in order to make the Nano operate until we find a better
-> > > > solution.
-> > >
-> > > The GPC should not write into the BLK_CTL region via syscon, but
-> > > instead use the clocks and resets as exposed by the BLK_CTL driver.
-> > > Doing it via syscon is a hack to get things going. The clocks and
-> > > resets should properly be hooked up to the GPC domains via the clocks
-> > > and resets DT properties.
-> > >
-> > > For the clocks there is one complication: if the clocks are controlled
-> > > via BLK_CTL we can only enable them once the domain is powered up,
-> > > however the earlier designs using the GPCv2 assert resets as part of
-> > > the power up sequence, which needs the clocks to be running for the
-> > > reset to propagate. So depending on whether we have a power domain with
-> > > a BLK_CTL or not we need to enable the clocks before or after powering
-> > > up the domain. I guess we need a new DT property to specify which way
-> > > the domain needs to handled.
-> >
-> > So in the case of Nano, could we create two blocks instead of one?
-> > The first block would enable the bus clock and reset that correspond
-> > to writing 0x100 to avoid writing to syscon.  From there, we reference
-> > that reset and clock from the GPC displaymix_pd to enable the access.
-> > Once that's done, we point the 2nd block power-domain to the
-> > dispmix_pd to unlock the remaining clocks.
-> >
-> > Would that work?  I can try it later today, but I'm not near the hardware now.
->
-> Splitting the PD into 2 staged domains might actually work well to get
-> around the cyclic dependency between GPC and BLK_CTL. It's not totally
-> to my liking, as the DT description doesn't map 1:1 to hardware
-> anymore, but it seems to be the most elegant solution to get around the
-> dependency.
->
-> I'll try to implement this on the i.MX8MM today or tomorrow to see if
-> it holds up in reality or if there are some hidden warts.
+The HDMI controller cannot go above a certain pixel rate limit depending on
+the generations, but that limit is only enforced in mode_valid at the
+moment, which means that we won't advertise modes that exceed that limit,
+but the userspace is still free to try to setup a mode that would.
 
-I tried it last night on the Nano without success.  :-(
+Implement atomic_check to make sure we check it in that scenario too.
 
-I was just getting ready to e-mail the group when I saw this come in.
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-adam
+---
 
->
-> Regards,
-> Lucas
->
+Changes from v1:
+  - Added that patch to resolve a conflict
+---
+ drivers/gpu/drm/vc4/vc4_hdmi.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+index e8f99e290655..3d0338822cd2 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -760,6 +760,20 @@ static void vc4_hdmi_encoder_enable(struct drm_encoder *encoder)
+ {
+ }
+ 
++static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
++					 struct drm_crtc_state *crtc_state,
++					 struct drm_connector_state *conn_state)
++{
++	struct drm_display_mode *mode = &crtc_state->adjusted_mode;
++	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
++	unsigned long long pixel_rate = mode->clock * 1000;
++
++	if (pixel_rate > vc4_hdmi->variant->max_pixel_clock)
++		return -EINVAL;
++
++	return 0;
++}
++
+ static enum drm_mode_status
+ vc4_hdmi_encoder_mode_valid(struct drm_encoder *encoder,
+ 			    const struct drm_display_mode *mode)
+@@ -773,6 +787,7 @@ vc4_hdmi_encoder_mode_valid(struct drm_encoder *encoder,
+ }
+ 
+ static const struct drm_encoder_helper_funcs vc4_hdmi_encoder_helper_funcs = {
++	.atomic_check = vc4_hdmi_encoder_atomic_check,
+ 	.mode_valid = vc4_hdmi_encoder_mode_valid,
+ 	.disable = vc4_hdmi_encoder_disable,
+ 	.enable = vc4_hdmi_encoder_enable,
+-- 
+2.26.2
+
