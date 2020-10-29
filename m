@@ -2,184 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 694F529EB0C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 12:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBDFD29EB43
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725536AbgJ2LzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 07:55:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725300AbgJ2LzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 07:55:05 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97B3C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 04:55:04 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kY6WC-0004Ac-I9; Thu, 29 Oct 2020 12:55:00 +0100
-Message-ID: <55a33659d6faeb5677f4f3e4809bc426c1a4fc88.camel@pengutronix.de>
-Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Abel Vesa <abel.vesa@nxp.com>, Marek Vasut <marex@denx.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S1725770AbgJ2MI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 08:08:26 -0400
+Received: from foss.arm.com ([217.140.110.172]:34460 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725385AbgJ2MI0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 08:08:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A5A213D5;
+        Thu, 29 Oct 2020 05:08:25 -0700 (PDT)
+Received: from [10.57.13.20] (unknown [10.57.13.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5D9543F719;
+        Thu, 29 Oct 2020 05:08:21 -0700 (PDT)
+Subject: Re: [PATCH v3 1/4] PM / EM: Add a flag indicating units of power
+ values in Energy Model
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 29 Oct 2020 12:54:58 +0100
-In-Reply-To: <CAHCN7xK1Stx=dzbDE6dKtRHuWGgca54bwQf=JSGNFVmHJ_fSig@mail.gmail.com>
-References: <20201024162016.1003041-1-aford173@gmail.com>
-         <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
-         <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
-         <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
-         <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
-         <CAHCN7xLC-gKquDNS3ToQCff=g610PscQE+T4zfO=_05GpLyK4w@mail.gmail.com>
-         <20201026145516.shmb55gaeh6u7oru@fsr-ub1664-175>
-         <CAHCN7xJOczT1B03Am4A645Xrk6-VF_7VDgAq13F-81=oCkixjw@mail.gmail.com>
-         <6274ab26d1fea5e00cea576d1e00028a4c4633af.camel@pengutronix.de>
-         <CAHCN7xK1Stx=dzbDE6dKtRHuWGgca54bwQf=JSGNFVmHJ_fSig@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
+        morten.rasmussen@arm.com, Quentin Perret <qperret@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>
+References: <20201019140601.3047-1-lukasz.luba@arm.com>
+ <20201019140601.3047-2-lukasz.luba@arm.com>
+ <CAD=FV=Up1Qssb=Q2UfXTKmd1oLGrEpTCH50ejgFSPnRQP1d-iQ@mail.gmail.com>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <3be572b1-860a-81f4-d924-66c6d05aa873@arm.com>
+Date:   Thu, 29 Oct 2020 12:08:19 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <CAD=FV=Up1Qssb=Q2UfXTKmd1oLGrEpTCH50ejgFSPnRQP1d-iQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, den 26.10.2020, 11:23 -0500 schrieb Adam Ford:
-> On Mon, Oct 26, 2020 at 10:44 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > Am Montag, den 26.10.2020, 10:12 -0500 schrieb Adam Ford:
-> > > On Mon, Oct 26, 2020 at 9:55 AM Abel Vesa <abel.vesa@nxp.com> wrote:
-> > > > On 20-10-25 11:05:32, Adam Ford wrote:
-> > > > > On Sun, Oct 25, 2020 at 7:19 AM Marek Vasut <marex@denx.de> wrote:
-> > > > > > On 10/25/20 1:05 PM, Abel Vesa wrote:
-> > > > > > 
-> > > > > > [...]
-> > > > > > 
-> > > > > > > > Together, both the GPC and the clk-blk driver should be able to pull
-> > > > > > > > the multimedia block out of reset.  Currently, the GPC can handle the
-> > > > > > > > USB OTG and the GPU, but the LCDIF and MIPI DSI appear to be gated by
-> > > > > > > > the clock block
-> > > > > > > > 
-> > > > > > > > My original patch RFC didn't include the imx8mn node, because it
-> > > > > > > > hangs, but the node I added looks like:
-> > > > > > > > 
-> > > > > > > > media_blk_ctl: clock-controller@32e28000 {
-> > > > > > > >      compatible = "fsl,imx8mn-media-blk-ctl", "syscon";
-> > > > > > > >      reg = <0x32e28000 0x1000>;
-> > > > > > > >      #clock-cells = <1>;
-> > > > > > > >      #reset-cells = <1>;
-> > > > > > > > };
-> > > > > > > > 
-> > > > > > > > I was hoping you might have some feedback on the 8mn clk-blk driver
-> > > > > > > > since you did the 8mp clk-blk drive and they appear to be very
-> > > > > > > > similar.
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > I'll do you one better still. I'll apply the patch in my tree and give it
-> > > > > > > a test tomorrow morning.
-> > > > > 
-> > > > > I do have some more updates on how to get the system to not hang, and
-> > > > > to enumerate more clocks.
-> > > > > Looking at Marek's work on enabling clocks in the 8MM, he added a
-> > > > > power-domain in dispmix_blk_ctl pointing to the dispmix in the GPC.
-> > > > > By forcing the GPC driver to write 0x1fff  to 32e28004, 0x7f to
-> > > > > 32e28000 and 0x30000 to 32e28008, the i.MX8MM can bring the display
-> > > > > clocks out of reset.
-> > > > > 
-> > > > 
-> > > > Yeah, that makes sense. Basically, it was trying to disable unused clocks
-> > > > (see clk_disable_unused) but in order to disable the clocks from the
-> > > > media BLK_CTL (which I think should be renamed in display BLK_CTL) the
-> > > > PD need to be on. Since you initially didn't give it any PD, it was trying
-> > > > to blindly write/read the gate bit and therefore freeze.
-> > > > 
-> > > > > Unfortunately, the i.MX8MN needs to have 0x100 written to both
-> > > > > 32e28000 and 32e28004, and the values written for the 8MM are not
-> > > > > compatible.
-> > > > > By forcing the GPC to write those values, I can get  lcdif_pixel_clk
-> > > > > and the mipi_dsi_clkref  appearing on the Nano.
-> > > > 
-> > > > I'm trying to make a branch with all the patches for all i.MX8M so I
-> > > > can keep track of it all. On this branch I've also applied the
-> > > > following patchset from Lucas Stach:
-> > > > https://www.spinics.net/lists/arm-kernel/msg843007.html
-> > > > but I'm getting the folowing errors:
-> > > > 
-> > > > [   16.690885] imx-pgc imx-pgc-domain.3: failed to power up ADB400
-> > > > [   16.716839] imx-pgc imx-pgc-domain.3: failed to power up ADB400
-> > > > [   16.730500] imx-pgc imx-pgc-domain.3: failed to power up ADB400
-> > > > 
-> > > > Lucas, any thoughts?
-> > > > 
-> > > > Maybe it's something related to 8MN.
-> > > > 
-> > > I will go back and double check this now that we have both the
-> > > blt_crl->power-domain and the power-domain->blk_ctl.
-> > > 
-> > > > Will dig further, see what pops out.
-> > > 
-> > > I wasn't sure which direction to go with the name.  I can rename the
-> > > media_blk_ctl  driver to display_blk_ctl.  I used Media based on the
-> > > imx8mp naming convention and the fact that it's controlling both the
-> > > display and the camera interface, however it's depending on the
-> > > dispmix GPC.
-> > > 
-> > > I'll submit a RFC V2 with the cross referencing to the GPC based on
-> > > Marek's Mini patch set, but we'll still have an issue where the Mini
-> > > and Nano have different syscon values to enable the clocks, and
-> > > Marek's branch has it card-coded, so my patch would effectively break
-> > > the Mini in order to make the Nano operate until we find a better
-> > > solution.
-> > 
-> > The GPC should not write into the BLK_CTL region via syscon, but
-> > instead use the clocks and resets as exposed by the BLK_CTL driver.
-> > Doing it via syscon is a hack to get things going. The clocks and
-> > resets should properly be hooked up to the GPC domains via the clocks
-> > and resets DT properties.
-> > 
-> > For the clocks there is one complication: if the clocks are controlled
-> > via BLK_CTL we can only enable them once the domain is powered up,
-> > however the earlier designs using the GPCv2 assert resets as part of
-> > the power up sequence, which needs the clocks to be running for the
-> > reset to propagate. So depending on whether we have a power domain with
-> > a BLK_CTL or not we need to enable the clocks before or after powering
-> > up the domain. I guess we need a new DT property to specify which way
-> > the domain needs to handled.
-> 
-> So in the case of Nano, could we create two blocks instead of one?
-> The first block would enable the bus clock and reset that correspond
-> to writing 0x100 to avoid writing to syscon.  From there, we reference
-> that reset and clock from the GPC displaymix_pd to enable the access.
-> Once that's done, we point the 2nd block power-domain to the
-> dispmix_pd to unlock the remaining clocks.
-> 
-> Would that work?  I can try it later today, but I'm not near the hardware now.
 
-Splitting the PD into 2 staged domains might actually work well to get
-around the cyclic dependency between GPC and BLK_CTL. It's not totally
-to my liking, as the DT description doesn't map 1:1 to hardware
-anymore, but it seems to be the most elegant solution to get around the
-dependency.
 
-I'll try to implement this on the i.MX8MM today or tomorrow to see if
-it holds up in reality or if there are some hidden warts.
+On 10/20/20 1:17 AM, Doug Anderson wrote:
+> Hi,
+> 
+> On Mon, Oct 19, 2020 at 7:06 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+>>
+>> There are different platforms and devices which might use different scale
+>> for the power values. Kernel sub-systems might need to check if all
+>> Energy Model (EM) devices are using the same scale. Address that issue and
+>> store the information inside EM for each device. Thanks to that they can
+>> be easily compared and proper action triggered.
+>>
+>> Suggested-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+>> ---
+>>   drivers/cpufreq/scmi-cpufreq.c |  3 ++-
+>>   drivers/opp/of.c               |  2 +-
+>>   include/linux/energy_model.h   |  9 +++++++--
+>>   kernel/power/energy_model.c    | 24 +++++++++++++++++++++++-
+>>   4 files changed, 33 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/cpufreq/scmi-cpufreq.c b/drivers/cpufreq/scmi-cpufreq.c
+>> index e855e8612a67..3714a4cd07fa 100644
+>> --- a/drivers/cpufreq/scmi-cpufreq.c
+>> +++ b/drivers/cpufreq/scmi-cpufreq.c
+>> @@ -188,7 +188,8 @@ static int scmi_cpufreq_init(struct cpufreq_policy *policy)
+>>          policy->fast_switch_possible =
+>>                  handle->perf_ops->fast_switch_possible(handle, cpu_dev);
+>>
+>> -       em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus);
+>> +       em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus,
+>> +                                   false);
+>>
+>>          return 0;
+>>
+>> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
+>> index 874b58756220..9e1307061de5 100644
+>> --- a/drivers/opp/of.c
+>> +++ b/drivers/opp/of.c
+>> @@ -1333,7 +1333,7 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
+>>                  goto failed;
+>>          }
+>>
+>> -       ret = em_dev_register_perf_domain(dev, nr_opp, &em_cb, cpus);
+>> +       ret = em_dev_register_perf_domain(dev, nr_opp, &em_cb, cpus, true);
+>>          if (ret)
+>>                  goto failed;
+>>
+>> diff --git a/include/linux/energy_model.h b/include/linux/energy_model.h
+>> index b67a51c574b9..2c31d79bb922 100644
+>> --- a/include/linux/energy_model.h
+>> +++ b/include/linux/energy_model.h
+>> @@ -29,6 +29,8 @@ struct em_perf_state {
+>>    * em_perf_domain - Performance domain
+>>    * @table:             List of performance states, in ascending order
+>>    * @nr_perf_states:    Number of performance states
+>> + * @milliwatts:                Flag indicating the power values are in milli-Watts
+>> + *                     or some other scale.
+>>    * @cpus:              Cpumask covering the CPUs of the domain. It's here
+>>    *                     for performance reasons to avoid potential cache
+>>    *                     misses during energy calculations in the scheduler
+>> @@ -43,6 +45,7 @@ struct em_perf_state {
+>>   struct em_perf_domain {
+>>          struct em_perf_state *table;
+>>          int nr_perf_states;
+>> +       bool milliwatts;
+>>          unsigned long cpus[];
+>>   };
+>>
+>> @@ -79,7 +82,8 @@ struct em_data_callback {
+>>   struct em_perf_domain *em_cpu_get(int cpu);
+>>   struct em_perf_domain *em_pd_get(struct device *dev);
+>>   int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
+>> -                               struct em_data_callback *cb, cpumask_t *span);
+>> +                               struct em_data_callback *cb, cpumask_t *spani,
+>> +                               bool milliwatts);
+>>   void em_dev_unregister_perf_domain(struct device *dev);
+>>
+>>   /**
+>> @@ -186,7 +190,8 @@ struct em_data_callback {};
+>>
+>>   static inline
+>>   int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
+>> -                               struct em_data_callback *cb, cpumask_t *span)
+>> +                               struct em_data_callback *cb, cpumask_t *span,
+>> +                               bool milliwatts)
+>>   {
+>>          return -EINVAL;
+>>   }
+>> diff --git a/kernel/power/energy_model.c b/kernel/power/energy_model.c
+>> index c1ff7fa030ab..efe2a595988e 100644
+>> --- a/kernel/power/energy_model.c
+>> +++ b/kernel/power/energy_model.c
+>> @@ -52,6 +52,17 @@ static int em_debug_cpus_show(struct seq_file *s, void *unused)
+>>   }
+>>   DEFINE_SHOW_ATTRIBUTE(em_debug_cpus);
+>>
+>> +static int em_debug_units_show(struct seq_file *s, void *unused)
+>> +{
+>> +       struct em_perf_domain *pd = s->private;
+>> +       char *units = pd->milliwatts ? "milliWatts" : "bogoWatts";
+>> +
+>> +       seq_printf(s, "%s\n", units);
+>> +
+>> +       return 0;
+>> +}
+>> +DEFINE_SHOW_ATTRIBUTE(em_debug_units);
+>> +
+>>   static void em_debug_create_pd(struct device *dev)
+>>   {
+>>          struct dentry *d;
+>> @@ -64,6 +75,8 @@ static void em_debug_create_pd(struct device *dev)
+>>                  debugfs_create_file("cpus", 0444, d, dev->em_pd->cpus,
+>>                                      &em_debug_cpus_fops);
+>>
+>> +       debugfs_create_file("units", 0444, d, dev->em_pd, &em_debug_units_fops);
+>> +
+>>          /* Create a sub-directory for each performance state */
+>>          for (i = 0; i < dev->em_pd->nr_perf_states; i++)
+>>                  em_debug_create_ps(&dev->em_pd->table[i], d);
+>> @@ -250,17 +263,24 @@ EXPORT_SYMBOL_GPL(em_cpu_get);
+>>    * @cpus       : Pointer to cpumask_t, which in case of a CPU device is
+>>    *             obligatory. It can be taken from i.e. 'policy->cpus'. For other
+>>    *             type of devices this should be set to NULL.
+>> + * @milliwatts : Flag indicating that the power values are in milliWatts or
+>> + *             in some other scale. It must be set properly.
+>>    *
+>>    * Create Energy Model tables for a performance domain using the callbacks
+>>    * defined in cb.
+>>    *
+>> + * The @milliwatts is important to set with correct value. Some kernel
+>> + * sub-systems might rely on this flag and check if all devices in the EM are
+>> + * using the same scale.
+>> + *
+>>    * If multiple clients register the same performance domain, all but the first
+>>    * registration will be ignored.
+> 
+> Should the bullet point above be changed?
+> 
+> I haven't dug through all the code so I may be being naive, but it
+> seems like if someone registers with "milliWatts" set to true then it
+> should ignore the old values where milliWatts were false?  Otherwise,
+> I think, if SCMI registers some numbers first does that mean we can't
+> later register updated numbers in the device tree?  Also, what happens
+> when some devices register with milliWatts, some with bogoWatts, and
+> some with both?  How do we decide what we should be using and what we
+> should be throwing away?
+
+When the SCMI is used, there is no DT involved. The SCMI provides
+get_power() callback and protocol supports this. The values are coming
+from FW. SCMI also requires that the scale is consistent across perf
+domains, so no need to 'align' these devices to the same scale.
+
+You cannot register EM twice for the same device, the existing code
+already does not allow for that.
+The EM internally does not track devices, the device struct has em_pd
+field. It is up the the client framework or governor e.g. IPA to
+check all power actors if some of them use abstract scale and other
+milliWatts.
+
+> 
+> As per my response in the cover letter, I guess one option would be to
+> try to figure out a bogoWatts to milliWatts conversion factor the
+> first time someone tried to register once one way and once the other
+> way?
+
+It is not possible.
 
 Regards,
-Lucas
+Lukasz
 
+> 
+> 
+> -Doug
+> 
