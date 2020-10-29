@@ -2,149 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E0929EC8B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E6D629ECC0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:22:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725554AbgJ2NOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:14:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53464 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725379AbgJ2NOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:14:23 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EAB1C0613D2
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 06:14:23 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id a9so2685131wrg.12
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 06:14:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=9obAPEV8dEZ5dV9K3xznJ6LjVq/00BJ7H8Sv5LddX8E=;
-        b=jzVlXEEB5wHxHJyULvUM42NCvTUEbuK845ME39oBPZNYg0IJBMecqYmh/KSkCCGVV8
-         PbqwqNcQt3DaD/66WJqHXWtVhEWyY6ImvH/HFiZNsV8tcRxmRwSWJaSIUQXM5wiwBnSU
-         0vl/CBawp327PcaNJm3L8fn8aWQ+vr4Bw6fgq77vmIUTwBqT+zYZf65RfwcKcdqYLMUS
-         jDFb6rSCB0qTqbLUGvYZ/2W6xTBVF75Bb8YYDnUyr6fa6peEUgaR1W0ZSG5Fupqq1MbE
-         Mq3qPD76Gqll6ZOL2ZQhpfIr2T56I//GMtkm/bhjasLApkuuoIJ/8xvW4bs8iunWSqEu
-         5F2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=9obAPEV8dEZ5dV9K3xznJ6LjVq/00BJ7H8Sv5LddX8E=;
-        b=Jo02FGhb3UN760zJX0s78yUxm8b0+EaetunQSX5miEz765k84BWGJCUS62P0/65tnn
-         l7IEWH+pctwubLgDAfGw5S3bULcJPT557H87tMV8E9gka4dZ+fYUxmLZjSxCO88uFGuG
-         s9H8S6dTaF/gkXn3fevxBoKveZ97zExadI3+q8Vj6VPn/U6GGW+cXU/UH+VhviVwMooW
-         jufxOeOo4nuBefIp1Y/hXhg/sT4gfbUSbDsA2AaQ0Qp2YeJpG2GZhUBLxkUSRMEv3BBP
-         OVqY9WyZ6OhxXUaSD7vJiFtyENeCFkBvRLHAcpbslRejeI1i0rqu7CQGhNlt72+Nbxl0
-         56XA==
-X-Gm-Message-State: AOAM531c61LJZi3h5UDhUR/l7J8f4fRllAB9beNRg/imsEWnvt9RhdOP
-        oJQfRBOWESxtzEeWZMfVc1GmPQ==
-X-Google-Smtp-Source: ABdhPJxH2GANAc8gVY+RbaHy7HfWpZhTky0wsa4s9YojOReeoSLAMEZ36RhnpquTaKqaa2soG3bIag==
-X-Received: by 2002:adf:8bce:: with SMTP id w14mr5450324wra.242.1603977261907;
-        Thu, 29 Oct 2020 06:14:21 -0700 (PDT)
-Received: from dell ([91.110.221.160])
-        by smtp.gmail.com with ESMTPSA id l11sm4601692wro.89.2020.10.29.06.14.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 06:14:21 -0700 (PDT)
-Date:   Thu, 29 Oct 2020 13:14:19 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Shihlun Lin <shihlun.lin@advantech.com.tw>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Campion Kang <campion.kang@advantech.com.tw>,
-        AceLan Kao <chia-lin.kao@canonical.com>
-Subject: Re: [PATCH v3 5/6] mfd: ahc1ec0-hwmon: Add sub-device hwmon for
- Advantech embedded controller
-Message-ID: <20201029131419.GA4127@dell>
-References: <20201029100613.25789-1-shihlun.lin@advantech.com.tw>
- <20201029100613.25789-5-shihlun.lin@advantech.com.tw>
+        id S1725771AbgJ2NWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:22:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45208 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725601AbgJ2NWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 09:22:37 -0400
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 78A5920782;
+        Thu, 29 Oct 2020 13:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603977755;
+        bh=SSqEczktkXqJPCkYJd5JJVd8x3QTRgXyJPz9DieXvI4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=n0vFVgEuizL/dTUyl+wJFfcFZMUwk+0j4zhPJs5vSe4XjhlYhsY0EfpbaEQTylhWt
+         Cubd0FfxN5Ee2oJDXYXEOxUZlwmqAWAKdT/7JjFbdX+nfd/dDeF2qeDk5f6rU5tvO4
+         3Skh01R/yatRbFl/JN9wAt8ukwMHssGIzImAfJzg=
+Received: by mail-ed1-f42.google.com with SMTP id v19so2983889edx.9;
+        Thu, 29 Oct 2020 06:22:35 -0700 (PDT)
+X-Gm-Message-State: AOAM531sjCpDSIh+ihtyr0Kk87TVoOrjE1xFgJi3hM1aShnVfos5xp0p
+        XqBUNw1nEdQg438Uzj1pmbP2UJhVzg+Ozd4YDw==
+X-Google-Smtp-Source: ABdhPJwDHdKRH0zxp2zdI0rhG8MdiqpEtBhgAHcNHzUa5A/NrM0N2+qgtroMDJUvOVjURs3Jt16EVSasoziDTaYiQJ8=
+X-Received: by 2002:aa7:cb1a:: with SMTP id s26mr3896896edt.219.1603977753903;
+ Thu, 29 Oct 2020 06:22:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201029100613.25789-5-shihlun.lin@advantech.com.tw>
+References: <20201013100625.13056-1-jitao.shi@mediatek.com> <20201013100625.13056-2-jitao.shi@mediatek.com>
+In-Reply-To: <20201013100625.13056-2-jitao.shi@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 29 Oct 2020 21:22:19 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_800OtqtJCtCAYS2Kcw7QLp-ojv63mNu8TS1aunTOsHGQ@mail.gmail.com>
+Message-ID: <CAAOTY_800OtqtJCtCAYS2Kcw7QLp-ojv63mNu8TS1aunTOsHGQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/1] drm/mediatek: dsi: fix scrolling of panel with
+ small hfp or hbp
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        huijuan.xie@mediatek.com, stonea168@163.com,
+        cawa.cheng@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, yingjoe.chen@mediatek.com,
+        eddie.huang@mediatek.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Oct 2020, Shihlun Lin wrote:
+Hi, Jitao:
 
-> This is one of sub-device driver for Advantech embedded controller
-> AHC1EC0. This driver provides sysfs ABI for Advantech related
-> applications to monitor the system status.
-> 
-> Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
-> Reported-by: kernel test robot <lkp@intel.com>
-
-LKP reported that your driver needed upstreaming?
-
-I'm confused!
-
+Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8813=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:06=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Replace horizontal_backporch_byte with vm->hback_porch * bpp to aovid
+> flowing judgement negative number.
+>
+> if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_byte) >
+>         data_phy_cycles * dsi->lanes + delta)
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 > ---
->  drivers/mfd/Kconfig         |    8 +
->  drivers/mfd/Makefile        |    1 +
->  drivers/mfd/ahc1ec0-hwmon.c | 1514 +++++++++++++++++++++++++++++++++++
-
-This obviously belongs in drivers/hwmon.
-
->  3 files changed, 1523 insertions(+)
->  create mode 100644 drivers/mfd/ahc1ec0-hwmon.c
-> 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 965bcafbe5b2..52ca49b211fc 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -2175,5 +2175,13 @@ config MFD_AHC1EC0
->  	  provides expose functions for sub-devices to read/write the value
->  	  to embedded controller.
->  
-> +config MFD_AHC1EC0_HWMON
-> +	tristate "Advantech EC Hareware Monitor Function"
-> +	depends on MFD_AHC1EC0
-> +	help
-> +	  This is sub-device for Advantech embedded controller AHC1EC0. This
-> +	  driver provides the sysfs attribues for applications to monitor
-> +	  the system status.
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 65 +++++++++++++++-----------------=
+------
+>  1 file changed, 25 insertions(+), 40 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
+k/mtk_dsi.c
+> index 80b7a082e874..ddddf69ebeaf 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -445,6 +445,7 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi =
+*dsi)
+>         u32 horizontal_backporch_byte;
+>         u32 horizontal_frontporch_byte;
+>         u32 dsi_tmp_buf_bpp, data_phy_cycles;
+> +       u32 delta;
+>         struct mtk_phy_timing *timing =3D &dsi->phy_timing;
+>
+>         struct videomode *vm =3D &dsi->vm;
+> @@ -466,50 +467,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_ds=
+i *dsi)
+>         horizontal_sync_active_byte =3D (vm->hsync_len * dsi_tmp_buf_bpp =
+- 10);
+>
+>         if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE)
+> -               horizontal_backporch_byte =3D vm->hback_porch * dsi_tmp_b=
+uf_bpp;
+> +               horizontal_backporch_byte =3D
+> +                       (vm->hback_porch * dsi_tmp_buf_bpp - 10);
+>         else
+> -               horizontal_backporch_byte =3D (vm->hback_porch + vm->hsyn=
+c_len) *
+> -                                           dsi_tmp_buf_bpp;
+> +               horizontal_backporch_byte =3D ((vm->hback_porch + vm->hsy=
+nc_len) *
+> +                       dsi_tmp_buf_bpp - 10);
+>
+>         data_phy_cycles =3D timing->lpx + timing->da_hs_prepare +
+> -                         timing->da_hs_zero + timing->da_hs_exit;
+> -
+> -       if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
+> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bp=
+p >
+> -                   data_phy_cycles * dsi->lanes + 18) {
+> -                       horizontal_frontporch_byte =3D
+> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
+> -                               (data_phy_cycles * dsi->lanes + 18) *
+> -                               vm->hfront_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -
+> -                       horizontal_backporch_byte =3D
+> -                               horizontal_backporch_byte -
+> -                               (data_phy_cycles * dsi->lanes + 18) *
+> -                               vm->hback_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -               } else {
+> -                       DRM_WARN("HFP less than d-phy, FPS will under 60H=
+z\n");
+> -                       horizontal_frontporch_byte =3D vm->hfront_porch *
+> -                                                    dsi_tmp_buf_bpp;
+> -               }
+> +                         timing->da_hs_zero + timing->da_hs_exit + 3;
 > +
->  endmenu
->  endif
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 80a9a2bdc3ba..eb645db817b5 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -269,3 +269,4 @@ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+= simple-mfd-i2c.o
->  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
->  
->  obj-$(CONFIG_MFD_AHC1EC0)	+= ahc1ec0.o
-> +obj-$(CONFIG_MFD_AHC1EC0_HWMON)	+= ahc1ec0-hwmon.o
-> diff --git a/drivers/mfd/ahc1ec0-hwmon.c b/drivers/mfd/ahc1ec0-hwmon.c
-> new file mode 100644
-> index 000000000000..3e493b040b4a
-> --- /dev/null
-> +++ b/drivers/mfd/ahc1ec0-hwmon.c
-> @@ -0,0 +1,1514 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*****************************************************************************
-> + * Copyright (c) 2018, Advantech Automation Corp.
+> +       delta =3D (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) ? 18 : 12=
+;
+> +
+> +       if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_by=
+te) >
+> +           data_phy_cycles * dsi->lanes + delta) {
+> +               horizontal_frontporch_byte =3D
+> +                       vm->hfront_porch * dsi_tmp_buf_bpp -
+> +                       (data_phy_cycles * dsi->lanes + delta) *
+> +                       vm->hfront_porch /
+> +                       (vm->hfront_porch + vm->hback_porch);
+> +
+> +               horizontal_backporch_byte =3D
+> +                       horizontal_backporch_byte -
+> +                       (data_phy_cycles * dsi->lanes + delta) *
+> +                       vm->hback_porch /
+> +                       (vm->hfront_porch + vm->hback_porch);
+>         } else {
+> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bp=
+p >
+> -                   data_phy_cycles * dsi->lanes + 12) {
+> -                       horizontal_frontporch_byte =3D
+> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
+> -                               (data_phy_cycles * dsi->lanes + 12) *
+> -                               vm->hfront_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -                       horizontal_backporch_byte =3D horizontal_backporc=
+h_byte -
+> -                               (data_phy_cycles * dsi->lanes + 12) *
+> -                               vm->hback_porch /
+> -                               (vm->hfront_porch + vm->hback_porch);
+> -               } else {
+> -                       DRM_WARN("HFP less than d-phy, FPS will under 60H=
+z\n");
+> -                       horizontal_frontporch_byte =3D vm->hfront_porch *
+> -                                                    dsi_tmp_buf_bpp;
+> -               }
+> +               DRM_WARN("HFP + HBP less than d-phy, FPS will under 60Hz\=
+n");
+> +               horizontal_frontporch_byte =3D vm->hfront_porch *
+> +                                            dsi_tmp_buf_bpp;
 
-You can't just lift a whole driver from downstream code and send it to
-the mailing list as-is.
+I've applied this patch, but small hbp has problem because
+horizontal_backporch_byte < 0.
+I try to modify this patch according to two assumption:
 
-> + * THIS IS AN UNPUBLISHED WORK CONTAINING CONFIDENTIAL AND PROPRIETARY
-> + * INFORMATION WHICH IS THE PROPERTY OF ADVANTECH AUTOMATION CORP.
-> + *
-> + * ANY DISCLOSURE, USE, OR REPRODUCTION, WITHOUT WRITTEN AUTHORIZATION FROM
-> + * ADVANTECH AUTOMATION CORP., IS STRICTLY PROHIBITED.
-> + *****************************************************************************
+1. horizontal_backporch_byte should be smaller than (vm->hback_porch +
+vm->hsync_len) * dsi_tmp_buf_bpp at least 10.
+2. horizontal_backporch_byte should >=3D 0.
 
-This warning is in contradiction to the licence you are proposing.
+According to these two assumption, I've a patch [1]. My key point is
+that I use horizontal_backporch_byte to calculate the ratio to
+subtract it. Is my assumption correct?
+If not, please explain why do you calculate in this way, so we could
+find out how to solve this problem.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+[1] https://chromium-review.googlesource.com/c/chromiumos/third_party/kerne=
+l/+/2506992
+
+Regards,
+Chun-Kuang.
+
+>         }
+>
+>         writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
+> --
+> 2.12.5
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
