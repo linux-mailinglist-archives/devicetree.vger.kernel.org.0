@@ -2,76 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 163E629F327
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 18:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A8A29F339
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 18:29:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727913AbgJ2R0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 13:26:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43712 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727970AbgJ2R0Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 13:26:16 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7CAFF206CB;
-        Thu, 29 Oct 2020 17:26:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603992375;
-        bh=ydtT245KR4NOVY4gur+adaCMxoV41NBuWwlp88cEl8s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CYT+Aaf4mrNMx1sFQUTd5llJYqfeqgcZLxEcsAuy3xMBgfjPjBCVTpQUYv58eaCk5
-         4NisOpJzE1bJoj3JWcE8rnPiKgsOV9MMkuUIs9m/G221zTHsJb2Uct40FZVjv/puBI
-         QetIP8XCZNX0p/kL0f0uDAC7nRFocK+i4DkNiL7Y=
-Date:   Thu, 29 Oct 2020 17:26:08 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Jordan Crouse <jcrouse@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Rob Clark <robdclark@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v18 0/4] iommu/arm-smmu: Add adreno-smmu implementation
- and bindings
-Message-ID: <20201029172607.GA30745@willie-the-truck>
-References: <20201027223408.469893-1-jcrouse@codeaurora.org>
+        id S1725971AbgJ2R3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 13:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37176 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725730AbgJ2R3w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 13:29:52 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFB40C0613D5;
+        Thu, 29 Oct 2020 10:29:51 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id k21so1688149wmi.1;
+        Thu, 29 Oct 2020 10:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tsIIeip0c9OlJdC8NFlOSS5E1Z7oDwE4UBzxXI1dq7s=;
+        b=GbM6ENuT0F23wMLW0DhxPoEL5YTO4sypFhgCg/Cya8YiHIqmjhEvz9a4gyqPbNG4oi
+         9WNEcxOzrjcxV8esnGytuW8318rfFhDdd/8Tc8hpsPepdJ1FH/x8CQfMHQFQDJdPqKMX
+         +hgfeNncnMqxW6CamPNF3/2yW9YoEKbF8rEw/kzyIPQOCNa3Mp9kdePAqHTFLHsoueAa
+         MSq+0DLegSEY3DT1mBOoDew7YFd8NlO3sbToMv3hu92SovAX4MniCJZkVIlWb/DqsnCO
+         CIrjteUgpmRxKphROrGURmyfzoPI09qWT7Ve8tcpGJoSpupgDW2UyvyNshfJ1zhho36C
+         Ms2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tsIIeip0c9OlJdC8NFlOSS5E1Z7oDwE4UBzxXI1dq7s=;
+        b=Tml08oooq6VBELs5oOR5r25dfd5NRI/atnPjYd4A7wHtVTMGJsdodjcsFDdtTJpZoy
+         7fGEI93raZUlmkklahI4SjIoPfIgnGYudlB2juh9IZXt3abGqtQ6RJH6g/qcl3mO4xDK
+         vWI6Fn+vUTsvsyqoSyetJIrAaQh8I+n3Ju0AIynHqP/CtVIbeSkqjmeSU/0d7kgP8C0v
+         t0Ugjpk9KtzTfvCpnsapBkDNaqTL58pBTmme1zGqongpYMZNKJ9lAra5tufUbhST8L+A
+         njsJM0Hg0eQwhxNDFbr+NKK+SZ+V38/QjZC7zdjyAMv0xK6uPT88n8tZRfbHiJTqDhJV
+         fyBw==
+X-Gm-Message-State: AOAM5331H5ZTDXS4MT1ogaz+izI8J7ZcnDujQAyzpeD8Ug2IaT0H6bJt
+        NZaIgGKFBeq0BFhWkmn4S4YdNIR6HtP7vE8I
+X-Google-Smtp-Source: ABdhPJzBKlcpXFAQxlmhKefQ9tQW3qGj5R/Jh5QlUeUBoCbKG1Yj4j7c02bQAjc54td9cBzFIPtWWQ==
+X-Received: by 2002:a1c:ddc4:: with SMTP id u187mr961117wmg.156.1603992590441;
+        Thu, 29 Oct 2020 10:29:50 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
+        by smtp.gmail.com with ESMTPSA id e11sm5866054wrj.75.2020.10.29.10.29.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Oct 2020 10:29:49 -0700 (PDT)
+From:   kholk11@gmail.com
+To:     mchehab@kernel.org
+Cc:     robh+dt@kernel.org, marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>
+Subject: [PATCH v2 0/2] Add support for the Sony Exmor-RS IMX300 camera sensor
+Date:   Thu, 29 Oct 2020 18:29:45 +0100
+Message-Id: <20201029172947.34315-1-kholk11@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201027223408.469893-1-jcrouse@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 27, 2020 at 04:34:04PM -0600, Jordan Crouse wrote:
-> This short series adds support for the adreno-smmu implementation of the
-> arm-smmu driver and the device-tree bindings to turn on the implementation
-> for the sm845 and sc7180 GPUs. These changes are the last ones needed to enable
-> per-instance pagetables in the drm/msm driver.
-> 
-> No deltas in this patchset since the last go-around for 5.10 [1].
-> 
-> [1] https://patchwork.freedesktop.org/series/81393/
-> 
-> Jordan Crouse (3):
->   iommu/arm-smmu-qcom: Add implementation for the adreno GPU SMMU
->   dt-bindings: arm-smmu: Add compatible string for Adreno GPU SMMU
->   arm: dts: qcom: sm845: Set the compatible string for the GPU SMMU
-> 
-> Rob Clark (1):
->   iommu/arm-smmu: Add a way for implementations to influence SCTLR
+From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 
-FYI: this patch (patch 4/4) doesn't seem to have made it anywhere (I don't
-have it, and neither does the archive).
+This patch series adds support for the IMX300 camera sensor, (one of the)
+first Exmor-RS Stacked CMOS sensor(s), with support for both of the
+supported aspect ratios (4:3 and 16:9).
+This driver came out from reverse engineering of so called "userspace
+drivers" from Sony Xperia smartphones.
 
-Will
+I tried to document all of my findings and giving a sense to the registers
+as much as possible, but that was only partially possible and resembles
+some names from the IMX219 public datasheet, even though the addresses are
+basically completely different.
+
+This camera sensor driver was tested with all the resolutions declared in
+it on two phones: Sony Xperia XA2 and XA2 Ultra, on a SDM630 SoC (camss
+patches for this SoC will come in a later series) and is working great.
+
+- Changes in v2:
+  - Changed dt-binding name and fixed a misconception about lane
+    operation (sensor supports 2/4-Lane, driver supports 4-Lane only)
+  - Now using lowercase names for regulator supplies
+  - Fixed redefinition of clock-noncontinuous property
+  - Added informations about constraints on data bus frequencies
+  - Fixed MAINTAINERS: removed git tree
+
+AngeloGioacchino Del Regno (2):
+  media: i2c: Add driver for the Sony Exmor-RS IMX300 camera sensor
+  media: dt-bindings: media: i2c: Add IMX300 CMOS sensor binding
+
+ .../bindings/media/i2c/sony,imx300.yaml       |  112 +
+ MAINTAINERS                                   |    7 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/imx300.c                    | 3089 +++++++++++++++++
+ 5 files changed, 3222 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+ create mode 100644 drivers/media/i2c/imx300.c
+
+-- 
+2.28.0
+
