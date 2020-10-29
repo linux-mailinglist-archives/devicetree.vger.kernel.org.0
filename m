@@ -2,104 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FAA29F5B5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF66329F5B9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:00:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726259AbgJ2UAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726073AbgJ2UAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 29 Oct 2020 16:00:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725937AbgJ2T7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 15:59:24 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DCBFC0613D3
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 12:59:24 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id 133so3245212pfx.11
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 12:59:24 -0700 (PDT)
+        with ESMTP id S1725980AbgJ2T7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 15:59:34 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F84C0613D2
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 12:59:34 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id f38so3252901pgm.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 12:59:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=n504uBgbSSGJfaOm3khbPdnR8DL7VZ4uY4kI8QlxiCs=;
-        b=b1EaSTFiAHON+m28UH7YugIdWHtQIDeNH5lFQeT+pIASskA7NGPd0KC56oB7oRcweo
-         XqrjpCPr7f0NnFcS0z4Gyy80BvryDzgX8D1n8P41J5L58tC5wr+vTOH3epqzTOvWgNH4
-         Lp2IyR2EdrtmbFjBNnTdmEc2FnyjgQnALhZ6c=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=0FG8sJngiaMtpaCgSvDtUjN4H1G2ImLDG6GcImzoKv0=;
+        b=gHEg7vJ1g/pJvtl/vNiWoGWAEzhIQJ9U7ot0Xhdovo+aQq410ozF0+3xcl2l94T0hA
+         oNPLpVRHXMBcC4muIGfiTCrU0Fy2Wd1XE7NgNan4dtzhn+H33cVTqOUoDINTMHAaTKal
+         8iCIpsD1l2a2GohBQxUtYRKn2ifn9C/jsJIrc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=n504uBgbSSGJfaOm3khbPdnR8DL7VZ4uY4kI8QlxiCs=;
-        b=pu1Gc/sJfpUl2QwJcOaidX8Jc3Ze7rv9xdQZY06loI/SPpOVTNeLnpemlpYs6QsZd/
-         uI5s/NpctmBDK+/aH6Z162ZHIhwDvMpWlHowPuijrq9RnO1nhpUSfWNKLg2VxPvBv8h3
-         PxMzAXMii2F/VXJ/7+2jMxv1sgdhP1WNCLuLd/KHeHmFvcZJotc7zlg8rAI+QL9cbee+
-         Eoytn1PwLcvPGIeTh9tkJ6/FFJVeTpgW9Xsg+ErAcR6Rw+eiVb97PZsyZuSbYVDZfXNe
-         JR6BC6L3DV181jpA1+7l0cE7DWxyJJot93TKgzIJmwyoYT4ge+TKBqckUzC8XrVln2ux
-         gfoQ==
-X-Gm-Message-State: AOAM532tbePBXiVoEPYDGQuRY0+1VHK3Ud5wcw+W9qgoLBS2xhtvUxM0
-        4Nglu9TZqzs6h3bxN3Nl+qjDxNY017d2hTRo
-X-Google-Smtp-Source: ABdhPJxz2N0u0/tltHLgA1X64eG9KuDR0ZyM23oM1HLPpFPG1XwaXwPsA8QXoEfpETWwVl2lNCWirw==
-X-Received: by 2002:a62:7a8d:0:b029:160:9e0:5ff6 with SMTP id v135-20020a627a8d0000b029016009e05ff6mr6118429pfc.52.1604001563991;
-        Thu, 29 Oct 2020 12:59:23 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=0FG8sJngiaMtpaCgSvDtUjN4H1G2ImLDG6GcImzoKv0=;
+        b=j1Tyir9L+bBZvylWvI1QJfkgYR6u454loCPTP7anzSSP7/qdNgTixBfNToTrpUZ3qY
+         nu98a64DHR3rBH5fNIN84Cxk0ldqbKf+WLP7HB0O/0AiAhsCPj8gDmZEfrKpSxAIyOIb
+         rZfhbH+TsXID+FN25yajlhP3jRRYCbHtAvF/xg7MBwZS3+DcuJoYAqwGUIEAvPiOIhoF
+         bA/OpaA2ajp5lhC3EaKjJLGzUJeAglFDaPMxiud3q3UjOXBagOVUQjQ6nHtcwiCQAK2n
+         zsTslTFS9JyIeV5JDTDDHXMOw0HL1AAaFv9Mss2ZQQONzld77h8FhvFokCU7JRxAjUga
+         OlfA==
+X-Gm-Message-State: AOAM533CEzULBvliEVxzRKphgAf24HkltHI321tKx/IDJiQq0os57oyS
+        KQyzfD4eA1hDp5pTDJ2YbBQKtw==
+X-Google-Smtp-Source: ABdhPJzxOcdQso/+vEeFph6roiFES0zeDC2LT3HwkPeABO3brHqfSqLNa/2re5jFQCD7MrqBWAwSjg==
+X-Received: by 2002:a65:680c:: with SMTP id l12mr5443280pgt.118.1604001573566;
+        Thu, 29 Oct 2020 12:59:33 -0700 (PDT)
 Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id z27sm3682662pfr.206.2020.10.29.12.59.19
+        by smtp.gmail.com with ESMTPSA id z27sm3682662pfr.206.2020.10.29.12.59.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 12:59:23 -0700 (PDT)
+        Thu, 29 Oct 2020 12:59:32 -0700 (PDT)
 From:   Jim Quinlan <james.quinlan@broadcom.com>
 To:     sudeep.holla@arm.com, bcm-kernel-feedback-list@broadcom.com,
         james.quinlan@broadcom.com
-Cc:     devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
         DEVICE TREE BINDINGS),
         linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
         ARM ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v4 0/2] mailbox: Add Broadcom STB mailbox driver for SCMI
-Date:   Thu, 29 Oct 2020 15:59:05 -0400
-Message-Id: <20201029195913.5927-1-james.quinlan@broadcom.com>
+Subject: [PATCH v4 1/2] dt-bindings: Add bindings for BrcmSTB SCMI mailbox driver
+Date:   Thu, 29 Oct 2020 15:59:06 -0400
+Message-Id: <20201029195913.5927-2-james.quinlan@broadcom.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201029195913.5927-1-james.quinlan@broadcom.com>
+References: <20201029195913.5927-1-james.quinlan@broadcom.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000075b73405b2d4b7c9"
+        boundary="00000000000007956c05b2d4b898"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000075b73405b2d4b7c9
+--00000000000007956c05b2d4b898
 
-Patchset Summary:
-  Adds a simple mailbox driver for the use of the ARM SCMI drivers.
+Bindings are added.  Only one interrupt is needed because
+we do not yet employ the SCMI p2a channel.
 
-v4:
-  Commit "mailbox: Add Broadcom STB mailbox driver"
-  -- Fixed indentation on Kconfig file (again, RandyD).
-  -- Removed superfluous #ifdefs for ARM/ARM64 (RandyD).
-  -- Fixed Copyright year on source file (RandyD).
-
-v3:
-  Commit "mailbox: Add Broadcom STB mailbox driver"
-  -- Fixed indentation on Kconfig file (RandyD).
-
-v2:
-  Commit "mailbox: Add Broadcom STB mailbox driver"
-  -- Remove the Kconfig dependency on SMP (Florian)
-  Commit "mailbox: Add Broadcom STB mailbox driver"
-  -- Drop label,unit address; changed title,description (RobH)
-
-v1:
-  -- Original submission.
-
-Jim Quinlan (2):
-  dt-bindings: Add bindings for BrcmSTB SCMI mailbox driver
-  mailbox: Add Broadcom STB mailbox driver
-
- .../bindings/mailbox/brcm,brcmstb-mbox.yaml   |  39 ++++
- drivers/mailbox/Kconfig                       |  12 ++
- drivers/mailbox/Makefile                      |   2 +
- drivers/mailbox/brcmstb-mailbox.c             | 167 ++++++++++++++++++
- 4 files changed, 220 insertions(+)
+Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+---
+ .../bindings/mailbox/brcm,brcmstb-mbox.yaml   | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/mailbox/brcm,brcmstb-mbox.yaml
- create mode 100644 drivers/mailbox/brcmstb-mailbox.c
 
+diff --git a/Documentation/devicetree/bindings/mailbox/brcm,brcmstb-mbox.yaml b/Documentation/devicetree/bindings/mailbox/brcm,brcmstb-mbox.yaml
+new file mode 100644
+index 000000000000..797c0cc609a3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/brcm,brcmstb-mbox.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/brcm,brcmstb-mbox.yaml#
++
++title: Broadcom STB mailbox driver bindings
++
++maintainers:
++  - Jim Quinlan <james.quinlan@broadcom.com>
++
++properties:
++  compatible:
++    enum:
++      - brcm,brcmstb-mbox
++
++  interrupts:
++    items:
++      - description: a2p return interrupt, indicates SCMI msg completion.
++
++  "#mbox-cells":
++    const: 1
++
++required:
++  - compatible
++  - interrupts
++  - "#mbox-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    mailbox {
++      compatible = "brcm,brcmstb-mailbox";
++      #mbox-cells = <1>;
++      interrupts = <GIC_SPI 0xc6 IRQ_TYPE_LEVEL_HIGH>;
++    };
++...
 -- 
 2.17.1
 
 
---00000000000075b73405b2d4b7c9
+--00000000000007956c05b2d4b898
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -169,14 +194,14 @@ V6GuAMmRknrzeTlxPy40UhUcRKk6Nm8mxl3Jh4KB68z7NFVpIx8G5w5I7S5ar1mLGNRjtFZ0RE4O
 lcCwKVGUXRaZMgQGrIhxGVelVgrcBh2vjpndlv733VI2VKE/TvV5MxMGU18RnogYSm66AEFA/Zb+
 5ztz1AtIMYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBu
 di1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEcz
-AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJIei25JWQZX
-+cJ2QG0waZGrY6v9R+jklcCO+AF9Fp95MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
-hvcNAQkFMQ8XDTIwMTAyOTE5NTkyNFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
+AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIED+ut8FluwF
+N16vkbtPdlPLwRPYzbcMjH1DZ16v/U2bMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
+hvcNAQkFMQ8XDTIwMTAyOTE5NTkzM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
 YIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcN
-AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCa9Nadp1jfkWw1saIOfVYZyTla7wj7
-fPQ+v3x/bnpRtmenXPMJRUKN/AUyj+M2EgfOKXh95ZRF5j68Q0mBQH5f8wf7NCL+VwYFPw5rSEp7
-m52dr8lruH7qOtUMD7ExAgeGmkZNAgILSV8PLiv+JXY+rys6g3fdUy90BP9p8wyhR6uP6HCMOuJd
-MsjBRF4wUhzUHlHbZuwjTwDXB0uQ6cj2rSKin7oZwDPcVvkhNT8VYHFU7WA4iJpo6Xxjp4t2W4VT
-yCeS5L8ND55V1xEVvNaklqH4tdmw1IWqA3dULCgbF2E8vnGwQDlVvUjbdchZnfxRrZ2uG21yAZ6L
-V5pyFSwq
---00000000000075b73405b2d4b7c9--
+AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBDmCzUCscF/KwqBydxmQknEqwGmYSb
+2lMQlOefhMMDfiWc2uwrYZY9XgKvKsu1iURA0eQ3SvKiGyBeNs7gneGd9zJD/zUm1ZtrXMAas6Zb
+qshZfEYBL3002eSwElhGtn8DmEbN+AV/4BtkSgJqbNoFFnCjHy4rSt7DgjdKfNZyx3g6cDNzlVO2
+CGLi4kch1TL+fjtxKe+UT/6W7u1siT9lkX+JcuK9pVDHCjhOkosCbwVEJ9g5nw4zPwdXXuEf1yLy
+R7+JRI7OK1gQLf953B7ja5ICgQgVt/hoNBcpy2nIoVKGD6N81Pjqafrl2H0mVOujuh/qPppY9ur9
+xRyayJdM
+--00000000000007956c05b2d4b898--
