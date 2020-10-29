@@ -2,82 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ACB429DD0A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:34:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC9A729DCA4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 01:31:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732117AbgJ1WUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 18:20:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53978 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732113AbgJ1WUK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 18:20:10 -0400
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com [IPv6:2607:f8b0:4864:20::f43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22BDC0613CF;
-        Wed, 28 Oct 2020 15:20:10 -0700 (PDT)
-Received: by mail-qv1-xf43.google.com with SMTP id bl9so557968qvb.10;
-        Wed, 28 Oct 2020 15:20:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LiActt/QR3lFvo7rRVBqlu54ttigfun7g4+qcOD7s00=;
-        b=QE/ZRXrukwmpguz8Fsq0h1CFmEneEhqlnsM80Aok34g5UaeOJBoN/sbr0qr+048SVb
-         mPKeXkvUqYwK+cupjxPL8RgonM68gZgyuZFunJvFiKCSv1rE1Li7MLrSCia7RiQKWc9/
-         2dAQ9z8ZdVyUPmrp7ZCk9jjBE/bdbIPtKH96aJ6JnF1mHQ84OIseApuaQJNbkXqP3mKY
-         3xElIY2UgsV6JLOrQ6Ax99Sa7nnHDIxrPgyPLU77iYHVi/rk3buCSR+Uad/QeNOXrG6B
-         ru8m0VCBOFmosMs/2X+vKLXky+mFshFOzj5jbI7leG4eXi2sJWIlol17FwDG5gVbwOH7
-         xEqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LiActt/QR3lFvo7rRVBqlu54ttigfun7g4+qcOD7s00=;
-        b=SF+XDvo/zYek6qWtXUf6WhfaLXgL7JkrD5MgP/m54jY9tkF3FOfCbO3ABGZcAJRHgF
-         qWm8hKm1IZbwVUtaDvMURV9ilSl9iluqVUmqybJCNWMg0Hh3JigVT1Y4dfDpSg0b+UdO
-         +2zp95v4PLDQqx+KDi3RBxdfexEioDg1jWEimyOKwAXYLMlCcFanJVX0fdpIPuefUfNj
-         xrkoLoY6TVFCmeyja5tpnVuihEldKaCRc/htVx9WEynXgY/40fgxMx0CdU+JNRTQmUJO
-         Nlj7O7B5c5NQhHhCHg/pZ/GP6PEhKNt2+uZP/C111sxaVQQLx3SiADJ9I/m7hvMAWIWm
-         H//A==
-X-Gm-Message-State: AOAM533AvEIecwzM4LUwuT7R38P4gwfJ0tqk0lSbj27bTDCMmoI/M1dp
-        cYEljWKKuOkrzV5+b+IozRUzcM1mjzyG3FMssxlZVZARxwI=
-X-Google-Smtp-Source: ABdhPJxVnE52ylR7rhQf3AchvsFi7nrHeNHDnjVpiDA+ixWh48JI6oCIW3zrvGOkxYEJcEssoo90ba7uIqYxK783g48=
-X-Received: by 2002:a17:902:bc4a:b029:d6:7ef9:689c with SMTP id
- t10-20020a170902bc4ab02900d67ef9689cmr772611plz.21.1603916744591; Wed, 28 Oct
- 2020 13:25:44 -0700 (PDT)
+        id S1728390AbgJ2Abl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 20:31:41 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50850 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728272AbgJ2Abk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Oct 2020 20:31:40 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kXvqm-0043hO-06; Thu, 29 Oct 2020 01:31:32 +0100
+Date:   Thu, 29 Oct 2020 01:31:31 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
+Cc:     jim.cromie@gmail.com, Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v4 3/5] net: ax88796c: ASIX AX88796C SPI Ethernet Adapter
+ Driver
+Message-ID: <20201029003131.GF933237@lunn.ch>
+References: <20201028214012.9712-1-l.stelmach@samsung.com>
+ <CGME20201028214016eucas1p19d2049a4edb4461b2424358e206dc59c@eucas1p1.samsung.com>
+ <20201028214012.9712-4-l.stelmach@samsung.com>
 MIME-Version: 1.0
-References: <20201027135325.22235-1-vincent.whitchurch@axis.com>
- <CAMRc=Mdjm8tgxF_76T3f6r3TwghLKtrFtUv7ywtX3-nEQzVGtA@mail.gmail.com> <CAHp75Vff1AyKDb=JiocsAefnft+tcm+BnuWDrxViQqZAQZjuVg@mail.gmail.com>
-In-Reply-To: <CAHp75Vff1AyKDb=JiocsAefnft+tcm+BnuWDrxViQqZAQZjuVg@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 28 Oct 2020 22:26:33 +0200
-Message-ID: <CAHp75VeQnYB79EyXbBDT1UN-ekCA_wWPuDoEenFUBdciGPzPkg@mail.gmail.com>
-Subject: Re: [PATCH v2] gpio: mockup: Allow probing from device tree
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        Bamvor Jian Zhang <bamv2005@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        kernel@axis.com, devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201028214012.9712-4-l.stelmach@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 10:25 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Wed, Oct 28, 2020 at 8:41 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> +static void
+> +ax88796c_get_regs(struct net_device *ndev, struct ethtool_regs *regs, void *_p)
+> +{
+> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> +	u16 *p = _p;
+> +	int offset, i;
+
+You missed a reverse christmass tree fix here.
+
+> +static int comp;
+> +static int msg_enable = NETIF_MSG_PROBE |
+> +			NETIF_MSG_LINK |
+> +			/* NETIF_MSG_TIMER | */
+> +			/* NETIF_MSG_IFDOWN | */
+> +			/* NETIF_MSG_IFUP | */
+> +			NETIF_MSG_RX_ERR |
+> +			NETIF_MSG_TX_ERR |
+> +			/* NETIF_MSG_TX_QUEUED | */
+> +			/* NETIF_MSG_INTR | */
+> +			/* NETIF_MSG_TX_DONE | */
+> +			/* NETIF_MSG_RX_STATUS | */
+> +			/* NETIF_MSG_PKTDATA | */
+> +			/* NETIF_MSG_HW | */
+> +			/* NETIF_MSG_WOL | */
+> +			0;
+
+You should probably delete anything which is commented out.
+
+> +
+> +static char *no_regs_list = "80018001,e1918001,8001a001,fc0d0000";
+> +unsigned long ax88796c_no_regs_mask[AX88796C_REGDUMP_LEN / (sizeof(unsigned long) * 8)];
+> +
+> +module_param(comp, int, 0444);
+> +MODULE_PARM_DESC(comp, "0=Non-Compression Mode, 1=Compression Mode");
+
+I think you need to find a different way to configure this. How much
+does compression bring you anyway?
+
+> +module_param(msg_enable, int, 0444);
+> +MODULE_PARM_DESC(msg_enable, "Message mask (see linux/netdevice.h for bitmap)");
+
+I know a lot of drivers have msg_enable, but DaveM is generally
+against module parameters. So i would remove this.
+
+
+> +static void ax88796c_set_hw_multicast(struct net_device *ndev)
+> +{
+> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> +	u16 rx_ctl = RXCR_AB;
+> +	int mc_count = netdev_mc_count(ndev);
+
+reverse christmass tree.
+
+> +static struct sk_buff *
+> +ax88796c_tx_fixup(struct net_device *ndev, struct sk_buff_head *q)
+> +{
+> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> +	struct sk_buff *skb, *tx_skb;
+> +	struct tx_pkt_info *info;
+> +	struct skb_data *entry;
+> +	int headroom;
+> +	int tailroom;
+> +	u8 need_pages;
+> +	u16 tol_len, pkt_len;
+> +	u8 padlen, seq_num;
+> +	u8 spi_len = ax_local->ax_spi.comp ? 1 : 4;
+
+reverse christmass tree.
+
+> +static int ax88796c_receive(struct net_device *ndev)
+> +{
+> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> +	struct sk_buff *skb;
+> +	struct skb_data *entry;
+> +	u16 w_count, pkt_len;
+> +	u8 pkt_cnt;
+
+Reverse christmass tree
+
+> +
+> +static int ax88796c_process_isr(struct ax88796c_device *ax_local)
+> +{
+> +	u16 isr;
+> +	u8 done = 0;
+> +	struct net_device *ndev = ax_local->ndev;
 
 ...
 
-> It's not so. If you drop ugly ifdeffery (and I vote for that, see also
+> +static irqreturn_t ax88796c_interrupt(int irq, void *dev_instance)
+> +{
+> +	struct net_device *ndev = dev_instance;
+> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
 
-It's not so -> It's not so simple.
+...
 
-> above) the of_match_ptr() must be dropped as well.
-> Otherwise the compiler will issue the warning. So it is either all or none.
+> +static int
+> +ax88796c_open(struct net_device *ndev)
+> +{
+> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> +	int ret;
+> +	unsigned long irq_flag = IRQF_SHARED;
+> +	int fc = AX_FC_NONE;
 
--- 
-With Best Regards,
-Andy Shevchenko
+...
+
+
+> +static int ax88796c_probe(struct spi_device *spi)
+> +{
+> +	struct net_device *ndev;
+> +	struct ax88796c_device *ax_local;
+> +	char phy_id[MII_BUS_ID_SIZE + 3];
+> +	int ret;
+> +	u16 temp;
+
+...
+
+The mdio/phy/ethtool code looks O.K. now. I've not really looked at
+any of the frame transfer code, so i cannot comment on that.
+
+    Andrew
