@@ -2,158 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE4E629E82B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 11:04:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3261B29E840
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 11:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725840AbgJ2KCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 06:02:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725833AbgJ2KCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 06:02:09 -0400
-Received: from smtp2-2.goneo.de (smtp2.goneo.de [IPv6:2001:1640:5::8:33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A177C0613CF;
-        Thu, 29 Oct 2020 03:02:09 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by smtp2.goneo.de (Postfix) with ESMTP id EBACC23FAD6;
-        Thu, 29 Oct 2020 11:02:07 +0100 (CET)
-X-Virus-Scanned: by goneo
-X-Spam-Flag: NO
-X-Spam-Score: -2.971
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.971 tagged_above=-999 tests=[ALL_TRUSTED=-1,
-        AWL=-0.071, BAYES_00=-1.9] autolearn=ham
-Received: from smtp2.goneo.de ([127.0.0.1])
-        by localhost (smtp2.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id cXRXHlHf3Bm9; Thu, 29 Oct 2020 11:02:06 +0100 (CET)
-Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
-        by smtp2.goneo.de (Postfix) with ESMTPA id A765D23F4B8;
-        Thu, 29 Oct 2020 11:02:04 +0100 (CET)
-From:   poeschel@lemonage.de
-To:     Rob Herring <robh+dt@kernel.org>, Willy Tarreau <w@1wt.eu>,
-        Lars Poeschel <poeschel@lemonage.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        allen <allen.chen@ite.com.tw>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 24/25] auxdisplay: lcd2s DT binding doc
-Date:   Thu, 29 Oct 2020 11:01:31 +0100
-Message-Id: <20201029100139.311853-1-poeschel@lemonage.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201029095231.311083-1-poeschel@lemonage.de>
-References: <20201029095231.311083-1-poeschel@lemonage.de>
+        id S1725914AbgJ2KEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 06:04:22 -0400
+Received: from foss.arm.com ([217.140.110.172]:58524 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725562AbgJ2KEW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 06:04:22 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4C972139F;
+        Thu, 29 Oct 2020 03:04:21 -0700 (PDT)
+Received: from [10.57.13.20] (unknown [10.57.13.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B0A333F66E;
+        Thu, 29 Oct 2020 03:04:18 -0700 (PDT)
+Subject: Re: [PATCH 1/4] dt-bindings: opp: Introduce opp-sustainable bindings
+To:     Nishanth Menon <nm@ti.com>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        vireshk@kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
+        rafael@kernel.org, sudeep.holla@arm.com, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com
+References: <20201028140847.1018-1-lukasz.luba@arm.com>
+ <20201028140847.1018-2-lukasz.luba@arm.com>
+ <20201028214713.zttk47qtua5jhieo@pureness>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <5b3a99a8-6972-5c60-6cc5-00ec84387b97@arm.com>
+Date:   Thu, 29 Oct 2020 10:04:16 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201028214713.zttk47qtua5jhieo@pureness>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lars Poeschel <poeschel@lemonage.de>
 
-Add a binding doc for the modtronix lcd2s auxdisplay driver. It also
-adds modtronix to the list of known vendor-prefixes.
 
-Reviewed-by: Willy Tarreau <w@1wt.eu>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
----
-Changes in v5:
-- Picked up Robs Reviewed-by
-Changes in v3:
-- Fixed make dt_binding_doc errors
-Changes in v2:
-- Adopted yaml based file format
----
- .../bindings/auxdisplay/modtronix,lcd2s.yaml  | 58 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+On 10/28/20 9:47 PM, Nishanth Menon wrote:
+> On 14:08-20201028, Lukasz Luba wrote:
+>> Add opp-sustainable as an additional property in the OPP node to describe
+>> the sustainable performance level of the device. This will help to
+>> estimate the sustainable performance of the whole system.
+>>
+>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+>> ---
+>>   Documentation/devicetree/bindings/opp/opp.txt | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+>> index 9847dfeeffcb..cd01028de305 100644
+>> --- a/Documentation/devicetree/bindings/opp/opp.txt
+>> +++ b/Documentation/devicetree/bindings/opp/opp.txt
+>> @@ -154,6 +154,10 @@ Optional properties:
+>>   - opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
+>>     in the table have this, the OPP with highest opp-hz will be used.
+>>   
+>> +- opp-sustainable: Marks the OPP as sustainable. This property can be used for
+>> +  estimating sustainable performance of the whole system. If multiple OPPs in
+>> +  the table have this, the OPP with highest opp-hz will be used.
+> 
+> 
+> By "sustainable", do you mean sustainable across Process, Voltage and
+> Temperature corners upto the max rated operational Power-ON hours
+> without IDLE state being achieved on the processor?
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
-new file mode 100644
-index 000000000000..a1d55a2634a5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/auxdisplay/modtronix,lcd2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Modtronix engineering LCD2S Character LCD Display
-+
-+maintainers:
-+  - Lars Poeschel <poeschel@lemonage.de>
-+
-+description:
-+  The LCD2S is a Character LCD Display manufactured by Modtronix Engineering.
-+  The display supports a serial I2C and SPI interface. The driver currently
-+  only supports the I2C interface.
-+
-+properties:
-+  compatible:
-+    const: modtronix,lcd2s
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      I2C bus address of the display.
-+
-+  display-height-chars:
-+    description: Height of the display, in character cells.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 4
-+
-+  display-width-chars:
-+    description: Width of the display, in character cells.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 16
-+    maximum: 20
-+
-+required:
-+  - compatible
-+  - reg
-+  - display-height-chars
-+  - display-width-chars
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      lcd2s: auxdisplay@28 {
-+        compatible = "modtronix,lcd2s";
-+        reg = <0x28>;
-+        display-height-chars = <4>;
-+        display-width-chars = <20>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 2735be1a8470..65f40ab5a87f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -681,6 +681,8 @@ patternProperties:
-     description: MiraMEMS Sensing Technology Co., Ltd.
-   "^mitsubishi,.*":
-     description: Mitsubishi Electric Corporation
-+  "^modtronix,.*":
-+    description: Modtronix Engineering
-   "^mosaixtech,.*":
-     description: Mosaix Technologies, Inc.
-   "^motorola,.*":
--- 
-2.28.0
+Yes, in case of CPU: running 100% without idle at that particular OPP.
+Running above that OPP would lead to cross control temperature.
 
+> 
+> OR do you mean to leave it up to interpretation?
+
+I can tell how I would use them. There is thermal governor IPA, which
+needs sustainable power either form DT or uses internal algorithm to
+estimate it based on lowest allowed freq OPPs. Then it estimated
+internal coefficients based on that value, which is not optimal
+for lowest OPPs. When some higher OPP could be marked as sustainable,
+it would lead to better estimation and better power budget split.
+
+Regards,
+Lukasz
