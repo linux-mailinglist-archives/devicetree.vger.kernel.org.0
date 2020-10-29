@@ -2,154 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D8529F031
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:37:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B01429F064
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:47:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728066AbgJ2Pho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 11:37:44 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:33238 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727290AbgJ2Phn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:37:43 -0400
-Received: by mail-oo1-f67.google.com with SMTP id u5so805859oot.0;
-        Thu, 29 Oct 2020 08:37:42 -0700 (PDT)
+        id S1728031AbgJ2Prk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 11:47:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727832AbgJ2Prk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:47:40 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88009C0613D2
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 08:47:38 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id c20so2654362pfr.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 08:47:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2PMHyXzjLDVufRa8llaIrw5zRwzBKgxCN4FbP7BnEq4=;
+        b=P/lP5sQLk86gvHr/EOl7JEAHhbrjf9ZAKB+VtrTxgzscmNq+bid4ufB7kd6fMviv/T
+         UvYhLTKMfuIxZhqeFP/RG8xw8oy1+uFSZy6oG4+hhma964i/elIzVv+QKJJjRH9+h0Nf
+         sasD8bU8GhS1TI9LHvOqF5glI/RA+wY8sbkhg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=U8xolxlS5asomkB9UknbMIlesmKsBuSvzYQp6xmc6Bs=;
-        b=EuuFC3CmFnnp39eKK/O98Q55/CWAiRaqhHVwM0qLARYil5cE9Nby36TyPiJAF6aTb3
-         uhg17VtRkUVsO2+JR0w5cIC3bwXUrrJIQJ3FMe8XbhAerx/nQb+CKOYvCxSzPdUZWZBg
-         j49mm1tgIhZjv1PW8YBxYcMjoKVvvhNNNizSXKDe09WHlImY62midL2V3Si0erOPKeGc
-         0QD6SDEQ4uqpkmHsqYdeyZSVv3DqMLTqKjyk1ATdauAjXgtAdO++zgzhYuyfh/5lcG6B
-         2EbTNoYwzRmhs5gkZH8cTLH8qTSSXdwLX8nRuoqt+Znnk3f0xCgKI2tuW1uHdw5cNnSv
-         aU4w==
-X-Gm-Message-State: AOAM532QwcbQKjLDcc0WSplaf3GuiEFKQkUOePLPFpNp5PkjDm3Tt82r
-        5jP17T05Hd2/tlSoLkfMew==
-X-Google-Smtp-Source: ABdhPJyE+848VL3OIBZZFQbqJdGtbbcdCkCxav93uU/i4lfp5PL5nrPg5vWK8EwxfeYi6ytTA7yIzw==
-X-Received: by 2002:a4a:972c:: with SMTP id u41mr3758758ooi.10.1603985861665;
-        Thu, 29 Oct 2020 08:37:41 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o8sm659452oog.47.2020.10.29.08.37.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 08:37:40 -0700 (PDT)
-Received: (nullmailer pid 1917055 invoked by uid 1000);
-        Thu, 29 Oct 2020 15:37:40 -0000
-Date:   Thu, 29 Oct 2020 10:37:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     alexandru.tachici@analog.com
-Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux@roeck-us.net
-Subject: Re: [PATCH 3/3] dt-binding: hwmon: Add documentation for ltc2992
-Message-ID: <20201029153740.GB1914153@bogus>
-References: <20201029094911.79173-1-alexandru.tachici@analog.com>
- <20201029094911.79173-4-alexandru.tachici@analog.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2PMHyXzjLDVufRa8llaIrw5zRwzBKgxCN4FbP7BnEq4=;
+        b=rYT8OMWsUFEAJ+L+HDi1hqq588RrWEy20Q2ObMKj9+Tg0hrtR6GuRor4GPlO5dvz0l
+         sisUDUiXyhpz7Gc//9oj28S6EwygUjY8URrU7nEPiyV3d8zJR0g+1+dZl0f+L+ctXY20
+         FLxbq1D2C4QPnZ/0RYicsxz44ATj5Sy28K9vyCfc81i06fJx23onnO5/kczAjoE63mcq
+         pm+8PAn5VVUECNiaUYfjWj9xV3MSw1wHdn7umRsZpFe+PItZno8I0erHcmjBMCnrlxjJ
+         MIVWeUOoNcMjT0/n/3u24m9MXcvmjAhaw9aNCjnSs/LdcDoOGl4AyfQvSSNlaS4iX52z
+         KX/w==
+X-Gm-Message-State: AOAM530Kjj0bEtX8vAhrTJjbcRUKmSS2JgxxBSBskZ/X8ApYtqV7sxtS
+        XpA8c2olakFdtScWbnE5q2g+WyHYinIBhg==
+X-Google-Smtp-Source: ABdhPJzHVoZVNHn+7RnLCqmPkUttRfpYlRZBNMp71Xs7wFPvvJj7jq7k1MK9I6vqz/u47XVT/N5bmg==
+X-Received: by 2002:a17:90a:7c03:: with SMTP id v3mr365334pjf.233.1603986457807;
+        Thu, 29 Oct 2020 08:47:37 -0700 (PDT)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com. [209.85.214.180])
+        by smtp.gmail.com with ESMTPSA id gm14sm246629pjb.2.2020.10.29.08.47.37
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Oct 2020 08:47:37 -0700 (PDT)
+Received: by mail-pl1-f180.google.com with SMTP id z1so1467852plo.12
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 08:47:37 -0700 (PDT)
+X-Received: by 2002:a67:b405:: with SMTP id x5mr3619420vsl.4.1603986008362;
+ Thu, 29 Oct 2020 08:40:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201029094911.79173-4-alexandru.tachici@analog.com>
+References: <20201019140601.3047-1-lukasz.luba@arm.com> <CAD=FV=UYeo_rWBDRu-53Aw2OeY1NCgCuUJkocRM8xL+OCbJDug@mail.gmail.com>
+ <62430cb9-eaab-b215-0eec-d35d3c625406@arm.com>
+In-Reply-To: <62430cb9-eaab-b215-0eec-d35d3c625406@arm.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 29 Oct 2020 08:39:56 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VA=tYzvb2-WQOJz7UGq-459R4+6xfuPQ-h-iMCKPP9vQ@mail.gmail.com>
+Message-ID: <CAD=FV=VA=tYzvb2-WQOJz7UGq-459R4+6xfuPQ-h-iMCKPP9vQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/4] Clarify abstract scale usage for power values in
+ Energy Model, EAS and IPA
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
+        morten.rasmussen@arm.com, Quentin Perret <qperret@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 11:49:11AM +0200, alexandru.tachici@analog.com wrote:
-> From: Alexandru Tachici <alexandru.tachici@analog.com>
-> 
-> Add documentation for ltc2992.
-> 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> ---
->  .../bindings/hwmon/adi,ltc2992.yaml           | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-> new file mode 100644
-> index 000000000000..1b603026ed2d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/adi,ltc2992.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Linear Technology 2992 Power Monitor
-> +
-> +maintainers:
-> +  - Alexandru Tachici <alexandru.tachici@analog.com>
-> +
-> +description: |
-> +  Linear Technology 2992 Dual Wide Range Power Monitor
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2992.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ltc2992
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  avcc-supply: true
-> +
-> +patternProperties:
-> +  "^channel@([0-1])$":
-> +    type: object
-> +    description: |
-> +      Represents the two supplies to be monitored.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. LTC2992 can monitor two supplies.
-> +        items:
-> +         minimum: 0
-> +         maximum: 1
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description:
-> +          The value of curent sense resistor in microohms.
-> +  required:
-> +    - reg
-> +
-> +  additionalProperties: false
+Hi,
 
-Wrong indentation is the source of the errors.
+On Thu, Oct 29, 2020 at 5:37 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+>
+> On 10/20/20 1:15 AM, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Mon, Oct 19, 2020 at 7:06 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+> >>
+> >> Hi all,
+> >>
+> >> The Energy Model supports power values expressed in an abstract scale.
+> >> This has an impact on Intelligent Power Allocation (IPA) and should be
+> >> documented properly. Kernel sub-systems like EAS, IPA and DTPM
+> >> (new comming PowerCap framework) would use the new flag to capture
+> >> potential miss-configuration where the devices have registered different
+> >> power scales, thus cannot operate together.
+> >>
+> >> There was a discussion below v2 of this patch series, which might help
+> >> you to get context of these changes [2].
+> >>
+> >> The agreed approach is to have the DT as a source of power values expressed
+> >> always in milli-Watts and the only way to submit with abstract scale values
+> >> is via the em_dev_register_perf_domain() API.
+> >>
+> >> Changes:
+> >> v3:
+> >> - added boolean flag to struct em_perf_domain and registration function
+> >>    indicating if EM holds real power values in milli-Watts (suggested by
+> >>    Daniel and aggreed with Quentin)
+> >> - updated documentation regarding this new flag
+> >> - dropped DT binding change for 'sustainable-power'
+> >> - added more maintainers on CC (due to patch 1/4 touching different things)
+> >> v2 [2]:
+> >> - updated sustainable power section in IPA documentation
+> >> - updated DT binding for the 'sustainable-power'
+> >> v1 [1]:
+> >> - simple documenation update with new 'abstract scale' in EAS, EM, IPA
+> >>
+> >> Regards,
+> >> Lukasz Luba
+> >>
+> >> [1] https://lore.kernel.org/linux-doc/20200929121610.16060-1-lukasz.luba@arm.com/
+> >> [2] https://lore.kernel.org/lkml/20201002114426.31277-1-lukasz.luba@arm.com/
+> >>
+> >> Lukasz Luba (4):
+> >>    PM / EM: Add a flag indicating units of power values in Energy Model
+> >>    docs: Clarify abstract scale usage for power values in Energy Model
+> >>    PM / EM: update the comments related to power scale
+> >>    docs: power: Update Energy Model with new flag indicating power scale
+> >>
+> >>   .../driver-api/thermal/power_allocator.rst    | 13 +++++++-
+> >>   Documentation/power/energy-model.rst          | 30 +++++++++++++++----
+> >>   Documentation/scheduler/sched-energy.rst      |  5 ++++
+> >>   drivers/cpufreq/scmi-cpufreq.c                |  3 +-
+> >>   drivers/opp/of.c                              |  2 +-
+> >>   include/linux/energy_model.h                  | 20 ++++++++-----
+> >>   kernel/power/energy_model.c                   | 26 ++++++++++++++--
+> >>   7 files changed, 81 insertions(+), 18 deletions(-)
+> >
+> > While I don't feel like I have enough skin in the game to make any
+> > demands, I'm definitely not a huge fan of this series still.  I am a
+> > fan of documenting reality, but (to me) trying to mix stuff like this
+> > is just going to be adding needless complexity.  From where I'm
+> > standing, it's a lot more of a pain to specify these types of numbers
+> > in the firmware than it is to specify them in the device tree.  They
+>
+> When you have SCMI, you receive power values from FW directly, not using
+> DT.
+>
+> > are harder to customize per board, harder to spin, and harder to
+> > specify constraints for everything in the system (all heat generators,
+> > all cooling devices, etc).  ...and since we already have a way to
+> > specify this type of thing in the device tree and that's super easy
+> > for people to do, we're going to end up with weird mixes / matches of
+> > numbers coming from different locations and now we've got to figure
+> > out which numbers we can use when and which to ignore.  Ick.
+>
+> This is not that bad as you described. When you have SCMI and FW
+> all your perf domains should be aligned to the same scale.
+> In example, you have 4 little CPU, 3 big CPUs, 1 super big CPU,
+> 1 GPU, 1 DSP. For all of them the SCMI get_power callback should return
+> consistent values. You don't have to specify anything else or rev-eng.
+> Then a client like EAS would use those values from CPUs to estimate
+> energy and this works fine. Another client: IPA, which would use
+> all of them and also works fine.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c1 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ltc2992@6F {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                compatible = "adi,ltc2992";
-> +                reg = <0x6F>;
-> +
-> +                channel@0 {
-> +                        reg = <0x0>;
-> +                        shunt-resistor-micro-ohms = <10000>;
-> +                };
-> +
-> +                channel@1 {
-> +                        reg = <0x1>;
-> +                        shunt-resistor-micro-ohms = <10000>;
-> +                };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.20.1
-> 
+I guess I'm confused.  When using SCMI and FW, are there already code
+paths to get the board-specific "sustainable-power" from SCMI and FW?
+
+I know that "sustainable-power" is not truly necessary.  IIRC some of
+the code assumes that the lowest power state of all components must be
+sustainable and uses that.  However, though this makes the code work,
+it's far from ideal.  I don't want to accept a mediocre solution here.
+
+In any case, I'm saying that even if "sustainable-power" can come from
+firmware, it's not as ideal of a place for it to live.  Maybe my
+experience on Chromebooks is different from the rest of upstream, but
+it's generally quite easy to adjust the device tree for a board and
+much harder to convince firmware folks to put a board-specific table
+of values.
+
+
+> > In my opinion the only way to allow for mixing and matching the
+> > bogoWatts and real Watts would be to actually have units and the
+> > ability to provide a conversion factor somewhere.  Presumably that
+> > might give you a chance of mixing and matching if someone wants to
+> > provide some stuff in device tree and get other stuff from the
+> > firmware.  Heck, I guess you could even magically figure out a
+> > conversion factor if someone provides device tree numbers for
+> > something that was already registered in SCMI, assuming all the SCMI
+> > numbers are consistent with each other...
+>
+> What you demand here is another code path, just to support revers
+> engineered power values for SCMI devices, which are stored in DT.
+> Then the SCMI protocol code and drivers should take them into account
+> and abandon standard implementation and use these values to provide
+> 'hacked' power numbers to EM. Am I right?
+> It is not going to happen.
+
+Quite honestly, all I want to be able to do is to provide a
+board-specific "sustainable-power" and have it match with the
+power-coefficients.  Thus:
+
+* If device tree accepted abstract scale, we'd be done and I'd shut
+up.  ...but Rob has made it quite clear that this is a no-go.
+
+* If it was super easy to add all these values into firmware for a
+board and we could totally remove these from the device tree, I'd
+grumble a bit about firmware being a terrible place for this but at
+least we'd have a solution and we'd be done and I'd shut up.  NOTE: I
+don't know ATF terribly well, but I'd guess that this needs to go
+there?  Presumably part of this is convincing firmware folks to add
+this board-specific value there...
+
+-Doug
