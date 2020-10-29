@@ -2,85 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6000D29F01F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:37:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B4829F017
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 16:37:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728210AbgJ2PfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 11:35:25 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:43484 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728150AbgJ2PeG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:34:06 -0400
-Received: by mail-oi1-f195.google.com with SMTP id x203so3567895oia.10;
-        Thu, 29 Oct 2020 08:34:05 -0700 (PDT)
+        id S1727832AbgJ2PhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 11:37:02 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:44192 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728396AbgJ2PgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 11:36:08 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m26so2587076otk.11;
+        Thu, 29 Oct 2020 08:36:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2aK/szC9cuz0dkwowt7HBz66qxgW7H05J1XCoOJdmtI=;
-        b=RTRDv3osDih5WS33gx4crX+GwILnZA98bJXE1n+fblBAOYInIB/G7K1X1b93OEBGmA
-         oNr1VvztFjLupxCAZ1H38SKl7+H947lDpjIwst0NIM7EspqWwYic7sH1gE5ReacXUfFg
-         9i8T6p5l3/Mtlu2H9cuuEFbJDFxYii2nq1g+gJuhnuqkhURIfR2cey4ep/Qfc+11iTnz
-         R5lnJZhNEBJscXnLRGQzRs3vkMKVhThUwNMrxmolliz/I79jG3g9RCUsIB3hP3l/JhqJ
-         +7wgs0uS0WzdWHSOUBU1tAl7kmT42pU9UNxo5G49nXTGfYXob4YEUjWClJxH/KsfwJ8U
-         81Pg==
-X-Gm-Message-State: AOAM532idpb9Z1TfoQ6oLXDsVt7WnAvWF7xOcakm92NgdBCTS+stb+Z1
-        IFKWZpfETu5ydupRCU86gA==
-X-Google-Smtp-Source: ABdhPJxG7ICq8C1FIbSZZtWag6ID+Jd5bh+2TxqPf8GogPBGE65XxoIbK5S1tuOukAIbQd3RCoMMEw==
-X-Received: by 2002:aca:670b:: with SMTP id z11mr78596oix.116.1603985645332;
-        Thu, 29 Oct 2020 08:34:05 -0700 (PDT)
+        bh=pYhNMIk7qOW8fzlPIb6mwbR/RjaOX4ALpVWt9vbGPp4=;
+        b=BrVxa5UiOx5kR/0jO5IesBft/NM+eHzZtoV0ibgiqVYlzaaQlX3hOcyXctVyPN7yJ/
+         HUfUfNhhazJNdKG62iahtZWbFgr985EfNHQ5Tvytuivock8U644Q9CapQjS3PlS8OggZ
+         UX71LUeLKUAo1Lt7iNaLnQMbqNJigaL8935nHAVb1lgjP4JpieGEenoQSWIm7cDSJQ47
+         bmfNYD2AMiVXHeyjMFnwgHUEctYX4L7WH51AJLD4BclHgQ+Vshu+MylnyuodPoeWl7A1
+         bseWwF8lpT5hvkUiFDsaha3nEP/Vnqt0RBEnoJYcvChl1FHU2pJCzcLt0sClF9OWGGfF
+         zNxA==
+X-Gm-Message-State: AOAM530QX6SESV0oOtPK6uJH41LkrJfEJfCYt4tVVE9oEQcqXCjljQ6u
+        fs8A4xyH+7xYGbrRKCvZdw==
+X-Google-Smtp-Source: ABdhPJy7+Dy/GtcnO7U2Vrvmm/n1381d2/qROf8vZtBudP2OEw4K3ND9BPfhzrMSTTMrbLJ3cylRlw==
+X-Received: by 2002:a9d:d01:: with SMTP id 1mr3802468oti.16.1603985765503;
+        Thu, 29 Oct 2020 08:36:05 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i18sm733762oik.7.2020.10.29.08.34.04
+        by smtp.gmail.com with ESMTPSA id v185sm680470ooa.31.2020.10.29.08.36.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 08:34:04 -0700 (PDT)
-Received: (nullmailer pid 1912238 invoked by uid 1000);
-        Thu, 29 Oct 2020 15:34:04 -0000
-Date:   Thu, 29 Oct 2020 10:34:04 -0500
+        Thu, 29 Oct 2020 08:36:04 -0700 (PDT)
+Received: (nullmailer pid 1914957 invoked by uid 1000);
+        Thu, 29 Oct 2020 15:36:04 -0000
+Date:   Thu, 29 Oct 2020 10:36:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, yong.wu@mediatek.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH v7 1/4] dt-bindings: pci: mediatek: Modified the Device
- tree bindings
-Message-ID: <20201029153404.GB1911637@bogus>
-References: <20201029081513.10562-1-chuanjia.liu@mediatek.com>
- <20201029081513.10562-2-chuanjia.liu@mediatek.com>
+To:     alexandru.tachici@analog.com
+Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net
+Subject: Re: [PATCH 3/3] dt-binding: hwmon: Add documentation for ltc2992
+Message-ID: <20201029153604.GA1914153@bogus>
+References: <20201029094911.79173-1-alexandru.tachici@analog.com>
+ <20201029094911.79173-4-alexandru.tachici@analog.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201029081513.10562-2-chuanjia.liu@mediatek.com>
+In-Reply-To: <20201029094911.79173-4-alexandru.tachici@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Oct 2020 16:15:10 +0800, Chuanjia Liu wrote:
-> Split the PCIe node and add pciecfg node to fix MSI issue.
+On Thu, 29 Oct 2020 11:49:11 +0200, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
 > 
-> Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> Add documentation for ltc2992.
+> 
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
 > ---
->  .../bindings/pci/mediatek-pcie-cfg.yaml       |  39 ++++++
->  .../devicetree/bindings/pci/mediatek-pcie.txt | 129 +++++++++++-------
->  2 files changed, 118 insertions(+), 50 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-cfg.yaml
+>  .../bindings/hwmon/adi,ltc2992.yaml           | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/pci/mediatek-pcie-cfg.yaml:19:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
+./Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml:37:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
 
 dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml: patternProperties:required: ['reg'] is not of type 'object', 'boolean'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml: patternProperties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'required'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml: patternProperties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'additionalProperties'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml: ignoring, error in schema: patternProperties: required
+warning: no schema found in file: ./Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1389940
+See https://patchwork.ozlabs.org/patch/1390001
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
