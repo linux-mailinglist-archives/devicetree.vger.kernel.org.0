@@ -2,208 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E6D629ECC0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:22:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A8F229ECDC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:26:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725771AbgJ2NWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:22:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45208 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725601AbgJ2NWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 09:22:37 -0400
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 78A5920782;
-        Thu, 29 Oct 2020 13:22:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603977755;
-        bh=SSqEczktkXqJPCkYJd5JJVd8x3QTRgXyJPz9DieXvI4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=n0vFVgEuizL/dTUyl+wJFfcFZMUwk+0j4zhPJs5vSe4XjhlYhsY0EfpbaEQTylhWt
-         Cubd0FfxN5Ee2oJDXYXEOxUZlwmqAWAKdT/7JjFbdX+nfd/dDeF2qeDk5f6rU5tvO4
-         3Skh01R/yatRbFl/JN9wAt8ukwMHssGIzImAfJzg=
-Received: by mail-ed1-f42.google.com with SMTP id v19so2983889edx.9;
-        Thu, 29 Oct 2020 06:22:35 -0700 (PDT)
-X-Gm-Message-State: AOAM531sjCpDSIh+ihtyr0Kk87TVoOrjE1xFgJi3hM1aShnVfos5xp0p
-        XqBUNw1nEdQg438Uzj1pmbP2UJhVzg+Ozd4YDw==
-X-Google-Smtp-Source: ABdhPJwDHdKRH0zxp2zdI0rhG8MdiqpEtBhgAHcNHzUa5A/NrM0N2+qgtroMDJUvOVjURs3Jt16EVSasoziDTaYiQJ8=
-X-Received: by 2002:aa7:cb1a:: with SMTP id s26mr3896896edt.219.1603977753903;
- Thu, 29 Oct 2020 06:22:33 -0700 (PDT)
+        id S1725601AbgJ2N0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:26:43 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33442 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726139AbgJ2N0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:26:42 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TDQdlp073095;
+        Thu, 29 Oct 2020 08:26:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603978000;
+        bh=GkhCoHJ1/XnzOLNyI1cMIoAAwgZQEjOKh0XhF9teF0Q=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ufT+6Q2yK3VlnvW+xry6bxZ6U7/tk3uOAZgCyr1ONBLOXnSVJMcOEtm7FujWvT3rb
+         I7sxRCvQ/xZq4SN62zIP3vOOa20qawq2AId7ZEuFWPVgVcNyNT1xmu3cdTBvIx10/c
+         JeKhOs2c229U5TcplzT6Kj8fUpVX7XZIX7pMD75U=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TDQdrq119625
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 29 Oct 2020 08:26:39 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 29
+ Oct 2020 08:26:39 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 29 Oct 2020 08:26:39 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TDQdxL109917;
+        Thu, 29 Oct 2020 08:26:39 -0500
+Date:   Thu, 29 Oct 2020 08:26:39 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <nsekhar@ti.com>
+Subject: Re: [PATCH] dt-bindings: serial: 8250_omap: Add compatible for UART
+ controller on AM64 SoC
+Message-ID: <20201029132639.xx7eoy4zrj2echi3@uphold>
+References: <20201029065318.2437-1-vigneshr@ti.com>
 MIME-Version: 1.0
-References: <20201013100625.13056-1-jitao.shi@mediatek.com> <20201013100625.13056-2-jitao.shi@mediatek.com>
-In-Reply-To: <20201013100625.13056-2-jitao.shi@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 29 Oct 2020 21:22:19 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_800OtqtJCtCAYS2Kcw7QLp-ojv63mNu8TS1aunTOsHGQ@mail.gmail.com>
-Message-ID: <CAAOTY_800OtqtJCtCAYS2Kcw7QLp-ojv63mNu8TS1aunTOsHGQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/1] drm/mediatek: dsi: fix scrolling of panel with
- small hfp or hbp
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        huijuan.xie@mediatek.com, stonea168@163.com,
-        cawa.cheng@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, yingjoe.chen@mediatek.com,
-        eddie.huang@mediatek.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201029065318.2437-1-vigneshr@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
-
-Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8813=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:06=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Replace horizontal_backporch_byte with vm->hback_porch * bpp to aovid
-> flowing judgement negative number.
->
-> if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_byte) >
->         data_phy_cycles * dsi->lanes + delta)
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+On 12:23-20201029, Vignesh Raghavendra wrote:
+> AM64 uses a UART controller that is compatible with AM654 UART.
+> Introduce a specific compatible to help handle the differences if
+> necessary.
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 65 +++++++++++++++-----------------=
-------
->  1 file changed, 25 insertions(+), 40 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
-k/mtk_dsi.c
-> index 80b7a082e874..ddddf69ebeaf 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -445,6 +445,7 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi =
-*dsi)
->         u32 horizontal_backporch_byte;
->         u32 horizontal_frontporch_byte;
->         u32 dsi_tmp_buf_bpp, data_phy_cycles;
-> +       u32 delta;
->         struct mtk_phy_timing *timing =3D &dsi->phy_timing;
->
->         struct videomode *vm =3D &dsi->vm;
-> @@ -466,50 +467,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_ds=
-i *dsi)
->         horizontal_sync_active_byte =3D (vm->hsync_len * dsi_tmp_buf_bpp =
-- 10);
->
->         if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE)
-> -               horizontal_backporch_byte =3D vm->hback_porch * dsi_tmp_b=
-uf_bpp;
-> +               horizontal_backporch_byte =3D
-> +                       (vm->hback_porch * dsi_tmp_buf_bpp - 10);
->         else
-> -               horizontal_backporch_byte =3D (vm->hback_porch + vm->hsyn=
-c_len) *
-> -                                           dsi_tmp_buf_bpp;
-> +               horizontal_backporch_byte =3D ((vm->hback_porch + vm->hsy=
-nc_len) *
-> +                       dsi_tmp_buf_bpp - 10);
->
->         data_phy_cycles =3D timing->lpx + timing->da_hs_prepare +
-> -                         timing->da_hs_zero + timing->da_hs_exit;
-> -
-> -       if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
-> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bp=
-p >
-> -                   data_phy_cycles * dsi->lanes + 18) {
-> -                       horizontal_frontporch_byte =3D
-> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
-> -                               (data_phy_cycles * dsi->lanes + 18) *
-> -                               vm->hfront_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -
-> -                       horizontal_backporch_byte =3D
-> -                               horizontal_backporch_byte -
-> -                               (data_phy_cycles * dsi->lanes + 18) *
-> -                               vm->hback_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -               } else {
-> -                       DRM_WARN("HFP less than d-phy, FPS will under 60H=
-z\n");
-> -                       horizontal_frontporch_byte =3D vm->hfront_porch *
-> -                                                    dsi_tmp_buf_bpp;
-> -               }
-> +                         timing->da_hs_zero + timing->da_hs_exit + 3;
-> +
-> +       delta =3D (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) ? 18 : 12=
-;
-> +
-> +       if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_by=
-te) >
-> +           data_phy_cycles * dsi->lanes + delta) {
-> +               horizontal_frontporch_byte =3D
-> +                       vm->hfront_porch * dsi_tmp_buf_bpp -
-> +                       (data_phy_cycles * dsi->lanes + delta) *
-> +                       vm->hfront_porch /
-> +                       (vm->hfront_porch + vm->hback_porch);
-> +
-> +               horizontal_backporch_byte =3D
-> +                       horizontal_backporch_byte -
-> +                       (data_phy_cycles * dsi->lanes + delta) *
-> +                       vm->hback_porch /
-> +                       (vm->hfront_porch + vm->hback_porch);
->         } else {
-> -               if ((vm->hfront_porch + vm->hback_porch) * dsi_tmp_buf_bp=
-p >
-> -                   data_phy_cycles * dsi->lanes + 12) {
-> -                       horizontal_frontporch_byte =3D
-> -                               vm->hfront_porch * dsi_tmp_buf_bpp -
-> -                               (data_phy_cycles * dsi->lanes + 12) *
-> -                               vm->hfront_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -                       horizontal_backporch_byte =3D horizontal_backporc=
-h_byte -
-> -                               (data_phy_cycles * dsi->lanes + 12) *
-> -                               vm->hback_porch /
-> -                               (vm->hfront_porch + vm->hback_porch);
-> -               } else {
-> -                       DRM_WARN("HFP less than d-phy, FPS will under 60H=
-z\n");
-> -                       horizontal_frontporch_byte =3D vm->hfront_porch *
-> -                                                    dsi_tmp_buf_bpp;
-> -               }
-> +               DRM_WARN("HFP + HBP less than d-phy, FPS will under 60Hz\=
-n");
-> +               horizontal_frontporch_byte =3D vm->hfront_porch *
-> +                                            dsi_tmp_buf_bpp;
+>  Documentation/devicetree/bindings/serial/omap_serial.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/omap_serial.txt b/Documentation/devicetree/bindings/serial/omap_serial.txt
+> index dcba86b0a0d0..c2db8cabf2ab 100644
+> --- a/Documentation/devicetree/bindings/serial/omap_serial.txt
+> +++ b/Documentation/devicetree/bindings/serial/omap_serial.txt
+> @@ -1,6 +1,7 @@
+>  OMAP UART controller
+>  
+>  Required properties:
+> +- compatible : should be "ti,am64-uart", "ti,am654-uart" for AM64 controllers
+>  - compatible : should be "ti,j721e-uart", "ti,am654-uart" for J721E controllers
+>  - compatible : should be "ti,am654-uart" for AM654 controllers
+>  - compatible : should be "ti,omap2-uart" for OMAP2 controllers
+> -- 
+> 2.29.0
+> 
 
-I've applied this patch, but small hbp has problem because
-horizontal_backporch_byte < 0.
-I try to modify this patch according to two assumption:
+Thanks.
 
-1. horizontal_backporch_byte should be smaller than (vm->hback_porch +
-vm->hsync_len) * dsi_tmp_buf_bpp at least 10.
-2. horizontal_backporch_byte should >=3D 0.
-
-According to these two assumption, I've a patch [1]. My key point is
-that I use horizontal_backporch_byte to calculate the ratio to
-subtract it. Is my assumption correct?
-If not, please explain why do you calculate in this way, so we could
-find out how to solve this problem.
-
-[1] https://chromium-review.googlesource.com/c/chromiumos/third_party/kerne=
-l/+/2506992
-
+Reviewed-by: Nishanth Menon <nm@ti.com>
+-- 
 Regards,
-Chun-Kuang.
-
->         }
->
->         writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
-> --
-> 2.12.5
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
