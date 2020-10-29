@@ -2,255 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB5B29EC6A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:04:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE61229EC83
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:11:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726753AbgJ2NED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:04:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726667AbgJ2NED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:04:03 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE5BC0613CF
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 06:04:02 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kY7av-0003gY-5d; Thu, 29 Oct 2020 14:03:57 +0100
-Message-ID: <ea7162d355d429401cbcf10d34cc31b6264aabc7.camel@pengutronix.de>
-Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Abel Vesa <abel.vesa@nxp.com>, Marek Vasut <marex@denx.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S1725601AbgJ2NKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:10:25 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:56813 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725379AbgJ2NKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:10:25 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201029131012euoutp025f5817b3d82340b7163eba3882ac70bc~CeJg9P3VV2725427254euoutp02i;
+        Thu, 29 Oct 2020 13:10:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201029131012euoutp025f5817b3d82340b7163eba3882ac70bc~CeJg9P3VV2725427254euoutp02i
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1603977012;
+        bh=GhdLDQRYReg/k6n/Wulo3NxMsdJbsZSIJ8BM7RMo+cs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=gEqdf0R8cCn+4HmvQW90clgioJS9yxol6tGKKNLn4vN9hG9gDCvQk7h/oG0cMo5Zs
+         iWtu5h9p5NLwvTR4vQX3gh8Ohuf4Z4DBp5mE0M7qc4Cect74FiWLmaSOmmPjumzLD8
+         RY4w44YYo1fY9WVJ6rxUoz9fjYoOHPZWylk5xi7s=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201029131012eucas1p280ec12a8754c91843acf1a110e0c4ca2~CeJggUuL32721827218eucas1p27;
+        Thu, 29 Oct 2020 13:10:12 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 7E.94.05997.33FBA9F5; Thu, 29
+        Oct 2020 13:10:11 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201029131011eucas1p1194c5614ca8f5d3835f888c8d1c09fa1~CeJf_A4m60958109581eucas1p1A;
+        Thu, 29 Oct 2020 13:10:11 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201029131011eusmtrp14ffa1a08aa2502792f1e9970f0dba190~CeJf8qyEM2317423174eusmtrp1-;
+        Thu, 29 Oct 2020 13:10:11 +0000 (GMT)
+X-AuditID: cbfec7f4-677ff7000000176d-25-5f9abf331f16
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id C8.0D.06017.33FBA9F5; Thu, 29
+        Oct 2020 13:10:11 +0000 (GMT)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20201029131011eusmtip2506d73c0f4bd00c0486ad70f93b75ade~CeJfuBJPa0532105321eusmtip2T;
+        Thu, 29 Oct 2020 13:10:11 +0000 (GMT)
+From:   Lukasz Stelmach <l.stelmach@samsung.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     jim.cromie@gmail.com, Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 29 Oct 2020 14:03:55 +0100
-In-Reply-To: <CAHCN7xKSs9z1_ryXX3xOcJn7FfWXBE+zTzDYJT3pA1LCbHyOBw@mail.gmail.com>
-References: <20201024162016.1003041-1-aford173@gmail.com>
-         <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
-         <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
-         <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
-         <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
-         <CAHCN7xLC-gKquDNS3ToQCff=g610PscQE+T4zfO=_05GpLyK4w@mail.gmail.com>
-         <20201026145516.shmb55gaeh6u7oru@fsr-ub1664-175>
-         <CAHCN7xJOczT1B03Am4A645Xrk6-VF_7VDgAq13F-81=oCkixjw@mail.gmail.com>
-         <6274ab26d1fea5e00cea576d1e00028a4c4633af.camel@pengutronix.de>
-         <CAHCN7xK1Stx=dzbDE6dKtRHuWGgca54bwQf=JSGNFVmHJ_fSig@mail.gmail.com>
-         <55a33659d6faeb5677f4f3e4809bc426c1a4fc88.camel@pengutronix.de>
-         <CAHCN7xKSs9z1_ryXX3xOcJn7FfWXBE+zTzDYJT3pA1LCbHyOBw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolni?= =?utf-8?Q?erkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v4 3/5] net: ax88796c: ASIX AX88796C SPI Ethernet
+ Adapter Driver
+Date:   Thu, 29 Oct 2020 14:09:57 +0100
+In-Reply-To: <20201029003131.GF933237@lunn.ch> (Andrew Lunn's message of
+        "Thu, 29 Oct 2020 01:31:31 +0100")
+Message-ID: <dleftjwnz9uqje.fsf%l.stelmach@samsung.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
+        protocol="application/pgp-signature"
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRjHe3fO2Y7S5LQuPqyIHPXBLl4y6jUrutIJAutLiWA282AXN2tH
+        7UY3ZqFlFmo410JnlmZ4zYZamswxEWuzTKnUpNS0rZDSym6S81Xo2+//XP7P87y8LKX4yyjZ
+        Q9pEQadVx6uk3rTF/tOxIuSJMTrIXhyGnT1WClcayhlscqbQOM/mYHDBsIHBnZ+7GXytz01h
+        p7NChtssGQyu6utkcHudSYoNzgYJtt6oR7jU1iPD9vx5+GK9TbaR49s7n1N89b3XEr7W2CPj
+        q0rSpPyDwnN8bc2IhM+oLkH8SNXCXWyk97pYIf5QsqAL3LDf+6CrvVlyVO9/orLBRJ1H9/wu
+        Iy8WuFVwOy+FuYy8WQVXjMBWa6aJGEVg7yiWETGCoD61Szrd8iTdLCWJIgRfcx4hIgYR1Fm/
+        TQiWlXIBUFoa4WmYwy2C7JY/jIcproOGbEush2dze8D25aHMwzS3BN7k6CcHeHEa6H1eI/Gw
+        nFsDaaYvlIfncqFQPdQrI/FZ0JLbTxNPDeQ6P03uAJyZBUfWAEU23Qqmp1kM4dngaq6WEV4A
+        rVnptGdP4M5BVuZq0puOwGIao0lNGHQ7fk1dvAluVt6UknofePV5FpnrA5mWHIqE5ZB6SUGq
+        F0PZtcdTLkq46ipGhHn40T429boXEAw0WaXX0SLjf+cY/zvHOGFLcf5QXhdIwsvgrtlNEV4P
+        ZWXDdD5iSpCvkCRq4gRxpVY4HiCqNWKSNi7gQIKmCk18xNbx5tEaVPcnxoo4Fqlmytu6cqMV
+        jDpZPKmxosUTTu8r7rchJa1N0AqqOfLNz1r3KeSx6pOnBF1CtC4pXhCtaD5Lq3zlIQUfoxRc
+        nDpROCIIRwXddFbCeinPo51j4fFn9cqow5XhY9nfQw0Fx7ab9f1XHkYGOQ7zo5u2dOEz+UVN
+        2tV5P2bk789JaXzbs3bcfePYnVcfC07j/iuDig/BqPbFuwr71d9+A+tKtx3Zpk90vlmvbciO
+        2TE0w2UI00dEUGLRrbbde2t8kvyCWwpbI5fva3RnDr/wDRoMf6mixYPq4KWUTlT/AyMvbViQ
+        AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMIsWRmVeSWpSXmKPExsVy+t/xe7rG+2fFG2x/JGpx/u4hZouNM9az
+        Wsw538JiMf/IOVaLRe9nsFpce3uH1aL/8Wtmi/PnN7BbXNjWx2qx6fE1VovLu+awWcw4v4/J
+        4tDUvYwWa4/cZbc4tkDMonXvEXYHAY/L1y4ye2xZeZPJY+esu+wem1Z1snlsXlLvsXPHZyaP
+        vi2rGD0+b5IL4IjSsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcks
+        Sy3St0vQy3h1+ThTQbNmxcZ9c5gbGFcqdjFyckgImEjs71nIBmILCSxllFjWUtTFyAEUl5JY
+        OTcdokRY4s+1LqASLqCSp4wSd+7sZwGpYRPQk1i7NgKkRkRAQWLKyT+sIDXMAjdYJB5NWswM
+        khAWCJFYdPAGI0i9kICuxKRWH5Awi4CqxK3pzWBrOQVyJda9388KYvMKmEt0zvkI1ioqYCmx
+        5cV9doi4oMTJmU9YQGxmgWyJr6ufM09gFJiFJDULSWoW0DZmAU2J9bv0IcLaEssWvmaGsG0l
+        1q17z7KAkXUVo0hqaXFuem6xkV5xYm5xaV66XnJ+7iZGYCRvO/Zzyw7GrnfBhxgFOBiVeHgv
+        3J4ZL8SaWFZcmXuIUQVozKMNqy8wSrHk5eelKonwOp09HSfEm5JYWZValB9fVJqTWnyI0RTo
+        z4nMUqLJ+cDkk1cSb2hqaG5haWhubG5sZqEkztshcDBGSCA9sSQ1OzW1ILUIpo+Jg1OqgXHq
+        i7o9/c5TtJocHQK5rscuDvdoDZvE/2FSa57urDfdWjl1aRk2E3bkWUZunKm6SnB67Y/ZG0qv
+        JwrM1XFSnNLrI1CaO+8Py5WY2DLPlpUKbq3tGplTf5QcUbXVnrLfTf6b/6rlEq7Np6clzix8
+        qfl+0cwAebdZyqrlH7XNHl0/UrDRWPVxiBJLcUaioRZzUXEiAE7o2k8GAwAA
+X-CMS-MailID: 20201029131011eucas1p1194c5614ca8f5d3835f888c8d1c09fa1
+X-Msg-Generator: CA
+X-RootMTR: 20201029131011eucas1p1194c5614ca8f5d3835f888c8d1c09fa1
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201029131011eucas1p1194c5614ca8f5d3835f888c8d1c09fa1
+References: <20201029003131.GF933237@lunn.ch>
+        <CGME20201029131011eucas1p1194c5614ca8f5d3835f888c8d1c09fa1@eucas1p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, den 29.10.2020, 07:18 -0500 schrieb Adam Ford:
-> On Thu, Oct 29, 2020 at 6:55 AM Lucas Stach <l.stach@pengutronix.de>
-> wrote:
-> > Am Montag, den 26.10.2020, 11:23 -0500 schrieb Adam Ford:
-> > > On Mon, Oct 26, 2020 at 10:44 AM Lucas Stach <
-> > > l.stach@pengutronix.de> wrote:
-> > > > Am Montag, den 26.10.2020, 10:12 -0500 schrieb Adam Ford:
-> > > > > On Mon, Oct 26, 2020 at 9:55 AM Abel Vesa <abel.vesa@nxp.com>
-> > > > > wrote:
-> > > > > > On 20-10-25 11:05:32, Adam Ford wrote:
-> > > > > > > On Sun, Oct 25, 2020 at 7:19 AM Marek Vasut <
-> > > > > > > marex@denx.de> wrote:
-> > > > > > > > On 10/25/20 1:05 PM, Abel Vesa wrote:
-> > > > > > > > 
-> > > > > > > > [...]
-> > > > > > > > 
-> > > > > > > > > > Together, both the GPC and the clk-blk driver
-> > > > > > > > > > should be able to pull
-> > > > > > > > > > the multimedia block out of reset.  Currently, the
-> > > > > > > > > > GPC can handle the
-> > > > > > > > > > USB OTG and the GPU, but the LCDIF and MIPI DSI
-> > > > > > > > > > appear to be gated by
-> > > > > > > > > > the clock block
-> > > > > > > > > > 
-> > > > > > > > > > My original patch RFC didn't include the imx8mn
-> > > > > > > > > > node, because it
-> > > > > > > > > > hangs, but the node I added looks like:
-> > > > > > > > > > 
-> > > > > > > > > > media_blk_ctl: clock-controller@32e28000 {
-> > > > > > > > > >      compatible = "fsl,imx8mn-media-blk-ctl",
-> > > > > > > > > > "syscon";
-> > > > > > > > > >      reg = <0x32e28000 0x1000>;
-> > > > > > > > > >      #clock-cells = <1>;
-> > > > > > > > > >      #reset-cells = <1>;
-> > > > > > > > > > };
-> > > > > > > > > > 
-> > > > > > > > > > I was hoping you might have some feedback on the
-> > > > > > > > > > 8mn clk-blk driver
-> > > > > > > > > > since you did the 8mp clk-blk drive and they appear
-> > > > > > > > > > to be very
-> > > > > > > > > > similar.
-> > > > > > > > > > 
-> > > > > > > > > 
-> > > > > > > > > I'll do you one better still. I'll apply the patch in
-> > > > > > > > > my tree and give it
-> > > > > > > > > a test tomorrow morning.
-> > > > > > > 
-> > > > > > > I do have some more updates on how to get the system to
-> > > > > > > not hang, and
-> > > > > > > to enumerate more clocks.
-> > > > > > > Looking at Marek's work on enabling clocks in the 8MM, he
-> > > > > > > added a
-> > > > > > > power-domain in dispmix_blk_ctl pointing to the dispmix
-> > > > > > > in the GPC.
-> > > > > > > By forcing the GPC driver to write 0x1fff  to 32e28004,
-> > > > > > > 0x7f to
-> > > > > > > 32e28000 and 0x30000 to 32e28008, the i.MX8MM can bring
-> > > > > > > the display
-> > > > > > > clocks out of reset.
-> > > > > > > 
-> > > > > > 
-> > > > > > Yeah, that makes sense. Basically, it was trying to disable
-> > > > > > unused clocks
-> > > > > > (see clk_disable_unused) but in order to disable the clocks
-> > > > > > from the
-> > > > > > media BLK_CTL (which I think should be renamed in display
-> > > > > > BLK_CTL) the
-> > > > > > PD need to be on. Since you initially didn't give it any
-> > > > > > PD, it was trying
-> > > > > > to blindly write/read the gate bit and therefore freeze.
-> > > > > > 
-> > > > > > > Unfortunately, the i.MX8MN needs to have 0x100 written to
-> > > > > > > both
-> > > > > > > 32e28000 and 32e28004, and the values written for the 8MM
-> > > > > > > are not
-> > > > > > > compatible.
-> > > > > > > By forcing the GPC to write those values, I can
-> > > > > > > get  lcdif_pixel_clk
-> > > > > > > and the mipi_dsi_clkref  appearing on the Nano.
-> > > > > > 
-> > > > > > I'm trying to make a branch with all the patches for all
-> > > > > > i.MX8M so I
-> > > > > > can keep track of it all. On this branch I've also applied
-> > > > > > the
-> > > > > > following patchset from Lucas Stach:
-> > > > > > https://www.spinics.net/lists/arm-kernel/msg843007.html
-> > > > > > but I'm getting the folowing errors:
-> > > > > > 
-> > > > > > [   16.690885] imx-pgc imx-pgc-domain.3: failed to power up
-> > > > > > ADB400
-> > > > > > [   16.716839] imx-pgc imx-pgc-domain.3: failed to power up
-> > > > > > ADB400
-> > > > > > [   16.730500] imx-pgc imx-pgc-domain.3: failed to power up
-> > > > > > ADB400
-> > > > > > 
-> > > > > > Lucas, any thoughts?
-> > > > > > 
-> > > > > > Maybe it's something related to 8MN.
-> > > > > > 
-> > > > > I will go back and double check this now that we have both
-> > > > > the
-> > > > > blt_crl->power-domain and the power-domain->blk_ctl.
-> > > > > 
-> > > > > > Will dig further, see what pops out.
-> > > > > 
-> > > > > I wasn't sure which direction to go with the name.  I can
-> > > > > rename the
-> > > > > media_blk_ctl  driver to display_blk_ctl.  I used Media based
-> > > > > on the
-> > > > > imx8mp naming convention and the fact that it's controlling
-> > > > > both the
-> > > > > display and the camera interface, however it's depending on
-> > > > > the
-> > > > > dispmix GPC.
-> > > > > 
-> > > > > I'll submit a RFC V2 with the cross referencing to the GPC
-> > > > > based on
-> > > > > Marek's Mini patch set, but we'll still have an issue where
-> > > > > the Mini
-> > > > > and Nano have different syscon values to enable the clocks,
-> > > > > and
-> > > > > Marek's branch has it card-coded, so my patch would
-> > > > > effectively break
-> > > > > the Mini in order to make the Nano operate until we find a
-> > > > > better
-> > > > > solution.
-> > > > 
-> > > > The GPC should not write into the BLK_CTL region via syscon,
-> > > > but
-> > > > instead use the clocks and resets as exposed by the BLK_CTL
-> > > > driver.
-> > > > Doing it via syscon is a hack to get things going. The clocks
-> > > > and
-> > > > resets should properly be hooked up to the GPC domains via the
-> > > > clocks
-> > > > and resets DT properties.
-> > > > 
-> > > > For the clocks there is one complication: if the clocks are
-> > > > controlled
-> > > > via BLK_CTL we can only enable them once the domain is powered
-> > > > up,
-> > > > however the earlier designs using the GPCv2 assert resets as
-> > > > part of
-> > > > the power up sequence, which needs the clocks to be running for
-> > > > the
-> > > > reset to propagate. So depending on whether we have a power
-> > > > domain with
-> > > > a BLK_CTL or not we need to enable the clocks before or after
-> > > > powering
-> > > > up the domain. I guess we need a new DT property to specify
-> > > > which way
-> > > > the domain needs to handled.
-> > > 
-> > > So in the case of Nano, could we create two blocks instead of
-> > > one?
-> > > The first block would enable the bus clock and reset that
-> > > correspond
-> > > to writing 0x100 to avoid writing to syscon.  From there, we
-> > > reference
-> > > that reset and clock from the GPC displaymix_pd to enable the
-> > > access.
-> > > Once that's done, we point the 2nd block power-domain to the
-> > > dispmix_pd to unlock the remaining clocks.
-> > > 
-> > > Would that work?  I can try it later today, but I'm not near the
-> > > hardware now.
-> > 
-> > Splitting the PD into 2 staged domains might actually work well to
-> > get
-> > around the cyclic dependency between GPC and BLK_CTL. It's not
-> > totally
-> > to my liking, as the DT description doesn't map 1:1 to hardware
-> > anymore, but it seems to be the most elegant solution to get around
-> > the
-> > dependency.
-> > 
-> > I'll try to implement this on the i.MX8MM today or tomorrow to see
-> > if
-> > it holds up in reality or if there are some hidden warts.
-> 
-> I tried it last night on the Nano without success.  :-(
-> 
-> I was just getting ready to e-mail the group when I saw this come in.
+--=-=-=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I was thinking the other way around, keeping a single BLK_CTL, but
-splitting the PD to reflect the power-up sequence requirement. I'll let
-you know how this works out.
+It was <2020-10-29 czw 01:31>, when Andrew Lunn wrote:
+>> +static void
+>> +ax88796c_get_regs(struct net_device *ndev, struct ethtool_regs *regs, v=
+oid *_p)
+>> +{
+>> +	struct ax88796c_device *ax_local =3D to_ax88796c_device(ndev);
+>> +	u16 *p =3D _p;
+>> +	int offset, i;
+>
+> You missed a reverse christmass tree fix here.
+>
 
-Regards,
-Lucas
+Done.
 
+>> +static int comp;
+>> +static int msg_enable =3D NETIF_MSG_PROBE |
+>> +			NETIF_MSG_LINK |
+>> +			/* NETIF_MSG_TIMER | */
+>> +			/* NETIF_MSG_IFDOWN | */
+>> +			/* NETIF_MSG_IFUP | */
+>> +			NETIF_MSG_RX_ERR |
+>> +			NETIF_MSG_TX_ERR |
+>> +			/* NETIF_MSG_TX_QUEUED | */
+>> +			/* NETIF_MSG_INTR | */
+>> +			/* NETIF_MSG_TX_DONE | */
+>> +			/* NETIF_MSG_RX_STATUS | */
+>> +			/* NETIF_MSG_PKTDATA | */
+>> +			/* NETIF_MSG_HW | */
+>> +			/* NETIF_MSG_WOL | */
+>> +			0;
+>
+> You should probably delete anything which is commented out.
+>
+
+Done.
+
+>> +
+>> +static char *no_regs_list =3D "80018001,e1918001,8001a001,fc0d0000";
+>> +unsigned long ax88796c_no_regs_mask[AX88796C_REGDUMP_LEN / (sizeof(unsi=
+gned long) * 8)];
+>> +
+>> +module_param(comp, int, 0444);
+>> +MODULE_PARM_DESC(comp, "0=3DNon-Compression Mode, 1=3DCompression Mode"=
+);
+>
+> I think you need to find a different way to configure this. How much
+> does compression bring you anyway?
+>
+
+Anything between almost 0 for large transfers, to 50 for tiniest. ~5%
+for ~500 byte transfers. Considering the chip is rather for small
+devices, that won't transfer large amounts of data, I'd rather keep some
+way to control it.
+
+>> +module_param(msg_enable, int, 0444);
+>> +MODULE_PARM_DESC(msg_enable, "Message mask (see linux/netdevice.h for b=
+itmap)");
+>
+> I know a lot of drivers have msg_enable, but DaveM is generally
+> against module parameters. So i would remove this.
+>
+
+These two parameters have something in common: no(?) other way to pass
+the information at the right time. Compression might be tuned in
+runtime, if there is an interface (via ethtool?) for setting custom
+knobs? Ther is such interface for msg_level level but it can be used
+before a device is probed and userland is running. Hence, there is no
+way to control msg_level during boot. I can remove those parameters, but
+I really would like to be able to control these parameter, especially
+msg_level during boot. If there is any other way, do let me know.
+
+>> +static void ax88796c_set_hw_multicast(struct net_device *ndev)
+>> +{
+>> +	struct ax88796c_device *ax_local =3D to_ax88796c_device(ndev);
+>> +	u16 rx_ctl =3D RXCR_AB;
+>> +	int mc_count =3D netdev_mc_count(ndev);
+>
+> reverse christmass tree.
+>
+
+Done.
+
+>> +static struct sk_buff *
+>> +ax88796c_tx_fixup(struct net_device *ndev, struct sk_buff_head *q)
+>> +{
+>> +	struct ax88796c_device *ax_local =3D to_ax88796c_device(ndev);
+>> +	struct sk_buff *skb, *tx_skb;
+>> +	struct tx_pkt_info *info;
+>> +	struct skb_data *entry;
+>> +	int headroom;
+>> +	int tailroom;
+>> +	u8 need_pages;
+>> +	u16 tol_len, pkt_len;
+>> +	u8 padlen, seq_num;
+>> +	u8 spi_len =3D ax_local->ax_spi.comp ? 1 : 4;
+>
+> reverse christmass tree.
+>
+
+Done.
+
+>> +static int ax88796c_receive(struct net_device *ndev)
+>> +{
+>> +	struct ax88796c_device *ax_local =3D to_ax88796c_device(ndev);
+>> +	struct sk_buff *skb;
+>> +	struct skb_data *entry;
+>> +	u16 w_count, pkt_len;
+>> +	u8 pkt_cnt;
+>
+> Reverse christmass tree
+>
+
+Done.
+
+>> +
+>> +static int ax88796c_process_isr(struct ax88796c_device *ax_local)
+>> +{
+>> +	u16 isr;
+>> +	u8 done =3D 0;
+>> +	struct net_device *ndev =3D ax_local->ndev;
+>
+> ...
+>
+
+Done.
+
+>> +static irqreturn_t ax88796c_interrupt(int irq, void *dev_instance)
+>> +{
+>> +	struct net_device *ndev =3D dev_instance;
+>> +	struct ax88796c_device *ax_local =3D to_ax88796c_device(ndev);
+>
+> ...
+>
+
+Done.
+
+>> +static int
+>> +ax88796c_open(struct net_device *ndev)
+>> +{
+>> +	struct ax88796c_device *ax_local =3D to_ax88796c_device(ndev);
+>> +	int ret;
+>> +	unsigned long irq_flag =3D IRQF_SHARED;
+>> +	int fc =3D AX_FC_NONE;
+>
+> ...
+>
+
+Done.
+
+>> +static int ax88796c_probe(struct spi_device *spi)
+>> +{
+>> +	struct net_device *ndev;
+>> +	struct ax88796c_device *ax_local;
+>> +	char phy_id[MII_BUS_ID_SIZE + 3];
+>> +	int ret;
+>> +	u16 temp;
+>
+> ...
+>
+
+Done.
+
+> The mdio/phy/ethtool code looks O.K. now. I've not really looked at
+> any of the frame transfer code, so i cannot comment on that.
+>
+>     Andrew
+>
+>
+
+Thanks.
+
+=2D-=20
+=C5=81ukasz Stelmach
+Samsung R&D Institute Poland
+Samsung Electronics
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl+avyYACgkQsK4enJil
+gBCBMwf9FnD8E89ec3soQSzXByQAO6P8tm2DCbrdWpJDtt+llFnrA6h087U7EBmk
+Qy/Wd/hPuhBjeNUYeX0BxJL3SHEFixlk2M18HFCJzTNbpBof7sYra9iB/q6NF/b9
+Cs+ga5m/hfLpdSqVmQdsFiWwxCpjldB5htjBOzc7cnMnCkVPKJ+Cw4/KwYFlnGOR
+F9TAPzugNnG2AH9JlOwBTZp/J6jTRlAp/naXssYWcWwJVSutidjyFJ472eElBkU/
+2q13sSwY98lR6bYlvsGEV5XFIWFiSaLNJq3rUYelbojDR3E7ZO3opbzdogn0ROxY
+MvqWStI2o5TBCDiHwp1RePhF6LdunA==
+=n2/L
+-----END PGP SIGNATURE-----
+--=-=-=--
