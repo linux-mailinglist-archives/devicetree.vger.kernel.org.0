@@ -2,112 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 857C529E30B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:46:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88EE729E2D0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 03:38:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbgJ2Cov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Oct 2020 22:44:51 -0400
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:39527 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726528AbgJ1VeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 17:34:11 -0400
-Received: by mail-oo1-f68.google.com with SMTP id j12so234175oou.6
-        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 14:34:10 -0700 (PDT)
+        id S1726411AbgJ2CWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Oct 2020 22:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36606 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726506AbgJ2CWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Oct 2020 22:22:35 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4119EC0613D1;
+        Wed, 28 Oct 2020 19:22:35 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id x13so1068995pfa.9;
+        Wed, 28 Oct 2020 19:22:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=V5JJRMZ/LialouktJyBf7mZSO4NBSF4FBTqd6F9Pi8k=;
+        b=IeNhS+Gyv2qKdOjaHQtoBxqrLnpSOXonjzaxaepYpBINZK59SCw0bdEjnEM4KMfThQ
+         1NLsKcLfwnF0h5XAT5EyI0DptSB7xjkMGW7KTr+7GkNK0vA3fXKPmX8nNnMwBz6yg4U3
+         GxuWR+bTz0RQ5PD42Spt+7mBIHoj86PGpMnMIPbM9VWQkhHbFIoe8POPWSUX8jdAhY26
+         wshSbIZ/4VbrXN8Kojs/cobPVgKKPm/bKeaa9clVvVIzZ/5sVK+6586aIeZhA3qQDgG9
+         5JQZbCdyOyfjOA6JGQmzenokJUTxGxSijZkxB3S9qllNlLXKKh4tfq56G+z13IrdB+d8
+         SwZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PHfkq2GIgrBhlirWwFbPBHgiYurDsTixDdYprqWD+Wc=;
-        b=NBrLUHzLao6Oxa53fPvPDRaU8Nn1HQZrdoFlXQJiHwqju1eK0qLRLVyGBK+/wTDJK9
-         gPKuspAkFQh/XrxANe0UDBD/nI+boRtA35j7lE5dKPGpaAHzIp0OQ5EqKuu2WEXd5lfP
-         FHGvK7MRIF6QSoAQSDQ5zgr3TywjG4q2vdB2XqGJWm+/1RYF1Ks0HOnevWqP3hhzTNkG
-         e1ryfZiMjsrhkjGmnNJVu23b1Isuvw7TZt6ZCgFq02Crd+WvbvfU7MHdTYVvyjwmvYfP
-         OpxxhWVcJA9JhZrQ9GITvUP/qjTI4uI+kdOgbemCoSUqdASvpqef4bZTkvZUfRzLGYTd
-         D8uQ==
-X-Gm-Message-State: AOAM531jzE0MjKyUCOneZV4dWjY8BpnBFPRdczuhf04R+8Rw6XrxLlif
-        sGeBkWgPQ6vn9Yg0eG1Mnz68ebKUrA==
-X-Google-Smtp-Source: ABdhPJx5rbPL2vDT9KgX5Jp6773wb6fBHFQ2bUYzR1oysz2iTs2skeRf4thvqhm6psmEVygYKD6J2Q==
-X-Received: by 2002:a9d:3d26:: with SMTP id a35mr8047otc.54.1603901069581;
-        Wed, 28 Oct 2020 09:04:29 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x25sm2725124oie.17.2020.10.28.09.04.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Oct 2020 09:04:28 -0700 (PDT)
-Received: (nullmailer pid 4105730 invoked by uid 1000);
-        Wed, 28 Oct 2020 16:04:27 -0000
-Date:   Wed, 28 Oct 2020 11:04:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] ASoC: dt-bindings: audio-graph-card: switch to
- yaml base Documentation
-Message-ID: <20201028160427.GA4094628@bogus>
-References: <87a6wfay7t.wl-kuninori.morimoto.gx@renesas.com>
- <878sbzay6u.wl-kuninori.morimoto.gx@renesas.com>
- <75ca7528-3177-46cb-73c5-46e32e63ad44@nvidia.com>
- <87h7qgw848.wl-kuninori.morimoto.gx@renesas.com>
- <eba1f18a-0b2e-d52b-593a-9ef5304f9199@nvidia.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=V5JJRMZ/LialouktJyBf7mZSO4NBSF4FBTqd6F9Pi8k=;
+        b=Z/Xv6i9WHRWD8Qh0nfZSSac2+FKT+tHWiuJcG39ZaXkr5UZF9xN8YNbhbfntqcIyvq
+         JnrCdm9XKonhAnxVJyQGdAgcWw3gT+BRwvqv6xNzM1LFvr7/qXU177Cj6Fx+QdUGhR/U
+         bCpl4HDRkjeYuL22YkvibrjJPawklgOqAdbE//w8dhW1FaVvLR1uwDLHiAQcG2usa4co
+         eZwLOnoQtdxKa2ejVLKNI+TEY23CKBLykSvx3K1sNp33L8fdL8fnBZBSauVTM4Piurrv
+         f354fcu22mIZ2nFNUVsOM3tgZudZZnyyv4ORP2LJ8Sxc3BF3e8qP2vUFx6htGUCmF0iE
+         HW2A==
+X-Gm-Message-State: AOAM532U2nZfyauxFU911iYaFIga1C4xKB6cvzyB811y/f3IJKgeyVhR
+        ZZ3sDDvZiOwcRxE4BEav7ok=
+X-Google-Smtp-Source: ABdhPJxpJ+gXX35+waw2MH3TvaKILK3+9AoBbHuUkui20aiv9+lsITQX0TlCxdAARkoMff2+MPY+1A==
+X-Received: by 2002:a63:4d0b:: with SMTP id a11mr1948937pgb.296.1603938154633;
+        Wed, 28 Oct 2020 19:22:34 -0700 (PDT)
+Received: from [10.230.28.251] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y3sm891152pfn.167.2020.10.28.19.22.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Oct 2020 19:22:33 -0700 (PDT)
+Subject: Re: [PATCH net-next v7 2/8] net: dsa: Give drivers the chance to veto
+ certain upper devices
+To:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+References: <20201028074221.29326-1-kurt@linutronix.de>
+ <20201028074221.29326-3-kurt@linutronix.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <67c19828-6335-3003-b86b-18d72a961e05@gmail.com>
+Date:   Wed, 28 Oct 2020 19:22:31 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <eba1f18a-0b2e-d52b-593a-9ef5304f9199@nvidia.com>
+In-Reply-To: <20201028074221.29326-3-kurt@linutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 27, 2020 at 11:33:49AM +0530, Sameer Pujar wrote:
-> Hi Morimoto-san,
+
+
+On 10/28/2020 12:42 AM, Kurt Kanzenbach wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
 > 
-> > > > From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > > > 
-> > > > This patch switches from .txt base to .yaml base Document.
-> > > > 
-> > > > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > (snip)
-> > > Since I am trying to re-use most of audio-graph for Tegra, can
-> > > 'compatible' be moved to a separate schema?
-> > > For example,
-> > > audio-graph.yaml -> defines all the common stuff
-> > > audio-graph-card.yaml -> audio-graph.yaml + 'compatible' property
-> > > Similarly, tegra-audio-graph-card.yaml -> audio-graph.yaml + Tegra
-> > > 'compatible' property
-> > I'm not expert of Json-Schema, and it sound very expert technique for me.
-> > (It always indicates me unknown errors...)
-> > I'm posting this patch since many month ago, and not yet accepted
-> > for many reasons (audio-graph DT is very complex).
-> > I spend many times for it and finally come to the point where it
-> > can (might) be accepted.
-> > I'm sorry but I want to finish this work,
-> > this means I don't want to customize it any more.
-> > If I try it, it needs more month...
+> Some switches rely on unique pvids to ensure port separation in
+> standalone mode, because they don't have a port forwarding matrix
+> configurable in hardware. So, setups like a group of 2 uppers with the
+> same VLAN, swp0.100 and swp1.100, will cause traffic tagged with VLAN
+> 100 to be autonomously forwarded between these switch ports, in spite
+> of there being no bridge between swp0 and swp1.
 > 
-> I am not a json-schema expert either :) From earlier comments on Tegra audio
-> graph series, above re-use is possible I suppose. I depend on your
-> audio-graph documentation and for 'compatible' I am seeing error. So I
-> thought it may be fine to split audio-graph into two json-schemas now
-> itself. Otherwise I need to do it separately in my series if I want to
-> re-use your audio-graph, which is fine with me.
+> These drivers need to prevent this from happening. They need to have
+> VLAN filtering enabled in standalone mode (so they'll drop frames tagged
+> with unknown VLANs) and they can only accept an 8021q upper on a port as
+> long as it isn't installed on any other port too. So give them the
+> chance to veto bad user requests.
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+> ---
+>  include/net/dsa.h |  6 ++++++
+>  net/dsa/slave.c   | 12 ++++++++++++
+>  2 files changed, 18 insertions(+)
+> 
+> diff --git a/include/net/dsa.h b/include/net/dsa.h
+> index 04e93bafb7bd..4e60d2610f20 100644
+> --- a/include/net/dsa.h
+> +++ b/include/net/dsa.h
+> @@ -536,6 +536,12 @@ struct dsa_switch_ops {
+>  	void	(*get_regs)(struct dsa_switch *ds, int port,
+>  			    struct ethtool_regs *regs, void *p);
+>  
+> +	/*
+> +	 * Upper device tracking.
+> +	 */
+> +	int	(*port_prechangeupper)(struct dsa_switch *ds, int port,
+> +				       struct netdev_notifier_changeupper_info *info);
+> +
+>  	/*
+>  	 * Bridge integration
+>  	 */
+> diff --git a/net/dsa/slave.c b/net/dsa/slave.c
+> index 3bc5ca40c9fb..1919a025c06f 100644
+> --- a/net/dsa/slave.c
+> +++ b/net/dsa/slave.c
+> @@ -1987,10 +1987,22 @@ static int dsa_slave_netdevice_event(struct notifier_block *nb,
+>  	switch (event) {
+>  	case NETDEV_PRECHANGEUPPER: {
+>  		struct netdev_notifier_changeupper_info *info = ptr;
+> +		struct dsa_switch *ds;
+> +		struct dsa_port *dp;
+> +		int err;
+>  
+>  		if (!dsa_slave_dev_check(dev))
+>  			return dsa_prevent_bridging_8021q_upper(dev, ptr);
+>  
+> +		dp = dsa_slave_to_port(dev);
+> +		ds = dp->ds;
+> +
+> +		if (ds->ops->port_prechangeupper) {
+> +			err = ds->ops->port_prechangeupper(ds, dp->index, ptr);
 
-I think this part must be sorted out. Defining the graph schema could 
-come later though.
+I would pass 'info' instead of 'ptr' here even if there is no functional
+difference, this would be clearer. Not a reason to resubmit if
+everything else is fine in this series:
 
-With compatible dropped from audio-graph.yaml, 
-audio-graph-scu-card.yaml would look like this:
-
-allOf:
-  - $ref: audio-graph.yaml
-
-properties:
-  compatible:
-    const: audio-graph-scu-card
-
-unevaluatedProperties: false
-
-
-However, What is 'audio-graph-scu-card' supposed to mean compared to 
-'audio-graph-card'. It's never used by the driver or in any dts file.
-
-Rob
-
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
