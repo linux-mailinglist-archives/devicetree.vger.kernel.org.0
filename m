@@ -2,147 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E701B29F40B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 19:24:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B40BB29F4CA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 20:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725768AbgJ2SYH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Oct 2020 14:24:07 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39798 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725747AbgJ2SYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 14:24:06 -0400
-Received: by mail-ot1-f68.google.com with SMTP id o14so3207751otj.6;
-        Thu, 29 Oct 2020 11:24:05 -0700 (PDT)
+        id S1725774AbgJ2TSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 15:18:53 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:44318 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725963AbgJ2TQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 15:16:50 -0400
+Received: by mail-ed1-f68.google.com with SMTP id w1so3062930edv.11;
+        Thu, 29 Oct 2020 12:16:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4IEYVtSqduzhGKS9TyBWfCcxOVUYCwSEwdK+Y1cmD9g=;
-        b=QdMx1xV7BZ61iQAQ0kpE65veH9yeMKRjW1dgKYmc6COpJZq9+8m9llRJeoiVEXgPsm
-         ifOaiuBeXdRNRs25xUTIT8R3zGZUS9JHr+Ab0Yft3Ca8jAnw7EYn3eE9FdUkoCOCJ8W2
-         vGO4Dijsr0bwpDoVGrtmFYXnUiQwSS3J6H9fornWYODFiRwKqhwSzFZEvffRnds4UNSS
-         VkRwETbiKD+w3XJn0YByCN2mpmDTbWkOTPnULZwQXGUjN5xZlSR3CFyX/BjVieBDou9R
-         PMGRsUlROni9MJdQSjjQS0gIXI3L/J54PFFcTeQGgVEZoMg6spgCF6eyLPWmeiegmoqH
-         7suQ==
-X-Gm-Message-State: AOAM532JplyHMm5N2KU+nH89FITNwsDYWFw1R2WDOGt74mWglF1Vrm06
-        3Gmcr732TlA8pt64Jzv2jLtgs60NYg7OfTYSUPA=
-X-Google-Smtp-Source: ABdhPJzdcG3i35C8JpSQjiJAt0AYBSzBfVI22Cmxbvt5f6BbGMnt3YyMb5pTRGJoLY7Dz/YMWPRgYGqb4ryIfkaf0K0=
-X-Received: by 2002:a9d:5e14:: with SMTP id d20mr3962567oti.107.1603995845494;
- Thu, 29 Oct 2020 11:24:05 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mmqY+Yeiy9nDKcqsSPAuyb++V3pyCtvEqsSBbBln3ps=;
+        b=DRsnSExldqmnDsfmH1uuKr6KDOgzs1m1Uf68hbqQB3LRsrix4FVUmCUAdgV1+/D9G+
+         VnSbzaFyc/xzUgfZn3lM4uYnyuQM7JUAizLpzUMqEjDjT2BJlX2oZSkL4QkjPFxror6+
+         w/4vS6hr3zm+Ax47Cm0mGlRmwDTRZAEPr0Z8TzJJNVhGToUr1wmkK6kYDxZFJNYymVCC
+         XhUR81TLljNno0FoQwZObWLMJdHVbo5F3FgCSt12twAM8UEWerJEPELkvj/2hb4NtoEo
+         oKvC83bNsp98KAR7ccA4Mela3eoaT6cOHlMOxhvd0RPxqQmoFyPep1Cmu9RGG4fFt+A+
+         0eJg==
+X-Gm-Message-State: AOAM531YWdlZ3d5Loj93G/1q95V+wiQsvTdCW6Ffke3v9OKcDGfomUXt
+        cEBsz/ExDyT9nZC81+Vb3uU=
+X-Google-Smtp-Source: ABdhPJwrfkpQ2JuPFKdrfXz62k6W9divKfUT133kCeLPI66bfIuJh41eOM+GKvaMJw7/hRbB+e24/Q==
+X-Received: by 2002:aa7:c98f:: with SMTP id c15mr5804762edt.200.1603999007865;
+        Thu, 29 Oct 2020 12:16:47 -0700 (PDT)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id n3sm2033380edq.24.2020.10.29.12.16.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Oct 2020 12:16:46 -0700 (PDT)
+Date:   Thu, 29 Oct 2020 20:16:45 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mq-evk: Add spdif sound card support
+Message-ID: <20201029191645.GA308501@kozik-lap>
+References: <1603964844-832-1-git-send-email-shengjiu.wang@nxp.com>
+ <1603964844-832-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-References: <20201029133741.25721-1-erosca@de.adit-jv.com> <20201029133741.25721-2-erosca@de.adit-jv.com>
- <CAMuHMdX5pCtR-LMbuSJQvDNyVOwcipt7zZOF3c3J-d-Bq98NQg@mail.gmail.com> <20201029163213.GA12422@lxhi-065.adit-jv.com>
-In-Reply-To: <20201029163213.GA12422@lxhi-065.adit-jv.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 29 Oct 2020 19:23:53 +0100
-Message-ID: <CAMuHMdXbwfPk5_dZEzjLuUZx6ysxdmu6hKbd54Ev6jTQUObTCA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77961: ulcb-kf: Initial
- device tree
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Steffen Pengel <spengel@de.adit-jv.com>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1603964844-832-2-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugeniu,
+On Thu, Oct 29, 2020 at 05:47:24PM +0800, Shengjiu Wang wrote:
+> There are two spdif IP on imx8mq, spdif1 is for normal
+> spdif device, spdif2 is for HDMI ARC interface.
+> 
+> Enable these spdif sound card in this patch.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 38 ++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi    | 48 ++++++++++++++++++++
+>  2 files changed, 86 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> index 2418cca00bc5..e4250812586b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> @@ -87,6 +87,21 @@ link_codec: simple-audio-card,codec {
+>  			clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
+>  		};
+>  	};
+> +
+> +	sound-spdif {
+> +		compatible = "fsl,imx-audio-spdif";
+> +		model = "imx-spdif";
+> +		spdif-controller = <&spdif1>;
+> +		spdif-out;
+> +		spdif-in;
+> +	};
+> +
+> +	sound-hdmi-arc {
+> +		compatible = "fsl,imx-audio-spdif";
+> +		model = "imx-hdmi-arc";
+> +		spdif-controller = <&spdif2>;
+> +		spdif-in;
+> +	};
+>  };
+>  
+>  &A53_0 {
+> @@ -336,6 +351,22 @@ &snvs_pwrkey {
+>  	status = "okay";
+>  };
+>  
+> +&spdif1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spdif1>;
+> +	assigned-clocks = <&clk IMX8MQ_CLK_SPDIF1>;
+> +	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
+> +	assigned-clock-rates = <24576000>;
+> +	status = "okay";
+> +};
+> +
+> +&spdif2 {
+> +	assigned-clocks = <&clk IMX8MQ_CLK_SPDIF2>;
+> +	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
+> +	assigned-clock-rates = <24576000>;
+> +	status = "okay";
+> +};
+> +
+>  &uart1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_uart1>;
+> @@ -467,6 +498,13 @@ MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8       0xd6
+>  		>;
+>  	};
+>  
+> +	pinctrl_spdif1: spdif1grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SPDIF_TX_SPDIF1_OUT	0xd6
+> +			MX8MQ_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 49cc79246288..c94b2f80880f 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -793,6 +793,30 @@ bus@30800000 { /* AIPS3 */
+>  			ranges = <0x30800000 0x30800000 0x400000>,
+>  				 <0x08000000 0x08000000 0x10000000>;
+>  
+> +			spdif1: spdif@30810000 {
+> +				compatible = "fsl,imx8mq-spdif", "fsl,imx35-spdif";
 
-On Thu, Oct 29, 2020 at 5:34 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
-> On Thu, Oct 29, 2020 at 03:09:10PM +0100, Geert Uytterhoeven wrote:
-> > On Thu, Oct 29, 2020 at 2:38 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
-> > > Create a dedicated DTB for M3-ES3.0 + ULCB + Kingfisher combo.
-> > > Inspire from the pre-existing ULCB-KF device trees:
-> > >
-> > > $ ls -1 arch/arm64/boot/dts/renesas/*ulcb-kf.dts
-> > > arch/arm64/boot/dts/renesas/r8a77950-ulcb-kf.dts
-> > > arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dts
-> > > arch/arm64/boot/dts/renesas/r8a77960-ulcb-kf.dts
-> > > arch/arm64/boot/dts/renesas/r8a77965-ulcb-kf.dts
-> > >
-> > > Signed-off-by: Eugeniu Rosca <erosca@de.adit-jv.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel for v5.11.
->
-> Thank you for the prompt review!
->
-> > > +       compatible = "shimafuji,kingfisher", "renesas,m3ulcb",
-> > > +                    "renesas,r8a77961";
-> >
-> > Can you please send a patch to add this combo to
-> > Documentation/devicetree/bindings/arm/renesas.yaml?
->
-> I would happily do so if you resolve below concerns.
->
-> Since the inception of the Kingfisher extension board description in
-> v4.15-rc1 commit 5418a900412699 ("arm: shmobile: Document Kingfisher
-> board DT bindings"), nobody attempted describing the SoC+ULCB+KF
-> combinations in spite of four of such DT configurations being actively
-> used and maintained, i.e. r8a779{50,51,60,65}-ulcb-kf.
+This is an undocumented compatible. Checkpatch should point this out.
 
-I'm a bit confused. We do have:
+If this patchset depends on others, please describe it in cover letter or
+after '---' separator.
 
-      - description: Kingfisher (SBEV-RCAR-KF-M03)
-        items:
-          - const: shimafuji,kingfisher
-          - enum:
-              - renesas,h3ulcb
-              - renesas,m3ulcb
-              - renesas,m3nulcb
-          - enum:
-              - renesas,r8a7795
-              - renesas,r8a7796
-              - renesas,r8a77965
-
-> So, if we start documenting the r8a77961-ulcb-kf combo as a board, this
-> raises below questions:
->
->   => should the missing 4 SoC+ULCB+KF instances be documented as well?
->   => should a new compatible string be created for each such HW combo,
->      e.g. "renesas,<soc>-ulcb-kf"?
->
-> I feel none of the above is really needed, based on the patterns
-> established in Documentation/devicetree/bindings/arm/renesas.yaml,
-> but I might be wrong. Thoughts/suggestions appreciated.
-
-I don't think we want to add new compatible string to describe each
-combo. Just add "renesas,r8a77961" to the last enum?
-
-> IMHO one thing which is certainly worth clarifying and fixing is the
-> KF revision currently documented in renesas.yaml, i.e. M03.
->
-> Shimafuji released at least M04, M05 and M06 revisions of KF (nicely
-> compared at https://elinux.org/R-Car/Boards/Kingfisher#Change_point).
->
-> The question is, does the community intend to support M03 through M06
-> (in which case all of them might need an entry in the documentation) or
-> anything which is earlier than M06 has to be considered deprecated (in
-> which case renesas.yaml would need a simple s/M03/M06/ update)?
-
-I'm not that familiar with KingFisher and the various revisions.
-Do these differences have an impact on the software side?
-The diodes and filters probably don't.
-The I2C repeaters are PCA9548ADB on M03, hence they use a Linux
-driver. By what have they been replaced?
-What's the nature of the MOST ↔ GPS Function select register change?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
