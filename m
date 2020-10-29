@@ -2,146 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B40BB29F4CA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 20:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4620D29F4D9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 20:24:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725774AbgJ2TSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 15:18:53 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:44318 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725963AbgJ2TQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 15:16:50 -0400
-Received: by mail-ed1-f68.google.com with SMTP id w1so3062930edv.11;
-        Thu, 29 Oct 2020 12:16:48 -0700 (PDT)
+        id S1725783AbgJ2TYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 15:24:41 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:39849 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725747AbgJ2TYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 15:24:40 -0400
+Received: by mail-ej1-f68.google.com with SMTP id bn26so5374103ejb.6;
+        Thu, 29 Oct 2020 12:24:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mmqY+Yeiy9nDKcqsSPAuyb++V3pyCtvEqsSBbBln3ps=;
-        b=DRsnSExldqmnDsfmH1uuKr6KDOgzs1m1Uf68hbqQB3LRsrix4FVUmCUAdgV1+/D9G+
-         VnSbzaFyc/xzUgfZn3lM4uYnyuQM7JUAizLpzUMqEjDjT2BJlX2oZSkL4QkjPFxror6+
-         w/4vS6hr3zm+Ax47Cm0mGlRmwDTRZAEPr0Z8TzJJNVhGToUr1wmkK6kYDxZFJNYymVCC
-         XhUR81TLljNno0FoQwZObWLMJdHVbo5F3FgCSt12twAM8UEWerJEPELkvj/2hb4NtoEo
-         oKvC83bNsp98KAR7ccA4Mela3eoaT6cOHlMOxhvd0RPxqQmoFyPep1Cmu9RGG4fFt+A+
-         0eJg==
-X-Gm-Message-State: AOAM531YWdlZ3d5Loj93G/1q95V+wiQsvTdCW6Ffke3v9OKcDGfomUXt
-        cEBsz/ExDyT9nZC81+Vb3uU=
-X-Google-Smtp-Source: ABdhPJwrfkpQ2JuPFKdrfXz62k6W9divKfUT133kCeLPI66bfIuJh41eOM+GKvaMJw7/hRbB+e24/Q==
-X-Received: by 2002:aa7:c98f:: with SMTP id c15mr5804762edt.200.1603999007865;
-        Thu, 29 Oct 2020 12:16:47 -0700 (PDT)
+        bh=na9861zvKblYf7ep02+TOiwBVQurVwpRiruVXN88s4s=;
+        b=DzUfE+UtY14oZ2RtuIioCJaZ00Xc2NZV2lJj1MMi0/0WTq+cZfmu+ACjTfw6W/GzWI
+         ZaJ5jaB1UyJalHht3aPPHdu7S7FBPCbARlAUQ4gT35sIVgWnvRvfx2QqXnnX7d/MXh67
+         ppcEMDWn89su7poQUS4G0Ddq/woQBeX4Vs6oaPBqlnfa0+WAREbWLcP2UpiCAYAEpmOP
+         y7qUc/tTibumcOveygRor0kB8/szRyZx07VAM92mFCHhjPSvaSgPgXzcdAYonKOB91HY
+         QRNOawGVHmLSiQS82nbTTK+k17d3Mq/J9WXCajj/YfXYThkyerQutpn6oGt5i2ZUcjRJ
+         rDbQ==
+X-Gm-Message-State: AOAM532skqnRji0j8i6SgEfboO0E2mGLVXDa4wa2VR2PrI1tPLK2vaIg
+        GH2DesrS0e1yX2tavpMTCk0=
+X-Google-Smtp-Source: ABdhPJzB9KT5TbeTYxKSFEl6Fns3ceKUsdLvWJoSB5ZkN1ehwSpJWfCN82qTQTPElYeou9wVCwNhqA==
+X-Received: by 2002:a17:906:1614:: with SMTP id m20mr5528468ejd.258.1603999478926;
+        Thu, 29 Oct 2020 12:24:38 -0700 (PDT)
 Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n3sm2033380edq.24.2020.10.29.12.16.46
+        by smtp.googlemail.com with ESMTPSA id dp1sm1965399ejc.74.2020.10.29.12.24.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 12:16:46 -0700 (PDT)
-Date:   Thu, 29 Oct 2020 20:16:45 +0100
+        Thu, 29 Oct 2020 12:24:37 -0700 (PDT)
+Date:   Thu, 29 Oct 2020 20:24:36 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mq-evk: Add spdif sound card support
-Message-ID: <20201029191645.GA308501@kozik-lap>
-References: <1603964844-832-1-git-send-email-shengjiu.wang@nxp.com>
- <1603964844-832-2-git-send-email-shengjiu.wang@nxp.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        aford@beaconemedded.com, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mm: Add support for micfil
+Message-ID: <20201029192436.GB308501@kozik-lap>
+References: <20200502125949.194032-1-aford173@gmail.com>
+ <20200502125949.194032-2-aford173@gmail.com>
+ <20200520010348.GE11739@dragon>
+ <CAHCN7xKBx_YXCGSUJWO3YCaGfx4oc7iuv6S4qi500_NjV9pW=w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1603964844-832-2-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <CAHCN7xKBx_YXCGSUJWO3YCaGfx4oc7iuv6S4qi500_NjV9pW=w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 05:47:24PM +0800, Shengjiu Wang wrote:
-> There are two spdif IP on imx8mq, spdif1 is for normal
-> spdif device, spdif2 is for HDMI ARC interface.
+On Wed, Oct 28, 2020 at 07:10:37AM -0500, Adam Ford wrote:
+> On Tue, May 19, 2020 at 8:03 PM Shawn Guo <shawnguo@kernel.org> wrote:
+> >
+> > On Sat, May 02, 2020 at 07:59:48AM -0500, Adam Ford wrote:
+> > > The i.MX8M Mini has supports the MICFIL digital interface.
+> > > It's a 16-bit audio signal from a PDM microphone bitstream.
+> > > The driver is already in the kernel, but the node is missing.
+> > >
+> > > This patch adds the micfil node.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > index c63685ae80ee..d46e727fc362 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > @@ -339,6 +339,25 @@ sai6: sai@30060000 {
+> > >                               status = "disabled";
+> > >                       };
+> > >
+> > > +                     micfil: micfil@30080000 {
+> >
+> > Find a generic node name, audio-controller maybe?
 > 
-> Enable these spdif sound card in this patch.
+> The SAI's nodes are called SAI@xxxx
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 38 ++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi    | 48 ++++++++++++++++++++
->  2 files changed, 86 insertions(+)
+> If that's a deal-breaker, I can push a V3.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> index 2418cca00bc5..e4250812586b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> @@ -87,6 +87,21 @@ link_codec: simple-audio-card,codec {
->  			clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
->  		};
->  	};
-> +
-> +	sound-spdif {
-> +		compatible = "fsl,imx-audio-spdif";
-> +		model = "imx-spdif";
-> +		spdif-controller = <&spdif1>;
-> +		spdif-out;
-> +		spdif-in;
-> +	};
-> +
-> +	sound-hdmi-arc {
-> +		compatible = "fsl,imx-audio-spdif";
-> +		model = "imx-hdmi-arc";
-> +		spdif-controller = <&spdif2>;
-> +		spdif-in;
-> +	};
->  };
->  
->  &A53_0 {
-> @@ -336,6 +351,22 @@ &snvs_pwrkey {
->  	status = "okay";
->  };
->  
-> +&spdif1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spdif1>;
-> +	assigned-clocks = <&clk IMX8MQ_CLK_SPDIF1>;
-> +	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <24576000>;
-> +	status = "okay";
-> +};
-> +
-> +&spdif2 {
-> +	assigned-clocks = <&clk IMX8MQ_CLK_SPDIF2>;
-> +	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <24576000>;
-> +	status = "okay";
-> +};
-> +
->  &uart1 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_uart1>;
-> @@ -467,6 +498,13 @@ MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8       0xd6
->  		>;
->  	};
->  
-> +	pinctrl_spdif1: spdif1grp {
-> +		fsl,pins = <
-> +			MX8MQ_IOMUXC_SPDIF_TX_SPDIF1_OUT	0xd6
-> +			MX8MQ_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
-> +		>;
-> +	};
-> +
->  	pinctrl_uart1: uart1grp {
->  		fsl,pins = <
->  			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 49cc79246288..c94b2f80880f 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -793,6 +793,30 @@ bus@30800000 { /* AIPS3 */
->  			ranges = <0x30800000 0x30800000 0x400000>,
->  				 <0x08000000 0x08000000 0x10000000>;
->  
-> +			spdif1: spdif@30810000 {
-> +				compatible = "fsl,imx8mq-spdif", "fsl,imx35-spdif";
+> I didn't see anyone from the device tree side comment, and the device
+> tree binding doc states 'micfil@xxxxxx' so I used what was documented
+> in the fsl,micfil.txt
 
-This is an undocumented compatible. Checkpatch should point this out.
+Hi,
 
-If this patchset depends on others, please describe it in cover letter or
-after '---' separator.
+The example in the binding is not a binding itself. It can be misleading
+or even incorrect and it is not a reason to use such in DTS.
+
+Could be also audio-codec but it is not accurate (as it is only from the
+microphone to digital).
+
+Shawn's proposal is the best, I think.
 
 Best regards,
 Krzysztof
