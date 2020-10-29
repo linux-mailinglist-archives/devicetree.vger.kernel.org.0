@@ -2,87 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 954DD29E4E9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 199E029E43A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:36:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731791AbgJ2Ht2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 03:49:28 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:51576 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731839AbgJ2Ht1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:49:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1603955021; x=1606547021;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=2EBpuMyHprn0mrS41ctlTETH3PtVxtMaL9k4D6EyNvA=;
-        b=ZRGPK3wdAV1meHnTo1GVskYocaiJ33UvDTn+z1vE19xmrZ9Fs7TqCZM5nmwNhyvA
-        wdZZmDfMTkcZr0y9LpMho87HS+VTNJobPRUVfZoKhxhjHqQi4xfzjs1qiHInWnKn
-        qa3zUxAM8srLEzBMqLP0Rzbn2pWDquYJ+Dv56tPYAXk=;
-X-AuditID: c39127d2-269ff70000001c25-1f-5f9a694dab09
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 9D.4B.07205.D496A9F5; Thu, 29 Oct 2020 08:03:41 +0100 (CET)
-Received: from lws-riedmueller.phytec.de ([172.16.23.108])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2020102908034090-690350 ;
-          Thu, 29 Oct 2020 08:03:40 +0100 
-From:   Stefan Riedmueller <s.riedmueller@phytec.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>
-Subject: [PATCH v2 6/6] ARM: dts: imx6ul: segin: peb-av-02: Mark stmpe touch as wakeup-source
-Date:   Thu, 29 Oct 2020 08:03:24 +0100
-Message-Id: <20201029070324.16057-6-s.riedmueller@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201029070324.16057-1-s.riedmueller@phytec.de>
-References: <20201029070324.16057-1-s.riedmueller@phytec.de>
+        id S1729400AbgJ2Hga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 03:36:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57218 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729410AbgJ2HgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:36:06 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38CD8C0613D2
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 00:36:06 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kY2TT-0005fG-Ug; Thu, 29 Oct 2020 08:35:55 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kY2TT-000181-7y; Thu, 29 Oct 2020 08:35:55 +0100
+Date:   Thu, 29 Oct 2020 08:35:55 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/5] Fix the gate2 and make it more flexible
+Message-ID: <20201029073555.GD26805@pengutronix.de>
+References: <1603889942-27026-1-git-send-email-abel.vesa@nxp.com>
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 29.10.2020 08:03:41,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 29.10.2020 08:03:41
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBLMWRmVeSWpSXmKPExsWyRoCBS9c3c1a8wcTHAhbzj5xjtXh41d9i
-        0+NrrBb/9+xgt/i7fROLxYst4g5sHjtn3WX32LSqk81j85J6j/6/Bh6fN8kFsEZx2aSk5mSW
-        pRbp2yVwZfzYuJu1oIWtYk73ZPYGxlmsXYycHBICJhJLP71j62Lk4hAS2Moo8WbdbUYI5xqj
-        xJKJ7UwgVWwCRhILpjWC2SICyhKnNvaxgxQxC9xhlFi7/BYbSEJYIFbi/ZwVYEUsAqoSP+4u
-        YQaxeQVsJM6fO8wOsU5eYual72A2p4CtxJTG+WC9QkA13XeOsUPUC0qcnPmEBWSBhMAVRokn
-        u9ugmoUkTi8+CzaUWUBbYtnC18wTGAVmIemZhSS1gJFpFaNQbmZydmpRZrZeQUZlSWqyXkrq
-        JkZg6B6eqH5pB2PfHI9DjEwcjIcYJTiYlUR4XwjOjBfiTUmsrEotyo8vKs1JLT7EKM3BoiTO
-        u4G3JExIID2xJDU7NbUgtQgmy8TBKdXAmMmxanlHnqBnjpC2TJKemQAbl9E/i8vrt5WEyyRq
-        b1u/bd7swMcp0qE/OXV4fWQ+X+R6k9YtqXTxn1W8vrvIG6Hsg9GdPbn6vBO8Lt8/9Nr7joVe
-        ofgJqd/zW9i8NI6oMl5SfirzzPb5X589tzeHrV7RHnFMRcNz5a8FzoEt3+y9fNasZ9FWYinO
-        SDTUYi4qTgQABytxmksCAAA=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1603889942-27026-1-git-send-email-abel.vesa@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:35:24 up 252 days, 15:05, 142 users,  load average: 0.46, 0.22,
+ 0.18
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mark the STMPE resistive touch controller as a wakeup-source.
+On Wed, Oct 28, 2020 at 02:58:57PM +0200, Abel Vesa wrote:
+> First version here: https://lkml.org/lkml/2020/10/26/988
+> 
+> Changes since v1:
+>  * split the work in multiple iterative patches
+> 
+> Abel Vesa (5):
+>   clk: imx: gate2: Remove the IMX_CLK_GATE2_SINGLE_BIT special case
+>   clk: imx: gate2: Keep the register writing in on place
+>   clk: imx: gate2: Check if clock is enabled against cgr_val
+>   clk: imx: gate2: Add cgr_mask for more flexible number of control bits
+>   clk: imx: gate2: Add locking in is_enabled op
 
-Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
----
- arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+For the series:
 
-diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi b/arch/ar=
-m/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-index b511c6dec427..7cda6944501d 100644
---- a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-@@ -58,6 +58,7 @@ stmpe: touchscreen@44 {
- 		pinctrl-0 =3D <&pinctrl=5Fstmpe>;
- 		interrupts =3D <3 IRQ=5FTYPE=5FLEVEL=5FLOW>;
- 		interrupt-parent =3D <&gpio5>;
-+		wakeup-source;
- 		status =3D "disabled";
-=20
- 		stmpe=5Ftouchscreen {
---=20
-2.25.1
+Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
 
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
