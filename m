@@ -2,111 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABA8529F39D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 18:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 408C129F3AC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 18:58:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726624AbgJ2Ruw convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Oct 2020 13:50:52 -0400
-Received: from mail-ej1-f65.google.com ([209.85.218.65]:45137 "EHLO
-        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725876AbgJ2Ruv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 13:50:51 -0400
-Received: by mail-ej1-f65.google.com with SMTP id dk16so4411346ejb.12;
-        Thu, 29 Oct 2020 10:50:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=JW5uUjpEncojW8FWdx8WUdmW9j1qeTAangqeBjgEKyQ=;
-        b=OQYSgtdOREABaN8zCbg77l5PiMcS0RXXL96/gVeEJV1bfB+QITOqG7xg1hB6MLH1/z
-         oPfNFC3TMS1O82OE8KlpJgAd+WoZJpUrx+Gh2Rb/BpRpZH4f37KpqOLH5QpFKhEXTtW3
-         rzyEnBm+Hz1S/hDmwV8x8QCTd3NGrRfTA8dv4nhxmml6pnkEKO+LfwcFr5bGfZ726LG7
-         aUfqVqq5VH1Y81qRZeixws+/A/WIhthQ/71zKQFLxwPNK6HjDSwso8/TVnIolGB1QfOQ
-         GG9X9wVpytluZCCoWWytgUGxzCkKbMqYDOce8j4Fifc78rWRIdqtFF+QtaeVzm1bAQdc
-         ETlQ==
-X-Gm-Message-State: AOAM530EuIU7s4iorvZmfkIql83XlJ8NsDvG9TqGheTKia3SUSP3q43l
-        sRqiK2FeyTKyAs2/3B8DJx4=
-X-Google-Smtp-Source: ABdhPJyl7xUB/nJc95o/DV+69jqaZrjMS6PW4fVoEdF/462KVKVNy5/ZWfPbKjUtMuzyYBjkZYG4eQ==
-X-Received: by 2002:a17:906:3689:: with SMTP id a9mr5136518ejc.403.1603993847561;
-        Thu, 29 Oct 2020 10:50:47 -0700 (PDT)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id z22sm1856419ejw.107.2020.10.29.10.50.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 10:50:45 -0700 (PDT)
-Date:   Thu, 29 Oct 2020 18:50:43 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>
-Cc:     kgene@kernel.org, alim.akhtar@samsung.com, robh+dt@kernel.org,
-        a.kesavan@samsung.com, naveenkrishna.ch@gmail.com,
-        thomas.ab@samsung.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: exynos: Fix reboot/poweroff issues on Exynos7
-Message-ID: <20201029175043.GA88508@kozik-lap>
-References: <20201028210813.49874-1-pawel.mikolaj.chmiel@gmail.com>
+        id S1725928AbgJ2R60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 13:58:26 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:34492 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725805AbgJ2R60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 13:58:26 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 860BE1C0B7A; Thu, 29 Oct 2020 18:58:23 +0100 (CET)
+Date:   Thu, 29 Oct 2020 18:58:23 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Luka Kovacic <luka.kovacic@sartura.hr>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        lee.jones@linaro.org, dmurphy@ti.com, robh+dt@kernel.org,
+        jdelvare@suse.com, linux@roeck-us.net, marek.behun@nic.cz,
+        luka.perkov@sartura.hr, andy.shevchenko@gmail.com,
+        robert.marko@sartura.hr
+Subject: Re: [PATCH v7 4/6] drivers: leds: Add the IEI WT61P803 PUZZLE LED
+ driver
+Message-ID: <20201029175823.GC26053@duo.ucw.cz>
+References: <20201025005916.64747-1-luka.kovacic@sartura.hr>
+ <20201025005916.64747-5-luka.kovacic@sartura.hr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="E13BgyNx05feLLmH"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201028210813.49874-1-pawel.mikolaj.chmiel@gmail.com>
+In-Reply-To: <20201025005916.64747-5-luka.kovacic@sartura.hr>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 10:08:13PM +0100, Paweł Chmiel wrote:
-> In vendor sources for Exynos 7420, psci is not used to reboot or
-> poweroff device. Instead we should use syscon reboot/poweroff.
-> Previously it was not possible to poweroff (no syscon poweroff node) or
-> reboot (because it was handled by psci and this way is not working for
-> Exynos).
 
-Do you want to say that PSCI cannot be used to power off or reboot?
+--E13BgyNx05feLLmH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Fixes: fb026cb65247 ("arm64: dts: Add reboot node for exynos7")
-> Fixes: b9024cbc937d ("arm64: dts: Add initial device tree support for exynos7")
-> Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+Hi!
+
+> Add support for the IEI WT61P803 PUZZLE LED driver.
+> Currently only the front panel power LED is supported,
+> since it is the only LED on this board wired through the
+> MCU.
+>=20
+> The LED is wired directly to the on-board MCU controller
+> and is toggled using an MCU command.
+>=20
+> Support for more LEDs is going to be added in case more
+> boards implement this microcontroller, as LEDs use many
+> different GPIOs.
+
+Not too bad.
+
+> This driver depends on the IEI WT61P803 PUZZLE MFD driver.
+>=20
+> Signed-off-by: Luka Kovacic <luka.kovacic@sartura.hr>
+> Cc: Luka Perkov <luka.perkov@sartura.hr>
+> Cc: Robert Marko <robert.marko@sartura.hr>
 > ---
->  arch/arm64/boot/dts/exynos/exynos7.dtsi | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> index 959918f4ca45..47d54c369d03 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> @@ -117,8 +117,10 @@ cpu_atlas3: cpu@3 {
->  	};
->  
->  	psci {
-> -		compatible = "arm,psci-0.2";
-> +		compatible = "arm,psci";
+>  drivers/leds/Kconfig                    |   8 ++
+>  drivers/leds/Makefile                   |   1 +
+>  drivers/leds/leds-iei-wt61p803-puzzle.c | 161 ++++++++++++++++++++++++
+>  3 files changed, 170 insertions(+)
 
-Please explain how is it related to this issue? You onle mentioned
-a problem of lacking syscon-reboot node.
+Can you put it into drivers/leds/simple? You'll have to create it.
 
->  		method = "smc";
-> +		cpu_off = <0x84000002>;
-> +		cpu_on = <0xC4000003>;
+> +++ b/drivers/leds/leds-iei-wt61p803-puzzle.c
+> @@ -0,0 +1,161 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 
-The same question.
+Make sure this is consistent with MODULE_LICENSE("GPL");. GPLv2+ would
+be nicer if you can.
 
->  	};
->  
->  	soc: soc@0 {
-> @@ -552,6 +554,13 @@ pmu_system_controller: system-controller@105c0000 {
->  			compatible = "samsung,exynos7-pmu", "syscon";
->  			reg = <0x105c0000 0x5000>;
->  
-> +			poweroff: syscon-poweroff {
-> +				compatible = "syscon-poweroff";
-> +				regmap = <&pmu_system_controller>;
-> +				offset = <0x330C>; /* PS_HOLD_CONTROL */
-> +				mask = <0x5200>; /* reset value */
-> +			};
-> +
+> +	struct mutex lock;
 
-Instead, please include arm/exynos-syscon-restart.dtsi.
+Mutex is _way_ overkill for this. Please check that locking provided
+by LED core is not sufficient. If not, please use atomic_t or
+something.
 
 Best regards,
-Krzysztof
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--E13BgyNx05feLLmH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX5sCvwAKCRAw5/Bqldv6
+8j2+AJ0YFU6C6xHNPs7C8KJPePRrlhWVKACeIeZqPPBPkCkofGyaQ0peDTHv+P8=
+=3yWr
+-----END PGP SIGNATURE-----
+
+--E13BgyNx05feLLmH--
