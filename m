@@ -2,169 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6798229EBF4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:37:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2705729EBFF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725770AbgJ2Mht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 08:37:49 -0400
-Received: from foss.arm.com ([217.140.110.172]:35430 "EHLO foss.arm.com"
+        id S1726408AbgJ2MkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 08:40:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52956 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725355AbgJ2Mht (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 08:37:49 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5C00913A1;
-        Thu, 29 Oct 2020 05:37:48 -0700 (PDT)
-Received: from [10.57.13.20] (unknown [10.57.13.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2D3633F719;
-        Thu, 29 Oct 2020 05:37:44 -0700 (PDT)
-Subject: Re: [PATCH v3 0/4] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        morten.rasmussen@arm.com, Quentin Perret <qperret@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>
-References: <20201019140601.3047-1-lukasz.luba@arm.com>
- <CAD=FV=UYeo_rWBDRu-53Aw2OeY1NCgCuUJkocRM8xL+OCbJDug@mail.gmail.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <62430cb9-eaab-b215-0eec-d35d3c625406@arm.com>
-Date:   Thu, 29 Oct 2020 12:37:42 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726356AbgJ2MkW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 08:40:22 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3DD0C20809;
+        Thu, 29 Oct 2020 12:40:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603975221;
+        bh=fPrirToVDeWiBXGhzdGLCnc48Zdw7+8TGyRC7szzpq0=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=k7uitV9Jro8A3P74bQTJwyhnCaOrWxBlJPgEUuca3JVgkj96SXM3vCAw59a4tQTsO
+         /LAaZ3UWyZuVQHLanIa32IH57Ss2OhsvbAjlQ50YVT7owWKidgLvlhLJ0XkuWhLx5E
+         pOPho6XxMs7ioKmgYG6gMW/9rhHyuJWo7Q4orL+0=
+Date:   Thu, 29 Oct 2020 12:40:15 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     devicetree@vger.kernel.org, perex@perex.cz, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        srinivas.kandagatla@linaro.org, agross@kernel.org,
+        plai@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        lgirdwood@gmail.com, bgoswami@codeaurora.org, tiwai@suse.com,
+        bjorn.andersson@linaro.org, alsa-devel@alsa-project.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+In-Reply-To: <1603098363-9251-1-git-send-email-srivasam@codeaurora.org>
+References: <1603098363-9251-1-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v2] Asoc: qcom: lpass-cpu: Fix clock disable failure
+Message-Id: <160397520897.55401.4677277662633686101.b4-ty@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=UYeo_rWBDRu-53Aw2OeY1NCgCuUJkocRM8xL+OCbJDug@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/20/20 1:15 AM, Doug Anderson wrote:
-> Hi,
+On Mon, 19 Oct 2020 14:36:03 +0530, Srinivasa Rao Mandadapu wrote:
+> Disable MI2S bit clock from PAUSE/STOP/SUSPEND usecase instead of
+> shutdown time. Acheive this by invoking clk_disable API from
+> cpu daiops trigger instead of cpu daiops shutdown.
+> Change non-atomic API "clk_prepare_enable" to atomic API
+> "clk_enable" in trigger, as trigger is being called from atomic context.
 > 
-> On Mon, Oct 19, 2020 at 7:06 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
->>
->> Hi all,
->>
->> The Energy Model supports power values expressed in an abstract scale.
->> This has an impact on Intelligent Power Allocation (IPA) and should be
->> documented properly. Kernel sub-systems like EAS, IPA and DTPM
->> (new comming PowerCap framework) would use the new flag to capture
->> potential miss-configuration where the devices have registered different
->> power scales, thus cannot operate together.
->>
->> There was a discussion below v2 of this patch series, which might help
->> you to get context of these changes [2].
->>
->> The agreed approach is to have the DT as a source of power values expressed
->> always in milli-Watts and the only way to submit with abstract scale values
->> is via the em_dev_register_perf_domain() API.
->>
->> Changes:
->> v3:
->> - added boolean flag to struct em_perf_domain and registration function
->>    indicating if EM holds real power values in milli-Watts (suggested by
->>    Daniel and aggreed with Quentin)
->> - updated documentation regarding this new flag
->> - dropped DT binding change for 'sustainable-power'
->> - added more maintainers on CC (due to patch 1/4 touching different things)
->> v2 [2]:
->> - updated sustainable power section in IPA documentation
->> - updated DT binding for the 'sustainable-power'
->> v1 [1]:
->> - simple documenation update with new 'abstract scale' in EAS, EM, IPA
->>
->> Regards,
->> Lukasz Luba
->>
->> [1] https://lore.kernel.org/linux-doc/20200929121610.16060-1-lukasz.luba@arm.com/
->> [2] https://lore.kernel.org/lkml/20201002114426.31277-1-lukasz.luba@arm.com/
->>
->> Lukasz Luba (4):
->>    PM / EM: Add a flag indicating units of power values in Energy Model
->>    docs: Clarify abstract scale usage for power values in Energy Model
->>    PM / EM: update the comments related to power scale
->>    docs: power: Update Energy Model with new flag indicating power scale
->>
->>   .../driver-api/thermal/power_allocator.rst    | 13 +++++++-
->>   Documentation/power/energy-model.rst          | 30 +++++++++++++++----
->>   Documentation/scheduler/sched-energy.rst      |  5 ++++
->>   drivers/cpufreq/scmi-cpufreq.c                |  3 +-
->>   drivers/opp/of.c                              |  2 +-
->>   include/linux/energy_model.h                  | 20 ++++++++-----
->>   kernel/power/energy_model.c                   | 26 ++++++++++++++--
->>   7 files changed, 81 insertions(+), 18 deletions(-)
-> 
-> While I don't feel like I have enough skin in the game to make any
-> demands, I'm definitely not a huge fan of this series still.  I am a
-> fan of documenting reality, but (to me) trying to mix stuff like this
-> is just going to be adding needless complexity.  From where I'm
-> standing, it's a lot more of a pain to specify these types of numbers
-> in the firmware than it is to specify them in the device tree.  They
+> Fixes: commit 7e6799d8f87d ("ASoC: qcom: lpass-cpu: Enable MI2S BCLK and LRCLK together")
 
-When you have SCMI, you receive power values from FW directly, not using
-DT.
+Applied to
 
-> are harder to customize per board, harder to spin, and harder to
-> specify constraints for everything in the system (all heat generators,
-> all cooling devices, etc).  ...and since we already have a way to
-> specify this type of thing in the device tree and that's super easy
-> for people to do, we're going to end up with weird mixes / matches of
-> numbers coming from different locations and now we've got to figure
-> out which numbers we can use when and which to ignore.  Ick.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-This is not that bad as you described. When you have SCMI and FW
-all your perf domains should be aligned to the same scale.
-In example, you have 4 little CPU, 3 big CPUs, 1 super big CPU,
-1 GPU, 1 DSP. For all of them the SCMI get_power callback should return
-consistent values. You don't have to specify anything else or rev-eng.
-Then a client like EAS would use those values from CPUs to estimate
-energy and this works fine. Another client: IPA, which would use
-all of them and also works fine.
+Thanks!
 
-> 
-> In my opinion the only way to allow for mixing and matching the
-> bogoWatts and real Watts would be to actually have units and the
-> ability to provide a conversion factor somewhere.  Presumably that
-> might give you a chance of mixing and matching if someone wants to
-> provide some stuff in device tree and get other stuff from the
-> firmware.  Heck, I guess you could even magically figure out a
-> conversion factor if someone provides device tree numbers for
-> something that was already registered in SCMI, assuming all the SCMI
-> numbers are consistent with each other...
+[1/1] ASoC: qcom: lpass-cpu: Fix clock disable failure
+      commit: 6ec6c3693a389841d8ca952072aea8020da54ef4
 
-What you demand here is another code path, just to support revers
-engineered power values for SCMI devices, which are stored in DT.
-Then the SCMI protocol code and drivers should take them into account
-and abandon standard implementation and use these values to provide
-'hacked' power numbers to EM. Am I right?
-It is not going to happen.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Regards,
-Lukasz
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-> 
-> -Doug
-> 
-> 
-> 
-> -Doug
-> 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
