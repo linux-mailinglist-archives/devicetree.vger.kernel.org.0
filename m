@@ -2,152 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5542D29F5C6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:02:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C3AF29F5CD
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:04:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726342AbgJ2UCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 16:02:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60914 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726253AbgJ2UCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 16:02:31 -0400
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E342C0613D3
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 13:02:31 -0700 (PDT)
-Received: by mail-vs1-xe44.google.com with SMTP id e3so2215579vsr.8
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 13:02:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NHWeGLndJ6xxN0MAwysL/++BG9BlJzB6qOfq725eGSk=;
-        b=nGhX7HR2IWiCY4pI4GXVjaNF4rXrEKJCkKSUb640yjof+beWnJaznvUSHH9V8ia1bI
-         PUgBHGcU1NNEQDDd7ltP8i5PkwDS2ZjZwWvNWKy9PFwRhRS/6YepzOfsG1J53Nq29N3O
-         +Q44RLheaWRDj7oEk1ys03ZJFAtjnciCfbjsx+oacjjY1q+GHTGGITRJGOTW7jdpI9Bh
-         J+KczpneR/M0MjR2dQ3UM9+HV97LEUhYR5dSP4Ekya48vBN3NiQrsrcUgoq1imWOmC/V
-         8lppAylhcn0CAatmgnkieBYZm/ugbSlsXHD/vRngF0Z17GO2S7gYTMloZaKCm38Ef9AW
-         re+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NHWeGLndJ6xxN0MAwysL/++BG9BlJzB6qOfq725eGSk=;
-        b=Ma3FLtxRcTBykOAzJndwxFCZUhd3QB3M+9tszkn+Y0U3ffEKDoLM3PkztqEf11+I29
-         eMJeYkTKp/hwomVyezTznmm9gHiX/VSZWZF5brM1wRIWxiMctXdHGT2l/taMV9OYMWYz
-         CWn/3qBHi/r5C0PKNdE2T/wmWwRACWYDYLSTWbkepqdVL2qYLT/W9vjrcO66McGnq8Ux
-         Pjblxig2epQ9Moev5fwXxuZLv/IloPV/ivt5P/KuReaYefbS1pyF82PSMW6fS/P0BFxl
-         3iFPlGTSPQmDf0agg8fgG2IwHH9seUbibG93uGb+Uq9sJiNRtsPC9PhjRyGoub3WahlY
-         4bpQ==
-X-Gm-Message-State: AOAM530m9W8eVoqNb7KLeKnohsQgk/HVEiPuIoQ+G5oq0nO9Lznj4MgG
-        5ZYbGMcijx2KsoLZdr27v5HGZWAT3DggwZEHEWPCIw==
-X-Google-Smtp-Source: ABdhPJx3ipOjqxWLspHm1PdFbyoLH1B9iR40Eah0PBO3efo+jMYR6ljyioVHJKH0Jp0GWSsPFuvei8Y1EzODH7lPOBw=
-X-Received: by 2002:a67:fc4d:: with SMTP id p13mr4795515vsq.60.1604001750400;
- Thu, 29 Oct 2020 13:02:30 -0700 (PDT)
+        id S1726320AbgJ2UEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 16:04:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33896 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725780AbgJ2UE3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 16:04:29 -0400
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 63E1520809;
+        Thu, 29 Oct 2020 20:04:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604001868;
+        bh=AOvWudq0ZqsWRnN/qXnDh5LtmEQC83i+z8hhzYFp75c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=E9pSr6O/G6YE5XFNmqJqljbHx3wSzq6bVnhYgluqrf/H7wEGt4aAL9MLa6Ef2g5bE
+         4w5Ruk1xZvDR0sd7whf/fLVhUkTVh6Yvbg+wvF3ZK42Y28B6ivLMgvYklEgjEcZcBs
+         SnRh+ePJ2S1j6tL012nn1pFY9GPKgLLRWuNt5q28=
+Received: by mail-oo1-f52.google.com with SMTP id o129so1018129ooo.11;
+        Thu, 29 Oct 2020 13:04:28 -0700 (PDT)
+X-Gm-Message-State: AOAM533ddLpQ0DP4oum4dl1uU0tdMPjrBnHgvTBuW+dfRdx3iGpHsSNY
+        WfFOajgru19sxhicxDtFJFKG2yxOpL2rK7CgeA==
+X-Google-Smtp-Source: ABdhPJzY69332/TXD/GEbGo1Phdkm8uP9368uPwVctCb5SZBvuiMltO4sKY7UEYa7BklecuGbw5fafj/oTXoXLnSFpE=
+X-Received: by 2002:a4a:dcc8:: with SMTP id h8mr4529803oou.81.1604001867553;
+ Thu, 29 Oct 2020 13:04:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201029063138.1429760-1-badhri@google.com> <20201029063138.1429760-2-badhri@google.com>
- <20201029153351.GA1911637@bogus>
-In-Reply-To: <20201029153351.GA1911637@bogus>
-From:   Badhri Jagan Sridharan <badhri@google.com>
-Date:   Thu, 29 Oct 2020 13:01:52 -0700
-Message-ID: <CAPTae5L8bnv1S6dK0XkPiF7aha88ed5vfaiw5HAdtvu7TQMD5g@mail.gmail.com>
-Subject: Re: [PATCH v12 01/10] dt-bindings: usb: Maxim type-c controller
- device tree binding document
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        USB <linux-usb@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>
+References: <20201020193850.1460644-1-helen.koike@collabora.com> <20201020193850.1460644-6-helen.koike@collabora.com>
+In-Reply-To: <20201020193850.1460644-6-helen.koike@collabora.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 29 Oct 2020 15:04:16 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK3xhPHscbB+waDqEjKeRoeZ0MNu88fp70g9CSC02Qopw@mail.gmail.com>
+Message-ID: <CAL_JsqK3xhPHscbB+waDqEjKeRoeZ0MNu88fp70g9CSC02Qopw@mail.gmail.com>
+Subject: Re: [PATCH v6 5/9] media: staging: rkisp1: remove unecessary clocks
+To:     Helen Koike <helen.koike@collabora.com>
+Cc:     Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Mark Rutland <mark.rutland@arm.com>, karthik.poduval@gmail.com,
+        Eddie Cai <eddie.cai.linux@gmail.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, Oct 20, 2020 at 2:39 PM Helen Koike <helen.koike@collabora.com> wrote:
+>
+> aclk_isp_wrap is a child of aclk_isp, and hclk_isp_wrap is a child of
+> hclk_isp, thus we can remove parents from the list.
+>
+> Also, for the isp0, we only need the ISP clock, ACLK and HCLK.
+> In the future we'll need a pixel clock for RK3288 and RK3399, and a JPEG
+> clock for RK3288.
+>
+> So with the goal to cleanup the dt-bindings and remove it from staging,
+> simplify clock names to isp, aclk and hclk.
+>
+> Assigned clocks are meant to refer to the full path in the clock tree,
+> i.e. the leaf in the tree.
+> For instance, in RK3399, the clock responsible for ACLK (ISP AXI CLOCK)
+> is aclk_isp0_wrapper.
+>
+> For reference, this is the isp clock topology on RK3399:
+>
+>  xin24m
+>     pll_npll
+>        npll
+>           clk_isp1
+>           clk_isp0
+>     pll_cpll
+>        cpll
+>           aclk_isp1
+>              aclk_isp1_noc
+>              hclk_isp1
+>                 aclk_isp1_wrapper
+>                 hclk_isp1_noc
+>           aclk_isp0
+>              hclk_isp1_wrapper
+>              aclk_isp0_wrapper
+>              aclk_isp0_noc
+>              hclk_isp0
+>                 hclk_isp0_wrapper
+>                 hclk_isp0_noc
+>  pclkin_isp1_wrapper
+>
+> Signed-off-by: Helen Koike <helen.koike@collabora.com>
+> Reviewed-by: Tomasz Figa <tfiga@chromium.org>
+>
+> ---
+>
+> Changes in V6:
+> - Define clocks in the top level, and use if/else schema to define how
+>   many for each compatible as sugested by Rob Herring on
+>   https://patchwork.linuxtv.org/project/linux-media/patch/20200722155533.252844-6-helen.koike@collabora.com/#122626
+> ---
+>  .../bindings/media/rockchip-isp1.yaml         | 44 +++++++++++++------
+>  drivers/staging/media/rkisp1/rkisp1-dev.c     |  8 ++--
+>  2 files changed, 33 insertions(+), 19 deletions(-)
 
-The error seems to be because the following patch
-5ed132db5ad4 dt-bindings: connector: Add property to set initial
-current cap for FRS
-is in usb-next but not in the rc1 branch yet. To make the bot
-recognize that this is a
-dependency, Is it suffice to mention the following in the commit description?
-This patch depends on patch "dt-bindings: connector: Add property to
-set initial current cap for FRS".
-Or is there something else that I should do ?
-
-Thanks,
-Badhri
-
-
-On Thu, Oct 29, 2020 at 8:33 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 28 Oct 2020 23:31:29 -0700, Badhri Jagan Sridharan wrote:
-> > Add device tree binding document for Maxim 33359 Type-C chip driver
-> >
-> > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> > Changes since v1:
-> > - Changing patch version to v6 to fix version number confusion.
-> >
-> > Changes since v6:
-> > - Migrated to yaml format.
-> >
-> > Changes since v7:
-> > - Rebase on usb-next
-> >
-> > Changes since v8:
-> > - Fix errors from make dt_binding_check as suggested by
-> >   Rob Herring.
-> >
-> > Changes since v9:
-> > - additionalProperties: false as suggested by Rob Herring.
-> >
-> > Changes since v10:
-> > - Added the chip number to the binding as suggested by Rob Herring.
-> > - Renamed the filename as well.
-> >
-> > Changes since v11:
-> > Addressed comments from Rob Herring to rename from maxim,33359
-> > to maxim,max33359
-> > ---
-> >  .../bindings/usb/maxim,max33359.yaml          | 75 +++++++++++++++++++
-> >  1 file changed, 75 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> >
->
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/usb/maxim,max33359.example.dts:39.53-54 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/usb/maxim,max33359.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1364: dt_binding_check] Error 2
->
->
-> See https://patchwork.ozlabs.org/patch/1389879
->
-> The base for the patch is generally the last rc1. Any dependencies
-> should be noted.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+Reviewed-by: Rob Herring <robh@kernel.org>
