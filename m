@@ -2,123 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E76F29F156
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 17:25:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19DFE29F15E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 17:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725841AbgJ2QZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 12:25:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725764AbgJ2QZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 12:25:36 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFBC4C0613D2;
-        Thu, 29 Oct 2020 09:25:35 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id k9so1072782pgt.9;
-        Thu, 29 Oct 2020 09:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3Sus15uWA6w8qigrNG43zUpD+rV5kcttYLaM0yd967o=;
-        b=KrN1BkAHZbSipbqNIWGbwhF4zxjgjhsy08N+pJi+hZbbDtFU4nn9kK3GIv5gQR/ULO
-         y4dDXNJ21GgknMb3nO+FugCWOB8D0ylkEjjXywgzygZsVinzFWx8lekm4WbYHxhEejlL
-         m9B7b+nPxt/aFX6d9fYNt1s7Teynf+bB7tCY8OuxdS8tCy66l9/ztA9UxzawfqqEcqxd
-         xRJRWGUHXHdw3zvfzWf9w3sNVg38qWJLvLvt0keighGwSae2Ot6U40yhSnxV0liES50N
-         UbmY+BwT6SKkodEL9Ig/8JMGAaVTThM8AK3uao8aiTPcXOfx/R4ayTeNaLZUMWTYwQ2J
-         wGPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3Sus15uWA6w8qigrNG43zUpD+rV5kcttYLaM0yd967o=;
-        b=Tmloj5KrKQUSGi/GfYWPCFLF6cmtFsr+k96e3eL2Q4ObbWW66ShHTfEv/ex9/bc0+O
-         prdo2800+GK6bDutqX/ZY+eJ7zbIxFTphd4iwxgl5vI8hamg4Bs2X/5NNQoXmdVNdGmT
-         SDgcSSGvEn7ZupBunTySsBxy78VdardO77CT6yO5aU4l3+mPusQF5YEnZColycS5GcLO
-         kAAL57RKDB7h3A65COQ8hdeU4DqMtjCJ6XcIN1yTf9rHhA/NqVqDxKYA6BsuvmwzJFet
-         tHEQGqs9EqI1Nrm/y2jbIO2NVyHYx2hxlvqrjq6Vz99SDgiRnuTUTtTuV7mLcNdXpFLa
-         fH5A==
-X-Gm-Message-State: AOAM530u9oydzWv8gVNVKjempF/qzzfOLEu/rdb4SOLyu7F0epZpp6jF
-        T4XPiD6Y3lcOwnQpg/1GVjQ=
-X-Google-Smtp-Source: ABdhPJykD7pCjW9SNhGlSP9mIjxhvJzD4H32iRjUBNl/l0hRhQG2Ij7TwRjSS9Nl/UWc68JBSAspbg==
-X-Received: by 2002:a17:90a:1188:: with SMTP id e8mr566544pja.61.1603988735197;
-        Thu, 29 Oct 2020 09:25:35 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id x7sm3534070pfr.61.2020.10.29.09.25.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2020 09:25:34 -0700 (PDT)
-Date:   Thu, 29 Oct 2020 09:25:31 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux Input <linux-input@vger.kernel.org>,
-        Nick Dyer <nick@shmanahar.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] Input: atmel_mxt_ts: Convert bindings to YAML and
- extend
-Message-ID: <20201029162531.GB2547185@dtor-ws>
-References: <20201028101711.696423-1-linus.walleij@linaro.org>
- <20201028180059.GA2547185@dtor-ws>
- <CACRpkdaieExkEyjE=+GbQTVKsk21ifH9mm+q4vengqgbQ=Jd_A@mail.gmail.com>
+        id S1725965AbgJ2Q06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 12:26:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45554 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726177AbgJ2Q06 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 12:26:58 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 611922076E;
+        Thu, 29 Oct 2020 16:26:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1603988817;
+        bh=t+PBJ0NHId5QAZDzuBrDGNlV6g1PCH9iZXJKI+sMxMw=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=AVQf49UmZSCKirXj8VEFT7AM5GxmOOW2d1zUOMzZL+fF9cKQfQPy+RA/vxrnvAdIl
+         YNViTwonflNW7tToWEuTx/vKAURkz4BULmyNJGUGG++LI65Lizy/glAXE1wFc93ssu
+         8XBUL51CsE7vfoA3hxd4g6Tgv/G9qmhgdf5E2m4I=
+Date:   Thu, 29 Oct 2020 16:26:50 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com, Rob Herring <robh@kernel.org>
+In-Reply-To: <20201029101550.31695-1-srinivas.kandagatla@linaro.org>
+References: <20201029101550.31695-1-srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 1/2] ASoC: qcom: dt-bindings: sm8250: update compatibles
+Message-Id: <160398881039.39922.12061096532284319098.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdaieExkEyjE=+GbQTVKsk21ifH9mm+q4vengqgbQ=Jd_A@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 02:47:36PM +0100, Linus Walleij wrote:
-> On Wed, Oct 28, 2020 at 7:01 PM Dmitry Torokhov
-> <dmitry.torokhov@gmail.com> wrote:
-> > On Wed, Oct 28, 2020 at 11:17:10AM +0100, Linus Walleij wrote:
+On Thu, 29 Oct 2020 10:15:49 +0000, Srinivas Kandagatla wrote:
+> Update compatible string as board compatible and device compatible
+> should not be same!. New compatible is now suffixed with -sndcard
+> to be inline with other Qualcomm Sound cards.
 > 
-> > > This converts the Armel MXT touchscreen bindings to YAML
-> > > format and extends them with the following two properties:
-> > >
-> > > - vdda-supply: the optional analog supply voltage
-> > > - vdd-supply: the optional digital supply voltage
-> > >
-> > > I also explained about the reset-gpios property that this
-> > > better be flagged as active high (0) despite actually
-> > > being active low, because all current device trees and
-> > > drivers assume that this is the case and will actively
-> > > drive the line low to assert RESET.
-> >
-> > I wonder if we should fix that in driver and in DTs instead of doing
-> > this cludge...
-> 
-> Unfortunately I think there are deployed systems with flashed-in
-> system descriptions depending on this bug in the system
-> description already.
-> 
-> I am not thinking about device trees now, but instead ACPI
-> chromebooks, that have their reset line flagged as whatever
-> ACPI or DT-to-ACPI use to indicate an active high line.
-> Despite being active low.
+> This also fixes the warnings/error reported by dt_binding_check.
 
-The only ARM Chromebook that exposed reset line to the kernel was RK3288
-Asus Chromebook "Minnie". DTS specifies correct polarity (active low),
-but uses different binding (atmel,reset-gpios) from the driver found
-upstream (I have never reconciled Atmel driver we ship with Chromebooks
-with the upstream one). DT there is also part of the kernel, not flashed
-separately.
+Applied to
 
-x86 Chromebooks do not export reset line or regulators to the kernel but
-rather handle power up/down sequence in firmware (either at boot or
-exposing ACPI power control methods that kernel invokes form ACPI power
-domain code).
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> 
-> I could fix all the in-tree devicetrees and do it the natural way
-> (I have certainly done so before) and then add a quirk if used
-> with ACPI. But it's really risky. I'm afraid of regressions here.
+Thanks!
 
-Unless there are unofficial firmwares that rework power handling on some
-x86 Chromebooks and we want to support them I'd rather we did not quirk.
+[1/2] ASoC: qcom: dt-bindings: sm8250: update compatibles
+      commit: a889583a19206636082c44625141b26392e46a62
+[2/2] ASoC: qcom: sm8250: update compatible with new bindings
+      commit: bbc4e1bb5fd6577ed668e7c2ba0705dff1783bce
 
-Thanks.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
--- 
-Dmitry
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
