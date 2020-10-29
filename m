@@ -2,122 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2440129ED20
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEFCE29ED1D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725787AbgJ2Nk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:40:28 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:50261 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727298AbgJ2NkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 09:40:24 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 13AC5580772;
-        Thu, 29 Oct 2020 09:40:23 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Thu, 29 Oct 2020 09:40:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=ZeDUvu21mMYclA/i2bPU8P34/7
-        Q4E9HnZacDqNRNt/A=; b=NMYo1qcthaXkC6Wj2i2aNfDV9G8l82+XaojIp/23w/
-        6vMRNIk4aV3DzE8aadi50rHkalL1AIl4p+TtAXWreLg7qQMPwu0m/xxXv3U0Nrly
-        140jOyfZCqisToMMB/o69LAWIpdEA/i05/ty1FiNCD9B3a4ZuGs99YTujo2dxY6X
-        yU0CAiLt8taMhLeG0BV2dy8WiNoyCdOIjePzg//dSte1q/gbPbaunTxKgfDSyhLN
-        EFeBCtBhPz/NfBaHYXeeLyV2PbBA39q1DpEjCn/t6moLz1h/6WlpQEYgLZzK5kuD
-        NzNhkZo9qivDWU7bJlbdpUDfLYUM6M+np3Pc+iXNQQBw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ZeDUvu21mMYclA/i2
-        bPU8P34/7Q4E9HnZacDqNRNt/A=; b=brWiO1RoVI3pye6pcb8nuLW+HhQ87uZgK
-        oyFSz2t06XrgEotJyWawoyVONdQmCAUEe81v17HOjudbk2Dh5RyFMMJHLW56IYx4
-        H6Y8uFPvKCXLNWpgNa0DECDOOooF6N/Lb0SmwkH/E/XLweFMmtx6KXYqivHxse+W
-        4Nx5IBNys7Bl5y118JNcbZ8Sf0XSaLgN+X8/h1C5W0TaWIe77i85BYocStX8X0lh
-        1S0BvA+zKDPZVtyuwM7pawkJ71FONCoQIM3t2F6DBf/nNJj+xY0WFBlmoOQYHA7Y
-        KRZAFw6AcI1q2I9rGuSpL4lmKuwY1T5thzqpXyZhDgI+UJrfsKi/Q==
-X-ME-Sender: <xms:RcaaX7VATBHS-auJdihMh2f31H5ZRIjLpR_OKfdzBkknJQC9Srhj_Q>
-    <xme:RcaaXzlHbMTyRThezSs0DyHJS8CKU7CrMCygwSdvxcrFsbG6q7uMboM9YjGowoTjP
-    wqGQf1-k1DcyTlib1M>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleefgdehgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucft
-    ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
-    hnpeejffehuddvvddvlefhgeelleffgfeijedvhefgieejtdeiueetjeetfeeukeejgeen
-    ucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:RcaaX3bhA_i4VmnfAQgO8fKDOkwFzkGbPsazAaGYLBL2XyINPeA-Pw>
-    <xmx:RcaaX2Vv4odWwvtF3A54R2WAvS63ITrh3E7AivxTZhG72oxxEkYyPA>
-    <xmx:RcaaX1nw3c5E88-mJ_vYEZmxvycJ27isNpnLS00MekwKkl5zzWxACw>
-    <xmx:R8aaX1m_klyX83qHWJsOVR2RChFfxDaY9pyG09u_nOuGcBi9Rogpsg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 16F013280059;
-        Thu, 29 Oct 2020 09:40:21 -0400 (EDT)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Eric Anholt <eric@anholt.net>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-rpi-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: [PATCH v2 1/3] dt-bindings: display: Add a property to deal with WiFi coexistence
-Date:   Thu, 29 Oct 2020 14:40:16 +0100
-Message-Id: <20201029134018.1948636-1-maxime@cerno.tech>
-X-Mailer: git-send-email 2.26.2
+        id S1726729AbgJ2NkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:40:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57494 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726108AbgJ2NkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:40:23 -0400
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED78C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 06:40:21 -0700 (PDT)
+Received: by mail-oi1-x242.google.com with SMTP id x1so3159388oic.13
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 06:40:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eYqdLtfS+KCW7y8GcdPSOq70vc91X3xtwLRcejbVT/A=;
+        b=AZ+eNPwQ3yqgRBOPyOZZXnsc3kwP5mkW9+oTFT7nKBNIHQQ6elUQNp/Ux+IG5ZGpua
+         ACJWDtQNpbEaeKJWEKlcdk0U2xW3Bs3tyPGmvLfM/FZyhrz1x8GKG+M/SAij/1TSiwSX
+         0iLPegzeZ7RebPnIvpFynA4Mogpe6d0gjMyDN3WfKyJt+0uI0NlTY0hK2NvyNPpnFXSL
+         JR8INEu2YywDRvUDF5Ix6qBTgg3G8lTYfhdoZkqiPDbNDLTuE+oTQTyc00Hd5YiQYOA8
+         kIWPiVceeg2dN1dObRaEyFyieGDCYJTFRPv7q0wufWNXZhp5wMptNvu/tmmdn2Fy85rF
+         6FMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eYqdLtfS+KCW7y8GcdPSOq70vc91X3xtwLRcejbVT/A=;
+        b=p6M5IFdriaTD+6sn+0z4UhBa+V+NAppahE80ALLOCNWqkJVgYVN6qbrMw205BGb7w4
+         P9SkJrfmB1xcXIYLzltgY8xmoT57VikJvTUmf20za6K/h6c+ka7XRb8++ywAZUUeHifz
+         9nKOqbp+Mzj/9XJR972u9UhyIok+Cv09wFLklAjAfA6vt/ohrgrznU1YgfjunqlwsB+s
+         cgyKj88KmAoAxc4SSeMsGivScoZlI5fDJw9Wpnbs7JMCCaS48Qi/58oPKYORj9yuwG61
+         0vZoOEcP3jsVcsRDQCn5YetsnUl3bHNFBSmfc03N2yAH1/ljP8Qu/TYGOpmmpBmY7l9x
+         sX5g==
+X-Gm-Message-State: AOAM530xMnW5dEKfUSc11nhCZ21Q7cS5qHB/Se9Ku/FiClc9ezrEUhtZ
+        pdt2Ap2HK+mkq7OIAl8GLfOSeg==
+X-Google-Smtp-Source: ABdhPJyad9qvBRhmR6ZGz1FrYyJxJFCnctUcizozb/fVUxBWO1/eSZM2+nxszq5TEb9kaDCIzM/pqg==
+X-Received: by 2002:a05:6808:254:: with SMTP id m20mr3043991oie.139.1603978820880;
+        Thu, 29 Oct 2020 06:40:20 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 33sm590834otr.25.2020.10.29.06.40.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Oct 2020 06:40:20 -0700 (PDT)
+Date:   Thu, 29 Oct 2020 08:40:17 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Amit Pundir <amit.pundir@linaro.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        David S Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        ath10k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap
+ QMI requests
+Message-ID: <20201029134017.GA807@yoga>
+References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
+ <20200929190817.GA968845@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200929190817.GA968845@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RaspberryPi4 has both a WiFi chip and HDMI outputs capable of doing
-4k. Unfortunately, the 1440p resolution at 60Hz has a TMDS rate on the
-HDMI cable right in the middle of the first Wifi channel.
+On Tue 29 Sep 14:08 CDT 2020, Rob Herring wrote:
 
-Add a property to our HDMI controller, that could be reused by other
-similar HDMI controllers, to allow the OS to take whatever measure is
-necessary to avoid that crosstalk.
+> On Fri, Sep 25, 2020 at 11:59:41PM +0530, Amit Pundir wrote:
+> > There are firmware versions which do not support host capability
+> > QMI request. We suspect either the host cap is not implemented or
+> > there may be firmware specific issues, but apparently there seem
+> > to be a generation of firmware that has this particular behavior.
+> > 
+> > For example, firmware build on Xiaomi Poco F1 (sdm845) phone:
+> > "QC_IMAGE_VERSION_STRING=WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
+> > 
+> > If we do not skip the host cap QMI request on Poco F1, then we
+> > get a QMI_ERR_MALFORMED_MSG_V01 error message in the
+> > ath10k_qmi_host_cap_send_sync(). But this error message is not
+> > fatal to the firmware nor to the ath10k driver and we can still
+> > bring up the WiFi services successfully if we just ignore it.
+> > 
+> > Hence introducing this DeviceTree quirk to skip host capability
+> > QMI request for the firmware versions which do not support this
+> > feature.
+> 
+> So if you change the WiFi firmware, you may force a DT change too. Those 
+> are pretty independent things otherwise.
+> 
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Yes and that's not good. But I looked at somehow derive this from
+firmware version numbers etc and it's not working out, so I'm out of
+ideas for alternatives.
 
----
+> Why can't you just always ignore this error? If you can't deal with this 
+> entirely in the driver, then it should be part of the WiFi firmware so 
+> it's always in sync.
+> 
 
-Changes from v1:
-  - Renamed the property
-  - Split it into a separate patch
----
- .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml      | 6 ++++++
- 1 file changed, 6 insertions(+)
+Unfortunately the firmware versions I've hit this problem on has gone
+belly up when receiving this request, that's why I asked Amit to add a
+flag to skip it.
 
-diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-index 03a76729d26c..7ce06f9f9f8e 100644
---- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-@@ -76,6 +76,12 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  wifi-2.4ghz-coexistence:
-+    type: boolean
-+    description: >
-+      Should the pixel frequencies in the WiFi frequencies range be
-+      avoided?
-+
- required:
-   - compatible
-   - reg
--- 
-2.26.2
+That said, in the devices I've hit this I've managed to get newer
+firmware working, which doesn't have either problem.
 
+Regards,
+Bjorn
