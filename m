@@ -2,231 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BEB729ED49
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D97529ED21
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727696AbgJ2NnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:43:00 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:38064 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727432AbgJ2Nmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:42:33 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201029134041euoutp02a8a4e55de3e631a81451a59950a83e0d~CekIojQve1391413914euoutp02A
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 13:40:41 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201029134041euoutp02a8a4e55de3e631a81451a59950a83e0d~CekIojQve1391413914euoutp02A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1603978841;
-        bh=G7+cs0Cey9mc1jUmzGnGpiHoQ8KNRi7EJkpJq7+FJtw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=m4XN8no9xJ84HMBOlxCnje+FVbK/wC+nq+MmMQyIxtMQvFnTIbyrdTcdIUXYiTAN+
-         8DGJnox3BExRiXOXop0zaZ9jAb6CQMPK8u+XmouZ0YscPityCYGr1pCtwol6M5J/4d
-         uWjnz7a45qLvflrjzZ3bcIB3AsuPpdwvZarYSuVc=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201029134041eucas1p155b4949ffe67b6c3d13ec01ef0cc42eb~CekH-d4MP0596605966eucas1p1M;
-        Thu, 29 Oct 2020 13:40:41 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 4C.99.05997.956CA9F5; Thu, 29
-        Oct 2020 13:40:41 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201029134040eucas1p2a8958b44842a8a4647e3aa4521c75725~CekHj4xNl0841008410eucas1p2Z;
-        Thu, 29 Oct 2020 13:40:40 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201029134040eusmtrp24faa91cd5b16d567bd3e90e0fb74f44c~CekHjMRNb0455804558eusmtrp2Y;
-        Thu, 29 Oct 2020 13:40:40 +0000 (GMT)
-X-AuditID: cbfec7f4-677ff7000000176d-42-5f9ac65995aa
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 6F.91.06017.856CA9F5; Thu, 29
-        Oct 2020 13:40:40 +0000 (GMT)
-Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20201029134040eusmtip11497fb3783904a71700c403a00bb994d~CekG8YpxE2155521555eusmtip19;
-        Thu, 29 Oct 2020 13:40:40 +0000 (GMT)
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-To:     linux-samsung-soc@vger.kernel.org, linux-pci@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 6/6] arm64: dts: exynos: add the WiFi/PCIe support to
- TM2(e) boards
+        id S1725973AbgJ2Nk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:40:29 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:41995 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727304AbgJ2NkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 09:40:24 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 15A1958077C;
+        Thu, 29 Oct 2020 09:40:23 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 29 Oct 2020 09:40:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-transfer-encoding; s=fm1; bh=Eo5VrRb9YJZ27
+        T8UrdYJM9gQo/XzFIVZjIot4ZBpts8=; b=s+OEnwHdqVz/Tl0LPtR77Y2hloCFn
+        zwX7TKo1Xe1YXEj/oBZqtI4S4MlqmhVI15Qy/cjtLay92/FXWWlpFzH0OC6HAZMT
+        v67XA6MABs3kXDT8WPq32gGBR/sBad2dQSJDaBadxPgdURif44a2xXn5kgQu1wy3
+        jdFNUm3bL+3lBfpfyBYYZJ/1wA92nROJXZe7PxqBDht/uSRZoeeuGJLjh3ck0who
+        uqeeX6okoLPF71ByS04q4JpVuhtv7okUsmxhTQp4aXoAnm92D97aXsoAEGJp+nqo
+        aBiLmvgPa3WwlyYf7NXunSCvDvLxtqGrf44QrqzOIDP998LGbxocbZFlg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :in-reply-to:message-id:mime-version:references:subject:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; bh=Eo5VrRb9YJZ27T8UrdYJM9gQo/XzFIVZjIot4ZBpts8=; b=qC99dvwn
+        u/te1M9yzXR48Bvg3zZTQFwiOgH9Z/VAV2cDRgNwsZSFjBg9lAUXkdKaKNY+M8Re
+        LWwcM8AT7CXPSPuQehO/f8meD2IVuKovSOXvV+jIN5nUbujcrt9OoEami1MW88ax
+        EZIgpQfaPoHOwDXX2H92w6NA0aQSO128jNjw8EAGfi2lGI0bCz9GVz8ZPZ7xZQdx
+        6IS5PS+9LB/oeXpnPmXNibMQ8wTxPefDOG8jZhnWQKjYi6xFx/2BrqtwDMcQYgzd
+        Od60l+jn/BCUIfoZRCxdz7K4CIzWwLrH/e7z2QCFnVlB0X/ALxPYc4MFOiC0p0qF
+        h7/ny9Yco4kmDA==
+X-ME-Sender: <xms:RsaaX11dfEpFdT1mBWWm7B1ucNVao7P1eqwu2AeS8CP8CPHG5WF79g>
+    <xme:RsaaX8Fqh3KuEcTLrY72rODxTntNJKWSxXLy04ySizVefEgPuYc509qayvNJmKzj_
+    bJ86LqI_fqsRm6Bd-s>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleefgdehgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
+    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:RsaaX14y3izlA9nfiMnWYjhCqPjHTqdZ9bOGCKEbJMjlskKqbkjTsg>
+    <xmx:RsaaXy1SZ_Osr9IAhBZakA_N5TXwYmtQhWay_1CEL-WcdhfRZzqMuQ>
+    <xmx:RsaaX4Evkno4qywCEy8YUBnONaCA9uk15QGTGcBVUcqTQZjkt1f54g>
+    <xmx:R8aaX-H9xzFnifTRJxLyXd9w3lV_z7qAVOl6w638m8l1JVzaeb1q2Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 75ECD3064683;
+        Thu, 29 Oct 2020 09:40:22 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Eric Anholt <eric@anholt.net>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: [PATCH v2 2/3] drm/vc4: hdmi: Disable Wifi Frequencies
 Date:   Thu, 29 Oct 2020 14:40:17 +0100
-Message-Id: <20201029134017.27400-7-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201029134017.27400-1-m.szyprowski@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0VSa0hTYRjm29nOOQ6Xx6Phh5WDdbPIWxYdSMVU6lR/qh+hgdp0J5V0yo6X
-        TARboTZvswIvmIommbdsielQsyWboW4jKQw1LOhiZGbT8NryeLT+Pe9z+Z6Xlw9HyBqRO56g
-        TGVUSnmiDBULO41LFq8IY2W0b3seSj1Qx1M1A2YRNbacK6Ia5yswyvqpEKUslnaMGtVXodRI
-        tQmlyi19Aur7yleMah2YxCh7TxdGdU8MIsESuqW6BdDdlZMYXatLo3VNt1G6uKMJ0KaxZwLa
-        pvM4h10SByiYxIR0RuUTdFkcX/axHElZlF4b6rWAHFDkrgEOOCSOQK2uB9MAMU4SjQBWlZgF
-        nEAS8wBOLyG8YAOwqH4FbCWK74+LeOEhgCWfi1B+WE/k3f0t5Fwo4Qc1M5p1AcddiWC4uEBx
-        HoSoQWDp+3EBx7sQ4bB3NZyzC4m90FqwhHG0hAiELWuRfJcUNrf3IxztQARBo1rGvQKJJgwa
-        7I829wmD6p9mIY9d4DdTB8bjndDeXSPgAzcB/GBuxfihEMBRdflm+jicMC9v7IkQB+BjvQ9P
-        n4D2vsGNYkhsg2MzzhyNrMM7nWWbtATm55K8ex+sNLX9q31hfY3wmIYt/Q2bNywFMN/2FNUC
-        aeX/sloAmoAbk8YmxTHsYSWT4c3Kk9g0ZZx3bHKSDqx/m6E/pvkuoF+NMQACBzJHiXW8IpoU
-        ydPZzCQDgDgic5WEjAxFkRKFPPM6o0qOVqUlMqwB7MCFMjeJf910JEnEyVOZqwyTwqi2VAHu
-        4J4DSo8NGBOUrTH7pVNtmWeynodl/Mgazu73Ubz0ny34lX7F1GNhzTcaQrSv5h1tw6ke20/F
-        ip3PT71LXvAkw0LfKCL2LOtHnOrp4ah7u+pIM7XkFnryYu8X3yinC7vTPcPXDEcnHfWnZXN7
-        7E7ZGq9Apb/ubMFsc8Bb7ZNbh+aMAgeZkI2X+x1EVKz8LxMU6tEyAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpkkeLIzCtJLcpLzFFi42I5/e/4Xd2IY7PiDVrPq1gsacqwmH/kHKvF
-        jV9trBYrvsxkt7jwtIfN4vz5DewWl3fNYbM4O+84m8WM8/uYLN78fsFusfbIXXaL/3t2sFvs
-        vHOC2YHXY828NYweO2fdZfdYsKnUY9OqTjaPvi2rGD2O39jO5PF5k1wAe5SeTVF+aUmqQkZ+
-        cYmtUrShhZGeoaWFnpGJpZ6hsXmslZGpkr6dTUpqTmZZapG+XYJexvRHM5gLfshXnN57nrGB
-        sVeqi5GTQ0LARKJv7m3WLkYuDiGBpYwSU1e0skMkZCROTmtghbCFJf5c62KDKPrEKPHy2Adm
-        kASbgKFE11uQBCeHiICTxPvJF8HizAIrmSUObssDsYUFwiRuznsINpRFQFXiQvdPIJuDg1fA
-        VmLN31iI+fISqzccYAYJcwrYSRxrUgIJCwFV7Dv1inkCI98CRoZVjCKppcW56bnFRnrFibnF
-        pXnpesn5uZsYgcG/7djPLTsYu94FH2IU4GBU4uG9cHtmvBBrYllxZe4hRgkOZiURXqezp+OE
-        eFMSK6tSi/Lji0pzUosPMZoCnTSRWUo0OR8YmXkl8YamhuYWlobmxubGZhZK4rwdAgdjhATS
-        E0tSs1NTC1KLYPqYODilGhg91rzuSj06tS5xTr6vjm1dRJLnBRmzv7KtcyReT/JpeP5wkuqS
-        D+dL9vikBN9O//h9zf7cc2tWlvPZW509fr1q0e3XT80MKjk6nzJr3rZpS5m2uu0d/6GFIkfO
-        rDr4n/P1pYZUxhzGrJ8PPM/Ptp3z9umG2avu3U6uuJdUsGbj/F9z9/sV7Li8XYmlOCPRUIu5
-        qDgRADSB6GuUAgAA
-X-CMS-MailID: 20201029134040eucas1p2a8958b44842a8a4647e3aa4521c75725
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201029134040eucas1p2a8958b44842a8a4647e3aa4521c75725
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201029134040eucas1p2a8958b44842a8a4647e3aa4521c75725
-References: <20201029134017.27400-1-m.szyprowski@samsung.com>
-        <CGME20201029134040eucas1p2a8958b44842a8a4647e3aa4521c75725@eucas1p2.samsung.com>
+Message-Id: <20201029134018.1948636-2-maxime@cerno.tech>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201029134018.1948636-1-maxime@cerno.tech>
+References: <20201029134018.1948636-1-maxime@cerno.tech>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jaehoon Chung <jh80.chung@samsung.com>
+There's cross-talk on the RPi4 between the 2.4GHz channels used by the WiFi
+chip and some resolutions, most notably 1440p at 60Hz.
 
-Add the nodes relevant to PCIe PHY and PCIe support. PCIe is used for the
-WiFi interface (Broadcom Limited BCM4358 802.11ac Wireless LAN SoC).
+In such a case, we can either reject entirely the mode, or lower slightly
+the pixel frequency to remove the overlap. Let's go for the latter.
 
-Signed-off-by: Jaehoon Chung <jh80.chung@samsung.com>
-[mszyprow: rewrote commit message, reworked board/generic dts/dtsi split]
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
 ---
- .../boot/dts/exynos/exynos5433-pinctrl.dtsi   |  2 +-
- .../dts/exynos/exynos5433-tm2-common.dtsi     | 24 ++++++++++++-
- arch/arm64/boot/dts/exynos/exynos5433.dtsi    | 36 +++++++++++++++++++
- 3 files changed, 60 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi
-index 9df7c65593a1..32a6518517e5 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-pinctrl.dtsi
-@@ -329,7 +329,7 @@
- 	};
+Changes from v1:
+  - Change the name of the property
+  - Test for a range instead of an exact frequency
+---
+ drivers/gpu/drm/vc4/vc4_hdmi.c | 21 +++++++++++++++++++++
+ drivers/gpu/drm/vc4/vc4_hdmi.h |  8 ++++++++
+ 2 files changed, 29 insertions(+)
+
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+index 506c12454086..0d72e519aec4 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -760,6 +760,9 @@ static void vc4_hdmi_encoder_enable(struct drm_encoder *encoder)
+ {
+ }
  
- 	pcie_bus: pcie_bus {
--		samsung,pins = "gpr3-4", "gpr3-5", "gpr3-6", "gpr3-7";
-+		samsung,pins = "gpr3-4", "gpr3-5", "gpr3-6";
- 		samsung,pin-function = <EXYNOS_PIN_FUNC_3>;
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
- 	};
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-index 97a2f0c7c0cf..5ec447f0cf5d 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-@@ -968,6 +968,25 @@
- 	bus-width = <4>;
- };
++#define WIFI_2_4GHz_CH1_MIN_FREQ	2400000000ULL
++#define WIFI_2_4GHz_CH1_MAX_FREQ	2422000000ULL
++
+ static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
+ 					 struct drm_crtc_state *crtc_state,
+ 					 struct drm_connector_state *conn_state)
+@@ -767,12 +770,27 @@ static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
+ 	struct drm_display_mode *mode = &crtc_state->adjusted_mode;
+ 	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
+ 	unsigned long long pixel_rate = mode->clock * 1000;
++	unsigned long long tmds_rate;
  
-+&pcie {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_bus &pcie_wlanen>;
-+	vdd10-supply = <&ldo6_reg>;
-+	vdd18-supply = <&ldo7_reg>;
-+	assigned-clocks = <&cmu_fsys CLK_MOUT_SCLK_PCIE_100_USER>,
-+			  <&cmu_top CLK_MOUT_SCLK_PCIE_100>;
-+	assigned-clock-parents = <&cmu_top CLK_SCLK_PCIE_100_FSYS>,
-+				 <&cmu_top CLK_MOUT_BUS_PLL_USER>;
-+	assigned-clock-rates = <0>, <100000000>;
-+	interrupt-map-mask = <0 0 0 0>;
-+	interrupt-map = <0 0 0 0 &gic GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
- &ppmu_d0_general {
- 	status = "okay";
- 	events {
-@@ -1084,8 +1103,11 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&initial_ese>;
+ 	if (vc4_hdmi->variant->unsupported_odd_h_timings &&
+ 	    ((mode->hdisplay % 2) || (mode->hsync_start % 2) ||
+ 	     (mode->hsync_end % 2) || (mode->htotal % 2)))
+ 		return -EINVAL;
  
-+	pcie_wlanen: pcie-wlanen {
-+		PIN(INPUT, gpj2-0, UP, FAST_SR4);
-+	};
++	/*
++	 * The 1440p@60 pixel rate is in the same range than the first
++	 * WiFi channel (between 2.4GHz and 2.422GHz with 22MHz
++	 * bandwidth). Slightly lower the frequency to bring it out of
++	 * the WiFi range.
++	 */
++	tmds_rate = pixel_rate * 10;
++	if (vc4_hdmi->disable_wifi_frequencies &&
++	    (tmds_rate >= WIFI_2_4GHz_CH1_MIN_FREQ &&
++	     tmds_rate <= WIFI_2_4GHz_CH1_MAX_FREQ)) {
++		mode->clock = 238560;
++		pixel_rate = mode->clock * 1000;
++	}
 +
- 	initial_ese: initial-state {
--		PIN(INPUT, gpj2-0, DOWN, FAST_SR1);
- 		PIN(INPUT, gpj2-1, DOWN, FAST_SR1);
- 		PIN(INPUT, gpj2-2, DOWN, FAST_SR1);
- 	};
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-index 0a886bb6c806..1d2442ac432c 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-@@ -1029,6 +1029,11 @@
- 			reg = <0x145f0000 0x1038>;
- 		};
+ 	if (pixel_rate > vc4_hdmi->variant->max_pixel_clock)
+ 		return -EINVAL;
  
-+		syscon_fsys: syscon@156f0000 {
-+			compatible = "syscon";
-+			reg = <0x156f0000 0x1044>;
-+		};
-+
- 		gsc_0: video-scaler@13c00000 {
- 			compatible = "samsung,exynos5433-gsc";
- 			reg = <0x13c00000 0x1000>;
-@@ -1830,6 +1835,37 @@
- 				status = "disabled";
- 			};
- 		};
-+
-+		pcie_phy: pcie-phy@15680000 {
-+			compatible = "samsung,exynos5433-pcie-phy";
-+			reg = <0x15680000 0x1000>;
-+			samsung,pmu-syscon = <&pmu_system_controller>;
-+			samsung,fsys-sysreg = <&syscon_fsys>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		pcie: pcie@15700000 {
-+			compatible = "samsung,exynos5433-pcie";
-+			reg = <0x15700000 0x1000>, <0x156b0000 0x1000>,
-+			      <0x0c000000 0x1000>;
-+			reg-names = "dbi", "elbi", "config";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			device_type = "pci";
-+			interrupts = <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cmu_fsys CLK_PCIE>,
-+			         <&cmu_fsys CLK_PCLK_PCIE_PHY>;
-+			clock-names = "pcie", "pcie_bus";
-+			num-lanes = <1>;
-+			num-viewport = <3>;
-+			bus-range = <0x00 0xff>;
-+			phys = <&pcie_phy>;
-+			ranges = <0x81000000 0 0	  0x0c001000 0 0x00010000>,
-+				 <0x82000000 0 0x0c011000 0x0c011000 0 0x03feefff>;
-+			status = "disabled";
-+		};
- 	};
+@@ -1717,6 +1735,9 @@ static int vc4_hdmi_bind(struct device *dev, struct device *master, void *data)
+ 		vc4_hdmi->hpd_active_low = hpd_gpio_flags & OF_GPIO_ACTIVE_LOW;
+ 	}
  
- 	timer: timer {
++	vc4_hdmi->disable_wifi_frequencies =
++		of_property_read_bool(dev->of_node, "wifi-2.4ghz-coexistence");
++
+ 	pm_runtime_enable(dev);
+ 
+ 	drm_simple_encoder_init(drm, encoder, DRM_MODE_ENCODER_TMDS);
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.h b/drivers/gpu/drm/vc4/vc4_hdmi.h
+index 6815e93b1a48..3843be830601 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.h
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.h
+@@ -142,6 +142,14 @@ struct vc4_hdmi {
+ 	int hpd_gpio;
+ 	bool hpd_active_low;
+ 
++	/*
++	 * On some systems (like the RPi4), some modes are in the same
++	 * frequency range than the WiFi channels (1440p@60Hz for
++	 * example). Should we take evasive actions because that system
++	 * has a wifi adapter.
++	 */
++	bool disable_wifi_frequencies;
++
+ 	struct cec_adapter *cec_adap;
+ 	struct cec_msg cec_rx_msg;
+ 	bool cec_tx_ok;
 -- 
-2.17.1
+2.26.2
 
