@@ -2,73 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4222929ED19
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CED29ED93
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725770AbgJ2NkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 09:40:20 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:42473 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725601AbgJ2NkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:40:20 -0400
-Received: by mail-oi1-f196.google.com with SMTP id c72so3188104oig.9;
-        Thu, 29 Oct 2020 06:40:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3RYf3vNl8HqQ8zBK55sLVdQ8ARXkNafJFWOB62pZROQ=;
-        b=Y/z0iYGpDdStB/BbYAcdll/EVp+xGxM4/4iLZgcHJSFs8vtCFQscamrYCzNWZQVeN+
-         t9i4e4fKP85XqWr3Wcj5fGO7foXdpH5aosakQBcqWbZ5/xsISLHzyAR8zIDfwFmdLqsZ
-         2S3TccrHp3ssGE/gnzqV9yHQ+9C0Fzdd3eVkfW6DmUG7vLshp+oRASMW9sBLq8EgFgya
-         Q4+lfGRpvqqlyvkifcZ+oHL3IZdklEEMSYawgGIbl/lF8+HStA8dGy4Bf6Mop5n/gEtB
-         0DP+E6yBycgaQ646OAPhws4Ggd3QYWih+MqWecHKNdQRHDtY4atNFUGyAw5Tv5Oyl6QO
-         kKjA==
-X-Gm-Message-State: AOAM533SNZCNMLTSwtuydTPApJp2T+SoI6eXmh533cGtD25tg4Kgg07g
-        5cBXXNIxEjcnGQxPG5/8+TE/gYpnsSxiBMYzfIs=
-X-Google-Smtp-Source: ABdhPJwpnCkm2+nq/s0rgic3wklX9AumKIjdux9Ax86/aTa8YdKnJhvB20zUGFOTSsAlxWtv/zSZJiV4ql5LtrOzQ3M=
-X-Received: by 2002:aca:f203:: with SMTP id q3mr2859552oih.148.1603978818953;
- Thu, 29 Oct 2020 06:40:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200920134905.4370-1-biju.das.jz@bp.renesas.com> <20200920134905.4370-7-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20200920134905.4370-7-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 29 Oct 2020 14:40:07 +0100
-Message-ID: <CAMuHMdUi=SKqcyKJxi83L4m_+ETe3MPM-A3sXrGTcCyqWvxGaQ@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] arm64: dts: renesas: beacon-renesom-baseboard:
- Move connector node out of hd3ss3220 device
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1725300AbgJ2Nue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:50:34 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:42271 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726354AbgJ2Nud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:50:33 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201029134045euoutp0108f8b101ef7f57161c90b94b664ad629~CekMWqKXK0850808508euoutp01J
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 13:40:45 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201029134045euoutp0108f8b101ef7f57161c90b94b664ad629~CekMWqKXK0850808508euoutp01J
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1603978845;
+        bh=aQOgeMqZjgVuAGRhabboSv5zRKv3BlW8YnKQUQEQqCo=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=fvkOLAChXPRm34PLs+pskGuF/KXhJ2sUU2yQRHc681vylXYGKu3BCP9C34G1v6knV
+         9DXZ3FS/TMaJCOjMDgtWmbVkCDn8zNmHB1Uk4hPMgo9SyNMhePHVFmRCfT8Q6fGCJm
+         0009Qz7Muw7HqxuW4XAvQRbsrvZAkosMTOU2wpv4=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201029134037eucas1p2a73cb2b7ce9d2b9944fd56f713123750~CekEoyReu0911309113eucas1p2U;
+        Thu, 29 Oct 2020 13:40:37 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id C7.99.05997.556CA9F5; Thu, 29
+        Oct 2020 13:40:37 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201029134037eucas1p17f861adc0858e8a80d516dc0f2733f84~CekEQsVyI2139321393eucas1p17;
+        Thu, 29 Oct 2020 13:40:37 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201029134037eusmtrp1329729a1817a5cbc53314e48c9416181~CekEOXEsz1072510725eusmtrp1a;
+        Thu, 29 Oct 2020 13:40:37 +0000 (GMT)
+X-AuditID: cbfec7f4-677ff7000000176d-32-5f9ac6559b99
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 1A.91.06017.556CA9F5; Thu, 29
+        Oct 2020 13:40:37 +0000 (GMT)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201029134036eusmtip1fe990fbcf4b5c607465e60a4ff159a51~CekDqpT-q1565515655eusmtip1t;
+        Thu, 29 Oct 2020 13:40:36 +0000 (GMT)
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+To:     linux-samsung-soc@vger.kernel.org, linux-pci@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 0/6] Add DW PCIe support for Exynos5433 SoCs
+Date:   Thu, 29 Oct 2020 14:40:11 +0100
+Message-Id: <20201029134017.27400-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKKsWRmVeSWpSXmKPExsWy7djPc7qhx2bFGxy8I2expCnDYv6Rc6wW
+        N361sVqs+DKT3eLC0x42i/PnN7BbXN41h83i7LzjbBYzzu9jsnjz+wW7xdojd9kt/u/ZwW6x
+        884JZgdejzXz1jB67Jx1l91jwaZSj02rOtk8+rasYvQ4fmM7k8fnTXIB7FFcNimpOZllqUX6
+        dglcGXNvvWYvuCxWse3aEeYGxvdCXYycHBICJhK3P/1h7GLk4hASWMEo8fXCDijnC6PEhEu9
+        zBDOZ0aJjfN+scK0rD1+jA0isZxR4teviexwLW1HprODVLEJGEp0ve0CquLgEBFwkPjx1QKk
+        hllgPrPExHu3mUDiwgL2EoevFICUswioSnyfeIYZxOYVsJW4+ecsM8QyeYnVGw6AXSEh0M8u
+        cfjNHkaIhIvExPWvoS4Slnh1fAs7hC0jcXpyDwtEQzOjxMNza9khnB5GictNM6C6rSXunPsF
+        dh2zgKbE+l36EGFHie3vzoMdJyHAJ3HjrSBImBnInLRtOjNEmFeiow0admoSs46vg1t78MIl
+        qJs9JD6ePQAWFxKIlfj86hjzBEa5WQi7FjAyrmIUTy0tzk1PLTbKSy3XK07MLS7NS9dLzs/d
+        xAhMLKf/Hf+yg3HXn6RDjAIcjEo8vBduz4wXYk0sK67MPcQowcGsJMLrdPZ0nBBvSmJlVWpR
+        fnxRaU5q8SFGaQ4WJXFe40UvY4UE0hNLUrNTUwtSi2CyTBycUg2M0Uv+peXVp+9U78patnl7
+        Wx1jeEPYu9OiC52UL+jyXm+8K9nNmKL4R4qp+7VvDustr1dFau9fNwmsO/ojV0WnrY3hekTH
+        vF3Cq79JM17jP8ehpOMQKabGHqdiLcXdtbDa92X4zA08cob7rgYGSpg+OTZJLnYXy57nOTl7
+        fZ3PtZza4+AgKqvEUpyRaKjFXFScCACu9ymdKAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFLMWRmVeSWpSXmKPExsVy+t/xu7qhx2bFGxxfxGqxpCnDYv6Rc6wW
+        N361sVqs+DKT3eLC0x42i/PnN7BbXN41h83i7LzjbBYzzu9jsnjz+wW7xdojd9kt/u/ZwW6x
+        884JZgdejzXz1jB67Jx1l91jwaZSj02rOtk8+rasYvQ4fmM7k8fnTXIB7FF6NkX5pSWpChn5
+        xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2NimpOZllqUX6dgl6GXNvvWYvuCxWse3aEeYG
+        xvdCXYycHBICJhJrjx9j62Lk4hASWMoocW3/ByaIhIzEyWkNrBC2sMSfa11QRZ8YJe4tWMsG
+        kmATMJToetsFZosIOEm8n3yRGcRmFljJLHFwW14XIweHsIC9xOErBSBhFgFVie8Tz4CV8ArY
+        Stz8c5YZYr68xOoNB5gnMPIsYGRYxSiSWlqcm55bbKRXnJhbXJqXrpecn7uJERjO24793LKD
+        setd8CFGAQ5GJR7eC7dnxguxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0J7X4EKMp
+        0PKJzFKiyfnAWMsriTc0NTS3sDQ0NzY3NrNQEuftEDgYIySQnliSmp2aWpBaBNPHxMEp1cC4
+        8bl50/0VjvVpb3TD3l6uZDM6edTihhCbzYPM39prVcU9vDMZHJ8oMnxOOXhmzp6YZyp3P5z5
+        kXbKV5Kp/ZZnVF8Q9+Of+5YuWXO+k2t9z8a9OTfL17L8O+dtFmcjsFz53aXpcz7MelWryLJH
+        XiH1qvaV88+SQ7s6FrztFX1pdriQv+3o72/TlViKMxINtZiLihMBrCByX30CAAA=
+X-CMS-MailID: 20201029134037eucas1p17f861adc0858e8a80d516dc0f2733f84
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201029134037eucas1p17f861adc0858e8a80d516dc0f2733f84
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201029134037eucas1p17f861adc0858e8a80d516dc0f2733f84
+References: <CGME20201029134037eucas1p17f861adc0858e8a80d516dc0f2733f84@eucas1p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 20, 2020 at 3:49 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Move connector node out of hd3ss3220 device in order to comply with usb
-> connector bindings.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Dear All,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.11.
+This patchset is a resurrection of the DW PCIe support for the Exynos5433
+SoCs posted long time ago here: https://lkml.org/lkml/2016/12/26/6 and
+later here: https://lkml.org/lkml/2017/12/21/296 .
 
-Gr{oetje,eeting}s,
+In meantime the support for the Exynos5440 SoCs has been completely
+dropped from mainline kernel, as those SoCs never reached the market. The
+PCIe driver for Exynos5440 variant however has not been removed yet. This
+patchset simply reworks it to support the Exynos5433 variant. The lack of
+the need to support both variants significantly simplifies the driver
+code.
 
-                        Geert
+This patchset is based on the following branch:
+git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git pci-more-dwc-cleanup
+
+Best regards,
+Marek Szyprowski
+
+
+Changelog:
+
+v3:
+- rebased onto "[00/13] PCI: dwc: Another round of clean-ups" patchset:
+  https://patchwork.kernel.org/project/linux-samsung-soc/cover/20201028204646.356535-1-robh@kernel.org/
+- fixed issues pointed by Rob in the driver logic:
+  * removed DBI_RO_WR_EN register poking
+  * made driver a standard module
+- fixed section mismatch issue
+- added "num-viewport = <3>" property to dts and bindings to fix warning
+
+v2: https://lore.kernel.org/linux-samsung-soc/20201023075744.26200-1-m.szyprowski@samsung.com/
+- fixed issues in dt-bindings pointed by Krzysztof and Rob
+
+v1: https://lore.kernel.org/linux-samsung-soc/20201019094715.15343-1-m.szyprowski@samsung.com/
+- initial version of this resurrected patchset
+
+
+Patch summary:
+
+Jaehoon Chung (3):
+  phy: samsung: phy-exynos-pcie: rework driver to support Exynos5433
+    PCIe PHY
+  pci: dwc: pci-exynos: rework the driver to support Exynos5433 variant
+  arm64: dts: exynos: add the WiFi/PCIe support to TM2(e) boards
+
+Marek Szyprowski (3):
+  dt-bindings: pci: drop samsung,exynos5440-pcie binding
+  dt-bindings: pci: add the samsung,exynos-pcie binding
+  dt-bindings: phy: add the samsung,exynos-pcie-phy binding
+
+ .../bindings/pci/samsung,exynos-pcie.yaml     | 119 ++++++
+ .../bindings/pci/samsung,exynos5440-pcie.txt  |  58 ---
+ .../bindings/phy/samsung,exynos-pcie-phy.yaml |  51 +++
+ .../boot/dts/exynos/exynos5433-pinctrl.dtsi   |   2 +-
+ .../dts/exynos/exynos5433-tm2-common.dtsi     |  24 +-
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  36 ++
+ drivers/pci/controller/dwc/Kconfig            |  10 +-
+ drivers/pci/controller/dwc/pci-exynos.c       | 353 +++++++-----------
+ drivers/pci/quirks.c                          |   1 +
+ drivers/phy/samsung/phy-exynos-pcie.c         | 304 ++++++---------
+ 10 files changed, 489 insertions(+), 469 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos5440-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
