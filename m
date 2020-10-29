@@ -2,140 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E964229E634
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 09:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C29BA29E636
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 09:17:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725956AbgJ2IRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 04:17:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35460 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729150AbgJ2IQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 04:16:49 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9372FC0613D3
-        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 01:16:49 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kY36o-0003lj-An; Thu, 29 Oct 2020 09:16:34 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kY36h-0006HS-01; Thu, 29 Oct 2020 09:16:27 +0100
-Date:   Thu, 29 Oct 2020 09:16:26 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Badel, Laurent" <LaurentBadel@eaton.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "fugang.duan@nxp.com" <fugang.duan@nxp.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "richard.leitner@skidata.com" <richard.leitner@skidata.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "Quette, Arnaud" <ArnaudQuette@Eaton.com>
-Subject: Re: [PATCH net 0/4] Restore and fix PHY reset for SMSC LAN8720
-Message-ID: <20201029081626.wtnhctobwvlhmfan@pengutronix.de>
-References: <CY4PR1701MB1878B85B9E1C5B4FDCBA2860DF160@CY4PR1701MB1878.namprd17.prod.outlook.com>
+        id S1728289AbgJ2IRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 04:17:34 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:11815 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726231AbgJ2IRb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 04:17:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=3148; q=dns/txt; s=axis-central1;
+  t=1603959450; x=1635495450;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ZzrBKQ+s9dk85lZZfiJG0UtohbsCcBMHvXllHKW91mw=;
+  b=EV2mBWtKGeNDKZjkkpjEiqyd9f/U6ahEiOZRwo2Hjzlz+CjVjO0iWMEE
+   n42U0GYiAs4XguhUR3vwKfQ9y2wt/IWy7rvAnp/Eq7ZyiR7iDqTcVNF7n
+   RbOn6xCl4TP18d8czdMe8xVfO7KyEIIvvjwxuGaj2b+vLX1S7oCwkoGol
+   AeTQ4441GEpa5T4mhMSFdGb6RE1csZhVQo3Z66qe64EmEroSPvXTqVawi
+   4VMZJFbrBONkqMh2BiDxNnMIdScOEJWiedH2AqDs1d4RnBBYGmAx/o4Xk
+   /rzm5o/JP4RijyHg5NuAmJSAYH4wQYxaNwa1xZbR1qeMHjtxQb3Txi9HX
+   Q==;
+IronPort-SDR: k/BMqfxgNlRV9WmHIiQcDyvvKgrh4iESeehFl82DmRXwOq7zRPLaqqlPIyLd0/yyf8kF9SfJwr
+ 6IIeHaj9TbqJ+/BPrxCaZaFh7hO7KELxmpPg+ZDk0cYMu/42AVQlPH/57OmGds2oMFd341mw+o
+ koWF31u9kNUwVZbyJ10T7HkZ3q6GDPlPX6k6nLD/1CZb4fCTuuz9OMQbDiIdCbOyZ1lqQhwKER
+ isZBQykQYJnD2jzeJs0WoOkvzlsWkCDkHOU2ARrb7kqsQeMxrel9xep4UL1zEA94RkVqIeA7vV
+ BXw=
+X-IronPort-AV: E=Sophos;i="5.77,429,1596492000"; 
+   d="scan'208";a="14031930"
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Bamvor Jian Zhang <bamv2005@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        <andy.shevchenko@gmail.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4] gpio: mockup: Allow probing from device tree
+Date:   Thu, 29 Oct 2020 09:17:20 +0100
+Message-ID: <20201029081721.9593-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CY4PR1701MB1878B85B9E1C5B4FDCBA2860DF160@CY4PR1701MB1878.namprd17.prod.outlook.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:57:28 up 348 days, 23:16, 377 users,  load average: 0.05, 0.05,
- 0.03
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Allow the mockup driver to be probed via the device tree without any
+module parameters, allowing it to be used to configure and test higher
+level drivers like the leds-gpio driver and corresponding userspace
+before actual hardware is available.
 
-thanks for your patches :)
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+---
 
-On 20-10-27 23:25, Badel, Laurent wrote:
-> ﻿Subject: [PATCH net 0/4] Restore and fix PHY reset for SMSC LAN8720
-> 
-> Description:
-> A recent patchset [1] added support in the SMSC PHY driver for managing
-> the ref clock and therefore removed the PHY_RST_AFTER_CLK_EN flag for the
-> LAN8720 chip. The ref clock is passed to the SMSC driver through a new
-> property "clocks" in the device tree.
-> 
-> There appears to be two potential caveats:
-> (i) Building kernel 5.9 without updating the DT with the "clocks"
-> property for SMSC PHY, would break systems previously relying on the PHY
-> reset workaround (SMSC driver cannot grab the ref clock, so it is still
-> managed by FEC, but the PHY is not reset because PHY_RST_AFTER_CLK_EN is
-> not set). This may lead to occasional loss of ethernet connectivity in
-> these systems, that is difficult to debug.
+Notes:
+    v4:
+    - Remove of_match_ptr() to fix unused variable warning with W=1
+    - Include linux/mod_devicetable.h instead of linux/of.h
+    
+    v3:
+    - Keep includes sorted alphabetically
+    - Drop CONFIG_OF ifdefs
+    
+    v2:
+    - Remove most of the added code, since the latest driver doesn't need it.
+    - Drop DT binding document, since Rob Herring was OK with not documenting this:
+      https://lore.kernel.org/linux-devicetree/5baa1ae6.1c69fb81.847f2.3ab1@mx.google.com/
 
-IMHO reyling on PHY_RST_AFTER_CLK_EN was broken since the day of adding
-this feature because:
+Range-diff against v3:
+1:  1e9b8f36676d ! 1:  4e8fdcfe1a47 gpio: mockup: Allow probing from device tree
+    @@ Commit message
+     
+     
+      ## Notes ##
+    +    v4:
+    +    - Remove of_match_ptr() to fix unused variable warning with W=1
+    +    - Include linux/mod_devicetable.h instead of linux/of.h
+    +
+         v3:
+         - Keep includes sorted alphabetically
+         - Drop CONFIG_OF ifdefs
+    @@ Notes
+     
+      ## drivers/gpio/gpio-mockup.c ##
+     @@
+    + #include <linux/irq.h>
+      #include <linux/irq_sim.h>
+      #include <linux/irqdomain.h>
+    ++#include <linux/mod_devicetable.h>
+      #include <linux/module.h>
+    -+#include <linux/of.h>
+      #include <linux/platform_device.h>
+      #include <linux/property.h>
+    - #include <linux/slab.h>
+     @@ drivers/gpio/gpio-mockup.c: static int gpio_mockup_probe(struct platform_device *pdev)
+      	return 0;
+      }
+    @@ drivers/gpio/gpio-mockup.c: static int gpio_mockup_probe(struct platform_device
+      static struct platform_driver gpio_mockup_driver = {
+      	.driver = {
+      		.name = "gpio-mockup",
+    -+		.of_match_table = of_match_ptr(gpio_mockup_of_match),
+    ++		.of_match_table = gpio_mockup_of_match,
+      	},
+      	.probe = gpio_mockup_probe,
+      };
 
-1st) Each host driver needs to call the phy-reset logic. So this isn't a
-     fix for all hosts using a LAN8720 phy.
-2st) It interacts realy bad with the phy state machine. Only the state
-     machine should be able to do this.
+ drivers/gpio/gpio-mockup.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-Why can't you add the clock?
+diff --git a/drivers/gpio/gpio-mockup.c b/drivers/gpio/gpio-mockup.c
+index 67ed4f238d43..28b757d34046 100644
+--- a/drivers/gpio/gpio-mockup.c
++++ b/drivers/gpio/gpio-mockup.c
+@@ -15,6 +15,7 @@
+ #include <linux/irq.h>
+ #include <linux/irq_sim.h>
+ #include <linux/irqdomain.h>
++#include <linux/mod_devicetable.h>
+ #include <linux/module.h>
+ #include <linux/platform_device.h>
+ #include <linux/property.h>
+@@ -460,9 +461,16 @@ static int gpio_mockup_probe(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
++static const struct of_device_id gpio_mockup_of_match[] = {
++	{ .compatible = "gpio-mockup", },
++	{},
++};
++MODULE_DEVICE_TABLE(of, gpio_mockup_of_match);
++
+ static struct platform_driver gpio_mockup_driver = {
+ 	.driver = {
+ 		.name = "gpio-mockup",
++		.of_match_table = gpio_mockup_of_match,
+ 	},
+ 	.probe = gpio_mockup_probe,
+ };
+@@ -556,8 +564,7 @@ static int __init gpio_mockup_init(void)
+ {
+ 	int i, num_chips, err;
+ 
+-	if ((gpio_mockup_num_ranges < 2) ||
+-	    (gpio_mockup_num_ranges % 2) ||
++	if ((gpio_mockup_num_ranges % 2) ||
+ 	    (gpio_mockup_num_ranges > GPIO_MOCKUP_MAX_RANGES))
+ 		return -EINVAL;
+ 
+-- 
+2.28.0
 
-> (ii) This defeats the purpose of a previous commit [2] that disabled the
-> ref clock for power saving reasons. If a ref clock for the PHY is
-> specified in DT, the SMSC driver will keep it always on (confirmed with 
-> scope).
-
-NACK, the clock provider can be any clock. This has nothing to do with
-the FEC clocks. The FEC _can_ be used as clock provider.
-
-> While this removes the need for additional PHY resets (only a 
-> single reset is needed after power up), this prevents the FEC from saving
-> power by disabling the refclk. Since there may be use cases where one is
-> interested in saving power,
-
-You can't just turn off the clock for the LAN8720 because of the phy
-internal state machine. The state machine gets confused if the clock is
-turned off/on randomly.
-
-> keep this option available when no ref clock
-> is specified for the PHY, by fixing issues with the PHY reset.
-
-IMHO pulling the reset line everytime has a few disadvantages:
- - You need to ensure that the strapping pins are correct and
- - You need to ensure that the reset logic including the reset delays
-   are keeped.
-
-> Main changes proposed to address this:
-> (a) Restore PHY_RST_AFTER_CLK_EN for LAN8720, but explicitly clear it if
-> the SMSC driver succeeds in retrieving the ref clock.
-
-IMHO NACK since this was the wrong approach.
-
-> (b) Fix phy_reset_after_clk_enable() to work in interrupt mode, by
-> re-configuring the PHY registers after reset.
-> 
-> Tests: against net tree 5.9, including allyes/no/modconfig. 10 pieces of
-> an iMX28-EVK-based board were tested, 3 of which were found to exhibit
-> issues when the "clocks" property was left unset. Issues were fixed by
-> the present patchset.
-
-All iMX machines are now DT-based why can't you just add the correct
-clock provider?
-
-Regards,
-  Marco
