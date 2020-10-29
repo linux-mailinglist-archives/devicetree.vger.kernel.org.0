@@ -2,184 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0232229EA46
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 12:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6601729EA61
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 12:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727099AbgJ2LN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 07:13:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44246 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726025AbgJ2LN6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 07:13:58 -0400
-Received: from localhost (unknown [122.171.163.58])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C3EA620756;
-        Thu, 29 Oct 2020 11:13:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1603970037;
-        bh=+qWXpK2dsv9GO7fCMxNyogZpjHv9DPwiArxIP9i+Dck=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ydqxIRJcvrjsO5N/pHnMAd42SlEweA4dubmtIdHPXEz+c7TTz6a9C89m9+KYpQZ32
-         05h0fIOzXU2hU+Uru8vKqwlCG7c9uZo8ZVEip6vb8n2eIM37UG+U8NaYkI4XDGvI1a
-         8Bh0aA15XZHbsTjQeGEp4OnuX09ZMIIohiO4bT+s=
-Date:   Thu, 29 Oct 2020 16:43:53 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Jeevan Shriram <jshriram@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Add SDX55 pincontrol driver
-Message-ID: <20201029111353.GA3550@vkoul-mobl>
-References: <20201028083017.611810-1-vkoul@kernel.org>
- <20201028083017.611810-2-vkoul@kernel.org>
- <20201028163556.GD3151@builder.lan>
+        id S1726809AbgJ2LWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 07:22:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36214 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725805AbgJ2LWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 07:22:31 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BDFDC0613CF
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 04:22:09 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id o9so1217637ejg.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 04:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=akJjnKgChtPHn1VCP5nrwISfhAo3fx3GZVYJ2WPzINs=;
+        b=ewWaIJjHFKGKqvgL41q2OvIkXN5pl2CbAbCb9VHcHnDUoKfDL5DKjW7tJwd+Pzgudq
+         JSY/5U2MG37fJJxK+Gbh1T3Ta/6M623C4OdWDYh19qJSwmLPxC9FdU6t8QV4SSRXsChi
+         w/ws8P+EtYnRcar53HIKjW1kbaZ4uOhxvqJiX6PE1arlTdIJGaI3xZvamj5NjCyk0n+f
+         Wf8UZsADEYi2bMqP6rlLAoBEP2+tcGK1478dED60HioNhzUK8xW/S+T8xaO/BCv6Kb09
+         HJplxo+o+jLyIYhpATottuzMwswu+RLfiJtKgw4K8xdlw0s7aJ98WUO+Mkr3eUh2q64Q
+         +1cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=akJjnKgChtPHn1VCP5nrwISfhAo3fx3GZVYJ2WPzINs=;
+        b=AowQKNzfqN5o2ZBTI3xjgEBmbgw/wlYmx6S5n9c5owli5sQEIA24vKNSMlY7OnOqkX
+         6vZKZw82NVWpyb6JbGtwlu7ks8JGgvQoVZ79lV6M4yq/YwVfZ/ov381uHw8GwHN5PbEL
+         f0607U2XEPIsOD8/ufnNxlVyujnI5tPsHaGZFrdjyTh1TrGBYoNEoLHnZEeUbu9wkZzF
+         5csVQITAWFyT7+ovJfArNB78Dg7v3Aso2vV8rrYwVlTRN8rWvIHmsWjTXQXnuBrkA055
+         Y40mwRipUcR+7ToxNV+lNV7YeVc/saDK+b5nGNprUwDZEAvmb4rvF2dCInv1kwgniAZJ
+         K2xA==
+X-Gm-Message-State: AOAM530tHo0iCUEnXQDZ5qBrWm+yu66m2qeaqpiTeIKaJgTe6q/2Cxim
+        nkn9Vlm1z6jIeAmhJiRKy5piH4dtUcC+0CRqW4d31Q==
+X-Google-Smtp-Source: ABdhPJxfynR3WZQ8nDRdJcpZ8gDIlyB6mDrTNbRz5lR0hK3xPzjfX0mghrYrRkIDeKgYjOEzDHclXIp+o6ifBwzYWTc=
+X-Received: by 2002:a17:906:4e19:: with SMTP id z25mr3727806eju.44.1603970528162;
+ Thu, 29 Oct 2020 04:22:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201028163556.GD3151@builder.lan>
+References: <20201026203148.47416-1-cristian.marussi@arm.com>
+ <20201026203148.47416-2-cristian.marussi@arm.com> <CAN5uoS8gOwA4-fttH1=XdKWZWFzX3HXpHAqgHW=jKxAxEq6C1Q@mail.gmail.com>
+ <20201028204416.GF20482@e120937-lin>
+In-Reply-To: <20201028204416.GF20482@e120937-lin>
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+Date:   Thu, 29 Oct 2020 12:21:56 +0100
+Message-ID: <CAN5uoS9LdH1M-sYEcgh-x+N1B_3Dj9g8FGX2nQGaPXH0tP6igA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] firmware: arm_scmi: Add Voltage Domain Support
+To:     Cristian Marussi <cristian.marussi@arm.com>
+Cc:     linux-kernel@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        Sudeep Holla <sudeep.holla@arm.com>, lukasz.luba@arm.com,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Jonathan.Cameron@huawei.com, broonie@kernel.org,
+        Rob Herring <robh@kernel.org>, satyakim@qti.qualcomm.com,
+        f.fainelli@gmail.com, Vincent Guittot <vincent.guittot@linaro.org>,
+        Souvik Chakravarty <souvik.chakravarty@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28-10-20, 11:35, Bjorn Andersson wrote:
-> On Wed 28 Oct 03:30 CDT 2020, Vinod Koul wrote:
-> > diff --git a/drivers/pinctrl/qcom/pinctrl-sdx55.c b/drivers/pinctrl/qcom/pinctrl-sdx55.c
-> [..]
-> > +static const struct msm_function sdx55_functions[] = {
-> [..]
-> > +	FUNCTION(qdss_gpio),
-> > +	FUNCTION(qdss_gpio0),
-> > +	FUNCTION(qdss_gpio1),
-> > +	FUNCTION(qdss_gpio2),
-> > +	FUNCTION(qdss_gpio3),
-> > +	FUNCTION(qdss_gpio4),
-> > +	FUNCTION(qdss_gpio5),
-> > +	FUNCTION(qdss_gpio6),
-> > +	FUNCTION(qdss_gpio7),
-> > +	FUNCTION(qdss_gpio8),
-> > +	FUNCTION(qdss_gpio9),
-> > +	FUNCTION(qdss_gpio10),
-> > +	FUNCTION(qdss_gpio11),
-> > +	FUNCTION(qdss_gpio12),
-> > +	FUNCTION(qdss_gpio13),
-> > +	FUNCTION(qdss_gpio14),
-> > +	FUNCTION(qdss_gpio15),
-> 
-> As there are no overlaps within pingroups you can keep qdss_gpio as a
-> single function.
+On Wed, 28 Oct 2020 at 21:44, Cristian Marussi <cristian.marussi@arm.com> wrote:
+>
+> On Wed, Oct 28, 2020 at 03:29:57PM +0100, Etienne Carriere wrote:
+> > Hi Cristian,
+> >
+> > Some remaining minor comments see below.
+> > FYI I've successfully tested this series (the 4 patches).
+> >
+>
+> Hi
+>
+> Thanks a lot !
+>
+> Replies inline down below.
+>
+> [snip]
+> > > +struct scmi_msg_cmd_config_set {
+> > > +       __le32 domain_id;
+> > > +       __le32 config;
+> > > +};
+> > > +
+> > > +struct scmi_msg_cmd_level_set {
+> > > +       __le32 domain_id;
+> > > +       __le32 flags;
+> > > +       __le32 voltage_level;
+> > > +};
+> > > +
+> > > +struct voltage_info {
+> > > +       u32 version;
+> > > +       u16 num_domains;
+> >
+> > Could be an unsigned int.
+> >
+>
+> I tend to use fixed size types matching the protocols messages sizing on
+> the internal while exposing non-fixed size types in scmi_protocol.h like
+> in scmi_voltage_info, but these indeed are values exposed directly to
+> the user afterwards. Any other reason to prefer non-fixed size here ?
 
-Okay so is the generic guidance to group things into single function
-when they do not overlap?
+I think fixed size should be used where really needed.
+Since in this structure you're quite abstracted from the protocol, a generic
+type is preferred I think.
 
-> 
-> > +	FUNCTION(qdss_stm0),
-> > +	FUNCTION(qdss_stm1),
-> > +	FUNCTION(qdss_stm2),
-> > +	FUNCTION(qdss_stm3),
-> > +	FUNCTION(qdss_stm4),
-> > +	FUNCTION(qdss_stm5),
-> > +	FUNCTION(qdss_stm6),
-> > +	FUNCTION(qdss_stm7),
-> > +	FUNCTION(qdss_stm8),
-> > +	FUNCTION(qdss_stm9),
-> > +	FUNCTION(qdss_stm10),
-> > +	FUNCTION(qdss_stm11),
-> > +	FUNCTION(qdss_stm12),
-> > +	FUNCTION(qdss_stm13),
-> > +	FUNCTION(qdss_stm14),
-> > +	FUNCTION(qdss_stm15),
-> > +	FUNCTION(qdss_stm16),
-> > +	FUNCTION(qdss_stm17),
-> > +	FUNCTION(qdss_stm18),
-> > +	FUNCTION(qdss_stm19),
-> > +	FUNCTION(qdss_stm20),
-> > +	FUNCTION(qdss_stm21),
-> > +	FUNCTION(qdss_stm22),
-> > +	FUNCTION(qdss_stm23),
-> > +	FUNCTION(qdss_stm24),
-> > +	FUNCTION(qdss_stm25),
-> > +	FUNCTION(qdss_stm26),
-> > +	FUNCTION(qdss_stm27),
-> > +	FUNCTION(qdss_stm28),
-> > +	FUNCTION(qdss_stm29),
-> > +	FUNCTION(qdss_stm30),
-> > +	FUNCTION(qdss_stm31),
-> 
-> Ditto.
-> 
-> > +	FUNCTION(qlink0_en),
-> > +	FUNCTION(qlink0_req),
-> > +	FUNCTION(qlink0_wmss),
-> > +	FUNCTION(qlink1_en),
-> > +	FUNCTION(qlink1_req),
-> > +	FUNCTION(qlink1_wmss),
-> > +	FUNCTION(spmi_coex),
-> > +	FUNCTION(sec_mi2s),
-> > +	FUNCTION(spmi_vgi),
-> > +	FUNCTION(tgu_ch0),
-> > +	FUNCTION(uim1_clk),
-> > +	FUNCTION(uim1_data),
-> > +	FUNCTION(uim1_present),
-> > +	FUNCTION(uim1_reset),
-> > +	FUNCTION(uim2_clk),
-> > +	FUNCTION(uim2_data),
-> > +	FUNCTION(uim2_present),
-> > +	FUNCTION(uim2_reset),
-> > +	FUNCTION(usb2phy_ac),
-> > +	FUNCTION(vsense_trigger),
-> > +};
-> > +
-> > +/* Every pin is maintained as a single group, and missing or non-existing pin
-> > + * would be maintained as dummy group to synchronize pin group index with
-> > + * pin descriptor registered with pinctrl core.
-> > + * Clients would not be able to request these dummy pin groups.
-> > + */
-> > +static const struct msm_pingroup sdx55_groups[] = {
-> > +	[0] = PINGROUP(0, uim2_data, blsp_uart1, qdss_stm31, ebi0_wrcdc, _,
-> > +		       _, _, _, _),
-> 
-> Please break the 80 character suggestion and leave these unwrapped.
+Regards,
+Etienne
 
-120 now ;-)
-
-> 
-> [..]
-> > +	[108] = UFS_RESET(ufs_reset, 0x0),
-> 
-> SDX55 doesn't have UFS support and I'm not able to find any UFS_RESET
-> register in the TLMM block. So I suspect this is a copy paste issue
-> somewhere.
-> 
-> PS. Don't forget to drop the macro, if we don't need it.
-
-I will check though I have not seen UFS block. But yes this did exist in
-downstream!
-
-> 
-> > +	[109] = SDC_PINGROUP(sdc1_rclk, 0x9a000, 15, 0),
-> > +	[110] = SDC_PINGROUP(sdc1_clk, 0x9a000, 13, 6),
-> > +	[111] = SDC_PINGROUP(sdc1_cmd, 0x9a000, 11, 3),
-> > +	[112] = SDC_PINGROUP(sdc1_data, 0x9a000, 9, 0),
-> > +};
-> > +
-> > +static const struct msm_pinctrl_soc_data sdx55_pinctrl = {
-> > +	.pins = sdx55_pins,
-> > +	.npins = ARRAY_SIZE(sdx55_pins),
-> > +	.functions = sdx55_functions,
-> > +	.nfunctions = ARRAY_SIZE(sdx55_functions),
-> > +	.groups = sdx55_groups,
-> > +	.ngroups = ARRAY_SIZE(sdx55_groups),
-> > +	.ngpios = 108,
-> 
-> If we had UFS_RESET, this should include it; i.e. be 109.
-
-Okay will check and update
-
-Thanks for quick review
-
--- 
-~Vinod
+>
+> > > +       struct scmi_voltage_info **domains;
+> > > +};
+> > > +
+> > > +static int scmi_protocol_attributes_get(const struct scmi_handle *handle,
+> > > +                                       struct voltage_info *vinfo)
+> > > +{
+> > > +       int ret;
+> > > +       struct scmi_xfer *t;
+> > > +       struct scmi_msg_resp_protocol_attributes *resp;
+> > > +
+> > > +       ret = scmi_xfer_get_init(handle, PROTOCOL_ATTRIBUTES,
+> > > +                                SCMI_PROTOCOL_VOLTAGE, 0, sizeof(*resp), &t);
+> > > +       if (ret)
+> > > +               return ret;
+> > > +
+> > > +       resp = t->rx.buf;
+> > > +       ret = scmi_do_xfer(handle, t);
+> > > +       if (!ret)
+> > > +               vinfo->num_domains =
+> > > +                       NUM_VOLTAGE_DOMAINS(le32_to_cpu(resp->attr));
+> > > +
+> > > +       scmi_xfer_put(handle, t);
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static inline int scmi_init_voltage_levels(struct device *dev,
+> >
+> > Should remove this inline attribute.
+> >
+>
+> Ah right, I removed one and left this. I'll do.
+>
+> > > +                                          struct scmi_voltage_info *v,
+> > > +                                          u32 flags, u32 num_returned,
+> > > +                                          u32 num_remaining)
+>
+> [snip]
+>
+> > > +DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER(SCMI_PROTOCOL_VOLTAGE, voltage)
+> > > diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
+> > > index 9cd312a1ff92..181fdebc2793 100644
+> > > --- a/include/linux/scmi_protocol.h
+> > > +++ b/include/linux/scmi_protocol.h
+> > > @@ -209,6 +209,64 @@ struct scmi_reset_ops {
+> > >         int (*deassert)(const struct scmi_handle *handle, u32 domain);
+> > >  };
+> > >
+> > > +/**
+> > > + * struct scmi_voltage_info - describe one available SCMI Voltage Domain
+> > > + *
+> > > + * @id: the domain ID as advertised by the platform
+> > > + * @segmented: defines the layout of the entries of array @levels_uv.
+> > > + *            - when True the entries are to be interpreted as triplets,
+> > > + *              each defining a segment representing a range of equally
+> > > + *              space voltages: <lowest_volts>, <highest_volt>, <step_uV>
+> > > + *            - when False the entries simply represent a single discrete
+> > > + *              supported voltage level
+> > > + * @negative_volts_allowed: True if any of the entries of @levels_uv represent
+> > > + *                         a negative voltage.
+> > > + * @attributes: represents Voltage Domain advertised attributes
+> > > + * @name: name assigned to the Voltage Domain by platform
+> > > + * @num_levels: number of total entries in @levels_uv.
+> > > + * @levels_uv: array of entries describing the available voltage levels for
+> > > + *            this domain.
+> > > + */
+> > > +struct scmi_voltage_info {
+> > > +       unsigned int id;
+> > > +       bool segmented;
+> > > +#define SCMI_VOLTAGE_SEGMENT_LOW       0
+> > > +#define SCMI_VOLTAGE_SEGMENT_HIGH      1
+> > > +#define SCMI_VOLTAGE_SEGMENT_STEP      2
+> >
+> > Maybe move these macros before 'int *level_us;' as these are indices
+> > in that array.
+> >
+>
+> Right, I'll do.
+>
+> Thanks
+>
+> Cristian
+>
+> > > +       bool negative_volts_allowed;
+> > > +       unsigned int attributes;
+> > > +       char name[SCMI_MAX_STR_SIZE];
+> > > +       unsigned int num_levels;
+> > > +       int *levels_uv;
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct scmi_voltage_ops - represents the various operations provided
+> > > + * by SCMI Voltage Protocol
+> > > + *
+> > > + * @num_domains_get: get the count of voltage domains provided by SCMI
+> > > + * @info_get: get the information of the specified domain
+> > > + * @config_set: set the config for the specified domain
+> > > + * @config_get: get the config of the specified domain
+> > > + * @level_set: set the voltage level for the specified domain
+> > > + * @level_get: get the voltage level of the specified domain
+> > > + */
+> > > +struct scmi_voltage_ops {
+> > > +       int (*num_domains_get)(const struct scmi_handle *handle);
+> > > +       const struct scmi_voltage_info __must_check *(*info_get)
+> > > +               (const struct scmi_handle *handle, u32 domain_id);
+> > > +       int (*config_set)(const struct scmi_handle *handle, u32 domain_id,
+> > > +                         u32 config);
+> > > +#define        SCMI_VOLTAGE_ARCH_STATE_OFF             0x0
+> > > +#define        SCMI_VOLTAGE_ARCH_STATE_ON              0x7
+> > > +       int (*config_get)(const struct scmi_handle *handle, u32 domain_id,
+> > > +                         u32 *config);
+> > > +       int (*level_set)(const struct scmi_handle *handle, u32 domain_id,
+> > > +                        u32 flags, s32 volt_uV);
+> > > +       int (*level_get)(const struct scmi_handle *handle, u32 domain_id,
+> > > +                        s32 *volt_uV);
+> > > +};
+> > > +
+> > >  /**
+> > >   * struct scmi_notify_ops  - represents notifications' operations provided by
+> > >   * SCMI core
+> > > @@ -262,6 +320,7 @@ struct scmi_notify_ops {
+> > >   * @clk_ops: pointer to set of clock protocol operations
+> > >   * @sensor_ops: pointer to set of sensor protocol operations
+> > >   * @reset_ops: pointer to set of reset protocol operations
+> > > + * @voltage_ops: pointer to set of voltage protocol operations
+> > >   * @notify_ops: pointer to set of notifications related operations
+> > >   * @perf_priv: pointer to private data structure specific to performance
+> > >   *     protocol(for internal use only)
+> > > @@ -273,6 +332,8 @@ struct scmi_notify_ops {
+> > >   *     protocol(for internal use only)
+> > >   * @reset_priv: pointer to private data structure specific to reset
+> > >   *     protocol(for internal use only)
+> > > + * @voltage_priv: pointer to private data structure specific to voltage
+> > > + *     protocol(for internal use only)
+> > >   * @notify_priv: pointer to private data structure specific to notifications
+> > >   *     (for internal use only)
+> > >   */
+> > > @@ -284,6 +345,7 @@ struct scmi_handle {
+> > >         const struct scmi_power_ops *power_ops;
+> > >         const struct scmi_sensor_ops *sensor_ops;
+> > >         const struct scmi_reset_ops *reset_ops;
+> > > +       const struct scmi_voltage_ops *voltage_ops;
+> > >         const struct scmi_notify_ops *notify_ops;
+> > >         /* for protocol internal use */
+> > >         void *perf_priv;
+> > > @@ -291,6 +353,7 @@ struct scmi_handle {
+> > >         void *power_priv;
+> > >         void *sensor_priv;
+> > >         void *reset_priv;
+> > > +       void *voltage_priv;
+> > >         void *notify_priv;
+> > >         void *system_priv;
+> > >  };
+> > > @@ -303,6 +366,7 @@ enum scmi_std_protocol {
+> > >         SCMI_PROTOCOL_CLOCK = 0x14,
+> > >         SCMI_PROTOCOL_SENSOR = 0x15,
+> > >         SCMI_PROTOCOL_RESET = 0x16,
+> > > +       SCMI_PROTOCOL_VOLTAGE = 0x17,
+> > >  };
+> > >
+> > >  enum scmi_system_events {
+> > > --
+> > > 2.17.1
+> > >
