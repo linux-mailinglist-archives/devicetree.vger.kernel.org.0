@@ -2,74 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B713E29E41B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:34:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05BFB29E57B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 08:59:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728124AbgJ2Heb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 03:34:31 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:34852 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727639AbgJ2Hea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:34:30 -0400
-Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
-        by twspam01.aspeedtech.com with ESMTP id 09T6PBH2096873;
-        Thu, 29 Oct 2020 14:25:11 +0800 (GMT-8)
-        (envelope-from dylan_hung@aspeedtech.com)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 09T6OHuj096700;
-        Thu, 29 Oct 2020 14:24:17 +0800 (GMT-8)
-        (envelope-from dylan_hung@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.9) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 29 Oct
- 2020 14:27:28 +0800
-From:   Dylan Hung <dylan_hung@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH] ARM: dts: aspeed-g6: Fix HVI3C function-group in pinctrl dtsi
-Date:   Thu, 29 Oct 2020 14:27:23 +0800
-Message-ID: <20201029062723.20798-1-dylan_hung@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.10.9]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 09T6OHuj096700
+        id S1732552AbgJ2H5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 03:57:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727010AbgJ2HYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 03:24:40 -0400
+Received: from mail-pg1-x549.google.com (mail-pg1-x549.google.com [IPv6:2607:f8b0:4864:20::549])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8B7C05BD17
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:44 -0700 (PDT)
+Received: by mail-pg1-x549.google.com with SMTP id i11so316270pgi.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Oct 2020 23:31:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=4aAjapW2g4WVwvkzNIoEg1ilkTogTj9VaUOLswnANNk=;
+        b=JJ6GlOAjBHTLhA8EVphhV5Znn5NxVNjWlRv6InenqyI0qLaS8YC9SToQ87d3rcDQpM
+         oyMEZZZJu/14exMxQa5m/Jg8qDk/qr0Ce9sw9jpm1eZl2QtNOA043FU24U0ACA+SqllG
+         dZE46eOiqf3a50VroFY+mOAs6MNvkX7PtKdcKiNQZdaXnSBOP+WsnS9r7d+ZiIIgWYbZ
+         Q082GGUCyaHEcJIJXKM2qw5A4R9w74j/P2bC5onv+mc+Y5clwr/p4+qwuGeHv316LN5P
+         l6OCAUh6Gb0LyS03a6U3QvQ11sLSDULSmjD8pegWyfJxkkvqiI4WLOIV8hFbW1io1it2
+         H6ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=4aAjapW2g4WVwvkzNIoEg1ilkTogTj9VaUOLswnANNk=;
+        b=nlUvUzDHjr9RDLPvsy5KWAnIimQiFngS7ohF9GjsW1oO6YZ7ibdNIXIIgr0NmAhKuW
+         raaxundIWlqnqA7KsHYkaQ/PV1F+oD5FOrIXusBrqC4j5GxxFhlJSC604UkFNLmIJojt
+         G/NVHJ21xZCQ1ox7m152t1L3Ac6rm0gVsyIuj1+ZP9L3Nilk3XyOudQUGLLkT+lWIpoA
+         OEoSPmn241BIgcGiS8FnPID3Q5C5QAvnGsN5CuxW3AOu/kV5rmAs3X4mgqcF4rHVbLQN
+         wJpVZ8LyohVE+E+cX0F5U2ia6XC/C3B9klSY2u6Gh8SNDoSXiJZbBIHGNYkbfZ8P5SrM
+         H/Fw==
+X-Gm-Message-State: AOAM532AF6NzdO5y1R4YJPbtMjCzvmir9PvAsICuZTGUpaU/8XpdH5Cg
+        QOic572ec/gNROJwaY3TlBVyWtSDksQ=
+X-Google-Smtp-Source: ABdhPJwAa9PsaSb4fEU1nFvZeQwjIQfojniqqNUhMXA1K4oeSuR/CvJXHGufeGaCt/bg9RQFEa/eV9po/UE=
+Sender: "badhri via sendgmr" <badhri@badhri.mtv.corp.google.com>
+X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:201:f292:1cff:fee0:66cf])
+ (user=badhri job=sendgmr) by 2002:aa7:8bcd:0:b029:160:cb7:b639 with SMTP id
+ s13-20020aa78bcd0000b02901600cb7b639mr2761561pfd.78.1603953103909; Wed, 28
+ Oct 2020 23:31:43 -0700 (PDT)
+Date:   Wed, 28 Oct 2020 23:31:28 -0700
+Message-Id: <20201029063138.1429760-1-badhri@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
+Subject: [PATCH v12 00/10] TCPM support for FRS and AutoDischarge Disconnect
+From:   Badhri Jagan Sridharan <badhri@google.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The HVI3C shall be a group of I3C function, not an independent function.
-Correct the function name from "HVI3C" to "I3C".
+Hi all,
 
-Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
----
- arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Addressed two comments in the series
+1. From Rob Herring: Maxim parts are generally named 'maxim,max[0-9]+'
+   https://lkml.org/lkml/2020/10/26/503
+   Changed all occurences of maxim,33359 to maxim,max33359.
 
-diff --git a/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi b/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-index 7028e21bdd98..910eacc8ad3b 100644
---- a/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-@@ -208,12 +208,12 @@
- 	};
- 
- 	pinctrl_hvi3c3_default: hvi3c3_default {
--		function = "HVI3C3";
-+		function = "I3C3";
- 		groups = "HVI3C3";
- 	};
- 
- 	pinctrl_hvi3c4_default: hvi3c4_default {
--		function = "HVI3C4";
-+		function = "I3C4";
- 		groups = "HVI3C4";
- 	};
- 
+2. Added a new patch to address warnings reported by Kernel test robot.
+   https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2354139.html
+   usb: typec: tcpci_maxim: Fix smatch warnings
+
+Heikki, now that Rob has reviewed the dts patches, the following patches
+are ready to be reviewed as well:
+usb: typec: tcpci_maxim: Fix the compatible string
+usb: typec: tcpm: Refactor logic for new-source-frs-typec-current
+
+Greatly appreciate all of your support reviewing the code.
+
+Thanks,
+Badhri.
+
+Badhri Jagan Sridharan (10):
+  dt-bindings: usb: Maxim type-c controller device tree binding document
+  usb: typec: tcpci_maxim: Fix the compatible string
+  usb: typec: tcpm: Refactor logic for new-source-frs-typec-current
+  usb: typec: tcpm: frs sourcing vbus callback
+  usb: typec: tcpci: frs sourcing vbus callback
+  usb: typec: tcpci_maxim: Fix vbus stuck on upon diconnecting sink
+  usb: typec: tcpm: Implement enabling Auto Discharge disconnect support
+  usb: typec: tcpci: Implement Auto discharge disconnect callbacks
+  usb: typec: tcpci_maxim: Enable auto discharge disconnect
+  usb: typec: tcpci_maxim: Fix smatch warnings
+
+ .../bindings/usb/maxim,max33359.yaml          | 75 ++++++++++++++++
+ drivers/usb/typec/tcpm/tcpci.c                | 72 ++++++++++++++-
+ drivers/usb/typec/tcpm/tcpci.h                | 18 +++-
+ drivers/usb/typec/tcpm/tcpci_maxim.c          | 35 ++++----
+ drivers/usb/typec/tcpm/tcpm.c                 | 87 ++++++++++++++++---
+ include/linux/usb/tcpm.h                      | 19 ++++
+ 6 files changed, 274 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+
+
+base-commit: aee9ddb1d3718d3ba05b50c51622d7792ae749c9
 -- 
-2.17.1
+2.29.1.341.ge80a0c044ae-goog
 
