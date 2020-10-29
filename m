@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E868A29EDEA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 15:09:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD1429EDF3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 15:12:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726528AbgJ2OJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 10:09:35 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:35720 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726291AbgJ2OJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 10:09:35 -0400
-Received: by mail-oi1-f196.google.com with SMTP id w191so3336663oif.2;
-        Thu, 29 Oct 2020 07:09:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DZyTqOLkuv016b6/wnvWWSRD5uGx/0z27Vxn0bsFyrg=;
-        b=cM8zaikUlusNCCxK/7WVohPMMeot79G4eb4Pyh4S7u9sjDq8pPEjAfe2JOyAbck5m5
-         Dfj4Vo2Ej2zVAroJsSL86IBJ61Y/mQ3S4vGyzfFmnIEujrpsdcJCY41ryWt4BI2pa6VB
-         SFBGq0G13WxIerO0ayrOUhmuBxqTdRLHU/ztTakbUK3D+oXN6y6MO2r0KSM0chNsOR2e
-         X/wjPhIeRbMr6tGb5pxvFulGwYuzBZOJr2vxsnx+ydlBOdW6dC8bv4OTs/9YXtJ4uf8Q
-         STqexRs/LuXl2n+SyFkaQZR4AQ95CXTwSXQwOBrXU+YQsynuPFYrugrBU41MPz4hHNjS
-         Fa/Q==
-X-Gm-Message-State: AOAM533eNT+3P4EENsyQdVfCY3FDQxj+c4ujWW7d4hYLR1aAKI4Souzm
-        3+v4tXm6uYdNe0pATEJj1wwQ9mSUO593e3CFWZ4=
-X-Google-Smtp-Source: ABdhPJyUwM9B5BvvTexXKOQ0qM4AizNmnZbPn65+boB5AfGm2yrnJpMNAdZHd7puWWJU9+hBaa/BD5lxzbHkWOGyPgs=
-X-Received: by 2002:aca:c490:: with SMTP id u138mr32047oif.54.1603980574161;
- Thu, 29 Oct 2020 07:09:34 -0700 (PDT)
+        id S1726062AbgJ2OMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 10:12:14 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50352 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725300AbgJ2OMO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 10:12:14 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TEC5KO092013;
+        Thu, 29 Oct 2020 09:12:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1603980725;
+        bh=xrwm/5vA/APgxCck/pXIFCKeJE7CMAQT9x8VIfmW2ao=;
+        h=From:To:CC:Subject:Date;
+        b=ezuZPPwQBkp7svlGvmFO93ZdLxoWUFtTJe9GtRH2H6zRfzZFtddQVi1H1sSDL2ie9
+         MHANuxjp+p3bf5NSgrpcuTBH0MYg3xkret6MbjRLy1oMWGgjtd+ql2rN6QcE7wMBZu
+         qPZg3raWt0q9rMs/bY3J+04ouY8rMt0GI3XSwGyY=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TEC4No059941
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 29 Oct 2020 09:12:04 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 29
+ Oct 2020 09:12:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 29 Oct 2020 09:12:04 -0500
+Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TEC20E045625;
+        Thu, 29 Oct 2020 09:12:02 -0500
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am65: mark dss as dma-coherent
+Date:   Thu, 29 Oct 2020 16:11:59 +0200
+Message-ID: <20201029141159.190621-1-tomi.valkeinen@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201029133741.25721-1-erosca@de.adit-jv.com>
-In-Reply-To: <20201029133741.25721-1-erosca@de.adit-jv.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 29 Oct 2020 15:09:22 +0100
-Message-ID: <CAMuHMdX9ZO=9RZYCo98OJ0joWPbUBHCsdzK1jFcCGq8VLpRzJA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a77961: Add CAN{0,1}
- placeholder nodes
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Steffen Pengel <spengel@de.adit-jv.com>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 2:38 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
-> With the same background and purpose as described in v4.20-rc1
-> commit 92bc66bfce99cd ("arm64: dts: renesas: r8a77965: Add CAN{0,1}
-> placeholder nodes"), add can0 and can1 placeholder nodes.
->
-> Signed-off-by: Eugeniu Rosca <erosca@de.adit-jv.com>
+DSS is IO coherent on AM65, so we can mark it as such with
+'dma-coherent' property in the DT file.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.11.
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+---
 
-Gr{oetje,eeting}s,
+Sending separately as requested.
 
-                        Geert
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 533525229a8d..a0b4a421026f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -867,6 +867,8 @@ dss: dss@04a00000 {
+ 
+ 		status = "disabled";
+ 
++		dma-coherent;
++
+ 		dss_ports: ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
