@@ -2,83 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD1429EDF3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 15:12:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03AF129EE10
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 15:21:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726062AbgJ2OMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 10:12:14 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50352 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725300AbgJ2OMO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 10:12:14 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TEC5KO092013;
-        Thu, 29 Oct 2020 09:12:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603980725;
-        bh=xrwm/5vA/APgxCck/pXIFCKeJE7CMAQT9x8VIfmW2ao=;
-        h=From:To:CC:Subject:Date;
-        b=ezuZPPwQBkp7svlGvmFO93ZdLxoWUFtTJe9GtRH2H6zRfzZFtddQVi1H1sSDL2ie9
-         MHANuxjp+p3bf5NSgrpcuTBH0MYg3xkret6MbjRLy1oMWGgjtd+ql2rN6QcE7wMBZu
-         qPZg3raWt0q9rMs/bY3J+04ouY8rMt0GI3XSwGyY=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TEC4No059941
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 29 Oct 2020 09:12:04 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 29
- Oct 2020 09:12:04 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 29 Oct 2020 09:12:04 -0500
-Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TEC20E045625;
-        Thu, 29 Oct 2020 09:12:02 -0500
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am65: mark dss as dma-coherent
-Date:   Thu, 29 Oct 2020 16:11:59 +0200
-Message-ID: <20201029141159.190621-1-tomi.valkeinen@ti.com>
-X-Mailer: git-send-email 2.25.1
+        id S1726657AbgJ2OVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 10:21:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35518 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726548AbgJ2OUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 10:20:11 -0400
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41653C0613D4
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 07:20:11 -0700 (PDT)
+Received: by mail-ot1-x344.google.com with SMTP id h62so2367282oth.9
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 07:20:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=pE36nmfKCnsKpAZPVaNXR7cA+FjGaWm58O/lID5CHBg=;
+        b=dgXWPdG7OHhZ/9q5wSEL2GR0eP0apXyicy1uTbs9L8zrqsk+rJQV0pqThAnWZUufe2
+         QqJH3q3iSYdjz7eYi2Ci/ycHKiz418H9K90OhrBlUymFMeZYR/GPE4IfOSRuwHbnY/XA
+         WWd1tFeZ/NT3bB89cDgfpoHPPVUgd58sNGLSinPyhKS428GLTMz9DQG2SpQIru3eT1TM
+         Lrj7ACJuT0lZfm3REmDvPA3w60p6cSVfec/rImVBJKRF64ZpKeh+eGKAXTIiETV+ry4z
+         A1JdWIEsdI2u8+tlnKZS1muiH4pIr3NVTOQLGYEW4mW+6X6+uZ86alW5+/WchxjSmFy6
+         ax1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=pE36nmfKCnsKpAZPVaNXR7cA+FjGaWm58O/lID5CHBg=;
+        b=UFI+4CaXnZFpsPI/EhziVJqi1FXvbhlawtR1Mi3+VHgd5T/E9hpUuz9sf2jkqzAXQN
+         OC9Suy2pDt1H3HI1fHHhPn6nFQsp4BNYJEc7Sg5ygXXsrDRKz37q2tRedB6ZeOKXFF9H
+         J1hBkhbsJCz7RmRD4hE4/0KBOgbWby2h8Pn/+zdqAdt6DrX7FrXIj66TEkt80xuDDTDV
+         2uC6s8zb+VTiT1OjKq1puL+Ze2YLo3+VFzBUXZlnGFIYjDs14bCrX8kpSFrEd8CS2C/Y
+         2n9ZS3Vn/6211hUNut+icLp0U9zotUQSoNAy2VwzC2wIKQMJoI5j3gRRLHF6QwaDOhO8
+         SpAQ==
+X-Gm-Message-State: AOAM533YXcl1TEfuZfcB+3gHcAP3sT9VcX8pbpY5fcloILIkIjZ+ESCi
+        b7UdlKZ6WkTIfVVyGKtHsPh2XA==
+X-Google-Smtp-Source: ABdhPJz+jDbt9HxVC8yigRGbCacjLxvrpguWaPk+NajhzjAhJsDG5UIAC1ki397dKFs0h3C6avC8HA==
+X-Received: by 2002:a9d:7419:: with SMTP id n25mr3447311otk.183.1603981210414;
+        Thu, 29 Oct 2020 07:20:10 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id m6sm638016otm.76.2020.10.29.07.20.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Oct 2020 07:20:09 -0700 (PDT)
+Date:   Thu, 29 Oct 2020 09:20:08 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: qcom: Add sc7280 pinctrl driver
+Message-ID: <20201029142008.GE3151@builder.lan>
+References: <1602831532-24818-1-git-send-email-rnayak@codeaurora.org>
+ <1602831532-24818-2-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1602831532-24818-2-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DSS is IO coherent on AM65, so we can mark it as such with
-'dma-coherent' property in the DT file.
+On Fri 16 Oct 01:58 CDT 2020, Rajendra Nayak wrote:
+> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280.c b/drivers/pinctrl/qcom/pinctrl-sc7280.c
+[..]
+> +static const struct msm_function sc7280_functions[] = {
+[..]
+> +	FUNCTION(phase_flag0),
+> +	FUNCTION(phase_flag1),
+> +	FUNCTION(phase_flag10),
+> +	FUNCTION(phase_flag11),
+> +	FUNCTION(phase_flag12),
+> +	FUNCTION(phase_flag13),
+> +	FUNCTION(phase_flag14),
+> +	FUNCTION(phase_flag15),
+> +	FUNCTION(phase_flag16),
+> +	FUNCTION(phase_flag17),
+> +	FUNCTION(phase_flag18),
+> +	FUNCTION(phase_flag19),
+> +	FUNCTION(phase_flag2),
+> +	FUNCTION(phase_flag20),
+> +	FUNCTION(phase_flag21),
+> +	FUNCTION(phase_flag22),
+> +	FUNCTION(phase_flag23),
+> +	FUNCTION(phase_flag24),
+> +	FUNCTION(phase_flag25),
+> +	FUNCTION(phase_flag26),
+> +	FUNCTION(phase_flag27),
+> +	FUNCTION(phase_flag28),
+> +	FUNCTION(phase_flag29),
+> +	FUNCTION(phase_flag3),
+> +	FUNCTION(phase_flag30),
+> +	FUNCTION(phase_flag31),
+> +	FUNCTION(phase_flag4),
+> +	FUNCTION(phase_flag5),
+> +	FUNCTION(phase_flag6),
+> +	FUNCTION(phase_flag7),
+> +	FUNCTION(phase_flag8),
+> +	FUNCTION(phase_flag9),
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
----
+I prefer when we squash these into a single function.
 
-Sending separately as requested.
+> +	FUNCTION(pll_bist),
+> +	FUNCTION(pll_bypassnl),
+> +	FUNCTION(pll_clk),
+> +	FUNCTION(pll_reset),
+> +	FUNCTION(pri_mi2s),
+> +	FUNCTION(prng_rosc),
+> +	FUNCTION(qdss_cti),
+> +	FUNCTION(qdss_gpio),
+> +	FUNCTION(qdss_gpio0),
+> +	FUNCTION(qdss_gpio1),
+> +	FUNCTION(qdss_gpio10),
+> +	FUNCTION(qdss_gpio11),
+> +	FUNCTION(qdss_gpio12),
+> +	FUNCTION(qdss_gpio13),
+> +	FUNCTION(qdss_gpio14),
+> +	FUNCTION(qdss_gpio15),
+> +	FUNCTION(qdss_gpio2),
+> +	FUNCTION(qdss_gpio3),
+> +	FUNCTION(qdss_gpio4),
+> +	FUNCTION(qdss_gpio5),
+> +	FUNCTION(qdss_gpio6),
+> +	FUNCTION(qdss_gpio7),
+> +	FUNCTION(qdss_gpio8),
+> +	FUNCTION(qdss_gpio9),
 
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Ditto.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 533525229a8d..a0b4a421026f 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -867,6 +867,8 @@ dss: dss@04a00000 {
- 
- 		status = "disabled";
- 
-+		dma-coherent;
-+
- 		dss_ports: ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> +	FUNCTION(qlink0_enable),
+> +	FUNCTION(qlink0_request),
+> +	FUNCTION(qlink0_wmss),
+> +	FUNCTION(qlink1_enable),
+> +	FUNCTION(qlink1_request),
+> +	FUNCTION(qlink1_wmss),
+> +	FUNCTION(qspi_clk),
+> +	FUNCTION(qspi_cs),
+> +	FUNCTION(qspi_data),
+> +	FUNCTION(qup00),
+> +	FUNCTION(qup01),
+> +	FUNCTION(qup02),
+> +	FUNCTION(qup03),
+> +	FUNCTION(qup04),
+> +	FUNCTION(qup05),
+> +	FUNCTION(qup06),
+> +	FUNCTION(qup07),
+> +	FUNCTION(qup10),
+> +	FUNCTION(qup11),
+> +	FUNCTION(qup12),
+> +	FUNCTION(qup13),
+> +	FUNCTION(qup14),
+> +	FUNCTION(qup15),
+> +	FUNCTION(qup16),
+> +	FUNCTION(qup17),
+> +	FUNCTION(sdc40),
+> +	FUNCTION(sdc41),
+> +	FUNCTION(sdc42),
+> +	FUNCTION(sdc43),
+> +	FUNCTION(sdc4_clk),
+> +	FUNCTION(sdc4_cmd),
+> +	FUNCTION(sd_write),
+> +	FUNCTION(sec_mi2s),
+> +	FUNCTION(tb_trig),
+> +	FUNCTION(tgu_ch0),
+> +	FUNCTION(tgu_ch1),
+> +	FUNCTION(tsense_pwm1),
+> +	FUNCTION(tsense_pwm2),
+> +	FUNCTION(uim0_clk),
+> +	FUNCTION(uim0_data),
+> +	FUNCTION(uim0_present),
+> +	FUNCTION(uim0_reset),
+> +	FUNCTION(uim1_clk),
+> +	FUNCTION(uim1_data),
+> +	FUNCTION(uim1_present),
+> +	FUNCTION(uim1_reset),
+> +	FUNCTION(usb2phy_ac),
+> +	FUNCTION(usb_phy),
+> +	FUNCTION(vfr_0),
+> +	FUNCTION(vfr_1),
+> +	FUNCTION(vsense_trigger),
+> +};
+> +
+> +/* Every pin is maintained as a single group, and missing or non-existing pin
+> + * would be maintained as dummy group to synchronize pin group index with
+> + * pin descriptor registered with pinctrl core.
+> + * Clients would not be able to request these dummy pin groups.
+> + */
+> +static const struct msm_pingroup sc7280_groups[] = {
+[..]
+> +	[174] = PINGROUP(174, qdss_gpio15, _, _, _, _, _, _, _, _),
+> +	[175] = SDC_QDSD_PINGROUP(sdc1_rclk, 0x1b3000, 15, 0),
+> +	[176] = SDC_QDSD_PINGROUP(sdc1_clk, 0x1b3000, 13, 6),
+> +	[177] = SDC_QDSD_PINGROUP(sdc1_cmd, 0x1b3000, 11, 3),
+> +	[178] = SDC_QDSD_PINGROUP(sdc1_data, 0x1b3000, 9, 0),
+> +	[179] = SDC_QDSD_PINGROUP(sdc2_clk, 0x1b4000, 14, 6),
+> +	[180] = SDC_QDSD_PINGROUP(sdc2_cmd, 0x1b4000, 11, 3),
+> +	[181] = SDC_QDSD_PINGROUP(sdc2_data, 0x1b4000, 9, 0),
+> +	[182] = UFS_RESET(ufs_reset, 0x1be000),
 
+Rather than fiddling ufs reset using pinconf we expose it as a gp(i)o
+pin upstream. So please move this to be the 175th item in the list and
+bump ngpios to 176 below.
+
+> +};
+> +
+> +static const struct msm_pinctrl_soc_data sc7280_pinctrl = {
+> +	.pins = sc7280_pins,
+> +	.npins = ARRAY_SIZE(sc7280_pins),
+> +	.functions = sc7280_functions,
+> +	.nfunctions = ARRAY_SIZE(sc7280_functions),
+> +	.groups = sc7280_groups,
+> +	.ngroups = ARRAY_SIZE(sc7280_groups),
+> +	.ngpios = 175,
+> +};
+> +
+
+Apart from that it looks good.
+
+Regards,
+Bjorn
