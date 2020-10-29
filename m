@@ -2,134 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E97429EC57
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 13:59:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EB5B29EC6A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 14:04:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725763AbgJ2M7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 08:59:43 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53586 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725554AbgJ2M7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 08:59:43 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TCxWOt060532;
-        Thu, 29 Oct 2020 07:59:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1603976372;
-        bh=DuPjch7pBzi0EzyZ8z8R+8wUMcuh8oDMffXLxKjBsGE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=jDTVa0GBkfvebo23IdhoKaBAecBs+/aRUbvK3SB8I/rjLDCGH1Enwzx33GcJJas5h
-         lr1ykNA30uydFuAoN3f1bmCfqYgj3s5CnZ0WQcOe5Vrtu9uy0zp1DCOmrXiDSxbzIT
-         7WlcRw/MMTzqszMvjqSy7ATIboBMHcz225aj+5dY=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TCxW2Z075614
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 29 Oct 2020 07:59:32 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 29
- Oct 2020 07:59:32 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 29 Oct 2020 07:59:32 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TCxW3m052759;
-        Thu, 29 Oct 2020 07:59:32 -0500
-Date:   Thu, 29 Oct 2020 07:59:32 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-CC:     <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <vireshk@kernel.org>,
-        <robh+dt@kernel.org>, <sboyd@kernel.org>, <rafael@kernel.org>,
-        <sudeep.holla@arm.com>, <daniel.lezcano@linaro.org>,
-        <Dietmar.Eggemann@arm.com>
-Subject: Re: [PATCH 1/4] dt-bindings: opp: Introduce opp-sustainable bindings
-Message-ID: <20201029125932.fvhaj6fsgt3qvmoc@gloomily>
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201028140847.1018-2-lukasz.luba@arm.com>
- <20201028214713.zttk47qtua5jhieo@pureness>
- <5b3a99a8-6972-5c60-6cc5-00ec84387b97@arm.com>
+        id S1726753AbgJ2NED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 09:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726667AbgJ2NED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 09:04:03 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE5BC0613CF
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 06:04:02 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kY7av-0003gY-5d; Thu, 29 Oct 2020 14:03:57 +0100
+Message-ID: <ea7162d355d429401cbcf10d34cc31b6264aabc7.camel@pengutronix.de>
+Subject: Re: [RFC 0/3] clk: imx: Implement blk-ctl driver for i.MX8MN
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Abel Vesa <abel.vesa@nxp.com>, Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 29 Oct 2020 14:03:55 +0100
+In-Reply-To: <CAHCN7xKSs9z1_ryXX3xOcJn7FfWXBE+zTzDYJT3pA1LCbHyOBw@mail.gmail.com>
+References: <20201024162016.1003041-1-aford173@gmail.com>
+         <20201024202335.y3npwtgragpp5wcz@fsr-ub1664-175>
+         <CAHCN7xJiygvLStO56v4xSnOEqR_5fbYQHn5juA8YeDiWh2awbg@mail.gmail.com>
+         <20201025120509.r5kl76wo5mdmapo5@fsr-ub1664-175>
+         <3dadade8-6e77-e27f-d5a6-307de17a4dd0@denx.de>
+         <CAHCN7xLC-gKquDNS3ToQCff=g610PscQE+T4zfO=_05GpLyK4w@mail.gmail.com>
+         <20201026145516.shmb55gaeh6u7oru@fsr-ub1664-175>
+         <CAHCN7xJOczT1B03Am4A645Xrk6-VF_7VDgAq13F-81=oCkixjw@mail.gmail.com>
+         <6274ab26d1fea5e00cea576d1e00028a4c4633af.camel@pengutronix.de>
+         <CAHCN7xK1Stx=dzbDE6dKtRHuWGgca54bwQf=JSGNFVmHJ_fSig@mail.gmail.com>
+         <55a33659d6faeb5677f4f3e4809bc426c1a4fc88.camel@pengutronix.de>
+         <CAHCN7xKSs9z1_ryXX3xOcJn7FfWXBE+zTzDYJT3pA1LCbHyOBw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5b3a99a8-6972-5c60-6cc5-00ec84387b97@arm.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:04-20201029, Lukasz Luba wrote:
-> 
-> 
-> On 10/28/20 9:47 PM, Nishanth Menon wrote:
-> > On 14:08-20201028, Lukasz Luba wrote:
-> > > Add opp-sustainable as an additional property in the OPP node to describe
-> > > the sustainable performance level of the device. This will help to
-> > > estimate the sustainable performance of the whole system.
+Am Donnerstag, den 29.10.2020, 07:18 -0500 schrieb Adam Ford:
+> On Thu, Oct 29, 2020 at 6:55 AM Lucas Stach <l.stach@pengutronix.de>
+> wrote:
+> > Am Montag, den 26.10.2020, 11:23 -0500 schrieb Adam Ford:
+> > > On Mon, Oct 26, 2020 at 10:44 AM Lucas Stach <
+> > > l.stach@pengutronix.de> wrote:
+> > > > Am Montag, den 26.10.2020, 10:12 -0500 schrieb Adam Ford:
+> > > > > On Mon, Oct 26, 2020 at 9:55 AM Abel Vesa <abel.vesa@nxp.com>
+> > > > > wrote:
+> > > > > > On 20-10-25 11:05:32, Adam Ford wrote:
+> > > > > > > On Sun, Oct 25, 2020 at 7:19 AM Marek Vasut <
+> > > > > > > marex@denx.de> wrote:
+> > > > > > > > On 10/25/20 1:05 PM, Abel Vesa wrote:
+> > > > > > > > 
+> > > > > > > > [...]
+> > > > > > > > 
+> > > > > > > > > > Together, both the GPC and the clk-blk driver
+> > > > > > > > > > should be able to pull
+> > > > > > > > > > the multimedia block out of reset.  Currently, the
+> > > > > > > > > > GPC can handle the
+> > > > > > > > > > USB OTG and the GPU, but the LCDIF and MIPI DSI
+> > > > > > > > > > appear to be gated by
+> > > > > > > > > > the clock block
+> > > > > > > > > > 
+> > > > > > > > > > My original patch RFC didn't include the imx8mn
+> > > > > > > > > > node, because it
+> > > > > > > > > > hangs, but the node I added looks like:
+> > > > > > > > > > 
+> > > > > > > > > > media_blk_ctl: clock-controller@32e28000 {
+> > > > > > > > > >      compatible = "fsl,imx8mn-media-blk-ctl",
+> > > > > > > > > > "syscon";
+> > > > > > > > > >      reg = <0x32e28000 0x1000>;
+> > > > > > > > > >      #clock-cells = <1>;
+> > > > > > > > > >      #reset-cells = <1>;
+> > > > > > > > > > };
+> > > > > > > > > > 
+> > > > > > > > > > I was hoping you might have some feedback on the
+> > > > > > > > > > 8mn clk-blk driver
+> > > > > > > > > > since you did the 8mp clk-blk drive and they appear
+> > > > > > > > > > to be very
+> > > > > > > > > > similar.
+> > > > > > > > > > 
+> > > > > > > > > 
+> > > > > > > > > I'll do you one better still. I'll apply the patch in
+> > > > > > > > > my tree and give it
+> > > > > > > > > a test tomorrow morning.
+> > > > > > > 
+> > > > > > > I do have some more updates on how to get the system to
+> > > > > > > not hang, and
+> > > > > > > to enumerate more clocks.
+> > > > > > > Looking at Marek's work on enabling clocks in the 8MM, he
+> > > > > > > added a
+> > > > > > > power-domain in dispmix_blk_ctl pointing to the dispmix
+> > > > > > > in the GPC.
+> > > > > > > By forcing the GPC driver to write 0x1fff  to 32e28004,
+> > > > > > > 0x7f to
+> > > > > > > 32e28000 and 0x30000 to 32e28008, the i.MX8MM can bring
+> > > > > > > the display
+> > > > > > > clocks out of reset.
+> > > > > > > 
+> > > > > > 
+> > > > > > Yeah, that makes sense. Basically, it was trying to disable
+> > > > > > unused clocks
+> > > > > > (see clk_disable_unused) but in order to disable the clocks
+> > > > > > from the
+> > > > > > media BLK_CTL (which I think should be renamed in display
+> > > > > > BLK_CTL) the
+> > > > > > PD need to be on. Since you initially didn't give it any
+> > > > > > PD, it was trying
+> > > > > > to blindly write/read the gate bit and therefore freeze.
+> > > > > > 
+> > > > > > > Unfortunately, the i.MX8MN needs to have 0x100 written to
+> > > > > > > both
+> > > > > > > 32e28000 and 32e28004, and the values written for the 8MM
+> > > > > > > are not
+> > > > > > > compatible.
+> > > > > > > By forcing the GPC to write those values, I can
+> > > > > > > get  lcdif_pixel_clk
+> > > > > > > and the mipi_dsi_clkref  appearing on the Nano.
+> > > > > > 
+> > > > > > I'm trying to make a branch with all the patches for all
+> > > > > > i.MX8M so I
+> > > > > > can keep track of it all. On this branch I've also applied
+> > > > > > the
+> > > > > > following patchset from Lucas Stach:
+> > > > > > https://www.spinics.net/lists/arm-kernel/msg843007.html
+> > > > > > but I'm getting the folowing errors:
+> > > > > > 
+> > > > > > [   16.690885] imx-pgc imx-pgc-domain.3: failed to power up
+> > > > > > ADB400
+> > > > > > [   16.716839] imx-pgc imx-pgc-domain.3: failed to power up
+> > > > > > ADB400
+> > > > > > [   16.730500] imx-pgc imx-pgc-domain.3: failed to power up
+> > > > > > ADB400
+> > > > > > 
+> > > > > > Lucas, any thoughts?
+> > > > > > 
+> > > > > > Maybe it's something related to 8MN.
+> > > > > > 
+> > > > > I will go back and double check this now that we have both
+> > > > > the
+> > > > > blt_crl->power-domain and the power-domain->blk_ctl.
+> > > > > 
+> > > > > > Will dig further, see what pops out.
+> > > > > 
+> > > > > I wasn't sure which direction to go with the name.  I can
+> > > > > rename the
+> > > > > media_blk_ctl  driver to display_blk_ctl.  I used Media based
+> > > > > on the
+> > > > > imx8mp naming convention and the fact that it's controlling
+> > > > > both the
+> > > > > display and the camera interface, however it's depending on
+> > > > > the
+> > > > > dispmix GPC.
+> > > > > 
+> > > > > I'll submit a RFC V2 with the cross referencing to the GPC
+> > > > > based on
+> > > > > Marek's Mini patch set, but we'll still have an issue where
+> > > > > the Mini
+> > > > > and Nano have different syscon values to enable the clocks,
+> > > > > and
+> > > > > Marek's branch has it card-coded, so my patch would
+> > > > > effectively break
+> > > > > the Mini in order to make the Nano operate until we find a
+> > > > > better
+> > > > > solution.
+> > > > 
+> > > > The GPC should not write into the BLK_CTL region via syscon,
+> > > > but
+> > > > instead use the clocks and resets as exposed by the BLK_CTL
+> > > > driver.
+> > > > Doing it via syscon is a hack to get things going. The clocks
+> > > > and
+> > > > resets should properly be hooked up to the GPC domains via the
+> > > > clocks
+> > > > and resets DT properties.
+> > > > 
+> > > > For the clocks there is one complication: if the clocks are
+> > > > controlled
+> > > > via BLK_CTL we can only enable them once the domain is powered
+> > > > up,
+> > > > however the earlier designs using the GPCv2 assert resets as
+> > > > part of
+> > > > the power up sequence, which needs the clocks to be running for
+> > > > the
+> > > > reset to propagate. So depending on whether we have a power
+> > > > domain with
+> > > > a BLK_CTL or not we need to enable the clocks before or after
+> > > > powering
+> > > > up the domain. I guess we need a new DT property to specify
+> > > > which way
+> > > > the domain needs to handled.
 > > > 
-> > > Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/opp/opp.txt | 4 ++++
-> > >   1 file changed, 4 insertions(+)
+> > > So in the case of Nano, could we create two blocks instead of
+> > > one?
+> > > The first block would enable the bus clock and reset that
+> > > correspond
+> > > to writing 0x100 to avoid writing to syscon.  From there, we
+> > > reference
+> > > that reset and clock from the GPC displaymix_pd to enable the
+> > > access.
+> > > Once that's done, we point the 2nd block power-domain to the
+> > > dispmix_pd to unlock the remaining clocks.
 > > > 
-> > > diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
-> > > index 9847dfeeffcb..cd01028de305 100644
-> > > --- a/Documentation/devicetree/bindings/opp/opp.txt
-> > > +++ b/Documentation/devicetree/bindings/opp/opp.txt
-> > > @@ -154,6 +154,10 @@ Optional properties:
-> > >   - opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
-> > >     in the table have this, the OPP with highest opp-hz will be used.
-> > > +- opp-sustainable: Marks the OPP as sustainable. This property can be used for
-> > > +  estimating sustainable performance of the whole system. If multiple OPPs in
-> > > +  the table have this, the OPP with highest opp-hz will be used.
+> > > Would that work?  I can try it later today, but I'm not near the
+> > > hardware now.
 > > 
+> > Splitting the PD into 2 staged domains might actually work well to
+> > get
+> > around the cyclic dependency between GPC and BLK_CTL. It's not
+> > totally
+> > to my liking, as the DT description doesn't map 1:1 to hardware
+> > anymore, but it seems to be the most elegant solution to get around
+> > the
+> > dependency.
 > > 
-> > By "sustainable", do you mean sustainable across Process, Voltage and
-> > Temperature corners upto the max rated operational Power-ON hours
-> > without IDLE state being achieved on the processor?
+> > I'll try to implement this on the i.MX8MM today or tomorrow to see
+> > if
+> > it holds up in reality or if there are some hidden warts.
 > 
-> Yes, in case of CPU: running 100% without idle at that particular OPP.
-> Running above that OPP would lead to cross control temperature.
-
-We need to tighten the definitions a lot more here and add that to the
-binding. What we are stating, if I am not misunderstanding is an OPP
-that is guaranteed by SoC vendor that across Process Voltage and
-Temperature corners - aka across the entire production spectrum
-for the part number, *all* devices will operate at this OPP for the
-mandated power-on-hours rating without hitting IDLE.
-
-Example: So -40C to 125C, across the process (hot/cold/nominal), 100s of
-thousands/millions of units can operate upto 125,0000 power-on-hours
-while running a tight deadloop OR maybe high processing function or even
-cpuburn[1]?
-
-
-Can you give me one SoC vendor and part that guarantees this? I am
-wondering if this is all theoretical... There are tons of parameters
-that come into play for "reliability" "sustainability" etc. Those are
-tricky terminology that typically makes legal folks pretty happy to
-debate for decades..
-
-just my 2 cents.
+> I tried it last night on the Nano without success.  :-(
 > 
-> > 
-> > OR do you mean to leave it up to interpretation?
-> 
-> I can tell how I would use them. There is thermal governor IPA, which
-> needs sustainable power either form DT or uses internal algorithm to
-> estimate it based on lowest allowed freq OPPs. Then it estimated
-> internal coefficients based on that value, which is not optimal
-> for lowest OPPs. When some higher OPP could be marked as sustainable,
-> it would lead to better estimation and better power budget split.
+> I was just getting ready to e-mail the group when I saw this come in.
 
-Seeing your series, I got an idea about how you plan on using it, I
-just think we need to be more precise in our definition..
+I was thinking the other way around, keeping a single BLK_CTL, but
+splitting the PD to reflect the power-up sequence requirement. I'll let
+you know how this works out.
 
-[1] https://patrickmn.com/projects/cpuburn/
--- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Lucas
+
