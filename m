@@ -2,159 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26AC729F63C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:32:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6019729F644
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 21:36:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726464AbgJ2Uck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 16:32:40 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:37002 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725764AbgJ2Ucg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 16:32:36 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201029203149euoutp023a45d9d52efba1902e5cab24111c067d~CkLGnzXEI0777807778euoutp02Y;
-        Thu, 29 Oct 2020 20:31:49 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201029203149euoutp023a45d9d52efba1902e5cab24111c067d~CkLGnzXEI0777807778euoutp02Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1604003510;
-        bh=pb5peJL+Fq7yal7O9zQDYDUxf4O+0oVNlLooYDQ+TMQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dEARg5UfERI2QPeAcKkldQLE2PHB8aJgaLuBa9wcWoJuFBSi5ser9GCrpQQF1JjoC
-         1WG+oPbYja7BRLGkAm7KbOX1OiU9V7TGxlufDG3N79rs7L7sjSA0eWFuLzLb6//Q5A
-         SdAMJUgZAUkJC1XqejrkGfNlH9DrfzqNJaUjR1HM=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201029203143eucas1p221829b3d8e41cc5f4ca5ed90f02bced5~CkLA6ZICv2113321133eucas1p2y;
-        Thu, 29 Oct 2020 20:31:43 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id BE.46.06318.FA62B9F5; Thu, 29
-        Oct 2020 20:31:43 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201029203142eucas1p138b7a69cf72e5ad0b1ecd8134adcbccf~CkK-vc3Zb2259322593eucas1p1Q;
-        Thu, 29 Oct 2020 20:31:42 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201029203142eusmtrp10756083d29a05e6509de9183e989a1af~CkK-utoo71337413374eusmtrp1C;
-        Thu, 29 Oct 2020 20:31:42 +0000 (GMT)
-X-AuditID: cbfec7f5-371ff700000018ae-de-5f9b26af0b21
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 13.06.06017.EA62B9F5; Thu, 29
-        Oct 2020 20:31:42 +0000 (GMT)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201029203142eusmtip271b2a01a361d0b4e994bc7af95f28b80~CkK-kdlzn2507625076eusmtip2T;
-        Thu, 29 Oct 2020 20:31:42 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     jim.cromie@gmail.com, Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolni?= =?utf-8?Q?erkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v4 3/5] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Date:   Thu, 29 Oct 2020 21:31:32 +0100
-In-Reply-To: <20201029003131.GF933237@lunn.ch> (Andrew Lunn's message of
-        "Thu, 29 Oct 2020 01:31:31 +0100")
-Message-ID: <dleftjimasvknv.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1726464AbgJ2UgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 16:36:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726342AbgJ2UgO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 16:36:14 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26FB3C0613D4;
+        Thu, 29 Oct 2020 13:36:12 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id w65so3355168pfd.3;
+        Thu, 29 Oct 2020 13:36:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=I61zSSXnddISlj5dBjtLwYvC1P3deaYqmSH5ozqsYog=;
+        b=LtKG+5PTjdwFBcnbd7HuU/FkzbjKi+WfScvarwjV+M6z1yg2rNwnHDfYY4jgwGaaf/
+         qz+FrIAPxmmYxE4hgzknAvHWV6yNV9+iUaPvVGpyouDWq9enXAI98INKV1olorZIMtdY
+         j0B80rkRT75br2IYrjN325LinEhG3YAUUGgAQqHqCc1LU9d+d/Of4grSPkXxJqoaO21S
+         otzBDMUOXQSmWoam5PtNCbeP54CDvR0AWLxOvyWLxqwuZkoJsyfyPpFqlDFUSddxjwjq
+         4bUhy1nC6O8/G8d+JS8EBwBWZvKK4jkUc37XiX+P0C3fYvNF1BJtMYYg7E9d8OsdVJPN
+         U1ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=I61zSSXnddISlj5dBjtLwYvC1P3deaYqmSH5ozqsYog=;
+        b=YsuPHNTXMEEx3b6ifkrMmb4yJ5lcrobw5V41g9B2ElEfmtb9gcmEl5nJ0KECMB/TXo
+         rJG7FYCJ4XYKfMsEDX8YZqejx/kiKrTfx0mQ1fErN5rclvoG4ByvjgZlMwglGiqk4G1Z
+         6jT9oYaZvEYTRDHJy3lNhY5zK6HO+QNXLvKsgKVzOV5wLYzneHza6WMYoHdp4Le9kmQW
+         yKZvrmlBlzcPuiup0UreSfZPy4jMEM0OSLzjcn5K9wylU+FB3063DpX0kmDv5tRyq+u6
+         WrKiLEvWz06Ov9HDf85vdI5ozYyXIDKSx6q9vH1g0RY36XvzODqkqDVi1eSbbYf3tt4d
+         kpOQ==
+X-Gm-Message-State: AOAM532G2ITSoDPXy2gcuVYZvG2R1PhrFU5sNb+Rwo1cXkVtb8ng3aDg
+        ySgJjpvaVSx3WjoZo46hZTQ=
+X-Google-Smtp-Source: ABdhPJylnY79MpK/rej9wEYYx1yPr2EAFJYxJWw8BVYTx7s67m6CSqSoxqZToU1y3zY6wyGN6y1BZg==
+X-Received: by 2002:a17:90a:f683:: with SMTP id cl3mr1675662pjb.84.1604003771560;
+        Thu, 29 Oct 2020 13:36:11 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id u4sm694739pjy.19.2020.10.29.13.36.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Oct 2020 13:36:10 -0700 (PDT)
+Date:   Thu, 29 Oct 2020 13:36:08 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Andrej Valek <andrej.valek@siemens.com>,
+        Hans de Goede <hdegoede@redhat.com>
+Cc:     nick@shmanahar.org, hadess@hadess.net, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] Input: goodix - add option to disable firmware
+ loading
+Message-ID: <20201029203608.GE2547185@dtor-ws>
+References: <20201029170313.25529-1-andrej.valek@siemens.com>
+ <20201029170313.25529-2-andrej.valek@siemens.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUwTURSGczsznaGx5lpcTqpRU5fEDTBu130jOvHJF5VoFItMAKWl6Qgq
-        L0KiRrG2KqgIKLKoyG4tFVGwVAISIgVB3EATa6IsdUONiqLUi4lv33/Of7abKzCaAU4rxBj3
-        SmajPlanVLHO+u+eOWXTM8NDDllCiKfLzZDr6WUcyfIcYkl2XTNHct+nc6TD18kRm7eXIR5P
-        OU9anFaO2L0dHGmrylKSdE+NgrjPVCNSUtfFk/pLY8nh6jp+FRbbOloZ0XHtqUK8ldHFi/bC
-        Y0rxRv5B8VZlv0K0OgqR2G+fuFHYqloWKcXGJEjm4BU7VdEDvkHOdFK1P/tIviIJdQspKEAA
-        PB++9Vr4FKQSNLgAQVptz7D4PCTyahEV/QjKM72KfyWNlhsMTVxF0DfwUEHFGwQfXVe4FCQI
-        ShwEJSVh/oLReDKkNf7k/MzgRyykOSP9HIg3Q93HCt7PLJ4Gt/PSlX4OwAZ42Vr5d5gaLwLX
-        gI/x8xi8GBxvX/I0Pgoaz79maU8DnPf0IbrcZQFs+bsph8Lxx60s5UDoaXDwlCdAU6qF9a8J
-        +CCknl7oXx+wBYEz69uwfyl0Nv9QUl4NmX3Vw/6R8MQ3io4dCaed5xgaVsPRIxrqngqltjvD
-        XbRwoqcAUYsIDUUyfahkBPcKvcxJNDnjv2My/jsmY6iEwTOgrCqYhmfBlZxehvJyKC19z15C
-        XCEaJ8XLhihJnmeU9gXJeoMcb4wK2hVnsKOhb9g02PClEtX8jHAjLCDdCPWqSZnhGk6fIB8w
-        uNHUoU6vyotakJY1xhkl3Wj1mgdNOzTqSP2BRMkcF26Oj5VkNxovsLpx6nm53ds1OEq/V9oj
-        SSbJ/C+rEAK0SWhD/KcFyOWwXTa9Nr0riChekPjsUY5rdnTRm6Q5zz8s+lIco29p1wWQ+zFw
-        qu9iyJa2im2d2qIE+8q70ckXZp6yDeblPv898Wxq8QirKay9vZvn1viaf92P+LpuE7uWxV+t
-        LivvrU3sztlS8eLXwn03A0OXPGxe0VM+VpX8NDRs/RQdK0fr585kzLL+Dwo5hvSOAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMIsWRmVeSWpSXmKPExsVy+t/xe7rr1GbHG6ztVbY4f/cQs8XGGetZ
-        Leacb2GxmH/kHKvFovczWC2uvb3DatH/+DWzxfnzG9gtLmzrY7XY9Pgaq8XlXXPYLGac38dk
-        cWjqXkaLtUfuslscWyBm0br3CLuDgMflaxeZPbasvMnksXPWXXaPTas62Tw2L6n32LnjM5NH
-        35ZVjB6fN8kFcETp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSW
-        pRbp2yXoZfx++4+1YAJXxfy2JUwNjC85uhg5OSQETCRO9mxm7mLk4hASWMoo8e3jPSCHAygh
-        JbFybjpEjbDEn2tdbCC2kMBTRokdJ81BStgE9CTWro0ACYsIKEhMOfmHFWQMs8ANFolHkxYz
-        gySEBUIkFh28wQhSLySgKzGp1QckzCKgKrF78QywkZwCuRLr3u9nBbF5BcwlDvx+C9YqKmAp
-        seXFfXaIuKDEyZlPWEBsZoFsia+rnzNPYBSYhSQ1C0lqFtA2ZgFNifW79CHC2hLLFr5mhrBt
-        Jdate8+ygJF1FaNIamlxbnpusZFecWJucWleul5yfu4mRmAkbzv2c8sOxq53wYcYBTgYlXh4
-        HeRnxwuxJpYVV+YeYlQBGvNow+oLjFIsefl5qUoivE5nT8cJ8aYkVlalFuXHF5XmpBYfYjQF
-        +nMis5Rocj4w+eSVxBuaGppbWBqaG5sbm1koifN2CByMERJITyxJzU5NLUgtgulj4uCUamCs
-        1fUW511/058l9zi7w5WLzh/7fXRuJu0pMCk+FSAaYK5m7HPj1cm5P2/ulp1y03+CSY/+55I1
-        a9zC3bmi7AsOsdpq3WjY92XTrTfrNQqaWBWu3NnAPCeXvWXhtNVzf0oe/tziKx2adOI2t8L5
-        hZ/13y9fGjFfsEkjK/bBn7tL9q6fE8aZGf9ViaU4I9FQi7moOBEAN+hnowYDAAA=
-X-CMS-MailID: 20201029203142eucas1p138b7a69cf72e5ad0b1ecd8134adcbccf
-X-Msg-Generator: CA
-X-RootMTR: 20201029203142eucas1p138b7a69cf72e5ad0b1ecd8134adcbccf
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201029203142eucas1p138b7a69cf72e5ad0b1ecd8134adcbccf
-References: <20201029003131.GF933237@lunn.ch>
-        <CGME20201029203142eucas1p138b7a69cf72e5ad0b1ecd8134adcbccf@eucas1p1.samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201029170313.25529-2-andrej.valek@siemens.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Andrej,
 
-It was <2020-10-29 czw 01:31>, when Andrew Lunn wrote:
->
-> Reverse christmass tree
->
->> +
->> +static int ax88796c_process_isr(struct ax88796c_device *ax_local)
->> +{
->> +	u16 isr;
->> +	u8 done =3D 0;
->> +	struct net_device *ndev =3D ax_local->ndev;
->
-> ...
->
->> +static irqreturn_t ax88796c_interrupt(int irq, void *dev_instance)
->> +{
->> +	struct net_device *ndev =3D dev_instance;
->> +	struct ax88796c_device *ax_local =3D to_ax88796c_device(ndev);
->
-> ...
->
+On Thu, Oct 29, 2020 at 06:03:11PM +0100, Andrej Valek wrote:
+> Firmware file loadind for GT911 controller takes too much time (~60s).
+> There is no check that configuration is the same which is already present.
+> This happens always during boot, which makes touchscreen unusable.
+> 
+> Add there an option to prevent firmware file loading, but keep it enabled
+> by default.
 
-Doesn't work here - dependency. What next?
+I thought that Goodix was losing firmware loading at poweroff. Is this
+not the case with this model?
 
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
+Adding Hans as he was working with this driver/code.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Signed-off-by: Andrej Valek <andrej.valek@siemens.com>
+> ---
+>  drivers/input/touchscreen/goodix.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/input/touchscreen/goodix.c b/drivers/input/touchscreen/goodix.c
+> index 02c75ea385e08..44336ecd2acdf 100644
+> --- a/drivers/input/touchscreen/goodix.c
+> +++ b/drivers/input/touchscreen/goodix.c
+> @@ -941,7 +941,9 @@ static int goodix_get_gpio_config(struct goodix_ts_data *ts)
+>  	default:
+>  		if (ts->gpiod_int && ts->gpiod_rst) {
+>  			ts->reset_controller_at_probe = true;
+> -			ts->load_cfg_from_disk = true;
+> +			/* Prevent cfg loading for each start */
+> +			ts->load_cfg_from_disk = !device_property_read_bool(dev,
+> +						 "touchscreen-do-not-load-fw");
+>  			ts->irq_pin_access_method = IRQ_PIN_ACCESS_GPIO;
+>  		}
+>  	}
+> -- 
+> 2.20.1
+> 
 
------BEGIN PGP SIGNATURE-----
+Thanks.
 
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl+bJqUACgkQsK4enJil
-gBAKfwgArpf5SfpOHrSeEwOv/FF2RM+YNK94OQLgTnozkUVduKhji/wW4VabUXdR
-44qDIB7qAclOhG3bZWhnkaARKko11JFLiTcd5/Mc3mQI78EwMYiiY/lzd6horFUl
-0awdth20AS8MDTt4j//19pAh3vOCokxqjfk3rRMxcLifNClhGce4S3wyT0N+PuwA
-iYi/phClga5nSPWILlFoebUWNuV9z319cqb9mOHvIsQdTaU5BI8ZHOprxthQmtWD
-JJti+axUev29O/1oVnH3a43Aq143Hf6blQ+V02LZv5DFmn3DEam4Cemt539YT2qy
-/Z3Xd2L8i4fPdLQDOnCzJJo3Nbp3xw==
-=CIbI
------END PGP SIGNATURE-----
---=-=-=--
+-- 
+Dmitry
