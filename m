@@ -2,102 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E18129E5DB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 09:10:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71EF629E63F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Oct 2020 09:20:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730301AbgJ2IKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 04:10:22 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:56583 "EHLO z5.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726660AbgJ2IHi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 04:07:38 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1603958858; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=H308bgHtNMckRynOpOEBssH/vo6aQHBFl+tdwdPWVmU=; b=HJYhj5ZOdLLbcA2jCnx2x1ooTLYegzVDyKfNgTU9D1KBMSq9NM6fKEzn15Ps9/5wznw20KYE
- BocAQnCwoIxlTHMC54sn4THw3Hc1Blx2AEtAILq85QJ2rSgw9P/UgZ+VIrjIS7PFtWuXaQKB
- Y6dOx5TCtgjEhtOnyp9VRjF3Sq4=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 5f9a784a44ab0dcc45674b59 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Oct 2020 08:07:38
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1761EC43387; Thu, 29 Oct 2020 08:07:38 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from akhilpo-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6D05DC433C9;
-        Thu, 29 Oct 2020 08:07:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6D05DC433C9
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     robh@kernel.org, dri-devel@freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jcrouse@codeaurora.org, mka@chromium.org, robdclark@gmail.com,
-        dianders@chromium.org
-Subject: [PATCH v4 3/3] dt-bindings: drm/msm/gpu: Add cooling device support
-Date:   Thu, 29 Oct 2020 13:37:21 +0530
-Message-Id: <1603958841-20233-3-git-send-email-akhilpo@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1603958841-20233-1-git-send-email-akhilpo@codeaurora.org>
-References: <1603958841-20233-1-git-send-email-akhilpo@codeaurora.org>
+        id S1727210AbgJ2IUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 04:20:37 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:37205 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726392AbgJ2IUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 04:20:37 -0400
+X-UUID: 002690c0a75444e7a1a8e4e8a1957422-20201029
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=o3Qv9OfYUwrK9tVE0LcM9g+mhJJ29QPAQxRIwyUon6o=;
+        b=toC2fsuuN27LunQYhD4azaeoj1sETWqhOJAtJg6AnEebdikM9i7hcB3Gkro4MYqnUlFUVC45mnLV5/BjWsVxGR/XHVgtRueF5kjmZQcPZui5ddzi2ePAan1v+8uHXWUxqWZwUvkoXVCl6Gl8GA9Hj5+Nx0cmN+jHjLJHmLym4KI=;
+X-UUID: 002690c0a75444e7a1a8e4e8a1957422-20201029
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <chuanjia.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 972438657; Thu, 29 Oct 2020 16:15:23 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 29 Oct 2020 16:15:19 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 29 Oct 2020 16:15:19 +0800
+From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <yong.wu@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>, <chuanjia.liu@mediatek.com>
+Subject: [PATCH v7 0/4] PCI: mediatek: Spilt PCIe node to comply with hardware design
+Date:   Thu, 29 Oct 2020 16:15:09 +0800
+Message-ID: <20201029081513.10562-1-chuanjia.liu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add cooling device support to gpu. A cooling device is bound to a
-thermal zone to allow thermal mitigation.
-
-Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
----
- Documentation/devicetree/bindings/display/msm/gpu.txt | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-index 1af0ff1..090dcb3 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.txt
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.txt
-@@ -39,6 +39,10 @@ Required properties:
-         a4xx Snapdragon SoCs. See
-         Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
- 
-+Optional properties:
-+- #cooling-cells: The value must be 2. For details, please refer
-+	Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml.
-+
- Example 3xx/4xx:
- 
- / {
-@@ -61,6 +65,7 @@ Example 3xx/4xx:
- 		power-domains = <&mmcc OXILICX_GDSC>;
- 		operating-points-v2 = <&gpu_opp_table>;
- 		iommus = <&gpu_iommu 0>;
-+		#cooling-cells = <2>;
- 	};
- 
- 	gpu_sram: ocmem@fdd00000 {
-@@ -98,6 +103,8 @@ Example a6xx (with GMU):
- 		reg = <0x5000000 0x40000>, <0x509e000 0x10>;
- 		reg-names = "kgsl_3d0_reg_memory", "cx_mem";
- 
-+		#cooling-cells = <2>;
-+
- 		/*
- 		 * Look ma, no clocks! The GPU clocks and power are
- 		 * controlled entirely by the GMU
--- 
-2.7.4
+SW4gY3VycmVudCBhcmNoaXRlY3R1cmUsIE1TSSBkb21haW4gd2lsbCBiZSBpbmhlcml0ZWQgZnJv
+bSB0aGUgcm9vdA0KYnJpZGdlLCBhbmQgYWxsIG9mIHRoZSBkZXZpY2VzIHdpbGwgc2hhcmUgdGhl
+IHNhbWUgTVNJIGRvbWFpbi4NCkhlbmNlIHRoYXQsIHRoZSBQQ0llIGRldmljZXMgd2lsbCBub3Qg
+d29yayBwcm9wZXJseSBpZiB0aGUgaXJxIG51bWJlcg0Kd2hpY2ggcmVxdWlyZWQgaXMgbW9yZSB0
+aGFuIDMyLg0KU3BsaXQgdGhlIFBDSWUgbm9kZSBmb3IgTVQyNzEyIGFuZCBNVDc2MjIgcGxhdGZv
+cm0gdG8gZml4IE1TSSBpc3N1ZQ0KYW5kIGNvbXBseSB3aXRoIHRoZSBoYXJkd2FyZSBkZXNpZ24u
+DQoNCmNoYW5nZSBub3RlOg0KICB2NzpkdC1iaW5kaW5ncyBmaWxlIHdhcyBtb2RpZmllZCBhcyBz
+dWdnZXN0ZWQgYnkgUm9iLCBvdGhlciBmaWxlIG5vDQogICAgIGNoYW5nZS4NCiAgdjY6Rml4IHlh
+bWwgZXJyb3IuIG1ha2Ugc3VyZSBkcml2ZXIgY29tcGF0aWJsZSB3aXRoIG9sZCBhbmQgDQogICAg
+IG5ldyBEVFMgZm9ybWF0Lg0KICB2NTpyZWJhc2UgZm9yIDUuOS1yYzEsIG5vIGNvZGUgY2hhbmdl
+LiANCiAgdjQ6Y2hhbmdlIGNvbW1pdCBtZXNzYWdlIGR1ZSB0byBiYXllcyBzdGF0aXN0aWNhbCBi
+b2dvZmlsdGVyDQogICAgIGNvbnNpZGVycyB0aGlzIHNlcmllcyBwYXRjaCBTUEFNLg0KICB2Mzpy
+ZWJhc2UgZm9yIDUuOC1yYzEuIE9ubHkgY29sbGVjdCBhY2sgb2YgUnlkZXIsIE5vIGNvZGUgY2hh
+bmdlLg0KICB2MjpjaGFuZ2UgdGhlIGFsbG9jYXRpb24gb2YgTVQyNzEyIFBDSWUgTU1JTyBzcGFj
+ZSBkdWUgdG8gdGhlDQogICAgIGFsbG9jYXRpb24gc2l6ZSBpcyBub3QgcmlnaHQgaW4gdjEuDQoN
+CkNodWFuamlhIExpdSAoNCk6DQogIGR0LWJpbmRpbmdzOiBwY2k6IG1lZGlhdGVrOiBNb2RpZmll
+ZCB0aGUgRGV2aWNlIHRyZWUgYmluZGluZ3MNCiAgUENJOiBtZWRpYXRlazogQWRkIG5ldyBtZXRo
+b2QgdG8gZ2V0IHNoYXJlZCBwY2llLWNmZyBiYXNlIGFuZCBpcnENCiAgYXJtNjQ6IGR0czogbWVk
+aWF0ZWs6IFNwbGl0IFBDSWUgbm9kZSBmb3IgTVQyNzEyIGFuZCBNVDc2MjINCiAgQVJNOiBkdHM6
+IG1lZGlhdGVrOiBNb2RpZmllZCBNVDc2MjkgUENJZSBub2RlDQoNCiAgLi4uL2JpbmRpbmdzL3Bj
+aS9tZWRpYXRlay1wY2llLWNmZy55YW1sICAgICAgIHwgIDM5ICsrKysrDQogIC4uLi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLnR4dCB8IDEyOSArKysrKysrKysrKy0tLS0t
+LS0NCiAgYXJjaC9hcm0vYm9vdC9kdHMvbXQ3NjI5LXJmYi5kdHMgICAgICAgICAgICAgIHwgICAz
+ICstDQogIGFyY2gvYXJtL2Jvb3QvZHRzL210NzYyOS5kdHNpICAgICAgICAgICAgICAgICB8ICAy
+MiArLS0NCiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDI3MTJlLmR0c2kgICAgIHwg
+IDc1ICsrKysrKy0tLS0NCiAgLi4uL2R0cy9tZWRpYXRlay9tdDc2MjItYmFuYW5hcGktYnBpLXI2
+NC5kdHMgIHwgIDE2ICstDQogIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ3NjIyLXJm
+YjEuZHRzICB8ICAgNiArLQ0KICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210NzYyMi5k
+dHNpICAgICAgfCAgNjYgKysrKysrLS0tDQogIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1t
+ZWRpYXRlay5jICAgICAgICB8ICAyMyArKy0NCiAgOSBmaWxlcyBjaGFuZ2VkLCAyNDggaW5zZXJ0
+aW9ucygrKSwgMTMxIGRlbGV0aW9ucygtKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtY2ZnLnlhbWwNCg0KIC0t
+IA0KIDIuMTguMA0K
 
