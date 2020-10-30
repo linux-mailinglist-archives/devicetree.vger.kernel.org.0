@@ -2,93 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4162A010D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9D902A0117
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:19:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726240AbgJ3JS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 05:18:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45788 "EHLO mail.kernel.org"
+        id S1725946AbgJ3JT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 05:19:56 -0400
+Received: from foss.arm.com ([217.140.110.172]:56812 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725808AbgJ3JS1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 05:18:27 -0400
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 468C1221FF;
-        Fri, 30 Oct 2020 09:18:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604049506;
-        bh=41CsPVrmLRTWYg3B1zMTIDApQHnGk5g2mzfYPc3CDZk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0BFjXnZCyCoaPQgPnjyfUutyINgXG8mk+sVhP65jtk9FKk2gy9zExgJYSsBnwXdkD
-         eadDFfV9/NA8Rg9d+uxs3NmM4vuLp4ZHuQrc5zaJqkrFRZhyeY87DicrIbOvmvgMvv
-         zrOrZZILJwEbbsv5272xZUTvnV8W3D8iqk1ZmW6s=
-Received: by mail-ej1-f49.google.com with SMTP id 7so7662483ejm.0;
-        Fri, 30 Oct 2020 02:18:26 -0700 (PDT)
-X-Gm-Message-State: AOAM531KFW2oS5a5tO5il1I8WpVh5EPIGlxlyCBmVn3q5WotbNMX16TP
-        VR7kaQqeSCZtNmvj5+USxFlt7fW+7Bw5IFzMFpI=
-X-Google-Smtp-Source: ABdhPJw8ybYdZkgu/ZUNenftV4PFN3bC42EE8St3lWNKB35w7dhI7OjNeL+oewCWtSCY6ivHYDKHaxxLJ4p637TxYg4=
-X-Received: by 2002:a17:906:6a07:: with SMTP id o7mr1435936ejr.454.1604049504625;
- Fri, 30 Oct 2020 02:18:24 -0700 (PDT)
+        id S1725808AbgJ3JTy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 05:19:54 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C4796139F;
+        Fri, 30 Oct 2020 02:19:53 -0700 (PDT)
+Received: from [10.57.13.192] (unknown [10.57.13.192])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 946443F719;
+        Fri, 30 Oct 2020 02:19:50 -0700 (PDT)
+Subject: Re: [PATCH 0/4] Add sustainable OPP concept
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     vincent.guittot@linaro.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
+        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com
+References: <20201028140847.1018-1-lukasz.luba@arm.com>
+ <20201029074057.6ugmwyzna52x3oli@vireshk-i7>
+ <20201029075356.rruej6jlerhfa4oy@vireshk-i7>
+ <228fa1b3-bbd3-6941-fd4b-06581016d839@arm.com>
+ <20201030082937.xgjmko2ohwhkt6f5@vireshk-i7>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <a0a6db69-fc3e-c39f-7586-5ac3227b746e@arm.com>
+Date:   Fri, 30 Oct 2020 09:19:48 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20201001170759.9592-1-krzk@kernel.org> <20201030071102.GF28755@dragon>
-In-Reply-To: <20201030071102.GF28755@dragon>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 30 Oct 2020 10:18:12 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPd14EiwWdfYjJOj8Ym0jM2pnD-Kreo9FHKWTeCPDgZBwQ@mail.gmail.com>
-Message-ID: <CAJKOXPd14EiwWdfYjJOj8Ym0jM2pnD-Kreo9FHKWTeCPDgZBwQ@mail.gmail.com>
-Subject: Re: [PATCH 00/12] dt-bindings: arm: fsl: fix and document compatibles
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>, Li Yang <leoyang.li@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201030082937.xgjmko2ohwhkt6f5@vireshk-i7>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Oct 2020 at 08:11, Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Thu, Oct 01, 2020 at 07:07:47PM +0200, Krzysztof Kozlowski wrote:
-> > Hi,
-> >
-> > This is a continuation of my series:
-> > https://lore.kernel.org/linux-arm-kernel/20200930190143.27032-1-krzk@kernel.org/
-> >
-> > It is rebased on top of it and finally fixes remaining i.MX2 - i.MX8
-> > boards compatibles.
-> >
-> > There is ongoing discussion in my previous patchset about imx6q-pico
-> > (Technexion) board compatibles so the DTS is marked as RFC.
-> >
-> > Best regards,
-> > Krzysztof
-> >
-> >
-> > Krzysztof Kozlowski (12):
-> >   dt-bindings: vendor-prefixes: add Element14
-> >   dt-bindings: arm: fsl: document i.MX6Q boards
-> >   dt-bindings: arm: fsl: document i.MX6QP boards
-> >   dt-bindings: arm: fsl: document i.MX6SL boards
-> >   dt-bindings: arm: fsl: document i.MX6SX boards
-> >   dt-bindings: arm: fsl: document i.MX6UL boards
-> >   dt-bindings: arm: fsl: document i.MX6ULL boards
-> >   dt-bindings: arm: fsl: document i.MX7S boards
->
-> This one doesn't apply ...
 
-Thanks. I will rebase and resend.
 
-Best regards,
-Krzysztof
+On 10/30/20 8:29 AM, Viresh Kumar wrote:
+> On 29-10-20, 09:56, Lukasz Luba wrote:
+>> There were discussions about Energy Model (EM), scale of values (mW or
+>> abstract scale) and relation to EAS and IPA. You can find quite long
+>> discussion below v2 [1] (there is also v3 send after agreement [2]).
+>> We have in thermal DT binding: 'sustainable-power' expressed in mW,
+>> which is used by IPA, but it would not support bogoWatts.
+> 
+> Why so ? (I am sorry, can't dig into such long threads without knowing
+> which message I am looking for :( ). Lets assume if that same property
+> can be used for bogoWatts, will that be sufficient for you ? Or you
+> will still need this patch set ?
+
+I had a patch for that, but I know Rob's opinion on this one [1] (which
+is below in that thread).
+
+> 
+>> The sustainable power is used for estimation of internal coefficients
+>> (also for power budget), which I am trying to change to work with
+>> 'abstract scale' [3][4].
+>>
+>> This would allow to estimate sustainable power of the system based on
+>> CPUs, GPU opp-sustainable points, where we don't have
+>> 'sustainable-power' or devices using bogoWatts.
+> 
+> Then maybe we should ahve sustainable-power in those cases too instead
+> of adding a meaningless (IMHO) binding.
+
+How about dropping the DT binding, but just adding this new field into
+dev_pm_opp? There will be no DT parsing code, just the get/set
+functions, which will be used in SCMI patch 4/4 and in IPA?
+That would not require to change any DT bindings.
+
+> 
+> Honestly speaking, as Nishanth said, there is nothing like a
+> sustainable OPP in reality. Moreover, the DT needs to describe the
+> hardware as it is (and in some cases the behavior of the firmware).
+> And what you are trying to add here is none of them and so it should
+> not go in DT as such. There are too many factors which play a part
+> here, ambient temperature is one of the biggest ones, and the software
+> needs to find the sustainable OPP by itself based on the current
+> situation.
+> 
+> So I don't really see a good reason why such a property should be
+> added here.
+
+I see. Just for your information SCMI supports 'Sustained Performance'
+  expressed in kHz.
+
+> 
+> Coming to properties like suspend-opp, it made sense for some of the
+> platforms as the last configured frequency of the CPU plays a part in
+> deciding the power consumed by the SoC even when the system is
+> suspended. And finding an optimal OPP (normally the lowest) there
+> would make sense and so was that property added.
+> 
+
+I also found that suspend-opp (83f8ca45afbf041e312909).
+I hope you wouldn't mind if I add this new field into dev_pm_opp (no DT
+support, just FW).
+
+
+[1] https://lore.kernel.org/lkml/20201002114426.31277-4-lukasz.luba@arm.com/
