@@ -2,83 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7B829FF06
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 08:46:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9D629FF30
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 08:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725999AbgJ3Hqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 03:46:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55756 "EHLO mail.kernel.org"
+        id S1725780AbgJ3H5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 03:57:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58880 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725780AbgJ3Hqa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 03:46:30 -0400
+        id S1725355AbgJ3H5L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 03:57:11 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9EF0320719;
-        Fri, 30 Oct 2020 07:46:23 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8016420719;
+        Fri, 30 Oct 2020 07:57:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604043989;
-        bh=XbzJCs+1Vbu1sG68hX1A1BQWrwJAMbx09Z0EixXEc0s=;
+        s=default; t=1604044630;
+        bh=skMmy2Vr9/AuSxj3bzuIBOiuSOxk+xs9CPjuY1ruZJA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mVO09EOEVQDhIxqmOhZvn3m9RP1yKZhwB2NqZzP00ErBPlqSxU8VLeGJL+iVw4kbj
-         DewkGZl/M3Nti9Ore8fBGWeevRbV3MJC+iGEhas49jvcEG/fLOnj8t5ple5dCiw5BW
-         P1ipVg/apt56gRauVDsYN2Vz7SHtae83kdV+RQZ8=
-Date:   Fri, 30 Oct 2020 15:46:17 +0800
+        b=04Arz/yzW8Lq26ElySPjCpknyJJ6S9D54AU8XABbc64vFnnBR6esPj3/6jZ0yNQ0e
+         5IYDgU5xZyHyDIleWgOztBm0sX2R+v4ZWSfv0nTpDRg6yI5A5wLA+X72TLxs9qV6NB
+         jG0IJ4aJZBFhnCGty6y/9dP5ZaGqX/uOWdeX8r8c=
+Date:   Fri, 30 Oct 2020 15:57:04 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Dahl <post@lespocky.de>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
         Rob Herring <robh+dt@kernel.org>,
-        Alexander Dahl <ada@thorsis.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v7 08/12] ARM: dts: imx: Fix schema warnings for pwm-leds
-Message-ID: <20201030074616.GI28755@dragon>
-References: <20201005203451.9985-1-post@lespocky.de>
- <20201005203451.9985-9-post@lespocky.de>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm-beacon-som: Fix Choppy BT audio
+Message-ID: <20201030075703.GJ28755@dragon>
+References: <20201007130237.230613-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201005203451.9985-9-post@lespocky.de>
+In-Reply-To: <20201007130237.230613-1-aford173@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 05, 2020 at 10:34:47PM +0200, Alexander Dahl wrote:
-> The node names for devices using the pwm-leds driver follow a certain
-> naming scheme (now).  Parent node name is not enforced, but recommended
-> by DT project.
+On Wed, Oct 07, 2020 at 08:02:37AM -0500, Adam Ford wrote:
+> When streaming bluetooth audio, the sound is choppy due to the
+> fact that the default baud rate of the HCI interface is too slow
+> to handle 16-bit stereo at 48KHz.
 > 
->   DTC     arch/arm/boot/dts/imx53-ppd.dt.yaml
->   CHECK   arch/arm/boot/dts/imx53-ppd.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/imx53-ppd.dt.yaml: leds-brightness: 'alarm-brightness' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
->   DTC     arch/arm/boot/dts/imx6dl-cubox-i.dt.yaml
->   CHECK   arch/arm/boot/dts/imx6dl-cubox-i.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/imx6dl-cubox-i.dt.yaml: pwmleds: 'front' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
->   DTC     arch/arm/boot/dts/imx6dl-cubox-i-emmc-som-v15.dt.yaml
->   CHECK   arch/arm/boot/dts/imx6dl-cubox-i-emmc-som-v15.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/imx6dl-cubox-i-emmc-som-v15.dt.yaml: pwmleds: 'front' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
->   DTC     arch/arm/boot/dts/imx6dl-cubox-i-som-v15.dt.yaml
->   CHECK   arch/arm/boot/dts/imx6dl-cubox-i-som-v15.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/imx6dl-cubox-i-som-v15.dt.yaml: pwmleds: 'front' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
->   DTC     arch/arm/boot/dts/imx6sx-softing-vining-2000.dt.yaml
->   CHECK   arch/arm/boot/dts/imx6sx-softing-vining-2000.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/imx6sx-softing-vining-2000.dt.yaml: pwmleds: 'blue', 'green', 'red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> The Bluetooth chip is capable of up to 4M baud on the serial port,
+> so this patch sets the max-speed to 4000000 in order to properly
+> stream audio over the Bluetooth.
 > 
-> Signed-off-by: Alexander Dahl <post@lespocky.de>
+> Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
 Applied, thanks.
