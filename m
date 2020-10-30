@@ -2,90 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD7E22A0CFB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78AA52A0D28
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:12:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727014AbgJ3SBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 14:01:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39852 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726951AbgJ3SBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 14:01:03 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4DC7C0613CF;
-        Fri, 30 Oct 2020 11:01:02 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id c16so3742559wmd.2;
-        Fri, 30 Oct 2020 11:01:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=lBTe67Ruhj9ZxKfZu9SkKaoknEjrb1M2KTUSKiTS93w=;
-        b=J43rbx0mOC0X1soYthDm9e8MBasFvBiVlfwiySp++iZtC7tRwMMIXBYujnMBPEUbYI
-         vkdCHMN+rnNL/b0bzh7VuaENPKbisQeq2g+hBJyD12AWIMZwOlUZ3/pcze31bcdkPrYY
-         kUzqMQR3p82eIdFbE24I9isdSBvjflsqM1tNxwwSO47qpg7/maWZASfh6izn7cpfijeO
-         QFMLcABlGdXzUtMzVzUWYnrINCc82mAAgmj8DIvaR1C/HejtrFxZH3lUyAe2KWUfFoVe
-         +90vDgu2VkEfU5KLknDUketFwT6PyGWOgdwS0vulMlLLdzNyh4Ti5J3FGjW2q+uTJJHS
-         9qig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=lBTe67Ruhj9ZxKfZu9SkKaoknEjrb1M2KTUSKiTS93w=;
-        b=pnvOZP3J30+eCsB41syEaFQ4Knp2OydmX50uyIkiRaiHpzMdxKlIfa1LNb4N2NcgCV
-         WjWf5hyF+aTco+lxXG3U8d4fOwhxbdMs+TRcA4L49ICFXN6HvbEpoS5SDnpDVU80mkDD
-         ImixZMJF9wYrcYAjiXEswdoY2WgvaEzXTX7I5y6IcgKR1UYYRerghaQ4obrtWCIaby90
-         Jq2JY3WUtGL5RRsI2vDX6Dn4g2OjnC9Yt8JZARcoOnQ6k50EMGtGUB6fo5exfebccYCR
-         /fR7c+HscTt3YdYzoVG/oYiHQ7ojmRE2kmNQClVglIDx3JrJeYFOyzOaADg1Wy94RGR5
-         YnUQ==
-X-Gm-Message-State: AOAM532oKhzH4vRmYJesS2Cq/lRxFZL3n7OHRSVCRmLuilRTPzu9laI2
-        sWOSaETjvGRIxe0foNPGE9o=
-X-Google-Smtp-Source: ABdhPJwC01U3vjAh2A+zDHHy1FB0x3lZvf5hR/bOZulRgtWQiwIp0Qov0R/6GZyFV1x2HfibS0kwDQ==
-X-Received: by 2002:a05:600c:4114:: with SMTP id j20mr3970462wmi.62.1604080861592;
-        Fri, 30 Oct 2020 11:01:01 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id d8sm4335619wmb.11.2020.10.30.11.00.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 11:01:00 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: add watchdog to g12-common dtsi
-Date:   Fri, 30 Oct 2020 18:00:57 +0000
-Message-Id: <20201030180057.23886-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726317AbgJ3SMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 14:12:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54602 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725844AbgJ3SMa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 14:12:30 -0400
+Received: from gaia (unknown [95.145.162.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D3A17206E5;
+        Fri, 30 Oct 2020 18:11:37 +0000 (UTC)
+Date:   Fri, 30 Oct 2020 18:11:35 +0000
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
+        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        linux-acpi@vger.kernel.org, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 0/7] arm64: Default to 32-bit wide ZONE_DMA
+Message-ID: <20201030181134.GE23196@gaia>
+References: <20201029172550.3523-1-nsaenzjulienne@suse.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201029172550.3523-1-nsaenzjulienne@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-G12 vendor kernels show the watchdog on the same address as AXG
-so add the node to meson-g12-common.dtsi. GX boards inherit the
-same from meson-gx.dtsi.
+On Thu, Oct 29, 2020 at 06:25:43PM +0100, Nicolas Saenz Julienne wrote:
+> Ard Biesheuvel (1):
+>   arm64: mm: Set ZONE_DMA size based on early IORT scan
+> 
+> Nicolas Saenz Julienne (6):
+>   arm64: mm: Move reserve_crashkernel() into mem_init()
+>   arm64: mm: Move zone_dma_bits initialization into zone_sizes_init()
+>   of/address: Introduce of_dma_get_max_cpu_address()
+>   of: unittest: Add test for of_dma_get_max_cpu_address()
+>   arm64: mm: Set ZONE_DMA size based on devicetree's dma-ranges
+>   mm: Remove examples from enum zone_type comment
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Thanks for putting this together. I had a minor comment but the patches
+look fine to me. We still need an ack from Rob on the DT patch and I can
+queue the series for 5.11.
+
+Could you please also test the patch below on top of this series? It's
+the removal of the implied DMA offset in the max_zone_phys()
+calculation.
+
+--------------------------8<-----------------------------
+From 3ae252d888be4984a612236124f5b099e804c745 Mon Sep 17 00:00:00 2001
+From: Catalin Marinas <catalin.marinas@arm.com>
+Date: Fri, 30 Oct 2020 18:07:34 +0000
+Subject: [PATCH] arm64: Ignore any DMA offsets in the max_zone_phys()
+ calculation
+
+Currently, the kernel assumes that if RAM starts above 32-bit (or
+zone_bits), there is still a ZONE_DMA/DMA32 at the bottom of the RAM and
+such constrained devices have a hardwired DMA offset. In practice, we
+haven't noticed any such hardware so let's assume that we can expand
+ZONE_DMA32 to the available memory if no RAM below 4GB. Similarly,
+ZONE_DMA is expanded to the 4GB limit if no RAM addressable by
+zone_bits.
+
+Signed-off-by: Catalin Marinas <catalin.marinas@arm.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/mm/init.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 1e83ec5b8c91..92afec3ffb2d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2179,6 +2179,12 @@
- 				amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
- 			};
+diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+index 095540667f0f..362160e16fb2 100644
+--- a/arch/arm64/mm/init.c
++++ b/arch/arm64/mm/init.c
+@@ -175,14 +175,21 @@ static void __init reserve_elfcorehdr(void)
+ #endif /* CONFIG_CRASH_DUMP */
  
-+			watchdog: wtd@f0d0 {
-+				compatible = "amlogic,meson-gxbb-wdt";
-+				reg = <0x0 0xf0d0 0x0 0x10>;
-+				clocks = <&xtal>;
-+			};
+ /*
+- * Return the maximum physical address for a zone with a given address size
+- * limit. It currently assumes that for memory starting above 4G, 32-bit
+- * devices will use a DMA offset.
++ * Return the maximum physical address for a zone accessible by the given bits
++ * limit. If the DRAM starts above 32-bit, expand the zone to the maximum
++ * available memory, otherwise cap it at 32-bit.
+  */
+ static phys_addr_t __init max_zone_phys(unsigned int zone_bits)
+ {
+-	phys_addr_t offset = memblock_start_of_DRAM() & GENMASK_ULL(63, zone_bits);
+-	return min(offset + (1ULL << zone_bits), memblock_end_of_DRAM());
++	phys_addr_t zone_mask = (1ULL << zone_bits) - 1;
++	phys_addr_t phys_start = memblock_start_of_DRAM();
 +
- 			spicc0: spi@13000 {
- 				compatible = "amlogic,meson-g12a-spicc";
- 				reg = <0x0 0x13000 0x0 0x44>;
--- 
-2.17.1
-
++	if (!(phys_start & U32_MAX))
++		zone_mask = PHYS_ADDR_MAX;
++	else if (!(phys_start & zone_mask))
++		zone_mask = U32_MAX;
++
++	return min(zone_mask + 1, memblock_end_of_DRAM());
+ }
+ 
+ static void __init zone_sizes_init(unsigned long min, unsigned long max)
