@@ -2,135 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67DF62A080B
+	by mail.lfdr.de (Postfix) with ESMTP id D45672A080C
 	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 15:37:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726703AbgJ3Ohf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 10:37:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35794 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726813AbgJ3Ohe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 10:37:34 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E93EC0613D2
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 07:37:33 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id b8so6758233wrn.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 07:37:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LzZh3XDG0mukcB0i6UGoQqeuQTlDt+ZadapYwoHki6w=;
-        b=PKvJHqcNYdJW++F0cK3QdV1zjaBzxTRCv5vhX4WWc74HsnkNOW2boPcbIEAfum+fBi
-         B/P5FaDTDLDZChtNdf9wwJl4BVBpNRTymjwisnPGtxZZDgV+bZdti6RZ05YHlxPId9ZW
-         bW8JMK6AHibUdKa0nvDqmyyGGx6BeCS5UC1BKuOwbaX3kUDdL/qsiiVX2a/q6m4CmnXp
-         SSHXiEZZD4rbLZGzwGrHP0BGY4oJzENhhdR716+8wI3YGc+oK9Kp4UcT8M7YNlkvwCvj
-         iotghBj+ZqloR71rF4GFxqcpz/owyfaaF4Jjpwujdp6oJIhgcPQiWk+1lhsMJkwh5B08
-         H4fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LzZh3XDG0mukcB0i6UGoQqeuQTlDt+ZadapYwoHki6w=;
-        b=kgj84KaNgGsrglPhiuQEfaoDgsCMNO3WgeTMnneX+YAMbzf2d+KUy4H4PcEZXxxMxL
-         6fSiB6X+ID1grJpSJr33bFZWL76cf1cdI7LGYrGBAiNTrT+i09rz2damXpnu4KF98Vi1
-         /ttfyOaTGY2gZdgXdIJ6cIRoXPmU6d2y15Mzn/KsooFlVnJD45GUFU2legCc/DRqg4Xn
-         OAe8g/gOE+VjrMpp/mXUE1gd+msZ0mIgQq8Cd7vbVwHTa2D6uYt7g3oxHDA4BFzEeLsk
-         nx4B1P+fEYvtlTf+urdkWg5F2MUUXw7mPu/QW+qDz8/7ZtoR2bUDh7qRrvPIZz8tXM5N
-         tD5g==
-X-Gm-Message-State: AOAM531uZCA1Lfgw7xdxmpWlfe1mYU1eshQcJOtvXi74HSP8cqE5zV+5
-        mpKF6qliX1HvYPn1wKTQKzT7Wg==
-X-Google-Smtp-Source: ABdhPJwfmKHE9tpJbPP/m+MZUzeVqC6HJIZFOAipny4H8X0b0Mu1A+//qbtSHVOIRt8w+qwQ/uSX+w==
-X-Received: by 2002:a5d:4747:: with SMTP id o7mr3689083wrs.423.1604068651798;
-        Fri, 30 Oct 2020 07:37:31 -0700 (PDT)
-Received: from localhost.localdomain ([37.172.114.188])
-        by smtp.gmail.com with ESMTPSA id y200sm351481wmc.23.2020.10.30.07.37.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 07:37:31 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     hverkuil@xs4all.nl, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 1/4] dt-bindings: media: Add bindings for the Amlogic GE2D Accelerator Unit
-Date:   Fri, 30 Oct 2020 15:37:12 +0100
-Message-Id: <20201030143715.577641-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201030143715.577641-1-narmstrong@baylibre.com>
-References: <20201030143715.577641-1-narmstrong@baylibre.com>
+        id S1726813AbgJ3Ohi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 10:37:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37056 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726458AbgJ3Ohh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 10:37:37 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0B069206E3;
+        Fri, 30 Oct 2020 14:37:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604068656;
+        bh=NJEk1fOi2baSXrwNdn5V13l1z+e2gDcusHLmraYKMgo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NT7p7iVhiYQCc93ZdI9+xvsSoyTLlIaAUo01rL63ndPVHXIdVEBoSuuqny4XXI6Ir
+         04ToYVHYrXRwa08USQWrcDrep1P9ACW8DE8CX3EfXf7FEJON/lZyK8hPKhNOwQHBtS
+         gFANu6Q+ZvnMzq9MieFG5Mcf1yuhW3qO8jVGMF7g=
+Date:   Fri, 30 Oct 2020 14:37:29 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     tiwai@suse.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, tzungbi@google.com,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        shane.chien@mediatek.com, kuninori.morimoto.gx@renesas.com,
+        Trevor.Wu@mediatek.com, Bicycle.Tsai@mediatek.com
+Subject: Re: [PATCH v3 3/9] ASoC: mediatek: mt8192: support i2s in platform
+ driver
+Message-ID: <20201030143729.GF4405@sirena.org.uk>
+References: <1603526339-15005-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1603526339-15005-4-git-send-email-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eNMatiwYGLtwo1cJ"
+Content-Disposition: inline
+In-Reply-To: <1603526339-15005-4-git-send-email-jiaxin.yu@mediatek.com>
+X-Cookie: Blow it out your ear.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GE2D is a 2D accelerator with various features like configurable blitter
-with alpha blending, frame rotation, scaling, format conversion and colorspace
-conversion.
 
-This adds the bindings for the GE2D version found in the AXG SoCs Family.
+--eNMatiwYGLtwo1cJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/media/amlogic,axg-ge2d.yaml      | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+On Sat, Oct 24, 2020 at 03:58:53PM +0800, Jiaxin Yu wrote:
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
-new file mode 100644
-index 000000000000..bee93bd84771
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/amlogic,axg-ge2d.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic GE2D Acceleration Unit
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,axg-ge2d
-+
-+  interrupts:
-+    minItems: 1
-+
-+  reg:
-+    minItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ge2d: ge2d@ff940000 {
-+          compatible = "amlogic,axg-ge2d";
-+          reg = <0xff940000 0x10000>;
-+          interrupts = <150>;
-+          clocks = <&clk_ge2d>;
-+          resets = <&reset_ge2d>;
-+    };
--- 
-2.25.1
+> +static const struct soc_enum mt8192_i2s_enum[] = {
+> +	SOC_ENUM_SINGLE_EXT(ARRAY_SIZE(mt8192_i2s_hd_str),
+> +			    mt8192_i2s_hd_str),
+> +};
 
+Why is this declared as a single element array?  It just makes all the
+usages look odd for no obvious gain.
+
+> +static int mtk_i2s_en_event(struct snd_soc_dapm_widget *w,
+> +			    struct snd_kcontrol *kcontrol,
+> +			    int event)
+
+> +	dev_info(cmpnt->dev, "%s(), name %s, event 0x%x\n",
+> +		 __func__, w->name, event);
+
+This should be dev_dbg() at most, _info() will be too noisy in the logs.
+Same for a lot of functions, including the stream callbacks.
+
+> +static int mtk_i2s_hd_en_event(struct snd_soc_dapm_widget *w,
+> +			       struct snd_kcontrol *kcontrol,
+> +			       int event)
+> +{
+> +	struct snd_soc_component *cmpnt = snd_soc_dapm_to_component(w->dapm);
+> +
+> +	dev_info(cmpnt->dev, "%s(), name %s, event 0x%x\n",
+> +		 __func__, w->name, event);
+> +
+> +	return 0;
+> +}
+
+This should just be removed entirely, there's trace in the core if you
+need logging in production systems - the tracepoints in particular are
+good for just leaving on all the time without adding overhead.
+
+> +	return (i2s_need_apll == cur_apll) ? 1 : 0;
+
+Please write normal conditional statements to improve legiblity.
+
+> +	if (rate == 44100)
+> +		regmap_write(afe->regmap, AFE_ASRC_2CH_CON3, 0x001B9000);
+> +	else if (rate == 32000)
+> +		regmap_write(afe->regmap, AFE_ASRC_2CH_CON3, 0x140000);
+> +	else
+> +		regmap_write(afe->regmap, AFE_ASRC_2CH_CON3, 0x001E0000);
+
+This would be better written as a switch statement.
+
+> +	/* Calibration setting */
+> +	regmap_write(afe->regmap, AFE_ASRC_2CH_CON4, 0x00140000);
+> +	regmap_write(afe->regmap, AFE_ASRC_2CH_CON9, 0x00036000);
+> +	regmap_write(afe->regmap, AFE_ASRC_2CH_CON10, 0x0002FC00);
+> +	regmap_write(afe->regmap, AFE_ASRC_2CH_CON6, 0x00007EF4);
+> +	regmap_write(afe->regmap, AFE_ASRC_2CH_CON5, 0x00FF5986);
+
+Are you sure this isn't system dependant?
+
+--eNMatiwYGLtwo1cJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+cJSgACgkQJNaLcl1U
+h9DnGwf/Sz+4iEFnBKdf1ReJm/KrWBeuGXFTFFpFEUkbpz6hVY2oN3efMZmKihbx
+SIG8+D3lwL24nhHvAO0EKiMWyoMbVLwdwglf2r94wOfAtkKcGvIGx7iNYJzZPohm
+9zkngD3hK/ZhXjTMRpXzIrQ7yKFyTtC6kEtAsmmquSzIeWaY9ZanzmT1MJL/bG8B
+EiH05GkWSRHPiJBtBDeeFs3r7oA2wJH7BZ1QIx56brGjtrNDQli+R+LxCAKt9ivj
+PjeOeBuu1+g8HLqHG4z4amUG4j3GEnhsjw3JXwJqoLIO+Xo+judD9VmmE4ZfJnsc
+L/jfSQ2e7b9D6e5N2jangPxVJuF9Fg==
+=pCPx
+-----END PGP SIGNATURE-----
+
+--eNMatiwYGLtwo1cJ--
