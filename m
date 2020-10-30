@@ -2,111 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9CF2A01D9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D67FC2A01E7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:56:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726061AbgJ3Jwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 05:52:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47850 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726112AbgJ3Jww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 05:52:52 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C9B8C0613D2
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:52:52 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id 13so4804121pfy.4
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:52:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=LouD1D0I3seOHVdhKfAMAsty+PIB9yldQNSOZd2AunQ=;
-        b=aJO1l8mh4uw/GnTl5HY0NA+dwk++sWXQuGfLTVtl533+jm1Ua8w+Wey6I5HA7kFbT7
-         /OrX0mM9SkI3hgIomS6aGj1VoU84VFIs/KngRRZZlv0eqFfA7QHc/dPusglaVUaZEHeS
-         bCc9UMq+1p3c5eBbePMJ1pnm9gmaKjIDe4AC9KLBvDw5vX1+/4iEjastJbhBYdAuq8NU
-         d07nCQ+GQrNbl7sOdhngJ4LJvFcudsJLAECxVwtud5DIg1uzO4jtHeIZh9B9LwUghSZU
-         FLeKjsbeoTK+tXDKFmhuXDgzbY/mAj5g/zqtQEJDat2mO1fqz9eBhdPk7zGyQs1YRdhL
-         4Xwg==
+        id S1725355AbgJ3J41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 05:56:27 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:30755 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726195AbgJ3J41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 05:56:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1604051785;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=RinIyWxJBbmsSNFfcXQ/y1B1X9TvLTOrZQPxs5n5iMY=;
+        b=YTvFcygVnjdgFfJief7gBgNp7MlmIYDOHkQzb3rFKqjug/vpzkCbHiFowyvax/Okfv4GVd
+        eyndwXdwuFP2C3t39nZjVWyBw6GryIFXvULnSVmMsGpfmw8cixEptlpmE/79TEmDn8tUeu
+        bOMvdkAJU0m6NUWgjtAGFOabpLCil8g=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-402-qnvtfIcKNUaN4gli3sKzrg-1; Fri, 30 Oct 2020 05:56:23 -0400
+X-MC-Unique: qnvtfIcKNUaN4gli3sKzrg-1
+Received: by mail-ed1-f70.google.com with SMTP id b68so368963edf.9
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:56:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LouD1D0I3seOHVdhKfAMAsty+PIB9yldQNSOZd2AunQ=;
-        b=bDpDyBQ1CkuTaX23VJWPZtRp7AJfCt3sWFUCmohzTvH9ojONd/La/QXy75mHQ7uazZ
-         UI8wkszSWD5JTZ4yigkZmulOdEp8lqTQXFBnURYEtEVwpjrN5V+OAFz9/HMlzXfrvX1C
-         jX44XuwEd1fJpRdz/YmA0Fj8sTGOzzZiBOElTjCXOnYAvOWz7SlIa1o9JmrRu07sf1Bt
-         Oq/8ZRajEiwaugQd6dRCRHlMUZFtpTzKMwZtoo0ORV3kLLNo4XTkXJFkBRFKT/sW11TP
-         a+FBlnZlH4Ip75xrKuM8n/AyGqDHWpQdtTHbItQ/GqlDEZeQreasfhhpgiTZkshgxPnt
-         rETg==
-X-Gm-Message-State: AOAM530/ZiNVBbFzpLBlwO0kltrLOzKtXvCfDA71970fHAuFpV2UO1uu
-        5JAbTC+pn6YbUBzonD/onZ/FrA==
-X-Google-Smtp-Source: ABdhPJwg8INqFRnK0JxdmUemZAqhRWMZQOBYvn0HloepQQgK4PC8ob7yeNm/niQ1Z7nrQd17NwIeSg==
-X-Received: by 2002:a17:90a:2ec1:: with SMTP id h1mr1894047pjs.51.1604051571650;
-        Fri, 30 Oct 2020 02:52:51 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id z10sm5422539pff.218.2020.10.30.02.52.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Oct 2020 02:52:50 -0700 (PDT)
-Date:   Fri, 30 Oct 2020 15:22:48 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     vincent.guittot@linaro.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
-        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com
-Subject: Re: [PATCH 0/4] Add sustainable OPP concept
-Message-ID: <20201030095248.abej6h5wphud2ihb@vireshk-i7>
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201029074057.6ugmwyzna52x3oli@vireshk-i7>
- <20201029075356.rruej6jlerhfa4oy@vireshk-i7>
- <228fa1b3-bbd3-6941-fd4b-06581016d839@arm.com>
- <20201030082937.xgjmko2ohwhkt6f5@vireshk-i7>
- <a0a6db69-fc3e-c39f-7586-5ac3227b746e@arm.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RinIyWxJBbmsSNFfcXQ/y1B1X9TvLTOrZQPxs5n5iMY=;
+        b=bPFJ9xp9LSTZL7QeZ7xKo9iY0u9/yvRTSF0AY9SR0NoJL1HqXMMyC2vjEEDLUUyss/
+         OhUalSFPulWUQY0S+xyPGY7jNUEe/0zNKwgMu8IkhCjS3rNRLcC6LAIFLyTbmznMWtnx
+         oUpzQre6FfjRFqHvgkzPGE7Muj/YuA8iT7DxFEj4rzWv3HdN8Ctui5+2FdgnXKNDPOFf
+         wROOQju/helmlg6QnykfIf1P2L7R1ujlPXrT8YdKhKxuX06Z5vRVlqauYso0yIZxBMQ9
+         VdDhZBgA/RHrj9Sz3tqiMjPEPkjVFUswBnaRbgWUNRZda+faife6tG4VRtMg5ZpPHyf8
+         grCw==
+X-Gm-Message-State: AOAM530eKuDpqKV9CsuGKoRDpXsiQtgi+Xa2BSXgQQuqMjHurfhzYeAx
+        8tnJ3sB2VASo1xtWtx1zMHHABu6o6Gq+n9Bf0ZH7lceX/mM4wDkXnT2AvKcspmI0sNU8gv+1mNb
+        HTITLRBTTX6/yfEsjeLkiPg==
+X-Received: by 2002:a17:906:3689:: with SMTP id a9mr1546509ejc.403.1604051781881;
+        Fri, 30 Oct 2020 02:56:21 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwk85LqSiQSvbeJC5mGEyPbxaBlbSfctyRwNx4tsW6atojGhk3NEbe4WQ2HDSLwJT9DVpW2Bw==
+X-Received: by 2002:a17:906:3689:: with SMTP id a9mr1546492ejc.403.1604051781718;
+        Fri, 30 Oct 2020 02:56:21 -0700 (PDT)
+Received: from x1.localdomain (2001-1c00-0c0c-fe00-6c10-fbf3-14c4-884c.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:6c10:fbf3:14c4:884c])
+        by smtp.gmail.com with ESMTPSA id p16sm2822778edu.74.2020.10.30.02.56.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Oct 2020 02:56:21 -0700 (PDT)
+Subject: Re: [PATCH 1/3] Input: goodix - add option to disable firmware
+ loading
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andrej Valek <andrej.valek@siemens.com>
+Cc:     nick@shmanahar.org, hadess@hadess.net, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20201029170313.25529-1-andrej.valek@siemens.com>
+ <20201029170313.25529-2-andrej.valek@siemens.com>
+ <20201029203608.GE2547185@dtor-ws>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <a5964429-a472-6b78-e53c-69b4cb115b94@redhat.com>
+Date:   Fri, 30 Oct 2020 10:56:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a0a6db69-fc3e-c39f-7586-5ac3227b746e@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20201029203608.GE2547185@dtor-ws>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-10-20, 09:19, Lukasz Luba wrote:
-> How about dropping the DT binding, but just adding this new field into
-> dev_pm_opp? There will be no DT parsing code, just the get/set
-> functions, which will be used in SCMI patch 4/4 and in IPA?
-> That would not require to change any DT bindings.
- 
-> I see. Just for your information SCMI supports 'Sustained Performance'
->  expressed in kHz.
+Hi,
 
-Even that doesn't sound great (but then I don't have any background of
-why that was added there). The problem is not about how do we get this
-data into the kernel (from DT or firmware), but why is it even
-required. I really feel that software can find the sustainable OPP by
-itself (which can keep changing).
+On 10/29/20 9:36 PM, Dmitry Torokhov wrote:
+> Hi Andrej,
+> 
+> On Thu, Oct 29, 2020 at 06:03:11PM +0100, Andrej Valek wrote:
+>> Firmware file loadind for GT911 controller takes too much time (~60s).
+>> There is no check that configuration is the same which is already present.
+>> This happens always during boot, which makes touchscreen unusable.
+>>
+>> Add there an option to prevent firmware file loading, but keep it enabled
+>> by default.
+> 
+> I thought that Goodix was losing firmware loading at poweroff. Is this
+> not the case with this model?
 
-About moving it into the OPP core, I am open to getting something
-added there if it is really useful and if the OPP core is the best
-suited place to keep such data. Though I am not sure of that for this
-field right now.
+So first of all there are 2 sorts of firmware involved with the
+Goodix touchscreen controllers, the actual firmware and a block
+of config data for that firmware which I presume adjusts it for
+the specific (model of) the digitizer which is attached.
 
-Is it ever going to be used by anyone else apart from IPA ? If not,
-what about adding a helper in IPA to set sustainable-freq for a device
-?
+ATM the mainline Linux driver does not support models where
+the actual firmware itself needs to be loaded (because they
+only have RAM, so they come up without firmware).
 
-So only SCMI based platforms will be able to use this stuff ? That's
-very limited, isn't it ? I think we should still try to make it better
-for everyone by making the software smarter. It has so much data, the
-OPPs, the power it will consume (based on microvolt property?), the
-heat we produce from that (from thermal framework), etc. Perhaps
-building this information continuously at runtime based on when and
-how we hit the trip points ? So we know which is the right frequency
-where we can refrain from hitting the trip points.
+I do have one model tablet with a ROM-less goodix touchpad
+controller, so if I ever find the time I might add support
+for loading the actual firmware.
 
-But may be I am asking too much :(
+So what we are talking about here is just loading the config
+data and I'm a bit surprised that this take so long.
 
--- 
-viresh
+> Adding Hans as he was working with this driver/code.
+
+With all that said I have no objection to this change.
+
+Regards,
+
+Hans
+
+
+
+> 
+>>
+>> Signed-off-by: Andrej Valek <andrej.valek@siemens.com>
+>> ---
+>>  drivers/input/touchscreen/goodix.c | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/input/touchscreen/goodix.c b/drivers/input/touchscreen/goodix.c
+>> index 02c75ea385e08..44336ecd2acdf 100644
+>> --- a/drivers/input/touchscreen/goodix.c
+>> +++ b/drivers/input/touchscreen/goodix.c
+>> @@ -941,7 +941,9 @@ static int goodix_get_gpio_config(struct goodix_ts_data *ts)
+>>  	default:
+>>  		if (ts->gpiod_int && ts->gpiod_rst) {
+>>  			ts->reset_controller_at_probe = true;
+>> -			ts->load_cfg_from_disk = true;
+>> +			/* Prevent cfg loading for each start */
+>> +			ts->load_cfg_from_disk = !device_property_read_bool(dev,
+>> +						 "touchscreen-do-not-load-fw");
+>>  			ts->irq_pin_access_method = IRQ_PIN_ACCESS_GPIO;
+>>  		}
+>>  	}
+>> -- 
+>> 2.20.1
+>>
+> 
+> Thanks.
+> 
+
