@@ -2,128 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27EF62A07E9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 15:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67DF62A080B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 15:37:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726491AbgJ3Ocg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 10:32:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34208 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725939AbgJ3Ocg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 10:32:36 -0400
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0ACE820637;
-        Fri, 30 Oct 2020 14:32:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604068355;
-        bh=H73aTFe9brejPhv93HXkvU3N5qlIm5iZsJBrgXyq5lE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lN74zVv+y0LBSHf4rqFdraGgS8IsYFsifgokwyPkvmhZM55UCiMlrIHfZCg1QVVgU
-         o9cBQDDIypBFmI+kl3cU8EVY1agALeA8QRQln0r1KkgLuzHVsIyXbLhhl0zaPte5L3
-         xp79GoUiFbPxrvKlG0Qw73+iTpB9MyUMSFvjLnCw=
-Received: by mail-ot1-f44.google.com with SMTP id m22so5721796ots.4;
-        Fri, 30 Oct 2020 07:32:35 -0700 (PDT)
-X-Gm-Message-State: AOAM532+AooKztQEgVi3e6L5o9Hxz8J87AWONyyFMDbMqyt8XAJsIdGa
-        24psNRFQ0Nny5Rc/s0mKzVb89byBC02pYDvrDg==
-X-Google-Smtp-Source: ABdhPJw0/hZSGq4gZvXd4rAw3DV98IaGIIMxB5UmNkdeNZ6nvaElNZ6SNe1QYlhyoHVF6qp+lB3fHjsIxLDfBIhsRlU=
-X-Received: by 2002:a9d:62d1:: with SMTP id z17mr1974117otk.192.1604068354225;
- Fri, 30 Oct 2020 07:32:34 -0700 (PDT)
+        id S1726703AbgJ3Ohf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 10:37:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726813AbgJ3Ohe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 10:37:34 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E93EC0613D2
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 07:37:33 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id b8so6758233wrn.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 07:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=LzZh3XDG0mukcB0i6UGoQqeuQTlDt+ZadapYwoHki6w=;
+        b=PKvJHqcNYdJW++F0cK3QdV1zjaBzxTRCv5vhX4WWc74HsnkNOW2boPcbIEAfum+fBi
+         B/P5FaDTDLDZChtNdf9wwJl4BVBpNRTymjwisnPGtxZZDgV+bZdti6RZ05YHlxPId9ZW
+         bW8JMK6AHibUdKa0nvDqmyyGGx6BeCS5UC1BKuOwbaX3kUDdL/qsiiVX2a/q6m4CmnXp
+         SSHXiEZZD4rbLZGzwGrHP0BGY4oJzENhhdR716+8wI3YGc+oK9Kp4UcT8M7YNlkvwCvj
+         iotghBj+ZqloR71rF4GFxqcpz/owyfaaF4Jjpwujdp6oJIhgcPQiWk+1lhsMJkwh5B08
+         H4fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=LzZh3XDG0mukcB0i6UGoQqeuQTlDt+ZadapYwoHki6w=;
+        b=kgj84KaNgGsrglPhiuQEfaoDgsCMNO3WgeTMnneX+YAMbzf2d+KUy4H4PcEZXxxMxL
+         6fSiB6X+ID1grJpSJr33bFZWL76cf1cdI7LGYrGBAiNTrT+i09rz2damXpnu4KF98Vi1
+         /ttfyOaTGY2gZdgXdIJ6cIRoXPmU6d2y15Mzn/KsooFlVnJD45GUFU2legCc/DRqg4Xn
+         OAe8g/gOE+VjrMpp/mXUE1gd+msZ0mIgQq8Cd7vbVwHTa2D6uYt7g3oxHDA4BFzEeLsk
+         nx4B1P+fEYvtlTf+urdkWg5F2MUUXw7mPu/QW+qDz8/7ZtoR2bUDh7qRrvPIZz8tXM5N
+         tD5g==
+X-Gm-Message-State: AOAM531uZCA1Lfgw7xdxmpWlfe1mYU1eshQcJOtvXi74HSP8cqE5zV+5
+        mpKF6qliX1HvYPn1wKTQKzT7Wg==
+X-Google-Smtp-Source: ABdhPJwfmKHE9tpJbPP/m+MZUzeVqC6HJIZFOAipny4H8X0b0Mu1A+//qbtSHVOIRt8w+qwQ/uSX+w==
+X-Received: by 2002:a5d:4747:: with SMTP id o7mr3689083wrs.423.1604068651798;
+        Fri, 30 Oct 2020 07:37:31 -0700 (PDT)
+Received: from localhost.localdomain ([37.172.114.188])
+        by smtp.gmail.com with ESMTPSA id y200sm351481wmc.23.2020.10.30.07.37.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 07:37:31 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     hverkuil@xs4all.nl, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/4] dt-bindings: media: Add bindings for the Amlogic GE2D Accelerator Unit
+Date:   Fri, 30 Oct 2020 15:37:12 +0100
+Message-Id: <20201030143715.577641-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201030143715.577641-1-narmstrong@baylibre.com>
+References: <20201030143715.577641-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20201029095806.10648-1-amelie.delaunay@st.com>
- <20201029095806.10648-2-amelie.delaunay@st.com> <20201029154016.GA1917373@bogus>
- <860d5620-4fdf-6e01-9a04-3967d6fcfd6b@st.com> <CAKgpwJVGUR9aSfoMkQ=ZXysgqn+H6n0uJbk5W9SeGiB7VXptwQ@mail.gmail.com>
-In-Reply-To: <CAKgpwJVGUR9aSfoMkQ=ZXysgqn+H6n0uJbk5W9SeGiB7VXptwQ@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 30 Oct 2020 09:32:23 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLbuNTnonH2SqcmF5YF_EB4gTQdS6L3yFKF9pJmaypdKg@mail.gmail.com>
-Message-ID: <CAL_JsqLbuNTnonH2SqcmF5YF_EB4gTQdS6L3yFKF9pJmaypdKg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: connector: add power-opmode
- optional property to usb-connector
-To:     Jun Li <lijun.kernel@gmail.com>
-Cc:     Amelie DELAUNAY <amelie.delaunay@st.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 8:55 PM Jun Li <lijun.kernel@gmail.com> wrote:
->
-> Amelie DELAUNAY <amelie.delaunay@st.com> =E4=BA=8E2020=E5=B9=B410=E6=9C=
-=8830=E6=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8A=E5=8D=8812:52=E5=86=99=E9=81=93=
-=EF=BC=9A
-> >
-> >
-> >
-> > On 10/29/20 4:40 PM, Rob Herring wrote:
-> > > On Thu, Oct 29, 2020 at 10:58:03AM +0100, Amelie Delaunay wrote:
-> > >> Power operation mode may depends on hardware design, so, add the opt=
-ional
-> > >> property power-opmode for usb-c connector to select the power operat=
-ion
-> > >> mode capability.
-> > >>
-> > >> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
-> > >> ---
-> > >>   .../bindings/connector/usb-connector.yaml      | 18 ++++++++++++++=
-++++
-> > >>   1 file changed, 18 insertions(+)
-> > >>
-> > >> diff --git a/Documentation/devicetree/bindings/connector/usb-connect=
-or.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > >> index 728f82db073d..200d19c60fd5 100644
-> > >> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > >> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > >> @@ -93,6 +93,24 @@ properties:
-> > >>         - device
-> > >>         - dual
-> > >>
-> > >> +  power-opmode:
-> > >
-> > > I've acked this version:
-> > >
-> > > https://lore.kernel.org/r/20201020093627.256885-2-badhri@google.com
->
-> That is a different property only for FRS.
->
-> > >
-> >
-> > frs is used for Fast Role Swap defined in USB PD spec.
-> > I understand it allows to get the same information but I'm wondering wh=
-y
-> > the property name is limited to -frs- in this case. What about a
-> > non-power delivery USB-C connector ?
->
-> It's only for FRS, FRS is in the scope of power delivery.
->
-> >
-> > Moreover, power-opmode property support is already merged in typec clas=
-s:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
-it/drivers/usb/typec/class.c?h=3Dv5.10-rc1&id=3D12f3467b0d28369d3add7a0deb6=
-5fdac9b503c90
-> > and stusb160x driver uses it :(
-> >
-> > So, do I need to modify stusb160x driver (and bindings) to take into
-> > account this USB PD specific property?
->
-> Only Type-C w/o PD need this "power-opmode" property, so this
-> property is still required.
+The GE2D is a 2D accelerator with various features like configurable blitter
+with alpha blending, frame rotation, scaling, format conversion and colorspace
+conversion.
 
-Yet we have the same set of values. So there's something common...
+This adds the bindings for the GE2D version found in the AXG SoCs Family.
 
-Rob
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/media/amlogic,axg-ge2d.yaml      | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+new file mode 100644
+index 000000000000..bee93bd84771
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/amlogic,axg-ge2d.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic GE2D Acceleration Unit
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-ge2d
++
++  interrupts:
++    minItems: 1
++
++  reg:
++    minItems: 1
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    ge2d: ge2d@ff940000 {
++          compatible = "amlogic,axg-ge2d";
++          reg = <0xff940000 0x10000>;
++          interrupts = <150>;
++          clocks = <&clk_ge2d>;
++          resets = <&reset_ge2d>;
++    };
+-- 
+2.25.1
+
