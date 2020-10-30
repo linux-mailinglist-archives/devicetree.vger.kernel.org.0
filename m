@@ -2,114 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A8E29FB34
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 03:26:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0C0529FB7D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 03:39:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726042AbgJ3C0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 22:26:18 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:34219 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726057AbgJ3C0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 22:26:17 -0400
-Received: by mail-lj1-f196.google.com with SMTP id y16so5340487ljk.1;
-        Thu, 29 Oct 2020 19:26:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AMV8JRqZetrNRbRgXvrwv2LRGFW2iY1pfcrFgn9kKw8=;
-        b=Kh17ojqZiXVQnqIAXQh9/pvB5eJPGbvtq9lmRL0g/R2rjU2NruKNtYgVMErRU0WzT/
-         7UspPWrESxsZO0vDRcGEK1rqtTVzcXjGHeWFRo48EFtutxTOtR1R4wN8cP9TwrL49bRO
-         sY2F73FfRwxONcMkgy/E/YH9pm+egmj1sCix5+7ZYOHq24QezFEku2pR0qEORw0w2iBh
-         i72AOps4GSNaTKWgqbj2pRJhKf3XJXXeahTTXqBP8uxIgHV8N/uysKRPqywcbldemTwc
-         t7QFtPEVm+uxkSPUFsCHyIayHgjM7YVkPjPRXh6PAenr2HjDJBIFA0Z41xixpHEGOyS0
-         5UCw==
-X-Gm-Message-State: AOAM530PFMhRGLO4jkN2Jxu7RWCtQJl0iKCRdLdG5yQuCNJbIj868FWs
-        Ec/93dc2+DK76KMiPScIzs6wh/7zVce6vA==
-X-Google-Smtp-Source: ABdhPJyRtb9C52kh7wNjrSDWDdx3q81NZ3pX2rgWDkI246Rc9kvAOVzHUUq4Tlu7RIFmMD+rT3Z0vw==
-X-Received: by 2002:a2e:8e83:: with SMTP id z3mr52600ljk.341.1604024774498;
-        Thu, 29 Oct 2020 19:26:14 -0700 (PDT)
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
-        by smtp.gmail.com with ESMTPSA id f24sm465377lfh.73.2020.10.29.19.26.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Oct 2020 19:26:14 -0700 (PDT)
-Received: by mail-lf1-f46.google.com with SMTP id b1so5883378lfp.11;
-        Thu, 29 Oct 2020 19:26:13 -0700 (PDT)
-X-Received: by 2002:ac2:46fc:: with SMTP id q28mr1114045lfo.551.1604024773741;
- Thu, 29 Oct 2020 19:26:13 -0700 (PDT)
+        id S1725900AbgJ3CjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 22:39:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38636 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725831AbgJ3CjV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 22:39:21 -0400
+Received: from dellmb.labs.office.nic.cz (nat-1.nic.cz [217.31.205.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A947E2087E;
+        Fri, 30 Oct 2020 02:39:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604025561;
+        bh=8WnvhZaN5KcJBl5KN374+G8jxDmsSlGwyBuRF7jyDDs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=HMeBYEiqMSS1cOvZY25LExq6k/mjDu9LgYFdj7R6HXSFB6XC//QY5wpjRWiXFssaz
+         kQjU2Dbso+I9fnrcTMlLTkIsi3j+LiEgwMdXH36Sy0VhNIozfk2dfVQuOkF3J2NVXl
+         aAdUToj7GSyzZc0R4apwghaXbIH9fDsyMJ6DgrUA=
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To:     linux-leds@vger.kernel.org
+Cc:     Dan Murphy <dmurphy@ti.com>, Pavel Machek <pavel@ucw.cz>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH leds 4/5] dt-bindings: leds: leds-class-multicolor: use LED_COLOR_ID_RGB for now
+Date:   Fri, 30 Oct 2020 03:39:05 +0100
+Message-Id: <20201030023906.24259-4-kabel@kernel.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201030023906.24259-1-kabel@kernel.org>
+References: <20201030023906.24259-1-kabel@kernel.org>
 MIME-Version: 1.0
-References: <20201029201537.598182-1-jernej.skrabec@siol.net>
-In-Reply-To: <20201029201537.598182-1-jernej.skrabec@siol.net>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Fri, 30 Oct 2020 10:26:03 +0800
-X-Gmail-Original-Message-ID: <CAGb2v665GQBTPqjAju9Cauh94GHBWCcoZf595KhfeYR_kNrKVA@mail.gmail.com>
-Message-ID: <CAGb2v665GQBTPqjAju9Cauh94GHBWCcoZf595KhfeYR_kNrKVA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: h6: PineH64 model B:
- Add wifi
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 4:10 AM Jernej Skrabec <jernej.skrabec@siol.net> wrote:
->
-> PineH64 model B contains RTL8723CS wifi+bt combo module.
->
-> Since bluetooth support is not yet squared away, only wifi is enabled
-> for now.
->
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> ---
->  .../dts/allwinner/sun50i-h6-pine-h64-model-b.dts   | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-> index f4c8966a6497..3f42b8b29b0f 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-> @@ -10,6 +10,12 @@ / {
->         compatible = "pine64,pine-h64-model-b", "allwinner,sun50i-h6";
->
->         /delete-node/ reg_gmac_3v3;
-> +
-> +       wifi_pwrseq: wifi_pwrseq {
-> +               compatible = "mmc-pwrseq-simple";
-> +               reset-gpios = <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
-> +               post-power-on-delay-ms = <200>;
-> +       };
->  };
->
->  &hdmi_connector {
-> @@ -19,3 +25,11 @@ &hdmi_connector {
->  &emac {
->         phy-supply = <&reg_aldo2>;
->  };
-> +
-> +&mmc1 {
-> +       vmmc-supply = <&reg_cldo3>;
+Commit 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
+disallows LED_COLOR_ID_MULTI for now, and instead LED_COLOR_ID_RGB
+should be used. Fix this is leds-class-multicolor binding.
 
-Please add vqmmc-supply, which according to the schematic is supplied by ALDO1.
+After we have some usecases for non-RGB multicolor LEDs, this can be
+changed.
 
-After that,
+Signed-off-by: Marek Behún <kabel@kernel.org>
+Fixes: 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
+Cc: devicetree@vger.kernel.org
+Cc: robh+dt@kernel.org
+---
+ .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml     | 4 ++--
+ .../devicetree/bindings/leds/leds-class-multicolor.yaml       | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+index fe7fa25877fd..2015db9b7618 100644
+--- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
++++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+@@ -73,14 +73,14 @@ examples:
+                  * LEDs.
+                  */
+                 reg = <0>;
+-                color = <LED_COLOR_ID_MULTI>;
++                color = <LED_COLOR_ID_RGB>;
+                 function = LED_FUNCTION_POWER;
+                 linux,default-trigger = "heartbeat";
+             };
+ 
+             multi-led@a {
+                 reg = <0xa>;
+-                color = <LED_COLOR_ID_MULTI>;
++                color = <LED_COLOR_ID_RGB>;
+                 function = LED_FUNCTION_INDICATOR;
+                 function-enumerator = <1>;
+             };
+diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+index b1a53f054b89..9faa3609a6bb 100644
+--- a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+@@ -25,10 +25,10 @@ patternProperties:
+     description: Represents the LEDs that are to be grouped.
+     properties:
+       color:
+-        const: 8  # LED_COLOR_ID_MULTI
++        const: 9  # LED_COLOR_ID_RGB
+         description: |
+           For multicolor LED support this property should be defined as
+-          LED_COLOR_ID_MULTI which can be found in include/linux/leds/common.h.
++          LED_COLOR_ID_RGB which can be found in include/linux/leds/common.h.
+ 
+     $ref: "common.yaml#"
+ 
+-- 
+2.26.2
 
-> +       mmc-pwrseq = <&wifi_pwrseq>;
-> +       bus-width = <4>;
-> +       non-removable;
-> +       status = "okay";
-> +};
-> --
-> 2.29.1
->
-> --
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20201029201537.598182-1-jernej.skrabec%40siol.net.
