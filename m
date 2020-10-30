@@ -2,113 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FF392A0453
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:37:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5A732A0488
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:43:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725993AbgJ3LhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 07:37:02 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59158 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726619AbgJ3Lgp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:36:45 -0400
+        id S1726078AbgJ3Lnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 07:43:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbgJ3Lnd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:43:33 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F3DC0613CF;
+        Fri, 30 Oct 2020 04:43:32 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: eballetbo)
-        with ESMTPSA id 915DB1F45EBC
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     matthias.bgg@gmail.com, drinkcat@chromium.org, hsinyi@chromium.org,
-        Collabora Kernel ML <kernel@collabora.com>,
-        weiyi.lu@mediatek.com, fparent@baylibre.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTPSA id F132C1F45EBC
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: Add MT8167 power domains
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Matthias Brugger <mbrugger@suse.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 14/16] dt-bindings: power: Add MT8192 power domains
-Date:   Fri, 30 Oct 2020 12:36:20 +0100
-Message-Id: <20201030113622.201188-15-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201030113622.201188-1-enric.balletbo@collabora.com>
-References: <20201030113622.201188-1-enric.balletbo@collabora.com>
+References: <20201027131122.374046-1-fparent@baylibre.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <c00a5ba1-154d-66ab-2ac7-c504e2e87b3e@collabora.com>
+Date:   Fri, 30 Oct 2020 12:43:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201027131122.374046-1-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Weiyi Lu <weiyi.lu@mediatek.com>
+Hi Fabien,
 
-Add power domains dt-bindings for MT8192.
+Thank you for the patch and base it on [0]
 
-Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
+On 27/10/20 14:11, Fabien Parent wrote:
+> Add power domains dt-bindings for MT8167.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+> 
+> This patch depends on the SCPSYS PM domains driver [0].
+> 
+> v2:
+> 	* Implement on top of new SCPSYS PM domains driver [0]
+> 
+> [0] https://patchwork.kernel.org/project/linux-mediatek/list/?series=370737
+> 
+>  .../power/mediatek,power-controller.yaml       |  2 ++
+>  include/dt-bindings/power/mt8167-power.h       | 18 ++++++++++++++++++
+>  2 files changed, 20 insertions(+)
+>  create mode 100644 include/dt-bindings/power/mt8167-power.h
+> 
+> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> index 0318ffb1133c..73e5452c3a5d 100644
+> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> @@ -23,6 +23,7 @@ properties:
+>  
+>    compatible:
+>      enum:
+> +      - mediatek,mt8167-power-controller
+>        - mediatek,mt8173-power-controller
+>        - mediatek,mt8183-power-controller
+>        - mediatek,mt8192-power-controller
+> @@ -59,6 +60,7 @@ patternProperties:
+>        reg:
+>          description: |
+>            Power domain index. Valid values are defined in:
+> +              "include/dt-bindings/power/mt8167-power.h" - for MT8167 type power domain.
+>                "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
+>                "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
+>                "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
+> diff --git a/include/dt-bindings/power/mt8167-power.h b/include/dt-bindings/power/mt8167-power.h
+> new file mode 100644
+> index 000000000000..7e3babfc2eef
+> --- /dev/null
+> +++ b/include/dt-bindings/power/mt8167-power.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+> + *
+> + * Copyright (c) 2020 MediaTek Inc.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_POWER_MT8167_POWER_H
+> +#define _DT_BINDINGS_POWER_MT8167_POWER_H
+> +
+> +#define MT8167_POWER_DOMAIN_MM		0
+> +#define MT8167_POWER_DOMAIN_DISP	0
 
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
+Is that correct? Both domains have the same index?
 
- .../power/mediatek,power-controller.yaml      |  2 ++
- include/dt-bindings/power/mt8192-power.h      | 32 +++++++++++++++++++
- 2 files changed, 34 insertions(+)
- create mode 100644 include/dt-bindings/power/mt8192-power.h
-
-diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-index 8cae43412327..fd12bafe3548 100644
---- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-+++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-@@ -25,6 +25,7 @@ properties:
-     enum:
-       - mediatek,mt8173-power-controller
-       - mediatek,mt8183-power-controller
-+      - mediatek,mt8192-power-controller
- 
-   '#power-domain-cells':
-     const: 1
-@@ -60,6 +61,7 @@ patternProperties:
-           Power domain index. Valid values are defined in:
-               "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
-               "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
-+              "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
-         maxItems: 1
- 
-       clocks:
-diff --git a/include/dt-bindings/power/mt8192-power.h b/include/dt-bindings/power/mt8192-power.h
-new file mode 100644
-index 000000000000..4eaa53d7270a
---- /dev/null
-+++ b/include/dt-bindings/power/mt8192-power.h
-@@ -0,0 +1,32 @@
-+/* SPDX-License-Identifier: GPL-2.0
-+ *
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Author: Weiyi Lu <weiyi.lu@mediatek.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_POWER_MT8192_POWER_H
-+#define _DT_BINDINGS_POWER_MT8192_POWER_H
-+
-+#define MT8192_POWER_DOMAIN_AUDIO	0
-+#define MT8192_POWER_DOMAIN_CONN	1
-+#define MT8192_POWER_DOMAIN_MFG0	2
-+#define MT8192_POWER_DOMAIN_MFG1	3
-+#define MT8192_POWER_DOMAIN_MFG2	4
-+#define MT8192_POWER_DOMAIN_MFG3	5
-+#define MT8192_POWER_DOMAIN_MFG4	6
-+#define MT8192_POWER_DOMAIN_MFG5	7
-+#define MT8192_POWER_DOMAIN_MFG6	8
-+#define MT8192_POWER_DOMAIN_DISP	9
-+#define MT8192_POWER_DOMAIN_IPE		10
-+#define MT8192_POWER_DOMAIN_ISP		11
-+#define MT8192_POWER_DOMAIN_ISP2	12
-+#define MT8192_POWER_DOMAIN_MDP		13
-+#define MT8192_POWER_DOMAIN_VENC	14
-+#define MT8192_POWER_DOMAIN_VDEC	15
-+#define MT8192_POWER_DOMAIN_VDEC2	16
-+#define MT8192_POWER_DOMAIN_CAM		17
-+#define MT8192_POWER_DOMAIN_CAM_RAWA	18
-+#define MT8192_POWER_DOMAIN_CAM_RAWB	19
-+#define MT8192_POWER_DOMAIN_CAM_RAWC	20
-+
-+#endif /* _DT_BINDINGS_POWER_MT8192_POWER_H */
--- 
-2.28.0
-
+> +#define MT8167_POWER_DOMAIN_VDEC	1
+> +#define MT8167_POWER_DOMAIN_ISP		2
+> +#define MT8167_POWER_DOMAIN_CONN	3
+> +#define MT8167_POWER_DOMAIN_MFG_ASYNC	4
+> +#define MT8167_POWER_DOMAIN_MFG_2D	5
+> +#define MT8167_POWER_DOMAIN_MFG		6
+> +
+> +#endif /* _DT_BINDINGS_POWER_MT8167_POWER_H */
+> 
