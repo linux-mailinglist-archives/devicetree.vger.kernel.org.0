@@ -2,120 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D22A42A0ABE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DE9A2A0B36
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:33:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725808AbgJ3QLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 12:11:37 -0400
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:37441 "EHLO
-        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725355AbgJ3QLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 12:11:37 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.west.internal (Postfix) with ESMTP id BA37EC0C;
-        Fri, 30 Oct 2020 12:11:35 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 30 Oct 2020 12:11:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=I8F4Vvc3wYb2t0jaStGMcb1u5A3
-        f20Qozjl95gbByVE=; b=KM0eAH89hcGm74JgpqCVReajJ5sitCSIfF9KokHfMzH
-        FJ540m6wtAPhsDozzz+I81AFzGNx9Fta1ioujkGze7oIEbT58kE3OjGxD9hhhRR9
-        MIhsEFi9CGE3/STJYeTxUoChf3e6fe524G+b9QjHtEQJS8tb38GOrt9pKnRM79J9
-        v29QJIspqJEc+IOIg164Z6Xa1bQkUnESaizZxhg8GFiuBp/Cewx7fuWtmO2B34kq
-        9bpVvKZMly3rx2dRMFf1vUZ5GLY+ZPNxmV7FxRgn7Yk3Athr0246JQS8fAWIm+il
-        gmrF3WII/39h/SlTn0MWyX9Z9jMfK9S+OVOWRXUvz1g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=I8F4Vv
-        c3wYb2t0jaStGMcb1u5A3f20Qozjl95gbByVE=; b=EEJJYkcx0Wxx4TTZNb96f+
-        AhCGRm4Yajet73OZz3G87tcxKYIIadEqyjyv08LfTNPaj9tDaHMeNY87uPsYLeLA
-        AQNOQ7RIQdyINRjDXGdrDJgRETxMr6TfNl71pAB28lMNO4/Oyvi0fnu+cA4044ad
-        KXx367lbvvyax9gYyQXkUM1wUeczrCd1tyHGsq7PSKkHq9hBbbYhS6bzB7jzQPu5
-        cOSw5ZTip9Pofpayo+/RWRe0P7acmS3IfRh1B9+GpLJBS0OM3ypfv1iD+rFE3qfm
-        Gbhu+T/lVmSoClCIC7BoG9ZfJBD/EUbTuJeQHbUac94DPFNMTbclbeNhTo7aIXHg
-        ==
-X-ME-Sender: <xms:NDucX8tQx8dGb5cvVDDmYQ5HE6Hh1mrvK2dNFFVGg5lPBYj2COLGLw>
-    <xme:NDucX5fkje_WvE3LA_rL41kHZPLXohVHhzDvxSfHMtGgEJc_QMmk_m2BSfVRxEoOA
-    x043uFSJfQIvNoXerU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleehgdekudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
-    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:NDucX3xWXh_BVrIGSOeflhr3mwvh_PbGv8_f1eDBGzLMJVMpBXHoUQ>
-    <xmx:NDucX_OmEaT0TQtR5Zm-i_K-FRXLF4PgYCSIO2_6XCsKRvh4Tlki4A>
-    <xmx:NDucX88rypVhIP8XD-kMFAgL26qmSRBxYm2JFAC6rx46Bsq428tg2g>
-    <xmx:NzucX3WXDyla1eE7ywu2msQ1C_n0Dwgbw-bk8XAYZU1wg35y8FA2dLiT0ds>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 82E243280059;
-        Fri, 30 Oct 2020 12:11:32 -0400 (EDT)
-Date:   Fri, 30 Oct 2020 17:11:31 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        id S1727136AbgJ3Qdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 12:33:40 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:33992 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725948AbgJ3Qdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:33:39 -0400
+Received: by mail-oi1-f196.google.com with SMTP id l62so1575333oig.1;
+        Fri, 30 Oct 2020 09:33:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MwY/vQiiKvOTnY+5d4Wh+IuN2OSwrlDI1QDv3JPHT60=;
+        b=GYC7eeF9CT4KXheEAhAKMOtPnr2Gk492SLREAbyfI8A42sjtKXKHm2aBNGo88UIhv3
+         iqQYiQ4UMSPfvOQk7J3YK/K3v2jo+aQwxrRTrmLk5c2JImcZ/O9bwF2oF7+V+5jpTW8J
+         TAqmlKFYFlvVdM57h4wnJYSeJFf8u7vZdzDRTBTIDUVE/ZDpQxAQQ4tED263njBFrPUa
+         vm95o3JjdyVerawuxZTNaRZ+Ci3jhPNX49b7v2Lnhk9MEJDxAtO688+FP9qa+0UsSGaZ
+         vAQC9pegfnwbRt/hJyWbqPWCG588vnrSYa6EIYAHlX6RpP5BomWnfaSxdfiw4dzNiT4s
+         AdBg==
+X-Gm-Message-State: AOAM530UWidXWWynGdKgWku5lJlLMIhZ6m4LdcxR8GnIzh62Asxk3tks
+        C2u1hw21qFeXDgDGIbIR/Q==
+X-Google-Smtp-Source: ABdhPJy1NHaacIWHlnsek2tAF8Q1rBIIxcawIvq0Pez4qO1EJ2wmCFxJGI5JBYbP/xiW+nLe4IG4XA==
+X-Received: by 2002:aca:d401:: with SMTP id l1mr702570oig.96.1604075618577;
+        Fri, 30 Oct 2020 09:33:38 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h135sm1509717oib.23.2020.10.30.09.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 09:33:37 -0700 (PDT)
+Received: (nullmailer pid 3958664 invoked by uid 1000);
+        Fri, 30 Oct 2020 16:33:36 -0000
+Date:   Fri, 30 Oct 2020 11:33:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v10 01/15] ASoC: sun4i-i2s: Fix lrck_period computation
- for I2S justified mode
-Message-ID: <20201030161131.dlzzpy3atiiddx4n@gilmour.lan>
-References: <20201030144648.397824-1-peron.clem@gmail.com>
- <20201030144648.397824-2-peron.clem@gmail.com>
+        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
+Subject: Re: [PATCH 07/14] dt-bindings: media: i2c: Add A31 MIPI CSI-2
+ bindings documentation
+Message-ID: <20201030163336.GA3909744@bogus>
+References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
+ <20201023174546.504028-8-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fpfjkluh6h53itoj"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201030144648.397824-2-peron.clem@gmail.com>
+In-Reply-To: <20201023174546.504028-8-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 23, 2020 at 07:45:39PM +0200, Paul Kocialkowski wrote:
+> This introduces YAML bindings documentation for the A31 MIPI CSI-2
+> controller.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 168 ++++++++++++++++++
+>  1 file changed, 168 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
+> new file mode 100644
+> index 000000000000..9adc0bc27033
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
+> @@ -0,0 +1,168 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
---fpfjkluh6h53itoj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Dual license new bindings.
 
-On Fri, Oct 30, 2020 at 03:46:34PM +0100, Cl=E9ment P=E9ron wrote:
-> Left and Right justified mode are computed using the same formula
-> as DSP_A and DSP_B mode.
-> Which is wrong and the user manual explicitly says:
->=20
-> LRCK_PERDIOD:
-> PCM Mode: Number of BCLKs within (Left + Right) channel width.
-> I2S/Left-Justified/Right-Justified Mode: Number of BCLKs within each
-> individual channel width(Left or Right)
->=20
-> Fix this by using the same formula as the I2S mode.
->=20
-> Fixes: 7ae7834ec446 ("ASoC: sun4i-i2s: Add support for DSP formats")
-> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-mipi-csi2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner A31 MIPI CSI-2 Device Tree Bindings
+> +
+> +maintainers:
+> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: allwinner,sun6i-a31-mipi-csi2
+> +      - items:
+> +          - const: allwinner,sun8i-v3s-mipi-csi2
+> +          - const: allwinner,sun6i-a31-mipi-csi2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bus Clock
+> +      - description: Module Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: mod
+> +
+> +  phys:
+> +    items:
+> +      - description: MIPI D-PHY
+> +
+> +  phy-names:
+> +    items:
+> +      - const: dphy
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  # See ./video-interfaces.txt for details
+> +  ports:
+> +    type: object
+> +
+> +    properties:
+> +      port@0:
+> +        type: object
+> +        description: Input port, connect to a MIPI CSI-2 sensor
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            type: object
+> +
+> +            properties:
+> +              remote-endpoint: true
+> +
+> +              bus-type:
+> +                const: 4
+> +
+> +              clock-lanes:
+> +                maxItems: 1
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - bus-type
+> +              - data-lanes
+> +              - remote-endpoint
+> +
+> +            additionalProperties: false
+> +
+> +        required:
+> +          - endpoint
+> +
+> +        additionalProperties: false
+> +
+> +      port@1:
+> +        type: object
+> +        description: Output port, connect to a CSI controller
+> +
+> +        properties:
+> +          reg:
+> +            const: 1
+> +
+> +          endpoint:
+> +            type: object
+> +
+> +            properties:
+> +              remote-endpoint: true
+> +
+> +              bus-type:
+> +                const: 4
+> +
+> +            additionalProperties: false
+> +
+> +        required:
+> +          - endpoint
+> +
+> +        additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
+> +
+> +    mipi_csi2: mipi-csi2@1cb1000 {
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Thanks!
-Maxime
+I agree with using 'csi' here as that is at least aligned with 'dsi' 
+meaning the host side of the protocol. We've not been consistent here...
 
---fpfjkluh6h53itoj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5w7MwAKCRDj7w1vZxhR
-xZ5FAP4xHWt9NXh9CE1ls2RUHb+wsO2JxSZ2VAcW/7oL3xdsYAD/aOAW4nVDE3be
-+/sQDYsXuA2f+QvTA8TR19kiWsovUAo=
-=1lV8
------END PGP SIGNATURE-----
-
---fpfjkluh6h53itoj--
+> +        compatible = "allwinner,sun8i-v3s-mipi-csi2",
+> +                     "allwinner,sun6i-a31-mipi-csi2";
+> +        reg = <0x01cb1000 0x1000>;
+> +        interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&ccu CLK_BUS_CSI>,
+> +                 <&ccu CLK_CSI1_SCLK>;
+> +        clock-names = "bus", "mod";
+> +        resets = <&ccu RST_BUS_CSI>;
+> +
+> +        phys = <&dphy>;
+> +        phy-names = "dphy";
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            mipi_csi2_in: port@0 {
+> +                reg = <0>;
+> +
+> +                mipi_csi2_in_ov5648: endpoint {
+> +                    bus-type = <4>; /* MIPI CSI-2 D-PHY */
+> +                    clock-lanes = <0>;
+> +                    data-lanes = <1 2 3 4>;
+> +
+> +                    remote-endpoint = <&ov5648_out_mipi_csi2>;
+> +                };
+> +            };
+> +
+> +            mipi_csi2_out: port@1 {
+> +                reg = <1>;
+> +
+> +                mipi_csi2_out_csi0: endpoint {
+> +                    bus-type = <4>; /* MIPI CSI-2 D-PHY */
+> +                    remote-endpoint = <&csi0_in_mipi_csi2>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.28.0
+> 
