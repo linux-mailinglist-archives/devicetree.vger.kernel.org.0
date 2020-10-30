@@ -2,109 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6F512A036A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 11:55:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7282A0371
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 11:56:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726314AbgJ3Kz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 06:55:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726293AbgJ3Kz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 06:55:29 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E585C0613D4
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 03:55:29 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id y16so6420805ljk.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 03:55:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OrDPQCETMONsdP1Wo5HDq5W2Iv1t7cbpuMuL/V4LMYs=;
-        b=cjplITYQXQCRVceOSq28/kTtGwdbqumx3pVwhPkbIPzBWV9e8DJ77sLhvzUVaUrySo
-         br4uT+RnaqqI3JBrwn5G8MQXj9fJ/08Y/iqO17312PkfdI45gGGVEX+R1JhiuSGgACLt
-         m9V6o3BEpPQ3SmnS20Wuog9+qrP+XfV4oZImU6SAJ78N4ksYTMljgAoYLk++PxTjig93
-         0aaFLVJ1sT1cdQhkgosIDxv8tha554npZmsyjaapwvOI09iU0o0lolyeLfIzLMkj2KCF
-         TgQB87wggPvnaUzn8d8Zdmm22xv5L/p3rL24aCGk4/YocDFQXK8iSkj3FXdM3Bz2/RAf
-         mpVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OrDPQCETMONsdP1Wo5HDq5W2Iv1t7cbpuMuL/V4LMYs=;
-        b=ePTFH32MltgUPP0lmtipl8A17lKhHvHmfB08flF31BuUigrDPnR/+U2i8RdBD3FClZ
-         eHR5c2ApnWtpjmEQYbIyIrzEOZFvXnuCNXZuosP4BzvFE5j0xar6KLOEFvfkYI2YAQbD
-         24EvHSdDzBOxbX27Yezr2V4wzQZlzzCP3nf9eU2o/PPp93b7UdtJxMeUUIdeF/Bsl3tL
-         rb/AUFfNNn0aRIPGuaHyZtiijHYfQnNcR7HnHu38s0Jyq/eGlRbliqL/K0II5iYqzQ5+
-         2icT9Ygc9X5cPfPsLohBDfQWNsGtzr5gujiIuaiQUfjf4b9CxlQOTGZH1irMqKx98e26
-         ZAxg==
-X-Gm-Message-State: AOAM530Z0mLL7S+sXA2y7Uq0VwZ22JCG2nU45Rj5d+nqkmeWTuHit6K2
-        /g8xWwW1vhiQFWN1g3sede4XeROqrxm9kqk4zcAYQg==
-X-Google-Smtp-Source: ABdhPJycAMjwXBhWulmIAxPPXg555+umIsvAMkLA9slwAM3OVfq3XW7rn4jgCP2nM9o7uwVxEWU34jDZIEEnl1YrXl4=
-X-Received: by 2002:a2e:9449:: with SMTP id o9mr83255ljh.457.1604055327434;
- Fri, 30 Oct 2020 03:55:27 -0700 (PDT)
+        id S1726402AbgJ3K4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 06:56:36 -0400
+Received: from foss.arm.com ([217.140.110.172]:59650 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725993AbgJ3K4g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 06:56:36 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 62A87139F;
+        Fri, 30 Oct 2020 03:56:35 -0700 (PDT)
+Received: from [10.57.13.192] (unknown [10.57.13.192])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4A0EC3F719;
+        Fri, 30 Oct 2020 03:56:32 -0700 (PDT)
+Subject: Re: [PATCH 0/4] Add sustainable OPP concept
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     vincent.guittot@linaro.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
+        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com
+References: <20201028140847.1018-1-lukasz.luba@arm.com>
+ <20201029074057.6ugmwyzna52x3oli@vireshk-i7>
+ <20201029075356.rruej6jlerhfa4oy@vireshk-i7>
+ <228fa1b3-bbd3-6941-fd4b-06581016d839@arm.com>
+ <20201030082937.xgjmko2ohwhkt6f5@vireshk-i7>
+ <a0a6db69-fc3e-c39f-7586-5ac3227b746e@arm.com>
+ <20201030095248.abej6h5wphud2ihb@vireshk-i7>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <757fe3b1-745f-2656-fe21-c7b39f123a25@arm.com>
+Date:   Fri, 30 Oct 2020 10:56:30 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20201030075724.1616766-1-ajye_huang@compal.corp-partner.google.com>
- <20201030075724.1616766-3-ajye_huang@compal.corp-partner.google.com> <CA+Px+wXPRg7aDU5+vr6R_BxuFfhuDeG3iEQeAUKWNtX8YmVC1Q@mail.gmail.com>
-In-Reply-To: <CA+Px+wXPRg7aDU5+vr6R_BxuFfhuDeG3iEQeAUKWNtX8YmVC1Q@mail.gmail.com>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Fri, 30 Oct 2020 18:55:16 +0800
-Message-ID: <CALprXBZ+NmR8Y4sMkh4Y-N_FG+rGEOhUBVTKXRXNFp8H+f0btw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     Ajye Huang <ajye.huang@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201030095248.abej6h5wphud2ihb@vireshk-i7>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 5:23 PM Tzung-Bi Shih <tzungbi@google.com> wrote:
->
-> On Fri, Oct 30, 2020 at 3:57 PM Ajye Huang <ajye.huang@gmail.com> wrote:
-> > +static struct gpio_desc *dmic_sel;
-> > +static int dmic_switch;
->
-> If you really need them, you should put them in struct sc7180_snd_data.
->
-Thank you, I will do it.
-> > +static int dmic_set(struct snd_kcontrol *kcontrol,
-> > +                   struct snd_ctl_elem_value *ucontrol)
-> > +{
-> > +       if (dmic_sel) {
->
-> if (IS_ERR(dmic_sel))
-> But I think you don't need to check dmic_sel.  Suppose your _probe()
-> already returned error, the code here shouldn't be called.
->
-OK, I will remove the discriminant if (dmic_sel) {
-> > +               dmic_switch = ucontrol->value.integer.value[0];
->
-> Looks like it can be a local variable.  You don't need to save dmic_switch.
-But dmic_get() will need dmic_switch, should i keep dmic_switch?
-static int dmic_get(struct snd_kcontrol *kcontrol,
-    struct snd_ctl_elem_value *ucontrol)
-{
-ucontrol->value.integer.value[0] = dmic_switch;
-return 0;
-}
+
+
+On 10/30/20 9:52 AM, Viresh Kumar wrote:
+> On 30-10-20, 09:19, Lukasz Luba wrote:
+>> How about dropping the DT binding, but just adding this new field into
+>> dev_pm_opp? There will be no DT parsing code, just the get/set
+>> functions, which will be used in SCMI patch 4/4 and in IPA?
+>> That would not require to change any DT bindings.
+>   
+>> I see. Just for your information SCMI supports 'Sustained Performance'
+>>   expressed in kHz.
+> 
+> Even that doesn't sound great (but then I don't have any background of
+> why that was added there). The problem is not about how do we get this
+> data into the kernel (from DT or firmware), but why is it even
+> required. I really feel that software can find the sustainable OPP by
+> itself (which can keep changing).
+
+IPA tries to do that, even dynamically when e.g. GPU is supper busy
+in 3D games (~2000W) or almost idle showing 2D home screen.
+It tries to find highest 'sustainable' frequencies for the devices,
+at that various workloads and temp. But it needs some coefficients to
+start, which have big impact on the algorithm. It could slow down IPA a
+lot, when those coefficients are calculated based on lowest OPPs.
+
+
+> 
+> About moving it into the OPP core, I am open to getting something
+> added there if it is really useful and if the OPP core is the best
+> suited place to keep such data. Though I am not sure of that for this
+> field right now.
+> 
+> Is it ever going to be used by anyone else apart from IPA ? If not,
+> what about adding a helper in IPA to set sustainable-freq for a device
+> ?
+
+My backup plan was to add a flag into EM em_perf_state, extend SCMI perf
+exposing the 'sustained_freq_khz' to scmi-cpufreq, which would set that
+field after registering EM. IPA depends on EM, so should be OK.
+
+> 
+> So only SCMI based platforms will be able to use this stuff ? That's
+
+I don't know who would also use it in future. I just presented you
+current user of this, as you asked.
+
+> very limited, isn't it ? I think we should still try to make it better
+> for everyone by making the software smarter. It has so much data, the
+> OPPs, the power it will consume (based on microvolt property?), the
+> heat we produce from that (from thermal framework), etc. Perhaps
+> building this information continuously at runtime based on when and
+> how we hit the trip points ? So we know which is the right frequency
+> where we can refrain from hitting the trip points.
+
+IPA works in this way.
+
+> 
+> But may be I am asking too much :(
+> 
+
+When you asked for user of this, I gave you instantly. This is one is
+more difficult. I am still not there with IPA tests in LISA. I have some
+out-of-tree kernel driver for testing, which also need polishing before
+can be used with LISA. Then proper workloads with results processing.
+EM for devfreq cooling devices. Then decent 'hot' board running
+preferably mainline kernel.
+What you requested is on my list, but it needs more work, which
+won't be ready over night.
+
+Regards,
+Lukasz
