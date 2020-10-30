@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 611382A06FE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 14:53:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E682A073B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 14:58:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726904AbgJ3NxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 09:53:20 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41893 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbgJ3NxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 09:53:08 -0400
-Received: by mail-ot1-f66.google.com with SMTP id n15so5577052otl.8;
-        Fri, 30 Oct 2020 06:53:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ggiAUaruNw1YhH2l2hRk36w59nO1Oq/R58cjSZ0WsS0=;
-        b=NQE6B6Is7YpCRNAhftj2H74uBamRW+67DvSQtL+dIHoYsARDpaZMHRM1nrS3KUtJ1w
-         5/p+B9b48PxrSSgxa+xe9uG0yPEyqWTKxJhCSRMrPpgqfM6Tqu8oGwmWQuQZpcV/WP/W
-         iKL+n1j4zp6kZ0lltwhX8r/Q6pd1e23hnBEleCgijJzi/Dn93z0ppFzNII0SMOc6OWWE
-         k2GOvrak9W99KSGT8k84Gz4sLwbchNTyOpcD1L0FQQxZK/tnq9dxXyVOLmwU0uYPBGxz
-         8eqrVOMA3ZUUdLvyAJmepaI722FHJGwc7X5SZbdrrTBoPtq46IaCvPlNacTqc/m35Kxy
-         XmgA==
-X-Gm-Message-State: AOAM5339HoY/m7Glp0jCwASdOmJq7KunwwJHJ+M62qEmwwyU7pmSi8SN
-        W5tVDcGYExCF8XH+26eSbA==
-X-Google-Smtp-Source: ABdhPJxq/KhYrqN/T8NyxVmXEavGpBaGULf6IaWMFkIEntoJ3gOZgHkdXrgULkZisLkAOY1u63cuMg==
-X-Received: by 2002:a9d:75d6:: with SMTP id c22mr1672627otl.213.1604065987144;
-        Fri, 30 Oct 2020 06:53:07 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j184sm1386766oih.8.2020.10.30.06.53.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 06:53:06 -0700 (PDT)
-Received: (nullmailer pid 3747758 invoked by uid 1000);
-        Fri, 30 Oct 2020 13:53:05 -0000
-Date:   Fri, 30 Oct 2020 08:53:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, srv_heupstream@mediatek.com,
-        youlin.pei@mediatek.com, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        iommu@lists.linux-foundation.org, anan.sun@mediatek.com,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        linux-kernel@vger.kernel.org, ming-fan.chen@mediatek.com,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: memory: mediatek: Convert SMI to DT
- schema
-Message-ID: <20201030135305.GA3746616@bogus>
-References: <20201030091254.26382-1-yong.wu@mediatek.com>
- <20201030091254.26382-2-yong.wu@mediatek.com>
+        id S1726739AbgJ3N62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 09:58:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48644 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725939AbgJ3N62 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 09:58:28 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E4F552072C;
+        Fri, 30 Oct 2020 13:58:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604066307;
+        bh=adyPaigieWINvpIzCWk3XM6mFalffwbDJrfjZBicvkY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LssxqxVewnCDY1JEzRLqdoHAD1GDS9d+ghDN2JRk2WfI6f/FIMqucTLWc5iK/D4Fh
+         WtJeaq9SSuBGjWSDn8+lWrYhq62u/c4wjuWuA+oUCLUawzURUyth1ybsuhHMLm84UE
+         UdHPJSJoRMUSKI1Cu7f/aPlNv/fDDPevgVAYG61c=
+Date:   Fri, 30 Oct 2020 13:58:20 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        kuninori.morimoto.gx@renesas.com,
+        pierre-louis.bossart@linux.intel.com, perex@perex.cz,
+        tiwai@suse.com, p.zabel@pengutronix.de, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
+        mkumard@nvidia.com, viswanathl@nvidia.com, rlokhande@nvidia.com,
+        dramesh@nvidia.com, atalambedu@nvidia.com, nwartikar@nvidia.com,
+        swarren@nvidia.com, nicoleotsuka@gmail.com
+Subject: Re: [PATCH v4 00/15] Audio graph card updates and usage with
+ Tegra210 audio
+Message-ID: <20201030135820.GD4405@sirena.org.uk>
+References: <1602859382-19505-1-git-send-email-spujar@nvidia.com>
+ <c98d63a7-f311-a94f-abcc-1c5a87ba8025@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rqzD5py0kzyFAOWN"
 Content-Disposition: inline
-In-Reply-To: <20201030091254.26382-2-yong.wu@mediatek.com>
+In-Reply-To: <c98d63a7-f311-a94f-abcc-1c5a87ba8025@nvidia.com>
+X-Cookie: Blow it out your ear.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Oct 2020 17:12:52 +0800, Yong Wu wrote:
-> Convert MediaTek SMI to DT schema.
-> 
-> CC: Fabien Parent <fparent@baylibre.com>
-> CC: Ming-Fan Chen <ming-fan.chen@mediatek.com>
-> CC: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  .../mediatek,smi-common.txt                   |  50 -------
->  .../mediatek,smi-common.yaml                  | 140 ++++++++++++++++++
->  .../memory-controllers/mediatek,smi-larb.txt  |  50 -------
->  .../memory-controllers/mediatek,smi-larb.yaml | 129 ++++++++++++++++
->  4 files changed, 269 insertions(+), 100 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
->  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> 
 
+--rqzD5py0kzyFAOWN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Fri, Oct 30, 2020 at 12:04:50PM +0530, Sameer Pujar wrote:
+> Hi Mark, Morimoto-san,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml:84:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-./Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml:98:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
-./Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml:41:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
+> > Sameer Pujar (15):
+> >    ASoC: soc-core: Fix component name_prefix parsing
+> >    ASoC: soc-pcm: Get all BEs along DAPM path
+> >    ASoC: audio-graph: Use of_node and DAI for DPCM DAI link names
+> >    ASoC: audio-graph: Identify 'no_pcm' DAI links for DPCM
+> >    ASoC: audio-graph: Support empty Codec endpoint
+> >    ASoC: audio-graph: Expose new members for asoc_simple_priv
+> >    ASoC: audio-graph: Expose helpers from audio graph
 
-dtschema/dtc warnings/errors:
+> Would you suggest to keep above in a separate series and thus not blocked by
+> below doc updates? If so do I need to resend above in a next revision or if
+> these are good to be picked up?
 
+It's probably better to split things up given that the dependencies for
+the last bit are on another series.
 
-See https://patchwork.ozlabs.org/patch/1390887
+--rqzD5py0kzyFAOWN
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
+-----BEGIN PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+cG/sACgkQJNaLcl1U
+h9CSfAf/X5PzOOD5Jon1mVsaFPbij6n6esmY9LRtfZ4vDDwLZec683WNghZ/F/R6
+GxeVN81r0vv+6uhh6f4TaTD0+/XU0nc8aXQBgXs/6DHNALqX5b6GWaiCQRioYP6W
+QCD4gpybdIGuWvb2ONWsApLC9ciddNTZvNFeM5RprZQloeMjYUKGiQJ+tzUrTfrs
+Qce0dpEqTMk/37BF9z9fDqOPwScX4a0529QSD7zbAaSDKe4Pfcnad45MnjYprNZk
+Eaf9QiHtxpfvpqrIHvuIhPMgdOWGSsaZKbdQx6p7QLoftcJdFKD6sXjfUuKntPzY
+BY7H6q9Z+nxCOCm3uRkD3YIGXPefqw==
+=mqrB
+-----END PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+--rqzD5py0kzyFAOWN--
