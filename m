@@ -2,73 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B203A2A04B9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C530F2A054F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 13:27:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726318AbgJ3Lwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 07:52:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38440 "EHLO
+        id S1726402AbgJ3M1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 08:27:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726240AbgJ3Lwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:52:51 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63121C0613D2
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:52:43 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id f6so2886979qtc.7
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:52:43 -0700 (PDT)
+        with ESMTP id S1725834AbgJ3M07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 08:26:59 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47F6C0613D2;
+        Fri, 30 Oct 2020 05:26:04 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id s24so448622ioj.13;
+        Fri, 30 Oct 2020 05:26:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=+5h8uGAWLKMJPxsKSBHFnKRvgJ1/8UrMiZ99ArnMrJA=;
-        b=T5PMxHHhKjVVOAZLZj9tznmOgO5a8RNT6nFtO79RdHLj0Pg+Qhg+XzBx2y/gYFOMyr
-         Q9qtgI37UAo5dbmxjtVCym0gSW8haDG4CPDCYdf5srLDok4MCvio1sbfARmihoq3rsuv
-         oYoXnXfJTcsF6mnX2jHUpd8Q51fPUmDJqA97E=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qSviti0p1q5GMdkqTxe16VTxhYDezW8E1AdBlSV93EM=;
+        b=hiGLIv+L/ZyIj2RuMnyw/7mT9OkRCfRMi/bOcvKy+/LkQyTQbFt2/90sMk4cBJB4e3
+         Qj+jTJqxgORkFCtBexSmyMAq95FcYesI+4RcWI5I730oH4+yN9XU4a4duG4xJhfWG8CY
+         e99aYS3zgSGy4ZVgtLRUto0CizMoJPYc0hTzX68LePCLQfrFDqX4f36KXe7+TzuifRZp
+         5tWOJPNC36aH5cHl2QnxV5pqVZHY2UpdRDIe9PyQ2wQu4V+DbYi3+q50F3kmAGyc0LY+
+         KVV471cFvJfgDY4wKPCq1CL8r1fO/Wcmt2x9RHnm09vZmSgd5HA0RyA9utAfV49ezCE4
+         oyqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=+5h8uGAWLKMJPxsKSBHFnKRvgJ1/8UrMiZ99ArnMrJA=;
-        b=gCoLD9zOWDhPOHCILfYDRtZd2YZkmX8zdHzgO2YfICs/Tv0BevDqnhrDRV5nE/9wvU
-         wCDwPnyOUJ+ISmDM7w6jOuIe0RpiU7q4TPZvhqwaGa9NOPCbE0pWsmVwieMvowEs56qp
-         hrz5UxGvUSBAuf9nywNZYN3hOlhwNedRbjRDSasYZ6Jk+q+Wc42XMzvPAYuTs4zioFAF
-         KYnSq78ZGoj/6BA2tcgW3GTKSeoNv6VNA2pi0lUtYSmyPV/M42GH5vXTYMmMsF3oy80D
-         yC/HzCQFB+Y4hYYGYxS2xTzpx729zTeeC/vWWJyiCkrNs0OjGKCX0E6paQPtZU6AsGSQ
-         4RDg==
-X-Gm-Message-State: AOAM531MnPVyswTc/N6gPifQZhr8bCrkyG474+UUcocp7CxB+BpDJ/sC
-        W0AywUcSfjqG+VmpigiImd/Q2SLGpxQFHuuJ1SG9WQ==
-X-Google-Smtp-Source: ABdhPJwLO2y7F/la84e25j+8RAOK24xd1w93sjXGQQQ5Lt0KhcSrOTGTUA1lk6O6/uaREE7b2D38qQfMsLpESwGNPkU=
-X-Received: by 2002:aed:2125:: with SMTP id 34mr1670365qtc.249.1604058762193;
- Fri, 30 Oct 2020 04:52:42 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qSviti0p1q5GMdkqTxe16VTxhYDezW8E1AdBlSV93EM=;
+        b=tlV15JNYy/Y8MeYoLN2ukM+0xA239/Jtv+Pw9JHgZpqo21voVSRRszXQ0Y5xNd4Y5B
+         30quWfCxtL9VuO3LiJr2L5/ic0enKf3DfCCIIiLxsSjIfu+rHMatl9tIuD9Cr9vQKZdL
+         pH5HKAeyE8zcJQ3hXUNSos7yA15i8LtcRIN6IOVF0vZMigp6wWoXatTdy4wV9CLPaoC7
+         Gq5Z70SvrEtionDth+fYorbkjGr/7vMEwko96VLCMeWtNPSCeTZiuTwoCAqV4c5jDVYk
+         0D58Dc7PXk7vjhMLGxCKRVNXpbm18AOyt2nFDMZUk9xoUBUDR3sEXiFJ2OkVHGtMNlbF
+         49AA==
+X-Gm-Message-State: AOAM531QdRu8zQ2xAFVBOxpox5eu/3CPcoDSLB8xkmlGLgbxi8T8r3Ja
+        mutuiXFBDHILALuvwnJ7C2ZFnRNUmfNh6BSq9/g=
+X-Google-Smtp-Source: ABdhPJybYElzUXhY4j3QkDCwC4FpefbHLBpijbk1hIMkCgZPiSOvtnDzn2bZOzC6iFKB5UZk6v4yspPOlkAmdyyuEHE=
+X-Received: by 2002:a5e:de0b:: with SMTP id e11mr1495383iok.92.1604060764019;
+ Fri, 30 Oct 2020 05:26:04 -0700 (PDT)
 MIME-Version: 1.0
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 30 Oct 2020 20:52:31 +0900
-Message-ID: <CAFr9PX=Ac6yzR31uzK=6WmnbznUm_FzVRs+v2D3ONfX4UCY_QQ@mail.gmail.com>
-Subject: Acceptable format for clock cells.
-To:     linux-clk@vger.kernel.org
-Cc:     DTML <devicetree@vger.kernel.org>, Daniel Palmer <daniel@0x0f.com>
+References: <20200927165947.7317-1-krzk@kernel.org> <20200927165947.7317-2-krzk@kernel.org>
+ <CAHCN7xL2uda0OvkSvZ3tCBGT=WU9OxMqeXvmJaeBSpwb--4=zQ@mail.gmail.com>
+In-Reply-To: <CAHCN7xL2uda0OvkSvZ3tCBGT=WU9OxMqeXvmJaeBSpwb--4=zQ@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 30 Oct 2020 07:25:52 -0500
+Message-ID: <CAHCN7xKd=ba9j2D-VSkQf=2YNEm0LR1C+nk8n4C-kCJ3e0NV4g@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: imx8mm-beacon-som: fix missing PMIC's
+ interrupt line pull-up
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Peter Chen <peter.chen@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+On Wed, Oct 7, 2020 at 7:51 AM Adam Ford <aford173@gmail.com> wrote:
+>
+> On Sun, Sep 27, 2020 at 12:00 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > The PMIC's interrupt is level low and should be pulled up.  The PMIC's
+> > device node had pinctrl-0 property but it lacked pinctrl-names which
+> > is required to apply the pin configuration.
+> >
+>
+> Thanks for the fixes!
+>
+> > Fixes: 5f67317bd967 ("arm64: dts: imx8mm: correct interrupt flags")
+> > Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>
+> Tested-by: Adam Ford <aford173@gmail.com>
+>
 
-I'm writing a clock driver for a PLL unit in an ARM SoC that I hope to
-wrap up and send the patches for in the next few days.
+Shawn,
 
-This PLL unit has one PLL and then a series of dividers. Then each
-divider apparently has between 0 and 3 dividers coming off of it.
+Any chance you can apply this series?  Without this patch, the pmic
+driver throws some splat due to a previous fix.
 
-As there is no documentation for this thing and I'm not sure what the
-logical output numbers are or even if I know all of them I was
-considering making the number of clock cells 2 and having the first be
-the first divider (i.e. the divide by 2 output would be 2) and the
-second cell the chained divider or 0 for no divider.
+thanks
 
-If I should just decide the order of the outputs and come up with
-indexes for them would it still be ok to nest them like the first cell
-is the index of the divider and then the second cell is the index of
-the chained divider?
-
-Thanks,
-
-Daniel
+adam
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> > index 6de86a4f0ec4..55b36bddd513 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> > @@ -72,6 +72,7 @@
+> >         pmic@4b {
+> >                 compatible = "rohm,bd71847";
+> >                 reg = <0x4b>;
+> > +               pinctrl-names = "default";
+> >                 pinctrl-0 = <&pinctrl_pmic>;
+> >                 interrupt-parent = <&gpio1>;
+> >                 interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> > --
+> > 2.17.1
+> >
