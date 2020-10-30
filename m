@@ -2,108 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A1022A0E54
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 20:07:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D8F02A0E58
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 20:12:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727159AbgJ3THX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 15:07:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50226 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726225AbgJ3THX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 15:07:23 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B48BC0613CF;
-        Fri, 30 Oct 2020 12:07:23 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id u19so8625721ion.3;
-        Fri, 30 Oct 2020 12:07:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=kRnMiBAqbQrnQNWoGObw/GN72MYVN3PVOyPP/xbkSv4=;
-        b=SpSa0e4NexLm00Kgmenuq9+x90MS+prPInmNNlAj0OlEmSIi5GYyIJzEg/BLwp0pOn
-         bCD0nJO4bx+7KsyO1p9X2YaaZrPZmvBJl60VjVWxZce/4fElgFD87VfGS42oeZ9YwCCG
-         Zj3mlct0tQags16wHsGZTCijv+dUaTOd5yR7ToFvcXHBAZgBHqJh0lAQ/2gbIsC3tii4
-         XemUJFlPUAecRWF5nZUOhFlWkfnaTMlKGruZv6q4IAiz7+H7z1ZhpBA6KANL8eMs0Hyy
-         ToFM4o52BcClrMjo0uztS67L6EI+lVqNshUPM+wC+fne1XKGHSH+uPE4EeCB4UrnG8Sk
-         gsdQ==
+        id S1726163AbgJ3TMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 15:12:32 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:25871 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726564AbgJ3TMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 15:12:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1604085142;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=XBFiXaNj39XsUADHC7RDyTutSj/q4HGNQHJgvQLCxmE=;
+        b=ElvO+SLPoFQ5gCr7fF8+D+VhpCK5H4jRC4Nvf9iCZiCRiHEDIpUEEJk0mK1x1YmOleMJdJ
+        cUL8LKd9Xe7jAB6rU/sJHrAt4XKZ8P0ytd6DtsrQyqoQGrqglN8j290BCYMmUB/bXYRH/w
+        Sx1AcIrm4Y++6/Ry4asvWm+B1HuXlQo=
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com
+ [209.85.210.200]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-199-wEUstBKbPhOq4oXL5rajaw-1; Fri, 30 Oct 2020 15:12:18 -0400
+X-MC-Unique: wEUstBKbPhOq4oXL5rajaw-1
+Received: by mail-pf1-f200.google.com with SMTP id m5so2893389pfk.5
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 12:12:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=kRnMiBAqbQrnQNWoGObw/GN72MYVN3PVOyPP/xbkSv4=;
-        b=IXmoclusRC7qWoUu717H/N0gyu5bFQ5kFfJNuz/AL7H/66J4ctDoWgMZ3b/6zovGvT
-         uynyn92XuxaoJH1dol+ICxOqG+qxR3883S7d8WV16VDMeBxMwR3tW4Vq0CsITxfpcGrX
-         IWvH2TLwiCYhVjPuhu4QWVG0kZxo08cdy8YLHuEWNqENdjwmaB4RGmQ7tt3bmhWmOo59
-         5baTVvnWzraUohJlc2o2Uztrx0wM1bGWX8CZdjN5O7om3pfzlpK1n7zc9Pbkfrw6aoQw
-         STeg7P0fs1NQkw4e0GMm696c2Cv8zlRNAeG47dVs5MzM8GBUx8eF/X/vL3rMWuqF/ogD
-         L0IA==
-X-Gm-Message-State: AOAM533DabECoaZcEb6im59qLM+dW2sTNgosVjnimZgR3nfAI6d2rp2I
-        D13e6frk2py4i8mwCHKQ/srWvzpEC4fASsnpPTM=
-X-Google-Smtp-Source: ABdhPJyHHJZwON07JsYGXD+WzKKqSo4WezgeeFyNNwPtTNagJNoLm+UN3ag55BdCObIQ1+1dmhE4aXc+492+h8Di5G4=
-X-Received: by 2002:a02:5b09:: with SMTP id g9mr3051607jab.89.1604084842581;
- Fri, 30 Oct 2020 12:07:22 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=XBFiXaNj39XsUADHC7RDyTutSj/q4HGNQHJgvQLCxmE=;
+        b=uAEO+WpcaKK+8JGO+McOhaMmx0l4CCTYRH7TqM6T7LSGLP9snioLTIamMVs7yIJzFG
+         WSciZV57sI7JQv7rwwKOhhNxKyccUQXYSwsg+D+sdkFx38tUWvSHhFYM/Eo0Q+8WMVnD
+         au7cCdv55d8sRSyQ3HOJZdPkhQauz/ZSdh27YmXmB6jzYWncvyW9LnHu0HHvf4el3S6F
+         gSN7dRPF4+ZslIoDuqEvUBiPA5wMRPE7rMcJuVJLBi/RtWCXppw8sXH7gm1fIPJ8OUIB
+         IZJcf8tItug3j0U/SzcohueXMr6CPL1swS4LHI/yM/HJYrfSUkM0EXpPJUsoK5zsJCdv
+         MS6A==
+X-Gm-Message-State: AOAM532NrdLc2re93QopM6raBC22XWHJjmmQWTu82AfQ0aiIwsmGI+FJ
+        znr3judW6w19D0oCYBvMKH69aFJcaFBp5EN5g+foINpdMx7SvYdaCMZ5fjA2aeR4hVPhMkAELQZ
+        Z0XdYz5jm/6JT1ooR8YPaEvVMoHHImtVqBeCUWg==
+X-Received: by 2002:a63:490e:: with SMTP id w14mr3382420pga.275.1604085137787;
+        Fri, 30 Oct 2020 12:12:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz7oX81tGXy5zmWWvxzMzbhtIyWdYvUdA8PBADUj5CXHeRQPuitjFCWH9vEsZ801x+j0z7pVaseAlXdf3tPWR4=
+X-Received: by 2002:a63:490e:: with SMTP id w14mr3382396pga.275.1604085137412;
+ Fri, 30 Oct 2020 12:12:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201030144648.397824-1-peron.clem@gmail.com> <20201030144648.397824-2-peron.clem@gmail.com>
- <20201030161131.dlzzpy3atiiddx4n@gilmour.lan>
-In-Reply-To: <20201030161131.dlzzpy3atiiddx4n@gilmour.lan>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Fri, 30 Oct 2020 20:07:11 +0100
-Message-ID: <CAJiuCceRyRie_3sp7dZsFeHWCV+CFXX8R206kmMwq4_EHvfK=w@mail.gmail.com>
-Subject: Re: [PATCH v10 01/15] ASoC: sun4i-i2s: Fix lrck_period computation
- for I2S justified mode
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
+References: <20201023162220.v2.1.I45b53fe84e2215946f900f5b28bab1aa9d029ac7@changeid>
+ <CAO-hwJLn5XKV+cp+fCRY395uBWuX=JrxgiGSHUnJXFpTzFWu4w@mail.gmail.com> <20201030180042.GB3967106@bogus>
+In-Reply-To: <20201030180042.GB3967106@bogus>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Fri, 30 Oct 2020 20:12:06 +0100
+Message-ID: <CAO-hwJK8c+BrH3u5PMCndv6Jjj6K2z=4nyKMAojD09EcHjBROA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: HID: i2c-hid: Label this binding as deprecated
+To:     Rob Herring <robh@kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Jiri Kosina <jkosina@suse.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        andrea@borgia.bo.it, Kai Heng Feng <kai.heng.feng@canonical.com>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Hans De Goede <hdegoede@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
-
-On Fri, 30 Oct 2020 at 17:11, Maxime Ripard <maxime@cerno.tech> wrote:
+On Fri, Oct 30, 2020 at 7:00 PM Rob Herring <robh@kernel.org> wrote:
 >
-> On Fri, Oct 30, 2020 at 03:46:34PM +0100, Cl=C3=A9ment P=C3=A9ron wrote:
-> > Left and Right justified mode are computed using the same formula
-> > as DSP_A and DSP_B mode.
-> > Which is wrong and the user manual explicitly says:
+> On Fri, Oct 30, 2020 at 11:51:53AM +0100, Benjamin Tissoires wrote:
+> > Hi Doug,
 > >
-> > LRCK_PERDIOD:
-> > PCM Mode: Number of BCLKs within (Left + Right) channel width.
-> > I2S/Left-Justified/Right-Justified Mode: Number of BCLKs within each
-> > individual channel width(Left or Right)
-> >
-> > Fix this by using the same formula as the I2S mode.
-> >
-> > Fixes: 7ae7834ec446 ("ASoC: sun4i-i2s: Add support for DSP formats")
-> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > Foreword: I was about to say "yeah, whatever" to please Rob for once.
 >
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-Thanks for the ACK
+> Read my other reply first... I think we mostly agree.
+>
+> > But after re-reading this and more specifically patch 3 of the series,
+> > that won't do. More comments inlined.
+> >
+> > On Sat, Oct 24, 2020 at 1:23 AM Douglas Anderson <dianders@chromium.org> wrote:
+> > >
+> > > As pointed out by Rob Herring [1], we should have a device-specific
+> > > compatible string.  This means people shouldn't be using the
+> > > "i2c-over-hid" compatible string anymore, or at least not without a
+> > > more specific compatible string before it.  Specifically:
+> > >
+> > > 1. For newly added devices we should just have the device-specific
+> > >    device string (no "hid-over-i2c" fallback) and infer the timings
+> > >    and hid-descr-addr from there.
+> >
+> > And that's a big NACK from a maintainer point of view. I know in the
+> > device tree world these strings are important so that people can just
+> > say "I have a device compatible with X", and go on, but in the HID
+> > world that means we will have to implement one compatible struct per
+> > vendor/device, which is not something I want to do.
+>
+> It's not really any different than PCI and USB VID/PIDs.
 
-just noticed that the case was not properly sorted.
+Well, it is, because in the USB (HID) world, there is a specification
+that provides all of the entry points a device needs. In the i2c-hid
+case, the only entry point a device needs, in the ACPI world is one
+register address, and this is provided by ACPI itself. So in the ACPI
+world, for i2c-hid devices, we don't need to recompile the driver to
+support any current or new devices.
 
-Do you agree that sorting like this is better ?
-        case SND_SOC_DAIFMT_I2S:
-+       case SND_SOC_DAIFMT_LEFT_J:
-+       case SND_SOC_DAIFMT_RIGHT_J:
+>
+> > You can think of it as if you are suddenly saying that because it
+> > would be easier for a few particular USB devices that need a quirk,
+> > you "just" need to add the list of *all* USB HID devices that are
+> > around. i2c-hid should be a driver that doesn't change unless 2 things
+> > happen:
+> > - there is a change in the spec
+> > - there is a specific quirk required for a device that doesn't follow the spec.
+>
+> Or does something outside of what the spec covers.
 
-If I have to push a new series I will fix it
+This is solved in the ACPI case by running ACPI callbacks, and I am
+more and more thinking we should mimic that for DT devices.
 
-Regards,
-Clement
+>
+> > So if having device tree support for these means we suddenly need to
+> > add every single device around in the compatible table, I would be
+> > tempted to just drop the support for those new devices.
+> >
+> > Again, you (or anyone else) have to understand that the descriptor
+> > address is just a parameter which is known at the manufacturing time,
+> > but that can vary with different vendors and or products. In the ACPI
+> > world, this parameter is provided in the DSDT, and there is no reason
+> > for it to not be provided in the DT.
+>
+> Whether that makes sense as a standard 'hid-over-i2c' property is a
+> separate discussion. Seems like it might be.
 
-> Thanks!
-> Maxime
+Actually it is not TBH. The spec doesn't mention that sleep time (or
+the reset line FWIW), so it shouldn't even be seen by i2c-hid. But I
+accepted maybe too much parametrization on i2c-hid, and now is
+probably the time we take a step back and rewrite the code that goes
+out of spec.
+
+>
+> It's trying to parameterize power sequencing to be generic and a never
+> ending stream of quirk property additions that I'm against. That's based
+> on the mistake of accepting those to some point in the past.
+> hid-over-i2c is not special here.
+
+Ack
+
+>
+> If we wanted to parameterize power control/sequences in DT, then we'd
+> need to handle any number of controls (GPIO, regulators, clocks, power
+> domains, register poking, firmware loading, etc.) in any order and
+> amounts of time in between. What we'd end up needing is some programming
+> language in DT (Forth anyone?).
+
+Understood, and we are hitting the exact same problem here. The only
+difference is that i2c-hid is already generic for anything but
+power/reset, and this is what we are vehemently agreeing here :P
+
+>
+> > The last thing I want to see is people using device tree having to
+> > recompile i2c-hid to register their own device.
+>
+> That's fine if they don't need extra things like power control...
+>
+> > If this part of the Device Tree binding is so important for the DT
+> > world, then we should split up the DT bindings from i2c-hid, and have
+> > some platform driver that would handle a conversion between devicetree
+> > and platform data. But this driver won't be maintained by me.
+> >
+> > I agree adding the various sleep parameters in the platform data is
+> > not good, but I prefer that over having to maintain an endless table
+> > of parameters for every single i2c-hid device out there.
+>
+> How is match data any different from platform data? It not other than
+
+The platform data is filled by ACPI based on the DSDT, and only a few
+options are used: HID descriptor register address and irq IIRC.
+
+The other platform data options were added more specifically to work
+around the fact that DT doesn't have the language mentioned above, and
+that's where dragons are coming in.
+
+> one is all in the same file and the other adds a bunch of boilerplate
+> and a pointless driver. If it's really such a maintainer burden, then
+> perhaps the driver model could learn how to add match entries
+> dynamically or from multiple sources (like a 2nd file of ids and
+> data). Just throwing out ideas here...
+
+I couldn't agree more (see my comment in patch 3/3 at
+https://patchwork.kernel.org/project/linux-input/patch/20201023162220.v2.3.Ied4ce10d229cd7c69abf13a0361ba0b8d82eb9c4@changeid/#23723561
+in case you were not cc-ed).
+
+Ideally, we should split out anything DT related in the i2c-hid code,
+and work around it in the same "hidden" way ACPI is: have a few
+functions that could be overridden when entering into full power, or
+sleep. This code could be then maintained separately from the generic
+code, and we would be able to have some compatible definitions there,
+without polluting the other devices. And as you mentioned, maybe we
+could make this dynamic.
+
+I honestly wish we could have this as a separate module that would be
+in charge of the DT folks, but already having it as a separate file
+would be a win.
+
+Cheers,
+Benjamin
+
+>
+> Rob
+>
+
