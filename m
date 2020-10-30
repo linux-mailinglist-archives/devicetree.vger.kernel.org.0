@@ -2,126 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A692A0132
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94A952A0135
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726301AbgJ3JWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 05:22:38 -0400
-Received: from mail-eopbgr80053.outbound.protection.outlook.com ([40.107.8.53]:51381
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725355AbgJ3JWi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 05:22:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QlTOWZwEFV7TL1HohxLSvBLRbE2wHMVXcxdnR+oGKVQqyldPx0oS19dc8UtHfobeanEeNZmKE0GEnJG4xLQSfPAX3j1yNuDca9jYBT9y4GvGWzvmnf6soc8DdytzU5+ZUK4NSKTORwxPHVsbP2Il0ts7bmfd4YR6iHZCcFsunHFlVFWwlyQVRvlFUiOsaSdJSGzaHlUVjr7kDmSr5cuSr6NgwbfvuPIXI31jfsvHFm/YEF7LLaouYpQjkvVPRqt/FqZuXI3oQqbAcn0NW6FuAy9D8x8f5IGkIhY0h1lNJG7+dvbVFJFAnPsxOOBzLqN6qp6J1jH3yy1hbLY4dCZsDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=II7icuHba+vR/928JCkPy8mZfhAvgGmud9BJKR/LfB4=;
- b=RKKW5k7DyRn8REJHHafD1bO5bAtOJnws5jGqHHz42Akumzcrl9PXbVNbh+euUlP+MNRBOjlq0T/TQ3ke7RIHM725ecDBdpLAzJAnnAk+H7QcVG3xeJrZHjqJtleTWmfCxr19qn3yBMFnG9eDuGEN1RQKbS99H4ygKkOnbUITGkGWkyYvJWhbdSIhf3ZJc8M8O7QkKkcDi5EkaGTq5Pjq/b1qmeux/N7Lq79lUhCO0GzeyMjenzAIZOeNck3m0nqXQECpKP+xHMnFQVHPfAW4uVKfsGh0p6MdyeN7eBV29ri+V/Qx4rsTY3Y6nucVeFgLnGOdh6IptK/9GG2CcYj0EA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=II7icuHba+vR/928JCkPy8mZfhAvgGmud9BJKR/LfB4=;
- b=ZsdY1Siqus9EZA8kW/SgQVlMLFziDTUznIBjAPAGVkpiMYbtUVYk5wBVu27KktY0sYI6LFBb+Ju86yq3/Nj0F0O8E6+6AUWZh4KVRm6MPTANj5SbqUE9b1pQJ313LMkbiNbHhTrqSsrGlK3V1n4I5W+bU9gSgLyJ0/UaFcucLZQ=
-Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
- (2603:10a6:803:16::14) by VI1PR04MB5567.eurprd04.prod.outlook.com
- (2603:10a6:803:d5::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.27; Fri, 30 Oct
- 2020 09:22:35 +0000
-Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
- ([fe80::607d:cbc4:9191:b324]) by VI1PR0402MB3871.eurprd04.prod.outlook.com
- ([fe80::607d:cbc4:9191:b324%5]) with mapi id 15.20.3499.029; Fri, 30 Oct 2020
- 09:22:35 +0000
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 03/11] arm64: dts: ls1088a: add external MDIO device
- nodes
-Thread-Topic: [PATCH v4 03/11] arm64: dts: ls1088a: add external MDIO device
- nodes
-Thread-Index: AQHWq7KPgPLchCf2i0mGrv1L3kt/jqmv0oCAgAASgQA=
-Date:   Fri, 30 Oct 2020 09:22:34 +0000
-Message-ID: <20201030091942.t2h6f4rdp4uhcaqa@skbuf>
-References: <20201026161005.5421-1-ioana.ciornei@nxp.com>
- <20201026161005.5421-4-ioana.ciornei@nxp.com> <20201030081617.GM28755@dragon>
-In-Reply-To: <20201030081617.GM28755@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [188.25.2.177]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 6efa5542-20c4-4db5-1f2f-08d87cb55637
-x-ms-traffictypediagnostic: VI1PR04MB5567:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB5567EE559FF369634909733BE0150@VI1PR04MB5567.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2dlrdNpJVZntZB3JZkwyyC7w3aj9sOm47DNT7kr418ipzbZXwPRxRhupo1eC/hFjXqPoxump1F19dUP5aYSzzraF5r5QuZQCEAiNh0WkS4Nexpl4tze0JLaU9DK6xyz+ck4bqNPufR50yO0+/g/dbDNzq/YbliSw/SLTwzVm6mZJLzp5ejN8+85/S/FIifI3H90q8JARrsxEPUcRSnvb4joUByQl5+/eZ9m3sdmQB+E3Jn7PkXi2hAQx4WYODggn86oe1icWjXGeQ6V1K9i8dN8shpP/1eNiRpDw8uojGKZY3byS9pj61heytf3b9zaZ
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3871.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(136003)(396003)(346002)(376002)(39850400004)(366004)(44832011)(33716001)(186003)(2906002)(316002)(54906003)(6916009)(4326008)(26005)(71200400001)(1076003)(5660300002)(6506007)(8936002)(76116006)(478600001)(6486002)(9686003)(66946007)(6512007)(66446008)(64756008)(66556008)(66476007)(8676002)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: pSVzuz9tyxW+y5MR/43dbBUbH3xzSmwZeL9YwSr57PE+VW0URii8eeQMz/JXcqOygx47qq3IPjRQ8qbBQ+y0GUvBiVYlg1Jfav7fMw1TDYDuAiFwvO3z/THE+Uxt3ng7NI1bFgZEoW4T3R1jFRHzssz1LMA8TfTZ8Mw+nESt/SS3h+1k9ShlR7Uvntxjg2U6PjuLeWXIlkjrUHDf/yhalT9J6Ik3Yo6ugaiFoMUYtzPxBUQq23E52C3GqIVWyvLR/XKdf1lVyLCZto3kalvOa3ImJ+RcCxE+EkHqqw03IMItrJTOOfpqC+GZao1bd+Pl7Ylbz0R0yMLkMU7K3NOk1DQsb+JPFMV9mhI1mRYzUgMi2b0dBD830MwrIGeympjhlZhfzskBkFONYMpPrQDh/XIabbQw7frBdG5hxlCEKn7a4+oCkBxgEwZ+JitHS3qiR4GPMqgiXHcXFuLvt2P/ZcHLtDJ87R7BrdTfbixy65EL+M9rBpT7rqwT6jw3PoZw91RkBqaKjn8cwtVUOYbiv20mUyaG4Do+aFwEk0qyI3yWVcXoS1N8vzYcFS1ddO8kwYdg8C+aFZCqk+mfqnQfTpTjFcfoFjuVJpimOd1rS6RnN/912UNUsS0pkONWRTe/Xebd316g55aBN8M2cfnYVA==
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <94BF6A89714E3646A254893FFFF69BCA@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1725790AbgJ3JXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 05:23:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725888AbgJ3JXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 05:23:22 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB84C0613D4
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:23:22 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id k6so6815513ior.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:23:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CBA+zo6LaSoFeL0OA7IbUTdbUJNI/GOykxoTxkhm2nk=;
+        b=UO5IfL8R5QFcwjro3zMCatag08rvnj7MG+rIfVf8CZY1PLx4Z0SoVQtu3DvG/0uf2N
+         YIRVCW8AOfZZVXKBcMTqoLCPZMQ5Kdr+w2h4Jyf/fzhu6jZud64aAlrfyOQbqcC7FZig
+         6RxtRmtJurOtE9CKuMpk1+tU/vGvKGRNHkDxmw8yP7WTwOpd+GVyHY20Brqmw6oBEwuq
+         QvZM45AWJDmHUwcapmaYrBa+pQ32oebVFliheC058EYqeCLz6IBmN6i+RIW2LIsORGah
+         PPcv4Mf1Xo6nq/dRGbcCEpsqtymMwkMc30l3lLgjDsRtVNql2yXNOini1QEbK9TJHv/h
+         xoFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CBA+zo6LaSoFeL0OA7IbUTdbUJNI/GOykxoTxkhm2nk=;
+        b=QWn/MWfsGyFfwNFaM49Ndoe7Zv4o+3GqRQahk/hKyYbvEArwEoBWRMXmQ1i13YbCvX
+         4Z+Moo6TVrgRgKiFhItuEj6LR64ilroBBDc5LB7kjMDKOP7CqM0JzluF570sCSjCQ7Ry
+         XJDnxUzhsyxmXWUTKjfRyLB7oJGAh2UDNPrSP8m0Kn8KSyo8et169jWapB4qtB7EiW2J
+         UIFc7pl1az5yyI66frdZUeB+HHH4rJXH+IlTeGI5ICq18ScK+tNB40wonI5EHRmRbk+G
+         VSHUxYtSe1njgxwrcOENZ/QihTy2daoLDG47HWfMoaU8f51mAyQr9/uykDAYLNEmdDb9
+         VYYw==
+X-Gm-Message-State: AOAM532MQH0q1s2NTPpoR7xKhMz0xmSWKvgPvcctWqzqpUAA4Ar6VoHc
+        VwSzW0khKf5linc6P1U6yXTbdNhaAV2vC6Uxx+YoaA==
+X-Google-Smtp-Source: ABdhPJyH+9c8dw1FcU0h83mbgXToEcZDNuIgSVvIgnpkYquj90LicUxQtsuxCBKhNY9sYkw8F9Rt7qhEa3t2HuwKEyA=
+X-Received: by 2002:a6b:c8c1:: with SMTP id y184mr1050821iof.109.1604049801372;
+ Fri, 30 Oct 2020 02:23:21 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3871.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6efa5542-20c4-4db5-1f2f-08d87cb55637
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Oct 2020 09:22:34.9823
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: v50xOMmJB1J/Z0haSOhi6mqzFfqmdxu/VbSmyo+nDUvt6aIdP4VQHMP/nJVWQchu2kZjq2b0SSrorq7xZKyB2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5567
+References: <20201030075724.1616766-1-ajye_huang@compal.corp-partner.google.com>
+ <20201030075724.1616766-3-ajye_huang@compal.corp-partner.google.com>
+In-Reply-To: <20201030075724.1616766-3-ajye_huang@compal.corp-partner.google.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Fri, 30 Oct 2020 17:23:10 +0800
+Message-ID: <CA+Px+wXPRg7aDU5+vr6R_BxuFfhuDeG3iEQeAUKWNtX8YmVC1Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
+To:     Ajye Huang <ajye.huang@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 04:16:21PM +0800, Shawn Guo wrote:
-> On Mon, Oct 26, 2020 at 06:09:57PM +0200, Ioana Ciornei wrote:
-> > Add the external MDIO device nodes found in the WRIOP global memory
-> > region. This is needed for management of external PHYs.
-> >=20
-> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > ---
-> > Changes in v2:
-> >  - removed the 0x from the unit addresses
-> > Changes in v3:
-> >  - none
-> > Changes in v4:
-> >  - none
-> >=20
-> >  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm6=
-4/boot/dts/freescale/fsl-ls1088a.dtsi
-> > index ff5805206a28..aea42e9e947f 100644
-> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> > @@ -672,6 +672,24 @@ ptp-timer@8b95000 {
-> >  			fsl,extts-fifo;
-> >  		};
-> > =20
-> > +		emdio1: mdio@8b96000 {
-> > +			compatible =3D "fsl,fman-memac-mdio";
-> > +			reg =3D <0x0 0x8B96000 0x0 0x1000>;
->=20
-> Use lowercase for hex values.
->=20
+On Fri, Oct 30, 2020 at 3:57 PM Ajye Huang <ajye.huang@gmail.com> wrote:
+> +static struct gpio_desc *dmic_sel;
+> +static int dmic_switch;
 
-Sure, will change in next version.
+If you really need them, you should put them in struct sc7180_snd_data.
 
-Ioana=
+> +static int dmic_set(struct snd_kcontrol *kcontrol,
+> +                   struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       if (dmic_sel) {
+
+if (IS_ERR(dmic_sel))
+But I think you don't need to check dmic_sel.  Suppose your _probe()
+already returned error, the code here shouldn't be called.
+
+> +               dmic_switch = ucontrol->value.integer.value[0];
+
+Looks like it can be a local variable.  You don't need to save dmic_switch.
