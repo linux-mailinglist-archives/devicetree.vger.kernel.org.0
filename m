@@ -2,147 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D67FC2A01E7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:56:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C14D2A021D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 11:07:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725355AbgJ3J41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 05:56:27 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:30755 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726195AbgJ3J41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 05:56:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1604051785;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=RinIyWxJBbmsSNFfcXQ/y1B1X9TvLTOrZQPxs5n5iMY=;
-        b=YTvFcygVnjdgFfJief7gBgNp7MlmIYDOHkQzb3rFKqjug/vpzkCbHiFowyvax/Okfv4GVd
-        eyndwXdwuFP2C3t39nZjVWyBw6GryIFXvULnSVmMsGpfmw8cixEptlpmE/79TEmDn8tUeu
-        bOMvdkAJU0m6NUWgjtAGFOabpLCil8g=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-402-qnvtfIcKNUaN4gli3sKzrg-1; Fri, 30 Oct 2020 05:56:23 -0400
-X-MC-Unique: qnvtfIcKNUaN4gli3sKzrg-1
-Received: by mail-ed1-f70.google.com with SMTP id b68so368963edf.9
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:56:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=RinIyWxJBbmsSNFfcXQ/y1B1X9TvLTOrZQPxs5n5iMY=;
-        b=bPFJ9xp9LSTZL7QeZ7xKo9iY0u9/yvRTSF0AY9SR0NoJL1HqXMMyC2vjEEDLUUyss/
-         OhUalSFPulWUQY0S+xyPGY7jNUEe/0zNKwgMu8IkhCjS3rNRLcC6LAIFLyTbmznMWtnx
-         oUpzQre6FfjRFqHvgkzPGE7Muj/YuA8iT7DxFEj4rzWv3HdN8Ctui5+2FdgnXKNDPOFf
-         wROOQju/helmlg6QnykfIf1P2L7R1ujlPXrT8YdKhKxuX06Z5vRVlqauYso0yIZxBMQ9
-         VdDhZBgA/RHrj9Sz3tqiMjPEPkjVFUswBnaRbgWUNRZda+faife6tG4VRtMg5ZpPHyf8
-         grCw==
-X-Gm-Message-State: AOAM530eKuDpqKV9CsuGKoRDpXsiQtgi+Xa2BSXgQQuqMjHurfhzYeAx
-        8tnJ3sB2VASo1xtWtx1zMHHABu6o6Gq+n9Bf0ZH7lceX/mM4wDkXnT2AvKcspmI0sNU8gv+1mNb
-        HTITLRBTTX6/yfEsjeLkiPg==
-X-Received: by 2002:a17:906:3689:: with SMTP id a9mr1546509ejc.403.1604051781881;
-        Fri, 30 Oct 2020 02:56:21 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwk85LqSiQSvbeJC5mGEyPbxaBlbSfctyRwNx4tsW6atojGhk3NEbe4WQ2HDSLwJT9DVpW2Bw==
-X-Received: by 2002:a17:906:3689:: with SMTP id a9mr1546492ejc.403.1604051781718;
-        Fri, 30 Oct 2020 02:56:21 -0700 (PDT)
-Received: from x1.localdomain (2001-1c00-0c0c-fe00-6c10-fbf3-14c4-884c.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:6c10:fbf3:14c4:884c])
-        by smtp.gmail.com with ESMTPSA id p16sm2822778edu.74.2020.10.30.02.56.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Oct 2020 02:56:21 -0700 (PDT)
-Subject: Re: [PATCH 1/3] Input: goodix - add option to disable firmware
- loading
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andrej Valek <andrej.valek@siemens.com>
-Cc:     nick@shmanahar.org, hadess@hadess.net, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20201029170313.25529-1-andrej.valek@siemens.com>
- <20201029170313.25529-2-andrej.valek@siemens.com>
- <20201029203608.GE2547185@dtor-ws>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <a5964429-a472-6b78-e53c-69b4cb115b94@redhat.com>
-Date:   Fri, 30 Oct 2020 10:56:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        id S1726055AbgJ3KHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 06:07:04 -0400
+Received: from mga06.intel.com ([134.134.136.31]:21461 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726019AbgJ3KHE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 06:07:04 -0400
+IronPort-SDR: vCs6nUcPpXGwgXKuS1vpTQ3k4dXS69SrcEspUeyQv99tJBi7uEw8Bu1dYlNON3ZeZ2kfR4UDFK
+ xmEZ40PtdtIw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="230221625"
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; 
+   d="scan'208";a="230221625"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2020 03:07:03 -0700
+IronPort-SDR: B+dFTSx9H2RpfWItIplOW5X6Z6paV7eHCGfCwgj60zhUPW+qIcTWBl10ZRoPyjBgzTfCZlGJkp
+ 3qKEm+MIzz1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; 
+   d="scan'208";a="525843590"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga006.fm.intel.com with ESMTP; 30 Oct 2020 03:07:02 -0700
+Received: from [10.255.142.248] (vramuthx-MOBL1.gar.corp.intel.com [10.255.142.248])
+        by linux.intel.com (Postfix) with ESMTP id 7EB2B5808A3;
+        Fri, 30 Oct 2020 03:06:58 -0700 (PDT)
+Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: Re: [RESENDPATCH v15 2/2] mtd: rawnand: Add NAND controller support
+ on Intel LGM SoC
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     vigneshr@ti.com, tudor.ambarus@microchip.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        robh+dt@kernel.org, boris.brezillon@collabora.com,
+        devicetree@vger.kernel.org, simon.k.r.goldschmidt@gmail.com,
+        dinguyen@kernel.org, richard@nod.at, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+References: <20201026073021.33327-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201026073021.33327-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201028112037.326c06e2@xps13>
+ <ab2b0b7a-93b6-51e4-ec08-7af4f4f38745@linux.intel.com>
+ <20201030092329.280466d9@xps13>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <42724eab-7840-27f2-31ad-b5bc10fd89fd@linux.intel.com>
+Date:   Fri, 30 Oct 2020 18:06:57 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-In-Reply-To: <20201029203608.GE2547185@dtor-ws>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20201030092329.280466d9@xps13>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Miquel,
 
-On 10/29/20 9:36 PM, Dmitry Torokhov wrote:
-> Hi Andrej,
+On 30/10/2020 4:23 pm, Miquel Raynal wrote:
+> Hello,
 > 
-> On Thu, Oct 29, 2020 at 06:03:11PM +0100, Andrej Valek wrote:
->> Firmware file loadind for GT911 controller takes too much time (~60s).
->> There is no check that configuration is the same which is already present.
->> This happens always during boot, which makes touchscreen unusable.
+>>>> +static const struct nand_controller_ops ebu_nand_controller_ops = {
+>>>> +	.attach_chip = ebu_nand_attach_chip,
+>>>> +	.setup_interface = ebu_nand_set_timings,
+>>>> +	.exec_op = ebu_nand_exec_op,
+>>>> +};
+>>>> +
+>>>> +static void ebu_dma_cleanup(struct ebu_nand_controller *ebu_host)
+>>>> +{
+>>>> +	if (ebu_host->dma_rx)
+>>>> +		dma_release_channel(ebu_host->dma_rx);
+>>>> +
+>>>> +	if (ebu_host->dma_tx)
+>>>> +		dma_release_channel(ebu_host->dma_tx);
+>>>> +}
+>>>> +
+>>>> +static int ebu_nand_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +	struct device *dev = &pdev->dev;
+>>>> +	struct ebu_nand_controller *ebu_host;
+>>>> +	struct nand_chip *nand;
+>>>> +	struct mtd_info *mtd;
+>>>> +	struct resource *res;
+>>>> +	char *resname;
+>>>> +	int ret, i;
+>>>> +	u32 reg;
+>>>> +
+>>>> +	ebu_host = devm_kzalloc(dev, sizeof(*ebu_host), GFP_KERNEL);
+>>>> +	if (!ebu_host)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	ebu_host->dev = dev;
+>>>> +	nand_controller_init(&ebu_host->controller);
+>>>> +
+>>>> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ebunand");
+>>>> +	ebu_host->ebu = devm_ioremap_resource(&pdev->dev, res);
+>>>> +	if (IS_ERR(ebu_host->ebu))
+>>>> +		return PTR_ERR(ebu_host->ebu);
+>>>> +
+>>>> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hsnand");
+>>>> +	ebu_host->hsnand = devm_ioremap_resource(&pdev->dev, res);
+>>>> +	if (IS_ERR(ebu_host->hsnand))
+>>>> +		return PTR_ERR(ebu_host->hsnand);
+>>>> +
+>>>> +	ret = device_property_read_u32(dev, "nand,cs", &reg);
+>>>
+>>> There is no nand,cs property. Use 'reg' instead.
+>> Noted.
+>>>    
+>>>> +	if (ret) {
+>>>> +		dev_err(dev, "failed to get chip select: %d\n", ret);
+>>>> +		return ret;
+>>>> +	}
+>>>> +	ebu_host->cs_num = reg;
+>>>
+>>> The following for loop is weird, above you can only store a single cs
+>>> number, while below you seem to reserve serveral memory areas. Please
+>>> clarify this code.
+>> This IP supports 2 chip select for 2 different memory regions so we used the below for loop, as per reviewers comment updated.
+>> 		 EBU_CS0_BASE     0xE1C0_0000 (Memory-Mapped)
+>> 		 EBU_CS0_IO_BASE  0x1740_0000 (FPI I/O Mapped)
 >>
->> Add there an option to prevent firmware file loading, but keep it enabled
->> by default.
+>>                    EBU_CS1_BASE     0xE140_0000 (Memory-Mapped)
+>>                    EBU_CS1_IO_BASE  0x17C0_0000 (FPI I/O Mapped)
 > 
-> I thought that Goodix was losing firmware loading at poweroff. Is this
-> not the case with this model?
+> Please make a difference between, "there are two CS, either can be
+> picked but we can use only one in this driver" or "there are two CS,
+> one or both can be used". You can start with supporting a single CS (no
+> matter which one is picked by the user with the reg property) but in
+> this case there is no such for loop because only 1 CS is used. Or you
+> can decide that both CS can be populated and in this case you must
+> handle this in ->select_chip().
+Sure, I will hadle the same as per your suggestion, thanks a lot!
 
-So first of all there are 2 sorts of firmware involved with the
-Goodix touchscreen controllers, the actual firmware and a block
-of config data for that firmware which I presume adjusts it for
-the specific (model of) the digitizer which is attached.
-
-ATM the mainline Linux driver does not support models where
-the actual firmware itself needs to be loaded (because they
-only have RAM, so they come up without firmware).
-
-I do have one model tablet with a ROM-less goodix touchpad
-controller, so if I ever find the time I might add support
-for loading the actual firmware.
-
-So what we are talking about here is just loading the config
-data and I'm a bit surprised that this take so long.
-
-> Adding Hans as he was working with this driver/code.
-
-With all that said I have no objection to this change.
-
-Regards,
-
-Hans
-
-
-
+Regards
+Vadivel
 > 
 >>
->> Signed-off-by: Andrej Valek <andrej.valek@siemens.com>
->> ---
->>  drivers/input/touchscreen/goodix.c | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/input/touchscreen/goodix.c b/drivers/input/touchscreen/goodix.c
->> index 02c75ea385e08..44336ecd2acdf 100644
->> --- a/drivers/input/touchscreen/goodix.c
->> +++ b/drivers/input/touchscreen/goodix.c
->> @@ -941,7 +941,9 @@ static int goodix_get_gpio_config(struct goodix_ts_data *ts)
->>  	default:
->>  		if (ts->gpiod_int && ts->gpiod_rst) {
->>  			ts->reset_controller_at_probe = true;
->> -			ts->load_cfg_from_disk = true;
->> +			/* Prevent cfg loading for each start */
->> +			ts->load_cfg_from_disk = !device_property_read_bool(dev,
->> +						 "touchscreen-do-not-load-fw");
->>  			ts->irq_pin_access_method = IRQ_PIN_ACCESS_GPIO;
->>  		}
->>  	}
->> -- 
->> 2.20.1
->>
+>>>    
+>>>> +
+>>>> +	for (i = 0; i < MAX_CS; i++) {
+>>>> +		resname = devm_kasprintf(dev, GFP_KERNEL, "nand_cs%d", i);
+>>>> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>>>> +						   resname);
+>>>> +		ebu_host->cs[i].chipaddr = devm_ioremap_resource(dev, res);
+>>>> +		ebu_host->cs[i].nand_pa = res->start;
+>>>> +		if (IS_ERR(ebu_host->cs[i].chipaddr))
+>>>> +			return PTR_ERR(ebu_host->cs[i].chipaddr);
+>>>> +	}
+>>>> +
+>>>> +	ebu_host->clk = devm_clk_get(dev, NULL);
+>>>> +	if (IS_ERR(ebu_host->clk))
+>>>> +		return dev_err_probe(dev, PTR_ERR(ebu_host->clk),
+>>>> +				     "failed to get clock\n");
+>>>> +
+>>>> +	ret = clk_prepare_enable(ebu_host->clk);
+>>>> +	if (ret) {
+>>>> +		dev_err(dev, "failed to enable clock: %d\n", ret);
+>>>> +		return ret;
+>>>> +	}
+>>>> +	ebu_host->clk_rate = clk_get_rate(ebu_host->clk);
+>>>> +
+>>>> +	ebu_host->dma_tx = dma_request_chan(dev, "tx");
+>>>> +	if (IS_ERR(ebu_host->dma_tx))
+>>>> +		return dev_err_probe(dev, PTR_ERR(ebu_host->dma_tx),
+>>>> +				     "failed to request DMA tx chan!.\n");
+>>>> +
+>>>> +	ebu_host->dma_rx = dma_request_chan(dev, "rx");
+>>>> +	if (IS_ERR(ebu_host->dma_rx))
+>>>> +		return dev_err_probe(dev, PTR_ERR(ebu_host->dma_rx),
+>>>> +				     "failed to request DMA rx chan!.\n");
+>>>> +
+>>>> +	for (i = 0; i < MAX_CS; i++) {
+>>>> +		resname = devm_kasprintf(dev, GFP_KERNEL, "addr_sel%d", i);
+>>>> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>>>> +						   resname);
+>>>> +		if (!res)
+>>>> +			return -EINVAL;
+>>>> +		ebu_host->cs[i].addr_sel = res->start;
+>>>> +		writel(ebu_host->cs[i].addr_sel | EBU_ADDR_MASK(5) |
+>>>> +		       EBU_ADDR_SEL_REGEN, ebu_host->ebu + EBU_ADDR_SEL(i));
+>>>> +	}
+>>>> +
+>>>> +	nand_set_flash_node(&ebu_host->chip, dev->of_node);
+>>>> +	if (!mtd->name) {
+>>>> +		dev_err(ebu_host->dev, "NAND label property is mandatory\n");
+>>>> +		return -EINVAL;
+>>>> +	}
+>>>> +
+>>>> +	mtd = nand_to_mtd(&ebu_host->chip);
+>>>> +	mtd->dev.parent = dev;
+>>>> +	ebu_host->dev = dev;
+>>>> +
+>>>> +	platform_set_drvdata(pdev, ebu_host);
+>>>> +	nand_set_controller_data(&ebu_host->chip, ebu_host);
+>>>> +
+>>>> +	nand = &ebu_host->chip;
+>>>> +	nand->controller = &ebu_host->controller;
+>>>> +	nand->controller->ops = &ebu_nand_controller_ops;
+>>>> +
+>>>> +	/* Scan to find existence of the device */
+>>>> +	ret = nand_scan(&ebu_host->chip, 1);
+>>>> +	if (ret)
+>>>> +		goto err_cleanup_dma;
+>>>> +
+>>>> +	ret = mtd_device_register(mtd, NULL, 0);
+>>>> +	if (ret)
+>>>> +		goto err_clean_nand;
+>>>> +
+>>>> +	return 0;
+>>>> +
+>>>> +err_clean_nand:
+>>>> +	nand_cleanup(&ebu_host->chip);
+>>>> +err_cleanup_dma:
+>>>> +	ebu_dma_cleanup(ebu_host);
+>>>> +	clk_disable_unprepare(ebu_host->clk);
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>> +static int ebu_nand_remove(struct platform_device *pdev)
+>>>> +{
+>>>> +	struct ebu_nand_controller *ebu_host = platform_get_drvdata(pdev);
+>>>> +	int ret;
+>>>> +
+>>>> +	ret = mtd_device_unregister(nand_to_mtd(&ebu_host->chip));
+>>>> +	WARN_ON(ret);
+>>>> +	nand_cleanup(&ebu_host->chip);
+>>>> +	ebu_nand_disable(&ebu_host->chip);
+>>>> +	ebu_dma_cleanup(ebu_host);
+>>>> +	clk_disable_unprepare(ebu_host->clk);
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static const struct of_device_id ebu_nand_match[] = {
+>>>> +	{ .compatible = "intel,nand-controller", },
+>>>
+>>> No version or soc in the compatible? (not mandatory).
+>> Yes, you're right, it should be "intel,lgm-ebunand", but this same driver supports 2 dfferent SOC's , that's the reason kept as generic
+>> "intel,nand-controller"
 > 
-> Thanks.
+> In this case I guess declaring two compatibles is the way to go.
 > 
-
+> 
+> Thanks,
+> Miquèl
+> 
