@@ -2,99 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 176AF2A04AB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B203A2A04B9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:52:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725993AbgJ3Lr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 07:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
+        id S1726318AbgJ3Lwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 07:52:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726353AbgJ3Lr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:47:56 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA4AC0613D2
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:47:56 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id w23so2565277wmi.4
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:47:56 -0700 (PDT)
+        with ESMTP id S1726240AbgJ3Lwv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:52:51 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63121C0613D2
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:52:43 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id f6so2886979qtc.7
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:52:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/VyNGryLroT7qe3Pp9ybD5lnQfay5phLuhwNvbxhxYo=;
-        b=WAUf3+d2JVTc2U3d/Gv0nJozocu951OOswUcD4xo4Epo9ZKRp2kywPmcI5+AU5Ugsz
-         UBdOx//W7jjKZser0nHrjrHeBnt9qZTzPXTgOViuENyjBKVk+UCwFV57rong8tik9US7
-         0vdI2MSbFnECyd+W32GDQdbCNM11iHJ49aIL7Pp96UzJg+rlbr9sVViA8uDktOwXOBtP
-         t6KE1+BfjVuNIPaaqymUGIbXvZiljCwXch95AOP8EgnaOYgWxtDwowi+CBmV9S6/jWhk
-         BHliUO4ci5VZ6iOI1sdxImSGdGpY8Pj588LX7bsBsdAQGIRtl7CfWi7FfQNO6XdkXx5q
-         spfg==
+        d=0x0f.com; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=+5h8uGAWLKMJPxsKSBHFnKRvgJ1/8UrMiZ99ArnMrJA=;
+        b=T5PMxHHhKjVVOAZLZj9tznmOgO5a8RNT6nFtO79RdHLj0Pg+Qhg+XzBx2y/gYFOMyr
+         Q9qtgI37UAo5dbmxjtVCym0gSW8haDG4CPDCYdf5srLDok4MCvio1sbfARmihoq3rsuv
+         oYoXnXfJTcsF6mnX2jHUpd8Q51fPUmDJqA97E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/VyNGryLroT7qe3Pp9ybD5lnQfay5phLuhwNvbxhxYo=;
-        b=Jn7ZzJbfN5RiMonw5G8pENq7ogtf+XLldZFbqxjMU40o4PsBB/G5YQJ65dq9eJm4yG
-         W5gooUDSiboLA84E9A8BfOpZILunsEmZOYcDlDvo4ZosDAIVeBtHzhV2MfgnFjV7pnP5
-         mGLolOPjs7GucsxPznMT0d1Nu4uu2DdYABLYq4sMwAnC7MtoPzvrThUNVXzN+zqkcwJY
-         y30chKJnnE2kE/R+nZd2n5dKPEuq2jUNDSCfcQ7rgAzCQJdtFutp5n1Wh1hHcqy82YUh
-         TB1ZeSbQPzDAr6MJqgrxsHG50RJFHSLQ/A8bPoNXwUcN6JB8pGKv/iQw144/f8Q5KdNt
-         O0Ug==
-X-Gm-Message-State: AOAM531cV8JUinlNf9A2xdcsoraMWbGmnEWpto3+TCGH0d5NdAs1Rp1L
-        PGQHx4r2kOxSk1MO5/9egCMMM/IyLO3GtQ==
-X-Google-Smtp-Source: ABdhPJzQqqcHNKkLNiq+QHTNOQAjhnt7BUATOLJhivtj8XRz7DO7X6ixIJae+JIM1g8qdueVyZWT1g==
-X-Received: by 2002:a1c:2905:: with SMTP id p5mr2242342wmp.187.1604058474636;
-        Fri, 30 Oct 2020 04:47:54 -0700 (PDT)
-Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id g8sm4434811wma.36.2020.10.30.04.47.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 04:47:53 -0700 (PDT)
-Date:   Fri, 30 Oct 2020 11:47:50 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vireshk@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        rafael@kernel.org, sboyd@kernel.org, daniel.lezcano@linaro.org,
-        sudeep.holla@arm.com, Dietmar.Eggemann@arm.com
-Subject: Re: [PATCH 2/4] OPP: Add support for parsing the 'opp-sustainable'
- property
-Message-ID: <20201030114750.GA636720@google.com>
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201028140847.1018-3-lukasz.luba@arm.com>
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=+5h8uGAWLKMJPxsKSBHFnKRvgJ1/8UrMiZ99ArnMrJA=;
+        b=gCoLD9zOWDhPOHCILfYDRtZd2YZkmX8zdHzgO2YfICs/Tv0BevDqnhrDRV5nE/9wvU
+         wCDwPnyOUJ+ISmDM7w6jOuIe0RpiU7q4TPZvhqwaGa9NOPCbE0pWsmVwieMvowEs56qp
+         hrz5UxGvUSBAuf9nywNZYN3hOlhwNedRbjRDSasYZ6Jk+q+Wc42XMzvPAYuTs4zioFAF
+         KYnSq78ZGoj/6BA2tcgW3GTKSeoNv6VNA2pi0lUtYSmyPV/M42GH5vXTYMmMsF3oy80D
+         yC/HzCQFB+Y4hYYGYxS2xTzpx729zTeeC/vWWJyiCkrNs0OjGKCX0E6paQPtZU6AsGSQ
+         4RDg==
+X-Gm-Message-State: AOAM531MnPVyswTc/N6gPifQZhr8bCrkyG474+UUcocp7CxB+BpDJ/sC
+        W0AywUcSfjqG+VmpigiImd/Q2SLGpxQFHuuJ1SG9WQ==
+X-Google-Smtp-Source: ABdhPJwLO2y7F/la84e25j+8RAOK24xd1w93sjXGQQQ5Lt0KhcSrOTGTUA1lk6O6/uaREE7b2D38qQfMsLpESwGNPkU=
+X-Received: by 2002:aed:2125:: with SMTP id 34mr1670365qtc.249.1604058762193;
+ Fri, 30 Oct 2020 04:52:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201028140847.1018-3-lukasz.luba@arm.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Fri, 30 Oct 2020 20:52:31 +0900
+Message-ID: <CAFr9PX=Ac6yzR31uzK=6WmnbznUm_FzVRs+v2D3ONfX4UCY_QQ@mail.gmail.com>
+Subject: Acceptable format for clock cells.
+To:     linux-clk@vger.kernel.org
+Cc:     DTML <devicetree@vger.kernel.org>, Daniel Palmer <daniel@0x0f.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukasz,
+Hi all,
 
-On Wednesday 28 Oct 2020 at 14:08:45 (+0000), Lukasz Luba wrote:
-> +unsigned long dev_pm_opp_get_sustainable_opp_freq(struct device *dev)
-> +{
-> +	struct opp_table *opp_table;
-> +	unsigned long freq = 0;
-> +
-> +	opp_table = _find_opp_table(dev);
-> +	if (IS_ERR(opp_table))
-> +		return 0;
-> +
-> +	if (opp_table->sustainable_opp && opp_table->sustainable_opp->available)
-> +		freq = dev_pm_opp_get_freq(opp_table->sustainable_opp);
-> +
-> +	dev_pm_opp_put_opp_table(opp_table);
-> +
-> +	return freq;
-> +}
-> +EXPORT_SYMBOL_GPL(dev_pm_opp_get_sustainable_opp_freq);
+I'm writing a clock driver for a PLL unit in an ARM SoC that I hope to
+wrap up and send the patches for in the next few days.
 
-I'm guessing this is what IPA will use to find out what the sustainable
-frequency is right?
+This PLL unit has one PLL and then a series of dividers. Then each
+divider apparently has between 0 and 3 dividers coming off of it.
 
-Is PM_OPP the right place for that? It feels odd IPA will get the EM
-from one place, which includes the performance state, and the sustained
-OPP from another. Should we move that to PM_EM instead?
+As there is no documentation for this thing and I'm not sure what the
+logical output numbers are or even if I know all of them I was
+considering making the number of clock cells 2 and having the first be
+the first divider (i.e. the divide by 2 output would be 2) and the
+second cell the chained divider or 0 for no divider.
+
+If I should just decide the order of the outputs and come up with
+indexes for them would it still be ok to nest them like the first cell
+is the index of the divider and then the second cell is the index of
+the chained divider?
 
 Thanks,
-Quentin
+
+Daniel
