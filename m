@@ -2,89 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D4C2A0EE0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 20:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 868B52A0EF1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 20:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726239AbgJ3Twa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 15:52:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41238 "EHLO mail.kernel.org"
+        id S1726163AbgJ3T5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 15:57:04 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:55360 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726061AbgJ3Twa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 15:52:30 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E07C220729;
-        Fri, 30 Oct 2020 19:51:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604087494;
-        bh=9ZRCCkWjnZUueRC68oDdNBqS1TZdbPgE5YZdnDRB3/I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oTHOmNUYOEfKVnR1QCvHebYO0x6lLtMcGFbixpY00xTMVVFOPc1vAwJDHa6tZ11RA
-         bUb93qwcWheji5sX/+n/pBmwmijYJsVttdKxHVEaXsB9j3aD0njQdRUrx3oZytSock
-         rhikceoV39pm7hIacRRfTyi/g/4tZ0SpgTxah6qc=
-Date:   Fri, 30 Oct 2020 19:51:27 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v10 14/15] dt-bindings: sound: sun4i-i2s: Document H3
- with missing RX channel possibility
-Message-ID: <20201030195127.GM4405@sirena.org.uk>
-References: <20201030144648.397824-1-peron.clem@gmail.com>
- <20201030144648.397824-15-peron.clem@gmail.com>
- <20201030181935.GJ4405@sirena.org.uk>
- <CAJiuCccAjEHX4BmL9A81EwM_xnHTPVyHu3BOPGKKUQ=1HNaZGw@mail.gmail.com>
+        id S1726061AbgJ3T5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 15:57:04 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kYaW7-004PI4-Nn; Fri, 30 Oct 2020 20:56:55 +0100
+Date:   Fri, 30 Oct 2020 20:56:55 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     davem@davemloft.net, f.fainelli@gmail.com, hkallweit1@gmail.com,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/4] dt-bindings: net: Add Rx/Tx output
+ configuration for 10base T1L
+Message-ID: <20201030195655.GD1042051@lunn.ch>
+References: <20201030172950.12767-1-dmurphy@ti.com>
+ <20201030172950.12767-3-dmurphy@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="QqzFzR/RUlLahzby"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAJiuCccAjEHX4BmL9A81EwM_xnHTPVyHu3BOPGKKUQ=1HNaZGw@mail.gmail.com>
-X-Cookie: Blow it out your ear.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201030172950.12767-3-dmurphy@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 30, 2020 at 12:29:48PM -0500, Dan Murphy wrote:
+> Per the 802.3cg spec the 10base T1L can operate at 2 different
+> differential voltages 1v p2p and 2.4v p2p. The abiility of the PHY to
+> drive that output is dependent on the PHY's on board power supply.
 
---QqzFzR/RUlLahzby
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Dan
 
-On Fri, Oct 30, 2020 at 08:05:31PM +0100, Cl=E9ment P=E9ron wrote:
+So this property is about the board being able to support the needed
+voltages? The PHY is not forced into 2.4v p2p, it just says the PHY
+can operate at 2.4v and the board will not melt, blow a fuse, etc?
 
-> But basically for the next dt-bindings change you will prefer somethings =
-like:
-> "ASoC: dt-bindings: sun4i-i2s: Document H3 with missing RX channel possib=
-ility"
+I actually think it is normal to specify the reverse. List the maximum
+that device can do because of board restrictions. e.g.
 
-Yes.
+- maximum-power-milliwatt : Maximum module power consumption
+  Specifies the maximum power consumption allowable by a module in the
+  slot, in milli-Watts.  Presently, modules can be up to 1W, 1.5W or 2W.
 
---QqzFzR/RUlLahzby
-Content-Type: application/pgp-signature; name="signature.asc"
+- max-link-speed:
+   If present this property specifies PCI gen for link capability.  Host
+   drivers could add this as a strategy to avoid unnecessary operation for
+   unsupported link speed, for instance, trying to do training for
+   unsupported link speed, etc.  Must be '4' for gen4, '3' for gen3, '2'
+   for gen2, and '1' for gen1. Any other values are invalid.
 
------BEGIN PGP SIGNATURE-----
+ - max-microvolt : The maximum voltage value supplied to the haptic motor.
+                [The unit of the voltage is a micro]
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+cbr4ACgkQJNaLcl1U
-h9AqCQf9E93+zMG/HSEdhPKPqXgjzUt1swTeI7YiMio/V6bPjwLCeRSCS0UAwmQc
-JEAcRVumyz7G4UhJFyHpbqdVhoXWJXKScO9yw7YfddlWjFfPUd4L3yQWsM1tIwyh
-mHqxntSNQFqxetoi1joWEfT0y4n7t5zU/CZw747lwj8yJiv/L37FD4Y4KTXVSh9D
-c7nElGLJdxSw4oSztS2sdbZp9QoZQRmIrcIjq4HCYhpRh2vvKm6WhBR0cSIE6sle
-mEwrO2rH6Wu8Wb1H77WBB7apG2VAzp0nczFXEj14Zr+OyQcnHwHHMqkBk06l+XbH
-iO7qVPiQIlNQKYGvC0ToiHDGrFcZYQ==
-=BIOs
------END PGP SIGNATURE-----
+So i think this property should be
 
---QqzFzR/RUlLahzby--
+   max-tx-rx-p2p = <1000>;
+
+to limit it to 1000mv p2p because of board PSU limitations, and it is
+free to do 22000mv is the property is not present.
+
+   Andrew
+
