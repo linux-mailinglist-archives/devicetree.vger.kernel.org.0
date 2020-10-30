@@ -2,87 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7DFB2A00EC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:13:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97A262A00F1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:14:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726164AbgJ3JN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 05:13:56 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41562 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725823AbgJ3JNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 05:13:55 -0400
-X-UUID: 99d6ef79b9f542179138382e5e196829-20201030
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=wS05c32CeOcsELtrfSXV0XioPOrUrgRETIwe251DuTo=;
-        b=TtWVmSOFFMQM+WmiJDPkjBMQXVp5IezBZBkWMi36OYKE/qYHRHsfGaHiPzFSaVGAsc+Kz6MH4ehHJx3/7SIwNdQRAdzfl8lyqm1qwKRcCZyv78PxszVBW+QOqqfotmD5IRE2X4vGlR1Sw/DEiu8GSTzRX60BHroNRWt/RtIla9c=;
-X-UUID: 99d6ef79b9f542179138382e5e196829-20201030
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1261586912; Fri, 30 Oct 2020 17:13:48 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 30 Oct 2020 17:13:46 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 30 Oct 2020 17:13:45 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>, Tomasz Figa <tfiga@google.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, <ming-fan.chen@mediatek.com>
-Subject: [PATCH v4 3/3] memory: mtk-smi: Add mt8192 support
-Date:   Fri, 30 Oct 2020 17:12:54 +0800
-Message-ID: <20201030091254.26382-4-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201030091254.26382-1-yong.wu@mediatek.com>
-References: <20201030091254.26382-1-yong.wu@mediatek.com>
+        id S1726157AbgJ3JOP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Oct 2020 05:14:15 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:37487 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725784AbgJ3JOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 05:14:15 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m22so4981590ots.4;
+        Fri, 30 Oct 2020 02:14:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=eax1mQt5Nxlkrc6lz4V8Qs9GVwzDeVeptKqA1fY3YqI=;
+        b=OeFteF8KLmEm6Pmm6LYbm6XGfnmkDMYdYL6swh9G0HzCH4cxOG7pvHmY/vrIvB4lyB
+         L6dQhfI64hQ40b56TZIJq2MRe5IHCHiW/2u5vXz1DtTH2LB2oH4YxEq4FarykWTkegYJ
+         pJiiG17haUHQR4dMPvdztXOvd93sBAPpaBHoffw/Bda93nWC8SaVAQSiBYZjB4ZUDJeb
+         THWOLKN76cNAECU9MwSw+yv4UjRfh6fVIzO/k4aRaOYaaJkuDz4l1N0cP0kUsH7/HtHP
+         5+UHlVZZ+rYbpQ4pFFVvOUdXlJuLKvPc81bFRbDtDl7/cSoEcRZoAepEeMkfyoUYE1/u
+         epKw==
+X-Gm-Message-State: AOAM532APfyaZ8oAU53J1/jB1kKNKeDAkuyAgRQfprUq43gwqem2RTkg
+        U3TB5ILdRQ2c1uCIS7IEW4z1uOsnFLdXqTV9G2/jICeHXINUrA==
+X-Google-Smtp-Source: ABdhPJxU2LcEnBrS54EKv3VReTS3xsQ7JtAE6hs6HwVo/GymLBlPys36gW5GuUbQ8quzzcl7da+489Jj+aIekKIbu9s=
+X-Received: by 2002:a9d:3b76:: with SMTP id z109mr918089otb.250.1604049254318;
+ Fri, 30 Oct 2020 02:14:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20201029133741.25721-1-erosca@de.adit-jv.com> <20201029133741.25721-2-erosca@de.adit-jv.com>
+ <CAMuHMdX5pCtR-LMbuSJQvDNyVOwcipt7zZOF3c3J-d-Bq98NQg@mail.gmail.com>
+ <20201029163213.GA12422@lxhi-065.adit-jv.com> <CAMuHMdXbwfPk5_dZEzjLuUZx6ysxdmu6hKbd54Ev6jTQUObTCA@mail.gmail.com>
+ <20201030090728.GA19340@lxhi-065.adit-jv.com>
+In-Reply-To: <20201030090728.GA19340@lxhi-065.adit-jv.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 30 Oct 2020 10:14:03 +0100
+Message-ID: <CAMuHMdXW6FVZ0xXm_d+u2FXKcnMx42tV=UYgWhYai3k-4O8VCg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77961: ulcb-kf: Initial
+ device tree
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Steffen Pengel <spengel@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIG10ODE5MiBzbWkgc3VwcG9ydC4NCg0KU2lnbmVkLW9mZi1ieTogWW9uZyBXdSA8eW9uZy53
-dUBtZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL21lbW9yeS9tdGstc21pLmMgfCAxOSArKysr
-KysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDE5IGluc2VydGlvbnMoKykNCg0KZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvbWVtb3J5L210ay1zbWkuYyBiL2RyaXZlcnMvbWVtb3J5L210ay1z
-bWkuYw0KaW5kZXggNjkxZTRjMzQ0Y2Y4Li5hYzM1MGY4ZDFlMjAgMTAwNjQ0DQotLS0gYS9kcml2
-ZXJzL21lbW9yeS9tdGstc21pLmMNCisrKyBiL2RyaXZlcnMvbWVtb3J5L210ay1zbWkuYw0KQEAg
-LTI2OCw2ICsyNjgsMTAgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfc21pX2xhcmJfZ2VuIG10
-a19zbWlfbGFyYl9tdDgxODMgPSB7DQogCQkJCSAgICAgIC8qIElQVTAgfCBJUFUxIHwgQ0NVICov
-DQogfTsNCiANCitzdGF0aWMgY29uc3Qgc3RydWN0IG10a19zbWlfbGFyYl9nZW4gbXRrX3NtaV9s
-YXJiX210ODE5MiA9IHsNCisJLmNvbmZpZ19wb3J0ICAgICAgICAgICAgICAgID0gbXRrX3NtaV9s
-YXJiX2NvbmZpZ19wb3J0X2dlbjJfZ2VuZXJhbCwNCit9Ow0KKw0KIHN0YXRpYyBjb25zdCBzdHJ1
-Y3Qgb2ZfZGV2aWNlX2lkIG10a19zbWlfbGFyYl9vZl9pZHNbXSA9IHsNCiAJew0KIAkJLmNvbXBh
-dGlibGUgPSAibWVkaWF0ZWssbXQ4MTY3LXNtaS1sYXJiIiwNCkBAIC0yOTMsNiArMjk3LDEwIEBA
-IHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIG10a19zbWlfbGFyYl9vZl9pZHNbXSA9
-IHsNCiAJCS5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1zbWktbGFyYiIsDQogCQkuZGF0
-YSA9ICZtdGtfc21pX2xhcmJfbXQ4MTgzDQogCX0sDQorCXsNCisJCS5jb21wYXRpYmxlID0gIm1l
-ZGlhdGVrLG10ODE5Mi1zbWktbGFyYiIsDQorCQkuZGF0YSA9ICZtdGtfc21pX2xhcmJfbXQ4MTky
-DQorCX0sDQogCXt9DQogfTsNCiANCkBAIC00MzIsNiArNDQwLDEzIEBAIHN0YXRpYyBjb25zdCBz
-dHJ1Y3QgbXRrX3NtaV9jb21tb25fcGxhdCBtdGtfc21pX2NvbW1vbl9tdDgxODMgPSB7DQogCQkg
-ICAgRl9NTVUxX0xBUkIoNyksDQogfTsNCiANCitzdGF0aWMgY29uc3Qgc3RydWN0IG10a19zbWlf
-Y29tbW9uX3BsYXQgbXRrX3NtaV9jb21tb25fbXQ4MTkyID0gew0KKwkuZ2VuICAgICAgPSBNVEtf
-U01JX0dFTjIsDQorCS5oYXNfZ2FscyA9IHRydWUsDQorCS5idXNfc2VsICA9IEZfTU1VMV9MQVJC
-KDEpIHwgRl9NTVUxX0xBUkIoMikgfCBGX01NVTFfTEFSQig1KSB8DQorCQkgICAgRl9NTVUxX0xB
-UkIoNiksDQorfTsNCisNCiBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdGtfc21p
-X2NvbW1vbl9vZl9pZHNbXSA9IHsNCiAJew0KIAkJLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4
-MTczLXNtaS1jb21tb24iLA0KQEAgLTQ1Nyw2ICs0NzIsMTAgQEAgc3RhdGljIGNvbnN0IHN0cnVj
-dCBvZl9kZXZpY2VfaWQgbXRrX3NtaV9jb21tb25fb2ZfaWRzW10gPSB7DQogCQkuY29tcGF0aWJs
-ZSA9ICJtZWRpYXRlayxtdDgxODMtc21pLWNvbW1vbiIsDQogCQkuZGF0YSA9ICZtdGtfc21pX2Nv
-bW1vbl9tdDgxODMsDQogCX0sDQorCXsNCisJCS5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5
-Mi1zbWktY29tbW9uIiwNCisJCS5kYXRhID0gJm10a19zbWlfY29tbW9uX210ODE5MiwNCisJfSwN
-CiAJe30NCiB9Ow0KIA0KLS0gDQoyLjE4LjANCg==
+Hi Eugeniu,
 
+On Fri, Oct 30, 2020 at 10:07 AM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+> On Thu, Oct 29, 2020 at 07:23:53PM +0100, Geert Uytterhoeven wrote:
+> > On Thu, Oct 29, 2020 at 5:34 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+>
+> [..]
+>
+> > I don't think we want to add new compatible string to describe each
+> > combo. Just add "renesas,r8a77961" to the last enum?
+>
+> I'm afraid I misinterpreted your request. I've pushed your proposal to
+> https://lore.kernel.org/linux-renesas-soc/20201030083051.18752-4-erosca@de.adit-jv.com/
+
+Thanks, got it!
+
+> > > IMHO one thing which is certainly worth clarifying and fixing is the
+> > > KF revision currently documented in renesas.yaml, i.e. M03.
+> > >
+> > > Shimafuji released at least M04, M05 and M06 revisions of KF (nicely
+> > > compared at https://elinux.org/R-Car/Boards/Kingfisher#Change_point).
+> > >
+> > > The question is, does the community intend to support M03 through M06
+> > > (in which case all of them might need an entry in the documentation) or
+> > > anything which is earlier than M06 has to be considered deprecated (in
+> > > which case renesas.yaml would need a simple s/M03/M06/ update)?
+> >
+> > I'm not that familiar with KingFisher and the various revisions.
+> > Do these differences have an impact on the software side?
+> > The diodes and filters probably don't.
+>
+> I personally no longer use KF M03, since its major limitation is not
+> being able to update the contents of Hyperflash using Lauterbach if
+> ULCB is stacked on the expansion board (unplugging ULCB each time
+> it is flashed is absolutely not practical).
+
+Note that if you build ATF with RCAR_RPC_HYPERFLASH_LOCKED=0,
+you can access HF from U-Boot or Linux.
+
+> I've heard from audio engineers that recent revisions are more suitable
+> for audio use-cases, but I don't know the full details.
+>
+> > The I2C repeaters are PCA9548ADB on M03, hence they use a Linux
+> > driver. By what have they been replaced?
+> > What's the nature of the MOST ↔ GPS Function select register change?
+>
+> I will try to collect more information and, if I succeed, I will come
+> back with feedback. Thank you for your patience.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
