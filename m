@@ -2,200 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF262A0B4C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E22F02A0B57
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:40:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725939AbgJ3QhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 12:37:13 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:44111 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725808AbgJ3QhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:37:12 -0400
-Received: by mail-ot1-f67.google.com with SMTP id m26so6047785otk.11;
-        Fri, 30 Oct 2020 09:37:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tON2DYpRhaN1RpQeoSWQVw8FGd03p7OznarWViYiQhQ=;
-        b=TD+bQx0rbOKT/TtUwhSKG6z7l8+j+3NCp6m3cjeZABoMAOzdKzhyllVF7u7UkisWhe
-         kt7Ui/BnytKXew0EnjufLAYz3oVByvqAbljPwCtZuEKqQVprDf/pVR0r3iUCEE6Gq/HF
-         JhcOdm47EYM1A8LQ550TgXMZIr53WY50c9uPZVMilRI1NrY7/+SAycHgU80cb07ht5Ra
-         iR0q/IId09VK07JUeBW7cWBC5gx8IaV1UR+oLIrC4QgLWsDQaZuEOMZi3Bagavh1dby/
-         DRm1woRqk/56CLskXTcap2N5x9zk+eApDoPkQIELO/LKMHQWmXTcyeV+Di4rAoLQBYgH
-         01Jg==
-X-Gm-Message-State: AOAM531SQya5gfuamgu5sxJ5N6Rq0Wr4miog3kZy/Vqq3clqtrJ9jfqf
-        5AR3Y4WRVumgTIcBz8APXg==
-X-Google-Smtp-Source: ABdhPJyArF2iu/YEd1ILY0V/G9i9SCSsBRVS2xnFFvYp1bMQMQVB51XPwuP7kPTqftcIbcWWc3DCFA==
-X-Received: by 2002:a9d:5e14:: with SMTP id d20mr2186323oti.107.1604075831553;
-        Fri, 30 Oct 2020 09:37:11 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r8sm1366884otq.43.2020.10.30.09.37.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 09:37:10 -0700 (PDT)
-Received: (nullmailer pid 3962933 invoked by uid 1000);
-        Fri, 30 Oct 2020 16:37:09 -0000
-Date:   Fri, 30 Oct 2020 11:37:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add OV5648 bindings
- documentation
-Message-ID: <20201030163709.GA3960634@bogus>
-References: <20201023174944.504358-1-paul.kocialkowski@bootlin.com>
- <20201023174944.504358-2-paul.kocialkowski@bootlin.com>
+        id S1726440AbgJ3QkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 12:40:06 -0400
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:12437 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726072AbgJ3QkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:40:06 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f9c41e70000>; Fri, 30 Oct 2020 09:40:07 -0700
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 30 Oct
+ 2020 16:40:05 +0000
+Received: from audio.nvidia.com (172.20.13.39) by mail.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Fri, 30 Oct 2020 16:40:03 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <p.zabel@pengutronix.de>, <kuninori.morimoto.gx@renesas.com>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v2] Convert graph bindings to json-schema
+Date:   Fri, 30 Oct 2020 22:09:15 +0530
+Message-ID: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201023174944.504358-2-paul.kocialkowski@bootlin.com>
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1604076007; bh=3ee7nEM4cRH0x38uyFPv64bYBCEWJ1weTPZG/oAdJc4=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         Content-Type;
+        b=rMKIJl68gIukFXqTGcUwbFoPbCbaJxeix/GKTK60dRZXIvFGg7bbScxgsUmru2XwH
+         1CYgtTABSCs0LbM1B5C6Fw5f52/GukT8/K+nqaAdd3OVCB/JArAkItnFxWbgmNEeIw
+         u7uIzc4Z0h48fWLToQUnUZ1a54+kl+6z/KFqgT1RIFdYLlaCghq0Nshyw0PaHMRdGu
+         QDl4x3wETK+gE0puUNxRuarvS+K2puTXMGLyZXazzXTgAdx9BZoF0BMr3RFnIky5ml
+         oFKAyeHIVdjmISN0I+tbihMZ3UnEdqTcZD02coBfcKRfN+NxpEBoLrXvWz3d80JU6+
+         fkzJqRYH/TBrA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 23, 2020 at 07:49:43PM +0200, Paul Kocialkowski wrote:
-> This introduces YAML bindings documentation for the OV5648
-> image sensor.
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  .../bindings/media/i2c/ovti,ov5648.yaml       | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-> new file mode 100644
-> index 000000000000..347af925b450
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: GPL-2.0
+Move graph bindings to json-schema and thus convert graph.txt to
+graph.yaml. The graph.txt is currently referenced in many files and
+for now graph.txt re-directs reference to graph.yaml.
 
-Dual license please. With that,
+Changelog
+=========
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+v1 -> v2
+--------
+ * Dropped "[PATCH 2/2] dt-bindings: Use graph.yaml reference in docs"
+ * [PATCH 1/2] is modified to retain graph.txt file for now and added
+   re-direction to graph.yaml
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5648.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV5648 Image Sensor Device Tree Bindings
-> +
-> +maintainers:
-> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov5648
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: XVCLK Clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xvclk
-> +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply
-> +
-> +  avdd-supply:
-> +    description: Analog Domain Power Supply (internal AVDD is used if missing)
-> +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description: Power Down Pin GPIO Control (active low)
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reset Pin GPIO Control (active low)
-> +
-> +  port:
-> +    type: object
-> +    description: Input port, connect to a MIPI CSI-2 receiver
-> +
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +
-> +        properties:
-> +          remote-endpoint: true
-> +
-> +          bus-type:
-> +            const: 4
-> +
-> +          clock-lanes:
-> +            maxItems: 1
-> +
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 2
-> +
-> +        required:
-> +          - bus-type
-> +          - data-lanes
-> +          - remote-endpoint
-> +
-> +        additionalProperties: false
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - dvdd-supply
-> +  - dovdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov5648: camera@36 {
-> +            compatible = "ovti,ov5648";
-> +            reg = <0x36>;
-> +
-> +            dvdd-supply = <&ov5648_dvdd>;
-> +            avdd-supply = <&ov5648_avdd>;
-> +            dovdd-supply = <&ov5648_dovdd>;
-> +            clocks = <&ov5648_xvclk 0>;
-> +            clock-names = "xvclk";
-> +
-> +            ov5648_out: port {
-> +                ov5648_out_mipi_csi2: endpoint {
-> +                    bus-type = <4>; /* MIPI CSI-2 D-PHY */
-> +                    clock-lanes = <0>;
-> +                    data-lanes = <1 2>;
-> +
-> +                    remote-endpoint = <&mipi_csi2_in_ov5648>;
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.28.0
-> 
+Sameer Pujar (1):
+  dt-bindings: Convert graph bindings to json-schema
+
+ Documentation/devicetree/bindings/graph.txt  | 129 +-----------------
+ Documentation/devicetree/bindings/graph.yaml | 188 +++++++++++++++++++++++++++
+ 2 files changed, 189 insertions(+), 128 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/graph.yaml
+
+-- 
+2.7.4
+
