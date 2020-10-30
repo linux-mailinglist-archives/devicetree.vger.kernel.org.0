@@ -2,99 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C0529FB7D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 03:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7557F29FC13
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 04:08:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725900AbgJ3CjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 22:39:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38636 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725831AbgJ3CjV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 22:39:21 -0400
-Received: from dellmb.labs.office.nic.cz (nat-1.nic.cz [217.31.205.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A947E2087E;
-        Fri, 30 Oct 2020 02:39:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604025561;
-        bh=8WnvhZaN5KcJBl5KN374+G8jxDmsSlGwyBuRF7jyDDs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HMeBYEiqMSS1cOvZY25LExq6k/mjDu9LgYFdj7R6HXSFB6XC//QY5wpjRWiXFssaz
-         kQjU2Dbso+I9fnrcTMlLTkIsi3j+LiEgwMdXH36Sy0VhNIozfk2dfVQuOkF3J2NVXl
-         aAdUToj7GSyzZc0R4apwghaXbIH9fDsyMJ6DgrUA=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     linux-leds@vger.kernel.org
-Cc:     Dan Murphy <dmurphy@ti.com>, Pavel Machek <pavel@ucw.cz>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH leds 4/5] dt-bindings: leds: leds-class-multicolor: use LED_COLOR_ID_RGB for now
-Date:   Fri, 30 Oct 2020 03:39:05 +0100
-Message-Id: <20201030023906.24259-4-kabel@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201030023906.24259-1-kabel@kernel.org>
-References: <20201030023906.24259-1-kabel@kernel.org>
+        id S1726370AbgJ3DIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 23:08:25 -0400
+Received: from mail.v3.sk ([167.172.186.51]:41964 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725780AbgJ3DIM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 23:08:12 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 581A7DF6FB;
+        Fri, 30 Oct 2020 03:05:53 +0000 (UTC)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id 1VQQUa6AtEMT; Fri, 30 Oct 2020 03:05:52 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id E3C18DF87E;
+        Fri, 30 Oct 2020 03:05:51 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id xtRULSH0Q7PE; Fri, 30 Oct 2020 03:05:51 +0000 (UTC)
+Received: from localhost (unknown [109.183.109.54])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id E90F6DF5E1;
+        Fri, 30 Oct 2020 03:05:50 +0000 (UTC)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: 
+Date:   Fri, 30 Oct 2020 04:07:58 +0100
+Message-Id: <20201030030800.1036888-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
-disallows LED_COLOR_ID_MULTI for now, and instead LED_COLOR_ID_RGB
-should be used. Fix this is leds-class-multicolor binding.
+Subject: [PATCH v6 0/2] Add a Himax HX8837 display controller driver
+Date: Sat, 26 Sep 2020 02:07:17 +0200
+Message-ID: <20200926000719.229204-1-lkundrak@v3.sk> (raw)
 
-After we have some usecases for non-RGB multicolor LEDs, this can be
-changed.
+Hi,
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
-Fixes: 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
-Cc: devicetree@vger.kernel.org
-Cc: robh+dt@kernel.org
----
- .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml     | 4 ++--
- .../devicetree/bindings/leds/leds-class-multicolor.yaml       | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+please take a look at the patches chained to this messages and consider
+applying them. They add support for the controller that drives the panel
+on the OLPC XO laptops.
 
-diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-index fe7fa25877fd..2015db9b7618 100644
---- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-+++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-@@ -73,14 +73,14 @@ examples:
-                  * LEDs.
-                  */
-                 reg = <0>;
--                color = <LED_COLOR_ID_MULTI>;
-+                color = <LED_COLOR_ID_RGB>;
-                 function = LED_FUNCTION_POWER;
-                 linux,default-trigger = "heartbeat";
-             };
- 
-             multi-led@a {
-                 reg = <0xa>;
--                color = <LED_COLOR_ID_MULTI>;
-+                color = <LED_COLOR_ID_RGB>;
-                 function = LED_FUNCTION_INDICATOR;
-                 function-enumerator = <1>;
-             };
-diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-index b1a53f054b89..9faa3609a6bb 100644
---- a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-@@ -25,10 +25,10 @@ patternProperties:
-     description: Represents the LEDs that are to be grouped.
-     properties:
-       color:
--        const: 8  # LED_COLOR_ID_MULTI
-+        const: 9  # LED_COLOR_ID_RGB
-         description: |
-           For multicolor LED support this property should be defined as
--          LED_COLOR_ID_MULTI which can be found in include/linux/leds/common.h.
-+          LED_COLOR_ID_RGB which can be found in include/linux/leds/common.h.
- 
-     $ref: "common.yaml#"
- 
--- 
-2.26.2
+Compared to v5, points risen in review by Sam Ravnborg have been
+addressed. Details in change log of patch 2/2.
+
+Tested on an OLPC XO-1.75 laptop.
+
+Thank you
+Lubo
+
 
