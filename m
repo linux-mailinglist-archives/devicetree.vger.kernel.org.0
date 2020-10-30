@@ -2,75 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C20DF2A0D85
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:36:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53AFC2A0D88
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:37:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726239AbgJ3Sgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 14:36:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32994 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726061AbgJ3Sgv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 14:36:51 -0400
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 52FAC20797;
-        Fri, 30 Oct 2020 18:36:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604083010;
-        bh=Ij7toGsdodJH+g5af0r9MiYPy/qpAd3YN5F+RhUxgsY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=2DVdS4mHCoUE4JHIUSmVHAmvB594iwVT4qjbLAdq0KaYWtLmkAcQzyhvgZg75ag0n
-         PEWhdDNqSIOTh1JMt0AAzcJ00Ze5LokKTaV/So8QMlv7X6uZVpJF15tiGGivE0hh7O
-         RCV+AWVeb5MnfC3QnfBRznxcfwWg7DAuaQExdjBQ=
-Received: by mail-ed1-f53.google.com with SMTP id k9so7681037edo.5;
-        Fri, 30 Oct 2020 11:36:50 -0700 (PDT)
-X-Gm-Message-State: AOAM531qj2Y3/x4fuECKir47rnu8tfT16djT+aiYZlfVPKjsPGrcTjq1
-        /GPNzpkXATT1Xqt488nP4huFA9iqXA6ckRyM0WE=
-X-Google-Smtp-Source: ABdhPJzlGGUy2WAzm1IY09sGJUjxwv5CeNCRC+4gAdJEbqaWeaJ5HOn9h3HyxBxr7WDmVj09M2PsHz3ShD//bDdRLiY=
-X-Received: by 2002:a05:6402:10d5:: with SMTP id p21mr3957562edu.327.1604083008757;
- Fri, 30 Oct 2020 11:36:48 -0700 (PDT)
+        id S1727136AbgJ3ShM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 14:37:12 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:46935 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726061AbgJ3ShM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 14:37:12 -0400
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 9CF62240013;
+        Fri, 30 Oct 2020 18:37:08 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH v2 0/4] pwm: atmel-tcb: rework device tree binding
+Date:   Fri, 30 Oct 2020 19:36:54 +0100
+Message-Id: <20201030183658.1007395-1-alexandre.belloni@bootlin.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20201016204019.2606-1-linux@fw-web.de> <20201016204019.2606-4-linux@fw-web.de>
- <CACRpkdZrUbq6h4uDoxfN70mzfbeWAeqo5KAdTWhiHbsb7VTbJg@mail.gmail.com>
-In-Reply-To: <CACRpkdZrUbq6h4uDoxfN70mzfbeWAeqo5KAdTWhiHbsb7VTbJg@mail.gmail.com>
-From:   Sean Wang <sean.wang@kernel.org>
-Date:   Fri, 30 Oct 2020 11:36:37 -0700
-X-Gmail-Original-Message-ID: <CAGp9LzosDB1V-b5ek1epzxkvvuow-7YCDHsgS=2WsvT_aZYHdg@mail.gmail.com>
-Message-ID: <CAGp9LzosDB1V-b5ek1epzxkvvuow-7YCDHsgS=2WsvT_aZYHdg@mail.gmail.com>
-Subject: Re: [RFC 3/3] pinctl: mt7622: drop pwm ch7 as mt7622 only has 6 channels
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > mt7622 is reported by mediatek to have only 6 pwm channels
-> > so drop pindefines for 7th channel
-> >
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->
-> I can merge this patch to the pinctrl tree if I get some kind of
-> review response from one of the Mediatek maintainers.
->
+Hello,
 
-After confirming with the internal team, MT7622 actually does not have
-the 7th channel. Thanks for Frank's catchup and patch.
+This was sent as part of a 58 patches series back in 2017. The bindings
+were agreed upon back then:
 
-Acked-by: Sean Wang <sean.wang@kernel.org>
+https://lore.kernel.org/linux-arm-kernel/20170607211752.avts3cofvac7ks3q@rob-hp-laptop/
 
-> The rest should probably go through ARM SoC.
->
-> Yours,
-> Linus Walleij
+There is still only one user of atmel,tcb-pwm in the tree and I still
+think it is worth doing that change now.
+
+The various dependencies are now in v5.9-rc1 so it is ready to be
+applied.
+
+I have another series removing atmel_tclib once this is applied.
+
+Changes in v2:
+ - rework binding commit message
+ - use enum for the pwm node reg values
+
+Alexandre Belloni (4):
+  dt-bindings: microchip: atmel,at91rm9200-tcb: add atmel,tcb-pwm
+  pwm: atmel-tcb: switch to new binding
+  pwm: atmel-tcb: add sama5d2 support
+  ARM: dts: at91: kizbox: switch to new pwm-atmel-tcb binding
+
+ .../devicetree/bindings/pwm/atmel-tcb-pwm.txt |  16 --
+ .../soc/microchip/atmel,at91rm9200-tcb.yaml   |  34 ++-
+ arch/arm/boot/dts/at91-kizbox.dts             |  45 ++-
+ drivers/pwm/Kconfig                           |   3 +-
+ drivers/pwm/pwm-atmel-tcb.c                   | 264 ++++++++++--------
+ 5 files changed, 220 insertions(+), 142 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt
+
+-- 
+2.26.2
+
