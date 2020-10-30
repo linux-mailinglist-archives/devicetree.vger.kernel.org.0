@@ -2,134 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D56072A0D91
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:37:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E53A12A0DA0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727337AbgJ3ShT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 14:37:19 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:45253 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727282AbgJ3ShT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 14:37:19 -0400
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 8C3302000A;
-        Fri, 30 Oct 2020 18:37:15 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Antoine Aubert <a.aubert@overkiz.com>
-Subject: [PATCH v2 4/4] ARM: dts: at91: kizbox: switch to new pwm-atmel-tcb binding
-Date:   Fri, 30 Oct 2020 19:36:58 +0100
-Message-Id: <20201030183658.1007395-5-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201030183658.1007395-1-alexandre.belloni@bootlin.com>
-References: <20201030183658.1007395-1-alexandre.belloni@bootlin.com>
+        id S1726239AbgJ3Sm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 14:42:28 -0400
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:35903 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726061AbgJ3Sm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 14:42:28 -0400
+Received: by mail-oo1-f67.google.com with SMTP id j6so1824592oot.3;
+        Fri, 30 Oct 2020 11:42:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hVpzN2Y06wbPSBaS0y+ngz3c1r0CShTKe8sn3RB15os=;
+        b=Ux5poqlq+MQUTTC4Zb1pZazoj3rOgbDbLKgLc9SHxR02uXp0yDQ/uFzlfmOOCJeVMB
+         4gN7stfm6CLgtJ7HvK2jS8NsC9qYK/2Grsly8WAwG6xlzFePhIDDEtsvS2Y8h0SqEVIE
+         +KOMdPhTCwJmUQGK+SmTCdxetNw/e4fGpVLYtmknpDmM9OXbAFWjEoc9plSnnRh6xvn1
+         HBZRDqP6TuUdMeD3sI/rf3ScWO/1IHlkmt24xvQ/TDPh1cXvPla3VxfJfyYy0UwmFZxj
+         CDY1CQVUazDY3Gg4IBnX1F29vbAK3yThf91F6xqQLXVe1Q+oaHSeGUiwY7+Dw0skomgs
+         whvQ==
+X-Gm-Message-State: AOAM532buPwpe3J4hmAl0KnxNJdxKxBAYxU+jKV0SZqCk8JEAiIXpLsG
+        x4eC3813djMA3QrR/gF8pw==
+X-Google-Smtp-Source: ABdhPJwuElRorIJ/ryeLFKrkeSnYyHD6uSpDInFB4YcyWH/0aW7YRFBBUvhD92ko8NoOXRBrDuarGQ==
+X-Received: by 2002:a4a:8e02:: with SMTP id q2mr2989133ook.60.1604083347817;
+        Fri, 30 Oct 2020 11:42:27 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id j3sm1590729oij.9.2020.10.30.11.42.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 11:42:26 -0700 (PDT)
+Received: (nullmailer pid 4125177 invoked by uid 1000);
+        Fri, 30 Oct 2020 18:42:25 -0000
+Date:   Fri, 30 Oct 2020 13:42:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bogdan Togorean <bogdan.togorean@analog.com>
+Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
+        devicetree@vger.kernel.org,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Thomas Zimmermann <tzimmermann@suse.de>, sam@ravnborg.org,
+        David Airlie <airlied@linux.ie>
+Subject: Re: [PATCH v2 2/2] drm: dt-bindings: adi: axi-hdmi-tx: Add DT
+ bindings for axi-hdmi-tx
+Message-ID: <20201030184225.GA4125095@bogus>
+References: <20201026064122.2831-1-bogdan.togorean@analog.com>
+ <20201026064122.2831-2-bogdan.togorean@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201026064122.2831-2-bogdan.togorean@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch to the new pwm-atmel-tcb binding that avoid wasting TCB channels.
+On Mon, 26 Oct 2020 08:41:06 +0200, Bogdan Togorean wrote:
+> Add YAML device tree bindings for Analog Devices Inc. AXI HDMI TX
+> IP core DRM driver.
+> 
+> Signed-off-by: Bogdan Togorean <bogdan.togorean@analog.com>
+> ---
+>  .../bindings/display/adi/adi,axi-hdmi-tx.yaml | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/adi/adi,axi-hdmi-tx.yaml
+> 
 
-Cc: Antoine Aubert <a.aubert@overkiz.com>
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- arch/arm/boot/dts/at91-kizbox.dts | 45 ++++++++++++++++++++-----------
- 1 file changed, 30 insertions(+), 15 deletions(-)
-
-diff --git a/arch/arm/boot/dts/at91-kizbox.dts b/arch/arm/boot/dts/at91-kizbox.dts
-index 7add151f6250..cc9e87e48fe7 100644
---- a/arch/arm/boot/dts/at91-kizbox.dts
-+++ b/arch/arm/boot/dts/at91-kizbox.dts
-@@ -53,43 +53,32 @@ pwm_leds {
- 
- 		network_green {
- 			label = "pwm:green:network";
--			pwms = <&tcb_pwm 2 10000000 PWM_POLARITY_INVERTED>;
-+			pwms = <&tcb1_pwm1 0 10000000 PWM_POLARITY_INVERTED>;
- 			max-brightness = <255>;
- 			linux,default-trigger = "default-on";
- 		};
- 
- 		network_red {
- 			label = "pwm:red:network";
--			pwms = <&tcb_pwm 4 10000000 PWM_POLARITY_INVERTED>;
-+			pwms = <&tcb1_pwm2 0 10000000 PWM_POLARITY_INVERTED>;
- 			max-brightness = <255>;
- 			linux,default-trigger = "default-on";
- 		};
- 
- 		user_green {
- 			label = "pwm:green:user";
--			pwms = <&tcb_pwm 0 10000000 PWM_POLARITY_INVERTED>;
-+			pwms = <&tcb1_pwm0 0 10000000 PWM_POLARITY_INVERTED>;
- 			max-brightness = <255>;
- 			linux,default-trigger = "default-on";
- 		};
- 
- 		user_red {
- 			label = "pwm:red:user";
--			pwms = <&tcb_pwm 1 10000000 PWM_POLARITY_INVERTED>;
-+			pwms = <&tcb1_pwm0 1 10000000 PWM_POLARITY_INVERTED>;
- 			max-brightness = <255>;
- 			linux,default-trigger = "default-on";
- 		};
- 	};
--
--	tcb_pwm: pwm {
--		compatible = "atmel,tcb-pwm";
--		#pwm-cells = <3>;
--		tc-block = <1>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_tcb1_tioa0
--			     &pinctrl_tcb1_tioa1
--			     &pinctrl_tcb1_tioa2
--			     &pinctrl_tcb1_tiob0>;
--	};
- };
- 
- &tcb0 {
-@@ -104,6 +93,32 @@ timer@2 {
- 	};
- };
- 
-+&tcb1 {
-+	tcb1_pwm0: pwm@0 {
-+		compatible = "atmel,tcb-pwm";
-+		reg = <0>;
-+		#pwm-cells = <3>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tcb1_tioa0 &pinctrl_tcb1_tiob0>;
-+	};
-+
-+	tcb1_pwm1: pwm@1 {
-+		compatible = "atmel,tcb-pwm";
-+		reg = <1>;
-+		#pwm-cells = <3>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tcb1_tioa1>;
-+	};
-+
-+	tcb1_pwm2: pwm@2 {
-+		compatible = "atmel,tcb-pwm";
-+		reg = <2>;
-+		#pwm-cells = <3>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tcb1_tioa2>;
-+	};
-+};
-+
- &ebi {
- 	status = "okay";
- };
--- 
-2.26.2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
