@@ -2,89 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50E442A0D40
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC13A2A0D4E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:23:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726095AbgJ3STn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 14:19:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55978 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726061AbgJ3STn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 14:19:43 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D3A3520729;
-        Fri, 30 Oct 2020 18:19:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604081982;
-        bh=DrO9rPPWe7yx2o/HYgXvtOmqEqLUOzIreLpRvG6OK3Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wU8MnfZn0r9WZ7MSs4KtDlRCtLRj8URezg836exJfCE6Vhc1S2TSv1aTFY7lXScvJ
-         M6sO9r83fWp48vJbvoz0NKV228kCOSLD/EHw9VSw3Gq5gZkiagfYQsLdo1b82ncFYO
-         tpbMtXUv5jiVrnckcuQWJQWfR7nv6D7iYx5gYwnw=
-Date:   Fri, 30 Oct 2020 18:19:35 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v10 14/15] dt-bindings: sound: sun4i-i2s: Document H3
- with missing RX channel possibility
-Message-ID: <20201030181935.GJ4405@sirena.org.uk>
-References: <20201030144648.397824-1-peron.clem@gmail.com>
- <20201030144648.397824-15-peron.clem@gmail.com>
+        id S1726061AbgJ3SXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 14:23:43 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:38748 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725844AbgJ3SXm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 14:23:42 -0400
+Received: by mail-oi1-f196.google.com with SMTP id 9so7577893oir.5
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 11:23:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2inLjJbsAMkvoGMY+1AnyOCvk2aTurr24HiDc4FcZ/8=;
+        b=KEbTENSXczUNVwMk88LrRS3HwpiWz/xRyNp2oqancj7qsIhAyMw+4fCA+2MKXnj41P
+         7T6tMWMCo3h0F+2/hGAKJRMEFdqWHi4uvi7AFewRq4hxYVwj/YsBKDtHJ6Y2zXQRdpdh
+         qfHrdERWLE9U1r7jUFSbLgUunHfQMX0teRFJPSadg1LTDDbGDUQOMMZbjO834f0x6/91
+         0dmhor/m/ECObkTctBAN8tNolb4jLj1YAfUCWKojfz8XufH/a+xrROhpnx5AuGsXAHy0
+         /MtZibLzGXQ6bmnyO8iNxVFvQUtsmK217QCcEuNY8+k9NedPs9mPsEV9sVKvW1M4135d
+         ES3g==
+X-Gm-Message-State: AOAM530Ga1GHmHTJy3lEVJ4fS96972hFtJC4UBQZooGu7XoaFqL23dbw
+        +yAbGfoII+HsYFocYVOi8w==
+X-Google-Smtp-Source: ABdhPJzaDb2ohyIsfJyr5ytEjd3zNgm/t/ARqTbOLtJdwTgoAzDkMIVKjnk/1oZSlSF1bY7JMwpWCA==
+X-Received: by 2002:aca:4f55:: with SMTP id d82mr2532939oib.172.1604082221243;
+        Fri, 30 Oct 2020 11:23:41 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 104sm1553996otu.81.2020.10.30.11.23.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 11:23:40 -0700 (PDT)
+Received: (nullmailer pid 4098973 invoked by uid 1000);
+        Fri, 30 Oct 2020 18:23:39 -0000
+Date:   Fri, 30 Oct 2020 13:23:39 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     broonie@kernel.org, matthias.bgg@gmail.com, tiwai@suse.com,
+        tzungbi@google.com, alsa-devel@alsa-project.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        shane.chien@mediatek.com
+Subject: Re: [PATCH 2/2] dt-bindings: mediatek: mt8192: add ul-delay-ms
+ property
+Message-ID: <20201030182339.GA4069524@bogus>
+References: <1603521686-13036-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1603521686-13036-3-git-send-email-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="liqSWPDvh3eyfZ9k"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201030144648.397824-15-peron.clem@gmail.com>
-X-Cookie: Blow it out your ear.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1603521686-13036-3-git-send-email-jiaxin.yu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Oct 24, 2020 at 02:41:26PM +0800, Jiaxin Yu wrote:
+> We can choose to drop any length of data from the beginning according
+> accroding 'ul-delay-ms'.
+> 
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/sound/mt6359.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mt6359.yaml b/Documentation/devicetree/bindings/sound/mt6359.yaml
+> index a54f466f769d4..fd2d02c97fe7c 100644
+> --- a/Documentation/devicetree/bindings/sound/mt6359.yaml
+> +++ b/Documentation/devicetree/bindings/sound/mt6359.yaml
+> @@ -49,6 +49,11 @@ properties:
+>      description: |
+>        Specifies the type of mic type connected to adc2
+>  
+> +  mediatek,ul-delay-ms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Skip first time data at the beginning of DMIC recording
 
---liqSWPDvh3eyfZ9k
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What does 'ul' mean? Nothing tells me this is DMIC related in the name 
+and 'ul' is not used anywhere in the description.
 
-On Fri, Oct 30, 2020 at 03:46:47PM +0100, Cl=E9ment P=E9ron wrote:
-> Like A83T the Allwinner H3 doesn't have the DMA reception available for
-> some audio interfaces.
-
-Please if you're going to mix dts updates in with subsystem changes like
-this keep the bits for different subsystems grouped, this makes it much
-easier to handle things.
-
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
---liqSWPDvh3eyfZ9k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+cWTYACgkQJNaLcl1U
-h9AyXwf7BSDWwTiF7Jtj3QLLD/yBskzrynLALio7KhuzLph2YZtmmDVoIW63VgJw
-9ZpYqNu7iFdaSumpaOdukhHNRvB61XKOmhyFAUXjBER7X6AIA+fPCXoJi3JmqnfN
-jxEehlb9wJJ5Fg74VASMsIuZo9et0xUtuNkU3rsmlwdIpE29EEGQVZYfMUkcDqIF
-XluxWNIT6a4xQlsqan6n6do7kPz3OAVfQaZnnm4vzahnG7QhsGKob6BrBEYCdyLQ
-PfC3SAIsXO+l6c/5+gRmLn/JOVWZdFdVxBz2FAd8rhgXmgxL1nbZRcBBU7IDnptb
-0snc+vze5mOnvk7EFwTDHKNbUvwAOw==
-=ngof
------END PGP SIGNATURE-----
-
---liqSWPDvh3eyfZ9k--
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -56,6 +61,7 @@ examples:
+>      mt6359codec: mt6359codec {
+>        mediatek,dmic-mode = <0>;
+>        mediatek,mic-type-0 = <2>;
+> +      mediatek,ul-delay-ms = <50>;
+>      };
+>  
+>  ...
+> -- 
+> 2.18.0
