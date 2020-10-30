@@ -2,103 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E082A0330
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 11:47:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E552A0350
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 11:52:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726430AbgJ3Krd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 06:47:33 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:26926 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726421AbgJ3Krc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 06:47:32 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1604054852; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=VSDDXhZl2nxI6IAloLDnByNgL5/PQUcokBebruDQBaw=; b=Z1pp7HSdP8f1zsoIlf7roo/eAAVwcoHD8g/+PEjTQatYTsqyKUPfA08bUfnFj8DcuWf3b1Ih
- 9aRxeguZzPTeHHd0MEgquv1197RU6aZrndU4uoVRQ9EpE5IV8r7vBySV6HQnVDNj37UsXYm7
- M0vAsDANB/5HDl6wjvk1+c0qZTo=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 5f9bef43aa9367276b159e8c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Oct 2020 10:47:31
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BD987C433C6; Fri, 30 Oct 2020 10:47:31 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from akhilpo-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E030FC433C6;
-        Fri, 30 Oct 2020 10:47:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E030FC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     robh@kernel.org, dri-devel@freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jcrouse@codeaurora.org, mka@chromium.org, robdclark@gmail.com,
-        dianders@chromium.org
-Subject: [PATCH v5 3/3] dt-bindings: drm/msm/gpu: Add cooling device support
-Date:   Fri, 30 Oct 2020 16:17:12 +0530
-Message-Id: <1604054832-3114-3-git-send-email-akhilpo@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604054832-3114-1-git-send-email-akhilpo@codeaurora.org>
-References: <1604054832-3114-1-git-send-email-akhilpo@codeaurora.org>
+        id S1726434AbgJ3Kwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 06:52:54 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:50305 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726236AbgJ3Kwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 06:52:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1604055128;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Z1EL/9Be6tly17XVpcb5msTAyiBBVJln1M0uiO+xToM=;
+        b=DsuxCjZp88feQ3fzLFFEagswBtCbft7QSmKNHyEUd4Av8cUxahKiYn9cBH9g+Q6XDCtT5P
+        ZgcT20JJIDZel4ZtnkZ1udnrqjCke1l72h7pei9Mtd2VOeRTTd4HyDxWxxd6LQp70Hud2+
+        aGhk8GYOdLRpW/SzjW+PZXn9mdLyy5Q=
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
+ [209.85.215.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-355-WyQXVTXNMRuYeffsG9eaYQ-1; Fri, 30 Oct 2020 06:52:05 -0400
+X-MC-Unique: WyQXVTXNMRuYeffsG9eaYQ-1
+Received: by mail-pg1-f199.google.com with SMTP id j13so4331177pgp.11
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 03:52:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z1EL/9Be6tly17XVpcb5msTAyiBBVJln1M0uiO+xToM=;
+        b=ms+yDx22EOQ0rKgZgQ7U5AR+BT6kkNS0Yy8CT0g7g166YeKhGF6h7jlQnB+UbuhBiD
+         udsPLvIC5TyOiFdzfzPZu6jkpOfTFMpQUe8SR1VOQVmgTBP+3AYWZaqzxgI9HVTqLuEU
+         MMB3GFTOgOP1XOL2sGZATbi0AlSoF6aLJWh2BCmOSG4nR/XkYQWqFLm8otM7xXj1Io9N
+         N/olhjlDP3UJ8/hyGSfuqzK2IPTJypN6MYNkKvoc2jur5rr9i1JUvsQmA2i/PfVPa5Dr
+         xIFPHAJ7WGWRl2RCbXEo/oAja9jSZ+iKv01Du2i6kx+zsahiDqbYvZ5R0EvHIA+7p1YY
+         Hppg==
+X-Gm-Message-State: AOAM533QeTOjJN5lq24/6fb2Sf4b4cyOfVBG3XYzNrgQkYt4qT08r6qT
+        47YJtbXborGf3omsQFGYDwiNTD5WzVQCWjluFGxP0SCHmNv8IrdE9uCoxh77kvQzMHa4+72UhSe
+        L9i2bmiEpkZ9A+R3oTVbe6BaKRhMBXMwhbr7PIw==
+X-Received: by 2002:a17:90a:3d0f:: with SMTP id h15mr2123538pjc.234.1604055124703;
+        Fri, 30 Oct 2020 03:52:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyZm8Jjrt7RwQSmEXD6n0EGanX49bnWzOOT4SJxESfA9P6Q0Zin/X974quyCTlaFgiQZ0aiYXBGx0kCgB58FOk=
+X-Received: by 2002:a17:90a:3d0f:: with SMTP id h15mr2123522pjc.234.1604055124441;
+ Fri, 30 Oct 2020 03:52:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20201023162220.v2.1.I45b53fe84e2215946f900f5b28bab1aa9d029ac7@changeid>
+In-Reply-To: <20201023162220.v2.1.I45b53fe84e2215946f900f5b28bab1aa9d029ac7@changeid>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Fri, 30 Oct 2020 11:51:53 +0100
+Message-ID: <CAO-hwJLn5XKV+cp+fCRY395uBWuX=JrxgiGSHUnJXFpTzFWu4w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: HID: i2c-hid: Label this binding as deprecated
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Jiri Kosina <jkosina@suse.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        andrea@borgia.bo.it, Kai Heng Feng <kai.heng.feng@canonical.com>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Hans De Goede <hdegoede@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add cooling device support to gpu. A cooling device is bound to a
-thermal zone to allow thermal mitigation.
+Hi Doug,
 
-Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
----
- Documentation/devicetree/bindings/display/msm/gpu.txt | 7 +++++++
- 1 file changed, 7 insertions(+)
+Foreword: I was about to say "yeah, whatever" to please Rob for once.
+But after re-reading this and more specifically patch 3 of the series,
+that won't do. More comments inlined.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-index 1af0ff1..090dcb3 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.txt
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.txt
-@@ -39,6 +39,10 @@ Required properties:
-         a4xx Snapdragon SoCs. See
-         Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
- 
-+Optional properties:
-+- #cooling-cells: The value must be 2. For details, please refer
-+	Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml.
-+
- Example 3xx/4xx:
- 
- / {
-@@ -61,6 +65,7 @@ Example 3xx/4xx:
- 		power-domains = <&mmcc OXILICX_GDSC>;
- 		operating-points-v2 = <&gpu_opp_table>;
- 		iommus = <&gpu_iommu 0>;
-+		#cooling-cells = <2>;
- 	};
- 
- 	gpu_sram: ocmem@fdd00000 {
-@@ -98,6 +103,8 @@ Example a6xx (with GMU):
- 		reg = <0x5000000 0x40000>, <0x509e000 0x10>;
- 		reg-names = "kgsl_3d0_reg_memory", "cx_mem";
- 
-+		#cooling-cells = <2>;
-+
- 		/*
- 		 * Look ma, no clocks! The GPU clocks and power are
- 		 * controlled entirely by the GMU
--- 
-2.7.4
+On Sat, Oct 24, 2020 at 1:23 AM Douglas Anderson <dianders@chromium.org> wrote:
+>
+> As pointed out by Rob Herring [1], we should have a device-specific
+> compatible string.  This means people shouldn't be using the
+> "i2c-over-hid" compatible string anymore, or at least not without a
+> more specific compatible string before it.  Specifically:
+>
+> 1. For newly added devices we should just have the device-specific
+>    device string (no "hid-over-i2c" fallback) and infer the timings
+>    and hid-descr-addr from there.
+
+And that's a big NACK from a maintainer point of view. I know in the
+device tree world these strings are important so that people can just
+say "I have a device compatible with X", and go on, but in the HID
+world that means we will have to implement one compatible struct per
+vendor/device, which is not something I want to do.
+
+You can think of it as if you are suddenly saying that because it
+would be easier for a few particular USB devices that need a quirk,
+you "just" need to add the list of *all* USB HID devices that are
+around. i2c-hid should be a driver that doesn't change unless 2 things
+happen:
+- there is a change in the spec
+- there is a specific quirk required for a device that doesn't follow the spec.
+
+So if having device tree support for these means we suddenly need to
+add every single device around in the compatible table, I would be
+tempted to just drop the support for those new devices.
+
+Again, you (or anyone else) have to understand that the descriptor
+address is just a parameter which is known at the manufacturing time,
+but that can vary with different vendors and or products. In the ACPI
+world, this parameter is provided in the DSDT, and there is no reason
+for it to not be provided in the DT.
+
+The last thing I want to see is people using device tree having to
+recompile i2c-hid to register their own device.
+
+If this part of the Device Tree binding is so important for the DT
+world, then we should split up the DT bindings from i2c-hid, and have
+some platform driver that would handle a conversion between devicetree
+and platform data. But this driver won't be maintained by me.
+
+I agree adding the various sleep parameters in the platform data is
+not good, but I prefer that over having to maintain an endless table
+of parameters for every single i2c-hid device out there.
+
+Cheers,
+Benjamin
+
+
+>
+> 2. If there's a need for a device tree to be backward compatible, we
+>    should list the device-specific compatible string and add the
+>    "hid-over-i2c" fallback and the various timings.
+>
+> [1] https://lore.kernel.org/r/20201019211036.GA3595039@bogus
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+>
+> Changes in v2:
+> - ("dt-bindings: HID: i2c-hid: Label this binding as deprecated") new in v2.
+>
+>  Documentation/devicetree/bindings/input/hid-over-i2c.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.txt b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> index c76bafaf98d2..733a5f053280 100644
+> --- a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> +++ b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> @@ -1,5 +1,8 @@
+>  * HID over I2C Device-Tree bindings
+>
+> +WARNING: this binding is deprecated.  Instead of using this, create specific
+> +bindings for each hid-over-i2c device.
+> +
+>  HID over I2C provides support for various Human Interface Devices over the
+>  I2C bus. These devices can be for example touchpads, keyboards, touch screens
+>  or sensors.
+> --
+> 2.29.0.rc1.297.gfa9743e501-goog
+>
 
