@@ -2,446 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8FB2A00AE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C0482A00BB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 10:07:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725888AbgJ3JFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 05:05:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40544 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725784AbgJ3JFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 05:05:44 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37DACC0613CF
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:05:44 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id f9so6935022lfq.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 02:05:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=wuS5u1doYgwJMrQ1HQaz2hiwPQ/dACD5OsCQyigRClI=;
-        b=h7pf6DdOD7RmWd3oL0OMKqO3VA+HHBjIglyYGHiJrbDITIQrZ+7BxOU3+eFBXamPCG
-         myV/ZOuma7t7c/O3TiEZYHI26M+uyiDZloylZcBu7sMYX3498wCBhv9AE63XwPIC40Qm
-         F3NBmr1gO71vYwXqHA33XaBtWYHC2ca1ct14MQpYJ15itobbxe9A6Luz4h1W3KT9+JcO
-         goBGIl3MSLgCfqcuxfxn45h1m2zd1vVdfMnRpIM8No2h+mycIVHWkMX9Rp6SegRjLIqP
-         QlBbddpowxyvdrsjNlCtanZALX9uOMjawC3F430supnuLtBeptC0gUQbu247TCGiRrde
-         JNPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=wuS5u1doYgwJMrQ1HQaz2hiwPQ/dACD5OsCQyigRClI=;
-        b=m/nGbvS2KP8oRMJL5Os7tpjYpj13k/mb0nV+Puivo38vipT4yDzQqs8smWx4TgkgIb
-         SfYUtXysWMBVYv6XGZrvJ+1wTI1pIulOwsBZ1RcE/SwxX/7O1YptNfqX/E5qWs0p32/7
-         JN0IM0RbM3kJ6T8rzoEdHFV9FqIm6IhctrxYS5jhXWDlxOahHBTsZy/v0uHL8RAAYyh+
-         KbCbYVpQzW+X8GzPxG/6aqq7hzASPbjF/UA9VgIvovcfud7XWY2+U1buyCsibr2RKMt5
-         xBBw6rArqCKyAWKFFcR0oZnKabA4EHrehZx4rk/c/fbrPkoUuq5GDKFMFl759F/SX9dH
-         pyhA==
-X-Gm-Message-State: AOAM530AphryrJ14iz9utUg4oY23EQXtJmryWEO0WbRmOhsbg9NzXHyt
-        6eejiVTYl+sy4YYLs8OAGbvDzqI1MEJE4usrj63Wpw==
-X-Google-Smtp-Source: ABdhPJyy29DKvlmhSGLrkaffIQCfwSejXh+C1NwBmK26auf6nYDHNgTcUdxbrM+XOi2UCmABu6cU0zzmKdonhvYu018=
-X-Received: by 2002:a19:6a04:: with SMTP id u4mr543814lfu.493.1604048742501;
- Fri, 30 Oct 2020 02:05:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201028232759.1928479-1-atish.patra@wdc.com> <20201028232759.1928479-3-atish.patra@wdc.com>
-In-Reply-To: <20201028232759.1928479-3-atish.patra@wdc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Fri, 30 Oct 2020 14:35:30 +0530
-Message-ID: <CAAhSdy0pW8AFCDtFkEO_4zjg8Exp+XTb09AjhErdX9u-Jw3OuQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/3] RISC-V: Initial DTS for Microchip ICICLE board
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>, devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        id S1726077AbgJ3JHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 05:07:41 -0400
+Received: from smtp1.de.adit-jv.com ([93.241.18.167]:56878 "EHLO
+        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725801AbgJ3JHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 05:07:41 -0400
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+        by smtp1.de.adit-jv.com (Postfix) with ESMTP id 128063C0579;
+        Fri, 30 Oct 2020 10:07:39 +0100 (CET)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id vUlCa8jIhWC8; Fri, 30 Oct 2020 10:07:32 +0100 (CET)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id D3DA73C009C;
+        Fri, 30 Oct 2020 10:07:32 +0100 (CET)
+Received: from lxhi-065.adit-jv.com (10.72.94.31) by HI2EXCH01.adit-jv.com
+ (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 30 Oct
+ 2020 10:07:32 +0100
+Date:   Fri, 30 Oct 2020 10:07:28 +0100
+From:   Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Padmarao Begari <padmarao.begari@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Cyril.Jean@microchip.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Steffen Pengel <spengel@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77961: ulcb-kf: Initial
+ device tree
+Message-ID: <20201030090728.GA19340@lxhi-065.adit-jv.com>
+References: <20201029133741.25721-1-erosca@de.adit-jv.com>
+ <20201029133741.25721-2-erosca@de.adit-jv.com>
+ <CAMuHMdX5pCtR-LMbuSJQvDNyVOwcipt7zZOF3c3J-d-Bq98NQg@mail.gmail.com>
+ <20201029163213.GA12422@lxhi-065.adit-jv.com>
+ <CAMuHMdXbwfPk5_dZEzjLuUZx6ysxdmu6hKbd54Ev6jTQUObTCA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdXbwfPk5_dZEzjLuUZx6ysxdmu6hKbd54Ev6jTQUObTCA@mail.gmail.com>
+X-Originating-IP: [10.72.94.31]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 4:58 AM Atish Patra <atish.patra@wdc.com> wrote:
->
-> Add initial DTS for Microchip ICICLE board having only
-> essential devcies (clocks, sdhci, ethernet, serial, etc).
->
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  arch/riscv/boot/dts/Makefile                  |   1 +
->  arch/riscv/boot/dts/microchip/Makefile        |   2 +
->  .../microchip/microchip-icicle-kit-a000.dts   | 313 ++++++++++++++++++
+Hi Geert,
 
-I suggest we split this DTS into two parts:
-1. SOC (microchip-polarfire.dtsi)
-2. Board (microchip-icicle-kit-a000.dts)
+On Thu, Oct 29, 2020 at 07:23:53PM +0100, Geert Uytterhoeven wrote:
+> On Thu, Oct 29, 2020 at 5:34 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
 
-This will be much cleaner and aligned with what is done
-on other architectures.
+[..]
 
->  3 files changed, 316 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/microchip/Makefile
->  create mode 100644 arch/riscv/boot/dts/microchip/microchip-icicle-kit-a0=
-00.dts
->
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index ca1f8cbd78c0..3ea94ea0a18a 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  subdir-y +=3D sifive
->  subdir-y +=3D kendryte
-> +subdir-y +=3D microchip
->
->  obj-$(CONFIG_BUILTIN_DTB) :=3D $(addsuffix /, $(subdir-y))
-> diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts=
-/microchip/Makefile
-> new file mode 100644
-> index 000000000000..55ad77521304
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/microchip/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) +=3D microchip-icicle-kit-a000.dtb
-> diff --git a/arch/riscv/boot/dts/microchip/microchip-icicle-kit-a000.dts =
-b/arch/riscv/boot/dts/microchip/microchip-icicle-kit-a000.dts
-> new file mode 100644
-> index 000000000000..5848920af55c
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/microchip/microchip-icicle-kit-a000.dts
-> @@ -0,0 +1,313 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/* Copyright (c) 2020 Microchip Technology Inc */
-> +
-> +/dts-v1/;
-> +
-> +/* Clock frequency (in Hz) of the rtcclk */
-> +#define RTCCLK_FREQ            1000000
-> +
-> +/ {
-> +       #address-cells =3D <2>;
-> +       #size-cells =3D <2>;
-> +       model =3D "Microchip PolarFire-SoC";
-> +       compatible =3D "microchip,polarfire-soc";
-> +
-> +       chosen {
-> +               stdout-path =3D &serial0;
-> +       };
-> +
-> +       cpus {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +               timebase-frequency =3D <RTCCLK_FREQ>;
-> +
-> +               cpu@0 {
-> +                       clock-frequency =3D <0>;
-> +                       compatible =3D "sifive,rocket0", "riscv";
-> +                       device_type =3D "cpu";
-> +                       i-cache-block-size =3D <64>;
-> +                       i-cache-sets =3D <128>;
-> +                       i-cache-size =3D <16384>;
-> +                       reg =3D <0>;
-> +                       riscv,isa =3D "rv64imac";
-> +                       status =3D "disabled";
-> +
-> +                       cpu0_intc: interrupt-controller {
-> +                               #interrupt-cells =3D <1>;
-> +                               compatible =3D "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                       };
-> +               };
-> +
-> +               cpu@1 {
-> +                       clock-frequency =3D <0>;
-> +                       compatible =3D "sifive,rocket0", "riscv";
-> +                       d-cache-block-size =3D <64>;
-> +                       d-cache-sets =3D <64>;
-> +                       d-cache-size =3D <32768>;
-> +                       d-tlb-sets =3D <1>;
-> +                       d-tlb-size =3D <32>;
-> +                       device_type =3D "cpu";
-> +                       i-cache-block-size =3D <64>;
-> +                       i-cache-sets =3D <64>;
-> +                       i-cache-size =3D <32768>;
-> +                       i-tlb-sets =3D <1>;
-> +                       i-tlb-size =3D <32>;
-> +                       mmu-type =3D "riscv,sv39";
-> +                       reg =3D <1>;
-> +                       riscv,isa =3D "rv64imafdc";
-> +                       tlb-split;
-> +                       status =3D "okay";
-> +
-> +                       cpu1_intc: interrupt-controller {
-> +                               #interrupt-cells =3D <1>;
-> +                               compatible =3D "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                       };
-> +               };
-> +
-> +               cpu@2 {
-> +                       clock-frequency =3D <0>;
-> +                       compatible =3D "sifive,rocket0", "riscv";
-> +                       d-cache-block-size =3D <64>;
-> +                       d-cache-sets =3D <64>;
-> +                       d-cache-size =3D <32768>;
-> +                       d-tlb-sets =3D <1>;
-> +                       d-tlb-size =3D <32>;
-> +                       device_type =3D "cpu";
-> +                       i-cache-block-size =3D <64>;
-> +                       i-cache-sets =3D <64>;
-> +                       i-cache-size =3D <32768>;
-> +                       i-tlb-sets =3D <1>;
-> +                       i-tlb-size =3D <32>;
-> +                       mmu-type =3D "riscv,sv39";
-> +                       reg =3D <2>;
-> +                       riscv,isa =3D "rv64imafdc";
-> +                       tlb-split;
-> +                       status =3D "okay";
-> +
-> +                       cpu2_intc: interrupt-controller {
-> +                               #interrupt-cells =3D <1>;
-> +                               compatible =3D "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                       };
-> +               };
-> +
-> +               cpu@3 {
-> +                       clock-frequency =3D <0>;
-> +                       compatible =3D "sifive,rocket0", "riscv";
-> +                       d-cache-block-size =3D <64>;
-> +                       d-cache-sets =3D <64>;
-> +                       d-cache-size =3D <32768>;
-> +                       d-tlb-sets =3D <1>;
-> +                       d-tlb-size =3D <32>;
-> +                       device_type =3D "cpu";
-> +                       i-cache-block-size =3D <64>;
-> +                       i-cache-sets =3D <64>;
-> +                       i-cache-size =3D <32768>;
-> +                       i-tlb-sets =3D <1>;
-> +                       i-tlb-size =3D <32>;
-> +                       mmu-type =3D "riscv,sv39";
-> +                       reg =3D <3>;
-> +                       riscv,isa =3D "rv64imafdc";
-> +                       tlb-split;
-> +                       status =3D "okay";
-> +
-> +                       cpu3_intc: interrupt-controller {
-> +                               #interrupt-cells =3D <1>;
-> +                               compatible =3D "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                       };
-> +               };
-> +
-> +               cpu@4 {
-> +                       clock-frequency =3D <0>;
-> +                       compatible =3D "sifive,rocket0", "riscv";
-> +                       d-cache-block-size =3D <64>;
-> +                       d-cache-sets =3D <64>;
-> +                       d-cache-size =3D <32768>;
-> +                       d-tlb-sets =3D <1>;
-> +                       d-tlb-size =3D <32>;
-> +                       device_type =3D "cpu";
-> +                       i-cache-block-size =3D <64>;
-> +                       i-cache-sets =3D <64>;
-> +                       i-cache-size =3D <32768>;
-> +                       i-tlb-sets =3D <1>;
-> +                       i-tlb-size =3D <32>;
-> +                       mmu-type =3D "riscv,sv39";
-> +                       reg =3D <4>;
-> +                       riscv,isa =3D "rv64imafdc";
-> +                       tlb-split;
-> +                       status =3D "okay";
-> +                       cpu4_intc: interrupt-controller {
-> +                               #interrupt-cells =3D <1>;
-> +                               compatible =3D "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                       };
-> +               };
-> +       };
-> +
-> +       memory@80000000 {
-> +               device_type =3D "memory";
-> +               reg =3D <0x0 0x80000000 0x0 0x40000000>;
-> +               clocks =3D <&clkcfg 26>;
-> +       };
-> +
-> +       soc {
-> +               #address-cells =3D <2>;
-> +               #size-cells =3D <2>;
-> +               compatible =3D "simple-bus";
-> +               ranges;
-> +
-> +               cache-controller@2010000 {
-> +                       compatible =3D "sifive,fu540-c000-ccache", "cache=
-";
-> +                       cache-block-size =3D <64>;
-> +                       cache-level =3D <2>;
-> +                       cache-sets =3D <1024>;
-> +                       cache-size =3D <2097152>;
-> +                       cache-unified;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <1 2 3>;
-> +                       reg =3D <0x0 0x2010000 0x0 0x1000>;
-> +               };
-> +
-> +               clint@2000000 {
-> +                       compatible =3D "riscv,clint0";
-> +                       reg =3D <0x0 0x2000000 0x0 0xC000>;
-> +                       interrupts-extended =3D <&cpu0_intc 3 &cpu0_intc =
-7
-> +                                               &cpu1_intc 3 &cpu1_intc 7
-> +                                               &cpu2_intc 3 &cpu2_intc 7
-> +                                               &cpu3_intc 3 &cpu3_intc 7
-> +                                               &cpu4_intc 3 &cpu4_intc 7=
->;
-> +               };
-> +
-> +               plic: interrupt-controller@c000000 {
-> +                       #interrupt-cells =3D <1>;
-> +                       compatible =3D "sifive,plic-1.0.0";
-> +                       reg =3D <0x0 0xc000000 0x0 0x4000000>;
-> +                       riscv,ndev =3D <53>;
-> +                       interrupt-controller;
-> +                       interrupts-extended =3D <&cpu0_intc 11
-> +                                       &cpu1_intc 11 &cpu1_intc 9
-> +                                       &cpu2_intc 11 &cpu2_intc 9
-> +                                       &cpu3_intc 11 &cpu3_intc 9
-> +                                       &cpu4_intc 11 &cpu4_intc 9>;
-> +               };
-> +
-> +               dma@3000000 {
-> +                       compatible =3D "sifive,fu540-c000-pdma";
-> +                       reg =3D <0x0 0x3000000 0x0 0x8000>;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <23 24 25 26 27 28 29 30>;
-> +                       #dma-cells =3D <1>;
-> +               };
-> +
-> +               refclk: refclk {
-> +                       compatible =3D "fixed-clock";
-> +                       #clock-cells =3D <0>;
-> +                       clock-frequency =3D <600000000>;
-> +                       clock-output-names =3D "msspllclk";
-> +               };
-> +
-> +               clkcfg: clkcfg@20002000 {
-> +                       compatible =3D "microchip,pfsoc-clkcfg";
-> +                       reg =3D <0x0 0x20002000 0x0 0x1000>;
-> +                       reg-names =3D "mss_sysreg";
-> +                       clocks =3D <&refclk>;
-> +                       #clock-cells =3D <1>;
-> +                       clock-output-names =3D "cpuclk", "axiclk", "ahbcl=
-k", "ENVMclk", "MAC0clk", "MAC1clk", "MMCclk", "TIMERclk", "MMUART0clk", "M=
-MUART1clk", "MMUART2clk", "MMUART3clk", "MMUART4clk", "SPI0clk", "SPI1clk",=
- "I2C0clk", "I2C1clk", "CAN0clk", "CAN1clk", "USBclk", "RESERVED", "RTCclk"=
-, "QSPIclk", "GPIO0clk", "GPIO1clk", "GPIO2clk", "DDRCclk", "FIC0clk", "FIC=
-1clk", "FIC2clk", "FIC3clk", "ATHENAclk", "CFMclk";
-> +               };
-> +
-> +               serial0: serial@20000000 {
-> +                       compatible =3D "ns16550a";
-> +                       reg =3D <0x0 0x20000000 0x0 0x400>;
-> +                       reg-io-width =3D <4>;
-> +                       reg-shift =3D <2>;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <90>;
-> +                       current-speed =3D <115200>;
-> +                       clocks =3D <&clkcfg 8>;
-> +                       status =3D "okay";
-> +               };
-> +
-> +               serial1: serial@20100000 {
-> +                       compatible =3D "ns16550a";
-> +                       reg =3D <0x0 0x20100000 0x0 0x400>;
-> +                       reg-io-width =3D <4>;
-> +                       reg-shift =3D <2>;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <91>;
-> +                       current-speed =3D <115200>;
-> +                       clocks =3D <&clkcfg 9>;
-> +                       status =3D "okay";
-> +               };
-> +
-> +               serial2: serial@20102000 {
-> +                       compatible =3D "ns16550a";
-> +                       reg =3D <0x0 0x20102000 0x0 0x400>;
-> +                       reg-io-width =3D <4>;
-> +                       reg-shift =3D <2>;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <92>;
-> +                       current-speed =3D <115200>;
-> +                       clocks =3D <&clkcfg 10>;
-> +                       status =3D "okay";
-> +               };
-> +
-> +               serial3: serial@20104000 {
-> +                       compatible =3D "ns16550a";
-> +                       reg =3D <0x0 0x20104000 0x0 0x400>;
-> +                       reg-io-width =3D <4>;
-> +                       reg-shift =3D <2>;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <93>;
-> +                       current-speed =3D <115200>;
-> +                       clocks =3D <&clkcfg 11>;
-> +                       status =3D "okay";
-> +               };
-> +
-> +               sdcard: sdhc@20008000 {
-> +                       compatible =3D "cdns,sd4hc";
-> +                       reg =3D <0x0 0x20008000 0x0 0x1000>;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <88>;
-> +                       pinctrl-names =3D "default";
-> +                       clocks =3D <&clkcfg 6>;
-> +                       bus-width =3D <4>;
-> +                       disable-wp;
-> +                       no-1-8-v;
-> +                       cap-mmc-highspeed;
-> +                       cap-sd-highspeed;
-> +                       card-detect-delay =3D <200>;
-> +                       sd-uhs-sdr12;
-> +                       sd-uhs-sdr25;
-> +                       sd-uhs-sdr50;
-> +                       sd-uhs-sdr104;
-> +                       max-frequency =3D <200000000>;
-> +                       status =3D "okay";
-> +               };
-> +
-> +               emac1: ethernet@20112000 {
-> +                       compatible =3D "cdns,macb";
-> +                       reg =3D <0x0 0x20112000 0x0 0x2000>;
-> +                       interrupt-parent =3D <&plic>;
-> +                       interrupts =3D <70 71 72 73>;
-> +                       mac-address =3D [56 34 12 00 FC 00];
-> +                       phy-mode =3D "sgmii";
-> +                       clocks =3D <&clkcfg 5>, <&clkcfg 2>;
-> +                       clock-names =3D "pclk", "hclk";
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <0>;
-> +                       phy1: ethernet-phy@9 {
-> +                               reg =3D <9>;
-> +                               ti,fifo-depth =3D <0x01>;
-> +                       };
-> +               };
-> +
-> +               uio_axi_lsram@2030000000 {
-> +                       compatible =3D "generic-uio";
-> +                       reg =3D <0x20 0x30000000 0 0x80000000 >;
-> +                       status =3D "okay";
-> +               };
-> +       };
-> +};
-> --
-> 2.25.1
->
+> I don't think we want to add new compatible string to describe each
+> combo. Just add "renesas,r8a77961" to the last enum?
 
-Regards,
-Anup
+I'm afraid I misinterpreted your request. I've pushed your proposal to
+https://lore.kernel.org/linux-renesas-soc/20201030083051.18752-4-erosca@de.adit-jv.com/
+
+> > IMHO one thing which is certainly worth clarifying and fixing is the
+> > KF revision currently documented in renesas.yaml, i.e. M03.
+> >
+> > Shimafuji released at least M04, M05 and M06 revisions of KF (nicely
+> > compared at https://elinux.org/R-Car/Boards/Kingfisher#Change_point).
+> >
+> > The question is, does the community intend to support M03 through M06
+> > (in which case all of them might need an entry in the documentation) or
+> > anything which is earlier than M06 has to be considered deprecated (in
+> > which case renesas.yaml would need a simple s/M03/M06/ update)?
+> 
+> I'm not that familiar with KingFisher and the various revisions.
+> Do these differences have an impact on the software side?
+> The diodes and filters probably don't.
+
+I personally no longer use KF M03, since its major limitation is not
+being able to update the contents of Hyperflash using Lauterbach if
+ULCB is stacked on the expansion board (unplugging ULCB each time
+it is flashed is absolutely not practical).
+
+I've heard from audio engineers that recent revisions are more suitable
+for audio use-cases, but I don't know the full details.
+
+> The I2C repeaters are PCA9548ADB on M03, hence they use a Linux
+> driver. By what have they been replaced?
+> What's the nature of the MOST ↔ GPS Function select register change?
+
+I will try to collect more information and, if I succeed, I will come
+back with feedback. Thank you for your patience.
+
+-- 
+Best regards,
+Eugeniu Rosca
