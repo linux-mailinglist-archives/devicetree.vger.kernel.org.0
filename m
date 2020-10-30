@@ -2,214 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF8AE2A0B54
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA4052A0B9F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726407AbgJ3QkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 12:40:01 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:38722 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726061AbgJ3QkB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:40:01 -0400
-Received: by mail-oi1-f194.google.com with SMTP id 9so7250344oir.5;
-        Fri, 30 Oct 2020 09:39:19 -0700 (PDT)
+        id S1726396AbgJ3Qrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 12:47:46 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:36315 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725808AbgJ3Qrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:47:46 -0400
+Received: by mail-oi1-f193.google.com with SMTP id d9so1287379oib.3;
+        Fri, 30 Oct 2020 09:47:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=XKztsWcZasal2O06qo55L0eJo2O/+Ed23onN3u66G6Y=;
-        b=Dapu6PrPHbrKvseok7FCclsfzpK9uQ8zNQ3Nd3WdgYoDa3QYaY9wLetUINyAx4Mgkn
-         KjSb3ntzWDu61Zyk+3kYzJScUyn3k3MlCEokr2xhluG5dRpoqrY1l0o6wNKS91svp8CB
-         p5MifmJ6G56npLbjR5CWkiAU/vUHWvkngv8GrMQvRKdvnl4d3DZOela0zRzS85u/Pp65
-         p/dfqyIau4zP71TpdOC8FWmOs0AT1qL3sHQwEyg9ne40FyISL66YWokVf7iCCJCqGn0v
-         usMpab8Y3wOZmdbC2B4Tw/jHyLP/PAjSWwCxfelUx2G6IBdlq1FGMpFTTYz1ytNaC/CK
-         rTgg==
-X-Gm-Message-State: AOAM532AkESChNo+Ra93AfUfILTrWRs8WmrVrj1Jp+j9DEPxd3/YSioL
-        Ye5oLUsIRDDIy6c1hSb8+Q==
-X-Google-Smtp-Source: ABdhPJyj/mHVLN92/7MH5CL/dIFYAuNvLkG5xyiLxfWbikKyWL1yAsPDt8TxCNgsD1r7UZmTrtRCWQ==
-X-Received: by 2002:aca:5047:: with SMTP id e68mr2115953oib.175.1604075958774;
-        Fri, 30 Oct 2020 09:39:18 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=qbBstdJF6lGYUkgMfbYRnDBzY8X2ICeJU7MFuE1dEQk=;
+        b=LTrfBF11vAxV9dwVMW2xJPWVxrIzBvykfBtny9VTQgZXq3qia61z1iZ5sO/cB3QQKW
+         0wW6TdivNx5eRk1TlRA9tQL/baii5emUMbS+F7eGntgpOfk0DAG1pTwQJ4UiQINCtJzY
+         pOZhQIBOUCdV/ZfRXizbQV0x4bFbfW8tTRHpR2I+H44xOyD2lxKL3xrkP84+fcEjM0EQ
+         SvwQcmlPBDCTbAFyCN/Z7bXA46SIpm+SarEofbM4l1EzbkK3ar39kk4XiLZ1M8teIBPl
+         YmR2FgtVEaUAOwWLL8RZL8E0C1CYHLU/XLMnGePvTUpe4WAHLJaqO7fLWKBlADq3QCWk
+         QOHw==
+X-Gm-Message-State: AOAM530XbUKDDEFfq1iv82tVZKgB193BwkNN/+ZMGKNLhxNFJyseTFdH
+        oVAFLakfLslHjvIE3Y3jJQ==
+X-Google-Smtp-Source: ABdhPJzdcsQqAHak2T12Li0TXyhwHSilYrAQGNK76OohNpykaBDznTKvLv+Xg1UpohlJ9Q/gE8hUlQ==
+X-Received: by 2002:aca:4cd6:: with SMTP id z205mr2190199oia.32.1604076465380;
+        Fri, 30 Oct 2020 09:47:45 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g203sm1534170oib.22.2020.10.30.09.39.17
+        by smtp.gmail.com with ESMTPSA id i12sm1557959oon.26.2020.10.30.09.47.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 09:39:18 -0700 (PDT)
-Received: (nullmailer pid 3965405 invoked by uid 1000);
-        Fri, 30 Oct 2020 16:39:17 -0000
-Date:   Fri, 30 Oct 2020 11:39:17 -0500
+        Fri, 30 Oct 2020 09:47:44 -0700 (PDT)
+Received: (nullmailer pid 3974942 invoked by uid 1000);
+        Fri, 30 Oct 2020 16:47:43 -0000
+Date:   Fri, 30 Oct 2020 11:47:43 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>, kevin.lhopital@hotmail.com,
-        =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: Add OV8865 bindings
- documentation
-Message-ID: <20201030163917.GA3963319@bogus>
-References: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
- <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
+        gregkh@linuxfoundation.org, andrea@borgia.bo.it,
+        kai.heng.feng@canonical.com, linux-input@vger.kernel.org,
+        swboyd@chromium.org, hdegoede@redhat.com,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: HID: i2c-hid: Label this binding as
+ deprecated
+Message-ID: <20201030164743.GA3967106@bogus>
+References: <20201023162220.v2.1.I45b53fe84e2215946f900f5b28bab1aa9d029ac7@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
+In-Reply-To: <20201023162220.v2.1.I45b53fe84e2215946f900f5b28bab1aa9d029ac7@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 23, 2020 at 07:54:04PM +0200, Paul Kocialkowski wrote:
-> This introduces YAML bindings documentation for the OV8865
-> image sensor.
+On Fri, Oct 23, 2020 at 04:22:52PM -0700, Douglas Anderson wrote:
+> As pointed out by Rob Herring [1], we should have a device-specific
+> compatible string.  This means people shouldn't be using the
+> "i2c-over-hid" compatible string anymore, or at least not without a
+> more specific compatible string before it.  Specifically:
 > 
-> Co-developed-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> 1. For newly added devices we should just have the device-specific
+>    device string (no "hid-over-i2c" fallback) and infer the timings
+>    and hid-descr-addr from there.
+
+I wouldn't go that far. Having a fallback is perfectly acceptible. And 
+hopefully there are at least some devices where that's good enough for 
+drivers to use.
+
+If we have cases of only 'i2c-over-hid' being used (in DT), then the 
+solution is making this a schema so we can enforce that as not valid.
+
+> 
+> 2. If there's a need for a device tree to be backward compatible, we
+>    should list the device-specific compatible string and add the
+>    "hid-over-i2c" fallback and the various timings.
+> 
+> [1] https://lore.kernel.org/r/20201019211036.GA3595039@bogus
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  .../bindings/media/i2c/ovti,ov8865.yaml       | 124 ++++++++++++++++++
->  1 file changed, 124 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> new file mode 100644
-> index 000000000000..807f1a94afae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> @@ -0,0 +1,124 @@
-> +# SPDX-License-Identifier: GPL-2.0
-
-Dual license please. With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8865.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> Changes in v2:
+> - ("dt-bindings: HID: i2c-hid: Label this binding as deprecated") new in v2.
+> 
+>  Documentation/devicetree/bindings/input/hid-over-i2c.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.txt b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> index c76bafaf98d2..733a5f053280 100644
+> --- a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> +++ b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> @@ -1,5 +1,8 @@
+>  * HID over I2C Device-Tree bindings
+>  
+> +WARNING: this binding is deprecated.  Instead of using this, create specific
+> +bindings for each hid-over-i2c device.
 > +
-> +title: OmniVision OV8865 Image Sensor Device Tree Bindings
-> +
-> +maintainers:
-> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov8865
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: EXTCLK Clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: extclk
-> +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply
-> +
-> +  avdd-supply:
-> +    description: Analog Domain Power Supply (internal AVDD is used if missing)
-> +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description: Power Down Pin GPIO Control (active low)
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reset Pin GPIO Control (active low)
-> +
-> +  port:
-> +    type: object
-> +    description: Input port, connect to a MIPI CSI-2 receiver
-> +
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +
-> +        properties:
-> +          remote-endpoint: true
-> +
-> +          bus-type:
-> +            const: 4
-> +
-> +          clock-lanes:
-> +            maxItems: 1
-> +
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 4
-> +
-> +        required:
-> +          - bus-type
-> +          - data-lanes
-> +          - remote-endpoint
-> +
-> +        additionalProperties: false
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - dvdd-supply
-> +  - dovdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sun8i-a83t-ccu.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c2 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov8865: camera@36 {
-> +            compatible = "ovti,ov8865";
-> +            reg = <0x36>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&csi_mclk_pin>;
-> +
-> +            clocks = <&ccu CLK_CSI_MCLK>;
-> +            clock-names = "extclk";
-> +
-> +            avdd-supply = <&reg_ov8865_avdd>;
-> +            dovdd-supply = <&reg_ov8865_dovdd>;
-> +            dvdd-supply = <&reg_ov8865_dvdd>;
-> +
-> +            powerdown-gpios = <&pio 4 17 GPIO_ACTIVE_LOW>; /* PE17 */
-> +            reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
-> +
-> +            port {
-> +                ov8865_out_mipi_csi2: endpoint {
-> +                    bus-type = <4>; /* MIPI CSI-2 D-PHY */
-> +                    clock-lanes = <0>;
-> +                    data-lanes = <1 2 3 4>;
-> +
-> +                    remote-endpoint = <&mipi_csi2_in_ov8865>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
+>  HID over I2C provides support for various Human Interface Devices over the
+>  I2C bus. These devices can be for example touchpads, keyboards, touch screens
+>  or sensors.
 > -- 
-> 2.28.0
+> 2.29.0.rc1.297.gfa9743e501-goog
 > 
