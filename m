@@ -2,96 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC13A2A0D4E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:23:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C8F42A0D4F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 19:24:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726061AbgJ3SXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 14:23:43 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38748 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725844AbgJ3SXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 14:23:42 -0400
-Received: by mail-oi1-f196.google.com with SMTP id 9so7577893oir.5
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 11:23:41 -0700 (PDT)
+        id S1726061AbgJ3SYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 14:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43536 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725844AbgJ3SYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 14:24:51 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156E5C0613CF;
+        Fri, 30 Oct 2020 11:24:51 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id j24so9833712ejc.11;
+        Fri, 30 Oct 2020 11:24:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1GiuXwACspAwUSLnSPZJpvg6PgQyL8EK07COgwjeSeo=;
+        b=RxVlWt0YJULnLaCMp1skZbYCy9kyBPWrcjYb2YLiaOvGsKmUHravyblcgO2AEe1Mxy
+         g4lmhctwhVkLj7WTOz9iQ9VZ9ATYUcbIun+SLMJlQmMgFrtdoWLq/VIwpxeX6HSNBlSR
+         KjmV4zJWrMEy0mPll8SwxMCNihB+rtWuneEcFWKYO/PrqlGA4hdnWSJnifa+NIntrzxs
+         XhCa92gXwkUtkQuUaIPzTpd0no+HquQpHhn4Zfvdcev0SoFJbT6uczuWO7idm5gIfDp9
+         M70JOlPL7c01khJ20sgqm+KbPajd1qHmJKiLN1m5zb1iUSN0MJ+5V5yhsJKCRQ9kyimx
+         OvuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2inLjJbsAMkvoGMY+1AnyOCvk2aTurr24HiDc4FcZ/8=;
-        b=KEbTENSXczUNVwMk88LrRS3HwpiWz/xRyNp2oqancj7qsIhAyMw+4fCA+2MKXnj41P
-         7T6tMWMCo3h0F+2/hGAKJRMEFdqWHi4uvi7AFewRq4hxYVwj/YsBKDtHJ6Y2zXQRdpdh
-         qfHrdERWLE9U1r7jUFSbLgUunHfQMX0teRFJPSadg1LTDDbGDUQOMMZbjO834f0x6/91
-         0dmhor/m/ECObkTctBAN8tNolb4jLj1YAfUCWKojfz8XufH/a+xrROhpnx5AuGsXAHy0
-         /MtZibLzGXQ6bmnyO8iNxVFvQUtsmK217QCcEuNY8+k9NedPs9mPsEV9sVKvW1M4135d
-         ES3g==
-X-Gm-Message-State: AOAM530Ga1GHmHTJy3lEVJ4fS96972hFtJC4UBQZooGu7XoaFqL23dbw
-        +yAbGfoII+HsYFocYVOi8w==
-X-Google-Smtp-Source: ABdhPJzaDb2ohyIsfJyr5ytEjd3zNgm/t/ARqTbOLtJdwTgoAzDkMIVKjnk/1oZSlSF1bY7JMwpWCA==
-X-Received: by 2002:aca:4f55:: with SMTP id d82mr2532939oib.172.1604082221243;
-        Fri, 30 Oct 2020 11:23:41 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 104sm1553996otu.81.2020.10.30.11.23.40
+        bh=1GiuXwACspAwUSLnSPZJpvg6PgQyL8EK07COgwjeSeo=;
+        b=Puif4QZCXNoKZs5b0v8qeN2eegEfKGftY8d2GUnkknvXNsPvcajcm4wD6er3tVZDLh
+         Y45dk9mjQ72SeEqsqvqb1SOoR2HFTNqavhz/obX5dFIKLcD9fMeEoF60VDxVR0uawTDv
+         oWKLvi3Wegwj0IxJ9Y3qoOcLWr14ZkTvlKRQ4w4ajd1Cng8Mx6tnX4xGvqhqdXlS+xZw
+         3P3iF+TOMtwd/FyJraPJ2UnwvcjJ4wQhxETkuJw529tOjbx3YpEvvsT3NP+dZzvtZt1Q
+         Cd0vLy020BefUbiP13nIhmzsCmRZw4IbTn64wKxWTtu8OV8RVjV6FddDk4HEVYld89aN
+         fNLw==
+X-Gm-Message-State: AOAM530Jlw9Gsqq7Ux8tJFx15e0yWoQzEnRqp99bV1U6oQgcjEddiUk1
+        kwALcc+dfa00lpXaiQgaTmHMa5tcE/g=
+X-Google-Smtp-Source: ABdhPJzZcIgLqrMs+1siG0FP3QZcbHqAccvNY+Ug5zMwXN30nN4+SfRnVv7wAdLLiUAriF5KqTR+4Q==
+X-Received: by 2002:a17:906:5618:: with SMTP id f24mr3769064ejq.86.1604082289662;
+        Fri, 30 Oct 2020 11:24:49 -0700 (PDT)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id df12sm3464504edb.8.2020.10.30.11.24.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 11:23:40 -0700 (PDT)
-Received: (nullmailer pid 4098973 invoked by uid 1000);
-        Fri, 30 Oct 2020 18:23:39 -0000
-Date:   Fri, 30 Oct 2020 13:23:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     broonie@kernel.org, matthias.bgg@gmail.com, tiwai@suse.com,
-        tzungbi@google.com, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        shane.chien@mediatek.com
-Subject: Re: [PATCH 2/2] dt-bindings: mediatek: mt8192: add ul-delay-ms
- property
-Message-ID: <20201030182339.GA4069524@bogus>
-References: <1603521686-13036-1-git-send-email-jiaxin.yu@mediatek.com>
- <1603521686-13036-3-git-send-email-jiaxin.yu@mediatek.com>
+        Fri, 30 Oct 2020 11:24:49 -0700 (PDT)
+Date:   Fri, 30 Oct 2020 20:24:47 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Richard Cochran <richardcochran@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
+ hardware time stamping support
+Message-ID: <20201030182447.2day7x3vad7xgcah@skbuf>
+References: <20201019172435.4416-1-ceggers@arri.de>
+ <20201022023233.GA904@hoboy.vegasvil.org>
+ <2975985.V79r5fVmzq@n95hx1g2>
+ <1680734.pGj3N1mgWS@n95hx1g2>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1603521686-13036-3-git-send-email-jiaxin.yu@mediatek.com>
+In-Reply-To: <1680734.pGj3N1mgWS@n95hx1g2>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 24, 2020 at 02:41:26PM +0800, Jiaxin Yu wrote:
-> We can choose to drop any length of data from the beginning according
-> accroding 'ul-delay-ms'.
-> 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/sound/mt6359.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/mt6359.yaml b/Documentation/devicetree/bindings/sound/mt6359.yaml
-> index a54f466f769d4..fd2d02c97fe7c 100644
-> --- a/Documentation/devicetree/bindings/sound/mt6359.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mt6359.yaml
-> @@ -49,6 +49,11 @@ properties:
->      description: |
->        Specifies the type of mic type connected to adc2
->  
-> +  mediatek,ul-delay-ms:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Skip first time data at the beginning of DMIC recording
+On Thu, Oct 22, 2020 at 12:17:48PM +0200, Christian Eggers wrote:
+> I tried to study the effect of setting the ocmode bit on the KSZ either to
+> master or to slave. The main visible change is, that some PTP message types
+> are be filtered out on RX:
+> - in "master" mode, "Sync" messages from other nodes will not be received
+> (but everything else like "Announce" seem to work)
+> - in "slave" mode, "Delay_Req" messages from other nodes will not be received
 
-What does 'ul' mean? Nothing tells me this is DMIC related in the name 
-and 'ul' is not used anywhere in the description.
-
-> +
->  additionalProperties: false
->  
->  examples:
-> @@ -56,6 +61,7 @@ examples:
->      mt6359codec: mt6359codec {
->        mediatek,dmic-mode = <0>;
->        mediatek,mic-type-0 = <2>;
-> +      mediatek,ul-delay-ms = <50>;
->      };
->  
->  ...
-> -- 
-> 2.18.0
+Could you dump the contents of your REG_PTP_MSG_CONF2 register?
