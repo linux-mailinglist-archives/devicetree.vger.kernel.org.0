@@ -2,65 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD90D2A001C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:34:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEB1D2A002A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725875AbgJ3Iem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 04:34:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49456 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725790AbgJ3Iem (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 04:34:42 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9423320739;
-        Fri, 30 Oct 2020 08:34:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604046882;
-        bh=UkDUzuYwPb5jTV+e3QII3h/4OxTwBgACkSE9SIDmYQc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JifgwswuRqF9HiG4E/XylpjlOLmoerQENOiD6z/ac/a6W3DCrVyekwosCgevUK0Za
-         dwJO6n2Wuc18GY5YpdCKCuoLz9FmcHY6LUhSMUgcd1RpIZzG251/ZPpTWyrWWXZl5Q
-         4VP4hnSISrR5oKWQ4SA/OTeVxvZq6Itc4p3WZ9Xc=
-Date:   Fri, 30 Oct 2020 16:34:16 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        krzk@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2] arm64: dts imx8mn: Remove non-existent USB OTG2
-Message-ID: <20201030083414.GN28755@dragon>
-References: <20201008183300.726756-1-aford173@gmail.com>
+        id S1725888AbgJ3IiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 04:38:00 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:43705 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725790AbgJ3IiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 04:38:00 -0400
+Received: by mail-ot1-f68.google.com with SMTP id a6so4877726otp.10;
+        Fri, 30 Oct 2020 01:37:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7ptl6SDfjcDqIRDTQhsGvZcOItESChqs80RIvWCLj/w=;
+        b=t9eCc1NM7L1A74p5P483XBHrLhpElb7Hd0dlYJ7vNJmDXDR5dXq484+FkheERieVxt
+         IREE92G/oy8VquEMRj67asn/qde8F1sJ0PJLb7bkMq+4XFVrg1IR4ud8GLGnYon8p7rp
+         eZRpHXdZnCDUKdXRXZii5a8ntYE4ULySJSC+wZ4cq4ERYywbsOCwpFASxwyewYChtQCf
+         1ja9xgv8pT1ddeEmY6OnGLm65fXvNpnwzR44Ei3VQ2cMDttXAfXf0CHg2SH4920hYnEr
+         TwhhEfOTHCi2hiXKCTy08jvP9PVwE8tiJkH67/IT/nyxbNnoYMxoExfWkrJpIJTH0NX8
+         irVQ==
+X-Gm-Message-State: AOAM533oi94SyA0yUmOuvbaxhv+l/VfGfIUsQG+vTUMUpeo07r2Y+VDz
+        YIyL0QVVJMbnsWFx0Z5IS/N9c9KFjOR9z45rs+W8WsUsDx0=
+X-Google-Smtp-Source: ABdhPJyEgNf6Vzx8E8yMGp6mWU5z4DRp4VqKxzo/S74sYqGk6X6WS0r0ozBZimz4V/JlsqofuZuwzE+oyBDFOOgUwOc=
+X-Received: by 2002:a9d:3b76:: with SMTP id z109mr839396otb.250.1604047079087;
+ Fri, 30 Oct 2020 01:37:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201008183300.726756-1-aford173@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20201030083051.18752-1-erosca@de.adit-jv.com> <20201030083051.18752-4-erosca@de.adit-jv.com>
+In-Reply-To: <20201030083051.18752-4-erosca@de.adit-jv.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 30 Oct 2020 09:37:47 +0100
+Message-ID: <CAMuHMdUBn3=0k7MEc5w2ixn83G_x2ZDh+YuN7Lp+W7ReJ21UUg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: arm: renesas: Add R-Car M3-W+ ULCB
+ with Kingfisher
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Steffen Pengel <spengel@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 08, 2020 at 01:33:00PM -0500, Adam Ford wrote:
-> According to the i.MX8MN TRM, there is only one OTG port.  The
-> address for OTG2 is reserved on Nano.
-> 
-> This patch removes the non-existent OTG2, usbphynop2, and the usbmisc2
-> nodes.
-> 
-> Fixes: 6c3debcbae47 ("arm64: dts: freescale: Add i.MX8MN dtsi support")
-> 
+On Fri, Oct 30, 2020 at 9:33 AM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+> Document the use of the Kingfisher expansion board with the R-Car
+> Starter Kit Pro equipped with an R-Car M3-W+ (aka M3-ES3.0) SoC.
+>
+> Inspired from v5.5 commit 24169f0a453754 ("dt-bindings: arm: renesas:
+> Add R-Car M3-N ULCB with Kingfisher").
+>
+> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Eugeniu Rosca <erosca@de.adit-jv.com>
 
-This newline is not really necessary.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.11.
 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+Gr{oetje,eeting}s,
 
-Applied, thanks.
+                        Geert
 
-> ---
-> V2:  Remove usbmisc2 and usbphynop2 in addition to the otg2 node.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
