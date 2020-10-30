@@ -2,123 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 953FA2A1121
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 23:46:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C6C22A1142
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 00:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726109AbgJ3Wpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 18:45:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726003AbgJ3Wpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 18:45:49 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC4AC0613D5;
-        Fri, 30 Oct 2020 15:45:49 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: koike)
-        with ESMTPSA id B9E141F4624F
-Subject: Re: [PATCH 04/14] media: sun6i-csi: Fix the image storage bpp for
- 10/12-bit Bayer formats
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com,
-        =?UTF-8?B?S8OpdmluIEwnaMO0cGl0YWw=?= <kevin.lhopital@bootlin.com>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-5-paul.kocialkowski@bootlin.com>
-From:   Helen Koike <helen.koike@collabora.com>
-Message-ID: <60fc4f85-e08f-fec6-5687-005add5cbeed@collabora.com>
-Date:   Fri, 30 Oct 2020 19:45:38 -0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.2
+        id S1725816AbgJ3XCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 19:02:20 -0400
+Received: from server.msgroupspa.com ([185.149.113.111]:55162 "EHLO
+        server.msgroupspa.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725780AbgJ3XCU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 19:02:20 -0400
+X-Greylist: delayed 53432 seconds by postgrey-1.27 at vger.kernel.org; Fri, 30 Oct 2020 19:02:11 EDT
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=msgroupspa.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+        Message-ID:Reply-To:Subject:To:From:Date:MIME-Version:Sender:Cc:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=gOeEglh1DIJatPKqyvOsPs4e0Zw8Lzg9wwjnNfQdiM8=; b=f0J1AWuajA3oZ1Dpfc1x8K8xEJ
+        AUip3Gv2UXILC1QLa9azjb3AcsLQqGjiyvcdNpmgT4E3ckADFb84tXlqXdyZsQiNBG2DujmkXqT6T
+        d2mjFNqNRzqSvTZ5qo3MQnCtCov24Wb4wcnpMjift4pdGB4JPDnKAHB+AICh1brF5U0xFQPetWE6H
+        BdPwBb7MNTVWN2mlAPb66Psghg7IoDbQVF1Tmf3H0jaTjlEaWeH4lQoLQpQIzRJYm5NbY0Di4+n63
+        5jJQ9+O4mZNL1aiyS8rwPAgEOxxbLBRAAH3FJTu26AO783jjZImRhbqNmO2ZZgHvlSfFh6vWgR2oo
+        WibXGz9w==;
+Received: from [::1] (port=55834 helo=server.msgroupspa.com)
+        by server.msgroupspa.com with esmtpa (Exim 4.93)
+        (envelope-from <no-reply@msgroupspa.com>)
+        id 1kYPS7-0006MI-86; Fri, 30 Oct 2020 16:08:03 +0800
 MIME-Version: 1.0
-In-Reply-To: <20201023174546.504028-5-paul.kocialkowski@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Date:   Fri, 30 Oct 2020 16:08:03 +0800
+From:   "Mr. John Galvan" <no-reply@msgroupspa.com>
+To:     undisclosed-recipients:;
+Subject: Hello/Hallo
+Reply-To: galvan.johnny@outlook.com
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <0d2cf4301ff4649fbf993b8f3f7e83c8@msgroupspa.com>
+X-Sender: no-reply@msgroupspa.com
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.msgroupspa.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - msgroupspa.com
+X-Get-Message-Sender-Via: server.msgroupspa.com: authenticated_id: no-reply@msgroupspa.com
+X-Authenticated-Sender: server.msgroupspa.com: no-reply@msgroupspa.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
 
-On 10/23/20 2:45 PM, Paul Kocialkowski wrote:
-> Both 10 and 12-bit Bayer formats are stored aligned as 16-bit values
-> in memory, not unaligned 10 or 12 bits.
-> 
-> Since the current code for retreiving the bpp is used only to
-> calculate the memory storage size of the picture (which is what
-> pixel formats describe, unlike media bus formats), fix it there.
-> 
-> Fixes: 5cc7522d8965 ("media: sun6i: Add support for Allwinner CSI V3s")
-> Co-developed-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  .../platform/sunxi/sun6i-csi/sun6i_csi.h      | 20 +++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-> index c626821aaedb..7f2be70ae641 100644
-> --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-> @@ -86,7 +86,7 @@ void sun6i_csi_update_buf_addr(struct sun6i_csi *csi, dma_addr_t addr);
->   */
->  void sun6i_csi_set_stream(struct sun6i_csi *csi, bool enable);
->  
-> -/* get bpp form v4l2 pixformat */
-> +/* get memory storage bpp from v4l2 pixformat */
->  static inline int sun6i_csi_get_bpp(unsigned int pixformat)
->  {
->  	switch (pixformat) {
-> @@ -96,15 +96,6 @@ static inline int sun6i_csi_get_bpp(unsigned int pixformat)
->  	case V4L2_PIX_FMT_SRGGB8:
->  	case V4L2_PIX_FMT_JPEG:
->  		return 8;
-> -	case V4L2_PIX_FMT_SBGGR10:
-> -	case V4L2_PIX_FMT_SGBRG10:
-> -	case V4L2_PIX_FMT_SGRBG10:
-> -	case V4L2_PIX_FMT_SRGGB10:
-> -		return 10;
-> -	case V4L2_PIX_FMT_SBGGR12:
-> -	case V4L2_PIX_FMT_SGBRG12:
-> -	case V4L2_PIX_FMT_SGRBG12:
-> -	case V4L2_PIX_FMT_SRGGB12:
->  	case V4L2_PIX_FMT_HM12:
->  	case V4L2_PIX_FMT_NV12:
->  	case V4L2_PIX_FMT_NV21:
-> @@ -121,6 +112,15 @@ static inline int sun6i_csi_get_bpp(unsigned int pixformat)
->  	case V4L2_PIX_FMT_RGB565:
->  	case V4L2_PIX_FMT_RGB565X:
->  		return 16;
-> +	case V4L2_PIX_FMT_SBGGR10:
-> +	case V4L2_PIX_FMT_SGBRG10:
-> +	case V4L2_PIX_FMT_SGRBG10:
-> +	case V4L2_PIX_FMT_SRGGB10:
-> +	case V4L2_PIX_FMT_SBGGR12:
-> +	case V4L2_PIX_FMT_SGBRG12:
-> +	case V4L2_PIX_FMT_SGRBG12:
-> +	case V4L2_PIX_FMT_SRGGB12:
-> +		return 16;
->  	case V4L2_PIX_FMT_RGB24:
->  	case V4L2_PIX_FMT_BGR24:
->  		return 24;
-> 
 
-Instead of updating this table, how about using v4l2_format_info() instead?
+-- 
+Sir/Madam,
+
+I have access to very vital information that can be used to move a huge 
+amount of money. I have done my homework very well and I have the 
+machineries in place to get it done since I am still in active service. 
+If it was possible for me to do it alone I would not have bothered 
+contacting you. Ultimately I need an honest foreigner to play an 
+important role in the completion of this business transaction. Send 
+responds to this email: galvan.johnny@outlook.com
 
 Regards,
-Helen
+John Galvan
+
+---------------------------------------------------------------
+
+Sir / Madam,
+
+Ich habe Zugang zu sehr wichtigen Informationen, mit denen ich eine 
+große Menge Geld bewegen kann. Ich habe meine Hausaufgaben sehr gut 
+gemacht und ich habe die Maschinen, um sie zu erledigen, da ich immer 
+noch im aktiven Dienst bin. Wenn es mir möglich gewesen wäre, es alleine 
+zu tun, hätte ich mich nicht darum gekümmert, Sie zu kontaktieren. 
+Letztendlich brauche ich einen ehrlichen Ausländer, der eine wichtige 
+Rolle beim Abschluss dieses Geschäftsvorgangs spielt. Senden Sie 
+Antworten auf diese E-Mail: galvan.johnny@outlook.com
+
+Grüße,
+John Galvan
