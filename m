@@ -2,71 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 868B52A0EF1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 20:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7DEB2A0F39
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 21:10:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726163AbgJ3T5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 15:57:04 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:55360 "EHLO vps0.lunn.ch"
+        id S1726430AbgJ3UJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 16:09:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44754 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726061AbgJ3T5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 15:57:04 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kYaW7-004PI4-Nn; Fri, 30 Oct 2020 20:56:55 +0100
-Date:   Fri, 30 Oct 2020 20:56:55 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     davem@davemloft.net, f.fainelli@gmail.com, hkallweit1@gmail.com,
-        robh@kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 2/4] dt-bindings: net: Add Rx/Tx output
- configuration for 10base T1L
-Message-ID: <20201030195655.GD1042051@lunn.ch>
-References: <20201030172950.12767-1-dmurphy@ti.com>
- <20201030172950.12767-3-dmurphy@ti.com>
+        id S1727044AbgJ3UJY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 16:09:24 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A3C8A20723;
+        Fri, 30 Oct 2020 20:09:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604088562;
+        bh=dsb2fGpwSeCxaqOUaIEQtAt8Ev0KBIXRf/w3waNhKws=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=C7kxkKrxR6DMsZCWkCPW2z3xH1cj5sJoA50H0JjBsmJ5y+NZkzIscLRN8uh9+LmvV
+         rC5P1iFjJTq9PMYwOq6pLF4EksuZ9zTcv/WO0lE4JKrT+5pwQPfHId9AoRgXB1u1AJ
+         qyx82wFKRb9ICX5wZkT44IM9eVY6IWMXRzsQqGHk=
+Received: by mail-oi1-f178.google.com with SMTP id j7so7841421oie.12;
+        Fri, 30 Oct 2020 13:09:22 -0700 (PDT)
+X-Gm-Message-State: AOAM530GXqa8PqEBfmITeCu9GjzdWEpL8aO8zreuvqXoxNBnNaNEBHW2
+        8qLHqMTSyIhVXeXHzlY2mt7qACZZuqpez+/8ug==
+X-Google-Smtp-Source: ABdhPJxMveXb1QdoW8X4k60f8AsyuwhhjJRLNbCCb75J76E+r24ilhIfqWLz6ySjO7R/sD1GTdxpf4/zJ14/IGJYpM0=
+X-Received: by 2002:aca:5dc2:: with SMTP id r185mr2849061oib.106.1604088561838;
+ Fri, 30 Oct 2020 13:09:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201030172950.12767-3-dmurphy@ti.com>
+References: <1603188889-23664-1-git-send-email-hugues.fruchet@st.com>
+ <1603188889-23664-3-git-send-email-hugues.fruchet@st.com> <20201021130033.GI2703@paasikivi.fi.intel.com>
+ <657634eb-690a-53a6-2ac1-de3c06a1cec4@st.com> <20201021214058.GJ2703@paasikivi.fi.intel.com>
+ <327ae9d5-8683-488f-7970-4983e2fec51d@st.com> <20201026141714.GA83693@bogus> <20201030174236.GV26150@paasikivi.fi.intel.com>
+In-Reply-To: <20201030174236.GV26150@paasikivi.fi.intel.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 30 Oct 2020 15:09:10 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+po4grPDJH6=ayFWrO5J=GzmSHNsgRjQ=ERsVCYzVXQg@mail.gmail.com>
+Message-ID: <CAL_Jsq+po4grPDJH6=ayFWrO5J=GzmSHNsgRjQ=ERsVCYzVXQg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: st,stm32-dcmi: Add
+ support of BT656
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Hugues FRUCHET <hugues.fruchet@st.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Alain VOLMAT <alain.volmat@st.com>,
+        Yannick FERTRE <yannick.fertre@st.com>,
+        Philippe CORNU <philippe.cornu@st.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 12:29:48PM -0500, Dan Murphy wrote:
-> Per the 802.3cg spec the 10base T1L can operate at 2 different
-> differential voltages 1v p2p and 2.4v p2p. The abiility of the PHY to
-> drive that output is dependent on the PHY's on board power supply.
+On Fri, Oct 30, 2020 at 12:42 PM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Rob,
+>
+> On Mon, Oct 26, 2020 at 09:17:14AM -0500, Rob Herring wrote:
+> > On Thu, Oct 22, 2020 at 02:56:17PM +0000, Hugues FRUCHET wrote:
+> > > Hi Sakari,
+> > >
+> > > + Jacopo for his work on ov772x binding related to BT656
+> > >
+> > > On 10/21/20 11:40 PM, Sakari Ailus wrote:
+> > > > Hi Hugues,
+> > > >
+> > > > On Wed, Oct 21, 2020 at 02:24:08PM +0000, Hugues FRUCHET wrote:
+> > > >> Hi Sakari,
+> > > >>
+> > > >> On 10/21/20 3:00 PM, Sakari Ailus wrote:
+> > > >>> Hi Hugues,
+> > > >>>
+> > > >>> On Tue, Oct 20, 2020 at 12:14:49PM +0200, Hugues Fruchet wrote:
+> > > >>>> Add support of BT656 parallel bus mode in DCMI.
+> > > >>>> This mode is enabled when hsync-active & vsync-active
+> > > >>>> fields are not specified.
+> > > >>>>
+> > > >>>> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
+> > > >>>> ---
+> > > >>>>    .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 30 ++++++++++++++++++++++
+> > > >>>>    1 file changed, 30 insertions(+)
+> > > >>>>
+> > > >>>> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> > > >>>> index 3fe778c..1ee521a 100644
+> > > >>>> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> > > >>>> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> > > >>>> @@ -44,6 +44,36 @@ properties:
+> > > >>>>          bindings defined in
+> > > >>>>          Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > > >>>>
+> > > >>>> +    properties:
+> > > >>>> +      endpoint:
+> > > >>>> +        type: object
+> > > >>>> +
+> > > >>>> +        properties:
+> > > >>>> +          bus-width: true
+> > > >>>> +
+> > > >>>> +          hsync-active:
+> > > >>>> +            description:
+> > > >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
+> > > >>>> +              embedded synchronization is selected.
+> > > >>>> +            default: 0
+> > > >>>> +
+> > > >>>> +          vsync-active:
+> > > >>>> +            description:
+> > > >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
+> > > >>>> +              embedded synchronization is selected.
+> > > >>>> +            default: 0
+> > > >>>
+> > > >>> Should I understand this as if the polarities were not specified, BT.656
+> > > >>> will be used?
+> > > >>
+> > > >> Yes, this is what is documented in video-interfaces.txt:
+> > > >> "
+> > > >>     Note, that if HSYNC and VSYNC polarities are not specified, embedded
+> > > >>     synchronization may be required, where supported.
+> > > >> "
+> > > >> and
+> > > >> "
+> > > >>                          /* If hsync-active/vsync-active are missing,
+> > > >>                             embedded BT.656 sync is used */
+> > > >>                          hsync-active = <0>;     /* Active low */
+> > > >>                          vsync-active = <0>;     /* Active low */
+> > > >> "
+> > > >> and I found also this in
+> > > >> Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > >> "
+> > > >>             hsync-active:
+> > > >>               description:
+> > > >>                 If both HSYNC and VSYNC polarities are not specified,
+> > > >> embedded
+> > > >>                 synchronization is selected.
+> > > >>               default: 1
+> > > >>
+> > > >>             vsync-active:
+> > > >>               description:
+> > > >>                 If both HSYNC and VSYNC polarities are not specified,
+> > > >> embedded
+> > > >>                 synchronization is selected.
+> > > >>               default: 1
+> > > >
+> > > > Having the defaults leads to somewhat weird behaviour: specifying the
+> > > > default value on either property changes the bus type.
+> > > >
+> > > >> "
+> > > >>
+> > > >> In the other hand I've found few occurences of "bus-type"
+> > > >> (marvell,mmp2-ccic.yaml), it is why I asked you if "bus-type" is the new
+> > > >> way to go versus previous way to signal BT656 (without hsync/vsync) ?
+> > > >> As explained previously, I prefer this last way for backward compatibility.
+> > > >
+> > > > If you have a default for bus-type (BT.601), this won't be a problem.
+> > > >
+> > > > The old DT bindings were somewhat, well, opportunistic. The v4l2-of
+> > > > framework-let did its best and sometimes it worked. The behaviour is still
+> > > > supported but not encouraged in new bindings.
+> > > >
+> > >
+> > > OK, so let's go for the new way.
+> > > I've found an interesting patch from Jacopo that is of great help:
+> > > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20200910162055.614089-4-jacopo+renesas@jmondi.org/
+>
+> I wonder if Jacopo tested it. The idea seems interesting nonetheless.
+>
+> > >
+> > > Here is a draft proposal before I push a new version, please comment:
+> > >
+> > >          properties:
+> > >            bus-type:
+> > >              enum: [5, 6]
+> > >              default: 5
+> > >
+> > >            bus-width:
+> > >              enum: [8, 10, 12, 14]
+> > >              default: 8
+> > >
+> > >            hsync-active:
+> > >              enum: [0, 1]
+> >
+> > For common properties, you can assume there's a common schema. As 0 and
+> > 1 are the only possible values, you don't need to define them here
+> > unless only a subset is valid for this device.
+> >
+> > >              default: 0
+> > >
+> > >            vsync-active:
+> > >              enum: [0, 1]
+> > >              default: 0
+> > >
+> > >            pclk-sample:
+> > >              enum: [0, 1]
+> > >              default: 0
+> > >
+> > >            remote-endpoint: true
+> > >
+> > >          allOf:
+> > >            - if:
+> > >                properties:
+> > >                  bus-type:
+> > >                    const: 6
+> >
+> > To fix the error, you need:
+> >
+> > required:
+> >   - bus-type
+> >
+> > The problem is the above schema is also true if the property
+> > is not present.
+>
+> Hmm. The idea was that we could keep this consistent with old bindings that
+> only documented parallel mode, and thus didn't need bus-type. This is
+> actually quite common --- adding support for something that wasn't known or
+> cared for during the original review.
 
-Hi Dan
+TBC, the 'required' here is required for the 'if' in the if/then
+schema to work as you want. It's not making 'bus-type' a required
+property.
 
-So this property is about the board being able to support the needed
-voltages? The PHY is not forced into 2.4v p2p, it just says the PHY
-can operate at 2.4v and the board will not melt, blow a fuse, etc?
-
-I actually think it is normal to specify the reverse. List the maximum
-that device can do because of board restrictions. e.g.
-
-- maximum-power-milliwatt : Maximum module power consumption
-  Specifies the maximum power consumption allowable by a module in the
-  slot, in milli-Watts.  Presently, modules can be up to 1W, 1.5W or 2W.
-
-- max-link-speed:
-   If present this property specifies PCI gen for link capability.  Host
-   drivers could add this as a strategy to avoid unnecessary operation for
-   unsupported link speed, for instance, trying to do training for
-   unsupported link speed, etc.  Must be '4' for gen4, '3' for gen3, '2'
-   for gen2, and '1' for gen1. Any other values are invalid.
-
- - max-microvolt : The maximum voltage value supplied to the haptic motor.
-                [The unit of the voltage is a micro]
-
-So i think this property should be
-
-   max-tx-rx-p2p = <1000>;
-
-to limit it to 1000mv p2p because of board PSU limitations, and it is
-free to do 22000mv is the property is not present.
-
-   Andrew
-
+Rob
