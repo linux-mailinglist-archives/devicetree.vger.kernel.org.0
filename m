@@ -2,57 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE62C2A0C08
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 18:02:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EC732A0C53
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 18:20:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727260AbgJ3RCN convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Oct 2020 13:02:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58906 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726095AbgJ3RCN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 13:02:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC0FC0613D7
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 10:02:13 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kYXmz-0005F0-1e; Fri, 30 Oct 2020 18:02:09 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kYXmy-0002zA-4L; Fri, 30 Oct 2020 18:02:08 +0100
-Message-ID: <4fe174b1fbb217bb59d6481dff8a02c2d0e7ac92.camel@pengutronix.de>
-Subject: Re: [PATCH v2] dt-bindings: Convert graph bindings to json-schema
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Sameer Pujar <spujar@nvidia.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     kuninori.morimoto.gx@renesas.com
-Date:   Fri, 30 Oct 2020 18:02:08 +0100
-In-Reply-To: <1604075956-17010-2-git-send-email-spujar@nvidia.com>
-References: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
-         <1604075956-17010-2-git-send-email-spujar@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S1726272AbgJ3RUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 13:20:03 -0400
+Received: from mailoutvs12.siol.net ([185.57.226.203]:43474 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725863AbgJ3RUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 13:20:02 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 896CB52783A;
+        Fri, 30 Oct 2020 18:19:59 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id SkOpVqWXThhu; Fri, 30 Oct 2020 18:19:59 +0100 (CET)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 4348E52783B;
+        Fri, 30 Oct 2020 18:19:59 +0100 (CET)
+Received: from kista.localdomain (cpe1-5-97.cable.triera.net [213.161.5.97])
+        (Authenticated sender: 031275009)
+        by mail.siol.net (Postfix) with ESMTPSA id A2607527839;
+        Fri, 30 Oct 2020 18:19:58 +0100 (CET)
+From:   Jernej Skrabec <jernej.skrabec@siol.net>
+To:     mripard@kernel.org, wens@csie.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: [PATCH v2] arm64: dts: allwinner: h6: PineH64 model B: Add wifi
+Date:   Fri, 30 Oct 2020 18:25:30 +0100
+Message-Id: <20201030172530.1096394-1-jernej.skrabec@siol.net>
+X-Mailer: git-send-email 2.29.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2020-10-30 at 22:09 +0530, Sameer Pujar wrote:
-> Convert device tree bindings of graph to YAML format. Currently graph.txt
-> doc is referenced in multiple files and all of these need to use schema
-> references. For now graph.txt is updated to refer to graph.yaml.
-> 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+PineH64 model B contains RTL8723CS wifi+bt combo module.
 
-Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+Since bluetooth support is not yet squared away, only wifi is enabled
+for now.
 
-regards
-Philipp
+Acked-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+---
+Changes from v1:
+- added Chen-Yu tag
+- added vqmmc-supply
+
+ .../dts/allwinner/sun50i-h6-pine-h64-model-b.dts  | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts=
+ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
+index f4c8966a6497..7fea1e4e2d49 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
+@@ -10,6 +10,12 @@ / {
+ 	compatible =3D "pine64,pine-h64-model-b", "allwinner,sun50i-h6";
+=20
+ 	/delete-node/ reg_gmac_3v3;
++
++	wifi_pwrseq: wifi_pwrseq {
++		compatible =3D "mmc-pwrseq-simple";
++		reset-gpios =3D <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
++		post-power-on-delay-ms =3D <200>;
++	};
+ };
+=20
+ &hdmi_connector {
+@@ -19,3 +25,12 @@ &hdmi_connector {
+ &emac {
+ 	phy-supply =3D <&reg_aldo2>;
+ };
++
++&mmc1 {
++	vmmc-supply =3D <&reg_cldo3>;
++	vqmmc-supply =3D <&reg_aldo1>;
++	mmc-pwrseq =3D <&wifi_pwrseq>;
++	bus-width =3D <4>;
++	non-removable;
++	status =3D "okay";
++};
+--=20
+2.29.1
+
