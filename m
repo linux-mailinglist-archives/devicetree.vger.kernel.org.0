@@ -2,203 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD5872A0A3E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 16:49:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A57D52A0A53
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 16:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725939AbgJ3PtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 11:49:04 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:40576 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726259AbgJ3PtD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 11:49:03 -0400
-Received: by mail-ot1-f66.google.com with SMTP id f97so5936435otb.7;
-        Fri, 30 Oct 2020 08:49:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wvhmhQZ595EHWiOyMTrpXxnXiO+S8jr6sziyYhJ7P/c=;
-        b=LOWKlbDSa8uW+G9xdGBehYu2pTnIIf2dpIIVl4rsYMharb0K6iXfddxLxZKjg6Sn7B
-         acvkBPNJmZMTl4U9Gy4B4jiZcVkX+WyFIMrMqx6IDZP09SMDJFKYQLee0tmKxWJyJyJA
-         K1Cew2z3Ze2zcoKPqqktGbw5/K4TFSBv4Pi7Vzcjt1idUEJy0So43NZ8OLGuWuzaFgew
-         PrDGfsPSaNnUxjd7aT7hoRm9COUL62eQb4wNtSR6lnBXC2Pn+VPrbADa4iSYjC9YakH+
-         T7r/84/DEMN96Xm7AHe/cf852UWfAWhuXVTRccWdqy6LwGdL4erihtKaXdrYH5STMKHr
-         y0kg==
-X-Gm-Message-State: AOAM5304T2LScT2qH19Wqx+VHgoSQziHH56+a2U4Fg5juVh07zQKrXcq
-        InvFzqfi6iMtwSGp7nS7x8XQpZI9OQ==
-X-Google-Smtp-Source: ABdhPJzvwtWYSfsAkZsXKE4AQZP7q8bZS1ji8R3rczatLWY+P3gyv4r3JunHxDA269Um0LmsnJSVvw==
-X-Received: by 2002:a9d:8e3:: with SMTP id 90mr2193424otf.309.1604072942991;
-        Fri, 30 Oct 2020 08:49:02 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y5sm1423510ool.30.2020.10.30.08.49.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 08:49:02 -0700 (PDT)
-Received: (nullmailer pid 3904388 invoked by uid 1000);
-        Fri, 30 Oct 2020 15:49:00 -0000
-Date:   Fri, 30 Oct 2020 10:49:00 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Guru Das Srinagesh <gurus@codeaurora.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Markus Elfring <Markus.Elfring@web.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Joe Perches <joe@perches.com>,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Anirudh Ghayal <aghayal@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: mfd: Add QCOM PM8008 MFD bindings
-Message-ID: <20201030154900.GA3896697@bogus>
-References: <cover.1603402280.git.gurus@codeaurora.org>
- <b224632c03055a92022edb5929f22f26db66bc6d.1603402280.git.gurus@codeaurora.org>
+        id S1727240AbgJ3Ptx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 11:49:53 -0400
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:54149 "EHLO
+        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726610AbgJ3Ptv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 11:49:51 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.west.internal (Postfix) with ESMTP id BD28EC82;
+        Fri, 30 Oct 2020 11:49:48 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Fri, 30 Oct 2020 11:49:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=VAX3nr0UfKRsL8dcSjmQItUjyxQ
+        QXBJdMzAIgrzhQLw=; b=vUERaHr5tIHohUlXRncfJbWrkz6MwBz9jz3Fso9rEfi
+        ikeFYG2FxWuwnWjw+MK6g/RzA5e3QFWZq/Xq2/FyFQ5yKDs9Jf+QcSNNb8EBDSzU
+        21+yvGcx0NyfcJ3dldT2B9pupK9Wg8Fwnu5SvRL6h97tcQKVsg+2Sao7y1IXWW+D
+        gov+r8KAZYmA0XY6nb7N+4a703w6DdNI0KUXc/j9HiPUqDZu9O0QBk/1n1daAwVa
+        CowTUacfvQQanPe10sIc7U9Jirpk0fqQBAsYwkY6du0UkJg7oxcRbj5VX80cku/8
+        9st1+QHwJ1pWvGHggIjIfO16xjcZeZYBTXkFnZffN6g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=VAX3nr
+        0UfKRsL8dcSjmQItUjyxQQXBJdMzAIgrzhQLw=; b=Mxy3XeioGra6s6scZmbSnC
+        IIiPOUDRe/+mtyjgriv0dDVeOfpVaFAjRKZJfmsRJ7I5Eu9q9FVULd5m5LOnVQS2
+        o8Z9EBh7xsqanKpa3I/2F0mZFuW7Qe8tOu9v4DbQdVTerHp+Eo1pC98hCHL80Qg3
+        uj1e+J7gbjfVEvboM3ik+MHvMQzARSxmLeDRXpa/HCsXl5+DizkMUL09ZduxCZzv
+        0LGU0TEuBZp0vQeGLaap3HT9S63rC1QTkqkeeKyJm8YgHoDGrZymqEyoq8V22qTa
+        58Xud9BLDZsj6tOuaeUFwUYiNNdWgfsum2YhBJoYbywmx4ISrycdpdMOA32mkctw
+        ==
+X-ME-Sender: <xms:GjacX2-73sJOtyVdEWL9xXGjADSy0vvoVmPekTB1GcE0I1Vm9lsiwA>
+    <xme:GjacX2ukhWkk5DET24BECBB8h4GIGRZMZUs2N2p-rnfIvZP-T1lBz7Kle5-R_sDAG
+    UrwOoVCXvHANeuTk28>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleehgdejiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:GjacX8B7o1Mj5vF0Pb7dJpXeCsL98XDbVr7gAPRn6t8HOluUNdHV9w>
+    <xmx:GjacX-ecrVfv1-pvn2FLmXTviid2eNZGJ8zxvGIJrj3umNDGnkj0lA>
+    <xmx:GjacX7McG4O-g0BG45GN-a3uR7gBO1suxkQaqS_Hnva5ra_mtJ6b-Q>
+    <xmx:HDacX2rFD3QrgtZTM6S0yfQ3ll8LM00a012Z5YEpVrHY9B55UVqu31cOaZo>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 97F02328005D;
+        Fri, 30 Oct 2020 11:49:46 -0400 (EDT)
+Date:   Fri, 30 Oct 2020 16:49:43 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Martin Cerveny <m.cerveny@computer.org>,
+        Chen-Yu Tsai <wens@csie.org>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 0/6] ARM: dts: sun8i: v3s: Enable video decoder
+Message-ID: <20201030154943.2cmfa573huvh6lze@gilmour.lan>
+References: <20200912143052.30952-1-m.cerveny@computer.org>
+ <034d8de1-bcf3-88e6-4d23-9a13e8b950c3@xs4all.nl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="uufs5p6b6nf52uao"
 Content-Disposition: inline
-In-Reply-To: <b224632c03055a92022edb5929f22f26db66bc6d.1603402280.git.gurus@codeaurora.org>
+In-Reply-To: <034d8de1-bcf3-88e6-4d23-9a13e8b950c3@xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 22, 2020 at 02:35:41PM -0700, Guru Das Srinagesh wrote:
-> Add device tree bindings for the driver for Qualcomm Technology Inc.'s
-> PM8008 MFD PMIC.
-> 
-> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
-> ---
->  .../bindings/mfd/qcom,pm8008-irqchip.yaml          | 102 +++++++++++++++++++++
->  1 file changed, 102 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,pm8008-irqchip.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008-irqchip.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008-irqchip.yaml
-> new file mode 100644
-> index 0000000..31d7b68
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008-irqchip.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/qcom,pm8008-irqchip.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. PM8008 Multi-Function Device PMIC
-> +
-> +maintainers:
-> +  - Guru Das Srinagesh <gurus@codeaurora.org>
-> +
-> +description: |
-> +  PM8008 is a PMIC that contains 7 LDOs, 2 GPIOs, temperature monitoring, and
-> +  can be interfaced over I2C.
 
-No bindings for all those functions? Bindings should be complete.
+--uufs5p6b6nf52uao
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,pm8008-irqchip
+Hi!
 
-Why irqchip?
+On Fri, Oct 30, 2020 at 12:06:10PM +0100, Hans Verkuil wrote:
+> Maxime,
+>=20
+> Are you OK with this series? It looks good to me.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: pm8008
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#address-cells":
-> +    const: 1
-> +    description: Must be specified if child nodes are specified.
-> +
-> +  "#size-cells":
-> +    const: 0
-> +    description: Must be specified if child nodes are specified.
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +    description: |
-> +      The first cell is the IRQ number, the second cell is the IRQ trigger flag.
-> +
-> +patternProperties:
-> +  "^.*@[0-9a-f]+$":
+I am, you can take it. I'll merge the dt patches through arm-soc=20
 
-'^.*' can be dropped. That's redundant.
+Thanks!
+Maxime
 
-> +    type: object
-> +    # Each peripheral in PM8008 must be represented as a child node with an
-> +    # optional label for referencing as phandle elsewhere. This is optional.
-> +    properties:
-> +      compatible:
-> +        description: The compatible string for the peripheral's driver.
-> +
-> +      reg:
-> +        maxItems: 1
+--uufs5p6b6nf52uao
+Content-Type: application/pgp-signature; name="signature.asc"
 
-What does the address represent? It's non-standard, so it needs to be 
-defined.
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#interrupt-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    qupv3_se13_i2c {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            pm8008i@8 {
-> +                    compatible = "qcom,pm8008-irqchip";
-> +                    reg = <0x8>;
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    interrupt-controller;
-> +                    #interrupt-cells = <2>;
-> +
-> +                    interrupt-names = "pm8008";
-> +                    interrupt-parent = <&tlmm>;
-> +                    interrupts = <32 IRQ_TYPE_EDGE_RISING>;
-> +
-> +                    pm8008_tz: qcom,temp-alarm@2400 {
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5w2FwAKCRDj7w1vZxhR
+xY+AAQD8o4Tkz0kfe+3yVCldL+pH5eroTwl6fgV5eoCol3cjxwD/d3chMQgaYj27
+eLeYnrMSRMidwglTS9NnxVGyl9tFrgs=
+=EpHk
+-----END PGP SIGNATURE-----
 
-Must be documented.
-
-And don't use vendor prefixes in node names. 
-
-> +                            compatible = "qcom,spmi-temp-alarm";
-> +                            reg = <0x2400>;
-> +                            interrupts = <0x5 IRQ_TYPE_EDGE_BOTH>;
-> +                            #thermal-sensor-cells = <0>;
-> +                    };
-> +            };
-> +    };
-> +
-> +...
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+--uufs5p6b6nf52uao--
