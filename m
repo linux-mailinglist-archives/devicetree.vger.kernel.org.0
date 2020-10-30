@@ -2,83 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEECC2A0A02
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 16:37:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CD742A0A1A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 16:43:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726815AbgJ3PhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 11:37:05 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39392 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726239AbgJ3PhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 11:37:04 -0400
-Received: by mail-ot1-f65.google.com with SMTP id z16so726610otq.6;
-        Fri, 30 Oct 2020 08:37:03 -0700 (PDT)
+        id S1726953AbgJ3PnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 11:43:09 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33212 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725939AbgJ3PnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 11:43:09 -0400
+Received: by mail-ot1-f67.google.com with SMTP id i18so1207064ots.0;
+        Fri, 30 Oct 2020 08:43:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ofFXL9c4WfPJ0vh1CrcqW4yOOzqJ5jwhDnFefF3udus=;
-        b=oHPFOZlT419zlIqkVRtxWBQiD7ZTouxU45CvLFJHNo+doHw0eFGrUOshY4VtYlhK14
-         T6eZzvOdNgg/gp225vV/mPajIZ7F5dFmHHs0in/gU0FgHPAeLm/TrKjvA9JP+QS0GLid
-         IAVasBEjgrPG/TVSLRVxTGSawiUdMt7y5vYs8Oi8Y7MPADz3+iS1udp9eQqQz1kAR3QU
-         wZMVJsnva8PrOiKyv3UtkSaxA7WJLhyodqjlbdxhWASvRRjuW4aEt3NeiqjmPP3W+omG
-         MEpoql9yTfkNvayFuZVzHkhSxfQWBYZWi9VdOXaNzY8SuidcCSZfSILesW2Wv/SWFmlr
-         RNMg==
-X-Gm-Message-State: AOAM5331bKr6E1PiVH5FRg1ZGH8K1dOQC9x4hD0y2M8ZnpyDGba+ScHc
-        TJMbXQQ43oHskxwL9PSA/A==
-X-Google-Smtp-Source: ABdhPJycwUiV1vpf0o9YvAtnAVAgs/nLhIp6vbRgzxDr6FgbxTRz8AT2NZiGH5vGAw9RUdLMKfrjGg==
-X-Received: by 2002:a05:6830:1345:: with SMTP id r5mr2026633otq.6.1604072223527;
-        Fri, 30 Oct 2020 08:37:03 -0700 (PDT)
+        bh=qQnCpTL2n7MfqOJCYXtINnhpLooq+fy/JdUHJMJc17g=;
+        b=WJSSruMkjas+kPjYDqmflBwVMzGBq5eN5e/Wenrt50MlfuKK3qLj9MIHeKEmo/LVSY
+         gO6+OtX1IyEhEkmVW5wtCuWJ80xOzdUHjksRVC/oj2cW0xXfcL478jK4IdKJTNGcw6Ny
+         EgDj2e6Ry5QCXvTTxZII4lZOpbs1GdVlSJDSMQ5q8u/lNaQiNlC6abmUFUk1mdmhabPU
+         gsHdKbxIFO6okgcDK6HsAsJv+i7ONYl+X0UjbGAXUKUl5gdE5njspWXKdkdH2BF9Dnju
+         vKurOoNZ0kK1sZ8WDdZTNt/dKoGczYm57lnGtfoivqJ8bgTWy66Za+pWvDGQqNUh6A36
+         ztDQ==
+X-Gm-Message-State: AOAM53031XQpY6sjM1ejOueZ8H5Gp+zGHVZmtqWp0EuH98RosW5isxCD
+        JKcT4jCpV3gNRDhx9AHleQ==
+X-Google-Smtp-Source: ABdhPJzFC6jxXMm/AwgFxaqnmiQsXOtJlVokFGyvuCqqoZ+wdlTz7QJ0w94vk91/TLuPVMet8ZtG6g==
+X-Received: by 2002:a05:6830:15c8:: with SMTP id j8mr2279776otr.209.1604072588127;
+        Fri, 30 Oct 2020 08:43:08 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m13sm1363306otn.20.2020.10.30.08.37.01
+        by smtp.gmail.com with ESMTPSA id d26sm1377879otp.3.2020.10.30.08.43.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 08:37:02 -0700 (PDT)
-Received: (nullmailer pid 3888717 invoked by uid 1000);
-        Fri, 30 Oct 2020 15:37:01 -0000
-Date:   Fri, 30 Oct 2020 10:37:01 -0500
+        Fri, 30 Oct 2020 08:43:06 -0700 (PDT)
+Received: (nullmailer pid 3896566 invoked by uid 1000);
+        Fri, 30 Oct 2020 15:43:05 -0000
+Date:   Fri, 30 Oct 2020 10:43:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     devel@driverdev.osuosl.org, linux-pwm@vger.kernel.org,
-        Scott Branden <sbranden@broadcom.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
-        linux-input@vger.kernel.org, sboyd@kernel.org,
-        gregkh@linuxfoundation.org, Ray Jui <rjui@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>,
-        u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
-        dmitry.torokhov@gmail.com
-Subject: Re: [PATCH v2 08/10] dt-bindings: pwm: Add binding for RPi firmware
- PWM bus
-Message-ID: <20201030153701.GA3888665@bogus>
-References: <20201022155858.20867-1-nsaenzjulienne@suse.de>
- <20201022155858.20867-9-nsaenzjulienne@suse.de>
+To:     kholk11@gmail.com
+Cc:     robert.foss@linaro.org, marijns95@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mchehab@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, todor.too@gmail.com,
+        konradybcio@gmail.com, martin.botka1@gmail.com,
+        linux-media@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 6/7] media: dt-bindings: media: qcom,camss: Add
+ bindings for SDM660 camss
+Message-ID: <20201030154305.GA3896512@bogus>
+References: <20201022174706.8813-1-kholk11@gmail.com>
+ <20201022174706.8813-7-kholk11@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201022155858.20867-9-nsaenzjulienne@suse.de>
+In-Reply-To: <20201022174706.8813-7-kholk11@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Oct 2020 17:58:55 +0200, Nicolas Saenz Julienne wrote:
-> The PWM bus controlling the fan in RPi's official PoE hat can only be
-> controlled by the board's co-processor.
+On Thu, 22 Oct 2020 19:47:05 +0200, kholk11@gmail.com wrote:
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Add bindings for qcom,sdm660-camss in order to support the camera
+> subsystem on SDM630/660 and SDA variants.
 > 
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> Reviewed-by: Robert Foss <robert.foss@linaro.org>
 > ---
-> Changes since v1:
->  - Update bindings to use 2 #pwm-cells
-> 
->  .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 20 +++++++++++++++++++
->  .../pwm/raspberrypi,firmware-pwm.h            | 13 ++++++++++++
->  2 files changed, 33 insertions(+)
->  create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-pwm.h
+>  Documentation/devicetree/bindings/media/qcom,camss.txt | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
