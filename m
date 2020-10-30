@@ -2,66 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0E5F29FD3B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 06:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2C2229FD42
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 06:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725781AbgJ3F3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 01:29:15 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:54405 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725784AbgJ3F3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 01:29:13 -0400
-X-IronPort-AV: E=Sophos;i="5.77,432,1596466800"; 
-   d="scan'208";a="61230119"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 30 Oct 2020 14:29:11 +0900
-Received: from localhost.localdomain (unknown [10.166.252.89])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 30352400F796;
-        Fri, 30 Oct 2020 14:29:11 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     bhelgaas@google.com, marek.vasut+renesas@gmail.com,
+        id S1725747AbgJ3Fb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 01:31:59 -0400
+Received: from mga11.intel.com ([192.55.52.93]:29693 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725767AbgJ3Fb7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 01:31:59 -0400
+IronPort-SDR: U1wskGKyUx5cr+ZgRnf8HWvF+YVabt6Vi81MbY1ySCJTyJZKS+Uqp8GXGVRmSmkXo8EpWOulXA
+ wkUSGRoM42EQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="165065156"
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; 
+   d="scan'208";a="165065156"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2020 22:31:59 -0700
+IronPort-SDR: vxUjKadQ/48teY3wzsDK6UiTeYbmt2YJ4FjdSmjptCcDISmyYVkEAm3KtDbi79yTjx2r7mSjCG
+ /SnEg+h4AwHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; 
+   d="scan'208";a="304673625"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga008.fm.intel.com with ESMTP; 29 Oct 2020 22:31:55 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     broonie@kernel.org, vigneshr@ti.com, tudor.ambarus@microchip.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
         robh+dt@kernel.org
-Cc:     prabhakar.mahadev-lad.rj@bp.renesas.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2 3/3] dt-bindings: pci: rcar-pci: Add device tree support for r8a774e1
-Date:   Fri, 30 Oct 2020 14:29:05 +0900
-Message-Id: <1604035745-22095-4-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604035745-22095-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-References: <1604035745-22095-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+Cc:     devicetree@vger.kernel.org, miquel.raynal@bootlin.com,
+        simon.k.r.goldschmidt@gmail.com, dinguyen@kernel.org,
+        richard@nod.at, cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v6 0/6] spi: cadence-quadspi: Add QSPI controller support for Intel LGM SoC
+Date:   Fri, 30 Oct 2020 13:31:47 +0800
+Message-Id: <20201030053153.5319-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Add QSPI controller support for Intel LGM SoC.
 
-Add PCIe support for the RZ/G2H (a.k.a. R8A774E1).
+Note from Vignesh(mtd subsystem maintainer):
+This series is a subset of "[PATCH v12 0/4] spi: cadence-quadspi: Add
+support for the Cadence QSPI controller" by Ramuthevar,Vadivel MuruganX
+<vadivel.muruganx.ramuthevar@linux.intel.com> that intended to move
+cadence-quadspi driver to spi-mem framework
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Those patches were trying to accomplish too many things in a single set
+of patches and need to split into smaller patches. This is reduced
+version of above series.
+
+Changes that are intended to make migration easy are split into separate
+patches. Patches 1 to 3 drop features that cannot be supported under
+spi-mem at the moment (backward compatibility is maintained).
+Patch 4-5 are trivial cleanups. Patch 6 does the actual conversion to
+spi-mem and patch 7 moves the driver to drivers/spi folder.
+
+I have tested both INDAC mode (used by non TI platforms like Altera
+SoCFPGA) and DAC mode (used by TI platforms) on TI EVMs.
+
+Patches to move move bindings over to
+"Documentation/devicetree/bindings/spi/" directory and also conversion
+of bindig doc to YAML will be posted separately.  Support for Intel
+platform would follow that.
+
+Reference:
+        https://lkml.org/lkml/2020/6/1/50
+
 ---
- Documentation/devicetree/bindings/pci/rcar-pci-host.yaml | 1 +
- 1 file changed, 1 insertion(+)
+v6:
+  - Rob's review comments update
+  - add compatible string in properly aligned
+  - remove cadence-qspi extra comaptible string in example
+v5:
+  - Rob's review comments update
+  - const with single compatible string kept
+v4:
+  - Rob's review comments update
+  - remove '|' no formatting to preserve
+  - child node attributes follows under 'properties' under '@[0-9a-f]+$'.
+v3:
+  - Pratyush review comments update
+  - CQSPI_SUPPORTS_MULTI_CHIPSELECT macro used instead of cqspi->use_direct_mode
+  - disable DAC support placed in end of controller_init
+v2:
+  - Rob's review comments update for dt-bindings
+  - add 'oneOf' for compatible selection
+  - drop un-neccessary descriptions
+  - add the cdns,is-decoded-cs and cdns,rclk-en properties as schema
+  - remove 'allOf' in not required place
+  - add AdditionalProperties false
+  - add minItems/maxItems for qspi reset attributes
 
-diff --git a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-index c93b0d1..4a2bcc01 100644
---- a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-@@ -31,6 +31,7 @@ properties:
-               - renesas,pcie-r8a774a1     # RZ/G2M
-               - renesas,pcie-r8a774b1     # RZ/G2N
-               - renesas,pcie-r8a774c0     # RZ/G2E
-+              - renesas,pcie-r8a774e1     # RZ/G2H
-               - renesas,pcie-r8a7795      # R-Car H3
-               - renesas,pcie-r8a7796      # R-Car M3-W
-               - renesas,pcie-r8a77961     # R-Car M3-W+
+resend-v1:
+  - As per Mark's suggestion , reorder the patch series 1-3 driver
+    support patches, series 4-6 dt-bindings patches.
+v1:
+  - initial version
+
+
+
+Ramuthevar Vadivel Murugan (6):
+  spi: cadence-quadspi: Add QSPI support for Intel LGM SoC
+  spi: cadence-quadspi: Disable the DAC for Intel LGM SoC
+  spi: cadence-quadspi: Add multi-chipselect support for Intel LGM SoC
+  spi: Move cadence-quadspi.txt to Documentation/devicetree/bindings/spi
+  dt-bindings: spi: Convert cadence-quadspi.txt to cadence-quadspi.yaml
+  dt-bindings: spi: Add compatible for Intel LGM SoC
+
+ .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 ---------
+ .../devicetree/bindings/spi/cadence-quadspi.yaml   | 150 +++++++++++++++++++++
+ drivers/spi/Kconfig                                |   2 +-
+ drivers/spi/spi-cadence-quadspi.c                  |  31 +++++
+ 4 files changed, 182 insertions(+), 68 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
+
 -- 
-2.7.4
+2.11.0
 
