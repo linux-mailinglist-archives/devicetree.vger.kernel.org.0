@@ -2,99 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B08D22A05FC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 13:54:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37A712A060B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 13:58:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726592AbgJ3MyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 08:54:04 -0400
-Received: from foss.arm.com ([217.140.110.172]:33986 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726178AbgJ3MyE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 08:54:04 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0D66F1063;
-        Fri, 30 Oct 2020 05:54:03 -0700 (PDT)
-Received: from [10.57.13.192] (unknown [10.57.13.192])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DC633F68F;
-        Fri, 30 Oct 2020 05:54:00 -0700 (PDT)
-Subject: Re: [PATCH 2/4] OPP: Add support for parsing the 'opp-sustainable'
- property
-To:     Quentin Perret <qperret@google.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vireshk@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        rafael@kernel.org, sboyd@kernel.org, daniel.lezcano@linaro.org,
-        sudeep.holla@arm.com, Dietmar.Eggemann@arm.com
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201028140847.1018-3-lukasz.luba@arm.com>
- <20201030114750.GA636720@google.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <7c8c2319-969e-d028-9a52-271d43611568@arm.com>
-Date:   Fri, 30 Oct 2020 12:53:58 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726486AbgJ3M6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 08:58:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725939AbgJ3M6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 08:58:19 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0056C0613CF;
+        Fri, 30 Oct 2020 05:58:18 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id h21so7370212iob.10;
+        Fri, 30 Oct 2020 05:58:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=DEjwCz6RYcTNQfWnCWPDSlK+EiMHXu1I2qKUPcY2Sh4=;
+        b=HBlLv1td8ZGbbQpa0MJPMXQx1wDSoEh19ueH+HpLQn7HCeunMObf8TyVowEs6h3R1m
+         iO4vu+D+ag+gypjHMSJ/h5TbRu/++9EMN4/xsfsDdMPaUZtE4oFglwtgR08CcW2G2AdX
+         UmlQm9AfRndgv1zsgN3sTlb+QByMJzLQycWwoPdDgQWPlOLC+3cw/yAxHS9xGEcsfk25
+         oL5Gr2GsEfDIMPaQ/3v0cjoZYemL+EIxWgI9EmA1QEc1Kc55bB7q7X6z5rvkgrdV8Wln
+         YUSHz2U73sjUjSPC7fP0Cum01fYXKZPtnwqJrgS23oaIaaD/6+9OjVGgGaguXxagZ3Lq
+         1xAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=DEjwCz6RYcTNQfWnCWPDSlK+EiMHXu1I2qKUPcY2Sh4=;
+        b=EOHe3djSOCTuYt7jKFKoVMSvjUaO7l16O6M0jH9Difv6Wj7i4dqcGRbOWPGFbKMbOY
+         GF4s+LdYuMzpyZHagCL/H68jaF7r0LaQCAQEOaenUfbd5BHyxpNxU4D9bOOYP0eEgIWA
+         OO0DKzz1o/25/RdgWBjPSGqE/BtnM6X3besT2MOMiweyXwxvcgoQ9FDGX2ycTgae0bgy
+         tLDzJE3LMIuyHO4qegzE3VtM+3/FCZf1ofebkxQ0rcTFUHqdEcB3jncNKQbmsSoIrg/X
+         HdPf4K8m5oXpHhbSRLcjGBaKodwzKD6zTfWk7aidQv9u6N62wQBu0AB8VyOYIFwdXKUv
+         yxxg==
+X-Gm-Message-State: AOAM5338qPaJy+A571akTDSoS2cVyE3yUdANhhCEIO1C8n9+q1mEs2BZ
+        x1zmXUtB9XZk/8yvcCMvYuvQDtcJXcBFIuigCMg=
+X-Google-Smtp-Source: ABdhPJzgAY6KtKOPC6tfzKmvA8QQMoxhHFJsZyDBWBxynYs54LG5exJnFVce2ePcyXh7zbs+RcwK2Q1VsHbq+C9CSvQ=
+X-Received: by 2002:a05:6638:1351:: with SMTP id u17mr1911170jad.120.1604062698162;
+ Fri, 30 Oct 2020 05:58:18 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201030114750.GA636720@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201027183149.145165-1-peron.clem@gmail.com> <20201027183149.145165-2-peron.clem@gmail.com>
+ <01e34ad3-c695-c6eb-95dd-76c2cda77c6f@linux.intel.com> <CAJiuCcdX7jc-VMWYfPPL3qu9RcUU7VMdjshyPH_xLA0yVXftUw@mail.gmail.com>
+ <3f0c46e2-24a4-b6ee-1ea2-9de5344cfb9d@sholland.org>
+In-Reply-To: <3f0c46e2-24a4-b6ee-1ea2-9de5344cfb9d@sholland.org>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Fri, 30 Oct 2020 13:58:07 +0100
+Message-ID: <CAJiuCceqhGjzJV+=KQkzswpiG2QRb3NhVHqmrXHBi50wNZBFXw@mail.gmail.com>
+Subject: Re: [PATCH v9 01/14] ASoC: sun4i-i2s: Change set_chan_cfg() params
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Quentin,
+Hi Samuel
 
-On 10/30/20 11:47 AM, Quentin Perret wrote:
-> Hi Lukasz,
-> 
-> On Wednesday 28 Oct 2020 at 14:08:45 (+0000), Lukasz Luba wrote:
->> +unsigned long dev_pm_opp_get_sustainable_opp_freq(struct device *dev)
->> +{
->> +	struct opp_table *opp_table;
->> +	unsigned long freq = 0;
->> +
->> +	opp_table = _find_opp_table(dev);
->> +	if (IS_ERR(opp_table))
->> +		return 0;
->> +
->> +	if (opp_table->sustainable_opp && opp_table->sustainable_opp->available)
->> +		freq = dev_pm_opp_get_freq(opp_table->sustainable_opp);
->> +
->> +	dev_pm_opp_put_opp_table(opp_table);
->> +
->> +	return freq;
->> +}
->> +EXPORT_SYMBOL_GPL(dev_pm_opp_get_sustainable_opp_freq);
-> 
-> I'm guessing this is what IPA will use to find out what the sustainable
-> frequency is right?
+On Fri, 30 Oct 2020 at 02:20, Samuel Holland <samuel@sholland.org> wrote:
+>
+> On 10/27/20 4:43 PM, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Hi Pierre-Louis,
+> >
+> > On Tue, 27 Oct 2020 at 19:59, Pierre-Louis Bossart
+> > <pierre-louis.bossart@linux.intel.com> wrote:
+> >>
+> >>
+> >>> @@ -452,11 +454,11 @@ static int sun8i_i2s_set_chan_cfg(const struct =
+sun4i_i2s *i2s,
+> >>>       case SND_SOC_DAIFMT_DSP_B:
+> >>>       case SND_SOC_DAIFMT_LEFT_J:
+> >>>       case SND_SOC_DAIFMT_RIGHT_J:
+> >>> -             lrck_period =3D params_physical_width(params) * slots;
+> >>> +             lrck_period =3D slot_width * slots;
+> >>>               break;
+> >>>
+> >>>       case SND_SOC_DAIFMT_I2S:
+> >>> -             lrck_period =3D params_physical_width(params);
+> >>> +             lrck_period =3D slot_width;
+> >>>               break;
+> >>
+> >> Aren't I2S, LEFT_J and RIGHT_J pretty much the same in terms of lrclk
+> >> rate/period? the only thing that can change is the polarity, no?
+> >>
+> >> Not sure why it's handled differently here?
+> >
+> > I just had a look at the User Manual for H3 and H6 and I didn't find
+> > any reason why LEFT_J and RIGHT_J should be computed in a different
+> > way as I2S.
+>
+> Yes, and the manual explicitly groups LEFT_J and RIGHT_J with I2S when
+> describing this field:
+>
+>    PCM Mode: Number of BCLKs within (Left + Right) channel width.
+>    I2S/Left-Justified/Right-Justified Mode: Number of BCLKs within each
+> individual channel width(Left or Right)
+>
+> So I agree that the code is wrong here.
 
-Yes, you are right.
-
-> 
-> Is PM_OPP the right place for that? It feels odd IPA will get the EM
-> from one place, which includes the performance state, and the sustained
-> OPP from another. Should we move that to PM_EM instead?
-
-True, it might looks strange, but the OPP framework is available when we
-are adding the OPPs in scmi perf layer. The EM is available after we
-register the device, so at the end of scmi-cpufreq init.
-It would require a new scmi perf api function e.g. get_sustained_freq(),
-and a set/get function for EM, which is doable.
-
-I've discussed this approach to Viresh and he likes it better.
-I am happy that you are also suggesting the EM approach.
-
-I will send different patches for EM and SCMI to make that happen.
-Should I re-based them on top of the patch adding this milliwatts filed
-in EM [1]? Or do the opposite, changing the dependency order?
+Thanks, I will send a fix in the v10.
 
 Regards,
-Lukasz
+Clement
 
-[1] https://lkml.org/lkml/2020/10/19/392
-
-> 
-> Thanks,
-> Quentin
-> 
+>
+> Regards,
+> Samuel
+>
+> > Also the commit introducing this doesn't mention it.
+> > 7ae7834ec446 ("ASoC: sun4i-i2s: Add support for DSP formats")
+> >
+> > I can't test it with my board but if nobody complains about it, I will
+> > introduce a fix for this in the next version and change this also for
+> > H6.
+> >
+> > Thanks for your review,
+> > Clement
+> >
+>
