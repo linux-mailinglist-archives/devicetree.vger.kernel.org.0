@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABAC929F9BD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 01:33:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CCF729F9D4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 01:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726094AbgJ3Adp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 20:33:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54222 "EHLO mail.kernel.org"
+        id S1725780AbgJ3AiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 20:38:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60974 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725372AbgJ3Adp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 20:33:45 -0400
+        id S1725372AbgJ3AiL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Oct 2020 20:38:11 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 36A9A20723;
-        Fri, 30 Oct 2020 00:33:42 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E3A1B206CB;
+        Fri, 30 Oct 2020 00:38:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604018023;
-        bh=1odeK3gYIGNl5jsY8lj0v24PlT7SNcMRbEc3jxv/AJw=;
+        s=default; t=1604018290;
+        bh=wynUc563K1gkMWzfMCzDYCWs+7V4DOteyd7YvZinwf8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=anC68eXWEaRb/UyzfUCsbaLW3RQsHT94ffr5DqVRKiFets7V7vQ33DST+4WzAjOt9
-         vgd7TtLaQ+4P2ftq3ktDI6wJDQPIsj+lrHyu90tpO3kiVy0+ry57NWRkRYMkhvrXXC
-         24xaamN1uDwt7/amUOxSR3pcz1ydBhmaVlmIHE6o=
-Date:   Fri, 30 Oct 2020 08:33:38 +0800
+        b=KIA3pp9FjIUdb0wOaU1x0BsWDmF7Xo4CJ59QOAnUuggK+nAIzRijBOIfXtNcRFTnP
+         wVgwvulrLRH3tm/0uZ0jfq5rJqgWAthWDULHXYhuBdxgsJ+D+hD2c7PxcxGYuE7g5F
+         PehqsMnatp0GXojmSG48ZApwp8EFTFr9MKy9oeFU=
+Date:   Fri, 30 Oct 2020 08:38:04 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Ran Wang <ran.wang_1@nxp.com>
-Cc:     Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
-Subject: Re: [PATCH v2] arm64: dts: fix endianness issue of rcpm
-Message-ID: <20201030003337.GY28755@dragon>
-References: <20200929013021.46395-1-ran.wang_1@nxp.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: fsl-imx: document NXP
+ compatibles
+Message-ID: <20201030003803.GZ28755@dragon>
+References: <20201029162133.81016-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200929013021.46395-1-ran.wang_1@nxp.com>
+In-Reply-To: <20201029162133.81016-1-krzk@kernel.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 09:30:21AM +0800, Ran Wang wrote:
-> From: Biwen Li <biwen.li@nxp.com>
+On Thu, Oct 29, 2020 at 05:21:32PM +0100, Krzysztof Kozlowski wrote:
+> Document all ARMv5, ARMv6, ARMv7 and ARMv8 NXP (i.MX, Layerscape)
+> compatibles used in DTSes (even though driver binds only to
+> fsl,imx21-wdt) to fix dtbs_check warnings like:
 > 
-> Add little-endian property to RCPM node (for ls1028a,ls1088a,ls208xa),
-> otherwise RCPM driver will program hardware with incorrect setting,
-> causing system (such as LS1028ARDB) failed to be waked by wakeup source.
+>   arch/arm/boot/dts/imx53-qsb.dt.yaml: gpio@53fe0000: compatible:
+>     ['fsl,imx53-gpio', 'fsl,imx35-gpio'] is not valid under any of the given schemas
 > 
-> Fixes: 791c88ca5713 (“arm64: dts: ls1028a: Add ftm_alarm0 DT node”)
-> Fixes: f4fe3a8665495 (“arm64: dts: layerscape: add ftm_alarm0 node”)
-> Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> Acked-by: Li Yang <leoyang.li@nxp.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
 Applied, thanks.
