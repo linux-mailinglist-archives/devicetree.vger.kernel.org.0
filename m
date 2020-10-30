@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B07C629FF4D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79AC329FFE0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:27:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725979AbgJ3IAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 04:00:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60754 "EHLO mail.kernel.org"
+        id S1726028AbgJ3I1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 04:27:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46908 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725784AbgJ3IAd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 04:00:33 -0400
+        id S1725964AbgJ3I1K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 04:27:10 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 10585206DC;
-        Fri, 30 Oct 2020 08:00:30 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D01F8206DC;
+        Fri, 30 Oct 2020 08:01:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604044833;
-        bh=A5DqtYVC+Vuu9s3i/DSxLYmaYp166CzIlSseYdbIrQs=;
+        s=default; t=1604044901;
+        bh=m/I0g8nLgsECY4ZvHHYuCAIFMJHMN+Gt07qTXP5pasA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0/uwP2z4FYfcl3tBJEmeorlBzl1rw7AE13l+HpNAP2e+sQ5Sdp6jemI0j7niAj8ya
-         qBiWtj5M+NJbysp9r+rtPTnP42+BQRiw8GqSktTtnCbbzAigJwDfD0WnWpZmHsCvAG
-         hpJvr3q9+MuMon2IIyJxEVoI5tvmtJvNpmhcCgIk=
-Date:   Fri, 30 Oct 2020 16:00:27 +0800
+        b=dJ697EdvFRj0eH1gCS3UiqJcIQQnSfjBpwTYd0MxFO0qBf/q+tWrZO31jNoBd9ZrL
+         JjrHKi8T+pwNRLuTFihOiOre88+GNbzJLwWFzrS3zQBI3uNl2OQuAmXWv/eE50n0oM
+         7T8wYVnYWStUZqazjcRf3c71wPo/TB4CT1dMRMo0=
+Date:   Fri, 30 Oct 2020 16:01:36 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Adam Ford <aford173@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
@@ -33,22 +33,23 @@ Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mm-beacon-som: Configure supplies on
- secondary cpus
-Message-ID: <20201030080026.GK28755@dragon>
-References: <20201007140457.233697-1-aford173@gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm-beacon-som: Add QSPI NOR flash support
+Message-ID: <20201030080135.GL28755@dragon>
+References: <20201007142409.235234-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201007140457.233697-1-aford173@gmail.com>
+In-Reply-To: <20201007142409.235234-1-aford173@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 09:04:57AM -0500, Adam Ford wrote:
-> Each cpu core should have a corresponding supply, but only cpu0 does.
-> This patch adds a supply for each of the secondary cpus.
+On Wed, Oct 07, 2020 at 09:24:08AM -0500, Adam Ford wrote:
+> imx8mm-beacon-som has a Quad-SPI NOR flash connected to the FlexSPI bus.
+> 
+> This patch enables the FlexSPI bus and configures it to work with the
+> flash part.
 > 
 > Signed-off-by: Adam Ford <aford173@gmail.com>
 
