@@ -2,111 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5A732A0488
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:43:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 176AF2A04AB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:48:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726078AbgJ3Lnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 07:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
+        id S1725993AbgJ3Lr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 07:47:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbgJ3Lnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:43:33 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F3DC0613CF;
-        Fri, 30 Oct 2020 04:43:32 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id F132C1F45EBC
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: Add MT8167 power domains
-To:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     Matthias Brugger <mbrugger@suse.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20201027131122.374046-1-fparent@baylibre.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <c00a5ba1-154d-66ab-2ac7-c504e2e87b3e@collabora.com>
-Date:   Fri, 30 Oct 2020 12:43:28 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        with ESMTP id S1726353AbgJ3Lr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:47:56 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA4AC0613D2
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:47:56 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id w23so2565277wmi.4
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:47:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/VyNGryLroT7qe3Pp9ybD5lnQfay5phLuhwNvbxhxYo=;
+        b=WAUf3+d2JVTc2U3d/Gv0nJozocu951OOswUcD4xo4Epo9ZKRp2kywPmcI5+AU5Ugsz
+         UBdOx//W7jjKZser0nHrjrHeBnt9qZTzPXTgOViuENyjBKVk+UCwFV57rong8tik9US7
+         0vdI2MSbFnECyd+W32GDQdbCNM11iHJ49aIL7Pp96UzJg+rlbr9sVViA8uDktOwXOBtP
+         t6KE1+BfjVuNIPaaqymUGIbXvZiljCwXch95AOP8EgnaOYgWxtDwowi+CBmV9S6/jWhk
+         BHliUO4ci5VZ6iOI1sdxImSGdGpY8Pj588LX7bsBsdAQGIRtl7CfWi7FfQNO6XdkXx5q
+         spfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/VyNGryLroT7qe3Pp9ybD5lnQfay5phLuhwNvbxhxYo=;
+        b=Jn7ZzJbfN5RiMonw5G8pENq7ogtf+XLldZFbqxjMU40o4PsBB/G5YQJ65dq9eJm4yG
+         W5gooUDSiboLA84E9A8BfOpZILunsEmZOYcDlDvo4ZosDAIVeBtHzhV2MfgnFjV7pnP5
+         mGLolOPjs7GucsxPznMT0d1Nu4uu2DdYABLYq4sMwAnC7MtoPzvrThUNVXzN+zqkcwJY
+         y30chKJnnE2kE/R+nZd2n5dKPEuq2jUNDSCfcQ7rgAzCQJdtFutp5n1Wh1hHcqy82YUh
+         TB1ZeSbQPzDAr6MJqgrxsHG50RJFHSLQ/A8bPoNXwUcN6JB8pGKv/iQw144/f8Q5KdNt
+         O0Ug==
+X-Gm-Message-State: AOAM531cV8JUinlNf9A2xdcsoraMWbGmnEWpto3+TCGH0d5NdAs1Rp1L
+        PGQHx4r2kOxSk1MO5/9egCMMM/IyLO3GtQ==
+X-Google-Smtp-Source: ABdhPJzQqqcHNKkLNiq+QHTNOQAjhnt7BUATOLJhivtj8XRz7DO7X6ixIJae+JIM1g8qdueVyZWT1g==
+X-Received: by 2002:a1c:2905:: with SMTP id p5mr2242342wmp.187.1604058474636;
+        Fri, 30 Oct 2020 04:47:54 -0700 (PDT)
+Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
+        by smtp.gmail.com with ESMTPSA id g8sm4434811wma.36.2020.10.30.04.47.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 04:47:53 -0700 (PDT)
+Date:   Fri, 30 Oct 2020 11:47:50 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        vireshk@kernel.org, robh+dt@kernel.org, nm@ti.com,
+        rafael@kernel.org, sboyd@kernel.org, daniel.lezcano@linaro.org,
+        sudeep.holla@arm.com, Dietmar.Eggemann@arm.com
+Subject: Re: [PATCH 2/4] OPP: Add support for parsing the 'opp-sustainable'
+ property
+Message-ID: <20201030114750.GA636720@google.com>
+References: <20201028140847.1018-1-lukasz.luba@arm.com>
+ <20201028140847.1018-3-lukasz.luba@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20201027131122.374046-1-fparent@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201028140847.1018-3-lukasz.luba@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabien,
+Hi Lukasz,
 
-Thank you for the patch and base it on [0]
-
-On 27/10/20 14:11, Fabien Parent wrote:
-> Add power domains dt-bindings for MT8167.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
-> 
-> This patch depends on the SCPSYS PM domains driver [0].
-> 
-> v2:
-> 	* Implement on top of new SCPSYS PM domains driver [0]
-> 
-> [0] https://patchwork.kernel.org/project/linux-mediatek/list/?series=370737
-> 
->  .../power/mediatek,power-controller.yaml       |  2 ++
->  include/dt-bindings/power/mt8167-power.h       | 18 ++++++++++++++++++
->  2 files changed, 20 insertions(+)
->  create mode 100644 include/dt-bindings/power/mt8167-power.h
-> 
-> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> index 0318ffb1133c..73e5452c3a5d 100644
-> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> @@ -23,6 +23,7 @@ properties:
->  
->    compatible:
->      enum:
-> +      - mediatek,mt8167-power-controller
->        - mediatek,mt8173-power-controller
->        - mediatek,mt8183-power-controller
->        - mediatek,mt8192-power-controller
-> @@ -59,6 +60,7 @@ patternProperties:
->        reg:
->          description: |
->            Power domain index. Valid values are defined in:
-> +              "include/dt-bindings/power/mt8167-power.h" - for MT8167 type power domain.
->                "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
->                "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
->                "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
-> diff --git a/include/dt-bindings/power/mt8167-power.h b/include/dt-bindings/power/mt8167-power.h
-> new file mode 100644
-> index 000000000000..7e3babfc2eef
-> --- /dev/null
-> +++ b/include/dt-bindings/power/mt8167-power.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: GPL-2.0
-> + *
-> + * Copyright (c) 2020 MediaTek Inc.
-> + */
+On Wednesday 28 Oct 2020 at 14:08:45 (+0000), Lukasz Luba wrote:
+> +unsigned long dev_pm_opp_get_sustainable_opp_freq(struct device *dev)
+> +{
+> +	struct opp_table *opp_table;
+> +	unsigned long freq = 0;
 > +
-> +#ifndef _DT_BINDINGS_POWER_MT8167_POWER_H
-> +#define _DT_BINDINGS_POWER_MT8167_POWER_H
+> +	opp_table = _find_opp_table(dev);
+> +	if (IS_ERR(opp_table))
+> +		return 0;
 > +
-> +#define MT8167_POWER_DOMAIN_MM		0
-> +#define MT8167_POWER_DOMAIN_DISP	0
-
-Is that correct? Both domains have the same index?
-
-> +#define MT8167_POWER_DOMAIN_VDEC	1
-> +#define MT8167_POWER_DOMAIN_ISP		2
-> +#define MT8167_POWER_DOMAIN_CONN	3
-> +#define MT8167_POWER_DOMAIN_MFG_ASYNC	4
-> +#define MT8167_POWER_DOMAIN_MFG_2D	5
-> +#define MT8167_POWER_DOMAIN_MFG		6
+> +	if (opp_table->sustainable_opp && opp_table->sustainable_opp->available)
+> +		freq = dev_pm_opp_get_freq(opp_table->sustainable_opp);
 > +
-> +#endif /* _DT_BINDINGS_POWER_MT8167_POWER_H */
-> 
+> +	dev_pm_opp_put_opp_table(opp_table);
+> +
+> +	return freq;
+> +}
+> +EXPORT_SYMBOL_GPL(dev_pm_opp_get_sustainable_opp_freq);
+
+I'm guessing this is what IPA will use to find out what the sustainable
+frequency is right?
+
+Is PM_OPP the right place for that? It feels odd IPA will get the EM
+from one place, which includes the performance state, and the sustained
+OPP from another. Should we move that to PM_EM instead?
+
+Thanks,
+Quentin
