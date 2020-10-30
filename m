@@ -2,135 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A6872A0442
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:36:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A68EC2A0465
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:38:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726557AbgJ3Lgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 07:36:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726545AbgJ3Lgd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:36:33 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1DE6C0613D2;
-        Fri, 30 Oct 2020 04:36:31 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id p93so6259943edd.7;
-        Fri, 30 Oct 2020 04:36:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rxQE3as5qmdywGCryWlJxFvuu0GYbuByAf+xTUWNAXQ=;
-        b=ZBPfc8KueINthUvsgeH+gUXzjzVe4NvMEM9x8mlWF3G5v8nNNA4h09KDyzPsGLJpkt
-         J5AiFyqhCW8Sowo3ErZyOE5SfM0nvaRVtkB7OvwNunhz3I3cdywX3lXQ6NP2Uyl0vI5g
-         QhZnPc2N3k4+TKQTTLSFX9OgDCj1ZS6d1r2wRKeosD6ptsV7Xr32QrA9h7o5CBrN2kQ3
-         uA/B715QaNyGqbIjRIq/J03P3XKg5OiOesl4nLP5TvUXH3BzD9QUx0VnqgI2Z2uoltJL
-         W4YAXaHCyYscmS1i4hz3wzDZ/w+/qPGNxNhgsVbxgJDeCVBCWh1sGo/tklgiPc8qUQSU
-         e7cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rxQE3as5qmdywGCryWlJxFvuu0GYbuByAf+xTUWNAXQ=;
-        b=gM8J1YD02j+7eXENhyoVrRJGSvMdckJ9MtYE45I9QKjTKgDjjgm55EEMBgJXboJ8z5
-         gOoq/Oh5M7Bc8seJAtXFDACbPJuGJvuDgtRuw8abGLAyRbwI602HHEHYhC+aI93AX7J1
-         etLavc+/yArgKWV4Q5HIcJDlXItB7E6BVMKLVkClPasOPz/nlJNue8rn9bHqzMJqioGO
-         zezdetJ/GUGp+8Erbk1DXDreWUCZtGAUABcK3q1v9lSdcSqSNvHpOnCZHxV10T8FVhKJ
-         2z6GzfoXLPjOzpK4Z6mUFPS4+ImjygcIQkEJSLWgr/5PGas/Zqm0QEN48z5ECU8Axdk7
-         +MjQ==
-X-Gm-Message-State: AOAM533LEG/INMVKlndXDOh7+C8i1IdpeG80e13fjorvq8v0C+cD7cQE
-        WOPY0WZ7SW/uAnH+jMAz764=
-X-Google-Smtp-Source: ABdhPJxFEUmnJbF7ddeya1V030+teKQyup2L2MRyuq0Sjnda7xD8Ms9KucAcworSdN15PM2k0RiaWQ==
-X-Received: by 2002:a05:6402:395:: with SMTP id o21mr1807804edv.2.1604057790490;
-        Fri, 30 Oct 2020 04:36:30 -0700 (PDT)
-Received: from yoga-910.localhost ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id q19sm2850861ejx.118.2020.10.30.04.36.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 04:36:29 -0700 (PDT)
-From:   Ioana Ciornei <ciorneiioana@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, leoyang.li@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: [PATCH v5 11/11] arm64: dts: lx2160ardb: add nodes for the AQR107 PHYs
-Date:   Fri, 30 Oct 2020 13:35:55 +0200
-Message-Id: <20201030113555.726487-12-ciorneiioana@gmail.com>
+        id S1726495AbgJ3Lhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 07:37:51 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:58956 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726522AbgJ3Lgb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:36:31 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id B07EF1F45EBC
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     matthias.bgg@gmail.com, drinkcat@chromium.org, hsinyi@chromium.org,
+        Collabora Kernel ML <kernel@collabora.com>,
+        weiyi.lu@mediatek.com, fparent@baylibre.com,
+        Joerg Roedel <jroedel@suse.de>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v4 00/16] soc: mediatek: pm-domains: Add new driver for SCPSYS power domains controller
+Date:   Fri, 30 Oct 2020 12:36:06 +0100
+Message-Id: <20201030113622.201188-1-enric.balletbo@collabora.com>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201030113555.726487-1-ciorneiioana@gmail.com>
-References: <20201030113555.726487-1-ciorneiioana@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
+Dear all,
 
-Annotate the EMDIO1 node and describe the 2 AQR107 PHYs found on the
-LX2160ARDB board. Also, add the necessary phy-handles for DPMACs 3 and 4
-to their associated PHY.
+This is a new driver with the aim to deprecate the mtk-scpsys driver.
+The problem with that driver is that, in order to support more Mediatek
+SoCs you need to add some logic to handle properly the power-up
+sequence of newer Mediatek SoCs, doesn't handle parent-child power
+domains and need to hardcode all the clocks in the driver itself. The
+result is that the driver is getting bigger and bigger every time a
+new SoC needs to be supported.
 
-Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
----
- .../boot/dts/freescale/fsl-lx2160a-rdb.dts    | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
+All this information can be getted from a properly defined binding, so
+can be cleaner and smaller, hence, we implemented a new driver. For
+now, only MT8173 and MT8183 is supported but should be fairly easy to
+add support for new SoCs.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-index 54fe8cd3a711..7723ad5efd37 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-@@ -35,6 +35,18 @@ &crypto {
- 	status = "okay";
- };
- 
-+&dpmac3 {
-+	phy-handle = <&aquantia_phy1>;
-+	phy-connection-type = "usxgmii";
-+	managed = "in-band-status";
-+};
-+
-+&dpmac4 {
-+	phy-handle = <&aquantia_phy2>;
-+	phy-connection-type = "usxgmii";
-+	managed = "in-band-status";
-+};
-+
- &dpmac17 {
- 	phy-handle = <&rgmii_phy1>;
- 	phy-connection-type = "rgmii-id";
-@@ -61,6 +73,18 @@ rgmii_phy2: ethernet-phy@2 {
- 		reg = <0x2>;
- 		eee-broken-1000t;
- 	};
-+
-+	aquantia_phy1: ethernet-phy@4 {
-+		/* AQR107 PHY */
-+		compatible = "ethernet-phy-ieee802.3-c45";
-+		reg = <0x4>;
-+	};
-+
-+	aquantia_phy2: ethernet-phy@5 {
-+		/* AQR107 PHY */
-+		compatible = "ethernet-phy-ieee802.3-c45";
-+		reg = <0x5>;
-+	};
- };
- 
- &esdhc0 {
-@@ -156,6 +180,14 @@ rtc@51 {
- 	};
- };
- 
-+&pcs_mdio3 {
-+	status = "okay";
-+};
-+
-+&pcs_mdio4 {
-+	status = "okay";
-+};
-+
- &sata0 {
- 	status = "okay";
- };
+Three important notes:
+
+1. This patch depends now on [1] to build correctly.
+
+2. Support for MT8183 is not ready to land yet because has some
+   dependencies, i.e mmsys support is still missing.
+
+3. Support for MT8192. I picked the patches [2] from Weiyi Lu and
+   adapted to this new series. I posted only for reference due that this
+   new version has some changes that affects that patchset.
+
+Only patches from 1 to 9 are ready, the others are provided for reference and test.
+
+[1] https://lore.kernel.org/patchwork/patch/1328096/
+[2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=368821
+
+Best regards,
+  Enric
+
+Enric Balletbo i Serra (5):
+  dt-bindings: power: Add bindings for the Mediatek SCPSYS power domains
+    controller
+  soc: mediatek: Add MediaTek SCPSYS power domains
+  arm64: dts: mediatek: Add mt8173 power domain controller
+  dt-bindings: power: Add MT8183 power domains
+  arm64: dts: mediatek: Add smi_common node for MT8183
+
+Matthias Brugger (8):
+  soc: mediatek: pm-domains: Add bus protection protocol
+  soc: mediatek: pm_domains: Make bus protection generic
+  soc: mediatek: pm-domains: Add SMI block as bus protection block
+  soc: mediatek: pm-domains: Add extra sram control
+  soc: mediatek: pm-domains: Add subsystem clocks
+  soc: mediatek: pm-domains: Allow bus protection to ignore clear ack
+  soc: mediatek: pm-domains: Add support for mt8183
+  arm64: dts: mediatek: Add mt8183 power domains controller
+
+Weiyi Lu (3):
+  dt-bindings: power: Add MT8192 power domains
+  soc: mediatek: pm-domains: Add default power off flag
+  soc: mediatek: pm-domains: Add support for mt8192
+
+ .../power/mediatek,power-controller.yaml      | 293 +++++++++
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      | 164 +++--
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 172 +++++
+ drivers/soc/mediatek/Kconfig                  |  12 +
+ drivers/soc/mediatek/Makefile                 |   1 +
+ drivers/soc/mediatek/mt8173-pm-domains.h      |  94 +++
+ drivers/soc/mediatek/mt8183-pm-domains.h      | 221 +++++++
+ drivers/soc/mediatek/mt8192-pm-domains.h      | 292 +++++++++
+ drivers/soc/mediatek/mtk-infracfg.c           |   5 -
+ drivers/soc/mediatek/mtk-pm-domains.c         | 614 ++++++++++++++++++
+ drivers/soc/mediatek/mtk-pm-domains.h         | 102 +++
+ include/dt-bindings/power/mt8183-power.h      |  26 +
+ include/dt-bindings/power/mt8192-power.h      |  32 +
+ include/linux/soc/mediatek/infracfg.h         | 107 +++
+ 14 files changed, 2081 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+ create mode 100644 drivers/soc/mediatek/mt8173-pm-domains.h
+ create mode 100644 drivers/soc/mediatek/mt8183-pm-domains.h
+ create mode 100644 drivers/soc/mediatek/mt8192-pm-domains.h
+ create mode 100644 drivers/soc/mediatek/mtk-pm-domains.c
+ create mode 100644 drivers/soc/mediatek/mtk-pm-domains.h
+ create mode 100644 include/dt-bindings/power/mt8183-power.h
+ create mode 100644 include/dt-bindings/power/mt8192-power.h
+
 -- 
 2.28.0
 
