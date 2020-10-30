@@ -2,86 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C6C22A1142
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 00:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A4A22A1166
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 00:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725816AbgJ3XCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 19:02:20 -0400
-Received: from server.msgroupspa.com ([185.149.113.111]:55162 "EHLO
-        server.msgroupspa.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725780AbgJ3XCU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 19:02:20 -0400
-X-Greylist: delayed 53432 seconds by postgrey-1.27 at vger.kernel.org; Fri, 30 Oct 2020 19:02:11 EDT
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=msgroupspa.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        Message-ID:Reply-To:Subject:To:From:Date:MIME-Version:Sender:Cc:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=gOeEglh1DIJatPKqyvOsPs4e0Zw8Lzg9wwjnNfQdiM8=; b=f0J1AWuajA3oZ1Dpfc1x8K8xEJ
-        AUip3Gv2UXILC1QLa9azjb3AcsLQqGjiyvcdNpmgT4E3ckADFb84tXlqXdyZsQiNBG2DujmkXqT6T
-        d2mjFNqNRzqSvTZ5qo3MQnCtCov24Wb4wcnpMjift4pdGB4JPDnKAHB+AICh1brF5U0xFQPetWE6H
-        BdPwBb7MNTVWN2mlAPb66Psghg7IoDbQVF1Tmf3H0jaTjlEaWeH4lQoLQpQIzRJYm5NbY0Di4+n63
-        5jJQ9+O4mZNL1aiyS8rwPAgEOxxbLBRAAH3FJTu26AO783jjZImRhbqNmO2ZZgHvlSfFh6vWgR2oo
-        WibXGz9w==;
-Received: from [::1] (port=55834 helo=server.msgroupspa.com)
-        by server.msgroupspa.com with esmtpa (Exim 4.93)
-        (envelope-from <no-reply@msgroupspa.com>)
-        id 1kYPS7-0006MI-86; Fri, 30 Oct 2020 16:08:03 +0800
+        id S1725911AbgJ3XDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 19:03:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54374 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725850AbgJ3XDc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 19:03:32 -0400
+Received: from kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net (unknown [163.114.132.7])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EA28322245;
+        Fri, 30 Oct 2020 23:03:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604099011;
+        bh=UBjluLfEoT4WAp3Vu3/cJxKe96PA+xboNdiLR61vTeY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=fNRlNrr/icuHAtbaluL7mfEoBqe1f+Pg7K0YP1nWh4tgxzK5a1cOQZuAnRX37IFqX
+         YwfI68EBQDMYF/7YCjjz/t0/uuk9HzKrUItf+yr2eNlEb7XoqzVFu0tWaOEFBpakgW
+         jd9k5dN2o392Iqs52tMcnRuDeqavbdx2JubVhFQ4=
+Date:   Fri, 30 Oct 2020 16:03:30 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     <davem@davemloft.net>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
+        <hkallweit1@gmail.com>, <robh@kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v3 4/4] net: phy: dp83td510: Add support for
+ the DP83TD510 Ethernet PHY
+Message-ID: <20201030160330.622c55a7@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+In-Reply-To: <20201030172950.12767-5-dmurphy@ti.com>
+References: <20201030172950.12767-1-dmurphy@ti.com>
+        <20201030172950.12767-5-dmurphy@ti.com>
 MIME-Version: 1.0
-Date:   Fri, 30 Oct 2020 16:08:03 +0800
-From:   "Mr. John Galvan" <no-reply@msgroupspa.com>
-To:     undisclosed-recipients:;
-Subject: Hello/Hallo
-Reply-To: galvan.johnny@outlook.com
-User-Agent: Roundcube Webmail/1.4.8
-Message-ID: <0d2cf4301ff4649fbf993b8f3f7e83c8@msgroupspa.com>
-X-Sender: no-reply@msgroupspa.com
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.msgroupspa.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - msgroupspa.com
-X-Get-Message-Sender-Via: server.msgroupspa.com: authenticated_id: no-reply@msgroupspa.com
-X-Authenticated-Sender: server.msgroupspa.com: no-reply@msgroupspa.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 30 Oct 2020 12:29:50 -0500 Dan Murphy wrote:
+> The DP83TD510E is an ultra-low power Ethernet physical layer transceiver
+> that supports 10M single pair cable.
+> 
+> The device supports both 2.4-V p2p and 1-V p2p output voltage as defined
+> by IEEE 802.3cg 10Base-T1L specfications. These modes can be forced via
+> the device tree or the device is defaulted to auto negotiation to
+> determine the proper p2p voltage.
+> 
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+
+drivers/net/phy/dp83td510.c:70:11: warning: symbol 'dp83td510_feature_array' was not declared. Should it be static?
 
 
--- 
-Sir/Madam,
+Also this:
 
-I have access to very vital information that can be used to move a huge 
-amount of money. I have done my homework very well and I have the 
-machineries in place to get it done since I am still in active service. 
-If it was possible for me to do it alone I would not have bothered 
-contacting you. Ultimately I need an honest foreigner to play an 
-important role in the completion of this business transaction. Send 
-responds to this email: galvan.johnny@outlook.com
+WARNING: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#429: FILE: drivers/net/phy/dp83td510.c:371:
++		return -ENOTSUPP;
 
-Regards,
-John Galvan
+WARNING: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#524: FILE: drivers/net/phy/dp83td510.c:466:
++		return -ENOTSUPP;
 
----------------------------------------------------------------
+ERROR: space required before the open parenthesis '('
+#580: FILE: drivers/net/phy/dp83td510.c:522:
++		if(phydev->autoneg) {
 
-Sir / Madam,
+ERROR: space required before the open parenthesis '('
+#588: FILE: drivers/net/phy/dp83td510.c:530:
++		if(phydev->autoneg) {
 
-Ich habe Zugang zu sehr wichtigen Informationen, mit denen ich eine 
-große Menge Geld bewegen kann. Ich habe meine Hausaufgaben sehr gut 
-gemacht und ich habe die Maschinen, um sie zu erledigen, da ich immer 
-noch im aktiven Dienst bin. Wenn es mir möglich gewesen wäre, es alleine 
-zu tun, hätte ich mich nicht darum gekümmert, Sie zu kontaktieren. 
-Letztendlich brauche ich einen ehrlichen Ausländer, der eine wichtige 
-Rolle beim Abschluss dieses Geschäftsvorgangs spielt. Senden Sie 
-Antworten auf diese E-Mail: galvan.johnny@outlook.com
 
-Grüße,
-John Galvan
+And please try to wrap the code on 80 chars on the non trivial lines:
+
+WARNING: line length of 88 exceeds 80 columns
+#458: FILE: drivers/net/phy/dp83td510.c:400:
++	mst_slave_cfg = phy_read_mmd(phydev, DP83TD510_PMD_DEVADDR, DP83TD510_PMD_CTRL);
+
+
+WARNING: line length of 91 exceeds 80 columns
+#505: FILE: drivers/net/phy/dp83td510.c:447:
++			linkmode_set_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, phydev->supported);
+
+WARNING: line length of 93 exceeds 80 columns
+#507: FILE: drivers/net/phy/dp83td510.c:449:
++			linkmode_clear_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, phydev->supported);
+
+WARNING: line length of 91 exceeds 80 columns
+#514: FILE: drivers/net/phy/dp83td510.c:456:
++			linkmode_set_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, phydev->supported);
+
+WARNING: line length of 93 exceeds 80 columns
+#516: FILE: drivers/net/phy/dp83td510.c:458:
++			linkmode_clear_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, phydev->supported);
+
+
+WARNING: line length of 92 exceeds 80 columns
+#560: FILE: drivers/net/phy/dp83td510.c:502:
++					       DP83TD510_MAC_CFG_1, dp83td510->rgmii_delay);
+
+WARNING: line length of 88 exceeds 80 columns
+#574: FILE: drivers/net/phy/dp83td510.c:516:
++	mst_slave_cfg = phy_read_mmd(phydev, DP83TD510_PMD_DEVADDR, DP83TD510_PMD_CTRL);
+
+WARNING: line length of 84 exceeds 80 columns
+#695: FILE: drivers/net/phy/dp83td510.c:637:
++	dp83td510 = devm_kzalloc(&phydev->mdio.dev, sizeof(*dp83td510), GFP_KERNEL);
+
