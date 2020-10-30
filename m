@@ -2,98 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 987B729FCF7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 06:07:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7176029FD36
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 06:29:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726290AbgJ3FHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 01:07:42 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:52897 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726197AbgJ3FHm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 01:07:42 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1604034461; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=i5EXSp5H1+wjz49bdX5MmWjfxCCpbPKZqpGfcNnScpk=; b=M5h1ksk5SK/qzx1j/dQ0i85eR6+91T4CSAtWvBS6Ldmzd0A/txNveIsev0CUij1tnhJhxYWs
- 7lF3RdH8lkIaIXEuqTqZCE735168zAHRoBEBFwkuagjPfMmnPY775tpiu19VUwUI0AuKfUhH
- lDbVy1N4qVfn/r8XYePJpJHDPCA=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 5f9b9f9d59fd12ae18a9eb53 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Oct 2020 05:07:41
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 94587C433CB; Fri, 30 Oct 2020 05:07:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.9] (unknown [61.3.219.238])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6E70BC433C6;
-        Fri, 30 Oct 2020 05:07:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6E70BC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-Subject: Re: [v4,1/3] drm/msm: Add support for GPU cooling
-To:     mka@chromium.org
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dianders@chromium.org, linux-kernel@vger.kernel.org,
-        dri-devel@freedesktop.org, freedreno@lists.freedesktop.org
-References: <1603958841-20233-1-git-send-email-akhilpo@codeaurora.org>
- <20201029204842.GC1855806@google.com>
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-Message-ID: <3d99a0e0-765d-0d89-37ed-0f0999580c1b@codeaurora.org>
-Date:   Fri, 30 Oct 2020 10:37:34 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.3
-MIME-Version: 1.0
-In-Reply-To: <20201029204842.GC1855806@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1725796AbgJ3F3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 01:29:13 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:22044 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725770AbgJ3F3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 01:29:12 -0400
+X-IronPort-AV: E=Sophos;i="5.77,432,1596466800"; 
+   d="scan'208";a="61013956"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 30 Oct 2020 14:29:11 +0900
+Received: from localhost.localdomain (unknown [10.166.252.89])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id DC7D8400F793;
+        Fri, 30 Oct 2020 14:29:10 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     bhelgaas@google.com, marek.vasut+renesas@gmail.com,
+        robh+dt@kernel.org
+Cc:     prabhakar.mahadev-lad.rj@bp.renesas.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v2 0/3] dt-bindings: pci: rcar-pci-host: convert bindings to json-schema
+Date:   Fri, 30 Oct 2020 14:29:02 +0900
+Message-Id: <1604035745-22095-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/30/2020 2:18 AM, mka@chromium.org wrote:
-> On Thu, Oct 29, 2020 at 01:37:19PM +0530, Akhil P Oommen wrote:
->> Register GPU as a devfreq cooling device so that it can be passively
->> cooled by the thermal framework.
->>
->> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
->> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> 
-> Wait, I did not post a 'Reviewed-by' tag for this patch!
-> 
-> I think the patch should be ok, but I'm still not super happy
-> about the resource management involving devfreq in general (see
-> discussion on https://patchwork.freedesktop.org/patch/394291/?series=82476&rev=1).
-> It's not really something introduced by this patch, but if it ever
-> gets fixed releasing the cooling device at the end of
-> msm_gpu_cleanup() after everything else might cause trouble.
-> 
-> In summary, I'm supportive of landing this patch, but reluctant to
-> 'sign it off' because of the above.
-> 
-> In any case:
-> 
-> Tested-by: Matthias Kaehlcke <mka@chromium.org>
-Sorry, Matthias. My mistake. You shared the reviewed tag for the 
-dt-bindings update. Will fix this ASAP. Thanks for verifying this.
+Convert bindings of rcar-pci.txt to json-schema.
 
--Akhil.
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> 
+Changes from v1:
+ - In patch 1/3
+ -- Fix indentation which yamllint detects.
+ -- Fix typo which checkpatch.pl detects.
+ -- Add ref: pci-bus.yaml
+ -- Remove some properties which the pci-bus.yaml defines.
+ -- Use unevaluatedProperties instead of additionalProperties.
+ - In patch 2/3
+ -- Add Reviewed-by from Geert-san.
+
+Lad Prabhakar (1):
+  dt-bindings: pci: rcar-pci: Add device tree support for r8a774e1
+
+Yoshihiro Shimoda (2):
+  dt-bindings: pci: rcar-pci-host: convert bindings to json-schema
+  dt-bindings: pci: rcar-pci-host: document r8a77965 bindings
+
+ .../devicetree/bindings/pci/rcar-pci-host.yaml     | 115 +++++++++++++++++++++
+ Documentation/devicetree/bindings/pci/rcar-pci.txt |  72 -------------
+ 2 files changed, 115 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/rcar-pci.txt
+
+-- 
+2.7.4
 
