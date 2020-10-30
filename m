@@ -2,143 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23EA029FA9D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 02:31:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C42C29FAED
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 02:55:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725781AbgJ3BbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 21:31:19 -0400
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:37861 "EHLO
-        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725379AbgJ3BbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 21:31:18 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id 348C3BF9;
-        Thu, 29 Oct 2020 21:20:55 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Thu, 29 Oct 2020 21:20:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=V
-        q44LRhd0cH+xqCv2R7hForse8RAqAQaEsvsIsJ8iBk=; b=StWnN6ZwMJzP37hNr
-        oOTSqDI6L0nwxqtm9SpqaEbutuGs7ITQSwe+STVKnfmm3wqD8nYfsyOh4jub/p8B
-        GERMppMgK4PvEAZBfB975NAZkfQlFnh0bqDXh82WWK1csOKAgFPpR0NneaTLWpjF
-        pz7I8UySbiXzBStHicns9/Bzuxm16+5g1rw2nO5V2RQpCX0GaHNLj17P8dx6JuIb
-        VU95zCt6Ogh9TJJB33/a8IOz8hB/177GgssdgsVI6NxjzpapCynhC8FuYmPHInQe
-        dMFBVnHhVBYdI5P/C3CDVeJljBn8gBmoJeN0xqHCu34ZsBSTFmPQjqzT8jl+RmU3
-        lz4Mw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=Vq44LRhd0cH+xqCv2R7hForse8RAqAQaEsvsIsJ8i
-        Bk=; b=SbcACNp6tR/fIW7yWUNtd8hNq2Ye2p4sh4kmb33o46umgIBusm45igcwR
-        wGQn2KQ7i8BOhDL2/xjUsmENiL/1Gm7fI4Fp5w0+lv4d4q4r4rNMgVL6+T5tc9V9
-        7AT6KEzaL/J+evvzu6RAguHw9CbLQpdYXU6kA4DZWmR+ibUd5eXwIaExvbRn0IHs
-        Ynu9b6xZOvXXqmypDRiOaPJmUI+86Ma6q0PrkZmUegqmDLKokrroMato/M6cPeNu
-        1e3m+Xxs0xRuT08EOCHn1GxKB64UA6rpzrp9CRqO112mPKx0RgmYuCSDAjtkEwJe
-        cU7/G0YJ55EwaVg+/mNJjnxZc2JJg==
-X-ME-Sender: <xms:dGqbX3Wm1te6ADrqNfeEAQ5-DvdXA7Gl_kGtNLTigNSgOqQTCkKcJg>
-    <xme:dGqbX_kZxPGKFe3Phf_pfsA8Ha99z3A4KbrRhG1bsNE0qqiMq1kZdAgQG4_y-7KPc
-    5vxuZ8XAExtx7zymw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrleeggdefvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpefgleekudevjedtjefhieelvdfhgeegieeikeelhfeffeffffffgedu
-    teetleeijeenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:dGqbXzYdwfapoLTPt5qppt4Em1a4jsjcZrh5tBKh4-ooZ3jaUVWP2Q>
-    <xmx:dGqbXyVgI5d_WzPM4E2ObKm_a6WDJJwMH6KbZBdYeX8SEZnu1a36qQ>
-    <xmx:dGqbXxny0BYt8BrPOWT0fCX4jkQ9lMc0K9CBMjkUVWgWzCjoBIfqww>
-    <xmx:dmqbX08harbibNIcPg2hrJLwCB_9ufFJYdISO1CMlu5chk_mrujwxDkfLiw>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 1C80B328005D;
-        Thu, 29 Oct 2020 21:20:52 -0400 (EDT)
-Subject: Re: [PATCH v9 01/14] ASoC: sun4i-i2s: Change set_chan_cfg() params
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20201027183149.145165-1-peron.clem@gmail.com>
- <20201027183149.145165-2-peron.clem@gmail.com>
- <01e34ad3-c695-c6eb-95dd-76c2cda77c6f@linux.intel.com>
- <CAJiuCcdX7jc-VMWYfPPL3qu9RcUU7VMdjshyPH_xLA0yVXftUw@mail.gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <3f0c46e2-24a4-b6ee-1ea2-9de5344cfb9d@sholland.org>
-Date:   Thu, 29 Oct 2020 20:20:51 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1726152AbgJ3BzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 21:55:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58936 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725790AbgJ3BzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 21:55:06 -0400
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 158C6C0613CF;
+        Thu, 29 Oct 2020 18:55:06 -0700 (PDT)
+Received: by mail-vs1-xe44.google.com with SMTP id b4so2634335vsd.4;
+        Thu, 29 Oct 2020 18:55:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=O2Bfrh7e0SfwIe9SuDWvIR9uYNcLv1ssbiRxQwdN9iY=;
+        b=Gc3dAipqASgtOIRGmBamjdZdmFXFKNzCfui1qkk4ipAQzwCWNx85nsFPYD/G+iTl67
+         ZRiIqzmIlCmRwCTxaJWss7/xvNNqnAwcUaUY78ApKMH0/zCjpXP3v59ZGkSvbtXAqw1T
+         tN1uU+raZBm9jk4OJJgTih0SCDjZG2dPft1DFtPgdQYzeI3rBmk0YbrCadCWMeX4xJy7
+         R1/qKDqGy+fCMNmbOBsNd5uN3FCVu/epI/GXhjHzgb7hDdeTJ3nO7dGmyJBpv3mIQLXl
+         4tbFCRTXf9lNMapnrJW5EDGxRVhM+fT+6NNgaZJ6bYxmN+ZNdiwp3XGbZbivshcUQg54
+         4iWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=O2Bfrh7e0SfwIe9SuDWvIR9uYNcLv1ssbiRxQwdN9iY=;
+        b=Sj28Zd9IBQdlzj19LBYA7DtzpGxSmm7n9vWmGiqp8nEfh0f7LFpfKcyeqIIoI53xKs
+         VYvmcqXZl/umL2vja3DWx2hocDYAGE0flVXxtLCUbZSNnBCqjWzHu1GC9uSLQ2elC1mR
+         O2LW17qavl4nyesS7Kt+P/nlSGN1go26AjfJ2T5/zkU6Hx7Ov5SrjGgYN4l8MV0r4G9j
+         12kKeYjJkzszZwOnNZ/uJt5rj5U3ei1f2wg44/SrqrY2o9sIK/Wh5pJpdpb8/uob7Xjd
+         qOPY6eq6GqwK9X1MdYTwmYLojEFnGmf6OSLWh7/mmyn3hil3IOgGpVzWptSC+IBTPTn+
+         7U9Q==
+X-Gm-Message-State: AOAM5328BenwcxShbJyqcoIWhzYSluj6oLSrX+qvMpRkrn+H6Wowyl9a
+        D8bzcFwQiLFCZ2k98Z6qSNxs+ug/2kfe4uLPlnc=
+X-Google-Smtp-Source: ABdhPJxsQ56AGU/3+xrQVJ8jrJpxHBC0lKnDYdah7PmyLCy34Sy+c/46LUL7dNf6w9JFX+plUXdhpk2L/oikjHAxHJQ=
+X-Received: by 2002:a67:b647:: with SMTP id e7mr6030927vsm.26.1604022905164;
+ Thu, 29 Oct 2020 18:55:05 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJiuCcdX7jc-VMWYfPPL3qu9RcUU7VMdjshyPH_xLA0yVXftUw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201029095806.10648-1-amelie.delaunay@st.com>
+ <20201029095806.10648-2-amelie.delaunay@st.com> <20201029154016.GA1917373@bogus>
+ <860d5620-4fdf-6e01-9a04-3967d6fcfd6b@st.com>
+In-Reply-To: <860d5620-4fdf-6e01-9a04-3967d6fcfd6b@st.com>
+From:   Jun Li <lijun.kernel@gmail.com>
+Date:   Fri, 30 Oct 2020 09:54:54 +0800
+Message-ID: <CAKgpwJVGUR9aSfoMkQ=ZXysgqn+H6n0uJbk5W9SeGiB7VXptwQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: connector: add power-opmode
+ optional property to usb-connector
+To:     Amelie DELAUNAY <amelie.delaunay@st.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/27/20 4:43 PM, Clément Péron wrote:
-> Hi Pierre-Louis,
-> 
-> On Tue, 27 Oct 2020 at 19:59, Pierre-Louis Bossart
-> <pierre-louis.bossart@linux.intel.com> wrote:
->>
->>
->>> @@ -452,11 +454,11 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
->>>       case SND_SOC_DAIFMT_DSP_B:
->>>       case SND_SOC_DAIFMT_LEFT_J:
->>>       case SND_SOC_DAIFMT_RIGHT_J:
->>> -             lrck_period = params_physical_width(params) * slots;
->>> +             lrck_period = slot_width * slots;
->>>               break;
->>>
->>>       case SND_SOC_DAIFMT_I2S:
->>> -             lrck_period = params_physical_width(params);
->>> +             lrck_period = slot_width;
->>>               break;
->>
->> Aren't I2S, LEFT_J and RIGHT_J pretty much the same in terms of lrclk
->> rate/period? the only thing that can change is the polarity, no?
->>
->> Not sure why it's handled differently here?
-> 
-> I just had a look at the User Manual for H3 and H6 and I didn't find
-> any reason why LEFT_J and RIGHT_J should be computed in a different
-> way as I2S.
+Amelie DELAUNAY <amelie.delaunay@st.com> =E4=BA=8E2020=E5=B9=B410=E6=9C=883=
+0=E6=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8A=E5=8D=8812:52=E5=86=99=E9=81=93=EF=
+=BC=9A
+>
+>
+>
+> On 10/29/20 4:40 PM, Rob Herring wrote:
+> > On Thu, Oct 29, 2020 at 10:58:03AM +0100, Amelie Delaunay wrote:
+> >> Power operation mode may depends on hardware design, so, add the optio=
+nal
+> >> property power-opmode for usb-c connector to select the power operatio=
+n
+> >> mode capability.
+> >>
+> >> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+> >> ---
+> >>   .../bindings/connector/usb-connector.yaml      | 18 ++++++++++++++++=
+++
+> >>   1 file changed, 18 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/connector/usb-connector=
+.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> >> index 728f82db073d..200d19c60fd5 100644
+> >> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> >> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> >> @@ -93,6 +93,24 @@ properties:
+> >>         - device
+> >>         - dual
+> >>
+> >> +  power-opmode:
+> >
+> > I've acked this version:
+> >
+> > https://lore.kernel.org/r/20201020093627.256885-2-badhri@google.com
 
-Yes, and the manual explicitly groups LEFT_J and RIGHT_J with I2S when
-describing this field:
+That is a different property only for FRS.
 
-   PCM Mode: Number of BCLKs within (Left + Right) channel width.
-   I2S/Left-Justified/Right-Justified Mode: Number of BCLKs within each
-individual channel width(Left or Right)
+> >
+>
+> frs is used for Fast Role Swap defined in USB PD spec.
+> I understand it allows to get the same information but I'm wondering why
+> the property name is limited to -frs- in this case. What about a
+> non-power delivery USB-C connector ?
 
-So I agree that the code is wrong here.
+It's only for FRS, FRS is in the scope of power delivery.
 
-Regards,
-Samuel
+>
+> Moreover, power-opmode property support is already merged in typec class:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/drivers/usb/typec/class.c?h=3Dv5.10-rc1&id=3D12f3467b0d28369d3add7a0deb65f=
+dac9b503c90
+> and stusb160x driver uses it :(
+>
+> So, do I need to modify stusb160x driver (and bindings) to take into
+> account this USB PD specific property?
 
-> Also the commit introducing this doesn't mention it.
-> 7ae7834ec446 ("ASoC: sun4i-i2s: Add support for DSP formats")
-> 
-> I can't test it with my board but if nobody complains about it, I will
-> introduce a fix for this in the next version and change this also for
-> H6.
-> 
-> Thanks for your review,
-> Clement
-> 
+Only Type-C w/o PD need this "power-opmode" property, so this
+property is still required.
 
+Li Jun
+
+>
+> Regards,
+> Amelie
+>
+> > Please ack it if you are okay with it.
+> >
+> > Rob
+> >
+> >
+> >> +    description: Determines the power operation mode that the Type C =
+connector
+> >> +      will support and will advertise through CC pins when it has no =
+power
+> >> +      delivery support.
+> >> +      - "default" corresponds to default USB voltage and current defi=
+ned by the
+> >> +        USB 2.0 and USB 3.2 specifications, 5V 500mA for USB 2.0 port=
+s and
+> >> +        5V 900mA or 1500mA for USB 3.2 ports in single-lane or dual-l=
+ane
+> >> +        operation respectively.
+> >> +      - "1.5A" and "3.0A", 5V 1.5A and 5V 3.0A respectively, as defin=
+ed in USB
+> >> +        Type-C Cable and Connector specification, when Power Delivery=
+ is not
+> >> +        supported.
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#definitions/string
+> >> +    enum:
+> >> +      - default
+> >> +      - 1.5A
+> >> +      - 3.0A
+> >> +
+> >>     # The following are optional properties for "usb-c-connector" with=
+ power
+> >>     # delivery support.
+> >>     source-pdos:
+> >> --
+> >> 2.17.1
+> >>
