@@ -2,231 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7DEB2A0F39
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 21:10:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D852A0F42
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 21:13:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726430AbgJ3UJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 16:09:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44754 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727044AbgJ3UJY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 16:09:24 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A3C8A20723;
-        Fri, 30 Oct 2020 20:09:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604088562;
-        bh=dsb2fGpwSeCxaqOUaIEQtAt8Ev0KBIXRf/w3waNhKws=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=C7kxkKrxR6DMsZCWkCPW2z3xH1cj5sJoA50H0JjBsmJ5y+NZkzIscLRN8uh9+LmvV
-         rC5P1iFjJTq9PMYwOq6pLF4EksuZ9zTcv/WO0lE4JKrT+5pwQPfHId9AoRgXB1u1AJ
-         qyx82wFKRb9ICX5wZkT44IM9eVY6IWMXRzsQqGHk=
-Received: by mail-oi1-f178.google.com with SMTP id j7so7841421oie.12;
-        Fri, 30 Oct 2020 13:09:22 -0700 (PDT)
-X-Gm-Message-State: AOAM530GXqa8PqEBfmITeCu9GjzdWEpL8aO8zreuvqXoxNBnNaNEBHW2
-        8qLHqMTSyIhVXeXHzlY2mt7qACZZuqpez+/8ug==
-X-Google-Smtp-Source: ABdhPJxMveXb1QdoW8X4k60f8AsyuwhhjJRLNbCCb75J76E+r24ilhIfqWLz6ySjO7R/sD1GTdxpf4/zJ14/IGJYpM0=
-X-Received: by 2002:aca:5dc2:: with SMTP id r185mr2849061oib.106.1604088561838;
- Fri, 30 Oct 2020 13:09:21 -0700 (PDT)
+        id S1727134AbgJ3UNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 16:13:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726424AbgJ3UM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 16:12:26 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C3AC0613D5;
+        Fri, 30 Oct 2020 13:11:28 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id f72so588377pfa.6;
+        Fri, 30 Oct 2020 13:11:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2nVZWZO04zycBikJuA9X0V2AALdDHuFF2+u3DoIbK0M=;
+        b=AZnpsS/q6KDXDlsiuU0SHiFvxOlQaSRQKYq9CfWi7JV5RckrWBG9o5XcXH3Zmi3qwJ
+         1CFCRqVMYJatFzIg9EPfUFyQXrGykhxY8C/3Vv7ntTH3m0iRwun1kyUVqOElc/aZNnJ4
+         4jmzuwqggwDA+Jl7iN4/p39rcASMe+2Gc4ryDRv89QgNKzR8d1y0pwjSqkXfGJWZFQuZ
+         rjMaIhjOwbVYYrVkPxXDr3d9usyGwB7McEaG7UtbR1tUE5J1wCFeZrDo/olTckHVtGnt
+         EBG6NKKzGSEzb+BfeLN2otf2ZPFMQhNtKpZzHc+R7PbO9VGkmPAtf372NU5b9lYfSQ5k
+         ULXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2nVZWZO04zycBikJuA9X0V2AALdDHuFF2+u3DoIbK0M=;
+        b=qzgrXmwsLjzg5ZBWSw7AYJZz9PsvWiYrSN8nwghqhJPs03JjxXAT1GLjEtuWdeIHN/
+         7u7A7bKwmjoMXiFzW85UYhrWXxHxbvF9ILgMe4r9NbOf1Er0USqVkrgbuVqh592Xya2N
+         cYN3FSu384+UGtW9fA+/rnK4GBHVR64aRwg0wpUouDGy9BYo6kgHXMxEtwAJm+50ickT
+         S1nAYvyOSSNjT3G7eCPuqbH8KyHbNqbb1/CW1ej6fDQJA2Ibk0PAJ5sS+gBbqO1Y6pfv
+         x6WxGlcL8a+Wh1dHz62fJid4PKZsZjPm3GKS2hdDhoZVuqPxh+OF4XtEn3CARn8I2ZGe
+         KTPA==
+X-Gm-Message-State: AOAM533618fUZMdzjJwt19WEgphePyIOvMuaYYvHiryiDtvMBVlIbpi2
+        nAPidmKFHy2QcIUXRBAqxqY=
+X-Google-Smtp-Source: ABdhPJxfQAHDYz1Rw9AjHNEdEvVxfry8WnbqLPpXQ488E9GE188OUSSrHa9ty/QEGdwjpW1P83coKg==
+X-Received: by 2002:a63:de07:: with SMTP id f7mr1379407pgg.27.1604088688225;
+        Fri, 30 Oct 2020 13:11:28 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id g22sm6839219pfh.147.2020.10.30.13.11.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 13:11:27 -0700 (PDT)
+Date:   Fri, 30 Oct 2020 13:11:24 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jiri Kosina <jkosina@suse.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        andrea@borgia.bo.it, Kai Heng Feng <kai.heng.feng@canonical.com>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Hans De Goede <hdegoede@redhat.com>,
+        DTML <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: HID: i2c-hid: Label this binding as
+ deprecated
+Message-ID: <20201030201124.GG2547185@dtor-ws>
+References: <20201023162220.v2.1.I45b53fe84e2215946f900f5b28bab1aa9d029ac7@changeid>
+ <CAO-hwJLn5XKV+cp+fCRY395uBWuX=JrxgiGSHUnJXFpTzFWu4w@mail.gmail.com>
+ <20201030180042.GB3967106@bogus>
+ <CAO-hwJK8c+BrH3u5PMCndv6Jjj6K2z=4nyKMAojD09EcHjBROA@mail.gmail.com>
 MIME-Version: 1.0
-References: <1603188889-23664-1-git-send-email-hugues.fruchet@st.com>
- <1603188889-23664-3-git-send-email-hugues.fruchet@st.com> <20201021130033.GI2703@paasikivi.fi.intel.com>
- <657634eb-690a-53a6-2ac1-de3c06a1cec4@st.com> <20201021214058.GJ2703@paasikivi.fi.intel.com>
- <327ae9d5-8683-488f-7970-4983e2fec51d@st.com> <20201026141714.GA83693@bogus> <20201030174236.GV26150@paasikivi.fi.intel.com>
-In-Reply-To: <20201030174236.GV26150@paasikivi.fi.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 30 Oct 2020 15:09:10 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+po4grPDJH6=ayFWrO5J=GzmSHNsgRjQ=ERsVCYzVXQg@mail.gmail.com>
-Message-ID: <CAL_Jsq+po4grPDJH6=ayFWrO5J=GzmSHNsgRjQ=ERsVCYzVXQg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: st,stm32-dcmi: Add
- support of BT656
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Hugues FRUCHET <hugues.fruchet@st.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alain VOLMAT <alain.volmat@st.com>,
-        Yannick FERTRE <yannick.fertre@st.com>,
-        Philippe CORNU <philippe.cornu@st.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAO-hwJK8c+BrH3u5PMCndv6Jjj6K2z=4nyKMAojD09EcHjBROA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 12:42 PM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi Rob,
->
-> On Mon, Oct 26, 2020 at 09:17:14AM -0500, Rob Herring wrote:
-> > On Thu, Oct 22, 2020 at 02:56:17PM +0000, Hugues FRUCHET wrote:
-> > > Hi Sakari,
-> > >
-> > > + Jacopo for his work on ov772x binding related to BT656
-> > >
-> > > On 10/21/20 11:40 PM, Sakari Ailus wrote:
-> > > > Hi Hugues,
-> > > >
-> > > > On Wed, Oct 21, 2020 at 02:24:08PM +0000, Hugues FRUCHET wrote:
-> > > >> Hi Sakari,
-> > > >>
-> > > >> On 10/21/20 3:00 PM, Sakari Ailus wrote:
-> > > >>> Hi Hugues,
-> > > >>>
-> > > >>> On Tue, Oct 20, 2020 at 12:14:49PM +0200, Hugues Fruchet wrote:
-> > > >>>> Add support of BT656 parallel bus mode in DCMI.
-> > > >>>> This mode is enabled when hsync-active & vsync-active
-> > > >>>> fields are not specified.
-> > > >>>>
-> > > >>>> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
-> > > >>>> ---
-> > > >>>>    .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 30 ++++++++++++++++++++++
-> > > >>>>    1 file changed, 30 insertions(+)
-> > > >>>>
-> > > >>>> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> > > >>>> index 3fe778c..1ee521a 100644
-> > > >>>> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> > > >>>> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> > > >>>> @@ -44,6 +44,36 @@ properties:
-> > > >>>>          bindings defined in
-> > > >>>>          Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > > >>>>
-> > > >>>> +    properties:
-> > > >>>> +      endpoint:
-> > > >>>> +        type: object
-> > > >>>> +
-> > > >>>> +        properties:
-> > > >>>> +          bus-width: true
-> > > >>>> +
-> > > >>>> +          hsync-active:
-> > > >>>> +            description:
-> > > >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
-> > > >>>> +              embedded synchronization is selected.
-> > > >>>> +            default: 0
-> > > >>>> +
-> > > >>>> +          vsync-active:
-> > > >>>> +            description:
-> > > >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
-> > > >>>> +              embedded synchronization is selected.
-> > > >>>> +            default: 0
-> > > >>>
-> > > >>> Should I understand this as if the polarities were not specified, BT.656
-> > > >>> will be used?
-> > > >>
-> > > >> Yes, this is what is documented in video-interfaces.txt:
-> > > >> "
-> > > >>     Note, that if HSYNC and VSYNC polarities are not specified, embedded
-> > > >>     synchronization may be required, where supported.
-> > > >> "
-> > > >> and
-> > > >> "
-> > > >>                          /* If hsync-active/vsync-active are missing,
-> > > >>                             embedded BT.656 sync is used */
-> > > >>                          hsync-active = <0>;     /* Active low */
-> > > >>                          vsync-active = <0>;     /* Active low */
-> > > >> "
-> > > >> and I found also this in
-> > > >> Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > >> "
-> > > >>             hsync-active:
-> > > >>               description:
-> > > >>                 If both HSYNC and VSYNC polarities are not specified,
-> > > >> embedded
-> > > >>                 synchronization is selected.
-> > > >>               default: 1
-> > > >>
-> > > >>             vsync-active:
-> > > >>               description:
-> > > >>                 If both HSYNC and VSYNC polarities are not specified,
-> > > >> embedded
-> > > >>                 synchronization is selected.
-> > > >>               default: 1
-> > > >
-> > > > Having the defaults leads to somewhat weird behaviour: specifying the
-> > > > default value on either property changes the bus type.
-> > > >
-> > > >> "
-> > > >>
-> > > >> In the other hand I've found few occurences of "bus-type"
-> > > >> (marvell,mmp2-ccic.yaml), it is why I asked you if "bus-type" is the new
-> > > >> way to go versus previous way to signal BT656 (without hsync/vsync) ?
-> > > >> As explained previously, I prefer this last way for backward compatibility.
-> > > >
-> > > > If you have a default for bus-type (BT.601), this won't be a problem.
-> > > >
-> > > > The old DT bindings were somewhat, well, opportunistic. The v4l2-of
-> > > > framework-let did its best and sometimes it worked. The behaviour is still
-> > > > supported but not encouraged in new bindings.
-> > > >
-> > >
-> > > OK, so let's go for the new way.
-> > > I've found an interesting patch from Jacopo that is of great help:
-> > > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20200910162055.614089-4-jacopo+renesas@jmondi.org/
->
-> I wonder if Jacopo tested it. The idea seems interesting nonetheless.
->
-> > >
-> > > Here is a draft proposal before I push a new version, please comment:
-> > >
-> > >          properties:
-> > >            bus-type:
-> > >              enum: [5, 6]
-> > >              default: 5
-> > >
-> > >            bus-width:
-> > >              enum: [8, 10, 12, 14]
-> > >              default: 8
-> > >
-> > >            hsync-active:
-> > >              enum: [0, 1]
+On Fri, Oct 30, 2020 at 08:12:06PM +0100, Benjamin Tissoires wrote:
+> On Fri, Oct 30, 2020 at 7:00 PM Rob Herring <robh@kernel.org> wrote:
 > >
-> > For common properties, you can assume there's a common schema. As 0 and
-> > 1 are the only possible values, you don't need to define them here
-> > unless only a subset is valid for this device.
-> >
-> > >              default: 0
+> > On Fri, Oct 30, 2020 at 11:51:53AM +0100, Benjamin Tissoires wrote:
+> > > Hi Doug,
 > > >
-> > >            vsync-active:
-> > >              enum: [0, 1]
-> > >              default: 0
-> > >
-> > >            pclk-sample:
-> > >              enum: [0, 1]
-> > >              default: 0
-> > >
-> > >            remote-endpoint: true
-> > >
-> > >          allOf:
-> > >            - if:
-> > >                properties:
-> > >                  bus-type:
-> > >                    const: 6
+> > > Foreword: I was about to say "yeah, whatever" to please Rob for once.
 > >
-> > To fix the error, you need:
+> > Read my other reply first... I think we mostly agree.
 > >
-> > required:
-> >   - bus-type
+> > > But after re-reading this and more specifically patch 3 of the series,
+> > > that won't do. More comments inlined.
+> > >
+> > > On Sat, Oct 24, 2020 at 1:23 AM Douglas Anderson <dianders@chromium.org> wrote:
+> > > >
+> > > > As pointed out by Rob Herring [1], we should have a device-specific
+> > > > compatible string.  This means people shouldn't be using the
+> > > > "i2c-over-hid" compatible string anymore, or at least not without a
+> > > > more specific compatible string before it.  Specifically:
+> > > >
+> > > > 1. For newly added devices we should just have the device-specific
+> > > >    device string (no "hid-over-i2c" fallback) and infer the timings
+> > > >    and hid-descr-addr from there.
+> > >
+> > > And that's a big NACK from a maintainer point of view. I know in the
+> > > device tree world these strings are important so that people can just
+> > > say "I have a device compatible with X", and go on, but in the HID
+> > > world that means we will have to implement one compatible struct per
+> > > vendor/device, which is not something I want to do.
 > >
-> > The problem is the above schema is also true if the property
-> > is not present.
->
-> Hmm. The idea was that we could keep this consistent with old bindings that
-> only documented parallel mode, and thus didn't need bus-type. This is
-> actually quite common --- adding support for something that wasn't known or
-> cared for during the original review.
+> > It's not really any different than PCI and USB VID/PIDs.
+> 
+> Well, it is, because in the USB (HID) world, there is a specification
+> that provides all of the entry points a device needs. In the i2c-hid
+> case, the only entry point a device needs, in the ACPI world is one
+> register address, and this is provided by ACPI itself. So in the ACPI
+> world, for i2c-hid devices, we don't need to recompile the driver to
+> support any current or new devices.
+> 
+> >
+> > > You can think of it as if you are suddenly saying that because it
+> > > would be easier for a few particular USB devices that need a quirk,
+> > > you "just" need to add the list of *all* USB HID devices that are
+> > > around. i2c-hid should be a driver that doesn't change unless 2 things
+> > > happen:
+> > > - there is a change in the spec
+> > > - there is a specific quirk required for a device that doesn't follow the spec.
+> >
+> > Or does something outside of what the spec covers.
+> 
+> This is solved in the ACPI case by running ACPI callbacks, and I am
+> more and more thinking we should mimic that for DT devices.
 
-TBC, the 'required' here is required for the 'if' in the if/then
-schema to work as you want. It's not making 'bus-type' a required
-property.
+So this is the root of the problem. I2CHID spec was done for ACPI-based
+systems, with very limited interface between hardware and the kernel and
+all "unplesantness" such as powering up and down devices properly tucked
+safely away into firmware. So there is still a lot of custom code, we
+just do not see it and can pretend it does not exist.
 
-Rob
+So even in case of "standard" I2C one can not say they do not need to
+recompile to use a new device, they just need to recompile different
+thing (driver vs firmware).
+
+I am still unsure if we want a flexible way of describing power up
+sequence, or simply hard-code based on a given model. Given that here
+are many I2C-HID compatible devices a flexible scheme would be nice IMO.
+
+Thanks.
+
+-- 
+Dmitry
