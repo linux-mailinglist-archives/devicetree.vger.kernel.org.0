@@ -2,113 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3792A0639
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 14:08:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86D082A0686
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 14:35:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726360AbgJ3NIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 09:08:09 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60676 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726178AbgJ3NIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 09:08:09 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09UD83PG080643;
-        Fri, 30 Oct 2020 08:08:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604063283;
-        bh=9+CYzSOFDYNTGUiNg6UZ2lIvLADoLJc3gxHDtO4B+D4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=eyoRz811gpUxEQg4m4Rg1EklP3IQUrDbP+i3NSmLJh1pLn9BsCQOsdiXyJaVofbkY
-         8EICU1ltDnNmOoYrvTbeuIqXd6wxG8sTZxMbFG82001FrM4Br1GI1R34is+gfO2Hlg
-         odvkcvylsCdVfjUPt08MzsoFilJLsqy0CgM68AUU=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09UD82dl047974
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 30 Oct 2020 08:08:03 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 30
- Oct 2020 08:08:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 30 Oct 2020 08:08:01 -0500
-Received: from [10.250.70.26] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09UD812C104901;
-        Fri, 30 Oct 2020 08:08:01 -0500
-Subject: Re: [PATCH leds 4/5] dt-bindings: leds: leds-class-multicolor: use
- LED_COLOR_ID_RGB for now
-To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
-        <linux-leds@vger.kernel.org>
-CC:     Pavel Machek <pavel@ucw.cz>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>
-References: <20201030023906.24259-1-kabel@kernel.org>
- <20201030023906.24259-4-kabel@kernel.org>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <b22f8d21-7625-dcff-616c-0c68008b5ab2@ti.com>
-Date:   Fri, 30 Oct 2020 08:08:01 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726727AbgJ3NeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 09:34:01 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:46773 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725939AbgJ3NeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 09:34:00 -0400
+Received: by mail-ot1-f66.google.com with SMTP id j21so5501649ota.13;
+        Fri, 30 Oct 2020 06:33:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rKj/rXvXD7snBbX0mySN8IBmNVtb3K7eqriwov03zlo=;
+        b=mKTyxD0I49s+D/w7uF8i0u/wU7mVfIzorQNkOfUu5hpRDt47ZwscfQXmWjKWly8Sv8
+         Q+LCp3in4Ew/BNBh0yN6njJyzx36XgasT3WzPmBAgZgphBw7j9iBG0iFyv6muwg4yLC8
+         Ni40NRfD5NMR8vZ6ydOfhaZZGBVHV/Pd/EIUuLM0jgqC/90K7fvqlpZsBhsdEN3CYro0
+         TrP84GhopMh7nM4MUVVIfOHkAgLOls2LsBuLxS7RJ/78rlajllx7dnwbaee2rJATflJY
+         f6/E6QMEn3qTUiwtAZZzCwZxfXxCoETbK4USpjW/uuXwbenjTt3jT087P3PJH1leoQP9
+         mcRg==
+X-Gm-Message-State: AOAM532wEph8Gf+OgXsBVdmhIapQ1DxDNhf+vqkDbgaaSka9NlcOsKSm
+        +BAPkvZ6ZStgaHXYAd6w9Q==
+X-Google-Smtp-Source: ABdhPJyaYfCiPzTPqScVm//3Q+3WkTytFk0MtqWTCBzDRsZepma/DjK8TXWnnesWJz2ljK2udw985g==
+X-Received: by 2002:a9d:6c9a:: with SMTP id c26mr1778080otr.78.1604064837862;
+        Fri, 30 Oct 2020 06:33:57 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p126sm1348243oia.24.2020.10.30.06.33.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 06:33:57 -0700 (PDT)
+Received: (nullmailer pid 3721586 invoked by uid 1000);
+        Fri, 30 Oct 2020 13:33:56 -0000
+Date:   Fri, 30 Oct 2020 08:33:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Guru Das Srinagesh <gurus@codeaurora.org>
+Cc:     David Collins <collinsd@codeaurora.org>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] bindings: pm8941-misc: Convert bindings to YAML
+Message-ID: <20201030133356.GA3721479@bogus>
+References: <cover.1603869292.git.gurus@codeaurora.org>
+ <f4e47c587fdcf8542d355a379b5fb41af8f7957b.1603869292.git.gurus@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20201030023906.24259-4-kabel@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f4e47c587fdcf8542d355a379b5fb41af8f7957b.1603869292.git.gurus@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Marek
-
-On 10/29/20 9:39 PM, Marek Behún wrote:
-> Commit 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
-> disallows LED_COLOR_ID_MULTI for now, and instead LED_COLOR_ID_RGB
-> should be used. Fix this is leds-class-multicolor binding.
->
-> After we have some usecases for non-RGB multicolor LEDs, this can be
-> changed.
->
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> Fixes: 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
-> Cc: devicetree@vger.kernel.org
-> Cc: robh+dt@kernel.org
+On Wed, 28 Oct 2020 00:18:52 -0700, Guru Das Srinagesh wrote:
+> Convert bindings from txt to YAML.
+> 
+> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
 > ---
->   .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml     | 4 ++--
->   .../devicetree/bindings/leds/leds-class-multicolor.yaml       | 4 ++--
->   2 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> index fe7fa25877fd..2015db9b7618 100644
-> --- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> @@ -73,14 +73,14 @@ examples:
->                    * LEDs.
->                    */
->                   reg = <0>;
-> -                color = <LED_COLOR_ID_MULTI>;
-> +                color = <LED_COLOR_ID_RGB>;
->                   function = LED_FUNCTION_POWER;
->                   linux,default-trigger = "heartbeat";
->               };
->   
->               multi-led@a {
->                   reg = <0xa>;
-> -                color = <LED_COLOR_ID_MULTI>;
-> +                color = <LED_COLOR_ID_RGB>;
->                   function = LED_FUNCTION_INDICATOR;
->                   function-enumerator = <1>;
->               };
-> diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-> index b1a53f054b89..9faa3609a6bb 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+>  .../bindings/extcon/qcom,pm8941-misc.txt           | 41 ---------------
+>  .../bindings/extcon/qcom,pm8941-misc.yaml          | 59 ++++++++++++++++++++++
+>  2 files changed, 59 insertions(+), 41 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.txt
+>  create mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> 
 
-Why are you resubmitting the multicolor.yaml?
-
-https://lore.kernel.org/patchwork/patch/1320863/
-
-This is waiting on DT review.
-
-Dan
-
+Reviewed-by: Rob Herring <robh@kernel.org>
