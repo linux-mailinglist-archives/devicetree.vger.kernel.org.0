@@ -2,68 +2,389 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E22F02A0B57
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:40:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CEEF2A0B58
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:40:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726440AbgJ3QkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 12:40:06 -0400
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:12437 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726072AbgJ3QkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:40:06 -0400
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5f9c41e70000>; Fri, 30 Oct 2020 09:40:07 -0700
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 30 Oct
- 2020 16:40:05 +0000
+        id S1726917AbgJ3QkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 12:40:08 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:6520 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726072AbgJ3QkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:40:08 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f9c41f20002>; Fri, 30 Oct 2020 09:40:18 -0700
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 30 Oct
+ 2020 16:40:07 +0000
 Received: from audio.nvidia.com (172.20.13.39) by mail.nvidia.com
  (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Fri, 30 Oct 2020 16:40:03 +0000
+ Transport; Fri, 30 Oct 2020 16:40:05 +0000
 From:   Sameer Pujar <spujar@nvidia.com>
 To:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
 CC:     <p.zabel@pengutronix.de>, <kuninori.morimoto.gx@renesas.com>,
         Sameer Pujar <spujar@nvidia.com>
-Subject: [PATCH v2] Convert graph bindings to json-schema
-Date:   Fri, 30 Oct 2020 22:09:15 +0530
-Message-ID: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
+Subject: [PATCH v2] dt-bindings: Convert graph bindings to json-schema
+Date:   Fri, 30 Oct 2020 22:09:16 +0530
+Message-ID: <1604075956-17010-2-git-send-email-spujar@nvidia.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
+References: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1604076007; bh=3ee7nEM4cRH0x38uyFPv64bYBCEWJ1weTPZG/oAdJc4=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
-         Content-Type;
-        b=rMKIJl68gIukFXqTGcUwbFoPbCbaJxeix/GKTK60dRZXIvFGg7bbScxgsUmru2XwH
-         1CYgtTABSCs0LbM1B5C6Fw5f52/GukT8/K+nqaAdd3OVCB/JArAkItnFxWbgmNEeIw
-         u7uIzc4Z0h48fWLToQUnUZ1a54+kl+6z/KFqgT1RIFdYLlaCghq0Nshyw0PaHMRdGu
-         QDl4x3wETK+gE0puUNxRuarvS+K2puTXMGLyZXazzXTgAdx9BZoF0BMr3RFnIky5ml
-         oFKAyeHIVdjmISN0I+tbihMZ3UnEdqTcZD02coBfcKRfN+NxpEBoLrXvWz3d80JU6+
-         fkzJqRYH/TBrA==
+        t=1604076018; bh=iTnAhDSLJYvvkLE81Dx9asFDxAY7h5p3Efsn0D0xvdE=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
+         References:MIME-Version:Content-Type;
+        b=hmQQkLAaCClmgcgwOoqitGD2yHR2f6Dc2su2sNBpciD3wBaRxbBVEDhL5sDr+ip0J
+         Aw67E+CfggboNfdwU8SAm+bswX+TmA9Qn8jxihrQGWEGautyq9mavShwq5csiqABrL
+         Om/Zm/K35NAcktVs69PMolCFEMyMG9/E4rLxKqNifO7tCgAK/FvAkJfx9Iawx+xX/e
+         hYJc5sIqBqTM4KZK9GNAERaOXnR7R1WlL/Omze4MjCGCnG9yVQer6VonaznOUJ976F
+         ynvgKN1Fq3L9dt5LMyxhtdMT/hxVp5B2de3vNjfp1pZst7uk/Gftms3LJyVnhm4lv6
+         GfoD/3BoUlZRg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move graph bindings to json-schema and thus convert graph.txt to
-graph.yaml. The graph.txt is currently referenced in many files and
-for now graph.txt re-directs reference to graph.yaml.
+Convert device tree bindings of graph to YAML format. Currently graph.txt
+doc is referenced in multiple files and all of these need to use schema
+references. For now graph.txt is updated to refer to graph.yaml.
 
-Changelog
-=========
-
-v1 -> v2
---------
- * Dropped "[PATCH 2/2] dt-bindings: Use graph.yaml reference in docs"
- * [PATCH 1/2] is modified to retain graph.txt file for now and added
-   re-direction to graph.yaml
-
-Sameer Pujar (1):
-  dt-bindings: Convert graph bindings to json-schema
-
+Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+---
  Documentation/devicetree/bindings/graph.txt  | 129 +-----------------
  Documentation/devicetree/bindings/graph.yaml | 188 +++++++++++++++++++++++++++
  2 files changed, 189 insertions(+), 128 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/graph.yaml
 
+diff --git a/Documentation/devicetree/bindings/graph.txt b/Documentation/devicetree/bindings/graph.txt
+index 0415e2c..b7818d6 100644
+--- a/Documentation/devicetree/bindings/graph.txt
++++ b/Documentation/devicetree/bindings/graph.txt
+@@ -1,128 +1 @@
+-Common bindings for device graphs
+-
+-General concept
+----------------
+-
+-The hierarchical organisation of the device tree is well suited to describe
+-control flow to devices, but there can be more complex connections between
+-devices that work together to form a logical compound device, following an
+-arbitrarily complex graph.
+-There already is a simple directed graph between devices tree nodes using
+-phandle properties pointing to other nodes to describe connections that
+-can not be inferred from device tree parent-child relationships. The device
+-tree graph bindings described herein abstract more complex devices that can
+-have multiple specifiable ports, each of which can be linked to one or more
+-ports of other devices.
+-
+-These common bindings do not contain any information about the direction or
+-type of the connections, they just map their existence. Specific properties
+-may be described by specialized bindings depending on the type of connection.
+-
+-To see how this binding applies to video pipelines, for example, see
+-Documentation/devicetree/bindings/media/video-interfaces.txt.
+-Here the ports describe data interfaces, and the links between them are
+-the connecting data buses. A single port with multiple connections can
+-correspond to multiple devices being connected to the same physical bus.
+-
+-Organisation of ports and endpoints
+------------------------------------
+-
+-Ports are described by child 'port' nodes contained in the device node.
+-Each port node contains an 'endpoint' subnode for each remote device port
+-connected to this port. If a single port is connected to more than one
+-remote device, an 'endpoint' child node must be provided for each link.
+-If more than one port is present in a device node or there is more than one
+-endpoint at a port, or a port node needs to be associated with a selected
+-hardware interface, a common scheme using '#address-cells', '#size-cells'
+-and 'reg' properties is used to number the nodes.
+-
+-device {
+-        ...
+-        #address-cells = <1>;
+-        #size-cells = <0>;
+-
+-        port@0 {
+-	        #address-cells = <1>;
+-	        #size-cells = <0>;
+-		reg = <0>;
+-
+-                endpoint@0 {
+-			reg = <0>;
+-			...
+-		};
+-                endpoint@1 {
+-			reg = <1>;
+-			...
+-		};
+-        };
+-
+-        port@1 {
+-		reg = <1>;
+-
+-		endpoint { ... };
+-	};
+-};
+-
+-All 'port' nodes can be grouped under an optional 'ports' node, which
+-allows to specify #address-cells, #size-cells properties for the 'port'
+-nodes independently from any other child device nodes a device might
+-have.
+-
+-device {
+-        ...
+-        ports {
+-                #address-cells = <1>;
+-                #size-cells = <0>;
+-
+-                port@0 {
+-                        ...
+-                        endpoint@0 { ... };
+-                        endpoint@1 { ... };
+-                };
+-
+-                port@1 { ... };
+-        };
+-};
+-
+-Links between endpoints
+------------------------
+-
+-Each endpoint should contain a 'remote-endpoint' phandle property that points
+-to the corresponding endpoint in the port of the remote device. In turn, the
+-remote endpoint should contain a 'remote-endpoint' property. If it has one, it
+-must not point to anything other than the local endpoint. Two endpoints with
+-their 'remote-endpoint' phandles pointing at each other form a link between the
+-containing ports.
+-
+-device-1 {
+-        port {
+-                device_1_output: endpoint {
+-                        remote-endpoint = <&device_2_input>;
+-                };
+-        };
+-};
+-
+-device-2 {
+-        port {
+-                device_2_input: endpoint {
+-                        remote-endpoint = <&device_1_output>;
+-                };
+-        };
+-};
+-
+-Required properties
+--------------------
+-
+-If there is more than one 'port' or more than one 'endpoint' node or 'reg'
+-property present in the port and/or endpoint nodes then the following
+-properties are required in a relevant parent node:
+-
+- - #address-cells : number of cells required to define port/endpoint
+-                    identifier, should be 1.
+- - #size-cells    : should be zero.
+-
+-Optional endpoint properties
+-----------------------------
+-
+-- remote-endpoint: phandle to an 'endpoint' subnode of a remote device node.
+-
++This file has moved to graph.yaml
+diff --git a/Documentation/devicetree/bindings/graph.yaml b/Documentation/devicetree/bindings/graph.yaml
+new file mode 100644
+index 0000000..33a6908
+--- /dev/null
++++ b/Documentation/devicetree/bindings/graph.yaml
+@@ -0,0 +1,188 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/graph.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common bindings for device graphs
++
++description: |
++  The hierarchical organisation of the device tree is well suited to describe
++  control flow to devices, but there can be more complex connections between
++  devices that work together to form a logical compound device, following an
++  arbitrarily complex graph.
++  There already is a simple directed graph between devices tree nodes using
++  phandle properties pointing to other nodes to describe connections that
++  can not be inferred from device tree parent-child relationships. The device
++  tree graph bindings described herein abstract more complex devices that can
++  have multiple specifiable ports, each of which can be linked to one or more
++  ports of other devices.
++
++  These common bindings do not contain any information about the direction or
++  type of the connections, they just map their existence. Specific properties
++  may be described by specialized bindings depending on the type of connection.
++
++  To see how this binding applies to video pipelines, for example, see
++  Documentation/devicetree/bindings/media/video-interfaces.txt.
++  Here the ports describe data interfaces, and the links between them are
++  the connecting data buses. A single port with multiple connections can
++  correspond to multiple devices being connected to the same physical bus.
++
++maintainers:
++  - Philipp Zabel <p.zabel@pengutronix.de>
++
++properties:
++  port:
++    type: object
++    description: |
++      If there is more than one endpoint node or 'reg' property present in
++      endpoint nodes then '#address-cells' and '#size-cells' properties are
++      required.
++
++    properties:
++      "#address-cells":
++          const: 1
++
++      "#size-cells":
++          const: 0
++
++      reg:
++        maxItems: 1
++
++    patternProperties:
++      "^endpoint(@[0-9a-f]+)?$":
++        type: object
++        properties:
++          reg:
++            maxItems: 1
++
++          remote-endpoint:
++            description: |
++              phandle to an 'endpoint' subnode of a remote device node.
++            $ref: /schemas/types.yaml#/definitions/phandle
++
++    additionalProperties: false
++
++  ports:
++    type: object
++    description: |
++      If there is more than one port node or 'reg' property present in port
++      nodes then '#address-cells' and '#size-cells' properties are required.
++      In such cases all port nodes can be grouped under 'ports' independently
++      from any other child device nodes a device might have.
++
++    properties:
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 0
++
++    patternProperties:
++      "^port(@[0-9a-f]+)?$":
++        $ref: "#/properties/port"
++
++    additionalProperties: false
++
++examples:
++  # Organisation of ports and endpoints:
++  #
++  # Ports are described by child 'port' nodes contained in the device node.
++  # Each port node contains an 'endpoint' subnode for each remote device port
++  # connected to this port. If a single port is connected to more than one
++  # remote device, an 'endpoint' child node must be provided for each link.
++  # If more than one port is present in a device node or there is more than
++  # one endpoint at a port, or a port node needs to be associated with a
++  # selected hardware interface, a common scheme using '#address-cells',
++  # '#size-cells' and 'reg' properties is used to number the nodes.
++  - |
++    device {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port@0 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0>;
++
++            endpoint@0 {
++                reg = <0>;
++                // ...
++            };
++            endpoint@1 {
++                reg = <1>;
++                // ...
++            };
++        };
++
++        port@1 {
++            reg = <1>;
++
++            endpoint {
++                // ...
++            };
++        };
++    };
++
++  # All 'port' nodes can be grouped under an optional 'ports' node, which
++  # allows to specify #address-cells, #size-cells properties for the 'port'
++  # nodes independently from any other child device nodes a device might
++  # have.
++  - |
++    device {
++        // ...
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <0>;
++                // ...
++
++                endpoint@0 {
++                    reg = <0>;
++                    // ...
++                };
++                endpoint@1 {
++                    reg = <1>;
++                    // ...
++                };
++            };
++
++            port@1 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <1>;
++                // ...
++            };
++        };
++    };
++
++  # Links between endpoints:
++  #
++  # Each endpoint should contain a 'remote-endpoint' phandle property that
++  # points to the corresponding endpoint in the port of the remote device.
++  # In turn, the remote endpoint should contain a 'remote-endpoint' property.
++  # If it has one, it must not point to anything other than the local endpoint.
++  # Two endpoints with their 'remote-endpoint' phandles pointing at each other
++  # form a link between the containing ports.
++  - |
++    device-1 {
++        port {
++            device_1_output: endpoint {
++                remote-endpoint = <&device_2_input>;
++            };
++        };
++    };
++
++    device-2 {
++        port {
++            device_2_input: endpoint {
++                remote-endpoint = <&device_1_output>;
++            };
++        };
++    };
++
++...
 -- 
 2.7.4
 
