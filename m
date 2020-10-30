@@ -2,80 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EEB2A0019
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:33:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD90D2A001C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:34:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726163AbgJ3IdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 04:33:15 -0400
-Received: from smtp1.de.adit-jv.com ([93.241.18.167]:56416 "EHLO
-        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726154AbgJ3IdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 04:33:14 -0400
-Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
-        by smtp1.de.adit-jv.com (Postfix) with ESMTP id 9F43A3C057F;
-        Fri, 30 Oct 2020 09:33:11 +0100 (CET)
-Received: from smtp1.de.adit-jv.com ([127.0.0.1])
-        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id bMSDwdgJbKdM; Fri, 30 Oct 2020 09:33:06 +0100 (CET)
-Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        id S1725875AbgJ3Iem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 04:34:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49456 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725790AbgJ3Iem (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Oct 2020 04:34:42 -0400
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 45E2C3C058B;
-        Fri, 30 Oct 2020 09:31:52 +0100 (CET)
-Received: from lxhi-065.adit-jv.com (10.72.94.31) by HI2EXCH01.adit-jv.com
- (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 30 Oct
- 2020 09:31:51 +0100
-From:   Eugeniu Rosca <erosca@de.adit-jv.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        <linux-renesas-soc@vger.kernel.org>
-CC:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Steffen Pengel <spengel@de.adit-jv.com>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>
-Subject: [PATCH v2 3/3] dt-bindings: arm: renesas: Add R-Car M3-W+ ULCB with Kingfisher
-Date:   Fri, 30 Oct 2020 09:30:51 +0100
-Message-ID: <20201030083051.18752-4-erosca@de.adit-jv.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201030083051.18752-1-erosca@de.adit-jv.com>
-References: <20201030083051.18752-1-erosca@de.adit-jv.com>
+        by mail.kernel.org (Postfix) with ESMTPSA id 9423320739;
+        Fri, 30 Oct 2020 08:34:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604046882;
+        bh=UkDUzuYwPb5jTV+e3QII3h/4OxTwBgACkSE9SIDmYQc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JifgwswuRqF9HiG4E/XylpjlOLmoerQENOiD6z/ac/a6W3DCrVyekwosCgevUK0Za
+         dwJO6n2Wuc18GY5YpdCKCuoLz9FmcHY6LUhSMUgcd1RpIZzG251/ZPpTWyrWWXZl5Q
+         4VP4hnSISrR5oKWQ4SA/OTeVxvZq6Itc4p3WZ9Xc=
+Date:   Fri, 30 Oct 2020 16:34:16 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        krzk@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2] arm64: dts imx8mn: Remove non-existent USB OTG2
+Message-ID: <20201030083414.GN28755@dragon>
+References: <20201008183300.726756-1-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.72.94.31]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201008183300.726756-1-aford173@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the use of the Kingfisher expansion board with the R-Car
-Starter Kit Pro equipped with an R-Car M3-W+ (aka M3-ES3.0) SoC.
+On Thu, Oct 08, 2020 at 01:33:00PM -0500, Adam Ford wrote:
+> According to the i.MX8MN TRM, there is only one OTG port.  The
+> address for OTG2 is reserved on Nano.
+> 
+> This patch removes the non-existent OTG2, usbphynop2, and the usbmisc2
+> nodes.
+> 
+> Fixes: 6c3debcbae47 ("arm64: dts: freescale: Add i.MX8MN dtsi support")
+> 
 
-Inspired from v5.5 commit 24169f0a453754 ("dt-bindings: arm: renesas:
-Add R-Car M3-N ULCB with Kingfisher").
+This newline is not really necessary.
 
-Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Eugeniu Rosca <erosca@de.adit-jv.com>
----
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-v2: Newly added
-v1: NA
----
- Documentation/devicetree/bindings/arm/renesas.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Applied, thanks.
 
-diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-index ff94c45eefb0..fe11be65039a 100644
---- a/Documentation/devicetree/bindings/arm/renesas.yaml
-+++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-@@ -245,6 +245,7 @@ properties:
-           - enum:
-               - renesas,r8a7795
-               - renesas,r8a7796
-+              - renesas,r8a77961
-               - renesas,r8a77965
- 
-       - description: R-Car M3-N (R8A77965)
--- 
-2.29.0
-
+> ---
+> V2:  Remove usbmisc2 and usbphynop2 in addition to the otg2 node.
