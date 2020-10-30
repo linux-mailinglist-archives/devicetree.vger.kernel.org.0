@@ -2,47 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6790429FA10
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 01:55:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6229F29FA3F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 02:07:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725797AbgJ3Az2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Oct 2020 20:55:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49106 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725372AbgJ3Az1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Oct 2020 20:55:27 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 49FB02072C;
-        Fri, 30 Oct 2020 00:55:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604019326;
-        bh=YDWqDBLh6wKSRDFQUOx2fDXwk+n0xrasDAAmwg8d0vA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=xUuCudrRehuziPD4ilRIAUBRjyQ3qsb2e3y7dsLsB1bey+kOPcs/lr18aDU3jB2cS
-         dhh4LujFIgDz6qCbe00jKayWP/aExBI5ixi7JAX2XiiKKuJyyjyKXfyavfV6RrwtiG
-         UTQd4Tn7YUW9BdRwCwtK1Og7BwLMXZ84SSEPhCZA=
-Date:   Fri, 30 Oct 2020 08:55:21 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, krzk@kernel.org,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: freescale: Add pmu support on imx8mp
-Message-ID: <20201030005521.GC28755@dragon>
-References: <20200929091523.2775950-1-ping.bai@nxp.com>
+        id S1725828AbgJ3BHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Oct 2020 21:07:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725379AbgJ3BHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Oct 2020 21:07:20 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96689C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 18:07:20 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id l28so5725258lfp.10
+        for <devicetree@vger.kernel.org>; Thu, 29 Oct 2020 18:07:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UL66Jvu0unFnQHvzD+yrX2vJU4SUteLOavhBLQABAN4=;
+        b=DywXxuJbvX4JdeIAQM8rLDQ55TZyVFW68rLCpGM++7lZU0NkcNJRjPBU3Q7EvDI+W9
+         754YxkIQFWGQGd2YMSVNFgDok9g1pqYivTRi68NCrW13sYBXG/FcN3YsUvVYAGs6kwUZ
+         RXsj5z2St8miZfbTMZ+SrfDK7G9h8tkw2VRzgJhfCLJlbnCWrDf8ZGHIjNSxVdFdM3SB
+         r1OT4goYzHnSAoJyRNz/gUhlAbcLlgSf6ozT+oraUhCYq3nGcglnPjFGkJFddXx/9f0q
+         QIDK9rAWIcZhVuIpF3YX6BSe3x0bRKzIMm3KDV2tBwEA2oAybbPIxvqCMG0x7z33UDWF
+         LLsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UL66Jvu0unFnQHvzD+yrX2vJU4SUteLOavhBLQABAN4=;
+        b=t5qy8AoDq38Ib8IfdHpqj+EoMC6FFDnvk04XStvEEQQ+9t5K3PbpwgXEAYx7sOV+iv
+         X5SZbeeFufrhe+ti2m1V5i3vnaHZWNIfP2qNiOaCmqNU3oKdMd0jgvTuyGUAitCRcTol
+         yWZP+70MFZodrDAvrZoYUadxyYcsg7uSYvbF+rD4Z8Bw/q5cUHutGuxUPaabhKHGI3be
+         WEwCa+uMH25ScKSi1l5F4mZreGqFYYsg+ptlBmJz+OVexNNbYDbL+F6NHQ/ikxrf6BFs
+         TfmQT6+jh1Nn2P/98lQgmnmMLnS/zu8htrWGXFDWYhWZMnlXq5F8e4tdbFcVlJVqzqJR
+         Cebw==
+X-Gm-Message-State: AOAM530MSSLENVwHHujLRzw5ZyAXrMQmGZBrx66y92SpbNYKzNUL1GE8
+        kejCXK06AdscHN06+kL/cdEJZA==
+X-Google-Smtp-Source: ABdhPJxVnkcn0bP0CpdDM9gDXgCCHH7IbjyqQYXyNvieHuBfbONwn4wSw3zeUdtvK1ItqvQ2i0XrVw==
+X-Received: by 2002:a19:c58:: with SMTP id 85mr2798895lfm.322.1604020038848;
+        Thu, 29 Oct 2020 18:07:18 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.219])
+        by smtp.gmail.com with ESMTPSA id c6sm447130lfm.226.2020.10.29.18.07.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Oct 2020 18:07:18 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
+Cc:     linux-leds@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 0/5] Qualcomm LPG support for PM8150b/l
+Date:   Fri, 30 Oct 2020 04:07:08 +0300
+Message-Id: <20201030010713.247009-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200929091523.2775950-1-ping.bai@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 05:15:22PM +0800, Jacky Bai wrote:
-> Add PMU node to enable pmu support on imx8mp.
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+This patchset brings support for LPG blocks on Qualcomm's PM8150[BL]
+PMIC chips, see [1]. PM8150L support was tested on RB5 platform.
 
-Applied both, thanks.
+This patchset can be folded into the aforementioned series, if Bjorn
+would like to, or it can go as a separate instance.
+
+Changes since v1:
+ - Changed lpg data fields to use 'triled_has_foo_ctl' rather than
+   'triled_no_foo_ctl'
+
+[1] https://lore.kernel.org/linux-arm-msm/20201021201224.3430546-1-bjorn.andersson@linaro.org/
+
+
+
