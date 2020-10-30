@@ -2,317 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 724472A0CA1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 18:42:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA922A0CA6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 18:44:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726239AbgJ3Rmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 13:42:47 -0400
-Received: from mga04.intel.com ([192.55.52.120]:55971 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725844AbgJ3Rmr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Oct 2020 13:42:47 -0400
-IronPort-SDR: 8IHfPTwlT72uQGQDlkg8kWR+RQAAD4SSP64F38xgyxotVkDxHIHXr98yqfvvMA/uM8ZmKH3Vuf
- t66+xtxsyv+w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9790"; a="166057060"
-X-IronPort-AV: E=Sophos;i="5.77,434,1596524400"; 
-   d="scan'208";a="166057060"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2020 10:42:42 -0700
-IronPort-SDR: u0VlTcOCWik0vZQo+TUUWNyFbz904SGSGwgQ7zW6+hUGJedWePSms1/vxj414WiHgmu0fXoOy2
- yfm4rHDjQjlg==
-X-IronPort-AV: E=Sophos;i="5.77,434,1596524400"; 
-   d="scan'208";a="469590759"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2020 10:42:38 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 270E120736; Fri, 30 Oct 2020 19:42:36 +0200 (EET)
-Date:   Fri, 30 Oct 2020 19:42:36 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Hugues FRUCHET <hugues.fruchet@st.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alain VOLMAT <alain.volmat@st.com>,
-        Yannick FERTRE <yannick.fertre@st.com>,
-        Philippe CORNU <philippe.cornu@st.com>
-Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: st,stm32-dcmi: Add
- support of BT656
-Message-ID: <20201030174236.GV26150@paasikivi.fi.intel.com>
-References: <1603188889-23664-1-git-send-email-hugues.fruchet@st.com>
- <1603188889-23664-3-git-send-email-hugues.fruchet@st.com>
- <20201021130033.GI2703@paasikivi.fi.intel.com>
- <657634eb-690a-53a6-2ac1-de3c06a1cec4@st.com>
- <20201021214058.GJ2703@paasikivi.fi.intel.com>
- <327ae9d5-8683-488f-7970-4983e2fec51d@st.com>
- <20201026141714.GA83693@bogus>
+        id S1726564AbgJ3Ros (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 13:44:48 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:50146 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726061AbgJ3Ror (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 13:44:47 -0400
+Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 555AE20B4905;
+        Fri, 30 Oct 2020 10:44:45 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 555AE20B4905
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1604079885;
+        bh=7TnyUaUUazyljvJPPu7HdnhPyePCDIjVBvgDsHhSRLc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ng9FydkfzsZt/fGyVRKu8dfu897Ws3lduxS5VWUfvYwvb/EZ79lA/8LxQPiQCl9jq
+         fGCgMmlJVnYiu+HLgn22ljYKKYsuPhPifGERWIROXejoP1T29AdrJOhOhq5qDwpbig
+         7PRORV+hbhyFdFUPectQ/GJrCJrdw51LCwngHfAc=
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        gregkh@linuxfoundation.org, james.morse@arm.com,
+        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr
+Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, prsriva@linux.microsoft.com,
+        balajib@linux.microsoft.com
+Subject: [PATCH v8 0/4] Carry forward IMA measurement log on kexec on ARM64
+Date:   Fri, 30 Oct 2020 10:44:25 -0700
+Message-Id: <20201030174429.29893-1-nramas@linux.microsoft.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201026141714.GA83693@bogus>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On kexec file load Integrity Measurement Architecture (IMA) subsystem
+may verify the IMA signature of the kernel and initramfs, and measure
+it. The command line parameters passed to the kernel in the kexec call
+may also be measured by IMA. A remote attestation service can verify
+the measurement through the IMA log and the TPM PCR data. This can be
+achieved only if the IMA measurement log is carried over from
+the current kernel to the next kernel across the kexec call.
+However in the current implementation the IMA measurement logs are not
+carried over on ARM64 platforms. Therefore a remote attestation service
+cannot verify the authenticity of the running kernel on ARM64 platforms
+when the kernel is updated through the kexec system call.
 
-On Mon, Oct 26, 2020 at 09:17:14AM -0500, Rob Herring wrote:
-> On Thu, Oct 22, 2020 at 02:56:17PM +0000, Hugues FRUCHET wrote:
-> > Hi Sakari,
-> > 
-> > + Jacopo for his work on ov772x binding related to BT656
-> > 
-> > On 10/21/20 11:40 PM, Sakari Ailus wrote:
-> > > Hi Hugues,
-> > > 
-> > > On Wed, Oct 21, 2020 at 02:24:08PM +0000, Hugues FRUCHET wrote:
-> > >> Hi Sakari,
-> > >>
-> > >> On 10/21/20 3:00 PM, Sakari Ailus wrote:
-> > >>> Hi Hugues,
-> > >>>
-> > >>> On Tue, Oct 20, 2020 at 12:14:49PM +0200, Hugues Fruchet wrote:
-> > >>>> Add support of BT656 parallel bus mode in DCMI.
-> > >>>> This mode is enabled when hsync-active & vsync-active
-> > >>>> fields are not specified.
-> > >>>>
-> > >>>> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
-> > >>>> ---
-> > >>>>    .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 30 ++++++++++++++++++++++
-> > >>>>    1 file changed, 30 insertions(+)
-> > >>>>
-> > >>>> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> > >>>> index 3fe778c..1ee521a 100644
-> > >>>> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> > >>>> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> > >>>> @@ -44,6 +44,36 @@ properties:
-> > >>>>          bindings defined in
-> > >>>>          Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > >>>>    
-> > >>>> +    properties:
-> > >>>> +      endpoint:
-> > >>>> +        type: object
-> > >>>> +
-> > >>>> +        properties:
-> > >>>> +          bus-width: true
-> > >>>> +
-> > >>>> +          hsync-active:
-> > >>>> +            description:
-> > >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
-> > >>>> +              embedded synchronization is selected.
-> > >>>> +            default: 0
-> > >>>> +
-> > >>>> +          vsync-active:
-> > >>>> +            description:
-> > >>>> +              If both HSYNC and VSYNC polarities are not specified, BT656
-> > >>>> +              embedded synchronization is selected.
-> > >>>> +            default: 0
-> > >>>
-> > >>> Should I understand this as if the polarities were not specified, BT.656
-> > >>> will be used?
-> > >>
-> > >> Yes, this is what is documented in video-interfaces.txt:
-> > >> "
-> > >>     Note, that if HSYNC and VSYNC polarities are not specified, embedded
-> > >>     synchronization may be required, where supported.
-> > >> "
-> > >> and
-> > >> "
-> > >> 				/* If hsync-active/vsync-active are missing,
-> > >> 				   embedded BT.656 sync is used */
-> > >> 				hsync-active = <0>;	/* Active low */
-> > >> 				vsync-active = <0>;	/* Active low */
-> > >> "
-> > >> and I found also this in
-> > >> Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > >> "
-> > >>             hsync-active:
-> > >>               description:
-> > >>                 If both HSYNC and VSYNC polarities are not specified,
-> > >> embedded
-> > >>                 synchronization is selected.
-> > >>               default: 1
-> > >>
-> > >>             vsync-active:
-> > >>               description:
-> > >>                 If both HSYNC and VSYNC polarities are not specified,
-> > >> embedded
-> > >>                 synchronization is selected.
-> > >>               default: 1
-> > > 
-> > > Having the defaults leads to somewhat weird behaviour: specifying the
-> > > default value on either property changes the bus type.
-> > > 
-> > >> "
-> > >>
-> > >> In the other hand I've found few occurences of "bus-type"
-> > >> (marvell,mmp2-ccic.yaml), it is why I asked you if "bus-type" is the new
-> > >> way to go versus previous way to signal BT656 (without hsync/vsync) ?
-> > >> As explained previously, I prefer this last way for backward compatibility.
-> > > 
-> > > If you have a default for bus-type (BT.601), this won't be a problem.
-> > > 
-> > > The old DT bindings were somewhat, well, opportunistic. The v4l2-of
-> > > framework-let did its best and sometimes it worked. The behaviour is still
-> > > supported but not encouraged in new bindings.
-> > > 
-> > 
-> > OK, so let's go for the new way.
-> > I've found an interesting patch from Jacopo that is of great help:
-> > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20200910162055.614089-4-jacopo+renesas@jmondi.org/
+This patch series adds support for carrying forward the IMA measurement
+log on kexec on ARM64. powerpc already supports carrying forward
+the IMA measurement log on kexec.
 
-I wonder if Jacopo tested it. The idea seems interesting nonetheless.
+This series refactors the platform independent code defined for powerpc
+such that it can be reused for ARM64 as well. A chosen node namely
+"linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+the address and the size of the memory reserved to carry
+the IMA measurement log.
 
-> > 
-> > Here is a draft proposal before I push a new version, please comment:
-> > 
-> >          properties:
-> >            bus-type:
-> >              enum: [5, 6]
-> >              default: 5
-> > 
-> >            bus-width:
-> >              enum: [8, 10, 12, 14]
-> >              default: 8
-> > 
-> >            hsync-active:
-> >              enum: [0, 1]
-> 
-> For common properties, you can assume there's a common schema. As 0 and 
-> 1 are the only possible values, you don't need to define them here 
-> unless only a subset is valid for this device.
-> 
-> >              default: 0
-> > 
-> >            vsync-active:
-> >              enum: [0, 1]
-> >              default: 0
-> > 
-> >            pclk-sample:
-> >              enum: [0, 1]
-> >              default: 0
-> > 
-> >            remote-endpoint: true
-> > 
-> >          allOf:
-> >            - if:
-> >                properties:
-> >                  bus-type:
-> >                    const: 6
-> 
-> To fix the error, you need:
-> 
-> required:
->   - bus-type
-> 
-> The problem is the above schema is also true if the property 
-> is not present. 
+This patch series has been tested for ARM64 platform using QEMU.
+I would like help from the community for testing this change on powerpc.
+Thanks.
 
-Hmm. The idea was that we could keep this consistent with old bindings that
-only documented parallel mode, and thus didn't need bus-type. This is
-actually quite common --- adding support for something that wasn't known or
-cared for during the original review.
+This patch series is based on
+commit 598a597636f8 ("Merge tag 'afs-fixes-20201029' of git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs")
+in https://github.com/torvalds/linux "master" branch.
 
-I guess this could be done in the driver, too, adding a comment that the
-bindings earlier did not require it.
+Changelog:
 
-> 
-> >              then:
-> >                properties:
-> >                  hsync-active: false
-> >                  vsync-active: false
-> >                  bus-width:
-> >                    enum: [8]
-> > 
-> >          required:
-> >            - remote-endpoint
-> > 
-> >          unevaluatedProperties: false
-> > 
-> > 
-> > Unfortunately, the "default: 5" for bus-type is not working !!
-> > If we don't specify "bus-type" in example, dt_binding_check is failing 
-> > as if default was 6, it's hardly understandable (see below) !
-> >          port {
-> >               dcmi_0: endpoint {
-> >                     remote-endpoint = <&ov5640_0>;
-> >                     bus-width = <10>;
-> >                     hsync-active = <0>;
-> >                     vsync-active = <0>;
-> >                     pclk-sample = <1>;
-> >               };
-> > => this should be OK but error claimed:
-> >    DTC 
-> > Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
-> >    CHECK 
-> > Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
-> > Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml: 
-> > dcmi@4c006000: port:endpoint:vsync-active: False schema does not allow [[0]]
-> > dcmi@4c006000: port:endpoint:hsync-active: False schema does not allow [[0]]
-> > dcmi@4c006000: port:endpoint:bus-width:0:0: 10 is not one of [8]
-> > 	From schema: Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> > 
-> > => if "bus-type" is explicitly set to 5, all is fine (see below) !
-> >          port {
-> >               dcmi_0: endpoint {
-> >                     remote-endpoint = <&ov5640_0>;
-> >                     bus-type = <5>;
-> >                     bus-width = <10>;
-> >                     hsync-active = <0>;
-> >                     vsync-active = <0>;
-> >                     pclk-sample = <1>;
-> >               };
-> >          };
-> > 
-> >   DTC 
-> > Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
-> >    CHECK 
-> > Documentation/devicetree/bindings/media/st,stm32-dcmi.example.dt.yaml
-> > ~/.../media_tree$
-> > 
-> > 
-> > >>
-> > >>
-> > >> The bindings previously documented BT.601 (parallel) only, so
-> > >>> it was somewhat ambigious to begin with. Is there a risk of interpreting
-> > >>> old BT.601 bindings as BT.656?
-> > >> I don't think so.
-> > >>
-> > >> With bus-type property, I believe you could
-> > >>> avoid at least that risk.
-> > >> yes but as explained, I'll prefer not to amend current boards device
-> > >> tree files.
-> > > 
-> > > I don't think it matters from this point of view --- you can have a
-> > > default bus-type.
-> > > 
-> > >>
-> > >>>
-> > >>> Also not specifying at least one of the default values leads to BT.656
-> > >>> without bus-type. That could be addressed by removing the defaults.
-> > >>>
-> > >> I'm new to yaml, I've taken that from renesas,vin.yaml. Should I just
-> > >> drop the "default: 1" lines ?
-> > > 
-> > > That's one option, yes. Then you have to have those for BT.601 and it's no
-> > > longer ambiguous.
-> > > 
-> > 
-> > BR,
-> > Hugues.
+v8:
+  - Moved remove_ima_kexec_buffer(), do_get_kexec_buffer(), and
+    delete_fdt_mem_rsv() to drivers/of/fdt.c
+  - Moved ima_dump_measurement_list() and ima_add_kexec_buffer()
+    back to security/integrity/ima/ima_kexec.c
+
+v7:
+  - Renamed remove_ima_buffer() to remove_ima_kexec_buffer() and moved
+    this function definition to kernel.
+  - Moved delete_fdt_mem_rsv() definition to kernel
+  - Moved ima_dump_measurement_list() and ima_add_kexec_buffer() to
+    a new file namely ima_kexec_fdt.c in IMA
+
+v6:
+  - Remove any existing FDT_PROP_IMA_KEXEC_BUFFER property in the device
+    tree and also its corresponding memory reservation in the currently
+    running kernel.
+  - Moved the function remove_ima_buffer() defined for powerpc to IMA
+    and renamed the function to ima_remove_kexec_buffer(). Also, moved
+    delete_fdt_mem_rsv() from powerpc to IMA.
+
+v5:
+  - Merged get_addr_size_cells() and do_get_kexec_buffer() into a single
+    function when moving the arch independent code from powerpc to IMA
+  - Reverted the change to use FDT functions in powerpc code and added
+    back the original code in get_addr_size_cells() and
+    do_get_kexec_buffer() for powerpc.
+  - Added fdt_add_mem_rsv() for ARM64 to reserve the memory for
+    the IMA log buffer during kexec.
+  - Fixed the warning reported by kernel test bot for ARM64
+    arch_ima_add_kexec_buffer() - moved this function to a new file
+    namely arch/arm64/kernel/ima_kexec.c
+
+v4:
+  - Submitting the patch series on behalf of the original author
+    Prakhar Srivastava <prsriva@linux.microsoft.com>
+  - Moved FDT_PROP_IMA_KEXEC_BUFFER ("linux,ima-kexec-buffer") to
+    libfdt.h so that it can be shared by multiple platforms.
+
+v3:
+Breakup patches further into separate patches.
+  - Refactoring non architecture specific code out of powerpc
+  - Update powerpc related code to use fdt functions
+  - Update IMA buffer read related code to use of functions
+  - Add support to store the memory information of the IMA
+    measurement logs to be carried forward.
+  - Update the property strings to align with documented nodes
+    https://github.com/devicetree-org/dt-schema/pull/46
+
+v2:
+  Break patches into separate patches.
+  - Powerpc related Refactoring
+  - Updating the docuemntation for chosen node
+  - Updating arm64 to support IMA buffer pass
+
+v1:
+  Refactoring carrying over IMA measuremnet logs over Kexec. This patch
+    moves the non-architecture specific code out of powerpc and adds to
+    security/ima.(Suggested by Thiago)
+  Add Documentation regarding the ima-kexec-buffer node in the chosen
+    node documentation
+
+v0:
+  Add a layer of abstraction to use the memory reserved by device tree
+    for ima buffer pass.
+  Add support for ima buffer pass using reserved memory for arm64 kexec.
+    Update the arch sepcific code path in kexec file load to store the
+    ima buffer in the reserved memory. The same reserved memory is read
+    on kexec or cold boot.
+
+Lakshmi Ramasubramanian (4):
+  powerpc: Refactor kexec functions to move arch independent code to
+    drivers/of
+  powerpc: Refactor kexec functions to move arch independent code to ima
+  arm64: Store IMA log information in kimage used for kexec
+  arm64: Add IMA kexec buffer to DTB
+
+ arch/arm64/Kconfig                     |   1 +
+ arch/arm64/include/asm/ima.h           |  18 ++++
+ arch/arm64/include/asm/kexec.h         |   3 +
+ arch/arm64/kernel/Makefile             |   1 +
+ arch/arm64/kernel/ima_kexec.c          |  34 ++++++++
+ arch/arm64/kernel/machine_kexec_file.c |  18 ++++
+ arch/powerpc/include/asm/ima.h         |  13 +--
+ arch/powerpc/include/asm/kexec.h       |   1 -
+ arch/powerpc/kexec/Makefile            |   7 +-
+ arch/powerpc/kexec/file_load.c         |  33 +-------
+ arch/powerpc/kexec/ima.c               | 111 ++-----------------------
+ drivers/of/fdt.c                       | 110 ++++++++++++++++++++++++
+ include/linux/kexec.h                  |  24 ++++++
+ include/linux/libfdt.h                 |   3 +
+ security/integrity/ima/ima_kexec.c     |  57 +++++++++++++
+ 15 files changed, 282 insertions(+), 152 deletions(-)
+ create mode 100644 arch/arm64/include/asm/ima.h
+ create mode 100644 arch/arm64/kernel/ima_kexec.c
 
 -- 
-Kind regards,
+2.29.0
 
-Sakari Ailus
