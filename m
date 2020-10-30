@@ -2,115 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 550A129FFF7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:29:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0091E2A000E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 09:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726042AbgJ3I3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 04:29:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgJ3I3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 04:29:41 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64498C0613CF
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 01:29:41 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id a200so4614546pfa.10
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 01:29:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=e5m24XKv3rmYhiflffWvjSLRsXqJcmEBkgd6KO60GGg=;
-        b=TIrsUG6Ly9+zRcq+SJ/qIs+D8xBuzYeRKRBPKuzBE9LVf0SL0kNg4ppBSNsxfDNDul
-         Lk0zSfFvoKqSA7GIBDxpyXM8l3ABGxY3L4ImhU+1V4jOM4Os3vDryyJ6MRgNMKQ0uGMX
-         GEABVA3XiS+L7A12O32xu+vcrlPJC/drfj+6Mk9i+uL9X+E4X8n6mLcQQa52KY5kuf+y
-         MNKt/fG1vjTziXyBYz2WOE8HSADd+zwXaSGj0gMmNPs8SBqOY/MFn6X7+g4S+G07aFC8
-         VWaLYR0d9356UhkX310RR+dXx/AplZlRxmwCxeTGLe661aZ1Tu1zgeEBmzN/ZECyPY6L
-         hiRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=e5m24XKv3rmYhiflffWvjSLRsXqJcmEBkgd6KO60GGg=;
-        b=qccvD/okU6LckS4kZZ+LUUfyiCRTl6XwwPW5Czb2h5omYGZBsN9hohDNGLy0pXn3hN
-         CGSuqWAqb3EmiJQBT/faedeCqlrgd5WwL9LKM8dTvO+VaWNb5v/JJIBW/BX+vE704Gje
-         CpegAmKabeIq8KlcL6gei+F3NM4xdxDnyyj2+AwWqdJP35GFI/R/aiSHVUmVX3dZqTYm
-         IHB/hpCkqLwRpBzJMLklffhIDZYBXwyTNKoKywLgGcGosBpRnizOXffr+aDBMkvTFSkQ
-         jhMmmMntOpRv0JZeW1UDPBF9vxM1aEleOZLUQPltY/cxUmspXOPPApL+QiUJ8BhqBxPk
-         N0cA==
-X-Gm-Message-State: AOAM530Hc5Yfwa7l56rjeqiNlTqaH6r/fj3JUDxazcjheyLMsvcXw9/q
-        fhKIXEtnovyB8xXuUQa2Pp9f8A==
-X-Google-Smtp-Source: ABdhPJzzLhbSDKD9gMJkttY9BBUGB9camLeOPwGl5E90BxlosCMqvnnScYBJaBwfmhPyHTY6LhFUAA==
-X-Received: by 2002:aa7:9af1:0:b029:152:6101:ad12 with SMTP id y17-20020aa79af10000b02901526101ad12mr8094707pfp.40.1604046580892;
-        Fri, 30 Oct 2020 01:29:40 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id w65sm5135011pfw.145.2020.10.30.01.29.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Oct 2020 01:29:39 -0700 (PDT)
-Date:   Fri, 30 Oct 2020 13:59:37 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     vincent.guittot@linaro.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
-        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com
-Subject: Re: [PATCH 0/4] Add sustainable OPP concept
-Message-ID: <20201030082937.xgjmko2ohwhkt6f5@vireshk-i7>
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201029074057.6ugmwyzna52x3oli@vireshk-i7>
- <20201029075356.rruej6jlerhfa4oy@vireshk-i7>
- <228fa1b3-bbd3-6941-fd4b-06581016d839@arm.com>
+        id S1725995AbgJ3Icz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 04:32:55 -0400
+Received: from smtp1.de.adit-jv.com ([93.241.18.167]:56367 "EHLO
+        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725790AbgJ3Icy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 04:32:54 -0400
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+        by smtp1.de.adit-jv.com (Postfix) with ESMTP id 7DA163C0582;
+        Fri, 30 Oct 2020 09:32:11 +0100 (CET)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id dBtUJhKgMeXU; Fri, 30 Oct 2020 09:32:05 +0100 (CET)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 26EFF3C0594;
+        Fri, 30 Oct 2020 09:31:26 +0100 (CET)
+Received: from lxhi-065.adit-jv.com (10.72.94.31) by HI2EXCH01.adit-jv.com
+ (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 30 Oct
+ 2020 09:31:25 +0100
+From:   Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        <linux-renesas-soc@vger.kernel.org>
+CC:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Steffen Pengel <spengel@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>
+Subject: [PATCH v2 0/3] Add R-Car M3-W+ ULCB with Kingfisher
+Date:   Fri, 30 Oct 2020 09:30:48 +0100
+Message-ID: <20201030083051.18752-1-erosca@de.adit-jv.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <228fa1b3-bbd3-6941-fd4b-06581016d839@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.72.94.31]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-10-20, 09:56, Lukasz Luba wrote:
-> There were discussions about Energy Model (EM), scale of values (mW or
-> abstract scale) and relation to EAS and IPA. You can find quite long
-> discussion below v2 [1] (there is also v3 send after agreement [2]).
-> We have in thermal DT binding: 'sustainable-power' expressed in mW,
-> which is used by IPA, but it would not support bogoWatts.
+Add initial M3-ES3.0-ULCB-KF support.
 
-Why so ? (I am sorry, can't dig into such long threads without knowing
-which message I am looking for :( ). Lets assume if that same property
-can be used for bogoWatts, will that be sufficient for you ? Or you
-will still need this patch set ?
+v2: Add "Reviewed-by". Update renesas.yaml.
+v1:
+ - https://lore.kernel.org/linux-renesas-soc/20201029133741.25721-1-erosca@de.adit-jv.com/
+ - https://lore.kernel.org/linux-renesas-soc/20201029133741.25721-2-erosca@de.adit-jv.com/
 
-> The sustainable power is used for estimation of internal coefficients
-> (also for power budget), which I am trying to change to work with
-> 'abstract scale' [3][4].
-> 
-> This would allow to estimate sustainable power of the system based on
-> CPUs, GPU opp-sustainable points, where we don't have
-> 'sustainable-power' or devices using bogoWatts.
+Eugeniu Rosca (3):
+  arm64: dts: renesas: r8a77961: Add CAN{0,1} placeholder nodes
+  arm64: dts: renesas: r8a77961: ulcb-kf: Initial device tree
+  dt-bindings: arm: renesas: Add R-Car M3-W+ ULCB with Kingfisher
 
-Then maybe we should ahve sustainable-power in those cases too instead
-of adding a meaningless (IMHO) binding.
-
-Honestly speaking, as Nishanth said, there is nothing like a
-sustainable OPP in reality. Moreover, the DT needs to describe the
-hardware as it is (and in some cases the behavior of the firmware).
-And what you are trying to add here is none of them and so it should
-not go in DT as such. There are too many factors which play a part
-here, ambient temperature is one of the biggest ones, and the software
-needs to find the sustainable OPP by itself based on the current
-situation.
-
-So I don't really see a good reason why such a property should be
-added here.
-
-Coming to properties like suspend-opp, it made sense for some of the
-platforms as the last configured frequency of the CPU plays a part in
-deciding the power consumed by the SoC even when the system is
-suspended. And finding an optimal OPP (normally the lowest) there
-would make sense and so was that property added.
+ Documentation/devicetree/bindings/arm/renesas.yaml |  1 +
+ arch/arm64/boot/dts/renesas/Makefile               |  1 +
+ arch/arm64/boot/dts/renesas/r8a77961-ulcb-kf.dts   | 15 ++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi          | 10 ++++++++
+ 4 files changed, 27 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a77961-ulcb-kf.dts
 
 -- 
-viresh
+2.29.0
+
