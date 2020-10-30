@@ -2,87 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 391AC2A03F7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8732A2A043A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:36:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726284AbgJ3LTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 07:19:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33250 "EHLO
+        id S1725993AbgJ3LgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 07:36:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725888AbgJ3LTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:19:37 -0400
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCA8C0613D2
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:19:37 -0700 (PDT)
-Received: by mail-io1-xd42.google.com with SMTP id y20so7120808iod.5
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:19:37 -0700 (PDT)
+        with ESMTP id S1725355AbgJ3LgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:36:17 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F246C0613D2;
+        Fri, 30 Oct 2020 04:36:17 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id za3so8132820ejb.5;
+        Fri, 30 Oct 2020 04:36:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5RA/dTcPLcLSjFsM4pTf8628QTB+ljlVPvTwaOAvSI8=;
-        b=vPF6leW+6gfiBr1s7qfSqOlKqUhfUMZVxmg71BGMeoJBHzeltWCTbYEuXa0oT2dpud
-         wFpsNu4u69HfrJAKI0EOaTm6zsS8jIGH3m+9HVCNWrLlCCPoSjJqD2wE8IxwVeOWCTT/
-         s9zIz/l9hy6s0sd/GXp4XfEvSvKGZqcAbjIb+9V91QPh/+m5tmqwRgj69T+okuTdts7j
-         f8Rb2Xhxxuv3wU2FnzTR+xffJLffig2bPxtSDt6/d+Kun2cCrXvDLDclwQ1mGchUWUEe
-         kh7V2O04DMTgLQ+QNYBQpIuNOLClV0FN3U+CjlNZaGC2yFYQ9Oo0c77oTqWY7rM+3aR7
-         b19w==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2ntyqySv0dNRSUQuLSRy73nPmECP2AXw3xwCrbYmb5w=;
+        b=Wh/4WyHx0BOJQFGA8uk0QwNSX1vNc4OKQcIYtrFN42Q/h0ovjKe7j5sKq8kDBZLH8v
+         QeAfzFexTs5TOa5A++b1IyaLUeeFGl2Wpz+WCRcXbes9zUsPQ+8OoxFxuDYIT9BUvUPy
+         Q3LCq+x6vvVh/0vz1F8MjbnarZq6/+KvrI7Lh32iOG7RU3j4ZQawrHaYVJDj1nm/30hq
+         JOFW/qemGwpXeyi4m1CkbbOjQMDlxXm6hu/mJqGLRph7mbS0ztNHaHXGe0/hDoCiVLv5
+         zhtc6Ng4eAZrhpQqU0rox0erbEJPAy5y9fpKkJm+x3KzK9290uHNXa60wUvF4bXCQEW3
+         l6pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5RA/dTcPLcLSjFsM4pTf8628QTB+ljlVPvTwaOAvSI8=;
-        b=bm6ZeszkVuc4o6sD9MGF02IT/s/I0BxMtHCRD7VNgRnlxBzDDRo+jcg2mj8eBV17FQ
-         EaJG7neyCHyY7HBVQLNXArQ/e9zktRecs66Kq64+TlB2J+B+tJ7hPZCW3QPikZw7mMXL
-         wzEXKcVMbkgfv5GOJz89knajKCMEEmT30/ZOo6z9NLyKnbyWF8e1NkSs6JYlbicaSadW
-         DQowYqCURh73Hmljj/swa8Kl8pxVoSZguBFl7SyQ998sX5Bn6EUjj7vylMEgSpCywYsF
-         kbS97MN+B173sYVpw9KFYyr1sHbbmKYRXTWBZk3xlLqzMwDdca6MulG316aoBfKfBoJY
-         NlLg==
-X-Gm-Message-State: AOAM530vXrADmdp2ScgCihi7Am1H6tWNtVs88llNI1XVRM9sgrO5KD0N
-        vFk8aU988RFvjv7e9CYdzm3QFfLM+QIT5RUgbo5Qbw==
-X-Google-Smtp-Source: ABdhPJy/oufOebW5MWlnuf1Ro28TfvpmK+4mcN6r8qxQ28XDMOnf4ekL4Po96CPF9erK2pQu3QvP3fFFwmkHIFBVjmc=
-X-Received: by 2002:a5e:9244:: with SMTP id z4mr1374790iop.53.1604056776404;
- Fri, 30 Oct 2020 04:19:36 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2ntyqySv0dNRSUQuLSRy73nPmECP2AXw3xwCrbYmb5w=;
+        b=kl1RVdvsCEtqY/ZpWXgbEf75EmJpclNuN6ctHqEnOoHG/G24WUVDjtJETu0vjYYFSd
+         vTlt5YYrUPKt9BqyMAopkN/W3DATztI9xhsCSaKGtNgEa1TwbQmzG9GyyTbPBo0Py4hc
+         LrMP/mvVxGd6ZGoPprhMBIULBp+jUZOTO88jDmki6zn+u4MlRcELTtFBeGecRVZfVEuy
+         GRWU/sL8EtEsLHZeCm6hVhmtMrnZViHNSfm+GHDV+3v3kjOW2RzsSnNKaxEb489sNvlD
+         gpNvQEYSAWPz/EqfMFu8beI1yGbTws7gSsKX6IK3E12amnZkfkAi62FiT/EKSVgGjezU
+         Mb6A==
+X-Gm-Message-State: AOAM530ZTrbvxrJGB26gYH7DgdbEwK8oFAFSh8Gyj9OvJl7Llo/Ggzz+
+        mcWwPNbQMLZDhsAlidGBqz8lwLEQqCEY5LGS
+X-Google-Smtp-Source: ABdhPJz6fojo550yzO50CrNGrN4HLwqfWDkRftZB7slO8iNE62fBxF8XdZBQ2Yd0zCUNDctV6QDhHQ==
+X-Received: by 2002:a17:906:8812:: with SMTP id zh18mr1847124ejb.361.1604057775637;
+        Fri, 30 Oct 2020 04:36:15 -0700 (PDT)
+Received: from yoga-910.localhost ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id q19sm2850861ejx.118.2020.10.30.04.36.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 04:36:14 -0700 (PDT)
+From:   Ioana Ciornei <ciorneiioana@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, leoyang.li@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: [PATCH v5 00/11] arm64: dts: layerscape: update MAC nodes with PHY information 
+Date:   Fri, 30 Oct 2020 13:35:44 +0200
+Message-Id: <20201030113555.726487-1-ciorneiioana@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20201030075724.1616766-1-ajye_huang@compal.corp-partner.google.com>
- <20201030075724.1616766-3-ajye_huang@compal.corp-partner.google.com>
- <CA+Px+wXPRg7aDU5+vr6R_BxuFfhuDeG3iEQeAUKWNtX8YmVC1Q@mail.gmail.com> <CALprXBZ+NmR8Y4sMkh4Y-N_FG+rGEOhUBVTKXRXNFp8H+f0btw@mail.gmail.com>
-In-Reply-To: <CALprXBZ+NmR8Y4sMkh4Y-N_FG+rGEOhUBVTKXRXNFp8H+f0btw@mail.gmail.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Fri, 30 Oct 2020 19:19:25 +0800
-Message-ID: <CA+Px+wWouXWS2F+Bqs3MkJxCuXORhpXcUF5ZuSHo6exprBF4hg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
-To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Cc:     Ajye Huang <ajye.huang@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 6:55 PM Ajye Huang
-<ajye_huang@compal.corp-partner.google.com> wrote:
-> But dmic_get() will need dmic_switch, should i keep dmic_switch?
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
 
-I see.  I overlooked it.  You can keep the dmic_switch for this
-purpose or just call gpiod_get_value_cansleep().
+This patch set aims to add the necessary DTS nodes to complete the
+MAC/PCS/PHY representation on DPAA2 devices. The external MDIO bus nodes
+and the PHYs found on them are added, along with the PCS MDIO internal
+buses and their PCS PHYs. Also, links to these PHYs are added from the
+DPMAC node.
+
+Changes in v2:
+ - documented the dpmac node into a new yaml entry
+ - dropped the '0x' from some unit addresses
+
+Changes in v3:
+ - renamed dpmac@x into ethernet@x
+ - renamed the new documentation file to use the same name as the
+   compatible
+ - marked additionalProperties as false
+ - added a reference to ethernet-controller.yaml
+ - added a new patch to document 10gbase-r - 2/11
+
+Changes in v4:
+ - move the phy-connection-type attribute to the ethernet node in 7,8/11
+ - remove the interrupts description from 8/11 since I plan to properly
+   add all interrupt lines for all platforms
+
+Changes in v5:
+ - renamed all PHY nodes to ethernet-phy@x
+ - added some empty lines between nodes
+ - used the reg as the unit address
+
+Ioana Ciornei (11):
+  dt-bindings: net: add the DPAA2 MAC DTS definition
+  dt-bindings: net: add the 10gbase-r connection type
+  arm64: dts: ls1088a: add external MDIO device nodes
+  arm64: dts: ls1088ardb: add QSGMII PHY nodes
+  arm64: dts: ls1088ardb: add necessary DTS nodes for DPMAC2
+  arm64: dts: ls208xa: add the external MDIO nodes
+  arm64: dts: ls2088ardb: add PHY nodes for the CS4340 PHYs
+  arm64: dts: ls2088ardb: add PHY nodes for the AQR405 PHYs
+  arm64: dts: ls208xa: add PCS MDIO and PCS PHY nodes
+  arm64: dts: lx2160a: add PCS MDIO and PCS PHY nodes
+  arm64: dts: lx2160ardb: add nodes for the AQR107 PHYs
+
+ .../bindings/net/ethernet-controller.yaml     |   1 +
+ .../bindings/net/fsl,qoriq-mc-dpmac.yaml      |  60 ++++
+ .../boot/dts/freescale/fsl-ls1088a-rdb.dts    | 119 ++++++++
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 101 +++++-
+ .../boot/dts/freescale/fsl-ls2088a-rdb.dts    | 120 ++++++++
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 274 ++++++++++++++++-
+ .../boot/dts/freescale/fsl-lx2160a-rdb.dts    |  32 ++
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 288 ++++++++++++++++--
+ 8 files changed, 951 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
+
+-- 
+2.28.0
+
