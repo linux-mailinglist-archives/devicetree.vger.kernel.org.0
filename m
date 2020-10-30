@@ -2,389 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CEEF2A0B58
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:40:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8AE2A0B54
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 17:40:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726917AbgJ3QkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 12:40:08 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:6520 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726072AbgJ3QkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:40:08 -0400
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5f9c41f20002>; Fri, 30 Oct 2020 09:40:18 -0700
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 30 Oct
- 2020 16:40:07 +0000
-Received: from audio.nvidia.com (172.20.13.39) by mail.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Fri, 30 Oct 2020 16:40:05 +0000
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <p.zabel@pengutronix.de>, <kuninori.morimoto.gx@renesas.com>,
-        Sameer Pujar <spujar@nvidia.com>
-Subject: [PATCH v2] dt-bindings: Convert graph bindings to json-schema
-Date:   Fri, 30 Oct 2020 22:09:16 +0530
-Message-ID: <1604075956-17010-2-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
-References: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
+        id S1726407AbgJ3QkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 12:40:01 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:38722 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726061AbgJ3QkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 12:40:01 -0400
+Received: by mail-oi1-f194.google.com with SMTP id 9so7250344oir.5;
+        Fri, 30 Oct 2020 09:39:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=XKztsWcZasal2O06qo55L0eJo2O/+Ed23onN3u66G6Y=;
+        b=Dapu6PrPHbrKvseok7FCclsfzpK9uQ8zNQ3Nd3WdgYoDa3QYaY9wLetUINyAx4Mgkn
+         KjSb3ntzWDu61Zyk+3kYzJScUyn3k3MlCEokr2xhluG5dRpoqrY1l0o6wNKS91svp8CB
+         p5MifmJ6G56npLbjR5CWkiAU/vUHWvkngv8GrMQvRKdvnl4d3DZOela0zRzS85u/Pp65
+         p/dfqyIau4zP71TpdOC8FWmOs0AT1qL3sHQwEyg9ne40FyISL66YWokVf7iCCJCqGn0v
+         usMpab8Y3wOZmdbC2B4Tw/jHyLP/PAjSWwCxfelUx2G6IBdlq1FGMpFTTYz1ytNaC/CK
+         rTgg==
+X-Gm-Message-State: AOAM532AkESChNo+Ra93AfUfILTrWRs8WmrVrj1Jp+j9DEPxd3/YSioL
+        Ye5oLUsIRDDIy6c1hSb8+Q==
+X-Google-Smtp-Source: ABdhPJyj/mHVLN92/7MH5CL/dIFYAuNvLkG5xyiLxfWbikKyWL1yAsPDt8TxCNgsD1r7UZmTrtRCWQ==
+X-Received: by 2002:aca:5047:: with SMTP id e68mr2115953oib.175.1604075958774;
+        Fri, 30 Oct 2020 09:39:18 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g203sm1534170oib.22.2020.10.30.09.39.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2020 09:39:18 -0700 (PDT)
+Received: (nullmailer pid 3965405 invoked by uid 1000);
+        Fri, 30 Oct 2020 16:39:17 -0000
+Date:   Fri, 30 Oct 2020 11:39:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>, kevin.lhopital@hotmail.com,
+        =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
+Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: Add OV8865 bindings
+ documentation
+Message-ID: <20201030163917.GA3963319@bogus>
+References: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
+ <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1604076018; bh=iTnAhDSLJYvvkLE81Dx9asFDxAY7h5p3Efsn0D0xvdE=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Type;
-        b=hmQQkLAaCClmgcgwOoqitGD2yHR2f6Dc2su2sNBpciD3wBaRxbBVEDhL5sDr+ip0J
-         Aw67E+CfggboNfdwU8SAm+bswX+TmA9Qn8jxihrQGWEGautyq9mavShwq5csiqABrL
-         Om/Zm/K35NAcktVs69PMolCFEMyMG9/E4rLxKqNifO7tCgAK/FvAkJfx9Iawx+xX/e
-         hYJc5sIqBqTM4KZK9GNAERaOXnR7R1WlL/Omze4MjCGCnG9yVQer6VonaznOUJ976F
-         ynvgKN1Fq3L9dt5LMyxhtdMT/hxVp5B2de3vNjfp1pZst7uk/Gftms3LJyVnhm4lv6
-         GfoD/3BoUlZRg==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert device tree bindings of graph to YAML format. Currently graph.txt
-doc is referenced in multiple files and all of these need to use schema
-references. For now graph.txt is updated to refer to graph.yaml.
+On Fri, Oct 23, 2020 at 07:54:04PM +0200, Paul Kocialkowski wrote:
+> This introduces YAML bindings documentation for the OV8865
+> image sensor.
+> 
+> Co-developed-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  .../bindings/media/i2c/ovti,ov8865.yaml       | 124 ++++++++++++++++++
+>  1 file changed, 124 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> new file mode 100644
+> index 000000000000..807f1a94afae
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> @@ -0,0 +1,124 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
----
- Documentation/devicetree/bindings/graph.txt  | 129 +-----------------
- Documentation/devicetree/bindings/graph.yaml | 188 +++++++++++++++++++++++++++
- 2 files changed, 189 insertions(+), 128 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/graph.yaml
+Dual license please. With that,
 
-diff --git a/Documentation/devicetree/bindings/graph.txt b/Documentation/devicetree/bindings/graph.txt
-index 0415e2c..b7818d6 100644
---- a/Documentation/devicetree/bindings/graph.txt
-+++ b/Documentation/devicetree/bindings/graph.txt
-@@ -1,128 +1 @@
--Common bindings for device graphs
--
--General concept
-----------------
--
--The hierarchical organisation of the device tree is well suited to describe
--control flow to devices, but there can be more complex connections between
--devices that work together to form a logical compound device, following an
--arbitrarily complex graph.
--There already is a simple directed graph between devices tree nodes using
--phandle properties pointing to other nodes to describe connections that
--can not be inferred from device tree parent-child relationships. The device
--tree graph bindings described herein abstract more complex devices that can
--have multiple specifiable ports, each of which can be linked to one or more
--ports of other devices.
--
--These common bindings do not contain any information about the direction or
--type of the connections, they just map their existence. Specific properties
--may be described by specialized bindings depending on the type of connection.
--
--To see how this binding applies to video pipelines, for example, see
--Documentation/devicetree/bindings/media/video-interfaces.txt.
--Here the ports describe data interfaces, and the links between them are
--the connecting data buses. A single port with multiple connections can
--correspond to multiple devices being connected to the same physical bus.
--
--Organisation of ports and endpoints
-------------------------------------
--
--Ports are described by child 'port' nodes contained in the device node.
--Each port node contains an 'endpoint' subnode for each remote device port
--connected to this port. If a single port is connected to more than one
--remote device, an 'endpoint' child node must be provided for each link.
--If more than one port is present in a device node or there is more than one
--endpoint at a port, or a port node needs to be associated with a selected
--hardware interface, a common scheme using '#address-cells', '#size-cells'
--and 'reg' properties is used to number the nodes.
--
--device {
--        ...
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        port@0 {
--	        #address-cells = <1>;
--	        #size-cells = <0>;
--		reg = <0>;
--
--                endpoint@0 {
--			reg = <0>;
--			...
--		};
--                endpoint@1 {
--			reg = <1>;
--			...
--		};
--        };
--
--        port@1 {
--		reg = <1>;
--
--		endpoint { ... };
--	};
--};
--
--All 'port' nodes can be grouped under an optional 'ports' node, which
--allows to specify #address-cells, #size-cells properties for the 'port'
--nodes independently from any other child device nodes a device might
--have.
--
--device {
--        ...
--        ports {
--                #address-cells = <1>;
--                #size-cells = <0>;
--
--                port@0 {
--                        ...
--                        endpoint@0 { ... };
--                        endpoint@1 { ... };
--                };
--
--                port@1 { ... };
--        };
--};
--
--Links between endpoints
-------------------------
--
--Each endpoint should contain a 'remote-endpoint' phandle property that points
--to the corresponding endpoint in the port of the remote device. In turn, the
--remote endpoint should contain a 'remote-endpoint' property. If it has one, it
--must not point to anything other than the local endpoint. Two endpoints with
--their 'remote-endpoint' phandles pointing at each other form a link between the
--containing ports.
--
--device-1 {
--        port {
--                device_1_output: endpoint {
--                        remote-endpoint = <&device_2_input>;
--                };
--        };
--};
--
--device-2 {
--        port {
--                device_2_input: endpoint {
--                        remote-endpoint = <&device_1_output>;
--                };
--        };
--};
--
--Required properties
---------------------
--
--If there is more than one 'port' or more than one 'endpoint' node or 'reg'
--property present in the port and/or endpoint nodes then the following
--properties are required in a relevant parent node:
--
-- - #address-cells : number of cells required to define port/endpoint
--                    identifier, should be 1.
-- - #size-cells    : should be zero.
--
--Optional endpoint properties
------------------------------
--
--- remote-endpoint: phandle to an 'endpoint' subnode of a remote device node.
--
-+This file has moved to graph.yaml
-diff --git a/Documentation/devicetree/bindings/graph.yaml b/Documentation/devicetree/bindings/graph.yaml
-new file mode 100644
-index 0000000..33a6908
---- /dev/null
-+++ b/Documentation/devicetree/bindings/graph.yaml
-@@ -0,0 +1,188 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/graph.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Common bindings for device graphs
-+
-+description: |
-+  The hierarchical organisation of the device tree is well suited to describe
-+  control flow to devices, but there can be more complex connections between
-+  devices that work together to form a logical compound device, following an
-+  arbitrarily complex graph.
-+  There already is a simple directed graph between devices tree nodes using
-+  phandle properties pointing to other nodes to describe connections that
-+  can not be inferred from device tree parent-child relationships. The device
-+  tree graph bindings described herein abstract more complex devices that can
-+  have multiple specifiable ports, each of which can be linked to one or more
-+  ports of other devices.
-+
-+  These common bindings do not contain any information about the direction or
-+  type of the connections, they just map their existence. Specific properties
-+  may be described by specialized bindings depending on the type of connection.
-+
-+  To see how this binding applies to video pipelines, for example, see
-+  Documentation/devicetree/bindings/media/video-interfaces.txt.
-+  Here the ports describe data interfaces, and the links between them are
-+  the connecting data buses. A single port with multiple connections can
-+  correspond to multiple devices being connected to the same physical bus.
-+
-+maintainers:
-+  - Philipp Zabel <p.zabel@pengutronix.de>
-+
-+properties:
-+  port:
-+    type: object
-+    description: |
-+      If there is more than one endpoint node or 'reg' property present in
-+      endpoint nodes then '#address-cells' and '#size-cells' properties are
-+      required.
-+
-+    properties:
-+      "#address-cells":
-+          const: 1
-+
-+      "#size-cells":
-+          const: 0
-+
-+      reg:
-+        maxItems: 1
-+
-+    patternProperties:
-+      "^endpoint(@[0-9a-f]+)?$":
-+        type: object
-+        properties:
-+          reg:
-+            maxItems: 1
-+
-+          remote-endpoint:
-+            description: |
-+              phandle to an 'endpoint' subnode of a remote device node.
-+            $ref: /schemas/types.yaml#/definitions/phandle
-+
-+    additionalProperties: false
-+
-+  ports:
-+    type: object
-+    description: |
-+      If there is more than one port node or 'reg' property present in port
-+      nodes then '#address-cells' and '#size-cells' properties are required.
-+      In such cases all port nodes can be grouped under 'ports' independently
-+      from any other child device nodes a device might have.
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      "^port(@[0-9a-f]+)?$":
-+        $ref: "#/properties/port"
-+
-+    additionalProperties: false
-+
-+examples:
-+  # Organisation of ports and endpoints:
-+  #
-+  # Ports are described by child 'port' nodes contained in the device node.
-+  # Each port node contains an 'endpoint' subnode for each remote device port
-+  # connected to this port. If a single port is connected to more than one
-+  # remote device, an 'endpoint' child node must be provided for each link.
-+  # If more than one port is present in a device node or there is more than
-+  # one endpoint at a port, or a port node needs to be associated with a
-+  # selected hardware interface, a common scheme using '#address-cells',
-+  # '#size-cells' and 'reg' properties is used to number the nodes.
-+  - |
-+    device {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        port@0 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            reg = <0>;
-+
-+            endpoint@0 {
-+                reg = <0>;
-+                // ...
-+            };
-+            endpoint@1 {
-+                reg = <1>;
-+                // ...
-+            };
-+        };
-+
-+        port@1 {
-+            reg = <1>;
-+
-+            endpoint {
-+                // ...
-+            };
-+        };
-+    };
-+
-+  # All 'port' nodes can be grouped under an optional 'ports' node, which
-+  # allows to specify #address-cells, #size-cells properties for the 'port'
-+  # nodes independently from any other child device nodes a device might
-+  # have.
-+  - |
-+    device {
-+        // ...
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                reg = <0>;
-+                // ...
-+
-+                endpoint@0 {
-+                    reg = <0>;
-+                    // ...
-+                };
-+                endpoint@1 {
-+                    reg = <1>;
-+                    // ...
-+                };
-+            };
-+
-+            port@1 {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                reg = <1>;
-+                // ...
-+            };
-+        };
-+    };
-+
-+  # Links between endpoints:
-+  #
-+  # Each endpoint should contain a 'remote-endpoint' phandle property that
-+  # points to the corresponding endpoint in the port of the remote device.
-+  # In turn, the remote endpoint should contain a 'remote-endpoint' property.
-+  # If it has one, it must not point to anything other than the local endpoint.
-+  # Two endpoints with their 'remote-endpoint' phandles pointing at each other
-+  # form a link between the containing ports.
-+  - |
-+    device-1 {
-+        port {
-+            device_1_output: endpoint {
-+                remote-endpoint = <&device_2_input>;
-+            };
-+        };
-+    };
-+
-+    device-2 {
-+        port {
-+            device_2_input: endpoint {
-+                remote-endpoint = <&device_1_output>;
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.7.4
+Reviewed-by: Rob Herring <robh@kernel.org>
 
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8865.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OV8865 Image Sensor Device Tree Bindings
+> +
+> +maintainers:
+> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov8865
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: EXTCLK Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: extclk
+> +
+> +  dvdd-supply:
+> +    description: Digital Domain Power Supply
+> +
+> +  avdd-supply:
+> +    description: Analog Domain Power Supply (internal AVDD is used if missing)
+> +
+> +  dovdd-supply:
+> +    description: I/O Domain Power Supply
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description: Power Down Pin GPIO Control (active low)
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: Reset Pin GPIO Control (active low)
+> +
+> +  port:
+> +    type: object
+> +    description: Input port, connect to a MIPI CSI-2 receiver
+> +
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +
+> +        properties:
+> +          remote-endpoint: true
+> +
+> +          bus-type:
+> +            const: 4
+> +
+> +          clock-lanes:
+> +            maxItems: 1
+> +
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 4
+> +
+> +        required:
+> +          - bus-type
+> +          - data-lanes
+> +          - remote-endpoint
+> +
+> +        additionalProperties: false
+> +
+> +    required:
+> +      - endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - dvdd-supply
+> +  - dovdd-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sun8i-a83t-ccu.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c2 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ov8865: camera@36 {
+> +            compatible = "ovti,ov8865";
+> +            reg = <0x36>;
+> +
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&csi_mclk_pin>;
+> +
+> +            clocks = <&ccu CLK_CSI_MCLK>;
+> +            clock-names = "extclk";
+> +
+> +            avdd-supply = <&reg_ov8865_avdd>;
+> +            dovdd-supply = <&reg_ov8865_dovdd>;
+> +            dvdd-supply = <&reg_ov8865_dvdd>;
+> +
+> +            powerdown-gpios = <&pio 4 17 GPIO_ACTIVE_LOW>; /* PE17 */
+> +            reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
+> +
+> +            port {
+> +                ov8865_out_mipi_csi2: endpoint {
+> +                    bus-type = <4>; /* MIPI CSI-2 D-PHY */
+> +                    clock-lanes = <0>;
+> +                    data-lanes = <1 2 3 4>;
+> +
+> +                    remote-endpoint = <&mipi_csi2_in_ov8865>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.28.0
+> 
