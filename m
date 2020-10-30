@@ -2,90 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EC732A0C53
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 18:20:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D30BB2A0C69
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 18:27:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726272AbgJ3RUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 13:20:03 -0400
-Received: from mailoutvs12.siol.net ([185.57.226.203]:43474 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725863AbgJ3RUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 13:20:02 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 896CB52783A;
-        Fri, 30 Oct 2020 18:19:59 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id SkOpVqWXThhu; Fri, 30 Oct 2020 18:19:59 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 4348E52783B;
-        Fri, 30 Oct 2020 18:19:59 +0100 (CET)
-Received: from kista.localdomain (cpe1-5-97.cable.triera.net [213.161.5.97])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id A2607527839;
-        Fri, 30 Oct 2020 18:19:58 +0100 (CET)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH v2] arm64: dts: allwinner: h6: PineH64 model B: Add wifi
-Date:   Fri, 30 Oct 2020 18:25:30 +0100
-Message-Id: <20201030172530.1096394-1-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.29.1
+        id S1727096AbgJ3R1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 13:27:31 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:33511 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726297AbgJ3R1b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 13:27:31 -0400
+X-Originating-IP: 91.224.148.103
+Received: from localhost.localdomain (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id B3F111BF208;
+        Fri, 30 Oct 2020 17:27:26 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Kathiravan T <kathirav@codeaurora.org>, agross@kernel.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, sivaprak@codeaurora.org, peter.ujfalusi@ti.com,
+        boris.brezillon@collabora.com, linux-arm-msm@vger.kernel.org,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] mtd: rawnand: qcom: Support for IPQ6018 QPIC NAND controller
+Date:   Fri, 30 Oct 2020 18:27:25 +0100
+Message-Id: <20201030172725.29166-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <1602566124-13456-3-git-send-email-kathirav@codeaurora.org>
+References: 
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: 0704639af3af3599712d2a2ef8772116d6b75b98
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PineH64 model B contains RTL8723CS wifi+bt combo module.
+On Tue, 2020-10-13 at 05:15:23 UTC, Kathiravan T wrote:
+> Add the compatible string for IPQ6018 QPIC NAND controller
+> version 1.5.0. It's properties are same as IPQ8074, so reuse
+> the same.
+> 
+> Signed-off-by: Kathiravan T <kathirav@codeaurora.org>
 
-Since bluetooth support is not yet squared away, only wifi is enabled
-for now.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
-Changes from v1:
-- added Chen-Yu tag
-- added vqmmc-supply
-
- .../dts/allwinner/sun50i-h6-pine-h64-model-b.dts  | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts=
- b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-index f4c8966a6497..7fea1e4e2d49 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-@@ -10,6 +10,12 @@ / {
- 	compatible =3D "pine64,pine-h64-model-b", "allwinner,sun50i-h6";
-=20
- 	/delete-node/ reg_gmac_3v3;
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible =3D "mmc-pwrseq-simple";
-+		reset-gpios =3D <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
-+		post-power-on-delay-ms =3D <200>;
-+	};
- };
-=20
- &hdmi_connector {
-@@ -19,3 +25,12 @@ &hdmi_connector {
- &emac {
- 	phy-supply =3D <&reg_aldo2>;
- };
-+
-+&mmc1 {
-+	vmmc-supply =3D <&reg_cldo3>;
-+	vqmmc-supply =3D <&reg_aldo1>;
-+	mmc-pwrseq =3D <&wifi_pwrseq>;
-+	bus-width =3D <4>;
-+	non-removable;
-+	status =3D "okay";
-+};
---=20
-2.29.1
-
+Miquel
