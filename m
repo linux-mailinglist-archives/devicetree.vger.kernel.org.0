@@ -2,135 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5C582A03EE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:17:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 391AC2A03F7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 12:19:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726506AbgJ3LR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 07:17:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32984 "EHLO
+        id S1726284AbgJ3LTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 07:19:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726285AbgJ3LRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:17:55 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61090C0613D2
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:17:55 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id t14so4943423pgg.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:17:55 -0700 (PDT)
+        with ESMTP id S1725888AbgJ3LTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 07:19:37 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCA8C0613D2
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:19:37 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id y20so7120808iod.5
+        for <devicetree@vger.kernel.org>; Fri, 30 Oct 2020 04:19:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=8tZSXCuai/EqS9pNCPlUSIinPcL9GxCzYC4l1okgVPQ=;
-        b=wUWz7M4hpuamhegnqQDtZQqVCiH11prS5lFKiBuxhAhajPr82ZFNHxtRnrIbtg1ixw
-         XwerjBJvQVH6OpV9k+ShbAJAjrkcwGO1a3VNFkhoHd3FvFrZOYhwXEV4kxsvkd1/nhd+
-         0lrOyoWeCzLk9RWSUMu2xmtOIqHATk1MEwyDPlD38QTnZRs3DXCda/mLpRVnaILdVj47
-         p6XLrV1Vv2PHmEPP4TPB0dLpDI3wEhV2ZddFOAUAfGzZO/9VdCSKC/8vG3xWlVtp2y2U
-         O8j8VZrH1rLduK4Lr0ha0J0R9hPOHULxSe/cv2sa9NIVU4NTcKpItFGqmjh6eOkq/2Lg
-         dFfw==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5RA/dTcPLcLSjFsM4pTf8628QTB+ljlVPvTwaOAvSI8=;
+        b=vPF6leW+6gfiBr1s7qfSqOlKqUhfUMZVxmg71BGMeoJBHzeltWCTbYEuXa0oT2dpud
+         wFpsNu4u69HfrJAKI0EOaTm6zsS8jIGH3m+9HVCNWrLlCCPoSjJqD2wE8IxwVeOWCTT/
+         s9zIz/l9hy6s0sd/GXp4XfEvSvKGZqcAbjIb+9V91QPh/+m5tmqwRgj69T+okuTdts7j
+         f8Rb2Xhxxuv3wU2FnzTR+xffJLffig2bPxtSDt6/d+Kun2cCrXvDLDclwQ1mGchUWUEe
+         kh7V2O04DMTgLQ+QNYBQpIuNOLClV0FN3U+CjlNZaGC2yFYQ9Oo0c77oTqWY7rM+3aR7
+         b19w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8tZSXCuai/EqS9pNCPlUSIinPcL9GxCzYC4l1okgVPQ=;
-        b=pyb9be691epGJTViqiAy1PSEoRPHw3K7UqirMBFK1lQFvDEIJPGbICOSxZAZDT6tpp
-         Kh5COPZ3VhTISfja0Boh2jb+kYcFVrdxNFms5AZXH/5mcqFM1OmLQ9T8HtHViksIQuaQ
-         fP1qxCZOaqEWAKzW9u1LtsbUTm2cPlhyD/oH8sEk3/gZG5okrGdV95Vs8IjLqvhZih8B
-         2qbY8g8RfXWywv4Txkao2DAmGdPtGpWoi+U+uiYUnZBaroewKvBcGAgnsfYEE2HRNeE1
-         BZsaa8ZyZ+u1/Da/66/IeDgQOQtKUkSqM2lNfIkAM57r8zEC5ruJs0B9Z1xa4JV88Lmd
-         h4PA==
-X-Gm-Message-State: AOAM530EWrmMkmpx1q3Uozaesq32mhfaDfUCN088UwIhjqdWCyV0t0Yz
-        dbt/WpVY7v2FiJG3L2YDugONLA==
-X-Google-Smtp-Source: ABdhPJxROwE5uyWNQcOF0en2iekQlGHuODh+GSES+JiJXkHRHavcgpIqGWLTojNoc4qG9KYuzZ55WA==
-X-Received: by 2002:a63:ee02:: with SMTP id e2mr1653806pgi.287.1604056674886;
-        Fri, 30 Oct 2020 04:17:54 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id ca5sm3198225pjb.27.2020.10.30.04.17.53
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Oct 2020 04:17:54 -0700 (PDT)
-Date:   Fri, 30 Oct 2020 16:47:51 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     vincent.guittot@linaro.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
-        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com
-Subject: Re: [PATCH 0/4] Add sustainable OPP concept
-Message-ID: <20201030111751.i7zdsi7ruzmnyxk6@vireshk-i7>
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201029074057.6ugmwyzna52x3oli@vireshk-i7>
- <20201029075356.rruej6jlerhfa4oy@vireshk-i7>
- <228fa1b3-bbd3-6941-fd4b-06581016d839@arm.com>
- <20201030082937.xgjmko2ohwhkt6f5@vireshk-i7>
- <a0a6db69-fc3e-c39f-7586-5ac3227b746e@arm.com>
- <20201030095248.abej6h5wphud2ihb@vireshk-i7>
- <757fe3b1-745f-2656-fe21-c7b39f123a25@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5RA/dTcPLcLSjFsM4pTf8628QTB+ljlVPvTwaOAvSI8=;
+        b=bm6ZeszkVuc4o6sD9MGF02IT/s/I0BxMtHCRD7VNgRnlxBzDDRo+jcg2mj8eBV17FQ
+         EaJG7neyCHyY7HBVQLNXArQ/e9zktRecs66Kq64+TlB2J+B+tJ7hPZCW3QPikZw7mMXL
+         wzEXKcVMbkgfv5GOJz89knajKCMEEmT30/ZOo6z9NLyKnbyWF8e1NkSs6JYlbicaSadW
+         DQowYqCURh73Hmljj/swa8Kl8pxVoSZguBFl7SyQ998sX5Bn6EUjj7vylMEgSpCywYsF
+         kbS97MN+B173sYVpw9KFYyr1sHbbmKYRXTWBZk3xlLqzMwDdca6MulG316aoBfKfBoJY
+         NlLg==
+X-Gm-Message-State: AOAM530vXrADmdp2ScgCihi7Am1H6tWNtVs88llNI1XVRM9sgrO5KD0N
+        vFk8aU988RFvjv7e9CYdzm3QFfLM+QIT5RUgbo5Qbw==
+X-Google-Smtp-Source: ABdhPJy/oufOebW5MWlnuf1Ro28TfvpmK+4mcN6r8qxQ28XDMOnf4ekL4Po96CPF9erK2pQu3QvP3fFFwmkHIFBVjmc=
+X-Received: by 2002:a5e:9244:: with SMTP id z4mr1374790iop.53.1604056776404;
+ Fri, 30 Oct 2020 04:19:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <757fe3b1-745f-2656-fe21-c7b39f123a25@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20201030075724.1616766-1-ajye_huang@compal.corp-partner.google.com>
+ <20201030075724.1616766-3-ajye_huang@compal.corp-partner.google.com>
+ <CA+Px+wXPRg7aDU5+vr6R_BxuFfhuDeG3iEQeAUKWNtX8YmVC1Q@mail.gmail.com> <CALprXBZ+NmR8Y4sMkh4Y-N_FG+rGEOhUBVTKXRXNFp8H+f0btw@mail.gmail.com>
+In-Reply-To: <CALprXBZ+NmR8Y4sMkh4Y-N_FG+rGEOhUBVTKXRXNFp8H+f0btw@mail.gmail.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Fri, 30 Oct 2020 19:19:25 +0800
+Message-ID: <CA+Px+wWouXWS2F+Bqs3MkJxCuXORhpXcUF5ZuSHo6exprBF4hg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
+To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Cc:     Ajye Huang <ajye.huang@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-10-20, 10:56, Lukasz Luba wrote:
-> IPA tries to do that, even dynamically when e.g. GPU is supper busy
-> in 3D games (~2000W) or almost idle showing 2D home screen.
-> It tries to find highest 'sustainable' frequencies for the devices,
-> at that various workloads and temp. But it needs some coefficients to
-> start, which have big impact on the algorithm. It could slow down IPA a
-> lot, when those coefficients are calculated based on lowest OPPs.
+On Fri, Oct 30, 2020 at 6:55 PM Ajye Huang
+<ajye_huang@compal.corp-partner.google.com> wrote:
+> But dmic_get() will need dmic_switch, should i keep dmic_switch?
 
-I see. So when you say it slows down IPA, what does that really mean ?
-IPA isn't performing that accurately during the initial period of
-booting (any time estimate here) ? Does it work fine after a time
-duration? Or will it suffer for ever ?
-
-And maybe you shouldn't start with the lowest OPPs while you calculate
-these coefficients dynamically ? Maybe start from the middle ? As the
-sustainable OPP would be something there only or maybe a bit higher
-only. But yeah, I don't have any idea about how those coefficients are
-calculated so this idea can be simply ignored as well :)
-
-> My backup plan was to add a flag into EM em_perf_state, extend SCMI perf
-> exposing the 'sustained_freq_khz' to scmi-cpufreq, which would set that
-> field after registering EM. IPA depends on EM, so should be OK.
-
-I think at this point (considering the limited number of users (only
-IPA) and providers (only SCMI)), it would be better that way only
-instead of updating the OPP framework. Of course we can revisit that
-if we ever feel that we need a better placeholder for it.
-
-> > So only SCMI based platforms will be able to use this stuff ? That's
-> > very limited, isn't it ? I think we should still try to make it better
-> > for everyone by making the software smarter. It has so much data, the
-> > OPPs, the power it will consume (based on microvolt property?), the
-> > heat we produce from that (from thermal framework), etc. Perhaps
-> > building this information continuously at runtime based on when and
-> > how we hit the trip points ? So we know which is the right frequency
-> > where we can refrain from hitting the trip points.
-> 
-> IPA works in this way.
-
-Nice, that's what I thought as well but then got a bit confused with
-your patchset.
-
-> > But may be I am asking too much :(
-> > 
-> 
-> When you asked for user of this, I gave you instantly. This is one is
-> more difficult. I am still not there with IPA tests in LISA. I have some
-> out-of-tree kernel driver for testing, which also need polishing before
-> can be used with LISA. Then proper workloads with results processing.
-> EM for devfreq cooling devices. Then decent 'hot' board running
-> preferably mainline kernel.
-> What you requested is on my list, but it needs more work, which
-> won't be ready over night.
-
-I can understand what you are trying to do here. And this surely
-requires a lot of effort.
-
--- 
-viresh
+I see.  I overlooked it.  You can keep the dmic_switch for this
+purpose or just call gpiod_get_value_cansleep().
