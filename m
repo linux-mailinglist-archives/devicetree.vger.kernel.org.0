@@ -2,222 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D2FF2A0E9C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 20:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E70F2A0EBB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Oct 2020 20:35:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727637AbgJ3TYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Oct 2020 15:24:39 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:41770 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727433AbgJ3TYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 15:24:38 -0400
-Received: by mail-ot1-f68.google.com with SMTP id n15so6544948otl.8;
-        Fri, 30 Oct 2020 12:24:37 -0700 (PDT)
+        id S1727441AbgJ3TfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Oct 2020 15:35:13 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:37103 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727430AbgJ3Tea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Oct 2020 15:34:30 -0400
+Received: by mail-ot1-f67.google.com with SMTP id m22so6592318ots.4;
+        Fri, 30 Oct 2020 12:34:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7CC8EZYA7EKd+jMRhRgrtEId3HKWwKTjiQQx7JgP/lo=;
-        b=kl/6uievJqaxYyvBbwJIjUQY9kvWXV7YaXayGPXi8/IIkrOARxU9KGABqMaxEkKuAz
-         WzcoBl8NCde/gNR6dh5+I7QVuoegVTsu/b9OgsLedxg9GJRQ4YP2657JV87EWlwwIxuY
-         o/W06uSBilIhFIlMIdXF2J9UkoeSrzK4Z3PD0wYlt6hUJejE0nEBhgpPYKvkZJc2OsUk
-         hrYO0wj9Frymd14yWitqDyuxBnKJ+R8hdRvBau8dshINFOW+DrIStMMvzfe1+dP1P0KY
-         DKaRtSiIce1kQUP55uNc1h8264dBaWz4C/dbUDK7Ud+iA4Lr0JRM80v61L8sfiiz9+bF
-         78qQ==
-X-Gm-Message-State: AOAM530dx0iSTWWIS0QhlWlwqw2CBp9rf7vUqhHutgV14MFxnXRytfHv
-        ljFr4fP2LQEZg3T89BY3dgqJ8MvMeg==
-X-Google-Smtp-Source: ABdhPJxREACOlU1vLSVvMCVJes6ku9YB2JWJ0HahOwOj1kvJVybVhMN/nCWGMDq0g0Q6+sDwp5nRsg==
-X-Received: by 2002:a9d:2905:: with SMTP id d5mr2730120otb.343.1604085877153;
-        Fri, 30 Oct 2020 12:24:37 -0700 (PDT)
+        bh=I+UOeLqddKwm96yK8/kkxVHqI4jCc+oL+/3b1gAK09w=;
+        b=Pv2i//XFiH0QojFcwx/lwnGdA8vdgfB2oZjIzDWyzsNHPhIlvK8bX5/I4DpuMfOtwT
+         r3xRLfWBOTQZQK/htjKW5OThJ8s44dVLlFjsP5xmDU54qWnG1NsS/+brhu0IMZXbLedj
+         /wajdFgDlsKuE9GOcYd+K4xXrYPd0kDKd/0aJZivXLz6pwAXBu34j1aUcu5Of1HTl6k0
+         llzsKNDO3ZANz8wPv/s0o3n1dCNmA998w9E0HKAaOyq1AuUOpkbPYPpBHb39AMR9tEX3
+         j5l3EorItGHypWudx+dDOfINPLRAF1iArMy3JGVmQSAh7/4mNxA2YR19Lf3wi0G7b7S5
+         gMVA==
+X-Gm-Message-State: AOAM531L/OBIW19NfBb0071MoRPaa4g6CryL1KqC1k2JkTodwWYlA7c7
+        6rKx0qGptk3bY5J6J1gxZg==
+X-Google-Smtp-Source: ABdhPJzrbgSdZT7jNBJMAOvryFhc8QxGC4cCiqDn1uoYbML+ca7yGo6EtGBIzCnl2qxPgzky7V80fQ==
+X-Received: by 2002:a9d:53cc:: with SMTP id i12mr2777619oth.215.1604086469813;
+        Fri, 30 Oct 2020 12:34:29 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i12sm1659842oon.26.2020.10.30.12.24.36
+        by smtp.gmail.com with ESMTPSA id b21sm1442029ots.30.2020.10.30.12.34.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2020 12:24:36 -0700 (PDT)
-Received: (nullmailer pid 4181835 invoked by uid 1000);
-        Fri, 30 Oct 2020 19:24:35 -0000
-Date:   Fri, 30 Oct 2020 14:24:35 -0500
+        Fri, 30 Oct 2020 12:34:28 -0700 (PDT)
+Received: (nullmailer pid 913 invoked by uid 1000);
+        Fri, 30 Oct 2020 19:34:27 -0000
+Date:   Fri, 30 Oct 2020 14:34:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SDX55 pinctrl
- bindings
-Message-ID: <20201030192435.GA4179566@bogus>
-References: <20201028083017.611810-1-vkoul@kernel.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        vireshk@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
+        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com
+Subject: Re: [PATCH 1/4] dt-bindings: opp: Introduce opp-sustainable bindings
+Message-ID: <20201030193427.GA4186428@bogus>
+References: <20201028140847.1018-1-lukasz.luba@arm.com>
+ <20201028140847.1018-2-lukasz.luba@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201028083017.611810-1-vkoul@kernel.org>
+In-Reply-To: <20201028140847.1018-2-lukasz.luba@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 28, 2020 at 02:00:16PM +0530, Vinod Koul wrote:
-> Add device tree binding Documentation details for Qualcomm SDX55
-> pinctrl driver.
+On Wed, Oct 28, 2020 at 02:08:44PM +0000, Lukasz Luba wrote:
+> Add opp-sustainable as an additional property in the OPP node to describe
+> the sustainable performance level of the device. This will help to
+> estimate the sustainable performance of the whole system.
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
 > ---
->  .../bindings/pinctrl/qcom,sdx55-pinctrl.yaml  | 144 ++++++++++++++++++
->  1 file changed, 144 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml
+>  Documentation/devicetree/bindings/opp/opp.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..2dd045a2fb03
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml
-> @@ -0,0 +1,144 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sdx55-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> index 9847dfeeffcb..cd01028de305 100644
+> --- a/Documentation/devicetree/bindings/opp/opp.txt
+> +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> @@ -154,6 +154,10 @@ Optional properties:
+>  - opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
+>    in the table have this, the OPP with highest opp-hz will be used.
+>  
+> +- opp-sustainable: Marks the OPP as sustainable. This property can be used for
+> +  estimating sustainable performance of the whole system. If multiple OPPs in
+> +  the table have this, the OPP with highest opp-hz will be used.
 > +
-> +title: Qualcomm Technologies, Inc. SDX55 TLMM block
-> +
-> +maintainers:
-> +  - Vinod Koul <vkoul@kernel.org>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  SDX55 platform.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sdx55-pinctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: Specifies the TLMM summary IRQ
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    description:
-> +      Specifies the PIN numbers and Flags, as defined in defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  wakeup-parent:
-> +    maxItems: 1
-> +
-> +#PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '^.*$':
-> +    if:
-> +      type: object
-> +    then:
 
-For new bindings, just name the nodes '-pins$' and forget this hack.
+Isn't this just the inverse of the turbo? or boost? flag we already 
+have? 
 
-> +      properties:
-> +        pins:
-> +          description:
-> +            List of gpio pins affected by the properties specified in this
-> +            subnode.
-> +          items:
-> +            oneOf:
-> +              - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9])$"
-> +              - enum: [ ufs_reset, sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data ]
-> +          minItems: 1
-> +          maxItems: 36
-> +
-> +        function:
-> +          description:
-> +            Specify the alternative function to be configured for the specified
-> +            pins.
-> +
-> +          enum: [ adsp_ext, atest, audio_ref, bimc_dte0, bimc_dte1, blsp_i2c1,
-> +                  blsp_i2c2, blsp_i2c3, blsp_i2c4, blsp_spi1, blsp_spi2,
-> +                  blsp_spi3, blsp_spi4, blsp_uart1, blsp_uart2, blsp_uart3,
-> +                  blsp_uart4, char_exec, coex_uart, coex_uart2, cri_trng,
-> +                  cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0,
-> +                  ebi0_wrcdc, ebi2_a, ebi2_lcd, emac_gcc0, emac_gcc1,
-> +                  emac_pps0, emac_pps1, ext_dbg, gcc_gp1, gcc_gp2, gcc_gp3,
-> +                  gcc_plltest, gpio, i2s_mclk, jitter_bist, ldo_en, ldo_update,
-> +                  mgpi_clk, m_voc, native_char, native_char0, native_char1,
-> +                  native_char2, native_char3, native_tsens, native_tsense,
-> +                  nav_gpio, pa_indicator, pcie_clkreq, pci_e, pll_bist, pll_ref,
-> +                  pll_test, pri_mi2s, prng_rosc, qdss_cti, qdss_gpio,
-> +                  qdss_gpio0, qdss_gpio1, qdss_gpio2, qdss_gpio3, qdss_gpio4,
-> +                  qdss_gpio5, qdss_gpio6, qdss_gpio7, qdss_gpio8, qdss_gpio9,
-> +                  qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13,
-> +                  qdss_gpio14, qdss_gpio15, qdss_stm0, qdss_stm1, qdss_stm2,
-> +                  qdss_stm3, qdss_stm4, qdss_stm5, qdss_stm6, qdss_stm7,
-> +                  qdss_stm8, qdss_stm9, qdss_stm10, qdss_stm11, qdss_stm12,
-> +                  qdss_stm13, qdss_stm14, qdss_stm15, qdss_stm16, qdss_stm17,
-> +                  qdss_stm18, qdss_stm19, qdss_stm20, qdss_stm21, qdss_stm22,
-> +                  qdss_stm23, qdss_stm24, qdss_stm25, qdss_stm26, qdss_stm27,
-> +                  qdss_stm28, qdss_stm29, qdss_stm30, qdss_stm31, qlink0_en,
-> +                  qlink0_req, qlink0_wmss, qlink1_en, qlink1_req, qlink1_wmss,
-> +                  spmi_coex, sec_mi2s, spmi_vgi, tgu_ch0, uim1_clk, uim1_data,
-> +                  uim1_present, uim1_reset, uim2_clk, uim2_data, uim2_present,
-> +                  uim2_reset, usb2phy_ac, vsense_trigger ]
-> +
-> +        drive-strength:
-> +          enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +          default: 2
-> +          description:
-> +            Selects the drive strength for the specified pins, in mA.
-> +
-> +        bias-pull-down: true
-> +
-> +        bias-pull-up: true
-> +
-> +        bias-disable: true
-> +
-> +        output-high: true
-> +
-> +        output-low: true
-> +
-> +      required:
-> +        - pins
-> +        - function
-> +
-> +      additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        pinctrl@1f00000 {
-> +                compatible = "qcom,sdx55-pinctrl";
-> +                reg = <0x0f100000 0x300000>;
-> +                interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
-> +                #interrupt-cells = <2>;
-> +                interrupt-controller;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +        };
-> +
-> +...
-> -- 
-> 2.26.2
-> 
+Couldn't this be learned? I ran at this frequency and then overheated. 
+That could be dependent on ambient temperatures or dust build up on 
+fans/heatsink.
+
+Rob
