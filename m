@@ -2,130 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3805F2A1745
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 13:18:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C0AB2A174C
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 13:22:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727217AbgJaMRx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 31 Oct 2020 08:17:53 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:40829 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726935AbgJaMRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 08:17:53 -0400
-Received: by mail-wm1-f65.google.com with SMTP id k18so5173096wmj.5;
-        Sat, 31 Oct 2020 05:17:51 -0700 (PDT)
+        id S1727026AbgJaMWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 08:22:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39376 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726935AbgJaMWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 08:22:50 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAB8DC0613D5
+        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 05:22:49 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id h62so350037wme.3
+        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 05:22:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PiF25b5PCJfd/BAzjQvGl1LEq0FTtKw8ngl/14Foe/w=;
+        b=Qtj9VvnAgzcPSOjrplADKHq7BZpTUMA2EqUZwu3fpf6y6Kn6wXm2KCjIfQaPykYjve
+         XFKtAimoB7w1bIuWDz59QphZm6+6tsEKhG4ixmUfFRABUt5GW83ct+pNgJO3x9FTnoq/
+         Jk9zomP+2AAbjiVuXBQpUkna1YiysVfyO5WamymsYvpZIO7e0rO302vF/7EzYoJ33Sm3
+         4f0ynUDFdroEvP0T8F/d5taU6Etw9jLcHOdNERojm8bqlp5vTNhqXY9Uyp3UAbRddK6H
+         lPdPrFC6TLdHDTVWt+f8pe4QVJjgChHeYBvCB1KMxp8dZgCSA1Y4XuvC44d3ynJzh/Nw
+         CYVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=WKzF1aaYbnVmrdWhOCJIvuCVQXHEwFndydQ7LCQLM48=;
-        b=uMrXN3jhJacu5R/EzUuTLunep6fgZSHIlfPz/e7IPwkaCwsQjQJmA3ZEHUXd8XkXF1
-         Nd53PpnRSVmBCkO4PhrsiJ2r9pDo/e4voDtvB5f8dZp/VWNf6//M5r7m+q/fyLADDTv9
-         vWpllHbmDrXDE7WgHPS/6Y00JjYa0CqYb0b0asvZnUE1jW4fv4GkNLi79rHDE57mQjZh
-         /vBcaj+TUIlVS1A5/aZwTxT4F4p/6dGVpazggZiDPTAE9zzdvBX7xslRLWvUAdW3V/t9
-         sT6MzVvuPQsqBQpvStpxm2g+wgtk9Wpd9aRdWvY4jDrufPWmQkj1ySPCkgoZBXJp7OJr
-         ZHcQ==
-X-Gm-Message-State: AOAM530y3wsuLAaiV2zrxzcb4q2C0ltIUo/p2X986SWmOOuk9e15sdks
-        cjYEL6kSVInr2IVKtEj+f426W+WcGlXzGg==
-X-Google-Smtp-Source: ABdhPJxtVxlOWJenfMblp90f/+WbEdzV8cTky1eQNG/79J3aKlrJViN3Ma99nExe5hJCGVj0D/9hNw==
-X-Received: by 2002:a1c:4b0c:: with SMTP id y12mr2090447wma.91.1604146670479;
-        Sat, 31 Oct 2020 05:17:50 -0700 (PDT)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id r18sm15981833wrj.50.2020.10.31.05.17.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Oct 2020 05:17:49 -0700 (PDT)
-Date:   Sat, 31 Oct 2020 13:17:47 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     georgi.djakov@linaro.org, cw00.choi@samsung.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        a.swigon@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 2/6] interconnect: Add generic interconnect driver for
- Exynos SoCs
-Message-ID: <20201031121747.GB9399@kozik-lap>
-References: <20201030125149.8227-1-s.nawrocki@samsung.com>
- <CGME20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9@eucas1p2.samsung.com>
- <20201030125149.8227-3-s.nawrocki@samsung.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PiF25b5PCJfd/BAzjQvGl1LEq0FTtKw8ngl/14Foe/w=;
+        b=PMcqc8tR/f/hEp1vYsAyQ0kg7CkJ2kRFml/ldteborlq6P/XEd7XNgsj/cQbIMfxCi
+         uITxG4hDc+XgN2ZDkUOYLRryGTxrnNBi94CTI5lmPvLaTgrsOgAM5POsSRTg5QfjTdzN
+         SasFG/aLme+KUt58K/VIMTreDmgyOhpCwCLqP571obrHdbCEN3/10Cu6LPj+E73D2+5C
+         K6715x6BoiidtzAtJdP2axP1riqQerL8ZSCUO9KcKfHcwBdJCSq0oQO76TB9K6yQfXaL
+         2LBiR+DuACLv5D+Zu2SzFjZP6sU30uubuLM+2ZwvVi1binlaV4j0TbOR/EAUZtNgJ4AR
+         2znQ==
+X-Gm-Message-State: AOAM5311Rt2gBD3QU2OMNGKXboZ9bysxd/NQ7+VNXjnxvRFbejEtAuNU
+        qBhFbJGlszgS7E9PzyPZ2yA=
+X-Google-Smtp-Source: ABdhPJy2q4BsPuRDSa4SAcgWYBhtAMZGyrDltJl41dCHf9gDGr1QRyKpplxxEi6boUKeqLX8mFpckw==
+X-Received: by 2002:a1c:ddd7:: with SMTP id u206mr7274409wmg.27.1604146968463;
+        Sat, 31 Oct 2020 05:22:48 -0700 (PDT)
+Received: from localhost.localdomain (14.red-83-46-194.dynamicip.rima-tde.net. [83.46.194.14])
+        by smtp.gmail.com with ESMTPSA id f7sm15299199wrx.64.2020.10.31.05.22.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 31 Oct 2020 05:22:47 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     kishon@ti.com
+Cc:     vkoul@kernel.org, robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, devel@driverdev.osuosl.org,
+        neil@brown.name
+Subject: [PATCH v4 0/4]  MT7621 PCIe PHY
+Date:   Sat, 31 Oct 2020 13:22:42 +0100
+Message-Id: <20201031122246.16497-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201030125149.8227-3-s.nawrocki@samsung.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 01:51:45PM +0100, Sylwester Nawrocki wrote:
-> This patch adds a generic interconnect driver for Exynos SoCs in order
-> to provide interconnect functionality for each "samsung,exynos-bus"
-> compatible device.
-> 
-> The SoC topology is a graph (or more specifically, a tree) and its
-> edges are specified using the 'samsung,interconnect-parent' in the
-> DT. Due to unspecified relative probing order, -EPROBE_DEFER may be
-> propagated to ensure that the parent is probed before its children.
-> 
-> Each bus is now an interconnect provider and an interconnect node as
-> well (cf. Documentation/interconnect/interconnect.rst), i.e. every bus
-> registers itself as a node. Node IDs are not hardcoded but rather
-> assigned dynamically at runtime. This approach allows for using this
-> driver with various Exynos SoCs.
-> 
-> Frequencies requested via the interconnect API for a given node are
-> propagated to devfreq using dev_pm_qos_update_request(). Please note
-> that it is not an error when CONFIG_INTERCONNECT is 'n', in which
-> case all interconnect API functions are no-op.
-> 
-> The bus-width DT property is to determine the interconnect data
-> width and traslate requested bandwidth to clock frequency for each
-> bus.
-> 
-> Signed-off-by: Artur Świgoń <a.swigon@samsung.com>
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> ---
-> Changes for v7:
->  - adjusted to the DT property changes: "interconnects" instead
->    of "samsung,interconnect-parent", "samsung,data-clk-ratio"
->    instead of "bus-width",
->  - adaptation to of_icc_get_from_provider() function changes
->    in v5.10-rc1.
-> 
-> Changes for v6:
->  - corrected of_node dereferencing in exynos_icc_get_parent()
->    function,
->  - corrected initialization of icc_node->name so as to avoid
->    direct of_node->name dereferencing,
->  - added parsing of bus-width DT property.
-> 
-> Changes for v5:
->  - adjust to renamed exynos,interconnect-parent-node property,
->  - use automatically generated platform device id as the interconect
->    node id instead of a now unavailable devfreq->id field,
->  - add icc_ prefix to some variables to make the code more self-commenting,
->  - use icc_nodes_remove() instead of icc_node_del() + icc_node_destroy(),
->  - adjust to exynos,interconnect-parent-node property rename to
->    samsung,interconnect-parent,
->  - converted to a separate platform driver in drivers/interconnect.
-> 
-> ---
->  drivers/interconnect/Kconfig         |   1 +
->  drivers/interconnect/Makefile        |   1 +
->  drivers/interconnect/exynos/Kconfig  |   6 ++
->  drivers/interconnect/exynos/Makefile |   4 +
->  drivers/interconnect/exynos/exynos.c | 198 +++++++++++++++++++++++++++++++++++
+This series adds support for the PCIe PHY found in the Mediatek
+MT7621 SoC.
 
-How about naming the directory as "samsung"? I don't expect interconnect
-drivers for the old Samsung S3C or S5P platforms, but it would be
-consisteny with other names (memory, clk, pinctrl).
+This is the first attempt to get feedback of what is missing in
+this driver to be promoted from staging.
 
-How about adding separate maintainers entry for the driver with you and
-Artur (if he still works on this)?
+There is also a 'mt7621-pci' driver which is the controller part
+which is still in staging and is a client of this phy.
+
+Both drivers have been tested together in a gnubee1 board.
+
+This series are rebased on the top of linux-next:
+commit 4e78c578cb98 ("Add linux-next specific files for 20201030")
+
+Changes in v4:
+    - Bindings moved from txt to yaml so previous Rob's Reviewed-by
+      is not in the new patch with the yaml file.
+    - 'phy-cells' property means now if phy is dual-ported.
+    - Avoid custom 'xlate' function and properly set registers
+      when the phy is dual ported.
+    - Add use of 'builtin_platform_driver'.
+    - Added a patch including myself as maintainer in the
+      MAINTAINERS file.
+    - Add a patch removing patch from staging to make easier
+      the complete inclusion and avoid possible problems might
+      appear in 'linux-next' if the series are included.
+
+Changes in v3:
+    - Recollect Rob's Reviewed-by of bindings.
+    - Make Kishon Vijay suggested changes in v2:
+    (See https://lkml.org/lkml/2019/4/17/53)
+    - Kconfig:
+        * Add depends on COMPILE_TEST
+        * Select REGMAP_MMIO
+    - Make use of 'soc_device_attribute' and 'soc_device_match'
+    - Use regmap mmio API instead of directly 'readl' and 'writel'.
+    - Use 'platform_get_resource' instead of 'of_address_to_resource'.
+
+Changes in v2:
+    - Reorder patches to get bindings first in the series.
+    - Don't use child nodes in the device tree. Use #phy-cells=1 instead.
+    - Update driver code with new 'xlate' function for the new device tree.
+    - Minor changes in driver's macros changing some spaces to tabs.
+
+Thanks in advance for your time.
 
 Best regards,
-Krzysztof
+    Sergio Paracuellos
 
+Sergio Paracuellos (4):
+  dt-bindings: phy: Add binding for Mediatek MT7621 PCIe PHY
+  phy: ralink: Add PHY driver for MT7621 PCIe PHY
+  MAINTAINERS: add MT7621 PHY PCI maintainer
+  staging: mt7621-pci-phy: remove driver from staging
+
+ .../devicetree/bindings/phy}/mediatek,mt7621-pci-phy.yaml | 0
+ MAINTAINERS                                               | 6 ++++++
+ drivers/phy/ralink/Kconfig                                | 8 ++++++++
+ drivers/phy/ralink/Makefile                               | 1 +
+ .../pci-mt7621-phy.c => phy/ralink/phy-mt7621-pci.c}      | 0
+ drivers/staging/Kconfig                                   | 2 --
+ drivers/staging/Makefile                                  | 1 -
+ drivers/staging/mt7621-pci-phy/Kconfig                    | 8 --------
+ drivers/staging/mt7621-pci-phy/Makefile                   | 2 --
+ drivers/staging/mt7621-pci-phy/TODO                       | 4 ----
+ 10 files changed, 15 insertions(+), 17 deletions(-)
+ rename {drivers/staging/mt7621-pci-phy => Documentation/devicetree/bindings/phy}/mediatek,mt7621-pci-phy.yaml (100%)
+ rename drivers/{staging/mt7621-pci-phy/pci-mt7621-phy.c => phy/ralink/phy-mt7621-pci.c} (100%)
+ delete mode 100644 drivers/staging/mt7621-pci-phy/Kconfig
+ delete mode 100644 drivers/staging/mt7621-pci-phy/Makefile
+ delete mode 100644 drivers/staging/mt7621-pci-phy/TODO
+
+-- 
+2.25.1
 
