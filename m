@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65FA52A1AD0
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 22:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C17912A1AD7
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 22:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726309AbgJaVlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 17:41:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41004 "EHLO
+        id S1726617AbgJaVmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 17:42:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726262AbgJaVlX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 17:41:23 -0400
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F0CC0617A6
-        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 14:41:21 -0700 (PDT)
-Received: by mail-io1-xd43.google.com with SMTP id y20so11212066iod.5
-        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 14:41:21 -0700 (PDT)
+        with ESMTP id S1726583AbgJaVmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 17:42:09 -0400
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39E7C0617A7
+        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 14:42:07 -0700 (PDT)
+Received: by mail-il1-x141.google.com with SMTP id c11so9617120iln.9
+        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 14:42:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=konsulko.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=iIc4v82rLJYOL5h6poMR3Hs/QIFMLKtkeaL9qYvtaMM=;
-        b=In7+3k+jaXl0Uc7xnJoxZxSu6zkNU3PN3DGo2uRwvdEw30LKiNrmuNOfebg/kNIUGp
-         eaWG15fKU4NwcmaJjkR5IM/dMBpFmTLXazTeT1+OLYZVFelRg/8Caj2sPNI/H+Y0091C
-         ps4xShX/OLZnUR9EHVLd668u0gGX8UR01kiCM=
+        bh=6XcWCTkucGDHKx9lOBdII+rsZh1Z/z1JMeKqo0EGjDA=;
+        b=psNqDzJwkmPu4mljj6GsuZbkZZvF55KwWJDbcz7LD7kJj1fxj7Yc3dTNZB3lEwycBc
+         5w+amFtal2us5YyNsKHEoVMwVxs7DXrmnpDDBA8I0Wk4oIsAadBuxZZHwuQ0R1pe2bi8
+         uy2t5Oh8jnEjEqpaIKnuEwrGxUo5fHvBQ9bvo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=iIc4v82rLJYOL5h6poMR3Hs/QIFMLKtkeaL9qYvtaMM=;
-        b=neeXXvlbtBsI741Nwru2UAT2h9JqT9LL4jZ2Dd8de8PxFOPhXRvjzCT5s1JHIO1QSE
-         giWYC+03l6bNQCXZkfrWexAQyXtQ83zoQWXHeweVgd3FQJjaQUyXGXym6UrBpyzycMfO
-         ck5OjVilM6wT4/RErClhO4L3i+Scoauyx4wzyBc65lUa+L00z4taTcu7r3RrcLrPUC7T
-         VcbZqAwjsRAw1Ff3UcZj0QO9wmLCq1y6UQ56bvZDq+dh4pEec18iO3vKnqJUhhCElN0s
-         P4jHjKtGwNE8vTpcH3dPxYmySs3GR2NemQaUpfzuJQopG4UtjmXOvNJ2zouStwT3NFnx
-         HLbg==
-X-Gm-Message-State: AOAM531DOzRFlNSd4ru607ke6GwgYi3iNr0o8dfiaho4dzTw8lrb4Arr
-        7jCQ/W9cyqXVS0dzkCTClCTl5ooY9seEBT1NPbpMRQ==
-X-Google-Smtp-Source: ABdhPJz6PCJo2MwU9FMPNLEGUY7awvzVlxBaH4gjXlcZgHbcDgo4MX4MtPOIvDGkt27o8YCY0MrxKIu8d8DfQBKSR+I=
-X-Received: by 2002:a02:234f:: with SMTP id u76mr6582851jau.117.1604180481031;
- Sat, 31 Oct 2020 14:41:21 -0700 (PDT)
+        bh=6XcWCTkucGDHKx9lOBdII+rsZh1Z/z1JMeKqo0EGjDA=;
+        b=PN/vsgNpW3bZyYOEA0tLVi/55rhCn8xo8G6gxcZgpsxdyBXZ2qxA9TJJ1KIDpiZD+o
+         mIxaVyMvN7r4tNN/LHjloG8yXOVMjvJIZuiwYr0RsAmfFAC/L8MNfXQe7ebA84g5dqU9
+         4bzeaTzv7UcAxwNQxXDa4+tgGEfbvJnTM4PXBLHv/PnBHIeQFac05qbLzdiP9Aun+yyG
+         dGqmZ2/Z8WtRFkG53lV9oQCjYRhEGM3bGrtDTE9xSIBsoVATJN43KfKhDKimOUa0q7b2
+         8VCpPN1m7te/GTTj6Mp9OaYM6iUOpYqJUwb2yF/nTpn/vn3qa1dnoLozBMDvDFYpgE8r
+         a+bA==
+X-Gm-Message-State: AOAM530pRjcRg+EGio9cq+CQpENqNyduGGvE9UoHzRTTSRyhNrA/LS8T
+        5XicjwKrzqoMzt0eYRroPjou854gBWnGa+L3cBHSTw==
+X-Google-Smtp-Source: ABdhPJwB2XXIyntOw6zXIfcFKmZABeuP9G8/vvncClWs9KNoGmXhPRCse/nx6MugL9mhYBvPZdRYW060/VThrYmbYIo=
+X-Received: by 2002:a05:6e02:c:: with SMTP id h12mr6403716ilr.177.1604180527273;
+ Sat, 31 Oct 2020 14:42:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201031181242.742301-1-jic23@kernel.org> <20201031181242.742301-11-jic23@kernel.org>
-In-Reply-To: <20201031181242.742301-11-jic23@kernel.org>
+References: <20201031184854.745828-1-jic23@kernel.org> <20201031184854.745828-10-jic23@kernel.org>
+In-Reply-To: <20201031184854.745828-10-jic23@kernel.org>
 From:   Matt Ranostay <matt.ranostay@konsulko.com>
-Date:   Sat, 31 Oct 2020 14:41:10 -0700
-Message-ID: <CAJCx=gmWRa4Q_zZZG=f37ZeuifCjmJZ5gnuuc1ZBFGa6bdmGrQ@mail.gmail.com>
-Subject: Re: [PATCH 10/10] dt-bindings:iio:potentiostat:ti,lmp91000: txt to
- yaml conversion.
+Date:   Sat, 31 Oct 2020 14:41:56 -0700
+Message-ID: <CAJCx=gnbzfJ9z7gtOjJ0qQTd8woVdCDvcpbDPH=bQ-jyTacjjw@mail.gmail.com>
+Subject: Re: [PATCH 09/46] dt-bindings:iio:health:maxim,max30100: txt to yaml conversion
 To:     Jonathan Cameron <jic23@kernel.org>
 Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
@@ -57,134 +56,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 11:15 AM Jonathan Cameron <jic23@kernel.org> wrote:
+On Sat, Oct 31, 2020 at 11:51 AM Jonathan Cameron <jic23@kernel.org> wrote:
 >
 > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 >
-> There were a few parts of the example that did not conform to the
-> binding description and would not have worked with the Linux driver
-> as a result.  Fixed them whilst doing this conversion.
+> Straight forward conversion. As with other bindings I've dropped
+> any standrd description, but kept the unusual bits, in thisscase
+> the maxim,led-current-microamp and it's description.
 >
 > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Matt Ranostay <matt.ranostay@konsulko.com>
-
-Acked-by: Matt Ranostay <matt.ranostay@konsulko.com>
-
 > ---
->  .../bindings/iio/potentiostat/lmp91000.txt    | 33 ---------
->  .../iio/potentiostat/ti,lmp91000.yaml         | 68 +++++++++++++++++++
->  2 files changed, 68 insertions(+), 33 deletions(-)
+>  .../bindings/iio/health/max30100.txt          | 28 ----------
+>  .../bindings/iio/health/maxim,max30100.yaml   | 52 +++++++++++++++++++
+>  2 files changed, 52 insertions(+), 28 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/iio/potentiostat/lmp91000.txt b/Documentation/devicetree/bindings/iio/potentiostat/lmp91000.txt
+> diff --git a/Documentation/devicetree/bindings/iio/health/max30100.txt b/Documentation/devicetree/bindings/iio/health/max30100.txt
 > deleted file mode 100644
-> index f3ab02b0dd41..000000000000
-> --- a/Documentation/devicetree/bindings/iio/potentiostat/lmp91000.txt
+> index 0054908a6e74..000000000000
+> --- a/Documentation/devicetree/bindings/iio/health/max30100.txt
 > +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -* Texas Instruments LMP91000 series of potentiostats
+> @@ -1,28 +0,0 @@
+> -Maxim MAX30100 heart rate and pulse oximeter sensor
 > -
-> -LMP91000: https://www.ti.com/lit/ds/symlink/lmp91000.pdf
-> -LMP91002: https://www.ti.com/lit/ds/symlink/lmp91002.pdf
+> -* https://datasheets.maximintegrated.com/en/ds/MAX30100.pdf
 > -
 > -Required properties:
+> -  - compatible: must be "maxim,max30100"
+> -  - reg: the I2C address of the sensor
+> -  - interrupts: the sole interrupt generated by the device
 > -
-> -  - compatible: should be one of the following:
-> -                 "ti,lmp91000"
-> -                 "ti,lmp91002"
-> -  - reg: the I2C address of the device
-> -  - io-channels: the phandle of the iio provider
-> -
-> -  - ti,external-tia-resistor: if the property ti,tia-gain-ohm is not defined this
-> -    needs to be set to signal that an external resistor value is being used.
+> -  Refer to interrupt-controller/interrupts.txt for generic
+> -  interrupt client node bindings.
 > -
 > -Optional properties:
+> -  - maxim,led-current-microamp: configuration for LED current in microamperes
+> -    while the engine is running. First indexed value is the configuration for
+> -    the RED LED, and second value is for the IR LED.
 > -
-> -  - ti,tia-gain-ohm: ohm value of the internal resistor for the transimpedance
-> -    amplifier. Must be 2750, 3500, 7000, 14000, 35000, 120000, or 350000 ohms.
-> -
-> -  - ti,rload-ohm: ohm value of the internal resistor load applied to the gas
-> -    sensor. Must be 10, 33, 50, or 100 (default) ohms.
+> -    Refer to the datasheet for the allowed current values.
 > -
 > -Example:
 > -
-> -lmp91000@48 {
-> -       compatible = "ti,lmp91000";
-> -       reg = <0x48>;
-> -       ti,tia-gain-ohm = <7500>;
-> -       ti,rload = <100>;
-> -       io-channels = <&adc>;
+> -max30100@57 {
+> -       compatible = "maxim,max30100";
+> -       reg = <0x57>;
+> -       maxim,led-current-microamp = <24000 50000>;
+> -       interrupt-parent = <&gpio1>;
+> -       interrupts = <16 2>;
 > -};
-> diff --git a/Documentation/devicetree/bindings/iio/potentiostat/ti,lmp91000.yaml b/Documentation/devicetree/bindings/iio/potentiostat/ti,lmp91000.yaml
+> diff --git a/Documentation/devicetree/bindings/iio/health/maxim,max30100.yaml b/Documentation/devicetree/bindings/iio/health/maxim,max30100.yaml
 > new file mode 100644
-> index 000000000000..e4b5d890e8d5
+> index 000000000000..5684f2f61bcc
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/potentiostat/ti,lmp91000.yaml
-> @@ -0,0 +1,68 @@
+> +++ b/Documentation/devicetree/bindings/iio/health/maxim,max30100.yaml
+> @@ -0,0 +1,52 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/iio/potentiostat/ti,lmp91000.yaml#
+> +$id: http://devicetree.org/schemas/iio/health/maxim,max30100.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Texas Instruments LMP91000 series of potentiostats with I2C control
+> +title: Maxim MAX30100 heart rate and pulse oximeter sensor
 > +
 > +maintainers:
-> +  - Matt Ranostay <matt.ranostay@konsulko.com>
-> +
-> +description: |
-> +  Typically used as a signal conditioner for chemical sensors.
-> +  LMP91000: https://www.ti.com/lit/ds/symlink/lmp91000.pdf
-> +  LMP91002: https://www.ti.com/lit/ds/symlink/lmp91002.pdf
+> +  - Matt Ranostay <mranostay@gmail.com>
+
+Please change to my Konsulko email, but otherwise LGTM
+
+Acked-by: Matt Ranostay <matt.ranostay@konsulko.com>
+
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - ti,lmp91000
-> +      - ti,lmp91002
+> +    const: maxim,max30100
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  io-channels:
+> +  interrupts:
 > +    maxItems: 1
+> +    description: Connected to ADC_RDY pin.
 > +
-> +  ti,external-tia-resistor:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      If the property ti,tia-gain-ohm is not defined this needs to be set to
-> +      signal that an external resistor value is being used.
+> +  maxim,led-current-microamp:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 2
+> +    description: |
+> +      LED current whilst the engine is running. First indexed value is
+> +      the configuration for the RED LED, and second value is for the IR LED.
 > +
-> +  ti,tia-gain-ohm:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [2750, 3500, 7000, 14000, 35000, 120000, 350000]
-> +    description:
-> +      Internal resistor for the transimpedance amplifier.
-> +
-> +  ti,rload-ohm:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [10, 33, 50, 100]
-> +    description:
-> +      Internal resistor load applied to the gas sensor.
-> +      Default 100 Ohms.
+> +additionalProperties: false
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - io-channels
-> +
-> +additionalProperties: false
+> +  - interrupts
 > +
 > +examples:
 > +  - |
 > +    i2c {
 > +        #address-cells = <1>;
 > +        #size-cells = <0>;
-> +        lmp91000@48 {
-> +            compatible = "ti,lmp91000";
-> +            reg = <0x48>;
-> +            ti,tia-gain-ohm = <7000>;
-> +            ti,rload-ohm = <100>;
-> +            io-channels = <&adc>;
+> +
+> +        heart-rate@57 {
+> +            compatible = "maxim,max30100";
+> +            reg = <0x57>;
+> +            maxim,led-current-microamp = <24000 50000>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <16 2>;
 > +        };
 > +    };
 > +...
