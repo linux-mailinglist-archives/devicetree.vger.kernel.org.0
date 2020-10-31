@@ -2,185 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B98E2A1970
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 19:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 021C72A198C
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 19:28:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728239AbgJaSUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 14:20:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47448 "EHLO mail.kernel.org"
+        id S1728359AbgJaS2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 14:28:51 -0400
+Received: from leonov.paulk.fr ([185.233.101.22]:55508 "EHLO leonov.paulk.fr"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727967AbgJaSUT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 31 Oct 2020 14:20:19 -0400
-Received: from localhost.localdomain (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DBAAF206F9;
-        Sat, 31 Oct 2020 18:20:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604168418;
-        bh=tskoch4DLlTeJ2sYv4chlZZnXQWrFh+JhKivYGYdftQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=o8TzeA3J0YA7LuH4SJ+rpZyvgCGcGk6H+Gz1+QTBs31Ox0Muqfq3E9Y8k2ebiY+NY
-         gWpQKLHvMxyD1aI6uJKsz+iYWzTn5cjOzI3Q+aaxTrSsDl0puuRGtDnYG6976pGbfu
-         EdZ9rnskK+4G8fH52Z/5qai/AEqUQzKUTxNcrj8E=
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH 3/3] dt-bindings:iio:gyro:invensense,mpu3050: txt to yaml format conversion.
-Date:   Sat, 31 Oct 2020 18:18:01 +0000
-Message-Id: <20201031181801.742585-4-jic23@kernel.org>
+        id S1728198AbgJaS2s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Oct 2020 14:28:48 -0400
+Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
+        by leonov.paulk.fr (Postfix) with ESMTPS id 97221C0139;
+        Sat, 31 Oct 2020 19:22:09 +0100 (CET)
+Received: by gagarine.paulk.fr (Postfix, from userid 114)
+        id F1DE6C1D7A; Sat, 31 Oct 2020 19:22:08 +0100 (CET)
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+        autolearn_force=no version=3.4.2
+Received: from localhost.localdomain (unknown [192.168.1.101])
+        by gagarine.paulk.fr (Postfix) with ESMTP id C6153C1D64;
+        Sat, 31 Oct 2020 19:21:52 +0100 (CET)
+From:   Paul Kocialkowski <contact@paulk.fr>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Matteo Scordino <matteo.scordino@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Paul Kocialkowski <contact@paulk.fr>
+Subject: [PATCH 0/9] Allwinner V3 SL631 Action Camera Support and Related Fixes
+Date:   Sat, 31 Oct 2020 19:21:28 +0100
+Message-Id: <20201031182137.1879521-1-contact@paulk.fr>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201031181801.742585-1-jic23@kernel.org>
-References: <20201031181801.742585-1-jic23@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+This series adds support for the Allwinner V3-based SL631 family of
+Action Cameras, starting with the IMX179 fashion.
 
-Very similar to the mpu6050 binding.
-Only unusual element is the i2c-gate section.
-Example tweaked a little to include a real device behind the gate.
+A few fixes to V3 support are added along the way, most notably support
+for the NMI IRQ controller which is necessary for the AXP209 IRQ.
 
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>
----
- .../iio/gyroscope/invensense,mpu3050.txt      | 45 ------------
- .../iio/gyroscope/invensense,mpu3050.yaml     | 70 +++++++++++++++++++
- 2 files changed, 70 insertions(+), 45 deletions(-)
+Note that some patches in this series may have already been submitted
+(but not yet merged) by others and are included for the series to build.
 
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.txt b/Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.txt
-deleted file mode 100644
-index 233fe207aded..000000000000
---- a/Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.txt
-+++ /dev/null
-@@ -1,45 +0,0 @@
--Invensense MPU-3050 Gyroscope device tree bindings
--
--Required properties:
--  - compatible : should be "invensense,mpu3050"
--  - reg : the I2C address of the sensor
--
--Optional properties:
--  - interrupts : interrupt mapping for the trigger interrupt from the
--    internal oscillator. The following IRQ modes are supported:
--    IRQ_TYPE_EDGE_RISING, IRQ_TYPE_EDGE_FALLING, IRQ_TYPE_LEVEL_HIGH and
--    IRQ_TYPE_LEVEL_LOW. The driver should detect and configure the hardware
--    for the desired interrupt type.
--  - vdd-supply : supply regulator for the main power voltage.
--  - vlogic-supply : supply regulator for the signal voltage.
--  - mount-matrix : see iio/mount-matrix.txt
--
--Optional subnodes:
--  - The MPU-3050 will pass through and forward the I2C signals from the
--    incoming I2C bus, alternatively drive traffic to a slave device (usually
--    an accelerometer) on its own initiative. Therefore is supports a subnode
--    i2c gate node. For details see: i2c/i2c-gate.txt
--
--Example:
--
--mpu3050@68 {
--	compatible = "invensense,mpu3050";
--	reg = <0x68>;
--	interrupt-parent = <&foo>;
--	interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
--	vdd-supply = <&bar>;
--	vlogic-supply = <&baz>;
--
--	/* External I2C interface */
--	i2c-gate {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		fnord@18 {
--			compatible = "fnord";
--			reg = <0x18>;
--			interrupt-parent = <&foo>;
--			interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.yaml b/Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.yaml
-new file mode 100644
-index 000000000000..b0a476afb656
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/gyroscope/invensense,mpu3050.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Invensense MPU-3050 Gyroscope
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: invensense,mpu3050
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  vlogic-supply: true
-+
-+  interrupts:
-+    minItems: 1
-+    description:
-+      Interrupt mapping for the trigger interrupt from the internal oscillator.
-+
-+  mount-matrix: true
-+
-+  i2c-gate:
-+    $ref: "../../i2c/i2c-gate.yaml"
-+    unevaluatedProperties: false
-+    description: |
-+      The MPU-3050 will pass through and forward the I2C signals from the
-+      incoming I2C bus, alternatively drive traffic to a slave device (usually
-+      an accelerometer) on its own initiative. Therefore is supports a subnode
-+      i2c gate node.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        gyroscope@68 {
-+            compatible = "invensense,mpu3050";
-+            reg = <0x68>;
-+            interrupt-parent = <&foo>;
-+            interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-+            vdd-supply = <&bar>;
-+            vlogic-supply = <&baz>;
-+
-+            i2c-gate {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                magnetometer@c {
-+                    compatible = "ak,ak8975";
-+                    reg = <0x0c>;
-+                };
-+            };
-+        };
-+    };
-+...
+Happy reviewing!
+
+Paul Kocialkowski (9):
+  ARM: sunxi: Add machine match for the Allwinner V3 SoC
+  ARM: dts: sun8i-v3: Add UART1 PG pins description
+  ARM: dts: sun8i-v3s: Add I2C1 PB pins description
+  dt-bindings: irq: sun7i-nmi: Add binding for the V3s NMI
+  irqchip/sunxi-nmi: Add support for the V3s NMI
+  ARM: dts: sun8i-v3s: Add the V3s NMI IRQ controller
+  ARM: dts: sun8i: Cleanup the Pinecube AXP209 node
+  dt-bindings: arm: sunxi: Add SL631 with IMX179 bindings
+  ARM: dts: sun8i-v3: Add support for the SL631 Action Camera with
+    IMX179
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   6 +
+ .../allwinner,sun7i-a20-sc-nmi.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/sun8i-s3-pinecube.dts       |   8 +-
+ arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts   |  12 ++
+ arch/arm/boot/dts/sun8i-v3-sl631.dtsi         | 145 ++++++++++++++++++
+ arch/arm/boot/dts/sun8i-v3.dtsi               |   6 +
+ arch/arm/boot/dts/sun8i-v3s.dtsi              |  16 +-
+ arch/arm/mach-sunxi/sunxi.c                   |   1 +
+ drivers/irqchip/irq-sunxi-nmi.c               |  18 ++-
+ 10 files changed, 206 insertions(+), 8 deletions(-)
+ create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
+ create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631.dtsi
+
 -- 
 2.28.0
 
