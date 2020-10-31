@@ -2,603 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C077A2A17F3
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 14:45:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C812A17FD
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 14:54:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727485AbgJaNpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 09:45:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727461AbgJaNpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 09:45:41 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19591C0617A6;
-        Sat, 31 Oct 2020 06:45:41 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id p9so12465569eji.4;
-        Sat, 31 Oct 2020 06:45:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+vChzJQ+4flHvRyJKlk2Uh9VQxych+++R4cwBhR+cB8=;
-        b=IJhi4wKMxNjdLH7IlvoZCBa+IM7Zp0fsFGqRMpbQeelHZTIYfp/fniJ4ZTIQwXQdjf
-         A4xpk+aHPo0jeJRk7GkuKRhmJmDrWyePuHIyFjeToi+QBGPr+gpBCmTDnA+Upb+lZaCQ
-         8fT/MyVVKq2AKl+QiZcG2rw2K6iWdfpfBCO1JSbmYX56gSlUNCfXuWKdTnN0TXJBfUl2
-         fGG386B5aJF2E3R+mBGwbsYTxJ+DVHA5sXFtbkMT2rmImq2RluFV7UfdfspS7K50HKmy
-         ftf8bP5uZK/Nj2FMbJUytYh/H80qZEbvHkxqynh3GmM/IBbJK0dllLrvNbGgeQVvB/21
-         L8GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+vChzJQ+4flHvRyJKlk2Uh9VQxych+++R4cwBhR+cB8=;
-        b=AHj+abICL3+uY5Ii9O6Sr+H8RqzOfrqMARw6BK/i4YY2jx0Cqvd1DgSrFtrPS4qptA
-         bP4bVP8uRLc+WYzUUWStbNYlHdfANOVtQL0g9N0lbkP17cWy5vNssijCDyjHlrM0TG2k
-         F0lKp0PWhG6mNf7bvPYe8xhbT0WkhIX/aQYm9kKWsyuCfAN+dqdutGCfLZmUxXbDsM2P
-         +PKKcUwhwt4toXx5iYL0fbb1bS/zD95dSItnUaCN9m9UhixJQC+Lg2XcgAvWZOADmZiI
-         5qfYv35U0nW/FEyFI/+xEszq/esz6qynrjkSa8o0kKvPJxRlGS+7BHybVASV1zpylthF
-         G9gA==
-X-Gm-Message-State: AOAM530wvJhaHiod94+CWV87SuhQ6rLrzuHrDxozp5oSTaGUJMg6IDUS
-        97Io9Gm4t+kQBhH/YzrEsJI=
-X-Google-Smtp-Source: ABdhPJx4n4Y6dKr69cZcbBG67TBbDYHjIGaKd1OY4/ExEQKzRvcNRnEn5aF4bqjQCyeafC05mAs5uQ==
-X-Received: by 2002:a17:906:444:: with SMTP id e4mr7585761eja.218.1604151939529;
-        Sat, 31 Oct 2020 06:45:39 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id h4sm5169254edj.1.2020.10.31.06.45.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 31 Oct 2020 06:45:39 -0700 (PDT)
-Subject: Re: [PATCH v13 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
- RK2928 and others
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, heiko@sntech.de,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20201028095326.15562-1-yifeng.zhao@rock-chips.com>
- <20201028095326.15562-3-yifeng.zhao@rock-chips.com>
- <a8a7875b-f08b-62c6-a630-245687e0df3b@gmail.com>
-Message-ID: <0dabd80e-b281-be65-b8e2-da00f46964fb@gmail.com>
-Date:   Sat, 31 Oct 2020 14:45:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1727461AbgJaNyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 09:54:46 -0400
+Received: from mout.kundenserver.de ([212.227.17.10]:43639 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727407AbgJaNyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 09:54:46 -0400
+Received: from methusalix.internal.home.lespocky.de ([109.250.100.133]) by
+ mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MTiHb-1kvZI83UCb-00U2mO; Sat, 31 Oct 2020 14:54:13 +0100
+Received: from falbala.internal.home.lespocky.de ([192.168.243.94])
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <post@lespocky.de>)
+        id 1kYrKc-0007w5-MQ; Sat, 31 Oct 2020 14:54:11 +0100
+Date:   Sat, 31 Oct 2020 14:54:09 +0100
+From:   Alexander Dahl <post@lespocky.de>
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [Linux-stm32] [PATCH v7 10/12] ARM: dts: stm32: Fix schema
+ warnings for pwm-leds
+Message-ID: <20201031135408.lgpiy5goa7l4cg2k@falbala.internal.home.lespocky.de>
+Mail-Followup-To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20201005203451.9985-1-post@lespocky.de>
+ <20201005203451.9985-11-post@lespocky.de>
+ <b387bda8-3643-1d27-4996-2aa4dc94d69f@pengutronix.de>
+ <20201027100536.cpfizc67gwrolp2z@falbala.internal.home.lespocky.de>
+ <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <a8a7875b-f08b-62c6-a630-245687e0df3b@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ddtzb2gxy77t23sv"
+Content-Disposition: inline
+In-Reply-To: <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Scan-Signature: 398b5fa1ed41958f905023f519330efd
+X-Spam-Score: -2.9 (--)
+X-Provags-ID: V03:K1:kOJxMHpGJCYtvBKRj3a5Ly8/ilfwpNNXI1ocWX5i5fr374VhsBt
+ XY+3dWYOOSBqHrm0QBckVTKaVnpenhn7Uh2IlaJx6UC+1How4h/6RmzbZPI7EeF6UhXe6pK
+ eKCecDo6OoX2+9Qb9Mt3PSNf8AhYm2ZcDajM/8GaKnr1hXnqw+FHr6wP9hYLA9ldvbjZuhV
+ pi62QF0PirWPfLHq9QFxw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:tdONFEfhZCc=:cGmwJuBlzO3ekW8iSHTpqb
+ jxAFgeN1rSd12PhXPzUSdS13qXWBFtnPArrSzrLH64aJ23ezNNhaW0E21f6bMf9KnEiveMYPJ
+ kntm5B0u/IuV3f62ZgRn46eIGV76LjlbkXxG2KaJFEe8SEVcqgYJhvgHNufIMjLp02tpANaLg
+ LEbI2AnxancoF0iKlLsxixftKZU8RcY7muxGTqvbiUZ6Mp0tm8MzymZZb0LiFi033FBhzpX6N
+ M62vEo4VM8B0OE7IoOhpROVbfYWmQF7SnsQEOr0U83lAFDkggYBGSb0Irwhr/82NMHUM5sp/k
+ t1C9n77YO/n7eqtoIKG3RXnryfv5LwmEjqVEYv8X2SXm4rL3ODpJJb3xpGCMp6NZCmp16F9Ho
+ lOSAgG7pxo03Et3nlZ51Q0lxk32BoSQZVXQBJ0hjP/9fmpO9GaSoC26P7eaFP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yifeng,
 
-In some functions you deselect the chips.
-The MTD frame work has a functions for that and also keeps track of its
-select status, so I think that you shouldn't poke with that yourself and
-should therefore remove the deselections from your driver.
+--ddtzb2gxy77t23sv
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-/**
- * nand_deselect_target() - Deselect the currently selected target
- * @chip: NAND chip object
- *
- * Deselect the currently selected NAND target. The result of operations
- * executed on @chip after the target has been deselected is undefined.
- */
-void nand_deselect_target(struct nand_chip *chip)
-{
-	if (chip->legacy.select_chip)
-		chip->legacy.select_chip(chip, -1);
+Hei hei,
 
-	chip->cur_cs = -1;
-}
-EXPORT_SYMBOL_GPL(nand_deselect_target);
+On Tue, Oct 27, 2020 at 11:58:10AM +0100, Ahmad Fatoum wrote:
+> Hello,
+>=20
+> On 10/27/20 11:05 AM, Alexander Dahl wrote:
+> > Hello Ahmad,
+> >=20
+> > thanks for your feedback, comments below.
+> >=20
+>=20
+> >>> -	led-rgb {
+> >>> +	led-controller-2 {
+> >>
+> >> Is a single RGB LED really a controller?
+> >=20
+> > I just followed the recommendations by Rob here.
+>=20
+> Do you happen to know if the new multicolor LED support could be used her=
+e?
+>=20
+> I find it unfortunate that the device tree loses information relevant to =
+humans
+> to adhere to a fixed nomenclature. Apparently led-controller isn't even c=
+odified
+> in the YAML binding (It's just in the examples). If you respin, please ad=
+d a
+> comment that this is a single RGB led. I'd prefer to keep the information
+> in the DTB as well though.
 
+Slightly off-topic, but while I was working on the patch based on your
+feedback I tried to find some information on that Linux Automation
+MC-1 board.  However I could not find any? Is there some website, some
+datasheet or maybe a schematic online?  The vendor prefix says "Linux
+Automation GmbH", but I find only that USB-SD-Mux on their page?
 
-On 10/31/20 12:58 PM, Johan Jonker wrote:
+Greets
+Alex
 
-[..]
+>=20
+>=20
+>=20
+> >=20
+> >>>  		compatible =3D "pwm-leds";
+> >>> =20
+> >>> -		led-red {
+> >>> +		led-2 {
+> >>
+> >> Shouldn't this have been led-1 as well or is the numbering "global" ?
+> >=20
+> > Also good question. This numbering is for dts only, it usually does
+> > not correspond with LEDs on the board, so it could be numbered per
+> > led-controller as well?
+>=20
+> I'd prefer that it starts by 1. That way it's aligned with PWM channel
+> ID.
+>=20
+> Thanks for fixing the dtschema warnings by the way!
+>=20
+> Cheers,
+> Ahmad
+>=20
+> >=20
+> > Greets
+> > Alex
+> >=20
+> >>
+> >>>  			label =3D "mc1:red:rgb";
+> >>>  			pwms =3D <&leds_pwm 1 1000000 0>;
+> >>>  			max-brightness =3D <255>;
+> >>>  			active-low;
+> >>>  		};
+> >>> =20
+> >>> -		led-green {
+> >>> +		led-3 {
+> >>>  			label =3D "mc1:green:rgb";
+> >>>  			pwms =3D <&leds_pwm 2 1000000 0>;
+> >>>  			max-brightness =3D <255>;
+> >>>  			active-low;
+> >>>  		};
+> >>> =20
+> >>> -		led-blue {
+> >>> +		led-4 {
+> >>>  			label =3D "mc1:blue:rgb";
+> >>>  			pwms =3D <&leds_pwm 3 1000000 0>;
+> >>>  			max-brightness =3D <255>;
+> >>>
+> >>
+> >> --=20
+> >> Pengutronix e.K.                           |                          =
+   |
+> >> Steuerwalder Str. 21                       | http://www.pengutronix.de=
+/  |
+> >> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0 =
+   |
+> >> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-55=
+55 |
+> >=20
+>=20
+> --=20
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
-> On 10/28/20 10:53 AM, Yifeng Zhao wrote:
+--=20
+/"\ ASCII RIBBON | =BBWith the first link, the chain is forged. The first
+\ / CAMPAIGN     | speech censured, the first thought forbidden, the
+ X  AGAINST      | first freedom denied, chains us all irrevocably.=AB
+/ \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
 
-[..]
+--ddtzb2gxy77t23sv
+Content-Type: application/pgp-signature; name="signature.asc"
 
->> +
->> +static int rk_nfc_write_page_raw(struct nand_chip *chip, const u8 *buf,
->> +				 int oob_on, int page)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	struct rk_nfc *nfc = nand_get_controller_data(chip);
->> +	struct nand_ecc_ctrl *ecc = &chip->ecc;
->> +	int ret = 0;
->> +	u32 i;
->> +
-> 
-> 	/*
-> 	* Normal timing and ECC layout size setup is already done in
-> 	* the rk_nfc_select_chip() function.
-> 	*/
-> 
-> How about the ECC layout size setup for a boot block?
-> 
->> +	if (!buf)
->> +		memset(nfc->buffer, 0xff, mtd->writesize + mtd->oobsize);
->> +> +	for (i = 0; i < ecc->steps; i++) {
->> +		/* Copy data to nfc buffer. */
->> +		if (buf)
->> +			memcpy(rk_nfc_data_ptr(chip, i),
->> +			       rk_nfc_buf_to_data_ptr(chip, buf, i),
->> +			       ecc->size);
-> 
->> +		/*
->> +		 * The first four bytes of OOB are reserved for the
->> +		 * boot ROM. In some debugging cases, such as with a
->> +		 * read, erase and write back test these 4 bytes stored
->> +		 * in OOB also need to be written back.
->> +		 */
-> 
-> 
-> 	/*
-> 	* The first four bytes of OOB are reserved for the
-> 	* boot ROM. In some debugging cases, such as with a
-> 	* read, erase and write back test these 4 bytes stored
-> 	* in OOB also need to be written back.
-> 	*
-> 	* The function nand_block_bad detects bad blocks like:
-> 	*
-> 	* bad = chip->oob_poi[chip->badblockpos];
-> 	*
-> 	* chip->badblockpos == 0 for a large page NAND Flash,
-> 	* so chip->oob_poi[0] is the bad block mask (BBM).
-> 	*
-> 	* The OOB data layout on the NFC is:
-> 	*
-> 	*   PA0  PA1  PA2  PA3 | BBM OOB1 OOB2 OOB3 | ...
-> 	*
-> 	* or
-> 	*
-> 	*  0xFF 0xFF 0xFF 0xFF | BBM OOB1 OOB2 OOB3 | ...
-> 	*
-> 	* The code here just swaps the first 4 bytes with the last
-> 	* 4 bytes without losing any data.
-> 	*
-> 	* The chip->oob_poi data layout:
-> 	*
-> 	*   BBM OOB1 OOB2 OOB3 |......|  PA0  PA1  PA2  PA3
-> 	*
-> 	* The rk_nfc_ooblayout_free() function already has reserved
-> 	* these 4 bytes with:
-> 	*
-> 	* oob_region->offset = NFC_SYS_DATA_SIZE + 2;
-> 	*/
-> 
-> 
->> +		if (!i)
->> +			memcpy(rk_nfc_oob_ptr(chip, i),
->> +			       rk_nfc_buf_to_oob_ptr(chip, ecc->steps - 1),
->> +			       NFC_SYS_DATA_SIZE);
->> +		else
->> +			memcpy(rk_nfc_oob_ptr(chip, i),
->> +			       rk_nfc_buf_to_oob_ptr(chip, i - 1),
->> +			       NFC_SYS_DATA_SIZE);
->> +		/* Copy ECC data to the NFC buffer. */
->> +		memcpy(rk_nfc_oob_ptr(chip, i) + NFC_SYS_DATA_SIZE,
->> +		       rk_nfc_buf_to_oob_ecc_ptr(chip, i),
->> +		       ecc->bytes);
->> +	}
->> +
->> +	nand_prog_page_begin_op(chip, page, 0, NULL, 0);
->> +	rk_nfc_write_buf(nfc, buf, mtd->writesize + mtd->oobsize);
->> +	ret = nand_prog_page_end_op(chip);
->> +
+-----BEGIN PGP SIGNATURE-----
 
->> +	/*
->> +	 * Deselect the currently selected target after the ops is done
->> +	 * to reduce the power consumption.
->> +	 */
->> +	rk_nfc_select_chip(chip, -1);
-> 
-> Does the MTD framework always select again?
+iQIzBAABCAAdFiEEwo7muQJjlc+Prwj6NK3NAHIhXMYFAl+dbHwACgkQNK3NAHIh
+XMbKlRAAvIubmqiN++XwaqH5hXCbf7EM1ob2W5t69Hrh3pjVgu/gK0SGLqeHHyNP
+7FRMW6hMn3VFCFBaLrQL9ElCJ5gx9h9ZCRIJKR+EUsj8gWFOhs5/zqUnk2dkN8HD
+845u1H7h+xQXCPI8CUVmBLGzQXlh/7vunQABDYFR5FJKAXRpZBmvHcwt6wDcmVng
+jM93vIM2ixPIvjS2qEXYOCa7fh85GooXH4MSJ9oabFUM/uTfhRDogpq6q3uk5qz4
+6STtbz6guRHBvIV4VMJeJucA4tfLJSV63GVtI3xbpUlNoiVGGQRq8MtJWQCvU1bi
+pcHHw8Ydyzzf7QWk0H5fteboW/rYngD6J7Wxk2zcJNOBU7sgMiEgTIe25nuoub+E
+X4LsGx3XBmhQGNSP7dCaeyZm2qhNASdGA3AdnSDPm4AmeXa6jJ1aH6jIl362KLS5
+qhRNxo9j0CQu8QgqSTLBpG+A3ZdaLli7ErXdVgfgSj6Z+ku03iPkkJy1+uSyv9CW
+YWQ4J2BwAmbUitBavgrYw74ES3WtssHTTicJ33zIARZ3vQT0HPR9bzjfKQ4BXwgd
+r89naMgGERE2ifQ0maRQ02aenvX0V7JACCO4UbC7Zpv0jkkFYBbn5naGxTlokwPm
+W1yNqL6VZv25zhzFFd7k7N9g3MbmNhaC8Gnj7BJBEMQ8o37HZJY=
+=Iu4R
+-----END PGP SIGNATURE-----
 
-Remove.
-Do not assume that the MTD framework or user space knows that you have
-deselected the chip.
-
-> 
->> +
->> +	return ret;
->> +}
->> +
->> +static int rk_nfc_write_oob(struct nand_chip *chip, int page)
->> +{
->> +	return rk_nfc_write_page_raw(chip, NULL, 1, page);
->> +}
->> +
->> +static int rk_nfc_write_page_hwecc(struct nand_chip *chip, const u8 *buf,
->> +				   int oob_on, int page)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	struct rk_nfc *nfc = nand_get_controller_data(chip);
->> +	struct rk_nfc_nand_chip *rknand = rk_nfc_to_rknand(chip);
->> +	struct nand_ecc_ctrl *ecc = &chip->ecc;
->> +	int oob_step = (ecc->bytes > 60) ? NFC_MAX_OOB_PER_STEP :
->> +			NFC_MIN_OOB_PER_STEP;
->> +	int pages_per_blk = mtd->erasesize / mtd->writesize;
->> +	int ret = 0, i, boot_rom_mode = 0;
->> +	dma_addr_t dma_data, dma_oob;
->> +	u32 reg;
->> +	u8 *oob;
->> +
->> +	nand_prog_page_begin_op(chip, page, 0, NULL, 0);
->> +
->> +	memcpy(nfc->page_buf, buf, mtd->writesize);
->> +
->> +	/*
->> +	 * The first blocks (4, 8 or 16 depending on the device) are used
->> +	 * by the boot ROM and the first 32 bits of OOB need to link to
->> +	 * the next page address in the same block. We can't directly copy
->> +	 * OOB data from the MTD framework, because this page address
->> +	 * conflicts for example with the bad block marker (BBM),
->> +	 * so we shift all OOB data including the BBM with 4 byte positions.
->> +	 * As a consequence the OOB size available to the MTD framework is
->> +	 * also reduced with 4 bytes.
->> +	 *
-> 
->> +	 *    PA0 PA1 PA2 PA3 | BBM OOB1 OOB2 OOB3 | ...
-> 
-> 
-> 	 *    PA0  PA1  PA2  PA3 | BBM OOB1 OOB2 OOB3 | ...
-> 
-> keep layouts aligned
-> 
->> +	 *
->> +	 * If a NAND is not a boot medium or the page is not a boot block,
->> +	 * the first 4 bytes are left untouched by writing 0xFF to them.
->> +	 *
->> +	 *   0xFF 0xFF 0xFF 0xFF | BBM OOB1 OOB2 OOB3 | ...
->> +	 *
->> +	 * Configure the ECC algorithm supported by the boot ROM.
->> +	 */
->> +	if ((page < pages_per_blk * rknand->boot_blks) &&
-> 
-> 	if ((page < (pages_per_blk * rknand->boot_blks)) &&
-> 
->> +	    (chip->options & NAND_IS_BOOT_MEDIUM)) {
->> +		boot_rom_mode = 1;
->> +		if (rknand->boot_ecc != ecc->strength)
->> +			rk_nfc_hw_ecc_setup(chip, ecc,
->> +					    rknand->boot_ecc);
->> +	}
->> +
->> +	for (i = 0; i < ecc->steps; i++) {
->> +		if (!i) {
->> +			reg = 0xFFFFFFFF;
->> +		} else {
->> +			oob = chip->oob_poi + (i - 1) * NFC_SYS_DATA_SIZE;
->> +			reg = oob[0] | oob[1] << 8 | oob[2] << 16 |
->> +			      oob[3] << 24;
->> +		}
->> +		if (!i && boot_rom_mode)
->> +			reg = (page & (pages_per_blk - 1)) * 4;
->> +
->> +		if (nfc->cfg->type == NFC_V9)
->> +			nfc->oob_buf[i] = reg;
->> +		else
->> +			nfc->oob_buf[i * (oob_step / 4)] = reg;
->> +	}
->> +
->> +	dma_data = dma_map_single(nfc->dev, (void *)nfc->page_buf,
->> +				  mtd->writesize, DMA_TO_DEVICE);
->> +	dma_oob = dma_map_single(nfc->dev, nfc->oob_buf,
->> +				 ecc->steps * oob_step,
->> +				 DMA_TO_DEVICE);
->> +
->> +	reinit_completion(&nfc->done);
->> +	writel(INT_DMA, nfc->regs + nfc->cfg->int_en_off);
->> +
->> +	rk_nfc_xfer_start(nfc, NFC_WRITE, ecc->steps, dma_data,
->> +			  dma_oob);
->> +	ret = wait_for_completion_timeout(&nfc->done,
->> +					  msecs_to_jiffies(100));
->> +	if (!ret)
->> +		dev_warn(nfc->dev, "write: wait dma done timeout.\n");
->> +	/*
->> +	 * Whether the DMA transfer is completed or not. The driver
->> +	 * needs to check the NFC`s status register to see if the data
->> +	 * transfer was completed.
->> +	 */
->> +	ret = rk_nfc_wait_for_xfer_done(nfc);
->> +
->> +	dma_unmap_single(nfc->dev, dma_data, mtd->writesize,
->> +			 DMA_TO_DEVICE);
->> +	dma_unmap_single(nfc->dev, dma_oob, ecc->steps * oob_step,
->> +			 DMA_TO_DEVICE);
->> +
-> 
->> +	if (boot_rom_mode && rknand->boot_ecc != ecc->strength)
->> +		rk_nfc_hw_ecc_setup(chip, ecc, ecc->strength);
->> +
-> 
->> +	if (ret) {
->> +		ret = -EIO;
->> +		dev_err(nfc->dev,
->> +			"write: wait transfer done timeout.\n");
->> +	}
->> +
-> 
->> +	if (ret)
->> +		return ret;
-> 
-> remove, always deselect
-> 
-> if (!ret) {
-> 
->> +
->> +	ret = nand_prog_page_end_op(chip);
-> 
-> }
-> 
-
->> +
->> +	/*
->> +	 * Deselect the currently selected target after the ops is done
->> +	 * to reduce the power consumption.
->> +	 */
->> +	rk_nfc_select_chip(chip, -1);
-> 
-> Does the MTD framework always select again?
-
-Remove.
-Do not assume that the MTD framework or user space knows that you have
-deselected the chip.
-
-> 
->> +
->> +	return ret;
->> +}
->> +
->> +static int rk_nfc_read_page_raw(struct nand_chip *chip, u8 *buf, int oob_on,
->> +				int page)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	struct rk_nfc *nfc = nand_get_controller_data(chip);
->> +	struct nand_ecc_ctrl *ecc = &chip->ecc;
->> +	int i;
->> +
-> 
-> 	/*
-> 	* Normal timing and ECC layout size setup is already done in
-> 	* the rk_nfc_select_chip() function.
-> 	*/
-> 
-> How about the ECC layout size setup for a boot block?
-> 
->> +	nand_read_page_op(chip, page, 0, NULL, 0);
->> +	rk_nfc_read_buf(nfc, nfc->buffer, mtd->writesize + mtd->oobsize);
->> +
-
->> +	/*
->> +	 * Deselect the currently selected target after the ops is done
->> +	 * to reduce the power consumption.
->> +	 */
->> +	rk_nfc_select_chip(chip, -1);
-
-Remove.
-Do not assume that the MTD framework or user space knows that you have
-deselected the chip.
-
->> +
->> +	for (i = 0; i < ecc->steps; i++) {
->> +		/*
->> +		 * The first four bytes of OOB are reserved for the
->> +		 * boot ROM. In some debugging cases, such as with a read,
->> +		 * erase and write back test, these 4 bytes also must be
->> +		 * saved somewhere, otherwise this information will be
->> +		 * lost during a write back.
->> +		 */
->> +		if (!i)
->> +			memcpy(rk_nfc_buf_to_oob_ptr(chip, ecc->steps - 1),
->> +			       rk_nfc_oob_ptr(chip, i),
->> +			       NFC_SYS_DATA_SIZE);
->> +		else
->> +			memcpy(rk_nfc_buf_to_oob_ptr(chip, i - 1),
->> +			       rk_nfc_oob_ptr(chip, i),
->> +			       NFC_SYS_DATA_SIZE);
->> +		/* Copy ECC data from the NFC buffer. */
->> +		memcpy(rk_nfc_buf_to_oob_ecc_ptr(chip, i),
->> +		       rk_nfc_oob_ptr(chip, i) + NFC_SYS_DATA_SIZE,
->> +		       ecc->bytes);
->> +		/* Copy data from the NFC buffer. */
->> +		if (buf)
->> +			memcpy(rk_nfc_buf_to_data_ptr(chip, buf, i),
->> +			       rk_nfc_data_ptr(chip, i),
->> +			       ecc->size);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int rk_nfc_read_oob(struct nand_chip *chip, int page)
->> +{
->> +	return rk_nfc_read_page_raw(chip, NULL, 1, page);
->> +}
->> +
->> +static int rk_nfc_read_page_hwecc(struct nand_chip *chip, u8 *buf, int oob_on,
->> +				  int page)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	struct rk_nfc *nfc = nand_get_controller_data(chip);
->> +	struct rk_nfc_nand_chip *rknand = rk_nfc_to_rknand(chip);
->> +	struct nand_ecc_ctrl *ecc = &chip->ecc;
->> +	int oob_step = (ecc->bytes > 60) ? NFC_MAX_OOB_PER_STEP :
->> +			NFC_MIN_OOB_PER_STEP;
->> +	int pages_per_blk = mtd->erasesize / mtd->writesize;
->> +	dma_addr_t dma_data, dma_oob;
-> 
->> +	int ret = 0, i, boot_rom_mode = 0;
-> 
-> 	int ret = 0, i, cnt, boot_rom_mode = 0;
-> 
->> +	int bitflips = 0, bch_st;
->> +	u8 *oob;
->> +	u32 tmp;
->> +
->> +	nand_read_page_op(chip, page, 0, NULL, 0);
->> +
->> +	dma_data = dma_map_single(nfc->dev, nfc->page_buf,
->> +				  mtd->writesize,
->> +				  DMA_FROM_DEVICE);
->> +	dma_oob = dma_map_single(nfc->dev, nfc->oob_buf,
->> +				 ecc->steps * oob_step,
->> +				 DMA_FROM_DEVICE);
->> +
->> +	/*
->> +	 * The first blocks (4, 8 or 16 depending on the device)
->> +	 * are used by the boot ROM.
->> +	 * Configure the ECC algorithm supported by the boot ROM.
->> +	 */
-> 
->> +	if ((page < pages_per_blk * rknand->boot_blks) &&
-> 
->> +	if ((page < (pages_per_blk * rknand->boot_blks)) &&
-> 
->> +	    (chip->options & NAND_IS_BOOT_MEDIUM)) {
->> +		boot_rom_mode = 1;
->> +		if (rknand->boot_ecc != ecc->strength)
->> +			rk_nfc_hw_ecc_setup(chip, ecc,
->> +					    rknand->boot_ecc);
->> +	}
->> +
->> +	reinit_completion(&nfc->done);
->> +	writel(INT_DMA, nfc->regs + nfc->cfg->int_en_off);
->> +	rk_nfc_xfer_start(nfc, NFC_READ, ecc->steps, dma_data,
->> +			  dma_oob);
->> +	ret = wait_for_completion_timeout(&nfc->done,
->> +					  msecs_to_jiffies(100));
->> +	if (!ret)
->> +		dev_warn(nfc->dev, "read: wait dma done timeout.\n");
->> +	/*
->> +	 * Whether the DMA transfer is completed or not. The driver
->> +	 * needs to check the NFC`s status register to see if the data
->> +	 * transfer was completed.
->> +	 */
->> +	ret = rk_nfc_wait_for_xfer_done(nfc);
-> 
-> add empty line
-> 
->> +	dma_unmap_single(nfc->dev, dma_data, mtd->writesize,
->> +			 DMA_FROM_DEVICE);
->> +	dma_unmap_single(nfc->dev, dma_oob, ecc->steps * oob_step,
->> +			 DMA_FROM_DEVICE);
->> +
->> +	if (ret) {
-> 
->> +		bitflips = -EIO;
-> 
-> 		ret = -EIO;
-> 
-> return only "0" or official error codes
-> 
->> +		dev_err(nfc->dev,
->> +			"read: wait transfer done timeout.\n");
->> +		goto out;
->> +	}
->> +
->> +	for (i = 1; i < ecc->steps; i++) {
->> +		oob = chip->oob_poi + (i - 1) * NFC_SYS_DATA_SIZE;
->> +		if (nfc->cfg->type == NFC_V9)
->> +			tmp = nfc->oob_buf[i];
->> +		else
->> +			tmp = nfc->oob_buf[i * (oob_step / 4)];
->> +		*oob++ = (u8)tmp;
->> +		*oob++ = (u8)(tmp >> 8);
->> +		*oob++ = (u8)(tmp >> 16);
->> +		*oob++ = (u8)(tmp >> 24);
->> +	}
->> +
->> +	for (i = 0; i < (ecc->steps / 2); i++) {
->> +		bch_st = readl_relaxed(nfc->regs +
->> +				       nfc->cfg->bch_st_off + i * 4);
->> +		if (bch_st & BIT(nfc->cfg->ecc0.err_flag_bit) ||
->> +		    bch_st & BIT(nfc->cfg->ecc1.err_flag_bit)) {
->> +			mtd->ecc_stats.failed++;
-> 
->> +			bitflips = 0;
-> 
-> max_bitflips = -1;
-> 
-> use max_bitflips only for the error warning, not as return value
-> 
->> +		} else {
-> 
->> +			ret = ECC_ERR_CNT(bch_st, nfc->cfg->ecc0);
-> 
-> use ret only with "0" or official error codes, use cnt instead
-> 
-> 			cnt = ECC_ERR_CNT(bch_st, nfc->cfg->ecc0);
-> 
->> +			mtd->ecc_stats.corrected += ret;
-> 			mtd->ecc_stats.corrected += cnt;
-> 
->> +			bitflips = max_t(u32, bitflips, ret);
-> 
-> 			bitflips = max_t(u32, bitflips, cnt);
-> 
->> +
->> +			ret = ECC_ERR_CNT(bch_st, nfc->cfg->ecc1);
-> 
-> 			cnt = ECC_ERR_CNT(bch_st, nfc->cfg->ecc1);
-> 
->> +			mtd->ecc_stats.corrected += ret;
-> 
-> 			mtd->ecc_stats.corrected += cnt;
-> 
->> +			bitflips = max_t(u32, bitflips, ret);
-> 
-> 			bitflips = max_t(u32, bitflips, cnt);
->> +		}
->> +	}
->> +out:
->> +	memcpy(buf, nfc->page_buf, mtd->writesize);
->> +
-> 
->> +	if (boot_rom_mode && rknand->boot_ecc != ecc->strength)
->> +		rk_nfc_hw_ecc_setup(chip, ecc, ecc->strength);
->> +
-> 
->> +	if (bitflips > ecc->strength)
-> 
-> 	if (bitflips  == -1) {
-> 		ret = -EIO;
-> 
->> +		dev_err(nfc->dev, "read page: %x ecc error!\n", page);
-> 
-> }
-> 
-
->> +
->> +	/*
->> +	 * Deselect the currently selected target after the ops is done
->> +	 * to reduce the power consumption.
->> +	 */
->> +	rk_nfc_select_chip(chip, -1);
-
-
-Remove.
-Do not assume that the MTD framework or user space knows that you have
-deselected the chip.
-
->> +
-> 
->> +	return bitflips;
-> 
-> 	return ret;
-> 
-> Return only "0" or official error codes
-> If you want to do a "bad block scan" function in user space analyse/use
-> "mtd->ecc_stats" instead.
-> 
->> +}
->> +
+--ddtzb2gxy77t23sv--
