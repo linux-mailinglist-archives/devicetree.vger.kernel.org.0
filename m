@@ -2,121 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2422A179E
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 14:24:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 556562A17B5
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 14:43:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727567AbgJaNXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 09:23:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48670 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727505AbgJaNXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 09:23:48 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 230CDC0617A6;
-        Sat, 31 Oct 2020 06:23:48 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id k21so10374572ioa.9;
-        Sat, 31 Oct 2020 06:23:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=msN0U03I8r/VEdYzFEECbj7ezoLKGV1SY0EQdI9V/9s=;
-        b=XfovuHEbVw9rdwHWbUXEgsGrfW7emnC26FqUnNzGKHeqMozbLtSUeMaRAWMb9I7znT
-         KiXcgGyMSanwM+giE61XPjrHAnFNtqTDWEfkT+AZPDVuthEjVDmOGg7QjUT+MN+wreDL
-         kluS/U87gSpQ+HJDLKleIRs2Sy0pM6B3+qMVb+6DcDd97sH0HudADqH1zHEfsk+0wu0j
-         OlRtHbfKrg69LLuWBr/jMGbXkPmabME8Z7pUxzn204nkmipg4Hvf+5sloQMo/LsN+rQX
-         xeZdkkEl2u3uYh7/Ln3SlX4YQJ/Sbrx19jaqPa22nMQKkg2iWClrmk1sVzUsmYu0dJpe
-         q1Pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=msN0U03I8r/VEdYzFEECbj7ezoLKGV1SY0EQdI9V/9s=;
-        b=ZPPfUrZm+GpiUOQ5UsNtXx4gPW5V5lCw1RHpOM3/e71AchozOVLKNxPr/+n5PD9cWk
-         U2vgxJec/aCQ7RZFTya/gDGw2F7+AsmF1kzQyGogo5yw/itkDTj5kXh4mRCbtw8LfPp+
-         G9+kZggiIFb7mu9PYOaqB9mO9sH6Rdv7jSuYbI/EFZ0lwx4q7XJlT6xZjTJDRqQvpvuu
-         /8VbIEsJlla6Vz09DYgH7GkHPpR2lUXW8gjMtV2RCXmBFzmx82ycSe63FuyBoBWJDtyX
-         8LnfwM4+svc7ec0Dvt/lA/V9bJSa3zCMzsYHjE5Ro+sFTvdJsfN2ETxFnCfwDMumpRv2
-         I60Q==
-X-Gm-Message-State: AOAM530wrlH0yoFcbUdGkOMUUHjwapFQKyAMWPPB6AcnXSthsT/kRfY5
-        IgPasD71A8vBpL79mfZJLV4=
-X-Google-Smtp-Source: ABdhPJyqntj7LB0rxKgOVDtq/sY2jmtv306TBhU6sjB5BIsIzZioyM9xiuAC+1wSmGpwDds8FuiSNg==
-X-Received: by 2002:a6b:1546:: with SMTP id 67mr5198736iov.182.1604150627428;
-        Sat, 31 Oct 2020 06:23:47 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:c107:3b4f:7176:6aff])
-        by smtp.gmail.com with ESMTPSA id y3sm6804655ilc.49.2020.10.31.06.23.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Oct 2020 06:23:46 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, marex@denx.de,
-        Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V2 5/5] arm64: dts: imx8mn: Add node for SPDIF
-Date:   Sat, 31 Oct 2020 08:23:28 -0500
-Message-Id: <20201031132328.712525-6-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201031132328.712525-1-aford173@gmail.com>
-References: <20201031132328.712525-1-aford173@gmail.com>
+        id S1727553AbgJaNnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 09:43:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42550 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727460AbgJaNnm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Oct 2020 09:43:42 -0400
+Received: from localhost.localdomain (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D495720731;
+        Sat, 31 Oct 2020 13:43:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604151820;
+        bh=pDDINhxrXN3Rw9Qcsd4Yg2J2YEejp/OHyHGgRAKBSU4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=rNzDKFkBQIGL/HxzK8w4WdgXmfeKDAXNdnCgmGHcZpOzLzbxhIsuKzZvQTxQlcINs
+         JLs3+6lrd1Lw3h5em3cY0Hfgc3VMzwJ/OBNJtt80F94pcNwYmW9pjSeJzWmLFAWtze
+         fpmGbDswRqoFVyPQp/yE7wJBb6f3/yX/YjvmCupM=
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [PATCH v2 00/29] dt-bindings:iio: Another set of yaml conversions.
+Date:   Sat, 31 Oct 2020 13:40:41 +0000
+Message-Id: <20201031134110.724233-1-jic23@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8M Nano can support SPDIF which is compatible to the
-IP used on the i.MX35.
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Add the node.
+This set mostly consists of low hanging fruit along the way to converting
+all the existing IIO bindings.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 24 +++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+@Rob, I've dropped your Reviewed-by for patch 16 because of the major
+change introducing checking on spi-cpol XOR spi-cpha.
+It works, but I'm not sure there isn't a more minimal way of doing it.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index a83e87cac96d..e508db232bcf 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -337,6 +337,30 @@ micfil: audio-controller@30080000 {
- 					status = "disabled";
- 				};
- 
-+				spdif1: spdif@30090000 {
-+					compatible = "fsl,imx35-spdif";
-+					reg = <0x30090000 0x10000>;
-+					interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+					clocks = <&clk IMX8MN_CLK_AUDIO_AHB>, /* core */
-+						 <&clk IMX8MN_CLK_24M>, /* rxtx0 */
-+						 <&clk IMX8MN_CLK_SPDIF1>, /* rxtx1 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx2 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx3 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx4 */
-+						 <&clk IMX8MN_CLK_AUDIO_AHB>, /* rxtx5 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx6 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx7 */
-+						 <&clk IMX8MN_CLK_DUMMY>; /* spba */
-+					clock-names = "core", "rxtx0",
-+						      "rxtx1", "rxtx2",
-+						      "rxtx3", "rxtx4",
-+						      "rxtx5", "rxtx6",
-+						      "rxtx7", "spba";
-+					dmas = <&sdma2 28 18 0>, <&sdma2 29 18 0>;
-+					dma-names = "rx", "tx";
-+					status = "disabled";
-+				};
-+
- 				sai7: sai@300b0000 {
- 					compatible = "fsl,imx8mm-sai", "fsl,imx8mq-sai";
- 					reg = <0x300b0000 0x10000>;
+I could just have picked up the majority of these, but I forgot to
+cc the dt mailing list last time so want to resend them anyway.
+
+Changes since v1:
+* Updated various maintainers to reflect email bounces.
+* dht11 - added note on aosong as probably manufacturer
+* hoperf,hp03 - fixed description
+* ti,dac082s085
+  - Family typo
+  - Put back the reference regulator in example.
+  - Added checking of XOR of spi-cpha and spi-cpol
+* adi,ad7303 - drop adi,use-external-reference from example as no such thing.
+
+Jonathan Cameron (29):
+  dt-bindings:iio:humidity:hdc100x Drop separate doc + add to
+    trivial-devices
+  dt-bindings:iio:humidity:htu21 Drop separate doc + add to
+    trivial-devices
+  dt-bindings:iio:humidity:st,hts221 yaml conversion.
+  dt-bindings:iio:humidity:dht11 yaml conversion
+  dt-bindings:iio:pressure:ms5637 Drop separate doc + add to
+    trivial-devices
+  dt-bindings:iio:pressure:murata,zpa2326 yaml conversion
+  dt-bindings:iio:pressure:meas,ms5611 yaml conversion.
+  dt-bindings:iio:pressure:hoperf,hp03 yaml conversion
+  dt-bindings:iio:proximity:semtech,sx9500 yaml conversion.
+  dt-bindings:iio:proximity:st,vl53l0x yaml conversion
+  dt-bindings:iio:proximity:ams,as3935 yaml conversion
+  dt-bindings:iio:dac:ti,dac5571 yaml conversion.
+  dt-bindings:iio:dac:ti,dac7311 yaml conversion
+  dt-bindings:iio:dac:ti,dac7512 yaml conversion
+  dt-bindings:iio:dac:ti,dac7612 yaml conversion
+  dt-bindings:iio:dac:ti,dac082s085 yaml conversion
+  dt-bindings:iio:dac:adi,ad7303 yaml conversion
+  dt-bindings:iio:dac:maxim,ds4424 yaml conversion
+  dt-bindings:iio:dac:fsl,vf610-dac yaml conversion
+  dt-bindings:iio:dac:microchip,mcp4725 yaml conversion
+  dt-bindings:iio:dac:maxim,max5821 yaml conversion
+  dt-bindings:iio:dac:nxp,lpc1850-dac yaml conversion.
+  dt-bindings:iio:dac:adi,ad5758 yaml conversion
+  dt-bindings:iio:temperature:melexis,mlx90614 yaml conversion
+  dt-bindings:iio:temperature:melexis,mlx90632 conversion to yaml
+  dt-bindings:iio:temperature:meas,tsys01 move to trivial-devices.yaml
+  dt-bindings:iio:temperature:maxim,max31856 yaml conversion.
+  dt-bindings:iio:temperature:maxim_thermocouple.txt to
+    maxim,max31855k.yaml
+  dt-bindings:iio:temperature:ti,tmp07 yaml conversion
+
+ .../devicetree/bindings/iio/dac/ad5758.txt    |  83 -----------
+ .../devicetree/bindings/iio/dac/ad7303.txt    |  23 ----
+ .../bindings/iio/dac/adi,ad5758.yaml          | 129 ++++++++++++++++++
+ .../bindings/iio/dac/adi,ad7303.yaml          |  50 +++++++
+ .../devicetree/bindings/iio/dac/ds4424.txt    |  20 ---
+ .../bindings/iio/dac/fsl,vf610-dac.yaml       |  55 ++++++++
+ .../bindings/iio/dac/lpc1850-dac.txt          |  19 ---
+ .../devicetree/bindings/iio/dac/max5821.txt   |  14 --
+ .../bindings/iio/dac/maxim,ds4424.yaml        |  45 ++++++
+ .../bindings/iio/dac/maxim,max5821.yaml       |  44 ++++++
+ .../devicetree/bindings/iio/dac/mcp4725.txt   |  35 -----
+ .../bindings/iio/dac/microchip,mcp4725.yaml   |  71 ++++++++++
+ .../bindings/iio/dac/nxp,lpc1850-dac.yaml     |  58 ++++++++
+ .../bindings/iio/dac/ti,dac082s085.yaml       |  79 +++++++++++
+ .../bindings/iio/dac/ti,dac5571.txt           |  24 ----
+ .../bindings/iio/dac/ti,dac5571.yaml          |  52 +++++++
+ .../bindings/iio/dac/ti,dac7311.txt           |  23 ----
+ .../bindings/iio/dac/ti,dac7311.yaml          |  49 +++++++
+ .../bindings/iio/dac/ti,dac7512.txt           |  20 ---
+ .../bindings/iio/dac/ti,dac7512.yaml          |  42 ++++++
+ .../bindings/iio/dac/ti,dac7612.txt           |  28 ----
+ .../bindings/iio/dac/ti,dac7612.yaml          |  53 +++++++
+ .../bindings/iio/dac/ti-dac082s085.txt        |  34 -----
+ .../devicetree/bindings/iio/dac/vf610-dac.txt |  20 ---
+ .../bindings/iio/humidity/dht11.txt           |  14 --
+ .../bindings/iio/humidity/dht11.yaml          |  41 ++++++
+ .../bindings/iio/humidity/hdc100x.txt         |  17 ---
+ .../bindings/iio/humidity/hts221.txt          |  30 ----
+ .../bindings/iio/humidity/htu21.txt           |  13 --
+ .../bindings/iio/humidity/st,hts221.yaml      |  52 +++++++
+ .../bindings/iio/pressure/hoperf,hp03.yaml    |  47 +++++++
+ .../devicetree/bindings/iio/pressure/hp03.txt |  17 ---
+ .../bindings/iio/pressure/meas,ms5611.yaml    |  57 ++++++++
+ .../bindings/iio/pressure/ms5611.txt          |  19 ---
+ .../bindings/iio/pressure/ms5637.txt          |  17 ---
+ .../bindings/iio/pressure/murata,zpa2326.yaml |  62 +++++++++
+ .../bindings/iio/pressure/zpa2326.txt         |  29 ----
+ .../bindings/iio/proximity/ams,as3935.yaml    |  71 ++++++++++
+ .../bindings/iio/proximity/as3935.txt         |  34 -----
+ .../iio/proximity/semtech,sx9500.yaml         |  50 +++++++
+ .../bindings/iio/proximity/st,vl53l0x.yaml    |  42 ++++++
+ .../bindings/iio/proximity/sx9500.txt         |  23 ----
+ .../bindings/iio/proximity/vl53l0x.txt        |  18 ---
+ .../bindings/iio/temperature/max31856.txt     |  24 ----
+ .../iio/temperature/maxim,max31855k.yaml      |  76 +++++++++++
+ .../iio/temperature/maxim,max31856.yaml       |  54 ++++++++
+ .../iio/temperature/maxim_thermocouple.txt    |  24 ----
+ .../iio/temperature/melexis,mlx90614.yaml     |  50 +++++++
+ .../iio/temperature/melexis,mlx90632.yaml     |  55 ++++++++
+ .../bindings/iio/temperature/mlx90614.txt     |  24 ----
+ .../bindings/iio/temperature/mlx90632.txt     |  28 ----
+ .../bindings/iio/temperature/ti,tmp007.yaml   |  57 ++++++++
+ .../bindings/iio/temperature/tmp007.txt       |  33 -----
+ .../bindings/iio/temperature/tsys01.txt       |  19 ---
+ .../devicetree/bindings/trivial-devices.yaml  |  24 ++++
+ 55 files changed, 1465 insertions(+), 726 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ad5758.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ad7303.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad7303.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ds4424.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/fsl,vf610-dac.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/lpc1850-dac.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/max5821.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/maxim,max5821.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/mcp4725.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4725.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/nxp,lpc1850-dac.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac082s085.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac5571.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac5571.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac7311.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac7311.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac7512.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac7512.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac7612.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/ti-dac082s085.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/dac/vf610-dac.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/humidity/dht11.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/humidity/dht11.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/humidity/hdc100x.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/humidity/hts221.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/humidity/htu21.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/humidity/st,hts221.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/hoperf,hp03.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/pressure/hp03.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/pressure/ms5611.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/pressure/ms5637.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/murata,zpa2326.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/pressure/zpa2326.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/ams,as3935.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/proximity/as3935.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9500.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/st,vl53l0x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/proximity/sx9500.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/proximity/vl53l0x.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/temperature/max31856.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/maxim,max31855k.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/maxim,max31856.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/temperature/maxim_thermocouple.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/melexis,mlx90632.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/temperature/mlx90614.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/temperature/mlx90632.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp007.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/temperature/tmp007.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/temperature/tsys01.txt
+
 -- 
-2.25.1
+2.28.0
 
