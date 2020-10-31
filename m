@@ -2,519 +2,488 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E8B2A15DD
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 12:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7842A15C3
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 12:38:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727151AbgJaLiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 07:38:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727092AbgJaLfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 07:35:55 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E1E2C0613D5
-        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 04:35:55 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1kYpAO-00078k-71; Sat, 31 Oct 2020 12:35:28 +0100
-Received: from [IPv6:2a03:f580:87bc:d400:dcc0:5662:7742:3902] (unknown [IPv6:2a03:f580:87bc:d400:dcc0:5662:7742:3902])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits))
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id EC59F587078;
-        Sat, 31 Oct 2020 11:35:15 +0000 (UTC)
-Subject: Re: [PATCH v7 0/6] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
-To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-References: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <2ccec201-1a84-1837-15a8-d2ad05f5753c@pengutronix.de>
-Date:   Sat, 31 Oct 2020 12:35:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1727056AbgJaLiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 07:38:07 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:51160 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727190AbgJaLgb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 07:36:31 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 13so5073378wmf.0;
+        Sat, 31 Oct 2020 04:36:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/5i7Xu4MHXboDXAyc173g9+q/jTnbwYy+UHkXY4eLZQ=;
+        b=RoQVg9HNXhwh+HjTqkW0TWIMQJ2EvzrIUokJdfe7VUv+scL8zwAgAD1wWsMz3GaSiT
+         VDA4HVPWuJT5NGpSyeWdVIn/dOdZQHDi8ZsuNA0sIdmefBGUjSHwE2mqP9NsXsnGL5+J
+         x0SBDp2BV4pW6kl3wFfJMcplM2HteflDEENqbGmVB/7uqeFgwZ5OINWpIbL1kEJN/gfG
+         Cr3/14FhprPtgPlN63+YfCmFRzaGphPkjqLw0bQpoyeo5qaMpW5ckr1y8VFnWYqUmOHH
+         zbR7sWdRWyzDA4/Oxdv9G/ySqgQeqMTYHG8sqB8DYuFu6SRrl+EtnmcgqJM1iNupzw1a
+         5Csg==
+X-Gm-Message-State: AOAM5331IojhuDJmat04ymkeaijzKSA2Qp4/zeG/S7tZESx0rL2nYXt4
+        hGGvq0jvuv6PgcI141LxnmM=
+X-Google-Smtp-Source: ABdhPJznwM9PsqLHF7/6r60UZtYG2AF8oU/gvc2VY1jXfXhFCKNveN5CWCSXc4b2G/GpNroMyXVE2w==
+X-Received: by 2002:a1c:9641:: with SMTP id y62mr7965533wmd.145.1604144187654;
+        Sat, 31 Oct 2020 04:36:27 -0700 (PDT)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id e2sm15256658wrr.85.2020.10.31.04.36.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Oct 2020 04:36:26 -0700 (PDT)
+Date:   Sat, 31 Oct 2020 12:36:23 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Honghui Zhang <honghui.zhang@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>, Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        ming-fan.chen@mediatek.com, Fabien Parent <fparent@baylibre.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: memory: mediatek: Convert SMI to DT
+ schema
+Message-ID: <20201031113623.GA4019@kozik-lap>
+References: <20201030091254.26382-1-yong.wu@mediatek.com>
+ <20201030091254.26382-2-yong.wu@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="04tgLaBHSWFaV1pFRgNILpZYRaA30DPBv"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201030091254.26382-2-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---04tgLaBHSWFaV1pFRgNILpZYRaA30DPBv
-Content-Type: multipart/mixed; boundary="UpDqIxknZHkUw6dX1i9CjvnpV77RuuRWi";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
- devicetree@vger.kernel.org, Oliver Hartkopp <socketcan@hartkopp.net>
-Cc: Wolfgang Grandegger <wg@grandegger.com>,
- David Miller <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
- mark.rutland@arm.com, Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Marin Jerabek <martin.jerabek01@gmail.com>,
- Ondrej Ille <ondrej.ille@gmail.com>, Jiri Novak <jnovak@fel.cvut.cz>,
- Jaroslav Beran <jara.beran@gmail.com>, Petr Porazil <porazil@pikron.com>,
- Pavel Machek <pavel@ucw.cz>, Drew Fustini <pdp7pdp7@gmail.com>
-Message-ID: <2ccec201-1a84-1837-15a8-d2ad05f5753c@pengutronix.de>
-Subject: Re: [PATCH v7 0/6] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
-References: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
-In-Reply-To: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
-
---UpDqIxknZHkUw6dX1i9CjvnpV77RuuRWi
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
-
-On 10/30/20 11:19 PM, Pavel Pisa wrote:
-> This driver adds support for the CTU CAN FD open-source IP core.
-
-Please fix the following checkpatch warnings/errors:
-
-----------------------------------------
-drivers/net/can/ctucanfd/ctucanfd_base.c
-----------------------------------------
-WARNING: Possible repeated word: 'the'
-#296: FILE: drivers/net/can/ctucanfd/ctucanfd_base.c:296:
-+ * This check the drivers state and calls the
-+ * the corresponding modes to set.
-
-WARNING: Possible repeated word: 'the'
-#445: FILE: drivers/net/can/ctucanfd/ctucanfd_base.c:445:
-+ * This is the CAN error interrupt and it will check the the type of err=
-or
-
-WARNING: quoted string split across lines
-#466: FILE: drivers/net/can/ctucanfd/ctucanfd_base.c:466:
-+		netdev_info(ndev, "%s: ISR =3D 0x%08x, rxerr %d, txerr %d,"
-+			" error type %u, pos %u, ALC id_field %u, bit %u\n",
-
-CHECK: Alignment should match open parenthesis
-#637: FILE: drivers/net/can/ctucanfd/ctucanfd_base.c:637:
-+	ctucan_netdev_dbg(ndev, "%s: from 0x%08x to 0x%08x\n",
-+		   __func__, priv->txb_prio, prio);
-
-CHECK: Alignment should match open parenthesis
-#673: FILE: drivers/net/can/ctucanfd/ctucanfd_base.c:673:
-+			ctucan_netdev_dbg(ndev, "TXI: TXB#%u: status 0x%x\n",
-+				   txb_idx, status);
-
-CHECK: Alignment should match open parenthesis
-#808: FILE: drivers/net/can/ctucanfd/ctucanfd_base.c:808:
-+			ctucan_netdev_dbg(ndev, "some ERR interrupt: clearing 0x%08x\n",
-+				   icr.u32);
-
-total: 0 errors, 3 warnings, 3 checks, 1142 lines checked
-
-NOTE: For some of the reported defects, checkpatch may be able to
-      mechanically convert to the typical style using --fix or --fix-inpl=
-ace.
-
-drivers/net/can/ctucanfd/ctucanfd_base.c has style problems, please revie=
-w.
------------------------------------------
-drivers/net/can/ctucanfd/ctucanfd_frame.h
------------------------------------------
-CHECK: Please don't use multiple blank lines
-#46: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:46:
-+
-+
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#49: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:49:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#104: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:104:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#120: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:120:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#128: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:128:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#136: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:136:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#154: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:154:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#172: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:172:
-+	uint32_t u32;
-
-total: 0 errors, 0 warnings, 8 checks, 189 lines checked
-
-NOTE: For some of the reported defects, checkpatch may be able to
-      mechanically convert to the typical style using --fix or --fix-inpl=
-ace.
-
-drivers/net/can/ctucanfd/ctucanfd_frame.h has style problems, please revi=
-ew.
------------------------------------
-drivers/net/can/ctucanfd/ctucanfd.h
------------------------------------
-total: 0 errors, 0 warnings, 0 checks, 87 lines checked
-
-drivers/net/can/ctucanfd/ctucanfd.h has no obvious style problems and is =
-ready for submission.
---------------------------------------
-drivers/net/can/ctucanfd/ctucanfd_hw.c
---------------------------------------
-CHECK: Please don't use multiple blank lines
-#30: FILE: drivers/net/can/ctucanfd/ctucanfd_hw.c:30:
-+
-+
-
-WARNING: Possible repeated word: 'from'
-#40: FILE: drivers/net/can/ctucanfd/ctucanfd_hw.c:40:
-+ * generated from from IP-XACT/cactus helps to driver to hardware
-
-CHECK: Alignment should match open parenthesis
-#98: FILE: drivers/net/can/ctucanfd/ctucanfd_hw.c:98:
-+static u32 ctucan_hw_hwid_to_id(union ctu_can_fd_identifier_w hwid,
-+				 enum ctu_can_fd_frame_format_w_ide type)
-
-total: 0 errors, 1 warnings, 2 checks, 751 lines checked
-
-NOTE: For some of the reported defects, checkpatch may be able to
-      mechanically convert to the typical style using --fix or --fix-inpl=
-ace.
-
-drivers/net/can/ctucanfd/ctucanfd_hw.c has style problems, please review.=
-
---------------------------------------
-drivers/net/can/ctucanfd/ctucanfd_hw.h
---------------------------------------
-WARNING: networking block comments don't use an empty /* line, use /* Com=
-ment...
-#56: FILE: drivers/net/can/ctucanfd/ctucanfd_hw.h:56:
-+/*
-+ * Status macros -> pass "ctu_can_get_status" result
-
-WARNING: networking block comments don't use an empty /* line, use /* Com=
-ment...
-#84: FILE: drivers/net/can/ctucanfd/ctucanfd_hw.h:84:
-+/*
-+ * Interrupt macros -> pass "ctu_can_fd_int_sts" result
-
-CHECK: Alignment should match open parenthesis
-#759: FILE: drivers/net/can/ctucanfd/ctucanfd_hw.h:759:
-+static inline void ctucan_hw_txt_buf_give_command(struct ctucan_hw_priv =
-*priv,
-+				union ctu_can_fd_tx_command cmd, u8 buf)
-
-total: 0 errors, 2 warnings, 1 checks, 935 lines checked
-
-NOTE: For some of the reported defects, checkpatch may be able to
-      mechanically convert to the typical style using --fix or --fix-inpl=
-ace.
-
-drivers/net/can/ctucanfd/ctucanfd_hw.h has style problems, please review.=
-
----------------------------------------
-drivers/net/can/ctucanfd/ctucanfd_pci.c
----------------------------------------
-total: 0 errors, 0 warnings, 0 checks, 316 lines checked
-
-drivers/net/can/ctucanfd/ctucanfd_pci.c has no obvious style problems and=
- is ready for submission.
---------------------------------------------
-drivers/net/can/ctucanfd/ctucanfd_platform.c
---------------------------------------------
-total: 0 errors, 0 warnings, 0 checks, 142 lines checked
-
-drivers/net/can/ctucanfd/ctucanfd_platform.c has no obvious style problem=
-s and is ready for submission.
-----------------------------------------
-drivers/net/can/ctucanfd/ctucanfd_regs.h
-----------------------------------------
-CHECK: Please don't use multiple blank lines
-#100: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:100:
-+
-+
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#103: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:103:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#124: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:124:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#217: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:217:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#245: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:245:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#269: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:269:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#305: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:305:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#319: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:319:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#333: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:333:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#347: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:347:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#361: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:361:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#381: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:381:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#407: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:407:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#431: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:431:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#450: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:450:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#465: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:465:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#487: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:487:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#501: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:501:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#515: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:515:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#529: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:529:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#543: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:543:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#557: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:557:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#571: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:571:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#585: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:585:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#599: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:599:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#652: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:652:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#670: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:670:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#688: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:688:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#718: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:718:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#726: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:726:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#756: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:756:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#784: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:784:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#810: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:810:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#863: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:863:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#890: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:890:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#898: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:898:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#906: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:906:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#948: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:948:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#956: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:956:
-+	uint32_t u32;
-
-CHECK: Prefer kernel type 'u32' over 'uint32_t'
-#964: FILE: drivers/net/can/ctucanfd/ctucanfd_regs.h:964:
-+	uint32_t u32;
-
-total: 0 errors, 0 warnings, 40 checks, 971 lines checked
-
-NOTE: For some of the reported defects, checkpatch may be able to
-      mechanically convert to the typical style using --fix or --fix-inpl=
-ace.
-
-drivers/net/can/ctucanfd/ctucanfd_regs.h has style problems, please revie=
-w.
-
-NOTE: If any of the errors are false positives, please report
-      them to the maintainer, see CHECKPATCH in MAINTAINERS.
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
-
---UpDqIxknZHkUw6dX1i9CjvnpV77RuuRWi--
-
---04tgLaBHSWFaV1pFRgNILpZYRaA30DPBv
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl+dS+8ACgkQqclaivrt
-76nhYwf+P7IMNmeMji2DGfhN8jcV/uukmdiEsj52/rFN1rviJC5ax/WNCiy0L/+m
-EkVV7uzdFv2R2dKHHo7NInXfSmslmIYgNn7hF4syItM3NrNAbSGuNP09tMMlKnVk
-TXsLf0ZmvwuGthTO1/Zx/JCgiZwoFSN9dj4xu8ZtmcHNk2tz6vbHLAF30bUiFl8V
-pmGIKL4vbfMlzwRfnJNriMl6qG8jcQoX8mvqDimQodxJcLVsUAT48jS8G3ooo1ZF
-opuUu2MWeeBuMItqbNIJbVbpenJz5Kmi/t3l0tp1FIrIMM+amDRrBl30vm95U9UL
-XnWuPqzf0pLRAHWK4nnSl3SMHJ5P7Q==
-=QBMS
------END PGP SIGNATURE-----
-
---04tgLaBHSWFaV1pFRgNILpZYRaA30DPBv--
+On Fri, Oct 30, 2020 at 05:12:52PM +0800, Yong Wu wrote:
+> Convert MediaTek SMI to DT schema.
+> 
+> CC: Fabien Parent <fparent@baylibre.com>
+> CC: Ming-Fan Chen <ming-fan.chen@mediatek.com>
+> CC: Matthias Brugger <matthias.bgg@gmail.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  .../mediatek,smi-common.txt                   |  50 -------
+>  .../mediatek,smi-common.yaml                  | 140 ++++++++++++++++++
+>  .../memory-controllers/mediatek,smi-larb.txt  |  50 -------
+>  .../memory-controllers/mediatek,smi-larb.yaml | 129 ++++++++++++++++
+>  4 files changed, 269 insertions(+), 100 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
+
++Cc Honghui Zhang,
+
+Your Ack is needed as you contributed descriptions to the bindings and
+work is being relicensed to GPL-2.0-only OR BSD-2-Clause.
+
+
+Best regards,
+Krzysztof
+
+
+
+
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
+> deleted file mode 100644
+> index dbafffe3f41e..000000000000
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -SMI (Smart Multimedia Interface) Common
+> -
+> -The hardware block diagram please check bindings/iommu/mediatek,iommu.txt
+> -
+> -Mediatek SMI have two generations of HW architecture, here is the list
+> -which generation the SoCs use:
+> -generation 1: mt2701 and mt7623.
+> -generation 2: mt2712, mt6779, mt8167, mt8173 and mt8183.
+> -
+> -There's slight differences between the two SMI, for generation 2, the
+> -register which control the iommu port is at each larb's register base. But
+> -for generation 1, the register is at smi ao base(smi always on register
+> -base). Besides that, the smi async clock should be prepared and enabled for
+> -SMI generation 1 to transform the smi clock into emi clock domain, but that is
+> -not needed for SMI generation 2.
+> -
+> -Required properties:
+> -- compatible : must be one of :
+> -	"mediatek,mt2701-smi-common"
+> -	"mediatek,mt2712-smi-common"
+> -	"mediatek,mt6779-smi-common"
+> -	"mediatek,mt7623-smi-common", "mediatek,mt2701-smi-common"
+> -	"mediatek,mt8167-smi-common"
+> -	"mediatek,mt8173-smi-common"
+> -	"mediatek,mt8183-smi-common"
+> -- reg : the register and size of the SMI block.
+> -- power-domains : a phandle to the power domain of this local arbiter.
+> -- clocks : Must contain an entry for each entry in clock-names.
+> -- clock-names : must contain 3 entries for generation 1 smi HW and 2 entries
+> -  for generation 2 smi HW as follows:
+> -  - "apb" : Advanced Peripheral Bus clock, It's the clock for setting
+> -	    the register.
+> -  - "smi" : It's the clock for transfer data and command.
+> -	    They may be the same if both source clocks are the same.
+> -  - "async" : asynchronous clock, it help transform the smi clock into the emi
+> -	      clock domain, this clock is only needed by generation 1 smi HW.
+> -  and these 2 option clocks for generation 2 smi HW:
+> -  - "gals0": the path0 clock of GALS(Global Async Local Sync).
+> -  - "gals1": the path1 clock of GALS(Global Async Local Sync).
+> -  Here is the list which has this GALS: mt6779 and mt8183.
+> -
+> -Example:
+> -	smi_common: smi@14022000 {
+> -		compatible = "mediatek,mt8173-smi-common";
+> -		reg = <0 0x14022000 0 0x1000>;
+> -		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
+> -		clocks = <&mmsys CLK_MM_SMI_COMMON>,
+> -			 <&mmsys CLK_MM_SMI_COMMON>;
+> -		clock-names = "apb", "smi";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> new file mode 100644
+> index 000000000000..e050a0c2aed6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> @@ -0,0 +1,140 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2020 MediaTek Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/mediatek,smi-common.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SMI (Smart Multimedia Interface) Common
+> +
+> +maintainers:
+> +  - Yong Wu <yong.wu@mediatek.com>
+> +
+> +description: |+
+> +  The hardware block diagram please check bindings/iommu/mediatek,iommu.yaml
+> +
+> +  MediaTek SMI have two generations of HW architecture, here is the list
+> +  which generation the SoCs use:
+> +  generation 1: mt2701 and mt7623.
+> +  generation 2: mt2712, mt6779, mt8167, mt8173 and mt8183.
+> +
+> +  There's slight differences between the two SMI, for generation 2, the
+> +  register which control the iommu port is at each larb's register base. But
+> +  for generation 1, the register is at smi ao base(smi always on register
+> +  base). Besides that, the smi async clock should be prepared and enabled for
+> +  SMI generation 1 to transform the smi clock into emi clock domain, but that is
+> +  not needed for SMI generation 2.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2701-smi-common
+> +          - mediatek,mt2712-smi-common
+> +          - mediatek,mt6779-smi-common
+> +          - mediatek,mt8167-smi-common
+> +          - mediatek,mt8173-smi-common
+> +          - mediatek,mt8183-smi-common
+> +
+> +      - description: for mt7623
+> +        items:
+> +          - const: mediatek,mt7623-smi-common
+> +          - const: mediatek,mt2701-smi-common
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: |
+> +      apb and smi are mandatory. the async is only for generation 1 smi HW.
+> +      gals(global async local sync) also is optional, see below.
+> +    minItems: 2
+> +    maxItems: 4
+> +    items:
+> +      - description: apb is Advanced Peripheral Bus clock, It's the clock for
+> +          setting the register.
+> +      - description: smi is the clock for transfer data and command.
+> +      - description: async is asynchronous clock, it help transform the smi clock
+> +          into the emi clock domain.
+> +      - description: gals0 is the path0 clock of gals.
+> +      - description: gals1 is the path1 clock of gals.
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 4
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +  - clocks
+> +  - clock-names
+> +
+> +allOf:
+> +  - if: #only for gen1 HW
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt2701-smi-common
+> +    then:
+> +       properties:
+> +         clock:
+> +           items:
+> +             minItems: 3
+> +             maxItems: 3
+> +         clock-names:
+> +           items:
+> +             - const: apb
+> +             - const: smi
+> +             - const: async
+> +
+> +  - if: #for gen2 HW that have gals
+> +      properties:
+> +        compatible:
+> +            enum:
+> +              - mediatek,mt6779-smi-common
+> +              - mediatek,mt8183-smi-common
+> +
+> +    then:
+> +      properties:
+> +        clock:
+> +          items:
+> +            minItems: 4
+> +            maxItems: 4
+> +        clock-names:
+> +          items:
+> +            - const: apb
+> +            - const: smi
+> +            - const: gals0
+> +            - const: gals1
+> +
+> +    else: #for gen2 HW that don't have gals
+> +      properties:
+> +        clock:
+> +          items:
+> +            minItems: 2
+> +            maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: apb
+> +            - const: smi
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8173-clk.h>
+> +    #include <dt-bindings/power/mt8173-power.h>
+> +
+> +    smi_common: smi@14022000 {
+> +            compatible = "mediatek,mt8173-smi-common";
+> +            reg = <0x14022000 0x1000>;
+> +            power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
+> +            clocks = <&mmsys CLK_MM_SMI_COMMON>,
+> +                     <&mmsys CLK_MM_SMI_COMMON>;
+> +            clock-names = "apb", "smi";
+> +    };
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+> deleted file mode 100644
+> index 0c5de12b5496..000000000000
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -SMI (Smart Multimedia Interface) Local Arbiter
+> -
+> -The hardware block diagram please check bindings/iommu/mediatek,iommu.txt
+> -
+> -Required properties:
+> -- compatible : must be one of :
+> -		"mediatek,mt2701-smi-larb"
+> -		"mediatek,mt2712-smi-larb"
+> -		"mediatek,mt6779-smi-larb"
+> -		"mediatek,mt7623-smi-larb", "mediatek,mt2701-smi-larb"
+> -		"mediatek,mt8167-smi-larb"
+> -		"mediatek,mt8173-smi-larb"
+> -		"mediatek,mt8183-smi-larb"
+> -- reg : the register and size of this local arbiter.
+> -- mediatek,smi : a phandle to the smi_common node.
+> -- power-domains : a phandle to the power domain of this local arbiter.
+> -- clocks : Must contain an entry for each entry in clock-names.
+> -- clock-names: must contain 2 entries, as follows:
+> -  - "apb" : Advanced Peripheral Bus clock, It's the clock for setting
+> -	    the register.
+> -  - "smi" : It's the clock for transfer data and command.
+> -  and this optional clock name:
+> -  - "gals": the clock for GALS(Global Async Local Sync).
+> -  Here is the list which has this GALS: mt8183.
+> -
+> -Required property for mt2701, mt2712, mt6779, mt7623 and mt8167:
+> -- mediatek,larb-id :the hardware id of this larb.
+> -
+> -Example:
+> -	larb1: larb@16010000 {
+> -		compatible = "mediatek,mt8173-smi-larb";
+> -		reg = <0 0x16010000 0 0x1000>;
+> -		mediatek,smi = <&smi_common>;
+> -		power-domains = <&scpsys MT8173_POWER_DOMAIN_VDEC>;
+> -		clocks = <&vdecsys CLK_VDEC_CKEN>,
+> -			 <&vdecsys CLK_VDEC_LARB_CKEN>;
+> -		clock-names = "apb", "smi";
+> -	};
+> -
+> -Example for mt2701:
+> -	larb0: larb@14010000 {
+> -		compatible = "mediatek,mt2701-smi-larb";
+> -		reg = <0 0x14010000 0 0x1000>;
+> -		mediatek,smi = <&smi_common>;
+> -		mediatek,larb-id = <0>;
+> -		clocks = <&mmsys CLK_MM_SMI_LARB0>,
+> -			 <&mmsys CLK_MM_SMI_LARB0>;
+> -		clock-names = "apb", "smi";
+> -		power-domains = <&scpsys MT2701_POWER_DOMAIN_DISP>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> new file mode 100644
+> index 000000000000..a11a105e872f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> @@ -0,0 +1,129 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2020 MediaTek Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/mediatek,smi-larb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SMI (Smart Multimedia Interface) Local Arbiter
+> +
+> +maintainers:
+> +  - Yong Wu <yong.wu@mediatek.com>
+> +
+> +description: |+
+> +  The hardware block diagram please check bindings/iommu/mediatek,iommu.yaml
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2701-smi-larb
+> +          - mediatek,mt2712-smi-larb
+> +          - mediatek,mt6779-smi-larb
+> +          - mediatek,mt8167-smi-larb
+> +          - mediatek,mt8173-smi-larb
+> +          - mediatek,mt8183-smi-larb
+> +
+> +      - description: for mt7623
+> +        items:
+> +          - const: mediatek,mt7623-smi-larb
+> +          - const: mediatek,mt2701-smi-larb
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: |
+> +      apb and smi are mandatory. gals(global async local sync) is optional.
+> +    minItems: 2
+> +    maxItems: 3
+> +    items:
+> +       - description: apb is Advanced Peripheral Bus clock, It's the clock for
+> +           setting the register.
+> +       - description: smi is the clock for transfer data and command.
+> +       - description: the clock for gals.
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  mediatek,smi:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: a phandle to the smi_common node.
+> +
+> +  mediatek,larb-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 31
+> +    description: the hardware id of this larb.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +
+> +allOf:
+> +  - if: # HW has gals
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - mediatek,mt8183-smi-larb
+> +
+> +    then:
+> +      properties:
+> +        clock:
+> +          items:
+> +            minItems: 3
+> +            maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: apb
+> +            - const: smi
+> +            - const: gals
+> +
+> +    else:
+> +      properties:
+> +        clock:
+> +          items:
+> +            minItems: 2
+> +            maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: apb
+> +            - const: smi
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt2701-smi-larb
+> +              - mediatek,mt2712-smi-larb
+> +              - mediatek,mt6779-smi-larb
+> +              - mediatek,mt8167-smi-larb
+> +
+> +    then:
+> +      required:
+> +        - mediatek,larb-id
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8173-clk.h>
+> +    #include <dt-bindings/power/mt8173-power.h>
+> +
+> +    larb1: larb@16010000 {
+> +      compatible = "mediatek,mt8173-smi-larb";
+> +      reg = <0x16010000 0x1000>;
+> +      mediatek,smi = <&smi_common>;
+> +      power-domains = <&scpsys MT8173_POWER_DOMAIN_VDEC>;
+> +      clocks = <&vdecsys CLK_VDEC_CKEN>,
+> +               <&vdecsys CLK_VDEC_LARB_CKEN>;
+> +      clock-names = "apb", "smi";
+> +    };
+> -- 
+> 2.18.0
