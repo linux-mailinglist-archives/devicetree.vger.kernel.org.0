@@ -2,200 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C812A17FD
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 14:54:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B8B2A1802
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 14:56:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727461AbgJaNyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 09:54:46 -0400
-Received: from mout.kundenserver.de ([212.227.17.10]:43639 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727407AbgJaNyq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 09:54:46 -0400
-Received: from methusalix.internal.home.lespocky.de ([109.250.100.133]) by
- mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MTiHb-1kvZI83UCb-00U2mO; Sat, 31 Oct 2020 14:54:13 +0100
-Received: from falbala.internal.home.lespocky.de ([192.168.243.94])
-        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <post@lespocky.de>)
-        id 1kYrKc-0007w5-MQ; Sat, 31 Oct 2020 14:54:11 +0100
-Date:   Sat, 31 Oct 2020 14:54:09 +0100
-From:   Alexander Dahl <post@lespocky.de>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [Linux-stm32] [PATCH v7 10/12] ARM: dts: stm32: Fix schema
- warnings for pwm-leds
-Message-ID: <20201031135408.lgpiy5goa7l4cg2k@falbala.internal.home.lespocky.de>
-Mail-Followup-To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Alexander Dahl <ada@thorsis.com>, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20201005203451.9985-1-post@lespocky.de>
- <20201005203451.9985-11-post@lespocky.de>
- <b387bda8-3643-1d27-4996-2aa4dc94d69f@pengutronix.de>
- <20201027100536.cpfizc67gwrolp2z@falbala.internal.home.lespocky.de>
- <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
+        id S1727498AbgJaN4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 09:56:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53620 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727460AbgJaN4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 09:56:23 -0400
+Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6D8FC0617A6
+        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 06:56:23 -0700 (PDT)
+Received: by mail-il1-x144.google.com with SMTP id c11so9002414iln.9
+        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 06:56:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/LN9xNGIprn5EVjtx8y2uJe/ugryWLBw3tWbyNok+DI=;
+        b=p1Kh3rcxKUvxwemFaGYJ1AgKy0V5e+ezzxLhsxjeFuDzIVR37+duG5m+pNpb3sb3SS
+         ELIzGH2tjUOrHgeixjO2t0SYwctTU2dSIP4tBVb1AmH+pchfO9QDPeb371BfeZBn4GuJ
+         XAIGFUWRS9S3qxlJaaQF+aT2Slxxr3GWbIIOfN2ZYWqSL9L2i4xtUbu24d/sU2Q8n3Ml
+         M81cdkKKr50RMZfuaLOaZi7etuUwwjplznrzvTSl5TbDLph1T4SpZWWvqE3WimZZUUBr
+         iAmK0cca/xtfNBhVGAausEDPzAaiTdxqC5w+YurWV8HtLAge0qcNAU0zIZljes4Mll1L
+         zo1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/LN9xNGIprn5EVjtx8y2uJe/ugryWLBw3tWbyNok+DI=;
+        b=DsS7NYycwg6KehK0walNtkHenpqP7bmBG10TPuQL/9bjtwWhclFj7N3uSzNudTSFZ8
+         pxSSNlonB2cJuoAO34TQKy4zt7O5p+6Qj/D5aWpjOOYOrqw8Sr3eQRrmwhPsOhbPZfIj
+         4/fX6WZ0JA43Fcv8GPh5DVGbzaIx6uNeGaFZVgKEowZEQhBHo2XaBNZsNaEkiL1CdJx5
+         K5SxTyXLG03h5bj4XYDwO6qUExlr4OVC8A21RJj7tcTBovA4zylVmR8swTvp6/3jDbTI
+         9CiaH5WwO86weFjqLSqhruYi/6CgJcEB5SUQPYHCUlbptMpgtOTkZp1hk3PgNQRXvvES
+         o1ng==
+X-Gm-Message-State: AOAM531jneqbVMHfaz5GTa4y/eTh0uAGG1qyuZQm035f81SsA9pmbeBd
+        38a3vywk8VrzBaBBSn18AnRwMtzQcdg8gbI3fgY=
+X-Google-Smtp-Source: ABdhPJwuCp4K7zW4+brTQzxa1fobbIzLAcN3bsFcV4qbne14fjcwfNGKjGvtjGnx+zloHNDkXguqEkEUzUA74U5nvUY=
+X-Received: by 2002:a92:290b:: with SMTP id l11mr5508291ilg.46.1604152582852;
+ Sat, 31 Oct 2020 06:56:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ddtzb2gxy77t23sv"
-Content-Disposition: inline
-In-Reply-To: <f6ed201d-51b6-f278-7a95-3e3e49dc19ee@pengutronix.de>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Scan-Signature: 398b5fa1ed41958f905023f519330efd
-X-Spam-Score: -2.9 (--)
-X-Provags-ID: V03:K1:kOJxMHpGJCYtvBKRj3a5Ly8/ilfwpNNXI1ocWX5i5fr374VhsBt
- XY+3dWYOOSBqHrm0QBckVTKaVnpenhn7Uh2IlaJx6UC+1How4h/6RmzbZPI7EeF6UhXe6pK
- eKCecDo6OoX2+9Qb9Mt3PSNf8AhYm2ZcDajM/8GaKnr1hXnqw+FHr6wP9hYLA9ldvbjZuhV
- pi62QF0PirWPfLHq9QFxw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:tdONFEfhZCc=:cGmwJuBlzO3ekW8iSHTpqb
- jxAFgeN1rSd12PhXPzUSdS13qXWBFtnPArrSzrLH64aJ23ezNNhaW0E21f6bMf9KnEiveMYPJ
- kntm5B0u/IuV3f62ZgRn46eIGV76LjlbkXxG2KaJFEe8SEVcqgYJhvgHNufIMjLp02tpANaLg
- LEbI2AnxancoF0iKlLsxixftKZU8RcY7muxGTqvbiUZ6Mp0tm8MzymZZb0LiFi033FBhzpX6N
- M62vEo4VM8B0OE7IoOhpROVbfYWmQF7SnsQEOr0U83lAFDkggYBGSb0Irwhr/82NMHUM5sp/k
- t1C9n77YO/n7eqtoIKG3RXnryfv5LwmEjqVEYv8X2SXm4rL3ODpJJb3xpGCMp6NZCmp16F9Ho
- lOSAgG7pxo03Et3nlZ51Q0lxk32BoSQZVXQBJ0hjP/9fmpO9GaSoC26P7eaFP
+References: <20200930155006.535712-1-l.stach@pengutronix.de>
+ <AM0PR04MB4915267F67FFEA311E9B79F087080@AM0PR04MB4915.eurprd04.prod.outlook.com>
+ <5287bbc0ede98dd3fc0022f2062148275dafa05c.camel@pengutronix.de>
+ <AM0PR04MB4915BC0D047EBD63D4E4366587090@AM0PR04MB4915.eurprd04.prod.outlook.com>
+ <18c98a86aaac86a5742d6f8c4c671ae522751dda.camel@pengutronix.de>
+ <DB6PR0402MB27604614CB067AB6594221ED88050@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+ <4985eb0d018d488d93e427db27be9418057d9440.camel@pengutronix.de> <DB6PR0402MB276078487A13C2904FA16EA688170@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+In-Reply-To: <DB6PR0402MB276078487A13C2904FA16EA688170@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Sat, 31 Oct 2020 08:56:11 -0500
+Message-ID: <CAHCN7x+JoR0_1eOik7mF4pVDvTv8wvH-d18DA3j9c+zQvhujjg@mail.gmail.com>
+Subject: Re: [PATCH 00/11] i.MX8MM power domain support
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>, Jacky Bai <ping.bai@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 28, 2020 at 8:51 AM Peng Fan <peng.fan@nxp.com> wrote:
+>
+> Hi Lucas,
+>
+> > Subject: Re: [PATCH 00/11] i.MX8MM power domain support
+> >
+> > Hi Peng,
+> >
+> > On Mi, 2020-10-14 at 01:23 +0000, Peng Fan wrote:
+> > [...]
+> > > > > > > 3. either 8MM, 8MN, or 8MP, the power domain design is
+> > > > > > > different, I am not
+> > > > > > sure if it is the good to add hundreds line of code in GPCv2
+> > > > > > each time
+> > > > > > >   a new SOC is added.
+> > > > > >
+> > > > > > I don't buy into this argument. We have lots of drivers in the
+> > > > > > Linux kernel that require some changes for new SoC generations,
+> > > > > > that's what Linux drivers are for. The complexity of the
+> > > > > > hardware doesn't disappear just because you push some of the
+> > > > > > driver bits into TF-A, you just handle the complexity at a
+> > > > > > different palce and IMHO that the wrong place. The power domains
+> > > > > > have complex interactions with other drivers in the Linux
+> > > > > > system, so debugging and deplyong fixes is much easier when the
+> > > > > > power domain handling is fully done by a kernel
+> > > > driver.
+> > > > > Actually, due to the security requirement from other system
+> > > > > solution provider, for example, Microsoft Azure Sphere, it has
+> > > > > strict requirement for power domain to be controlled by secure
+> > > > > subsystem(either
+> > > > TF-A, TEE or dedicated secure domain controller).
+> > > > > Same requirement for reset control, and system critical clock control.
+> > > >
+> > > > Yes, I'm aware of those requirements, but to satisfy those you need
+> > > > a full implementation of all those parts in the secure subsystem.
+> > > > Doing it just for the power domains adds complexity for no gain, as
+> > > > you still won't be able to meet all the requirements and frankly I
+> > > > don't think this is a realistic goal to achieve with the current i.MX8M
+> > family of SoCs.
+> > >
+> > > At least we are moving to that direction.
+> >
+> > To me it seems like the current way (custom TF-A interface and
+> > implementation) is one step in the right direction, but two steps backwards in
+> > terms of complexity.
+> >
+> > > > Meeting those requirements needs a fully system approach where the
+> > > > secure subsystem parts are made sufficiently independent from the
+> > > > non- secure parts on a hardware level, which I don't see on the
+> > > > i.MX8M SoC and hardware design guide.
+> > >
+> > > CSU could restrict the access permission.
+> >
+> > While this is true, my argument is much broader and not only focused on
+> > on-SoC peripherals. For example some of the power domains need different
+> > voltages for specific performance states, which means you need to
+> > communicate with a external PMIC or other voltage regulator, which in turn
+> > means you need to set aside the necessary i2c bus and/or GPIO banks
+> > required for this communication at system design time, so it isn't shared
+> > between TF-A and the rich OS. I don't see this in any of the i.MX8M designs.
+> >
+> > > > > For NXP i.MX8M family, it is ok to implement in linux kernel, just
+> > > > > a tradeoff to find out a place to hide the complexity ^_^.
+> > > > >
+> > > > > BTW, for virtualization support, it is better to put the power
+> > > > > domain in a central place to simplify the VM implementation.
+> > > >
+> > > > Same as above. If you can make all the relevant bits (clock, reset,
+> > > > power-domain, regulator) available via a virtualization friendly
+> > > > API, then I would see a point in adding complexity for this
+> > > > abstraction. As long as this added abstraction only solves a very
+> > > > tiny bit of the overall picture, I just don't see the point in the added
+> > complexity and (from a Linux PoV) obfuscation.
+> > >
+> > > Could we use SCMI for power domain, system critical clocks, smc
+> > > watchdog and etc?
+> >
+> > If you could demonstrate a working solution with all those pieces hidden
+> > behind a standard SCMI interface, this would make for a much more
+> > compelling story supporting the secure subsystem argument.
+> >
+> > > Or we support two approaches, one is let Linux control everything, the
+> > > other is using SCMI.
+> > >
+> > > Thoughts?
+> >
+> > I wouldn't be opposed to such a solution. If you can put all this behind a
+> > standard SCMI interface, I guess we wouldn't need two different SoC specific
+> > drivers for the same purpose, so we could easily have a Linux full-control
+> > solution (i.e. this patchset) coexist with a SCMI based implementation,
+> > possibly with just a slightly different base SoC DT with all the power domains,
+> > clocks and other system level control stuff behind SCMI.
+> >
+> > What I'm strongly opposed to is having a custom TF-A interface and all the
+> > added complexity for little to no gain in actual system security.
+>
+> Understand. There are truly the SoC design might not fit well to protect
+> all the stuff.
+>
+> It is good that you did this patchset. Vote for you to add more support
+> on i.MX.
+>
+> Your patchset not conflict with SCMI, as you said, this is true.
+>
+> Please continue your effort.
 
---ddtzb2gxy77t23sv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Despite ongoing efforts to get the displaymix (and probably vpumix)
+operational, it would be nice to have operational USB which needs two
+of the power domains.  Could we apply the initial framework and only
+the DT nodes for the functional power domains (hsiomix and pgc_otg1) .
 
-Hei hei,
+While it's not a perfect solution, I think incremental improvements
+are better than going stale while we wait for the perfect solution.
+Having them pulled into a staging branch also helps coordinate
+efforts.
 
-On Tue, Oct 27, 2020 at 11:58:10AM +0100, Ahmad Fatoum wrote:
-> Hello,
->=20
-> On 10/27/20 11:05 AM, Alexander Dahl wrote:
-> > Hello Ahmad,
-> >=20
-> > thanks for your feedback, comments below.
-> >=20
->=20
-> >>> -	led-rgb {
-> >>> +	led-controller-2 {
-> >>
-> >> Is a single RGB LED really a controller?
-> >=20
-> > I just followed the recommendations by Rob here.
->=20
-> Do you happen to know if the new multicolor LED support could be used her=
-e?
->=20
-> I find it unfortunate that the device tree loses information relevant to =
-humans
-> to adhere to a fixed nomenclature. Apparently led-controller isn't even c=
-odified
-> in the YAML binding (It's just in the examples). If you respin, please ad=
-d a
-> comment that this is a single RGB led. I'd prefer to keep the information
-> in the DTB as well though.
-
-Slightly off-topic, but while I was working on the patch based on your
-feedback I tried to find some information on that Linux Automation
-MC-1 board.  However I could not find any? Is there some website, some
-datasheet or maybe a schematic online?  The vendor prefix says "Linux
-Automation GmbH", but I find only that USB-SD-Mux on their page?
-
-Greets
-Alex
-
->=20
->=20
->=20
-> >=20
-> >>>  		compatible =3D "pwm-leds";
-> >>> =20
-> >>> -		led-red {
-> >>> +		led-2 {
-> >>
-> >> Shouldn't this have been led-1 as well or is the numbering "global" ?
-> >=20
-> > Also good question. This numbering is for dts only, it usually does
-> > not correspond with LEDs on the board, so it could be numbered per
-> > led-controller as well?
->=20
-> I'd prefer that it starts by 1. That way it's aligned with PWM channel
-> ID.
->=20
-> Thanks for fixing the dtschema warnings by the way!
->=20
-> Cheers,
-> Ahmad
->=20
-> >=20
-> > Greets
-> > Alex
-> >=20
-> >>
-> >>>  			label =3D "mc1:red:rgb";
-> >>>  			pwms =3D <&leds_pwm 1 1000000 0>;
-> >>>  			max-brightness =3D <255>;
-> >>>  			active-low;
-> >>>  		};
-> >>> =20
-> >>> -		led-green {
-> >>> +		led-3 {
-> >>>  			label =3D "mc1:green:rgb";
-> >>>  			pwms =3D <&leds_pwm 2 1000000 0>;
-> >>>  			max-brightness =3D <255>;
-> >>>  			active-low;
-> >>>  		};
-> >>> =20
-> >>> -		led-blue {
-> >>> +		led-4 {
-> >>>  			label =3D "mc1:blue:rgb";
-> >>>  			pwms =3D <&leds_pwm 3 1000000 0>;
-> >>>  			max-brightness =3D <255>;
-> >>>
-> >>
-> >> --=20
-> >> Pengutronix e.K.                           |                          =
-   |
-> >> Steuerwalder Str. 21                       | http://www.pengutronix.de=
-/  |
-> >> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0 =
-   |
-> >> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-55=
-55 |
-> >=20
->=20
-> --=20
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
---=20
-/"\ ASCII RIBBON | =BBWith the first link, the chain is forged. The first
-\ / CAMPAIGN     | speech censured, the first thought forbidden, the
- X  AGAINST      | first freedom denied, chains us all irrevocably.=AB
-/ \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
-
---ddtzb2gxy77t23sv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEwo7muQJjlc+Prwj6NK3NAHIhXMYFAl+dbHwACgkQNK3NAHIh
-XMbKlRAAvIubmqiN++XwaqH5hXCbf7EM1ob2W5t69Hrh3pjVgu/gK0SGLqeHHyNP
-7FRMW6hMn3VFCFBaLrQL9ElCJ5gx9h9ZCRIJKR+EUsj8gWFOhs5/zqUnk2dkN8HD
-845u1H7h+xQXCPI8CUVmBLGzQXlh/7vunQABDYFR5FJKAXRpZBmvHcwt6wDcmVng
-jM93vIM2ixPIvjS2qEXYOCa7fh85GooXH4MSJ9oabFUM/uTfhRDogpq6q3uk5qz4
-6STtbz6guRHBvIV4VMJeJucA4tfLJSV63GVtI3xbpUlNoiVGGQRq8MtJWQCvU1bi
-pcHHw8Ydyzzf7QWk0H5fteboW/rYngD6J7Wxk2zcJNOBU7sgMiEgTIe25nuoub+E
-X4LsGx3XBmhQGNSP7dCaeyZm2qhNASdGA3AdnSDPm4AmeXa6jJ1aH6jIl362KLS5
-qhRNxo9j0CQu8QgqSTLBpG+A3ZdaLli7ErXdVgfgSj6Z+ku03iPkkJy1+uSyv9CW
-YWQ4J2BwAmbUitBavgrYw74ES3WtssHTTicJ33zIARZ3vQT0HPR9bzjfKQ4BXwgd
-r89naMgGERE2ifQ0maRQ02aenvX0V7JACCO4UbC7Zpv0jkkFYBbn5naGxTlokwPm
-W1yNqL6VZv25zhzFFd7k7N9g3MbmNhaC8Gnj7BJBEMQ8o37HZJY=
-=Iu4R
------END PGP SIGNATURE-----
-
---ddtzb2gxy77t23sv--
+adam
+>
+> Thanks,
+> Peng.
+>
+> >
+> > Regards,
+> > Lucas
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
