@@ -2,166 +2,485 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56EAF2A1412
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 08:50:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 200602A1419
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 09:01:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726073AbgJaHui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 03:50:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57696 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725832AbgJaHui (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 31 Oct 2020 03:50:38 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        id S1725924AbgJaIBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 04:01:46 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:57098 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725832AbgJaIBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 04:01:46 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AA69120720;
-        Sat, 31 Oct 2020 07:50:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604130637;
-        bh=FShfaONHN2MtJoKkncPAHJZcCd0fJTGqHwgM6U02FVI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Pvuqzv4g5qIdf38wiDKQXNzjG3+55P5OVqtlQsfEDmU1LBj7FDQoMyAl63xTNxbq7
-         TPMSpfAECankY+ILeh5/t8hXwi+5x1v8ailgaDZSyNXe2zyCVpZwn4AfoHDUmzFU6s
-         Fb8CK+0k7WIJgSnhTYzb3gnDx96OagSNlb+FZwuY=
-Date:   Sat, 31 Oct 2020 15:50:31 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     peng.fan@nxp.com
-Cc:     s.hauer@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, marex@denx.de
-Subject: Re: [PATCH] ARM: dts: imx: add usb alias
-Message-ID: <20201031075030.GS28755@dragon>
-References: <1602638861-20278-1-git-send-email-peng.fan@nxp.com>
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 4322F20022;
+        Sat, 31 Oct 2020 09:01:39 +0100 (CET)
+Date:   Sat, 31 Oct 2020 09:01:37 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 2/2] drm/bridge: hx8837: add a Himax HX8837 display
+ controller driver
+Message-ID: <20201031080137.GB1044557@ravnborg.org>
+References: <20201030030800.1036888-1-lkundrak@v3.sk>
+ <20201030030800.1036888-3-lkundrak@v3.sk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1602638861-20278-1-git-send-email-peng.fan@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201030030800.1036888-3-lkundrak@v3.sk>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=Op-mwl0xAAAA:8 a=YTiKu0AdvXNqoZNr570A:9
+        a=CjuIK1q_8ugA:10 a=_kNtSFdpYmJUICABlfa3:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 14, 2020 at 09:27:41AM +0800, peng.fan@nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+Hi Lubomir.
+
+On Fri, Oct 30, 2020 at 04:08:00AM +0100, Lubomir Rintel wrote:
+> Himax HX8837 is used to drive the LCD panel on OLPC platforms.
 > 
-> Add usb alias for bootloader emulator the controller in correct order.
-
-emulator?  Not sure what that means.
-
-Shawn
-
+> It controls the panel backlight and is able to refresh it when the LCD
+> controller (and the rest of the plaform) is powered off.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> It also converts regular RGB color data from the LCDC so that it looks
+> reasonable on the OLPC LCD panel with a monochromatic layer on top of a
+> layer that can either reflect light (b/w sunlight readable mode) or light
+> pattern of red, green and blue pixels.
+> 
+> At this point, the driver is rather basic. The self-refresh mode is not
+> supported. There's no way of independently controlling the color swizzling,
+> antialiasing or b/w conversion, but it probably isn't too useful either.
+> 
+> There's another driver for the same hardware on OLPC XO-1.5 and XO-1.75
+> in drivers/staging/olpc_dcon. The display on that hardware doesn't utilize
+> DRM, so this driver doesn't replace the other one yet.
+> 
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> 
 > ---
->  arch/arm/boot/dts/imx6qdl.dtsi | 4 ++++
->  arch/arm/boot/dts/imx6sl.dtsi  | 3 +++
->  arch/arm/boot/dts/imx6sll.dtsi | 2 ++
->  arch/arm/boot/dts/imx6sx.dtsi  | 3 +++
->  arch/arm/boot/dts/imx6ul.dtsi  | 2 ++
->  arch/arm/boot/dts/imx7d.dtsi   | 6 ++++++
->  arch/arm/boot/dts/imx7s.dtsi   | 2 ++
->  7 files changed, 22 insertions(+)
+> Changes since v5:
+> (All based on feedback from Sam Ravnborg)
+> - Fix indentation in Kconfig
+> - Sort #includes
+> - Use a constant for max brightness instead of a literal
+> - Remove struct drm_panel from priv data
+> - Use dev_err() instead of DRM_ERROR
+> - Replace direct use of backlight props.brightness with
+>   backlight_get_brightness()
+> - Document sentinels with { /* sentinel */ }
+> - Remove unsetting of panel->backlight
+
+Thanks, I missed a few things during the last round, so here is a few
+more comments. Only very trivial things but lets get them fixed before
+we add the driver to drm-misc-next.
+
+	Sam
+
 > 
-> diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-> index 7a8837cbe21b..947584b40b1f 100644
-> --- a/arch/arm/boot/dts/imx6qdl.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl.dtsi
-> @@ -45,6 +45,10 @@ aliases {
->  		spi1 = &ecspi2;
->  		spi2 = &ecspi3;
->  		spi3 = &ecspi4;
-> +		usb0 = &usbotg;
-> +		usb1 = &usbh1;
-> +		usb2 = &usbh2;
-> +		usb3 = &usbh3;
->  		usbphy0 = &usbphy1;
->  		usbphy1 = &usbphy2;
->  	};
-> diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
-> index 91a8c54d5e11..997b96c1c47b 100644
-> --- a/arch/arm/boot/dts/imx6sl.dtsi
-> +++ b/arch/arm/boot/dts/imx6sl.dtsi
-> @@ -39,6 +39,9 @@ aliases {
->  		spi1 = &ecspi2;
->  		spi2 = &ecspi3;
->  		spi3 = &ecspi4;
-> +		usb0 = &usbotg1;
-> +		usb1 = &usbotg2;
-> +		usb2 = &usbh;
->  		usbphy0 = &usbphy1;
->  		usbphy1 = &usbphy2;
->  	};
-> diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
-> index 0b622201a1f3..04f8d637a501 100644
-> --- a/arch/arm/boot/dts/imx6sll.dtsi
-> +++ b/arch/arm/boot/dts/imx6sll.dtsi
-> @@ -36,6 +36,8 @@ aliases {
->  		spi1 = &ecspi2;
->  		spi3 = &ecspi3;
->  		spi4 = &ecspi4;
-> +		usb0 = &usbotg1;
-> +		usb1 = &usbotg2;
->  		usbphy0 = &usbphy1;
->  		usbphy1 = &usbphy2;
->  	};
-> diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
-> index dfdca1804f9f..343f2a3170bb 100644
-> --- a/arch/arm/boot/dts/imx6sx.dtsi
-> +++ b/arch/arm/boot/dts/imx6sx.dtsi
-> @@ -49,6 +49,9 @@ aliases {
->  		spi2 = &ecspi3;
->  		spi3 = &ecspi4;
->  		spi4 = &ecspi5;
-> +		usb0 = &usbotg1;
-> +		usb1 = &usbotg2;
-> +		usb2 = &usbh;
->  		usbphy0 = &usbphy1;
->  		usbphy1 = &usbphy2;
->  	};
-> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-> index d7d9f3e46b92..09021a35c266 100644
-> --- a/arch/arm/boot/dts/imx6ul.dtsi
-> +++ b/arch/arm/boot/dts/imx6ul.dtsi
-> @@ -47,6 +47,8 @@ aliases {
->  		spi1 = &ecspi2;
->  		spi2 = &ecspi3;
->  		spi3 = &ecspi4;
-> +		usb0 = &usbotg1;
-> +		usb1 = &usbotg2;
->  		usbphy0 = &usbphy1;
->  		usbphy1 = &usbphy2;
->  	};
-> diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
-> index cff875b80b60..b0bcfa9094a3 100644
-> --- a/arch/arm/boot/dts/imx7d.dtsi
-> +++ b/arch/arm/boot/dts/imx7d.dtsi
-> @@ -7,6 +7,12 @@
->  #include <dt-bindings/reset/imx7-reset.h>
+> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> index ef91646441b16..881780719af7c 100644
+> --- a/drivers/gpu/drm/bridge/Kconfig
+> +++ b/drivers/gpu/drm/bridge/Kconfig
+> @@ -48,6 +48,19 @@ config DRM_DISPLAY_CONNECTOR
+>  	  on ARM-based platforms. Saying Y here when this driver is not needed
+>  	  will not cause any issue.
 >  
->  / {
-> +	aliases {
-> +		usb0 = &usbotg1;
-> +		usb1 = &usbotg2;
-> +		usb2 = &usbh;
-> +	};
+> +config DRM_HIMAX_HX8837
+> +	tristate "HiMax HX8837 OLPC Display Controller"
+> +	depends on OF
+> +	depends on OLPC || ARCH_MMP || COMPILE_TEST
+> +	select DRM_KMS_HELPER
+> +	select BACKLIGHT_LCD_SUPPORT
+Unknown symbol - "git grep BACKLIGHT_LCD_SUPPORT" only turned up one
+unrelated hit.
+
+> +	select BACKLIGHT_CLASS_DEVICE
+Please use a depends - using select on a symbol with a prompt is always
+wrong. Yeah, I know you then need to enable backlight to see this
+driver. Sorry, but this is the best we can do now.
+Many other drivers can cope with depends here.
+
+> +	help
+> +	  Enable support for HiMax HX8837 Display Controller as found in the
+> +	  OLPC XO laptops.
 > +
->  	cpus {
->  		cpu0: cpu@0 {
->  			clock-frequency = <996000000>;
-> diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-> index 84d9cc13afb9..358ef453ce14 100644
-> --- a/arch/arm/boot/dts/imx7s.dtsi
-> +++ b/arch/arm/boot/dts/imx7s.dtsi
-> @@ -47,6 +47,8 @@ aliases {
->  		spi1 = &ecspi2;
->  		spi2 = &ecspi3;
->  		spi3 = &ecspi4;
-> +		usb0 = &usbotg1;
-> +		usb1 = &usbh;
->  	};
->  
->  	cpus {
+> +	  If your laptop doesn't have green ears, say "N"
+I like this last comment :-)
+
+> +
+>  config DRM_LONTIUM_LT9611
+>  	tristate "Lontium LT9611 DSI/HDMI bridge"
+>  	select SND_SOC_HDMI_CODEC if SND_SOC
+> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+> index 2b3aff104e466..21f72df3260db 100644
+> --- a/drivers/gpu/drm/bridge/Makefile
+> +++ b/drivers/gpu/drm/bridge/Makefile
+> @@ -2,6 +2,7 @@
+>  obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
+>  obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
+>  obj-$(CONFIG_DRM_DISPLAY_CONNECTOR) += display-connector.o
+> +obj-$(CONFIG_DRM_HIMAX_HX8837) += himax-hx8837.o
+>  obj-$(CONFIG_DRM_LONTIUM_LT9611) += lontium-lt9611.o
+>  obj-$(CONFIG_DRM_LVDS_CODEC) += lvds-codec.o
+>  obj-$(CONFIG_DRM_MEGACHIPS_STDPXXXX_GE_B850V3_FW) += megachips-stdpxxxx-ge-b850v3-fw.o
+> diff --git a/drivers/gpu/drm/bridge/himax-hx8837.c b/drivers/gpu/drm/bridge/himax-hx8837.c
+> new file mode 100644
+> index 0000000000000..f472e16cc331d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/himax-hx8837.c
+> @@ -0,0 +1,330 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * HiMax HX8837 Display Controller Driver
+> + *
+> + * Datasheet: http://wiki.laptop.org/images/0/09/DCON_datasheet_HX8837-A.pdf
+> + *
+> + * Copyright (C) 2020 Lubomir Rintel
+> + */
+> +
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_bridge.h>
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_print.h>
+drm_print.h is no longer used and should be dropped.
+
+> +#include <drm/drm_probe_helper.h>
+> +
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +
+> +#define bridge_to_hx8837_priv(x) \
+> +	container_of(x, struct hx8837_priv, bridge)
+> +
+> +/* DCON registers */
+> +enum {
+> +	DCON_REG_ID		= 0x00,
+> +	DCON_REG_MODE		= 0x01,
+> +	DCON_REG_HRES		= 0x02,
+> +	DCON_REG_HTOTAL		= 0x03,
+> +	DCON_REG_HSYNC_WIDTH	= 0x04,
+> +	DCON_REG_VRES		= 0x05,
+> +	DCON_REG_VTOTAL		= 0x06,
+> +	DCON_REG_VSYNC_WIDTH	= 0x07,
+> +	DCON_REG_TIMEOUT	= 0x08,
+> +	DCON_REG_SCAN_INT	= 0x09,
+> +	DCON_REG_BRIGHT		= 0x0a,
+> +	DCON_REG_MEM_OPT_A	= 0x41,
+> +	DCON_REG_MEM_OPT_B	= 0x42,
+> +};
+> +
+> +/* DCON_REG_MODE */
+> +enum {
+> +	MODE_PASSTHRU		= BIT(0),
+> +	MODE_SLEEP		= BIT(1),
+> +	MODE_SLEEP_AUTO		= BIT(2),
+> +	MODE_BL_ENABLE		= BIT(3),
+> +	MODE_BLANK		= BIT(4),
+> +	MODE_CSWIZZLE		= BIT(5),
+> +	MODE_COL_AA		= BIT(6),
+> +	MODE_MONO_LUMA		= BIT(7),
+> +	MODE_SCAN_INT		= BIT(8),
+> +	MODE_CLOCKDIV		= BIT(9),
+> +	MODE_DEBUG		= BIT(14),
+> +	MODE_SELFTEST		= BIT(15),
+> +};
+> +
+> +/* DCON_REG_BRIGHT */
+> +enum {
+> +	BRIGHT_MASK		= GENMASK(7, 0),
+> +};
+> +
+> +struct hx8837_priv {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct gpio_desc *load_gpio;
+> +
+> +	struct drm_bridge *panel_bridge;
+> +	struct drm_bridge bridge;
+> +};
+> +
+> +static int hx8837_bridge_attach(struct drm_bridge *bridge,
+> +				enum drm_bridge_attach_flags flags)
+> +{
+> +	struct hx8837_priv *priv = bridge_to_hx8837_priv(bridge);
+> +
+> +	return drm_bridge_attach(bridge->encoder, priv->panel_bridge,
+> +				 bridge, flags);
+> +}
+> +
+> +static enum drm_mode_status hx8837_bridge_mode_valid(
+> +				struct drm_bridge *bridge,
+> +				const struct drm_display_info *info,
+> +				const struct drm_display_mode *mode)
+> +{
+> +	if (mode->hdisplay > 0xffff)
+> +		return MODE_BAD_HVALUE;
+> +	if (mode->htotal > 0xffff)
+> +		return MODE_BAD_HVALUE;
+> +	if (mode->hsync_start - mode->hdisplay > 0xff)
+> +		return MODE_HBLANK_WIDE;
+> +	if (mode->hsync_end - mode->hsync_start > 0xff)
+> +		return MODE_HSYNC_WIDE;
+> +	if (mode->vdisplay > 0xffff)
+> +		return MODE_BAD_VVALUE;
+> +	if (mode->vtotal > 0xffff)
+> +		return MODE_BAD_VVALUE;
+> +	if (mode->vsync_start - mode->vdisplay > 0xff)
+> +		return MODE_VBLANK_WIDE;
+> +	if (mode->vsync_end - mode->vsync_start > 0xff)
+> +		return MODE_VSYNC_WIDE;
+> +
+> +	return MODE_OK;
+> +}
+> +
+> +static void hx8837_bridge_disable(struct drm_bridge *bridge)
+> +{
+> +	struct hx8837_priv *priv = bridge_to_hx8837_priv(bridge);
+> +	int ret;
+> +
+> +	ret = gpiod_direction_output(priv->load_gpio, 0);
+> +	if (ret)
+> +		dev_err(priv->dev, "error enabling the dcon load: %d\n", ret);
+I assume this is disabling the dcon load - so text needs an update
+
+> +
+> +	ret = regmap_update_bits(priv->regmap, DCON_REG_MODE,
+> +					       MODE_PASSTHRU |
+> +					       MODE_SLEEP,
+> +					       MODE_PASSTHRU |
+> +					       MODE_SLEEP);
+> +	if (ret)
+> +		dev_err(priv->dev, "error disabling the dcon: %d\n", ret);
+> +}
+> +
+> +static void hx8837_bridge_enable(struct drm_bridge *bridge)
+> +{
+> +	struct hx8837_priv *priv = bridge_to_hx8837_priv(bridge);
+> +	int ret;
+> +
+> +	ret = regmap_update_bits(priv->regmap, DCON_REG_MODE,
+> +					       MODE_PASSTHRU |
+> +					       MODE_SLEEP |
+> +					       MODE_SLEEP_AUTO |
+> +					       MODE_BLANK |
+> +					       MODE_SCAN_INT |
+> +					       MODE_CLOCKDIV |
+> +					       MODE_DEBUG |
+> +					       MODE_SELFTEST,
+> +					       MODE_PASSTHRU);
+> +	if (ret)
+> +		dev_err(priv->dev, "error enabling the dcon: %d\n", ret);
+> +
+> +	ret = gpiod_direction_output(priv->load_gpio, 1);
+> +	if (ret)
+> +		dev_err(priv->dev, "error enabling the dcon load: %d\n", ret);
+> +}
+> +
+> +static void hx8837_bridge_mode_set(struct drm_bridge *bridge,
+> +			   const struct drm_display_mode *mode,
+> +			   const struct drm_display_mode *adjusted_mode)
+> +{
+> +	struct hx8837_priv *priv = bridge_to_hx8837_priv(bridge);
+> +
+> +	regmap_write(priv->regmap, DCON_REG_HRES, mode->hdisplay);
+> +	regmap_write(priv->regmap, DCON_REG_HTOTAL, mode->htotal);
+> +	regmap_write(priv->regmap, DCON_REG_HSYNC_WIDTH,
+> +			(mode->hsync_start - mode->hdisplay) << 8 |
+> +			(mode->hsync_end - mode->hsync_start));
+> +	regmap_write(priv->regmap, DCON_REG_VRES, mode->vdisplay);
+> +	regmap_write(priv->regmap, DCON_REG_VTOTAL, mode->vtotal);
+> +	regmap_write(priv->regmap, DCON_REG_VSYNC_WIDTH,
+> +			(mode->vsync_start - mode->vdisplay) << 8 |
+> +			(mode->vsync_end - mode->vsync_start));
+> +}
+> +
+> +static const struct drm_bridge_funcs hx8837_bridge_funcs = {
+> +	.attach = hx8837_bridge_attach,
+> +	.mode_valid = hx8837_bridge_mode_valid,
+> +	.disable = hx8837_bridge_disable,
+> +	.enable = hx8837_bridge_enable,
+> +	.mode_set = hx8837_bridge_mode_set,
+> +};
+> +
+> +static int hx8837_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct hx8837_priv *priv = bl_get_data(bl);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_update_bits(priv->regmap, DCON_REG_BRIGHT,
+> +					       BRIGHT_MASK,
+> +					       backlight_get_brightness(bl));
+> +	if (ret) {
+> +		dev_err(&bl->dev, "error setting the backlight: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (backlight_get_brightness(bl))
+> +		val = MODE_CSWIZZLE | MODE_COL_AA;
+> +	else
+> +		val = MODE_MONO_LUMA;
+> +
+> +	ret = regmap_update_bits(priv->regmap, DCON_REG_MODE,
+> +					       MODE_CSWIZZLE |
+> +					       MODE_COL_AA |
+> +					       MODE_MONO_LUMA,
+> +					       val);
+> +	if (ret) {
+> +		dev_err(&bl->dev, "error setting color mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct backlight_ops hx8837_bl_ops = {
+> +	.update_status = hx8837_bl_update_status,
+> +};
+> +
+> +static const struct regmap_config hx8837_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.max_register = 0x4c,
+> +	.val_format_endian = REGMAP_ENDIAN_LITTLE,
+> +};
+> +
+> +static int hx8837_probe(struct i2c_client *client,
+> +			const struct i2c_device_id *id)
+> +{
+> +	struct backlight_properties bl_props = {
+> +		.type = BACKLIGHT_RAW,
+> +		.max_brightness = BRIGHT_MASK,
+> +	};
+I have recently learned we shall also always set the scale.
+This is missing in many drivers - but please do it here.
+
+> +	struct device *dev = &client->dev;
+> +	struct backlight_device *bl;
+> +	struct hx8837_priv *priv;
+> +	struct drm_panel *panel;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(dev, priv);
+> +	priv->dev = dev;
+> +
+> +	priv->load_gpio = devm_gpiod_get(dev, "load", GPIOD_ASIS);
+> +	if (IS_ERR(priv->load_gpio))
+> +		return PTR_ERR(priv->load_gpio);
+> +
+> +	ret = drm_of_find_panel_or_bridge(dev->of_node, 1, -1, &panel, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (panel->backlight) {
+> +		dev_err(dev, "the panel already has a backlight controller\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	priv->panel_bridge = devm_drm_panel_bridge_add(dev, panel);
+> +	if (IS_ERR(priv->panel_bridge))
+> +		return PTR_ERR(priv->panel_bridge);
+> +
+> +	priv->regmap = devm_regmap_init_i2c(client, &hx8837_regmap_config);
+> +	if (IS_ERR(priv->regmap)) {
+> +		dev_err(dev, "regmap init failed\n");
+regmap_init_i2c failed?
+
+> +		return PTR_ERR(priv->regmap);
+> +	}
+> +
+> +	ret = regmap_read(priv->regmap, DCON_REG_ID, &val);
+> +	if (ret < 0) {
+> +		dev_err(dev, "error reading the model id: %d\n", ret);
+> +		return ret;
+> +	}
+> +	if ((val & 0xff00) != 0xdc00) {
+> +		dev_err(dev, "the device is not a hx8837\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = regmap_read(priv->regmap, DCON_REG_BRIGHT, &val);
+> +	if (ret < 0) {
+> +		dev_err(&bl->dev, "error getting the backlight: %d\n", ret);
+> +		return ret;
+> +	}
+> +	bl_props.brightness = val & 0xf;
+> +
+> +	bl = devm_backlight_device_register(dev, dev_name(dev), dev, priv,
+> +					    &hx8837_bl_ops, &bl_props);
+> +	if (IS_ERR(bl)) {
+> +		dev_err(dev, "failed to register backlight\n");
+> +		return PTR_ERR(bl);
+> +	}
+> +
+> +	panel->backlight = bl;
+> +
+> +	INIT_LIST_HEAD(&priv->bridge.list);
+> +	priv->bridge.funcs = &hx8837_bridge_funcs;
+> +	priv->bridge.of_node = dev->of_node;
+> +	drm_bridge_add(&priv->bridge);
+> +
+> +	dev_info(dev, "HiMax HX8837 Display Controller Driver\n");
+Debug - not needed
+> +	return 0;
+> +}
+> +
+> +static int hx8837_remove(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct hx8837_priv *priv = dev_get_drvdata(dev);
+> +
+> +	drm_bridge_remove(&priv->bridge);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id hx8837_dt_ids[] = {
+> +	{ .compatible = "himax,hx8837", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, hx8837_dt_ids);
+> +
+> +static const struct i2c_device_id hx8837_ids[] = {
+> +	{ "hx8837", 0 },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, hx8837_ids);
+> +
+> +static struct i2c_driver hx8837_driver = {
+> +	.probe = hx8837_probe,
+> +	.remove = hx8837_remove,
+> +	.driver = {
+> +		.name = "hx8837",
+> +		.of_match_table = of_match_ptr(hx8837_dt_ids),
+> +	},
+> +	.id_table = hx8837_ids,
+> +};
+> +
+> +module_i2c_driver(hx8837_driver);
+> +
+> +MODULE_AUTHOR("Lubomir Rintel <lkundrak@v3.sk>");
+> +MODULE_DESCRIPTION("HiMax HX8837 Display Controller Driver");
+> +MODULE_LICENSE("GPL");
 > -- 
 > 2.28.0
-> 
