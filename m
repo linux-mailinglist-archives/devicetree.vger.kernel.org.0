@@ -2,61 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 791702A18DE
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 18:04:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A81F2A1918
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 18:59:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728074AbgJaREN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 13:04:13 -0400
-Received: from bmailout1.hostsharing.net ([83.223.95.100]:36349 "EHLO
-        bmailout1.hostsharing.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726586AbgJaREN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 13:04:13 -0400
-X-Greylist: delayed 331 seconds by postgrey-1.27 at vger.kernel.org; Sat, 31 Oct 2020 13:04:12 EDT
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "*.hostsharing.net", Issuer "COMODO RSA Domain Validation Secure Server CA" (not verified))
-        by bmailout1.hostsharing.net (Postfix) with ESMTPS id C69F2300002A5;
-        Sat, 31 Oct 2020 17:58:35 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-        id 1E41F1B55F; Sat, 31 Oct 2020 17:58:36 +0100 (CET)
-Date:   Sat, 31 Oct 2020 17:58:36 +0100
-From:   Lukas Wunner <lukas@wunner.de>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v2 16/29] dt-bindings:iio:dac:ti,dac082s085 yaml
- conversion
-Message-ID: <20201031165836.GA12341@wunner.de>
-References: <20201031134110.724233-1-jic23@kernel.org>
- <20201031134110.724233-17-jic23@kernel.org>
+        id S1725843AbgJaR7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 13:59:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725783AbgJaR7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 13:59:15 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B61C0617A6;
+        Sat, 31 Oct 2020 10:59:15 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id s9so9874515wro.8;
+        Sat, 31 Oct 2020 10:59:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XuTCe1Ga7B/KAhhJYgdOU12EeqWH5EWDhu4LYbG296k=;
+        b=p3R5GoIZnRY7IMYfE46w/s5zrehdhY1Dk84vycn6zwYIamjBis0mDWwLgnxU8gljtA
+         qDiGhhoUrYHi8sLZ7t/mU2iZK9AWwdv2Qro7ZZp6SatLrN3t6MHWxJOUMk3WoV8EAfDF
+         YNJ3QN/m/ICngijeRhDUNrUA6g5U2/QzBbG4WgtlaharTc4ZC4e+LT5uwEgxW/SiC51D
+         7BlXmj+oSJA9QfT2KHyV702DtaHw49CrnanyeaIqqNYp/fjRCbSv7kqdBxbddRDCbYC0
+         kx+Z/AqapWhioQdhIi5Ffh7H6mXgEIfO0cp4wHWzUJxSMBebTeX836n7cOt3mOg86aq8
+         +LCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XuTCe1Ga7B/KAhhJYgdOU12EeqWH5EWDhu4LYbG296k=;
+        b=kbOwJdPUAIbUY7O7abuLbkFLqFghVV/wDQ8eqWLmK34BDeONLftzxwMIBaxzJOseLr
+         4Z20wyzIEJGAgDGtPsW/KBfcSe7Rt03ehnleuv2ekmCqFS/eqfTtQGKuKjZEKfGCzn1U
+         HQklqXY5L9AOwOjAEGr949jFmPfFN/hbPhyMQceJ1zpTHfT7dyVEyrB58UurxGabN5B8
+         2rPzVDD/13dxPVqsysoGJZ4hvuq6DzPH5ENc935S/mR7KCDmpMV3xNVo9k8QZvf1XluK
+         kFxinKRO2YVExpteirlNDCQicAjPjy9yksTFKmZ6kM2ahcMgKmE3zn/IOtdm7xlbbRPs
+         etSQ==
+X-Gm-Message-State: AOAM532tiEyBZrN1gsMeDOeldeWNuZCXZpUq0eglIiajGRjXevoOAlqL
+        phfP50Dsv3hzHjEg0XPdT7Y=
+X-Google-Smtp-Source: ABdhPJxyZRwzLh2ljnuEEqy+pjAmqTudm7BJkSkPEQHoPL0xdiniPrtpc9uSCr3wiH/cDZeB7fsSAQ==
+X-Received: by 2002:a5d:4ed2:: with SMTP id s18mr10485961wrv.36.1604167153599;
+        Sat, 31 Oct 2020 10:59:13 -0700 (PDT)
+Received: from adroid (165-170-184-091.ip-addr.vsenet.de. [91.184.170.165])
+        by smtp.gmail.com with ESMTPSA id l26sm9068456wmi.41.2020.10.31.10.59.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Oct 2020 10:59:12 -0700 (PDT)
+From:   =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
+To:     linux-samsung-soc@vger.kernel.org
+Cc:     kgene@kernel.org, krzk@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/5] add exynos4412-based p4note device family support
+Date:   Sat, 31 Oct 2020 18:58:32 +0100
+Message-Id: <20201031175836.47745-1-martin.juecker@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201031134110.724233-17-jic23@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 01:40:57PM +0000, Jonathan Cameron wrote:
-> +  spi-cpha: true
-> +  spi-cpol:
-> +    description:
-> +      Should be either spi-cpha, or spi-cpol but not both.
+Hello,
 
-Do the YAML files follow RFC 2119 terminology?  If so, this is a
-"must", not a "should".  (As it was in the txt file.)
+after lots of research and trial and error, this is my first
+contribution to the linux kernel.
+
+These patches lay the foundation for supporting the Samsung Galaxy
+Note 10.1 device family. To the best of my knowledge there are around
+16 devices which use almost identical hardware inside with exceptions
+being the modem and one of the sensors. The first instance which I'm
+currently testing on is the N8010 which is the wifi only version that
+is identical to the N8013. There are some missing components still,
+but it's a start.
+
+v1: https://lore.kernel.org/linux-samsung-soc/20201024144421.34435-1-martin.juecker@gmail.com/
+
+Changes in v2 (proposed by Marek and Krzysztof)
+- lots of label adjustments, some removed
+- unused ehci node removed
+- unused serials removed
+- compatible string is now samsung,n8010 instead of samsung,n801x
+- removed unused imports
+- voltage regulator name for TSP changed to match vendor kernel
+- i2c numbering starting from 1 now
+- two missing gpio configurations added
+- added vdd supply to adc node
+- added all regulators to max77686 node
+- pinctrl configs sorted by pin name
 
 
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vref-supply
+Cheers
+Martin
 
-This is missing "spi-cpha xor spi-cpol", not sure if it can be
-specified here using the xor YAML trick.
 
-Thanks,
 
-Lukas
