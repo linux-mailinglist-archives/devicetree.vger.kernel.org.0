@@ -2,396 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E4292A175C
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 13:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E872A1769
+	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 13:40:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727213AbgJaMbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 08:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40710 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727037AbgJaMbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 08:31:36 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E0EC0613D5;
-        Sat, 31 Oct 2020 05:31:35 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id c11so8877049iln.9;
-        Sat, 31 Oct 2020 05:31:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nARQl+1h0NGt8ytTBp2IdfDene9e6utN8okCssukx2c=;
-        b=kyReB7ZWzGj7gJzszi90EgNq9tg4dwPLJZLRm973Djj74MID9Azk5+/igfh/wTISOd
-         QjAYrYLTU4hsKJf31ac5WlbMvqFzSY2NZ3za5upt5G7tNrY/Jt+pAP8AqJ1pHLf8UzA2
-         ldb4+fDEVx3lOO05KRVFEq1fPnnNZml40plBwYIsjvqzbmgJgC2RevhYqBdI8QgMfVmS
-         WTq2vH+Qq/9Vcd6Ph+FtPklluxvAAgI1bCd09V5cNATUKGvSICwtJl6BTBhPiBaVdTDU
-         Rb2Ksq8xbY2zk/sCsIOhItRJHpRfpZQk15ORW0J+nCdzcwhPPkU56oK5pmahBkWW3b8a
-         yHmw==
+        id S1727222AbgJaMkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 08:40:42 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:53667 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726738AbgJaMkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 08:40:42 -0400
+Received: by mail-wm1-f66.google.com with SMTP id p22so5151705wmg.3;
+        Sat, 31 Oct 2020 05:40:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nARQl+1h0NGt8ytTBp2IdfDene9e6utN8okCssukx2c=;
-        b=unYfaA09nsec3HGLaXw5BugfsSgBZqS6Wy/SSMWyKIO04xwSBCvRS6fV5R9XSINjzD
-         NaCHG/kz8Y6kw6WD7P07g2Rope4MSvQ38RnvyyHwVfESI85a5dxUbS07b4W2/zXGF6hk
-         EM53U0YiQs8wHcyqxC5OA5OQH5Fw0DUVB274tj7BEQxhFP4wUy3Qx30ogUWLeP1yzdeN
-         boLUCm+s6tfaaIR/K8vSbex6JPOQ9u6bDLkypGgPwYQFFzqaoOoc2axfuf4iu3Bag6Os
-         aeuYFZmWrsSWqnLhpzlMR2OQLNH/CNQ8T+9WHvVYoRpPKw8R/6Zfm/razvIJl5cOIY16
-         c1Bw==
-X-Gm-Message-State: AOAM532KAtPHL9aVntiGyzvT8/31O/tngx8nJLXnXP/h3nT+kdArCrzQ
-        3J2a64/YHeRKZqZNZlxKAq4=
-X-Google-Smtp-Source: ABdhPJw8YsCunTPo5Gc9nxXhvup7LkS6G9DGzNf+A/5MFC3ov6ZkmONbeXW7P8myLQ4mdWNNs4d1tA==
-X-Received: by 2002:a92:5f1a:: with SMTP id t26mr5350295ilb.0.1604147494068;
-        Sat, 31 Oct 2020 05:31:34 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:c107:3b4f:7176:6aff])
-        by smtp.gmail.com with ESMTPSA id o19sm6821534ilt.24.2020.10.31.05.31.32
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XKZimNoFlTDUwIyRR0BEoVG9+GJEQQemUuLJSx/vHaI=;
+        b=biiV7pXpODDqNbVp1G+1xSDHKQlAyyMlTvQ4nLRB4e7RZR+u+Tj9I92IU4HahSrLtn
+         cu2fAU5aXBCznIQKq2pe86B/V6UKRcrb5z3Bb1toThFZ8OMolVsquwxkZtcAKTQsxNpc
+         bc6sQlLfq0SXJ7KVXYjZbcm0Sag5TjVQv74p36FMz1ikvLxwggLILHSZeB1R8n4BTpVB
+         +16LMqjBWRSNtyYB7tPW0TNivh+b/jZTTctHesEVKn1Ajvxut/Ck6O5O0WaPUvIeYoAp
+         CbZnMPTbrLoOij40V8pdYxnz1gdagh4p+5D/hVnOVSm2n0Y4snfUPsQNVWzK3pMFRUa5
+         mpBg==
+X-Gm-Message-State: AOAM5307zLk8hAW9YlvmRxHThfVb5VmulphNErvZ+uf8365Q1XMdhch8
+        +PVim+zmNcNIa00fvOsRRscMYFeRbh7TWQ==
+X-Google-Smtp-Source: ABdhPJwPMaxPU+T2aWFKKta+nNXVJhIGcFvUta4TdBBI7jlBuwAQdMEe6jnIIv22dfy379m4YkqifQ==
+X-Received: by 2002:a1c:61c2:: with SMTP id v185mr7888308wmb.152.1604148038915;
+        Sat, 31 Oct 2020 05:40:38 -0700 (PDT)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id k22sm1430211wmi.34.2020.10.31.05.40.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Oct 2020 05:31:32 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Adam Ford <aford173@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2] arm64: dts: imx8mm-beacon-som: Fix whitespace issue
-Date:   Sat, 31 Oct 2020 07:31:14 -0500
-Message-Id: <20201031123114.708158-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Sat, 31 Oct 2020 05:40:37 -0700 (PDT)
+Date:   Sat, 31 Oct 2020 13:40:36 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     georgi.djakov@linaro.org, cw00.choi@samsung.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        a.swigon@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v7 3/6] PM / devfreq: exynos-bus: Add registration of
+ interconnect child device
+Message-ID: <20201031124036.GC9399@kozik-lap>
+References: <20201030125149.8227-1-s.nawrocki@samsung.com>
+ <CGME20201030125303eucas1p14a9de4111ffafc1870527abdea0994c9@eucas1p1.samsung.com>
+ <20201030125149.8227-4-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201030125149.8227-4-s.nawrocki@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pinmux subnodes are indented too much.  This patch does nothing
-more than remove an extra tab.  There are no functional changes.
+On Fri, Oct 30, 2020 at 01:51:46PM +0100, Sylwester Nawrocki wrote:
+> This patch adds registration of a child platform device for the exynos
+> interconnect driver. It is assumed that the interconnect provider will
+> only be needed when #interconnect-cells property is present in the bus
+> DT node, hence the child device will be created only when such a property
+> is present.
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> Changes for v7, v6:
+>  - none.
+> 
+> Changes for v5:
+>  - new patch.
+> ---
+>  drivers/devfreq/exynos-bus.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V2:  Rebase on Shawn's branch
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-index c74e006ad0e8..6b53830ddf74 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-@@ -284,166 +284,166 @@ &wdog1 {
- };
- 
- &iomuxc {
--		pinctrl_fec1: fec1grp {
--			fsl,pins = <
--				MX8MM_IOMUXC_ENET_MDC_ENET1_MDC		0x3
--				MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO	0x3
--				MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3	0x1f
--				MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2	0x1f
--				MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1	0x1f
--				MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0	0x1f
--				MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3	0x91
--				MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2	0x91
--				MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1	0x91
--				MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0	0x91
--				MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC	0x1f
--				MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC	0x91
--				MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
--				MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
--				MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22	0x19
--			>;
--		};
-+	pinctrl_fec1: fec1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC		0x3
-+			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO	0x3
-+			MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3	0x1f
-+			MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2	0x1f
-+			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1	0x1f
-+			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0	0x1f
-+			MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3	0x91
-+			MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2	0x91
-+			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1	0x91
-+			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0	0x91
-+			MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC	0x1f
-+			MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC	0x91
-+			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-+			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-+			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22	0x19
-+		>;
-+	};
- 
--		pinctrl_i2c1: i2c1grp {
--			fsl,pins = <
--				MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
--				MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
--			>;
--		};
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
-+		>;
-+	};
- 
--		pinctrl_i2c3: i2c3grp {
--			fsl,pins = <
--				MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
--				MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
--			>;
--		};
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
-+		>;
-+	};
- 
--		pinctrl_flexspi: flexspigrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_NAND_ALE_QSPI_A_SCLK               0x1c2
--				MX8MM_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B            0x82
--				MX8MM_IOMUXC_NAND_DATA00_QSPI_A_DATA0           0x82
--				MX8MM_IOMUXC_NAND_DATA01_QSPI_A_DATA1           0x82
--				MX8MM_IOMUXC_NAND_DATA02_QSPI_A_DATA2           0x82
--				MX8MM_IOMUXC_NAND_DATA03_QSPI_A_DATA3           0x82
--			>;
--		};
-+	pinctrl_flexspi: flexspigrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_ALE_QSPI_A_SCLK               0x1c2
-+			MX8MM_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B            0x82
-+			MX8MM_IOMUXC_NAND_DATA00_QSPI_A_DATA0           0x82
-+			MX8MM_IOMUXC_NAND_DATA01_QSPI_A_DATA1           0x82
-+			MX8MM_IOMUXC_NAND_DATA02_QSPI_A_DATA2           0x82
-+			MX8MM_IOMUXC_NAND_DATA03_QSPI_A_DATA3           0x82
-+		>;
-+	};
- 
--		pinctrl_pmic: pmicirqgrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x141
--			>;
--		};
-+	pinctrl_pmic: pmicirqgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x141
-+		>;
-+	};
- 
--		pinctrl_uart1: uart1grp {
--			fsl,pins = <
--				MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX	0x140
--				MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX	0x140
--				MX8MM_IOMUXC_UART3_RXD_UART1_DCE_CTS_B	0x140
--				MX8MM_IOMUXC_UART3_TXD_UART1_DCE_RTS_B	0x140
--				MX8MM_IOMUXC_SD1_DATA4_GPIO2_IO6	0x19
--				MX8MM_IOMUXC_SD1_DATA5_GPIO2_IO7	0x19
--				MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8	0x19
--				MX8MM_IOMUXC_GPIO1_IO00_ANAMIX_REF_CLK_32K	0x141
--			>;
--		};
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX	0x140
-+			MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX	0x140
-+			MX8MM_IOMUXC_UART3_RXD_UART1_DCE_CTS_B	0x140
-+			MX8MM_IOMUXC_UART3_TXD_UART1_DCE_RTS_B	0x140
-+			MX8MM_IOMUXC_SD1_DATA4_GPIO2_IO6	0x19
-+			MX8MM_IOMUXC_SD1_DATA5_GPIO2_IO7	0x19
-+			MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8	0x19
-+			MX8MM_IOMUXC_GPIO1_IO00_ANAMIX_REF_CLK_32K	0x141
-+		>;
-+	};
- 
--		pinctrl_usdhc1_gpio: usdhc1gpiogrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_SD1_RESET_B_GPIO2_IO10	0x41
--			>;
--		};
-+	pinctrl_usdhc1_gpio: usdhc1gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_RESET_B_GPIO2_IO10	0x41
-+		>;
-+	};
- 
--		pinctrl_usdhc1: usdhc1grp {
--			fsl,pins = <
--				MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
--				MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0
--				MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d0
--				MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d0
--				MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d0
--				MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
--			>;
--		};
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
-+			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0
-+			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d0
-+			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d0
-+			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d0
-+			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
-+		>;
-+	};
- 
--		pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x194
--				MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4
--				MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d4
--				MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d4
--				MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d4
--				MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d4
--			>;
--		};
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x194
-+			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4
-+			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d4
-+			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d4
-+			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d4
-+			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d4
-+		>;
-+	};
- 
--		pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x196
--				MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6
--				MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d6
--				MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d6
--				MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d6
--				MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d6
--			>;
--		};
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x196
-+			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6
-+			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d6
-+			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d6
-+			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d6
-+			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d6
-+		>;
-+	};
- 
--		pinctrl_usdhc3: usdhc3grp {
--			fsl,pins = <
--				MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190
--				MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
--				MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
--				MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
--				MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
--				MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
--				MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
--				MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
--				MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
--				MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
--				MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
--			>;
--		};
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
-+		>;
-+	};
- 
--		pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194
--				MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
--				MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
--				MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
--				MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
--				MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
--				MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
--				MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
--				MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
--				MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
--				MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
--			>;
--		};
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
-+		>;
-+	};
- 
--		pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196
--				MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
--				MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
--				MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
--				MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
--				MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
--				MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
--				MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
--				MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
--				MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
--				MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
--			>;
--		};
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
-+		>;
-+	};
- 
--		pinctrl_wdog: wdoggrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0x166
--			>;
--		};
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0x166
-+		>;
-+	};
- 
--		pinctrl_wlan: wlangrp {
--			fsl,pins = <
--				MX8MM_IOMUXC_SD1_DATA7_GPIO2_IO9		0x111
--			>;
--		};
-+	pinctrl_wlan: wlangrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_DATA7_GPIO2_IO9		0x111
-+		>;
-+	};
- };
--- 
-2.25.1
-
+Best regards,
+Krzysztof
