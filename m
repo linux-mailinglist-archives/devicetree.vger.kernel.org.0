@@ -2,75 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69C8A2A1DD4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 13:26:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53C932A1DD8
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 13:28:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726499AbgKAM0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 07:26:17 -0500
-Received: from asavdk3.altibox.net ([109.247.116.14]:48618 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726474AbgKAM0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 07:26:17 -0500
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 85B9220022;
-        Sun,  1 Nov 2020 13:26:13 +0100 (CET)
-Date:   Sun, 1 Nov 2020 13:26:11 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Christophe Branchereau <cbranchereau@gmail.com>, od@zcrc.me,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] drm/panel: ABT Y030XX067A panel support
-Message-ID: <20201101122611.GA1269759@ravnborg.org>
-References: <20201101093150.8071-1-paul@crapouillou.net>
+        id S1726474AbgKAM2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 07:28:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35024 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726497AbgKAM2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 07:28:39 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CADCC061A04
+        for <devicetree@vger.kernel.org>; Sun,  1 Nov 2020 04:28:39 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id 126so13776317lfi.8
+        for <devicetree@vger.kernel.org>; Sun, 01 Nov 2020 04:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QOXieuuEEbc116u9FS/tLUaOZv79e9gqeLS9/EKUpZ8=;
+        b=g30qIXbRJL5C/nXIrSgCkN0N2zOTkxTPyQtoJgI/5Bs7rNmuiZHb3TRDXdbcU36lLt
+         9RwLjV102npps2h+YPgU367k/Rn0pSGN7FMiiuHEf4cSBw81k9fLFCqeqxVz8nKCzz3r
+         C+ykdFMM6CxcUhrSaD5g3DpUtdxESdL6I70DFTNScAk0sKExnQnd4Cu+ZqvpD3JW3S6W
+         +NxYG9YqjtGggmB/EXO9wF9XkXyxxdpzz4WD2AEaZ1P51qXQ8iJ2U5b/pLiOBYZRVYkG
+         AYC6uGz228NN8qb85OdO4jqZSgJrQqWMtQIjhZCARRJ/l9Nroc0+qXa60WxuRw97FjEX
+         7EcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QOXieuuEEbc116u9FS/tLUaOZv79e9gqeLS9/EKUpZ8=;
+        b=I2ULMFE1HxzEB9+2EfhdsJi35fYnCKIxccKwX9+CI713bHElW4QW8NVNBUyjflSTYj
+         O0m/thdwNtNfEcxS2elwy1o3G6flz0ZXL8VzFIIr7Xwa820+BTfI7JmI19Xhl8roySiv
+         yiKRnf4nfbQLbKH9ztJSFLMQYsx+qhXaG8wNUAwPkYpYxSvM0mwKx03bnzzPklh4dut0
+         yEyIrY9XT7yGUpW/h/HJz1pit8snwVbfO/QLxJLDq7XBsh9V587f55CWKDlgYVlkUt6i
+         n/XBY9VMH3QnJHYzIRDdoJvxR5WdVhNrxmMZ5+cEAXlnaKPUHOo8TXr/F2BEQ9/tIb2E
+         eTkg==
+X-Gm-Message-State: AOAM532bO1oR5dGxshd1cmSg/blag7tXi30uW6vBonWF1zkKNIr9Wkop
+        L/8RvxorjQkqiB4ZUCE24FE9IA==
+X-Google-Smtp-Source: ABdhPJzyqdJNEAfRNvG2NWx0qtUEFOzaGXj1bTk+b/YuMCYpAyGYIrwcsmKj5sur8hrKyvNbOzljWg==
+X-Received: by 2002:ac2:4422:: with SMTP id w2mr3804297lfl.219.1604233717531;
+        Sun, 01 Nov 2020 04:28:37 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id 190sm1480655lfk.238.2020.11.01.04.28.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Nov 2020 04:28:36 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-input@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/3] iio: accel: bmc150-accel: Add DT bindings
+Date:   Sun,  1 Nov 2020 13:28:31 +0100
+Message-Id: <20201101122833.1111424-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201101093150.8071-1-paul@crapouillou.net>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8 a=9Q3-Gd2UY0mbpF3q5_8A:9
-        a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22 a=pHzHmUro8NiASowvMSCR:22
-        a=nt3jZW36AmriUCFCBwmW:22
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul.
+These accelerometers have bindings used in the kernel and
+several device trees but no proper bindings documentation.
+Add it.
 
-On Sun, Nov 01, 2020 at 09:31:46AM +0000, Paul Cercueil wrote:
-> Hi,
-> 
-> This patchset is for adding support for the Asia Better Technology (aka.
-> ABT) Y030XX067A 3.0" 320x480 24-bit LCD IPS panel.
-> 
-> While being 320x480 it is actually 4:3 with non-square pixels, and
-> requires a specific bus format, as the pixel ordering changes each line
-> (RGB on odd lines, GRB on even lines).
-> 
-> Patch #1 adds the abt,* vendor prefix.
-> Patch #2 adds the abt,y030xx067a panel binding documentation.
-> Patch #3 adds the MEDIA_BUS_FMT_RGB888_3X8_DELTA media bus format.
-> Patch #4 adds the driver itself.
+Also add a compatible for the BMA222 that I am right now
+adding support for in the driver.
 
-Full series looks good.
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../bindings/iio/accel/bosch,bmc-bmi-bma.yaml | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml
 
-I asked google - but no hits for "Asia Better Technology". But I blame
-that the company has no public page - in english at least.
-Also the part with a DELTA media bus format looks correct, but not
-something I know much off.
+diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml
+new file mode 100644
+index 000000000000..11b8b68aaf3e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/accel/bosch,bmc-bmi-bma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Bosch BMCxxx, BMIxxx and BMAxxx Accelerometers
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  3 axis accelerometers with varying range and I2C or SPI
++  3-wire interface.
++
++properties:
++  compatible:
++    enum:
++      - bosch,bmc150
++      - bosch,bmi055
++      - bosch,bma255
++      - bosch,bma250e
++      - bosch,bma222
++      - bosch,bma222e
++      - bosch,bma280
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++  vddio-supply: true
++
++  interrupts:
++    maxItems: 1
++
++  mount-matrix:
++    description: an optional 3x3 mounting rotation matrix.
++
++  spi-max-frequency: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #include <dt-bindings/interrupt-controller/irq.h>
++        #address-cells = <1>;
++        #size-cells = <0>;
++        accelerometer@8 {
++            compatible = "bosch,bma222";
++            reg = <0x08>;
++            vddio-supply = <&vddio>;
++            vdd-supply = <&vdd>;
++            interrupts = <57 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
++  - |
++    # include <dt-bindings/interrupt-controller/irq.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        accel@0 {
++            compatible = "bosch,bma222";
++            reg = <0>;
++            spi-max-frequency = <10000000>;
++        };
++    };
++...
+-- 
+2.26.2
 
-The driver itself utilises regmap_multi_reg_write() - very nice!
-
-Full series is:
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-
-I assume you will apply yourself - but please wait a few days after it
-have hit dri-devel to let others have the possibility to give feedback.
-
-	Sam
