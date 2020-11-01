@@ -2,124 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5ED82A1D07
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 10:56:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E25642A1D70
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 11:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbgKAJ4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 04:56:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40000 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726122AbgKAJ4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 04:56:33 -0500
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1A5C061A04
-        for <devicetree@vger.kernel.org>; Sun,  1 Nov 2020 01:56:32 -0800 (PST)
-Received: by mail-il1-x144.google.com with SMTP id x20so10344970ilj.8
-        for <devicetree@vger.kernel.org>; Sun, 01 Nov 2020 01:56:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rWF0jUBfgM4gE1L1ibjwFfJ7/wL24CjLQAYD2m6zhIc=;
-        b=yaBZ2eEGHm2PmstDlb04y0oHeTp/sSkpYGAHF5ronXi276gjl/BD/5XQsksXfmhZXS
-         tq8bl4x+YB6y7KJL2Z2qu1lv5nSAxB8CA5diL0S9XsBYcV/KaeecPGgdmdYOttzew3Z9
-         xRbS+T/mHCWUtLrY5PStEtHvmrlph4KFnjJJm4TZOPV2SmrBAyFbhSkctBAQbXw+RvL3
-         Ej+DqDGhA693Eq5Lyoi+Bwl0UiAzJ1/Hqrqo3OPE4GkQJujm1Hxz2D4kEK2PVCay25lN
-         Rj3M7FNrNcis3CQ7IwwPQi32FmBteR1nWasN8PP35GSuK3yq/90Igg9RPUaQO3iWvhkx
-         3UDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rWF0jUBfgM4gE1L1ibjwFfJ7/wL24CjLQAYD2m6zhIc=;
-        b=O7KhwpUwXrQWnnlJXk7HzpkXRx1P/YAuHh0s9G6px+Xm0a4kslBeHDWQBkX/x957ZJ
-         JbtN8Bl5EBpiYuqucLkXEyFy47V1vMyIXSq3audo6bRyJqqsV3M1K/U6ytl6v/Ly1vRF
-         U6sG4ZFR3tu0s4bIk1lF1HWg94bCX2tebIkMKrtxdX7UMf20PmVLpohyNH76wTaDu5Am
-         w6w6XryUI5NKOidEhrXdPBdiMTe+HU/GcMt1VoCaApZW6nilvrdC6K9+cMrrGu1jhayl
-         aaVm47VQpuGLS4+gP9071LJdx2Dh0RQ35uhwC526tbfT8nFH6aNjfpeAX08Yj5w/Omq+
-         2O5w==
-X-Gm-Message-State: AOAM5331MwH3gxgmOUX05zYaJahnG8uHREKMNFXcFJXqZLAxL6jGEoZV
-        zg2S7Ajd8vy0EpoaMmEUqBFvUPrtYM2X4Aiji46RLQ==
-X-Google-Smtp-Source: ABdhPJwv/+/UUcQWrqznnqne/tb+9I2DT9gLQL5cGzcLb8pERNY+4rhcYnzgXbfpzMjl/etubEYGqHrZ6HtLcs91sO4=
-X-Received: by 2002:a92:41cf:: with SMTP id o198mr7442692ila.262.1604224591586;
- Sun, 01 Nov 2020 01:56:31 -0800 (PST)
+        id S1726154AbgKAKyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 05:54:44 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:46494 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726145AbgKAKyn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Nov 2020 05:54:43 -0500
+Received: from p57b773f8.dip0.t-ipconnect.de ([87.183.115.248] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1kZB0P-00032L-1l; Sun, 01 Nov 2020 11:54:37 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     linux-media@vger.kernel.org,
+        Helen Koike <helen.koike@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        robh+dt@kernel.org, kernel@collabora.com, hverkuil-cisco@xs4all.nl,
+        dafna.hirschfeld@collabora.com, mark.rutland@arm.com,
+        karthik.poduval@gmail.com, eddie.cai.linux@gmail.com,
+        jbx6244@gmail.com, zhengsq@rock-chips.com, robin.murphy@arm.com
+Subject: Re: [PATCH v6 8/9] arm64: dts: rockchip: add isp0 node for rk3399
+Date:   Sun, 01 Nov 2020 11:54:36 +0100
+Message-ID: <25468331.GQUMHoxoIT@phil>
+In-Reply-To: <20201020193850.1460644-9-helen.koike@collabora.com>
+References: <20201020193850.1460644-1-helen.koike@collabora.com> <20201020193850.1460644-9-helen.koike@collabora.com>
 MIME-Version: 1.0
-References: <20201025005916.64747-7-luka.kovacic@sartura.hr>
- <20201025005916.64747-6-luka.kovacic@sartura.hr> <20201025005916.64747-5-luka.kovacic@sartura.hr>
- <20201025005916.64747-4-luka.kovacic@sartura.hr> <20201025005916.64747-3-luka.kovacic@sartura.hr>
- <20201025005916.64747-2-luka.kovacic@sartura.hr> <20201025005916.64747-1-luka.kovacic@sartura.hr>
- <20201029180105.GD26053@duo.ucw.cz>
-In-Reply-To: <20201029180105.GD26053@duo.ucw.cz>
-From:   Luka Kovacic <luka.kovacic@sartura.hr>
-Date:   Sun, 1 Nov 2020 10:56:20 +0100
-Message-ID: <CADZsf3YE3d=dtMVVYHL91Z1WFcpNN4vyJJ6RG7VnJ2V-DqE+wQ@mail.gmail.com>
-Subject: Re: [PATCH v7 0/6] Add support for the IEI WT61P803 PUZZLE MCU
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Marek Behun <marek.behun@nic.cz>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Robert Marko <robert.marko@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel,
+Am Dienstag, 20. Oktober 2020, 21:38:49 CET schrieb Helen Koike:
+> From: Shunqian Zheng <zhengsq@rock-chips.com>
+> 
+> RK3399 has two ISPs, but only isp0 was tested.
+> Add isp0 node in rk3399 dtsi
+> 
+> Verified with:
+> make ARCH=arm64 dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> 
+> Signed-off-by: Shunqian Zheng <zhengsq@rock-chips.com>
+> Signed-off-by: Jacob Chen <jacob2.chen@rock-chips.com>
+> Signed-off-by: Helen Koike <helen.koike@collabora.com>
 
-On Thu, Oct 29, 2020 at 7:01 PM Pavel Machek <pavel@ucw.cz> wrote:
->
-> Hi!
->
-> > +What:                /sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/power_status
-> > +Date:                September 2020
-> > +Contact:     Luka Kovacic <luka.kovacic@sartura.hr>
-> > +Description: (RO) Power status indicates the host platform power on method.
-> > +             Value mapping (bitwise list):
-> > +             0x80 - Null
-> > +             0x40 - Firmware flag
-> > +             0x20 - Power loss detection flag (powered off)
-> > +             0x10 - Power loss detection flag (AC mode)
-> > +             0x08 - Button power on
-> > +             0x04 - WOL power on
-> > +             0x02 - RTC alarm power on
-> > +             0x01 - AC recover power on
->
-> It would be nice to put this into standard place somewhere. Many
-> machines will want to expose this information.
+looks good, and I'd like to apply this one after the drivers/media-patches
+of this series got applied.
 
-As this is specific to this microcontroller and to how it encodes
-these values, I don't see a need to change this.
-This isn't used anywhere else.
 
->
-> If not, at least spell out WoL, as it is not that common of acronym.
+Thanks
+Heiko
 
-Okay.
 
->
-> > +What:                /sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/ac_recovery_status
-> > +Date:                September 2020
-> > +Contact:     Luka Kovacic <luka.kovacic@sartura.hr>
-> > +Description: (RO) Host platform AC recovery status value
->
-> I can not tell what this is from documentation...
 
-I'll expand the description.
+> 
+> ---
+> 
+> Changes in v6:
+> - Add status = "disabled" in the isp0 node
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 26 ++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> index ada724b12f014..af5f8e2c5e64d 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> @@ -1723,6 +1723,32 @@ vopb_mmu: iommu@ff903f00 {
+>  		status = "disabled";
+>  	};
+>  
+> +	isp0: isp0@ff910000 {
+> +		compatible = "rockchip,rk3399-cif-isp";
+> +		reg = <0x0 0xff910000 0x0 0x4000>;
+> +		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		clocks = <&cru SCLK_ISP0>,
+> +			 <&cru ACLK_ISP0_WRAPPER>,
+> +			 <&cru HCLK_ISP0_WRAPPER>;
+> +		clock-names = "isp", "aclk", "hclk";
+> +		iommus = <&isp0_mmu>;
+> +		phys = <&mipi_dphy_rx0>;
+> +		phy-names = "dphy";
+> +		power-domains = <&power RK3399_PD_ISP0>;
+> +		status = "disabled";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +		};
+> +	};
+> +
+>  	isp0_mmu: iommu@ff914000 {
+>  		compatible = "rockchip,iommu";
+>  		reg = <0x0 0xff914000 0x0 0x100>, <0x0 0xff915000 0x0 0x100>;
+> 
 
->
-> Best regards,
->                                                                 Pavel
->
-> --
-> http://www.livejournal.com/~pavelmachek
 
-Kind regards,
-Luka
+
+
