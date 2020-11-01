@@ -2,68 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 872C72A1C8C
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 08:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 444892A1C8E
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 08:24:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725987AbgKAHUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 02:20:42 -0500
-Received: from mailoutvs22.siol.net ([185.57.226.213]:55588 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725930AbgKAHUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 02:20:42 -0500
+        id S1725936AbgKAHYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 02:24:10 -0500
+Received: from mailoutvs7.siol.net ([185.57.226.198]:56923 "EHLO mail.siol.net"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725930AbgKAHYJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Nov 2020 02:24:09 -0500
 Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 22F3C525A75;
-        Sun,  1 Nov 2020 08:20:39 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
+        by mail.siol.net (Postfix) with ESMTP id 909F7527D65;
+        Sun,  1 Nov 2020 08:24:07 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
 Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id VznvH_Pv3pk1; Sun,  1 Nov 2020 08:20:38 +0100 (CET)
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id 0qNdl4zg7BF8; Sun,  1 Nov 2020 08:24:07 +0100 (CET)
 Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id CDB69527B3B;
-        Sun,  1 Nov 2020 08:20:38 +0100 (CET)
-Received: from kista.localdomain (cpe1-5-97.cable.triera.net [213.161.5.97])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id 2BDA2525A75;
-        Sun,  1 Nov 2020 08:20:38 +0100 (CET)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH] arm64: dts: allwinner: h6: orangepi-one-plus: Fix ethernet
-Date:   Sun,  1 Nov 2020 08:26:09 +0100
-Message-Id: <20201101072609.1681891-1-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.29.2
+        by mail.siol.net (Postfix) with ESMTPS id 5097B527D68;
+        Sun,  1 Nov 2020 08:24:07 +0100 (CET)
+Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id DD437527D65;
+        Sun,  1 Nov 2020 08:24:06 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     linux-sunxi@googlegroups.com,
+        Pablo Greco <pgreco@centosproject.org>
+Cc:     Pablo Greco <pgreco@centosproject.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i: v40: bananapi-m2-berry: Fix ethernet node
+Date:   Sun, 01 Nov 2020 08:29:41 +0100
+Message-ID: <3146564.MpAvnlqq7C@kista>
+In-Reply-To: <1604190857-3078-3-git-send-email-pgreco@centosproject.org>
+References: <1604190857-3078-1-git-send-email-pgreco@centosproject.org> <1604190857-3078-3-git-send-email-pgreco@centosproject.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RX/TX delay on OrangePi One Plus board is set on PHY. Reflect that in
-ethernet node.
+Dne nedelja, 01. november 2020 ob 01:34:17 CET je Pablo Greco napisal(a):
+> Ethernet PHY on BananaPi M2 Berry provides RX and TX delays. Fix ethernet
+> node to reflect that fact.
+> 
+> Fixes: 27e81e1970a8 ("ARM: dts: sun8i: v40: bananapi-m2-berry: Enable GMAC 
+ethernet controller")
+> Signed-off-by: Pablo Greco <pgreco@centosproject.org>
 
-Fixes: 7ee32a17e0d6 ("arm64: dts: allwinner: h6: orangepi-one-plus: Enabl=
-e ethernet")
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Acked-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dt=
-s b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-index fceb298bfd53..29a081e72a9b 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-@@ -27,7 +27,7 @@ reg_gmac_3v3: gmac-3v3 {
- &emac {
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&ext_rgmii_pins>;
--	phy-mode =3D "rgmii";
-+	phy-mode =3D "rgmii-id";
- 	phy-handle =3D <&ext_rgmii_phy>;
- 	phy-supply =3D <&reg_gmac_3v3>;
- 	allwinner,rx-delay-ps =3D <200>;
---=20
-2.29.2
+Thanks!
+
+Jernej
+
 
