@@ -2,111 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 452832A1F31
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 16:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76FE02A1F39
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 16:45:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726960AbgKAPk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 10:40:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54004 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726637AbgKAPk0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Nov 2020 10:40:26 -0500
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C86DD22246;
-        Sun,  1 Nov 2020 15:40:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604245225;
-        bh=wQmipAoDhEbdujXSTlXDShPDCg7E6gH2wo7ek0okswY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=F6mj5mGLGhVITvzq0x+G7O94aulBjPSZ6sbGvqxuWSQg002gGXZvPv734jui+jdxN
-         ZE+dvg8m5UnfsqgwbgJXaDCbbvp41qOjtyrBPCji59FGE/wyi3XfEfbu5RbkE4Zgdq
-         UyL3XdGeM+OOynqLzJPJM/D7GRpLQjub9pHZbDWo=
-Date:   Sun, 1 Nov 2020 15:40:19 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: Re: [PATCH v7 0/3] iio: adc: mt6360: Add ADC driver for MT6360
-Message-ID: <20201101154019.39932a2e@archlinux>
-In-Reply-To: <1603181267-15610-1-git-send-email-gene.chen.richtek@gmail.com>
-References: <1603181267-15610-1-git-send-email-gene.chen.richtek@gmail.com>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726839AbgKAPpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 10:45:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726499AbgKAPpF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 10:45:05 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BA42C0617A6;
+        Sun,  1 Nov 2020 07:45:04 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id m8so6216555ljj.0;
+        Sun, 01 Nov 2020 07:45:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=BF6aA5CIfaBcjhWZUFgNy7TEYYJ3FC7M7UBxQrI1c2M=;
+        b=PMe0bwOlnUxyD3/4NXV4dHSLJp+kB6g8F0K4enKTClEXWbQqNWg66XVNbUaJupxYep
+         /0uh9Cu3aghYoOt4VMuvNLpxBZKqEJzthOGTDlRRT+6/L3//bq2oPwO3861J9dGJgvxQ
+         GZYca37o9/20gTP9N/ySBekCgb/r+kkfdSICywZorBblSBhSdBqjJggwMpqTRV2xS4t+
+         fJGh3Jas6TqpCHepa5itTTS9G8PzJNRYVyWxAitZ5CPXihW0n4RUU2qtdB/H0+8+0uG4
+         GQ1SZayNLeQSxkG6V4F8lxkMPMgUFCvCb8Gh1N90zdEyxB8uOVEnDbE4S5IlWfTbDdML
+         WZAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=BF6aA5CIfaBcjhWZUFgNy7TEYYJ3FC7M7UBxQrI1c2M=;
+        b=mA20EPcIRQA604vhyXzeP8T93/szmCK7ek/PplgGswLAo59MnSlvJvrdPjdmNiN0Pu
+         vOAGEhks2/fA5b76Ax4mVpN/ayRfnaOFa4jHr32U6oEKsisE6yuZlKVf8cFdJkgmpOPB
+         7Xzib4nLMkYbu51GO8F8RQSc98ZjIWZ27426lvWM3gAYJWNxsOIEtee7wCKRX5Z8t7D/
+         1bApLEve7AhqBQPuP+T39W9GUwcAlfIdF4+6doZKs2QDSpDNtdZaWUEBfYPlb9XD2Qm4
+         q1FFoOPbv6ImqGT7tNtacgXxdCKYhNzgyyxYeTznuYdXFby41krgnSCdw/eYPPDdFHr7
+         Kj+g==
+X-Gm-Message-State: AOAM5309XFNcyRCp85PbI7EJLhEpTVYGtM/sVzduHbBr47BtWeMNxXn3
+        Ef7hZDy0u5NVpFbx4kfvUQsedGYqpa1VKarvcUY=
+X-Google-Smtp-Source: ABdhPJwUv35pXb2B/fbHSYe/6UQxWAyeoft5VglqYDISVC9YYpFQBagRZ95bYPoGxVl6T7ANZzL62Do8nBGrFGjXR8U=
+X-Received: by 2002:a2e:681a:: with SMTP id c26mr5152150lja.56.1604245503006;
+ Sun, 01 Nov 2020 07:45:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20201025221735.3062-1-digetx@gmail.com> <20201025221735.3062-52-digetx@gmail.com>
+ <CAGTfZH1PV4r-pD=zTKD71nQb5+UobJKa5mBv-Nb2ZgSubkscjA@mail.gmail.com> <2ebd184c-60e8-19e2-9965-19481ced1c70@gmail.com>
+In-Reply-To: <2ebd184c-60e8-19e2-9965-19481ced1c70@gmail.com>
+Reply-To: cwchoi00@gmail.com
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Date:   Mon, 2 Nov 2020 00:44:26 +0900
+Message-ID: <CAGTfZH0=6R02euOR3JHgA0iLq5++Yvp3Z_wBCEs7bzkfuorEFQ@mail.gmail.com>
+Subject: Re: [PATCH v6 51/52] PM / devfreq: tegra30: Support interconnect and
+ OPPs from device-tree
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-tegra@vger.kernel.org,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 16:07:44 +0800
-Gene Chen <gene.chen.richtek@gmail.com> wrote:
+Hi Dmitry,
 
-> In-Reply-To: 
-> 
-> This patch series add MT6360 ADC support contains driver, testing document
-> and binding document
-> 
-Hi Gene,
+On Mon, Nov 2, 2020 at 12:23 AM Dmitry Osipenko <digetx@gmail.com> wrote:
+>
+> 01.11.2020 17:39, Chanwoo Choi =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > Hi Dmitry,
+> >
+> > On Mon, Oct 26, 2020 at 7:22 AM Dmitry Osipenko <digetx@gmail.com> wrot=
+e:
+> >>
+> >> This patch moves ACTMON driver away from generating OPP table by itsel=
+f,
+> >> transitioning it to use the table which comes from device-tree. This
+> >> change breaks compatibility with older device-trees in order to bring
+> >> support for the interconnect framework to the driver. This is a mandat=
+ory
+> >> change which needs to be done in order to implement interconnect-based
+> >> memory DVFS. Users of legacy device-trees will get a message telling t=
+hat
+> >> theirs DT needs to be upgraded. Now ACTMON issues memory bandwidth req=
+uest
+> >> using dev_pm_opp_set_bw(), instead of driving EMC clock rate directly.
+> >>
+> >> Tested-by: Peter Geis <pgwipeout@gmail.com>
+> >> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
+> >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> >> ---
+> ...
+> >>  static int tegra_devfreq_get_dev_status(struct device *dev,
+> >> @@ -655,7 +643,7 @@ static int tegra_devfreq_get_dev_status(struct dev=
+ice *dev,
+> >>         stat->private_data =3D tegra;
+> >>
+> >>         /* The below are to be used by the other governors */
+> >> -       stat->current_frequency =3D cur_freq;
+> >> +       stat->current_frequency =3D cur_freq * KHZ;
+> >
+> > I can't find any change related to the frequency unit on this patch.
+> > Do you fix the previous bug of the frequency unit?
+>
+> Previously, OPP entries that were generated by the driver used KHz
+> units. Now, OPP entries are coming from a device-tree and they have Hz
+> units. This driver operates with KHz internally, hence we need to
+> convert the units now.
 
-Other than that small edit needed in the dt binding this is stalled on
-the label code getting upstreamed into the core.
+OK. Thanks.
 
-I've asked Cristian to repost that so hopefully we can resolve that dependency
-and get this merged fairly soon.
+>
+> >>
+> >>         actmon_dev =3D &tegra->devices[MCALL];
+> >>
+> >> @@ -705,7 +693,7 @@ static int tegra_governor_get_target(struct devfre=
+q *devfreq,
+> >>                 target_freq =3D max(target_freq, dev->target_freq);
+> >>         }
+> >>
+> >> -       *freq =3D target_freq;
+> >> +       *freq =3D target_freq * KHZ;
+> >
+> > ditto.
+> >
+> >>
+> >>         return 0;
+> >>  }
+> >> @@ -773,13 +761,22 @@ static struct devfreq_governor tegra_devfreq_gov=
+ernor =3D {
+> >>
+> >>  static int tegra_devfreq_probe(struct platform_device *pdev)
+> >>  {
+> >> +       u32 hw_version =3D BIT(tegra_sku_info.soc_speedo_id);
+> >>         struct tegra_devfreq_device *dev;
+> >>         struct tegra_devfreq *tegra;
+> >> +       struct opp_table *opp_table;
+> >>         struct devfreq *devfreq;
+> >>         unsigned int i;
+> >>         long rate;
+> >>         int err;
+> >>
+> >> +       /* legacy device-trees don't have OPP table and must be update=
+d */
+> >> +       if (!device_property_present(&pdev->dev, "operating-points-v2"=
+)) {
+> >> +               dev_err(&pdev->dev, "OPP table not found, cannot conti=
+nue\n");
+> >> +               dev_err(&pdev->dev, "please update your device tree\n"=
+);
+> >> +               return -ENODEV;
+> >> +       }
+> >
+> > As you mentioned, it breaks the old dtb. I have no objection to improvi=
+ng
+> > the driver. Instead, you need confirmation from the Devicetree maintain=
+er.
+>
+> Older DTBs will continue to work, but devfreq driver won't. We already
+> did this for other Tegra drivers before (CPUFREQ driver for example) and
+> Rob Herring confirmed that there is no problem here.
 
-For the dt thing I can just drop the description entirely, but would prefer
-if you sent a v8 fixing the tags issue Rob pointed out and also fixing that
-description.
+OK.
 
-Thanks,
+>
+> > And,
+> > I recommend that you use dev_pm_opp_of_get_opp_desc_node(&pdev->dev)
+> > to check whether a device contains opp-table or not.
+>
+> I'm not sure what are the benefits, this will make code less
+> expressive/readable and we will need to add extra of_node_put(), which
+> device_property_present() handles for us.
+>
+> Could you please give the rationale?
 
-Jonathan
+IMO, 'operating-points-v2' word was defined on OPP core. I think that
+the external user
+of OPP better to use the public helper function instead of using the
+interval definition
+or value of OPP core directly. Basically, I prefer the provided helper
+function if there.
+But, it is not critical and doesn't affect the operation. If you want
+to keep, it is ok.
 
-> Gene Chen (2)
->   dt-bindings: iio: adc: add bindings doc for MT6360 ADC
->   Documentation: ABI: testing: mt6360: Add ADC sysfs guideline
->   iio: adc: mt6360: Add ADC driver for MT6360
-> 
->  Documentation/ABI/testing/sysfs-bus-iio-adc-mt6360                 |   78 ++
->  Documentation/devicetree/bindings/iio/adc/mediatek,mt6360-adc.yaml |   34 
->  drivers/iio/adc/Kconfig                                            |   11 
->  drivers/iio/adc/Makefile                                           |    1 
->  drivers/iio/adc/mt6360-adc.c                                       |  372 ++++++++++
->  5 files changed, 496 insertions(+)
-> 
-> changelogs between v1 & v2
->  - adc: use IIO_CHAN_INFO_PROCESSED only
->  - adc: use devm_iio_triggered_buffer_setup
->  - adc: use use s64 to record timestamp
-> 
-> changelogs between v2 & v3
->  - Rearrange include file order by alphabet
->  - Set line length constraint below 100
->  - Add Document for testing adc sysfs node guideline
->  - Set compiler 64 bit aligned when handle iio timestamp
-> 
-> changelogs between v3 & v4
->  - Fix sysfs guideline description
->  - Replace iio channel processed by raw/scale/offset
->  - Add comment of read adc flow for special HW design
-> 
-> changelogs between v4 & v5
->  - Rename dt-bindings aligned to file name
->  - Aligned sysfs node name with driver and add VBUSDIVX description
->  - Add ADC channel sysfs node "*_labels"
-> 
-> changelogs between v5 & v6
->  - Memset aligned adc data
->  - Remove strong casting void pointer
-> 
-> changelogs between v6 & v7
->  - Avoid adc polling infinite loop
-> 
+>
+> >> +
+> >>         tegra =3D devm_kzalloc(&pdev->dev, sizeof(*tegra), GFP_KERNEL)=
+;
+> >>         if (!tegra)
+> >>                 return -ENOMEM;
+> >> @@ -821,11 +818,29 @@ static int tegra_devfreq_probe(struct platform_d=
+evice *pdev)
+> >>                 return err;
+> >>         }
+> >>
+> >> +       tegra->opp_table =3D dev_pm_opp_get_opp_table(&pdev->dev);
+> >> +       if (IS_ERR(tegra->opp_table))
+> >> +               return dev_err_probe(&pdev->dev, PTR_ERR(tegra->opp_ta=
+ble),
+> >> +                                    "Failed to prepare OPP table\n");
+> >
+> > As I knew, each device can contain the opp_table on devicetree.
+> > It means that opp_table has not depended to another device driver.
+> > Did you see this exception case with EPROBE_DEFER error?
+>
+> OPP core will try to grab the clock reference for the table and it may
+> cause EPROBE_DEFER. Although, it shouldn't happen here because we have
+> devm_clk_get() before the get_opp_table(), hence seems the deferred
+> probe indeed shouldn't happen in this case.
 
+It is my missing point. If there, you're right.
+Could you provide the code point to check the clock reference on the OPP co=
+re?
+
+--=20
+Best Regards,
+Chanwoo Choi
