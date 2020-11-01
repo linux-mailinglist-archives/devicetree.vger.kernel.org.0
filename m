@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 167232A1DC4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 13:10:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69C8A2A1DD4
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 13:26:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726159AbgKAMKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 07:10:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46170 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726490AbgKAMKg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Nov 2020 07:10:36 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        id S1726499AbgKAM0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 07:26:17 -0500
+Received: from asavdk3.altibox.net ([109.247.116.14]:48618 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726474AbgKAM0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 07:26:17 -0500
+Received: from ravnborg.org (unknown [188.228.123.71])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A637C208B6;
-        Sun,  1 Nov 2020 12:10:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604232635;
-        bh=69DURQxAJm5IPPyz0iqmP+j1BJ4QqpEDaUqp2moQ6yU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aikYv4TOLT1V5MPBqLWRoSG6JAjabmjO5d3kbnVtvissH43d+iRamPPfud9pKStJ6
-         DAo9YvGSFOKlBaUe+JrnU1kQYBTo9h+SqcfrRaOwCF20R5BKE9Zdk7iQi0ZOCcYlGL
-         1YwAkJ9ZS85myQkRX7TuDKWLuB/6Ln8egkblecvs=
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=wait-a-minute.lan)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kZCBt-006PeF-Vd; Sun, 01 Nov 2020 12:10:34 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>, nm@ti.com,
-        t-kristo@ti.com, lokeshvutla@ti.com, ssantosh@kernel.org,
-        robh+dt@kernel.org, Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     Ulrich Hecht <uli+renesas@fpond.eu>, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/2] irqchip/ti-sci-inta: Support for unmapped events
-Date:   Sun,  1 Nov 2020 12:10:28 +0000
-Message-Id: <160423261832.76459.5898965255364818721.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201020073243.19255-1-peter.ujfalusi@ti.com>
-References: <20201020073243.19255-1-peter.ujfalusi@ti.com>
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 85B9220022;
+        Sun,  1 Nov 2020 13:26:13 +0100 (CET)
+Date:   Sun, 1 Nov 2020 13:26:11 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Christophe Branchereau <cbranchereau@gmail.com>, od@zcrc.me,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] drm/panel: ABT Y030XX067A panel support
+Message-ID: <20201101122611.GA1269759@ravnborg.org>
+References: <20201101093150.8071-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: tglx@linutronix.de, jason@lakedaemon.net, geert+renesas@glider.be, nm@ti.com, t-kristo@ti.com, lokeshvutla@ti.com, ssantosh@kernel.org, robh+dt@kernel.org, peter.ujfalusi@ti.com, uli+renesas@fpond.eu, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201101093150.8071-1-paul@crapouillou.net>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8 a=9Q3-Gd2UY0mbpF3q5_8A:9
+        a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22 a=pHzHmUro8NiASowvMSCR:22
+        a=nt3jZW36AmriUCFCBwmW:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 10:32:41 +0300, Peter Ujfalusi wrote:
-> Changes since v2:
-> - Extended the block diagram of INTA in the DT documentation
-> - Use less creative variable names for unmapped events in the driver
-> - Short comment section to describe the unmapped event handling in driver
-> - Use u16 array to store the TI-SCI device identifiers instead of u32
-> - Use printk format specifier instead of_node_full_name
+Hi Paul.
+
+On Sun, Nov 01, 2020 at 09:31:46AM +0000, Paul Cercueil wrote:
+> Hi,
 > 
-> [...]
+> This patchset is for adding support for the Asia Better Technology (aka.
+> ABT) Y030XX067A 3.0" 320x480 24-bit LCD IPS panel.
+> 
+> While being 320x480 it is actually 4:3 with non-square pixels, and
+> requires a specific bus format, as the pixel ordering changes each line
+> (RGB on odd lines, GRB on even lines).
+> 
+> Patch #1 adds the abt,* vendor prefix.
+> Patch #2 adds the abt,y030xx067a panel binding documentation.
+> Patch #3 adds the MEDIA_BUS_FMT_RGB888_3X8_DELTA media bus format.
+> Patch #4 adds the driver itself.
 
-Applied to irq/irqchip-next, thanks!
+Full series looks good.
 
-[1/2] dt-bindings: irqchip: ti, sci-inta: Update for unmapped event handling
-      commit: bb2bd7c7f3d0946acc2104db31df228d10f7b598
-[2/2] irqchip/ti-sci-inta: Add support for unmapped event handling
-      commit: d95bdca75b3fb41bf185efe164e05aed820081a5
+I asked google - but no hits for "Asia Better Technology". But I blame
+that the company has no public page - in english at least.
+Also the part with a DELTA media bus format looks correct, but not
+something I know much off.
 
-Cheers,
+The driver itself utilises regmap_multi_reg_write() - very nice!
 
-	M.
--- 
-Without deviation from the norm, progress is not possible.
+Full series is:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
+I assume you will apply yourself - but please wait a few days after it
+have hit dri-devel to let others have the possibility to give feedback.
 
+	Sam
