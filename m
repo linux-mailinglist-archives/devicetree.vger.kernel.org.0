@@ -2,105 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7B812A1CF2
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 10:36:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40A1A2A1CFA
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 10:45:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726295AbgKAJgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 04:36:22 -0500
-Received: from mailout07.rmx.de ([94.199.90.95]:59121 "EHLO mailout07.rmx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726118AbgKAJgV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Nov 2020 04:36:21 -0500
-Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mailout07.rmx.de (Postfix) with ESMTPS id 4CP9sX50P3zBvB8;
-        Sun,  1 Nov 2020 10:36:16 +0100 (CET)
-Received: from mta.arri.de (unknown [217.111.95.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin02.retarus.com (Postfix) with ESMTPS id 4CP9sJ0FQgz2TRlS;
-        Sun,  1 Nov 2020 10:36:04 +0100 (CET)
-Received: from n95hx1g2.localnet (192.168.54.14) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Sun, 1 Nov
- 2020 10:35:02 +0100
-From:   Christian Eggers <ceggers@arri.de>
-To:     Vladimir Oltean <olteanv@gmail.com>
-CC:     Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add hardware time stamping support
-Date:   Sun, 1 Nov 2020 10:35:01 +0100
-Message-ID: <4928494.XgmExmOR0V@n95hx1g2>
-Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-In-Reply-To: <20201030182447.2day7x3vad7xgcah@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de> <1680734.pGj3N1mgWS@n95hx1g2> <20201030182447.2day7x3vad7xgcah@skbuf>
+        id S1726154AbgKAJpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 04:45:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38282 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726118AbgKAJpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 04:45:16 -0500
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012DEC061A04
+        for <devicetree@vger.kernel.org>; Sun,  1 Nov 2020 01:45:15 -0800 (PST)
+Received: by mail-io1-xd43.google.com with SMTP id h21so11971650iob.10
+        for <devicetree@vger.kernel.org>; Sun, 01 Nov 2020 01:45:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CT1iia8GuDUfamUVCy7ssmgKgChHFGwKBrm0tLv+r5Q=;
+        b=1M6PgKxp0xPikUCo/jsKZbQb7QECX5qZ3UFB+GUt748KQ0sANbynwPCYeNuJNIj9gm
+         nwPoXFN34aZ/tC5/9yGzrt0LNnOOt4VZ9wYBwH7hMNPUIzCXEVUcNSPkw1EehfncL7BX
+         5XF2nyoGXQTU3RW7B+CajcsEDYVa9fYaFmckuvyxqeQtrbrAgwCTuAV8Vm1m6MOngXG9
+         7ROQOhie2L6BTp3+/6H28NPqG8n8701qUFrM+tjcNnMYkhlD429uP4Ian/Cg6nM81rGt
+         iDbvlG98TCAvbdRbe1RqthGORQufuxzVchaPE+yx7nM/BecnFWVMmx07TGeI2AxJmTE4
+         HLWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CT1iia8GuDUfamUVCy7ssmgKgChHFGwKBrm0tLv+r5Q=;
+        b=IggYOkylRbEAYVKA39cG9DxyLVkQTv5o/jH57RqpcOGQ8HM+N80MyRGNpOceYz/elh
+         xrDGnvvuPOLOxZ44B7dRZfiF0EcyC2l2Dpbs5lFQozoB7bP3mji8i6RZ1Tpm+hVSPmVY
+         BBAK2joEe5POA3oAIGrQx3ND8EDTYJGKWqBECvJae5PBs2xH4BYINnDh7+e7fxagtphd
+         LNtNngF0cyys9R8Qi/XRFjQEtlr36OPGZkUQKUGKcnFAUuWx/QX50cYARlsMjFa+8dV0
+         pde94KJG126cNVH/qRuHiOFAFcU5y1/7P4LGSe1GkQST1VPGtKdqdgMKdFFtitzYfjtf
+         gYFQ==
+X-Gm-Message-State: AOAM532g9BbZaIVKoAdzKpOv0iOgwEIeY/ZNnCvfnzlMsiANJb6Xs83P
+        QW0SmCdnXyL3+bN/1tEKXWfuos8B4Z6pIyLRPBuXdg==
+X-Google-Smtp-Source: ABdhPJy+Rxr8QWojYYarCNBGzjeGEHvmCE5rFqydbJQ91xAUtToreXxJeiiXFsQxsRVpXCsWiPavU1DfqGrOI6bCz6A=
+X-Received: by 2002:a02:c64f:: with SMTP id k15mr2912474jan.75.1604223915254;
+ Sun, 01 Nov 2020 01:45:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [192.168.54.14]
-X-RMX-ID: 20201101-103604-4CP9sJ0FQgz2TRlS-0@kdin02
-X-RMX-SOURCE: 217.111.95.66
+References: <20201025005916.64747-1-luka.kovacic@sartura.hr>
+ <20201025005916.64747-2-luka.kovacic@sartura.hr> <20201028151534.GA4034363@bogus>
+In-Reply-To: <20201028151534.GA4034363@bogus>
+From:   Luka Kovacic <luka.kovacic@sartura.hr>
+Date:   Sun, 1 Nov 2020 10:45:04 +0100
+Message-ID: <CADZsf3brnSqaxoP4+YA8bHeQMq+DvWQaxYufEn3jCzNCSC0QSQ@mail.gmail.com>
+Subject: Re: [PATCH v7 1/6] dt-bindings: Add IEI vendor prefix and IEI
+ WT61P803 PUZZLE driver bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Marek Behun <marek.behun@nic.cz>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Robert Marko <robert.marko@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+Hello Rob,
 
-On Friday, 30 October 2020, 19:24:47 CET, Vladimir Oltean wrote:
-> On Thu, Oct 22, 2020 at 12:17:48PM +0200, Christian Eggers wrote:
-> > I tried to study the effect of setting the ocmode bit on the KSZ either to
-> > master or to slave. The main visible change is, that some PTP message
-> > types
-> > are be filtered out on RX:
-> > - in "master" mode, "Sync" messages from other nodes will not be received
-> > (but everything else like "Announce" seem to work)
-> > - in "slave" mode, "Delay_Req" messages from other nodes will not be
-> > received
-> Could you dump the contents of your REG_PTP_MSG_CONF2 register?
-runtime register value is 0x1004 (matches default value from the data sheet).
-The Linux driver doesn't touch this register. Below is a dump of all PTP
-related (global) registers.
+On Wed, Oct 28, 2020 at 4:15 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Oct 25, 2020 at 02:59:11AM +0200, Luka Kovacic wrote:
+> > Add the IEI WT61P803 PUZZLE Device Tree bindings for MFD, HWMON and LED
+> > drivers. A new vendor prefix is also added accordingly for
+> > IEI Integration Corp.
+> >
+> > Signed-off-by: Luka Kovacic <luka.kovacic@sartura.hr>
+> > Cc: Luka Perkov <luka.perkov@sartura.hr>
+> > Cc: Robert Marko <robert.marko@sartura.hr>
+> > ---
+> >  .../hwmon/iei,wt61p803-puzzle-hwmon.yaml      | 53 ++++++++++++
+> >  .../leds/iei,wt61p803-puzzle-leds.yaml        | 45 ++++++++++
+> >  .../bindings/mfd/iei,wt61p803-puzzle.yaml     | 83 +++++++++++++++++++
+> >  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+> >  4 files changed, 183 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+> > new file mode 100644
+> > index 000000000000..c24a24e90495
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+> > @@ -0,0 +1,53 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/hwmon/iei,wt61p803-puzzle-hwmon.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: IEI WT61P803 PUZZLE MCU HWMON module from IEI Integration Corp.
+> > +
+> > +maintainers:
+> > +  - Luka Kovacic <luka.kovacic@sartura.hr>
+> > +
+> > +description: |
+> > +  This module is a part of the IEI WT61P803 PUZZLE MFD device. For more details
+> > +  see Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml.
+> > +
+> > +  The HWMON module is a sub-node of the MCU node in the Device Tree.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: iei,wt61p803-puzzle-hwmon
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^fan-group@[0-1]$":
+> > +    type: object
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 1
+> > +        description:
+> > +          Fan group ID
+> > +
+> > +      cooling-levels:
+> > +        minItems: 1
+> > +        maxItems: 255
+> > +        description:
+> > +          Cooling levels for the fans (PWM value mapping)
+> > +    description: |
+> > +      Properties for each fan group.
+> > +    required:
+> > +      - reg
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +
+> > +additionalProperties: false
+> > diff --git a/Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml b/Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+> > new file mode 100644
+> > index 000000000000..bbf264c13189
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+> > @@ -0,0 +1,45 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/iei,wt61p803-puzzle-leds.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: IEI WT61P803 PUZZLE MCU LED module from IEI Integration Corp.
+> > +
+> > +maintainers:
+> > +  - Luka Kovacic <luka.kovacic@sartura.hr>
+> > +
+> > +description: |
+> > +  This module is a part of the IEI WT61P803 PUZZLE MFD device. For more details
+> > +  see Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml.
+> > +
+> > +  The LED module is a sub-node of the MCU node in the Device Tree.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: iei,wt61p803-puzzle-leds
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +  "led@0":
+> > +    type: object
+> > +    $ref: common.yaml
+> > +    description: |
+> > +      Properties for a single LED.
+> > +    properties:
+> > +      reg:
+> > +        description:
+> > +          Index of the LED. Only one LED is supported at the moment.
+> > +        minimum: 0
+> > +        maximum: 0
+>
+> 'const: 0' instead.
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +
+> > +additionalProperties: false
+> > diff --git a/Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml b/Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+> > new file mode 100644
+> > index 000000000000..64264c664c48
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+> > @@ -0,0 +1,83 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/iei,wt61p803-puzzle.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: IEI WT61P803 PUZZLE MCU from IEI Integration Corp.
+> > +
+> > +maintainers:
+> > +  - Luka Kovacic <luka.kovacic@sartura.hr>
+> > +
+> > +description: |
+> > +  IEI WT61P803 PUZZLE MCU is embedded in some IEI Puzzle series boards.
+> > +  It's used for controlling system power states, fans, LEDs and temperature
+> > +  sensors.
+> > +
+> > +  For Device Tree bindings of other sub-modules (HWMON, LEDs) refer to the
+> > +  binding documents under the respective subsystem directories.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: iei,wt61p803-puzzle
+> > +
+> > +  current-speed:
+> > +    description:
+> > +      Serial bus speed in bps
+> > +    maxItems: 1
+> > +
+> > +  enable-beep: true
+>
+> Needs a vendor prefix, description, and type.
+>
+> > +
+> > +  hwmon:
+> > +    $ref: ../hwmon/iei,wt61p803-puzzle-hwmon.yaml
+> > +
+> > +  leds:
+> > +    $ref: ../leds/iei,wt61p803-puzzle-leds.yaml
+> > +
+> > +required:
+> > +  - compatible
+> > +  - current-speed
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/leds/common.h>
+> > +    serial {
+> > +        status = "okay";
+>
+> Don't show status in examples.
+>
+> > +        mcu {
+> > +            compatible = "iei,wt61p803-puzzle";
+> > +            current-speed = <115200>;
+> > +            enable-beep;
+> > +
+> > +            leds {
+> > +                compatible = "iei,wt61p803-puzzle-leds";
+> > +                #address-cells = <1>;
+> > +                #size-cells = <0>;
+> > +
+> > +                led@0 {
+> > +                    reg = <0>;
+> > +                    function = LED_FUNCTION_POWER;
+> > +                    color = <LED_COLOR_ID_BLUE>;
+> > +                };
+> > +            };
+> > +
+> > +            hwmon {
+> > +                compatible = "iei,wt61p803-puzzle-hwmon";
+> > +                #address-cells = <1>;
+> > +                #size-cells = <0>;
+> > +
+> > +                fan-group@0 {
+> > +                    #cooling-cells = <2>;
+> > +                    reg = <0x00>;
+> > +                    cooling-levels = <64 102 170 230 250>;
+> > +                };
+> > +
+> > +                fan-group@1 {
+> > +                    #cooling-cells = <2>;
+> > +                    reg = <0x01>;
+> > +                    cooling-levels = <64 102 170 230 250>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 63996ab03521..5f2595f0b2ad 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -467,6 +467,8 @@ patternProperties:
+> >      description: IC Plus Corp.
+> >    "^idt,.*":
+> >      description: Integrated Device Technologies, Inc.
+> > +  "^iei,.*":
+> > +    description: IEI Integration Corp.
+> >    "^ifi,.*":
+> >      description: Ingenieurburo Fur Ic-Technologie (I/F/I)
+> >    "^ilitek,.*":
+> > --
+> > 2.26.2
+> >
 
-regards
-Christian
+I'll fix these in a new patchset.
 
-    KSZ9563 (Ethernet switch)
-
-      Global
-
-        IEEE 1588 PTP
-        CLKCTRL      0002      SWFA         enabled        CLKSADJ        NOP              PTPSD        subtract
-                               CLKREAD      NOP            CLKWRITE       NOP              CLKCADJ      disabled
-                               EN           enabled        RESET          normal
-        RTCCP        0002      PHASE        16ns
-        RTCNS        17D72FF0  NANOSECONDS    399978480
-        RTCS         00000023  SECONDS               35
-        RTCSUBNS     00000000  RATEDIR      subtract       TEMPADJ        permanent
-                               SUBNS                  0
-        RTCTMPADJ    00000000  CYCLES                 0
-        MSGCFG1      007D      MODEEN       enabled        IEEE802.3      enabled          UDPv4        enabled
-                               UDPv6        enabled        TCMODE         P2P              OCMODE       slave
-        MSGCFG2      1004      UNICASTEN    both           ALTMASTER      disabled         PRIOTX       event only
-                               CHKSYNFU     disabled       CHKDLY         disabled         CHKPDLY      disabled
-                               DROP         disabled       CHKDOM         disabled         IPv4CHKSUM   calc
-        DOMVER       0200      VERSION      2              DOMAIN            0
-        UNITIDX      00000000  GPIO_IDX     GPIO_1         TS_IDX         Unit 0           TRIG_IDX     Unit 0
-
-
-
-
+Kind regards,
+Luka
