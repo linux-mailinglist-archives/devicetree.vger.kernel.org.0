@@ -2,165 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D54E32A1D74
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 11:55:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3C732A1D8A
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 12:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726395AbgKAKzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 05:55:19 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:46566 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726145AbgKAKzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Nov 2020 05:55:19 -0500
-Received: from p57b773f8.dip0.t-ipconnect.de ([87.183.115.248] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kZB13-00032r-5V; Sun, 01 Nov 2020 11:55:17 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-media@vger.kernel.org,
-        Helen Koike <helen.koike@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        robh+dt@kernel.org, kernel@collabora.com, hverkuil-cisco@xs4all.nl,
-        dafna.hirschfeld@collabora.com, mark.rutland@arm.com,
-        karthik.poduval@gmail.com, eddie.cai.linux@gmail.com,
-        jbx6244@gmail.com, zhengsq@rock-chips.com, robin.murphy@arm.com
-Subject: Re: [PATCH v6 9/9] arm64: dts: rockchip: add isp and sensors for Scarlet
-Date:   Sun, 01 Nov 2020 11:55:16 +0100
-Message-ID: <14722083.QWuEjnDerj@phil>
-In-Reply-To: <20201020193850.1460644-10-helen.koike@collabora.com>
-References: <20201020193850.1460644-1-helen.koike@collabora.com> <20201020193850.1460644-10-helen.koike@collabora.com>
+        id S1726303AbgKALKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 06:10:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51278 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726282AbgKALKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 06:10:12 -0500
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD76C0617A6;
+        Sun,  1 Nov 2020 03:10:12 -0800 (PST)
+Received: by mail-ej1-x642.google.com with SMTP id za3so14619891ejb.5;
+        Sun, 01 Nov 2020 03:10:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2MPHqIH/d7+mpoPui6Qu3n2BCl3vKtro3QMwJNOOF6Y=;
+        b=pUV26Mbdnut4NYCl5svB+rmihuMr1B9EBpwt0Y8qRGfxaVbkLGLJfuB7SjL1xH/EdB
+         c3/VuLoiZAvP1h7In+K6r3TUWr0QuQb/bHQTmHnkQqmOSbVUmKk1zNd1PVWfaysk84Fi
+         Ds2YlbRgRRZeyv2Gwsma1FmmTSieSFw3jrFsFmS5xmMcmASnQjkfuEergezbam1JTzTA
+         wG6Hhm7e6TZXAQdXt85XHPt1n9HE/hnFSidB4bSog+D67ObrjandvD1hTSlNQ2AwCi5v
+         omocvyIuRaUu9VdUVo7IdHO/bxTgLuFaREfasYlLAzyejHuBeTp6LF+ZM2cvWkL03oVa
+         cncw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2MPHqIH/d7+mpoPui6Qu3n2BCl3vKtro3QMwJNOOF6Y=;
+        b=kiw1ntZ/obJW9CGEubKUxX9O5N4FWlTYRivwIjBJt2dC6avN2dBj0joacE29/mba/p
+         ktdhpzWtK2kHmT/QAtTtYXauqTDA8YKbiynEQ4BM1uBBJvyslPstGcDN3by06bj36r+5
+         uKnkKLtPMZJAYug7V0Y8+hyB1GoVZoQ6oLzBnzhsnOT60b11IOLzS4K5LcN9FH95DC9M
+         mzJasc+xwOkzzTomBYaa3MI4hMVL2thWEldtUhNdUO/6G4BMHx/U4AAN4iS/evPoyi0C
+         Gt9ca5M62Bt9zLkbcD58y1H4EV4MBwjq+M549peoSKCUIUK0Eg3MWPxqxDqqOqeXMtoR
+         ZcLQ==
+X-Gm-Message-State: AOAM531580EZsCtSid3VPhVqiWduuF7Oh4rDVbD915qPeuQcZn1s6jeM
+        qGCoW8joj1rUZFph/1rhC9A=
+X-Google-Smtp-Source: ABdhPJxDKhAdeZ/N5kbfYECBf2Jn3mowe9drqvhc7P21N8c31cl0v7hI7pE1dJnR3PNYVpfPpl2WhQ==
+X-Received: by 2002:a17:906:14db:: with SMTP id y27mr11185684ejc.148.1604229010649;
+        Sun, 01 Nov 2020 03:10:10 -0800 (PST)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id l20sm3648191eja.40.2020.11.01.03.10.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Nov 2020 03:10:10 -0800 (PST)
+Date:   Sun, 1 Nov 2020 13:10:08 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Richard Cochran <richardcochran@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
+ hardware time stamping support
+Message-ID: <20201101111008.vl4lj4iqmqjdpbyg@skbuf>
+References: <20201019172435.4416-1-ceggers@arri.de>
+ <1680734.pGj3N1mgWS@n95hx1g2>
+ <20201030182447.2day7x3vad7xgcah@skbuf>
+ <4928494.XgmExmOR0V@n95hx1g2>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4928494.XgmExmOR0V@n95hx1g2>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 20. Oktober 2020, 21:38:50 CET schrieb Helen Koike:
-> From: Eddie Cai <eddie.cai.linux@gmail.com>
+On Sun, Nov 01, 2020 at 10:35:01AM +0100, Christian Eggers wrote:
+> Hi Vladimir,
 > 
-> Enable ISP and camera sensor ov2685 and ov5695 for Scarlet Chromebook
-> 
-> Verified with:
->     make ARCH=arm64 dtbs_check
-> 
-> Signed-off-by: Shunqian Zheng <zhengsq@rock-chips.com>
-> Signed-off-by: Eddie Cai <eddie.cai.linux@gmail.com>
-> Signed-off-by: Tomasz Figa <tfiga@chromium.org>
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> Reviewed-by: Tomasz Figa <tfiga@chromium.org>
+> On Friday, 30 October 2020, 19:24:47 CET, Vladimir Oltean wrote:
+> > On Thu, Oct 22, 2020 at 12:17:48PM +0200, Christian Eggers wrote:
+> > > I tried to study the effect of setting the ocmode bit on the KSZ either to
+> > > master or to slave. The main visible change is, that some PTP message
+> > > types
+> > > are be filtered out on RX:
+> > > - in "master" mode, "Sync" messages from other nodes will not be received
+> > > (but everything else like "Announce" seem to work)
+> > > - in "slave" mode, "Delay_Req" messages from other nodes will not be
+> > > received
+> > Could you dump the contents of your REG_PTP_MSG_CONF2 register?
+> runtime register value is 0x1004 (matches default value from the data sheet).
+> The Linux driver doesn't touch this register. Below is a dump of all PTP
+> related (global) registers.
 
-
-looks good, and I'd like to apply this one after the drivers/media-patches
-of this series got applied.
-
-
-Thanks
-Heiko
-
-> ---
->  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
-> index 60cd1c18cd4e0..beee5fbb34437 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
-> @@ -296,6 +296,52 @@ camera: &i2c7 {
->  
->  	/* 24M mclk is shared between world and user cameras */
->  	pinctrl-0 = <&i2c7_xfer &test_clkout1>;
-> +
-> +	/* Rear-facing camera */
-> +	wcam: camera@36 {
-> +		compatible = "ovti,ov5695";
-> +		reg = <0x36>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wcam_rst>;
-> +
-> +		clocks = <&cru SCLK_TESTCLKOUT1>;
-> +		clock-names = "xvclk";
-> +
-> +		avdd-supply = <&pp2800_cam>;
-> +		dvdd-supply = <&pp1250_cam>;
-> +		dovdd-supply = <&pp1800_s0>;
-> +		reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			wcam_out: endpoint {
-> +				remote-endpoint = <&mipi_in_wcam>;
-> +				data-lanes = <1 2>;
-> +			};
-> +		};
-> +	};
-> +
-> +	/* Front-facing camera */
-> +	ucam: camera@3c {
-> +		compatible = "ovti,ov2685";
-> +		reg = <0x3c>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ucam_rst>;
-> +
-> +		clocks = <&cru SCLK_TESTCLKOUT1>;
-> +		clock-names = "xvclk";
-> +
-> +		avdd-supply = <&pp2800_cam>;
-> +		dovdd-supply = <&pp1800_s0>;
-> +		dvdd-supply = <&pp1800_s0>;
-> +		reset-gpios = <&gpio2 3 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			ucam_out: endpoint {
-> +				remote-endpoint = <&mipi_in_ucam>;
-> +				data-lanes = <1>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &cdn_dp {
-> @@ -353,10 +399,38 @@ &io_domains {
->  	gpio1830-supply = <&pp1800_s0>;		/* APIO4_VDD;  4c 4d */
->  };
->  
-> +&isp0 {
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@0 {
-> +			mipi_in_wcam: endpoint@0 {
-> +				reg = <0>;
-> +				remote-endpoint = <&wcam_out>;
-> +				data-lanes = <1 2>;
-> +			};
-> +
-> +			mipi_in_ucam: endpoint@1 {
-> +				reg = <1>;
-> +				remote-endpoint = <&ucam_out>;
-> +				data-lanes = <1>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&isp0_mmu {
-> +	status = "okay";
-> +};
-> +
->  &max98357a {
->  	sdmode-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
->  };
->  
-> +&mipi_dphy_rx0 {
-> +	status = "okay";
-> +};
-> +
->  &mipi_dsi {
->  	status = "okay";
->  	clock-master;
-> 
-
-
-
-
+So the bit 5 ("Enable Dropping of Sync/Follow_Up and Delay_Req PTP
+Messages") is not set. When the PTP messages are dropped, do you know
+which error counter in ethtool -S is increasing?
