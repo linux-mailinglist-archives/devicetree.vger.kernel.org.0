@@ -2,90 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B362A2273
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 00:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26A102A2277
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 00:58:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727409AbgKAX4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 18:56:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
+        id S1727470AbgKAX66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 18:58:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727119AbgKAX4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 18:56:03 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22515C0617A6;
-        Sun,  1 Nov 2020 15:56:03 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id p5so16535688ejj.2;
-        Sun, 01 Nov 2020 15:56:03 -0800 (PST)
+        with ESMTP id S1727309AbgKAX66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 18:58:58 -0500
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE50C0617A6;
+        Sun,  1 Nov 2020 15:58:57 -0800 (PST)
+Received: by mail-qt1-x844.google.com with SMTP id f93so8162581qtb.10;
+        Sun, 01 Nov 2020 15:58:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hxNCmXN+Np0a9fyk4jNL6uxWJrRHqB5tuMS990NxiFA=;
-        b=eNEVhVKuq4LSWiX81LodotFKxhiO06l0LHgrGgBSCmI3o/660wqAWCLwj7vASYoTO0
-         mqYrxuGAsnr2iIHSWFGeNpZ4xhJdcN7CWJ0zbhi4NSOJX1wNwrv6rChNizGdaLr/z++9
-         y8isFlTl3AhvW/kcvpgsanwttUSXhfWzJOSxhu3N0MYHvfn5OV+ARLgov4UTOOLZFApJ
-         MIVniKopBmGpvlbvKooUvMvZwjemXDaL2bh9edZP5QLlne1HfNCCNe841DKRg14FmFYr
-         eqbT3g4pTmb2unORLo1CAirM8saJg+EzmFryZqKxXnWiqorHi8XF69IGRjgmn5Ihpqhh
-         D36w==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k0kRy+Nx/QnWYbnmGzwht3fo9mypVSfVLNNpjvfeF7Y=;
+        b=brNJSku0bPKWosQMJXoWRGAomXJHS//QnKnot+pwva9tggddcof7eebITAxeSQqISR
+         0shntSkFIew5/XuK/at+g071ttN0u3P5qb6hi9WbqpHd0NH8ZbFymxybJDYkZitbEodF
+         b6d2g1d8MRMbKxo2Tnlnr4HmIfKWHriMjW+hw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hxNCmXN+Np0a9fyk4jNL6uxWJrRHqB5tuMS990NxiFA=;
-        b=WxqXyRvNVVHcCth1AgQdxKQfHdOvhnoFGKBJMOK5aeguEz3wfVcL62BT2g8A2o0OXU
-         kNFNaTUz0iMSVH+N8McXYlMJj4I0AJmKy4X6j4HGsyU9ALTsdN0J8oxhsevy77I4a2EG
-         o94Ax9Sqjde9FH1K5j+9zrTLNsrEdnoJY4YYyLq7O6TSIIRP0pwduwroWrDrkBk+PqoZ
-         X2j2Ro2pxoie986Or70XyMBzcxMLzUK30jNXKEl37MB6cwsHVCTiffDaMZ96mKJjq8fO
-         sOKokBWl+9Hw5w0wvN1An/WRxKRdRmRoUCXgraIXEXK/wqPfFexUBT2fznU05gNFyNVX
-         Si1A==
-X-Gm-Message-State: AOAM5329s+DaTzSscbPsrgfonqTETPoZvGKgFEUOIfKf/OJWIJOErvkD
-        QywsFfqz8BOosCieSw0v8rE=
-X-Google-Smtp-Source: ABdhPJwEYitE1WK+4CHeQD3modQC6TZN69oVu0YWKz1Ht+dHeo8jkIBZ3fFK4SnCLj2PDdrjiLMuUw==
-X-Received: by 2002:a17:906:3413:: with SMTP id c19mr12512644ejb.421.1604274961855;
-        Sun, 01 Nov 2020 15:56:01 -0800 (PST)
-Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id k22sm9425259edr.12.2020.11.01.15.56.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Nov 2020 15:56:01 -0800 (PST)
-Date:   Mon, 2 Nov 2020 01:55:59 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
- hardware time stamping support
-Message-ID: <20201101235559.wcdns4kmy6ri7kmz@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de>
- <4928494.XgmExmOR0V@n95hx1g2>
- <20201101111008.vl4lj4iqmqjdpbyg@skbuf>
- <3355013.oZEI4y40TO@n95hx1g2>
- <20201101234149.rrhrjiyt7l4orkm7@skbuf>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k0kRy+Nx/QnWYbnmGzwht3fo9mypVSfVLNNpjvfeF7Y=;
+        b=Va9Gw5fiBW7gWZwm8r+QAxMUvV/ASBmahocRkKvHqXWg7E92eJtCIX6pNjCExIInar
+         xJgNHKXQAIDNfUHM+413oQ4JA/Y9XDn5kbbdI1dF5yd2LTJO/XDin3EMhqwNCc25fjFe
+         dqLTe0ol/g8NGz0w/qr4AX4qG0EzeDW3jb2oqgzAsehiASbaxGrcu7qazbhUSYfyC7n2
+         vKL7OvsWPzwM5JKMFqy8kWQM1A5PAtAslu4W5Xwy+xN96z7yWemrMLs1RRfUiU+9HQlf
+         +YcWfda1+CcxLN4bOjOF0qJ2O4QhEvsiK58ZySpvUhD+oSVyTjjaw4gpwNLIU6oVOO3M
+         O+uQ==
+X-Gm-Message-State: AOAM5338Vj9kUof8NL3y3tuJra/3kQwXn4kLmrArWIMhXucshry7v905
+        1WXVqm+S78oMPEM1tXS11idi30GwxQ2JeOahUXmV1Nuk2Nw=
+X-Google-Smtp-Source: ABdhPJzQB5EPcYDgX2QkiYwah4UMZ5U4K0vEkbXYMHSrPooTsRW4trT5qeGhOH4iMIk8EMMTIgScxdMc83Ni2J3YO6k=
+X-Received: by 2002:ac8:5854:: with SMTP id h20mr12022217qth.176.1604275137155;
+ Sun, 01 Nov 2020 15:58:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201101234149.rrhrjiyt7l4orkm7@skbuf>
+References: <20200813190431.3331026-1-vijaykhemka@fb.com>
+In-Reply-To: <20200813190431.3331026-1-vijaykhemka@fb.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Sun, 1 Nov 2020 23:58:44 +0000
+Message-ID: <CACPK8Xe8cfQO2=+66_xE3gVWnqThWqPkhVuELpOowdaXORZCbw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: aspeed: tiogapass: Remove vuart
+To:     Vijay Khemka <vijaykhemka@fb.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sai Dasari <sdasari@fb.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 02, 2020 at 01:41:49AM +0200, Vladimir Oltean wrote:
-> In principle I don't see any reason why this switch would not be able
-> to operate as a one-step peer delay BC.
+On Thu, 13 Aug 2020 at 19:04, Vijay Khemka <vijaykhemka@fb.com> wrote:
+>
+> Removed vuart for facebook tiogapass platform as it uses uart2 and
+> uart3 pin with aspeed uart routing feature.
+>
+> Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
 
-What I meant to say was "one-step E2E BC", since I was talking about
-having to receive both Sync and Delay_Req at the same time, of course.
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts | 5 -----
+>  1 file changed, 5 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+> index 2d44d9ad4e40..e6ad821a8635 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+> @@ -82,11 +82,6 @@ &lpc_ctrl {
+>         status = "okay";
+>  };
+>
+> -&vuart {
+> -       // VUART Host Console
+> -       status = "okay";
+> -};
+> -
+>  &uart1 {
+>         // Host Console
+>         status = "okay";
+> --
+> 2.24.1
+>
