@@ -2,166 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE4D82A2197
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 21:45:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 868612A2206
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 23:15:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727004AbgKAUpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 15:45:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:32784 "EHLO mail.kernel.org"
+        id S1727081AbgKAWPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 17:15:44 -0500
+Received: from mailout04.rmx.de ([94.199.90.94]:52770 "EHLO mailout04.rmx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726848AbgKAUpB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Nov 2020 15:45:01 -0500
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727009AbgKAWPo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Nov 2020 17:15:44 -0500
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1D76E21527;
-        Sun,  1 Nov 2020 20:44:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604263501;
-        bh=nEih1mCwNFlDPl76RHfHvCLViE41MwlBps56T5vrzLk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=CDT5aPRgQsbSKwO/9ysEfeA05fSaETMDgHF72zD9LaEH8ooNdd1IqpsSpIv/Iotf3
-         xv5RTcFnN5SeBR9G4nnXA5jsobJXlGxiOb5NVlrPGj5jY51B1YdQ3ROFvj/UYmzf/8
-         xJNHUHGWZgPKDFaSfj8F4c9fGONjBwUYRafnW25M=
-Date:   Sun, 1 Nov 2020 20:44:56 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-iio@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] iio: accel: bmc150-accel: Add DT bindings
-Message-ID: <20201101204456.2f15616a@archlinux>
-In-Reply-To: <20201101122833.1111424-1-linus.walleij@linaro.org>
-References: <20201101122833.1111424-1-linus.walleij@linaro.org>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        by mailout04.rmx.de (Postfix) with ESMTPS id 4CPVjl1pBmz3qjlg;
+        Sun,  1 Nov 2020 23:15:39 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4CPVjV3ym7z2TRlZ;
+        Sun,  1 Nov 2020 23:15:26 +0100 (CET)
+Received: from n95hx1g2.localnet (192.168.54.12) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Sun, 1 Nov
+ 2020 23:14:25 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>
+CC:     Richard Cochran <richardcochran@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add hardware time stamping support
+Date:   Sun, 1 Nov 2020 23:14:24 +0100
+Message-ID: <3355013.oZEI4y40TO@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <20201101111008.vl4lj4iqmqjdpbyg@skbuf>
+References: <20201019172435.4416-1-ceggers@arri.de> <4928494.XgmExmOR0V@n95hx1g2> <20201101111008.vl4lj4iqmqjdpbyg@skbuf>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [192.168.54.12]
+X-RMX-ID: 20201101-231526-4CPVjV3ym7z2TRlZ-0@kdin02
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun,  1 Nov 2020 13:28:31 +0100
-Linus Walleij <linus.walleij@linaro.org> wrote:
-
-> These accelerometers have bindings used in the kernel and
-> several device trees but no proper bindings documentation.
-> Add it.
+On Sunday, 1 November 2020, 12:10:08 CET, Vladimir Oltean wrote:
+> On Sun, Nov 01, 2020 at 10:35:01AM +0100, Christian Eggers wrote:
+> > Hi Vladimir,
+> > 
+> > On Friday, 30 October 2020, 19:24:47 CET, Vladimir Oltean wrote:
+> > > On Thu, Oct 22, 2020 at 12:17:48PM +0200, Christian Eggers wrote:
+> > > > I tried to study the effect of setting the ocmode bit on the KSZ
+> > > > either to
+> > > > master or to slave. The main visible change is, that some PTP message
+> > > > types
+> > > > are be filtered out on RX:
+> > > > - in "master" mode, "Sync" messages from other nodes will not be
+> > > > received
+> > > > (but everything else like "Announce" seem to work)
+> > > > - in "slave" mode, "Delay_Req" messages from other nodes will not be
+> > > > received
+> > > 
+> > > Could you dump the contents of your REG_PTP_MSG_CONF2 register?
+> > 
+> > runtime register value is 0x1004 (matches default value from the data
+> > sheet). The Linux driver doesn't touch this register. Below is a dump of
+> > all PTP related (global) registers.
 > 
-> Also add a compatible for the BMA222 that I am right now
-> adding support for in the driver.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Hi Linus,
+> So the bit 5 ("Enable Dropping of Sync/Follow_Up and Delay_Req PTP
+> Messages") is not set. When the PTP messages are dropped, do you know
+> which error counter in ethtool -S is increasing?
+I am not sure whether I understand the question. My assumption is that the
+KSZ9563 simply doesn't forward specific PTP packages from the slave ports to 
+the CPU port. In my imagination this happens in hardware and is not visible in
+software.
 
-A few minor things inline.
+I have run "ethtool -S" two times on the PTP master clock (E2E mode):
+- When "ocmode" is set to master (DelayReq messages can be received)
+- When "ocmode" is set to slave (DelayReq messages cannot be received)
 
-Great to be plugging some of the holes in binding docs.
-Doing a complete check is on my todo list :)
+Here is the diff output:
+--- /home/root/ethtool1
++++ /home/root/ethtool2
+@@ -1,8 +1,8 @@
+ NIC statistics:
+-     tx_packets: 1421
+-     tx_bytes: 133641
+-     rx_packets: 488
+-     rx_bytes: 35904
++     tx_packets: 1455
++     tx_bytes: 136783
++     rx_packets: 496
++     rx_bytes: 36459
+      rx_hi: 0
+      rx_undersize: 0
+      rx_fragments: 0
+@@ -14,10 +14,10 @@
+      rx_mac_ctrl: 0
+      rx_pause: 0
+      rx_bcast: 4
+-     rx_mcast: 667
++     rx_mcast: 683
+      rx_ucast: 0
+      rx_64_or_less: 0
+-     rx_65_127: 659
++     rx_65_127: 675
+      rx_128_255: 11
+      rx_256_511: 1
+      rx_512_1023: 0
+@@ -27,15 +27,15 @@
+      tx_hi: 0
+      tx_late_col: 0
+      tx_pause: 0
+-     tx_bcast: 713
+-     tx_mcast: 1852
+-     tx_ucast: 324
++     tx_bcast: 733
++     tx_mcast: 1897
++     tx_ucast: 333
+      tx_deferred: 0
+      tx_total_col: 0
+      tx_exc_col: 0
+      tx_single_col: 0
+      tx_mult_col: 0
+-     rx_total: 61158
+-     tx_total: 307225
++     rx_total: 62577
++     tx_total: 313773
+      rx_discards: 20
+      tx_discards: 0
 
-Jonathan
+regards
+Christian
 
-> ---
->  .../bindings/iio/accel/bosch,bmc-bmi-bma.yaml | 72 +++++++++++++++++++
 
-So far we only have a few bindings that aren't named after a supported part.
-Give we have other devices that match these letters, I don't think we want to
-do it here.  Just confused people!
-
-Pick a part and name it after that.
-
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml
-> new file mode 100644
-> index 000000000000..11b8b68aaf3e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmc-bmi-bma.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/bosch,bmc-bmi-bma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bosch BMCxxx, BMIxxx and BMAxxx Accelerometers
-
-Some of them...  see bma180.txt in the same directory.
-I'd go with bma255 and similar (chose your favourite part number)
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description:
-> +  3 axis accelerometers with varying range and I2C or SPI
-> +  3-wire interface.
-
-Looks like 4-wire to me.  CSB, SPI-CLK, SDO, SDI.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - bosch,bmc150
-> +      - bosch,bmi055
-> +      - bosch,bma255
-> +      - bosch,bma250e
-> +      - bosch,bma222
-> +      - bosch,bma222e
-> +      - bosch,bma280
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +  vddio-supply: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  mount-matrix:
-> +    description: an optional 3x3 mounting rotation matrix.
-> +
-> +  spi-max-frequency: true
-
-Don't suppose these all share a common max?
-I looked at a few and 10MHz was the value for those.
-Always nice to pin things down a bit if we can!
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #include <dt-bindings/interrupt-controller/irq.h>
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        accelerometer@8 {
-> +            compatible = "bosch,bma222";
-> +            reg = <0x08>;
-> +            vddio-supply = <&vddio>;
-> +            vdd-supply = <&vdd>;
-> +            interrupts = <57 IRQ_TYPE_EDGE_FALLING>;
-> +        };
-> +    };
-> +  - |
-> +    # include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        accel@0 {
-> +            compatible = "bosch,bma222";
-> +            reg = <0>;
-> +            spi-max-frequency = <10000000>;
-> +        };
-> +    };
-> +...
 
