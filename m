@@ -2,169 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C8AE2A1F07
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 16:26:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 198D42A1F0A
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 16:27:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726839AbgKAP0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 10:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33994 "EHLO
+        id S1726858AbgKAP1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 10:27:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726832AbgKAP0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 10:26:30 -0500
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7CA6C061A04
-        for <devicetree@vger.kernel.org>; Sun,  1 Nov 2020 07:26:28 -0800 (PST)
-Received: by mail-pl1-x641.google.com with SMTP id r10so5531273plx.3
-        for <devicetree@vger.kernel.org>; Sun, 01 Nov 2020 07:26:28 -0800 (PST)
+        with ESMTP id S1726824AbgKAP1S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 10:27:18 -0500
+Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA9FC0617A6;
+        Sun,  1 Nov 2020 07:27:17 -0800 (PST)
+Received: by mail-il1-x142.google.com with SMTP id y17so10796775ilg.4;
+        Sun, 01 Nov 2020 07:27:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:date:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=vKigyyy69RrMO2wivE7nOb9ykQ6TIQpd+G42MBJUIn8=;
-        b=bmy5XVeGN9uxrIuvcEDzy4ODGtU/npvWAz3Di8wXje7L8s+RkPgEt7FLctGjHyJ/ca
-         /f57AnwK47m24PE3lLnBR0qzdRkEBhMssb4YgAPByPKreiBMrTwuyGbGvNEqjMdsvdIc
-         oEMxycFPRvzR8ADLHm3NOTQWbGZNW6BvzFVR4CLhcuRoMSFkoe7GugD+1bK9CmDrBSkg
-         hNjtMr7GEjXEjK1ueNq2QfU4qoQwsnZP4qDfrNf0SRty2CEQACoAon5eLgMNCQa0+U6R
-         VOJA/KsanPbt9iQP+2qf33WnNBKw46Pj8SESJd8C4j4nA4S+ZNlsEqPlxOKSy3pqZzMI
-         d2nQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Sb+LSb8yKLdTuo/XIIeo90tsZCqN/YP0x/T/FxuDBAI=;
+        b=UwR8SDbrSrYwV9KAxX280xwIhir4IekFmY1Jy0kT1/cM9oDYhC8NK7Dd5ohYWO+w5j
+         FuIeOlbBOYTjMY9SSqDBNrlkPWk78ru0QVp97+hekk0OrBe7hlDHvwXh3kh8ZekCLKIf
+         3cR6PBOXRUPZ7Tg+GynBO13LAQnzHm5S65HkpxMJ5laybeeSKGSOEnG3B/bfK+ARYX7g
+         ETpJIrFVqzDsFNRd9We5ZK+35lxSEe0htDajTKttsTzIMM7Vp+UHxONTvo1hs633OFas
+         rLn4RfdXzW1j//a7MtxZiJRFq72HbFnoivkr5c2NyG3jGMxpJ5a1FL2YLYjPIEEkDCz8
+         vt5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vKigyyy69RrMO2wivE7nOb9ykQ6TIQpd+G42MBJUIn8=;
-        b=Rr5XEtAVkQashKA9/cFnbF3j0a2WyTFEEL/JLUvcVPq6e7iQG19mzCwYc6xpZRpl4E
-         OnROLyzL4QNpVP9A69DDdPcVTH5foKqG9l7ej7DcbGVq82/6EGVGSq5IBaCx2zRpl2r8
-         LIKtiUubKcI0Fg4s5quwsU0XwUBuNJSFpcDmY3JuX7XqHJ3Ls3qA8TYzvromYYIYQniA
-         auOzQNIkGtkAIwOUCtAyraFfxmgjhthlNtGY34iwCC60Aj55WDhQaswp7mUXygTBXT/W
-         /jg8XQYuZXaec1XxhBIMipcH6pjZRxdeUjKZUla24akm1pf3JFLAPnZDrDtadrYwYcZp
-         YOsg==
-X-Gm-Message-State: AOAM531epMWn5k9sVO+PwnGa4XSNyDKSk+8RSGcKK7KsR5LOo94utSVu
-        WgS33LRqSuXkfwfIeOKc0yCM
-X-Google-Smtp-Source: ABdhPJwGNneB5X/GX07OnmKf6zv3cmd3EbewFrLINom47KVIkTLnce6GvYo5gLMlnHhJ/BJ4vEekfg==
-X-Received: by 2002:a17:90a:65cc:: with SMTP id i12mr13031446pjs.193.1604244388341;
-        Sun, 01 Nov 2020 07:26:28 -0800 (PST)
-Received: from Mani-XPS-13-9360 ([2409:4072:6d8d:be1b:b0c0:14ff:1364:f14c])
-        by smtp.gmail.com with ESMTPSA id q8sm10867819pfg.118.2020.11.01.07.26.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 01 Nov 2020 07:26:27 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-X-Google-Original-From: Manivannan Sadhasivam <manivannanece23@gmail.com>
-Date:   Sun, 1 Nov 2020 20:56:21 +0530
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Subject: Re: [PATCH 22/46] dt-bindings:iio:light:st,vl6180: txt to yaml
- format conversion.
-Message-ID: <20201101152621.GB5384@Mani-XPS-13-9360>
-References: <20201031184854.745828-1-jic23@kernel.org>
- <20201031184854.745828-23-jic23@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Sb+LSb8yKLdTuo/XIIeo90tsZCqN/YP0x/T/FxuDBAI=;
+        b=cMbkXbVoB39Dc06FyiZl1uTS8DuRPRtEFMaMVAfkmfHdRKXkirSDCIHY2QJuf0yLKo
+         XXQhK62zGJK1JX6ZuqW2XKdRp79IP7Ri4RoJ/KPEtOdXmOvB3mjtxfVdGV8FruFoWfsn
+         W1CYIyjETDpRA71KjqBkFvBhZg+qbRaH2ITsaHb+j5W29bpZOX499K4cTlCoMYYQcVAd
+         e+6IpZk8Y0DzjJziHqjrM/Odw1m+Jf9vofhGPglVanUTZwbrEq5+fNNKGOQuPjw42WMH
+         zy7qVFdIBtL1SCN0IfoHmuex+1jJkA6yfkq/jTHaP86SZnQIRGdTYjmXD8GhXrhjedd1
+         xKQA==
+X-Gm-Message-State: AOAM53277iXUbDoh7VFZjxWSPWNhrGp7p8r0cR1TXa7RaMTuQ6bt0YkP
+        jAYFyAgqdUYszdTr+jdR3TQp8edssSrEEbF5s00=
+X-Google-Smtp-Source: ABdhPJwEoz5zwAAz8pt9hCeMJDV9sIBKK1MQ5RDf7d6jvzgiKzk3xcC3XFBUC8hxC5HXm28oB8fAmqySvt/+MD/uLP4=
+X-Received: by 2002:a92:5b46:: with SMTP id p67mr7738499ilb.150.1604244436992;
+ Sun, 01 Nov 2020 07:27:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201031184854.745828-23-jic23@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20200921102731.747736-1-peron.clem@gmail.com> <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan>
+ <CAJiuCcfz9A_Vmzq=s3LK2kGB_1tZPkC9Ux+Brdocp9py0fovAg@mail.gmail.com>
+ <59286578.E0qSRroNqr@kista> <20200928084308.eipnvlfqe3c5lfmg@gilmour.lan>
+ <CAJiuCceHXr_5PvG-FW+hRNV7Q33hGrp8kLbO0EgfqqBxF7wbqQ@mail.gmail.com> <20200930101915.sultshdvxgu5u2rs@gilmour.lan>
+In-Reply-To: <20200930101915.sultshdvxgu5u2rs@gilmour.lan>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Sun, 1 Nov 2020 16:27:05 +0100
+Message-ID: <CAJiuCcdMbMQGoBG-SmgQ5=25v3AB+kh0H8ZdX7rFMHAXQ2A=QA@mail.gmail.com>
+Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
+To:     Maxime Ripard <maxime@cerno.tech>, Mark Brown <broonie@kernel.org>
+Cc:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 06:48:30PM +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> I'm not sure anyone would use this part primarily as an ALS,
-> given the time of flight laser also present, but I'll stick with the
-> original decision on where to put the binding.
-> 
-> Added interrupts property as the device has a GPIO interrupt even
-> if the driver is not currently using it.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Hi Maxime,
 
-Acked-by: Manivannan Sadhasivam <manivannanece23@gmail.com>
+
+On Wed, 30 Sep 2020 at 12:19, Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> On Mon, Sep 28, 2020 at 04:27:42PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > On Mon, 28 Sep 2020 at 10:43, Maxime Ripard <maxime@cerno.tech> wrote:
+> > >
+> > > On Mon, Sep 21, 2020 at 08:37:09PM +0200, Jernej =C5=A0krabec wrote:
+> > > > Dne ponedeljek, 21. september 2020 ob 19:23:49 CEST je Cl=C3=A9ment=
+ P=C3=A9ron
+> > > > napisal(a):
+> > > > > Hi Maxime,
+> > > > >
+> > > > > On Mon, 21 Sep 2020 at 15:59, Maxime Ripard <maxime@cerno.tech> w=
+rote:
+> > > > > >
+> > > > > > On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=C3=A9ment P=C3=A9r=
+on wrote:
+> > > > > > > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > > > > >
+> > > > > > > Add a simple-soundcard to link audio between HDMI and I2S.
+> > > > > > >
+> > > > > > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > > > > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > > > > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > > > > > ---
+> > > > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++=
+++++++++++
+> > > > > > >  1 file changed, 33 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/a=
+rch/arm64/
+> > > > boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > > index 28c77d6872f6..a8853ee7885a 100644
+> > > > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > > @@ -67,6 +67,25 @@ de: display-engine {
+> > > > > > >               status =3D "disabled";
+> > > > > > >       };
+> > > > > > >
+> > > > > > > +     hdmi_sound: hdmi-sound {
+> > > > > > > +             compatible =3D "simple-audio-card";
+> > > > > > > +             simple-audio-card,format =3D "i2s";
+> > > > > > > +             simple-audio-card,name =3D "sun50i-h6-hdmi";
+> > > > > > > +             simple-audio-card,mclk-fs =3D <128>;
+> > > > > > > +             simple-audio-card,frame-inversion;
+> > > > > > > +             status =3D "disabled";
+> > > > > > > +
+> > > > > > > +             simple-audio-card,codec {
+> > > > > > > +                     sound-dai =3D <&hdmi>;
+> > > > > > > +             };
+> > > > > > > +
+> > > > > > > +             simple-audio-card,cpu {
+> > > > > > > +                     sound-dai =3D <&i2s1>;
+> > > > > > > +                     dai-tdm-slot-num =3D <2>;
+> > > > > > > +                     dai-tdm-slot-width =3D <32>;
+> > > > > >
+> > > > > > It looks weird to have both some TDM setup here, and yet the fo=
+rmat in
+> > > > > > i2s?
+
+
+I was looking at sound documentation regarding how I can properly
+write the multi-lane I2S support.
+And I think we made a wrong interpretation here.
+
+TDM slot-num and slot-width are not referencing the format called PCM
+or DSP_A / DSP_B.
+But really the physical time division representation of a format.
+
+For example Amlogic do the following representation for Multi-lane I2S:
+
+dai-link-7 {
+    sound-dai =3D <&tdmif_b>;
+    dai-format =3D "i2s";
+    dai-tdm-slot-tx-mask-0 =3D <1 1>;
+    dai-tdm-slot-tx-mask-1 =3D <1 1>;
+    dai-tdm-slot-tx-mask-2 =3D <1 1>;
+    dai-tdm-slot-tx-mask-3 =3D <1 1>;
+    mclk-fs =3D <256>;
+
+    codec {
+        sound-dai =3D <&tohdmitx TOHDMITX_I2S_IN_B>;
+    };
+};
+
+So i think for 2 channels HDMI using the simple sound card with TDM
+property is not a hack but the correct way to represent it.
+
+Do you agree ?
+
+If so, can I resend the simple sound card for HDMI audio ?
 
 Thanks,
-Mani
+Clement
 
-> Cc: Manivannan Sadhasivam <manivannanece23@gmail.com>
-> Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-> ---
->  .../bindings/iio/light/st,vl6180.yaml         | 45 +++++++++++++++++++
->  .../devicetree/bindings/iio/light/vl6180.txt  | 15 -------
->  2 files changed, 45 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/st,vl6180.yaml b/Documentation/devicetree/bindings/iio/light/st,vl6180.yaml
-> new file mode 100644
-> index 000000000000..27c36ab7990d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/st,vl6180.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/st,vl6180.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicro VL6180 ALS, range and proximity sensor
-> +
-> +maintainers:
-> +  - Manivannan Sadhasivam <manivannanece23@gmail.com>
-> +  - Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-> +
-> +description: |
-> +  Proximity sensing module incorporating time of flight sensor
-> +  Datasheet at https://www.st.com/resource/en/datasheet/vl6180x.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: st,vl6180
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        proximity@29 {
-> +            compatible = "st,vl6180";
-> +            reg = <0x29>;
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/iio/light/vl6180.txt b/Documentation/devicetree/bindings/iio/light/vl6180.txt
-> deleted file mode 100644
-> index fb9137d85df9..000000000000
-> --- a/Documentation/devicetree/bindings/iio/light/vl6180.txt
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -STMicro VL6180 -  ALS, range and proximity sensor
-> -
-> -Link to datasheet: https://www.st.com/resource/en/datasheet/vl6180x.pdf
-> -
-> -Required properties:
-> -
-> -	-compatible: should be "st,vl6180"
-> -	-reg: the I2C address of the sensor
-> -
-> -Example:
-> -
-> -vl6180@29 {
-> -	compatible = "st,vl6180";
-> -	reg = <0x29>;
-> -};
-> -- 
-> 2.28.0
-> 
+> > > > >
+> > > > > Yes, I agree I will check if it's really needed.
+> > > >
+> > > > I think this was explained before.
+> > >
+> > > Possibly, but this should be in a comment or at least the commit log
+> > >
+> > > > Anyway, this is needed to force width to 32, no matter actual sampl=
+e
+> > > > width. That's a requirement of HDMI codec. I believe Marcus Cooper
+> > > > have another codec which also needs fixed width.
+> > > >
+> > > > There is no similar property for I2S, so TDM one is used here.
+> > >
+> > > Except it's really dedicated to the TDM mode and doesn't really make
+> > > much sense here.
+> > >
+> > > If we have special requirements like this on the codec setup, that
+> > > sounds like a good justification for creating a custom codec instead =
+of
+> > > shoehorning it into simple-card
+> >
+> > When all the remarks are fixed would it be possible to merge the rest
+> > of the series without the dts changes ?
+> >
+> > I will propose another series to introduce a dedicated codec for that.
+>
+> Yeah, sure
+>
+> Maxime
