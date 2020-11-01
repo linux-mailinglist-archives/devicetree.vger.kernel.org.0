@@ -2,89 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8769C2A1E5C
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 14:43:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F7C42A1E6F
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 15:07:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726741AbgKANnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 08:43:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46516 "EHLO
+        id S1726637AbgKAOHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 09:07:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726370AbgKANnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 08:43:31 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92F4FC0617A6;
-        Sun,  1 Nov 2020 05:43:31 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id E6E7622EDE;
-        Sun,  1 Nov 2020 14:43:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1604238207;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bWUASnyqf1M1i4/7F/3wqjODT1qRJeDlkrPp7DBta9Q=;
-        b=Lh9iJSkI+ExWT+nX+gQwLOFy2yT5LE2yXZzdgEebEtystiqoCR3mg+EEU6UuehVP7vBWsp
-        ihFWw8ED2RUUARfpumlgBnQkigkQKlgyiu43bHr9rboVuFEMt4iMDGJSJM5stijgZoPnRc
-        mmou1Vhq6Qjx6GyOVIRxUfF9OjQEVi8=
+        with ESMTP id S1726458AbgKAOHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 09:07:11 -0500
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3915C0617A6;
+        Sun,  1 Nov 2020 06:07:09 -0800 (PST)
+Received: by mail-ed1-x544.google.com with SMTP id a15so2662432edy.1;
+        Sun, 01 Nov 2020 06:07:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Xf3D8wv1rqteE4VdQEnZxsLYc9H1mqo+m29RsmKEQs4=;
+        b=vSN179H1wTvGdNjfwlyQSo6njiUyGzjBy/UvzXxP+3/eBT8hEKmFEpQmTcVFcQC0B0
+         BMDRvMsZ/X7W5a1KgIVdVbnyVZSQz1fFZHIOf7OIe7WemX0J2dDiE9Uut7XvxWnqwu+R
+         SGBTVUBXOELJzQvbI5rQ8vCLg/gtCmOX5g+1lsm4qOFMo1wuYnRhskb7rpVS9RPFIdve
+         j90oS1UN6QXv0qZKHVfYPJx1IeQRbOvlgW2elZlvg8R0mtLoy7LDIyR2102AI7qe8vEX
+         ekFZyjQd56wdf+rEKKrB0vTleViUqsOF+om7QxDPr+c4PP9iTswsiyeNOkOjQA4vj9RJ
+         8+VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Xf3D8wv1rqteE4VdQEnZxsLYc9H1mqo+m29RsmKEQs4=;
+        b=YvBj/BDY6B7yC2A/fJafrKSquKrypmQkys7wd/5sok2lDDBJxkoXOyxK+UPH+tW7gI
+         JS36SQtolneQdqgfngvjkqxoDxtBFsPQTlVPTeQafwdWsxcGC9LX0kYNEHUG8yAORIta
+         sMp1AzVLLtopbKHHGawAZoBQ71VSJJSJLAFzSB2ZVcv1OS/3Sy89w9UvXOcNt5xygl3+
+         Zfx0IcBKeq6iHWc4sBaUBmYBynKF+4+yWOOL3VwrMpj/2tUe2jPO3t5HwlAuykgSxhH9
+         FNA6+VaR49uFT4RIn5paW3EeUnhcnC7Di4kXgVtbKuxc67Jb7QjoA6EDrEr7kiLEQqwJ
+         ROCg==
+X-Gm-Message-State: AOAM5325QZ0QranSpN1xhXVa3LRCpUQpzldTnpfa/wA6P5JDnHMl4+VA
+        FaVoJSqaV+raCicV03QZZAm3kWzylorBuJW4JaU=
+X-Google-Smtp-Source: ABdhPJxfPte/UcWPSAWV9nUFL+MCnlriAEwjQ2AlUwDnRd4no/D6kw6JwybiH7ZH+HZ10I1FBxl2QF149/8NU4NtYRk=
+X-Received: by 2002:aa7:c597:: with SMTP id g23mr3184502edq.184.1604239628710;
+ Sun, 01 Nov 2020 06:07:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Sun, 01 Nov 2020 14:43:26 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Ioana Ciornei <ciorneiioana@gmail.com>
-Subject: Re: [PATCH net] arm64: dts: fsl-ls1028a-kontron-sl28: specify in-band
- mode for ENETC
-In-Reply-To: <20201101131905.8316-1-michael@walle.cc>
-References: <20201101131905.8316-1-michael@walle.cc>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <4ce87119133d080332eb2fb3432318d0@walle.cc>
-X-Sender: michael@walle.cc
+References: <CGME20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0@eucas1p2.samsung.com>
+ <20200930143151.23961-1-l.stelmach@samsung.com> <20201001135254.28178-1-l.stelmach@samsung.com>
+In-Reply-To: <20201001135254.28178-1-l.stelmach@samsung.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Sun, 1 Nov 2020 19:37:04 +0530
+Message-ID: <CANAwSgSvH+q21Tj9NijPa87ju+1LOJ07-is1Sucx1y5ggT6zCA@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: exynos: Add a placeholder for a MAC address
+To:     =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+Ioana; the reference commit has a typo in her email address]
+Hi Lukasz,
 
-Am 2020-11-01 14:19, schrieb Michael Walle:
-> Since commit 71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX") 
-> the
-> network port of the Kontron sl28 board is broken. After the migration 
-> to
-> phylink the device tree has to specify the in-band-mode property. Add
-> it.
-> 
-> Fixes: 71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX")
-> Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Signed-off-by: Michael Walle <michael@walle.cc>
+On Thu, 1 Oct 2020 at 19:25, =C5=81ukasz Stelmach <l.stelmach@samsung.com> =
+wrote:
+>
+> Add a placeholder for a MAC address. A bootloader may fill it
+> to set the MAC address and override EEPROM settings.
+>
+> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
 > ---
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git
-> a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-> b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-> index f46eb47cfa4d..8161dd237971 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-> @@ -75,6 +75,7 @@
->  &enetc_port0 {
->  	phy-handle = <&phy0>;
->  	phy-connection-type = "sgmii";
-> +	managed = "in-band-status";
->  	status = "okay";
-> 
->  	mdio {
+> Changes in v2:
+>  - use local-mac-address and leave mac-address to be added by a bootloade=
+r
+>
+>  arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/d=
+ts/exynos5422-odroidxu3.dts
+> index db0bc17a667b..d0f6ac5fa79d 100644
+> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+> @@ -70,3 +70,21 @@ &pwm {
+>  &usbdrd_dwc3_1 {
+>         dr_mode =3D "peripheral";
+>  };
+> +
+> +&usbhost2 {
+> +       #address-cells =3D <1>;
+> +       #size-cells =3D <0>;
+> +
+> +       hub@1 {
+> +               compatible =3D "usb8087,0024";
+> +               reg =3D <1>;
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               ethernet: usbether@1 {
+> +                       compatible =3D "usb0c45,6310";
+> +                       reg =3D <1>;
+> +                       local-mac-address =3D [00 00 00 00 00 00]; /* Fil=
+led in by a bootloader */
+> +               };
+> +       };
+> +};
+> --
+> 2.26.2
+>
 
--- 
--michael
+Thanks for this patch, can you share some example on how to set the
+mac address via u-boot bootargs
+also can you update this patch for exynos5422-odroidxu3-lite.dts and
+exynos4412-odroidu3.dts.
+
+Best Regards
+-Anand
