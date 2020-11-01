@@ -2,171 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C17912A1AD7
-	for <lists+devicetree@lfdr.de>; Sat, 31 Oct 2020 22:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF44A2A1B84
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 01:41:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726617AbgJaVmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Oct 2020 17:42:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41128 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726583AbgJaVmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 17:42:09 -0400
-Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39E7C0617A7
-        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 14:42:07 -0700 (PDT)
-Received: by mail-il1-x141.google.com with SMTP id c11so9617120iln.9
-        for <devicetree@vger.kernel.org>; Sat, 31 Oct 2020 14:42:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6XcWCTkucGDHKx9lOBdII+rsZh1Z/z1JMeKqo0EGjDA=;
-        b=psNqDzJwkmPu4mljj6GsuZbkZZvF55KwWJDbcz7LD7kJj1fxj7Yc3dTNZB3lEwycBc
-         5w+amFtal2us5YyNsKHEoVMwVxs7DXrmnpDDBA8I0Wk4oIsAadBuxZZHwuQ0R1pe2bi8
-         uy2t5Oh8jnEjEqpaIKnuEwrGxUo5fHvBQ9bvo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6XcWCTkucGDHKx9lOBdII+rsZh1Z/z1JMeKqo0EGjDA=;
-        b=PN/vsgNpW3bZyYOEA0tLVi/55rhCn8xo8G6gxcZgpsxdyBXZ2qxA9TJJ1KIDpiZD+o
-         mIxaVyMvN7r4tNN/LHjloG8yXOVMjvJIZuiwYr0RsAmfFAC/L8MNfXQe7ebA84g5dqU9
-         4bzeaTzv7UcAxwNQxXDa4+tgGEfbvJnTM4PXBLHv/PnBHIeQFac05qbLzdiP9Aun+yyG
-         dGqmZ2/Z8WtRFkG53lV9oQCjYRhEGM3bGrtDTE9xSIBsoVATJN43KfKhDKimOUa0q7b2
-         8VCpPN1m7te/GTTj6Mp9OaYM6iUOpYqJUwb2yF/nTpn/vn3qa1dnoLozBMDvDFYpgE8r
-         a+bA==
-X-Gm-Message-State: AOAM530pRjcRg+EGio9cq+CQpENqNyduGGvE9UoHzRTTSRyhNrA/LS8T
-        5XicjwKrzqoMzt0eYRroPjou854gBWnGa+L3cBHSTw==
-X-Google-Smtp-Source: ABdhPJwB2XXIyntOw6zXIfcFKmZABeuP9G8/vvncClWs9KNoGmXhPRCse/nx6MugL9mhYBvPZdRYW060/VThrYmbYIo=
-X-Received: by 2002:a05:6e02:c:: with SMTP id h12mr6403716ilr.177.1604180527273;
- Sat, 31 Oct 2020 14:42:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201031184854.745828-1-jic23@kernel.org> <20201031184854.745828-10-jic23@kernel.org>
-In-Reply-To: <20201031184854.745828-10-jic23@kernel.org>
-From:   Matt Ranostay <matt.ranostay@konsulko.com>
-Date:   Sat, 31 Oct 2020 14:41:56 -0700
-Message-ID: <CAJCx=gnbzfJ9z7gtOjJ0qQTd8woVdCDvcpbDPH=bQ-jyTacjjw@mail.gmail.com>
-Subject: Re: [PATCH 09/46] dt-bindings:iio:health:maxim,max30100: txt to yaml conversion
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726261AbgKAAlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Oct 2020 20:41:21 -0400
+Received: from mail2.sp2max.com.br ([138.185.4.9]:52300 "EHLO
+        mail2.sp2max.com.br" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726166AbgKAAlV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Oct 2020 20:41:21 -0400
+Received: from pgsop.sopnet.com.ar (unknown [179.40.38.12])
+        (Authenticated sender: pablo@fliagreco.com.ar)
+        by mail2.sp2max.com.br (Postfix) with ESMTPSA id 046E722A0003;
+        Sat, 31 Oct 2020 21:34:35 -0300 (-03)
+From:   Pablo Greco <pgreco@centosproject.org>
+To:     linux-sunxi@googlegroups.com
+Cc:     Pablo Greco <pgreco@centosproject.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: sun7i: bananapi: Enable RGMII RX/TX delay on Ethernet PHY
+Date:   Sat, 31 Oct 2020 21:34:15 -0300
+Message-Id: <1604190857-3078-1-git-send-email-pgreco@centosproject.org>
+X-Mailer: git-send-email 1.8.3.1
+X-SP2Max-MailScanner-Information: Please contact the ISP for more information
+X-SP2Max-MailScanner-ID: 046E722A0003.AD24E
+X-SP2Max-MailScanner: Sem Virus encontrado
+X-SP2Max-MailScanner-SpamCheck: nao spam, SpamAssassin (not cached,
+        escore=-2.9, requerido 6, autolearn=not spam, ALL_TRUSTED -1.00,
+        BAYES_00 -1.90)
+X-SP2Max-MailScanner-From: pgreco@centosproject.org
+X-Spam-Status: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 11:51 AM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->
-> Straight forward conversion. As with other bindings I've dropped
-> any standrd description, but kept the unusual bits, in thisscase
-> the maxim,led-current-microamp and it's description.
->
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> ---
->  .../bindings/iio/health/max30100.txt          | 28 ----------
->  .../bindings/iio/health/maxim,max30100.yaml   | 52 +++++++++++++++++++
->  2 files changed, 52 insertions(+), 28 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/iio/health/max30100.txt b/Documentation/devicetree/bindings/iio/health/max30100.txt
-> deleted file mode 100644
-> index 0054908a6e74..000000000000
-> --- a/Documentation/devicetree/bindings/iio/health/max30100.txt
-> +++ /dev/null
-> @@ -1,28 +0,0 @@
-> -Maxim MAX30100 heart rate and pulse oximeter sensor
-> -
-> -* https://datasheets.maximintegrated.com/en/ds/MAX30100.pdf
-> -
-> -Required properties:
-> -  - compatible: must be "maxim,max30100"
-> -  - reg: the I2C address of the sensor
-> -  - interrupts: the sole interrupt generated by the device
-> -
-> -  Refer to interrupt-controller/interrupts.txt for generic
-> -  interrupt client node bindings.
-> -
-> -Optional properties:
-> -  - maxim,led-current-microamp: configuration for LED current in microamperes
-> -    while the engine is running. First indexed value is the configuration for
-> -    the RED LED, and second value is for the IR LED.
-> -
-> -    Refer to the datasheet for the allowed current values.
-> -
-> -Example:
-> -
-> -max30100@57 {
-> -       compatible = "maxim,max30100";
-> -       reg = <0x57>;
-> -       maxim,led-current-microamp = <24000 50000>;
-> -       interrupt-parent = <&gpio1>;
-> -       interrupts = <16 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/iio/health/maxim,max30100.yaml b/Documentation/devicetree/bindings/iio/health/maxim,max30100.yaml
-> new file mode 100644
-> index 000000000000..5684f2f61bcc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/health/maxim,max30100.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/health/maxim,max30100.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim MAX30100 heart rate and pulse oximeter sensor
-> +
-> +maintainers:
-> +  - Matt Ranostay <mranostay@gmail.com>
+The Ethernet PHY on the Bananapi M1 has the RX and TX delays enabled on
+the PHY, using pull-ups on the RXDLY and TXDLY pins.
 
-Please change to my Konsulko email, but otherwise LGTM
+Fix the phy-mode description to correct reflect this so that the
+implementation doesn't reconfigure the delays incorrectly. This
+happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
+rx/tx delay config").
 
-Acked-by: Matt Ranostay <matt.ranostay@konsulko.com>
+Fixes: 8a5b272fbf44 ("ARM: dts: sun7i: Add Banana Pi board")
+Signed-off-by: Pablo Greco <pgreco@centosproject.org>
+---
+ arch/arm/boot/dts/sun7i-a20-bananapi.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +
-> +properties:
-> +  compatible:
-> +    const: maxim,max30100
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: Connected to ADC_RDY pin.
-> +
-> +  maxim,led-current-microamp:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 2
-> +    maxItems: 2
-> +    description: |
-> +      LED current whilst the engine is running. First indexed value is
-> +      the configuration for the RED LED, and second value is for the IR LED.
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        heart-rate@57 {
-> +            compatible = "maxim,max30100";
-> +            reg = <0x57>;
-> +            maxim,led-current-microamp = <24000 50000>;
-> +            interrupt-parent = <&gpio1>;
-> +            interrupts = <16 2>;
-> +        };
-> +    };
-> +...
-> --
-> 2.28.0
->
+diff --git a/arch/arm/boot/dts/sun7i-a20-bananapi.dts b/arch/arm/boot/dts/sun7i-a20-bananapi.dts
+index bb3987e101c2..0b3d9ae75650 100644
+--- a/arch/arm/boot/dts/sun7i-a20-bananapi.dts
++++ b/arch/arm/boot/dts/sun7i-a20-bananapi.dts
+@@ -132,7 +132,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-supply = <&reg_gmac_3v3>;
+ 	status = "okay";
+ };
+-- 
+2.18.4
+
