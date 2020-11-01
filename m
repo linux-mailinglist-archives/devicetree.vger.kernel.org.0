@@ -2,123 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F7C42A1E6F
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 15:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E26CC2A1E7D
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 15:12:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726637AbgKAOHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 09:07:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
+        id S1726496AbgKAOMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 09:12:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726458AbgKAOHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 09:07:11 -0500
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3915C0617A6;
-        Sun,  1 Nov 2020 06:07:09 -0800 (PST)
-Received: by mail-ed1-x544.google.com with SMTP id a15so2662432edy.1;
-        Sun, 01 Nov 2020 06:07:09 -0800 (PST)
+        with ESMTP id S1726458AbgKAOMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 09:12:45 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B348C0617A6;
+        Sun,  1 Nov 2020 06:12:45 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id v19so7172416lji.5;
+        Sun, 01 Nov 2020 06:12:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Xf3D8wv1rqteE4VdQEnZxsLYc9H1mqo+m29RsmKEQs4=;
-        b=vSN179H1wTvGdNjfwlyQSo6njiUyGzjBy/UvzXxP+3/eBT8hEKmFEpQmTcVFcQC0B0
-         BMDRvMsZ/X7W5a1KgIVdVbnyVZSQz1fFZHIOf7OIe7WemX0J2dDiE9Uut7XvxWnqwu+R
-         SGBTVUBXOELJzQvbI5rQ8vCLg/gtCmOX5g+1lsm4qOFMo1wuYnRhskb7rpVS9RPFIdve
-         j90oS1UN6QXv0qZKHVfYPJx1IeQRbOvlgW2elZlvg8R0mtLoy7LDIyR2102AI7qe8vEX
-         ekFZyjQd56wdf+rEKKrB0vTleViUqsOF+om7QxDPr+c4PP9iTswsiyeNOkOjQA4vj9RJ
-         8+VA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=REz7RPg2i02sVn5unh+ejD4RRDVKEN7sf6CTpP8ALEc=;
+        b=XIySwbqwwWK+H07YdaRn27fLru1bo4Dez13BPQ7ix6EB/sGw/tnwV+eIYqXBMG1iJQ
+         eNxQuFSPTOeShlcgCkryhP7JQEUKAOQ3ACRMWDC+JK1/ULlD50xlY3vVtToswKJRFnTB
+         LHN/C8X+aO6ALXRC3oVmNfNewiaIj5Qq7DzFimDqgYV/yYp+EaLc5HPz6T/K/KoUdu7W
+         rmO6ibHNbvVBiR52XOepxbf8DsFmORuPprPmJtOzbuV37SaJmwlZKeQ1bTjOB1EsAdaj
+         vJx/5Feo9XftQF6H6Od7OKSsnFPww6gcKhFcleg0OsBo2beMyoNoYOYTEL6D4n5Uq/LN
+         RYDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Xf3D8wv1rqteE4VdQEnZxsLYc9H1mqo+m29RsmKEQs4=;
-        b=YvBj/BDY6B7yC2A/fJafrKSquKrypmQkys7wd/5sok2lDDBJxkoXOyxK+UPH+tW7gI
-         JS36SQtolneQdqgfngvjkqxoDxtBFsPQTlVPTeQafwdWsxcGC9LX0kYNEHUG8yAORIta
-         sMp1AzVLLtopbKHHGawAZoBQ71VSJJSJLAFzSB2ZVcv1OS/3Sy89w9UvXOcNt5xygl3+
-         Zfx0IcBKeq6iHWc4sBaUBmYBynKF+4+yWOOL3VwrMpj/2tUe2jPO3t5HwlAuykgSxhH9
-         FNA6+VaR49uFT4RIn5paW3EeUnhcnC7Di4kXgVtbKuxc67Jb7QjoA6EDrEr7kiLEQqwJ
-         ROCg==
-X-Gm-Message-State: AOAM5325QZ0QranSpN1xhXVa3LRCpUQpzldTnpfa/wA6P5JDnHMl4+VA
-        FaVoJSqaV+raCicV03QZZAm3kWzylorBuJW4JaU=
-X-Google-Smtp-Source: ABdhPJxfPte/UcWPSAWV9nUFL+MCnlriAEwjQ2AlUwDnRd4no/D6kw6JwybiH7ZH+HZ10I1FBxl2QF149/8NU4NtYRk=
-X-Received: by 2002:aa7:c597:: with SMTP id g23mr3184502edq.184.1604239628710;
- Sun, 01 Nov 2020 06:07:08 -0800 (PST)
-MIME-Version: 1.0
-References: <CGME20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0@eucas1p2.samsung.com>
- <20200930143151.23961-1-l.stelmach@samsung.com> <20201001135254.28178-1-l.stelmach@samsung.com>
-In-Reply-To: <20201001135254.28178-1-l.stelmach@samsung.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Sun, 1 Nov 2020 19:37:04 +0530
-Message-ID: <CANAwSgSvH+q21Tj9NijPa87ju+1LOJ07-is1Sucx1y5ggT6zCA@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: exynos: Add a placeholder for a MAC address
-To:     =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=REz7RPg2i02sVn5unh+ejD4RRDVKEN7sf6CTpP8ALEc=;
+        b=i9Iqe7dCxWjDBxC0wmPXJIwIiQ1LmDnvO56pSLlN5hWkTaAxrNBM4oiD3TG4/Pp/SO
+         Po9pup2K2IV4a5eFUBKxQqDVv7zgHR39ZRREoFICRlZCCdK45ucocWMFWhbPYFQLAxcF
+         /17StgZr6c1vHWsCX1bpFxPvS6RBscRtzXT7uX0BnRtRyK2hZlTU8/hIha2inq/Y6/JU
+         thn9LCa1ZHf8dwg305ejyQ+z3/ggdX2ku6c+PMPq+m/rzPyv+afuaVZYR9mdDEOblQsS
+         s2ThgseC9RSwJ89nwOY1Hr/fOpbYL3TaTEQYfVHk/pQrQOxHFW4OsykXttqlsWKjxwfj
+         vsWA==
+X-Gm-Message-State: AOAM530U9FbfVNEp0bMVJ0yQV+p18RQ0FpSe9rFhX40UV013romLvioT
+        6KQixKcyi9f7C9Gtzwpu/ZJTyBeVjEc=
+X-Google-Smtp-Source: ABdhPJxhAHCxnZhPTqKRzzn3oyVPFxXaMw4VchPE5jombOYQPEfMRZfjVrf1wOOg7FNtEz7hvm2v0A==
+X-Received: by 2002:a2e:8145:: with SMTP id t5mr5051440ljg.311.1604239963242;
+        Sun, 01 Nov 2020 06:12:43 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-177.dynamic.spd-mgts.ru. [109.252.193.177])
+        by smtp.googlemail.com with ESMTPSA id a11sm1425557lfi.305.2020.11.01.06.12.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Nov 2020 06:12:42 -0800 (PST)
+Subject: Re: [PATCH v6 49/52] PM / devfreq: tegra20: Convert to EMC_STAT
+ driver, support interconnect and device-tree
+To:     cwchoi00@gmail.com
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-tegra@vger.kernel.org,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20201025221735.3062-1-digetx@gmail.com>
+ <20201025221735.3062-50-digetx@gmail.com>
+ <CAGTfZH0KxyZYLZ_AgM7Lr+4s35kaWJp1AenpZ-o_FRLCCHC+6A@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <0ffa84f6-625e-807c-e9af-7a67f0fe48e7@gmail.com>
+Date:   Sun, 1 Nov 2020 17:12:41 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <CAGTfZH0KxyZYLZ_AgM7Lr+4s35kaWJp1AenpZ-o_FRLCCHC+6A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukasz,
+01.11.2020 16:31, Chanwoo Choi пишет:
+> Hi Dmitry,
+> 
+> This patch contains the three features as following:
+> 1. Use interconnect interface for controlling the clock instead of
+> controlling it direclty
+> 2. Use EMC_STAT instead of IMC_STAT
+> 3. Change polling_interval and upthreshold for more fast responsiveness
+> 
+> I think you need to make the separate patches for each role.
+> But, if it is difficult or not proper to split out 1,2 roles, you can
+> make two patches for 1,2 and 3 roles.
 
-On Thu, 1 Oct 2020 at 19:25, =C5=81ukasz Stelmach <l.stelmach@samsung.com> =
-wrote:
->
-> Add a placeholder for a MAC address. A bootloader may fill it
-> to set the MAC address and override EEPROM settings.
->
-> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
-> ---
-> Changes in v2:
->  - use local-mac-address and leave mac-address to be added by a bootloade=
-r
->
->  arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/d=
-ts/exynos5422-odroidxu3.dts
-> index db0bc17a667b..d0f6ac5fa79d 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> @@ -70,3 +70,21 @@ &pwm {
->  &usbdrd_dwc3_1 {
->         dr_mode =3D "peripheral";
->  };
-> +
-> +&usbhost2 {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +
-> +       hub@1 {
-> +               compatible =3D "usb8087,0024";
-> +               reg =3D <1>;
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +
-> +               ethernet: usbether@1 {
-> +                       compatible =3D "usb0c45,6310";
-> +                       reg =3D <1>;
-> +                       local-mac-address =3D [00 00 00 00 00 00]; /* Fil=
-led in by a bootloader */
-> +               };
-> +       };
-> +};
-> --
-> 2.26.2
->
+Hello Chanwoo,
 
-Thanks for this patch, can you share some example on how to set the
-mac address via u-boot bootargs
-also can you update this patch for exynos5422-odroidxu3-lite.dts and
-exynos4412-odroidu3.dts.
+We will probably move the Tegra20 EMC_STAT devfreq driver into the
+memory driver and remove the older IMC_STAT driver in v7, like it was
+suggested by Thierry Reding. This will be a much less invasive code change.
 
-Best Regards
--Anand
+> Also, if you want to get more responsiveness, you could use delayed timer
+> instead of deferrable timer by editing the devfreq_dev_profile structure.
+
+Thanks, I'll try the deferrable timer.
