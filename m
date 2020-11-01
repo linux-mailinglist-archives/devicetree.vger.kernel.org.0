@@ -2,145 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A61E2A1EB2
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 15:45:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 887242A1ED2
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 15:57:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726563AbgKAOpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 09:45:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726458AbgKAOpT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 09:45:19 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A091FC0617A6;
-        Sun,  1 Nov 2020 06:45:18 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id 141so14049359lfn.5;
-        Sun, 01 Nov 2020 06:45:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
-         :subject:to:cc;
-        bh=nfSTOQa1GHPu7yZflmElx1yrigDoZA+beTbfSTxADDQ=;
-        b=LNCbyfl80w5m5vmdw3f6tkQFZPsqsLTQxD7B0YQ9lQsp91AmlP1vbAFBWNx1lZpLAd
-         P38k7TmgrN7uaqeRam6cxqBfIwjYYLqYjvGGuwvZOqwRdmzY9yEqvtyWbHNwRtZNQ9vg
-         MuVynxEAfEH9OIJ0IwgQTMEP9jtxTsxGwPF6tHrg4ERcckfqZGAgvFJ6TZP9o2+cIGDi
-         fdUdmmpX5MwYo8Qy+YuyNywQgXTUSAFuARSWrtAYrm1zpbva063byVj2nxUXXovDzt8u
-         xL7T3BWrj5oXGEBJdmPgkwsMNh1Zv8hRvSh9OdWVNAO9IELnHdrPWxk2Ax3Rl6A3VLf7
-         JBkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=nfSTOQa1GHPu7yZflmElx1yrigDoZA+beTbfSTxADDQ=;
-        b=BnbSw1mVjGf3BIlk09CaRF8NJkipOUjgGbvqONvkRpwJ5lXBMLrvSZ2COpFSx68hbV
-         BaLAgRkA8x1bXiwv8ZxtK3ZCsk6ceanDB9yMEWmnQ8P8GH+kK3GOyUtgNsCDRjkPbVqh
-         HzmTl8RBQ1TtOJjFm6tpEaJTGfmoFWsKnwVeY9ag/ciB6p3VxIQRt1VeLzk9Zvj1qooA
-         QHJpLCOEFMlL5o3xfsk7j0W6NdwKS3xc9gJasYUpITRSkWoB0ecuUH/Kvy9Z32miWZH7
-         vSVpyBH/geZ8sBLEOt+S1LArLmEcXSptkECh7SFNmD4z5edsumriYKwz2fhyDpZUb0no
-         6Duw==
-X-Gm-Message-State: AOAM532WE522ywBzDyRwcu0ExRq3235J7gWCaTYdcq7nHPRpCiPywDy8
-        4GJ3Hb5uoZlHNWlWDesf2+8Y22khUF379oFIxXg=
-X-Google-Smtp-Source: ABdhPJyBkgiSrqXhZk/gcQpWF+e/o3AVHRSwjg0BQJhL/gY5tJ65y2vrH74G0ZFq651tDjCK4YjMxaHGxd8OKMjGS5w=
-X-Received: by 2002:a05:6512:322d:: with SMTP id f13mr3971359lfe.571.1604241916924;
- Sun, 01 Nov 2020 06:45:16 -0800 (PST)
+        id S1726499AbgKAO51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 09:57:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41080 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726458AbgKAO51 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Nov 2020 09:57:27 -0500
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id ADDBB206DC;
+        Sun,  1 Nov 2020 14:57:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604242646;
+        bh=h/d7cMHwelo6QGJjC2f9S+/eMhKZR4ElV0jqb3x2hU0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VJx2+f0os0slLh0O5y1jNqsq7w/zxrEsRMOXhDZjG68Z/3wsKTOkBG8WV4cxHlxvj
+         LySyuis5GGHhcQzSKRlKNSQQMlXXpnd6OYzoJrHb7AIVErt89PDodKhaqX3uwOdD72
+         Jh1rJwxdwXyNHnssOnl5tQsZ2PldNGuxjoja5DuE=
+Date:   Sun, 1 Nov 2020 14:57:17 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Matt Ranostay <matt.ranostay@konsulko.com>
+Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Matt Ranostay <mranostay@gmail.com>
+Subject: Re: [PATCH 14/46] dt-bindings:iio:light:avago,apds9960: txt to yaml
+ conversion
+Message-ID: <20201101145717.4da9b448@archlinux>
+In-Reply-To: <CAJCx=gmf_PTTGMwY174CZj56JnFmYhBW0CmfXSMp_paR06fhXg@mail.gmail.com>
+References: <20201031184854.745828-1-jic23@kernel.org>
+        <20201031184854.745828-15-jic23@kernel.org>
+        <CAJCx=gmwc=a8F5ytYajKbA_QjkVHwJxn4xpeNb==v7AuDGZb-A@mail.gmail.com>
+        <CAJCx=gmf_PTTGMwY174CZj56JnFmYhBW0CmfXSMp_paR06fhXg@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20201025221735.3062-1-digetx@gmail.com> <20201025221735.3062-52-digetx@gmail.com>
-In-Reply-To: <20201025221735.3062-52-digetx@gmail.com>
-Reply-To: cwchoi00@gmail.com
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-Date:   Sun, 1 Nov 2020 23:44:40 +0900
-Message-ID: <CAGTfZH2rBaWKox9nKM=_Wz8k65FLt1R7D8xSOUxe7xAJ1A00hA@mail.gmail.com>
-Subject: Re: [PATCH v6 51/52] PM / devfreq: tegra30: Support interconnect and
- OPPs from device-tree
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-tegra@vger.kernel.org,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Sat, 31 Oct 2020 14:35:56 -0700
+Matt Ranostay <matt.ranostay@konsulko.com> wrote:
 
-On Mon, Oct 26, 2020 at 7:22 AM Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> This patch moves ACTMON driver away from generating OPP table by itself,
-> transitioning it to use the table which comes from device-tree. This
-> change breaks compatibility with older device-trees in order to bring
-> support for the interconnect framework to the driver. This is a mandatory
-> change which needs to be done in order to implement interconnect-based
-> memory DVFS. Users of legacy device-trees will get a message telling that
-> theirs DT needs to be upgraded. Now ACTMON issues memory bandwidth request
-> using dev_pm_opp_set_bw(), instead of driving EMC clock rate directly.
->
-> Tested-by: Peter Geis <pgwipeout@gmail.com>
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/devfreq/tegra30-devfreq.c | 91 ++++++++++++++++---------------
->  1 file changed, 48 insertions(+), 43 deletions(-)
->
-> diff --git a/drivers/devfreq/tegra30-devfreq.c b/drivers/devfreq/tegra30-devfreq.c
-> index 3f732ab53573..1b0b91a71886 100644
-> --- a/drivers/devfreq/tegra30-devfreq.c
-> +++ b/drivers/devfreq/tegra30-devfreq.c
-> @@ -19,6 +19,8 @@
->  #include <linux/reset.h>
->  #include <linux/workqueue.h>
->
-> +#include <soc/tegra/fuse.h>
-> +
+> On Sat, Oct 31, 2020 at 2:33 PM Matt Ranostay
+> <matt.ranostay@konsulko.com> wrote:
+> >
+> > On Sat, Oct 31, 2020 at 11:51 AM Jonathan Cameron <jic23@kernel.org> wrote:  
+> > >
+> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > >
+> > > Very simple binding that we could move into trivial-devices.yaml
+> > > with a small loss of documentation.
+> > >
+> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > Cc: Matt Ranostay <mranostay@gmail.com>  
+> >
+> > Acked-by: Matt Ranostay <matt.ranostay@konsulko.com>  
+> 
+> Actually still Acked-by but could you change my email below to my Konsulko one?
+Will do.
 
-This patch touches the OPP. Is it related to this change?
+> 
+> Thanks,
+> 
+> Matt
+> 
+> > > ---
+> > >  .../bindings/iio/light/apds9960.txt           | 21 ---------
+> > >  .../bindings/iio/light/avago,apds9960.yaml    | 44 +++++++++++++++++++
+> > >  2 files changed, 44 insertions(+), 21 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/light/apds9960.txt b/Documentation/devicetree/bindings/iio/light/apds9960.txt
+> > > deleted file mode 100644
+> > > index c53ddb81c4aa..000000000000
+> > > --- a/Documentation/devicetree/bindings/iio/light/apds9960.txt
+> > > +++ /dev/null
+> > > @@ -1,21 +0,0 @@
+> > > -* Avago APDS9960 gesture/RGB/ALS/proximity sensor
+> > > -
+> > > -https://www.avagotech.com/docs/AV02-4191EN
+> > > -
+> > > -Required properties:
+> > > -
+> > > -  - compatible: must be "avago,apds9960"
+> > > -  - reg: the I2c address of the sensor
+> > > -  - interrupts : the sole interrupt generated by the device
+> > > -
+> > > -  Refer to interrupt-controller/interrupts.txt for generic interrupt client
+> > > -  node bindings.
+> > > -
+> > > -Example:
+> > > -
+> > > -apds9960@39 {
+> > > -       compatible = "avago,apds9960";
+> > > -       reg = <0x39>;
+> > > -       interrupt-parent = <&gpio1>;
+> > > -       interrupts = <16 1>;
+> > > -};
+> > > diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+> > > new file mode 100644
+> > > index 000000000000..eae8c7327c0f
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+> > > @@ -0,0 +1,44 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/light/avago,apds9960.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Avago APDS9960 gesture/RGB/ALS/proximity sensor
+> > > +
+> > > +maintainers:
+> > > +  - Matt Ranostay <mranostay@gmail.com>
+> > > +
+> > > +description: |
+> > > +  Datasheet at https://www.avagotech.com/docs/AV02-4191EN
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: avago,apds9960
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    i2c {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        light-sensor@39 {
+> > > +            compatible = "avago,apds9960";
+> > > +            reg = <0x39>;
+> > > +            interrupt-parent = <&gpio1>;
+> > > +            interrupts = <16 1>;
+> > > +        };
+> > > +    };
+> > > +...
+> > > --
+> > > 2.28.0
+> > >  
 
->  #include "governor.h"
->
->  #define ACTMON_GLB_STATUS                                      0x0
-> @@ -155,6 +157,7 @@ struct tegra_devfreq_device {
->
->  struct tegra_devfreq {
->         struct devfreq          *devfreq;
-> +       struct opp_table        *opp_table;
->
->         struct reset_control    *reset;
->         struct clk              *clock;
-> @@ -612,34 +615,19 @@ static void tegra_actmon_stop(struct tegra_devfreq *tegra)
->  static int tegra_devfreq_target(struct device *dev, unsigned long *freq,
->                                 u32 flags)
->  {
-> -       struct tegra_devfreq *tegra = dev_get_drvdata(dev);
-> -       struct devfreq *devfreq = tegra->devfreq;
->         struct dev_pm_opp *opp;
-> -       unsigned long rate;
-> -       int err;
-> +       int ret;
->
->         opp = devfreq_recommended_opp(dev, freq, flags);
->         if (IS_ERR(opp)) {
-> -               dev_err(dev, "Failed to find opp for %lu Hz\n", *freq);
-> +               dev_err(dev, "failed to find opp for %lu Hz\n", *freq);
-
-You used the 'Failed to' format in almost every error case.
-Don't need to change it.
-(snip)
-
-Best Regards,
-Chanwoo Choi
