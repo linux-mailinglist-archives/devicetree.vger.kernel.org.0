@@ -2,213 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3292C2A1F91
-	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 17:40:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 576882A2053
+	for <lists+devicetree@lfdr.de>; Sun,  1 Nov 2020 18:30:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726866AbgKAQkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 11:40:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45274 "EHLO
+        id S1727124AbgKARa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 12:30:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726549AbgKAQkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 11:40:15 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A2BC0617A6;
-        Sun,  1 Nov 2020 08:40:15 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 27F1680E;
-        Sun,  1 Nov 2020 17:40:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1604248812;
-        bh=YZpOjafDiwYLclaE2bL0ACE0n5RjBNAzajhphFUjsOI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=G7eQT5dUdGrCHpbOgpkx+JPOQsGqmg6wunYCS705Er/JWK/pXEwt7v670HBdFdiUI
-         cyuYAfZ8Hvz7TW01tUx04LCbYIt8v78qrbREk+SVklIaX2m9BnRyaZB9jxO4lke76P
-         VYGgj45gKTLs/TcCR0d+SbbLbsR9WnDcXiGTCaWM=
-Date:   Sun, 1 Nov 2020 18:39:22 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: display: himax,hx8837: Add Himax
- HX8837 bindings
-Message-ID: <20201101163922.GA3971@pendragon.ideasonboard.com>
-References: <20201030030800.1036888-1-lkundrak@v3.sk>
- <20201030030800.1036888-2-lkundrak@v3.sk>
+        with ESMTP id S1727119AbgKARa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 12:30:27 -0500
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC0E7C0617A6;
+        Sun,  1 Nov 2020 09:30:26 -0800 (PST)
+Received: by mail-il1-x12a.google.com with SMTP id x20so10928824ilj.8;
+        Sun, 01 Nov 2020 09:30:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=8DJgmxtam0fsA7Yaz4RpCJCGI7oB/JrdHqZsXWywIlY=;
+        b=TV07pa3Y1G1g/XHh05r1Dy+Y41sFN0Oxr9nk77p1vDpH4EJaByPgLmPNXzP+OcPRp9
+         EFN3zDV8DHHYTT22Oz4zDjZ+Np1XXBE0lHHj3dte2/bjya/4Ke9OI9LCdZje4cmYyYMh
+         0c3cbD/h86ktBEimEhqToyQQ+rK0FtmPHS3aSQbPqWM0tPCQAG5O33DAGCYD1ht8NXvf
+         i+TfU7Svq8hUUXY1PRI97+ibgoYq3IyprX2X8WzjNytJVMVH/D8SgqfFCQHqmlZ9BL3u
+         9EQ5TQ476wwweOifRSxRMH+7COh5KDHLzftFVNIDP3Q359cU+3kjfazPz1sWTCCTMpmY
+         WXfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=8DJgmxtam0fsA7Yaz4RpCJCGI7oB/JrdHqZsXWywIlY=;
+        b=rUPt/DR0yJXZ8RQ7tGsb53AEdBByjWZbo4pPfwk1Eymy270JCRQuaFLnQgSNUR5VWk
+         AsCWauaO6KQTdh5jgRU+jqF7Q+mDJO56KAUmGcMFNFNQSLPPEuEuL2gHb2Lj7xHC4SMT
+         nG9oDm8T6ZCqxXyVWnR3rwKcOyzAxFIkqXRvGzs8CIpGo6kGOb4mk6M2r3h+1WHEmmwn
+         FLsieqoUGgqOnmxaBY5i7VjyFDS4ShUensfE6X8lTl5N31cJ7efEMNQDD0XTEMWLHGBR
+         Fu/+33l6gIq5VjWNx3uEHZS+WTPAfwF0Aqima/bqx8ci5JSFHtbsYE1607iXlOHxs4Lk
+         ioQA==
+X-Gm-Message-State: AOAM530lyNH0FTWgD6IYSmRiMlhrA/EV37cAus0RCbMm9DbsoJ+CiNXN
+        yttu5Zq+72fjLuWoIYXbp9kIKrUwCEQ5D8GrvHY=
+X-Google-Smtp-Source: ABdhPJzidrcvd5thvWFkOensKbEmp0zDYFA8cU/rxYa76qQESK0Y3vy2MOVbpv5gbM1q/9gRKAziek25HvK154M2KCI=
+X-Received: by 2002:a92:a14f:: with SMTP id v76mr8393365ili.293.1604251826058;
+ Sun, 01 Nov 2020 09:30:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201030030800.1036888-2-lkundrak@v3.sk>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Sun, 1 Nov 2020 18:30:15 +0100
+Message-ID: <CAJiuCcfBOHhniDQOaB8ixU0pY9u0GVivkj7po-kozBV8LqmB6A@mail.gmail.com>
+Subject: ASoC: Question regarding device-tree multi-lane I2S for Allwinner SoC
+To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Samuel Holland <samuel@sholland.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lubomir,
+Hi device-tree and sound Maintainers,
 
-Thank you for the patch.
+I have a question regarding multi-lane i2S representation.
 
-On Fri, Oct 30, 2020 at 04:07:59AM +0100, Lubomir Rintel wrote:
-> Himax HX8837 is a secondary display controller used to drive the panel
-> on OLPC platforms.
-> 
-> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> Changes since v4:
-> - Rob's Reviewed-by
-> 
-> Changes since v3:
-> - Moved to bindings/display/
-> - Added the ports
-> - Converted to YAML
-> - Removed Pavel's Ack, because the changes are substantial
-> 
-> Changes since v2:
-> - s/betweend/between/
-> 
-> Changes since v1:
-> - s/load-gpio/load-gpios/
-> - Use interrupt bindings instead of gpio for the IRQ
-> 
->  .../bindings/display/bridge/himax,hx8837.yaml | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml b/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
-> new file mode 100644
-> index 0000000000000..f5b0a00f5089d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2018,2019,2020 Lubomir Rintel <lkundrak@v3.sk>
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/himax,hx8837.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HX8837 Display Controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - Lubomir Rintel <lkundrak@v3.sk>
-> +
-> +properties:
-> +  compatible:
-> +    const: himax,hx8837
-> +
-> +  reg:
-> +    const: 0xd
-> +
-> +  load-gpios:
-> +    maxItems: 1
-> +    description: GPIO specifier of DCON_LOAD pin (active high)
-> +
-> +  stat-gpios:
-> +    minItems: 2
-> +    description: GPIO specifier of DCON_STAT0 and DCON_STAT1 pins (active high)
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: Interrupt specifier of DCON_IRQ pin (edge falling)
-> +
-> +  ports:
-> +    type: object
-> +
-> +    properties:
-> +      port@0:
-> +        type: object
-> +        description: |
-> +          Video port for RGB input.
-> +
-> +      port@1:
-> +        type: object
-> +        description: |
-> +          Video port connected to the panel.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
+On the Allwinner SoC the I2S/PCM Interface can handle up to four lanes
+as output or input.
+For each lane we can enable up to sixteen slots.
+And for each output slot we can choose which slot to map.
 
-No regulators ?
+The only representation I found is for Amlogic device-tree they did
+the following sound node :
+/* 8ch hdmi interface */
+dai-link-7 {
+    sound-dai = <&tdmif_b>;
+    dai-format = "i2s";
+    dai-tdm-slot-tx-mask-0 = <1 1>;
+    dai-tdm-slot-tx-mask-1 = <1 1>;
+    dai-tdm-slot-tx-mask-2 = <1 1>;
+    dai-tdm-slot-tx-mask-3 = <1 1>;
+    mclk-fs = <256>;
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - load-gpios
-> +  - stat-gpios
+    codec {
+        sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+    };
+};
 
-Do stat-gpios need to be mandatory ? The driver in patch 2/2 doesn't
-seem to use them, could we have boards where those signals are not
-connected to GPIOs ?
+This kind of representation gives the information that 2 slots should
+be enabled as TX per lane but don't give which slot to map.
+I was thinking about a representation per lane but maybe it's a bit
+complicated  ?
 
-> +  - interrupts
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        
+    dai-format = "dsp_a";
+    dai-tdm-slot-width = <32>;
+    // Lane 0 : Output 8 channels 0-7 using TDM
+    dai-tdm-slot-tx-mask-0 = <1 1 1 1 1 1 1 1>;
+    dai-tdm-slot-chmap-0 = <0 1 2 3 4 5 6 7>;
+    // Lane 1 : Output 3 channels 5-7 using TDM
+    dai-tdm-slot-tx-mask-1 = <1 1 1>;
+    dai-tdm-slot-chmap-1 = <5 6 7>;
 
-Could you please avoid spaces or tabs at end of lines ? There are three
-other occurrences below.
+I will only start to support HDMI, so 4 I2S lanes for now it should
+look like this
 
-> +        lcd-controller@d {
-> +            compatible = "himax,hx8837";
-> +            reg = <0x0d>;
-> +            stat-gpios = <&gpio 100 GPIO_ACTIVE_HIGH>,
-> +                         <&gpio 101 GPIO_ACTIVE_HIGH>;
-> +            load-gpios = <&gpio 142 GPIO_ACTIVE_HIGH>;
-> +            interrupts = <&gpio 124 IRQ_TYPE_EDGE_FALLING>;
-> +    
-> +            ports {
-> +                #address-cells = <0x01>;
-> +                #size-cells = <0x00>;
-> +    
-> +                port@0 {
-> +                    reg = <0x00>;
+    dai-format = "i2s";
+    dai-tdm-slot-width = <32>;
+    frame-inversion;
+    // Lane 0 : Output channels 0,1
+    dai-tdm-slot-tx-mask-0 = <1 1>;
+    dai-tdm-slot-chmap-0 = <0 1>;
+    // Lane 1: Output channels 2,3
+    dai-tdm-slot-tx-mask-1 = <1 1>;
+    dai-tdm-slot-chmap-1 = <2 3>;
+    // Lane 2: Output channels 4,5
+    dai-tdm-slot-tx-mask-2 = <1 1>;
+    dai-tdm-slot-chmap-2 = <4 5>;
+    // Lane 3: Output channels 6,7
+    dai-tdm-slot-tx-mask-3 = <1 1>;
+    dai-tdm-slot-chmap-3 = <6 7>;
 
-reg = <0> should be fine. Same below.
+What do you think? Do you have any remark / idea about this ?
 
-With thse small issues addressed,
-
-> +                    dcon_rgb_in: endpoint {
-> +                        remote-endpoint = <&lcd0_rgb_out>;
-> +                    };
-> +                };
-> +    
-> +                port@1 {
-> +                    reg = <0x01>;
-> +                    dcon_gettl_out: endpoint {
-> +                        remote-endpoint = <&panel_dettl_in>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-
-It's customary to end bindings with
-
-...
-
-(not sure why though, given that it seems to work find without)
-
--- 
-Regards,
-
-Laurent Pinchart
+Thanks for your help
+Clement
