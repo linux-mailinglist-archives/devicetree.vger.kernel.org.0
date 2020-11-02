@@ -2,186 +2,394 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A8622A2B0C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 13:55:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5669A2A2B16
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 13:58:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728534AbgKBMzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 07:55:48 -0500
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:3140 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728253AbgKBMzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 07:55:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1604321746; x=1635857746;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=r/0xkgPEEfEhY/gxwAVTk10BYHrwOfBwL3H8nGnppF4=;
-  b=L8qf+v4/8lcFpl086FeRcUe8iMov3SzBcKwaisgpdgIpLGlrhWjH9q0L
-   Uebd18MStiCyJbEWDfFvzl8SW7kTTcBtyNFXizxkNXDhjlXm+9mnGD2Iq
-   F6Tshvv6KsQXykJ0yG1zZi8MssqkC7VolCnqsMRZoRJZYimUJ3jlSFpQH
-   NvGr5/u4AVoqLhOuIe9UNY8/Td/qxn4Xy+LkNi7AaNUdEUzifZDWBRufJ
-   9/mpIKkAJ/XYH2Axaj25XcpJcSKBYer14Wje6a29pdGYVLLG+S8KNlfdD
-   GMUFsowVtJAmHR43euZi/74d0cezZU/qT5it3YF4nJafIKSKEtWw5rTSl
-   w==;
-IronPort-SDR: oo3tCiMGNtKkg10fpzhvNbUZzCXC6grJHJxvsdobQfb4MeYAdwE/b37EafddQHyd9SiyX3O5jY
- Z1ql8YaCSmb3CJ4Tp9QcqWN3lMq2yDEbE93X4kNyAhdj/ocuQwNx67kLJLb6Wy2w57+WsSPXAE
- /nkP0/yZJ1DAtVxP16PyaLAM0JX6vudMKB+FEXR1xo8aleBg1RiuaXF4aXhC9nGsMc6Uok5iJy
- iiwMyO+A90iRILp2pDXlxwoNR3hnSl6CqFZuRcoJO+EZDN8Hmm5vxjSEcpwFcRgLm2aBK6mlGX
- cgE=
-X-IronPort-AV: E=Sophos;i="5.77,444,1596524400"; 
-   d="scan'208";a="101816989"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Nov 2020 05:55:46 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 2 Nov 2020 05:55:45 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Mon, 2 Nov 2020 05:55:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YMcns8pCRkvoKDhCtn4Y3DXAuRnYEpslAJy6cp8PFL5V8Fn7aetlN/oxA/SGIpCG9wXPorzs86O1NYqBaffTyZZVhk4OXYca6zH3Ymud16eBRzOnORGvj6vbfHcT3v6EqX+HYMrunSa8JIidoJzofVJXHtRxoCNYbOdRRA0fMOW3nBJAI2wTC2Oy5k3q04TNRqW8Q75Ur4rTxZt7/+9I/dKaOckwaLU4F0aWuegHTmJbq859eDRxyRXCKtu2Quvegb0/cQE+lRjreilkab30JkjZL12WXv1Swh06NbX0NinC5DVB0SauCXbHBeKMZyOPLMHxKQ0S9iMiQ18Hn7x+pA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r/0xkgPEEfEhY/gxwAVTk10BYHrwOfBwL3H8nGnppF4=;
- b=cgLy0soF74VI/x4bdIC+jjFTVGTLJ+NSdkvisXfakLJ9NFUOFbfuvt2vovp5J4uxUfro20GdtdOu4CCuD0pAlm4iTIIaJkICTlZq9JUeIs5yQ8KCUZq7CkMAFa9mndt0l8jeAeHDl+dWq1Rede3TgKZGOuKcr/Ya2uY40AUigJ2i7RN7SA1uYdUiAxISK+MI/b1KBwRkU6KTxzrUaaH9hEajBWJBYYFyhICEVDorJ/9cN/24k+Dkcg51+J0u6qvw50FXXTlBWy/5ocDT+kwQENbVXCPC3AQF4TMlYxu1qgsXmnuCeqvgUJvovIgYC/uVc8QYth1gjttHD3VBL7/4Kg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S1728564AbgKBM6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 07:58:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728856AbgKBM6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 07:58:01 -0500
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4E2C0617A6;
+        Mon,  2 Nov 2020 04:58:00 -0800 (PST)
+Received: by mail-ej1-x642.google.com with SMTP id oq3so16897531ejb.7;
+        Mon, 02 Nov 2020 04:58:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r/0xkgPEEfEhY/gxwAVTk10BYHrwOfBwL3H8nGnppF4=;
- b=HxcYwDSbUjZk1oqkwEUeldTgQzRUZB+M+aL4pP5678dJe0aZLHTlp8AAJJA8oQdksXyhsFBkwzXBHK6WJgGDnrlmZxnexxTWJuO+kfWpZRRybXyjpINoAdml1ozRMXP+ZgGiqcXtVDLK/I1DpuqBzB8gRKTgrqC5aIijyccRfHc=
-Received: from CY4PR1101MB2341.namprd11.prod.outlook.com
- (2603:10b6:903:b1::22) by CY4PR11MB0069.namprd11.prod.outlook.com
- (2603:10b6:910:79::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19; Mon, 2 Nov
- 2020 12:55:43 +0000
-Received: from CY4PR1101MB2341.namprd11.prod.outlook.com
- ([fe80::908:a628:69ca:d62e]) by CY4PR1101MB2341.namprd11.prod.outlook.com
- ([fe80::908:a628:69ca:d62e%7]) with mapi id 15.20.3499.030; Mon, 2 Nov 2020
- 12:55:43 +0000
-From:   <Codrin.Ciubotariu@microchip.com>
-To:     <lee.jones@linaro.org>
-CC:     <Nicolas.Ferre@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <richard.genoud@gmail.com>,
-        <alexandre.belloni@bootlin.com>, <Ludovic.Desroches@microchip.com>
-Subject: Re: [PATCH] ARM: dts: at91: add serial MFD sub-node for usart
-Thread-Topic: [PATCH] ARM: dts: at91: add serial MFD sub-node for usart
-Thread-Index: AQHWrq0BNGYIfVuhjkKKUxhuAsgrHKmwJpcAgARphwCAADUdAIAABSQAgAAHOAA=
-Date:   Mon, 2 Nov 2020 12:55:43 +0000
-Message-ID: <e2b038f0-81ea-3d2f-cb06-dd02f0b84860@microchip.com>
-References: <20201030110702.886638-1-codrin.ciubotariu@microchip.com>
- <b054ce5c-58fd-dd86-2cb6-1e1f06a0899e@microchip.com>
- <20201102090122.GF4127@dell>
- <780303c7-2c32-f2e1-c9ce-1e2ee6bf0533@microchip.com>
- <20201102122952.GB4488@dell>
-In-Reply-To: <20201102122952.GB4488@dell>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=microchip.com;
-x-originating-ip: [86.121.145.173]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7db2f538-b548-4db4-29e5-08d87f2e9bc5
-x-ms-traffictypediagnostic: CY4PR11MB0069:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CY4PR11MB00691A57ADE727E24DA9518AE7100@CY4PR11MB0069.namprd11.prod.outlook.com>
-x-bypassexternaltag: True
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nUvFQ/RN13HDalBK4tkXeRNsre15aoSjhXPBo8FQaryv+nYM/mGAjWTTgyfeuL5+apfZzjKmGdwNEeNWZ2X8EchlBzdTZW2Fm/6oNhzT2W/PeyYO/7eRBG4YI7tF74g/VO83BZSZn5iFnCs0PB1Ch0mXKuRyj5vCnY+rL9gL+iAYGwsJqwGXmbbPzi0qM02o/GMUcXuTixYnJFE19Hvx1K6t8GnbElEnTzImXntRCTiX0SOscRUoakxM8xrFPB2T8odxeJ6Cyj1575SVUBQYEsoNDcqoPc1cdGJoFEtYk1stdFUgqXa9Fa09eIotHqOQczzG9uX6aQSNG8ughx0GdL6QTUYyVm3OaEi5fG7Gj/ZFzCEehmJczEDggD7+C1e7
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR1101MB2341.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(366004)(376002)(39860400002)(396003)(346002)(91956017)(2906002)(64756008)(66446008)(86362001)(83380400001)(66476007)(66556008)(5660300002)(76116006)(66946007)(36756003)(107886003)(2616005)(53546011)(8676002)(54906003)(31686004)(8936002)(6486002)(71200400001)(6506007)(478600001)(186003)(6916009)(4326008)(26005)(31696002)(6512007)(316002)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: uLceJi5B+5MTR4wdznsGKOwGREsuAiAvCRMinDI67nwiBsYeYHUliAHO5gIbOY8HYHvohwP9V1iKGQEv++Knsi5Wo6IX0F/28Zl2or/nBByx8RDlV+uRQrHV9+M3JL3Mh/G8izEbM6h9G7KTKkql/3Vyg93czmZo24Xknt86K3SRRtLxVjLLaHknYA7haFaIkej2bdubEJOM6rQ7G6jCHphBeS59p/eX0+SDCRqUwWq31DeU3hrT65LMx9NekYM1sKmYYuYDmsBPX4O3W7RbknSlwYga/tfHhrv6eKD+PzeXWAL8EkHWfzqnVIK0Xf2pUQABCIZjFKFiqZW2EQ6WCW9cLU3at4mjXPfIpV6RzrEpSlJ0kvARkmnPzqjFvGCDpU+34AwD89C8q4Wr6eQ7H3gMzz/ZOOybtjdizV0LKBUN9jt0u+dgJPIiiRcEu8lqhCNmVqyVioe97vCYHsAlpZlkfdan00DW73iSLzZXVBSpnyVPo6a2Z1OEkRMM5oLK6YdZhxrHSglfmGlqH3s3gtwRx4nKGYn8pdmnnmGK8U82ys1Zw5oVsTjAvEZ6OaY/DhH8VPPE8FTGSKkhqoFv7cUPe4B8knjcIrg50ODsI+xxEtA/laZXo912XzdVOP7k+r2jO08zP00jB9t6vL2skg==
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <787EA4798AE5F64F9B5F0F038026A2D4@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9eJ1vkYr+Qgir4hV/yr3W9dU2UtR9+tY2Iomt5NPc/Y=;
+        b=GoA/3zMVPI1ZamwZkhQRGGwaM2yqWGvFmTcjvGmU2Y1N9Puh4YCO3YLon2opM+MX+v
+         TsxtlPIHyBtpoYBnCJbhz1vYMovtwaaF+0rgJXCkZYtrkVB0h8PiBCVx+fLGJnN9bp5z
+         NbBdtQQ2RYKYwp2u/9P+XSDYeulJBDyXi57s0pvlaN6jxy3skniiKy3sywo1uNG6AfNw
+         KPRUZPyunlrrLfvwyho6j/9R46XX4gHWmTEBVTQIvKuiY/THsHzL0Vez6i4u0sE2yS6u
+         aWuTs2RM2Gs0eFLlhTkywJBR87enl9wwYr7sgHkKSpxbdnrfQ2YRS2zhcwXZtx6uxBMV
+         TNVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9eJ1vkYr+Qgir4hV/yr3W9dU2UtR9+tY2Iomt5NPc/Y=;
+        b=ocJzSM44GbGvSLjtGWcJsI+hlEG3SMEtokNEHpWDNcL9wBv3ytWOo3dYIF9c5dU+R+
+         4Vp1F3xkXtr3hB2QnN4aUyoTkmC92tJyj0wTr+nmCeLjrWil+5Hm3b1uB0FdQNoV6qUH
+         OVBfYmyWRqeHU8IA/x4g0J43VWUdSMpi7FpKpQkUWJ31IR/bqS4QYmFOzUfaA/H+Sv0b
+         sphKLR/9R+vrjV2BZ/XnkV3I5dJ4R0aN93n6nAH/LhQg1afky5jAZ93AIkSffR6FUoG5
+         E7wvMSUihWUdkWE7lkKN60yv/bSDvW+8TqrnJ1U1FV/Iob2FPxuv3H5r7tLK3FCngG8Q
+         tdEQ==
+X-Gm-Message-State: AOAM531sxE2EG2UPmhyvYWPIzXBIqT8+/6VVsiu+Ee6WZJ9y2i/wlXZv
+        2CxOxvAplDeF805p4F1xzu0=
+X-Google-Smtp-Source: ABdhPJzD1dZwfyfqfiXNVYWJRtF//xT+Mh0yMdcluAVO/gAv4enhHA7ovgd3u6lHmuRw91Qv3V41VQ==
+X-Received: by 2002:a17:906:cede:: with SMTP id si30mr4539265ejb.16.1604321879235;
+        Mon, 02 Nov 2020 04:57:59 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id u23sm9441006ejy.87.2020.11.02.04.57.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Nov 2020 04:57:58 -0800 (PST)
+Subject: Re: [PATCH v13 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
+ RK2928 and others
+To:     Yifeng <yifeng.zhao@rock-chips.com>, miquel.raynal@bootlin.com,
+        richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, heiko@sntech.de,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20201028095326.15562-1-yifeng.zhao@rock-chips.com>
+ <20201028095326.15562-3-yifeng.zhao@rock-chips.com>
+ <a8a7875b-f08b-62c6-a630-245687e0df3b@gmail.com>
+ <e02e13a0-769d-6b73-c87e-5b7d75fd4254@rock-chips.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <0b417fc2-3503-9bf6-914d-0f8b38df1914@gmail.com>
+Date:   Mon, 2 Nov 2020 13:57:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR1101MB2341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7db2f538-b548-4db4-29e5-08d87f2e9bc5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Nov 2020 12:55:43.0808
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Rq9guRFLodnmCH9wZ8XwUIM2RdlIzIANF0OAlYxvHHh2R9CjNH+a3O05Nj3Aox4dA5awCcfnG+EaeT+XadMs5HBpixNgEtye9vOQNF4LMw4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB0069
+In-Reply-To: <e02e13a0-769d-6b73-c87e-5b7d75fd4254@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDIuMTEuMjAyMCAxNDoyOSwgTGVlIEpvbmVzIHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJTDog
-RG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBrbm93IHRo
-ZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIE1vbiwgMDIgTm92IDIwMjAsIENvZHJpbi5DaXVi
-b3Rhcml1QG1pY3JvY2hpcC5jb20gd3JvdGU6DQo+IA0KPj4gT24gMDIuMTEuMjAyMCAxMTowMSwg
-TGVlIEpvbmVzIHdyb3RlOg0KPj4+IE9uIEZyaSwgMzAgT2N0IDIwMjAsIE5pY29sYXMgRmVycmUg
-d3JvdGU6DQo+Pj4NCj4+Pj4gT24gMzAvMTAvMjAyMCBhdCAxMjowNywgQ29kcmluIENpdWJvdGFy
-aXUgd3JvdGU6DQo+Pj4+PiBUaGUgImF0bWVsLGF0OTFzYW05MjYwLXVzYXJ0IiBkcml2ZXIgaXMg
-YSBNRkQgZHJpdmVyLCBzbyBpdCBuZWVkcyBzdWItbm9kZXMNCj4+Pj4+IHRvIG1hdGNoIHRoZSBy
-ZWdpc3RlcmVkIHBsYXRmb3JtIGRldmljZS4gRm9yIHRoaXMgcmVhc29uLCB3ZSBhZGQgYSBzZXJp
-YWwNCj4+Pj4+IHN1Ym5vZGUgdG8gYWxsIHRoZSAiYXRtZWwsYXQ5MXNhbTkyNjAtdXNhcnQiIHNl
-cmlhbCBjb21wYXRpYmxlIG5vZHMuIFRoaXMNCj4+Pj4+IHdpbGwgYWxzbyByZW1vdmUgdGhlIGJv
-b3Qgd2FybmluZzoNCj4+Pj4+ICJhdG1lbF91c2FydF9zZXJpYWw6IEZhaWxlZCB0byBsb2NhdGUg
-b2Zfbm9kZSBbaWQ6IC0yXSINCj4+Pj4NCj4+Pj4gSSBkb24ndCByZW1lbWJlciB0aGlzIHdhcm5p
-bmcgd2FzIHJhaXNlZCBwcmV2aW91c2x5IGV2ZW4gaWYgdGhlIE1GRCBkcml2ZXINCj4+Pj4gd2Fz
-IGFkZGVkIGEgd2hpbGUgYWdvIChTZXB0LiAyMDE4KS4NCj4+Pj4NCj4+Pj4gSSB3b3VsZCBzYXkg
-aXQncyBkdWUgdG8gNDY2YTYyZDc2NDJmICgibWZkOiBjb3JlOiBNYWtlIGEgYmVzdCBlZmZvcnQg
-YXR0ZW1wdA0KPj4+PiB0byBtYXRjaCBkZXZpY2VzIHdpdGggdGhlIGNvcnJlY3Qgb2Zfbm9kZXMi
-KSB3aGljaCB3YXMgYWRkZWQgb24gbWlkIEF1Z3VzdA0KPj4+PiBhbmQgY29ycmVjdGVkIHdpdGgg
-MjIzODBiNjVkYzcwICgibWZkOiBtZmQtY29yZTogRW5zdXJlIGRpc2FibGVkIGRldmljZXMgYXJl
-DQo+Pj4+IGlnbm9yZWQgd2l0aG91dCBlcnJvciIpIGJ1dCBtYXliZSBub3QgY292ZXJpbmcgb3Vy
-IGNhc2UuDQo+Pj4+DQo+Pj4+IFNvLCB3ZWxsLCBJIGRvbid0IGtub3cgd2hhdCdzIHRoZSBiZXN0
-IG9wdGlvbiB0byB0aGlzIGNoYW5nZS4gTW9yZW92ZXIsIEkNCj4+Pj4gd291bGQgc2F5IHRoYXQg
-YWxsIG90aGVyIFVTQVJUIHJlbGF0ZWQgcHJvcGVydGllcyBnbyBpbnRvIHRoZSBjaGlsZCBub3Qg
-aWYNCj4+Pj4gdGhlcmUgaXMgYSBuZWVkIGZvciBvbmUuDQo+Pj4+DQo+Pj4+IExlZSwgSSBzdXNw
-ZWN0IHRoYXQgd2UncmUgbm90IHRoZSBvbmx5IG9uZXMgZXhwZXJpZW5jaW5nIHRoaXMgdWdseSB3
-YXJuaW5nDQo+Pj4+IGR1cmluZyB0aGUgYm9vdCBsb2c6IGNhbiB5b3UgcG9pbnQgdXMgb3V0IGhv
-dyB0byBkZWFsIHdpdGggaXQgZm9yIG91cg0KPj4+PiBleGlzdGluZyBhdG1lbF9zZXJpYWwuYyB1
-c2Vycz8NCj4+Pg0KPj4+IFlvdSBzaG91bGQgbm90IGJlIGluc3RhbnRpYXRpbmcgZHJpdmVycyB0
-aHJvdWdoIERldmljZSBUcmVlIHdoaWNoIGFyZQ0KPj4+IG5vdCBkZXNjcmliZWQgdGhlcmUuICBJ
-ZiB0aGUgY29ycmVjdCByZXByZXNlbnRhdGlvbiBvZiB0aGUgSC9XIGFscmVhZHkNCj4+PiBleGlz
-dHMgaW4gRGV2aWNlIFRyZWUgaS5lLiBubyBTUEkgYW5kIFVBUlQgSVAgcmVhbGx5IGV4aXN0cywg
-dXNlIHRoZQ0KPj4+IE1GRCBjb3JlIEFQSSB0byByZWdpc3RlciB0aGVtIHV0aWxpc2luZyB0aGUg
-cGxhdGZvcm0gQVBJIGluc3RlYWQuDQo+Pj4NCj4+PiBUaGlzIHNob3VsZCBkbyBpdDoNCj4+Pg0K
-Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21mZC9hdDkxLXVzYXJ0LmMgYi9kcml2ZXJzL21mZC9h
-dDkxLXVzYXJ0LmMNCj4+PiBpbmRleCA2YTgzNTFhNDU4OGUyLi45MzliZDIzMzJhNGY2IDEwMDY0
-NA0KPj4+IC0tLSBhL2RyaXZlcnMvbWZkL2F0OTEtdXNhcnQuYw0KPj4+ICsrKyBiL2RyaXZlcnMv
-bWZkL2F0OTEtdXNhcnQuYw0KPj4+IEBAIC0xNywxMiArMTcsMTAgQEANCj4+Pg0KPj4+ICAgIHN0
-YXRpYyBjb25zdCBzdHJ1Y3QgbWZkX2NlbGwgYXQ5MV91c2FydF9zcGlfc3ViZGV2ID0gew0KPj4+
-ICAgICAgICAgICAubmFtZSA9ICJhdDkxX3VzYXJ0X3NwaSIsDQo+Pj4gLSAgICAgICAub2ZfY29t
-cGF0aWJsZSA9ICJtaWNyb2NoaXAsYXQ5MXNhbTlnNDUtdXNhcnQtc3BpIiwNCj4+PiAgICB9Ow0K
-Pj4+DQo+Pj4gICAgc3RhdGljIGNvbnN0IHN0cnVjdCBtZmRfY2VsbCBhdDkxX3VzYXJ0X3Nlcmlh
-bF9zdWJkZXYgPSB7DQo+Pj4gICAgICAgICAgIC5uYW1lID0gImF0bWVsX3VzYXJ0X3NlcmlhbCIs
-DQo+Pj4gLSAgICAgICAub2ZfY29tcGF0aWJsZSA9ICJhdG1lbCxhdDkxcm05MjAwLXVzYXJ0LXNl
-cmlhbCIsDQo+Pj4gICAgfTsNCj4+Pg0KPj4+ICAgIHN0YXRpYyBpbnQgYXQ5MV91c2FydF9tb2Rl
-X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+Pg0KPj4gW3NuaXBdDQo+Pg0K
-Pj4gSGkgTGVlLCB0aGFuayB5b3UgZm9yIGxvb2tpbmcgdGhyb3VnaCBvdXIgdXNhcnQgZHJpdmVy
-IGFuZCBmb3Igc2hhcmluZw0KPj4geW91ciB0aG91Z2h0cy4gUmVtb3ZpbmcgdGhlIHVzYWdlIG9m
-IGNvbXBhdGlibGUgc3RyaW5nIG1lYW5zIHRoYXQgZm9yDQo+PiBzaW1pbGFyIHNlcmlhbC9TUEkg
-SVBzIHdlIHdvdWxkIG5lZWQgdG8gY3JlYXRlIG5ldyBwbGF0Zm9ybSBkcml2ZXJzLg0KPiANCj4g
-V2h5IHdvdWxkIHlvdSBuZWVkIHRvIGRvIHRoYXQ/DQoNCkluIHRoZSBjYXNlIHdlIHdpbGwgaGF2
-ZSB0byBzdXBwb3J0IGFub3RoZXIgc2ltaWxhciBJUCwgYnV0IHdpdGggYSANCmRpZmZlcmVudCBz
-ZXQgb2YgZmVhdHVyZXMuIE5vdCBhIG5ldyBwbGF0Zm9ybSBkcml2ZXIgZnJvbSBzY3JhdGNoLCBi
-dXQgDQphdCBsZWFzdCBhIG5ldyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIGZvciBlYWNoIHZhcmlh
-bnQuDQoNCj4gDQo+PiBUaGlzIGlzIG5vdCBpZGVhbCwgYnV0IGl0J3MgYSBzb2x1dGlvbi4gV2hh
-dCBJIHByb3Bvc2VkIGlzIG1vcmUNCj4+IGZsZXhpYmxlLCBidXQsIGFzIHlvdSBwb2ludGVkIG91
-dCwgSSBhbSBub3Qgc3VyZSBpdCBjb3JyZWN0bHkgZGVzY3JpYmVzDQo+PiB0aGUgSFcsIGJlY2F1
-c2UgdGhlIGRlY2lzaW9uIG9mIHdoZXRoZXIgdG8gdXNlIHRoaXMgSVAgYXMgYSBzZXJpYWwgb3Ig
-YQ0KPj4gU1BJIGlzIGEgY29uZmlndXJhYmxlIG9uZS4NCj4+DQo+PiBUaGFua3MgYW5kIGJlc3Qg
-cmVnYXJkcywNCj4+IENvZHJpbg0KPiANCj4gLS0NCj4gTGVlIEpvbmVzIFvmnY7nkLzmlq9dDQo+
-IFNlbmlvciBUZWNobmljYWwgTGVhZCAtIERldmVsb3BlciBTZXJ2aWNlcw0KPiBMaW5hcm8ub3Jn
-IOKUgiBPcGVuIHNvdXJjZSBzb2Z0d2FyZSBmb3IgQXJtIFNvQ3MNCj4gRm9sbG93IExpbmFybzog
-RmFjZWJvb2sgfCBUd2l0dGVyIHwgQmxvZw0KPiANCg0K
+Hi Yifeng,
+
+Don't poke with "ecc->bytes" ones it is set in rk_nfc_ecc_init(). It
+will not be noted by the MTD frame work or userspace. I think there's
+currently no way to let the user know that a different ECC must be used.
+Neither can the user set ECC on the fly.
+
+Example R/W flow:
+
+        nand_select_target()
+	chip->ecc.write_page_raw()
+	chip->ecc.write_page()
+
+[..]
+
+	chip->ecc.read_page_raw()
+	chip->ecc.read_page()
+        nand_deselect_target()
+
+A write/read with:
+
+rk_nfc_read_page_hwecc()
+rk_nfc_write_page_hwecc()
+
+or
+
+rk_nfc_read_page_raw()
+rk_nfc_write_page_raw()
+
+must end up with the same result. If we can't archive that, then we
+shouldn't offer RAW mode to the user for now. If Miquel agrees you
+should just get the driver ready now without these 2 functions and round
+things up.
+
+On 11/2/20 11:21 AM, Yifeng wrote:
+> Hi Johan，
+> 
+> 
+>>> +static int rk_nfc_write_page_raw(struct nand_chip *chip, const u8 *buf,
+>>> +                 int oob_on, int page)
+>>> +{
+>>> +    struct mtd_info *mtd = nand_to_mtd(chip);
+>>> +    struct rk_nfc *nfc = nand_get_controller_data(chip);
+>>> +    struct nand_ecc_ctrl *ecc = &chip->ecc;
+> 
+>      int ecc_bytes_backup = ecc->bytes;
+> 
+>>> +    int ret = 0;
+>>> +    u32 i;
+>>> +
+>>     /*
+>>     * Normal timing and ECC layout size setup is already done in
+>>     * the rk_nfc_select_chip() function.
+>>     */
+>>
+>> How about the ECC layout size setup for a boot block?
+> |The ecc->bytes will different while |||rknand->|boot_ecc is different
+> from ecc->strength.|
+> 
+> |How about？
+> 1. backup ecc->bytes
+> 2. config ecc->bytes with boot_ecc_bytes
+> 3. restore ecc->bytes|
+> 
+> |    pages_per_blk = mtd->erasesize / mtd->writesize;|
+> 
+> |    if ((chip->options & NAND_IS_BOOT_MEDIUM) &&||
+> ||        (page < (pages_per_blk * rknand->boot_blks))) {||
+> ||        boot_rom_blk = 1;||
+> ||        if (rknand->boot_ecc != ecc->strength)||
+> ||            ecc->bytes = rknand->boot_ecc_bytes;||
+> ||    }|
+> 
+>>> +    if (!buf)
+>>> +        memset(nfc->buffer, 0xff, mtd->writesize + mtd->oobsize);
+>>> +> +    for (i = 0; i < ecc->steps; i++) {
+>>> +        /* Copy data to nfc buffer. */
+>>> +        if (buf)
+>>> +            memcpy(rk_nfc_data_ptr(chip, i),
+>>> +                   rk_nfc_buf_to_data_ptr(chip, buf, i),
+>>> +                   ecc->size);
+>>> +        /*
+>>> +         * The first four bytes of OOB are reserved for the
+>>> +         * boot ROM. In some debugging cases, such as with a
+>>> +         * read, erase and write back test these 4 bytes stored
+>>> +         * in OOB also need to be written back.
+>>> +         */
+>>     /*
+>>     * The first four bytes of OOB are reserved for the
+>>     * boot ROM. In some debugging cases, such as with a
+>>     * read, erase and write back test these 4 bytes stored
+>>     * in OOB also need to be written back.
+>>     *
+>>     * The function nand_block_bad detects bad blocks like:
+>>     *
+>>     * bad = chip->oob_poi[chip->badblockpos];
+>>     *
+>>     * chip->badblockpos == 0 for a large page NAND Flash,
+>>     * so chip->oob_poi[0] is the bad block mask (BBM).
+>>     *
+>>     * The OOB data layout on the NFC is:
+>>     *
+>>     *   PA0  PA1  PA2  PA3 | BBM OOB1 OOB2 OOB3 | ...
+>>     *
+>>     * or
+>>     *
+>>     *  0xFF 0xFF 0xFF 0xFF | BBM OOB1 OOB2 OOB3 | ...
+>>     *
+>>     * The code here just swaps the first 4 bytes with the last
+>>     * 4 bytes without losing any data.
+>>     *
+>>     * The chip->oob_poi data layout:
+>>     *
+>>     *   BBM OOB1 OOB2 OOB3 |......|  PA0  PA1  PA2  PA3
+>>     *
+>>     * The rk_nfc_ooblayout_free() function already has reserved
+>>     * these 4 bytes with:
+>>     *
+>>     * oob_region->offset = NFC_SYS_DATA_SIZE + 2;
+>>     */
+>>
+>>
+>>> +        if (!i)
+>>> +            memcpy(rk_nfc_oob_ptr(chip, i),
+>>> +                   rk_nfc_buf_to_oob_ptr(chip, ecc->steps - 1),
+>>> +                   NFC_SYS_DATA_SIZE);
+>>> +        else
+>>> +            memcpy(rk_nfc_oob_ptr(chip, i),
+>>> +                   rk_nfc_buf_to_oob_ptr(chip, i - 1),
+>>> +                   NFC_SYS_DATA_SIZE);
+>>> +        /* Copy ECC data to the NFC buffer. */
+>>> +        memcpy(rk_nfc_oob_ptr(chip, i) + NFC_SYS_DATA_SIZE,
+>>> +               rk_nfc_buf_to_oob_ecc_ptr(chip, i),
+>>> +               ecc->bytes);
+>>> +    }
+> 
+>     if (boot_rom_blk && (rknand->boot_ecc != ecc->strength))
+>         ecc->bytes = ecc_bytes_backup;
+> 
+>>> +    nand_prog_page_begin_op(chip, page, 0, NULL, 0);
+>>> +    rk_nfc_write_buf(nfc, buf, mtd->writesize + mtd->oobsize);
+>>> +    ret = nand_prog_page_end_op(chip);
+>>> +
+>>> +    /*
+>>> +     * Deselect the currently selected target after the ops is done
+>>> +     * to reduce the power consumption.
+>>> +     */
+>>> +    rk_nfc_select_chip(chip, -1);
+>> Does the MTD framework always select again?
+>>
+>>> +
+>>> +    return ret;
+>>> +}
+> ...
+>>> +
+>>> +static int rk_nfc_read_page_raw(struct nand_chip *chip, u8 *buf, int
+>>> oob_on,
+>>> +                int page)
+>>> +{
+>>> +    struct mtd_info *mtd = nand_to_mtd(chip);
+>>> +    struct rk_nfc *nfc = nand_get_controller_data(chip);
+>>> +    struct nand_ecc_ctrl *ecc = &chip->ecc;
+> 
+>     int ecc_bytes_backup = ecc->bytes;
+> 
+>>> +    int i;
+>>> +
+>>     /*
+>>     * Normal timing and ECC layout size setup is already done in
+>>     * the rk_nfc_select_chip() function.
+>>     */
+>>
+>> How about the ECC layout size setup for a boot block?
+>>
+>>> +    nand_read_page_op(chip, page, 0, NULL, 0);
+>>> +    rk_nfc_read_buf(nfc, nfc->buffer, mtd->writesize + mtd->oobsize);
+> 
+> |    pages_per_blk = mtd->erasesize / mtd->writesize;|
+> 
+> |    if ((chip->options & NAND_IS_BOOT_MEDIUM) &&||
+> ||        (page < (pages_per_blk * rknand->boot_blks))) {||
+> ||        boot_rom_blk = 1;||
+> ||        if (rknand->boot_ecc != ecc->strength)||
+> ||            ecc->bytes = rknand->boot_ecc_bytes;||
+> ||    }|
+> 
+>>> +    /*
+>>> +     * Deselect the currently selected target after the ops is done
+>>> +     * to reduce the power consumption.
+>>> +     */
+>>> +    rk_nfc_select_chip(chip, -1);
+>>> +
+>>> +    for (i = 0; i < ecc->steps; i++) {
+>>> +        /*
+>>> +         * The first four bytes of OOB are reserved for the
+>>> +         * boot ROM. In some debugging cases, such as with a read,
+>>> +         * erase and write back test, these 4 bytes also must be
+>>> +         * saved somewhere, otherwise this information will be
+>>> +         * lost during a write back.
+>>> +         */
+>>> +        if (!i)
+>>> +            memcpy(rk_nfc_buf_to_oob_ptr(chip, ecc->steps - 1),
+>>> +                   rk_nfc_oob_ptr(chip, i),
+>>> +                   NFC_SYS_DATA_SIZE);
+>>> +        else
+>>> +            memcpy(rk_nfc_buf_to_oob_ptr(chip, i - 1),
+>>> +                   rk_nfc_oob_ptr(chip, i),
+>>> +                   NFC_SYS_DATA_SIZE);
+>>> +        /* Copy ECC data from the NFC buffer. */
+>>> +        memcpy(rk_nfc_buf_to_oob_ecc_ptr(chip, i),
+>>> +               rk_nfc_oob_ptr(chip, i) + NFC_SYS_DATA_SIZE,
+>>> +               ecc->bytes);
+>>> +        /* Copy data from the NFC buffer. */
+>>> +        if (buf)
+>>> +            memcpy(rk_nfc_buf_to_data_ptr(chip, buf, i),
+>>> +                   rk_nfc_data_ptr(chip, i),
+>>> +                   ecc->size);
+>>> +    }
+> |    if (boot_rom_blk && (rknand->boot_ecc != ecc->strength))||
+> ||        ecc->bytes = ecc_bytes_backup;|
+>>> +    return 0;
+>>> +}
+>>> +
+> ...
+>>> +static int rk_nfc_attach_chip(struct nand_chip *chip)
+>>> +{
+>>> +    struct mtd_info *mtd = nand_to_mtd(chip);
+>>> +    struct device *dev = mtd->dev.parent;
+>>> +    struct rk_nfc *nfc = nand_get_controller_data(chip);
+>>> +    struct rk_nfc_nand_chip *rknand = rk_nfc_to_rknand(chip);
+>>> +    struct nand_ecc_ctrl *ecc = &chip->ecc;
+>>> +    int new_len, new_oob_len;
+>>> +    void *buf;
+>>> +    int ret;
+>>> +
+>>> +    if (chip->options & NAND_BUSWIDTH_16) {
+>>> +        dev_err(dev, "16 bits bus width not supported");
+>>> +        return -EINVAL;
+>>> +    }
+>>> +
+>>> +    if (ecc->engine_type != NAND_ECC_ENGINE_TYPE_ON_HOST)
+>>> +        return 0;
+>>> +
+>>> +    ret = rk_nfc_ecc_init(dev, mtd);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +    rknand->spare_per_sector = ecc->bytes + NFC_SYS_DATA_SIZE;
+>>> +    rknand->metadata_size = NFC_SYS_DATA_SIZE * ecc->steps;
+>>> +
+> |    if (chip->options & NAND_IS_BOOT_MEDIUM)||
+> ||        rknand->boot_ecc_bytes = DIV_ROUND_UP(rknand->boot_ecc * fls(8
+> * ecc->size), 8);|
+>>> +    if (rknand->metadata_size < NFC_SYS_DATA_SIZE + 2) {
+>>> +        dev_err(dev,
+>>> +            "Driver needs at least %d bytes of meta data\n",
+>>> +            NFC_SYS_DATA_SIZE + 2);
+>>> +        return -EIO;
+>>> +    }
+>>> +
+>>> +    /* Check buffer first, avoid duplicate alloc buffer. */
+>>> +    new_len = mtd->writesize + mtd->oobsize;
+>>> +    if (nfc->buffer && new_len > nfc->buffer_size) {
+>>> +        buf = krealloc(nfc->buffer, new_len, GFP_KERNEL | GFP_DMA);
+>>> +        if (!buf)
+>>> +            return -ENOMEM;
+>>> +        nfc->buffer = buf;
+>>> +        nfc->buffer_size = new_len;
+>>> +    }
+>>> +
+>>> +    new_oob_len = ecc->steps * NFC_MAX_OOB_PER_STEP;
+>>> +    if (nfc->oob_buf && new_oob_len > nfc->oob_buf_size) {
+>>> +        buf = krealloc(nfc->oob_buf, new_oob_len,
+>>> +                   GFP_KERNEL | GFP_DMA);
+>>> +        if (!buf) {
+>>> +            kfree(nfc->buffer);
+>>> +            nfc->buffer = NULL;
+>>> +            return -ENOMEM;
+>>> +        }
+>>> +        nfc->oob_buf = buf;
+>>> +        nfc->oob_buf_size = new_oob_len;
+>>> +    }
+>>> +
+>>> +    if (!nfc->buffer) {
+>>> +        nfc->buffer = kzalloc(new_len, GFP_KERNEL | GFP_DMA);
+>>> +        if (!nfc->buffer)
+>>> +            return -ENOMEM;
+>>> +        nfc->buffer_size = new_len;
+>>> +    }
+>>> +
+>>> +    if (!nfc->oob_buf) {
+>>> +        nfc->oob_buf = kzalloc(new_oob_len, GFP_KERNEL | GFP_DMA);
+>>> +        if (!nfc->oob_buf) {
+>>> +            kfree(nfc->buffer);
+>>> +            nfc->buffer = NULL;
+>>> +            return -ENOMEM;
+>>> +        }
+>>> +        nfc->oob_buf_size = new_oob_len;
+>>> +    }
+>>> +
+>>> +    nfc->page_buf = nfc->buffer;
+>>> +
+>>> +    chip->ecc.write_page_raw = rk_nfc_write_page_raw;
+>>> +    chip->ecc.write_page = rk_nfc_write_page_hwecc;
+>>> +    chip->ecc.write_oob_raw = rk_nfc_write_oob;
+>>> +    chip->ecc.write_oob = rk_nfc_write_oob;
+>>> +
+>>> +    chip->ecc.read_page_raw = rk_nfc_read_page_raw;
+>>> +    chip->ecc.read_page = rk_nfc_read_page_hwecc;
+>>> +    chip->ecc.read_oob_raw = rk_nfc_read_oob;
+>>> +    chip->ecc.read_oob = rk_nfc_read_oob;
+>>> +
+>>> +    return 0;
+>>> +}
+> 
+> Thanks，
+> 
+> Yifeng
+> 
+> 
+
