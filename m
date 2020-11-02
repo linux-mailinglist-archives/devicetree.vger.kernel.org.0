@@ -2,222 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82C9A2A2EEB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 17:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2E62A2F9E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 17:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726559AbgKBQDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 11:03:16 -0500
-Received: from m42-4.mailgun.net ([69.72.42.4]:12153 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726638AbgKBQDQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 11:03:16 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1604332994; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=xNCnI8IEieWgYDa9EFAGk4BnGJ1SylWmAUPiSZMRsUc=; b=U+B2RULpEiEuM0TWuIodtKC0FM2gmCPNns39XLNruTVBqwTW67QhR0Mgm/qtv39KTMNRvQ5w
- +UDHyll0qLZ/YK084sVKs/1Z0h7A6bDGPXteMScV5NjgrV+DWO40lC60XsPNIahnCvmfyn+T
- M6extZCgf60nszU0d5QEiQzicrk=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 5fa02d94d981633da3206187 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 02 Nov 2020 16:02:28
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 83A00C433FE; Mon,  2 Nov 2020 16:02:28 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726938AbgKBQVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 11:21:19 -0500
+Received: from smtpo.poczta.interia.pl ([217.74.65.158]:42371 "EHLO
+        smtpo.poczta.interia.pl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726653AbgKBQVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 11:21:19 -0500
+X-Interia-R: Interia
+X-Interia-R-IP: 188.121.22.175
+X-Interia-R-Helo: <t480s.localdomain>
+Received: from t480s.localdomain (ipv4-188-121-22-175.net.internetunion.pl [188.121.22.175])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8AB5DC433C6;
-        Mon,  2 Nov 2020 16:02:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8AB5DC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
-        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-mmc\@vger.kernel.org" <linux-mmc@vger.kernel.org>
-Subject: Re: [PATCH 07/23] wfx: add bus_sdio.c
-References: <20201012104648.985256-1-Jerome.Pouiller@silabs.com>
-        <2628294.9EgBEFZmRI@pc-42> <20201014124334.lgx53qvtgkmfkepc@pali>
-        <2444203.ROLCPKctRj@pc-42>
-        <CAPDyKFqCn386r4ecLDnMQmxrAZCvU9r=-eY71UUNpXWNxKOz2g@mail.gmail.com>
-Date:   Mon, 02 Nov 2020 18:02:22 +0200
-In-Reply-To: <CAPDyKFqCn386r4ecLDnMQmxrAZCvU9r=-eY71UUNpXWNxKOz2g@mail.gmail.com>
-        (Ulf Hansson's message of "Fri, 16 Oct 2020 13:54:48 +0200")
-Message-ID: <87eelbpx0x.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
+        Mon,  2 Nov 2020 17:13:29 +0100 (CET)
+Date:   Mon, 2 Nov 2020 17:13:27 +0100
+From:   Slawomir Stepien <sst@poczta.fm>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 3/7] dt-bindings:iio:potentiometer:maxim,ds1803 move to
+ trivial devices.
+Message-ID: <20201102161327.GA524499@t480s.localdomain>
+References: <20201031182922.743153-1-jic23@kernel.org>
+ <20201031182922.743153-4-jic23@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201031182922.743153-4-jic23@kernel.org>
+X-Interia-Antivirus: OK
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
+        s=biztos; t=1604333610;
+        bh=OIF1bflcfVyHLkclBmZ065/HILvPFrrH1PZ51YuU04Q=;
+        h=X-Interia-R:X-Interia-R-IP:X-Interia-R-Helo:Date:From:To:Cc:
+         Subject:Message-ID:References:MIME-Version:Content-Type:
+         Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
+         X-Interia-Antivirus;
+        b=fIy+Nd9A41/9HLi+LXhIN4urMZfwtUwmkKHNZsCX/wtXzhYyiQoM2UcwQ6b194XNQ
+         NwaatdtNgXGjDssLzF1wMuovUiyuKTycRZ3HFEmnQ/8BKuiyOOh9KGsSmZalVOEb5K
+         qGbZ6L4n+wtYfhailMpeeAyGT4AchHirblmRGm0w=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ulf Hansson <ulf.hansson@linaro.org> writes:
+On paź 31, 2020 18:29, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> Simple binding where there is no obvious benefit in maintaining a
+> separate file.  Hence document in trivial-devices.yaml and drop
+> the txt file.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Slawomir Stepien <sst@poczta.fm>
 
-> On Thu, 15 Oct 2020 at 16:03, J=C3=A9r=C3=B4me Pouiller
-> <jerome.pouiller@silabs.com> wrote:
->>
->> On Wednesday 14 October 2020 14:43:34 CEST Pali Roh=C3=A1r wrote:
->> > On Wednesday 14 October 2020 13:52:15 J=C3=A9r=C3=B4me Pouiller wrote:
->> > > On Tuesday 13 October 2020 22:11:56 CEST Pali Roh=C3=A1r wrote:
->> > > > On Monday 12 October 2020 12:46:32 Jerome Pouiller wrote:
->> > > > > +#define SDIO_VENDOR_ID_SILABS        0x0000
->> > > > > +#define SDIO_DEVICE_ID_SILABS_WF200  0x1000
->> > > > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
->> > > > > +     { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS=
-_WF200) },
->> > > >
->> > > > Please move ids into common include file include/linux/mmc/sdio_id=
-s.h
->> > > > where are all SDIO ids. Now all drivers have ids defined in that f=
-ile.
->> > > >
->> > > > > +     // FIXME: ignore VID/PID and only rely on device tree
->> > > > > +     // { SDIO_DEVICE(SDIO_ANY_ID, SDIO_ANY_ID) },
->> > > >
->> > > > What is the reason for ignoring vendor and device ids?
->> > >
->> > > The device has a particularity, its VID/PID is 0000:1000 (as you can=
- see
->> > > above). This value is weird. The risk of collision with another devi=
-ce is
->> > > high.
->> >
->> > Those ids looks strange. You are from Silabs, can you check internally
->> > in Silabs if ids are really correct? And which sdio vendor id you in
->> > Silabs got assigned for your products?
->>
->> I confirm these ids are the ones burned in the WF200. We have to deal wi=
-th
->> that :( .
->
-> Yep. Unfortunately this isn't so uncommon when targeting the embedded
-> types of devices.
->
-> The good thing is, that we already have bindings allowing us to specify t=
-his.
->
->>
->>
->> > I know that sdio devices with multiple functions may have different sd=
-io
->> > vendor/device id particular function and in common CIS (function 0).
->> >
->> > Could not be a problem that on one place is vendor/device id correct a=
-nd
->> > on other place is that strange value?
->> >
->> > I have sent following patch (now part of upstream kernel) which exports
->> > these ids to userspace:
->> > https://lore.kernel.org/linux-mmc/20200527110858.17504-2-pali@kernel.o=
-rg/T/#u
->> >
->> > Also for debugging ids and information about sdio cards, I sent another
->> > patch which export additional data:
->> > https://lore.kernel.org/linux-mmc/20200727133837.19086-1-pali@kernel.o=
-rg/T/#u
->> >
->> > Could you try them and look at /sys/class/mmc_host/ attribute outputs?
->>
->> Here is:
->>
->>     # cd /sys/class/mmc_host/ && grep -r . mmc1/
->>     mmc1/power/runtime_suspended_time:0
->>     grep: mmc1/power/autosuspend_delay_ms: Input/output error
->>     mmc1/power/runtime_active_time:0
->>     mmc1/power/control:auto
->>     mmc1/power/runtime_status:unsupported
->>     mmc1/mmc1:0001/vendor:0x0000
->>     mmc1/mmc1:0001/rca:0x0001
->>     mmc1/mmc1:0001/device:0x1000
->>     mmc1/mmc1:0001/mmc1:0001:1/vendor:0x0000
->>     mmc1/mmc1:0001/mmc1:0001:1/device:0x1000
->>     grep: mmc1/mmc1:0001/mmc1:0001:1/info4: No data available
->>     mmc1/mmc1:0001/mmc1:0001:1/power/runtime_suspended_time:0
->>     grep: mmc1/mmc1:0001/mmc1:0001:1/power/autosuspend_delay_ms: Input/o=
-utput error
->>     mmc1/mmc1:0001/mmc1:0001:1/power/runtime_active_time:0
->>     mmc1/mmc1:0001/mmc1:0001:1/power/control:auto
->>     mmc1/mmc1:0001/mmc1:0001:1/power/runtime_status:unsupported
->>     mmc1/mmc1:0001/mmc1:0001:1/class:0x00
->>     grep: mmc1/mmc1:0001/mmc1:0001:1/info2: No data available
->>     mmc1/mmc1:0001/mmc1:0001:1/modalias:sdio:c00v0000d1000
->>     mmc1/mmc1:0001/mmc1:0001:1/revision:0.0
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_NAME=3Dmmc
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_FULLNAME=3D/soc/sdhci@7e300000/=
-mmc@1
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_COMPATIBLE_0=3Dsilabs,wfx-sdio
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:OF_COMPATIBLE_N=3D1
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:SDIO_CLASS=3D00
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:SDIO_ID=3D0000:1000
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:SDIO_REVISION=3D0.0
->>     mmc1/mmc1:0001/mmc1:0001:1/uevent:MODALIAS=3Dsdio:c00v0000d1000
->>     grep: mmc1/mmc1:0001/mmc1:0001:1/info3: No data available
->>     grep: mmc1/mmc1:0001/mmc1:0001:1/info1: No data available
->>     mmc1/mmc1:0001/ocr:0x00200000
->>     grep: mmc1/mmc1:0001/info4: No data available
->>     mmc1/mmc1:0001/power/runtime_suspended_time:0
->>     grep: mmc1/mmc1:0001/power/autosuspend_delay_ms: Input/output error
->>     mmc1/mmc1:0001/power/runtime_active_time:0
->>     mmc1/mmc1:0001/power/control:auto
->>     mmc1/mmc1:0001/power/runtime_status:unsupported
->>     grep: mmc1/mmc1:0001/info2: No data available
->>     mmc1/mmc1:0001/type:SDIO
->>     mmc1/mmc1:0001/revision:0.0
->>     mmc1/mmc1:0001/uevent:MMC_TYPE=3DSDIO
->>     mmc1/mmc1:0001/uevent:SDIO_ID=3D0000:1000
->>     mmc1/mmc1:0001/uevent:SDIO_REVISION=3D0.0
->>     grep: mmc1/mmc1:0001/info3: No data available
->>     grep: mmc1/mmc1:0001/info1: No data available
->>
->>
->
-> Please have a look at the
-> Documentation/devicetree/bindings/mmc/mmc-controller.yaml, there you
-> find that from a child node of the mmc host's node, we can specify an
-> embedded SDIO functional device.
->
-> In sdio_add_func(), which calls sdio_set_of_node() - we assign the
-> func->dev.of_node its corresponding child node for the SDIO func.
-> Allowing the sdio functional driver to be matched with the SDIO func
-> device.
->
-> Perhaps what is missing, is that we may want to avoid probing an
-> in-correct sdio driver, based upon buggy SDIO ids. I don't think we
-> take some actions in the mmc core to prevent this, but maybe it's not
-> a big problem anyway.
->
-> When it comes to documenting the buggy SDIO ids, please add some
-> information about this in the common SDIO headers. It's nice to have a
-> that information, if any issue comes up later on.
+Reviewed-by: Slawomir Stepien <sst@poczta.fm>
 
-And if there's some special setup (DT etc) needed to get the wireless
-driver working that should be documented in the driver side as well. The
-expectation is that an upstream driver is just plug and play, and if
-it's not there should be clear documentation how to enable the driver.
+> ---
+>  .../bindings/iio/potentiometer/ds1803.txt     | 21 -------------------
+>  .../devicetree/bindings/trivial-devices.yaml  |  6 ++++++
+>  2 files changed, 6 insertions(+), 21 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/ds1803.txt b/Documentation/devicetree/bindings/iio/potentiometer/ds1803.txt
+> deleted file mode 100644
+> index df77bf552656..000000000000
+> --- a/Documentation/devicetree/bindings/iio/potentiometer/ds1803.txt
+> +++ /dev/null
+> @@ -1,21 +0,0 @@
+> -* Maxim Integrated DS1803 digital potentiometer driver
+> -
+> -The node for this driver must be a child node of a I2C controller, hence
+> -all mandatory properties for your controller must be specified. See directory:
+> -
+> -        Documentation/devicetree/bindings/i2c
+> -
+> -for more details.
+> -
+> -Required properties:
+> -	- compatible:  	Must be one of the following, depending on the
+> -			model:
+> -			"maxim,ds1803-010",
+> -			"maxim,ds1803-050",
+> -			"maxim,ds1803-100"
+> -
+> -Example:
+> -ds1803: ds1803@1 {
+> -	reg = <0x28>;
+> -	compatible = "maxim,ds1803-010";
+> -};
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 10f0afd44684..695b1e379238 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -110,6 +110,12 @@ properties:
+>            - isil,isl68137
+>              # 5 Bit Programmable, Pulse-Width Modulator
+>            - maxim,ds1050
+> +            # 10 kOhm digital potentiometer with I2C interface
+> +          - maxim,ds1803-010
+> +            # 50 kOhm digital potentiometer with I2C interface
+> +          - maxim,ds1803-050
+> +            # 100 kOhm digital potentiometer with I2C interface
+> +          - maxim,ds1803-100
+>              # Low-Power, 4-/12-Channel, 2-Wire Serial, 12-Bit ADCs
+>            - maxim,max1237
+>              # PECI-to-I2C translator for PECI-to-SMBus/I2C protocol conversion
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+-- 
+Slawomir Stepien
