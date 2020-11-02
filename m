@@ -2,204 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 049622A28E9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 12:18:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 827662A28EF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 12:19:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728506AbgKBLSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 06:18:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46934 "EHLO
+        id S1728414AbgKBLT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 06:19:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728317AbgKBLSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 06:18:23 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A6DC0617A6;
-        Mon,  2 Nov 2020 03:18:22 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id 62so3226923pgg.12;
-        Mon, 02 Nov 2020 03:18:22 -0800 (PST)
+        with ESMTP id S1728253AbgKBLT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 06:19:57 -0500
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3FEC0617A6;
+        Mon,  2 Nov 2020 03:19:55 -0800 (PST)
+Received: by mail-io1-xd43.google.com with SMTP id o11so3258984ioo.11;
+        Mon, 02 Nov 2020 03:19:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+MIXEkaPvd+9Nl/3v8IX3DE8ILYKxiL+WZEl2aSsPzQ=;
-        b=B+jKXi4BJFhu7JS7Gsd0UtDcbO4S3DA93rB+zwxobWwQBysTJDYrh76qIOE0oHKWnB
-         Q2MTH0+CIiUaMSmw/I7MPjWidchn3evd+YYAPsUxH2wNGcCuUJaXE1zm+nYaEASHi0et
-         gKsSdyAT8yDRKEMVxTZNn6FI53kNZJ+Lr1HbPwvVfkXlEzW/pMR91I4Fe/D2lZIOayhq
-         kb31fvfnb4WKoZ0S1Fxr1A4pLd5iZ8ijDdDckMiw7gq7qFL1OeO+MnGyCAlEv3g/oaPn
-         Dnr2vHGfqyluQG4G1l9oT1mZIXxui1K/O8xQ/7Y2WNLqdvU2GgJQtlflm8mViULvAT7+
-         0b3Q==
+         :cc:content-transfer-encoding;
+        bh=6jGIEcHWVxAn3fg0VUHHhYb4aY1F4L9zbPIcUYHsHdk=;
+        b=rBX5rTWOyGpQ2QFTArzJXmF9gLj+2qHhpHtq5IccV7K+4i7zEXERiFzL57WJY+4iQX
+         5w0fUre1grj24vaBMH4+zK7WtUSE8xQPv4kQQ4ei/rRCO4LldWrvf/9hKf42vlAGlXh1
+         S6rGwf6r7WPzLzC69ZwHgXnKZcLHvQZ4G6qYWpkNYPNRzPt/Ydho3dPSUhMcYe66Yvos
+         GRyLWQhkTcYclNim1YmzvP6WdrUg5vLj8RXCXeaDuKrMbcSbECG9iMPKJ8Y950kSDDeS
+         4jzMIKZLYmwqonUIn4A+5TMDkyxlRfD/Kq7j7k7iNGtH7nQ9mJKXt4IuKLpdAzDGkIAk
+         tNEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+MIXEkaPvd+9Nl/3v8IX3DE8ILYKxiL+WZEl2aSsPzQ=;
-        b=fDWAizz3mvYbHmf4B7eCqgWg+U6CUuLBUve21EksqJeSeTWzxwBrpwCa+2byemspII
-         jEynMMI+5mIu2jPgtT/raFIn4kfHF9DzNKg24tFhBfhg8RDetec/Y/+nnHPx6rZfIek7
-         cfkKgd0cYeei+Qsm+iHXNJcK1QjIk0miHPeruOdGmfWfajBn8YZ9hAhFWOOu9zvhOsVc
-         1ZpkPI4JOpVqZQAjQbCxPupwnYcNI0kpp3XB/E3JI/y+c/U7sqODNPFUb/kAMTPAs3rh
-         9nxwOyvEf983L9yWMei1EQWDKQVcE7D/szBNKDG+5YZaB+7v1qWxZ0wWrTNYOVD4eUzG
-         hZ1Q==
-X-Gm-Message-State: AOAM5334cv4RU/PkFtXFQ66Usf6+tFjCg6gqmQ1OzJk9pNks6XZFd+IE
-        UFgVvdMczAEhga84HwzQauuAnKzd3dObcJvM4kc=
-X-Google-Smtp-Source: ABdhPJzy8FgUUD7Bk78EG0I/HO29QfuSMPIYsqMmX0zaRrJfN//t8govXn+wNFyKhlCZU1bi/05m/yBmAu9l9U3QYBY=
-X-Received: by 2002:a17:90a:fb92:: with SMTP id cp18mr17558180pjb.228.1604315901720;
- Mon, 02 Nov 2020 03:18:21 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6jGIEcHWVxAn3fg0VUHHhYb4aY1F4L9zbPIcUYHsHdk=;
+        b=a3On//kst+1WTSBntiJRg3Cap9qazcudokWEqkRjBM4Ajp3joQYAYYblo8pvesk8xj
+         qMkKaxVEZGHFNGMUYRTKGiu8rMqMMTQV1HJzWul7CSSKIJ1aYaQDT1CYz4/HMUUu+w25
+         g9AtjvXtzn0xkOd69O88xXkdVjef9R9z/jjAPCnz5b56xuzhYgmRbXERoTUx6l6HrOmo
+         U8xex6HAZYrVIlS4Jewt4WjKwmwysbEW9+U6/k+Oyqw18nXyH3PYw0ujxYQF3cw+oey0
+         DoExWSN94iwHg9klfZr3pLPoyBxihmVCtrCa3Nxse1iTxnepssHL0VNwnTlz17zWlNln
+         BmqA==
+X-Gm-Message-State: AOAM5334uIxvF8ryfkfvsyiyyqigtjrG7SsCwFy58eUY3Y/KoTWbka23
+        lempcfsB0AQTjoVQRoJbJiIHgLBivGAl5J1GrcRhQyeXRxFLzg==
+X-Google-Smtp-Source: ABdhPJx/Qx/ZXs30Y9m8IaogsMishx8Ib+4C2FwhUAGSo+27iaGj5JH/Ee9nIxebt9ovk2o2pSt6QQWjg3AgHAMVA3A=
+X-Received: by 2002:a05:6602:164b:: with SMTP id y11mr3299604iow.36.1604315995103;
+ Mon, 02 Nov 2020 03:19:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20201025005916.64747-1-luka.kovacic@sartura.hr>
- <20201025005916.64747-3-luka.kovacic@sartura.hr> <CAHp75Vd81cK+nhJ1fxgRC6cEKnBELVA9UtT8VPvq7nbHEdhecQ@mail.gmail.com>
- <CADZsf3ZtQyEK6diz6W=6tZz+=Toyj_XYU33At0JiLutsuRrizA@mail.gmail.com>
-In-Reply-To: <CADZsf3ZtQyEK6diz6W=6tZz+=Toyj_XYU33At0JiLutsuRrizA@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 2 Nov 2020 13:19:10 +0200
-Message-ID: <CAHp75VdiLg6br=nztormkiXcS5CZVDxcG8i0mUv2X799zpYq5A@mail.gmail.com>
-Subject: Re: [PATCH v7 2/6] drivers: mfd: Add a driver for IEI WT61P803 PUZZLE MCU
-To:     Luka Kovacic <luka.kovacic@sartura.hr>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+References: <20200921102731.747736-1-peron.clem@gmail.com> <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan>
+ <CAJiuCcfz9A_Vmzq=s3LK2kGB_1tZPkC9Ux+Brdocp9py0fovAg@mail.gmail.com>
+ <59286578.E0qSRroNqr@kista> <20200928084308.eipnvlfqe3c5lfmg@gilmour.lan>
+ <CAJiuCceHXr_5PvG-FW+hRNV7Q33hGrp8kLbO0EgfqqBxF7wbqQ@mail.gmail.com>
+ <20200930101915.sultshdvxgu5u2rs@gilmour.lan> <CAJiuCcdMbMQGoBG-SmgQ5=25v3AB+kh0H8ZdX7rFMHAXQ2A=QA@mail.gmail.com>
+ <20201102102117.hp6v5nnkhzp3bful@gilmour.lan>
+In-Reply-To: <20201102102117.hp6v5nnkhzp3bful@gilmour.lan>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Mon, 2 Nov 2020 12:19:44 +0100
+Message-ID: <CAJiuCceXBBWLCg6pgH389m8itauHkfcvVoe-EgnZxnQx3xrzMg@mail.gmail.com>
+Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Mark Brown <broonie@kernel.org>,
+        =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 1, 2020 at 3:22 PM Luka Kovacic <luka.kovacic@sartura.hr> wrote:
-> On Mon, Oct 26, 2020 at 11:54 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Sun, Oct 25, 2020 at 3:59 AM Luka Kovacic <luka.kovacic@sartura.hr> wrote:
+Hi Maxime,
 
-...
-
-> > > +#include <linux/of_device.h>
-> >
-> > Don't see a user of this, but of_platform.h seems to be missed.
+On Mon, 2 Nov 2020 at 11:21, Maxime Ripard <maxime@cerno.tech> wrote:
 >
-> Okay, I'll add it.
-> I'm still using devm_of_platform_populate() in iei_wt61p803_puzzle_probe().
-
-Yes, and that's why I have mentioned of_platform.h above.
-
-...
-
-> > > +       struct kobject *kobj;
+> On Sun, Nov 01, 2020 at 04:27:05PM +0100, Cl=C3=A9ment P=C3=A9ron wrote:
+> > On Wed, 30 Sep 2020 at 12:19, Maxime Ripard <maxime@cerno.tech> wrote:
+> > >
+> > > On Mon, Sep 28, 2020 at 04:27:42PM +0200, Cl=C3=A9ment P=C3=A9ron wro=
+te:
+> > > > On Mon, 28 Sep 2020 at 10:43, Maxime Ripard <maxime@cerno.tech> wro=
+te:
+> > > > >
+> > > > > On Mon, Sep 21, 2020 at 08:37:09PM +0200, Jernej =C5=A0krabec wro=
+te:
+> > > > > > Dne ponedeljek, 21. september 2020 ob 19:23:49 CEST je Cl=C3=A9=
+ment P=C3=A9ron
+> > > > > > napisal(a):
+> > > > > > > Hi Maxime,
+> > > > > > >
+> > > > > > > On Mon, 21 Sep 2020 at 15:59, Maxime Ripard <maxime@cerno.tec=
+h> wrote:
+> > > > > > > >
+> > > > > > > > On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=C3=A9ment P=C3=
+=A9ron wrote:
+> > > > > > > > > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > > > > > > >
+> > > > > > > > > Add a simple-soundcard to link audio between HDMI and I2S=
+.
+> > > > > > > > >
+> > > > > > > > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > > > > > > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > > > > > > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.=
+com>
+> > > > > > > > > ---
+> > > > > > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++=
+++++++++++++++
+> > > > > > > > >  1 file changed, 33 insertions(+)
+> > > > > > > > >
+> > > > > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi=
+ b/arch/arm64/
+> > > > > > boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > > > > index 28c77d6872f6..a8853ee7885a 100644
+> > > > > > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > > > > @@ -67,6 +67,25 @@ de: display-engine {
+> > > > > > > > >               status =3D "disabled";
+> > > > > > > > >       };
+> > > > > > > > >
+> > > > > > > > > +     hdmi_sound: hdmi-sound {
+> > > > > > > > > +             compatible =3D "simple-audio-card";
+> > > > > > > > > +             simple-audio-card,format =3D "i2s";
+> > > > > > > > > +             simple-audio-card,name =3D "sun50i-h6-hdmi"=
+;
+> > > > > > > > > +             simple-audio-card,mclk-fs =3D <128>;
+> > > > > > > > > +             simple-audio-card,frame-inversion;
+> > > > > > > > > +             status =3D "disabled";
+> > > > > > > > > +
+> > > > > > > > > +             simple-audio-card,codec {
+> > > > > > > > > +                     sound-dai =3D <&hdmi>;
+> > > > > > > > > +             };
+> > > > > > > > > +
+> > > > > > > > > +             simple-audio-card,cpu {
+> > > > > > > > > +                     sound-dai =3D <&i2s1>;
+> > > > > > > > > +                     dai-tdm-slot-num =3D <2>;
+> > > > > > > > > +                     dai-tdm-slot-width =3D <32>;
+> > > > > > > >
+> > > > > > > > It looks weird to have both some TDM setup here, and yet th=
+e format in
+> > > > > > > > i2s?
 > >
-> > It's quite strange you need this,
->
-> This is used in iei_wt61p803_puzzle_sysfs_create() and
-> iei_wt61p803_puzzle_sysfs_remove() to clean up afterwards.
-
-I didn't get why you need this in the first place.
-
-...
-
-> > > +       /* Return the number of processed bytes if function returns error */
-> > > +       if (ret < 0)
 > >
-> > > +               return (int)size;
+> > I was looking at sound documentation regarding how I can properly
+> > write the multi-lane I2S support.
+> > And I think we made a wrong interpretation here.
 > >
-> > Will be interesting result, maybe you wanted other way around?
->
-> That is intentional.
-> A single frame is concatenated in the iei_wt61p803_puzzle_process_resp()
-> function. In case we find ourselves in an unknown state, an error is
-> returned there.
->
-> We want to discard the remaining incoming data, since the frame this
-> data belongs
-> to is broken anyway.
-
-Elaborate in the comment.
-
-> > > +       return ret;
-
-...
-
-> > > +err:
+> > TDM slot-num and slot-width are not referencing the format called PCM
+> > or DSP_A / DSP_B.
+> > But really the physical time division representation of a format.
 > >
-> > err_unlock: ?
->
-> I use goto only in case there is also a mutex to unlock, so I don't see why
-> to change this.
-
-The comment was about clarification of what is done at this label.
-
-> > > +       mutex_unlock(&mcu->lock);
-> > > +       return ret;
-
-...
-
-> > > +       /* Response format:
-> > > +        * (IDX RESPONSE)
-> > > +        * 0    @
-> > > +        * 1    O
-> > > +        * 2    S
-> > > +        * 3    S
-> > > +        * ...
-> > > +        * 5    AC Recovery Status Flag
-> > > +        * ...
-> > > +        * 10   Power Loss Recovery
-> > > +        * ...
-> > > +        * 19   Power Status (system power on method)
-> > > +        * 20   XOR checksum
-> > > +        */
+> > For example Amlogic do the following representation for Multi-lane I2S:
 > >
-> > Shouldn't be rather defined data structure for response?
->
-> Every response, apart from the standard headers and a checksum
-> at the end is completely different and I don't see a good way to
-> standardize that in some other way.
-
-And that's my point. Provide data structures for all responses you are
-taking care of.
-It will be way better documentation and understanding of this IPC.
-
-...
-
-> > > +               if (!(resp_buf[0] == IEI_WT61P803_PUZZLE_CMD_HEADER_START &&
-> > > +                     resp_buf[1] == IEI_WT61P803_PUZZLE_CMD_RESPONSE_OK &&
-> > > +                     resp_buf[2] == IEI_WT61P803_PUZZLE_CHECKSUM_RESPONSE_OK)) {
-> > > +                       ret = -EPROTO;
-> > > +                       goto err;
-> > > +               }
+> > dai-link-7 {
+> >     sound-dai =3D <&tdmif_b>;
+> >     dai-format =3D "i2s";
+> >     dai-tdm-slot-tx-mask-0 =3D <1 1>;
+> >     dai-tdm-slot-tx-mask-1 =3D <1 1>;
+> >     dai-tdm-slot-tx-mask-2 =3D <1 1>;
+> >     dai-tdm-slot-tx-mask-3 =3D <1 1>;
+> >     mclk-fs =3D <256>;
 > >
-> > I think it would be better to define data structure for replies and
-> > then check would be as simple as memcmp().
->
-> I'd keep this as is, because the replies are different a lot of the times.
-> Especially when the reply isn't just an ACK.
-
-How do you know the type of the reply? Can't you provide a data
-structure which will have necessary fields to recognize this?
-
-...
-
-> > > +       power_loss_recovery_cmd[3] = cmd_buf[0];
+> >     codec {
+> >         sound-dai =3D <&tohdmitx TOHDMITX_I2S_IN_B>;
+> >     };
+> > };
 > >
-> > One decimal (most significant) digit?! Isn't it a bit ambiguous?
+> > So i think for 2 channels HDMI using the simple sound card with TDM
+> > property is not a hack but the correct way to represent it.
+> >
+> > Do you agree ?
+> >
+> > If so, can I resend the simple sound card for HDMI audio ?
 >
-> The power_loss_recovery_action can only have a value of 0 - 4.
-> My understanding is that if I give snprintf a buffer of size 1, it will
-> truncate the one character to make space for NUL.
+> I mean, it's not less weird :)
+>
+> And like I said before we still have the option to write a card driver
+> ourselves that doesn't take anything from the DT beside the phandle of
+> the i2s controller and the HDMI controller.
+>
+> If it's a fixed configuration, I'm not sure why we bother trying to make
+> it dynamic in the DT.
 
-Why to bother with snprintf()? hex_asc[] would be sufficient. But my
-point that the code is fragile. If it ever gets 15, you will get 1.
+Ok I see what you mean here, as the link is hardcoded in the SoC it's
+a better representation to hardcode it in the sound card driver than
+having it dynamically represented in each board device-tree.
 
-...
+Sounds correct for me,
+Thanks :)
 
-> I can reduce this, but I'd just like to log the baud rate and the
-> firmware build info.
-
-> These two could be useful in a kernel log, if something doesn't work.
-
-FW build info is definitely good to have, but don't you have other
-means to retrieve baud rate?
-
--- 
-With Best Regards,
-Andy Shevchenko
+>
+> Maxime
