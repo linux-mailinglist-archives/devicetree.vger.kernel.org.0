@@ -2,203 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B7D32A2619
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 09:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3A3B2A264A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 09:41:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728232AbgKBI3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 03:29:00 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:40116 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728231AbgKBI27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 03:28:59 -0500
-Received: by mail-wm1-f65.google.com with SMTP id k18so8587916wmj.5;
-        Mon, 02 Nov 2020 00:28:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hlHTf3Iy5UoM0K8uLC/hLMz2YcBjX/2Xy68U5kPZPeU=;
-        b=URKmBJSW2yeXhz6kb4b7srNiXhwNM6Gp+vyGB8oqAsqfO/SpakNIprnwqhOHSOyqpM
-         DVUKHJEkayS9FOcyohx+R7FREhGtVZeFgPi1EzWQZ/ZJrZ6A/YuHglvaeJ6q4kCGn3ba
-         5euk6WuSW+4hf4kq8mqthroFgkf/WjzCoADJ77+MeHWbQHIQfF0X+8DR09/tBt0sN0KL
-         W2AykSnXHC2ju5yirugmDnfLEOJbyhRRIOBvv1x4yAXYdKhNqCCYPshQZKxPjoMFzYcE
-         mHtBOgK3Nn5Egvxk7liDVSi7NbE0cdHcXl0uHMTDgQRhJXaiUPQVfWwmehBbtO4hVyXC
-         wrOg==
-X-Gm-Message-State: AOAM532Z8Qvr2audJPYJMUwX+ozhmYnmfR6aZa3B+kzZY56P7Rj9eupC
-        Yuy9noxR0UKsk5kCLNtUikg=
-X-Google-Smtp-Source: ABdhPJyScERyc9CX7goUu5qPR/vKFptB9tCjM0pnlV5B0fPdzLPBqMsThFmlV+WCVd7m1QvU60ykwg==
-X-Received: by 2002:a1c:b346:: with SMTP id c67mr16146659wmf.105.1604305736162;
-        Mon, 02 Nov 2020 00:28:56 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id u3sm21488204wrq.19.2020.11.02.00.28.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 00:28:54 -0800 (PST)
-Date:   Mon, 2 Nov 2020 09:28:53 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mkl@pengutronix.de
-Subject: Re: [PATCH V2] arm64: dts: imx8mp-evk: add CAN support
-Message-ID: <20201102082853.GB6152@kozik-lap>
-References: <20201102021634.6480-1-qiangqing.zhang@nxp.com>
+        id S1728132AbgKBIlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 03:41:02 -0500
+Received: from foss.arm.com ([217.140.110.172]:55932 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728118AbgKBIlC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 03:41:02 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C524101E;
+        Mon,  2 Nov 2020 00:41:01 -0800 (PST)
+Received: from [10.57.13.99] (unknown [10.57.13.99])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 71DE23F718;
+        Mon,  2 Nov 2020 00:40:58 -0800 (PST)
+Subject: Re: [PATCH 1/4] dt-bindings: opp: Introduce opp-sustainable bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        vireshk@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
+        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com
+References: <20201028140847.1018-1-lukasz.luba@arm.com>
+ <20201028140847.1018-2-lukasz.luba@arm.com> <20201030193427.GA4186428@bogus>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <569a07c0-be6b-7ffe-2920-accea1f932f0@arm.com>
+Date:   Mon, 2 Nov 2020 08:40:57 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201102021634.6480-1-qiangqing.zhang@nxp.com>
+In-Reply-To: <20201030193427.GA4186428@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 02, 2020 at 10:16:34AM +0800, Joakim Zhang wrote:
-> Add CAN device node and pinctrl on i.MX8MP evk board.
+Hi Rob,
+
+On 10/30/20 7:34 PM, Rob Herring wrote:
+> On Wed, Oct 28, 2020 at 02:08:44PM +0000, Lukasz Luba wrote:
+>> Add opp-sustainable as an additional property in the OPP node to describe
+>> the sustainable performance level of the device. This will help to
+>> estimate the sustainable performance of the whole system.
+>>
+>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+>> ---
+>>   Documentation/devicetree/bindings/opp/opp.txt | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+>> index 9847dfeeffcb..cd01028de305 100644
+>> --- a/Documentation/devicetree/bindings/opp/opp.txt
+>> +++ b/Documentation/devicetree/bindings/opp/opp.txt
+>> @@ -154,6 +154,10 @@ Optional properties:
+>>   - opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
+>>     in the table have this, the OPP with highest opp-hz will be used.
+>>   
+>> +- opp-sustainable: Marks the OPP as sustainable. This property can be used for
+>> +  estimating sustainable performance of the whole system. If multiple OPPs in
+>> +  the table have this, the OPP with highest opp-hz will be used.
+>> +
 > 
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> ---
-> ChangeLogs:
-> V1->V2:
-> 	* add missing space before '=',
-> 	fsl,clk-source= /bits/ 8 <0> -> fsl,clk-source = /bits/ 8 <0>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 62 ++++++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi    | 30 ++++++++++
->  2 files changed, 92 insertions(+)
+> Isn't this just the inverse of the turbo? or boost? flag we already
+> have?
+
+True, it could be possible to use those flags. Then a function which
+returns one OPP below, would be 'sustainable'. I've already
+suggested to skip binding and only have get/set functions for OPP
+framework to mark 'sustainable' level, but Viresh is against.
+We have discussed this new opp sustainable with Viresh and since it
+would be only used by IPA but the definition is a bit blurry,
+we decided to drop this series. Maybe in future when there will be
+another user, we will come back to this.
+I am going to use Energy Model and mark the em_perf_state as sustained.
+
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> index 908b92bb4dcd..b10dce8767a4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -33,6 +33,28 @@
->  		      <0x1 0x00000000 0 0xc0000000>;
->  	};
->  
-> +	reg_can1_stby: regulator-can1-stby {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "can1-stby";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_flexcan1_reg>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio5 5 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_can2_stby: regulator-can2-stby {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "can2-stby";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_flexcan2_reg>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->  	reg_usdhc2_vmmc: regulator-usdhc2 {
->  		compatible = "regulator-fixed";
->  		pinctrl-names = "default";
-> @@ -45,6 +67,20 @@
->  	};
->  };
->  
-> +&flexcan1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +	xceiver-supply = <&reg_can1_stby>;
-> +	status = "okay";
-> +};
-> +
-> +&flexcan2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan2>;
-> +	xceiver-supply = <&reg_can2_stby>;
-> +	status = "disabled";/* can2 pin conflict with pdm */
-> +};
-> +
->  &fec {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_fec>;
-> @@ -144,6 +180,32 @@
->  		>;
->  	};
->  
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SPDIF_RX__CAN1_RX          0x154
-> +			MX8MP_IOMUXC_SPDIF_TX__CAN1_TX          0x154
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI5_MCLK__CAN2_RX         0x154
-> +			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX         0x154
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan1_reg: flexcan1reggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05  0x154   /* CAN1_STBY */
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2_reg: flexcan2reggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI2_MCLK__GPIO4_IO27      0x154   /* CAN2_STBY */
-> +		>;
-> +	};
-> +
->  	pinctrl_gpio_led: gpioledgrp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x19
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 479312293036..ecccfbb4f5ad 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -552,6 +552,36 @@
->  				status = "disabled";
->  			};
->  
-> +			flexcan1: can@308c0000 {
-> +				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
+> Couldn't this be learned? I ran at this frequency and then overheated.
+> That could be dependent on ambient temperatures or dust build up on
+> fans/heatsink.
 
-Undocumented compatible in Documentation/devicetree/bindings/net/can/fsl-flexcan.txt
+Yes it could be learned. IPA tries to do that for different workloads,
+but it needs some starting conditions (coefficients and sustainable
+power) to converge in short time. Sustainable power is currently
+estimated based on lowest OPP. With that new 'sustainable' flag,
+it would be much easier for IPA to converge.
 
-Best regards,
-Krzysztof
+Regards,
+Lukasz
 
-> +				reg = <0x308c0000 0x10000>;
-> +				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
-> +					 <&clk IMX8MP_CLK_CAN1_ROOT>;
-> +				clock-names = "ipg", "per";
-> +				assigned-clocks = <&clk IMX8MP_CLK_CAN1>;
-> +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
-> +				assigned-clock-rates = <40000000>;
-> +				fsl,clk-source = /bits/ 8 <0>;
-> +				fsl,stop-mode = <&gpr 0x10 4>;
-> +				status = "disabled";
-> +			};
-> +
-> +			flexcan2: can@308d0000 {
-> +				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
-> +				reg = <0x308d0000 0x10000>;
-> +				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
-> +					 <&clk IMX8MP_CLK_CAN2_ROOT>;
-> +				clock-names = "ipg", "per";
-> +				assigned-clocks = <&clk IMX8MP_CLK_CAN2>;
-> +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
-> +				assigned-clock-rates = <40000000>;
-> +				fsl,clk-source = /bits/ 8 <0>;
-> +				fsl,stop-mode = <&gpr 0x10 5>;
-> +				status = "disabled";
-> +			};
-> +
->  			crypto: crypto@30900000 {
->  				compatible = "fsl,sec-v4.0";
->  				#address-cells = <1>;
-> -- 
-> 2.17.1
+> 
+> Rob
 > 
