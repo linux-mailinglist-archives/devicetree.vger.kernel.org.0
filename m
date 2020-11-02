@@ -2,145 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA4B12A2AB4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 13:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B57F22A2ADB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 13:41:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728789AbgKBM34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 07:29:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58404 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728498AbgKBM34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 07:29:56 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F2F7C061A04
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 04:29:56 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id e2so9324049wme.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 04:29:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=4ILeNdi6oZHwCJ6iUbV3quJceEqtA1JSpxIiTg6qDXc=;
-        b=G1YSAkrhaSYGxB3ZzXLFbutEnLIugxjFS/MnHvwogKJ/2z9t6lYistGV8bYmpqP6tr
-         bblR8mBLvTeJ1fhCVf6rwZPdXoxj0ggzYVdS/Boub9l/Km3XhxqMjTeRGteaeIHEtb3y
-         5jgrMQkRG7MiScwoe8GTo5azdVwCfrm8jFEXmgReGPv3Ml7rzoBYDu36ZD8wM0NkUniP
-         4DiPp1ycgkolSM8Mkibl4pMVti5RxZN+FpPQgCUCmECtLqib47VmUFugMi+22C6rHGuj
-         a3IDhz7wmWyxQVj7oDiyBIav9n4OAS+RiRevgZv23EvNPhBofheeruXXF74Sp8fz0+ri
-         aj0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=4ILeNdi6oZHwCJ6iUbV3quJceEqtA1JSpxIiTg6qDXc=;
-        b=gx8JlU7oWR1Y4R4rpTH9UQVvb5Sz1juy/RmgK5fXGIF5Ia7YmdWbf85aaz+ZZdu1Qv
-         NWNBjrEuhcXB31RKEMcVKyg7T3tJLkgEg+esdPRXZago16Tb5xnOZffcb9L0ez8ZV0zJ
-         B9Q1GlIywA/C38HGGirpLllgR83SbQ2axDRuUGugR0gfbJcFhOi7qzhvElfC0VdxYRYd
-         5G+/NG0pTjp9C5jTW0oVCy6z8R4CyIWwbxYgqauQwCwdzgWiNLL+zeFxFBC2eI8mcqfF
-         dQE3z0b9T5yPqIAG7DepZyFCpKHesrC4dsjJaPGx1LbjKngtmIF0YBXE6WIqKWpfOi6b
-         eAsQ==
-X-Gm-Message-State: AOAM532GuYYBdWAYuQXh+KxiHb2VO/eoYe+W4C4NuIpU21dfar3HilgZ
-        +YsqHyQCQkzyU/P6YJHzkT27+Q==
-X-Google-Smtp-Source: ABdhPJwUIfYXvZE9GcYuAEbLNWA2EEvj2uHM3TWkdRQSTGZfJMk9FgilHnSAFA8PxIJijlcW1NsSSw==
-X-Received: by 2002:a7b:c015:: with SMTP id c21mr17247812wmb.22.1604320194705;
-        Mon, 02 Nov 2020 04:29:54 -0800 (PST)
-Received: from dell ([91.110.221.242])
-        by smtp.gmail.com with ESMTPSA id p13sm21671382wrt.73.2020.11.02.04.29.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 04:29:54 -0800 (PST)
-Date:   Mon, 2 Nov 2020 12:29:52 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Codrin.Ciubotariu@microchip.com
-Cc:     Nicolas.Ferre@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        richard.genoud@gmail.com, alexandre.belloni@bootlin.com,
-        Ludovic.Desroches@microchip.com
-Subject: Re: [PATCH] ARM: dts: at91: add serial MFD sub-node for usart
-Message-ID: <20201102122952.GB4488@dell>
-References: <20201030110702.886638-1-codrin.ciubotariu@microchip.com>
- <b054ce5c-58fd-dd86-2cb6-1e1f06a0899e@microchip.com>
- <20201102090122.GF4127@dell>
- <780303c7-2c32-f2e1-c9ce-1e2ee6bf0533@microchip.com>
+        id S1728687AbgKBMk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 07:40:59 -0500
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:56017 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728288AbgKBMk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 07:40:59 -0500
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201102124047euoutp01a66c822fb79c86748d41499f595b1c89~DsU_RLY4m2184521845euoutp01G
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 12:40:47 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201102124047euoutp01a66c822fb79c86748d41499f595b1c89~DsU_RLY4m2184521845euoutp01G
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604320847;
+        bh=bWbmHJ8Du94K7fAcUqgi6AZ5cA8+sLowwwXH4NkGAxM=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=GnVqcu/nFACV2HlqwVURVZNxUhaTWOO5aSumoYAmTFoOUpoyJBB1LxbywKVzsGB+5
+         lMLzjL+Is4vbKTrz0u4U9Qvx0poP/ulEPmpQOMBJiVj5mh2QI4hv1lu3HTPBbvC6s8
+         hAfYPbJLuKTByn52zmljRmFcK+9JOj856CURf2Vo=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20201102124046eucas1p1b9b691bb50e03c6c36d273e1f8a2b2d1~DsU9XoFHn2519725197eucas1p1i;
+        Mon,  2 Nov 2020 12:40:46 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id EC.B1.05997.E4EFF9F5; Mon,  2
+        Nov 2020 12:40:46 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201102124046eucas1p15cd9e163dbab72cdc639f5e71d8b6a18~DsU83Ov3w2548025480eucas1p1o;
+        Mon,  2 Nov 2020 12:40:46 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201102124046eusmtrp1d756f9fc75e6d18bf544860bd2a2610d~DsU82a0VW0712107121eusmtrp1d;
+        Mon,  2 Nov 2020 12:40:46 +0000 (GMT)
+X-AuditID: cbfec7f4-677ff7000000176d-77-5f9ffe4e1cde
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 55.76.06017.D4EFF9F5; Mon,  2
+        Nov 2020 12:40:45 +0000 (GMT)
+Received: from [106.210.123.115] (unknown [106.210.123.115]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20201102124044eusmtip29d092f9ae4a62c942b57db01db98d466~DsU73NJjF2594525945eusmtip2q;
+        Mon,  2 Nov 2020 12:40:44 +0000 (GMT)
+Subject: Re: [PATCH v7 6/6] drm: exynos: mixer: Add interconnect support
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     georgi.djakov@linaro.org, cw00.choi@samsung.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        a.swigon@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <f8f4dce0-9da2-30d6-32bf-4b6ec9f11f5e@samsung.com>
+Date:   Mon, 2 Nov 2020 13:40:44 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <780303c7-2c32-f2e1-c9ce-1e2ee6bf0533@microchip.com>
+In-Reply-To: <20201031124717.GE9399@kozik-lap>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTYRjG+3YuO46OHafpyxKDUwQVapbQCaUbQQuirP+6aSc9qKhTdubK
+        EFqUXczFMkhbl2lZ2ULUY1hpy7U0CdERXdXVoFZRYRc2E8s0j6fI/37v877v9z4PfBSmfUzo
+        qFyDSTAa+HyW1OCtD0e98ZvGHRlL3lrncf6LZYhrrm4kuBehDwTn6OwjuKfDX0muyiWRXKXf
+        hnNeb5Oae9J2nuSC1k7EVXvvqbiGzldqbvBgPcmVuTrVXPXpj+TqWXrJeZzU+57fJfX+E90q
+        /cmbTqQPSnFpxHZNapaQn2sWjIkrd2ty+m/EFVnxfRcHjhIWdAErR2EUMMlgc7lQOdJQWqYe
+        wYPW46pyRE0WIQRjWxQ9iGD4/QD5b6HO1YUpjWsILkgtuFJ8R3Dd0oHLU5GMHvraapHMUcxC
+        ePF7hJCHMOaXCg45e9Vyg2SSwNp1EsnnaGYl+B6ysowz8+H+m6NT78xm0sHWfHiKaSYCHp0N
+        THEYkwDfzlwmZMaYGBgIOFQKz4VbQ+en3AEzqoYflZJKsb0OWjwVSOFI+NR9U61wLPScrsCV
+        hUMIKtoH1UphQ+Dvrvm7kQK+vp+k7BSbjNPYlqjIa6Cjzq2WZWDC4eVQhGIiHCpbqzBFpuHY
+        Ea0yPR9+Oav+2tHBicAEbkOsfVo0+7Q49mlx7P/v1iDciWKEYrEgWxCXGoS9CSJfIBYbshMy
+        CwskNPnResa7Q7dR29geD2IoxM6k3ZGODC3Bm8WSAg8CCmOj6LW9PelaOosv2S8YCzOMxfmC
+        6EFzKJyNoZdd+rhLy2TzJiFPEIoE47+uigrTWVApH5Nhi3drDrCm6NI7vlVNqVIa5kqqvbrZ
+        seNU0djMFaGlQ/cbC83JXa4rn2fcpk3E4Jdnktulz5szsbGD4Ps3pC0fqZcmzKOJmeu9seGv
+        U7ac6zWP77TkZOrcDZ7+x7ZAe9a2rXuDP9+lL4gcWRzlN5SIOz0LnzdwmUfKtkWzuJjDJy3C
+        jCL/BzLy3AtkAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMIsWRmVeSWpSXmKPExsVy+t/xe7q+/+bHG6xfZm1xf14ro8XGGetZ
+        La5/ec5qMf/IOVaLK1/fs1lM37uJzWLS/QksFufPb2C3uLxrDpvF594jjBYzzu9jslh75C67
+        xe3GFWwWrXuPsFvMmPySzYHfY9OqTjaPO9f2sHnc7z7O5NG3ZRWjx+dNcgGsUXo2RfmlJakK
+        GfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2CXoZN1fLFfSyVMy71c7a
+        wDiXuYuRk0NCwERiyd6jYLaQwFJGiUVv47sYOYDiUhLzW5QgSoQl/lzrYuti5AIqec8o8Wbp
+        IyaQhLCAh8S5XQsZQWwRAU2J63+/s4IUMQv8ZpI4cO8yC0THY0aJ40/62UGq2AQMJXqP9jGC
+        bOAVsJO4cwxsA4uAisTBR+0sILaoQJzEj4m9bCA2r4CgxMmZT8DinAJ6Eh+mLWYFsZkF1CX+
+        zLvEDGGLS9x6Mp8JwpaX2P52DvMERqFZSNpnIWmZhaRlFpKWBYwsqxhFUkuLc9Nzi430ihNz
+        i0vz0vWS83M3MQIjeNuxn1t2MHa9Cz7EKMDBqMTDe0B4frwQa2JZcWXuIUYJDmYlEV6ns6fj
+        hHhTEiurUovy44tKc1KLDzGaAj03kVlKNDkfmFzySuINTQ3NLSwNzY3Njc0slMR5OwQOxggJ
+        pCeWpGanphakFsH0MXFwSjUwrmrQyajdsuaVsrPCly7bSVN3vfnsfPBFqXJ6+qHJ59uuFM/u
+        SxLLblm1X0Ykwu366tXxbm7p7KyLr81VZa4ObV3lf33OgdcZi0sXt2+fMC/xnH+PUtij2S7T
+        Jm7dUGHLwfR9TerVarGXRkoHM9M4HhuZH55u/ufcxYZ1rZMuHDj2b2XIks+HbyuxFGckGmox
+        FxUnAgDqsO3P9gIAAA==
+X-CMS-MailID: 20201102124046eucas1p15cd9e163dbab72cdc639f5e71d8b6a18
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201030125308eucas1p14ae969ae1d5549d422c478aa54d3311e
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201030125308eucas1p14ae969ae1d5549d422c478aa54d3311e
+References: <20201030125149.8227-1-s.nawrocki@samsung.com>
+        <CGME20201030125308eucas1p14ae969ae1d5549d422c478aa54d3311e@eucas1p1.samsung.com>
+        <20201030125149.8227-7-s.nawrocki@samsung.com>
+        <20201031124717.GE9399@kozik-lap>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Nov 2020, Codrin.Ciubotariu@microchip.com wrote:
+On 31.10.2020 13:47, Krzysztof Kozlowski wrote:
+>> @@ -1223,19 +1330,33 @@ static int mixer_probe(struct platform_device *pdev)
+>>  	struct device *dev = &pdev->dev;
+>>  	const struct mixer_drv_data *drv;
+>>  	struct mixer_context *ctx;
+>> +	struct icc_path *path;
+>>  	int ret;
+>>  
+>> +	/*
+>> +	 * Returns NULL if CONFIG_INTERCONNECT is disabled.
 
-> On 02.11.2020 11:01, Lee Jones wrote:
-> > On Fri, 30 Oct 2020, Nicolas Ferre wrote:
-> > 
-> >> On 30/10/2020 at 12:07, Codrin Ciubotariu wrote:
-> >>> The "atmel,at91sam9260-usart" driver is a MFD driver, so it needs sub-nodes
-> >>> to match the registered platform device. For this reason, we add a serial
-> >>> subnode to all the "atmel,at91sam9260-usart" serial compatible nods. This
-> >>> will also remove the boot warning:
-> >>> "atmel_usart_serial: Failed to locate of_node [id: -2]"
-> >>
-> >> I don't remember this warning was raised previously even if the MFD driver
-> >> was added a while ago (Sept. 2018).
-> >>
-> >> I would say it's due to 466a62d7642f ("mfd: core: Make a best effort attempt
-> >> to match devices with the correct of_nodes") which was added on mid August
-> >> and corrected with 22380b65dc70 ("mfd: mfd-core: Ensure disabled devices are
-> >> ignored without error") but maybe not covering our case.
-> >>
-> >> So, well, I don't know what's the best option to this change. Moreover, I
-> >> would say that all other USART related properties go into the child not if
-> >> there is a need for one.
-> >>
-> >> Lee, I suspect that we're not the only ones experiencing this ugly warning
-> >> during the boot log: can you point us out how to deal with it for our
-> >> existing atmel_serial.c users?
-> > 
-> > You should not be instantiating drivers through Device Tree which are
-> > not described there.  If the correct representation of the H/W already
-> > exists in Device Tree i.e. no SPI and UART IP really exists, use the
-> > MFD core API to register them utilising the platform API instead.
-> > 
-> > This should do it:
-> > 
-> > diff --git a/drivers/mfd/at91-usart.c b/drivers/mfd/at91-usart.c
-> > index 6a8351a4588e2..939bd2332a4f6 100644
-> > --- a/drivers/mfd/at91-usart.c
-> > +++ b/drivers/mfd/at91-usart.c
-> > @@ -17,12 +17,10 @@
-> > 
-> >   static const struct mfd_cell at91_usart_spi_subdev = {
-> >          .name = "at91_usart_spi",
-> > -       .of_compatible = "microchip,at91sam9g45-usart-spi",
-> >   };
-> > 
-> >   static const struct mfd_cell at91_usart_serial_subdev = {
-> >          .name = "atmel_usart_serial",
-> > -       .of_compatible = "atmel,at91rm9200-usart-serial",
-> >   };
-> > 
-> >   static int at91_usart_mode_probe(struct platform_device *pdev)
-> 
-> [snip]
-> 
-> Hi Lee, thank you for looking through our usart driver and for sharing 
-> your thoughts. Removing the usage of compatible string means that for 
-> similar serial/SPI IPs we would need to create new platform drivers. 
+> You could add here:
+> or if "interconnects" property does not exist.
 
-Why would you need to do that?
-
-> This is not ideal, but it's a solution. What I proposed is more 
-> flexible, but, as you pointed out, I am not sure it correctly describes 
-> the HW, because the decision of whether to use this IP as a serial or a 
-> SPI is a configurable one.
-> 
-> Thanks and best regards,
-> Codrin
+Right, thanks for pointing out, I will update that comment.
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards,
+Sylwester
