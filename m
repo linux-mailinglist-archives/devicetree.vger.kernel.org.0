@@ -2,157 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A9562A23D6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 05:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC0D2A23E2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 06:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727749AbgKBEzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 23:55:21 -0500
-Received: from anchovy1.45ru.net.au ([203.30.46.145]:45274 "EHLO
-        anchovy1.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727727AbgKBEzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 23:55:21 -0500
-Received: (qmail 28875 invoked by uid 5089); 2 Nov 2020 04:48:38 -0000
-Received: by simscan 1.2.0 ppid: 28818, pid: 28819, t: 0.0741s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-Received: from unknown (HELO ?192.168.0.22?) (preid@electromag.com.au@203.59.235.95)
-  by anchovy1.45ru.net.au with ESMTPA; 2 Nov 2020 04:48:38 -0000
-Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
- conversion
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20201031184854.745828-1-jic23@kernel.org>
- <20201031184854.745828-3-jic23@kernel.org>
-From:   Phil Reid <preid@electromag.com.au>
-Message-ID: <a10e6e98-4f20-e1eb-c3c7-b00052109ab9@electromag.com.au>
-Date:   Mon, 2 Nov 2020 12:48:35 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1725955AbgKBFGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 00:06:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46198 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725208AbgKBFGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 00:06:21 -0500
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163FFC0617A6;
+        Sun,  1 Nov 2020 21:06:21 -0800 (PST)
+Received: by mail-pl1-x643.google.com with SMTP id j5so6248822plk.7;
+        Sun, 01 Nov 2020 21:06:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=0i5kulrXeAXUUmHumUD66U2ITbxD8qnUW4/n36OfF0g=;
+        b=oxLWWeV0SaX8q4sdK7/2sB2mbbneJH+6xiBYeqoFyU0KRp6CX4AAHRz6ZcIpCMuGs1
+         K57ec6IiNS0f09FIv7F0ALXBwtlgJkApB7AmFEzolud2Scts1RGkIMpChWza8ZWYqq32
+         iG9jnd6FoC1qoTUt8FG+Tqh96LB63osUaZFzASsd331qTXlfszZF8qEYTXDyIEPza1g6
+         rCQ6+kS0iVGm1BZVWvdi5ujQ+XT4q5cIgozr9tH4CuJAWawDb1tPvyX1UyBa64dZOmY/
+         Qseu2Xk2wdM8W4NJUc/aIg4txizhbYAMC1xRU1E+saPOrw0Lb6Opw2ZfetN7H7my9w9C
+         FGgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0i5kulrXeAXUUmHumUD66U2ITbxD8qnUW4/n36OfF0g=;
+        b=TdFcON4xECEqAq8l0KuK9gJOM6sIOmDzkqV+exAz+lpzk+7XzgO6tNO4u3hrrV86sl
+         98XD0xf+z6fG5x1vH6qxichtqWYHpiPuR/H3QWC4Jw72gi+bYkh1GbM0s5zSrWMXByQp
+         f5z8Zy/OhZ/RdZl3r00YVaxzE4DbgO5YLvsIaQA1f86QGI6jlebnYCEAPg8L3FYL/VwA
+         rC8NQHIiQYqdd2BpdgC8LMI6kGHaRrZWViJ3rO+YPlof8abuzgddeHb3CfcFiSSe5AVi
+         XayiZDuisKorGgIC2n9rQwG1wP9W4UKuC0ixVWzpdYGIPanUjb9uNwoNANEtv8CM0+Xr
+         f7Vg==
+X-Gm-Message-State: AOAM533ZRYskGWpmWSMM+cpSfV4F6DsvD9oGLy16MdT2Na4WMB+yrmsI
+        7EYNs7Xea6+4AKAOSMJiy0HfLSR8BYpoHkDLO9I=
+X-Google-Smtp-Source: ABdhPJzWpC1jLa2KqR8b6+I+di15SNciBGq8RyUOeA6dDIbQSFfhtHxvZw1hOKfw0BDne7Nf3l3IdI42sswxOrnNTvA=
+X-Received: by 2002:a17:902:8eca:b029:d2:4276:1b2d with SMTP id
+ x10-20020a1709028ecab02900d242761b2dmr19651785plo.17.1604293580359; Sun, 01
+ Nov 2020 21:06:20 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201031184854.745828-3-jic23@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-AU
-Content-Transfer-Encoding: 7bit
+References: <20201030075724.1616766-1-ajye_huang@compal.corp-partner.google.com>
+ <20201030075724.1616766-3-ajye_huang@compal.corp-partner.google.com>
+ <CA+Px+wXPRg7aDU5+vr6R_BxuFfhuDeG3iEQeAUKWNtX8YmVC1Q@mail.gmail.com>
+ <CALprXBZ+NmR8Y4sMkh4Y-N_FG+rGEOhUBVTKXRXNFp8H+f0btw@mail.gmail.com> <CA+Px+wWouXWS2F+Bqs3MkJxCuXORhpXcUF5ZuSHo6exprBF4hg@mail.gmail.com>
+In-Reply-To: <CA+Px+wWouXWS2F+Bqs3MkJxCuXORhpXcUF5ZuSHo6exprBF4hg@mail.gmail.com>
+From:   ajye huang <ajye.huang@gmail.com>
+Date:   Mon, 2 Nov 2020 13:06:06 +0800
+Message-ID: <CACCVik-enBjUsaB1cZPb4Dp01Wj222jsT5Y-fjSL5E50XAFLcA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/11/2020 02:48, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> Simple direct conversion from txt to yaml as part of a general aim of
-> converting all IIO bindings to this machine readable format.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Phil Reid <preid@electromag.com.au>
-Reviewed-by: Phil Reid <preid@electromag.com.au>
+Hi, Tzung-Bi
+I will release v3 version base on your suggestion
 
-> ---
->   .../bindings/iio/potentiometer/ad5272.txt     | 27 ----------
->   .../iio/potentiometer/adi,ad5272.yaml         | 50 +++++++++++++++++++
->   2 files changed, 50 insertions(+), 27 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt b/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
-> deleted file mode 100644
-> index f9b2eef946aa..000000000000
-> --- a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
-> +++ /dev/null
-> @@ -1,27 +0,0 @@
-> -* Analog Devices AD5272 digital potentiometer
-> -
-> -The node for this device must be a child node of a I2C controller, hence
-> -all mandatory properties for your controller must be specified. See directory:
-> -
-> -        Documentation/devicetree/bindings/i2c
-> -
-> -for more details.
-> -
-> -Required properties:
-> -	- compatible:  	Must be one of the following, depending on the model:
-> -			adi,ad5272-020
-> -			adi,ad5272-050
-> -			adi,ad5272-100
-> -			adi,ad5274-020
-> -			adi,ad5274-100
-> -
-> -Optional properties:
-> - - reset-gpios: GPIO specification for the RESET input. This is an
-> -		active low signal to the AD5272.
-> -
-> -Example:
-> -ad5272: potentiometer@2f {
-> -	reg = <0x2F>;
-> -	compatible = "adi,ad5272-020";
-> -	reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
-> new file mode 100644
-> index 000000000000..b9b7d383bff1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/potentiometer/adi,ad5272.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD5272 digital potentiometer
-> +
-> +maintainers:
-> +  - Phil Reid <preid@electromag.com.au>
-> +
-> +description: |
-> +  Datasheet: https://www.analog.com/en/products/ad5272.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad5272-020
-> +      - adi,ad5272-050
-> +      - adi,ad5272-100
-> +      - adi,ad5274-020
-> +      - adi,ad5274-100
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description:
-> +      Active low signal to the AD5272 RESET input.
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        potentiometer@2f {
-> +            compatible = "adi,ad5272-020";
-> +            reg = <0x2F>;
-> +            reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
-> +...
-> 
+Thank you for your reply
+Ajye
 
-
--- 
-Regards
-Phil Reid
-
-ElectroMagnetic Imaging Technology Pty Ltd
-Development of Geophysical Instrumentation & Software
-www.electromag.com.au
-
-23 Junction Parade, Midland WA 6056, AUSTRALIA
-Ph: +61 8 9250 8100
-Fax: +61 8 9250 7100
-Email: preid@electromag.com.au
+Tzung-Bi Shih <tzungbi@google.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8830=E6=
+=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=887:19=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Fri, Oct 30, 2020 at 6:55 PM Ajye Huang
+> <ajye_huang@compal.corp-partner.google.com> wrote:
+> > But dmic_get() will need dmic_switch, should i keep dmic_switch?
+>
+> I see.  I overlooked it.  You can keep the dmic_switch for this
+> purpose or just call gpiod_get_value_cansleep().
