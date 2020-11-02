@@ -2,148 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6106F2A2862
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 11:36:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75FE12A2870
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 11:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728189AbgKBKgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 05:36:21 -0500
-Received: from mailout12.rmx.de ([94.199.88.78]:41513 "EHLO mailout12.rmx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728005AbgKBKgV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 05:36:21 -0500
-Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mailout12.rmx.de (Postfix) with ESMTPS id 4CPq8H5S7FzRlqj;
-        Mon,  2 Nov 2020 11:36:15 +0100 (CET)
-Received: from mta.arri.de (unknown [217.111.95.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin02.retarus.com (Postfix) with ESMTPS id 4CPq830KPnz2TTMl;
-        Mon,  2 Nov 2020 11:36:03 +0100 (CET)
-Received: from n95hx1g2.localnet (192.168.54.112) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Mon, 2 Nov
- 2020 11:35:01 +0100
-From:   Christian Eggers <ceggers@arri.de>
-To:     Vladimir Oltean <olteanv@gmail.com>
-CC:     Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add hardware time stamping support
-Date:   Mon, 2 Nov 2020 11:35:00 +0100
-Message-ID: <1779456.uGjeJ53Q7B@n95hx1g2>
-Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-In-Reply-To: <20201101234149.rrhrjiyt7l4orkm7@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de> <3355013.oZEI4y40TO@n95hx1g2> <20201101234149.rrhrjiyt7l4orkm7@skbuf>
+        id S1728429AbgKBKqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 05:46:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41972 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728387AbgKBKqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 05:46:16 -0500
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F07C2C061A47
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 02:46:15 -0800 (PST)
+Received: by mail-io1-xd41.google.com with SMTP id r9so14460028ioo.7
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 02:46:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VRpjL02zuTcuiv/Rvb/qTyae7wJ0n/tsrDk8nGGEoq0=;
+        b=JbF7Xzcx6Wu8FIV7/iG4L8/z373ZoWlCO6auRph8RxolPKUCY1c9JzvvbI3Ea8+Uwf
+         623DoaDsaJKCpWEQpXNj98q9gCj1aDehvtpItUkRrmtnB8aAV6mbbK04ddWHMkKMYtl7
+         4oFJG1NT4N39UbIQ64IZIa0hXFMu0mTCuVoaXGy4E2hUE7fq1sNC37u1OnLRK+srC62G
+         gfLCwVF7Pxw1UMQ/VlJ9hmuYmHSRgkVb/yWTy7xhVu91Rqz72oua6GOBx3TI2A2tO1oE
+         MW6MhUJSrVNgZbnseXvs+TSZ8ZsJonOti3crmrOCtAmx7l1ybcV9Qx+yIWni9YtIGJ0B
+         y6Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VRpjL02zuTcuiv/Rvb/qTyae7wJ0n/tsrDk8nGGEoq0=;
+        b=M7tHYk6hYz044rBduX4FYHXbKwQHaa/0M5qVPI8Ysmxb3vA47g2aN6upW56CWpZePc
+         Z0gu7Kzx4fnLbbW35AzbietyPi5xzeGRyvCj3XvtC+wzPqlj3x51Es2sqOFxgmN/muKh
+         Cys6qIz9gwDqoQkGUAQ3SsFVQ/MhfnWLtaIJkhSQ7OzZr4cB6vxSNaQLNJ8XymqQYEFK
+         mV7joQiGofyv0LMA51jqjla7WXEJ7In2u0PhzZOJkDZclqYkhUyjyc+LKWVgBfZ9BrtV
+         edgRUIJuud58Vk0bLjjQ0dNgSPsVmdkBfJbRqmlD2WjpEU4enHQMSBt3h2AFYue6Fu8q
+         txsQ==
+X-Gm-Message-State: AOAM530tESZcPuW07RtJXy3rHMAt5swz9+NKhutB/eySJZHifq7DAUwK
+        MTSD1ioqCETQt6ieeFbv4QxQUIJiOrfmFkywLp2WiQ==
+X-Google-Smtp-Source: ABdhPJxKwVLNAuofbLNcJ13qTFoIFIxwQPlrQC3KzP9RuGcr//5ixy6TdSJ29X5luQ0fmV1hraBbt8Ty1Pv6VXZ7MzI=
+X-Received: by 2002:a6b:7a0b:: with SMTP id h11mr2777649iom.76.1604313974919;
+ Mon, 02 Nov 2020 02:46:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [192.168.54.112]
-X-RMX-ID: 20201102-113603-4CPq830KPnz2TTMl-0@kdin02
-X-RMX-SOURCE: 217.111.95.66
+References: <20201102062408.331572-1-ajye_huang@compal.corp-partner.google.com>
+ <20201102062408.331572-3-ajye_huang@compal.corp-partner.google.com>
+In-Reply-To: <20201102062408.331572-3-ajye_huang@compal.corp-partner.google.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Mon, 2 Nov 2020 18:46:04 +0800
+Message-ID: <CA+Px+wV9Lmdphp4iMgF1d72vewb2m9aiZzywvavLGgtkAczCDQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
+To:     Ajye Huang <ajye.huang@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday, 2 November 2020, 00:41:49 CET, Vladimir Oltean wrote:
-> On Sun, Nov 01, 2020 at 11:14:24PM +0100, Christian Eggers wrote:
-> > My assumption is that the KSZ9563 simply doesn't forward specific PTP
-> > packages from the slave ports to the CPU port. In my imagination this
-> > happens in hardware and is not visible in software.
-> 
-> You talked about tracking the BMCA by snooping Announce messages. I
-> don't think that is going to be the path forward either. Think about the
-> general case, where there might not even be a BMCA (like in the
-> automotive profile).
-Maybe my mail from October, 22 was ambiguous. I meant that despite of the 
-presence of filtering, a BCMA algorithm should be about to work (as no 
-Announce messages are filtered out).
-
-Additionally I said, that switching between "master" and "slave" mode could 
-not be done automatically by the driver, as the driver could at most detect 
-the presence of Sync messages (indication for master mode), but would do hard 
-to detect a transition to slave mode.
-
-I see a chance that user space (ptp4l) could configure the appropriate 
-"hardware filter setup" for master/slave mode. 
-
-> It almost seems to me as if the hardware is trying to be helpful by
-> dropping the PTP messages that the application layer would drop anyway.
-> Too bad that nobody seems to have told them to make this helpful
-> mechanism optional, because as it is, it's standing in the way more than
-> helping.
-I think the same. Maybe there is some undocumented "filter disable" bit, but 
-this information must come from Microchip.
-
-> You know what the real problem is, with DSA you don't have the concept
-> of the host port being an Ordinary Clock. DSA does not treat the host
-> port as a switched endpoint (aka a plain net device attached to a dumb
-> switch, and unaware of that switch), but instead is the conduit interface
-> for each front-panel switch interface, which is an individually
-> addressable network interface in its own right. You are not supposed to
-> use a DSA master interface for networking directly, not for regular
-> networking and not for PTP. In fact, DSA-enabled ports, only the PTP
-> clock of the switch is usable. If you attempt to run ptp4l on the master
-> interface an error will be thrown back at you.
-> 
-> Why am I mentioning this? Because the setting that's causing trouble for
-> us is 'port state of the host port OC', which in the context of what I
-> said above is nonsense. There _is_ no host port OC. There are 2 switch
-> ports which can act as individual OCs, or as a BC, or as a TC.
-But the switch has only one clock at all. I assume that the switch cannot be a 
-boundary clock, only TC seems possible.
-
-> But
-> consider the case when the switch is a BC, with one of the front-panel
-> ports being a master and the other a slave. What mode are you supposed
-> to put the host port in, so that it receives both the Sync packets from
-> the slave port, and the Delay_Req packets from the master port?! It just
-> makes no sense to me. In principle I don't see any reason why this
-> switch would not be able to operate as a one-step peer delay BC.
-> 
-> Unless somebody from Microchip could shed some light on the design
-> decisions of this switch (and there are enough Microchip people copied
-> already), here's what I would do. I would cut my losses and just support
-> peer delay, no E2E delay request-response mechanism (this means you'll
-> need to deploy peer delay to all devices within your network, but the
-> gains might be worth it). Because peer delay is symmetrical (both link
-> partners are both requestors as well as responders), there's no help in
-> the world that this switch could volunteer to give you in dropping
-> packets on your behalf. So I expect that if you hardcode:
-> - the port state for the host port OC as slave, then you'd get the Sync
->   messages from all ports, and the Delay_Req messages would be dropped
->   but you wouldn't care about those anyway, and
-> - the selection of TC mode to P2P TC.
-When using only P2P, setting the OCMODE bit to "slave" should work.
-
-> Then I would negotiate with Richard whether it's ok to add these extra
-> values to enum hwtstamp_rx_filters:
-> 	HWTSTAMP_FILTER_PTP_V2_PDELAY
-> 	HWTSTAMP_FILTER_PTP_V2_L4_PDELAY
+On Mon, Nov 2, 2020 at 2:24 PM Ajye Huang <ajye.huang@gmail.com> wrote:
 >
-As said above, having "filter setups" for E2E/P2P and for MASTER/SLAVE would 
-probably fit well for this kind of hardware.
+> In addition, having mixer control to switch between DMICs by
+> using "dmic-gpios" property.
+>
+> Refer to this one as an example,
+> commit b7a742cff3f6 ("ASoC: AMD: Use mixer control to switch between DMICs")
+>
+> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
 
-> Given the fact that you're only limiting the timestamping to Pdelay
-> because we don't fully understand the hardware, I don't really know
-> whether introducing UAPI for this one situation is justifiable. If not,
-> then your driver will not have a chance to reject ptp4l -E, and it will
-> Simply Not Work.
+I am not sure if it would be better if you use another email (e.g.
+@gmail) for signoff.
 
+> +static int dmic_get(struct snd_kcontrol *kcontrol,
+> +                   struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
+> +       struct sc7180_snd_data *data = snd_soc_card_get_drvdata(dapm->card);
+> +
+> +       if (data)
 
+You don't need to check for NULL.  If snd_soc_card_get_drvdata()
+returns NULL, it shouldn't run into here.  See other
+snd_soc_card_get_drvdata() calls in the file.
 
+> +static int dmic_set(struct snd_kcontrol *kcontrol,
+> +                   struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
+> +       struct sc7180_snd_data *data = snd_soc_card_get_drvdata(dapm->card);
+> +
+> +       if (data) {
 
+Ditto.
+
+> +               if (IS_ERR(data->dmic_sel)) {
+> +                       dev_err(&pdev->dev, "DMIC gpio failed err=%d\n",
+> +                               PTR_ERR(data->dmic_sel));
+> +                               return PTR_ERR(data->dmic_sel);
+
+Remove 1 level indent.
