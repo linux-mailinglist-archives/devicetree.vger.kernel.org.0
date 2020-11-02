@@ -2,175 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 350B02A26BD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 10:13:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB7CA2A26CA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 10:17:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728004AbgKBJNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 04:13:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55964 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728132AbgKBJNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 04:13:33 -0500
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C93AFC061A04
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 01:13:33 -0800 (PST)
-Received: by mail-il1-x143.google.com with SMTP id q1so12283723ilt.6
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 01:13:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=G6vN48ROEcfnp1L/ujKy6U1at09yxtKW3Qm3NsnZ98E=;
-        b=FZC9tAc0qn+/I6cywuN/wfPdSOA2gpB9+291+zVidcME1uuLaSObrGDWZmcJ0nm0Cu
-         WHIN1OiJRoH/hvmPb4vbAiqzGGcpQjJ2JM7vEpBzxqUVodliJmfBQxdhxUku95371rwk
-         sDPI3u3BBa1AcZYG78XL6BBY2STtRkqa2s6xMLqG8v/n8cGMKNB4xIhsPJvLCFGp+/iq
-         SOl1mvgTbDJ0lHwCEa51bVFdIObwQZu0ZVSbZQR7RN1wV0+40iKTdG25Aey78tKQN0Z9
-         t3uiZIfUY6046/+e6Y/A0bBpQMcbIP+33vIlrwpOup8nYw9ROsQeAjlcBQZfwFvl4ZGm
-         W2LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=G6vN48ROEcfnp1L/ujKy6U1at09yxtKW3Qm3NsnZ98E=;
-        b=ORCbe9Hqyt0vBozvA6F6aRKZ/WSIq43UDGDKHHenyvjaBYOzITaJCwxOwayO0IkJck
-         sS6VTbjBNrksW0Wep+fy7JBhm4LZKI0+2LloEn7Yocb2amVvwca4OaUXLtTm5paWYnpL
-         d6eWBkZaf+2YfqukVfh5uBhbTB3b/dLNOP35+uN8mxff/RUSYBEZimLJSlsVyiRzgqbM
-         Ay+32ASHbEq6BV1Tuzrn7hBuQILIWDYfvjNsexaNtG09JFbrp8p95q2sSA8N5srLoEhS
-         3dD0si6IPaYwdrYBOaRmBABwOdGkK9P/COQVFQuJ1mtRFln+414PEWHDkge5DvP8RJwk
-         Q5uw==
-X-Gm-Message-State: AOAM5318B//awCxj6bEoD1YLUzlfymIripvieSjP64DCv4odSWQHsUNr
-        7tUXKROLyQHu/w8HR2841+BPakcIPWIhLzJs7S0dJA==
-X-Google-Smtp-Source: ABdhPJygXl8emxs8ScpieTpvJ0do2ErPZJih2gsaxBbyeOf4AowamyXOeNGjxaYOG2a/JA/RU1ntjAZasMVEquN85h4=
-X-Received: by 2002:a92:d6cd:: with SMTP id z13mr10228162ilp.38.1604308412990;
- Mon, 02 Nov 2020 01:13:32 -0800 (PST)
+        id S1728004AbgKBJRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 04:17:43 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:53477 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727870AbgKBJRm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 04:17:42 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5882E58016F;
+        Mon,  2 Nov 2020 04:17:41 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 02 Nov 2020 04:17:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=tRRcWPfLlcFd2I7QGyWsS+7dvdI
+        OTZe+96Cma1Ta4CQ=; b=cL3G91KomNggWKjP+ee8mXpLK4G1z9pJ8bTx5eXKhis
+        GamLNW5oJtfQL0KtTKdk4XkprWZy/NilCX9Oy4p0HgelbPXJ4UUmx/34oIMv0ly1
+        LN8unJdsZ05w4OZpPpO1R5o3JqESgXEEXJ7h6bQep0+tWmBwunfBU5E2JKqpCABa
+        GwSBhcMVfJaSut73Z493aIU/QumPfhV+8YapZbkfC5sMOVSGvRQkx5yUkhB5ZnLc
+        +jpyblW9JgwtPgqgQMSs4u0SWqvE9a582+EMUeAu3/T/KG3ju2Cn4Cn1dlgVGr7R
+        q36fwpDgg/WtYNZC+EUYIk5nX9gTB6nKh250LgSG5VQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=tRRcWP
+        fLlcFd2I7QGyWsS+7dvdIOTZe+96Cma1Ta4CQ=; b=l8qcekuw3PsZNepLpODZWn
+        LhdpoORDReM4sQkchoftknnU6XmVE/up2/vmwIG3v0gYyejTScLCD1mt5MkfgDyQ
+        l9431eQQOP6dbWZdljCqyesRT5DO0nL7bNmI5UfOUB/oECEyR7pN9F8SeECBRNd7
+        CWyfsEJ5QQvYCu2W5gH9ay9IJHSkjz2B3XhXJiltRIK+hnvaAN3fbdehd2br5Grg
+        ksHwf5gj0R9ttQdkCQRl+R41qnGZxmRIjqC/fV7rVQ5ErtQ0vg5h14nbyC+gph2H
+        CYRhLqvU2dCG1yBIs2cTPCp25H7bcd+ZDaVVCVJfs77I3WlW6tSbYe5altqJxvWw
+        ==
+X-ME-Sender: <xms:s86fX658A0K5A2ZGjNJbX175WWmBJjW4YsGIk5ePGuKNn-wqSnVEIg>
+    <xme:s86fXz6G3lmZpysw5zHmrDIm0lYhEOVKeUBriRN5hnKEOHrP6Ce1ys1ejaOD2jQDk
+    qpnSZ5XILFBv1zFgsc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtuddgtddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:s86fX5c046zh68969VRsxzsJ2VniePom1osuz3j_uGOQykv7jwxuEw>
+    <xmx:s86fX3J6FHCE70poP38xr42k2BHuE3xzZwfaz7X7f5h71VYZmCRwbA>
+    <xmx:s86fX-JSFhgTZx8GTIyFNN5fTRrVD3kwW-eMi0k0D0uUYqaDmuOGmg>
+    <xmx:tc6fXzDZ7JmADY70-TxDUkQx84AW2roweM4r__W7SuSpQDJF2YfQTg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 2FC423280060;
+        Mon,  2 Nov 2020 04:17:39 -0500 (EST)
+Date:   Mon, 2 Nov 2020 10:17:37 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Helen Koike <helen.koike@collabora.com>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
+Subject: Re: [PATCH 00/14] Allwinner MIPI CSI-2 support for A31/V3s/A83T
+Message-ID: <20201102091737.pszii6znryssyh2e@gilmour.lan>
+References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
+ <d15d724b-6af7-3e51-1316-7bdde5a42c60@collabora.com>
 MIME-Version: 1.0
-References: <20201031134110.724233-1-jic23@kernel.org> <20201031134110.724233-25-jic23@kernel.org>
-In-Reply-To: <20201031134110.724233-25-jic23@kernel.org>
-From:   Crt Mori <cmo@melexis.com>
-Date:   Mon, 2 Nov 2020 10:12:57 +0100
-Message-ID: <CAKv63uvm4WMk6U=CthTcVTD+cM-kb9FLBxn2Os8Yy2mHJYoJ5Q@mail.gmail.com>
-Subject: Re: [PATCH v2 24/29] dt-bindings:iio:temperature:melexis,mlx90614
- yaml conversion
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Linux Iio <linux-iio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rob Herring <robh@kernel.org>,
-        Peter Meerwald <pmeerw@pmeerw.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="g7kesbwqqdzmkw7c"
+Content-Disposition: inline
+In-Reply-To: <d15d724b-6af7-3e51-1316-7bdde5a42c60@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
-The commit message should change here as now you did not list all 3
-authors as maintainers, because one has a bouncy email address.
 
-Best regards,
-Crt
+--g7kesbwqqdzmkw7c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Sat, 31 Oct 2020 at 14:44, Jonathan Cameron <jic23@kernel.org> wrote:
+Hi
+
+On Fri, Oct 30, 2020 at 07:44:28PM -0300, Helen Koike wrote:
+> On thing that is confusing me is the name csi2 with csi (that makes me
+> think of csi vesun6i-csirsion one, which is not the case), I would
+> rename it to sun6i-video (or maybe it is just me who gets confused).
 >
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->
-> Simple conversion from txt to yaml.
-> I've listed all 3 authors of the driver as maintainers.
->
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Crt Mori <cmo@melexis.com>
-> Cc: Peter Meerwald <pmeerw@pmeerw.net>
-> ---
->  .../iio/temperature/melexis,mlx90614.yaml     | 50 +++++++++++++++++++
->  .../bindings/iio/temperature/mlx90614.txt     | 24 ---------
->  2 files changed, 50 insertions(+), 24 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
-> new file mode 100644
-> index 000000000000..d6965a0c1cf3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90614.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Melexis MLX90614 contactless IR temperature sensor
-> +
-> +maintainers:
-> +  - Peter Meerwald <pmeerw@pmeerw.net>
-> +  - Crt Mori <cmo@melexis.com>
-> +
-> +description: |
-> +  http://melexis.com/Infrared-Thermometer-Sensors/Infrared-Thermometer-Sensors/MLX90614-615.aspx
-> +
-> +properties:
-> +  compatible:
-> +    const: melexis,mlx90614
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  wakeup-gpios:
-> +    description:
-> +      GPIO connected to the SDA line to hold low in order to wake up the
-> +      device.  In normal operation, the GPIO is set as input and will
-> +      not interfere in I2C communication.  There is no need for a GPIO
-> +      driving the SCL line.  If no GPIO is given, power management is disabled.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        temp-sensor@5a {
-> +            compatible = "melexis,mlx90614";
-> +            reg = <0x5a>;
-> +            wakeup-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt b/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt
-> deleted file mode 100644
-> index 9be57b036092..000000000000
-> --- a/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -* Melexis MLX90614 contactless IR temperature sensor
-> -
-> -http://melexis.com/Infrared-Thermometer-Sensors/Infrared-Thermometer-Sensors/MLX90614-615.aspx
-> -
-> -Required properties:
-> -
-> -  - compatible: should be "melexis,mlx90614"
-> -  - reg: the I2C address of the sensor
-> -
-> -Optional properties:
-> -
-> -  - wakeup-gpios: device tree identifier of the GPIO connected to the SDA line
-> -      to hold low in order to wake up the device.  In normal operation, the
-> -      GPIO is set as input and will not interfere in I2C communication.  There
-> -      is no need for a GPIO driving the SCL line.  If no GPIO is given, power
-> -      management is disabled.
-> -
-> -Example:
-> -
-> -mlx90614@5a {
-> -       compatible = "melexis,mlx90614";
-> -       reg = <0x5a>;
-> -       wakeup-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-> -};
-> --
-> 2.28.0
->
+> I know this driver is already upstream and not part of this series,
+> but on the other hand it doesn't seem to be used.
+
+It's definitely confusing but CSI is the name of the IP, but it supports
+more than just MIPI-CSI :)
+
+Maxime
+
+--g7kesbwqqdzmkw7c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5/OsQAKCRDj7w1vZxhR
+xf40AP0Yj4OpO5elQY4ecnN07dkmmp1tsjYm1SISQvGp6/ForwD/QpGFBl/5JOHe
+7sDR7zxwSn34cDklaiJF3Yw2jWuu6gA=
+=ETbw
+-----END PGP SIGNATURE-----
+
+--g7kesbwqqdzmkw7c--
