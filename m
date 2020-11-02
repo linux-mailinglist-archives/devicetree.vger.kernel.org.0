@@ -2,69 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D70A82A288F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 11:54:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F23512A28A0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 12:00:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728316AbgKBKyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 05:54:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728253AbgKBKyd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 05:54:33 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 913F2C0617A6
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 02:54:32 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by michel.telenet-ops.be with bizsmtp
-        id nNuV2300N4C55Sk06NuVZp; Mon, 02 Nov 2020 11:54:29 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kZXTp-002Cfi-6h; Mon, 02 Nov 2020 11:54:29 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kZXTo-0039h3-8a; Mon, 02 Nov 2020 11:54:28 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] of: Drop superfluous ULL suffix for ~0
-Date:   Mon,  2 Nov 2020 11:54:22 +0100
-Message-Id: <20201102105422.752202-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S1728487AbgKBLAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 06:00:38 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:15374 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728359AbgKBLAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 06:00:38 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f9fe6d60000>; Mon, 02 Nov 2020 03:00:38 -0800
+Received: from [10.25.99.190] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 2 Nov
+ 2020 11:00:35 +0000
+Subject: Re: [PATCH v2] dt-bindings: Convert graph bindings to json-schema
+To:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <p.zabel@pengutronix.de>, <kuninori.morimoto.gx@renesas.com>
+References: <1604075956-17010-1-git-send-email-spujar@nvidia.com>
+ <1604075956-17010-2-git-send-email-spujar@nvidia.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <9af329bb-dbed-9b7d-4651-f5ada2c1948b@nvidia.com>
+Date:   Mon, 2 Nov 2020 16:30:32 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1604075956-17010-2-git-send-email-spujar@nvidia.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1604314838; bh=T7utodxB+nZ4Jb31jKgtihCHmee7uvW3sbyh3Sp3pSE=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=AlPBonodVNvOTZEO5DEx9zhh+NA7AgtZkev8fKEDem2jWN1pLRy0f+2TJp/LU27Oq
+         GjaqZAk+iAkSXwZF8Fx3ohqaATVGQ1TiJ0IbwWP++tcTM/dWPRaWg0HwH+QJk4u+gd
+         7J/lB84DmCbceSLjfiqEunEigSCrePl1gGgfiPbv0dMddPghzthPLVN7boQ9Z7ATaA
+         hmNYG2ZouXD4bH5uJNSBTDNq8pNkSO01lThSP4hI3xOvlECDZ6YWPCleJgZKXvof+H
+         YpRCo97nK8BjUAoLH06Ni0YWIiz3N20oGTKfhYkuznH9fY8ABCx8S54mwz5kR/Nshz
+         x8Rt0ivrL3HCQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no need to specify a "ULL" suffix for "all bits set": "~0" is
-sufficient, and works regardless of type.  In fact adding the suffix
-makes the code more fragile.
+Hi Rob,
 
-Fixes: 48ab6d5d1f096d6f ("dma-mapping: fix 32-bit overflow with CONFIG_ARM_LPAE=n")
-Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/of/device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Convert device tree bindings of graph to YAML format. Currently graph.txt
+> doc is referenced in multiple files and all of these need to use schema
+> references. For now graph.txt is updated to refer to graph.yaml.
+>
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> ---
+>   Documentation/devicetree/bindings/graph.txt  | 129 +-----------------
+>   Documentation/devicetree/bindings/graph.yaml | 188 +++++++++++++++++++++++++++
+>   2 files changed, 189 insertions(+), 128 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/graph.yaml
 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 3a469c79e6b05de4..aedfaaafd3e7edb7 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -112,7 +112,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 		u64 dma_end = 0;
- 
- 		/* Determine the overall bounds of all DMA regions */
--		for (dma_start = ~0ULL; r->size; r++) {
-+		for (dma_start = ~0; r->size; r++) {
- 			/* Take lower and upper limits */
- 			if (r->dma_start < dma_start)
- 				dma_start = r->dma_start;
--- 
-2.25.1
+As per report from 
+http://patchwork.ozlabs.org/project/devicetree-bindings/patch/1604075956-17010-2-git-send-email-spujar@nvidia.com 
+there are some warnings. I will fix yamllint warnings in v3.
 
+However I don't see below errors when I run 'make dt_binding_check' locally.
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/graph.yaml: 
+'additionalProperties' is a required property
+schemas/graph.yaml: ignoring, error in schema:
+./Documentation/devicetree/bindings/graph.yaml: Unresolvable JSON 
+pointer: 'properties/port'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/graph.yaml: 
+ignoring, error in schema:
+warning: no schema found in file: 
+./Documentation/devicetree/bindings/graph.yaml
+
+Am I missing anything?
+
+Thanks,
+Sameer.
