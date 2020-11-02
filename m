@@ -2,216 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEF8F2A2475
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 06:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E91A62A248B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 07:00:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726684AbgKBFxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 00:53:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725935AbgKBFxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 00:53:31 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B053C0617A6;
-        Sun,  1 Nov 2020 21:53:31 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id l28so15799464lfp.10;
-        Sun, 01 Nov 2020 21:53:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=2IhVGGy9LoXienasL7ylaLMwfquHIM1PDGypRLbzcA4=;
-        b=HwzVmbu5EFUY4E3z2rs0sFP6WXrqWNB28nqQoGE40DW1Trsz70bhCXdFI7Nr7hmBua
-         +uXpEbtLqHTI7q3NvWcfMv6LdfT3GK8hVgGP+RtZEoYUtU8C/Nz3GXu74GOn91JgfeNc
-         ziBfWdxCzOqoQV+1IFz+IZzAH8mHffnNGlTPfq5rkVQtiW7Ugi5vFqDxbzYZVuvbJTIh
-         zlte4SeJW/yn71g7ggnjYV3M6kfl8EEoK8+IqjQk1BYNL8EYHBJqBTX2iSVIaC+Swspg
-         9Hl0WHsgTnuVg9ylSvj62OuFScQxWTbTsZT685Uyg6UuqZvVwQhPwNS4qSYfhE9fE3Lw
-         6qZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2IhVGGy9LoXienasL7ylaLMwfquHIM1PDGypRLbzcA4=;
-        b=KJ9BRykp9OyHdMZRNIfUV138MDLU31Nwc6n2bDvh4FwFCM5td6b0clqKTXiE+TTSdb
-         AzFPqQGHHHwBh6NL9L2FeJdLKqTHYwgU5NdcnFwLWeCTte9nqdYvzAIjEq6Ad3Ajf/Eo
-         DJiv84OhOYoBb2eDZUqwNuOLM93D+0PRhXPMHejYUWSLhlSQbbfApjGWH8VAIS79Or6w
-         hIw+1L0Xoe0mViXCXzwIJgson/0aq7PFaVZ6fT2UjvHvJBzWjF7KMLyePJwFAqWA6TKc
-         51NjZXwk1PLaXMwzpGzi2q14d6T7Lv/h44e30pfe2Glf6qZ8m4b4xhZCsJgHLmtJfIkR
-         ismw==
-X-Gm-Message-State: AOAM531EN5MtTrpDZRXs387naLh2MMU8RLVgC47cxPf8pMUKhHG9fHmm
-        7J01a6jg16/TrPPeJoBdQe0Se8Bkr+cc2w791OqhfsPRIug=
-X-Google-Smtp-Source: ABdhPJwHyxU7ztZgGl9kqwIv07ilGQCRugQU5oXvmjbAzhzQaCtphMj5G6i+c8wwpwZPE2q85aOLwShTjx7yCFzfQMw=
-X-Received: by 2002:ac2:57c7:: with SMTP id k7mr5426332lfo.20.1604296409691;
- Sun, 01 Nov 2020 21:53:29 -0800 (PST)
+        id S1727802AbgKBGAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 01:00:03 -0500
+Received: from mail-eopbgr80041.outbound.protection.outlook.com ([40.107.8.41]:51822
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727767AbgKBGAD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 01:00:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=heh4nECR5UGA2DBjxIMyStv68DjfAbvfFqTmFRqyA+oJ332hf54GXM6MydVqBDmVwSBR1Uh45rHvt4tMNv3bLLUmFkrxpncxTSMNkwG2iFsKasexyj/kzAhK/2mhs1oFwieELH7MXRzBpl0FvQMkBDaWthrAT0ituP/0vEjOJC4zIJM/BA4jtF1+K2GCNvbzaiB/ZYCGSqMg/zrw0lYhI3SnVZMpLfpRkGHunH1b59TATZOr9X7GK4n2yPYjuPvjDj+qsGsgn6yemyFoTuE3SgpWWlv99G81yx7O/G+QDbrBeoBW+6enp8mBbUL9D4JgpNk+Z8e9eGHbyhM3STzvjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=53GtBVqgVMacHN/cZiJ5NKb9GnkAmQu3Uk9idhwgCrQ=;
+ b=RyqmVE9qLKRbMmjEi3RNDxvkc/eT+OYTntkQlKYuf8pxLIrtbbXQ8mcmMJAy0f4Wey3DGKcvJxNpeQqQZVtjxR0oO83x9+K1SZgyZifyCzqW/cRBhNrROdJ+t3XfHqFkBCv87TW8TmTyDsyiddVWS1tXvtSHtGezDcoyUgl1oNdJgkbPMhZirf4t/svr84d9o3GX1Gtg3BoAmwlEQbN3HJwmjoWFnF1Y5R6c3QTrAwa6QsmQKbSe9w2JSRapHFzFa4AlqPF/BzxvLGqb14EOqrrWr8zURDQIGWx0Nvu4HiGOsiIgfjP+YjXO71oxIBqgqJg8AH6jzwLeXZUdMYUApw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=53GtBVqgVMacHN/cZiJ5NKb9GnkAmQu3Uk9idhwgCrQ=;
+ b=pK3j0oh3M8BGgBh7E5YQz7RMgnwKeLp6nm8uAmukVntwV/tHhzyaDAiJGyOIxFzg0JF3Oi5h4l4AyhgcEeFIfuBTgyIem1tVoTy1rlcbUV0RXC8U/nISMTkOjBXb/n8OJBGFF85Q7tfwWgDsntRvcYKWLF0k/C0N897Bs5gW12M=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB6893.eurprd04.prod.outlook.com (2603:10a6:803:133::7)
+ by VE1PR04MB7439.eurprd04.prod.outlook.com (2603:10a6:800:1ab::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.27; Mon, 2 Nov
+ 2020 05:59:59 +0000
+Received: from VI1PR04MB6893.eurprd04.prod.outlook.com
+ ([fe80::48ec:3370:b98c:ad13]) by VI1PR04MB6893.eurprd04.prod.outlook.com
+ ([fe80::48ec:3370:b98c:ad13%2]) with mapi id 15.20.3499.030; Mon, 2 Nov 2020
+ 05:59:59 +0000
+From:   meenakshi.aggarwal@nxp.com
+To:     shawnguo@kernel.org, robh+dt@kernel.org, V.sethi@nxp.com,
+        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
+Subject: [PATCH v4 0/2] Add device tree support for LX2162AQDS board
+Date:   Mon,  2 Nov 2020 11:29:39 +0530
+Message-Id: <1604296781-28295-1-git-send-email-meenakshi.aggarwal@nxp.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1601373718-13218-3-git-send-email-meenakshi.aggarwal@nxp.com>
+References: <1601373718-13218-3-git-send-email-meenakshi.aggarwal@nxp.com>
+Content-Type: text/plain
+X-Originating-IP: [14.142.151.118]
+X-ClientProxiedBy: SG2PR02CA0067.apcprd02.prod.outlook.com
+ (2603:1096:4:54::31) To VI1PR04MB6893.eurprd04.prod.outlook.com
+ (2603:10a6:803:133::7)
 MIME-Version: 1.0
-References: <1604286803-20698-1-git-send-email-u0084500@gmail.com> <1604286803-20698-2-git-send-email-u0084500@gmail.com>
-In-Reply-To: <1604286803-20698-2-git-send-email-u0084500@gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 2 Nov 2020 13:53:18 +0800
-Message-ID: <CADiBU38Wmpobg-Z6euax2csa2s7E1M2CJS5Ks9gNTOZ=xRobkA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] mfd: rt4505: Adds DT binding document for Richtek
- RT4831 MFD core
-To:     Lee Jones <lee.jones@linaro.org>, robh+dt@kernel.org
-Cc:     cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from lsv03032.swis.in-blr01.nxp.com (14.142.151.118) by SG2PR02CA0067.apcprd02.prod.outlook.com (2603:1096:4:54::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3499.18 via Frontend Transport; Mon, 2 Nov 2020 05:59:56 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: cbca7c81-c6f8-410d-a08f-08d87ef48780
+X-MS-TrafficTypeDiagnostic: VE1PR04MB7439:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB74393AE41797A6B7A99A6AD18E100@VE1PR04MB7439.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1923;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YwBu2BFmtPkh6y6gl8chK41Rpbii7zI5CxLlGzHQ93zds9dfBkMZXppkL5Vla5Bg3IiOHsLFRT+ZVp1WuQUxxp8u0d4DMubX028jBBGfT7myyDz+xdmRhQCZagERf+3yYdDzKtiXc9XQ+1hSte/UKyWp7DC4NKvirZ4zhJhHSno5IJRLUCQJJl2sgiNPjMChR6nep3+QWRzDr/3QD0fPncmac5GcUHS/XZcryJG9M01Ske2f9qs3VdTGh6jEk+LCtMz+OGCYY/7cpMX6+HOypNpXGrATcIw7q+Wqb6L4xvV9IFMSDPMvMJnEZqN6knpHi35lAUOZIw8zImgGpzwlX+JVP1OUipvoXpjOjE3skO+q/PH6fo5ffV12hBnbjtKL
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB6893.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(366004)(136003)(5660300002)(66556008)(8936002)(6486002)(4744005)(8676002)(9686003)(316002)(83380400001)(66476007)(1006002)(6666004)(66946007)(7696005)(86362001)(52116002)(4326008)(55236004)(16526019)(2616005)(36756003)(956004)(26005)(478600001)(186003)(2906002)(110426005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: Lqg4zDIgMcrNCnVJS2Se3+stdWAVmgwp/NtohOi4J0n2luwN6LYBvuuudf3qebmKi0lmNlZfDPuI3eRW3C1fZ8Z8W8NWi2ZHatmdyw3QvONNH1eAR57d1+5zsjcqR4RAeNEZLqMu0V0UqCWx36lyKMuJ2WT1Rmk1F3VE30ereIYxUThyqxNp6byDzPuMdMDR28RWQ/kXDahXhApMBikSELEsl+zNK8/8kGUb0R6puG+AvpGeiBWDkm9hIuqNJglxN+cQoexVojprV5hdljFwgNR71csr8hfb08J+La15o+bOR2MInfR5YSUPhmChGqAVWq/CgNZv8LtLFXT3hVepcIWPT7gxPQXRKMQoB0Qm7t7CHKrmOTayP9TA8W7xO6OXFqvkVNPXJwBE4JDUJQPwvQCCo3CmLP06rZ20ILHXZttgK6vCMSQuV6IFuQRpl8/iU4FGxwaTGLPYbuhdQm+kjG0ccMK4tM3op1Vy5QLid4573YmP3Zn1zSL2bbJZziB1K9+3AIkdeol58VQi1njOjJnR+6Bn3G4AkQuNstTK7cSOCtWTURieizfspG6Odw/k4e8ev3dGYdW3gap2/iHArhbP8nlAErpY1dOXcjbA9Za3kWP7sspGozEPzZKDH8UMQjgnW7ouNk0VKPdmDkWvpg==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbca7c81-c6f8-410d-a08f-08d87ef48780
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB6893.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 05:59:59.1891
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6WxhjffeGSo+2Rur1YUvCkGO/0Ltm57WifS9IrcByMRg1odwiBuf28WL5Tut12ttB31O3F1UBHq0+X2M4qlZJ3CtKA9oW2c3mKy+euXgw6Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7439
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-  I seems I typo the wrong comment headline, not RT4505. It's RT4831.
-Please just review the contents, I'll fix it in next series patch.
+From: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
 
+LX2162A has same die as of LX2160A with different packaging.
 
-cy_huang <u0084500@gmail.com> =E6=96=BC 2020=E5=B9=B411=E6=9C=882=E6=97=A5 =
-=E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:13=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: ChiYuan Huang <cy_huang@richtek.com>
->
-> Adds DT binding document for Richtek RT4831 MFD core.
->
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  .../devicetree/bindings/mfd/richtek,rt4831.yaml    | 89 ++++++++++++++++=
-++++++
->  include/dt-bindings/leds/rt4831-backlight.h        | 23 ++++++
->  2 files changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt4831.=
-yaml
->  create mode 100644 include/dt-bindings/leds/rt4831-backlight.h
->
-> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml b/=
-Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
-> new file mode 100644
-> index 00000000..c602d50
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/richtek,rt4831.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Richtek RT4831 DSV and Backlight Integrated IC
-> +
-> +maintainers:
-> +  - ChiYuan Huang <cy_huang@richtek.com>
-> +
-> +description: |
-> +  RT4831 is a mutifunctional device that can provide display panel power=
- for
-> +  positive/negative voltage and also display panel wled driving.
-> +
-> +  For the display voltage output, the range is about 4V to 6.5V. It is s=
-ufficient
-> +  to meet the current display panel design.
-> +
-> +  For the panel backlight, it can provide four channels driving capabili=
-ty
-> +  Each driving current is up to 30mA
-> +
-> +  Datasheet is available at
-> +  https://www.richtek.com/assets/product_file/RT4831A/DS4831A-05.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: richtek,rt4831
-> +
-> +  reg:
-> +    description: I2C device address.
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    description: |
-> +      GPIO to enable/disable the chip. It is optional.
-> +      Some usage directly tied this pin to follow VIO 1.8V power on sequ=
-ence.
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    $ref: ../regulator/richtek,rt4831-regulator.yaml
-> +
-> +  backlight:
-> +    $ref: ../leds/backlight/richtek,rt4831-backlight.yaml
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/rt4831-backlight.h>
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      rt4831@11 {
-> +        compatible =3D "richtek,rt4831";
-> +        reg =3D <0x11>;
-> +
-> +        regulators {
-> +          DSVLCM {
-> +            regulator-min-microvolt =3D <4000000>;
-> +            regulator-max-microvolt =3D <7150000>;
-> +          };
-> +          DSVP {
-> +            regulator-name =3D "rt4831-dsvp";
-> +            regulator-min-microvolt =3D <4000000>;
-> +            regulator-max-microvolt =3D <6500000>;
-> +            regulator-boot-on;
-> +          };
-> +          DSVN {
-> +            regulator-name =3D "rt4831-dsvn";
-> +            regulator-min-microvolt =3D <4000000>;
-> +            regulator-max-microvolt =3D <6500000>;
-> +            regulator-boot-on;
-> +          };
-> +        };
-> +
-> +        backlight {
-> +          compatible =3D "richtek,rt4831-backlight";
-> +          default-brightness =3D <1024>;
-> +          max-brightness =3D <2048>;
-> +          richtek,bled-ovp-sel =3D /bits/ 8 <RT4831_BLOVPLVL_21V>;
-> +          richtek,channel-use =3D /bits/ 8 <RT4831_BLED_ALLCHEN>;
-> +        };
-> +      };
-> +    };
-> diff --git a/include/dt-bindings/leds/rt4831-backlight.h b/include/dt-bin=
-dings/leds/rt4831-backlight.h
-> new file mode 100644
-> index 00000000..7084906
-> --- /dev/null
-> +++ b/include/dt-bindings/leds/rt4831-backlight.h
-> @@ -0,0 +1,23 @@
-> +/*
-> + * This header provides constants for rt4831 backlight bindings.
-> + *
-> + * This file is licensed under the terms of the GNU General Public
-> + * License version 2.  This program is licensed "as is" without any
-> + * warranty of any kind, whether express or implied.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_RT4831_BACKLIGHT_H
-> +#define _DT_BINDINGS_RT4831_BACKLIGHT_H
-> +
-> +#define RT4831_BLOVPLVL_17V    0
-> +#define RT4831_BLOVPLVL_21V    1
-> +#define RT4831_BLOVPLVL_25V    2
-> +#define RT4831_BLOVPLVL_29V    3
-> +
-> +#define RT4831_BLED_CH1EN      (1 << 0)
-> +#define RT4831_BLED_CH2EN      (1 << 1)
-> +#define RT4831_BLED_CH3EN      (1 << 2)
-> +#define RT4831_BLED_CH4EN      (1 << 3)
-> +#define RT4831_BLED_ALLCHEN    ((1 << 4) - 1)
-> +
-> +#endif /* _DT_BINDINGS_RT4831_BACKLIGHT_H */
-> --
-> 2.7.4
->
+Changes:
+
+        v2:
+        - divided patch into two, binding and dts support
+
+	v3:
+	- incorporated review comments on voltage regulator node
+
+	v4:
+	- fixed check-patch warning.
+
+Meenakshi Aggarwal (2):
+  dt-bindings: arm64: add compatible for LX2162A QDS Board
+  arm64: dts: lx2160a: add device tree for lx2162aqds board
+
+ Documentation/devicetree/bindings/arm/fsl.yaml    |   1 +
+ arch/arm64/boot/dts/freescale/Makefile            |   1 +
+ arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts | 334 ++++++++++++++++++++++
+ 3 files changed, 336 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
+
+-- 
+2.7.4
+
