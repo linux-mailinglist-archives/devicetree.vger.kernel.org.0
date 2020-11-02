@@ -2,132 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 271892A2B40
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 14:11:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78BFF2A2BDB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 14:44:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728359AbgKBNLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 08:11:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36604 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728253AbgKBNLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 08:11:37 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65940C0617A6;
-        Mon,  2 Nov 2020 05:11:37 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id oq3so16957155ejb.7;
-        Mon, 02 Nov 2020 05:11:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/RkXN4OFo+W9SVpTQ7rTjG1Jc2YrNCnjrHWcZHJNoak=;
-        b=HeiW3q+D4q/dUP81vDVW90V67wNYM2TbE9aabOW4o/LsEfTM9Glle15KCmRWW3H4cf
-         PkJYIFzrBXbkWMhc4vSiPicfo0JkfxceUEWyFU/c4hwiLryOCAeD+SG9IFIyhEae5Jad
-         FYGKgCk8L6SH7fNx8QYiu0DsX4wKm6YMC1pj702LxmIHhni2kLBlucJjxQZqdL6M1jVI
-         F5CJi3GEdhyU09s5tebgmQuWFlGyUm6Pac4BYisf2yQScTOcys6cQflmkrpEmcs610lH
-         Gz1EQeiC8A66G7zhKl7HBz2JfOVle+arsrAW7pM/wOrkYPkRRl12LaNHdQlPzTAlPYUF
-         0SJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/RkXN4OFo+W9SVpTQ7rTjG1Jc2YrNCnjrHWcZHJNoak=;
-        b=TcyaX+LyRqSsZf8BrX807sihySt8kQZSE9M1jyLKz/xq/VjS3YxMIAVdKsdq+JFSUB
-         qcuGfFapcVAARh51IYxEUlVCEFbVDeJEWT8e0jyo5hWlFW/o4osdKRMx32h5qjLCQNhj
-         DkPZ178j/X16K+tdy8U2IEPVsaWeGQOJ53EkaMCAm7AxAqfmj4woJFnyxVTQ/NhdbAMx
-         kkBOT87krS+F6X8mLq6Zz26cd7IxXFJaYS+PYWefFMo9hT1Gqwh3itE9g0NDrbbpiOnI
-         wNJRcdiI133RpPBd29Qq0RzpoCJGimD8VlCctQkxf2yHkGnVKknAjjtOYmW6HtCfvEJ5
-         h+8A==
-X-Gm-Message-State: AOAM530i+l/2ABDrX1gw1b1R9P+Bgl+PvKLcwjatZK8pyxD2P8TyURZh
-        OE1xuponT/3VLQ8TYqaCtF8=
-X-Google-Smtp-Source: ABdhPJwKgliX46cwTLehe50qr8MXMOVehZnw1Fh0wN0HrPpMeF9lyDdEJlH9ePlsXo6WCylsBCpiWw==
-X-Received: by 2002:a17:907:2089:: with SMTP id pv9mr1845201ejb.34.1604322696126;
-        Mon, 02 Nov 2020 05:11:36 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id b8sm7282438ejx.11.2020.11.02.05.11.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Nov 2020 05:11:35 -0800 (PST)
-Subject: Re: [PATCH v13 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
- RK2928 and others
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Yifeng <yifeng.zhao@rock-chips.com>, richard@nod.at,
-        vigneshr@ti.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        heiko@sntech.de, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20201028095326.15562-1-yifeng.zhao@rock-chips.com>
- <20201028095326.15562-3-yifeng.zhao@rock-chips.com>
- <a8a7875b-f08b-62c6-a630-245687e0df3b@gmail.com>
- <e02e13a0-769d-6b73-c87e-5b7d75fd4254@rock-chips.com>
- <0b417fc2-3503-9bf6-914d-0f8b38df1914@gmail.com>
- <20201102140725.66e7dcb1@xps13>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <5ad70fa0-05a9-e1e7-32cc-32933ff25ae9@gmail.com>
-Date:   Mon, 2 Nov 2020 14:11:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1725796AbgKBNoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 08:44:34 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56812 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725789AbgKBNoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 08:44:34 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A2DiRk8088826;
+        Mon, 2 Nov 2020 07:44:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604324667;
+        bh=r/YlXtNITCgo4GkTlzG2uADjCbJc3vs67h2nz6jE7G0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Ge6e9BIam1fF+LBrf/h/e//TaAYC4F4tLSExSYOzqqX22BEO84KjTkySv3dhTajfz
+         Y5+fDbQChQhy2DP0YS/Qhsc+K+Bq61swCoxfGfTmMdjk/7zUHD+1je6bueE/FzvmEA
+         Kb02iz2w1JRwoWNHLdevVrpNGmn5wQNZroal1gGM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A2DiRMP128636
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 2 Nov 2020 07:44:27 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 2 Nov
+ 2020 07:42:52 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 2 Nov 2020 07:42:52 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A2DgoCO105658;
+        Mon, 2 Nov 2020 07:42:51 -0600
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: mark dss as dma-coherent
+To:     Robin Murphy <robin.murphy@arm.com>, Nishanth Menon <nm@ti.com>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201029141159.190621-1-tomi.valkeinen@ti.com>
+ <20201029144100.bf35vierhfignips@NiksLab>
+ <20201029145217.zjazhjvylgwez4do@husked>
+ <8532a1c0-29db-d67a-441f-b58b232f7c98@ti.com>
+ <59747093-4171-937d-70a3-ce6ee788cf79@arm.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <4998118a-f8ec-fc8c-2535-729bb0b68ec9@ti.com>
+Date:   Mon, 2 Nov 2020 15:42:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201102140725.66e7dcb1@xps13>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <59747093-4171-937d-70a3-ce6ee788cf79@arm.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 11/2/20 2:07 PM, Miquel Raynal wrote:
-> Hi Johan, Yifeng
+On 02/11/2020 15:01, Robin Murphy wrote:
+> On 2020-10-30 14:08, Tomi Valkeinen wrote:
+>> On 29/10/2020 16:52, Nishanth Menon wrote:
+>>> On 20:11-20201029, Nikhil Devshatwar wrote:
+>>>> On 16:11-20201029, Tomi Valkeinen wrote:
+>>>>> DSS is IO coherent on AM65, so we can mark it as such with
+>>>>> 'dma-coherent' property in the DT file.
+>>>>>
+>>>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+>>>> Acked-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+>>>>
+>>>
+>>> Tomi: Do you need to add Fixes: tag to percolate this to stable? if
+>>> yes, please comment, makes it easier for me to queue for 5.10 if
+>>> possible
+>>
+>> I don't see this as a fix, but an optimization. Nothing is broken without this.
 > 
-> Johan Jonker <jbx6244@gmail.com> wrote on Mon, 2 Nov 2020 13:57:56
-> +0100:
+> Note that if the driver doesn't have explicit control over what type of memory access the device
+> makes, that's not necessarily true.
 > 
->> Hi Yifeng,
->>
->> Don't poke with "ecc->bytes" ones it is set in rk_nfc_ecc_init(). It
->> will not be noted by the MTD frame work or userspace. I think there's
->> currently no way to let the user know that a different ECC must be used.
->> Neither can the user set ECC on the fly.
->>
->> Example R/W flow:
->>
->>         nand_select_target()
->> 	chip->ecc.write_page_raw()
->> 	chip->ecc.write_page()
->>
->> [..]
->>
->> 	chip->ecc.read_page_raw()
->> 	chip->ecc.read_page()
->>         nand_deselect_target()
->>
->> A write/read with:
->>
->> rk_nfc_read_page_hwecc()
->> rk_nfc_write_page_hwecc()
->>
->> or
->>
->> rk_nfc_read_page_raw()
->> rk_nfc_write_page_raw()
->>
->> must end up with the same result. If we can't archive that, then we
->> shouldn't offer RAW mode to the user for now. If Miquel agrees you
->> should just get the driver ready now without these 2 functions and round
->> things up.
-> 
-> What about just not supporting the BootROM area if it was marked
-> "reserved" by the BRom in the DT?
+> If coherent DMA buffers are allocated from regular kernel memory, there's still a cacheable alias
+> kicking around that can be speculatively fetched into a cache somewhere. If the device is genuinely
+> non-coherent, or configured to make non-snooping accesses, then that's not an issue, but it it's
+> hard-wired to make snooping accesses it can start hitting that cached alias and not see subsequent
+> updates to the buffer, since those are written straight to RAM via the non-cacheable mapping. At
+> that point it becomes an actual problem (and it's not just theoretical - we've hit a real-world
+> example of this recently with GPUs on certain Amlogic devices).
 
-Should we just fill the buffers with '0xff' for boot blocks?
+Ok, thanks. I don't know if that the case here, but better safe than sorry. I'll send a new one with
+appropriate tags.
 
-> 
-> Raw accessors is really a nice and basic feature that I would like to
-> have in every new driver.
-> 
-> Thanks,
-> Miquèl
-> 
+ Tomi
 
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
