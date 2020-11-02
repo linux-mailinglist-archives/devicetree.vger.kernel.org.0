@@ -2,92 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 491702A31AB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:35:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 054562A31D2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:42:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727940AbgKBRf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:35:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58178 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727823AbgKBRf0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 12:35:26 -0500
-Received: from localhost.localdomain (cpe-70-114-140-30.austin.res.rr.com [70.114.140.30])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 86C6F208A9;
-        Mon,  2 Nov 2020 17:35:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604338526;
-        bh=grigcmrEiodYgzlWfZJO1Bq5qiQJKGw/FYZ5fiKtMaM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=FMU11bnF3y21FAQkSBN5RaT2+PnWguQzgQyaUg1r2JQsu9DSQ12v50q3wV/Cw/Cuw
-         WycB9ndLQOWUDnK3zOZnhaZ2giDz7vxDv0UOCBPLN03KUHYfi7aebzVfvcwNifCWys
-         k2D9fu85H0Q9k7NGFpPTSwEdfBY539nEAMUYlkB0=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     dinguyen@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        vigneshr@ti.com, linux-arm-kernel@lists.infradead.org,
-        stable@vger.kernel.org
-Subject: [PATCH] arm64: dts: agilex/stratix10: Fix qspi node compatible
-Date:   Mon,  2 Nov 2020 11:35:20 -0600
-Message-Id: <20201102173520.13242-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.17.1
+        id S1725838AbgKBRmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:42:04 -0500
+Received: from lhrrgout.huawei.com ([185.176.76.210]:3019 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725833AbgKBRmE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 12:42:04 -0500
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
+        by Forcepoint Email with ESMTP id A7A854F9BCC3CA6926CC;
+        Mon,  2 Nov 2020 17:42:02 +0000 (GMT)
+Received: from localhost (10.52.120.98) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 2 Nov 2020
+ 17:42:02 +0000
+Date:   Mon, 2 Nov 2020 17:39:59 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Crt Mori <cmo@melexis.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Linux Iio <linux-iio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Peter Meerwald <pmeerw@pmeerw.net>
+Subject: Re: [PATCH v2 24/29] dt-bindings:iio:temperature:melexis,mlx90614
+ yaml conversion
+Message-ID: <20201102173959.00004127@Huawei.com>
+In-Reply-To: <CAKv63uvm4WMk6U=CthTcVTD+cM-kb9FLBxn2Os8Yy2mHJYoJ5Q@mail.gmail.com>
+References: <20201031134110.724233-1-jic23@kernel.org>
+        <20201031134110.724233-25-jic23@kernel.org>
+        <CAKv63uvm4WMk6U=CthTcVTD+cM-kb9FLBxn2Os8Yy2mHJYoJ5Q@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.120.98]
+X-ClientProxiedBy: lhreml734-chm.china.huawei.com (10.201.108.85) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QSPI flash node needs to have the required "jedec,spi-nor"
-in the compatible string.
+On Mon, 2 Nov 2020 10:12:57 +0100
+Crt Mori <cmo@melexis.com> wrote:
 
-Fixes: 0cb140d07fc7 ("arm64: dts: stratix10: Add QSPI support for Stratix10")
-Cc: stable@vger.kernel.org
-Suggested-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts      | 2 +-
- arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts | 2 +-
- arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts          | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+> Hi Jonathan,
+> The commit message should change here as now you did not list all 3
+> authors as maintainers, because one has a bouncy email address.
+Good point.  I can clean that up whilst applying if we don't need
+a v3.
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-index feadd21bc0dc..46e558ab7729 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-@@ -159,7 +159,7 @@
- 	flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q00a";
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-index c07966740e14..f9b4a39683cf 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-@@ -192,7 +192,7 @@
- 	flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q00a";
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-index 96c50d48289d..a7a83f29f00b 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-@@ -110,7 +110,7 @@
- 	flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "mt25qu02g";
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 
--- 
-2.17.1
+Jonathan
+
+> 
+> Best regards,
+> Crt
+> 
+> On Sat, 31 Oct 2020 at 14:44, Jonathan Cameron <jic23@kernel.org> wrote:
+> >
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >
+> > Simple conversion from txt to yaml.
+> > I've listed all 3 authors of the driver as maintainers.
+> >
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Acked-by: Crt Mori <cmo@melexis.com>
+> > Cc: Peter Meerwald <pmeerw@pmeerw.net>
+> > ---
+> >  .../iio/temperature/melexis,mlx90614.yaml     | 50 +++++++++++++++++++
+> >  .../bindings/iio/temperature/mlx90614.txt     | 24 ---------
+> >  2 files changed, 50 insertions(+), 24 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+> > new file mode 100644
+> > index 000000000000..d6965a0c1cf3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90614.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Melexis MLX90614 contactless IR temperature sensor
+> > +
+> > +maintainers:
+> > +  - Peter Meerwald <pmeerw@pmeerw.net>
+> > +  - Crt Mori <cmo@melexis.com>
+> > +
+> > +description: |
+> > +  http://melexis.com/Infrared-Thermometer-Sensors/Infrared-Thermometer-Sensors/MLX90614-615.aspx
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: melexis,mlx90614
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  wakeup-gpios:
+> > +    description:
+> > +      GPIO connected to the SDA line to hold low in order to wake up the
+> > +      device.  In normal operation, the GPIO is set as input and will
+> > +      not interfere in I2C communication.  There is no need for a GPIO
+> > +      driving the SCL line.  If no GPIO is given, power management is disabled.
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        temp-sensor@5a {
+> > +            compatible = "melexis,mlx90614";
+> > +            reg = <0x5a>;
+> > +            wakeup-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+> > +        };
+> > +    };
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt b/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt
+> > deleted file mode 100644
+> > index 9be57b036092..000000000000
+> > --- a/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt
+> > +++ /dev/null
+> > @@ -1,24 +0,0 @@
+> > -* Melexis MLX90614 contactless IR temperature sensor
+> > -
+> > -http://melexis.com/Infrared-Thermometer-Sensors/Infrared-Thermometer-Sensors/MLX90614-615.aspx
+> > -
+> > -Required properties:
+> > -
+> > -  - compatible: should be "melexis,mlx90614"
+> > -  - reg: the I2C address of the sensor
+> > -
+> > -Optional properties:
+> > -
+> > -  - wakeup-gpios: device tree identifier of the GPIO connected to the SDA line
+> > -      to hold low in order to wake up the device.  In normal operation, the
+> > -      GPIO is set as input and will not interfere in I2C communication.  There
+> > -      is no need for a GPIO driving the SCL line.  If no GPIO is given, power
+> > -      management is disabled.
+> > -
+> > -Example:
+> > -
+> > -mlx90614@5a {
+> > -       compatible = "melexis,mlx90614";
+> > -       reg = <0x5a>;
+> > -       wakeup-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+> > -};
+> > --
+> > 2.28.0
+> >  
 
