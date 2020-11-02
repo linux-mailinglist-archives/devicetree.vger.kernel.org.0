@@ -2,101 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 134F42A252F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:29:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 928672A2555
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:36:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728017AbgKBH32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 02:29:28 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:54794 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728064AbgKBH31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 02:29:27 -0500
-X-UUID: c4bb20b5ab7a4cc6aed752af9ebb52fa-20201102
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=q4bvGdMGyh2E0MZ8xSG66t4ZOKnXaBEU1VOFr3jNnss=;
-        b=OG22lScNGiPMvdumuMg8CmHY5oKU0aClJMdYIm69ocu3fDe5kUu2aQFJ5fw3xXoQ+LIoMNSF0nivq9Vww4ksOMg4uR9LkKNSq/eWi3eUXWPB4Exjq6/vcDlCzz2BpWTpT/yVhl30YwDmcJEkffoiglnxxfHUcIrpz6HlMtIuDtw=;
-X-UUID: c4bb20b5ab7a4cc6aed752af9ebb52fa-20201102
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1338950142; Mon, 02 Nov 2020 15:24:18 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 2 Nov 2020 15:24:16 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 2 Nov 2020 15:24:16 +0800
-Message-ID: <1604301856.804.0.camel@mtkswgap22>
-Subject: Re: [PATCH v8] Add MediaTek MT6779 devapc driver
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Neal Liu <neal.liu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        wsd_upstream <wsd_upstream@mediatek.com>
-Date:   Mon, 2 Nov 2020 15:24:16 +0800
-In-Reply-To: <1602732276.13734.1.camel@mtkswgap22>
-References: <1602732039-12179-1-git-send-email-neal.liu@mediatek.com>
-         <1602732276.13734.1.camel@mtkswgap22>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1728084AbgKBHgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 02:36:48 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:42474 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726819AbgKBHgr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 02:36:47 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 74B872013BE;
+        Mon,  2 Nov 2020 08:36:45 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 198302013CB;
+        Mon,  2 Nov 2020 08:36:42 +0100 (CET)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 833A04029C;
+        Mon,  2 Nov 2020 08:36:37 +0100 (CET)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH v4 1/3] soc: fsl: handle RCPM errata A-008646 on SoC LS1021A
+Date:   Mon,  2 Nov 2020 15:26:50 +0800
+Message-Id: <20201102072652.34893-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R2VudGxlIHBpbmcgZm9yIHRoZXNlIHBhdGNoIHNlcmllcy4NClRoYW5rcyAhDQoNCk9uIFRodSwg
-MjAyMC0xMC0xNSBhdCAxMToyNCArMDgwMCwgTmVhbCBMaXUgd3JvdGU6DQo+IGFkZCBzdWJqZWN0
-DQo+IA0KPiBPbiBUaHUsIDIwMjAtMTAtMTUgYXQgMTE6MjAgKzA4MDAsIE5lYWwgTGl1IHdyb3Rl
-Og0KPiA+IFRoZXNlIHBhdGNoIHNlcmllcyBpbnRyb2R1Y2UgYSBNZWRpYVRlayBNVDY3NzkgZGV2
-YXBjIGRyaXZlci4NCj4gPiANCj4gPiBNZWRpYVRlayBidXMgZmFicmljIHByb3ZpZGVzIFRydXN0
-Wm9uZSBzZWN1cml0eSBzdXBwb3J0IGFuZCBkYXRhIHByb3RlY3Rpb24gdG8gcHJldmVudCBzbGF2
-ZXMgZnJvbSBiZWluZyBhY2Nlc3NlZCBieSB1bmV4cGVjdGVkIG1hc3RlcnMuDQo+ID4gVGhlIHNl
-Y3VyaXR5IHZpb2xhdGlvbiBpcyBsb2dnZWQgYW5kIHNlbnQgdG8gdGhlIHByb2Nlc3NvciBmb3Ig
-ZnVydGhlciBhbmFseXNpcyBvciBjb3VudGVybWVhc3VyZXMuDQo+ID4gDQo+ID4gQW55IG9jY3Vy
-cmVuY2Ugb2Ygc2VjdXJpdHkgdmlvbGF0aW9uIHdvdWxkIHJhaXNlIGFuIGludGVycnVwdCwgYW5k
-IGl0IHdpbGwgYmUgaGFuZGxlZCBieSBtdGstZGV2YXBjIGRyaXZlci4NCj4gPiBUaGUgdmlvbGF0
-aW9uIGluZm9ybWF0aW9uIGlzIHByaW50ZWQgaW4gb3JkZXIgdG8gZmluZCB0aGUgbXVyZGVyZXIu
-DQo+ID4gDQo+ID4gY2hhbmdlcyBzaW5jZSB2NzoNCj4gPiAtIGZpeCBWSU9fTU9EX1RPX1JFR19J
-TkQgY2FsY3VsYXRpb24gd3JvbmcgcHJvYmxlbS4NCj4gPiAtIHJldmlzZSBwYXJhbWV0ZXIgdHlw
-ZSBvZiBJU1IuDQo+ID4gDQo+ID4gY2hhbmdlcyBzaW5jZSB2NjoNCj4gPiAtIHJlbW92ZSB1bm5l
-Y2Vzc2FyeSBtYXNrL3VubWFzayBtb2R1bGUgaXJxIGR1cmluZyBJU1IuDQo+ID4gDQo+ID4gY2hh
-bmdlcyBzaW5jZSB2NToNCj4gPiAtIHJlbW92ZSByZWR1bmRhbnQgd3JpdGUgcmVnIG9wZXJhdGlv
-bi4NCj4gPiAtIHVzZSBzdGF0aWMgdmFyaWFibGUgb2YgdmlvX2RiZ3MgaW5zdGVhZC4NCj4gPiAt
-IGFkZCBzdG9wX2RldmFwYygpIGlmIGRyaXZlciBpcyByZW1vdmVkLg0KPiA+IA0KPiA+IGNoYW5n
-ZXMgc2luY2UgdjQ6DQo+ID4gLSByZWZhY3RvciBkYXRhIHN0cnVjdHVyZS4NCj4gPiAtIG1lcmdl
-IHR3byBzaW1wbGUgZnVuY3Rpb25zIGludG8gb25lLg0KPiA+IC0gcmVmYWN0b3IgcmVnaXN0ZXIg
-c2V0dGluZyB0byBwcmV2ZW50IHRvbyBtYW55IGZ1bmN0aW9uIGNhbGwgb3ZlcmhlYWQuDQo+ID4g
-DQo+ID4gY2hhbmdlcyBzaW5jZSB2MzoNCj4gPiAtIHJldmlzZSB2aW9sYXRpb24gaGFuZGxpbmcg
-ZmxvdyB0byBtYWtlIGl0IG1vcmUgZWFzaWx5IHRvIHVuZGVyc3RhbmQNCj4gPiAgIGhhcmR3YXJl
-IGJlaGF2aW9yLg0KPiA+IC0gYWRkIG1vcmUgY29tbWVudHMgdG8gdW5kZXJzdGFuZCBob3cgaGFy
-ZHdhcmUgd29ya3MuDQo+ID4gDQo+ID4gY2hhbmdlcyBzaW5jZSB2MjoNCj4gPiAtIHBhc3MgcGxh
-dGZvcm0gaW5mbyB0aHJvdWdoIERUIGRhdGEuDQo+ID4gLSByZW1vdmUgdW5uZWNlc3NhcnkgZnVu
-Y3Rpb24uDQo+ID4gLSByZW1vdmUgc2xhdmVfdHlwZSBiZWNhdXNlIGl0IGFsd2F5cyBlcXVhbHMg
-dG8gMSBpbiBjdXJyZW50IHN1cHBvcnQgU29DLg0KPiA+IC0gdXNlIHZpb19pZHhfbnVtIGluc3Ry
-ZWFkIG9mIGxpc3QgYWxsIGRldmljZXMnIGluZGV4Lg0KPiA+IC0gYWRkIG1vcmUgY29tbWVudHMg
-dG8gZGVzY3JpYmUgaGFyZHdhcmUgYmVoYXZpb3IuDQo+ID4gDQo+ID4gY2hhbmdlcyBzaW5jZSB2
-MToNCj4gPiAtIG1vdmUgU29DIHNwZWNpZmljIHBhcnQgdG8gRFQgZGF0YS4NCj4gPiAtIHJlbW92
-ZSB1bm5lY2Vzc2FyeSBib3VuZGFyeSBjaGVjay4NCj4gPiAtIHJlbW92ZSB1bm5lY2Vzc2FyeSBk
-YXRhIHR5cGUgZGVjbGFyYXRpb24uDQo+ID4gLSB1c2UgcmVhZF9wb2xsX3RpbWVvdXQoKSBpbnN0
-cmVhZCBvZiBmb3IgbG9vcCBwb2xsaW5nLg0KPiA+IC0gcmV2aXNlIGNvZGluZyBzdHlsZSBlbGVn
-YW50bHkuDQo+ID4gDQo+ID4gDQo+ID4gKioqIEJMVVJCIEhFUkUgKioqDQo+ID4gDQo+ID4gTmVh
-bCBMaXUgKDIpOg0KPiA+ICAgZHQtYmluZGluZ3M6IGRldmFwYzogYWRkIGJpbmRpbmdzIGZvciBt
-dGstZGV2YXBjDQo+ID4gICBzb2M6IG1lZGlhdGVrOiBhZGQgbXQ2Nzc5IGRldmFwYyBkcml2ZXIN
-Cj4gPiANCj4gPiAgLi4uL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbCAgICAgICAg
-IHwgIDU4ICsrKysNCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvS2NvbmZpZyAgICAgICAgICAg
-ICAgICAgIHwgICA5ICsNCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvTWFrZWZpbGUgICAgICAg
-ICAgICAgICAgIHwgICAxICsNCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWRldmFwYy5j
-ICAgICAgICAgICAgIHwgMzA4ICsrKysrKysrKysrKysrKysrKw0KPiA+ICA0IGZpbGVzIGNoYW5n
-ZWQsIDM3NiBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL21lZGlhdGVrL2RldmFwYy55YW1sDQo+ID4gIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstZGV2YXBjLmMNCj4gPiAN
-Cj4gDQo+IA0KDQo=
+From: Biwen Li <biwen.li@nxp.com>
+
+Hardware issue:
+- Reading register RCPM_IPPDEXPCR1 always return zero, this causes
+  system firmware could not get correct information and wrongly do
+  clock gating for all wakeup source IP during system suspend. Then
+  those IPs will never get chance to wake system.
+
+Workaround:
+- Copy register RCPM_IPPDEXPCR1's setting to register SCFG_SPARECR8
+  to allow system firmware's psci method read it and do things accordingly.
+
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+---
+Change in v4:
+ - Replace property 'fsl,ippdexpcr1-alt-reg' with compatible checking as the
+   workaround trigger condition.
+
+Change in v3:
+ - Add  copy_ippdexpcr1_setting(), simplize workaournd's implementation
+   according to binding update.
+ - Minor update on commit message.
+
+Change in v2:
+ - Update commit message to be more clear.
+ - Replace device_property_read_u32_array() with syscon_regmap_lookup_by_phandle_args()
+   to make code simpler.
+
+ drivers/soc/fsl/rcpm.c | 35 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 34 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/soc/fsl/rcpm.c b/drivers/soc/fsl/rcpm.c
+index a093dbe..4ace28c 100644
+--- a/drivers/soc/fsl/rcpm.c
++++ b/drivers/soc/fsl/rcpm.c
+@@ -2,7 +2,7 @@
+ //
+ // rcpm.c - Freescale QorIQ RCPM driver
+ //
+-// Copyright 2019 NXP
++// Copyright 2019-2020 NXP
+ //
+ // Author: Ran Wang <ran.wang_1@nxp.com>
+ 
+@@ -22,6 +22,28 @@ struct rcpm {
+ 	bool		little_endian;
+ };
+ 
++#define  SCFG_SPARECR8	0x051c
++
++static void copy_ippdexpcr1_setting(u32 val)
++{
++	struct device_node *np;
++	void __iomem *regs;
++	u32 reg_val;
++
++	np = of_find_compatible_node(NULL, NULL, "fsl,ls1021a-scfg");
++	if (!np)
++		return;
++
++	regs = of_iomap(np, 0);
++	if (!regs)
++		return;
++
++	reg_val = ioread32be(regs + SCFG_SPARECR8);
++	iowrite32be(val | reg_val, regs + SCFG_SPARECR8);
++
++	iounmap(regs);
++}
++
+ /**
+  * rcpm_pm_prepare - performs device-level tasks associated with power
+  * management, such as programming related to the wakeup source control.
+@@ -90,6 +112,17 @@ static int rcpm_pm_prepare(struct device *dev)
+ 			tmp |= ioread32be(address);
+ 			iowrite32be(tmp, address);
+ 		}
++		/*
++		 * Workaround of errata A-008646 on SoC LS1021A:
++		 * There is a bug of register ippdexpcr1.
++		 * Reading configuration register RCPM_IPPDEXPCR1
++		 * always return zero. So save ippdexpcr1's value
++		 * to register SCFG_SPARECR8.And the value of
++		 * ippdexpcr1 will be read from SCFG_SPARECR8.
++		 */
++		if (dev_of_node(dev) && (i == 1))
++			if (of_device_is_compatible(np, "fsl,ls1021a-rcpm"))
++				copy_ippdexpcr1_setting(tmp);
+ 	}
+ 
+ 	return 0;
+-- 
+2.7.4
 
