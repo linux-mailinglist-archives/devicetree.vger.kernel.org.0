@@ -2,85 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CDAF2A3106
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:12:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 156E82A310C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:13:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727618AbgKBRMF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Nov 2020 12:12:05 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:35980 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727589AbgKBRMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:12:05 -0500
-Received: by mail-oi1-f196.google.com with SMTP id d9so9395314oib.3;
-        Mon, 02 Nov 2020 09:12:04 -0800 (PST)
+        id S1727221AbgKBRNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:13:39 -0500
+Received: from mail-oo1-f65.google.com ([209.85.161.65]:42008 "EHLO
+        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726913AbgKBRNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:13:39 -0500
+Received: by mail-oo1-f65.google.com with SMTP id l26so3520126oop.9;
+        Mon, 02 Nov 2020 09:13:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=eA1YHLSLEbKjVZd8ZPCYquKLICIoPYEsjcgwYwIXONM=;
-        b=oGOtSZAPljOnzyKnWieVFzHNL2VnMXFStXtLw7gPc4/ZPxcilAsZCHGvVd9vA4p5zn
-         F290/zgHeu09Gl+jZCL1qsjLWvkNxZKi26snR39lhFzl5EsgnWDUHbFip0zAxMExCLwN
-         Kql0rHBYHeNwFi50A2Anrcw+Sjh5qKByVyEdrbT+EzrVss7wP7QfIMOlOh8uN6RptIMr
-         ipIzqh8V3Lp5dDvtX8pK/rH3axYFEMnv3tlpvFoHw5sJJswhWVUmfFtVkCtxyiR6iiQb
-         FJMH1bcpEHRNuvjSyKk0w2WkaXZk5WgjRvacbuZfhvz2/dS/45lCjtQMBDCNy7c9V6lt
-         BsXQ==
-X-Gm-Message-State: AOAM532SAAlZ2zvjkcwNWybWDFJfhYQ1GN9YXyHbsPY4OADiDJMy/t9x
-        TWoHljNCOjRtrtfCM6mKEQ==
-X-Google-Smtp-Source: ABdhPJwIP7A0eJV2FdnAxV4GkQDkNlw2WxhwivkI2jfqP/w6eBmV9pOv23Sc+uKXnoHc+lmzjesN3Q==
-X-Received: by 2002:aca:a906:: with SMTP id s6mr1968252oie.59.1604337124008;
-        Mon, 02 Nov 2020 09:12:04 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=i+30Ilqq3pmYLOSYWMPfKNer8N4KvZKxWGyZKD8fipQ=;
+        b=HejEaO2A3/2ivhRNYie8DE1YAmDzPHAW8Xhz403Pc2Vk1rWY6OIbjzff0vqnFwAPdZ
+         h97u7w6yysSnveQ9wH7OOm0Hd+7J8G+sgeQY998yaTgfX8hHw8NR6RVFFwHWjm+g+2nD
+         VXNScC8QCcDggOMOgJWCaD7QbhexdV8Y3EJjHWlR2hOlleMh46IjMVHdiUu0rR0VZncI
+         ZzKljjOZsfmmR4eCv6W0WJB+8Gi0YLgzEB+59CqbvPVoepFqY6UJe0p8kSOMELLCK4OP
+         blfXSMtSwkpqgvGNfFGyAx2ENAemXHpxOIOL7uSfyKuiXv32BGDZrvfS7/8OtGtt7ea2
+         u1zQ==
+X-Gm-Message-State: AOAM531qRPeIbiIOYUQusvaCofpba4mjlgEnTS6q5QM9XplbpXaEMK2i
+        z15Y9hsA6jKcXSjv8o9tEA==
+X-Google-Smtp-Source: ABdhPJxMDoUhHq4EtyozCmMt0xRbdbn+OLQuLou42qEPlJ0+IydmMwVY5Xxyq3mGT6ue/q+4kVI1dg==
+X-Received: by 2002:a4a:e40b:: with SMTP id t11mr12708294oov.43.1604337218677;
+        Mon, 02 Nov 2020 09:13:38 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j23sm3806127otk.56.2020.11.02.09.12.03
+        by smtp.gmail.com with ESMTPSA id f18sm3574206oos.19.2020.11.02.09.13.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 09:12:03 -0800 (PST)
-Received: (nullmailer pid 4059886 invoked by uid 1000);
-        Mon, 02 Nov 2020 17:12:02 -0000
-Date:   Mon, 2 Nov 2020 11:12:02 -0600
+        Mon, 02 Nov 2020 09:13:37 -0800 (PST)
+Received: (nullmailer pid 4062102 invoked by uid 1000);
+        Mon, 02 Nov 2020 17:13:36 -0000
+Date:   Mon, 2 Nov 2020 11:13:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     devicetree@vger.kernel.org, hkallweit1@gmail.com,
-        davem@davemloft.net, netdev@vger.kernel.org, f.fainelli@gmail.com,
-        linux-kernel@vger.kernel.org, andrew@lunn.ch
-Subject: Re: [PATCH net-next v3 3/4] dt-bindings: dp83td510: Add binding for
- DP83TD510 Ethernet PHY
-Message-ID: <20201102171202.GA4059031@bogus>
-References: <20201030172950.12767-1-dmurphy@ti.com>
- <20201030172950.12767-4-dmurphy@ti.com>
+To:     Peter Chen <peter.chen@nxp.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        jun.li@nxp.com, robh+dt@kernel.org, pawell@cadence.com,
+        linux-imx@nxp.com, rogerq@ti.com
+Subject: Re: [PATCH v2 1/1] doc: dt-binding: cdns,usb3: add wakeup-irq
+Message-ID: <20201102171336.GA4061592@bogus>
+References: <20201030230752.2950-1-peter.chen@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201030172950.12767-4-dmurphy@ti.com>
+In-Reply-To: <20201030230752.2950-1-peter.chen@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Oct 2020 12:29:49 -0500, Dan Murphy wrote:
-> The DP83TD510 is a 10M single twisted pair Ethernet PHY
+On Sat, 31 Oct 2020 07:07:52 +0800, Peter Chen wrote:
+> To support low power mode for controller, the driver needs wakeup-irq
+> to reflect the signal changing after controller is stopped, and waking
+> the controller up accordingly.
 > 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> Signed-off-by: Peter Chen <peter.chen@nxp.com>
 > ---
->  .../devicetree/bindings/net/ti,dp83td510.yaml | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+> Changes for v2:
+> - Add "minItems: 3" to make wakeup irq optional
+> 
+>  Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/usb/cdns,usb3.yaml:34:56: [error] syntax error: mapping values are not allowed here (syntax)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ti,dp83td510.yaml: {'$id': 'http://devicetree.org/schemas/net/ti,dp83td510.yaml#', '$schema': 'http://devicetree.org/meta-schemas/core.yaml#', 'title': 'TI DP83TD510 ethernet PHY', 'allOf': [{'$ref': 'ethernet-controller.yaml#'}, {'$ref': 'ethernet-phy.yaml#'}], 'maintainers': ['Dan Murphy <dmurphy@ti.com>'], 'description': 'The PHY is an twisted pair 10Mbps Ethernet PHY that support MII, RMII and\nRGMII interfaces.\n\nSpecifications about the Ethernet PHY can be found at:\n  http://www.ti.com/lit/ds/symlink/dp83td510e.pdf\n', 'properties': {'reg': {'maxItems': 1}, 'tx-fifo-depth': {'description': 'Transmitt FIFO depth for RMII mode.  The PHY only exposes 4 nibble\ndepths. The valid nibble depths are 4, 5, 6 and 8.\n', 'enum': [4, 5, 6, 8], 'default': 5}, 'rx-internal-delay-ps': {'description': 'Setting this property to a non-zero number sets the RX internal delay\nfor the PHY.  The internal delay for the PHY is fixed to 30ns relative\nto receive data.\n'}, 'tx-internal-delay-ps': {'description': 'Setting this property to a non-zero number sets the TX internal delay\nfor the PHY.  The internal delay for the PHY has a range of -4 to 4ns\nrelative to transmit data.\n'}}, 'required': ['reg'], 'examples': ['mdio0 {\n  #address-cells = <1>;\n  #size-cells = <0>;\n  ethphy0: ethernet-phy@0 {\n    reg = <0>;\n    tx-rx-output-high;\n    tx-fifo-depth = <5>;\n    rx-internal-delay-ps = <1>;\n    tx-internal-delay-ps = <1>;\n  };\n};\n']} is not valid under any of the given schemas
-{'oneOf': [{'required': ['unevaluatedProperties']},
-           {'required': ['additionalProperties']}]} (Possible causes of the failure):
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ti,dp83td510.yaml: 'unevaluatedProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ti,dp83td510.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 850, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
+  in "<unicode string>", line 34, column 56
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/usb/cdns,usb3.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/cdns,usb3.example.dts'
+make[1]: *** Waiting for unfinished jobs....
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
+make: *** [Makefile:1364: dt_binding_check] Error 2
 
 
-See https://patchwork.ozlabs.org/patch/1391184
+See https://patchwork.ozlabs.org/patch/1391361
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
