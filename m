@@ -2,101 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7660A2A2C87
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 15:18:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EB32A2C95
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 15:20:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725809AbgKBOPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 09:15:54 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:22354 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725768AbgKBOOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 09:14:07 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A2ECMHm001582;
-        Mon, 2 Nov 2020 09:14:06 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 34j3bwkr34-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 02 Nov 2020 09:14:06 -0500
-Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 0A2EE4A7044397
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 2 Nov 2020 09:14:04 -0500
-Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
- SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Mon, 2 Nov 2020 06:14:03 -0800
-Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by
- SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Mon, 2 Nov 2020 06:13:00 -0800
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Mon, 2 Nov 2020 06:14:03 -0800
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0A2EDbsJ027259;
-        Mon, 2 Nov 2020 09:14:00 -0500
-From:   Cristian Pop <cristian.pop@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, Cristian Pop <cristian.pop@analog.com>
-Subject: [PATCH v7 5/5] dt-bindings:iio:adc:adc.txt: Add documentation for channel label attribute
-Date:   Mon, 2 Nov 2020 16:16:59 +0200
-Message-ID: <20201102141659.41875-5-cristian.pop@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201102141659.41875-1-cristian.pop@analog.com>
-References: <20201102141659.41875-1-cristian.pop@analog.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-02_07:2020-11-02,2020-11-02 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- adultscore=0 spamscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
- impostorscore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011020113
+        id S1725914AbgKBOUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 09:20:25 -0500
+Received: from mail2.sp2max.com.br ([138.185.4.9]:45282 "EHLO
+        mail2.sp2max.com.br" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725945AbgKBOT1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 09:19:27 -0500
+Received: from pgsop.sopnet.com.ar (unknown [179.40.38.12])
+        (Authenticated sender: pablo@fliagreco.com.ar)
+        by mail2.sp2max.com.br (Postfix) with ESMTPSA id 4356E7B04AC;
+        Mon,  2 Nov 2020 11:19:20 -0300 (-03)
+From:   Pablo Greco <pgreco@centosproject.org>
+To:     linux-sunxi@googlegroups.com
+Cc:     Pablo Greco <pgreco@centosproject.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: sun8i: r40: bananapi-m2-berry: Fix dcdc1 regulator
+Date:   Mon,  2 Nov 2020 11:19:14 -0300
+Message-Id: <1604326755-39742-1-git-send-email-pgreco@centosproject.org>
+X-Mailer: git-send-email 1.8.3.1
+X-SP2Max-MailScanner-Information: Please contact the ISP for more information
+X-SP2Max-MailScanner-ID: 4356E7B04AC.A3BF5
+X-SP2Max-MailScanner: Sem Virus encontrado
+X-SP2Max-MailScanner-SpamCheck: nao spam, SpamAssassin (not cached,
+        escore=-2.9, requerido 6, autolearn=not spam, ALL_TRUSTED -1.00,
+        BAYES_00 -1.90)
+X-SP2Max-MailScanner-From: pgreco@centosproject.org
+X-Spam-Status: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Optional attribute for better identification of the channels.
+DCDC1 regulator powers many different subsystems. While some of them can
+work at 3.0 V, some of them can not. For example, VCC-HDMI can only work
+between 3.24 V and 3.36 V. According to OS images provided by the board
+manufacturer this regulator should be set to 3.3 V.
 
-Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+Set DCDC1 and DCDC1SW to 3.3 V in order to fix this.
+
+Fixes: 23edc168bd98 ("ARM: dts: sun8i: Add board dts file for Banana Pi M2 Berry")
+Fixes: 27e81e1970a8 ("ARM: dts: sun8i: v40: bananapi-m2-berry: Enable GMAC ethernet controller")
+Signed-off-by: Pablo Greco <pgreco@centosproject.org>
 ---
-Changes in v7:
- - Add this extra commit
- Documentation/devicetree/bindings/iio/adc/adc.txt | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adc.txt b/Documentation/devicetree/bindings/iio/adc/adc.txt
-index 5bbaa330a250..4b37575bbddc 100644
---- a/Documentation/devicetree/bindings/iio/adc/adc.txt
-+++ b/Documentation/devicetree/bindings/iio/adc/adc.txt
-@@ -5,18 +5,24 @@ Optional properties for child nodes:
- - diff-channels : Differential channels muxed for this ADC. The first value
- 		specifies the positive input pin, the second value the negative
- 		input pin.
-+- reg: The channel number.
-+- label: Unique name to identify which channel this is.
+diff --git a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts b/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
+index 3ab6f47cea4f..47954551f573 100644
+--- a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
++++ b/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
+@@ -198,16 +198,16 @@
+ };
  
- Example:
- 	adc@0 {
- 		compatible = "some,adc";
- 		...
- 		channel@0 {
-+			reg = <0>;
-+			label = "channel_0_name";
- 			bipolar;
- 			diff-channels = <0 1>;
- 			...
- 		};
+ &reg_dc1sw {
+-	regulator-min-microvolt = <3000000>;
+-	regulator-max-microvolt = <3000000>;
++	regulator-min-microvolt = <3300000>;
++	regulator-max-microvolt = <3300000>;
+ 	regulator-name = "vcc-gmac-phy";
+ };
  
- 		channel@1 {
-+			reg = <1>;
-+			label = "channel_1_name";
- 			diff-channels = <2 3>;
- 			...
- 		};
+ &reg_dcdc1 {
+ 	regulator-always-on;
+-	regulator-min-microvolt = <3000000>;
+-	regulator-max-microvolt = <3000000>;
+-	regulator-name = "vcc-3v0";
++	regulator-min-microvolt = <3300000>;
++	regulator-max-microvolt = <3300000>;
++	regulator-name = "vcc-3v3";
+ };
+ 
+ &reg_dcdc2 {
 -- 
-2.17.1
+2.18.4
 
