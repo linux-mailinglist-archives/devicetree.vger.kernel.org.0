@@ -2,74 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B6FA2A295F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 12:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E85D2A299F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 12:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728693AbgKBL2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 06:28:14 -0500
-Received: from sender11-of-o52.zoho.eu ([31.186.226.238]:21313 "EHLO
-        sender11-of-o52.zoho.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728663AbgKBLYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 06:24:34 -0500
-ARC-Seal: i=1; a=rsa-sha256; t=1604316261; cv=none; 
-        d=zohomail.eu; s=zohoarc; 
-        b=PFoKwFqdJpepjBUFup8LF+v08JRH/79asMXPccxMyUUGlH+3hYS+63tBM0wnR49l8IGbO9GMawKDcr4Uw+kFtbMOr3yj8lTD34+tw4JOAxc2I9GwE3lLrEv4jbY3rTXM4EVfvk5BBDqP38LN5KI32jclUKk6mLUX5vFOZTCE6i4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-        t=1604316261; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
-        bh=DFhmXJGFBPCJXLqmTX/eOCUbFqBy5p/5Ekmh2Ip/Q18=; 
-        b=RBLtEb3euHTgfW5W8iv5csEMnuy+K7ygJe2zJq/JSVNdii9ysa9WtRF/hWPqLQL7Fu0EzLVVkTN/oSB6SKkZ7V/ZjwRASIzJnSbLExKb1+7HHWw5INOywhM8N+xR4uFhgjSJ7EzJlDbtZ7bBKrsQ+v9g8evqb2Yrh4j+0kQ4t3Y=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-        spf=pass  smtp.mailfrom=philipp@uvos.xyz;
-        dmarc=pass header.from=<philipp@uvos.xyz> header.from=<philipp@uvos.xyz>
-Received: from localhost.localdomain (ip-95-222-213-220.hsi15.unitymediagroup.de [95.222.213.220]) by mx.zoho.eu
-        with SMTPS id 1604316259439776.7982178858423; Mon, 2 Nov 2020 12:24:19 +0100 (CET)
-Date:   Mon, 2 Nov 2020 12:24:18 +0100
-From:   Carl Philipp Klemm <philipp@uvos.xyz>
-To:     Tony Lindgren <tony@atomide.com>, robh+dt@kernel.org
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: xt875: Add section and support for kionix
- kxtf9 on XT875
-Message-Id: <20201102122418.caefbcc524874a6b1fc9497e@uvos.xyz>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+        id S1728512AbgKBLfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 06:35:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49868 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728591AbgKBLfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 06:35:40 -0500
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 684DBC061A48
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 03:35:40 -0800 (PST)
+Received: by mail-ed1-x541.google.com with SMTP id l24so13992447edj.8
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 03:35:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=5ZRnhbjvF5vhabbPJRjSHqRgQjYY8yji4DiDRURWAfY=;
+        b=G1QX6xet8AfPZqPVhIGOAc5PPJ/F6vo77jLJYQfxWENLGmrR5SkUBtwj5hwE9saITE
+         Rse6H0V0c1RJ1AjWMQwaIX3C8ZFXp3YUd5bz/OcrtxtlS3AhECfIhQNlsO2iTfn+HlBm
+         s77h81JFh3EQRKHT7hLQJOfqb9TQQBBwPUTb3p9L7AXhxzHJFmL+DRNmF5OaWG3+XDrv
+         LmrwUSUfSZtsGroWpYTHadzjUv4Z+J0RYOueB+aW+UheJFWlJoH0rA4KvYdLFVyfsCnB
+         Afmb6WZKH0FzY1fiNt31KbbQGr/aKdbuhRw7h38iWRR9buchM3uFVjpFNks/QNUY9fwy
+         HzRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=5ZRnhbjvF5vhabbPJRjSHqRgQjYY8yji4DiDRURWAfY=;
+        b=E4441FJyOmPJJa2eMayXl2mdIShEbLnTTySvNl9/q/ZQck4Ih/gsA9crz8zHEK+Q6A
+         WIAWrdepf80I0aOrFvwW3W80lp3EkBlWX3JeNBsZdFTKD/J/PfWe3eGfLFcqP+EZj3hu
+         rGosyYwq9BN0Dx/1bc3KSZHAtgbi6xs5z6+MZg2mOL8XMNqXPiHBxUQnsj0zQdOdm5FN
+         nbPdO52E+bz/W7D9ek5wsIPZT+BCljPAbM1YvHItXUKq9X+0k1ytEL+EUU1kl1QZvEvf
+         xp41/Sp8dtHXOf4yOMAZ2aBCZYYycPxK9a7+LzVxdWaeZLr8qohw3f0Oa96nDHd/cu8P
+         4y9w==
+X-Gm-Message-State: AOAM531QcxQy7G2TCk57hNhVI3fpvBwSMbGuUOKrQwsAaL6zd4SU4GkE
+        jiDNejP97d4FEgBVryZQpnM1pg==
+X-Google-Smtp-Source: ABdhPJzeFdJG4XY7UQ6yHGasew1646U4JPaHzki24LIL7RrLhjFgFTPPb0ZBvGZ5Qz8Y8pVNkYavrg==
+X-Received: by 2002:a05:6402:142c:: with SMTP id c12mr16629660edx.41.1604316939104;
+        Mon, 02 Nov 2020 03:35:39 -0800 (PST)
+Received: from localhost.localdomain (hst-221-54.medicom.bg. [84.238.221.54])
+        by smtp.gmail.com with ESMTPSA id g20sm9424234ejz.88.2020.11.02.03.35.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2020 03:35:38 -0800 (PST)
+From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>
+Subject: [PATCH 15/17] arm64: dts: sdm845: Add interconnect properties for Venus
+Date:   Mon,  2 Nov 2020 13:35:29 +0200
+Message-Id: <20201102113529.16152-1-stanimir.varbanov@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds section and support for kionix kxtf9 on XT875
+Populate Venus DT node with interconnect properties.
 
-Signed-off-by: Carl Philipp Klemm <carl@uvos.xyz>
-
+Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
 ---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-index 49b2a8d55356..ccf03a743678 100644
---- a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-+++ b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-@@ -37,3 +37,19 @@ backlight_led: led@0 {
-                };
-        };
- };
-+
-+&i2c4 {
-+       kxtf9: accelerometer@f {
-+               compatible = "kionix,kxtf9";
-+               reg = <0x0f>;
-+
-+               vdd-supply = <&vhvio>;
-+
-+               interrupt-parent = <&gpio2>;
-+               interrupts = <2 IRQ_TYPE_EDGE_RISING>;
-+
-+               rotation-matrix = "0", "-1", "0",
-+                                 "1", "0", "0",
-+                                 "0", "0", "1";
-+       };
-+};
-
-
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 40e8c11f23ab..aca7e9c954e0 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -3661,6 +3661,9 @@
+ 			iommus = <&apps_smmu 0x10a0 0x8>,
+ 				 <&apps_smmu 0x10b0 0x0>;
+ 			memory-region = <&venus_mem>;
++			interconnects = <&mmss_noc MASTER_VIDEO_P0 0 &mem_noc SLAVE_EBI1 0>,
++					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_VENUS_CFG 0>;
++			interconnect-names = "video-mem", "cpu-cfg";
+ 
+ 			video-core0 {
+ 				compatible = "venus-decoder";
 -- 
-Carl Philipp Klemm <philipp@uvos.xyz> <carl@uvos.xyz>
+2.17.1
+
