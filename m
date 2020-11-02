@@ -2,155 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43CB12A247A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 06:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEF8F2A2475
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 06:53:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727806AbgKBFx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 00:53:57 -0500
-Received: from mail-eopbgr40083.outbound.protection.outlook.com ([40.107.4.83]:51182
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725935AbgKBFx5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 00:53:57 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SCNfBf5OW1dA+8sCKtQZ+Ph1D++GTFyEzDE3tne/llT6NtBk5lRq8aKt5r3/q6gpb+mBQA8vL/05tnmzWEaATTUwCrLgcY9OzYRy7VLTfEveSbWmCrVyVpenQwtuKM9NJRbHneI/BVeRItGcmSbdnwKTkL6Civl0Jpcd/+hTEtfGPxfBk80m2k6EyqYQ+Eg2OkPcHvfJGFq6AN+6i0J8jvhislDNdBnM78ereTbHogvs+fWHVwEB6qrjQXx69tSlORLJGJJtcwUTl2QNE7Xu0bw3kESMmokc6UZu6Gx4vjDR9PenC4IkZdxKjtBXm2RJCZZGtF8vAGSUdzHM+J9VyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Iv8pIwCa0bGIk3lGt7KRSYNyWc290gJlM6jWkW1OeU=;
- b=RxRhdhHxukP5P4DNPqV9HRR7yIb+Bs2eLT5gkm33ztR1InPMU4mlfZi3Q0GOIe8Sl852ROYN8y/9NqdfQknFc9/GFyaxQysAX9+W/THnpP6XLsAT1ei15yGzzty4A7PhFn0TSCnhq5gphZIjsMdraizDI20ZFMGPk/GN+WzZ9K7/a1QRYKnti+ltB2CWDM2AOJI9aOPVYL/Jzri5kBkqIxf96y0nXkwJRPY6zI/gaUMw01sUWad1/7oaNnn0JZaHmNwOTp78C+ZV/orKp8WPiHjcDbWM6FN6siK/rrVkrE6HwO4nLHy1bbzsq3NVcxMz3ogz9enneTMQuHdoMJmiFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Iv8pIwCa0bGIk3lGt7KRSYNyWc290gJlM6jWkW1OeU=;
- b=Wuk3lLPFCVD2UvTLH2fLvufqJ3PHRooytdgPcb0IpWMQ4EC5bqemGK3BeVZsG4HLGE7Zj1dQaNw4PxUE1TxeE+HOUaFDUW/GAFJH9p39U6pb9qhVlea9OLozkhH+am7Jj88/FOnjErjs6Q1/e65TBRvtdHZiot8BYDA3ZpwSsh0=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27)
- by HE1PR0402MB3372.eurprd04.prod.outlook.com (2603:10a6:7:8d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.29; Mon, 2 Nov
- 2020 05:53:52 +0000
-Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com
- ([fe80::f882:7106:de07:1e1e]) by HE1PR0402MB3371.eurprd04.prod.outlook.com
- ([fe80::f882:7106:de07:1e1e%4]) with mapi id 15.20.3499.030; Mon, 2 Nov 2020
- 05:53:52 +0000
-From:   Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        robh+dt@kernel.org, leoyang.li@nxp.com
-Cc:     Xiaowei Bao <xiaowei.bao@nxp.com>,
-        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-Subject: [PATCHv10] arm64: dts: layerscape: Add PCIe EP node for ls1088a
-Date:   Mon,  2 Nov 2020 13:44:17 +0800
-Message-Id: <20201102054417.5792-1-Zhiqiang.Hou@nxp.com>
-X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.73]
-X-ClientProxiedBy: SG2P153CA0008.APCP153.PROD.OUTLOOK.COM (2603:1096::18) To
- HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27)
+        id S1726684AbgKBFxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 00:53:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725935AbgKBFxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 00:53:31 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B053C0617A6;
+        Sun,  1 Nov 2020 21:53:31 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id l28so15799464lfp.10;
+        Sun, 01 Nov 2020 21:53:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2IhVGGy9LoXienasL7ylaLMwfquHIM1PDGypRLbzcA4=;
+        b=HwzVmbu5EFUY4E3z2rs0sFP6WXrqWNB28nqQoGE40DW1Trsz70bhCXdFI7Nr7hmBua
+         +uXpEbtLqHTI7q3NvWcfMv6LdfT3GK8hVgGP+RtZEoYUtU8C/Nz3GXu74GOn91JgfeNc
+         ziBfWdxCzOqoQV+1IFz+IZzAH8mHffnNGlTPfq5rkVQtiW7Ugi5vFqDxbzYZVuvbJTIh
+         zlte4SeJW/yn71g7ggnjYV3M6kfl8EEoK8+IqjQk1BYNL8EYHBJqBTX2iSVIaC+Swspg
+         9Hl0WHsgTnuVg9ylSvj62OuFScQxWTbTsZT685Uyg6UuqZvVwQhPwNS4qSYfhE9fE3Lw
+         6qZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2IhVGGy9LoXienasL7ylaLMwfquHIM1PDGypRLbzcA4=;
+        b=KJ9BRykp9OyHdMZRNIfUV138MDLU31Nwc6n2bDvh4FwFCM5td6b0clqKTXiE+TTSdb
+         AzFPqQGHHHwBh6NL9L2FeJdLKqTHYwgU5NdcnFwLWeCTte9nqdYvzAIjEq6Ad3Ajf/Eo
+         DJiv84OhOYoBb2eDZUqwNuOLM93D+0PRhXPMHejYUWSLhlSQbbfApjGWH8VAIS79Or6w
+         hIw+1L0Xoe0mViXCXzwIJgson/0aq7PFaVZ6fT2UjvHvJBzWjF7KMLyePJwFAqWA6TKc
+         51NjZXwk1PLaXMwzpGzi2q14d6T7Lv/h44e30pfe2Glf6qZ8m4b4xhZCsJgHLmtJfIkR
+         ismw==
+X-Gm-Message-State: AOAM531EN5MtTrpDZRXs387naLh2MMU8RLVgC47cxPf8pMUKhHG9fHmm
+        7J01a6jg16/TrPPeJoBdQe0Se8Bkr+cc2w791OqhfsPRIug=
+X-Google-Smtp-Source: ABdhPJwHyxU7ztZgGl9kqwIv07ilGQCRugQU5oXvmjbAzhzQaCtphMj5G6i+c8wwpwZPE2q85aOLwShTjx7yCFzfQMw=
+X-Received: by 2002:ac2:57c7:: with SMTP id k7mr5426332lfo.20.1604296409691;
+ Sun, 01 Nov 2020 21:53:29 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.73) by SG2P153CA0008.APCP153.PROD.OUTLOOK.COM (2603:1096::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.6 via Frontend Transport; Mon, 2 Nov 2020 05:53:49 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: ab336ea9-1e95-40be-535c-08d87ef3ad4f
-X-MS-TrafficTypeDiagnostic: HE1PR0402MB3372:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <HE1PR0402MB3372DE993B07E58F0E6620C084100@HE1PR0402MB3372.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DeyJC8fWhuP+AQWCC0uDQqSwTI/01SNJxc6D6lvHAHNPdBnoQe6udK+7JmDZaWc4CjUM2VEj1gPnUVX62a7iqsewW1kNm/QTkfIja4vwc3I9dj9lbd78GRiTzC7Ty/M4eyDpQs055Ss+zLjEswdub/gvmmU39+vaEJ1yTY8ee/yCzYyC6Ylse8OZoAiWBlllNCRmsWa70p6CUJLmj4MQIZFiQRbpKJUPinKARxlGjy1KYl0EIGzByVVpU/CifJgsLAG8R5X82WWL9+LC+/IT/JiLzXSMSKFLqJf+V1POeTmQvQS0eWM+jSs1O3j7Rjy079h+IFUyB+EqkjSng06PU/wodwhTzMlCucH80NrYeF86ets0nY5YJ24hojXNZR0j
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0402MB3371.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(396003)(376002)(39860400002)(346002)(69590400008)(316002)(8936002)(8676002)(54906003)(52116002)(6636002)(6506007)(86362001)(2616005)(186003)(6486002)(16526019)(26005)(956004)(4326008)(36756003)(1076003)(478600001)(66476007)(66946007)(66556008)(6512007)(5660300002)(6666004)(2906002)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: v0IuvmKqgo1ygg2DnVdxtEhjCIrjauJxh00bkaFm3O5ITMfT32GEFgUOnuCm9uBVli5bRbstUyNDS8O7UOKA6BBOJw6aBj/ldMhq+JfyNJ4p6n2LDrBbWbrhA+NAL4442aGJaV9EDFU3By9A/lpVwMyXTIYhGrrsWHlhx73Vz2zCbhGFtXHHndeOzCL1mvm1qhMzb2X0mM9nAGXposi+JxxJMLM3G+ZGhN0uHxnxRayt4FtcuLxLvfXY/JpVapB1QKNY2eRvocNn2yxMAU/mdWduBPFKMTquhNz9ScnrV8KghFUMx1Xnn9ZkXaoZoJB9G56KmUeeHmliIp61z0DLPduGpCHK8ySkdUzJVhx55g1Te7fYqIGr07WrVbDm30fPBEMufHF3PQVzZWbNYW3Yb6xZiy08JQQF4cdEoc6xt0xFrQe0k0QkvtVDCL6xJI7ZDvpPHkv3zo8tI/YlbCz1ESAauDXP//DR8ciY7JVH3kGc9PEdDPBbcUJqCbSKWNhBIA83cUSCOnkys4xqNpQu140RdXNmp4ZCs/3bRIKSdHnFmO+e93IwYrlJzIAYxniw4S37Iy7MX7lSTjywhxZb6wFY5dMPgD3fGHMgAkmnM0FBajleUKWvBl9VPLrLIBiX34mg4s/60MVsr2NpiybdtQ==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab336ea9-1e95-40be-535c-08d87ef3ad4f
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR0402MB3371.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 05:53:52.6712
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mBt/8UQNklIUunBpBsn8wgR236vWFoG3Far7ir9XOZgCyj8OPwlxOw7FwfBpbhwVLp3WtK5wePB+QwETb78SRg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB3372
+References: <1604286803-20698-1-git-send-email-u0084500@gmail.com> <1604286803-20698-2-git-send-email-u0084500@gmail.com>
+In-Reply-To: <1604286803-20698-2-git-send-email-u0084500@gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Mon, 2 Nov 2020 13:53:18 +0800
+Message-ID: <CADiBU38Wmpobg-Z6euax2csa2s7E1M2CJS5Ks9gNTOZ=xRobkA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] mfd: rt4505: Adds DT binding document for Richtek
+ RT4831 MFD core
+To:     Lee Jones <lee.jones@linaro.org>, robh+dt@kernel.org
+Cc:     cy_huang <cy_huang@richtek.com>,
+        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Xiaowei Bao <xiaowei.bao@nxp.com>
+Hi,
+  I seems I typo the wrong comment headline, not RT4505. It's RT4831.
+Please just review the contents, I'll fix it in next series patch.
 
-Add PCIe EP node for ls1088a to support EP mode.
 
-Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-Reviewed-by: Andrew Murray <andrew.murray@arm.com>
----
-V10:
- - Add a space between compatibles.
-
- .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index ff5805206a28..8d8e610acba6 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -517,6 +517,17 @@
- 			status = "disabled";
- 		};
- 
-+		pcie_ep1: pcie-ep@3400000 {
-+			compatible = "fsl,ls1088a-pcie-ep", "fsl,ls-pcie-ep";
-+			reg = <0x00 0x03400000 0x0 0x00100000
-+			       0x20 0x00000000 0x8 0x00000000>;
-+			reg-names = "regs", "addr_space";
-+			num-ib-windows = <24>;
-+			num-ob-windows = <256>;
-+			max-functions = /bits/ 8 <2>;
-+			status = "disabled";
-+		};
-+
- 		pcie2: pcie@3500000 {
- 			compatible = "fsl,ls1088a-pcie";
- 			reg = <0x00 0x03500000 0x0 0x00100000   /* controller registers */
-@@ -543,6 +554,16 @@
- 			status = "disabled";
- 		};
- 
-+		pcie_ep2: pcie-ep@3500000 {
-+			compatible = "fsl,ls1088a-pcie-ep", "fsl,ls-pcie-ep";
-+			reg = <0x00 0x03500000 0x0 0x00100000
-+			       0x28 0x00000000 0x8 0x00000000>;
-+			reg-names = "regs", "addr_space";
-+			num-ib-windows = <6>;
-+			num-ob-windows = <6>;
-+			status = "disabled";
-+		};
-+
- 		pcie3: pcie@3600000 {
- 			compatible = "fsl,ls1088a-pcie";
- 			reg = <0x00 0x03600000 0x0 0x00100000   /* controller registers */
-@@ -569,6 +590,16 @@
- 			status = "disabled";
- 		};
- 
-+		pcie_ep3: pcie-ep@3600000 {
-+			compatible = "fsl,ls1088a-pcie-ep", "fsl,ls-pcie-ep";
-+			reg = <0x00 0x03600000 0x0 0x00100000
-+			       0x30 0x00000000 0x8 0x00000000>;
-+			reg-names = "regs", "addr_space";
-+			num-ib-windows = <6>;
-+			num-ob-windows = <6>;
-+			status = "disabled";
-+		};
-+
- 		smmu: iommu@5000000 {
- 			compatible = "arm,mmu-500";
- 			reg = <0 0x5000000 0 0x800000>;
--- 
-2.17.1
-
+cy_huang <u0084500@gmail.com> =E6=96=BC 2020=E5=B9=B411=E6=9C=882=E6=97=A5 =
+=E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:13=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> From: ChiYuan Huang <cy_huang@richtek.com>
+>
+> Adds DT binding document for Richtek RT4831 MFD core.
+>
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  .../devicetree/bindings/mfd/richtek,rt4831.yaml    | 89 ++++++++++++++++=
+++++++
+>  include/dt-bindings/leds/rt4831-backlight.h        | 23 ++++++
+>  2 files changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt4831.=
+yaml
+>  create mode 100644 include/dt-bindings/leds/rt4831-backlight.h
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml b/=
+Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
+> new file mode 100644
+> index 00000000..c602d50
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/richtek,rt4831.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT4831 DSV and Backlight Integrated IC
+> +
+> +maintainers:
+> +  - ChiYuan Huang <cy_huang@richtek.com>
+> +
+> +description: |
+> +  RT4831 is a mutifunctional device that can provide display panel power=
+ for
+> +  positive/negative voltage and also display panel wled driving.
+> +
+> +  For the display voltage output, the range is about 4V to 6.5V. It is s=
+ufficient
+> +  to meet the current display panel design.
+> +
+> +  For the panel backlight, it can provide four channels driving capabili=
+ty
+> +  Each driving current is up to 30mA
+> +
+> +  Datasheet is available at
+> +  https://www.richtek.com/assets/product_file/RT4831A/DS4831A-05.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: richtek,rt4831
+> +
+> +  reg:
+> +    description: I2C device address.
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    description: |
+> +      GPIO to enable/disable the chip. It is optional.
+> +      Some usage directly tied this pin to follow VIO 1.8V power on sequ=
+ence.
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    $ref: ../regulator/richtek,rt4831-regulator.yaml
+> +
+> +  backlight:
+> +    $ref: ../leds/backlight/richtek,rt4831-backlight.yaml
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/rt4831-backlight.h>
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      rt4831@11 {
+> +        compatible =3D "richtek,rt4831";
+> +        reg =3D <0x11>;
+> +
+> +        regulators {
+> +          DSVLCM {
+> +            regulator-min-microvolt =3D <4000000>;
+> +            regulator-max-microvolt =3D <7150000>;
+> +          };
+> +          DSVP {
+> +            regulator-name =3D "rt4831-dsvp";
+> +            regulator-min-microvolt =3D <4000000>;
+> +            regulator-max-microvolt =3D <6500000>;
+> +            regulator-boot-on;
+> +          };
+> +          DSVN {
+> +            regulator-name =3D "rt4831-dsvn";
+> +            regulator-min-microvolt =3D <4000000>;
+> +            regulator-max-microvolt =3D <6500000>;
+> +            regulator-boot-on;
+> +          };
+> +        };
+> +
+> +        backlight {
+> +          compatible =3D "richtek,rt4831-backlight";
+> +          default-brightness =3D <1024>;
+> +          max-brightness =3D <2048>;
+> +          richtek,bled-ovp-sel =3D /bits/ 8 <RT4831_BLOVPLVL_21V>;
+> +          richtek,channel-use =3D /bits/ 8 <RT4831_BLED_ALLCHEN>;
+> +        };
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/leds/rt4831-backlight.h b/include/dt-bin=
+dings/leds/rt4831-backlight.h
+> new file mode 100644
+> index 00000000..7084906
+> --- /dev/null
+> +++ b/include/dt-bindings/leds/rt4831-backlight.h
+> @@ -0,0 +1,23 @@
+> +/*
+> + * This header provides constants for rt4831 backlight bindings.
+> + *
+> + * This file is licensed under the terms of the GNU General Public
+> + * License version 2.  This program is licensed "as is" without any
+> + * warranty of any kind, whether express or implied.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_RT4831_BACKLIGHT_H
+> +#define _DT_BINDINGS_RT4831_BACKLIGHT_H
+> +
+> +#define RT4831_BLOVPLVL_17V    0
+> +#define RT4831_BLOVPLVL_21V    1
+> +#define RT4831_BLOVPLVL_25V    2
+> +#define RT4831_BLOVPLVL_29V    3
+> +
+> +#define RT4831_BLED_CH1EN      (1 << 0)
+> +#define RT4831_BLED_CH2EN      (1 << 1)
+> +#define RT4831_BLED_CH3EN      (1 << 2)
+> +#define RT4831_BLED_CH4EN      (1 << 3)
+> +#define RT4831_BLED_ALLCHEN    ((1 << 4) - 1)
+> +
+> +#endif /* _DT_BINDINGS_RT4831_BACKLIGHT_H */
+> --
+> 2.7.4
+>
