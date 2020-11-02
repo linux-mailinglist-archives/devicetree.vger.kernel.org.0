@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC7C2A30E4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:07:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88B9F2A30E9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:07:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727458AbgKBRHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:07:19 -0500
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:57809 "EHLO
+        id S1727200AbgKBRHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:07:41 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:53069 "EHLO
         wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727221AbgKBRHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:07:19 -0500
+        by vger.kernel.org with ESMTP id S1727150AbgKBRHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:07:40 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id E91AF134D;
-        Mon,  2 Nov 2020 12:07:17 -0500 (EST)
+        by mailout.west.internal (Postfix) with ESMTP id B27821396;
+        Mon,  2 Nov 2020 12:07:39 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 02 Nov 2020 12:07:18 -0500
+  by compute6.internal (MEProxy); Mon, 02 Nov 2020 12:07:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=Ec9zfQK2l7ekZwDhh6zk7XfM1Lz
-        tk9kkY+i12ojpsX4=; b=nfrjRBGlfYJtL+QnvypooXdReqVFL46Cc+IJygKvmuw
-        6T539wkhCmLvFT/j+9xP+as9Je9efMX36waNTQIhlvIQXN8/Rmi0jUet9vINYQqm
-        u20HxJshVQMLnZhFC4UESm5XBtq+nU2UvPPG+BlBsN23L+hibd1YlQ0sWJBJO4BR
-        BzUuxLVtDFO1QlzBJxYSz6jCw2JKyrYgw1aL/Y7Wi0akgp+SkvDwZSLC7dc9Nyqp
-        IElXQQzCQUWhAiqa+Tr8n68+nSJoxE1OrNuwqu/3fynXTIlD3UbTVa670FfRas3x
-        iXQJ3gWl26nHwFKJn27NQib5WbrNNFDIeB0TXGpY7SQ==
+        :content-type:in-reply-to; s=fm1; bh=belBut/IjfCe+Zspk1KQvjfVDOP
+        23hqCux2qUZseddw=; b=RtNWP2DOsbZNFKCEDv5hKkyeVJR1S8+adTeHkOKbEQ2
+        HnjmV310C381XjX3atRIvfIv373pUQpFZRSRDASRthGosQjpHJmnzwT7rJiL22bT
+        mWSaNdpyeGSAmNsPwu9sqeKoj+6G40NHukjNvDlY8p0QUYX1tK6zXjVZ0E6dKhyy
+        eXIO/mdiRj41XFHy+6hTgj2zctVRxAHXVyhceaV7mcAhKS9yN3kYwx2il2wFgF4M
+        B5298YM9f1H3VmUP3N8WdK1AlV0EtJTUbTJjC0KoQhHKySBLpHrxhxkt9tTLwBod
+        cP63XXJG5ocVXXo/jDFbp2hsPPPb3uKaUfo/UV8dVrA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Ec9zfQ
-        K2l7ekZwDhh6zk7XfM1Lztk9kkY+i12ojpsX4=; b=DnNwcM19k7h+vYo+IABs5Y
-        GqTWqehg+jbMCIm6PfBppnw5WBdCqxNqmq6k/krJVlbmWXYq2ksWgLwR4/GjWhXI
-        pU2jZL1A1VDHcKK2lWwelNnZ62KnhiP9QWXhWDHox89cfzCsBWXjlSzPIlqIXci1
-        nv/dw+1B4zUzKMxtWGphuIJqIw+Ek3RqDz0NfvAbQdv340Y2fu50eE64xxaxKv1E
-        RacE9jZaZDzbESymfdrXitlki/KPo2zLzkDaAfa2fShJU6a8F0u35p2R7puOBHwC
-        P+3a+a3BgOv47k3g120RMO0lUCoNmYhhcaSV0cgQIA2f3DBbuEo2PbL4UP60+eXw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=belBut
+        /IjfCe+Zspk1KQvjfVDOP23hqCux2qUZseddw=; b=ZNtfMkxQMk0GjxHCiNyRHS
+        PrPX0EH8HHkivT4lpwpW6ZeNYCaPlJisySDVNuZxfWKxlSc7ZIBWxAvTFNdhu7KN
+        GA75OezgYZ8lIzbmL96Y8pAkyJjsL5M1xU7ej01V1pXOzxCCqXpfZwwlWz1kob9x
+        dPUswv7aV1qrgN8BLsqLfl0pnxWjHDTntjOuDpJ9iyKIx7Pw266CZqhLjQplADBO
+        oEEAPWrgNkHC7xmGDWUsnqw2UxynROrPdOEHTxjCNtjiDbsTMn8CmVypfBqE6xOe
+        lIaQBNTJ+iZy+NtG+3jx7OxybdA1d7gUUzpqxlAi89iHB9j6bFTLppf9Z0gjZCJg
         ==
-X-ME-Sender: <xms:xTygX2dqlGQ5FlY09akUvEgEfq0i8F_4e3D_6213VPkWDXsDEp1nNg>
-    <xme:xTygXwP0s9tkUzOlgB4eDQLiJ_MeSaFCwYS6ovj0mBMi03EItZAGaTGWAip_8gE12
-    lYReRgqD_ig-b39d8o>
+X-ME-Sender: <xms:2zygX6kd3-S0NEyX8YytC3oyoWdIgyw_GDfREHF2MQB1t2924UCCjg>
+    <xme:2zygXx2TZxVvpk0RkRwyEWlXzSbyA8DVO6rR_Fe08GanAcrww254vAFFpIxaryqFd
+    2CUbQCXzE1GVe-RGlU>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtuddgleejucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
     vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
     htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepvdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:xTygX3jv_bwikEp81ffYcbhvKX5QurMpYbn4ehAoaAZ5_fvS2RlJLA>
-    <xmx:xTygXz8yyLQuKxiCL-a7jz4swHNfFMKLW72Q43HALI_H8KSrQh_Xug>
-    <xmx:xTygXyvDuQY4LE8L2LuULo7YlEeq3n4_aGk80Exa6jO4v7jZ_SoBzQ>
-    <xmx:xTygX2g3nTQNMffSp_QchRPD5-AaKG06Dpo9bVNYNe5hPqxuRVfveQ>
+X-ME-Proxy: <xmx:2zygX4oJYud9edCtFCCONm8jO7_zTAEHy3ddqTIdaXlNVC7kAj9x0A>
+    <xmx:2zygX-l3a1VeW2hrF_opSU365vRmeFPLKX59zjGY0tIFPwUbxbuKbw>
+    <xmx:2zygX40ojcEIRqLnqCalwA2X3xKihdBeADKBjXCrXPn5MNVLvADWlA>
+    <xmx:2zygX8-0jtcS165KQLO1v84Uz0bZqJy7PaHS9fh8N4I5swZhImzdow>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 07A6A3064610;
-        Mon,  2 Nov 2020 12:07:16 -0500 (EST)
-Date:   Mon, 2 Nov 2020 18:07:15 +0100
+        by mail.messagingengine.com (Postfix) with ESMTPA id C522C3064683;
+        Mon,  2 Nov 2020 12:07:38 -0500 (EST)
+Date:   Mon, 2 Nov 2020 18:07:37 +0100
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Pablo Greco <pgreco@centosproject.org>
 Cc:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: sun8i: r40: bananapi-m2-berry: Fix dcdc1
- regulator
-Message-ID: <20201102170715.gw424e6xxc2vmlqm@gilmour.lan>
-References: <1604326755-39742-1-git-send-email-pgreco@centosproject.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i: v40: bananapi-m2-berry: Fix ethernet
+ node
+Message-ID: <20201102170737.fqcx2hzuazojr72b@gilmour.lan>
+References: <1604326769-39802-1-git-send-email-pgreco@centosproject.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xtrj2skuegmlnlxq"
+        protocol="application/pgp-signature"; boundary="2jn44me55dk3k4hb"
 Content-Disposition: inline
-In-Reply-To: <1604326755-39742-1-git-send-email-pgreco@centosproject.org>
+In-Reply-To: <1604326769-39802-1-git-send-email-pgreco@centosproject.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---xtrj2skuegmlnlxq
+--2jn44me55dk3k4hb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 02, 2020 at 11:19:14AM -0300, Pablo Greco wrote:
-> DCDC1 regulator powers many different subsystems. While some of them can
-> work at 3.0 V, some of them can not. For example, VCC-HDMI can only work
-> between 3.24 V and 3.36 V. According to OS images provided by the board
-> manufacturer this regulator should be set to 3.3 V.
+On Mon, Nov 02, 2020 at 11:19:29AM -0300, Pablo Greco wrote:
+> Ethernet PHY on BananaPi M2 Berry provides RX and TX delays. Fix ethernet
+> node to reflect that fact.
 >=20
-> Set DCDC1 and DCDC1SW to 3.3 V in order to fix this.
->=20
-> Fixes: 23edc168bd98 ("ARM: dts: sun8i: Add board dts file for Banana Pi M=
-2 Berry")
 > Fixes: 27e81e1970a8 ("ARM: dts: sun8i: v40: bananapi-m2-berry: Enable GMA=
 C ethernet controller")
 > Signed-off-by: Pablo Greco <pgreco@centosproject.org>
@@ -98,15 +92,15 @@ C ethernet controller")
 Applied, thanks!
 Maxime
 
---xtrj2skuegmlnlxq
+--2jn44me55dk3k4hb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6A8wwAKCRDj7w1vZxhR
-xUMxAQCvmMUrAt8XX3BkeGMR//i+H+dcQ1/H5CrXMLebhsc98QEA5ge5BaD/Y856
-j76YvQrjXL/mz40nK9M+Z84TsjEpggI=
-=qDTw
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6A82QAKCRDj7w1vZxhR
+xTwBAP9U5uL7CZ5nEes/4V0v23JTWzPGlxjTouVfaJVy66wg2QD7BxPHEAvTsQu7
+SWNvurd/mplFB/GePVh1pU3jhK+sOgw=
+=97Sv
 -----END PGP SIGNATURE-----
 
---xtrj2skuegmlnlxq--
+--2jn44me55dk3k4hb--
