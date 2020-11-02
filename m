@@ -2,88 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D4C2A2C28
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 14:55:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 054622A2C45
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 15:07:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725880AbgKBNzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 08:55:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725838AbgKBNyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 08:54:55 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C283C061A04
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 05:54:55 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id k18so9582195wmj.5
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 05:54:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HSJ3s4kk78CsixfcMhylaTOQInqHbcM0PNqhAJpk4PE=;
-        b=vGSl9SXiVHPlEeKwXPuJ+kqLGdcCNTo32UXEgPV6SG/4765tTSjI2XccTyhH463SR9
-         X8WdheAFoGwThNeBZ/iHvH5rD8CKfQZbkTllsKe5hmGcTsSKZ1yqK57hdfh97SRSfc2S
-         xTxOI7YThT0jVW3jA6wkBMGHVOI8vDSDeb0hajPli/tuYw6YzIJPiJfaqpCoyeWdYneJ
-         /UFXt5emdxCPw06+vrb2w+8vcWCDBRx6K1PV2u6VXX+8PSHF99vME9IXJFAWQTlvzr6a
-         /SA1CC+mqWKfImAXziaKUIgIBbhQu0ACrv27R8d/dPBohYxxHFWfmOSIJFs5toRcfga9
-         KXbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HSJ3s4kk78CsixfcMhylaTOQInqHbcM0PNqhAJpk4PE=;
-        b=AuXaVfo7nPSPLyUwWT2kpSnA0hjQJ+6cUS4X+pkwHVRUYOGgulU1B2/p9glZK7vQQa
-         zmmrc1Wbh0U54zT/3Zsgbpr9HWru5PHbcYt96/4XYmRHJm9mhhwUxiUdaDPDiGVT7boo
-         VK+WZyAPpE2vJzCT8y4s+dJI8DD/kQnikHs2ptM7rPVhmRPIDWPLrkRdFT9Cwxu4AEjS
-         Pttuc4RhEU6a3y6Hbq01e2kg8KtVerzwMKQgsaKWNtEOpPIyVuRo2T0IcgMNt9RkK6pS
-         Jz2Vh9+QmzA4iaK7rxMjag0MxWbAS/E1uAbKo2A1ptfjRrul66oY4XQsLoIDNKHxuFfB
-         FgKQ==
-X-Gm-Message-State: AOAM5306tpGTkNDXItb62wjlWTNWvmXlZgSIbZBFZbSzOorK3idu9rMT
-        xeNbk9udqHJbmGK0mUuxrSwV6A==
-X-Google-Smtp-Source: ABdhPJx8/+oUahdkx2/ilxjGC/UEmOEiYmXb73w90eteOw4p5SnvEC4gSXTCGgVhR0HS7Cxwj0r2WA==
-X-Received: by 2002:a1c:6a0d:: with SMTP id f13mr3686427wmc.172.1604325293729;
-        Mon, 02 Nov 2020 05:54:53 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id r18sm24511552wrj.50.2020.11.02.05.54.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 05:54:53 -0800 (PST)
-Date:   Mon, 2 Nov 2020 13:54:49 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, daniel.lezcano@linaro.org,
-        robh+dt@kernel.org, amitk@kernel.org, corbet@lwn.net,
-        Dietmar.Eggemann@arm.com, morten.rasmussen@arm.com,
-        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
-        rafael@kernel.org, sudeep.holla@arm.com, viresh.kumar@linaro.org,
-        sboyd@kernel.org, nm@ti.com
-Subject: Re: [PATCH v3 0/4] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-Message-ID: <20201102135449.GE2221764@google.com>
-References: <20201019140601.3047-1-lukasz.luba@arm.com>
- <d3c64655-dc31-73dc-8483-bf5805a9d389@arm.com>
+        id S1725797AbgKBOHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 09:07:21 -0500
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:52271 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725616AbgKBOHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 09:07:20 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 73135E26;
+        Mon,  2 Nov 2020 09:07:19 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 02 Nov 2020 09:07:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=6pjAAzn4bGnUGxwS8ieUNt5m6qs
+        NflBdQvF5aGF2P2w=; b=Hjdn924FFnWuPRB4F8/+FSCWRyeX/JhjEKRXwhnQs5k
+        Hgm1L5m5MpPr1IG8ycIfgPrPEf4cGXajTe7mAMeMqYuqgHrYOjhk7bx06yJ/WTMo
+        WntZjCF/rZqySIo6nDb/qsXF7xb+kYvxvzBVsUohk7Z5EfvHuPILZ706HEnO1OtX
+        iahPA7RIkpq/cTpdaisF5LaGBX/727mWZeupFRrb6+LZt43tUzZ+UUMJAQQTbZ7E
+        9hOw9JO+qSxtCUiEG1/VWPGNh46vyZtJPAns7qTP6IaC2dLQU9IEuN6vgBLnrouL
+        fXy2TfxBVqGCXR1oj/ZnhFCnwf4jjBG11VZfRAQipTw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=6pjAAz
+        n4bGnUGxwS8ieUNt5m6qsNflBdQvF5aGF2P2w=; b=bB5eOpq61J2TIvAkMChz7Q
+        lI4/aJyt6NpIT+TCBWFXtgtzaeMfQ1kAaOYnfufPluqu+aXti6WZkZe0keT7ZhoD
+        xVLI9CxnqqZzxLYovJJRNK1EUkpDi1mVQDdGBVLTpsR/ElMkkxwOxpDwJuWK7BAm
+        //WThqKRCRtdUk0XnZBZjfLF45AGPdFuLWrHE8EBlKtNehCUw1Qbwf8jVk1MQxaw
+        uk9EqN+Ct2eyH5DpDBQduQJBi3H6FtNluJqr7qffV/xLIPeLVnwtX649Fms1+dr4
+        Q9g2mxF7xryZhGKbzqFpLd+UXKNq0K3rmLUH0cVsZlLqkTYUnWEiw05kznhmgj7g
+        ==
+X-ME-Sender: <xms:lBKgX1VJJyVoeHNmeTlQBhqtzz8hvAG76d7jnn_h_wndadh_jzuZ_g>
+    <xme:lBKgX1mz7rVRcJNq5K69LlcTARUwucHaoHLC8TYtaF32w9C741gdME65-tUpuBM9i
+    QR6evK_vmiJ3JAj8DA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtuddgiedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:lRKgXxarMGc060ANBcd63kZDzeqVsdayly4WKqqLH-B3AD31m2Rfrw>
+    <xmx:lRKgX4UImrp6Z-hCNAuLD_6S8dde13dtHQDIepaPccs8DkN-WxrgNg>
+    <xmx:lRKgX_niHEQhqAfTsykk1jcQK3ug7uavN9_BpkDyxILizdgxwR7ERg>
+    <xmx:lxKgX9XFv6U-tVIW9nczrIJ1kujyHr_JptUSgmARHIUp7w9l05mxWw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id AACA93280059;
+        Mon,  2 Nov 2020 09:07:16 -0500 (EST)
+Date:   Mon, 2 Nov 2020 15:07:15 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Pablo Greco <pgreco@centosproject.org>
+Cc:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun7i: bananapi: Enable RGMII RX/TX delay on
+ Ethernet PHY
+Message-ID: <20201102140715.r72yz7jx3usuhqi7@gilmour.lan>
+References: <1604190857-3078-1-git-send-email-pgreco@centosproject.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jqpl26c6tdknkwl4"
 Content-Disposition: inline
-In-Reply-To: <d3c64655-dc31-73dc-8483-bf5805a9d389@arm.com>
+In-Reply-To: <1604190857-3078-1-git-send-email-pgreco@centosproject.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 02 Nov 2020 at 08:54:38 (+0000), Lukasz Luba wrote:
-> Gentle ping to Quentin and Daniel for sharing opinion on this patch set.
-> If you are OK, then I could use this as a base for next work.
 
-One or two small nits, but overall this LGTM. Thanks Lukasz.
+--jqpl26c6tdknkwl4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> As you probably know I am working also on 'sustainable power' estimation
-> which could be used when there is no DT value but it comes from FW.
-> That would meet requirement from Doug, when the DT cannot be used,
-> but we have sustainable levels from FW [1].
+Hi,
 
-Cool, and also, I'd be happy to hear from Doug if passing the sustained
-power via sysfs is good enough for his use-case in the meantime?
+On Sat, Oct 31, 2020 at 09:34:15PM -0300, Pablo Greco wrote:
+> The Ethernet PHY on the Bananapi M1 has the RX and TX delays enabled on
+> the PHY, using pull-ups on the RXDLY and TXDLY pins.
+>=20
+> Fix the phy-mode description to correct reflect this so that the
+> implementation doesn't reconfigure the delays incorrectly. This
+> happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
+> rx/tx delay config").
+>=20
+> Fixes: 8a5b272fbf44 ("ARM: dts: sun7i: Add Banana Pi board")
+> Signed-off-by: Pablo Greco <pgreco@centosproject.org>
 
-Thanks,
-Quentin
+Thanks for sending those patches.
+
+However, I'm not entirely sure how you sent it but the odd threading you
+used (each other patches being in reply to this one without 0/N in the
+name) seem to confuse the tools we use to apply the patches.
+
+Can you resend it properly?
+Thanks!
+Maxime
+
+--jqpl26c6tdknkwl4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6ASkwAKCRDj7w1vZxhR
+xZeSAPoCDlgzwSbXeAApsmFdr2R9H+CLTz5aAts/EOsxs3PZnQD/bp1BJHX57Ud8
+uMjSs/37Mfb81/ALV5ejMqQVAAdCfAw=
+=rUm3
+-----END PGP SIGNATURE-----
+
+--jqpl26c6tdknkwl4--
