@@ -2,205 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C88F52A27FB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 11:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C3E32A2803
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 11:16:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728445AbgKBKOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 05:14:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728156AbgKBKOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 05:14:24 -0500
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F7FCC0617A6
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 02:14:23 -0800 (PST)
-Received: by mail-wr1-x443.google.com with SMTP id a9so13843015wrg.12
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 02:14:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=t1K0NwlSDb4++OllbH1h9aaEG4tdnBfR2XD4G2HdxPs=;
-        b=trYgFDTQak6WcxQiw32NmN3mw+gKSInrqOFdT+jMG2NIWp7hcgj5oHXFeLs/YHoufj
-         7gCVSIMIX5hD0IgibN2wTKv/oM2o+7NhjEu5m6T1ZmNVgD6BLb7V627ux56Ig7Fv6byS
-         Pu1bYCMTBr9uiGDk0VHCUMGuBLlp/bOc6dOHWpL8PyWeHQ39i2cmZTCD6+nwKGfzi+Q7
-         oELd5uHpk5RmRQG1t/yrvv6J7rzq5WSaM68tDqaew6t6YAmMRQlo8QMba8R45jDQzmGC
-         DrzYRwUsnZhuWzOaorE0zYY5IdiHf8XTYLR1T8yWyur5NDxwMzXXHVY6n2TOlZR0dYjW
-         AXZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=t1K0NwlSDb4++OllbH1h9aaEG4tdnBfR2XD4G2HdxPs=;
-        b=mBkeQYl61LOXq4F+wf66iiCDho8hqvkCp0T3Pt3AVOBfHRrTTYgkYAo89mUvG3ga7K
-         STrmKbBIM1wZRwHyQ5syDVeAVw5/jNRyWAtlGsGLC7+u3K+ByF/UoknqvHd7sFzaHqgk
-         4mKF+ahqgKZ4bjwZClViHEVy1pJnW8u8oi04E4nv4sy9w3GzmL9eoRtTnRXzIizU9aAt
-         3giYCofWuH1zWENoyIjrYwdYLvgVSjeEsZFSLaTsfNIHV9i1Nf79zQ7r0+LfP1NY1EQK
-         hMcxG0CJJZBJBG2RvxYm/2uMpoX93SuhfrPWhbn+JA4KsMQkNo5Dpi3wcJuFVH+AKWFz
-         6pOQ==
-X-Gm-Message-State: AOAM533zpdire9svbHYBxsef1FjgNdVtF+eLij2FZ3+72CEtG65g94cQ
-        eImxpNqhweo+yZEynLA9FUtiqA==
-X-Google-Smtp-Source: ABdhPJxWAwlYcJo5f5G4ksFvQH+/FvBMet+9BoaiMgahkLH5FFiF4dE/eVH9LV70XI4WzVU6vDgxow==
-X-Received: by 2002:adf:e5c1:: with SMTP id a1mr13889466wrn.12.1604312061862;
-        Mon, 02 Nov 2020 02:14:21 -0800 (PST)
-Received: from dell ([91.110.221.242])
-        by smtp.gmail.com with ESMTPSA id h4sm21487621wrp.52.2020.11.02.02.14.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 02:14:21 -0800 (PST)
-Date:   Mon, 2 Nov 2020 10:14:19 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     "Shihlun.Lin" <Shihlun.Lin@advantech.com.tw>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Campion.Kang" <Campion.Kang@advantech.com.tw>,
-        AceLan Kao <chia-lin.kao@canonical.com>
-Subject: Re: [PATCH v3 5/6] mfd: ahc1ec0-hwmon: Add sub-device hwmon for
- Advantech embedded controller
-Message-ID: <20201102101419.GI4127@dell>
-References: <20201029100613.25789-1-shihlun.lin@advantech.com.tw>
- <20201029100613.25789-5-shihlun.lin@advantech.com.tw>
- <20201029131419.GA4127@dell>
- <1e5710f4214b4e8b84f761a260d9dd5b@taipei09.ADVANTECH.CORP>
+        id S1728156AbgKBKQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 05:16:30 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:55285 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728256AbgKBKQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 05:16:29 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 533ADF40;
+        Mon,  2 Nov 2020 05:16:28 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 02 Nov 2020 05:16:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=qg+IBDr4XlMr/uCqKeMaRSomA6I
+        /aeqM6HF4bPsS+Z8=; b=VbCWBKo/3EekOTVOQv9W9UGuStt54qsdvlvr/F01kEf
+        K1PVegrpfhdqKJfuhbEXeP7O0drw5/qz7gXe9OObUeJOUOmYzwFZ5u7k3oBf0Rez
+        b0ltNICOJGZGc079xREchOj3LTXHKgKZzzqeRJiEeNppLnupyNCUgeQJan0tyfng
+        Q6uWPXJe0qqA7A+p3fNdhN4uKpPk+X7j13U0fJkTcctIhPq+wcle4lZCvQpYvig2
+        BhgkWsa9PCyU2ndafayF68DeJZ/YRQyHZWfPNTK3FKRMWysDt9T7Cl/ztmW+4vN+
+        U0N9Ayfb2gCO/y0EgS2ru/NOLT7r4OTN8ouSaZcfg4w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=qg+IBD
+        r4XlMr/uCqKeMaRSomA6I/aeqM6HF4bPsS+Z8=; b=ZiAICfgGzu/QBLJfQWDGmX
+        9uN62n1VilZjvurmmBN7JGr1INuC2O8r6FFimRK+LOUK8ZdfEVadEUvdsod3b2s1
+        gsW0Oq7frqGZ+wHssQbAf8ukmwDjCHVU9nEAyYZ2FeF+hIr3ZuOJbz6yEZTqXkkx
+        en/SRPngosvsO/u+xhqFu6rxcQ5RSw40wEszAHf7b2oD7pOiXV3grSEastxbFrGQ
+        l/WNz/8QHnsCvy4+LC+9ldmBki2cE0zQryxaOYe2vfvrctBQ9RV4Y45DSe7TV2Y5
+        v9Boo6jF7ucOgYjawEpnOL4e9FX/F4G+mHn64fl3Vt5/BRHI7F0cwmy1inLPP6SQ
+        ==
+X-ME-Sender: <xms:e9yfX2zCpgnOTfyGr9MRhaN5EnsSKUFWYZrCbpfYlLNH00d12To70A>
+    <xme:e9yfXyTsMxqhmPtNSHZfO0jrGiZ7yni3QSHlLEpUOCemPJBsVGlUwwDUYfDLqROnQ
+    hv9e2K6RlW1A34iIfc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtuddgudegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:e9yfX4U71K5PPcbLtNUkS7pfVCN38Bh-dRzXzQzKb4fYZkRFDTDdRQ>
+    <xmx:e9yfX8hBVpeKc-l1-ItuUjcTXLkq03xYKsBbySmnmh7ycYY254-Wjw>
+    <xmx:e9yfX4B2dz_-hK70f_qLikZSushu8H3aE5VUYtg5ozcTlIsz_p2Mhw>
+    <xmx:e9yfX36ITCrptCdQHiX3_rcRMgdSE1ObdyI3__tlcf5jRGOUM653nQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 18A743064674;
+        Mon,  2 Nov 2020 05:16:27 -0500 (EST)
+Date:   Mon, 2 Nov 2020 11:16:26 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <contact@paulk.fr>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Matteo Scordino <matteo.scordino@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH 9/9] ARM: dts: sun8i-v3: Add support for the SL631 Action
+ Camera with IMX179
+Message-ID: <20201102101626.t4ox3rwbwp335i2m@gilmour.lan>
+References: <20201031182137.1879521-1-contact@paulk.fr>
+ <20201031182137.1879521-10-contact@paulk.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="i74lwqhb42esp3s4"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1e5710f4214b4e8b84f761a260d9dd5b@taipei09.ADVANTECH.CORP>
+In-Reply-To: <20201031182137.1879521-10-contact@paulk.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Nov 2020, Shihlun.Lin wrote:
 
-> Hi Lee,
-> 
-> Thank you for your time for checking my submission.
-> 
-> > On Thu, 29 Oct 2020, Shihlun Lin wrote:
-> > 
-> > > This is one of sub-device driver for Advantech embedded controller
-> > > AHC1EC0. This driver provides sysfs ABI for Advantech related
-> > > applications to monitor the system status.
-> > >
-> > > Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
-> > > Reported-by: kernel test robot <lkp@intel.com>
-> > 
-> > LKP reported that your driver needed upstreaming?
-> > 
-> > I'm confused!
-> > 
-> 
-> When I submitted the driver first time, LKP reported some warning to me and ask me to add the tag.
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@xxxxxxxxx>
-> 
-> Link: https://www.spinics.net/lists/kernel/msg3698194.html
+--i74lwqhb42esp3s4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That would only be for the fix.
+On Sat, Oct 31, 2020 at 07:21:37PM +0100, Paul Kocialkowski wrote:
+> The SL631 is a family of Allwinner V3 action cameras sold under
+> various names, such as SJCAM SJ4000 Air or F60 Action Camera.
+>=20
+> Devices in this family share a common board design but can be found
+> with different image sensors, including the IMX179 and the OV4689.
+>=20
+> This adds support for a common dtsi for the SL631 family as well as
+> a specific dts for the IMX179 fashion, which will later be populated
+> with an IMX179 node when a driver is available.
+>=20
+> Features that were tested on the device include:
+> - UART debug
+> - MMC
+> - USB peripheral (e.g. g_ether)
+> - Buttons
+> - SPI NOR flash
+>=20
+> Note that the exact designer/vendor of these boards is unknown.
+>=20
+> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+> ---
+>  arch/arm/boot/dts/Makefile                  |   1 +
+>  arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts |  12 ++
+>  arch/arm/boot/dts/sun8i-v3-sl631.dtsi       | 145 ++++++++++++++++++++
+>  3 files changed, 158 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
+>  create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631.dtsi
+>=20
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 4363ba564bb4..b76bcda9a9df 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1196,6 +1196,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
+>  	sun8i-s3-lichee-zero-plus.dtb \
+>  	sun8i-s3-pinecube.dtb \
+>  	sun8i-t3-cqa3t-bv3.dtb \
+> +	sun8i-v3-sl631-imx179.dtb \
+>  	sun8i-v3s-licheepi-zero.dtb \
+>  	sun8i-v3s-licheepi-zero-dock.dtb \
+>  	sun8i-v40-bananapi-m2-berry.dtb
+> diff --git a/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts b/arch/arm/boot/=
+dts/sun8i-v3-sl631-imx179.dts
+> new file mode 100644
+> index 000000000000..9e3b78000bdb
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
+> @@ -0,0 +1,12 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR X11)
+> +/*
+> + * Copyright 2020 Paul Kocialkowski <contact@paulk.fr>
+> + */
+> +
+> +#include "sun8i-v3-sl631.dtsi"
+> +
+> +/ {
+> +	model =3D "SL631 Action Camera with IMX179";
+> +	compatible =3D "unknown,sl631-imx179", "unknown,sl631",
+> +		     "allwinner,sun8i-v3";
+> +};
+> diff --git a/arch/arm/boot/dts/sun8i-v3-sl631.dtsi b/arch/arm/boot/dts/su=
+n8i-v3-sl631.dtsi
+> new file mode 100644
+> index 000000000000..9bc84d2812a6
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
+> @@ -0,0 +1,145 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR X11)
+> +/*
+> + * Copyright 2020 Paul Kocialkowski <contact@paulk.fr>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sun8i-v3.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +
+> +/ {
+> +	model =3D "SL631 Action Camera";
+> +	compatible =3D "unknown,sl631", "allwinner,sun8i-v3";
+> +
+> +	aliases {
+> +		serial0 =3D &uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	status =3D "okay";
+> +
+> +	axp209: pmic@34 {
+> +		reg =3D <0x34>;
+> +		interrupt-parent =3D <&nmi_intc>;
+> +		interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&i2c1_pb_pins>;
+> +	status =3D "okay";
+> +};
+> +
+> +&lradc {
+> +	vref-supply =3D <&reg_ldo2>;
+> +	status =3D "okay";
+> +
+> +	button@174 {
+> +		label =3D "Volume Down";
+> +		linux,code =3D <KEY_VOLUMEDOWN>;
+> +		channel =3D <0>;
+> +		voltage =3D <174603>;
+> +	};
+> +
+> +	button@384 {
+> +		label =3D "Volume Up";
+> +		linux,code =3D <KEY_VOLUMEUP>;
+> +		channel =3D <0>;
+> +		voltage =3D <384126>;
+> +	};
+> +
+> +	button@593 {
+> +		label =3D "Home";
+> +		linux,code =3D <KEY_HOME>;
+> +		channel =3D <0>;
+> +		voltage =3D <593650>;
+> +	};
+> +};
 
-Having a test robot report a missing driver seems odd.
+The buttons are not valid node names, since you can't use a unit-address
+without reg.
 
-> > > ---
-> > >  drivers/mfd/Kconfig         |    8 +
-> > >  drivers/mfd/Makefile        |    1 +
-> > >  drivers/mfd/ahc1ec0-hwmon.c | 1514
-> > +++++++++++++++++++++++++++++++++++
-> > 
-> > This obviously belongs in drivers/hwmon.
-> > 
-> 
-> Thank you so much, I will do it.
-> 
-> > >  3 files changed, 1523 insertions(+)
-> > >  create mode 100644 drivers/mfd/ahc1ec0-hwmon.c
-> > >
-> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > index 965bcafbe5b2..52ca49b211fc 100644
-> > > --- a/drivers/mfd/Kconfig
-> > > +++ b/drivers/mfd/Kconfig
-> > > @@ -2175,5 +2175,13 @@ config MFD_AHC1EC0
-> > >  	  provides expose functions for sub-devices to read/write the value
-> > >  	  to embedded controller.
-> > >
-> > > +config MFD_AHC1EC0_HWMON
-> > > +	tristate "Advantech EC Hareware Monitor Function"
-> > > +	depends on MFD_AHC1EC0
-> > > +	help
-> > > +	  This is sub-device for Advantech embedded controller AHC1EC0. This
-> > > +	  driver provides the sysfs attribues for applications to monitor
-> > > +	  the system status.
-> > > +
-> > >  endmenu
-> > >  endif
-> > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > > index 80a9a2bdc3ba..eb645db817b5 100644
-> > > --- a/drivers/mfd/Makefile
-> > > +++ b/drivers/mfd/Makefile
-> > > @@ -269,3 +269,4 @@ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+=
-> > simple-mfd-i2c.o
-> > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
-> > >
-> > >  obj-$(CONFIG_MFD_AHC1EC0)	+= ahc1ec0.o
-> > > +obj-$(CONFIG_MFD_AHC1EC0_HWMON)	+= ahc1ec0-hwmon.o
-> > > diff --git a/drivers/mfd/ahc1ec0-hwmon.c b/drivers/mfd/ahc1ec0-hwmon.c
-> > > new file mode 100644
-> > > index 000000000000..3e493b040b4a
-> > > --- /dev/null
-> > > +++ b/drivers/mfd/ahc1ec0-hwmon.c
-> > > @@ -0,0 +1,1514 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > >
-> > +/**************************************************************
-> > ***************
-> > > + * Copyright (c) 2018, Advantech Automation Corp.
-> > 
-> > You can't just lift a whole driver from downstream code and send it to
-> > the mailing list as-is.
-> > 
-> 
-> Could you give me more advice about how to submit the whole driver?
-> Is there any website to guide me?
+> +&mmc0 {
+> +	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+> +	bus-width =3D <4>;
+> +	vmmc-supply =3D <&reg_dcdc3>;
+> +	status =3D "okay";
+> +};
+> +
+> +&pio {
+> +	vcc-pd-supply =3D <&reg_dcdc3>;
+> +	vcc-pe-supply =3D <&reg_dcdc3>;
+> +};
+> +
+> +#include "axp209.dtsi"
+> +
+> +&ac_power_supply {
+> +	status =3D "okay";
+> +};
+> +
+> +&battery_power_supply {
+> +	status =3D "okay";
+> +};
+> +
+> +&reg_dcdc2 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt =3D <1250000>;
+> +	regulator-max-microvolt =3D <1250000>;
+> +	regulator-name =3D "vdd-sys-cpu";
+> +};
+> +
+> +&reg_dcdc3 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt =3D <3300000>;
+> +	regulator-max-microvolt =3D <3300000>;
+> +	regulator-name =3D "vdd-3v3";
+> +};
+> +
+> +&reg_ldo1 {
+> +	regulator-name =3D "vdd-rtc";
+> +};
+> +
+> +&reg_ldo2 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt =3D <3000000>;
+> +	regulator-max-microvolt =3D <3000000>;
+> +	regulator-name =3D "avcc";
+> +};
+> +
+> +&reg_ldo4 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt =3D <3300000>;
+> +	regulator-max-microvolt =3D <3300000>;
+> +	regulator-name =3D "vcc-ep952";
+> +};
 
-There is lots of documentation on how to upstream code/drivers in
-the /Documentation folder.
+AFAIK we don't have a driver for the ep952, why would we need to leave
+that regulator on?
 
-Start here:
+> +
+> +&spi0 {
+> +	status =3D "okay";
+> +
+> +	spi-flash@0 {
+> +		reg =3D <0>;
+> +		compatible =3D "macronix,mx25l6436f", "jedec,spi-nor";
+> +		spi-max-frequency =3D <50000000>;
+> +	};
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-0 =3D <&uart1_pg_pins>;
+> +	pinctrl-names =3D "default";
+> +	status =3D "okay";
+> +};
+> +
+> +&usb_otg {
+> +	dr_mode =3D "peripheral";
+> +	status =3D "okay";
+> +};
 
- https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+Is it a peripheral because you didn't test the host mode, or because the
+hardware doesn't have it?
 
-Note, this online document, along with all of the others you will
-required are actually contained in /Documentation, in the kernel
-source tree.
+Maxime
 
-> Thank you so much.
-> 
-> > > + * THIS IS AN UNPUBLISHED WORK CONTAINING CONFIDENTIAL AND
-> > PROPRIETARY
-> > > + * INFORMATION WHICH IS THE PROPERTY OF ADVANTECH AUTOMATION
-> > CORP.
-> > > + *
-> > > + * ANY DISCLOSURE, USE, OR REPRODUCTION, WITHOUT WRITTEN
-> > AUTHORIZATION FROM
-> > > + * ADVANTECH AUTOMATION CORP., IS STRICTLY PROHIBITED.
-> > > +
-> > ****************************************************************
-> > *************
-> > 
-> > This warning is in contradiction to the licence you are proposing.
-> 
-> Thank you so much, I will remove it.
+--i74lwqhb42esp3s4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-You'd better seek proper permission from your legal department before
-doing so.  Subverting licence agreements can land you in heaps of
-trouble if you're not careful.
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5/ceQAKCRDj7w1vZxhR
+xRo/AQC3qL538wZDRER4BfR4LNPpXtG/F1qshqGgRHhAYXw1DAD+JeIG9nRQhuDU
+A3vBG7tVyqz9RBO3iCX9a0n3kck5iQI=
+=Lax1
+-----END PGP SIGNATURE-----
+
+--i74lwqhb42esp3s4--
