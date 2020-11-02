@@ -2,123 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E45AA2A319E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B08152A31A2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:33:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727395AbgKBRdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:33:24 -0500
-Received: from foss.arm.com ([217.140.110.172]:35194 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727861AbgKBRdW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 12:33:22 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5015812FC;
-        Mon,  2 Nov 2020 09:33:21 -0800 (PST)
-Received: from e120937-lin.home (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5EEEF3F719;
-        Mon,  2 Nov 2020 09:33:19 -0800 (PST)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     sudeep.holla@arm.com, lukasz.luba@arm.com,
-        james.quinlan@broadcom.com, Jonathan.Cameron@Huawei.com,
-        broonie@kernel.org, robh@kernel.org, satyakim@qti.qualcomm.com,
-        etienne.carriere@linaro.org, f.fainelli@gmail.com,
-        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
-        cristian.marussi@arm.com
-Subject: [PATCH v4 5/5] dt-bindings: arm: add support for SCMI Regulators
-Date:   Mon,  2 Nov 2020 17:32:38 +0000
-Message-Id: <20201102173238.4515-6-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201102173238.4515-1-cristian.marussi@arm.com>
-References: <20201102173238.4515-1-cristian.marussi@arm.com>
+        id S1727905AbgKBRdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:33:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49554 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727172AbgKBRdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:33:40 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28BBC0617A6
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 09:33:39 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id o13so7612940ljj.11
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 09:33:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Zxi+DkPWMjinOcCeCZ9Cx94L36yTcmFlHJe6N5+L51M=;
+        b=ZXhsqY6MCotjClhgvD+HFZ9GP8YgAa521KQd4bwv84NsEZUD2wdTaA1BfC04Wwl5nv
+         v1o3y4j14Fear3HXXTYaJ6iGZ12dNiyJnHFekvcAWqN4QkgxAsVS8dzrEpp0du/7P0cu
+         s4nSmydGx+B8pzds2DbdUbMC+3GLIoiPfe+YE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Zxi+DkPWMjinOcCeCZ9Cx94L36yTcmFlHJe6N5+L51M=;
+        b=jrDnIS4TuJFY0V3kN47bM3id97wg16/NPVVTlGx0EfNC7Og/lqGv0nxpajNOdDIhkb
+         Umz9OJrU5i4xSsa3jCmFBh7kMhOvb0rKaRKjsIeUnh+ci6GLIWgBAovNXcjvEszVj+a5
+         rw6rJzeVDub6xQnvxQpijJt/6VacDCYaV1mjJKbxluKD9MCwnEueLEAPavJvMDtWFUw5
+         xyxOyQqGJ9yS6O2QA7a2R3MNkndYbbK9f8miNzPEQGzSRl5Mw9e7cLcgpJ5UrTnVkN15
+         YAKZJ6vMVF1kKG6qyka6eSe3rk1BUwV7YU5WaOHH1wKhqK5mvyheGCvf2aeVC3WnBaga
+         OJgw==
+X-Gm-Message-State: AOAM533CcIjZxStnU9n6OPAeroro9eUoszxTC8K2p9sVRREIlkgViWK8
+        bGH/XySbiUCRpL+j2l7jBpB/odF4gt4p6g==
+X-Google-Smtp-Source: ABdhPJwuHtPoCiEyf2bA4aamh8wxpzmtTYlFWzevup0qjLYfxMiVUovi3S4NrbMcHZ85JPHEMgtkSw==
+X-Received: by 2002:a2e:3a08:: with SMTP id h8mr7452737lja.125.1604338418093;
+        Mon, 02 Nov 2020 09:33:38 -0800 (PST)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id a6sm2495597lfm.207.2020.11.02.09.33.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Nov 2020 09:33:34 -0800 (PST)
+Received: by mail-lj1-f178.google.com with SMTP id 23so15894059ljv.7
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 09:33:34 -0800 (PST)
+X-Received: by 2002:a2e:868b:: with SMTP id l11mr6795547lji.102.1604338413799;
+ Mon, 02 Nov 2020 09:33:33 -0800 (PST)
+MIME-Version: 1.0
+References: <20201102105422.752202-1-geert+renesas@glider.be>
+In-Reply-To: <20201102105422.752202-1-geert+renesas@glider.be>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 2 Nov 2020 09:33:17 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wgFZRAVB_LUM+A24u2iubynmkbMDXb3rxy8GmRmKM7gfw@mail.gmail.com>
+Message-ID: <CAHk-=wgFZRAVB_LUM+A24u2iubynmkbMDXb3rxy8GmRmKM7gfw@mail.gmail.com>
+Subject: Re: [PATCH] of: Drop superfluous ULL suffix for ~0
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings to support regulators based on SCMI Voltage
-Domain Protocol.
+On Mon, Nov 2, 2020 at 2:54 AM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> There is no need to specify a "ULL" suffix for "all bits set": "~0" is
+> sufficient, and works regardless of type.  In fact adding the suffix
+> makes the code more fragile.
 
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
-v3 --> v4
-- added list of supported Regulator bindings.
-v2 --> v3
-- avoid awkard examples based on _cpu/_gpu regulators
-v1 --> v2
-- removed any reference to negative voltages
----
- .../devicetree/bindings/arm/arm,scmi.txt      | 43 +++++++++++++++++++
- 1 file changed, 43 insertions(+)
+I took this directly, since it was triggered by my code pattern rant.
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-index 55deb68230eb..6e011ca97079 100644
---- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-+++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-@@ -62,6 +62,29 @@ Required properties:
-  - #power-domain-cells : Should be 1. Contains the device or the power
- 			 domain ID value used by SCMI commands.
- 
-+Regulator bindings for the SCMI Regulator based on SCMI Message Protocol
-+------------------------------------------------------------
-+An SCMI Regulator is permanently bound to a well defined SCMI Voltage Domain,
-+and should be always positioned as a root regulator.
-+It does not support any current operation.
-+
-+SCMI Regulators are grouped under a 'regulators' node which in turn is a child
-+of the SCMI Voltage protocol node inside the desired SCMI instance node.
-+
-+This binding uses the common regulator binding[6] but, due to SCMI abstractions,
-+supports only a subset of its properties as specified below amongst Optional
-+properties.
-+
-+Required properties:
-+ - reg : shall identify an existent SCMI Voltage Domain.
-+
-+Optional properties:
-+ - regulator-name
-+ - regulator-min-microvolt / regulator-max-microvolt
-+ - regulator-always-on / regulator-boot-on
-+ - regulator-max-step-microvolt
-+ - regulator-coupled-with / regulator-coupled-max-spread
-+
- Sensor bindings for the sensors based on SCMI Message Protocol
- --------------------------------------------------------------
- SCMI provides an API to access the various sensors on the SoC.
-@@ -105,6 +128,7 @@ Required sub-node properties:
- [3] Documentation/devicetree/bindings/thermal/thermal*.yaml
- [4] Documentation/devicetree/bindings/sram/sram.yaml
- [5] Documentation/devicetree/bindings/reset/reset.txt
-+[6] Documentation/devicetree/bindings/regulator/regulator.yaml
- 
- Example:
- 
-@@ -169,6 +193,25 @@ firmware {
- 			reg = <0x16>;
- 			#reset-cells = <1>;
- 		};
-+
-+		scmi_voltage: protocol@17 {
-+			reg = <0x17>;
-+
-+			regulators {
-+				regulator_devX: regulator@0 {
-+					reg = <0x0>;
-+					regulator-max-microvolt = <3300000>;
-+				};
-+
-+				regulator_devY: regulator@9 {
-+					reg = <0x9>;
-+					regulator-min-microvolt = <500000>;
-+					regulator-max-microvolt = <4200000>;
-+				};
-+
-+				...
-+			};
-+		};
- 	};
- };
- 
--- 
-2.17.1
-
+Thanks,
+                Linus
