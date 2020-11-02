@@ -2,226 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD252A22EB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 03:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E37722A2302
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 03:24:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727561AbgKBCQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 21:16:16 -0500
-Received: from mail-eopbgr50044.outbound.protection.outlook.com ([40.107.5.44]:3911
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        id S1727366AbgKBCY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 21:24:58 -0500
+Received: from mail-eopbgr130084.outbound.protection.outlook.com ([40.107.13.84]:19623
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727409AbgKBCQQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Nov 2020 21:16:16 -0500
+        id S1727409AbgKBCY5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Nov 2020 21:24:57 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TFhsydvlftvtXtFmTI8K9dO3RyU/mnhWkOWZbiohR3Dk/7ncdR66ils5N4F9DEspXIVi3gJsnKx7XAza5+6UUm25rUhz+J+tW4lkt+4AecMpurrotT0E6iga+21y/DCNXoiC2sgk8ZgKx7Ojk54mJLcTr6k+725LRg5yH7pUkwGRxPJDnhDBWNuMLzqvCGG3Z9oelKVzWVo1ENsmmXpoB45q622aB0ZyhZruvRXaPjBKJeESUDHSzcDe5uCc6WxlxKlJB20xWdq1VFQYUxpKEamiWCtsJ47xeMXXm0u2aeTzxwh3KTcPvuCxniFYRxBsz+lKLT7GvAcMjVFKAxIiUw==
+ b=hZzCjFHnxMPZX0J76N6aEJogx4ok+btcSDychAcTZ+LnJcq9ziRWwTQV4OeCojoeUBVVimQoztTAi07LoT9EIlA7dDTF6j0/xk9CITRaimholTUDe+aaL5KBlBbe81l04PpitBqA7wttLJSauW6jtT3x1jSq5YtfKaBYJ3vNzUCTZN5AlfL9gTfyxEE+i9Yd8HlejHOyTPImS7WkkwBt6BYW2YalaNhD0zMT6SFYFfTrkSS4i4uvfcX+V+ikbJXqohSAQ8boYM7KSV72UQov/yn1WvKRv9E/U/82GSLr9dsZM/spaovmrWBmrsI3wAZQXnkF9uaMl8kaBjKx/vbxjw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pe0kw8CvZxaLfxZuSO80sx5nGrGjUpJ4Ic5VbKNkRpk=;
- b=eia38gMgsKNBRjuyygt4R3oaXp441oSbyfoz1zg+rxsq1Dj1ORU33VJIPAOf3ErCFwFJUY8Cclk1ve9LuvgwIS8UwABLuVMwYMHYriLS4ZrlMJrMRGzLms9yUQ4sYBJdKPiIzYZDcm3eVy0I7O5us7J81ezPy5lys13RksRIL2JTkfG7IiLlRXBUqoRlnasNE0hc1HQ27WioRMHC8VaXDPiID93qJLfq1LRt2Uyna0rfjkx2wSWiWCKNNCSJv8RB/hJKsYYmtcqvkAPXRJbG/xO889robXubS8oeSqbfZI4zUtNBSZwcrTAOluJa2khayEGH6SbuAINJBQyhU+azFA==
+ bh=flXLY0uXq9eDXJT/A9R0SckRALR2OBIbCUeAlNHHKpo=;
+ b=ZzF98BIjQMYLMbYUTu5C6aILTaL0th6yhShzxFXOCSlnLhpJbLEOE3nQW+0WKq++CoxeeUA+KxgLjoECVoJVQulTmutTmWJ5okMAp5LBVC5QUIvKAscPVAYq4FkgOutbwHuU/4LsgxGGO2NHEnV/wobzSrmoF72d7+kJ1GA7mTMivQevpN1OLdguotqdtobI8h8+Z53XQjgG33akYS0b6meCp4ga05YMj6w35Yc+84p/Qd2kxGNVHU3urOL1sdszw+gpGVK8o32qpd+yiWY06PXj9uwa9FZhPpFGvzquLHpPoe9fSoyAHrjkzLkA11A2mSaP8rwEQuNZrt27nu3P3A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pe0kw8CvZxaLfxZuSO80sx5nGrGjUpJ4Ic5VbKNkRpk=;
- b=L7dmFRPR6xq1YlFXAiJZb57KXVNR6NClc1Ig3Rh5VINyBTzMkpe0tNnp5aIKsucaW5rEa6iD9/rI0oLL4oENoALcv4caH8ZC2HrVIDUPzX2X7Vya3AwVLWWdMMdDFbrinRc2RcYISU2cXmDk1hCUtOc+eGM67vKIoXzfoSzPzrM=
+ bh=flXLY0uXq9eDXJT/A9R0SckRALR2OBIbCUeAlNHHKpo=;
+ b=lzkLRhctzADix2SP+C59EkwNVnUKw9s2SbeYldPNBrUBpUoB+JKFmLqO7zdLL7IgI2JAf7hW1odguC+vjGNtQuBi2C3j2cQfzSyjfjcv0TygNhgox9TjKSREv3s1EwMIn7K4LBrHQeejWuoJ/UcxPho3t5nM2pu9QWFbhfjs5Is=
 Authentication-Results: kernel.org; dkim=none (message not signed)
  header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
 Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DBBPR04MB7996.eurprd04.prod.outlook.com (2603:10a6:10:1e3::11) with
+ by DBBPR04MB7674.eurprd04.prod.outlook.com (2603:10a6:10:1f5::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Mon, 2 Nov
- 2020 02:16:10 +0000
+ 2020 02:24:53 +0000
 Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
  ([fe80::3c3a:58b9:a1cc:cbcc]) by DB8PR04MB6795.eurprd04.prod.outlook.com
  ([fe80::3c3a:58b9:a1cc:cbcc%8]) with mapi id 15.20.3499.030; Mon, 2 Nov 2020
- 02:16:10 +0000
+ 02:24:53 +0000
 From:   Joakim Zhang <qiangqing.zhang@nxp.com>
 To:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
 Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mkl@pengutronix.de
-Subject: [PATCH V2] arm64: dts: imx8mp-evk: add CAN support
-Date:   Mon,  2 Nov 2020 10:16:34 +0800
-Message-Id: <20201102021634.6480-1-qiangqing.zhang@nxp.com>
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: imx8m: add IR support
+Date:   Mon,  2 Nov 2020 10:25:24 +0800
+Message-Id: <20201102022527.14265-1-qiangqing.zhang@nxp.com>
 X-Mailer: git-send-email 2.17.1
 Content-Type: text/plain
 X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR06CA0087.apcprd06.prod.outlook.com
- (2603:1096:3:14::13) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
+X-ClientProxiedBy: SG2PR04CA0163.apcprd04.prod.outlook.com (2603:1096:4::25)
+ To DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SG2PR06CA0087.apcprd06.prod.outlook.com (2603:1096:3:14::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19 via Frontend Transport; Mon, 2 Nov 2020 02:16:07 +0000
+Received: from localhost.localdomain (119.31.174.71) by SG2PR04CA0163.apcprd04.prod.outlook.com (2603:1096:4::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.27 via Frontend Transport; Mon, 2 Nov 2020 02:24:50 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 9293c0f5-8243-4033-ad97-08d87ed543ab
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7996:
+X-MS-Office365-Filtering-Correlation-Id: 054145e0-6157-4c37-05ac-08d87ed67b69
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7674:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DBBPR04MB799649B25935FF5163788F28E6100@DBBPR04MB7996.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:234;
+X-Microsoft-Antispam-PRVS: <DBBPR04MB767467FAF3B11B66678DD33BE6100@DBBPR04MB7674.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wHgcTfCREmIqjBAkT1JgdG78D2AgopgESky95QgbiTrewBFWybbkXF2l/Sxw5eZG+jveXX0tXmmsdYkGisYdPlc+sUfJZNtJQGItWZeUxxkAk5zeXS3xQd/mFKFA6Kqc5rA8sMIO+O2/vARMqtaSTjQo7Zp4uPL6/1EgdkHjl+bWp44WhSQMyfqND8Pb+fUuz2e1CbvZTxUCtc80tUjl/NxZnALadGhpPjmRgGLUM5++qidbIfUpdBG/Hs+ykzkhEub+JfKqps7G825z0GdzRW3unAhVskT8qlkgilCOg6K/Jk9xshPcROeEcvUJuZDd4ABKuiUlTJ0OUg02DDn28p2q2IjmQSVOPztlfhkXa6pkbppv+j3wsm49oOGzbqf/ChI4ey8/SpaauaPR0RGBxw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(366004)(136003)(39860400002)(66476007)(478600001)(83380400001)(26005)(6486002)(6512007)(66946007)(52116002)(2616005)(66556008)(5660300002)(86362001)(1076003)(69590400008)(4326008)(8936002)(2906002)(956004)(6666004)(8676002)(16526019)(36756003)(186003)(6506007)(316002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: IXcHV+CBTfeK/7GVPCnUQ/utr5WpBxItBvciut18QK//PmJi5dzITNjOx2BpSuYkNmjCXhke8h0km8CzB+AfpMLhgyAjzlqnHYICgbXguFD37dviVja1QRifO00qOzOVNcGRcT4PkB6iNREIlEAqaaJPS7WsGbaqDMLya+WcAZ4ck1VgRUY1iRuWarV1ce2h4X1sBBpZHwlefARyF718fRGM9VqoQRZgfUBtezq/DBeZj29BS3F8aGLWSfHkPeDurJDaC92gQfE6apQ/4etxOJgaldrOOCze8aA6eStCxnkWRT+eyv3hS7Q9rtA0DWtHK5zeWkP1IKhK4bjxu3iLYK6NQHJK7HevLURD3RziBpxz0f3RlNRMlr0P//UyIycThKfCuVe9URh76EWmgMirzEtDtdWRwdMi0dXHpaE0FzUdQKGJdWn9T1rZbifYFT0Zdfny8Ee0PbYILW6MEFllsVI/o5LDDxpp0TROdrz0SnoaPsCAearYA7gHRzdtznuBkEUG6gMlMr/DScbO9fnltHGbavzdFLOZ02doRoDu02rbcaOlf0XmZtD/69YK1O+HN8KpXtXZYtpv70yWsg5OYjPLbw1j6l5K9tHj9l23urueUbrvebF4xjsp4v4/59wq1DltYsORcT2yMk5fnRNEGg==
+X-Microsoft-Antispam-Message-Info: tK3XhpGUq4TrqvV1/COdYpNLP+DZW37FXhTSfFFstcsFxcKbHrXb/AbH0pW6gqIdOUZPEg7843d9qiPpjS77Li+1o/mFQFdJ4sMe313tsmF4I/p10GAwZCqeZInFme0GwneyfgX7MY0xM5nz6VbDRZEuNfH1lCZycELPd2PsCerlfp2+K6oXMbxCZe3CbM7cfokK06cEPqjFyuAPtNfBZUJO9tA37cZsQwzZ8taD1yhsZDMdCgarjeu3IFIuVvSoNpoWMnJpL/Mo8Uc9/0UzQs4NGOkUAUFERQ7CoKZf+aSS3LOu1Hc1Heefo9tsX/U8ULDKpLh+2VtrWk6gfLathwt87sDLNY6OUGDZsK+jlr7nw2yn3EqDeZjopmb9BXfrsP6Ip4BAGcV8JoIqYNJYHQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(396003)(136003)(346002)(39860400002)(186003)(5660300002)(16526019)(26005)(2906002)(6486002)(6512007)(6666004)(6506007)(36756003)(478600001)(69590400008)(52116002)(66946007)(86362001)(8676002)(8936002)(66556008)(66476007)(4744005)(4326008)(1076003)(316002)(83380400001)(2616005)(956004)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: FHZQpSAm1JxR/KbLhqINU7/h1aov4q2JZFE48fiA5Nbk0bNdFXnCvCkqU9IJuOXuPy1+KUCyZ48J458nk8IY3F4eWhSzaF1Rp8mhuKJHL91lcSWiuAxqlY9mKszniP88NK/VtkiwrovJ+A256wmjaWwvqAt/WGrvtyJTkUXLZt2/leyVL2NZdZBpU/ec9WGo79Bkw+T4P33QfjxY1820AFxVkeMzUCNYbT0kWVpCDnHr6hIbz4yOyh+yqkIu0WvpcPA12oN5sOn+pdKH1MJSznrPAw8hKi35La5p7kEZvoWlkFFiKyg0wjeHET9iMjmP9uUvuCGeJ/kT9pQWkvJX4sZ9xrVGPgWyqJSLaieKfOQzPXh0bQr8jgo1BBdP5tz1b8++0YCg+KuQgGooHq9+5Z56/LipvqSs1qSKlYVXG0zQ8S3UNCivGf/eD+PRrJqbmh0XpftcJ9IySuu0W6vwl3j1x5XlbvcIjLrk9+QrI2WT9fsTpXvwhCxmmo38Ty13eWjRxMUE9XqcNzsaY3O7jRYaYQ09ZsnzrcBhzORgiXQNM19zcYtz76LrsuctF71741GWFWV/TVKhEs4XmogR3Tzx5KXgZHj+G/He4M/x7VWKQmQkggGTQvusmjmGsHybwo3GjLiGqp308Tim0hyr4Q==
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9293c0f5-8243-4033-ad97-08d87ed543ab
+X-MS-Exchange-CrossTenant-Network-Message-Id: 054145e0-6157-4c37-05ac-08d87ed67b69
 X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 02:16:10.4469
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 02:24:53.4722
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3+dk29sKRejOjU8A/fXYv9FNLhXii8zPVMcU7pABUxvhjqh4Q6F+z0mbfainhXuGiU+VD2N/3ZMi4J/qYvXx3g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7996
+X-MS-Exchange-CrossTenant-UserPrincipalName: b88s7h95DhCNTo2dv667msRp/exXhaxak7RNYnqNgP9OHH4wd0iqMr/K3/hilaNtIASgS9E7O+utFBz7dI460A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7674
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CAN device node and pinctrl on i.MX8MP evk board.
+Add IR support on i.MX8M platforms.
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
-ChangeLogs:
-V1->V2:
-	* add missing space before '=',
-	fsl,clk-source= /bits/ 8 <0> -> fsl,clk-source = /bits/ 8 <0>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 62 ++++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mp.dtsi    | 30 ++++++++++
- 2 files changed, 92 insertions(+)
+Joakim Zhang (3):
+  arm64: dts: imx8mq-evk: add linux,autosuspend-period property for IR
+  arm64: dts: imx8mm-evk: add IR support
+  arm64: dts: imx8mn-evk: add IR support
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 908b92bb4dcd..b10dce8767a4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -33,6 +33,28 @@
- 		      <0x1 0x00000000 0 0xc0000000>;
- 	};
- 
-+	reg_can1_stby: regulator-can1-stby {
-+		compatible = "regulator-fixed";
-+		regulator-name = "can1-stby";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flexcan1_reg>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio5 5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_can2_stby: regulator-can2-stby {
-+		compatible = "regulator-fixed";
-+		regulator-name = "can2-stby";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flexcan2_reg>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2 {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-@@ -45,6 +67,20 @@
- 	};
- };
- 
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	xceiver-supply = <&reg_can1_stby>;
-+	status = "okay";
-+};
-+
-+&flexcan2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan2>;
-+	xceiver-supply = <&reg_can2_stby>;
-+	status = "disabled";/* can2 pin conflict with pdm */
-+};
-+
- &fec {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec>;
-@@ -144,6 +180,32 @@
- 		>;
- 	};
- 
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SPDIF_RX__CAN1_RX          0x154
-+			MX8MP_IOMUXC_SPDIF_TX__CAN1_TX          0x154
-+		>;
-+	};
-+
-+	pinctrl_flexcan2: flexcan2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI5_MCLK__CAN2_RX         0x154
-+			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX         0x154
-+		>;
-+	};
-+
-+	pinctrl_flexcan1_reg: flexcan1reggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05  0x154   /* CAN1_STBY */
-+		>;
-+	};
-+
-+	pinctrl_flexcan2_reg: flexcan2reggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_MCLK__GPIO4_IO27      0x154   /* CAN2_STBY */
-+		>;
-+	};
-+
- 	pinctrl_gpio_led: gpioledgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x19
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 479312293036..ecccfbb4f5ad 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -552,6 +552,36 @@
- 				status = "disabled";
- 			};
- 
-+			flexcan1: can@308c0000 {
-+				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
-+				reg = <0x308c0000 0x10000>;
-+				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
-+					 <&clk IMX8MP_CLK_CAN1_ROOT>;
-+				clock-names = "ipg", "per";
-+				assigned-clocks = <&clk IMX8MP_CLK_CAN1>;
-+				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
-+				assigned-clock-rates = <40000000>;
-+				fsl,clk-source = /bits/ 8 <0>;
-+				fsl,stop-mode = <&gpr 0x10 4>;
-+				status = "disabled";
-+			};
-+
-+			flexcan2: can@308d0000 {
-+				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
-+				reg = <0x308d0000 0x10000>;
-+				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
-+					 <&clk IMX8MP_CLK_CAN2_ROOT>;
-+				clock-names = "ipg", "per";
-+				assigned-clocks = <&clk IMX8MP_CLK_CAN2>;
-+				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
-+				assigned-clock-rates = <40000000>;
-+				fsl,clk-source = /bits/ 8 <0>;
-+				fsl,stop-mode = <&gpr 0x10 5>;
-+				status = "disabled";
-+			};
-+
- 			crypto: crypto@30900000 {
- 				compatible = "fsl,sec-v4.0";
- 				#address-cells = <1>;
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 14 ++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 14 ++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts  |  1 +
+ 3 files changed, 29 insertions(+)
+
 -- 
 2.17.1
 
