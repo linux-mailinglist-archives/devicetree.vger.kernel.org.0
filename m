@@ -2,158 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D9C62A2502
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D86C2A250F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:19:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727902AbgKBHFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 02:05:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727871AbgKBHFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 02:05:03 -0500
-Received: from mail-oo1-xc43.google.com (mail-oo1-xc43.google.com [IPv6:2607:f8b0:4864:20::c43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB29C0617A6;
-        Sun,  1 Nov 2020 23:05:03 -0800 (PST)
-Received: by mail-oo1-xc43.google.com with SMTP id o129so3109589ooo.11;
-        Sun, 01 Nov 2020 23:05:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=YI54VZZszq4hxY1ZamHtFQZf9ma4Q4Sivjp7d7dM0Rw=;
-        b=DP6dVpM7TNLfW3MkeyzGWoON8h54KpEahVTrjHHCs2qeFRfwpoNoUuVO0lvuEamGbT
-         po4siHJpaj3SmjDXcANTP9KicXTnIWGS6vhBZona/zJo2vdmsXVPbQvnuY7vqq/G1xX/
-         R9ReqECOgRjr8exucPrhn7D6DghsyJagPJ56jL4kj/7UViSPm0bicYX0bmh1BWHLIrN4
-         BmJqYjHbTXNfXvdZGABXrNeuWcuD10axUJk4k73lSO7B2PtnpcMS3xsB7plfKetdvbfh
-         7GlUHA/ryOGZhZKDeU5vGFszBOMzBUc6LIDF8KpZ4BUKiVitf54KcAXTP83uKt7QftAA
-         BKRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=YI54VZZszq4hxY1ZamHtFQZf9ma4Q4Sivjp7d7dM0Rw=;
-        b=MitDIGaMiKtfsBrt2cyDDgU/G2c9r0Xt1MzL7VbF0dbVLR0bPUC89AOEj4barvdSyW
-         5NcePGQa2ArCCvM9tuvRv0UQbtbSbi8jX7kU8MhD93qWshK2C1umMDi49nf4gpRy/CNc
-         JTYMqXa4t/P+5ApWgWWZblaYuErGvv7kUngFEy9KhlETvAcemdaovHwl1EEKRITYze4s
-         QlgB91QySH/Jx3jLO8Fvpb4mT0C9bg+Dnq7ZdJTiEa6+oQHlD4BIjdzNGA4MzBiJZRRu
-         ZW8xtopZeybG/k2FtE0eKGxvfG8PqxQ7fOqePnwkO6iZUWUdlM2sNaq0gtFC6AP8WlWi
-         t6bw==
-X-Gm-Message-State: AOAM532XaxudxSBxi+1YPGESyKhOAD6jAuCwG5r6p92MJZnLQOxGc3PR
-        UIKqllFSxwPwqze+BD6m+buzNorqFsflLOjAeJI=
-X-Google-Smtp-Source: ABdhPJxjHMlav4PDw19Q5gA4yIpyiRESfLoqVQqCF1hKlnNaBGGKm3VP2YihK7xAtdHujvZ1CchiyVuR+DL4sXVZIwQ=
-X-Received: by 2002:a4a:d848:: with SMTP id g8mr11149900oov.35.1604300703108;
- Sun, 01 Nov 2020 23:05:03 -0800 (PST)
-MIME-Version: 1.0
-References: <1603181267-15610-1-git-send-email-gene.chen.richtek@gmail.com> <20201101154019.39932a2e@archlinux>
-In-Reply-To: <20201101154019.39932a2e@archlinux>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Mon, 2 Nov 2020 15:04:52 +0800
-Message-ID: <CAE+NS34-ayHchKA5Unb=+wHvesox1r9kkyPy09JgBqrA0Gd0Vw@mail.gmail.com>
-Subject: Re: [PATCH v7 0/3] iio: adc: mt6360: Add ADC driver for MT6360
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
+        id S1727802AbgKBHTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 02:19:25 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:45793 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727306AbgKBHTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 02:19:25 -0500
+X-UUID: 9a98dd67755a4dcfa854f04c12e4bed8-20201102
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=kZvapf7pIFQLgezOg35dcW/H2iGzgefNvWKVVQEly1I=;
+        b=nsZLsvQcckE23itrZnczCPTFpmeugos0n+XlbNRGCnr7DHYdLD3AfHOQzhyI5Y5mMtcscT+eJobaDCvHpRca9pLu1EZfEFf6wk/t+AsDxNBJC8tlOsnkBKUe0DTeC1sn2DOkXg+F6hm8rvKGpNVsSBXr0mFM5AQXYheor0z646E=;
+X-UUID: 9a98dd67755a4dcfa854f04c12e4bed8-20201102
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1505547485; Mon, 02 Nov 2020 15:19:01 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 2 Nov 2020 15:18:59 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 2 Nov 2020 15:18:59 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        <linux-kernel@vger.kernel.org>
+CC:     Ainge Hsu <ainge.hsu@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: usb: mediatek,mtk-xhci: add keep-clock-on
+Date:   Mon, 2 Nov 2020 15:18:48 +0800
+Message-ID: <1604301530-31546-1-git-send-email-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2020=E5=B9=B411=E6=9C=881=E6=
-=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:40=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> On Tue, 20 Oct 2020 16:07:44 +0800
-> Gene Chen <gene.chen.richtek@gmail.com> wrote:
->
-> > In-Reply-To:
-> >
-> > This patch series add MT6360 ADC support contains driver, testing docum=
-ent
-> > and binding document
-> >
-> Hi Gene,
->
-> Other than that small edit needed in the dt binding this is stalled on
-> the label code getting upstreamed into the core.
->
-> I've asked Cristian to repost that so hopefully we can resolve that depen=
-dency
-> and get this merged fairly soon.
->
-> For the dt thing I can just drop the description entirely, but would pref=
-er
-> if you sent a v8 fixing the tags issue Rob pointed out and also fixing th=
-at
-> description.
->
-> Thanks,
->
-> Jonathan
->
+T3B0aW9uICJtZWRpYXRlayxrZWVwLWNsb2NrLW9uIiBtZWFucyB0byBrZWVwIGNsb2NrIG9uIGR1
+cmluZyBzeXN0ZW0NCnN1c3BlbmQgYW5kIHJlc3VtZS4gU29tZSBwbGF0Zm9ybSB3aWxsIGZsdXNo
+IHJlZ2lzdGVyIHNldHRpbmdzIGlmIGNsb2NrIGhhcw0KYmVlbiBkaXNhYmxlZCB3aGVuIHN5c3Rl
+bSBpcyBzdXNwZW5kZWQuIFNldCB0aGlzIG9wdGlvbiB0byBhdm9pZCBjbG9jayBvZmYuDQoNClNp
+Z25lZC1vZmYtYnk6IE1hY3BhdWwgTGluIDxtYWNwYXVsLmxpbkBtZWRpYXRlay5jb20+DQotLS0N
+CiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXhoY2kueWFtbCB8ICAg
+IDcgKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdp
+dCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXho
+Y2kueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWss
+bXRrLXhoY2kueWFtbA0KaW5kZXggZWE2OTZjOC4uYTk1NmRkZSAxMDA2NDQNCi0tLSBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXhoY2kueWFtbA0K
+KysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9tZWRpYXRlayxtdGst
+eGhjaS55YW1sDQpAQCAtMTA0LDYgKzEwNCwxMiBAQCBwcm9wZXJ0aWVzOg0KICAgICBkZXNjcmlw
+dGlvbjogZW5hYmxlIFVTQiByZW1vdGUgd2FrZXVwLCBzZWUgcG93ZXIvd2FrZXVwLXNvdXJjZS50
+eHQNCiAgICAgdHlwZTogYm9vbGVhbg0KIA0KKyAgbWVkaWF0ZWssa2VlcC1jbG9jay1vbjoNCisg
+ICAgZGVzY3JpcHRpb246IHwNCisgICAgICBLZWVwIGNsb2NrIG9uIGR1cmluZyBzeXN0ZW0gc3Vz
+cGVuZCBhbmQgcmVzdW1lLiBTb21lIHBsYXRmb3JtIHdpbGwgZmx1c2gNCisgICAgICByZWdpc3Rl
+ciBzZXR0aW5ncyBpZiBjbG9jayBoYXMgYmVlbiBkaXNhYmxlZCB3aGVuIHN5c3RlbSBpcyBzdXNw
+ZW5kZWQuDQorICAgIHR5cGU6IGJvb2xlYW4NCisNCiAgIG1lZGlhdGVrLHN5c2Nvbi13YWtldXA6
+DQogICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3BoYW5kbGUtYXJy
+YXkNCiAgICAgbWF4SXRlbXM6IDENCkBAIC0xNzUsNiArMTgxLDcgQEAgZXhhbXBsZXM6DQogICAg
+ICAgICBpbW9kLWludGVydmFsLW5zID0gPDEwMDAwPjsNCiAgICAgICAgIG1lZGlhdGVrLHN5c2Nv
+bi13YWtldXAgPSA8JnBlcmljZmcgMHg0MDAgMT47DQogICAgICAgICB3YWtldXAtc291cmNlOw0K
+KyAgICAgICAgbWVkaWF0ZWssa2VlcC1jbG9jay1vbjsNCiAgICAgICAgIHVzYjMtbHBtLWNhcGFi
+bGU7DQogICAgIH07DQogLi4uDQotLSANCjEuNy45LjUNCg==
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +description: |
-> +  Family of simple ADCs with i2c interface and internal references.
-That seems unlikely...
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-Do you means I should remove this description?
-If yes, I will also update PATCH v8 for add tags and fix dt-bindings.
-
-> > Gene Chen (2)
-> >   dt-bindings: iio: adc: add bindings doc for MT6360 ADC
-> >   Documentation: ABI: testing: mt6360: Add ADC sysfs guideline
-> >   iio: adc: mt6360: Add ADC driver for MT6360
-> >
-> >  Documentation/ABI/testing/sysfs-bus-iio-adc-mt6360                 |  =
- 78 ++
-> >  Documentation/devicetree/bindings/iio/adc/mediatek,mt6360-adc.yaml |  =
- 34
-> >  drivers/iio/adc/Kconfig                                            |  =
- 11
-> >  drivers/iio/adc/Makefile                                           |  =
-  1
-> >  drivers/iio/adc/mt6360-adc.c                                       |  =
-372 ++++++++++
-> >  5 files changed, 496 insertions(+)
-> >
-> > changelogs between v1 & v2
-> >  - adc: use IIO_CHAN_INFO_PROCESSED only
-> >  - adc: use devm_iio_triggered_buffer_setup
-> >  - adc: use use s64 to record timestamp
-> >
-> > changelogs between v2 & v3
-> >  - Rearrange include file order by alphabet
-> >  - Set line length constraint below 100
-> >  - Add Document for testing adc sysfs node guideline
-> >  - Set compiler 64 bit aligned when handle iio timestamp
-> >
-> > changelogs between v3 & v4
-> >  - Fix sysfs guideline description
-> >  - Replace iio channel processed by raw/scale/offset
-> >  - Add comment of read adc flow for special HW design
-> >
-> > changelogs between v4 & v5
-> >  - Rename dt-bindings aligned to file name
-> >  - Aligned sysfs node name with driver and add VBUSDIVX description
-> >  - Add ADC channel sysfs node "*_labels"
-> >
-> > changelogs between v5 & v6
-> >  - Memset aligned adc data
-> >  - Remove strong casting void pointer
-> >
-> > changelogs between v6 & v7
-> >  - Avoid adc polling infinite loop
-> >
->
