@@ -2,97 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3A3B2A264A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 09:41:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A41F82A264E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 09:41:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728132AbgKBIlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 03:41:02 -0500
-Received: from foss.arm.com ([217.140.110.172]:55932 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728118AbgKBIlC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 03:41:02 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C524101E;
-        Mon,  2 Nov 2020 00:41:01 -0800 (PST)
-Received: from [10.57.13.99] (unknown [10.57.13.99])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 71DE23F718;
-        Mon,  2 Nov 2020 00:40:58 -0800 (PST)
-Subject: Re: [PATCH 1/4] dt-bindings: opp: Introduce opp-sustainable bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        id S1728156AbgKBIlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 03:41:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51042 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728081AbgKBIlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 03:41:51 -0500
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E9DC0617A6
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 00:41:51 -0800 (PST)
+Received: by mail-wr1-x441.google.com with SMTP id g12so13495980wrp.10
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 00:41:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=obxgAUr5k8IWU6XCBhLRpB28b+BsVYV7KmmIY6Ec17U=;
+        b=Ox2IMzusx2WEVONv4oddpUSinGvTswVoWltJCupkLyV+bnGF7v6HV5U8DFSbONfIO7
+         kR5+n9K/YVCTypSBVVO1CaaX599NjaBPC7inkIS3XEQyxTYDsxwqqRbOnp7n17Sg8fyF
+         oi8e3LkTK3CdCadiss1ARTTGBHGMnv8YkHI5MkBmieDMN98jCoyY3JGYBkYzaaIiVSBU
+         xLti8rkUJXaBa7Stz4gcZb4PiPdotR9ieFRVrhwH1vlaNldKQ5UEg5mao2otzpHaNULy
+         wATzSnxBikoNHRvD4AZf0QTE33lzjyolA/MLQpaWvOH8DGsIkDYS3DnR18qDYLU5fo6l
+         qo4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=obxgAUr5k8IWU6XCBhLRpB28b+BsVYV7KmmIY6Ec17U=;
+        b=WnLlWQ+T+L7DlDwwFMZqmUFZEmT+PVEdzz0Z1kHAHGz/PdxX8oRHdyVKjlPpse3yyT
+         zZ/MPYkJllsIkVnpy0OyOsBQ/mqd0NrNlC4Jj+LVlz+S9Bcwach4OidY2lBXsRy449LI
+         TbGkFMRJUno0PoHsAMLM9LcKtG0+/DwjVemtwTIHFN+RR7qvqrKh7uLbLZ3jglJeBmEZ
+         B2D56xfxhQ9nShSUmajTl4Qjr7pdB/3VgUVdNozkO9xMVdFc/pZtH8Cy+IcADeysDr4p
+         3JmNjbGquOMcL9bfrLoofRyjpHhYBImZrnL8cJxlJLd18/Zauu/t3TpHXk0Wd1IfGOwB
+         Ek7g==
+X-Gm-Message-State: AOAM533HcPpmBhzQyMdK0tNUjPlwojljM7zA5UQ602oZfKQLtw8fKu7l
+        iint/3OZQBbnqZQGHchYlbD4Jw==
+X-Google-Smtp-Source: ABdhPJyYb7rSXSUvkwMEAwTTNUnMgo+dBKJhTdkA1jfFPn3SY+nEdDUJwW/6nEXcdey3vDxyL4EMSQ==
+X-Received: by 2002:a5d:4dce:: with SMTP id f14mr3270229wru.396.1604306509973;
+        Mon, 02 Nov 2020 00:41:49 -0800 (PST)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3? ([2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3])
+        by smtp.gmail.com with ESMTPSA id y201sm15567081wmd.27.2020.11.02.00.41.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Nov 2020 00:41:49 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson: add watchdog to g12-common dtsi
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vireshk@kernel.org, sboyd@kernel.org, nm@ti.com, rafael@kernel.org,
-        sudeep.holla@arm.com, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com
-References: <20201028140847.1018-1-lukasz.luba@arm.com>
- <20201028140847.1018-2-lukasz.luba@arm.com> <20201030193427.GA4186428@bogus>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <569a07c0-be6b-7ffe-2920-accea1f932f0@arm.com>
-Date:   Mon, 2 Nov 2020 08:40:57 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20201101021012.24519-1-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <050a6cb8-b6af-7144-44c2-d254bb32d225@baylibre.com>
+Date:   Mon, 2 Nov 2020 09:41:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201030193427.GA4186428@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20201101021012.24519-1-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 10/30/20 7:34 PM, Rob Herring wrote:
-> On Wed, Oct 28, 2020 at 02:08:44PM +0000, Lukasz Luba wrote:
->> Add opp-sustainable as an additional property in the OPP node to describe
->> the sustainable performance level of the device. This will help to
->> estimate the sustainable performance of the whole system.
->>
->> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
->> ---
->>   Documentation/devicetree/bindings/opp/opp.txt | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
->> index 9847dfeeffcb..cd01028de305 100644
->> --- a/Documentation/devicetree/bindings/opp/opp.txt
->> +++ b/Documentation/devicetree/bindings/opp/opp.txt
->> @@ -154,6 +154,10 @@ Optional properties:
->>   - opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
->>     in the table have this, the OPP with highest opp-hz will be used.
->>   
->> +- opp-sustainable: Marks the OPP as sustainable. This property can be used for
->> +  estimating sustainable performance of the whole system. If multiple OPPs in
->> +  the table have this, the OPP with highest opp-hz will be used.
->> +
+On 01/11/2020 03:10, Christian Hewitt wrote:
+> G12 vendor kernels show the watchdog on the same address as AXG
+> so add the node to meson-g12-common.dtsi. GX boards inherit the
+> same from meson-gx.dtsi.
 > 
-> Isn't this just the inverse of the turbo? or boost? flag we already
-> have?
-
-True, it could be possible to use those flags. Then a function which
-returns one OPP below, would be 'sustainable'. I've already
-suggested to skip binding and only have get/set functions for OPP
-framework to mark 'sustainable' level, but Viresh is against.
-We have discussed this new opp sustainable with Viresh and since it
-would be only used by IPA but the definition is a bit blurry,
-we decided to drop this series. Maybe in future when there will be
-another user, we will come back to this.
-I am going to use Energy Model and mark the em_perf_state as sustained.
-
+> v2 fix typo in node name (s/wtd/wdt)
 > 
-> Couldn't this be learned? I ran at this frequency and then overheated.
-> That could be dependent on ambient temperatures or dust build up on
-> fans/heatsink.
-
-Yes it could be learned. IPA tries to do that for different workloads,
-but it needs some starting conditions (coefficients and sustainable
-power) to converge in short time. Sustainable power is currently
-estimated based on lowest OPP. With that new 'sustainable' flag,
-it would be much easier for IPA to converge.
-
-Regards,
-Lukasz
-
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> Rob
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 1e83ec5b8c91..314095b79a45 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -2179,6 +2179,12 @@
+>  				amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
+>  			};
+>  
+> +			watchdog: wdt@f0d0 {
+> +				compatible = "amlogic,meson-gxbb-wdt";
+> +				reg = <0x0 0xf0d0 0x0 0x10>;
+> +				clocks = <&xtal>;
+> +			};
+> +
+>  			spicc0: spi@13000 {
+>  				compatible = "amlogic,meson-g12a-spicc";
+>  				reg = <0x0 0x13000 0x0 0x44>;
 > 
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+and
+
+Tested on a VIM3L
+Tested-by: Neil Armstrong <narmstrong@baylibre.com>
