@@ -2,224 +2,367 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86A1F2A2328
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 03:46:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA102A233B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 04:10:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727450AbgKBCqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 21:46:02 -0500
-Received: from mailout3.samsung.com ([203.254.224.33]:14190 "EHLO
-        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727498AbgKBCqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Nov 2020 21:46:02 -0500
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20201102024558epoutp0341accfb37b9c9e9eb941d36e21670737~DkNok61C51507515075epoutp03L
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 02:45:58 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20201102024558epoutp0341accfb37b9c9e9eb941d36e21670737~DkNok61C51507515075epoutp03L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1604285158;
-        bh=XVGcPifSFh7P2qC7KRnT9MItGbQhV0RaAub8F07Y3zI=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=kTTBuWzrIomZZDXa28+qBLyehoDoXCclUIVFe0Xju6+7locg5CMXvzri06d68N1Vn
-         Rv0e+JXlt5jvg0u/318UnCB05MG8QKeipzNZBBrEbAePEEFwc/uYIUR4/RsvpdVNSq
-         47SHYD5nziDabOWHEdmy7jSG+oHDY6bhY1aTJDlA=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20201102024558epcas1p31e3ebb8e0b0512e27a7acabf01470a0b~DkNoJETHR1272812728epcas1p3F;
-        Mon,  2 Nov 2020 02:45:58 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.40.157]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4CPcjb1y1lzMqYlh; Mon,  2 Nov
-        2020 02:45:55 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6F.5A.02418.2E27F9F5; Mon,  2 Nov 2020 11:45:54 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-        20201102024553epcas1p3dedcbb6b82d0ae97f68d4b1cae4ff3c4~DkNj1K5sL0583105831epcas1p3X;
-        Mon,  2 Nov 2020 02:45:53 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201102024553epsmtrp29397436ccc5e48642f9ffc310a7b936d~DkNj0gEn01660616606epsmtrp23;
-        Mon,  2 Nov 2020 02:45:53 +0000 (GMT)
-X-AuditID: b6c32a35-c23ff70000010972-87-5f9f72e2efe2
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6D.FA.08745.1E27F9F5; Mon,  2 Nov 2020 11:45:53 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201102024553epsmtip29cbe66f05aaa0fe522995f2d103cb394~DkNjqmTG71554315543epsmtip2a;
-        Mon,  2 Nov 2020 02:45:53 +0000 (GMT)
-Subject: Re: [PATCH 1/2] extcon: fsa9480: Rewrite bindings in YAML and
- extend
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <ae62b1b2-87ab-4d87-519a-ea341a729995@samsung.com>
-Date:   Mon, 2 Nov 2020 11:59:52 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        id S1727673AbgKBDKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 22:10:04 -0500
+Received: from mail-am6eur05on2083.outbound.protection.outlook.com ([40.107.22.83]:60192
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727461AbgKBDKD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Nov 2020 22:10:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e3o8Sp5MrWNpJr1AYoEFwZqlJ/Dp5Bu5sQYw9kJQ6RlUUt58djglwp47VorCMb3AqZ+veNXIGB5I5XT7Ff99n7ut07PFC29UR8bq9QQ0eR2q8K5GUACWdff1vS8+kGFYUB4Fd2vvGkcyMnZ0gEbAPd4hUwXoHtH8PKG8EZY6fGYkLM098gRDRcDNbjK8XVV25pI72OAHm4dkDPtDgDfI83e4Is7Ldlne5N/MWaoG82PsX/51SDao3F4Xn+OaeWJUQCUHJ58B29ibpo0tk8stg9pqFzCfHhTVOguVlOXnqE1hqLsP3LnqzmhiLc1vhs0uHtws1t4Rn4Q0m7Xy69xdlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1XFgT76RtJl62h/8jL+biojEkfjxuhwluDM0UL/vVMs=;
+ b=lB4LDeeLdopsKk41niO0rzsH8QnejhsDxYVwLSB/KI4X3Ca9dRfbR7S9uWYzaHe6IkTS1kkQlUt+mNE29FqK/bvxR8fu8MzcaGuZh2himrQ9FwPUX8XbCegiOhWE6t4m366/TooWN7T3UFLyL5lz+D5VDXJ2f3y4rOFee3OW7KnjUbt3KTELUzxLP8w/DqKNLSpG1oOflMdhcFzqKg5d0P3UAi8eonDgOgVrEgrl31WpjWfY76VJ8TNonY4+6a5G+cjgFVnSroDMz+2Mym31aXeZununubnX9pyUXAsgtHikQYK/YknYMMDOhqc+jQ7Pn7j46D9OE/rDLrRB4PwWCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1XFgT76RtJl62h/8jL+biojEkfjxuhwluDM0UL/vVMs=;
+ b=fgE87bpYwNJ6eXOqRKw3x3Pon/S5Xh1FWxjFQCbhAxKkCUMhTFVdFYNYfnXSLDsWbk4vhsMUOpeFKkv0GHRA6oHleLX/UJlijZd4eR6W2oUTKcnzsxl3MbyQU+QU1V7evrrIHGTpawdLWNgJzvyilpaCIvKlcH1dLupL6+BbVD8=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com (2603:10a6:206:c::18)
+ by AM6PR04MB5173.eurprd04.prod.outlook.com (2603:10a6:20b:d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.27; Mon, 2 Nov
+ 2020 03:09:56 +0000
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::2d75:aaf5:5aa6:5de9]) by AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::2d75:aaf5:5aa6:5de9%6]) with mapi id 15.20.3499.029; Mon, 2 Nov 2020
+ 03:09:56 +0000
+From:   "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>
+To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl, shawnguo@kernel.org,
+        robh+dt@kernel.org
+Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
+        daniel.baluta@nxp.com, robert.chiras@nxp.com,
+        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        ezequiel@collabora.com, laurent.pinchart+renesas@ideasonboard.com,
+        niklas.soderlund+renesas@ragnatech.se,
+        dafna.hirschfeld@collabora.com,
+        Mirela Rabulea <mirela.rabulea@nxp.com>
+Subject: [PATCH v4 00/11] Add V4L2 driver for i.MX8 JPEG Encoder/Decoder
+Date:   Mon,  2 Nov 2020 05:08:10 +0200
+Message-Id: <20201102030821.3049-1-mirela.rabulea@oss.nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [86.124.170.94]
+X-ClientProxiedBy: AM0PR06CA0128.eurprd06.prod.outlook.com
+ (2603:10a6:208:ab::33) To AM5PR04MB3137.eurprd04.prod.outlook.com
+ (2603:10a6:206:c::18)
 MIME-Version: 1.0
-In-Reply-To: <20201101004357.1076876-1-linus.walleij@linaro.org>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrHKsWRmVeSWpSXmKPExsWy7bCmru6jovnxBhOvSFrMP3KO1WLKn+VM
-        Fpd3zWGzuN24gs2BxePOtT1sHn1bVjF6fN4kF8AclW2TkZqYklqkkJqXnJ+SmZduq+QdHO8c
-        b2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA7RNSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKr
-        lFqQklNgWaBXnJhbXJqXrpecn2tlaGBgZApUmJCd0f9tK2vBNfmKp1fvMDYwbpDsYuTkkBAw
-        kVjxaTdjFyMXh5DADkaJs5PbWCGcT4wSl47/ZYZwPjNKnLnRwwbTcnDxI6iqXYwSr2b+ZQJJ
-        CAm8Z5TYdD4OxBYW8Jc4dvgkWIOIQLjEvmMHmEFsZgEbiY7f51hAbDYBLYn9L26A1fALKEpc
-        /fGYEcTmFbCT+HlrGVicRUBF4s6/Y2BxUYEwiZPbWqBqBCVOznwCNodTwEFixr8tUPPFJW49
-        mc8EYctLbH87hxni6K/sEo1NkRC2i8Sbd38ZIWxhiVfHt7BD2FISn9/thXqyWmLlySNsIE9K
-        CHQwSmzZf4EVImEssX/pZKAFHEALNCXW79KHCCtK7Pw9lxFiL5/Eu689rCAlEgK8Eh1tQhAl
-        yhKXH9xlgrAlJRa3d7JNYFSaheSbWUg+mIXkg1kIyxYwsqxiFEstKM5NTy02LDBEjuxNjOCE
-        qGW6g3Hi2w96hxiZOBgPMUpwMCuJ8NZEzosX4k1JrKxKLcqPLyrNSS0+xGgKDN+JzFKiyfnA
-        lJxXEm9oamRsbGxhYmhmamioJM77R7sjXkggPbEkNTs1tSC1CKaPiYNTqoHJZvJx7lebzq2X
-        9l8uOeFpopF966KXt/LnS3dtqmlSuduv2S80592lDw5+GxQE7we8OBY2Zcb2ibbqtoydC5mO
-        MpXkvY2/xLKqtlM0xP6r8+uZdt0RU8TOhZSwnD+3T1NMNfXPkn3rk83MnPdOP+pUVf7lcAYD
-        79OFn+5P3xJ3v9py/sqEnU9m6F7fc/Dp3zNXOTeItXStZPwVo1x5cbWure0L8bX39PjscnWZ
-        u1TOZfkfuLswRHm/tY6Ku36++MTZgY4749qfBf5aGMpptElwT8X2+baPPnmHF9h8mekm/n1D
-        wSxVnb75Ugnziz52PFOpzNPnMJOU6mmNNuNsOqn9VMA9JuxF0zn5590brnMpsRRnJBpqMRcV
-        JwIAjQBglhEEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFLMWRmVeSWpSXmKPExsWy7bCSvO7DovnxBqfvaVnMP3KO1WLKn+VM
-        Fpd3zWGzuN24gs2BxePOtT1sHn1bVjF6fN4kF8AcxWWTkpqTWZZapG+XwJXR/20ra8E1+Yqn
-        V+8wNjBukOxi5OSQEDCROLj4EWsXIxeHkMAORol5hy6wQiQkJaZdPMrcxcgBZAtLHD5cDFHz
-        llHizOyfYDXCAr4Sm5deZQexRQTCJWYveM8MYjML2Eh0/D7HAtEwmVFiXddjsASbgJbE/hc3
-        2EBsfgFFias/HjOC2LwCdhI/by0Di7MIqEjc+XcMLC4qECaxc8ljJogaQYmTM5+wgNicAg4S
-        M/5tgVqmLvFn3iUoW1zi1pP5TBC2vMT2t3OYJzAKz0LSPgtJyywkLbOQtCxgZFnFKJlaUJyb
-        nltsWGCUl1quV5yYW1yal66XnJ+7iREcHVpaOxj3rPqgd4iRiYPxEKMEB7OSCG9N5Lx4Id6U
-        xMqq1KL8+KLSnNTiQ4zSHCxK4rxfZy2MExJITyxJzU5NLUgtgskycXBKNTCZvZyxs/+kxIeb
-        jsFmLnPP8hyUW8xTJ8RhEpx7p2lJ5PuWzm2LQ5bHzmG4r3vXMLXx46Ha9DeiPs7b3I/W97bt
-        2PO+aYl6ynzPMi07i7oT9zat4lZMu7Z/uZ+G2TE7gYz5T7mzlv7YWKK5evOfBdvO1u0Jcklz
-        /L9s7fobp9Rl39zLXXwm2Wb15IV2ymEPD/W2fBPvUF+55yBLZWnEHN6d+xmDvReHyoh5Bm9/
-        LfqUo2FbiltWEOd9H686wXMf3TgMj0zd2fp4ftzp3qsf9k4403dLsGC6r+nSiY7yxYtKpx10
-        2PHLdl/u9ASxjF0vDGu+XTtk8Vho+tFV7tuOGbLITc4Tqb0iyBx9dLH+d9HNSizFGYmGWsxF
-        xYkAb+E3uP0CAAA=
-X-CMS-MailID: 20201102024553epcas1p3dedcbb6b82d0ae97f68d4b1cae4ff3c4
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20201101004410epcas1p36f8a3469611fbc27eed6803d383df06e
-References: <CGME20201101004410epcas1p36f8a3469611fbc27eed6803d383df06e@epcas1p3.samsung.com>
-        <20201101004357.1076876-1-linus.walleij@linaro.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fsr-ub1664-134.ea.freescale.net (86.124.170.94) by AM0PR06CA0128.eurprd06.prod.outlook.com (2603:10a6:208:ab::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19 via Frontend Transport; Mon, 2 Nov 2020 03:09:55 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 9cef109c-9dba-4427-0c60-08d87edcc69c
+X-MS-TrafficTypeDiagnostic: AM6PR04MB5173:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM6PR04MB51737EEC5E4ED5CDEC33BF15CE100@AM6PR04MB5173.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5frCuCz5qiplsLpXT5Y4LKOXd68HHUOLP83S1IWuhDmsG45mLLHHvroxg/gWF+gux6mwaQd4iDcLtTmDIv0k2EPwS45RZHUe2zIClDSZJQl391YuUxpIPJgKm/tZNQ5vp4o0YckseABDl8ZrkKCtDNs/WSgbMJAR5hBXF7fWu4O93OLdHGSaWWT+MmoeumVKVHDwSrRumBOgKjlo9vSpAEJN8pmMZgwWJdf6P1bFohmDj2Rz3ysT+heA7wFPFpAbdvqz7IQJqbo7VvNFABdSbt/tvTloFBEMzkKVla06cawyWNQyAicttWh/mfB+LYYbr0v+4QVBMz1oXl3oRF3L8A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3137.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(39860400002)(376002)(366004)(136003)(5660300002)(478600001)(86362001)(16526019)(186003)(8936002)(83380400001)(6512007)(6666004)(26005)(2906002)(6486002)(316002)(4326008)(66946007)(8676002)(52116002)(956004)(6506007)(1076003)(66476007)(2616005)(7416002)(66556008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: PLjBT+KGOpujI1kLcJufL35zIcef1vAFCWkiB6FsROoVZ458Q87U2Abpph0RRB0hYMuHgZ/8g/KvNB0ToM6ob7ItxSlnCnBy8zkd8n3JA2TVYG6RIoy/32AhKT72hPXH3DjafZe4mHvzee35BNioLw72mEIU3nKHmmbc3KKz3j314fDvoleOaqkZgzzXss9v44FsQbicMfT3yazW3M/sG2Kw3cL1jyM5DhFmJfVMJXg2z7ZYWENZYEZ1Au4XF/80iskhw/+44cD+7bX7WSVUijfByu47YPtytXnpziIE2apGxd8veTvt6wKBJ5sHC/O/BR3csiS2HGIaJBT2DFqmJGuYX1LyJQo0ebA+52mX+OGtppcQIVUFCzebGqwmWDnaQ/WUl0mMi4+E1x6smnc4sXIibf/UoEuGO+z5SE6IC+Bp6Hwm+WLHWhNj2MBGGAanlWvuAeKiQKMPrU4QqgJK3Xxawdpq5bcVxp4zicbFRI1Tbb3MUc7Lm4WjKE19meTJWv8mdTAfOdIqaraDNvXPjQv0XTSI/0fXsy8Bhv8goltS5IOczuWhrj/G+3UF3TYnh4VCXYBkdiF7Yjym6U+o93vP7jUjhSOoMzM8nkTrSupgUA136MJew83Y7Xvf9wczCDsnDx26HIbv+ApE7P+d5A==
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cef109c-9dba-4427-0c60-08d87edcc69c
+X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3137.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 03:09:56.5594
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v8hwYKjPjES3RNECUd+hH18acrtidvxWxVxLYPnSeOv5jdgBB8AEXJF4oUlnBcxXHXDjPf4clG6tcLVMv6bwow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5173
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+From: Mirela Rabulea <mirela.rabulea@nxp.com>
 
-On 11/1/20 9:43 AM, Linus Walleij wrote:
-> This rewrites the FSA9480 DT bindings using YAML and
-> extends them with the compatible TI TSU6111.
-> 
-> I chose to name the file fcs,fsa880 since this is the
-> first switch, later versions are improvements.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../bindings/extcon/extcon-fsa9480.txt        | 21 --------
->  .../bindings/extcon/fcs,fsa880.yaml           | 52 +++++++++++++++++++
->  2 files changed, 52 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-fsa9480.txt
->  create mode 100644 Documentation/devicetree/bindings/extcon/fcs,fsa880.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/extcon/extcon-fsa9480.txt b/Documentation/devicetree/bindings/extcon/extcon-fsa9480.txt
-> deleted file mode 100644
-> index 624bd76f468e..000000000000
-> --- a/Documentation/devicetree/bindings/extcon/extcon-fsa9480.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -FAIRCHILD SEMICONDUCTOR FSA9480 MICROUSB SWITCH
-> -
-> -The FSA9480 is a USB port accessory detector and switch. The FSA9480 is fully
-> -controlled using I2C and enables USB data, stereo and mono audio, video,
-> -microphone, and UART data to use a common connector port.
-> -
-> -Required properties:
-> - - compatible : Must be one of
-> -   "fcs,fsa9480"
-> -   "fcs,fsa880"
-> - - reg : Specifies i2c slave address. Must be 0x25.
-> - - interrupts : Should contain one entry specifying interrupt signal of
-> -   interrupt parent to which interrupt pin of the chip is connected.
-> -
-> - Example:
-> -	musb@25 {
-> -		compatible = "fcs,fsa9480";
-> -		reg = <0x25>;
-> -		interrupt-parent = <&gph2>;
-> -		interrupts = <7 0>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/extcon/fcs,fsa880.yaml b/Documentation/devicetree/bindings/extcon/fcs,fsa880.yaml
-> new file mode 100644
-> index 000000000000..ef6a246a1337
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/extcon/fcs,fsa880.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: https://protect2.fireeye.com/v1/url?k=da7a3fd4-85e106de-da7bb49b-0cc47a31384a-f57ab7f026383135&q=1&e=f8ca331d-3c11-4257-8322-d97ac13418ef&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fextcon%2Ffcs%2Cfsa880.yaml%23
-> +$schema: https://protect2.fireeye.com/v1/url?k=0449819e-5bd2b894-04480ad1-0cc47a31384a-07ad90468a2ed371&q=1&e=f8ca331d-3c11-4257-8322-d97ac13418ef&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
-> +
-> +title: Fairchild Semiconductor FSA880, FSA9480 and compatibles
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description:
-> +  The FSA880 and FSA9480 are USB port accessory detectors and switches.
-> +  The switch is fully controlled using I2C and enables USB data, stereo
-> +  and mono audio, video, microphone, and UART data to use a common
-> +  connector port. Compatible switches exist from other manufacturers.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fcs,fsa880
-> +      - fcs,fsa9480
-> +      - ti,tsu6111
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: The I2C address for an FSA880 compatible device is
-> +      usually 0x25.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        usb-switch@25 {
-> +            compatible = "fcs,fsa880";
-> +            reg = <0x25>;
-> +            interrupt-parent = <&gpio>;
-> +            interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> +        };
-> +    };
-> 
+Changes in v4:
+The main change is using the common jpeg helpers in imx-jpeg
+Summary of changes:
+Patch 1, 2, 3, 5, 6 - no change
+Patch 4 - small update: VFL_TYPE_VIDEO-> VFL_TYPE_GRABBER and 2 typos
+Patch 7 - new, fixed a problem with v4l2-compliance streaming tests on decoder
+Patch 8,9,10 - new, changes in jpeg helpers.
+Patch 11- new, use jpeg helpers in imx-jpeg, as requested during review, requires patch 8
 
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+This patch set adds the V4L2 driver for i.MX8QXP/QM JPEG encoder/decoder
+and it's dependencies.
+The driver was tested on i.MX8QXP, using a unit test application and
+the v4l2-compliance tool, including the  streaming tests for decoder & encoder.
 
-I'm waiting the reply from DT maintainer for a while.
-After that, I'll merge them.
+The output of v4l2-compliance (stable-1.20) on i.MX8QXP, decoder & encoder:
+
+root@imx8qxpmek:/unit_tests/JPEG# ./v4l2-compliance-stable-1.20 -d /dev/video0 -s
+v4l2-compliance SHA: 6c415a11fceb32067cdb5c2e33f90dbf018182a4, 64 bits, 64-bit time_t
+
+Compliance test for mxc-jpeg decode device /dev/video0:
+
+Driver Info:
+	Driver name      : mxc-jpeg decode
+	Card type        : mxc-jpeg decoder
+	Bus info         : platform:58400000.jpegdec
+	Driver version   : 5.10.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+	Detected JPEG Decoder
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+	test invalid ioctls: OK
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (no poll): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (select): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (epoll): OK
+	test USERPTR (no poll): OK (Not Supported)
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for mxc-jpeg decode device /dev/video0: 52, Succeeded: 52, Failed: 0, Warnings: 0
+ 
+root@imx8qxpmek:/unit_tests/JPEG# ./v4l2-compliance-stable-1.20 -d /dev/video1 -s
+v4l2-compliance SHA: 6c415a11fceb32067cdb5c2e33f90dbf018182a4, 64 bits, 64-bit time_t
+
+Compliance test for mxc-jpeg decode device /dev/video1:
+
+Driver Info:
+	Driver name      : mxc-jpeg decode
+	Card type        : mxc-jpeg decoder
+	Bus info         : platform:58450000.jpegenc
+	Driver version   : 5.10.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+	Detected JPEG Encoder
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+	test invalid ioctls: OK
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (no poll): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (select): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (epoll): OK
+	test USERPTR (no poll): OK (Not Supported)
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for mxc-jpeg decode device /dev/video1: 52, Succeeded: 52, Failed: 0, Warnings: 0
+root@imx8qxpmek:/unit_tests/JPEG# 
+
+
+Mirela Rabulea (11):
+  media: v4l: Add packed YUV444 24bpp pixel format
+  firmware: imx: scu-pd: Add power domains for imx-jpeg
+  media: dt-bindings: Add bindings for i.MX8QXP/QM JPEG driver
+  media: imx-jpeg: Add V4L2 driver for i.MX8 JPEG Encoder/Decoder
+  arm64: dts: imx8qxp: Add jpeg encoder/decoder nodes
+  Add maintainer for IMX jpeg v4l2 driver
+  media: imx-jpeg: Fix v4l2-compliance streaming tests on decoder
+  media: Add parsing for APP14 data segment in jpeg helpers
+  media: Quit parsing stream if doesn't start with SOI
+  media: Avoid parsing quantization and huffman tables
+  media: imx-jpeg: Use v4l2 jpeg helpers in mxc-jpeg
+
+ .../devicetree/bindings/media/imx8-jpeg.yaml  |   83 +
+ .../media/v4l/pixfmt-packed-yuv.rst           |   37 +-
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |    8 +
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |   37 +
+ drivers/firmware/imx/scu-pd.c                 |    6 +
+ drivers/media/platform/Kconfig                |    2 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/imx-jpeg/Kconfig       |   11 +
+ drivers/media/platform/imx-jpeg/Makefile      |    3 +
+ drivers/media/platform/imx-jpeg/mxc-jpeg-hw.c |  168 ++
+ drivers/media/platform/imx-jpeg/mxc-jpeg-hw.h |  140 ++
+ drivers/media/platform/imx-jpeg/mxc-jpeg.c    | 2185 +++++++++++++++++
+ drivers/media/platform/imx-jpeg/mxc-jpeg.h    |  184 ++
+ drivers/media/v4l2-core/v4l2-ioctl.c          |    1 +
+ drivers/media/v4l2-core/v4l2-jpeg.c           |   52 +-
+ include/media/v4l2-jpeg.h                     |   16 +-
+ include/uapi/linux/videodev2.h                |    1 +
+ 18 files changed, 2933 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/imx8-jpeg.yaml
+ create mode 100644 drivers/media/platform/imx-jpeg/Kconfig
+ create mode 100644 drivers/media/platform/imx-jpeg/Makefile
+ create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg-hw.c
+ create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg-hw.h
+ create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg.c
+ create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg.h
 
 -- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+2.17.1
+
