@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E74A2A2E5F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 16:32:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B2202A2E97
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 16:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726556AbgKBPcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 10:32:47 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:36171 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbgKBPcr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 10:32:47 -0500
-Received: by mail-oi1-f196.google.com with SMTP id d9so9048180oib.3;
-        Mon, 02 Nov 2020 07:32:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZIIR6Y93kJtDVN6OdQxyGkcBJEBLbqKHPY5lopcjGcM=;
-        b=rX5++5boP73N1SgdWdrXJahDyCynmLajF5A9AtoR7w4uzW1nE0m4/l4Tee51b79XTa
-         RS2DeyZBGHddOcxDNmZBZyp7YXqdaet6M9BNcZTALAvvqJdvEeTYakLpWXeX7PsZRYO7
-         QLkvwFiNNrKT9coHyOjZhxGVLLJWmDZN0sjp3GuL96H5B4SsrZsFgK8jDUewWrFMle+y
-         zymnTlTQaBRJJ7/lFbiNbtqXNR4VCjUiPd/k1ASR1j1PqyoUi/5Iu38Y1Y2qpHShX/DM
-         q++tuRXRMFpDsKa0kmu9aju1KEl24//lNCSDxCt36jqXuxjvjrYZfk4Y8nJCicnlVyiZ
-         NPRw==
-X-Gm-Message-State: AOAM531865tKqrs4R5CW6GRJSbZIz/vc+sjQ+6N+oIBrDUX6bpf67v7J
-        CUwlhrJfe5Pp00YzDeX60g==
-X-Google-Smtp-Source: ABdhPJxVmphuk8mJdLlRvmuSLnh7cCLFj0cJ3+mKBBPbdUSY81JXWlUDkb/A41ExxACV+GqRPkRrwQ==
-X-Received: by 2002:aca:b854:: with SMTP id i81mr10737409oif.6.1604331165909;
-        Mon, 02 Nov 2020 07:32:45 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u22sm3414989oor.13.2020.11.02.07.32.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 07:32:45 -0800 (PST)
-Received: (nullmailer pid 3929592 invoked by uid 1000);
-        Mon, 02 Nov 2020 15:32:44 -0000
-Date:   Mon, 2 Nov 2020 09:32:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Evan Green <evgreen@chromium.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: nvmem: Add soc qfprom compatible
- strings
-Message-ID: <20201102153244.GA3929537@bogus>
-References: <20201029002827.1729915-1-evgreen@chromium.org>
- <20201028172737.v3.1.I8b447ca96abfbef5f298d77350e6c9d1d18d00f6@changeid>
+        id S1726583AbgKBPsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 10:48:51 -0500
+Received: from smtp1.axis.com ([195.60.68.17]:12960 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726385AbgKBPsv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 10:48:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=1029; q=dns/txt; s=axis-central1;
+  t=1604332130; x=1635868130;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=emDvkwZPIjF6WYVFC3RClAHvLgz7aKxTRQMdJvh2PTU=;
+  b=gI6pruoP3AmM/j3DDMuH2tZ9NKrT4ZSQP1I8LK9hOzFDwcag0xyIcg8k
+   rkiJkxX7yTIW8R2WdUPBut9RWJKonnjXx9CBzMTVES6DY5fOIPq3aTZ7d
+   tPxBvm7l1miB5zN7mO+n5z1EsMtUjhxIBRwxgd4gag0KtIny33ise9l7a
+   0WgmtDg8C9Ms9HF50sNWadtd2R53o6lpsXxhRS3sa0Y3eOJ8mYainikKG
+   ASvKZQpPaSoSWG1rF7T0yLG239m17GVPPilMy6izWkGV5Rqmw6UMNYzyX
+   fev6FjQ2z8chRqAiIS/0rSS/3K13cNtTsEBXmuUbjRBJhTlLu0at6xyvM
+   g==;
+IronPort-SDR: AK3nNE7zlFrr5B2n1yu5tDTXYhxfxQ2yXKLLsCDV+ddqsAT7mNk5HvBIRr27hrRC89hDAnP80K
+ 3hn6qDutnOuhVmP4s4D1zWlvHRltAznMUoBRhveab4UEvL+5z7Zknjux5AsL2BhZOqpi32SrxU
+ D2ghFSDtTt3mrbRmeknX2bYh1jXvHM2itjdYkAybBGIgB8aRZ25ItKYOGK+dUFGk00jy3bkYSQ
+ QXZL8+LBS94RlbheNpZ53sW67e2xTAmgWvFclGjdyhoDDvxLdLIPVgxu7XbQsgbPhHJvNzMzIh
+ Vyc=
+X-IronPort-AV: E=Sophos;i="5.77,445,1596492000"; 
+   d="scan'208";a="14657650"
+Date:   Mon, 2 Nov 2020 16:48:48 +0100
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <support.opensource@diasemi.com>,
+        <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/2] regulator: Add support for DA9121 regulator
+Message-ID: <20201102154848.tm5nsydaukyd7rrw@axis.com>
+References: <20201029151538.23463-1-vincent.whitchurch@axis.com>
+ <20201029151538.23463-3-vincent.whitchurch@axis.com>
+ <20201029152843.GC5042@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20201028172737.v3.1.I8b447ca96abfbef5f298d77350e6c9d1d18d00f6@changeid>
+In-Reply-To: <20201029152843.GC5042@sirena.org.uk>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Oct 2020 17:28:24 -0700, Evan Green wrote:
-> Add SoC-specific compatible strings so that data can be attached
-> to it in the driver.
+On Thu, Oct 29, 2020 at 03:28:43PM +0000, Mark Brown wrote:
+> On Thu, Oct 29, 2020 at 04:15:38PM +0100, Vincent Whitchurch wrote:
 > 
-> Signed-off-by: Evan Green <evgreen@chromium.org>
-> ---
+> > +	config.init_data = of_get_regulator_init_data(dev, dev->of_node, &da9121_reg);
+> > +	if (!config.init_data)
+> > +		return -ENOMEM;
 > 
-> Changes in v3:
->  - Fixed example (Doug and rob-bot)
-> 
-> Changes in v2:
->  - Add other soc compatible strings (Doug)
->  - Fix compatible string definition (Doug)
-> 
->  .../devicetree/bindings/nvmem/qcom,qfprom.yaml  | 17 ++++++++++++++---
->  1 file changed, 14 insertions(+), 3 deletions(-)
-> 
+> Don't do this, the core can do the DT bit for you and there is no reason
+> not to register the device if there are no constraints.  -ENOMEM would
+> also be the wrong error code here.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+OK, thanks.  I see that I can get the core to do it if I set ->of_match
+on the regulator_desc.  I also see that there is some flexibility about
+the placement of the constraints (desc->regulators_node is optional).
+
+This chip has only one output which the datasheet calls Buck1, so I will
+remove this call and set the desc.of_match field to get the driver to
+support a node which looks like this:
+
+      regulator@68 {
+        compatible = "dlg,da9121";
+        reg = <0x68>;
+
+        buck1 {
+            regulator-min-microvolt = <675000>;
+            regulator-max-microvolt = <825000>;
+        };
+      };
