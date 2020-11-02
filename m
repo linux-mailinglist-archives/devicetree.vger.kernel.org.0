@@ -2,178 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97BF12A26F2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 10:27:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADF5F2A26F7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 10:28:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727953AbgKBJ1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 04:27:09 -0500
-Received: from foss.arm.com ([217.140.110.172]:56516 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727870AbgKBJ1J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 04:27:09 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 79869101E;
-        Mon,  2 Nov 2020 01:27:08 -0800 (PST)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A7AD23F718;
-        Mon,  2 Nov 2020 01:27:06 -0800 (PST)
-Date:   Mon, 2 Nov 2020 09:27:04 +0000
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, sudeep.holla@arm.com,
-        lukasz.luba@arm.com, james.quinlan@broadcom.com,
-        Jonathan.Cameron@Huawei.com, broonie@kernel.org,
-        satyakim@qti.qualcomm.com, etienne.carriere@linaro.org,
-        f.fainelli@gmail.com, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com
-Subject: Re: [PATCH v3 4/4] dt-bindings: arm: add support for SCMI Regulators
-Message-ID: <20201102092704.GJ20482@e120937-lin>
-References: <20201026203148.47416-1-cristian.marussi@arm.com>
- <20201026203148.47416-5-cristian.marussi@arm.com>
- <20201030185514.GA4129214@bogus>
+        id S1728156AbgKBJ2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 04:28:30 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:59511 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727953AbgKBJ2a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 04:28:30 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 5A0A4ED5;
+        Mon,  2 Nov 2020 04:28:29 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 02 Nov 2020 04:28:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=hyPH+I4uz31S5t0WSmm+l9Ovj+M
+        oWykjrHJP9/OmnVM=; b=dcoNU+0W0GktPcSHaOgb9S1+DThbrW1FGvz7c5LCOjI
+        wqYruK3XqUdIYmfsI/e57RusndsPh7U119v1v36X3ZovNiRC556lBEgs8cwFVtYd
+        azSAxx2hlpvWW1p3WvAj0WfwnkoWQDiqcsH90cHae3/wER+rtpVQ9vNR8A/5ntHG
+        1HfYZ274ziWKFqGpSSHVABx3MFtgkpRzvRcJLp9CJjZYTUoNdpLNLLIsHz9Jl3G9
+        2xH2QhC/vvOvFCDW/PbDi7NtXET4QbsDneJ9za1qKPBeBVJbRoHP+aVpXW9rYT9e
+        XFBm6R6D3zYuAg3UiWobpFyAPm+u3as1AVg2tAhr63g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=hyPH+I
+        4uz31S5t0WSmm+l9Ovj+MoWykjrHJP9/OmnVM=; b=pcPp7KINtUm0UZGuXA9jbX
+        N55m4vAyxBBI5eHOTHVDkmG3BUzumthLXOqe9/7s0u9V5ONFTT76C/li9ILP8CgI
+        337FDQNc2u9KAObbK+4AphuvC3m/3wL/lZTGFGuXPhnK34qsrcsOk7BALE78zQgn
+        RTG8gJWm1rwqfDyoaWrAet8fl4qEymm6RpLqXS1Oi8a4dkTh23RmrWBZlmBcfJj6
+        6VUUEaanvZkvDg+8lp+W4FCjxgLml5NMS/yb6trcqratXE/rmqjmAigswXTaVh89
+        e4h9B3iQqRoIwTdUHU82bI7PyYtJD3md9e43m3GqqnlDR1Hssmw+f8AQLwnTfR8g
+        ==
+X-ME-Sender: <xms:PNGfX55dvYHXJkAvxEznVH0CIU8bywuawXeSZdffmxQGvu9MBJ1UZw>
+    <xme:PNGfX27sWvl92ut6LHVqinJJg9UPd_GyJcx11csKtv3oTXg995L8k8gtiA4ffetax
+    fld6DCynAICbGD7iWc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtuddgtdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:PNGfXwfX6Swfs8WOFaKmHtqV0JxMJts3FfEgiUlj-BK4wmzxQXcsow>
+    <xmx:PNGfXyJEGMh68QHab3MGR3rAokhPCzhVWasIo1kSkWUnbq0paftN0w>
+    <xmx:PNGfX9JSJ4eA8-ZDQ5KBXfOdXEC71VIyhHaB-XWHfyDslSPAq8400A>
+    <xmx:PNGfX7gbCFUFcgrOnGUIY9omvc5xwtfet9zUaOAr-TyntlCjnuEddw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id E93A63064683;
+        Mon,  2 Nov 2020 04:28:27 -0500 (EST)
+Date:   Mon, 2 Nov 2020 10:28:26 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <contact@paulk.fr>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Matteo Scordino <matteo.scordino@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH 1/9] ARM: sunxi: Add machine match for the Allwinner V3
+ SoC
+Message-ID: <20201102092826.ihve6ohnbc2lqqc3@gilmour.lan>
+References: <20201031182137.1879521-1-contact@paulk.fr>
+ <20201031182137.1879521-2-contact@paulk.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="swk44vaarxminkyd"
 Content-Disposition: inline
-In-Reply-To: <20201030185514.GA4129214@bogus>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201031182137.1879521-2-contact@paulk.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
 
-thanks for the review.
+--swk44vaarxminkyd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 30, 2020 at 01:55:14PM -0500, Rob Herring wrote:
-> On Mon, Oct 26, 2020 at 08:31:48PM +0000, Cristian Marussi wrote:
-> > Add devicetree bindings to support regulators based on SCMI Voltage
-> > Domain Protocol.
-> > 
-> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> > ---
-> > v2 --> v3
-> > - avoid awkard examples based on _cpu/_gpu regulators
-> > v1 --> v2
-> > - removed any reference to negative voltages
-> > ---
-> >  .../devicetree/bindings/arm/arm,scmi.txt      | 42 +++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> > index 55deb68230eb..0cef83a60f03 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> > +++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> > @@ -62,6 +62,28 @@ Required properties:
-> >   - #power-domain-cells : Should be 1. Contains the device or the power
-> >  			 domain ID value used by SCMI commands.
-> >  
-> > +Regulator bindings for the SCMI Regulator based on SCMI Message Protocol
-> > +------------------------------------------------------------
-> > +
-> > +An SCMI Regulator is permanently bound to a well defined SCMI Voltage Domain,
-> > +and should be always positioned as a root regulator.
-> > +It does not support any current operation.
-> > +
-> > +This binding uses the common regulator binding[6].
-> > +
-> > +SCMI Regulators are grouped under a 'regulators' node which in turn is a child
-> > +of the SCMI Voltage protocol node inside the desired SCMI instance node.
-> > +
-> > +Required properties:
-> > + - reg : shall identify an existent SCMI Voltage Domain.
-> > +
-> > +Optional properties:
-> > + - all of the other standard regulator bindings as in [6]: note that, since
-> > +   the SCMI Protocol itself aims in fact to hide away many of the operational
-> > +   capabilities usually exposed by the properties of a standard regulator,
-> > +   most of the usual regulator bindings could have just no effect in the
-> > +   context of this SCMI regulator.
-> 
-> You can't have it both ways... You should list out which ones apply.
-> 
+On Sat, Oct 31, 2020 at 07:21:29PM +0100, Paul Kocialkowski wrote:
+> The Allwinner V3 SoC shares the same base as the V3s but comes with
+> extra pins and features available. As a result, it has its dedicated
+> compatible string (already used in device trees), which is added here.
+>=20
+> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
 
-I'm double checking now every regulator binding that can apply, and I'll
-append here the full list of supported standard regulator bindings.
+Applied, thanks!
+Maxime
 
-> I'm a bit worried that now we're changing CPUs (at least?) from clocks 
-> to 'performance domains' while at the same time here we're adding 
-> low level, virtual regulators. Are we going to end up wanting something 
-> more abstract here too?
-> 
+--swk44vaarxminkyd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-As said already in a different thread by Mark and Sudeep, this was needed
-to accomodate some driver like MMC which expects to be able to fine tune
-some regulator voltages at some point.
+-----BEGIN PGP SIGNATURE-----
 
-The SCMI abstraction exposed by the SCMI Power protocol indeed already
-provided a coarse grain tuning in term of abstract power levels and
-on/off ops but it was not able to provide fine grained voltage tuning
-in a clean way (without horribly abusing IMP DEFINED values), so
-Voltage Domain protocol with a regulator on top of it was added.
-(and I think anyway partners were already starting thinking about
-developing their own custom protocols and regulators to bypass these
-limitations...so providing a unified solution seemed sensible)
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5/ROgAKCRDj7w1vZxhR
+xRfTAQDwvnZaS/MIr0zppQiQ4zDs7hWAJYeVlts0j/rj1bbDhgEAxBh+NuxjN0oZ
+q8dtlHSuvDVlSF8U+rfnkzDyrCpToQI=
+=mHUE
+-----END PGP SIGNATURE-----
 
-Anyway consider that everything remains still in control of the SCMI fw
-which has the last word and can anyway drop your 'fine' tuned request
-if deemed unreasonable/invalid.
-
-> > +
-> >  Sensor bindings for the sensors based on SCMI Message Protocol
-> >  --------------------------------------------------------------
-> >  SCMI provides an API to access the various sensors on the SoC.
-> > @@ -105,6 +127,7 @@ Required sub-node properties:
-> >  [3] Documentation/devicetree/bindings/thermal/thermal*.yaml
-> >  [4] Documentation/devicetree/bindings/sram/sram.yaml
-> >  [5] Documentation/devicetree/bindings/reset/reset.txt
-> > +[6] Documentation/devicetree/bindings/regulator/regulator.yaml
-> >  
-> >  Example:
-> >  
-> > @@ -169,6 +192,25 @@ firmware {
-> >  			reg = <0x16>;
-> >  			#reset-cells = <1>;
-> >  		};
-> > +
-> > +		scmi_voltage: protocol@17 {
-> > +			reg = <0x17>;
-> > +
-> > +			regulators {
-> > +				regulator_devX: regulator_scmi_devX@0 {
-> 
-> Node names should be generic:
-> 
-> regulator@0
-> 
-
-Yes, I was not sure if it this kind of naming for reg-based property was
-preferable of mandatory and so, since supporting using a <common-nam>@<unit>
-format in this driver needs a small patch in the regulator core framework
-(at least it seems so to me...), I wanted to be sure this was needed.
-
-I'll repost soon with naming fixed and with any additional patch added.
-
-Thanks
-
-Cristian
-
-> > +					reg = <0x0>;
-> > +					regulator-max-microvolt = <3300000>;
-> > +				};
-> > +
-> > +				regulator_devY: regulator_scmi_devY@9 {
-> > +					reg = <0x9>;
-> > +					regulator-min-microvolt = <500000>;
-> > +					regulator-max-microvolt = <4200000>;
-> > +				};
-> > +
-> > +				...
-> > +			};
-> > +		};
-> >  	};
-> >  };
-> >  
-> > -- 
-> > 2.17.1
-> > 
+--swk44vaarxminkyd--
