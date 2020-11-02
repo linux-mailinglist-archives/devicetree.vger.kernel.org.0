@@ -2,165 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 109712A3B53
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 05:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5B0B2A3B6F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 05:34:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726312AbgKCEKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 23:10:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35718 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725940AbgKCEKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 23:10:41 -0500
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD0CC0617A6
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 20:10:40 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id z6so13672625qkz.4
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 20:10:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JF9Aehl00ZiapjopI2Yn6tGmxxDnNlkOydHAyPM5j24=;
-        b=JyYjn17GucunDpq0XfY4GKSScud1WhsZwWGwHjLoVQBHTTEYqYL8ecNCB9sroID+3v
-         wroj6LYuLjmcdbj0MiVFXJ3ojQinitgXkT5bZWyPzIvEQTRHGwCG3TpmejmMqVQc66jh
-         9zIi0BwVxe0QATA23cbTW0rFIOgFtnmZmiHhU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JF9Aehl00ZiapjopI2Yn6tGmxxDnNlkOydHAyPM5j24=;
-        b=sQM4E9liZrDZzf89wz7Q9/03DqeHJg6hWUsG8+SRixbM3WgON6XgFp4cHU6gidlOeR
-         F8vvHj/qKwGKuqfYcpkRnvRRKG7PSGGzC8wgAIm1Ym6h2THrntKH7QT6hJIrFW5RXASF
-         R83CctIcpfCWhCDAQSoKKL2xQg616SzR1AK90NJuf8Cez5cIlqGq4Y3/WIqs87hnaJy0
-         6nkwme2kSDpGTM+x6VgdS0JrTluZLP3IofUC2IsQ5VRIRaHyx6gs2fzif0lP8vbALx2w
-         k/ARCGHDeqOmUihALmPKf2shZPBr3u0yUmvnh+qeK523zDanbxnEZCPdwSbmQYsiZMuf
-         gBPA==
-X-Gm-Message-State: AOAM533FTUB4DpaTGZxugcMlkFe00VHhGnqg8qtxRfdMPLGZNetVDV3+
-        GWLroa6U4/szJn9tI/fLZz/J+t94XNyptKV16o5njA==
-X-Google-Smtp-Source: ABdhPJzmHQ8Uh6qtG/QQ8eL6TIJtPTSKgVbQsB8/wAo/lphDhlaV2CxCQIAvrluxzOuRnsvvS++8Q1xv09QxvYkH7EE=
-X-Received: by 2002:a05:620a:15b1:: with SMTP id f17mr17454464qkk.54.1604376639646;
- Mon, 02 Nov 2020 20:10:39 -0800 (PST)
+        id S1725953AbgKCEez convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Nov 2020 23:34:55 -0500
+Received: from sella3.gpi.it ([89.190.163.246]:56508 "EHLO sella3.gpi.it"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725940AbgKCEez (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 23:34:55 -0500
+Received: from prdzimgpi04.gpi.it (prdmta.gpi.it [192.168.40.36])
+        by sella3.gpi.it (Postfix) with ESMTPS id 23BC8101FA4;
+        Tue,  3 Nov 2020 00:28:08 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by prdzimgpi04.gpi.it (Postfix) with ESMTP id F20CC51249;
+        Tue,  3 Nov 2020 00:28:06 +0100 (CET)
+X-Virus-Scanned: amavisd-new at prdzimgpi04.gpi.it
+Received: from prdzimgpi04.gpi.it ([127.0.0.1])
+        by localhost (prdzimgpi04.gpi.it [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id Wn9Y5C5UJJUi; Tue,  3 Nov 2020 00:28:06 +0100 (CET)
+Received: from prdzimgpi02.gpi.it (prdzimgpi02.gpi.it [10.192.1.151])
+        by prdzimgpi04.gpi.it (Postfix) with ESMTP id B31757DB48A;
+        Tue,  3 Nov 2020 00:27:51 +0100 (CET)
+Date:   Tue, 3 Nov 2020 00:27:51 +0100 (CET)
+From:   Lerynne West <ilenia.celestini@gpi.it>
+Reply-To: Lerynne West <terrybrown337@gmail.com>
+Message-ID: <1451664183.27574.1604359671706.JavaMail.zimbra@gpi.it>
+Subject: RE
 MIME-Version: 1.0
-References: <CAFr9PX=Ac6yzR31uzK=6WmnbznUm_FzVRs+v2D3ONfX4UCY_QQ@mail.gmail.com>
- <160435352432.884498.6877160797327752107@swboyd.mtv.corp.google.com>
-In-Reply-To: <160435352432.884498.6877160797327752107@swboyd.mtv.corp.google.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Tue, 3 Nov 2020 13:10:28 +0900
-Message-ID: <CAFr9PXkgShCcQ2n7CMdQFqkwMwbSgxdqK47fwX8Tpbb=O=0qkg@mail.gmail.com>
-Subject: Re: Acceptable format for clock cells.
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Mailer: Zimbra 8.8.15_GA_3975 (ZimbraWebClient - GC86 (Win)/8.8.15_GA_3975)
+X-Authenticated-User: ilenia.celestini@gpi.it
+Thread-Index: aMShg4eQig6TZkUlWZMgXqJAuJWsKA==
+Thread-Topic: RE
+X-GPI-MailScanner-Information: Please contact sat@gpi.it for more information
+X-GPI-MailScanner-ID: 23BC8101FA4.A7E41
+X-GPI-MailScanner: Found to be clean
+X-GPI-MailScanner-MCPCheck: 
+X-GPI-MailScanner-SpamCheck: non spam, SpamAssassin (cached, punteggio=2.029,
+        necessario 5, ALL_TRUSTED -1.00, BAYES_00 -1.90,
+        FREEMAIL_FORGED_REPLYTO 2.10, FREEMAIL_REPLYTO_END_DIGIT 0.25,
+        KAM_DMARC_STATUS 0.01, LOTS_OF_MONEY 0.00, MISSING_HEADERS 1.02,
+        REPLYTO_WITHOUT_TO_CC 1.55)
+X-GPI-MailScanner-SpamScore: ss
+X-GPI-MailScanner-From: ilenia.celestini@gpi.it
+X-Spam-Status: No
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
 
-On Tue, 3 Nov 2020 at 06:45, Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Daniel Palmer (2020-10-30 04:52:31)
-> > As there is no documentation for this thing and I'm not sure what the
-> > logical output numbers are or even if I know all of them I was
-> > considering making the number of clock cells 2 and having the first be
-> > the first divider (i.e. the divide by 2 output would be 2) and the
-> > second cell the chained divider or 0 for no divider.
->
-> Does the PLL need to be expressed anywhere in the binding?
 
-The PLL frequency doesn't seem to need to be exposed to the outside.
-It's configured to generate 864MHz from the 24MHz input clock but
-nothing else has 864MHz as an input clock.
-At the moment I register a clk for the PLL but only the dividers are
-accessible from OF.
-The only thing that runs with a clock anywhere near 864MHz is the CPU
-and it has its own PLL that's fed from the divide by 2 output from
-this PLL.
-So basically output 0 from the PLL block will be the first divider.
+Hallo, Sie haben eine Spende von 2.800.000,00 Euro, ich habe die Amerika-Lotterie im Wert von 343 Millionen Dollar gewonnen und ich spende einen Teil davon an fünf glückliche Menschen und Wohltäter in Erinnerung an meinen verstorbenen Sohn, der an Krebs gestorben ist, und um das Leben vieler Menschen zu verbessern, die von diesem Coronavirus betroffen sind. Antworten Sie auf diese E-Mail, um weitere Informationen zu erhalten.
 
-Here's a condensed version of clk_summary:
-
- xtal24                               2        2        0    24000000
-        0     0  50000
-   mpll                              4        4        0   864000000
-       0     0  50000
-      mpll_div_5                     1        1        0   172800000
-       0     0  50000
-         mpll_172_gate               2        2        0   172800000
-       0     0  50000
-            uart0                    1        1        0   172800000
-       0     0  50000
-
-xtal24 is the external input clk. mpll is this PLL, mpll_div_5 is an
-output from this PLL, mpll_172_gate (old naming from before I knew how
-to calculate the mpll frequency) is a clock gate in a block that
-coalesces various PLL outputs before they go into more dividers and
-muxes to peripherals.
-
-I did think about making just the PLL frequency an output and then
-having the dividers expressed in the DT but the PLL block does have
-enable bits for each of the outputs so they should logically be
-handled by this driver I think.
-
-> >
-> > If I should just decide the order of the outputs and come up with
-> > indexes for them would it still be ok to nest them like the first cell
-> > is the index of the divider and then the second cell is the index of
-> > the chained divider?
-> >
->
-> Generally we try to encourage one-cell or zero-cell bindings because
-> they're simple. A two cell binding is possible if you really want but
-> I'd say do a one-cell binding and make up some numbering scheme for the
-> different clks. A one cell binding also makes it easy to populate an
-> array of clk_hw pointers that the DT xlate function can pick from. When
-> it gets to two cells or more it gets complicated, but still doable.
-
-Ok. I've done that now. I decided that the second divider doesn't need
-to be handled in the PLL driver itself as the divider is actually on
-the other side of the gate described above.
-There only needs to be one cell now. I have the primary dividers
-ordered from smallest to largest and those indexes become the output
-numbers.
-
-> It would be great if clk hardware started numbering the clks instead of
-> naming them specific names but this almost never happens. It would
-> certainly make life easier if the datasheet said "Use clk #25 for the
-> uart" but usually SoC hardware engineers give them names and don't
-> consider a pinout scheme. I'd say this is mostly because the engineers
-> control the connections between their clk controller and the consumers.
-
-The PLL seems to have enable bits for each of the dividers going from
-smallest to highest so going in that order for the indexes made sense
-to me.
-What I didn't want to happen is to find out there is actually another
-divider somewhere in the middle of the ones I know about and then have
-to work out how to add that in.
-So having the first cell being the divisor instead of an index seem to
-make some sense.
-
-> Finally, if you don't have a datasheet then think about the person who
-> has to write the DT. Are they going to know the details of the clk tree
-> inside the PLL unit to know that they need the third divider underneath
-> the second divider? Or are they going to know they need the "uart clk"
-> and that can be some friendly #define that hides this detail from them?
-
-I'm thinking of listing the divisors in the DT so that which divider
-is on which output is clear just from looking at the DT.
-Something like mstar,mpll-divisors = <2>, <3>,... This would also help
-with the issue above as the driver would just create clks for whatever
-dividers are listed in the DT it was given.
-For this PLL there is only one consumer of the outputs as all of the
-outputs from this PLL and some others are feed into a set of gates
-before going to the muxes so the wiring in the
-DT isn't very complicated.
-
-For some background my very rough notes about the clocks in the chip
-I'm working on are here:
-http://linux-chenxing.org/ip/clks.html
-
-Thanks for your comments.
-
-Cheers,
-
-Daniel
+Alles Gute
+Frau Lerynne West
