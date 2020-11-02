@@ -2,119 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97ED62A3691
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 23:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CABD2A369A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 23:36:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725785AbgKBWfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 17:35:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40350 "EHLO
+        id S1726671AbgKBWgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 17:36:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725933AbgKBWfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 17:35:00 -0500
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFAAC061A48
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 14:35:00 -0800 (PST)
-Received: by mail-ot1-x341.google.com with SMTP id g19so4755299otp.13
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 14:35:00 -0800 (PST)
+        with ESMTP id S1726571AbgKBWgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 17:36:51 -0500
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF39BC061A49
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 14:36:51 -0800 (PST)
+Received: by mail-il1-x141.google.com with SMTP id t13so6480326ilp.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 14:36:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=giKh0EftA82tuJhV/2S7wBVQ3F/DRKViWRoogNmdeAs=;
-        b=bMjC70YDFNzxoYlzw3H4miSI+md12fBuXXRV+rwrxZNgxWyRnMyTM+RWdzZ6Ttz749
-         qIIdxenAT6JyLXCwFjJitCGNE6NtAlVOcEEtfTUjNVkaVwsAoeI3RaqPS4D/rQ41mRK8
-         z3nwRyBpd8Ml+jwQDxOK/7nlBFt0Djs9ILL65ZgnvMynhhR27O398RD3vR5DnLjyu/Ie
-         0deUipDZvLwmfe+gEyooVVrypE5oA2lbHsfTFWrWkiEIJWAq+v5z3MAKaUgfd1hrZSN1
-         bHZcEhtLfdvM6dOu16hu7EtkxCguPo4OJbabmtS2AIJDZ6yMJDWAD2EOTlApdxVN4KJz
-         5jsw==
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l5uJS/jEKGLUY7/54yb7PsXjkj4P5AmY3KEzFYsfwHE=;
+        b=n6SP1ZMbkWoENlJDPiZ38Zcls5wfXCuU3IkRB7Xtq2Wp8wZHPQcxUvJSIZkszw4Jn7
+         o12UhWs69zVLd3cN1Az8bfLmqi3RLv5zGfKQ9JY/54iLiTr2Cb9cVvRQwts1P90eOXHm
+         0gdiC6U2wt/rGxcRuQE6OioCzZOtIbJDlWWH87qSyG9qU2JpEjrFmoUovx7eLVQ0tCt9
+         93W+hxDdSMJXhnuT8n62qY3ogMh+BxPSanvS2UoEa+rO2eorIxW/yzrtWszx6Gb9Ar6/
+         hV8bnN/akU4cFVnW6o+qLwYIs6lwmPmzv/CED8tOSn91Uvn8/RplY6TWm3cpuo20Uhgi
+         NdIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=giKh0EftA82tuJhV/2S7wBVQ3F/DRKViWRoogNmdeAs=;
-        b=VyKcxpIINsNKsvh/a91K3E1DQ65NUbWdMNI04SPvLAhQvCJ/c4vxkx4betrztVNFI0
-         VtN5MpcQfLdgNSFV1G0WJ9HZnTrxe0DB56LSpruGgga321XnMyPEK2+72LsAsTl7Cv3u
-         vlLZMGpDSsdZMBiS8YcAdF+tplpLaiU82X0javnhUNLKrIZLXx5FZ0segeMEeZjXb0vq
-         rKsUBnz4SrDrJbE2W2nU1E4jrB8RrZ+f/CXric5jnDs6M0otR8C1Gqyb8UmuFzwdplVM
-         IWnovkHj5xeoRrzIrCFUEVAX6R9V9q6atulVrQk/65I37ZJHTjT4SrZ9ylbzhWlKnI4K
-         5+dg==
-X-Gm-Message-State: AOAM532ntFIlEVP4Vr5tzGECXi8+65Yfhd4Ox/Ny0DYgXGs9K+nj9N4d
-        BQaRD+WZ3xHZPraT/oyBrazFuA==
-X-Google-Smtp-Source: ABdhPJwkR59N/fd3voUgFTNORY4EDE77itPKKZtqgX4oFS6zefiiLytSDfijNYsgP9sr1OFQXdN3CA==
-X-Received: by 2002:a9d:5d15:: with SMTP id b21mr13973004oti.25.1604356499596;
-        Mon, 02 Nov 2020 14:34:59 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id b16sm3929519oti.4.2020.11.02.14.34.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 14:34:58 -0800 (PST)
-Date:   Mon, 2 Nov 2020 16:34:57 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] nvmem: qfprom: Avoid untouchable regions
-Message-ID: <20201102223457.GA65067@builder.lan>
-References: <20201029002827.1729915-1-evgreen@chromium.org>
- <0a7d86ee-96b0-eff8-e315-ff65086661ee@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l5uJS/jEKGLUY7/54yb7PsXjkj4P5AmY3KEzFYsfwHE=;
+        b=REqvmqsJs5RW+B7Dpl72tGUs6NJmv2bYdZaQXWv1BrvP3Y/6Dabit9WnZlzgRx+Hun
+         Yu2bnYnZzZkERUzrBwVYCrILUErVEJMORAtoOYyMHZRqNjbd765zjPcwDtromXvNriao
+         XVgmNgMKXxIAPIWGFFJVob7Ji3Rq9B0STZrWBmTbSZiHJv1aecbCK+8VjGE38PJS6pHp
+         mZsqO3BWXNNnxCsSFCW6CPqMNC9P/YwgKFEN3q5zdLnpMGEz1PnKvEBt3yOsv/L50hKB
+         EY4+Ph444I+L6pxj4Gwb159EuhqxQeUa+aSi/37968C1yvbng32uESjByaklyj/aAInW
+         8L2g==
+X-Gm-Message-State: AOAM530Qq9GJkeTOa7FQSM3Dd/bHEdT3xKgmGZnktd554mxmp0hMszKw
+        79dP9Kq2rYeC3+5JIyMwPj04qRDGt6lqEk7AF/vJxQ==
+X-Google-Smtp-Source: ABdhPJxyEOymgPpG0rZw8fAZSubOjDL6U1YtbHy3VgZ5EYhSsP0I8io3+caw3bttxxZDVONhTIHsurRHMlzScADBZPo=
+X-Received: by 2002:a92:41cf:: with SMTP id o198mr12656899ila.262.1604356610897;
+ Mon, 02 Nov 2020 14:36:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0a7d86ee-96b0-eff8-e315-ff65086661ee@linaro.org>
+References: <20201025005916.64747-7-luka.kovacic@sartura.hr>
+ <20201025005916.64747-6-luka.kovacic@sartura.hr> <20201025005916.64747-5-luka.kovacic@sartura.hr>
+ <20201025005916.64747-4-luka.kovacic@sartura.hr> <20201025005916.64747-3-luka.kovacic@sartura.hr>
+ <20201025005916.64747-2-luka.kovacic@sartura.hr> <20201025005916.64747-1-luka.kovacic@sartura.hr>
+ <20201029180105.GD26053@duo.ucw.cz> <CADZsf3YE3d=dtMVVYHL91Z1WFcpNN4vyJJ6RG7VnJ2V-DqE+wQ@mail.gmail.com>
+ <7821443b-ddbc-fc92-b990-14d116dda853@ti.com>
+In-Reply-To: <7821443b-ddbc-fc92-b990-14d116dda853@ti.com>
+From:   Luka Kovacic <luka.kovacic@sartura.hr>
+Date:   Mon, 2 Nov 2020 23:36:39 +0100
+Message-ID: <CADZsf3atet+Y7xfCey=R6hk+hQ0Za5Om8PFD7KcS6m3fVaLLFA@mail.gmail.com>
+Subject: Re: [PATCH v7 0/6] Add support for the IEI WT61P803 PUZZLE MCU
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Marek Behun <marek.behun@nic.cz>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Robert Marko <robert.marko@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 02 Nov 09:58 CST 2020, Srinivas Kandagatla wrote:
+Hello,
 
-> 
-> 
-> On 29/10/2020 00:28, Evan Green wrote:
-> > Certain fuses are protected by the XPU such that the AP cannot
-> > access them. Attempting to do so causes an SError. Introduce an
-> > SoC-specific compatible string, and introduce support into the
-> > nvmem core to avoid accessing specified regions. Then use those
-> > new elements in the qfprom driver to avoid SErrors when usermode
-> > accesses certain registers.
-> > 
-> > Changes in v3:
-> >   - Fixed example (Doug and rob-bot)
-> >   - Use min()/max() macros instead of defining my own (Doug)
-> >   - Comment changes to indicate sorting (Doug)
-> >   - Add function to validate keepouts are proper (Doug)
-> > 
-> > Changes in v2:
-> >   - Add other soc compatible strings (Doug)
-> >   - Fix compatible string definition (Doug)
-> >   - Introduced keepout regions into the core (Srini)
-> >   - Use new core support in qfprom (Srini)
-> > 
-> > Evan Green (4):
-> >    dt-bindings: nvmem: Add soc qfprom compatible strings
-> >    arm64: dts: qcom: sc7180: Add soc-specific qfprom compat string
-> >    nvmem: core: Add support for keepout regions
-> >    nvmem: qfprom: Don't touch certain fuses
-> 
-> Except dts patch, I have applied all the patches, dts patch should go via
-> arm-soc tree!
-> 
+On Mon, Nov 2, 2020 at 7:30 PM Dan Murphy <dmurphy@ti.com> wrote:
+>
+> Hello
+>
+> On 11/1/20 3:56 AM, Luka Kovacic wrote:
+> > Hello Pavel,
+> >
+> > On Thu, Oct 29, 2020 at 7:01 PM Pavel Machek <pavel@ucw.cz> wrote:
+> >> Hi!
+> >>
+> >>> +What:                /sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/power_status
+> >>> +Date:                September 2020
+> >>> +Contact:     Luka Kovacic <luka.kovacic@sartura.hr>
+> >>> +Description: (RO) Power status indicates the host platform power on method.
+> >>> +             Value mapping (bitwise list):
+> >>> +             0x80 - Null
+> >>> +             0x40 - Firmware flag
+> >>> +             0x20 - Power loss detection flag (powered off)
+> >>> +             0x10 - Power loss detection flag (AC mode)
+> >>> +             0x08 - Button power on
+> >>> +             0x04 - WOL power on
+> >>> +             0x02 - RTC alarm power on
+> >>> +             0x01 - AC recover power on
+> >> It would be nice to put this into standard place somewhere. Many
+> >> machines will want to expose this information.
+> > As this is specific to this microcontroller and to how it encodes
+> > these values, I don't see a need to change this.
+> > This isn't used anywhere else.
+> >
+> >> If not, at least spell out WoL, as it is not that common of acronym.
+> > Okay.
+>
+> WoL is a very common acronym especially in the networking space
 
-And I've picked the dts patch.
+By WOL I meant Wake-on-LAN, I will spell out the whole acronym.
 
-Thank you,
-Bjorn
+>
+> But the overall this section does not make sense
+>
+> The description says that it indicates platform power on method but what
+> is NULL power on? There are flags for power loss detection.
 
-> 
-> --srini
-> 
-> > 
-> >   .../bindings/nvmem/qcom,qfprom.yaml           |  17 +-
-> >   arch/arm64/boot/dts/qcom/sc7180.dtsi          |   2 +-
-> >   drivers/nvmem/core.c                          | 153 +++++++++++++++++-
-> >   drivers/nvmem/qfprom.c                        |  30 ++++
-> >   include/linux/nvmem-provider.h                |  17 ++
-> >   5 files changed, 211 insertions(+), 8 deletions(-)
-> > 
+I will clarify the value mapping and try to replicate some of these states
+so I can write a better description.
+
+>
+> Does the RTC mean that the processor real time clock woke up the uC? Or
+> that the internal RTC woke up the controller?
+
+These are all related to the platform as a whole.
+So the Marvell SoC and all of the required peripherals are turned on.
+
+>
+> And for the
+> /sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/ac_recovery_status
+> what are those values?
+
+These values indicate whether the board has been shut down gracefully and
+whether it has been powered on automatically (when power came back) or by
+pressing the power button.
+I will also extend the documentation with the value mapping for this.
+
+>
+> It seems like some ABI's are documented well with formats and others are
+> just described without a format.
+>
+> For instance
+>
+> /sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/version the format
+> of this version is not described but
+> /sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/build_info is.
+
+I left out the version format descriptions as they are in the recognizable
+format and all of them are quite arbitrary (e.g. v1.000).
+
+>
+>
+> Dan
+>
+
+Kind regards,
+Luka
