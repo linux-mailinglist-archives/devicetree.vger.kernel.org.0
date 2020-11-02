@@ -2,105 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF5F2A26F7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 10:28:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3EF32A275B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 10:49:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728156AbgKBJ2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 04:28:30 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:59511 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727953AbgKBJ2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 04:28:30 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 5A0A4ED5;
-        Mon,  2 Nov 2020 04:28:29 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 02 Nov 2020 04:28:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=hyPH+I4uz31S5t0WSmm+l9Ovj+M
-        oWykjrHJP9/OmnVM=; b=dcoNU+0W0GktPcSHaOgb9S1+DThbrW1FGvz7c5LCOjI
-        wqYruK3XqUdIYmfsI/e57RusndsPh7U119v1v36X3ZovNiRC556lBEgs8cwFVtYd
-        azSAxx2hlpvWW1p3WvAj0WfwnkoWQDiqcsH90cHae3/wER+rtpVQ9vNR8A/5ntHG
-        1HfYZ274ziWKFqGpSSHVABx3MFtgkpRzvRcJLp9CJjZYTUoNdpLNLLIsHz9Jl3G9
-        2xH2QhC/vvOvFCDW/PbDi7NtXET4QbsDneJ9za1qKPBeBVJbRoHP+aVpXW9rYT9e
-        XFBm6R6D3zYuAg3UiWobpFyAPm+u3as1AVg2tAhr63g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=hyPH+I
-        4uz31S5t0WSmm+l9Ovj+MoWykjrHJP9/OmnVM=; b=pcPp7KINtUm0UZGuXA9jbX
-        N55m4vAyxBBI5eHOTHVDkmG3BUzumthLXOqe9/7s0u9V5ONFTT76C/li9ILP8CgI
-        337FDQNc2u9KAObbK+4AphuvC3m/3wL/lZTGFGuXPhnK34qsrcsOk7BALE78zQgn
-        RTG8gJWm1rwqfDyoaWrAet8fl4qEymm6RpLqXS1Oi8a4dkTh23RmrWBZlmBcfJj6
-        6VUUEaanvZkvDg+8lp+W4FCjxgLml5NMS/yb6trcqratXE/rmqjmAigswXTaVh89
-        e4h9B3iQqRoIwTdUHU82bI7PyYtJD3md9e43m3GqqnlDR1Hssmw+f8AQLwnTfR8g
-        ==
-X-ME-Sender: <xms:PNGfX55dvYHXJkAvxEznVH0CIU8bywuawXeSZdffmxQGvu9MBJ1UZw>
-    <xme:PNGfX27sWvl92ut6LHVqinJJg9UPd_GyJcx11csKtv3oTXg995L8k8gtiA4ffetax
-    fld6DCynAICbGD7iWc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtuddgtdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:PNGfXwfX6Swfs8WOFaKmHtqV0JxMJts3FfEgiUlj-BK4wmzxQXcsow>
-    <xmx:PNGfXyJEGMh68QHab3MGR3rAokhPCzhVWasIo1kSkWUnbq0paftN0w>
-    <xmx:PNGfX9JSJ4eA8-ZDQ5KBXfOdXEC71VIyhHaB-XWHfyDslSPAq8400A>
-    <xmx:PNGfX7gbCFUFcgrOnGUIY9omvc5xwtfet9zUaOAr-TyntlCjnuEddw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E93A63064683;
-        Mon,  2 Nov 2020 04:28:27 -0500 (EST)
-Date:   Mon, 2 Nov 2020 10:28:26 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <contact@paulk.fr>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Matteo Scordino <matteo.scordino@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [PATCH 1/9] ARM: sunxi: Add machine match for the Allwinner V3
- SoC
-Message-ID: <20201102092826.ihve6ohnbc2lqqc3@gilmour.lan>
-References: <20201031182137.1879521-1-contact@paulk.fr>
- <20201031182137.1879521-2-contact@paulk.fr>
+        id S1728081AbgKBJtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 04:49:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728004AbgKBJtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 04:49:00 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7834C0617A6;
+        Mon,  2 Nov 2020 01:49:00 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id t14so10341539pgg.1;
+        Mon, 02 Nov 2020 01:49:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3m1fHdBEtF1GXzLrh850WEeEvbCCehA35f+ouhTNIb4=;
+        b=XvUXUJuL6qRbbHHE37BR1yj5zge+FGcohhhSr9DibJyoVAgPD3yh4854zlthhh55pY
+         dJ53dLzVbUZX/VauXVrtDSpy/xDKMWzxwXsOsM1gxDJ8KJk3ApdX3dv3n8vytmWUBmEY
+         6q4/GmTBBkuSmLgTTKsBTrrydZOerP6YMbBq1OvlAjS5ByHpOvn2Db3ErrwCKfDSGAN8
+         1I1d9Kld79mgupONsYK35BPmEzuAQtbxDwUrqdR8q9RHATaO8VWqE8IGDECWYp3l7C/f
+         TdEuasQNcbwXSmQyT7k3km7N1Pn4u1qpY50d+hjxczezkxT8+4164serbeX2nzQEeIx/
+         p8gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3m1fHdBEtF1GXzLrh850WEeEvbCCehA35f+ouhTNIb4=;
+        b=cw7ZjnF1DmJpRUe0ksMtCsRWMvTVZzgUe8sgeIk2F6WXh1jpE83QOMZaslIo+NV0eQ
+         GSdoye8SxQbCLV1Dsl91Fput4w/OJ4ZBT6bb1Y8hldHNFIn3P5JKG4hvNLOVQGsD3AcV
+         xLt3JACgn8HMJXNTPvMll+5mpUh66h1HQMVg9+zH9MCW/wX/4SULysOBW2qVtUD+K7t7
+         ft5YRPfcE5K/Xn0mdtSCzpqCOY1VZWcqc2rxFmeLq27T80mF7JmTVUfwnZoZPjBJdTCe
+         eHswy21TRmsDKacGEKV+dLI7iJQtsxhxa2EpicxC6+4j6F4xsJoU6yK9niuqHQg92X0x
+         zZcg==
+X-Gm-Message-State: AOAM531leOVWNGRNRRUHJ0PJVFGrECWcdpjf8uPpwuFvkMXmjh9LNHUY
+        jGKCPqSWjou8+HHnfZvF43U=
+X-Google-Smtp-Source: ABdhPJwreE9z7RRc0vFoAeA0Lz2EEKr1GBHEHKjUlqhr4NgX9Nm4D38t33oM4QFE6BE2NTID3iv9mg==
+X-Received: by 2002:a17:90a:d104:: with SMTP id l4mr12013746pju.194.1604310540059;
+        Mon, 02 Nov 2020 01:49:00 -0800 (PST)
+Received: from ruantu-3.localdomain ([103.230.142.242])
+        by smtp.gmail.com with ESMTPSA id y5sm6935453pfc.165.2020.11.02.01.48.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2020 01:48:59 -0800 (PST)
+From:   Yu-Tung Chang <mtwget@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yu-Tung Chang <mtwget@gmail.com>
+Subject: [PATCH v1 0/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
+Date:   Mon,  2 Nov 2020 17:48:50 +0800
+Message-Id: <20201102094851.85301-1-mtwget@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="swk44vaarxminkyd"
-Content-Disposition: inline
-In-Reply-To: <20201031182137.1879521-2-contact@paulk.fr>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v1:
+- use SPDX header
+- rename led node to led-[0-9]
+- use "function" and "color" properties for led node
+- add aliases for uart1, emac, wifi
+- modify usb_otg->dr_mode property to otg
 
---swk44vaarxminkyd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yu-Tung Chang (1):
+  ARM: dts: sun8i: add FriendlyArm ZeroPi support
 
-On Sat, Oct 31, 2020 at 07:21:29PM +0100, Paul Kocialkowski wrote:
-> The Allwinner V3 SoC shares the same base as the V3s but comes with
-> extra pins and features available. As a result, it has its dedicated
-> compatible string (already used in device trees), which is added here.
->=20
-> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+ .../devicetree/bindings/arm/sunxi.yaml        |  5 ++
+ arch/arm/boot/dts/Makefile                    |  1 +
+ arch/arm/boot/dts/sun8i-h3-zeropi.dts         | 85 +++++++++++++++++++
+ 3 files changed, 91 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-h3-zeropi.dts
 
-Applied, thanks!
-Maxime
+-- 
+2.29.0
 
---swk44vaarxminkyd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5/ROgAKCRDj7w1vZxhR
-xRfTAQDwvnZaS/MIr0zppQiQ4zDs7hWAJYeVlts0j/rj1bbDhgEAxBh+NuxjN0oZ
-q8dtlHSuvDVlSF8U+rfnkzDyrCpToQI=
-=mHUE
------END PGP SIGNATURE-----
-
---swk44vaarxminkyd--
