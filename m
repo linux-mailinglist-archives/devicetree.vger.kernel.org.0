@@ -2,124 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4445D2A27F1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 11:13:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C88F52A27FB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 11:14:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728183AbgKBKNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 05:13:37 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:46077 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728005AbgKBKNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 05:13:36 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 473E6D70;
-        Mon,  2 Nov 2020 05:13:35 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 02 Nov 2020 05:13:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=10J83T1RFS8TmTl/ZzIDq65+QD3
-        rIov5ANW6VGwR7Mg=; b=vPJNA4eEBplYKgpEDUa0I8qJmSb1+kaoueGPLXsxOB5
-        mbfTwQQXbryZdxqfaI/45fr9Tf0T2LKvxUCTdfVVOl4mpdT+n3+HVRJtij0Po+wj
-        n6NFLeklkWXyX6tF20rQLFB7ZCbXyHcJWpVjOM1gv4f1U1MLolw2RNJtHu4mamIn
-        Xx3DHsQCeW06CgMBqvESLtp7qSNzoanyFElFx+GtmgNmdW7mEtOw6s3YzId6cylD
-        Nab0wsbh2zlmo/McRJmmRLXYx/fOw5VtqqCVcnglr/rGIE9DwLIYuimmMGXcyOuw
-        UO24CHaeaDmCKQBOyxZ2ftRU/8G2a7Xu9aMH5BcyELQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=10J83T
-        1RFS8TmTl/ZzIDq65+QD3rIov5ANW6VGwR7Mg=; b=kHpgJ2prcOsmpIlouIYQbW
-        /ym2MHAbBLE3/7Gfe0p/iGjMAtPLL+QUrvhb81X7x3826i2PT+neHph3zzq1ykkn
-        Qx3jfh+OP29WV2QpO4fIPQ0tqajdM81ur9plHSnPeTdyd0B8tBd5O+6RVZ2Qq9xb
-        r0IRNsQG1iSiDq1gfaeE4ECPOLnlGFdf3qUbANhD+UAOSNRAabUecXt+laibYIod
-        tvuS+lGrVEUfjkw/U1RD+IxjFDzCL5oKiKdIvB9T4LOOOZnWbVsqFyn1GxhvVY1P
-        QLJPx4OfLtH5MS2D8krdyKfzThPKEIqyQNRwgsj8KT5u0RlzLpfTDIqxVcdCCy4g
-        ==
-X-ME-Sender: <xms:ztufX3hyBjvJb2hH-fBpSxKM4qBv996AXmVckcnpPdiw7DtN7udHAg>
-    <xme:ztufX0CpLMv4JN6c4UwV46Vebrft6NgfMWJX1oqL_JbNwPIpAjgiS1WtumDGOO-2x
-    jPqmEIx1H47h9-hQ8o>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtuddgudefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:ztufX3HocyDFsTQkHKyAr5uHcU3buSmqs91VaoCpYPi2K_rdsGTvtQ>
-    <xmx:ztufX0TqPn-UW_rWh0RoKPF4TKu_-yVUuDKsEWzlUBo83LVcgf2KzQ>
-    <xmx:ztufX0ybNt_7pi3EQAp6a0WQM3zUG2f0dtsC0zboZCcJMGvsbLfbxQ>
-    <xmx:ztufXzqI2ZE3D5rpfnZYtqmnhUyegoWS1pWpH7RxsraIae5COdt1BA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 4EAA63064685;
-        Mon,  2 Nov 2020 05:13:34 -0500 (EST)
-Date:   Mon, 2 Nov 2020 11:13:33 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <contact@paulk.fr>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Matteo Scordino <matteo.scordino@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [PATCH 8/9] dt-bindings: arm: sunxi: Add SL631 with IMX179
- bindings
-Message-ID: <20201102101333.4bm2lfqpqnbpyp63@gilmour.lan>
-References: <20201031182137.1879521-1-contact@paulk.fr>
- <20201031182137.1879521-9-contact@paulk.fr>
+        id S1728445AbgKBKOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 05:14:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728156AbgKBKOY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 05:14:24 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F7FCC0617A6
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 02:14:23 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id a9so13843015wrg.12
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 02:14:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=t1K0NwlSDb4++OllbH1h9aaEG4tdnBfR2XD4G2HdxPs=;
+        b=trYgFDTQak6WcxQiw32NmN3mw+gKSInrqOFdT+jMG2NIWp7hcgj5oHXFeLs/YHoufj
+         7gCVSIMIX5hD0IgibN2wTKv/oM2o+7NhjEu5m6T1ZmNVgD6BLb7V627ux56Ig7Fv6byS
+         Pu1bYCMTBr9uiGDk0VHCUMGuBLlp/bOc6dOHWpL8PyWeHQ39i2cmZTCD6+nwKGfzi+Q7
+         oELd5uHpk5RmRQG1t/yrvv6J7rzq5WSaM68tDqaew6t6YAmMRQlo8QMba8R45jDQzmGC
+         DrzYRwUsnZhuWzOaorE0zYY5IdiHf8XTYLR1T8yWyur5NDxwMzXXHVY6n2TOlZR0dYjW
+         AXZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=t1K0NwlSDb4++OllbH1h9aaEG4tdnBfR2XD4G2HdxPs=;
+        b=mBkeQYl61LOXq4F+wf66iiCDho8hqvkCp0T3Pt3AVOBfHRrTTYgkYAo89mUvG3ga7K
+         STrmKbBIM1wZRwHyQ5syDVeAVw5/jNRyWAtlGsGLC7+u3K+ByF/UoknqvHd7sFzaHqgk
+         4mKF+ahqgKZ4bjwZClViHEVy1pJnW8u8oi04E4nv4sy9w3GzmL9eoRtTnRXzIizU9aAt
+         3giYCofWuH1zWENoyIjrYwdYLvgVSjeEsZFSLaTsfNIHV9i1Nf79zQ7r0+LfP1NY1EQK
+         hMcxG0CJJZBJBG2RvxYm/2uMpoX93SuhfrPWhbn+JA4KsMQkNo5Dpi3wcJuFVH+AKWFz
+         6pOQ==
+X-Gm-Message-State: AOAM533zpdire9svbHYBxsef1FjgNdVtF+eLij2FZ3+72CEtG65g94cQ
+        eImxpNqhweo+yZEynLA9FUtiqA==
+X-Google-Smtp-Source: ABdhPJxWAwlYcJo5f5G4ksFvQH+/FvBMet+9BoaiMgahkLH5FFiF4dE/eVH9LV70XI4WzVU6vDgxow==
+X-Received: by 2002:adf:e5c1:: with SMTP id a1mr13889466wrn.12.1604312061862;
+        Mon, 02 Nov 2020 02:14:21 -0800 (PST)
+Received: from dell ([91.110.221.242])
+        by smtp.gmail.com with ESMTPSA id h4sm21487621wrp.52.2020.11.02.02.14.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2020 02:14:21 -0800 (PST)
+Date:   Mon, 2 Nov 2020 10:14:19 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     "Shihlun.Lin" <Shihlun.Lin@advantech.com.tw>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Campion.Kang" <Campion.Kang@advantech.com.tw>,
+        AceLan Kao <chia-lin.kao@canonical.com>
+Subject: Re: [PATCH v3 5/6] mfd: ahc1ec0-hwmon: Add sub-device hwmon for
+ Advantech embedded controller
+Message-ID: <20201102101419.GI4127@dell>
+References: <20201029100613.25789-1-shihlun.lin@advantech.com.tw>
+ <20201029100613.25789-5-shihlun.lin@advantech.com.tw>
+ <20201029131419.GA4127@dell>
+ <1e5710f4214b4e8b84f761a260d9dd5b@taipei09.ADVANTECH.CORP>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vt3swrzx5fe4gwkc"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201031182137.1879521-9-contact@paulk.fr>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1e5710f4214b4e8b84f761a260d9dd5b@taipei09.ADVANTECH.CORP>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 02 Nov 2020, Shihlun.Lin wrote:
 
---vt3swrzx5fe4gwkc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Hi Lee,
+> 
+> Thank you for your time for checking my submission.
+> 
+> > On Thu, 29 Oct 2020, Shihlun Lin wrote:
+> > 
+> > > This is one of sub-device driver for Advantech embedded controller
+> > > AHC1EC0. This driver provides sysfs ABI for Advantech related
+> > > applications to monitor the system status.
+> > >
+> > > Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
+> > > Reported-by: kernel test robot <lkp@intel.com>
+> > 
+> > LKP reported that your driver needed upstreaming?
+> > 
+> > I'm confused!
+> > 
+> 
+> When I submitted the driver first time, LKP reported some warning to me and ask me to add the tag.
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@xxxxxxxxx>
+> 
+> Link: https://www.spinics.net/lists/kernel/msg3698194.html
 
-On Sat, Oct 31, 2020 at 07:21:36PM +0100, Paul Kocialkowski wrote:
-> Document the compatible strings for the SL631 Action Camera with IMX179.
->=20
-> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
-> ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documenta=
-tion/devicetree/bindings/arm/sunxi.yaml
-> index afa00268c7db..0fa0c0b5d89f 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -754,6 +754,12 @@ properties:
->            - const: sinlinx,sina33
->            - const: allwinner,sun8i-a33
-> =20
-> +      - description: SL631 Action Camera with IMX179
-> +        items:
-> +          - const: unknown,sl631-imx179
-> +          - const: unknown,sl631
-> +          - const: allwinner,sun8i-v3
-> +
+That would only be for the fix.
 
-unknown is not a valid vendor (and you should explain why you picked
-that vendor name in the first place).
+Having a test robot report a missing driver seems odd.
 
-Maxime
+> > > ---
+> > >  drivers/mfd/Kconfig         |    8 +
+> > >  drivers/mfd/Makefile        |    1 +
+> > >  drivers/mfd/ahc1ec0-hwmon.c | 1514
+> > +++++++++++++++++++++++++++++++++++
+> > 
+> > This obviously belongs in drivers/hwmon.
+> > 
+> 
+> Thank you so much, I will do it.
+> 
+> > >  3 files changed, 1523 insertions(+)
+> > >  create mode 100644 drivers/mfd/ahc1ec0-hwmon.c
+> > >
+> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > index 965bcafbe5b2..52ca49b211fc 100644
+> > > --- a/drivers/mfd/Kconfig
+> > > +++ b/drivers/mfd/Kconfig
+> > > @@ -2175,5 +2175,13 @@ config MFD_AHC1EC0
+> > >  	  provides expose functions for sub-devices to read/write the value
+> > >  	  to embedded controller.
+> > >
+> > > +config MFD_AHC1EC0_HWMON
+> > > +	tristate "Advantech EC Hareware Monitor Function"
+> > > +	depends on MFD_AHC1EC0
+> > > +	help
+> > > +	  This is sub-device for Advantech embedded controller AHC1EC0. This
+> > > +	  driver provides the sysfs attribues for applications to monitor
+> > > +	  the system status.
+> > > +
+> > >  endmenu
+> > >  endif
+> > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > > index 80a9a2bdc3ba..eb645db817b5 100644
+> > > --- a/drivers/mfd/Makefile
+> > > +++ b/drivers/mfd/Makefile
+> > > @@ -269,3 +269,4 @@ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+=
+> > simple-mfd-i2c.o
+> > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+> > >
+> > >  obj-$(CONFIG_MFD_AHC1EC0)	+= ahc1ec0.o
+> > > +obj-$(CONFIG_MFD_AHC1EC0_HWMON)	+= ahc1ec0-hwmon.o
+> > > diff --git a/drivers/mfd/ahc1ec0-hwmon.c b/drivers/mfd/ahc1ec0-hwmon.c
+> > > new file mode 100644
+> > > index 000000000000..3e493b040b4a
+> > > --- /dev/null
+> > > +++ b/drivers/mfd/ahc1ec0-hwmon.c
+> > > @@ -0,0 +1,1514 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > >
+> > +/**************************************************************
+> > ***************
+> > > + * Copyright (c) 2018, Advantech Automation Corp.
+> > 
+> > You can't just lift a whole driver from downstream code and send it to
+> > the mailing list as-is.
+> > 
+> 
+> Could you give me more advice about how to submit the whole driver?
+> Is there any website to guide me?
 
---vt3swrzx5fe4gwkc
-Content-Type: application/pgp-signature; name="signature.asc"
+There is lots of documentation on how to upstream code/drivers in
+the /Documentation folder.
 
------BEGIN PGP SIGNATURE-----
+Start here:
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX5/bzAAKCRDj7w1vZxhR
-xXlTAQCtakHTsGL/lVoBZ1D8Kq6UBKteAITkBi70XtnFzEBIRwEA5bgkK47Hz68b
-67T12Nx1hbPxUVCc2JxhuQh5ldvWiAo=
-=DSmd
------END PGP SIGNATURE-----
+ https://www.kernel.org/doc/html/latest/process/submitting-patches.html
 
---vt3swrzx5fe4gwkc--
+Note, this online document, along with all of the others you will
+required are actually contained in /Documentation, in the kernel
+source tree.
+
+> Thank you so much.
+> 
+> > > + * THIS IS AN UNPUBLISHED WORK CONTAINING CONFIDENTIAL AND
+> > PROPRIETARY
+> > > + * INFORMATION WHICH IS THE PROPERTY OF ADVANTECH AUTOMATION
+> > CORP.
+> > > + *
+> > > + * ANY DISCLOSURE, USE, OR REPRODUCTION, WITHOUT WRITTEN
+> > AUTHORIZATION FROM
+> > > + * ADVANTECH AUTOMATION CORP., IS STRICTLY PROHIBITED.
+> > > +
+> > ****************************************************************
+> > *************
+> > 
+> > This warning is in contradiction to the licence you are proposing.
+> 
+> Thank you so much, I will remove it.
+
+You'd better seek proper permission from your legal department before
+doing so.  Subverting licence agreements can land you in heaps of
+trouble if you're not careful.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
