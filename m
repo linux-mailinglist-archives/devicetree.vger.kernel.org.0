@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABDC72A2BE1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 14:46:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD1602A2BE9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 14:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725788AbgKBNpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 08:45:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725796AbgKBNpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 08:45:41 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E33CC061A47
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 05:45:41 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id 23so1078682wmg.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 05:45:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hkDT3omg5tmZs3okZ4oY2bkRmN1w5gBeDmyiEtbctKE=;
-        b=E7L00VSgigu/+a5VpNjH+GrGshtDXQps/8MzZ7qWW5e2Pnn7kip31ZDYxAiam9Y6Rn
-         EWqamLJIA2RaSOGDJSX9DXW1R5Fb1ubHV5tQsUKIRx9tkRO65dxMdf0PBU+Rgz6nZPGD
-         GmNJXbyU9cQ7rzLI8OApAKl7pRj8Vw3shpbLHvj+21AwwB3n5rouq1jcte73UYqAux/N
-         bhwL2wPe0oCpJgOkUHXgN3bOz2o+MdIq48pbzDOx8jPrWluQOQ6gDDzWgt78QojIl2HS
-         tRpEYHKeShwItqLD6j3UBZKphJk39cOX0/ybdjk91Dr/C2/yijgXOLglVTGX3ZJseXRE
-         OcfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hkDT3omg5tmZs3okZ4oY2bkRmN1w5gBeDmyiEtbctKE=;
-        b=ceb/rEf5UvBkHkO+UnTYm4N05Q/i7B+2Jesrm0DYUqrWKmeE/nHWuR83LQbYVaFbBf
-         CgthtaQmLqHrzw7rq/vq3kY3FLHN3jify+J5UI1Adisp044WgMBxodkNLlJbrGWhAORL
-         Lk1RgMGP96XLRTOks2HZRus2kjkQfz1Uuiq+HtVe6HYbmIbL92D0SIobd7jVpvFA21QN
-         6ZsPWSARA4WMWiwIt58JML7mkH+KLbl8WmOFe9t2I9pz4OJgSI63BGzhMyFtTB1p3bD1
-         yYIFHUvKz4dG6wc87XOWRg7N/hYyKMrTQErG9wUD5L+2AZ/9W5ouNKOrnK1eskUhhXfl
-         1Pjw==
-X-Gm-Message-State: AOAM532BGqbv76p54bIq12MZfNeLq3m4dzfgdaabmzo3VtqxJM0gBZ2N
-        c1j26xkYJAzK7jT3QeNt6emzHdvrxO0cYWCc
-X-Google-Smtp-Source: ABdhPJzsgYxwuc1GuB8Cd9pOIf65B7t49ybbphTz02+Iv8A7ZnJd/koxX67cb6MaxVJ66K6zl3T1Dg==
-X-Received: by 2002:a1c:46c6:: with SMTP id t189mr3384171wma.79.1604324739744;
-        Mon, 02 Nov 2020 05:45:39 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id t5sm25026509wrb.21.2020.11.02.05.45.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 05:45:39 -0800 (PST)
-Date:   Mon, 2 Nov 2020 13:45:36 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com, morten.rasmussen@arm.com,
-        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
-        rafael@kernel.org, sudeep.holla@arm.com, viresh.kumar@linaro.org,
-        sboyd@kernel.org, nm@ti.com
-Subject: Re: [PATCH v3 2/4] docs: Clarify abstract scale usage for power
- values in Energy Model
-Message-ID: <20201102134536.GB2221764@google.com>
-References: <20201019140601.3047-1-lukasz.luba@arm.com>
- <20201019140601.3047-3-lukasz.luba@arm.com>
+        id S1725846AbgKBNrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 08:47:05 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:56216 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725616AbgKBNrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 08:47:05 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A2DkwdD080502;
+        Mon, 2 Nov 2020 07:46:58 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604324818;
+        bh=4ipgS24hf5CxBzJXQLQIF0BRRZBtiHHna0qv3Hfs7QE=;
+        h=From:To:CC:Subject:Date;
+        b=TGu4sISWlL+Jm8X17YsEZRyZOsk9aoHBAvOZCQyiQDPwGTeWiQ+CYb3JkOO9+2tAf
+         +IbUzQNqi6H1+31feSk2sgzM1kWSKYxDI7NMsZB1u7jGu4abhPKHLW4/kHKhEzIE+C
+         8gGnTeZhlmKAcg69ivBzb9wDmXlYvkKBmukPYmPc=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A2DkwRG103189
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 2 Nov 2020 07:46:58 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 2 Nov
+ 2020 07:46:58 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 2 Nov 2020 07:46:58 -0600
+Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A2DkthZ114063;
+        Mon, 2 Nov 2020 07:46:56 -0600
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        <stable@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: ti: k3-am65: mark dss as dma-coherent
+Date:   Mon, 2 Nov 2020 15:46:50 +0200
+Message-ID: <20201102134650.55321-1-tomi.valkeinen@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201019140601.3047-3-lukasz.luba@arm.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 19 Oct 2020 at 15:05:59 (+0100), Lukasz Luba wrote:
-> diff --git a/Documentation/driver-api/thermal/power_allocator.rst b/Documentation/driver-api/thermal/power_allocator.rst
-> index 67b6a3297238..b7992ae84fef 100644
-> --- a/Documentation/driver-api/thermal/power_allocator.rst
-> +++ b/Documentation/driver-api/thermal/power_allocator.rst
-> @@ -71,7 +71,10 @@ to the speed-grade of the silicon.  `sustainable_power` is therefore
->  simply an estimate, and may be tuned to affect the aggressiveness of
->  the thermal ramp. For reference, the sustainable power of a 4" phone
->  is typically 2000mW, while on a 10" tablet is around 4500mW (may vary
-> -depending on screen size).
-> +depending on screen size). It is possible to have the power value
-> +expressed in an abstract scale. This is the case when the Energy Model
-> +provides the power values in an abstract scale.
+DSS is IO coherent on AM65, so we should mark it as such with
+'dma-coherent' property in the DT file.
 
-Maybe remove one of the 2 sentences?
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Fixes: fc539b90eda2 ("arm64: dts: ti: am654: Add DSS node")
+Cc: stable@vger.kernel.org # v5.8+
+Acked-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
 
-Thanks,
-Quentin
+v2: Added fixes, stable and Nikhil's ack.
+
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 533525229a8d..a0b4a421026f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -867,6 +867,8 @@ dss: dss@04a00000 {
+ 
+ 		status = "disabled";
+ 
++		dma-coherent;
++
+ 		dss_ports: ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
