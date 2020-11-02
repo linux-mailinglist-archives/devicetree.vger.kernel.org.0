@@ -2,98 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B1432A25AB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29D8A2A25FF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 09:20:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728185AbgKBHxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 02:53:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37370 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727689AbgKBHxl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 02:53:41 -0500
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3219E2223C;
-        Mon,  2 Nov 2020 07:53:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604303620;
-        bh=iXFXlIxzo6mEuRbhfEI2cZTIEJwsOtvvLLIzi+xj3k4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=l2iXFvJ5TKiHGm2H2qhJ8UZhLfu+xl8wgP1683sivUlrippNMVG1tuFu3l+DOyNhk
-         wACruFfQljRDZ2RQC2pgMo1x3MC4+4AaG9/rEPqSEBT5WqwH0X13fS3h9b3XrwBdpH
-         QB8PXdcWoJ7NZXPCV3Fqs/T+UMfcgO2Qf5gXJt7s=
-Received: by mail-ej1-f43.google.com with SMTP id cw8so4011130ejb.8;
-        Sun, 01 Nov 2020 23:53:40 -0800 (PST)
-X-Gm-Message-State: AOAM533Dep81wS9Tkf+55HlTPiv3U+KyrZl0tlXv8zXlyS9a+w9xSxrt
-        b4NSfMWDlylH5ju0AK99y9Hcg9HGnicJ4xqKhz0=
-X-Google-Smtp-Source: ABdhPJwrevmNFDi1+ho8xYZZMC8Zs02UNBVWMPiQlQWPrCoMlPylk2aWDQx4j1s/36cKVA0piAyvfZef46tp+4IihZ4=
-X-Received: by 2002:a17:907:d1e:: with SMTP id gn30mr1374045ejc.148.1604303618691;
- Sun, 01 Nov 2020 23:53:38 -0800 (PST)
-MIME-Version: 1.0
-References: <20201030091254.26382-1-yong.wu@mediatek.com> <20201030091254.26382-2-yong.wu@mediatek.com>
- <20201031113623.GA4019@kozik-lap> <1604295074.26323.107.camel@mhfsdcap03>
-In-Reply-To: <1604295074.26323.107.camel@mhfsdcap03>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Mon, 2 Nov 2020 08:53:26 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPfTmXuBOWgrmgCfQcqhXxoVjE=9T=m1weRS=H4hV0bYog@mail.gmail.com>
-Message-ID: <CAJKOXPfTmXuBOWgrmgCfQcqhXxoVjE=9T=m1weRS=H4hV0bYog@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: memory: mediatek: Convert SMI to DT
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     youlin.pei@mediatek.com, devicetree@vger.kernel.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream@mediatek.com, Fabien Parent <fparent@baylibre.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Tomasz Figa <tfiga@google.com>,
-        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        ming-fan.chen@mediatek.com, anan.sun@mediatek.com,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1728202AbgKBIUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 03:20:44 -0500
+Received: from regular1.263xmail.com ([211.150.70.206]:49768 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728199AbgKBIUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 03:20:44 -0500
+Received: from localhost (unknown [192.168.167.16])
+        by regular1.263xmail.com (Postfix) with ESMTP id B62C42615;
+        Mon,  2 Nov 2020 16:14:01 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from hp1216 (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P26974T140148431894272S1604304841345296_;
+        Mon, 02 Nov 2020 16:14:02 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <7d77ae4acfc77cc4fc55aff865618565>
+X-RL-SENDER: zyf@rock-chips.com
+X-SENDER: zyf@rock-chips.com
+X-LOGIN-NAME: zyf@rock-chips.com
+X-FST-TO: miquel.raynal@bootlin.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+X-System-Flag: 0
+Date:   Mon, 2 Nov 2020 16:14:01 +0800
+Organization: =?utf-8?B?55Ge6Iqv5b6u55S15a2Q?=
+From:   =?utf-8?B?6LW15Luq5bOw?= <yifeng.zhao@rock-chips.com>
+To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
+Cc:     "Johan Jonker" <jbx6244@gmail.com>, richard <richard@nod.at>,
+        vigneshr <vigneshr@ti.com>, robh+dt <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        =?utf-8?B?SGVpa29TdMO8Ym5lcg==?= <heiko@sntech.de>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-rockchip <linux-rockchip@lists.infradead.org>,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: Re: [PATCH v13 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308, RK2928 and others
+References: <20201028095326.15562-1-yifeng.zhao@rock-chips.com>, 
+        <20201028095326.15562-3-yifeng.zhao@rock-chips.com>, 
+        <a8a7875b-f08b-62c6-a630-245687e0df3b@gmail.com>, 
+        <0dabd80e-b281-be65-b8e2-da00f46964fb@gmail.com>, 
+        <20201102114503679684135@rock-chips.com>, 
+        <20201102083258.3a748c44@xps13>
+X-Priority: 3
+X-Has-Attach: no
+X-Mailer: Foxmail 7.2.18.111[cn]
+Mime-Version: 1.0
+Message-ID: <20201102161300764203144@rock-chips.com>
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Nov 2020 at 06:31, Yong Wu <yong.wu@mediatek.com> wrote:
->
-> On Sat, 2020-10-31 at 12:36 +0100, Krzysztof Kozlowski wrote:
-> > On Fri, Oct 30, 2020 at 05:12:52PM +0800, Yong Wu wrote:
-> > > Convert MediaTek SMI to DT schema.
-> > >
-> > > CC: Fabien Parent <fparent@baylibre.com>
-> > > CC: Ming-Fan Chen <ming-fan.chen@mediatek.com>
-> > > CC: Matthias Brugger <matthias.bgg@gmail.com>
-> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > ---
-> > >  .../mediatek,smi-common.txt                   |  50 -------
-> > >  .../mediatek,smi-common.yaml                  | 140 ++++++++++++++++++
-> > >  .../memory-controllers/mediatek,smi-larb.txt  |  50 -------
-> > >  .../memory-controllers/mediatek,smi-larb.yaml | 129 ++++++++++++++++
-> > >  4 files changed, 269 insertions(+), 100 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
-> >
-> > +Cc Honghui Zhang,
->
-> As comment [1], Honghui's address is not valid now. I will act for him.
->
-> >
-> > Your Ack is needed as you contributed descriptions to the bindings and
-> > work is being relicensed to GPL-2.0-only OR BSD-2-Clause.
->
-> "GPL-2.0-only OR BSD-2-Clause" is required when we run check-patch.
->
-> If I still use "GPL-2.0-only", then the contributors' Ack/SoB is not
-> needed, right?
+SGkgTWlxdWVsLAoKVGhlIG5hbmRfYmFzZS5jIHdpbGwgY2FsbMKgbmFuZF9kZXNlbGVjdF90YXJn
+ZXQgYWZ0ZXIgTkFORCByZWFkL3Byb2dyYW0uLi4gb3BzIGRvbmUsIGFuZCBzZXTCoHZhcmlhYmxl
+IGNoaXAtPmN1cl9jcyA9IC0xLApidXQgdGhlIG5hbmQgY29udHJvbGxlciBkbyBub3RoaW5nIGFu
+ZCB0aGUgY3Mgb2YgdGhlIE5BTkQgZGV2aWNlIGlzIHN0aWxsIHNlbGVjdGVkLCAKc28gdGhlIE5B
+TkQgZGV2aWNlIMKgd2lsbCBub3QgZW50ZXIgYXV0byBwb3dlciBzYXZlIG1vZGUuCgotLS0tLS0t
+LS0tLS0tLQpUaGFua3MsCllpZmVuZwoKPkhlbGxvLAo+Cj7otbXku6rls7AgPHlpZmVuZy56aGFv
+QHJvY2stY2hpcHMuY29tPiB3cm90ZSBvbiBNb24sIDIgTm92IDIwMjAgMTE6NDY6MDQKPiswODAw
+Ogo+Cj4+IEhpIEpvaGFuLAo+Pgo+PiB2b2lkIG5hbmRfZGVzZWxlY3RfdGFyZ2V0KHN0cnVjdCBu
+YW5kX2NoaXAgKmNoaXApCj4+IHsKPj4gaWYgKGNoaXAtPmxlZ2FjeS5zZWxlY3RfY2hpcCkKPj4g
+Y2hpcC0+bGVnYWN5LnNlbGVjdF9jaGlwKGNoaXAsIC0xKTsKPj4KPj4gY2hpcC0+Y3VyX2NzID0g
+LTE7Cj4+IH0KPj4KPj4gSSBuZWVkIGFkZCB0aGUgY29kZSBiZWxvdyBhbmQgaXQgd29yay4KPj4K
+Pj4gwqAgwqBjaGlwLT5sZWdhY3kuc2VsZWN0X2NoaXAgPSBya19uZmNfc2VsZWN0X2NoaXA7Cj4+
+Cj4+IEJ1dCBJIGZvdW5kwqBhbG1vc3QgYWxsIG5hbmRjIGRyaXZlcnMgZG8gbm90IGFkZCB0aGlz
+IGNvZGUuIElzIHRoZXJlIGFueSBvdGhlciB3YXkgdG8gaW1wbGVtZW50IGl077yfCj4KPkluZGVl
+ZCwgd2UgZG9uJ3QgYWNjZXB0IG5ldyBjb2RlIHdlIGxlZ2FjeSBiaW5kaW5ncy4KPgo+SSBkb24n
+dCB1bmRlcnN0YW5kIHdoYXQgZXh0cmEgY29uc3VtcHRpb24geW91IGFyZSB0cnlpbmcgdG8gYXZv
+aWQsCj5iZWNhdXNlIGlmIGl0IGlzIHRoZSBOQU5EIGRldmljZSBpdHNlbGYgdGhhdCBpcyBhYmxl
+IHRvIHNhdmUgcG93ZXIgd2hlbgo+aXQgZ2V0cyB1bnNlbGVjdGVkLCBpdCdzIHJlYWxseSBub25l
+IG9mIHlvdSBjb250cm9sbGVyJ3MgYnVzaW5lc3MuCj4KPlBlcmhhcHMgaXQncyB0aGUgdGltZSB0
+byBmb2N1cyBvbiB0aGUgY29udHJvbGxlciBzdXBwb3J0IGFuZCB0dW5lIHRoZQo+Y29kZSBiYXNl
+IGxhdGVyIGluIGEgYmlkIHRvIHJlZHVjZSBjb25zdW1wdGlvbi4KPgo+VGhhbmtzLAo+TWlxdcOo
+bAo+Cj4KPg==
 
-That would be one solution but I was thinking to proceed with only
-your agreement. You were the main contributor to these files. Honghui
-added a few descriptions. Other developers added only compatibles.
-Since we cannot reach Honghui, I would assume that your agreement
-(Sign-off) is enough.
 
-Best regards,
-Krzysztof
+
