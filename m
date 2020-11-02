@@ -2,188 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC2B22A2FAB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 17:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 707FF2A2FBD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 17:25:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726920AbgKBQWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 11:22:50 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:39860 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726653AbgKBQWt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 11:22:49 -0500
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201102162238euoutp015b79b0f3d7896f615db9e4662887c02e~DvWq9Xebm0168201682euoutp01F
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 16:22:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201102162238euoutp015b79b0f3d7896f615db9e4662887c02e~DvWq9Xebm0168201682euoutp01F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1604334158;
-        bh=Bgg3uuMxFaQqcy+bWukxkeEsZN+mUG0FeeQiozXgDTA=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=FaLpe9gxSTe/MAAS9E7K6qTzFyrnopv7fLjj53AiVzxpA+ljB5Hh/mk2yaqSMwUsd
-         hyMuPGmkMUUYBh/LKe2fPlj6wAfoCS8AhMeN5ckWTgGyjibuCL5ZFuZ2VbbRDYiOiW
-         NELDQmW+tXlhgsHpYkKx2eS+ZklyrHZry20Td9Vc=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201102162228eucas1p268bed6f69c9345e9b372692d01b12502~DvWhh_gIz2271222712eucas1p2U;
-        Mon,  2 Nov 2020 16:22:28 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id CD.AB.06456.44230AF5; Mon,  2
-        Nov 2020 16:22:28 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201102162227eucas1p11317000bee8117a3319cdfde281b3ebf~DvWhGKXXF1324913249eucas1p1_;
-        Mon,  2 Nov 2020 16:22:27 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201102162227eusmtrp1f5a7423b42ca5d55a8e00fd77035afb6~DvWhFdv6-2105521055eusmtrp1Y;
-        Mon,  2 Nov 2020 16:22:27 +0000 (GMT)
-X-AuditID: cbfec7f2-809ff70000001938-10-5fa0324481a0
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 39.F7.06314.34230AF5; Mon,  2
-        Nov 2020 16:22:27 +0000 (GMT)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201102162227eusmtip206c5570a4c27dc457d985fe34998c6f2~DvWgjgkXI0500405004eusmtip2X;
-        Mon,  2 Nov 2020 16:22:27 +0000 (GMT)
-Subject: Re: [PATCH v2] ARM: dts: exynos: Add a placeholder for a MAC
- address
-To:     Anand Moon <linux.amoon@gmail.com>,
-        =?UTF-8?Q?=c5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <5ecd2e6d-6aaf-bff5-c000-2c56086ed95b@samsung.com>
-Date:   Mon, 2 Nov 2020 17:22:27 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.4.0
+        id S1726973AbgKBQZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 11:25:19 -0500
+Received: from mail-am6eur05on2051.outbound.protection.outlook.com ([40.107.22.51]:61729
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726766AbgKBQZS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 11:25:18 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EZYLCRggFVk1uLclsvso0jziAvud2Jcpx5Pv7agWE4vRBpq7rPjgwyypQmrs/o9bj/whAMlm+Ku552H3Vyx8Urgla5HlSAfiJibiCcpyTA5mLSvk6+sPMDVutoGhSaRbcr8Z91M6s6BQuPRI1FRoVHmqBXKKFK51S4Tmsiq4wLov1PerusFSK4qS5sdSRBbSRKkEJXInUsVt6ZwNZ+YQsndyQU3+3tgttsC6CsM0i1tCRPlKDky1oLadcyYrBpyN7tHt1CDHcA4eXZagBndFPDHPA/TKFN+CcqHw5fy2Kodqoz/V4zCpzzFWTesSU8ZL/wKEyNZUAZPw02rgmIbVOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O4JNzJ/DZRFZwPgNLMEobKd1WtIm3+9a+r+edERz3Es=;
+ b=lYQrBJ0bX+7TC/7M+Um7wFursEkFBxcaVVoDsHp8CVE/tGolKSwJnTmf35VMaa+/aRs6IHmIh2IyzOj+5QAgVMAKY7wsT2uhNSR3Z5q9aA2+0ZlrKwPLO3BnbEFABlxU+drQX2ANuj5xzJwtBRLu/EfsFNgNhxafu9bCLSHeJoctLj6gDO/y6kZ9SO/fy0OEGBWhxJkbh9RVDNf7H/zo+fx+/o/Z3nXKqhA2Nzx+9968tGW2HhUCcp+HQL0yofqOPL0Gwnw/6o2r8LXNnKt6rbpRfLqwfL5H2lC7k9BVND+v7YHVXqMI2AA8PH+L0chkzCfdo+e+hNBy9PnKqyTe6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O4JNzJ/DZRFZwPgNLMEobKd1WtIm3+9a+r+edERz3Es=;
+ b=re3FnrDdpouX3yDjT8qJmkve+UFU9d4hCDxZ4kKIOrxuxBrsI1k9bdAj3Cq0pDUcXnPvMib3URQiCHDXWXAhK0k7ESKufG4cwG9mnWWjLi6ksc+xIyQMo4NAPymuZRvGZJpS+RftRhHt3/UbVpbieDFno/ZfQN4u5aORVpwyK5E=
+Authentication-Results: oss.nxp.com; dkim=none (message not signed)
+ header.d=none;oss.nxp.com; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
+ (2603:10a6:803:22::27) by VI1PR0401MB2559.eurprd04.prod.outlook.com
+ (2603:10a6:800:57::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Mon, 2 Nov
+ 2020 16:25:13 +0000
+Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
+ ([fe80::f000:d709:509:bb5]) by VI1PR0402MB3902.eurprd04.prod.outlook.com
+ ([fe80::f000:d709:509:bb5%3]) with mapi id 15.20.3499.032; Mon, 2 Nov 2020
+ 16:25:13 +0000
+Date:   Mon, 2 Nov 2020 18:25:08 +0200
+From:   Laurentiu Palcu <laurentiu.palcu@nxp.com>
+To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl, shawnguo@kernel.org,
+        robh+dt@kernel.org, paul.kocialkowski@bootlin.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, s.hauer@pengutronix.de, aisheng.dong@nxp.com,
+        daniel.baluta@nxp.com, robert.chiras@nxp.com, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        ezequiel@collabora.com, laurent.pinchart+renesas@ideasonboard.com,
+        niklas.soderlund+renesas@ragnatech.se,
+        dafna.hirschfeld@collabora.com,
+        Mirela Rabulea <mirela.rabulea@nxp.com>
+Subject: Re: [PATCH v4 06/11] Add maintainer for IMX jpeg v4l2 driver
+Message-ID: <20201102162508.3sclvhyivr6op7rs@fsr-ub1864-141>
+References: <20201102030821.3049-1-mirela.rabulea@oss.nxp.com>
+ <20201102030821.3049-7-mirela.rabulea@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201102030821.3049-7-mirela.rabulea@oss.nxp.com>
+User-Agent: NeoMutt/20171215
+X-Originating-IP: [83.217.231.2]
+X-ClientProxiedBy: AM3PR05CA0107.eurprd05.prod.outlook.com
+ (2603:10a6:207:1::33) To VI1PR0402MB3902.eurprd04.prod.outlook.com
+ (2603:10a6:803:22::27)
 MIME-Version: 1.0
-In-Reply-To: <CANAwSgSvH+q21Tj9NijPa87ju+1LOJ07-is1Sucx1y5ggT6zCA@mail.gmail.com>
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOKsWRmVeSWpSXmKPExsWy7djPc7ouRgviDZa28VpsnLGe1WL+kXOs
-        Fv2PXzNbnD+/gd3i5qEVjBabHl9jtbi8aw6bxYzz+5gs1m28xW7RuvcIuwOXx85Zd9k9Nq3q
-        ZPPYvKTeo2/LKkaPz5vkAlijuGxSUnMyy1KL9O0SuDLu3Kwt6BOt+HV5BXMD40f+LkZODgkB
-        E4nfzXeYQWwhgRWMEj/npXYxcgHZXxgl3n7rZodwPjNK9DyaDlTFAdZx9IQ9RMNyoKLZ6RA1
-        7xkltjV+ZAVJCAv4S2xsu8oEYosIJEucfb8EbBCzwB0mia7Xu1hAEmwChhJdb7vYQGxeATuJ
-        Q+9mg53BIqAi0XBgLtggUYEkib+f/zBD1AhKnJz5BKyXUyBQ4vzbZWBxZgF5ieats6FscYlb
-        T+YzgSyTEDjGLrFp83JGiD9dJM5fXsEEYQtLvDq+hR3ClpE4PbmHBaKhmVHi4bm17BBOD6PE
-        5aYZUN3WEnfO/WID+Z9ZQFNi/S59iLCjRPvVLayQYOGTuPFWEOIIPolJ22ChxSvR0SYEUa0m
-        Mev4Ori1By9cYp7AqDQLyWuzkLwzC8k7sxD2LmBkWcUonlpanJueWmyYl1quV5yYW1yal66X
-        nJ+7iRGYnE7/O/5pB+PXS0mHGAU4GJV4eA8Iz48XYk0sK67MPcQowcGsJMLrdPZ0nBBvSmJl
-        VWpRfnxRaU5q8SFGaQ4WJXFe40UvY4UE0hNLUrNTUwtSi2CyTBycUg2My/vqL33//0xXgqOo
-        dNMHQ+FNXDHbp7C/lJ29ib9WlD1XdbNar81rr1VHJx97GzbPJmcvJ+ulaSyBpaZ/N9zOT5pn
-        vElkrZ7R4pPWp+W/GSpGftr1I7fd6XWpefc8Y678JbKJUap7V/zaZnbp1gu+0JkNxt3/hUrO
-        +N0LUE399lo19rdQU89jJZbijERDLeai4kQAkfMDKEoDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNIsWRmVeSWpSXmKPExsVy+t/xe7rORgviDY490bfYOGM9q8X8I+dY
-        Lfofv2a2OH9+A7vFzUMrGC02Pb7GanF51xw2ixnn9zFZrNt4i92ide8Rdgcuj52z7rJ7bFrV
-        yeaxeUm9R9+WVYwenzfJBbBG6dkU5ZeWpCpk5BeX2CpFG1oY6RlaWugZmVjqGRqbx1oZmSrp
-        29mkpOZklqUW6dsl6GXcuVlb0Cda8evyCuYGxo/8XYwcHBICJhJHT9h3MXJxCAksZZR4Ous2
-        cxcjJ1BcRuLktAZWCFtY4s+1LjaIoreMEj9WzwNLCAv4Svy5tIcNxBYRSJZofv2LFaSIWeAe
-        k8T15U0sEB0dTBJPpnWyg1SxCRhKdL3tAuvgFbCTOPRuNtg6FgEViYYDc8GmigokSby8MJUJ
-        okZQ4uTMJywgNqdAoMT5t8vA6pkFzCTmbX4IZctLNG+dDWWLS9x6Mp9pAqPQLCTts5C0zELS
-        MgtJywJGllWMIqmlxbnpucWGesWJucWleel6yfm5mxiBEbnt2M/NOxgvbQw+xCjAwajEw3tA
-        eH68EGtiWXFl7iFGCQ5mJRFep7On44R4UxIrq1KL8uOLSnNSiw8xmgI9N5FZSjQ5H5gs8kri
-        DU0NzS0sDc2NzY3NLJTEeTsEDsYICaQnlqRmp6YWpBbB9DFxcEo1MMZ9/1R4n+M549qGjBVe
-        2gU7dL59rswxeHi24KfQy9xEjYLl2mYvvTYziVre1/I0dDm1gbPNJIa99UVwiGWKnbzbmdSD
-        +wUy4v6++Fx8T+HXI++Juyb5snlcmu/ezu6+ZPq27zZM4dOmr2I6uLZzSWfH+f6UBzzzXKYH
-        eexYcObLEqHub9FPVJVYijMSDbWYi4oTAZmhYUbeAgAA
-X-CMS-MailID: 20201102162227eucas1p11317000bee8117a3319cdfde281b3ebf
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0
-References: <CGME20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0@eucas1p2.samsung.com>
-        <20200930143151.23961-1-l.stelmach@samsung.com>
-        <20201001135254.28178-1-l.stelmach@samsung.com>
-        <CANAwSgSvH+q21Tj9NijPa87ju+1LOJ07-is1Sucx1y5ggT6zCA@mail.gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fsr-ub1864-141 (83.217.231.2) by AM3PR05CA0107.eurprd05.prod.outlook.com (2603:10a6:207:1::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend Transport; Mon, 2 Nov 2020 16:25:11 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: e91464eb-e68d-482d-2722-08d87f4bdff9
+X-MS-TrafficTypeDiagnostic: VI1PR0401MB2559:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR0401MB25595BAB483513BD1F6EBA31FF100@VI1PR0401MB2559.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mHXerEIPeeD4tDlAC9COZzhROvNs8Y7QP2yRuM7sc2SIFnWbtzFaxPX+ok+LgNmbFi/8vW/uHifag3dy2Apfav7F+qPz2fVfTRbnPPib+TdyjUaigi6qdvoGO1nZOdjcaidB/K1mtlc4MzL3rBR+SAUYBvxTmTuZGOnb5Ip15AjLYz71g9WPC3SyT4X/l28QRy7VwElFxw8NMmqsE51VOBXsuqZivSYvnkST6TMihYIWAavxCJq4ylPlo5GmNG34vNUnLTPsGd9nALGsqbDHlvl2wqDFZ147P23iGYPqX1Le0cZKbYGmNLha9H4+G173Uj+kEj4yC2XHReuqNAXnCQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3902.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(136003)(346002)(376002)(39860400002)(6496006)(52116002)(8676002)(86362001)(8936002)(6862004)(2906002)(55016002)(1076003)(44832011)(6666004)(9686003)(7416002)(5660300002)(66476007)(66946007)(478600001)(66556008)(33716001)(186003)(956004)(316002)(26005)(4326008)(16526019);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: zACZVfN0v2PRyxvqq7T7tKMETu/GRq0o7LRgR1h4PnZSdpIShFXeu0ORDt3f4/bcxgYmMCjUbKL+WjqDlMC+yP0jAWY3md2S5a+qETjgJWOyfNWNlB1Bcr7WG0SYw7JO5YIbodphc7N1ZyNEOAhpcSsfEwNlw6wwewQfK1XnRE4nqSfJ7IyVA48XQuBmtKOjnW4BtvXvXtTz9ZaPJEbFSMs5eAR37MxrrUIz+vM7p/KeUeqI8GUtJKxGnJfze0baM9ckXlqoBCoviZ6fIo+nu3KqBUSYc6WiKvnUqUzFS4BJtV/aUIWFlQPR7/Oew6C0FJQXQ/8I9Nn+lfAeB5UnUlRGRyZHBzHUpP0BC49s95txDhRUgh4VfrhtTX1x96Z8rI67EzFPhHoB3RAjPWnTdq5xA0bylEmBhfB9g19rfEzWGQM8PrpNotwVu8f/OGjPFj+GeUbyDukaytpp/5P7x74clOcOHPGqZ7K/saaA0ZwK24DwovNVPSKQrjKqAVI5BNKJL54HXRkYjsvVNmUBgIpqKscQ7bEQm8bQncNNu9V5K6brUDtg9QDdYYCJcid8ZyCXwo7Nr6ypWNtYoSI7m6ZTPYwHSBnWvmqCudTQEfLKAlZoWKgma32zWXeKLUtOU4WbGhmP6tCRjl/k6PozNw==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e91464eb-e68d-482d-2722-08d87f4bdff9
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3902.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 16:25:13.3530
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FTwRtlrrsAyfxs6Ovziml+moE6+UNhql4cj5mebHzhW+xKRzYXnACP/D9qszaqN7VWc5qvTSPynszNwlw+SziQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2559
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+Hi Mirela,
 
-On 01.11.2020 15:07, Anand Moon wrote:
-> Hi Lukasz,
->
-> On Thu, 1 Oct 2020 at 19:25, Łukasz Stelmach <l.stelmach@samsung.com> wrote:
->> Add a placeholder for a MAC address. A bootloader may fill it
->> to set the MAC address and override EEPROM settings.
->>
->> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
->> ---
->> Changes in v2:
->>   - use local-mac-address and leave mac-address to be added by a bootloader
->>
->>   arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
->>   1 file changed, 18 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
->> index db0bc17a667b..d0f6ac5fa79d 100644
->> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
->> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
->> @@ -70,3 +70,21 @@ &pwm {
->>   &usbdrd_dwc3_1 {
->>          dr_mode = "peripheral";
->>   };
->> +
->> +&usbhost2 {
->> +       #address-cells = <1>;
->> +       #size-cells = <0>;
->> +
->> +       hub@1 {
->> +               compatible = "usb8087,0024";
->> +               reg = <1>;
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +
->> +               ethernet: usbether@1 {
->> +                       compatible = "usb0c45,6310";
->> +                       reg = <1>;
->> +                       local-mac-address = [00 00 00 00 00 00]; /* Filled in by a bootloader */
->> +               };
->> +       };
->> +};
->> --
->> 2.26.2
->>
-> Thanks for this patch, can you share some example on how to set the
-> mac address via u-boot bootargs
+On Mon, Nov 02, 2020 at 05:08:16AM +0200, Mirela Rabulea (OSS) wrote:
+> From: Mirela Rabulea <mirela.rabulea@nxp.com>
+> 
+> Added as:
+> FREESCALE IMX / MXC JPEG V4L2 DRIVER
+> 
+> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> ---
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index aefbbecfb266..42a596ae346c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7040,6 +7040,14 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>  F:	drivers/i2c/busses/i2c-imx-lpi2c.c
+>  
+> +FREESCALE IMX / MXC JPEG V4L2 DRIVER
 
-A little bit hacky script to set permanent board unique MAC address:
+s/FREESCALE/NXP/
 
-# setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b u2 
-*0x10000016; setexp.b u3 *0x10000017; setenv ethaddr 
-0:0:${u0}:${u1}:${u2}:${u3}; setenv usbethaddr ${ethaddr};
+Also, don't forget to move the section in the NXP area lower down the
+file.
 
-Then if there is proper ethernet0 alias set, u-boot will then 
-automatically save the configured MAC address to the device tree. I've 
-just check this on recent u-boot v2020.10 and Odroid U3 board.
+Thanks,
+laurentiu
 
-Lukasz will send updated patch soon (with proper alias entry).
-
-If you want to hack setting MAC address manually, this will work with 
-the current patch:
-
-# setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b u2 
-*0x10000016; setexp.b u3 *0x10000017; fdt addr ${fdtaddr}; fdt set 
-/soc/usb@12110000/hub@1/usbether@1 local-mac-address [ 0 0 ${u0} ${u1} 
-${u2} ${u3} ]
-
-> also can you update this patch for exynos5422-odroidxu3-lite.dts and
-> exynos4412-odroidu3.dts.
-
-Also odroid-x2 and odroid-xu. Lukasz will take care of them.
-
-Best regards
-
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+> +M:	Mirela Rabulea <mirela.rabulea@nxp.com>
+> +R:	NXP Linux Team <linux-imx@nxp.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/imx8-jpeg.yaml
+> +F:	drivers/media/platform/imx-jpeg
+> +
+>  FREESCALE QORIQ DPAA ETHERNET DRIVER
+>  M:	Madalin Bucur <madalin.bucur@nxp.com>
+>  L:	netdev@vger.kernel.org
+> -- 
+> 2.17.1
+> 
