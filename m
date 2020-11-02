@@ -2,147 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E402A3158
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:20:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 569AE2A315E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:21:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbgKBRUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:20:14 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:36989 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727520AbgKBRUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:20:14 -0500
-Received: by mail-ot1-f65.google.com with SMTP id l36so5306423ota.4;
-        Mon, 02 Nov 2020 09:20:13 -0800 (PST)
+        id S1727473AbgKBRVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:21:20 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:42580 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726860AbgKBRVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:21:20 -0500
+Received: by mail-ot1-f67.google.com with SMTP id h62so13285212oth.9;
+        Mon, 02 Nov 2020 09:21:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1vjHYpv3TzO5WrOgzhwvPqk7gGBfVBDNS9p3u4+MfxU=;
-        b=sMn6Kvkk/CqE++K/cl78sQuQbdWPnwNCBTVa1p60rZEvffUHsRsYJZ/SsQ/xE3BNbr
-         mg5yhE4L75TIiF0L7/ky9SX0gSKz7KCOJSLEJK7wUxlKhdKZKO4UZ+jLy3ZVrIJd8vqX
-         eDxaS3T9LNFlQckbiLh7m/ini6sQBRcOYjtLRf8TDadwJZNWWFj4oy3Vne9a41bB9QF7
-         PeZ2Xt3dAs8gclsja0gSIf334jsZpMVWgJ2ayKidSOGAkN/PzOmuih+esWWhxA1XlXv8
-         2Q1E7SvQMey9Nx/rXAk1UoMDzx5XD/gaun/uiPfjd51O6ewhAPcF3yvM0ObqSMgngEUd
-         ZeCg==
-X-Gm-Message-State: AOAM530XysHbsDIcUlQkKzvyWWaNnxnQ+rrBlzXp3vZpDlGCDlMUcX1i
-        6WF4g5u6L3RFURaVVUrj8w==
-X-Google-Smtp-Source: ABdhPJyqe5CiVpnLDvI6nmkZNO3LgwugA7sN3Wcua4QRjLdpj72n5d74CwMjua9xyXSJk8NBXoLxCw==
-X-Received: by 2002:a9d:4e83:: with SMTP id v3mr13213252otk.156.1604337613138;
-        Mon, 02 Nov 2020 09:20:13 -0800 (PST)
+        bh=wGgDvGSuDV9SLiPFgVzBkpII2wNb2Bp8F73VvTMHwow=;
+        b=Csh4eZJaIHBpo4vGpT+rd5aQwXVOUC3VP+wqWtw8GEGrv1hXjVEVDK1MD+2UKHeW49
+         Aj1u+oIMtW4EqyyyGkmrX5c+6cxZREV3lUc9O5vWkxSLQpnJjz5lM1G1xoKBJMokmGkb
+         PvJQs77LarP0CMwWmIqQQDn/8TwJPb+T5977tveE8/zqzKInYz0oAMEKvydssbX0EK3G
+         jiYKMqbtI+xDI0zOhFSxfqJCB+0b6XrGam/UZZAqC0jonDon91DwYedjttyi5JQolc+X
+         u1s4vHMuiVUcn1Z8nrN8Paezsa5wQzmI0KNbYv5cW2A9JRn0J7Z7wg2NHYxAoJAgSlf2
+         nJ5Q==
+X-Gm-Message-State: AOAM53149Lo4+Bco+GyrfFh+OHzSI99941Xl5j5BjnC1k782QJlZOsJ2
+        xRXeBhbPqzCXOJBz/lyi+8nvvaUAUA==
+X-Google-Smtp-Source: ABdhPJzoAYU4fOEW+avlyMdmW8TBUsfjxgWK6zmtKxMiGlhhcoslLxfNnAj8xpkw1ky7MTWPKZFq6w==
+X-Received: by 2002:a9d:7419:: with SMTP id n25mr12940588otk.183.1604337679233;
+        Mon, 02 Nov 2020 09:21:19 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v5sm3833063otb.44.2020.11.02.09.20.12
+        by smtp.gmail.com with ESMTPSA id e8sm2580895oti.76.2020.11.02.09.21.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 09:20:12 -0800 (PST)
-Received: (nullmailer pid 4070968 invoked by uid 1000);
-        Mon, 02 Nov 2020 17:20:11 -0000
-Date:   Mon, 2 Nov 2020 11:20:11 -0600
+        Mon, 02 Nov 2020 09:21:18 -0800 (PST)
+Received: (nullmailer pid 4072565 invoked by uid 1000);
+        Mon, 02 Nov 2020 17:21:17 -0000
+Date:   Mon, 2 Nov 2020 11:21:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     devicetree@vger.kernel.org, aford@beaconembedded.com,
-        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: imx: Add binding doc for spba bus
-Message-ID: <20201102172011.GB4063854@bogus>
-References: <20201101131257.782279-1-aford173@gmail.com>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        cy_huang@richtek.com, linux-kernel@vger.kernel.org,
+        lee.jones@linaro.org
+Subject: Re: [PATCH v1 2/2] mfd: rt4505: Adds DT binding document for Richtek
+ RT4831 MFD core
+Message-ID: <20201102172117.GA4071346@bogus>
+References: <1604286803-20698-1-git-send-email-u0084500@gmail.com>
+ <1604286803-20698-2-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201101131257.782279-1-aford173@gmail.com>
+In-Reply-To: <1604286803-20698-2-git-send-email-u0084500@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 01, 2020 at 07:12:56AM -0600, Adam Ford wrote:
-> Add binding doc for fsl,spba-bus.
+On Mon, 02 Nov 2020 11:13:23 +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Adds DT binding document for Richtek RT4831 MFD core.
 > 
-> diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-> new file mode 100644
-> index 000000000000..acb3944168ed
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/simple-pm-bus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Shared Peripherals Bus Interface
-> +
-> +maintainers:
-> +  - Shawn Guo <shawnguo@kernel.org>
-> +
-> +description: |
-> +  A simple bus enabling access to shared peripherals.
-> +
-> +  The "spba-bus" follows the "simple-bus" set of properties, as
-> +  specified in the Devicetree Specification.  It is an extension of
-> +  "simple-bus" because the SDMA controller uses this compatible flag to
-> +  determine which peripherals are available to it and the range over which
-> +  the SDMA can access.  There are no special clocks for the bus, because
-> +  the SDMA controller itself has its interrupt, and clock assignments.
-
-select:
-  properties:
-    compatible:
-      contains:
-        const: fsl,spba-bus
-  required:
-    - compatible
-
-(needed to avoid applying to buses with just 'simple-bus')
-
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^bus(@[0-9a-f]+)?$"
-> +
-> +  compatible:
-> +    contains:
-> +      const: fsl,spba-bus
-
-items:
-  - const: fsl,spba-bus
-  - const: simple-bus
-
-> +    description:
-> +      Shall contain "fsl,spba-bus" in addition to "simple-bus"
-> +      compatible strings.
-
-And then drop this.
-
-> +
-> +  '#address-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  '#size-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +required:
-> +  - compatible
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - ranges
-> +
-> +additionalProperties: true
-
-We can restrict this to nodes with:
-
-type: object
-
-> +
-> +examples:
-> +  - |
-> +
-> +    bus {
-> +        compatible = "fsl,spba-bus", "simple-bus";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +    };
-> -- 
-> 2.25.1
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  .../devicetree/bindings/mfd/richtek,rt4831.yaml    | 89 ++++++++++++++++++++++
+>  include/dt-bindings/leds/rt4831-backlight.h        | 23 ++++++
+>  2 files changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
+>  create mode 100644 include/dt-bindings/leds/rt4831-backlight.h
 > 
+
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/regulator/richtek,rt4831-regulator.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 124
+make: *** [Makefile:1364: dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1391911
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
