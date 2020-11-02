@@ -2,97 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AA642A2C78
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 15:18:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9FBF2A2C9E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 15:22:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726113AbgKBORy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 09:17:54 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:38440 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726114AbgKBORm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 09:17:42 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A2ECNpm001670;
-        Mon, 2 Nov 2020 09:17:40 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 34j3bwkrdg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 02 Nov 2020 09:17:40 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 0A2EHd2c037203
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 2 Nov 2020 09:17:39 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Mon, 2 Nov 2020
- 09:17:38 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Mon, 2 Nov 2020 09:17:38 -0500
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0A2EHJQF027353;
-        Mon, 2 Nov 2020 09:17:35 -0500
-From:   Cristian Pop <cristian.pop@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, Cristian Pop <cristian.pop@analog.com>
-Subject: [PATCH v7 5/5] dt-bindings:iio:adc:adc.txt: Add documentation for channel label attribute
-Date:   Mon, 2 Nov 2020 16:20:00 +0200
-Message-ID: <20201102142000.68916-5-cristian.pop@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201102142000.68916-1-cristian.pop@analog.com>
-References: <20201102142000.68916-1-cristian.pop@analog.com>
+        id S1725768AbgKBOWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 09:22:23 -0500
+Received: from mail2.sp2max.com.br ([138.185.4.9]:45338 "EHLO
+        mail2.sp2max.com.br" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726051AbgKBOVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 09:21:21 -0500
+Received: from [172.17.0.6] (37-247-245-190.fibertel.com.ar [190.245.247.37])
+        (Authenticated sender: pablo@fliagreco.com.ar)
+        by mail2.sp2max.com.br (Postfix) with ESMTPSA id 30E1F7B04AC;
+        Mon,  2 Nov 2020 11:21:16 -0300 (-03)
+Subject: Re: [PATCH] ARM: dts: sun7i: bananapi: Enable RGMII RX/TX delay on
+ Ethernet PHY
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1604190857-3078-1-git-send-email-pgreco@centosproject.org>
+ <20201102140715.r72yz7jx3usuhqi7@gilmour.lan>
+From:   =?UTF-8?Q?Pablo_Sebasti=c3=a1n_Greco?= <pgreco@centosproject.org>
+Message-ID: <52413556-ec13-e428-7139-01d323697ebc@centosproject.org>
+Date:   Mon, 2 Nov 2020 11:21:14 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-02_07:2020-11-02,2020-11-02 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- adultscore=0 spamscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
- impostorscore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011020113
+In-Reply-To: <20201102140715.r72yz7jx3usuhqi7@gilmour.lan>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-SP2Max-MailScanner-Information: Please contact the ISP for more information
+X-SP2Max-MailScanner-ID: 30E1F7B04AC.A2654
+X-SP2Max-MailScanner: Sem Virus encontrado
+X-SP2Max-MailScanner-SpamCheck: nao spam, SpamAssassin (not cached,
+        escore=-2.901, requerido 6, autolearn=not spam, ALL_TRUSTED -1.00,
+        BAYES_00 -1.90, NICE_REPLY_A -0.00)
+X-SP2Max-MailScanner-From: pgreco@centosproject.org
+X-Spam-Status: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Optional attribute for better identification of the channels.
 
-Signed-off-by: Cristian Pop <cristian.pop@analog.com>
----
-Changes in v7:
- - Add this extra commit
- Documentation/devicetree/bindings/iio/adc/adc.txt | 6 ++++++
- 1 file changed, 6 insertions(+)
+On 2/11/20 11:07, Maxime Ripard wrote:
+> Hi,
+>
+> On Sat, Oct 31, 2020 at 09:34:15PM -0300, Pablo Greco wrote:
+>> The Ethernet PHY on the Bananapi M1 has the RX and TX delays enabled on
+>> the PHY, using pull-ups on the RXDLY and TXDLY pins.
+>>
+>> Fix the phy-mode description to correct reflect this so that the
+>> implementation doesn't reconfigure the delays incorrectly. This
+>> happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
+>> rx/tx delay config").
+>>
+>> Fixes: 8a5b272fbf44 ("ARM: dts: sun7i: Add Banana Pi board")
+>> Signed-off-by: Pablo Greco <pgreco@centosproject.org>
+> Thanks for sending those patches.
+>
+> However, I'm not entirely sure how you sent it but the odd threading you
+> used (each other patches being in reply to this one without 0/N in the
+> name) seem to confuse the tools we use to apply the patches.
+>
+> Can you resend it properly?
+> Thanks!
+> Maxime
+I prepared them individually but sent them together in a single 
+git-send-email, that must have been the problem.
+I"ll send them again one by one.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adc.txt b/Documentation/devicetree/bindings/iio/adc/adc.txt
-index 5bbaa330a250..4b37575bbddc 100644
---- a/Documentation/devicetree/bindings/iio/adc/adc.txt
-+++ b/Documentation/devicetree/bindings/iio/adc/adc.txt
-@@ -5,18 +5,24 @@ Optional properties for child nodes:
- - diff-channels : Differential channels muxed for this ADC. The first value
- 		specifies the positive input pin, the second value the negative
- 		input pin.
-+- reg: The channel number.
-+- label: Unique name to identify which channel this is.
- 
- Example:
- 	adc@0 {
- 		compatible = "some,adc";
- 		...
- 		channel@0 {
-+			reg = <0>;
-+			label = "channel_0_name";
- 			bipolar;
- 			diff-channels = <0 1>;
- 			...
- 		};
- 
- 		channel@1 {
-+			reg = <1>;
-+			label = "channel_1_name";
- 			diff-channels = <2 3>;
- 			...
- 		};
--- 
-2.17.1
-
+Pablo.
