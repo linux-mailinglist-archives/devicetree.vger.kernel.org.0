@@ -2,196 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 402162A24C3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 07:24:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D9C62A2502
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:05:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727992AbgKBGYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 01:24:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58236 "EHLO
+        id S1727902AbgKBHFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 02:05:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727826AbgKBGYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 01:24:30 -0500
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2BF0C0617A6;
-        Sun,  1 Nov 2020 22:24:30 -0800 (PST)
-Received: by mail-pl1-x641.google.com with SMTP id j5so6330922plk.7;
-        Sun, 01 Nov 2020 22:24:30 -0800 (PST)
+        with ESMTP id S1727871AbgKBHFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 02:05:03 -0500
+Received: from mail-oo1-xc43.google.com (mail-oo1-xc43.google.com [IPv6:2607:f8b0:4864:20::c43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB29C0617A6;
+        Sun,  1 Nov 2020 23:05:03 -0800 (PST)
+Received: by mail-oo1-xc43.google.com with SMTP id o129so3109589ooo.11;
+        Sun, 01 Nov 2020 23:05:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MAJnFss+8YqpgdzXd2h0YDHLM++nuYC1QpV+6xW1bs0=;
-        b=BJJtCf2DTq9wwFtyTheu27SYm9gCalSl6N2TqhNR+aZK8vwS07NMFAa5erIUQdTKYx
-         r25nq9XZnoPiCtbotUy5ZEPtwKATRhgWygvqImIEcV2d7kODHJQFUCJ/mrKbWkL2rJAZ
-         R2qnfcnZP2ZzuiMqoZMG2Nkc/EhjHbz9Z2ODUtMhYp7QM5IW9KztuZPDLJWj40tbm87B
-         JiSCh982cZkw7Rsa4hw5OmQVwkqtJUB3mOywU4st+LKDqePADz366LWb8so9B5OATqKA
-         7n0fe1sJYFJTLCSkFLV9cbPQ+XW9hOPukkpOChET9bG3sPYzsEconefvB49TYoz2KRkT
-         BV2w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=YI54VZZszq4hxY1ZamHtFQZf9ma4Q4Sivjp7d7dM0Rw=;
+        b=DP6dVpM7TNLfW3MkeyzGWoON8h54KpEahVTrjHHCs2qeFRfwpoNoUuVO0lvuEamGbT
+         po4siHJpaj3SmjDXcANTP9KicXTnIWGS6vhBZona/zJo2vdmsXVPbQvnuY7vqq/G1xX/
+         R9ReqECOgRjr8exucPrhn7D6DghsyJagPJ56jL4kj/7UViSPm0bicYX0bmh1BWHLIrN4
+         BmJqYjHbTXNfXvdZGABXrNeuWcuD10axUJk4k73lSO7B2PtnpcMS3xsB7plfKetdvbfh
+         7GlUHA/ryOGZhZKDeU5vGFszBOMzBUc6LIDF8KpZ4BUKiVitf54KcAXTP83uKt7QftAA
+         BKRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MAJnFss+8YqpgdzXd2h0YDHLM++nuYC1QpV+6xW1bs0=;
-        b=ewz+KbZXabICqIiSKhru0pH5UwJ6FA+S2cggzelBhgZWvQXfOjmqE1bQI3tJCiVxbM
-         aK5KeQ/5tNls3s/l5MgUCC1v1QpDGRZY/w5ZtUrsaxQ45cKm84GJi+bt3f8k4gN4wZe1
-         ijoLGbhepHYdaR/yT2GuaLkBeur/yAbsArsTrqz4k46RZ+AvZa7EterVkFFme+jbE6gQ
-         DTGxI5pWet47tEfmV7K4OIz6dl/6EVKtamz6OfdJoZdMAsyCf+NaT0sxsY9uH8b0dD/K
-         YpbbLiwFp3jFhMUfJww9pDsSB0gVLXSFM/0sA70E9+Ch8gWTd7ym1bHsE6lZoMCt2TUo
-         XtIg==
-X-Gm-Message-State: AOAM532+g1iOczfgB5ZxXIL/aEerHDEFDsqlrnucwuoHgyWwmkJTDYjS
-        tMD7p5p0hvD+brxPsMvNHFZ+XIjp9H5KGA==
-X-Google-Smtp-Source: ABdhPJxJmzfuoZBZ9msfzTg04DFyYCC2ZSN8DgjJyvOKiy2m5h0rtFGKPC8R592V/QUVs7M0ZifiMw==
-X-Received: by 2002:a17:902:864b:b029:d3:ce46:2829 with SMTP id y11-20020a170902864bb02900d3ce462829mr20574853plt.16.1604298270218;
-        Sun, 01 Nov 2020 22:24:30 -0800 (PST)
-Received: from localhost (114-34-18-97.HINET-IP.hinet.net. [114.34.18.97])
-        by smtp.gmail.com with ESMTPSA id q8sm12197245pfg.118.2020.11.01.22.24.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Nov 2020 22:24:29 -0800 (PST)
-From:   Ajye Huang <ajye.huang@gmail.com>
-X-Google-Original-From: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        srinivas.kandagatla@linaro.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, cychiang@chromium.org,
-        tzungbi@chromium.org, dianders@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Subject: [PATCH v3 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
-Date:   Mon,  2 Nov 2020 14:24:08 +0800
-Message-Id: <20201102062408.331572-3-ajye_huang@compal.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201102062408.331572-1-ajye_huang@compal.corp-partner.google.com>
-References: <20201102062408.331572-1-ajye_huang@compal.corp-partner.google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=YI54VZZszq4hxY1ZamHtFQZf9ma4Q4Sivjp7d7dM0Rw=;
+        b=MitDIGaMiKtfsBrt2cyDDgU/G2c9r0Xt1MzL7VbF0dbVLR0bPUC89AOEj4barvdSyW
+         5NcePGQa2ArCCvM9tuvRv0UQbtbSbi8jX7kU8MhD93qWshK2C1umMDi49nf4gpRy/CNc
+         JTYMqXa4t/P+5ApWgWWZblaYuErGvv7kUngFEy9KhlETvAcemdaovHwl1EEKRITYze4s
+         QlgB91QySH/Jx3jLO8Fvpb4mT0C9bg+Dnq7ZdJTiEa6+oQHlD4BIjdzNGA4MzBiJZRRu
+         ZW8xtopZeybG/k2FtE0eKGxvfG8PqxQ7fOqePnwkO6iZUWUdlM2sNaq0gtFC6AP8WlWi
+         t6bw==
+X-Gm-Message-State: AOAM532XaxudxSBxi+1YPGESyKhOAD6jAuCwG5r6p92MJZnLQOxGc3PR
+        UIKqllFSxwPwqze+BD6m+buzNorqFsflLOjAeJI=
+X-Google-Smtp-Source: ABdhPJxjHMlav4PDw19Q5gA4yIpyiRESfLoqVQqCF1hKlnNaBGGKm3VP2YihK7xAtdHujvZ1CchiyVuR+DL4sXVZIwQ=
+X-Received: by 2002:a4a:d848:: with SMTP id g8mr11149900oov.35.1604300703108;
+ Sun, 01 Nov 2020 23:05:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1603181267-15610-1-git-send-email-gene.chen.richtek@gmail.com> <20201101154019.39932a2e@archlinux>
+In-Reply-To: <20201101154019.39932a2e@archlinux>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Mon, 2 Nov 2020 15:04:52 +0800
+Message-ID: <CAE+NS34-ayHchKA5Unb=+wHvesox1r9kkyPy09JgBqrA0Gd0Vw@mail.gmail.com>
+Subject: Re: [PATCH v7 0/3] iio: adc: mt6360: Add ADC driver for MT6360
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio@vger.kernel.org,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In addition, having mixer control to switch between DMICs by
-using "dmic-gpios" property.
+Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2020=E5=B9=B411=E6=9C=881=E6=
+=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:40=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On Tue, 20 Oct 2020 16:07:44 +0800
+> Gene Chen <gene.chen.richtek@gmail.com> wrote:
+>
+> > In-Reply-To:
+> >
+> > This patch series add MT6360 ADC support contains driver, testing docum=
+ent
+> > and binding document
+> >
+> Hi Gene,
+>
+> Other than that small edit needed in the dt binding this is stalled on
+> the label code getting upstreamed into the core.
+>
+> I've asked Cristian to repost that so hopefully we can resolve that depen=
+dency
+> and get this merged fairly soon.
+>
+> For the dt thing I can just drop the description entirely, but would pref=
+er
+> if you sent a v8 fixing the tags issue Rob pointed out and also fixing th=
+at
+> description.
+>
+> Thanks,
+>
+> Jonathan
+>
 
-Refer to this one as an example,
-commit b7a742cff3f6 ("ASoC: AMD: Use mixer control to switch between DMICs")
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +description: |
+> +  Family of simple ADCs with i2c interface and internal references.
+That seems unlikely...
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
-Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
----
- sound/soc/qcom/sc7180.c | 65 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
+Do you means I should remove this description?
+If yes, I will also update PATCH v8 for add tags and fix dt-bindings.
 
-diff --git a/sound/soc/qcom/sc7180.c b/sound/soc/qcom/sc7180.c
-index b391f64c3a80..f86db7871999 100644
---- a/sound/soc/qcom/sc7180.c
-+++ b/sound/soc/qcom/sc7180.c
-@@ -5,6 +5,8 @@
- // sc7180.c -- ALSA SoC Machine driver for SC7180
- 
- #include <dt-bindings/sound/sc7180-lpass.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
-@@ -28,6 +30,8 @@ struct sc7180_snd_data {
- 	u32 pri_mi2s_clk_count;
- 	struct snd_soc_jack hs_jack;
- 	struct snd_soc_jack hdmi_jack;
-+	struct gpio_desc *dmic_sel;
-+	int dmic_switch;
- };
- 
- static void sc7180_jack_free(struct snd_jack *jack)
-@@ -169,6 +173,30 @@ static int sc7180_snd_startup(struct snd_pcm_substream *substream)
- 	return 0;
- }
- 
-+static int dmic_get(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(dapm->card);
-+
-+	if (data)
-+		ucontrol->value.integer.value[0] = data->dmic_switch;
-+	return 0;
-+}
-+
-+static int dmic_set(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(dapm->card);
-+
-+	if (data) {
-+		data->dmic_switch = ucontrol->value.integer.value[0];
-+		gpiod_set_value(data->dmic_sel, data->dmic_switch);
-+	}
-+	return 0;
-+}
-+
- static void sc7180_snd_shutdown(struct snd_pcm_substream *substream)
- {
- 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-@@ -206,6 +234,30 @@ static const struct snd_soc_dapm_widget sc7180_snd_widgets[] = {
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- };
- 
-+static const char * const dmic_mux_text[] = {
-+	"Front Mic",
-+	"Rear Mic",
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(sc7180_dmic_enum,
-+			    SND_SOC_NOPM, 0, dmic_mux_text);
-+
-+static const struct snd_kcontrol_new sc7180_dmic_mux_control =
-+	SOC_DAPM_ENUM_EXT("DMIC Select Mux", sc7180_dmic_enum,
-+			  dmic_get, dmic_set);
-+
-+static const struct snd_soc_dapm_widget sc7180_snd_dual_mic_widgets[] = {
-+	SND_SOC_DAPM_HP("Headphone Jack", NULL),
-+	SND_SOC_DAPM_MIC("Headset Mic", NULL),
-+	SND_SOC_DAPM_MIC("DMIC", NULL),
-+	SND_SOC_DAPM_MUX("Dmic Mux", SND_SOC_NOPM, 0, 0, &sc7180_dmic_mux_control),
-+};
-+
-+static const struct snd_soc_dapm_route sc7180_snd_dual_mic_audio_route[] = {
-+	{"Dmic Mux", "Front Mic", "DMIC"},
-+	{"Dmic Mux", "Rear Mic", "DMIC"},
-+};
-+
- static void sc7180_add_ops(struct snd_soc_card *card)
- {
- 	struct snd_soc_dai_link *link;
-@@ -238,6 +290,19 @@ static int sc7180_snd_platform_probe(struct platform_device *pdev)
- 	card->dapm_widgets = sc7180_snd_widgets;
- 	card->num_dapm_widgets = ARRAY_SIZE(sc7180_snd_widgets);
- 
-+	if (of_property_read_bool(dev->of_node, "dmic-gpios")) {
-+		card->dapm_widgets = sc7180_snd_dual_mic_widgets,
-+		card->num_dapm_widgets = ARRAY_SIZE(sc7180_snd_dual_mic_widgets),
-+		card->dapm_routes = sc7180_snd_dual_mic_audio_route,
-+		card->num_dapm_routes = ARRAY_SIZE(sc7180_snd_dual_mic_audio_route),
-+		data->dmic_sel = devm_gpiod_get(&pdev->dev, "dmic", GPIOD_OUT_LOW);
-+		if (IS_ERR(data->dmic_sel)) {
-+			dev_err(&pdev->dev, "DMIC gpio failed err=%d\n",
-+				PTR_ERR(data->dmic_sel));
-+				return PTR_ERR(data->dmic_sel);
-+		}
-+	}
-+
- 	ret = qcom_snd_parse_of(card);
- 	if (ret)
- 		return ret;
--- 
-2.25.1
-
+> > Gene Chen (2)
+> >   dt-bindings: iio: adc: add bindings doc for MT6360 ADC
+> >   Documentation: ABI: testing: mt6360: Add ADC sysfs guideline
+> >   iio: adc: mt6360: Add ADC driver for MT6360
+> >
+> >  Documentation/ABI/testing/sysfs-bus-iio-adc-mt6360                 |  =
+ 78 ++
+> >  Documentation/devicetree/bindings/iio/adc/mediatek,mt6360-adc.yaml |  =
+ 34
+> >  drivers/iio/adc/Kconfig                                            |  =
+ 11
+> >  drivers/iio/adc/Makefile                                           |  =
+  1
+> >  drivers/iio/adc/mt6360-adc.c                                       |  =
+372 ++++++++++
+> >  5 files changed, 496 insertions(+)
+> >
+> > changelogs between v1 & v2
+> >  - adc: use IIO_CHAN_INFO_PROCESSED only
+> >  - adc: use devm_iio_triggered_buffer_setup
+> >  - adc: use use s64 to record timestamp
+> >
+> > changelogs between v2 & v3
+> >  - Rearrange include file order by alphabet
+> >  - Set line length constraint below 100
+> >  - Add Document for testing adc sysfs node guideline
+> >  - Set compiler 64 bit aligned when handle iio timestamp
+> >
+> > changelogs between v3 & v4
+> >  - Fix sysfs guideline description
+> >  - Replace iio channel processed by raw/scale/offset
+> >  - Add comment of read adc flow for special HW design
+> >
+> > changelogs between v4 & v5
+> >  - Rename dt-bindings aligned to file name
+> >  - Aligned sysfs node name with driver and add VBUSDIVX description
+> >  - Add ADC channel sysfs node "*_labels"
+> >
+> > changelogs between v5 & v6
+> >  - Memset aligned adc data
+> >  - Remove strong casting void pointer
+> >
+> > changelogs between v6 & v7
+> >  - Avoid adc polling infinite loop
+> >
+>
