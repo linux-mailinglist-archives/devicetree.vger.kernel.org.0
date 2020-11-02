@@ -2,168 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 054562A31D2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C90AB2A3202
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:49:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725838AbgKBRmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:42:04 -0500
-Received: from lhrrgout.huawei.com ([185.176.76.210]:3019 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725833AbgKBRmE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 12:42:04 -0500
-Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
-        by Forcepoint Email with ESMTP id A7A854F9BCC3CA6926CC;
-        Mon,  2 Nov 2020 17:42:02 +0000 (GMT)
-Received: from localhost (10.52.120.98) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 2 Nov 2020
- 17:42:02 +0000
-Date:   Mon, 2 Nov 2020 17:39:59 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Crt Mori <cmo@melexis.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Linux Iio <linux-iio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Peter Meerwald <pmeerw@pmeerw.net>
-Subject: Re: [PATCH v2 24/29] dt-bindings:iio:temperature:melexis,mlx90614
- yaml conversion
-Message-ID: <20201102173959.00004127@Huawei.com>
-In-Reply-To: <CAKv63uvm4WMk6U=CthTcVTD+cM-kb9FLBxn2Os8Yy2mHJYoJ5Q@mail.gmail.com>
-References: <20201031134110.724233-1-jic23@kernel.org>
-        <20201031134110.724233-25-jic23@kernel.org>
-        <CAKv63uvm4WMk6U=CthTcVTD+cM-kb9FLBxn2Os8Yy2mHJYoJ5Q@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1725838AbgKBRt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:49:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725805AbgKBRt5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:49:57 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A77AC061A04
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 09:49:57 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id x16so16030179ljh.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 09:49:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NRD84/ne18IE0hT03lsb66bab982FuGq6Gl9WYSoal4=;
+        b=i8ZvvguMhFQvhTx+6nzimaIKFEqvNVCw1Nypy+BwhgzcVrTYE7PrPHin21H4e3+HfG
+         rG6aH5YK/0NALsHsoXxEo2hQcDr5Cx7A7FIK1K+Ljb3KZIxguUkLxwXkR2IF9Cu2rI3Q
+         Fo61NldwOGa7jCcdhSE86JYfKX1poQr70klRiwjr6R7avR81MUQW8LNMMqopEvMT619f
+         32S4su0Qx6eV4hXMUc5+DplSOjsuoLH7RXzgIrkAYSf4m0BrLzG8RKjqXklnjxOfeGi+
+         NkFKDPL+8EFZZBS4JKN2M7uswLc37dPfXXvvOqhGMGQWXu4YFrR+eKz8tLn9sOgKJRwJ
+         URbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NRD84/ne18IE0hT03lsb66bab982FuGq6Gl9WYSoal4=;
+        b=HhYGqabBZJpsOl7gmmExFVZE3Ye8rXt/4OzYapToQi6xdqmyUb9Z7Ppjuet2SvZIYJ
+         JfIhXwnU2gymgaB5uT2KOInmGoOZguT7OcaK+WEBDPp0CIRnEQ9vXbB2ABmHcoyr/HpC
+         h3VTtkCT4Rg2tlMLic3J9SfH2stPKi/N3n1UkDX0LfM9DOdzTXlLfzqlwUEFfF2sVD0a
+         4C8vr1BHMXLiLOgqcw92dOqEII/n21Dbi5qTB4KCrzmh1b2ymXL91DhFaNzcXo8Blj/K
+         VzLERWVYjj5WyWRKQn3Oet/ULZ2F2u8xWZY0V3eWpyFR/+cFFOoSwb2Lz61E6OgROOS5
+         T1rw==
+X-Gm-Message-State: AOAM532Xm/Gcwt6IXUVXNYMgMsooCTflO+zp0KwP6aLCi4I8x6E6ET5R
+        uHojYFy6OoMgJ0jHrfQxrzwtAw==
+X-Google-Smtp-Source: ABdhPJwFjPERtQiqcdGssb9PmEtpPtYbHIN8+7XRTiGv9PU6t9Nn0DYnkiil6KeNbv65GhAHLcPGVA==
+X-Received: by 2002:a2e:7016:: with SMTP id l22mr6716623ljc.466.1604339395537;
+        Mon, 02 Nov 2020 09:49:55 -0800 (PST)
+Received: from eriador.lan ([94.25.229.254])
+        by smtp.gmail.com with ESMTPSA id r7sm2516163lfc.206.2020.11.02.09.49.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2020 09:49:54 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+Subject: [PATCH v9 00/15] qcom: pm8150: add support for thermal monitoring
+Date:   Mon,  2 Nov 2020 20:49:35 +0300
+Message-Id: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.120.98]
-X-ClientProxiedBy: lhreml734-chm.china.huawei.com (10.201.108.85) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Nov 2020 10:12:57 +0100
-Crt Mori <cmo@melexis.com> wrote:
+This patch serie adds support for thermal monitoring block on Qualcomm's
+PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
+to support thermal zones provided by this thermal monitoring block.
+Unlike the rest of PMIC thermal senses, these thermal zones describe
+particular thermistors, which differ between from board to board.
 
-> Hi Jonathan,
-> The commit message should change here as now you did not list all 3
-> authors as maintainers, because one has a bouncy email address.
-Good point.  I can clean that up whilst applying if we don't need
-a v3.
+Changes since v8:
+ - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
+   tables support
+ - Simplified qcom-vadc-common volt/temp mapping code
+ - Implement suggestions by Matthias Kaehlcke: message formatting,
+   rewrite comments, remove unused variable initialization.
 
-Jonathan
+Changes since v7:
+ - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
+ - Use explicit sizeof(var) instead of hand-coding 1 when accessing
+   adc-tm registers.
+ - Remove buffer read from adc_tm5_init().
+ - Remove extra on-stack var from adc_tm5_get_temp().
+ - Minor formatting changes as suggested Daniel.
 
-> 
-> Best regards,
-> Crt
-> 
-> On Sat, 31 Oct 2020 at 14:44, Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> >
-> > Simple conversion from txt to yaml.
-> > I've listed all 3 authors of the driver as maintainers.
-> >
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Acked-by: Crt Mori <cmo@melexis.com>
-> > Cc: Peter Meerwald <pmeerw@pmeerw.net>
-> > ---
-> >  .../iio/temperature/melexis,mlx90614.yaml     | 50 +++++++++++++++++++
-> >  .../bindings/iio/temperature/mlx90614.txt     | 24 ---------
-> >  2 files changed, 50 insertions(+), 24 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
-> > new file mode 100644
-> > index 000000000000..d6965a0c1cf3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90614.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Melexis MLX90614 contactless IR temperature sensor
-> > +
-> > +maintainers:
-> > +  - Peter Meerwald <pmeerw@pmeerw.net>
-> > +  - Crt Mori <cmo@melexis.com>
-> > +
-> > +description: |
-> > +  http://melexis.com/Infrared-Thermometer-Sensors/Infrared-Thermometer-Sensors/MLX90614-615.aspx
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: melexis,mlx90614
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  wakeup-gpios:
-> > +    description:
-> > +      GPIO connected to the SDA line to hold low in order to wake up the
-> > +      device.  In normal operation, the GPIO is set as input and will
-> > +      not interfere in I2C communication.  There is no need for a GPIO
-> > +      driving the SCL line.  If no GPIO is given, power management is disabled.
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        temp-sensor@5a {
-> > +            compatible = "melexis,mlx90614";
-> > +            reg = <0x5a>;
-> > +            wakeup-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-> > +        };
-> > +    };
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt b/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt
-> > deleted file mode 100644
-> > index 9be57b036092..000000000000
-> > --- a/Documentation/devicetree/bindings/iio/temperature/mlx90614.txt
-> > +++ /dev/null
-> > @@ -1,24 +0,0 @@
-> > -* Melexis MLX90614 contactless IR temperature sensor
-> > -
-> > -http://melexis.com/Infrared-Thermometer-Sensors/Infrared-Thermometer-Sensors/MLX90614-615.aspx
-> > -
-> > -Required properties:
-> > -
-> > -  - compatible: should be "melexis,mlx90614"
-> > -  - reg: the I2C address of the sensor
-> > -
-> > -Optional properties:
-> > -
-> > -  - wakeup-gpios: device tree identifier of the GPIO connected to the SDA line
-> > -      to hold low in order to wake up the device.  In normal operation, the
-> > -      GPIO is set as input and will not interfere in I2C communication.  There
-> > -      is no need for a GPIO driving the SCL line.  If no GPIO is given, power
-> > -      management is disabled.
-> > -
-> > -Example:
-> > -
-> > -mlx90614@5a {
-> > -       compatible = "melexis,mlx90614";
-> > -       reg = <0x5a>;
-> > -       wakeup-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-> > -};
-> > --
-> > 2.28.0
-> >  
+Changes since v6:
+ - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
+
+Changes since v5:
+ - Reworked DT bindings:
+   * Removed qcom,adc-channel, instead it is parsed from io-channels
+   * Renamed qcom,hw-settle-time to include -us suffix
+ - Re-added monitor enabling which got lost during refactored. Noted by
+   Jishnu Prakash.
+ - Use threaded IRQ handler as susggested by Jishnu.
+
+Changes since v4:
+ - Added kernel-doc comments to ADC-TM structures
+ - Used several sizeof(buf) instead of hand-conding register size
+
+Changes since v3:
+ - Fix DT description to spell "thermal monitoring" instead of just TM
+ - Fix warnings in DT example
+ - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
+ - Fixed whitespace chanes in qcom-vadc-common.c
+ - Removed error message if IIO chanel get returns -EPROBE_DEFER
+
+Changes since v2:
+ - IIO: export of_iio_channel_get_by_name() function
+ - dt-bindings: move individual io-channels to each thermal monitoring
+   channel rather than listing them all in device node
+ - added fallback defaults to of_device_get_match_data calls in
+   qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
+ - minor typo fixes
+
+Changes since v1:
+ - Introduce fixp_linear_interpolate() by Craig Tatlor
+ - Lots of syntax/whitespace changes
+ - Cleaned up register definitions per Jonathan's suggestion
+ - Implemented most of the suggestions from Bjorn's and Jonathan's
+   review
+
 
