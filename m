@@ -2,222 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A72902A371B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 00:24:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6320E2A3722
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 00:25:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726977AbgKBXYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 18:24:19 -0500
-Received: from mga05.intel.com ([192.55.52.43]:20424 "EHLO mga05.intel.com"
+        id S1726485AbgKBXZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 18:25:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33452 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725864AbgKBXYS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 18:24:18 -0500
-IronPort-SDR: aN4eiiiFU52bCelJxpydTNOnTJ6xr7lKsBOpOuvoVIb738rHBs12Mx5KeEwh5rHgAvQLJ3nDUb
- MH7F1TcgE+vA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="253677440"
-X-IronPort-AV: E=Sophos;i="5.77,446,1596524400"; 
-   d="scan'208";a="253677440"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2020 15:24:17 -0800
-IronPort-SDR: pgpIVZr8lyMlNwZIOfNcZs4zgSS46Cx9smlJDiBgb+C0lmscg+qilwYf+qKpMYURB2vpSd6Bg5
- NAb/H1KjX3Nw==
-X-IronPort-AV: E=Sophos;i="5.77,446,1596524400"; 
-   d="scan'208";a="336322207"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2020 15:24:14 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 9705120A2D; Tue,  3 Nov 2020 01:24:11 +0200 (EET)
-Date:   Tue, 3 Nov 2020 01:24:11 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Maxime Ripard <mripard@kernel.org>, kevin.lhopital@hotmail.com,
-        =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: Add OV8865 bindings
- documentation
-Message-ID: <20201102232411.GD26150@paasikivi.fi.intel.com>
-References: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
- <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
+        id S1725913AbgKBXZH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 18:25:07 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E3C5222268;
+        Mon,  2 Nov 2020 23:25:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604359507;
+        bh=3TtxzP1XXB7ODonsz+f88fuMvxDxMLyNaVRq92wCyTU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qI0WZwO9qQldE8t7JC3BR8A9LiJOO3nlH2ckDJCnE+HxIUFqszsZsq8+Ew4diVRDw
+         4SWYEeaI6ilTYSxSC4460ty4ExID62sWuIdysO1wNwIdX4YWBI9l/vtXE5Tg110Hjf
+         OugD2N8jpVR+X00xhpxQzZTX9TAp/jrxwJgeYjHg=
+Date:   Tue, 3 Nov 2020 07:25:02 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     meenakshi.aggarwal@nxp.com
+Cc:     robh+dt@kernel.org, V.sethi@nxp.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] Add device tree support for LX2162AQDS board
+Message-ID: <20201102232501.GS31601@dragon>
+References: <1601373718-13218-3-git-send-email-meenakshi.aggarwal@nxp.com>
+ <1604296781-28295-1-git-send-email-meenakshi.aggarwal@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1604296781-28295-1-git-send-email-meenakshi.aggarwal@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
-
-On Fri, Oct 23, 2020 at 07:54:04PM +0200, Paul Kocialkowski wrote:
-> This introduces YAML bindings documentation for the OV8865
-> image sensor.
+On Mon, Nov 02, 2020 at 11:29:39AM +0530, meenakshi.aggarwal@nxp.com wrote:
+> From: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
 > 
-> Co-developed-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  .../bindings/media/i2c/ovti,ov8865.yaml       | 124 ++++++++++++++++++
->  1 file changed, 124 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> LX2162A has same die as of LX2160A with different packaging.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> new file mode 100644
-> index 000000000000..807f1a94afae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> @@ -0,0 +1,124 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8865.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV8865 Image Sensor Device Tree Bindings
-> +
-> +maintainers:
-> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov8865
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: EXTCLK Clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: extclk
+> Changes:
+> 
+>         v2:
+>         - divided patch into two, binding and dts support
+> 
+> 	v3:
+> 	- incorporated review comments on voltage regulator node
+> 
+> 	v4:
+> 	- fixed check-patch warning.
+> 
+> Meenakshi Aggarwal (2):
+>   dt-bindings: arm64: add compatible for LX2162A QDS Board
+>   arm64: dts: lx2160a: add device tree for lx2162aqds board
 
-Is this needed with a single clock?
-
-And... shouldn't this also come with assigned-clock-rates etc., to set the
-clock frequency?
-
-> +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply
-> +
-> +  avdd-supply:
-> +    description: Analog Domain Power Supply (internal AVDD is used if missing)
-> +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description: Power Down Pin GPIO Control (active low)
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reset Pin GPIO Control (active low)
-> +
-> +  port:
-> +    type: object
-> +    description: Input port, connect to a MIPI CSI-2 receiver
-> +
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +
-> +        properties:
-> +          remote-endpoint: true
-> +
-> +          bus-type:
-> +            const: 4
-> +
-> +          clock-lanes:
-> +            maxItems: 1
-
-I believe you can drop clock-lanes and bus-type; these are both constants.
-
-I presume the device does not support lane remapping?
-
-Could you also add link-frequencies, to list which frequencies are known to
-be good?
-
-Same comments on the other OV sensor bindings.
-
-> +
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 4
-> +
-> +        required:
-> +          - bus-type
-> +          - data-lanes
-> +          - remote-endpoint
-> +
-> +        additionalProperties: false
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - dvdd-supply
-> +  - dovdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sun8i-a83t-ccu.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c2 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov8865: camera@36 {
-> +            compatible = "ovti,ov8865";
-> +            reg = <0x36>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&csi_mclk_pin>;
-> +
-> +            clocks = <&ccu CLK_CSI_MCLK>;
-> +            clock-names = "extclk";
-> +
-> +            avdd-supply = <&reg_ov8865_avdd>;
-> +            dovdd-supply = <&reg_ov8865_dovdd>;
-> +            dvdd-supply = <&reg_ov8865_dvdd>;
-> +
-> +            powerdown-gpios = <&pio 4 17 GPIO_ACTIVE_LOW>; /* PE17 */
-> +            reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
-> +
-> +            port {
-> +                ov8865_out_mipi_csi2: endpoint {
-> +                    bus-type = <4>; /* MIPI CSI-2 D-PHY */
-> +                    clock-lanes = <0>;
-> +                    data-lanes = <1 2 3 4>;
-> +
-> +                    remote-endpoint = <&mipi_csi2_in_ov8865>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-
--- 
-Regards,
-
-Sakari Ailus
+Applied both, thanks.
