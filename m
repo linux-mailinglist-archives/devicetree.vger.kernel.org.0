@@ -2,112 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCECC2A3119
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6922A3128
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:16:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727589AbgKBROp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:14:45 -0500
-Received: from m42-4.mailgun.net ([69.72.42.4]:62148 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727470AbgKBROn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 12:14:43 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1604337282; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=oCS6rrjus9PAM663x7+ECmgucjExZnYZnUqtOqwzQxQ=; b=TFe4JvIhqhztmR2mvi38c1PNI16dM0q53n40DeP6urmg7ebhEAP6aKkYoidbcyJcZBi2Ol5/
- 2csHCQ6PPuCiJWQikm92Dz2JIdjtbnzTFR78zxtQP8L7WFaRmit4ay3AMwLnlIAXqXvFMw1I
- D6m2/HqAvncMotZC8urc1p9W7Yo=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 5fa03e80875877e3ed96699e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 02 Nov 2020 17:14:40
- GMT
-Sender: jcrouse=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 011ACC433C6; Mon,  2 Nov 2020 17:14:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from jordan-laptop.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jcrouse)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A9103C433FF;
-        Mon,  2 Nov 2020 17:14:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A9103C433FF
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jcrouse@codeaurora.org
-From:   Jordan Crouse <jcrouse@codeaurora.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     iommu@lists.linux-foundation.org, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Clark <robdclark@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v18 4/4] arm: dts: qcom: sm845: Set the compatible string for the GPU SMMU
-Date:   Mon,  2 Nov 2020 10:14:16 -0700
-Message-Id: <20201102171416.654337-5-jcrouse@codeaurora.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201102171416.654337-1-jcrouse@codeaurora.org>
-References: <20201102171416.654337-1-jcrouse@codeaurora.org>
+        id S1727200AbgKBRQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:16:02 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:34541 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726860AbgKBRQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:16:02 -0500
+Received: by mail-oi1-f196.google.com with SMTP id c21so390071oic.1;
+        Mon, 02 Nov 2020 09:16:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DJhMNxXZamIrpg0kzWp8B/V6rtHCtD1wqM+Smkrcy+0=;
+        b=Nk7RsEqk6s9o8FxjYSY5Iv0a7rbTn2LuAK/Xf0cjxw18y/hNT7kgr/LT2BXdaZWJLS
+         RkgIa/RoRTJxQhO93Mm42zH9LveCR/cUjXUbQACFttSOBbEdpaHyeyx+rjcdcnux9d2G
+         iC1SPBNIsyTqQclXdDrkWFA+t9nwquy63BnPmUdN8Pamx6Vo05s5NzoIHXrxlYXl8sf0
+         qzNrXIae4Yq19Fz9qhTveomRLvoasWQUdQTjrIOQA3R/PIYJB09AwWrzyRDjt16+tBlG
+         LeMvL03vzaQ54WjABUemRfbyd/BtO14YBfZG+o9INslTP6AFavi+2Ou5hJcuGUiN0FkP
+         fldA==
+X-Gm-Message-State: AOAM531io2YZLvPu/Uif8e+Z6JKrGyRbIwsbX6yZP7FYg9xEAzdGvZA8
+        6qFpzCdj9OzzeKV5EULt/w==
+X-Google-Smtp-Source: ABdhPJzYQ0ZAxLvXxFHfECWqzCjvhZK3LAQinOKxN35gOPwU5N4c4JSMJ6sES7FN2EoLdD6xLN3qig==
+X-Received: by 2002:aca:5110:: with SMTP id f16mr1024894oib.94.1604337361192;
+        Mon, 02 Nov 2020 09:16:01 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r24sm248303otq.77.2020.11.02.09.16.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2020 09:16:00 -0800 (PST)
+Received: (nullmailer pid 4065376 invoked by uid 1000);
+        Mon, 02 Nov 2020 17:15:59 -0000
+Date:   Mon, 2 Nov 2020 11:15:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, aford@beaconembedded.com,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: imx: Add binding doc for spba bus
+Message-ID: <20201102171559.GA4063854@bogus>
+References: <20201101131257.782279-1-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201101131257.782279-1-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set the qcom,adreno-smmu compatible string for the GPU SMMU to enable
-split pagetables and per-instance pagetables for drm/msm.
+On Sun, 01 Nov 2020 07:12:56 -0600, Adam Ford wrote:
+> Add binding doc for fsl,spba-bus.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> 
 
-Signed-off-by: Jordan Crouse <jcrouse@codeaurora.org>
-Signed-off-by: Rob Clark <robdclark@chromium.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
 
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 9 +++++++++
- arch/arm64/boot/dts/qcom/sdm845.dtsi       | 2 +-
- 2 files changed, 10 insertions(+), 1 deletion(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index 64fc1bfd66fa..39f23cdcbd02 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -633,6 +633,15 @@ &mdss_mdp {
- 	status = "okay";
- };
- 
-+/*
-+ * Cheza fw does not properly program the GPU aperture to allow the
-+ * GPU to update the SMMU pagetables for context switches.  Work
-+ * around this by dropping the "qcom,adreno-smmu" compat string.
-+ */
-+&adreno_smmu {
-+	compatible = "qcom,sdm845-smmu-v2", "qcom,smmu-v2";
-+};
-+
- &mss_pil {
- 	iommus = <&apps_smmu 0x781 0x0>,
- 		 <&apps_smmu 0x724 0x3>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 40e8c11f23ab..0508e86140bd 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -4103,7 +4103,7 @@ opp-257000000 {
- 		};
- 
- 		adreno_smmu: iommu@5040000 {
--			compatible = "qcom,sdm845-smmu-v2", "qcom,smmu-v2";
-+			compatible = "qcom,sdm845-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
- 			reg = <0 0x5040000 0 0x10000>;
- 			#iommu-cells = <1>;
- 			#global-interrupts = <2>;
--- 
-2.25.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/bus/fsl,spba-bus.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml: duplicate '$id' value 'http://devicetree.org/schemas/bus/simple-pm-bus.yaml#'
+
+
+See https://patchwork.ozlabs.org/patch/1391735
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
