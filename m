@@ -2,250 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D81A2A2DA9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 16:09:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72C032A2E3F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 16:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725980AbgKBPI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 10:08:57 -0500
-Received: from mga07.intel.com ([134.134.136.100]:58334 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725791AbgKBPI5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 10:08:57 -0500
-IronPort-SDR: EyUKyWdZRZt/DLahgFCnB/N1SADy4ohXlm/3ywLuebEJ6uYyFj+8M4pViy7RpQ/L2u4OTubeIU
- qLO4SG/0C4og==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="233066361"
-X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; 
-   d="scan'208";a="233066361"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2020 07:08:53 -0800
-IronPort-SDR: VZ15W9VfAAbAUWirdaRc7gN9ji0PujZY3NDoErMegNa8TgfAJq8+QCsei5GNT+sBRNge5xy+jb
- KcmC8zbcMXGA==
-X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; 
-   d="scan'208";a="357353251"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2020 07:08:49 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id ED771208F7; Mon,  2 Nov 2020 17:08:47 +0200 (EET)
-Date:   Mon, 2 Nov 2020 17:08:47 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/4] media: i2c: imx258: get clock from device
- properties and enable it via runtime PM
-Message-ID: <20201102150847.GZ26150@paasikivi.fi.intel.com>
-References: <20201019170247.92002-1-krzk@kernel.org>
- <20201019172617.92815-1-krzk@kernel.org>
- <20201019172617.92815-3-krzk@kernel.org>
+        id S1726342AbgKBPXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 10:23:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57262 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726445AbgKBPXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 10:23:39 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19818C0617A6
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 07:23:39 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kZbgG-00042X-4N; Mon, 02 Nov 2020 16:23:36 +0100
+Subject: Re: [PATCH v3 0/2] nvmem: skip nodes with compatibles other than
+ "nvmem-cell"
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     devicetree@vger.kernel.org, ceggers@arri.de,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de
+References: <20200428111829.2215-1-a.fatoum@pengutronix.de>
+ <20200512141834.GA3023@bogus>
+ <f03ecee7-c4b6-7a59-7ab8-42c5dfcaffc4@pengutronix.de>
+Message-ID: <3f050e96-8bd3-a77e-b1cf-1739a1be0c2d@pengutronix.de>
+Date:   Mon, 2 Nov 2020 16:23:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201019172617.92815-3-krzk@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <f03ecee7-c4b6-7a59-7ab8-42c5dfcaffc4@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krysztof,
+Hello Rob,
+Hello Srini,
 
-On Mon, Oct 19, 2020 at 07:26:17PM +0200, Krzysztof Kozlowski wrote:
-> The IMX258 sensor driver checked in device properties for a
-> clock-frequency property which actually does not mean that the clock is
-> really running such frequency or is it even enabled.
-> 
-> Get the provided clock and check it frequency.  If none is provided,
-> fall back to old property.
-> 
-> Enable the clock when accessing the IMX258 registers and when streaming
-> starts with runtime PM.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v4:
-> 1. Add missing imx258_power_off.
-> 
-> Changes since v3:
-> 1. None
-> 
-> Changes since v2:
-> 1. Do not try to set drvdata, wrap lines.
-> 2. Use dev_dbg.
-> 
-> Changes since v1:
-> 1. Use runtime PM for clock toggling
-> ---
->  drivers/media/i2c/imx258.c | 73 +++++++++++++++++++++++++++++++++-----
->  1 file changed, 64 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index ae183b0dbba9..038115471f17 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -2,6 +2,7 @@
->  // Copyright (C) 2018 Intel Corporation
->  
->  #include <linux/acpi.h>
-> +#include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/i2c.h>
->  #include <linux/module.h>
-> @@ -68,6 +69,9 @@
->  #define REG_CONFIG_MIRROR_FLIP		0x03
->  #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
->  
-> +/* Input clock frequency in Hz */
-> +#define IMX258_INPUT_CLOCK_FREQ		19200000
-> +
->  struct imx258_reg {
->  	u16 address;
->  	u8 val;
-> @@ -610,6 +614,8 @@ struct imx258 {
->  
->  	/* Streaming on/off */
->  	bool streaming;
-> +
-> +	struct clk *clk;
->  };
->  
->  static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
-> @@ -972,6 +978,29 @@ static int imx258_stop_streaming(struct imx258 *imx258)
->  	return 0;
->  }
->  
-> +static int imx258_power_on(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct imx258 *imx258 = to_imx258(sd);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(imx258->clk);
-> +	if (ret)
-> +		dev_err(dev, "failed to enable clock\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx258_power_off(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct imx258 *imx258 = to_imx258(sd);
-> +
-> +	clk_disable_unprepare(imx258->clk);
-> +
-> +	return 0;
-> +}
-> +
->  static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
->  {
->  	struct imx258 *imx258 = to_imx258(sd);
-> @@ -1199,9 +1228,28 @@ static int imx258_probe(struct i2c_client *client)
->  	int ret;
->  	u32 val = 0;
->  
-> -	device_property_read_u32(&client->dev, "clock-frequency", &val);
-> -	if (val != 19200000)
-> -		return -EINVAL;
-> +	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-> +	if (!imx258)
-> +		return -ENOMEM;
-> +
-> +	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
-> +	if (!imx258->clk) {
-> +		dev_dbg(&client->dev,
-> +			"no clock provided, using clock-frequency property\n");
-> +
-> +		device_property_read_u32(&client->dev, "clock-frequency", &val);
-> +		if (val != IMX258_INPUT_CLOCK_FREQ)
-> +			return -EINVAL;
-> +	} else if (IS_ERR(imx258->clk)) {
-> +		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
-> +				     "error getting clock\n");
-> +	} else {
-> +		if (clk_get_rate(imx258->clk) != IMX258_INPUT_CLOCK_FREQ) {
+On 10/12/20 5:36 PM, Ahmad Fatoum wrote:
+> On 5/12/20 4:18 PM, Rob Herring wrote:
 
-Please move the check outside the conditional block. May be a separate
-patch if you like.
+[snip]
 
-> +			dev_err(&client->dev,
-> +				"input clock frequency not supported\n");
-> +			return -EINVAL;
-> +		}
-> +	}
->  
->  	/*
->  	 * Check that the device is mounted upside down. The driver only
-> @@ -1211,24 +1259,25 @@ static int imx258_probe(struct i2c_client *client)
->  	if (ret || val != 180)
->  		return -EINVAL;
->  
-> -	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-> -	if (!imx258)
-> -		return -ENOMEM;
+>> I think instead, nvmem cells should be contained within a partition. 
+>> The partition should then have a compatible to indicate it contains 
+>> nvmem cells.
+> 
+> I thought I had understood what needs to be done, but now that I finally have time
+> to do it, I see that this only solves the second issue "extending the NVMEM binding
+> to nodes that already have other child nodes, e.g., MTD and its partitions".
+> 
+> The first issue: "future extension of e.g. eeprom nodes by any child nodes other than
+> nvmem cells" isn't solved by having a containing partition.
+> 
+> 
+> My issue is that the bootloader fixes up a partitions { compatible = "fixed-partitions"; }
+> child node into the kernel device tree. The NVMEM core driver tries to parse all eeprom child
+> nodes as cells and will make the driver probe of the EEPROM fail, because it can't parse that
+> fixed-partitions node as a nvmem cell.
+> 
+> To allow for co-existence of NVMEM cells and other subnodes, would following patch be
+> acceptable to you and Srini?
+
+Gentle ping. Would the patch below be acceptable?
+
+> 
+> ---------------------------------------- 8< --------------------------------------
+> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> @@ -45,7 +45,15 @@ properties:
+>  patternProperties:
+>    "^.*@[0-9a-f]+$":
+>      type: object
 > -
->  	/* Initialize subdev */
->  	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
->  
-> +	/* Will be powered off via pm_runtime_idle */
-> +	ret = imx258_power_on(&client->dev);
-> +	if (ret)
-> +		return ret;
+> +    if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +    then:
+> +      $ref: "#/definitions/nvmem-cell"
 > +
->  	/* Check module identity */
->  	ret = imx258_identify_module(imx258);
->  	if (ret)
-> -		return ret;
-> +		goto error_identify;
->  
->  	/* Set default mode to max resolution */
->  	imx258->cur_mode = &supported_modes[0];
->  
->  	ret = imx258_init_controls(imx258);
->  	if (ret)
-> -		return ret;
-> +		goto error_identify;
->  
->  	/* Initialize subdev */
->  	imx258->sd.internal_ops = &imx258_internal_ops;
-> @@ -1258,6 +1307,9 @@ static int imx258_probe(struct i2c_client *client)
->  error_handler_free:
->  	imx258_free_controls(imx258);
->  
-> +error_identify:
-> +	imx258_power_off(&client->dev);
-> +
->  	return ret;
->  }
->  
-> @@ -1271,6 +1323,8 @@ static int imx258_remove(struct i2c_client *client)
->  	imx258_free_controls(imx258);
->  
->  	pm_runtime_disable(&client->dev);
-> +	if (!pm_runtime_status_suspended(&client->dev))
-> +		imx258_power_off(&client->dev);
->  	pm_runtime_set_suspended(&client->dev);
->  
->  	return 0;
-> @@ -1278,6 +1332,7 @@ static int imx258_remove(struct i2c_client *client)
->  
->  static const struct dev_pm_ops imx258_pm_ops = {
->  	SET_SYSTEM_SLEEP_PM_OPS(imx258_suspend, imx258_resume)
-> +	SET_RUNTIME_PM_OPS(imx258_power_off, imx258_power_on, NULL)
->  };
->  
->  #ifdef CONFIG_ACPI
+> +definitions:
+> +  nvmem-cell:
+>      properties:
+>        reg:
+>          maxItems: 1
+
+Cheers,
+Ahmad
 
 -- 
-Kind regards,
-
-Sakari Ailus
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
