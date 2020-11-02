@@ -2,183 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9552A22F1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 03:17:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECD252A22EB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 03:16:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727665AbgKBCRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Nov 2020 21:17:13 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:42614 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727461AbgKBCRM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Nov 2020 21:17:12 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5742520143B;
-        Mon,  2 Nov 2020 03:17:10 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6C8BA20146B;
-        Mon,  2 Nov 2020 03:17:06 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8CD8A402DA;
-        Mon,  2 Nov 2020 03:17:01 +0100 (CET)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] arm64: dts: imx8mq-evk: Add spdif sound card support
-Date:   Mon,  2 Nov 2020 10:11:17 +0800
-Message-Id: <1604283077-27012-2-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604283077-27012-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1604283077-27012-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727561AbgKBCQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Nov 2020 21:16:16 -0500
+Received: from mail-eopbgr50044.outbound.protection.outlook.com ([40.107.5.44]:3911
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727409AbgKBCQQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Nov 2020 21:16:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TFhsydvlftvtXtFmTI8K9dO3RyU/mnhWkOWZbiohR3Dk/7ncdR66ils5N4F9DEspXIVi3gJsnKx7XAza5+6UUm25rUhz+J+tW4lkt+4AecMpurrotT0E6iga+21y/DCNXoiC2sgk8ZgKx7Ojk54mJLcTr6k+725LRg5yH7pUkwGRxPJDnhDBWNuMLzqvCGG3Z9oelKVzWVo1ENsmmXpoB45q622aB0ZyhZruvRXaPjBKJeESUDHSzcDe5uCc6WxlxKlJB20xWdq1VFQYUxpKEamiWCtsJ47xeMXXm0u2aeTzxwh3KTcPvuCxniFYRxBsz+lKLT7GvAcMjVFKAxIiUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pe0kw8CvZxaLfxZuSO80sx5nGrGjUpJ4Ic5VbKNkRpk=;
+ b=eia38gMgsKNBRjuyygt4R3oaXp441oSbyfoz1zg+rxsq1Dj1ORU33VJIPAOf3ErCFwFJUY8Cclk1ve9LuvgwIS8UwABLuVMwYMHYriLS4ZrlMJrMRGzLms9yUQ4sYBJdKPiIzYZDcm3eVy0I7O5us7J81ezPy5lys13RksRIL2JTkfG7IiLlRXBUqoRlnasNE0hc1HQ27WioRMHC8VaXDPiID93qJLfq1LRt2Uyna0rfjkx2wSWiWCKNNCSJv8RB/hJKsYYmtcqvkAPXRJbG/xO889robXubS8oeSqbfZI4zUtNBSZwcrTAOluJa2khayEGH6SbuAINJBQyhU+azFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pe0kw8CvZxaLfxZuSO80sx5nGrGjUpJ4Ic5VbKNkRpk=;
+ b=L7dmFRPR6xq1YlFXAiJZb57KXVNR6NClc1Ig3Rh5VINyBTzMkpe0tNnp5aIKsucaW5rEa6iD9/rI0oLL4oENoALcv4caH8ZC2HrVIDUPzX2X7Vya3AwVLWWdMMdDFbrinRc2RcYISU2cXmDk1hCUtOc+eGM67vKIoXzfoSzPzrM=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DBBPR04MB7996.eurprd04.prod.outlook.com (2603:10a6:10:1e3::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Mon, 2 Nov
+ 2020 02:16:10 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::3c3a:58b9:a1cc:cbcc]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::3c3a:58b9:a1cc:cbcc%8]) with mapi id 15.20.3499.030; Mon, 2 Nov 2020
+ 02:16:10 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mkl@pengutronix.de
+Subject: [PATCH V2] arm64: dts: imx8mp-evk: add CAN support
+Date:   Mon,  2 Nov 2020 10:16:34 +0800
+Message-Id: <20201102021634.6480-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: SG2PR06CA0087.apcprd06.prod.outlook.com
+ (2603:1096:3:14::13) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SG2PR06CA0087.apcprd06.prod.outlook.com (2603:1096:3:14::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19 via Frontend Transport; Mon, 2 Nov 2020 02:16:07 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 9293c0f5-8243-4033-ad97-08d87ed543ab
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7996:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBBPR04MB799649B25935FF5163788F28E6100@DBBPR04MB7996.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:234;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wHgcTfCREmIqjBAkT1JgdG78D2AgopgESky95QgbiTrewBFWybbkXF2l/Sxw5eZG+jveXX0tXmmsdYkGisYdPlc+sUfJZNtJQGItWZeUxxkAk5zeXS3xQd/mFKFA6Kqc5rA8sMIO+O2/vARMqtaSTjQo7Zp4uPL6/1EgdkHjl+bWp44WhSQMyfqND8Pb+fUuz2e1CbvZTxUCtc80tUjl/NxZnALadGhpPjmRgGLUM5++qidbIfUpdBG/Hs+ykzkhEub+JfKqps7G825z0GdzRW3unAhVskT8qlkgilCOg6K/Jk9xshPcROeEcvUJuZDd4ABKuiUlTJ0OUg02DDn28p2q2IjmQSVOPztlfhkXa6pkbppv+j3wsm49oOGzbqf/ChI4ey8/SpaauaPR0RGBxw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(366004)(136003)(39860400002)(66476007)(478600001)(83380400001)(26005)(6486002)(6512007)(66946007)(52116002)(2616005)(66556008)(5660300002)(86362001)(1076003)(69590400008)(4326008)(8936002)(2906002)(956004)(6666004)(8676002)(16526019)(36756003)(186003)(6506007)(316002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: IXcHV+CBTfeK/7GVPCnUQ/utr5WpBxItBvciut18QK//PmJi5dzITNjOx2BpSuYkNmjCXhke8h0km8CzB+AfpMLhgyAjzlqnHYICgbXguFD37dviVja1QRifO00qOzOVNcGRcT4PkB6iNREIlEAqaaJPS7WsGbaqDMLya+WcAZ4ck1VgRUY1iRuWarV1ce2h4X1sBBpZHwlefARyF718fRGM9VqoQRZgfUBtezq/DBeZj29BS3F8aGLWSfHkPeDurJDaC92gQfE6apQ/4etxOJgaldrOOCze8aA6eStCxnkWRT+eyv3hS7Q9rtA0DWtHK5zeWkP1IKhK4bjxu3iLYK6NQHJK7HevLURD3RziBpxz0f3RlNRMlr0P//UyIycThKfCuVe9URh76EWmgMirzEtDtdWRwdMi0dXHpaE0FzUdQKGJdWn9T1rZbifYFT0Zdfny8Ee0PbYILW6MEFllsVI/o5LDDxpp0TROdrz0SnoaPsCAearYA7gHRzdtznuBkEUG6gMlMr/DScbO9fnltHGbavzdFLOZ02doRoDu02rbcaOlf0XmZtD/69YK1O+HN8KpXtXZYtpv70yWsg5OYjPLbw1j6l5K9tHj9l23urueUbrvebF4xjsp4v4/59wq1DltYsORcT2yMk5fnRNEGg==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9293c0f5-8243-4033-ad97-08d87ed543ab
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 02:16:10.4469
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3+dk29sKRejOjU8A/fXYv9FNLhXii8zPVMcU7pABUxvhjqh4Q6F+z0mbfainhXuGiU+VD2N/3ZMi4J/qYvXx3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7996
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are two spdif IP on imx8mq, spdif1 is for normal
-spdif device, spdif2 is for HDMI ARC interface.
+Add CAN device node and pinctrl on i.MX8MP evk board.
 
-Enable these spdif sound card in this patch.
-
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
 ---
-changes in v2:
-- remove undocument compatible string.
+ChangeLogs:
+V1->V2:
+	* add missing space before '=',
+	fsl,clk-source= /bits/ 8 <0> -> fsl,clk-source = /bits/ 8 <0>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 62 ++++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi    | 30 ++++++++++
+ 2 files changed, 92 insertions(+)
 
- arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 38 ++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mq.dtsi    | 48 ++++++++++++++++++++
- 2 files changed, 86 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-index 2418cca00bc5..e4250812586b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-@@ -87,6 +87,21 @@ link_codec: simple-audio-card,codec {
- 			clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
- 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+index 908b92bb4dcd..b10dce8767a4 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+@@ -33,6 +33,28 @@
+ 		      <0x1 0x00000000 0 0xc0000000>;
  	};
-+
-+	sound-spdif {
-+		compatible = "fsl,imx-audio-spdif";
-+		model = "imx-spdif";
-+		spdif-controller = <&spdif1>;
-+		spdif-out;
-+		spdif-in;
+ 
++	reg_can1_stby: regulator-can1-stby {
++		compatible = "regulator-fixed";
++		regulator-name = "can1-stby";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_flexcan1_reg>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio5 5 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
 +	};
 +
-+	sound-hdmi-arc {
-+		compatible = "fsl,imx-audio-spdif";
-+		model = "imx-hdmi-arc";
-+		spdif-controller = <&spdif2>;
-+		spdif-in;
++	reg_can2_stby: regulator-can2-stby {
++		compatible = "regulator-fixed";
++		regulator-name = "can2-stby";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_flexcan2_reg>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio4 27 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
 +	};
++
+ 	reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		compatible = "regulator-fixed";
+ 		pinctrl-names = "default";
+@@ -45,6 +67,20 @@
+ 	};
  };
  
- &A53_0 {
-@@ -336,6 +351,22 @@ &snvs_pwrkey {
- 	status = "okay";
- };
- 
-+&spdif1 {
++&flexcan1 {
 +	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spdif1>;
-+	assigned-clocks = <&clk IMX8MQ_CLK_SPDIF1>;
-+	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
++	pinctrl-0 = <&pinctrl_flexcan1>;
++	xceiver-supply = <&reg_can1_stby>;
 +	status = "okay";
 +};
 +
-+&spdif2 {
-+	assigned-clocks = <&clk IMX8MQ_CLK_SPDIF2>;
-+	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	status = "okay";
++&flexcan2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_flexcan2>;
++	xceiver-supply = <&reg_can2_stby>;
++	status = "disabled";/* can2 pin conflict with pdm */
 +};
 +
- &uart1 {
+ &fec {
  	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
-@@ -467,6 +498,13 @@ MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8       0xd6
+ 	pinctrl-0 = <&pinctrl_fec>;
+@@ -144,6 +180,32 @@
  		>;
  	};
  
-+	pinctrl_spdif1: spdif1grp {
++	pinctrl_flexcan1: flexcan1grp {
 +		fsl,pins = <
-+			MX8MQ_IOMUXC_SPDIF_TX_SPDIF1_OUT	0xd6
-+			MX8MQ_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
++			MX8MP_IOMUXC_SPDIF_RX__CAN1_RX          0x154
++			MX8MP_IOMUXC_SPDIF_TX__CAN1_TX          0x154
 +		>;
 +	};
 +
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 49cc79246288..a841a023e8e0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -793,6 +793,30 @@ bus@30800000 { /* AIPS3 */
- 			ranges = <0x30800000 0x30800000 0x400000>,
- 				 <0x08000000 0x08000000 0x10000000>;
- 
-+			spdif1: spdif@30810000 {
-+				compatible = "fsl,imx35-spdif";
-+				reg = <0x30810000 0x10000>;
-+				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MQ_CLK_IPG_ROOT>, /* core */
-+					<&clk IMX8MQ_CLK_25M>, /* rxtx0 */
-+					<&clk IMX8MQ_CLK_SPDIF1>, /* rxtx1 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx2 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx3 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx4 */
-+					<&clk IMX8MQ_CLK_IPG_ROOT>, /* rxtx5 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx6 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx7 */
-+					<&clk IMX8MQ_CLK_DUMMY>; /* spba */
-+				clock-names = "core", "rxtx0",
-+					      "rxtx1", "rxtx2",
-+					      "rxtx3", "rxtx4",
-+					      "rxtx5", "rxtx6",
-+					      "rxtx7", "spba";
-+				dmas = <&sdma1 8 18 0>, <&sdma1 9 18 0>;
-+				dma-names = "rx", "tx";
-+				status = "disabled";
-+			};
++	pinctrl_flexcan2: flexcan2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI5_MCLK__CAN2_RX         0x154
++			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX         0x154
++		>;
++	};
 +
- 			ecspi1: spi@30820000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -862,6 +886,30 @@ uart2: serial@30890000 {
++	pinctrl_flexcan1_reg: flexcan1reggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05  0x154   /* CAN1_STBY */
++		>;
++	};
++
++	pinctrl_flexcan2_reg: flexcan2reggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI2_MCLK__GPIO4_IO27      0x154   /* CAN2_STBY */
++		>;
++	};
++
+ 	pinctrl_gpio_led: gpioledgrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x19
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 479312293036..ecccfbb4f5ad 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -552,6 +552,36 @@
  				status = "disabled";
  			};
  
-+			spdif2: spdif@308a0000 {
-+				compatible = "fsl,imx35-spdif";
-+				reg = <0x308a0000 0x10000>;
-+				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MQ_CLK_IPG_ROOT>, /* core */
-+					<&clk IMX8MQ_CLK_25M>, /* rxtx0 */
-+					<&clk IMX8MQ_CLK_SPDIF2>, /* rxtx1 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx2 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx3 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx4 */
-+					<&clk IMX8MQ_CLK_IPG_ROOT>, /* rxtx5 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx6 */
-+					<&clk IMX8MQ_CLK_DUMMY>, /* rxtx7 */
-+					<&clk IMX8MQ_CLK_DUMMY>; /* spba */
-+				clock-names = "core", "rxtx0",
-+					      "rxtx1", "rxtx2",
-+					      "rxtx3", "rxtx4",
-+					      "rxtx5", "rxtx6",
-+					      "rxtx7", "spba";
-+				dmas = <&sdma1 16 18 0>, <&sdma1 17 18 0>;
-+				dma-names = "rx", "tx";
++			flexcan1: can@308c0000 {
++				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
++				reg = <0x308c0000 0x10000>;
++				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
++					 <&clk IMX8MP_CLK_CAN1_ROOT>;
++				clock-names = "ipg", "per";
++				assigned-clocks = <&clk IMX8MP_CLK_CAN1>;
++				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
++				assigned-clock-rates = <40000000>;
++				fsl,clk-source = /bits/ 8 <0>;
++				fsl,stop-mode = <&gpr 0x10 4>;
 +				status = "disabled";
 +			};
 +
- 			sai2: sai@308b0000 {
- 				#sound-dai-cells = <0>;
- 				compatible = "fsl,imx8mq-sai";
++			flexcan2: can@308d0000 {
++				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
++				reg = <0x308d0000 0x10000>;
++				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
++					 <&clk IMX8MP_CLK_CAN2_ROOT>;
++				clock-names = "ipg", "per";
++				assigned-clocks = <&clk IMX8MP_CLK_CAN2>;
++				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
++				assigned-clock-rates = <40000000>;
++				fsl,clk-source = /bits/ 8 <0>;
++				fsl,stop-mode = <&gpr 0x10 5>;
++				status = "disabled";
++			};
++
+ 			crypto: crypto@30900000 {
+ 				compatible = "fsl,sec-v4.0";
+ 				#address-cells = <1>;
 -- 
-2.27.0
+2.17.1
 
