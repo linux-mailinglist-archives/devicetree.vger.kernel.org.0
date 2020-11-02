@@ -2,83 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D6922A3128
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:16:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5D7E2A3137
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:18:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727200AbgKBRQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:16:02 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:34541 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726860AbgKBRQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:16:02 -0500
-Received: by mail-oi1-f196.google.com with SMTP id c21so390071oic.1;
-        Mon, 02 Nov 2020 09:16:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=DJhMNxXZamIrpg0kzWp8B/V6rtHCtD1wqM+Smkrcy+0=;
-        b=Nk7RsEqk6s9o8FxjYSY5Iv0a7rbTn2LuAK/Xf0cjxw18y/hNT7kgr/LT2BXdaZWJLS
-         RkgIa/RoRTJxQhO93Mm42zH9LveCR/cUjXUbQACFttSOBbEdpaHyeyx+rjcdcnux9d2G
-         iC1SPBNIsyTqQclXdDrkWFA+t9nwquy63BnPmUdN8Pamx6Vo05s5NzoIHXrxlYXl8sf0
-         qzNrXIae4Yq19Fz9qhTveomRLvoasWQUdQTjrIOQA3R/PIYJB09AwWrzyRDjt16+tBlG
-         LeMvL03vzaQ54WjABUemRfbyd/BtO14YBfZG+o9INslTP6AFavi+2Ou5hJcuGUiN0FkP
-         fldA==
-X-Gm-Message-State: AOAM531io2YZLvPu/Uif8e+Z6JKrGyRbIwsbX6yZP7FYg9xEAzdGvZA8
-        6qFpzCdj9OzzeKV5EULt/w==
-X-Google-Smtp-Source: ABdhPJzYQ0ZAxLvXxFHfECWqzCjvhZK3LAQinOKxN35gOPwU5N4c4JSMJ6sES7FN2EoLdD6xLN3qig==
-X-Received: by 2002:aca:5110:: with SMTP id f16mr1024894oib.94.1604337361192;
-        Mon, 02 Nov 2020 09:16:01 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r24sm248303otq.77.2020.11.02.09.16.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 09:16:00 -0800 (PST)
-Received: (nullmailer pid 4065376 invoked by uid 1000);
-        Mon, 02 Nov 2020 17:15:59 -0000
-Date:   Mon, 2 Nov 2020 11:15:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, aford@beaconembedded.com,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: imx: Add binding doc for spba bus
-Message-ID: <20201102171559.GA4063854@bogus>
-References: <20201101131257.782279-1-aford173@gmail.com>
+        id S1727520AbgKBRRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:17:00 -0500
+Received: from z5.mailgun.us ([104.130.96.5]:52775 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727792AbgKBRRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 12:17:00 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1604337420; h=In-Reply-To: Content-Type: MIME-Version:
+ References: Message-ID: Subject: To: From: Date: Sender;
+ bh=vj+zpfmdt/UrOyrf9DlMG0DgkyLSy+JL1jA0FBPdMew=; b=SWW7XJgFo1Fd8BVN1S+9y7MYP5XD5OJHoIEzZid10D4nTa/UjcN1vESAGmENf7inMGgx2+J2
+ PoTTPtzDdIJ1sJvsM/103MpIwncIr3AfNmoZlappfJDt6CYBJzvkn3bBCElWlIuJ/AD5qiqf
+ v/IWdU7wH0qRq6Rr+pe5lGmK1TE=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 5fa03ef19f889442bba5d19f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 02 Nov 2020 17:16:33
+ GMT
+Sender: jcrouse=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7F6D8C433AF; Mon,  2 Nov 2020 17:16:32 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jcrouse)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C958BC433FE;
+        Mon,  2 Nov 2020 17:16:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C958BC433FE
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jcrouse@codeaurora.org
+Date:   Mon, 2 Nov 2020 10:16:26 -0700
+From:   Jordan Crouse <jcrouse@codeaurora.org>
+To:     Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Rob Clark <robdclark@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v18 0/4] iommu/arm-smmu: Add adreno-smmu implementation
+ and bindings
+Message-ID: <20201102171626.GA5338@jcrouse1-lnx.qualcomm.com>
+Mail-Followup-To: Will Deacon <will@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Joerg Roedel <joro@8bytes.org>, Krishna Reddy <vdumpa@nvidia.com>,
+        Rob Clark <robdclark@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20201027223408.469893-1-jcrouse@codeaurora.org>
+ <20201029172607.GA30745@willie-the-truck>
+ <20201102170823.GA1032@jcrouse1-lnx.qualcomm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201101131257.782279-1-aford173@gmail.com>
+In-Reply-To: <20201102170823.GA1032@jcrouse1-lnx.qualcomm.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 01 Nov 2020 07:12:56 -0600, Adam Ford wrote:
-> Add binding doc for fsl,spba-bus.
+On Mon, Nov 02, 2020 at 10:08:23AM -0700, Jordan Crouse wrote:
+> On Thu, Oct 29, 2020 at 05:26:08PM +0000, Will Deacon wrote:
+> > On Tue, Oct 27, 2020 at 04:34:04PM -0600, Jordan Crouse wrote:
+> > > This short series adds support for the adreno-smmu implementation of the
+> > > arm-smmu driver and the device-tree bindings to turn on the implementation
+> > > for the sm845 and sc7180 GPUs. These changes are the last ones needed to enable
+> > > per-instance pagetables in the drm/msm driver.
+> > > 
+> > > No deltas in this patchset since the last go-around for 5.10 [1].
+> > > 
+> > > [1] https://patchwork.freedesktop.org/series/81393/
+> > > 
+> > > Jordan Crouse (3):
+> > >   iommu/arm-smmu-qcom: Add implementation for the adreno GPU SMMU
+> > >   dt-bindings: arm-smmu: Add compatible string for Adreno GPU SMMU
+> > >   arm: dts: qcom: sm845: Set the compatible string for the GPU SMMU
+> > > 
+> > > Rob Clark (1):
+> > >   iommu/arm-smmu: Add a way for implementations to influence SCTLR
+> > 
+> > FYI: this patch (patch 4/4) doesn't seem to have made it anywhere (I don't
+> > have it, and neither does the archive).
+> > 
+> > Will
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Patch 4/4 was the bindings for sdm845 and I didn't explicitly add IOMMU to the
+> CC list and so patman did what patman does.
 > 
+> I'll resend.
 
+Stack re-sent with you and Robin and the list on the CC for the bindings. I
+expect that Bjorn can pick up the bindings patches once the adreno-smmu patch is
+accepted but it is good for everybody to get the full picture.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Jordan
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/bus/fsl,spba-bus.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml: duplicate '$id' value 'http://devicetree.org/schemas/bus/simple-pm-bus.yaml#'
-
-
-See https://patchwork.ozlabs.org/patch/1391735
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
