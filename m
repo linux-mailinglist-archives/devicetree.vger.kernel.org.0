@@ -2,72 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC352A2557
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E5B2A254C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 08:33:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728101AbgKBHgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 02:36:49 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:42502 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727870AbgKBHgs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 02:36:48 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9388B2013A0;
-        Mon,  2 Nov 2020 08:36:46 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 923152013D3;
-        Mon,  2 Nov 2020 08:36:43 +0100 (CET)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 6AE7E402DA;
-        Mon,  2 Nov 2020 08:36:39 +0100 (CET)
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH v4 3/3] arm: dts: ls1021a: fix rcpm failed to claim resource
-Date:   Mon,  2 Nov 2020 15:26:52 +0800
-Message-Id: <20201102072652.34893-3-ran.wang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201102072652.34893-1-ran.wang_1@nxp.com>
-References: <20201102072652.34893-1-ran.wang_1@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727965AbgKBHdh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Nov 2020 02:33:37 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:58773 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727961AbgKBHdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 02:33:37 -0500
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 1D7DE20000A;
+        Mon,  2 Nov 2020 07:32:59 +0000 (UTC)
+Date:   Mon, 2 Nov 2020 08:32:58 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?UTF-8?B?6LW15Luq5bOw?= <yifeng.zhao@rock-chips.com>
+Cc:     "Johan Jonker" <jbx6244@gmail.com>, richard <richard@nod.at>,
+        vigneshr <vigneshr@ti.com>, robh+dt <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        =?UTF-8?B?SGVpa29TdMO8Ym5lcg==?= <heiko@sntech.de>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-rockchip <linux-rockchip@lists.infradead.org>,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v13 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
+ RK2928 and others
+Message-ID: <20201102083258.3a748c44@xps13>
+In-Reply-To: <20201102114503679684135@rock-chips.com>
+References: <20201028095326.15562-1-yifeng.zhao@rock-chips.com>
+        <20201028095326.15562-3-yifeng.zhao@rock-chips.com>
+        <a8a7875b-f08b-62c6-a630-245687e0df3b@gmail.com>
+        <0dabd80e-b281-be65-b8e2-da00f46964fb@gmail.com>
+        <20201102114503679684135@rock-chips.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The range of dcfg reg is wrong, which overlap with other device,
-such as rcpm. This issue causing rcpm driver failed to claim
-reg resource when calling devm_ioremap_resource().
+Hello,
 
-Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-Acked-by: Li Yang <leoyang.li@nxp.com>
----
-Change in v4:
- - None
+赵仪峰 <yifeng.zhao@rock-chips.com> wrote on Mon, 2 Nov 2020 11:46:04
++0800:
 
-Change in v3:
- - None
+> Hi Johan,
+> 
+> void nand_deselect_target(struct nand_chip *chip)
+> {
+> 	if (chip->legacy.select_chip)
+> 		chip->legacy.select_chip(chip, -1);
+> 
+> 	chip->cur_cs = -1;
+> }
+> 
+> I need add the code below and it work. 
+> 
+>    chip->legacy.select_chip = rk_nfc_select_chip;
+> 
+> But I found almost all nandc drivers do not add this code. Is there any other way to implement it？
 
-Change in v2:
- - None
+Indeed, we don't accept new code we legacy bindings.
 
- arch/arm/boot/dts/ls1021a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I don't understand what extra consumption you are trying to avoid,
+because if it is the NAND device itself that is able to save power when
+it gets unselected, it's really none of you controller's business.
 
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index e12809d6..16744f64 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -173,7 +173,7 @@
- 
- 		dcfg: dcfg@1ee0000 {
- 			compatible = "fsl,ls1021a-dcfg", "syscon";
--			reg = <0x0 0x1ee0000 0x0 0x10000>;
-+			reg = <0x0 0x1ee0000 0x0 0x1000>;
- 			big-endian;
- 		};
- 
--- 
-2.7.4
+Perhaps it's the time to focus on the controller support and tune the
+code base later in a bid to reduce consumption.
 
+Thanks,
+Miquèl
