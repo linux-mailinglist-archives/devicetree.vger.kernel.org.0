@@ -2,101 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BFF2A2BDB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 14:44:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F892A2BBD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 14:43:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725796AbgKBNoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 08:44:34 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:56812 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725789AbgKBNoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 08:44:34 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A2DiRk8088826;
-        Mon, 2 Nov 2020 07:44:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604324667;
-        bh=r/YlXtNITCgo4GkTlzG2uADjCbJc3vs67h2nz6jE7G0=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Ge6e9BIam1fF+LBrf/h/e//TaAYC4F4tLSExSYOzqqX22BEO84KjTkySv3dhTajfz
-         Y5+fDbQChQhy2DP0YS/Qhsc+K+Bq61swCoxfGfTmMdjk/7zUHD+1je6bueE/FzvmEA
-         Kb02iz2w1JRwoWNHLdevVrpNGmn5wQNZroal1gGM=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A2DiRMP128636
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 2 Nov 2020 07:44:27 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 2 Nov
- 2020 07:42:52 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 2 Nov 2020 07:42:52 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A2DgoCO105658;
-        Mon, 2 Nov 2020 07:42:51 -0600
-Subject: Re: [PATCH] arm64: dts: ti: k3-am65: mark dss as dma-coherent
-To:     Robin Murphy <robin.murphy@arm.com>, Nishanth Menon <nm@ti.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20201029141159.190621-1-tomi.valkeinen@ti.com>
- <20201029144100.bf35vierhfignips@NiksLab>
- <20201029145217.zjazhjvylgwez4do@husked>
- <8532a1c0-29db-d67a-441f-b58b232f7c98@ti.com>
- <59747093-4171-937d-70a3-ce6ee788cf79@arm.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <4998118a-f8ec-fc8c-2535-729bb0b68ec9@ti.com>
-Date:   Mon, 2 Nov 2020 15:42:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725852AbgKBNn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 08:43:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41548 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725836AbgKBNn3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 08:43:29 -0500
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7307C061A48
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 05:43:28 -0800 (PST)
+Received: by mail-wm1-x341.google.com with SMTP id 205so1800362wma.4
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 05:43:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mfKBeD4fiXTCoEtzR3WkNNJyJEURTLKGrVDQO6IkliM=;
+        b=cVkQJTnCjfBar8bMUhCyQlY6NBjef7UxGui8W+iKgFzgtMfWzOKQPVzwUgSwmzU0th
+         P9Fk9hSPwRk3llvxISfb4gdJ1oLahMM1fmJ7zNVDMNx2hFWSOKyIV77SJnCdibWP6suU
+         JFerKCnRMv1SPia1lvVdFKHdFAbdXBe6Nt2o8w3Vvvdze7WlRSatKlm2uY1hbQ7BXT3P
+         5n4ZUHFTjFoA+l+/4AHonvxZjbP7xgBiMRErE2K/lPInLr6NVqyVJ38ehkyOVbbN/9we
+         v8F/mNfoXaPnLwGVCFxjOX+yO+x75jqKUzcJ8I0wM79PZDup5JBSReJcWPZXfOle1/75
+         83Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mfKBeD4fiXTCoEtzR3WkNNJyJEURTLKGrVDQO6IkliM=;
+        b=ZNAjcEOEY1iwPOUlmBJcYJdhMGp/nB31XjUb5Vtd0Ak0DwTM2oWQ/KOvSkpxWgtZ1a
+         GLHuIr/4rCAC/sKkgh9973ClN1mrTK7LQbAuP4kgUNikv/ZIXyGqFuMssz5fenQRDsJ7
+         0iDU7JkQLLPQlLYQMq8+oRAF/nrNNg5u4YMvEoljAk7q0z5ysH0VXeho2rdOAvcqlHS1
+         e8ndTOpVzqAhsjjgA+9UfJLsHker55Kfzy4iLg2nAi4j3fbjOLhukXbW3CQh5Fqn8z9Z
+         SORNiX3A6iU3F1F8TW/nm4HMZeP3txl8Lxhzv9CXPtirFr78wZelRB2UxNYNtBTx1dJt
+         b5Sg==
+X-Gm-Message-State: AOAM5313okprYMiSyGG5+54fblctnXwdBFVasjZFnYgRlDpxARCdq98F
+        H36O+gXDO/Xe2EkVyJZ14rnXEw==
+X-Google-Smtp-Source: ABdhPJz0K6pXqtJ2PhgnwSFED6vdeFbe2TdR5EYo4AZ7bBruyE3BYiACCQ8EYnThnBVbjiO57E5gnw==
+X-Received: by 2002:a1c:4b04:: with SMTP id y4mr5834274wma.93.1604324607307;
+        Mon, 02 Nov 2020 05:43:27 -0800 (PST)
+Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
+        by smtp.gmail.com with ESMTPSA id k84sm9970495wmf.42.2020.11.02.05.43.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2020 05:43:26 -0800 (PST)
+Date:   Mon, 2 Nov 2020 13:43:23 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com, morten.rasmussen@arm.com,
+        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
+        rafael@kernel.org, sudeep.holla@arm.com, viresh.kumar@linaro.org,
+        sboyd@kernel.org, nm@ti.com
+Subject: Re: [PATCH v3 1/4] PM / EM: Add a flag indicating units of power
+ values in Energy Model
+Message-ID: <20201102134323.GA2221764@google.com>
+References: <20201019140601.3047-1-lukasz.luba@arm.com>
+ <20201019140601.3047-2-lukasz.luba@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <59747093-4171-937d-70a3-ce6ee788cf79@arm.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201019140601.3047-2-lukasz.luba@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Monday 19 Oct 2020 at 15:05:58 (+0100), Lukasz Luba wrote:
+> diff --git a/include/linux/energy_model.h b/include/linux/energy_model.h
+> index b67a51c574b9..2c31d79bb922 100644
+> --- a/include/linux/energy_model.h
+> +++ b/include/linux/energy_model.h
+> @@ -29,6 +29,8 @@ struct em_perf_state {
+>   * em_perf_domain - Performance domain
+>   * @table:		List of performance states, in ascending order
+>   * @nr_perf_states:	Number of performance states
+> + * @milliwatts:		Flag indicating the power values are in milli-Watts
+> + *			or some other scale.
+>   * @cpus:		Cpumask covering the CPUs of the domain. It's here
+>   *			for performance reasons to avoid potential cache
+>   *			misses during energy calculations in the scheduler
+> @@ -43,6 +45,7 @@ struct em_perf_state {
+>  struct em_perf_domain {
+>  	struct em_perf_state *table;
+>  	int nr_perf_states;
+> +	bool milliwatts;
+>  	unsigned long cpus[];
+>  };
 
-On 02/11/2020 15:01, Robin Murphy wrote:
-> On 2020-10-30 14:08, Tomi Valkeinen wrote:
->> On 29/10/2020 16:52, Nishanth Menon wrote:
->>> On 20:11-20201029, Nikhil Devshatwar wrote:
->>>> On 16:11-20201029, Tomi Valkeinen wrote:
->>>>> DSS is IO coherent on AM65, so we can mark it as such with
->>>>> 'dma-coherent' property in the DT file.
->>>>>
->>>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
->>>> Acked-by: Nikhil Devshatwar <nikhil.nd@ti.com>
->>>>
->>>
->>> Tomi: Do you need to add Fixes: tag to percolate this to stable? if
->>> yes, please comment, makes it easier for me to queue for 5.10 if
->>> possible
->>
->> I don't see this as a fix, but an optimization. Nothing is broken without this.
-> 
-> Note that if the driver doesn't have explicit control over what type of memory access the device
-> makes, that's not necessarily true.
-> 
-> If coherent DMA buffers are allocated from regular kernel memory, there's still a cacheable alias
-> kicking around that can be speculatively fetched into a cache somewhere. If the device is genuinely
-> non-coherent, or configured to make non-snooping accesses, then that's not an issue, but it it's
-> hard-wired to make snooping accesses it can start hitting that cached alias and not see subsequent
-> updates to the buffer, since those are written straight to RAM via the non-cacheable mapping. At
-> that point it becomes an actual problem (and it's not just theoretical - we've hit a real-world
-> example of this recently with GPUs on certain Amlogic devices).
+Make that an int please, sizeof(bool) is impdef.
 
-Ok, thanks. I don't know if that the case here, but better safe than sorry. I'll send a new one with
-appropriate tags.
+With that:
 
- Tomi
-
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Reviewed-by: Quentin Perret <qperret@google.com>
