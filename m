@@ -2,125 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C02CB2A2AAD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 13:28:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4B12A2AB4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 13:30:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728582AbgKBM2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 07:28:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58146 "EHLO
+        id S1728789AbgKBM34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 07:29:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728423AbgKBM2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 07:28:16 -0500
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E18ACC0617A6;
-        Mon,  2 Nov 2020 04:28:15 -0800 (PST)
-Received: by mail-ej1-x642.google.com with SMTP id gn41so1336392ejc.4;
-        Mon, 02 Nov 2020 04:28:15 -0800 (PST)
+        with ESMTP id S1728498AbgKBM34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 07:29:56 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F2F7C061A04
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 04:29:56 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id e2so9324049wme.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 04:29:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=r0EmSEXf/0XT40e873mQz4YprX1O3VYLukb1wmj/kec=;
-        b=idjZtWV4vatTj1nTg40BZZrUZKoyrh2xih0VCjsRyQD+kqyvhjiuHzgtMckah9x32J
-         1JQ43tyR/7HdM2acmEdbNRojx4Qety/TF0q5PV3OsQ1W0OU+BOI34nhRU7XMJZ/2DrFI
-         7xABIONySe0YdUBkMEdtn9sTeKQKg/DR2krm+HyvPpTtWecmi9sNt7EHqlTprjuO2Ga0
-         igs+b1ddS0kyCRp47mimsVet+LP/bSYKVpD2jDFlJxQsGeFPlVtT/Mw3IaSNAZJISXKk
-         whJGJONiJb6g0suucDjrj/23xblMUfVIqRjg3mS3zqlzYW5gOguzqgB46EG0DHI4Kq3J
-         4J0Q==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=4ILeNdi6oZHwCJ6iUbV3quJceEqtA1JSpxIiTg6qDXc=;
+        b=G1YSAkrhaSYGxB3ZzXLFbutEnLIugxjFS/MnHvwogKJ/2z9t6lYistGV8bYmpqP6tr
+         bblR8mBLvTeJ1fhCVf6rwZPdXoxj0ggzYVdS/Boub9l/Km3XhxqMjTeRGteaeIHEtb3y
+         5jgrMQkRG7MiScwoe8GTo5azdVwCfrm8jFEXmgReGPv3Ml7rzoBYDu36ZD8wM0NkUniP
+         4DiPp1ycgkolSM8Mkibl4pMVti5RxZN+FpPQgCUCmECtLqib47VmUFugMi+22C6rHGuj
+         a3IDhz7wmWyxQVj7oDiyBIav9n4OAS+RiRevgZv23EvNPhBofheeruXXF74Sp8fz0+ri
+         aj0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=r0EmSEXf/0XT40e873mQz4YprX1O3VYLukb1wmj/kec=;
-        b=IaVxS9yoo2wRdFly6EVVQHsGHwrfP3G8/bgQevugURR34YyzuthnBh8ZxWmpLw+aDA
-         C4elpIElcWVKNsShTOlVCT6u36utpXDp41frM2/fwBq3MLDduHtfcj+Cy6AeRJSO3rmy
-         ysqKKMH3lVpvhnfD2UXmcKRmMcAtMuUCcmjCJQvDHOHC57BY9mJKJazIxUYqg+TZjMCp
-         8+hhc7gt2IhHUZEhf280vTDqo5KHdWO8TtrcKq9eK12NvXO987Kr07G6eV5zCfyFpN0Q
-         VN7vG/Dc2T6Ih54UrBEKxoImjHJCtJBxw/EA5h9xwxa+oBwbB8/ERRTJBCuQNrYVwLiF
-         vbiQ==
-X-Gm-Message-State: AOAM533ewUO8ug6fBrR0ea0WR84hYefCSdtKqYAJXAlPh8TpTBaaji1A
-        vFU6tsW0cq1XdWBNzOzyJzw=
-X-Google-Smtp-Source: ABdhPJw23VHbuAGhOxMG2Gc/6a2gOIQAOHe/f1S9hf1JWKLklZBygJPWmUQTxaX6u7SQJ0Vn4QOWMQ==
-X-Received: by 2002:a17:906:b043:: with SMTP id bj3mr14724258ejb.338.1604320094629;
-        Mon, 02 Nov 2020 04:28:14 -0800 (PST)
-Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id p9sm9488174ejo.75.2020.11.02.04.28.12
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=4ILeNdi6oZHwCJ6iUbV3quJceEqtA1JSpxIiTg6qDXc=;
+        b=gx8JlU7oWR1Y4R4rpTH9UQVvb5Sz1juy/RmgK5fXGIF5Ia7YmdWbf85aaz+ZZdu1Qv
+         NWNBjrEuhcXB31RKEMcVKyg7T3tJLkgEg+esdPRXZago16Tb5xnOZffcb9L0ez8ZV0zJ
+         B9Q1GlIywA/C38HGGirpLllgR83SbQ2axDRuUGugR0gfbJcFhOi7qzhvElfC0VdxYRYd
+         5G+/NG0pTjp9C5jTW0oVCy6z8R4CyIWwbxYgqauQwCwdzgWiNLL+zeFxFBC2eI8mcqfF
+         dQE3z0b9T5yPqIAG7DepZyFCpKHesrC4dsjJaPGx1LbjKngtmIF0YBXE6WIqKWpfOi6b
+         eAsQ==
+X-Gm-Message-State: AOAM532GuYYBdWAYuQXh+KxiHb2VO/eoYe+W4C4NuIpU21dfar3HilgZ
+        +YsqHyQCQkzyU/P6YJHzkT27+Q==
+X-Google-Smtp-Source: ABdhPJwUIfYXvZE9GcYuAEbLNWA2EEvj2uHM3TWkdRQSTGZfJMk9FgilHnSAFA8PxIJijlcW1NsSSw==
+X-Received: by 2002:a7b:c015:: with SMTP id c21mr17247812wmb.22.1604320194705;
+        Mon, 02 Nov 2020 04:29:54 -0800 (PST)
+Received: from dell ([91.110.221.242])
+        by smtp.gmail.com with ESMTPSA id p13sm21671382wrt.73.2020.11.02.04.29.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 04:28:13 -0800 (PST)
-Date:   Mon, 2 Nov 2020 14:28:12 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
- hardware time stamping support
-Message-ID: <20201102122812.cwu7ptmcc7vpfmrc@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de>
- <3355013.oZEI4y40TO@n95hx1g2>
- <20201101234149.rrhrjiyt7l4orkm7@skbuf>
- <1779456.uGjeJ53Q7B@n95hx1g2>
+        Mon, 02 Nov 2020 04:29:54 -0800 (PST)
+Date:   Mon, 2 Nov 2020 12:29:52 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Codrin.Ciubotariu@microchip.com
+Cc:     Nicolas.Ferre@microchip.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        richard.genoud@gmail.com, alexandre.belloni@bootlin.com,
+        Ludovic.Desroches@microchip.com
+Subject: Re: [PATCH] ARM: dts: at91: add serial MFD sub-node for usart
+Message-ID: <20201102122952.GB4488@dell>
+References: <20201030110702.886638-1-codrin.ciubotariu@microchip.com>
+ <b054ce5c-58fd-dd86-2cb6-1e1f06a0899e@microchip.com>
+ <20201102090122.GF4127@dell>
+ <780303c7-2c32-f2e1-c9ce-1e2ee6bf0533@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1779456.uGjeJ53Q7B@n95hx1g2>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <780303c7-2c32-f2e1-c9ce-1e2ee6bf0533@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 02, 2020 at 11:35:00AM +0100, Christian Eggers wrote:
-> Maybe my mail from October, 22 was ambiguous. I meant that despite of the
-> presence of filtering, a BCMA algorithm should be about to work (as no
-> Announce messages are filtered out).
+On Mon, 02 Nov 2020, Codrin.Ciubotariu@microchip.com wrote:
+
+> On 02.11.2020 11:01, Lee Jones wrote:
+> > On Fri, 30 Oct 2020, Nicolas Ferre wrote:
+> > 
+> >> On 30/10/2020 at 12:07, Codrin Ciubotariu wrote:
+> >>> The "atmel,at91sam9260-usart" driver is a MFD driver, so it needs sub-nodes
+> >>> to match the registered platform device. For this reason, we add a serial
+> >>> subnode to all the "atmel,at91sam9260-usart" serial compatible nods. This
+> >>> will also remove the boot warning:
+> >>> "atmel_usart_serial: Failed to locate of_node [id: -2]"
+> >>
+> >> I don't remember this warning was raised previously even if the MFD driver
+> >> was added a while ago (Sept. 2018).
+> >>
+> >> I would say it's due to 466a62d7642f ("mfd: core: Make a best effort attempt
+> >> to match devices with the correct of_nodes") which was added on mid August
+> >> and corrected with 22380b65dc70 ("mfd: mfd-core: Ensure disabled devices are
+> >> ignored without error") but maybe not covering our case.
+> >>
+> >> So, well, I don't know what's the best option to this change. Moreover, I
+> >> would say that all other USART related properties go into the child not if
+> >> there is a need for one.
+> >>
+> >> Lee, I suspect that we're not the only ones experiencing this ugly warning
+> >> during the boot log: can you point us out how to deal with it for our
+> >> existing atmel_serial.c users?
+> > 
+> > You should not be instantiating drivers through Device Tree which are
+> > not described there.  If the correct representation of the H/W already
+> > exists in Device Tree i.e. no SPI and UART IP really exists, use the
+> > MFD core API to register them utilising the platform API instead.
+> > 
+> > This should do it:
+> > 
+> > diff --git a/drivers/mfd/at91-usart.c b/drivers/mfd/at91-usart.c
+> > index 6a8351a4588e2..939bd2332a4f6 100644
+> > --- a/drivers/mfd/at91-usart.c
+> > +++ b/drivers/mfd/at91-usart.c
+> > @@ -17,12 +17,10 @@
+> > 
+> >   static const struct mfd_cell at91_usart_spi_subdev = {
+> >          .name = "at91_usart_spi",
+> > -       .of_compatible = "microchip,at91sam9g45-usart-spi",
+> >   };
+> > 
+> >   static const struct mfd_cell at91_usart_serial_subdev = {
+> >          .name = "atmel_usart_serial",
+> > -       .of_compatible = "atmel,at91rm9200-usart-serial",
+> >   };
+> > 
+> >   static int at91_usart_mode_probe(struct platform_device *pdev)
 > 
-> Additionally I said, that switching between "master" and "slave" mode could
-> not be done automatically by the driver, as the driver could at most detect
-> the presence of Sync messages (indication for master mode), but would do hard
-> to detect a transition to slave mode.
+> [snip]
 > 
-> I see a chance that user space (ptp4l) could configure the appropriate
-> "hardware filter setup" for master/slave mode.
+> Hi Lee, thank you for looking through our usart driver and for sharing 
+> your thoughts. Removing the usage of compatible string means that for 
+> similar serial/SPI IPs we would need to create new platform drivers. 
 
-The concept that you want from user space is hard to define.
-You want ptp4l to make the driver aware of the port state, which is
-something that happens at runtime and is not part of the "hardware
-filter setup" as you say. Then, even if ptp4l notifies the driver of
-port state, E2E BC setups would still be broken because that's how the
-hardware works and no user space assistance can help with that. Also,
-what abstraction do you plan using for programming the PTP port state
-into the kernel.
+Why would you need to do that?
 
-Maybe you should optimize for what you plan to use. If you need to use
-an E2E profile, maybe it would be worth the effort to find an
-appropriate abstraction for this port state thing. If you only use it
-for testing, then maybe it would be a good idea to keep the sysfs in
-your tree.
+> This is not ideal, but it's a solution. What I proposed is more 
+> flexible, but, as you pointed out, I am not sure it correctly describes 
+> the HW, because the decision of whether to use this IP as a serial or a 
+> SPI is a configurable one.
+> 
+> Thanks and best regards,
+> Codrin
 
-> > Why am I mentioning this? Because the setting that's causing trouble for
-> > us is 'port state of the host port OC', which in the context of what I
-> > said above is nonsense. There _is_ no host port OC. There are 2 switch
-> > ports which can act as individual OCs, or as a BC, or as a TC.
-> But the switch has only one clock at all. I assume that the switch cannot be a
-> boundary clock, only TC seems possible.
-
-Why would a P2P BC not work? It does not require more than one clock.
-
-> As said above, having "filter setups" for E2E/P2P and for MASTER/SLAVE would
-> probably fit well for this kind of hardware.
-
-For E2E/P2P is one thing, for master/slave is a completely different
-thing.
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
