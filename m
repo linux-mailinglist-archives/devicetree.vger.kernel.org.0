@@ -2,95 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A09352A32D3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 19:23:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A682A3301
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 19:30:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725817AbgKBSXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 13:23:04 -0500
-Received: from foss.arm.com ([217.140.110.172]:35954 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725797AbgKBSXD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 13:23:03 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5339139F;
-        Mon,  2 Nov 2020 10:23:02 -0800 (PST)
-Received: from [10.57.54.223] (unknown [10.57.54.223])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 03F0E3F719;
-        Mon,  2 Nov 2020 10:22:59 -0800 (PST)
-Subject: Re: [PATCH v18 3/4] dt-bindings: arm-smmu: Add compatible string for
- Adreno GPU SMMU
-To:     Jordan Crouse <jcrouse@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     iommu@lists.linux-foundation.org, Will Deacon <will@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20201102171416.654337-1-jcrouse@codeaurora.org>
- <20201102171416.654337-4-jcrouse@codeaurora.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <77278507-a6be-8517-6f76-02a0ff588e39@arm.com>
-Date:   Mon, 2 Nov 2020 18:22:58 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1725824AbgKBSai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 13:30:38 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:47366 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725789AbgKBSai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 13:30:38 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A2IU65f075772;
+        Mon, 2 Nov 2020 12:30:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604341806;
+        bh=eyikvyOADXRmirW8NUXz20t+vqM77BxXUZpx1lg31Aw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JMK1sYJavYyvttH9hBYlQVtvuHh2Ato7nnuy4s7QJuAdFb/LRnob/ap/8QXocHU1A
+         CZ5KWA232p5kYBGNF56PO2JvlcoQdKLKgyjGNZNnvvRS99FTEKfYQCfXN6PvslKkhl
+         1BBT9Jw7+AYnSEJ1JDp1UifdpKbRg1OjS+a1UfpA=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A2IU6Ya054554
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 2 Nov 2020 12:30:06 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 2 Nov
+ 2020 12:30:06 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 2 Nov 2020 12:30:05 -0600
+Received: from [10.250.36.55] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A2IU5AF082833;
+        Mon, 2 Nov 2020 12:30:05 -0600
+Subject: Re: [PATCH v7 0/6] Add support for the IEI WT61P803 PUZZLE MCU
+To:     Luka Kovacic <luka.kovacic@sartura.hr>, Pavel Machek <pavel@ucw.cz>
+CC:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Marek Behun <marek.behun@nic.cz>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Robert Marko <robert.marko@sartura.hr>
+References: <20201025005916.64747-7-luka.kovacic@sartura.hr>
+ <20201025005916.64747-6-luka.kovacic@sartura.hr>
+ <20201025005916.64747-5-luka.kovacic@sartura.hr>
+ <20201025005916.64747-4-luka.kovacic@sartura.hr>
+ <20201025005916.64747-3-luka.kovacic@sartura.hr>
+ <20201025005916.64747-2-luka.kovacic@sartura.hr>
+ <20201025005916.64747-1-luka.kovacic@sartura.hr>
+ <20201029180105.GD26053@duo.ucw.cz>
+ <CADZsf3YE3d=dtMVVYHL91Z1WFcpNN4vyJJ6RG7VnJ2V-DqE+wQ@mail.gmail.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <7821443b-ddbc-fc92-b990-14d116dda853@ti.com>
+Date:   Mon, 2 Nov 2020 12:29:59 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201102171416.654337-4-jcrouse@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+In-Reply-To: <CADZsf3YE3d=dtMVVYHL91Z1WFcpNN4vyJJ6RG7VnJ2V-DqE+wQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-11-02 17:14, Jordan Crouse wrote:
-> Every Qcom Adreno GPU has an embedded SMMU for its own use. These
-> devices depend on unique features such as split pagetables,
-> different stall/halt requirements and other settings. Identify them
-> with a compatible string so that they can be identified in the
-> arm-smmu implementation specific code.
-> 
-> Signed-off-by: Jordan Crouse <jcrouse@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
->   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 9 +++++++--
->   1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index 503160a7b9a0..3b63f2ae24db 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -28,8 +28,6 @@ properties:
->             - enum:
->                 - qcom,msm8996-smmu-v2
->                 - qcom,msm8998-smmu-v2
-> -              - qcom,sc7180-smmu-v2
-> -              - qcom,sdm845-smmu-v2
+Hello
 
-What about the "Apps SMMU" instances? Those are distinct and don't 
-have/need the GPU special behaviour, right?
+On 11/1/20 3:56 AM, Luka Kovacic wrote:
+> Hello Pavel,
+>
+> On Thu, Oct 29, 2020 at 7:01 PM Pavel Machek <pavel@ucw.cz> wrote:
+>> Hi!
+>>
+>>> +What:                /sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/power_status
+>>> +Date:                September 2020
+>>> +Contact:     Luka Kovacic <luka.kovacic@sartura.hr>
+>>> +Description: (RO) Power status indicates the host platform power on method.
+>>> +             Value mapping (bitwise list):
+>>> +             0x80 - Null
+>>> +             0x40 - Firmware flag
+>>> +             0x20 - Power loss detection flag (powered off)
+>>> +             0x10 - Power loss detection flag (AC mode)
+>>> +             0x08 - Button power on
+>>> +             0x04 - WOL power on
+>>> +             0x02 - RTC alarm power on
+>>> +             0x01 - AC recover power on
+>> It would be nice to put this into standard place somewhere. Many
+>> machines will want to expose this information.
+> As this is specific to this microcontroller and to how it encodes
+> these values, I don't see a need to change this.
+> This isn't used anywhere else.
+>
+>> If not, at least spell out WoL, as it is not that common of acronym.
+> Okay.
 
-Robin.
+WoL is a very common acronym especially in the networking space
 
->             - const: qcom,smmu-v2
->   
->         - description: Qcom SoCs implementing "arm,mmu-500"
-> @@ -40,6 +38,13 @@ properties:
->                 - qcom,sm8150-smmu-500
->                 - qcom,sm8250-smmu-500
->             - const: arm,mmu-500
-> +      - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
-> +        items:
-> +          - enum:
-> +              - qcom,sc7180-smmu-v2
-> +              - qcom,sdm845-smmu-v2
-> +          - const: qcom,adreno-smmu
-> +          - const: qcom,smmu-v2
->         - description: Marvell SoCs implementing "arm,mmu-500"
->           items:
->             - const: marvell,ap806-smmu-500
-> 
+But the overall this section does not make sense
+
+The description says that it indicates platform power on method but what 
+is NULL power on? There are flags for power loss detection.
+
+Does the RTC mean that the processor real time clock woke up the uC? Or 
+that the internal RTC woke up the controller?
+
+And for the 
+/sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/ac_recovery_status 
+what are those values?
+
+It seems like some ABI's are documented well with formats and others are 
+just described without a format.
+
+For instance
+
+/sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/version the format 
+of this version is not described but 
+/sys/bus/serial/devices/.../iei_wt61p803_puzzle_core/build_info is.
+
+
+Dan
+
