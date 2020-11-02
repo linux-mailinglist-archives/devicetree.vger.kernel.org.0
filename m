@@ -2,407 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C4C2A33EA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 20:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D76E02A345C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 20:39:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725980AbgKBTSu convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Nov 2020 14:18:50 -0500
-Received: from mail-wr1-f51.google.com ([209.85.221.51]:41632 "EHLO
-        mail-wr1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725805AbgKBTSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 14:18:50 -0500
-Received: by mail-wr1-f51.google.com with SMTP id s9so15896399wro.8;
-        Mon, 02 Nov 2020 11:18:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/AolKp+qD2kV7vrOSz37k2pui3YJ81m/he5mhUN0SzY=;
-        b=SU97rQLpHrFXCEQaycezhOeXA7nDzDIPHIEpX6KpncnKfEJUaQbs6XAFHYj7JS0HwS
-         HvhQwaQ4lThMjdht07MZx7ZnUgZzGtMMQnmNi1UP2AdTqfSw0mWV1DfkfccRLzO0kpFl
-         supAEYUPYQXx95KSxD5YwVrKxiaO2jtLDz1+e1y/axy+FxrBGsJSvp4JH0CXVWxxFas9
-         dfxIfFfjXGxQdv2pBtHicoPtpIqoaeTXncvxlB6aLytrI98tgTQMYJqH8JZw/Wka/bsJ
-         VAMyNTVNLKEnuppFRaDDfTSJmCndWOlJJ96wZNKmhzgt0YQ/8ECF4VsAiXCL0IfCAc/2
-         AP4w==
-X-Gm-Message-State: AOAM533j2T84qQrbzLfo59N9o1+Wou71kCnzcGxy840VV1oUO4FKTa6S
-        KAhOEgBenUDic/znSb5ecUE=
-X-Google-Smtp-Source: ABdhPJyWG1MbRtg3sM4utAw4q8GttcsFQafe2vaLETY8ms5hYTLWQHaql64zTnMxnaDPBknndO2XDA==
-X-Received: by 2002:a05:6000:12c2:: with SMTP id l2mr23468705wrx.249.1604344727744;
-        Mon, 02 Nov 2020 11:18:47 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id 15sm449062wmg.1.2020.11.02.11.18.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2020 11:18:46 -0800 (PST)
-Date:   Mon, 2 Nov 2020 20:18:45 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
-Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/5] ARM: dts: add Samsung's exynos4412-based p4note
- boards
-Message-ID: <20201102191845.GA64695@kozik-lap>
-References: <20201031175836.47745-1-martin.juecker@gmail.com>
- <20201031175836.47745-3-martin.juecker@gmail.com>
+        id S1726864AbgKBTje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 14:39:34 -0500
+Received: from mail-eopbgr700063.outbound.protection.outlook.com ([40.107.70.63]:18433
+        "EHLO NAM04-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726255AbgKBTjd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 14:39:33 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZXb8skQPMbPVYMeRHzEl1u9z1zNnaX2QLaQo3+OM+hGBTw6lf2DtN0COQiECVNU5fz4il38uhhfT+AZhTHwSQEaEOuUad/z44tDf+PX2dBvCWrKBgVUG45OdVJ0ZyfWRBUxYD4oSTQkLZF55Soezu9Yvx1Eqwu5MM+CeUUuXrG/KTXbQTAaRNeFJIgaTA9vC2NoO2V0lu0/G6Ij68opWpIYNYQ4J2ovwn0tgJzBBkq+4D4jpdfVeASZvte5Wm6R7IDH2sYosddix0orIDfgCKwuFqgpyIvFrQxZHAmmCQh+7Wnwp4E/Ibu4s8543g0Nf00Hbs14tuW9VXRtiPdjOrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xkP8ZUs7NjshcIi46PxZCvaNq0WfiQSq2TeGOCWUXCY=;
+ b=kFd23VsU03evojqSJ0Pq/xUqruDz7iXWjmfknKV6hAr4quypel/Gyq7Hmlm/QVdbVMMDxKWOQpIQGE7PGWDLbxNbEkdIx9qoLOAiMTPgVNPVYYIUf49QxCbf2c3dV6KvngK46+R8ttIBc935Ey71O8jp//wVbop3l32IThMXcedYLrPZejHAnza7L+kLQkS38zs60nIMWdWpQN1ykDryOPlXHMjfvn2xYTjVkKKzLgdW9MRv2tOLuPrlPCEY+S69Xx7xOKDZkqLHpSU17o1RmPWRyRZDMHfXprL+eJAEwlbTtbb+jto/SEH5YYSBjQHTVaG8aqakiXh7avWEl6+Rrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=ni.com smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xkP8ZUs7NjshcIi46PxZCvaNq0WfiQSq2TeGOCWUXCY=;
+ b=R7cLxULFs5ZnbejIFq4ToqWRJ7YMp4q8360pa4Fg+TAEca3GXexOw3t33eMYrZLFZV+3nfHJp8nnHdYeuoatmY6gRP2vA98sdRtpOav7nfoqcxjr7bwNEdwCXCvvRQNXQv+ZKldxukzLcLTsvF/FF84HJ3AONQAv2wllC4ZRUvc=
+Received: from CY4PR21CA0032.namprd21.prod.outlook.com (2603:10b6:903:12b::18)
+ by SN6PR02MB4591.namprd02.prod.outlook.com (2603:10b6:805:b0::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Mon, 2 Nov
+ 2020 19:39:31 +0000
+Received: from CY1NAM02FT017.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:903:12b:cafe::fc) by CY4PR21CA0032.outlook.office365.com
+ (2603:10b6:903:12b::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.6 via Frontend
+ Transport; Mon, 2 Nov 2020 19:39:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; ni.com; dkim=none (message not signed)
+ header.d=none;ni.com; dmarc=bestguesspass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT017.mail.protection.outlook.com (10.152.75.181) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3520.15 via Frontend Transport; Mon, 2 Nov 2020 19:39:31 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Mon, 2 Nov 2020 11:38:59 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Mon, 2 Nov 2020 11:38:59 -0800
+Envelope-to: stefanos@xilinx.com,
+ michael.auchter@ni.com,
+ mathieu.poirier@linaro.org,
+ devicetree@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Received: from [172.19.2.206] (port=58004 helo=xsjblevinsk50.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <ben.levinsky@xilinx.com>)
+        id 1kZffP-0005Vs-MV; Mon, 02 Nov 2020 11:38:59 -0800
+From:   Ben Levinsky <ben.levinsky@xilinx.com>
+To:     <michael.auchter@ni.com>, <stefanos@xilinx.com>,
+        <mathieu.poirier@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v21 0/5] Provide basic driver to control Arm R5 co-processor found on Xilinx ZynqMP
+Date:   Mon, 2 Nov 2020 11:38:54 -0800
+Message-ID: <20201102193859.31090-1-ben.levinsky@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201031175836.47745-3-martin.juecker@gmail.com>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6ce9af34-0868-4c52-0998-08d87f6704bb
+X-MS-TrafficTypeDiagnostic: SN6PR02MB4591:
+X-Microsoft-Antispam-PRVS: <SN6PR02MB4591A4A84111F99EC7D85F4CB5100@SN6PR02MB4591.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WVspPZgVuRw4i2nnk6u2piNBJDBUPwUb5dXFeKSliDJi7qik6PGoiS4250iFkA/BGQdv0fbCLyBdkp1OBGGtPmMycDiUcalDD9TkURPkTWmV+mX8eY8up97eWMhl6ypsi7NJyca82PT9QxlFtAGKjd9xCGAIxvOPHLdJT8wPJDocekqqXoHfp6z2XPu6q57/HitU59oyi3QB81ioWTRIBfZQ1e2YuC1vobYaWWd+ncIeHUIXsxowdC/N7bCizlikCTAmwOa0BHBNfUl51G6E70UxjHJDXfhIDGZlirskVpZ7Re+yQjIyoexJ+hW855046adHKY2Rf9VKqv9FApiJeXpGucc9oorm8jtoWEyCyV4oTIfzIO6iUGAdXuZMxm27dP29oYFUGHtZqGMsXfAxYq1NRz0iiL5tpDpphrC4rFBCYqWkJiJ08lIMQ+my1K82ox3Q6kR3XBttadQmdDTGCzsdf/lJbXG0fxUWVJMae/EQNhZzKJDBBkVIBE27GiSy
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(346002)(136003)(39860400002)(376002)(46966005)(186003)(8936002)(36906005)(1076003)(2906002)(8676002)(44832011)(5660300002)(9786002)(7696005)(26005)(6666004)(4326008)(336012)(426003)(316002)(110136005)(54906003)(2616005)(36756003)(356005)(966005)(70206006)(47076004)(83380400001)(7636003)(82740400003)(82310400003)(478600001)(70586007)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2020 19:39:31.0011
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ce9af34-0868-4c52-0998-08d87f6704bb
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT017.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB4591
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 06:58:34PM +0100, Martin Jücker wrote:
-> The p4note family contains a couple of variants of the Galaxy Note 10.1
-> tablet with mainly different modems. The GT-N8010/GT-N8013 is the wifi
-> only version.
+Update Xilinx R5 Remoteproc Driver as follows:
+- update documentation for zynqmp_r5_probe
+- restructure so that cluster initialization code is all in one place
+- add memory allocation check for cluster
+- add error handling in case of second core fails at probe but first core succeeded.
+- remove unneeded lines in zynqmp_r5_remoteproc_remove
 
-The subject is v1. Did you send correct patch?
+Previous version https://patchwork.kernel.org/project/linux-remoteproc/list/?series=374399
 
-> 
-> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |    1 +
->  arch/arm/boot/dts/exynos4412-p4note-n8010.dts |   16 +
->  arch/arm/boot/dts/exynos4412-p4note.dtsi      | 1128 +++++++++++++++++
->  3 files changed, 1145 insertions(+)
->  create mode 100644 arch/arm/boot/dts/exynos4412-p4note-n8010.dts
->  create mode 100644 arch/arm/boot/dts/exynos4412-p4note.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 4572db3fa5ae..951853e55edb 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -195,6 +195,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
->  	exynos4412-odroidx.dtb \
->  	exynos4412-odroidx2.dtb \
->  	exynos4412-origen.dtb \
-> +	exynos4412-p4note-n8010.dtb \
->  	exynos4412-smdk4412.dtb \
->  	exynos4412-tiny4412.dtb \
->  	exynos4412-trats2.dtb
-> diff --git a/arch/arm/boot/dts/exynos4412-p4note-n8010.dts b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
-> new file mode 100644
-> index 000000000000..f99358750e01
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Samsung's Galaxy Note 10.1 - N801x (wifi only version)
-> + *
-> + * Copyright (c) 2020 Martin Jücker <martin.juecker@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "exynos4412-p4note.dtsi"
-> +
-> +/ {
-> +	model = "Samsung Galaxy Note 10.1 (GT-N8010/N8013) based on Exynos4412";
-> +	compatible = "samsung,n8010", "samsung,p4note", "samsung,exynos4412", "samsung,exynos4";
-> +
-> +	/* this is the base variant without any kind of modem */
-> +};
-> diff --git a/arch/arm/boot/dts/exynos4412-p4note.dtsi b/arch/arm/boot/dts/exynos4412-p4note.dtsi
-> new file mode 100644
-> index 000000000000..15b6acbbecb2
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/exynos4412-p4note.dtsi
-> @@ -0,0 +1,1128 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Samsung's Exynos4412 based p4note device family base DT
-> + *
-> + * Copyright (c) 2020 Martin Jücker <martin.juecker@gmail.com>
+Ben Levinsky (5):
+  firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+    configuration.
+  firmware: xilinx: Add shutdown/wakeup APIs
+  firmware: xilinx: Add RPU configuration APIs
+  dt-bindings: remoteproc: Add documentation for ZynqMP R5 rproc
+    bindings
+  remoteproc: Add initial zynqmp R5 remoteproc driver
 
-Multiple parts of this file look like copied from the existing ones. Few
-comments are the same. The v1 duplicated even few minor issues like not
-that good naming of nodes.  It looks like it is not only based on
-existing sources, but uses parts of them directly.  If it is true, then
-include the copyright of original work as well.
-https://www.gnu.org/prep/maintain/html_node/Copyright-Notices.html
+ .../xilinx,zynqmp-r5-remoteproc.yaml          | 143 ++++
+ drivers/firmware/xilinx/zynqmp.c              |  96 +++
+ drivers/remoteproc/Kconfig                    |   8 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/zynqmp_r5_remoteproc.c     | 785 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  60 ++
+ 6 files changed, 1093 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+ create mode 100644 drivers/remoteproc/zynqmp_r5_remoteproc.c
 
+-- 
+2.17.1
 
-> + */
-> +
-> +/dts-v1/;
-> +#include "exynos4412.dtsi"
-> +#include "exynos4412-ppmu-common.dtsi"
-> +
-> +#include <dt-bindings/clock/maxim,max77686.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/pinctrl/samsung.h>
-> +
-> +/ {
-> +	compatible = "samsung,p4note", "samsung,exynos4412", "samsung,exynos4";
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0x40000000 0x80000000>;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &serial_2;
-> +	};
-> +
-> +	firmware@204f000 {
-> +		compatible = "samsung,secure-firmware";
-> +		reg = <0x0204F000 0x1000>;
-> +	};
-> +
-> +	fixed-rate-clocks {
-> +		xxti {
-> +			compatible = "samsung,clock-xxti";
-> +			clock-frequency = <0>;
-> +		};
-> +
-> +		xusbxti {
-> +			compatible = "samsung,clock-xusbxti";
-> +			clock-frequency = <24000000>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_keys>;
-> +
-> +		key-down {
-> +			gpios = <&gpx2 2 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			label = "volume down";
-> +			debounce-interval = <10>;
-> +		};
-> +
-> +		key-up {
-> +			gpios = <&gpx3 3 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			label = "volume up";
-> +			debounce-interval = <10>;
-> +		};
-> +
-> +		key-power {
-> +			gpios = <&gpx2 7 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_POWER>;
-> +			label = "power";
-> +			debounce-interval = <10>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	voltage-regulator-1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "TSP_LDO1";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tsp_reg_gpio_1>;
-> +		gpios = <&gpm4 5 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	voltage-regulator-2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "TSP_LDO2";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tsp_reg_gpio_2>;
-> +		gpios = <&gpb 5 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	voltage-regulator-3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "TSP_LDO3";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tsp_reg_gpio_3>;
-> +		gpios = <&gpb 7 GPIO_ACTIVE_HIGH>;
-> +		startup-delay-us = <20000>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	wlan_pwrseq: sdhci3-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpm3 5 GPIO_ACTIVE_LOW>;
-> +		pinctrl-0 = <&wifi_reset>;
-> +		pinctrl-names = "default";
-> +		clocks = <&max77686 MAX77686_CLK_PMIC>;
-> +		clock-names = "ext_clock";
-> +	};
-> +
-> +	i2c-gpio-1 {
-> +		compatible = "i2c-gpio";
-> +		sda-gpios = <&gpy2 4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&gpy2 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		i2c-gpio,delay-us = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		magnetometer@c {
-> +			compatible = "asahi-kasei,ak8975";
-> +			reg = <0x0c>;
-> +			pinctrl-0 = <&ak8975_irq>;
-> +			pinctrl-names = "default";
-> +			interrupt-parent = <&gpm4>;
-> +			interrupts = <7 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +	};
-> +
-> +	i2c-gpio-2 {
-> +		compatible = "i2c-gpio";
-> +		sda-gpios = <&gpy0 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&gpy0 3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		i2c-gpio,delay-us = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		fuel-gauge@36 {
-> +			compatible = "maxim,max17042";
-> +			reg = <0x36>;
-> +			pinctrl-0 = <&fuel_alert_irq>;
-> +			pinctrl-names = "default";
-> +			interrupt-parent = <&gpx2>;
-> +			interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-> +			maxim,rsns-microohm = <10000>;
-> +			maxim,over-heat-temp = <600>;
-> +			maxim,over-volt = <4300>;
-> +		};
-> +	};
-> +
-> +	i2c-gpio-3 {
-> +		compatible = "i2c-gpio";
-> +		sda-gpios = <&gpm4 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&gpm4 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		i2c-gpio,delay-us = <5>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		adc@41 {
-> +			compatible = "st,stmpe811";
-> +			reg = <0x41>;
-> +			pinctrl-0 = <&stmpe_adc_irq>;
-> +			pinctrl-names = "default";
-> +			interrupt-parent = <&gpx0>;
-> +			interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-> +			interrupt-controller;
-> +			irq-trigger = <0x1>;
-> +			st,adc-freq = <3>;
-> +			st,mod-12b = <1>;
-> +			st,ref-sel = <0>;
-> +			st,sample-time = <3>;
-> +
-> +			stmpe_adc {
-> +				compatible = "st,stmpe-adc";
-> +				#io-channel-cells = <1>;
-> +				st,norequest-mask = <0x2F>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&adc {
-> +	vdd-supply = <&ldo3_reg>;
-> +	/* not verified */
-> +	status = "okay";
-> +};
-> +
-> +&bus_dmc {
-> +	devfreq-events = <&ppmu_dmc0_3>, <&ppmu_dmc1_3>;
-> +	vdd-supply = <&buck1_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_acp {
-> +	devfreq = <&bus_dmc>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_c2c {
-> +	devfreq = <&bus_dmc>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_leftbus {
-> +	devfreq-events = <&ppmu_leftbus_3>, <&ppmu_rightbus_3>;
-> +	vdd-supply = <&buck3_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_rightbus {
-> +	devfreq = <&bus_leftbus>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_display {
-> +	devfreq = <&bus_leftbus>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_fsys {
-> +	devfreq = <&bus_leftbus>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_peri {
-> +	devfreq = <&bus_leftbus>;
-> +	status = "okay";
-> +};
-> +
-> +&bus_mfc {
-> +	devfreq = <&bus_leftbus>;
-> +	status = "okay";
-> +};
-> +
-> +&cpu0 {
-> +	cpu0-supply = <&buck2_reg>;
-> +};
-> +
-> +&cpu_thermal {
-> +	cooling-maps {
-> +		map0 {
-> +			/* Corresponds to 800MHz at freq_table */
-> +			cooling-device = <&cpu0 7 7>, <&cpu1 7 7>, <&cpu2 7 7>, <&cpu3 7 7>;
-> +		};
-> +		map1 {
-> +			/* Corresponds to 200MHz at freq_table */
-> +			cooling-device = <&cpu0 13 13>, <&cpu1 13 13>, <&cpu2 13 13>, <&cpu3 13 13>;
-
-This is too long. Please split it at 80 with indentation of next line
-starting at < from the previous one.
-
-
-> +		};
-> +	};
-> +};
-> +
-> +&exynos_usbphy {
-> +	status = "okay";
-> +};
-> +
-> +&fimd {
-> +	pinctrl-0 = <&lcd_clk &lcd_data24 &pwm1_out>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	display-timings {
-> +		timing0 {
-> +			clock-frequency = <66666666>;
-> +			hactive = <1280>;
-> +			vactive = <800>;
-> +			hfront-porch = <18>;
-> +			hback-porch = <36>;
-> +			hsync-len = <16>;
-> +			vback-porch = <16>;
-> +			vfront-porch = <4>;
-> +			vsync-len = <3>;
-> +			hsync-active = <1>;
-> +		};
-> +	};
-
-What happened with Marek's comment about this?
-
-Best regards,
-Krzysztof
