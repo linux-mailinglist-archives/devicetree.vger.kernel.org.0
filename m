@@ -2,128 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D7E2A3137
-	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62E402A3158
+	for <lists+devicetree@lfdr.de>; Mon,  2 Nov 2020 18:20:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727520AbgKBRRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 12:17:00 -0500
-Received: from z5.mailgun.us ([104.130.96.5]:52775 "EHLO z5.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727792AbgKBRRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 12:17:00 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1604337420; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: To: From: Date: Sender;
- bh=vj+zpfmdt/UrOyrf9DlMG0DgkyLSy+JL1jA0FBPdMew=; b=SWW7XJgFo1Fd8BVN1S+9y7MYP5XD5OJHoIEzZid10D4nTa/UjcN1vESAGmENf7inMGgx2+J2
- PoTTPtzDdIJ1sJvsM/103MpIwncIr3AfNmoZlappfJDt6CYBJzvkn3bBCElWlIuJ/AD5qiqf
- v/IWdU7wH0qRq6Rr+pe5lGmK1TE=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 5fa03ef19f889442bba5d19f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 02 Nov 2020 17:16:33
- GMT
-Sender: jcrouse=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7F6D8C433AF; Mon,  2 Nov 2020 17:16:32 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jcrouse)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C958BC433FE;
-        Mon,  2 Nov 2020 17:16:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C958BC433FE
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jcrouse@codeaurora.org
-Date:   Mon, 2 Nov 2020 10:16:26 -0700
-From:   Jordan Crouse <jcrouse@codeaurora.org>
-To:     Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Rob Clark <robdclark@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v18 0/4] iommu/arm-smmu: Add adreno-smmu implementation
- and bindings
-Message-ID: <20201102171626.GA5338@jcrouse1-lnx.qualcomm.com>
-Mail-Followup-To: Will Deacon <will@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Joerg Roedel <joro@8bytes.org>, Krishna Reddy <vdumpa@nvidia.com>,
-        Rob Clark <robdclark@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20201027223408.469893-1-jcrouse@codeaurora.org>
- <20201029172607.GA30745@willie-the-truck>
- <20201102170823.GA1032@jcrouse1-lnx.qualcomm.com>
+        id S1727778AbgKBRUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 12:20:14 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:36989 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727520AbgKBRUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 12:20:14 -0500
+Received: by mail-ot1-f65.google.com with SMTP id l36so5306423ota.4;
+        Mon, 02 Nov 2020 09:20:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1vjHYpv3TzO5WrOgzhwvPqk7gGBfVBDNS9p3u4+MfxU=;
+        b=sMn6Kvkk/CqE++K/cl78sQuQbdWPnwNCBTVa1p60rZEvffUHsRsYJZ/SsQ/xE3BNbr
+         mg5yhE4L75TIiF0L7/ky9SX0gSKz7KCOJSLEJK7wUxlKhdKZKO4UZ+jLy3ZVrIJd8vqX
+         eDxaS3T9LNFlQckbiLh7m/ini6sQBRcOYjtLRf8TDadwJZNWWFj4oy3Vne9a41bB9QF7
+         PeZ2Xt3dAs8gclsja0gSIf334jsZpMVWgJ2ayKidSOGAkN/PzOmuih+esWWhxA1XlXv8
+         2Q1E7SvQMey9Nx/rXAk1UoMDzx5XD/gaun/uiPfjd51O6ewhAPcF3yvM0ObqSMgngEUd
+         ZeCg==
+X-Gm-Message-State: AOAM530XysHbsDIcUlQkKzvyWWaNnxnQ+rrBlzXp3vZpDlGCDlMUcX1i
+        6WF4g5u6L3RFURaVVUrj8w==
+X-Google-Smtp-Source: ABdhPJyqe5CiVpnLDvI6nmkZNO3LgwugA7sN3Wcua4QRjLdpj72n5d74CwMjua9xyXSJk8NBXoLxCw==
+X-Received: by 2002:a9d:4e83:: with SMTP id v3mr13213252otk.156.1604337613138;
+        Mon, 02 Nov 2020 09:20:13 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v5sm3833063otb.44.2020.11.02.09.20.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2020 09:20:12 -0800 (PST)
+Received: (nullmailer pid 4070968 invoked by uid 1000);
+        Mon, 02 Nov 2020 17:20:11 -0000
+Date:   Mon, 2 Nov 2020 11:20:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     devicetree@vger.kernel.org, aford@beaconembedded.com,
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: imx: Add binding doc for spba bus
+Message-ID: <20201102172011.GB4063854@bogus>
+References: <20201101131257.782279-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201102170823.GA1032@jcrouse1-lnx.qualcomm.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20201101131257.782279-1-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 02, 2020 at 10:08:23AM -0700, Jordan Crouse wrote:
-> On Thu, Oct 29, 2020 at 05:26:08PM +0000, Will Deacon wrote:
-> > On Tue, Oct 27, 2020 at 04:34:04PM -0600, Jordan Crouse wrote:
-> > > This short series adds support for the adreno-smmu implementation of the
-> > > arm-smmu driver and the device-tree bindings to turn on the implementation
-> > > for the sm845 and sc7180 GPUs. These changes are the last ones needed to enable
-> > > per-instance pagetables in the drm/msm driver.
-> > > 
-> > > No deltas in this patchset since the last go-around for 5.10 [1].
-> > > 
-> > > [1] https://patchwork.freedesktop.org/series/81393/
-> > > 
-> > > Jordan Crouse (3):
-> > >   iommu/arm-smmu-qcom: Add implementation for the adreno GPU SMMU
-> > >   dt-bindings: arm-smmu: Add compatible string for Adreno GPU SMMU
-> > >   arm: dts: qcom: sm845: Set the compatible string for the GPU SMMU
-> > > 
-> > > Rob Clark (1):
-> > >   iommu/arm-smmu: Add a way for implementations to influence SCTLR
-> > 
-> > FYI: this patch (patch 4/4) doesn't seem to have made it anywhere (I don't
-> > have it, and neither does the archive).
-> > 
-> > Will
+On Sun, Nov 01, 2020 at 07:12:56AM -0600, Adam Ford wrote:
+> Add binding doc for fsl,spba-bus.
 > 
-> Patch 4/4 was the bindings for sdm845 and I didn't explicitly add IOMMU to the
-> CC list and so patman did what patman does.
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > 
-> I'll resend.
+> diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+> new file mode 100644
+> index 000000000000..acb3944168ed
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/simple-pm-bus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Shared Peripherals Bus Interface
+> +
+> +maintainers:
+> +  - Shawn Guo <shawnguo@kernel.org>
+> +
+> +description: |
+> +  A simple bus enabling access to shared peripherals.
+> +
+> +  The "spba-bus" follows the "simple-bus" set of properties, as
+> +  specified in the Devicetree Specification.  It is an extension of
+> +  "simple-bus" because the SDMA controller uses this compatible flag to
+> +  determine which peripherals are available to it and the range over which
+> +  the SDMA can access.  There are no special clocks for the bus, because
+> +  the SDMA controller itself has its interrupt, and clock assignments.
 
-Stack re-sent with you and Robin and the list on the CC for the bindings. I
-expect that Bjorn can pick up the bindings patches once the adreno-smmu patch is
-accepted but it is good for everybody to get the full picture.
+select:
+  properties:
+    compatible:
+      contains:
+        const: fsl,spba-bus
+  required:
+    - compatible
 
-Jordan
+(needed to avoid applying to buses with just 'simple-bus')
 
--- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^bus(@[0-9a-f]+)?$"
+> +
+> +  compatible:
+> +    contains:
+> +      const: fsl,spba-bus
+
+items:
+  - const: fsl,spba-bus
+  - const: simple-bus
+
+> +    description:
+> +      Shall contain "fsl,spba-bus" in addition to "simple-bus"
+> +      compatible strings.
+
+And then drop this.
+
+> +
+> +  '#address-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  '#size-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  ranges: true
+> +
+> +required:
+> +  - compatible
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - ranges
+> +
+> +additionalProperties: true
+
+We can restrict this to nodes with:
+
+type: object
+
+> +
+> +examples:
+> +  - |
+> +
+> +    bus {
+> +        compatible = "fsl,spba-bus", "simple-bus";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges;
+> +    };
+> -- 
+> 2.25.1
+> 
