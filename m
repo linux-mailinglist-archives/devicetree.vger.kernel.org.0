@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B81BF2A3F15
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 09:40:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E3572A3F2E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 09:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725993AbgKCIk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 03:40:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
+        id S1726388AbgKCInm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 03:43:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725982AbgKCIk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 03:40:57 -0500
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA163C0613D1
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 00:40:56 -0800 (PST)
-Received: by mail-wr1-x442.google.com with SMTP id k10so16194154wrw.13
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 00:40:56 -0800 (PST)
+        with ESMTP id S1726058AbgKCInm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 03:43:42 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5842EC0613D1
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 00:43:42 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id c16so11921231wmd.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 00:43:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=n6axZ3iHP/I9X6zde0t6fRwwASoVhPTt/aoyun6aVLg=;
-        b=MXLUtD+2v+X3jyoDpovc1noJ6ID2onsZ/zl+oh7F6o98QyqcNPezYEINAhhfXQI5K3
-         9pxpLVorBayUt1kCNCMQ7EU377fo6BPqYT9XTxxeBuXzRoqhkD/WdnLGS38mqi/sOZem
-         YCDkb7S+OTRGhWX0QKXPuP1p/F4UgwtU8VyKcPfeKAK3M+XZLSnGFpexx8dU9UzqN8Az
-         4li2dtc/g0z33pDOPEaOk5OeRxu9ZzzE8kmAVNPWWvJDtbY0XVjPDhqzrR36sS6lmdyM
-         /Sc79foBBP7rMPt2AUT/m87eR+70OCzjtqXQwlUdOOdXCoUFbWupmJmmYGRGGKjYyofI
-         X2qA==
+        bh=4x5b3JzpvlcUe6sMCJAllWm7e4Nw8obUH53KK3bsNXQ=;
+        b=jcR1a7pYDZzsooTxcfYT2w8r5eDoTyG7e4eVu8VGcW6tSdyDwPGyCMIxntldKhEInm
+         6IjxxeyWTGH/nEgKHwCNa8nxqqMfJqcCdSS3zb3IR4cfhDEctIWmnDsxsNwNPYFawopF
+         ABrjqLGUAEVxowe9+F86xyNT3+i314dE4Bzhi866K+fIKvO/DQZwNqifsqRlJQXcNfKu
+         E/TJMpF9/K21vTzrWN/Y72c4TwU4UAtftLPdUspGOILBUQjBVSnQZeeebQwW+s8imuFz
+         PLA3zqMpbT181LBsYVjWD58SLdtQUngzGCy9s54xPE0A0P90UVotPRt+oSoUKj6H2WBq
+         0Euw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=n6axZ3iHP/I9X6zde0t6fRwwASoVhPTt/aoyun6aVLg=;
-        b=Q6TujcNvqDrrNbRSCY4Maa7e6PIe9XBxmdKVLvq4uH1nwx+WqMhFd/+o3++EBeTt6L
-         UPueZHPHkrulnYoMNKRWapJxbwYLHt2viJus2X2ydIKDJKlqyNyO6M5u+0DOneyAPflT
-         DBTqdHM86D9KDX4gO1tA51zetVrWlp3pe7expJboZ1T//E/JRYR5A6zS5C+AD52jlips
-         UMl2jHbnoNU65VMafwdRj9ZIhVBIbeX6ixxBG1+sY90t5eWsZ3MNuiJeRbX8FfrytVEt
-         gS3g9Nn+59G771Hjvr+wfy0B5LvcMKOYEwEP8XuNCb4IS1OfYi/OqK0HxFGyNAaEBxvO
-         9cwA==
-X-Gm-Message-State: AOAM5310hLMC33ny1ebSEciK3HUNWaQ0CgeXJGo2G8qJj4vgyCJQ1wll
-        dYTrZxRwEHzPvn+pevuigGPnbQ==
-X-Google-Smtp-Source: ABdhPJw6PnP2+bLkXHVjNvjeI6EXcpq7E23UgBuQd7RvTkec8T1MJNS2S9wd4IVNf/3BV72bH2Nk4A==
-X-Received: by 2002:adf:de91:: with SMTP id w17mr24325209wrl.84.1604392855689;
-        Tue, 03 Nov 2020 00:40:55 -0800 (PST)
+        bh=4x5b3JzpvlcUe6sMCJAllWm7e4Nw8obUH53KK3bsNXQ=;
+        b=TRtaqu6YAg7lBoP2S/d6QnyVfdEXbzGsf1GFADAOzOps2wmAxozXKjWYzfH7LZ1rik
+         5b4mjvB4pOgxT2gFpuMTvKZfRYB+rGPEOXpn1xjGAiSuR8xBRa4/OV/C3SUDCifrnuia
+         EQ+DEoWNk1f7sDDtwJB+4UTVR4ZlCP0qQT2VXatamx6M3N0kF1nNOQkft0A/4cZHgmS6
+         sJ/gCw0UYlvISERocC9wjSXQ1BscK6y7sIszONZo0Rj3WsMTmMRK+cACARErkNXyQR7Z
+         KYAbBSGANeUhfEip8s+1+T9yYBrLB/aOot58cXd5/rHlZWxnV61Fu1AU+coj2cutmiu+
+         J3Ow==
+X-Gm-Message-State: AOAM531ldbvkk/+RgPbIPmd/EymsJPf6aoDr3Ygt2EJ0b9L+/BpF0du/
+        i0bDRzsf8qPnst2lZ4Qw58AkKCAStYqCd0L9
+X-Google-Smtp-Source: ABdhPJy0Kp8A3oC5BQ3pC1rLkWiUJiXVEpp6RYgMd0SdiY1r/HBSkq66UYmo0XV8wKtnzhY+Z2ZZEg==
+X-Received: by 2002:a1c:9d02:: with SMTP id g2mr2398444wme.110.1604393021038;
+        Tue, 03 Nov 2020 00:43:41 -0800 (PST)
 Received: from dell ([91.110.221.242])
-        by smtp.gmail.com with ESMTPSA id v9sm12120980wrp.11.2020.11.03.00.40.54
+        by smtp.gmail.com with ESMTPSA id k81sm2443125wma.2.2020.11.03.00.43.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 00:40:55 -0800 (PST)
-Date:   Tue, 3 Nov 2020 08:40:53 +0000
+        Tue, 03 Nov 2020 00:43:40 -0800 (PST)
+Date:   Tue, 3 Nov 2020 08:43:38 +0000
 From:   Lee Jones <lee.jones@linaro.org>
 To:     AceLan Kao <chia-lin.kao@canonical.com>
 Cc:     Shihlun Lin <shihlun.lin@advantech.com.tw>,
@@ -60,123 +60,134 @@ Cc:     Shihlun Lin <shihlun.lin@advantech.com.tw>,
         Campion Kang <campion.kang@advantech.com.tw>
 Subject: Re: [PATCH v3 5/6] mfd: ahc1ec0-hwmon: Add sub-device hwmon for
  Advantech embedded controller
-Message-ID: <20201103084053.GH4488@dell>
+Message-ID: <20201103084338.GI4488@dell>
 References: <20201029100613.25789-1-shihlun.lin@advantech.com.tw>
  <20201029100613.25789-5-shihlun.lin@advantech.com.tw>
  <20201029131419.GA4127@dell>
  <CAFv23Q=EwE=S7U9-NzRfy8CxM+bFX32HHMfZXS1UsPd8dMqzYQ@mail.gmail.com>
+ <20201103084053.GH4488@dell>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFv23Q=EwE=S7U9-NzRfy8CxM+bFX32HHMfZXS1UsPd8dMqzYQ@mail.gmail.com>
+In-Reply-To: <20201103084053.GH4488@dell>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Nov 2020, AceLan Kao wrote:
+On Tue, 03 Nov 2020, Lee Jones wrote:
 
-> Hi Lee,
+> On Tue, 03 Nov 2020, AceLan Kao wrote:
 > 
-> One question for you.
+> > Hi Lee,
+> > 
+> > One question for you.
+> > 
+> > Lee Jones <lee.jones@linaro.org> 於 2020年10月29日 週四 下午9:14寫道：
+> > >
+> > > On Thu, 29 Oct 2020, Shihlun Lin wrote:
+> > >
+> > > > This is one of sub-device driver for Advantech embedded controller
+> > > > AHC1EC0. This driver provides sysfs ABI for Advantech related
+> > > > applications to monitor the system status.
+> > > >
+> > > > Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
+> > > > Reported-by: kernel test robot <lkp@intel.com>
+> > >
+> > > LKP reported that your driver needed upstreaming?
+> > >
+> > > I'm confused!
+> > >
+> > > > ---
+> > > >  drivers/mfd/Kconfig         |    8 +
+> > > >  drivers/mfd/Makefile        |    1 +
+> > > >  drivers/mfd/ahc1ec0-hwmon.c | 1514 +++++++++++++++++++++++++++++++++++
+> > >
+> > > This obviously belongs in drivers/hwmon.
+> > >
+> > > >  3 files changed, 1523 insertions(+)
+> > > >  create mode 100644 drivers/mfd/ahc1ec0-hwmon.c
+> > > >
+> > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > > index 965bcafbe5b2..52ca49b211fc 100644
+> > > > --- a/drivers/mfd/Kconfig
+> > > > +++ b/drivers/mfd/Kconfig
+> > > > @@ -2175,5 +2175,13 @@ config MFD_AHC1EC0
+> > > >         provides expose functions for sub-devices to read/write the value
+> > > >         to embedded controller.
+> > > >
+> > > > +config MFD_AHC1EC0_HWMON
+> > > > +     tristate "Advantech EC Hareware Monitor Function"
+> > > > +     depends on MFD_AHC1EC0
+> > > > +     help
+> > > > +       This is sub-device for Advantech embedded controller AHC1EC0. This
+> > > > +       driver provides the sysfs attribues for applications to monitor
+> > > > +       the system status.
+> > > > +
+> > > >  endmenu
+> > > >  endif
+> > > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > > > index 80a9a2bdc3ba..eb645db817b5 100644
+> > > > --- a/drivers/mfd/Makefile
+> > > > +++ b/drivers/mfd/Makefile
+> > > > @@ -269,3 +269,4 @@ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)  += simple-mfd-i2c.o
+> > > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+> > > >
+> > > >  obj-$(CONFIG_MFD_AHC1EC0)    += ahc1ec0.o
+> > > > +obj-$(CONFIG_MFD_AHC1EC0_HWMON)      += ahc1ec0-hwmon.o
+> > > > diff --git a/drivers/mfd/ahc1ec0-hwmon.c b/drivers/mfd/ahc1ec0-hwmon.c
+> > > > new file mode 100644
+> > > > index 000000000000..3e493b040b4a
+> > > > --- /dev/null
+> > > > +++ b/drivers/mfd/ahc1ec0-hwmon.c
+> > > > @@ -0,0 +1,1514 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > +/*****************************************************************************
+> > > > + * Copyright (c) 2018, Advantech Automation Corp.
+> > >
+> > > You can't just lift a whole driver from downstream code and send it to
+> > > the mailing list as-is.
+> > Could you elaborate more about which part should be fixed, and how it
+> > should look like?
 > 
-> Lee Jones <lee.jones@linaro.org> 於 2020年10月29日 週四 下午9:14寫道：
-> >
-> > On Thu, 29 Oct 2020, Shihlun Lin wrote:
-> >
-> > > This is one of sub-device driver for Advantech embedded controller
-> > > AHC1EC0. This driver provides sysfs ABI for Advantech related
-> > > applications to monitor the system status.
+> Frankly, no.
+> 
+> I would expect a contributor of a several thousand line patch-set to
+> at least read the documentation and adhere to it prior to anyone
+> conducting a full review.  Simply plucking a very old driver set from
+> a BSP kernel and dumping it on the upstream mailing list is not the
+> way to gain the right kind of attention.
+> 
+> At the very least (this is not an exhaustive list);
+> 
+> - all of the copyrights need to be up-to-date
+> - the drivers need to be located in their correct subsystems
+> - any internal references/comment headers need to be removed
+> - licences should be compatible with upstreaming
+> - hacks removed
+> - builds without errors or warnings
+> - checkpatch.pl passed
+> - submission should tick all of the boxes in SubmittingPatches
+> - removal of changelogs/versions
+>   - this is the first version as far as the kernel is concerned
+
+Also spell-check.  Literally the 2nd line:
+
+ config MFD_AHC1EC0_HWMON
+      tristate "Advantech EC Hareware Monitor Function"
+
+I don't know what Hareware is, but is sounds fast! ;)
+
+> > > > + * THIS IS AN UNPUBLISHED WORK CONTAINING CONFIDENTIAL AND PROPRIETARY
+> > > > + * INFORMATION WHICH IS THE PROPERTY OF ADVANTECH AUTOMATION CORP.
+> > > > + *
+> > > > + * ANY DISCLOSURE, USE, OR REPRODUCTION, WITHOUT WRITTEN AUTHORIZATION FROM
+> > > > + * ADVANTECH AUTOMATION CORP., IS STRICTLY PROHIBITED.
+> > > > + *****************************************************************************
 > > >
-> > > Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
-> > > Reported-by: kernel test robot <lkp@intel.com>
-> >
-> > LKP reported that your driver needed upstreaming?
-> >
-> > I'm confused!
-> >
-> > > ---
-> > >  drivers/mfd/Kconfig         |    8 +
-> > >  drivers/mfd/Makefile        |    1 +
-> > >  drivers/mfd/ahc1ec0-hwmon.c | 1514 +++++++++++++++++++++++++++++++++++
-> >
-> > This obviously belongs in drivers/hwmon.
-> >
-> > >  3 files changed, 1523 insertions(+)
-> > >  create mode 100644 drivers/mfd/ahc1ec0-hwmon.c
+> > > This warning is in contradiction to the licence you are proposing.
 > > >
-> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > index 965bcafbe5b2..52ca49b211fc 100644
-> > > --- a/drivers/mfd/Kconfig
-> > > +++ b/drivers/mfd/Kconfig
-> > > @@ -2175,5 +2175,13 @@ config MFD_AHC1EC0
-> > >         provides expose functions for sub-devices to read/write the value
-> > >         to embedded controller.
-> > >
-> > > +config MFD_AHC1EC0_HWMON
-> > > +     tristate "Advantech EC Hareware Monitor Function"
-> > > +     depends on MFD_AHC1EC0
-> > > +     help
-> > > +       This is sub-device for Advantech embedded controller AHC1EC0. This
-> > > +       driver provides the sysfs attribues for applications to monitor
-> > > +       the system status.
-> > > +
-> > >  endmenu
-> > >  endif
-> > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > > index 80a9a2bdc3ba..eb645db817b5 100644
-> > > --- a/drivers/mfd/Makefile
-> > > +++ b/drivers/mfd/Makefile
-> > > @@ -269,3 +269,4 @@ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)  += simple-mfd-i2c.o
-> > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
-> > >
-> > >  obj-$(CONFIG_MFD_AHC1EC0)    += ahc1ec0.o
-> > > +obj-$(CONFIG_MFD_AHC1EC0_HWMON)      += ahc1ec0-hwmon.o
-> > > diff --git a/drivers/mfd/ahc1ec0-hwmon.c b/drivers/mfd/ahc1ec0-hwmon.c
-> > > new file mode 100644
-> > > index 000000000000..3e493b040b4a
-> > > --- /dev/null
-> > > +++ b/drivers/mfd/ahc1ec0-hwmon.c
-> > > @@ -0,0 +1,1514 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*****************************************************************************
-> > > + * Copyright (c) 2018, Advantech Automation Corp.
-> >
-> > You can't just lift a whole driver from downstream code and send it to
-> > the mailing list as-is.
-> Could you elaborate more about which part should be fixed, and how it
-> should look like?
-
-Frankly, no.
-
-I would expect a contributor of a several thousand line patch-set to
-at least read the documentation and adhere to it prior to anyone
-conducting a full review.  Simply plucking a very old driver set from
-a BSP kernel and dumping it on the upstream mailing list is not the
-way to gain the right kind of attention.
-
-At the very least (this is not an exhaustive list);
-
-- all of the copyrights need to be up-to-date
-- the drivers need to be located in their correct subsystems
-- any internal references/comment headers need to be removed
-- licences should be compatible with upstreaming
-- hacks removed
-- builds without errors or warnings
-- checkpatch.pl passed
-- submission should tick all of the boxes in SubmittingPatches
-- removal of changelogs/versions
-  - this is the first version as far as the kernel is concerned
-
-> > > + * THIS IS AN UNPUBLISHED WORK CONTAINING CONFIDENTIAL AND PROPRIETARY
-> > > + * INFORMATION WHICH IS THE PROPERTY OF ADVANTECH AUTOMATION CORP.
-> > > + *
-> > > + * ANY DISCLOSURE, USE, OR REPRODUCTION, WITHOUT WRITTEN AUTHORIZATION FROM
-> > > + * ADVANTECH AUTOMATION CORP., IS STRICTLY PROHIBITED.
-> > > + *****************************************************************************
-> >
-> > This warning is in contradiction to the licence you are proposing.
-> >
+> 
 
 -- 
 Lee Jones [李琼斯]
