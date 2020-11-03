@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 297F62A4F00
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 19:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 142752A4F09
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 19:38:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729272AbgKCSg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 13:36:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58132 "EHLO
+        id S1729077AbgKCSig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 13:38:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728767AbgKCSg5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 13:36:57 -0500
+        with ESMTP id S1725892AbgKCSig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 13:38:36 -0500
 Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECC7C0613D1
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 10:36:55 -0800 (PST)
-Received: by mail-il1-x142.google.com with SMTP id y17so17062913ilg.4
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 10:36:55 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4273DC0617A6
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 10:38:36 -0800 (PST)
+Received: by mail-il1-x142.google.com with SMTP id p2so2183460ilg.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 10:38:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=atishpatra.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=hYbQzlD7g6CgMEWc3wST+ZDYhV+JHgWV0zK7h/WfMj0=;
-        b=iG5fZ4XP9AuvacaY3DzFjo+WannOzars7jtIdP0wgaDlrlYSJvqAaB6jd7l1j4CO8p
-         9/kZcI/PuZpz3E7mNyYf0nvFqoK5bHBPZQH6nRMdWE5/zcPThauK4IdPzuZBEUeI/TpB
-         OktHTxoGsI4069vUpZ22tgkm1d/C77ndMad64=
+        bh=isZW9UVRWMUdUxodMEQrPHM1tf21oSlSUVW3kI8aBBo=;
+        b=SPBvOimS59fQpOncR96IiIRDP3yFCHyir2PmoQOcNBv1nA0ac/tsGYlF9nSpHbLlY4
+         RQxbetSpbbDR8g+jOMYH7C/ZhD0ijLXbY6j4+4jM2Qtu5BVjU2ARNX4PG7PTf6HY+W+5
+         c5P8Dy7kQvIMcHlWiagl6v+fXAl5Dl8kGsVYI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=hYbQzlD7g6CgMEWc3wST+ZDYhV+JHgWV0zK7h/WfMj0=;
-        b=e9ljwmx5NaOwnLT+3SyG3mvx/Xj8jAb/ve59MxArkQtrIPpM/TyXUT5+VxspNrf5a1
-         WcsWl/UWRFEuy960721fXqaXnbioXJvwQj9SlqgCbhOPk9Ng8d7QMsxz8wzn8UOh9U+t
-         fsXNhlsWbGTiptiWgd4LRHoWgeQUXMGpzLIevgGiLb286Ev1DJp5jcfStHL4CocjnwZ3
-         6BQU/WksQWn0DpGj6J7UlgwkR9jshOEDhWIj/DVpYIere+/pjPCm/0VO8yZRoKnO2xl6
-         ZNJYg0HgMhLUD3o+p8ikGQrtQt+inH3TnFL1gk8qMc40X9XM/SgiMPNW6MwuVSweLDrE
-         E/8g==
-X-Gm-Message-State: AOAM53128+u2cLedxsvNa+5MwiVwJ9nVutDe+C6aVeZqdPZoQlI/TMcO
-        QXujyNUTqSQhr/wsUTGOV/OJaSD1QrWTFznzxcv/
-X-Google-Smtp-Source: ABdhPJx+f5Ogky6p999+76oktJVi6X+vrRgYJsuz5k2oZd0lveLH427nrSylT9VxPXleQYaNaD7hBezO9gV6D/ZVbcc=
-X-Received: by 2002:a92:3305:: with SMTP id a5mr174396ilf.219.1604428614935;
- Tue, 03 Nov 2020 10:36:54 -0800 (PST)
+        bh=isZW9UVRWMUdUxodMEQrPHM1tf21oSlSUVW3kI8aBBo=;
+        b=YKTQk/F40U6n5rcV/+pFSi/WI1Hm8W/bPKM8rl7JZ6mntDwOVxSUeR1xCWWzPDVgyn
+         mAR9pu3RgK7Bcc/EgxfcOLPzI85KFY4YJ/0DVvXBcQ1+PRc+QDLr0v0a7qNiO90Xxxsz
+         r3XQs98VWBis8JDOrOZM3tpcKxYyo7YjQ1QiTlIwzdEv3VGdV8cDvRyxExUY2aVKUau9
+         zh4kWVwgXv0oIKxk/vp+hkFSdyjPSICI9kYHx0Vbrf3mPZvYMcVuATHUxuydwtkg7QX/
+         OjlvHtWpkuPKaaBlSHc/xN5+KmGrTahQJ0u7OxuCKgjPYQdZsKPX90aa0qJR+m5yBLnU
+         ADLw==
+X-Gm-Message-State: AOAM531xtNjrK9D3wab2wSZipUuKwzIPk8hkP0L+WRzK1WRr1JE4vJER
+        CthLZZ5Jc1F+Lq8olkb7Brf+0IVGVHxzKOtXIpEd
+X-Google-Smtp-Source: ABdhPJwP/4HvNurgeeX8oFZiCl1iSoi5erFepZ6/ponAvMH88+iqv0up8nMbyaDLWn5Niqr5+HH/Ks/yoC8t4gZnhD4=
+X-Received: by 2002:a92:512:: with SMTP id q18mr15048300ile.147.1604428715567;
+ Tue, 03 Nov 2020 10:38:35 -0800 (PST)
 MIME-Version: 1.0
 References: <20201028232759.1928479-1-atish.patra@wdc.com> <20201028232759.1928479-3-atish.patra@wdc.com>
- <41f1248b-78c6-bac1-410b-9e222368c5f6@codethink.co.uk> <CAOnJCUJhQ=Zv0S4iCK4CDzQr_dfkw3J6ycdM=p6=5B2_sL1Ekg@mail.gmail.com>
- <2d7cc829-5df6-6b94-4c8f-9bae6080444e@codethink.co.uk> <CAOnJCULejyF9xyLk5M0TXqW_=nn0KM5aE8nhK+1h0Xayd2pKUg@mail.gmail.com>
- <fbe404b5-3bb1-dd00-e558-e4a55960b767@microchip.com> <fe079b4a-5410-5cc8-3f5e-8a95b573078a@codethink.co.uk>
-In-Reply-To: <fe079b4a-5410-5cc8-3f5e-8a95b573078a@codethink.co.uk>
+ <CAAhSdy0pW8AFCDtFkEO_4zjg8Exp+XTb09AjhErdX9u-Jw3OuQ@mail.gmail.com>
+ <CAEUhbmUm6EyP33FU1n4LhEk-xcBtR13-xS+Tpt76ug1HQv8CEg@mail.gmail.com> <e9bad05c-db34-ba2c-df5c-ff2f7f53e15b@microchip.com>
+In-Reply-To: <e9bad05c-db34-ba2c-df5c-ff2f7f53e15b@microchip.com>
 From:   Atish Patra <atishp@atishpatra.org>
-Date:   Tue, 3 Nov 2020 10:36:43 -0800
-Message-ID: <CAOnJCUKH77XDymG+jAUYHP+5TC2aabTR4f8jF6s6FqqQNR=_CQ@mail.gmail.com>
+Date:   Tue, 3 Nov 2020 10:38:23 -0800
+Message-ID: <CAOnJCULkC65FgOakjPgoACdpiQFWTiEPCox3ayMWWZwVa91fVA@mail.gmail.com>
 Subject: Re: [RFC PATCH 2/3] RISC-V: Initial DTS for Microchip ICICLE board
-To:     Ben Dooks <ben.dooks@codethink.co.uk>
-Cc:     Cyril.Jean@microchip.com, devicetree@vger.kernel.org,
-        Albert Ou <aou@eecs.berkeley.edu>,
+To:     Cyril.Jean@microchip.com
+Cc:     Bin Meng <bmeng.cn@gmail.com>, Anup Patel <anup@brainfault.org>,
+        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
         Daire McNamara <Daire.McNamara@microchip.com>,
         Anup Patel <anup.patel@wdc.com>,
         "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
@@ -68,58 +67,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 3, 2020 at 10:28 AM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
+On Tue, Nov 3, 2020 at 10:19 AM <Cyril.Jean@microchip.com> wrote:
 >
-> On 03/11/2020 18:10, Cyril.Jean@microchip.com wrote:
-> > On 11/3/20 3:07 PM, Atish Patra wrote:
-> >> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >>
-> >> On Fri, Oct 30, 2020 at 2:20 PM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
->
-> ,snip[
->
-> >>>> @Cyril : Can we enable both eMMC & sdcard at the same time ?
-> >>> I would put /both/ in but only enable the one in use for the moment.
-> >>> Our boards are booting of eMMC as supplied, so this isn't going to work
-> >>> as well. The eMMC is 8bit wide, and thus is only delivering 11MB/sec
-> >>> instead of 22MB/sec. This performance is still not great, but losing
-> >>> half the data-rate is just not good.
+> On 11/3/20 10:00 AM, Bin Meng wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >
+> > On Fri, Oct 30, 2020 at 5:08 PM Anup Patel <anup@brainfault.org> wrote:
+> >> On Thu, Oct 29, 2020 at 4:58 AM Atish Patra <atish.patra@wdc.com> wrote:
+> >>> Add initial DTS for Microchip ICICLE board having only
+> >>> essential devcies (clocks, sdhci, ethernet, serial, etc).
 > >>>
-> >> I am not sure what should be enabled by default. Updating sdcard is much
-> >> easier than eMMC card and we use that approach.
-> >>
-> >> @Cyril: Is there a way that we can enable both ?
-> >>
-> > Yes, we can enable both but this requires a modification to the FPGA
-> > design. One of the guys prototyped this while I was away. We will move
-> > this along. This will require reprogramming the FPGA with a new design
-> > and HSS version.
+> >>> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> >>> ---
+> >>>   arch/riscv/boot/dts/Makefile                  |   1 +
+> >>>   arch/riscv/boot/dts/microchip/Makefile        |   2 +
+> >>>   .../microchip/microchip-icicle-kit-a000.dts   | 313 ++++++++++++++++++
+> >> I suggest we split this DTS into two parts:
+> >> 1. SOC (microchip-polarfire.dtsi)
+> >> 2. Board (microchip-icicle-kit-a000.dts)
+> > I also doubt what is the correct board name. I suspect the -a000 comes
+> > from the SiFive board name convention, but does not apply to the
+> > Icicle Kit board.
 > >
-> > Regards,
+> > @Cyril, please confirm.
 > >
-> > Cyril.
->
-> I either missed or couldn't find a way of forcing the boot mode to be
-> from the SD slot. Have I missed something? At the moment we'd like to
-> have more storage available as the ~7G free on the eMMC is not enough.
+> Correct. Sorry Padmarao, I missed that one.
 >
 
-I use tftpboot to load the kernel & DT from the network. SD card is
-enabled in this DT and Linux
-kernel uses SD slot instead of eMMC.
+Ok. I picked that one from U-Boot. What should be the correct board
+name in that case ?
 
-To summarize, eMMC is used for HSS & U-Boot while SD card is used for
-Linux which makes
-more storage available to Linux.
+microchip-pfsoc-icicle-kit ?
 
-IMO, we should enable the sdcard for Linux DT until updated FPGA
-design & HSS is available.
-
-> --
-> Ben Dooks                               http://www.codethink.co.uk/
-> Senior Engineer                         Codethink - Providing Genius
 >
-> https://www.codethink.co.uk/privacy.html
+> Regards,
+>
+> Cyril.
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
 
 
